@@ -2,54 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0BB38A391
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 11:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED3338A43B
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 12:01:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ADFD6F3A5;
-	Thu, 20 May 2021 09:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 810B26F3BE;
+	Thu, 20 May 2021 10:01:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
- [IPv6:2607:f8b0:4864:20::236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB556F3A4
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 09:54:37 +0000 (UTC)
-Received: by mail-oi1-x236.google.com with SMTP id x15so15825595oic.13
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 02:54:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4oWKaNEo2ZmjLeFQSz76aK1MsiRTBa/tSXJ4vKqaL7w=;
- b=CjrBbf1kIGfLjkh06kqdGKvxJpBHFCaN3oS6qbvZ4qHt303qEuVcnh4oQRMQjuUVG4
- dqlTH6zYcmAqr6ULIEibT7HV932W53SPNu3CsBfd/9m+8ZD1NsbvA1VosnQVbA9Th2K2
- lrxh7IUQrUTIKDFhkE5AWtLnGZ9hiDnXrPrZs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4oWKaNEo2ZmjLeFQSz76aK1MsiRTBa/tSXJ4vKqaL7w=;
- b=RFiFIDRdWqCJSUQIAnwMMe9rHoYkTCHkNUKhI/oCM0oeCZ+JpurV+u6FdE3RWRl0Ew
- lveWDH53gHmipnNozLGkNHuvNflHXe34BTvr42bPYVikcyvyzMrklVOP2IFQum1zMEmy
- AuWfQl3IBUCDDjQPhPwALuoA38pDyIGewK8QUoKnOsMk8oVQEL2veKOeqVcQlCG9GIer
- pakQPjM8syiVdRRialh6cEIduzm1QfbCUksFFkAyV4ntczNC3Yc+uG0dPVJMRIJSgGx3
- Wuq5kJJmXTQI01rpOrQgkiALazbaDZlQiIbHRijlLBuKeBULSdCcQkI4Jbq38GORxCOx
- UbfA==
-X-Gm-Message-State: AOAM533wnHFHQAGRYm6m6U2xOg5gv3VyS8HQjClLJbz8QBEadQGHsmvx
- oaM/4NgXnh0YWmLm5Lfjn43zT1OtcuR+ikeHpw8uew==
-X-Google-Smtp-Source: ABdhPJwuZGgbcY7OWohJKOl/Wgb3FnMY1VlxeRrsh7HJEEOD8ithGqElMj6pwYKAV9DKzK2cuz3xHdHem/qfJgdLrr4=
-X-Received: by 2002:a05:6808:1142:: with SMTP id
- u2mr2675682oiu.101.1621504476516; 
- Thu, 20 May 2021 02:54:36 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10D316F3AE;
+ Thu, 20 May 2021 10:01:49 +0000 (UTC)
+IronPort-SDR: fetyL03njyh+y+ltuJcK6cP8jXD3U8N7PMJ/ugTgvkUWX/nnEeIqSBqwsP389CHs/FUu06EwGQ
+ yc1lBJky/Emg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9989"; a="198103981"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
+ d="scan'208,217";a="198103981"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2021 03:01:48 -0700
+IronPort-SDR: rdAsAnDtSoDqReAn4NuMHLkW365xt7mSpTVeQi6FG8Jn//mnT6UUPXwG4AC7Hje3obqyK5Tno8
+ W5BB6X4Vld6Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; 
+ d="scan'208,217";a="475122251"
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
+ by fmsmga002.fm.intel.com with ESMTP; 20 May 2021 03:01:46 -0700
+Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
+ IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Thu, 20 May 2021 11:01:45 +0100
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7]) by
+ irsmsx601.ger.corp.intel.com ([163.33.146.7]) with mapi id 15.01.2242.008;
+ Thu, 20 May 2021 11:01:45 +0100
+From: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>
+To: "events@lists.x.org" <events@lists.x.org>,
+ "xorg-devel@lists.freedesktop.org" <xorg-devel@lists.freedesktop.org>,
+ "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: XDC 2021: Registration & Call for Proposals now open!
+Thread-Index: AQHXTV8kV+A0xy2kSEuKPhd8KMbgDQ==
+Date: Thu, 20 May 2021 10:01:45 +0000
+Message-ID: <790BA4EE-E3F0-40B9-BE18-3646492F1CAE@intel.com>
+Accept-Language: en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.184.70.1]
 MIME-Version: 1.0
-References: <20210518235830.133834-1-matthew.brost@intel.com>
- <20210518235830.133834-3-matthew.brost@intel.com>
- <YKTyDNyVgmR3z1H5@phenom.ffwll.local>
- <20210519171157.GA5202@sdutt-i7>
-In-Reply-To: <20210519171157.GA5202@sdutt-i7>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 20 May 2021 11:54:25 +0200
-Message-ID: <CAKMK7uG1qCcpwBFaUf06daY6gnxmNbNcZbBX+Yxb64qZkBMF8g@mail.gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [Intel-gfx] [RFC 2/2] drm/doc/rfc: i915 new parallel submission
- uAPI plan
+Subject: [Intel-gfx] XDC 2021: Registration & Call for Proposals now open!
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,381 +68,296 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Jason Ekstrand <jason.ekstrand@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>, karl@freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "board@foundation.x.org" <board@foundation.x.org>
+Content-Type: multipart/mixed; boundary="===============0838996207=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 19, 2021 at 7:19 PM Matthew Brost <matthew.brost@intel.com> wrote:
->
-> On Wed, May 19, 2021 at 01:10:04PM +0200, Daniel Vetter wrote:
-> > On Tue, May 18, 2021 at 04:58:30PM -0700, Matthew Brost wrote:
-> > > Add entry fpr i915 new parallel submission uAPI plan.
-> > >
-> > > v2:
-> > >  (Daniel Vetter):
-> > >   - Expand logical order explaination
-> > >   - Add dummy header
-> > >   - Only allow N BBs in execbuf IOCTL
-> > >   - Configure parallel submission per slot not per gem context
-> > >
-> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > Cc: Tony Ye <tony.ye@intel.com>
-> > > CC: Carl Zhang <carl.zhang@intel.com>
-> > > Cc: Daniel Vetter <daniel.vetter@intel.com>
-> > > Cc: Jason Ekstrand <jason@jlekstrand.net>
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >  Documentation/gpu/rfc/i915_parallel_execbuf.h | 144 ++++++++++++++++++
-> > >  Documentation/gpu/rfc/i915_scheduler.rst      |  53 ++++++-
-> > >  2 files changed, 196 insertions(+), 1 deletion(-)
-> > >  create mode 100644 Documentation/gpu/rfc/i915_parallel_execbuf.h
-> > >
-> > > diff --git a/Documentation/gpu/rfc/i915_parallel_execbuf.h b/Documentation/gpu/rfc/i915_parallel_execbuf.h
-> > > new file mode 100644
-> > > index 000000000000..8c64b983ccad
-> > > --- /dev/null
-> > > +++ b/Documentation/gpu/rfc/i915_parallel_execbuf.h
-> > > @@ -0,0 +1,144 @@
-> > > +#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
-> > > +
-> > > +/*
-> > > + * i915_context_engines_parallel_submit:
-> > > + *
-> > > + * Setup a slot to allow multiple BBs to be submitted in a single execbuf IOCTL.
-> > > + * Those BBs will then be scheduled to run on the GPU in parallel. Multiple
-> > > + * hardware contexts are created internally in the i915 run these BBs. Once a
-> > > + * slot is configured for N BBs only N BBs can be submitted in each execbuf
-> > > + * IOCTL and this is implict behavior (e.g. the user doesn't tell the execbuf
-> > > + * IOCTL there are N BBs, the execbuf IOCTL know how many BBs there are based on
-> > > + * the slots configuration).
-> > > + *
-> > > + * Their are two currently defined ways to control the placement of the
-> > > + * hardware contexts on physical engines: default behavior (no flags) and
-> > > + * I915_PARALLEL_IMPLICT_BONDS (a flag). More flags may be added the in the
-> > > + * future as new hardware / use cases arise. Details of how to use this
-> > > + * interface below above the flags.
-> > > + *
-> > > + * Returns -EINVAL if hardware context placement configuration invalid or if the
-> > > + * placement configuration isn't supported on the platform / submission
-> > > + * interface.
-> > > + * Returns -ENODEV if extension isn't supported on the platform / submission
-> > > + * inteface.
-> > > + */
-> > > +struct i915_context_engines_parallel_submit {
-> > > +   struct i915_user_extension base;
-> > > +
-> > > +   __u16 engine_index;     /* slot for parallel engine */
-> > > +   __u16 width;            /* number of contexts per parallel engine */
-> > > +   __u16 num_siblings;     /* number of siblings per context */
-> > > +   __u16 mbz16;
-> >
-> > Ok the big picture looks reasonable now, the flags still confuse me.
-> >
->
-> Yea, it is a bit confusing.
->
-> > > +/*
-> > > + * Default placement behvavior (currently unsupported):
-> > > + *
-> > > + * Rather than restricting parallel submission to a single class with a
-> > > + * logically contiguous placement (I915_PARALLEL_IMPLICT_BONDS), add a mode that
-> > > + * enables parallel submission across multiple engine classes. In this case each
-> > > + * context's logical engine mask indicates where that context can placed. It is
-> > > + * implied in this mode that all contexts have mutual exclusive placement (e.g.
-> > > + * if one context is running CS0 no other contexts can run on CS0).
-> > > + *
-> > > + * Example 1 pseudo code:
-> > > + * CSX[Y] = engine class X, logical instance Y
-> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
-> > > + * set_engines(INVALID)
-> > > + * set_parallel(engine_index=0, width=2, num_siblings=2,
-> > > + *         engines=CS0[0],CS0[1],CS1[0],CS1[1])
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS0[0], CS1[0]
-> > > + * CS0[0], CS1[1]
-> > > + * CS0[1], CS1[0]
-> > > + * CS0[1], CS1[1]
-> > > + *
-> > > + * This can also be though of as 2 virtual engines:
-> > > + * VE[0] = CS0[0], CS0[1]
-> > > + * VE[1] = CS1[0], CS1[1]
-> > > + *
-> > > + * Example 2 pseudo code:
-> > > + * CS[X] = generic engine of same class, logical instance X
-> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
-> > > + * set_engines(INVALID)
-> > > + * set_parallel(engine_index=0, width=2, num_siblings=3,
-> > > + *         engines=CS[0],CS[1],CS[2],CS[0],CS[1],CS[2])
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS[0], CS[1]
-> > > + * CS[0], CS[2]
-> > > + * CS[1], CS[0]
-> > > + * CS[1], CS[2]
-> > > + * CS[2], CS[0]
-> > > + * CS[2], CS[1]
-> > > + *
-> > > + *
-> > > + * This can also be though of as 2 virtual engines:
-> > > + * VE[0] = CS[0], CS[1], CS[2]
-> > > + * VE[1] = CS[0], CS[1], CS[2]
-> > > +
-> > > + * This enables a use case where all engines are created equally, we don't care
-> > > + * where they are scheduled, we just want a certain number of resources, for
-> > > + * those resources to be scheduled in parallel, and possibly across multiple
-> > > + * engine classes.
-> > > + */
-> >
-> > So I don't really get what this does compared to setting the flag below.
-> > Is this just about running the batchbuffers the wrong way round, i.e. if
-> > you have (simplest case)
-> >
-> > width=2, num_sibglings=1, engines=CS[0], CS[1]
-> >
-> > Then both
-> > CS[0], CS[1]
-> > and
-> > CS[1], CS[0]
-> > are possible options for running 2 batches? Iow, the backend is allowed to
-> > run the batchbuffers the wrong way round, which gains us nothing, since we
-> > assume the batches take equally long and engines interchangeable. There is
-> > no scheduling scenario where this additional flexibility can help.
-> >
-> > Also we don't have flags to select the only available and then specify an
-> > entire pipe dream about what the non-flag mode does, without an
-> > implementation. What is this about?
-> >
-> > If it's just "because bonded allowed this" then I think we should just
-> > unceremonously ditch this. Bummer for the nice kerenldoc you wrote, but
-> > welp.
-> >
->
-> High level the flags came out of internal discussions how this interface
-> should look. The default placement behavior is theoretically possible
-> with execlists but has no use cases. The GuC supports / current use
-> cases are a subset of what is possible with I915_PARALLEL_IMPLICT_BONDS.
->
-> Argued about for months and this is where we landed. At the end of the
-> day I think we needed to show that this interface supports more
-> placement rules than what the GuC supports / current use cases to future
-> proof this interface.
->
-> For what is it worth it seems kinda backwards that we landed on the
-> default behavior not being supported in our current stack / HW.
+--===============0838996207==
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_790BA4EEE3F040B9BE183646492F1CAEintelcom_"
 
-Yeah I think that should be inverted, doesn't make sense.
+--_000_790BA4EEE3F040B9BE183646492F1CAEintelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-What I still don't get (and I've read Tvrtko's reply with the example)
-is what exactly is the difference between implicit and not implicit
-mode? Can you do a single example where the only difference is whether
-this flag is set, and then explain with that what are the actual
-differences in scheduling options that the backend is allowed to pick
-for the set of N patches?
+SGVsbG8hDQoNClJlZ2lzdHJhdGlvbiAmIENhbGwgZm9yIFByb3Bvc2FscyBhcmUgbm93IG9wZW4g
+Zm9yIFhEQyAyMDIxLCB3aGljaCB3aWxsDQp0YWtlIHBsYWNlIG9uIFNlcHRlbWJlciAxNS0xNywg
+MjAyMS4gVGhpcyB5ZWFyIHdlIHdpbGwgcmVwZWF0IGFzDQp2aXJ0dWFsIGV2ZW50Lg0KDQpodHRw
+czovL2luZGljby5mcmVlZGVza3RvcC5vcmcvZXZlbnQvMS8NCg0KQXMgdXN1YWwsIHRoZSBjb25m
+ZXJlbmNlIGlzIGZyZWUgb2YgY2hhcmdlIGFuZCBvcGVuIHRvIHRoZSBnZW5lcmFsDQpwdWJsaWMu
+IElmIHlvdSBwbGFuIG9uIGF0dGVuZGluZywgcGxlYXNlIG1ha2Ugc3VyZSB0byByZWdpc3RlciBh
+cyBlYXJseQ0KYXMgcG9zc2libGUhDQoNCkluIG9yZGVyIHRvIHJlZ2lzdGVyIGFzIGF0dGVuZGVl
+LCB5b3Ugd2lsbCB0aGVyZWZvcmUgbmVlZCB0byByZWdpc3Rlcg0KdmlhIHRoZSBYREMgd2Vic2l0
+ZS4gQXMgWERDIG1vdmVkIHRvIGEgbmV3IEluZGljbyBpbmZyYXN0cnVjdHVyZSwgaWYNCnlvdSBw
+cmV2aW91c2x5IHJlZ2lzdGVyZWQgb24gdGhlIFhEQyB3ZWJzaXRlLCB5b3UgbmVlZCB0byBjcmVh
+dGUgYSBuZXcNCmFjY291bnQgYWdhaW4uDQoNCmh0dHBzOi8vaW5kaWNvLmZyZWVkZXNrdG9wLm9y
+Zy9ldmVudC8xL3JlZ2lzdHJhdGlvbnMvMS8NCg0KSW4gYWRkaXRpb24gdG8gcmVnaXN0cmF0aW9u
+LCB0aGUgQ2ZQIGlzIG5vdyBvcGVuIGZvciB0YWxrcywgd29ya3Nob3BzDQphbmQgZGVtb3MgYXQg
+WERDIDIwMjEuIFdoaWxlIGFueSBzZXJpb3VzIHByb3Bvc2FsIHdpbGwgYmUgZ3JhdGVmdWxseQ0K
+Y29uc2lkZXJlZCwgdG9waWNzIG9mIGludGVyZXN0IHRvIFguT3JnIGFuZCBmcmVlZGVza3RvcC5v
+cmcgZGV2ZWxvcGVycw0KYXJlIGVuY291cmFnZWQuIFRoZSBwcm9ncmFtIGZvY3VzIGlzIG9uIG5l
+dyBkZXZlbG9wbWVudCwgb25nb2luZw0KY2hhbGxlbmdlcyBhbmQgYW55dGhpbmcgZWxzZSB0aGF0
+IHdpbGwgc3BhcmsgZGlzY3Vzc2lvbnMgYW1vbmcNCmF0dGVuZGVlcyBpbiB0aGUgaGFsbHdheSB0
+cmFjay4NCg0KV2UgYXJlIG9wZW4gdG8gdGFsa3MgYWNyb3NzIGFsbCBsYXllcnMgb2YgdGhlIGdy
+YXBoaWNzIHN0YWNrLCBmcm9tIHRoZQ0Ka2VybmVsIHRvIGRlc2t0b3AgZW52aXJvbm1lbnRzIC8g
+Z3JhcGhpY2FsIGFwcGxpY2F0aW9ucyBhbmQgYWJvdXQgaG93DQp0byBtYWtlIHRoaW5ncyBiZXR0
+ZXIgZm9yIHRoZSBkZXZlbG9wZXJzIHdobyBidWlsZCB0aGVtLiBIZWFkIHRvIHRoZQ0KQ2ZQIHBh
+Z2UgdG8gbGVhcm4gbW9yZToNCg0KaHR0cHM6Ly9pbmRpY28uZnJlZWRlc2t0b3Aub3JnL2V2ZW50
+LzEvYWJzdHJhY3RzLw0KDQpUaGUgZGVhZGxpbmUgZm9yIHN1Ym1pc3Npb25zIGlzIFN1bmRheSwg
+NCBKdWx5IDIwMjEuDQoNCkxhc3QgeWVhciB3ZSBtb2RpZmllZCBvdXIgUmVpbWJ1cnNlbWVudCBQ
+b2xpY3kgdG8gYWNjZXB0IHNwZWFrZXINCmV4cGVuc2VzIGZvciBYLk9yZyB2aXJ0dWFsIGV2ZW50
+cyBsaWtlIFhEQyAyMDIxLiBDaGVjayBpdCBvdXQgaGVyZToNCg0KaHR0cHM6Ly93d3cueC5vcmcv
+d2lraS9Yb3JnRm91bmRhdGlvbi9Qb2xpY2llcy9SZWltYnVyc2VtZW50Lw0KDQpJZiB5b3UgaGF2
+ZSBhbnkgcXVlc3Rpb25zLCBwbGVhc2Ugc2VuZCBtZSBhbiBlbWFpbCB0bw0KcmFkb3NsYXcuc3p3
+aWNodGVuYmVyZ0BpbnRlbC5jb208bWFpbHRvOnJhZG9zbGF3LnN6d2ljaHRlbmJlcmdAaW50ZWwu
+Y29tPiwgIGFkZGluZyBvbiBDQyB0aGUgWC5vcmcgYm9hcmQgKGJvYXJkDQphdCBmb3VuZGF0aW9u
+Lngub3JnKS4NCg0KQW5kIGRvbid0IGZvcmdldCwgeW91IGNhbiBmb2xsb3cgdXMgb24gVHdpdHRl
+ciBmb3IgYWxsIHRoZSBsYXRlc3QNCnVwZGF0ZXMgYW5kIHRvIHN0YXkgY29ubmVjdGVkOg0KDQoN
+Cmh0dHBzOi8vdHdpdHRlci5jb20vWE9yZ0RldkNvbmYNCg0KQmVzdCwNCg0KUmFkZWsNCg0KUC5T
+OiBhIEROUyByZWRpcmVjdGlvbiAoeGRjMjAyMS54Lm9yZykgaXMgd29yayBpbiBwcm9ncmVzcy4g
+UGxlYXNlIHVzZQ0KdGhlIG1lbnRpb25lZCBsaW5rcyBmb3IgdGhlIG1vbWVudC4NCg0KDQpSYWRv
+c8WCYXcgU3p3aWNodGVuYmVyZw0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLQ0KSW50ZWwgVGVjaG5vbG9neSBQb2xhbmQgc3AuIHogby5vLg0KdWwuIFNs
+b3dhY2tpZWdvIDE3MywgODAtMjk4IEdkYW5zaw0KS1JTIDEwMTg4MiAtIE5JUCA5NTctMDctNTIt
+MzE2DQoNCg==
 
-I'm feeling a bit dense, but I'm really not seeing what's even going on here :-(
+--_000_790BA4EEE3F040B9BE183646492F1CAEintelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <61D3D2A040FE6C4D9168382E6241FC76@intel.com>
+Content-Transfer-Encoding: base64
 
-> > > +
-> > > +/*
-> > > + * I915_PARALLEL_IMPLICT_BONDS - Create implict bonds between each context.
-> > > + * Each context must have the same number sibling and bonds are implictly create
-> > > + * of the siblings.
-> > > + *
-> > > + * All of the below examples are in logical space.
-> > > + *
-> > > + * Example 1 pseudo code:
-> > > + * CS[X] = generic engine of same class, logical instance X
-> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
-> > > + * set_engines(INVALID)
-> > > + * set_parallel(engine_index=0, width=2, num_siblings=1,
-> > > + *         engines=CS[0],CS[1], flags=I915_PARALLEL_IMPLICT_BONDS)
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS[0], CS[1]
-> > > + *
-> > > + * Example 2 pseudo code:
-> > > + * CS[X] = generic engine of same class, logical instance X
-> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
-> > > + * set_engines(INVALID)
-> > > + * set_parallel(engine_index=0, width=2, num_siblings=2,
-> > > + *         engines=CS[0],CS[2],CS[1],CS[3], flags=I915_PARALLEL_IMPLICT_BONDS)
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS[0], CS[1]
-> > > + * CS[2], CS[3]
-> > > + *
-> > > + * This can also be though of as 2 virtual engines:
-> > > + * VE[0] = CS[0], CS[2]
-> > > + * VE[1] = CS[1], CS[3]
-> > > + *
-> > > + * This enables a use case where all engines are not equal and certain placement
-> > > + * rules are required (i.e. split-frame requires all contexts to be placed in a
-> > > + * logically contiguous order on the VCS engines on gen11+ platforms). This use
-> > > + * case (logically contiguous placement, within a single engine class) is
-> > > + * supported when using GuC submission. Execlist mode could support all possible
-> > > + * bonding configurations but currently doesn't support this extension.
-> > > + */
-> > > +#define I915_PARALLEL_IMPLICT_BONDS                        (1<<0)
-> >
-> > Does this map to intel_context_set_nopreempt(), so we could implement it
-> > also in execlist?
-> >
->
-> intel_context_set_nopreempt is preempt is part of how this would be
-> implemented for execlists. For GuC submission there is a algorithm
-> between the i915 and GuC that inserts same preemption points between
-> each set of N batches. I believe the rules are if context 1 can
-> preempted the rest of the contexts (2 - N) can safely be preempted. A go
-> / join algorithm, implemented with semaphores, around the batches
-> makes sure the i915 adheres to these rules.
->
-> > Also is this just an artifact of the implementation, or is this somehow
-> > required functionality for userspace, i.e. the workload fails if e.g. GuC
-> > decides to preempt all LRC of a parallel virtual engine? Of course just
-> > preempting one is a bit a bug (but execlist I think happily does that).
-> >
->
-> I think it is part of the implementation / HW limitations. Basically if
-> N batches are running in parallel if one of the batches gets preempted
-> it can hang all the other batches even if it gets restarted. Again the
-> idea behind this is only preempt any of these contexts between each set
-> of N batches. The GuC has no concept of batches only contexts hence the
-> aforementioned algorithm to insert same preemption points between each
-> set of batches.
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5Oi13ZWJraXQt
+c3RhbmRhcmQ7DQoJcGFub3NlLTE6MiAxMSA2IDQgMiAyIDIgMiAyIDQ7fQ0KLyogU3R5bGUgRGVm
+aW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7
+bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
+YW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCmE6bGluaywgc3Bhbi5N
+c29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJ
+dGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5
+bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
+cmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5hcHBsZS1jb252ZXJ0ZWQtc3BhY2UNCgl7
+bXNvLXN0eWxlLW5hbWU6YXBwbGUtY29udmVydGVkLXNwYWNlO30NCi5Nc29DaHBEZWZhdWx0DQoJ
+e21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
+O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46
+NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpX
+b3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9ImVuLVBMIiBs
+aW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiIgc3R5bGU9IndvcmQtd3JhcDpicmVhay13b3Jk
+Ij4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtj
+b2xvcjpibGFjayI+SGVsbG8hPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVv
+dDssc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0
+YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj5SZWdpc3RyYXRpb24gJmFtcDsgQ2FsbCBm
+b3IgUHJvcG9zYWxzIGFyZSBub3cgb3BlbiBmb3IgWERDIDIwMjEsIHdoaWNoIHdpbGw8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1m
+YW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+dGFr
+ZSBwbGFjZSBvbiBTZXB0ZW1iZXIgMTUtMTcsIDIwMjEuIFRoaXMgeWVhciB3ZSB3aWxsIHJlcGVh
+dCBhczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9y
+OmJsYWNrIj52aXJ0dWFsIGV2ZW50LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJk
+JnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtp
+dC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+PGEgaHJlZj0iaHR0cHM6Ly9pbmRp
+Y28uZnJlZWRlc2t0b3Aub3JnL2V2ZW50LzEvIiB0aXRsZT0iaHR0cHM6Ly9pbmRpY28uZnJlZWRl
+c2t0b3Aub3JnL2V2ZW50LzEvIj5odHRwczovL2luZGljby5mcmVlZGVza3RvcC5vcmcvZXZlbnQv
+MS88L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29s
+b3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7
+LHNlcmlmO2NvbG9yOmJsYWNrIj5BcyB1c3VhbCwgdGhlIGNvbmZlcmVuY2UgaXMgZnJlZSBvZiBj
+aGFyZ2UgYW5kIG9wZW4gdG8gdGhlIGdlbmVyYWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1z
+dGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+cHVibGljLiBJZiB5b3UgcGxhbiBvbiBh
+dHRlbmRpbmcsIHBsZWFzZSBtYWtlIHN1cmUgdG8gcmVnaXN0ZXIgYXMgZWFybHk8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+YXMgcG9z
+c2libGUhPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29s
+b3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7
+LHNlcmlmO2NvbG9yOmJsYWNrIj5JbiBvcmRlciB0byByZWdpc3RlciBhcyBhdHRlbmRlZSwgeW91
+IHdpbGwgdGhlcmVmb3JlIG5lZWQgdG8gcmVnaXN0ZXI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtp
+dC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+dmlhIHRoZSBYREMgd2Vic2l0ZS4g
+QXMgWERDIG1vdmVkIHRvIGEgbmV3IEluZGljbyBpbmZyYXN0cnVjdHVyZSwgaWY8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+eW91IHBy
+ZXZpb3VzbHkgcmVnaXN0ZXJlZCBvbiB0aGUgWERDIHdlYnNpdGUsIHlvdSBuZWVkIHRvIGNyZWF0
+ZSBhIG5ldzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2Nv
+bG9yOmJsYWNrIj5hY2NvdW50IGFnYWluLjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6Ymxh
+Y2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9y
+OmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90Oyxz
+ZXJpZjtjb2xvcjpibGFjayI+PGEgaHJlZj0iaHR0cHM6Ly9pbmRpY28uZnJlZWRlc2t0b3Aub3Jn
+L2V2ZW50LzEvcmVnaXN0cmF0aW9ucy8xLyIgdGl0bGU9Imh0dHBzOi8vaW5kaWNvLmZyZWVkZXNr
+dG9wLm9yZy9ldmVudC8xL3JlZ2lzdHJhdGlvbnMvMS8iPmh0dHBzOi8vaW5kaWNvLmZyZWVkZXNr
+dG9wLm9yZy9ldmVudC8xL3JlZ2lzdHJhdGlvbnMvMS88L2E+PG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13
+ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWls
+eTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj5JbiBhZGRp
+dGlvbiB0byByZWdpc3RyYXRpb24sIHRoZSBDZlAgaXMgbm93IG9wZW4gZm9yIHRhbGtzLCB3b3Jr
+c2hvcHM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xv
+cjpibGFjayI+YW5kIGRlbW9zIGF0IFhEQyAyMDIxLiBXaGlsZSBhbnkgc2VyaW91cyBwcm9wb3Nh
+bCB3aWxsIGJlIGdyYXRlZnVsbHk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZx
+dW90OyxzZXJpZjtjb2xvcjpibGFjayI+Y29uc2lkZXJlZCwgdG9waWNzIG9mIGludGVyZXN0IHRv
+IFguT3JnIGFuZCBmcmVlZGVza3RvcC5vcmcgZGV2ZWxvcGVyczxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDst
+d2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj5hcmUgZW5jb3VyYWdlZC4g
+VGhlIHByb2dyYW0gZm9jdXMgaXMgb24gbmV3IGRldmVsb3BtZW50LCBvbmdvaW5nPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
+aWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPmNoYWxs
+ZW5nZXMgYW5kIGFueXRoaW5nIGVsc2UgdGhhdCB3aWxsIHNwYXJrIGRpc2N1c3Npb25zIGFtb25n
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6Ymxh
+Y2siPmF0dGVuZGVlcyBpbiB0aGUgaGFsbHdheSB0cmFjay48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdl
+YmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPldlIGFyZSBv
+cGVuIHRvIHRhbGtzIGFjcm9zcyBhbGwgbGF5ZXJzIG9mIHRoZSBncmFwaGljcyBzdGFjaywgZnJv
+bSB0aGU8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xv
+cjpibGFjayI+a2VybmVsIHRvIGRlc2t0b3AgZW52aXJvbm1lbnRzIC8gZ3JhcGhpY2FsIGFwcGxp
+Y2F0aW9ucyBhbmQgYWJvdXQgaG93PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQm
+cXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPnRvIG1ha2UgdGhpbmdzIGJldHRlciBmb3IgdGhlIGRl
+dmVsb3BlcnMgd2hvIGJ1aWxkIHRoZW0uIEhlYWQgdG8gdGhlPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13
+ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPkNmUCBwYWdlIHRvIGxlYXJu
+IG1vcmU6PHNwYW4gY2xhc3M9ImFwcGxlLWNvbnZlcnRlZC1zcGFjZSI+Jm5ic3A7PC9zcGFuPjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNr
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtj
+b2xvcjpibGFjayI+PGEgaHJlZj0iaHR0cHM6Ly9pbmRpY28uZnJlZWRlc2t0b3Aub3JnL2V2ZW50
+LzEvYWJzdHJhY3RzLyIgdGl0bGU9Imh0dHBzOi8vaW5kaWNvLmZyZWVkZXNrdG9wLm9yZy9ldmVu
+dC8xL2Fic3RyYWN0cy8iPmh0dHBzOi8vaW5kaWNvLmZyZWVkZXNrdG9wLm9yZy9ldmVudC8xL2Fi
+c3RyYWN0cy88L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2Vy
+aWY7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJk
+JnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj5UaGUgZGVhZGxpbmUgZm9yIHN1Ym1pc3Npb25zIGlz
+IFN1bmRheSwgNCBKdWx5IDIwMjEuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQm
+cXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0
+LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj5MYXN0IHllYXIgd2UgbW9kaWZpZWQg
+b3VyIFJlaW1idXJzZW1lbnQgUG9saWN5IHRvIGFjY2VwdCBzcGVha2VyPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZx
+dW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPmV4cGVuc2VzIGZv
+ciBYLk9yZyB2aXJ0dWFsIGV2ZW50cyBsaWtlIFhEQyAyMDIxLiBDaGVjayBpdCBvdXQgaGVyZTo8
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFj
+ayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7
+Y29sb3I6YmxhY2siPjxhIGhyZWY9Imh0dHBzOi8vd3d3Lngub3JnL3dpa2kvWG9yZ0ZvdW5kYXRp
+b24vUG9saWNpZXMvUmVpbWJ1cnNlbWVudC8iIHRpdGxlPSJodHRwczovL3d3dy54Lm9yZy93aWtp
+L1hvcmdGb3VuZGF0aW9uL1BvbGljaWVzL1JlaW1idXJzZW1lbnQvIj5odHRwczovL3d3dy54Lm9y
+Zy93aWtpL1hvcmdGb3VuZGF0aW9uL1BvbGljaWVzL1JlaW1idXJzZW1lbnQvPC9hPjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZh
+bWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpi
+bGFjayI+SWYgeW91IGhhdmUgYW55IHF1ZXN0aW9ucywgcGxlYXNlIHNlbmQgbWUgYW4gZW1haWwg
+dG88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpi
+bGFjayI+PGEgaHJlZj0ibWFpbHRvOnJhZG9zbGF3LnN6d2ljaHRlbmJlcmdAaW50ZWwuY29tIiB0
+aXRsZT0ibWFpbHRvOnJhZG9zbGF3LnN6d2ljaHRlbmJlcmdAaW50ZWwuY29tIj5yYWRvc2xhdy5z
+endpY2h0ZW5iZXJnQGludGVsLmNvbTwvYT4sJm5ic3A7Jm5ic3A7YWRkaW5nIG9uIENDIHRoZSBY
+Lm9yZyBib2FyZCAoYm9hcmQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90
+OyxzZXJpZjtjb2xvcjpibGFjayI+YXQgZm91bmRhdGlvbi54Lm9yZykuPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZx
+dW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj5B
+bmQgZG9uJ3QgZm9yZ2V0LCB5b3UgY2FuIGZvbGxvdyB1cyBvbiBUd2l0dGVyIGZvciBhbGwgdGhl
+IGxhdGVzdDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2Nv
+bG9yOmJsYWNrIj51cGRhdGVzIGFuZCB0byBzdGF5IGNvbm5lY3RlZDo8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
+b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+ZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9y
+OmJsYWNrIj48YSBocmVmPSJodHRwczovL3R3aXR0ZXIuY29tL1hPcmdEZXZDb25mIiB0aXRsZT0i
+aHR0cHM6Ly90d2l0dGVyLmNvbS9YT3JnRGV2Q29uZiI+aHR0cHM6Ly90d2l0dGVyLmNvbS9YT3Jn
+RGV2Q29uZjwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJp
+Zjtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQtc3RhbmRhcmQm
+cXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPkJlc3QsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90Oy13ZWJraXQt
+c3RhbmRhcmQmcXVvdDssc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVv
+dDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj5SYWRlazxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZh
+bWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7LXdlYmtpdC1zdGFuZGFyZCZxdW90OyxzZXJpZjtjb2xvcjpi
+bGFjayI+UC5TOiBhIEROUyByZWRpcmVjdGlvbiAoeGRjMjAyMS54Lm9yZykgaXMgd29yayBpbiBw
+cm9ncmVzcy4gUGxlYXNlIHVzZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDstd2Via2l0LXN0YW5kYXJkJnF1
+b3Q7LHNlcmlmO2NvbG9yOmJsYWNrIj50aGUgbWVudGlvbmVkIGxpbmtzIGZvciB0aGUgbW9tZW50
+LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJQTCIgc3R5bGU9ImZvbnQtc2l6ZTo5LjVw
+dDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO2Jh
+Y2tncm91bmQ6d2hpdGU7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tR0IiPlJhZG9zxYJhdyBTendp
+Y2h0ZW5iZXJnPC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5n
+dWFnZTpFTi1HQiI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iUEwiIHN0eWxlPSJmb250LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjaztiYWNrZ3JvdW5kOndoaXRlO21zby1m
+YXJlYXN0LWxhbmd1YWdlOkVOLUdCIj4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tPC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFz
+dC1sYW5ndWFnZTpFTi1HQiI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iUEwiIHN0eWxlPSJmb250LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjaztiYWNrZ3JvdW5kOndoaXRl
+O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUdCIj5JbnRlbCBUZWNobm9sb2d5IFBvbGFuZCBzcC4g
+eiBvLm8uPC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1HQiI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gbGFuZz0iUEwiIHN0eWxlPSJmb250LXNpemU6OS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJp
+YWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjaztiYWNrZ3JvdW5kOndoaXRlO21zby1mYXJl
+YXN0LWxhbmd1YWdlOkVOLUdCIj51bC4gU2xvd2Fja2llZ28gMTczLCA4MC0yOTggR2RhbnNrPC9z
+cGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1HQiI+
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZTo5LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6d2hpdGU7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tR0Ii
+PktSUyAxMDE4ODIgLSBOSVAgOTU3LTA3LTUyLTMxNjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6
+YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tR0IiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Jv
+ZHk+DQo8L2h0bWw+DQo=
 
-Well backend preempting one but not the other is a bug. I don't think
-we need to talk about bugs :-)
+--_000_790BA4EEE3F040B9BE183646492F1CAEintelcom_--
 
-Now wrt a preempt mode in context creation, I think that makes sense.
-I'm just wondering whether this is correct here in the parallel
-submission (and why), or is it just an implementation artifact
-(current backends are buggy if we'd allow them to preempt) or what's
-going on.
+--===============0838996207==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-If this is just a case of "this is how current backends work,
-userspace doesn't actually care whether we allow preempt or not" then
-I think we should just document the behavior and that's it. Adding
-uapi for an option for which there's not even an implementation isn't
-great.
-
-But if we can actually choose, and userspace wants to, then I'm all
-fine with this. And we can always move this to a more generic place if
-other engines need preempt control later on too.
-
-Cheers, Daniel
-
-
-> Matt
->
-> > Cheers, Daniel
-> >
-> > > +/*
-> > > + * Do not allow BBs to be preempted mid BB rather insert coordinated preemption
-> > > + * points on all hardware contexts between each set of BBs. An example use case
-> > > + * of this feature is split-frame on gen11+ hardware. When using this feature a
-> > > + * BB must be submitted on each hardware context in the parallel gem context.
-> > > + * The execbuf2 IOCTL enforces the user adheres to policy.
-> > > + */
-> > > +#define I915_PARALLEL_NO_PREEMPT_MID_BATCH         (1<<1)
-> > > +#define __I915_PARALLEL_UNKNOWN_FLAGS      (-(I915_PARALLEL_NO_PREEMPT_MID_BATCH << 1))
-> > > +   __u64 flags;            /* all undefined flags must be zero */
-> > > +   __u64 mbz64[3];         /* reserved for future use; must be zero */
-> > > +
-> > > +   /*
-> > > +    * width (i) * num_siblings (j) in length
-> > > +    * index = j + i * num_siblings
-> > > +    */
-> > > +   struct i915_engine_class_instance engines[0];
-> > > +} __attribute__ ((packed));
-> > > +
-> > > diff --git a/Documentation/gpu/rfc/i915_scheduler.rst b/Documentation/gpu/rfc/i915_scheduler.rst
-> > > index 7faa46cde088..64c539486ee4 100644
-> > > --- a/Documentation/gpu/rfc/i915_scheduler.rst
-> > > +++ b/Documentation/gpu/rfc/i915_scheduler.rst
-> > > @@ -82,4 +82,55 @@ https://spec.oneapi.com/level-zero/latest/core/api.html#ze-command-queue-priorit
-> > >
-> > >  New parallel submission uAPI
-> > >  ============================
-> > > -Details to come in a following patch.
-> > > +The existing bonding uAPI is completely broken with GuC submission because
-> > > +whether a submission is a single context submit or parallel submit isn't known
-> > > +until execbuf time activated via the I915_SUBMIT_FENCE. To submit multiple
-> > > +contexts in parallel with the GuC the context must be explictly registered with
-> > > +N contexts and all N contexts must be submitted in a single command to the GuC.
-> > > +These interfaces doesn't support dynamically changing between N contexts as the
-> > > +bonding uAPI does. Hence the need for a new parallel submission interface. Also
-> > > +the legacy bonding uAPI is quite confusing and not intuitive at all.
-> > > +
-> > > +The new parallel submission uAPI consists of 3 parts:
-> > > +
-> > > +* Export engines logical mapping
-> > > +* A 'set_parallel' extension to configure contexts for parallel
-> > > +  submission
-> > > +* Extend execbuf2 IOCTL to support submitting N BBs in a single IOCTL
-> > > +
-> > > +Export engines logical mapping
-> > > +------------------------------
-> > > +Certain use cases require BBs to be placed on engine instances in logical order
-> > > +(e.g. split-frame on gen11+). The logical mapping of engine instances can change
-> > > +based on fusing. Rather than making UMDs be aware of fusing, simply expose the
-> > > +logical mapping with the existing query engine info IOCTL. Also the GuC
-> > > +submission interface currently only supports submitting multiple contexts to
-> > > +engines in logical order which is a new requirement compared to execlists.
-> > > +Lastly, all current platforms have at most 2 instances and the logical order is
-> > > +the same a uABI order. This will change on platforms with more than 2 instances.
-> > > +
-> > > +A single bit will be added to drm_i915_engine_info.flags indicating that the
-> > > +logical instance has been returned and a new field,
-> > > +drm_i915_engine_info.logical_instance, returns the logical instance.
-> > > +
-> > > +A 'set_parallel' extension to configure contexts for parallel submission
-> > > +------------------------------------------------------------------------
-> > > +The 'set_parallel' extension configures a slot for parallel submission of N BBs.
-> > > +It is setup step that should be called before using any of the contexts. See
-> > > +I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE or I915_CONTEXT_ENGINES_EXT_BOND for
-> > > +similar existing examples. Once a slot is configured for parallel submission the
-> > > +execbuf2 IOCTL can be called submiting N BBs in a single IOCTL. Initially only
-> > > +support GuC submission. Execlist support can be added later if needed.
-> > > +
-> > > +Add I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT and
-> > > +i915_context_engines_parallel_submit to the uAPI to implement this extension.
-> > > +
-> > > +Extend execbuf2 IOCTL to support submitting N BBs in a single IOCTL
-> > > +-------------------------------------------------------------------
-> > > +Contexts that have been configured with the 'set_parallel' extension are allowed
-> > > +to submit N BBs in a single execbuf2 IOCTL. The BBs are either the last N
-> > > +objects in the drm_i915_gem_exec_object2 list or the first N if
-> > > +I915_EXEC_BATCH_FIRST is set. The number of BBs is implict based on the slot
-> > > +submitted and how it has been configured by 'set_parallel' or other extensions.
-> > > +No uAPI changes in the execbuf IOCTL but worth mentioning the new behavior of
-> > > +the IOCTL.
-> > > --
-> > > 2.28.0
-> > >
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> >
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-
-
-
---
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0838996207==--
