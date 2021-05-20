@@ -1,32 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86B0B389F02
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 09:38:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47141389F53
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 09:58:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3156EF2E;
-	Thu, 20 May 2021 07:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A7476F382;
+	Thu, 20 May 2021 07:58:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 19C8D6EF2C;
- Thu, 20 May 2021 07:38:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 11C62A47E2;
- Thu, 20 May 2021 07:38:48 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
+ [IPv6:2a00:1450:4864:20::12a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 502D36F380;
+ Thu, 20 May 2021 07:58:31 +0000 (UTC)
+Received: by mail-lf1-x12a.google.com with SMTP id x19so23134515lfa.2;
+ Thu, 20 May 2021 00:58:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=Ztf4fG3go4pm6O5hMpKy38HSIWUlz9iqc0r333NE9fQ=;
+ b=slC88OHO4mwnrW9AfLCA9z1uEPWGQC/5yLI3DmMl84kIA5awpqjSN91gtkU9K4f/H+
+ TIDfAAaPl0LuzYwPQV6YadmfnqVWIAjuPPs4snUfGG9dI3/g+EsmO71bJ/jh80kF0sJ0
+ kQcX1Hetvn85F4suC5Oe6UCRJw4uleoMbUwAucUmIMK9iqh2cCRLco1GHwvKMxiP9hbL
+ hcq2WcyPG55YX6PSHx0fyMcaH4hh0gVSkaf+Cu3z1RU45zsHDzCJc4/Ij0O6uel4LLRX
+ d94Ldi1amEGatqlxbaQuHdOp5LHZaz2pjH1BewTLkDNcIIti7BJHS/exOCspu6/eSfX9
+ CBYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=Ztf4fG3go4pm6O5hMpKy38HSIWUlz9iqc0r333NE9fQ=;
+ b=snuAJvQ3O7RJTD1K6KEHl2R1M8oM1Kzh2gmiNN3y0Oz+Rla3Pw2kYRIA1cLVQjv/Ly
+ 7mXyaHiLHRYJFg7pMofU4/1emuaph2U1FmyOqxXuHh27eXpkR2UHpZ3GG8MSXRn9DcAK
+ KDfRJ2AmP8Zq5Av4+M6cvfSTmbFMC64NJQFcI42jGi45xjG79PXjEBlj/uWO9mdHu7ED
+ S4PVQk7zVBvVe3FMxWkR4iMS9mClv1j5oUXrvd54p4qdab7tQ4CpnOb7T0ZfuoAGcVn/
+ Dp2zmJHJMwrSVPgx2nRH4nif0A/WPhwipsMBWS8iWibXfosgIwJJ7/b7wByOI60yPJZ5
+ 8PWQ==
+X-Gm-Message-State: AOAM530TyXg+rkN/ODMZZnU/OsqbOjLb93W2PHiBT/xua2kOPsJYMANO
+ HzjToRpEdCQEA66Bu+A6XAg=
+X-Google-Smtp-Source: ABdhPJyv2TtDkGTqIrn4pkdWXB+nVoCr/LdpTXAOp/BvuSfa+3PDB8zlGhTGgi3WU1LX2RPm/h3p4Q==
+X-Received: by 2002:ac2:544f:: with SMTP id d15mr2505747lfn.465.1621497509657; 
+ Thu, 20 May 2021 00:58:29 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id y24sm197087lfg.232.2021.05.20.00.58.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 20 May 2021 00:58:29 -0700 (PDT)
+Date: Thu, 20 May 2021 10:58:26 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Werner
+ Sembach <wse@tuxedocomputers.com>
+Message-ID: <20210520105826.7659a49a@eldfell>
+In-Reply-To: <YKUXbwkUIwvO/OqK@intel.com>
+References: <8c0d7ad8-7ade-bf8a-0414-cc795fbb6aa2@tuxedocomputers.com>
+ <YJvSUCCPvWz7y/r7@intel.com> <20210519123405.4d3218a7@eldfell>
+ <YKUXbwkUIwvO/OqK@intel.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kai-Heng Feng" <kai.heng.feng@canonical.com>
-Date: Thu, 20 May 2021 07:38:48 -0000
-Message-ID: <162149632803.11675.15449731768617857597@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210520065832.614245-1-kai.heng.feng@canonical.com>
-In-Reply-To: <20210520065832.614245-1-kai.heng.feng@canonical.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Invoke_another_=5FDSM_to_enable_MUX_on_HP_Workstation_?=
- =?utf-8?q?laptops_=28rev2=29?=
+Subject: Re: [Intel-gfx] New uAPI for color management proposal and feedback
+ request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,353 +69,218 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0429507684=="
+Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
+ Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0558491669=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0429507684==
-Content-Type: multipart/alternative;
- boundary="===============8410391628027240172=="
+--===============0558491669==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/JM4T.u/0gZTQJI0lx_jyo8a"; protocol="application/pgp-signature"
 
---===============8410391628027240172==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/JM4T.u/0gZTQJI0lx_jyo8a
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+On Wed, 19 May 2021 16:49:35 +0300
+Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com> wrote:
 
-Series: drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops (rev2)
-URL   : https://patchwork.freedesktop.org/series/89503/
-State : success
+> On Wed, May 19, 2021 at 12:34:05PM +0300, Pekka Paalanen wrote:
+> > On Wed, 12 May 2021 16:04:16 +0300
+> > Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com> wrote:
+> >  =20
+> > > On Wed, May 12, 2021 at 02:06:56PM +0200, Werner Sembach wrote: =20
+> > > > Hello,
+> > > >=20
+> > > > In addition to the existing "max bpc", and "Broadcast RGB/output_cs=
+c" drm properties I propose 4 new properties:
+> > > > "preferred pixel encoding", "active color depth", "active color ran=
+ge", and "active pixel encoding"
+> > > >=20
+> > > >=20
+> > > > Motivation:
+> > > >=20
+> > > > Current monitors have a variety pixel encodings available: RGB, YCb=
+Cr 4:4:4, YCbCr 4:2:2, YCbCr 4:2:0.
+> > > >=20
+> > > > In addition they might be full or limited RGB range and the monitor=
+s accept different bit depths.
+> > > >=20
+> > > > Currently the kernel driver for AMD and Intel GPUs automatically co=
+nfigure the color settings automatically with little
+> > > > to no influence of the user. However there are several real world s=
+cenarios where the user might disagree with the
+> > > > default chosen by the drivers and wants to set his or her own prefe=
+rence.
+> > > >=20
+> > > > Some examples:
+> > > >=20
+> > > > 1. While RGB and YCbCr 4:4:4 in theory carry the same amount of col=
+or information, some screens might look better on one
+> > > > than the other because of bad internal conversion. The driver curre=
+ntly however has a fixed default that is chosen if
+> > > > available (RGB for Intel and YCbCr 4:4:4 for AMD). The only way to =
+change this currently is by editing and overloading
+> > > > the edid reported by the monitor to the kernel.
+> > > >=20
+> > > > 2. RGB and YCbCr 4:4:4 need a higher port clock then YCbCr 4:2:0. S=
+ome hardware might report that it supports the higher
+> > > > port clock, but because of bad shielding on the PC, the cable, or t=
+he monitor the screen cuts out every few seconds when
+> > > > RGB or YCbCr 4:4:4 encoding is used, while YCbCr 4:2:0 might just w=
+ork fine without changing hardware. The drivers
+> > > > currently however always default to the "best available" option eve=
+n if it might be broken.
+> > > >=20
+> > > > 3. Some screens natively only supporting 8-bit color, simulate 10-B=
+it color by rapidly switching between 2 adjacent
+> > > > colors. They advertise themselves to the kernel as 10-bit monitors =
+but the user might not like the "fake" 10-bit effect
+> > > > and prefer running at the native 8-bit per color.
+> > > >=20
+> > > > 4. Some screens are falsely classified as full RGB range wile they =
+actually use limited RGB range. This results in
+> > > > washed out colors in dark and bright scenes. A user override can be=
+ helpful to manually fix this issue when it occurs.
+> > > >=20
+> > > > There already exist several requests, discussion, and patches regar=
+ding the thematic:
+> > > >=20
+> > > > - https://gitlab.freedesktop.org/drm/amd/-/issues/476
+> > > >=20
+> > > > - https://gitlab.freedesktop.org/drm/amd/-/issues/1548
+> > > >=20
+> > > > - https://lkml.org/lkml/2021/5/7/695
+> > > >=20
+> > > > - https://lkml.org/lkml/2021/5/11/416
+> > > >  =20
+> >=20
+> > ...
+> >  =20
+> > > > Adoption:
+> > > >=20
+> > > > A KDE dev wants to implement the settings in the KDE settings GUI:
+> > > > https://gitlab.freedesktop.org/drm/amd/-/issues/476#note_912370
+> > > >=20
+> > > > Tuxedo Computers (my employer) wants to implement the settings desk=
+top environment agnostic in Tuxedo Control Center. I
+> > > > will start work on this in parallel to implementing the new kernel =
+code.   =20
+> > >=20
+> > > I suspect everyone would be happier to accept new uapi if we had
+> > > multiple compositors signed up to implement it. =20
+> >=20
+> > I think having Weston support for these would be good, but for now it
+> > won't be much of an UI: just weston.ini to set, and the log to see what
+> > happened.
+> >=20
+> > However, knowing what happened is going to be important for color
+> > calibration auditing:
+> > https://gitlab.freedesktop.org/wayland/weston/-/issues/467
+> >=20
+> > Yes, please, very much for read-only properties for the feedback part.
+> > Properties that both userspace and kernel will write are hard to deal
+> > with in general.
+> >=20
+> > Btw. "max bpc" I can kind of guess that conversion from framebuffer
+> > format to the wire bpc happens automatically and only as the final
+> > step, =20
+>=20
+> Well, there could be dithering and whatnot also involved. So it's
+> not super well specified atm either.
 
-== Summary ==
+I tend to forget that dithering is a thing. I guess it could be
+temporal and/or spatial depending on hardware?
 
-CI Bug Log - changes from CI_DRM_10109 -> Patchwork_20156
-====================================================
+> > but "Broadcast RGB" is more complicated: is the output from the
+> > abstract pixel pipeline sent as-is and "Broadcast RGB" is just another
+> > inforframe bit to the monitor, or does "Broadcast RGB" setting actually
+> > change what happens in the pixel pipeline *and* set infoframe bits? =20
+>=20
+> It does indeed compress the actual pixel data. There was once a patch
+> porposed to introduce a new enum value that only sets the infoframe and
+> thus would allow userspace to pass through already limited range data.
+> Shouldn't be hard to resurrect that if needed.
 
-Summary
--------
+Right, thanks for confirming. I mentioned this mostly for Werner to
+point out that existing properties might do surprising things.
+Especially if one has looked at HDR related properties which only set
+infoframe bits and nothing more.
 
-  **SUCCESS**
+> > My vague recollection is that framebuffer was always assumed to be in
+> > full range, and then if "Broadcast RGB" was set to limited range, the
+> > driver would mangle the pixel pipeline to convert from full to limited
+> > range. This means that it would be impossible to have limited range
+> > data in a framebuffer, or there might be a double-conversion by
+> > userspace programming a LUT for limited->full and then the driver
+> > adding full->limited. I'm also confused how full/limited works when
+> > framebuffer is in RGB/YCbCr and the monitor wire format is in RGB/YCbCr
+> > and there may be RGB->YCbCR or YCbCR->RGB conversions going on - or
+> > maybe even FB YCbCR -> RGB -> DEGAMMA -> CTM -> GAMMA -> YCbCR.
+> >=20
+> > I wish someone drew a picture of the KMS abstract pixel pipeline with
+> > all the existing KMS properties in it. :-) =20
+>=20
+> Here's an ugly one for i915:
+>=20
+>     (input RGB vs. YCbCr?)
+> [FB] -> [YCbCr?] -> [YCbCr->RGB conversion     ] -> [plane blending] -> .=
+..
+>       |             [YCbCr color range/encoding] |
+>       \ [RGB?] ----------------------------------/
+>=20
+>                                            (output RGB limited vs. RGB fu=
+ll vs. YCbCr?)
+> ... -> [DEGAMMA_LUT] -> [CTM] -> [GAMMA_LUT] -> [YCbCr?] -> [RGB->YCbCr c=
+onversion      ] -> [to port]
+>                                               |             [always BT.70=
+9/limited range]
+>                                               \ [RGB?] -> ...
+>=20
+> ... -> [RGB passthrough             ] -> [to port]
+>      | [Broadcast RGB=3Dfull or       ]
+>      | [Broadcast RGB=3Dauto + IT mode]
+>      |
+>      \ [RGB full->limited conversion] -> [to port]
+>        [Broadcast RGB=3Dlimited or    ]
+>        [Broadcast RGB=3Dauto + CE mode]
+>=20
+> I guess having something like that in the docs would be nice. Not sure
+> if there's a way to make something that looks decent for html/etc.
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20156 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-6700k2:      NOTRUN -> [DMESG-FAIL][4] ([i915#3462])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
-    - fi-bdw-5557u:       NOTRUN -> [DMESG-FAIL][5] ([i915#3462])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][7] ([fdo#109271]) +11 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][9] ([fdo#109271]) +9 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
-
-  * igt@runner@aborted:
-    - fi-skl-6700k2:      NOTRUN -> [FAIL][10] ([i915#1436] / [i915#3363])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-skl-6700k2:      [INCOMPLETE][11] ([i915#198]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-skl-6700k2/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][13] ([i915#2782]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [DMESG-FAIL][15] ([i915#3462]) -> [INCOMPLETE][16] ([i915#2782] / [i915#2940] / [i915#3462])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-    - fi-bsw-kefka:       [INCOMPLETE][17] ([i915#2782] / [i915#2940]) -> [INCOMPLETE][18] ([i915#2782] / [i915#2940] / [i915#3462])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@runner@aborted:
-    - fi-cfl-8700k:       [FAIL][19] ([i915#3363]) -> [FAIL][20] ([i915#2426] / [i915#3363])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-cfl-8700k/igt@runner@aborted.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-cfl-8700k/igt@runner@aborted.html
-    - fi-glk-dsi:         [FAIL][21] ([i915#3363] / [k.org#202321]) -> [FAIL][22] ([i915#2426] / [i915#3363] / [k.org#202321])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-glk-dsi/igt@runner@aborted.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-glk-dsi/igt@runner@aborted.html
-    - fi-kbl-r:           [FAIL][23] ([i915#1436] / [i915#3363]) -> [FAIL][24] ([i915#1436] / [i915#2426] / [i915#3363])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-kbl-r/igt@runner@aborted.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-kbl-r/igt@runner@aborted.html
-    - fi-bdw-5557u:       [FAIL][25] ([i915#1602] / [i915#2029]) -> [FAIL][26] ([i915#3462])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-bdw-5557u/igt@runner@aborted.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-kbl-guc:         [FAIL][27] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][28] ([i915#1436] / [i915#3363])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-kbl-guc/igt@runner@aborted.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-kbl-guc/igt@runner@aborted.html
-    - fi-cml-u2:          [FAIL][29] ([i915#2082] / [i915#2426] / [i915#3363]) -> [FAIL][30] ([i915#3363])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-cml-u2/igt@runner@aborted.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-cml-u2/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2932]: https://gitlab.freedesktop.org/drm/intel/issues/2932
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
-
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10109 -> Patchwork_20156
-
-  CI-20190529: 20190529
-  CI_DRM_10109: 7ee73e534e052450019c587e0640632d9a6cdb1b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6088: 2c1e9a30f17944d75640a43d3b8c2124b035de1c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20156: dcae1309b1dc645b71eaebfc10f95a72fcd3a954 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dcae1309b1dc drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/index.html
-
---===============8410391628027240172==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+It would be super useful indeed.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89503/">https://patchwork.freedesktop.org/series/89503/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+Thanks,
+pq
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/index.html</a></td></tr>
+--Sig_/JM4T.u/0gZTQJI0lx_jyo8a
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-</table>
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmCmFqIACgkQI1/ltBGq
+qqfN4g//VzHs7kX1GmLPY7Ou3CRJaj0CyDzpwLN0djwSFXNvbQgSCDttMy+rz+UT
+e/pk3lLTY79o8dWPcbFTM/QM6BQXLTS7OtiJfLhv4eNIU5t6Edl1w2QcTh9A6MKS
+bRjC4Ju3uzSL3nczmYr55Gwy1Jodt2iM0bV80Dcbi724x6v18dXbiyvP7O/vzFOJ
+Km12/kE8TgNUqURVmbX6u7SubqTAZx7hbzKTQB0OOofC6F0K1brH9c/jHIr4V4cB
+jkqJCMttJ+iwXo6PeqRxMw2gyu4L/9qQay+uPDonzhpQlY51v77JftCsNBO0Yrex
+VVDRRbpRTFPMt+lTvzTxWy8XwR8rXy2KHVH6w02EsplbV/62Fz9VbO1NmGYiUlYb
+B4gZDgUOj1UnghRiCbW5DYta66h3o+w6sDJmJLNFwXUdqw2nvYAK8fSEtqWhV9zQ
+I3U12y6GsoFyruVfoFSas5zYe3kcxArwYZVq/8DUTFvGBoqLyzLU10bpQcMtoVAH
+2b1FeldcRzMZCvwGxCgO2ShucTiJZ/0ZNdeSKkfMy4u9WWUuPRcGIqwqPrs0Mx3y
+Nf71Pyvj8Q5Cz3LhtyCLWi5ldN+DSO5YS6hxiskwv/VLIgR4rDuRwwYWimnm/D5g
+VeF159yw20v6wQ75cNIJZfSwI5QVcnWu+l1y2FOH173meXJEk38=
+=KBhL
+-----END PGP SIGNATURE-----
 
-    <h1>CI Bug Log - changes from CI_DRM_10109 -&gt; Patchwork_20156</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20156 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>
-<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +11 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-skl-6700k2/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/198">i915#198</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-skl-6700k2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-bsw-nick/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
-</li>
-<li>
-<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10109/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20156/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10109 -&gt; Patchwork_20156</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10109: 7ee73e534e052450019c587e0640632d9a6cdb1b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6088: 2c1e9a30f17944d75640a43d3b8c2124b035de1c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20156: dcae1309b1dc645b71eaebfc10f95a72fcd3a954 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>dcae1309b1dc drm/i915: Invoke another _DSM to enable MUX on HP Workstation laptops</p>
+--Sig_/JM4T.u/0gZTQJI0lx_jyo8a--
 
-</body>
-</html>
-
---===============8410391628027240172==--
-
---===============0429507684==
+--===============0558491669==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -396,4 +291,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0429507684==--
+--===============0558491669==--
