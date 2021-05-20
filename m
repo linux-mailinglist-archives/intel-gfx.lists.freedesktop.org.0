@@ -1,58 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F1938B1B4
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 16:28:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A04FE38B2A2
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 17:10:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C3B36E28A;
-	Thu, 20 May 2021 14:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DAB96F479;
+	Thu, 20 May 2021 15:10:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
- [IPv6:2a00:1450:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF3946E409
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 14:28:18 +0000 (UTC)
-Received: by mail-wr1-x435.google.com with SMTP id n2so17977320wrm.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 07:28:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=eIlyYTN4kRo58gi8i3WMYMo51I+pxhyta5aue9ua29Y=;
- b=gPpl3qzX19z8ZObfHWUNfUjfesAEnjZHReEAAisldnE8XUSzPRyjzr/43D8qtyOrWB
- QL8/qpiEXCcJJwd8kTT6u7i2/csllcfwKU78RSO+88ZqvLm5DR1piZjiRG5IPQzKfVSc
- /XjvvRShmy0r50VlzZdFdusFI2UXdRYUFHAgA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=eIlyYTN4kRo58gi8i3WMYMo51I+pxhyta5aue9ua29Y=;
- b=JRcwEaWkf4LI3R9goY54/JA+EF4pefMBpAe54Lh0blUAay5XCGcJnjKLQR+JgC5/LF
- RVU761mFF+UM/2kMwDj2fFdiur+94ryyL07zLQzd9V/uTHiRnaD+uGc86NhZ8ysh0hWv
- Lf9jmSlfHbRl+fvDmAaFNdCj8p8s7fScJWY7ZqcXd9S3x6ElnwToMEFq+ra17lZvjRdT
- cEOGCXwj/uANcv+/nc9U+B13mc6914Ut+oZC/IZfv+sKGuQ85kcwHDqhrHgU2eR0q8Ky
- S9PJePYkAVn2LnSgcoI+eATxDMez/e/XqQEVUxtTvbDBEfsEhPtTIGxiLbBKgD4Pm7iC
- FCnQ==
-X-Gm-Message-State: AOAM531IG1PziGijaEKS0k+RlvBYxGgiH3MNzb2RRogP9SjwPjC22eI8
- jdSiAQl7Ml4B3ewmdFbn8wU/t7gQnBJTWA==
-X-Google-Smtp-Source: ABdhPJwV56diwH7VyvqJ363uDM0K2Kf1bqSL9GKrXsnxHmoyiQfp8ssLVm6K6tiWqYA9WxMM3+Qm8w==
-X-Received: by 2002:a5d:4946:: with SMTP id r6mr4616781wrs.123.1621520895677; 
- Thu, 20 May 2021 07:28:15 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l18sm3260755wrt.97.2021.05.20.07.28.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 May 2021 07:28:15 -0700 (PDT)
-Date: Thu, 20 May 2021 16:28:13 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YKZx/U05aRaxKw44@phenom.ffwll.local>
-References: <20210520073514.314893-1-matthew.auld@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD986E1BE;
+ Thu, 20 May 2021 15:10:37 +0000 (UTC)
+IronPort-SDR: 9A2OdeO428MBsTBm5sBbloT5C0WYCPdgeIr4/Xy7m9TIILsXEt5hzBOturoATGRBgDn6LpAoLs
+ 4PDrzJ6UAP/A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9989"; a="222341175"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="222341175"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2021 08:09:58 -0700
+IronPort-SDR: x8aKiyZUKX9l8am38RHwyh2yiIG/zv5XG2QeGRprwCoI+/qptOsOcKJLwvqFuPCVzA6OTSYT0M
+ VBN8PC8lMGsg==
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="395728141"
+Received: from cbjoerns-mobl1.ger.corp.intel.com (HELO
+ thellst-mobl1.intel.com) ([10.249.254.247])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2021 08:09:56 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 20 May 2021 17:09:42 +0200
+Message-Id: <20210520150947.803891-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210520073514.314893-1-matthew.auld@intel.com>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use DRIVER_NAME for tracing
- unattached requests
+Subject: [Intel-gfx] [RFC PATCH 0/5] Core TTM changes for i915 TTM enabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,126 +46,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Chintan M Patel <chintan.m.patel@intel.com>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 20, 2021 at 08:35:14AM +0100, Matthew Auld wrote:
-> From: Chris Wilson <chris@chris-wilson.co.uk>
-> 
-> The first tracepoint for a request is trace_dma_fence_init called before
-> we have associated the request with a device. The tracepoint uses
-> fence->ops->get_driver_name() as a pretty name, and as we try to report
-> the device name this oopses as it is then NULL. Support the early
-> tracepoint by reporting the DRIVER_NAME instead of the actual device
-> name.
-> 
-> Note that rq->engine remains during the course of request recycling
-> (SLAB_TYPESAFE_BY_RCU). For the physical engines, the pointer remains
-> valid, however a virtual engine may be destroyed after the request is
-> retired. If we process a preempt-to-busy completed request along the
-> virtual engine, we should make sure we mark the request as no longer
-> belonging to the virtual engine to remove the dangling pointers from the
-> tracepoint.
-
-Why can't we assign the request beforehand? The idea behind these
-tracepoints is that they actually match up, if trace_dma_fence_init is
-different, then we're breaking that.
--Daniel
-
-> 
-> Fixes: 855e39e65cfc ("drm/i915: Initialise basic fence before acquiring seqno")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Chintan M Patel <chintan.m.patel@intel.com>
-> Cc: Andi Shyti <andi.shyti@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.7+
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> ---
->  .../drm/i915/gt/intel_execlists_submission.c  | 20 ++++++++++++++-----
->  drivers/gpu/drm/i915/i915_request.c           |  7 ++++++-
->  2 files changed, 21 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index de124870af44..75604e927d34 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -3249,6 +3249,18 @@ static struct list_head *virtual_queue(struct virtual_engine *ve)
->  	return &ve->base.execlists.default_priolist.requests;
->  }
->  
-> +static void
-> +virtual_submit_completed(struct virtual_engine *ve, struct i915_request *rq)
-> +{
-> +	GEM_BUG_ON(!__i915_request_is_complete(rq));
-> +	GEM_BUG_ON(rq->engine != &ve->base);
-> +
-> +	__i915_request_submit(rq);
-> +
-> +	/* Remove the dangling pointer to the stale virtual engine */
-> +	WRITE_ONCE(rq->engine, ve->siblings[0]);
-> +}
-> +
->  static void rcu_virtual_context_destroy(struct work_struct *wrk)
->  {
->  	struct virtual_engine *ve =
-> @@ -3265,8 +3277,7 @@ static void rcu_virtual_context_destroy(struct work_struct *wrk)
->  
->  		old = fetch_and_zero(&ve->request);
->  		if (old) {
-> -			GEM_BUG_ON(!__i915_request_is_complete(old));
-> -			__i915_request_submit(old);
-> +			virtual_submit_completed(ve, old);
->  			i915_request_put(old);
->  		}
->  
-> @@ -3538,13 +3549,12 @@ static void virtual_submit_request(struct i915_request *rq)
->  
->  	/* By the time we resubmit a request, it may be completed */
->  	if (__i915_request_is_complete(rq)) {
-> -		__i915_request_submit(rq);
-> +		virtual_submit_completed(ve, rq);
->  		goto unlock;
->  	}
->  
->  	if (ve->request) { /* background completion from preempt-to-busy */
-> -		GEM_BUG_ON(!__i915_request_is_complete(ve->request));
-> -		__i915_request_submit(ve->request);
-> +		virtual_submit_completed(ve, ve->request);
->  		i915_request_put(ve->request);
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 970d8f4986bb..aa124adb1051 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -61,7 +61,12 @@ static struct i915_global_request {
->  
->  static const char *i915_fence_get_driver_name(struct dma_fence *fence)
->  {
-> -	return dev_name(to_request(fence)->engine->i915->drm.dev);
-> +	struct i915_request *rq = to_request(fence);
-> +
-> +	if (unlikely(!rq->engine)) /* not yet attached to any device */
-> +		return DRIVER_NAME;
-> +
-> +	return dev_name(rq->engine->i915->drm.dev);
->  }
->  
->  static const char *i915_fence_get_timeline_name(struct dma_fence *fence)
-> -- 
-> 2.26.3
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBpcyBtYWlubHkgYSBwcmUtY2hlY2sgdGhhdCB0aGUgY29yZSBUVE0gY2hhbmdlcyBmb3Ig
+dGhlIGluaXRpYWwKaTkxNSBUVE0gcGF0Y2ggc2VyaWVzIGxvb2sgcmVhc29uYWJseSBvay4KCk1h
+aW4gdGhpbmcgaXMgd2UgYWRkIHRoZSBuZXcgcGFnZS1iYXNlZCBpb21lbSBtZW1jcHkgdXRpbCB0
+byBUVE0sIGFuZApmb3Igc29tZSBzcGVlZCB0aGUgY29weS1mcm9tLXdjLXg4Ni1vbmx5IHByZWZl
+dGNoaW5nIG1lbWNweSB0byBjb3JlIGRybS4KTm90ZSB0aGF0IHRoZSBsZWdhY3kgbWVtY3B5IHBh
+dGggaXMgbGFyZ2VseSB1bnRlc3RlZC4gUGVyaGFwcyBjYW4gZ2l2ZQppdCBzb21lIHRlc3Rpbmcg
+b24gdm13Z2Z4LgoKQSBidWdmaXggYW5kIHNvbWUgbWlub3Igb3B0aW1pemF0aW9uIGZvciB0aGUg
+dHRtX2JvX3BpcGVsaW5lX2d1dHRpbmcoKQppZGxlIGNhc2UKCkZpbmFsbHkgYWxsb3cgdGhlIGZy
+ZXF1ZW50bHktcGlubmluZyBpOTE1IGRyaXZlciB0byBibG9jayBzd2FwcGluZyBvZgpwaW5uZWQg
+bWVtb3J5IHRoYXQgaXMgc3RpbGwgb24gdGhlIExSVS4KCklmIE9LLCBJJ2QgbGlrZSB0byBpbmNs
+dWRlIHRoZXNlIGFzIGEgcGFydCBvZiB0aGUgaTkxNSBzZXJpZXMuCgpDYzogQ2hyaXN0aWFuIEvD
+tm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRA
+Z21haWwuY29tPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KClRo
+b21hcyBIZWxsc3Ryw7ZtICg1KToKICBkcm0vdHRtOiBBZGQgYSBnZW5lcmljIFRUTSBtZW1jcHkg
+bW92ZSBmb3IgcGFnZS1iYXNlZCBpb21lbQogIGRybSwgZHJtL2k5MTU6IE1vdmUgdGhlIG1lbWNw
+eV9mcm9tX3djIGZ1bmN0aW9uYWxpdHkgdG8gY29yZSBkcm0KICBkcm0vdHRtOiBVc2UgZHJtX21l
+bWNweV9mcm9tX3djIGZvciBUVE0gYm8gbW92ZXMKICBkcm0vdHRtOiBEb2N1bWVudCBhbmQgb3B0
+aW1pemUgdHRtX2JvX3BpcGVsaW5lX2d1dHRpbmcoKQogIGRybS90dG0sIGRybS9hbWRncHU6IEFs
+bG93IHRoZSBkcml2ZXIgc29tZSBjb250cm9sIG92ZXIgc3dhcHBpbmcKCiBkcml2ZXJzL2dwdS9k
+cm0vTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgfCAgIDIgKy0KIGRyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyAgICAgICB8ICAgNCArCiBkcml2ZXJzL2dwdS9kcm0v
+ZHJtX2Rydi5jICAgICAgICAgICAgICAgICAgICAgfCAgIDIgKwogLi4uL2RybS97aTkxNS9pOTE1
+X21lbWNweS5jID0+IGRybV9tZW1jcHkuY30gIHwgIDMxICstCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgLQogLi4uL2dwdS9kcm0vaTkxNS9nZW0v
+aTkxNV9nZW1fZXhlY2J1ZmZlci5jICAgIHwgICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fb2JqZWN0LmMgICAgfCAgIDUgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3NlbGZ0ZXN0X3Jlc2V0LmMgICAgICB8ICAgNyArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+dWMvaW50ZWxfZ3VjX2xvZy5jICAgIHwgIDExICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2NtZF9wYXJzZXIuYyAgICAgICAgfCAgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+ZHJ2LmMgICAgICAgICAgICAgICB8ICAgMiAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dw
+dV9lcnJvci5jICAgICAgICAgfCAgIDggKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfbWVt
+Y3B5LmggICAgICAgICAgICB8ICAzNCAtLQogLi4uL2RybS9pOTE1L3NlbGZ0ZXN0cy9pbnRlbF9t
+ZW1vcnlfcmVnaW9uLmMgIHwgICA3ICstCiBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jICAg
+ICAgICAgICAgICAgICAgfCAgNjEgKy0KIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwu
+YyAgICAgICAgICAgICB8IDU0NyArKysrKysrKysrKystLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS90
+dG0vdHRtX3R0LmMgICAgICAgICAgICAgICAgICB8ICAgOSArCiBpbmNsdWRlL2RybS9kcm1fbWVt
+Y3B5LmggICAgICAgICAgICAgICAgICAgICAgfCAgNDEgKysKIGluY2x1ZGUvZHJtL3R0bS90dG1f
+Ym9fZHJpdmVyLmggICAgICAgICAgICAgICB8ICA5NCArKysKIGluY2x1ZGUvZHJtL3R0bS90dG1f
+dHQuaCAgICAgICAgICAgICAgICAgICAgICB8ICAxMCArCiAyMCBmaWxlcyBjaGFuZ2VkLCA2MTQg
+aW5zZXJ0aW9ucygrKSwgMjcwIGRlbGV0aW9ucygtKQogcmVuYW1lIGRyaXZlcnMvZ3B1L2RybS97
+aTkxNS9pOTE1X21lbWNweS5jID0+IGRybV9tZW1jcHkuY30gKDg0JSkKIGRlbGV0ZSBtb2RlIDEw
+MDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X21lbWNweS5oCiBjcmVhdGUgbW9kZSAxMDA2
+NDQgaW5jbHVkZS9kcm0vZHJtX21lbWNweS5oCgotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
