@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B44538B2D8
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 17:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB62A38B2E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 17:20:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 816906F48F;
-	Thu, 20 May 2021 15:17:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A2A36F49F;
+	Thu, 20 May 2021 15:20:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AF8D6F48F;
- Thu, 20 May 2021 15:17:37 +0000 (UTC)
-IronPort-SDR: c2tdDgYhZhgUzWhowrUxzkOxQx+g+9hoyD2PXXwkIs8TebsT9ulEFYdG5skKBn1v6o6ntO4tyS
- Ww8dLwSzGQqw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9989"; a="265163854"
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="265163854"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2021 08:17:28 -0700
-IronPort-SDR: qS7YMtn48Zip1dWbO6P3vfQxOIdRn4nvvxkkXIMZQPWXts28mT/7u1WGebaO8Pt6ntrozOROrM
- G5IkM8sBbuRg==
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="395730544"
-Received: from cbjoerns-mobl1.ger.corp.intel.com ([10.249.254.247])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2021 08:17:26 -0700
-Message-ID: <78607f9194da1d28e6838b723f4cca68d5bf9f75.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Date: Thu, 20 May 2021 17:17:23 +0200
-In-Reply-To: <20210520150947.803891-6-thomas.hellstrom@linux.intel.com>
-References: <20210520150947.803891-1-thomas.hellstrom@linux.intel.com>
- <20210520150947.803891-6-thomas.hellstrom@linux.intel.com>
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD2BD6F49A;
+ Thu, 20 May 2021 15:20:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AA396A41FB;
+ Thu, 20 May 2021 15:20:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 5/5] drm/ttm,
- drm/amdgpu: Allow the driver some control over swapping
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 20 May 2021 15:20:25 -0000
+Message-ID: <162152402566.11675.17956174950142179781@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210520150947.803891-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210520150947.803891-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Core_TTM_changes_for_i915_TTM_enabling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,16 +38,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTA1LTIwIGF0IDE3OjA5ICswMjAwLCBUaG9tYXMgSGVsbHN0csO2bSB3cm90
-ZToKPiAKPiArRVhQT1JUX1NZTUJPTCh0dG1fdHRfdW5wb3B1bGF0ZSk7CgpPaCwgdGhpcyBvbmUg
-d2FzIGEgbGVmdG92ZXIuIEl0J3Mgbm90IG1lYW50IHRvIGJlIGluY2x1ZGVkIGFueW1vcmUuCgov
-VGhvbWFzCgoKPiDCoAo+IMKgI2lmZGVmIENPTkZJR19ERUJVR19GUwo+IMKgCgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: Core TTM changes for i915 TTM enabling
+URL   : https://patchwork.freedesktop.org/series/90373/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+6eeb4e1f8ab7 drm/ttm: Add a generic TTM memcpy move for page-based iomem
+-:70: CHECK:ARCH_DEFINES: architecture specific defines should be avoided
+#70: FILE: drivers/gpu/drm/ttm/ttm_bo_util.c:83:
++#if defined(__i386__) || defined(__x86_64__)
+
+total: 0 errors, 0 warnings, 1 checks, 639 lines checked
+369fe8e04f41 drm, drm/i915: Move the memcpy_from_wc functionality to core drm
+-:54: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#54: 
+rename from drivers/gpu/drm/i915/i915_memcpy.c
+
+total: 0 errors, 1 warnings, 0 checks, 372 lines checked
+884af268552d drm/ttm: Use drm_memcpy_from_wc for TTM bo moves
+71cc65c1ff0f drm/ttm: Document and optimize ttm_bo_pipeline_gutting()
+76e47a2ed2d1 drm/ttm, drm/amdgpu: Allow the driver some control over swapping
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
