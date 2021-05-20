@@ -2,31 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BEB338B5C8
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 20:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4EB38B621
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 20:36:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E75A6E425;
-	Thu, 20 May 2021 18:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5F3C6F4C9;
+	Thu, 20 May 2021 18:36:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 446E16E0AC;
- Thu, 20 May 2021 18:10:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3677EA41FB;
- Thu, 20 May 2021 18:10:50 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE4416F4C7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 18:36:14 +0000 (UTC)
+IronPort-SDR: Ts0GJAxCjD/clJ86+rEFf7nHTQIJPpr9rOK42sSCzIy6XkaYo4PWCCx5dej7g2F58OFvBYoawU
+ AQs+KTrIAUpQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9990"; a="188432684"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="188432684"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2021 11:36:14 -0700
+IronPort-SDR: tqNRKesRg/1ETpuyvY+BI8tEMxT/kxv1Flz0S65XgeS6i6g8B9Ys4ZUlfPD7LhZiVJREa+d+wr
+ btkY+nd6WGBQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="474150228"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by orsmga001.jf.intel.com with ESMTP; 20 May 2021 11:36:14 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 May 2021 11:36:06 -0700
+Message-Id: <20210520183608.30558-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nikola Cornij" <nikola.cornij@amd.com>
-Date: Thu, 20 May 2021 18:10:50 -0000
-Message-ID: <162153425020.11676.2781350386293072271@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210512210011.8425-1-nikola.cornij@amd.com>
-In-Reply-To: <20210512210011.8425-1-nikola.cornij@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/dp=5Fmst=3A_Use_kHz_as_link_rate_units_when_settig_sour?=
- =?utf-8?q?ce_max_link_caps_at_init_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH 0/2] More DMC cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +44,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Last of prep patches before Pipe DMC patches
+can land.
 
-Series: drm/dp_mst: Use kHz as link rate units when settig source max link caps at init (rev2)
-URL   : https://patchwork.freedesktop.org/series/90099/
-State : warning
+Anusha Srivatsa (2):
+  drm/i915/dmc: s/DRM_ERROR/drm_err
+  drm/i915/dmc: Add intel_dmc_has_payload() helper
 
-== Summary ==
+ .../drm/i915/display/intel_display_debugfs.c  |  4 +-
+ .../drm/i915/display/intel_display_power.c    | 16 +++---
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 52 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_dmc.h      | 22 ++++++++
+ drivers/gpu/drm/i915/i915_drv.h               | 18 +------
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
+ 6 files changed, 66 insertions(+), 48 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-2bc1c0fbd55e drm/dp_mst: Use kHz as link rate units when settig source max link caps at init
--:45: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#45: FILE: drivers/gpu/drm/drm_dp_mst_topology.c:3725:
-+		link_rate = min_t(int, drm_dp_bw_code_to_link_rate(mgr->dpcd[1]), mgr->max_link_rate);
-
-total: 0 errors, 1 warnings, 0 checks, 88 lines checked
-
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
