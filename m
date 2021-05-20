@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8666538ACC7
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 13:46:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC7C38AD35
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 13:58:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9006F404;
-	Thu, 20 May 2021 11:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9B366F407;
+	Thu, 20 May 2021 11:58:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 31A7C6F403;
- Thu, 20 May 2021 11:46:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 29D02A7DFB;
- Thu, 20 May 2021 11:46:52 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE5716F405;
+ Thu, 20 May 2021 11:58:05 +0000 (UTC)
+IronPort-SDR: uiL2T8m3WqT/FOBsMCu7+IeLI6gjrtIpvZ+RXKrYb7ZINLao6PkEyLc+HfZLYXgEYNrRfNndCo
+ QRiYhxO6YamQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9989"; a="188335305"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="188335305"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2021 04:58:04 -0700
+IronPort-SDR: iEJWH2i+sxjF+0B5w0ewuhKfKe7AGoeu79ORJgN7G1sLn0MM9AW6DwGWB+Cy7fCNBGdk6ph2J8
+ abCM0b1Moa0Q==
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="473990617"
+Received: from kdubois-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.35.32])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2021 04:58:00 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 20 May 2021 14:57:57 +0300
+Message-ID: <87a6opehx6.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Thu, 20 May 2021 11:46:52 -0000
-Message-ID: <162151121214.11677.12966953123716251195@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210520114259.11470-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20210520114259.11470-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Implement_PSF_GV_point_support?=
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,35 +45,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Implement PSF GV point support
-URL   : https://patchwork.freedesktop.org/series/90361/
-State : warning
+Hi Dave & Daniel -
 
-== Summary ==
+drm-intel-fixes-2021-05-20:
+drm/i915 fixes for v5.13-rc3:
+- Pin the L-shape quirked object as unshrinkable to fix crashes
+- Disable HiZ Raw Stall Optimization on broken gen7 to fix glitches, gfx corruption
+- GVT: Move mdev attribute groups into kvmgt module to fix kconfig deps issue
 
-$ dim checkpatch origin/drm-tip
-3c2cdfef9cf5 drm/i915: Implement PSF GV point support
--:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#50: FILE: drivers/gpu/drm/i915/display/intel_bw.c:59:
-+static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
-+					    struct intel_psf_gv_point *points)
+BR,
+Jani.
 
--:95: WARNING:QUOTED_WHITESPACE_BEFORE_NEWLINE: unnecessary whitespace before a quoted newline
-#95: FILE: drivers/gpu/drm/i915/display/intel_bw.c:150:
-+				    "PSF GV %d: CLK=%d \n",
+The following changes since commit d07f6ca923ea0927a1024dfccafc5b53b61cfecc:
 
-total: 0 errors, 1 warnings, 1 checks, 222 lines checked
+  Linux 5.13-rc2 (2021-05-16 15:27:44 -0700)
 
+are available in the Git repository at:
 
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-05-20
+
+for you to fetch changes up to eddd1b8f467f82b8e9e137ef9dbaa842ecca6a2c:
+
+  Merge tag 'gvt-fixes-2021-05-19' of https://github.com/intel/gvt-linux into drm-intel-fixes (2021-05-19 11:22:24 +0300)
+
+----------------------------------------------------------------
+drm/i915 fixes for v5.13-rc3:
+- Pin the L-shape quirked object as unshrinkable to fix crashes
+- Disable HiZ Raw Stall Optimization on broken gen7 to fix glitches, gfx corruption
+- GVT: Move mdev attribute groups into kvmgt module to fix kconfig deps issue
+
+----------------------------------------------------------------
+Chris Wilson (1):
+      drm/i915/gem: Pin the L-shape quirked object as unshrinkable
+
+Jani Nikula (1):
+      Merge tag 'gvt-fixes-2021-05-19' of https://github.com/intel/gvt-linux into drm-intel-fixes
+
+Simon Rettberg (1):
+      drm/i915/gt: Disable HiZ Raw Stall Optimization on broken gen7
+
+Zhenyu Wang (1):
+      drm/i915/gvt: Move mdev attribute groups into kvmgt module
+
+ drivers/gpu/drm/i915/Kconfig               |   1 -
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c  |   2 +
+ drivers/gpu/drm/i915/gt/gen7_renderclear.c |   5 +-
+ drivers/gpu/drm/i915/gvt/gvt.c             | 124 +----------------------------
+ drivers/gpu/drm/i915/gvt/gvt.h             |   3 -
+ drivers/gpu/drm/i915/gvt/hypercall.h       |   2 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c           | 122 +++++++++++++++++++++++++---
+ drivers/gpu/drm/i915/gvt/mpt.h             |   4 +-
+ drivers/gpu/drm/i915/i915_gem.c            |  11 ++-
+ 9 files changed, 129 insertions(+), 145 deletions(-)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
