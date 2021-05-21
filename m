@@ -2,46 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1BD438D1E2
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 May 2021 01:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17F9F38D1F9
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 May 2021 01:29:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D91988284;
-	Fri, 21 May 2021 23:18:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3C36F93A;
+	Fri, 21 May 2021 23:29:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 617E36F936;
- Fri, 21 May 2021 23:18:13 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C43076140E;
- Fri, 21 May 2021 23:18:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1621639092;
- bh=Hd7KH/71GldwhXzi4DHrPnVVlwTF8/7LpSIK8f+o37k=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=mlXulejv3Ysv73n5sYbWm7uyupczUWhDUNTa5F/LCgN4wuvvXy0ddTrpA3Qsl0leI
- AULyIrR6rRr7Ju7btfC+XyOY94n9ukjPt4LK91jUbt24Yic8qouEpEtcn9uW7M0wVi
- e6rBjeermIsJ9VbqsWDpcEyUNW2tcvN1DCFlvYucjMu8cWx7C9mDDBgCLvNQzWc7OP
- luBuWeDeeCCou11IK9qtcCoRSrEIwPpGZG/uJg+ZPOxsk8UxATYXUT+YG0cHdiaY52
- 5ptDdeNdoaOPofBrEkMo4oI9UvriwfM40vq8zTv+b4Gy/SNPX5zQ4mpQcnxUlQtdRL
- xGrBkU+F5BKhQ==
-Received: by mail-ed1-f41.google.com with SMTP id j10so7529580edw.8;
- Fri, 21 May 2021 16:18:12 -0700 (PDT)
-X-Gm-Message-State: AOAM531byg6o5BBw/+I/eVPBkBblf9Ay1X+JFvOI6wamkecJummmKSFT
- xOL2A7BIRXppDBiZ5tuuj6jUZotcVtF0eNu1Ww==
-X-Google-Smtp-Source: ABdhPJwLJlzlmPOVRB7WKK0qZ9/SZhKCK9XRN5xQd6mPkGwxMkeGWm/SWipPm0RU1P626dAzclwFX7nQ2tzbyDx7y90=
-X-Received: by 2002:aa7:d550:: with SMTP id u16mr11816867edr.72.1621639091092; 
- Fri, 21 May 2021 16:18:11 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 836626F93A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 May 2021 23:29:40 +0000 (UTC)
+IronPort-SDR: JHYELFwn+rY9auY/WfP8OZamfSorQiqcafSiWw6qgPEe/Rb/Vgl8/NXeJFuUEqwUyMGQpUvStv
+ mJSLW7l5lI3A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9991"; a="201628525"
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="201628525"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 16:29:39 -0700
+IronPort-SDR: FCTjgzXsKZH93tj0SvqqzD0y7++vu12CoyLQZEghnYN5UDLwI+wXS5WcPvCQC6JepxIUGc0sOL
+ NpmIZFji0XPQ==
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="545613364"
+Received: from nfreij-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.33.58])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 16:29:38 -0700
+Date: Fri, 21 May 2021 16:29:37 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <20210521232937.yh5i7y44cewk6pni@ldmartin-desk2>
+References: <20210521230114.2563-1-anusha.srivatsa@intel.com>
+ <20210521230114.2563-4-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-References: <20210521090959.1663703-1-daniel.vetter@ffwll.ch>
- <20210521090959.1663703-6-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210521090959.1663703-6-daniel.vetter@ffwll.ch>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Sat, 22 May 2021 07:18:00 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-PKbYrREUccm5ZbTaMawpaZ7c=1zBbQBFfCZqfpu-1Hg@mail.gmail.com>
-Message-ID: <CAAOTY_-PKbYrREUccm5ZbTaMawpaZ7c=1zBbQBFfCZqfpu-1Hg@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 06/11] drm/<driver>:
- drm_gem_plane_helper_prepare_fb is now the default
+Content-Disposition: inline
+In-Reply-To: <20210521230114.2563-4-anusha.srivatsa@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/dmc: Move struct intel_dmc to
+ intel_dmc.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,71 +49,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Stefan Agner <stefan@agner.ch>, linux-mips@vger.kernel.org,
- Paul Cercueil <paul@crapouillou.net>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Fabio Estevam <festevam@gmail.com>,
- linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
- Marek Vasut <marex@denx.de>, Kevin Hilman <khilman@baylibre.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org,
- Chen-Yu Tsai <wens@csie.org>, NXP Linux Team <linux-imx@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Tomi Valkeinen <tomba@kernel.org>,
- Jyri Sarha <jyri.sarha@iki.fi>, Yannick Fertre <yannick.fertre@foss.st.com>,
- Sandy Huang <hjc@rock-chips.com>, linux-sunxi@lists.linux.dev,
- Philippe Cornu <philippe.cornu@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksIERhbmllbDoKCkRhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+IOaWvCAy
-MDIx5bm0NeaciDIx5pelIOmAseS6lCDkuIvljYg1OjEw5a+r6YGT77yaCj4KPiBObyBuZWVkIHRv
-IHNldCBpdCBleHBsaWNpdGx5Lgo+Cj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFu
-aWVsLnZldHRlckBpbnRlbC5jb20+Cj4gQ2M6IExhdXJlbnRpdSBQYWxjdSA8bGF1cmVudGl1LnBh
-bGN1QG9zcy5ueHAuY29tPgo+IENjOiBMdWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25peC5k
-ZT4KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPgo+IENjOiBTYXNjaGEgSGF1
-ZXIgPHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU+Cj4gQ2M6IFBlbmd1dHJvbml4IEtlcm5lbCBUZWFt
-IDxrZXJuZWxAcGVuZ3V0cm9uaXguZGU+Cj4gQ2M6IEZhYmlvIEVzdGV2YW0gPGZlc3RldmFtQGdt
-YWlsLmNvbT4KPiBDYzogTlhQIExpbnV4IFRlYW0gPGxpbnV4LWlteEBueHAuY29tPgo+IENjOiBQ
-aGlsaXBwIFphYmVsIDxwLnphYmVsQHBlbmd1dHJvbml4LmRlPgo+IENjOiBQYXVsIENlcmN1ZWls
-IDxwYXVsQGNyYXBvdWlsbG91Lm5ldD4KPiBDYzogQ2h1bi1LdWFuZyBIdSA8Y2h1bmt1YW5nLmh1
-QGtlcm5lbC5vcmc+Cj4gQ2M6IE1hdHRoaWFzIEJydWdnZXIgPG1hdHRoaWFzLmJnZ0BnbWFpbC5j
-b20+Cj4gQ2M6IE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPiBDYzog
-S2V2aW4gSGlsbWFuIDxraGlsbWFuQGJheWxpYnJlLmNvbT4KPiBDYzogSmVyb21lIEJydW5ldCA8
-amJydW5ldEBiYXlsaWJyZS5jb20+Cj4gQ2M6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5i
-bHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+Cj4gQ2M6IE1hcmVrIFZhc3V0IDxtYXJleEBkZW54
-LmRlPgo+IENjOiBTdGVmYW4gQWduZXIgPHN0ZWZhbkBhZ25lci5jaD4KPiBDYzogU2FuZHkgSHVh
-bmcgPGhqY0Byb2NrLWNoaXBzLmNvbT4KPiBDYzogIkhlaWtvIFN0w7xibmVyIiA8aGVpa29Ac250
-ZWNoLmRlPgo+IENjOiBZYW5uaWNrIEZlcnRyZSA8eWFubmljay5mZXJ0cmVAZm9zcy5zdC5jb20+
-Cj4gQ2M6IFBoaWxpcHBlIENvcm51IDxwaGlsaXBwZS5jb3JudUBmb3NzLnN0LmNvbT4KPiBDYzog
-QmVuamFtaW4gR2FpZ25hcmQgPGJlbmphbWluLmdhaWduYXJkQGxpbmFyby5vcmc+Cj4gQ2M6IE1h
-eGltZSBDb3F1ZWxpbiA8bWNvcXVlbGluLnN0bTMyQGdtYWlsLmNvbT4KPiBDYzogQWxleGFuZHJl
-IFRvcmd1ZSA8YWxleGFuZHJlLnRvcmd1ZUBmb3NzLnN0LmNvbT4KPiBDYzogTWF4aW1lIFJpcGFy
-ZCA8bXJpcGFyZEBrZXJuZWwub3JnPgo+IENjOiBDaGVuLVl1IFRzYWkgPHdlbnNAY3NpZS5vcmc+
-Cj4gQ2M6IEplcm5laiBTa3JhYmVjIDxqZXJuZWouc2tyYWJlY0BnbWFpbC5jb20+Cj4gQ2M6IEp5
-cmkgU2FyaGEgPGp5cmkuc2FyaGFAaWtpLmZpPgo+IENjOiBUb21pIFZhbGtlaW5lbiA8dG9tYmFA
-a2VybmVsLm9yZz4KPiBDYzogbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnCj4g
-Q2M6IGxpbnV4LW1pcHNAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGxpbnV4LW1lZGlhdGVrQGxpc3Rz
-LmluZnJhZGVhZC5vcmcKPiBDYzogbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCj4g
-Q2M6IGxpbnV4LXJvY2tjaGlwQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBDYzogbGludXgtc3RtMzJA
-c3QtbWQtbWFpbG1hbi5zdG9ybXJlcGx5LmNvbQo+IENjOiBsaW51eC1zdW54aUBsaXN0cy5saW51
-eC5kZXYKCkZvciBNZWRpYXRlaywKQWNrZWQtYnk6IENodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5o
-dUBrZXJuZWwub3JnPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+On Fri, May 21, 2021 at 04:01:10PM -0700, Anusha Srivatsa wrote:
+>Move struct intel_dmc from i915_drv.h to intel_dmc.h.
+>
+>v2: Add includes along with moving the struct.
+>
+>Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_dmc.h | 21 +++++++++++++++++++++
+> drivers/gpu/drm/i915/i915_drv.h          | 18 +-----------------
+> 2 files changed, 22 insertions(+), 17 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+>index 64816f4a71b6..8baeb85cf8db 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dmc.h
+>+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+>@@ -6,12 +6,33 @@
+> #ifndef __INTEL_DMC_H__
+> #define __INTEL_DMC_H__
+>
+>+#include <drm/drm_util.h>
+
+I can't find what this is for in this patch. You actually need
+<linux/workqueue.h>
+
+other than that,
+
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>+#include "intel_wakeref.h"
+>+#include "i915_reg.h"
+>+
+> struct drm_i915_private;
+>
+> #define DMC_VERSION(major, minor)	((major) << 16 | (minor))
+> #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+> #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+>
+>+struct intel_dmc {
+>+	struct work_struct work;
+>+	const char *fw_path;
+>+	u32 required_version;
+>+	u32 max_fw_size; /* bytes */
+>+	u32 *dmc_payload;
+>+	u32 dmc_fw_size; /* dwords */
+>+	u32 version;
+>+	u32 mmio_count;
+>+	i915_reg_t mmioaddr[20];
+>+	u32 mmiodata[20];
+>+	u32 dc_state;
+>+	u32 target_dc_state;
+>+	u32 allowed_dc_mask;
+>+	intel_wakeref_t wakeref;
+>+};
+>+
+> void intel_dmc_ucode_init(struct drm_i915_private *i915);
+> void intel_dmc_load_program(struct drm_i915_private *i915);
+> void intel_dmc_ucode_fini(struct drm_i915_private *i915);
+>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>index 9cb02618ba15..b5962768a1f1 100644
+>--- a/drivers/gpu/drm/i915/i915_drv.h
+>+++ b/drivers/gpu/drm/i915/i915_drv.h
+>@@ -67,6 +67,7 @@
+> #include "display/intel_bios.h"
+> #include "display/intel_display.h"
+> #include "display/intel_display_power.h"
+>+#include "display/intel_dmc.h"
+> #include "display/intel_dpll_mgr.h"
+> #include "display/intel_dsb.h"
+> #include "display/intel_frontbuffer.h"
+>@@ -328,23 +329,6 @@ struct drm_i915_display_funcs {
+> 	void (*read_luts)(struct intel_crtc_state *crtc_state);
+> };
+>
+>-struct intel_dmc {
+>-	struct work_struct work;
+>-	const char *fw_path;
+>-	u32 required_version;
+>-	u32 max_fw_size; /* bytes */
+>-	u32 *dmc_payload;
+>-	u32 dmc_fw_size; /* dwords */
+>-	u32 version;
+>-	u32 mmio_count;
+>-	i915_reg_t mmioaddr[20];
+>-	u32 mmiodata[20];
+>-	u32 dc_state;
+>-	u32 target_dc_state;
+>-	u32 allowed_dc_mask;
+>-	intel_wakeref_t wakeref;
+>-};
+>-
+> enum i915_cache_level {
+> 	I915_CACHE_NONE = 0,
+> 	I915_CACHE_LLC, /* also used for snoopable memory on non-LLC */
+>-- 
+>2.25.0
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
