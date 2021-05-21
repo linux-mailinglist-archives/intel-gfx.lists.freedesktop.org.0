@@ -1,61 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B65838CB6F
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 18:58:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B7338CC69
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 19:40:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5DE36F5B2;
-	Fri, 21 May 2021 16:58:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA1A6E56A;
+	Fri, 21 May 2021 17:40:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 958A96F89A
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 May 2021 16:58:35 +0000 (UTC)
-IronPort-SDR: 1KDP0ra2a5QG0l6LjHbIGh85dWmy5jBAVLD0ZS97uWnnzdqs5t/rvSttU2qU0XHO+B2TFEOrj2
- qqaAuPIwkTIA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9991"; a="262743826"
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="262743826"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2021 09:58:34 -0700
-IronPort-SDR: i1nxztp7pSAs9R8452vbPNQ7KBtdHCM5uncV2kIW0l6xwGpxjhLo+4YxIhlkASolB0sjHI6MCc
- zdcS+GD2LwFA==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6B76E56A;
+ Fri, 21 May 2021 17:40:49 +0000 (UTC)
+IronPort-SDR: C3T3SWvfBA6nG4RaEMFkyfjJeu0yl2bamPLrmKAPD9kGSl8q1ZhMoeQLAv/5Tye6Pf8UyVGkYn
+ +KyV7KPCqFcw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9991"; a="201246727"
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="201246727"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 10:40:48 -0700
+IronPort-SDR: o9orw7t44oiKgg+E3X3lRx9C+mbkpo+HeHxdBHp2yiw1aqK0dO0LkzKngCRAsOWG0KgKxRYv4L
+ aVhEni4c3uaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="396166148"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga006.jf.intel.com with ESMTP; 21 May 2021 09:58:34 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 21 May 2021 09:58:33 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 21 May 2021 09:58:33 -0700
-Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
- fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2242.008;
- Fri, 21 May 2021 09:58:32 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915/display: fix typo when returning table
-Thread-Index: AQHXTduOHLBIhq9DekuoXSeibOTY6KruKTJA
-Date: Fri, 21 May 2021 16:58:32 +0000
-Message-ID: <2e77cacafd544e2a9553cb30e4dcddaa@intel.com>
-References: <20210521005209.4058702-1-lucas.demarchi@intel.com>
-In-Reply-To: <20210521005209.4058702-1-lucas.demarchi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="395414761"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by orsmga003.jf.intel.com with ESMTP; 21 May 2021 10:40:48 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 21 May 2021 10:40:47 -0700
+Message-Id: <20210521174047.3861-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: fix typo when returning
- table
+Subject: [Intel-gfx] [PATCH] drm/i915/gvt: Add missing macro name changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,56 +44,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Propogate changes to macros name containing CSR_*
+to DMC_* from display side.
 
-> -----Original Message-----
-> From: De Marchi, Lucas <lucas.demarchi@intel.com>
-> Sent: Thursday, May 20, 2021 5:52 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> Subject: [PATCH] drm/i915/display: fix typo when returning table
-> 
-> Fix table returned when port_clock > 270000:
-> 
-> 	drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:752:47: error:
-> variable 'adlp_dkl_phy_dp_ddi_trans_hbr2_hbr3' is not needed and will not
-> be emitted [-Werror,-Wunneeded-internal-declaration]
-> 	static const struct tgl_dkl_phy_ddi_buf_trans
-> adlp_dkl_phy_dp_ddi_trans_hbr2_hbr3[] = {
-> 
-> Initial version of the patch had it in a single table, but on second version the
-> table got split, but we continued to reference just one of them.
-> 
-> Fixes: ca962882268a ("drm/i915/adl_p: Define and use ADL-P specific DP
-> translation tables")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> index ce5d5d13b7c1..8bfd00f49f2a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> @@ -1383,7 +1383,7 @@ adlp_get_dkl_buf_trans_dp(struct intel_encoder
-> *encoder,  {
->  	if (crtc_state->port_clock > 270000) {
->  		*n_entries =
-> ARRAY_SIZE(adlp_dkl_phy_dp_ddi_trans_hbr2_hbr3);
-> -		return adlp_dkl_phy_dp_ddi_trans_hbr;
-> +		return adlp_dkl_phy_dp_ddi_trans_hbr2_hbr3;
->  	}
-> 
->  	*n_entries = ARRAY_SIZE(adlp_dkl_phy_dp_ddi_trans_hbr);
-> --
-> 2.31.1
+Fixes: 0633cdcbaa77 ("drm/i915/dmc: Rename macro names containing csr")
+Cc: intel-gvt-dev@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/i915/gvt/handlers.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index dda320749c65..33496397a74f 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -3342,9 +3342,9 @@ static int init_skl_mmio_info(struct intel_gvt *gvt)
+ 	MMIO_D(_MMIO(_PLANE_SURF_3_A), D_SKL_PLUS);
+ 	MMIO_D(_MMIO(_PLANE_SURF_3_B), D_SKL_PLUS);
+ 
+-	MMIO_D(CSR_SSP_BASE, D_SKL_PLUS);
+-	MMIO_D(CSR_HTP_SKL, D_SKL_PLUS);
+-	MMIO_D(CSR_LAST_WRITE, D_SKL_PLUS);
++	MMIO_D(DMC_SSP_BASE, D_SKL_PLUS);
++	MMIO_D(DMC_HTP_SKL, D_SKL_PLUS);
++	MMIO_D(DMC_LAST_WRITE, D_SKL_PLUS);
+ 
+ 	MMIO_DFH(BDW_SCRATCH1, D_SKL_PLUS, F_CMD_ACCESS, NULL, NULL);
+ 
+@@ -3655,7 +3655,7 @@ void intel_gvt_clean_mmio_info(struct intel_gvt *gvt)
+  * otherwise, need to update cmd_reg_handler in cmd_parser.c
+  */
+ static struct gvt_mmio_block mmio_blocks[] = {
+-	{D_SKL_PLUS, _MMIO(CSR_MMIO_START_RANGE), 0x3000, NULL, NULL},
++	{D_SKL_PLUS, _MMIO(DMC_MMIO_START_RANGE), 0x3000, NULL, NULL},
+ 	{D_ALL, _MMIO(MCHBAR_MIRROR_BASE_SNB), 0x40000, NULL, NULL},
+ 	{D_ALL, _MMIO(VGT_PVINFO_PAGE), VGT_PVINFO_SIZE,
+ 		pvinfo_mmio_read, pvinfo_mmio_write},
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
