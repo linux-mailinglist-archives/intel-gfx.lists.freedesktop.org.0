@@ -2,43 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E3438BC1E
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 03:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6463C38BD22
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 06:02:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF30A89AD2;
-	Fri, 21 May 2021 01:58:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E56026F5AA;
+	Fri, 21 May 2021 04:02:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B85798916F;
- Fri, 21 May 2021 01:58:16 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4FmVBF1pGXz9sVt;
- Fri, 21 May 2021 11:58:13 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1621562294;
- bh=YKiJJ5vfpxMNe5T8vLLSeZo6uiKw1uqUqAKy5C3g0rg=;
- h=Date:From:To:Cc:Subject:From;
- b=u/6hc///Ob7Uue0j64OZ0pz1rKWyMZ/ilIbQI/7eYU4yX8+6+fJNbECEoGOsV8o5D
- betMX8bOEhu9gGAr+UNy1wGDW765hIUDKHbtOPMKnyF+zJsEbemD9BuoA48ZBmKgvL
- wxobz9VZC+v8i6ZdtFpqRC7krAoPnv/mtjB2QAz5ornitKBdLyZ2qSeFwHyPLt+APf
- TcyW7rcOcD15Yo5dBojNGBtAZKtt3efz2uYCKqBSZz3v41ro/SdoYCR7B9vwxAiLas
- bwyuv04/t/C/Ej+zZyJIg96jeQWN5Aim4hkb5eCNLzTZtONjsb9KaD/2GZErwrttWv
- ZDRLlrQ4NX5gA==
-Date: Fri, 21 May 2021 11:58:12 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-Message-ID: <20210521115812.1f8680bf@canb.auug.org.au>
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 946696F5AD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 May 2021 04:02:37 +0000 (UTC)
+Received: from mail-oi1-f199.google.com ([209.85.167.199])
+ by youngberry.canonical.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
+ (envelope-from <chris.chiu@canonical.com>) id 1ljwMt-0002lY-Vg
+ for intel-gfx@lists.freedesktop.org; Fri, 21 May 2021 04:02:36 +0000
+Received: by mail-oi1-f199.google.com with SMTP id
+ 12-20020aca120c0000b02901e9c963da89so7945460ois.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 21:02:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BkxUPctLlMYTanG/NbpSu5XniOih0RSQFTbMnTWQYJM=;
+ b=iNi7+GsbSKX471loXncqTpWQojuzdOkTIc9k/K34wEPT7ElGh6Dii5ApIqUMhKyA6J
+ /hN6m4Jap2aZtNetNlFdzN44BJqMrdGT/Vc3XAwRPZ1MTo0R3uPC6rOkjP8Qd+Ih9f9V
+ ZHTpjb8b2oHd+iWB0m0AeIcQhFCRe7zY0VL2qZG7bCvpflfmUPGvfYHkjrAnqZgoV69Z
+ AsjPda9WR8SJc0Unf4yemXSJ+Ty67GDulN4E6Us70/+82wRYqMbKRwb8FGu5ioZGXVGQ
+ TmyiBL+20KVSWQ8bvl5IaQ2lAOYFgfGiisiDSiyBPGEbWCQHVt34TLMDQ8nXudLZy2A3
+ 2GHA==
+X-Gm-Message-State: AOAM530Us7x9tlY8jOK3CemngF5+QO/l2iVqZW5Ead3ag6LuEel2GFxt
+ Zpi9Uyf6JkTu7yXW8/fl6vKVdzxUoKDLUGVnYgXwAq/x8H2PNk0RtHt21SRqHA7v8LQVykrcwrY
+ BZJGyg3fa4+3tqWpbTRYnRGqmcldO68N2pALMlOVfvDMrXf0dDrfp/eUDcNDO2g==
+X-Received: by 2002:a4a:c1:: with SMTP id 184mr6397294ooh.25.1621569754022;
+ Thu, 20 May 2021 21:02:34 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzN8oKjol1achG45QUkmKxb4AL9fVw2ETq9jSXQdBZuFnWj3B3G19NBSti3JEmAoGlQnBW6NHSRu31xIqEnv1U=
+X-Received: by 2002:a4a:c1:: with SMTP id 184mr6397260ooh.25.1621569753749;
+ Thu, 20 May 2021 21:02:33 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build failure after merge of the drm-intel
- tree
+References: <CABTNMG0Y5iAD4E8XFkOwrNTBHNDcNKRt=+BLPHs4tw5O2eVBDA@mail.gmail.com>
+ <CAJZ5v0hqU4xc8oCWXPBYhdGdG__=15+M67QWVSfFeUR3DN4Evw@mail.gmail.com>
+In-Reply-To: <CAJZ5v0hqU4xc8oCWXPBYhdGdG__=15+M67QWVSfFeUR3DN4Evw@mail.gmail.com>
+From: Chris Chiu <chris.chiu@canonical.com>
+Date: Fri, 21 May 2021 12:02:23 +0800
+Message-ID: <CABTNMG12A5qJ5ygtFTa7Sk-5W=fmMxt0L90=04H5qRDD4vWGRQ@mail.gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Subject: Re: [Intel-gfx] NVIDIA GPU fallen off the bus after exiting s2idle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,123 +61,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0453255538=="
+Cc: Len Brown <len.brown@intel.com>, Karol Herbst <kherbst@redhat.com>,
+ Linux PM <linux-pm@vger.kernel.org>, Linux PCI <linux-pci@vger.kernel.org>,
+ Mika Westerberg <mika.westerberg@intel.com>,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0453255538==
-Content-Type: multipart/signed; boundary="Sig_/X_1rq9i10KBI.rsWyD/3wED";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+On Thu, May 6, 2021 at 5:46 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
+>
+> On Tue, May 4, 2021 at 10:08 AM Chris Chiu <chris.chiu@canonical.com> wrote:
+> >
+> > Hi,
+> >     We have some Intel laptops (11th generation CPU) with NVIDIA GPU
+> > suffering the same GPU falling off the bus problem while exiting
+> > s2idle with external display connected. These laptops connect the
+> > external display via the HDMI/DisplayPort on a USB Type-C interfaced
+> > dock. If we enter and exit s2idle with the dock connected, the NVIDIA
+> > GPU (confirmed on 10de:24b6 and 10de:25b8) and the PCIe port can come
+> > back to D0 w/o problem. If we enter the s2idle, disconnect the dock,
+> > then exit the s2idle, both external display and the panel will remain
+> > with no output. The dmesg as follows shows the "nvidia 0000:01:00.0:
+> > can't change power state from D3cold to D0 (config space
+> > inaccessible)" due to the following ACPI error
+> > [ 154.446781]
+> > [ 154.446783]
+> > [ 154.446783] Initialized Local Variables for Method [IPCS]:
+> > [ 154.446784] Local0: 000000009863e365 <Obj> Integer 00000000000009C5
+> > [ 154.446790]
+> > [ 154.446791] Initialized Arguments for Method [IPCS]: (7 arguments
+> > defined for method invocation)
+> > [ 154.446792] Arg0: 0000000025568fbd <Obj> Integer 00000000000000AC
+> > [ 154.446795] Arg1: 000000009ef30e76 <Obj> Integer 0000000000000000
+> > [ 154.446798] Arg2: 00000000fdf820f0 <Obj> Integer 0000000000000010
+> > [ 154.446801] Arg3: 000000009fc2a088 <Obj> Integer 0000000000000001
+> > [ 154.446804] Arg4: 000000003a3418f7 <Obj> Integer 0000000000000001
+> > [ 154.446807] Arg5: 0000000020c4b87c <Obj> Integer 0000000000000000
+> > [ 154.446810] Arg6: 000000008b965a8a <Obj> Integer 0000000000000000
+> > [ 154.446813]
+> > [ 154.446815] ACPI Error: Aborting method \IPCS due to previous error
+> > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529)
+> > [ 154.446824] ACPI Error: Aborting method \MCUI due to previous error
+> > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529)
+> > [ 154.446829] ACPI Error: Aborting method \SPCX due to previous error
+> > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529)
+> > [ 154.446835] ACPI Error: Aborting method \_SB.PC00.PGSC due to
+> > previous error (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529)
+> > [ 154.446841] ACPI Error: Aborting method \_SB.PC00.PGON due to
+> > previous error (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529)
+> > [ 154.446846] ACPI Error: Aborting method \_SB.PC00.PEG1.NPON due to
+> > previous error (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529)
+> > [ 154.446852] ACPI Error: Aborting method \_SB.PC00.PEG1.PG01._ON due
+> > to previous error (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529)
+> > [ 154.446860] acpi device:02: Failed to change power state to D0
+> > [ 154.690760] video LNXVIDEO:00: Cannot transition to power state D0
+> > for parent in (unknown)
+>
+> If I were to guess, I would say that AML tries to access memory that
+> is not accessible while suspended, probably PCI config space.
+>
+> > The IPCS is the last function called from \_SB.PC00.PEG1.PG01._ON
+> > which we expect it to prepare everything before bringing back the
+> > NVIDIA GPU but it's stuck in the infinite loop as described below.
+> > Please refer to
+> > https://gist.github.com/mschiu77/fa4f5a97297749d0d66fe60c1d421c44 for
+> > the full DSDT.dsl.
+>
+> The DSDT alone may not be sufficient.
+>
+> Can you please create a bug entry at bugzilla.kernel.org for this
+> issue and attach the full output of acpidump from one of the affected
+> machines to it?  And please let me know the number of the bug.
+>
+> Also please attach the output of dmesg including a suspend-resume
+> cycle including dock disconnection while suspended and the ACPI
+> messages quoted below.
+>
+> >            While (One)
+> >             {
+> >                 If ((!IBSY || (IERR == One)))
+> >                 {
+> >                     Break
+> >                 }
+> >
+> >                 If ((Local0 > TMOV))
+> >                 {
+> >                     RPKG [Zero] = 0x03
+> >                     Return (RPKG) /* \IPCS.RPKG */
+> >                 }
+> >
+> >                 Sleep (One)
+> >                 Local0++
+> >             }
+> >
+> > And the upstream PCIe port of NVIDIA seems to become inaccessible due
+> > to the messages as follows.
+> > [ 292.746508] pcieport 0000:00:01.0: waiting 100 ms for downstream
+> > link, after activation
+> > [ 292.882296] pci 0000:01:00.0: waiting additional 100 ms to become accessible
+> > [ 316.876997] pci 0000:01:00.0: can't change power state from D3cold
+> > to D0 (config space inaccessible)
+> >
+> > Since the IPCS is the Intel Reference Code and we don't really know
+> > why the never-end loop happens just because we unplug the dock while
+> > the system still stays in s2idle. Can anyone from Intel suggest what
+> > happens here?
+>
+> This list is not the right channel for inquiries related to Intel
+> support, we can only help you as Linux kernel developers in this
+> venue.
+>
+> > And one thing also worth mentioning, if we unplug the display cable
+> > from the dock before entering the s2idle, NVIDIA GPU can come back w/o
+> > problem even if we disconnect the dock before exiting s2idle. Here's
+> > the lspci information
+> > https://gist.github.com/mschiu77/0bfc439d15d52d20de0129b1b2a86dc4 and
+> > the dmesg log with ACPI trace_state enabled and dynamic debug on for
+> > drivers/pci/pci.c, drivers/acpi/device_pm.c for the whole s2idle
+> > enter/exit with IPCS timeout.
+> >
+> > Any suggestion would be appreciated. Thanks.
+>
+> First, please use proper Intel support channels for BIOS-related inquiries.
+>
+> Second, please open a bug as suggested above and let's use it for
+> further communication regarding this issue as far as Linux is
+> concerned.
+>
+> Thanks!
 
---Sig_/X_1rq9i10KBI.rsWyD/3wED
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Thanks for the suggestion. I opened
+https://bugzilla.kernel.org/show_bug.cgi?id=212951 and have a new
+finding in https://bugzilla.kernel.org/show_bug.cgi?id=212951#c13. It
+seems that maybe we could do something in the i915 driver during
+resume to handle the hpd (because we unplug the dock/dongle when
+suspended) at the very beginning. Since it involves HPD, PMC and the
+BIOS, I don't know which way I should go to fix this since Windows
+won't hit this problem.
 
-Hi all,
+Please let me know if there's any information missing in the
+bugzilla.kernel ticket. Any suggestions would be appreciated. Thanks
 
-After merging the drm-intel tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
-
-drivers/gpu/drm/i915/gvt/handlers.c: In function 'init_skl_mmio_info':
-drivers/gpu/drm/i915/gvt/handlers.c:3345:9: error: 'CSR_SSP_BASE' undeclare=
-d (first use in this function); did you mean 'DMC_SSP_BASE'?
- 3345 |  MMIO_D(CSR_SSP_BASE, D_SKL_PLUS);
-      |         ^~~~~~~~~~~~
-drivers/gpu/drm/i915/gvt/handlers.c:2120:48: note: in definition of macro '=
-MMIO_F'
- 2120 |  ret =3D new_mmio_info(gvt, i915_mmio_reg_offset(reg), \
-      |                                                ^~~
-drivers/gpu/drm/i915/gvt/handlers.c:3345:2: note: in expansion of macro 'MM=
-IO_D'
- 3345 |  MMIO_D(CSR_SSP_BASE, D_SKL_PLUS);
-      |  ^~~~~~
-drivers/gpu/drm/i915/gvt/handlers.c:3345:9: note: each undeclared identifie=
-r is reported only once for each function it appears in
- 3345 |  MMIO_D(CSR_SSP_BASE, D_SKL_PLUS);
-      |         ^~~~~~~~~~~~
-drivers/gpu/drm/i915/gvt/handlers.c:2120:48: note: in definition of macro '=
-MMIO_F'
- 2120 |  ret =3D new_mmio_info(gvt, i915_mmio_reg_offset(reg), \
-      |                                                ^~~
-drivers/gpu/drm/i915/gvt/handlers.c:3345:2: note: in expansion of macro 'MM=
-IO_D'
- 3345 |  MMIO_D(CSR_SSP_BASE, D_SKL_PLUS);
-      |  ^~~~~~
-drivers/gpu/drm/i915/gvt/handlers.c:3346:9: error: 'CSR_HTP_SKL' undeclared=
- (first use in this function); did you mean 'DMC_HTP_SKL'?
- 3346 |  MMIO_D(CSR_HTP_SKL, D_SKL_PLUS);
-      |         ^~~~~~~~~~~
-drivers/gpu/drm/i915/gvt/handlers.c:2120:48: note: in definition of macro '=
-MMIO_F'
- 2120 |  ret =3D new_mmio_info(gvt, i915_mmio_reg_offset(reg), \
-      |                                                ^~~
-drivers/gpu/drm/i915/gvt/handlers.c:3346:2: note: in expansion of macro 'MM=
-IO_D'
- 3346 |  MMIO_D(CSR_HTP_SKL, D_SKL_PLUS);
-      |  ^~~~~~
-drivers/gpu/drm/i915/gvt/handlers.c:3347:9: error: 'CSR_LAST_WRITE' undecla=
-red (first use in this function); did you mean 'DMC_LAST_WRITE'?
- 3347 |  MMIO_D(CSR_LAST_WRITE, D_SKL_PLUS);
-      |         ^~~~~~~~~~~~~~
-drivers/gpu/drm/i915/gvt/handlers.c:2120:48: note: in definition of macro '=
-MMIO_F'
- 2120 |  ret =3D new_mmio_info(gvt, i915_mmio_reg_offset(reg), \
-      |                                                ^~~
-drivers/gpu/drm/i915/gvt/handlers.c:3347:2: note: in expansion of macro 'MM=
-IO_D'
- 3347 |  MMIO_D(CSR_LAST_WRITE, D_SKL_PLUS);
-      |  ^~~~~~
-In file included from drivers/gpu/drm/i915/i915_drv.h:64,
-                 from drivers/gpu/drm/i915/gvt/handlers.c:39:
-drivers/gpu/drm/i915/gvt/handlers.c: At top level:
-drivers/gpu/drm/i915/gvt/handlers.c:3658:21: error: 'CSR_MMIO_START_RANGE' =
-undeclared here (not in a function); did you mean 'DMC_MMIO_START_RANGE'?
- 3658 |  {D_SKL_PLUS, _MMIO(CSR_MMIO_START_RANGE), 0x3000, NULL, NULL},
-      |                     ^~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/i915_reg.h:185:47: note: in definition of macro '_MMIO'
-  185 | #define _MMIO(r) ((const i915_reg_t){ .reg =3D (r) })
-      |                                               ^
-
-Caused by commit
-
-  0633cdcbaa77 ("drm/i915/dmc: Rename macro names containing csr")
-
-I have used the drm-intel tree from next-20210520 for today.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/X_1rq9i10KBI.rsWyD/3wED
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmCnE7QACgkQAVBC80lX
-0GyWKgf9FhTLYXrDxj5B3cqWCYudB70j1lqfCiwVHuma5A/C3D+owuO1kDRVHau4
-8Anq+qZIxU+Po1kIXSCi4HTSfn4sZRRDtbrVIpJZ/nR1T2bDgZVdpSQWsGJKnetw
-BRuZRHyu2S/PT27P7PnSs0ye6s9KxcdZm4MKb0PQRAVaTsBojgcSEKIyAqwks3ux
-SPpcUqyVtfnDUExXKU4SaCNHVLNFvtdnDtjXJzNvmG6xTgI4vieePaC8LCMYtEYb
-CpcHIIOYCdwETcUPdvYB2wrvg81l95qoam1UBS2zK/6egxNn7FfkRop3ENXQ4lPO
-gEwy3peESSNX1u8x2wzrVMctVsKy/g==
-=+Gw7
------END PGP SIGNATURE-----
-
---Sig_/X_1rq9i10KBI.rsWyD/3wED--
-
---===============0453255538==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0453255538==--
