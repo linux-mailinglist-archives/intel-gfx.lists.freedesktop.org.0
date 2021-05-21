@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6AA38CA9A
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 18:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB7738CA9F
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 18:09:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42D326E197;
-	Fri, 21 May 2021 16:06:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7736EC9F;
+	Fri, 21 May 2021 16:09:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 396EE6E197;
- Fri, 21 May 2021 16:06:40 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 831076E84B;
+ Fri, 21 May 2021 16:09:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31A37A7DFB;
- Fri, 21 May 2021 16:06:40 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7B453A7DFB;
+ Fri, 21 May 2021 16:09:19 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 21 May 2021 16:06:40 -0000
-Message-ID: <162161320017.6034.2639291999878613111@emeril.freedesktop.org>
+Date: Fri, 21 May 2021 16:09:19 -0000
+Message-ID: <162161335947.6037.17464583400464181715@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210521153253.518037-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20210521153253.518037-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Move_LMEM_=28VRAM=29_management_over_to_TTM_=28?=
- =?utf-8?q?rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Move_LMEM_=28VRAM=29_management_over_to_TTM_=28rev3?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,43 +54,238 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-1bf39c8cd594 drm/i915: Untangle the vma pages_mutex
-650181499469 drm/i915: Don't free shared locks while shared
-e0cd60e6a0d3 drm/i915: Fix i915_sg_page_sizes to record dma segments rather than physical pages
-4f895c63cc41 drm/i915/ttm Initialize the ttm device and memory managers
--:480: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#480: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 1578 lines checked
-fbd2191fd254 drm/i915/ttm: Embed a ttm buffer object in the i915 gem object
-67e58a6747b0 drm/ttm: Add a generic TTM memcpy move for page-based iomem
--:383: CHECK:ARCH_DEFINES: architecture specific defines should be avoided
-#383: FILE: drivers/gpu/drm/ttm/ttm_module.c:56:
-+#if defined(__i386__) || defined(__x86_64__)
-
--:699: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#699: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 1 checks, 812 lines checked
-fa7a4164f770 drm, drm/i915: Move the memcpy_from_wc functionality to core drm
--:54: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#54: 
-rename from drivers/gpu/drm/i915/i915_memcpy.c
-
-total: 0 errors, 1 warnings, 0 checks, 410 lines checked
-533ef0911275 drm/ttm: Use drm_memcpy_from_wc_dbm for TTM bo moves
-655c519cecf1 drm/ttm: Document and optimize ttm_bo_pipeline_gutting()
-2f38e8009d75 drm/ttm, drm/amdgpu: Allow the driver some control over swapping
-356c346230f1 drm/i915/ttm: Introduce a TTM i915 gem object backend
--:449: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#449: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 1024 lines checked
-7ced8a9675bb drm/i915/lmem: Verify checks for lmem residency
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1345:25: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1345:25:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1345:25:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1346:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1346:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1346:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1405:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1405:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1405:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:293:16: error: incompatible types in comparison expression (different type sizes):
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:293:16:    unsigned long *
++drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:293:16:    unsigned long long *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:275:25: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:275:25:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:275:25:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:330:17: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:330:17:    struct dma_fence *
++drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:330:17:    struct dma_fence [noderef] __rcu *
++drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h:90:56: error: marked inline, but without a definition
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_in
 
 
 _______________________________________________
