@@ -2,41 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEF3C38CE83
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 22:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 825D138CF17
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 22:30:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDAF6F8DF;
-	Fri, 21 May 2021 20:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BCB96E1F5;
+	Fri, 21 May 2021 20:30:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A2DE6F8DE;
- Fri, 21 May 2021 20:03:57 +0000 (UTC)
-IronPort-SDR: Nm1/gWi5twXK1rUmMLYHclN9+PW0CDI0MQHOvZcXFXJFLzfKxPt6OC7F85LuD2MiaiCn3uOSUo
- h4hhUl3zK0gw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9991"; a="262782005"
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="262782005"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2021 13:03:55 -0700
-IronPort-SDR: IBeM0IXzsqaI1CpzPRHvUZf09sgZZ3x6P0C6+btIARsA706T4V2CZVqO1t+ue1xEEs8vi3dRkp
- 90W5LjXicbJw==
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="613363289"
-Received: from dweeratu-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.254.1.200])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2021 13:03:52 -0700
-Date: Fri, 21 May 2021 16:03:51 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lyude Paul <lyude@redhat.com>, Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YKgSJ+0YtLYQnOQB@intel.com>
-References: <20210514181504.565252-1-lyude@redhat.com>
- <20210514181504.565252-2-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 494896E0BA;
+ Fri, 21 May 2021 20:30:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 41A30A47E2;
+ Fri, 21 May 2021 20:30:39 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210514181504.565252-2-lyude@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH v6 1/9] drm/i915/dpcd_bl: Remove redundant
- AUX backlight frequency calculations
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Fri, 21 May 2021 20:30:39 -0000
+Message-ID: <162162903924.6037.11902368153598824733@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210521195131.27775-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20210521195131.27775-1-anusha.srivatsa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTW9y?=
+ =?utf-8?q?e_DMC_cleanup_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,165 +38,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Rajeev Nandan <rajeevny@codeaurora.org>, greg.depoire@gmail.com,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Sean Paul <seanpaul@chromium.org>,
- Dave Airlie <airlied@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2126687612=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 14, 2021 at 02:14:55PM -0400, Lyude Paul wrote:
-> Noticed this while moving all of the VESA backlight code in i915 over to
-> DRM helpers: it would appear that we calculate the frequency value we want
-> to write to DP_EDP_BACKLIGHT_FREQ_SET twice even though this value never
-> actually changes during runtime. So, let's simplify things by just caching
-> this value in intel_panel.backlight, and re-writing it as-needed.
-> 
-> Changes since v1:
-> * Wrap panel->backlight.edp.vesa.pwm_freq_pre_divider in
->   DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP check - Jani
+--===============2126687612==
+Content-Type: multipart/alternative;
+ boundary="===============5232146626503861805=="
 
-This looks okay to me now... Jani, agree?
+--===============5232146626503861805==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Dave Airlie <airlied@gmail.com>
-> Cc: greg.depoire@gmail.com
-> ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  .../drm/i915/display/intel_dp_aux_backlight.c | 65 ++++++-------------
->  2 files changed, 20 insertions(+), 46 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 9c0adfc60c6f..7054a37363fb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -311,6 +311,7 @@ struct intel_panel {
->  		union {
->  			struct {
->  				u8 pwmgen_bit_count;
-> +				u8 pwm_freq_pre_divider;
->  			} vesa;
->  			struct {
->  				bool sdr_uses_aux;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 8e9ac9ba1d38..68bfe50ada59 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -373,50 +373,6 @@ intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state,
->  	}
->  }
->  
-> -/*
-> - * Set PWM Frequency divider to match desired frequency in vbt.
-> - * The PWM Frequency is calculated as 27Mhz / (F x P).
-> - * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
-> - *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
-> - * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
-> - *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
-> - */
-> -static bool intel_dp_aux_vesa_set_pwm_freq(struct intel_connector *connector)
-> -{
-> -	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> -	const u8 pn = connector->panel.backlight.edp.vesa.pwmgen_bit_count;
-> -	int freq, fxp, f, fxp_actual, fxp_min, fxp_max;
-> -
-> -	freq = dev_priv->vbt.backlight.pwm_freq_hz;
-> -	if (!freq) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Use panel default backlight frequency\n");
-> -		return false;
-> -	}
-> -
-> -	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
-> -	f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
-> -	fxp_actual = f << pn;
-> -
-> -	/* Ensure frequency is within 25% of desired value */
-> -	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
-> -	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
-> -
-> -	if (fxp_min > fxp_actual || fxp_actual > fxp_max) {
-> -		drm_dbg_kms(&dev_priv->drm, "Actual frequency out of range\n");
-> -		return false;
-> -	}
-> -
-> -	if (drm_dp_dpcd_writeb(&intel_dp->aux,
-> -			       DP_EDP_BACKLIGHT_FREQ_SET, (u8) f) < 0) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "Failed to write aux backlight freq\n");
-> -		return false;
-> -	}
-> -	return true;
-> -}
-> -
->  static void
->  intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
->  				   const struct drm_connector_state *conn_state, u32 level)
-> @@ -459,9 +415,13 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
->  		break;
->  	}
->  
-> -	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
-> -		if (intel_dp_aux_vesa_set_pwm_freq(connector))
-> +	if (panel->backlight.edp.vesa.pwm_freq_pre_divider) {
-> +		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_FREQ_SET,
-> +				       panel->backlight.edp.vesa.pwm_freq_pre_divider) == 1)
->  			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
-> +		else
-> +			drm_dbg_kms(&i915->drm, "Failed to write aux backlight frequency\n");
-> +	}
->  
->  	if (new_dpcd_buf != dpcd_buf) {
->  		if (drm_dp_dpcd_writeb(&intel_dp->aux,
-> @@ -482,6 +442,14 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
->  				  false);
->  }
->  
-> +/*
-> + * Compute PWM frequency divider value based off the frequency provided to us by the vbt.
-> + * The PWM Frequency is calculated as 27Mhz / (F x P).
-> + * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
-> + *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
-> + * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
-> + *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
-> + */
->  static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connector)
->  {
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> @@ -533,8 +501,10 @@ static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connecto
->  	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
->  	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
->  
-> +	/* Ensure frequency is within 25% of desired value */
->  	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
->  	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
-> +
->  	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
->  		drm_dbg_kms(&i915->drm,
->  			    "VBT defined backlight frequency out of range\n");
-> @@ -555,7 +525,10 @@ static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connecto
->  			    "Failed to write aux pwmgen bit count\n");
->  		return max_backlight;
->  	}
-> +
->  	panel->backlight.edp.vesa.pwmgen_bit_count = pn;
-> +	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
-> +		panel->backlight.edp.vesa.pwm_freq_pre_divider = f;
->  
->  	max_backlight = (1 << pn) - 1;
->  
-> -- 
-> 2.31.1
-> 
+== Series Details ==
+
+Series: More DMC cleanup (rev3)
+URL   : https://patchwork.freedesktop.org/series/90379/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10120 -> Patchwork_20174
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20174 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-icl-u2:          [FAIL][1] ([i915#49]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][3] ([i915#2782] / [i915#2940] / [i915#3462]) -> [DMESG-FAIL][4] ([i915#3462])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-glk-dsi:         [FAIL][5] ([i915#2426] / [i915#3363] / [k.org#202321]) -> [FAIL][6] ([i915#3363] / [k.org#202321])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-glk-dsi/igt@runner@aborted.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-glk-dsi/igt@runner@aborted.html
+    - fi-kbl-r:           [FAIL][7] ([i915#1436] / [i915#3363]) -> [FAIL][8] ([i915#1436] / [i915#2426] / [i915#3363])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-kbl-r/igt@runner@aborted.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-kbl-r/igt@runner@aborted.html
+    - fi-bdw-5557u:       [FAIL][9] ([i915#3462]) -> [FAIL][10] ([i915#1602] / [i915#2029])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-bdw-5557u/igt@runner@aborted.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-kbl-soraka:      [FAIL][11] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][12] ([i915#1436] / [i915#3363])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-kbl-soraka/igt@runner@aborted.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-kbl-soraka/igt@runner@aborted.html
+    - fi-cml-u2:          [FAIL][13] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3462]) -> [FAIL][14] ([i915#3363] / [i915#3462])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-cml-u2/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-cml-u2/igt@runner@aborted.html
+    - fi-skl-6700k2:      [FAIL][15] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][16] ([i915#1436] / [i915#3363])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-skl-6700k2/igt@runner@aborted.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-skl-6700k2/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3276]: https://gitlab.freedesktop.org/drm/intel/issues/3276
+  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
+  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
+  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
+  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
+
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Additional (1): fi-rkl-11500t 
+  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10120 -> Patchwork_20174
+
+  CI-20190529: 20190529
+  CI_DRM_10120: 9221d50d353487d2e10226318d89027037255621 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6091: a7016bde81f6e6ee9f2ded3c091c56766a6adc46 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20174: 73d9b38058d55588d18150b9465e97204df40b77 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+73d9b38058d5 drm/i915/dmc: Move struct intel_dmc to intel_dmc.h
+e297b14bd44f drm/i915/dmc: Add intel_dmc_has_payload() helper
+fff364de84b7 drm/i915/dmc: s/DRM_ERROR/drm_err
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/index.html
+
+--===============5232146626503861805==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>More DMC cleanup (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90379/">https://patchwork.freedesktop.org/series/90379/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10120 -&gt; Patchwork_20174</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20174 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/49">i915#49</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-bsw-nick/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
+</li>
+<li>
+<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10120/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20174/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Additional (1): fi-rkl-11500t <br />
+  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10120 -&gt; Patchwork_20174</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10120: 9221d50d353487d2e10226318d89027037255621 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6091: a7016bde81f6e6ee9f2ded3c091c56766a6adc46 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20174: 73d9b38058d55588d18150b9465e97204df40b77 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>73d9b38058d5 drm/i915/dmc: Move struct intel_dmc to intel_dmc.h<br />
+e297b14bd44f drm/i915/dmc: Add intel_dmc_has_payload() helper<br />
+fff364de84b7 drm/i915/dmc: s/DRM_ERROR/drm_err</p>
+
+</body>
+</html>
+
+--===============5232146626503861805==--
+
+--===============2126687612==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2126687612==--
