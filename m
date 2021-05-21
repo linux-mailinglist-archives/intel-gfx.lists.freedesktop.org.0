@@ -2,134 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC4B738CD60
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 20:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3977138CD63
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 20:26:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 385026F8AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 586436F8B0;
 	Fri, 21 May 2021 18:26:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 3400 seconds by postgrey-1.36 at gabe;
- Fri, 21 May 2021 15:10:51 UTC
-Received: from mx0a-0039f301.pphosted.com (mx0a-0039f301.pphosted.com
- [148.163.133.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5D86E5AB;
- Fri, 21 May 2021 15:10:51 +0000 (UTC)
-Received: from pps.filterd (m0174676.ppops.net [127.0.0.1])
- by mx0a-0039f301.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 14LED83G001232; Fri, 21 May 2021 14:13:16 GMT
-Received: from eur05-vi1-obe.outbound.protection.outlook.com
- (mail-vi1eur05lp2171.outbound.protection.outlook.com [104.47.17.171])
- by mx0a-0039f301.pphosted.com with ESMTP id 38pe3j81pv-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 21 May 2021 14:13:16 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VuaJK0qIzgGtwhSXrqdlIPHi6juChTrYWypjuY77a9e5JkkVJ4DCpTojre6SN/GQicwNaVwIagfRoyisPfvRaribK1U1VJcIBZbrDGF+xW6HVHID8AaatI00LQpZrA+02vZ0W4oPW9y7wFncRX//BPDUDsFB3zSjccx0Qz5HBMvH7tTnbPs+wn6KyXGNr9AJsnSr8b8iuIqIkEIZqFPg0hTuy/eXTzhB+p9mxLwJbhJQe2T17bFEbLT7nCMIkimJ1uDG4Gu72jGpqqHAcZaZPqDh8NgcRc7Ix9qJNW03HR2J0kSKE6ID8gbty0EQ9FGS61JH5TP1eyFJxxQJ98dZ3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=synphXwSrLm3nRPt+NsSMiX7qe0j9811C0H3uUFQWJc=;
- b=SZMk1h7K8B0hg54pNeWeCea0/CXrOZLHpAT1nudo+cMjA+UA98G+PqXRIc24xNTTROGKfuCs934AJf/1l9NQBmgU2aSTdT6Yy+BNetxk7BhfnLzIZQYXGCQt/qwLgmfsz+sB7UnGyT9luKc2SonZpYGucbO6qTmdn0KxKVTAEws5KrzwkLktvS0GRbCNLogHNXgDsxtS4ij2i0NIr+FYGNk/ABx/LAfeqqWbZx8vrbye73FsvdJfZxK6jgfCrrlbhggPpGdVQEWjh2pL2TYBsER1JCufwGbEMi+N6HU4wMaWEbgGGZLjHKDSIQlXwmrcBgvdR5l54cHk7uSs2TVSAw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
- dkim=pass header.d=epam.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=synphXwSrLm3nRPt+NsSMiX7qe0j9811C0H3uUFQWJc=;
- b=nbWDGCP0Hn0kqaztMmur09A9hQrDbhQuH0svSqUg8zNNuvSsshQbThNVJjOmjcApv6nUeX5mr+20amGK7BCT3YjQ9Jigikj/afbFS5JwrW41OMqzfyU5i5dIYi5X0/Z8pccdAQbcnpE3U9MhAGrvzziUaUwpQ7lI0htWIJvFBPaGbYu0aJZG9iLGkIvLxntoPv+CH7nmFprFTkvx6EKtzKghVS8l4Wt5ZVU1IFVWINWdVjXu7Y/THEk6km9gdOJ6Di1ERUNDDECNi3ZajD9IUxf4gLWVkpXcvGTL6J4E/dminsi+FVIdDyqJD7Eo4PH3mEyWZs/0fCSM9A+QDBhtmA==
-Received: from AM0PR03MB6324.eurprd03.prod.outlook.com (2603:10a6:20b:153::17)
- by AM0PR03MB5699.eurprd03.prod.outlook.com (2603:10a6:208:173::28)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Fri, 21 May
- 2021 14:13:13 +0000
-Received: from AM0PR03MB6324.eurprd03.prod.outlook.com
- ([fe80::3541:4069:60ca:de3d]) by AM0PR03MB6324.eurprd03.prod.outlook.com
- ([fe80::3541:4069:60ca:de3d%6]) with mapi id 15.20.4129.035; Fri, 21 May 2021
- 14:13:13 +0000
-From: Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
- <dri-devel@lists.freedesktop.org>
-Thread-Topic: [PATCH 11/11] drm/tiny: drm_gem_simple_display_pipe_prepare_fb
- is the default
-Thread-Index: AQHXTiEf04OO3eCHAEO/U1ulzURrU6rt+psA
-Date: Fri, 21 May 2021 14:13:13 +0000
-Message-ID: <5c75b291-0b47-92de-e90d-2842b0e5f996@epam.com>
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
+ [IPv6:2a00:1450:4864:20::32a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12E286EE27;
+ Fri, 21 May 2021 15:53:21 +0000 (UTC)
+Received: by mail-wm1-x32a.google.com with SMTP id 62so10370708wmb.3;
+ Fri, 21 May 2021 08:53:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=kdAs0Ep5+2K53fiSGhNfrLNzj7MMY3EgOQjni9Umht8=;
+ b=IhYlOGhD14MnNUDN3/gcfgDBq/BNMorjLEdyQeq1zzib97z1tEhGiiXaphyov0B6rm
+ Fnug5G0nwmDNTjmkdcXodXq9U/gz3ibsum4pzrkpfI9FmltJSw2CUcxsWX7jGXwwmyCj
+ 6vxc3W7raymKSRp3BSh9pxV9ixt7fhYnirv/L00YJBgVdZZYogPdXKuTSkEFfH1IrFRZ
+ Da9BK8RCuQqZjWtJt4Z9PY1PYT/d4yv4t/as1y1Bzr1dc6M55Y5AjpEufmJ68LUqwnaN
+ r/4pWcKNmcNKigTm4vX1D6oC/E3gRqOexUh1NDZr0Zq9RS8nw5b/KoUs/ymofl20nPkJ
+ EdEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=kdAs0Ep5+2K53fiSGhNfrLNzj7MMY3EgOQjni9Umht8=;
+ b=elsjR8Ok+U9QbKXb0X69lUdWL5XBPllezUgZrWmfXdT12M2wuiQqryB4l7h7WHu8xJ
+ qqavOhfz3IjrGDrbzjM+FZwpYO9lMDhRZAG5v8FQ7z2jSP7REcoXgR1cEpGjCoanYBA6
+ ckzqszkTVtp3ZjojNDhrsthLfiU4fT7CkaXutu70TIJpyJHUh84wkjvPU9BqEVSoNugc
+ k+VMqYorNGUHjtuN9ciAqu4PjzjswjhyTBziKF1tqMGDYjjc7nnKwUAHZtfWCdPCFjcn
+ CnQUdOTiw3aKtjmAHyJEAExK4FTfNVXGHRA4D2E5yKyjezAmES0doPkYpvnyGnd8+Ris
+ /jJA==
+X-Gm-Message-State: AOAM531Khg8OebcGxfBFjny3kCYuygqr2C2m7wIkjelvJekmpY53+7Oc
+ H47F6YQomE/r/vAZDba/lp438QAZNEaF/A==
+X-Google-Smtp-Source: ABdhPJxTn/ueWgal7rvRO3A3ECHpC111Q7o7SxwZUm6zNTqM9YK/SolsENlCqq1BAUxDrXnfxploOg==
+X-Received: by 2002:a1c:5443:: with SMTP id p3mr9425116wmi.101.1621612399794; 
+ Fri, 21 May 2021 08:53:19 -0700 (PDT)
+Received: from jernej-laptop.localnet (cpe-86-58-17-133.cable.triera.net.
+ [86.58.17.133])
+ by smtp.gmail.com with ESMTPSA id o129sm13051356wmo.22.2021.05.21.08.53.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 21 May 2021 08:53:19 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Fri, 21 May 2021 17:53:16 +0200
+Message-ID: <1940958.iMR1v07LRx@jernej-laptop>
+In-Reply-To: <20210521090959.1663703-6-daniel.vetter@ffwll.ch>
 References: <20210521090959.1663703-1-daniel.vetter@ffwll.ch>
- <20210521090959.1663703-11-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210521090959.1663703-11-daniel.vetter@ffwll.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: ffwll.ch; dkim=none (message not signed)
- header.d=none;ffwll.ch; dmarc=none action=none header.from=epam.com;
-x-originating-ip: [185.199.97.5]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0bdf988e-a91a-452c-3aeb-08d91c62925a
-x-ms-traffictypediagnostic: AM0PR03MB5699:
-x-microsoft-antispam-prvs: <AM0PR03MB56997BA8B412A973FBE143CCE7299@AM0PR03MB5699.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:962;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tmGi7CkLNA9HCBt4RJY63mpvC6/lOFd4BzM8h4P0cCkTjo3/w+OEeK7i1Sc1cy7I23DPvgbKPuhKgyXEPQIxoiqz5WL+6byDV8REM0kFONDtd1x7JTA7IFH2s9Wb8fJ3Ld3p6JCsIUPnY4xCaK1ZMw35mUxEog90d6jV9063RjqSsLrfZE5C9+FIpwtK23lz3PJQyVEj12eo7CEEweG/d5OCIJXJHYk97BhjPnVgWA+N0WWYqNCpzRa6dRx6dzKYfRgCUPyuik3YdGRMrXgrV59fAdO+cQfPQiRm/Ai+FYroGE2YJA5EQjYljxkkNPdJoNKIcjzo/Vu2c+rJ2Vz5GOYYTxatC4WeD1dRWA5F2F35dAm6RVuY/RFgqBF76Af/QjnP5f3PRzfYBCfyWA8yTKsN6jRkxnNYou06NjWWQMCenh8W10qT6Gmz4NqmpMj+cxO5G3B1G+lx2YTeNsIGBxSQP4E7SWWTcjIXA5rRMXzrJtTOKT6sXhEIuNctx0Oz2R0z4CSVqWWDBjlhskyymN8qNCTr7De/Npryqb/ZiwCvCfdEdsrE6gfhN8S4ujqd/4jzToHjcNxhMJgxieTbgOl8K57u892un5M7H/slHEG8QwgNh1iOjnLZgya7p1FoYmglyy6KMpT9+Q6IVRkvEiaD8lNsDeNjIJGjuZutSNs=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR03MB6324.eurprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(346002)(396003)(136003)(376002)(39860400002)(2906002)(2616005)(478600001)(122000001)(66446008)(6512007)(66556008)(66946007)(38100700002)(91956017)(6486002)(76116006)(4326008)(66476007)(54906003)(86362001)(316002)(64756008)(110136005)(8936002)(7416002)(53546011)(5660300002)(8676002)(186003)(31686004)(558084003)(31696002)(83380400001)(36756003)(26005)(71200400001)(6506007)(45980500001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?b1ZnVDNYN0w1ZVdWUzMzcU4wWjlCOTI5Uzh5QSt5L1NtMXp6QTdOMSszcnlN?=
- =?utf-8?B?cGJPWmo2SktKdE1BdkRHaUY4Z1JqVFUwZTVjbiswWnFrTmtCMlg4TGl0VG9B?=
- =?utf-8?B?YlI5U2IweXlFRmxCcTZjdExYd3lOL0FYeDcyV0hXZlBKK3NVSThmNkRBUnls?=
- =?utf-8?B?My9iMEZNS1lBNkFwWTdkMlJmRHBaeWFwZituSXRZV0tJaFJ1U1Y3Z2xxckQ0?=
- =?utf-8?B?K1pTWW1zcFlMdWdzWVVKNkF3NHJDMWNiZXdnQ3hWazBtd200LzJZZk5XS1F2?=
- =?utf-8?B?SWtic1EwV1JaVGdBRGJHOEJUcjhlOGNrVm8zVk1JTFdiYmhVK3NNZ3FQdDZJ?=
- =?utf-8?B?bkZ2REp2bnFuajM3Mnh3THQ4NTlyTytwRG9rYVlpekI5bVBMMHNsaG5zQzA4?=
- =?utf-8?B?YmtIZTBoMENuMkRkUXJ1UXpQV0c5bWkrdGx0NUZMNzFQZWRDTDluUXdudzBH?=
- =?utf-8?B?Zm0wb1dTTUZZTExYeGJveUNPVEtjaERzZGFZQ3ZJenlkc0VRL29rUm5YMXFs?=
- =?utf-8?B?ZDRqeStiaTMxZzJsYm90VlF6NXUvY3kyYllLa2Ezb3R4eVArU00rTCtXUyt5?=
- =?utf-8?B?ejVJbGFXdmRBRjBGbWpmb2FrcmRwbWhldmNIbER6QXNXVWdlaGZtUHg5VXRC?=
- =?utf-8?B?MkR2VVV5RkRJejE5cVl0c3JRSmVqODRBSFBEN2kyandFV0FvVzJ6UkNsdVRs?=
- =?utf-8?B?M3FpdlFOSDRiRFQ4VUVKYWhmWlB2QzhGZnpJQXBsWEgxWUoxU09kY3hLRGNm?=
- =?utf-8?B?SHFkMlJQYmxKTUdmcnpQTFdjemJUYXRuQStVUFRtVER3S1lXeWx0emc2WlpG?=
- =?utf-8?B?Yjl2eG9LNHJnby9vQlN0aWZBQXZDc2trclpEVWJKc1hnc2ZCWXhjV3k4ZE16?=
- =?utf-8?B?cDZqdk56VE9Dd2dWODhZbzVUL0hFUkRSMnR0S3ZaTG9sUk1sNzNzY0R6WjNE?=
- =?utf-8?B?RGZPN05iSENrZGpyYUh1MVFWdkxmNTFRaXJvMTI2N015dlUvQk9DbkV4NEpo?=
- =?utf-8?B?eGtFQzl1SUdraUtQc0Yrem5ncVh1bEdWK0xXOFN5dFVaUDdoODlFVERESWZh?=
- =?utf-8?B?T01YcHgvUEFrTXd3amUwWE5LQ0NmTkt2WEttczUyL0tuVnl2N1V5QzJDVVhC?=
- =?utf-8?B?ZjU4dzVaSHBuYktneTRMYmVTMVFrcjdXR3dwdjEzbjVzZ2Y0WFVCaVhBaUVl?=
- =?utf-8?B?Ym1RM0djUXFzR0NoR0R3WmxCZVFBZEMxZEhDcHQ1THhScmdhMDB0SlhQcjFU?=
- =?utf-8?B?YUhrZVdsODBmRjZRaWdxT1JZdExIanZmM0l4UWxuUW5RUEViMUxWeFBKelJD?=
- =?utf-8?B?aEhPNXdNZW5oYmd4SzhQSlZiaUFjVFlCa0pRaFdmcDhVdWRRSU5scEllVHNC?=
- =?utf-8?B?Z2cwK2dsMGJHT1E1V1JUdC9zZ2liQWlEYXc1N1IrV1d1OHRPSmtZREM4VE9u?=
- =?utf-8?B?azUzekt6VzVhb0FHMnloeWd5a1FDWGpOc0ozVjVOaytGZkF0QlQ5R3QrdHNl?=
- =?utf-8?B?VGpLMzdOWnpBU2JaWCtYYlZiODVTMSs0aHIwaFFrQzl1U2duUXZjYVJ1Tzhv?=
- =?utf-8?B?SEVRaHN2cE5hM1pWZTZtMFA5MTgyUVVWUzRxU2pteEkwR1JHSExNcTJCQlYr?=
- =?utf-8?B?R2J2d2I3M1FWN2JOeHgrZzhGRXcxSTBSZmw0U2p2YXRpaC9uczJEWWNxSEZi?=
- =?utf-8?B?YmMvM2Z2U0xSSDRZYXZYQ054YWdKdVczSC9tV1dsZERtcGJEVXlYQmkxRXJP?=
- =?utf-8?Q?TtT8xnEMcdgbr+0D6CQgES5ADMtm35SHuiNf+sY?=
-x-ms-exchange-transport-forked: True
-Content-ID: <C5B75DA063347C46B779C8F812FBED80@eurprd03.prod.outlook.com>
+ <20210521090959.1663703-6-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-X-OriginatorOrg: epam.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR03MB6324.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0bdf988e-a91a-452c-3aeb-08d91c62925a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2021 14:13:13.6987 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cEywJNdU8get7rLb9Yld0YaovUvaWTjG/DVX9Yzk4y0wjgYviEhHRz2i16qk5xKJ80NR93HtaD8Fu7Vp44rUPfHpuMxogbkWjjBRKQRZZd2jj3XUFN9kpMCKGXpwIG25
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR03MB5699
-X-Proofpoint-GUID: HF7xGuFoEAPBAFQk1W4RxRM9bpA7WEMd
-X-Proofpoint-ORIG-GUID: HF7xGuFoEAPBAFQk1W4RxRM9bpA7WEMd
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 mlxscore=0
- mlxlogscore=955 adultscore=0 phishscore=0 suspectscore=0 bulkscore=0
- malwarescore=0 clxscore=1011 impostorscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2105210080
 X-Mailman-Approved-At: Fri, 21 May 2021 18:26:10 +0000
-Subject: Re: [Intel-gfx] [PATCH 11/11] drm/tiny:
- drm_gem_simple_display_pipe_prepare_fb is the default
+Subject: Re: [Intel-gfx] [PATCH 06/11] drm/<driver>:
+ drm_gem_plane_helper_prepare_fb is now the default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,32 +70,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- David Lechner <david@lechnology.com>, Emma Anholt <emma@anholt.net>,
- Andrew Jeffery <andrew@aj.id.au>,
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Stefan Agner <stefan@agner.ch>, linux-mips@vger.kernel.org,
+ Paul Cercueil <paul@crapouillou.net>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Fabio Estevam <festevam@gmail.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
+ Marek Vasut <marex@denx.de>, Kevin Hilman <khilman@baylibre.com>,
+ linux-rockchip@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- =?utf-8?B?Tm9yYWxmIFRyw7hubmVz?= <noralf@tronnes.org>,
- Joel Stanley <joel@jms.id.au>, Thomas Zimmermann <tzimmermann@suse.de>,
- "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Sam Ravnborg <sam@ravnborg.org>, Linus Walleij <linus.walleij@linaro.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Maxime Ripard <mripard@kernel.org>, linux-mediatek@lists.infradead.org,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Tomi Valkeinen <tomba@kernel.org>,
+ Jyri Sarha <jyri.sarha@iki.fi>, Yannick Fertre <yannick.fertre@foss.st.com>,
+ Sandy Huang <hjc@rock-chips.com>, linux-sunxi@lists.linux.dev,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 5/21/21 12:09 PM, Daniel Vetter wrote:
-> Goes through all the drivers and deletes the default hook since it's
-> the default now.
->
-> Signed-off-by: Daniel Vetter<daniel.vetter@intel.com>
-Acked-by: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+Dne petek, 21. maj 2021 ob 11:09:54 CEST je Daniel Vetter napisal(a):
+> No need to set it explicitly.
+> =
+
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Paul Cercueil <paul@crapouillou.net>
+> Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Stefan Agner <stefan@agner.ch>
+> Cc: Sandy Huang <hjc@rock-chips.com>
+> Cc: "Heiko St=FCbner" <heiko@sntech.de>
+> Cc: Yannick Fertre <yannick.fertre@foss.st.com>
+> Cc: Philippe Cornu <philippe.cornu@foss.st.com>
+> Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jyri Sarha <jyri.sarha@iki.fi>
+> Cc: Tomi Valkeinen <tomba@kernel.org>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-mips@vger.kernel.org
+> Cc: linux-mediatek@lists.infradead.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-sunxi@lists.linux.dev
+
+For sun4i:
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
