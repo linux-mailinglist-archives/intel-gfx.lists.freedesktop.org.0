@@ -2,36 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B7338CC69
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 19:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF13F38CCB4
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 19:51:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA1A6E56A;
-	Fri, 21 May 2021 17:40:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A1F6F89B;
+	Fri, 21 May 2021 17:51:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6B76E56A;
- Fri, 21 May 2021 17:40:49 +0000 (UTC)
-IronPort-SDR: C3T3SWvfBA6nG4RaEMFkyfjJeu0yl2bamPLrmKAPD9kGSl8q1ZhMoeQLAv/5Tye6Pf8UyVGkYn
- +KyV7KPCqFcw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9991"; a="201246727"
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="201246727"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2021 10:40:48 -0700
-IronPort-SDR: o9orw7t44oiKgg+E3X3lRx9C+mbkpo+HeHxdBHp2yiw1aqK0dO0LkzKngCRAsOWG0KgKxRYv4L
- aVhEni4c3uaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="395414761"
-Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by orsmga003.jf.intel.com with ESMTP; 21 May 2021 10:40:48 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 21 May 2021 10:40:47 -0700
-Message-Id: <20210521174047.3861-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 237596E82A;
+ Fri, 21 May 2021 17:51:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1B8CEA73C7;
+ Fri, 21 May 2021 17:51:27 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gvt: Add missing macro name changes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Fri, 21 May 2021 17:51:27 -0000
+Message-ID: <162161948708.6035.12667270426656410970@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210521174047.3861-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20210521174047.3861-1-anusha.srivatsa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gvt=3A_Add_missing_macro_name_changes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,53 +38,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gvt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/gvt: Add missing macro name changes
+URL   : https://patchwork.freedesktop.org/series/90427/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+355406594b6b drm/i915/gvt: Add missing macro name changes
+-:6: WARNING:TYPO_SPELLING: 'Propogate' may be misspelled - perhaps 'Propagate'?
+#6: 
 Propogate changes to macros name containing CSR_*
-to DMC_* from display side.
+^^^^^^^^^
 
-Fixes: 0633cdcbaa77 ("drm/i915/dmc: Rename macro names containing csr")
-Cc: intel-gvt-dev@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/gvt/handlers.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
 
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index dda320749c65..33496397a74f 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -3342,9 +3342,9 @@ static int init_skl_mmio_info(struct intel_gvt *gvt)
- 	MMIO_D(_MMIO(_PLANE_SURF_3_A), D_SKL_PLUS);
- 	MMIO_D(_MMIO(_PLANE_SURF_3_B), D_SKL_PLUS);
- 
--	MMIO_D(CSR_SSP_BASE, D_SKL_PLUS);
--	MMIO_D(CSR_HTP_SKL, D_SKL_PLUS);
--	MMIO_D(CSR_LAST_WRITE, D_SKL_PLUS);
-+	MMIO_D(DMC_SSP_BASE, D_SKL_PLUS);
-+	MMIO_D(DMC_HTP_SKL, D_SKL_PLUS);
-+	MMIO_D(DMC_LAST_WRITE, D_SKL_PLUS);
- 
- 	MMIO_DFH(BDW_SCRATCH1, D_SKL_PLUS, F_CMD_ACCESS, NULL, NULL);
- 
-@@ -3655,7 +3655,7 @@ void intel_gvt_clean_mmio_info(struct intel_gvt *gvt)
-  * otherwise, need to update cmd_reg_handler in cmd_parser.c
-  */
- static struct gvt_mmio_block mmio_blocks[] = {
--	{D_SKL_PLUS, _MMIO(CSR_MMIO_START_RANGE), 0x3000, NULL, NULL},
-+	{D_SKL_PLUS, _MMIO(DMC_MMIO_START_RANGE), 0x3000, NULL, NULL},
- 	{D_ALL, _MMIO(MCHBAR_MIRROR_BASE_SNB), 0x40000, NULL, NULL},
- 	{D_ALL, _MMIO(VGT_PVINFO_PAGE), VGT_PVINFO_SIZE,
- 		pvinfo_mmio_read, pvinfo_mmio_write},
--- 
-2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
