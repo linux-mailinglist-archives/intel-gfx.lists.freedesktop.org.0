@@ -1,46 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F98C38C1D4
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 10:30:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E748B38C1E4
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 10:33:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C2F86E492;
-	Fri, 21 May 2021 08:30:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 227376F5D2;
+	Fri, 21 May 2021 08:33:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 798F36E492;
- Fri, 21 May 2021 08:30:48 +0000 (UTC)
-IronPort-SDR: r4qusegy3q3SvuVGz61frLe/7sb4PmZ0oBMbE2ONfK1icXRo+t2kXGlNto/gJspOncRC8hYC6n
- 5PYBtalvoYTA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9990"; a="198354107"
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="198354107"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DF456F5D2;
+ Fri, 21 May 2021 08:33:10 +0000 (UTC)
+IronPort-SDR: 9VQ5e8e2pZLUjPZo235yxu0piCXTb4GvEqInb/bQpByGTruAAi6DQWezfCS0RdSAPH86VnN3QD
+ PNwdUjrYdazQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9990"; a="198354590"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="198354590"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2021 01:30:47 -0700
-IronPort-SDR: N3cTXFI+xJrHvjGaEguUr6MDfRCetyF2aQI0uZJULsR7YxJ7deXq3eOSgIMD9eBRQ2SB6k/AOW
- OVLL5KoWs5Tg==
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="440843215"
-Received: from imarinmo-mobl1.ger.corp.intel.com (HELO [10.249.254.34])
- ([10.249.254.34])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2021 01:30:45 -0700
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210520150947.803891-1-thomas.hellstrom@linux.intel.com>
- <20210520150947.803891-4-thomas.hellstrom@linux.intel.com>
- <f917a62f-0552-e9e2-17d3-8f16c713fa8c@amd.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <88fbf503-c8ec-455d-c3c6-ea8598bd51a5@linux.intel.com>
-Date: Fri, 21 May 2021 10:30:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ 21 May 2021 01:33:09 -0700
+IronPort-SDR: OmtFJtPshlEKQVJFK0hxXNg90vMWO5iFib7JSQziNcKdIBHmmv+NAKae+Znm/C19csbhczqcf2
+ QP51DyN3saHg==
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="412521397"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 01:33:07 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1lk0cD-0000nG-GQ; Fri, 21 May 2021 11:34:41 +0300
+Date: Fri, 21 May 2021 11:34:41 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <YKdwoTd+1DQlj9Ig@platvala-desk.ger.corp.intel.com>
+References: <20210519145337.255167-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <f917a62f-0552-e9e2-17d3-8f16c713fa8c@amd.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 3/5] drm/ttm: Use drm_memcpy_from_wc for
- TTM bo moves
+Content-Disposition: inline
+In-Reply-To: <20210519145337.255167-1-matthew.auld@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH i-g-t 0/9] DG1/LMEM uAPI basics v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,69 +50,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: igt-dev@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDUvMjEvMjEgMTA6MTAgQU0sIENocmlzdGlhbiBLw7ZuaWcgd3JvdGU6Cj4gQW0gMjAuMDUu
-MjEgdW0gMTc6MDkgc2NocmllYiBUaG9tYXMgSGVsbHN0csO2bToKPj4gVXNlIGZhc3Qgd2MgbWVt
-Y3B5IGZvciByZWFkaW5nIG91dCBvZiB3YyBtZW1vcnkgZm9yIFRUTSBibyBtb3Zlcy4KPj4KPj4g
-Q2M6IERhdmUgQWlybGllIDxhaXJsaWVkQGdtYWlsLmNvbT4KPj4gQ2M6IENocmlzdGlhbiBLw7Zu
-aWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmll
-bC52ZXR0ZXJAZmZ3bGwuY2g+Cj4+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0
-aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPgo+IE9oLCB5ZXMgSSByZWFsbHkgd2Fu
-dGVkIHRvIGhhdmUgdGhhdCBpbiBUVE0gZm9yIHF1aXRlIHNvbWUgdGltZS4KV2Ugc2hvdWxkIHVz
-ZSBpdCBmb3Igc3dhcCBjb3B5IGZyb20gV0MgYXMgd2VsbCBJTU8uIEEgdG9kby10YXNrIGZvciAK
-c29tZWJvZHkuCj4KPiBCdXQgSSdtIHdvbmRlcmluZyBpZiB3ZSBzaG91bGRuJ3QgZml4IHRoZSBt
-ZW1yZW1hcCBzdHVmZiBmaXJzdC4KClVzaW5nIG1lbXJlbWFwIGFsbCBvdmVyIGlzIGEgZmFpcmx5
-IGJpZyBjaGFuZ2UgcHJvYmFibHkgd2l0aCBsb3RzIG9mIApvcGluaW9ucyBpbnZvbHZlZCBhbGwg
-b3ZlciB0aGUgcGxhY2UuCldoYXQgSSBjYW4gZG8gZm9yIG5vdyBpcyB0byBhZGQgYSBkbWFfYnVm
-X21hcCBpbnRlcmZhY2UgdG8gdGhlIG1lbWNweSAKaXRzZWxmLCB0byBtb3ZlIHRoZSBhbGlhc2lu
-ZyBvdXQgb2YgVFRNIHRvIHRoZSBhcmNoIHNwZWNpZmljIGNvZGUgdGhhdCAKa25vd3Mgd2hhdCBp
-dCdzIGRvaW5nPwoKL1Rob21hcwoKCj4KPiBDaHJpc3RpYW4uCj4KPj4gLS0tCj4+IMKgIGRyaXZl
-cnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYyB8IDE4ICsrKysrKysrKysrKysrKysrLQo+PiDC
-oCAxIGZpbGUgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm9fdXRpbC5jIAo+PiBiL2RyaXZl
-cnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYwo+PiBpbmRleCBiYWQ5YjE2ZTk2YmEuLjkxOWVl
-MDNmN2ViMyAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm9fdXRpbC5j
-Cj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYwo+PiBAQCAtMzEsNiAr
-MzEsNyBAQAo+PiDCoCDCoCAjaW5jbHVkZSA8ZHJtL3R0bS90dG1fYm9fZHJpdmVyLmg+Cj4+IMKg
-ICNpbmNsdWRlIDxkcm0vdHRtL3R0bV9wbGFjZW1lbnQuaD4KPj4gKyNpbmNsdWRlIDxkcm0vZHJt
-X21lbWNweS5oPgo+PiDCoCAjaW5jbHVkZSA8ZHJtL2RybV92bWFfbWFuYWdlci5oPgo+PiDCoCAj
-aW5jbHVkZSA8bGludXgvZG1hLWJ1Zi1tYXAuaD4KPj4gwqAgI2luY2x1ZGUgPGxpbnV4L2lvLmg+
-Cj4+IEBAIC0xODUsNiArMTg2LDcgQEAgdm9pZCB0dG1fbW92ZV9tZW1jcHkoc3RydWN0IHR0bV9i
-dWZmZXJfb2JqZWN0ICpibywKPj4gwqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX3Jlc291cmNlICpvbGRf
-bWVtID0gJmJvLT5tZW07Cj4+IMKgwqDCoMKgwqAgc3RydWN0IHR0bV9yZXNvdXJjZV9tYW5hZ2Vy
-ICpvbGRfbWFuID0gdHRtX21hbmFnZXJfdHlwZShiZGV2LCAKPj4gb2xkX21lbS0+bWVtX3R5cGUp
-Owo+PiDCoMKgwqDCoMKgIHN0cnVjdCBkbWFfYnVmX21hcCBvbGRfbWFwLCBuZXdfbWFwOwo+PiAr
-wqDCoMKgIGJvb2wgd2NfbWVtY3B5Owo+PiDCoMKgwqDCoMKgIHBnb2ZmX3QgaTsKPj4gwqAgwqDC
-oMKgwqDCoCAvKiBTaW5nbGUgVFRNIG1vdmUuIE5PUCAqLwo+PiBAQCAtMjA4LDExICsyMTAsMjUg
-QEAgdm9pZCB0dG1fbW92ZV9tZW1jcHkoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKPj4g
-wqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybjsKPj4gwqDCoMKgwqDCoCB9Cj4+IMKgICvCoMKgwqAg
-d2NfbWVtY3B5ID0gKCghb2xkX21hbi0+dXNlX3R0IHx8IGJvLT50dG0tPmNhY2hpbmcgIT0gCj4+
-IHR0bV9jYWNoZWQpICYmCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZHJtX2hhc19tZW1j
-cHlfZnJvbV93YygpKTsKPj4gKwo+PiArwqDCoMKgIC8qCj4+ICvCoMKgwqDCoCAqIFdlIHVzZSBz
-b21lIG5hc3R5IGFsaWFzaW5nIGZvciBkcm1fbWVtY3B5X2Zyb21fd2MsIGJ1dCBhc3N1bWluZwo+
-PiArwqDCoMKgwqAgKiB0aGF0IHdlIGNhbiBtb3ZlIHRvIG1lbXJlbWFwcGluZyBpbiB0aGUgbm90
-IHRvbyBkaXN0YW50IGZ1dHVyZSwKPj4gK8KgwqDCoMKgICogcmVkdWNlIHRoZSBmcmFnaWxpdHkg
-Zm9yIG5vdyB3aXRoIGEgYnVpbGQgYXNzZXJ0Lgo+PiArwqDCoMKgwqAgKi8KPj4gK8KgwqDCoCBC
-VUlMRF9CVUdfT04ob2Zmc2V0b2YodHlwZW9mKG9sZF9tYXApLCB2YWRkcikgIT0KPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBvZmZzZXRvZih0eXBlb2Yob2xkX21hcCksIHZhZGRyX2lvbWVt
-KSk7Cj4+ICsKPj4gwqDCoMKgwqDCoCBmb3IgKGkgPSAwOyBpIDwgbmV3X21lbS0+bnVtX3BhZ2Vz
-OyArK2kpIHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIG5ld19pdGVyLT5vcHMtPmttYXBfbG9jYWwo
-bmV3X2l0ZXIsICZuZXdfbWFwLCBpKTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIG9sZF9pdGVyLT5v
-cHMtPmttYXBfbG9jYWwob2xkX2l0ZXIsICZvbGRfbWFwLCBpKTsKPj4gwqAgLcKgwqDCoMKgwqDC
-oMKgIGlmICghb2xkX21hcC5pc19pb21lbSAmJiAhbmV3X21hcC5pc19pb21lbSkgewo+PiArwqDC
-oMKgwqDCoMKgwqAgaWYgKHdjX21lbWNweSkgewo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBk
-cm1fbWVtY3B5X2Zyb21fd2MobmV3X21hcC52YWRkciwgb2xkX21hcC52YWRkciwKPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFBBR0VfU0laRSk7Cj4+ICvC
-oMKgwqDCoMKgwqDCoCB9IGVsc2UgaWYgKCFvbGRfbWFwLmlzX2lvbWVtICYmICFuZXdfbWFwLmlz
-X2lvbWVtKSB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG1lbWNweShuZXdfbWFwLnZh
-ZGRyLCBvbGRfbWFwLnZhZGRyLCBQQUdFX1NJWkUpOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgfSBl
-bHNlIGlmICghb2xkX21hcC5pc19pb21lbSkgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBkbWFfYnVmX21hcF9tZW1jcHlfdG8oJm5ld19tYXAsIG9sZF9tYXAudmFkZHIsCj4KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, May 19, 2021 at 03:53:28PM +0100, Matthew Auld wrote:
+> Just the really basic stuff, which unlocks adding more interesting testcases
+> later, like gem_lmem_swapping.
+> 
+> On the kernel side we landed the uAPI bits[1] behind CONFIG_BROKEN, which is
+> already enabled in CI builds, so it should be possible to get some more BAT
+> testing(outside of just the selftests) on DG1 to the point where we can start to
+> exercise the LMEM paths with the new bits of uAPI.
+> 
+> [1] https://patchwork.freedesktop.org/series/89648/
+> 
+> v2:(Petri)
+>    - add missing kernel sha for i915_drm.h sync
+>    - squash the various region lib patches together
+>    - just directly use the uapi bits from the start, instead of adding a bunch
+>      of locals, which then later get removed anyway
+> 
+> Andrzej Turko (5):
+>   lib/i915/gem_create: Add gem_create_ext
+>   lib/i915/intel_memory_region: Add new memory region lib
+>   tests/i915/gem_exec_basic: Use memory region interface
+>   tests/i915/gem_gpgpu_fill: Use memory region interface
+>   tests/i915/gem_media_fill: Use memory region interface
+> 
+> Dominik Grzegorzek (1):
+>   tests/gem_gpgpu_fill: Convert from simple to standard igt_main
+> 
+> Kalamarz, Lukasz (1):
+>   tests/i915/gem_exec_basic: Iterate over all memory regions
+> 
+> Matthew Auld (2):
+>   i915_drm.h sync
+>   tests/i915/gem_create: exercise placements extension
+> 
+>  benchmarks/gem_blt.c                    |   2 +-
+>  benchmarks/gem_busy.c                   |   2 +-
+>  benchmarks/gem_create.c                 |   2 +-
+>  benchmarks/gem_exec_ctx.c               |   2 +-
+>  benchmarks/gem_exec_fault.c             |   2 +-
+>  benchmarks/gem_exec_nop.c               |   2 +-
+>  benchmarks/gem_exec_reloc.c             |   2 +-
+>  benchmarks/gem_exec_trace.c             |   2 +-
+>  benchmarks/gem_latency.c                |   2 +-
+>  benchmarks/gem_prw.c                    |   2 +-
+>  benchmarks/gem_set_domain.c             |   2 +-
+>  benchmarks/gem_syslatency.c             |   2 +-
+>  benchmarks/gem_wsim.c                   |   2 +-
+>  benchmarks/prime_lookup.c               |   2 +-
+>  include/drm-uapi/i915_drm.h             | 394 +++++++++++++++++++--
+>  lib/i915/gem.h                          |   3 -
+>  lib/i915/gem_create.c                   |  43 ++-
+>  lib/i915/gem_create.h                   |  19 +
+>  lib/i915/gem_mman.c                     |   2 +-
+>  lib/i915/gem_ring.c                     |   1 +
+>  lib/i915/gem_submission.c               |   1 +
+>  lib/i915/intel_memory_region.c          | 441 ++++++++++++++++++++++++
+>  lib/i915/intel_memory_region.h          | 130 +++++++
+>  lib/igt_draw.c                          |   2 +-
+>  lib/igt_dummyload.c                     |   2 +-
+>  lib/igt_fb.c                            |   2 +-
+>  lib/intel_batchbuffer.c                 |   2 +-
+>  lib/intel_bufops.c                      |   2 +-
+>  lib/ioctl_wrappers.c                    |   2 +-
+>  lib/ioctl_wrappers.h                    |   1 +
+>  lib/meson.build                         |   1 +
+>  tests/amdgpu/amd_prime.c                |   1 +
+>  tests/core_hotunplug.c                  |   1 +
+>  tests/i915/api_intel_allocator.c        |   1 +
+>  tests/i915/api_intel_bb.c               |   1 +
+>  tests/i915/gem_bad_reloc.c              |   1 +
+>  tests/i915/gem_basic.c                  |   2 +-
+>  tests/i915/gem_blits.c                  |   1 +
+>  tests/i915/gem_busy.c                   |   1 +
+>  tests/i915/gem_close.c                  |   1 +
+>  tests/i915/gem_close_race.c             |   1 +
+>  tests/i915/gem_concurrent_all.c         |   1 +
+>  tests/i915/gem_create.c                 | 189 ++++++++++
+>  tests/i915/gem_cs_tlb.c                 |   1 +
+>  tests/i915/gem_ctx_clone.c              |   1 +
+>  tests/i915/gem_ctx_create.c             |   1 +
+>  tests/i915/gem_ctx_engines.c            |   1 +
+>  tests/i915/gem_ctx_exec.c               |   1 +
+>  tests/i915/gem_ctx_isolation.c          |   1 +
+>  tests/i915/gem_ctx_param.c              |   1 +
+>  tests/i915/gem_ctx_shared.c             |   1 +
+>  tests/i915/gem_ctx_sseu.c               |   1 +
+>  tests/i915/gem_ctx_switch.c             |   1 +
+>  tests/i915/gem_eio.c                    |   1 +
+>  tests/i915/gem_evict_alignment.c        |   1 +
+>  tests/i915/gem_evict_everything.c       |   1 +
+>  tests/i915/gem_exec_alignment.c         |   1 +
+>  tests/i915/gem_exec_async.c             |   1 +
+>  tests/i915/gem_exec_await.c             |   1 +
+>  tests/i915/gem_exec_balancer.c          |   1 +
+>  tests/i915/gem_exec_basic.c             |  53 ++-
+>  tests/i915/gem_exec_big.c               |   1 +
+>  tests/i915/gem_exec_capture.c           |   1 +
+>  tests/i915/gem_exec_create.c            |   1 +
+>  tests/i915/gem_exec_endless.c           |   1 +
+>  tests/i915/gem_exec_fair.c              |   1 +
+>  tests/i915/gem_exec_fence.c             |   1 +
+>  tests/i915/gem_exec_flush.c             |   1 +
+>  tests/i915/gem_exec_gttfill.c           |   1 +
+>  tests/i915/gem_exec_latency.c           |   1 +
+>  tests/i915/gem_exec_lut_handle.c        |   1 +
+>  tests/i915/gem_exec_nop.c               |   1 +
+>  tests/i915/gem_exec_parallel.c          |   1 +
+>  tests/i915/gem_exec_params.c            |   1 +
+>  tests/i915/gem_exec_reloc.c             |   1 +
+>  tests/i915/gem_exec_schedule.c          |   1 +
+>  tests/i915/gem_exec_store.c             |   1 +
+>  tests/i915/gem_exec_suspend.c           |   1 +
+>  tests/i915/gem_exec_whisper.c           |   1 +
+>  tests/i915/gem_fd_exhaustion.c          |   2 +-
+>  tests/i915/gem_fence_thrash.c           |   2 +-
+>  tests/i915/gem_fence_upload.c           |   2 +-
+>  tests/i915/gem_fenced_exec_thrash.c     |   1 +
+>  tests/i915/gem_flink_race.c             |   2 +-
+>  tests/i915/gem_gpgpu_fill.c             |  61 +++-
+>  tests/i915/gem_gtt_cpu_tlb.c            |   2 +-
+>  tests/i915/gem_gtt_hog.c                |   1 +
+>  tests/i915/gem_gtt_speed.c              |   2 +-
+>  tests/i915/gem_huc_copy.c               |   1 +
+>  tests/i915/gem_linear_blits.c           |   1 +
+>  tests/i915/gem_lut_handle.c             |   2 +-
+>  tests/i915/gem_madvise.c                |   2 +-
+>  tests/i915/gem_media_fill.c             |  57 ++-
+>  tests/i915/gem_mmap.c                   |   2 +-
+>  tests/i915/gem_mmap_gtt.c               |   1 +
+>  tests/i915/gem_mmap_offset.c            |   1 +
+>  tests/i915/gem_mmap_wc.c                |   2 +-
+>  tests/i915/gem_ppgtt.c                  |   1 +
+>  tests/i915/gem_pread.c                  |   2 +-
+>  tests/i915/gem_pwrite.c                 |   2 +-
+>  tests/i915/gem_readwrite.c              |   2 +-
+>  tests/i915/gem_reset_stats.c            |   1 +
+>  tests/i915/gem_ringfill.c               |   1 +
+>  tests/i915/gem_set_tiling_vs_gtt.c      |   2 +-
+>  tests/i915/gem_set_tiling_vs_pwrite.c   |   2 +-
+>  tests/i915/gem_shrink.c                 |   1 +
+>  tests/i915/gem_softpin.c                |   1 +
+>  tests/i915/gem_streaming_writes.c       |   1 +
+>  tests/i915/gem_sync.c                   |   1 +
+>  tests/i915/gem_tiled_fence_blits.c      |   1 +
+>  tests/i915/gem_tiled_pread_basic.c      |   2 +-
+>  tests/i915/gem_tiled_pread_pwrite.c     |   2 +-
+>  tests/i915/gem_tiled_swapping.c         |   2 +-
+>  tests/i915/gem_tiled_wb.c               |   2 +-
+>  tests/i915/gem_tiled_wc.c               |   2 +-
+>  tests/i915/gem_tiling_max_stride.c      |   2 +-
+>  tests/i915/gem_unfence_active_buffers.c |   1 +
+>  tests/i915/gem_unref_active_buffers.c   |   1 +
+>  tests/i915/gem_userptr_blits.c          |   1 +
+>  tests/i915/gem_vm_create.c              |   1 +
+>  tests/i915/gem_wait.c                   |   1 +
+>  tests/i915/gem_watchdog.c               |   1 +
+>  tests/i915/gem_workarounds.c            |   1 +
+>  tests/i915/gen3_mixed_blits.c           |   1 +
+>  tests/i915/gen3_render_linear_blits.c   |   1 +
+>  tests/i915/gen3_render_mixed_blits.c    |   1 +
+>  tests/i915/gen3_render_tiledx_blits.c   |   1 +
+>  tests/i915/gen3_render_tiledy_blits.c   |   1 +
+>  tests/i915/gen7_exec_parse.c            |   1 +
+>  tests/i915/gen9_exec_parse.c            |   1 +
+>  tests/i915/i915_hangman.c               |   1 +
+>  tests/i915/i915_module_load.c           |   2 +-
+>  tests/i915/i915_pm_rc6_residency.c      |   1 +
+>  tests/i915/i915_pm_rpm.c                |   1 +
+>  tests/i915/i915_suspend.c               |   1 +
+>  tests/i915/perf_pmu.c                   |   1 +
+>  tests/i915/sysfs_clients.c              |   1 +
+>  tests/i915/sysfs_timeslice_duration.c   |   1 +
+>  tests/kms_big_fb.c                      |   2 +-
+>  tests/kms_ccs.c                         |   2 +-
+>  tests/kms_flip.c                        |   2 +-
+>  tests/kms_frontbuffer_tracking.c        |   1 +
+>  tests/kms_getfb.c                       |   2 +-
+>  tests/prime_busy.c                      |   1 +
+>  tests/prime_mmap.c                      |   2 +-
+>  tests/prime_mmap_kms.c                  |   2 +-
+>  tests/prime_self_import.c               |   2 +-
+>  tests/prime_vgem.c                      |   1 +
+>  tools/intel_reg.c                       |   2 +-
+>  149 files changed, 1447 insertions(+), 134 deletions(-)
+>  create mode 100644 lib/i915/gem_create.h
+>  create mode 100644 lib/i915/intel_memory_region.c
+>  create mode 100644 lib/i915/intel_memory_region.h
+
+
+Series is
+Acked-by: Petri Latvala <petri.latvala@intel.com>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
