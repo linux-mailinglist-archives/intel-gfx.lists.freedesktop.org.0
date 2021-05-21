@@ -2,54 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1E9838C66A
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 14:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C83638C678
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 14:27:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C81EA6E49F;
-	Fri, 21 May 2021 12:22:54 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
- [IPv6:2a00:1450:4864:20::42c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AEDA6E18E
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 May 2021 12:22:53 +0000 (UTC)
-Received: by mail-wr1-x42c.google.com with SMTP id c14so19102908wrx.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 May 2021 05:22:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tXzqoTh9Q6otGWSG/m2z4V/r+EdDHQXeOAwek5k1Apw=;
- b=fhGWDMtRWPPjaQRts6ngbU7RFDRPLZxsO/dYPBecxs11qDVpGOrqwFwTAclyPM2NM3
- nJP9nH1WfXkimY2pRXSwkgLLRAM1hH5iq2wdhk6yXFysmb/2V3dCMD+m/r8bCg5pCu20
- ytbeUFu8HYocl8xDkZD07SCx8OTWunCSNaeGb5HErEc3xvmS5tCcs72NgEZ5msvLwMmJ
- TOWwwzflosPbtN0ZPrkoNPsHKONhitwQCzjd2zYdQDaHymQK32IP8XUOxG5tKCfgtJrg
- sUALcf4OR6cFiuK4C+tykpV7nmZrJeviPP7dL+Zbes4wNiRGNZImMKgqKoXmpnF0BBeO
- sm8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tXzqoTh9Q6otGWSG/m2z4V/r+EdDHQXeOAwek5k1Apw=;
- b=os1xdbgMBquGfhJdh+bZiBKN3oS2XO6ay6qwP/uaYbz3tts+FeEzEgxYNfL5gqpCC8
- s9gaTnKwZvswOZ9aMfyBqQn9NMU8ZN9w2cuXr7dwXKfDkifPx8zM0k+/CTXBcFeIicag
- 7ZxJzXxxCQHGctL1NP8UNtbnoYWLk03ZW/Bp4ZVpsuoJ3GKMKJa7WZm4PrNovo8piOTJ
- 8caQspo9SAAZNvETS5eHgW22u/oCp2fW4Ri70nnAFmZ07L0R3mB0qNl+JJGjtJstA5W0
- 9wRc7Igap4s3OPBmJFiIgvsmh7FuK3qYLebY44fu4xYWwN2XU04EinwcI26pMdv5JMxn
- Kxjw==
-X-Gm-Message-State: AOAM531ill8KK5Lma83Nvnc7pZ8TIrua5ATNcAySEEKFdxQRkzXiBTti
- L8+YdSBxY7SbAxDT1vwZiCClmZoirTntWKsMzir9Vg==
-X-Google-Smtp-Source: ABdhPJzs6JDh/PVfFHAZiz0tvGCOrZlKRQmwz7h15e9g9pD1J/vW4gLLdrMc8KrEGPgbhOVJa3TJluupr6PSsDmH+Fc=
-X-Received: by 2002:adf:e70e:: with SMTP id c14mr9371714wrm.6.1621599771623;
- Fri, 21 May 2021 05:22:51 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACE346E4AE;
+	Fri, 21 May 2021 12:27:01 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E44436E4AA;
+ Fri, 21 May 2021 12:26:59 +0000 (UTC)
+IronPort-SDR: rfX4sT2/U0fecP0QtjTnx4tARn+rRIV/ePwsMXxxl7D3NTI+eezE3QqQxt/fdXXNHtYor6d6BH
+ ZM2+Q/aD7qrA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9990"; a="199528914"
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="199528914"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 05:26:59 -0700
+IronPort-SDR: rECR73jZIUZT5rcch2f7cc7udzLP/T4zNg5LznAyHE5XQx9R8oUS2HoNhZtkdLyvRgxZHFdgyU
+ GFhwJu7exXMw==
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="474503425"
+Received: from damienpo-mobl.ger.corp.intel.com (HELO [10.213.241.253])
+ ([10.213.241.253])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 05:26:57 -0700
+To: Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20210520151254.959958-1-tvrtko.ursulin@linux.intel.com>
+ <20210520151254.959958-8-tvrtko.ursulin@linux.intel.com>
+ <BYAPR12MB28401B22CACDC249926C0A19F42A9@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <38a6d339-bca5-13f0-1cc8-db96f1b587bb@amd.com>
+ <CAKMK7uEKwWhfMDrBUh394U99bXipHrAb+YUCOryOV-FU4k07Eg@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <1159220c-1a40-3e38-5885-2c8c72408da0@linux.intel.com>
+Date: Fri, 21 May 2021 13:26:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210521090959.1663703-1-daniel.vetter@ffwll.ch>
- <20210521090959.1663703-4-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210521090959.1663703-4-daniel.vetter@ffwll.ch>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 21 May 2021 13:22:40 +0100
-Message-ID: <CAPj87rMBVRamT+VAVUaUnq3C1KFVqzABi99RKs=1_vyb4YWDnQ@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 04/11] drm/panfrost: Fix implicit sync
+In-Reply-To: <CAKMK7uEKwWhfMDrBUh394U99bXipHrAb+YUCOryOV-FU4k07Eg@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 7/7] drm/i915: Expose client engine
+ utilisation via fdinfo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +56,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Steven Price <steven.price@arm.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Nieto,
+ David M" <David.Nieto@amd.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On Fri, 21 May 2021 at 10:10, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> Currently this has no practial relevance I think because there's not
-> many who can pull off a setup with panfrost and another gpu in the
-> same system. But the rules are that if you're setting an exclusive
-> fence, indicating a gpu write access in the implicit fencing system,
-> then you need to wait for all fences, not just the previous exclusive
-> fence.
->
-> panfrost against itself has no problem, because it always sets the
-> exclusive fence (but that's probably something that will need to be
-> fixed for vulkan and/or multi-engine gpus, or you'll suffer badly).
-> Also no problem with that against display.
-
-Yeah, the 'second-generation Valhall' GPUs coming later this year /
-early next year are starting to get pretty weird. Firmware-mediated
-job scheduling out of multiple queues, userspace having direct access
-to the queues and can do inter-queue synchronisation (at least I think
-so), etc. For bonus points, synchronisation is based on $addr = $val
-to signal and $addr == $val to wait, with a separate fence primitive
-as well.
-
-Obviously Arm should be part of this conversation here, but I guess
-we'll have to wait for a while yet to see how everything's shaken out
-with this new gen, and hope that whatever's been designed upstream in
-the meantime is actually vaguely compatible ...
-
-Cheers,
-Daniel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDIwLzA1LzIwMjEgMTg6NDcsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gT24gVGh1LCBNYXkg
+MjAsIDIwMjEgYXQgNjozMSBQTSBDaHJpc3RpYW4gS8O2bmlnCj4gPGNocmlzdGlhbi5rb2VuaWdA
+YW1kLmNvbT4gd3JvdGU6Cj4+Cj4+IFllYWgsIGhhdmluZyB0aGUgdGltZXN0YW1wIGlzIGEgZ29v
+ZCBpZGVhIGFzIHdlbGwuCj4+Cj4+ICAgIGRybS1kcml2ZXI6IGk5MTUKPj4KPj4gSSB0aGluayB3
+ZSBzaG91bGQgcmF0aGVyIGFkZCBzb21ldGhpbmcgbGlrZSBwcmludGluZyBmaWxlX29wZXJhdGlv
+bnMtPm93bmVyLT5uYW1lIHRvIHRoZSBjb21tb24gZmRpbmZvIGNvZGUuCj4+Cj4+IFRoaXMgd2F5
+IHdlIHdvdWxkIGhhdmUgc29tZXRoaW5nIGNvbW1vbiBmb3IgYWxsIGRyaXZlcnMgaW4gdGhlIHN5
+c3RlbS4gSSdtIGp1c3Qgbm90IHN1cmUgaWYgdGhhdCBhbHNvIHdvcmtzIGlmIHRoZXkgYXJlIGNv
+bXBpbGVkIGludG8gdGhlIGtlcm5lbC4KPiAKPiBZZWFoIGNvbW1vbiBjb2RlIGNvdWxkIHByaW50
+IGRyaXZlciBuYW1lLCBidXNpZCBhbmQgYWxsIHRoYXQgc3R1ZmYuIEkKPiB0aGluayB0aGUgY29t
+bW9uIGNvZGUgc2hvdWxkIGFsc28gcHJvdmlkZSBzb21lIGhlbHBlcnMgZm9yIHRoZSBrZXk6Cj4g
+dmFsdWUgcGFpciBmb3JtYXR0aW5nIChhbmQgbWF5YmUgY2hlY2sgZm9yIGFsbCBsb3dlci1jYXNl
+IGFuZCBzdHVmZgo+IGxpa2UgdGhhdCkgYmVjYXVzZSBpZiB3ZSBkb24ndCB0aGVuIHRoaXMgaXMg
+Z29pbmcgdG8gYmUgYSBjb21wbGV0ZQo+IG1lc3MgdGhhdCdzIG5vdCBwYXJzZWFibGUuCgpJIHNl
+ZSB3ZSBjb3VsZCBoYXZlIGEgZmV3IG9wdGlvbnMgaGVyZSwgbm9uIGV4aGF1c3RpdmUgbGlzdCAo
+ZXNwZWNpYWxseSAKb21pdHRpbmcgc29tZSBzdWItb3B0aW9ucyk6CgoxKQpEUk0gY29yZSBpbXBs
+ZW1lbnRzIGZkaW5mbywgd2hpY2ggZW1pdHMgdGhlIGNvbW1vbiBwYXJ0cywgY2FsbGluZyBpbnRv
+IAp0aGUgZHJpdmVyIHRvIGRvIHRoZSByZXN0LgoKMikKRFJNIGFkZHMgaGVscGVycyBmb3IgZHJp
+dmVyIHRvIGVtaXQgY29tbW9uIHBhcnRzIG9mIGZkaW5mby4KCjMpCkRSTSBjb3JlIGVzdGFibGlz
+aGVzIGEgInNwZWMiIGRlZmluaW5nIHRoZSBjb21tb24gZmllbGRzLCB0aGUgb3B0aW9uYWwgCm9u
+ZXMsIGFuZCBmb3JtYXRzLgoKSSB3YXMgdHJlbmRpbmcgdG93YXJkcyAzKSBiZWNhdXNlIGl0IGlz
+IG1vc3QgbGlnaHR3ZWlnaHQgYW5kIGZlZWxpbmcgaXMgCnRoZXJlIGlzbid0IHRoYXQgbXVjaCB2
+YWx1ZSBpbiBleHRyYWN0aW5nIGEgdGlueSBiaXQgb2YgY29tbW9uYWxpdHkgaW4gCmNvZGUuIFBy
+b29mIGluIHRoZSBwdWRkaW5nIGlzIGhvdyBzaG9ydCB0aGUgZmRpbmZvIHZmdW5jIGlzIGluIHRo
+aXMgcGF0Y2guCgo+IEFuZCB2YWx1ZSBzaG91bGQgYmUgcmVhbCBzZW1hbnRpYyBzdHVmZiwgbm90
+ICJoZXJlJ3MgYSBzdHJpbmciLiBTbwo+IGFjY3VtdWxhdGVkIHRpbWUgYXMgYSBzdHJ1Y3Qga3Rp
+bWUgYXMgdGhlIGV4YW1wbGUuCgpJZGVhbGx5IHllcywgYnV0IEkgaGF2ZSBhIGZlZWxpbmcgdGhl
+IHdheXMgaG93IGFtZGdwdSBhbmQgaTkxNSB0cmFjayAKdGhpbmdzIGFyZSBzbyBkaWZmZXJlbnQg
+c28gZmlyc3QgbGV0cyBsZWFybiBtb3JlIGFib3V0IHRoYXQuCgo+PiBBbSAyMC4wNS4yMSB1bSAx
+ODoyNiBzY2hyaWViIE5pZXRvLCBEYXZpZCBNOgo+Pgo+PiBbQU1EIE9mZmljaWFsIFVzZSBPbmx5
+XQo+Pgo+Pgo+PiBpIHdvdWxkIGxpa2UgdG8gYWRkIGEgdW5pdCBtYXJrZXIgZm9yIHRoZSBzdGF0
+cyB0aGF0IHdlIG1vbml0b3IgaW4gdGhlIGZkLCBhcyB3ZSBkaXNjdXNzZWQgY3VycmVudGx5IHdl
+IGFyZSBkaXNwbGF5aW5nIHRoZSB1c2FnZSBwZXJjZW50YWdlLCBiZWNhdXNlIHdlIHdhbnRlZCB0
+byB0byBwcm92aWRlIHNpbmdsZSBxdWVyeSBwZXJjZW50YWdlcywgYnV0IHRoaXMgbWF5IGV2b2x2
+ZSB3aXRoIHRpbWUuCj4+Cj4+IE1heSBJIHN1Z2dlc3QgdG8gYWRkIHR3byBuZXcgZmllbGRzCj4+
+Cj4+IGRybS1zdGF0LWludGVydmFsOiA8NjQgYml0PiBucwo+PiBkcm0tc3RhdC10aW1lc3RhbXA6
+IDw2NCBiaXQ+IG5zCj4+Cj4+IElmIGludGVydmFsIGlzIHNldCwgZW5naW5lIHV0aWxpemF0aW9u
+IGlzIGNhbGN1bGF0ZWQgYnkgZG9pbmcgPHBlcmMgcmVuZGVyPiA9IDEwMCo8ZHJtX2VuZ2luZV9y
+ZW5kZXI+Lzxkcm1fc3RhdF9pbnRlcnZhbD4KPj4gaWYgaW50ZXJ2YWwgaXMgbm90IHNldCwgdHdv
+IHJlYWRzIGFyZSBuZWVkZWQgOiA8cGVyYyByZW5kZXI+ID0gMTAwKjxkcm1fZW5naW5lX3JlbmRl
+cjEgLSBkcm1fZW5naW5lX3JlbmRlcjA+IC8gPGRybS1zdGF0LXRpbWVzdGFtcDEgLSBkcm0tc3Rh
+dC10aW1lc3RhbXAwPgoKSSB3b3VsZCBsaWtlIHRvIHVuZGVyc3RhbmQgaG93IGFkbWdwdSB0cmFj
+a3MgR1BVIHRpbWUgc2luY2UgSSBhbSBub3QgCmdldHRpbmcgdGhlc2UgZmllbGRzIHlldC4KCjEp
+CllvdSBzdWdnZXN0IHRvIGhhdmUgYSB0aW1lc3RhbXAgYmVjYXVzZSBvZiBkaWZmZXJlbnQgY2xv
+Y2sgZG9tYWlucz8KCjIpCldpdGggdGhlIGludGVydmFsIG9wdGlvbiAtIHlvdSBhY3R1YWxseSBo
+YXZlIGEgcmVzdGFydGluZyBjb3VudGVyPyBEbyAKeW91IGtlZXAgdGhhdCBpbiB0aGUgZHJpdmVy
+IG9yIGdldCBpdCBmcm9tIGh3IGl0c2VsZj8KClJlZ2FyZHMsCgpUdnJ0a28KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
