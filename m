@@ -1,58 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B09B38C07E
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 09:13:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9421338C0ED
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 09:45:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E65546F5C1;
-	Fri, 21 May 2021 07:13:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93D426E497;
+	Fri, 21 May 2021 07:45:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC33D6F5C1;
- Fri, 21 May 2021 07:13:35 +0000 (UTC)
-IronPort-SDR: /ZbjbTsH1fJ54POkF64fmogaKqQJkSgctTO2T+q0O0BHFmKxKEAFHBta8lhnMtH1sueUrbC6XV
- k+uR2UM2t+Og==
-X-IronPort-AV: E=McAfee;i="6200,9189,9990"; a="188550520"
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="188550520"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2021 00:13:32 -0700
-IronPort-SDR: BUQBaLf5kQ7GMMasvdC3eDzHHt5K0Wwm8t1hOHzN5dhq7TyzYeLKDrbBS9QX3H2yR4N7+PFRGG
- 6W4GN3BhBinA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="475584926"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by fmsmga002.fm.intel.com with ESMTP; 21 May 2021 00:13:28 -0700
-Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 21 May 2021 08:13:27 +0100
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
- irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.2242.008;
- Fri, 21 May 2021 08:13:27 +0100
-From: "Saarinen, Jani" <jani.saarinen@intel.com>
-To: Chris Chiu <chris.chiu@canonical.com>, "Rafael J. Wysocki"
- <rafael@kernel.org>
-Thread-Topic: [Intel-gfx] NVIDIA GPU fallen off the bus after exiting s2idle
-Thread-Index: AQHXTfY04tpq62Sg5UipcvghO8S7LarthXrw
-Date: Fri, 21 May 2021 07:13:26 +0000
-Message-ID: <1953f07d15db4fda8a40e5ca752bef96@intel.com>
-References: <CABTNMG0Y5iAD4E8XFkOwrNTBHNDcNKRt=+BLPHs4tw5O2eVBDA@mail.gmail.com>
- <CAJZ5v0hqU4xc8oCWXPBYhdGdG__=15+M67QWVSfFeUR3DN4Evw@mail.gmail.com>
- <CABTNMG12A5qJ5ygtFTa7Sk-5W=fmMxt0L90=04H5qRDD4vWGRQ@mail.gmail.com>
-In-Reply-To: <CABTNMG12A5qJ5ygtFTa7Sk-5W=fmMxt0L90=04H5qRDD4vWGRQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-x-originating-ip: [10.184.70.1]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B7846E497
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 May 2021 07:45:16 +0000 (UTC)
+IronPort-SDR: bRyB2/gycpuDzhM2cE3+KDUCC8C1z13DviVM24LiazSIqRKsIQc1tEi5TuYOvSODZDBoBNocHX
+ oPwesfC6Br3g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9990"; a="265339055"
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="265339055"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 00:45:14 -0700
+IronPort-SDR: bGbkvfxqWj7YSQbs1nIQnwxCze0EfcG6OdMn0wS8VtsHPR+HKiz4ZxkhlQVAroP7MtEgIJnFvh
+ ci5i3aZwBhKQ==
+X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="474414605"
+Received: from hharjula-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.38.154])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2021 00:45:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Anusha Srivatsa <anusha.srivatsa@intel.com>
+In-Reply-To: <20210519054502.5ofnqztgy3crmopv@ldmartin-desk2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210518213444.11420-1-anusha.srivatsa@intel.com>
+ <20210518213444.11420-4-anusha.srivatsa@intel.com>
+ <20210519054502.5ofnqztgy3crmopv@ldmartin-desk2>
+Date: Fri, 21 May 2021 10:45:09 +0300
+Message-ID: <8735ugediy.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] NVIDIA GPU fallen off the bus after exiting s2idle
+Subject: Re: [Intel-gfx] [CI 3/5] drm/i915/dmc: Rename macro names
+ containing csr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,170 +51,472 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Brown, Len" <len.brown@intel.com>, Karol Herbst <kherbst@redhat.com>,
- Linux PM <linux-pm@vger.kernel.org>, Linux PCI <linux-pci@vger.kernel.org>,
- "Westerberg, Mika" <mika.westerberg@intel.com>,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>,
- dri-devel <dri-devel@lists.freedesktop.org>, Bjorn
- Helgaas <bhelgaas@google.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, 
+On Tue, 18 May 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Tue, May 18, 2021 at 02:34:42PM -0700, Anusha Srivatsa wrote:
+>>Rename all occurences of CSR_* with DMC_*
+>>
+>>Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>>Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>
+>
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Chris Chiu
-> Sent: perjantai 21. toukokuuta 2021 7.02
-> To: Rafael J. Wysocki <rafael@kernel.org>
-> Cc: Brown, Len <len.brown@intel.com>; Karol Herbst <kherbst@redhat.com>; Linux
-> PM <linux-pm@vger.kernel.org>; Linux PCI <linux-pci@vger.kernel.org>;
-> Westerberg, Mika <mika.westerberg@intel.com>; Rafael J. Wysocki
-> <rjw@rjwysocki.net>; dri-devel <dri-devel@lists.freedesktop.org>; Bjorn Helgaas
-> <bhelgaas@google.com>; intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] NVIDIA GPU fallen off the bus after exiting s2idle
-> 
-> On Thu, May 6, 2021 at 5:46 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
-> >
-> > On Tue, May 4, 2021 at 10:08 AM Chris Chiu <chris.chiu@canonical.com> wrote:
-> > >
-> > > Hi,
-> > >     We have some Intel laptops (11th generation CPU) with NVIDIA GPU
-> > > suffering the same GPU falling off the bus problem while exiting
-> > > s2idle with external display connected. These laptops connect the
-> > > external display via the HDMI/DisplayPort on a USB Type-C interfaced
-> > > dock. If we enter and exit s2idle with the dock connected, the
-> > > NVIDIA GPU (confirmed on 10de:24b6 and 10de:25b8) and the PCIe port
-> > > can come back to D0 w/o problem. If we enter the s2idle, disconnect
-> > > the dock, then exit the s2idle, both external display and the panel
-> > > will remain with no output. The dmesg as follows shows the "nvidia
-> 0000:01:00.0:
-> > > can't change power state from D3cold to D0 (config space
-> > > inaccessible)" due to the following ACPI error [ 154.446781] [
-> > > 154.446783] [ 154.446783] Initialized Local Variables for Method
-> > > [IPCS]:
-> > > [ 154.446784] Local0: 000000009863e365 <Obj> Integer
-> > > 00000000000009C5 [ 154.446790] [ 154.446791] Initialized Arguments
-> > > for Method [IPCS]: (7 arguments defined for method invocation) [
-> > > 154.446792] Arg0: 0000000025568fbd <Obj> Integer 00000000000000AC [
-> > > 154.446795] Arg1: 000000009ef30e76 <Obj> Integer 0000000000000000 [
-> > > 154.446798] Arg2: 00000000fdf820f0 <Obj> Integer 0000000000000010 [
-> > > 154.446801] Arg3: 000000009fc2a088 <Obj> Integer 0000000000000001 [
-> > > 154.446804] Arg4: 000000003a3418f7 <Obj> Integer 0000000000000001 [
-> > > 154.446807] Arg5: 0000000020c4b87c <Obj> Integer 0000000000000000 [
-> > > 154.446810] Arg6: 000000008b965a8a <Obj> Integer 0000000000000000 [
-> > > 154.446813] [ 154.446815] ACPI Error: Aborting method \IPCS due to
-> > > previous error
-> > > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529) [ 154.446824] ACPI
-> > > Error: Aborting method \MCUI due to previous error
-> > > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529) [ 154.446829] ACPI
-> > > Error: Aborting method \SPCX due to previous error
-> > > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529) [ 154.446835] ACPI
-> > > Error: Aborting method \_SB.PC00.PGSC due to previous error
-> > > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529) [ 154.446841] ACPI
-> > > Error: Aborting method \_SB.PC00.PGON due to previous error
-> > > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529) [ 154.446846] ACPI
-> > > Error: Aborting method \_SB.PC00.PEG1.NPON due to previous error
-> > > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529) [ 154.446852] ACPI
-> > > Error: Aborting method \_SB.PC00.PEG1.PG01._ON due to previous error
-> > > (AE_AML_LOOP_TIMEOUT) (20200925/psparse-529) [ 154.446860] acpi
-> > > device:02: Failed to change power state to D0 [ 154.690760] video
-> > > LNXVIDEO:00: Cannot transition to power state D0 for parent in
-> > > (unknown)
-> >
-> > If I were to guess, I would say that AML tries to access memory that
-> > is not accessible while suspended, probably PCI config space.
-> >
-> > > The IPCS is the last function called from \_SB.PC00.PEG1.PG01._ON
-> > > which we expect it to prepare everything before bringing back the
-> > > NVIDIA GPU but it's stuck in the infinite loop as described below.
-> > > Please refer to
-> > > https://gist.github.com/mschiu77/fa4f5a97297749d0d66fe60c1d421c44
-> > > for the full DSDT.dsl.
-> >
-> > The DSDT alone may not be sufficient.
-> >
-> > Can you please create a bug entry at bugzilla.kernel.org for this
-> > issue and attach the full output of acpidump from one of the affected
-> > machines to it?  And please let me know the number of the bug.
-> >
-> > Also please attach the output of dmesg including a suspend-resume
-> > cycle including dock disconnection while suspended and the ACPI
-> > messages quoted below.
-> >
-> > >            While (One)
-> > >             {
-> > >                 If ((!IBSY || (IERR == One)))
-> > >                 {
-> > >                     Break
-> > >                 }
-> > >
-> > >                 If ((Local0 > TMOV))
-> > >                 {
-> > >                     RPKG [Zero] = 0x03
-> > >                     Return (RPKG) /* \IPCS.RPKG */
-> > >                 }
-> > >
-> > >                 Sleep (One)
-> > >                 Local0++
-> > >             }
-> > >
-> > > And the upstream PCIe port of NVIDIA seems to become inaccessible
-> > > due to the messages as follows.
-> > > [ 292.746508] pcieport 0000:00:01.0: waiting 100 ms for downstream
-> > > link, after activation [ 292.882296] pci 0000:01:00.0: waiting
-> > > additional 100 ms to become accessible [ 316.876997] pci
-> > > 0000:01:00.0: can't change power state from D3cold to D0 (config
-> > > space inaccessible)
-> > >
-> > > Since the IPCS is the Intel Reference Code and we don't really know
-> > > why the never-end loop happens just because we unplug the dock while
-> > > the system still stays in s2idle. Can anyone from Intel suggest what
-> > > happens here?
-> >
-> > This list is not the right channel for inquiries related to Intel
-> > support, we can only help you as Linux kernel developers in this
-> > venue.
-> >
-> > > And one thing also worth mentioning, if we unplug the display cable
-> > > from the dock before entering the s2idle, NVIDIA GPU can come back
-> > > w/o problem even if we disconnect the dock before exiting s2idle.
-> > > Here's the lspci information
-> > > https://gist.github.com/mschiu77/0bfc439d15d52d20de0129b1b2a86dc4
-> > > and the dmesg log with ACPI trace_state enabled and dynamic debug on
-> > > for drivers/pci/pci.c, drivers/acpi/device_pm.c for the whole s2idle
-> > > enter/exit with IPCS timeout.
-> > >
-> > > Any suggestion would be appreciated. Thanks.
-> >
-> > First, please use proper Intel support channels for BIOS-related inquiries.
-> >
-> > Second, please open a bug as suggested above and let's use it for
-> > further communication regarding this issue as far as Linux is
-> > concerned.
-> >
-> > Thanks!
-> 
-> Thanks for the suggestion. I opened
-> https://bugzilla.kernel.org/show_bug.cgi?id=212951 and have a new finding in
-> https://bugzilla.kernel.org/show_bug.cgi?id=212951#c13. It seems that maybe we
-> could do something in the i915 driver during resume to handle the hpd (because we
-> unplug the dock/dongle when
-> suspended) at the very beginning. Since it involves HPD, PMC and the BIOS, I don't
-> know which way I should go to fix this since Windows won't hit this problem.
-How about https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs to get also our devs involved better.
+We failed to take GVT into account, and apparently neither CI or Anusha
+has CONFIG_DRM_I915_GVT=y. They use the register definitions, and this
+broke the build.
 
-> 
-> Please let me know if there's any information missing in the bugzilla.kernel ticket.
-> Any suggestions would be appreciated. Thanks
-> 
-> Chris
+Anusha, please enable the config, and fix the fallout. Cc: the patch to
+GVT folks for ack.
+
+
+Thanks,
+Jani.
+
+
+
+>
+> Lucas De Marchi
+>
+>>---
+>> drivers/gpu/drm/i915/display/intel_csr.c      | 167 +++++++++---------
+>> drivers/gpu/drm/i915/display/intel_csr.h      |   6 +-
+>> .../drm/i915/display/intel_display_debugfs.c  |  16 +-
+>> .../drm/i915/display/intel_display_power.c    |  14 +-
+>> drivers/gpu/drm/i915/i915_gpu_error.c         |   4 +-
+>> drivers/gpu/drm/i915/i915_reg.h               |  28 +--
+>> 6 files changed, 117 insertions(+), 118 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
+>>index 5ed286dc6720..f2124796ce77 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_csr.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_csr.c
+>>@@ -30,10 +30,9 @@
+>> #include "intel_de.h"
+>>
+>> /**
+>>- * DOC: csr support for dmc
+>>+ * DOC: DMC firmware support
+>>  *
+>>- * Display Context Save and Restore (CSR) firmware support added from gen9
+>>- * onwards to drive newly added DMC (Display microcontroller) in display
+>>+ * From gen9 onwards we have newly added DMC (Display microcontroller) in display
+>>  * engine to save and restore the state of display engine when it enter into
+>>  * low-power state and comes back to normal.
+>>  */
+>>@@ -44,55 +43,55 @@
+>> 	__stringify(major) "_"		 \
+>> 	__stringify(minor) ".bin"
+>>
+>>-#define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
+>>+#define GEN12_DMC_MAX_FW_SIZE		ICL_DMC_MAX_FW_SIZE
+>>
+>>-#define ADLS_CSR_PATH			DMC_PATH(adls, 2, 01)
+>>-#define ADLS_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
+>>-MODULE_FIRMWARE(ADLS_CSR_PATH);
+>>+#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
+>>+#define ADLS_DMC_VERSION_REQUIRED	DMC_VERSION(2, 1)
+>>+MODULE_FIRMWARE(ADLS_DMC_PATH);
+>>
+>>-#define DG1_CSR_PATH			DMC_PATH(dg1, 2, 02)
+>>-#define DG1_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
+>>-MODULE_FIRMWARE(DG1_CSR_PATH);
+>>+#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
+>>+#define DG1_DMC_VERSION_REQUIRED	DMC_VERSION(2, 2)
+>>+MODULE_FIRMWARE(DG1_DMC_PATH);
+>>
+>>-#define RKL_CSR_PATH			DMC_PATH(rkl, 2, 02)
+>>-#define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
+>>-MODULE_FIRMWARE(RKL_CSR_PATH);
+>>+#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 02)
+>>+#define RKL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 2)
+>>+MODULE_FIRMWARE(RKL_DMC_PATH);
+>>
+>>-#define TGL_CSR_PATH			DMC_PATH(tgl, 2, 08)
+>>-#define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 8)
+>>-MODULE_FIRMWARE(TGL_CSR_PATH);
+>>+#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 08)
+>>+#define TGL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 8)
+>>+MODULE_FIRMWARE(TGL_DMC_PATH);
+>>
+>>-#define ICL_CSR_PATH			DMC_PATH(icl, 1, 09)
+>>-#define ICL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 9)
+>>-#define ICL_CSR_MAX_FW_SIZE		0x6000
+>>-MODULE_FIRMWARE(ICL_CSR_PATH);
+>>+#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
+>>+#define ICL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 9)
+>>+#define ICL_DMC_MAX_FW_SIZE		0x6000
+>>+MODULE_FIRMWARE(ICL_DMC_PATH);
+>>
+>>-#define CNL_CSR_PATH			DMC_PATH(cnl, 1, 07)
+>>-#define CNL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 7)
+>>-#define CNL_CSR_MAX_FW_SIZE		GLK_CSR_MAX_FW_SIZE
+>>-MODULE_FIRMWARE(CNL_CSR_PATH);
+>>+#define CNL_DMC_PATH			DMC_PATH(cnl, 1, 07)
+>>+#define CNL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 7)
+>>+#define CNL_DMC_MAX_FW_SIZE		GLK_DMC_MAX_FW_SIZE
+>>+MODULE_FIRMWARE(CNL_DMC_PATH);
+>>
+>>-#define GLK_CSR_PATH			DMC_PATH(glk, 1, 04)
+>>-#define GLK_CSR_VERSION_REQUIRED	CSR_VERSION(1, 4)
+>>-#define GLK_CSR_MAX_FW_SIZE		0x4000
+>>-MODULE_FIRMWARE(GLK_CSR_PATH);
+>>+#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
+>>+#define GLK_DMC_VERSION_REQUIRED	DMC_VERSION(1, 4)
+>>+#define GLK_DMC_MAX_FW_SIZE		0x4000
+>>+MODULE_FIRMWARE(GLK_DMC_PATH);
+>>
+>>-#define KBL_CSR_PATH			DMC_PATH(kbl, 1, 04)
+>>-#define KBL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 4)
+>>-#define KBL_CSR_MAX_FW_SIZE		BXT_CSR_MAX_FW_SIZE
+>>-MODULE_FIRMWARE(KBL_CSR_PATH);
+>>+#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
+>>+#define KBL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 4)
+>>+#define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
+>>+MODULE_FIRMWARE(KBL_DMC_PATH);
+>>
+>>-#define SKL_CSR_PATH			DMC_PATH(skl, 1, 27)
+>>-#define SKL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 27)
+>>-#define SKL_CSR_MAX_FW_SIZE		BXT_CSR_MAX_FW_SIZE
+>>-MODULE_FIRMWARE(SKL_CSR_PATH);
+>>+#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
+>>+#define SKL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 27)
+>>+#define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
+>>+MODULE_FIRMWARE(SKL_DMC_PATH);
+>>
+>>-#define BXT_CSR_PATH			DMC_PATH(bxt, 1, 07)
+>>-#define BXT_CSR_VERSION_REQUIRED	CSR_VERSION(1, 7)
+>>-#define BXT_CSR_MAX_FW_SIZE		0x3000
+>>-MODULE_FIRMWARE(BXT_CSR_PATH);
+>>+#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
+>>+#define BXT_DMC_VERSION_REQUIRED	DMC_VERSION(1, 7)
+>>+#define BXT_DMC_MAX_FW_SIZE		0x3000
+>>+MODULE_FIRMWARE(BXT_DMC_PATH);
+>>
+>>-#define CSR_DEFAULT_FW_OFFSET		0xFFFFFFFF
+>>+#define DMC_DEFAULT_FW_OFFSET		0xFFFFFFFF
+>> #define PACKAGE_MAX_FW_INFO_ENTRIES	20
+>> #define PACKAGE_V2_MAX_FW_INFO_ENTRIES	32
+>> #define DMC_V1_MAX_MMIO_COUNT		8
+>>@@ -333,7 +332,7 @@ void intel_csr_load_program(struct drm_i915_private *dev_priv)
+>> 	preempt_disable();
+>>
+>> 	for (i = 0; i < fw_size; i++)
+>>-		intel_uncore_write_fw(&dev_priv->uncore, CSR_PROGRAM(i),
+>>+		intel_uncore_write_fw(&dev_priv->uncore, DMC_PROGRAM(i),
+>> 				      payload[i]);
+>>
+>> 	preempt_enable();
+>>@@ -357,7 +356,7 @@ static u32 find_dmc_fw_offset(const struct intel_fw_info *fw_info,
+>> 			      const struct stepping_info *si,
+>> 			      u8 package_ver)
+>> {
+>>-	u32 dmc_offset = CSR_DEFAULT_FW_OFFSET;
+>>+	u32 dmc_offset = DMC_DEFAULT_FW_OFFSET;
+>> 	unsigned int i;
+>>
+>> 	for (i = 0; i < num_entries; i++) {
+>>@@ -458,8 +457,8 @@ static u32 parse_csr_fw_dmc(struct intel_dmc *dmc,
+>> 	}
+>>
+>> 	for (i = 0; i < mmio_count; i++) {
+>>-		if (mmioaddr[i] < CSR_MMIO_START_RANGE ||
+>>-		    mmioaddr[i] > CSR_MMIO_END_RANGE) {
+>>+		if (mmioaddr[i] < DMC_MMIO_START_RANGE ||
+>>+		    mmioaddr[i] > DMC_MMIO_END_RANGE) {
+>> 			DRM_ERROR("DMC firmware has wrong mmio address 0x%x\n",
+>> 				  mmioaddr[i]);
+>> 			return 0;
+>>@@ -543,7 +542,7 @@ parse_csr_fw_package(struct intel_dmc *dmc,
+>> 		((u8 *)package_header + sizeof(*package_header));
+>> 	dmc_offset = find_dmc_fw_offset(fw_info, num_entries, si,
+>> 					package_header->header_ver);
+>>-	if (dmc_offset == CSR_DEFAULT_FW_OFFSET) {
+>>+	if (dmc_offset == DMC_DEFAULT_FW_OFFSET) {
+>> 		DRM_ERROR("DMC firmware not supported for %c stepping\n",
+>> 			  si->stepping);
+>> 		return 0;
+>>@@ -579,10 +578,10 @@ static u32 parse_csr_fw_css(struct intel_dmc *dmc,
+>> 	    css_header->version != dmc->required_version) {
+>> 		DRM_INFO("Refusing to load DMC firmware v%u.%u,"
+>> 			 " please use v%u.%u\n",
+>>-			 CSR_VERSION_MAJOR(css_header->version),
+>>-			 CSR_VERSION_MINOR(css_header->version),
+>>-			 CSR_VERSION_MAJOR(dmc->required_version),
+>>-			 CSR_VERSION_MINOR(dmc->required_version));
+>>+			 DMC_VERSION_MAJOR(css_header->version),
+>>+			 DMC_VERSION_MINOR(css_header->version),
+>>+			 DMC_VERSION_MAJOR(dmc->required_version),
+>>+			 DMC_VERSION_MINOR(dmc->required_version));
+>> 		return 0;
+>> 	}
+>>
+>>@@ -659,8 +658,8 @@ static void csr_load_work_fn(struct work_struct *work)
+>>
+>> 		drm_info(&dev_priv->drm,
+>> 			 "Finished loading DMC firmware %s (v%u.%u)\n",
+>>-			 dev_priv->dmc.fw_path, CSR_VERSION_MAJOR(dmc->version),
+>>-			 CSR_VERSION_MINOR(dmc->version));
+>>+			 dev_priv->dmc.fw_path, DMC_VERSION_MAJOR(dmc->version),
+>>+			 DMC_VERSION_MINOR(dmc->version));
+>> 	} else {
+>> 		drm_notice(&dev_priv->drm,
+>> 			   "Failed to load DMC firmware %s."
+>>@@ -690,57 +689,57 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
+>> 		return;
+>>
+>> 	/*
+>>-	 * Obtain a runtime pm reference, until CSR is loaded, to avoid entering
+>>+	 * Obtain a runtime pm reference, until DMC is loaded, to avoid entering
+>> 	 * runtime-suspend.
+>> 	 *
+>> 	 * On error, we return with the rpm wakeref held to prevent runtime
+>>-	 * suspend as runtime suspend *requires* a working CSR for whatever
+>>+	 * suspend as runtime suspend *requires* a working DMC for whatever
+>> 	 * reason.
+>> 	 */
+>> 	intel_csr_runtime_pm_get(dev_priv);
+>>
+>> 	if (IS_ALDERLAKE_S(dev_priv)) {
+>>-		dmc->fw_path = ADLS_CSR_PATH;
+>>-		dmc->required_version = ADLS_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = ADLS_DMC_PATH;
+>>+		dmc->required_version = ADLS_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
+>> 	} else if (IS_DG1(dev_priv)) {
+>>-		dmc->fw_path = DG1_CSR_PATH;
+>>-		dmc->required_version = DG1_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = DG1_DMC_PATH;
+>>+		dmc->required_version = DG1_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
+>> 	} else if (IS_ROCKETLAKE(dev_priv)) {
+>>-		dmc->fw_path = RKL_CSR_PATH;
+>>-		dmc->required_version = RKL_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = RKL_DMC_PATH;
+>>+		dmc->required_version = RKL_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
+>> 	} else if (DISPLAY_VER(dev_priv) >= 12) {
+>>-		dmc->fw_path = TGL_CSR_PATH;
+>>-		dmc->required_version = TGL_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = TGL_DMC_PATH;
+>>+		dmc->required_version = TGL_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
+>> 	} else if (DISPLAY_VER(dev_priv) == 11) {
+>>-		dmc->fw_path = ICL_CSR_PATH;
+>>-		dmc->required_version = ICL_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = ICL_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = ICL_DMC_PATH;
+>>+		dmc->required_version = ICL_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = ICL_DMC_MAX_FW_SIZE;
+>> 	} else if (IS_CANNONLAKE(dev_priv)) {
+>>-		dmc->fw_path = CNL_CSR_PATH;
+>>-		dmc->required_version = CNL_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = CNL_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = CNL_DMC_PATH;
+>>+		dmc->required_version = CNL_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = CNL_DMC_MAX_FW_SIZE;
+>> 	} else if (IS_GEMINILAKE(dev_priv)) {
+>>-		dmc->fw_path = GLK_CSR_PATH;
+>>-		dmc->required_version = GLK_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = GLK_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = GLK_DMC_PATH;
+>>+		dmc->required_version = GLK_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = GLK_DMC_MAX_FW_SIZE;
+>> 	} else if (IS_KABYLAKE(dev_priv) ||
+>> 		   IS_COFFEELAKE(dev_priv) ||
+>> 		   IS_COMETLAKE(dev_priv)) {
+>>-		dmc->fw_path = KBL_CSR_PATH;
+>>-		dmc->required_version = KBL_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = KBL_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = KBL_DMC_PATH;
+>>+		dmc->required_version = KBL_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = KBL_DMC_MAX_FW_SIZE;
+>> 	} else if (IS_SKYLAKE(dev_priv)) {
+>>-		dmc->fw_path = SKL_CSR_PATH;
+>>-		dmc->required_version = SKL_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = SKL_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = SKL_DMC_PATH;
+>>+		dmc->required_version = SKL_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = SKL_DMC_MAX_FW_SIZE;
+>> 	} else if (IS_BROXTON(dev_priv)) {
+>>-		dmc->fw_path = BXT_CSR_PATH;
+>>-		dmc->required_version = BXT_CSR_VERSION_REQUIRED;
+>>-		dmc->max_fw_size = BXT_CSR_MAX_FW_SIZE;
+>>+		dmc->fw_path = BXT_DMC_PATH;
+>>+		dmc->required_version = BXT_DMC_VERSION_REQUIRED;
+>>+		dmc->max_fw_size = BXT_DMC_MAX_FW_SIZE;
+>> 	}
+>>
+>> 	if (dev_priv->params.dmc_firmware_path) {
+>>diff --git a/drivers/gpu/drm/i915/display/intel_csr.h b/drivers/gpu/drm/i915/display/intel_csr.h
+>>index 03c64f8af7ab..984e9fb250f8 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_csr.h
+>>+++ b/drivers/gpu/drm/i915/display/intel_csr.h
+>>@@ -8,9 +8,9 @@
+>>
+>> struct drm_i915_private;
+>>
+>>-#define CSR_VERSION(major, minor)	((major) << 16 | (minor))
+>>-#define CSR_VERSION_MAJOR(version)	((version) >> 16)
+>>-#define CSR_VERSION_MINOR(version)	((version) & 0xffff)
+>>+#define DMC_VERSION(major, minor)	((major) << 16 | (minor))
+>>+#define DMC_VERSION_MAJOR(version)	((version) >> 16)
+>>+#define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+>>
+>> void intel_csr_ucode_init(struct drm_i915_private *i915);
+>> void intel_csr_load_program(struct drm_i915_private *i915);
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>>index 6cd7f8c1724f..e43abdf0e3d9 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>>@@ -548,8 +548,8 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
+>> 	if (!dmc->dmc_payload)
+>> 		goto out;
+>>
+>>-	seq_printf(m, "version: %d.%d\n", CSR_VERSION_MAJOR(dmc->version),
+>>-		   CSR_VERSION_MINOR(dmc->version));
+>>+	seq_printf(m, "version: %d.%d\n", DMC_VERSION_MAJOR(dmc->version),
+>>+		   DMC_VERSION_MINOR(dmc->version));
+>>
+>> 	if (DISPLAY_VER(dev_priv) >= 12) {
+>> 		if (IS_DGFX(dev_priv)) {
+>>@@ -568,10 +568,10 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
+>> 		seq_printf(m, "DC3CO count: %d\n",
+>> 			   intel_de_read(dev_priv, DMC_DEBUG3));
+>> 	} else {
+>>-		dc5_reg = IS_BROXTON(dev_priv) ? BXT_CSR_DC3_DC5_COUNT :
+>>-						 SKL_CSR_DC3_DC5_COUNT;
+>>+		dc5_reg = IS_BROXTON(dev_priv) ? BXT_DMC_DC3_DC5_COUNT :
+>>+						 SKL_DMC_DC3_DC5_COUNT;
+>> 		if (!IS_GEMINILAKE(dev_priv) && !IS_BROXTON(dev_priv))
+>>-			dc6_reg = SKL_CSR_DC5_DC6_COUNT;
+>>+			dc6_reg = SKL_DMC_DC5_DC6_COUNT;
+>> 	}
+>>
+>> 	seq_printf(m, "DC3 -> DC5 count: %d\n",
+>>@@ -582,10 +582,10 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
+>>
+>> out:
+>> 	seq_printf(m, "program base: 0x%08x\n",
+>>-		   intel_de_read(dev_priv, CSR_PROGRAM(0)));
+>>+		   intel_de_read(dev_priv, DMC_PROGRAM(0)));
+>> 	seq_printf(m, "ssp base: 0x%08x\n",
+>>-		   intel_de_read(dev_priv, CSR_SSP_BASE));
+>>-	seq_printf(m, "htp: 0x%08x\n", intel_de_read(dev_priv, CSR_HTP_SKL));
+>>+		   intel_de_read(dev_priv, DMC_SSP_BASE));
+>>+	seq_printf(m, "htp: 0x%08x\n", intel_de_read(dev_priv, DMC_HTP_SKL));
+>>
+>> 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>>index 0a05d0f90f28..de58abdd838b 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>>@@ -961,12 +961,12 @@ static void bxt_disable_dc9(struct drm_i915_private *dev_priv)
+>> static void assert_csr_loaded(struct drm_i915_private *dev_priv)
+>> {
+>> 	drm_WARN_ONCE(&dev_priv->drm,
+>>-		      !intel_de_read(dev_priv, CSR_PROGRAM(0)),
+>>-		      "CSR program storage start is NULL\n");
+>>-	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, CSR_SSP_BASE),
+>>-		      "CSR SSP Base Not fine\n");
+>>-	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, CSR_HTP_SKL),
+>>-		      "CSR HTP Not fine\n");
+>>+		      !intel_de_read(dev_priv, DMC_PROGRAM(0)),
+>>+		      "DMC program storage start is NULL\n");
+>>+	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, DMC_SSP_BASE),
+>>+		      "DMC SSP Base Not fine\n");
+>>+	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, DMC_HTP_SKL),
+>>+		      "DMC HTP Not fine\n");
+>> }
+>>
+>> static struct i915_power_well *
+>>@@ -6218,7 +6218,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
+>> 	/*
+>> 	 * In case of suspend-to-idle (aka S0ix) on a DMC platform without DC9
+>> 	 * support don't manually deinit the power domains. This also means the
+>>-	 * CSR/DMC firmware will stay active, it will power down any HW
+>>+	 * DMC firmware will stay active, it will power down any HW
+>> 	 * resources as required and also enable deeper system power states
+>> 	 * that would be blocked if the firmware was inactive.
+>> 	 */
+>>diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>index 06828ff90ccf..edd108d41318 100644
+>>--- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>>+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>>@@ -794,8 +794,8 @@ static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
+>> 		err_printf(m, "DMC loaded: %s\n",
+>> 			   yesno(dmc->dmc_payload));
+>> 		err_printf(m, "DMC fw version: %d.%d\n",
+>>-			   CSR_VERSION_MAJOR(dmc->version),
+>>-			   CSR_VERSION_MINOR(dmc->version));
+>>+			   DMC_VERSION_MAJOR(dmc->version),
+>>+			   DMC_VERSION_MINOR(dmc->version));
+>> 	}
+>>
+>> 	err_printf(m, "RPM wakelock: %s\n", yesno(error->wakelock));
+>>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>>index 089b5a59bed3..73a33ffc0559 100644
+>>--- a/drivers/gpu/drm/i915/i915_reg.h
+>>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>>@@ -7686,20 +7686,20 @@ enum {
+>> #define  GAMMA_MODE_MODE_SPLIT	(3 << 0) /* ivb-bdw */
+>> #define  GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED	(3 << 0) /* icl + */
+>>
+>>-/* DMC/CSR */
+>>-#define CSR_PROGRAM(i)		_MMIO(0x80000 + (i) * 4)
+>>-#define CSR_SSP_BASE_ADDR_GEN9	0x00002FC0
+>>-#define CSR_HTP_ADDR_SKL	0x00500034
+>>-#define CSR_SSP_BASE		_MMIO(0x8F074)
+>>-#define CSR_HTP_SKL		_MMIO(0x8F004)
+>>-#define CSR_LAST_WRITE		_MMIO(0x8F034)
+>>-#define CSR_LAST_WRITE_VALUE	0xc003b400
+>>-/* MMIO address range for CSR program (0x80000 - 0x82FFF) */
+>>-#define CSR_MMIO_START_RANGE	0x80000
+>>-#define CSR_MMIO_END_RANGE	0x8FFFF
+>>-#define SKL_CSR_DC3_DC5_COUNT	_MMIO(0x80030)
+>>-#define SKL_CSR_DC5_DC6_COUNT	_MMIO(0x8002C)
+>>-#define BXT_CSR_DC3_DC5_COUNT	_MMIO(0x80038)
+>>+/* DMC */
+>>+#define DMC_PROGRAM(i)		_MMIO(0x80000 + (i) * 4)
+>>+#define DMC_SSP_BASE_ADDR_GEN9	0x00002FC0
+>>+#define DMC_HTP_ADDR_SKL	0x00500034
+>>+#define DMC_SSP_BASE		_MMIO(0x8F074)
+>>+#define DMC_HTP_SKL		_MMIO(0x8F004)
+>>+#define DMC_LAST_WRITE		_MMIO(0x8F034)
+>>+#define DMC_LAST_WRITE_VALUE	0xc003b400
+>>+/* MMIO address range for DMC program (0x80000 - 0x82FFF) */
+>>+#define DMC_MMIO_START_RANGE	0x80000
+>>+#define DMC_MMIO_END_RANGE	0x8FFFF
+>>+#define SKL_DMC_DC3_DC5_COUNT	_MMIO(0x80030)
+>>+#define SKL_DMC_DC5_DC6_COUNT	_MMIO(0x8002C)
+>>+#define BXT_DMC_DC3_DC5_COUNT	_MMIO(0x80038)
+>> #define TGL_DMC_DEBUG_DC5_COUNT	_MMIO(0x101084)
+>> #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
+>> #define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
+>>-- 
+>>2.25.0
+>>
+>>_______________________________________________
+>>Intel-gfx mailing list
+>>Intel-gfx@lists.freedesktop.org
+>>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
