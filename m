@@ -1,41 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0EB038E8D8
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 16:38:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 859A538ED2E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 17:33:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C20936E588;
-	Mon, 24 May 2021 14:38:09 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA9E6E1CE;
- Mon, 24 May 2021 14:38:07 +0000 (UTC)
-IronPort-SDR: iSSyH4Bysgk6C9ZIRnwBY8ytKvLBc+rInaqBBlAsp/D+Pr2jU31UUSHnipHB2b/Pt7EPAi02jc
- 7No77GkYI8IQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="201691323"
-X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="201691323"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 07:38:07 -0700
-IronPort-SDR: Y+S5CxjZB14djpvd9/LrHVQlGTdqIs2G5b7FfnydwPA337zkMu9VB13FxTKPZ4/gdIkR7EBrzM
- lrC6vjoDFNzw==
-X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="442849012"
-Received: from gtenuto-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C766E886;
+	Mon, 24 May 2021 15:33:25 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A626E886;
+ Mon, 24 May 2021 15:33:24 +0000 (UTC)
+IronPort-SDR: J+wfFT0PG2NZNbEhVs/wy2I//mpZIHakhSmYoQQpfeoRpZ5BuGFRXsvmD5kces+YFdO+i2iiXV
+ epb5wnlxf5AA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="265859013"
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="265859013"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 08:33:22 -0700
+IronPort-SDR: qWQMDt9niCgHnzlwAlUgB2o2w+LZhixSSSDjB+rH0toywABsIJlpBoj7nLPOdfPyyO5ILDIdG1
+ gTej0Vt3ohKg==
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="413634506"
+Received: from gtenuto-mobl1.ger.corp.intel.com (HELO [10.213.210.116])
  ([10.213.210.116])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 07:38:06 -0700
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 08:33:20 -0700
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20210518235830.133834-1-matthew.brost@intel.com>
+ <20210518235830.133834-3-matthew.brost@intel.com>
+ <882a70cf-74d6-3de4-ff76-b20d3f1eea6d@linux.intel.com>
+ <20210521164853.GD22003@sdutt-i7>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Mon, 24 May 2021 15:38:01 +0100
-Message-Id: <20210524143801.1787579-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <YKu12MnURTmD1eHg@platvala-desk.ger.corp.intel.com>
-References: <YKu12MnURTmD1eHg@platvala-desk.ger.corp.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9cb04352-656c-6bd7-14c2-5bede3ac1a24@linux.intel.com>
+Date: Mon, 24 May 2021 16:33:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2] gem_watchdog: Skip test if default
- request expiry is not compiled in
+In-Reply-To: <20210521164853.GD22003@sdutt-i7>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 2/2] drm/doc/rfc: i915 new parallel submission
+ uAPI plan
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,64 +54,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jason.ekstrand@intel.com, daniel.vetter@intel.com,
+ mesa-dev@lists.freedesktop.org, karl@freedesktop.org, christian.koenig@amd.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Test incorrectly assumes no modparam means default expiry, while in
-reality no modparam means old kernel / de-selected feature in which
-case test should skip.
+On 21/05/2021 17:48, Matthew Brost wrote:
+> On Fri, May 21, 2021 at 01:00:54PM +0100, Tvrtko Ursulin wrote:
 
-v2:
- * New line. (Petri)
+[snip]
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- tests/i915/gem_watchdog.c | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
+>>> + * enables parallel submission across multiple engine classes. In this case each
+>>> + * context's logical engine mask indicates where that context can placed. It is
+>>> + * implied in this mode that all contexts have mutual exclusive placement (e.g.
+>>> + * if one context is running CS0 no other contexts can run on CS0).
+>>
+>> I think talk about logical context and its mask is too implementation detail
+>> at the uapi level. Instead I would suggest more userspace programmer centric
+>> description.
+> 
+> Ok, can you give me suggestion? Writing DOC isn't really my strength.
 
-diff --git a/tests/i915/gem_watchdog.c b/tests/i915/gem_watchdog.c
-index 8f9fb17750fb..67fddac74bc1 100644
---- a/tests/i915/gem_watchdog.c
-+++ b/tests/i915/gem_watchdog.c
-@@ -630,6 +630,7 @@ igt_main
- 
- 	igt_fixture {
- 		struct drm_i915_query_item item;
-+		const unsigned int timeout = 1;
- 		char *tmp;
- 
- 		i915 = drm_open_driver_master(DRIVER_INTEL);
-@@ -639,16 +640,13 @@ igt_main
- 		igt_require_gem(i915);
- 
- 		tmp = __igt_params_get(i915, "request_timeout_ms");
--		if (tmp) {
--			const unsigned int timeout = 1;
-+		igt_skip_on_f(!tmp || !atoi(tmp),
-+			      "Request expiry not supported!\n");
-+		free(tmp);
- 
--			igt_params_save_and_set(i915, "request_timeout_ms",
--						"%u", timeout * 1000);
--			default_timeout_wait_s = timeout * 5;
--			free(tmp);
--		} else {
--			default_timeout_wait_s = 12;
--		}
-+		igt_params_save_and_set(i915, "request_timeout_ms", "%u",
-+					timeout * 1000);
-+		default_timeout_wait_s = timeout * 5;
- 
- 		i915 = gem_reopen_driver(i915); /* Apply modparam. */
- 
--- 
-2.30.2
+Yeah, not mine either. Maybe we need to hire a technical writer. :)
 
+I think in general I would just talk a bit how until now submission was 
+along a single engine only and this is adding a wide submission model, 
+expanding how it works with more details and only then talking about 
+logical contexts if needed.
+
+It depends a bit whether our userspace clients still predominantly think 
+in terms of engines, or is it contexts? I don't have an answer there.
+
+It probably isn't the most important thing and probably with a few 
+tweaks of what you have it can be good enough. Key probably is simply 
+coming up with as intuitive as possible diagrams, with consistent 
+naming, showing how the wide engine is built and how it works.
+
+>>> + *
+>>> + * Example 1 pseudo code:
+>>> + * CSX[Y] = engine class X, logical instance Y
+>>> + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+>>> + * set_engines(INVALID)
+>>> + * set_parallel(engine_index=0, width=2, num_siblings=2,
+>>> + *		engines=CS0[0],CS0[1],CS1[0],CS1[1])
+>>> + *
+>>> + * Results in the following valid placements:
+>>> + * CS0[0], CS1[0]
+>>> + * CS0[0], CS1[1]
+>>> + * CS0[1], CS1[0]
+>>> + * CS0[1], CS1[1]
+>>> + *
+>>> + * This can also be though of as 2 virtual engines:
+>>> + * VE[0] = CS0[0], CS0[1]
+>>> + * VE[1] = CS1[0], CS1[1]
+>>
+>> Ah okay so essentially similar to what I was proposing a year ago. But then
+>> it is no longer "set_parallel" really. It is one slot in the engine map,
+>> right, with the idea to super class intel_context in the implementation?
+>>
+> 
+> Yes, it is bascially a super class intel_context. In the implementation is
+> parent-child with the parent having a linked list of child intel_contexts.
+>   
+>> So really a wide virtual engine, as opposed to single one. In which case I
+>> think it makes sense to stay close to the existing naming of the
+>> load_balance extension for consistency. Load_balance_wide?
+>> Load_balance_parallel? Multi?
+> 
+> I like the way is named but I also don't want to argue about this as I don't
+> really care. If someone else says this should be renamed, let's do it.
+
+I don't care too much apart from a general desire for more consistency 
+and fewer terms in use.
+
+>> I also have to say the notation "CS0[0]" - I who know this problem space am
+>> finding it hard to penetrate what that actually means. (Also uppercase IMO
+>> makes it hard to read, but maybe it is just me.)
+>>
+> 
+> Yea, now I think about it CS0[0] is bad because of using numbers twice. How
+> about CSX[0] & CSY[1]? I used upper case because in the i915 all engine classes
+> defines are upper case but agree it might be easier to read it lower case.
+
+What would X and Y represent? Or if I paste this part:
+
+  * VE[0] = CS0[0], CS0[1]
+  * VE[1] = CS1[0], CS1[1]
+
+Which index is engine instance and what is the other index?
+
+>> Looking a bit lower below, extension seems to be taking a 2d array of
+>> class:instance pairs, right? If so then reading these docs in order, or even
+>> just looking further down, I don't think that is explicitly called out
+>> clearly enough.
+>>
+>> So I think a paragraph or two explaining clearly how the 2d array of engines
+>> corresponds to the allowed engines for full virtual engine width. Or maybe
+>> just a 2d diagram?
+>>
+>>    2-wide virtual engine:
+>>      .engines = [
+>>        /* channel 0 allowed engines: */  [cs0, cs1],
+>>        /* channel 1 allowed engines: */  [cs0, cs1]
+>>       ]
+>>
+>> Not sure if that's better.
+>>
+> 
+> Yes, it is a 2-d array. Agree the explaination could be better.
+> 
+>> Also to be noted, this only allows uniform number of allowed engines per
+>> channel. I am not saying we need the non-uniform setup today but with bonds
+>> there isn't this limitation.
+>>
+> 
+> Not exactly. You could do something like this.
+> 
+> witdth = 2
+> siblings = 2
+> engines = CSX[0], CSX[1], CSY[0], INVALID
+> 
+> This would allow a placement of:
+> 
+> CSX[0], CSY[0]
+> CSX[1], CSY[0]
+> 
+> In this case the siblings is just a max value of each entry.
+
+Okay fair, did not think about that or saw it mentioned.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
