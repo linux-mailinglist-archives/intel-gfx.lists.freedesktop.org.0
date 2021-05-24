@@ -1,63 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B252138F1C0
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 18:47:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB1CF38F240
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 19:27:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90BC96E8D5;
-	Mon, 24 May 2021 16:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0CFA6E8DF;
+	Mon, 24 May 2021 17:27:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8E26E8D4
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 16:47:53 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- u5-20020a7bc0450000b02901480e40338bso264487wmc.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 09:47:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=astier-eu.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=q5LsshN/w/EqtVlYdH8CJ7303gxJoUC0MUKp67S3Rw4=;
- b=iFGf6zvLx7Wm86r70xf7tvo4wfqJ81GcbHImsEfOKd8ThuKUtFK2MuK+MKcdyoZYLB
- 8yzeZeFYoOVEFt7hDVcaY0QwHVuP8mvtFBs+8l4ICs7lOwhipIjmA3EYhafZyaTjnitV
- 57ikrIAFvICuaRPDzGKiS+RTyg0nCeN0dROIdbK65cdvD95pvKYVEIhaiQZ8A3fdkFiJ
- 7D/l0yhGreo45tDS+S21pFOcOv7c3WYObDWSuiAq69NJex7HPsjwsgoeHWjzu3bisqPC
- cFcsaFQg62i+eIP5W1XHecorBxua8dO0gPtlTkZmr6lPU8GJrzuu0de5o+X9vRFwgujs
- 3VGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=q5LsshN/w/EqtVlYdH8CJ7303gxJoUC0MUKp67S3Rw4=;
- b=Edf/qbdr+c6qcIvlHmYqv0owh6Gm7SSbXn9odg7soVqfyJdl0GFsItiBKCDbWbLDR0
- 1JDvgMyhkA8uOZyQQTUwCENnfjuTnndhsfjxDmEtprVIzZsDjVi+1KKWilPxxGjWjar9
- qTENRTl5KP3EwDSkJX7bsfohtQLISUQ86e/b5O2w+At3vXYzjWESXi+hs4fyFDI9WExX
- o7CufqVjWZbNzR9zgk2Q3MnuvVHrG7ng65lQVKtFMUZVTrc6q/ZIp7dTz4hb7bW3Skv1
- NKt5bEfIsHd0/tm3a4U4u1oxzSV9M1xC9hARy3h0R8Q8cUZGgiNhlkPtU+UWB2WUJdZ3
- r8hA==
-X-Gm-Message-State: AOAM530/asmDYhFS09Q7n+99gZ3gTsv9sDSeyP6/XOxJKtbquermilCh
- kJXbrJOEjYmwsbwFPaBle0HgYRxMAfY8AA==
-X-Google-Smtp-Source: ABdhPJxjdBMeRIGOWaA7Niea7ZuRC1ReYE+sftPeyd7t8T1co+5i5R/r8hHOJuSKccpoIXTfWXx4gw==
-X-Received: by 2002:a7b:c0da:: with SMTP id s26mr20971wmh.83.1621874871648;
- Mon, 24 May 2021 09:47:51 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:806:8950:61f0:1b3d:bc7a:1d60])
- by smtp.gmail.com with ESMTPSA id
- b10sm15226358wrr.27.2021.05.24.09.47.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 May 2021 09:47:51 -0700 (PDT)
-From: Anisse Astier <anisse@astier.eu>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon, 24 May 2021 18:47:19 +0200
-Message-Id: <20210524164719.6588-4-anisse@astier.eu>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210524164719.6588-1-anisse@astier.eu>
-References: <20210524164719.6588-1-anisse@astier.eu>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA0326E8DC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 17:27:10 +0000 (UTC)
+IronPort-SDR: Gi9JOqP2h5LVpxtBVgQc6qHYkQ5hPFubri029r5EogBdqpmBjb4dwWxH+LEPg1tkL1DiiEXsAf
+ rsAXTpH0h6pw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="202028979"
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="202028979"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 10:27:06 -0700
+IronPort-SDR: Qywge8cdF9SAQs4sDiWbvHpD6SKvfbLS6tTIYPBKtNJAQ98a22dL0MOz9yE8sT4XHHZghwFBgQ
+ tu5edbX5aUnQ==
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="475979169"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 10:27:05 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 May 2021 20:27:01 +0300
+Message-Id: <20210524172703.2113058-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm: Add orientation quirk for GPD Win Max
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/adlp: Require DPT FB CCS color
+ planes to be 2MB aligned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,40 +45,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Panel is 800x1280, but mounted on a laptop form factor, sideways.
-
-Signed-off-by: Anisse Astier <anisse@astier.eu>
----
- drivers/gpu/drm/drm_panel_orientation_quirks.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_panel_orientation_quirks.c b/drivers/gpu/drm/drm_panel_orientation_quirks.c
-index f6bdec7fa925..3c3f4ed89173 100644
---- a/drivers/gpu/drm/drm_panel_orientation_quirks.c
-+++ b/drivers/gpu/drm/drm_panel_orientation_quirks.c
-@@ -148,6 +148,12 @@ static const struct dmi_system_id orientation_data[] = {
- 		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "MicroPC"),
- 		},
- 		.driver_data = (void *)&lcd720x1280_rightside_up,
-+	}, {	/* GPD Win Max */
-+		.matches = {
-+		  DMI_EXACT_MATCH(DMI_SYS_VENDOR, "GPD"),
-+		  DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "G1619-01"),
-+		},
-+		.driver_data = (void *)&lcd800x1280_rightside_up,
- 	}, {	/*
- 		 * GPD Pocket, note that the the DMI data is less generic then
- 		 * it seems, devices with a board-vendor of "AMI Corporation"
--- 
-2.31.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWxsIERQVCBGQiBjb2xvciBwbGFuZSBzdXJmYWNlIGJhc2UgYWRkcmVzc2VzIG11c3QgYmUgMk1C
+IGFsaWduZWQuIE9uCkFETF9QIHRoaXMgbWVhbnMgdGhhdCB0aGUgb2Zmc2V0cyBpbiBDQ1MgRkIg
+b2JqZWN0IG11c3QgYmUgYWxzbyAyTUIKYWxpZ25lZC4gQWRqdXN0aW5nIHVuYWxpZ25lZCBvZmZz
+ZXRzIGZvciB0aGVzZSBGQnMgZHVyaW5nIGNvbW1pdCB0aW1lCihjb21wZW5zYXRpbmcgd2l0aCB0
+aGUgeC95IG9mZnNldHMpIGRvZXNuJ3Qgd29yaywgc2luY2UgdGhlIGJpZwphbGlnbm1lbnQgd291
+bGQgbW9zdCBwcm9iYWJseSBsZWFkIHRvIGFuIHgveSBvZmZzZXQgbWlzbWF0Y2ggZXJyb3IKYmV0
+d2VlbiB0aGUgbWFpbiBhbmQgQ0NTIHBsYW5lcy4KCldlIGNhbiBvdmVyY29tZSB0aGlzIGxpbWl0
+YXRpb24gYnkgcmVtYXBwaW5nIENDUyBGQnMsIHNvIHRoYXQgZWFjaCBjb2xvcgpwbGFuZSBpcyBh
+dCBhbiBhbGlnbmVkIG9mZnNldCwgbGVhdmluZyB4L3kgZm9yIGVhY2ggcGxhbmUgdW5hZGp1c3Rl
+ZApkdXJpbmcgY29tbWl0IGFuZCBzbyBub3QgY2F1c2luZyBhbiB4L3kgbWlzbWF0Y2ggZXJyb3Iu
+IEhvd2V2ZXIKcmVtYXBwaW5nIGZvciBDQ1MgRkJzIHdpbGwgYmUgZG9uZSBhcyBhIGZvbGxvdy11
+cCwgc28gZm9yIG5vdyByZXF1aXJlCnRoYXQgdXNlciBzcGFjZSBhbGxvY2F0ZXMgdGhlIEZCIG9i
+aiB3aXRoIHByb3Blcmx5IGFsaWduZWQgcGxhbmVzLgoKdjI6IHMvU1pfMk0vNTEyKjRrLyBmb3Ig
+Y2xhcml0eS4gKFZpbGxlKQoKU2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50
+ZWwuY29tPgpSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmMg
+fCAxMyArKysrKysrKysrKy0tCiAxIGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgMiBk
+ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2ZiLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmMKaW5kZXgg
+YTAwNWM2ODg4OWU3Yy4uYzYwYTgxYTgxYzA5YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9mYi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZmIuYwpAQCAtMzU1LDggKzM1NSwxNyBAQCBzdGF0aWMgaW50IGludGVsX2ZiX29m
+ZnNldF90b194eShpbnQgKngsIGludCAqeSwKIAl1bnNpZ25lZCBpbnQgaGVpZ2h0OwogCXUzMiBh
+bGlnbm1lbnQ7CiAKLQlpZiAoRElTUExBWV9WRVIoaTkxNSkgPj0gMTIgJiYKLQkgICAgaXNfc2Vt
+aXBsYW5hcl91dl9wbGFuZShmYiwgY29sb3JfcGxhbmUpKQorCS8qCisJICogQWxsIERQVCBjb2xv
+ciBwbGFuZXMgbXVzdCBiZSA1MTIqNGsgYWxpZ25lZCAodGhlIGFtb3VudCBtYXBwZWQgYnkgYQor
+CSAqIHNpbmdsZSBEUFQgcGFnZSkuIEZvciBBRExfUCBDQ1MgRkJzIHRoaXMgb25seSB3b3JrcyBi
+eSByZXF1aXJpbmcKKwkgKiB0aGUgYWxsb2NhdGVkIG9mZnNldHMgdG8gYmUgMk1CIGFsaWduZWQu
+ICBPbmNlIHN1cG9vcnQgdG8gcmVtYXAKKwkgKiBzdWNoIEZCcyBpcyBhZGRlZCB3ZSBjYW4gcmVt
+b3ZlIHRoaXMgcmVxdWlyZW1lbnQsIGFzIHRoZW4gYWxsIHRoZQorCSAqIHBsYW5lcyBjYW4gYmUg
+cmVtYXBwZWQgdG8gYW4gYWxpZ25lZCBvZmZzZXQuCisJICovCisJaWYgKElTX0FMREVSTEFLRV9Q
+KGk5MTUpICYmIGlzX2Njc19tb2RpZmllcihmYi0+bW9kaWZpZXIpKQorCQlhbGlnbm1lbnQgPSA1
+MTIgKiA0MDk2OworCWVsc2UgaWYgKERJU1BMQVlfVkVSKGk5MTUpID49IDEyICYmCisJCSBpc19z
+ZW1pcGxhbmFyX3V2X3BsYW5lKGZiLCBjb2xvcl9wbGFuZSkpCiAJCWFsaWdubWVudCA9IGludGVs
+X3RpbGVfcm93X3NpemUoZmIsIGNvbG9yX3BsYW5lKTsKIAllbHNlIGlmIChmYi0+bW9kaWZpZXIg
+IT0gRFJNX0ZPUk1BVF9NT0RfTElORUFSKQogCQlhbGlnbm1lbnQgPSBpbnRlbF90aWxlX3NpemUo
+aTkxNSk7Ci0tIAoyLjI3LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
