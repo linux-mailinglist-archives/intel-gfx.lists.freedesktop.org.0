@@ -1,63 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FAF838F4AB
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 23:00:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF70538F516
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 23:45:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75BD46E96C;
-	Mon, 24 May 2021 21:00:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87A326E973;
+	Mon, 24 May 2021 21:45:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
- [IPv6:2607:f8b0:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D20C6E964
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 21:00:14 +0000 (UTC)
-Received: by mail-pl1-x62a.google.com with SMTP id t9so6808235ply.6
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 14:00:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=hBjE51hh2X0XrOm9Ij4dQRpJSOYOJDHQ8jk5rVcWn2c=;
- b=jPcDhXBkyo544B+2zdtAFvZ3CIVqPcWwJQSBCGOrcTHzZp6xT3wGx4wZCmpB6bf8dd
- O8lfQ6f58dBuSfDVSi+fjrFf73IbZSJTO+wR88PiK+WMQjZJdHCqYp5Fa7GXf+AnIeo9
- Jj7I1jtBnIcPMLkIF8wWOvE+5eYZbn2c8K8ToBlkVT8vcPfEv1WF0tqHhkQRu4GboM7g
- 9ZOLKy8gY9bBAJwrJ7xRkHNt9Y0eWajrcBtbKaIXQ7m89g1ydtsGWcsVTfVjYZ9pBQ3Y
- pilkvDgXg08o0A0dCt25wpD9mx0QqE+yJaJQv9ZQ959pivazNloKDpYkP8cuOJJAlHSZ
- 8LrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=hBjE51hh2X0XrOm9Ij4dQRpJSOYOJDHQ8jk5rVcWn2c=;
- b=YAjrng/zLQ7xP+FTuZE4o6YeZQhtS866pFrLOAciAreru8/mHHmG9ldWBE5MPU5ePo
- VdKatccHVXeOugAysLQWNiStAr2GXcCBCH46XvvZh2zbRp2xf+lc0x4YqehcwNsRzHcn
- 3DD4RAzO7lsdYGyocw+yy0s5TKmkpfRqVNP2XIhMaEQAf3j5L5yNiuam28xR85UB+4dO
- bB6DQQ6bD0jqF9EkeJ8kIu1o3gIVinKNT8TaqRl1p1+btkmTl/4dOuCJAhZ6o0pgz/uM
- ZIZ+Txytmwqcno5Qx99yTiJkK7qgC1HvF0WkH39UsJrwAvT/jY8swQWS/Y4T4FwDsJDE
- FgLA==
-X-Gm-Message-State: AOAM531XxQmEQWe40w/lkWaw0qpX1Ny5Notka95iOIB139MRKLH2jZ24
- N0umG29G8x2nsGA5LbIC3TUyeA==
-X-Google-Smtp-Source: ABdhPJxvkek8tGOq0xUm26RVjD24qGdZlePaFdm+JP9NR7F2k+OXj1wlI8wWv/URYfug+kL5t/JNrw==
-X-Received: by 2002:a17:902:6905:b029:f0:d4b8:b90e with SMTP id
- j5-20020a1709026905b02900f0d4b8b90emr26968399plk.37.1621890013804; 
- Mon, 24 May 2021 14:00:13 -0700 (PDT)
-Received: from omlet.com ([134.134.139.76])
- by smtp.gmail.com with ESMTPSA id c195sm12354958pfb.144.2021.05.24.14.00.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 May 2021 14:00:13 -0700 (PDT)
-From: Jason Ekstrand <jason@jlekstrand.net>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Mon, 24 May 2021 15:59:54 -0500
-Message-Id: <20210524205954.872814-7-jason@jlekstrand.net>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EBA46E96D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 21:44:55 +0000 (UTC)
+IronPort-SDR: RVB1jdKe3xxD3iIA4vjUGq7/yMep3T0fBgZnAU+MoH9RSW+RGvM8Dk6IP0KgNLKrmui5xZ2ADl
+ 4+3z6Du3axMw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="181677506"
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="181677506"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 14:44:55 -0700
+IronPort-SDR: cJLWolcTIWzoSNRYAA5180t+FlwNm/j4kYqFNZrOzSo6WHk4k3XHdZgW9eVrVX1FBYr5v3IoaF
+ H/tS+632DGbQ==
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="546513293"
+Received: from xxi2-mobl.amr.corp.intel.com (HELO josouza-mobl2.intel.com)
+ ([10.254.32.238])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 14:44:54 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 May 2021 14:48:01 -0700
+Message-Id: <20210524214805.259692-1-jose.souza@intel.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210524205954.872814-1-jason@jlekstrand.net>
-References: <20210524205954.872814-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] RFC: dma-buf: Add an API for importing sync
- files (v6)
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915/display/adl_p: Drop earlier return
+ in tc_has_modular_fia()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,155 +46,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch is analogous to the previous sync file export patch in that
-it allows you to import a sync_file into a dma-buf.  Unlike the previous
-patch, however, this does add genuinely new functionality to dma-buf.
-Without this, the only way to attach a sync_file to a dma-buf is to
-submit a batch to your driver of choice which waits on the sync_file and
-claims to write to the dma-buf.  Even if said batch is a no-op, a submit
-is typically way more overhead than just attaching a fence.  A submit
-may also imply extra synchronization with other work because it happens
-on a hardware queue.
-
-In the Vulkan world, this is useful for dealing with the out-fence from
-vkQueuePresent.  Current Linux window-systems (X11, Wayland, etc.) all
-rely on dma-buf implicit sync.  Since Vulkan is an explicit sync API, we
-get a set of fences (VkSemaphores) in vkQueuePresent and have to stash
-those as an exclusive (write) fence on the dma-buf.  We handle it in
-Mesa today with the above mentioned dummy submit trick.  This ioctl
-would allow us to set it directly without the dummy submit.
-
-This may also open up possibilities for GPU drivers to move away from
-implicit sync for their kernel driver uAPI and instead provide sync
-files and rely on dma-buf import/export for communicating with other
-implicit sync clients.
-
-We make the explicit choice here to only allow setting RW fences which
-translates to an exclusive fence on the dma_resv.  There's no use for
-read-only fences for communicating with other implicit sync userspace
-and any such attempts are likely to be racy at best.  When we got to
-insert the RW fence, the actual fence we set as the new exclusive fence
-is a combination of the sync_file provided by the user and all the other
-fences on the dma_resv.  This ensures that the newly added exclusive
-fence will never signal before the old one would have and ensures that
-we don't break any dma_resv contracts.  We require userspace to specify
-RW in the flags for symmetry with the export ioctl and in case we ever
-want to support read fences in the future.
-
-There is one downside here that's worth documenting:  If two clients
-writing to the same dma-buf using this API race with each other, their
-actions on the dma-buf may happen in parallel or in an undefined order.
-Both with and without this API, the pattern is the same:  Collect all
-the fences on dma-buf, submit work which depends on said fences, and
-then set a new exclusive (write) fence on the dma-buf which depends on
-said work.  The difference is that, when it's all handled by the GPU
-driver's submit ioctl, the three operations happen atomically under the
-dma_resv lock.  If two userspace submits race, one will happen before
-the other.  You aren't guaranteed which but you are guaranteed that
-they're strictly ordered.  If userspace manages the fences itself, then
-these three operations happen separately and the two render operations
-may happen genuinely in parallel or get interleaved.  However, this is a
-case of userspace racing with itself.  As long as we ensure userspace
-can't back the kernel into a corner, it should be fine.
-
-v2 (Jason Ekstrand):
- - Use a wrapper dma_fence_array of all fences including the new one
-   when importing an exclusive fence.
-
-v3 (Jason Ekstrand):
- - Lock around setting shared fences as well as exclusive
- - Mark SIGNAL_SYNC_FILE as a read-write ioctl.
- - Initialize ret to 0 in dma_buf_wait_sync_file
-
-v4 (Jason Ekstrand):
- - Use the new dma_resv_get_singleton helper
-
-v5 (Jason Ekstrand):
- - Rename the IOCTLs to import/export rather than wait/signal
- - Drop the WRITE flag and always get/set the exclusive fence
-
-v5 (Jason Ekstrand):
- - Split import and export into separate patches
- - New commit message
-
-Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
----
- drivers/dma-buf/dma-buf.c    | 34 ++++++++++++++++++++++++++++++++++
- include/uapi/linux/dma-buf.h |  1 +
- 2 files changed, 35 insertions(+)
-
-diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-index f23d939e0e833..0a50c19dcf015 100644
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@ -419,6 +419,38 @@ static long dma_buf_export_sync_file(struct dma_buf *dmabuf,
- 	put_unused_fd(fd);
- 	return ret;
- }
-+
-+static long dma_buf_import_sync_file(struct dma_buf *dmabuf,
-+				     const void __user *user_data)
-+{
-+	struct dma_buf_sync_file arg;
-+	struct dma_fence *fence, *singleton = NULL;
-+	int ret = 0;
-+
-+	if (copy_from_user(&arg, user_data, sizeof(arg)))
-+		return -EFAULT;
-+
-+	if (arg.flags != DMA_BUF_SYNC_RW)
-+		return -EINVAL;
-+
-+	fence = sync_file_get_fence(arg.fd);
-+	if (!fence)
-+		return -EINVAL;
-+
-+	dma_resv_lock(dmabuf->resv, NULL);
-+
-+	singleton = dma_resv_get_singleton_unlocked(dmabuf->resv, fence);
-+	if (IS_ERR(singleton))
-+		ret = PTR_ERR(singleton);
-+	else if (singleton)
-+		dma_resv_add_excl_fence(dmabuf->resv, singleton);
-+
-+	dma_resv_unlock(dmabuf->resv);
-+
-+	dma_fence_put(fence);
-+
-+	return ret;
-+}
- #endif
- 
- static long dma_buf_ioctl(struct file *file,
-@@ -467,6 +499,8 @@ static long dma_buf_ioctl(struct file *file,
- #if IS_ENABLED(CONFIG_SYNC_FILE)
- 	case DMA_BUF_IOCTL_EXPORT_SYNC_FILE:
- 		return dma_buf_export_sync_file(dmabuf, (void __user *)arg);
-+	case DMA_BUF_IOCTL_IMPORT_SYNC_FILE:
-+		return dma_buf_import_sync_file(dmabuf, (const void __user *)arg);
- #endif
- 
- 	default:
-diff --git a/include/uapi/linux/dma-buf.h b/include/uapi/linux/dma-buf.h
-index f902cadcbdb56..75fdde4800267 100644
---- a/include/uapi/linux/dma-buf.h
-+++ b/include/uapi/linux/dma-buf.h
-@@ -70,5 +70,6 @@ struct dma_buf_sync_file {
- #define DMA_BUF_SET_NAME_A	_IOW(DMA_BUF_BASE, 1, u32)
- #define DMA_BUF_SET_NAME_B	_IOW(DMA_BUF_BASE, 1, u64)
- #define DMA_BUF_IOCTL_EXPORT_SYNC_FILE	_IOWR(DMA_BUF_BASE, 2, struct dma_buf_sync_file)
-+#define DMA_BUF_IOCTL_IMPORT_SYNC_FILE	_IOW(DMA_BUF_BASE, 3, struct dma_buf_sync)
- 
- #endif
--- 
-2.31.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+TU9EVUxBUl9GSUFfTUFTSyBpcyBzZXQgaW4gYWRsX3Agc28gd2UgY2FuIGRyb3AgdGhpcyBlYWxp
+ZXIgcmV0dXJuCmFuZCByZWFkIHJlZ2lzdGVycy4KQWxzbyB0byBhdm9pZCB3YXJuaW5ncyBmcm9t
+IGljbF90Y19wb3J0X2Fzc2VydF9yZWZfaGVsZCgpIHdoZW4KY2FsbGluZyB0Y19jb2xkX2Jsb2Nr
+KCkgaW4gdGhpcyBmdW5jdGlvbnMgaXQgaXMgbmVjZXNzYXJ5IHRvIGhlbGQgdGhlCmxvY2suCgpD
+YzogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBS
+b2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgfCA2ICsrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDIg
+aW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3RjLmMKaW5kZXggNWYwMzIxNWEwM2U0Li5kYjg1ZTBlMjAzMWUgMTAwNjQ0Ci0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMKQEAgLTczNCwxMyArNzM0LDExIEBAIHRjX2hh
+c19tb2R1bGFyX2ZpYShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgc3RydWN0IGludGVs
+X2RpZ2l0YWxfcG9ydCAqZGlnCiAJaWYgKCFJTlRFTF9JTkZPKGk5MTUpLT5kaXNwbGF5Lmhhc19t
+b2R1bGFyX2ZpYSkKIAkJcmV0dXJuIGZhbHNlOwogCi0JLyogVE9ETzogY2hlY2sgaWYgaW4gcmVh
+bCBIVyBNT0RVTEFSX0ZJQV9NQVNLIGlzIHNldCwgaWYgc28gcmVtb3ZlIHRoaXMgYmxvY2sgKi8K
+LQlpZiAoSVNfQUxERVJMQUtFX1AoaTkxNSkpCi0JCXJldHVybiB0cnVlOwotCisJbXV0ZXhfbG9j
+aygmZGlnX3BvcnQtPnRjX2xvY2spOwogCXdha2VyZWYgPSB0Y19jb2xkX2Jsb2NrKGRpZ19wb3J0
+KTsKIAl2YWwgPSBpbnRlbF91bmNvcmVfcmVhZCgmaTkxNS0+dW5jb3JlLCBQT1JUX1RYX0RGTEVY
+RFBTUChGSUExKSk7CiAJdGNfY29sZF91bmJsb2NrKGRpZ19wb3J0LCB3YWtlcmVmKTsKKwltdXRl
+eF91bmxvY2soJmRpZ19wb3J0LT50Y19sb2NrKTsKIAogCWRybV9XQVJOX09OKCZpOTE1LT5kcm0s
+IHZhbCA9PSAweGZmZmZmZmZmKTsKIAotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
