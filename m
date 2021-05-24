@@ -2,47 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A5F38E5FD
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 14:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE4338E606
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 14:00:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 163B06E1B7;
-	Mon, 24 May 2021 12:00:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC46A6E241;
+	Mon, 24 May 2021 12:00:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62DF36E1AA;
- Mon, 24 May 2021 11:59:59 +0000 (UTC)
-IronPort-SDR: NjszljHVu0TD+wOGNcz49pMkqoVrMqrI2jze31cZ4bdpzIFKerdiiRv14blfxuOJaP15seXWxd
- Q4ovfxB1aAaw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="189299256"
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="189299256"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 04:59:58 -0700
-IronPort-SDR: AjZGMKs2Oaj7YwspYf9LjaD5WtFZwGmEaC4iXKRf10OBlrG5dnkB2RII/6Tx9Jwu84atnfVlcf
- Czc2AvPTjdCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="632599321"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga005.fm.intel.com with ESMTP; 24 May 2021 04:59:55 -0700
-Received: from [10.249.134.123] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.134.123])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 14OBxsRX023225; Mon, 24 May 2021 12:59:54 +0100
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-36-matthew.brost@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <7916ebfd-ebbe-c1a9-11b1-30587ca7a009@intel.com>
-Date: Mon, 24 May 2021 13:59:54 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114DD6E241;
+ Mon, 24 May 2021 12:00:32 +0000 (UTC)
+IronPort-SDR: WdCgc2l6/0u2Gly1mfd1ko33QvUrmu+Olnyi9LIxvMuv3jOVIMS8g1L5WE4KbH7AEL7MRMAIsP
+ reiDKZXCYD7A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="223070025"
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="223070025"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 05:00:32 -0700
+IronPort-SDR: DmVkewsTc8dFClVYojFAJXpmArmJaA3AtFzd9tiyoFt0F1U75giPzrozdamwBvm1F6aX3cj4oZ
+ CcwzVx8BybIg==
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="475838436"
+Received: from jaherrex-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.252.50.169])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 05:00:29 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Deucher\, Alexander" <Alexander.Deucher@amd.com>,
+ "dim-tools\@lists.freedesktop.org" <dim-tools@lists.freedesktop.org>
+In-Reply-To: <MN2PR12MB44884924C665EE6EDF3E17A2F72B9@MN2PR12MB4488.namprd12.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210519084932.8666-1-jani.nikula@intel.com>
+ <MN2PR12MB44884924C665EE6EDF3E17A2F72B9@MN2PR12MB4488.namprd12.prod.outlook.com>
+Date: Mon, 24 May 2021 15:00:26 +0300
+Message-ID: <87h7iscpet.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210506191451.77768-36-matthew.brost@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 35/97] drm/i915/guc: Improve error
- message for unsolicited CT response
+Subject: Re: [Intel-gfx] [drm-rerere PATCH] nightly.conf: drop amd branches
+ from drm-tip
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,61 +50,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, "Koenig, 
+ Christian" <Christian.Koenig@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 06.05.2021 21:13, Matthew Brost wrote:
-> Improve the error message when a unsolicited CT response is received by
-> printing fence that couldn't be found, the last fence, and all requests
-> with a response outstanding.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 217ab3ebd1af..a76603537fa8 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -703,12 +703,16 @@ static int ct_handle_response(struct intel_guc_ct *ct, struct ct_incoming_msg *r
->  		found = true;
->  		break;
->  	}
-> -	spin_unlock_irqrestore(&ct->requests.lock, flags);
-> -
->  	if (!found) {
->  		CT_ERROR(ct, "Unsolicited response (fence %u)\n", fence);
-> -		return -ENOKEY;
-> +		CT_ERROR(ct, "Could not find fence=%u, last_fence=%u\n", fence,
-> +			 ct->requests.last_fence);
-
-nit: this new wording may suggest that it's our fault, but that's not
-necessary true
-
-> +		list_for_each_entry(req, &ct->requests.pending, link)
-> +			CT_ERROR(ct, "request %u awaits response\n",
-> +				 req->fence);
-
-usually we don't send multiple requests that expects responses, so it's
-very likely that list with pending requests will be empty, and even if
-list is not empty, I'm not sure what is the relation between those
-pending requests to this unsolicited response, thus wondering how these
-extra errors could improve our debugging experience ?
-
-> +		err = -ENOKEY;
->  	}
-> +	spin_unlock_irqrestore(&ct->requests.lock, flags);
->  
->  	if (unlikely(err))
->  		return err;
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAxOSBNYXkgMjAyMSwgIkRldWNoZXIsIEFsZXhhbmRlciIgPEFsZXhhbmRlci5EZXVj
+aGVyQGFtZC5jb20+IHdyb3RlOgo+IFtBTUQgUHVibGljIFVzZV0KPgo+PiAtLS0tLU9yaWdpbmFs
+IE1lc3NhZ2UtLS0tLQo+PiBGcm9tOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29t
+Pgo+PiBTZW50OiBXZWRuZXNkYXksIE1heSAxOSwgMjAyMSA0OjUwIEFNCj4+IFRvOiBkaW0tdG9v
+bHNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IENjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnOyBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOwo+PiBqYW5pLm5pa3VsYUBp
+bnRlbC5jb207IERldWNoZXIsIEFsZXhhbmRlcgo+PiA8QWxleGFuZGVyLkRldWNoZXJAYW1kLmNv
+bT47IEtvZW5pZywgQ2hyaXN0aWFuCj4+IDxDaHJpc3RpYW4uS29lbmlnQGFtZC5jb20+OyBQYW47
+IFBhbiwgWGluaHVpIDxYaW5odWkuUGFuQGFtZC5jb20+Owo+PiBEYW5pZWwgVmV0dGVyIDxkYW5p
+ZWwudmV0dGVyQGZmd2xsLmNoPgo+PiBTdWJqZWN0OiBbZHJtLXJlcmVyZSBQQVRDSF0gbmlnaHRs
+eS5jb25mOiBkcm9wIGFtZCBicmFuY2hlcyBmcm9tIGRybS10aXAKPj4gCj4+IFdlJ3ZlIGhhZCBh
+IHN0YWxlIHJlcG8gZm9yIGFtZCBpbiBkcm0tdGlwIHNpbmNlIGFyb3VuZCB2NC4xNSBpLmUuIGZv
+ciBtb3JlCj4+IHRoYW4gdGhyZWUgeWVhcnMuIE5vYm9keSBzZWVtcyB0byBub3RpY2Ugb3IgY2Fy
+ZS4gRHJvcCB0aGUgYW1kIGJyYW5jaGVzCj4+IGZyb20gZHJtLXRpcC4KPj4gCj4+IEhhdmluZyB0
+aGUgY3VycmVudCBhbWQgYnJhbmNoZXMgaW4gZHJtLXRpcCB3b3VsZCBiZSBuaWNlIHRvIGhhdmUs
+IGlmIG9ubHkgdG8KPj4gaGF2ZSBhIGNvbW1vbiBkcm0gaW50ZWdyYXRpb24gdHJlZS4gSG93ZXZl
+ciwgbWFpbnRhaW5pbmcgdGhhdCBoYXMgYSBjb3N0Cj4+IGR1ZSB0byB0aGUgaW5ldml0YWJsZSBj
+b25mbGljdHMuIFdlIGNhbiBhZGQgdGhlIGJyYW5jaGVzIGJhY2sgaWYgYW5kIHdoZW4KPj4gdGhl
+cmUncyBpbnRlcmVzdCBpbiBzaGFyaW5nIHRoZSBidXJkZW4uCj4+IAo+PiBDYzogQWxleCBEZXVj
+aGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+PiBDYzogQ2hyaXN0aWFuIEvDtm5pZyA8
+Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+PiBDYzogUGFuLCBYaW5odWkgPFhpbmh1aS5QYW5A
+YW1kLmNvbT4KPj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4+
+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4KPiBS
+ZXZpZXdlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgoKVGhh
+bmtzLCBwdXNoZWQgb3V0IGFuZCByZWJ1aWx0IGRybS10aXAuCgpCUiwKSmFuaS4KCgo+Cj4+IC0t
+LQo+PiAgbmlnaHRseS5jb25mIHwgOSAtLS0tLS0tLS0KPj4gIDEgZmlsZSBjaGFuZ2VkLCA5IGRl
+bGV0aW9ucygtKQo+PiAKPj4gZGlmZiAtLWdpdCBhL25pZ2h0bHkuY29uZiBiL25pZ2h0bHkuY29u
+ZiBpbmRleCA5MjExNTUwZWY3NWMuLjM1ZmIxZDliYTYwMAo+PiAxMDA2NDQKPj4gLS0tIGEvbmln
+aHRseS5jb25mCj4+ICsrKyBiL25pZ2h0bHkuY29uZgo+PiBAQCAtNDAsMTIgKzQwLDYgQEAgZ2l0
+Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZHJtLW1pc2MKPj4gCj4+IGh0dHBzOi8vbmFtMTEu
+c2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmFubwo+
+PiBuZ2l0LmZyZWVkZXNrdG9wLm9yZyUyRmdpdCUyRmRybSUyRmRybS0KPj4gbWlzYyZhbXA7ZGF0
+YT0wNCU3QzAxJTdDYWxleGFuZGVyLmRldWNoZXIlNDBhbWQuY29tJTdDNTkwMzg5NmNmCj4+IDJl
+NjQyYWZiMDU0MDhkOTFhYTMwZjZkJTdDM2RkODk2MWZlNDg4NGU2MDhlMTFhODJkOTk0ZTE4M2Ql
+N0MwJTcKPj4gQzAlN0M2Mzc1NzAxMDk5MDY5MjY4MDUlN0NVbmtub3duJTdDVFdGcGJHWnNiM2Q4
+ZXlKV0lqb2lNQzR3Cj4+IExqQXdNREFpTENKUUlqb2lWMmx1TXpJaUxDSkJUaUk2SWsxaGFXd2lM
+Q0pYVkNJNk1uMCUzRCU3QzEwMDAmYW0KPj4gcDtzZGF0YT1lc3BOJTJCb0lYOVNqTGgyUHklMkZr
+cWxWc2kwcDlSdSUyRmV0Mk0xMVhXcUo1ZVVRJTNEJmEKPj4gbXA7cmVzZXJ2ZWQ9MAo+PiAKPj4g
+aHR0cHM6Ly9uYW0xMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBz
+JTNBJTJGJTJGYW5vCj4+IG5naXQuZnJlZWRlc2t0b3Aub3JnJTJGZ2l0JTJGZHJtJTJGZHJtLQo+
+PiBtaXNjLmdpdCZhbXA7ZGF0YT0wNCU3QzAxJTdDYWxleGFuZGVyLmRldWNoZXIlNDBhbWQuY29t
+JTdDNTkwMzg5Cj4+IDZjZjJlNjQyYWZiMDU0MDhkOTFhYTMwZjZkJTdDM2RkODk2MWZlNDg4NGU2
+MDhlMTFhODJkOTk0ZTE4M2QlN0MwCj4+ICU3QzAlN0M2Mzc1NzAxMDk5MDY5MjY4MDUlN0NVbmtu
+b3duJTdDVFdGcGJHWnNiM2Q4ZXlKV0lqb2lNQwo+PiA0d0xqQXdNREFpTENKUUlqb2lWMmx1TXpJ
+aUxDSkJUaUk2SWsxaGFXd2lMQ0pYVkNJNk1uMCUzRCU3QzEwMDAmCj4+IGFtcDtzZGF0YT1FNWN3
+UkgwUHI5SmtJZklNTmtOempsTG41aE42azBpbnhCa2slMkJ3aGQxbGslM0QmYW1wO3IKPj4gZXNl
+cnZlZD0wCj4+ICAiCj4+IC1kcm1fdGlwX3JlcG9zW2RybS1hbWRdPSIKPj4gLXNzaDovL2dpdC5m
+cmVlZGVza3RvcC5vcmcvZ2l0L2RybS9kcm0tYW1kCj4+IC1naXQ6Ly9hbm9uZ2l0LmZyZWVkZXNr
+dG9wLm9yZy9kcm0vZHJtLWFtZAo+PiAtCj4+IGh0dHBzOi8vbmFtMTEuc2FmZWxpbmtzLnByb3Rl
+Y3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmFubwo+PiBuZ2l0LmZyZWVkZXNr
+dG9wLm9yZyUyRmdpdCUyRmRybSUyRmRybS0KPj4gYW1kJmFtcDtkYXRhPTA0JTdDMDElN0NhbGV4
+YW5kZXIuZGV1Y2hlciU0MGFtZC5jb20lN0M1OTAzODk2Y2YKPj4gMmU2NDJhZmIwNTQwOGQ5MWFh
+MzBmNmQlN0MzZGQ4OTYxZmU0ODg0ZTYwOGUxMWE4MmQ5OTRlMTgzZCU3QzAlNwo+PiBDMCU3QzYz
+NzU3MDEwOTkwNjkyNjgwNSU3Q1Vua25vd24lN0NUV0ZwYkdac2IzZDhleUpXSWpvaU1DNHcKPj4g
+TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazFoYVd3aUxDSlhWQ0k2TW4wJTNEJTdD
+MTAwMCZhbQo+PiBwO3NkYXRhPTFrUWU0dDg5Q3lBTnFSaE5VcFEyUlAzTmR6N0Ezc2RkJTJGaVda
+N0ZtS0hNNCUzRCZhCj4+IG1wO3Jlc2VydmVkPTAKPj4gLQo+PiBodHRwczovL25hbTExLnNhZmVs
+aW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZhbm8KPj4gbmdp
+dC5mcmVlZGVza3RvcC5vcmclMkZnaXQlMkZkcm0lMkZkcm0tCj4+IGFtZC5naXQmYW1wO2RhdGE9
+MDQlN0MwMSU3Q2FsZXhhbmRlci5kZXVjaGVyJTQwYW1kLmNvbSU3QzU5MDM4OQo+PiA2Y2YyZTY0
+MmFmYjA1NDA4ZDkxYWEzMGY2ZCU3QzNkZDg5NjFmZTQ4ODRlNjA4ZTExYTgyZDk5NGUxODNkJTdD
+MAo+PiAlN0MwJTdDNjM3NTcwMTA5OTA2OTI2ODA1JTdDVW5rbm93biU3Q1RXRnBiR1pzYjNkOGV5
+SldJam9pTUMKPj4gNHdMakF3TURBaUxDSlFJam9pVjJsdU16SWlMQ0pCVGlJNklrMWhhV3dpTENK
+WFZDSTZNbjAlM0QlN0MxMDAwJgo+PiBhbXA7c2RhdGE9dlZxTVdNYmRKRkhKVzhqMDl0bjFtN0l0
+R1NMMFJtZmVEYkpaRldvWUJmNCUzRCZhbQo+PiBwO3Jlc2VydmVkPTAKPj4gLSIKPj4gIGRybV90
+aXBfcmVwb3NbZHJtXT0iCj4+ICBzc2g6Ly9naXQuZnJlZWRlc2t0b3Aub3JnL2dpdC9kcm0vZHJt
+Cj4+ICBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtCj4+IEBAIC03NiwxNyAr
+NzAsMTQgQEAgZHJtX3RpcF9jb25maWc9KAo+PiAgCSJkcm0JCQlkcm0tZml4ZXMiCj4+ICAJImRy
+bS1taXNjCQlkcm0tbWlzYy1maXhlcyIKPj4gIAkiZHJtLWludGVsCQlkcm0taW50ZWwtZml4ZXMi
+Cj4+IC0JImRybS1hbWQJCWRybS1hbWQtZml4ZXMiCj4+IAo+PiAgCSJkcm0JCQlkcm0tbmV4dCIK
+Pj4gIAkiZHJtLW1pc2MJCWRybS1taXNjLW5leHQtZml4ZXMiCj4+ICAJImRybS1pbnRlbAkJZHJt
+LWludGVsLW5leHQtZml4ZXMiCj4+IC0JImRybS1hbWQJCWRybS1hbWQtbmV4dC1maXhlcyIKPj4g
+Cj4+ICAJImRybS1taXNjCQlkcm0tbWlzYy1uZXh0Igo+PiAgCSJkcm0taW50ZWwJCWRybS1pbnRl
+bC1uZXh0Igo+PiAgCSJkcm0taW50ZWwJCWRybS1pbnRlbC1ndC1uZXh0Igo+PiAtCSJkcm0tYW1k
+CQlkcm0tYW1kLW5leHQiCj4+IAo+PiAgCSJzb3VuZC11cHN0cmVhbQkJZm9yLWxpbnVzIgo+PiAg
+CSJzb3VuZC11cHN0cmVhbQkJZm9yLW5leHQiCj4+IC0tCj4+IDIuMjAuMQoKLS0gCkphbmkgTmlr
+dWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
