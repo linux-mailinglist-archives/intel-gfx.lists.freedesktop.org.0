@@ -1,56 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F368638E7CA
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 15:38:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7737538E7D7
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 15:40:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 115DB6E59F;
-	Mon, 24 May 2021 13:38:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5936E80B;
+	Mon, 24 May 2021 13:40:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
- [IPv6:2607:f8b0:4864:20::72a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E73B86E59F
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 13:38:39 +0000 (UTC)
-Received: by mail-qk1-x72a.google.com with SMTP id h20so11463917qko.11
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 06:38:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4KU38ADsfY+OVhk0Wa3ifSJILAZg0R95ihYDi7tDSXA=;
- b=oGSH3zbCSZLCt6nOeZDNaRaVnYntQ0tBC7rCgPHqsU6fufgcRxfxsCY59Rf24FkJfy
- OmnxTY3KqaptIPh7WgP3SQnjYOkYal6+OEe5boHlErSKF8E47XjnFoAifhtHhqabbFg2
- u54sn5bzuV2tvawREj+uwfTdY2b+uPohfIZXDuRpaGwgCbdp/AaP5/G/37PG6mdfSjcl
- yT5+X/1yobT/k5OQvSBF3nQVuLD4Z4NZ2+JuXOjR5IJmKxCJUokqdM3iGmmosLr/BJHz
- 4Ufqe11wew1Acqw07VCLgtgP8Y2noWygHMj669M/XWQYAlnnK+XLgfkcnl3s6DpGrfqi
- XFOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4KU38ADsfY+OVhk0Wa3ifSJILAZg0R95ihYDi7tDSXA=;
- b=EcTbsH/Z7C9eNUIT+wVciXhz9rrqFyegu88pVJOXzx1zU9ExrkcfAGFwPeOrYSt55Z
- ZUX5oS6pZd2paWXfEaC+/WKArSXobJY/CbGcicIqtX7jiCsFlN79tGjifJpX7qChYGoo
- /oOXJr5beWJU63GYn2YPfVFTNMZOVh3nuF9gKe06DgLKWidjLqK/rXq46KCpdwKGpJI7
- x/BLK5OTZ5sZtrxEgO95Zjj8iCykuJKhAk8LTc8OxNa4VBSp4lv+F2PcLiSmNIgBmnI/
- v3R7rIfPtquCrND6V31dX3Wz4en6c/RVJjrFhIZYhiI9JNhqfBEw2khv6AVs1HdfpYGy
- DIng==
-X-Gm-Message-State: AOAM530g86Bb/StWGkPcD6e/jenQCI9cdUP03j8c69EtkE9krhKjPG4L
- fbZ9BFZ5L0KJnvgW/eAaLrb+NR0yjd1Ez2Plae4=
-X-Google-Smtp-Source: ABdhPJyq0idQZt4cF3FmgMXO4FbmuOWMbQ3vAiWKHB1+RrqM/b57WyzYgfkpd4fA9aLSPm0sMTBzbewvk44PDmABORU=
-X-Received: by 2002:a05:620a:886:: with SMTP id
- b6mr6714557qka.327.1621863518957; 
- Mon, 24 May 2021 06:38:38 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A19226E80B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 13:40:36 +0000 (UTC)
+IronPort-SDR: acd3TKSPPjAcoNGOufa9yeULHaBUNiSHnpvVrR1mTtmNNbOFgfg5OlC8dIjM4MwgHlFikx/iXo
+ w7iFla5+wcZQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="263146140"
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="263146140"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 06:40:35 -0700
+IronPort-SDR: L5pqlwF/EM/mWIr/7EFh6Y/VHUbl28tfDOLzno5IOm2pn4sEOSsrO/n87u1T/ETegOhWr0kiS7
+ KcYW2cxFGFHw==
+X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="442039821"
+Received: from pamcdon2-mobl1.amr.corp.intel.com (HELO [10.209.69.43])
+ ([10.209.69.43])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 06:40:35 -0700
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210515031035.2561658-1-matthew.d.roper@intel.com>
+ <20210515031035.2561658-6-matthew.d.roper@intel.com>
+From: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <6a0912f0-df13-6509-282f-f021c5a5548b@intel.com>
+Date: Mon, 24 May 2021 06:40:25 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <4d84b06ee9e8dad88ff101de5e7b78b9b09cfee3.camel@fifi.org>
- <20210524075121.1949-1-hdanton@sina.com>
-In-Reply-To: <20210524075121.1949-1-hdanton@sina.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 24 May 2021 14:38:12 +0100
-Message-ID: <CAM0jSHOWwgPRWkSN22r6T_rkiVcdhYwN34vkzp0q_icgDqT52Q@mail.gmail.com>
-To: Hillf Danton <hdanton@sina.com>
-Subject: Re: [Intel-gfx] Bug: 5.12.5 - list_add double add at
- __i915_gem_object_make_shrinkable+0xa6/0xe0
+In-Reply-To: <20210515031035.2561658-6-matthew.d.roper@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 05/23] drm/i915/xelpd: Add VRR guardband
+ for VRR CTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,123 +51,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Philippe Troin <phil@fifi.org>, kernel list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 May 2021 at 13:05, Hillf Danton <hdanton@sina.com> wrote:
->
-> On Sun, 23 May 2021 12:47:34 -0700 Philippe Troin wrote:
-> > Found the following bug on a FUJITSU LIFEBOOK S6520.
-> >
-> > The kernel crash happens when selecting a user from the gdm login
-> > screen right after boot.
-> > The same hardware has no problems with 5.11.21.
+On 5/14/21 8:10 PM, Matt Roper wrote:
+> From: Manasi Navare <manasi.d.navare@intel.com>
+> 
+> On XE_LPD, VRR CTL register adds a new VRR Guardband bitfield
+> replacing the pipeline full and deprecating the pipeline override
+> bit.
+> 
+> This patch adds this corresponding bitfield in the register defs,
+> crtc state vrr structure and populates this in vrr compute
+> config and vrr enable functions. It also adds the corresponding
+> HW state readout for this field.
 
-The trace looks similar to something that was fixed in 8777d17b68dc
-("drm/i915/gem: Pin the L-shape quirked object as unshrinkable") which
-should now be in drm-tip. Could you try that? Otherwise could you
-please file a new bug report at
-https://gitlab.freedesktop.org/drm/intel/?
+LGTM. Can add Bspec: 50508 for reference.
 
-> >
-> > OOPS:
-> >    list_add double add: new=ffff8e785604c620, prev=ffff8e785604c620, next=ffff8e784d105b38.
-> >    ------------[ cut here ]------------
-> >    kernel BUG at lib/list_debug.c:29!
-> >    invalid opcode: 0000 [#1] SMP PTI
-> >    CPU: 0 PID: 1498 Comm: gnome-shell Not tainted 5.12.5-200.fc33.x86_64 #1
-> >    Hardware name: FUJITSU LIFEBOOK S6520/FJNB1E6, BIOS Version 1.31  09/09/2009
-> >    RIP: 0010:__list_add_valid.cold+0x26/0x3f
-> >    Code: d8 77 a6 ff 4c 89 c1 48 c7 c7 10 52 41 b8 e8 7f 2c fe ff 0f 0b 48 89 f2 4c 89 c1 48 89 fe 48 c7 c7 c0 52 41 b8 e8 68 2c fe ff <0f> 0b 48 89 d1 4c 89 c6 4c 89 ca 48 c7 c7 68 52 41 b8 e8 51 2c fe
-> >    RSP: 0018:ffffb84100ebfcf8 EFLAGS: 00010082
-> >    RAX: 0000000000000058 RBX: ffff8e785604c340 RCX: 0000000000000000
-> >    RDX: ffff8e787bc26720 RSI: ffff8e787bc185c0 RDI: ffff8e787bc185c0
-> >    RBP: ffff8e784d105b38 R08: 0000000000000000 R09: ffffb84100ebfb30
-> >    R10: ffffb84100ebfb28 R11: ffffffffb8b45f28 R12: ffff8e784d100000
-> >    R13: 0000000000000246 R14: ffff8e784d105b20 R15: ffff8e785604c620
-> >    FS:  00007fa65ebf6d40(0000) GS:ffff8e787bc00000(0000) knlGS:0000000000000000
-> >    CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> >    CR2: 00007fa638311a10 CR3: 00000001162d0000 CR4: 00000000000006f0
-> >    Call Trace:
-> >     __i915_gem_object_make_shrinkable+0xa6/0xe0 [i915]
-> >     i915_gem_object_set_tiling+0x4fe/0x530 [i915]
-> >     ? i915_gem_object_make_unshrinkable+0x75/0xd0 [i915]
-> >     i915_gem_set_tiling_ioctl+0x148/0x230 [i915]
-> >     ? i915_gem_object_set_tiling+0x530/0x530 [i915]
-> >     drm_ioctl_kernel+0x86/0xd0 [drm]
-> >     drm_ioctl+0x20f/0x3a0 [drm]
-> >     ? i915_gem_object_set_tiling+0x530/0x530 [i915]
-> >     ? handle_mm_fault+0xd5/0x2b0
-> >     __x64_sys_ioctl+0x83/0xb0
-> >     do_syscall_64+0x33/0x40
-> >     entry_SYSCALL_64_after_hwframe+0x44/0xae
->
-> Update shrink_pin under lock to cut chance for races.
-> If it is a cure then atomic_t will be dropped.
->
-> +++ x/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-> @@ -435,6 +435,7 @@ void i915_gem_object_make_unshrinkable(s
->  {
->         struct drm_i915_private *i915 = obj_to_i915(obj);
->         unsigned long flags;
-> +       int pin;
->
->         /*
->          * We can only be called while the pages are pinned or when
-> @@ -442,12 +443,10 @@ void i915_gem_object_make_unshrinkable(s
->          * from a single caller under controlled conditions; and on release
->          * only one caller may release us. Neither the two may cross.
->          */
-> -       if (atomic_add_unless(&obj->mm.shrink_pin, 1, 0))
-> -               return;
-> -
->         spin_lock_irqsave(&i915->mm.obj_lock, flags);
-> -       if (!atomic_fetch_inc(&obj->mm.shrink_pin) &&
-> -           !list_empty(&obj->mm.link)) {
-> +       pin = atomic_read(&obj->mm.shrink_pin);
-> +       atomic_inc(&obj->mm.shrink_pin);
-> +       if (!pin && !list_empty(&obj->mm.link)) {
->                 list_del_init(&obj->mm.link);
->                 i915->mm.shrink_count--;
->                 i915->mm.shrink_memory -= obj->base.size;
-> @@ -460,23 +459,23 @@ static void __i915_gem_object_make_shrin
->  {
->         struct drm_i915_private *i915 = obj_to_i915(obj);
->         unsigned long flags;
-> +       int pin;
->
->         GEM_BUG_ON(!i915_gem_object_has_pages(obj));
->         if (!i915_gem_object_is_shrinkable(obj))
->                 return;
->
-> -       if (atomic_add_unless(&obj->mm.shrink_pin, -1, 1))
-> -               return;
-> -
->         spin_lock_irqsave(&i915->mm.obj_lock, flags);
->         GEM_BUG_ON(!kref_read(&obj->base.refcount));
-> -       if (atomic_dec_and_test(&obj->mm.shrink_pin)) {
+Reviewed-by: Aditya Swarup <aditya.swarup@intel.com>
+> 
+> Cc: Aditya Swarup <aditya.swarup@intel.com>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  |  8 ++-
+>  .../drm/i915/display/intel_display_types.h    |  2 +-
+>  drivers/gpu/drm/i915/display/intel_vrr.c      | 58 +++++++++++++------
+>  drivers/gpu/drm/i915/i915_drv.h               |  3 +
+>  drivers/gpu/drm/i915/i915_reg.h               |  2 +
+>  5 files changed, 53 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 422b59ebf6dc..ce44f18340ee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7631,10 +7631,11 @@ static void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
+>  	    intel_hdmi_infoframe_enable(DP_SDP_VSC))
+>  		intel_dump_dp_vsc_sdp(dev_priv, &pipe_config->infoframes.vsc);
+>  
+> -	drm_dbg_kms(&dev_priv->drm, "vrr: %s, vmin: %d, vmax: %d, pipeline full: %d, flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
+> +	drm_dbg_kms(&dev_priv->drm, "vrr: %s, vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
+>  		    yesno(pipe_config->vrr.enable),
+>  		    pipe_config->vrr.vmin, pipe_config->vrr.vmax,
+> -		    pipe_config->vrr.pipeline_full, pipe_config->vrr.flipline,
+> +		    pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
+> +		    pipe_config->vrr.flipline,
+>  		    intel_vrr_vmin_vblank_start(pipe_config),
+>  		    intel_vrr_vmax_vblank_start(pipe_config));
+>  
+> @@ -8640,6 +8641,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	PIPE_CONF_CHECK_I(vrr.vmax);
+>  	PIPE_CONF_CHECK_I(vrr.flipline);
+>  	PIPE_CONF_CHECK_I(vrr.pipeline_full);
+> +	PIPE_CONF_CHECK_I(vrr.guardband);
+>  
+>  	PIPE_CONF_CHECK_BOOL(has_psr);
+>  	PIPE_CONF_CHECK_BOOL(has_psr2);
+> @@ -12200,6 +12202,8 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+>  
+>  	i915->framestart_delay = 1; /* 1-4 */
+>  
+> +	i915->window2_delay = 0; /* No DSB so no window2 delay */
 > +
-> +       pin = atomic_read(&obj->mm.shrink_pin);
-> +       atomic_dec(&obj->mm.shrink_pin);
-> +       if (pin == 1) {
->                 GEM_BUG_ON(!list_empty(&obj->mm.link));
->
->                 list_add_tail(&obj->mm.link, head);
->                 i915->mm.shrink_count++;
->                 i915->mm.shrink_memory += obj->base.size;
-> -
->         }
->         spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
+>  	intel_mode_config_init(i915);
+>  
+>  	ret = intel_cdclk_init(i915);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 9c0adfc60c6f..9e9f768e2d7f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1202,7 +1202,7 @@ struct intel_crtc_state {
+>  	struct {
+>  		bool enable;
+>  		u8 pipeline_full;
+> -		u16 flipline, vmin, vmax;
+> +		u16 flipline, vmin, vmax, guardband;
+>  	} vrr;
+>  
+>  	/* Stream Splitter for eDP MSO */
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 046210ae1de0..c335b1dbafcf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -68,7 +68,10 @@ static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_stat
+>  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  
+>  	/* The hw imposes the extra scanline before frame start */
+> -	return crtc_state->vrr.pipeline_full + i915->framestart_delay + 1;
+> +	if (DISPLAY_VER(i915) >= 13)
+> +		return crtc_state->vrr.guardband + i915->framestart_delay + 1;
+> +	else
+> +		return crtc_state->vrr.pipeline_full + i915->framestart_delay + 1;
 >  }
-> --
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>  
+>  int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
+> @@ -86,6 +89,8 @@ void
+>  intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  			 struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	struct intel_connector *connector =
+>  		to_intel_connector(conn_state->connector);
+>  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> @@ -124,17 +129,26 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
+>  
+>  	/*
+> -	 * FIXME: s/4/framestart_delay+1/ to get consistent
+> -	 * earliest/latest points for register latching regardless
+> -	 * of the framestart_delay used?
+> -	 *
+> -	 * FIXME: this really needs the extra scanline to provide consistent
+> -	 * behaviour for all framestart_delay values. Otherwise with
+> -	 * framestart_delay==3 we will end up extending the min vblank by
+> -	 * one extra line.
+> +	 * For XE_LPD+, we use guardband and pipeline override
+> +	 * is deprecated.
+>  	 */
+> -	crtc_state->vrr.pipeline_full =
+> -		min(255, crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay - 4 - 1);
+> +	if (DISPLAY_VER(i915) >= 13)
+> +		crtc_state->vrr.guardband =
+> +			crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay -
+> +			i915->window2_delay;
+> +	else
+> +		/*
+> +		 * FIXME: s/4/framestart_delay+1/ to get consistent
+> +		 * earliest/latest points for register latching regardless
+> +		 * of the framestart_delay used?
+> +		 *
+> +		 * FIXME: this really needs the extra scanline to provide consistent
+> +		 * behaviour for all framestart_delay values. Otherwise with
+> +		 * framestart_delay==3 we will end up extending the min vblank by
+> +		 * one extra line.
+> +		 */
+> +		crtc_state->vrr.pipeline_full =
+> +			min(255, crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay - 4 - 1);
+>  
+>  	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+>  }
+> @@ -149,10 +163,15 @@ void intel_vrr_enable(struct intel_encoder *encoder,
+>  	if (!crtc_state->vrr.enable)
+>  		return;
+>  
+> -	trans_vrr_ctl = VRR_CTL_VRR_ENABLE |
+> -		VRR_CTL_IGN_MAX_SHIFT | VRR_CTL_FLIP_LINE_EN |
+> -		VRR_CTL_PIPELINE_FULL(crtc_state->vrr.pipeline_full) |
+> -		VRR_CTL_PIPELINE_FULL_OVERRIDE;
+> +	if (DISPLAY_VER(dev_priv) >= 13)
+> +		trans_vrr_ctl = VRR_CTL_VRR_ENABLE |
+> +			VRR_CTL_IGN_MAX_SHIFT | VRR_CTL_FLIP_LINE_EN |
+> +			XELPD_VRR_CTL_VRR_GUARDBAND(crtc_state->vrr.guardband);
+> +	else
+> +		trans_vrr_ctl = VRR_CTL_VRR_ENABLE |
+> +			VRR_CTL_IGN_MAX_SHIFT | VRR_CTL_FLIP_LINE_EN |
+> +			VRR_CTL_PIPELINE_FULL(crtc_state->vrr.pipeline_full) |
+> +			VRR_CTL_PIPELINE_FULL_OVERRIDE;
+>  
+>  	intel_de_write(dev_priv, TRANS_VRR_VMIN(cpu_transcoder), crtc_state->vrr.vmin - 1);
+>  	intel_de_write(dev_priv, TRANS_VRR_VMAX(cpu_transcoder), crtc_state->vrr.vmax - 1);
+> @@ -199,8 +218,13 @@ void intel_vrr_get_config(struct intel_crtc *crtc,
+>  	if (!crtc_state->vrr.enable)
+>  		return;
+>  
+> -	if (trans_vrr_ctl & VRR_CTL_PIPELINE_FULL_OVERRIDE)
+> -		crtc_state->vrr.pipeline_full = REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, trans_vrr_ctl);
+> +	if (DISPLAY_VER(dev_priv) >= 13)
+> +		crtc_state->vrr.guardband =
+> +			REG_FIELD_GET(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, trans_vrr_ctl);
+> +	else
+> +		if (trans_vrr_ctl & VRR_CTL_PIPELINE_FULL_OVERRIDE)
+> +			crtc_state->vrr.pipeline_full =
+> +				REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, trans_vrr_ctl);
+>  	if (trans_vrr_ctl & VRR_CTL_FLIP_LINE_EN)
+>  		crtc_state->vrr.flipline = intel_de_read(dev_priv, TRANS_VRR_FLIPLINE(cpu_transcoder)) + 1;
+>  	crtc_state->vrr.vmax = intel_de_read(dev_priv, TRANS_VRR_VMAX(cpu_transcoder)) + 1;
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 39b5e019c1a5..6eb6c6acd81e 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1139,6 +1139,9 @@ struct drm_i915_private {
+>  
+>  	u8 framestart_delay;
+>  
+> +	/* Window2 specifies time required to program DSB (Window2) in number of scan lines */
+> +	u8 window2_delay;
+> +
+>  	u8 pch_ssc_use;
+>  
+>  	/* For i915gm/i945gm vblank irq workaround */
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 506a5aa0646b..dbb75cd087d3 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -4376,6 +4376,8 @@ enum {
+>  #define   VRR_CTL_PIPELINE_FULL_MASK		REG_GENMASK(10, 3)
+>  #define   VRR_CTL_PIPELINE_FULL(x)		REG_FIELD_PREP(VRR_CTL_PIPELINE_FULL_MASK, (x))
+>  #define   VRR_CTL_PIPELINE_FULL_OVERRIDE	REG_BIT(0)
+> +#define	  XELPD_VRR_CTL_VRR_GUARDBAND_MASK	REG_GENMASK(15, 0)
+> +#define	  XELPD_VRR_CTL_VRR_GUARDBAND(x)	REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
+>  
+>  #define _TRANS_VRR_VMAX_A		0x60424
+>  #define _TRANS_VRR_VMAX_B		0x61424
+> 
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
