@@ -2,47 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8315538E407
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 12:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A880038E485
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 12:48:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B24B96E161;
-	Mon, 24 May 2021 10:30:23 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E99DC6E160;
- Mon, 24 May 2021 10:30:18 +0000 (UTC)
-IronPort-SDR: /GEKH3FuYQ6klncUUCE9/yajNCT+5cgqQ5WQOdGqwZ/ofhyxx6sWGsCI5Z/zLhRPMiLmqQk4zG
- ok6lkQcgm3uQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="189286200"
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="189286200"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 03:30:17 -0700
-IronPort-SDR: yGDo5CvTBkKx3+jXoVRzLuNVGqkrzqiPJdeCdfnN8HTX4PJnu2JLO1m7ZurgDjDQMKN4mXRA8r
- A/naeXi2FhcA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="396901135"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga006.jf.intel.com with ESMTP; 24 May 2021 03:30:14 -0700
-Received: from [10.249.134.123] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.134.123])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 14OAUD1S029632; Mon, 24 May 2021 11:30:13 +0100
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-6-matthew.brost@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <4619895f-0753-b77d-8d8f-679a794a33e6@intel.com>
-Date: Mon, 24 May 2021 12:30:13 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id E32276E190;
+	Mon, 24 May 2021 10:48:05 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5929B6E190;
+ Mon, 24 May 2021 10:48:05 +0000 (UTC)
+IronPort-SDR: kB8vCDuLWipRcZwnT/2jZXG9OR/WUOkTJEgSAnUAyoUxNCeoAOwqs4bM7FJg3soFRI0ad4whtS
+ k/rjRrFG6EIw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="181544376"
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="181544376"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 03:48:04 -0700
+IronPort-SDR: QuEnAfZ5/WIeo3m+UEXFblrExKUADwlP9aJSrqDHvReibVvmxIJCm/OBqO5uyGflOOKgDPu+dc
+ Y6pL8dPMhDpg==
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="413543179"
+Received: from gtenuto-mobl1.ger.corp.intel.com (HELO [10.213.210.116])
+ ([10.213.210.116])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 03:48:02 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
+ <6cf2f14a-6a16-5ea3-d307-004faad4cc79@linux.intel.com>
+ <a2b03603-eb3e-7bef-a799-c15cfb1a8e0b@amd.com>
+ <YKJ+F4KqEiQQYkRz@phenom.ffwll.local>
+ <BYAPR12MB2840C633CF05C1F29263F5BCF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>
+ <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <mysJHURIfWxBRBabIlnunj7LZNkkRQ-Knu_o6v7GZI4xCwGMZXn0rvjscl-aTT_d-ttlAQgJOG3gP95DBd_dxCPQNfguTSdrltxPrKt2FGs=@emersion.fr>
+ <7f8fc38a-cd25-aa1f-fa2d-5d3334edb3d2@linux.intel.com>
+ <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
+ <71428a10-4b2f-dbbf-7678-7487f9eda6a5@linux.intel.com>
+ <c22608a4-b84c-a3a4-0df1-448312b1292e@linux.intel.com>
+ <CAKMK7uF0fHBoYfiTS+-80RtUeuKFUcYDBpGHtNY6Ma+aJmmkxA@mail.gmail.com>
+ <b1d508ee-6809-f5dc-6539-70cb89ef5e3b@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <74dd3086-13c5-2fb0-bb66-eec1a061e693@linux.intel.com>
+Date: Mon, 24 May 2021 11:48:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210506191451.77768-6-matthew.brost@intel.com>
+In-Reply-To: <b1d508ee-6809-f5dc-6539-70cb89ef5e3b@linux.intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 05/97] drm/i915/guc: use probe_error log
- for CT enablement failure
+Subject: Re: [Intel-gfx] [PATCH 0/7] Per client engine busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,118 +64,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
+ Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Simon Ser <contact@emersion.fr>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>,
+ "aritger@nvidia.com" <aritger@nvidia.com>, "Nieto,
+ David M" <David.Nieto@amd.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 06.05.2021 21:13, Matthew Brost wrote:
-> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> We have a couple of failure injection points in the CT enablement path,
-> so we need to use i915_probe_error() to select the appropriate log level.
-> A new macro (CT_PROBE_ERROR) has been added to the set of CT logging
-> macros to be used in this scenario and upcoming ones.
-> 
-> While adding the new macros, fix the underlying logging mechanics used
-> by the existing ones (DRM_DEV_* -> drm_*) and move the inlines to
-> before they're used inside the macros.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 48 ++++++++++++-----------
->  1 file changed, 25 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index fa9e048cc65f..25618649048f 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -7,14 +7,36 @@
->  #include "intel_guc_ct.h"
->  #include "gt/intel_gt.h"
->  
-> +static inline struct intel_guc *ct_to_guc(struct intel_guc_ct *ct)
-> +{
-> +	return container_of(ct, struct intel_guc, ct);
-> +}
-> +
-> +static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
-> +{
-> +	return guc_to_gt(ct_to_guc(ct));
-> +}
-> +
-> +static inline struct drm_i915_private *ct_to_i915(struct intel_guc_ct *ct)
-> +{
-> +	return ct_to_gt(ct)->i915;
-> +}
-> +
-> +static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
-> +{
-> +	return &ct_to_i915(ct)->drm;
-> +}
-> +
->  #define CT_ERROR(_ct, _fmt, ...) \
-> -	DRM_DEV_ERROR(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
-> +	drm_err(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
->  #ifdef CONFIG_DRM_I915_DEBUG_GUC
->  #define CT_DEBUG(_ct, _fmt, ...) \
-> -	DRM_DEV_DEBUG_DRIVER(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
-> +	drm_dbg(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
->  #else
->  #define CT_DEBUG(...)	do { } while (0)
->  #endif
-> +#define CT_PROBE_ERROR(_ct, _fmt, ...) \
-> +	i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__);
->  
->  struct ct_request {
->  	struct list_head link;
-> @@ -47,26 +69,6 @@ void intel_guc_ct_init_early(struct intel_guc_ct *ct)
->  	INIT_WORK(&ct->requests.worker, ct_incoming_request_worker_func);
->  }
->  
-> -static inline struct intel_guc *ct_to_guc(struct intel_guc_ct *ct)
-> -{
-> -	return container_of(ct, struct intel_guc, ct);
-> -}
-> -
-> -static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
-> -{
-> -	return guc_to_gt(ct_to_guc(ct));
-> -}
-> -
-> -static inline struct drm_i915_private *ct_to_i915(struct intel_guc_ct *ct)
-> -{
-> -	return ct_to_gt(ct)->i915;
-> -}
-> -
-> -static inline struct device *ct_to_dev(struct intel_guc_ct *ct)
-> -{
-> -	return ct_to_i915(ct)->drm.dev;
-> -}
-> -
->  static inline const char *guc_ct_buffer_type_to_str(u32 type)
->  {
->  	switch (type) {
-> @@ -264,7 +266,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
->  err_deregister:
->  	ct_deregister_buffer(ct, INTEL_GUC_CT_BUFFER_TYPE_RECV);
->  err_out:
-> -	CT_ERROR(ct, "Failed to open open CT channel (err=%d)\n", err);
-> +	CT_PROBE_ERROR(ct, "Failed to open channel (err=%d)\n", err);
-
-nit: while here we can start using %pe to print error
-
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
->  	return err;
->  }
->  
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDIwLzA1LzIwMjEgMDk6MzUsIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+IE9uIDE5LzA1LzIw
+MjEgMTk6MjMsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+IE9uIFdlZCwgTWF5IDE5LCAyMDIxIGF0
+IDY6MTYgUE0gVHZydGtvIFVyc3VsaW4KPj4gPHR2cnRrby51cnN1bGluQGxpbnV4LmludGVsLmNv
+bT4gd3JvdGU6Cj4+Pgo+Pj4KPj4+IE9uIDE4LzA1LzIwMjEgMTA6NDAsIFR2cnRrbyBVcnN1bGlu
+IHdyb3RlOgo+Pj4+Cj4+Pj4gT24gMTgvMDUvMjAyMSAxMDoxNiwgRGFuaWVsIFN0b25lIHdyb3Rl
+Ogo+Pj4+PiBIaSwKPj4+Pj4KPj4+Pj4gT24gVHVlLCAxOCBNYXkgMjAyMSBhdCAxMDowOSwgVHZy
+dGtvIFVyc3VsaW4KPj4+Pj4gPHR2cnRrby51cnN1bGluQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6
+Cj4+Pj4+PiBJIHdhcyBqdXN0IHdvbmRlcmluZyBpZiBzdGF0KDIpIGFuZCBhIGNocmRldiBtYWpv
+ciBjaGVjayB3b3VsZCBiZSBhCj4+Pj4+PiBzb2xpZCBjcml0ZXJpYSB0byBtb3JlIGVmZmljaWVu
+dGx5IChjb21wYXJlZCB0byBwYXJzaW5nIHRoZSB0ZXh0Cj4+Pj4+PiBjb250ZW50KSBkZXRlY3Qg
+ZHJtIGZpbGVzIHdoaWxlIHdhbGtpbmcgcHJvY2ZzLgo+Pj4+Pgo+Pj4+PiBNYXliZSBJJ20gbWlz
+c2luZyBzb21ldGhpbmcsIGJ1dCBpcyB0aGUgcGVyLVBJRCB3YWxrIGFjdHVhbGx5IGEKPj4+Pj4g
+bWVhc3VyYWJsZSBwZXJmb3JtYW5jZSBpc3N1ZSByYXRoZXIgdGhhbiBqdXN0IGEgYml0IHVucGxl
+YXNhbnQ/Cj4+Pj4KPj4+PiBQZXIgcGlkIGFuZCBwZXIgZWFjaCBvcGVuIGZkLgo+Pj4+Cj4+Pj4g
+QXMgc2FpZCBpbiB0aGUgb3RoZXIgdGhyZWFkIHdoYXQgYm90aGVycyBtZSBhIGJpdCBpbiB0aGlz
+IHNjaGVtZSBpcyAKPj4+PiB0aGF0Cj4+Pj4gdGhlIGNvc3Qgb2Ygb2J0YWluaW5nIEdQVSB1c2Fn
+ZSBzY2FsZXMgYmFzZWQgb24gbm9uLUdQVSBjcml0ZXJpYS4KPj4+Pgo+Pj4+IEZvciB1c2UgY2Fz
+ZSBvZiBhIHRvcC1saWtlIHRvb2wgd2hpY2ggc2hvd3MgYWxsIHByb2Nlc3NlcyB0aGlzIGlzIGEK
+Pj4+PiBzbWFsbGVyIGFkZGl0aW9uYWwgY29zdCwgYnV0IHRoZW4gZm9yIGEgZ3B1LXRvcCBsaWtl
+IHRvb2wgaXQgaXMgCj4+Pj4gc29tZXdoYXQKPj4+PiBoaWdoZXIuCj4+Pgo+Pj4gVG8gZnVydGhl
+ciBleHBhbmQsIG5vdCBvbmx5IGNvc3Qgd291bGQgc2NhbGUgcGVyIHBpZCBtdWx0aXBsaWVzIHBl
+ciBvcGVuCj4+PiBmZCwgYnV0IHRvIGRldGVjdCB3aGljaCBvZiB0aGUgZmRzIGFyZSBEUk0gSSBz
+ZWUgdGhlc2UgdGhyZWUgb3B0aW9uczoKPj4+Cj4+PiAxKSBPcGVuIGFuZCBwYXJzZSBmZGluZm8u
+Cj4+PiAyKSBOYW1lIGJhc2VkIG1hdGNoaW5nIGllIC9kZXYvZHJpLy4uIHNvbWV0aGluZy4KPj4+
+IDMpIFN0YXQgdGhlIHN5bWxpbmsgdGFyZ2V0IGFuZCBjaGVjayBmb3IgRFJNIG1ham9yLgo+Pgo+
+PiBzdGF0IHdpdGggc3ltbGluayBmb2xsb3dpbmcgc2hvdWxkIGJlIHBsZW50eSBmYXN0Lgo+IAo+
+IE1heWJlLiBJIGRvbid0IHRoaW5rIG15IHBvaW50IGFib3V0IGtlZXBpbmcgdGhlIGRlbnRyeSBj
+YWNoZSBuZWVkbGVzc2x5IAo+IGhvdCBpcyBnZXR0aW5nIHRocm91Z2ggYXQgYWxsLiBPbiBteSBs
+aWdodGx5IGxvYWRlZCBkZXNrdG9wOgo+IAo+ICDCoCQgc3VkbyBsc29mIHwgd2MgLWwKPiAgwqA1
+OTk1NTEKPiAKPiAgwqAkIHN1ZG8gbHNvZiB8IGdyZXAgIi9kZXYvZHJpLyIgfCB3YyAtbAo+ICDC
+oDE5NjUKPiAKPiBJdCdzIGdvaW5nIHRvIGxvb2sgdXAgfjYwMGsgcG9pbnRsZXNzIGRlbnRyaWVz
+IGluIGV2ZXJ5IGl0ZXJhdGlvbi4gSnVzdCAKPiB0byBmaW5kIGEgaGFuZGZ1bCBvZiBEUk0gb25l
+cy4gSGFyZCB0byBzYXkgaWYgdGhhdCBpcyBiZXR0ZXIgb3Igd29yc2UgCj4gdGhhbiBqdXN0IHBh
+cnNpbmcgZmRpbmZvIHRleHQgZm9yIGFsbCBmaWxlcy4gV2lsbCBzZWUuCgpDUFUgdXNhZ2UgbG9v
+a3MgcGFzc2FibGUgdW5kZXIgYSBwcm9kdWN0aW9uIGtlcm5lbCAobm9uLWRlYnVnKS4gT25jZSBh
+IApzZWNvbmQgcmVmcmVzaCBwZXJpb2QsIG9uIGEgbm90IHJlYWxseSB0aGF0IGxvYWRlZCBzeXN0
+ZW0gKDExNSBydW5uaW5nIApwcm9jZXNzZXMsIDMwOTYgb3BlbiBmaWxlIGRlc2NyaXB0b3JzIGFz
+IHJlcG9ydGVkIGJ5IGxzb2YsIG5vbmUgb2Ygd2hpY2ggCmFyZSBEUk0pLCByZXN1bHRzIGluIGEg
+c3lzdGVtIGNhbGwgaGVhdnkgbG9hZDoKCnJlYWwgICAgMG01NS4zNDhzCnVzZXIgICAgMG0wLjEw
+MHMKc3lzICAgICAwbTAuMzE5cwoKT25jZSBwZXIgc2Vjb25kIGxvb3AgaXMgZXNzZW50aWFsbHkg
+YWxvbmcgdGhlIGxpbmVzIG9mOgoKICAgZm9yIGVhY2ggcGlkIGluIC9wcm9jLzxwaWQ+OgogICAg
+IGZvciBlYWNoIGZkIGluIC9wcm9jLzxwaWQ+L2ZkaW5mbzoKICAgICAgIGlmIGZzdGF0YXQoZmQp
+IGlzIGRybSBtYWpvcjoKICAgICAgICAgcmVhZCBmZGluZm8gdGV4dCBpbiBvbmUgc3dlZXAgYW5k
+IHBhcnNlIGl0CgpJJ2xsIHBvc3QgdGhlIHF1aWNrIGludGVsX2dwdV90b3AgcGF0Y2ggZm9yIHJl
+ZmVyZW5jZSBidXQgc3RyaW5nIHBhcnNpbmcgCmluIEMgbGVhdmVzIGEgZmV3IHRoaW5ncyB0byBi
+ZSBkZXNpcmVkIHRoZXJlLgoKUmVnYXJkcywKClR2cnRrbwpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
