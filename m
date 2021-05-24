@@ -1,42 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B13838E39A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 11:58:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8315538E407
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 12:30:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63D1F89E8C;
-	Mon, 24 May 2021 09:58:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B24B96E161;
+	Mon, 24 May 2021 10:30:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FC7C89E2B;
- Mon, 24 May 2021 09:58:34 +0000 (UTC)
-IronPort-SDR: GC2vqXGRS9CNM1yzDD2X0/8kUy7XRFEVABo+2AcpkG8nMKJ/fVzVl8vQdQ1owGOxXbQBGBwNWX
- RbNUMm38OyIw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="201642577"
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="201642577"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 02:58:23 -0700
-IronPort-SDR: dTHp+e+t4ZPyBbswo/UtVUwX1e0nazldsFQsibrjZg2XKlczBTooZE7LgKEUnB2kwTkpq6ZUa6
- /Y81midfQXlg==
-X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="475786397"
-Received: from jaherrex-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.50.169])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 02:58:19 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20210524030901.GC27293@zhen-hp.sh.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <58f039e1-225f-4542-8355-1ae91a225206@suse.de>
- <20210524030901.GC27293@zhen-hp.sh.intel.com>
-Date: Mon, 24 May 2021 12:58:16 +0300
-Message-ID: <87k0nocv2f.fsf@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E99DC6E160;
+ Mon, 24 May 2021 10:30:18 +0000 (UTC)
+IronPort-SDR: /GEKH3FuYQ6klncUUCE9/yajNCT+5cgqQ5WQOdGqwZ/ofhyxx6sWGsCI5Z/zLhRPMiLmqQk4zG
+ ok6lkQcgm3uQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="189286200"
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="189286200"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2021 03:30:17 -0700
+IronPort-SDR: yGDo5CvTBkKx3+jXoVRzLuNVGqkrzqiPJdeCdfnN8HTX4PJnu2JLO1m7ZurgDjDQMKN4mXRA8r
+ A/naeXi2FhcA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,319,1613462400"; d="scan'208";a="396901135"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga006.jf.intel.com with ESMTP; 24 May 2021 03:30:14 -0700
+Received: from [10.249.134.123] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.134.123])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 14OAUD1S029632; Mon, 24 May 2021 11:30:13 +0100
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <20210506191451.77768-6-matthew.brost@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <4619895f-0753-b77d-8d8f-679a794a33e6@intel.com>
+Date: Mon, 24 May 2021 12:30:13 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] i915 gvt broke drm-tip; Fix ASAP
+In-Reply-To: <20210506191451.77768-6-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC PATCH 05/97] drm/i915/guc: use probe_error log
+ for CT enablement failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,37 +55,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@redhat.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 May 2021, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
-> On 2021.05.22 21:19:38 +0200, Thomas Zimmermann wrote:
->> Hi,
->> 
->> after creating drm-tip today as part of [1], building drm-tip is now broken
->> with the error message shown below.
->> 
->> Some register constants appear to be missing from the GVT code. Please fix
->> ASAP.
->>
->
-> Thanks, Thomas. Looks DMC rename missed gvt part. We need to ask CI to have
-> at least build test with gvt.
-
-Indeed. This is fixed now with 273895109a04 ("drm/i915/gvt: Add missing
-macro name changes").
-
-BR,
-Jani.
 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+On 06.05.2021 21:13, Matthew Brost wrote:
+> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> 
+> We have a couple of failure injection points in the CT enablement path,
+> so we need to use i915_probe_error() to select the appropriate log level.
+> A new macro (CT_PROBE_ERROR) has been added to the set of CT logging
+> macros to be used in this scenario and upcoming ones.
+> 
+> While adding the new macros, fix the underlying logging mechanics used
+> by the existing ones (DRM_DEV_* -> drm_*) and move the inlines to
+> before they're used inside the macros.
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 48 ++++++++++++-----------
+>  1 file changed, 25 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index fa9e048cc65f..25618649048f 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -7,14 +7,36 @@
+>  #include "intel_guc_ct.h"
+>  #include "gt/intel_gt.h"
+>  
+> +static inline struct intel_guc *ct_to_guc(struct intel_guc_ct *ct)
+> +{
+> +	return container_of(ct, struct intel_guc, ct);
+> +}
+> +
+> +static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
+> +{
+> +	return guc_to_gt(ct_to_guc(ct));
+> +}
+> +
+> +static inline struct drm_i915_private *ct_to_i915(struct intel_guc_ct *ct)
+> +{
+> +	return ct_to_gt(ct)->i915;
+> +}
+> +
+> +static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
+> +{
+> +	return &ct_to_i915(ct)->drm;
+> +}
+> +
+>  #define CT_ERROR(_ct, _fmt, ...) \
+> -	DRM_DEV_ERROR(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
+> +	drm_err(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>  #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>  #define CT_DEBUG(_ct, _fmt, ...) \
+> -	DRM_DEV_DEBUG_DRIVER(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
+> +	drm_dbg(ct_to_drm(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>  #else
+>  #define CT_DEBUG(...)	do { } while (0)
+>  #endif
+> +#define CT_PROBE_ERROR(_ct, _fmt, ...) \
+> +	i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__);
+>  
+>  struct ct_request {
+>  	struct list_head link;
+> @@ -47,26 +69,6 @@ void intel_guc_ct_init_early(struct intel_guc_ct *ct)
+>  	INIT_WORK(&ct->requests.worker, ct_incoming_request_worker_func);
+>  }
+>  
+> -static inline struct intel_guc *ct_to_guc(struct intel_guc_ct *ct)
+> -{
+> -	return container_of(ct, struct intel_guc, ct);
+> -}
+> -
+> -static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
+> -{
+> -	return guc_to_gt(ct_to_guc(ct));
+> -}
+> -
+> -static inline struct drm_i915_private *ct_to_i915(struct intel_guc_ct *ct)
+> -{
+> -	return ct_to_gt(ct)->i915;
+> -}
+> -
+> -static inline struct device *ct_to_dev(struct intel_guc_ct *ct)
+> -{
+> -	return ct_to_i915(ct)->drm.dev;
+> -}
+> -
+>  static inline const char *guc_ct_buffer_type_to_str(u32 type)
+>  {
+>  	switch (type) {
+> @@ -264,7 +266,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>  err_deregister:
+>  	ct_deregister_buffer(ct, INTEL_GUC_CT_BUFFER_TYPE_RECV);
+>  err_out:
+> -	CT_ERROR(ct, "Failed to open open CT channel (err=%d)\n", err);
+> +	CT_PROBE_ERROR(ct, "Failed to open channel (err=%d)\n", err);
+
+nit: while here we can start using %pe to print error
+
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+>  	return err;
+>  }
+>  
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
