@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECA138F337
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 20:47:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D3438F32A
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 May 2021 20:43:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F33096E908;
-	Mon, 24 May 2021 18:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8F906E903;
+	Mon, 24 May 2021 18:43:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE82B6E908;
- Mon, 24 May 2021 18:47:55 +0000 (UTC)
-IronPort-SDR: KRn5IaRyrguHPnsR4xe2ek01LCVTdrds4nRP35LsODX8eicWWFaW/bq6dI7+rIxrv9ABUS73xp
- xx/OMGB/VYkw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9993"; a="223164889"
-X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="223164889"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 11:47:54 -0700
-IronPort-SDR: zhjFNWQKh3hD3Mk8vjBGZ8IMWi7lnOCq3mGmWkXQMkHpZ/EKBi1J6IZT2HYD01svt+NY+ORw3p
- a+dTB1xORx+Q==
-X-IronPort-AV: E=Sophos;i="5.82,325,1613462400"; d="scan'208";a="396500396"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 11:47:54 -0700
-Date: Mon, 24 May 2021 11:40:46 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20210524184045.GA13139@sdutt-i7>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-40-matthew.brost@intel.com>
- <596cb7fb-588a-f5f1-6119-1393b8faf8a6@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3586C6E903;
+ Mon, 24 May 2021 18:43:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2E7A1A47DB;
+ Mon, 24 May 2021 18:43:50 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <596cb7fb-588a-f5f1-6119-1393b8faf8a6@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC PATCH 39/97] drm/i915/guc: Increase size of
- CTB buffers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Mon, 24 May 2021 18:43:50 -0000
+Message-ID: <162188183018.10902.7843519725942907911@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210524172703.2113058-1-imre.deak@intel.com>
+In-Reply-To: <20210524172703.2113058-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/adlp=3A_Require_DPT?=
+ =?utf-8?q?_FB_CCS_color_planes_to_be_2MB_aligned?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,88 +39,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 24, 2021 at 03:43:11PM +0200, Michal Wajdeczko wrote:
-> 
-> 
-> On 06.05.2021 21:13, Matthew Brost wrote:
-> > With the introduction of non-blocking CTBs more than one CTB can be in
-> > flight at a time. Increasing the size of the CTBs should reduce how
-> > often software hits the case where no space is available in the CTB
-> > buffer.
-> > 
-> > Cc: John Harrison <john.c.harrison@intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 11 ++++++++---
-> >  1 file changed, 8 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > index 77dfbc94dcc3..d6895d29ed2d 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > @@ -63,11 +63,16 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
-> >   *      +--------+-----------------------------------------------+------+
-> >   *
-> >   * Size of each `CT Buffer`_ must be multiple of 4K.
-> > - * As we don't expect too many messages, for now use minimum sizes.
-> > + * We don't expect too many messages in flight at any time, unless we are
-> > + * using the GuC submission. In that case each request requires a minimum
-> > + * 16 bytes which gives us a maximum 256 queue'd requests. Hopefully this
-> 
-> nit: all our CTB calculations are in dwords now, not bytes
-> 
+== Series Details ==
 
-I can change the wording to DW sizes.
+Series: series starting with [1/3] drm/i915/adlp: Require DPT FB CCS color planes to be 2MB aligned
+URL   : https://patchwork.freedesktop.org/series/90484/
+State : warning
 
-> > + * enough space to avoid backpressure on the driver. We increase the size
-> > + * of the receive buffer (relative to the send) to ensure a G2H response
-> > + * CTB has a landing spot.
-> 
-> hmm, but we are not checking G2H CTB yet
-> will start doing it around patch 54/97
-> so maybe this other patch should be introduced earlier ?
->
+== Summary ==
 
-Yes, that patch is going to be pulled down to an earlier spot in the
-series.
- 
-> >   */
-> >  #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-> >  #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
-> > -#define CTB_G2H_BUFFER_SIZE	(SZ_4K)
-> > +#define CTB_G2H_BUFFER_SIZE	(4 * CTB_H2G_BUFFER_SIZE)
-> 
-> in theory, we (host) should be faster than GuC, so G2H CTB shall be
-> almost always empty, if this is not a case, maybe we should start
-> monitoring what is happening and report some warnings if G2H is half full ?
->
+$ dim checkpatch origin/drm-tip
+67ae62f3578a drm/i915/adlp: Require DPT FB CCS color planes to be 2MB aligned
+ab61802fef7d drm/i915/adlp: Fix GEM VM asserts for DPT VMs
+-:27: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'vm' - possible side-effects?
+#27: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:362:
++#define i915_is_ggtt_or_dpt(vm) (i915_is_ggtt(vm) || i915_is_dpt(vm))
 
-Certainly some IGTs put some more pressure on the G2H channel than the
-H2G channel at least I think. This is something we can tune over time
-after this lands upstream. IMO a message at this point is overkill.
+total: 0 errors, 0 warnings, 1 checks, 31 lines checked
+5e4ab79a1296 drm/i915/debugfs: Print remap info for DPT VMAs as well
+-:28: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 15)
+#28: FILE: drivers/gpu/drm/i915/i915_debugfs.c:129:
++	if (i915_vma_is_ggtt(vma))
++	       return "ggtt";
 
-Matt
- 
-> >  
-> >  #define MAX_US_STALL_CTB	1000000
-> >  
-> > @@ -753,7 +758,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> >  	/* beware of buffer wrap case */
-> >  	if (unlikely(available < 0))
-> >  		available += size;
-> > -	CT_DEBUG(ct, "available %d (%u:%u)\n", available, head, tail);
-> > +	CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail, size);
-> >  	GEM_BUG_ON(available < 0);
-> >  
-> >  	header = cmds[head];
-> > 
+-:29: WARNING:TABSTOP: Statements should start on a tabstop
+#29: FILE: drivers/gpu/drm/i915/i915_debugfs.c:130:
++	       return "ggtt";
+
+total: 0 errors, 2 warnings, 0 checks, 42 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
