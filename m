@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F92C38FA1D
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 07:48:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89FA538FA24
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 07:48:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B8236E09C;
-	Tue, 25 May 2021 05:48:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95B0989133;
+	Tue, 25 May 2021 05:48:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2639D6E09C;
- Tue, 25 May 2021 05:48:11 +0000 (UTC)
-IronPort-SDR: +d1ns6j7Puk+MooSxgrlZkXYZXr7bhV8d2r7LVdTP9QlYPgZZZ3A60ZFFKogWbbKmrENbAUmZU
- +dDMbQtGgG8w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="266005367"
-X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="266005367"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41A806E138;
+ Tue, 25 May 2021 05:48:14 +0000 (UTC)
+IronPort-SDR: BeHyeeBpWH05RlC1/I7J7hlt7KF6CsAp3J6o18ocJJMjqlF8KzX8ImcLGugt/UxRW6d4WSaPGf
+ KoZ2QTlSf/LA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="266005370"
+X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="266005370"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 22:48:10 -0700
-IronPort-SDR: 6H3onrr6oK0x2dbNkBx/DnlBsy/Ds6BZiRPS6AJnUz1mGgsRoFi609WWa0Uk9aQDrI9n30/Fe4
- vbV4ZkDcQJTQ==
-X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="397231635"
+ 24 May 2021 22:48:14 -0700
+IronPort-SDR: vpobYGZgZrYdE49tWHz2Q6ogfntjbE67YDC/aBQHHT7+DiSoXNxyrBnHkFq0hDDOgNmVxzWtfM
+ 5wr3LXYgBOxg==
+X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="397231648"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 22:48:10 -0700
+ 24 May 2021 22:48:13 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 May 2021 22:47:46 -0700
-Message-Id: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
+Date: Mon, 24 May 2021 22:47:47 -0700
+Message-Id: <20210525054803.7387-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
+References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 00/17] drm/i915: Introduce Intel PXP
+Subject: [Intel-gfx] [PATCH v4 01/17] drm/i915/pxp: Define PXP component
+ interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,145 +47,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- Gaurav Kumar <kumar.gaurav@intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PXP (Protected Xe Path) is an i915 component, available on
-GEN12+, that helps to establish the hardware protected session
-and manage the status of the alive software session, as well
-as its life cycle.
-
-Several minor changes and fixes, but the main changes in v4 are:
-
-- Rebased to new create_ext ioctl implementation
-
-- Default kconfig option is now N.
-
-- The default session is now only started when protected objects are
-  submitted via execbuf.
-
-Tested with: https://patchwork.freedesktop.org/series/87570/
-
-Cc: Gaurav Kumar <kumar.gaurav@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Juston Li <juston.li@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-
-Anshuman Gupta (2):
-  drm/i915/pxp: Add plane decryption support
-  drm/i915/pxp: black pixels on pxp disabled
-
-Bommu Krishnaiah (1):
-  drm/i915/pxp: User interface for Protected buffer
-
-Chris Wilson (1):
-  drm/i915/gt: Export the pinned context constructor and destructor
-
-Daniele Ceraolo Spurio (7):
-  drm/i915/pxp: Define PXP component interface
-  drm/i915/pxp: define PXP device flag and kconfig
-  drm/i915/pxp: allocate a vcs context for pxp usage
-  drm/i915/pxp: set KCR reg init
-  drm/i915/pxp: interface for marking contexts as using protected
-    content
-  drm/i915/pxp: start the arb session on demand
-  drm/i915/pxp: enable PXP for integrated Gen12
-
-Huang, Sean Z (5):
-  drm/i915/pxp: Implement funcs to create the TEE channel
-  drm/i915/pxp: Create the arbitrary session after boot
-  drm/i915/pxp: Implement arb session teardown
-  drm/i915/pxp: Implement PXP irq handler
-  drm/i915/pxp: Enable PXP power management
-
-Vitaly Lubart (1):
-  mei: pxp: export pavp client to me client bus
-
- drivers/gpu/drm/i915/Kconfig                  |  11 +
- drivers/gpu/drm/i915/Makefile                 |   9 +
- .../gpu/drm/i915/display/intel_atomic_plane.c |  25 ++
- drivers/gpu/drm/i915/display/intel_display.c  |   4 +
- .../drm/i915/display/intel_display_types.h    |   6 +
- .../drm/i915/display/skl_universal_plane.c    |  49 +++-
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |  59 +++-
- drivers/gpu/drm/i915/gem/i915_gem_context.h   |  18 ++
- .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +
- drivers/gpu/drm/i915/gem/i915_gem_create.c    |  26 ++
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  35 +++
- drivers/gpu/drm/i915/gem/i915_gem_object.c    |   6 +
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |  13 +
- drivers/gpu/drm/i915/gt/intel_engine.h        |  12 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  29 +-
- drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |  22 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |   5 +
- drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   7 +
- drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  15 +-
- drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
- drivers/gpu/drm/i915/i915_drv.c               |   2 +
- drivers/gpu/drm/i915/i915_drv.h               |   4 +
- drivers/gpu/drm/i915/i915_pci.c               |   2 +
- drivers/gpu/drm/i915/i915_reg.h               |  48 ++++
- drivers/gpu/drm/i915/intel_device_info.h      |   1 +
- drivers/gpu/drm/i915/pxp/intel_pxp.c          | 266 ++++++++++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp.h          |  65 +++++
- drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 140 +++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  15 +
- drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      | 100 +++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |  32 +++
- drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  40 +++
- drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  23 ++
- drivers/gpu/drm/i915/pxp/intel_pxp_session.c  | 172 +++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_session.h  |  15 +
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 161 +++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  17 ++
- .../drm/i915/pxp/intel_pxp_tee_interface.h    |  37 +++
- drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  53 ++++
- drivers/misc/mei/Kconfig                      |   2 +
- drivers/misc/mei/Makefile                     |   1 +
- drivers/misc/mei/pxp/Kconfig                  |  13 +
- drivers/misc/mei/pxp/Makefile                 |   7 +
- drivers/misc/mei/pxp/mei_pxp.c                | 233 +++++++++++++++
- drivers/misc/mei/pxp/mei_pxp.h                |  18 ++
- include/drm/i915_component.h                  |   1 +
- include/drm/i915_pxp_tee_interface.h          |  45 +++
- include/uapi/drm/i915_drm.h                   |  62 +++-
- 49 files changed, 1922 insertions(+), 21 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.h
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee_interface.h
- create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
- create mode 100644 drivers/misc/mei/pxp/Kconfig
- create mode 100644 drivers/misc/mei/pxp/Makefile
- create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
- create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
- create mode 100644 include/drm/i915_pxp_tee_interface.h
-
--- 
-2.29.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyB3aWxsIGJlIHVzZWQgZm9yIGNvbW11bmljYXRpb24gYmV0d2VlbiB0aGUgaTkxNSBkcml2
+ZXIgYW5kIHRoZSBtZWkKb25lLiBEZWZpbmluZyBpdCBpbiBhIHN0YW5kLWFsb25lIHBhdGNoIHRv
+IGF2b2lkIGNpcmN1YWxyIGRlcGVuZGVkZW5jaWVzCmJldHdlZW4gdGhlIHBhdGNoZXMgbW9kaWZ5
+aW5nIHRoZSAyIGRyaXZlcnMuCgpTcGxpdCBvdXQgZnJvbSBhbiBvcmlnaW5hbCBwYXRjaCBmcm9t
+ICBIdWFuZywgU2VhbiBaCgp2MjogcmVuYW1lIHRoZSBjb21wb25lbnQgc3RydWN0IChSb2RyaWdv
+KQoKU2lnbmVkLW9mZi1ieTogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xv
+c3B1cmlvQGludGVsLmNvbT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNv
+bT4KUmV2aWV3ZWQtYnk6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KLS0t
+CiBpbmNsdWRlL2RybS9pOTE1X2NvbXBvbmVudC5oICAgICAgICAgfCAgMSArCiBpbmNsdWRlL2Ry
+bS9pOTE1X3B4cF90ZWVfaW50ZXJmYWNlLmggfCA0NSArKysrKysrKysrKysrKysrKysrKysrKysr
+KysrCiAyIGZpbGVzIGNoYW5nZWQsIDQ2IGluc2VydGlvbnMoKykKIGNyZWF0ZSBtb2RlIDEwMDY0
+NCBpbmNsdWRlL2RybS9pOTE1X3B4cF90ZWVfaW50ZXJmYWNlLmgKCmRpZmYgLS1naXQgYS9pbmNs
+dWRlL2RybS9pOTE1X2NvbXBvbmVudC5oIGIvaW5jbHVkZS9kcm0vaTkxNV9jb21wb25lbnQuaApp
+bmRleCA1NWMzYjEyMzU4MWIuLmMxZTJhNDNkMmQxZSAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0v
+aTkxNV9jb21wb25lbnQuaAorKysgYi9pbmNsdWRlL2RybS9pOTE1X2NvbXBvbmVudC5oCkBAIC0y
+OSw2ICsyOSw3IEBACiBlbnVtIGk5MTVfY29tcG9uZW50X3R5cGUgewogCUk5MTVfQ09NUE9ORU5U
+X0FVRElPID0gMSwKIAlJOTE1X0NPTVBPTkVOVF9IRENQLAorCUk5MTVfQ09NUE9ORU5UX1BYUAog
+fTsKIAogLyogTUFYX1BPUlQgaXMgdGhlIG51bWJlciBvZiBwb3J0CmRpZmYgLS1naXQgYS9pbmNs
+dWRlL2RybS9pOTE1X3B4cF90ZWVfaW50ZXJmYWNlLmggYi9pbmNsdWRlL2RybS9pOTE1X3B4cF90
+ZWVfaW50ZXJmYWNlLmgKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi4w
+OWI4Mzg5MTUyYWYKLS0tIC9kZXYvbnVsbAorKysgYi9pbmNsdWRlL2RybS9pOTE1X3B4cF90ZWVf
+aW50ZXJmYWNlLmgKQEAgLTAsMCArMSw0NSBAQAorLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6
+IE1JVCAqLworLyoKKyAqIENvcHlyaWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0aW9uCisgKgor
+ICogQXV0aG9yczoKKyAqIFZpdGFseSBMdWJhcnQgPHZpdGFseS5sdWJhcnRAaW50ZWwuY29tPgor
+ICovCisKKyNpZm5kZWYgX0k5MTVfUFhQX1RFRV9JTlRFUkZBQ0VfSF8KKyNkZWZpbmUgX0k5MTVf
+UFhQX1RFRV9JTlRFUkZBQ0VfSF8KKworI2luY2x1ZGUgPGxpbnV4L211dGV4Lmg+CisjaW5jbHVk
+ZSA8bGludXgvZGV2aWNlLmg+CisKKy8qKgorICogc3RydWN0IGk5MTVfcHhwX2NvbXBvbmVudF9v
+cHMgLSBvcHMgZm9yIFBYUCBzZXJ2aWNlcy4KKyAqIEBvd25lcjogTW9kdWxlIHByb3ZpZGluZyB0
+aGUgb3BzCisgKiBAc2VuZDogc2VuZHMgZGF0YSB0byBQWFAKKyAqIEByZWNlaXZlOiByZWNlaXZl
+cyBkYXRhIGZyb20gUFhQCisgKi8KK3N0cnVjdCBpOTE1X3B4cF9jb21wb25lbnRfb3BzIHsKKwkv
+KioKKwkgKiBAb3duZXI6IG93bmVyIG9mIHRoZSBtb2R1bGUgcHJvdmRpbmcgdGhlIG9wcworCSAq
+LworCXN0cnVjdCBtb2R1bGUgKm93bmVyOworCisJaW50ICgqc2VuZCkoc3RydWN0IGRldmljZSAq
+ZGV2LCBjb25zdCB2b2lkICptZXNzYWdlLCBzaXplX3Qgc2l6ZSk7CisJaW50ICgqcmVjdikoc3Ry
+dWN0IGRldmljZSAqZGV2LCB2b2lkICpidWZmZXIsIHNpemVfdCBzaXplKTsKK307CisKKy8qKgor
+ICogc3RydWN0IGk5MTVfcHhwX2NvbXBvbmVudCAtIFVzZWQgZm9yIGNvbW11bmljYXRpb24gYmV0
+d2VlbiBpOTE1IGFuZCBURUUKKyAqIGRyaXZlcnMgZm9yIHRoZSBQWFAgc2VydmljZXMKKyAqIEB0
+ZWVfZGV2OiBkZXZpY2UgdGhhdCBwcm92aWRlIHRoZSBQWFAgc2VydmljZSBmcm9tIFRFRSBCdXMu
+CisgKiBAcHhwX29wczogT3BzIGltcGxlbWVudGVkIGJ5IFRFRSBkcml2ZXIsIHVzZWQgYnkgaTkx
+NSBkcml2ZXIuCisgKi8KK3N0cnVjdCBpOTE1X3B4cF9jb21wb25lbnQgeworCXN0cnVjdCBkZXZp
+Y2UgKnRlZV9kZXY7CisJY29uc3Qgc3RydWN0IGk5MTVfcHhwX2NvbXBvbmVudF9vcHMgKm9wczsK
+KworCS8qIFRvIHByb3RlY3QgdGhlIGFib3ZlIG1lbWJlcnMuICovCisJc3RydWN0IG11dGV4IG11
+dGV4OworfTsKKworI2VuZGlmIC8qIF9JOTE1X1RFRV9QWFBfSU5URVJGQUNFX0hfICovCi0tIAoy
+LjI5LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
