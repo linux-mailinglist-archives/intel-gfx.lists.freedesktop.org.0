@@ -1,48 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A5153903C4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 16:19:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 102AF39043F
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 16:45:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32E9C6EA3B;
-	Tue, 25 May 2021 14:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF92F6E1A8;
+	Tue, 25 May 2021 14:45:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 057AC6EA3B;
- Tue, 25 May 2021 14:19:54 +0000 (UTC)
-IronPort-SDR: q0uF2jQoducmJ5nSoCIOJ0NADKefNaH4kmmAeQu0V0Y+4WKT/y+SKLZIahH8kFEO7ztUu8rwqZ
- 56TkZ5zrxsQQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="202240579"
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="202240579"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 07:19:52 -0700
-IronPort-SDR: JaC8ErFap8+Rnpug6svDD4ahaEcq74CYjynwsBVNKbdeEzoG6hrpw7Ak5cwjJRoYO6HksaTJcM
- aymWnU89yplQ==
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="442565087"
-Received: from tomeara-mobl.ger.corp.intel.com (HELO [10.213.211.66])
- ([10.213.211.66])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 07:19:49 -0700
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- intel-gfx@lists.freedesktop.org, mahesh.meena@intel.com,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20210525135508.244659-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <20210525135508.244659-2-tejaskumarx.surendrakumar.upadhyay@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <b9ae1daa-6add-1c67-58b4-16491f2e1431@linux.intel.com>
-Date: Tue, 25 May 2021 15:19:47 +0100
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCB346E122;
+ Tue, 25 May 2021 14:45:53 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1621953952; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=v2yNqAnqlLGqrvEfsznqJ1nq7AC+dTqzF6iW7O+Lies=;
+ b=GRScZykdnHd7JOBifcHR84PWFhS8GAzg5wQAzqJWeitB1GpUYPr2LK5rmMPAfbLu0Bb7oV
+ PnXxSda9PdnogOrnPe7EzKz8bs3IGrf73WNu1KPXQAGHY7wxGm73CCWZHoZ9vN23RinC72
+ 61L28jR3+9cXZolW8IsMpIelwaM834s=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1621953952;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=v2yNqAnqlLGqrvEfsznqJ1nq7AC+dTqzF6iW7O+Lies=;
+ b=JXqVnHgMvl5JMji8SURC8x8uuVKZvHDPT6whtXYcfbRGmUj+7NeJ+Ww4lfJixSVrJEUNDW
+ Ff77fPERbI2j7MBA==
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 70C09AB71;
+ Tue, 25 May 2021 14:45:52 +0000 (UTC)
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <2a2ac7cf-45cb-d6f0-54ea-6a29e453c270@suse.de>
+Date: Tue, 25 May 2021 16:45:51 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210525135508.244659-2-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/1] Let userspace know if they can trust
- timeslicing by including it as part of the
- I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
+Subject: [Intel-gfx] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,59 +50,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1022619406=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1022619406==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="mg5FJ2hmcObFSs8suUrbx4tWQ9cyI2C18"
 
-+ dri-devel as per process
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--mg5FJ2hmcObFSs8suUrbx4tWQ9cyI2C18
+Content-Type: multipart/mixed; boundary="lJESz5kpbyMAXdyGqeV9Xcp8Wy7qX7M7k";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: "DRM maintainer tools announcements, discussion, and development"
+ <dim-tools@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, "sean@poorly.run" <sean@poorly.run>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Message-ID: <2a2ac7cf-45cb-d6f0-54ea-6a29e453c270@suse.de>
+Subject: drm-misc-next
 
-On 25/05/2021 14:55, Tejas Upadhyay wrote:
-> v2: Only declare timeslicing if we can safely preempt userspace.
+--lJESz5kpbyMAXdyGqeV9Xcp8Wy7qX7M7k
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Commit message got butchered up somehow so you'll need to fix that at 
-some point.
+Hi Dave and Daniel,
 
-Regards,
+here's this week's PR for drm-misc-next. Besides the usual round of=20
+fixes, amdgpu now supports hot unplug and GEM CMA supports cached page=20
+mappings.
 
-Tvrtko
+No standard email this week, sorry. Dim pushed the tag into the repo,=20
+but then failed to create the rsp email from it.
 
-> Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine_user.c | 1 +
->   include/uapi/drm/i915_drm.h                 | 1 +
->   2 files changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> index 3cca7ea2d6ea..12d165566ed2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> @@ -98,6 +98,7 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
->   		MAP(HAS_PREEMPTION, PREEMPTION),
->   		MAP(HAS_SEMAPHORES, SEMAPHORES),
->   		MAP(SUPPORTS_STATS, ENGINE_BUSY_STATS),
-> +		MAP(TIMESLICE_BIT, TIMESLICING),
->   #undef MAP
->   	};
->   	struct intel_engine_cs *engine;
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index c2c7759b7d2e..af2212d6113c 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -572,6 +572,7 @@ typedef struct drm_i915_irq_wait {
->   #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
->   #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
->   #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
-> +#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
->   
->   #define I915_PARAM_HUC_STATUS		 42
->   
-> 
+Please merge from
+
+git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2021-05-25
+
+since
+
+   30039405ac25 ("MAINTAINERS: repair reference in DRM DRIVER FOR SIMPLE =
+
+FRAMEBUFFERS")
+
+up to
+
+   4a791cb6d34f ("drm/ingenic: Add option to alloc cached GEM buffers")
+
+
+Best regards
+Thomas
+
+drm-misc-next-2021-05-25:
+drm-misc-next for v5.14:
+
+
+
+UAPI Changes:
+
+
+
+  * DRM_IOCTL_IRQ_BUSID is now marked as legacy; returns -EINVAL if
+
+    legacy drivers are disabled
+
+
+
+Cross-subsystem Changes:
+
+
+
+  * PCI: Add support for dev_groups
+
+
+
+  * vgaarb: Use ACPI HID to find integrated GPU
+
+
+
+Core Changes:
+
+
+
+  * Log errors in drm_gem_fb_init_with_funcs()
+
+
+
+  * Cleanups
+
+
+
+  * gem-cma: Add support for non-coherent (i.e., cached) page mappings
+
+
+
+  * legacy: Drop some unnecessary includes and code; Add missing unlocks
+
+    and frees in drm_legacy_addbufs_pci()
+
+
+
+  * sched: Make timeout timer rearm conditional; Fix data corruptions and=
+
+
+    hangs
+
+
+
+  * ttm: Remap all page faults to per-process dummy page (for device=20
+removal);
+
+    Documentation
+
+
+
+Driver Changes:
+
+
+
+  * drm/amdgpu: A long list of patches that enable device hot-unplug
+
+
+
+  * drm/bridge: Lt66121: Fix error code and leak in probe; Anx7625: Use
+
+    runtime PM and add synchronous suspend/resume hooks; Ti-sn65dsi86: Fi=
+x
+
+    a returned value's type; Anx7688: Add driver plus DT bindings;
+
+
+
+  * drm/ingenic: Fix pixcloc for 24-bit serial panels; Use non-coherent B=
+O
+
+    mappings with explict synchronization if possible
+
+
+
+  * drm/panel: Simple-panel: Add missing pm_runtime_dont_use_autosuspend(=
+)
+
+
+
+  * drm/tve200: Convert DT bindings to YAML
+
+
+
+  * drm/vc4: Support BCM2711 VEC plus DT bindings; Pipeline setup fixes; =
+
+HDMI
+
+    fixes
+
+
+
+  * drm/virtio: Fix NULL pointer in probe; Fix double-free in probe; Free=
+
+
+    virtqueues in probe
+
+
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--lJESz5kpbyMAXdyGqeV9Xcp8Wy7qX7M7k--
+
+--mg5FJ2hmcObFSs8suUrbx4tWQ9cyI2C18
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmCtDZ8FAwAAAAAACgkQlh/E3EQov+D1
+KA//eEtytEBe9EHYj8j4oBelfFwmikm8ou0+RzIYsbgRf3dC/RA4V7+8osnYJnpK2npkFHgPVwKN
+GaVwpLaXlzwgiuhPCC+4yMUfKbkyT15pkQU8e9TnSrw1mibJtL9AmrbZe4PVlbbNHiyerdbdELTj
+G1NQICZIzbB3WAZeFFOi7EfuGzIUGZM3AmzBysA1luQ+O4C8d/CBlVx4R/Ia19BMjIt02Fe9hvpn
+/DSnvqizF0WZtW9VKyVy1C7jGQVbZLIsq+ja17pJAMpdkuVDa4YTdf+EkAtEovMNxnS76FJZL4DA
+oM3CtGcfVsLO7ngXVOTaUs8ez5MMofUqtu5h/iT9DXt5GovTN1E0StSwRkNeee/YvBjkcqekCQi6
+knaYff7b7t6b5PbWKjM7jG0H4oB5d+NW9I+jJotsyIoiDOEMef8ftiU6YrlqEOfYVcGRrmBpoyza
+kPMUUwzLNidgOutcpPtPrgwFzbWZ2/jPxX8mdXvVm1JoP5J6SubkH4nQLQgoOxMf628Sd0Fxr6hn
+tGBK9ajQQIpIL45g3IPv+1+wfN3m8r5EKD2lP8tG6jWgVT+uuVFbR5dklm9g5chFj7UQfaT4HNPO
+TB99zNeL8RKyBfVmoBRPhSoYfKmKMU1/Qnd7KlLj/zjHSd2mfqr69NNzTSxsllfZREjCvcSMvbg3
+/zY=
+=8Cnl
+-----END PGP SIGNATURE-----
+
+--mg5FJ2hmcObFSs8suUrbx4tWQ9cyI2C18--
+
+--===============1022619406==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1022619406==--
