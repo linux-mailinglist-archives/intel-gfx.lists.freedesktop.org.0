@@ -2,44 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2730038FF44
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 12:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE46538FF95
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 12:55:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D85B16E9EC;
-	Tue, 25 May 2021 10:33:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 621EB6E9F9;
+	Tue, 25 May 2021 10:55:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EB586E9EC;
- Tue, 25 May 2021 10:32:31 +0000 (UTC)
-IronPort-SDR: dj7L1qsjNBFNc9rlgS/oMf10aVd/S7jK8W297GTR89/UGTyZ76JMA3kcTu5efaGi8WGy1HaNPd
- j4srPS6poSDw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="266054214"
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="266054214"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 03:32:30 -0700
-IronPort-SDR: dljw8lQu8hm3WLXTxXlwGNJAsyrMPJHRhpqL0McpjP9zAvSzxidKXg4AUrIwHFpykKYb2Bg0x5
- 9hfGW0XRik+Q==
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="442485669"
-Received: from tomeara-mobl.ger.corp.intel.com (HELO [10.213.211.66])
- ([10.213.211.66])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 03:32:29 -0700
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210506191451.77768-1-matthew.brost@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <de3965d8-d997-5685-0399-646d8823a27f@linux.intel.com>
-Date: Tue, 25 May 2021 11:32:26 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A07A6E9F9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 10:55:32 +0000 (UTC)
+IronPort-SDR: Wzd+AK0b+hOoTQPDqR4+f2tEMdjHtJfLcOqvFTsujoqPzeI6IskfUDm7ZlLBJ7Fek3h35zlhnc
+ 37lPn03vN4kg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="223328802"
+X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="223328802"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2021 03:55:30 -0700
+IronPort-SDR: u1840cKwX+iXj5V6sMrneNaiQnCSDFeKfeiVDGfWOPowXcN+Fv0X+c9eintuL9k5l1lyXfklf0
+ CEipEi1wuJPw==
+X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="476362765"
+Received: from nkosecih-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.38.254])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2021 03:55:28 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210524214805.259692-5-jose.souza@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210524214805.259692-1-jose.souza@intel.com>
+ <20210524214805.259692-5-jose.souza@intel.com>
+Date: Tue, 25 May 2021 13:55:25 +0300
+Message-ID: <877djnccbm.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210506191451.77768-1-matthew.brost@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
- the i915
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/display/adl_p: Disable PSR2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,79 +49,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 06/05/2021 20:13, Matthew Brost wrote:
-> Basic GuC submission support. This is the first bullet point in the
-> upstreaming plan covered in the following RFC [1].
-> 
-> At a very high level the GuC is a piece of firmware which sits between
-> the i915 and the GPU. It offloads some of the scheduling of contexts
-> from the i915 and programs the GPU to submit contexts. The i915
-> communicates with the GuC and the GuC communicates with the GPU.
-> 
-> GuC submission will be disabled by default on all current upstream
-> platforms behind a module parameter - enable_guc. A value of 3 will
-> enable submission and HuC loading via the GuC. GuC submission should
-> work on all gen11+ platforms assuming the GuC firmware is present.
-> 
-> This is a huge series and it is completely unrealistic to merge all of
-> these patches at once. Fortunately I believe we can break down the
-> series into different merges:
-> 
-> 1. Merge Chris Wilson's patches. These have already been reviewed
-> upstream and I fully agree with these patches as a precursor to GuC
-> submission.
-> 
-> 2. Update to GuC 60.1.2. These are largely Michal's patches.
-> 
-> 3. Turn on GuC/HuC auto mode by default.
-> 
-> 4. Additional patches needed to support GuC submission. This is any
-> patch not covered by 1-3 in the first 34 patches. e.g. 'Engine relative
-> MMIO'
-> 
-> 5. GuC submission support. Patches number 35+. These all don't have to
-> merge at once though as we don't actually allow GuC submission until the
-> last patch of this series.
-
-For the GuC backend/submission part only - it seems to me none of my 
-review comments I made in December 2019 have been implemented. At that 
-point I stated, and this was all internally at the time mind you, that I 
-do not think the series is ready and there were several high level 
-issues that would need to be sorted out. I don't think I gave my ack or 
-r-b back then and the promise was a few things would be worked on post 
-(internal) merge. That was supposed to include upstream refactoring to 
-enable GuC better slotting in as a backed. Fast forward a year and a 
-half later and the only progress we had in this area has been deleted.
-
- From the top of my head, and having glanced the series as posted:
-
-  * Self-churn factor in the series is too high.
-  * Patch ordering issues.
-  * GuC context state machine is way too dodgy to have any confidence it 
-can be read and race conditions understood.
-  * Context pinning code with it's magical two adds, subtract and 
-cmpxchg is dodgy as well.
-  * Kludgy way of interfacing with rest of the driver instead of 
-refactoring to fit (idling, breadcrumbs, scheduler, tasklets, ...).
-
-Now perhaps the latest plan is to ignore all these issues and still 
-merge, then follow up with throwing it away, mostly or at least largely, 
-in which case there isn't any point really to review the current state 
-yet again. But it is sad that we got to this state. So just for the 
-record - all this was reviewed in Nov/Dec 2019. By me among other folks 
-and I at least deemed it not ready in this form.
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAyNCBNYXkgMjAyMSwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
+bnRlbC5jb20+IHdyb3RlOgo+IFdlIGFyZSBtaXNzaW5nIHRoZSBpbXBsZW1lbnRhdGlvbiBvZiBz
+b21lIHdvcmthcm91bmRzIHRvIGVuYWJsZWQgUFNSMgo+IGluIEFsZGVybGFrZSBQLCBzbyB0byBh
+dm9pZCBhbnkgQ0kgcmVwb3J0IG9mIGlzc3VlcyBhcm91bmQgUFNSMgo+IGRpc2FibGluZyBpdCB1
+bnRpbCBhbGwgUFNSMiB3b3JrYXJvdW5kcyBhcmUgaW1wbGVtZW50ZWQuCj4KPiBDYzogR3dhbi1n
+eWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEpv
+c8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgMTAgKysrKysrKysrKwo+ICAx
+IGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX3Bzci5jCj4gaW5kZXggYzU3MjEwODYyMjA2Li40NmJkNzc2NjllYWQgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKPiBAQCAtNzY1LDYg
+Kzc2NSwxNiBAQCBzdGF0aWMgYm9vbCBpbnRlbF9wc3IyX2NvbmZpZ192YWxpZChzdHJ1Y3QgaW50
+ZWxfZHAgKmludGVsX2RwLAo+ICAJCXJldHVybiBmYWxzZTsKPiAgCX0KPiAgCj4gKwkvKgo+ICsJ
+ICogV2UgYXJlIG1pc3NpbmcgdGhlIGltcGxlbWVudGF0aW9uIG9mIHNvbWUgd29ya2Fyb3VuZHMg
+dG8gZW5hYmxlZCBQU1IyCj4gKwkgKiBhbHNvIFdpbmRvd3MgdGVhbSBmb3VuZCBpc3N1ZXMgaW4g
+dGhpcyBzdGVwcGluZyB0aGF0IGFyZSBjYXVzaW5nCj4gKwkgKiBpc3N1ZXMgaW4gbW9zdCBQU1Iy
+IHBhbmVscy4KCiJ0aGlzIHN0ZXBwaW5nIj8KCk1heWJlIGp1c3Qgc2F5IHdlIG5lZWQgdG8gaW1w
+bGVtZW50IGNlcnRhaW4gd29ya2Fyb3VuZHMgYmVmb3JlIGVuYWJsaW5nClBTUjI/CgpCUiwKSmFu
+aS4KCgo+ICsJICovCj4gKwlpZiAoSVNfQUxERVJMQUtFX1AoZGV2X3ByaXYpKSB7Cj4gKwkJZHJt
+X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJQU1IyIGlzIG1pc3NpbmcgdGhlIGltcGxlbWVudGF0
+aW9uIG9mIHdvcmthcm91bmRzXG4iKTsKPiArCQlyZXR1cm4gZmFsc2U7Cj4gKwl9Cj4gKwo+ICAJ
+aWYgKCF0cmFuc2NvZGVyX2hhc19wc3IyKGRldl9wcml2LCBjcnRjX3N0YXRlLT5jcHVfdHJhbnNj
+b2RlcikpIHsKPiAgCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKPiAgCQkJICAgICJQU1Iy
+IG5vdCBzdXBwb3J0ZWQgaW4gdHJhbnNjb2RlciAlc1xuIiwKCi0tIApKYW5pIE5pa3VsYSwgSW50
+ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
