@@ -2,44 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB6E39056A
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 17:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D75390597
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 17:37:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AD506EA63;
-	Tue, 25 May 2021 15:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3CB46EA62;
+	Tue, 25 May 2021 15:37:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 591B06EA61;
- Tue, 25 May 2021 15:27:57 +0000 (UTC)
-IronPort-SDR: Gw9QjuNEeNMgpNIFsInVlQz3rbBpOKGy9fKjubaJQGAg9Al2p7Bw/eH9yk10tnB/PiPTvfrqry
- SJS5btEt+23w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="202237976"
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="202237976"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 08:27:53 -0700
-IronPort-SDR: Dej0CYihPLpXX7PX410TElOPH4UbwzYrwd0QwmxpNyTfU1etYQyTkuqL1o/Bl9fIXeWWQe4yIr
- px4EEJTopO0g==
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="442589081"
-Received: from tomeara-mobl.ger.corp.intel.com (HELO [10.213.211.66])
- ([10.213.211.66])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 08:27:51 -0700
-To: Daniel Vetter <daniel@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>
-References: <20210521183215.65451-1-matthew.brost@intel.com>
- <YK0CKLSCx0qowxhy@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <040887b2-48f3-c4be-2a43-7e99492af5fc@linux.intel.com>
-Date: Tue, 25 May 2021 16:27:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E08C6EA5E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 15:37:37 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ n17-20020a7bc5d10000b0290169edfadac9so3917585wmk.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 08:37:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=VtqQpzpiHAmP2pOg93dB+ELNtE04ZUzXgpEJjYI2wAM=;
+ b=JXEzXV+dMJbc6XGcibwCdJ7cdZmU7T6qqbxCtIHc02icn+ok8G8PUVJqY8aATZhXsO
+ EYjtdKVRUt3jItzx6owZxyqeSFm7jndRTi/a3qib4XtWFMQaMOEg0+mg5IwyvGQtk6xM
+ Baon7d3K5yuA21Kwy8phxs6Yc+VPQRJawHlHk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=VtqQpzpiHAmP2pOg93dB+ELNtE04ZUzXgpEJjYI2wAM=;
+ b=TCWzLOv+VN6lZdrhA88vMfa652viG2RPwe/GDaUvznHPYTl5LEQJFRAsxzQFmhCGp+
+ hZbJHSZNXeTJdiVdjrorjAeenP3zP7ES+KfQ64EoYY0/X1lDh5B1Vp5IcC14gc2BsaNR
+ B8fnJLEpFSFBKxXpifzo2Yxg5P7qfDc+27AO7oTam+E9JYpXeoQHX0VDWOIQ57lLqTgV
+ HMQhMk3VLbTT8KH/n9gZJaWv7Pwrz8w45SW7EfABUi/+EQCOx8IrKpb/gfW5nbC2yk+Z
+ D3ddBH/70ylWUKVHvHdUpNhdOoKdKvG7N022i507SMNoJpzDZ/uXlzfy1zwKlp9cIfrl
+ FZYQ==
+X-Gm-Message-State: AOAM530FN+WuYXBk2Hm6hDerdjrFBd/AUGXfgYZF4WFNQCRrj3CXlzuB
+ meBgYyo8jbP8AIeZdq0uNiCCPQ==
+X-Google-Smtp-Source: ABdhPJygpsOvqbz9fb7qJGgCFioEsRfk6HDgk0naoh+VvssLPQx9Yy+nyu+88/37ggZuXOUYWALu2A==
+X-Received: by 2002:a1c:dd88:: with SMTP id u130mr25032486wmg.55.1621957055999; 
+ Tue, 25 May 2021 08:37:35 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id e20sm3056582wme.26.2021.05.25.08.37.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 May 2021 08:37:35 -0700 (PDT)
+Date: Tue, 25 May 2021 17:37:33 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YK0Zvb4SStiCxhpk@phenom.ffwll.local>
+References: <20210524205954.872814-1-jason@jlekstrand.net>
+ <20210524205954.872814-7-jason@jlekstrand.net>
 MIME-Version: 1.0
-In-Reply-To: <YK0CKLSCx0qowxhy@phenom.ffwll.local>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 0/3] Clean a few backend interfaces in the
- i915
+Content-Disposition: inline
+In-Reply-To: <20210524205954.872814-7-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 6/6] RFC: dma-buf: Add an API for importing
+ sync files (v6)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,35 +68,191 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 25/05/2021 14:56, Daniel Vetter wrote:
-> On Fri, May 21, 2021 at 11:32:12AM -0700, Matthew Brost wrote:
->> As discussed in [1] start merging some support patches as a precursor to
->> GuC submission the i915. This is step #1 mentioned in [1].
->>
->> [1] https://patchwork.freedesktop.org/series/89844/
->>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+On Mon, May 24, 2021 at 03:59:54PM -0500, Jason Ekstrand wrote:
+> This patch is analogous to the previous sync file export patch in that
+> it allows you to import a sync_file into a dma-buf.  Unlike the previous
+> patch, however, this does add genuinely new functionality to dma-buf.
+> Without this, the only way to attach a sync_file to a dma-buf is to
+> submit a batch to your driver of choice which waits on the sync_file and
+> claims to write to the dma-buf.  Even if said batch is a no-op, a submit
+> is typically way more overhead than just attaching a fence.  A submit
+> may also imply extra synchronization with other work because it happens
+> on a hardware queue.
 > 
-> Pushed to drm-intel-gt-next, thanks for patches&reviews. Btw you can also
-> ping John H or Daniele for pushing stuff for you, should be quicker than
-> waiting for me to return from a lon w/e :-)
+> In the Vulkan world, this is useful for dealing with the out-fence from
+> vkQueuePresent.  Current Linux window-systems (X11, Wayland, etc.) all
+> rely on dma-buf implicit sync.  Since Vulkan is an explicit sync API, we
+> get a set of fences (VkSemaphores) in vkQueuePresent and have to stash
+> those as an exclusive (write) fence on the dma-buf.  We handle it in
+> Mesa today with the above mentioned dummy submit trick.  This ioctl
+> would allow us to set it directly without the dummy submit.
 > 
-> Plus I _really_ don't want to get back into the business of pushing other
-> people's work ...
+> This may also open up possibilities for GPU drivers to move away from
+> implicit sync for their kernel driver uAPI and instead provide sync
+> files and rely on dma-buf import/export for communicating with other
+> implicit sync clients.
+> 
+> We make the explicit choice here to only allow setting RW fences which
+> translates to an exclusive fence on the dma_resv.  There's no use for
+> read-only fences for communicating with other implicit sync userspace
+> and any such attempts are likely to be racy at best.  When we got to
+> insert the RW fence, the actual fence we set as the new exclusive fence
+> is a combination of the sync_file provided by the user and all the other
+> fences on the dma_resv.  This ensures that the newly added exclusive
+> fence will never signal before the old one would have and ensures that
+> we don't break any dma_resv contracts.  We require userspace to specify
+> RW in the flags for symmetry with the export ioctl and in case we ever
+> want to support read fences in the future.
+> 
+> There is one downside here that's worth documenting:  If two clients
+> writing to the same dma-buf using this API race with each other, their
+> actions on the dma-buf may happen in parallel or in an undefined order.
+> Both with and without this API, the pattern is the same:  Collect all
+> the fences on dma-buf, submit work which depends on said fences, and
+> then set a new exclusive (write) fence on the dma-buf which depends on
+> said work.  The difference is that, when it's all handled by the GPU
+> driver's submit ioctl, the three operations happen atomically under the
+> dma_resv lock.  If two userspace submits race, one will happen before
+> the other.  You aren't guaranteed which but you are guaranteed that
+> they're strictly ordered.  If userspace manages the fences itself, then
+> these three operations happen separately and the two render operations
+> may happen genuinely in parallel or get interleaved.  However, this is a
+> case of userspace racing with itself.  As long as we ensure userspace
+> can't back the kernel into a corner, it should be fine.
+> 
+> v2 (Jason Ekstrand):
+>  - Use a wrapper dma_fence_array of all fences including the new one
+>    when importing an exclusive fence.
+> 
+> v3 (Jason Ekstrand):
+>  - Lock around setting shared fences as well as exclusive
+>  - Mark SIGNAL_SYNC_FILE as a read-write ioctl.
+>  - Initialize ret to 0 in dma_buf_wait_sync_file
+> 
+> v4 (Jason Ekstrand):
+>  - Use the new dma_resv_get_singleton helper
+> 
+> v5 (Jason Ekstrand):
+>  - Rename the IOCTLs to import/export rather than wait/signal
+>  - Drop the WRITE flag and always get/set the exclusive fence
+> 
+> v5 (Jason Ekstrand):
+>  - Split import and export into separate patches
+>  - New commit message
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> ---
+>  drivers/dma-buf/dma-buf.c    | 34 ++++++++++++++++++++++++++++++++++
+>  include/uapi/linux/dma-buf.h |  1 +
+>  2 files changed, 35 insertions(+)
+> 
+> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+> index f23d939e0e833..0a50c19dcf015 100644
+> --- a/drivers/dma-buf/dma-buf.c
+> +++ b/drivers/dma-buf/dma-buf.c
+> @@ -419,6 +419,38 @@ static long dma_buf_export_sync_file(struct dma_buf *dmabuf,
+>  	put_unused_fd(fd);
+>  	return ret;
+>  }
+> +
+> +static long dma_buf_import_sync_file(struct dma_buf *dmabuf,
+> +				     const void __user *user_data)
+> +{
+> +	struct dma_buf_sync_file arg;
+> +	struct dma_fence *fence, *singleton = NULL;
+> +	int ret = 0;
+> +
+> +	if (copy_from_user(&arg, user_data, sizeof(arg)))
+> +		return -EFAULT;
+> +
+> +	if (arg.flags != DMA_BUF_SYNC_RW)
+> +		return -EINVAL;
+> +
+> +	fence = sync_file_get_fence(arg.fd);
+> +	if (!fence)
+> +		return -EINVAL;
+> +
+> +	dma_resv_lock(dmabuf->resv, NULL);
+> +
+> +	singleton = dma_resv_get_singleton_unlocked(dmabuf->resv, fence);
+> +	if (IS_ERR(singleton))
+> +		ret = PTR_ERR(singleton);
+> +	else if (singleton)
+> +		dma_resv_add_excl_fence(dmabuf->resv, singleton);
 
-To Matt - Also please take care to preserve r-b's when resurrecting 
-patches because all of these three had mine from before which is now 
-lost in git history.
+We also need to add the new fence to the shared slots, to make sure that
+the collective sum of shared fences still retires after the exclusive one.
+Not holding this up will pretty surely allow userspace to pull a bunch of
+ttm based drivers over the table I think.
 
-Regards,
+Note that with dma-buf shared buffers there shouldn't be a problem here,
+since as long as the buffer is in use by the other driver (which might
+break the contract here) it's pinned. So nothing bad can happen.
 
-Tvrtko
+
+Aside: The read-only version of this just adds the new fence, and the
+exclusive fence to the shared array. I think that would be useful to have,
+if just for completeness. I need to pester you how external images work
+here with vulkan ...
+
+> +
+> +	dma_resv_unlock(dmabuf->resv);
+> +
+> +	dma_fence_put(fence);
+> +
+> +	return ret;
+> +}
+>  #endif
+>  
+>  static long dma_buf_ioctl(struct file *file,
+> @@ -467,6 +499,8 @@ static long dma_buf_ioctl(struct file *file,
+>  #if IS_ENABLED(CONFIG_SYNC_FILE)
+>  	case DMA_BUF_IOCTL_EXPORT_SYNC_FILE:
+>  		return dma_buf_export_sync_file(dmabuf, (void __user *)arg);
+> +	case DMA_BUF_IOCTL_IMPORT_SYNC_FILE:
+> +		return dma_buf_import_sync_file(dmabuf, (const void __user *)arg);
+>  #endif
+>  
+>  	default:
+> diff --git a/include/uapi/linux/dma-buf.h b/include/uapi/linux/dma-buf.h
+> index f902cadcbdb56..75fdde4800267 100644
+> --- a/include/uapi/linux/dma-buf.h
+> +++ b/include/uapi/linux/dma-buf.h
+> @@ -70,5 +70,6 @@ struct dma_buf_sync_file {
+>  #define DMA_BUF_SET_NAME_A	_IOW(DMA_BUF_BASE, 1, u32)
+>  #define DMA_BUF_SET_NAME_B	_IOW(DMA_BUF_BASE, 1, u64)
+>  #define DMA_BUF_IOCTL_EXPORT_SYNC_FILE	_IOWR(DMA_BUF_BASE, 2, struct dma_buf_sync_file)
+> +#define DMA_BUF_IOCTL_IMPORT_SYNC_FILE	_IOW(DMA_BUF_BASE, 3, struct dma_buf_sync)
+
+Uh wrong struct here. Not good :-)
+
+Also more kerneldoc would be really nice, plus on 2nd thought I'm not
+really sure saving the few bytes in storage is such a bright idea, and
+maybe we should have distinct dma_buf_export/import_sync_file structures,
+each with their appropriate kerneldoc and no confusion.
+
+Aside from these I think this looks good. And as long as we keep up the
+"shared fences in their entirety complete after the exclusive fence if
+both are present", then I think we'll be fine.
+-Daniel
+
+
+
+>  
+>  #endif
+> -- 
+> 2.31.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
