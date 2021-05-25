@@ -1,43 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389843907A4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 19:28:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22998390787
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 19:25:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1CEE6EA8F;
-	Tue, 25 May 2021 17:28:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E502A6EA8E;
+	Tue, 25 May 2021 17:25:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22D976E417;
- Tue, 25 May 2021 17:28:29 +0000 (UTC)
-IronPort-SDR: BfnVVWsOaosYRf/BN6enXj2c2YudcVre/DW3AEfAKgXVqKrRTvHIUc9vtCODxtaUU5W3BFgvSp
- 95Jg9VzKzu3w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="223425229"
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="223425229"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 10:28:28 -0700
-IronPort-SDR: JBvl/lk7EH6KqeJCThYCbDwUk0p5OyPfvxxWwHJuEols3Gz6aA1nQJH1QP+qF9nkjolvOWc1d9
- rQTPCr7G5tZQ==
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="435788480"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 10:28:28 -0700
-Date: Tue, 25 May 2021 10:21:21 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20210525172121.GE14724@sdutt-i7>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-37-matthew.brost@intel.com>
- <375b4de4-168f-9c4c-dbb8-f42fd6303628@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 332496EA8D;
+ Tue, 25 May 2021 17:25:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2D15DA7DFB;
+ Tue, 25 May 2021 17:25:31 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <375b4de4-168f-9c4c-dbb8-f42fd6303628@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC PATCH 36/97] drm/i915/guc: Add non blocking
- CTB send function
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 25 May 2021 17:25:31 -0000
+Message-ID: <162196353117.1318.9513558773660415661@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210514125751.17075-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210514125751.17075-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_g4x/vlv/chv_CxSR/wm_fixes/cleanups_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,362 +38,325 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0669676517=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 25, 2021 at 10:21:00AM +0100, Tvrtko Ursulin wrote:
-> =
+--===============0669676517==
+Content-Type: multipart/alternative;
+ boundary="===============4521675091638648806=="
 
-> On 06/05/2021 20:13, Matthew Brost wrote:
-> > Add non blocking CTB send function, intel_guc_send_nb. In order to
-> > support a non blocking CTB send function a spin lock is needed to
-> > protect the CTB descriptors fields. Also the non blocking call must not
-> > update the fence value as this value is owned by the blocking call
-> > (intel_guc_send).
-> =
+--===============4521675091638648806==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> Could the commit message say why the non-blocking send function is needed?
-> =
+== Series Details ==
 
+Series: drm/i915: g4x/vlv/chv CxSR/wm fixes/cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/90164/
+State : success
 
-Sure. Something like:
+== Summary ==
 
-'CTBs will be used in the critical patch of GuC submission and there is
-no need to wait for each CTB complete before moving on the i915'
+CI Bug Log - changes from CI_DRM_10132 -> Patchwork_20190
+====================================================
 
-> > =
+Summary
+-------
 
-> > The blocking CTB now must have a flow control mechanism to ensure the
-> > buffer isn't overrun. A lazy spin wait is used as we believe the flow
-> > control condition should be rare with properly sized buffer.
-> > =
+  **SUCCESS**
 
-> > The function, intel_guc_send_nb, is exported in this patch but unused.
-> > Several patches later in the series make use of this function.
-> > =
+  No regressions found.
 
-> > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc.h    | 12 ++-
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 96 +++++++++++++++++++++--
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  7 +-
-> >   3 files changed, 105 insertions(+), 10 deletions(-)
-> > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/index.html
 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i=
-915/gt/uc/intel_guc.h
-> > index c20f3839de12..4c0a367e41d8 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > @@ -75,7 +75,15 @@ static inline struct intel_guc *log_to_guc(struct in=
-tel_guc_log *log)
-> >   static
-> >   inline int intel_guc_send(struct intel_guc *guc, const u32 *action, u=
-32 len)
-> >   {
-> > -	return intel_guc_ct_send(&guc->ct, action, len, NULL, 0);
-> > +	return intel_guc_ct_send(&guc->ct, action, len, NULL, 0, 0);
-> > +}
-> > +
-> > +#define INTEL_GUC_SEND_NB		BIT(31)
-> > +static
-> > +inline int intel_guc_send_nb(struct intel_guc *guc, const u32 *action,=
- u32 len)
-> > +{
-> > +	return intel_guc_ct_send(&guc->ct, action, len, NULL, 0,
-> > +				 INTEL_GUC_SEND_NB);
-> >   }
-> >   static inline int
-> > @@ -83,7 +91,7 @@ intel_guc_send_and_receive(struct intel_guc *guc, con=
-st u32 *action, u32 len,
-> >   			   u32 *response_buf, u32 response_buf_size)
-> >   {
-> >   	return intel_guc_ct_send(&guc->ct, action, len,
-> > -				 response_buf, response_buf_size);
-> > +				 response_buf, response_buf_size, 0);
-> >   }
-> >   static inline void intel_guc_to_host_event_handler(struct intel_guc *=
-guc)
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/dr=
-m/i915/gt/uc/intel_guc_ct.c
-> > index a76603537fa8..af7314d45a78 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > @@ -3,6 +3,11 @@
-> >    * Copyright =A9 2016-2019 Intel Corporation
-> >    */
-> > +#include <linux/circ_buf.h>
-> > +#include <linux/ktime.h>
-> > +#include <linux/time64.h>
-> > +#include <linux/timekeeping.h>
-> > +
-> >   #include "i915_drv.h"
-> >   #include "intel_guc_ct.h"
-> >   #include "gt/intel_gt.h"
-> > @@ -308,6 +313,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
-> >   	if (unlikely(err))
-> >   		goto err_deregister;
-> > +	ct->requests.last_fence =3D 1;
-> >   	ct->enabled =3D true;
-> >   	return 0;
-> > @@ -343,10 +349,22 @@ static u32 ct_get_next_fence(struct intel_guc_ct =
-*ct)
-> >   	return ++ct->requests.last_fence;
-> >   }
-> > +static void write_barrier(struct intel_guc_ct *ct) {
-> > +	struct intel_guc *guc =3D ct_to_guc(ct);
-> > +	struct intel_gt *gt =3D guc_to_gt(guc);
-> > +
-> > +	if (i915_gem_object_is_lmem(guc->ct.vma->obj)) {
-> > +		GEM_BUG_ON(guc->send_regs.fw_domains);
-> > +		intel_uncore_write_fw(gt->uncore, GEN11_SOFT_SCRATCH(0), 0);
-> =
+Possible new issues
+-------------------
 
-> It's safe to write to this reg? Does it need a comment to explain it?
->
+  Here are the unknown changes that may have been introduced in Patchwork_20190:
 
-Yes, it is same. IMO 'SCRATCH' in the name is enough documentation.
- =
+### IGT changes ###
 
-> > +	} else {
-> > +		wmb();
-> > +	}
-> > +}
-> > +
-> >   static int ct_write(struct intel_guc_ct *ct,
-> >   		    const u32 *action,
-> >   		    u32 len /* in dwords */,
-> > -		    u32 fence)
-> > +		    u32 fence, u32 flags)
-> >   {
-> >   	struct intel_guc_ct_buffer *ctb =3D &ct->ctbs.send;
-> >   	struct guc_ct_buffer_desc *desc =3D ctb->desc;
-> > @@ -393,9 +411,13 @@ static int ct_write(struct intel_guc_ct *ct,
-> >   		 FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
-> >   		 FIELD_PREP(GUC_CTB_MSG_0_FENCE, fence);
-> > -	hxg =3D FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
-> > -	      FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
-> > -			 GUC_HXG_REQUEST_MSG_0_DATA0, action[0]);
-> > +	hxg =3D (flags & INTEL_GUC_SEND_NB) ?
-> > +		(FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
-> > +		 FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
-> > +			    GUC_HXG_EVENT_MSG_0_DATA0, action[0])) :
-> > +		(FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
-> > +		 FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
-> > +			    GUC_HXG_REQUEST_MSG_0_DATA0, action[0]));
-> >   	CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
-> >   		 tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
-> > @@ -412,6 +434,12 @@ static int ct_write(struct intel_guc_ct *ct,
-> >   	}
-> >   	GEM_BUG_ON(tail > size);
-> > +	/*
-> > +	 * make sure H2G buffer update and LRC tail update (if this triggerin=
-g a
-> > +	 * submission) are visable before updating the descriptor tail
-> > +	 */
-> > +	write_barrier(ct);
-> > +
-> >   	/* now update descriptor */
-> >   	WRITE_ONCE(desc->tail, tail);
-> > @@ -466,6 +494,46 @@ static int wait_for_ct_request_update(struct ct_re=
-quest *req, u32 *status)
-> >   	return err;
-> >   }
-> > +static inline bool ctb_has_room(struct intel_guc_ct_buffer *ctb, u32 l=
-en_dw)
-> > +{
-> > +	struct guc_ct_buffer_desc *desc =3D ctb->desc;
-> > +	u32 head =3D READ_ONCE(desc->head);
-> > +	u32 space;
-> > +
-> > +	space =3D CIRC_SPACE(desc->tail, head, ctb->size);
-> > +
-> > +	return space >=3D len_dw;
-> > +}
-> > +
-> > +static int ct_send_nb(struct intel_guc_ct *ct,
-> > +		      const u32 *action,
-> > +		      u32 len,
-> > +		      u32 flags)
-> > +{
-> > +	struct intel_guc_ct_buffer *ctb =3D &ct->ctbs.send;
-> > +	unsigned long spin_flags;
-> > +	u32 fence;
-> > +	int ret;
-> > +
-> > +	spin_lock_irqsave(&ctb->lock, spin_flags);
-> > +
-> > +	ret =3D ctb_has_room(ctb, len + 1);
-> > +	if (unlikely(ret))
-> > +		goto out;
-> > +
-> > +	fence =3D ct_get_next_fence(ct);
-> > +	ret =3D ct_write(ct, action, len, fence, flags);
-> > +	if (unlikely(ret))
-> > +		goto out;
-> > +
-> > +	intel_guc_notify(ct_to_guc(ct));
-> > +
-> > +out:
-> > +	spin_unlock_irqrestore(&ctb->lock, spin_flags);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >   static int ct_send(struct intel_guc_ct *ct,
-> >   		   const u32 *action,
-> >   		   u32 len,
-> > @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> >   		   u32 response_buf_size,
-> >   		   u32 *status)
-> >   {
-> > +	struct intel_guc_ct_buffer *ctb =3D &ct->ctbs.send;
-> >   	struct ct_request request;
-> >   	unsigned long flags;
-> >   	u32 fence;
-> > @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
-> >   	GEM_BUG_ON(!len);
-> >   	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
-> >   	GEM_BUG_ON(!response_buf && response_buf_size);
-> > +	might_sleep();
-> =
+#### Suppressed ####
 
-> Sleep is just cond_resched below or there is more?
-> =
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@mman:
+    - {fi-tgl-dsi}:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-tgl-dsi/igt@i915_selftest@live@mman.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-tgl-dsi/igt@i915_selftest@live@mman.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20190 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][3] ([i915#1372]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - fi-elk-e7500:       [SKIP][5] ([fdo#109271]) -> [PASS][6] +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-elk-e7500/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-elk-e7500/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][7] ([i915#2782] / [i915#2940] / [i915#3462]) -> [DMESG-FAIL][8] ([i915#3462])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+    - fi-tgl-u2:          [DMESG-FAIL][9] ([i915#3462]) -> [INCOMPLETE][10] ([i915#3462])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-tgl-u2/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-tgl-u2/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-elk-e7500:       [SKIP][11] ([fdo#109271]) -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-elk-e7500/igt@kms_chamelium@dp-edid-read.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-elk-e7500/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@runner@aborted:
+    - fi-cfl-8700k:       [FAIL][13] ([i915#3363]) -> [FAIL][14] ([i915#2426] / [i915#3363])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-cfl-8700k/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-cfl-8700k/igt@runner@aborted.html
+    - fi-skl-6600u:       [FAIL][15] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][16] ([i915#1436] / [i915#3363])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-skl-6600u/igt@runner@aborted.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-skl-6600u/igt@runner@aborted.html
+    - fi-kbl-soraka:      [FAIL][17] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][18] ([i915#1436] / [i915#3363])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-kbl-soraka/igt@runner@aborted.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-kbl-soraka/igt@runner@aborted.html
+    - fi-cfl-guc:         [FAIL][19] ([i915#2426] / [i915#3363]) -> [FAIL][20] ([i915#3363])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-cfl-guc/igt@runner@aborted.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-cfl-guc/igt@runner@aborted.html
+    - fi-kbl-7567u:       [FAIL][21] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][22] ([i915#1436] / [i915#3363])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-kbl-7567u/igt@runner@aborted.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-kbl-7567u/igt@runner@aborted.html
+    - fi-skl-guc:         [FAIL][23] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][24] ([i915#1436] / [i915#3363])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-skl-guc/igt@runner@aborted.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-skl-guc/igt@runner@aborted.html
+    - fi-skl-6700k2:      [FAIL][25] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][26] ([i915#1436] / [i915#3363])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-skl-6700k2/igt@runner@aborted.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-skl-6700k2/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
+  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
-Yes, the cond_resched.
+Participating hosts (46 -> 41)
+------------------------------
 
-> > +	/*
-> > +	 * We use a lazy spin wait loop here as we believe that if the CT
-> > +	 * buffers are sized correctly the flow control condition should be
-> > +	 * rare.
-> > +	 */
-> > +retry:
-> >   	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
-> > +	if (unlikely(!ctb_has_room(ctb, len + 1))) {
-> > +		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > +		cond_resched();
-> > +		goto retry;
-> > +	}
-> =
+  Missing    (5): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-ctg-p8600 fi-bdw-samus 
 
-> If this patch is about adding a non-blocking send function, and below we =
-can
-> see that it creates a fork:
-> =
 
-> intel_guc_ct_send:
-> ...
-> 	if (flags & INTEL_GUC_SEND_NB)
-> 		return ct_send_nb(ct, action, len, flags);
-> =
+Build changes
+-------------
 
->  	ret =3D ct_send(ct, action, len, response_buf, response_buf_size, &stat=
-us);
-> =
+  * Linux: CI_DRM_10132 -> Patchwork_20190
 
-> Then why is there a change in ct_send here, which is not the new
-> non-blocking path?
->
+  CI-20190529: 20190529
+  CI_DRM_10132: 9a0e65e148626db231bdc227d035a71c409aba02 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6092: d87087c321da07035d4f96d98c34e451b3ccb809 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20190: 61e74ae7743863b8950f3a0737fb435afa57ddc4 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-There is not a change to ct_send(), just to intel_guc_ct_send.
 
-As for why intel_guc_ct_send is updated and we don't just a new public
-function, this was another reviewers suggestion. Again can't make
-everyone happy.
- =
+== Linux commits ==
 
-> >   	fence =3D ct_get_next_fence(ct);
-> >   	request.fence =3D fence;
-> > @@ -495,7 +576,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> >   	list_add_tail(&request.link, &ct->requests.pending);
-> >   	spin_unlock(&ct->requests.lock);
-> > -	err =3D ct_write(ct, action, len, fence);
-> > +	err =3D ct_write(ct, action, len, fence, 0);
-> >   	spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > @@ -537,7 +618,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> >    * Command Transport (CT) buffer based GuC send function.
-> >    */
-> >   int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32=
- len,
-> > -		      u32 *response_buf, u32 response_buf_size)
-> > +		      u32 *response_buf, u32 response_buf_size, u32 flags)
-> >   {
-> >   	u32 status =3D ~0; /* undefined */
-> >   	int ret;
-> > @@ -547,6 +628,9 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, cons=
-t u32 *action, u32 len,
-> >   		return -ENODEV;
-> >   	}
-> > +	if (flags & INTEL_GUC_SEND_NB)
-> > +		return ct_send_nb(ct, action, len, flags);
-> > +
-> >   	ret =3D ct_send(ct, action, len, response_buf, response_buf_size, &s=
-tatus);
-> >   	if (unlikely(ret < 0)) {
-> >   		CT_ERROR(ct, "Sending action %#x failed (err=3D%d status=3D%#X)\n",
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/dr=
-m/i915/gt/uc/intel_guc_ct.h
-> > index 1ae2dde6db93..55ef7c52472f 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> > @@ -9,6 +9,7 @@
-> >   #include <linux/interrupt.h>
-> >   #include <linux/spinlock.h>
-> >   #include <linux/workqueue.h>
-> > +#include <linux/ktime.h>
-> >   #include "intel_guc_fwif.h"
-> > @@ -42,7 +43,6 @@ struct intel_guc_ct_buffer {
-> >   	bool broken;
-> >   };
-> > -
-> >   /** Top-level structure for Command Transport related data
-> >    *
-> >    * Includes a pair of CT buffers for bi-directional communication and=
- tracking
-> > @@ -69,6 +69,9 @@ struct intel_guc_ct {
-> >   		struct list_head incoming; /* incoming requests */
-> >   		struct work_struct worker; /* handler for incoming requests */
-> >   	} requests;
-> > +
-> > +	/** @stall_time: time of first time a CTB submission is stalled */
-> > +	ktime_t stall_time;
-> =
+61e74ae77438 drm/i915: Enable atomic by default on ctg/elk
+6ecc910e6e6c drm/i915: Write watermarks for disabled pipes on gmch platforms
+041b4744b466 drm/i915: Fix pipe gamma enable/disable vs. CxSR on gmch platforms
+d69d4918649f drm/i915: Fix g4x/vlv/chv CxSR vs. format/tiling/rotation changes
+71ea2a0be37d drm/i915: Add missing invalidate to g4x wm readout
+3022bf72bb52 drm/i915: Simplify up vlv watermark sanitation
+5b9af9fd3678 drm/i915: Simplify up g4x watermark sanitation
+b561f5eab831 drm/i915: Split vlv_compute_pipe_wm() into two
+12e9f07ba1f6 drm/i915: Split g4x_compute_pipe_wm() into two
+8d0dbc0d8904 drm/i915: Fix HPLL watermark readout for g4x
+6e2e4ee46e94 drm/i915: Apply WaUse32BppForSRWM to elk as well as ctg
+15730b4145d6 drm/i915: Use u8 consistently for active_planes bitmask
+f403c1a949b6 drm/i915: Fix g4x cxsr enable condition
+5a38a80d6778 drm/i915: s/crtc_state/new_crtc_state/ etc.
 
-> Unused in this patch.
->
+== Logs ==
 
-Yea, wrong patch. Will fix.
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/index.html
 
-Matt
- =
+--===============4521675091638648806==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> >   };
-> >   void intel_guc_ct_init_early(struct intel_guc_ct *ct);
-> > @@ -88,7 +91,7 @@ static inline bool intel_guc_ct_enabled(struct intel_=
-guc_ct *ct)
-> >   }
-> >   int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32=
- len,
-> > -		      u32 *response_buf, u32 response_buf_size);
-> > +		      u32 *response_buf, u32 response_buf_size, u32 flags);
-> >   void intel_guc_ct_event_handler(struct intel_guc_ct *ct);
-> >   #endif /* _INTEL_GUC_CT_H_ */
-> > =
 
-> =
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-> Regards,
-> =
 
-> Tvrtko
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: g4x/vlv/chv CxSR/wm fixes/cleanups (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90164/">https://patchwork.freedesktop.org/series/90164/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10132 -&gt; Patchwork_20190</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20190:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@mman:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-tgl-dsi/igt@i915_selftest@live@mman.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-tgl-dsi/igt@i915_selftest@live@mman.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20190 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-elk-e7500/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-elk-e7500/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-bsw-nick/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-tgl-u2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-tgl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-edid-read:</p>
+<ul>
+<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-elk-e7500/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-elk-e7500/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-kbl-7567u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-kbl-7567u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-skl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-skl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-skl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10132/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20190/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (46 -&gt; 41)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10132 -&gt; Patchwork_20190</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10132: 9a0e65e148626db231bdc227d035a71c409aba02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6092: d87087c321da07035d4f96d98c34e451b3ccb809 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20190: 61e74ae7743863b8950f3a0737fb435afa57ddc4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>61e74ae77438 drm/i915: Enable atomic by default on ctg/elk<br />
+6ecc910e6e6c drm/i915: Write watermarks for disabled pipes on gmch platforms<br />
+041b4744b466 drm/i915: Fix pipe gamma enable/disable vs. CxSR on gmch platforms<br />
+d69d4918649f drm/i915: Fix g4x/vlv/chv CxSR vs. format/tiling/rotation changes<br />
+71ea2a0be37d drm/i915: Add missing invalidate to g4x wm readout<br />
+3022bf72bb52 drm/i915: Simplify up vlv watermark sanitation<br />
+5b9af9fd3678 drm/i915: Simplify up g4x watermark sanitation<br />
+b561f5eab831 drm/i915: Split vlv_compute_pipe_wm() into two<br />
+12e9f07ba1f6 drm/i915: Split g4x_compute_pipe_wm() into two<br />
+8d0dbc0d8904 drm/i915: Fix HPLL watermark readout for g4x<br />
+6e2e4ee46e94 drm/i915: Apply WaUse32BppForSRWM to elk as well as ctg<br />
+15730b4145d6 drm/i915: Use u8 consistently for active_planes bitmask<br />
+f403c1a949b6 drm/i915: Fix g4x cxsr enable condition<br />
+5a38a80d6778 drm/i915: s/crtc_state/new_crtc_state/ etc.</p>
+
+</body>
+</html>
+
+--===============4521675091638648806==--
+
+--===============0669676517==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0669676517==--
