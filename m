@@ -1,42 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC52390901
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 20:32:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7462390913
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 20:37:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0F3E6EAA0;
-	Tue, 25 May 2021 18:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC6BF6EAA8;
+	Tue, 25 May 2021 18:37:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B8FD6EAA0;
- Tue, 25 May 2021 18:32:16 +0000 (UTC)
-IronPort-SDR: 6WrGsm33ee/LjDvMB1OeqZRFHy9iyk/R0OGh3OvGCXOf7lmocA7MqJyz2bUjPN3Ur3lIKIHj8p
- ff2/EEIPn9Ig==
-X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="199214093"
-X-IronPort-AV: E=Sophos;i="5.82,329,1613462400"; d="scan'208";a="199214093"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 11:32:13 -0700
-IronPort-SDR: 4kuWneIXsdHtkzAektilCTB+Vv0p6l0MTHsHq+j09yLafOsb3WE3AEfmrGe/2mSJdGHQAo+NXj
- KtFz/l2E2f2Q==
-X-IronPort-AV: E=Sophos;i="5.82,329,1613462400"; d="scan'208";a="546878989"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 11:32:13 -0700
-Date: Tue, 25 May 2021 11:25:06 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <20210525182505.GA25419@sdutt-i7>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-20-matthew.brost@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B4196EAA6;
+ Tue, 25 May 2021 18:37:03 +0000 (UTC)
+IronPort-SDR: 6h9OClOWRySwELh7DzrwrAkqs3aeU+b49HHP5R+ml58JRX9Rdrvr8C98m4q8yg/cfm6PtuKYyn
+ R0gUHaIqSIuw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="202023581"
+X-IronPort-AV: E=Sophos;i="5.82,329,1613462400"; d="scan'208";a="202023581"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2021 11:36:53 -0700
+IronPort-SDR: YIjc8Hher8OoWXmGlzurGP3M4aPNFXcQ1UBBHURYued5lThXqUVYYQ5hc2WFlqRkqU8ha1nMHR
+ Kl/mZ5u0mw+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,329,1613462400"; d="scan'208";a="614634262"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga005.jf.intel.com with ESMTP; 25 May 2021 11:36:49 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Tue, 25 May 2021 11:36:47 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Tue, 25 May 2021 11:36:46 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.008;
+ Tue, 25 May 2021 11:36:46 -0700
+From: "Tang, CQ" <cq.tang@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v4 14/17] drm/i915/pxp: User interface for
+ Protected buffer
+Thread-Index: AQHXUSmqkEdcZH4vbkuOYyljS1D7eqr0hR8w
+Date: Tue, 25 May 2021 18:36:46 +0000
+Message-ID: <728fa3c9e484402d82fb7fb124496bdb@intel.com>
+References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
+ <20210525054803.7387-15-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20210525054803.7387-15-daniele.ceraolospurio@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.1.200.100]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210506191451.77768-20-matthew.brost@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC PATCH 19/97] drm/i915/guc: Always copy CT
- message to new allocation
+Subject: Re: [Intel-gfx] [PATCH v4 14/17] drm/i915/pxp: User interface for
+ Protected buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,425 +70,465 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Kondapally Kalyan <kalyan.kondapally@intel.com>,
+ Huang Sean Z <sean.z.huang@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>, "Bommu,
+ Krishnaiah" <krishnaiah.bommu@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 06, 2021 at 12:13:33PM -0700, Matthew Brost wrote:
-> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> =
 
-> Since most of future CT traffic will be based on G2H requests,
-> instead of copying incoming CT message to static buffer and then
-> create new allocation for such request, always copy incoming CT
-> message to new allocation. Also by doing it while reading CT
-> header, we can safely fallback if that atomic allocation fails.
-> =
 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Cc: Piotr Pi=F3rkowski <piotr.piorkowski@intel.com>
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Daniele Ceraolo Spurio
+> Sent: Monday, May 24, 2021 10:48 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Vetter, Daniel <daniel.vetter@intel.com>; Huang Sean Z
+> <sean.z.huang@intel.com>; dri-devel@lists.freedesktop.org; Chris Wilson
+> <chris@chris-wilson.co.uk>; Kondapally Kalyan
+> <kalyan.kondapally@intel.com>; Bommu, Krishnaiah
+> <krishnaiah.bommu@intel.com>
+> Subject: [Intel-gfx] [PATCH v4 14/17] drm/i915/pxp: User interface for
+> Protected buffer
+> 
+> From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> 
+> This api allow user mode to create Protected buffers. Only contexts marked
+> as protected are allowed to operate on protected buffers.
+> 
+> We only allow setting the flags at creation time.
+> 
+> All protected objects that have backing storage will be considered invalid
+> when the session is destroyed and they won't be usable anymore.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Then these protected objects will be hanging in the system till user call gem_close() to free them?
+If the objects won't be usable anymore, why don't we automatically free these objects when the session is destroyed?
 
+How is a session started/destroyed?  From the code, intel_pxp_init() is called when loading i915 driver, so I think session lifetime is the same as i915 driver lifetime.
+Can we start multiple sessions after loading the driver?
+
+--CQ
+
+> 
+> Given that the PXP HW supports multiple modes (but we currently only care
+> about one), a flag variable has been reserved in the structure used in the
+> create_ext ioctl for possible future updates.
+> 
+> This is a rework of the original code by Bommu Krishnaiah. I've kept
+> authorship unchanged since significant chunks have not been modified.
+> 
+> v2: split context changes, fix defines and improve documentation (Chris),
+>     add object invalidation logic
+> v3: fix spinlock definition and usage, only validate objects when
+>     they're first added to a context lut, only remove them once (Chris),
+>     make protected context flag not mandatory in protected object execbuf
+>     to avoid abuse (Lionel)
+> v4: rebase to new gem_create_ext
+> 
+> Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>
+> Cc: Kondapally Kalyan <kalyan.kondapally@intel.com>
+> Cc: Gupta Anshuman <Anshuman.Gupta@intel.com>
+> Cc: Huang Sean Z <sean.z.huang@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 180 ++++++++++++++--------
->  1 file changed, 120 insertions(+), 60 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/=
-i915/gt/uc/intel_guc_ct.c
-> index d630ec32decf..a174978c6a27 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -72,8 +72,9 @@ struct ct_request {
->  	u32 *response_buf;
->  };
->  =
-
-> -struct ct_incoming_request {
-> +struct ct_incoming_msg {
->  	struct list_head link;
-> +	u32 size;
->  	u32 msg[];
->  };
->  =
-
-> @@ -575,7 +576,26 @@ static inline bool ct_header_is_response(u32 header)
->  	return !!(header & GUC_CT_MSG_IS_RESPONSE);
->  }
->  =
-
-> -static int ct_read(struct intel_guc_ct *ct, u32 *data)
-> +static struct ct_incoming_msg *ct_alloc_msg(u32 num_dwords)
-> +{
-> +	struct ct_incoming_msg *msg;
+>  drivers/gpu/drm/i915/gem/i915_gem_create.c    | 26 ++++++++++++
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 15 +++++++
+>  drivers/gpu/drm/i915/gem/i915_gem_object.c    |  6 +++
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    | 12 ++++++
+>  .../gpu/drm/i915/gem/i915_gem_object_types.h  | 13 ++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c          | 41 +++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp.h          | 13 ++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  5 +++
+>  include/uapi/drm/i915_drm.h                   | 33 ++++++++++++++-
+>  9 files changed, 163 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> index 548ddf39d853..c14be3882c35 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> @@ -6,6 +6,7 @@
+>  #include "gem/i915_gem_ioctls.h"
+>  #include "gem/i915_gem_lmem.h"
+>  #include "gem/i915_gem_region.h"
+> +#include "pxp/intel_pxp.h"
+> 
+>  #include "i915_drv.h"
+>  #include "i915_trace.h"
+> @@ -99,7 +100,11 @@ i915_gem_setup(struct drm_i915_gem_object *obj,
+> u64 size)
+> 
+>  	GEM_BUG_ON(size != obj->base.size);
+> 
+> +	if (obj->user_flags & I915_GEM_OBJECT_PROTECTED)
+> +		intel_pxp_object_add(obj);
 > +
-> +	msg =3D kmalloc(sizeof(*msg) + sizeof(u32) * num_dwords, GFP_ATOMIC);
-> +	if (msg)
-> +		msg->size =3D num_dwords;
-> +	return msg;
-> +}
+>  	trace_i915_gem_object_create(obj);
 > +
-> +static void ct_free_msg(struct ct_incoming_msg *msg)
-> +{
-> +	kfree(msg);
-> +}
-> +
-> +/*
-> + * Return: number available remaining dwords to read (0 if empty)
-> + *         or a negative error code on failure
-> + */
-> +static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
->  {
->  	struct intel_guc_ct_buffer *ctb =3D &ct->ctbs.recv;
->  	struct guc_ct_buffer_desc *desc =3D ctb->desc;
-> @@ -586,6 +606,7 @@ static int ct_read(struct intel_guc_ct *ct, u32 *data)
->  	s32 available;
->  	unsigned int len;
->  	unsigned int i;
-> +	u32 header;
->  =
-
->  	if (unlikely(desc->is_in_error))
->  		return -EPIPE;
-> @@ -601,8 +622,10 @@ static int ct_read(struct intel_guc_ct *ct, u32 *dat=
-a)
->  =
-
->  	/* tail =3D=3D head condition indicates empty */
->  	available =3D tail - head;
-> -	if (unlikely(available =3D=3D 0))
-> -		return -ENODATA;
-> +	if (unlikely(available =3D=3D 0)) {
-> +		*msg =3D NULL;
-> +		return 0;
-> +	}
->  =
-
->  	/* beware of buffer wrap case */
->  	if (unlikely(available < 0))
-> @@ -610,14 +633,14 @@ static int ct_read(struct intel_guc_ct *ct, u32 *da=
-ta)
->  	CT_DEBUG(ct, "available %d (%u:%u)\n", available, head, tail);
->  	GEM_BUG_ON(available < 0);
->  =
-
-> -	data[0] =3D cmds[head];
-> +	header =3D cmds[head];
->  	head =3D (head + 1) % size;
->  =
-
->  	/* message len with header */
-> -	len =3D ct_header_get_len(data[0]) + 1;
-> +	len =3D ct_header_get_len(header) + 1;
->  	if (unlikely(len > (u32)available)) {
->  		CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
-> -			 4, data,
-> +			 4, &header,
->  			 4 * (head + available - 1 > size ?
->  			      size - head : available - 1), &cmds[head],
->  			 4 * (head + available - 1 > size ?
-> @@ -625,11 +648,24 @@ static int ct_read(struct intel_guc_ct *ct, u32 *da=
-ta)
->  		goto corrupted;
->  	}
->  =
-
-> +	*msg =3D ct_alloc_msg(len);
-> +	if (!*msg) {
-> +		CT_ERROR(ct, "No memory for message %*ph %*ph %*ph\n",
-> +			 4, &header,
-> +			 4 * (head + available - 1 > size ?
-> +			      size - head : available - 1), &cmds[head],
-> +			 4 * (head + available - 1 > size ?
-> +			      available - 1 - size + head : 0), &cmds[0]);
-> +		return available;
-> +	}
-> +
-> +	(*msg)->msg[0] =3D header;
-> +
->  	for (i =3D 1; i < len; i++) {
-> -		data[i] =3D cmds[head];
-> +		(*msg)->msg[i] =3D cmds[head];
->  		head =3D (head + 1) % size;
->  	}
-> -	CT_DEBUG(ct, "received %*ph\n", 4 * len, data);
-> +	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
->  =
-
->  	desc->head =3D head * 4;
->  	return available - len;
-> @@ -659,33 +695,33 @@ static int ct_read(struct intel_guc_ct *ct, u32 *da=
-ta)
->   *                   ^-----------------------len-----------------------^
->   */
->  =
-
-> -static int ct_handle_response(struct intel_guc_ct *ct, const u32 *msg)
-> +static int ct_handle_response(struct intel_guc_ct *ct, struct ct_incomin=
-g_msg *response)
->  {
-> -	u32 header =3D msg[0];
-> +	u32 header =3D response->msg[0];
->  	u32 len =3D ct_header_get_len(header);
-> -	u32 msgsize =3D (len + 1) * sizeof(u32); /* msg size in bytes w/header =
-*/
->  	u32 fence;
->  	u32 status;
->  	u32 datalen;
->  	struct ct_request *req;
->  	unsigned long flags;
->  	bool found =3D false;
-> +	int err =3D 0;
->  =
-
->  	GEM_BUG_ON(!ct_header_is_response(header));
->  =
-
->  	/* Response payload shall at least include fence and status */
->  	if (unlikely(len < 2)) {
-> -		CT_ERROR(ct, "Corrupted response %*ph\n", msgsize, msg);
-> +		CT_ERROR(ct, "Corrupted response (len %u)\n", len);
->  		return -EPROTO;
->  	}
->  =
-
-> -	fence =3D msg[1];
-> -	status =3D msg[2];
-> +	fence =3D response->msg[1];
-> +	status =3D response->msg[2];
->  	datalen =3D len - 2;
->  =
-
->  	/* Format of the status follows RESPONSE message */
->  	if (unlikely(!INTEL_GUC_MSG_IS_RESPONSE(status))) {
-> -		CT_ERROR(ct, "Corrupted response %*ph\n", msgsize, msg);
-> +		CT_ERROR(ct, "Corrupted response (status %#x)\n", status);
->  		return -EPROTO;
->  	}
->  =
-
-> @@ -699,12 +735,13 @@ static int ct_handle_response(struct intel_guc_ct *=
-ct, const u32 *msg)
->  			continue;
->  		}
->  		if (unlikely(datalen > req->response_len)) {
-> -			CT_ERROR(ct, "Response for %u is too long %*ph\n",
-> -				 req->fence, msgsize, msg);
-> -			datalen =3D 0;
-> +			CT_ERROR(ct, "Response %u too long (datalen %u > %u)\n",
-> +				 req->fence, datalen, req->response_len);
-> +			datalen =3D min(datalen, req->response_len);
-> +			err =3D -EMSGSIZE;
->  		}
->  		if (datalen)
-> -			memcpy(req->response_buf, msg + 3, 4 * datalen);
-> +			memcpy(req->response_buf, response->msg + 3, 4 * datalen);
->  		req->response_len =3D datalen;
->  		WRITE_ONCE(req->status, status);
->  		found =3D true;
-> @@ -712,45 +749,61 @@ static int ct_handle_response(struct intel_guc_ct *=
-ct, const u32 *msg)
->  	}
->  	spin_unlock_irqrestore(&ct->requests.lock, flags);
->  =
-
-> -	if (!found)
-> -		CT_ERROR(ct, "Unsolicited response %*ph\n", msgsize, msg);
-> +	if (!found) {
-> +		CT_ERROR(ct, "Unsolicited response (fence %u)\n", fence);
-> +		return -ENOKEY;
-> +	}
-> +
-> +	if (unlikely(err))
-> +		return err;
-> +
-> +	ct_free_msg(response);
 >  	return 0;
 >  }
->  =
-
-> -static void ct_process_request(struct intel_guc_ct *ct,
-> -			       u32 action, u32 len, const u32 *payload)
-> +static int ct_process_request(struct intel_guc_ct *ct, struct ct_incomin=
-g_msg *request)
->  {
->  	struct intel_guc *guc =3D ct_to_guc(ct);
-> +	u32 header, action, len;
-> +	const u32 *payload;
->  	int ret;
->  =
-
-> +	header =3D request->msg[0];
-> +	payload =3D &request->msg[1];
-> +	action =3D ct_header_get_action(header);
-> +	len =3D ct_header_get_len(header);
+> 
+> @@ -344,8 +349,29 @@ static int ext_set_placements(struct
+> i915_user_extension __user *base,
+>  	return set_placements(&ext, data);
+>  }
+> 
+> +static int ext_set_protected(struct i915_user_extension __user *base,
+> +void *data) {
+> +	struct drm_i915_gem_create_ext_protected_content ext;
+> +	struct create_ext *ext_data = data;
 > +
->  	CT_DEBUG(ct, "request %x %*ph\n", action, 4 * len, payload);
->  =
-
->  	switch (action) {
->  	case INTEL_GUC_ACTION_DEFAULT:
->  		ret =3D intel_guc_to_host_process_recv_msg(guc, payload, len);
-> -		if (unlikely(ret))
-> -			goto fail_unexpected;
->  		break;
-> -
->  	default:
-> -fail_unexpected:
-> -		CT_ERROR(ct, "Unexpected request %x %*ph\n",
-> -			 action, 4 * len, payload);
-> +		ret =3D -EOPNOTSUPP;
->  		break;
->  	}
+> +	if (copy_from_user(&ext, base, sizeof(ext)))
+> +		return -EFAULT;
 > +
-> +	if (unlikely(ret)) {
-> +		CT_ERROR(ct, "Failed to process request %04x (%pe)\n",
-> +			 action, ERR_PTR(ret));
-> +		return ret;
-> +	}
+> +	if (ext.flags)
+> +		return -EINVAL;
 > +
-> +	ct_free_msg(request);
+> +	if (!intel_pxp_is_enabled(&ext_data->i915->gt.pxp))
+> +		return -ENODEV;
+> +
+> +	ext_data->vanilla_object->user_flags |=
+> I915_GEM_OBJECT_PROTECTED;
+> +
 > +	return 0;
->  }
->  =
-
->  static bool ct_process_incoming_requests(struct intel_guc_ct *ct)
->  {
->  	unsigned long flags;
-> -	struct ct_incoming_request *request;
-> -	u32 header;
-> -	u32 *payload;
-> +	struct ct_incoming_msg *request;
->  	bool done;
-> +	int err;
->  =
-
->  	spin_lock_irqsave(&ct->requests.lock, flags);
->  	request =3D list_first_entry_or_null(&ct->requests.incoming,
-> -					   struct ct_incoming_request, link);
-> +					   struct ct_incoming_msg, link);
->  	if (request)
->  		list_del(&request->link);
->  	done =3D !!list_empty(&ct->requests.incoming);
-> @@ -759,14 +812,13 @@ static bool ct_process_incoming_requests(struct int=
-el_guc_ct *ct)
->  	if (!request)
->  		return true;
->  =
-
-> -	header =3D request->msg[0];
-> -	payload =3D &request->msg[1];
-> -	ct_process_request(ct,
-> -			   ct_header_get_action(header),
-> -			   ct_header_get_len(header),
-> -			   payload);
-> +	err =3D ct_process_request(ct, request);
-> +	if (unlikely(err)) {
-> +		CT_ERROR(ct, "Failed to process CT message (%pe) %*ph\n",
-> +			 ERR_PTR(err), 4 * request->size, request->msg);
-> +		ct_free_msg(request);
-> +	}
->  =
-
-> -	kfree(request);
->  	return done;
->  }
->  =
-
-> @@ -799,22 +851,11 @@ static void ct_incoming_request_worker_func(struct =
-work_struct *w)
->   *                   ^-----------------------len-----------------------^
->   */
->  =
-
-> -static int ct_handle_request(struct intel_guc_ct *ct, const u32 *msg)
-> +static int ct_handle_request(struct intel_guc_ct *ct, struct ct_incoming=
-_msg *request)
->  {
-> -	u32 header =3D msg[0];
-> -	u32 len =3D ct_header_get_len(header);
-> -	u32 msgsize =3D (len + 1) * sizeof(u32); /* msg size in bytes w/header =
-*/
-> -	struct ct_incoming_request *request;
->  	unsigned long flags;
->  =
-
-> -	GEM_BUG_ON(ct_header_is_response(header));
-> -
-> -	request =3D kmalloc(sizeof(*request) + msgsize, GFP_ATOMIC);
-> -	if (unlikely(!request)) {
-> -		CT_ERROR(ct, "Dropping request %*ph\n", msgsize, msg);
-> -		return 0; /* XXX: -ENOMEM ? */
-> -	}
-> -	memcpy(request->msg, msg, msgsize);
-> +	GEM_BUG_ON(ct_header_is_response(request->msg[0]));
->  =
-
->  	spin_lock_irqsave(&ct->requests.lock, flags);
->  	list_add_tail(&request->link, &ct->requests.incoming);
-> @@ -824,22 +865,41 @@ static int ct_handle_request(struct intel_guc_ct *c=
-t, const u32 *msg)
->  	return 0;
->  }
->  =
-
-> +static void ct_handle_msg(struct intel_guc_ct *ct, struct ct_incoming_ms=
-g *msg)
-> +{
-> +	u32 header =3D msg->msg[0];
-> +	int err;
-> +
-> +	if (ct_header_is_response(header))
-> +		err =3D ct_handle_response(ct, msg);
-> +	else
-> +		err =3D ct_handle_request(ct, msg);
-> +
-> +	if (unlikely(err)) {
-> +		CT_ERROR(ct, "Failed to process CT message (%pe) %*ph\n",
-> +			 ERR_PTR(err), 4 * msg->size, msg->msg);
-> +		ct_free_msg(msg);
-> +	}
 > +}
 > +
-> +/*
-> + * Return: number available remaining dwords to read (0 if empty)
-> + *         or a negative error code on failure
-> + */
->  static int ct_receive(struct intel_guc_ct *ct)
->  {
-> -	u32 msg[GUC_CT_MSG_LEN_MASK + 1]; /* one extra dw for the header */
-> +	struct ct_incoming_msg *msg =3D NULL;
+> +
+>  static const i915_user_extension_fn create_extensions[] = {
+>  	[I915_GEM_CREATE_EXT_MEMORY_REGIONS] =
+> ext_set_placements,
+> +	[I915_GEM_CREATE_EXT_PROTECTED_CONTENT] =
+> ext_set_protected,
+>  };
+> 
+>  /**
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index c08e28847064..5dd813d04a9f 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -839,6 +839,21 @@ static struct i915_vma *eb_lookup_vma(struct
+> i915_execbuffer *eb, u32 handle)
+>  		if (unlikely(!obj))
+>  			return ERR_PTR(-ENOENT);
+> 
+> +		/*
+> +		 * If the user has opted-in for protected-object tracking,
+> make
+> +		 * sure the object encryption can be used.
+> +		 * We only need to do this when the object is first used with
+> +		 * this context, because the context itself will be banned
+> when
+> +		 * the protected objects become invalid.
+> +		 */
+> +		if (i915_gem_context_uses_protected_content(eb-
+> >gem_context) &&
+> +		    i915_gem_object_is_protected(obj)) {
+> +			if (!intel_pxp_is_active(&vm->gt->pxp))
+> +				return ERR_PTR(-ENODEV);
+> +			if (!i915_gem_object_has_valid_protection(obj))
+> +				return ERR_PTR(-ENOEXEC);
+> +		}
+> +
+>  		vma = i915_vma_instance(obj, vm, NULL);
+>  		if (IS_ERR(vma)) {
+>  			i915_gem_object_put(obj);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> index 28144410df86..b47fa0a7b25a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+> @@ -25,6 +25,7 @@
+>  #include <linux/sched/mm.h>
+> 
+>  #include "display/intel_frontbuffer.h"
+> +#include "pxp/intel_pxp.h"
+>  #include "i915_drv.h"
+>  #include "i915_gem_clflush.h"
+>  #include "i915_gem_context.h"
+> @@ -70,6 +71,8 @@ void i915_gem_object_init(struct
+> drm_i915_gem_object *obj,
+>  	INIT_LIST_HEAD(&obj->lut_list);
+>  	spin_lock_init(&obj->lut_lock);
+> 
+> +	INIT_LIST_HEAD(&obj->pxp_link);
+> +
+>  	spin_lock_init(&obj->mmo.lock);
+>  	obj->mmo.offsets = RB_ROOT;
+> 
+> @@ -232,6 +235,9 @@ static void __i915_gem_free_objects(struct
+> drm_i915_private *i915,
+>  			spin_unlock(&obj->vma.lock);
+>  		}
+> 
+> +		if (i915_gem_object_has_valid_protection(obj))
+> +			intel_pxp_object_remove(obj);
+> +
+>  		__i915_gem_object_free_mmaps(obj);
+> 
+>  		GEM_BUG_ON(!list_empty(&obj->lut_list));
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index 2ebd79537aea..61b101560352 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -288,6 +288,18 @@ i915_gem_object_never_mmap(const struct
+> drm_i915_gem_object *obj)
+>  	return i915_gem_object_type_has(obj,
+> I915_GEM_OBJECT_NO_MMAP);  }
+> 
+> +static inline bool
+> +i915_gem_object_is_protected(const struct drm_i915_gem_object *obj) {
+> +	return obj->user_flags & I915_GEM_OBJECT_PROTECTED; }
+> +
+> +static inline bool
+> +i915_gem_object_has_valid_protection(const struct drm_i915_gem_object
+> +*obj) {
+> +	return i915_gem_object_is_protected(obj) &&
+> +!list_empty(&obj->pxp_link); }
+> +
+>  static inline bool
+>  i915_gem_object_is_framebuffer(const struct drm_i915_gem_object *obj)
+> { diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> index 0727d0c76aa0..a698ad0ef7f6 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> @@ -167,6 +167,11 @@ struct drm_i915_gem_object {
+>  	} mmo;
+> 
+>  	I915_SELFTEST_DECLARE(struct list_head st_link);
+> +	/**
+> +	 * @user_flags: small set of booleans set by the user
+> +	 */
+> +	unsigned long user_flags;
+> +#define I915_GEM_OBJECT_PROTECTED BIT(0)
+> 
 >  	unsigned long flags;
->  	int ret;
->  =
-
->  	spin_lock_irqsave(&ct->ctbs.recv.lock, flags);
-> -	ret =3D ct_read(ct, msg);
-> +	ret =3D ct_read(ct, &msg);
->  	spin_unlock_irqrestore(&ct->ctbs.recv.lock, flags);
->  	if (ret < 0)
->  		return ret;
->  =
-
-> -	if (ct_header_is_response(msg[0]))
-> -		ct_handle_response(ct, msg);
-> -	else
-> -		ct_handle_request(ct, msg);
-> +	if (msg)
-> +		ct_handle_msg(ct, msg);
->  =
-
->  	return ret;
+>  #define I915_BO_ALLOC_CONTIGUOUS BIT(0) @@ -294,6 +299,14 @@
+> struct drm_i915_gem_object {
+>  		bool dirty:1;
+>  	} mm;
+> 
+> +	/*
+> +	 * When the PXP session is invalidated, we need to mark all
+> protected
+> +	 * objects as invalid. To easily do so we add them all to a list. The
+> +	 * presence on the list is used to check if the encryption is valid or
+> +	 * not.
+> +	 */
+> +	struct list_head pxp_link;
+> +
+>  	/** Record of address bit 17 of each page at last unbind. */
+>  	unsigned long *bit_17;
+> 
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index 2291c68fd3a0..e6a59eb05eae 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -69,6 +69,9 @@ void intel_pxp_init(struct intel_pxp *pxp)
+>  	if (!HAS_PXP(gt->i915))
+>  		return;
+> 
+> +	spin_lock_init(&pxp->lock);
+> +	INIT_LIST_HEAD(&pxp->protected_objects);
+> +
+>  	/*
+>  	 * we'll use the completion to check if there is a termination pending,
+>  	 * so we start it as completed and we reinit it when a termination
+> @@ -177,11 +180,49 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp)
+>  	intel_pxp_irq_disable(pxp);
 >  }
-> -- =
-
-> 2.28.0
-> =
-
+> 
+> +int intel_pxp_object_add(struct drm_i915_gem_object *obj) {
+> +	struct intel_pxp *pxp = &to_i915(obj->base.dev)->gt.pxp;
+> +
+> +	if (!intel_pxp_is_enabled(pxp))
+> +		return -ENODEV;
+> +
+> +	if (!list_empty(&obj->pxp_link))
+> +		return -EEXIST;
+> +
+> +	spin_lock_irq(&pxp->lock);
+> +	list_add(&obj->pxp_link, &pxp->protected_objects);
+> +	spin_unlock_irq(&pxp->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +void intel_pxp_object_remove(struct drm_i915_gem_object *obj) {
+> +	struct intel_pxp *pxp = &to_i915(obj->base.dev)->gt.pxp;
+> +
+> +	if (!intel_pxp_is_enabled(pxp))
+> +		return;
+> +
+> +	spin_lock_irq(&pxp->lock);
+> +	list_del_init(&obj->pxp_link);
+> +	spin_unlock_irq(&pxp->lock);
+> +}
+> +
+>  void intel_pxp_invalidate(struct intel_pxp *pxp)  {
+>  	struct drm_i915_private *i915 = pxp_to_gt(pxp)->i915;
+> +	struct drm_i915_gem_object *obj, *tmp;
+>  	struct i915_gem_context *ctx, *cn;
+> 
+> +	/* delete objects that have been used with the invalidated session
+> */
+> +	spin_lock_irq(&pxp->lock);
+> +	list_for_each_entry_safe(obj, tmp, &pxp->protected_objects,
+> pxp_link) {
+> +		if (i915_gem_object_has_pages(obj))
+> +			list_del_init(&obj->pxp_link);
+> +	}
+> +	spin_unlock_irq(&pxp->lock);
+> +
+>  	/* ban all contexts marked as protected */
+>  	spin_lock_irq(&i915->gem.contexts.lock);
+>  	list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link)
+> { diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> index 1f9871e64096..3500d7896058 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -9,6 +9,8 @@
+>  #include "gt/intel_gt_types.h"
+>  #include "intel_pxp_types.h"
+> 
+> +struct drm_i915_gem_object;
+> +
+>  static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)  {
+>  	return container_of(pxp, struct intel_gt, pxp); @@ -33,6 +35,9 @@
+> void intel_pxp_fini_hw(struct intel_pxp *pxp);
+> 
+>  void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);  int
+> intel_pxp_start(struct intel_pxp *pxp);
+> +
+> +int intel_pxp_object_add(struct drm_i915_gem_object *obj); void
+> +intel_pxp_object_remove(struct drm_i915_gem_object *obj);
+>  void intel_pxp_invalidate(struct intel_pxp *pxp);  #else  static inline void
+> intel_pxp_init(struct intel_pxp *pxp) @@ -47,6 +52,14 @@ static inline int
+> intel_pxp_start(struct intel_pxp *pxp)  {
+>  	return 0;
+>  }
+> +
+> +static inline int intel_pxp_object_add(struct drm_i915_gem_object *obj)
+> +{
+> +	return 0;
+> +}
+> +static inline void intel_pxp_object_remove(struct drm_i915_gem_object
+> +*obj) { }
+>  #endif
+> 
+>  #endif /* __INTEL_PXP_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> index b3ae49dd73a8..cc510416eac6 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> @@ -7,7 +7,9 @@
+>  #define __INTEL_PXP_TYPES_H__
+> 
+>  #include <linux/completion.h>
+> +#include <linux/list.h>
+>  #include <linux/mutex.h>
+> +#include <linux/spinlock.h>
+>  #include <linux/types.h>
+>  #include <linux/workqueue.h>
+> 
+> @@ -43,6 +45,9 @@ struct intel_pxp {
+>  #define PXP_TERMINATION_REQUEST  BIT(0)  #define
+> PXP_TERMINATION_COMPLETE BIT(1)
+>  #define PXP_INVAL_REQUIRED       BIT(2)
+> +
+> +	spinlock_t lock; /* protects the objects list */
+> +	struct list_head protected_objects;
+>  };
+> 
+>  #endif /* __INTEL_PXP_TYPES_H__ */
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 3cc33fcbf520..d39b8cb4bfc5 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1768,7 +1768,7 @@ struct drm_i915_gem_context_param {
+>  	__u64 value;
+>  };
+> 
+> -/*
+> +/**
+>   * Context SSEU programming
+>   *
+>   * It may be necessary for either functional or performance reason to
+> configure @@ -2669,8 +2669,12 @@ struct drm_i915_gem_create_ext {
+>  	 *
+>  	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
+>  	 * struct drm_i915_gem_create_ext_memory_regions.
+> +	 *
+> +	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
+> +	 * struct drm_i915_gem_create_ext_protected_content.
+>  	 */
+>  #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+> +#define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
+>  	__u64 extensions;
+>  };
+> 
+> @@ -2728,6 +2732,33 @@ struct
+> drm_i915_gem_create_ext_memory_regions {
+>  	__u64 regions;
+>  };
+> 
+> +/**
+> + * struct drm_i915_gem_create_ext_protected_content - The
+> + * I915_OBJECT_PARAM_PROTECTED_CONTENT extension.
+> + *
+> + * If this extension is provided, buffer contents are expected to be
+> + * protected by PXP encryption and requires decryption for scan out
+> + * and processing. This is only possible on platforms that have PXP
+> +enabled,
+> + * on all other scenarios ysing this extension will cause the ioctl to
+> +fail
+> + * and return -ENODEV. The flags parameter is reserved for future
+> +expansion and
+> + * must currently be set to zero.
+> + *
+> + * The buffer contents are considered invalid after a PXP session teardown.
+> + *
+> + * The encryption is guaranteed to be processed correctly only if the
+> +object
+> + * is submitted with a context created using the
+> + * I915_CONTEXT_PARAM_PROTECTED_CONTENT flag. This will also enable
+> +extra checks
+> + * at submission time on the validity of the objects involved, which
+> +can lead to
+> + * the following errors being returned from the execbuf ioctl:
+> + *
+> + * -ENODEV: PXP session not currently active
+> + * -ENOEXEC: buffer has become invalid after a teardown event  */
+> +struct drm_i915_gem_create_ext_protected_content {
+> +	struct i915_user_extension base;
+> +	__u32 flags;
+> +};
+> +
+>  /* ID of the protected content session managed by i915 when PXP is active
+> */  #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
+> 
+> --
+> 2.29.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
