@@ -1,67 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98AFA38F883
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 05:09:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D9938F89E
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 05:15:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C86696E5C5;
-	Tue, 25 May 2021 03:09:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAEA86E3DB;
+	Tue, 25 May 2021 03:15:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
- [IPv6:2607:f8b0:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B51C8938F
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 03:08:26 +0000 (UTC)
-Received: by mail-pg1-x533.google.com with SMTP id i5so21627113pgm.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 20:08:26 -0700 (PDT)
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
+ [IPv6:2607:f8b0:4864:20::72f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D1EA6E364
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 03:15:05 +0000 (UTC)
+Received: by mail-qk1-x72f.google.com with SMTP id o27so29100841qkj.9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 20:15:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VHDFyefEfXv2T1h/kXDPOn5vVw8tSm/6FW05x+E2j40=;
- b=merHIeKNi5Uu6C9TAUujDNIN9FxrI34YUx7aW4WyFELIyYppIt99C4UwGvzWaArcmu
- 9EaYZFbnrmtDjrMZ7c8349ke6DKJjWiZDCUD5epOu2PqMIr5kYM1CoXZ0XNE1vQ3QFiu
- bvf2bDyHaIMES3MNNrHcengJbyjgwpDl3VY20=
+ :cc; bh=UUICKcc/sKdAjzKNgq2l5eqYx+k5eTShYrWAkwN1nE8=;
+ b=TELw0+2UEzjgBQgY3N9cHf7cvJQg4x1GF5jHbOj/Xhbu2EVYn5hJJdXJJYpk6Mpk8G
+ l2k+90bOTlHqSiuws+ej9C6F14blJi9bSItZInf5oUYtu07o9RuIUrgGf8YFYR9loGpy
+ S0ow3K1ouDjzn61e3PW37PZcm998eK6VcTTFc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=VHDFyefEfXv2T1h/kXDPOn5vVw8tSm/6FW05x+E2j40=;
- b=mWlrvCCoRlGqKysSxDT+VtX+JfaXaLah0LrfRwu8MKoYvsr3A8QoTjIEsvH7XY5r8A
- 2/WkmKlWmQjxXO8eBBnOIPDgvX5FqszEScZrDCOp7ziYD9w4WH+elXhcaSokahZuN6JZ
- NpTw9wh5Y1h3gcZ1wxJmPGnrsPC2suucjaWruTtNAMmA0ukXN83/I8Urt7aHxRHOrl3j
- 68amnnd5NMflF3QaN7n9XYQ+fNZodAo+ZgVZYxCFSHCdkvZWOFF/s7qDTyAXP12xP3MG
- 7/QQhMoyA0M7Gdqv91c07uG85JDRp8YSYkgy7I7xdSOo4O58zrlB0covpFkzqmekPAxo
- Fbtw==
-X-Gm-Message-State: AOAM533kDZIBRd55HGKhyoC5BqIKP91zqityf6ALrlldITScybrz/VEJ
- dF+VZYlPx3fnvomWFrrzqf81/D/RiGymHA==
-X-Google-Smtp-Source: ABdhPJxZamRKcuiisQf8PLZPaG1s8/K7Q9uH5W0lkSfqyQDbHMEKYubMlMy9CRxQjam1XX1RqilhGw==
-X-Received: by 2002:a63:79c3:: with SMTP id
- u186mr16820884pgc.203.1621912106021; 
- Mon, 24 May 2021 20:08:26 -0700 (PDT)
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com.
- [209.85.210.180])
- by smtp.gmail.com with ESMTPSA id w197sm11902336pfc.5.2021.05.24.20.08.25
+ bh=UUICKcc/sKdAjzKNgq2l5eqYx+k5eTShYrWAkwN1nE8=;
+ b=H9eMFYuz8I4aoGpa+liQdDBK2bQBWVZ3++TEuLnrYChdu0AgRGlow7z3xNyfknspAB
+ c/t2+wH/PKxJTtq2pI1M1+g0gRh6XQRhz772gKmTJLY7qML3Ah/i0KyaiAV2+BAbKmZy
+ GipWVkTXN20NBgDx32H+Zl9aD0f9nlHZUsQMhSE0YMX9WqlHdWKyJBojWJGZT3ObC+7L
+ GYnfVA/fKtVu3dRfLZzlgZwsi9nvqhnVpGVe91CDJmbGL6T3Bbb0TpOGtzJYXFXFKK2t
+ RTWq0WuFvsWb48fEVq8l693Vmw+TER9kTpapWCoMplx+SqtsyqhpXA3sbJiE2clQFNER
+ m+6Q==
+X-Gm-Message-State: AOAM532XYtjuGdiabM1PS3UiINWBIusvk4GqlYXBgTY9PFeYzdYNhaAT
+ JETs1/ICkebTv6IYTW+ENCy/82R/AFIZRA==
+X-Google-Smtp-Source: ABdhPJxd8US8InezAcrMVk1bKcx0jIaF6WC+dgmEDXkzQxeozmbBRUsiRyucCYoUuPRHMy00bu8KYw==
+X-Received: by 2002:a05:620a:5a7:: with SMTP id
+ q7mr32837015qkq.326.1621912504450; 
+ Mon, 24 May 2021 20:15:04 -0700 (PDT)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com.
+ [209.85.222.179])
+ by smtp.gmail.com with ESMTPSA id 20sm12712035qks.64.2021.05.24.20.15.04
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 24 May 2021 20:08:25 -0700 (PDT)
-Received: by mail-pf1-f180.google.com with SMTP id d78so21603758pfd.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 20:08:25 -0700 (PDT)
-X-Received: by 2002:a6b:7b08:: with SMTP id l8mr16990516iop.50.1621912094090; 
- Mon, 24 May 2021 20:08:14 -0700 (PDT)
+ Mon, 24 May 2021 20:15:04 -0700 (PDT)
+Received: by mail-qk1-f179.google.com with SMTP id j189so8303471qkf.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 May 2021 20:15:04 -0700 (PDT)
+X-Received: by 2002:a05:6638:22b4:: with SMTP id
+ z20mr26846805jas.128.1621912112776; 
+ Mon, 24 May 2021 20:08:32 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-2-tientzu@chromium.org>
- <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
- <CALiNf2-9fRbH3Xs=fA+N1iRztFxeC0iTsyOSZFe=F42uwXS0Sg@mail.gmail.com>
- <YKvL865kutnHqkVc@0xbeefdead.lan>
-In-Reply-To: <YKvL865kutnHqkVc@0xbeefdead.lan>
+ <20210518064215.2856977-5-tientzu@chromium.org>
+ <CALiNf2_AWsnGqCnh02ZAGt+B-Ypzs1=-iOG2owm4GZHz2JAc4A@mail.gmail.com>
+ <YKvLDlnns3TWEZ5l@0xbeefdead.lan>
+In-Reply-To: <YKvLDlnns3TWEZ5l@0xbeefdead.lan>
 From: Claire Chang <tientzu@chromium.org>
-Date: Tue, 25 May 2021 11:08:03 +0800
-X-Gmail-Original-Message-ID: <CALiNf2_iq3OS+95as4fj+AOMDVYgGL71A1811QLaZ=5T7TRjww@mail.gmail.com>
-Message-ID: <CALiNf2_iq3OS+95as4fj+AOMDVYgGL71A1811QLaZ=5T7TRjww@mail.gmail.com>
+Date: Tue, 25 May 2021 11:08:21 +0800
+X-Gmail-Original-Message-ID: <CALiNf2-M-CQdQaHiFTMfOkON6PEd0Yu_TvaCXKx9vXJ-7o5ffg@mail.gmail.com>
+Message-ID: <CALiNf2-M-CQdQaHiFTMfOkON6PEd0Yu_TvaCXKx9vXJ-7o5ffg@mail.gmail.com>
 To: Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-Subject: Re: [Intel-gfx] [PATCH v7 01/15] swiotlb: Refactor swiotlb init
- functions
+Subject: Re: [Intel-gfx] [PATCH v7 04/15] swiotlb: Add restricted DMA pool
+ initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,9 +79,8 @@ Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
  dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
  grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
  mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
  "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
  Christoph Hellwig <hch@lst.de>,
  Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
@@ -97,32 +96,48 @@ Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
  Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
  Tomasz Figa <tfiga@chromium.org>,
  "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- sstabellini@kernel.org, Jim Quinlan <james.quinlan@broadcom.com>,
- xypron.glpk@gmx.de, Robin Murphy <robin.murphy@arm.com>,
- bauerman@linux.ibm.com
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 24, 2021 at 11:53 PM Konrad Rzeszutek Wilk
+On Mon, May 24, 2021 at 11:49 PM Konrad Rzeszutek Wilk
 <konrad.wilk@oracle.com> wrote:
 >
-> > > do the set_memory_decrypted()+memset(). Is this okay or should
-> > > swiotlb_init_io_tlb_mem() add an additional argument to do this
-> > > conditionally?
-> >
-> > I'm actually not sure if this it okay. If not, will add an additional
-> > argument for it.
+> On Tue, May 18, 2021 at 02:48:35PM +0800, Claire Chang wrote:
+> > I didn't move this to a separate file because I feel it might be
+> > confusing for swiotlb_alloc/free (and need more functions to be
+> > non-static).
+> > Maybe instead of moving to a separate file, we can try to come up with
+> > a better naming?
 >
-> Any observations discovered? (Want to make sure my memory-cache has the
-> correct semantics for set_memory_decrypted in mind).
+> I think you are referring to:
+>
+> rmem_swiotlb_setup
+>
+> ?
 
-It works fine on my arm64 device.
+Yes, and the following swiotlb_alloc/free.
 
-> >
-> > > --
-> > > Florian
+>
+> Which is ARM specific and inside the generic code?
+>
+> <sigh>
+>
+> Christopher wants to unify it in all the code so there is one single
+> source, but the "you seperate arch code out from generic" saying
+> makes me want to move it out.
+>
+> I agree that if you move it out from generic to arch-specific we have to
+> expose more of the swiotlb functions, which will undo's Christopher
+> cleanup code.
+>
+> How about this - lets leave it as is now, and when there are more
+> use-cases we can revisit it and then if need to move the code?
+>
+Ok! Sounds good!
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
