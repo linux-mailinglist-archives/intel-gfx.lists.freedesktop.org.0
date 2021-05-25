@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D2038FA3A
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 07:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6064D38FA3E
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 07:49:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6686B6E8AE;
-	Tue, 25 May 2021 05:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDFB66E953;
+	Tue, 25 May 2021 05:48:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B3176E831;
- Tue, 25 May 2021 05:48:41 +0000 (UTC)
-IronPort-SDR: n7+Aah0X8H4PahvjrCVdsfkVw610ujFJ+l1aIyD0zz2vInekqynnZVyf6jG+5HHY+Mrz99vhaQ
- KvqsexLKzsAg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="266005458"
-X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="266005458"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE8676E8F9;
+ Tue, 25 May 2021 05:48:42 +0000 (UTC)
+IronPort-SDR: sJiYndcMS1K9ppolGRXEOGLxpcArt4JY8CDBpI/kXLtEEDH4oy+DPh9KekbQYp2m6pNhRaVQDu
+ G4NTlC9S3XaA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="266005461"
+X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="266005461"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 22:48:40 -0700
-IronPort-SDR: 9R5gZ3GIasqkaeT8MmeJ9m+eXt3Z5qPmof56yERDYShGVrnu9q6JaYgLsTe2zo6Hlt+A+Iz2zi
- QpROcj1XsfBA==
-X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="397231795"
+ 24 May 2021 22:48:42 -0700
+IronPort-SDR: LQ7+leoFT5JkJ+LAmF3s0xgvHsX3FhOSM/rt4mxy4GMFuvi5ucBiK42Te9qwuD9cVhOLi2k42u
+ 7J3iqBsIQs3Q==
+X-IronPort-AV: E=Sophos;i="5.82,327,1613462400"; d="scan'208";a="397231807"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2021 22:48:40 -0700
+ 24 May 2021 22:48:42 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 May 2021 22:48:00 -0700
-Message-Id: <20210525054803.7387-15-daniele.ceraolospurio@intel.com>
+Date: Mon, 24 May 2021 22:48:01 -0700
+Message-Id: <20210525054803.7387-16-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
 References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 14/17] drm/i915/pxp: User interface for
- Protected buffer
+Subject: [Intel-gfx] [PATCH v4 15/17] drm/i915/pxp: Add plane decryption
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,418 +47,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Huang Sean Z <sean.z.huang@intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Kondapally Kalyan <kalyan.kondapally@intel.com>,
+Cc: Huang Sean Z <sean.z.huang@intel.com>, dri-devel@lists.freedesktop.org,
+ Gaurav Kumar <kumar.gaurav@intel.com>,
  Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-
-This api allow user mode to create Protected buffers. Only contexts
-marked as protected are allowed to operate on protected buffers.
-
-We only allow setting the flags at creation time.
-
-All protected objects that have backing storage will be considered
-invalid when the session is destroyed and they won't be usable anymore.
-
-Given that the PXP HW supports multiple modes (but we currently only
-care about one), a flag variable has been reserved in the structure
-used in the create_ext ioctl for possible future updates.
-
-This is a rework of the original code by Bommu Krishnaiah. I've kept
-authorship unchanged since significant chunks have not been modified.
-
-v2: split context changes, fix defines and improve documentation (Chris),
-    add object invalidation logic
-v3: fix spinlock definition and usage, only validate objects when
-    they're first added to a context lut, only remove them once (Chris),
-    make protected context flag not mandatory in protected object execbuf
-    to avoid abuse (Lionel)
-v4: rebase to new gem_create_ext
-
-Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>
-Cc: Kondapally Kalyan <kalyan.kondapally@intel.com>
-Cc: Gupta Anshuman <Anshuman.Gupta@intel.com>
-Cc: Huang Sean Z <sean.z.huang@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_create.c    | 26 ++++++++++++
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 15 +++++++
- drivers/gpu/drm/i915/gem/i915_gem_object.c    |  6 +++
- drivers/gpu/drm/i915/gem/i915_gem_object.h    | 12 ++++++
- .../gpu/drm/i915/gem/i915_gem_object_types.h  | 13 ++++++
- drivers/gpu/drm/i915/pxp/intel_pxp.c          | 41 +++++++++++++++++++
- drivers/gpu/drm/i915/pxp/intel_pxp.h          | 13 ++++++
- drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  5 +++
- include/uapi/drm/i915_drm.h                   | 33 ++++++++++++++-
- 9 files changed, 163 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-index 548ddf39d853..c14be3882c35 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-@@ -6,6 +6,7 @@
- #include "gem/i915_gem_ioctls.h"
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_region.h"
-+#include "pxp/intel_pxp.h"
- 
- #include "i915_drv.h"
- #include "i915_trace.h"
-@@ -99,7 +100,11 @@ i915_gem_setup(struct drm_i915_gem_object *obj, u64 size)
- 
- 	GEM_BUG_ON(size != obj->base.size);
- 
-+	if (obj->user_flags & I915_GEM_OBJECT_PROTECTED)
-+		intel_pxp_object_add(obj);
-+
- 	trace_i915_gem_object_create(obj);
-+
- 	return 0;
- }
- 
-@@ -344,8 +349,29 @@ static int ext_set_placements(struct i915_user_extension __user *base,
- 	return set_placements(&ext, data);
- }
- 
-+static int ext_set_protected(struct i915_user_extension __user *base, void *data)
-+{
-+	struct drm_i915_gem_create_ext_protected_content ext;
-+	struct create_ext *ext_data = data;
-+
-+	if (copy_from_user(&ext, base, sizeof(ext)))
-+		return -EFAULT;
-+
-+	if (ext.flags)
-+		return -EINVAL;
-+
-+	if (!intel_pxp_is_enabled(&ext_data->i915->gt.pxp))
-+		return -ENODEV;
-+
-+	ext_data->vanilla_object->user_flags |= I915_GEM_OBJECT_PROTECTED;
-+
-+	return 0;
-+}
-+
-+
- static const i915_user_extension_fn create_extensions[] = {
- 	[I915_GEM_CREATE_EXT_MEMORY_REGIONS] = ext_set_placements,
-+	[I915_GEM_CREATE_EXT_PROTECTED_CONTENT] = ext_set_protected,
- };
- 
- /**
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index c08e28847064..5dd813d04a9f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -839,6 +839,21 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
- 		if (unlikely(!obj))
- 			return ERR_PTR(-ENOENT);
- 
-+		/*
-+		 * If the user has opted-in for protected-object tracking, make
-+		 * sure the object encryption can be used.
-+		 * We only need to do this when the object is first used with
-+		 * this context, because the context itself will be banned when
-+		 * the protected objects become invalid.
-+		 */
-+		if (i915_gem_context_uses_protected_content(eb->gem_context) &&
-+		    i915_gem_object_is_protected(obj)) {
-+			if (!intel_pxp_is_active(&vm->gt->pxp))
-+				return ERR_PTR(-ENODEV);
-+			if (!i915_gem_object_has_valid_protection(obj))
-+				return ERR_PTR(-ENOEXEC);
-+		}
-+
- 		vma = i915_vma_instance(obj, vm, NULL);
- 		if (IS_ERR(vma)) {
- 			i915_gem_object_put(obj);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 28144410df86..b47fa0a7b25a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -25,6 +25,7 @@
- #include <linux/sched/mm.h>
- 
- #include "display/intel_frontbuffer.h"
-+#include "pxp/intel_pxp.h"
- #include "i915_drv.h"
- #include "i915_gem_clflush.h"
- #include "i915_gem_context.h"
-@@ -70,6 +71,8 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
- 	INIT_LIST_HEAD(&obj->lut_list);
- 	spin_lock_init(&obj->lut_lock);
- 
-+	INIT_LIST_HEAD(&obj->pxp_link);
-+
- 	spin_lock_init(&obj->mmo.lock);
- 	obj->mmo.offsets = RB_ROOT;
- 
-@@ -232,6 +235,9 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
- 			spin_unlock(&obj->vma.lock);
- 		}
- 
-+		if (i915_gem_object_has_valid_protection(obj))
-+			intel_pxp_object_remove(obj);
-+
- 		__i915_gem_object_free_mmaps(obj);
- 
- 		GEM_BUG_ON(!list_empty(&obj->lut_list));
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 2ebd79537aea..61b101560352 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -288,6 +288,18 @@ i915_gem_object_never_mmap(const struct drm_i915_gem_object *obj)
- 	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_NO_MMAP);
- }
- 
-+static inline bool
-+i915_gem_object_is_protected(const struct drm_i915_gem_object *obj)
-+{
-+	return obj->user_flags & I915_GEM_OBJECT_PROTECTED;
-+}
-+
-+static inline bool
-+i915_gem_object_has_valid_protection(const struct drm_i915_gem_object *obj)
-+{
-+	return i915_gem_object_is_protected(obj) && !list_empty(&obj->pxp_link);
-+}
-+
- static inline bool
- i915_gem_object_is_framebuffer(const struct drm_i915_gem_object *obj)
- {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 0727d0c76aa0..a698ad0ef7f6 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -167,6 +167,11 @@ struct drm_i915_gem_object {
- 	} mmo;
- 
- 	I915_SELFTEST_DECLARE(struct list_head st_link);
-+	/**
-+	 * @user_flags: small set of booleans set by the user
-+	 */
-+	unsigned long user_flags;
-+#define I915_GEM_OBJECT_PROTECTED BIT(0)
- 
- 	unsigned long flags;
- #define I915_BO_ALLOC_CONTIGUOUS BIT(0)
-@@ -294,6 +299,14 @@ struct drm_i915_gem_object {
- 		bool dirty:1;
- 	} mm;
- 
-+	/*
-+	 * When the PXP session is invalidated, we need to mark all protected
-+	 * objects as invalid. To easily do so we add them all to a list. The
-+	 * presence on the list is used to check if the encryption is valid or
-+	 * not.
-+	 */
-+	struct list_head pxp_link;
-+
- 	/** Record of address bit 17 of each page at last unbind. */
- 	unsigned long *bit_17;
- 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 2291c68fd3a0..e6a59eb05eae 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -69,6 +69,9 @@ void intel_pxp_init(struct intel_pxp *pxp)
- 	if (!HAS_PXP(gt->i915))
- 		return;
- 
-+	spin_lock_init(&pxp->lock);
-+	INIT_LIST_HEAD(&pxp->protected_objects);
-+
- 	/*
- 	 * we'll use the completion to check if there is a termination pending,
- 	 * so we start it as completed and we reinit it when a termination
-@@ -177,11 +180,49 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp)
- 	intel_pxp_irq_disable(pxp);
- }
- 
-+int intel_pxp_object_add(struct drm_i915_gem_object *obj)
-+{
-+	struct intel_pxp *pxp = &to_i915(obj->base.dev)->gt.pxp;
-+
-+	if (!intel_pxp_is_enabled(pxp))
-+		return -ENODEV;
-+
-+	if (!list_empty(&obj->pxp_link))
-+		return -EEXIST;
-+
-+	spin_lock_irq(&pxp->lock);
-+	list_add(&obj->pxp_link, &pxp->protected_objects);
-+	spin_unlock_irq(&pxp->lock);
-+
-+	return 0;
-+}
-+
-+void intel_pxp_object_remove(struct drm_i915_gem_object *obj)
-+{
-+	struct intel_pxp *pxp = &to_i915(obj->base.dev)->gt.pxp;
-+
-+	if (!intel_pxp_is_enabled(pxp))
-+		return;
-+
-+	spin_lock_irq(&pxp->lock);
-+	list_del_init(&obj->pxp_link);
-+	spin_unlock_irq(&pxp->lock);
-+}
-+
- void intel_pxp_invalidate(struct intel_pxp *pxp)
- {
- 	struct drm_i915_private *i915 = pxp_to_gt(pxp)->i915;
-+	struct drm_i915_gem_object *obj, *tmp;
- 	struct i915_gem_context *ctx, *cn;
- 
-+	/* delete objects that have been used with the invalidated session */
-+	spin_lock_irq(&pxp->lock);
-+	list_for_each_entry_safe(obj, tmp, &pxp->protected_objects, pxp_link) {
-+		if (i915_gem_object_has_pages(obj))
-+			list_del_init(&obj->pxp_link);
-+	}
-+	spin_unlock_irq(&pxp->lock);
-+
- 	/* ban all contexts marked as protected */
- 	spin_lock_irq(&i915->gem.contexts.lock);
- 	list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index 1f9871e64096..3500d7896058 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -9,6 +9,8 @@
- #include "gt/intel_gt_types.h"
- #include "intel_pxp_types.h"
- 
-+struct drm_i915_gem_object;
-+
- static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
- {
- 	return container_of(pxp, struct intel_gt, pxp);
-@@ -33,6 +35,9 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp);
- 
- void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
- int intel_pxp_start(struct intel_pxp *pxp);
-+
-+int intel_pxp_object_add(struct drm_i915_gem_object *obj);
-+void intel_pxp_object_remove(struct drm_i915_gem_object *obj);
- void intel_pxp_invalidate(struct intel_pxp *pxp);
- #else
- static inline void intel_pxp_init(struct intel_pxp *pxp)
-@@ -47,6 +52,14 @@ static inline int intel_pxp_start(struct intel_pxp *pxp)
- {
- 	return 0;
- }
-+
-+static inline int intel_pxp_object_add(struct drm_i915_gem_object *obj)
-+{
-+	return 0;
-+}
-+static inline void intel_pxp_object_remove(struct drm_i915_gem_object *obj)
-+{
-+}
- #endif
- 
- #endif /* __INTEL_PXP_H__ */
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-index b3ae49dd73a8..cc510416eac6 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-@@ -7,7 +7,9 @@
- #define __INTEL_PXP_TYPES_H__
- 
- #include <linux/completion.h>
-+#include <linux/list.h>
- #include <linux/mutex.h>
-+#include <linux/spinlock.h>
- #include <linux/types.h>
- #include <linux/workqueue.h>
- 
-@@ -43,6 +45,9 @@ struct intel_pxp {
- #define PXP_TERMINATION_REQUEST  BIT(0)
- #define PXP_TERMINATION_COMPLETE BIT(1)
- #define PXP_INVAL_REQUIRED       BIT(2)
-+
-+	spinlock_t lock; /* protects the objects list */
-+	struct list_head protected_objects;
- };
- 
- #endif /* __INTEL_PXP_TYPES_H__ */
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 3cc33fcbf520..d39b8cb4bfc5 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1768,7 +1768,7 @@ struct drm_i915_gem_context_param {
- 	__u64 value;
- };
- 
--/*
-+/**
-  * Context SSEU programming
-  *
-  * It may be necessary for either functional or performance reason to configure
-@@ -2669,8 +2669,12 @@ struct drm_i915_gem_create_ext {
- 	 *
- 	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
- 	 * struct drm_i915_gem_create_ext_memory_regions.
-+	 *
-+	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
-+	 * struct drm_i915_gem_create_ext_protected_content.
- 	 */
- #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
-+#define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
- 	__u64 extensions;
- };
- 
-@@ -2728,6 +2732,33 @@ struct drm_i915_gem_create_ext_memory_regions {
- 	__u64 regions;
- };
- 
-+/**
-+ * struct drm_i915_gem_create_ext_protected_content - The
-+ * I915_OBJECT_PARAM_PROTECTED_CONTENT extension.
-+ *
-+ * If this extension is provided, buffer contents are expected to be
-+ * protected by PXP encryption and requires decryption for scan out
-+ * and processing. This is only possible on platforms that have PXP enabled,
-+ * on all other scenarios ysing this extension will cause the ioctl to fail
-+ * and return -ENODEV. The flags parameter is reserved for future expansion and
-+ * must currently be set to zero.
-+ *
-+ * The buffer contents are considered invalid after a PXP session teardown.
-+ *
-+ * The encryption is guaranteed to be processed correctly only if the object
-+ * is submitted with a context created using the
-+ * I915_CONTEXT_PARAM_PROTECTED_CONTENT flag. This will also enable extra checks
-+ * at submission time on the validity of the objects involved, which can lead to
-+ * the following errors being returned from the execbuf ioctl:
-+ *
-+ * -ENODEV: PXP session not currently active
-+ * -ENOEXEC: buffer has become invalid after a teardown event
-+ */
-+struct drm_i915_gem_create_ext_protected_content {
-+	struct i915_user_extension base;
-+	__u32 flags;
-+};
-+
- /* ID of the protected content session managed by i915 when PXP is active */
- #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
- 
--- 
-2.29.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KCkFkZCBzdXBw
+b3J0IHRvIGVuYWJsZS9kaXNhYmxlIFBMQU5FX1NVUkYgRGVjcnlwdGlvbiBSZXF1ZXN0IGJpdC4K
+SXQgcmVxdWlyZXMgb25seSB0byBlbmFibGUgcGxhbmUgZGVjcnlwdGlvbiBzdXBwb3J0IHdoZW4g
+Zm9sbG93aW5nCmNvbmRpdGlvbiBtZXQuCjEuIFBYUCBzZXNzaW9uIGlzIGVuYWJsZWQuCjIuIEJ1
+ZmZlciBvYmplY3QgaXMgcHJvdGVjdGVkLgoKdjI6Ci0gVXNlZCBnZW4gZmIgb2JqIHVzZXJfZmxh
+Z3MgaW5zdGVhZCBnZW1fb2JqZWN0X21ldGFkYXRhLiBbS3Jpc2huYV0KCnYzOgotIGludGVsX3B4
+cF9nZW1fb2JqZWN0X3N0YXR1cygpIEFQSSBjaGFuZ2VzLgoKdjQ6IHVzZSBpbnRlbF9weHBfaXNf
+YWN0aXZlIChEYW5pZWxlKQoKdjU6IHJlYmFzZSBhbmQgdXNlIHRoZSBuZXcgcHJvdGVjdGVkIG9i
+amVjdCBzdGF0dXMgY2hlY2tlciAoRGFuaWVsZSkKCnY2OiB1c2VkIHBsYW5lIHN0YXRlIGZvciBw
+bGFuZV9kZWNyeXB0aW9uIHRvIGhhbmRsZSBhc3luYyBmbGlwCiAgICBhcyBzdWdnZXN0ZWQgYnkg
+VmlsbGUuCgp2NzogY2hlY2sgcHhwIHNlc3Npb24gd2hpbGUgcGxhbmUgZGVjcnlwdCBzdGF0ZSBj
+b21wdXRhdGlvbi4gW1ZpbGxlXQogICAgcmVtb3ZlZCBwb2ludGxlc3MgY29kZS4gW1ZpbGxlXQoK
+djggKERhbmllbGUpOiB1cGRhdGUgUFhQIGNoZWNrCgpDYzogQm9tbXUgS3Jpc2huYWlhaCA8a3Jp
+c2huYWlhaC5ib21tdUBpbnRlbC5jb20+CkNjOiBIdWFuZyBTZWFuIFogPHNlYW4uei5odWFuZ0Bp
+bnRlbC5jb20+CkNjOiBHYXVyYXYgS3VtYXIgPGt1bWFyLmdhdXJhdkBpbnRlbC5jb20+CkNjOiBW
+aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpTaWduZWQtb2Zm
+LWJ5OiBBbnNodW1hbiBHdXB0YSA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPgpTaWduZWQtb2Zm
+LWJ5OiBEYW5pZWxlIENlcmFvbG8gU3B1cmlvIDxkYW5pZWxlLmNlcmFvbG9zcHVyaW9AaW50ZWwu
+Y29tPgotLS0KIC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYyAg
+ICB8IDE2ICsrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jICAgICB8ICA0ICsrKysKIC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3R5cGVzLmggICB8ICAzICsrKwogLi4uL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Nr
+bF91bml2ZXJzYWxfcGxhbmUuYyAgIHwgMTUgKysrKysrKysrKysrLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICAgICAgfCAgMSArCiA1IGZpbGVzIGNoYW5n
+ZWQsIDM2IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMKaW5kZXggMzZmNTJhMWQ3NTUy
+Li44OGIzMjcyYzBiMDAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfYXRvbWljX3BsYW5lLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9hdG9taWNfcGxhbmUuYwpAQCAtNDEsNiArNDEsNyBAQAogI2luY2x1ZGUgImludGVsX2Rp
+c3BsYXlfdHlwZXMuaCIKICNpbmNsdWRlICJpbnRlbF9wbS5oIgogI2luY2x1ZGUgImludGVsX3Nw
+cml0ZS5oIgorI2luY2x1ZGUgInB4cC9pbnRlbF9weHAuaCIKIAogc3RhdGljIHZvaWQgaW50ZWxf
+cGxhbmVfc3RhdGVfcmVzZXQoc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZSwK
+IAkJCQkgICAgc3RydWN0IGludGVsX3BsYW5lICpwbGFuZSkKQEAgLTM4Myw2ICszODQsMTQgQEAg
+aW50ZWxfY3J0Y19nZXRfcGxhbmUoc3RydWN0IGludGVsX2NydGMgKmNydGMsIGVudW0gcGxhbmVf
+aWQgcGxhbmVfaWQpCiAJcmV0dXJuIE5VTEw7CiB9CiAKK3N0YXRpYyBpbnQgYm9faGFzX3ZhbGlk
+X2VuY3J5cHRpb24oY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKK3sKKwlz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUob2JqLT5iYXNlLmRldik7CisK
+KwlyZXR1cm4gaTkxNV9nZW1fb2JqZWN0X2hhc192YWxpZF9wcm90ZWN0aW9uKG9iaikgJiYKKwkg
+ICAgICAgaW50ZWxfcHhwX2lzX2FjdGl2ZSgmaTkxNS0+Z3QucHhwKTsKK30KKwogaW50IGludGVs
+X3BsYW5lX2F0b21pY19jaGVjayhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAkJ
+CSAgICAgc3RydWN0IGludGVsX3BsYW5lICpwbGFuZSkKIHsKQEAgLTM5Nyw2ICs0MDYsNyBAQCBp
+bnQgaW50ZWxfcGxhbmVfYXRvbWljX2NoZWNrKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0
+YXRlLAogCQlpbnRlbF9hdG9taWNfZ2V0X29sZF9jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKIAlz
+dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGUgPQogCQlpbnRlbF9hdG9taWNf
+Z2V0X25ld19jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKKwljb25zdCBzdHJ1Y3QgZHJtX2ZyYW1l
+YnVmZmVyICpmYjsKIAogCWlmIChuZXdfY3J0Y19zdGF0ZSAmJiBuZXdfY3J0Y19zdGF0ZS0+Ymln
+am9pbmVyX3NsYXZlKSB7CiAJCXN0cnVjdCBpbnRlbF9wbGFuZSAqbWFzdGVyX3BsYW5lID0KQEAg
+LTQxMyw2ICs0MjMsMTIgQEAgaW50IGludGVsX3BsYW5lX2F0b21pY19jaGVjayhzdHJ1Y3QgaW50
+ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAkJCQkJICBuZXdfbWFzdGVyX3BsYW5lX3N0YXRlLAog
+CQkJCQkgIGNydGMpOwogCisJZmIgPSBuZXdfcGxhbmVfc3RhdGUtPmh3LmZiOworCWlmIChmYikK
+KwkJbmV3X3BsYW5lX3N0YXRlLT5kZWNyeXB0ID0gYm9faGFzX3ZhbGlkX2VuY3J5cHRpb24oaW50
+ZWxfZmJfb2JqKGZiKSk7CisJZWxzZQorCQluZXdfcGxhbmVfc3RhdGUtPmRlY3J5cHQgPSBvbGRf
+cGxhbmVfc3RhdGUtPmRlY3J5cHQ7CisKIAluZXdfcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSA9
+IGZhbHNlOwogCWlmICghbmV3X2NydGNfc3RhdGUpCiAJCXJldHVybiAwOwpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCAwYmIyZTU4MmM4N2YuLmY3
+ZjUzNzQxMTRhZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
+bGF5LmMKQEAgLTk3NjcsNiArOTc2NywxMCBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19jaGVj
+a19hc3luYyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKIAkJCWRybV9kYmdfa21z
+KCZpOTE1LT5kcm0sICJDb2xvciByYW5nZSBjYW5ub3QgYmUgY2hhbmdlZCBpbiBhc3luYyBmbGlw
+XG4iKTsKIAkJCXJldHVybiAtRUlOVkFMOwogCQl9CisKKwkJLyogcGxhbmUgZGVjcnlwdGlvbiBp
+cyBhbGxvdyB0byBjaGFuZ2Ugb25seSBpbiBzeW5jaHJvbm91cyBmbGlwcyAqLworCQlpZiAob2xk
+X3BsYW5lX3N0YXRlLT5kZWNyeXB0ICE9IG5ld19wbGFuZV9zdGF0ZS0+ZGVjcnlwdCkKKwkJCXJl
+dHVybiAtRUlOVkFMOwogCX0KIAogCXJldHVybiAwOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAppbmRleCBjZTA1NDc1YWQ1NjAuLjZi
+NWRhYjllMWM0MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3R5cGVzLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3R5cGVzLmgKQEAgLTYyMSw2ICs2MjEsOSBAQCBzdHJ1Y3QgaW50ZWxfcGxhbmVf
+c3RhdGUgewogCiAJc3RydWN0IGludGVsX2ZiX3ZpZXcgdmlldzsKIAorCS8qIFBsYW5lIHB4cCBk
+ZWNyeXB0aW9uIHN0YXRlICovCisJYm9vbCBkZWNyeXB0OworCiAJLyogcGxhbmUgY29udHJvbCBy
+ZWdpc3RlciAqLwogCXUzMiBjdGw7CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKaW5kZXggNTllMDMyZjM2ODdhLi4yYzhlODhlOGFk
+ODMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNh
+bF9wbGFuZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNh
+bF9wbGFuZS5jCkBAIC0xOCw2ICsxOCw3IEBACiAjaW5jbHVkZSAiaW50ZWxfc3ByaXRlLmgiCiAj
+aW5jbHVkZSAic2tsX3NjYWxlci5oIgogI2luY2x1ZGUgInNrbF91bml2ZXJzYWxfcGxhbmUuaCIK
+KyNpbmNsdWRlICJweHAvaW50ZWxfcHhwLmgiCiAKIHN0YXRpYyBjb25zdCB1MzIgc2tsX3BsYW5l
+X2Zvcm1hdHNbXSA9IHsKIAlEUk1fRk9STUFUX0M4LApAQCAtOTk3LDcgKzk5OCw3IEBAIHNrbF9w
+cm9ncmFtX3BsYW5lKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsCiAJdTggYWxwaGEgPSBwbGFu
+ZV9zdGF0ZS0+aHcuYWxwaGEgPj4gODsKIAl1MzIgcGxhbmVfY29sb3JfY3RsID0gMCwgYXV4X2Rp
+c3QgPSAwOwogCXVuc2lnbmVkIGxvbmcgaXJxZmxhZ3M7Ci0JdTMyIGtleW1zaywga2V5bWF4Owor
+CXUzMiBrZXltc2ssIGtleW1heCwgcGxhbmVfc3VyZjsKIAl1MzIgcGxhbmVfY3RsID0gcGxhbmVf
+c3RhdGUtPmN0bDsKIAogCXBsYW5lX2N0bCB8PSBza2xfcGxhbmVfY3RsX2NydGMoY3J0Y19zdGF0
+ZSk7CkBAIC0xMDg2LDggKzEwODcsMTYgQEAgc2tsX3Byb2dyYW1fcGxhbmUoc3RydWN0IGludGVs
+X3BsYW5lICpwbGFuZSwKIAkgKiB0aGUgY29udHJvbCByZWdpc3RlciBqdXN0IGJlZm9yZSB0aGUg
+c3VyZmFjZSByZWdpc3Rlci4KIAkgKi8KIAlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJpdiwgUExB
+TkVfQ1RMKHBpcGUsIHBsYW5lX2lkKSwgcGxhbmVfY3RsKTsKLQlpbnRlbF9kZV93cml0ZV9mdyhk
+ZXZfcHJpdiwgUExBTkVfU1VSRihwaXBlLCBwbGFuZV9pZCksCi0JCQkgIGludGVsX3BsYW5lX2dn
+dHRfb2Zmc2V0KHBsYW5lX3N0YXRlKSArIHN1cmZfYWRkcik7CisJcGxhbmVfc3VyZiA9IGludGVs
+X3BsYW5lX2dndHRfb2Zmc2V0KHBsYW5lX3N0YXRlKSArIHN1cmZfYWRkcjsKKworCS8qCisJICog
+RklYTUU6IHB4cCBzZXNzaW9uIGludmFsaWRhdGlvbiBjYW4gaGl0IGFueSB0aW1lIGV2ZW4gYXQg
+dGltZSBvZiBjb21taXQKKwkgKiBvciBhZnRlciB0aGUgY29tbWl0LCBkaXNwbGF5IGNvbnRlbnQg
+d2lsbCBiZSBnYXJiYWdlLgorCSAqLworCWlmIChwbGFuZV9zdGF0ZS0+ZGVjcnlwdCkKKwkJcGxh
+bmVfc3VyZiB8PSBQTEFORV9TVVJGX0RFQ1JZUFQ7CisKKwlpbnRlbF9kZV93cml0ZV9mdyhkZXZf
+cHJpdiwgUExBTkVfU1VSRihwaXBlLCBwbGFuZV9pZCksIHBsYW5lX3N1cmYpOwogCiAJc3Bpbl91
+bmxvY2tfaXJxcmVzdG9yZSgmZGV2X3ByaXYtPnVuY29yZS5sb2NrLCBpcnFmbGFncyk7CiB9CmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRleCAyOTc2NzFkNzgwNzYuLmIzZWFmNDVhZTNhYiAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAorKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBAIC03Mjg0LDYgKzcyODQsNyBAQCBlbnVtIHsKICNkZWZp
+bmUgX1BMQU5FX1NVUkZfMyhwaXBlKQlfUElQRShwaXBlLCBfUExBTkVfU1VSRl8zX0EsIF9QTEFO
+RV9TVVJGXzNfQikKICNkZWZpbmUgUExBTkVfU1VSRihwaXBlLCBwbGFuZSkJXAogCV9NTUlPX1BM
+QU5FKHBsYW5lLCBfUExBTkVfU1VSRl8xKHBpcGUpLCBfUExBTkVfU1VSRl8yKHBpcGUpKQorI2Rl
+ZmluZSAgIFBMQU5FX1NVUkZfREVDUllQVAkJCVJFR19CSVQoMikKIAogI2RlZmluZSBfUExBTkVf
+T0ZGU0VUXzFfQgkJCTB4NzExYTQKICNkZWZpbmUgX1BMQU5FX09GRlNFVF8yX0IJCQkweDcxMmE0
+Ci0tIAoyLjI5LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
