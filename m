@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A633905D5
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 17:48:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 199753905E0
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 17:51:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 027F36EA6A;
-	Tue, 25 May 2021 15:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB216EA6F;
+	Tue, 25 May 2021 15:51:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 494FD6EA69;
- Tue, 25 May 2021 15:48:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A5C3A6EA6F;
+ Tue, 25 May 2021 15:51:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45CABA47EB;
- Tue, 25 May 2021 15:48:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9EE6EA47E9;
+ Tue, 25 May 2021 15:51:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Tue, 25 May 2021 15:48:07 -0000
-Message-ID: <162195768728.1318.490315608985571152@emeril.freedesktop.org>
+Date: Tue, 25 May 2021 15:51:17 -0000
+Message-ID: <162195787764.1317.12399915618900235599@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210525135508.244659-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20210525135508.244659-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+References: <20210525140156.244831-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20210525140156.244831-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
  =?utf-8?q?rm/i915/gt=3A_Introduce_timeslicing_for_userspace?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -47,7 +47,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3Q6IEludHJvZHVjZSB0aW1l
 c2xpY2luZyBmb3IgdXNlcnNwYWNlClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
-b3Aub3JnL3Nlcmllcy85MDUzOC8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09CgpDQUxM
+b3Aub3JnL3Nlcmllcy85MDUzOS8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09CgpDQUxM
 ICAgIHNjcmlwdHMvY2hlY2tzeXNjYWxscy5zaAogIENBTEwgICAgc2NyaXB0cy9hdG9taWMvY2hl
 Y2stYXRvbWljcy5zaAogIERFU0NFTkQgb2JqdG9vbAogIENISyAgICAgaW5jbHVkZS9nZW5lcmF0
 ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdp
