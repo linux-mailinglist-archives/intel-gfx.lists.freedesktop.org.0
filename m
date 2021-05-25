@@ -1,49 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3753901C2
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 15:11:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 464E2390263
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 15:26:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CBB76EA1C;
-	Tue, 25 May 2021 13:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 533FB6EA2F;
+	Tue, 25 May 2021 13:26:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 232386EA20
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 13:10:08 +0000 (UTC)
-IronPort-SDR: ScnoVDxtuA5ndSEFpHQJHeyR+d0dKfv6Wxp5jFmhq4/r9Tjhhj30u9tnGQf+W9m1KiF0qvWNQa
- Twd3h0Br9WOQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="200288841"
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="200288841"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 06:10:05 -0700
-IronPort-SDR: trBROGRaN6QLX1ldYw4Yk++hnZcFs9bM/CAzxh4q0KFXoQYufFgo5hesXs2bp6CjcK5MF7xR5m
- 3wgb7M9wFQNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="414022652"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga002.jf.intel.com with ESMTP; 25 May 2021 06:10:04 -0700
-Received: from [10.249.148.145] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.148.145])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 14PDA3Md025647
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 14:10:03 +0100
-To: intel-gfx@lists.freedesktop.org
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-17-matthew.brost@intel.com>
- <20210525032125.GA12961@sdutt-i7>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <671c04c9-7d86-c99a-40fb-569865dd9239@intel.com>
-Date: Tue, 25 May 2021 15:10:03 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com
+ [IPv6:2607:f8b0:4864:20::834])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2563B6EA43
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 13:25:42 +0000 (UTC)
+Received: by mail-qt1-x834.google.com with SMTP id h24so11674601qtm.12
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 06:25:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=rzlK2+KgNVw77okoWz9wWn+7O3SeBjFxZFvJQVNDXrI=;
+ b=O/8GsWo2rPxoE60P44jbTXLFGCc21k4pivpKqMA0z/R5EKyfMpMx2MaAMmXe3m2v64
+ 9dthFk7yE69F8lQgs+rf6cMM1S1B0OAdmmQuJWZAFEcjvJ5z6v0GhReCGeN7mhjRFifL
+ Jirq7OS6vptRjiHuLtN8JPOXRq6QeR8GlbYHNKb0TFiUqbLizdSeHRpIgh7vioEQZWSt
+ iwx0HgKiQZxYOO3XG04zahySYD8R7AWC8IomEV9gpncBfQaACMgtME0ADt8PbaoGBD/e
+ DgryypbW+RmSUOk9/TT2bZJ2tht7iBaT/zFwFlkCqcsNL9rOVMD5Q1m5X54tJ2FrGjx2
+ C3Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=rzlK2+KgNVw77okoWz9wWn+7O3SeBjFxZFvJQVNDXrI=;
+ b=n/zrir5mdADX5Av7BdtTzMw69hroD1ohXSHo9McttZ07vMH9mvpFwKtKSWTT3iwrLk
+ BNwMjZFWQBgk9jAjLByukbxWMxHpp3201ttoLOpNg91zQJekuDtZyLm3nYZj3aDQj9Kq
+ sC8L7Omszqs558mX3hbjZ6xqcZ/9WNByFHdqpnF3mRTzUe1IejRa7QiUAi3rxoWUWQlf
+ aHKYm+EKkH33GpHJhJcztQytO4szlEltqUiMP6y4Y4xePKX8H12BX4rbpKIfDZpdKqKY
+ Q+U+mPGy8MwM2rnjzql3CoG+nA7b0XOzVYqcVjTEWnVE6uTDbqqzIwgsW59KQoR0K1im
+ woYA==
+X-Gm-Message-State: AOAM530LjW75NWD5Afw3eMBWIpg6t086QhN/icHglhwZEcXYj5ob8VX2
+ m/T7MUD3Ij+g1DHye2WfTAMn8c62SN+oN3shaag=
+X-Google-Smtp-Source: ABdhPJxF2Ohhmp/QQJiJlno5ur+4RfmcF1blIoKHDkD7KUaAPDHsqoc4/BmBFWdU2vZvvK1MKZyVjGjDkMqnQfokHRo=
+X-Received: by 2002:ac8:758e:: with SMTP id s14mr32600925qtq.341.1621949141979; 
+ Tue, 25 May 2021 06:25:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210525032125.GA12961@sdutt-i7>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 16/97] drm/i915/guc: Start protecting
- access to CTB descriptors
+References: <20210507091210.371132-1-matthew.auld@intel.com>
+In-Reply-To: <20210507091210.371132-1-matthew.auld@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 25 May 2021 14:25:15 +0100
+Message-ID: <CAM0jSHMmgsj7=cwSEXjng_njA5aPC144-Hhq+gaKrE9Ha0nmMw@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: relax 2big checking
+ around initial fb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,128 +62,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 25.05.2021 05:21, Matthew Brost wrote:
-> On Thu, May 06, 2021 at 12:13:30PM -0700, Matthew Brost wrote:
->> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>
->> We want to stop using guc.send_mutex while sending CTB messages
->> so we have to start protecting access to CTB send descriptor.
->>
->> For completeness protect also CTB send descriptor.
-> 
-> Michal I think you have a typo here, receive descriptor, right? Again
-
-oops, yes, it's typo
-
-> this is going to get squashed in the firmware update patch but thought
-> I'd mention this.
-
-again, please don't squash patches if not necessary
-
-> 
-> With that:
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com> 
-> 
->>
->> Add spinlock to struct intel_guc_ct_buffer and start using it.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> ---
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 14 ++++++++++++--
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  2 ++
->>  2 files changed, 14 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> index a4b2e7fe318b..bee0958d8bae 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> @@ -89,6 +89,8 @@ static void ct_incoming_request_worker_func(struct work_struct *w);
->>   */
->>  void intel_guc_ct_init_early(struct intel_guc_ct *ct)
->>  {
->> +	spin_lock_init(&ct->ctbs.send.lock);
->> +	spin_lock_init(&ct->ctbs.recv.lock);
->>  	spin_lock_init(&ct->requests.lock);
->>  	INIT_LIST_HEAD(&ct->requests.pending);
->>  	INIT_LIST_HEAD(&ct->requests.incoming);
->> @@ -479,17 +481,22 @@ static int ct_send(struct intel_guc_ct *ct,
->>  	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
->>  	GEM_BUG_ON(!response_buf && response_buf_size);
->>  
->> +	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
->> +
->>  	fence = ct_get_next_fence(ct);
->>  	request.fence = fence;
->>  	request.status = 0;
->>  	request.response_len = response_buf_size;
->>  	request.response_buf = response_buf;
->>  
->> -	spin_lock_irqsave(&ct->requests.lock, flags);
->> +	spin_lock(&ct->requests.lock);
->>  	list_add_tail(&request.link, &ct->requests.pending);
->> -	spin_unlock_irqrestore(&ct->requests.lock, flags);
->> +	spin_unlock(&ct->requests.lock);
->>  
->>  	err = ct_write(ct, action, len, fence);
->> +
->> +	spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
->> +
->>  	if (unlikely(err))
->>  		goto unlink;
->>  
->> @@ -825,6 +832,7 @@ static int ct_handle_request(struct intel_guc_ct *ct, const u32 *msg)
->>  void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
->>  {
->>  	u32 msg[GUC_CT_MSG_LEN_MASK + 1]; /* one extra dw for the header */
->> +	unsigned long flags;
->>  	int err = 0;
->>  
->>  	if (unlikely(!ct->enabled)) {
->> @@ -833,7 +841,9 @@ void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
->>  	}
->>  
->>  	do {
->> +		spin_lock_irqsave(&ct->ctbs.recv.lock, flags);
->>  		err = ct_read(ct, msg);
->> +		spin_unlock_irqrestore(&ct->ctbs.recv.lock, flags);
->>  		if (err)
->>  			break;
->>  
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->> index fc9486779e87..bc52dc479a14 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->> @@ -27,11 +27,13 @@ struct intel_guc;
->>   * record (command transport buffer descriptor) and the actual buffer which
->>   * holds the commands.
->>   *
->> + * @lock: protects access to the commands buffer and buffer descriptor
->>   * @desc: pointer to the buffer descriptor
->>   * @cmds: pointer to the commands buffer
->>   * @size: size of the commands buffer
->>   */
->>  struct intel_guc_ct_buffer {
->> +	spinlock_t lock;
->>  	struct guc_ct_buffer_desc *desc;
->>  	u32 *cmds;
->>  	u32 size;
->> -- 
->> 2.28.0
->>
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCA3IE1heSAyMDIxIGF0IDEwOjEyLCBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBp
+bnRlbC5jb20+IHdyb3RlOgo+Cj4gRnJvbTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxz
+b24uY28udWs+Cj4KPiBUaGUga2VybmVsIHByZWZlcnMgZW5hYmxpbmcgZmJjIG92ZXIgdGhlIGlu
+aXRpYWwgZmIsIHNpbmNlIHRoaXMgbGVhZHMgdG8KPiBhY3R1YWwgcnVudGltZSBwb3dlciBzYXZp
+bmdzLCBzbyBpZiB0aGUgaW5pdGlhbCBmYiBpcyBkZWVtZWQgdG9vIGJpZwo+IHVzaW5nIHNvbWUg
+aGV1cmlzdGljLCB0aGVuIHdlIHNpbXBseSBza2lwIGFsbG9jYXRpbmcgc3RvbGVuIGZvciBpdC4K
+PiBIb3dldmVyIGlmIHRoZSBrZXJuZWwgaXMgbm90IGNvbmZpZ3VyZWQgd2l0aCBmYmNvbiB0aGVu
+IGl0IHNob3VsZCBiZQo+IHBvc3NpYmxlIHRvIHJlbGF4IHRoaXMsIHNpbmNlIHVubGlrZSB3aXRo
+IGZiY29uIHRoZSBkaXNwbGF5IHNlcnZlcgo+IHNob3VsZG4ndCBwcmVzZXJ2ZSBpdCB3aGVuIGxh
+dGVyIHJlcGxhY2luZyBpdCwgYW5kIHNvIHdlIHNob3VsZCBiZSBhYmxlCj4gdG8gcmUtdXNlIHRo
+ZSBzdG9sZW4gbWVtb3J5IGZvciBmYmMgYW5kIGZyaWVuZHMuIFRoaXMgcGF0Y2ggaXMgcmVwb3J0
+ZWQKPiB0byBmaXggc29tZSBmbGlja2VyIHNlZW4gZHVyaW5nIGJvb3Qgc3BsYXNoIG9uIHNvbWUg
+ZGV2aWNlcy4KPgo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2ls
+c29uLmNvLnVrPgo+IFNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGlu
+dGVsLmNvbT4KPiBDYzogTGVlIFNoYXduIEMgPHNoYXduLmMubGVlQGludGVsLmNvbT4KPiBDYzog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogRGFu
+aWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CgpWaWxsZSwgSW1yZSwgb3Igc29t
+ZWJvZHkgZWxzZSB3aXRoIGRpc3BsYXkgZXhwZXJpZW5jZSwgZG9lcyB0aGlzIGF0CmxlYXN0IGxv
+b2sgc29tZXdoYXQgcmVhc29uYWJsZT8KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
+b24oKyksIDEgZGVsZXRpb24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5jCj4gaW5kZXggZWMyZDNmYTYwMDAzLi4wZWUxZjAyMTNmZDkgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IEBAIC0x
+NDU1LDcgKzE0NTUsNyBAQCBpbml0aWFsX3BsYW5lX3ZtYShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
+ZSAqaTkxNSwKPiAgICAgICAgICAqIGltcG9ydGFudCBhbmQgd2Ugc2hvdWxkIHByb2JhYmx5IHVz
+ZSB0aGF0IHNwYWNlIHdpdGggRkJDIG9yIG90aGVyCj4gICAgICAgICAgKiBmZWF0dXJlcy4KPiAg
+ICAgICAgICAqLwo+IC0gICAgICAgaWYgKHNpemUgKiAyID4gaTkxNS0+c3RvbGVuX3VzYWJsZV9z
+aXplKQo+ICsgICAgICAgaWYgKElTX0VOQUJMRUQoRlJBTUVCVUZGRVJfQ09OU09MRSkgJiYgc2l6
+ZSAqIDIgPiBpOTE1LT5zdG9sZW5fdXNhYmxlX3NpemUpCj4gICAgICAgICAgICAgICAgIHJldHVy
+biBOVUxMOwo+Cj4gICAgICAgICBvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbl9m
+b3JfcHJlYWxsb2NhdGVkKGk5MTUsIGJhc2UsIHNpemUpOwo+IC0tCj4gMi4yNi4zCj4KPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IEludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
