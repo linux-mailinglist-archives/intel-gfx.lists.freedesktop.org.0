@@ -2,48 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C904390150
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 14:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6624F3901A6
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 May 2021 15:06:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE5096EA09;
-	Tue, 25 May 2021 12:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5144C6EA0F;
+	Tue, 25 May 2021 13:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEDBF6EA0D;
- Tue, 25 May 2021 12:48:06 +0000 (UTC)
-IronPort-SDR: pbxjgGhXCnilHI6i4HjT7OSvWBA2GqnqToF7WKVuUHmtlQD6DfgpgD2wHdE9+FIE9eDogg2B15
- ymxT4ChOCZ1A==
-X-IronPort-AV: E=McAfee;i="6200,9189,9994"; a="202200230"
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="202200230"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2021 05:48:05 -0700
-IronPort-SDR: juwQjZypk14yYBIgpK4HG5lOiKD96FHqUrfPHfTuuXhpzZAu99UVe7tJI3MwFqkIAypjcb3LuB
- mpeZhE/kP+3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,328,1613462400"; d="scan'208";a="630208555"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga006.fm.intel.com with ESMTP; 25 May 2021 05:48:03 -0700
-Received: from [10.249.148.145] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.148.145])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 14PCm2Ss015276; Tue, 25 May 2021 13:48:02 +0100
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-12-matthew.brost@intel.com>
- <20210525024712.GA8004@sdutt-i7>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <7638745c-1db4-e042-2c98-1b9538a96254@intel.com>
-Date: Tue, 25 May 2021 14:48:01 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
+ [IPv6:2a00:1450:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 139C26EA10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 13:05:49 +0000 (UTC)
+Received: by mail-ej1-x636.google.com with SMTP id et19so40176814ejc.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 May 2021 06:05:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=rzTPEUj6ZfrLK47qjLBC6xqrr00IOrQn6WMfDUDpoKM=;
+ b=OIQVel25jeFXkPYSJEeG1b/nUwycoajFQNKieBz+RL9AIMsJa6zFYIEwNkfQ9MkqBQ
+ gAmvdIuPw17vePYC4zS6kV33eBZxPt2iz3SPxNAIO0WRWinGXg6i40rR853XhpO+xA9y
+ 2m9+PNaZ22Rf+jfm7aM+wa+HJaDnPYnUEP04U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=rzTPEUj6ZfrLK47qjLBC6xqrr00IOrQn6WMfDUDpoKM=;
+ b=NuXwHuOBCK7CrYF0LGgrl7DEEToj9g/d9Q+83EaYIZR9/7egL6HgS2YFSgf247HcUC
+ +GdtncYUl64RP/2ag45O9yC9RREReycfAmn7hcJFvBKa74BMHj6G5q3c5iF+3Wv0WgK7
+ sjuzAWElkS66R8y1E7b5psErW/3iwFtMaHP96HHoZDsZbpJw9sY0HaMehrTq/irS2Z6T
+ xKMNTaYqQ+O80iCpEGO5YViEgrdq/2LhFjsfgIk5ZFwFVZc8q97l6os1/Q+Pj5eq+cH3
+ icCSIKxzF6g0RZlvQ823Qn4M60xO8XAcwblru/BdI7oJtkHDIhuADwhp8ncQwsmnsBAq
+ PGDw==
+X-Gm-Message-State: AOAM531vXUo7nvRcuoLBN1E32e47dy1rEMTgADMb8uUxPNjeXaiN+dvx
+ nCM30ljBv/mubGcS5wR4ue5Psw==
+X-Google-Smtp-Source: ABdhPJz2h4CxfvjLZ45FospjD8C79FmS3+GdU+LtnF0NK0P9iJi8WWS6U9N4PC+u1HSVQ9X6rVf7zw==
+X-Received: by 2002:a17:907:20d7:: with SMTP id
+ qq23mr28659872ejb.549.1621947948268; 
+ Tue, 25 May 2021 06:05:48 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id bm24sm10780789edb.45.2021.05.25.06.05.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 May 2021 06:05:47 -0700 (PDT)
+Date: Tue, 25 May 2021 15:05:45 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <YKz2KVppVoYMxB5u@phenom.ffwll.local>
+References: <20210521090959.1663703-1-daniel.vetter@ffwll.ch>
+ <CAP+8YyEhRwgz2hCri3K7Kv1OusVa_LGEuKZqQEx5jv+NiDKZrA@mail.gmail.com>
+ <YKfFqrlLrikGMn4K@phenom.ffwll.local>
+ <CAP+8YyG0o58dQt_tvnJ2ESbeqo02xxvFdifpMwnhz2VYNk8HUw@mail.gmail.com>
+ <YKfOymXrB7O4cYVb@phenom.ffwll.local>
+ <31467363-e936-879b-8b0d-5a2a92644221@gmail.com>
+ <CAKMK7uFswfc96hS40uc0Lug=doYAcf-yC-eu96iWqNJnM65MJQ@mail.gmail.com>
+ <ae13093e-c364-7b90-1f91-39de42594cd6@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20210525024712.GA8004@sdutt-i7>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 11/97] drm/i915/guc: Only rely on own
- CTB size
+Content-Disposition: inline
+In-Reply-To: <ae13093e-c364-7b90-1f91-39de42594cd6@amd.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [Mesa-dev] [PATCH 01/11] drm/amdgpu: Comply with
+ implicit fencing rules
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,223 +74,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Rob Clark <robdclark@chromium.org>, Daniel Stone <daniels@collabora.com>,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Kevin Wang <kevin1.wang@amd.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ "Kristian H . Kristensen" <hoegsberg@google.com>,
+ Chen Li <chenli@uniontech.com>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ mesa-dev <mesa-dev@lists.freedesktop.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Dennis Li <Dennis.Li@amd.com>,
+ Deepak R Varma <mh12gx2825@gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Christian,
 
+On Sat, May 22, 2021 at 10:30:19AM +0200, Christian K=F6nig wrote:
+> Am 21.05.21 um 20:31 schrieb Daniel Vetter:
+> > [SNIP]
+> > > We could provide an IOCTL for the BO to change the flag.
+> > That's not the semantics we need.
+> > =
 
-On 25.05.2021 04:47, Matthew Brost wrote:
-> On Thu, May 06, 2021 at 12:13:25PM -0700, Matthew Brost wrote:
->> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>
->> In upcoming GuC firmware, CTB size will be removed from the CTB
->> descriptor so we must keep it locally for any calculations.
->>
->> While around, improve some debug messages and helpers.
->>
-> 
-> desc->size is still used in the patch and really shouldn't be per this
+> > > But could we first figure out the semantics we want to use here?
+> > > =
 
-goal of this patch was to start using local ctb->size for any
-calculations, not to drop it completely, as at this point (GuC 49)
-desc->size is still part of the CTB protocol
+> > > Cause I'm pretty sure we don't actually need those changes at all and=
+ as
+> > > said before I'm certainly NAKing things which break existing use case=
+s.
+> > Please read how other drivers do this and at least _try_ to understand
+> > it. I'm really loosing my patience here with you NAKing patches you're
+> > not even understanding (or did you actually read and fully understand
+> > the entire story I typed up here, and your NAK is on the entire
+> > thing?). There's not much useful conversation to be had with that
+> > approach. And with drivers I mean kernel + userspace here.
+> =
 
-> comment but a patch later in the series drops it. Seeing as this patch
-> and that patch are going to squashed into a single patch upgrading the
-> GuC firmware I think that is ok.
+> Well to be honest I did fully read that, but I was just to emotionally
+> attached to answer more appropriately in that moment.
+> =
 
-no need to squash this patch
+> And I'm sorry that I react emotional on that, but it is really frustrating
+> that I'm not able to convince you that we have a major problem which affe=
+cts
+> all drivers and not just amdgpu.
+> =
 
-in fact all CTB patches up to and including 20/97 ("drm/i915/guc:
-Introduce unified HXG messages") are compatible with current GuC 49.0.1
-and IMHO *should* be merged separately
+> Regarding the reason why I'm NAKing this particular patch, you are breaki=
+ng
+> existing uAPI for RADV with that. And as a maintainer of the driver I have
+> simply no other choice than saying halt, stop we can't do it like this.
+> =
 
-only patches from 21/97 ("drm/i915/guc: Update MMIO based
-communication") to 29/97 ("drm/i915/guc: Update firmware to v60.1.2")
-must be squashed during merge, as this is were communication protocol is
-changing (from GuC 49 to GuC 60) and we may break existing functionality
-(HuC authentication)
+> I'm perfectly aware that I've some holes in the understanding of how ANV =
+or
+> other Vulkan/OpenGL stacks work. But you should probably also admit that =
+you
+> have some holes how amdgpu works or otherwise I can't imagine why you
+> suggest a patch which simply breaks RADV.
+> =
 
-Michal
+> I mean we are working together for years now and I think you know me pret=
+ty
+> well, do you really think I scream bloody hell we can't do this without a
+> good reason?
+> =
 
-> 
-> With that:
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com> 
-> 
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> ---
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 55 +++++++++++++++++------
->>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  2 +
->>  2 files changed, 43 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> index 4cc8c0b71699..dbece569fbe4 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> @@ -90,6 +90,24 @@ static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc,
->>  	desc->owner = CTB_OWNER_HOST;
->>  }
->>  
->> +static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb, u32 cmds_addr)
->> +{
->> +	guc_ct_buffer_desc_init(ctb->desc, cmds_addr, ctb->size);
->> +}
->> +
->> +static void guc_ct_buffer_init(struct intel_guc_ct_buffer *ctb,
->> +			       struct guc_ct_buffer_desc *desc,
->> +			       u32 *cmds, u32 size)
->> +{
->> +	GEM_BUG_ON(size % 4);
->> +
->> +	ctb->desc = desc;
->> +	ctb->cmds = cmds;
->> +	ctb->size = size;
->> +
->> +	guc_ct_buffer_reset(ctb, 0);
->> +}
->> +
->>  static int guc_action_register_ct_buffer(struct intel_guc *guc,
->>  					 u32 desc_addr,
->>  					 u32 type)
->> @@ -148,7 +166,10 @@ static int ct_deregister_buffer(struct intel_guc_ct *ct, u32 type)
->>  int intel_guc_ct_init(struct intel_guc_ct *ct)
->>  {
->>  	struct intel_guc *guc = ct_to_guc(ct);
->> +	struct guc_ct_buffer_desc *desc;
->> +	u32 blob_size;
->>  	void *blob;
->> +	u32 *cmds;
->>  	int err;
->>  	int i;
->>  
->> @@ -176,19 +197,24 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
->>  	 * other code will need updating as well.
->>  	 */
->>  
->> -	err = intel_guc_allocate_and_map_vma(guc, PAGE_SIZE, &ct->vma, &blob);
->> +	blob_size = PAGE_SIZE;
->> +	err = intel_guc_allocate_and_map_vma(guc, blob_size, &ct->vma, &blob);
->>  	if (unlikely(err)) {
->> -		CT_ERROR(ct, "Failed to allocate CT channel (err=%d)\n", err);
->> +		CT_PROBE_ERROR(ct, "Failed to allocate %u for CTB data (%pe)\n",
->> +			       blob_size, ERR_PTR(err));
->>  		return err;
->>  	}
->>  
->> -	CT_DEBUG(ct, "vma base=%#x\n", intel_guc_ggtt_offset(guc, ct->vma));
->> +	CT_DEBUG(ct, "base=%#x size=%u\n", intel_guc_ggtt_offset(guc, ct->vma), blob_size);
->>  
->>  	/* store pointers to desc and cmds */
->>  	for (i = 0; i < ARRAY_SIZE(ct->ctbs); i++) {
->>  		GEM_BUG_ON((i !=  CTB_SEND) && (i != CTB_RECV));
->> -		ct->ctbs[i].desc = blob + PAGE_SIZE/4 * i;
->> -		ct->ctbs[i].cmds = blob + PAGE_SIZE/4 * i + PAGE_SIZE/2;
->> +
->> +		desc = blob + PAGE_SIZE / 4 * i;
->> +		cmds = blob + PAGE_SIZE / 4 * i + PAGE_SIZE / 2;
->> +
->> +		guc_ct_buffer_init(&ct->ctbs[i], desc, cmds, PAGE_SIZE / 4);
->>  	}
->>  
->>  	return 0;
->> @@ -217,7 +243,7 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
->>  int intel_guc_ct_enable(struct intel_guc_ct *ct)
->>  {
->>  	struct intel_guc *guc = ct_to_guc(ct);
->> -	u32 base, cmds, size;
->> +	u32 base, cmds;
->>  	int err;
->>  	int i;
->>  
->> @@ -232,10 +258,11 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
->>  	 */
->>  	for (i = 0; i < ARRAY_SIZE(ct->ctbs); i++) {
->>  		GEM_BUG_ON((i != CTB_SEND) && (i != CTB_RECV));
->> +
->>  		cmds = base + PAGE_SIZE / 4 * i + PAGE_SIZE / 2;
->> -		size = PAGE_SIZE / 4;
->> -		CT_DEBUG(ct, "%d: addr=%#x size=%u\n", i, cmds, size);
->> -		guc_ct_buffer_desc_init(ct->ctbs[i].desc, cmds, size);
->> +		CT_DEBUG(ct, "%d: cmds addr=%#x\n", i, cmds);
->> +
->> +		guc_ct_buffer_reset(&ct->ctbs[i], cmds);
->>  	}
->>  
->>  	/*
->> @@ -259,7 +286,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
->>  err_deregister:
->>  	ct_deregister_buffer(ct, INTEL_GUC_CT_BUFFER_TYPE_RECV);
->>  err_out:
->> -	CT_PROBE_ERROR(ct, "Failed to open channel (err=%d)\n", err);
->> +	CT_PROBE_ERROR(ct, "Failed to enable CTB (%pe)\n", ERR_PTR(err));
->>  	return err;
->>  }
->>  
->> @@ -314,7 +341,7 @@ static int ct_write(struct intel_guc_ct *ct,
->>  	struct guc_ct_buffer_desc *desc = ctb->desc;
->>  	u32 head = desc->head;
->>  	u32 tail = desc->tail;
->> -	u32 size = desc->size;
->> +	u32 size = ctb->size;
->>  	u32 used;
->>  	u32 header;
->>  	u32 *cmds = ctb->cmds;
->> @@ -323,7 +350,7 @@ static int ct_write(struct intel_guc_ct *ct,
->>  	if (unlikely(desc->is_in_error))
->>  		return -EPIPE;
->>  
->> -	if (unlikely(!IS_ALIGNED(head | tail | size, 4) ||
->> +	if (unlikely(!IS_ALIGNED(head | tail, 4) ||
->>  		     (tail | head) >= size))
->>  		goto corrupted;
->>  
->> @@ -530,7 +557,7 @@ static int ct_read(struct intel_guc_ct *ct, u32 *data)
->>  	struct guc_ct_buffer_desc *desc = ctb->desc;
->>  	u32 head = desc->head;
->>  	u32 tail = desc->tail;
->> -	u32 size = desc->size;
->> +	u32 size = ctb->size;
->>  	u32 *cmds = ctb->cmds;
->>  	s32 available;
->>  	unsigned int len;
->> @@ -539,7 +566,7 @@ static int ct_read(struct intel_guc_ct *ct, u32 *data)
->>  	if (unlikely(desc->is_in_error))
->>  		return -EPIPE;
->>  
->> -	if (unlikely(!IS_ALIGNED(head | tail | size, 4) ||
->> +	if (unlikely(!IS_ALIGNED(head | tail, 4) ||
->>  		     (tail | head) >= size))
->>  		goto corrupted;
->>  
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->> index 494a51a5200f..4009e2dd0de4 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->> @@ -29,10 +29,12 @@ struct intel_guc;
->>   *
->>   * @desc: pointer to the buffer descriptor
->>   * @cmds: pointer to the commands buffer
->> + * @size: size of the commands buffer
->>   */
->>  struct intel_guc_ct_buffer {
->>  	struct guc_ct_buffer_desc *desc;
->>  	u32 *cmds;
->> +	u32 size;
->>  };
->>  
->>  
->> -- 
->> 2.28.0
->>
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
+> So let's stop throwing halve backed solutions at each other and discuss w=
+hat
+> we can do to solve the different problems we are both seeing here.
+
+Well this was meant to be a goal post/semantics discussion starter. Yes
+the patch breaks performance (but not correctness) for amdgpu, but it also
+contains my suggestion for how to fix that issue (in text form at least).
+
+Plus a plan how to roll it out so that anyone who cares doesn't hit the
+perf issues this patch can cause.
+
+Also the overall series is really meant as a subsystem wide assessment of
+the status quo. Aside from a correctness issue Lucas spotted in my panfrost
+patches no substantial input from others on this yet unfortunately. I need
+to poke more people I think.
+
+Anyway since the plan as a text didn't stick I'm typing up now something
+more detailed in form of amdgpu patches. Maybe Bas can do the radv
+conversion too.
+
+It won't be complete by far either (I'm not working for amd after all
+...), I'll leave out the opengl/media side entirely. But if this works for
+radv is should be a useful blueprint for gl/media too (with some changes
+in the interfaces, but not really the exposed semantics).
+
+> > That's the other frustration part: You're trying to fix this purely in
+> > the kernel. This is exactly one of these issues why we require open
+> > source userspace, so that we can fix the issues correctly across the
+> > entire stack. And meanwhile you're steadfastily refusing to even look
+> > at that the userspace side of the picture.
+> =
+
+> Well I do fully understand the userspace side of the picture for the AMD
+> stack. I just don't think we should give userspace that much control over
+> the fences in the dma_resv object without untangling them from resource
+> management.
+> =
+
+> And RADV is exercising exclusive sync for amdgpu already. You can do
+> submission to both the GFX, Compute and SDMA queues in Vulkan and those
+> currently won't over-synchronize.
+> =
+
+> When you then send a texture generated by multiple engines to the Composi=
+tor
+> the kernel will correctly inserts waits for all submissions of the other
+> process.
+> =
+
+> So this already works for RADV and completely without the IOCTL Jason
+> proposed. IIRC we also have unit tests which exercised that feature for t=
+he
+> video decoding use case long before RADV even existed.
+
+Yeah multiple engines on the producer side works fine with the current
+scheme you have (if we ignore for now that the way amdgpu uses dma_resv is
+different from other drivers by not setting the exclusive slots for
+producers).
+
+Where it breaks down is you have overlapping reads once a frame is
+generated, on either side. E.g.
+
+- compositors read the buffer as consumer
+- but also producer reads the buffer again (maybe reference frame for
+  media, or maybe for some post-processing like motion blurr or whatever).
+
+Then your current scheme really badly oversyncs, while other drivers
+don't have this issue. Fixing this for amdgpu will have quite a big impact
+on how dma_resv will be used by amdgpu, and that's why I think before
+we've looked at this it doesn't make sense to look at changing dma_resv in
+big ways.
+
+I do think the AMDGPU_SYNC_NE_OWNER trick is pretty neat, and should help
+with some very non-explicit userspace (gl, maybe also media but at least
+ours is internally moving to a more explicit model I think) when you split
+the workload over multiple engines. For vulkan I think the right model is
+AMDGPU_SYNC_EXPLICIT, plus something like what Jason has.
+
+Except there's going to be quite some twist, but I think that's best
+explained in patches since text clearly doesn't work well.
+
+> And yes I have to admit that I haven't thought about interaction with oth=
+er
+> drivers when I came up with this because the rules of that interaction
+> wasn't clear to me at that time.
+
+Ok I think we're at least distilling the core of our disagreement here,
+that's some progress:
+
+- my take: to make implicit sync work well and avoid oversync issues,
+  userspace, and currently amgpu lacks these uapis so needs to get those
+  added.
+
+- your take: please lets not give so much control to userspace
+
+Tbh I'm not yet fully understanding your concern here, but I do agree that
+there's a lot of things that need to be carefully audited here, at least
+in amdgpu. From my driver wide audit I do think in general playing clever
+tricks is ok, since drivers treat the exclusive fence as just a special
+type of shared fence and don't e.g. ignore the shard fences if an
+exclusive one is present. For the generic helper version of this see
+drm_gem_fence_array_add_implicit(), but afaiui amdgpu works the same (or
+at least similar enough), as do other drivers playing funny games.
+
+> > Also I thought through your tlb issue, why are you even putting these
+> > tlb flush fences into the shard dma_resv slots? If you store them
+> > somewhere else in the amdgpu private part, the oversync issues goes
+> > away
+> > - in your ttm bo move callback, you can just make your bo copy job
+> > depend on them too (you have to anyway)
+> > - even for p2p there's not an issue here, because you have the
+> > ->move_notify callback, and can then lift the tlb flush fences from
+> > your private place to the shared slots so the exporter can see them.
+> =
+
+> Because adding a shared fence requires that this shared fence signals aft=
+er
+> the exclusive fence. And this is a perfect example to explain why this is=
+ so
+> problematic and also why why we currently stumble over that only in amdgp=
+u.
+
+So I also have vague collections that we agreed this is required, but I
+don't think it's the case. I'm at least pretty sure we already have
+multiple drivers which violate this (non of them using TTM yet).
+
+> In TTM we have a feature which allows evictions to be pipelined and don't
+> wait for the evicting DMA operation. Without that driver will stall waiti=
+ng
+> for their allocations to finish when we need to allocate memory.
+> =
+
+> For certain use cases this gives you a ~20% fps increase under memory
+> pressure, so it is a really important feature.
+
+Yeah that's something I'm banging my head against right now a bit for my
+amdgpu demo patch series.
+
+> This works by adding the fence of the last eviction DMA operation to BOs
+> when their backing store is newly allocated. That's what the
+> ttm_bo_add_move_fence() function you stumbled over is good for: https://e=
+lixir.bootlin.com/linux/v5.13-rc2/source/drivers/gpu/drm/ttm/ttm_bo.c#L692
+> =
+
+> Now the problem is it is possible that the application is terminated befo=
+re
+> it can complete it's command submission. But since resource management on=
+ly
+> waits for the shared fences when there are some there is a chance that we
+> free up memory while it is still in use.
+
+Hm where is this code? Would help in my audit that I wanted to do this
+week? If you look at most other places like
+drm_gem_fence_array_add_implicit() I mentioned earlier, then we don't
+treat the shared fences special and always also include the exclusive one.
+
+> Because of this we have some rather crude workarounds in amdgpu. For exam=
+ple
+> IIRC we manual wait for any potential exclusive fence before freeing memo=
+ry.
+> =
+
+> We could enable this feature for radeon and nouveau as well with an one l=
+ine
+> change. But that would mean we need to maintain the workarounds for
+> shortcomings of the dma_resv object design in those drivers as well.
+> =
+
+> To summarize I think that adding an unbound fence to protect an object is=
+ a
+> perfectly valid operation for resource management, but this is restricted=
+ by
+> the needs of implicit sync at the moment.
+
+Hm how are unbound fences (what do you mean with this exactly) come into
+play here now? I think you lost me here on the last 1-2 paragraphs, before
+that I think I followed.
+
+> > The kernel move fences otoh are a bit more nasty to wring through the
+> > p2p dma-buf interface. That one probably needs something new.
+> =
+
+> Well the p2p interface are my least concern.
+> =
+
+> Adding the move fence means that you need to touch every place we do CS or
+> page flip since you now have something which is parallel to the explicit
+> sync fence.
+> =
+
+> Otherwise having the move fence separately wouldn't make much sense in the
+> first place if we always set it together with the exclusive fence.
+
+Yeah it's a bunch of work. But for i915 this is the model we have, so we
+have to do it anyway, so I have really good excuse here to do that ttm
+audit.
+
+> Best regards and sorry for getting on your nerves so much,
+
+tbh I've also been rather thinly nerved on this. One side was that I spent
+the last 1+ years having an eerily similar with i915-gem team about how a
+single driver can't just have totally different rules for core stuff like
+dma_resv/fence/locks, and unfortunately that entire story went really,
+horribly wrong :-/ So I'm very much "oh noes pls not again".
+
+But also the long w/e here helped, yay :-)
+
+I think there's a few questions here that we can ping/pong a bit more, but
+I think for the next meaningful round I need to get this draft set of
+patches a bit into shape here, and audit more code. I think hopefully
+early next week I'll have something which isn't too much full of holes
+which should help in moving forward on this discussion.
+
+Cheers, Daniel
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
