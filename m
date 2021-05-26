@@ -2,44 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF61391A3A
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 16:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2C0391A3F
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 16:33:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10CD66ED95;
-	Wed, 26 May 2021 14:31:05 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17E996ED93;
- Wed, 26 May 2021 14:31:04 +0000 (UTC)
-IronPort-SDR: G4AQlfmy57uNnNAGl2i/dMOpqxWpbdaW7YTwflr+aAQZBV/NRaiIZi4K4ikA9kN9qa45CC3pDy
- pmA4TMxJeriw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="223664907"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="223664907"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 07:31:02 -0700
-IronPort-SDR: ZZS+kOHU9eg3iefO4DoXGRfqezDmnNkYhquAu/QQYqT69LZgW58eWJks59RGhsdVg/+HYDyNE2
- NXbuUK8K7G/A==
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="614982047"
-Received: from mschan-mobl1.amr.corp.intel.com (HELO [10.212.100.144])
- ([10.212.100.144])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 07:31:00 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Intel-gfx@lists.freedesktop.org
-References: <20210526141456.2334192-1-tvrtko.ursulin@linux.intel.com>
- <20210526141456.2334192-13-tvrtko.ursulin@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <5aaf24d3-9171-ee1f-5b89-fd1a501afc01@intel.com>
-Date: Wed, 26 May 2021 15:30:57 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id D70856ED9A;
+	Wed, 26 May 2021 14:32:59 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2068.outbound.protection.outlook.com [40.107.223.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD936ED92;
+ Wed, 26 May 2021 14:32:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ANYSkl6tPyTOBSHCrYUpe+g2CmW/EheA4lkXWMJdp/vjlhHgRBcwCaUi0a+AxiCeTTppbyZvSAJJOQn/f6xJcXmk8vMY/FIBHP03cNv7fiMM3bp/jflp+dTVS37sG9qtqQobM22KaQTmEzn+KwkLwk3hwqYHPMZB040Mikswk41oRkj6kVTTz76lT6CJycBDpNRGOxB1sOCewKpSR7p8scUksmaSQ/ZpEur+/dMJ7y4L/fqreb1mAmLcis8ezJ28zoHtyrOnrDsOjKpywgVmq09LqKHuoaouMq/JeYi0iZoAIM9RZbPENu62bFTeZSfuub36CyLtHyx5UCRVPytpdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wgzQrxtJG8YpLt3WljFj71TF9WqJ8ei2UNw66dJ1fb4=;
+ b=EERXPiBrXAbH+xG9Ru8c5AxvXbyoAtD3HGbVKP0Nux5nm5ZoROb45GH9sEBENXvn7mgBsz/cfTFbsMkWvZKjoewLTCFz11P1vdNNuHz38gfzDgo2xuOKByYii2hqD8INtUSreXXEbCgAywyZ/QNt0g7mtliFcTLYDsZGuDBiQaBYWIvxCHKwHysT2AdV8P3HPzZtkU2E4qaIIqoRG1CfxK6hU4VsIUBWCUp8JfNgaIvKhK7dG5QdEQYZiVm4MPZCLWcjRV1S3CiLep5ODevsroNtEWg8Qmu6Ph3OXmX9DYHnZcLsHHBAuS9PCgrd+r0A8NALe3LUlHP/ayXuzd3UcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wgzQrxtJG8YpLt3WljFj71TF9WqJ8ei2UNw66dJ1fb4=;
+ b=N0QBA5gKzvmJNOuTAwI0uPnq5m5/6LcTA5PdIDLeUQoR7ff32C5kAREUK/nAVfRGn7LNWTA+eCLM+2wkudRy+4jBqFcGNae+tFkJsLbZYHMbc1rDCH46irCit+b8FjR5IRO7g4/UcRVXCm5gqhgqm6g6YFAP2FKyGuAjERlnE2s=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB4301.namprd12.prod.outlook.com (2603:10b6:208:1d4::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.26; Wed, 26 May
+ 2021 14:32:56 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34%6]) with mapi id 15.20.4150.027; Wed, 26 May 2021
+ 14:32:56 +0000
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20210526113259.1661914-1-thomas.hellstrom@linux.intel.com>
+ <20210526113259.1661914-10-thomas.hellstrom@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <e0fe6261-1c9c-f90a-7aba-074c0ca32c6a@amd.com>
+Date: Wed, 26 May 2021 16:32:50 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ Thunderbird/78.8.1
+In-Reply-To: <20210526113259.1661914-10-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+X-Originating-IP: [2a02:908:1252:fb60:1950:35e:cae9:5bed]
+X-ClientProxiedBy: AM4PR0501CA0050.eurprd05.prod.outlook.com
+ (2603:10a6:200:68::18) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
-In-Reply-To: <20210526141456.2334192-13-tvrtko.ursulin@linux.intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 12/12] drm/i915/gem: Manage all set-domain
- waits explicitly
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:1950:35e:cae9:5bed]
+ (2a02:908:1252:fb60:1950:35e:cae9:5bed) by
+ AM4PR0501CA0050.eurprd05.prod.outlook.com (2603:10a6:200:68::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.26 via Frontend
+ Transport; Wed, 26 May 2021 14:32:55 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5853df75-c155-4b9c-9eaa-08d920532733
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4301:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB430182B06C1E84044DF9D60D83249@MN2PR12MB4301.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4vH1eyPl/IruB1cvlj6a7fAbhSZydbKfm+zZULYGI/67351pDesxJnQ0hMgfHiekcupzapHoYfFp4sPekF/rPYiUSabDnyk/0kobHutaBztY4X7Pm2DxO4vCawEmtkiB9gcCAfLfmDn1KI8v79hoTjqjfsY8YdN+vOzrWcf6pDsVQJkPluP1nW6552jWqunlAeKhRQ72yoNQxNrfIe42E82EX82zCuwz8emRPRtdcA8hkawY6u3/yiNAmMS+KlN9iL4RrxsfBbnMnC0kxH5rZspERtz2oBQSFNGVqtqsVAj8ryrBew7Jg54W8Qwl7DzqiwPT9ijdTtoGL7G3LpgaZqnwl2uJ/TIoH4lp8CByn9nbEdpcT18fAnO1q5Hg2qiYTA1GX4Z4eZY8IP/IG4UK/iuN2G3h3+tSvZvzoezsjzzMWzVtRnUpt3pCufaPorwYP1SocFt+XoJHrw73h7iqVXk5tED6Wj0fKgH2h21k8P8VLxl7iAH1zxImHb5AgfEiKjySao5b6socqE5XDhbDbQGFLZrw13p8IwiuDX6dXI1hSXG9TEvB7OlN5aviB67gWemtnUg/aNRaOJHm68WV+h5i4g6Uk7wnTp3FanqWPZxdtsgc62cPGoVwi5Yw0jcy+8jXbJwg8os1q5anxGPpSsmsiEsdHGIpP35JOMtpjPBOhNwA/lUugX8px4eURXtO
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(376002)(366004)(396003)(39850400004)(52116002)(31696002)(6486002)(16526019)(86362001)(66556008)(66946007)(478600001)(83380400001)(66476007)(2616005)(186003)(36756003)(8936002)(316002)(31686004)(2906002)(5660300002)(66574015)(6666004)(38100700002)(8676002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?RGVxTU1DelpKdE0xR3d6eVMrSElFTnZ0T3FiTURtYmVEWVJGSVN6b0NqYTNl?=
+ =?utf-8?B?NldZLytVbTkyY1JZb1NmbnFpTmszVDczbjR2bGRmUVZYQkkydnpYUzJCWEwz?=
+ =?utf-8?B?R2lDeWE1akhMMlBHSGRZK3cybjJPYitmcFFDZWh6MDVIUi83ZFZveHVoenhZ?=
+ =?utf-8?B?TlduMnpZWnJSRkEvUnFvdzM5eXVhWTN0c3BQM045SFptbkpDQ3A0MUsxUlNp?=
+ =?utf-8?B?WkZ3ZzRaVXRpTzhuUEJqbjFkU1V1bnNMcjZ0d2hHdUZ3R2FLdklJdmV0ZnNF?=
+ =?utf-8?B?ZklFdDhtMm81Y3NzVWVuN1Z2OXVHVlBDZTZDUzZQRFRoKy84SEZKb0RWaGNn?=
+ =?utf-8?B?V01FMkRHUjZyRlgzRE1UdTZFZTZhbFJvSkdkRVg1QTA2UUhzR3U3ZnBzQlRj?=
+ =?utf-8?B?akhMazRyaDJMTjRKdFYvdUY2OXh2M3hPc0IyczRuT3pTemVrZ1dVV05aTXl0?=
+ =?utf-8?B?eG15eUUzVHVicDJ2bmNNRUpUYlVXSGJXNHRPZ1AvSXBRN0Y2TVdYZnljRCsz?=
+ =?utf-8?B?aThHNW15aElYMExZZmFJOTArM3dSUUFuNWdhaEFwZFZERjArTTVWaWt0YWpL?=
+ =?utf-8?B?d1FhSlIzSWZFb3ZiZnV1NE5vNm9JV3RVcVpibjV1WnZRN2NMcVNvNmtzSE1H?=
+ =?utf-8?B?cGV0UG5wa3FLcTBvM3F3VGJUSmRPV2N4cWFPVzgzeXZoSDNmbGhjYVdWZDB5?=
+ =?utf-8?B?VExreTVIR3NRTE9FcE9qYmxWTmU0THhWamlTdGpkemIxM2FVVmVrRHRPa3Q4?=
+ =?utf-8?B?cVh5bWsvQlgxeU5uTE5hVmZ3VHhGZ3pjbEF6MkdFWU1vN25BeEV3dU5MWXoy?=
+ =?utf-8?B?N0ZRamRhTmI2UzM3RG42dHhWd2tEbFl5NzBGSGVQOUc5cnF6KzBjT0hGU01E?=
+ =?utf-8?B?VmR4NENmL0NGRDdsMkxZRHg3dHNNbFJBQnhicHd3ME02K3dCTlArQWhFazk5?=
+ =?utf-8?B?U2R1cmhQRDFienREYUhxUFBkSmJocUpjQkVjdnE1LzQ4MzA3UUlqUUczbmFO?=
+ =?utf-8?B?ZWpHRjBTeTJyMjZWbUJXdmdzZ0RTQ0cyY0VVZUYzOVdacjlla1F4bHJjLzdh?=
+ =?utf-8?B?N3RNS2RPRnFqQlJOeG9rV0NENkk1SmxabEEyNWZKdHd2clJOMUdCdW9Uak5Y?=
+ =?utf-8?B?ZXpFN3dtY3I2UzZDSzA0SGQxbFZCWWdlY3lTOVBtOHh1R1FTSVQ4TWxRTkFj?=
+ =?utf-8?B?VVQzYk5tWkVvTkt6dEFTOW4zZmxBSy9LVEFOSjV4QmNLOTA0VFp3bVFtT0Fj?=
+ =?utf-8?B?Uy9RVzJFUWlRZEhIaDROWUlveWtiOEtqRUpsY1g4ajcycjNlbmNWZDBVbFo5?=
+ =?utf-8?B?NjBXcGxiYWZFQXlhVlBlTFM3LzkvNitmYlpWendabDJjRitaRFFQcmdacGFj?=
+ =?utf-8?B?aTRQS1ZQZEJJckllOVdMakRwTE1ncVlvT1BjT3ordkVvNy9MUTRmQzNqRGI2?=
+ =?utf-8?B?ZmNJZUNFcDZCcVovQWRZRGh1TW1UVkdUcURaWGpicHpUNHUrRjVaK0M4SEtu?=
+ =?utf-8?B?dFFWTWJxcDN2dStlaW9USXZ1b0swb3Z1MGVVS0lsQUJ6Z2IydmZjNjRKNGYr?=
+ =?utf-8?B?M3EzeFR4OGpwVHdWNWFodzQxWk13Zm9CaHJmOFluRDRBcnRKVVFoNTB3VXVj?=
+ =?utf-8?B?VzJmcjA3QzhYL2NaRjR2Sk11MFhDNDlGU2ZHUUFuaXhoMzVReDdXREdMQzgv?=
+ =?utf-8?B?NnF4Vll6YkRwT2JLWlVnY3E0ajdUdDV5U3JGYXRzS3B3YkpWL3grTHI1RHBX?=
+ =?utf-8?B?NkVLd2liTVdmNWZWNHJ2SmFhQ2tjNTRDejV2dGxuQ2UyTWo1TXByV2dxY0Js?=
+ =?utf-8?B?T0Y4REdMZlFXWmRjRVlacko4MjBMWHZZd2Fyelg4dCtaQ3JyL3cyTEdVVldu?=
+ =?utf-8?Q?TmrGBpkEBYfmG?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5853df75-c155-4b9c-9eaa-08d920532733
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2021 14:32:56.3753 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bJoUoJWGniVpe2IT1aWfJkNFkSSPeOXWbAsqHD6W4KG6NCRXHwzeWh6hPXKdPdFm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4301
+Subject: Re: [Intel-gfx] [PATCH v4 09/15] drm/ttm: Document and optimize
+ ttm_bo_pipeline_gutting()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,559 +130,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 26/05/2021 15:14, Tvrtko Ursulin wrote:
-> From: Chris Wilson <chris@chris-wilson.co.uk>
-> 
-> Only perform the domain transition under the object lock, and push the
-> required waits to outside the lock.
-> 
-> v2 (Tvrtko):
->   * Rebase.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com> # v1
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |   9 +-
->   drivers/gpu/drm/i915/gem/i915_gem_clflush.h   |   2 -
->   drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   4 +-
->   drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 163 +++++-------------
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   4 +-
->   drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +-
->   .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 +
->   .../gpu/drm/i915/gem/selftests/huge_pages.c   |   8 -
->   .../i915/gem/selftests/i915_gem_coherency.c   |  31 +++-
->   .../drm/i915/gem/selftests/i915_gem_phys.c    |   8 +-
->   .../drm/i915/gem/selftests/igt_gem_utils.c    |   3 +
->   drivers/gpu/drm/i915/i915_gem.c               |   4 +-
->   12 files changed, 89 insertions(+), 165 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-> index daf9284ef1f5..e4c24558eaa8 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-> @@ -51,8 +51,6 @@ static struct clflush *clflush_work_create(struct drm_i915_gem_object *obj)
->   {
->   	struct clflush *clflush;
->   
-> -	GEM_BUG_ON(!obj->cache_dirty);
-> -
->   	clflush = kmalloc(sizeof(*clflush), GFP_KERNEL);
->   	if (!clflush)
->   		return NULL;
-> @@ -101,13 +99,10 @@ bool i915_gem_clflush_object(struct drm_i915_gem_object *obj,
->   
->   	trace_i915_gem_object_clflush(obj);
->   
-> -	clflush = NULL;
-> -	if (!(flags & I915_CLFLUSH_SYNC))
-> -		clflush = clflush_work_create(obj);
-> +	clflush = clflush_work_create(obj);
->   	if (clflush) {
->   		i915_sw_fence_await_reservation(&clflush->base.chain,
-> -						obj->base.resv, NULL, true,
-> -						i915_fence_timeout(to_i915(obj->base.dev)),
-> +						obj->base.resv, NULL, true, 0,
->   						I915_FENCE_GFP);
->   		dma_resv_add_excl_fence(obj->base.resv, &clflush->base.dma);
->   		dma_fence_work_commit(&clflush->base);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.h b/drivers/gpu/drm/i915/gem/i915_gem_clflush.h
-> index e6c382973129..4cd5787d1507 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.h
-> @@ -9,12 +9,10 @@
->   
->   #include <linux/types.h>
->   
-> -struct drm_i915_private;
->   struct drm_i915_gem_object;
->   
->   bool i915_gem_clflush_object(struct drm_i915_gem_object *obj,
->   			     unsigned int flags);
->   #define I915_CLFLUSH_FORCE BIT(0)
-> -#define I915_CLFLUSH_SYNC BIT(1)
->   
->   #endif /* __I915_GEM_CLFLUSH_H__ */
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> index ccede73c6465..0926e0895ee6 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> @@ -132,7 +132,7 @@ static int i915_gem_begin_cpu_access(struct dma_buf *dma_buf, enum dma_data_dire
->   	if (!err)
->   		err = i915_gem_object_pin_pages(obj);
->   	if (!err) {
-> -		err = i915_gem_object_set_to_cpu_domain(obj, write);
-> +		i915_gem_object_set_to_cpu_domain(obj, write);
->   		i915_gem_object_unpin_pages(obj);
->   	}
->   	if (err == -EDEADLK) {
-> @@ -156,7 +156,7 @@ static int i915_gem_end_cpu_access(struct dma_buf *dma_buf, enum dma_data_direct
->   	if (!err)
->   		err = i915_gem_object_pin_pages(obj);
->   	if (!err) {
-> -		err = i915_gem_object_set_to_gtt_domain(obj, false);
-> +		i915_gem_object_set_to_gtt_domain(obj, false);
->   		i915_gem_object_unpin_pages(obj);
->   	}
->   	if (err == -EDEADLK) {
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> index 073822100da7..39fda97c49a7 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-> @@ -49,7 +49,7 @@ flush_write_domain(struct drm_i915_gem_object *obj, unsigned int flush_domains)
->   		break;
->   
->   	case I915_GEM_DOMAIN_CPU:
-> -		i915_gem_clflush_object(obj, I915_CLFLUSH_SYNC);
-> +		i915_gem_clflush_object(obj, 0);
->   		break;
->   
->   	case I915_GEM_DOMAIN_RENDER:
-> @@ -97,34 +97,13 @@ void i915_gem_object_flush_if_display_locked(struct drm_i915_gem_object *obj)
->    * This function returns when the move is complete, including waiting on
->    * flushes to occur.
->    */
-> -int
-> +void
->   i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write)
->   {
-> -	int ret;
-> -
->   	assert_object_held(obj);
->   
-> -	ret = i915_gem_object_wait(obj,
-> -				   I915_WAIT_INTERRUPTIBLE |
-> -				   (write ? I915_WAIT_ALL : 0),
-> -				   MAX_SCHEDULE_TIMEOUT);
-> -	if (ret)
-> -		return ret;
-> -
->   	if (obj->write_domain == I915_GEM_DOMAIN_WC)
-> -		return 0;
-> -
-> -	/* Flush and acquire obj->pages so that we are coherent through
-> -	 * direct access in memory with previous cached writes through
-> -	 * shmemfs and that our cache domain tracking remains valid.
-> -	 * For example, if the obj->filp was moved to swap without us
-> -	 * being notified and releasing the pages, we would mistakenly
-> -	 * continue to assume that the obj remained out of the CPU cached
-> -	 * domain.
-> -	 */
-> -	ret = i915_gem_object_pin_pages(obj);
-> -	if (ret)
-> -		return ret;
-> +		return;
->   
->   	flush_write_domain(obj, ~I915_GEM_DOMAIN_WC);
->   
-> @@ -145,9 +124,6 @@ i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write)
->   		obj->write_domain = I915_GEM_DOMAIN_WC;
->   		obj->mm.dirty = true;
->   	}
-> -
-> -	i915_gem_object_unpin_pages(obj);
-> -	return 0;
->   }
->   
->   /**
-> @@ -158,34 +134,13 @@ i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write)
->    * This function returns when the move is complete, including waiting on
->    * flushes to occur.
->    */
-> -int
-> +void
->   i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write)
->   {
-> -	int ret;
-> -
->   	assert_object_held(obj);
->   
-> -	ret = i915_gem_object_wait(obj,
-> -				   I915_WAIT_INTERRUPTIBLE |
-> -				   (write ? I915_WAIT_ALL : 0),
-> -				   MAX_SCHEDULE_TIMEOUT);
-> -	if (ret)
-> -		return ret;
-> -
->   	if (obj->write_domain == I915_GEM_DOMAIN_GTT)
-> -		return 0;
-> -
-> -	/* Flush and acquire obj->pages so that we are coherent through
-> -	 * direct access in memory with previous cached writes through
-> -	 * shmemfs and that our cache domain tracking remains valid.
-> -	 * For example, if the obj->filp was moved to swap without us
-> -	 * being notified and releasing the pages, we would mistakenly
-> -	 * continue to assume that the obj remained out of the CPU cached
-> -	 * domain.
-> -	 */
-> -	ret = i915_gem_object_pin_pages(obj);
-> -	if (ret)
-> -		return ret;
-> +		return;
->   
->   	flush_write_domain(obj, ~I915_GEM_DOMAIN_GTT);
->   
-> @@ -214,9 +169,6 @@ i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write)
->   				i915_vma_set_ggtt_write(vma);
->   		spin_unlock(&obj->vma.lock);
->   	}
-> -
-> -	i915_gem_object_unpin_pages(obj);
-> -	return 0;
->   }
->   
->   /**
-> @@ -431,25 +383,23 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
->    * This function returns when the move is complete, including waiting on
->    * flushes to occur.
->    */
-> -int
-> +void
->   i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write)
->   {
-> -	int ret;
-> -
->   	assert_object_held(obj);
->   
-> -	ret = i915_gem_object_wait(obj,
-> -				   I915_WAIT_INTERRUPTIBLE |
-> -				   (write ? I915_WAIT_ALL : 0),
-> -				   MAX_SCHEDULE_TIMEOUT);
-> -	if (ret)
-> -		return ret;
-> -
->   	flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
->   
->   	/* Flush the CPU cache if it's still invalid. */
->   	if ((obj->read_domains & I915_GEM_DOMAIN_CPU) == 0) {
-> -		i915_gem_clflush_object(obj, I915_CLFLUSH_SYNC);
-> +		/*
-> +		 * While we track when we write though the CPU cache
-> +		 * (with obj->cache_dirty), this is only a guide as we do
-> +		 * not know when the CPU may have speculatively populated
-> +		 * the cache. We have to invalidate such speculative cachelines
-> +		 * prior to reading writes by the GPU.
-> +		 */
-> +		i915_gem_clflush_object(obj, 0);
->   		obj->read_domains |= I915_GEM_DOMAIN_CPU;
->   	}
->   
-> @@ -463,8 +413,6 @@ i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write)
->   	 */
->   	if (write)
->   		__start_cpu_write(obj);
-> -
-> -	return 0;
->   }
->   
->   /**
-> @@ -502,32 +450,14 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
->   	if (!obj)
->   		return -ENOENT;
->   
-> -	/*
-> -	 * Try to flush the object off the GPU without holding the lock.
-> -	 * We will repeat the flush holding the lock in the normal manner
-> -	 * to catch cases where we are gazumped.
-> -	 */
-> -	err = i915_gem_object_wait(obj,
-> -				   I915_WAIT_INTERRUPTIBLE |
-> -				   I915_WAIT_PRIORITY |
-> -				   (write_domain ? I915_WAIT_ALL : 0),
-> -				   MAX_SCHEDULE_TIMEOUT);
-> -	if (err)
-> -		goto out;
-> -
->   	if (i915_gem_object_is_userptr(obj)) {
->   		/*
->   		 * Try to grab userptr pages, iris uses set_domain to check
->   		 * userptr validity
->   		 */
->   		err = i915_gem_object_userptr_validate(obj);
-> -		if (!err)
-> -			err = i915_gem_object_wait(obj,
-> -						   I915_WAIT_INTERRUPTIBLE |
-> -						   I915_WAIT_PRIORITY |
-> -						   (write_domain ? I915_WAIT_ALL : 0),
-> -						   MAX_SCHEDULE_TIMEOUT);
-> -		goto out;
-> +		if (err)
-> +			goto out;
->   	}
->   
->   	/*
-> @@ -572,11 +502,11 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
->   		goto out_unpin;
->   
->   	if (read_domains & I915_GEM_DOMAIN_WC)
-> -		err = i915_gem_object_set_to_wc_domain(obj, write_domain);
-> +		i915_gem_object_set_to_wc_domain(obj, write_domain);
->   	else if (read_domains & I915_GEM_DOMAIN_GTT)
-> -		err = i915_gem_object_set_to_gtt_domain(obj, write_domain);
-> +		i915_gem_object_set_to_gtt_domain(obj, write_domain);
->   	else
-> -		err = i915_gem_object_set_to_cpu_domain(obj, write_domain);
-> +		i915_gem_object_set_to_cpu_domain(obj, write_domain);
->   
->   out_unpin:
->   	i915_gem_object_unpin_pages(obj);
-> @@ -584,6 +514,11 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
->   out_unlock:
->   	i915_gem_object_unlock(obj);
->   
-> +	err = i915_gem_object_wait(obj,
-> +				   I915_WAIT_INTERRUPTIBLE |
-> +				   I915_WAIT_PRIORITY |
-> +				   (write_domain ? I915_WAIT_ALL : 0),
-> +				   MAX_SCHEDULE_TIMEOUT);
->   	if (!err && write_domain)
->   		i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
->   
-> @@ -608,26 +543,21 @@ int i915_gem_object_prepare_read(struct drm_i915_gem_object *obj,
->   
->   	assert_object_held(obj);
->   
-> -	ret = i915_gem_object_wait(obj,
-> -				   I915_WAIT_INTERRUPTIBLE,
-> -				   MAX_SCHEDULE_TIMEOUT);
-> -	if (ret)
-> -		return ret;
-> -
->   	ret = i915_gem_object_pin_pages(obj);
->   	if (ret)
->   		return ret;
->   
->   	if (obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ ||
-> -	    !static_cpu_has(X86_FEATURE_CLFLUSH)) {
-> -		ret = i915_gem_object_set_to_cpu_domain(obj, false);
-> -		if (ret)
-> -			goto err_unpin;
-> -		else
-> -			goto out;
-> -	}
-> +	    !static_cpu_has(X86_FEATURE_CLFLUSH))
-> +		i915_gem_object_set_to_cpu_domain(obj, false);
-> +	else
-> +		flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
->   
-> -	flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
-> +	ret = i915_gem_object_wait(obj,
-> +				   I915_WAIT_INTERRUPTIBLE,
-> +				   MAX_SCHEDULE_TIMEOUT);
-> +	if (ret)
-> +		goto err_unpin;
->   
->   	/* If we're not in the cpu read domain, set ourself into the gtt
->   	 * read domain and manually flush cachelines (if required). This
-> @@ -638,7 +568,6 @@ int i915_gem_object_prepare_read(struct drm_i915_gem_object *obj,
->   	    !(obj->read_domains & I915_GEM_DOMAIN_CPU))
->   		*needs_clflush = CLFLUSH_BEFORE;
->   
-> -out:
->   	/* return with the pages pinned */
->   	return 0;
->   
-> @@ -658,27 +587,22 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
->   
->   	assert_object_held(obj);
->   
-> -	ret = i915_gem_object_wait(obj,
-> -				   I915_WAIT_INTERRUPTIBLE |
-> -				   I915_WAIT_ALL,
-> -				   MAX_SCHEDULE_TIMEOUT);
-> -	if (ret)
-> -		return ret;
-> -
->   	ret = i915_gem_object_pin_pages(obj);
->   	if (ret)
->   		return ret;
->   
->   	if (obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_WRITE ||
-> -	    !static_cpu_has(X86_FEATURE_CLFLUSH)) {
-> -		ret = i915_gem_object_set_to_cpu_domain(obj, true);
-> -		if (ret)
-> -			goto err_unpin;
-> -		else
-> -			goto out;
-> -	}
-> +	    !static_cpu_has(X86_FEATURE_CLFLUSH))
-> +		i915_gem_object_set_to_cpu_domain(obj, true);
-> +	else
-> +		flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
->   
-> -	flush_write_domain(obj, ~I915_GEM_DOMAIN_CPU);
-> +	ret = i915_gem_object_wait(obj,
-> +				   I915_WAIT_INTERRUPTIBLE |
-> +				   I915_WAIT_ALL,
-> +				   MAX_SCHEDULE_TIMEOUT);
-> +	if (ret)
-> +		goto err_unpin;
->   
->   	/* If we're not in the cpu write domain, set ourself into the
->   	 * gtt write domain and manually flush cachelines (as required).
-> @@ -696,7 +620,6 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
->   			*needs_clflush |= CLFLUSH_BEFORE;
->   	}
->   
-> -out:
->   	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
->   	obj->mm.dirty = true;
->   	/* return with the pages pinned */
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 297143511f99..40fda9e81a78 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1212,9 +1212,7 @@ static void *reloc_iomap(struct drm_i915_gem_object *obj,
->   		if (use_cpu_reloc(cache, obj))
->   			return NULL;
->   
-> -		err = i915_gem_object_set_to_gtt_domain(obj, true);
-> -		if (err)
-> -			return ERR_PTR(err);
-> +		i915_gem_object_set_to_gtt_domain(obj, true);
->   
->   		vma = i915_gem_object_ggtt_pin_ww(obj, &eb->ww, NULL, 0, 0,
->   						  PIN_MAPPABLE |
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index 2ebd79537aea..8bbc835e70ce 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -515,12 +515,12 @@ void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
->   void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
->   void i915_gem_object_flush_if_display_locked(struct drm_i915_gem_object *obj);
->   
-> -int __must_check
-> -i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write);
-> -int __must_check
-> -i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj, bool write);
-> -int __must_check
-> -i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj, bool write);
-> +void i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj,
-> +				      bool write);
-> +void i915_gem_object_set_to_gtt_domain(struct drm_i915_gem_object *obj,
-> +				       bool write);
-> +void i915_gem_object_set_to_cpu_domain(struct drm_i915_gem_object *obj,
-> +				       bool write);
->   struct i915_vma * __must_check
->   i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
->   				     struct i915_gem_ww_ctx *ww,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> index 0727d0c76aa0..b8f0413bc3b0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -188,6 +188,12 @@ struct drm_i915_gem_object {
->   	unsigned int cache_coherent:2;
->   #define I915_BO_CACHE_COHERENT_FOR_READ BIT(0)
->   #define I915_BO_CACHE_COHERENT_FOR_WRITE BIT(1)
-> +	/*
-> +	 * Note cache_dirty is only a guide; we know when we have written
-> +	 * through the CPU cache, but we do not know when the CPU may have
-> +	 * speculatively populated the cache. Before a read via the cache
-> +	 * of GPU written memory, we have to cautiously invalidate the cache.
-> +	 */
->   	unsigned int cache_dirty:1;
->   
->   	/**
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> index 33dd4e2a1010..d85ca79ac433 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> @@ -972,14 +972,6 @@ static int gpu_write(struct intel_context *ce,
->   		     u32 dw,
->   		     u32 val)
->   {
-> -	int err;
-> -
-> -	i915_gem_object_lock(vma->obj, NULL);
-> -	err = i915_gem_object_set_to_gtt_domain(vma->obj, true);
-> -	i915_gem_object_unlock(vma->obj);
-> -	if (err)
-> -		return err;
-> -
->   	return igt_gpu_fill_dw(ce, vma, dw * sizeof(u32),
->   			       vma->size >> PAGE_SHIFT, val);
->   }
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-> index e937b6629019..77ba6d1ef4e4 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
-> @@ -90,8 +90,13 @@ static int gtt_set(struct context *ctx, unsigned long offset, u32 v)
->   	int err = 0;
->   
->   	i915_gem_object_lock(ctx->obj, NULL);
-> -	err = i915_gem_object_set_to_gtt_domain(ctx->obj, true);
-> +	i915_gem_object_set_to_gtt_domain(ctx->obj, true);
->   	i915_gem_object_unlock(ctx->obj);
-> +
-> +	err = i915_gem_object_wait(ctx->obj,
-> +				   I915_WAIT_ALL |
-> +				   I915_WAIT_INTERRUPTIBLE,
-> +				   HZ / 2);
->   	if (err)
->   		return err;
->   
-> @@ -123,8 +128,12 @@ static int gtt_get(struct context *ctx, unsigned long offset, u32 *v)
->   	int err = 0;
->   
->   	i915_gem_object_lock(ctx->obj, NULL);
-> -	err = i915_gem_object_set_to_gtt_domain(ctx->obj, false);
-> +	i915_gem_object_set_to_gtt_domain(ctx->obj, false);
->   	i915_gem_object_unlock(ctx->obj);
-> +
-> +	err = i915_gem_object_wait(ctx->obj,
-> +				   I915_WAIT_INTERRUPTIBLE,
-> +				   HZ / 2);
->   	if (err)
->   		return err;
->   
-> @@ -155,8 +164,13 @@ static int wc_set(struct context *ctx, unsigned long offset, u32 v)
->   	int err;
->   
->   	i915_gem_object_lock(ctx->obj, NULL);
-> -	err = i915_gem_object_set_to_wc_domain(ctx->obj, true);
-> +	i915_gem_object_set_to_wc_domain(ctx->obj, true);
->   	i915_gem_object_unlock(ctx->obj);
-> +
-> +	err = i915_gem_object_wait(ctx->obj,
-> +				   I915_WAIT_ALL |
-> +				   I915_WAIT_INTERRUPTIBLE,
-> +				   HZ / 2);
->   	if (err)
->   		return err;
->   
-> @@ -178,8 +192,12 @@ static int wc_get(struct context *ctx, unsigned long offset, u32 *v)
->   	int err;
->   
->   	i915_gem_object_lock(ctx->obj, NULL);
-> -	err = i915_gem_object_set_to_wc_domain(ctx->obj, false);
-> +	i915_gem_object_set_to_wc_domain(ctx->obj, false);
->   	i915_gem_object_unlock(ctx->obj);
-> +
-> +	err = i915_gem_object_wait(ctx->obj,
-> +				   I915_WAIT_INTERRUPTIBLE,
-> +				   HZ / 2);
->   	if (err)
->   		return err;
->   
-> @@ -205,9 +223,7 @@ static int gpu_set(struct context *ctx, unsigned long offset, u32 v)
->   		return PTR_ERR(vma);
->   
->   	i915_gem_object_lock(ctx->obj, NULL);
-> -	err = i915_gem_object_set_to_gtt_domain(ctx->obj, true);
-> -	if (err)
-> -		goto out_unlock;
-> +	i915_gem_object_set_to_gtt_domain(ctx->obj, false);
-
-IIRC Daniel pointed out that this looks odd, since this now becomes 
-write=false for some reason. I think keep this as write=true, since it 
-does look like that is what gpu_set wants.
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QW0gMjYuMDUuMjEgdW0gMTM6MzIgc2NocmllYiBUaG9tYXMgSGVsbHN0csO2bToKPiBJZiB0aGUg
+Ym8gaXMgaWRsZSB3aGVuIGNhbGxpbmcgdHRtX2JvX3BpcGVsaW5lX2d1dHRpbmcoKSwgd2UgdW5u
+ZWNlc3NhcmlseQo+IGNyZWF0ZSBhIGdob3N0IG9iamVjdCBhbmQgcHVzaCBpdCBvdXQgdG8gZGVs
+YXllZCBkZXN0cm95Lgo+IEZpeCB0aGlzIGJ5IGFkZGluZyBhIHBhdGggZm9yIGlkbGUsIGFuZCBk
+b2N1bWVudCB0aGUgZnVuY3Rpb24uCj4KPiBBbHNvIGF2b2lkIGhhdmluZyB0aGUgYm8gZW5kIHVw
+IGluIGEgYmFkIHN0YXRlIHZ1bG5lcmFibGUgdG8gdXNlci1zcGFjZQo+IHRyaWdnZXJlZCBrZXJu
+ZWwgQlVHcyBpZiB0aGUgY2FsbCB0byB0dG1fdHRfY3JlYXRlKCkgZmFpbHMuCj4KPiBGaW5hbGx5
+IHJldXNlIHR0bV9ib19waXBlbGluZV9ndXR0aW5nKCkgaW4gdHRtX2JvX2V2aWN0KCkuCj4KPiBD
+YzogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+IFNpZ25lZC1v
+ZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNv
+bT4KPiAtLS0KPiB2NDoKPiAtIENsYXJpZnkgd2h5IHdlIG1hcmsgYm8gZm9yIGNsZWFyaW5nIGFm
+dGVyIHR0bV9ib19waXBlbGluZV9ndXR0aW5nKCkKPiAgICAoUmVwb3J0ZWQgYnkgTWF0dGhldyBB
+dWxkKQo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYyAgICAgIHwgMjAgKysr
+KystLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3V0aWwuYyB8IDU1ICsrKysr
+KysrKysrKysrKysrKysrKysrKysrKystLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0
+LmMgICAgICB8ICA1ICsrKwo+ICAgaW5jbHVkZS9kcm0vdHRtL3R0bV90dC5oICAgICAgICAgIHwg
+MTAgKysrKysrCj4gICA0IGZpbGVzIGNoYW5nZWQsIDc2IGluc2VydGlvbnMoKyksIDE0IGRlbGV0
+aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCj4gaW5kZXggNTFhOTRmZDYzYmQ3Li5iZTA0MDY0
+NjY0NjAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYwo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMKPiBAQCAtNTAxLDEwICs1MDEsMTUgQEAgc3Rh
+dGljIGludCB0dG1fYm9fZXZpY3Qoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKPiAgIAli
+ZGV2LT5mdW5jcy0+ZXZpY3RfZmxhZ3MoYm8sICZwbGFjZW1lbnQpOwo+ICAgCj4gICAJaWYgKCFw
+bGFjZW1lbnQubnVtX3BsYWNlbWVudCAmJiAhcGxhY2VtZW50Lm51bV9idXN5X3BsYWNlbWVudCkg
+ewo+IC0JCXR0bV9ib193YWl0KGJvLCBmYWxzZSwgZmFsc2UpOwo+ICsJCXJldCA9IHR0bV9ib193
+YWl0KGJvLCB0cnVlLCBmYWxzZSk7Cj4gKwkJaWYgKHJldCkKPiArCQkJcmV0dXJuIHJldDsKPiAg
+IAo+IC0JCXR0bV9ib19jbGVhbnVwX21lbXR5cGVfdXNlKGJvKTsKPiAtCQlyZXR1cm4gdHRtX3R0
+X2NyZWF0ZShibywgZmFsc2UpOwo+ICsJCS8qCj4gKwkJICogU2luY2Ugd2UndmUgYWxyZWFkeSBz
+eW5jZWQsIHRoaXMgZnJlZXMgYmFja2luZyBzdG9yZQo+ICsJCSAqIGltbWVkaWF0ZWx5Lgo+ICsJ
+CSAqLwo+ICsJCXJldHVybiB0dG1fYm9fcGlwZWxpbmVfZ3V0dGluZyhibyk7Cj4gICAJfQo+ICAg
+Cj4gICAJcmV0ID0gdHRtX2JvX21lbV9zcGFjZShibywgJnBsYWNlbWVudCwgJmV2aWN0X21lbSwg
+Y3R4KTsKPiBAQCAtOTc2LDEzICs5ODEsOCBAQCBpbnQgdHRtX2JvX3ZhbGlkYXRlKHN0cnVjdCB0
+dG1fYnVmZmVyX29iamVjdCAqYm8sCj4gICAJLyoKPiAgIAkgKiBSZW1vdmUgdGhlIGJhY2tpbmcg
+c3RvcmUgaWYgbm8gcGxhY2VtZW50IGlzIGdpdmVuLgo+ICAgCSAqLwo+IC0JaWYgKCFwbGFjZW1l
+bnQtPm51bV9wbGFjZW1lbnQgJiYgIXBsYWNlbWVudC0+bnVtX2J1c3lfcGxhY2VtZW50KSB7Cj4g
+LQkJcmV0ID0gdHRtX2JvX3BpcGVsaW5lX2d1dHRpbmcoYm8pOwo+IC0JCWlmIChyZXQpCj4gLQkJ
+CXJldHVybiByZXQ7Cj4gLQo+IC0JCXJldHVybiB0dG1fdHRfY3JlYXRlKGJvLCBmYWxzZSk7Cj4g
+LQl9Cj4gKwlpZiAoIXBsYWNlbWVudC0+bnVtX3BsYWNlbWVudCAmJiAhcGxhY2VtZW50LT5udW1f
+YnVzeV9wbGFjZW1lbnQpCj4gKwkJcmV0dXJuIHR0bV9ib19waXBlbGluZV9ndXR0aW5nKGJvKTsK
+PiAgIAo+ICAgCS8qCj4gICAJICogQ2hlY2sgd2hldGhlciB3ZSBuZWVkIHRvIG1vdmUgYnVmZmVy
+Lgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib191dGlsLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib191dGlsLmMKPiBpbmRleCBlYmZmNjAzYTk3ZjQuLjRjY2E5
+MzJmMWMwZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib191dGlsLmMK
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib191dGlsLmMKPiBAQCAtNTkwLDI2ICs1
+OTAsNzMgQEAgaW50IHR0bV9ib19tb3ZlX2FjY2VsX2NsZWFudXAoc3RydWN0IHR0bV9idWZmZXJf
+b2JqZWN0ICpibywKPiAgIH0KPiAgIEVYUE9SVF9TWU1CT0wodHRtX2JvX21vdmVfYWNjZWxfY2xl
+YW51cCk7Cj4gICAKPiArLyoqCj4gKyAqIHR0bV9ib19waXBlbGluZV9ndXR0aW5nIC0gcHVyZ2Ug
+dGhlIGNvbnRlbnRzIG9mIGEgYm8KPiArICogQGJvOiBUaGUgYnVmZmVyIG9iamVjdAo+ICsgKgo+
+ICsgKiBQdXJnZSB0aGUgY29udGVudHMgb2YgYSBibywgYXN5bmMgaWYgdGhlIGJvIGlzIG5vdCBp
+ZGxlLgo+ICsgKiBBZnRlciBhIHN1Y2Nlc3NmdWwgY2FsbCwgdGhlIGJvIGlzIGxlZnQgdW5wb3B1
+bGF0ZWQgaW4KPiArICogc3lzdGVtIHBsYWNlbWVudC4gVGhlIGZ1bmN0aW9uIG1heSB3YWl0IHVu
+aW50ZXJydXB0aWJsZQo+ICsgKiBmb3IgaWRsZSBvbiBPT00uCj4gKyAqCj4gKyAqIFJldHVybjog
+MCBpZiBzdWNjZXNzZnVsLCBuZWdhdGl2ZSBlcnJvciBjb2RlIG9uIGZhaWx1cmUuCj4gKyAqLwo+
+ICAgaW50IHR0bV9ib19waXBlbGluZV9ndXR0aW5nKHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAq
+Ym8pCj4gICB7Cj4gICAJc3RhdGljIGNvbnN0IHN0cnVjdCB0dG1fcGxhY2Ugc3lzX21lbSA9IHsg
+Lm1lbV90eXBlID0gVFRNX1BMX1NZU1RFTSB9Owo+ICAgCXN0cnVjdCB0dG1fYnVmZmVyX29iamVj
+dCAqZ2hvc3Q7Cj4gKwlzdHJ1Y3QgdHRtX3R0ICp0dG07Cj4gICAJaW50IHJldDsKPiAgIAo+IC0J
+cmV0ID0gdHRtX2J1ZmZlcl9vYmplY3RfdHJhbnNmZXIoYm8sICZnaG9zdCk7Cj4gKwkvKiBJZiBh
+bHJlYWR5IGlkbGUsIG5vIG5lZWQgZm9yIGdob3N0IG9iamVjdCBkYW5jZS4gKi8KPiArCXJldCA9
+IHR0bV9ib193YWl0KGJvLCBmYWxzZSwgdHJ1ZSk7Cj4gKwlpZiAocmV0ICE9IC1FQlVTWSkgewo+
+ICsJCWlmICghYm8tPnR0bSkgewo+ICsJCQkvKiBTZWUgY29tbWVudCBiZWxvdyBhYm91dCBjbGVh
+cmluZy4gKi8KPiArCQkJcmV0ID0gdHRtX3R0X2NyZWF0ZShibywgdHJ1ZSk7Cj4gKwkJCWlmIChy
+ZXQpCj4gKwkJCQlyZXR1cm4gcmV0Owo+ICsJCX0gZWxzZSB7Cj4gKwkJCXR0bV90dF91bnBvcHVs
+YXRlKGJvLT5iZGV2LCBiby0+dHRtKTsKPiArCQkJaWYgKGJvLT50eXBlID09IHR0bV9ib190eXBl
+X2RldmljZSkKPiArCQkJCXR0bV90dF9tYXJrX2Zvcl9jbGVhcihiby0+dHRtKTsKPiArCQl9Cj4g
+KwkJdHRtX3Jlc291cmNlX2ZyZWUoYm8sICZiby0+bWVtKTsKPiArCQl0dG1fcmVzb3VyY2VfYWxs
+b2MoYm8sICZzeXNfbWVtLCAmYm8tPm1lbSk7Cj4gKwo+ICsJCXJldHVybiAwOwo+ICsJfQo+ICsK
+PiArCS8qCj4gKwkgKiBXZSBuZWVkIGFuIHVucG9wdWxhdGVkIHR0bV90dCBhZnRlciBnaXZpbmcg
+b3VyIGN1cnJlbnQgb25lLAo+ICsJICogaWYgYW55LCB0byB0aGUgZ2hvc3Qgb2JqZWN0LiBBbmQg
+d2UgY2FuJ3QgYWZmb3JkIHRvIGZhaWwKPiArCSAqIGNyZWF0aW5nIG9uZSAqYWZ0ZXIqIHRoZSBv
+cGVyYXRpb24uIElmIHRoZSBibyBzdWJzZXF1ZW50bHkgZ2V0cwo+ICsJICogcmVzdXJyZWN0ZWQs
+IG1ha2Ugc3VyZSBpdCdzIGNsZWFyZWQgKGlmIHR0bV9ib190eXBlX2RldmljZSkKPiArCSAqIHRv
+IGF2b2lkIGxlYWtpbmcgc2Vuc2l0aXZlIGluZm9ybWF0aW9uIHRvIHVzZXItc3BhY2UuCj4gKwkg
+Ki8KPiArCj4gKwl0dG0gPSBiby0+dHRtOwo+ICsJYm8tPnR0bSA9IE5VTEw7Cj4gKwlyZXQgPSB0
+dG1fdHRfY3JlYXRlKGJvLCB0cnVlKTsKPiArCXN3YXAoYm8tPnR0bSwgdHRtKTsKPiAgIAlpZiAo
+cmV0KQo+ICAgCQlyZXR1cm4gcmV0Owo+ICAgCj4gKwlyZXQgPSB0dG1fYnVmZmVyX29iamVjdF90
+cmFuc2ZlcihibywgJmdob3N0KTsKPiArCWlmIChyZXQpIHsKPiArCQl0dG1fdHRfZGVzdHJveShi
+by0+YmRldiwgdHRtKTsKPiArCQlyZXR1cm4gcmV0Owo+ICsJfQo+ICsKPiAgIAlyZXQgPSBkbWFf
+cmVzdl9jb3B5X2ZlbmNlcygmZ2hvc3QtPmJhc2UuX3Jlc3YsIGJvLT5iYXNlLnJlc3YpOwo+ICAg
+CS8qIExhc3QgcmVzb3J0LCB3YWl0IGZvciB0aGUgQk8gdG8gYmUgaWRsZSB3aGVuIHdlIGFyZSBP
+T00gKi8KPiAgIAlpZiAocmV0KQo+ICAgCQl0dG1fYm9fd2FpdChibywgZmFsc2UsIGZhbHNlKTsK
+PiAgIAo+IC0JdHRtX3Jlc291cmNlX2FsbG9jKGJvLCAmc3lzX21lbSwgJmJvLT5tZW0pOwo+IC0J
+Ym8tPnR0bSA9IE5VTEw7Cj4gLQo+ICAgCWRtYV9yZXN2X3VubG9jaygmZ2hvc3QtPmJhc2UuX3Jl
+c3YpOwo+ICAgCXR0bV9ib19wdXQoZ2hvc3QpOwo+ICsJYm8tPnR0bSA9IHR0bTsKPiArCXR0bV9y
+ZXNvdXJjZV9hbGxvYyhibywgJnN5c19tZW0sICZiby0+bWVtKTsKPiAgIAo+ICAgCXJldHVybiAw
+Owo+ICAgfQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV90dC5jIGIvZHJp
+dmVycy9ncHUvZHJtL3R0bS90dG1fdHQuYwo+IGluZGV4IDBlNDEyMjcxMTZiMS4uOTEzYjMzMGEy
+MzRiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0LmMKPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vdHRtL3R0bV90dC5jCj4gQEAgLTEzNCw2ICsxMzQsMTEgQEAgdm9pZCB0
+dG1fdHRfZGVzdHJveV9jb21tb24oc3RydWN0IHR0bV9kZXZpY2UgKmJkZXYsIHN0cnVjdCB0dG1f
+dHQgKnR0bSkKPiAgIH0KPiAgIEVYUE9SVF9TWU1CT0wodHRtX3R0X2Rlc3Ryb3lfY29tbW9uKTsK
+PiAgIAo+ICt2b2lkIHR0bV90dF9tYXJrX2Zvcl9jbGVhcihzdHJ1Y3QgdHRtX3R0ICp0dG0pCj4g
+K3sKPiArCXR0bS0+cGFnZV9mbGFncyB8PSBUVE1fUEFHRV9GTEFHX1pFUk9fQUxMT0M7Cj4gK30K
+PiArCj4gICB2b2lkIHR0bV90dF9kZXN0cm95KHN0cnVjdCB0dG1fZGV2aWNlICpiZGV2LCBzdHJ1
+Y3QgdHRtX3R0ICp0dG0pCj4gICB7Cj4gICAJYmRldi0+ZnVuY3MtPnR0bV90dF9kZXN0cm95KGJk
+ZXYsIHR0bSk7Cj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL3R0bS90dG1fdHQuaCBiL2luY2x1
+ZGUvZHJtL3R0bS90dG1fdHQuaAo+IGluZGV4IDMxMDIwNTlkYjcyNi4uZGFhOWM0Y2Y0OGJiIDEw
+MDY0NAo+IC0tLSBhL2luY2x1ZGUvZHJtL3R0bS90dG1fdHQuaAo+ICsrKyBiL2luY2x1ZGUvZHJt
+L3R0bS90dG1fdHQuaAo+IEBAIC0xNzAsNiArMTcwLDE2IEBAIGludCB0dG1fdHRfcG9wdWxhdGUo
+c3RydWN0IHR0bV9kZXZpY2UgKmJkZXYsIHN0cnVjdCB0dG1fdHQgKnR0bSwgc3RydWN0IHR0bV9v
+cGVyCj4gICAgKi8KPiAgIHZvaWQgdHRtX3R0X3VucG9wdWxhdGUoc3RydWN0IHR0bV9kZXZpY2Ug
+KmJkZXYsIHN0cnVjdCB0dG1fdHQgKnR0bSk7Cj4gICAKPiArLyoqCj4gKyAqIHR0bV90dF9tYXJr
+X2Zvcl9jbGVhciAtIE1hcmsgcGFnZXMgZm9yIGNsZWFyaW5nIG9uIHBvcHVsYXRlLgo+ICsgKgo+
+ICsgKiBAdHRtOiBQb2ludGVyIHRvIHRoZSB0dG1fdHQgc3RydWN0dXJlCj4gKyAqCj4gKyAqIE1h
+cmtzIHBhZ2VzIGZvciBjbGVhcmluZyBzbyB0aGF0IHRoZSBuZXh0IHRpbWUgdGhlIHBhZ2UgdmVj
+dG9yIGlzCj4gKyAqIHBvcHVsYXRlZCwgdGhlIHBhZ2VzIHdpbGwgYmUgY2xlYXJlZC4KPiArICov
+Cj4gK3ZvaWQgdHRtX3R0X21hcmtfZm9yX2NsZWFyKHN0cnVjdCB0dG1fdHQgKnR0bSk7CgpFaXRo
+ZXIgaW1wbGVtZW50IHRoZSBmdW5jdGlvbiBkaXJlY3RseSBoZXJlIGFzIHN0YXRpYyAoaXQncyBh
+IG9uZSBsaW5lciAKYW55d2F5KSBvciBtb3ZlIHRoZSBkb2N1bWVudGF0aW9uIHRvIHRoZSBpbXBs
+ZW1lbnRhdGlvbi4KCkFwYXJ0IGZyb20gdGhhdCB0aGUgcGF0Y2ggaXMgUmV2aWV3ZWQtYnk6IENo
+cmlzdGlhbiBLw7ZuaWcgCjxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CgpSZWdhcmRzLApDaHJp
+c3RpYW4uCgo+ICsKPiAgIHZvaWQgdHRtX3R0X21ncl9pbml0KHVuc2lnbmVkIGxvbmcgbnVtX3Bh
+Z2VzLCB1bnNpZ25lZCBsb25nIG51bV9kbWEzMl9wYWdlcyk7Cj4gICAKPiAgIHN0cnVjdCB0dG1f
+a21hcF9pdGVyICp0dG1fa21hcF9pdGVyX3R0X2luaXQoc3RydWN0IHR0bV9rbWFwX2l0ZXJfdHQg
+Kml0ZXJfdHQsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
