@@ -1,41 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C04391E38
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 19:36:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D715F391E54
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 19:45:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01DB86EB0E;
-	Wed, 26 May 2021 17:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 566546E512;
+	Wed, 26 May 2021 17:45:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4589A6EB0E
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 17:36:06 +0000 (UTC)
-IronPort-SDR: U/jZzzo01T88j5GLaTH3HL1l1rHzdYH79bPwABdiObcOUmzQu1+ehTIfA5xL9l1yl+oySbTu8p
- xGt6rD24l4Gg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="182170648"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="182170648"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 10:36:05 -0700
-IronPort-SDR: oTul9Ob1pA2/bonVEwpTNK0SKsZrAM5K7I3o2+cjLsA2XNbYcWvUuDMe3ywOjoCLcZiUiig9RN
- CTVLCf7yZZsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="477049494"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 26 May 2021 10:36:03 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 May 2021 20:36:02 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 May 2021 20:36:00 +0300
-Message-Id: <20210526173600.27708-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210526173600.27708-1-ville.syrjala@linux.intel.com>
-References: <20210526173600.27708-1-ville.syrjala@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ACBB6E512;
+ Wed, 26 May 2021 17:45:16 +0000 (UTC)
+IronPort-SDR: 0ivP7lhiMMAmLSM1eLUNF2l8aegAhMBUISPvhOuBNd+ZHObQpbAypaMvCZ2SQwscCgjNVBhf+a
+ m7QmSIzPrSnA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="189647237"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="189647237"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 10:45:15 -0700
+IronPort-SDR: PNN2p3ohkc4Y8x5jHx7m9SuC75tf161wUaQVsY63qQAwIui7IZSeTGz+UeZdUXgDWtNTWihmXg
+ 7uzkPGYrAU9Q==
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="414548847"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 10:45:14 -0700
+Date: Wed, 26 May 2021 10:38:08 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <20210526173808.GA31459@sdutt-i7>
+References: <20210526064237.77853-1-matthew.brost@intel.com>
+ <20210526064237.77853-14-matthew.brost@intel.com>
+ <cef31e1d-7502-78ae-84bd-60daaca01732@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/adl_p: Implement Wa_22012358565
+Content-Disposition: inline
+In-Reply-To: <cef31e1d-7502-78ae-84bd-60daaca01732@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 13/18] drm/i915/guc: Relax CTB response
+ timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,95 +50,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCklt
-cGxlbWVudCBXYV8yMjAxMjM1ODU2NSB0byBhdm9pZCB1bmRlcnJ1biB3aXRoIDMyYnBwIGN1cnNv
-cgppbiBzb21lIGhpZ2ggYmFuZHdpZHRoIHNjZW5hcmlvcy4gVGhlIGltcGxlbWVudGF0aW9uIGNh
-bGxzIGZvcgpvdmVycmlkaW5nIHRoZSBhcmJpdHJhdGlvbiBzbG90cyBmb3IgdGhlIHBsYW5lcy4K
-ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jdXJzb3IuYyAg
-IHwgIDQgKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAg
-fCAgNSArKysrCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgICAg
-fCAyNyArKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
-ICAgICAgICAgICAgICAgfCAgOCArKysrKysKIDQgZmlsZXMgY2hhbmdlZCwgNDQgaW5zZXJ0aW9u
-cygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3Vy
-c29yLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N1cnNvci5jCmluZGV4
-IDJhYjM4OWIzODY5NC4uOTY2ZTAyMDMzMWZiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2N1cnNvci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfY3Vyc29yLmMKQEAgLTM4Myw2ICszODMsMTAgQEAgc3RhdGljIHUzMiBpOXh4
-X2N1cnNvcl9jdGwoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJ
-aWYgKHBsYW5lX3N0YXRlLT5ody5yb3RhdGlvbiAmIERSTV9NT0RFX1JPVEFURV8xODApCiAJCWNu
-dGwgfD0gTUNVUlNPUl9ST1RBVEVfMTgwOwogCisJLyogV2FfMjIwMTIzNTg1NjU6YWRscCAqLwor
-CWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPT0gMTMpCisJCWNudGwgfD0gTUNVUlNPUl9BUkJf
-U0xPVFMoMSk7CisKIAlyZXR1cm4gY250bDsKIH0KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCBhMmYzZDI1NWE5MDYuLmUyM2RlYzhiMGFhYiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKQEAgLTk3
-NSw2ICs5NzUsMTEgQEAgdm9pZCBpbnRlbF9lbmFibGVfcGlwZShjb25zdCBzdHJ1Y3QgaW50ZWxf
-Y3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGUpCiAJCS8qIEZJWE1FOiBhc3NlcnQgQ1BVIHBvcnQg
-Y29uZGl0aW9ucyBmb3IgU05CKyAqLwogCX0KIAorCS8qIFdhXzIyMDEyMzU4NTY1OmFkbHAgKi8K
-KwlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID09IDEzKQorCQlpbnRlbF9kZV9ybXcoZGV2X3By
-aXYsIFBJUEVfQVJCX0NUTChwaXBlKSwKKwkJCSAgICAgMCwgUElQRV9BUkJfVVNFX1BST0dfU0xP
-VFMpOworCiAJcmVnID0gUElQRUNPTkYoY3B1X3RyYW5zY29kZXIpOwogCXZhbCA9IGludGVsX2Rl
-X3JlYWQoZGV2X3ByaXYsIHJlZyk7CiAJaWYgKHZhbCAmIFBJUEVDT05GX0VOQUJMRSkgewpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5l
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYwpp
-bmRleCA1OWUwMzJmMzY4N2EuLjY0MDM5ZjIxMzhjOCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKQEAgLTg2Nyw2ICs4NjcsMjkg
-QEAgc3RhdGljIHUzMiBza2xfcGxhbmVfY3RsX2NydGMoY29uc3Qgc3RydWN0IGludGVsX2NydGNf
-c3RhdGUgKmNydGNfc3RhdGUpCiAJcmV0dXJuIHBsYW5lX2N0bDsKIH0KIAorc3RhdGljIGludCBh
-ZGxwX3BsYW5lX2N0bF9hcmJfc2xvdHMoY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpw
-bGFuZV9zdGF0ZSkKK3sKKwljb25zdCBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiA9IHBsYW5l
-X3N0YXRlLT5ody5mYjsKKworCWlmIChpbnRlbF9mb3JtYXRfaW5mb19pc195dXZfc2VtaXBsYW5h
-cihmYi0+Zm9ybWF0LCBmYi0+bW9kaWZpZXIpKSB7CisJCXN3aXRjaCAoZmItPmZvcm1hdC0+Y3Bw
-WzBdKSB7CisJCWNhc2UgMjoKKwkJCXJldHVybiBQTEFORV9DVExfQVJCX1NMT1RTKDEpOworCQlk
-ZWZhdWx0OgorCQkJcmV0dXJuIFBMQU5FX0NUTF9BUkJfU0xPVFMoMCk7CisJCX0KKwl9IGVsc2Ug
-eworCQlzd2l0Y2ggKGZiLT5mb3JtYXQtPmNwcFswXSkgeworCQljYXNlIDg6CisJCQlyZXR1cm4g
-UExBTkVfQ1RMX0FSQl9TTE9UUygzKTsKKwkJY2FzZSA0OgorCQkJcmV0dXJuIFBMQU5FX0NUTF9B
-UkJfU0xPVFMoMSk7CisJCWRlZmF1bHQ6CisJCQlyZXR1cm4gUExBTkVfQ1RMX0FSQl9TTE9UUygw
-KTsKKwkJfQorCX0KK30KKwogc3RhdGljIHUzMiBza2xfcGxhbmVfY3RsKGNvbnN0IHN0cnVjdCBp
-bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFu
-ZV9zdGF0ZSAqcGxhbmVfc3RhdGUpCiB7CkBAIC05MDMsNiArOTI2LDEwIEBAIHN0YXRpYyB1MzIg
-c2tsX3BsYW5lX2N0bChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwK
-IAllbHNlIGlmIChrZXktPmZsYWdzICYgSTkxNV9TRVRfQ09MT1JLRVlfU09VUkNFKQogCQlwbGFu
-ZV9jdGwgfD0gUExBTkVfQ1RMX0tFWV9FTkFCTEVfU09VUkNFOwogCisJLyogV2FfMjIwMTIzNTg1
-NjU6YWRscCAqLworCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPT0gMTMpCisJCXBsYW5lX2N0
-bCB8PSBhZGxwX3BsYW5lX2N0bF9hcmJfc2xvdHMocGxhbmVfc3RhdGUpOworCiAJcmV0dXJuIHBs
-YW5lX2N0bDsKIH0KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcu
-aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKaW5kZXggZTRkNjMzNmRhYjcxLi40
-MmY3OTA5ZmM4NDIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaApAQCAtNjE0Niw2ICs2MTQ2LDEw
-IEBAIGVudW0gewogI2RlZmluZSAgX1BJUEVCR0NNQVggICAgICAgICAgIDB4NzEwMTAKICNkZWZp
-bmUgUElQRUdDTUFYKHBpcGUsIGkpICAgICBfTU1JT19QSVBFMihwaXBlLCBfUElQRUFHQ01BWCAr
-IChpKSAqIDQpCiAKKyNkZWZpbmUgX1BJUEVfQVJCX0NUTF9BCQkJMHg3MDAyOCAvKiBpY2wrICov
-CisjZGVmaW5lIFBJUEVfQVJCX0NUTChwaXBlKQkJX01NSU9fUElQRTIocGlwZSwgX1BJUEVfQVJC
-X0NUTF9BKQorI2RlZmluZSAgIFBJUEVfQVJCX1VTRV9QUk9HX1NMT1RTCVJFR19CSVQoMTMpCisK
-ICNkZWZpbmUgX1BJUEVfTUlTQ19BCQkJMHg3MDAzMAogI2RlZmluZSBfUElQRV9NSVNDX0IJCQkw
-eDcxMDMwCiAjZGVmaW5lICAgUElQRU1JU0NfWVVWNDIwX0VOQUJMRQkoMSA8PCAyNykgLyogZ2xr
-KyAqLwpAQCAtNjYxMCw2ICs2NjE0LDggQEAgZW51bSB7CiAjZGVmaW5lICAgTUNVUlNPUl9NT0RF
-XzEyOF9BUkdCX0FYICgoMSA8PCA1KSB8IE1DVVJTT1JfTU9ERV8xMjhfMzJCX0FYKQogI2RlZmlu
-ZSAgIE1DVVJTT1JfTU9ERV8yNTZfQVJHQl9BWCAoKDEgPDwgNSkgfCBNQ1VSU09SX01PREVfMjU2
-XzMyQl9BWCkKICNkZWZpbmUgICBNQ1VSU09SX01PREVfNjRfQVJHQl9BWCAoKDEgPDwgNSkgfCBN
-Q1VSU09SX01PREVfNjRfMzJCX0FYKQorI2RlZmluZSAgIE1DVVJTT1JfQVJCX1NMT1RTX01BU0sJ
-UkVHX0dFTk1BU0soMzAsIDI4KSAvKiBpY2wrICovCisjZGVmaW5lICAgTUNVUlNPUl9BUkJfU0xP
-VFMoeCkJCVJFR19GSUVMRF9QUkVQKE1DVVJTT1JfQVJCX1NMT1RTX01BU0ssICh4KSkgLyogaWNs
-KyAqLwogI2RlZmluZSAgIE1DVVJTT1JfUElQRV9TRUxFQ1RfTUFTSwkoMHgzIDw8IDI4KQogI2Rl
-ZmluZSAgIE1DVVJTT1JfUElQRV9TRUxFQ1RfU0hJRlQJMjgKICNkZWZpbmUgICBNQ1VSU09SX1BJ
-UEVfU0VMRUNUKHBpcGUpCSgocGlwZSkgPDwgMjgpCkBAIC03MDYxLDYgKzcwNjcsOCBAQCBlbnVt
-IHsKICNkZWZpbmUgX1BMQU5FX0NUTF8yX0EJCQkJMHg3MDI4MAogI2RlZmluZSBfUExBTkVfQ1RM
-XzNfQQkJCQkweDcwMzgwCiAjZGVmaW5lICAgUExBTkVfQ1RMX0VOQUJMRQkJCSgxIDw8IDMxKQor
-I2RlZmluZSAgIFBMQU5FX0NUTF9BUkJfU0xPVFNfTUFTSwkJUkVHX0dFTk1BU0soMzAsIDI4KSAv
-KiBpY2wrICovCisjZGVmaW5lICAgUExBTkVfQ1RMX0FSQl9TTE9UUyh4KQkJUkVHX0ZJRUxEX1BS
-RVAoUExBTkVfQ1RMX0FSQl9TTE9UU19NQVNLLCAoeCkpIC8qIGljbCsgKi8KICNkZWZpbmUgICBQ
-TEFORV9DVExfUElQRV9HQU1NQV9FTkFCTEUJCSgxIDw8IDMwKSAgIC8qIFByZS1HTEsgKi8KICNk
-ZWZpbmUgICBQTEFORV9DVExfWVVWX1JBTkdFX0NPUlJFQ1RJT05fRElTQUJMRQkoMSA8PCAyOCkK
-IC8qCi0tIAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+On Wed, May 26, 2021 at 02:25:26PM +0200, Michal Wajdeczko wrote:
+> 
+> 
+> On 26.05.2021 08:42, Matthew Brost wrote:
+> > From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > 
+> > In upcoming patch we will allow more CTB requests to be sent in
+> > parallel to the GuC for processing, so we shouldn't assume any more
+> > that GuC will always reply without 10ms.
+> > 
+> > Use bigger value from CONFIG_DRM_I915_GUC_CTB_TIMEOUT instead.
+> > 
+> > v2: Add CONFIG_DRM_I915_GUC_CTB_TIMEOUT config option
+> > 
+> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/Kconfig.profile      | 9 +++++++++
+> >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 5 ++++-
+> >  2 files changed, 13 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
+> > index 39328567c200..68ac707755d2 100644
+> > --- a/drivers/gpu/drm/i915/Kconfig.profile
+> > +++ b/drivers/gpu/drm/i915/Kconfig.profile
+> > @@ -38,6 +38,15 @@ config DRM_I915_USERFAULT_AUTOSUSPEND
+> >  	  May be 0 to disable the extra delay and solely use the device level
+> >  	  runtime pm autosuspend delay tunable.
+> >  
+> > +config DRM_I915_GUC_CTB_TIMEOUT
+> > +	int "How long to wait for the GuC to make forward progress on CTBs (ms)"
+> 
+> maybe worth to provide here explicit allowed range:
+> 
+> 	range 10 60000
+> 
+> and then we can skip runtime adjustment for minimum 10ms timeout
+
+Didn't know this option, done.
+
+> 
+> > +	default 1500 # milliseconds
+> > +	help
+> > +	  Configures the default timeout waiting for GuC the to make forward
+> > +	  progress on CTBs. e.g. Waiting for a response to requeset.
+> 
+> typo
+>
+
+Fixed.
+
+Matt
+
+> > +
+> > +	  A minimum value of 10 ms is allowed.
+> > +
+> >  config DRM_I915_HEARTBEAT_INTERVAL
+> >  	int "Interval between heartbeat pulses (ms)"
+> >  	default 2500 # milliseconds
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> > index 916c2b80c841..5b0dece7a7cd 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> > @@ -436,6 +436,7 @@ static int ct_write(struct intel_guc_ct *ct,
+> >   */
+> >  static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+> >  {
+> > +	long timeout;
+> >  	int err;
+> >  
+> >  	/*
+> > @@ -443,10 +444,12 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+> >  	 * up to that length of time, then switch to a slower sleep-wait loop.
+> >  	 * No GuC command should ever take longer than 10ms.
+> >  	 */
+> > +	timeout = max(10, CONFIG_DRM_I915_GUC_CTB_TIMEOUT);
+> > +
+> >  #define done INTEL_GUC_MSG_IS_RESPONSE(READ_ONCE(req->status))
+> >  	err = wait_for_us(done, 10);
+> >  	if (err)
+> > -		err = wait_for(done, 10);
+> > +		err = wait_for(done, timeout);
+> >  #undef done
+> >  
+> >  	if (unlikely(err))
+> > 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
