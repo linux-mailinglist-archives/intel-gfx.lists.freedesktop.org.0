@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995B8391846
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 15:00:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF9E39184A
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 15:00:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2C176ED03;
-	Wed, 26 May 2021 13:00:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 554E66ED07;
+	Wed, 26 May 2021 13:00:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F3C26ED0A;
- Wed, 26 May 2021 13:00:47 +0000 (UTC)
-IronPort-SDR: RLIwBPuK4LulpFZ/Ygn21w7loU9j+e0nuw3e2VKinOOUlbkS2ep8rlY8YjsnrViKkDxm9gy698
- iw1p8scrkiag==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="182101748"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="182101748"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD416ED0E;
+ Wed, 26 May 2021 13:00:49 +0000 (UTC)
+IronPort-SDR: eWBYzocwW8WQZ4XewrhoiAysCeg6DsV0FR0GXxy7SXU3CQaibdHfsowUAQt5+AAa02LSCdtJQ6
+ JzinRiFp7qBA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="182101761"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="182101761"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 06:00:47 -0700
-IronPort-SDR: XKDeu4Oy7SaSci8Lgv+rpYorfbsVv9ouV3zKhhW8Q9WDZaHMUYpP0zsbaEEcrCCD+q9VXmivLl
- b9NecmxR7N8g==
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="614942154"
+ 26 May 2021 06:00:49 -0700
+IronPort-SDR: +xrDMtWB3EGXzV2UW4GNw23YyrPwzOqBh7/lNEvDJ2By30QpDKbHzZ1DsYGM9Yb0hanQSxuAsV
+ Z3shHY2+0Ybw==
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="614942179"
 Received: from mschan-mobl1.amr.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.212.100.144])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 06:00:45 -0700
+ 26 May 2021 06:00:47 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Wed, 26 May 2021 14:00:23 +0100
-Message-Id: <20210526130025.249629-7-matthew.auld@intel.com>
+Date: Wed, 26 May 2021 14:00:24 +0100
+Message-Id: <20210526130025.249629-8-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20210526130025.249629-1-matthew.auld@intel.com>
 References: <20210526130025.249629-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v3 7/9] tests/i915/gem_media_fill: Use
- memory region interface
+Subject: [Intel-gfx] [PATCH i-g-t v3 8/9] tests/i915/gem_create: exercise
+ placements extension
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,80 +49,230 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Andrzej Turko <andrzej.turko@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQW5kcnplaiBUdXJrbyA8YW5kcnplai50dXJrb0BsaW51eC5pbnRlbC5jb20+CgpDb252
-ZXJ0ZWQgdGhlIHRlc3QgZ2VtX21lZGlhX2ZpbGwgdG8gdXNlIG1lbW9yeSByZWdpb24gdWFwaS4K
-ClNpZ25lZC1vZmYtYnk6IEFuZHJ6ZWogVHVya28gPGFuZHJ6ZWoudHVya29AbGludXguaW50ZWwu
-Y29tPgpDYzogWmJpZ25pZXcgS2VtcGN6eW5za2kgPHpiaWduaWV3LmtlbXBjenluc2tpQGludGVs
-LmNvbT4KQ2M6IERvbWluaWsgR3J6ZWdvcnplayA8ZG9taW5pay5ncnplZ29yemVrQGludGVsLmNv
-bT4KQ2M6IFBldHJpIExhdHZhbGEgPHBldHJpLmxhdHZhbGFAaW50ZWwuY29tPgpTaWduZWQtb2Zm
-LWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+CkFja2VkLWJ5OiBQZXRy
-aSBMYXR2YWxhIDxwZXRyaS5sYXR2YWxhQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IFpiaWduaWV3
-IEtlbXBjennFhHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPgotLS0KIHRlc3Rz
-L2k5MTUvZ2VtX21lZGlhX2ZpbGwuYyB8IDU3ICsrKysrKysrKysrKysrKysrKysrKysrKysrKyst
-LS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA0NCBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMo
-LSkKCmRpZmYgLS1naXQgYS90ZXN0cy9pOTE1L2dlbV9tZWRpYV9maWxsLmMgYi90ZXN0cy9pOTE1
-L2dlbV9tZWRpYV9maWxsLmMKaW5kZXggMjRkMTdmYWIuLjI4YzE4ZTc5IDEwMDY0NAotLS0gYS90
-ZXN0cy9pOTE1L2dlbV9tZWRpYV9maWxsLmMKKysrIGIvdGVzdHMvaTkxNS9nZW1fbWVkaWFfZmls
-bC5jCkBAIC02NCwyMSArNjQsMjQgQEAgdHlwZWRlZiBzdHJ1Y3QgewogfSBkYXRhX3Q7CiAKIHN0
-YXRpYyBzdHJ1Y3QgaW50ZWxfYnVmICoKLWNyZWF0ZV9idWYoZGF0YV90ICpkYXRhLCBpbnQgd2lk
-dGgsIGludCBoZWlnaHQsIHVpbnQ4X3QgY29sb3IpCitjcmVhdGVfYnVmKGRhdGFfdCAqZGF0YSwg
-aW50IHdpZHRoLCBpbnQgaGVpZ2h0LCB1aW50OF90IGNvbG9yLCB1aW50MzJfdCByZWdpb24pCiB7
-CiAJc3RydWN0IGludGVsX2J1ZiAqYnVmOworCXVpbnQzMl90IGhhbmRsZTsKIAl1aW50OF90ICpw
-dHI7CiAJaW50IGk7CiAKIAlidWYgPSBjYWxsb2MoMSwgc2l6ZW9mKCpidWYpKTsKIAlpZ3RfYXNz
-ZXJ0KGJ1Zik7CiAKKwloYW5kbGUgPSBnZW1fY3JlYXRlX2luX21lbW9yeV9yZWdpb25zKGRhdGEt
-PmRybV9mZCwgU0laRSwgcmVnaW9uKTsKKwogCS8qCiAJICogTGVnYWN5IGNvZGUgdXNlcyAzMiBi
-cHAgYWZ0ZXIgYnVmZmVyIGNyZWF0aW9uLgogCSAqIExldCdzIGRvIHRoZSBzYW1lIGR1ZSB0byBr
-ZWVwIHNoYWRlciBpbnRhY3QuCiAJICovCi0JaW50ZWxfYnVmX2luaXQoZGF0YS0+Ym9wcywgYnVm
-LCB3aWR0aC80LCBoZWlnaHQsIDMyLCAwLAotCQkgICAgICAgSTkxNV9USUxJTkdfTk9ORSwgMCk7
-CisJaW50ZWxfYnVmX2luaXRfdXNpbmdfaGFuZGxlKGRhdGEtPmJvcHMsIGhhbmRsZSwgYnVmLCB3
-aWR0aC80LAorCQkJCSAgICBoZWlnaHQsIDMyLCAwLCBJOTE1X1RJTElOR19OT05FLCAwKTsKIAog
-CXB0ciA9IGdlbV9tbWFwX19jcHVfY29oZXJlbnQoZGF0YS0+ZHJtX2ZkLCBidWYtPmhhbmRsZSwg
-MCwKIAkJCQkgICAgIGJ1Zi0+c3VyZmFjZVswXS5zaXplLCBQUk9UX1dSSVRFKTsKQEAgLTEwMSwx
-MyArMTA0LDE2IEBAIHN0YXRpYyB2b2lkIGJ1Zl9jaGVjayh1aW50OF90ICpwdHIsIGludCB4LCBp
-bnQgeSwgdWludDhfdCBjb2xvcikKIAkJICAgICBjb2xvciwgdmFsLCB4LCB5KTsKIH0KIAotc3Rh
-dGljIHZvaWQgbWVkaWFfZmlsbChkYXRhX3QgKmRhdGEsIGlndF9maWxsZnVuY190IGZpbGwpCitz
-dGF0aWMgdm9pZCBtZWRpYV9maWxsKGRhdGFfdCAqZGF0YSwgaWd0X2ZpbGxmdW5jX3QgZmlsbCwK
-KwkJICAgICAgIHN0cnVjdCBpZ3RfY29sbGVjdGlvbiAqbWVtcmVnaW9uX3NldCkKIHsKIAlzdHJ1
-Y3QgaW50ZWxfYnVmICpidWY7CisJdWludDMyX3QgcmVnaW9uOwogCXVpbnQ4X3QgKnB0cjsKIAlp
-bnQgaSwgajsKIAotCWJ1ZiA9IGNyZWF0ZV9idWYoZGF0YSwgV0lEVEgsIEhFSUdIVCwgQ09MT1Jf
-QzQpOworCXJlZ2lvbiA9IGlndF9jb2xsZWN0aW9uX2dldF92YWx1ZShtZW1yZWdpb25fc2V0LCAw
-KTsKKwlidWYgPSBjcmVhdGVfYnVmKGRhdGEsIFdJRFRILCBIRUlHSFQsIENPTE9SX0M0LCByZWdp
-b24pOwogCXB0ciA9IGdlbV9tbWFwX19kZXZpY2VfY29oZXJlbnQoZGF0YS0+ZHJtX2ZkLCBidWYt
-PmhhbmRsZSwKIAkJCQkJMCwgYnVmLT5zdXJmYWNlWzBdLnNpemUsIFBST1RfUkVBRCk7CiAJZm9y
-IChpID0gMDsgaSA8IFdJRFRIOyBpKyspCkBAIC0xMjYsMjAgKzEzMiw0NSBAQCBzdGF0aWMgdm9p
-ZCBtZWRpYV9maWxsKGRhdGFfdCAqZGF0YSwgaWd0X2ZpbGxmdW5jX3QgZmlsbCkKIAltdW5tYXAo
-cHRyLCBidWYtPnN1cmZhY2VbMF0uc2l6ZSk7CiB9CiAKLWlndF9zaW1wbGVfbWFpbgoraWd0X21h
-aW4KIHsKIAlkYXRhX3QgZGF0YSA9IHswLCB9OwogCWlndF9maWxsZnVuY190IGZpbGxfZm4gPSBO
-VUxMOworCXN0cnVjdCBkcm1faTkxNV9xdWVyeV9tZW1vcnlfcmVnaW9ucyAqcXVlcnlfaW5mbzsK
-KwlzdHJ1Y3QgaWd0X2NvbGxlY3Rpb24gKnNldCwgKnJlZ2lvbl9zZXQ7CisKKwlpZ3RfZml4dHVy
-ZSB7CisJCWRhdGEuZHJtX2ZkID0gZHJtX29wZW5fZHJpdmVyX3JlbmRlcihEUklWRVJfSU5URUwp
-OworCQlpZ3RfcmVxdWlyZV9nZW0oZGF0YS5kcm1fZmQpOworCisJCWRhdGEuZGV2aWQgPSBpbnRl
-bF9nZXRfZHJtX2RldmlkKGRhdGEuZHJtX2ZkKTsKKwkJZGF0YS5ib3BzID0gYnVmX29wc19jcmVh
-dGUoZGF0YS5kcm1fZmQpOworCisJCWZpbGxfZm4gPSBpZ3RfZ2V0X21lZGlhX2ZpbGxmdW5jKGRh
-dGEuZGV2aWQpOworCisJCWlndF9yZXF1aXJlX2YoZmlsbF9mbiwgIm5vIG1lZGlhLWZpbGwgZnVu
-Y3Rpb25cbiIpOworCisJCXF1ZXJ5X2luZm8gPSBnZW1fZ2V0X3F1ZXJ5X21lbW9yeV9yZWdpb25z
-KGRhdGEuZHJtX2ZkKTsKKwkJaWd0X2Fzc2VydChxdWVyeV9pbmZvKTsKKworCQlzZXQgPSBnZXRf
-bWVtb3J5X3JlZ2lvbl9zZXQocXVlcnlfaW5mbywKKwkJCQkJICAgIEk5MTVfU1lTVEVNX01FTU9S
-WSk7CiAKLQlkYXRhLmRybV9mZCA9IGRybV9vcGVuX2RyaXZlcl9yZW5kZXIoRFJJVkVSX0lOVEVM
-KTsKLQlpZ3RfcmVxdWlyZV9nZW0oZGF0YS5kcm1fZmQpOworCQlpZ3RfZm9ya19oYW5nX2RldGVj
-dG9yKGRhdGEuZHJtX2ZkKTsKKwl9CiAKLQlkYXRhLmRldmlkID0gaW50ZWxfZ2V0X2RybV9kZXZp
-ZChkYXRhLmRybV9mZCk7Ci0JZGF0YS5ib3BzID0gYnVmX29wc19jcmVhdGUoZGF0YS5kcm1fZmQp
-OworCWlndF9zdWJ0ZXN0X3dpdGhfZHluYW1pYygibWVkaWEtZmlsbCIpCisJCWZvcl9lYWNoX2Nv
-bWJpbmF0aW9uKHJlZ2lvbl9zZXQsIDEsIHNldCkgeworCQkJY2hhciAqc3ViX25hbWUgPSBtZW1y
-ZWdpb25fZHluYW1pY19zdWJ0ZXN0X25hbWUocmVnaW9uX3NldCk7CiAKLQlmaWxsX2ZuID0gaWd0
-X2dldF9tZWRpYV9maWxsZnVuYyhkYXRhLmRldmlkKTsKKwkJCWlndF9keW5hbWljX2YoIiVzIiwg
-c3ViX25hbWUpCisJCQkJbWVkaWFfZmlsbCgmZGF0YSwgZmlsbF9mbiwgcmVnaW9uX3NldCk7CiAK
-LQlpZ3RfcmVxdWlyZV9mKGZpbGxfZm4sICJubyBtZWRpYS1maWxsIGZ1bmN0aW9uXG4iKTsKKwkJ
-CWZyZWUoc3ViX25hbWUpOworCX0KIAotCW1lZGlhX2ZpbGwoJmRhdGEsIGZpbGxfZm4pOworCWln
-dF9maXh0dXJlIHsKKwkJaWd0X2NvbGxlY3Rpb25fZGVzdHJveShzZXQpOworCQlpZ3Rfc3RvcF9o
-YW5nX2RldGVjdG9yKCk7CisJfQogfQotLSAKMi4yNi4zCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Add some explicit testcases for the create_ext placements extension.
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Acked-by: Petri Latvala <petri.latvala@intel.com>
+---
+ tests/i915/gem_create.c | 188 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 188 insertions(+)
+
+diff --git a/tests/i915/gem_create.c b/tests/i915/gem_create.c
+index 8acc2f52..167d7d28 100644
+--- a/tests/i915/gem_create.c
++++ b/tests/i915/gem_create.c
+@@ -290,6 +290,184 @@ static void size_update(int fd)
+ 	igt_assert_neq(create.size, size_initial_nonaligned);
+ }
+ 
++static void create_ext_placement_sanity_check(int fd)
++{
++	struct drm_i915_query_memory_regions *regions;
++	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
++		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
++	};
++	struct drm_i915_gem_memory_class_instance *uregions;
++	struct drm_i915_gem_memory_class_instance region_smem = {
++		.memory_class = I915_MEMORY_CLASS_SYSTEM,
++		.memory_instance = 0,
++	};
++	struct drm_i915_gem_memory_class_instance region_invalid = {
++		.memory_class = -1,
++		.memory_instance = -1,
++	};
++	uint64_t size;
++	uint32_t handle;
++	int i;
++
++	regions = gem_get_query_memory_regions(fd);
++	igt_assert(regions);
++	igt_assert(regions->num_regions);
++
++	/*
++	 * extensions should be optional, giving us the normal gem_create
++	 * behaviour.
++	 */
++	size = PAGE_SIZE;
++	igt_assert_eq(__gem_create_ext(fd, &size, &handle, 0), 0);
++	gem_close(fd, handle);
++
++	/* Try some uncreative invalid combinations */
++	setparam_region.regions = to_user_pointer(&region_smem);
++	setparam_region.num_regions = 0;
++	size = PAGE_SIZE;
++	igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++					&setparam_region.base), 0);
++
++	setparam_region.regions = to_user_pointer(&region_smem);
++	setparam_region.num_regions = regions->num_regions + 1;
++	size = PAGE_SIZE;
++	igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++					&setparam_region.base), 0);
++
++	setparam_region.regions = to_user_pointer(&region_smem);
++	setparam_region.num_regions = -1;
++	size = PAGE_SIZE;
++	igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++					&setparam_region.base), 0);
++
++	setparam_region.regions = to_user_pointer(&region_invalid);
++	setparam_region.num_regions = 1;
++	size = PAGE_SIZE;
++	igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++					&setparam_region.base), 0);
++
++	setparam_region.regions = to_user_pointer(&region_invalid);
++	setparam_region.num_regions = 0;
++	size = PAGE_SIZE;
++	igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++					&setparam_region.base), 0);
++
++	uregions = calloc(regions->num_regions + 1, sizeof(uint32_t));
++
++	for (i = 0; i < regions->num_regions; i++)
++		uregions[i] = regions->regions[i].region;
++
++	setparam_region.regions = to_user_pointer(uregions);
++	setparam_region.num_regions = regions->num_regions + 1;
++	size = PAGE_SIZE;
++	igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++					&setparam_region.base), 0);
++
++	if (regions->num_regions > 1)  {
++		for (i = 0; i < regions->num_regions; i++) {
++			struct drm_i915_gem_memory_class_instance dups[] = {
++				regions->regions[i].region,
++				regions->regions[i].region,
++			};
++
++			setparam_region.regions = to_user_pointer(dups);
++			setparam_region.num_regions = 2;
++			size = PAGE_SIZE;
++			igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++							&setparam_region.base), 0);
++		}
++	}
++
++	uregions[rand() % regions->num_regions].memory_class = -1;
++	uregions[rand() % regions->num_regions].memory_instance = -1;
++	setparam_region.regions = to_user_pointer(uregions);
++	setparam_region.num_regions = regions->num_regions;
++	size = PAGE_SIZE;
++	igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++					&setparam_region.base), 0);
++
++	free(uregions);
++
++	{
++		struct drm_i915_gem_create_ext_memory_regions setparam_region_next;
++
++		setparam_region.regions = to_user_pointer(&region_smem);
++		setparam_region.num_regions = 1;
++
++		setparam_region_next = setparam_region;
++		setparam_region.base.next_extension =
++				to_user_pointer(&setparam_region_next);
++
++		size = PAGE_SIZE;
++		igt_assert_neq(__gem_create_ext(fd, &size, &handle,
++						&setparam_region.base), 0);
++		setparam_region.base.next_extension = 0;
++	}
++
++	free(regions);
++}
++
++static void create_ext_placement_all(int fd)
++{
++	struct drm_i915_query_memory_regions *regions;
++	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
++		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
++	};
++	struct drm_i915_gem_memory_class_instance *uregions;
++	uint64_t size;
++	uint32_t handle;
++	int i;
++
++	regions = gem_get_query_memory_regions(fd);
++	igt_assert(regions);
++	igt_assert(regions->num_regions);
++
++	uregions = calloc(regions->num_regions, sizeof(*uregions));
++
++	for (i = 0; i < regions->num_regions; i++)
++		uregions[i] = regions->regions[i].region;
++
++	setparam_region.regions = to_user_pointer(uregions);
++	setparam_region.num_regions = regions->num_regions;
++
++	size = PAGE_SIZE;
++	igt_assert_eq(__gem_create_ext(fd, &size, &handle,
++				       &setparam_region.base), 0);
++	gem_close(fd, handle);
++	free(uregions);
++	free(regions);
++}
++
++static void create_ext_placement_each(int fd)
++{
++	struct drm_i915_query_memory_regions *regions;
++	struct drm_i915_gem_create_ext_memory_regions setparam_region = {
++		.base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
++	};
++	int i;
++
++	regions = gem_get_query_memory_regions(fd);
++	igt_assert(regions);
++	igt_assert(regions->num_regions);
++
++	for (i = 0; i < regions->num_regions; i++) {
++		struct drm_i915_gem_memory_class_instance region =
++			regions->regions[i].region;
++		uint64_t size;
++		uint32_t handle;
++
++		setparam_region.regions = to_user_pointer(&region);
++		setparam_region.num_regions = 1;
++
++		size = PAGE_SIZE;
++		igt_assert_eq(__gem_create_ext(fd, &size, &handle,
++					       &setparam_region.base), 0);
++		gem_close(fd, handle);
++	}
++
++	free(regions);
++}
++
+ igt_main
+ {
+ 	int fd = -1;
+@@ -315,4 +493,14 @@ igt_main
+ 
+ 	igt_subtest("busy-create")
+ 		busy_create(fd, 30);
++
++	igt_subtest("create-ext-placement-sanity-check")
++		create_ext_placement_sanity_check(fd);
++
++	igt_subtest("create-ext-placement-each")
++		create_ext_placement_each(fd);
++
++	igt_subtest("create-ext-placement-all")
++		create_ext_placement_all(fd);
++
+ }
+-- 
+2.26.3
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
