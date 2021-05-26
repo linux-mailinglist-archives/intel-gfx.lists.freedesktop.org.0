@@ -2,61 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A665D391CD0
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 18:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A34391CDF
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 18:20:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43D4B6E970;
-	Wed, 26 May 2021 16:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30C116EDC6;
+	Wed, 26 May 2021 16:20:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7B076E970
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 16:17:28 +0000 (UTC)
-IronPort-SDR: eOgrXTS4SxyTb1uPNeAcUqJ7vZc110tEt3JSFqzPoNtvtnGAqbiWgN16MQ6vg89SatA2aryoW9
- rAHOTVV8Q8Tg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="199453885"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="199453885"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 09:17:26 -0700
-IronPort-SDR: uuCPjB0d6FywPPVCz8aBMvbcV9iylTL1n1zNSc6iUAlcY9EAVZSQhH4IVIhorOovs4KgenQsPd
- jdnJ9HUR4qMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="444147567"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 26 May 2021 09:17:25 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 26 May 2021 09:17:25 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 26 May 2021 09:17:24 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.008;
- Wed, 26 May 2021 09:17:24 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 4/7] drm/i915/dmc: Introduce DMC_FW_MAIN
-Thread-Index: AQHXUNNbnQjXM3giE0GK2ZWFM67aIKrzo6QAgAJNRpA=
-Date: Wed, 26 May 2021 16:17:24 +0000
-Message-ID: <97bd065048e3481d90e07de814d74635@intel.com>
-References: <20210524193032.3015-1-anusha.srivatsa@intel.com>
- <20210524193032.3015-5-anusha.srivatsa@intel.com>
- <f86309fef7fa7dd19cee5d29b8a9f3304ec885ef.camel@intel.com>
-In-Reply-To: <f86309fef7fa7dd19cee5d29b8a9f3304ec885ef.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 84F346EDC7;
+ Wed, 26 May 2021 16:20:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7DBB2A47E1;
+ Wed, 26 May 2021 16:20:43 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/dmc: Introduce DMC_FW_MAIN
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Wed, 26 May 2021 16:20:43 -0000
+Message-ID: <162204604349.13405.7854611755354086789@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210526113259.1661914-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210526113259.1661914-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Move_LMEM_=28VRAM=29_management_over_to_TTM_=28?=
+ =?utf-8?q?rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,229 +39,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: drm/i915: Move LMEM (VRAM) management over to TTM (rev4)
+URL   : https://patchwork.freedesktop.org/series/90022/
+State : warning
 
-> -----Original Message-----
-> From: Souza, Jose <jose.souza@intel.com>
-> Sent: Monday, May 24, 2021 2:59 PM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/dmc: Introduce
-> DMC_FW_MAIN
-> 
-> On Mon, 2021-05-24 at 12:30 -0700, Anusha Srivatsa wrote:
-> > This is a prep patch for Pipe DMC plugging.
-> >
-> > Add dmc_info struct in intel_dmc to have all common fields shared
-> > between all DMC's in the package.
-> > Add DMC_FW_MAIN(dmc_id 0) to refer to the blob.
-> >
-> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dmc.c | 44
-> > +++++++++++-------------  drivers/gpu/drm/i915/display/intel_dmc.h |
-> > 20 ++++++++---
-> >  2 files changed, 35 insertions(+), 29 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > index f9a0f194f9cf..16bfbca6c1ed 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > @@ -239,7 +239,7 @@ struct stepping_info {
-> >
-> >  bool intel_dmc_has_payload(struct drm_i915_private *i915)  {
-> > -	return i915->dmc.dmc_payload;
-> > +	return i915->dmc.dmc_info[DMC_FW_MAIN].payload;
-> >  }
-> >
-> >  static const struct stepping_info skl_stepping_info[] = { @@ -316,7
-> > +316,8 @@ static void gen9_set_dc_state_debugmask(struct
-> drm_i915_private *dev_priv)
-> >   */
-> >  void intel_dmc_load_program(struct drm_i915_private *dev_priv)  {
-> > -	u32 *payload = dev_priv->dmc.dmc_payload;
-> > +	struct intel_dmc *dmc = &dev_priv->dmc;
-> > +	struct dmc_fw_info *dmc_info = &dmc-
-> >dmc_info[DMC_FW_MAIN];
-> >  	u32 i, fw_size;
-> >
-> >  	if (!HAS_DMC(dev_priv)) {
-> > @@ -325,26 +326,26 @@ void intel_dmc_load_program(struct
-> drm_i915_private *dev_priv)
-> >  		return;
-> >  	}
-> >
-> > -	if (!intel_dmc_has_payload(dev_priv)) {
-> > +	if (!dev_priv->dmc.dmc_info[DMC_FW_MAIN].payload) {
-> >  		drm_err(&dev_priv->drm,
-> >  			"Tried to program CSR with empty payload\n");
-> >  		return;
-> >  	}
-> >
-> > -	fw_size = dev_priv->dmc.dmc_fw_size;
-> > +	fw_size = dmc_info->dmc_fw_size;
-> >  	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
-> >
-> >  	preempt_disable();
-> >
-> >  	for (i = 0; i < fw_size; i++)
-> >  		intel_uncore_write_fw(&dev_priv->uncore,
-> DMC_PROGRAM(i),
-> > -				      payload[i]);
-> > +				      dmc_info->payload[i]);
-> >
-> >  	preempt_enable();
-> >
-> > -	for (i = 0; i < dev_priv->dmc.mmio_count; i++) {
-> > -		intel_de_write(dev_priv, dev_priv->dmc.mmioaddr[i],
-> > -			       dev_priv->dmc.mmiodata[i]);
-> > +	for (i = 0; i < dmc_info->mmio_count; i++) {
-> > +		intel_de_write(dev_priv, dmc_info->mmioaddr[i],
-> > +			       dmc_info->mmiodata[i]);
-> >  	}
-> >
-> >  	dev_priv->dmc.dc_state = 0;
-> > @@ -401,13 +402,14 @@ static u32 parse_dmc_fw_header(struct
-> intel_dmc *dmc,
-> >  			       size_t rem_size)
-> >  {
-> >  	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915),
-> > dmc);
-> > +	struct dmc_fw_info *dmc_info = &dmc-
-> >dmc_info[DMC_FW_MAIN];
-> >  	unsigned int header_len_bytes, dmc_header_size, payload_size, i;
-> >  	const u32 *mmioaddr, *mmiodata;
-> >  	u32 mmio_count, mmio_count_max;
-> >  	u8 *payload;
-> >
-> > -	BUILD_BUG_ON(ARRAY_SIZE(dmc->mmioaddr) <
-> DMC_V3_MAX_MMIO_COUNT ||
-> > -		     ARRAY_SIZE(dmc->mmioaddr) <
-> DMC_V1_MAX_MMIO_COUNT);
-> > +	BUILD_BUG_ON(ARRAY_SIZE(dmc_info->mmioaddr) <
-> DMC_V3_MAX_MMIO_COUNT ||
-> > +		     ARRAY_SIZE(dmc_info->mmioaddr) <
-> DMC_V1_MAX_MMIO_COUNT);
-> >
-> >  	/*
-> >  	 * Check if we can access common fields, we will checkc again below
-> > @@ -463,16 +465,10 @@ static u32 parse_dmc_fw_header(struct
-> intel_dmc *dmc,
-> >  	}
-> >
-> >  	for (i = 0; i < mmio_count; i++) {
-> > -		if (mmioaddr[i] < DMC_MMIO_START_RANGE ||
-> > -		    mmioaddr[i] > DMC_MMIO_END_RANGE) {
-> > -			drm_err(&i915->drm, "DMC firmware has wrong
-> mmio address 0x%x\n",
-> > -				mmioaddr[i]);
-> > -			return 0;
-> > -		}
-> 
-> Why the checks above were dropped?
+== Summary ==
 
-The DMC_MMIO_START_RANGE And DMC_MMIO_END_RANGE were hardcoded values. But starting from gen12, they can be different for different platforms. The best way to grab them is from the blob itself. The above check does not make sense in that scenario.
+$ dim checkpatch origin/drm-tip
+a8d995049a9a drm/i915: Untangle the vma pages_mutex
+565669662415 drm/i915: Don't free shared locks while shared
+34211cad1c61 drm/i915: Fix i915_sg_page_sizes to record dma segments rather than physical pages
+9e94246f54ff drm/i915/ttm Initialize the ttm device and memory managers
+-:480: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#480: 
+deleted file mode 100644
 
-> > -		dmc->mmioaddr[i] = _MMIO(mmioaddr[i]);
-> > -		dmc->mmiodata[i] = mmiodata[i];
-> > +		dmc_info->mmioaddr[i] = _MMIO(mmioaddr[i]);
-> > +		dmc_info->mmiodata[i] = mmiodata[i];
-> >  	}
-> > -	dmc->mmio_count = mmio_count;
-> > +	dmc_info->mmio_count = mmio_count;
-> >
-> >  	rem_size -= header_len_bytes;
-> >
-> > @@ -485,16 +481,16 @@ static u32 parse_dmc_fw_header(struct
-> intel_dmc *dmc,
-> >  		drm_err(&i915->drm, "DMC FW too big (%u bytes)\n",
-> payload_size);
-> >  		return 0;
-> >  	}
-> > -	dmc->dmc_fw_size = dmc_header->fw_size;
-> > +	dmc_info->dmc_fw_size = dmc_header->fw_size;
-> 
-> Did not read the next patches but the if possible would be better to rename
-> dmc_info to dmc_main_info or dmc_pipe_info when possible.
+total: 0 errors, 1 warnings, 0 checks, 1531 lines checked
+8c9f9a941096 drm/i915/ttm: Embed a ttm buffer object in the i915 gem object
+512ac8fd774b drm/ttm: Add a generic TTM memcpy move for page-based iomem
+-:384: CHECK:ARCH_DEFINES: architecture specific defines should be avoided
+#384: FILE: drivers/gpu/drm/ttm/ttm_module.c:56:
++#if defined(__i386__) || defined(__x86_64__)
 
-dmc_info here will be referring to both main_dmc and pipe_dmc and hence named generic. The patches after this patch make more sense in that aspect.
+-:727: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#727: 
+new file mode 100644
 
-> >
-> > -	dmc->dmc_payload = kmalloc(payload_size, GFP_KERNEL);
-> > -	if (!dmc->dmc_payload) {
-> > +	dmc_info->payload = kmalloc(payload_size, GFP_KERNEL);
-> > +	if (!dmc_info->payload) {
-> >  		drm_err(&i915->drm, "Memory allocation failed for dmc
-> payload\n");
-> >  		return 0;
-> >  	}
-> >
-> >  	payload = (u8 *)(dmc_header) + header_len_bytes;
-> > -	memcpy(dmc->dmc_payload, payload, payload_size);
-> > +	memcpy(dmc_info->payload, payload, payload_size);
-> >
-> >  	return header_len_bytes + payload_size;
-> >
-> > @@ -829,5 +825,5 @@ void intel_dmc_ucode_fini(struct drm_i915_private
-> *dev_priv)
-> >  	intel_dmc_ucode_suspend(dev_priv);
-> >  	drm_WARN_ON(&dev_priv->drm, dev_priv->dmc.wakeref);
-> >
-> > -	kfree(dev_priv->dmc.dmc_payload);
-> > +	kfree(dev_priv->dmc.dmc_info[DMC_FW_MAIN].payload);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h
-> > b/drivers/gpu/drm/i915/display/intel_dmc.h
-> > index 4c22f567b61b..b747cc9bf6a7 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-> > @@ -16,17 +16,27 @@ struct drm_i915_private;
-> >  #define DMC_VERSION_MAJOR(version)	((version) >> 16)
-> >  #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
-> >
-> > +enum {
-> > +	DMC_FW_MAIN = 0,
-> > +	DMC_FW_MAX
-> > +};
-> > +
-> >  struct intel_dmc {
-> >  	struct work_struct work;
-> >  	const char *fw_path;
-> >  	u32 required_version;
-> >  	u32 max_fw_size; /* bytes */
-> > -	u32 *dmc_payload;
-> > -	u32 dmc_fw_size; /* dwords */
-> >  	u32 version;
-> > -	u32 mmio_count;
-> > -	i915_reg_t mmioaddr[20];
-> > -	u32 mmiodata[20];
-> > +	struct dmc_fw_info {
-> > +		u32 mmio_count;
-> > +		i915_reg_t mmioaddr[20];
-> > +		u32 mmiodata[20];
-> > +		u32 dmc_offset;
-> > +		u32 start_mmioaddr;
-> 
-> dmc_offset and start_mmioaddr are added but not used here. I guess it will
-> in the next patches so please add it only when used.
+total: 0 errors, 1 warnings, 1 checks, 840 lines checked
+1a9c04facf2f drm, drm/i915: Move the memcpy_from_wc functionality to core drm
+-:56: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#56: 
+rename from drivers/gpu/drm/i915/i915_memcpy.c
 
-Sure. Checking this again and make the change.
+total: 0 errors, 1 warnings, 0 checks, 431 lines checked
+aa4e527660b2 drm/ttm: Use drm_memcpy_from_wc_dbm for TTM bo moves
+a0467168f3dd drm/ttm: Document and optimize ttm_bo_pipeline_gutting()
+4eb13de59af2 drm/ttm, drm/amdgpu: Allow the driver some control over swapping
+d74440bb1681 drm/i915/ttm: Introduce a TTM i915 gem object backend
+-:449: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#449: 
+new file mode 100644
 
-Thanks for the feedback.
-Anusha
-> > +		u32 dmc_fw_size; /*dwords */
-> > +		u32 *payload;
-> > +	} dmc_info[DMC_FW_MAX];
-> > +
-> >  	u32 dc_state;
-> >  	u32 target_dc_state;
-> >  	u32 allowed_dc_mask;
+total: 0 errors, 1 warnings, 0 checks, 1043 lines checked
+078b4a721184 drm/i915/lmem: Verify checks for lmem residency
+e1a4df82cfae drm/i915: Disable mmap ioctl for gen12+
+89fe83848800 drm/vma: Add a driver_private member to vma_node.
+7e57f71fdb25 drm/i915: Use ttm mmap handling for ttm bo's.
+-:141: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#141: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:908:
++			obj = i915_gem_object_get_rcu(container_of(node, struct drm_i915_gem_object, base.vma_node));
+
+-:357: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#357: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:522:
++vm_access_ttm(struct vm_area_struct *area, unsigned long addr,
++	  void *buf, int len, int write)
+
+-:386: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#386: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:551:
++
++
+
+-:702: WARNING:PRINTF_L: %Lx is non-standard C, use %llx
+#702: FILE: drivers/gpu/drm/i915/selftests/igt_mmap.c:30:
++		pr_info("Failed to lookup %Lx\n", offset);
+
+total: 0 errors, 2 warnings, 2 checks, 649 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
