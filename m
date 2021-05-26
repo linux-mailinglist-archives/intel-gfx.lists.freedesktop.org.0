@@ -1,32 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A273921ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 23:23:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 511E439220B
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 23:29:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C23516EDD6;
-	Wed, 26 May 2021 21:23:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7896EB88;
+	Wed, 26 May 2021 21:29:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 100E56EDD6;
- Wed, 26 May 2021 21:23:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0869EA00C9;
- Wed, 26 May 2021 21:23:10 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E04D6EB88
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 21:29:38 +0000 (UTC)
+IronPort-SDR: u9oypVfUcPmqc47fixZBpk9E6r119ZaS0ZwW2tDRYhEC9eUEE6bLFXVEDvcDdTvtVI0LI96J6b
+ sUzNnHA/VKxg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="182916636"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="182916636"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 14:29:38 -0700
+IronPort-SDR: CdvVEtxPbzX89lhNpaXy0gpiS4taQxC+haEThSY1+I+mYsAD872ylWYCXyIxSyweTr7u8txP5y
+ lasRxoHXMPaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="477145999"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by orsmga001.jf.intel.com with ESMTP; 26 May 2021 14:29:37 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 26 May 2021 22:29:35 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.008;
+ Wed, 26 May 2021 14:29:34 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/adlp: Add missing TBT AUX -> PW#2
+ power domain dependencies
+Thread-Index: AQHXUm6wdFocyhcrt0G88p61cDifV6r2vdyA
+Date: Wed, 26 May 2021 21:29:34 +0000
+Message-ID: <d11b543492df11a62a4f5e3368d3deb16a1957c6.camel@intel.com>
+References: <20210526203456.2733040-1-imre.deak@intel.com>
+In-Reply-To: <20210526203456.2733040-1-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <751D0F0789D75E4195B9926AD7500391@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Wed, 26 May 2021 21:23:10 -0000
-Message-ID: <162206419000.13407.11415862195233005569@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210526144736.3277595-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210526144736.3277595-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_dma-buf=3A_Require_VM=5FPFNM?=
- =?utf-8?q?AP_vma_for_mmap?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/adlp: Add missing TBT AUX -> PW#2
+ power domain dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,46 +63,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/3] dma-buf: Require VM_PFNMAP vma for mmap
-URL   : https://patchwork.freedesktop.org/series/90615/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-9b58329fed19 dma-buf: Require VM_PFNMAP vma for mmap
--:34: WARNING:TYPO_SPELLING: 'entires' may be misspelled - perhaps 'entries'?
-#34: 
-From auditing the various functions to insert pfn pte entires
-                                                      ^^^^^^^
-
--:39: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#39: 
-References: https://lore.kernel.org/lkml/CAKMK7uHi+mG0z0HUmNt13QCCvutuRVjpcR0NjRL12k-WbWzkRg@mail.gmail.com/
-
--:97: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 3 warnings, 0 checks, 39 lines checked
-36acbf8befae drm/vgem: use shmem helpers
--:424: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 381 lines checked
-5e43991e6cc7 drm/shmem-helper: Align to page size in dumb_create
--:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 15 lines checked
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIxLTA1LTI2IGF0IDIzOjM0ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE9u
+IEFETF9QIHRoZSBUQlQgQVVYIHBvd2VyIHdlbGxzIGRlcGVuZCBvbiB0aGUgUFcjMiBwb3dlciB3
+ZWxsLCBhZGQgdGhlDQo+IGNvcnJlc3BvbmRpbmcgcG93ZXIgZG9tYWluIGRlcGVuZGVuY2llcy4N
+Cg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwu
+Y29tPg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5j
+b20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+X3Bvd2VyLmMgfCA0ICsrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykNCj4g
+DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXlfcG93ZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9w
+b3dlci5jDQo+IGluZGV4IDJmN2QxNjY0YzQ3MzguLjIyNWZiMWZkYjA5N2IgMTAwNjQ0DQo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jDQo+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5j
+DQo+IEBAIC0zMDgyLDYgKzMwODIsMTAgQEAgaW50ZWxfZGlzcGxheV9wb3dlcl9wdXRfbWFza19p
+bl9zZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ICAJQklUX1VMTChQT1dFUl9E
+T01BSU5fQVVYX1VTQkMyKSB8CQkJXA0KPiAgCUJJVF9VTEwoUE9XRVJfRE9NQUlOX0FVWF9VU0JD
+MykgfAkJCVwNCj4gIAlCSVRfVUxMKFBPV0VSX0RPTUFJTl9BVVhfVVNCQzQpIHwJCQlcDQo+ICsJ
+QklUX1VMTChQT1dFUl9ET01BSU5fQVVYX1RCVDEpIHwJCQlcDQo+ICsJQklUX1VMTChQT1dFUl9E
+T01BSU5fQVVYX1RCVDIpIHwJCQlcDQo+ICsJQklUX1VMTChQT1dFUl9ET01BSU5fQVVYX1RCVDMp
+IHwJCQlcDQo+ICsJQklUX1VMTChQT1dFUl9ET01BSU5fQVVYX1RCVDQpIHwJCQlcDQo+ICAJQklU
+X1VMTChQT1dFUl9ET01BSU5fSU5JVCkpDQo+ICANCj4gIC8qDQoNCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
