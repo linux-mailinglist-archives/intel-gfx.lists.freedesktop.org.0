@@ -1,42 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0803921A0
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 22:49:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59F6C39219F
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 22:48:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86DD66E841;
-	Wed, 26 May 2021 20:49:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD1666E1F5;
+	Wed, 26 May 2021 20:48:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD006E841;
- Wed, 26 May 2021 20:49:05 +0000 (UTC)
-IronPort-SDR: XbcYWi0ttZPXyxHK+B+wC1TYJHpySjI4KcYZq9d63qVFsNTIGAKDonXJfFsYCVJezTPEIRnUp1
- 30lago1IGulQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="200677613"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="200677613"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 13:49:04 -0700
-IronPort-SDR: 0XQIjcVhl2nZcacv1pxx1sKoChxXnDsZtgRsY8TAmvQCtYGBaVMUcdxnZYRglj0EJBspKbWB2l
- /kI/z3umiIJA==
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="444263229"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 13:49:03 -0700
-Date: Wed, 26 May 2021 13:41:56 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <20210526204156.GA21072@sdutt-i7>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-35-matthew.brost@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECC06E1F5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 20:48:25 +0000 (UTC)
+IronPort-SDR: T2cauYH0Dms1L/ytUpuMtKWon6PijK7efN9lRBi2CbnShJgvGXGZZwLudyYAcgSlbv6sMjGhPg
+ RtQcELpSe7Rw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="202608489"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="202608489"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 13:48:24 -0700
+IronPort-SDR: 4JkNwAHrxogxpHlbk8EerDfuzC+S5GnXJStw0llffgmgSGnsQr9Pr+ZlZPzIjX6lG6/QCbRx7d
+ QaLuaVzEkWOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="615109836"
+Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
+ by orsmga005.jf.intel.com with ESMTP; 26 May 2021 13:48:24 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 26 May 2021 13:48:24 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 26 May 2021 13:48:23 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.008;
+ Wed, 26 May 2021 13:48:23 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/2] drm/i915/adl_p: Implement Wa_22012358565
+Thread-Index: AQHXUlWgJUgQySTiU0WFys9LUIFnHar2so2A
+Date: Wed, 26 May 2021 20:48:23 +0000
+Message-ID: <040ac73b381bd63ad82290ba0078166a52517059.camel@intel.com>
+References: <20210526173600.27708-1-ville.syrjala@linux.intel.com>
+ <20210526173600.27708-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210526173600.27708-2-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <140A78050C93DF478B8D19535CF8A74C@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210506191451.77768-35-matthew.brost@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [RFC PATCH 34/97] drm/i915/guc: Use guc_class
- instead of engine_class in fw interface
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/adl_p: Implement Wa_22012358565
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,177 +66,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 06, 2021 at 12:13:48PM -0700, Matthew Brost wrote:
-> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> GuC has its own defines for the engine classes. They're currently
-> mapping 1:1 to the defines used by the driver, but there is no guarantee
-> this will continue in the future. Given that we've been caught off-guard
-> in the past by similar divergences, we can prepare for the changes by
-> introducing helper functions to convert from engine class to GuC class and
-> back again.
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c   |  6 +++--
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c  | 20 +++++++++-------
->  drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 26 +++++++++++++++++++++
->  3 files changed, 42 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index c88b792c1ab5..7866ff0c2673 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -289,6 +289,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
->  	const struct engine_info *info = &intel_engines[id];
->  	struct drm_i915_private *i915 = gt->i915;
->  	struct intel_engine_cs *engine;
-> +	u8 guc_class;
->  
->  	BUILD_BUG_ON(MAX_ENGINE_CLASS >= BIT(GEN11_ENGINE_CLASS_WIDTH));
->  	BUILD_BUG_ON(MAX_ENGINE_INSTANCE >= BIT(GEN11_ENGINE_INSTANCE_WIDTH));
-> @@ -317,9 +318,10 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
->  	engine->i915 = i915;
->  	engine->gt = gt;
->  	engine->uncore = gt->uncore;
-> -	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
->  	engine->hw_id = info->hw_id;
-> -	engine->guc_id = MAKE_GUC_ID(info->class, info->instance);
-> +	guc_class = engine_class_to_guc_class(info->class);
-> +	engine->guc_id = MAKE_GUC_ID(guc_class, info->instance);
-> +	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
->  
->  	engine->irq_handler = nop_irq_handler;
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> index 775f00d706fa..ecd18531b40a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> @@ -6,6 +6,7 @@
->  #include "gt/intel_gt.h"
->  #include "gt/intel_lrc.h"
->  #include "intel_guc_ads.h"
-> +#include "intel_guc_fwif.h"
->  #include "intel_uc.h"
->  #include "i915_drv.h"
->  
-> @@ -78,7 +79,7 @@ static void guc_mapping_table_init(struct intel_gt *gt,
->  				GUC_MAX_INSTANCES_PER_CLASS;
->  
->  	for_each_engine(engine, gt, id) {
-> -		u8 guc_class = engine->class;
-> +		u8 guc_class = engine_class_to_guc_class(engine->class);
->  
->  		system_info->mapping_table[guc_class][engine->instance] =
->  			engine->instance;
-> @@ -98,7 +99,7 @@ static void __guc_ads_init(struct intel_guc *guc)
->  	struct __guc_ads_blob *blob = guc->ads_blob;
->  	const u32 skipped_size = LRC_PPHWSP_SZ * PAGE_SIZE + LR_HW_CONTEXT_SIZE;
->  	u32 base;
-> -	u8 engine_class;
-> +	u8 engine_class, guc_class;
->  
->  	/* GuC scheduling policies */
->  	guc_policies_init(&blob->policies);
-> @@ -114,22 +115,25 @@ static void __guc_ads_init(struct intel_guc *guc)
->  	for (engine_class = 0; engine_class <= MAX_ENGINE_CLASS; ++engine_class) {
->  		if (engine_class == OTHER_CLASS)
->  			continue;
-> +
-> +		guc_class = engine_class_to_guc_class(engine_class);
-> +
->  		/*
->  		 * TODO: Set context pointer to default state to allow
->  		 * GuC to re-init guilty contexts after internal reset.
->  		 */
-> -		blob->ads.golden_context_lrca[engine_class] = 0;
-> -		blob->ads.eng_state_size[engine_class] =
-> +		blob->ads.golden_context_lrca[guc_class] = 0;
-> +		blob->ads.eng_state_size[guc_class] =
->  			intel_engine_context_size(guc_to_gt(guc),
->  						  engine_class) -
->  			skipped_size;
->  	}
->  
->  	/* System info */
-> -	blob->system_info.engine_enabled_masks[RENDER_CLASS] = 1;
-> -	blob->system_info.engine_enabled_masks[COPY_ENGINE_CLASS] = 1;
-> -	blob->system_info.engine_enabled_masks[VIDEO_DECODE_CLASS] = VDBOX_MASK(gt);
-> -	blob->system_info.engine_enabled_masks[VIDEO_ENHANCEMENT_CLASS] = VEBOX_MASK(gt);
-> +	blob->system_info.engine_enabled_masks[GUC_RENDER_CLASS] = 1;
-> +	blob->system_info.engine_enabled_masks[GUC_BLITTER_CLASS] = 1;
-> +	blob->system_info.engine_enabled_masks[GUC_VIDEO_CLASS] = VDBOX_MASK(gt);
-> +	blob->system_info.engine_enabled_masks[GUC_VIDEOENHANCE_CLASS] = VEBOX_MASK(gt);
->  
->  	blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_SLICE_ENABLED] =
->  		hweight8(gt->info.sseu.slice_mask);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> index 301b173a26bc..558cfe168cb7 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> @@ -15,6 +15,7 @@
->  #include "abi/guc_communication_mmio_abi.h"
->  #include "abi/guc_communication_ctb_abi.h"
->  #include "abi/guc_messages_abi.h"
-> +#include "gt/intel_engine_types.h"
->  
->  #define GUC_CLIENT_PRIORITY_KMD_HIGH	0
->  #define GUC_CLIENT_PRIORITY_HIGH	1
-> @@ -32,6 +33,12 @@
->  #define GUC_VIDEO_ENGINE2		4
->  #define GUC_MAX_ENGINES_NUM		(GUC_VIDEO_ENGINE2 + 1)
->  
-> +#define GUC_RENDER_CLASS		0
-> +#define GUC_VIDEO_CLASS			1
-> +#define GUC_VIDEOENHANCE_CLASS		2
-> +#define GUC_BLITTER_CLASS		3
-> +#define GUC_RESERVED_CLASS		4
-> +#define GUC_LAST_ENGINE_CLASS		GUC_RESERVED_CLASS
->  #define GUC_MAX_ENGINE_CLASSES		16
->  #define GUC_MAX_INSTANCES_PER_CLASS	32
->  
-> @@ -129,6 +136,25 @@
->  #define GUC_ID_TO_ENGINE_INSTANCE(guc_id) \
->  	(((guc_id) & GUC_ENGINE_INSTANCE_MASK) >> GUC_ENGINE_INSTANCE_SHIFT)
->  
-> +static inline u8 engine_class_to_guc_class(u8 class)
-> +{
-> +	BUILD_BUG_ON(GUC_RENDER_CLASS != RENDER_CLASS);
-> +	BUILD_BUG_ON(GUC_BLITTER_CLASS != COPY_ENGINE_CLASS);
-> +	BUILD_BUG_ON(GUC_VIDEO_CLASS != VIDEO_DECODE_CLASS);
-> +	BUILD_BUG_ON(GUC_VIDEOENHANCE_CLASS != VIDEO_ENHANCEMENT_CLASS);
-> +	GEM_BUG_ON(class > MAX_ENGINE_CLASS || class == OTHER_CLASS);
-> +
-> +	return class;
-> +}
-> +
-> +static inline u8 guc_class_to_engine_class(u8 guc_class)
-> +{
-> +	GEM_BUG_ON(guc_class > GUC_LAST_ENGINE_CLASS);
-> +	GEM_BUG_ON(guc_class == GUC_RESERVED_CLASS);
-> +
-> +	return guc_class;
-> +}
-> +
->  /* Work item for submitting workloads into work queue of GuC. */
->  struct guc_wq_item {
->  	u32 header;
-> -- 
-> 2.28.0
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIxLTA1LTI2IGF0IDIwOjM2ICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gSW1wbGVtZW50IFdhXzIyMDEyMzU4NTY1IHRvIGF2b2lkIHVuZGVycnVuIHdpdGggMzJi
+cHAgY3Vyc29yDQo+IGluIHNvbWUgaGlnaCBiYW5kd2lkdGggc2NlbmFyaW9zLiBUaGUgaW1wbGVt
+ZW50YXRpb24gY2FsbHMgZm9yDQo+IG92ZXJyaWRpbmcgdGhlIGFyYml0cmF0aW9uIHNsb3RzIGZv
+ciB0aGUgcGxhbmVzLg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
+ZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jdXJzb3IuYyAgIHwgIDQgKysrDQo+ICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgfCAgNSArKysrDQo+ICAuLi4vZHJt
+L2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgICAgfCAyNyArKysrKysrKysrKysr
+KysrKysrDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICAg
+fCAgOCArKysrKysNCj4gIDQgZmlsZXMgY2hhbmdlZCwgNDQgaW5zZXJ0aW9ucygrKQ0KPiANCj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3Vyc29yLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N1cnNvci5jDQo+IGluZGV4IDJh
+YjM4OWIzODY5NC4uOTY2ZTAyMDMzMWZiIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2N1cnNvci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfY3Vyc29yLmMNCj4gQEAgLTM4Myw2ICszODMsMTAgQEAgc3RhdGljIHUz
+MiBpOXh4X2N1cnNvcl9jdGwoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
+dGUsDQo+ICAJaWYgKHBsYW5lX3N0YXRlLT5ody5yb3RhdGlvbiAmIERSTV9NT0RFX1JPVEFURV8x
+ODApDQo+ICAJCWNudGwgfD0gTUNVUlNPUl9ST1RBVEVfMTgwOw0KPiAgDQo+ICsJLyogV2FfMjIw
+MTIzNTg1NjU6YWRscCAqLw0KPiArCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPT0gMTMpDQo+
+ICsJCWNudGwgfD0gTUNVUlNPUl9BUkJfU0xPVFMoMSk7DQo+ICsNCj4gIAlyZXR1cm4gY250bDsN
+Cj4gIH0NCj4gIA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXkuYw0KPiBpbmRleCBhMmYzZDI1NWE5MDYuLmUyM2RlYzhiMGFhYiAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTk3NSw2ICs5
+NzUsMTEgQEAgdm9pZCBpbnRlbF9lbmFibGVfcGlwZShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqbmV3X2NydGNfc3RhdGUpDQo+ICAJCS8qIEZJWE1FOiBhc3NlcnQgQ1BVIHBvcnQgY29u
+ZGl0aW9ucyBmb3IgU05CKyAqLw0KPiAgCX0NCj4gIA0KPiArCS8qIFdhXzIyMDEyMzU4NTY1OmFk
+bHAgKi8NCj4gKwlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID09IDEzKQ0KPiArCQlpbnRlbF9k
+ZV9ybXcoZGV2X3ByaXYsIFBJUEVfQVJCX0NUTChwaXBlKSwNCj4gKwkJCSAgICAgMCwgUElQRV9B
+UkJfVVNFX1BST0dfU0xPVFMpOw0KPiArDQo+ICAJcmVnID0gUElQRUNPTkYoY3B1X3RyYW5zY29k
+ZXIpOw0KPiAgCXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIHJlZyk7DQo+ICAJaWYgKHZh
+bCAmIFBJUEVDT05GX0VOQUJMRSkgew0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYw0KPiBpbmRleCA1OWUwMzJmMzY4N2EuLjY0MDM5
+ZjIxMzhjOCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xf
+dW5pdmVyc2FsX3BsYW5lLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9z
+a2xfdW5pdmVyc2FsX3BsYW5lLmMNCj4gQEAgLTg2Nyw2ICs4NjcsMjkgQEAgc3RhdGljIHUzMiBz
+a2xfcGxhbmVfY3RsX2NydGMoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
+dGUpDQo+ICAJcmV0dXJuIHBsYW5lX2N0bDsNCj4gIH0NCj4gIA0KPiArc3RhdGljIGludCBhZGxw
+X3BsYW5lX2N0bF9hcmJfc2xvdHMoY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFu
+ZV9zdGF0ZSkNCj4gK3sNCj4gKwljb25zdCBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiA9IHBs
+YW5lX3N0YXRlLT5ody5mYjsNCj4gKw0KPiArCWlmIChpbnRlbF9mb3JtYXRfaW5mb19pc195dXZf
+c2VtaXBsYW5hcihmYi0+Zm9ybWF0LCBmYi0+bW9kaWZpZXIpKSB7DQo+ICsJCXN3aXRjaCAoZmIt
+PmZvcm1hdC0+Y3BwWzBdKSB7DQo+ICsJCWNhc2UgMjoNCj4gKwkJCXJldHVybiBQTEFORV9DVExf
+QVJCX1NMT1RTKDEpOw0KPiArCQlkZWZhdWx0Og0KPiArCQkJcmV0dXJuIFBMQU5FX0NUTF9BUkJf
+U0xPVFMoMCk7DQo+ICsJCX0NCj4gKwl9IGVsc2Ugew0KPiArCQlzd2l0Y2ggKGZiLT5mb3JtYXQt
+PmNwcFswXSkgew0KPiArCQljYXNlIDg6DQo+ICsJCQlyZXR1cm4gUExBTkVfQ1RMX0FSQl9TTE9U
+UygzKTsNCj4gKwkJY2FzZSA0Og0KPiArCQkJcmV0dXJuIFBMQU5FX0NUTF9BUkJfU0xPVFMoMSk7
+DQo+ICsJCWRlZmF1bHQ6DQo+ICsJCQlyZXR1cm4gUExBTkVfQ1RMX0FSQl9TTE9UUygwKTsNCj4g
+KwkJfQ0KPiArCX0NCj4gK30NCj4gKw0KPiAgc3RhdGljIHUzMiBza2xfcGxhbmVfY3RsKGNvbnN0
+IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiAgCQkJIGNvbnN0IHN0cnVj
+dCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUpDQo+ICB7DQo+IEBAIC05MDMsNiArOTI2
+LDEwIEBAIHN0YXRpYyB1MzIgc2tsX3BsYW5lX2N0bChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19z
+dGF0ZSAqY3J0Y19zdGF0ZSwNCj4gIAllbHNlIGlmIChrZXktPmZsYWdzICYgSTkxNV9TRVRfQ09M
+T1JLRVlfU09VUkNFKQ0KPiAgCQlwbGFuZV9jdGwgfD0gUExBTkVfQ1RMX0tFWV9FTkFCTEVfU09V
+UkNFOw0KPiAgDQo+ICsJLyogV2FfMjIwMTIzNTg1NjU6YWRscCAqLw0KPiArCWlmIChESVNQTEFZ
+X1ZFUihkZXZfcHJpdikgPT0gMTMpDQo+ICsJCXBsYW5lX2N0bCB8PSBhZGxwX3BsYW5lX2N0bF9h
+cmJfc2xvdHMocGxhbmVfc3RhdGUpOw0KPiArDQo+ICAJcmV0dXJuIHBsYW5lX2N0bDsNCj4gIH0N
+Cj4gIA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gaW5kZXggZTRkNjMzNmRhYjcxLi40MmY3
+OTA5ZmM4NDIgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgN
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiBAQCAtNjE0Niw2ICs2
+MTQ2LDEwIEBAIGVudW0gew0KPiAgI2RlZmluZSAgX1BJUEVCR0NNQVggICAgICAgICAgIDB4NzEw
+MTANCj4gICNkZWZpbmUgUElQRUdDTUFYKHBpcGUsIGkpICAgICBfTU1JT19QSVBFMihwaXBlLCBf
+UElQRUFHQ01BWCArIChpKSAqIDQpDQo+ICANCj4gKyNkZWZpbmUgX1BJUEVfQVJCX0NUTF9BCQkJ
+MHg3MDAyOCAvKiBpY2wrICovDQo+ICsjZGVmaW5lIFBJUEVfQVJCX0NUTChwaXBlKQkJX01NSU9f
+UElQRTIocGlwZSwgX1BJUEVfQVJCX0NUTF9BKQ0KPiArI2RlZmluZSAgIFBJUEVfQVJCX1VTRV9Q
+Uk9HX1NMT1RTCVJFR19CSVQoMTMpDQo+ICsNCj4gICNkZWZpbmUgX1BJUEVfTUlTQ19BCQkJMHg3
+MDAzMA0KPiAgI2RlZmluZSBfUElQRV9NSVNDX0IJCQkweDcxMDMwDQo+ICAjZGVmaW5lICAgUElQ
+RU1JU0NfWVVWNDIwX0VOQUJMRQkoMSA8PCAyNykgLyogZ2xrKyAqLw0KPiBAQCAtNjYxMCw2ICs2
+NjE0LDggQEAgZW51bSB7DQo+ICAjZGVmaW5lICAgTUNVUlNPUl9NT0RFXzEyOF9BUkdCX0FYICgo
+MSA8PCA1KSB8IE1DVVJTT1JfTU9ERV8xMjhfMzJCX0FYKQ0KPiAgI2RlZmluZSAgIE1DVVJTT1Jf
+TU9ERV8yNTZfQVJHQl9BWCAoKDEgPDwgNSkgfCBNQ1VSU09SX01PREVfMjU2XzMyQl9BWCkNCj4g
+ICNkZWZpbmUgICBNQ1VSU09SX01PREVfNjRfQVJHQl9BWCAoKDEgPDwgNSkgfCBNQ1VSU09SX01P
+REVfNjRfMzJCX0FYKQ0KPiArI2RlZmluZSAgIE1DVVJTT1JfQVJCX1NMT1RTX01BU0sJUkVHX0dF
+Tk1BU0soMzAsIDI4KSAvKiBpY2wrICovDQo+ICsjZGVmaW5lICAgTUNVUlNPUl9BUkJfU0xPVFMo
+eCkJCVJFR19GSUVMRF9QUkVQKE1DVVJTT1JfQVJCX1NMT1RTX01BU0ssICh4KSkgLyogaWNsKyAq
+Lw0KPiAgI2RlZmluZSAgIE1DVVJTT1JfUElQRV9TRUxFQ1RfTUFTSwkoMHgzIDw8IDI4KQ0KPiAg
+I2RlZmluZSAgIE1DVVJTT1JfUElQRV9TRUxFQ1RfU0hJRlQJMjgNCj4gICNkZWZpbmUgICBNQ1VS
+U09SX1BJUEVfU0VMRUNUKHBpcGUpCSgocGlwZSkgPDwgMjgpDQo+IEBAIC03MDYxLDYgKzcwNjcs
+OCBAQCBlbnVtIHsNCj4gICNkZWZpbmUgX1BMQU5FX0NUTF8yX0EJCQkJMHg3MDI4MA0KPiAgI2Rl
+ZmluZSBfUExBTkVfQ1RMXzNfQQkJCQkweDcwMzgwDQo+ICAjZGVmaW5lICAgUExBTkVfQ1RMX0VO
+QUJMRQkJCSgxIDw8IDMxKQ0KPiArI2RlZmluZSAgIFBMQU5FX0NUTF9BUkJfU0xPVFNfTUFTSwkJ
+UkVHX0dFTk1BU0soMzAsIDI4KSAvKiBpY2wrICovDQo+ICsjZGVmaW5lICAgUExBTkVfQ1RMX0FS
+Ql9TTE9UUyh4KQkJUkVHX0ZJRUxEX1BSRVAoUExBTkVfQ1RMX0FSQl9TTE9UU19NQVNLLCAoeCkp
+IC8qIGljbCsgKi8NCj4gICNkZWZpbmUgICBQTEFORV9DVExfUElQRV9HQU1NQV9FTkFCTEUJCSgx
+IDw8IDMwKSAgIC8qIFByZS1HTEsgKi8NCj4gICNkZWZpbmUgICBQTEFORV9DVExfWVVWX1JBTkdF
+X0NPUlJFQ1RJT05fRElTQUJMRQkoMSA8PCAyOCkNCj4gIC8qDQoNCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
