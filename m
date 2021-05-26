@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9A3D392285
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 00:09:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B6B392286
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 00:09:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 230386E5D5;
-	Wed, 26 May 2021 22:09:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D97F26E9E8;
+	Wed, 26 May 2021 22:09:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05DFB6E8A9
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 22:08:58 +0000 (UTC)
-IronPort-SDR: TwMwhnGC/vnZ8OMotmnY3HaiDpMV6AtulvJ6hulkeml7Emy6chNbC/eblRa7K8H90MUxC+RPWu
- fD3XtWVcU6zw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="288177035"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="288177035"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D18F6E9E8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 22:09:08 +0000 (UTC)
+IronPort-SDR: HRb/E+i6Yhsxdh7Bjo58Xg8t2qZHN4VdYRewCMxayD8yUf2f+Bdi7J3VxYlO+XnjTxzEw40QxD
+ M5GYDC/1mCKw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="266484647"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="266484647"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 15:08:58 -0700
-IronPort-SDR: Zn7ACF6SA/M6d8HxPNlV2z6/hsJn/S7BVWSxXkTA/h4dj16havfKQgHcnxVC1O4EuG49w3XHnO
- qzsJzKefgABQ==
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 15:08:59 -0700
+IronPort-SDR: Nf0ynn4pXcfiliFErVlyhqsxAvnITcW1AYbH5GeRDFxDOpoS53LvJVlWTEotoSV9wHV+BnnQh/
+ sbJ78Qoqoj8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="633689149"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="633689158"
 Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by fmsmga005.fm.intel.com with ESMTP; 26 May 2021 15:08:58 -0700
+ by fmsmga005.fm.intel.com with ESMTP; 26 May 2021 15:08:59 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 May 2021 15:08:52 -0700
-Message-Id: <20210526220853.4550-7-anusha.srivatsa@intel.com>
+Date: Wed, 26 May 2021 15:08:53 -0700
+Message-Id: <20210526220853.4550-8-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20210526220853.4550-1-anusha.srivatsa@intel.com>
 References: <20210526220853.4550-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/7] drm/i915/adl_p: Pipe B DMC Support
+Subject: [Intel-gfx] [PATCH 7/7] drm/i915/adl_p: Load DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,41 +52,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ADLP requires us to load both Pipe A and Pipe B.
-Plug Pipe B loading support.
+Load DMC v2.06 on ADLP. The release notes mention that
+this version enables few power savings features.
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 2 ++
- drivers/gpu/drm/i915/display/intel_dmc.h             | 1 +
- 2 files changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 2a1c39a0e56e..db38891a9ef0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -546,6 +546,8 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
- 	seq_printf(m, "path: %s\n", dmc->fw_path);
- 	seq_printf(m, "Pipe A fw support: %s\n", yesno(INTEL_GEN(dev_priv) >= 12));
- 	seq_printf(m, "Pipe A fw loaded: %s\n", yesno(dmc->dmc_info[DMC_FW_PIPEA].payload));
-+	seq_printf(m, "Pipe B fw support: %s\n", yesno(IS_ALDERLAKE_P(dev_priv)));
-+	seq_printf(m, "Pipe B fw loaded: %s\n", yesno(dmc->dmc_info[DMC_FW_PIPEB].payload));
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index a111537f2ba8..79856dbec162 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -45,6 +45,10 @@
  
- 	if (!intel_dmc_has_payload(dev_priv))
- 		goto out;
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index 007a284b0ef0..c3c00ff03869 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -19,6 +19,7 @@ struct drm_i915_private;
- enum {
- 	DMC_FW_MAIN = 0,
- 	DMC_FW_PIPEA,
-+	DMC_FW_PIPEB,
- 	DMC_FW_MAX
- };
+ #define GEN12_DMC_MAX_FW_SIZE		ICL_DMC_MAX_FW_SIZE
  
++#define ADLP_DMC_PATH			"i915/adlp_dmc_ver2_10.bin"
++#define ADLP_DMC_VERSION_REQUIRED	DMC_VERSION(2, 10)
++MODULE_FIRMWARE(ADLP_DMC_PATH);
++
+ #define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
+ #define ADLS_DMC_VERSION_REQUIRED	DMC_VERSION(2, 1)
+ MODULE_FIRMWARE(ADLS_DMC_PATH);
+@@ -720,7 +724,11 @@ void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
+ 	 */
+ 	intel_dmc_runtime_pm_get(dev_priv);
+ 
+-	if (IS_ALDERLAKE_S(dev_priv)) {
++	if (IS_ALDERLAKE_P(dev_priv)) {
++		dmc->fw_path = ADLP_DMC_PATH;
++		dmc->required_version = ADLP_DMC_VERSION_REQUIRED;
++		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
++	} else if (IS_ALDERLAKE_S(dev_priv)) {
+ 		dmc->fw_path = ADLS_DMC_PATH;
+ 		dmc->required_version = ADLS_DMC_VERSION_REQUIRED;
+ 		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
 -- 
 2.25.0
 
