@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C9D3914CF
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 12:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2C233914DA
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 12:26:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57D0D6EC62;
-	Wed, 26 May 2021 10:22:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 962DB6EC64;
+	Wed, 26 May 2021 10:26:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E7B986EC60;
- Wed, 26 May 2021 10:22:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DF6EAA47DF;
- Wed, 26 May 2021 10:22:09 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06F9E6EC64;
+ Wed, 26 May 2021 10:26:34 +0000 (UTC)
+IronPort-SDR: 85Hc6fJlXXBYhMXyUfrGk1RP4Ee5EeFT7PxjhMOKPK4aQ1lFBWaXjvwbB3xgvaY4QSntnI3jmr
+ pb4vRLPk9vVQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="288009830"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="288009830"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 03:26:34 -0700
+IronPort-SDR: jMm20r4BS1HXjpDK0FSFshz5AHi2TAKNfxyaB8jWfv1sogFtEHNUtpx+R1ApppaiuUMKZX1m6u
+ lk+W3GWiVxxQ==
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="479875002"
+Received: from wardmich-mobl.ger.corp.intel.com (HELO [10.213.209.181])
+ ([10.213.209.181])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 03:26:32 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <20210506191451.77768-50-matthew.brost@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9e3af765-4baa-25aa-f1d3-5d8f24e8feed@linux.intel.com>
+Date: Wed, 26 May 2021 11:26:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nischal Varide" <nischal.varide@intel.com>
-Date: Wed, 26 May 2021 10:22:09 -0000
-Message-ID: <162202452991.13406.15406653666219037777@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210526020054.27513-1-nischal.varide@intel.com>
-In-Reply-To: <20210526020054.27513-1-nischal.varide@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/xelpd=3A_Enabling_dithering_after_the_CC1?=
+In-Reply-To: <20210506191451.77768-50-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC PATCH 49/97] drm/i915/guc: Disable engine
+ barriers with GuC during unpin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,35 +53,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/xelpd: Enabling dithering after the CC1
-URL   : https://patchwork.freedesktop.org/series/90582/
-State : warning
+On 06/05/2021 20:14, Matthew Brost wrote:
+> Disable engine barriers for unpinning with GuC. This feature isn't
+> needed with the GuC as it disables context scheduling before unpinning
 
-== Summary ==
+Just isn't needed or causes a problem somehow?
 
-$ dim checkpatch origin/drm-tip
-6abe80f275a2 drm/i915/xelpd: Enabling dithering after the CC1
--:27: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'crtc_state->pipe_bpp == 36'
-#27: FILE: drivers/gpu/drm/i915/display/intel_color.c:1614:
-+		if (!crtc_state->dither_force_disable &&
-+		    (crtc_state->pipe_bpp == 36))
+> which guarantees the HW will not reference the context. Hence it is
+> not necessary to defer unpinning until a kernel context request
+> completes on each engine in the context engine mask.
 
--:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'crtc_state->pipe_bpp != 36'
-#60: FILE: drivers/gpu/drm/i915/display/intel_display.c:5749:
-+	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
+Hm context engine mask does not come across as something used in this patch.
 
-total: 0 errors, 0 warnings, 2 checks, 55 lines checked
+Engine PM works fine with this change - i915 does not turn of the 
+engine/gt too early? I mean context unpin is on retire and the guc 
+disable of context scheduling is sync or async? Even when the kernel 
+context request gets emitted on engine pm put there is no race?
 
+> 
+> Cc: John Harrison <john.c.harrison@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_context.c    |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_context.h    |  1 +
+>   drivers/gpu/drm/i915/gt/selftest_context.c | 10 ++++++++++
+>   drivers/gpu/drm/i915/i915_active.c         |  3 +++
+>   4 files changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 1499b8aace2a..7f97753ab164 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -80,7 +80,7 @@ static int intel_context_active_acquire(struct intel_context *ce)
+>   
+>   	__i915_active_acquire(&ce->active);
+>   
+> -	if (intel_context_is_barrier(ce))
+> +	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine))
+>   		return 0;
+>   
+>   	/* Preallocate tracking nodes */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index 92ecbab8c1cd..9b211ca5ecc7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -16,6 +16,7 @@
+>   #include "intel_engine_types.h"
+>   #include "intel_ring_types.h"
+>   #include "intel_timeline_types.h"
+> +#include "uc/intel_guc_submission.h"
+>   
+>   #define CE_TRACE(ce, fmt, ...) do {					\
+>   	const struct intel_context *ce__ = (ce);			\
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+> index 26685b927169..fa7b99a671dd 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+> @@ -209,7 +209,13 @@ static int __live_active_context(struct intel_engine_cs *engine)
+>   	 * This test makes sure that the context is kept alive until a
+>   	 * subsequent idle-barrier (emitted when the engine wakeref hits 0
+>   	 * with no more outstanding requests).
+> +	 *
+> +	 * In GuC submission mode we don't use idle barriers and we instead
+> +	 * get a message from the GuC to signal that it is safe to unpin the
+> +	 * context from memory.
+>   	 */
+> +	if (intel_engine_uses_guc(engine))
+> +		return 0;
+>   
+>   	if (intel_engine_pm_is_awake(engine)) {
+>   		pr_err("%s is awake before starting %s!\n",
+> @@ -357,7 +363,11 @@ static int __live_remote_context(struct intel_engine_cs *engine)
+>   	 * on the context image remotely (intel_context_prepare_remote_request),
+>   	 * which inserts foreign fences into intel_context.active, does not
+>   	 * clobber the idle-barrier.
+> +	 *
+> +	 * In GuC submission mode we don't use idle barriers.
+>   	 */
+> +	if (intel_engine_uses_guc(engine))
+> +		return 0;
+>   
+>   	if (intel_engine_pm_is_awake(engine)) {
+>   		pr_err("%s is awake before starting %s!\n",
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index b1aa1c482c32..9a264898bb91 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -968,6 +968,9 @@ void i915_active_acquire_barrier(struct i915_active *ref)
+>   
+>   	GEM_BUG_ON(i915_active_is_idle(ref));
+>   
+> +	if (llist_empty(&ref->preallocated_barriers))
+> +		return;
 
+This hunk is not needed since the effectively same check is few lines below.
+
+Regards,
+
+Tvrtko
+
+> +
+>   	/*
+>   	 * Transfer the list of preallocated barriers into the
+>   	 * i915_active rbtree, but only as proto-nodes. They will be
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
