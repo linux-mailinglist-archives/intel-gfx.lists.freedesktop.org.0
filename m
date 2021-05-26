@@ -2,30 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3AA3916C1
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 13:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F9A3917B8
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 14:46:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA4176ECBC;
-	Wed, 26 May 2021 11:55:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E401A6E4A5;
+	Wed, 26 May 2021 12:46:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C36AA6ECBB;
- Wed, 26 May 2021 11:55:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BC87CA47DB;
- Wed, 26 May 2021 11:55:09 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44FE96E1B4;
+ Wed, 26 May 2021 12:13:34 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7DB6A613D6;
+ Wed, 26 May 2021 12:13:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1622031214;
+ bh=6cgAAAry3KXjHYICFlfgug7HP7MtfiezqAbh5vyjbAk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=dD4raOXl4m/1dmUYxCXd+9Zhh/XbrtQC52Qny8ZwVBaqmrNGpiCc5ZIU1b4WjGm8H
+ uJa3jIZybN6M6kTMpAfuccsLT4/wRQbg2MVSjmE1yL01mC3lcM16NVvL5naGjFRQ57
+ RUc8/qmG6+LKY4mt6jNuAHGXfU60PflHdIRn81RXVX/L8quJSpzl4wYs9fdYRMYSyz
+ TDHUTCxqGOaTMeMxI6d2iUlniRYHOiu06+32s75wchffQ8s3cbbJwvz7Jm6fWP5KI+
+ RznUS6G8WImqfu6sIHm02R4cmQSm1/c2dk4BLfXSL89hrwovsmQduosVw5UITnC7eb
+ z+DGv0xJWhG6g==
+Date: Wed, 26 May 2021 13:13:23 +0100
+From: Will Deacon <will@kernel.org>
+To: Claire Chang <tientzu@chromium.org>
+Message-ID: <20210526121322.GA19313@willie-the-truck>
+References: <20210518064215.2856977-1-tientzu@chromium.org>
+ <20210518064215.2856977-15-tientzu@chromium.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nischal Varide" <nischal.varide@intel.com>
-Date: Wed, 26 May 2021 11:55:09 -0000
-Message-ID: <162203010974.13404.11899953235473186762@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210526020611.27572-1-nischal.varide@intel.com>
-In-Reply-To: <20210526020611.27572-1-nischal.varide@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/xelpd=3A_Enabling_dithering_after_the_CC1?=
+Content-Disposition: inline
+In-Reply-To: <20210518064215.2856977-15-tientzu@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Wed, 26 May 2021 12:46:43 +0000
+Subject: Re: [Intel-gfx] [PATCH v7 14/15] dt-bindings: of: Add restricted
+ DMA pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,35 +49,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ jxgao@google.com, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+ airlied@linux.ie, Dan Williams <dan.j.williams@intel.com>,
+ linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
+ bhelgaas@google.com, boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Claire,
 
-Series: drm/i915/xelpd: Enabling dithering after the CC1
-URL   : https://patchwork.freedesktop.org/series/90583/
-State : warning
+On Tue, May 18, 2021 at 02:42:14PM +0800, Claire Chang wrote:
+> Introduce the new compatible string, restricted-dma-pool, for restricted
+> DMA. One can specify the address and length of the restricted DMA memory
+> region by restricted-dma-pool in the reserved-memory node.
+> 
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> ---
+>  .../reserved-memory/reserved-memory.txt       | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> index e8d3096d922c..284aea659015 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> @@ -51,6 +51,23 @@ compatible (optional) - standard definition
+>            used as a shared pool of DMA buffers for a set of devices. It can
+>            be used by an operating system to instantiate the necessary pool
+>            management subsystem if necessary.
+> +        - restricted-dma-pool: This indicates a region of memory meant to be
+> +          used as a pool of restricted DMA buffers for a set of devices. The
+> +          memory region would be the only region accessible to those devices.
+> +          When using this, the no-map and reusable properties must not be set,
+> +          so the operating system can create a virtual mapping that will be used
+> +          for synchronization. The main purpose for restricted DMA is to
+> +          mitigate the lack of DMA access control on systems without an IOMMU,
+> +          which could result in the DMA accessing the system memory at
+> +          unexpected times and/or unexpected addresses, possibly leading to data
+> +          leakage or corruption. The feature on its own provides a basic level
+> +          of protection against the DMA overwriting buffer contents at
+> +          unexpected times. However, to protect against general data leakage and
+> +          system memory corruption, the system needs to provide way to lock down
+> +          the memory access, e.g., MPU. Note that since coherent allocation
+> +          needs remapping, one must set up another device coherent pool by
+> +          shared-dma-pool and use dma_alloc_from_dev_coherent instead for atomic
+> +          coherent allocation.
+>          - vendor specific string in the form <vendor>,[<device>-]<usage>
+>  no-map (optional) - empty property
+>      - Indicates the operating system must not create a virtual mapping
+> @@ -120,6 +137,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+>  			compatible = "acme,multimedia-memory";
+>  			reg = <0x77000000 0x4000000>;
+>  		};
+> +
+> +		restricted_dma_mem_reserved: restricted_dma_mem_reserved {
+> +			compatible = "restricted-dma-pool";
+> +			reg = <0x50000000 0x400000>;
+> +		};
 
-== Summary ==
+nit: You need to update the old text that states "This example defines 3
+contiguous regions ...".
 
-$ dim checkpatch origin/drm-tip
-a7d93728c6c9 drm/i915/xelpd: Enabling dithering after the CC1
--:27: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'crtc_state->pipe_bpp == 36'
-#27: FILE: drivers/gpu/drm/i915/display/intel_color.c:1614:
-+		if (!crtc_state->dither_force_disable &&
-+		    (crtc_state->pipe_bpp == 36))
+>  	};
+>  
+>  	/* ... */
+> @@ -138,4 +160,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+>  		memory-region = <&multimedia_reserved>;
+>  		/* ... */
+>  	};
+> +
+> +	pcie_device: pcie_device@0,0 {
+> +		memory-region = <&restricted_dma_mem_reserved>;
+> +		/* ... */
+> +	};
 
--:60: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'crtc_state->pipe_bpp != 36'
-#60: FILE: drivers/gpu/drm/i915/display/intel_display.c:5749:
-+	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
+I still don't understand how this works for individual PCIe devices -- how
+is dev->of_node set to point at the node you have above?
 
-total: 0 errors, 0 warnings, 2 checks, 55 lines checked
+I tried adding the memory-region to the host controller instead, and then
+I see it crop up in dmesg:
 
+  | pci-host-generic 40000000.pci: assigned reserved memory node restricted_dma_mem_reserved
 
+but none of the actual PCI devices end up with 'dma_io_tlb_mem' set, and
+so the restricted DMA area is not used. In fact, swiotlb isn't used at all.
+
+What am I missing to make this work with PCIe devices?
+
+Thanks,
+
+Will
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
