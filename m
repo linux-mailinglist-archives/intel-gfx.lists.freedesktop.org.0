@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605DD39228A
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 00:09:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A4839228B
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 00:09:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4B146EDE0;
-	Wed, 26 May 2021 22:09:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2BC6EDE4;
+	Wed, 26 May 2021 22:09:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2B796E8A9
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 22:09:15 +0000 (UTC)
-IronPort-SDR: IGAfnfIjyPoOfgCgSOH0qQxwI3ErLaYJ5bvW5INmP8TSEL3y0W+8hEjvkwUlNg86Oxgzk/Jy53
- HTLqF4zrBQZg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="202600434"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="202600434"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64B0A6EDD5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 22:09:16 +0000 (UTC)
+IronPort-SDR: Ay7ZzSSiVUFCfSRFkjFg8HSRKgeF+9dTTgeI+aUT/egzyPKmqaX4pptRndxiauDTEDbwPfRs0E
+ StRQux7jCM6w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="202600436"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="202600436"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 15:08:56 -0700
-IronPort-SDR: W1n/N3CsY0ORST2EjW0neoPqI4nXBgi60umPkGqycAmrbK9GCMQzcdgWj1zxc6PKONgW1dj1si
- ZlklFQ7tPmsQ==
+ 26 May 2021 15:08:57 -0700
+IronPort-SDR: AO1SpXM1MAwNBtSD+Df7nrQJAjjeetTkylkL74KrXRR/CYFFRLGjmSQI42ps3CAwMrHafzINks
+ JqX3WGyZ+eAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="633689135"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="633689140"
 Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by fmsmga005.fm.intel.com with ESMTP; 26 May 2021 15:08:56 -0700
+ by fmsmga005.fm.intel.com with ESMTP; 26 May 2021 15:08:57 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 May 2021 15:08:49 -0700
-Message-Id: <20210526220853.4550-4-anusha.srivatsa@intel.com>
+Date: Wed, 26 May 2021 15:08:50 -0700
+Message-Id: <20210526220853.4550-5-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20210526220853.4550-1-anusha.srivatsa@intel.com>
 References: <20210526220853.4550-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/7] drm/i915/dmc: Move struct intel_dmc to
- intel_dmc.h
+Subject: [Intel-gfx] [PATCH 4/7] drm/i915/dmc: Introduce DMC_FW_MAIN
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,59 +46,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Souza@freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TW92ZSBzdHJ1Y3QgaW50ZWxfZG1jIGZyb20gaTkxNV9kcnYuaCB0byBpbnRlbF9kbWMuaC4KCnYy
-OiBBZGQgaW5jbHVkZXMgYWxvbmcgd2l0aCBtb3ZpbmcgdGhlIHN0cnVjdC4KClJldmlld2VkLWJ5
-OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KUmV2aWV3ZWQt
-Ynk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpTaWduZWQtb2Zm
-LWJ5OiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuaCB8IDIxICsrKysrKysrKysrKysr
-KysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICB8IDE4ICst
-LS0tLS0tLS0tLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAyMiBpbnNlcnRpb25zKCspLCAxNyBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RtYy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuaAppbmRl
-eCA2NDgxNmY0YTcxYjYuLjRjMjJmNTY3YjYxYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RtYy5oCkBAIC02LDEyICs2LDMzIEBACiAjaWZuZGVmIF9fSU5URUxfRE1DX0hf
-XwogI2RlZmluZSBfX0lOVEVMX0RNQ19IX18KIAorI2luY2x1ZGUgImk5MTVfcmVnLmgiCisjaW5j
-bHVkZSAiaW50ZWxfd2FrZXJlZi5oIgorI2luY2x1ZGUgPGxpbnV4L3dvcmtxdWV1ZS5oPgorCiBz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZTsKIAogI2RlZmluZSBETUNfVkVSU0lPTihtYWpvciwgbWlu
-b3IpCSgobWFqb3IpIDw8IDE2IHwgKG1pbm9yKSkKICNkZWZpbmUgRE1DX1ZFUlNJT05fTUFKT1Io
-dmVyc2lvbikJKCh2ZXJzaW9uKSA+PiAxNikKICNkZWZpbmUgRE1DX1ZFUlNJT05fTUlOT1IodmVy
-c2lvbikJKCh2ZXJzaW9uKSAmIDB4ZmZmZikKIAorc3RydWN0IGludGVsX2RtYyB7CisJc3RydWN0
-IHdvcmtfc3RydWN0IHdvcms7CisJY29uc3QgY2hhciAqZndfcGF0aDsKKwl1MzIgcmVxdWlyZWRf
-dmVyc2lvbjsKKwl1MzIgbWF4X2Z3X3NpemU7IC8qIGJ5dGVzICovCisJdTMyICpkbWNfcGF5bG9h
-ZDsKKwl1MzIgZG1jX2Z3X3NpemU7IC8qIGR3b3JkcyAqLworCXUzMiB2ZXJzaW9uOworCXUzMiBt
-bWlvX2NvdW50OworCWk5MTVfcmVnX3QgbW1pb2FkZHJbMjBdOworCXUzMiBtbWlvZGF0YVsyMF07
-CisJdTMyIGRjX3N0YXRlOworCXUzMiB0YXJnZXRfZGNfc3RhdGU7CisJdTMyIGFsbG93ZWRfZGNf
-bWFzazsKKwlpbnRlbF93YWtlcmVmX3Qgd2FrZXJlZjsKK307CisKIHZvaWQgaW50ZWxfZG1jX3Vj
-b2RlX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpOwogdm9pZCBpbnRlbF9kbWNf
-bG9hZF9wcm9ncmFtKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KTsKIHZvaWQgaW50ZWxf
-ZG1jX3Vjb2RlX2Zpbmkoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpOwpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZHJ2LmgKaW5kZXggMGY2ZDI3ZGE2OWFjLi4wYzYzMDFiMjhjMzcgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9kcnYuaApAQCAtNjcsNiArNjcsNyBAQAogI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxf
-Ymlvcy5oIgogI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfZGlzcGxheS5oIgogI2luY2x1ZGUgImRp
-c3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5oIgorI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfZG1j
-LmgiCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9kcGxsX21nci5oIgogI2luY2x1ZGUgImRpc3Bs
-YXkvaW50ZWxfZHNiLmgiCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9mcm9udGJ1ZmZlci5oIgpA
-QCAtMzI4LDIzICszMjksNiBAQCBzdHJ1Y3QgZHJtX2k5MTVfZGlzcGxheV9mdW5jcyB7CiAJdm9p
-ZCAoKnJlYWRfbHV0cykoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpOwogfTsK
-IAotc3RydWN0IGludGVsX2RtYyB7Ci0Jc3RydWN0IHdvcmtfc3RydWN0IHdvcms7Ci0JY29uc3Qg
-Y2hhciAqZndfcGF0aDsKLQl1MzIgcmVxdWlyZWRfdmVyc2lvbjsKLQl1MzIgbWF4X2Z3X3NpemU7
-IC8qIGJ5dGVzICovCi0JdTMyICpkbWNfcGF5bG9hZDsKLQl1MzIgZG1jX2Z3X3NpemU7IC8qIGR3
-b3JkcyAqLwotCXUzMiB2ZXJzaW9uOwotCXUzMiBtbWlvX2NvdW50OwotCWk5MTVfcmVnX3QgbW1p
-b2FkZHJbMjBdOwotCXUzMiBtbWlvZGF0YVsyMF07Ci0JdTMyIGRjX3N0YXRlOwotCXUzMiB0YXJn
-ZXRfZGNfc3RhdGU7Ci0JdTMyIGFsbG93ZWRfZGNfbWFzazsKLQlpbnRlbF93YWtlcmVmX3Qgd2Fr
-ZXJlZjsKLX07Ci0KIGVudW0gaTkxNV9jYWNoZV9sZXZlbCB7CiAJSTkxNV9DQUNIRV9OT05FID0g
-MCwKIAlJOTE1X0NBQ0hFX0xMQywgLyogYWxzbyB1c2VkIGZvciBzbm9vcGFibGUgbWVtb3J5IG9u
-IG5vbi1MTEMgKi8KLS0gCjIuMjUuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+This is a prep patch for Pipe DMC plugging.
+
+Add dmc_info struct in intel_dmc to have all common fields
+shared between all DMC's in the package.
+Add DMC_FW_MAIN(dmc_id 0) to refer to the blob.
+
+v2: Remove dmc_offset and start_mmioaddr from dmc_info struct (Jose)
+
+Cc: Souza, Jose <jose.souza@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 44 +++++++++++-------------
+ drivers/gpu/drm/i915/display/intel_dmc.h | 18 +++++++---
+ 2 files changed, 33 insertions(+), 29 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 97308da28059..b78cb44731fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -239,7 +239,7 @@ struct stepping_info {
+ 
+ bool intel_dmc_has_payload(struct drm_i915_private *i915)
+ {
+-	return i915->dmc.dmc_payload;
++	return i915->dmc.dmc_info[DMC_FW_MAIN].payload;
+ }
+ 
+ static const struct stepping_info skl_stepping_info[] = {
+@@ -316,7 +316,8 @@ static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+  */
+ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+ {
+-	u32 *payload = dev_priv->dmc.dmc_payload;
++	struct intel_dmc *dmc = &dev_priv->dmc;
++	struct dmc_fw_info *dmc_info = &dmc->dmc_info[DMC_FW_MAIN];
+ 	u32 i, fw_size;
+ 
+ 	if (!HAS_DMC(dev_priv)) {
+@@ -325,26 +326,26 @@ void intel_dmc_load_program(struct drm_i915_private *dev_priv)
+ 		return;
+ 	}
+ 
+-	if (!intel_dmc_has_payload(dev_priv)) {
++	if (!dev_priv->dmc.dmc_info[DMC_FW_MAIN].payload) {
+ 		drm_err(&dev_priv->drm,
+ 			"Tried to program CSR with empty payload\n");
+ 		return;
+ 	}
+ 
+-	fw_size = dev_priv->dmc.dmc_fw_size;
++	fw_size = dmc_info->dmc_fw_size;
+ 	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
+ 
+ 	preempt_disable();
+ 
+ 	for (i = 0; i < fw_size; i++)
+ 		intel_uncore_write_fw(&dev_priv->uncore, DMC_PROGRAM(i),
+-				      payload[i]);
++				      dmc_info->payload[i]);
+ 
+ 	preempt_enable();
+ 
+-	for (i = 0; i < dev_priv->dmc.mmio_count; i++) {
+-		intel_de_write(dev_priv, dev_priv->dmc.mmioaddr[i],
+-			       dev_priv->dmc.mmiodata[i]);
++	for (i = 0; i < dmc_info->mmio_count; i++) {
++		intel_de_write(dev_priv, dmc_info->mmioaddr[i],
++			       dmc_info->mmiodata[i]);
+ 	}
+ 
+ 	dev_priv->dmc.dc_state = 0;
+@@ -401,13 +402,14 @@ static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
+ 			       size_t rem_size)
+ {
+ 	struct drm_i915_private *i915 = container_of(dmc, typeof(*i915), dmc);
++	struct dmc_fw_info *dmc_info = &dmc->dmc_info[DMC_FW_MAIN];
+ 	unsigned int header_len_bytes, dmc_header_size, payload_size, i;
+ 	const u32 *mmioaddr, *mmiodata;
+ 	u32 mmio_count, mmio_count_max;
+ 	u8 *payload;
+ 
+-	BUILD_BUG_ON(ARRAY_SIZE(dmc->mmioaddr) < DMC_V3_MAX_MMIO_COUNT ||
+-		     ARRAY_SIZE(dmc->mmioaddr) < DMC_V1_MAX_MMIO_COUNT);
++	BUILD_BUG_ON(ARRAY_SIZE(dmc_info->mmioaddr) < DMC_V3_MAX_MMIO_COUNT ||
++		     ARRAY_SIZE(dmc_info->mmioaddr) < DMC_V1_MAX_MMIO_COUNT);
+ 
+ 	/*
+ 	 * Check if we can access common fields, we will checkc again below
+@@ -463,16 +465,10 @@ static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
+ 	}
+ 
+ 	for (i = 0; i < mmio_count; i++) {
+-		if (mmioaddr[i] < DMC_MMIO_START_RANGE ||
+-		    mmioaddr[i] > DMC_MMIO_END_RANGE) {
+-			drm_err(&i915->drm, "DMC firmware has wrong mmio address 0x%x\n",
+-				mmioaddr[i]);
+-			return 0;
+-		}
+-		dmc->mmioaddr[i] = _MMIO(mmioaddr[i]);
+-		dmc->mmiodata[i] = mmiodata[i];
++		dmc_info->mmioaddr[i] = _MMIO(mmioaddr[i]);
++		dmc_info->mmiodata[i] = mmiodata[i];
+ 	}
+-	dmc->mmio_count = mmio_count;
++	dmc_info->mmio_count = mmio_count;
+ 
+ 	rem_size -= header_len_bytes;
+ 
+@@ -485,14 +481,14 @@ static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
+ 		drm_err(&i915->drm, "DMC FW too big (%u bytes)\n", payload_size);
+ 		return 0;
+ 	}
+-	dmc->dmc_fw_size = dmc_header->fw_size;
++	dmc_info->dmc_fw_size = dmc_header->fw_size;
+ 
+-	dmc->dmc_payload = kmalloc(payload_size, GFP_KERNEL);
+-	if (!dmc->dmc_payload)
++	dmc_info->payload = kmalloc(payload_size, GFP_KERNEL);
++	if (!dmc_info->payload)
+ 		return 0;
+ 
+ 	payload = (u8 *)(dmc_header) + header_len_bytes;
+-	memcpy(dmc->dmc_payload, payload, payload_size);
++	memcpy(dmc_info->payload, payload, payload_size);
+ 
+ 	return header_len_bytes + payload_size;
+ 
+@@ -827,5 +823,5 @@ void intel_dmc_ucode_fini(struct drm_i915_private *dev_priv)
+ 	intel_dmc_ucode_suspend(dev_priv);
+ 	drm_WARN_ON(&dev_priv->drm, dev_priv->dmc.wakeref);
+ 
+-	kfree(dev_priv->dmc.dmc_payload);
++	kfree(dev_priv->dmc.dmc_info[DMC_FW_MAIN].payload);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+index 4c22f567b61b..b872f3a4fd03 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+@@ -16,17 +16,25 @@ struct drm_i915_private;
+ #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+ #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+ 
++enum {
++	DMC_FW_MAIN = 0,
++	DMC_FW_MAX
++};
++
+ struct intel_dmc {
+ 	struct work_struct work;
+ 	const char *fw_path;
+ 	u32 required_version;
+ 	u32 max_fw_size; /* bytes */
+-	u32 *dmc_payload;
+-	u32 dmc_fw_size; /* dwords */
+ 	u32 version;
+-	u32 mmio_count;
+-	i915_reg_t mmioaddr[20];
+-	u32 mmiodata[20];
++	struct dmc_fw_info {
++		u32 mmio_count;
++		i915_reg_t mmioaddr[20];
++		u32 mmiodata[20];
++		u32 dmc_fw_size; /*dwords */
++		u32 *payload;
++	} dmc_info[DMC_FW_MAX];
++
+ 	u32 dc_state;
+ 	u32 target_dc_state;
+ 	u32 allowed_dc_mask;
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
