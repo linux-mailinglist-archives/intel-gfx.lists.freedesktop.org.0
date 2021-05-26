@@ -2,31 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A34391CDF
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 18:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 393F5391CE6
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 18:21:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30C116EDC6;
-	Wed, 26 May 2021 16:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AFF06EDC2;
+	Wed, 26 May 2021 16:21:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84F346EDC7;
- Wed, 26 May 2021 16:20:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7DBB2A47E1;
- Wed, 26 May 2021 16:20:43 +0000 (UTC)
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com
+ [IPv6:2607:f8b0:4864:20::934])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0D26EDBF;
+ Wed, 26 May 2021 16:21:33 +0000 (UTC)
+Received: by mail-ua1-x934.google.com with SMTP id d14so1092420ual.5;
+ Wed, 26 May 2021 09:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=TyjCiPAhnrbf2fMWsVTrk+vNWjZDmn66jkggQRHDV8c=;
+ b=gNsx/PovsvIHJh6zP3RNNianCSGTUaAHeSnG+PhW5IPBoI55ICu+xSz20fgt94lT5y
+ VsjFnMVaaN1ObOjcJt2Z6wOP0CKmwHl+a8xqzA3lX2kvEF7EqKy9xy7SV7LhNyBcMuVN
+ z19i+t1ILqT8YPRIk6wJWcOWjNxuvHwsZOZsx+6Ys8RN2D7mL6tvXAsqYMDK9VN6dLZB
+ 0UkDSkB7YNnmHluph8O8zHG6CYHbyYjNmaJdAoqoJFgagdMhz8LLLROl8CD/cHumePnV
+ K7ScuFvZZ2eW8b0DCdQANzHstXq05H+NqpsEWGE/uMgTtDJMbtzh/O/PWfvw/GGtfdvV
+ 62yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=TyjCiPAhnrbf2fMWsVTrk+vNWjZDmn66jkggQRHDV8c=;
+ b=GZKBXpXNHW57YNdDjrB7NvdUJz8tDcpWi8DVrneLOq8f0xHzzW6YvlXyWTJLd6F73t
+ WgEdDxfiRpEy2PokMQPhy/skJK/z9P/sP94Li+ch5LDuc2QXt6TMjYa89PXF1fXOmQvD
+ QUUDYLRURSI6crTvxNrk/G6bq4bPAkc/2NxEvEbhk9vh8hthSIGqeTqHXThRmaEMNI/V
+ qVWfXGmMv79JWrcSmbryWzjmkmrxGb+UpOqko2xaFW4+uCCxAAmlU4mvbH78Kj6J4NPU
+ kcPODUree+bbLHw/NHTgFZsh1gg2RwLwJza7Ree+V8RcBwCZU4Q30IGwcgRqn7LAV7sg
+ 8/aw==
+X-Gm-Message-State: AOAM5327oHavNxj6lY/J58okacXX5UDNC3a4R6dKBOhXj51LKUUO7Tq+
+ qjXc9oG9GoLNMnwU/IHQbZFFLEtW/zP8cFSMNoA=
+X-Google-Smtp-Source: ABdhPJxkFIJHD5G+sHKDDZhetQ7golkfaXMDUXrac4w6e5h1b2229x+b1/izFo1mNEU6RW8ztIANhysBmulXZm1TYlA=
+X-Received: by 2002:a1f:b488:: with SMTP id d130mr31749720vkf.17.1622046092243; 
+ Wed, 26 May 2021 09:21:32 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 26 May 2021 16:20:43 -0000
-Message-ID: <162204604349.13405.7854611755354086789@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210526113259.1661914-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210526113259.1661914-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Move_LMEM_=28VRAM=29_management_over_to_TTM_=28?=
- =?utf-8?q?rev4=29?=
+References: <20210516171432.1734268-1-emil.l.velikov@gmail.com>
+ <YKKmsbvTZBwCUiRu@intel.com>
+ <CACvgo53H7GAjN_aFsCBOw+xtVbjcbR1q-U3vdgjT1KUPKoMkkg@mail.gmail.com>
+ <YKOiN1EFXz7TfYyV@intel.com>
+In-Reply-To: <YKOiN1EFXz7TfYyV@intel.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Wed, 26 May 2021 17:21:20 +0100
+Message-ID: <CACvgo52f_8XzkKpzAsgQ-E4VHn9md+rZVbTau5H40PPRVa4SdQ@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: only disable default vga device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,83 +64,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ kernel@collabora.com, ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Move LMEM (VRAM) management over to TTM (rev4)
-URL   : https://patchwork.freedesktop.org/series/90022/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-a8d995049a9a drm/i915: Untangle the vma pages_mutex
-565669662415 drm/i915: Don't free shared locks while shared
-34211cad1c61 drm/i915: Fix i915_sg_page_sizes to record dma segments rather than physical pages
-9e94246f54ff drm/i915/ttm Initialize the ttm device and memory managers
--:480: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#480: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 1531 lines checked
-8c9f9a941096 drm/i915/ttm: Embed a ttm buffer object in the i915 gem object
-512ac8fd774b drm/ttm: Add a generic TTM memcpy move for page-based iomem
--:384: CHECK:ARCH_DEFINES: architecture specific defines should be avoided
-#384: FILE: drivers/gpu/drm/ttm/ttm_module.c:56:
-+#if defined(__i386__) || defined(__x86_64__)
-
--:727: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#727: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 1 checks, 840 lines checked
-1a9c04facf2f drm, drm/i915: Move the memcpy_from_wc functionality to core drm
--:56: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#56: 
-rename from drivers/gpu/drm/i915/i915_memcpy.c
-
-total: 0 errors, 1 warnings, 0 checks, 431 lines checked
-aa4e527660b2 drm/ttm: Use drm_memcpy_from_wc_dbm for TTM bo moves
-a0467168f3dd drm/ttm: Document and optimize ttm_bo_pipeline_gutting()
-4eb13de59af2 drm/ttm, drm/amdgpu: Allow the driver some control over swapping
-d74440bb1681 drm/i915/ttm: Introduce a TTM i915 gem object backend
--:449: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#449: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 1043 lines checked
-078b4a721184 drm/i915/lmem: Verify checks for lmem residency
-e1a4df82cfae drm/i915: Disable mmap ioctl for gen12+
-89fe83848800 drm/vma: Add a driver_private member to vma_node.
-7e57f71fdb25 drm/i915: Use ttm mmap handling for ttm bo's.
--:141: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
-#141: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:908:
-+			obj = i915_gem_object_get_rcu(container_of(node, struct drm_i915_gem_object, base.vma_node));
-
--:357: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#357: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:522:
-+vm_access_ttm(struct vm_area_struct *area, unsigned long addr,
-+	  void *buf, int len, int write)
-
--:386: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#386: FILE: drivers/gpu/drm/i915/gem/i915_gem_ttm.c:551:
-+
-+
-
--:702: WARNING:PRINTF_L: %Lx is non-standard C, use %llx
-#702: FILE: drivers/gpu/drm/i915/selftests/igt_mmap.c:30:
-+		pr_info("Failed to lookup %Lx\n", offset);
-
-total: 0 errors, 2 warnings, 2 checks, 649 lines checked
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGkgVmlsbGUsCgpPbiBUdWUsIDE4IE1heSAyMDIxIGF0IDEyOjE3LCBWaWxsZSBTeXJqw6Rsw6QK
+PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIFR1ZSwgTWF5IDE4
+LCAyMDIxIGF0IDEyOjA5OjU2UE0gKzAxMDAsIEVtaWwgVmVsaWtvdiB3cm90ZToKPiA+IEhpIFZp
+bGxlLAo+ID4KPiA+IE9uIE1vbiwgMTcgTWF5IDIwMjEgYXQgMTg6MjQsIFZpbGxlIFN5cmrDpGzD
+pAo+ID4gPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPiA+ID4KPiA+ID4g
+T24gU3VuLCBNYXkgMTYsIDIwMjEgYXQgMDY6MTQ6MzJQTSArMDEwMCwgRW1pbCBWZWxpa292IHdy
+b3RlOgo+ID4gPiA+IEZyb206IFZpdmVrIERhcyBNb2hhcGF0cmEgPHZpdmVrQGNvbGxhYm9yYS5j
+b20+Cj4gPiA+ID4KPiA+ID4gPiBUaGlzIHBhdGNoIGlzIHRvIGRvIHdpdGggc2VhbWxlc3MgaGFu
+ZG92ZXIsIGVnIHdoZW4gdGhlIHNlcXVlbmNlIGlzCj4gPiA+ID4gYm9vdGxvYWRlciDihpIgcGx5
+bW91dGgg4oaSIGRlc2t0b3AuCj4gPiA+ID4KPiA+ID4gPiBJdCBzd2l0Y2hlcyB0aGUgdmdhIGFy
+Yml0ZXIgZnJvbSB0aGUgIm90aGVyIiBHUFUgdG8gdGhlIGRlZmF1bHQgb25lCj4gPiA+ID4gKGlu
+dGVsIGluIHRoaXMgY2FzZSksIHNvIHRoZSBkcml2ZXIgY2FuIGlzc3VlIHNvbWUgaW8oKS4KPiA+
+ID4KPiA+ID4gSSBkb24ndCB1bmRlcnN0YW5kIHdoYXQgdGhpcyBjb21taXQgbWVzc2FnZSBpcyB0
+cnlpbmcgdG8gc2F5Lgo+ID4gPgo+ID4gQnVuY2ggb2YgY29udGV4dCBpcyBsb3N0IGR1ZSB0byB0
+aGUgcGF0Y2ggYWdlLCBzbyBJJ20gbm90IDEwMCUgc3VyZSBvZgo+ID4gdGhlIGFjdHVhbCBoYXJk
+d2FyZSBzZXR1cCB3aGVyZSB0aGlzIG9jY3Vycy4KPiA+IERvZXMgdGhlIGZvbGxvd2luZyBtYWtl
+IHNlbnNlPwo+ID4KPiA+IEN1cnJlbnRseSBvbiBkdWFsIEdQVSBzeXN0ZW1zLCB3ZSBkbyBub3Qg
+Z2V0IHNlYW1sZXNzIGhhbmRvdmVyIGFzIHRoZQo+ID4gb3V0cHV0IGZsaWNrZXJzIGR1cmluZyB0
+aGUgdHJhbnNpdGlvbiBib290bG9hZGVyIC0+IHBseW1vdXRoIC0+Cj4gPiBkZXNrdG9wLgo+ID4g
+VGhpcyBoYXBwZW5zIGFzIGEgcmVzdWx0IG9mIHN3aXRjaGluZyAodmlhIHRoZSBWR0EgYXJiaXRl
+cikgZnJvbSB0aGUKPiA+ICJvdGhlciIgR1BVIGJhY2sgdG8gdGhlIGRlZmF1bHQgaTkxNSBvbmUg
+YW5kIGlzc3VpbmcgaW8oKSBjb21tYW5kcy4KPgo+IEhtbS4gRG9lcyB0aGlzIHdvcms/Cj4KPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZnYS5jCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92Z2EuYwo+IEBAIC0yOSw2ICsyOSw5IEBA
+IHZvaWQgaW50ZWxfdmdhX2Rpc2FibGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
+KQo+ICAgICAgICAgaTkxNV9yZWdfdCB2Z2FfcmVnID0gaW50ZWxfdmdhX2NudHJsX3JlZyhkZXZf
+cHJpdik7Cj4gICAgICAgICB1OCBzcjE7Cj4KPiArICAgICAgIGlmIChpbnRlbF9kZV9yZWFkKGRl
+dl9wcml2LCB2Z2FfcmVnKSAmIFZHQV9ESVNQX0RJU0FCTEUpCj4gKyAgICAgICAgICAgICAgIHJl
+dHVybjsKPiArCj4gICAgICAgICAvKiBXYUVuYWJsZVZHQUFjY2Vzc1Rocm91Z2hJT1BvcnQ6Y3Rn
+LGVsayxpbGssc25iLGl2Yix2bHYsaHN3ICovCj4gICAgICAgICB2Z2FfZ2V0X3VuaW50ZXJydXB0
+aWJsZShwZGV2LCBWR0FfUlNSQ19MRUdBQ1lfSU8pOwo+ICAgICAgICAgb3V0YihTUjAxLCBWR0Ff
+U1JfSU5ERVgpOwo+CldhcyBhYmxlIHRvIHJlcGxpY2F0ZSB0aGUgaXNzdWUgc29tZXdoYXQgYW5k
+IHRoZSBhYm92ZSBkb2VzIGhlbHAgcXVpdGUgYSBsb3QuCkZlZWwgZnJlZSB0byBhZGQgbXk6ClJl
+dmlld2VkLWJ5OiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJvcmEuY29tPgpUZXN0
+ZWQtYnk6IEVtaWwgVmVsaWtvdiA8ZW1pbC52ZWxpa292QGNvbGxhYm9yYS5jb20+CgpBbHNvIGZl
+ZWwgZnJlZSB0byByZXVzZSBhcyBtdWNoL2xpdHRsZSBvZiB0aGUgZm9sbG93aW5nIHNldHVwIGRl
+dGFpbHMuCgpUbyByZXByb2R1Y2UgdGhlIGlzc3VlOgoKR2V0IGEgZHVhbCBHUFUgc3lzdGVtIC0g
+SW50ZWwrTnZpZGlhIGluIG15IGNhc2UuIFNldCB0aGUgb3RoZXIKKE52aWRpYSkgYXMgZGVmYXVs
+dCBpbiBVRUZJIGFuZCBjb25uZWN0IG1vbml0b3JzIHRvIGl0LgpFbnN1cmUgdGhlIGJvb3Rsb2Fk
+ZXIgKGFuZCBpZiB1c2luZyBzcGxhc2ggbWFuYWdlciBsaWtlIHBseW1vdXRoKSBhcmUKc2V0IHRv
+IGRpc3BsYXkgdGhlIFVFRkkgQkdSVC4gUGVyc29uYWxseSBJIHRlc3RlZCBzeXN0ZW1kLWJvb3Qs
+CmFsdGhvdWdoIEdSVUIgc2hvdWxkIGFsc28gd29yay4gSSBjb3VsZG4ndCBnZXQgcGx5bW91dGgg
+dG8gd29yay9iZWhhdmUKaGVyZSA6c2hydWc6CgpOb3RlOiBIYXZpbmcgdGhlIE52aWRpYSBkcml2
+ZXJzIGluIHRoZSBpbml0cmFtZnMgY2FuIGxlYWQgdG8gZXh0cmEKZmxpY2tlciBzbyBsZWF2ZSB0
+aGVtIG91dC4gSW5jbHVkZSB0aGUgaTkxNSBkcml2ZXJzIGluIGluaXRyYW1mcy4KCldpdGhvdXQg
+dGhlIHBhdGNoLCB0aGUgZXhpc3RpbmcgYm9vdHNsYXNoIGlzIHdpcGVkIGNsZWFuIGFsbW9zdApp
+bnN0YW50YW5lb3VzbHkgYXMgdGhlIGk5MTUgZHJpdmVyIGNhbGxzIGludGVsX3ZnYV9kaXNhYmxl
+KCkuCldpdGggeW91ciBwYXRjaCB0aGUgY2FsbCBpcyBhIG5vLW9wLCBhbmQgdGhlIGJvb3RzcGxh
+c2ggc3RheXMgYXJvdW5kCnVudGlsIHRoZSBsb2dpbiBtYW5hZ2VyIChhbmQgWCkgaXMgc3Bhd25l
+ZC4KCkhUSApFbWlsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
