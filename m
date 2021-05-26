@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177753910D0
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 08:42:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA87B3910A1
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 08:25:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CB2A6EC17;
-	Wed, 26 May 2021 06:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E35B86EC00;
+	Wed, 26 May 2021 06:24:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DA69F6EC14;
- Wed, 26 May 2021 06:42:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D30B7A00CC;
- Wed, 26 May 2021 06:42:04 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D97946EB7E;
+ Wed, 26 May 2021 06:24:50 +0000 (UTC)
+IronPort-SDR: cSouGid5ZfThiGtzNi6kiiT174jwR6O+JWwFJNpe1KTyE9eiPnFNh0k9+8NYky/+Z4W5DGy2rx
+ USmxkSoFc1Nw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9995"; a="182033740"
+X-IronPort-AV: E=Sophos;i="5.82,330,1613462400"; d="scan'208";a="182033740"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2021 23:24:49 -0700
+IronPort-SDR: pvx9JURigEYHKxkIsXUxDiQzVEcl7HzW8yCcFMBJqII3nD6kquQiTTYJ12J92tNT09PG5cEio2
+ FeyyWyd/C7ow==
+X-IronPort-AV: E=Sophos;i="5.82,330,1613462400"; d="scan'208";a="633376813"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2021 23:24:47 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Tue, 25 May 2021 23:42:19 -0700
+Message-Id: <20210526064237.77853-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Wed, 26 May 2021 06:42:04 -0000
-Message-ID: <162201132483.13404.1421856447925207863@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210526064237.77853-1-matthew.brost@intel.com>
-In-Reply-To: <20210526064237.77853-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Non-interface_changing_GuC_CTBs_updates_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH 00/18] Non-interface changing GuC CTBs updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,60 +45,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As discussed in [1] we are breaking that large series into a several
+smaller ones. This series is the non-interface changing part of step #2
+- it makes all the changes needed before updating the GuC firwmare to a
+new version without breaking any old interfaces.
 
-Series: Non-interface changing GuC CTBs updates (rev2)
-URL   : https://patchwork.freedesktop.org/series/90552/
-State : warning
+A follow on series will be squashed into a single patch that updates the
+GuC firmware + the required interface changes.
 
-== Summary ==
+Patch number #13 needs an Ack from Michal Wajdeczko.
+Patch number #6, #15 need reviews.
 
-$ dim checkpatch origin/drm-tip
-6b6bffd59ced drm/i915/guc: skip disabling CTBs before sanitizing the GuC
-3f9bbaddbf9d drm/i915/guc: use probe_error log for CT enablement failure
-866285dad8d0 drm/i915/guc: enable only the user interrupt when using GuC submission
-eafc57f85f6f drm/i915/guc: Remove sample_forcewake h2g action
-cb62a7f50e3b drm/i915/guc: Keep strict GuC ABI definitions
--:18: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#18: 
-new file mode 100644
+v2: Fix some checkpatch warnings, add patch number #6 to address CI
+failure [2] in first rev 
 
-total: 0 errors, 1 warnings, 0 checks, 476 lines checked
-28e9b20a7873 drm/i915/guc: Drop guc->interrupts.enabled
-190975af8c9f drm/i915/guc: Stop using fence/status from CTB descriptor
-15a068ac5b1e drm/i915: Promote ptrdiff() to i915_utils.h
-e3a6d58106c2 drm/i915/guc: Only rely on own CTB size
-aaa8781a008e drm/i915/guc: Don't repeat CTB layout calculations
-b065023c038e drm/i915/guc: Replace CTB array with explicit members
-9f1ec21626ae drm/i915/guc: Update sizes of CTB buffers
-7a0e05be601b drm/i915/guc: Relax CTB response timeout
-11573d2c3987 drm/i915/guc: Start protecting access to CTB descriptors
--:87: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#87: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h:36:
-+	spinlock_t lock;
+[1] https://patchwork.freedesktop.org/series/89844/
+[2] https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20192/shard-tglb3/igt@gem_eio@in-flight-suspend.html
 
-total: 0 errors, 0 warnings, 1 checks, 61 lines checked
-f32e4faa422e drm/i915/guc: Ensure H2G buffer updates visible before tail update
--:23: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
-#23: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:331:
-+static void write_barrier(struct intel_guc_ct *ct) {
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
--:31: WARNING:MEMORY_BARRIER: memory barrier without comment
-#31: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:339:
-+		wmb();
+Daniele Ceraolo Spurio (3):
+  drm/i915/guc: skip disabling CTBs before sanitizing the GuC
+  drm/i915/guc: use probe_error log for CT enablement failure
+  drm/i915/guc: enable only the user interrupt when using GuC submission
 
-total: 1 errors, 1 warnings, 0 checks, 30 lines checked
-6feab437948e drm/i915/guc: Stop using mutex while sending CTB messages
-a44bbeef3e75 drm/i915/guc: Don't receive all G2H messages in irq handler
-41650b9fd9e5 drm/i915/guc: Always copy CT message to new allocation
+Matthew Brost (2):
+  drm/i915/guc: Drop guc->interrupts.enabled
+  drm/i915/guc: Ensure H2G buffer updates visible before tail update
 
+Michal Wajdeczko (12):
+  drm/i915/guc: Keep strict GuC ABI definitions
+  drm/i915/guc: Stop using fence/status from CTB descriptor
+  drm/i915: Promote ptrdiff() to i915_utils.h
+  drm/i915/guc: Only rely on own CTB size
+  drm/i915/guc: Don't repeat CTB layout calculations
+  drm/i915/guc: Replace CTB array with explicit members
+  drm/i915/guc: Update sizes of CTB buffers
+  drm/i915/guc: Relax CTB response timeout
+  drm/i915/guc: Start protecting access to CTB descriptors
+  drm/i915/guc: Stop using mutex while sending CTB messages
+  drm/i915/guc: Don't receive all G2H messages in irq handler
+  drm/i915/guc: Always copy CT message to new allocation
+
+Rodrigo Vivi (1):
+  drm/i915/guc: Remove sample_forcewake h2g action
+
+ drivers/gpu/drm/i915/Kconfig.profile          |   9 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  18 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  51 ++
+ .../gt/uc/abi/guc_communication_ctb_abi.h     | 106 ++++
+ .../gt/uc/abi/guc_communication_mmio_abi.h    |  52 ++
+ .../gpu/drm/i915/gt/uc/abi/guc_errors_abi.h   |  14 +
+ .../gpu/drm/i915/gt/uc/abi/guc_messages_abi.h |  21 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  43 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 -
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 527 ++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  14 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   | 207 +------
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  31 --
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  10 -
+ drivers/gpu/drm/i915/i915_utils.h             |   5 +
+ drivers/gpu/drm/i915/i915_vma.h               |   5 -
+ 16 files changed, 605 insertions(+), 510 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
+ create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
+
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
