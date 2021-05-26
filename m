@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9FDE391975
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 16:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12124391995
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 16:11:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BFC16E18F;
-	Wed, 26 May 2021 14:04:42 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF0A26E18F
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 14:04:40 +0000 (UTC)
-IronPort-SDR: QrHNpvA73/qDwqKBedoMbtlPyhSyzd7n7l9EffcQnbC9ZeZUiANK9ioj9CApoyj21XlGqNPorZ
- PJ90AXkw5xGg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="202483318"
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="202483318"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 07:04:35 -0700
-IronPort-SDR: Juleh4ZTmS3fN/zvJk/cZl//+V5PDt1Va10fWAxD3IvMuBFsEuDHSb/v91/ieztPRsr79U9OQn
- 067bc469QbpQ==
-X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="476955801"
-Received: from astiegle-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.54.167])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 07:04:33 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
- intel-gfx@lists.freedesktop.org, nischal.varide@intel.com,
- uma.shankar@intel.com, anshuman.gupta@intel.com
-In-Reply-To: <20210526181728.14817-2-bhanuprakash.modem@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210526181728.14817-1-bhanuprakash.modem@intel.com>
- <20210526181728.14817-2-bhanuprakash.modem@intel.com>
-Date: Wed, 26 May 2021 17:04:29 +0300
-Message-ID: <87o8cxbngy.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F93D6ED1A;
+	Wed, 26 May 2021 14:11:22 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 269F06ED11;
+ Wed, 26 May 2021 14:11:20 +0000 (UTC)
+IronPort-SDR: HBBLbvmwrA2u7qw8XOIAyvM6kiGMXgwOBakl38lGxAVjCWWdzBJ0NdpDepkh/t+W7kI2hU12H8
+ ufUmLe5CJrTA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="189594214"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="189594214"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 07:11:20 -0700
+IronPort-SDR: YGQcQQpKO7wRIz9pi2v+6NyTf2m8ZEQ7cB5hK1UjgwHoPGhSp/YzARokPx6bf3AjMRFNvmdTP/
+ BR+8lxodKsaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="444063474"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 26 May 2021 07:11:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 26 May 2021 17:11:16 +0300
+Date: Wed, 26 May 2021 17:11:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YK5XBAR5QeCvDOw8@intel.com>
+References: <20210526100006.2205062-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/xelpd: Enabling dithering
- after the CC1
+Content-Disposition: inline
+In-Reply-To: <20210526100006.2205062-1-tvrtko.ursulin@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/params: Align visibility of device
+ level and global modparams
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,127 +50,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 May 2021, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrote:
-> From: Nischal Varide <nischal.varide@intel.com>
->
-> If the panel is 12bpc then Dithering is not enabled in the Legacy
-> dithering block , instead its Enabled after the C1 CC1 pipe post
-> color space conversion.For a 6bpc pannel Dithering is enabled in
-> Legacy block.
->
-> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
+On Wed, May 26, 2021 at 11:00:06AM +0100, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> =
 
-When you're sending someone else's patches, you need to add your own
-Signed-off-by here.
+> We have a few modparams which get conditionaly exposed based on a Kconfig
+> options and in most cases this also means portions of the driver
+> implementing the respective feature are also left out.
+> =
 
+> Align the visibility of device level and global modparams to make them
+> consistent in this respect.
+> =
+
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_color.c   | 15 +++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.c |  7 ++++++-
->  drivers/gpu/drm/i915/i915_reg.h              |  3 ++-
->  3 files changed, 23 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index dab892d2251b..4ad5bd849695 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1605,6 +1605,20 @@ static u32 icl_csc_mode(const struct intel_crtc_state *crtc_state)
->  	return csc_mode;
->  }
->  
-> +static u32 dither_after_cc1_12bpc(const struct intel_crtc_state *crtc_state)
-> +{
-> +	u32 gamma_mode = crtc_state->gamma_mode;
-> +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-> +
-> +	if (DISPLAY_VER(i915) >= 13) {
-> +		if (!crtc_state->dither_force_disable &&
-> +		    (crtc_state->pipe_bpp == 36))
-> +			gamma_mode |= GAMMA_MODE_DITHER_AFTER_CC1;
-> +	}
-> +
-> +	return gamma_mode;
-> +}
-> +
->  static int icl_color_check(struct intel_crtc_state *crtc_state)
->  {
->  	int ret;
-> @@ -1615,6 +1629,7 @@ static int icl_color_check(struct intel_crtc_state *crtc_state)
->  
->  	crtc_state->gamma_mode = icl_gamma_mode(crtc_state);
->  
-> +	crtc_state->gamma_mode = dither_after_cc1_12bpc(crtc_state);
+>  drivers/gpu/drm/i915/i915_params.h | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> =
 
-We don't really do the kind of thing where you need a sequence of calls
-where one depends on the other, adding to the same state member. At a
-glance, this just looks wrong, superficially overwriting the previously
-set value. I'd just add the check at the end of icl_gamma_mode().
+> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i9=
+15_params.h
+> index 14cd64cc61d0..dee1db50c31a 100644
+> --- a/drivers/gpu/drm/i915/i915_params.h
+> +++ b/drivers/gpu/drm/i915/i915_params.h
+> @@ -71,18 +71,18 @@ struct drm_printer;
+>  	param(int, fastboot, -1, 0600) \
+>  	param(int, enable_dpcd_backlight, -1, 0600) \
+>  	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
+> -	param(unsigned long, fake_lmem_start, 0, 0400) \
+> -	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT=
+, 0600) \
+> +	param(unsigned long, fake_lmem_start, 0, IS_ENABLED(CONFIG_DRM_I915_UNS=
+TABLE_FAKE_LMEM ? 0400 : 0)) \
 
->  	crtc_state->csc_mode = icl_csc_mode(crtc_state);
->  
->  	crtc_state->preload_luts = intel_can_preload_luts(crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 0bb2e582c87f..1a658bdaeab6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5741,7 +5741,12 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
->  		break;
->  	}
->  
-> -	if (crtc_state->dither)
-> +	/*
-> +	 * If 12bpc panel then, Enables dithering after the CC1 pipe
-> +	 * post color space conversion and not here
-> +	 */
-> +
-> +	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
+misplaced parens
 
-This now duplicates the pipe_bpp condition in two places, which seems a
-bit fragile. Maybe the check should be on gamma_mode? It would remove
-the need for the whole comment above.
+> +	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT=
+, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
+>  	/* leave bools at the end to not create holes */ \
+>  	param(bool, enable_hangcheck, true, 0600) \
+>  	param(bool, load_detect_test, false, 0600) \
+>  	param(bool, force_reset_modeset_test, false, 0600) \
+> -	param(bool, error_capture, true, 0600) \
+> +	param(bool, error_capture, true, IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERR=
+OR) ? 0600 : 0) \
+>  	param(bool, disable_display, false, 0400) \
+>  	param(bool, verbose_state_checks, true, 0) \
+>  	param(bool, nuclear_pageflip, false, 0400) \
+>  	param(bool, enable_dp_mst, true, 0600) \
+> -	param(bool, enable_gvt, false, 0400)
+> +	param(bool, enable_gvt, false, IS_ENABLED(CONFIG_DRM_I915_GVT) ? 0400 :=
+ 0)
+>  =
 
->  		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
->  
->  	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 4dbe79009c0e..5700097475c0 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6155,7 +6155,7 @@ enum {
->  #define   PIPEMISC_DITHER_8_BPC		(0 << 5)
->  #define   PIPEMISC_DITHER_10_BPC	(1 << 5)
->  #define   PIPEMISC_DITHER_6_BPC		(2 << 5)
-> -#define   PIPEMISC_DITHER_12_BPC	(3 << 5)
-> +#define   PIPEMISC_DITHER_12_BPC	(4 << 5)
+>  #define MEMBER(T, member, ...) T member;
+>  struct i915_params {
+> -- =
 
-We already use the macro. You can't just replace this like this without
-an explanation. Why would this not break existing stuff?
+> 2.30.2
 
->  #define   PIPEMISC_DITHER_ENABLE	(1 << 4)
->  #define   PIPEMISC_DITHER_TYPE_MASK	(3 << 2)
->  #define   PIPEMISC_DITHER_TYPE_SP	(0 << 2)
-> @@ -7726,6 +7726,7 @@ enum {
->  #define  GAMMA_MODE_MODE_12BIT	(2 << 0)
->  #define  GAMMA_MODE_MODE_SPLIT	(3 << 0) /* ivb-bdw */
->  #define  GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED	(3 << 0) /* icl + */
-> +#define  GAMMA_MODE_DITHER_AFTER_CC1 (1 << 26)
+-- =
 
-The bits are supposed to be defined in the order from highest to lowest
-bit. See the big comment at the beginning of the file.
-
-It's confusing that this is named GAMMA_MODE_ while it's not included in
-GAMMA_MODE_MASK (and likely shouldn't be).
-
->  
->  /* DMC */
->  #define DMC_PROGRAM(i)		_MMIO(0x80000 + (i) * 4)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
