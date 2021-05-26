@@ -2,60 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB639391E22
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 19:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FA47391E37
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 May 2021 19:36:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B4FB6E0AB;
-	Wed, 26 May 2021 17:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C3CA6E949;
+	Wed, 26 May 2021 17:36:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B53106E155;
- Wed, 26 May 2021 17:28:22 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 816D13F932;
- Wed, 26 May 2021 19:28:20 +0200 (CEST)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="KSabvbkf";
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id x_65Hibwksvd; Wed, 26 May 2021 19:28:19 +0200 (CEST)
-Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 690EB3F475;
- Wed, 26 May 2021 19:28:17 +0200 (CEST)
-Received: from [192.168.0.209] (unknown [192.198.151.44])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 24193360132;
- Wed, 26 May 2021 19:28:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1622050097; bh=4J2kZzByjsumcGN3Bm+D3qWLv6gtQhLXx69MM206+3w=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=KSabvbkfj3/99aQJiW3U05OsraDPCFrS3JKWUo9Eq5yzkAqHdXo910N4kWVtrTrCz
- BoVNtaLx3kWUVpLOOsW0OLNaYvKwu05pUncOGpmHCwgRoGXQDaI0wqO1SCf7Lkypcv
- +oeAy4v1U6EkbYksgIkMwjsQTkGLzj1wMpjGW69Y=
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20210526113259.1661914-1-thomas.hellstrom@linux.intel.com>
- <20210526113259.1661914-14-thomas.hellstrom@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <49960df2-6bd2-81f5-ab09-1472ee7e1827@shipmail.org>
-Date: Wed, 26 May 2021 19:28:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BBC16E949
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 May 2021 17:36:03 +0000 (UTC)
+IronPort-SDR: ZBl1ABgWG5nPq+Kz5OoizDHQEFyFAI9cwPDPCPevUKUpW6r8sE8lFN/lJi+vW7o1uhNkYrWjIp
+ 3bTTXm+xo4OA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="200626916"
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="200626916"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 10:36:02 -0700
+IronPort-SDR: +4kTwVC5/+MYuFwDLlWF4tViLhbNdCVGoEsC9bLA2BZeI+M7W3/eRSBLdedLUWIdAxQKhXC/tV
+ jzt3kRWKX+BQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,331,1613462400"; d="scan'208";a="409355539"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga007.fm.intel.com with SMTP; 26 May 2021 10:36:00 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 26 May 2021 20:36:00 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 26 May 2021 20:35:59 +0300
+Message-Id: <20210526173600.27708-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-In-Reply-To: <20210526113259.1661914-14-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 13/15] drm/i915: Disable mmap ioctl for
- gen12+
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/adl_p: Disable FIFO underrun
+ recovery
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,15 +47,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDUvMjYvMjEgMTozMiBQTSwgVGhvbWFzIEhlbGxzdHLDtm0gd3JvdGU6Cj4gRnJvbTogTWFh
-cnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPgo+IFRo
-ZSBwYWx0Zm9ybSBzaG91bGQgZXhjbHVzaXZlbHkgdXNlIG1tYXBfb2Zmc2V0LCBvbmUgbGVzcyBw
-YXRoIHRvIHdvcnJ5CkhtbSwgVGhvdWdodCB0aGlzIHdhcyBmaXhlZCwgYnV0IHMvcGFsdGZvcm0v
-cGxhdGZvcm0vCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZSBGSUZPIHVuZGVycnVuIHJlY292ZXJ5IG1lY2hhbmlzbSBoYXMgYSBib2F0bG9hZCBvZiBjYXNl
+cwp3aGVyZSBpdCBjYW4ndCBiZSB1c2VkLiBUaGUgZGVzY3JpcHRpb24gaXMgYWxzbyBhIGJpdCBh
+bWJpZ3VvdXMKYXMgaXQgZG9lc24ndCBzcGVjaWZ5IHdoZXRoZXIgcGxhbmUgZG93bnNjYWxpbmcg
+bmVlZHMgdG8gYmUgY29uc2lkZXJlZApvciBqdXN0IHBpcGUgZG93bnNjYWxpbmcuIFdlIG1heSBu
+b3QgZXZlbiBoYXZlIHN1ZmZpY2llbnQgc3RhdGUKdHJhY2tpbmcgdG8gZGVjaWRlIHRoaXMgb24g
+ZGVtYW5kLCBzbyBmb3Igbm93IGp1c3QgZGlzYWJsZSB0aGUKd2hvbGUgdGhpbmcuCgpTaWduZWQt
+b2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMTUgKysr
+KysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAg
+ICB8ICAxICsKIDIgZmlsZXMgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggZDFlZTk1NTEyMjgyLi5h
+MmYzZDI1NWE5MDYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5jCkBAIC0yMjA4LDYgKzIyMDgsMjEgQEAgc3RhdGljIHZvaWQgaWNsX3NldF9waXBlX2No
+aWNrZW4oc3RydWN0IGludGVsX2NydGMgKmNydGMpCiAJICogYWNyb3NzIHBpcGUKIAkgKi8KIAl0
+bXAgfD0gUElYRUxfUk9VTkRJTkdfVFJVTkNfRkJfUEFTU1RIUlU7CisKKwkvKgorCSAqICJUaGUg
+dW5kZXJydW4gcmVjb3ZlcnkgbWVjaGFuaXNtIHNob3VsZCBiZSBkaXNhYmxlZAorCSAqICB3aGVu
+IHRoZSBmb2xsb3dpbmcgaXMgZW5hYmxlZCBmb3IgdGhpcyBwaXBlOgorCSAqICBXaURpCisJICog
+IERvd25zY2FsaW5nICh0aGlzIGluY2x1ZGVzIFlVVjQyMCBmdWxsYmxlbmQpCisJICogIENPRwor
+CSAqICBEU0MKKwkgKiAgUFNSMiIKKwkgKgorCSAqIEZJWE1FOiBlbmFibGUgd2hlbmV2ZXIgcG9z
+c2libGUuLi4KKwkgKi8KKwlpZiAoSVNfQUxERVJMQUtFX1AoZGV2X3ByaXYpKQorCQl0bXAgfD0g
+VU5ERVJSVU5fUkVDT1ZFUllfRElTQUJMRTsKKwogCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBQ
+SVBFX0NISUNLRU4ocGlwZSksIHRtcCk7CiB9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCmluZGV4
+IDQ5NzliNDk2NWE4Mi4uZTRkNjMzNmRhYjcxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X3JlZy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKQEAg
+LTgzNjgsNiArODM2OCw3IEBAIGVudW0gewogI2RlZmluZSBfUElQRUNfQ0hJQ0tFTgkJCQkweDcy
+MDM4CiAjZGVmaW5lIFBJUEVfQ0hJQ0tFTihwaXBlKQkJCV9NTUlPX1BJUEUocGlwZSwgX1BJUEVB
+X0NISUNLRU4sXAogCQkJCQkJCSAgIF9QSVBFQl9DSElDS0VOKQorI2RlZmluZSAgIFVOREVSUlVO
+X1JFQ09WRVJZX0RJU0FCTEUJCVJFR19CSVQoMzApCiAjZGVmaW5lICAgUElYRUxfUk9VTkRJTkdf
+VFJVTkNfRkJfUEFTU1RIUlUgCSgxIDw8IDE1KQogI2RlZmluZSAgIFBFUl9QSVhFTF9BTFBIQV9C
+WVBBU1NfRU4JCSgxIDw8IDcpCiAKLS0gCjIuMjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
