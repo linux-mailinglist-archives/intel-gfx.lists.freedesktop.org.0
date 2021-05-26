@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA189397332
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:27:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D3C139739C
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BAD26EA35;
-	Tue,  1 Jun 2021 12:27:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4D86EA54;
+	Tue,  1 Jun 2021 12:51:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15D546EA35;
- Tue,  1 Jun 2021 12:27:44 +0000 (UTC)
-IronPort-SDR: 9J8iNcsfvvEe/iBgV4krw++1CWjk++7PxKPcb4Yn6ygeV+Nc7vWHC1PnuB/iyGRp0kAoe01gEW
- xydRDbGhotYg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="190650258"
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="190650258"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 05:27:43 -0700
-IronPort-SDR: 3alkzTWieqoqD0FyT6ZmkL4P3b4wzc/Nq9alCj91uIAN/JW05buGSBXVJYExFYYXQD0HcV35xi
- kF/q+hpoGoLQ==
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="445316204"
-Received: from ycohenha-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.54.130])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 05:27:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20210601074654.3103-8-thomas.hellstrom@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210601074654.3103-1-thomas.hellstrom@linux.intel.com>
- <20210601074654.3103-8-thomas.hellstrom@linux.intel.com>
-Date: Tue, 01 Jun 2021 15:27:37 +0300
-Message-ID: <87im2xrcqu.fsf@intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D726E0E3;
+ Wed, 26 May 2021 15:53:32 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 063E7611CD;
+ Wed, 26 May 2021 15:53:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1622044412;
+ bh=OnL/4Jq+LKq6vWvDBS0xA9CvVYxTMOTBjml/zh+3Ar0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=B4UuFsxu1r3HigmEjVwQF/otX4DrMd38lSSUyIbdumWlwAz4mqWFVwTfX3tV+cLTK
+ ezumxJCPuSoiNTejbR/1l7Q+EyQuGnIdMF026YW9wZDBrp0Etki3m3VqLD3t52Z+ML
+ aIGQuwBPRYJXDmtAfPisyQiC2L9qX6xiRg823CR+7DK1ZJFKUWOyliFfy6nu3kEBra
+ 72iE6bgTyqyaVJ438e+wldUwZTA5bJjB+laj7DX9kULouD8NbVtF/6oVvQWdjQCza8
+ vTg4CtjTc7cs0vgmNuLf7hWhlxI/bnFdiE1zs5zIETRjnoBXmZKSOwwvGM2DpAYygJ
+ B11ILWs8v9zvg==
+Date: Wed, 26 May 2021 16:53:21 +0100
+From: Will Deacon <will@kernel.org>
+To: Claire Chang <tientzu@chromium.org>
+Message-ID: <20210526155321.GA19633@willie-the-truck>
+References: <20210518064215.2856977-1-tientzu@chromium.org>
+ <20210518064215.2856977-15-tientzu@chromium.org>
+ <20210526121322.GA19313@willie-the-truck>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v9 07/15] drm: Add a prefetching
- memcpy_from_wc
+Content-Disposition: inline
+In-Reply-To: <20210526121322.GA19313@willie-the-truck>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Tue, 01 Jun 2021 12:51:14 +0000
+Subject: Re: [Intel-gfx] [PATCH v7 14/15] dt-bindings: of: Add restricted
+ DMA pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,157 +50,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ jxgao@google.com, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+ airlied@linux.ie, Dan Williams <dan.j.williams@intel.com>,
+ linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
+ bhelgaas@google.com, boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAwMSBKdW4gMjAyMSwgVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21A
-bGludXguaW50ZWwuY29tPiB3cm90ZToKPiBSZWFkaW5nIG91dCBvZiB3cml0ZS1jb21iaW5pbmcg
-bWFwcGVkIG1lbW9yeSBpcyB0eXBpY2FsbHkgdmVyeSBzbG93Cj4gc2luY2UgdGhlIENQVSBkb2Vz
-bid0IHByZWZldGNoLiBIb3dldmVyIHNvbWUgYXJjaHMgaGF2ZSBzcGVjaWFsCj4gaW5zdHJ1Y3Rp
-b25zIHRvIGRvIHRoaXMuCj4KPiBTbyBhZGQgYSBiZXN0LWVmZm9ydCBtZW1jcHlfZnJvbV93YyB0
-YWtpbmcgZG1hLWJ1Zi1tYXAgcG9pbnRlcgo+IGFyZ3VtZW50cyB0aGF0IGF0dGVtcHRzIHRvIHVz
-ZSBhIGZhc3QgcHJlZmV0Y2hpbmcgbWVtY3B5IGFuZAo+IG90aGVyd2lzZSBmYWxscyBiYWNrIHRv
-IG9yZGluYXJ5IG1lbWNvcGllcywgdGFraW5nIHRoZSBpb21lbSB0YWdnaW5nCj4gaW50byBhY2Nv
-dW50Lgo+Cj4gVGhlIGNvZGUgaXMgbGFyZ2VseSBjb3BpZWQgZnJvbSBpOTE1X21lbWNweV9mcm9t
-X3djLgo+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiBDYzogQ2hyaXN0
-aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+IFN1Z2dlc3RlZC1ieTogRGFu
-aWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgo+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxs
-c3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPiBBY2tlZC1ieTogQ2hy
-aXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+IEFja2VkLWJ5OiBEYW5p
-ZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+Cj4gLS0tCj4gdjc6Cj4gLSBQZXJmb3JtIGEgbWVt
-Y3B5IGV2ZW4gaWYgd2FybmluZyB3aXRoIGluX2ludGVycnVwdCgpLiBTdWdnZXN0ZWQgYnkKPiAg
-IENocmlzdGlhbiBLw7ZuaWcuCj4gLSBGaXggY29tcGlsYXRpb24gZmFpbHVyZSBvbiAhWDg2IChS
-ZXBvcnRlZCBieSBrZXJuZWwgdGVzdCByb2JvdAo+ICAgbGtwQGludGVsLmNvbSkKPiB2ODoKPiAt
-IFNraXAga2VybmVsZG9jIGZvciBkcm1fbWVtY3B5X2luaXRfZWFybHkoKQo+IC0gRXhwb3J0IGRy
-bV9tZW1jcHlfZnJvbV93YygpIGFsc28gZm9yIG5vbi14ODYuCj4gLS0tCj4gIERvY3VtZW50YXRp
-b24vZ3B1L2RybS1tbS5yc3QgfCAgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9jYWNoZS5j
-ICB8IDE0OCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+ICBkcml2ZXJzL2dw
-dS9kcm0vZHJtX2Rydi5jICAgIHwgICAyICsKPiAgaW5jbHVkZS9kcm0vZHJtX2NhY2hlLmggICAg
-ICB8ICAgNyArKwo+ICA0IGZpbGVzIGNoYW5nZWQsIDE1OCBpbnNlcnRpb25zKCspLCAxIGRlbGV0
-aW9uKC0pCj4KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9ncHUvZHJtLW1tLnJzdCBiL0Rv
-Y3VtZW50YXRpb24vZ3B1L2RybS1tbS5yc3QKPiBpbmRleCAyMWJlNmRlYWRjMTIuLmM2NjA1OGM1
-YmNlNyAxMDA2NDQKPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2dwdS9kcm0tbW0ucnN0Cj4gKysrIGIv
-RG9jdW1lbnRhdGlvbi9ncHUvZHJtLW1tLnJzdAo+IEBAIC00NjksNyArNDY5LDcgQEAgRFJNIE1N
-IFJhbmdlIEFsbG9jYXRvciBGdW5jdGlvbiBSZWZlcmVuY2VzCj4gIC4uIGtlcm5lbC1kb2M6OiBk
-cml2ZXJzL2dwdS9kcm0vZHJtX21tLmMKPiAgICAgOmV4cG9ydDoKPiAgCj4gLURSTSBDYWNoZSBI
-YW5kbGluZwo+ICtEUk0gQ2FjaGUgSGFuZGxpbmcgYW5kIEZhc3QgV0MgbWVtY3B5KCkKPiAgPT09
-PT09PT09PT09PT09PT09CgpUaGUgdGl0bGUgdW5kZXJsaW5lIG5lZWRzIHRvIGJlIGFzIGxvbmcg
-YXMgdGhlIHRpdGxlLgoKQlIsCkphbmkuCgo+ICAKPiAgLi4ga2VybmVsLWRvYzo6IGRyaXZlcnMv
-Z3B1L2RybS9kcm1fY2FjaGUuYwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2Nh
-Y2hlLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2NhY2hlLmMKPiBpbmRleCA3OWE1MGVmMTI1MGYu
-LjU0NjU5OWYxOWE5MyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2NhY2hlLmMK
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2NhY2hlLmMKPiBAQCAtMjgsNiArMjgsNyBAQAo+
-ICAgKiBBdXRob3JzOiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLWF0LXR1bmdzdGVuZ3JhcGhp
-Y3MtZG90LWNvbT4KPiAgICovCj4gIAo+ICsjaW5jbHVkZSA8bGludXgvZG1hLWJ1Zi1tYXAuaD4K
-PiAgI2luY2x1ZGUgPGxpbnV4L2V4cG9ydC5oPgo+ICAjaW5jbHVkZSA8bGludXgvaGlnaG1lbS5o
-Pgo+ICAjaW5jbHVkZSA8bGludXgvbWVtX2VuY3J5cHQuaD4KPiBAQCAtMzUsNiArMzYsOSBAQAo+
-ICAKPiAgI2luY2x1ZGUgPGRybS9kcm1fY2FjaGUuaD4KPiAgCj4gKy8qIEEgc21hbGwgYm91bmNl
-IGJ1ZmZlciB0aGF0IGZpdHMgb24gdGhlIHN0YWNrLiAqLwo+ICsjZGVmaW5lIE1FTUNQWV9CT1VO
-Q0VfU0laRSAxMjgKPiArCj4gICNpZiBkZWZpbmVkKENPTkZJR19YODYpCj4gICNpbmNsdWRlIDxh
-c20vc21wLmg+Cj4gIAo+IEBAIC0yMDksMyArMjEzLDE0NyBAQCBib29sIGRybV9uZWVkX3N3aW90
-bGIoaW50IGRtYV9iaXRzKQo+ICAJcmV0dXJuIG1heF9pb21lbSA+ICgodTY0KTEgPDwgZG1hX2Jp
-dHMpOwo+ICB9Cj4gIEVYUE9SVF9TWU1CT0woZHJtX25lZWRfc3dpb3RsYik7Cj4gKwo+ICtzdGF0
-aWMgdm9pZCBtZW1jcHlfZmFsbGJhY2soc3RydWN0IGRtYV9idWZfbWFwICpkc3QsCj4gKwkJCSAg
-ICBjb25zdCBzdHJ1Y3QgZG1hX2J1Zl9tYXAgKnNyYywKPiArCQkJICAgIHVuc2lnbmVkIGxvbmcg
-bGVuKQo+ICt7Cj4gKwlpZiAoIWRzdC0+aXNfaW9tZW0gJiYgIXNyYy0+aXNfaW9tZW0pIHsKPiAr
-CQltZW1jcHkoZHN0LT52YWRkciwgc3JjLT52YWRkciwgbGVuKTsKPiArCX0gZWxzZSBpZiAoIXNy
-Yy0+aXNfaW9tZW0pIHsKPiArCQlkbWFfYnVmX21hcF9tZW1jcHlfdG8oZHN0LCBzcmMtPnZhZGRy
-LCBsZW4pOwo+ICsJfSBlbHNlIGlmICghZHN0LT5pc19pb21lbSkgewo+ICsJCW1lbWNweV9mcm9t
-aW8oZHN0LT52YWRkciwgc3JjLT52YWRkcl9pb21lbSwgbGVuKTsKPiArCX0gZWxzZSB7Cj4gKwkJ
-LyoKPiArCQkgKiBCb3VuY2Ugc2l6ZSBpcyBub3QgcGVyZm9ybWFuY2UgdHVuZWQsIGJ1dCB1c2lu
-ZyBhCj4gKwkJICogYm91bmNlIGJ1ZmZlciBsaWtlIHRoaXMgaXMgc2lnbmlmaWNhbnRseSBmYXN0
-ZXIgdGhhbgo+ICsJCSAqIHJlc29ydGluZyB0byBpb3JlYWR4eCgpICsgaW93cml0ZXh4KCkuCj4g
-KwkJICovCj4gKwkJY2hhciBib3VuY2VbTUVNQ1BZX0JPVU5DRV9TSVpFXTsKPiArCQl2b2lkIF9f
-aW9tZW0gKl9zcmMgPSBzcmMtPnZhZGRyX2lvbWVtOwo+ICsJCXZvaWQgX19pb21lbSAqX2RzdCA9
-IGRzdC0+dmFkZHJfaW9tZW07Cj4gKwo+ICsJCXdoaWxlIChsZW4gPj0gTUVNQ1BZX0JPVU5DRV9T
-SVpFKSB7Cj4gKwkJCW1lbWNweV9mcm9taW8oYm91bmNlLCBfc3JjLCBNRU1DUFlfQk9VTkNFX1NJ
-WkUpOwo+ICsJCQltZW1jcHlfdG9pbyhfZHN0LCBib3VuY2UsIE1FTUNQWV9CT1VOQ0VfU0laRSk7
-Cj4gKwkJCV9zcmMgKz0gTUVNQ1BZX0JPVU5DRV9TSVpFOwo+ICsJCQlfZHN0ICs9IE1FTUNQWV9C
-T1VOQ0VfU0laRTsKPiArCQkJbGVuIC09IE1FTUNQWV9CT1VOQ0VfU0laRTsKPiArCQl9Cj4gKwkJ
-aWYgKGxlbikgewo+ICsJCQltZW1jcHlfZnJvbWlvKGJvdW5jZSwgX3NyYywgTUVNQ1BZX0JPVU5D
-RV9TSVpFKTsKPiArCQkJbWVtY3B5X3RvaW8oX2RzdCwgYm91bmNlLCBNRU1DUFlfQk9VTkNFX1NJ
-WkUpOwo+ICsJCX0KPiArCX0KPiArfQo+ICsKPiArI2lmZGVmIENPTkZJR19YODYKPiArCj4gK3N0
-YXRpYyBERUZJTkVfU1RBVElDX0tFWV9GQUxTRShoYXNfbW92bnRkcWEpOwo+ICsKPiArc3RhdGlj
-IHZvaWQgX19tZW1jcHlfbnRkcWEodm9pZCAqZHN0LCBjb25zdCB2b2lkICpzcmMsIHVuc2lnbmVk
-IGxvbmcgbGVuKQo+ICt7Cj4gKwlrZXJuZWxfZnB1X2JlZ2luKCk7Cj4gKwo+ICsJd2hpbGUgKGxl
-biA+PSA0KSB7Cj4gKwkJYXNtKCJtb3ZudGRxYQkoJTApLCAlJXhtbTBcbiIKPiArCQkgICAgIm1v
-dm50ZHFhIDE2KCUwKSwgJSV4bW0xXG4iCj4gKwkJICAgICJtb3ZudGRxYSAzMiglMCksICUleG1t
-MlxuIgo+ICsJCSAgICAibW92bnRkcWEgNDgoJTApLCAlJXhtbTNcbiIKPiArCQkgICAgIm1vdmFw
-cyAlJXhtbTAsICAgKCUxKVxuIgo+ICsJCSAgICAibW92YXBzICUleG1tMSwgMTYoJTEpXG4iCj4g
-KwkJICAgICJtb3ZhcHMgJSV4bW0yLCAzMiglMSlcbiIKPiArCQkgICAgIm1vdmFwcyAlJXhtbTMs
-IDQ4KCUxKVxuIgo+ICsJCSAgICA6OiAiciIgKHNyYyksICJyIiAoZHN0KSA6ICJtZW1vcnkiKTsK
-PiArCQlzcmMgKz0gNjQ7Cj4gKwkJZHN0ICs9IDY0Owo+ICsJCWxlbiAtPSA0Owo+ICsJfQo+ICsJ
-d2hpbGUgKGxlbi0tKSB7Cj4gKwkJYXNtKCJtb3ZudGRxYSAoJTApLCAlJXhtbTBcbiIKPiArCQkg
-ICAgIm1vdmFwcyAlJXhtbTAsICglMSlcbiIKPiArCQkgICAgOjogInIiIChzcmMpLCAiciIgKGRz
-dCkgOiAibWVtb3J5Iik7Cj4gKwkJc3JjICs9IDE2Owo+ICsJCWRzdCArPSAxNjsKPiArCX0KPiAr
-Cj4gKwlrZXJuZWxfZnB1X2VuZCgpOwo+ICt9Cj4gKwo+ICsvKgo+ICsgKiBfX2RybV9tZW1jcHlf
-ZnJvbV93YyBjb3BpZXMgQGxlbiBieXRlcyBmcm9tIEBzcmMgdG8gQGRzdCB1c2luZwo+ICsgKiBu
-b24tdGVtcG9yYWwgaW5zdHJ1Y3Rpb25zIHdoZXJlIGF2YWlsYWJsZS4gTm90ZSB0aGF0IGFsbCBh
-cmd1bWVudHMKPiArICogKEBzcmMsIEBkc3QpIG11c3QgYmUgYWxpZ25lZCB0byAxNiBieXRlcyBh
-bmQgQGxlbiBtdXN0IGJlIGEgbXVsdGlwbGUKPiArICogb2YgMTYuCj4gKyAqLwo+ICtzdGF0aWMg
-dm9pZCBfX2RybV9tZW1jcHlfZnJvbV93Yyh2b2lkICpkc3QsIGNvbnN0IHZvaWQgKnNyYywgdW5z
-aWduZWQgbG9uZyBsZW4pCj4gK3sKPiArCWlmICh1bmxpa2VseSgoKHVuc2lnbmVkIGxvbmcpZHN0
-IHwgKHVuc2lnbmVkIGxvbmcpc3JjIHwgbGVuKSAmIDE1KSkKPiArCQltZW1jcHkoZHN0LCBzcmMs
-IGxlbik7Cj4gKwllbHNlIGlmIChsaWtlbHkobGVuKSkKPiArCQlfX21lbWNweV9udGRxYShkc3Qs
-IHNyYywgbGVuID4+IDQpOwo+ICt9Cj4gKwo+ICsvKioKPiArICogZHJtX21lbWNweV9mcm9tX3dj
-IC0gUGVyZm9ybSB0aGUgZmFzdGVzdCBhdmFpbGFibGUgbWVtY3B5IGZyb20gYSBzb3VyY2UKPiAr
-ICogdGhhdCBtYXkgYmUgV0MuCj4gKyAqIEBkc3Q6IFRoZSBkZXN0aW5hdGlvbiBwb2ludGVyCj4g
-KyAqIEBzcmM6IFRoZSBzb3VyY2UgcG9pbnRlcgo+ICsgKiBAbGVuOiBUaGUgc2l6ZSBvZiB0aGUg
-YXJlYSBvIHRyYW5zZmVyIGluIGJ5dGVzCj4gKyAqCj4gKyAqIFRyaWVzIGFuIGFyY2ggb3B0aW1p
-emVkIG1lbWNweSBmb3IgcHJlZmV0Y2hpbmcgcmVhZGluZyBvdXQgb2YgYSBXQyByZWdpb24sCj4g
-KyAqIGFuZCBpZiBubyBzdWNoIGJlYXN0IGlzIGF2YWlsYWJsZSwgZmFsbHMgYmFjayB0byBhIG5v
-cm1hbCBtZW1jcHkuCj4gKyAqLwo+ICt2b2lkIGRybV9tZW1jcHlfZnJvbV93YyhzdHJ1Y3QgZG1h
-X2J1Zl9tYXAgKmRzdCwKPiArCQkJY29uc3Qgc3RydWN0IGRtYV9idWZfbWFwICpzcmMsCj4gKwkJ
-CXVuc2lnbmVkIGxvbmcgbGVuKQo+ICt7Cj4gKwlpZiAoV0FSTl9PTihpbl9pbnRlcnJ1cHQoKSkp
-IHsKPiArCQltZW1jcHlfZmFsbGJhY2soZHN0LCBzcmMsIGxlbik7Cj4gKwkJcmV0dXJuOwo+ICsJ
-fQo+ICsKPiArCWlmIChzdGF0aWNfYnJhbmNoX2xpa2VseSgmaGFzX21vdm50ZHFhKSkgewo+ICsJ
-CV9fZHJtX21lbWNweV9mcm9tX3djKGRzdC0+aXNfaW9tZW0gPwo+ICsJCQkJICAgICAodm9pZCBf
-X2ZvcmNlICopZHN0LT52YWRkcl9pb21lbSA6Cj4gKwkJCQkgICAgIGRzdC0+dmFkZHIsCj4gKwkJ
-CQkgICAgIHNyYy0+aXNfaW9tZW0gPwo+ICsJCQkJICAgICAodm9pZCBjb25zdCBfX2ZvcmNlICop
-c3JjLT52YWRkcl9pb21lbSA6Cj4gKwkJCQkgICAgIHNyYy0+dmFkZHIsCj4gKwkJCQkgICAgIGxl
-bik7Cj4gKwkJcmV0dXJuOwo+ICsJfQo+ICsKPiArCW1lbWNweV9mYWxsYmFjayhkc3QsIHNyYywg
-bGVuKTsKPiArfQo+ICtFWFBPUlRfU1lNQk9MKGRybV9tZW1jcHlfZnJvbV93Yyk7Cj4gKwo+ICsv
-Kgo+ICsgKiBkcm1fbWVtY3B5X2luaXRfZWFybHkgLSBPbmUgdGltZSBpbml0aWFsaXphdGlvbiBv
-ZiB0aGUgV0MgbWVtY3B5IGNvZGUKPiArICovCj4gK3ZvaWQgZHJtX21lbWNweV9pbml0X2Vhcmx5
-KHZvaWQpCj4gK3sKPiArCS8qCj4gKwkgKiBTb21lIGh5cGVydmlzb3JzIChlLmcuIEtWTSkgZG9u
-J3Qgc3VwcG9ydCBWRVgtcHJlZml4IGluc3RydWN0aW9ucwo+ICsJICogZW11bGF0aW9uLiBTbyBk
-b24ndCBlbmFibGUgbW92bnRkcWEgaW4gaHlwZXJ2aXNvciBndWVzdC4KPiArCSAqLwo+ICsJaWYg
-KHN0YXRpY19jcHVfaGFzKFg4Nl9GRUFUVVJFX1hNTTRfMSkgJiYKPiArCSAgICAhYm9vdF9jcHVf
-aGFzKFg4Nl9GRUFUVVJFX0hZUEVSVklTT1IpKQo+ICsJCXN0YXRpY19icmFuY2hfZW5hYmxlKCZo
-YXNfbW92bnRkcWEpOwo+ICt9Cj4gKyNlbHNlCj4gK3ZvaWQgZHJtX21lbWNweV9mcm9tX3djKHN0
-cnVjdCBkbWFfYnVmX21hcCAqZHN0LAo+ICsJCQljb25zdCBzdHJ1Y3QgZG1hX2J1Zl9tYXAgKnNy
-YywKPiArCQkJdW5zaWduZWQgbG9uZyBsZW4pCj4gK3sKPiArCVdBUk5fT04oaW5faW50ZXJydXB0
-KCkpOwo+ICsKPiArCW1lbWNweV9mYWxsYmFjayhkc3QsIHNyYywgbGVuKTsKPiArfQo+ICtFWFBP
-UlRfU1lNQk9MKGRybV9tZW1jcHlfZnJvbV93Yyk7Cj4gKwo+ICt2b2lkIGRybV9tZW1jcHlfaW5p
-dF9lYXJseSh2b2lkKQo+ICt7Cj4gK30KPiArI2VuZGlmIC8qIENPTkZJR19YODYgKi8KPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1f
-ZHJ2LmMKPiBpbmRleCAzZDhkNjhhOThiOTUuLjg4MDRlYzdkMzIxNSAxMDA2NDQKPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vZHJtX2Rydi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcnYu
-Ywo+IEBAIC0zNSw2ICszNSw3IEBACj4gICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gICNpbmNs
-dWRlIDxsaW51eC9zcmN1Lmg+Cj4gIAo+ICsjaW5jbHVkZSA8ZHJtL2RybV9jYWNoZS5oPgo+ICAj
-aW5jbHVkZSA8ZHJtL2RybV9jbGllbnQuaD4KPiAgI2luY2x1ZGUgPGRybS9kcm1fY29sb3JfbWdt
-dC5oPgo+ICAjaW5jbHVkZSA8ZHJtL2RybV9kcnYuaD4KPiBAQCAtMTA0MSw2ICsxMDQyLDcgQEAg
-c3RhdGljIGludCBfX2luaXQgZHJtX2NvcmVfaW5pdCh2b2lkKQo+ICAKPiAgCWRybV9jb25uZWN0
-b3JfaWRhX2luaXQoKTsKPiAgCWlkcl9pbml0KCZkcm1fbWlub3JzX2lkcik7Cj4gKwlkcm1fbWVt
-Y3B5X2luaXRfZWFybHkoKTsKPiAgCj4gIAlyZXQgPSBkcm1fc3lzZnNfaW5pdCgpOwo+ICAJaWYg
-KHJldCA8IDApIHsKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2NhY2hlLmggYi9pbmNs
-dWRlL2RybS9kcm1fY2FjaGUuaAo+IGluZGV4IGU5YWQ0ODYzZDkxNS4uY2M5ZGUxNjMyZGQzIDEw
-MDY0NAo+IC0tLSBhL2luY2x1ZGUvZHJtL2RybV9jYWNoZS5oCj4gKysrIGIvaW5jbHVkZS9kcm0v
-ZHJtX2NhY2hlLmgKPiBAQCAtMzUsNiArMzUsOCBAQAo+ICAKPiAgI2luY2x1ZGUgPGxpbnV4L3Nj
-YXR0ZXJsaXN0Lmg+Cj4gIAo+ICtzdHJ1Y3QgZG1hX2J1Zl9tYXA7Cj4gKwo+ICB2b2lkIGRybV9j
-bGZsdXNoX3BhZ2VzKHN0cnVjdCBwYWdlICpwYWdlc1tdLCB1bnNpZ25lZCBsb25nIG51bV9wYWdl
-cyk7Cj4gIHZvaWQgZHJtX2NsZmx1c2hfc2coc3RydWN0IHNnX3RhYmxlICpzdCk7Cj4gIHZvaWQg
-ZHJtX2NsZmx1c2hfdmlydF9yYW5nZSh2b2lkICphZGRyLCB1bnNpZ25lZCBsb25nIGxlbmd0aCk7
-Cj4gQEAgLTcwLDQgKzcyLDkgQEAgc3RhdGljIGlubGluZSBib29sIGRybV9hcmNoX2Nhbl93Y19t
-ZW1vcnkodm9pZCkKPiAgI2VuZGlmCj4gIH0KPiAgCj4gK3ZvaWQgZHJtX21lbWNweV9pbml0X2Vh
-cmx5KHZvaWQpOwo+ICsKPiArdm9pZCBkcm1fbWVtY3B5X2Zyb21fd2Moc3RydWN0IGRtYV9idWZf
-bWFwICpkc3QsCj4gKwkJCWNvbnN0IHN0cnVjdCBkbWFfYnVmX21hcCAqc3JjLAo+ICsJCQl1bnNp
-Z25lZCBsb25nIGxlbik7Cj4gICNlbmRpZgoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNv
-dXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+On Wed, May 26, 2021 at 01:13:22PM +0100, Will Deacon wrote:
+> On Tue, May 18, 2021 at 02:42:14PM +0800, Claire Chang wrote:
+> > @@ -138,4 +160,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+> >  		memory-region = <&multimedia_reserved>;
+> >  		/* ... */
+> >  	};
+> > +
+> > +	pcie_device: pcie_device@0,0 {
+> > +		memory-region = <&restricted_dma_mem_reserved>;
+> > +		/* ... */
+> > +	};
+> 
+> I still don't understand how this works for individual PCIe devices -- how
+> is dev->of_node set to point at the node you have above?
+> 
+> I tried adding the memory-region to the host controller instead, and then
+> I see it crop up in dmesg:
+> 
+>   | pci-host-generic 40000000.pci: assigned reserved memory node restricted_dma_mem_reserved
+> 
+> but none of the actual PCI devices end up with 'dma_io_tlb_mem' set, and
+> so the restricted DMA area is not used. In fact, swiotlb isn't used at all.
+> 
+> What am I missing to make this work with PCIe devices?
+
+Aha, looks like we're just missing the logic to inherit the DMA
+configuration. The diff below gets things working for me.
+
+Will
+
+--->8
+
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index c562a9ff5f0b..bf499fdd6e93 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -1113,25 +1113,25 @@ bool of_dma_is_coherent(struct device_node *np)
+ }
+ EXPORT_SYMBOL_GPL(of_dma_is_coherent);
+ 
+-int of_dma_set_restricted_buffer(struct device *dev)
++int of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
+ {
+-	struct device_node *node;
+ 	int count, i;
+ 
+-	if (!dev->of_node)
++	if (!np)
+ 		return 0;
+ 
+-	count = of_property_count_elems_of_size(dev->of_node, "memory-region",
++	count = of_property_count_elems_of_size(np, "memory-region",
+ 						sizeof(phandle));
+ 	for (i = 0; i < count; i++) {
+-		node = of_parse_phandle(dev->of_node, "memory-region", i);
++		struct device_node *node;
++
++		node = of_parse_phandle(np, "memory-region", i);
+ 		/* There might be multiple memory regions, but only one
+-		 * restriced-dma-pool region is allowed.
++		 * restricted-dma-pool region is allowed.
+ 		 */
+ 		if (of_device_is_compatible(node, "restricted-dma-pool") &&
+ 		    of_device_is_available(node))
+-			return of_reserved_mem_device_init_by_idx(
+-				dev, dev->of_node, i);
++			return of_reserved_mem_device_init_by_idx(dev, np, i);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index d8d865223e51..2defdca418ec 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -166,7 +166,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+ 	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+ 
+ 	if (!iommu)
+-		return of_dma_set_restricted_buffer(dev);
++		return of_dma_set_restricted_buffer(dev, np);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index 9fc874548528..8fde97565d11 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -163,14 +163,15 @@ struct bus_dma_region;
+ #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
+ int of_dma_get_range(struct device_node *np,
+ 		const struct bus_dma_region **map);
+-int of_dma_set_restricted_buffer(struct device *dev);
++int of_dma_set_restricted_buffer(struct device *dev, struct device_node *np);
+ #else
+ static inline int of_dma_get_range(struct device_node *np,
+ 		const struct bus_dma_region **map)
+ {
+ 	return -ENODEV;
+ }
+-static inline int of_dma_set_restricted_buffer(struct device *dev)
++static inline int of_dma_set_restricted_buffer(struct device *dev,
++					       struct device_node *np)
+ {
+ 	return -ENODEV;
+ }
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
