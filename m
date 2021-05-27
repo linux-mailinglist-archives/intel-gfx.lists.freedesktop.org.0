@@ -2,46 +2,118 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7817A39739B
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C69397392
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D01B6EA53;
-	Tue,  1 Jun 2021 12:51:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF2D6EA4D;
+	Tue,  1 Jun 2021 12:51:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8006E8BD;
- Thu, 27 May 2021 12:53:39 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B984D6109F;
- Thu, 27 May 2021 12:53:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1622120018;
- bh=mnHenbEzMbQdhDrGu816+dyeKu927RlHNDgNBf8bfNk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=T2Q+xyFZywvya0fPBfvK4sRdbR/bde8Rq8P4FN21AACPVaQSQsdEc0x2+0v5r+abP
- 3/8E7TEJSHcMhmUgcHo1bhdAA9AfzEMLppzT6/0P8DePbBmTljtDkX4NEtYRaHLEM1
- Gnn3YP4aa748IT6RrSs7VU9Pqy8c4Xvink86bWS+UgwCuEehm3hOhTqBJaoQ8WPXJq
- ulYWtbHvYOw84jAR1SH3F2sv+RGThyTfyzG8N3saQSkF5BsBVg+8LW53nliUGD6EFQ
- 5/RBGn2iLBX38fmxUgOxq5fMNgVhtClQMCVzqiJ/tPC3LfS/b2F3cV49KGjPHavT/f
- X+zziZDTtPkzw==
-Date: Thu, 27 May 2021 13:53:28 +0100
-From: Will Deacon <will@kernel.org>
-To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210527125328.GA22352@willie-the-truck>
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2071.outbound.protection.outlook.com [40.107.212.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F32086E8CE;
+ Thu, 27 May 2021 14:41:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a5Qkid7FttMYKKHYpUGdBU+35V4v+SsRNsnuT4KRcIxWmjURLSiJhV9KUNRs240BnwURE1lRi47gpOsPbOsoebE3T56cqXAdgiCT+fx2KymwxFZ1LE8I2UAxnkpKa9HX28sax9Jrcm0xSx+cTkLWlhp+Ey3Jpz307gLGa8bcZWe5URxMT9w/bjuRk4FESXGP7OD/2wkbRrr2moxKTcs3m65CU22s6uqLDe5Y/qZmePTDvPIDjkxBK827NFqAr6IxyM4UA4OLyIjfrit49TrRfTuj+JdDzNcOM54wWoxH6j3PRg7/nWJjOe6bXRUuQBqQHWFOaVV7VMjaK2oTNg5KpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xov16ex2LLNz59XcqP8ZntDrIieWMcGionlMx8pusEY=;
+ b=NVhmAjt1LefX6M7BHKuU+NBv/+rPRp7mehKbMgD7Vo8QiapJo1wU7pzItmAroymAmuWmZbLIoGo1v9v/yID6cJLuLRuE66bRyBLGcxVOMj0ICLwQNArdnn+tIuzXTEtrUJna5q5b40Gg1hilSowkndsei0MOMkPuAGswBCooBY9ehcs0iv+OJlFr3pYyoKhAwMd02EqgWiboCbwzwQgPWLYD4xWTKYGERouAwJJTVuKyE974PJpyBZVK5EPYcUTFUkwkEeFamtw9SswgAzezsWe1vCD9I6Uu8+IqHGaZLn8Qa/w0dfGR3MunzK5Zi6z5vbhKmN+k+3Yawg5ugCB4ZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xov16ex2LLNz59XcqP8ZntDrIieWMcGionlMx8pusEY=;
+ b=WMnXzm73hbEdQkv9+AAe+P/IpiJ2/2NFybvRfzC8WnYGVfU2s+kuP5a6/0LfGLvH7MnrUc3CO+ODX3GNtyrpvclzfwJALOnWGHsg31xfygktZ4wxstidddi+ggkxlgzKI/MsdTkzJZGdOIn6AisWXY3LVl4ToaYPSvjcMELD0mw=
+Authentication-Results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB1355.namprd12.prod.outlook.com (2603:10b6:3:6e::7) by
+ DM6PR12MB4218.namprd12.prod.outlook.com (2603:10b6:5:21b::16) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4173.24; Thu, 27 May 2021 14:41:08 +0000
+Received: from DM5PR12MB1355.namprd12.prod.outlook.com
+ ([fe80::b914:4704:ad6f:aba9]) by DM5PR12MB1355.namprd12.prod.outlook.com
+ ([fe80::b914:4704:ad6f:aba9%12]) with mapi id 15.20.4173.022; Thu, 27 May
+ 2021 14:41:08 +0000
+To: Christoph Hellwig <hch@lst.de>, Florian Fainelli <f.fainelli@gmail.com>
 References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-15-tientzu@chromium.org>
- <20210526121322.GA19313@willie-the-truck>
- <20210526155321.GA19633@willie-the-truck>
- <CALiNf2_sVXnb97++yWusB5PWz8Pzfn9bCKZc6z3tY4bx6-nW8w@mail.gmail.com>
- <20210527113456.GA22019@willie-the-truck>
- <CALiNf2_Qk5DmZSJO+jv=m5V-VFtmL9j0v66UY6qKmM-2pr3tRQ@mail.gmail.com>
+ <20210518064215.2856977-2-tientzu@chromium.org>
+ <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
+ <20210527130211.GA24344@lst.de>
+From: Tom Lendacky <thomas.lendacky@amd.com>
+Message-ID: <bab261b4-f801-05af-8fd9-c440ed219591@amd.com>
+Date: Thu, 27 May 2021 09:41:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <20210527130211.GA24344@lst.de>
+Content-Language: en-US
+X-Originating-IP: [67.79.209.213]
+X-ClientProxiedBy: SN2PR01CA0050.prod.exchangelabs.com (2603:10b6:800::18) To
+ DM5PR12MB1355.namprd12.prod.outlook.com (2603:10b6:3:6e::7)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CALiNf2_Qk5DmZSJO+jv=m5V-VFtmL9j0v66UY6qKmM-2pr3tRQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from office-linux.texastahm.com (67.79.209.213) by
+ SN2PR01CA0050.prod.exchangelabs.com (2603:10b6:800::18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4173.22 via Frontend Transport; Thu, 27 May 2021 14:41:04 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 59e14bbc-1eea-4b9f-e0b6-08d9211d768f
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4218:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4218889520CE03D8A0062CAAEC239@DM6PR12MB4218.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nZNB84YC4kztOdLzWwMIlAuRl+h2KTNM+1A6fbzJA0nn9U3XrzLsdsg5fPGYLYXKx6BpkcxDV/PnT5Ym8OKRkAC0PkUfImgHMBoqNsExvyly+UmVkcW5UhrZRh4m7mC4TM/H784Uu41+EJZBAymgGY0SOBhF2a5m7wjXykLewN7O5UhL5Eokq6HcCehl9IOXO2rn8wkquQmMPSfJgFdghwToh8urF5O/q1hLoIeEzsPLt7qPDr4QG+mzBrMlQ5Faf15YqTi0Ajn1URT4xnVabof/ysvP4a73X2R5RsAJXocyU2CyWZOT2IO02O0KIiQ8bOKNl5OmHjK9PQZCucn4x4Y83ibfder6hoJx3+C6s4L8KJZk5gErfn1bslS9AgrJ+uiMLoLqgcyTGqfBhIc0I6jsmlYifXpA46e+mOWbtMEhNRIw9wJRjOxtH7lF+7fncpH/EjenpZKDSdyqdJjUtZmdOAX9q7ImvJWx6n7KzNtn+CaObMHxcwUdXOBgp+HfTVKk2SbGKKA2I6tMZQGqOaakYmNfT3HSAE0CNVGJ0Nxaav1m7zoG6+P7X40RPeQ2rhCnYWb7HBy+mbEMFp6PPKg+iCoJ5PRwz+8ZQYOEtSvHCypshtkyhG97zbLj+68F/InSYrrqudvTKYNYYNvpubjb0kmyV/Say81zdfegQYU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1355.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(38100700002)(4744005)(7406005)(7366002)(7416002)(6512007)(2906002)(53546011)(86362001)(8936002)(478600001)(2616005)(16526019)(956004)(316002)(5660300002)(36756003)(83380400001)(31686004)(186003)(6506007)(6486002)(54906003)(66476007)(110136005)(26005)(31696002)(4326008)(66556008)(66946007)(8676002)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?OGgyZW1PNU5qT3ZSeisxckZFc0tldW91cTExWEx4RVFXbjBLS2JVTitudGd5?=
+ =?utf-8?B?ZXB0bDY0SVM3cTZrd1JGeFo0SDRjMTlEVkJmcnZ0MzI0UnZSWVZRQlZEY0dV?=
+ =?utf-8?B?VjRaSlkyNm1KMEsxcFg4VGZEWVA2T25tYW4wajdHR0YxNGJBRjV4eXZYRUpT?=
+ =?utf-8?B?QWkybUc3UVlnNTBHS3M0NUlhU0MvWDRsRldpck1iSmh2aHFNalM2MXBqcmpa?=
+ =?utf-8?B?QUU1YnZvWjJlR0lYRVpvbjhlSmVTS1RqVERibnl4M1Y4eDR5QUlJWlpLMUor?=
+ =?utf-8?B?ak5NYldoR0dxczZZNmFwSEtOMHFKcHlmZTVmTEl0TVNmQkl4ZjRncXFRN0tB?=
+ =?utf-8?B?TWltUFlTcjVRYUU4d1pUMXBSakkzc2IrMkR2eHBEL2J1N1NtMzFJTytsWTMw?=
+ =?utf-8?B?NVVOdFp4TitQVlhDZit2ZEIvM294SHZjeVZCOVZqbTk2SmNYeXV5bCtKa2pD?=
+ =?utf-8?B?UEFqSW50ck5BdDRuQUNwUFF3aGVZUDRFUUxEeFlET1FYaC9GU2dSNVUyZzVW?=
+ =?utf-8?B?a3NmY3duR2tRYko0NGd4Rzc2NzVGSkJMSWJGMnFFSk41Y1NYb2llSUszdUMv?=
+ =?utf-8?B?anZZZjJWSGNoeXJXajZjQlJNcXQ5VzBPVmZ4clc4eEJBT0dGblRZLytia0NP?=
+ =?utf-8?B?MURQUEZwVDJSalBsRlFuYUJabC9MakVubG9tVjVJOVdkMnl5ZWtNSU5TOGdM?=
+ =?utf-8?B?Z0ducUxiM1daNStlM0tFZzU0emh2YnQxSjkxZmd1cy9LV1R4WmxGUlA0NlhO?=
+ =?utf-8?B?SnoyOElpaDhzUHFZdDE4UVpMSmtmdkFpY2pvTksrTUxWejJqV0Vob2NjMUVq?=
+ =?utf-8?B?ZUxxdlQraGd0YTZPekNOQ3N4UTNwV0huUG9Mam9rM1hnajc4VE5qT2xnWUNn?=
+ =?utf-8?B?VWNBTkxULzlJN3BHNWVnTUc5cDV4S3dmdU9YR3VveWZURnQ1TmJxZjE1aDhy?=
+ =?utf-8?B?UXFtNnRPOFladWZab1JwWmloN2plYTdUc2NqaWlFTFZMTEdKTERkZnZSTy8z?=
+ =?utf-8?B?blcrbWU1RTVsWFlHNXhFRlUwZFFpdDduWTJNcDRPMGVtVTJ6dVdHQjFYNFVP?=
+ =?utf-8?B?djc4NjdKeVc3czFvanFROFFqdU9VOWE5Wmc0d01QTE9GeHAvVFY3SnMvdW5z?=
+ =?utf-8?B?Qi9VN2lVUnNsb2pxOWliOXlmcDh6eG9iZUtRZzNXZmFXRFlvUlpNM1FHaGVx?=
+ =?utf-8?B?V2hCbUhpWkQwRmdyelozSzFyMDlRNnJveXBCU1c3MlgxYTlTMWIybzc2UjAy?=
+ =?utf-8?B?dW9RSnlOakVsblZDN0F6dzdMOW9lNDQxbngrMGpvT3NVTDZpTDVEeXV0T01L?=
+ =?utf-8?B?ODM3azY4TU93UE1CMHZ3V3pnUTZycmF6YmliVTZORXBiZ3hJeXJLcnpiTmtM?=
+ =?utf-8?B?RHEwalZtaU8rTTY3ajlaaHpmSjJTZEREdGFPcHlBMzJrS2tQZWtDajY0WmVB?=
+ =?utf-8?B?K2EzbFZtQUtJWk9rRytLVG12Z2x3WVowRk8vRUdjYzZKUjJIK0tEVWNhcXJG?=
+ =?utf-8?B?MndLQlk0cVljRW9NTkU5SWlScTFld3Fld3MrR1VmQXkvTmI2ZTNvZzhqYlhj?=
+ =?utf-8?B?ZjNFZzdOV093akNmUlcvcklnYURkQUdWbHZBeXhibnpRSWhGVHJ0TTJmbk42?=
+ =?utf-8?B?WTRTUWhzc3YvMFJmbnhTS3RIZDgwajhiVkk5OEx5V3hGRXpySmNCZDdVcGJU?=
+ =?utf-8?B?WU9HbGRQN3E5dkFET0kzUUtEZVZDazdIaVl5TkVDMGlzSkZpZEdjb2NEQ2hz?=
+ =?utf-8?Q?FkiPGixk4soS+HSivd/GXKKe6qNXTD5QcRXLY01?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59e14bbc-1eea-4b9f-e0b6-08d9211d768f
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1355.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2021 14:41:08.0642 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5CsF8+AyOlbzvidWQoLfPambEK4AEjMpHIQTAAL4vJ0v4GhJJhQZeJ2+YilHLtstBzE3OoZMtjG1uZ8CgLZkHw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4218
 X-Mailman-Approved-At: Tue, 01 Jun 2021 12:51:14 +0000
-Subject: Re: [Intel-gfx] [PATCH v7 14/15] dt-bindings: of: Add restricted
- DMA pool
+Subject: Re: [Intel-gfx] [PATCH v7 01/15] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,82 +126,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Quinlan <james.quinlan@broadcom.com>, heikki.krogerus@linux.intel.com,
- linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
- benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- Frank Rowand <frowand.list@gmail.com>, Christoph Hellwig <hch@lst.de>,
- Jianxiong Gao <jxgao@google.com>, sstabellini@kernel.org,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, mingo@kernel.org,
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ xypron.glpk@gmx.de, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
  Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
  linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, matthew.auld@intel.com,
- Nicolas Boichat <drinkcat@chromium.org>, thomas.hellstrom@linux.intel.com,
- jgross@suse.com, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- intel-gfx@lists.freedesktop.org, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- boris.ostrovsky@oracle.com, airlied@linux.ie,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ jxgao@google.com, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
+ Claire Chang <tientzu@chromium.org>, boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
  "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- xypron.glpk@gmx.de, linuxppc-dev@lists.ozlabs.org, bauerman@linux.ibm.com
+ Jim Quinlan <james.quinlan@broadcom.com>, mpe@ellerman.id.au,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 27, 2021 at 08:48:59PM +0800, Claire Chang wrote:
-> On Thu, May 27, 2021 at 7:35 PM Will Deacon <will@kernel.org> wrote:
-> >
-> > On Thu, May 27, 2021 at 07:29:20PM +0800, Claire Chang wrote:
-> > > On Wed, May 26, 2021 at 11:53 PM Will Deacon <will@kernel.org> wrote:
-> > > >
-> > > > On Wed, May 26, 2021 at 01:13:22PM +0100, Will Deacon wrote:
-> > > > > On Tue, May 18, 2021 at 02:42:14PM +0800, Claire Chang wrote:
-> > > > > > @@ -138,4 +160,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
-> > > > > >             memory-region = <&multimedia_reserved>;
-> > > > > >             /* ... */
-> > > > > >     };
-> > > > > > +
-> > > > > > +   pcie_device: pcie_device@0,0 {
-> > > > > > +           memory-region = <&restricted_dma_mem_reserved>;
-> > > > > > +           /* ... */
-> > > > > > +   };
-> > > > >
-> > > > > I still don't understand how this works for individual PCIe devices -- how
-> > > > > is dev->of_node set to point at the node you have above?
-> > > > >
-> > > > > I tried adding the memory-region to the host controller instead, and then
-> > > > > I see it crop up in dmesg:
-> > > > >
-> > > > >   | pci-host-generic 40000000.pci: assigned reserved memory node restricted_dma_mem_reserved
-> > > > >
-> > > > > but none of the actual PCI devices end up with 'dma_io_tlb_mem' set, and
-> > > > > so the restricted DMA area is not used. In fact, swiotlb isn't used at all.
-> > > > >
-> > > > > What am I missing to make this work with PCIe devices?
-> > > >
-> > > > Aha, looks like we're just missing the logic to inherit the DMA
-> > > > configuration. The diff below gets things working for me.
-> > >
-> > > I guess what was missing is the reg property in the pcie_device node.
-> > > Will update the example dts.
-> >
-> > Thanks. I still think something like my diff makes sense, if you wouldn't mind including
-> > it, as it allows restricted DMA to be used for situations where the PCIe
-> > topology is not static.
-> >
-> > Perhaps we should prefer dev->of_node if it exists, but then use the node
-> > of the host bridge's parent node otherwise?
+On 5/27/21 8:02 AM, Christoph Hellwig wrote:
+> On Wed, May 19, 2021 at 11:50:07AM -0700, Florian Fainelli wrote:
+>> You convert this call site with swiotlb_init_io_tlb_mem() which did not
+>> do the set_memory_decrypted()+memset(). Is this okay or should
+>> swiotlb_init_io_tlb_mem() add an additional argument to do this
+>> conditionally?
 > 
-> Sure. Let me add in the next version.
+> The zeroing is useful and was missing before.  I think having a clean
+> state here is the right thing.
+> 
+> Not sure about the set_memory_decrypted, swiotlb_update_mem_attributes
+> kinda suggests it is too early to set the memory decrupted.
+> 
+> Adding Tom who should now about all this.
 
-Brill, thanks! I'll take it for a spin once it lands on the list.
+The reason for adding swiotlb_update_mem_attributes() was because having
+the call to set_memory_decrypted() in swiotlb_init_with_tbl() triggered a
+BUG_ON() related to interrupts not being enabled yet during boot. So that
+call had to be delayed until interrupts were enabled.
 
-Will
+Thanks,
+Tom
+
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
