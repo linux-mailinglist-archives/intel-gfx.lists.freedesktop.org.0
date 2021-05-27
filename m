@@ -1,43 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3C139739C
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D92539739E
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4D86EA54;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7216EA56;
 	Tue,  1 Jun 2021 12:51:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7D726E0E3;
- Wed, 26 May 2021 15:53:32 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 063E7611CD;
- Wed, 26 May 2021 15:53:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1622044412;
- bh=OnL/4Jq+LKq6vWvDBS0xA9CvVYxTMOTBjml/zh+3Ar0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=B4UuFsxu1r3HigmEjVwQF/otX4DrMd38lSSUyIbdumWlwAz4mqWFVwTfX3tV+cLTK
- ezumxJCPuSoiNTejbR/1l7Q+EyQuGnIdMF026YW9wZDBrp0Etki3m3VqLD3t52Z+ML
- aIGQuwBPRYJXDmtAfPisyQiC2L9qX6xiRg823CR+7DK1ZJFKUWOyliFfy6nu3kEBra
- 72iE6bgTyqyaVJ438e+wldUwZTA5bJjB+laj7DX9kULouD8NbVtF/6oVvQWdjQCza8
- vTg4CtjTc7cs0vgmNuLf7hWhlxI/bnFdiE1zs5zIETRjnoBXmZKSOwwvGM2DpAYygJ
- B11ILWs8v9zvg==
-Date: Wed, 26 May 2021 16:53:21 +0100
-From: Will Deacon <will@kernel.org>
-To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210526155321.GA19633@willie-the-truck>
-References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-15-tientzu@chromium.org>
- <20210526121322.GA19313@willie-the-truck>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFF656EE39
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 08:12:12 +0000 (UTC)
+IronPort-SDR: qJGIYqY/0JXN74qrL0xS+ds3l9xxVP6joIN24GBU7/op2aH05olxvTg28npy7LFR8j5eX2Yj6q
+ cptlMR44hhqg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="189797546"
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="189797546"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2021 01:12:11 -0700
+IronPort-SDR: qUBxaa59vEOq2QFrcPY3NQoK4dosMIjS2LwibZ6ZhXRUUZa9ciTmT+9Y+ZWQvPKiFlqbqgtkxQ
+ C4W8OpMfsx2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="631078631"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.91])
+ by fmsmga006.fm.intel.com with ESMTP; 27 May 2021 01:12:10 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 May 2021 11:15:40 +0300
+Message-Id: <20210527081540.20152-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210526121322.GA19313@willie-the-truck>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Tue, 01 Jun 2021 12:51:14 +0000
-Subject: Re: [Intel-gfx] [PATCH v7 14/15] dt-bindings: of: Add restricted
- DMA pool
+Subject: [Intel-gfx] [PATCH] INTEL_DII: drm/i915/adl_p: Same slices mask is
+ not same Dbuf state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,141 +47,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
- mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
- sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
- mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Christoph Hellwig <hch@lst.de>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- jxgao@google.com, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- airlied@linux.ie, Dan Williams <dan.j.williams@intel.com>,
- linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
- bhelgaas@google.com, boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
- tfiga@chromium.org,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
- Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 26, 2021 at 01:13:22PM +0100, Will Deacon wrote:
-> On Tue, May 18, 2021 at 02:42:14PM +0800, Claire Chang wrote:
-> > @@ -138,4 +160,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
-> >  		memory-region = <&multimedia_reserved>;
-> >  		/* ... */
-> >  	};
-> > +
-> > +	pcie_device: pcie_device@0,0 {
-> > +		memory-region = <&restricted_dma_mem_reserved>;
-> > +		/* ... */
-> > +	};
-> 
-> I still don't understand how this works for individual PCIe devices -- how
-> is dev->of_node set to point at the node you have above?
-> 
-> I tried adding the memory-region to the host controller instead, and then
-> I see it crop up in dmesg:
-> 
->   | pci-host-generic 40000000.pci: assigned reserved memory node restricted_dma_mem_reserved
-> 
-> but none of the actual PCI devices end up with 'dma_io_tlb_mem' set, and
-> so the restricted DMA area is not used. In fact, swiotlb isn't used at all.
-> 
-> What am I missing to make this work with PCIe devices?
-
-Aha, looks like we're just missing the logic to inherit the DMA
-configuration. The diff below gets things working for me.
-
-Will
-
---->8
-
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index c562a9ff5f0b..bf499fdd6e93 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -1113,25 +1113,25 @@ bool of_dma_is_coherent(struct device_node *np)
- }
- EXPORT_SYMBOL_GPL(of_dma_is_coherent);
- 
--int of_dma_set_restricted_buffer(struct device *dev)
-+int of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
- {
--	struct device_node *node;
- 	int count, i;
- 
--	if (!dev->of_node)
-+	if (!np)
- 		return 0;
- 
--	count = of_property_count_elems_of_size(dev->of_node, "memory-region",
-+	count = of_property_count_elems_of_size(np, "memory-region",
- 						sizeof(phandle));
- 	for (i = 0; i < count; i++) {
--		node = of_parse_phandle(dev->of_node, "memory-region", i);
-+		struct device_node *node;
-+
-+		node = of_parse_phandle(np, "memory-region", i);
- 		/* There might be multiple memory regions, but only one
--		 * restriced-dma-pool region is allowed.
-+		 * restricted-dma-pool region is allowed.
- 		 */
- 		if (of_device_is_compatible(node, "restricted-dma-pool") &&
- 		    of_device_is_available(node))
--			return of_reserved_mem_device_init_by_idx(
--				dev, dev->of_node, i);
-+			return of_reserved_mem_device_init_by_idx(dev, np, i);
- 	}
- 
- 	return 0;
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index d8d865223e51..2defdca418ec 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -166,7 +166,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
- 
- 	if (!iommu)
--		return of_dma_set_restricted_buffer(dev);
-+		return of_dma_set_restricted_buffer(dev, np);
- 
- 	return 0;
- }
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 9fc874548528..8fde97565d11 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -163,14 +163,15 @@ struct bus_dma_region;
- #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
- int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map);
--int of_dma_set_restricted_buffer(struct device *dev);
-+int of_dma_set_restricted_buffer(struct device *dev, struct device_node *np);
- #else
- static inline int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map)
- {
- 	return -ENODEV;
- }
--static inline int of_dma_set_restricted_buffer(struct device *dev)
-+static inline int of_dma_set_restricted_buffer(struct device *dev,
-+					       struct device_node *np)
- {
- 	return -ENODEV;
- }
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgY3VycmVudGx5IHRyZWF0IHNhbWUgc2xpY2UgbWFzayBhcyBhIHNhbWUgREJ1ZiBzdGF0ZSBh
+bmQgc2tpcAp1cGRhdGluZyB0aGUgRGJ1ZiBzbGljZXMsIGlmIHdlIGRldGVjdCB0aGF0LgpUaGlz
+IGlzIHdyb25nIGFzIGlmIHdlIGhhdmUgYSBtdWx0aSB0byBzaW5nbGUgcGlwZSBjaGFuZ2Ugb3IK
+dmljZSB2ZXJzYSwgdGhhdCB3b3VsZCBiZSB0cmVhdGVkIGFzIGEgc2FtZSBEYnVmIHN0YXRlIGFu
+ZCB0aHVzCm5vIGNoYW5nZXMgcmVxdWlyZWQsIHNvIHdlIGRvbid0IGdldCBNYnVzIHVwZGF0ZWQs
+IGNhdXNpbmcgaXNzdWVzLgpTb2x1dGlvbjogY2hlY2sgYWxzbyBtYnVzX2pvaW4sIGluIGFkZGl0
+aW9uIHRvIHNsaWNlcyBtYXNrLgoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5p
+c2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X3BtLmMgfCA2ICsrKystLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
+dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwppbmRleCAwMGYzZGVhZDIwYWQuLjgwNGQ4
+MzQ4NmU4MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCkBAIC04MDkzLDcgKzgwOTMsOCBAQCB2
+b2lkIGludGVsX2RidWZfcHJlX3BsYW5lX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
+ICpzdGF0ZSkKIAkJaW50ZWxfYXRvbWljX2dldF9vbGRfZGJ1Zl9zdGF0ZShzdGF0ZSk7CiAKIAlp
+ZiAoIW5ld19kYnVmX3N0YXRlIHx8Ci0JICAgIG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNl
+cyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpCisJICAgICgobmV3X2RidWZfc3Rh
+dGUtPmVuYWJsZWRfc2xpY2VzID09IG9sZF9kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNlcykKKwkg
+ICAgJiYgKG5ld19kYnVmX3N0YXRlLT5qb2luZWRfbWJ1cyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+am9p
+bmVkX21idXMpKSkKIAkJcmV0dXJuOwogCiAJV0FSTl9PTighbmV3X2RidWZfc3RhdGUtPmJhc2Uu
+Y2hhbmdlZCk7CkBAIC04MTEzLDcgKzgxMTQsOCBAQCB2b2lkIGludGVsX2RidWZfcG9zdF9wbGFu
+ZV91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJCWludGVsX2F0b21p
+Y19nZXRfb2xkX2RidWZfc3RhdGUoc3RhdGUpOwogCiAJaWYgKCFuZXdfZGJ1Zl9zdGF0ZSB8fAot
+CSAgICBuZXdfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMgPT0gb2xkX2RidWZfc3RhdGUtPmVu
+YWJsZWRfc2xpY2VzKQorCSAgICAoKG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNlcyA9PSBv
+bGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpCisJICAgICYmIChuZXdfZGJ1Zl9zdGF0ZS0+
+am9pbmVkX21idXMgPT0gb2xkX2RidWZfc3RhdGUtPmpvaW5lZF9tYnVzKSkpCiAJCXJldHVybjsK
+IAogCVdBUk5fT04oIW5ld19kYnVmX3N0YXRlLT5iYXNlLmNoYW5nZWQpOwotLSAKMi4yNC4xLjQ4
+NS5nYWQwNWEzZDhlNQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
