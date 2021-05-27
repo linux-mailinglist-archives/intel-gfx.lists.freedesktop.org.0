@@ -2,64 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA513931E3
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 17:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F3503931EF
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 17:12:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4903F6F405;
-	Thu, 27 May 2021 15:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2115C6F409;
+	Thu, 27 May 2021 15:11:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E49446F404;
- Thu, 27 May 2021 15:10:02 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id x8so212940wrq.9;
- Thu, 27 May 2021 08:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=rqZxGKKVCz3uQqmwjK5GTpFMpol1Epc61Ub7cNHLCUU=;
- b=PFsB9fjbU921D82ImY9Gh3+qSmRkfCFYG4BmU2Pc8PbHwjq1roHu4ix7ZuHWcp3F2d
- r7ZukF9fHMsrqn9iIpLGLMn0W9Oorb4JN5pmeF6qwpLfVdivYYcFNUu7SFNxN+XPLi6w
- WqAKHlHyg2GJ4K3ST+NJKetsmCm0JxCd5Wtt45mGXpX8zBVT35pWMUXVEEsg7l/lG70K
- EIzs3zpUe4ltQvdwmZSX20oBJw5i8fH6QgCZ5ip/9SIrMeBmOHmStCVBIHbjXWJgxgpI
- FlcOdp9Wa9n4XZ/g3GQhkPEvo8NK1oXup1s8+Zs8p+h1W8lo9/DNQD4GMbM7+uaSmjIW
- gY5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=rqZxGKKVCz3uQqmwjK5GTpFMpol1Epc61Ub7cNHLCUU=;
- b=n9vys8Jfv3JWtGr42bwnx0YNN6TnW95ElYwcWp10ViODGnXcdYUOfwITGBf2UkSIpd
- 7uzaomlVnbJq+kimzqb+yhuHMOJgleGE3tDvn+AO/vmlN6NyrBd8CWRGC3QlvbHBnN/J
- crXCFkZyoBRGwlMOyuiEszb2+PnPHmT/urGdG5VKSsKVYqPw003w20TNu3CvWZrvFckZ
- MQ/KpHLOeq2ObYMCFLzZAkpXFyZsK3h4hU6Tj8+l7K1ZOcFpI36XIGq6uloObQXT/CVH
- zHq5qAefJvwVfy8soA4qn3j1gxRR+1/QukyGpG/bYZ0sPdTUuhif4760pnRGmgo2c66+
- IZgg==
-X-Gm-Message-State: AOAM532w+ln4pjhpP00duJlK1JZyAcxEWFFdYKgyCojNdVP7dDSm8tjd
- qOb2Bro810n3y/sq56nV1QGKo4peSGCch4o0
-X-Google-Smtp-Source: ABdhPJw9JV9jYVWSBFF3XkjdHdBeprOzMU0lqeRUo0Iqkcw4JHegGmO9gnUoEp5TGZLbhx/MT7pZZg==
-X-Received: by 2002:adf:e3c6:: with SMTP id k6mr3927868wrm.236.1622128201312; 
- Thu, 27 May 2021 08:10:01 -0700 (PDT)
-Received: from [0.0.0.0] (jfdmzpr04-ext.jf.intel.com. [134.134.137.73])
- by smtp.googlemail.com with ESMTPSA id z19sm3201893wmk.8.2021.05.27.08.09.57
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 May 2021 08:10:00 -0700 (PDT)
-To: Vidya Srinivas <vidya.srinivas@intel.com>,
- intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org
-References: <1621570131-23943-1-git-send-email-vidya.srinivas@intel.com>
- <20210527143128.25366-1-vidya.srinivas@intel.com>
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Message-ID: <2960bd68-52c5-9129-5acb-4473007b84a6@gmail.com>
-Date: Thu, 27 May 2021 18:09:53 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1813F6F404;
+ Thu, 27 May 2021 15:11:55 +0000 (UTC)
+IronPort-SDR: 0r0aZWDCpkualVSF1D0OAfHJmyWjUNUh/N+pcLyNRqvGLS9lZkYuAygEqBxhC7TigKoIvqanCv
+ iqm73o0Ndkww==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="266645169"
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="266645169"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2021 08:11:53 -0700
+IronPort-SDR: EOlYnoTLi8w01Hf0UdzvmsoSq3WCsisDbk9U7KZhU7/2i5BTsW8YtVM7DDgC6kpX+TpB8yvTsX
+ StqaTsQBB2tw==
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="547995398"
+Received: from amoses-mobl1.ger.corp.intel.com (HELO [10.213.211.53])
+ ([10.213.211.53])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2021 08:11:52 -0700
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <20210506191451.77768-37-matthew.brost@intel.com>
+ <375b4de4-168f-9c4c-dbb8-f42fd6303628@linux.intel.com>
+ <20210525172121.GE14724@sdutt-i7>
+ <0f26f76f-e066-fb23-a7b2-784bb8ee771d@linux.intel.com>
+ <20210526181053.GA3435@sdutt-i7>
+ <53613c13-1cab-b9bd-3922-0389600773ee@linux.intel.com>
+ <20210527143514.GA24720@sdutt-i7>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <828fe399-5319-78a9-c6e3-c0c027e08e9c@linux.intel.com>
+Date: Thu, 27 May 2021 16:11:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210527143128.25366-1-vidya.srinivas@intel.com>
+In-Reply-To: <20210527143514.GA24720@sdutt-i7>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH 4/4] [RFC] tests/kms_big_fb: Wait
- for vblank before collecting CRC
+Subject: Re: [Intel-gfx] [RFC PATCH 36/97] drm/i915/guc: Add non blocking
+ CTB send function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,84 +58,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
-Cc: charlton.lin@intel.com
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 27.5.2021 17.31, Vidya Srinivas wrote:
-> Without wait for vblank, CRC mismatch is seen
-> between big and small CRC on some intel Gen11 platforms.
+
+On 27/05/2021 15:35, Matthew Brost wrote:
+> On Thu, May 27, 2021 at 11:02:24AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 26/05/2021 19:10, Matthew Brost wrote:
+>>
+>> [snip]
+>>
+>>>>>>> +static int ct_send_nb(struct intel_guc_ct *ct,
+>>>>>>> +		      const u32 *action,
+>>>>>>> +		      u32 len,
+>>>>>>> +		      u32 flags)
+>>>>>>> +{
+>>>>>>> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>>>>>>> +	unsigned long spin_flags;
+>>>>>>> +	u32 fence;
+>>>>>>> +	int ret;
+>>>>>>> +
+>>>>>>> +	spin_lock_irqsave(&ctb->lock, spin_flags);
+>>>>>>> +
+>>>>>>> +	ret = ctb_has_room(ctb, len + 1);
+>>>>>>> +	if (unlikely(ret))
+>>>>>>> +		goto out;
+>>>>>>> +
+>>>>>>> +	fence = ct_get_next_fence(ct);
+>>>>>>> +	ret = ct_write(ct, action, len, fence, flags);
+>>>>>>> +	if (unlikely(ret))
+>>>>>>> +		goto out;
+>>>>>>> +
+>>>>>>> +	intel_guc_notify(ct_to_guc(ct));
+>>>>>>> +
+>>>>>>> +out:
+>>>>>>> +	spin_unlock_irqrestore(&ctb->lock, spin_flags);
+>>>>>>> +
+>>>>>>> +	return ret;
+>>>>>>> +}
+>>>>>>> +
+>>>>>>>      static int ct_send(struct intel_guc_ct *ct,
+>>>>>>>      		   const u32 *action,
+>>>>>>>      		   u32 len,
+>>>>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>>>      		   u32 response_buf_size,
+>>>>>>>      		   u32 *status)
+>>>>>>>      {
+>>>>>>> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>>>>>>>      	struct ct_request request;
+>>>>>>>      	unsigned long flags;
+>>>>>>>      	u32 fence;
+>>>>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>>>      	GEM_BUG_ON(!len);
+>>>>>>>      	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+>>>>>>>      	GEM_BUG_ON(!response_buf && response_buf_size);
+>>>>>>> +	might_sleep();
+>>>>>>
+>>>>>> Sleep is just cond_resched below or there is more?
+>>>>>>
+>>>>>
+>>>>> Yes, the cond_resched.
+>>>>>
+>>>>>>> +	/*
+>>>>>>> +	 * We use a lazy spin wait loop here as we believe that if the CT
+>>>>>>> +	 * buffers are sized correctly the flow control condition should be
+>>>>>>> +	 * rare.
+>>>>>>> +	 */
+>>>>>>> +retry:
+>>>>>>>      	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+>>>>>>> +	if (unlikely(!ctb_has_room(ctb, len + 1))) {
+>>>>>>> +		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+>>>>>>> +		cond_resched();
+>>>>>>> +		goto retry;
+>>>>>>> +	}
+>>>>>>
+>>>>>> If this patch is about adding a non-blocking send function, and below we can
+>>>>>> see that it creates a fork:
+>>>>>>
+>>>>>> intel_guc_ct_send:
+>>>>>> ...
+>>>>>> 	if (flags & INTEL_GUC_SEND_NB)
+>>>>>> 		return ct_send_nb(ct, action, len, flags);
+>>>>>>
+>>>>>>     	ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
+>>>>>>
+>>>>>> Then why is there a change in ct_send here, which is not the new
+>>>>>> non-blocking path?
+>>>>>>
+>>>>>
+>>>>> There is not a change to ct_send(), just to intel_guc_ct_send.
+>>>>
+>>>> I was doing by the diff which says:
+>>>>
+>>>>    static int ct_send(struct intel_guc_ct *ct,
+>>>>    		   const u32 *action,
+>>>>    		   u32 len,
+>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>    		   u32 response_buf_size,
+>>>>    		   u32 *status)
+>>>>    {
+>>>> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>>>>    	struct ct_request request;
+>>>>    	unsigned long flags;
+>>>>    	u32 fence;
+>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>    	GEM_BUG_ON(!len);
+>>>>    	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+>>>>    	GEM_BUG_ON(!response_buf && response_buf_size);
+>>>> +	might_sleep();
+>>>> +	/*
+>>>> +	 * We use a lazy spin wait loop here as we believe that if the CT
+>>>> +	 * buffers are sized correctly the flow control condition should be
+>>>> +	 * rare.
+>>>> +	 */
+>>>> +retry:
+>>>>    	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+>>>> +	if (unlikely(!ctb_has_room(ctb, len + 1))) {
+>>>> +		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+>>>> +		cond_resched();
+>>>> +		goto retry;
+>>>> +	}
+>>>>
+>>>> So it looks like a change to ct_send to me. Is that wrong?
+>>
+>> What about this part - is the patch changing the blocking ct_send or not,
+>> and if it is why?
+>>
 > 
-> Change-Id: I3bec931aa901130997e693ac1cacf389e2a8100f
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> ---
->   tests/kms_big_fb.c | 10 +++++++---
->   1 file changed, 7 insertions(+), 3 deletions(-)
+> Yes, ct_send() changes. Sorry for the confusion.
 > 
-> diff --git a/tests/kms_big_fb.c b/tests/kms_big_fb.c
-> index b2027b6b9d1b..da682593429b 100644
-> --- a/tests/kms_big_fb.c
-> +++ b/tests/kms_big_fb.c
-> @@ -254,6 +254,7 @@ static void unset_lut(data_t *data)
->   static bool test_plane(data_t *data)
->   {
->   	igt_plane_t *plane = data->plane;
-> +	igt_display_t *display = &data->display;
->   	struct igt_fb *small_fb = &data->small_fb;
->   	struct igt_fb *big_fb = &data->big_fb;
->   	int w = data->big_fb_width - small_fb->width;
-> @@ -269,6 +270,7 @@ static bool test_plane(data_t *data)
->   		{ w / 3, h * 3 / 4, },
->   		{ w, h, },
->   	};
-> +	bool check_platform_intel = is_i915_device(data->drm_fd);
+> This function needs to be updated to account for the H2G space and
+> backoff if no space is available.
 
-You will not need to do this. This test start with
+Since this one is the sleeping path, it probably can and needs to be 
+smarter than having a cond_resched busy loop added. Like sleep and get 
+woken up when there is space. Otherwise it can degenerate to busy 
+looping via contention with the non-blocking path.
 
-drm_open_driver_master(DRIVER_INTEL)
+Regards,
 
-hence will always be only on intel device.
-
->   
->   	if (!igt_plane_has_format_mod(plane, data->format, data->modifier))
->   		return false;
-> @@ -336,17 +338,19 @@ static bool test_plane(data_t *data)
->   
->   		igt_display_commit2(&data->display, data->display.is_atomic ?
->   				    COMMIT_ATOMIC : COMMIT_UNIVERSAL);
-> -
-> -
-> +		if (check_platform_intel)
-> +			igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
-
-Above this line there's flip to different framebuffer and below this 
-line there's restart of crc collection before get any crc. If there's 
-need to wait a vblank at this place to get matching crcs the actual bug 
-is somewhere else.
-
->   		igt_pipe_crc_collect_crc(data->pipe_crc, &small_crc);
->   
->   		igt_plane_set_fb(plane, big_fb);
->   		igt_fb_set_position(big_fb, plane, x, y);
->   		igt_fb_set_size(big_fb, plane, small_fb->width, small_fb->height);
-> +
->   		igt_plane_set_size(plane, data->width, data->height);
->   		igt_display_commit2(&data->display, data->display.is_atomic ?
->   				    COMMIT_ATOMIC : COMMIT_UNIVERSAL);
-> -
-> +		if (check_platform_intel)
-> +			igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
-
-Here it's the same story as above.
-
->   		igt_pipe_crc_collect_crc(data->pipe_crc, &big_crc);
->   
->   		igt_plane_set_fb(plane, NULL);
-> 
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
