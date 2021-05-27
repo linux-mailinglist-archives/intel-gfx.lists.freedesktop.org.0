@@ -1,67 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F16C392D9E
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 14:08:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522C5392DA5
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 14:09:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E39F56EEA0;
-	Thu, 27 May 2021 12:08:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEFF96EEA5;
+	Thu, 27 May 2021 12:09:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 962376EEA0;
- Thu, 27 May 2021 12:08:36 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id EC2BE5846A6;
- Thu, 27 May 2021 08:08:33 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Thu, 27 May 2021 08:08:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm2; bh=ZXwc7bHybojmWh0s1+HGW0f5AeOyzC4i9KbmT093GSc=; b=FbTubiN2
- e5tqOpyND0vzRb+sXEo6N+xzJG+oti3DGLjyJwZqfjZACVA9CtKTb/2KwTJjdBtI
- 3MAhtnjl0/hK/zF6WIuYsbdcBeaY47Sjhi/JcPC0+hUNVkZOFIvqQBN3Qc5l5e3/
- D71a9CoyiTZUOTnbtreDR+4phfV+jS5j9w6+4gkOGrUtRNJCaub9M7szglD16Kqq
- eqzQTCxRfcV0vVoETi16ijZoCsIul8aWD8fTdFqalGW62W5UEBxw43UbLt5tA33a
- RL2nOMeVyf4Q6arSD0FhdCSiWD4yU+iaeXE6/mLpbkusKgE4gnkIf7ghy+nzi9bp
- qp11usTF8J2rTw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm2; bh=ZXwc7bHybojmWh0s1+HGW0f5AeOyz
- C4i9KbmT093GSc=; b=c3ET8edLaPztjyEm7VOs2u3Uav+U2zMUELYep+Wngofpk
- +QC8zlJfDL3OBkvXuHTfi3yGXABAhqeoXXUfj4IJVrYN7IeiHoZWxGlzUaqGOMmV
- DwHJgMbS1t2FVyMeZPvj0hlZtZp81L37F2AnhI8FOXTlzqulN5xIdbC3vjBu//JX
- cUvNz3C2IfDbQohuEwFlgakOipHNmviJPypKwrGCAV3ThPB4PETE+xnLPFuFiMo+
- 7OGv2PR8ZrUIO13nE4slqILJC9M4LAKHNKOTObCXH6ENeVEfoaCQDhP2AJIHJyQx
- sgtpsCYFT28QVne/3tgaB5FNPoZefvti3qxdzQGdg==
-X-ME-Sender: <xms:v4uvYBC8kGXqPrCPYlp-hmGpZLkJbBO6NaAGo0eGWGF_1x4MpiVoOQ>
- <xme:v4uvYPiOTM7nznuzSUdQyfETQ9dx7twszsc398SWtAhtdRanxeSflE6DCDiTT_vsX
- Hl2I8bQgsQ3iyPw6WA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdekhedggeelucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
- hrnhepgeeuvddtheeggeehhfeigeetffeufeelveeggfekveegieevudeljeeugedviefg
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecukfhppeeltddrkeelrd
- eikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
- mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:v4uvYMkHDHPmi5xG4YLtm5DsPmbcgOslrMEPLsk_TnoSfAcIDnwaIg>
- <xmx:v4uvYLxSTYsWWXYoYtCfkhvj0IkNsXeUlg0P1DRaOQhzq566OSQhTg>
- <xmx:v4uvYGTm1FHu0nopeagRkZ7b_WgPzba1PfrclxYr_a_NwxyqLa3hyA>
- <xmx:wYuvYJF04Gx-XmJ06Z5ndb2X1TxaM4IxNXmxS2MmtC4usdW2Uir33A>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76]) by mail.messagingengine.com (Postfix) with ESMTPA;
- Thu, 27 May 2021 08:08:31 -0400 (EDT)
-Date: Thu, 27 May 2021 14:08:28 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20210527120828.3w7f53krzkslc4ii@gilmour>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD4846EEA2;
+ Thu, 27 May 2021 12:09:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B6E9BA00E6;
+ Thu, 27 May 2021 12:09:13 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bommu Krishnaiah" <krishnaiah.bommu@intel.com>
+Date: Thu, 27 May 2021 12:09:13 -0000
+Message-ID: <162211735374.12239.4652787961712711365@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210527094535.31728-1-krishnaiah.bommu@intel.com>
+In-Reply-To: <20210527094535.31728-1-krishnaiah.bommu@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_add_error_message_for_ENOSPC?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,73 +38,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1147661780=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1752829061=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1752829061==
+Content-Type: multipart/alternative;
+ boundary="===============6903248478777266567=="
 
---===============1147661780==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="l7w4huk22jki3v3r"
-Content-Disposition: inline
+--===============6903248478777266567==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm: add error message for ENOSPC
+URL   : https://patchwork.freedesktop.org/series/90659/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10140 -> Patchwork_20221
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20221 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-icl-u2:          [PASS][1] -> [FAIL][2] ([i915#49])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-u2:          [DMESG-FAIL][3] ([i915#3462]) -> [INCOMPLETE][4] ([i915#2782] / [i915#3462])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-icl-u2/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-icl-u2/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-kbl-x1275:       [FAIL][5] ([i915#1436] / [i915#3363]) -> [FAIL][6] ([i915#1436] / [i915#2426] / [i915#3363])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-kbl-x1275/igt@runner@aborted.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-kbl-x1275/igt@runner@aborted.html
+    - fi-cfl-8700k:       [FAIL][7] ([i915#2426] / [i915#3363]) -> [FAIL][8] ([i915#3363])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-cfl-8700k/igt@runner@aborted.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-cfl-8700k/igt@runner@aborted.html
+    - fi-icl-u2:          [FAIL][9] ([i915#2426] / [i915#2782] / [i915#3363]) -> [FAIL][10] ([i915#2782] / [i915#3363])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-icl-u2/igt@runner@aborted.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-icl-u2/igt@runner@aborted.html
+    - fi-bdw-5557u:       [FAIL][11] ([i915#3462]) -> [FAIL][12] ([i915#1602] / [i915#2029])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-bdw-5557u/igt@runner@aborted.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-skl-6700k2:      [FAIL][13] ([i915#1436] / [i915#3363]) -> [FAIL][14] ([i915#1436] / [i915#2426] / [i915#3363])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-skl-6700k2/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-skl-6700k2/igt@runner@aborted.html
+
+  
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
+  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
 
 
---l7w4huk22jki3v3r
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Participating hosts (44 -> 40)
+------------------------------
 
-Hi,
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
 
-Here's the fixes for drm-misc-fixes for this week
 
-Maxime
+Build changes
+-------------
 
-drm-misc-fixes-2021-05-27:
-A fix in meson for a crash at shutdown and one for TTM to prevent
-irrelevant swapout
-The following changes since commit 7e008b02557ccece4d2c31fb0eaf6243cbc87121:
+  * Linux: CI_DRM_10140 -> Patchwork_20221
 
-  dma-buf: fix unintended pin/unpin warnings (2021-05-20 14:02:27 +0200)
+  CI-20190529: 20190529
+  CI_DRM_10140: a3621003ce45b9cea65bad656f50811f1472abab @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6094: f62d8953c0bc5ed68ea978662e62f9dbb46cf101 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20221: 0799a9da988dbb45c7c30bbb48da179e1caedd70 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-05-27
+== Linux commits ==
 
-for you to fetch changes up to 35f819d218035ddfbc71e7cf62a4849231701e58:
+0799a9da988d drm: add error message for ENOSPC
 
-  drm/ttm: Skip swapout if ttm object is not populated (2021-05-26 15:02:47 +0200)
+== Logs ==
 
-----------------------------------------------------------------
-A fix in meson for a crash at shutdown and one for TTM to prevent
-irrelevant swapout
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/index.html
 
-----------------------------------------------------------------
-Neil Armstrong (1):
-      drm/meson: fix shutdown crash when component not probed
+--===============6903248478777266567==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-xinhui pan (1):
-      drm/ttm: Skip swapout if ttm object is not populated
 
- drivers/gpu/drm/meson/meson_drv.c | 9 +++++----
- drivers/gpu/drm/ttm/ttm_device.c  | 2 +-
- 2 files changed, 6 insertions(+), 5 deletions(-)
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
---l7w4huk22jki3v3r
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: add error message for ENOSPC</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90659/">https://patchwork.freedesktop.org/series/90659/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYK+LvAAKCRDj7w1vZxhR
-xQZKAP9+b20xt0jmjtg6ucGZ+t6ivaJyha+wNZqnTj91aI7CsgD8DVFMBbGCBiLk
-HvEi0cgsSyOXcqw+BYLlM2fA9ul6fg0=
-=zRRr
------END PGP SIGNATURE-----
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/index.html</a></td></tr>
 
---l7w4huk22jki3v3r--
+</table>
 
---===============1147661780==
+
+    <h1>CI Bug Log - changes from CI_DRM_10140 -&gt; Patchwork_20221</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20221 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/49">i915#49</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-icl-u2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-icl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</p>
+</li>
+<li>
+<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10140/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20221/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10140 -&gt; Patchwork_20221</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10140: a3621003ce45b9cea65bad656f50811f1472abab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6094: f62d8953c0bc5ed68ea978662e62f9dbb46cf101 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20221: 0799a9da988dbb45c7c30bbb48da179e1caedd70 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>0799a9da988d drm: add error message for ENOSPC</p>
+
+</body>
+</html>
+
+--===============6903248478777266567==--
+
+--===============1752829061==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -151,4 +250,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1147661780==--
+--===============1752829061==--
