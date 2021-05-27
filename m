@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AEAD392F73
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 15:24:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 800AF392F7E
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 15:25:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D36D66F388;
-	Thu, 27 May 2021 13:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0C886E81F;
+	Thu, 27 May 2021 13:25:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2BBA6E81F;
- Thu, 27 May 2021 13:24:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18D766E81F;
+ Thu, 27 May 2021 13:25:08 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id A8FB568AFE; Thu, 27 May 2021 15:24:42 +0200 (CEST)
-Date: Thu, 27 May 2021 15:24:42 +0200
+ id 0E5A268BFE; Thu, 27 May 2021 15:25:05 +0200 (CEST)
+Date: Thu, 27 May 2021 15:25:04 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210527132442.GA26160@lst.de>
+Message-ID: <20210527132504.GB26160@lst.de>
 References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-3-tientzu@chromium.org>
+ <20210518064215.2856977-4-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210518064215.2856977-3-tientzu@chromium.org>
+In-Reply-To: <20210518064215.2856977-4-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v7 02/15] swiotlb: Refactor
- swiotlb_create_debugfs
+Subject: Re: [Intel-gfx] [PATCH v7 03/15] swiotlb: Add DMA_RESTRICTED_POOL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,67 +67,10 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 18, 2021 at 02:42:02PM +0800, Claire Chang wrote:
->  struct io_tlb_mem *io_tlb_default_mem;
-> +static struct dentry *debugfs_dir;
->  
->  /*
->   * Max segment that we can provide which (if pages are contingous) will
-> @@ -662,18 +663,30 @@ EXPORT_SYMBOL_GPL(is_swiotlb_active);
->  
->  #ifdef CONFIG_DEBUG_FS
->  
-> +static void swiotlb_create_debugfs(struct io_tlb_mem *mem, const char *name)
->  {
->  	if (!mem)
-> +		return;
+On Tue, May 18, 2021 at 02:42:03PM +0800, Claire Chang wrote:
+> Add a new kconfig symbol, DMA_RESTRICTED_POOL, for restricted DMA pool.
 
-I don't think this check makes much sense here.
-
-> +}
-> +
-> +static int __init swiotlb_create_default_debugfs(void)
-> +{
-> +	struct io_tlb_mem *mem = io_tlb_default_mem;
-> +
-> +	if (mem) {
-> +		swiotlb_create_debugfs(mem, "swiotlb");
-> +		debugfs_dir = mem->debugfs;
-> +	} else {
-> +		debugfs_dir = debugfs_create_dir("swiotlb", NULL);
-> +	}
-
-This also looks rather strange.  I'd much rather create move the
-directory creation of out swiotlb_create_debugfs.  E.g. something like:
-
-static void swiotlb_create_debugfs_file(struct io_tlb_mem *mem)
-{
-	debugfs_create_ulong("io_tlb_nslabs", 0400, mem->debugfs, &mem->nslabs);
-	debugfs_create_ulong("io_tlb_used", 0400, mem->debugfs, &mem->used);
-}
-
-static int __init swiotlb_init_debugfs(void)
-{
-	debugfs_dir = debugfs_create_dir("swiotlb", NULL);
-	if (io_tlb_default_mem) {
-		io_tlb_default_mem->debugfs = debugfs_dir;
-		swiotlb_create_debugfs_files(io_tlb_default_mem);
-	}
-	return 0;
-}
-late_initcall(swiotlb_init_debugfs);
-
-...
-
-static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-                                    struct device *dev)
-{
-	...
-		mem->debugfs = debugfs_create_dir(rmem->name, debugfs_dir);
-		swiotlb_create_debugfs_files(mem->debugfs);
-
-			
-}
+Please merge this with the actual code that is getting added.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
