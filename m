@@ -2,48 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D2D0392C21
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 12:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB050392C32
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 12:57:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F8666EE72;
-	Thu, 27 May 2021 10:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27FC6E1BB;
+	Thu, 27 May 2021 10:57:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-40134.protonmail.ch (mail-40134.protonmail.ch
- [185.70.40.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EC296EE73
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 10:49:01 +0000 (UTC)
-Date: Thu, 27 May 2021 10:48:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1622112539;
- bh=5OzA3IKwQBhMiFfPZ5xOr25zCcrDR+bk3NBhnmg8yY8=;
- h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=jv8EYBDYI54GtdQW4+LQtOmy1CHqvvC2PPxNAGe/UKS9H16FDw1tpha38xaaM6kPO
- q4vM8q6nJmFy6+dLsWAkmLUSYA7xikFjyVQoRDLt2k6VGFXPQsvyh9hq+flaQ9u1yi
- ohVde07iN0BclUzfzaxa8nuURRfnSIdaBRdi0L61pjqh/3Y2uU3QOV+gN6sYzWRhDh
- gjJYEV2BTFdyf0vN9exmX2JLCMCTmo6ZXhnSq+c1GqYaGhE2qQxrFMuEuWk1lBQiTg
- eFWf7TJdu2pQtPDH91fdtAsizMRKOXRUeefwN2Z3LPX7y942Kv7P/6RJS+LVZAboy2
- Xk70dRqr5jt7Q==
-To: Daniel Vetter <daniel@ffwll.ch>
-From: Simon Ser <contact@emersion.fr>
-Message-ID: <UhXviIJwnJG8qWOGYpAwgqll4W4TPSjVIFdG72MzhY4T2u7xS_Ql7OY-xlkfTR1HIoZ7-U8UhfqDsj62JIu98ESf_CfncvWougxT8JKm0ik=@emersion.fr>
-In-Reply-To: <YK91kB0ikqxurHN1@phenom.ffwll.local>
-References: <20210525211753.1086069-1-jason@jlekstrand.net>
- <20210525211753.1086069-6-jason@jlekstrand.net>
- <acc1737c-261d-9da5-7ea7-759063136c56@amd.com>
- <CAPj87rN_7vmmWcL1vqhvM=etaTjwts_L0vYbsgvYF0_qZw83gw@mail.gmail.com>
- <770eb698-1dde-9e46-da83-44911d96abec@amd.com>
- <CAPj87rPdMthO2Wv7QxMGnO__BiZVauMa9HaRk+35Sgvm69QSjw@mail.gmail.com>
- <a9de44fc-aa7c-60d7-d7ed-2229d41fb306@amd.com>
- <YK91kB0ikqxurHN1@phenom.ffwll.local>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D0A96E1BB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 10:57:38 +0000 (UTC)
+IronPort-SDR: aKjTrRk1xCXvJ+fJll8AeudMBb+HyxapFYna7yN4PVJQFSaexejZ5wbvuCSexD/BcPnQ6pN/IX
+ chd7RxBWHZcA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="202740993"
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="202740993"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2021 03:57:37 -0700
+IronPort-SDR: cMjREIdKPwSgUfrP9yfuSGXxFYRQoZFh7OATKxyxtBXGGfvL/8YgaLvY3vsekegzH759aZzUbT
+ FnBuMyrsQjyg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="397695650"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.91])
+ by orsmga003.jf.intel.com with ESMTP; 27 May 2021 03:57:35 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 May 2021 14:01:06 +0300
+Message-Id: <20210527110106.21434-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
-Subject: Re: [Intel-gfx] [PATCH 5/7] dma-buf: Add an API for exporting sync
- files (v11)
+Subject: [Intel-gfx] [PATCH] drm/i915/adl_p: Same slices mask is not same
+ Dbuf state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,45 +46,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thursday, May 27th, 2021 at 12:33 PM, Daniel Vetter <daniel@ffwll.ch> wrote:
-
-> > The sync_file is also import/exportable to a certain drm_syncobj timeline
-> > point (or as binary signal). So no big deal, we are all compatible here :)
-> > I just thought that it might be more appropriate to return a drm_syncobj
-> > directly instead of a sync_file.
->
-> I think another big potential user for this is a vk-based compositor which
-> needs to interact/support implicit synced clients. And compositor world I
-> think is right now still more sync_file (because that's where we started
-> with atomic kms ioctl).
-
-Yeah, right now compositors can only deal with sync_file. I have a
-Vulkan pull request for wlroots [1] that would benefit from this, I
-think.
-
-Also it seems like drm_syncobj isn't necessarily going to be the the
-sync primitive that ends them all with all that user-space fence
-discussion, so long-term I guess we'll need a conversion anyways.
-
-[1]: https://github.com/swaywm/wlroots/pull/2771
-
-> Plus you can convert them to the other form anyway, so really doesn't
-> matter much. But for the above reasons I'm leaning slightly towards
-> sync_file. Except if compositor folks tell me I'm a fool and why :-)
-
-sync_file is fine from my PoV.
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgY3VycmVudGx5IHRyZWF0IHNhbWUgc2xpY2UgbWFzayBhcyBhIHNhbWUgREJ1ZiBzdGF0ZSBh
+bmQgc2tpcAp1cGRhdGluZyB0aGUgRGJ1ZiBzbGljZXMsIGlmIHdlIGRldGVjdCB0aGF0LgpUaGlz
+IGlzIHdyb25nIGFzIGlmIHdlIGhhdmUgYSBtdWx0aSB0byBzaW5nbGUgcGlwZSBjaGFuZ2Ugb3IK
+dmljZSB2ZXJzYSwgdGhhdCB3b3VsZCBiZSB0cmVhdGVkIGFzIGEgc2FtZSBEYnVmIHN0YXRlIGFu
+ZCB0aHVzCm5vIGNoYW5nZXMgcmVxdWlyZWQsIHNvIHdlIGRvbid0IGdldCBNYnVzIHVwZGF0ZWQs
+IGNhdXNpbmcgaXNzdWVzLgpTb2x1dGlvbjogY2hlY2sgYWxzbyBtYnVzX2pvaW4sIGluIGFkZGl0
+aW9uIHRvIHNsaWNlcyBtYXNrLgoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5p
+c2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X3BtLmMgfCA2ICsrKystLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
+dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwppbmRleCAwMGYzZGVhZDIwYWQuLjgwNGQ4
+MzQ4NmU4MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCkBAIC04MDkzLDcgKzgwOTMsOCBAQCB2
+b2lkIGludGVsX2RidWZfcHJlX3BsYW5lX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
+ICpzdGF0ZSkKIAkJaW50ZWxfYXRvbWljX2dldF9vbGRfZGJ1Zl9zdGF0ZShzdGF0ZSk7CiAKIAlp
+ZiAoIW5ld19kYnVmX3N0YXRlIHx8Ci0JICAgIG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNl
+cyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpCisJICAgICgobmV3X2RidWZfc3Rh
+dGUtPmVuYWJsZWRfc2xpY2VzID09IG9sZF9kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNlcykKKwkg
+ICAgJiYgKG5ld19kYnVmX3N0YXRlLT5qb2luZWRfbWJ1cyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+am9p
+bmVkX21idXMpKSkKIAkJcmV0dXJuOwogCiAJV0FSTl9PTighbmV3X2RidWZfc3RhdGUtPmJhc2Uu
+Y2hhbmdlZCk7CkBAIC04MTEzLDcgKzgxMTQsOCBAQCB2b2lkIGludGVsX2RidWZfcG9zdF9wbGFu
+ZV91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJCWludGVsX2F0b21p
+Y19nZXRfb2xkX2RidWZfc3RhdGUoc3RhdGUpOwogCiAJaWYgKCFuZXdfZGJ1Zl9zdGF0ZSB8fAot
+CSAgICBuZXdfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMgPT0gb2xkX2RidWZfc3RhdGUtPmVu
+YWJsZWRfc2xpY2VzKQorCSAgICAoKG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNlcyA9PSBv
+bGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpCisJICAgICYmIChuZXdfZGJ1Zl9zdGF0ZS0+
+am9pbmVkX21idXMgPT0gb2xkX2RidWZfc3RhdGUtPmpvaW5lZF9tYnVzKSkpCiAJCXJldHVybjsK
+IAogCVdBUk5fT04oIW5ld19kYnVmX3N0YXRlLT5iYXNlLmNoYW5nZWQpOwotLSAKMi4yNC4xLjQ4
+NS5nYWQwNWEzZDhlNQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
