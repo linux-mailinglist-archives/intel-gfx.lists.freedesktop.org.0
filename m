@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A24823924BF
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 04:16:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E05C3392514
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 04:50:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55376EDEC;
-	Thu, 27 May 2021 02:16:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28C366EDF0;
+	Thu, 27 May 2021 02:50:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B76206EDEB;
- Thu, 27 May 2021 02:16:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AF84CA47E1;
- Thu, 27 May 2021 02:16:41 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC486EDEF;
+ Thu, 27 May 2021 02:50:11 +0000 (UTC)
+IronPort-SDR: jyhG9Iv+wl95mj3D2LG+Pi2bvjE/EekCKuAfuFCS3rNlRMbqH6fcmJGqiq58mfIRS2dvL46c79
+ U9bxeY2u12vQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="223833272"
+X-IronPort-AV: E=Sophos;i="5.82,333,1613462400"; d="scan'208";a="223833272"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 19:50:09 -0700
+IronPort-SDR: 4NFcWJVim+l6GZxEpyxuCkikOmdDJnAkvld3DQgfI91iC9cXV3QDTXP27C4HyFEcDl+JBfhVKg
+ ffVlpW1g2TcQ==
+X-IronPort-AV: E=Sophos;i="5.82,333,1613462400"; d="scan'208";a="409568743"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2021 19:50:09 -0700
+Date: Wed, 26 May 2021 19:43:02 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20210527024301.GA456@sdutt-i7>
+References: <20210526191116.44017-1-matthew.brost@intel.com>
+ <20210526191116.44017-2-matthew.brost@intel.com>
+ <a60bfe95-2a96-540e-7d59-0653886a380a@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 27 May 2021 02:16:41 -0000
-Message-ID: <162208180169.12241.8680800298147876699@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210526213029.7178-1-matthew.brost@intel.com>
-In-Reply-To: <20210526213029.7178-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQSBj?=
- =?utf-8?q?ouple_more_prerequisite_patches_to_GuC_submission?=
+Content-Disposition: inline
+In-Reply-To: <a60bfe95-2a96-540e-7d59-0653886a380a@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Engine relative MMIO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,247 +49,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0487709020=="
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0487709020==
-Content-Type: multipart/alternative;
- boundary="===============2519044918250283761=="
+On Wed, May 26, 2021 at 06:34:44PM -0700, Daniele Ceraolo Spurio wrote:
+> 
+> 
+> On 5/26/2021 12:11 PM, Matthew Brost wrote:
+> > With virtual engines, it is no longer possible to know which specific
+> > physical engine a given request will be executed on at the time that
+> > request is generated. This means that the request itself must be engine
+> > agnostic - any direct register writes must be relative to the engine
+> > and not absolute addresses.
+> > 
+> > The LRI command has support for engine relative addressing. However,
+> > the mechanism is not transparent to the driver. The scheme for Gen11
+> > (MI_LRI_ADD_CS_MMIO_START) requires the LRI address to have no
+> > absolute engine base component in the ring and BBs. The hardware then
+> > adds on the correct engine offset at execution time. This differs
+> > slightly for LRC where the upper bits of the base component are just
+> > ignored.
+> > 
+> > Due to the non-trivial and differing schemes on different hardware, it
+> > is not possible to simply update the code that creates the LRI
+> > commands to set a remap flag and let the hardware get on with it.
+> > Instead, this patch adds function wrappers for generating the LRI
+> > command itself and then for constructing the correct address to use
+> > with the LRI.
+> > 
+> > Bspec: 45606
+> > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > CC: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > CC: Chris P Wilson <chris.p.wilson@intel.com>
+> > CC: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_context.c  |  7 ++++---
+> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 22 ++++++++++++++++++++
+> >   drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +++
+> >   drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  6 ++++++
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c          |  4 +---
+> >   5 files changed, 36 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > index 188dee13e017..a8a195bfcb57 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > @@ -1211,7 +1211,7 @@ static int emit_ppgtt_update(struct i915_request *rq, void *data)
+> >   {
+> >   	struct i915_address_space *vm = rq->context->vm;
+> >   	struct intel_engine_cs *engine = rq->engine;
+> > -	u32 base = engine->mmio_base;
+> > +	u32 base = engine->lri_mmio_base;
+> >   	u32 *cs;
+> >   	int i;
+> > @@ -1223,7 +1223,7 @@ static int emit_ppgtt_update(struct i915_request *rq, void *data)
+> >   		if (IS_ERR(cs))
+> >   			return PTR_ERR(cs);
+> > -		*cs++ = MI_LOAD_REGISTER_IMM(2);
+> > +		*cs++ = MI_LOAD_REGISTER_IMM_REL(engine, 2);
+> 
+> This is the only place where you changed the behavior and I think it is
+> going away
+> (https://lists.freedesktop.org/archives/dri-devel/2021-May/305328.html), so
+> the new macro is potentially not needed.
+>
 
---===============2519044918250283761==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+See my last comment, I think this irrelevant as I think I missed some
+cases where this macro should be used.
+ 
+> >   		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_UDW(base, 0));
+> >   		*cs++ = upper_32_bits(pd_daddr);
+> > @@ -1245,7 +1245,8 @@ static int emit_ppgtt_update(struct i915_request *rq, void *data)
+> >   		if (IS_ERR(cs))
+> >   			return PTR_ERR(cs);
+> > -		*cs++ = MI_LOAD_REGISTER_IMM(2 * GEN8_3LVL_PDPES) | MI_LRI_FORCE_POSTED;
+> > +		*cs++ = MI_LOAD_REGISTER_IMM_REL(engine, 2 * GEN8_3LVL_PDPES) |
+> > +			MI_LRI_FORCE_POSTED;
+> >   		for (i = GEN8_3LVL_PDPES; i--; ) {
+> >   			const dma_addr_t pd_daddr = i915_page_dir_dma_addr(ppgtt, i);
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > index 3f9a811eb02b..0de6bc533776 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > @@ -15,6 +15,7 @@
+> >   #include "intel_engine_pm.h"
+> >   #include "intel_engine_user.h"
+> >   #include "intel_execlists_submission.h"
+> > +#include "intel_gpu_commands.h"
+> >   #include "intel_gt.h"
+> >   #include "intel_gt_requests.h"
+> >   #include "intel_gt_pm.h"
+> > @@ -222,6 +223,25 @@ static u32 __engine_mmio_base(struct drm_i915_private *i915,
+> >   	return bases[i].base;
+> >   }
+> > +static bool i915_engine_has_relative_lri(const struct intel_engine_cs *engine)
+> > +{
+> > +	if (INTEL_GEN(engine->i915) < 11)
+> > +		return false;
+> > +
+> > +	return true;
+> 
+> We already have intel_engine_has_relative_mmio(), can just re-use that. Note
+> that I915_ENGINE_HAS_RELATIVE_MMIO is only set for gen12+ at the moment;
+> this was because CI failed on ICL and since we urgently needed the change
+> for gen12 we just excluded gen11 and pushed (see Mika's comment @
+> https://lists.freedesktop.org/archives/intel-gfx/2019-September/211812.html).
+> It should be ok to extend that to gen11 if we get a green CI.
+>
 
-== Series Details ==
+Let me send out a trybot with intel_engine_has_relative_mmio with this
+enabled for gen11.
+ 
+> > +}
+> > +
+> > +static void lri_init(struct intel_engine_cs *engine)
+> > +{
+> > +	if (i915_engine_has_relative_lri(engine)) {
+> > +		engine->lri_cmd_mode = MI_LRI_LRM_CS_MMIO;
+> > +		engine->lri_mmio_base = 0;
+> > +	} else {
+> > +		engine->lri_cmd_mode = 0;
+> > +		engine->lri_mmio_base = engine->mmio_base;
+> > +	}
+> > +}
+> > +
+> >   static void __sprint_engine_name(struct intel_engine_cs *engine)
+> >   {
+> >   	/*
+> > @@ -329,6 +349,8 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+> >   	/* Nothing to do here, execute in order of dependencies */
+> >   	engine->schedule = NULL;
+> > +	lri_init(engine);
+> > +
+> >   	ewma__engine_latency_init(&engine->latency);
+> >   	seqcount_init(&engine->stats.lock);
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > index 9ef349cd5cea..e48da23c9b0f 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > @@ -310,6 +310,9 @@ struct intel_engine_cs {
+> >   	u32 context_size;
+> >   	u32 mmio_base;
+> > +	u32 lri_mmio_base;
+> > +	u32 lri_cmd_mode;
+> > +
+> >   	/*
+> >   	 * Some w/a require forcewake to be held (which prevents RC6) while
+> >   	 * a particular engine is active. If so, we set fw_domain to which
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> > index 2694dbb9967e..f0f101134fd8 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
+> > @@ -134,8 +134,14 @@
+> >    *   simply ignores the register load under certain conditions.
+> >    * - One can actually load arbitrary many arbitrary registers: Simply issue x
+> >    *   address/value pairs. Don't overdue it, though, x <= 2^4 must hold!
+> > + * - Newer hardware supports engine relative addressing but older hardware does
+> > + *   not. This is required for hw engine load balancing. The
+> > + *   MI_LOAD_REGISTER_IMM_REL macro can be used on both newer and older
+> > + *   hardware.
+> >    */
+> >   #define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
+> > +#define MI_LOAD_REGISTER_IMM_REL(egine, x)	\
+> > +	(MI_LOAD_REGISTER_IMM(x) | engine->lri_cmd_mode)
+> 
+> This naming is a bit confusing, because MI_LOAD_REGISTER_IMM_REL is not
+> actually always relative so we also need to be careful of how we provide the
+> register values (i.e. with or without the mmio base). Also a bit worrying
+> for future proofing, since we'd need to make sure that any new CS register
+> access goes explicitly relative. Just my 2 cents, I know there was
+> contention on this patch in the past so I'm not going to jump in on the
+> fight :)
+> 
 
-Series: A couple more prerequisite patches to GuC submission
-URL   : https://patchwork.freedesktop.org/series/90633/
-State : success
+In the LRC the upper bits of the base is just ignored, while in ring it
+is added. It is a bit confusing but the comment message explains this.
 
-== Summary ==
+MI_LOAD_REGISTER_IMM_REL was Tvrtko's suggestion and I personally like
+it. It is total bikeshed how this should look, I'd say let's go with
+this and move on.
 
-CI Bug Log - changes from CI_DRM_10138 -> Patchwork_20216
-====================================================
+> I have not checked if any of the other numerous instances of
+> MI_LOAD_REGISTER_IMM would benefit from going relative. I assume none is
+> strictly required, since otherwise virtual engines wouldn't work.
+>
 
-Summary
--------
+I did a quick browse of the driver and I think I am missing some
+instances. Let scrub the driver + fix this up with my next trybot
+attempt.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20216 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][1] ([i915#2283])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bdw-5557u:       NOTRUN -> [DMESG-FAIL][2] ([i915#3462])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271]) +9 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-kbl-x1275:       [FAIL][5] ([i915#1436] / [i915#3363]) -> [FAIL][6] ([i915#1436] / [i915#2426] / [i915#3363])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-x1275/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-x1275/igt@runner@aborted.html
-    - fi-bdw-5557u:       [FAIL][7] ([i915#1602] / [i915#2029]) -> [FAIL][8] ([i915#3462])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-bdw-5557u/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-kbl-guc:         [FAIL][9] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][10] ([i915#1436] / [i915#3363])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-guc/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-guc/igt@runner@aborted.html
-    - fi-cml-u2:          [FAIL][11] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3462]) -> [FAIL][12] ([i915#3363] / [i915#3462])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-cml-u2/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-cml-u2/igt@runner@aborted.html
-    - fi-skl-6700k2:      [FAIL][13] ([i915#1436] / [i915#3363]) -> [FAIL][14] ([i915#1436] / [i915#2426] / [i915#3363])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-skl-6700k2/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-skl-6700k2/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2932]: https://gitlab.freedesktop.org/drm/intel/issues/2932
-  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-cml-drallion fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10138 -> Patchwork_20216
-
-  CI-20190529: 20190529
-  CI_DRM_10138: 041f69e539b30565783cd1298842cc269f5005cb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6094: f62d8953c0bc5ed68ea978662e62f9dbb46cf101 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20216: 55e2a1c441b5999dbdc1549f5d89e764058b02b2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-55e2a1c441b5 drm/i915/guc: Use guc_class instead of engine_class in fw interface
-c0541f4725ff drm/i915/guc: Early initialization of GuC send registers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html
-
---===============2519044918250283761==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>A couple more prerequisite patches to GuC submission</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90633/">https://patchwork.freedesktop.org/series/90633/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10138 -&gt; Patchwork_20216</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20216 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-cml-drallion fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10138 -&gt; Patchwork_20216</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10138: 041f69e539b30565783cd1298842cc269f5005cb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6094: f62d8953c0bc5ed68ea978662e62f9dbb46cf101 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20216: 55e2a1c441b5999dbdc1549f5d89e764058b02b2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>55e2a1c441b5 drm/i915/guc: Use guc_class instead of engine_class in fw interface<br />
-c0541f4725ff drm/i915/guc: Early initialization of GuC send registers</p>
-
-</body>
-</html>
-
---===============2519044918250283761==--
-
---===============0487709020==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Matt
+ 
+> Daniele
+> 
+> >   /* Gen11+. addr = base + (ctx_restore ? offset & GENMASK(12,2) : offset) */
+> >   #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
+> >   #define   MI_LRI_FORCE_POSTED		(1<<12)
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index aafe2a4df496..390628666564 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -44,11 +44,9 @@ static void set_offsets(u32 *regs,
+> >   		flags = *data >> 6;
+> >   		data++;
+> > -		*regs = MI_LOAD_REGISTER_IMM(count);
+> > +		*regs = MI_LOAD_REGISTER_IMM_REL(engine, count);
+> >   		if (flags & POSTED)
+> >   			*regs |= MI_LRI_FORCE_POSTED;
+> > -		if (INTEL_GEN(engine->i915) >= 11)
+> > -			*regs |= MI_LRI_LRM_CS_MMIO;
+> >   		regs++;
+> >   		GEM_BUG_ON(!count);
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0487709020==--
