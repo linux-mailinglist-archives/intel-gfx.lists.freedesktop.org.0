@@ -1,48 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31D4F3973A0
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E448439738D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75DDF6EA5A;
-	Tue,  1 Jun 2021 12:51:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0892C6EA49;
+	Tue,  1 Jun 2021 12:51:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1016 seconds by postgrey-1.36 at gabe;
- Thu, 27 May 2021 09:21:52 UTC
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 990156EE4F
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 09:21:52 +0000 (UTC)
-Received: from dggeml711-chm.china.huawei.com (unknown [172.30.72.53])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4FrMJj4VvKzYn5K;
- Thu, 27 May 2021 17:02:13 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggeml711-chm.china.huawei.com (10.3.17.122) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Thu, 27 May 2021 17:04:53 +0800
-Received: from thunder-town.china.huawei.com (10.174.177.72) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 27 May 2021 17:04:52 +0800
-From: Zhen Lei <thunder.leizhen@huawei.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, intel-gfx
- <intel-gfx@lists.freedesktop.org>, dri-devel
- <dri-devel@lists.freedesktop.org>, linux-kernel
- <linux-kernel@vger.kernel.org>
-Date: Thu, 27 May 2021 17:04:21 +0800
-Message-ID: <20210527090421.9172-1-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B343C6E03D;
+ Thu, 27 May 2021 11:35:07 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2886A6113B;
+ Thu, 27 May 2021 11:35:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1622115307;
+ bh=awWFyuDtGzTSFYuKnqnAwD8I2u8LvxPLkIedgwXpacY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=p4bPfFCD5PrcmECQ/JmYfkoIQvGIdlvd3Xmt5WsLHiji5zjF5hUpY/7jV/AEVHJHW
+ CB6f9oBS2X3aNGgQ3+WcdNwOGV1gPRmBycO/zJJUoapgziqu+7IL5STMx1dAhYz3+T
+ 0bM7UEMZILv76zqCaWO+pWXqjNmfb4VQ6CH4Qz9dn7I0OepvY2P5/VxhAaiFsn1JPd
+ ce1hSAg7oNQpoYW+JbRsJjBqIARt3uf0TgyQ8bjr7saHdzXTBfM/jxaDHBHbhfTQ4Z
+ nDFzJaE8tdL5MVg6406RffF7r/1Of9XzA/MNxWJkmUtb6zscbeJZBFAuG32Qt3uWbG
+ DCkceG/OoqRLg==
+Date: Thu, 27 May 2021 12:34:57 +0100
+From: Will Deacon <will@kernel.org>
+To: Claire Chang <tientzu@chromium.org>
+Message-ID: <20210527113456.GA22019@willie-the-truck>
+References: <20210518064215.2856977-1-tientzu@chromium.org>
+ <20210518064215.2856977-15-tientzu@chromium.org>
+ <20210526121322.GA19313@willie-the-truck>
+ <20210526155321.GA19633@willie-the-truck>
+ <CALiNf2_sVXnb97++yWusB5PWz8Pzfn9bCKZc6z3tY4bx6-nW8w@mail.gmail.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.174.177.72]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Content-Disposition: inline
+In-Reply-To: <CALiNf2_sVXnb97++yWusB5PWz8Pzfn9bCKZc6z3tY4bx6-nW8w@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Tue, 01 Jun 2021 12:51:14 +0000
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/hdcp: Simplify code in
- intel_hdcp_auth_downstream()
+Subject: Re: [Intel-gfx] [PATCH v7 14/15] dt-bindings: of: Add restricted
+ DMA pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,78 +52,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhen Lei <thunder.leizhen@huawei.com>
+Cc: Jim Quinlan <james.quinlan@broadcom.com>, heikki.krogerus@linux.intel.com,
+ linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
+ benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+ Frank Rowand <frowand.list@gmail.com>, Christoph Hellwig <hch@lst.de>,
+ Jianxiong Gao <jxgao@google.com>, sstabellini@kernel.org,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, mingo@kernel.org,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, matthew.auld@intel.com,
+ Nicolas Boichat <drinkcat@chromium.org>, thomas.hellstrom@linux.intel.com,
+ jgross@suse.com, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+ intel-gfx@lists.freedesktop.org, Robin Murphy <robin.murphy@arm.com>,
+ Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ boris.ostrovsky@oracle.com, airlied@linux.ie,
+ Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ lkml <linux-kernel@vger.kernel.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ xypron.glpk@gmx.de, linuxppc-dev@lists.ozlabs.org, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If intel_hdcp_validate_v_prime() has been successful within the allowed
-number of tries, we can directly call drm_dbg_kms() and "goto out" without
-jumping out of the loop and repeatedly judging whether the operation is
-successful. This can help us reduce an unnecessary if judgment. And it's
-a little clearer to read.
+On Thu, May 27, 2021 at 07:29:20PM +0800, Claire Chang wrote:
+> On Wed, May 26, 2021 at 11:53 PM Will Deacon <will@kernel.org> wrote:
+> >
+> > On Wed, May 26, 2021 at 01:13:22PM +0100, Will Deacon wrote:
+> > > On Tue, May 18, 2021 at 02:42:14PM +0800, Claire Chang wrote:
+> > > > @@ -138,4 +160,9 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+> > > >             memory-region = <&multimedia_reserved>;
+> > > >             /* ... */
+> > > >     };
+> > > > +
+> > > > +   pcie_device: pcie_device@0,0 {
+> > > > +           memory-region = <&restricted_dma_mem_reserved>;
+> > > > +           /* ... */
+> > > > +   };
+> > >
+> > > I still don't understand how this works for individual PCIe devices -- how
+> > > is dev->of_node set to point at the node you have above?
+> > >
+> > > I tried adding the memory-region to the host controller instead, and then
+> > > I see it crop up in dmesg:
+> > >
+> > >   | pci-host-generic 40000000.pci: assigned reserved memory node restricted_dma_mem_reserved
+> > >
+> > > but none of the actual PCI devices end up with 'dma_io_tlb_mem' set, and
+> > > so the restricted DMA area is not used. In fact, swiotlb isn't used at all.
+> > >
+> > > What am I missing to make this work with PCIe devices?
+> >
+> > Aha, looks like we're just missing the logic to inherit the DMA
+> > configuration. The diff below gets things working for me.
+> 
+> I guess what was missing is the reg property in the pcie_device node.
+> Will update the example dts.
 
-No functional change.
+Thanks. I still think something like my diff makes sense, if you wouldn't mind including
+it, as it allows restricted DMA to be used for situations where the PCIe
+topology is not static.
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 24 ++++++++++-------------
- 1 file changed, 10 insertions(+), 14 deletions(-)
+Perhaps we should prefer dev->of_node if it exists, but then use the node
+of the host bridge's parent node otherwise?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index d8570e14fe60..c32a854eda66 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -663,13 +663,13 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 
- 	ret = shim->read_ksv_fifo(dig_port, num_downstream, ksv_fifo);
- 	if (ret)
--		goto err;
-+		goto out;
- 
- 	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, ksv_fifo,
- 					num_downstream) > 0) {
- 		drm_err(&dev_priv->drm, "Revoked Ksv(s) in ksv_fifo\n");
- 		ret = -EPERM;
--		goto err;
-+		goto out;
- 	}
- 
- 	/*
-@@ -680,20 +680,16 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 		ret = intel_hdcp_validate_v_prime(connector, shim,
- 						  ksv_fifo, num_downstream,
- 						  bstatus);
--		if (!ret)
--			break;
--	}
--
--	if (i == tries) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "V Prime validation failed.(%d)\n", ret);
--		goto err;
-+		if (!ret) {
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "HDCP is enabled (%d downstream devices)\n",
-+				    num_downstream);
-+			goto out;
-+		}
- 	}
- 
--	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (%d downstream devices)\n",
--		    num_downstream);
--	ret = 0;
--err:
-+	drm_dbg_kms(&dev_priv->drm, "V Prime validation failed.(%d)\n", ret);
-+out:
- 	kfree(ksv_fifo);
- 	return ret;
- }
--- 
-2.25.1
-
-
+Will
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
