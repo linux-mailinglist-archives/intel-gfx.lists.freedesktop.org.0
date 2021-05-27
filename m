@@ -1,42 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F4058393116
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 16:40:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E3A9393119
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 16:41:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F15726E8BB;
-	Thu, 27 May 2021 14:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68D5C6E8CE;
+	Thu, 27 May 2021 14:41:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E84A6E8BB;
- Thu, 27 May 2021 14:40:36 +0000 (UTC)
-IronPort-SDR: OH55nt/st7Ky2SmGIHV5drW+ZWqw8J09u+cql/E4InP0CGU1K22u9U2IMPsPNy0uIywsVjo0vq
- QxWOzNqFgfVQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="183084185"
-X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="183084185"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 000C56E8CE;
+ Thu, 27 May 2021 14:41:09 +0000 (UTC)
+IronPort-SDR: JKsBIv87Re3rpTK/V83IKUvyyBdN+7i6g0NZa/so/U9uGA/NLdZbJvxZPxfmFUV0UIBUPk3sUB
+ IiMgwz4H88XA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="183084317"
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="183084317"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2021 07:40:24 -0700
-IronPort-SDR: sDmDNgANjfK8FXAr89EaVfU8vSvXX8xRKKcVFucfL+phqqOFeJxdwy6ly7eGqGIXEg0IRrAqTr
- v2+e6TNw7lkw==
+ 27 May 2021 07:41:09 -0700
+IronPort-SDR: F0jsq9PJTQ3vXJ7KbvtmLaNCLw2Dn2EEEEtHnJAFNiisKnMYkq4UQWmN5h2yU0rGKL4OOJRrwC
+ K1c4FlXpSyHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="547640860"
+X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="615403543"
 Received: from vsrini4-xps-8920.iind.intel.com (HELO localhost.localdomain)
  ([10.223.163.28])
- by orsmga004.jf.intel.com with ESMTP; 27 May 2021 07:40:22 -0700
+ by orsmga005.jf.intel.com with ESMTP; 27 May 2021 07:41:07 -0700
 From: Vidya Srinivas <vidya.srinivas@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	igt-dev@lists.freedesktop.org
-Date: Thu, 27 May 2021 20:01:28 +0530
-Message-Id: <20210527143128.25366-1-vidya.srinivas@intel.com>
+Date: Thu, 27 May 2021 20:02:14 +0530
+Message-Id: <20210527143214.25486-1-vidya.srinivas@intel.com>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <1621570131-23943-1-git-send-email-vidya.srinivas@intel.com>
-References: <1621570131-23943-1-git-send-email-vidya.srinivas@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] [RFC] tests/kms_big_fb: Wait for vblank
- before collecting CRC
+Subject: [Intel-gfx] [PATCH 1/4] [RFC] tests/drm_read: Fix subtest
+ invalid-buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,58 +53,40 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Without wait for vblank, CRC mismatch is seen
-between big and small CRC on some intel Gen11 platforms.
+Using (void *)-1 directly in read is aborting on chrome systems.
+Following message is seen.
 
-Change-Id: I3bec931aa901130997e693ac1cacf389e2a8100f
+Starting subtest: invalid-buffer
+*** buffer overflow detected ***: terminated
+Received signal SIGABRT.
+Stack trace:
+Aborted (core dumped)
+
+Patch just adds a pointer variable and uses it in read.
+
 Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+Change-Id: I97f129e586bf9212eb0a63a4cd4c91e0327dd550
 ---
- tests/kms_big_fb.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ tests/drm_read.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/tests/kms_big_fb.c b/tests/kms_big_fb.c
-index b2027b6b9d1b..da682593429b 100644
---- a/tests/kms_big_fb.c
-+++ b/tests/kms_big_fb.c
-@@ -254,6 +254,7 @@ static void unset_lut(data_t *data)
- static bool test_plane(data_t *data)
+diff --git a/tests/drm_read.c b/tests/drm_read.c
+index ccf9d822fd8d..2fdec5be4078 100644
+--- a/tests/drm_read.c
++++ b/tests/drm_read.c
+@@ -103,10 +103,11 @@ static void teardown(int fd)
+ static void test_invalid_buffer(int in)
  {
- 	igt_plane_t *plane = data->plane;
-+	igt_display_t *display = &data->display;
- 	struct igt_fb *small_fb = &data->small_fb;
- 	struct igt_fb *big_fb = &data->big_fb;
- 	int w = data->big_fb_width - small_fb->width;
-@@ -269,6 +270,7 @@ static bool test_plane(data_t *data)
- 		{ w / 3, h * 3 / 4, },
- 		{ w, h, },
- 	};
-+	bool check_platform_intel = is_i915_device(data->drm_fd);
+ 	int fd = setup(in, 0);
++	void *add = (void *)-1;
  
- 	if (!igt_plane_has_format_mod(plane, data->format, data->modifier))
- 		return false;
-@@ -336,17 +338,19 @@ static bool test_plane(data_t *data)
+ 	alarm(1);
  
- 		igt_display_commit2(&data->display, data->display.is_atomic ?
- 				    COMMIT_ATOMIC : COMMIT_UNIVERSAL);
--
--
-+		if (check_platform_intel)
-+			igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
- 		igt_pipe_crc_collect_crc(data->pipe_crc, &small_crc);
+-	igt_assert_eq(read(fd, (void *)-1, 4096), -1);
++	igt_assert_eq(read(fd, add, 4096), -1);
+ 	igt_assert_eq(errno, EFAULT);
  
- 		igt_plane_set_fb(plane, big_fb);
- 		igt_fb_set_position(big_fb, plane, x, y);
- 		igt_fb_set_size(big_fb, plane, small_fb->width, small_fb->height);
-+
- 		igt_plane_set_size(plane, data->width, data->height);
- 		igt_display_commit2(&data->display, data->display.is_atomic ?
- 				    COMMIT_ATOMIC : COMMIT_UNIVERSAL);
--
-+		if (check_platform_intel)
-+			igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
- 		igt_pipe_crc_collect_crc(data->pipe_crc, &big_crc);
- 
- 		igt_plane_set_fb(plane, NULL);
+ 	teardown(fd);
 -- 
 2.26.2
 
