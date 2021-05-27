@@ -1,67 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30873392F12
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 15:06:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6054392ECA
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 15:02:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9307B6F38A;
-	Thu, 27 May 2021 13:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A3526EF2E;
+	Thu, 27 May 2021 13:02:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
- [IPv6:2607:f8b0:4864:20::730])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 496446F38A
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 13:06:28 +0000 (UTC)
-Received: by mail-qk1-x730.google.com with SMTP id i5so476513qkf.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 06:06:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tgPMjyY5jAkXYAxU2M6Xs7JOfdHxgDuWupSEgAOvuBU=;
- b=HyAvfwEBrieOghAofexhSawgJJukm2YnQ2fAt2CFdEKEbDS1O9qhSu7HLdewyRfCVz
- gEA6t08wyk35Bk0UPING6Rrv8blJD9d3z2B2GuwI2wJTrYZe4msm0UUHcQ98yGMgAfAw
- jsaa2ecYO9Gel1C3uwINW+EKRzQM0HGE52Gr4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tgPMjyY5jAkXYAxU2M6Xs7JOfdHxgDuWupSEgAOvuBU=;
- b=FCKkM7YKwdicz0gGZocVzfkmJzfp/q+guW8u0l64G3oyU9n6rkvL2CZnMJ+RgfxK4l
- 42RyVgYsjMHsg0iZHqy2x4wY3dvFdM4tKOcWFfXKGZrloS+HXQLMipLynLFpmZCNK9ug
- EAx5oBM6fIL8dQThyttLJL7TiAfWaUMCI7B1mIZa6ABnE6O6FTXStjIZ780uR9oGL2nQ
- t6T2Y63hbI8ggMo3phgi/OLMT8smQJu7U22owiiSHjQkoE5zMQ0m49uWQDBNOVnHLDZu
- BRkn9lAGd53UAwaPVYb+1dJGMERlN6opaIC6rs6YTP2VuGectUYLRwqyPqTor5XR5nae
- vV8g==
-X-Gm-Message-State: AOAM532NiWjObuBzhA3oHmNvoO5ZWeNOX71JQ/CRBf8oDV4h9XF2FVWw
- RuYYvh1ihhjg4k1dVXzQKnwnCx2KbErIHg==
-X-Google-Smtp-Source: ABdhPJwpv9zs9903SoBJGVobxosafEu/5XuEZHxdsZv7cr7cgfUcOLyOUHzUCa1DhLOBMjoJiTvi/Q==
-X-Received: by 2002:a05:620a:2282:: with SMTP id
- o2mr3275453qkh.479.1622120786990; 
- Thu, 27 May 2021 06:06:26 -0700 (PDT)
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com.
- [209.85.222.177])
- by smtp.gmail.com with ESMTPSA id k13sm1285268qke.46.2021.05.27.06.06.26
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 27 May 2021 06:06:26 -0700 (PDT)
-Received: by mail-qk1-f177.google.com with SMTP id o27so489947qkj.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 06:06:26 -0700 (PDT)
-X-Received: by 2002:a02:a505:: with SMTP id e5mr3414377jam.10.1622120419476;
- Thu, 27 May 2021 06:00:19 -0700 (PDT)
-MIME-Version: 1.0
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36CB46EF2E;
+ Thu, 27 May 2021 13:02:17 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id D40FB68AFE; Thu, 27 May 2021 15:02:11 +0200 (CEST)
+Date: Thu, 27 May 2021 15:02:11 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <20210527130211.GA24344@lst.de>
 References: <20210518064215.2856977-1-tientzu@chromium.org>
-In-Reply-To: <20210518064215.2856977-1-tientzu@chromium.org>
-From: Claire Chang <tientzu@chromium.org>
-Date: Thu, 27 May 2021 21:00:07 +0800
-X-Gmail-Original-Message-ID: <CALiNf2-dUFSCOz4=jmEm8ZcX+zQXKzo6yPg31iLLLG3FAr+g1w@mail.gmail.com>
-Message-ID: <CALiNf2-dUFSCOz4=jmEm8ZcX+zQXKzo6yPg31iLLLG3FAr+g1w@mail.gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>, 
- Will Deacon <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
- jgross@suse.com, 
- Christoph Hellwig <hch@lst.de>, Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [Intel-gfx] [PATCH v7 00/15] Restricted DMA
+ <20210518064215.2856977-2-tientzu@chromium.org>
+ <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH v7 01/15] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,29 +42,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
  peterz@infradead.org, benh@kernel.crashing.org,
  dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- grant.likely@arm.com, paulus@samba.org, mingo@kernel.org,
- Jianxiong Gao <jxgao@google.com>, sstabellini@kernel.org,
- Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ xypron.glpk@gmx.de, Joerg Roedel <joro@8bytes.org>,
  "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
  Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
  linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
  Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
  matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- airlied@linux.ie, Robin Murphy <robin.murphy@arm.com>,
- Nicolas Boichat <drinkcat@chromium.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+ jxgao@google.com, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
+ Claire Chang <tientzu@chromium.org>, boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
  "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
+ Jim Quinlan <james.quinlan@broadcom.com>, mpe@ellerman.id.au,
+ Tom Lendacky <thomas.lendacky@amd.com>, Robin Murphy <robin.murphy@arm.com>,
  bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v8 here: https://lore.kernel.org/patchwork/cover/1437112/
+On Wed, May 19, 2021 at 11:50:07AM -0700, Florian Fainelli wrote:
+> You convert this call site with swiotlb_init_io_tlb_mem() which did not
+> do the set_memory_decrypted()+memset(). Is this okay or should
+> swiotlb_init_io_tlb_mem() add an additional argument to do this
+> conditionally?
+
+The zeroing is useful and was missing before.  I think having a clean
+state here is the right thing.
+
+Not sure about the set_memory_decrypted, swiotlb_update_mem_attributes
+kinda suggests it is too early to set the memory decrupted.
+
+Adding Tom who should now about all this.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
