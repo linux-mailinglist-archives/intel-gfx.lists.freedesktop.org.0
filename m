@@ -2,63 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B9F439289C
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 09:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30ECE3928BC
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 09:42:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 066616ECBA;
-	Thu, 27 May 2021 07:33:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF346ED1B;
+	Thu, 27 May 2021 07:42:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
- [213.80.101.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5CF36E02B;
- Thu, 27 May 2021 07:33:50 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 2439D3F720;
- Thu, 27 May 2021 09:33:49 +0200 (CEST)
-Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="knt/+KdF";
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
- dkim=pass (1024-bit key) header.d=shipmail.org
-Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id bODBibBt7uqR; Thu, 27 May 2021 09:33:48 +0200 (CEST)
-Received: by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 683853F4F4;
- Thu, 27 May 2021 09:33:47 +0200 (CEST)
-Received: from [192.168.0.209] (irdmzpr01-ext.ir.intel.com [192.198.151.36])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 76092360128;
- Thu, 27 May 2021 09:33:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1622100826; bh=MCtIY73IFT7FJiv94ZC1aI3V8BMX4JKQINzqZF3OnJk=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=knt/+KdFiyYTM/eQbYNc1Ck10LFRxBkTP9PmN0Kut2B/JWKrd2iesqBySNHPZ6zQF
- nP5GSpbGw3UTpYMPPSM5my/Y6ZW1fdDO1IgX3tzmmQpx+Msx7W+GWmslfXYB50/wcQ
- YiUMkRyqul0Ehy16f/sN5LnoaVJxwGDnUkn8dWP0=
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210526113259.1661914-1-thomas.hellstrom@linux.intel.com>
- <20210526113259.1661914-11-thomas.hellstrom@linux.intel.com>
- <9f49eb8e-8ec5-cb24-0ce1-3e63272628e8@amd.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <b2fea11f-bc69-7347-1781-79626c2d5ceb@shipmail.org>
-Date: Thu, 27 May 2021 09:33:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 826696ED1B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 07:42:10 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id 22so2989900pfv.11
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 00:42:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=iKoyZrvsFP6hj+sTecEKs84BWsddp7iyyNAfS5YrByY=;
+ b=K2es2FAtpGv9fegvJdeh5YP/A0RC9TqvE4FiUuLQ+d2zmZAPotE3JnwGCLTnpT2oJO
+ pTLqwj//EAA5370QnKt5idZr716DsDeIAwj1bCoAhRQhnmQI0DN7wgyP7autSDSLQ/ZA
+ yCwkrVajawz3Iir7PKF7uzIzNHgfb1o+PerWo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=iKoyZrvsFP6hj+sTecEKs84BWsddp7iyyNAfS5YrByY=;
+ b=jJ9S5O9T/7QkfbX+mTnsLEWJcO1SaAniMmvtMouOqWRP4eXSdqUgj47fcxT8fwWUT1
+ MK6kwVSYTwMJDsXW9Zj/GPUfG39lkhStgE4E16FO0br+zolT2T3BTEl3wbsPvQsVNkFL
+ kHDRj6RG1uBn/YV3kD7Hy0GaxtZ5jjKiVLRR8Cd5B9BgjMa3qb3RDaR3rGrNmTKW9rIh
+ 0SdvL+65ixJAA3vI6i5BAflzhJ4k3LZOPEbC8JaQcxA8VxbKYxkMmdTNyRC6+iHRASBU
+ Ni99tvfKveQKxZafLwkEWo9W9TA8ovLr34ZB9Vgm5Gp7ghhY4LDSAwIdizff4MWTbuuP
+ dMJg==
+X-Gm-Message-State: AOAM531RjgcgIDMnv852CKcV8BSitecEXqwYJuMvCuhWb2nLPAWqZcsv
+ ahUmGN/MrHzI1uQxHhOlStftkA==
+X-Google-Smtp-Source: ABdhPJyh8VQ7P/mYb4jkCg+CyiZPlNFyGqOdhZl1TfgjEhu4HrLCi0thLRH2AAf5Ehe9ojNiLBlGIQ==
+X-Received: by 2002:a05:6a00:7c5:b029:2e8:d5f5:9677 with SMTP id
+ n5-20020a056a0007c5b02902e8d5f59677mr2488009pfu.68.1622101329884; 
+ Thu, 27 May 2021 00:42:09 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com
+ ([2401:fa00:1:10:ece5:55a4:6ad3:d20f])
+ by smtp.gmail.com with ESMTPSA id h24sm1184857pfn.180.2021.05.27.00.42.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 May 2021 00:42:09 -0700 (PDT)
+From: Hsin-Yi Wang <hsinyi@chromium.org>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 27 May 2021 15:42:00 +0800
+Message-Id: <20210527074202.1706724-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.31.1.818.g46aad6cb9e-goog
 MIME-Version: 1.0
-In-Reply-To: <9f49eb8e-8ec5-cb24-0ce1-3e63272628e8@amd.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 10/15] drm/ttm,
- drm/amdgpu: Allow the driver some control over swapping
+Subject: [Intel-gfx] [PATCH v6 RESEND 1/3] gpu: drm: separate panel
+ orientation property creating and value setting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,165 +64,237 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, devicetree@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
+ Robert Foss <robert.foss@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksIENocmlzdGlhbiwKClRoYW5rcyBmb3IgcmV2aWV3aW5nLgoKT24gNS8yNi8yMSAzOjI2IFBN
-LCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+IEFtIDI2LjA1LjIxIHVtIDEzOjMyIHNjaHJpZWIg
-VGhvbWFzIEhlbGxzdHLDtm06Cj4+IFdlIGFyZSBjYWxsaW5nIHRoZSBldmljdGlvbl92YWx1YWJs
-ZSBkcml2ZXIgY2FsbGJhY2sgYXQgZXZpY3Rpb24gdGltZSB0bwo+PiBkZXRlcm1pbmUgd2hldGhl
-ciB3ZSBhY3R1YWxseSBjYW4gZXZpY3QgYSBidWZmZXIgb2JqZWN0Lgo+PiBUaGUgdXBjb21pbmcg
-aTkxNSBUVE0gYmFja2VuZCBuZWVkcyB0aGUgc2FtZSBmdW5jdGlvbmFsaXR5IGZvciBzd2Fwb3V0
-LAo+PiBhbmQgdGhhdCBtaWdodCBhY3R1YWxseSBiZSBiZW5lZmljaWFsIHRvIG90aGVyIGRyaXZl
-cnMgYXMgd2VsbC4KPj4KPj4gQWRkIGFuIGV2aWN0aW9uX3ZhbHVhYmxlIGNhbGwgYWxzbyBpbiB0
-aGUgc3dhcG91dCBwYXRoLiBUcnkgdG8ga2VlcCB0aGUKPj4gY3VycmVudCBiZWhhdmlvdXIgZm9y
-IGFsbCBkcml2ZXJzIGJ5IHJldHVybmluZyB0cnVlIGlmIHRoZSBidWZmZXIgb2JqZWN0Cj4+IGlz
-IGFscmVhZHkgaW4gdGhlIFRUTV9QTF9TWVNURU0gcGxhY2VtZW50LiBXZSBjaGFuZ2UgYmVoYXZp
-b3VyIGZvciB0aGUKPj4gY2FzZSB3aGVyZSBhIGJ1ZmZlciBvYmplY3QgaXMgaW4gYSBUVCBiYWNr
-ZWQgcGxhY2VtZW50IHdoZW4gc3dhcHBlZCBvdXQsCj4+IGluIHdoaWNoIGNhc2UgdGhlIGRyaXZl
-cnMgbm9ybWFsIGV2aWN0aW9uX3ZhbHVhYmxlIHBhdGggaXMgcnVuLgo+Pgo+PiBGaW5hbGx5IG1h
-a2Ugc3VyZSB3ZSBkb24ndCB0cnkgdG8gc3dhcG91dCBhIGJvIHRoYXQgd2FzIHJlY2VudGx5IHB1
-cmdlZAo+PiBhbmQgdGhlcmVmb3JlIHVucG9wdWxhdGVkLgo+Pgo+PiBSZXZpZXdlZC1ieTogTWFh
-cnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPj4gQ2M6
-IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPj4gU2lnbmVkLW9m
-Zi1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29t
-Pgo+PiAtLS0KPj4gdjM6Cj4+IC0gRG9uJ3QgZXhwb3J0IHR0bV90dF91bnBvcHVsYXRlCj4+IC0g
-Rml4IGNvbmZ1c2lvbiByZWFkaW5nIHRoZSBsb2NrZWQgcG9pbnRlciBpbnN0ZWFkIG9mIHRoZSB2
-YWx1ZQo+PiDCoMKgIHBvaW50ZWQgdG8gaW4gdHRtX2JvX2V2aWN0X3N3YXBvdXRfYWxsb3dhYmxl
-IChSZXBvcnRlZCBieQo+PiDCoMKgIE1hYXJ0ZW4gTGFua2hvcnN0KQo+PiAtLS0KPj4gwqAgZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3R0bS5jIHzCoCA0ICsrKwo+PiDCoCBkcml2
-ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDQzICsrKysr
-KysrKysrKysrKystLS0tLS0tLS0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fdHQuY8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDMgKysKPj4gwqAgMyBmaWxlcyBjaGFuZ2VkLCAzNCBp
-bnNlcnRpb25zKCspLCAxNiBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1k
-L2FtZGdwdS9hbWRncHVfdHRtLmMKPj4gaW5kZXggM2JjM2FlYmZlZjdjLi40NWQxOTRiZmZjM2Yg
-MTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwo+
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMKPj4gQEAgLTEz
-NDgsNiArMTM0OCwxMCBAQCBzdGF0aWMgYm9vbCAKPj4gYW1kZ3B1X3R0bV9ib19ldmljdGlvbl92
-YWx1YWJsZShzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvLAo+PiDCoMKgwqDCoMKgIHN0cnVj
-dCBkbWFfZmVuY2UgKmY7Cj4+IMKgwqDCoMKgwqAgaW50IGk7Cj4+IMKgICvCoMKgwqAgLyogU3dh
-cG91dD8gKi8KPj4gK8KgwqDCoCBpZiAoYm8tPm1lbS5tZW1fdHlwZSA9PSBUVE1fUExfU1lTVEVN
-KQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHRydWU7Cj4+ICsKPj4gwqDCoMKgwqDCoCBpZiAo
-Ym8tPnR5cGUgPT0gdHRtX2JvX3R5cGVfa2VybmVsICYmCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCAh
-YW1kZ3B1X3ZtX2V2aWN0YWJsZSh0dG1fdG9fYW1kZ3B1X2JvKGJvKSkpCj4+IMKgwqDCoMKgwqDC
-oMKgwqDCoCByZXR1cm4gZmFsc2U7Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRt
-L3R0bV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYwo+PiBpbmRleCBiZTA0MDY0
-NjY0NjAuLjFiMmQwNjIyNjZlZCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90
-dG1fYm8uYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCj4+IEBAIC01MzYs
-NiArNTM2LDEwIEBAIHN0YXRpYyBpbnQgdHRtX2JvX2V2aWN0KHN0cnVjdCB0dG1fYnVmZmVyX29i
-amVjdCAKPj4gKmJvLAo+PiDCoCBib29sIHR0bV9ib19ldmljdGlvbl92YWx1YWJsZShzdHJ1Y3Qg
-dHRtX2J1ZmZlcl9vYmplY3QgKmJvLAo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBjb25zdCBzdHJ1Y3QgdHRtX3BsYWNlICpwbGFjZSkKPj4gwqAgewo+PiArwqDCoMKg
-IGRtYV9yZXN2X2Fzc2VydF9oZWxkKGJvLT5iYXNlLnJlc3YpOwo+PiArwqDCoMKgIGlmIChiby0+
-bWVtLm1lbV90eXBlID09IFRUTV9QTF9TWVNURU0pCj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4g
-dHJ1ZTsKPj4gKwo+PiDCoMKgwqDCoMKgIC8qIERvbid0IGV2aWN0IHRoaXMgQk8gaWYgaXQncyBv
-dXRzaWRlIG9mIHRoZQo+PiDCoMKgwqDCoMKgwqAgKiByZXF1ZXN0ZWQgcGxhY2VtZW50IHJhbmdl
-Cj4+IMKgwqDCoMKgwqDCoCAqLwo+PiBAQCAtNTU4LDcgKzU2Miw5IEBAIEVYUE9SVF9TWU1CT0wo
-dHRtX2JvX2V2aWN0aW9uX3ZhbHVhYmxlKTsKPj4gwqDCoCAqIGIuIE90aGVyd2lzZSwgdHJ5bG9j
-ayBpdC4KPj4gwqDCoCAqLwo+PiDCoCBzdGF0aWMgYm9vbCB0dG1fYm9fZXZpY3Rfc3dhcG91dF9h
-bGxvd2FibGUoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0IAo+PiAqYm8sCj4+IC3CoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHN0cnVjdCB0dG1fb3BlcmF0aW9uX2N0eCAqY3R4LCBib29sICpsb2NrZWQs
-IGJvb2wgKmJ1c3kpCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBzdHJ1Y3QgdHRtX29wZXJhdGlvbl9jdHggKmN0eCwKPj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbnN0IHN0cnVjdCB0dG1fcGxhY2UgKnBsYWNl
-LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYm9vbCAq
-bG9ja2VkLCBib29sICpidXN5KQo+PiDCoCB7Cj4+IMKgwqDCoMKgwqAgYm9vbCByZXQgPSBmYWxz
-ZTsKPj4gwqAgQEAgLTU3Niw2ICs1ODIsMTQgQEAgc3RhdGljIGJvb2wgCj4+IHR0bV9ib19ldmlj
-dF9zd2Fwb3V0X2FsbG93YWJsZShzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvLAo+PiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqYnVzeSA9ICFyZXQ7Cj4+IMKgwqDCoMKgwqAgfQo+PiDC
-oCArwqDCoMKgIGlmIChyZXQgJiYgcGxhY2UgJiYgIWJvLT5iZGV2LT5mdW5jcy0+ZXZpY3Rpb25f
-dmFsdWFibGUoYm8sIAo+PiBwbGFjZSkpIHsKPj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IGZhbHNl
-Owo+PiArwqDCoMKgwqDCoMKgwqAgaWYgKCpsb2NrZWQpIHsKPj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgZG1hX3Jlc3ZfdW5sb2NrKGJvLT5iYXNlLnJlc3YpOwo+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAqbG9ja2VkID0gZmFsc2U7Cj4+ICvCoMKgwqDCoMKgwqDCoCB9Cj4+ICvCoMKgwqAg
-fQo+PiArCj4+IMKgwqDCoMKgwqAgcmV0dXJuIHJldDsKPj4gwqAgfQo+PiDCoCBAQCAtNjMwLDIw
-ICs2NDQsMTQgQEAgaW50IHR0bV9tZW1fZXZpY3RfZmlyc3Qoc3RydWN0IHR0bV9kZXZpY2UgKmJk
-ZXYsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBsaXN0X2Zvcl9lYWNoX2VudHJ5KGJvLCAmbWFuLT5s
-cnVbaV0sIGxydSkgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29sIGJ1c3k7Cj4+
-IMKgIC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmICghdHRtX2JvX2V2aWN0X3N3YXBvdXRfYWxs
-b3dhYmxlKGJvLCBjdHgsICZsb2NrZWQsCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAmYnVzeSkpIHsKPj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgaWYgKCF0dG1fYm9fZXZpY3Rfc3dhcG91dF9hbGxvd2FibGUoYm8sIGN0
-eCwgcGxhY2UsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCAmbG9ja2VkLCAmYnVzeSkpIHsKPj4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoYnVzeSAmJiAhYnVzeV9ibyAmJiB0aWNrZXQgIT0KPj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRtYV9yZXN2X2xvY2tp
-bmdfY3R4KGJvLT5iYXNlLnJlc3YpKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgYnVzeV9ibyA9IGJvOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIGNvbnRpbnVlOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4+IMKgIC3C
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChwbGFjZSAmJiAhYmRldi0+ZnVuY3MtPmV2aWN0aW9u
-X3ZhbHVhYmxlKGJvLAo+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGxhY2UpKSB7Cj4+IC3CoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKGxvY2tlZCkKPj4gLcKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRtYV9yZXN2X3VubG9jayhiby0+YmFzZS5yZXN2KTsKPj4g
-LcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb250aW51ZTsKPj4gLcKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgfQo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoIXR0bV9ib19n
-ZXRfdW5sZXNzX3plcm8oYm8pKSB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgaWYgKGxvY2tlZCkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGRtYV9yZXN2X3VubG9jayhiby0+YmFzZS5yZXN2KTsKPj4gQEAgLTExNDAsMTAgKzExNDgs
-MTggQEAgRVhQT1JUX1NZTUJPTCh0dG1fYm9fd2FpdCk7Cj4+IMKgIGludCB0dG1fYm9fc3dhcG91
-dChzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvLCBzdHJ1Y3QgCj4+IHR0bV9vcGVyYXRpb25f
-Y3R4ICpjdHgsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBnZnBfdCBnZnBfZmxhZ3MpCj4+
-IMKgIHsKPj4gK8KgwqDCoCBzdHJ1Y3QgdHRtX3BsYWNlIHBsYWNlID0ge307Cj4+IMKgwqDCoMKg
-wqAgYm9vbCBsb2NrZWQ7Cj4+IMKgwqDCoMKgwqAgaW50IHJldDsKPj4gwqAgLcKgwqDCoCBpZiAo
-IXR0bV9ib19ldmljdF9zd2Fwb3V0X2FsbG93YWJsZShibywgY3R4LCAmbG9ja2VkLCBOVUxMKSkK
-Pj4gK8KgwqDCoCAvKgo+PiArwqDCoMKgwqAgKiBXaGlsZSB0aGUgYm8gbWF5IGFscmVhZHkgcmVz
-aWRlIGluIFNZU1RFTSBwbGFjZW1lbnQsIHNldAo+PiArwqDCoMKgwqAgKiBTWVNURU0gYXMgbmV3
-IHBsYWNlbWVudCB0byBjb3ZlciBhbHNvIHRoZSBtb3ZlIGZ1cnRoZXIgYmVsb3cuCj4+ICvCoMKg
-wqDCoCAqIFRoZSBkcml2ZXIgbWF5IHVzZSB0aGUgZmFjdCB0aGF0IHdlJ3JlIG1vdmluZyBmcm9t
-IFNZU1RFTQo+PiArwqDCoMKgwqAgKiBhcyBhbiBpbmRpY2F0aW9uIHRoYXQgd2UncmUgYWJvdXQg
-dG8gc3dhcCBvdXQuCj4+ICvCoMKgwqDCoCAqLwo+PiArwqDCoMKgIHBsYWNlLm1lbV90eXBlID0g
-VFRNX1BMX1NZU1RFTTsKPj4gK8KgwqDCoCBpZiAoIXR0bV9ib19ldmljdF9zd2Fwb3V0X2FsbG93
-YWJsZShibywgY3R4LCAmcGxhY2UsICZsb2NrZWQsIAo+PiBOVUxMKSkKPj4gwqDCoMKgwqDCoMKg
-wqDCoMKgIHJldHVybiAtRUJVU1k7Cj4+IMKgIMKgwqDCoMKgwqAgaWYgKCF0dG1fYm9fZ2V0X3Vu
-bGVzc196ZXJvKGJvKSkgewo+PiBAQCAtMTE2OCwxMiArMTE4NCw3IEBAIGludCB0dG1fYm9fc3dh
-cG91dChzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgCj4+ICpibywgc3RydWN0IHR0bV9vcGVyYXRp
-b25fY3R4ICpjdHgsCj4+IMKgwqDCoMKgwqAgaWYgKGJvLT5tZW0ubWVtX3R5cGUgIT0gVFRNX1BM
-X1NZU1RFTSkgewo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHR0bV9vcGVyYXRpb25fY3R4
-IGN0eCA9IHsgZmFsc2UsIGZhbHNlIH07Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgdHRt
-X3Jlc291cmNlIGV2aWN0X21lbTsKPj4gLcKgwqDCoMKgwqDCoMKgIHN0cnVjdCB0dG1fcGxhY2Ug
-cGxhY2UsIGhvcDsKPj4gLQo+PiAtwqDCoMKgwqDCoMKgwqAgbWVtc2V0KCZwbGFjZSwgMCwgc2l6
-ZW9mKHBsYWNlKSk7Cj4+IC3CoMKgwqDCoMKgwqDCoCBtZW1zZXQoJmhvcCwgMCwgc2l6ZW9mKGhv
-cCkpOwo+PiAtCj4+IC3CoMKgwqDCoMKgwqDCoCBwbGFjZS5tZW1fdHlwZSA9IFRUTV9QTF9TWVNU
-RU07Cj4+ICvCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX3BsYWNlIGhvcCA9IHt9Owo+Cj4gSSB3
-b3VsZCBzdGljayB3aXRoIG1lbXNldCBiZWNhdXNlIG9mIHRoZSBwYWRkaW5nIHJlYXNvbnMuCj4K
-Pj4gwqAgwqDCoMKgwqDCoMKgwqDCoMKgIHJldCA9IHR0bV9yZXNvdXJjZV9hbGxvYyhibywgJnBs
-YWNlLCAmZXZpY3RfbWVtKTsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIGlmICh1bmxpa2VseShyZXQp
-KQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fdHQuYyBiL2RyaXZlcnMv
-Z3B1L2RybS90dG0vdHRtX3R0LmMKPj4gaW5kZXggOTEzYjMzMGEyMzRiLi5kOTc5M2NiYjZkMTMg
-MTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0LmMKPj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL3R0bS90dG1fdHQuYwo+PiBAQCAtMjYzLDYgKzI2Myw5IEBAIGludCB0dG1f
-dHRfc3dhcG91dChzdHJ1Y3QgdHRtX2RldmljZSAqYmRldiwgCj4+IHN0cnVjdCB0dG1fdHQgKnR0
-bSwKPj4gwqDCoMKgwqDCoCBzdHJ1Y3QgcGFnZSAqdG9fcGFnZTsKPj4gwqDCoMKgwqDCoCBpbnQg
-aSwgcmV0Owo+PiDCoCArwqDCoMKgIGlmICghdHRtX3R0X2lzX3BvcHVsYXRlZCh0dG0pKQo+PiAr
-wqDCoMKgwqDCoMKgwqAgcmV0dXJuIDA7Cj4+ICsKPgo+IFRoaXMgaGVyZSBpcyBqdXN0IGJlY2F1
-c2Ugb2YgYSBidWcgaW4gdGhlIGhpZ2hlciBsZXZlbCBmdW5jdGlvbi4KPgo+IEkndmUganVzdCBw
-dXNoZWQgdGhlIGZpeCBmb3IgdGhhdCB0byBkcm0tbWlzYy1maXhlcywgc28gbWF5YmUgZHJvcCAK
-PiB0aGF0IGhlcmUgYXMgc29vbiBhcyB0aGlzIGlzIGJhY2ttZXJnZWQuCj4KVGhhdCBjb2RlIGRv
-ZXNuJ3QgbG9vayBjb3JyZWN0IHRvIG1lLiBJbiB0dG1fZGV2aWNlX3N3YXBvdXQgb25seSB0aGUg
-bHJ1IApsb2NrIGlzIGhlbGQsIGFuZCB0aGUgYm8tPnR0bSBwb2ludGVyIGlzIHByb3RlY3RlZCBi
-eSB0aGUgcmVzdiBsb2NrLCAKbWVhbmluZyB0aGF0IGJvLT50dG0gY2FuIGRpc2FwcGVhciBhdCBh
-bnkgdGltZSBpbiB0aGF0IGZ1bmN0aW9uLCBzbyAKd2hpbGUgYW4gYWR2aXNvcnkgcmVhZGluZyBi
-by0+dHRtIHVzaW5nIFJFQURfT05DRSgpIGlzIG9rLCBkZXJlZmVyZW5jaW5nIAp0aGUgYm8tPnR0
-bSBwb2ludGVyIHdpdGhvdXQgcmVzZXJ2YXRpb24gaGVsZCBpcyBpbGxlZ2FsIGFuZCBtYXkgc2Vu
-ZCB5b3UgCmludG8gcmVjZW50bHkgZnJlZWQgbWVtb3J5LgoKRm9yIGFuIGV4YW1wbGUsIGNvbnNp
-ZGVyCgp0aHJlYWQgQS4gU2VsZWN0cyBibyBmb3IgZXZpY3Rpb24sIG1vdmVzIHRvIHN5c3RlbSBs
-cnUsIGNyZWF0ZXMgdHRtClRocmVhZCBCIGxvY2tzIGxydSBpbiBzd2Fwb3V0IGNvZGUuIGZpbmRz
-IGJvLT50dG0gTk9OX05VTEwsCnRocmVhZCBBIHRyaWVzIHRvIGV2aWN0IGJvLCBmYWlscywgZGVz
-dHJveXMgdGhlIHR0bS4KVGhyZWFkIEIgZGVyZWZzIGZyZWVkIG1lbW9yeS4KCkJ1dCBldmVuIHJl
-bHlpbmcgb24gdGhhdCB0aGVyZSB3ZXJlIG5vIHN1Y2ggZXhhbXBsZSBpbiB0aGUgdHRtIGNvcmUg
-Cml0c2VsZiwgbm90IGFkaGVyaW5nIHRvIHRoZSBwcm90ZWN0aW9uIG9mIGJvLT50dG0gbWFrZXMg
-dGhlIGNvZGUgCmV4dHJlbWVseSBmcmFnaWxlIGFuZCBJTUhPIG5lZWRzIGZpeGluZy4KCkFsc28g
-YXMgYSBzZWNvbmRhcnkgbm90ZSwgYSBkcml2ZXIgaXMgaW4gcHJpbmNpcGxlIGZyZWUgdG8gZG8g
-dGhpbmdzIGluIAp0aGUgc3dhcCBub3RpZmllciB0aGF0IG1heSByZXN1bHQgaW4gYW4gdW5wb3B1
-bGF0ZWQgdHRtIHNvIElNSE8gYSBsYXRlIApjaGVjayBpcyBuZWVkZWQgaGVyZS4KClNvIGFjayB0
-byBrZWVwIHRoZSBhYm92ZT8KClRoYW5rcywKClRob21hcwoKCj4KPiBDaHJpc3RpYW4uCj4KPgo+
-PiDCoMKgwqDCoMKgIHN3YXBfc3RvcmFnZSA9IHNobWVtX2ZpbGVfc2V0dXAoInR0bSBzd2FwIiwg
-c2l6ZSwgMCk7Cj4+IMKgwqDCoMKgwqAgaWYgKElTX0VSUihzd2FwX3N0b3JhZ2UpKSB7Cj4+IMKg
-wqDCoMKgwqDCoMKgwqDCoCBwcl9lcnIoIkZhaWxlZCBhbGxvY2F0aW5nIHN3YXAgc3RvcmFnZVxu
-Iik7Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+drm_dev_register() sets connector->registration_state to
+DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+drm_connector_set_panel_orientation() is first called after
+drm_dev_register(), it will fail several checks and results in following
+warning.
+
+Add a function to create panel orientation property and set default value
+to UNKNOWN, so drivers can call this function to init the property earlier
+, and let the panel set the real value later.
+
+[    4.480976] ------------[ cut here ]------------
+[    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+<snip>
+[    4.609772] Call trace:
+[    4.612208]  __drm_mode_object_add+0xb4/0xbc
+[    4.616466]  drm_mode_object_add+0x20/0x2c
+[    4.620552]  drm_property_create+0xdc/0x174
+[    4.624723]  drm_property_create_enum+0x34/0x98
+[    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+[    4.634716]  boe_panel_get_modes+0x88/0xd8
+[    4.638802]  drm_panel_get_modes+0x2c/0x48
+[    4.642887]  panel_bridge_get_modes+0x1c/0x28
+[    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+[    4.662699]  drm_ioctl_kernel+0xac/0x128
+[    4.666611]  drm_ioctl+0x268/0x410
+[    4.670002]  drm_compat_ioctl+0xdc/0xf0
+[    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.678436]  el0_svc_common+0xf4/0x1c0
+[    4.682174]  do_el0_svc_compat+0x28/0x3c
+[    4.686088]  el0_svc_compat+0x10/0x1c
+[    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+[    4.694171]  el0_sync_compat+0x178/0x180
+[    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+[    4.702721] ------------[ cut here ]------------
+[    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+<snip>
+[    4.833830] Call trace:
+[    4.836266]  drm_object_attach_property+0x48/0xb8
+[    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+[    4.846432]  boe_panel_get_modes+0x88/0xd8
+[    4.850516]  drm_panel_get_modes+0x2c/0x48
+[    4.854600]  panel_bridge_get_modes+0x1c/0x28
+[    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+[    4.874410]  drm_ioctl_kernel+0xac/0x128
+[    4.878320]  drm_ioctl+0x268/0x410
+[    4.881711]  drm_compat_ioctl+0xdc/0xf0
+[    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.890142]  el0_svc_common+0xf4/0x1c0
+[    4.893879]  do_el0_svc_compat+0x28/0x3c
+[    4.897791]  el0_svc_compat+0x10/0x1c
+[    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+[    4.905873]  el0_sync_compat+0x178/0x180
+[    4.909783] ---[ end trace b4f2db9d9c88610c ]---
+
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Sean Paul <seanpaul@chromium.org>
+---
+ drivers/gpu/drm/drm_connector.c         | 58 ++++++++++++++++++-------
+ drivers/gpu/drm/i915/display/icl_dsi.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c |  1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c  |  1 +
+ include/drm/drm_connector.h             |  2 +
+ 5 files changed, 47 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 7631f76e7f34..7189baaabf41 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -1210,7 +1210,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+  *	INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+  *	coordinates, so if userspace rotates the picture to adjust for
+  *	the orientation it must also apply the same transformation to the
+- *	touchscreen input coordinates. This property is initialized by calling
++ *	touchscreen input coordinates. This property value is set by calling
+  *	drm_connector_set_panel_orientation() or
+  *	drm_connector_set_panel_orientation_with_quirk()
+  *
+@@ -2173,8 +2173,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
+  * @connector: connector for which to set the panel-orientation property.
+  * @panel_orientation: drm_panel_orientation value to set
+  *
+- * This function sets the connector's panel_orientation and attaches
+- * a "panel orientation" property to the connector.
++ * This function sets the connector's panel_orientation value. If the property
++ * doesn't exist, it will return an error.
+  *
+  * Calling this function on a connector where the panel_orientation has
+  * already been set is a no-op (e.g. the orientation has been overridden with
+@@ -2205,19 +2205,11 @@ int drm_connector_set_panel_orientation(
+ 	info->panel_orientation = panel_orientation;
+ 
+ 	prop = dev->mode_config.panel_orientation_property;
+-	if (!prop) {
+-		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+-				"panel orientation",
+-				drm_panel_orientation_enum_list,
+-				ARRAY_SIZE(drm_panel_orientation_enum_list));
+-		if (!prop)
+-			return -ENOMEM;
+-
+-		dev->mode_config.panel_orientation_property = prop;
+-	}
++	if (WARN_ON(!prop))
++		return -EINVAL;
+ 
+-	drm_object_attach_property(&connector->base, prop,
+-				   info->panel_orientation);
++	drm_object_property_set_value(&connector->base, prop,
++				      info->panel_orientation);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+@@ -2225,7 +2217,7 @@ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+ /**
+  * drm_connector_set_panel_orientation_with_quirk -
+  *	set the connector's panel_orientation after checking for quirks
+- * @connector: connector for which to init the panel-orientation property.
++ * @connector: connector for which to set the panel-orientation property.
+  * @panel_orientation: drm_panel_orientation value to set
+  * @width: width in pixels of the panel, used for panel quirk detection
+  * @height: height in pixels of the panel, used for panel quirk detection
+@@ -2252,6 +2244,40 @@ int drm_connector_set_panel_orientation_with_quirk(
+ }
+ EXPORT_SYMBOL(drm_connector_set_panel_orientation_with_quirk);
+ 
++/**
++ * drm_connector_init_panel_orientation_property -
++ * 	create the connector's panel orientation property
++ *
++ * This function attaches a "panel orientation" property to the connector
++ * and initializes its value to DRM_MODE_PANEL_ORIENTATION_UNKNOWN.
++ *
++ * The value of the property can be set by drm_connector_set_panel_orientation()
++ * or drm_connector_set_panel_orientation_with_quirk() later.
++ *
++ * Returns:
++ * Zero on success, negative errno on failure.
++ */
++int drm_connector_init_panel_orientation_property(
++	struct drm_connector *connector)
++{
++	struct drm_device *dev = connector->dev;
++	struct drm_property *prop;
++
++	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
++			"panel orientation",
++			drm_panel_orientation_enum_list,
++			ARRAY_SIZE(drm_panel_orientation_enum_list));
++	if (!prop)
++		return -ENOMEM;
++
++	dev->mode_config.panel_orientation_property = prop;
++	drm_object_attach_property(&connector->base, prop,
++				   DRM_MODE_PANEL_ORIENTATION_UNKNOWN);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_connector_init_panel_orientation_property);
++
+ int drm_connector_set_obj_prop(struct drm_mode_object *obj,
+ 				    struct drm_property *property,
+ 				    uint64_t value)
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 9282978060b0..5ac4538e4283 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1903,6 +1903,7 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
+ 
+ 	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
++	drm_connector_init_panel_orientation_property(&connector->base);
+ 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
+ 				intel_dsi_get_panel_orientation(connector),
+ 				connector->panel.fixed_mode->hdisplay,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index a5231ac3443a..f1d664e5abb2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5263,6 +5263,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	intel_panel_setup_backlight(connector, pipe);
+ 
+ 	if (fixed_mode) {
++		drm_connector_init_panel_orientation_property(connector);
+ 		drm_connector_set_panel_orientation_with_quirk(connector,
+ 				dev_priv->vbt.orientation,
+ 				fixed_mode->hdisplay, fixed_mode->vdisplay);
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 9bee99fe5495..853855482af1 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1632,6 +1632,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
+ 
+ 		connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
++		drm_connector_init_panel_orientation_property(&connector->base);
+ 		drm_connector_set_panel_orientation_with_quirk(
+ 				&connector->base,
+ 				intel_dsi_get_panel_orientation(connector),
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 1922b278ffad..4396c1c4a5db 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1696,6 +1696,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+ 	struct drm_connector *connector,
+ 	enum drm_panel_orientation panel_orientation,
+ 	int width, int height);
++int drm_connector_init_panel_orientation_property(
++	struct drm_connector *connector);
+ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ 					  int min, int max);
+ 
+-- 
+2.31.1.818.g46aad6cb9e-goog
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
