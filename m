@@ -2,39 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D92539739E
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31D4F3973A0
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7216EA56;
-	Tue,  1 Jun 2021 12:51:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75DDF6EA5A;
+	Tue,  1 Jun 2021 12:51:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFF656EE39
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 08:12:12 +0000 (UTC)
-IronPort-SDR: qJGIYqY/0JXN74qrL0xS+ds3l9xxVP6joIN24GBU7/op2aH05olxvTg28npy7LFR8j5eX2Yj6q
- cptlMR44hhqg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="189797546"
-X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="189797546"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2021 01:12:11 -0700
-IronPort-SDR: qUBxaa59vEOq2QFrcPY3NQoK4dosMIjS2LwibZ6ZhXRUUZa9ciTmT+9Y+ZWQvPKiFlqbqgtkxQ
- C4W8OpMfsx2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,334,1613462400"; d="scan'208";a="631078631"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.91])
- by fmsmga006.fm.intel.com with ESMTP; 27 May 2021 01:12:10 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 May 2021 11:15:40 +0300
-Message-Id: <20210527081540.20152-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+X-Greylist: delayed 1016 seconds by postgrey-1.36 at gabe;
+ Thu, 27 May 2021 09:21:52 UTC
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 990156EE4F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 09:21:52 +0000 (UTC)
+Received: from dggeml711-chm.china.huawei.com (unknown [172.30.72.53])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4FrMJj4VvKzYn5K;
+ Thu, 27 May 2021 17:02:13 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggeml711-chm.china.huawei.com (10.3.17.122) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Thu, 27 May 2021 17:04:53 +0800
+Received: from thunder-town.china.huawei.com (10.174.177.72) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 27 May 2021 17:04:52 +0800
+From: Zhen Lei <thunder.leizhen@huawei.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, intel-gfx
+ <intel-gfx@lists.freedesktop.org>, dri-devel
+ <dri-devel@lists.freedesktop.org>, linux-kernel
+ <linux-kernel@vger.kernel.org>
+Date: Thu, 27 May 2021 17:04:21 +0800
+Message-ID: <20210527090421.9172-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
+X-Originating-IP: [10.174.177.72]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 01 Jun 2021 12:51:14 +0000
-Subject: [Intel-gfx] [PATCH] INTEL_DII: drm/i915/adl_p: Same slices mask is
- not same Dbuf state
+Subject: [Intel-gfx] [PATCH 1/1] drm/i915/hdcp: Simplify code in
+ intel_hdcp_auth_downstream()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,41 +55,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Zhen Lei <thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgY3VycmVudGx5IHRyZWF0IHNhbWUgc2xpY2UgbWFzayBhcyBhIHNhbWUgREJ1ZiBzdGF0ZSBh
-bmQgc2tpcAp1cGRhdGluZyB0aGUgRGJ1ZiBzbGljZXMsIGlmIHdlIGRldGVjdCB0aGF0LgpUaGlz
-IGlzIHdyb25nIGFzIGlmIHdlIGhhdmUgYSBtdWx0aSB0byBzaW5nbGUgcGlwZSBjaGFuZ2Ugb3IK
-dmljZSB2ZXJzYSwgdGhhdCB3b3VsZCBiZSB0cmVhdGVkIGFzIGEgc2FtZSBEYnVmIHN0YXRlIGFu
-ZCB0aHVzCm5vIGNoYW5nZXMgcmVxdWlyZWQsIHNvIHdlIGRvbid0IGdldCBNYnVzIHVwZGF0ZWQs
-IGNhdXNpbmcgaXNzdWVzLgpTb2x1dGlvbjogY2hlY2sgYWxzbyBtYnVzX2pvaW4sIGluIGFkZGl0
-aW9uIHRvIHNsaWNlcyBtYXNrLgoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5p
-c2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X3BtLmMgfCA2ICsrKystLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwppbmRleCAwMGYzZGVhZDIwYWQuLjgwNGQ4
-MzQ4NmU4MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCkBAIC04MDkzLDcgKzgwOTMsOCBAQCB2
-b2lkIGludGVsX2RidWZfcHJlX3BsYW5lX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRl
-ICpzdGF0ZSkKIAkJaW50ZWxfYXRvbWljX2dldF9vbGRfZGJ1Zl9zdGF0ZShzdGF0ZSk7CiAKIAlp
-ZiAoIW5ld19kYnVmX3N0YXRlIHx8Ci0JICAgIG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNl
-cyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpCisJICAgICgobmV3X2RidWZfc3Rh
-dGUtPmVuYWJsZWRfc2xpY2VzID09IG9sZF9kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNlcykKKwkg
-ICAgJiYgKG5ld19kYnVmX3N0YXRlLT5qb2luZWRfbWJ1cyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+am9p
-bmVkX21idXMpKSkKIAkJcmV0dXJuOwogCiAJV0FSTl9PTighbmV3X2RidWZfc3RhdGUtPmJhc2Uu
-Y2hhbmdlZCk7CkBAIC04MTEzLDcgKzgxMTQsOCBAQCB2b2lkIGludGVsX2RidWZfcG9zdF9wbGFu
-ZV91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJCWludGVsX2F0b21p
-Y19nZXRfb2xkX2RidWZfc3RhdGUoc3RhdGUpOwogCiAJaWYgKCFuZXdfZGJ1Zl9zdGF0ZSB8fAot
-CSAgICBuZXdfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMgPT0gb2xkX2RidWZfc3RhdGUtPmVu
-YWJsZWRfc2xpY2VzKQorCSAgICAoKG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNlcyA9PSBv
-bGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpCisJICAgICYmIChuZXdfZGJ1Zl9zdGF0ZS0+
-am9pbmVkX21idXMgPT0gb2xkX2RidWZfc3RhdGUtPmpvaW5lZF9tYnVzKSkpCiAJCXJldHVybjsK
-IAogCVdBUk5fT04oIW5ld19kYnVmX3N0YXRlLT5iYXNlLmNoYW5nZWQpOwotLSAKMi4yNC4xLjQ4
-NS5nYWQwNWEzZDhlNQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+If intel_hdcp_validate_v_prime() has been successful within the allowed
+number of tries, we can directly call drm_dbg_kms() and "goto out" without
+jumping out of the loop and repeatedly judging whether the operation is
+successful. This can help us reduce an unnecessary if judgment. And it's
+a little clearer to read.
+
+No functional change.
+
+Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 24 ++++++++++-------------
+ 1 file changed, 10 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index d8570e14fe60..c32a854eda66 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -663,13 +663,13 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+ 
+ 	ret = shim->read_ksv_fifo(dig_port, num_downstream, ksv_fifo);
+ 	if (ret)
+-		goto err;
++		goto out;
+ 
+ 	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, ksv_fifo,
+ 					num_downstream) > 0) {
+ 		drm_err(&dev_priv->drm, "Revoked Ksv(s) in ksv_fifo\n");
+ 		ret = -EPERM;
+-		goto err;
++		goto out;
+ 	}
+ 
+ 	/*
+@@ -680,20 +680,16 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+ 		ret = intel_hdcp_validate_v_prime(connector, shim,
+ 						  ksv_fifo, num_downstream,
+ 						  bstatus);
+-		if (!ret)
+-			break;
+-	}
+-
+-	if (i == tries) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "V Prime validation failed.(%d)\n", ret);
+-		goto err;
++		if (!ret) {
++			drm_dbg_kms(&dev_priv->drm,
++				    "HDCP is enabled (%d downstream devices)\n",
++				    num_downstream);
++			goto out;
++		}
+ 	}
+ 
+-	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (%d downstream devices)\n",
+-		    num_downstream);
+-	ret = 0;
+-err:
++	drm_dbg_kms(&dev_priv->drm, "V Prime validation failed.(%d)\n", ret);
++out:
+ 	kfree(ksv_fifo);
+ 	return ret;
+ }
+-- 
+2.25.1
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
