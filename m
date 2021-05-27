@@ -2,45 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CAA83924BC
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 04:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A24823924BF
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 May 2021 04:16:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE7AC6EDEA;
-	Thu, 27 May 2021 02:13:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B55376EDEC;
+	Thu, 27 May 2021 02:16:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 048D56E12D;
- Thu, 27 May 2021 02:13:49 +0000 (UTC)
-IronPort-SDR: f+gtfnJgA06GL6xWHhdjBMIq8ywBRcgSZfMB+QXzzVdNHayteH13Gr4TC3+kBRLkx/UCk21dEt
- TsYi/eHD5P7w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9996"; a="266522604"
-X-IronPort-AV: E=Sophos;i="5.82,333,1613462400"; d="scan'208";a="266522604"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 19:13:49 -0700
-IronPort-SDR: ibbwsL2Q9BQWRhFQ4dd9dz7k2m9MN/tDMWCK0j2XTQCVgg9+yJdabaG3YmFARA/0xOh83LuKEh
- oJ+1jcJiVTWA==
-X-IronPort-AV: E=Sophos;i="5.82,333,1613462400"; d="scan'208";a="398036946"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.212.89.65])
- ([10.212.89.65])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2021 19:13:48 -0700
-To: "Tang, CQ" <cq.tang@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
- <20210525054803.7387-15-daniele.ceraolospurio@intel.com>
- <728fa3c9e484402d82fb7fb124496bdb@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <d231efee-4108-d027-86af-1908d01265ac@intel.com>
-Date: Wed, 26 May 2021 19:13:46 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B76206EDEB;
+ Thu, 27 May 2021 02:16:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AF84CA47E1;
+ Thu, 27 May 2021 02:16:41 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <728fa3c9e484402d82fb7fb124496bdb@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 14/17] drm/i915/pxp: User interface for
- Protected buffer
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Thu, 27 May 2021 02:16:41 -0000
+Message-ID: <162208180169.12241.8680800298147876699@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210526213029.7178-1-matthew.brost@intel.com>
+In-Reply-To: <20210526213029.7178-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQSBj?=
+ =?utf-8?q?ouple_more_prerequisite_patches_to_GuC_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,484 +38,247 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kondapally Kalyan <kalyan.kondapally@intel.com>,
- Huang Sean Z <sean.z.huang@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, "Vetter,
- Daniel" <daniel.vetter@intel.com>, "Bommu,
- Krishnaiah" <krishnaiah.bommu@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0487709020=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0487709020==
+Content-Type: multipart/alternative;
+ boundary="===============2519044918250283761=="
+
+--===============2519044918250283761==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: A couple more prerequisite patches to GuC submission
+URL   : https://patchwork.freedesktop.org/series/90633/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10138 -> Patchwork_20216
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20216 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][1] ([i915#2283])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bdw-5557u:       NOTRUN -> [DMESG-FAIL][2] ([i915#3462])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271]) +9 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-x1275:       [FAIL][5] ([i915#1436] / [i915#3363]) -> [FAIL][6] ([i915#1436] / [i915#2426] / [i915#3363])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-x1275/igt@runner@aborted.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-x1275/igt@runner@aborted.html
+    - fi-bdw-5557u:       [FAIL][7] ([i915#1602] / [i915#2029]) -> [FAIL][8] ([i915#3462])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-bdw-5557u/igt@runner@aborted.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-kbl-guc:         [FAIL][9] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][10] ([i915#1436] / [i915#3363])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-guc/igt@runner@aborted.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-guc/igt@runner@aborted.html
+    - fi-cml-u2:          [FAIL][11] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3462]) -> [FAIL][12] ([i915#3363] / [i915#3462])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-cml-u2/igt@runner@aborted.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-cml-u2/igt@runner@aborted.html
+    - fi-skl-6700k2:      [FAIL][13] ([i915#1436] / [i915#3363]) -> [FAIL][14] ([i915#1436] / [i915#2426] / [i915#3363])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-skl-6700k2/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-skl-6700k2/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2932]: https://gitlab.freedesktop.org/drm/intel/issues/2932
+  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
 
 
-On 5/25/2021 11:36 AM, Tang, CQ wrote:
->
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
->> Daniele Ceraolo Spurio
->> Sent: Monday, May 24, 2021 10:48 PM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Vetter, Daniel <daniel.vetter@intel.com>; Huang Sean Z
->> <sean.z.huang@intel.com>; dri-devel@lists.freedesktop.org; Chris Wilson
->> <chris@chris-wilson.co.uk>; Kondapally Kalyan
->> <kalyan.kondapally@intel.com>; Bommu, Krishnaiah
->> <krishnaiah.bommu@intel.com>
->> Subject: [Intel-gfx] [PATCH v4 14/17] drm/i915/pxp: User interface for
->> Protected buffer
->>
->> From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
->>
->> This api allow user mode to create Protected buffers. Only contexts marked
->> as protected are allowed to operate on protected buffers.
->>
->> We only allow setting the flags at creation time.
->>
->> All protected objects that have backing storage will be considered invalid
->> when the session is destroyed and they won't be usable anymore.
-> Then these protected objects will be hanging in the system till user call gem_close() to free them?
-> If the objects won't be usable anymore, why don't we automatically free these objects when the session is destroyed?
+Participating hosts (44 -> 40)
+------------------------------
 
-Auto-freeing an object would require some extra reworks (i.e. plumbing 
-PXP status checks in a lot of places), so to keep things simple, the 
-protected objects have the same lifetime as normal ones. A user can keep 
-non protected objects hanging around as long as they want, it's not like 
-the protected ones are worse in that sense.
+  Missing    (4): fi-cml-drallion fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
 
-> How is a session started/destroyed?  From the code, intel_pxp_init() is called when loading i915 driver, so I think session lifetime is the same as i915 driver lifetime.
-> Can we start multiple sessions after loading the driver?
 
-A session is started with a call into the PXP mei device and can be 
-manually destroyed with a specific instruction submitted via a video 
-engine, but the HW also invalidates the keys when certain events occurs 
-(e.g. suspend/resume). The HW supports multiple sessions, but we 
-currently only use one in i915; it is automatically started when a 
-protected context is submitted and then kept running until an 
-invalidation event occurs. See patch 12 for details.
+Build changes
+-------------
 
-Daniele
+  * Linux: CI_DRM_10138 -> Patchwork_20216
 
->
-> --CQ
->
->> Given that the PXP HW supports multiple modes (but we currently only care
->> about one), a flag variable has been reserved in the structure used in the
->> create_ext ioctl for possible future updates.
->>
->> This is a rework of the original code by Bommu Krishnaiah. I've kept
->> authorship unchanged since significant chunks have not been modified.
->>
->> v2: split context changes, fix defines and improve documentation (Chris),
->>      add object invalidation logic
->> v3: fix spinlock definition and usage, only validate objects when
->>      they're first added to a context lut, only remove them once (Chris),
->>      make protected context flag not mandatory in protected object execbuf
->>      to avoid abuse (Lionel)
->> v4: rebase to new gem_create_ext
->>
->> Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>
->> Cc: Kondapally Kalyan <kalyan.kondapally@intel.com>
->> Cc: Gupta Anshuman <Anshuman.Gupta@intel.com>
->> Cc: Huang Sean Z <sean.z.huang@intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->> Cc: Jason Ekstrand <jason@jlekstrand.net>
->> Cc: Daniel Vetter <daniel.vetter@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_create.c    | 26 ++++++++++++
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 15 +++++++
->>   drivers/gpu/drm/i915/gem/i915_gem_object.c    |  6 +++
->>   drivers/gpu/drm/i915/gem/i915_gem_object.h    | 12 ++++++
->>   .../gpu/drm/i915/gem/i915_gem_object_types.h  | 13 ++++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp.c          | 41 +++++++++++++++++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp.h          | 13 ++++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  5 +++
->>   include/uapi/drm/i915_drm.h                   | 33 ++++++++++++++-
->>   9 files changed, 163 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> index 548ddf39d853..c14be3882c35 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
->> @@ -6,6 +6,7 @@
->>   #include "gem/i915_gem_ioctls.h"
->>   #include "gem/i915_gem_lmem.h"
->>   #include "gem/i915_gem_region.h"
->> +#include "pxp/intel_pxp.h"
->>
->>   #include "i915_drv.h"
->>   #include "i915_trace.h"
->> @@ -99,7 +100,11 @@ i915_gem_setup(struct drm_i915_gem_object *obj,
->> u64 size)
->>
->>   	GEM_BUG_ON(size != obj->base.size);
->>
->> +	if (obj->user_flags & I915_GEM_OBJECT_PROTECTED)
->> +		intel_pxp_object_add(obj);
->> +
->>   	trace_i915_gem_object_create(obj);
->> +
->>   	return 0;
->>   }
->>
->> @@ -344,8 +349,29 @@ static int ext_set_placements(struct
->> i915_user_extension __user *base,
->>   	return set_placements(&ext, data);
->>   }
->>
->> +static int ext_set_protected(struct i915_user_extension __user *base,
->> +void *data) {
->> +	struct drm_i915_gem_create_ext_protected_content ext;
->> +	struct create_ext *ext_data = data;
->> +
->> +	if (copy_from_user(&ext, base, sizeof(ext)))
->> +		return -EFAULT;
->> +
->> +	if (ext.flags)
->> +		return -EINVAL;
->> +
->> +	if (!intel_pxp_is_enabled(&ext_data->i915->gt.pxp))
->> +		return -ENODEV;
->> +
->> +	ext_data->vanilla_object->user_flags |=
->> I915_GEM_OBJECT_PROTECTED;
->> +
->> +	return 0;
->> +}
->> +
->> +
->>   static const i915_user_extension_fn create_extensions[] = {
->>   	[I915_GEM_CREATE_EXT_MEMORY_REGIONS] =
->> ext_set_placements,
->> +	[I915_GEM_CREATE_EXT_PROTECTED_CONTENT] =
->> ext_set_protected,
->>   };
->>
->>   /**
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index c08e28847064..5dd813d04a9f 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -839,6 +839,21 @@ static struct i915_vma *eb_lookup_vma(struct
->> i915_execbuffer *eb, u32 handle)
->>   		if (unlikely(!obj))
->>   			return ERR_PTR(-ENOENT);
->>
->> +		/*
->> +		 * If the user has opted-in for protected-object tracking,
->> make
->> +		 * sure the object encryption can be used.
->> +		 * We only need to do this when the object is first used with
->> +		 * this context, because the context itself will be banned
->> when
->> +		 * the protected objects become invalid.
->> +		 */
->> +		if (i915_gem_context_uses_protected_content(eb-
->>> gem_context) &&
->> +		    i915_gem_object_is_protected(obj)) {
->> +			if (!intel_pxp_is_active(&vm->gt->pxp))
->> +				return ERR_PTR(-ENODEV);
->> +			if (!i915_gem_object_has_valid_protection(obj))
->> +				return ERR_PTR(-ENOEXEC);
->> +		}
->> +
->>   		vma = i915_vma_instance(obj, vm, NULL);
->>   		if (IS_ERR(vma)) {
->>   			i915_gem_object_put(obj);
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> index 28144410df86..b47fa0a7b25a 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->> @@ -25,6 +25,7 @@
->>   #include <linux/sched/mm.h>
->>
->>   #include "display/intel_frontbuffer.h"
->> +#include "pxp/intel_pxp.h"
->>   #include "i915_drv.h"
->>   #include "i915_gem_clflush.h"
->>   #include "i915_gem_context.h"
->> @@ -70,6 +71,8 @@ void i915_gem_object_init(struct
->> drm_i915_gem_object *obj,
->>   	INIT_LIST_HEAD(&obj->lut_list);
->>   	spin_lock_init(&obj->lut_lock);
->>
->> +	INIT_LIST_HEAD(&obj->pxp_link);
->> +
->>   	spin_lock_init(&obj->mmo.lock);
->>   	obj->mmo.offsets = RB_ROOT;
->>
->> @@ -232,6 +235,9 @@ static void __i915_gem_free_objects(struct
->> drm_i915_private *i915,
->>   			spin_unlock(&obj->vma.lock);
->>   		}
->>
->> +		if (i915_gem_object_has_valid_protection(obj))
->> +			intel_pxp_object_remove(obj);
->> +
->>   		__i915_gem_object_free_mmaps(obj);
->>
->>   		GEM_BUG_ON(!list_empty(&obj->lut_list));
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> index 2ebd79537aea..61b101560352 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> @@ -288,6 +288,18 @@ i915_gem_object_never_mmap(const struct
->> drm_i915_gem_object *obj)
->>   	return i915_gem_object_type_has(obj,
->> I915_GEM_OBJECT_NO_MMAP);  }
->>
->> +static inline bool
->> +i915_gem_object_is_protected(const struct drm_i915_gem_object *obj) {
->> +	return obj->user_flags & I915_GEM_OBJECT_PROTECTED; }
->> +
->> +static inline bool
->> +i915_gem_object_has_valid_protection(const struct drm_i915_gem_object
->> +*obj) {
->> +	return i915_gem_object_is_protected(obj) &&
->> +!list_empty(&obj->pxp_link); }
->> +
->>   static inline bool
->>   i915_gem_object_is_framebuffer(const struct drm_i915_gem_object *obj)
->> { diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> index 0727d0c76aa0..a698ad0ef7f6 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> @@ -167,6 +167,11 @@ struct drm_i915_gem_object {
->>   	} mmo;
->>
->>   	I915_SELFTEST_DECLARE(struct list_head st_link);
->> +	/**
->> +	 * @user_flags: small set of booleans set by the user
->> +	 */
->> +	unsigned long user_flags;
->> +#define I915_GEM_OBJECT_PROTECTED BIT(0)
->>
->>   	unsigned long flags;
->>   #define I915_BO_ALLOC_CONTIGUOUS BIT(0) @@ -294,6 +299,14 @@
->> struct drm_i915_gem_object {
->>   		bool dirty:1;
->>   	} mm;
->>
->> +	/*
->> +	 * When the PXP session is invalidated, we need to mark all
->> protected
->> +	 * objects as invalid. To easily do so we add them all to a list. The
->> +	 * presence on the list is used to check if the encryption is valid or
->> +	 * not.
->> +	 */
->> +	struct list_head pxp_link;
->> +
->>   	/** Record of address bit 17 of each page at last unbind. */
->>   	unsigned long *bit_17;
->>
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> b/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> index 2291c68fd3a0..e6a59eb05eae 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> @@ -69,6 +69,9 @@ void intel_pxp_init(struct intel_pxp *pxp)
->>   	if (!HAS_PXP(gt->i915))
->>   		return;
->>
->> +	spin_lock_init(&pxp->lock);
->> +	INIT_LIST_HEAD(&pxp->protected_objects);
->> +
->>   	/*
->>   	 * we'll use the completion to check if there is a termination pending,
->>   	 * so we start it as completed and we reinit it when a termination
->> @@ -177,11 +180,49 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp)
->>   	intel_pxp_irq_disable(pxp);
->>   }
->>
->> +int intel_pxp_object_add(struct drm_i915_gem_object *obj) {
->> +	struct intel_pxp *pxp = &to_i915(obj->base.dev)->gt.pxp;
->> +
->> +	if (!intel_pxp_is_enabled(pxp))
->> +		return -ENODEV;
->> +
->> +	if (!list_empty(&obj->pxp_link))
->> +		return -EEXIST;
->> +
->> +	spin_lock_irq(&pxp->lock);
->> +	list_add(&obj->pxp_link, &pxp->protected_objects);
->> +	spin_unlock_irq(&pxp->lock);
->> +
->> +	return 0;
->> +}
->> +
->> +void intel_pxp_object_remove(struct drm_i915_gem_object *obj) {
->> +	struct intel_pxp *pxp = &to_i915(obj->base.dev)->gt.pxp;
->> +
->> +	if (!intel_pxp_is_enabled(pxp))
->> +		return;
->> +
->> +	spin_lock_irq(&pxp->lock);
->> +	list_del_init(&obj->pxp_link);
->> +	spin_unlock_irq(&pxp->lock);
->> +}
->> +
->>   void intel_pxp_invalidate(struct intel_pxp *pxp)  {
->>   	struct drm_i915_private *i915 = pxp_to_gt(pxp)->i915;
->> +	struct drm_i915_gem_object *obj, *tmp;
->>   	struct i915_gem_context *ctx, *cn;
->>
->> +	/* delete objects that have been used with the invalidated session
->> */
->> +	spin_lock_irq(&pxp->lock);
->> +	list_for_each_entry_safe(obj, tmp, &pxp->protected_objects,
->> pxp_link) {
->> +		if (i915_gem_object_has_pages(obj))
->> +			list_del_init(&obj->pxp_link);
->> +	}
->> +	spin_unlock_irq(&pxp->lock);
->> +
->>   	/* ban all contexts marked as protected */
->>   	spin_lock_irq(&i915->gem.contexts.lock);
->>   	list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link)
->> { diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> b/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> index 1f9871e64096..3500d7896058 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> @@ -9,6 +9,8 @@
->>   #include "gt/intel_gt_types.h"
->>   #include "intel_pxp_types.h"
->>
->> +struct drm_i915_gem_object;
->> +
->>   static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)  {
->>   	return container_of(pxp, struct intel_gt, pxp); @@ -33,6 +35,9 @@
->> void intel_pxp_fini_hw(struct intel_pxp *pxp);
->>
->>   void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);  int
->> intel_pxp_start(struct intel_pxp *pxp);
->> +
->> +int intel_pxp_object_add(struct drm_i915_gem_object *obj); void
->> +intel_pxp_object_remove(struct drm_i915_gem_object *obj);
->>   void intel_pxp_invalidate(struct intel_pxp *pxp);  #else  static inline void
->> intel_pxp_init(struct intel_pxp *pxp) @@ -47,6 +52,14 @@ static inline int
->> intel_pxp_start(struct intel_pxp *pxp)  {
->>   	return 0;
->>   }
->> +
->> +static inline int intel_pxp_object_add(struct drm_i915_gem_object *obj)
->> +{
->> +	return 0;
->> +}
->> +static inline void intel_pxp_object_remove(struct drm_i915_gem_object
->> +*obj) { }
->>   #endif
->>
->>   #endif /* __INTEL_PXP_H__ */
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
->> b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
->> index b3ae49dd73a8..cc510416eac6 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
->> @@ -7,7 +7,9 @@
->>   #define __INTEL_PXP_TYPES_H__
->>
->>   #include <linux/completion.h>
->> +#include <linux/list.h>
->>   #include <linux/mutex.h>
->> +#include <linux/spinlock.h>
->>   #include <linux/types.h>
->>   #include <linux/workqueue.h>
->>
->> @@ -43,6 +45,9 @@ struct intel_pxp {
->>   #define PXP_TERMINATION_REQUEST  BIT(0)  #define
->> PXP_TERMINATION_COMPLETE BIT(1)
->>   #define PXP_INVAL_REQUIRED       BIT(2)
->> +
->> +	spinlock_t lock; /* protects the objects list */
->> +	struct list_head protected_objects;
->>   };
->>
->>   #endif /* __INTEL_PXP_TYPES_H__ */
->> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->> index 3cc33fcbf520..d39b8cb4bfc5 100644
->> --- a/include/uapi/drm/i915_drm.h
->> +++ b/include/uapi/drm/i915_drm.h
->> @@ -1768,7 +1768,7 @@ struct drm_i915_gem_context_param {
->>   	__u64 value;
->>   };
->>
->> -/*
->> +/**
->>    * Context SSEU programming
->>    *
->>    * It may be necessary for either functional or performance reason to
->> configure @@ -2669,8 +2669,12 @@ struct drm_i915_gem_create_ext {
->>   	 *
->>   	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
->>   	 * struct drm_i915_gem_create_ext_memory_regions.
->> +	 *
->> +	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
->> +	 * struct drm_i915_gem_create_ext_protected_content.
->>   	 */
->>   #define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
->> +#define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
->>   	__u64 extensions;
->>   };
->>
->> @@ -2728,6 +2732,33 @@ struct
->> drm_i915_gem_create_ext_memory_regions {
->>   	__u64 regions;
->>   };
->>
->> +/**
->> + * struct drm_i915_gem_create_ext_protected_content - The
->> + * I915_OBJECT_PARAM_PROTECTED_CONTENT extension.
->> + *
->> + * If this extension is provided, buffer contents are expected to be
->> + * protected by PXP encryption and requires decryption for scan out
->> + * and processing. This is only possible on platforms that have PXP
->> +enabled,
->> + * on all other scenarios ysing this extension will cause the ioctl to
->> +fail
->> + * and return -ENODEV. The flags parameter is reserved for future
->> +expansion and
->> + * must currently be set to zero.
->> + *
->> + * The buffer contents are considered invalid after a PXP session teardown.
->> + *
->> + * The encryption is guaranteed to be processed correctly only if the
->> +object
->> + * is submitted with a context created using the
->> + * I915_CONTEXT_PARAM_PROTECTED_CONTENT flag. This will also enable
->> +extra checks
->> + * at submission time on the validity of the objects involved, which
->> +can lead to
->> + * the following errors being returned from the execbuf ioctl:
->> + *
->> + * -ENODEV: PXP session not currently active
->> + * -ENOEXEC: buffer has become invalid after a teardown event  */
->> +struct drm_i915_gem_create_ext_protected_content {
->> +	struct i915_user_extension base;
->> +	__u32 flags;
->> +};
->> +
->>   /* ID of the protected content session managed by i915 when PXP is active
->> */  #define I915_PROTECTED_CONTENT_DEFAULT_SESSION 0xf
->>
->> --
->> 2.29.2
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  CI-20190529: 20190529
+  CI_DRM_10138: 041f69e539b30565783cd1298842cc269f5005cb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6094: f62d8953c0bc5ed68ea978662e62f9dbb46cf101 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20216: 55e2a1c441b5999dbdc1549f5d89e764058b02b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+55e2a1c441b5 drm/i915/guc: Use guc_class instead of engine_class in fw interface
+c0541f4725ff drm/i915/guc: Early initialization of GuC send registers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html
+
+--===============2519044918250283761==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>A couple more prerequisite patches to GuC submission</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90633/">https://patchwork.freedesktop.org/series/90633/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10138 -&gt; Patchwork_20216</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20216 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10138/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20216/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-cml-drallion fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10138 -&gt; Patchwork_20216</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10138: 041f69e539b30565783cd1298842cc269f5005cb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6094: f62d8953c0bc5ed68ea978662e62f9dbb46cf101 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20216: 55e2a1c441b5999dbdc1549f5d89e764058b02b2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>55e2a1c441b5 drm/i915/guc: Use guc_class instead of engine_class in fw interface<br />
+c0541f4725ff drm/i915/guc: Early initialization of GuC send registers</p>
+
+</body>
+</html>
+
+--===============2519044918250283761==--
+
+--===============0487709020==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0487709020==--
