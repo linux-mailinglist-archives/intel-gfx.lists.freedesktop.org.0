@@ -1,31 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5AF1394698
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 May 2021 19:40:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC943946E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 May 2021 20:16:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8E5D6E527;
-	Fri, 28 May 2021 17:40:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75D936E0B9;
+	Fri, 28 May 2021 18:16:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EAB9A6E527;
- Fri, 28 May 2021 17:40:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D0A01A7DFB;
- Fri, 28 May 2021 17:40:27 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 28 May 2021 17:40:27 -0000
-Message-ID: <162222362781.11840.7850791437558448234@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210528105744.58271-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210528105744.58271-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTW92?=
- =?utf-8?q?e_LMEM_=28VRAM=29_management_over_to_TTM_=28rev2=29?=
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com
+ [64.147.123.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B260B6E0B9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 May 2021 18:16:10 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailout.west.internal (Postfix) with ESMTP id 2E7141CEE;
+ Fri, 28 May 2021 14:16:08 -0400 (EDT)
+Received: from imap22 ([10.202.2.72])
+ by compute1.internal (MEProxy); Fri, 28 May 2021 14:16:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chasen.name; h=
+ mime-version:message-id:in-reply-to:references:date:from:to:cc
+ :subject:content-type:content-transfer-encoding; s=fm2; bh=Aam6O
+ ftwx7TfehJRa/e43AzQAwOu2sx4ygt40lINojQ=; b=INAj0Iw+tD9OPxnBgknqB
+ VrD94ppTGPYgR46lKVU8ImbwyGY87WOpvC/nB7UR9y17dJizaSenc0WJGyxsJkhv
+ mNoZ8LhQRr3PYhMCF3HzbtuT+7lR9n1nu0WJriGUpnARj/st1aplzc5LRrZQSklr
+ gnlRLsIJcP/cqELAkdG0efVJEK6QcHd22YkgsYkzGr0UJQwPSF/i1mqni0akx1oI
+ ny23QbHxusHBnK+xNwuAz8jVIpSnPZi3rmYucgxd7whVTOsCDfTcQdPKqP5kujsp
+ ICa0h2cxLWb8NeedMBSjXGVoQSG6JhxMbDtjXziMBTNg+T6dJvAbfVgWF5Ji6aei
+ g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:content-type
+ :date:from:in-reply-to:message-id:mime-version:references
+ :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm2; bh=Aam6Oftwx7TfehJRa/e43AzQAwOu2sx4ygt40lINo
+ jQ=; b=jDfaetatJ/9LDdmeVuhpVXxE1paUjpOa1UB4w/Djjym5iH9ZlTfRGRMjn
+ AdbhFSoVEET52QQPJpnvHI2scOIv+JlxXkl9xhs1mBkvsv56Ho1aRri3/i6+sTo5
+ PUhuyjthWgWB1viS07AfAyNB7r5oRab+4TqMEyI7AR8tWX3LEXhwuXVVZtNUVW+r
+ wmNB1QGidwC2npWnmSS7wVZsvCpoCERG04H5YRJ+28glFERfkFM1EiyqOSgGq1w2
+ misI6a2kzfskBcDOXPWeuOSl45vaG0RreJeiuVVZDf2sgzuQ07vi8IGvsZt76wNb
+ TI9y+wtI8rU7yxLoAaPbOUgRQVMUw==
+X-ME-Sender: <xms:ZjOxYIw8-WfyBVnbUkeFNCCWruJNGOZHLlOkOiQ5TOnRZsfyGDNfGg>
+ <xme:ZjOxYMSrirKr_nahEEH44ugHNC1Xx8qdS6tRaxxY4OtcSeu3ZTLLdvrfeiYu1dRaX
+ E57v0Hw6tJyhcaBROA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdekjedguddvfecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpefofgggkfgjfhffhffvufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+ uggrmhcuvehhrghsvghnfdcuoegruggrmhestghhrghsvghnrdhnrghmvgeqnecuggftrf
+ grthhtvghrnhepuefguedvgeevheevkeegkeefgfekkefghefhleevfedvieektdevjedt
+ teffhffgnecuffhomhgrihhnpehgihhthhhusgdrtghomhdpfhhrvggvuggvshhkthhoph
+ drohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
+ pegruggrmhestghhrghsvghnrdhnrghmvg
+X-ME-Proxy: <xmx:ZjOxYKWSbeMvaa1ha2H22_fGB6MWMSodcImSbHx2kPitj2rA3r4Tqg>
+ <xmx:ZjOxYGgaZ9JG9AxB24A3Bouq0Y_h58r7Yj7mhSMC_SMqftZlHbxk4A>
+ <xmx:ZjOxYKByw_slm9-TeReO_9LoF92eRcdE7bM05Smt1j3-igneVGjLSA>
+ <xmx:ZzOxYFOsXkEZFLTh2G2zWLT7qDrQgRZmpAYhzGNv3rQmKiTR1B8FOg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id B99B062C0064; Fri, 28 May 2021 14:16:06 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-468-gdb53729b73-fm-20210517.001-gdb53729b
+Mime-Version: 1.0
+Message-Id: <275c025e-4366-4347-aeb5-c002b5ac00f3@beta.fastmail.com>
+In-Reply-To: <2b087694-6698-4970-9baa-b408e9ab1641@beta.fastmail.com>
+References: <904b8186-4d49-4292-bc6e-04726c571138@beta.fastmail.com>
+ <YJw0ysSSWXEEBtU+@intel.com>
+ <2b087694-6698-4970-9baa-b408e9ab1641@beta.fastmail.com>
+Date: Fri, 28 May 2021 14:15:46 -0400
+From: "Adam Chasen" <adam@chasen.name>
+To: =?UTF-8?Q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] Tracing a "drm_mode_prune_invalid"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,330 +81,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0938843516=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0938843516==
-Content-Type: multipart/alternative;
- boundary="===============7060596087431028255=="
-
---===============7060596087431028255==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: Move LMEM (VRAM) management over to TTM (rev2)
-URL   : https://patchwork.freedesktop.org/series/90681/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10147 -> Patchwork_20232
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20232:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_tiled_fence_blits@basic:
-    - {fi-rkl-11500t}:    [FAIL][1] ([i915#3277]) -> [FAIL][2] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@gem_tiled_fence_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@kms_busy@basic:
-    - {fi-rkl-11500t}:    NOTRUN -> [SKIP][3] +4 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@kms_busy@basic.html
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - {fi-rkl-11500t}:    [PASS][4] -> [FAIL][5] +4 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_self_import@basic-with_two_bos.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_self_import@basic-with_two_bos.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - {fi-rkl-11500t}:    [PASS][6] -> [SKIP][7] +2 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_vgem@basic-fence-flip.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-read:
-    - {fi-rkl-11500t}:    [SKIP][8] ([i915#3291]) -> [SKIP][9] +2 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_vgem@basic-read.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_vgem@basic-read.html
-
-  * igt@prime_vgem@basic-userptr:
-    - {fi-rkl-11500t}:    [SKIP][10] ([i915#3301]) -> [SKIP][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_vgem@basic-userptr.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_vgem@basic-userptr.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20232 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8109u:       [INCOMPLETE][12] ([i915#3462]) -> [DMESG-FAIL][13] ([i915#3462])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-    - fi-bsw-nick:        [DMESG-FAIL][14] ([i915#3462]) -> [INCOMPLETE][15] ([i915#2782] / [i915#2940] / [i915#3462])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-    - fi-tgl-u2:          [DMESG-FAIL][16] ([i915#3462]) -> [INCOMPLETE][17] ([i915#3462])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       [FAIL][18] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][19] ([i915#1436] / [i915#3363])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-skl-6600u/igt@runner@aborted.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-skl-6600u/igt@runner@aborted.html
-    - fi-cfl-8109u:       [FAIL][20] ([i915#3363]) -> [FAIL][21] ([i915#2426] / [i915#3363])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-cfl-8109u/igt@runner@aborted.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-cfl-8109u/igt@runner@aborted.html
-    - fi-kbl-guc:         [FAIL][22] ([i915#1436] / [i915#3363]) -> [FAIL][23] ([i915#1436] / [i915#2426] / [i915#3363])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-kbl-guc/igt@runner@aborted.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-kbl-guc/igt@runner@aborted.html
-    - fi-cfl-guc:         [FAIL][24] ([i915#3363]) -> [FAIL][25] ([i915#2426] / [i915#3363])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-cfl-guc/igt@runner@aborted.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-cfl-guc/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10147 -> Patchwork_20232
-
-  CI-20190529: 20190529
-  CI_DRM_10147: f1ae7d0cb0c45bfbb601e3729fffe3f6d738aa5d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6095: 5c7b7a8e441577a00cc4e71ec0ae57af640eb92a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20232: 9b68632f3c3cda023715ce74d375c74cece0d0dc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9b68632f3c3c drm/i915: Use ttm mmap handling for ttm bo's.
-17f4c2659062 drm/vma: Add a driver_private member to vma_node.
-b35b40e1c13e drm/i915: Disable mmap ioctl for gen12+
-be6751a92bac drm/i915/lmem: Verify checks for lmem residency
-2e3134a2e1f1 drm/i915/ttm: Introduce a TTM i915 gem object backend
-00e905bc000d drm/ttm, drm/amdgpu: Allow the driver some control over swapping
-4d7f3f30267b drm/ttm: Document and optimize ttm_bo_pipeline_gutting()
-9f85cc08745b drm/ttm: Use drm_memcpy_from_wc for TTM bo moves
-e300aca6e0f4 drm: Add a prefetching memcpy_from_wc
-c4422c1c603d drm/ttm: Add a generic TTM memcpy move for page-based iomem
-0b80f3c1aecc drm/i915/ttm: Embed a ttm buffer object in the i915 gem object
-35cfd9f48f2a drm/i915/ttm Initialize the ttm device and memory managers
-bdd3408f6b52 drm/i915: Fix i915_sg_page_sizes to record dma segments rather than physical pages
-b5c847f763fa drm/i915: Don't free shared locks while shared
-b97007c879b9 drm/i915: Untangle the vma pages_mutex
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/index.html
-
---===============7060596087431028255==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Move LMEM (VRAM) management over to TTM (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90681/">https://patchwork.freedesktop.org/series/90681/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10147 -&gt; Patchwork_20232</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20232:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@gem_tiled_fence_blits@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3277">i915#3277</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@gem_tiled_fence_blits@basic.html">FAIL</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic:</p>
-<ul>
-<li>{fi-rkl-11500t}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@kms_busy@basic.html">SKIP</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_two_bos:</p>
-<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_self_import@basic-with_two_bos.html">FAIL</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_vgem@basic-fence-flip.html">SKIP</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_vgem@basic-read.html">SKIP</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-rkl-11500t/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-rkl-11500t/igt@prime_vgem@basic-userptr.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20232 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-bsw-nick/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-tgl-u2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-tgl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10147/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20232/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10147 -&gt; Patchwork_20232</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10147: f1ae7d0cb0c45bfbb601e3729fffe3f6d738aa5d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6095: 5c7b7a8e441577a00cc4e71ec0ae57af640eb92a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20232: 9b68632f3c3cda023715ce74d375c74cece0d0dc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9b68632f3c3c drm/i915: Use ttm mmap handling for ttm bo's.<br />
-17f4c2659062 drm/vma: Add a driver_private member to vma_node.<br />
-b35b40e1c13e drm/i915: Disable mmap ioctl for gen12+<br />
-be6751a92bac drm/i915/lmem: Verify checks for lmem residency<br />
-2e3134a2e1f1 drm/i915/ttm: Introduce a TTM i915 gem object backend<br />
-00e905bc000d drm/ttm, drm/amdgpu: Allow the driver some control over swapping<br />
-4d7f3f30267b drm/ttm: Document and optimize ttm_bo_pipeline_gutting()<br />
-9f85cc08745b drm/ttm: Use drm_memcpy_from_wc for TTM bo moves<br />
-e300aca6e0f4 drm: Add a prefetching memcpy_from_wc<br />
-c4422c1c603d drm/ttm: Add a generic TTM memcpy move for page-based iomem<br />
-0b80f3c1aecc drm/i915/ttm: Embed a ttm buffer object in the i915 gem object<br />
-35cfd9f48f2a drm/i915/ttm Initialize the ttm device and memory managers<br />
-bdd3408f6b52 drm/i915: Fix i915_sg_page_sizes to record dma segments rather than physical pages<br />
-b5c847f763fa drm/i915: Don't free shared locks while shared<br />
-b97007c879b9 drm/i915: Untangle the vma pages_mutex</p>
-
-</body>
-</html>
-
---===============7060596087431028255==--
-
---===============0938843516==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0938843516==--
+QW55IGZ1cnRoZXIgYWR2aWNlIG9uIHRyYWNpbmcgd2hhdCBpcyB0cmlnZ2VyaW5nIHdoYXQgYXBw
+ZWFycyB0byBiZSB0aGUgbGltaXRhdGlvbiBvZiB0aGUgY2xvY2s/IE15IGd1ZXNzIGlzIGl0IGlz
+IGltcG9zaW5nIGEgRFZJIFNpbmdsZS1MaW5rIHNwZWVkICgxNjUwMDApIGxpbWl0YXRpb24gb24g
+dGhlIGR1YWwtbGluayBEVkkgYWRhcHRlci4KCj4gVE1EUyBjbG9jayAyNTAwMC0xNjUwMDAKCkkg
+YW0gYWJsZSB0byBvdmVycmlkZSBpbiB4b3JnIHdpdGggeHJhbmRyIHRvIDI2ODUwMAoKUGVyIFZp
+bGxlJ3MgcmVxdWVzdDoKRFBDRCBERlA6IDBhCgpXaGF0IGlzIHRoZSBEUENEIERGUD8KClRoYW5r
+cywKQWRhbQoKT24gV2VkLCBNYXkgMTIsIDIwMjEsIGF0IDU6MDcgUE0sIEFkYW0gQ2hhc2VuIHdy
+b3RlOgo+IFZpbGxlLAo+IERQQ0QgREZQOiAwYQo+IAo+IFdoYXQgaXMgdGhlIERQQ0QgREZQPwo+
+IAo+IEFkZGl0aW9uYWwgaW5mbywgdGhpcyBpcyB0aGUgZmlyc3QgdGltZSB0aGVyZSBoYXMgYmVl
+biBhbiBpc3N1ZSB3aXRoIAo+IHRoaXMgYWRhcHRlciBub3Qgd29ya2luZyAoaS5lLiBpdCBtdXN0
+IGhhdmUgYmVlbiBvcGVyYXRpbmcgYWJvdmUgCj4gMTY1TUh6KSwgYnV0IGl0IGlzIHBvc3NpYmxl
+IG90aGVyIGRyaXZlcnMgaGF2ZSAiaWdub3JlZCIgdGhpbmdzIGFuZCAKPiBqdXN0IGZvbGxvd2Vk
+IHRoZSBFRElELgo+IAo+IFRoYW5rcyEKPiBBZGFtCj4gCj4ga2VybmVsOiBbZHJtOmRybV9oZWxw
+ZXJfcHJvYmVfc2luZ2xlX2Nvbm5lY3Rvcl9tb2RlcyBbZHJtX2ttc19oZWxwZXJdXSAKPiBbQ09O
+TkVDVE9SOjk1OkRQLTFdIAo+IGtlcm5lbDogaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxf
+ZHBfZGV0ZWN0IFtpOTE1XV0gCj4gW0NPTk5FQ1RPUjo5NTpEUC0xXQo+IGtlcm5lbDogW2RybTpk
+cm1fZHBfcmVhZF9kcGNkX2NhcHMgW2RybV9rbXNfaGVscGVyXV0gQVVYIEMvRERJIEMvUEhZIEM6
+IAo+IERQQ0Q6IDExIDBhIDg0IDAxIDAwIDA1IDAwIDgxIDAwIDAwIDAwIDAwIDAwIDAwIDAwCj4g
+a2VybmVsOiBbZHJtOmRybV9kcF9yZWFkX2Rlc2MgW2RybV9rbXNfaGVscGVyXV0gQVVYIEMvRERJ
+IEMvUEhZIEM6IERQIAo+IGJyYW5jaDogT1VJIDAwLTgwLWUxIGRldi1JRCBtMkRWSWEgSFctcmV2
+IDAuMSBTVy1yZXYgMi4wIHF1aXJrcyAweDAwMDAKPiBrZXJuZWw6IFtkcm06ZHJtX2RwX3JlYWRf
+ZG93bnN0cmVhbV9pbmZvIFtkcm1fa21zX2hlbHBlcl1dIEFVWCBDL0RESSAKPiBDL1BIWSBDOiBE
+UENEIERGUDogMGEKPiBrZXJuZWw6IGk5MTUgMDAwMDowMDowMi4wOiBbZHJtOmludGVsX2RwX2Rl
+dGVjdCBbaTkxNV1dIFtFTkNPREVSOjk0OkRESSAKPiBDL1BIWSBDXSBNU1Qgc3VwcG9ydDogcG9y
+dDogeWVzLCBzaW5rOiBubywgbW9kcGFyYW06IHllcwo+IGtlcm5lbDogaTkxNSAwMDAwOjAwOjAy
+LjA6IFtkcm06aW50ZWxfZHBfcHJpbnRfcmF0ZXMgW2k5MTVdXSBzb3VyY2UgCj4gcmF0ZXM6IDE2
+MjAwMCwgMjE2MDAwLCAyNzAwMDAsIDMyNDAwMCwgNDMyMDAwLCA1NDAwMDAKPiBrZXJuZWw6IGk5
+MTUgMDAwMDowMDowMi4wOiBbZHJtOmludGVsX2RwX3ByaW50X3JhdGVzIFtpOTE1XV0gc2luayAK
+PiByYXRlczogMTYyMDAwLCAyNzAwMDAKPiBrZXJuZWw6IGk5MTUgMDAwMDowMDowMi4wOiBbZHJt
+OmludGVsX2RwX3ByaW50X3JhdGVzIFtpOTE1XV0gY29tbW9uIAo+IHJhdGVzOiAxNjIwMDAsIDI3
+MDAwMAo+IGtlcm5lbDogW2RybTpkcm1fZHBfaTJjX2RvX21zZyBbZHJtX2ttc19oZWxwZXJdXSBB
+VVggQy9EREkgQy9QSFkgQzogCj4gbmF0aXZlIGRlZmVyCj4ga2VybmVsOiBbZHJtOmRybV9kcF9p
+MmNfZG9fbXNnIFtkcm1fa21zX2hlbHBlcl1dIEFVWCBDL0RESSBDL1BIWSBDOiAKPiBuYXRpdmUg
+ZGVmZXIKPiBrZXJuZWw6IFtkcm06ZHJtX2RwX2kyY19kb19tc2cgW2RybV9rbXNfaGVscGVyXV0g
+QVVYIEMvRERJIEMvUEhZIEM6IAo+IG5hdGl2ZSBkZWZlcgo+IGtlcm5lbDogW2RybTpkcm1fZHBf
+aTJjX2RvX21zZyBbZHJtX2ttc19oZWxwZXJdXSBBVVggQy9EREkgQy9QSFkgQzogCj4gbmF0aXZl
+IGRlZmVyCj4ga2VybmVsOiBpOTE1IDAwMDA6MDA6MDIuMDogW2RybTppbnRlbF9kcF9zZXRfZWRp
+ZCBbaTkxNV1dIAo+IFtDT05ORUNUT1I6OTU6RFAtMV0gREZQIG1heCBicGMgOCwgbWF4IGRvdGNs
+b2NrIDAsIFRNRFMgY2xvY2sgCj4gMjUwMDAtMTY1MDAwCj4ga2VybmVsOiBpOTE1IDAwMDA6MDA6
+MDIuMDogW2RybTppbnRlbF9kcF9zZXRfZWRpZCBbaTkxNV1dIAo+IFtDT05ORUNUT1I6OTU6RFAt
+MV0gWUNiQ3IgNDoyOjAgYWxsb3dlZD8gbm8sIFlDYkNyIDQ6NDo0LT40OjI6MCAKPiBjb252ZXJz
+aW9uPyBubyAKPiBrZXJuZWw6IFtkcm06ZHJtX2RwX2dldF9lZGlkX3F1aXJrcyBbZHJtX2ttc19o
+ZWxwZXJdXSBEUCBzaW5rOiBFRElEIG1mZyAKPiAyMi1mMCBwcm9kLUlEIDkwLTI2IHF1aXJrczog
+MHgwMDAwCj4ga2VybmVsOiBbZHJtOmRybV9hZGRfZWRpZF9tb2RlcyBbZHJtXV0gRUxEOiBubyBD
+RUEgRXh0ZW5zaW9uIGZvdW5kCj4ga2VybmVsOiBbZHJtOmRybV9hZGRfZGlzcGxheV9pbmZvIFtk
+cm1dXSBTdXBwb3J0ZWQgTW9uaXRvciBSZWZyZXNoIHJhdGUgCj4gcmFuZ2UgaXMgMCBIeiAtIDAg
+SHoKPiBrZXJuZWw6IFtkcm06ZHJtX2FkZF9kaXNwbGF5X2luZm8gW2RybV1dIG5vbl9kZXNrdG9w
+IHNldCB0byAwCj4ga2VybmVsOiBbZHJtOmRybV9tb2RlX2RlYnVnX3ByaW50bW9kZWxpbmUgW2Ry
+bV1dIE1vZGVsaW5lICIyNTYweDE2MDAiOiAKPiA2MCAyNjgwMDAgMjU2MCAyNjA4IDI2NDAgMjcy
+MCAxNjAwIDE2MDMgMTYwOSAxNjQ2IDB4NDggMHg5Cj4ga2VybmVsOiBbZHJtOmRybV9tb2RlX3By
+dW5lX2ludmFsaWQgW2RybV1dIE5vdCB1c2luZyAyNTYweDE2MDAgbW9kZTogCj4gQ0xPQ0tfSElH
+SAo+IGtlcm5lbDogW2RybTpkcm1faGVscGVyX3Byb2JlX3NpbmdsZV9jb25uZWN0b3JfbW9kZXMg
+W2RybV9rbXNfaGVscGVyXV0gCj4gW0NPTk5FQ1RPUjo5NTpEUC0xXSBwcm9iZWQgbW9kZXMgOgo+
+IGtlcm5lbDogW2RybTpkcm1fbW9kZV9kZWJ1Z19wcmludG1vZGVsaW5lIFtkcm1dXSBNb2RlbGlu
+ZSAiMTI4MHg4MDAiOiAKPiA2MCA3MTAwMCAxMjgwIDEzMjggMTM2MCAxNDQwIDgwMCA4MDMgODA5
+IDgyMyAweDQwIDB4OQo+IAo+ICMgZm9yIGF1eCBpbiAvZGV2L2RybV9kcF9hdXgqIDsgZG8gZGQg
+aWY9JGF1eCBicz0xIGNvdW50PTE2IAo+IHNraXA9JCgoMHg4MCkpIDI+L2Rldi9udWxsIHwgaGV4
+ZHVtcCAtQyA7IGRvbmUKPiAwMDAwMDAwMCAgMGEgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwIDAwICAKPiB8Li4uLi4uLi4uLi4uLi4uLnwKPiAwMDAwMDAxMAo+IDAw
+MDAwMDAwICAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAg
+IAo+IHwuLi4uLi4uLi4uLi4uLi4ufAo+IDAwMDAwMDEwCj4gCj4gIyBmb3IgYXV4IGluIC9kZXYv
+ZHJtX2RwX2F1eCogOyBkbyBkZCBpZj0kYXV4IGJzPTEgMj4vZGV2L251bGwgfCAKPiBoZXhkdW1w
+IC1DIDsgZG9uZQo+IDAwMDAwMDAwICAxMSAwYSA4NCAwMSAwMCAwNSAwMCA4MSAgMDAgMDAgMDAg
+MDAgMDAgMDAgMDAgMDAgIAo+IHwuLi4uLi4uLi4uLi4uLi4ufAo+IDAwMDAwMDEwICAwMCAwMCAw
+MCAwMCAwMCAwMCAwMCAwMCAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIAo+IHwuLi4uLi4uLi4u
+Li4uLi4ufAo+ICoKPiAwMDAwMDA4MCAgMGEgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIDAwIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwICAKPiB8Li4uLi4uLi4uLi4uLi4uLnwKPiAwMDAwMDA5MCAgMDAgMDAg
+MDAgMDAgMDAgMDAgMDAgMDAgIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwICAKPiB8Li4uLi4uLi4u
+Li4uLi4uLnwKPiAqCj4gMDAwMDAxMDAgIDBhIDg0IDAwIDA4IDA4IDA4IDA4IDAwICAwMSAwMCAw
+MCAwMCAwMCAwMCAwMCAwMCAgCj4gfC4uLi4uLi4uLi4uLi4uLi58Cj4gMDAwMDAxMTAgIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwIDAwICAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAgCj4gfC4uLi4uLi4u
+Li4uLi4uLi58Cj4gKgo+IDAwMDAwMjAwICAwMSAwMCA3NyA3NyA4MSAwMCA0NCA0NCAgMDAgMDAg
+MDAgMDAgMDAgMDAgMDAgMDAgIAo+IHwuLnd3Li5ERC4uLi4uLi4ufAo+IDAwMDAwMjEwICAwMCA4
+MCAwMCA4MCAwMCA4MCAwMCA4MCAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIAo+IHwuLi4uLi4u
+Li4uLi4uLi4ufAo+IDAwMDAwMjIwICAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAgMDAgMDAgMDAg
+MDAgMDAgMDAgMDAgMDAgIAo+IHwuLi4uLi4uLi4uLi4uLi4ufAo+ICoKPiAwMDAwMDI0MCAgMDAg
+MDAgMDAgMDAgMDAgMDAgMjAgMDAgIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwICB8Li4uLi4uIAo+
+IC4uLi4uLi4uLnwKPiAwMDAwMDI1MCAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIDAwIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwICAKPiB8Li4uLi4uLi4uLi4uLi4uLnwKPiAqCj4gMDAwMDAzMDAgIDAw
+IDAwIDAwIDAwIDAwIDAwIDAwIDAwICAwMCAwMCAwMCAwMCAwMCAwMCAwMCA4MCAgCj4gfC4uLi4u
+Li4uLi4uLi4uLi58Cj4gMDAwMDAzMTAgIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwICAwMCAwMCAw
+MCAwMCAwMCAwMCAwMCAwMCAgCj4gfC4uLi4uLi4uLi4uLi4uLi58Cj4gKgo+IDAwMDAwNDAwICA0
+NyA1MyA1MyAwMCAwMCAwMSAwMSAwMCAgMDEgMDAgMDAgOTAgMDIgMDAgMDAgOTAgIAo+IHxHU1Mu
+Li4uLi4uLi4uLi4ufAo+IDAwMDAwNDEwICAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAgMDAgMDAg
+MDAgMDAgMDAgMDAgMDAgMDAgIAo+IHwuLi4uLi4uLi4uLi4uLi4ufAo+ICoKPiAwMDAwMDUwMCAg
+MDAgODAgZTEgNmQgMzIgNDQgNTYgNDkgIDYxIDAxIDAyIDAwIDAwIGNmIDAwIDAwICAKPiB8Li4u
+bTJEVklhLi4uLi4uLnwKPiAwMDAwMDUxMCAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwIDAwICAKPiB8Li4uLi4uLi4uLi4uLi4uLnwKPiAqCj4gMDAwMDA2MDAg
+IDAxIDAwIDAwIDAwIDAwIDAwIDAwIDAwICAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAgCj4gfC4u
+Li4uLi4uLi4uLi4uLi58Cj4gMDAwMDA2MTAgIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwICAwMCAw
+MCAwMCAwMCAwMCAwMCAwMCAwMCAgCj4gfC4uLi4uLi4uLi4uLi4uLi58Cj4gKgo+IAo+IE9uIFdl
+ZCwgTWF5IDEyLCAyMDIxLCBhdCA0OjA0IFBNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4gPiBP
+biBXZWQsIE1heSAxMiwgMjAyMSBhdCAxMjozMToxNFBNIC0wNDAwLCBBZGFtIENoYXNlbiB3cm90
+ZToKPiA+ID4gSG9waW5nIEkgY2FuIChoZWxwKSBjcmFmdCBhIHBhdGNoIHRvIGFkZHJlc3Mgd2hh
+dCBhcHBlYXJzIHRvIGJlIGFuIGlzc3VlIHdpdGggb3ZlcmFnZ3Jlc3NpdmUgbW9kZSBwcnVuaW5n
+LiBJIGFtIGhhdmluZyB0cm91YmxlIHdpdGggcmVqZWN0aW9uIG9mIGEgRHVhbC1EVkkgY29tcGF0
+aWJsZSBtb2RlIG91dCBvZiB0aGUgRGlzcGxheVBvcnQgIHNwZWNpZmljIHRvIGk5MTUgaW4gRmVk
+b3JhIDMzLiBJdCBzZWVtcyB0aGF0IGRybV9tb2RlX3ZhbGlkYXRlX3BpcGVsaW5lIGlzIHRoZSB3
+YWxsIEkgaGl0IHdoZW4gZGlnZ2luZyBmb3Igd2h5IHRoaXMgbW9kZSBpcyBwcnVuZWQuIFJlcXVl
+c3RpbmcgYWRkaXRpb25hbCB0cm91Ymxlc2hvb3RpbmcgZ3VpZGFuY2UuCj4gPiA+IAo+ID4gPiBg
+YGAKPiA+ID4ga2VybmVsOiBbZHJtOmRybV9tb2RlX2RlYnVnX3ByaW50bW9kZWxpbmUgW2RybV1d
+IE1vZGVsaW5lICIyNTYweDE2MDAiOiA2MCAyNjgwMDAgMjU2MCAyNjA4IDI2NDAgMjcyMCAxNjAw
+IDE2MDMgMTYwOSAxNjQ2IDB4NDggMHg5Cj4gPiA+IGtlcm5lbDogW2RybTpkcm1fbW9kZV9wcnVu
+ZV9pbnZhbGlkIFtkcm1dXSBOb3QgdXNpbmcgMjU2MHgxNjAwIG1vZGU6IENMT0NLX0hJR0gKPiA+
+ID4gYGBgCj4gPiA+IAo+ID4gPiBUaGlzIGlzIGFuIEhQIExQMzA2NSBEdWFsLURWSSBtb25pdG9y
+IGNvbm5lY3RlZCB2aWEgRGlzcGxheVBvcnQgd2l0aCBhIEJpekxpbmsgImFjdGl2ZSIgYWRhcHRl
+ciAocmVjb21tZW5kZWQgYnkgSFAgYW5kIERFTEwgZm9yIHRoZWlyIER1YWwtRFZJIG1vbml0b3Jz
+KS4KPiA+ID4gCj4gPiA+IFRoZSBhZGFwdGVyIGFwcGVhcnMgdG8gYmUgInRyYW5zcGFyZW50IiB0
+byB0aGUgc3lzdGVtICh1bmxpa2Ugc29tZSBhZGFwdGVycyByZXBvcnRpbmcgc2ltaWxhciBpc3N1
+ZXMpLiBJMkMgcHJvYmVzIGFuZCBFRElEcyBhbGwgYXBwZWFyIHRvIGJlIGRpcmVjdCBmcm9tIHRo
+ZSBtb25pdG9yLiBUaG91Z2gsIHRoZXJlIGlzIGEgbWVudGlvbiBvZiBhIG0yRFZJYSAiYnJhbmNo
+IGRldmljZSIgaW4gdGhlIGBpOTE1X2Rpc3BsYXlfaW5mb2Agb3V0cHV0Lgo+ID4gPiAKPiA+ID4g
+VGhlIHBydW5lZCBtb2RlIHdvcmtzIHdpdGggWC1Pcmcgd2l0aCBtYW51YWxseSBzZXR0aW5nIHRo
+ZSBtb2RlIHZpYSBgeHJhbmRyYCBvbiBYb3JnIChteSBjdXJyZW50IGZhbGxiYWNrIHNldHVwKTog
+Cj4gPiA+IGB4cmFuZHIgLS1uZXdtb2RlICIyNTYweDE2MDBSIiAyNjguNTAgMjU2MCAyNjA4IDI2
+NDAgMjcyMCAxNjAwIDE2MDMgMTYwOSAxNjQ2ICtoc3luYyAtdnN5bmNgCj4gPiA+IAo+ID4gPiBN
+eSBzZXR1cCBpcyBhIGJpdCBkaWZmZXJlbnQgdGhhbiBzb21lIG9sZGVyIHJlcG9ydGVkICJkdWFs
+IG1vZGUiIGlzc3VlcyAoaS5lLiBwYXNzaXZlIGFkYXB0ZXJzKSwgc28gSSBkbyBub3QgYmVsaWV2
+ZSBpdCBpcyB0aGUgImZhdWx0eSBkdWFsIG1vZGUgZGV0ZWN0aW9uIiAoaS5lLiBodHRwczovL2dp
+dGh1Yi5jb20vaGFuc21pL2Zha2UtZHAtZHVhbC1tb2RlKS4gSSB3YXMgdGhpbmtpbmcgaXQgY291
+bGQgYmUgcmVsYXRlZCBieSBzb21lICJzdGF0ZSIgb2YgdGhlIHBvcnQgZGV0ZWN0aW9uIGxpbWl0
+aW5nIG91dHB1dCB0byAxNjVNSHogY2xvY2suCj4gPiA+IAo+ID4gPiBUaGFua3MsCj4gPiA+IEFk
+YW0KPiA+ID4gCj4gPiA+IHdpdGggYGVjaG8gMHg2ID4gL3N5cy9tb2R1bGUvZHJtL3BhcmFtZXRl
+cnMvZGVidWdgCj4gPiA+IAo+ID4gPiBgYGAKPiA+ID4ga2VybmVsOiBbZHJtOmRybV9hZGRfZGlz
+cGxheV9pbmZvIFtkcm1dXSBTdXBwb3J0ZWQgTW9uaXRvciBSZWZyZXNoIHJhdGUgcmFuZ2UgaXMg
+MCBIeiAtIDAgSHoKPiA+ID4ga2VybmVsOiBbZHJtOmRybV9hZGRfZGlzcGxheV9pbmZvIFtkcm1d
+XSBub25fZGVza3RvcCBzZXQgdG8gMAo+ID4gPiBrZXJuZWw6IGk5MTUgMDAwMDowMDowMi4wOiBb
+ZHJtOmludGVsX2RwX3NldF9lZGlkIFtpOTE1XV0gW0NPTk5FQ1RPUjo5NTpEUC0xXSBERlAgbWF4
+IGJwYyA4LCBtYXggZG90Y2xvY2sgMCwgVE1EUyBjbG9jayAyNTAwMC0xNjUwMDAKPiA+IAo+ID4g
+VGhhdCBvbmUgc2VlbXMgdG8gYmUgc2F5aW5nIHRoYXQgaXQncyB0aGUgYWRhcHRlciBpdHNlbGYg
+dGhhdCdzCj4gPiB0ZWxsaW5nIHVzIGl0IGNhbid0IGhhbmRsZSA+MTY1TUh6LiBXaGF0IGRvZXMg
+dGhlICJEUENEIERGUDogLi4uIiBsaW5lIHNheT8KPiA+IAo+ID4gQWx0ZXJuYXRpdmVseSB5b3Ug
+Y2FuIGRvIHNvbWV0aGluZyBsaWtlCj4gPiAgZm9yIGF1eCBpbiAvZGV2L2RybV9kcF9hdXgqIDsg
+ZG8gZGQgaWY9JGF1eCBicz0xIGNvdW50PTE2IAo+ID4gc2tpcD0kKCgweDgwKSkgMj4vZGV2L251
+bGwgfCBoZXhkdW1wIC1DIDsgZG9uZQo+ID4gdG8gZ2V0IHRoZSByYXcgZHVtcC4uCj4gPiAKPiA+
+IC0tIAo+ID4gVmlsbGUgU3lyasOkbMOkCj4gPiBJbnRlbAo+ID4gCj4gX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0
+Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cj4gCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
