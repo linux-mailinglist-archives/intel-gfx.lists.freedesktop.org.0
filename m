@@ -2,56 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D24393A58
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 May 2021 02:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5BFC393A67
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 May 2021 02:44:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6486F52C;
-	Fri, 28 May 2021 00:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10DD96F530;
+	Fri, 28 May 2021 00:44:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com
- [IPv6:2a00:1450:4864:20::236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5C7F6F52C
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 May 2021 00:38:50 +0000 (UTC)
-Received: by mail-lj1-x236.google.com with SMTP id e2so3141258ljk.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 May 2021 17:38:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=3tZvKVXXK1CrsVCEdwk4kRijURbW1gkRo3MklbEt43g=;
- b=dzDstQmFnkHnT2yUIYKLBRRBS9fEvHqlCfVDyb072nsd2XLJcbMC9YytfAlVCe02vE
- w9imrgViRD9UmJFiNPktvwlhL+FSug8rzH1rndJtVlz3QQe+LaHVPjU6VmarHmQVjLz9
- xf8j7GTU197/jPwSsOeFHBpLr83hJSyRTW1TXntHZd/bB1uAuI+WQ+bhSHrv/SWtMmVd
- kyaH7en3LnMLvCu2BrfR+25SZJ37jTDiSZTB3f4yqmQeYCEoZnJSe4DbXuwQ/ieUoyZH
- Yg2q/hN5vESri9Wyb+J0nlja9X++NyijNUy+ePQmji3JkVQ2yCofSythjNO8OPePTRya
- 28LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=3tZvKVXXK1CrsVCEdwk4kRijURbW1gkRo3MklbEt43g=;
- b=p7PRkBDPkNLVZZsmpyOYaLE6uUR58g3ytNTPo3EmjemfNF1WUAkqLQ6oEdt6Qz7Ap5
- tlJS2vkKWA8dqoaUmxYehUMeSpNKup2jyY9kQh+j5Yfd3jGXqI86UKX3T5W8aqKGyHfv
- wEkVCDfzqPZVdOJpCu6u30bGLw4xYzgzH24EZL63hnTwSMMri3qMPCtksgQqSl6vi/Ey
- 08wV2/OY5ole7VTve5M/xG7PlBqA3OHyl8qwuy/TNdT44HxXGYL9hrnAihQomXKPCT2I
- HHkvWZswBap8DUczn97416s97Bdo4RnjSuLe6pMhlrD/5H7U1K7hfzIK++pq16u7N+Yy
- HESw==
-X-Gm-Message-State: AOAM532jPeUYBOw12DtG2Hb6k3V447KVdY/sHdQhuz8wv/dKt3Lpw5jj
- NGG/ck1z+TsNVlummmBJUK+OwOw6rKQ8VtpkR5m6wg==
-X-Google-Smtp-Source: ABdhPJz7njZd2vaMPN20MaL5HfLauAdefifx8indoEE9qbs7jFDoqG1iIPLF/BJ6sjZMAVRNssGVEUTUE+E+NW+cvHo=
-X-Received: by 2002:a05:651c:4c6:: with SMTP id
- e6mr4571492lji.326.1622162328960; 
- Thu, 27 May 2021 17:38:48 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 903F96F52F;
+ Fri, 28 May 2021 00:44:33 +0000 (UTC)
+IronPort-SDR: tMQa+eqVeAuVIRG4OhNxRNBZcwPurrOgQpE3r1+ZX6qjVwijibXCHBxzxD7ExV7j4bHkM0gm94
+ IZUHdvI1qBVA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9997"; a="200977223"
+X-IronPort-AV: E=Sophos;i="5.83,228,1616482800"; d="scan'208";a="200977223"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2021 17:44:28 -0700
+IronPort-SDR: saitKbdKoOMs/l145GAJvPNEDgefF6yZubC7h2kxboeaddly3F+Y8HUeg19HWdHbc+68ctzkbK
+ B7kopg8XQPcg==
+X-IronPort-AV: E=Sophos;i="5.83,228,1616482800"; d="scan'208";a="548375153"
+Received: from dbstims-dev.fm.intel.com ([10.1.27.177])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2021 17:44:28 -0700
+From: Dale B Stimson <dale.b.stimson@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 27 May 2021 17:44:27 -0700
+Message-Id: <20210528004428.35258-1-dale.b.stimson@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210521090959.1663703-1-daniel.vetter@ffwll.ch>
- <20210521090959.1663703-11-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210521090959.1663703-11-daniel.vetter@ffwll.ch>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 28 May 2021 02:38:38 +0200
-Message-ID: <CACRpkdbZf_cTMppxfC4mM6XZ2YySH7dQ0NCY6v_pfwsdRzLPKA@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 11/11] drm/tiny:
- drm_gem_simple_display_pipe_prepare_fb is the default
+Subject: [Intel-gfx] [PATCH v4 0/1] drm/i915/dg1: Add HWMON power sensor
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,44 +46,280 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- David Lechner <david@lechnology.com>, Emma Anholt <emma@anholt.net>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Andrew Jeffery <andrew@aj.id.au>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Joel Stanley <joel@jms.id.au>, Thomas Zimmermann <tzimmermann@suse.de>,
- xen-devel@lists.xenproject.org, Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Sam Ravnborg <sam@ravnborg.org>, linux-aspeed <linux-aspeed@lists.ozlabs.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBNYXkgMjEsIDIwMjEgYXQgMTE6MTAgQU0gRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZl
-dHRlckBmZndsbC5jaD4gd3JvdGU6Cgo+IEdvZXMgdGhyb3VnaCBhbGwgdGhlIGRyaXZlcnMgYW5k
-IGRlbGV0ZXMgdGhlIGRlZmF1bHQgaG9vayBzaW5jZSBpdCdzCj4gdGhlIGRlZmF1bHQgbm93Lgo+
-Cj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+
-Cj4gQ2M6IEpvZWwgU3RhbmxleSA8am9lbEBqbXMuaWQuYXU+Cj4gQ2M6IEFuZHJldyBKZWZmZXJ5
-IDxhbmRyZXdAYWouaWQuYXU+Cj4gQ2M6ICJOb3JhbGYgVHLDuG5uZXMiIDxub3JhbGZAdHJvbm5l
-cy5vcmc+Cj4gQ2M6IExpbnVzIFdhbGxlaWogPGxpbnVzLndhbGxlaWpAbGluYXJvLm9yZz4KPiBD
-YzogRW1tYSBBbmhvbHQgPGVtbWFAYW5ob2x0Lm5ldD4KPiBDYzogRGF2aWQgTGVjaG5lciA8ZGF2
-aWRAbGVjaG5vbG9neS5jb20+Cj4gQ2M6IEthbWxlc2ggR3VydWRhc2FuaSA8a2FtbGVzaC5ndXJ1
-ZGFzYW5pQGdtYWlsLmNvbT4KPiBDYzogT2xla3NhbmRyIEFuZHJ1c2hjaGVua28gPG9sZWtzYW5k
-cl9hbmRydXNoY2hlbmtvQGVwYW0uY29tPgo+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
-dGVyQGZmd2xsLmNoPgo+IENjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtlcm5lbC5vcmc+Cj4g
-Q2M6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgo+IENjOiBTYW0gUmF2
-bmJvcmcgPHNhbUByYXZuYm9yZy5vcmc+Cj4gQ2M6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRl
-dWNoZXJAYW1kLmNvbT4KPiBDYzogQW5keSBTaGV2Y2hlbmtvIDxhbmRyaXkuc2hldmNoZW5rb0Bs
-aW51eC5pbnRlbC5jb20+Cj4gQ2M6IGxpbnV4LWFzcGVlZEBsaXN0cy5vemxhYnMub3JnCj4gQ2M6
-IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZwo+IENjOiB4ZW4tZGV2ZWxAbGlz
-dHMueGVucHJvamVjdC5vcmcKCkFja2VkLWJ5OiBMaW51cyBXYWxsZWlqIDxsaW51cy53YWxsZWlq
-QGxpbmFyby5vcmc+CgpZb3VycywKTGludXMgV2FsbGVpagpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+drm/i915/dg1: Add HWMON power support
+
+As part of the System Managemenent Interface (SMI), use the HWMON
+subsystem to display power utilization.
+
+The following standard HWMON entries are currently supported
+(and appropriately scaled):
+/sys/class/drm/card0/device/hwmon/hwmon<i>
+    - energy1_input
+    - power1_cap
+    - power1_max
+
+Some non-standard HWMON power information is also provided, such as
+enable bits and intervals.
+
+---------------------
+
+v4  Commit mesage minor rewording
+
+v4  Move call to i915_hwmon_register() to a more appropriate location,
+    so that it is done after intel_gt_driver_register().
+    The call to i915_perf_unregister() is moved correspondingly.
+
+v4  The proper register to read energy status is PCU_PACKAGE_ENERGY_STATUS.
+
+v4  Attribute power1_max_enable is read-only.
+
+v3  Added documentation of these hwmon attributes in file
+        Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+
+v3  Commit mesage minor rewording
+
+v3  Function name changes:
+    i915_hwmon_init() -> i915_hwmon_register()
+    i915_hwmon_fini() -> i915_hwmon_unregister()
+
+v3  i915_hwmon_register and i915_hwmon_unregister now take arg i915.
+
+v3  i915_hwmon_register() now returns void instead of int.
+
+v3  Macro FIELD_SHIFT() added to compute shift value from constant
+    field mask.
+
+v3  Certain functions now longer require "inline" due to addition of new
+    parameter field_shift, allowing access to constant expressions for
+    the field mask at each call site.  These functions now do field
+    access via shift and masking and no longer use le32*() functions
+    (as le32*() required a local constant expression for the mask).
+      _field_read_and_scale()
+      _field_read64_and_scale()
+      _field_scale_and_write()
+
+v3  Some comments were modified.
+
+v3  Now using sysfs_emit() instead of scnprintf().
+
+V2  Rename local function parameter field_mask to field_msk in order to avoid
+    shadowing the name of function field_mask() from include/linux/bitfield.h.
+
+V2  Change a comment introduction from "/**" to "/*", as it is not intended
+    to match a pattern that triggers documentation.
+    Reported-by: kernel test robot <lkp@intel.com>
+
+V2  Slight movement of calls:
+    - i915_hwmon_init slightly later, after call to i915_setup_sysfs()
+    - i915_hwmon_fini slightly earlier, before i915_teardown_sysfs()
+
+V2  Fixed some strong typing issues with le32 functions.
+    Detected by sparse in a run by kernel test robot:
+    Reported-by: kernel test robot <lkp@intel.com>
+
+Dale B Stimson (1):
+  drm/i915/dg1: Add HWMON power sensor support
+
+ .../ABI/testing/sysfs-driver-intel-i915-hwmon | 116 +++
+ drivers/gpu/drm/i915/Kconfig                  |   1 +
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/i915_drv.c               |   6 +
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +
+ drivers/gpu/drm/i915/i915_hwmon.c             | 757 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_hwmon.h             |  42 +
+ drivers/gpu/drm/i915/i915_reg.h               |  52 ++
+ 8 files changed, 978 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+ create mode 100644 drivers/gpu/drm/i915/i915_hwmon.c
+ create mode 100644 drivers/gpu/drm/i915/i915_hwmon.h
+
+Range-diff against v3:
+1:  ed34d683a0ef1 ! 1:  bc8bd78b2c006 drm/i915/dg1: Add HWMON power support
+    @@ Metadata
+     Author: Dale B Stimson <dale.b.stimson@intel.com>
+     
+      ## Commit message ##
+    -    drm/i915/dg1: Add HWMON power support
+    +    drm/i915/dg1: Add HWMON power sensor support
+     
+         As part of the System Managemenent Interface (SMI), use the HWMON
+         subsystem to display power utilization.
+     
+    -    The following standard HWMON entries are currently supported
+    +    The following standard HWMON power sensors are currently supported
+         (and appropriately scaled):
+           /sys/class/drm/card0/device/hwmon/hwmon<i>
+                 - energy1_input
+    @@ drivers/gpu/drm/i915/i915_drv.c
+      #include "i915_irq.h"
+      #include "i915_memcpy.h"
+     @@ drivers/gpu/drm/i915/i915_drv.c: static void i915_driver_register(struct drm_i915_private *dev_priv)
+    - 	i915_debugfs_register(dev_priv);
+    - 	i915_setup_sysfs(dev_priv);
+    + 
+    + 	intel_gt_driver_register(&dev_priv->gt);
+      
+     +	i915_hwmon_register(dev_priv);
+     +
+    - 	/* Depends on sysfs having been initialized */
+    - 	i915_perf_register(dev_priv);
+    + 	intel_display_driver_register(dev_priv);
+      
+    + 	intel_power_domains_enable(dev_priv);
+     @@ drivers/gpu/drm/i915/i915_drv.c: static void i915_driver_unregister(struct drm_i915_private *dev_priv)
+    + 
+    + 	intel_display_driver_unregister(dev_priv);
+    + 
+    ++	i915_hwmon_unregister(dev_priv);
+    ++
+      	intel_gt_driver_unregister(&dev_priv->gt);
+      
+      	i915_perf_unregister(dev_priv);
+    -+
+    -+	i915_hwmon_unregister(dev_priv);
+     +
+      	i915_pmu_unregister(dev_priv);
+      
+    @@ drivers/gpu/drm/i915/i915_hwmon.c (new)
+     +
+     +	with_intel_runtime_pm(uncore->rpm, wakeref)
+     +		reg_value = intel_uncore_read(uncore,
+    -+					      hwmon->rg.reg_energy_status);
+    ++					      hwmon->rg.pkg_energy_status);
+     +
+     +	/*
+     +	 * The u32 register concatenated with the u32 overflow counter
+    @@ drivers/gpu/drm/i915/i915_hwmon.c (new)
+     +}
+     +
+     +static ssize_t
+    -+i915_power1_max_enable_store(struct device *dev, struct device_attribute *attr,
+    -+			     const char *buf, size_t count)
+    -+{
+    -+	struct drm_i915_private *i915 = dev_get_drvdata(dev);
+    -+	struct intel_uncore *uncore = &i915->uncore;
+    -+	struct i915_hwmon *hwmon = &i915->hwmon;
+    -+	ssize_t ret;
+    -+	u32 val;
+    -+	u32 bits_to_clear;
+    -+	u32 bits_to_set;
+    -+
+    -+	ret = kstrtou32(buf, 0, &val);
+    -+	if (ret)
+    -+		return ret;
+    -+
+    -+	bits_to_clear = PKG_PWR_LIM_1_EN;
+    -+	if (!val)
+    -+		bits_to_set = 0;
+    -+	else
+    -+		bits_to_set = PKG_PWR_LIM_1_EN;
+    -+
+    -+	_locked_with_pm_intel_uncore_rmw(uncore, hwmon->rg.pkg_rapl_limit,
+    -+					 bits_to_clear, bits_to_set);
+    -+
+    -+	return count;
+    -+}
+    -+
+    -+static ssize_t
+     +i915_power1_max_interval_show(struct device *dev, struct device_attribute *attr,
+     +			      char *buf)
+     +{
+    @@ drivers/gpu/drm/i915/i915_hwmon.c (new)
+     +	return ret;
+     +}
+     +
+    -+static SENSOR_DEVICE_ATTR(power1_max_enable, 0664,
+    -+			  i915_power1_max_enable_show,
+    -+			  i915_power1_max_enable_store, 0);
+    ++static SENSOR_DEVICE_ATTR(power1_max_enable, 0444,
+    ++			  i915_power1_max_enable_show, NULL, 0);
+     +static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
+     +			  i915_power1_max_interval_show,
+     +			  i915_power1_max_interval_store, 0);
+    @@ drivers/gpu/drm/i915/i915_hwmon.c (new)
+     +	i915_reg_t rgadr;
+     +
+     +	if (attr == &sensor_dev_attr_energy1_input.dev_attr.attr)
+    -+		rgadr = hwmon->rg.reg_energy_status;
+    ++		rgadr = hwmon->rg.pkg_energy_status;
+     +	else if (attr == &sensor_dev_attr_power1_max_enable.dev_attr.attr)
+     +		rgadr = hwmon->rg.pkg_rapl_limit;
+     +	else if (attr == &sensor_dev_attr_power1_max_interval.dev_attr.attr)
+    @@ drivers/gpu/drm/i915/i915_hwmon.c (new)
+     +		hwmon->rg.pkg_energy_status = PCU_PACKAGE_ENERGY_STATUS;
+     +		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
+     +		hwmon->rg.pkg_rapl_limit_udw = PCU_PACKAGE_RAPL_LIMIT_UDW;
+    -+		hwmon->rg.plt_energy_status = PCU_PLATFORM_ENERGY_STATUS;
+     +	} else {
+     +		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
+     +		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+     +		hwmon->rg.pkg_energy_status = INVALID_MMIO_REG;
+     +		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
+     +		hwmon->rg.pkg_rapl_limit_udw = INVALID_MMIO_REG;
+    -+		hwmon->rg.plt_energy_status = INVALID_MMIO_REG;
+     +	}
+     +
+    -+	/*
+    -+	 * If a platform does not support *_PLATFORM_ENERGY_STATUS,
+    -+	 * try *PACKAGE_ENERGY_STATUS.
+    -+	 */
+    -+	if (i915_mmio_reg_valid(hwmon->rg.plt_energy_status))
+    -+		hwmon->rg.reg_energy_status = hwmon->rg.plt_energy_status;
+    -+	else
+    -+		hwmon->rg.reg_energy_status = hwmon->rg.pkg_energy_status;
+    -+
+     +	wakeref = intel_runtime_pm_get(uncore->rpm);
+     +
+     +	/*
+    @@ drivers/gpu/drm/i915/i915_hwmon.c (new)
+     +
+     +	hwmon->energy_counter_overflow = 0;
+     +
+    -+	if (i915_mmio_reg_valid(hwmon->rg.reg_energy_status))
+    ++	if (i915_mmio_reg_valid(hwmon->rg.pkg_energy_status))
+     +		hwmon->energy_counter_prev =
+    -+			intel_uncore_read(uncore, hwmon->rg.reg_energy_status);
+    ++			intel_uncore_read(uncore, hwmon->rg.pkg_energy_status);
+     +	else
+     +		hwmon->energy_counter_prev = 0;
+     +
+    @@ drivers/gpu/drm/i915/i915_hwmon.c (new)
+     +	}
+     +
+     +	hwmon->dev = hwmon_dev;
+    -+
+    -+	return;
+     +}
+     +
+     +void i915_hwmon_unregister(struct drm_i915_private *i915)
+    @@ drivers/gpu/drm/i915/i915_hwmon.h (new)
+     +	i915_reg_t pkg_energy_status;
+     +	i915_reg_t pkg_rapl_limit;
+     +	i915_reg_t pkg_rapl_limit_udw;
+    -+	i915_reg_t plt_energy_status;
+    -+	i915_reg_t reg_energy_status;
+     +};
+     +
+     +struct i915_hwmon {
+    @@ drivers/gpu/drm/i915/i915_reg.h: static inline bool i915_mmio_reg_valid(i915_reg
+     +#define PCU_PACKAGE_RAPL_LIMIT		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
+     +#define PCU_PACKAGE_RAPL_LIMIT_UDW	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x59a4)
+     +#define PCU_PACKAGE_POWER_SKU		INVALID_MMIO_REG
+    -+#define PCU_PLATFORM_ENERGY_STATUS	INVALID_MMIO_REG
+     +
+     +/* Fields for *_PACKAGE_RAPL_LIMIT: */
+     +#define   PKG_PWR_LIM_1			REG_GENMASK(14, 0)
+
+base-commit: 0b2064a4b2783bffdaf30e49bf40c38f6abae3ec
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
