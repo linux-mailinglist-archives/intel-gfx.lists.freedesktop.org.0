@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902B1394A83
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 May 2021 07:09:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EFAF394A90
+	for <lists+intel-gfx@lfdr.de>; Sat, 29 May 2021 07:17:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9FFA6E039;
-	Sat, 29 May 2021 05:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32AB16E091;
+	Sat, 29 May 2021 05:17:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E0AB36E039;
- Sat, 29 May 2021 05:09:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CFF6AA47DB;
- Sat, 29 May 2021 05:09:56 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "William Tseng" <william.tseng@intel.com>
-Date: Sat, 29 May 2021 05:09:56 -0000
-Message-ID: <162226499682.20274.16254116777554095995@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210529050255.17405-1-william.tseng@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEDAE6E091
+ for <intel-gfx@lists.freedesktop.org>; Sat, 29 May 2021 05:17:16 +0000 (UTC)
+IronPort-SDR: wYOm7+CstpQfEc1spBYWIS+q0IZ9cSjT6kOzZ9xdULRJ6e1La/lnLg1Dztae/ZX/6gEH/IxZgN
+ edGaxje50mLw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9998"; a="264274824"
+X-IronPort-AV: E=Sophos;i="5.83,231,1616482800"; d="scan'208";a="264274824"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2021 22:17:15 -0700
+IronPort-SDR: 9EdX8jziJiGLvXT6rUs8hTDVLkHUwVTVuaN5atIOkkb0N0T7uvfjVjudc93LQjW1YtAVM6PM8Z
+ kyfovCBnY4Xg==
+X-IronPort-AV: E=Sophos;i="5.83,231,1616482800"; d="scan'208";a="478169457"
+Received: from tsengwil-desk1.itwn.intel.com (HELO gar) ([10.5.224.21])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2021 22:17:14 -0700
+From: William Tseng <william.tseng@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 29 May 2021 13:17:10 +0800
+Message-Id: <20210529051710.17616-1-william.tseng@intel.com>
+X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210529050255.17405-1-william.tseng@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Reading_DPRX_caps_in_LTTPR_transparent_mode_aft?=
- =?utf-8?q?er_LTTPR_detection?=
+References: <20210529050255.17405-1-william.tseng@intel.com>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Reading DPRX caps in LTTPR
+ transparent mode after LTTPR detection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,32 +47,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: William Tseng <william.tseng@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Reading DPRX caps in LTTPR transparent mode after LTTPR detection
-URL   : https://patchwork.freedesktop.org/series/90752/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-648bed0f9086 drm/i915: Reading DPRX caps in LTTPR transparent mode after LTTPR detection
--:98: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#98: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:196:
-+		drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-+		"Switching to LTTPR non-transparent LT mode failed, fall-back to transparent mode\n");
-
-total: 0 errors, 0 warnings, 1 checks, 68 lines checked
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SW4gc29tZSBjYXNlcywgdGhlIE1BWF9MQU5FX0NPVU5UIGluIHRoZSByZWdpc3RlciBhdCBEQ1BE
+IEFkZHJlc3MgMDAwMmgKbWF5IGJlIHVwZGF0ZWQgYnkgTFRUUFIgaW4gbm9uLXRyYW5zcGFyZW50
+IG1vZGUgd2hpbGUgcmVhZGluZyBEUFJYIENhcHMKcmVnaXN0ZXJzLCBlLmcuLCB0aGUgbGFuZSBj
+b3VudCBpcyBjaGFuZ2VkIGZyb20gMiB0byA0LiBUaGlzIG1heSBjYXVzZQpMaW5rIFRyYWluaW5n
+IGZhaWx1cmUgYmVjYXVzZSBvZiB0aGUgdXBkYXRlZCBsYW5lIGNvdW50LCB3aGljaCBtaWdodCBu
+b3QKYmUgc3VwcG9ydGVkIGJ5IHRoZSBEUFJYLgoKVGhpcyBjaGFuZ2UgbWF5IHdvcmsgYXJvdW5k
+IHRoZSBwcm9ibGVtLCB3aGljaCBMVFRQUiB1cGRhdGVzIHRoZSBEQ1BECnJlZ2lzdGVyIG5vdCBs
+aXNldGVkIGluIHRoZSB0YWJsZSwgaS5lLiwgVGFibGUgMy02NSwgbWVudGlvbmVkIGluIHRoZQpE
+UCBzdGFuZGFyZCwgU2VjdGlvbiAzLjYuMywgVmVyc2lvbiAyLjAuCgoiIgpVcG9uIGRpc2NvdmVy
+aW5nIGl0cyBsb2NhdGlvbiBiZXR3ZWVuIHRoZSBEUFRYIGFuZCBEUFJYLCB0aGUgTFRUUFIKcmVw
+bGllcyB0byBBVVggcmVxdWVzdCB0cmFuc2FjdGlvbnMgdG8gaXRzIERQQ0QgYWRkcmVzcyByYW5n
+ZSB3aXRoaW4gdGhlCkxUVFBSIGZpZWxkLiBUaGUgTFRUUFIgcGFzc2VzIHRocm91Z2ggYWxsIG90
+aGVyIEFVWCByZXF1ZXN0IHRyYW5zYWN0aW9ucwp3aXRoIG9uZSBleGNlcHRpb24g4oCTIGFuIExU
+VFBSIHNoYWxsIHNub29wIEFVWCByZXF1ZXN0IHRyYW5zYWN0aW9ucyB0bwp0aG9zZSBEUENEIEFk
+ZHJlc3NlcyBsaXN0ZWQgaW4gVGFibGUgMy02NSBhbmQgdGFrZSBuZWNlc3NhcnkgYWN0aW9ucyBh
+cwpzcGVjaWZpZWQgaW4gdGhlIHRhYmxlLiAoRm9yIGNvbXBsZXRlIHJlZ2lzdGVyIGRlc2NyaXB0
+aW9ucywKc2VlIFRhYmxlIDItMTg0LikKIiIKCkNjIDogS2hhbGVkIEFsbWFoYWxsYXd5IDxraGFs
+ZWQuYWxtYWhhbGxhd3lAaW50ZWwuY29tPgpDYyA6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
+LmNvbT4KQ2MgOiBUZWphcyBVcGFkaHlheSA8dGVqYXNrdW1hcnguc3VyZW5kcmFrdW1hci51cGFk
+aHlheUBpbnRlbC5jb20+CkNjIDogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogV2lsbGlhbSBUc2VuZyA8d2lsbGlhbS50c2VuZ0Bp
+bnRlbC5jb20+Ci0tLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmlu
+Zy5jIHwgNDQgKysrKysrKysrLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDIyIGluc2VydGlv
+bnMoKyksIDIyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKaW5kZXggNTBjYWUwMTk4YTNkLi4zNjU4
+ZGViOWRhMWMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHBfbGlua190cmFpbmluZy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHBfbGlua190cmFpbmluZy5jCkBAIC0xMzEsNyArMTMxLDYgQEAgaW50ZWxfZHBfc2V0X2x0
+dHByX3RyYW5zcGFyZW50X21vZGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgYm9vbCBlbmFi
+bGUpCiBzdGF0aWMgaW50IGludGVsX2RwX2luaXRfbHR0cHIoc3RydWN0IGludGVsX2RwICppbnRl
+bF9kcCkKIHsKIAlpbnQgbHR0cHJfY291bnQ7Ci0JaW50IGk7CiAKIAlpZiAoIWludGVsX2RwX3Jl
+YWRfbHR0cHJfY29tbW9uX2NhcHMoaW50ZWxfZHApKQogCQlyZXR1cm4gMDsKQEAgLTE1MiwyNyAr
+MTUxLDYgQEAgc3RhdGljIGludCBpbnRlbF9kcF9pbml0X2x0dHByKHN0cnVjdCBpbnRlbF9kcCAq
+aW50ZWxfZHApCiAJICovCiAJaW50ZWxfZHBfc2V0X2x0dHByX3RyYW5zcGFyZW50X21vZGUoaW50
+ZWxfZHAsIHRydWUpOwogCi0JLyoKLQkgKiBJbiBjYXNlIG9mIHVuc3VwcG9ydGVkIG51bWJlciBv
+ZiBMVFRQUnMgb3IgZmFpbGluZyB0byBzd2l0Y2ggdG8KLQkgKiBub24tdHJhbnNwYXJlbnQgbW9k
+ZSBmYWxsLWJhY2sgdG8gdHJhbnNwYXJlbnQgbGluayB0cmFpbmluZyBtb2RlLAotCSAqIHN0aWxs
+IHRha2luZyBpbnRvIGFjY291bnQgYW55IExUVFBSIGNvbW1vbiBsYW5lLSByYXRlL2NvdW50IGxp
+bWl0cy4KLQkgKi8KLQlpZiAobHR0cHJfY291bnQgPCAwKQotCQlyZXR1cm4gMDsKLQotCWlmICgh
+aW50ZWxfZHBfc2V0X2x0dHByX3RyYW5zcGFyZW50X21vZGUoaW50ZWxfZHAsIGZhbHNlKSkgewot
+CQlkcm1fZGJnX2ttcygmZHBfdG9faTkxNShpbnRlbF9kcCktPmRybSwKLQkJCSAgICAiU3dpdGNo
+aW5nIHRvIExUVFBSIG5vbi10cmFuc3BhcmVudCBMVCBtb2RlIGZhaWxlZCwgZmFsbC1iYWNrIHRv
+IHRyYW5zcGFyZW50IG1vZGVcbiIpOwotCi0JCWludGVsX2RwX3NldF9sdHRwcl90cmFuc3BhcmVu
+dF9tb2RlKGludGVsX2RwLCB0cnVlKTsKLQkJaW50ZWxfZHBfcmVzZXRfbHR0cHJfY291bnQoaW50
+ZWxfZHApOwotCi0JCXJldHVybiAwOwotCX0KLQotCWZvciAoaSA9IDA7IGkgPCBsdHRwcl9jb3Vu
+dDsgaSsrKQotCQlpbnRlbF9kcF9yZWFkX2x0dHByX3BoeV9jYXBzKGludGVsX2RwLCBEUF9QSFlf
+TFRUUFIoaSkpOwotCiAJcmV0dXJuIGx0dHByX2NvdW50OwogfQogCkBAIC0xOTcsNiArMTc1LDcg
+QEAgc3RhdGljIGludCBpbnRlbF9kcF9pbml0X2x0dHByKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
+ZHApCiBpbnQgaW50ZWxfZHBfaW5pdF9sdHRwcl9hbmRfZHByeF9jYXBzKHN0cnVjdCBpbnRlbF9k
+cCAqaW50ZWxfZHApCiB7CiAJaW50IGx0dHByX2NvdW50ID0gaW50ZWxfZHBfaW5pdF9sdHRwcihp
+bnRlbF9kcCk7CisJaW50IGk7CiAKIAkvKiBUaGUgRFBUWCBzaGFsbCByZWFkIHRoZSBEUFJYIGNh
+cHMgYWZ0ZXIgTFRUUFIgZGV0ZWN0aW9uLiAqLwogCWlmIChkcm1fZHBfcmVhZF9kcGNkX2NhcHMo
+JmludGVsX2RwLT5hdXgsIGludGVsX2RwLT5kcGNkKSkgewpAQCAtMjA0LDYgKzE4MywyNyBAQCBp
+bnQgaW50ZWxfZHBfaW5pdF9sdHRwcl9hbmRfZHByeF9jYXBzKHN0cnVjdCBpbnRlbF9kcCAqaW50
+ZWxfZHApCiAJCXJldHVybiAtRUlPOwogCX0KIAorCS8qCisJICogSW4gY2FzZSBvZiB1bnN1cHBv
+cnRlZCBudW1iZXIgb2YgTFRUUFJzIG9yIGZhaWxpbmcgdG8gc3dpdGNoIHRvCisJICogbm9uLXRy
+YW5zcGFyZW50IG1vZGUgZmFsbC1iYWNrIHRvIHRyYW5zcGFyZW50IGxpbmsgdHJhaW5pbmcgbW9k
+ZSwKKwkgKiBzdGlsbCB0YWtpbmcgaW50byBhY2NvdW50IGFueSBMVFRQUiBjb21tb24gbGFuZS0g
+cmF0ZS9jb3VudCBsaW1pdHMuCisJICovCisJaWYgKGx0dHByX2NvdW50IDw9IDApCisJCXJldHVy
+biAwOworCisJaWYgKCFpbnRlbF9kcF9zZXRfbHR0cHJfdHJhbnNwYXJlbnRfbW9kZShpbnRlbF9k
+cCwgZmFsc2UpKSB7CisJCWRybV9kYmdfa21zKCZkcF90b19pOTE1KGludGVsX2RwKS0+ZHJtLAor
+CQkiU3dpdGNoaW5nIHRvIExUVFBSIG5vbi10cmFuc3BhcmVudCBMVCBtb2RlIGZhaWxlZCwgZmFs
+bC1iYWNrIHRvIHRyYW5zcGFyZW50IG1vZGVcbiIpOworCisJCWludGVsX2RwX3NldF9sdHRwcl90
+cmFuc3BhcmVudF9tb2RlKGludGVsX2RwLCB0cnVlKTsKKwkJaW50ZWxfZHBfcmVzZXRfbHR0cHJf
+Y291bnQoaW50ZWxfZHApOworCisJCXJldHVybiAwOworCX0KKworCWZvciAoaSA9IDA7IGkgPCBs
+dHRwcl9jb3VudDsgaSsrKQorCQlpbnRlbF9kcF9yZWFkX2x0dHByX3BoeV9jYXBzKGludGVsX2Rw
+LCBEUF9QSFlfTFRUUFIoaSkpOworCiAJcmV0dXJuIGx0dHByX2NvdW50OwogfQogRVhQT1JUX1NZ
+TUJPTChpbnRlbF9kcF9pbml0X2x0dHByX2FuZF9kcHJ4X2NhcHMpOwotLSAKMi4xNy4xCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
