@@ -1,51 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A73397391
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B65039739D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:51:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B99486EA50;
-	Tue,  1 Jun 2021 12:51:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B70AE6EA57;
+	Tue,  1 Jun 2021 12:51:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D48306E29D;
- Fri, 28 May 2021 09:36:47 +0000 (UTC)
-Received: from dggeml711-chm.china.huawei.com (unknown [172.30.72.54])
- by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4Frzwm4fBvz1BFYK;
- Fri, 28 May 2021 17:32:08 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggeml711-chm.china.huawei.com (10.3.17.122) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Fri, 28 May 2021 17:36:44 +0800
-Received: from [127.0.0.1] (10.174.177.72) by dggpemm500006.china.huawei.com
- (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 28 May
- 2021 17:36:44 +0800
-To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, intel-gfx
- <intel-gfx@lists.freedesktop.org>, dri-devel
- <dri-devel@lists.freedesktop.org>, linux-kernel
- <linux-kernel@vger.kernel.org>
-References: <20210527090421.9172-1-thunder.leizhen@huawei.com>
- <87sg28a3xg.fsf@intel.com>
-From: "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <86f64463-87df-9e62-a5ea-f411fcb54c19@huawei.com>
-Date: Fri, 28 May 2021 17:36:43 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+X-Greylist: delayed 1143 seconds by postgrey-1.36 at gabe;
+ Sat, 29 May 2021 04:43:13 UTC
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16EF36E091;
+ Sat, 29 May 2021 04:43:12 +0000 (UTC)
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.53])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4FsSzm6l7nzYqLw;
+ Sat, 29 May 2021 12:21:24 +0800 (CST)
+Received: from dggema761-chm.china.huawei.com (10.1.198.203) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.2176.2; Sat, 29 May 2021 12:24:06 +0800
+Received: from huawei.com (10.175.127.227) by dggema761-chm.china.huawei.com
+ (10.1.198.203) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Sat, 29
+ May 2021 12:24:05 +0800
+From: Zhihao Cheng <chengzhihao1@huawei.com>
+To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <chris@chris-wilson.co.uk>, <tvrtko.ursulin@intel.com>
+Date: Sat, 29 May 2021 12:33:27 +0800
+Message-ID: <20210529043327.2772051-1-chengzhihao1@huawei.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-In-Reply-To: <87sg28a3xg.fsf@intel.com>
-Content-Language: en-US
-X-Originating-IP: [10.174.177.72]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500006.china.huawei.com (7.185.36.236)
+X-Originating-IP: [10.175.127.227]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggema761-chm.china.huawei.com (10.1.198.203)
 X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 01 Jun 2021 12:51:14 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/hdcp: Simplify code in
- intel_hdcp_auth_downstream()
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Fix return value check in
+ live_breadcrumbs_smoketest()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,94 +52,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: yukuai3@huawei.com, intel-gfx@lists.freedesktop.org,
+ chengzhihao1@huawei.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+In case of error, the function live_context() returns ERR_PTR()
+and never returns NULL. The NULL test in the return value check
+should be replaced with IS_ERR().
 
+Fixes: 52c0fdb25c7c9 ("drm/i915: Replace global breadcrumbs ...")
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Zhihao Cheng <chengzhihao1@huawei.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_request.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 2021/5/27 18:04, Jani Nikula wrote:
-> On Thu, 27 May 2021, Zhen Lei <thunder.leizhen@huawei.com> wrote:
->> If intel_hdcp_validate_v_prime() has been successful within the allowed
->> number of tries, we can directly call drm_dbg_kms() and "goto out" without
->> jumping out of the loop and repeatedly judging whether the operation is
->> successful. This can help us reduce an unnecessary if judgment. And it's
->> a little clearer to read.
-> 
-> Generally I think the "happy day scenario" should be at the topmost
-> indentation level and not buried in the ifs with a goto exit.
-
-for (xxx) {
-   if (a == b)
-       return found;
-}
-
-At least this way of writing is common.
-
-
-> 
-> BR,
-> Jani.
-> 
->>
->> No functional change.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_hdcp.c | 24 ++++++++++-------------
->>  1 file changed, 10 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> index d8570e14fe60..c32a854eda66 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> @@ -663,13 +663,13 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
->>  
->>  	ret = shim->read_ksv_fifo(dig_port, num_downstream, ksv_fifo);
->>  	if (ret)
->> -		goto err;
->> +		goto out;
->>  
->>  	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, ksv_fifo,
->>  					num_downstream) > 0) {
->>  		drm_err(&dev_priv->drm, "Revoked Ksv(s) in ksv_fifo\n");
->>  		ret = -EPERM;
->> -		goto err;
->> +		goto out;
->>  	}
->>  
->>  	/*
->> @@ -680,20 +680,16 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
->>  		ret = intel_hdcp_validate_v_prime(connector, shim,
->>  						  ksv_fifo, num_downstream,
->>  						  bstatus);
->> -		if (!ret)
->> -			break;
->> -	}
->> -
->> -	if (i == tries) {
->> -		drm_dbg_kms(&dev_priv->drm,
->> -			    "V Prime validation failed.(%d)\n", ret);
->> -		goto err;
->> +		if (!ret) {
->> +			drm_dbg_kms(&dev_priv->drm,
->> +				    "HDCP is enabled (%d downstream devices)\n",
->> +				    num_downstream);
->> +			goto out;
->> +		}
->>  	}
->>  
->> -	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (%d downstream devices)\n",
->> -		    num_downstream);
->> -	ret = 0;
->> -err:
->> +	drm_dbg_kms(&dev_priv->drm, "V Prime validation failed.(%d)\n", ret);
->> +out:
->>  	kfree(ksv_fifo);
->>  	return ret;
->>  }
-> 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index ee8e753d98ce..eae0abd614cb 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -1592,8 +1592,8 @@ static int live_breadcrumbs_smoketest(void *arg)
+ 
+ 	for (n = 0; n < smoke[0].ncontexts; n++) {
+ 		smoke[0].contexts[n] = live_context(i915, file);
+-		if (!smoke[0].contexts[n]) {
+-			ret = -ENOMEM;
++		if (IS_ERR(smoke[0].contexts[n])) {
++			ret = PTR_ERR(smoke[0].contexts[n]);
+ 			goto out_contexts;
+ 		}
+ 	}
+-- 
+2.25.4
 
 _______________________________________________
 Intel-gfx mailing list
