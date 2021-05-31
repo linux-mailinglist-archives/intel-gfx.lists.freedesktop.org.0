@@ -1,47 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C66E395904
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 12:36:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 418D23959BC
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 13:30:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB13C6E0ED;
-	Mon, 31 May 2021 10:36:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C506E8F1;
+	Mon, 31 May 2021 11:30:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE5596E0ED;
- Mon, 31 May 2021 10:36:17 +0000 (UTC)
-IronPort-SDR: ClF+75aU29sOccABLZkcrM2YnMvobmFXBUIfEowxosOn7SSelFetSPQm/+isYfZ1wddY5LvlYO
- f7X1w+sGFX3g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10000"; a="201463579"
-X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; d="scan'208";a="201463579"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2021 03:36:15 -0700
-IronPort-SDR: HtVCOtOiT+hoRPoQF93NTuFq5tj2wMUpN+om1cuqCAjxvjgzyh/V9aoQDSIXheVSYSJEz7VgFm
- 6QFytasDk19Q==
-X-IronPort-AV: E=Sophos;i="5.83,236,1616482800"; d="scan'208";a="478865479"
-Received: from masayag-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.52.77])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2021 03:36:12 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Leizhen \(ThunderTown\)" <thunder.leizhen@huawei.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- linux-kernel <linux-kernel@vger.kernel.org>
-In-Reply-To: <86f64463-87df-9e62-a5ea-f411fcb54c19@huawei.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210527090421.9172-1-thunder.leizhen@huawei.com>
- <87sg28a3xg.fsf@intel.com> <86f64463-87df-9e62-a5ea-f411fcb54c19@huawei.com>
-Date: Mon, 31 May 2021 13:36:08 +0300
-Message-ID: <87wnrfqjfr.fsf@intel.com>
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/hdcp: Simplify code in
- intel_hdcp_auth_downstream()
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2047F6E8ED
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 11:30:02 +0000 (UTC)
+IronPort-SDR: CuKQ/jmzCUfYVrBCTeGgA0NMhgHimo7MU86YUArzOdpdbh7SFUQgHz+M1QJvXlOBWd9zOTQZNX
+ U6EOx5wWiBPg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10000"; a="190457309"
+X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="190457309"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2021 04:30:01 -0700
+IronPort-SDR: wrHAu9N3kOQkYL0gVcJLko9oQYAx/6ILYotM53BAbDF8dN7jE+6dqnuqBXu7fAyfa7DQS6mWLF
+ oyaLpMm7f4PA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="399286844"
+Received: from pedgms-s2600cwr.png.intel.com ([10.221.121.95])
+ by orsmga006.jf.intel.com with ESMTP; 31 May 2021 04:29:59 -0700
+From: "Sodhi, Vunny" <vunny.sodhi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 31 May 2021 19:32:17 +0800
+Message-Id: <1622460737-46494-1-git-send-email-vunny.sodhi@intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Add support of MOD_Y_TILED
+ during fb init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,103 +44,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Sodhi@freedesktop.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 May 2021, "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com> wrote:
-> On 2021/5/27 18:04, Jani Nikula wrote:
->> On Thu, 27 May 2021, Zhen Lei <thunder.leizhen@huawei.com> wrote:
->>> If intel_hdcp_validate_v_prime() has been successful within the allowed
->>> number of tries, we can directly call drm_dbg_kms() and "goto out" without
->>> jumping out of the loop and repeatedly judging whether the operation is
->>> successful. This can help us reduce an unnecessary if judgment. And it's
->>> a little clearer to read.
->> 
->> Generally I think the "happy day scenario" should be at the topmost
->> indentation level and not buried in the ifs with a goto exit.
->
-> for (xxx) {
->    if (a == b)
->        return found;
-> }
->
-> At least this way of writing is common.
+Adding Y_TILED modifier which is needed to support DRM_FORMAT_NV12
+during framebuffer initialization.
 
-Yes, if the loop is abstracted to a separate function.
+Signed-off-by: Sodhi, Vunny <vunny.sodhi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-BR,
-Jani.
-
->
->
->> 
->> BR,
->> Jani.
->> 
->>>
->>> No functional change.
->>>
->>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>> ---
->>>  drivers/gpu/drm/i915/display/intel_hdcp.c | 24 ++++++++++-------------
->>>  1 file changed, 10 insertions(+), 14 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->>> index d8570e14fe60..c32a854eda66 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->>> @@ -663,13 +663,13 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
->>>  
->>>  	ret = shim->read_ksv_fifo(dig_port, num_downstream, ksv_fifo);
->>>  	if (ret)
->>> -		goto err;
->>> +		goto out;
->>>  
->>>  	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, ksv_fifo,
->>>  					num_downstream) > 0) {
->>>  		drm_err(&dev_priv->drm, "Revoked Ksv(s) in ksv_fifo\n");
->>>  		ret = -EPERM;
->>> -		goto err;
->>> +		goto out;
->>>  	}
->>>  
->>>  	/*
->>> @@ -680,20 +680,16 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
->>>  		ret = intel_hdcp_validate_v_prime(connector, shim,
->>>  						  ksv_fifo, num_downstream,
->>>  						  bstatus);
->>> -		if (!ret)
->>> -			break;
->>> -	}
->>> -
->>> -	if (i == tries) {
->>> -		drm_dbg_kms(&dev_priv->drm,
->>> -			    "V Prime validation failed.(%d)\n", ret);
->>> -		goto err;
->>> +		if (!ret) {
->>> +			drm_dbg_kms(&dev_priv->drm,
->>> +				    "HDCP is enabled (%d downstream devices)\n",
->>> +				    num_downstream);
->>> +			goto out;
->>> +		}
->>>  	}
->>>  
->>> -	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (%d downstream devices)\n",
->>> -		    num_downstream);
->>> -	ret = 0;
->>> -err:
->>> +	drm_dbg_kms(&dev_priv->drm, "V Prime validation failed.(%d)\n", ret);
->>> +out:
->>>  	kfree(ksv_fifo);
->>>  	return ret;
->>>  }
->> 
->
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index caf0414..a9b1b62 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -11610,8 +11610,10 @@ static int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 		if (tiling == I915_TILING_X) {
+ 			mode_cmd->modifier[0] = I915_FORMAT_MOD_X_TILED;
+ 		} else if (tiling == I915_TILING_Y) {
++			mode_cmd->modifier[0] = I915_FORMAT_MOD_Y_TILED;
++		} else {
+ 			drm_dbg_kms(&dev_priv->drm,
+-				    "No Y tiling for legacy addfb\n");
++				    "Unsupported tiling for legacy addfb\n");
+ 			goto err;
+ 		}
+ 	}
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.7.4
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
