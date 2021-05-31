@@ -2,57 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC39396267
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 16:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08CE73962E4
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 17:00:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5FD36E914;
-	Mon, 31 May 2021 14:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C93A6E4D0;
+	Mon, 31 May 2021 15:00:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C966E167
- for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 14:54:37 +0000 (UTC)
-IronPort-SDR: c3k6rZmHpzYZgPUeZlI81lUpuX8d6KWYMpKiAoDZsbAAxygkUyh3JM7XtZgym6HkjSbhl8E5Z2
- WfnwnOMyyYOA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="288984280"
-X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="288984280"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2021 07:54:37 -0700
-IronPort-SDR: zA/ODrKSWtWJNruDzxhxIqQWMJZuBBVe+ZFKvr7U3HqNkZum68mQp3VoMkJMJXJ6WfJnu9WTvX
- lCq/U1KkGIDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="548771030"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by orsmga004.jf.intel.com with ESMTP; 31 May 2021 07:54:36 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 31 May 2021 15:54:35 +0100
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.008;
- Mon, 31 May 2021 20:24:33 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/adl_p: Same slices mask is not same
- Dbuf state
-Thread-Index: AQHXUucj9RI/17MdSkiBlvYvpv7IC6r9s3dw
-Date: Mon, 31 May 2021 14:54:33 +0000
-Message-ID: <6e5e684de71644179b858003e0a2e8a6@intel.com>
-References: <20210527110106.21434-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20210527110106.21434-1-stanislav.lisovskiy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com
+ [IPv6:2607:f8b0:4864:20::d29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69BC96E4D0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 15:00:49 +0000 (UTC)
+Received: by mail-io1-xd29.google.com with SMTP id z24so12217829ioi.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 08:00:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=wYKtm4IVSfVTnhnKghH2jNnLIsKH6Y+eNOaILu7ARSY=;
+ b=AqMEgYi53g30HYY0imJtzNViu05fOgAo/xQtrrm9XrM3n3KYgdCy6sM36TaTmgv0v6
+ XvIYBkRFfNiS9tcDp32kkkQRj9L5R+h86b+EJM1hUjC5ImiLdtusiOsddmyVTjrm3mI6
+ HVyluqo0OJwH1PN9FVBpuFPsEkrQe6YRuMK7k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=wYKtm4IVSfVTnhnKghH2jNnLIsKH6Y+eNOaILu7ARSY=;
+ b=fZH7T03DY4d/QIlW4TUyKYoU3DwRL1sVOyFW4nNylQNOVQunc/jlyz9bI8GgGrB1Po
+ GpV85KRvWy1yRQ1SoMecBCVy+kvkcm8qBMSf5zCFHZzd7+e1Mkycp6xJxKqBlUr1KMkK
+ M/LIG4DpS+R4odQEMq/zBOSjif97oz8V5x3x36HMAjogPij0zFZoTwJhTqO8tpSpC9BC
+ LL78GlqFis5FKHSyzBNaKYOiPyWsWxwKRNN0td6RpY1U3/Z2F/QuubFu9+dJMwNn3nmL
+ kFpTleVfkDtECrH0H0IMUgAVVE2a72lL0xh3xmZFH9hwPtpW4adHModcTZo7F1zRarnR
+ nLwA==
+X-Gm-Message-State: AOAM5321++L7mCxj6aCc1n8PbQvWw3VfMi0/SDRfa3G3uVQKKfvq3jz8
+ 6VoFRCyGKKZzSyT3wO5S1Mn2mubsf7vmfg==
+X-Google-Smtp-Source: ABdhPJzrQspmSdhpY0yBvHGbiOOZs8ia2SiDu6mgvUueDV1Z+/f/ZeroiCdjmbHMazC9AsmcB06uKw==
+X-Received: by 2002:a02:7348:: with SMTP id a8mr20952956jae.116.1622473248665; 
+ Mon, 31 May 2021 08:00:48 -0700 (PDT)
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com.
+ [209.85.166.53])
+ by smtp.gmail.com with ESMTPSA id q6sm5810279ilm.45.2021.05.31.08.00.48
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 31 May 2021 08:00:48 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id b25so12219836iot.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 08:00:48 -0700 (PDT)
+X-Received: by 2002:a6b:690c:: with SMTP id e12mr17489820ioc.69.1622473237437; 
+ Mon, 31 May 2021 08:00:37 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_p: Same slices mask is not
- same Dbuf state
+References: <20210518064215.2856977-1-tientzu@chromium.org>
+ <20210518064215.2856977-2-tientzu@chromium.org>
+ <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
+ <20210527130211.GA24344@lst.de> <bab261b4-f801-05af-8fd9-c440ed219591@amd.com>
+ <e59d4799-a6ff-6d13-0fed-087fc3482587@amd.com>
+In-Reply-To: <e59d4799-a6ff-6d13-0fed-087fc3482587@amd.com>
+From: Claire Chang <tientzu@chromium.org>
+Date: Mon, 31 May 2021 23:00:26 +0800
+X-Gmail-Original-Message-ID: <CALiNf29=suiQbDL28tBUXt6-E+-JJC_76X9Uxcdk2s+MSXrp2g@mail.gmail.com>
+Message-ID: <CALiNf29=suiQbDL28tBUXt6-E+-JJC_76X9Uxcdk2s+MSXrp2g@mail.gmail.com>
+To: Tom Lendacky <thomas.lendacky@amd.com>
+Subject: Re: [Intel-gfx] [PATCH v7 01/15] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,52 +73,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ Jianxiong Gao <jxgao@google.com>, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ sstabellini@kernel.org, Jim Quinlan <james.quinlan@broadcom.com>,
+ xypron.glpk@gmx.de, Robin Murphy <robin.murphy@arm.com>,
+ bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBTdGFuaXNs
-YXYNCj4gTGlzb3Zza2l5DQo+IFNlbnQ6IFRodXJzZGF5LCBNYXkgMjcsIDIwMjEgNDozMSBQTQ0K
-PiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBbSW50ZWwt
-Z2Z4XSBbUEFUQ0hdIGRybS9pOTE1L2FkbF9wOiBTYW1lIHNsaWNlcyBtYXNrIGlzIG5vdCBzYW1l
-IERidWYNCj4gc3RhdGUNCj4gDQo+IFdlIGN1cnJlbnRseSB0cmVhdCBzYW1lIHNsaWNlIG1hc2sg
-YXMgYSBzYW1lIERCdWYgc3RhdGUgYW5kIHNraXAgdXBkYXRpbmcgdGhlIERidWYNCj4gc2xpY2Vz
-LCBpZiB3ZSBkZXRlY3QgdGhhdC4NCj4gVGhpcyBpcyB3cm9uZyBhcyBpZiB3ZSBoYXZlIGEgbXVs
-dGkgdG8gc2luZ2xlIHBpcGUgY2hhbmdlIG9yIHZpY2UgdmVyc2EsIHRoYXQgd291bGQgYmUNCj4g
-dHJlYXRlZCBhcyBhIHNhbWUgRGJ1ZiBzdGF0ZSBhbmQgdGh1cyBubyBjaGFuZ2VzIHJlcXVpcmVk
-LCBzbyB3ZSBkb24ndCBnZXQgTWJ1cw0KPiB1cGRhdGVkLCBjYXVzaW5nIGlzc3Vlcy4NCj4gU29s
-dXRpb246IGNoZWNrIGFsc28gbWJ1c19qb2luLCBpbiBhZGRpdGlvbiB0byBzbGljZXMgbWFzay4N
-Cg0KQ2hhbmdlIGxvb2tzIGdvb2QgdG8gbWUuDQpSZXZpZXdlZC1ieTogVW1hIFNoYW5rYXIgPHVt
-YS5zaGFua2FyQGludGVsLmNvbT4NCg0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogU3RhbmlzbGF2IExpc292c2tp
-eSA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfcG0uYyB8IDYgKysrKy0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNl
-cnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jDQo+
-IGluZGV4IDAwZjNkZWFkMjBhZC4uODA0ZDgzNDg2ZTgxIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX3BtLmMNCj4gQEAgLTgwOTMsNyArODA5Myw4IEBAIHZvaWQgaW50ZWxfZGJ1Zl9wcmVfcGxh
-bmVfdXBkYXRlKHN0cnVjdA0KPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlKQ0KPiAgCQlpbnRl
-bF9hdG9taWNfZ2V0X29sZF9kYnVmX3N0YXRlKHN0YXRlKTsNCj4gDQo+ICAJaWYgKCFuZXdfZGJ1
-Zl9zdGF0ZSB8fA0KPiAtCSAgICBuZXdfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMgPT0gb2xk
-X2RidWZfc3RhdGUtPmVuYWJsZWRfc2xpY2VzKQ0KPiArCSAgICAoKG5ld19kYnVmX3N0YXRlLT5l
-bmFibGVkX3NsaWNlcyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpDQo+ICsJICAg
-ICYmIChuZXdfZGJ1Zl9zdGF0ZS0+am9pbmVkX21idXMgPT0gb2xkX2RidWZfc3RhdGUtPmpvaW5l
-ZF9tYnVzKSkpDQo+ICAJCXJldHVybjsNCj4gDQo+ICAJV0FSTl9PTighbmV3X2RidWZfc3RhdGUt
-PmJhc2UuY2hhbmdlZCk7DQo+IEBAIC04MTEzLDcgKzgxMTQsOCBAQCB2b2lkIGludGVsX2RidWZf
-cG9zdF9wbGFuZV91cGRhdGUoc3RydWN0DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpDQo+
-ICAJCWludGVsX2F0b21pY19nZXRfb2xkX2RidWZfc3RhdGUoc3RhdGUpOw0KPiANCj4gIAlpZiAo
-IW5ld19kYnVmX3N0YXRlIHx8DQo+IC0JICAgIG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNl
-cyA9PSBvbGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpDQo+ICsJICAgICgobmV3X2RidWZf
-c3RhdGUtPmVuYWJsZWRfc2xpY2VzID09IG9sZF9kYnVmX3N0YXRlLT5lbmFibGVkX3NsaWNlcykN
-Cj4gKwkgICAgJiYgKG5ld19kYnVmX3N0YXRlLT5qb2luZWRfbWJ1cyA9PSBvbGRfZGJ1Zl9zdGF0
-ZS0+am9pbmVkX21idXMpKSkNCj4gIAkJcmV0dXJuOw0KPiANCj4gIAlXQVJOX09OKCFuZXdfZGJ1
-Zl9zdGF0ZS0+YmFzZS5jaGFuZ2VkKTsNCj4gLS0NCj4gMi4yNC4xLjQ4NS5nYWQwNWEzZDhlNQ0K
-PiANCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4g
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdA0KPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-DQo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Fri, May 28, 2021 at 12:32 AM Tom Lendacky <thomas.lendacky@amd.com> wrote:
+>
+> On 5/27/21 9:41 AM, Tom Lendacky wrote:
+> > On 5/27/21 8:02 AM, Christoph Hellwig wrote:
+> >> On Wed, May 19, 2021 at 11:50:07AM -0700, Florian Fainelli wrote:
+> >>> You convert this call site with swiotlb_init_io_tlb_mem() which did not
+> >>> do the set_memory_decrypted()+memset(). Is this okay or should
+> >>> swiotlb_init_io_tlb_mem() add an additional argument to do this
+> >>> conditionally?
+> >>
+> >> The zeroing is useful and was missing before.  I think having a clean
+> >> state here is the right thing.
+> >>
+> >> Not sure about the set_memory_decrypted, swiotlb_update_mem_attributes
+> >> kinda suggests it is too early to set the memory decrupted.
+> >>
+> >> Adding Tom who should now about all this.
+> >
+> > The reason for adding swiotlb_update_mem_attributes() was because having
+> > the call to set_memory_decrypted() in swiotlb_init_with_tbl() triggered a
+> > BUG_ON() related to interrupts not being enabled yet during boot. So that
+> > call had to be delayed until interrupts were enabled.
+>
+> I pulled down and tested the patch set and booted with SME enabled. The
+> following was seen during the boot:
+>
+> [    0.134184] BUG: Bad page state in process swapper  pfn:108002
+> [    0.134196] page:(____ptrval____) refcount:0 mapcount:-128 mapping:0000000000000000 index:0x0 pfn:0x108002
+> [    0.134201] flags: 0x17ffffc0000000(node=0|zone=2|lastcpupid=0x1fffff)
+> [    0.134208] raw: 0017ffffc0000000 ffff88847f355e28 ffff88847f355e28 0000000000000000
+> [    0.134210] raw: 0000000000000000 0000000000000001 00000000ffffff7f 0000000000000000
+> [    0.134212] page dumped because: nonzero mapcount
+> [    0.134213] Modules linked in:
+> [    0.134218] CPU: 0 PID: 0 Comm: swapper Not tainted 5.13.0-rc2-sos-custom #3
+> [    0.134221] Hardware name: ...
+> [    0.134224] Call Trace:
+> [    0.134233]  dump_stack+0x76/0x94
+> [    0.134244]  bad_page+0xa6/0xf0
+> [    0.134252]  __free_pages_ok+0x331/0x360
+> [    0.134256]  memblock_free_all+0x158/0x1c1
+> [    0.134267]  mem_init+0x1f/0x14c
+> [    0.134273]  start_kernel+0x290/0x574
+> [    0.134279]  secondary_startup_64_no_verify+0xb0/0xbb
+>
+> I see this about 40 times during the boot, each with a different PFN. The
+> system boots (which seemed odd), but I don't know if there will be side
+> effects to this (I didn't stress the system).
+>
+> I modified the code to add a flag to not do the set_memory_decrypted(), as
+> suggested by Florian, when invoked from swiotlb_init_with_tbl(), and that
+> eliminated the bad page state BUG.
+
+Thanks. Will add a flag to skip set_memory_decrypted() in v9.
+
+>
+> Thanks,
+> Tom
+>
+> >
+> > Thanks,
+> > Tom
+> >
+> >>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
