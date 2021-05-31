@@ -2,46 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B357395B16
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 15:08:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A755395E80
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 15:58:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 995806E4B0;
-	Mon, 31 May 2021 13:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E496E4B5;
+	Mon, 31 May 2021 13:58:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B68A6E4A5;
- Mon, 31 May 2021 13:08:47 +0000 (UTC)
-IronPort-SDR: aI7x+BjxHJm/COTvhiMe4oRelM8vfRDnxT3qUyiw7Ggi0ArMYCmMWIgjvg17FsQNnl+g6Xe2tj
- yumA77tnABSg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10000"; a="183712700"
-X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="183712700"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2021 06:08:13 -0700
-IronPort-SDR: KfxgsW4nPh9EaThoSK/+Wl1o992BMajCelKM54sJiC+nJAD+aNwG/yL+HsfmSqsLCoZCPU7fnl
- GXnfyDBuAEtA==
-X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="437722703"
-Received: from fnygreen-mobl1.ger.corp.intel.com (HELO [10.249.254.133])
- ([10.249.254.133])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2021 06:08:11 -0700
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
-References: <20210531121940.267032-1-thomas.hellstrom@linux.intel.com>
- <20210531121940.267032-7-thomas.hellstrom@linux.intel.com>
- <853edbe3-29c8-6178-af17-8d4c250e78e8@amd.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <0f9e66ba-cadd-c501-88f5-ba83f65c7416@linux.intel.com>
-Date: Mon, 31 May 2021 15:08:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B1C26E4B5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 13:58:24 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id
+ s5-20020a7bc0c50000b0290147d0c21c51so24491wmh.4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 06:58:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=BzkE0GmnLuBZfQUsAWs2DGo1jIaTc5IaOsfju4cR12k=;
+ b=SXlUv4WIhHhJxxVcesqwxQhEoLpR/FhoJIVLsqZUwsUu5+3skI6skksiqdXJ9xC+us
+ MupYjgPkZDi/i2Rn4n9exbv/joxOWh5Et5mKU1DzWr+5iUYU8jn0G1zGecnIWvdaolAC
+ AlaNXlAaKBc9m+ajh/YcF34mC9CP3tVwFHvBQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=BzkE0GmnLuBZfQUsAWs2DGo1jIaTc5IaOsfju4cR12k=;
+ b=qE2xdvcFNRbpZBaQTVQjRZ53pNLBgRvpi9Dc/CMD7JBxbhVPC1EEn/5pDepYEal+vN
+ zVYbA6MXcFXg8WByh+kZcIE1sGHWOa4BqCcTl4rOqi12n3yi5azzA0Le9XyW0RIQ6dcV
+ W2Y+9eAy1GB4Zyu95oFKIXKMuK9kkvaXej2AQZXxQLexC52P788ufqkgt8+vKqmxHFiU
+ Fz0NiupdxF1bMWaxhg+8kvnOi5NA0439+AXN6QejhToWMIGtBO1B7kt0Z8Z6N7Q+SR+f
+ 51CVvQvbHXR3YXVBrusdNx+YTRWLkS8dH9mtgWnTcp982uZVL22EyoXc/WJHK1638Rto
+ j7xw==
+X-Gm-Message-State: AOAM531HMnJ4n/7zA/sjWItkUwVUzEWo+VQm5nvMfF++0rSEExJFQJe6
+ 8JaZbxcgWS031nQxqVZ8ycW8Pw==
+X-Google-Smtp-Source: ABdhPJxznv4FYdnLVCeeoH63MEapUuyco+qx7Pu2ddM9RDVrVDd2exQMFaVrauwO5G4QbiRRus3dVg==
+X-Received: by 2002:a05:600c:231a:: with SMTP id
+ 26mr15080588wmo.92.1622469502998; 
+ Mon, 31 May 2021 06:58:22 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id 11sm15697794wmo.24.2021.05.31.06.58.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 31 May 2021 06:58:22 -0700 (PDT)
+Date: Mon, 31 May 2021 15:58:20 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YLTrfEVcUrlfaMXJ@phenom.ffwll.local>
+References: <20210527162650.1182544-1-jason@jlekstrand.net>
+ <20210527162650.1182544-27-jason@jlekstrand.net>
 MIME-Version: 1.0
-In-Reply-To: <853edbe3-29c8-6178-af17-8d4c250e78e8@amd.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v7 06/15] drm/ttm: Add a generic TTM memcpy
- move for page-based iomem
+Content-Disposition: inline
+In-Reply-To: <20210527162650.1182544-27-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 26/29] drm/i915/gem: Don't allow changing
+ the engine set on running contexts (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,87 +68,384 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDUvMzEvMjEgMjozNiBQTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiBBbSAzMS4wNS4y
-MSB1bSAxNDoxOSBzY2hyaWViIFRob21hcyBIZWxsc3Ryw7ZtOgo+PiBUaGUgaW50ZXJuYWwgdHRt
-X2JvX3V0aWwgbWVtY3B5IHVzZXMgaW9yZW1hcCBmdW5jdGlvbmFsaXR5LCBhbmQgd2hpbGUgaXQK
-Pj4gcHJvYmFibHkgbWlnaHQgYmUgcG9zc2libGUgdG8gdXNlIGl0IGZvciBjb3B5aW5nIGluLSBh
-bmQgb3V0IG9mCj4+IHNnbGlzdCByZXByZXNlbnRlZCBpbyBtZW1vcnksIHVzaW5nIGlvX21lbV9y
-ZXNlcnZlKCkgLyBpb19tZW1fZnJlZSgpCj4+IGNhbGxiYWNrcywgdGhhdCB3b3VsZCBjYXVzZSBw
-cm9ibGVtcyB3aXRoIGZhdWx0KCkuCj4+IEluc3RlYWQsIGltcGxlbWVudCBhIG1ldGhvZCBtYXBw
-aW5nIHBhZ2UtYnktcGFnZSB1c2luZyBrbWFwX2xvY2FsKCkKPj4gc2VtYW50aWNzLiBBcyBhbiBh
-ZGRpdGlvbmFsIGJlbmVmaXQgd2UgdGhlbiBhdm9pZCB0aGUgb2NjYXNpb25hbCBnbG9iYWwKPj4g
-VExCIGZsdXNoZXMgb2YgaW9yZW1hcCgpIGFuZCBjb25zdW1pbmcgaW9yZW1hcCBzcGFjZSwgZWxp
-bWluYXRpb24gb2YgYQo+PiBjcml0aWNhbCBwb2ludCBvZiBmYWlsdXJlIGFuZCB3aXRoIGEgc2xp
-Z2h0IGNoYW5nZSBvZiBzZW1hbnRpY3Mgd2UgY291bGQKPj4gYWxzbyBwdXNoIHRoZSBtZW1jcHkg
-b3V0IGFzeW5jIGZvciB0ZXN0aW5nIGFuZCBhc3luYyBkcml2ZXIgZGV2ZWxvcG1lbnQKPj4gcHVy
-cG9zZXMuCj4+Cj4+IEEgc3BlY2lhbCBsaW5lYXIgaW9tZW0gaXRlcmF0b3IgaXMgaW50cm9kdWNl
-ZCBpbnRlcm5hbGx5IHRvIG1pbWljIHRoZQo+PiBvbGQgaW9yZW1hcCBiZWhhdmlvdXIgZm9yIGNv
-ZGUtcGF0aHMgdGhhdCBjYW4ndCBpbW1lZGlhdGVseSBiZSBwb3J0ZWQKPj4gb3Zlci4gVGhpcyBh
-ZGRzIHRvIHRoZSBjb2RlIHNpemUgYW5kIHNob3VsZCBiZSBjb25zaWRlcmVkIGEgdGVtcG9yYXJ5
-Cj4+IHNvbHV0aW9uLgo+Pgo+PiBMb29raW5nIGF0IHRoZSBjb2RlIHdlIGhhdmUgYSBsb3Qgb2Yg
-Y2hlY2tzIGZvciBpb21hcCB0YWdnZWQgcG9pbnRlcnMuCj4+IElkZWFsbHkgd2Ugc2hvdWxkIGV4
-dGVuZCB0aGUgY29yZSBtZW1yZW1hcCBmdW5jdGlvbnMgdG8gYWxzbyBhY2NlcHQKPj4gdW5jYWNo
-ZWQgbWVtb3J5IGFuZCBrbWFwX2xvY2FsIGZ1bmN0aW9uYWxpdHkuIFRoZW4gd2UgY291bGQgc3Ry
-aXAgYQo+PiBsb3Qgb2YgY29kZS4KPj4KPj4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlh
-bi5rb2VuaWdAYW1kLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRo
-b21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+PiAtLS0KPj4gdjM6Cj4+IC0gU3BsaXQg
-dXAgaW4gdmFyaW91cyBUVE0gZmlsZXMgYW5kIGFkZHJlc3NlZCByZXZpZXcgY29tbWVudHMgYnkK
-Pj4gwqDCoCBDaHJpc3RpYW4gS8O2bmlnLiBUZXN0ZWQgYW5kIGZpeGVkIGxlZ2FjeSBpb21hcCBt
-ZW1jcHkgcGF0aCBvbiBpOTE1Lgo+PiB2NDoKPj4gLSBGaXggYW4gdW5pbml0aWFsaXplZCB2YXJp
-YWJsZQo+PiDCoMKgIFJlcG9ydGVkIGJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNv
-bT4KPj4gwqDCoCBSZXBvcnRlZCBieTogRGFuIENhcnBlbnRlciA8ZGFuLmNhcnBlbnRlckBvcmFj
-bGUuY29tPgo+PiAtIE1pbm9yIGNoYW5nZSB0byB0aGUgdHRtX21vdmVfbWVtY3B5KCkgaW50ZXJm
-YWNlLgo+PiAtIEdyYWNlZnVsbHkgaGFuZGxlIGxhY2sgb2YgbWVtcmVtYXAoKSBzdXBwb3J0IG9u
-IG1lbWNweQo+PiDCoMKgIChSZXBvcnRlZCBieSBNYXR0aGV3IEF1bGQpCj4+IC0gTWlub3Igc3R5
-bGUgZml4IChSZXBvcnRlZCBieSBNYXR0aGV3IEF1bGQpCj4+IC0tLQo+PiDCoCBkcml2ZXJzL2dw
-dS9kcm0vdHRtL3R0bV9ib191dGlsLmPCoCB8IDI4MCArKysrKysrKysrLS0tLS0tLS0tLS0tLS0t
-LS0tLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9tb2R1bGUuY8KgwqAgfMKgIDM1ICsr
-KysKPj4gwqAgZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fcmVzb3VyY2UuYyB8IDE5MyArKysrKysr
-KysrKysrKysrKysrKwo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV90dC5jwqDCoMKgwqDC
-oMKgIHzCoCA0MiArKysrKwo+PiDCoCBpbmNsdWRlL2RybS90dG0vdHRtX2JvX2RyaXZlci5owqDC
-oMKgIHzCoCAyOCArKysKPj4gwqAgaW5jbHVkZS9kcm0vdHRtL3R0bV9jYWNoaW5nLmjCoMKgwqDC
-oMKgIHzCoMKgIDIgKwo+PiDCoCBpbmNsdWRlL2RybS90dG0vdHRtX2ttYXBfaXRlci5owqDCoMKg
-IHzCoCA2MSArKysrKysrCj4+IMKgIGluY2x1ZGUvZHJtL3R0bS90dG1fcmVzb3VyY2UuaMKgwqDC
-oMKgIHzCoCA2MSArKysrKysrCj4+IMKgIGluY2x1ZGUvZHJtL3R0bS90dG1fdHQuaMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHzCoCAxNiArKwo+PiDCoCA5IGZpbGVzIGNoYW5nZWQsIDUzNiBpbnNlcnRp
-b25zKCspLCAxODIgZGVsZXRpb25zKC0pCj4+IMKgIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRl
-L2RybS90dG0vdHRtX2ttYXBfaXRlci5oCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vdHRtL3R0bV9ib191dGlsLmMgCj4+IGIvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm9fdXRp
-bC5jCj4+IGluZGV4IGFlOGI2MTQ2MDcyNC4uNmFjNzc0NGExYTVjIDEwMDY0NAo+PiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib191dGlsLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L3R0bS90dG1fYm9fdXRpbC5jCj4+IEBAIC03MiwxOTAgKzcyLDEyNiBAQCB2b2lkIHR0bV9tZW1f
-aW9fZnJlZShzdHJ1Y3QgdHRtX2RldmljZSAqYmRldiwKPj4gwqDCoMKgwqDCoCBtZW0tPmJ1cy5h
-ZGRyID0gTlVMTDsKPj4gwqAgfQo+PiDCoCAtc3RhdGljIGludCB0dG1fcmVzb3VyY2VfaW9yZW1h
-cChzdHJ1Y3QgdHRtX2RldmljZSAqYmRldiwKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBzdHJ1Y3QgdHRtX3Jlc291cmNlICptZW0sCj4+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgdm9pZCAqKnZpcnR1YWwpCj4+ICsvKioKPj4gKyAqIHR0bV9t
-b3ZlX21lbWNweSAtIEhlbHBlciB0byBwZXJmb3JtIGEgbWVtY3B5IHR0bSBtb3ZlIG9wZXJhdGlv
-bi4KPj4gKyAqIEBibzogVGhlIHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdC4KPj4gKyAqIEBuZXdf
-bWVtOiBUaGUgc3RydWN0IHR0bV9yZXNvdXJjZSB3ZSdyZSBtb3ZpbmcgdG8gKGNvcHkgCj4+IGRl
-c3RpbmF0aW9uKS4KPj4gKyAqIEBuZXdfaXRlcjogQSBzdHJ1Y3QgdHRtX2ttYXBfaXRlciByZXBy
-ZXNlbnRpbmcgdGhlIGRlc3RpbmF0aW9uIAo+PiByZXNvdXJjZS4KPj4gKyAqIEBzcmNfaXRlcjog
-QSBzdHJ1Y3QgdHRtX2ttYXBfaXRlciByZXByZXNlbnRpbmcgdGhlIHNvdXJjZSByZXNvdXJjZS4K
-Pj4gKyAqCj4+ICsgKiBUaGlzIGZ1bmN0aW9uIGlzIGludGVuZGVkIHRvIGJlIGFibGUgdG8gbW92
-ZSBvdXQgYXN5bmMgdW5kZXIgYQo+PiArICogZG1hLWZlbmNlIGlmIGRlc2lyZWQuCj4+ICsgKi8K
-Pj4gK3ZvaWQgdHRtX21vdmVfbWVtY3B5KHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8sCj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGdvZmZfdCBudW1fcGFnZXMsCj4KPiBDYW4gd2Ug
-c3dpdGNoIHRvIHVpbnQzMl90IGZvciBudW1fcGFnZXMgZm9yIFRUTSBpbiBnZW5lcmFsPwo+Cj4g
-VGhhdCBhbGxvd3MgdG8gY29weSAxNlRpQiB3aGVuIHlvdSBoYXZlIDRLaUIgcGFnZXMgd2hpY2gg
-c2hvdWxkIGJlIAo+IGVub3VnaCBmb3IgcXVpdGUgYSB3aGlsZSBhbmQgSSBoYWQgc29tZSByZWFs
-bHkgYmFkIGJ1Z3MgYmVjYXVzZSBwZW9wbGUgCj4gdGVuZCB0byBkbyA8PCBQQUdFX1NISUZUIGFu
-ZCBmb3JnZXQgdGhhdCBpdCBpcyBvbmx5IDMyYml0IHNvbWV0aW1lcy4KCkkgY2FuIGRvIHRoYXQs
-IGFsdGhvdWdoIElJUkMgd2UndmUgaGFkIHNvbWUgZGlzY3Vzc2lvbnMgaW50ZXJuYWxseSB0aGF0
-IAoxNlRpQiBpc24ndCBlbm91Z2ggZm9yIG91ciBib3MgaW4gZ2VuZXJhbCwgc28gYXQgc29tZSBw
-b2ludCBhIHJlcXVlc3QgCmZyb20gdXMgbWlnaHQgdG8gYmUgdG8gc2VlIHdoYXQgd2UgY2FuIGRv
-IHRvIGJ1bXAgdGhhdCBhY3Jvc3MgVFRNIGZvciAKNjQtYml0PwoKTWF0dGhldywgeW91IGxvb2tl
-ZCBhdCB0aGlzIGEgY291cGxlIG9mIHdlZWtzIGFnbz8KCgo+Cj4gQXBhcnQgZnJvbSB0aGF0IGZl
-ZWwgZnJlZSB0byBzdGljayBteSByYiBvbiB0aGUgcGF0Y2guCgpUaGFua3MhCgovVGhvbWFzCgoK
-Pgo+IENocmlzdGlhbi4KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+On Thu, May 27, 2021 at 11:26:47AM -0500, Jason Ekstrand wrote:
+> When the APIs were added to manage the engine set on a GEM context
+> directly from userspace, the questionable choice was made to allow
+> changing the engine set on a context at any time.  This is horribly racy
+> and there's absolutely no reason why any userspace would want to do this
+> outside of trying to exercise interesting race conditions.  By removing
+> support for CONTEXT_PARAM_ENGINES from ctx_setparam, we make it
+> impossible to change the engine set after the context has been fully
+> created.
+> 
+> This doesn't yet let us delete all the deferred engine clean-up code as
+> that's still used for handling the case where the client dies or calls
+> GEM_CONTEXT_DESTROY while work is in flight.  However, moving to an API
+> where the engine set is effectively immutable gives us more options to
+> potentially clean that code up a bit going forward.  It also removes a
+> whole class of ways in which a client can hurt itself or try to get
+> around kernel context banning.
+
+On this I do kinda wonder why we don't refcount drm_file and then gc all
+these tricks. Iirc drm_file disappearing at a bad time is a large reasons
+for all these tricks we need for context/request/engine cleanup.
+
+But yeah definitely needs a pile more analysis.
+
+> 
+> v2 (Jason Ekstrand):
+>  - Expand the commit mesage
+
+I already gave you an r-b assuming you type some commit message ...
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 303 --------------------
+>  1 file changed, 303 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index a528c8f3354a0..e6a6ead477ff4 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1819,305 +1819,6 @@ static int set_sseu(struct i915_gem_context *ctx,
+>  	return ret;
+>  }
+>  
+> -struct set_engines {
+> -	struct i915_gem_context *ctx;
+> -	struct i915_gem_engines *engines;
+> -};
+> -
+> -static int
+> -set_engines__load_balance(struct i915_user_extension __user *base, void *data)
+> -{
+> -	struct i915_context_engines_load_balance __user *ext =
+> -		container_of_user(base, typeof(*ext), base);
+> -	const struct set_engines *set = data;
+> -	struct drm_i915_private *i915 = set->ctx->i915;
+> -	struct intel_engine_cs *stack[16];
+> -	struct intel_engine_cs **siblings;
+> -	struct intel_context *ce;
+> -	struct intel_sseu null_sseu = {};
+> -	u16 num_siblings, idx;
+> -	unsigned int n;
+> -	int err;
+> -
+> -	if (!HAS_EXECLISTS(i915))
+> -		return -ENODEV;
+> -
+> -	if (intel_uc_uses_guc_submission(&i915->gt.uc))
+> -		return -ENODEV; /* not implement yet */
+> -
+> -	if (get_user(idx, &ext->engine_index))
+> -		return -EFAULT;
+> -
+> -	if (idx >= set->engines->num_engines) {
+> -		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
+> -			idx, set->engines->num_engines);
+> -		return -EINVAL;
+> -	}
+> -
+> -	idx = array_index_nospec(idx, set->engines->num_engines);
+> -	if (set->engines->engines[idx]) {
+> -		drm_dbg(&i915->drm,
+> -			"Invalid placement[%d], already occupied\n", idx);
+> -		return -EEXIST;
+> -	}
+> -
+> -	if (get_user(num_siblings, &ext->num_siblings))
+> -		return -EFAULT;
+> -
+> -	err = check_user_mbz(&ext->flags);
+> -	if (err)
+> -		return err;
+> -
+> -	err = check_user_mbz(&ext->mbz64);
+> -	if (err)
+> -		return err;
+> -
+> -	siblings = stack;
+> -	if (num_siblings > ARRAY_SIZE(stack)) {
+> -		siblings = kmalloc_array(num_siblings,
+> -					 sizeof(*siblings),
+> -					 GFP_KERNEL);
+> -		if (!siblings)
+> -			return -ENOMEM;
+> -	}
+> -
+> -	for (n = 0; n < num_siblings; n++) {
+> -		struct i915_engine_class_instance ci;
+> -
+> -		if (copy_from_user(&ci, &ext->engines[n], sizeof(ci))) {
+> -			err = -EFAULT;
+> -			goto out_siblings;
+> -		}
+> -
+> -		siblings[n] = intel_engine_lookup_user(i915,
+> -						       ci.engine_class,
+> -						       ci.engine_instance);
+> -		if (!siblings[n]) {
+> -			drm_dbg(&i915->drm,
+> -				"Invalid sibling[%d]: { class:%d, inst:%d }\n",
+> -				n, ci.engine_class, ci.engine_instance);
+> -			err = -EINVAL;
+> -			goto out_siblings;
+> -		}
+> -	}
+> -
+> -	ce = intel_execlists_create_virtual(siblings, n);
+> -	if (IS_ERR(ce)) {
+> -		err = PTR_ERR(ce);
+> -		goto out_siblings;
+> -	}
+> -
+> -	intel_context_set_gem(ce, set->ctx, null_sseu);
+> -
+> -	if (cmpxchg(&set->engines->engines[idx], NULL, ce)) {
+> -		intel_context_put(ce);
+> -		err = -EEXIST;
+> -		goto out_siblings;
+> -	}
+> -
+> -out_siblings:
+> -	if (siblings != stack)
+> -		kfree(siblings);
+> -
+> -	return err;
+> -}
+> -
+> -static int
+> -set_engines__bond(struct i915_user_extension __user *base, void *data)
+> -{
+> -	struct i915_context_engines_bond __user *ext =
+> -		container_of_user(base, typeof(*ext), base);
+> -	const struct set_engines *set = data;
+> -	struct drm_i915_private *i915 = set->ctx->i915;
+> -	struct i915_engine_class_instance ci;
+> -	struct intel_engine_cs *virtual;
+> -	struct intel_engine_cs *master;
+> -	u16 idx, num_bonds;
+> -	int err, n;
+> -
+> -	if (get_user(idx, &ext->virtual_index))
+> -		return -EFAULT;
+> -
+> -	if (idx >= set->engines->num_engines) {
+> -		drm_dbg(&i915->drm,
+> -			"Invalid index for virtual engine: %d >= %d\n",
+> -			idx, set->engines->num_engines);
+> -		return -EINVAL;
+> -	}
+> -
+> -	idx = array_index_nospec(idx, set->engines->num_engines);
+> -	if (!set->engines->engines[idx]) {
+> -		drm_dbg(&i915->drm, "Invalid engine at %d\n", idx);
+> -		return -EINVAL;
+> -	}
+> -	virtual = set->engines->engines[idx]->engine;
+> -
+> -	if (intel_engine_is_virtual(virtual)) {
+> -		drm_dbg(&i915->drm,
+> -			"Bonding with virtual engines not allowed\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	err = check_user_mbz(&ext->flags);
+> -	if (err)
+> -		return err;
+> -
+> -	for (n = 0; n < ARRAY_SIZE(ext->mbz64); n++) {
+> -		err = check_user_mbz(&ext->mbz64[n]);
+> -		if (err)
+> -			return err;
+> -	}
+> -
+> -	if (copy_from_user(&ci, &ext->master, sizeof(ci)))
+> -		return -EFAULT;
+> -
+> -	master = intel_engine_lookup_user(i915,
+> -					  ci.engine_class, ci.engine_instance);
+> -	if (!master) {
+> -		drm_dbg(&i915->drm,
+> -			"Unrecognised master engine: { class:%u, instance:%u }\n",
+> -			ci.engine_class, ci.engine_instance);
+> -		return -EINVAL;
+> -	}
+> -
+> -	if (get_user(num_bonds, &ext->num_bonds))
+> -		return -EFAULT;
+> -
+> -	for (n = 0; n < num_bonds; n++) {
+> -		struct intel_engine_cs *bond;
+> -
+> -		if (copy_from_user(&ci, &ext->engines[n], sizeof(ci)))
+> -			return -EFAULT;
+> -
+> -		bond = intel_engine_lookup_user(i915,
+> -						ci.engine_class,
+> -						ci.engine_instance);
+> -		if (!bond) {
+> -			drm_dbg(&i915->drm,
+> -				"Unrecognised engine[%d] for bonding: { class:%d, instance: %d }\n",
+> -				n, ci.engine_class, ci.engine_instance);
+> -			return -EINVAL;
+> -		}
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+> -static const i915_user_extension_fn set_engines__extensions[] = {
+> -	[I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE] = set_engines__load_balance,
+> -	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
+> -};
+> -
+> -static int
+> -set_engines(struct i915_gem_context *ctx,
+> -	    const struct drm_i915_gem_context_param *args)
+> -{
+> -	struct drm_i915_private *i915 = ctx->i915;
+> -	struct i915_context_param_engines __user *user =
+> -		u64_to_user_ptr(args->value);
+> -	struct intel_sseu null_sseu = {};
+> -	struct set_engines set = { .ctx = ctx };
+> -	unsigned int num_engines, n;
+> -	u64 extensions;
+> -	int err;
+> -
+> -	if (!args->size) { /* switch back to legacy user_ring_map */
+> -		if (!i915_gem_context_user_engines(ctx))
+> -			return 0;
+> -
+> -		set.engines = default_engines(ctx, null_sseu);
+> -		if (IS_ERR(set.engines))
+> -			return PTR_ERR(set.engines);
+> -
+> -		goto replace;
+> -	}
+> -
+> -	if (args->size < sizeof(*user) ||
+> -	    !IS_ALIGNED(args->size -  sizeof(*user), sizeof(*user->engines))) {
+> -		drm_dbg(&i915->drm, "Invalid size for engine array: %d\n",
+> -			args->size);
+> -		return -EINVAL;
+> -	}
+> -
+> -	num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
+> -	/* RING_MASK has no shift so we can use it directly here */
+> -	if (num_engines > I915_EXEC_RING_MASK + 1)
+> -		return -EINVAL;
+> -
+> -	set.engines = alloc_engines(num_engines);
+> -	if (!set.engines)
+> -		return -ENOMEM;
+> -
+> -	for (n = 0; n < num_engines; n++) {
+> -		struct i915_engine_class_instance ci;
+> -		struct intel_engine_cs *engine;
+> -		struct intel_context *ce;
+> -
+> -		if (copy_from_user(&ci, &user->engines[n], sizeof(ci))) {
+> -			__free_engines(set.engines, n);
+> -			return -EFAULT;
+> -		}
+> -
+> -		if (ci.engine_class == (u16)I915_ENGINE_CLASS_INVALID &&
+> -		    ci.engine_instance == (u16)I915_ENGINE_CLASS_INVALID_NONE) {
+> -			set.engines->engines[n] = NULL;
+> -			continue;
+> -		}
+> -
+> -		engine = intel_engine_lookup_user(ctx->i915,
+> -						  ci.engine_class,
+> -						  ci.engine_instance);
+> -		if (!engine) {
+> -			drm_dbg(&i915->drm,
+> -				"Invalid engine[%d]: { class:%d, instance:%d }\n",
+> -				n, ci.engine_class, ci.engine_instance);
+> -			__free_engines(set.engines, n);
+> -			return -ENOENT;
+> -		}
+> -
+> -		ce = intel_context_create(engine);
+> -		if (IS_ERR(ce)) {
+> -			__free_engines(set.engines, n);
+> -			return PTR_ERR(ce);
+> -		}
+> -
+> -		intel_context_set_gem(ce, ctx, null_sseu);
+> -
+> -		set.engines->engines[n] = ce;
+> -	}
+> -	set.engines->num_engines = num_engines;
+> -
+> -	err = -EFAULT;
+> -	if (!get_user(extensions, &user->extensions))
+> -		err = i915_user_extensions(u64_to_user_ptr(extensions),
+> -					   set_engines__extensions,
+> -					   ARRAY_SIZE(set_engines__extensions),
+> -					   &set);
+> -	if (err) {
+> -		free_engines(set.engines);
+> -		return err;
+> -	}
+> -
+> -replace:
+> -	mutex_lock(&ctx->engines_mutex);
+> -	if (i915_gem_context_is_closed(ctx)) {
+> -		mutex_unlock(&ctx->engines_mutex);
+> -		free_engines(set.engines);
+> -		return -ENOENT;
+> -	}
+> -	if (args->size)
+> -		i915_gem_context_set_user_engines(ctx);
+> -	else
+> -		i915_gem_context_clear_user_engines(ctx);
+> -	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
+> -	mutex_unlock(&ctx->engines_mutex);
+> -
+> -	/* Keep track of old engine sets for kill_context() */
+> -	engines_idle_release(ctx, set.engines);
+> -
+> -	return 0;
+> -}
+> -
+>  static int
+>  set_persistence(struct i915_gem_context *ctx,
+>  		const struct drm_i915_gem_context_param *args)
+> @@ -2200,10 +1901,6 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
+>  		ret = set_sseu(ctx, args);
+>  		break;
+>  
+> -	case I915_CONTEXT_PARAM_ENGINES:
+> -		ret = set_engines(ctx, args);
+> -		break;
+> -
+>  	case I915_CONTEXT_PARAM_PERSISTENCE:
+>  		ret = set_persistence(ctx, args);
+>  		break;
+> -- 
+> 2.31.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
