@@ -1,43 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9EE4395FE9
-	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 16:17:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1F3395FEB
+	for <lists+intel-gfx@lfdr.de>; Mon, 31 May 2021 16:19:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F816E92F;
-	Mon, 31 May 2021 14:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C59B6E503;
+	Mon, 31 May 2021 14:18:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DC376E4CA;
- Mon, 31 May 2021 14:17:37 +0000 (UTC)
-IronPort-SDR: QiVKFILcAI8awq7HF1obVgf2TEvQhAPs4ujj4C8vDPXg7hNwCImjj0zMUltJC3Nbcntnqjd9XZ
- JAOnwPpJEIHA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="183722204"
-X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="183722204"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2021 07:17:36 -0700
-IronPort-SDR: o+4H46Vr4s7uPnf5KkUMFBJInONSirljm5G6YzrZmr8tA+fMjMaJoloaKDeZFjqWVYl3pMTSET
- HLODNjw261lw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,237,1616482800"; d="scan'208";a="482110184"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 31 May 2021 07:17:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 31 May 2021 17:17:33 +0300
-Date: Mon, 31 May 2021 17:17:33 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vidya Srinivas <vidya.srinivas@intel.com>
-Message-ID: <YLTv/Z8j9rCf2koN@intel.com>
-References: <1622176443-12682-1-git-send-email-vidya.srinivas@intel.com>
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE696E18E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 14:18:55 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id f2so31573wri.11
+ for <intel-gfx@lists.freedesktop.org>; Mon, 31 May 2021 07:18:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=9Y90GAy/qzhEjo4EyyWqBMSs4yVrz/tgr6sk/6Oef8Y=;
+ b=VxOLoDTZ08Q5kAHAUTzDJF4ieerfDE5hjNpkOF0Ry61+QRzbq74kTiY+jyOmZZK0jB
+ b0r06lIozAUgNH4gu8N3VHQfOiryng+zuMl2cUEI9sDwr1Xcwnz8H7eTMmZt990kB1O+
+ uzYewnXExX4O/ISvTuSKbrL9dVtyvsXovIOFI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=9Y90GAy/qzhEjo4EyyWqBMSs4yVrz/tgr6sk/6Oef8Y=;
+ b=rxnSRuOBmjh8Ci8pZegT0xzCjEKMTLB4+Mnz5QFkv1Lm6/xji1hvUEhYaGYLWLEMsp
+ Wcf+frwhRePltngWBX97lm7PIYVkIwRG+dZ4Gh9+D+dlsq/nCw1EiADf0R2a9SDl7tcG
+ FuLmKO3CwAEgStuXDEffmXo+uGPSr3yLgKxoDUZxjJdGWqNm94gr7SV/X3+0PXSs74NR
+ NXi7IKMYakKb9+QmDzqfRqTex6Bm5BF1otbFOmaHV/j9oRRj3Lx/60Z9oeRbmJAfAG/1
+ b9Jsvsjpji1OJLYI7kR8i7bxQtrz++0AkevBLA+cHnZd7RPCUSunh/s8FLHcQFfD/hoG
+ BKOg==
+X-Gm-Message-State: AOAM530YA3zx73ad9mpBs5nv4lEhnmhYib3wORimqOWSrjMsl28SGIy7
+ n2g9uYrleicfCIm0FGtj26hk9g==
+X-Google-Smtp-Source: ABdhPJxIvwSM89y7d18aVA+ZTiKsCQgYkivc568yrJpmIzZSbbh4gxdVmL/Z/lEPcWCdPvg6BDhVKA==
+X-Received: by 2002:adf:8b9a:: with SMTP id o26mr12299206wra.96.1622470733910; 
+ Mon, 31 May 2021 07:18:53 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id j101sm18612300wrj.66.2021.05.31.07.18.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 31 May 2021 07:18:53 -0700 (PDT)
+Date: Mon, 31 May 2021 16:18:51 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YLTwSzcnqNTRSXDD@phenom.ffwll.local>
+References: <20210527162650.1182544-1-jason@jlekstrand.net>
+ <20210527162650.1182544-30-jason@jlekstrand.net>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1622176443-12682-1-git-send-email-vidya.srinivas@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] [RFC] tests/kms_prime:
- Aligned pitch to 64 byte for Intel platforms
+In-Reply-To: <20210527162650.1182544-30-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 29/29] drm/i915/gem: Roll all of context
+ creation together
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,82 +66,319 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- charlton.lin@intel.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 28, 2021 at 10:04:03AM +0530, Vidya Srinivas wrote:
-> For Intel platforms, pitch needs to be 64 byte aligned.
-> Kernel code vgem_gem_dumb_create which is platform generic code
-> doesnt do the alignment. This causes frame buffer creation to fail
-> on Intel platforms where the pitch is not 64 byte aligned.
-> =
+On Thu, May 27, 2021 at 11:26:50AM -0500, Jason Ekstrand wrote:
+> Now that we have the whole engine set and VM at context creation time,
+> we can just assign those fields instead of creating first and handling
+> the VM and engines later.  This lets us avoid creating useless VMs and
+> engine sets and lets us get rid of the complex VM setting code.
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 
-> tests: test run on Intel platforms with panel resolution 1366x768
-> =
+On the last three patches:
 
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+Looking at the end result we still have the ctx->user_flags which are
+muttable, and I think for again no reason at all. Especially for
+persistence I think it'd be nice to have that immutable, since some of the
+dedicated cleanup code for that is rather hairy.
+
+But really also would be nice if the other 3 hang related flags would be
+immutable too.
+
+Anyway that's a separate thing for sure, since the big ones are clearly
+the mutable vm/engines, and that's now gone.
+
+Cheers!
+
+I'll check with Zbyscek who cross-checks the revised igt coverage against
+the revised uapi. And to avoid confusion like last round: I'll expect you
+to ping me if you disagree on some or send out v6. Next round should
+already come with r-b: me on all the patches (well one maybe I need to
+check out again when you've moved the wrongly squashed hunk to the right
+place).
+-Daniel
 > ---
->  tests/kms_prime.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> =
-
-> diff --git a/tests/kms_prime.c b/tests/kms_prime.c
-> index 8cb2ca2a9dc3..fdc941fe8100 100644
-> --- a/tests/kms_prime.c
-> +++ b/tests/kms_prime.c
-> @@ -51,6 +51,8 @@ static struct {
->  	{ .r =3D 1.0, .g =3D 0.0, .b =3D 0.0, .color =3D 0xffff0000 },
->  };
->  =
-
-> +bool check_platform;
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 159 ++++++------------
+>  .../gpu/drm/i915/gem/selftests/mock_context.c |  33 ++--
+>  2 files changed, 64 insertions(+), 128 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index e6a6ead477ff4..502a2bd1a043e 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1298,56 +1298,6 @@ static int __context_set_persistence(struct i915_gem_context *ctx, bool state)
+>  	return 0;
+>  }
+>  
+> -static struct i915_gem_context *
+> -__create_context(struct drm_i915_private *i915,
+> -		 const struct i915_gem_proto_context *pc)
+> -{
+> -	struct i915_gem_context *ctx;
+> -	struct i915_gem_engines *e;
+> -	int err;
+> -	int i;
+> -
+> -	ctx = kzalloc(sizeof(*ctx), GFP_KERNEL);
+> -	if (!ctx)
+> -		return ERR_PTR(-ENOMEM);
+> -
+> -	kref_init(&ctx->ref);
+> -	ctx->i915 = i915;
+> -	ctx->sched = pc->sched;
+> -	mutex_init(&ctx->mutex);
+> -	INIT_LIST_HEAD(&ctx->link);
+> -
+> -	spin_lock_init(&ctx->stale.lock);
+> -	INIT_LIST_HEAD(&ctx->stale.engines);
+> -
+> -	mutex_init(&ctx->engines_mutex);
+> -	e = default_engines(ctx, pc->legacy_rcs_sseu);
+> -	if (IS_ERR(e)) {
+> -		err = PTR_ERR(e);
+> -		goto err_free;
+> -	}
+> -	RCU_INIT_POINTER(ctx->engines, e);
+> -
+> -	INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
+> -	mutex_init(&ctx->lut_mutex);
+> -
+> -	/* NB: Mark all slices as needing a remap so that when the context first
+> -	 * loads it will restore whatever remap state already exists. If there
+> -	 * is no remap info, it will be a NOP. */
+> -	ctx->remap_slice = ALL_L3_SLICES(i915);
+> -
+> -	ctx->user_flags = pc->user_flags;
+> -
+> -	for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
+> -		ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
+> -
+> -	return ctx;
+> -
+> -err_free:
+> -	kfree(ctx);
+> -	return ERR_PTR(err);
+> -}
+> -
+>  static inline struct i915_gem_engines *
+>  __context_engines_await(const struct i915_gem_context *ctx,
+>  			bool *user_engines)
+> @@ -1391,86 +1341,77 @@ context_apply_all(struct i915_gem_context *ctx,
+>  	i915_sw_fence_complete(&e->fence);
+>  }
+>  
+> -static void __apply_ppgtt(struct intel_context *ce, void *vm)
+> -{
+> -	i915_vm_put(ce->vm);
+> -	ce->vm = i915_vm_get(vm);
+> -}
+> -
+> -static struct i915_address_space *
+> -__set_ppgtt(struct i915_gem_context *ctx, struct i915_address_space *vm)
+> -{
+> -	struct i915_address_space *old;
+> -
+> -	old = rcu_replace_pointer(ctx->vm,
+> -				  i915_vm_open(vm),
+> -				  lockdep_is_held(&ctx->mutex));
+> -	GEM_BUG_ON(old && i915_vm_is_4lvl(vm) != i915_vm_is_4lvl(old));
+> -
+> -	context_apply_all(ctx, __apply_ppgtt, vm);
+> -
+> -	return old;
+> -}
+> -
+> -static void __assign_ppgtt(struct i915_gem_context *ctx,
+> -			   struct i915_address_space *vm)
+> -{
+> -	if (vm == rcu_access_pointer(ctx->vm))
+> -		return;
+> -
+> -	vm = __set_ppgtt(ctx, vm);
+> -	if (vm)
+> -		i915_vm_close(vm);
+> -}
+> -
+>  static struct i915_gem_context *
+>  i915_gem_create_context(struct drm_i915_private *i915,
+>  			const struct i915_gem_proto_context *pc)
+>  {
+>  	struct i915_gem_context *ctx;
+> -	int ret;
+> +	struct i915_gem_engines *e;
+> +	int err;
+> +	int i;
+>  
+> -	ctx = __create_context(i915, pc);
+> -	if (IS_ERR(ctx))
+> -		return ctx;
+> +	ctx = kzalloc(sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return ERR_PTR(-ENOMEM);
+>  
+> -	if (pc->vm) {
+> -		mutex_lock(&ctx->mutex);
+> -		__assign_ppgtt(ctx, pc->vm);
+> -		mutex_unlock(&ctx->mutex);
+> -	}
+> +	kref_init(&ctx->ref);
+> +	ctx->i915 = i915;
+> +	ctx->sched = pc->sched;
+> +	mutex_init(&ctx->mutex);
+> +	INIT_LIST_HEAD(&ctx->link);
+>  
+> -	if (pc->num_user_engines >= 0) {
+> -		struct i915_gem_engines *engines;
+> +	spin_lock_init(&ctx->stale.lock);
+> +	INIT_LIST_HEAD(&ctx->stale.engines);
+>  
+> -		engines = user_engines(ctx, pc->num_user_engines,
+> -				       pc->user_engines);
+> -		if (IS_ERR(engines)) {
+> -			context_close(ctx);
+> -			return ERR_CAST(engines);
+> -		}
+> +	if (pc->vm)
+> +		RCU_INIT_POINTER(ctx->vm, i915_vm_open(pc->vm));
+>  
+> -		mutex_lock(&ctx->engines_mutex);
+> +	mutex_init(&ctx->engines_mutex);
+> +	if (pc->num_user_engines >= 0) {
+>  		i915_gem_context_set_user_engines(ctx);
+> -		engines = rcu_replace_pointer(ctx->engines, engines, 1);
+> -		mutex_unlock(&ctx->engines_mutex);
+> -
+> -		free_engines(engines);
+> +		e = user_engines(ctx, pc->num_user_engines, pc->user_engines);
+> +	} else {
+> +		i915_gem_context_clear_user_engines(ctx);
+> +		e = default_engines(ctx, pc->legacy_rcs_sseu);
+>  	}
+> +	if (IS_ERR(e)) {
+> +		err = PTR_ERR(e);
+> +		goto err_vm;
+> +	}
+> +	RCU_INIT_POINTER(ctx->engines, e);
 > +
->  IGT_TEST_DESCRIPTION("Prime tests, focusing on KMS side");
->  =
-
->  static bool has_prime_import(int fd)
-> @@ -101,7 +103,7 @@ static void prepare_scratch(int exporter_fd, struct d=
-umb_bo *scratch,
->  	scratch->bpp =3D 32;
->  =
-
->  	scratch->handle =3D kmstest_dumb_create(exporter_fd,
-> -			scratch->width,
-> +			check_platform? ALIGN(scratch->width, 64): scratch->width,
-
-The dumb_create ioctl already does this for us.
-
->  			scratch->height,
->  			scratch->bpp,
->  			&scratch->pitch,
-> @@ -262,6 +264,7 @@ igt_main
->  =
-
->  		/* ANY =3D anything that is not VGEM */
->  		first_fd =3D __drm_open_driver_another(0, DRIVER_ANY | DRIVER_VGEM);
-> +		check_platform =3D is_i915_device(first_fd);
->  		igt_require(first_fd >=3D 0);
->  =
-
->  		second_fd =3D __drm_open_driver_another(1, DRIVER_ANY | DRIVER_VGEM);
-> -- =
-
-> 2.7.4
-> =
-
+> +	INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
+> +	mutex_init(&ctx->lut_mutex);
+> +
+> +	/* NB: Mark all slices as needing a remap so that when the context first
+> +	 * loads it will restore whatever remap state already exists. If there
+> +	 * is no remap info, it will be a NOP. */
+> +	ctx->remap_slice = ALL_L3_SLICES(i915);
+> +
+> +	ctx->user_flags = pc->user_flags;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
+> +		ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
+>  
+>  	if (pc->single_timeline) {
+> -		ret = drm_syncobj_create(&ctx->syncobj,
+> +		err = drm_syncobj_create(&ctx->syncobj,
+>  					 DRM_SYNCOBJ_CREATE_SIGNALED,
+>  					 NULL);
+> -		if (ret) {
+> -			context_close(ctx);
+> -			return ERR_PTR(ret);
+> -		}
+> +		if (err)
+> +			goto err_engines;
+>  	}
+>  
+>  	trace_i915_context_create(ctx);
+>  
+>  	return ctx;
+> +
+> +err_engines:
+> +	free_engines(e);
+> +err_vm:
+> +	if (ctx->vm)
+> +		i915_vm_close(ctx->vm);
+> +	kfree(ctx);
+> +	return ERR_PTR(err);
+>  }
+>  
+>  static void init_contexts(struct i915_gem_contexts *gc)
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> index 500ef27ba4771..fee070df1c97b 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+> @@ -31,15 +31,6 @@ mock_context(struct drm_i915_private *i915,
+>  
+>  	i915_gem_context_set_persistence(ctx);
+>  
+> -	mutex_init(&ctx->engines_mutex);
+> -	e = default_engines(ctx, null_sseu);
+> -	if (IS_ERR(e))
+> -		goto err_free;
+> -	RCU_INIT_POINTER(ctx->engines, e);
+> -
+> -	INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
+> -	mutex_init(&ctx->lut_mutex);
+> -
+>  	if (name) {
+>  		struct i915_ppgtt *ppgtt;
+>  
+> @@ -47,25 +38,29 @@ mock_context(struct drm_i915_private *i915,
+>  
+>  		ppgtt = mock_ppgtt(i915, name);
+>  		if (!ppgtt)
+> -			goto err_put;
+> -
+> -		mutex_lock(&ctx->mutex);
+> -		__set_ppgtt(ctx, &ppgtt->vm);
+> -		mutex_unlock(&ctx->mutex);
+> +			goto err_free;
+>  
+> +		ctx->vm = i915_vm_open(&ppgtt->vm);
+>  		i915_vm_put(&ppgtt->vm);
+>  	}
+>  
+> +	mutex_init(&ctx->engines_mutex);
+> +	e = default_engines(ctx, null_sseu);
+> +	if (IS_ERR(e))
+> +		goto err_vm;
+> +	RCU_INIT_POINTER(ctx->engines, e);
+> +
+> +	INIT_RADIX_TREE(&ctx->handles_vma, GFP_KERNEL);
+> +	mutex_init(&ctx->lut_mutex);
+> +
+>  	return ctx;
+>  
+> +err_vm:
+> +	if (ctx->vm)
+> +		i915_vm_close(ctx->vm);
+>  err_free:
+>  	kfree(ctx);
+>  	return NULL;
+> -
+> -err_put:
+> -	i915_gem_context_set_closed(ctx);
+> -	i915_gem_context_put(ctx);
+> -	return NULL;
+>  }
+>  
+>  void mock_context_close(struct i915_gem_context *ctx)
+> -- 
+> 2.31.1
+> 
 > _______________________________________________
-> igt-dev mailing list
-> igt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
