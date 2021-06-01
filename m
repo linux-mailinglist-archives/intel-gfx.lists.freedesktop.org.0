@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4DDB396EFD
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 10:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A1C396F59
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 10:47:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D90E6E949;
-	Tue,  1 Jun 2021 08:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB0F6E9A4;
+	Tue,  1 Jun 2021 08:47:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAB26E8B9;
- Tue,  1 Jun 2021 08:30:52 +0000 (UTC)
-IronPort-SDR: BSbMcSrUqwupaYxiirTHv45+PoE3U4vNCyiD+bOx46lIOVp5B7g8kwP79flY6A782pgYIwmF8d
- mmrgPQNtlWHQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="267378627"
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="267378627"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 01:30:51 -0700
-IronPort-SDR: 6Ph7GmRJ2lz+nk4+urpSuBL4Tsb9o5ORM624pFmKqDLoq8O/JxC096WVbmMOZ2sKQjDp9hlp+s
- P1xmzua+BF0g==
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="479190756"
-Received: from slockwoo-mobl.ger.corp.intel.com (HELO
- zkempczy-mobl2.ger.corp.intel.com) ([10.213.8.163])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 01:30:49 -0700
-From: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue,  1 Jun 2021 10:28:47 +0200
-Message-Id: <20210601082847.78389-1-zbigniew.kempczynski@intel.com>
-X-Mailer: git-send-email 2.26.0
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23D536E99D;
+ Tue,  1 Jun 2021 08:47:48 +0000 (UTC)
+IronPort-SDR: V85gff1rkUnPef0TCK3uyFKtzRNn3aV+ISFemMj6USxg4XzuzDlkxYg/7FtrcGKZWwJMsRfZL8
+ 1E4fu+cgotiA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="203538200"
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; 
+ d="asc'?scan'208";a="203538200"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 01:47:47 -0700
+IronPort-SDR: LxtEFyZT6oTvdwGLVd1a0Onta12b4d1TAxSK0eoTLxy8TUX2UjkylYbL6xaqoHIiknf/mJHAWA
+ +y7Jka9r+yOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; 
+ d="asc'?scan'208";a="474169308"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.143])
+ by FMSMGA003.fm.intel.com with ESMTP; 01 Jun 2021 01:47:44 -0700
+Date: Tue, 1 Jun 2021 16:28:04 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Message-ID: <20210601082804.GS27293@zhen-hp.sh.intel.com>
+References: <20210523172304.3033229-1-linux@roeck-us.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Add relocation exceptions for two
- other platforms
+In-Reply-To: <20210523172304.3033229-1-linux@roeck-us.net>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gem: Use list_entry to access
+ list members
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,49 +48,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1813660179=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgaGF2ZSBlc3RhYmxpc2hlZCBwcmV2aW91c2x5IHdlIHN0b3AgdXNpbmcgcmVsb2NhdGlvbnMg
-c3RhcnRpbmcKZnJvbSBnZW4xMiBwbGF0Zm9ybXMgd2l0aCBUaWdlcmxha2UgYXMgYW4gZXhjZXB0
-aW9uLiBXZSBrZWVwIHRoaXMKc3RhdGVtZW50IGJ1dCB3ZSB3YW50IHRvIGVuYWJsZSByZWxvY2F0
-aW9ucyBjb25kaXRpb25hbGx5IGZvcgpSb2NrZXRsYWtlIGFuZCBBbGRlcmxha2UgdW5kZXIgcmVx
-dWlyZV9mb3JjZV9wcm9iZSBmbGFnIHNldC4KCktlZXBpbmcgcmVsb2NhdGlvbnMgdW5kZXIgcmVx
-dWlyZV9mb3JjZV9wcm9iZSBmbGFnIGlzIGludGVyaW0gc29sdXRpb24KdW50aWwgSUdUcyB3aWxs
-IGJlIHJld3JpdHRlbiB0byB1c2Ugc29mdHBpbi4KClNpZ25lZC1vZmYtYnk6IFpiaWduaWV3IEtl
-bXBjennFhHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPgpDYzogRGF2ZSBBaXJs
-aWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJA
-aW50ZWwuY29tPgpDYzogSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0PgotLS0K
-IC4uLi9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyAgICB8IDI2ICsrKysr
-KysrKysrKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspLCA1IGRlbGV0
-aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9l
-eGVjYnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZl
-ci5jCmluZGV4IDI5NzE0MzUxMWY5OS4uYzA1NjJkZDE0ODM3IDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKQEAgLTQ5MSwxNiArNDkxLDMyIEBA
-IGViX3VucmVzZXJ2ZV92bWEoc3RydWN0IGViX3ZtYSAqZXYpCiAJZXYtPmZsYWdzICY9IH5fX0VY
-RUNfT0JKRUNUX1JFU0VSVkVEOwogfQogCitzdGF0aWMgaW5saW5lIGJvb2wKK3BsYXRmb3JtX2hh
-c19yZWxvY3NfZW5hYmxlZChjb25zdCBzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYikKK3sKKwkv
-KgorCSAqIFJlbG9jYXRpb25zIGFyZSBkaXNhbGxvd2VkIHN0YXJ0aW5nIGZyb20gZ2VuMTIgd2l0
-aCBUaWdlcmxha2UKKwkgKiBhcyBhbiBleGNlcHRpb24uIFdlIGFsbG93IHRlbXBvcmFyaWx5IHVz
-ZSByZWxvY2F0aW9ucyBmb3IgUm9ja2V0bGFrZQorCSAqIGFuZCBBbGRlcmxha2Ugd2hlbiByZXF1
-aXJlX2ZvcmNlX3Byb2JlIGZsYWcgaXMgc2V0LgorCSAqLworCisJaWYgKElOVEVMX0dFTihlYi0+
-aTkxNSkgPCAxMiB8fCBJU19USUdFUkxBS0UoZWItPmk5MTUpKQorCQlyZXR1cm4gdHJ1ZTsKKwor
-CWlmIChJTlRFTF9JTkZPKGViLT5pOTE1KS0+cmVxdWlyZV9mb3JjZV9wcm9iZSAmJgorCQkgKElT
-X1JPQ0tFVExBS0UoZWItPmk5MTUpIHx8IElTX0FMREVSTEFLRV9TKGViLT5pOTE1KSB8fAorCQkg
-IElTX0FMREVSTEFLRV9QKGViLT5pOTE1KSkpCisJCXJldHVybiB0cnVlOworCisJcmV0dXJuIGZh
-bHNlOworfQorCiBzdGF0aWMgaW50CiBlYl92YWxpZGF0ZV92bWEoc3RydWN0IGk5MTVfZXhlY2J1
-ZmZlciAqZWIsCiAJCXN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY19vYmplY3QyICplbnRyeSwKIAkJ
-c3RydWN0IGk5MTVfdm1hICp2bWEpCiB7Ci0JLyogUmVsb2NhdGlvbnMgYXJlIGRpc2FsbG93ZWQg
-Zm9yIGFsbCBwbGF0Zm9ybXMgYWZ0ZXIgVEdMLUxQLiAgVGhpcwotCSAqIGFsc28gY292ZXJzIGFs
-bCBwbGF0Zm9ybXMgd2l0aCBsb2NhbCBtZW1vcnkuCi0JICovCi0JaWYgKGVudHJ5LT5yZWxvY2F0
-aW9uX2NvdW50ICYmCi0JICAgIElOVEVMX0dFTihlYi0+aTkxNSkgPj0gMTIgJiYgIUlTX1RJR0VS
-TEFLRShlYi0+aTkxNSkpCisJaWYgKGVudHJ5LT5yZWxvY2F0aW9uX2NvdW50ICYmICFwbGF0Zm9y
-bV9oYXNfcmVsb2NzX2VuYWJsZWQoZWIpKQogCQlyZXR1cm4gLUVJTlZBTDsKIAogCWlmICh1bmxp
-a2VseShlbnRyeS0+ZmxhZ3MgJiBlYi0+aW52YWxpZF9mbGFncykpCi0tIAoyLjI2LjAKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+--===============1813660179==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="Bqc0IY4JZZt50bUr"
+Content-Disposition: inline
+
+
+--Bqc0IY4JZZt50bUr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2021.05.23 10:23:04 -0700, Guenter Roeck wrote:
+> Use list_entry() instead of container_of() to access list members.
+> Also drop unnecessary and misleading NULL checks on the result of
+> list_entry().
+>=20
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+> ---
+> v2: Checkpatch fixes:
+>     - Fix alignment
+>     - Replace comparison against NULL with !
+>=20
+>  drivers/gpu/drm/i915/gvt/dmabuf.c | 18 +++++-------------
+>  1 file changed, 5 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt=
+/dmabuf.c
+> index d4f883f35b95..e3f488681484 100644
+> --- a/drivers/gpu/drm/i915/gvt/dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
+> @@ -148,8 +148,7 @@ static void dmabuf_gem_object_free(struct kref *kref)
+> =20
+>  	if (vgpu && vgpu->active && !list_empty(&vgpu->dmabuf_obj_list_head)) {
+>  		list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
+> -			dmabuf_obj =3D container_of(pos,
+> -					struct intel_vgpu_dmabuf_obj, list);
+> +			dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
+>  			if (dmabuf_obj =3D=3D obj) {
+>  				list_del(pos);
+>  				intel_gvt_hypervisor_put_vfio_device(vgpu);
+> @@ -357,10 +356,8 @@ pick_dmabuf_by_info(struct intel_vgpu *vgpu,
+>  	struct intel_vgpu_dmabuf_obj *ret =3D NULL;
+> =20
+>  	list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
+> -		dmabuf_obj =3D container_of(pos, struct intel_vgpu_dmabuf_obj,
+> -						list);
+> -		if ((dmabuf_obj =3D=3D NULL) ||
+> -		    (dmabuf_obj->info =3D=3D NULL))
+> +		dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
+> +		if (!dmabuf_obj->info)
+>  			continue;
+> =20
+>  		fb_info =3D (struct intel_vgpu_fb_info *)dmabuf_obj->info;
+> @@ -387,11 +384,7 @@ pick_dmabuf_by_num(struct intel_vgpu *vgpu, u32 id)
+>  	struct intel_vgpu_dmabuf_obj *ret =3D NULL;
+> =20
+>  	list_for_each(pos, &vgpu->dmabuf_obj_list_head) {
+> -		dmabuf_obj =3D container_of(pos, struct intel_vgpu_dmabuf_obj,
+> -						list);
+> -		if (!dmabuf_obj)
+> -			continue;
+> -
+> +		dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
+>  		if (dmabuf_obj->dmabuf_id =3D=3D id) {
+>  			ret =3D dmabuf_obj;
+>  			break;
+> @@ -600,8 +593,7 @@ void intel_vgpu_dmabuf_cleanup(struct intel_vgpu *vgp=
+u)
+> =20
+>  	mutex_lock(&vgpu->dmabuf_lock);
+>  	list_for_each_safe(pos, n, &vgpu->dmabuf_obj_list_head) {
+> -		dmabuf_obj =3D container_of(pos, struct intel_vgpu_dmabuf_obj,
+> -						list);
+> +		dmabuf_obj =3D list_entry(pos, struct intel_vgpu_dmabuf_obj, list);
+>  		dmabuf_obj->vgpu =3D NULL;
+> =20
+>  		idr_remove(&vgpu->object_idr, dmabuf_obj->dmabuf_id);
+> --=20
+
+Sorry for late reply! Looks good to me.
+
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+--Bqc0IY4JZZt50bUr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYLXviAAKCRCxBBozTXgY
+JwG7AJ9Pr/tLAdoR3m14OG9PG9UnCCEW9gCcDSBRdzRBnLpNffd7NifoU6gF4+0=
+=aKMJ
+-----END PGP SIGNATURE-----
+
+--Bqc0IY4JZZt50bUr--
+
+--===============1813660179==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1813660179==--
