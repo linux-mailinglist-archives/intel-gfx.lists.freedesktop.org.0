@@ -2,39 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620B5397563
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 16:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4BBF397567
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 16:26:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823366EA79;
-	Tue,  1 Jun 2021 14:25:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F05A46EA77;
+	Tue,  1 Jun 2021 14:26:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB7DC6E04B;
- Tue,  1 Jun 2021 14:24:58 +0000 (UTC)
-IronPort-SDR: twwUHNl65zvYI1ynIEEcD4BNZY8DL3sHPT5h9fz3eaAJAonnLwDsjFCibKqTR9QDS2RorLW79H
- /yWbTxYq+n5A==
-X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="183916918"
-X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="183916918"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 07:24:57 -0700
-IronPort-SDR: KUsqdJ+lCObmz8/PjzA9oVX+nAtEcyZ0F+ioM+CUvZSdy9DjStaowjBDRZsJ9lV0WhV2wis0nf
- A1Xfxc3JoBfw==
-X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="479299490"
-Received: from slockwoo-mobl.ger.corp.intel.com (HELO
- zkempczy-mobl2.ger.corp.intel.com) ([10.213.8.163])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 07:24:54 -0700
-From: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue,  1 Jun 2021 16:24:42 +0200
-Message-Id: <20210601142442.100754-1-zbigniew.kempczynski@intel.com>
-X-Mailer: git-send-email 2.26.0
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 055146EA77
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 14:26:01 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id z8so9436724wrp.12
+ for <intel-gfx@lists.freedesktop.org>; Tue, 01 Jun 2021 07:26:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=cBvoLv5ImwFWPolBi0/sqL+d2j6RxuxN/8LJWDz60/8=;
+ b=f/MZkNTMD1PYlSc2kCqv4ftIvxKnbJeRBBaTiODD4rKc6JswioKiX10OTHiQ7/1kJ8
+ Ft4DVTOAHMD4QaODhP167sq2N5YlpGsh4LjP9ZbWVeiHl0GzPK9e5PmjxWuu7bzsdD20
+ ALzD8kxgq5qXdGadkPFna475hNJauy7hBqxYU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=cBvoLv5ImwFWPolBi0/sqL+d2j6RxuxN/8LJWDz60/8=;
+ b=jstQEc65J9CzPlRooZ0aD9bJiEV0s+vR+rAhffSdzB6xpFmOdwxuKK+L6jrpq+WmH4
+ aMP4bvwr6MDU7WPOnlwt9S8LoU/3fVAt7Ec+bFl1mgswEo+YpYl+MAu4j3NG1GD0xbzo
+ roZBvbkgB8t08CUFZHae/7t+Pmel9r6CPPX3RCMPZeHfQSNSnFw+bxUpzU2kaR0UNzPr
+ +EkwlD2ktBrXSmAvISx6kfDYSXKWRSCRZTtyOgLE9bRKmHTMHMNuvtynbxgqVX+fkvF8
+ kxiZF8fXHYLhZJwhy/pYiAPBxAqldeNX9R4slYtEL+LXeUW+vc65HyC4YfVFn+1zdro1
+ cIxA==
+X-Gm-Message-State: AOAM531fmOkVamqH7Ke3EqbagZAHcMWTmA+eNuO9RS+SAiGMnAh9DLO2
+ kvc3qMlTik9Y8SIE/v/qoiCybg==
+X-Google-Smtp-Source: ABdhPJyEFH5xIhbUFP6ohcyXS1DLH/v63UtEoC70u76RK1w1n9DSz3PshcqT/17HqNc7dmS2uc4Q8A==
+X-Received: by 2002:a5d:4578:: with SMTP id a24mr20312855wrc.388.1622557559735; 
+ Tue, 01 Jun 2021 07:25:59 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id c206sm2908172wmf.12.2021.06.01.07.25.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 01 Jun 2021 07:25:59 -0700 (PDT)
+Date: Tue, 1 Jun 2021 16:25:57 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YLZDdUV/COdD9d4v@phenom.ffwll.local>
+References: <20210525135508.244659-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <20210525135508.244659-2-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <b9ae1daa-6add-1c67-58b4-16491f2e1431@linux.intel.com>
+ <YK0OHJcSwWY1mm7v@phenom.ffwll.local>
+ <8cf2c5f4-87a3-ce6b-150c-65fa054586a4@linux.intel.com>
+ <YK9wrCayUwSDzMWG@phenom.ffwll.local>
+ <59d2eee9-35c1-01fc-c226-50ad98aadb99@linux.intel.com>
+ <YK90LkRrMXTC/hF3@phenom.ffwll.local>
+ <e96668b6-47a0-f426-51a8-d9824afd8887@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Add relocation exceptions for two
- other platforms
+Content-Disposition: inline
+In-Reply-To: <e96668b6-47a0-f426-51a8-d9824afd8887@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 1/1] Let userspace know if they can trust
+ timeslicing by including it as part of the
+ I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,50 +74,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org,
+ DRI Development <dri-devel@lists.freedesktop.org>, mahesh.meena@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgaGF2ZSBlc3RhYmxpc2hlZCBwcmV2aW91c2x5IHdlIHN0b3AgdXNpbmcgcmVsb2NhdGlvbnMg
-c3RhcnRpbmcKZnJvbSBnZW4xMiBwbGF0Zm9ybXMgd2l0aCBUaWdlcmxha2UgYXMgYW4gZXhjZXB0
-aW9uLiBXZSBrZWVwIHRoaXMKc3RhdGVtZW50IGJ1dCB3ZSB3YW50IHRvIGVuYWJsZSByZWxvY2F0
-aW9ucyBjb25kaXRpb25hbGx5IGZvcgpSb2NrZXRsYWtlIGFuZCBBbGRlcmxha2UgdW5kZXIgcmVx
-dWlyZV9mb3JjZV9wcm9iZSBmbGFnIHNldC4KCktlZXBpbmcgcmVsb2NhdGlvbnMgdW5kZXIgcmVx
-dWlyZV9mb3JjZV9wcm9iZSBmbGFnIGlzIGludGVyaW0gc29sdXRpb24KdW50aWwgSUdUcyB3aWxs
-IGJlIHJld3JpdHRlbiB0byB1c2Ugc29mdHBpbi4KCnYyOiAtIHJlbW92ZSBpbmxpbmUgZnJvbSBm
-dW5jdGlvbiBkZWZpbml0aW9uIChKYW5pKQogICAgLSBmaXggaW5kZW50YXRpb24KClNpZ25lZC1v
-ZmYtYnk6IFpiaWduaWV3IEtlbXBjennFhHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwu
-Y29tPgpDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KQ2M6IERhbmllbCBWZXR0
-ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgpDYzogSmFzb24gRWtzdHJhbmQgPGphc29uQGps
-ZWtzdHJhbmQubmV0PgotLS0KIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZm
-ZXIuYyAgICB8IDI0ICsrKysrKysrKysrKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNl
-cnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fZXhlY2J1ZmZlci5jCmluZGV4IDI5NzE0MzUxMWY5OS4uNzhiODZhN2JjMzlhIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKQEAg
-LTQ5MSwxNiArNDkxLDMwIEBAIGViX3VucmVzZXJ2ZV92bWEoc3RydWN0IGViX3ZtYSAqZXYpCiAJ
-ZXYtPmZsYWdzICY9IH5fX0VYRUNfT0JKRUNUX1JFU0VSVkVEOwogfQogCitzdGF0aWMgYm9vbCBw
-bGF0Zm9ybV9oYXNfcmVsb2NzX2VuYWJsZWQoY29uc3Qgc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAq
-ZWIpCit7CisJLyoKKwkgKiBSZWxvY2F0aW9ucyBhcmUgZGlzYWxsb3dlZCBzdGFydGluZyBmcm9t
-IGdlbjEyIHdpdGggVGlnZXJsYWtlCisJICogYXMgYW4gZXhjZXB0aW9uLiBXZSBhbGxvdyB0ZW1w
-b3JhcmlseSB1c2UgcmVsb2NhdGlvbnMgZm9yIFJvY2tldGxha2UKKwkgKiBhbmQgQWxkZXJsYWtl
-IHdoZW4gcmVxdWlyZV9mb3JjZV9wcm9iZSBmbGFnIGlzIHNldC4KKwkgKi8KKwlpZiAoSU5URUxf
-R0VOKGViLT5pOTE1KSA8IDEyIHx8IElTX1RJR0VSTEFLRShlYi0+aTkxNSkpCisJCXJldHVybiB0
-cnVlOworCisJaWYgKElOVEVMX0lORk8oZWItPmk5MTUpLT5yZXF1aXJlX2ZvcmNlX3Byb2JlICYm
-CisJICAgIChJU19ST0NLRVRMQUtFKGViLT5pOTE1KSB8fCBJU19BTERFUkxBS0VfUyhlYi0+aTkx
-NSkgfHwKKwkgICAgIElTX0FMREVSTEFLRV9QKGViLT5pOTE1KSkpCisJCXJldHVybiB0cnVlOwor
-CisJcmV0dXJuIGZhbHNlOworfQorCiBzdGF0aWMgaW50CiBlYl92YWxpZGF0ZV92bWEoc3RydWN0
-IGk5MTVfZXhlY2J1ZmZlciAqZWIsCiAJCXN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY19vYmplY3Qy
-ICplbnRyeSwKIAkJc3RydWN0IGk5MTVfdm1hICp2bWEpCiB7Ci0JLyogUmVsb2NhdGlvbnMgYXJl
-IGRpc2FsbG93ZWQgZm9yIGFsbCBwbGF0Zm9ybXMgYWZ0ZXIgVEdMLUxQLiAgVGhpcwotCSAqIGFs
-c28gY292ZXJzIGFsbCBwbGF0Zm9ybXMgd2l0aCBsb2NhbCBtZW1vcnkuCi0JICovCi0JaWYgKGVu
-dHJ5LT5yZWxvY2F0aW9uX2NvdW50ICYmCi0JICAgIElOVEVMX0dFTihlYi0+aTkxNSkgPj0gMTIg
-JiYgIUlTX1RJR0VSTEFLRShlYi0+aTkxNSkpCisJaWYgKGVudHJ5LT5yZWxvY2F0aW9uX2NvdW50
-ICYmICFwbGF0Zm9ybV9oYXNfcmVsb2NzX2VuYWJsZWQoZWIpKQogCQlyZXR1cm4gLUVJTlZBTDsK
-IAogCWlmICh1bmxpa2VseShlbnRyeS0+ZmxhZ3MgJiBlYi0+aW52YWxpZF9mbGFncykpCi0tIAoy
-LjI2LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, Jun 01, 2021 at 11:09:47AM +0100, Tvrtko Ursulin wrote:
+> 
+> On 27/05/2021 11:27, Daniel Vetter wrote:
+> > On Thu, May 27, 2021 at 11:22:16AM +0100, Tvrtko Ursulin wrote:
+> > > 
+> > > On 27/05/2021 11:13, Daniel Vetter wrote:
+> > > > On Wed, May 26, 2021 at 11:20:13AM +0100, Tvrtko Ursulin wrote:
+> > > > > 
+> > > > > On 25/05/2021 15:47, Daniel Vetter wrote:
+> > > > > > On Tue, May 25, 2021 at 03:19:47PM +0100, Tvrtko Ursulin wrote:
+> > > > > > > 
+> > > > > > > + dri-devel as per process
+> > > > > > > 
+> > > > > > > On 25/05/2021 14:55, Tejas Upadhyay wrote:
+> > > > > > > > v2: Only declare timeslicing if we can safely preempt userspace.
+> > > > > > > 
+> > > > > > > Commit message got butchered up somehow so you'll need to fix that at some
+> > > > > > > point.
+> > > > > > > 
+> > > > > > > Regards,
+> > > > > > > 
+> > > > > > > Tvrtko
+> > > > > > > 
+> > > > > > > > Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
+> > > > > > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > > > > > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > > > > > ---
+> > > > > > > >      drivers/gpu/drm/i915/gt/intel_engine_user.c | 1 +
+> > > > > > > >      include/uapi/drm/i915_drm.h                 | 1 +
+> > > > > > > >      2 files changed, 2 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > > > > > > > index 3cca7ea2d6ea..12d165566ed2 100644
+> > > > > > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > > > > > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > > > > > > > @@ -98,6 +98,7 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
+> > > > > > > >      		MAP(HAS_PREEMPTION, PREEMPTION),
+> > > > > > > >      		MAP(HAS_SEMAPHORES, SEMAPHORES),
+> > > > > > > >      		MAP(SUPPORTS_STATS, ENGINE_BUSY_STATS),
+> > > > > > > > +		MAP(TIMESLICE_BIT, TIMESLICING),
+> > > > > > > >      #undef MAP
+> > > > > > > >      	};
+> > > > > > > >      	struct intel_engine_cs *engine;
+> > > > > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > > > > > > index c2c7759b7d2e..af2212d6113c 100644
+> > > > > > > > --- a/include/uapi/drm/i915_drm.h
+> > > > > > > > +++ b/include/uapi/drm/i915_drm.h
+> > > > > > > > @@ -572,6 +572,7 @@ typedef struct drm_i915_irq_wait {
+> > > > > > > >      #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
+> > > > > > > >      #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
+> > > > > > > >      #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
+> > > > > > > > +#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
+> > > > > > 
+> > > > > > Since this is uapi I think we should at least have some nice kerneldoc
+> > > > > > that explains what exactly this is, what for (link to userspace) and all
+> > > > > > that. Ideally also minimally filing in the gaps in our uapi docs for stuff
+> > > > > > this references.
+> > > > > 
+> > > > > IIUC there is no userspace apart from IGT needing it not to fail scheduling
+> > > > > tests on ADL.
+> > > > > 
+> > > > > Current tests use "has preemption + has semaphores" as a proxy to answer the
+> > > > > "does the kernel support timeslicing" question. This stops working with the
+> > > > > Guc backend because GuC decided not to support semaphores (for reasons yet
+> > > > > unknown, see other thread), so explicit "has timeslicing" flag is needed in
+> > > > > order for tests to know that GuC is supposed to support timeslicing, even if
+> > > > > it doesn't use semaphores for inter-ring synchronisation.
+> > > > 
+> > > > Since this if for igt only: Cant we do just extend the check in igt with
+> > > > an || GEN >= 12? I really hope that our future hw will continue to support
+> > > > timeslicing ...
+> > > 
+> > > Not the gen 12 check, but possible I think. Explicit feature test would be better, but if definitely not allowed then along the lines of:
+> > > 
+> > > has_timeslicing =
+> > > 	(has_preemption && has_semaphores) || uses_guc_submission;
+> > 
+> > That works too. Otoh what exactly is the "uses guc submission" flag and
+> > why do we have that? I've seen media use it as a stand-in for "does the
+> > kernel want bonded or parallel ctx?". Maybe another thing to check.
+> > 
+> > Another option, if you really think the feature flag is the best approach
+> > (because future hw will drop timeslicing for some reason), then debugfs is
+> > the place of igt-only api.
+> 
+> Maybe check and potentially remove all I915_SCHEDULER_CAP_.. flags. It could
+> be another easy pickings with a lot of IGT work type endeavour.
+
+Yeah there's a lot unfortunately. I'll make a note internally that we need
+to look at this again maybe next year, but for now we're going to only
+concentrate on stuff that has actual architecture/design impact. In the
+grand scheme of things exporting a bunch of flags for igt in the uapi is
+mostly harmless. There's much bigger fish to fry were we allow igt to make
+changes to objects that should be all immutable. Those need to be worked
+out first.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
