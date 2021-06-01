@@ -2,51 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92612397071
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 11:31:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C4B3970B0
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 11:53:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E51EE6E9BE;
-	Tue,  1 Jun 2021 09:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D3636E9C1;
+	Tue,  1 Jun 2021 09:53:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E28A6E9BD;
- Tue,  1 Jun 2021 09:31:34 +0000 (UTC)
-IronPort-SDR: ZHuoBxtD1C3XSJBfPi4wvmEYpRmbG8E+gBzWKprs/awiiVcJXg/7NbOSJTx+K3+UEeMC0Sqhe5
- 6TgEbKs0tW3g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="289129500"
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="289129500"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 02:31:33 -0700
-IronPort-SDR: hy8Y71lmPSji07WxP/A8exqgTcNQVOk5jC6FGONwMHWW/LPqElbG5SbF6dWAV5hJwe/a7e2iNa
- ZXYDRuyckxEg==
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="416415744"
-Received: from deancarp-mobl.ger.corp.intel.com (HELO [10.213.232.28])
- ([10.213.232.28])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 02:31:31 -0700
-To: John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-61-matthew.brost@intel.com>
- <cd59ddd4-625b-c40d-05a8-e259b8fd430c@linux.intel.com>
- <20210525175239.GA21324@sdutt-i7>
- <6f6a1266-fe48-9cf1-beba-0b4463000ca7@linux.intel.com>
- <15643bd8-a270-a84d-3bd7-5376af7e378c@intel.com>
- <018044c0-d238-2060-99a4-a477d225781e@linux.intel.com>
- <87dd027f-6690-19f9-55c3-40115254fa1c@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <4dfcfd97-c83e-8483-cec0-d62f0da708b8@linux.intel.com>
-Date: Tue, 1 Jun 2021 10:31:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF2136E4F9
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 09:53:22 +0000 (UTC)
+IronPort-SDR: U2+zjvksg8Dd2qAU7w64/w9z2lp0sWf7fJ3nzW8N8yiTUs6DW80YkMaCb0YXezlMHAcFIEIKaX
+ IhJ62nNnrgqg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="190868622"
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="190868622"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 02:53:22 -0700
+IronPort-SDR: F8VpZ9If9Au0GiJFzN+yTIFXfke9+kEuuhrHLRcjGiFERS+d9u5pl54hIFC3Xi/52C/1A5dliM
+ fd7qLY0vrRpw==
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="482422445"
+Received: from unknown (HELO helsinki.fi.intel.com) ([10.237.66.162])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 02:53:20 -0700
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  1 Jun 2021 12:53:15 +0300
+Message-Id: <20210601095316.2427464-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <87dd027f-6690-19f9-55c3-40115254fa1c@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 60/97] drm/i915: Track 'serial' counts
- for virtual engines
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Introduce new
+ intel_psr_pause/resume function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,160 +45,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 27/05/2021 18:01, John Harrison wrote:
-> On 5/27/2021 01:53, Tvrtko Ursulin wrote:
->> On 26/05/2021 19:45, John Harrison wrote:
->>> On 5/26/2021 01:40, Tvrtko Ursulin wrote:
->>>> On 25/05/2021 18:52, Matthew Brost wrote:
->>>>> On Tue, May 25, 2021 at 11:16:12AM +0100, Tvrtko Ursulin wrote:
->>>>>>
->>>>>> On 06/05/2021 20:14, Matthew Brost wrote:
->>>>>>> From: John Harrison <John.C.Harrison@Intel.com>
->>>>>>>
->>>>>>> The serial number tracking of engines happens at the backend of
->>>>>>> request submission and was expecting to only be given physical
->>>>>>> engines. However, in GuC submission mode, the decomposition of 
->>>>>>> virtual
->>>>>>> to physical engines does not happen in i915. Instead, requests are
->>>>>>> submitted to their virtual engine mask all the way through to the
->>>>>>> hardware (i.e. to GuC). This would mean that the heart beat code
->>>>>>> thinks the physical engines are idle due to the serial number not
->>>>>>> incrementing.
->>>>>>>
->>>>>>> This patch updates the tracking to decompose virtual engines into
->>>>>>> their physical constituents and tracks the request against each. 
->>>>>>> This
->>>>>>> is not entirely accurate as the GuC will only be issuing the request
->>>>>>> to one physical engine. However, it is the best that i915 can do 
->>>>>>> given
->>>>>>> that it has no knowledge of the GuC's scheduling decisions.
->>>>>>
->>>>>> Commit text sounds a bit defeatist. I think instead of making up 
->>>>>> the serial
->>>>>> counts, which has downsides (could you please document in the 
->>>>>> commit what
->>>>>> they are), we should think how to design things properly.
->>>>>>
->>>>>
->>>>> IMO, I don't think fixing serial counts is the scope of this 
->>>>> series. We
->>>>> should focus on getting GuC submission in not cleaning up all the crap
->>>>> that is in the i915. Let's make a note of this though so we can 
->>>>> revisit
->>>>> later.
->>>>
->>>> I will say again - commit message implies it is introducing an 
->>>> unspecified downside by not fully fixing an also unspecified issue. 
->>>> It is completely reasonable, and customary even, to ask for both to 
->>>> be documented in the commit message.
->>> Not sure what exactly is 'unspecified'. I thought the commit message 
->>> described both the problem (heartbeat not running when using virtual 
->>> engines) and the result (heartbeat running on more engines than 
->>> strictly necessary). But in greater detail...
->>>
->>> The serial number tracking is a hack for the heartbeat code to know 
->>> whether an engine is busy or idle, and therefore whether it should be 
->>> pinged for aliveness. Whenever a submission is made to an engine, the 
->>> serial number is incremented. The heartbeat code keeps a copy of the 
->>> value. If the value has changed, the engine is busy and needs to be 
->>> pinged.
->>>
->>> This works fine for execlist mode where virtual engine decomposition 
->>> is done inside i915. It fails miserably for GuC mode where the 
->>> decomposition is done by the hardware. The reason being that the 
->>> heartbeat code only looks at physical engines but the serial count is 
->>> only incremented on the virtual engine. Thus, the heartbeat sees 
->>> everything as idle and does not ping.
->>
->> So hangcheck does not work. Or it works because GuC does it anyway. 
->> Either way, that's one thing to explicitly state in the commit message.
->>
->>> This patch decomposes the virtual engines for the sake of 
->>> incrementing the serial count on each sub-engine in order to keep the 
->>> heartbeat code happy. The downside is that now the heartbeat sees all 
->>> sub-engines as busy rather than only the one the submission actually 
->>> ends up on. There really isn't much that can be done about that. The 
->>> heartbeat code is in i915 not GuC, the scheduler is in GuC not i915. 
->>> The only way to improve it is to either move the heartbeat code into 
->>> GuC as well and completely disable the i915 side, or add some way for 
->>> i915 to interrogate GuC as to which engines are or are not active. 
->>> Technically, we do have both. GuC has (or at least had) an option to 
->>> force a context switch on every execution quantum pre-emption. 
->>> However, that is much, much, more heavy weight than the heartbeat. 
->>> For the latter, we do (almost) have the engine usage statistics for 
->>> PMU and such like. I'm not sure how much effort it would be to wire 
->>> that up to the heartbeat code instead of using the serial count.
->>>
->>> In short, the serial count is ever so slightly inefficient in that it 
->>> causes heartbeat pings on engines which are idle. On the other hand, 
->>> it is way more efficient and simpler than the current alternatives.
->>
->> And the hack to make hangcheck work creates this inefficiency where 
->> heartbeats are sent to idle engines. Which is probably fine just needs 
->> to be explained.
->>
->>> Does that answer the questions?
->>
->> With the two points I re-raise clearly explained, possibly even patch 
->> title changed, yeah. I am just wanting for it to be more easily 
->> obvious to patch reader what it is functionally about - not just what 
->> implementation details have been change but why as well.
->>
-> My understanding is that we don't explain every piece of code in minute 
-> detail in every checkin email that touches it. I thought my description 
-> was already pretty verbose. I've certainly seen way less informative 
-> checkins that apparently made it through review without issue.
-> 
-> Regarding the problem statement, I thought this was fairly clear that 
-> the heartbeat was broken for virtual engines:
-> 
->     This would mean that the heart beat code
->     thinks the physical engines are idle due to the serial number not
->     incrementing.
-> 
-> 
-> Regarding the inefficiency about heartbeating all physical engines in a 
-> virtual engine, again, this seems clear to me:
-> 
->     decompose virtual engines into
->     their physical constituents and tracks the request against each. This
->     is not entirely accurate as the GuC will only be issuing the request
->     to one physical engine.
-> 
-> 
-> For the subject, I guess you could say "Track 'heartbeat serial' counts 
-> for virtual engines". However, the serial tracking count is not 
-> explicitly named for heartbeats so it seems inaccurate to rename it for 
-> a checkin email subject.
-> 
-> If you have a suggestion for better wording then feel free to propose 
-> something.
-
-Sigh, I am not asking for more low level detail but for more up to point 
-high level naming and high level description.
-
-"drm/i915: Fix hangchek for guc virtual engines"
-
-"..Blah blah, but hack because it is not ideal due xyz which needlessly 
-wakes up all engines which has an effect on power yes/no? Latency? 
-Throughput when high prio pulse triggers pointless preemption?"
-
-Also, can we fix it properly without introducing inefficiencies? Do we 
-even need heartbeats when GuC is in charge of engine resets? And if we 
-do can we make them work better?
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBpbnRyb2R1Y2VzIHRoZSBmb2xsb3dpbmcgZnVuY3Rpb24gdGhhdCBjYW4gZXhpdCBhbmQg
+YWN0aXZhdGUgYSBwc3IKc291cmNlIHdoZW4gaW50ZWxfcHNyIGlzIGFscmVhZHkgZW5hYmxlZC4K
+Ci0gaW50ZWxfcHNyX3BhdXNlKCk6IFBhdXNlIGN1cnJlbnQgUFNSLiBJdCBkZWFjdGl2YXRlcyBj
+dXJyZW50IHBzciBzdGF0ZS4KLSBpbnRlbF9wc3JfcmVzdW1lKCk6IFJlc3VtZSBwYXVzZWQgUFNS
+LiBJdCBhY3RpdmF0ZXMgcGF1c2VkIHBzciBzdGF0ZS4KCnYyOiBBZGRyZXNzIEpvc2UncyByZXZp
+ZXcgY29tbWVudC4KICAtIFJlbW92ZSB1bm5lZWRlZCBjaGFuZ2VzIGFyb3VuZCB0aGUgaW50ZWxf
+cHNyX2VuYWJsZSgpLgogIC0gQWRkIGludGVsX3Bzcl9wb3N0X2V4aXQoKSB3aGljaCBwcm9jZXNz
+ZXMgd2FpdGluZyB1bnRpbCBQU1IgaXMgaWRsZQogICAgYW5kIFdBIGZvciBTZWxlY3RpdmVGZXRj
+aC4KCkNjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KQ2M6
+IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgpDYzog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9m
+Zi1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPgpTaWduZWQt
+b2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgotLS0KIC4uLi9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8ICAxICsKIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgICAgICB8IDg0ICsrKysrKysrKysrKysr
+KystLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmggICAgICB8ICAy
+ICsKIDMgZmlsZXMgY2hhbmdlZCwgNzYgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5
+cGVzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMu
+aAppbmRleCBiOGQxZjcwMmQ4MDguLmVlN2NiZGQ3ZGI4NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKQEAgLTE0ODIsNiArMTQ4
+Miw3IEBAIHN0cnVjdCBpbnRlbF9wc3IgewogCWJvb2wgc2lua19zdXBwb3J0OwogCWJvb2wgc291
+cmNlX3N1cHBvcnQ7CiAJYm9vbCBlbmFibGVkOworCWJvb2wgcGF1c2VkOwogCWVudW0gcGlwZSBw
+aXBlOwogCWVudW0gdHJhbnNjb2RlciB0cmFuc2NvZGVyOwogCWJvb2wgYWN0aXZlOwpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKaW5kZXggMDAwZTFmZmU4YzA1Li40ZmY3
+MWU1MjljZDMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+cHNyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwpAQCAt
+MTExMyw2ICsxMTEzLDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfcHNyX2VuYWJsZV9sb2NrZWQoc3Ry
+dWN0IGludGVsX2RwICppbnRlbF9kcCwKIAlpbnRlbF9wc3JfZW5hYmxlX3NpbmsoaW50ZWxfZHAp
+OwogCWludGVsX3Bzcl9lbmFibGVfc291cmNlKGludGVsX2RwKTsKIAlpbnRlbF9kcC0+cHNyLmVu
+YWJsZWQgPSB0cnVlOworCWludGVsX2RwLT5wc3IucGF1c2VkID0gZmFsc2U7CiAKIAlpbnRlbF9w
+c3JfYWN0aXZhdGUoaW50ZWxfZHApOwogfQpAQCAtMTE4MiwyMiArMTE4MywxMiBAQCBzdGF0aWMg
+dm9pZCBpbnRlbF9wc3JfZXhpdChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogCWludGVsX2Rw
+LT5wc3IuYWN0aXZlID0gZmFsc2U7CiB9CiAKLXN0YXRpYyB2b2lkIGludGVsX3Bzcl9kaXNhYmxl
+X2xvY2tlZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQorc3RhdGljIHZvaWQgaW50ZWxfcHNy
+X3Bvc3RfZXhpdChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogewogCXN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwogCWk5MTVfcmVnX3Qg
+cHNyX3N0YXR1czsKIAl1MzIgcHNyX3N0YXR1c19tYXNrOwogCi0JbG9ja2RlcF9hc3NlcnRfaGVs
+ZCgmaW50ZWxfZHAtPnBzci5sb2NrKTsKLQotCWlmICghaW50ZWxfZHAtPnBzci5lbmFibGVkKQot
+CQlyZXR1cm47Ci0KLQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIkRpc2FibGluZyBQU1Il
+c1xuIiwKLQkJICAgIGludGVsX2RwLT5wc3IucHNyMl9lbmFibGVkID8gIjIiIDogIjEiKTsKLQot
+CWludGVsX3Bzcl9leGl0KGludGVsX2RwKTsKLQogCWlmIChpbnRlbF9kcC0+cHNyLnBzcjJfZW5h
+YmxlZCkgewogCQlwc3Jfc3RhdHVzID0gRURQX1BTUjJfU1RBVFVTKGludGVsX2RwLT5wc3IudHJh
+bnNjb2Rlcik7CiAJCXBzcl9zdGF0dXNfbWFzayA9IEVEUF9QU1IyX1NUQVRVU19TVEFURV9NQVNL
+OwpAQCAtMTIxNyw2ICsxMjA4LDIyIEBAIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9kaXNhYmxlX2xv
+Y2tlZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogCSAgICAgSVNfUktMX1JFVklEKGRldl9w
+cml2LCBSS0xfUkVWSURfQTAsIFJLTF9SRVZJRF9BMCkpKQogCQlpbnRlbF9kZV9ybXcoZGV2X3By
+aXYsIENISUNLRU5fUEFSMV8xLAogCQkJICAgICBESVNfUkFNX0JZUEFTU19QU1IyX01BTl9UUkFD
+SywgMCk7Cit9CisKK3N0YXRpYyB2b2lkIGludGVsX3Bzcl9kaXNhYmxlX2xvY2tlZChzdHJ1Y3Qg
+aW50ZWxfZHAgKmludGVsX2RwKQoreworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
+diA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOworCisJbG9ja2RlcF9hc3NlcnRfaGVsZCgmaW50ZWxf
+ZHAtPnBzci5sb2NrKTsKKworCWlmICghaW50ZWxfZHAtPnBzci5lbmFibGVkKQorCQlyZXR1cm47
+CisKKwlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIkRpc2FibGluZyBQU1Ilc1xuIiwKKwkJ
+ICAgIGludGVsX2RwLT5wc3IucHNyMl9lbmFibGVkID8gIjIiIDogIjEiKTsKKworCWludGVsX3Bz
+cl9leGl0KGludGVsX2RwKTsKKwlpbnRlbF9wc3JfcG9zdF9leGl0KGludGVsX2RwKTsKIAogCS8q
+IERpc2FibGUgUFNSIG9uIFNpbmsgKi8KIAlkcm1fZHBfZHBjZF93cml0ZWIoJmludGVsX2RwLT5h
+dXgsIERQX1BTUl9FTl9DRkcsIDApOwpAQCAtMTI1NCw2ICsxMjYxLDYxIEBAIHZvaWQgaW50ZWxf
+cHNyX2Rpc2FibGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIAljYW5jZWxfZGVsYXllZF93
+b3JrX3N5bmMoJmludGVsX2RwLT5wc3IuZGMzY29fd29yayk7CiB9CiAKKy8qKgorICogaW50ZWxf
+cHNyX3BhdXNlIC0gUGF1c2UgUFNSCisgKiBAaW50ZWxfZHA6IEludGVsIERQCisgKgorICogVGhp
+cyBmdW5jdGlvbiBuZWVkIHRvIGJlIGNhbGxlZCBhZnRlciBlbmFibGluZyBwc3IuCisgKi8KK3Zv
+aWQgaW50ZWxfcHNyX3BhdXNlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCit7CisJc3RydWN0
+IGludGVsX3BzciAqcHNyID0gJmludGVsX2RwLT5wc3I7CisKKwlpZiAoIUNBTl9QU1IoaW50ZWxf
+ZHApKQorCQlyZXR1cm47CisKKwltdXRleF9sb2NrKCZwc3ItPmxvY2spOworCisJaWYgKCFwc3It
+PmFjdGl2ZSkgeworCQltdXRleF91bmxvY2soJnBzci0+bG9jayk7CisJCXJldHVybjsKKwl9CisK
+KwlpbnRlbF9wc3JfZXhpdChpbnRlbF9kcCk7CisJaW50ZWxfcHNyX3Bvc3RfZXhpdChpbnRlbF9k
+cCk7CisJcHNyLT5wYXVzZWQgPSB0cnVlOworCisJbXV0ZXhfdW5sb2NrKCZwc3ItPmxvY2spOwor
+CisJY2FuY2VsX3dvcmtfc3luYygmcHNyLT53b3JrKTsKKwljYW5jZWxfZGVsYXllZF93b3JrX3N5
+bmMoJnBzci0+ZGMzY29fd29yayk7Cit9CisKKy8qKgorICogaW50ZWxfcHNyX3Jlc3VtZSAtIFJl
+c3VtZSBQU1IKKyAqIEBpbnRlbF9kcDogSW50ZWwgRFAKKyAqCisgKiBUaGlzIGZ1bmN0aW9uIG5l
+ZWQgdG8gYmUgY2FsbGVkIGFmdGVyIHBhdXNpbmcgcHNyLgorICovCit2b2lkIGludGVsX3Bzcl9y
+ZXN1bWUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKK3sKKwlzdHJ1Y3QgaW50ZWxfcHNyICpw
+c3IgPSAmaW50ZWxfZHAtPnBzcjsKKworCWlmICghQ0FOX1BTUihpbnRlbF9kcCkpCisJCXJldHVy
+bjsKKworCW11dGV4X2xvY2soJnBzci0+bG9jayk7CisKKwlpZiAoIXBzci0+cGF1c2VkKQorCQln
+b3RvIHVubG9jazsKKworCXBzci0+cGF1c2VkID0gZmFsc2U7CisJaW50ZWxfcHNyX2FjdGl2YXRl
+KGludGVsX2RwKTsKKwordW5sb2NrOgorCW11dGV4X3VubG9jaygmcHNyLT5sb2NrKTsKK30KKwog
+c3RhdGljIHZvaWQgcHNyX2ZvcmNlX2h3X3RyYWNraW5nX2V4aXQoc3RydWN0IGludGVsX2RwICpp
+bnRlbF9kcCkKIHsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19p
+OTE1KGludGVsX2RwKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfcHNyLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5oCmlu
+ZGV4IGUzZGI4NWU5N2Y0Yy4uNjQxNTIxYjEwMWM4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfcHNyLmgKQEAgLTUxLDUgKzUxLDcgQEAgdm9pZCBpbnRlbF9wc3IyX3Byb2dy
+YW1fcGxhbmVfc2VsX2ZldGNoKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsCiAJCQkJCWNvbnN0
+IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJCQljb25zdCBzdHJ1Y3Qg
+aW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlLAogCQkJCQlpbnQgY29sb3JfcGxhbmUpOwor
+dm9pZCBpbnRlbF9wc3JfcGF1c2Uoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCk7Cit2b2lkIGlu
+dGVsX3Bzcl9yZXN1bWUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCk7CiAKICNlbmRpZiAvKiBf
+X0lOVEVMX1BTUl9IX18gKi8KLS0gCjIuMzEuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
