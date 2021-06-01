@@ -1,45 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC8A397BB4
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 23:23:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F95397BBD
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 23:29:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F26846E05A;
-	Tue,  1 Jun 2021 21:23:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2D66E210;
+	Tue,  1 Jun 2021 21:29:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD6126E054;
- Tue,  1 Jun 2021 21:23:07 +0000 (UTC)
-IronPort-SDR: t3gP5baAF/oL1SgT8kp7ngGlMofaexrXZGPyZSRu9JzDz+rlJw2G7763Nu6VOc5SNkjHTmwg8G
- kmshYGdElqCA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="184008808"
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="184008808"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 14:23:06 -0700
-IronPort-SDR: 8LxedI0983ZjWkH49/JMeKhahN9tveHLbVMILUhTUM8wSa+Zg8uQ+OWPoSMO0uzkVzLQWBgfak
- 6YOzk3Zwc55A==
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="479440346"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.213.165.160])
- ([10.213.165.160])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 14:23:03 -0700
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
- <20210525054803.7387-5-daniele.ceraolospurio@intel.com>
- <YLaWdU2mLu/Ih2Yp@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <0960d940-1fca-a7e7-8cce-ef149dbda717@intel.com>
-Date: Tue, 1 Jun 2021 14:23:00 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 44E306E0DD;
+ Tue,  1 Jun 2021 21:29:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3CBEDA363D;
+ Tue,  1 Jun 2021 21:29:47 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <YLaWdU2mLu/Ih2Yp@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 04/17] drm/i915/gt: Export the pinned
- context constructor and destructor
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Date: Tue, 01 Jun 2021 21:29:47 -0000
+Message-ID: <162258298721.19249.5466940444909310594@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210601142442.100754-1-zbigniew.kempczynski@intel.com>
+In-Reply-To: <20210601142442.100754-1-zbigniew.kempczynski@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_relocation_exceptions_for_two_other_platforms_=28r?=
+ =?utf-8?q?ev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,152 +39,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0813031468=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0813031468==
+Content-Type: multipart/alternative;
+ boundary="===============7492723186110122142=="
+
+--===============7492723186110122142==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: Add relocation exceptions for two other platforms (rev4)
+URL   : https://patchwork.freedesktop.org/series/89594/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10156 -> Patchwork_20258
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20258 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-r:           [FAIL][1] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][2] ([i915#1436] / [i915#3363])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10156/fi-kbl-r/igt@runner@aborted.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/fi-kbl-r/igt@runner@aborted.html
+    - fi-skl-6700k2:      [FAIL][3] ([i915#1436] / [i915#3363]) -> [FAIL][4] ([i915#1436] / [i915#2426] / [i915#3363])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10156/fi-skl-6700k2/igt@runner@aborted.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/fi-skl-6700k2/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2932]: https://gitlab.freedesktop.org/drm/intel/issues/2932
+  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
 
 
-On 6/1/2021 1:20 PM, Rodrigo Vivi wrote:
-> On Mon, May 24, 2021 at 10:47:50PM -0700, Daniele Ceraolo Spurio wrote:
->> From: Chris Wilson <chris@chris-wilson.co.uk>
->>
->> Allow internal clients to create a pinned context.
->>
->> v2 (Daniele): export destructor as well, allow optional usage of custom
->> vm for maximum flexibility.
->>
->> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_engine.h    | 10 ++++++++
->>   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 29 +++++++++++++++--------
->>   2 files changed, 29 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
->> index 47ee8578e511..a64d28aba257 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
->> @@ -18,7 +18,9 @@
->>   #include "intel_workarounds.h"
->>   
->>   struct drm_printer;
->> +struct intel_context;
->>   struct intel_gt;
->> +struct lock_class_key;
->>   
->>   /* Early gen2 devices have a cacheline of just 32 bytes, using 64 is overkill,
->>    * but keeps the logic simple. Indeed, the whole purpose of this macro is just
->> @@ -255,6 +257,14 @@ struct i915_request *
->>   intel_engine_find_active_request(struct intel_engine_cs *engine);
->>   
->>   u32 intel_engine_context_size(struct intel_gt *gt, u8 class);
->> +struct intel_context *
->> +intel_engine_create_pinned_context(struct intel_engine_cs *engine,
->> +				   struct i915_address_space *vm,
->> +				   unsigned int ring_size,
->> +				   unsigned int hwsp,
->> +				   struct lock_class_key *key,
->> +				   const char *name);
->> +void intel_engine_destroy_pinned_context(struct intel_context *ce);
->>   
->>   void intel_engine_init_active(struct intel_engine_cs *engine,
->>   			      unsigned int subclass);
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> index eba2da9679a5..8cbf11497e8e 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> @@ -801,11 +801,13 @@ intel_engine_init_active(struct intel_engine_cs *engine, unsigned int subclass)
->>   #endif
->>   }
->>   
->> -static struct intel_context *
->> -create_pinned_context(struct intel_engine_cs *engine,
->> -		      unsigned int hwsp,
->> -		      struct lock_class_key *key,
->> -		      const char *name)
->> +struct intel_context *
->> +intel_engine_create_pinned_context(struct intel_engine_cs *engine,
->> +				   struct i915_address_space *vm,
->> +				   unsigned int ring_size,
->> +				   unsigned int hwsp,
->> +				   struct lock_class_key *key,
->> +				   const char *name)
->>   {
->>   	struct intel_context *ce;
->>   	int err;
->> @@ -816,6 +818,12 @@ create_pinned_context(struct intel_engine_cs *engine,
->>   
->>   	__set_bit(CONTEXT_BARRIER_BIT, &ce->flags);
->>   	ce->timeline = page_pack_bits(NULL, hwsp);
->> +	ce->ring = __intel_context_ring_size(ring_size);
-> why do we need this now and we didn't need before?
+Participating hosts (47 -> 42)
+------------------------------
 
-Since we're now exporting the function as a more "official" interface, 
-the idea was to provide as much flexibility as possible. The ring size 
-could be used if e.g. we decide to use more pxp sessions and therefore 
-need more space in the ring to insert instructions. Same for the vm below.
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
 
-Daniele
 
->
->> +
->> +	if (vm) {
->> +		i915_vm_put(ce->vm);
->> +		ce->vm = i915_vm_get(vm);
->> +	}
-> same question here...
->
->>   
->>   	err = intel_context_pin(ce); /* perma-pin so it is always available */
->>   	if (err) {
->> @@ -834,7 +842,7 @@ create_pinned_context(struct intel_engine_cs *engine,
->>   	return ce;
->>   }
->>   
->> -static void destroy_pinned_context(struct intel_context *ce)
->> +void intel_engine_destroy_pinned_context(struct intel_context *ce)
->>   {
->>   	struct intel_engine_cs *engine = ce->engine;
->>   	struct i915_vma *hwsp = engine->status_page.vma;
->> @@ -854,8 +862,9 @@ create_kernel_context(struct intel_engine_cs *engine)
->>   {
->>   	static struct lock_class_key kernel;
->>   
->> -	return create_pinned_context(engine, I915_GEM_HWS_SEQNO_ADDR,
->> -				     &kernel, "kernel_context");
->> +	return intel_engine_create_pinned_context(engine, NULL, SZ_4K,
->> +						  I915_GEM_HWS_SEQNO_ADDR,
->> +						  &kernel, "kernel_context");
->>   }
->>   
->>   /**
->> @@ -898,7 +907,7 @@ static int engine_init_common(struct intel_engine_cs *engine)
->>   	return 0;
->>   
->>   err_context:
->> -	destroy_pinned_context(ce);
->> +	intel_engine_destroy_pinned_context(ce);
->>   	return ret;
->>   }
->>   
->> @@ -956,7 +965,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
->>   		fput(engine->default_state);
->>   
->>   	if (engine->kernel_context)
->> -		destroy_pinned_context(engine->kernel_context);
->> +		intel_engine_destroy_pinned_context(engine->kernel_context);
->>   
->>   	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
->>   	cleanup_status_page(engine);
->> -- 
->> 2.29.2
->>
+Build changes
+-------------
+
+  * Linux: CI_DRM_10156 -> Patchwork_20258
+
+  CI-20190529: 20190529
+  CI_DRM_10156: 551125c07e42a44a1b4bf8ad735619f2e315a0e2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6098: 1fbc1e7d602f96a7f4e2b95057eef994656b8e74 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20258: 41a20f6df2f115353360377f97f73b6c291313d0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+41a20f6df2f1 drm/i915: Add relocation exceptions for two other platforms
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/index.html
+
+--===============7492723186110122142==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add relocation exceptions for two other platforms (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89594/">https://patchwork.freedesktop.org/series/89594/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10156 -&gt; Patchwork_20258</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20258 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10156/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10156/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20258/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (47 -&gt; 42)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10156 -&gt; Patchwork_20258</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10156: 551125c07e42a44a1b4bf8ad735619f2e315a0e2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6098: 1fbc1e7d602f96a7f4e2b95057eef994656b8e74 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20258: 41a20f6df2f115353360377f97f73b6c291313d0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>41a20f6df2f1 drm/i915: Add relocation exceptions for two other platforms</p>
+
+</body>
+</html>
+
+--===============7492723186110122142==--
+
+--===============0813031468==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0813031468==--
