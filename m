@@ -2,66 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4BBF397567
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 16:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD84939756F
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 16:30:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F05A46EA77;
-	Tue,  1 Jun 2021 14:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB166EA7B;
+	Tue,  1 Jun 2021 14:30:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 055146EA77
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 14:26:01 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id z8so9436724wrp.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 01 Jun 2021 07:26:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=cBvoLv5ImwFWPolBi0/sqL+d2j6RxuxN/8LJWDz60/8=;
- b=f/MZkNTMD1PYlSc2kCqv4ftIvxKnbJeRBBaTiODD4rKc6JswioKiX10OTHiQ7/1kJ8
- Ft4DVTOAHMD4QaODhP167sq2N5YlpGsh4LjP9ZbWVeiHl0GzPK9e5PmjxWuu7bzsdD20
- ALzD8kxgq5qXdGadkPFna475hNJauy7hBqxYU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=cBvoLv5ImwFWPolBi0/sqL+d2j6RxuxN/8LJWDz60/8=;
- b=jstQEc65J9CzPlRooZ0aD9bJiEV0s+vR+rAhffSdzB6xpFmOdwxuKK+L6jrpq+WmH4
- aMP4bvwr6MDU7WPOnlwt9S8LoU/3fVAt7Ec+bFl1mgswEo+YpYl+MAu4j3NG1GD0xbzo
- roZBvbkgB8t08CUFZHae/7t+Pmel9r6CPPX3RCMPZeHfQSNSnFw+bxUpzU2kaR0UNzPr
- +EkwlD2ktBrXSmAvISx6kfDYSXKWRSCRZTtyOgLE9bRKmHTMHMNuvtynbxgqVX+fkvF8
- kxiZF8fXHYLhZJwhy/pYiAPBxAqldeNX9R4slYtEL+LXeUW+vc65HyC4YfVFn+1zdro1
- cIxA==
-X-Gm-Message-State: AOAM531fmOkVamqH7Ke3EqbagZAHcMWTmA+eNuO9RS+SAiGMnAh9DLO2
- kvc3qMlTik9Y8SIE/v/qoiCybg==
-X-Google-Smtp-Source: ABdhPJyEFH5xIhbUFP6ohcyXS1DLH/v63UtEoC70u76RK1w1n9DSz3PshcqT/17HqNc7dmS2uc4Q8A==
-X-Received: by 2002:a5d:4578:: with SMTP id a24mr20312855wrc.388.1622557559735; 
- Tue, 01 Jun 2021 07:25:59 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c206sm2908172wmf.12.2021.06.01.07.25.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Jun 2021 07:25:59 -0700 (PDT)
-Date: Tue, 1 Jun 2021 16:25:57 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YLZDdUV/COdD9d4v@phenom.ffwll.local>
-References: <20210525135508.244659-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <20210525135508.244659-2-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <b9ae1daa-6add-1c67-58b4-16491f2e1431@linux.intel.com>
- <YK0OHJcSwWY1mm7v@phenom.ffwll.local>
- <8cf2c5f4-87a3-ce6b-150c-65fa054586a4@linux.intel.com>
- <YK9wrCayUwSDzMWG@phenom.ffwll.local>
- <59d2eee9-35c1-01fc-c226-50ad98aadb99@linux.intel.com>
- <YK90LkRrMXTC/hF3@phenom.ffwll.local>
- <e96668b6-47a0-f426-51a8-d9824afd8887@linux.intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3EEB6EA7B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 14:30:32 +0000 (UTC)
+IronPort-SDR: htubpSlpHWGGvGtuUBZ2TsB/ONoI4Hl2MKjqx8CfLtuAtrT806WmbpMftoGfjHXlhoGNsymTJb
+ RgdM+uCMyfLQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="201689629"
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="201689629"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 07:30:28 -0700
+IronPort-SDR: CvFP20cOjW4YcRWjYdiqmCBIIVDhWvXXVNJcyZr1wxrLyFJqtjJnz/igIHcFexP7KN6FY7w0tH
+ lMMAmjifi+/w==
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="479301663"
+Received: from ycohenha-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.54.130])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 07:30:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <2871190.Sgy9Pd6rRy@jkrzyszt-mobl1.ger.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210429134450.302912-1-janusz.krzysztofik@linux.intel.com>
+ <87zgxbzpiu.fsf@intel.com>
+ <2871190.Sgy9Pd6rRy@jkrzyszt-mobl1.ger.corp.intel.com>
+Date: Tue, 01 Jun 2021 17:30:20 +0300
+Message-ID: <87bl8pr72b.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <e96668b6-47a0-f426-51a8-d9824afd8887@linux.intel.com>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 1/1] Let userspace know if they can trust
- timeslicing by including it as part of the
- I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix wrong name announced on FB
+ driver switching
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,115 +51,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- DRI Development <dri-devel@lists.freedesktop.org>, mahesh.meena@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 01, 2021 at 11:09:47AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 27/05/2021 11:27, Daniel Vetter wrote:
-> > On Thu, May 27, 2021 at 11:22:16AM +0100, Tvrtko Ursulin wrote:
-> > > 
-> > > On 27/05/2021 11:13, Daniel Vetter wrote:
-> > > > On Wed, May 26, 2021 at 11:20:13AM +0100, Tvrtko Ursulin wrote:
-> > > > > 
-> > > > > On 25/05/2021 15:47, Daniel Vetter wrote:
-> > > > > > On Tue, May 25, 2021 at 03:19:47PM +0100, Tvrtko Ursulin wrote:
-> > > > > > > 
-> > > > > > > + dri-devel as per process
-> > > > > > > 
-> > > > > > > On 25/05/2021 14:55, Tejas Upadhyay wrote:
-> > > > > > > > v2: Only declare timeslicing if we can safely preempt userspace.
-> > > > > > > 
-> > > > > > > Commit message got butchered up somehow so you'll need to fix that at some
-> > > > > > > point.
-> > > > > > > 
-> > > > > > > Regards,
-> > > > > > > 
-> > > > > > > Tvrtko
-> > > > > > > 
-> > > > > > > > Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-> > > > > > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > > > > > > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > > > > > > ---
-> > > > > > > >      drivers/gpu/drm/i915/gt/intel_engine_user.c | 1 +
-> > > > > > > >      include/uapi/drm/i915_drm.h                 | 1 +
-> > > > > > > >      2 files changed, 2 insertions(+)
-> > > > > > > > 
-> > > > > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> > > > > > > > index 3cca7ea2d6ea..12d165566ed2 100644
-> > > > > > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> > > > > > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> > > > > > > > @@ -98,6 +98,7 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
-> > > > > > > >      		MAP(HAS_PREEMPTION, PREEMPTION),
-> > > > > > > >      		MAP(HAS_SEMAPHORES, SEMAPHORES),
-> > > > > > > >      		MAP(SUPPORTS_STATS, ENGINE_BUSY_STATS),
-> > > > > > > > +		MAP(TIMESLICE_BIT, TIMESLICING),
-> > > > > > > >      #undef MAP
-> > > > > > > >      	};
-> > > > > > > >      	struct intel_engine_cs *engine;
-> > > > > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> > > > > > > > index c2c7759b7d2e..af2212d6113c 100644
-> > > > > > > > --- a/include/uapi/drm/i915_drm.h
-> > > > > > > > +++ b/include/uapi/drm/i915_drm.h
-> > > > > > > > @@ -572,6 +572,7 @@ typedef struct drm_i915_irq_wait {
-> > > > > > > >      #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
-> > > > > > > >      #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
-> > > > > > > >      #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
-> > > > > > > > +#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
-> > > > > > 
-> > > > > > Since this is uapi I think we should at least have some nice kerneldoc
-> > > > > > that explains what exactly this is, what for (link to userspace) and all
-> > > > > > that. Ideally also minimally filing in the gaps in our uapi docs for stuff
-> > > > > > this references.
-> > > > > 
-> > > > > IIUC there is no userspace apart from IGT needing it not to fail scheduling
-> > > > > tests on ADL.
-> > > > > 
-> > > > > Current tests use "has preemption + has semaphores" as a proxy to answer the
-> > > > > "does the kernel support timeslicing" question. This stops working with the
-> > > > > Guc backend because GuC decided not to support semaphores (for reasons yet
-> > > > > unknown, see other thread), so explicit "has timeslicing" flag is needed in
-> > > > > order for tests to know that GuC is supposed to support timeslicing, even if
-> > > > > it doesn't use semaphores for inter-ring synchronisation.
-> > > > 
-> > > > Since this if for igt only: Cant we do just extend the check in igt with
-> > > > an || GEN >= 12? I really hope that our future hw will continue to support
-> > > > timeslicing ...
-> > > 
-> > > Not the gen 12 check, but possible I think. Explicit feature test would be better, but if definitely not allowed then along the lines of:
-> > > 
-> > > has_timeslicing =
-> > > 	(has_preemption && has_semaphores) || uses_guc_submission;
-> > 
-> > That works too. Otoh what exactly is the "uses guc submission" flag and
-> > why do we have that? I've seen media use it as a stand-in for "does the
-> > kernel want bonded or parallel ctx?". Maybe another thing to check.
-> > 
-> > Another option, if you really think the feature flag is the best approach
-> > (because future hw will drop timeslicing for some reason), then debugfs is
-> > the place of igt-only api.
-> 
-> Maybe check and potentially remove all I915_SCHEDULER_CAP_.. flags. It could
-> be another easy pickings with a lot of IGT work type endeavour.
-
-Yeah there's a lot unfortunately. I'll make a note internally that we need
-to look at this again maybe next year, but for now we're going to only
-concentrate on stuff that has actual architecture/design impact. In the
-grand scheme of things exporting a bunch of flags for igt in the uapi is
-mostly harmless. There's much bigger fish to fry were we allow igt to make
-changes to objects that should be all immutable. Those need to be worked
-out first.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyNiBNYXkgMjAyMSwgSmFudXN6IEtyenlzenRvZmlrIDxqYW51c3oua3J6eXN6dG9m
+aWtAbGludXguaW50ZWwuY29tPiB3cm90ZToKPiBIaSwKPgo+IE9uIHBvbmllZHppYcWCZWssIDMg
+bWFqYSAyMDIxIDE5OjM4OjE3IENFU1QgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IE9uIFRodSwgMjkg
+QXByIDIwMjEsIEphbnVzeiBLcnp5c3p0b2ZpayA8amFudXN6LmtyenlzenRvZmlrQGxpbnV4Lmlu
+dGVsLmNvbT4gCj4gd3JvdGU6Cj4+ID4gQ29tbWl0IDdhMGY5ZWY5NzAzZCAoImRybS9pOTE1OiBV
+c2UgZHJtX2ZiX2hlbHBlcl9maWxsX2luZm8iKQo+PiA+IGVmZmVjdGl2ZWx5IGNoYW5nZWQgb3Vy
+IEZCIGRyaXZlciBuYW1lIGZyb20gImludGVsZHJtZmIiIHRvCj4+ID4gImk5MTVkcm1mYiIuICBI
+b3dldmVyLCB3ZSBhcmUgc3RpbGwgdXNpbmcgdGhlIG9sZCBuYW1lIHdoZW4ga2lja2luZyBvdXQK
+Pj4gPiBhIGZpcm13YXJlIGZiZGV2IGRyaXZlciBwb3RlbnRpYWxseSBib3VuZCB0byBvdXIgZGV2
+aWNlLiAgVXNlIHRoZSBuZXcKPj4gPiBuYW1lIHRvIGF2b2lkIGNvbmZ1c2lvbi4KPj4gPgo+PiA+
+IE5vdGU6IHNpbmNlIHRoZSBuZXcgbmFtZSBpcyBhc3NpZ25lZCBieSBhIERSTSBmYmRldiBoZWxw
+ZXIgY2FsbGVkIGF0Cj4+ID4gdGhlIERSTSBkcml2ZXIgcmVnaXN0cmF0aW9uIHRpbWUsIHRoYXQg
+bmFtZSBpcyBub3QgYXZhaWxhYmxlIHdoZW4gd2UKPj4gPiBraWNrIHRoZSBvdGhlciBkcml2ZXIg
+b3V0IGVhcmx5LCBoZW5jZSBhIGhhcmRjb2RlZCBuYW1lIG11c3QgYmUgdXNlZAo+PiA+IHVubGVz
+cyB0aGUgRFJNIGxheWVyIGV4cG9zZXMgYSBtYWNybyBmb3IgY29udmVydGluZyBhIERSTSBkcml2
+ZXIgbmFtZQo+PiA+IHRvIGl0cyBhc3NvY2lhdGVkIGZiZGV2IGRyaXZlciBuYW1lLgo+PiA+Cj4+
+ID4gU2lnbmVkLW9mZi1ieTogSmFudXN6IEtyenlzenRvZmlrIDxqYW51c3oua3J6eXN6dG9maWtA
+bGludXguaW50ZWwuY29tPgo+PiAKPj4gTEdUTSwgRGFuaWVsPwo+PiAKPj4gUmV2aWV3ZWQtYnk6
+IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4KPiBBbSBJIHN1cHBvc2VkIHRv
+IGRvIHNvbWV0aGluZyB0byBwdXNoIHByb2Nlc3Npbmcgb2YgdGhpcyBwYXRjaCBmb3J3YXJkPyAg
+Cj4gUGxlYXNlIG5vdGUgSSBoYXZlIG5vIHB1c2ggcGVybWlzc2lvbnMgc28gY2FuJ3QgbWVyZ2Ug
+aXQgbXlzZWxmLgoKSSB3YXMgaG9waW5nIHRvIGdldCBhbiBhY2sgZnJvbSBEYW5pZWwgaW4gY2Fz
+ZSBJIG1pc3NlZCBzb21ldGhpbmcuCgo+Cj4+IAo+PiAkIGRpbSBmaXhlcyA3YTBmOWVmOTcwM2QK
+Pj4gRml4ZXM6IDdhMGY5ZWY5NzAzZCAoImRybS9pOTE1OiBVc2UgZHJtX2ZiX2hlbHBlcl9maWxs
+X2luZm8iKQo+PiBDYzogTm9yYWxmIFRyw7hubmVzIDxub3JhbGZAdHJvbm5lcy5vcmc+Cj4+IENj
+OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Cj4+IENjOiBEYW5pZWwg
+VmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5p
+Lm5pa3VsYUBsaW51eC5pbnRlbC5jb20+Cj4+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5s
+YWh0aW5lbkBsaW51eC5pbnRlbC5jb20+Cj4+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2
+aUBpbnRlbC5jb20+Cj4+IENjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IENj
+OiA8c3RhYmxlQHZnZXIua2VybmVsLm9yZz4gIyB2NS4yKwo+Cj4gU2hvdWxkIEkgcmVzdWJtaXQg
+d2l0aCB0aG9zZSB0YWdzIGFwcGVuZGVkPwoKTm8gbmVlZCwgd2lsbCBiZSBhZGRlZCBieSB3aG9l
+dmVyIGFwcGxpZXMgdGhlIHBhdGNoLgoKQlIsCkphbmkuCgo+Cj4gVGhhbmtzLAo+IEphbnVzego+
+Cj4+IAo+PiAKPj4gPiAtLS0KPj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyB8
+IDIgKy0KPj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0p
+Cj4+ID4KPj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1Lwo+IGk5MTVfZHJ2LmMKPj4gPiBpbmRleCA3ODVkY2YyMGM3
+N2IuLjQ2MDgyNDkwZGM5YSAxMDA2NDQKPj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2Rydi5jCj4+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwo+PiA+
+IEBAIC01NTQsNyArNTU0LDcgQEAgc3RhdGljIGludCBpOTE1X2RyaXZlcl9od19wcm9iZShzdHJ1
+Y3QgCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4+ID4gIAlpZiAocmV0KQo+PiA+ICAJ
+CWdvdG8gZXJyX3BlcmY7Cj4+ID4gIAo+PiA+IC0JcmV0ID0gZHJtX2FwZXJ0dXJlX3JlbW92ZV9j
+b25mbGljdGluZ19wY2lfZnJhbWVidWZmZXJzKHBkZXYsIAo+ICJpbnRlbGRybWZiIik7Cj4+ID4g
+KwlyZXQgPSBkcm1fYXBlcnR1cmVfcmVtb3ZlX2NvbmZsaWN0aW5nX3BjaV9mcmFtZWJ1ZmZlcnMo
+cGRldiwgCj4gImk5MTVkcm1mYiIpOwo+PiA+ICAJaWYgKHJldCkKPj4gPiAgCQlnb3RvIGVycl9n
+Z3R0Owo+PiAKPj4gCj4KPgo+Cj4KCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2Ug
+R3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
