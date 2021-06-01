@@ -1,54 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB1BC3976C2
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 17:32:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB08D39772E
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 17:50:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A31566E970;
-	Tue,  1 Jun 2021 15:32:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A679E6E45C;
+	Tue,  1 Jun 2021 15:50:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com
- [IPv6:2607:f8b0:4864:20::e2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C73C96E970;
- Tue,  1 Jun 2021 15:32:07 +0000 (UTC)
-Received: by mail-vs1-xe2b.google.com with SMTP id x2so7948741vss.3;
- Tue, 01 Jun 2021 08:32:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=d/JiYYhFUO04t8CGV6jIQdwSg5PSkQH6BUVjJ3YfIh4=;
- b=FJi/AQpbfzIFBLaSRITA+QlCyoO2xWP8WhJoU4ft2ynZE/Dbk7qnDUfXx11UyG5xe5
- Y6ImEWjTWo/s4dpEgJu7iT8ZbBBGGzbYS6d/qI51ArFbvkvt2LDL3b4darSWy+U/xGI4
- WjSA61mqSVT2KjgEfzE2eiAKnrxntf7QD5ECWq1GcRFMPVns/U22whNi1iJMAnVCxXRS
- TKaip/C+efrj1dPElBxwnsRuV20xEaPwgNMyabyCkRF3E0zHj6rTalt9BmLPIN+U46Qr
- Q20UI3HLBW6bsAT/5xJ09OJl7tzPJNX8R2gWtwjQDyvb+QNsE8PrrM59bZkvC70gwj5C
- rEzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=d/JiYYhFUO04t8CGV6jIQdwSg5PSkQH6BUVjJ3YfIh4=;
- b=SPwOBGGiglQBkZ4VAFuw/J3HEMKTYGa/iGbB5uCSnJctWyHmh3WTQfZSHNKFpoklxg
- NrV9VBpc60il7IdBq70UjwfrpUsBZrY3sZnUKGGtMqdH4D2oow2e9S8QluHJ/RNbaKs4
- EsIcdrpR1lx8vA5SA0eykrkQfewc+VklVh3+R5lcPp519GYmIb5wOS9t8g+nNyAf+OSm
- qqoALBdnh1u/xB36iGNcx7EKIBgOgNfvIn+xyQm1GLK5n7cIS4ig8NODQ5ehsO7P5+bm
- pc0YctGLa/+32qjZvNGvt5Kd9daCM46g3GRptMCIjxTuNY4jcmN7qpaU6zVLav2RhYhk
- 23NQ==
-X-Gm-Message-State: AOAM532Bd5/tfXPCCfAvVhHAcGg6HcD53fs5sRwzTS17xvuWboFHEvxD
- dKRBo/d2FsuFHJmwPN4wEtC9H9k8xtOxcJ5pp4Y=
-X-Google-Smtp-Source: ABdhPJygFw5MiS1g73bRd4O7g/mZExW7EW6JfpfcXXtw6r0DVbwtj6PkcKaKP6eU1Ea4ttgCb6bapVSygv6iWUWd0Go=
-X-Received: by 2002:a67:878a:: with SMTP id j132mr19228098vsd.18.1622561527002; 
- Tue, 01 Jun 2021 08:32:07 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F15726E081;
+ Tue,  1 Jun 2021 15:50:28 +0000 (UTC)
+IronPort-SDR: aMJXG61/mE66fOhrJ3KLxYe3mOQyxlaso7d4W4kE062rpjQU+ouSSG6wPxURQD+TBBS+3Clp3C
+ /E8uoipZxxFA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="183254920"
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="183254920"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 08:50:28 -0700
+IronPort-SDR: J39Du4ayNBRTxftYn6kFhKmmf+auHdqer89alSNL4QXUZE9CEUZc8bKt9qN7/02g0yxmspmPgO
+ Gz13g6+rcPBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="445378048"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 01 Jun 2021 08:50:25 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 01 Jun 2021 18:50:24 +0300
+Date: Tue, 1 Jun 2021 18:50:24 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anisse Astier <anisse@astier.eu>
+Message-ID: <YLZXQLh2Qmxs+CWU@intel.com>
+References: <20210531204642.4907-1-anisse@astier.eu>
+ <20210531204642.4907-2-anisse@astier.eu>
 MIME-Version: 1.0
-References: <20210421204804.589962-1-hdegoede@redhat.com>
- <20210421204804.589962-3-hdegoede@redhat.com>
-In-Reply-To: <20210421204804.589962-3-hdegoede@redhat.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Tue, 1 Jun 2021 16:31:55 +0100
-Message-ID: <CACvgo50onXuRvtXySYNHJZshSkmX8ukcMitNJAKC4dEMPTyXYw@mail.gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/9] drm: Add privacy-screen class (v2)
+Content-Disposition: inline
+In-Reply-To: <20210531204642.4907-2-anisse@astier.eu>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/opregion: add support for
+ mailbox #5 EDID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,57 +51,251 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
- Marco Trevisan <marco.trevisan@canonical.com>,
- Mark Gross <mgross@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Sebastien Bacher <seb128@ubuntu.com>, David Airlie <airlied@linux.ie>,
- Mario Limonciello <mario.limonciello@outlook.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, platform-driver-x86@vger.kernel.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Mark Pearson <markpearson@lenovo.com>, Andy Shevchenko <andy@infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Hans,
+On Mon, May 31, 2021 at 10:46:41PM +0200, Anisse Astier wrote:
+> The ACPI OpRegion Mailbox #5 ASLE extension may contain an EDID to be
+> used for the embedded display. Add support for using it via by adding
+> the EDID to the list of available modes on the connector, and use it for
+> eDP when available.
+> =
 
-What happened with this series, did it fall through the cracks?
+> If a panel's EDID is broken, there may be an override EDID set in the
+> ACPI OpRegion mailbox #5. Use it if available.
 
-On Wed, 21 Apr 2021 at 21:48, Hans de Goede <hdegoede@redhat.com> wrote:
+Looks like Windows uses the ACPI _DDC method instead. We should probably
+do the same, just in case some crazy machine stores the EDID somewhere
+else.
 
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_privacy_screen.c
+> =
 
-> +#include "drm_internal.h"
+> Fixes the GPD Win Max display.
+> =
 
-I think we don't need this include, do we?
+> Based on original patch series by: Jani Nikula <jani.nikula@intel.com>
+> https://patchwork.kernel.org/project/intel-gfx/patch/20200828061941.17051=
+-1-jani.nikula@intel.com/
+> =
 
+> Changes:
+>  - EDID is copied and validated with drm_edid_is_valid
+>  - Mode is now added via drm_add_edid_modes instead of using override
+>    mechanism
+>  - squashed the two patches
+> =
 
-> --- /dev/null
-> +++ b/include/drm/drm_privacy_screen_consumer.h
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Anisse Astier <anisse@astier.eu>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +
+>  drivers/gpu/drm/i915/display/intel_opregion.c | 69 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_opregion.h |  8 +++
+>  3 files changed, 79 insertions(+), 1 deletion(-)
+> =
 
-> +#include <drm/drm_connector.h>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 5c9222283044..43fb485c0e02 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5191,6 +5191,9 @@ static bool intel_edp_init_connector(struct intel_d=
+p *intel_dp,
+>  		goto out_vdd_off;
+>  	}
+>  =
 
-Ditto
+> +	/* Set up override EDID, if any, from ACPI OpRegion */
+> +	intel_opregion_edid_probe(intel_connector);
+> +
+>  	mutex_lock(&dev->mode_config.mutex);
+>  	edid =3D drm_get_edid(connector, &intel_dp->aux.ddc);
+>  	if (edid) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/=
+drm/i915/display/intel_opregion.c
+> index dfd724e506b5..ef8d38f041eb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> @@ -196,6 +196,8 @@ struct opregion_asle_ext {
+>  #define ASLE_IUER_WINDOWS_BTN		(1 << 1)
+>  #define ASLE_IUER_POWER_BTN		(1 << 0)
+>  =
 
-> --- /dev/null
-> +++ b/include/drm/drm_privacy_screen_driver.h
+> +#define ASLE_PHED_EDID_VALID_MASK	0x3
+> +
+>  /* Software System Control Interrupt (SWSCI) */
+>  #define SWSCI_SCIC_INDICATOR		(1 << 0)
+>  #define SWSCI_SCIC_MAIN_FUNCTION_SHIFT	1
+> @@ -909,8 +911,10 @@ int intel_opregion_setup(struct drm_i915_private *de=
+v_priv)
+>  		opregion->asle->ardy =3D ASLE_ARDY_NOT_READY;
+>  	}
+>  =
 
-> +#include <drm/drm_connector.h>
+> -	if (mboxes & MBOX_ASLE_EXT)
+> +	if (mboxes & MBOX_ASLE_EXT) {
+>  		drm_dbg(&dev_priv->drm, "ASLE extension supported\n");
+> +		opregion->asle_ext =3D base + OPREGION_ASLE_EXT_OFFSET;
+> +	}
+>  =
 
-Ditto
+>  	if (intel_load_vbt_firmware(dev_priv) =3D=3D 0)
+>  		goto out;
+> @@ -1037,6 +1041,68 @@ intel_opregion_get_panel_type(struct drm_i915_priv=
+ate *dev_priv)
+>  	return ret - 1;
+>  }
+>  =
 
-I like how you avoided leaking any DRM details within the new code,
-modulo the includes above. With above tweaks, the series is:
-Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+> +/**
+> + * intel_opregion_edid_probe - Add EDID from ACPI OpRegion mailbox #5
+> + * @intel_connector: eDP connector
+> + *
+> + * This reads the ACPI Opregion mailbox #5 to extract the EDID that is p=
+assed
+> + * to it.
+> + *
+> + * Will take a lock on the DRM mode_config to add the EDID; make sure it=
+ isn't
+> + * called with lock taken.
+> + *
+> + */
+> +void intel_opregion_edid_probe(struct intel_connector *intel_connector)
+> +{
+> +	struct drm_connector *connector =3D &intel_connector->base;
+> +	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+> +	struct intel_opregion *opregion =3D &i915->opregion;
+> +	const void *in_edid;
+> +	const struct edid *edid;
+> +	struct edid *new_edid;
+> +	int len, ret, num;
+> +
+> +	if (!opregion->asle_ext || connector->override_edid)
+> +		return;
+> +
+> +	in_edid =3D opregion->asle_ext->bddc;
+> +
+> +	/* Validity corresponds to number of 128-byte blocks */
+> +	len =3D (opregion->asle_ext->phed & ASLE_PHED_EDID_VALID_MASK) * 128;
+> +	if (!len || !memchr_inv(in_edid, 0, len))
+> +		return;
+> +
+> +	edid =3D in_edid;
+> +
+> +	if (len < EDID_LENGTH * (1 + edid->extensions)) {
+> +		drm_dbg_kms(&i915->drm, "Invalid EDID in ACPI OpRegion (Mailbox #5)\n"=
+);
+> +		return;
+> +	}
+> +	new_edid =3D drm_edid_duplicate(edid);
+> +	if (!new_edid) {
+> +		drm_err(&i915->drm, "Cannot duplicate EDID\n");
+> +		return;
+> +	}
+> +	if (!drm_edid_is_valid(new_edid)) {
+> +		kfree(new_edid);
+> +		drm_dbg_kms(&i915->drm, "Cannot validate EDID in ACPI OpRegion (Mailbo=
+x #5)\n");
+> +		return;
+> +	}
+> +
+> +	ret =3D drm_connector_update_edid_property(connector, new_edid);
+> +	if (ret) {
+> +		kfree(new_edid);
+> +		return;
+> +	}
+> +
+> +	mutex_lock(&connector->dev->mode_config.mutex);
+> +	num =3D drm_add_edid_modes(connector, new_edid);
+> +	mutex_unlock(&connector->dev->mode_config.mutex);
+> +
+> +	drm_dbg_kms(&i915->drm, "Using OpRegion EDID for [CONNECTOR:%d:%s], add=
+ed %d mode(s)\n",
+> +		    connector->base.id, connector->name, num);
+> +}
+> +
+>  void intel_opregion_register(struct drm_i915_private *i915)
+>  {
+>  	struct intel_opregion *opregion =3D &i915->opregion;
+> @@ -1127,6 +1193,7 @@ void intel_opregion_unregister(struct drm_i915_priv=
+ate *i915)
+>  	opregion->acpi =3D NULL;
+>  	opregion->swsci =3D NULL;
+>  	opregion->asle =3D NULL;
+> +	opregion->asle_ext =3D NULL;
+>  	opregion->vbt =3D NULL;
+>  	opregion->lid_state =3D NULL;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/=
+drm/i915/display/intel_opregion.h
+> index 4aa68ffbd30e..c1ecfcbb6f55 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+> @@ -29,12 +29,14 @@
+>  #include <linux/pci.h>
+>  =
 
-Theoretically one could also remove the `depends on DRM` from patch
-8/9 but I'm not sure how much that saves us.
+>  struct drm_i915_private;
+> +struct intel_connector;
+>  struct intel_encoder;
+>  =
 
-HTH
--Emil
+>  struct opregion_header;
+>  struct opregion_acpi;
+>  struct opregion_swsci;
+>  struct opregion_asle;
+> +struct opregion_asle_ext;
+>  =
+
+>  struct intel_opregion {
+>  	struct opregion_header *header;
+> @@ -43,6 +45,7 @@ struct intel_opregion {
+>  	u32 swsci_gbda_sub_functions;
+>  	u32 swsci_sbcb_sub_functions;
+>  	struct opregion_asle *asle;
+> +	struct opregion_asle_ext *asle_ext;
+>  	void *rvda;
+>  	void *vbt_firmware;
+>  	const void *vbt;
+> @@ -71,6 +74,7 @@ int intel_opregion_notify_encoder(struct intel_encoder =
+*intel_encoder,
+>  int intel_opregion_notify_adapter(struct drm_i915_private *dev_priv,
+>  				  pci_power_t state);
+>  int intel_opregion_get_panel_type(struct drm_i915_private *dev_priv);
+> +void intel_opregion_edid_probe(struct intel_connector *connector);
+>  =
+
+>  #else /* CONFIG_ACPI*/
+>  =
+
+> @@ -117,6 +121,10 @@ static inline int intel_opregion_get_panel_type(stru=
+ct drm_i915_private *dev)
+>  	return -ENODEV;
+>  }
+>  =
+
+> +void intel_opregion_edid_probe(struct intel_connector *connector)
+> +{
+> +}
+> +
+>  #endif /* CONFIG_ACPI */
+>  =
+
+>  #endif
+> -- =
+
+> 2.31.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
