@@ -2,39 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC0B397B23
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 22:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A89B2397B2D
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 22:24:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AE86EADE;
-	Tue,  1 Jun 2021 20:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 821A96EB0B;
+	Tue,  1 Jun 2021 20:24:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 086EE6EADE
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 20:20:31 +0000 (UTC)
-IronPort-SDR: mpvCRaNw+Yc97lkRxEMKwBPnBExOQzto+nUFXYJZjSjQNX/j+yBdE995KbxNo2Oy5aXOekRFjD
- L2/c7gAylvmQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="200618716"
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="200618716"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 13:20:30 -0700
-IronPort-SDR: PMOVjySQO8k329iOwfzlqLiDu0nJD5eWbiuI14pyXUbPPIYbbS6yMdo0nxofn339T0mVELjqNH
- VMOwmgRu2ibg==
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="632987189"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 13:20:28 -0700
-Date: Tue, 1 Jun 2021 13:20:27 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20210601202027.GC6936@mdroper-desk1.amr.corp.intel.com>
-References: <20210601145248.23900-1-stanislav.lisovskiy@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62C1A6EB0B;
+ Tue,  1 Jun 2021 20:24:41 +0000 (UTC)
+IronPort-SDR: WwR/+eyroyOc3rdWMKfR4PbZ+HtkOLAI8NPdxWtPEs+Riz+StWYb5Fj7pk4ejdZ+qyBZMgQaKW
+ 6VPhCcQoPmGA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="190984704"
+X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="190984704"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 13:24:40 -0700
+IronPort-SDR: VlmOD83rNv0v/+Cl3Mbq7sxvoTF+HOX6cc5pnqz7ahXqv2JFPoEyAgekay4N7X8csr/DGHWjdJ
+ DHTar5ER5L+Q==
+X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="438154941"
+Received: from anqiangu-mobl.ccr.corp.intel.com (HELO intel.com)
+ ([10.254.34.92])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 13:24:39 -0700
+Date: Tue, 1 Jun 2021 16:24:38 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <YLaXhlKFGnOsYruj@intel.com>
+References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
+ <20210525054803.7387-6-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210601145248.23900-1-stanislav.lisovskiy@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_p: CDCLK crawl support for ADL
+In-Reply-To: <20210525054803.7387-6-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 05/17] drm/i915/pxp: allocate a vcs
+ context for pxp usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,199 +49,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 01, 2021 at 05:52:48PM +0300, Stanislav Lisovskiy wrote:
-> From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-
-Aren't you (Stan) the original author of this patch?  It looks like the
-authorship got changed accidentally in one of the preparation rebases.
-
-A couple other quick drive-by comments below.
-
+On Mon, May 24, 2021 at 10:47:51PM -0700, Daniele Ceraolo Spurio wrote:
+> The context is required to send the session termination commands to the
+> VCS, which will be implemented in a follow-up patch. We can also use the
+> presence of the context as a check of pxp initialization completion.
 > 
-> CDCLK crawl feature allows to change CDCLK frequency
-> without disabling the actual PLL and doesn't require
-> a full modeset.
+> v2: use perma-pinned context (Chris)
+> v3: rename pinned_context functions (Chris)
+> v4: split export of pinned_context functions to a separate patch (Rodrigo)
 > 
-> Cc: Mika Kahola <mika.kahola@intel.com>
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 72 +++++++++++++++++++---
->  drivers/gpu/drm/i915/i915_reg.h            |  2 +
->  2 files changed, 65 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/i915/Makefile              |  4 ++
+>  drivers/gpu/drm/i915/gt/intel_engine.h     |  2 +
+>  drivers/gpu/drm/i915/gt/intel_gt.c         |  5 ++
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h   |  3 ++
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c       | 62 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp.h       | 35 ++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_types.h | 15 ++++++
+>  7 files changed, 126 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 618a9e1e2b0c..b9abed82328c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1548,6 +1548,35 @@ static void cnl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
->  	dev_priv->cdclk.hw.vco = vco;
->  }
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 6947495bf34b..efd950122e40 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -273,6 +273,10 @@ i915-y += \
 >  
-> +static bool has_cdclk_crawl(struct drm_i915_private *i915)
-> +{
-> +	return IS_ALDERLAKE_P(i915);
-> +}
-
-Would it make sense to make this a feature flag in the device info
-structure?
-
+>  i915-y += i915_perf.o
+>  
+> +# Protected execution platform (PXP) support
+> +i915-$(CONFIG_DRM_I915_PXP) += \
+> +	pxp/intel_pxp.o
 > +
-> +static void gen13_cdclk_pll_crawl(struct drm_i915_private *dev_priv, int vco)
-
-Function name prefix should either be "adlp" or "xelpd."  Probably
-"adlp" in this case since I think this functionality relates more to the
-platform itself than the display architecture version.
-
-
-Matt
-
-> +{
-> +	int ratio = DIV_ROUND_CLOSEST(vco, dev_priv->cdclk.hw.ref);
-> +	u32 val;
-> +
-> +	/* Write PLL ratio without disabling */
-> +	val = CNL_CDCLK_PLL_RATIO(ratio) | BXT_DE_PLL_PLL_ENABLE;
-> +	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
-> +
-> +	/* Submit freq change request */
-> +	val |= BXT_DE_PLL_FREQ_REQ;
-> +	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
-> +
-> +	/* Timeout 200us */
-> +	if (intel_de_wait_for_set(dev_priv, BXT_DE_PLL_ENABLE,
-> +				  BXT_DE_PLL_LOCK | BXT_DE_PLL_FREQ_REQ_ACK, 1))
-> +		DRM_ERROR("timeout waiting for FREQ change request ack\n");
-> +
-> +	val &= ~BXT_DE_PLL_FREQ_REQ;
-> +	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
-> +
-> +	dev_priv->cdclk.hw.vco = vco;
-> +}
-> +
->  static u32 bxt_cdclk_cd2x_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  # Post-mortem debug and GPU hang state capture
+>  i915-$(CONFIG_DRM_I915_CAPTURE_ERROR) += i915_gpu_error.o
+>  i915-$(CONFIG_DRM_I915_SELFTEST) += \
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index a64d28aba257..903e498beb0b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -187,6 +187,8 @@ intel_write_status_page(struct intel_engine_cs *engine, int reg, u32 value)
+>  #define I915_GEM_HWS_PREEMPT_ADDR	(I915_GEM_HWS_PREEMPT * sizeof(u32))
+>  #define I915_GEM_HWS_SEQNO		0x40
+>  #define I915_GEM_HWS_SEQNO_ADDR		(I915_GEM_HWS_SEQNO * sizeof(u32))
+> +#define I915_GEM_HWS_PXP		0x60
+> +#define I915_GEM_HWS_PXP_ADDR		(I915_GEM_HWS_PXP * sizeof(u32))
+>  #define I915_GEM_HWS_SCRATCH		0x80
+>  
+>  #define I915_HWS_CSB_BUF0_INDEX		0x10
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 8d77dcbad059..68f42fabc151 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -20,6 +20,7 @@
+>  #include "intel_uncore.h"
+>  #include "intel_pm.h"
+>  #include "shmem_utils.h"
+> +#include "pxp/intel_pxp.h"
+>  
+>  void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
 >  {
->  	if (DISPLAY_VER(dev_priv) >= 12) {
-> @@ -1620,14 +1649,16 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
->  		return;
->  	}
+> @@ -627,6 +628,8 @@ int intel_gt_init(struct intel_gt *gt)
+>  	if (err)
+>  		goto err_gt;
 >  
-> -	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
-> +	if (has_cdclk_crawl(dev_priv) && dev_priv->cdclk.hw.vco > 0 && vco > 0) {
-> +		if (dev_priv->cdclk.hw.vco != vco)
-> +			gen13_cdclk_pll_crawl(dev_priv, vco);
-> +	} else if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
->  		if (dev_priv->cdclk.hw.vco != 0 &&
->  		    dev_priv->cdclk.hw.vco != vco)
->  			cnl_cdclk_pll_disable(dev_priv);
->  
->  		if (dev_priv->cdclk.hw.vco != vco)
->  			cnl_cdclk_pll_enable(dev_priv, vco);
-> -
->  	} else {
->  		if (dev_priv->cdclk.hw.vco != 0 &&
->  		    dev_priv->cdclk.hw.vco != vco)
-> @@ -1820,6 +1851,28 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
->  		skl_cdclk_uninit_hw(i915);
->  }
->  
-> +static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
-> +				  const struct intel_cdclk_config *a,
-> +				  const struct intel_cdclk_config *b)
-> +{
-> +	int a_div, b_div;
+> +	intel_pxp_init(&gt->pxp);
+
+As we discussed today, we will need to move this earlier in the initialization...
+
 > +
-> +	if (!has_cdclk_crawl(dev_priv))
-> +		return false;
+>  	goto out_fw;
+>  err_gt:
+>  	__intel_gt_disable(gt);
+> @@ -661,6 +664,8 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
+>  
+>  	intel_rps_driver_unregister(&gt->rps);
+>  
+> +	intel_pxp_fini(&gt->pxp);
+> +
+>  	/*
+>  	 * Upon unregistering the device to prevent any new users, cancel
+>  	 * all in-flight requests so that we can quickly unbind the active
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index 0caf6ca0a784..53f44fd4a974 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -25,6 +25,7 @@
+>  #include "intel_rc6_types.h"
+>  #include "intel_rps_types.h"
+>  #include "intel_wakeref.h"
+> +#include "pxp/intel_pxp_types.h"
+>  
+>  struct drm_i915_private;
+>  struct i915_ggtt;
+> @@ -148,6 +149,8 @@ struct intel_gt {
+>  		/* Slice/subslice/EU info */
+>  		struct sseu_dev_info sseu;
+>  	} info;
+> +
+> +	struct intel_pxp pxp;
+>  };
+>  
+>  enum intel_gt_scratch_field {
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> new file mode 100644
+> index 000000000000..3255c6da34e8
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -0,0 +1,62 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020 Intel Corporation.
+> + */
+> +#include "intel_pxp.h"
+> +#include "gt/intel_context.h"
+> +#include "i915_drv.h"
+> +
+> +static int create_vcs_context(struct intel_pxp *pxp)
+> +{
+> +	static struct lock_class_key pxp_lock;
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +	struct intel_engine_cs *engine;
+> +	struct intel_context *ce;
 > +
 > +	/*
-> +	 * The vco and cd2x divider will change independently
-> +	 * from each, so we disallow cd2x change when crawling.
+> +	 * Find the first VCS engine present. We're guaranteed there is one
+> +	 * if we're in this function due to the check in has_pxp
 > +	 */
-> +	a_div = DIV_ROUND_CLOSEST(a->vco, a->cdclk);
-> +	b_div = DIV_ROUND_CLOSEST(b->vco, b->cdclk);
+> +	for (engine = gt->engine_class[VIDEO_DECODE_CLASS][0]; !engine; engine++);
+> +	GEM_BUG_ON(!engine || engine->class != VIDEO_DECODE_CLASS);
 > +
-> +	return a->vco != 0 && b->vco != 0 &&
-> +		a->vco != b->vco &&
-> +		a_div == b_div &&
-> +		a->ref == b->ref;
+> +	ce = intel_engine_create_pinned_context(engine, NULL, SZ_4K,
+> +						I915_GEM_HWS_PXP_ADDR,
+> +						&pxp_lock, "pxp_context");
+> +	if (IS_ERR(ce)) {
+> +		drm_err(&gt->i915->drm, "failed to create VCS ctx for PXP\n");
+> +		return PTR_ERR(ce);
+> +	}
+> +
+> +	pxp->ce = ce;
+> +
+> +	return 0;
 > +}
 > +
->  /**
->   * intel_cdclk_needs_modeset - Determine if changong between the CDCLK
->   *                             configurations requires a modeset on all pipes
-> @@ -2475,7 +2528,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->  	const struct intel_cdclk_state *old_cdclk_state;
->  	struct intel_cdclk_state *new_cdclk_state;
-> -	enum pipe pipe;
-> +	enum pipe pipe = INVALID_PIPE;
->  	int ret;
->  
->  	new_cdclk_state = intel_atomic_get_cdclk_state(state);
-> @@ -2527,15 +2580,18 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  
->  		if (drm_atomic_crtc_needs_modeset(&crtc_state->uapi))
->  			pipe = INVALID_PIPE;
-> -	} else {
-> -		pipe = INVALID_PIPE;
->  	}
->  
-> -	if (pipe != INVALID_PIPE) {
-> +	if (intel_cdclk_can_crawl(dev_priv,
-> +				  &old_cdclk_state->actual,
-> +				  &new_cdclk_state->actual)) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "Can change cdclk via crawl\n");
-> +	} else if (pipe != INVALID_PIPE) {
->  		new_cdclk_state->pipe = pipe;
->  
->  		drm_dbg_kms(&dev_priv->drm,
-> -			    "Can change cdclk with pipe %c active\n",
-> +			    "Can change cdclk cd2x divider with pipe %c active\n",
->  			    pipe_name(pipe));
->  	} else if (intel_cdclk_needs_modeset(&old_cdclk_state->actual,
->  					     &new_cdclk_state->actual)) {
-> @@ -2544,8 +2600,6 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
->  		if (ret)
->  			return ret;
->  
-> -		new_cdclk_state->pipe = INVALID_PIPE;
-> -
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "Modeset required for cdclk change\n");
->  	}
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 3b58067a873c..1d1176d1799d 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -11157,6 +11157,8 @@ enum skl_power_gate {
->  #define BXT_DE_PLL_ENABLE		_MMIO(0x46070)
->  #define   BXT_DE_PLL_PLL_ENABLE		(1 << 31)
->  #define   BXT_DE_PLL_LOCK		(1 << 30)
-> +#define   BXT_DE_PLL_FREQ_REQ		(1 << 23)
-> +#define   BXT_DE_PLL_FREQ_REQ_ACK	(1 << 22)
->  #define   CNL_CDCLK_PLL_RATIO(x)	(x)
->  #define   CNL_CDCLK_PLL_RATIO_MASK	0xff
->  
-> -- 
-> 2.24.1.485.gad05a3d8e5
-> 
+> +static void destroy_vcs_context(struct intel_pxp *pxp)
+> +{
+> +	intel_engine_destroy_pinned_context(fetch_and_zero(&pxp->ce));
+> +}
+> +
+> +void intel_pxp_init(struct intel_pxp *pxp)
+> +{
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +	int ret;
+> +
+> +	if (!HAS_PXP(gt->i915))
+> +		return;
+> +
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+... and we will need to add the PXP version check here, not in IGT...
+
+But both changes can be done in follow-up patches, once we get the extra
+docs we requested. For now this patch lgtm
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+> +	ret = create_vcs_context(pxp);
+> +	if (ret)
+> +		return;
+> +
+> +	drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected content support initialized\n");
+> +}
+> +
+> +void intel_pxp_fini(struct intel_pxp *pxp)
+> +{
+> +	if (!intel_pxp_is_enabled(pxp))
+> +		return;
+> +
+> +	destroy_vcs_context(pxp);
+> +}
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> new file mode 100644
+> index 000000000000..e87550fb9821
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -0,0 +1,35 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_PXP_H__
+> +#define __INTEL_PXP_H__
+> +
+> +#include "gt/intel_gt_types.h"
+> +#include "intel_pxp_types.h"
+> +
+> +static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
+> +{
+> +	return container_of(pxp, struct intel_gt, pxp);
+> +}
+> +
+> +static inline bool intel_pxp_is_enabled(const struct intel_pxp *pxp)
+> +{
+> +	return pxp->ce;
+> +}
+> +
+> +#ifdef CONFIG_DRM_I915_PXP
+> +void intel_pxp_init(struct intel_pxp *pxp);
+> +void intel_pxp_fini(struct intel_pxp *pxp);
+> +#else
+> +static inline void intel_pxp_init(struct intel_pxp *pxp)
+> +{
+> +}
+> +
+> +static inline void intel_pxp_fini(struct intel_pxp *pxp)
+> +{
+> +}
+> +#endif
+> +
+> +#endif /* __INTEL_PXP_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> new file mode 100644
+> index 000000000000..bd12c520e60a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+7> +
+> +#ifndef __INTEL_PXP_TYPES_H__
+> +#define __INTEL_PXP_TYPES_H__
+> +
+> +struct intel_context;
+> +
+> +struct intel_pxp {
+> +	struct intel_context *ce;
+> +};
+> +
+> +#endif /* __INTEL_PXP_TYPES_H__ */
+> -- 
+> 2.29.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
