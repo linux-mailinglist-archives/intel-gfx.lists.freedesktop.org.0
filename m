@@ -2,30 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D13A3973F6
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 15:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA76C3973FE
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 15:19:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B81C989B3B;
-	Tue,  1 Jun 2021 13:18:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09CB26E03B;
+	Tue,  1 Jun 2021 13:19:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 70AD689100;
- Tue,  1 Jun 2021 13:18:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 69F7DA47E8;
- Tue,  1 Jun 2021 13:18:20 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20B766E03B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 13:19:42 +0000 (UTC)
+IronPort-SDR: WW7MbzZWRgDeuytSj8NNogTa+L5i6vjlnLx97KfkJB6ozJf/P13SJ877Gxxq/ZdPMaoDovYJzc
+ /T4CrQT7KLhg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="190657651"
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="190657651"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 06:19:40 -0700
+IronPort-SDR: d3IX9llZLRkC1BU7d4jlhzZJOtD8/KDz+ANJw1+HTCX/+dpgf5IklD+yCneM0LZtrBnaXmJiTn
+ pn9ohuL5RJ2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="446958996"
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
+ by fmsmga008.fm.intel.com with ESMTP; 01 Jun 2021 06:19:39 -0700
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Tue, 1 Jun 2021 14:19:39 +0100
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2242.008;
+ Tue, 1 Jun 2021 14:19:39 +0100
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 2/2] drm/i915: Disable PSR around cdclk changes
+Thread-Index: AQHXVuRcPrnPg2krS0qSX5NmJooscqr/Im+g
+Date: Tue, 1 Jun 2021 13:19:38 +0000
+Message-ID: <f1cd97c765b84fa9b3ab7966cbd5ddfc@intel.com>
+References: <20210601124749.89989-1-gwan-gyeong.mun@intel.com>
+ <20210601124749.89989-2-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20210601124749.89989-2-gwan-gyeong.mun@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.0.76
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.184.70.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
-Date: Tue, 01 Jun 2021 13:18:20 -0000
-Message-ID: <162255350042.19249.2993078598678264344@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210601105218.29185-1-uma.shankar@intel.com>
-In-Reply-To: <20210601105218.29185-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_Support_for_Plane_Color_Lut_and_CSC_features?=
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915: Disable PSR around cdclk
+ changes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,242 +65,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Add Support for Plane Color Lut and CSC features
-URL   : https://patchwork.freedesktop.org/series/90825/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-68c5484bfdad drm: Add Enhanced Gamma and color lut range attributes
-a1e53948f9d0 drm: Add Plane Degamma Mode property
-684c709fb80f drm: Add Plane Degamma Lut property
--:45: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#45: FILE: drivers/gpu/drm/drm_atomic_uapi.c:602:
-+		ret = drm_atomic_replace_property_blob_from_id(dev,
-+					&state->degamma_lut,
-
-total: 0 errors, 0 warnings, 1 checks, 101 lines checked
-2bf36d661d4d drm/i915/xelpd: Define Degamma Lut range struct for HDR planes
-0c1eabc62705 drm/i915/xelpd: Add register definitions for Plane Degamma
--:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#37: FILE: drivers/gpu/drm/i915/i915_reg.h:11315:
-+#define PLANE_PRE_CSC_GAMC_INDEX_ENH(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \
-+		_PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))
-
--:49: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#49: FILE: drivers/gpu/drm/i915/i915_reg.h:11327:
-+#define PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \
-+		_PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))
-
--:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#61: FILE: drivers/gpu/drm/i915/i915_reg.h:11339:
-+#define PLANE_PRE_CSC_GAMC_INDEX(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \
-+		_PLANE_PRE_CSC_GAMC_INDEX_2(pipe))
-
--:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#73: FILE: drivers/gpu/drm/i915/i915_reg.h:11351:
-+#define PLANE_PRE_CSC_GAMC_DATA(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \
-+		_PLANE_PRE_CSC_GAMC_DATA_2(pipe))
-
-total: 0 errors, 0 warnings, 4 checks, 64 lines checked
-258e15146869 drm/i915/xelpd: Enable plane color features
-b7ea85214efd drm/i915/xelpd: Add color capabilities of SDR planes
-66e7c29201d7 drm/i915/xelpd: Program Plane Degamma Registers
--:68: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#68: FILE: drivers/gpu/drm/i915/display/intel_color.c:2243:
-+				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-
--:74: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#74: FILE: drivers/gpu/drm/i915/display/intel_color.c:2249:
-+				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-
--:80: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#80: FILE: drivers/gpu/drm/i915/display/intel_color.c:2255:
-+				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0), v);
-
--:84: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#84: FILE: drivers/gpu/drm/i915/display/intel_color.c:2259:
-+				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-
--:114: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#114: FILE: drivers/gpu/drm/i915/display/intel_color.c:2289:
-+				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA(pipe, plane, 0), v);
-
-total: 0 errors, 5 warnings, 0 checks, 148 lines checked
-ae7be4f9a5ff drm/i915/xelpd: Add plane color check to glk_plane_color_ctl
-1f1fa094a94e drm/i915/xelpd: Initialize plane color features
-ab01acc58f9c drm/i915/xelpd: Load plane color luts from atomic flip
-66d7c2419b53 drm: Add Plane CTM property
--:41: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#41: FILE: drivers/gpu/drm/drm_atomic_uapi.c:609:
-+		ret = drm_atomic_replace_property_blob_from_id(dev,
-+					&state->ctm,
-
-total: 0 errors, 0 warnings, 1 checks, 87 lines checked
-08ee867daa81 drm: Add helper to attach Plane ctm property
-9d7042c9e95e drm/i915/xelpd: Define Plane CSC Registers
--:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#29: FILE: drivers/gpu/drm/i915/i915_reg.h:7411:
-+#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
-+							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
-+							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
-
--:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
-#29: FILE: drivers/gpu/drm/i915/i915_reg.h:7411:
-+#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
-+							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
-+							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
-
--:30: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#30: FILE: drivers/gpu/drm/i915/i915_reg.h:7412:
-+							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
-
--:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#43: FILE: drivers/gpu/drm/i915/i915_reg.h:7425:
-+#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
-#43: FILE: drivers/gpu/drm/i915/i915_reg.h:7425:
-+#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:44: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#44: FILE: drivers/gpu/drm/i915/i915_reg.h:7426:
-+							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
-
--:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#57: FILE: drivers/gpu/drm/i915/i915_reg.h:7439:
-+#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
-#57: FILE: drivers/gpu/drm/i915/i915_reg.h:7439:
-+#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
-+							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
-+							    (index) * 4)
-
--:58: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#58: FILE: drivers/gpu/drm/i915/i915_reg.h:7440:
-+							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
-
-total: 0 errors, 3 warnings, 6 checks, 49 lines checked
-f381646bcaaa drm/i915/xelpd: Enable Plane CSC
-d407eae16e6b drm: Add Plane Gamma Mode property
-7a46749335d6 drm: Add Plane Gamma Lut property
--:41: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#41: FILE: drivers/gpu/drm/drm_atomic_uapi.c:619:
-+		ret = drm_atomic_replace_property_blob_from_id(dev,
-+					&state->gamma_lut,
-
-total: 0 errors, 0 warnings, 1 checks, 99 lines checked
-05e5a03fc98f drm/i915/xelpd: Define and Initialize Plane Gamma Lut range
--:129: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#129: FILE: drivers/gpu/drm/i915/display/intel_color.c:2493:
-+									   sizeof(d13_gamma_degamma_sdr),
-
--:136: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#136: FILE: drivers/gpu/drm/i915/display/intel_color.c:2500:
-+									   sizeof(d13_gamma_degamma_sdr),
-
-total: 0 errors, 2 warnings, 0 checks, 138 lines checked
-035b13656332 drm/i915/xelpd: Add register definitions for Plane Gamma
--:23: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#23: FILE: drivers/gpu/drm/i915/i915_reg.h:11406:
-+#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_A, \
-
--:25: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#25: FILE: drivers/gpu/drm/i915/i915_reg.h:11408:
-+#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_A, \
-
--:27: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#27: FILE: drivers/gpu/drm/i915/i915_reg.h:11410:
-+#define PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \
-+		_PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))
-
--:35: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#35: FILE: drivers/gpu/drm/i915/i915_reg.h:11418:
-+#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_A, \
-
--:37: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#37: FILE: drivers/gpu/drm/i915/i915_reg.h:11420:
-+#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_A, \
-
--:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#39: FILE: drivers/gpu/drm/i915/i915_reg.h:11422:
-+#define PLANE_POST_CSC_GAMC_SEG0_DATA_ENH(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \
-+		_PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))
-
--:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#51: FILE: drivers/gpu/drm/i915/i915_reg.h:11434:
-+#define PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \
-+		_PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))
-
--:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#63: FILE: drivers/gpu/drm/i915/i915_reg.h:11446:
-+#define PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \
-+		_PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))
-
--:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#75: FILE: drivers/gpu/drm/i915/i915_reg.h:11458:
-+#define PLANE_POST_CSC_GAMC_INDEX(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \
-+		_PLANE_POST_CSC_GAMC_INDEX_2(pipe))
-
--:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#87: FILE: drivers/gpu/drm/i915/i915_reg.h:11470:
-+#define PLANE_POST_CSC_GAMC_DATA(pipe, plane, i)	\
-+		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \
-+		_PLANE_POST_CSC_GAMC_DATA_2(pipe))
-
-total: 0 errors, 4 warnings, 6 checks, 79 lines checked
-525c6ebbb2c5 drm/i915/xelpd: Program Plane Gamma Registers
--:47: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#47: FILE: drivers/gpu/drm/i915/display/intel_color.c:2458:
-+				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-
--:53: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#53: FILE: drivers/gpu/drm/i915/display/intel_color.c:2464:
-+				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-
--:61: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#61: FILE: drivers/gpu/drm/i915/display/intel_color.c:2472:
-+				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0), v);
-
--:65: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#65: FILE: drivers/gpu/drm/i915/display/intel_color.c:2476:
-+				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-
--:94: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#94: FILE: drivers/gpu/drm/i915/display/intel_color.c:2505:
-+				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA(pipe, plane, 0), v);
-
-total: 0 errors, 5 warnings, 0 checks, 126 lines checked
-bfb9d2884ac1 drm/i915/xelpd: Enable plane gamma
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBNdW4sIEd3YW4tZ3llb25nIDxn
+d2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0KPiBTZW50OiBUdWVzZGF5LCBKdW5lIDEsIDIwMjEg
+Mzo0OCBQTQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogU291
+emEsIEpvc2UgPGpvc2Uuc291emFAaW50ZWwuY29tPjsgTGlzb3Zza2l5LCBTdGFuaXNsYXYNCj4g
+PHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPjsgdmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb207IFJvcGVyLA0KPiBNYXR0aGV3IEQgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+OyBL
+YWhvbGEsIE1pa2ENCj4gPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCj4gU3ViamVjdDogW1BBVENI
+IHYyIDIvMl0gZHJtL2k5MTU6IERpc2FibGUgUFNSIGFyb3VuZCBjZGNsayBjaGFuZ2VzDQo+IA0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gQVVYIGxvZ2ljIGlzIG9mdGVuIGNsb2NrZWQgZnJvbSBjZGNsay4gRGlzYWJsZSBQU1Ig
+dG8gbWFrZSBzdXJlIHRoZXJlIGFyZSBubw0KPiBodyBpbml0aWF0ZWQgQVVYIHRyYW5zYWN0aW9u
+cyBpbiBmbGlnaHQgd2hpbGUgd2UgY2hhbmdlIHRoZSBjZGNsayBmcmVxdWVuY3kuDQo+IA0KPiBD
+YzogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2lnbmVk
+LW9mZi1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0KDQpS
+ZXZpZXdlZC1ieTogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCg0KPiAtLS0N
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYyB8IDEzICsrKysr
+KysrKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jDQo+IGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jDQo+IGluZGV4IDQ2NTZh
+NmVkYzNiZS4uNjE4YTllMWUyYjBjIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9jZGNsay5jDQo+IEBAIC0yOCw2ICsyOCw3IEBADQo+ICAjaW5jbHVkZSAiaW50
+ZWxfY2RjbGsuaCINCj4gICNpbmNsdWRlICJpbnRlbF9kZS5oIg0KPiAgI2luY2x1ZGUgImludGVs
+X2Rpc3BsYXlfdHlwZXMuaCINCj4gKyNpbmNsdWRlICJpbnRlbF9wc3IuaCINCj4gICNpbmNsdWRl
+ICJpbnRlbF9zaWRlYmFuZC5oIg0KPiANCj4gIC8qKg0KPiBAQCAtMTkwOCw2ICsxOTA5LDEyIEBA
+IHN0YXRpYyB2b2lkIGludGVsX3NldF9jZGNsayhzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAq
+ZGV2X3ByaXYsDQo+IA0KPiAgCWludGVsX2R1bXBfY2RjbGtfY29uZmlnKGNkY2xrX2NvbmZpZywg
+IkNoYW5naW5nIENEQ0xLIHRvIik7DQo+IA0KPiArCWZvcl9lYWNoX2ludGVsX2VuY29kZXJfd2l0
+aF9wc3IoJmRldl9wcml2LT5kcm0sIGVuY29kZXIpIHsNCj4gKwkJc3RydWN0IGludGVsX2RwICpp
+bnRlbF9kcCA9IGVuY190b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gKw0KPiArCQlpbnRlbF9wc3Jf
+cGF1c2UoaW50ZWxfZHApOw0KPiArCX0NCj4gKw0KPiAgCS8qDQo+ICAJICogTG9jayBhdXgvZ21i
+dXMgd2hpbGUgd2UgY2hhbmdlIGNkY2xrIGluIGNhc2UgdGhvc2UNCj4gIAkgKiBmdW5jdGlvbnMg
+dXNlIGNkY2xrLiBOb3QgYWxsIHBsYXRmb3Jtcy9wb3J0cyBkbywgQEAgLTE5MzAsNg0KPiArMTkz
+NywxMiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9zZXRfY2RjbGsoc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmRldl9wcml2LA0KPiAgCX0NCj4gIAltdXRleF91bmxvY2soJmRldl9wcml2LT5nbWJ1c19t
+dXRleCk7DQo+IA0KPiArCWZvcl9lYWNoX2ludGVsX2VuY29kZXJfd2l0aF9wc3IoJmRldl9wcml2
+LT5kcm0sIGVuY29kZXIpIHsNCj4gKwkJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9IGVuY190
+b19pbnRlbF9kcChlbmNvZGVyKTsNCj4gKw0KPiArCQlpbnRlbF9wc3JfcmVzdW1lKGludGVsX2Rw
+KTsNCj4gKwl9DQo+ICsNCj4gIAlpZiAoZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sDQo+ICAJCSAg
+ICAgaW50ZWxfY2RjbGtfY2hhbmdlZCgmZGV2X3ByaXYtPmNkY2xrLmh3LCBjZGNsa19jb25maWcp
+LA0KPiAgCQkgICAgICJjZGNsayBzdGF0ZSBkb2Vzbid0IG1hdGNoIVxuIikpIHsNCj4gLS0NCj4g
+Mi4zMS4xDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
