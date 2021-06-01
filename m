@@ -1,63 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D6F3397C7F
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 00:41:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26952397C82
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 00:43:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C8226E0FE;
-	Tue,  1 Jun 2021 22:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF5836EB23;
+	Tue,  1 Jun 2021 22:43:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 586096E0F3
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 22:41:38 +0000 (UTC)
-IronPort-SDR: YMWYxFvZbi5K9j3v4MNypIunvC8GmLRgXb6V6gPwfU9Ktob/0fqQDqclfk9uF1TEyjMHSrX9v3
- LfVC6DoMjnCg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="190767576"
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="190767576"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 15:41:36 -0700
-IronPort-SDR: sObh0yRohtBE1W3fST3/tYXsvA9PgUno6m5apPkfMiqnWBNVuqF4ADXtM5jKtI8Pc9pkXs2vM7
- xkGgUoliuw2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="399763530"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
- by orsmga006.jf.intel.com with ESMTP; 01 Jun 2021 15:41:35 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 1 Jun 2021 15:41:34 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 1 Jun 2021 15:41:34 -0700
-Received: from orsmsx611.amr.corp.intel.com ([10.22.229.24]) by
- ORSMSX611.amr.corp.intel.com ([10.22.229.24]) with mapi id 15.01.2242.008;
- Tue, 1 Jun 2021 15:41:34 -0700
-From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Drop FIXME about
- turn off infoframes
-Thread-Index: AQHXSRepwYKFsv4nwUuR+wUPdq3RJKr/3CVQ
-Date: Tue, 1 Jun 2021 22:41:34 +0000
-Message-ID: <95ed888b364042a99a63b57fe338d515@intel.com>
-References: <20210514232247.144542-1-jose.souza@intel.com>
- <20210514232247.144542-4-jose.souza@intel.com>
-In-Reply-To: <20210514232247.144542-4-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.6.0.76
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6860C6EB23
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 22:43:15 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id g17so206180wrs.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 01 Jun 2021 15:43:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=astier-eu.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=raFJDnqbgQffbni8cDqTXKBGaMGmBnwdhZuZ4furOas=;
+ b=PBML801JMX/hN5wMJZpa3YXKvlTCQdjD/hVejz4WNXph7LUicuZjJEy68H56jOSB6b
+ FEORY55Jw6QaN4DIB1OgKLOZ6M3TU6OGOd5xsn0G8jEOuPPWUvJRC9l8iyKT+798gcPI
+ xu+ECeyenJOyW4+xSzUNehG1ZtTKgCrevFXH69gF/3lQQ+qPhjHqQ8iiOkrcj3/Gpe0V
+ Bi4MopTXhRW/who5oddgLI1tevkw2QtR8qfbRoS+ueMT71jUwPzEIbw/So3uGq5nvHUW
+ TPf09w7dURkvq1i+LnlH46yENmoDgL4nL3YmjO3+5/Bd/oimB9fR2r01lyDMrxy+PkIs
+ BLsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=raFJDnqbgQffbni8cDqTXKBGaMGmBnwdhZuZ4furOas=;
+ b=UxpMCQtdXl09B7bLU9+wTVfAGZUQA8tWgDJz44uQ3Ku7hSQ19jmhnHTEeIT8sP2nzl
+ bqwGS9mn5exyt53ZJs6nhmbD3J7tPQjfUO41N9NkLAiB0VAheDcw8iOGW8EvUnqysio5
+ TUtOQnxWvfTgAoZg1hFLe+AvYsaCUJZJd8ssfG7Ddiu/X1JeLWKkvMVHJRH7KdOh1IQ0
+ d3MFTk2qW8HkjTzF74cjIRvtI6t45L9qxkFXayZsRBKKQnenZ0IzBcsZRr8Tr/sNSTjs
+ 24vwkX5AC32E/nmEMbgpaxcyulS5uWT7jA+7UdT6OWQw3iNcW8cBC4NtoLFzAFO7A1P7
+ gd8Q==
+X-Gm-Message-State: AOAM531pd8IamCshTwe09pCeJJGLp8QGs7RP0GM3NMsVRcNkyR6lQqC2
+ 42d55OvecOAz4gWoD/LER0zKCw==
+X-Google-Smtp-Source: ABdhPJwodA6g8jsn7Q1onsK/KORLTKnjf6z4nY0MCi5ZViExSRl1KOCI/JeY1jD+fz1f5FRqVen0NQ==
+X-Received: by 2002:adf:fe86:: with SMTP id l6mr25045058wrr.106.1622587394303; 
+ Tue, 01 Jun 2021 15:43:14 -0700 (PDT)
+Received: from bilrost ([2a01:e0a:806:8950:dea6:32ff:fe0d:99f9])
+ by smtp.gmail.com with ESMTPSA id n13sm5109915wrg.75.2021.06.01.15.43.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 01 Jun 2021 15:43:13 -0700 (PDT)
+Date: Wed, 2 Jun 2021 00:43:11 +0200
+From: Anisse Astier <anisse@astier.eu>
+To: Ville Syrj?l? <ville.syrjala@linux.intel.com>
+Message-ID: <YLa22EBqxE2sBdpp@bilrost>
+References: <20210531204642.4907-1-anisse@astier.eu>
+ <20210531204642.4907-2-anisse@astier.eu>
+ <YLZXQLh2Qmxs+CWU@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Drop FIXME about
- turn off infoframes
+Content-Disposition: inline
+In-Reply-To: <YLZXQLh2Qmxs+CWU@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/opregion: add support for
+ mailbox #5 EDID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,38 +70,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Dadap <ddadap@nvidia.com>, Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3PDqQ0K
-PiBSb2JlcnRvIGRlIFNvdXphDQo+IFNlbnQ6IEZyaWRheSwgTWF5IDE0LCAyMDIxIDQ6MjMgUE0N
-Cj4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW0ludGVs
-LWdmeF0gW1BBVENIIHYyIDQvNF0gZHJtL2k5MTUvZGlzcGxheTogRHJvcCBGSVhNRSBhYm91dCB0
-dXJuDQo+IG9mZiBpbmZvZnJhbWVzDQo+IA0KPiBpbnRlbF9kcF9zZXRfaW5mb2ZyYW1lcygpIGNh
-bGwgaW4gaW50ZWxfZGRpX3Bvc3RfZGlzYWJsZV9kcCgpIHdpbGwgdGFrZSBjYXJlIHRvDQo+IGRp
-c2FibGUgYWxsIGVuYWJsZWQgaW5mb2ZyYW1lcy4NCj4gDQo+IENjOiBWaWxsZSBTeXJqw6Rsw6Qg
-PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KUmV2aWV3ZWQtYnk6IFJhZGhha3Jpc2hu
-YSBTcmlwYWRhIDxyYWRoYWtyaXNobmEuc3JpcGFkYUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYt
-Ynk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiAtLS0N
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgfCAxIC0NCj4gIDEg
-ZmlsZSBjaGFuZ2VkLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gaW5kZXggNWJjNTUyOGYzMDkxLi5kM2JjNWExYTkzNmEg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMN
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBAQCAt
-Mjc2Miw3ICsyNzYyLDYgQEAgc3RhdGljIHZvaWQgaW50ZWxfZGRpX3ByZV9lbmFibGUoc3RydWN0
-DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJCQkJCWNvbm5fc3RhdGUpOw0KPiAN
-Cj4gIAkJLyogRklYTUUgcHJlY29tcHV0ZSBldmVyeXRoaW5nIHByb3Blcmx5ICovDQo+IC0JCS8q
-IEZJWE1FIGhvdyBkbyB3ZSB0dXJuIGluZm9mcmFtZXMgb2ZmIGFnYWluPyAqLw0KPiAgCQlpZiAo
-ZGlnX3BvcnQtPmxzcGNvbi5hY3RpdmUgJiYgZGlnX3BvcnQtPmRwLmhhc19oZG1pX3NpbmspDQo+
-ICAJCQlkaWdfcG9ydC0+c2V0X2luZm9mcmFtZXMoZW5jb2RlciwgdHJ1ZSwgY3J0Y19zdGF0ZSwN
-Cj4gIAkJCQkJCSBjb25uX3N0YXRlKTsNCj4gLS0NCj4gMi4zMS4xDQo+IA0KPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0DQo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngNCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
-c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Le Tue, Jun 01, 2021 at 06:50:24PM +0300, Ville Syrj?l? a ?crit :
+> On Mon, May 31, 2021 at 10:46:41PM +0200, Anisse Astier wrote:
+> > The ACPI OpRegion Mailbox #5 ASLE extension may contain an EDID to be
+> > used for the embedded display. Add support for using it via by adding
+> > the EDID to the list of available modes on the connector, and use it for
+> > eDP when available.
+> > 
+> > If a panel's EDID is broken, there may be an override EDID set in the
+> > ACPI OpRegion mailbox #5. Use it if available.
+> 
+> Looks like Windows uses the ACPI _DDC method instead. We should probably
+> do the same, just in case some crazy machine stores the EDID somewhere
+> else.
+
+Thanks, I wouldn't have thought of this. It seems Daniel Dadap did a
+patch series to do just that, in a generic way:
+https://lore.kernel.org/amd-gfx/20200727205357.27839-1-ddadap@nvidia.com/
+
+I've tried patch 1 & 2, and after a fix[1] was able to call the _DDC method
+on most devices, but without any EDID being returned.
+
+I looked at the disassembled ACPI tables[2], and could not find any
+device with the _DDC method. Are you sure it's the only method the
+Windows driver uses to get the EDID ?
+
+Regards,
+
+Anisse
+
+[1] _DOD ids should only use 16 lower bits, see table here:
+https://uefi.org/specs/ACPI/6.4/Apx_B_Video_Extensions/display-specific-methods.html#dod-enumerate-all-devices-attached-to-the-display-adapter
+[2] acpidump: https://gitlab.freedesktop.org/drm/intel/-/issues/3454#note_913970
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
