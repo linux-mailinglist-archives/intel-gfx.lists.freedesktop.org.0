@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD54F39717D
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 12:31:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A657E3970E5
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 12:06:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B7DA6E7DC;
-	Tue,  1 Jun 2021 10:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB836E9D2;
+	Tue,  1 Jun 2021 10:06:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 767456E7DC;
- Tue,  1 Jun 2021 10:30:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6EB61A41FB;
- Tue,  1 Jun 2021 10:30:59 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D27A76E10C;
+ Tue,  1 Jun 2021 10:05:58 +0000 (UTC)
+IronPort-SDR: c/vbje3Fx/CEwGvFw60OHDJ5UYCVa08ELqEiQBNM+dZ4NyX/ZV2sR+vI+JpMrFs9sl4biWUD73
+ qlgx4rykXsLw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="183197715"
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="183197715"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 03:05:44 -0700
+IronPort-SDR: l42+PHjSaC1K4ps+/dH7HHDocTMwtzxbw07I2bUR2qCVhgeM6rugvH6aC9YzWEuBXD597Ynjqm
+ k6W7dczNhIpQ==
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="399245118"
+Received: from linux-desktop.iind.intel.com ([10.223.34.178])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 03:05:35 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue,  1 Jun 2021 16:11:26 +0530
+Message-Id: <20210601104135.29020-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>
-Date: Tue, 01 Jun 2021 10:30:59 -0000
-Message-ID: <162254345942.19252.7077012777366861117@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210529043327.2772051-1-chengzhihao1@huawei.com>
-In-Reply-To: <20210529043327.2772051-1-chengzhihao1@huawei.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Fix_return_value_check_in_live=5Fbrea?=
- =?utf-8?q?dcrumbs=5Fsmoketest=28=29?=
+Subject: [Intel-gfx] [PATCH 0/9] Enhance pipe color support for multi
+ segmented luts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +46,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Modern hardwares have multi segmented lut approach to prioritize
+the darker regions of the spectrum. This series introduces a new
+UAPI to define the lut ranges supported by the respective hardware.
 
-Series: drm/i915/selftests: Fix return value check in live_breadcrumbs_smoketest()
-URL   : https://patchwork.freedesktop.org/series/90817/
-State : warning
+This also enables Pipe Color Management Support for Intel's XE_LPD hw.
+Enable Support for Pipe Degamma with the increased lut samples
+supported by hardware. This also adds support for newly introduced
+Logarithmic Gamma for XE_LPD. Also added the gamma readout support.
 
-== Summary ==
+The Logarithmic gamma implementation on XE_LPD is non linear and adds 25
+segments with non linear lut samples in each segment. The expectation
+is userspace will create the luts as per this distribution and pass
+the final samples to driver to be programmed in hardware.
 
-$ dim checkpatch origin/drm-tip
-9f93f64b2ec8 drm/i915/selftests: Fix return value check in live_breadcrumbs_smoketest()
--:19: WARNING:BAD_SIGN_OFF: Unexpected content after email: 'intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; chengzhihao1@huawei.com; yukuai3@huawei.com', should be: 'intel-gfx@lists.freedesktop.org; (dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; chengzhihao1@huawei.com; yukuai3@huawei.com)'
-#19: 
-Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; chengzhihao1@huawei.com; yukuai3@huawei.com
++-----+------------------------------+
+| x   |  2 pow x segment|No of Entries
+|     |  0              | 1          |
+| 0   |  1              | 1          |
+| 1   |  2              | 2          |
+| 2   |  4              | 2          |
+| 3   |  8              | 2          |
+| 4   |  16             | 2          |
+| 5   |  32             | 4          |
+| 6   |  64             | 4          |
+| 7   |  128            | 4          |
+| 8   |  256            | 8          |
+| 9   |  512            | 8          |
+| 10  |  1024           | 8          |
+| 11  |  2048           | 16         |
+| 12  |  4096           | 16         |
+| 13  |  8192           | 16         |
+| 14  |  16384          | 32         |
+| 15  |  32768          | 32         |
+| 16  |  65536          | 64         |
+| 17  |  131072         | 64         |
+| 18  |  262144         | 64         |
+| 19  |  524288         | 32         |
+| 20  |  1048576        | 32         |
+| 21  |  2097152        | 32         |
+| 22  |  4194304        | 32         |
+| 23  |  8388608        | 32         |
+| 24  |  16777216       | 1          |
+|     | Total Entries   | 511        |
+ -----+-----------------+------------+
 
--:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#20: 
-Subject: [PATCH] drm/i915/selftests: Fix return value check in live_breadcrumbs_smoketest()
+Credits: Special mention and credits to Ville Syrjala for coming up
+with a design for this feature and inputs. This series is based on
+his original design.
 
-total: 0 errors, 2 warnings, 0 checks, 10 lines checked
+Note: Userspace support for this new UAPI will be done on Chrome and
+plan is to get this supported on mutter as well. We will notify the
+list once we have that ready for review.
 
+Uma Shankar (9):
+  drm: Add gamma mode property
+  drm/i915/xelpd: Define color lut range structure
+  drm/i915/xelpd: Add support for Logarithmic gamma mode
+  drm/i915/xelpd: Attach gamma mode property
+  drm: Add Client Cap for advance gamma mode
+  drm/i915/xelpd: logarithmic gamma enabled only with advance gamma mode
+  drm/i915/xelpd: Enable Pipe Degamma
+  drm/i915/xelpd: Add Pipe Color Lut caps to platform config
+  drm/i915/xelpd: Enable XE_LPD Gamma Lut readout
+
+ drivers/gpu/drm/drm_atomic_uapi.c          |   8 +
+ drivers/gpu/drm/drm_color_mgmt.c           |  75 ++++
+ drivers/gpu/drm/drm_ioctl.c                |   5 +
+ drivers/gpu/drm/i915/display/intel_color.c | 454 ++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_pci.c            |   3 +-
+ drivers/gpu/drm/i915/i915_reg.h            |   7 +
+ include/drm/drm_atomic.h                   |   1 +
+ include/drm/drm_color_mgmt.h               |   8 +
+ include/drm/drm_crtc.h                     |  25 ++
+ include/drm/drm_file.h                     |   8 +
+ include/uapi/drm/drm.h                     |   8 +
+ include/uapi/drm/drm_mode.h                |  43 ++
+ 12 files changed, 630 insertions(+), 15 deletions(-)
+
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
