@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37B33973F1
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 15:15:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D13A3973F6
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 15:18:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 370966E8BD;
-	Tue,  1 Jun 2021 13:15:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B81C989B3B;
+	Tue,  1 Jun 2021 13:18:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EBE576E7F5;
- Tue,  1 Jun 2021 13:15:08 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 70AD689100;
+ Tue,  1 Jun 2021 13:18:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D8F8AA47E8;
- Tue,  1 Jun 2021 13:15:08 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 69F7DA47E8;
+ Tue,  1 Jun 2021 13:18:20 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Uma Shankar" <uma.shankar@intel.com>
-Date: Tue, 01 Jun 2021 13:15:08 -0000
-Message-ID: <162255330885.19252.18041269496224469279@emeril.freedesktop.org>
+Date: Tue, 01 Jun 2021 13:18:20 -0000
+Message-ID: <162255350042.19249.2993078598678264344@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210601104135.29020-1-uma.shankar@intel.com>
-In-Reply-To: <20210601104135.29020-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5o?=
- =?utf-8?q?ance_pipe_color_support_for_multi_segmented_luts?=
+References: <20210601105218.29185-1-uma.shankar@intel.com>
+In-Reply-To: <20210601105218.29185-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_Support_for_Plane_Color_Lut_and_CSC_features?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,235 +40,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1562301797=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1562301797==
-Content-Type: multipart/alternative;
- boundary="===============4013329046313670825=="
-
---===============4013329046313670825==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Enhance pipe color support for multi segmented luts
-URL   : https://patchwork.freedesktop.org/series/90821/
-State : success
+Series: Add Support for Plane Color Lut and CSC features
+URL   : https://patchwork.freedesktop.org/series/90825/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10154 -> Patchwork_20248
-====================================================
+$ dim checkpatch origin/drm-tip
+68c5484bfdad drm: Add Enhanced Gamma and color lut range attributes
+a1e53948f9d0 drm: Add Plane Degamma Mode property
+684c709fb80f drm: Add Plane Degamma Lut property
+-:45: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#45: FILE: drivers/gpu/drm/drm_atomic_uapi.c:602:
++		ret = drm_atomic_replace_property_blob_from_id(dev,
++					&state->degamma_lut,
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 101 lines checked
+2bf36d661d4d drm/i915/xelpd: Define Degamma Lut range struct for HDR planes
+0c1eabc62705 drm/i915/xelpd: Add register definitions for Plane Degamma
+-:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#37: FILE: drivers/gpu/drm/i915/i915_reg.h:11315:
++#define PLANE_PRE_CSC_GAMC_INDEX_ENH(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \
++		_PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))
 
-  **SUCCESS**
+-:49: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#49: FILE: drivers/gpu/drm/i915/i915_reg.h:11327:
++#define PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \
++		_PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))
 
-  No regressions found.
+-:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#61: FILE: drivers/gpu/drm/i915/i915_reg.h:11339:
++#define PLANE_PRE_CSC_GAMC_INDEX(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \
++		_PLANE_PRE_CSC_GAMC_INDEX_2(pipe))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/index.html
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#73: FILE: drivers/gpu/drm/i915/i915_reg.h:11351:
++#define PLANE_PRE_CSC_GAMC_DATA(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \
++		_PLANE_PRE_CSC_GAMC_DATA_2(pipe))
 
-Known issues
-------------
+total: 0 errors, 0 warnings, 4 checks, 64 lines checked
+258e15146869 drm/i915/xelpd: Enable plane color features
+b7ea85214efd drm/i915/xelpd: Add color capabilities of SDR planes
+66e7c29201d7 drm/i915/xelpd: Program Plane Degamma Registers
+-:68: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#68: FILE: drivers/gpu/drm/i915/display/intel_color.c:2243:
++				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
 
-  Here are the changes found in Patchwork_20248 that come from known issues:
+-:74: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#74: FILE: drivers/gpu/drm/i915/display/intel_color.c:2249:
++				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
 
-### IGT changes ###
+-:80: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#80: FILE: drivers/gpu/drm/i915/display/intel_color.c:2255:
++				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0), v);
 
-#### Possible fixes ####
+-:84: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#84: FILE: drivers/gpu/drm/i915/display/intel_color.c:2259:
++				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
 
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][1] ([i915#3303]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+-:114: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#114: FILE: drivers/gpu/drm/i915/display/intel_color.c:2289:
++				intel_de_write(dev_priv, PLANE_PRE_CSC_GAMC_DATA(pipe, plane, 0), v);
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][3] ([i915#1372]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+total: 0 errors, 5 warnings, 0 checks, 148 lines checked
+ae7be4f9a5ff drm/i915/xelpd: Add plane color check to glk_plane_color_ctl
+1f1fa094a94e drm/i915/xelpd: Initialize plane color features
+ab01acc58f9c drm/i915/xelpd: Load plane color luts from atomic flip
+66d7c2419b53 drm: Add Plane CTM property
+-:41: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#41: FILE: drivers/gpu/drm/drm_atomic_uapi.c:609:
++		ret = drm_atomic_replace_property_blob_from_id(dev,
++					&state->ctm,
 
-  
-#### Warnings ####
+total: 0 errors, 0 warnings, 1 checks, 87 lines checked
+08ee867daa81 drm: Add helper to attach Plane ctm property
+9d7042c9e95e drm/i915/xelpd: Define Plane CSC Registers
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/i915_reg.h:7411:
++#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
++							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
 
-  * igt@runner@aborted:
-    - fi-cfl-8700k:       [FAIL][5] ([i915#3363]) -> [FAIL][6] ([i915#2426] / [i915#3363])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-cfl-8700k/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-cfl-8700k/igt@runner@aborted.html
-    - fi-glk-dsi:         [FAIL][7] ([i915#2426] / [i915#3363] / [k.org#202321]) -> [FAIL][8] ([i915#3363] / [k.org#202321])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-glk-dsi/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-glk-dsi/igt@runner@aborted.html
-    - fi-kbl-soraka:      [FAIL][9] ([i915#1436] / [i915#3363]) -> [FAIL][10] ([i915#1436] / [i915#2426] / [i915#3363])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-kbl-soraka/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-kbl-soraka/igt@runner@aborted.html
-    - fi-kbl-guc:         [FAIL][11] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][12] ([i915#1436] / [i915#3363])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-kbl-guc/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-kbl-guc/igt@runner@aborted.html
-    - fi-cfl-guc:         [FAIL][13] ([i915#2426] / [i915#3363]) -> [FAIL][14] ([i915#3363])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-cfl-guc/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-cfl-guc/igt@runner@aborted.html
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/i915_reg.h:7411:
++#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
++							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:30: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#30: FILE: drivers/gpu/drm/i915/i915_reg.h:7412:
++							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
 
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#43: FILE: drivers/gpu/drm/i915/i915_reg.h:7425:
++#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
++							    (index) * 4)
 
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#43: FILE: drivers/gpu/drm/i915/i915_reg.h:7425:
++#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_PREOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
++							    (index) * 4)
 
-Participating hosts (47 -> 42)
-------------------------------
+-:44: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/i915/i915_reg.h:7426:
++							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+-:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#57: FILE: drivers/gpu/drm/i915/i915_reg.h:7439:
++#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
++							    (index) * 4)
 
+-:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'index' - possible side-effects?
+#57: FILE: drivers/gpu/drm/i915/i915_reg.h:7439:
++#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + \
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
++							    (index) * 4)
 
-Build changes
--------------
+-:58: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/i915/i915_reg.h:7440:
++							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
 
-  * Linux: CI_DRM_10154 -> Patchwork_20248
+total: 0 errors, 3 warnings, 6 checks, 49 lines checked
+f381646bcaaa drm/i915/xelpd: Enable Plane CSC
+d407eae16e6b drm: Add Plane Gamma Mode property
+7a46749335d6 drm: Add Plane Gamma Lut property
+-:41: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#41: FILE: drivers/gpu/drm/drm_atomic_uapi.c:619:
++		ret = drm_atomic_replace_property_blob_from_id(dev,
++					&state->gamma_lut,
 
-  CI-20190529: 20190529
-  CI_DRM_10154: 810010ed3d29e0500d452a90010a88a0879f2b45 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6097: f823d8ec14b34a6dd2c0804c684b07b0a50f7bb7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20248: 69e66620a121b94c53f9b381c048c32f45eb4fe2 @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 0 errors, 0 warnings, 1 checks, 99 lines checked
+05e5a03fc98f drm/i915/xelpd: Define and Initialize Plane Gamma Lut range
+-:129: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#129: FILE: drivers/gpu/drm/i915/display/intel_color.c:2493:
++									   sizeof(d13_gamma_degamma_sdr),
 
+-:136: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#136: FILE: drivers/gpu/drm/i915/display/intel_color.c:2500:
++									   sizeof(d13_gamma_degamma_sdr),
 
-== Linux commits ==
+total: 0 errors, 2 warnings, 0 checks, 138 lines checked
+035b13656332 drm/i915/xelpd: Add register definitions for Plane Gamma
+-:23: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#23: FILE: drivers/gpu/drm/i915/i915_reg.h:11406:
++#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_A, \
 
-69e66620a121 drm/i915/xelpd: Enable XE_LPD Gamma Lut readout
-6a09b3df0e61 drm/i915/xelpd: Add Pipe Color Lut caps to platform config
-185822ca6347 drm/i915/xelpd: Enable Pipe Degamma
-0a9c33e8f72b drm/i915/xelpd: logarithmic gamma enabled only with advance gamma mode
-7709e4e8ae04 drm: Add Client Cap for advance gamma mode
-0db66299eaaf drm/i915/xelpd: Attach gamma mode property
-0abd23286aa0 drm/i915/xelpd: Add support for Logarithmic gamma mode
-fbd5ad2e2de9 drm/i915/xelpd: Define color lut range structure
-cbbd9a9e8e24 drm: Add gamma mode property
+-:25: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/i915/i915_reg.h:11408:
++#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_A, \
 
-== Logs ==
+-:27: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#27: FILE: drivers/gpu/drm/i915/i915_reg.h:11410:
++#define PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \
++		_PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/index.html
+-:35: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#35: FILE: drivers/gpu/drm/i915/i915_reg.h:11418:
++#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_A, \
 
---===============4013329046313670825==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:37: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#37: FILE: drivers/gpu/drm/i915/i915_reg.h:11420:
++#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe)	_PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_A, \
 
+-:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#39: FILE: drivers/gpu/drm/i915/i915_reg.h:11422:
++#define PLANE_POST_CSC_GAMC_SEG0_DATA_ENH(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \
++		_PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#51: FILE: drivers/gpu/drm/i915/i915_reg.h:11434:
++#define PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \
++		_PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))
 
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#63: FILE: drivers/gpu/drm/i915/i915_reg.h:11446:
++#define PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \
++		_PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enhance pipe color support for multi segmented luts</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90821/">https://patchwork.freedesktop.org/series/90821/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+-:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#75: FILE: drivers/gpu/drm/i915/i915_reg.h:11458:
++#define PLANE_POST_CSC_GAMC_INDEX(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \
++		_PLANE_POST_CSC_GAMC_INDEX_2(pipe))
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/index.html</a></td></tr>
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#87: FILE: drivers/gpu/drm/i915/i915_reg.h:11470:
++#define PLANE_POST_CSC_GAMC_DATA(pipe, plane, i)	\
++		_MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \
++		_PLANE_POST_CSC_GAMC_DATA_2(pipe))
 
-</table>
+total: 0 errors, 4 warnings, 6 checks, 79 lines checked
+525c6ebbb2c5 drm/i915/xelpd: Program Plane Gamma Registers
+-:47: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_color.c:2458:
++				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
 
+-:53: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_color.c:2464:
++				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
 
-    <h1>CI Bug Log - changes from CI_DRM_10154 -&gt; Patchwork_20248</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20248 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10154/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20248/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 42)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10154 -&gt; Patchwork_20248</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10154: 810010ed3d29e0500d452a90010a88a0879f2b45 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6097: f823d8ec14b34a6dd2c0804c684b07b0a50f7bb7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20248: 69e66620a121b94c53f9b381c048c32f45eb4fe2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>69e66620a121 drm/i915/xelpd: Enable XE_LPD Gamma Lut readout<br />
-6a09b3df0e61 drm/i915/xelpd: Add Pipe Color Lut caps to platform config<br />
-185822ca6347 drm/i915/xelpd: Enable Pipe Degamma<br />
-0a9c33e8f72b drm/i915/xelpd: logarithmic gamma enabled only with advance gamma mode<br />
-7709e4e8ae04 drm: Add Client Cap for advance gamma mode<br />
-0db66299eaaf drm/i915/xelpd: Attach gamma mode property<br />
-0abd23286aa0 drm/i915/xelpd: Add support for Logarithmic gamma mode<br />
-fbd5ad2e2de9 drm/i915/xelpd: Define color lut range structure<br />
-cbbd9a9e8e24 drm: Add gamma mode property</p>
+-:61: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#61: FILE: drivers/gpu/drm/i915/display/intel_color.c:2472:
++				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0), v);
 
-</body>
-</html>
+-:65: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/i915/display/intel_color.c:2476:
++				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
 
---===============4013329046313670825==--
+-:94: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_color.c:2505:
++				intel_de_write(dev_priv, PLANE_POST_CSC_GAMC_DATA(pipe, plane, 0), v);
 
---===============1562301797==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+total: 0 errors, 5 warnings, 0 checks, 126 lines checked
+bfb9d2884ac1 drm/i915/xelpd: Enable plane gamma
+
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1562301797==--
