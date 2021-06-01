@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3884397115
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 12:16:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF54397112
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 12:16:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A40006E9E6;
-	Tue,  1 Jun 2021 10:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D87D16E9E3;
+	Tue,  1 Jun 2021 10:16:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45B7B6E9E2;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A09846E9E3;
  Tue,  1 Jun 2021 10:16:07 +0000 (UTC)
-IronPort-SDR: KaKWTNai1EsW4f2MZcjRu8NF0kUEsj4xyyHyB6uYpGRRUua4vEJzGa8PQEEz3TcyodOYxmJGhQ
- FnRXkKolxLBA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="203549941"
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="203549941"
+IronPort-SDR: GGM64ew4BmETC1ybfKOIa2tQWAYFZ7vhkr8ANSLvgMSqL7HtRust74IoOXhazRZPNDnGqfoSee
+ VpKVasPNXUeA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="203549946"
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="203549946"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 03:16:05 -0700
-IronPort-SDR: SPuHKXFALvjt1qi9Xsm04w4swSPXTFfDLCQ+36Oh/xSVFW1cLl9Cg9GYNUXM59ZY/hSOs6J1my
- 9tYfluHGhF4A==
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="482431171"
+ 01 Jun 2021 03:16:07 -0700
+IronPort-SDR: gx5phQ/jIwI05I5ogUbSWKGCNCAVD5mMT+2QO75IWa2jon50pHhZuoc/wJxADDXGcmYebm/5+7
+ Ayv7O3499vwQ==
+X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="482431189"
 Received: from linux-desktop.iind.intel.com ([10.223.34.178])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 03:16:02 -0700
+ 01 Jun 2021 03:16:05 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Tue,  1 Jun 2021 16:21:59 +0530
-Message-Id: <20210601105218.29185-3-uma.shankar@intel.com>
+Date: Tue,  1 Jun 2021 16:22:00 +0530
+Message-Id: <20210601105218.29185-4-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210601105218.29185-1-uma.shankar@intel.com>
 References: <20210601105218.29185-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/21] drm: Add Plane Degamma Mode property
+Subject: [Intel-gfx] [PATCH 03/21] drm: Add Plane Degamma Lut property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,218 +47,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWRkIFBsYW5lIERlZ2FtbWEgTW9kZSBhcyBhbiBlbnVtIHByb3BlcnR5LiBDcmVhdGUgYSBoZWxw
-ZXIKZnVuY3Rpb24gZm9yIGFsbCBwbGFuZSBjb2xvciBtYW5hZ2VtZW50IGZlYXR1cmVzLgoKVGhp
-cyBpcyBhbiBlbnVtIHByb3BlcnR5IHdpdGggdmFsdWVzIGFzIGJsb2JfaWQncyBhbmQgZXhwb3Nl
-cwp0aGUgdmFyaW91cyBnYW1tYSBtb2RlcyBzdXBwb3J0ZWQgYW5kIHRoZSBsdXQgcmFuZ2VzLiBH
-ZXR0aW5nCnRoZSBibG9iIGlkIGluIHVzZXJzcGFjZSwgdXNlciBjYW4gZ2V0IHRoZSBtb2RlIHN1
-cHBvcnRlZCBhbmQKYWxzbyB0aGUgcmFuZ2Ugb2YgZ2FtbWEgbW9kZSBzdXBwb3J0ZWQgd2l0aCBu
-dW1iZXIgb2YgbHV0CmNvZWZmaWNpZW50cy4gSXQgY2FuIHRoZW4gc2V0IG9uZSBvZiB0aGUgbW9k
-ZXMgdXNpbmcgdGhpcwplbnVtIHByb3BlcnR5LgoKTHV0IHZhbHVlcyB3aWxsIGJlIHNlbnQgdGhy
-b3VnaCBzZXBhcmF0ZSBHQU1NQV9MVVQgYmxvYiBwcm9wZXJ0eS4KClNpZ25lZC1vZmYtYnk6IFVt
-YSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5jb20+Ci0tLQogRG9jdW1lbnRhdGlvbi9ncHUv
-ZHJtLWttcy5yc3QgICAgICAgICAgICAgfCA5MCArKysrKysrKysrKysrKysrKysrKysrCiBkcml2
-ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jICAgICAgICAgICAgICB8ICAxICsKIGRyaXZlcnMvZ3B1
-L2RybS9kcm1fYXRvbWljX3N0YXRlX2hlbHBlci5jIHwgIDIgKwogZHJpdmVycy9ncHUvZHJtL2Ry
-bV9hdG9taWNfdWFwaS5jICAgICAgICAgfCAgNCArCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2NvbG9y
-X21nbXQuYyAgICAgICAgICB8IDkzICsrKysrKysrKysrKysrKysrKysrKystCiBpbmNsdWRlL2Ry
-bS9kcm1fbW9kZV9vYmplY3QuaCAgICAgICAgICAgICB8ICAyICstCiBpbmNsdWRlL2RybS9kcm1f
-cGxhbmUuaCAgICAgICAgICAgICAgICAgICB8IDIzICsrKysrKwogNyBmaWxlcyBjaGFuZ2VkLCAy
-MTIgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0
-aW9uL2dwdS9kcm0ta21zLnJzdCBiL0RvY3VtZW50YXRpb24vZ3B1L2RybS1rbXMucnN0CmluZGV4
-IDg3ZTUwMjNlM2Y1NS4uNzUyYmU1NDVlN2Q3IDEwMDY0NAotLS0gYS9Eb2N1bWVudGF0aW9uL2dw
-dS9kcm0ta21zLnJzdAorKysgYi9Eb2N1bWVudGF0aW9uL2dwdS9kcm0ta21zLnJzdApAQCAtNTE0
-LDkgKzUxNCw5OSBAQCBEYW1hZ2UgVHJhY2tpbmcgUHJvcGVydGllcwogQ29sb3IgTWFuYWdlbWVu
-dCBQcm9wZXJ0aWVzCiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIAorQmVsb3cgaXMgaG93
-IGEgdHlwaWNhbCBoYXJkd2FyZSBwaXBlbGluZSBmb3IgY29sb3IKK3dpbGwgbG9vayBsaWtlOgor
-CisuLiBrZXJuZWwtcmVuZGVyOjogRE9UCisgICA6YWx0OiBEaXNwbGF5IENvbG9yIFBpcGVsaW5l
-CisgICA6Y2FwdGlvbjogRGlzcGxheSBDb2xvciBQaXBlbGluZSBPdmVydmlldworCisgICBkaWdy
-YXBoICJLTVMiIHsKKyAgICAgIG5vZGUgW3NoYXBlPWJveF0KKworICAgICAgc3ViZ3JhcGggY2x1
-c3Rlcl9zdGF0aWMgeworICAgICAgICAgIHN0eWxlPWRhc2hlZAorICAgICAgICAgIGxhYmVsPSJE
-aXNwbGF5IENvbG9yIEhhcmR3YXJlIEJsb2NrcyIKKworICAgICAgICAgIG5vZGUgW2JnY29sb3I9
-Z3JleSBzdHlsZT1maWxsZWRdCisgICAgICAgICAgIlBsYW5lIERlZ2FtbWEgQSIgLT4gIlBsYW5l
-IENTQy9DVE0gQSIKKyAgICAgICAgICAiUGxhbmUgQ1NDL0NUTSBBIiAtPiAiUGxhbmUgR2FtbWEg
-QSIKKyAgICAgICAgICAiUGlwZSBCbGVuZGVyIiBbY29sb3I9bGlnaHRibHVlLHN0eWxlPWZpbGxl
-ZCwgd2lkdGg9NS4yNSwgaGVpZ2h0PTAuNzVdOworICAgICAgICAgICJQbGFuZSBHYW1tYSBBIiAt
-PiAiUGlwZSBCbGVuZGVyIgorCSAgIlBpcGUgQmxlbmRlciIgLT4gIlBpcGUgRGVHYW1tYSIKKyAg
-ICAgICAgICAiUGlwZSBEZUdhbW1hIiAtPiAiUGlwZSBDU0MvQ1RNIgorICAgICAgICAgICJQaXBl
-IENTQy9DVE0iIC0+ICJQaXBlIEdhbW1hIgorICAgICAgICAgICJQaXBlIEdhbW1hIiAtPiAiUGlw
-ZSBPdXRwdXQiCisgICAgICB9CisKKyAgICAgIHN1YmdyYXBoIGNsdXN0ZXJfc3RhdGljIHsKKyAg
-ICAgICAgICBzdHlsZT1kYXNoZWQKKworICAgICAgICAgIG5vZGUgW3NoYXBlPWJveF0KKyAgICAg
-ICAgICAiUGxhbmUgRGVnYW1tYSBCIiAtPiAiUGxhbmUgQ1NDL0NUTSBCIgorICAgICAgICAgICJQ
-bGFuZSBDU0MvQ1RNIEIiIC0+ICJQbGFuZSBHYW1tYSBCIgorICAgICAgICAgICJQbGFuZSBHYW1t
-YSBCIiAtPiAiUGlwZSBCbGVuZGVyIgorICAgICAgfQorCisgICAgICBzdWJncmFwaCBjbHVzdGVy
-X3N0YXRpYyB7CisgICAgICAgICAgc3R5bGU9ZGFzaGVkCisKKyAgICAgICAgICBub2RlIFtzaGFw
-ZT1ib3hdCisgICAgICAgICAgIlBsYW5lIERlZ2FtbWEgQyIgLT4gIlBsYW5lIENTQy9DVE0gQyIK
-KyAgICAgICAgICAiUGxhbmUgQ1NDL0NUTSBDIiAtPiAiUGxhbmUgR2FtbWEgQyIKKyAgICAgICAg
-ICAiUGxhbmUgR2FtbWEgQyIgLT4gIlBpcGUgQmxlbmRlciIKKyAgICAgIH0KKworICAgICAgc3Vi
-Z3JhcGggY2x1c3Rlcl9mYiB7CisgICAgICAgICAgc3R5bGU9ZGFzaGVkCisgICAgICAgICAgbGFi
-ZWw9IlJBTSIKKworICAgICAgICAgIG5vZGUgW3NoYXBlPWJveCB3aWR0aD0xLjcgaGVpZ2h0PTAu
-Ml0KKworICAgICAgICAgICJGQiAxIiAtPiAiUGxhbmUgRGVnYW1tYSBBIgorICAgICAgICAgICJG
-QiAyIiAtPiAiUGxhbmUgRGVnYW1tYSBCIgorICAgICAgICAgICJGQiAzIiAtPiAiUGxhbmUgRGVn
-YW1tYSBDIgorICAgICAgfQorICAgfQorCitJbiByZWFsIHdvcmxkIHVzZWNhc2VzLAorCisxLiBQ
-bGFuZSBEZWdhbW1hIGNhbiBiZSB1c2VkIHRvIGxpbmVhcml6ZSBhIG5vbiBsaW5lYXIgZ2FtbWEK
-K2VuY29kZWQgZnJhbWVidWZmZXIuIFRoaXMgaXMgbmVlZGVkIHRvIGRvIGFueSBsaW5lYXIgbWF0
-aCBsaWtlCitjb2xvciBzcGFjZSBjb252ZXJzaW9uLiBGb3IgZXgsIGxpbmVhcml6ZSBmcmFtZXMg
-ZW5jb2RlZCBpbiBTUkdCCitvciBieSBIRFIgY3VydmUuCisKKzIuIExhdGVyIFBsYW5lIENUTSBi
-bG9jayBjYW4gY29udmVydCB0aGUgY29udGVudCB0byBzb21lIGRpZmZlcmVudAorY29sb3JzcGFj
-ZS4gRm9yIGV4LCBTUkdCIHRvIEJUMjAyMCBldGMuCisKKzMuIFBsYW5lIEdhbW1hIGJsb2NrIGNh
-biBiZSB1c2VkIGxhdGVyIHRvIHJlLWFwcGx5IHRoZSBub24tbGluZWFyCitjdXJ2ZS4gVGhpcyBj
-YW4gYWxzbyBiZSB1c2VkIHRvIGFwcGx5IFRvbmUgTWFwcGluZyBmb3IgSERSIHVzZWNhc2VzLgor
-CitBbGwgdGhlIGxheWVycyBvciBmcmFtZWJ1ZmZlcnMgbmVlZCB0byBiZSBjb252ZXJ0ZWQgdG8g
-c2FtZSBjb2xvcgorc3BhY2UgYW5kIGZvcm1hdCBiZWZvcmUgYmxlbmRpbmcuIFRoZSBwbGFuZSBj
-b2xvciBoYXJkd2FyZSBibG9ja3MKK2NhbiBoZWxwIHdpdGggdGhpcy4gT25jZSB0aGUgRGF0YSBp
-cyBibGVuZGVkLCBzaW1pbGFyIGNvbG9yIHByb2Nlc3NpbmcKK2NhbiBiZSBkb25lIG9uIGJsZW5k
-ZWQgb3V0cHV0IHVzaW5nIHBpcGUgY29sb3IgaGFyZHdhcmUgYmxvY2tzLgorCitEUk0gUHJvcGVy
-dGllcyBoYXZlIGJlZW4gY3JlYXRlZCB0byBkZWZpbmUgYW5kIGV4cG9zZSBhbGwgdGhlc2UKK2hh
-cmR3YXJlIGJsb2NrcyB0byB1c2Vyc3BhY2UuIEEgdXNlcnNwYWNlIGFwcGxpY2F0aW9uIChjb21w
-b3NpdG9yCitvciBhbnkgY29sb3IgYXBwKSBjYW4gdXNlIHRoZXNlIGludGVyZmFjZXMgYW5kIGRl
-ZmluZSBwb2xpY2llcyB0bworZWZmaWNpZW50bHkgdXNlIHRoZSBkaXNwbGF5IGhhcmR3YXJlIGZv
-ciBzdWNoIGNvbG9yIG9wZXJhdGlvbnMuCisKK1BpcGUgQ29sb3IgTWFuYWdlbWVudCBQcm9wZXJ0
-aWVzCistLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KKwogLi4ga2VybmVsLWRvYzo6
-IGRyaXZlcnMvZ3B1L2RybS9kcm1fY29sb3JfbWdtdC5jCiAgICA6ZG9jOiBvdmVydmlldwogCitQ
-bGFuZSBDb2xvciBNYW5hZ2VtZW50IFByb3BlcnRpZXMKKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQorCisuLiBrZXJuZWwtZG9jOjogZHJpdmVycy9ncHUvZHJtL2RybV9jb2xvcl9t
-Z210LmMKKyAgIDpkb2M6IFBsYW5lIENvbG9yIFByb3BlcnRpZXMKKworLi4ga2VybmVsLWRvYzo6
-IGRyaXZlcnMvZ3B1L2RybS9kcm1fY29sb3JfbWdtdC5jCisgICA6ZG9jOiBleHBvcnQKKwogVGls
-ZSBHcm91cCBQcm9wZXJ0eQogLS0tLS0tLS0tLS0tLS0tLS0tLQogCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYwpp
-bmRleCBhOGJiYjAyMTY4NGIuLjg4OTJkMDM2MDJmNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2RybV9hdG9taWMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jCkBAIC03
-MDgsNiArNzA4LDcgQEAgc3RhdGljIHZvaWQgZHJtX2F0b21pY19wbGFuZV9wcmludF9zdGF0ZShz
-dHJ1Y3QgZHJtX3ByaW50ZXIgKnAsCiAJCSAgIGRybV9nZXRfY29sb3JfZW5jb2RpbmdfbmFtZShz
-dGF0ZS0+Y29sb3JfZW5jb2RpbmcpKTsKIAlkcm1fcHJpbnRmKHAsICJcdGNvbG9yLXJhbmdlPSVz
-XG4iLAogCQkgICBkcm1fZ2V0X2NvbG9yX3JhbmdlX25hbWUoc3RhdGUtPmNvbG9yX3JhbmdlKSk7
-CisJZHJtX3ByaW50ZihwLCAiXHRjb2xvcl9tZ210X2NoYW5nZWQ9JWRcbiIsIHN0YXRlLT5jb2xv
-cl9tZ210X2NoYW5nZWQpOwogCiAJaWYgKHBsYW5lLT5mdW5jcy0+YXRvbWljX3ByaW50X3N0YXRl
-KQogCQlwbGFuZS0+ZnVuY3MtPmF0b21pY19wcmludF9zdGF0ZShwLCBzdGF0ZSk7CmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19zdGF0ZV9oZWxwZXIuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fYXRvbWljX3N0YXRlX2hlbHBlci5jCmluZGV4IGRkY2Y1YzJjOGU2YS4uZjI2
-YjAzODUzNzExIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19zdGF0ZV9o
-ZWxwZXIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19zdGF0ZV9oZWxwZXIuYwpA
-QCAtMzExLDYgKzMxMSw4IEBAIHZvaWQgX19kcm1fYXRvbWljX2hlbHBlcl9wbGFuZV9kdXBsaWNh
-dGVfc3RhdGUoc3RydWN0IGRybV9wbGFuZSAqcGxhbmUsCiAJc3RhdGUtPmZlbmNlID0gTlVMTDsK
-IAlzdGF0ZS0+Y29tbWl0ID0gTlVMTDsKIAlzdGF0ZS0+ZmJfZGFtYWdlX2NsaXBzID0gTlVMTDsK
-KworCXN0YXRlLT5jb2xvcl9tZ210X2NoYW5nZWQgPSBmYWxzZTsKIH0KIEVYUE9SVF9TWU1CT0wo
-X19kcm1fYXRvbWljX2hlbHBlcl9wbGFuZV9kdXBsaWNhdGVfc3RhdGUpOwogCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY191YXBpLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJt
-X2F0b21pY191YXBpLmMKaW5kZXggNDM4ZTk1ODViMjI1Li40MGZhMDVmYTMzZGMgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX3VhcGkuYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vZHJtX2F0b21pY191YXBpLmMKQEAgLTU5NSw2ICs1OTUsOCBAQCBzdGF0aWMgaW50IGRybV9h
-dG9taWNfcGxhbmVfc2V0X3Byb3BlcnR5KHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lLAogCQlzdGF0
-ZS0+Y29sb3JfZW5jb2RpbmcgPSB2YWw7CiAJfSBlbHNlIGlmIChwcm9wZXJ0eSA9PSBwbGFuZS0+
-Y29sb3JfcmFuZ2VfcHJvcGVydHkpIHsKIAkJc3RhdGUtPmNvbG9yX3JhbmdlID0gdmFsOworCX0g
-ZWxzZSBpZiAocHJvcGVydHkgPT0gcGxhbmUtPmRlZ2FtbWFfbW9kZV9wcm9wZXJ0eSkgeworCQlz
-dGF0ZS0+ZGVnYW1tYV9tb2RlID0gdmFsOwogCX0gZWxzZSBpZiAocHJvcGVydHkgPT0gY29uZmln
-LT5wcm9wX2ZiX2RhbWFnZV9jbGlwcykgewogCQlyZXQgPSBkcm1fYXRvbWljX3JlcGxhY2VfcHJv
-cGVydHlfYmxvYl9mcm9tX2lkKGRldiwKIAkJCQkJJnN0YXRlLT5mYl9kYW1hZ2VfY2xpcHMsCkBA
-IC02NjEsNiArNjYzLDggQEAgZHJtX2F0b21pY19wbGFuZV9nZXRfcHJvcGVydHkoc3RydWN0IGRy
-bV9wbGFuZSAqcGxhbmUsCiAJCSp2YWwgPSBzdGF0ZS0+Y29sb3JfZW5jb2Rpbmc7CiAJfSBlbHNl
-IGlmIChwcm9wZXJ0eSA9PSBwbGFuZS0+Y29sb3JfcmFuZ2VfcHJvcGVydHkpIHsKIAkJKnZhbCA9
-IHN0YXRlLT5jb2xvcl9yYW5nZTsKKwl9IGVsc2UgaWYgKHByb3BlcnR5ID09IHBsYW5lLT5kZWdh
-bW1hX21vZGVfcHJvcGVydHkpIHsKKwkJKnZhbCA9IHN0YXRlLT5kZWdhbW1hX21vZGU7CiAJfSBl
-bHNlIGlmIChwcm9wZXJ0eSA9PSBjb25maWctPnByb3BfZmJfZGFtYWdlX2NsaXBzKSB7CiAJCSp2
-YWwgPSAoc3RhdGUtPmZiX2RhbWFnZV9jbGlwcykgPwogCQkJc3RhdGUtPmZiX2RhbWFnZV9jbGlw
-cy0+YmFzZS5pZCA6IDA7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2NvbG9yX21n
-bXQuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fY29sb3JfbWdtdC5jCmluZGV4IGJiMTRmNDg4Yzhm
-Ni4uMDg1ZWQwZDBkYjAwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2NvbG9yX21n
-bXQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2NvbG9yX21nbXQuYwpAQCAtMzQsOCArMzQs
-OCBAQAogLyoqCiAgKiBET0M6IG92ZXJ2aWV3CiAgKgotICogQ29sb3IgbWFuYWdlbWVudCBvciBj
-b2xvciBzcGFjZSBhZGp1c3RtZW50cyBpcyBzdXBwb3J0ZWQgdGhyb3VnaCBhIHNldCBvZiA1Ci0g
-KiBwcm9wZXJ0aWVzIG9uIHRoZSAmZHJtX2NydGMgb2JqZWN0LiBUaGV5IGFyZSBzZXQgdXAgYnkg
-Y2FsbGluZworICogUGlwZSBDb2xvciBtYW5hZ2VtZW50IG9yIGNvbG9yIHNwYWNlIGFkanVzdG1l
-bnRzIGlzIHN1cHBvcnRlZCB0aHJvdWdoIGEKKyAqIHNldCBvZiA1IHByb3BlcnRpZXMgb24gdGhl
-ICZkcm1fY3J0YyBvYmplY3QuIFRoZXkgYXJlIHNldCB1cCBieSBjYWxsaW5nCiAgKiBkcm1fY3J0
-Y19lbmFibGVfY29sb3JfbWdtdCgpLgogICoKICAqICJERUdBTU1BX0xVVOKAnToKQEAgLTU4NCw2
-ICs1ODQsOTUgQEAgaW50IGRybV9wbGFuZV9jcmVhdGVfY29sb3JfcHJvcGVydGllcyhzdHJ1Y3Qg
-ZHJtX3BsYW5lICpwbGFuZSwKIH0KIEVYUE9SVF9TWU1CT0woZHJtX3BsYW5lX2NyZWF0ZV9jb2xv
-cl9wcm9wZXJ0aWVzKTsKIAorLyoqCisgKiBET0M6IFBsYW5lIENvbG9yIFByb3BlcnRpZXMKKyAq
-CisgKiBQbGFuZSBDb2xvciBtYW5hZ2VtZW50IG9yIGNvbG9yIHNwYWNlIGFkanVzdG1lbnRzIGlz
-IHN1cHBvcnRlZAorICogdGhyb3VnaCBhIHNldCBvZiA1IHByb3BlcnRpZXMgb24gdGhlICZkcm1f
-cGxhbmUgb2JqZWN0LgorICoKKyAqIGRlZ2FtbWFfbW9kZV9wcm9wZXJ0eToKKyAqICAgICBCbG9i
-IHByb3BlcnR5IHdoaWNoIGFkdmVydGl6ZXMgdGhlIHBvc3NpYmxlIGRlZ2FtbWEgbW9kZXMgYW5k
-CisgKiAgICAgbHV0IHJhbmdlcyBzdXBwb3J0ZWQgYnkgdGhlIHBsYXRmb3JtLiBUaGlzICBhbGxv
-d3MgdXNlcnNwYWNlCisgKiAgICAgdG8gcXVlcnkgYW5kIGdldCB0aGUgcGxhbmUgZGVnYW1tYSBj
-b2xvciBjYXBzIGFuZCBjaG9vc2UgdGhlCisgKiAgICAgYXBwcm9wcmlhdGUgZGVnYW1tYSBtb2Rl
-IGFuZCBjcmVhdGUgbHV0IHZhbHVlcyBhY2NvcmRpbmdseQorICoKKyAqLworaW50IGRybV9wbGFu
-ZV9jcmVhdGVfY29sb3JfbWdtdF9wcm9wZXJ0aWVzKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCisJ
-CQkJCSAgIHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lLAorCQkJCQkgICBpbnQgbnVtX3ZhbHVlcykK
-K3sKKwlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpwcm9wOworCisJcHJvcCA9IGRybV9wcm9wZXJ0eV9j
-cmVhdGUoZGV2LCBEUk1fTU9ERV9QUk9QX0VOVU0sCisJCQkJICAgIlBMQU5FX0RFR0FNTUFfTU9E
-RSIsIG51bV92YWx1ZXMpOworCWlmICghcHJvcCkKKwkJcmV0dXJuIC1FTk9NRU07CisKKwlwbGFu
-ZS0+ZGVnYW1tYV9tb2RlX3Byb3BlcnR5ID0gcHJvcDsKKworCXJldHVybiAwOworfQorRVhQT1JU
-X1NZTUJPTChkcm1fcGxhbmVfY3JlYXRlX2NvbG9yX21nbXRfcHJvcGVydGllcyk7CisKK3ZvaWQg
-ZHJtX3BsYW5lX2F0dGFjaF9kZWdhbW1hX3Byb3BlcnRpZXMoc3RydWN0IGRybV9wbGFuZSAqcGxh
-bmUpCit7CisJaWYgKCFwbGFuZS0+ZGVnYW1tYV9tb2RlX3Byb3BlcnR5KQorCQlyZXR1cm47CisK
-Kwlkcm1fb2JqZWN0X2F0dGFjaF9wcm9wZXJ0eSgmcGxhbmUtPmJhc2UsCisJCQkJICAgcGxhbmUt
-PmRlZ2FtbWFfbW9kZV9wcm9wZXJ0eSwgMCk7Cit9CitFWFBPUlRfU1lNQk9MKGRybV9wbGFuZV9h
-dHRhY2hfZGVnYW1tYV9wcm9wZXJ0aWVzKTsKKworaW50IGRybV9wbGFuZV9jb2xvcl9hZGRfZ2Ft
-bWFfZGVnYW1tYV9tb2RlX3JhbmdlKHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lLAorCQkJCQkJIGNv
-bnN0IGNoYXIgKm5hbWUsCisJCQkJCQkgY29uc3Qgc3RydWN0IGRybV9jb2xvcl9sdXRfcmFuZ2Ug
-KnJhbmdlcywKKwkJCQkJCSBzaXplX3QgbGVuZ3RoLCBlbnVtIGx1dF90eXBlIHR5cGUpCit7CisJ
-c3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICpibG9iOworCXN0cnVjdCBkcm1fcHJvcGVydHkgKnBy
-b3AgPSBOVUxMOworCWludCBudW1fcmFuZ2VzID0gbGVuZ3RoIC8gc2l6ZW9mKHJhbmdlc1swXSk7
-CisJaW50IGksIHJldCwgbnVtX3R5cGVzXzA7CisKKwlpZiAodHlwZSA9PSBMVVRfVFlQRV9ERUdB
-TU1BKQorCQlwcm9wID0gcGxhbmUtPmRlZ2FtbWFfbW9kZV9wcm9wZXJ0eTsKKworCWlmICghcHJv
-cCkKKwkJcmV0dXJuIC1FSU5WQUw7CisKKwlpZiAobGVuZ3RoID09IDAgJiYgbmFtZSkKKwkJcmV0
-dXJuIGRybV9wcm9wZXJ0eV9hZGRfZW51bShwcm9wLCAwLCBuYW1lKTsKKworCWlmIChXQVJOX09O
-KGxlbmd0aCA9PSAwIHx8IGxlbmd0aCAlIHNpemVvZihyYW5nZXNbMF0pICE9IDApKQorCQlyZXR1
-cm4gLUVJTlZBTDsKKwludW1fdHlwZXNfMCA9IGh3ZWlnaHQ4KHJhbmdlc1swXS5mbGFncyAmIChE
-Uk1fTU9ERV9MVVRfR0FNTUEgfAorCQkJICAgICAgIERSTV9NT0RFX0xVVF9ERUdBTU1BKSk7CisJ
-aWYgKG51bV90eXBlc18wID09IDApCisJCXJldHVybiAtRUlOVkFMOworCisJZm9yIChpID0gMTsg
-aSA8IG51bV9yYW5nZXM7IGkrKykgeworCQlpbnQgbnVtX3R5cGVzID0gaHdlaWdodDgocmFuZ2Vz
-W2ldLmZsYWdzICYgKERSTV9NT0RFX0xVVF9HQU1NQSB8CisJCQkJCSBEUk1fTU9ERV9MVVRfREVH
-QU1NQSkpOworCisJCS8qIGVpdGhlciBhbGwgcmFuZ2VzIGhhdmUgREVHQU1NQXxHQU1NQSBvciBu
-b25lIGhhdmUgaXQgKi8KKwkJaWYgKG51bV90eXBlc18wICE9IG51bV90eXBlcykKKwkJCXJldHVy
-biAtRUlOVkFMOworCX0KKworCWJsb2IgPSBkcm1fcHJvcGVydHlfY3JlYXRlX2Jsb2IocGxhbmUt
-PmRldiwgbGVuZ3RoLCByYW5nZXMpOworCWlmIChJU19FUlIoYmxvYikpCisJCXJldHVybiBQVFJf
-RVJSKGJsb2IpOworCisJcmV0ID0gZHJtX3Byb3BlcnR5X2FkZF9lbnVtKHByb3AsIGJsb2ItPmJh
-c2UuaWQsIG5hbWUpOworCWlmIChyZXQpIHsKKwkJZHJtX3Byb3BlcnR5X2Jsb2JfcHV0KGJsb2Ip
-OworCQlyZXR1cm4gcmV0OworCX0KKworCXJldHVybiAwOworfQorRVhQT1JUX1NZTUJPTChkcm1f
-cGxhbmVfY29sb3JfYWRkX2dhbW1hX2RlZ2FtbWFfbW9kZV9yYW5nZSk7CisKIC8qKgogICogZHJt
-X2NvbG9yX2x1dF9jaGVjayAtIGNoZWNrIHZhbGlkaXR5IG9mIGxvb2t1cCB0YWJsZQogICogQGx1
-dDogcHJvcGVydHkgYmxvYiBjb250YWluaW5nIExVVCB0byBjaGVjawpkaWZmIC0tZ2l0IGEvaW5j
-bHVkZS9kcm0vZHJtX21vZGVfb2JqZWN0LmggYi9pbmNsdWRlL2RybS9kcm1fbW9kZV9vYmplY3Qu
-aAppbmRleCBjMzRhM2U4MDMwZTEuLmQ0MTI4YzdkYWEwOCAxMDA2NDQKLS0tIGEvaW5jbHVkZS9k
-cm0vZHJtX21vZGVfb2JqZWN0LmgKKysrIGIvaW5jbHVkZS9kcm0vZHJtX21vZGVfb2JqZWN0LmgK
-QEAgLTYwLDcgKzYwLDcgQEAgc3RydWN0IGRybV9tb2RlX29iamVjdCB7CiAJdm9pZCAoKmZyZWVf
-Y2IpKHN0cnVjdCBrcmVmICprcmVmKTsKIH07CiAKLSNkZWZpbmUgRFJNX09CSkVDVF9NQVhfUFJP
-UEVSVFkgMjQKKyNkZWZpbmUgRFJNX09CSkVDVF9NQVhfUFJPUEVSVFkgMjYKIC8qKgogICogc3Ry
-dWN0IGRybV9vYmplY3RfcHJvcGVydGllcyAtIHByb3BlcnR5IHRyYWNraW5nIGZvciAmZHJtX21v
-ZGVfb2JqZWN0CiAgKi8KZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9wbGFuZS5oIGIvaW5j
-bHVkZS9kcm0vZHJtX3BsYW5lLmgKaW5kZXggMTI5NDYxMGU4NGY0Li5lNDc2YTU5MzlmOGUgMTAw
-NjQ0Ci0tLSBhL2luY2x1ZGUvZHJtL2RybV9wbGFuZS5oCisrKyBiL2luY2x1ZGUvZHJtL2RybV9w
-bGFuZS5oCkBAIC0yMzYsNiArMjM2LDE1IEBAIHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgewogCiAJ
-LyoqIEBzdGF0ZTogYmFja3BvaW50ZXIgdG8gZ2xvYmFsIGRybV9hdG9taWNfc3RhdGUgKi8KIAlz
-dHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGU7CisKKwkvKioKKwkgKiBAZGVnYW1tYV9tb2Rl
-OiBUaGlzIGlzIGEgYmxvYl9pZCBhbmQgZXhwb3NlcyB0aGUgcGxhdGZvcm0gY2FwYWJpbGl0aWVz
-CisJICogd3J0IHRvIHZhcmlvdXMgZ2FtbWEgbW9kZXMgYW5kIHRoZSByZXNwZWN0aXZlIGx1dCBy
-YW5nZXMuIFRoaXMgYWxzbworCSAqIGhlbHBzIHVzZXIgc2VsZWN0IGEgZGVnYW1tYSBtb2RlIGFt
-b25nc3QgdGhlIHN1cHBvcnRlZCBvbmVzLgorCSAqLworCXUzMiBkZWdhbW1hX21vZGU7CisKKwl1
-OCBjb2xvcl9tZ210X2NoYW5nZWQgOiAxOwogfTsKIAogc3RhdGljIGlubGluZSBzdHJ1Y3QgZHJt
-X3JlY3QKQEAgLTc0Nyw2ICs3NTYsMTIgQEAgc3RydWN0IGRybV9wbGFuZSB7CiAJICogc2NhbGlu
-Zy4KIAkgKi8KIAlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpzY2FsaW5nX2ZpbHRlcl9wcm9wZXJ0eTsK
-KworCS8qKgorCSAqIEBkZWdhbW1hX21vZGVfcHJvcGVydHk6IE9wdGlvbmFsIFBsYW5lIHByb3Bl
-cnR5IHRvIHNldCB0aGUgTFVUCisJICogdXNlZCB0byBjb252ZXJ0IHRoZSBmcmFtZWJ1ZmZlcidz
-IGNvbG9ycyB0byBsaW5lYXIgZ2FtbWEuCisJICovCisJc3RydWN0IGRybV9wcm9wZXJ0eSAqZGVn
-YW1tYV9tb2RlX3Byb3BlcnR5OwogfTsKIAogI2RlZmluZSBvYmpfdG9fcGxhbmUoeCkgY29udGFp
-bmVyX29mKHgsIHN0cnVjdCBkcm1fcGxhbmUsIGJhc2UpCkBAIC04MzgsNiArODUzLDE0IEBAIHZv
-aWQgZHJtX3BsYW5lX2ZvcmNlX2Rpc2FibGUoc3RydWN0IGRybV9wbGFuZSAqcGxhbmUpOwogaW50
-IGRybV9tb2RlX3BsYW5lX3NldF9vYmpfcHJvcChzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKIAkJ
-CQkgICAgICAgc3RydWN0IGRybV9wcm9wZXJ0eSAqcHJvcGVydHksCiAJCQkJICAgICAgIHVpbnQ2
-NF90IHZhbHVlKTsKK2ludCBkcm1fcGxhbmVfY3JlYXRlX2NvbG9yX21nbXRfcHJvcGVydGllcyhz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2LAorCQkJCQkgICBzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwK
-KwkJCQkJICAgaW50IG51bV92YWx1ZXMpOwordm9pZCBkcm1fcGxhbmVfYXR0YWNoX2RlZ2FtbWFf
-cHJvcGVydGllcyhzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSk7CitpbnQgZHJtX3BsYW5lX2NvbG9y
-X2FkZF9nYW1tYV9kZWdhbW1hX21vZGVfcmFuZ2Uoc3RydWN0IGRybV9wbGFuZSAqcGxhbmUsCisJ
-CQkJCQkgY29uc3QgY2hhciAqbmFtZSwKKwkJCQkJCSBjb25zdCBzdHJ1Y3QgZHJtX2NvbG9yX2x1
-dF9yYW5nZSAqcmFuZ2VzLAorCQkJCQkJIHNpemVfdCBsZW5ndGgsIGVudW0gbHV0X3R5cGUgdHlw
-ZSk7CiAKIC8qKgogICogZHJtX3BsYW5lX2ZpbmQgLSBmaW5kIGEgJmRybV9wbGFuZQotLSAKMi4y
-Ni4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Add Plane Degamma Lut as a blob property. User will calculate
+the lut values, create the blob and send it to driver using
+this property. Lut calculation will be based on the gamma mode
+chosen out of the gamma mode exposed.
+
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/drm_atomic_state_helper.c |  4 ++++
+ drivers/gpu/drm/drm_atomic_uapi.c         | 10 ++++++++++
+ drivers/gpu/drm/drm_color_mgmt.c          | 19 +++++++++++++++++++
+ include/drm/drm_plane.h                   | 14 ++++++++++++++
+ 4 files changed, 47 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
+index f26b03853711..6e358067cb7a 100644
+--- a/drivers/gpu/drm/drm_atomic_state_helper.c
++++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+@@ -312,6 +312,9 @@ void __drm_atomic_helper_plane_duplicate_state(struct drm_plane *plane,
+ 	state->commit = NULL;
+ 	state->fb_damage_clips = NULL;
+ 
++	if (state->degamma_lut)
++		drm_property_blob_get(state->degamma_lut);
++
+ 	state->color_mgmt_changed = false;
+ }
+ EXPORT_SYMBOL(__drm_atomic_helper_plane_duplicate_state);
+@@ -359,6 +362,7 @@ void __drm_atomic_helper_plane_destroy_state(struct drm_plane_state *state)
+ 		drm_crtc_commit_put(state->commit);
+ 
+ 	drm_property_blob_put(state->fb_damage_clips);
++	drm_property_blob_put(state->degamma_lut);
+ }
+ EXPORT_SYMBOL(__drm_atomic_helper_plane_destroy_state);
+ 
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index 40fa05fa33dc..ce3cb65d415e 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -597,6 +597,13 @@ static int drm_atomic_plane_set_property(struct drm_plane *plane,
+ 		state->color_range = val;
+ 	} else if (property == plane->degamma_mode_property) {
+ 		state->degamma_mode = val;
++	} else if (property == plane->degamma_lut_property) {
++		ret = drm_atomic_replace_property_blob_from_id(dev,
++					&state->degamma_lut,
++					val, -1, sizeof(struct drm_color_lut_ext),
++					&replaced);
++		state->color_mgmt_changed |= replaced;
++		return ret;
+ 	} else if (property == config->prop_fb_damage_clips) {
+ 		ret = drm_atomic_replace_property_blob_from_id(dev,
+ 					&state->fb_damage_clips,
+@@ -665,6 +672,9 @@ drm_atomic_plane_get_property(struct drm_plane *plane,
+ 		*val = state->color_range;
+ 	} else if (property == plane->degamma_mode_property) {
+ 		*val = state->degamma_mode;
++	} else if (property == plane->degamma_lut_property) {
++		*val = (state->degamma_lut) ?
++			state->degamma_lut->base.id : 0;
+ 	} else if (property == config->prop_fb_damage_clips) {
+ 		*val = (state->fb_damage_clips) ?
+ 			state->fb_damage_clips->base.id : 0;
+diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
+index 085ed0d0db00..29d0fc1e52b5 100644
+--- a/drivers/gpu/drm/drm_color_mgmt.c
++++ b/drivers/gpu/drm/drm_color_mgmt.c
+@@ -596,6 +596,12 @@ EXPORT_SYMBOL(drm_plane_create_color_properties);
+  *     to query and get the plane degamma color caps and choose the
+  *     appropriate degamma mode and create lut values accordingly
+  *
++ * degamma_lut_property:
++ *	Blob property which allows a userspace to provide LUT values
++ *	to apply degamma curve using the h/w plane degamma processing
++ *	engine, thereby making the content as linear for further color
++ *	processing.
++ *
+  */
+ int drm_plane_create_color_mgmt_properties(struct drm_device *dev,
+ 					   struct drm_plane *plane,
+@@ -610,6 +616,13 @@ int drm_plane_create_color_mgmt_properties(struct drm_device *dev,
+ 
+ 	plane->degamma_mode_property = prop;
+ 
++	prop = drm_property_create(dev, DRM_MODE_PROP_BLOB,
++				   "PLANE_DEGAMMA_LUT", 0);
++	if (!prop)
++		return -ENOMEM;
++
++	plane->degamma_lut_property = prop;
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_plane_create_color_mgmt_properties);
+@@ -621,6 +634,12 @@ void drm_plane_attach_degamma_properties(struct drm_plane *plane)
+ 
+ 	drm_object_attach_property(&plane->base,
+ 				   plane->degamma_mode_property, 0);
++
++	if (!plane->degamma_lut_property)
++		return;
++
++	drm_object_attach_property(&plane->base,
++				   plane->degamma_lut_property, 0);
+ }
+ EXPORT_SYMBOL(drm_plane_attach_degamma_properties);
+ 
+diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+index e476a5939f8e..bbd0033ed1d2 100644
+--- a/include/drm/drm_plane.h
++++ b/include/drm/drm_plane.h
+@@ -244,6 +244,14 @@ struct drm_plane_state {
+ 	 */
+ 	u32 degamma_mode;
+ 
++	/* @degamma_lut:
++	 *
++	 * Lookup table for converting framebuffer pixel data before apply the
++	 * color conversion matrix @ctm. See drm_plane_enable_color_mgmt(). The
++	 * blob (if not NULL) is an array of &struct drm_color_lut_ext.
++	 */
++	struct drm_property_blob *degamma_lut;
++
+ 	u8 color_mgmt_changed : 1;
+ };
+ 
+@@ -762,6 +770,12 @@ struct drm_plane {
+ 	 * used to convert the framebuffer's colors to linear gamma.
+ 	 */
+ 	struct drm_property *degamma_mode_property;
++
++	/**
++	 * @degamma_lut_property: Optional Plane property to set the LUT
++	 * used to convert the framebuffer's colors to linear gamma.
++	 */
++	struct drm_property *degamma_lut_property;
+ };
+ 
+ #define obj_to_plane(x) container_of(x, struct drm_plane, base)
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
