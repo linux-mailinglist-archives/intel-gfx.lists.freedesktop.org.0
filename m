@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD623974A6
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 15:54:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C5E39753A
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 16:17:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3184589951;
-	Tue,  1 Jun 2021 13:54:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F32E6EA70;
+	Tue,  1 Jun 2021 14:17:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B732A89951;
- Tue,  1 Jun 2021 13:54:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B0020A47DB;
- Tue,  1 Jun 2021 13:54:01 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 01 Jun 2021 13:54:01 -0000
-Message-ID: <162255564168.19249.5087376871476206827@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210601100228.6064-1-anshuman.gupta@intel.com>
-In-Reply-To: <20210601100228.6064-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?lpsp_with_hdmi/dp_outputs?=
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE4806EA70;
+ Tue,  1 Jun 2021 14:17:10 +0000 (UTC)
+IronPort-SDR: AMTqqMtVl52gA8YRVFxf/t1BaOLUgp5RvU16gMKmtkNGPbHaKHTObiD/U7aHCvhS95PHOK2cz0
+ iMRSVkfzUrow==
+X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="264737018"
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="264737018"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 07:17:07 -0700
+IronPort-SDR: xl/Uvh7DNQJDO3CYabOrwqUC3VoAQAhYerwDmyhN+V4qO6f3yNkqEvtJqBN8Wnf+RnfbTy/ma3
+ OpYDqlBLVuBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,240,1616482800"; d="scan'208";a="446979136"
+Received: from vsrini4-xps-8920.iind.intel.com (HELO localhost.localdomain)
+ ([10.223.163.28])
+ by fmsmga008.fm.intel.com with ESMTP; 01 Jun 2021 07:17:06 -0700
+From: Vidya Srinivas <vidya.srinivas@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	igt-dev@lists.freedesktop.org
+Date: Tue,  1 Jun 2021 19:38:05 +0530
+Message-Id: <1622556485-9375-1-git-send-email-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1622547939-8157-1-git-send-email-vidya.srinivas@intel.com>
+References: <1622547939-8157-1-git-send-email-vidya.srinivas@intel.com>
+Subject: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend: Don't
+ set primary fb color in coverage-vs-premult-vs-constant
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,72 +48,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Patch removes setting primary fb color in coverage-vs-premult-vs-constant
+as this is causing CRC mismatch on few Gen11 systems.
+Similar change has already been done in tests constant_alpha_min and basic_alpha
+where the test runs on all planes but dont set the primary fb color.
 
-Series: lpsp with hdmi/dp outputs
-URL   : https://patchwork.freedesktop.org/series/90827/
-State : warning
+Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+---
+ tests/kms_plane_alpha_blend.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1207:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
+diff --git a/tests/kms_plane_alpha_blend.c b/tests/kms_plane_alpha_blend.c
+index a37cb27c7d62..224d79bd1749 100644
+--- a/tests/kms_plane_alpha_blend.c
++++ b/tests/kms_plane_alpha_blend.c
+@@ -447,10 +447,6 @@ static void coverage_premult_constant(data_t *data, enum pipe pipe, igt_plane_t
+ 	igt_display_t *display = &data->display;
+ 	igt_crc_t ref_crc = {}, crc = {};
+ 
+-	/* Set a background color on the primary fb for testing */
+-	if (plane->type != DRM_PLANE_TYPE_PRIMARY)
+-		igt_plane_set_fb(igt_pipe_get_plane_type(&display->pipes[pipe], DRM_PLANE_TYPE_PRIMARY), &data->gray_fb);
+-
+ 	igt_plane_set_prop_enum(plane, IGT_PLANE_PIXEL_BLEND_MODE, "Coverage");
+ 	igt_plane_set_fb(plane, &data->argb_fb_cov_7e);
+ 	igt_display_commit2(display, COMMIT_ATOMIC);
+-- 
+2.7.4
 
 _______________________________________________
 Intel-gfx mailing list
