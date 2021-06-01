@@ -1,67 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3111397307
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:13:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EA9B39731A
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 14:20:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C7FB89DA8;
-	Tue,  1 Jun 2021 12:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 087FB6E185;
+	Tue,  1 Jun 2021 12:20:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A61289D77
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 12:13:21 +0000 (UTC)
-IronPort-SDR: bhliaG5djGI+chqyPQPgZ9z7xShjvrTRey16lSY9y/OVrqbzl7BlNHfFPF6IGMyhENxy1EyO9a
- vJTDee2MIyeA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10001"; a="203531182"
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="203531182"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 05:13:17 -0700
-IronPort-SDR: AKLdfC0QZ2Zc/0ppx4eKPhNGVajN25JdiigA5X62vCBI1j/S1gEfGdNNdS4MtHgxM72+VdNvoR
- MJBMMGe4tQLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,239,1616482800"; d="scan'208";a="416456506"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by orsmga002.jf.intel.com with ESMTP; 01 Jun 2021 05:13:17 -0700
-Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 1 Jun 2021 05:13:16 -0700
-Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
- BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 1 Jun 2021 17:43:13 +0530
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9]) by
- irsmsx603.ger.corp.intel.com ([163.33.146.9]) with mapi id 15.01.2242.008;
- Tue, 1 Jun 2021 13:13:12 +0100
-From: "Varide, Nischal" <nischal.varide@intel.com>
-To: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Shankar, Uma" <uma.shankar@intel.com>,
- "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915/xelpd: Enabling dithering after
- the CC1
-Thread-Index: AQHXUhnhDyr8vVQeM0mDfI1+KxoZkqr1ux+AgAAf3wCACRGZ4A==
-Date: Tue, 1 Jun 2021 12:13:11 +0000
-Message-ID: <da778d209abe4240989188f7f8b95a1b@intel.com>
-References: <20210526181728.14817-1-bhanuprakash.modem@intel.com>
- <20210526181728.14817-2-bhanuprakash.modem@intel.com>
- <87o8cxbngy.fsf@intel.com>
- <CO6PR11MB5569B1A2A203BD64EEF631318D249@CO6PR11MB5569.namprd11.prod.outlook.com>
-In-Reply-To: <CO6PR11MB5569B1A2A203BD64EEF631318D249@CO6PR11MB5569.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com
+ [IPv6:2607:f8b0:4864:20::c2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E669D6E185
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 12:20:14 +0000 (UTC)
+Received: by mail-oo1-xc2a.google.com with SMTP id
+ j17-20020a4ad6d10000b02901fef5280522so3445505oot.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 01 Jun 2021 05:20:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QZD0tqLcr7Rb6q8Fc6VxhjbM8BQAPNxQ7LLDWAO2SO8=;
+ b=Khguyi16Hdf9gCclFm2Y7WlWnKqq0HT7EwWbMdO0UTScH35iMBi4x+MkSSROrXH2ut
+ JMdiZ79O2Yk0BnhM85uAIOSyDD43wsLagozBe0Jwz+sbl2NmYDOLHObY0fywavkzA5sY
+ Vhx0I+VVqtOdvAUFAvGlJFNTzhShF1BdTtguM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QZD0tqLcr7Rb6q8Fc6VxhjbM8BQAPNxQ7LLDWAO2SO8=;
+ b=kSal8LVjaKeiKX7nS/+sRqPV5YajsZGWFhORT2iA31LAyTQbyLPLiaUP0UJGTT/bRa
+ 59lGnSwA7/+Fde5YFj27rUfUh7noJrQ9HnSt5oJQfAU8DLuWta51x13faGyzzgVHvxsL
+ QapH7lGSqxK3prZeOQHIyvBgL2OgkZZvppv8rQqhHjEc1vN1TVMPVNG61M+dcCtROj14
+ VpGSBE84Kn7amXSiWWIShGdm83zzXpjbnKyLjZsFRsYuMK0bHX9se/CJPs9Izpq9NOn3
+ /OGUi/KBtsx+snqD8Jt9E+4j0OpbjcZsT9/2PsTsgpg2pYhIt5seNW6khK8UkmfMiNkj
+ V7fA==
+X-Gm-Message-State: AOAM532cVoBDDrzg08KyZ0Jy6VSQb6ube2TW8JwuvE9G5Urj+S3Kwju6
+ IQmqNwmN0rQPg13qnn+4vixc+GJw1AMxn5C8esRqRQ==
+X-Google-Smtp-Source: ABdhPJwJZG4UNugaaZxn3LSDsBt6KqwfnauGFoc92BD4L5gMqHV90b8C/9G9Sx24RYAs+i/4udvEo4LwUYMhvuQ4JPA=
+X-Received: by 2002:a4a:d4c7:: with SMTP id r7mr20514011oos.85.1622550014195; 
+ Tue, 01 Jun 2021 05:20:14 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/xelpd: Enabling dithering
- after the CC1
+References: <20210520073514.314893-1-matthew.auld@intel.com>
+ <YKZx/U05aRaxKw44@phenom.ffwll.local>
+ <CAKMK7uE4F66O8sCovhrQKB5Lo3tdKWNhWTS4C=apyVJgqbKuPg@mail.gmail.com>
+ <6bf0ebe7-f23d-aeff-c6f6-b43201212d5d@intel.com>
+In-Reply-To: <6bf0ebe7-f23d-aeff-c6f6-b43201212d5d@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 1 Jun 2021 14:20:02 +0200
+Message-ID: <CAKMK7uFePn8Ys=ntUnckAxm5VLwWTSoJLrTx6rdBmRpKatk45w@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use DRIVER_NAME for tracing
+ unattached requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,168 +62,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ stable <stable@vger.kernel.org>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Chintan M Patel <chintan.m.patel@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
------Original Message-----
-From: Modem, Bhanuprakash <bhanuprakash.modem@intel.com> 
-Sent: Wednesday, May 26, 2021 9:29 PM
-To: Jani Nikula <jani.nikula@linux.intel.com>; intel-gfx@lists.freedesktop.org; Varide, Nischal <nischal.varide@intel.com>; Shankar, Uma <uma.shankar@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>
-Subject: RE: [Intel-gfx] [PATCH 1/2] drm/i915/xelpd: Enabling dithering after the CC1
-
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Wednesday, May 26, 2021 7:34 PM
-> To: Modem, Bhanuprakash <bhanuprakash.modem@intel.com>; intel- 
-> gfx@lists.freedesktop.org; Varide, Nischal <nischal.varide@intel.com>; 
-> Shankar, Uma <uma.shankar@intel.com>; Gupta, Anshuman 
-> <anshuman.gupta@intel.com>
-> Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/xelpd: Enabling 
-> dithering after the CC1
-> 
-> On Wed, 26 May 2021, Bhanuprakash Modem <bhanuprakash.modem@intel.com> wrote:
-> > From: Nischal Varide <nischal.varide@intel.com>
+On Tue, Jun 1, 2021 at 1:13 PM Matthew Auld <matthew.auld@intel.com> wrote:
+> On 31/05/2021 08:53, Daniel Vetter wrote:
+> > On Thu, May 20, 2021 at 4:28 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+> >>
+> >> On Thu, May 20, 2021 at 08:35:14AM +0100, Matthew Auld wrote:
+> >>> From: Chris Wilson <chris@chris-wilson.co.uk>
+> >>>
+> >>> The first tracepoint for a request is trace_dma_fence_init called before
+> >>> we have associated the request with a device. The tracepoint uses
+> >>> fence->ops->get_driver_name() as a pretty name, and as we try to report
+> >>> the device name this oopses as it is then NULL. Support the early
+> >>> tracepoint by reporting the DRIVER_NAME instead of the actual device
+> >>> name.
+> >>>
+> >>> Note that rq->engine remains during the course of request recycling
+> >>> (SLAB_TYPESAFE_BY_RCU). For the physical engines, the pointer remains
+> >>> valid, however a virtual engine may be destroyed after the request is
+> >>> retired. If we process a preempt-to-busy completed request along the
+> >>> virtual engine, we should make sure we mark the request as no longer
+> >>> belonging to the virtual engine to remove the dangling pointers from the
+> >>> tracepoint.
+> >>
+> >> Why can't we assign the request beforehand? The idea behind these
+> >> tracepoints is that they actually match up, if trace_dma_fence_init is
+> >> different, then we're breaking that.
 > >
-> > If the panel is 12bpc then Dithering is not enabled in the Legacy 
-> > dithering block , instead its Enabled after the C1 CC1 pipe post 
-> > color space conversion.For a 6bpc pannel Dithering is enabled in 
-> > Legacy block.
+> > Ok I looked a bit more and pondered this a bit, and the initial
+> > tracepoint is called from dma_fence_init, where we haven't yet set up
+> > rq->engine properly. So that part makes sense, but should have a
+> > bigger comment that explains this a bit more and why we can't solve
+> > this in a neater way. Probably should also drop the unlikely(), this
+> > isn't a performance critical path, ever.
 > >
-> > Signed-off-by: Nischal Varide <nischal.varide@intel.com>
-> 
-> When you're sending someone else's patches, you need to add your own 
-> Signed-off-by here.
+> > The other changes thgouh feel like they should be split out into a
+> > separate path, since they solve a conceptually totally different
+> > issue: SLAB_TYPESAFE_BY_RCU recycling.
+>
+> Hmm, I thought it all stems from having to tread very carefully around
+> SLAB_TYPESAFE_BY_RCU? If this were "normal" code, we would just allocate
+> the rq, initialise it properly, including the rq->engine, and only then
+> do the dma_fence_init? Or am I missing something?
 
-Patch 2/2 in this series has a dependency on this patch. And I haven't made any changes in this patch, so not added my Signed-off-by :-)
+Uh, if this is the bug it's a lot more scary. SLAB_TYPESAFE_BY_RCU
+should only rear it's ugly head if we do clever tricks where we access
+pointers to dma_fence under rcu alone, _without_ holding a full
+dma_fence reference. As soon as we have a full reference (and checked
+that the reference is to the right fence, since we could race) then
+all this recycle issues are gonne since the kref_t provides the right
+barrier here.
 
-- Bhanu
+If we hit any of the dma_fence tracepoints without a full reference
+held then I think that's a bug an needs to be fixed. Maybe we should
+have a debug WARN_ON(!kref(dma_fence)>0)); in these tracepoints
+somewhere to prevent this. Doing real dma_fence ops without a refcount
+held is really too much clever imo, and even if we'd find some
+microbenchmark showing that e.g. the dma_fence_get/put around some
+dma_fence function we're calling is measurable, it's not worth the
+cost in bugfixes like this one here.
 
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_color.c   | 15 +++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_display.c |  7 ++++++-
-> >  drivers/gpu/drm/i915/i915_reg.h              |  3 ++-
-> >  3 files changed, 23 insertions(+), 2 deletions(-)
+And when we do hold a full reference, then the only problem I've found
+is that we call dma_fence_init before the request is fully set up,
+which is at least semi-reasonable and can easily be checked for and
+explained with a comment. I thought I looked at the code, and
+reordering the request init to not have this problem looked tricky.
+
+Another issue which would also be very questionable design that we
+need to re-analyze would be if the engine can disappear before the
+last reference for the dma_fence has been dropped. I'd also just call
+this a bug in our refcounting, this should be impossible, but I
+haven't checked.
+
+In all these cases SLAB_TYPESAFE_BY_RCU shouldn't make the situation
+worse, and if it does, it's a separate issue really.
+
+> I'm happy to split it though. And I think that bit at least fixes the
+> user reported issue I think.
+
+So thinking about this some more, if you think this can be easily
+fixed by pushing the dma_fence_init past the initialization of
+rq->engine, then that would probably be the cleanest fix of all of
+them. Assuming none of the above consideration point at further
+trouble (but then further trouble probably needs separate patches to
+address them).
+
+> > And I'm honestly not sure about
+> > that one whether it's even correct, there's another patch floating
+> > around that sprinkles rcu_read_lock around some of these accesssors,
+> > and that would be a breakage of dma_fence interaces where outside of
+> > i915 rcu isn't required for this stuff. So imo should be split out,
+> > and come with a wider analysis of what's going on there and why and
+> > how exactly i915 works.
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c
-> b/drivers/gpu/drm/i915/display/intel_color.c
-> > index dab892d2251b..4ad5bd849695 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -1605,6 +1605,20 @@ static u32 icl_csc_mode(const struct 
-> > intel_crtc_state
-> *crtc_state)
-> >  	return csc_mode;
-> >  }
+> > In generally SLAB_TYPESAFE_BY_RCU is extremely dangerous and I'm
+> > frankly not sure we have the perf data (outside of contrived
+> > microbenchmarks) showing that it's needed and justifies all the costs
+> > it's encurring.
+>
+> Right, I can try to search the git history.
+
+Yeah might be good to dig that out too while we're at it. I think i915
+is the only driver that recycles it's dma_fence without an rcu
+barrier. We're also the only driver that does lots of very clever
+tricks which are protected by rcu only, and not grabbing a full
+dma_fence reference. Or at least I've seen a bunch of those.
+-Daniel
+
+>
+>
+> > -Daniel
 > >
-> > +static u32 dither_after_cc1_12bpc(const struct intel_crtc_state
-> *crtc_state)
-> > +{
-> > +	u32 gamma_mode = crtc_state->gamma_mode;
-> > +	struct drm_i915_private *i915 = 
-> > +to_i915(crtc_state->uapi.crtc->dev);
-> > +
-> > +	if (DISPLAY_VER(i915) >= 13) {
-> > +		if (!crtc_state->dither_force_disable &&
-> > +		    (crtc_state->pipe_bpp == 36))
-> > +			gamma_mode |= GAMMA_MODE_DITHER_AFTER_CC1;
-> > +	}
-> > +
-> > +	return gamma_mode;
-> > +}
-> > +
-> >  static int icl_color_check(struct intel_crtc_state *crtc_state)  {
-> >  	int ret;
-> > @@ -1615,6 +1629,7 @@ static int icl_color_check(struct 
-> > intel_crtc_state
-> *crtc_state)
+> >> -Daniel
+> >>
+> >>>
+> >>> Fixes: 855e39e65cfc ("drm/i915: Initialise basic fence before acquiring seqno")
+> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> >>> Cc: Chintan M Patel <chintan.m.patel@intel.com>
+> >>> Cc: Andi Shyti <andi.shyti@intel.com>
+> >>> Cc: <stable@vger.kernel.org> # v5.7+
+> >>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> >>> ---
+> >>>   .../drm/i915/gt/intel_execlists_submission.c  | 20 ++++++++++++++-----
+> >>>   drivers/gpu/drm/i915/i915_request.c           |  7 ++++++-
+> >>>   2 files changed, 21 insertions(+), 6 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> >>> index de124870af44..75604e927d34 100644
+> >>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> >>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> >>> @@ -3249,6 +3249,18 @@ static struct list_head *virtual_queue(struct virtual_engine *ve)
+> >>>        return &ve->base.execlists.default_priolist.requests;
+> >>>   }
+> >>>
+> >>> +static void
+> >>> +virtual_submit_completed(struct virtual_engine *ve, struct i915_request *rq)
+> >>> +{
+> >>> +     GEM_BUG_ON(!__i915_request_is_complete(rq));
+> >>> +     GEM_BUG_ON(rq->engine != &ve->base);
+> >>> +
+> >>> +     __i915_request_submit(rq);
+> >>> +
+> >>> +     /* Remove the dangling pointer to the stale virtual engine */
+> >>> +     WRITE_ONCE(rq->engine, ve->siblings[0]);
+> >>> +}
+> >>> +
+> >>>   static void rcu_virtual_context_destroy(struct work_struct *wrk)
+> >>>   {
+> >>>        struct virtual_engine *ve =
+> >>> @@ -3265,8 +3277,7 @@ static void rcu_virtual_context_destroy(struct work_struct *wrk)
+> >>>
+> >>>                old = fetch_and_zero(&ve->request);
+> >>>                if (old) {
+> >>> -                     GEM_BUG_ON(!__i915_request_is_complete(old));
+> >>> -                     __i915_request_submit(old);
+> >>> +                     virtual_submit_completed(ve, old);
+> >>>                        i915_request_put(old);
+> >>>                }
+> >>>
+> >>> @@ -3538,13 +3549,12 @@ static void virtual_submit_request(struct i915_request *rq)
+> >>>
+> >>>        /* By the time we resubmit a request, it may be completed */
+> >>>        if (__i915_request_is_complete(rq)) {
+> >>> -             __i915_request_submit(rq);
+> >>> +             virtual_submit_completed(ve, rq);
+> >>>                goto unlock;
+> >>>        }
+> >>>
+> >>>        if (ve->request) { /* background completion from preempt-to-busy */
+> >>> -             GEM_BUG_ON(!__i915_request_is_complete(ve->request));
+> >>> -             __i915_request_submit(ve->request);
+> >>> +             virtual_submit_completed(ve, ve->request);
+> >>>                i915_request_put(ve->request);
+> >>>        }
+> >>>
+> >>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> >>> index 970d8f4986bb..aa124adb1051 100644
+> >>> --- a/drivers/gpu/drm/i915/i915_request.c
+> >>> +++ b/drivers/gpu/drm/i915/i915_request.c
+> >>> @@ -61,7 +61,12 @@ static struct i915_global_request {
+> >>>
+> >>>   static const char *i915_fence_get_driver_name(struct dma_fence *fence)
+> >>>   {
+> >>> -     return dev_name(to_request(fence)->engine->i915->drm.dev);
+> >>> +     struct i915_request *rq = to_request(fence);
+> >>> +
+> >>> +     if (unlikely(!rq->engine)) /* not yet attached to any device */
+> >>> +             return DRIVER_NAME;
+> >>> +
+> >>> +     return dev_name(rq->engine->i915->drm.dev);
+> >>>   }
+> >>>
+> >>>   static const char *i915_fence_get_timeline_name(struct dma_fence *fence)
+> >>> --
+> >>> 2.26.3
+> >>>
+> >>
+> >> --
+> >> Daniel Vetter
+> >> Software Engineer, Intel Corporation
+> >> http://blog.ffwll.ch
 > >
-> >  	crtc_state->gamma_mode = icl_gamma_mode(crtc_state);
 > >
-> > +	crtc_state->gamma_mode = dither_after_cc1_12bpc(crtc_state);
-> 
-> We don't really do the kind of thing where you need a sequence of 
-> calls where one depends on the other, adding to the same state member. 
-> At a glance, this just looks wrong, superficially overwriting the 
-> previously set value. I'd just add the check at the end of icl_gamma_mode().
+> >
 
 
-Yes ,agree and will do the needful here.
 
-
-> 
-> >  	crtc_state->csc_mode = icl_csc_mode(crtc_state);
-> >
-> >  	crtc_state->preload_luts = intel_can_preload_luts(crtc_state);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 0bb2e582c87f..1a658bdaeab6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -5741,7 +5741,12 @@ static void bdw_set_pipemisc(const struct
-> intel_crtc_state *crtc_state)
-> >  		break;
-> >  	}
-> >
-> > -	if (crtc_state->dither)
-> > +	/*
-> > +	 * If 12bpc panel then, Enables dithering after the CC1 pipe
-> > +	 * post color space conversion and not here
-> > +	 */
-> > +
-> > +	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
-> 
-> This now duplicates the pipe_bpp condition in two places, which seems 
-> a bit fragile. Maybe the check should be on gamma_mode? It would 
-> remove the need for the whole comment above.
-There are two bits for controlling the dithering one at pipe level and other at gamma level, 
-So the checks at two places .
- 
-> >  		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
-> >
-> >  	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 || 
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> b/drivers/gpu/drm/i915/i915_reg.h
-> > index 4dbe79009c0e..5700097475c0 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -6155,7 +6155,7 @@ enum {
-> >  #define   PIPEMISC_DITHER_8_BPC		(0 << 5)
-> >  #define   PIPEMISC_DITHER_10_BPC	(1 << 5)
-> >  #define   PIPEMISC_DITHER_6_BPC		(2 << 5)
-> > -#define   PIPEMISC_DITHER_12_BPC	(3 << 5)
-> > +#define   PIPEMISC_DITHER_12_BPC	(4 << 5)
-> 
-> We already use the macro. You can't just replace this like this 
-> without an explanation. Why would this not break existing stuff?
-> 
-> >  #define   PIPEMISC_DITHER_ENABLE	(1 << 4)
-> >  #define   PIPEMISC_DITHER_TYPE_MASK	(3 << 2)
-> >  #define   PIPEMISC_DITHER_TYPE_SP	(0 << 2)
-> > @@ -7726,6 +7726,7 @@ enum {
-> >  #define  GAMMA_MODE_MODE_12BIT	(2 << 0)
-> >  #define  GAMMA_MODE_MODE_SPLIT	(3 << 0) /* ivb-bdw */
-> >  #define  GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED	(3 << 0) /* icl + */
-> > +#define  GAMMA_MODE_DITHER_AFTER_CC1 (1 << 26)
-> 
-> The bits are supposed to be defined in the order from highest to 
-> lowest bit. See the big comment at the beginning of the file.
-Yes..Noted
-
-> It's confusing that this is named GAMMA_MODE_ while it's not included 
-> in GAMMA_MODE_MASK (and likely shouldn't be).
-
-Yes..can change the name to GAMMA_DITHER_AFTER_CC1
-> >
-> >  /* DMC */
-> >  #define DMC_PROGRAM(i)		_MMIO(0x80000 + (i) * 4)
-> 
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
