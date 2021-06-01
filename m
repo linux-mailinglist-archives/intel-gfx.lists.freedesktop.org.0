@@ -2,45 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7175A397038
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 11:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4DD7397042
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 11:24:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 588956E9B9;
-	Tue,  1 Jun 2021 09:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1986189812;
+	Tue,  1 Jun 2021 09:24:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pokefinder.org (sauhun.de [88.99.104.3])
- by gabe.freedesktop.org (Postfix) with ESMTP id 496516E9AE;
- Tue,  1 Jun 2021 09:21:09 +0000 (UTC)
-Received: from localhost (i577BC03F.versanet.de [87.123.192.63])
- by pokefinder.org (Postfix) with ESMTPSA id 879B02C00E6;
- Tue,  1 Jun 2021 11:21:08 +0200 (CEST)
-Date: Tue, 1 Jun 2021 11:21:08 +0200
-From: Wolfram Sang <wsa@the-dreams.de>
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-Message-ID: <YLX8BAqtGH86wo59@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@the-dreams.de>,
- Hsin-Yi Wang <hsinyi@chromium.org>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Bibby Hsieh <bibby.hsieh@mediatek.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Dave Airlie <airlied@linux.ie>
-References: <20210601103250.07301254@canb.auug.org.au>
- <YLX176D9oD7ZTSkT@ninjato>
- <CAJMQK-j1YKfquvY55HgTQ6zfDkE5btmRZKdjjOQ3rcq04QgKKQ@mail.gmail.com>
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97CD589812
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 09:24:02 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  1 Jun 2021 11:23:57 +0200
+Message-Id: <20210601092357.536364-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-In-Reply-To: <CAJMQK-j1YKfquvY55HgTQ6zfDkE5btmRZKdjjOQ3rcq04QgKKQ@mail.gmail.com>
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the i2c
- tree
+Subject: [Intel-gfx] [PATCH] drm/i915: Only set bind_async_flags when
+ concurrent access wa is not active, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,73 +33,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Dave Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>, Bibby Hsieh <bibby.hsieh@mediatek.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: multipart/mixed; boundary="===============1653723282=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We need to make the BSW workaround actually work. We correctly fixed
+the mutex nesting, but forgot to kill the worker.
 
---===============1653723282==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ewTzpoiBJA7/Fyar"
-Content-Disposition: inline
+The worker is killed by clearing async_flags, and just running bind_vma
+synchronously. This still needs the stash, because we cannot allocate
+and pin with vm->mutex already held.
 
+Changes since v1:
+- Fix null pointer dereference when we forget to pass the work stash,
+  it's still required to prealloc all on affected platforms.
+Changes since v2:
+- Clear bind_async_flags correctly on ggtt w/a.
 
---ewTzpoiBJA7/Fyar
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen6_ppgtt.c | 4 +++-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 4 +++-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 2 --
+ drivers/gpu/drm/i915/i915_vma.c      | 4 ++--
+ 4 files changed, 8 insertions(+), 6 deletions(-)
 
-
-> Hi, this issue is fixed in
-> https://cgit.freedesktop.org/drm-intel/commit/?h=3Ddrm-intel-gt-next&id=
-=3D5b11705608898c31a1cae5340555ee60d5a4fa45
->=20
-> And I think the pull request is in
-> https://lists.freedesktop.org/archives/intel-gfx/2021-May/267588.html
-
-Thanks for the heads up. So, I'll wait with my pull request for the next
-merge window until drm has landed first.
-
-
---ewTzpoiBJA7/Fyar
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmC1/AQACgkQFA3kzBSg
-KbY8qw/6AuH2q7KckQ6atO4TJ1UmKER/QLjQ6SEZE5xSWR5iufO5INA0wTAADrmh
-mfsR6eCMz+NcPKmhq+AE7wOclUmfWoBSkqtakXpQTI3ytH68clTn5tJq4tPqj2C9
-dlnVMs7608lBQrRQSHZ91AHjyvtXCNtQmTP4Ectpe57eO0bW0terIeC3U7vFMmYS
-kmMGNlk2QnLYEB6MJlUA2wrGyBP+3Fcsx0gVz91M5vCuABBAbp/97JQnELGinaZj
-N9dpdgZpL08KJ38FT5wj0UnTSZpIwtv5m/1+K+jqO8Iy+7Jg/e9ifvJupgiPIggP
-WtMIO+2WA4ZXp00w5vwPV4AtXCn+NtQ9Y5fi1vpVDpCwLw4w2TeqNhteTqpfuV52
-h18jSON59iHZYyn5z84lUsDdvFD/iz/T0cKOe0VWo/bO2aCp4ghsJzQ444xB25N0
-XUUexTpxqxOOY8T8VTSOdWYVr+IthN+htmqmo07wjl5AF9dhFvb0USWh2Gx2QaxH
-eWieLz94ANAPw5vyW4AeybEQbHW/3u1HiVQ89i/M42qe6G6txjceA7ganuzQxc+Y
-0Ck+uQ3qOB/wviIo1XiKzIwDULVCzTkKmPqFt2qF0ncu7ASDskgMWy0dAK0KKKva
-nX7eHcqZQO97npQ8tQus1CrYKAW1B1Nl3F3COWESbOkw7R0sIXo=
-=n251
------END PGP SIGNATURE-----
-
---ewTzpoiBJA7/Fyar--
-
---===============1653723282==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+index 1aee5e6b1b23..de3aa79b788e 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+@@ -433,7 +433,9 @@ struct i915_ppgtt *gen6_ppgtt_create(struct intel_gt *gt)
+ 	ppgtt->base.vm.pd_shift = ilog2(SZ_4K * SZ_4K / sizeof(gen6_pte_t));
+ 	ppgtt->base.vm.top = 1;
+ 
+-	ppgtt->base.vm.bind_async_flags = I915_VMA_LOCAL_BIND;
++	if (!intel_vm_no_concurrent_access_wa(gt->i915))
++		ppgtt->base.vm.bind_async_flags = I915_VMA_LOCAL_BIND;
++
+ 	ppgtt->base.vm.allocate_va_range = gen6_alloc_va_range;
+ 	ppgtt->base.vm.clear_range = gen6_ppgtt_clear_range;
+ 	ppgtt->base.vm.insert_entries = gen6_ppgtt_insert_entries;
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index e3a8924d2286..aa58b0e48ae1 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -732,7 +732,9 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
+ 			goto err_free_pd;
+ 	}
+ 
+-	ppgtt->vm.bind_async_flags = I915_VMA_LOCAL_BIND;
++	if (!intel_vm_no_concurrent_access_wa(gt->i915))
++		ppgtt->vm.bind_async_flags = I915_VMA_LOCAL_BIND;
++
+ 	ppgtt->vm.insert_entries = gen8_ppgtt_insert;
+ 	ppgtt->vm.allocate_va_range = gen8_ppgtt_alloc;
+ 	ppgtt->vm.clear_range = gen8_ppgtt_clear;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 35069ca5d7de..aafcd0b2ab9b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -914,8 +914,6 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 	if (intel_vm_no_concurrent_access_wa(i915)) {
+ 		ggtt->vm.insert_entries = bxt_vtd_ggtt_insert_entries__BKL;
+ 		ggtt->vm.insert_page    = bxt_vtd_ggtt_insert_page__BKL;
+-		ggtt->vm.bind_async_flags =
+-			I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
+ 	}
+ 
+ 	ggtt->invalidate = gen8_ggtt_invalidate;
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index b319fd3f91cc..d550ee911e68 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -436,7 +436,7 @@ int i915_vma_bind(struct i915_vma *vma,
+ 			work->pinned = i915_gem_object_get(vma->obj);
+ 		}
+ 	} else {
+-		vma->ops->bind_vma(vma->vm, NULL, vma, cache_level, bind_flags);
++		vma->ops->bind_vma(vma->vm, work ? &work->stash : NULL, vma, cache_level, bind_flags);
+ 	}
+ 
+ 	atomic_or(bind_flags, &vma->flags);
+@@ -895,7 +895,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ 	if (flags & PIN_GLOBAL)
+ 		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
+ 
+-	if (flags & vma->vm->bind_async_flags) {
++	if ((flags & vma->vm->bind_async_flags) || vma->vm->allocate_va_range) {
+ 		/* lock VM */
+ 		err = i915_vm_lock_objects(vma->vm, ww);
+ 		if (err)
+-- 
+2.31.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1653723282==--
