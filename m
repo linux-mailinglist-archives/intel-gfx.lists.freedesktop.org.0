@@ -2,41 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D93397B22
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 22:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC0B397B23
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jun 2021 22:20:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5A2E6EAF0;
-	Tue,  1 Jun 2021 20:20:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99AE86EADE;
+	Tue,  1 Jun 2021 20:20:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 450796EAE2;
- Tue,  1 Jun 2021 20:20:12 +0000 (UTC)
-IronPort-SDR: Fa6VEaDEoXJnMxLAZqX0EOhPB2HnJ7OqjpUz1vZc6RUSvuZl75uuS1IyqSbZhs7wYgb/JRwHdY
- eq7/9CfnEfLQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="200618445"
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="200618445"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 086EE6EADE
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jun 2021 20:20:31 +0000 (UTC)
+IronPort-SDR: mpvCRaNw+Yc97lkRxEMKwBPnBExOQzto+nUFXYJZjSjQNX/j+yBdE995KbxNo2Oy5aXOekRFjD
+ L2/c7gAylvmQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="200618716"
+X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="200618716"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 13:20:08 -0700
-IronPort-SDR: WKSp73eZUoBlhqTRGBY5T3FVGsZBtQvar4H8RECtoEuKCq/JJRjpPvknMq/dslMKfjNgDUAv2l
- bDHxJc88aVug==
-X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="411362871"
-Received: from anqiangu-mobl.ccr.corp.intel.com (HELO intel.com)
- ([10.254.34.92])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2021 13:20:07 -0700
-Date: Tue, 1 Jun 2021 16:20:05 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <YLaWdU2mLu/Ih2Yp@intel.com>
-References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
- <20210525054803.7387-5-daniele.ceraolospurio@intel.com>
+ 01 Jun 2021 13:20:30 -0700
+IronPort-SDR: PMOVjySQO8k329iOwfzlqLiDu0nJD5eWbiuI14pyXUbPPIYbbS6yMdo0nxofn339T0mVELjqNH
+ VMOwmgRu2ibg==
+X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="632987189"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 13:20:28 -0700
+Date: Tue, 1 Jun 2021 13:20:27 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20210601202027.GC6936@mdroper-desk1.amr.corp.intel.com>
+References: <20210601145248.23900-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210525054803.7387-5-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 04/17] drm/i915/gt: Export the pinned
- context constructor and destructor
+In-Reply-To: <20210601145248.23900-1-stanislav.lisovskiy@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_p: CDCLK crawl support for ADL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,141 +47,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 24, 2021 at 10:47:50PM -0700, Daniele Ceraolo Spurio wrote:
-> From: Chris Wilson <chris@chris-wilson.co.uk>
+On Tue, Jun 01, 2021 at 05:52:48PM +0300, Stanislav Lisovskiy wrote:
+> From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+
+Aren't you (Stan) the original author of this patch?  It looks like the
+authorship got changed accidentally in one of the preparation rebases.
+
+A couple other quick drive-by comments below.
+
 > 
-> Allow internal clients to create a pinned context.
+> CDCLK crawl feature allows to change CDCLK frequency
+> without disabling the actual PLL and doesn't require
+> a full modeset.
 > 
-> v2 (Daniele): export destructor as well, allow optional usage of custom
-> vm for maximum flexibility.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_engine.h    | 10 ++++++++
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 29 +++++++++++++++--------
->  2 files changed, 29 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 72 +++++++++++++++++++---
+>  drivers/gpu/drm/i915/i915_reg.h            |  2 +
+>  2 files changed, 65 insertions(+), 9 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 47ee8578e511..a64d28aba257 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -18,7 +18,9 @@
->  #include "intel_workarounds.h"
->  
->  struct drm_printer;
-> +struct intel_context;
->  struct intel_gt;
-> +struct lock_class_key;
->  
->  /* Early gen2 devices have a cacheline of just 32 bytes, using 64 is overkill,
->   * but keeps the logic simple. Indeed, the whole purpose of this macro is just
-> @@ -255,6 +257,14 @@ struct i915_request *
->  intel_engine_find_active_request(struct intel_engine_cs *engine);
->  
->  u32 intel_engine_context_size(struct intel_gt *gt, u8 class);
-> +struct intel_context *
-> +intel_engine_create_pinned_context(struct intel_engine_cs *engine,
-> +				   struct i915_address_space *vm,
-> +				   unsigned int ring_size,
-> +				   unsigned int hwsp,
-> +				   struct lock_class_key *key,
-> +				   const char *name);
-> +void intel_engine_destroy_pinned_context(struct intel_context *ce);
->  
->  void intel_engine_init_active(struct intel_engine_cs *engine,
->  			      unsigned int subclass);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index eba2da9679a5..8cbf11497e8e 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -801,11 +801,13 @@ intel_engine_init_active(struct intel_engine_cs *engine, unsigned int subclass)
->  #endif
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 618a9e1e2b0c..b9abed82328c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1548,6 +1548,35 @@ static void cnl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
+>  	dev_priv->cdclk.hw.vco = vco;
 >  }
 >  
-> -static struct intel_context *
-> -create_pinned_context(struct intel_engine_cs *engine,
-> -		      unsigned int hwsp,
-> -		      struct lock_class_key *key,
-> -		      const char *name)
-> +struct intel_context *
-> +intel_engine_create_pinned_context(struct intel_engine_cs *engine,
-> +				   struct i915_address_space *vm,
-> +				   unsigned int ring_size,
-> +				   unsigned int hwsp,
-> +				   struct lock_class_key *key,
-> +				   const char *name)
->  {
->  	struct intel_context *ce;
->  	int err;
-> @@ -816,6 +818,12 @@ create_pinned_context(struct intel_engine_cs *engine,
->  
->  	__set_bit(CONTEXT_BARRIER_BIT, &ce->flags);
->  	ce->timeline = page_pack_bits(NULL, hwsp);
-> +	ce->ring = __intel_context_ring_size(ring_size);
+> +static bool has_cdclk_crawl(struct drm_i915_private *i915)
+> +{
+> +	return IS_ALDERLAKE_P(i915);
+> +}
 
-why do we need this now and we didn't need before?
+Would it make sense to make this a feature flag in the device info
+structure?
 
 > +
-> +	if (vm) {
-> +		i915_vm_put(ce->vm);
-> +		ce->vm = i915_vm_get(vm);
-> +	}
+> +static void gen13_cdclk_pll_crawl(struct drm_i915_private *dev_priv, int vco)
 
-same question here...
+Function name prefix should either be "adlp" or "xelpd."  Probably
+"adlp" in this case since I think this functionality relates more to the
+platform itself than the display architecture version.
 
+
+Matt
+
+> +{
+> +	int ratio = DIV_ROUND_CLOSEST(vco, dev_priv->cdclk.hw.ref);
+> +	u32 val;
+> +
+> +	/* Write PLL ratio without disabling */
+> +	val = CNL_CDCLK_PLL_RATIO(ratio) | BXT_DE_PLL_PLL_ENABLE;
+> +	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+> +
+> +	/* Submit freq change request */
+> +	val |= BXT_DE_PLL_FREQ_REQ;
+> +	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+> +
+> +	/* Timeout 200us */
+> +	if (intel_de_wait_for_set(dev_priv, BXT_DE_PLL_ENABLE,
+> +				  BXT_DE_PLL_LOCK | BXT_DE_PLL_FREQ_REQ_ACK, 1))
+> +		DRM_ERROR("timeout waiting for FREQ change request ack\n");
+> +
+> +	val &= ~BXT_DE_PLL_FREQ_REQ;
+> +	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+> +
+> +	dev_priv->cdclk.hw.vco = vco;
+> +}
+> +
+>  static u32 bxt_cdclk_cd2x_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+>  	if (DISPLAY_VER(dev_priv) >= 12) {
+> @@ -1620,14 +1649,16 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>  		return;
+>  	}
 >  
->  	err = intel_context_pin(ce); /* perma-pin so it is always available */
->  	if (err) {
-> @@ -834,7 +842,7 @@ create_pinned_context(struct intel_engine_cs *engine,
->  	return ce;
+> -	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
+> +	if (has_cdclk_crawl(dev_priv) && dev_priv->cdclk.hw.vco > 0 && vco > 0) {
+> +		if (dev_priv->cdclk.hw.vco != vco)
+> +			gen13_cdclk_pll_crawl(dev_priv, vco);
+> +	} else if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
+>  		if (dev_priv->cdclk.hw.vco != 0 &&
+>  		    dev_priv->cdclk.hw.vco != vco)
+>  			cnl_cdclk_pll_disable(dev_priv);
+>  
+>  		if (dev_priv->cdclk.hw.vco != vco)
+>  			cnl_cdclk_pll_enable(dev_priv, vco);
+> -
+>  	} else {
+>  		if (dev_priv->cdclk.hw.vco != 0 &&
+>  		    dev_priv->cdclk.hw.vco != vco)
+> @@ -1820,6 +1851,28 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
+>  		skl_cdclk_uninit_hw(i915);
 >  }
 >  
-> -static void destroy_pinned_context(struct intel_context *ce)
-> +void intel_engine_destroy_pinned_context(struct intel_context *ce)
->  {
->  	struct intel_engine_cs *engine = ce->engine;
->  	struct i915_vma *hwsp = engine->status_page.vma;
-> @@ -854,8 +862,9 @@ create_kernel_context(struct intel_engine_cs *engine)
->  {
->  	static struct lock_class_key kernel;
->  
-> -	return create_pinned_context(engine, I915_GEM_HWS_SEQNO_ADDR,
-> -				     &kernel, "kernel_context");
-> +	return intel_engine_create_pinned_context(engine, NULL, SZ_4K,
-> +						  I915_GEM_HWS_SEQNO_ADDR,
-> +						  &kernel, "kernel_context");
->  }
->  
+> +static bool intel_cdclk_can_crawl(struct drm_i915_private *dev_priv,
+> +				  const struct intel_cdclk_config *a,
+> +				  const struct intel_cdclk_config *b)
+> +{
+> +	int a_div, b_div;
+> +
+> +	if (!has_cdclk_crawl(dev_priv))
+> +		return false;
+> +
+> +	/*
+> +	 * The vco and cd2x divider will change independently
+> +	 * from each, so we disallow cd2x change when crawling.
+> +	 */
+> +	a_div = DIV_ROUND_CLOSEST(a->vco, a->cdclk);
+> +	b_div = DIV_ROUND_CLOSEST(b->vco, b->cdclk);
+> +
+> +	return a->vco != 0 && b->vco != 0 &&
+> +		a->vco != b->vco &&
+> +		a_div == b_div &&
+> +		a->ref == b->ref;
+> +}
+> +
 >  /**
-> @@ -898,7 +907,7 @@ static int engine_init_common(struct intel_engine_cs *engine)
->  	return 0;
+>   * intel_cdclk_needs_modeset - Determine if changong between the CDCLK
+>   *                             configurations requires a modeset on all pipes
+> @@ -2475,7 +2528,7 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+>  	const struct intel_cdclk_state *old_cdclk_state;
+>  	struct intel_cdclk_state *new_cdclk_state;
+> -	enum pipe pipe;
+> +	enum pipe pipe = INVALID_PIPE;
+>  	int ret;
 >  
->  err_context:
-> -	destroy_pinned_context(ce);
-> +	intel_engine_destroy_pinned_context(ce);
->  	return ret;
->  }
+>  	new_cdclk_state = intel_atomic_get_cdclk_state(state);
+> @@ -2527,15 +2580,18 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
 >  
-> @@ -956,7 +965,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
->  		fput(engine->default_state);
+>  		if (drm_atomic_crtc_needs_modeset(&crtc_state->uapi))
+>  			pipe = INVALID_PIPE;
+> -	} else {
+> -		pipe = INVALID_PIPE;
+>  	}
 >  
->  	if (engine->kernel_context)
-> -		destroy_pinned_context(engine->kernel_context);
-> +		intel_engine_destroy_pinned_context(engine->kernel_context);
+> -	if (pipe != INVALID_PIPE) {
+> +	if (intel_cdclk_can_crawl(dev_priv,
+> +				  &old_cdclk_state->actual,
+> +				  &new_cdclk_state->actual)) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Can change cdclk via crawl\n");
+> +	} else if (pipe != INVALID_PIPE) {
+>  		new_cdclk_state->pipe = pipe;
 >  
->  	GEM_BUG_ON(!llist_empty(&engine->barrier_tasks));
->  	cleanup_status_page(engine);
+>  		drm_dbg_kms(&dev_priv->drm,
+> -			    "Can change cdclk with pipe %c active\n",
+> +			    "Can change cdclk cd2x divider with pipe %c active\n",
+>  			    pipe_name(pipe));
+>  	} else if (intel_cdclk_needs_modeset(&old_cdclk_state->actual,
+>  					     &new_cdclk_state->actual)) {
+> @@ -2544,8 +2600,6 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  		if (ret)
+>  			return ret;
+>  
+> -		new_cdclk_state->pipe = INVALID_PIPE;
+> -
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Modeset required for cdclk change\n");
+>  	}
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 3b58067a873c..1d1176d1799d 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -11157,6 +11157,8 @@ enum skl_power_gate {
+>  #define BXT_DE_PLL_ENABLE		_MMIO(0x46070)
+>  #define   BXT_DE_PLL_PLL_ENABLE		(1 << 31)
+>  #define   BXT_DE_PLL_LOCK		(1 << 30)
+> +#define   BXT_DE_PLL_FREQ_REQ		(1 << 23)
+> +#define   BXT_DE_PLL_FREQ_REQ_ACK	(1 << 22)
+>  #define   CNL_CDCLK_PLL_RATIO(x)	(x)
+>  #define   CNL_CDCLK_PLL_RATIO_MASK	0xff
+>  
 > -- 
-> 2.29.2
+> 2.24.1.485.gad05a3d8e5
 > 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
