@@ -1,42 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35BDA398FDD
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 18:22:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D08C398FF7
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 18:30:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78F836E845;
-	Wed,  2 Jun 2021 16:22:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 155B16ECFE;
+	Wed,  2 Jun 2021 16:30:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AA6F6E845;
- Wed,  2 Jun 2021 16:22:24 +0000 (UTC)
-IronPort-SDR: vFmdubA6OvLIhIJg1PfPCHtCPZftaepqBGnbPKgOKB1dWY1Ol/nlsagVU0PMAHdh42g9yd6ugp
- jw0yHHXqw7hg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="203639605"
-X-IronPort-AV: E=Sophos;i="5.83,242,1616482800"; d="scan'208";a="203639605"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2021 09:21:01 -0700
-IronPort-SDR: Th+jHrG8miL6zXSEKA0jj6puWYXz4lyOA8E2buUHupUIe7OKCKpCiGB2hfFqeAemLH6irF2f3d
- A65FkulkW2FQ==
-X-IronPort-AV: E=Sophos;i="5.83,242,1616482800"; d="scan'208";a="635920105"
-Received: from mlubyani-mobl2.amr.corp.intel.com (HELO intel.com)
- ([10.254.3.13])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2021 09:20:59 -0700
-Date: Wed, 2 Jun 2021 12:20:58 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <YLev6vAt4gEHAeFj@intel.com>
-References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
- <20210525054803.7387-14-daniele.ceraolospurio@intel.com>
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com
+ [IPv6:2607:f8b0:4864:20::c29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 358586ECFB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:29:59 +0000 (UTC)
+Received: by mail-oo1-xc29.google.com with SMTP id
+ o5-20020a4a2c050000b0290245d6c7b555so681066ooo.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 02 Jun 2021 09:29:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3v0CaAheTlxjmmPei15tvmu0PTy52IsOiEAYcQmlPrg=;
+ b=TYBJ9hzmPh2KwEX1FfLqUXto+Z0/P1HpozNsDWZGKRvxePdLdFcQsKgv9guz7zShrp
+ 6LiiD1AvCHulsWL5HDFf+BKYepSdZmkg+CcS85D9yemtcgnN4Z3NWIfjZsUtx3mX2mQg
+ 7h6KqsyxPLNds/N0MceOUR25pwtI9kIQ4wsFw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3v0CaAheTlxjmmPei15tvmu0PTy52IsOiEAYcQmlPrg=;
+ b=fMiOCSfURuP5VJuMiMDoRwvGQ8DVHIdp8Pa2WGSGLOjRrvZmA9NUjDXcrz+rw4q+j3
+ 8q3WcUo0yKYpXi8y653I0g8zpc1L7yx0vFqFy3L59X9LlajLk+GDKipAW1PP9n6bQxeM
+ a9zOmxfncdLT5xR8iyP0IglCa59VnFMkQ16zcHxQacFR9fACl1UQe0wTEG8N3YQ8JnVu
+ JJ8HKcuYubsyrHV4YwD6oPFGQPPiKIvCER5oFW0GtVxR56KUmICCxSRpXvT9Pwo848qy
+ VzLGBLIsoEdYUIwtu3rGdn3hba9DAOYwxnvNIrlZb1xB0nB5yYYD88eN+T/OfLsIYK89
+ eXhQ==
+X-Gm-Message-State: AOAM533Gbmsr03PgkV7a3tW4H2S9Nrrge27Dp+jE71hWCDWhROsevE9e
+ Vi5Hmu1xDiw0VSBswcba1bb2NwOy8fQK4q7YiKfUzA==
+X-Google-Smtp-Source: ABdhPJxpMNqZc0NO3stW2JeuEBU5RxjJDH13C6Inw+STNbmDa9ogUNWoVhh/xFCG/9zI2XeOFPJprv+i3bY26HuuNL8=
+X-Received: by 2002:a4a:8e04:: with SMTP id q4mr25214762ook.28.1622651398323; 
+ Wed, 02 Jun 2021 09:29:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210525054803.7387-14-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 13/17] drm/i915/pxp: Enable PXP power
- management
+References: <20210527185145.458021-1-matthew.auld@intel.com>
+ <CAM0jSHOOB7=SLC+cgmXn4pWets+BJzdk=R+7LVzE+Aje2_FW5Q@mail.gmail.com>
+ <CAKMK7uE1yrh-_+shOR5EuLZQaQyckDHNA8uhgwAx6-pLQaHifA@mail.gmail.com>
+ <CAM0jSHOy7R13m27pC+bZHr2S9wGQjT2CmWxVWfu8d58zM9=Gbw@mail.gmail.com>
+In-Reply-To: <CAM0jSHOy7R13m27pC+bZHr2S9wGQjT2CmWxVWfu8d58zM9=Gbw@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 2 Jun 2021 18:29:47 +0200
+Message-ID: <CAKMK7uFS_X8z3CkGejpqYbje4p30u4KAyQrs0=G5b04fCk0szQ@mail.gmail.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>,
+ Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] Revert "i915: use io_mapping_map_user"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,359 +62,221 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Huang@freedesktop.org, intel-gfx@lists.freedesktop.org, "Huang,
- Sean Z" <sean.z.huang@intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>, Christoph Hellwig <hch@lst.de>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Eero Tamminen <eero.t.tamminen@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 24, 2021 at 10:47:59PM -0700, Daniele Ceraolo Spurio wrote:
-> From: "Huang, Sean Z" <sean.z.huang@intel.com>
-> 
-> During the power event S3+ sleep/resume, hardware will lose all the
-> encryption keys for every hardware session, even though the
-> session state might still be marked as alive after resume. Therefore,
-> we should consider the session as dead on suspend and invalidate all the
-> objects. The session will be automatically restarted on the first
-> protected submission on resume.
-> 
-> v2: runtime suspend also invalidates the keys
-> v3: fix return codes, simplify rpm ops (Chris), use the new worker func
-> v4: invalidate the objects on suspend, don't re-create the arb sesson on
-> resume (delayed to first submission).
-> 
-> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                |  1 +
->  drivers/gpu/drm/i915/gt/intel_gt_pm.c        | 15 +++++++-
->  drivers/gpu/drm/i915/i915_drv.c              |  2 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     | 11 ++++--
->  drivers/gpu/drm/i915/pxp/intel_pxp_pm.c      | 40 ++++++++++++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_pm.h      | 23 +++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.c | 38 ++++++++++++++-----
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  9 +++++
->  8 files changed, 124 insertions(+), 15 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 29331bbb3e98..9cce0bf9a50f 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -278,6 +278,7 @@ i915-$(CONFIG_DRM_I915_PXP) += \
->  	pxp/intel_pxp.o \
->  	pxp/intel_pxp_cmd.o \
->  	pxp/intel_pxp_irq.o \
-> +	pxp/intel_pxp_pm.o \
->  	pxp/intel_pxp_session.o \
->  	pxp/intel_pxp_tee.o
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> index aef3084e8b16..91151a02f7a2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> @@ -19,6 +19,7 @@
->  #include "intel_rc6.h"
->  #include "intel_rps.h"
->  #include "intel_wakeref.h"
-> +#include "pxp/intel_pxp_pm.h"
->  
->  static void user_forcewake(struct intel_gt *gt, bool suspend)
->  {
-> @@ -265,6 +266,8 @@ int intel_gt_resume(struct intel_gt *gt)
->  
->  	intel_uc_resume(&gt->uc);
->  
-> +	intel_pxp_resume(&gt->pxp);
-> +
->  	user_forcewake(gt, false);
->  
->  out_fw:
-> @@ -299,6 +302,7 @@ void intel_gt_suspend_prepare(struct intel_gt *gt)
->  	user_forcewake(gt, true);
->  	wait_for_suspend(gt);
->  
-> +	intel_pxp_suspend(&gt->pxp);
->  	intel_uc_suspend(&gt->uc);
->  }
->  
-> @@ -349,6 +353,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
->  
->  void intel_gt_runtime_suspend(struct intel_gt *gt)
->  {
-> +	intel_pxp_suspend(&gt->pxp);
->  	intel_uc_runtime_suspend(&gt->uc);
->  
->  	GT_TRACE(gt, "\n");
-> @@ -356,11 +361,19 @@ void intel_gt_runtime_suspend(struct intel_gt *gt)
->  
->  int intel_gt_runtime_resume(struct intel_gt *gt)
->  {
-> +	int ret;
-> +
->  	GT_TRACE(gt, "\n");
->  	intel_gt_init_swizzling(gt);
->  	intel_ggtt_restore_fences(gt->ggtt);
->  
-> -	return intel_uc_runtime_resume(&gt->uc);
-> +	ret = intel_uc_runtime_resume(&gt->uc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	intel_pxp_resume(&gt->pxp);
-> +
-> +	return 0;
->  }
->  
->  static ktime_t __intel_gt_get_awake_time(const struct intel_gt *gt)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> index 2f06bb7b3ed2..6543e5577709 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -68,6 +68,8 @@
->  #include "gt/intel_gt_pm.h"
->  #include "gt/intel_rc6.h"
->  
-> +#include "pxp/intel_pxp_pm.h"
-> +
->  #include "i915_debugfs.h"
->  #include "i915_drv.h"
->  #include "i915_ioc32.h"
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> index a230d0034e50..9e5847c653f2 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> @@ -9,6 +9,7 @@
->  #include "gt/intel_gt_irq.h"
->  #include "i915_irq.h"
->  #include "i915_reg.h"
-> +#include "intel_runtime_pm.h"
->  
->  /**
->   * intel_pxp_irq_handler - Handles PXP interrupts.
-> @@ -62,11 +63,13 @@ void intel_pxp_irq_enable(struct intel_pxp *pxp)
->  	struct intel_gt *gt = pxp_to_gt(pxp);
->  
->  	spin_lock_irq(&gt->irq_lock);
-> -	if (!pxp->irq_enabled) {
-> +
-> +	if (!pxp->irq_enabled)
->  		WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
-> -		__pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
-> -		pxp->irq_enabled = true;
-> -	}
-> +
-> +	__pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
-> +	pxp->irq_enabled = true;
+Adding Jani and Rodrigo since drm-intel-fixes is on them.
+-Daniel
 
-why?
-and if we really need this maybe worth a squash on the other patch or a separated new one?
+On Wed, Jun 2, 2021 at 12:10 PM Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Wed, 2 Jun 2021 at 09:01, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >
+> > On Wed, Jun 2, 2021 at 9:28 AM Matthew Auld
+> > <matthew.william.auld@gmail.com> wrote:
+> > >
+> > > On Thu, 27 May 2021 at 19:52, Matthew Auld <matthew.auld@intel.com> wrote:
+> > > >
+> > > > This reverts commit b739f125e4ebd73d10ed30a856574e13649119ed.
+> > > >
+> > > > We are unfortunately seeing more issues like we did in 293837b9ac8d
+> > > > ("Revert "i915: fix remap_io_sg to verify the pgprot""), except this is
+> > > > now for the vm_fault_gtt path, where we are now hitting the same
+> > > > BUG_ON(!pte_none(*pte)):
+> > > >
+> > > > [10887.466150] kernel BUG at mm/memory.c:2183!
+> > > > [10887.466162] invalid opcode: 0000 [#1] PREEMPT SMP PTI
+> > > > [10887.466168] CPU: 0 PID: 7775 Comm: ffmpeg Tainted: G     U            5.13.0-rc3-CI-Nightly #1
+> > > > [10887.466174] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./J4205-ITX, BIOS P1.40 07/14/2017
+> > > > [10887.466177] RIP: 0010:remap_pfn_range_notrack+0x30f/0x440
+> > > > [10887.466188] Code: e8 96 d7 e0 ff 84 c0 0f 84 27 01 00 00 48 ba 00 f0 ff ff ff ff 0f 00 4c 89 e0 48 c1 e0 0c 4d 85 ed 75 96 48 21 d0 31 f6 eb a9 <0f> 0b 48 39 37 0f 85 0e 01 00 00 48 8b 0c 24 48 39 4f 08 0f 85 00
+> > > > [10887.466193] RSP: 0018:ffffc90006e33c50 EFLAGS: 00010286
+> > > > [10887.466198] RAX: 800000000000002f RBX: 00007f5e01800000 RCX: 0000000000000028
+> > > > [10887.466201] RDX: 0000000000000001 RSI: ffffea0000000000 RDI: 0000000000000000
+> > > > [10887.466204] RBP: ffffea000033fea8 R08: 800000000000002f R09: ffff8881072256e0
+> > > > [10887.466207] R10: ffffc9000b84fff8 R11: 0000000017dab000 R12: 0000000000089f9f
+> > > > [10887.466210] R13: 800000000000002f R14: 00007f5e017e4000 R15: ffff88800cffaf20
+> > > > [10887.466213] FS:  00007f5e04849640(0000) GS:ffff888278000000(0000) knlGS:0000000000000000
+> > > > [10887.466216] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > > > [10887.466220] CR2: 00007fd9b191a2ac CR3: 00000001829ac000 CR4: 00000000003506f0
+> > > > [10887.466223] Call Trace:
+> > > > [10887.466233]  vm_fault_gtt+0x1ca/0x5d0 [i915]
+> > > > [10887.466381]  ? ktime_get+0x38/0x90
+> > > > [10887.466389]  __do_fault+0x37/0x90
+> > > > [10887.466395]  __handle_mm_fault+0xc46/0x1200
+> > > > [10887.466402]  handle_mm_fault+0xce/0x2a0
+> > > > [10887.466407]  do_user_addr_fault+0x1c5/0x660
+> > > >
+> > > > Reverting this commit is reported to fix the issue.
+> > > >
+> > > > Reported-by: Eero Tamminen <eero.t.tamminen@intel.com>
+> > > > References: https://gitlab.freedesktop.org/drm/intel/-/issues/3519
+> > > > Fixes: b739f125e4eb ("i915: use io_mapping_map_user")
+> > > > Cc: Christoph Hellwig <hch@lst.de>
+> > > > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > >
+> > > Could someone give an ack for this? There are at least two separate
+> > > user reports for this issue.
+> >
+> > I was assuming Christoph would ack this, but fwiw:
+> >
+> > Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>
+> Pushed to gt-next. Thanks for the ack Daniel.
+>
+> >
+> > Also adding Joonas to make sure this doesn't miss the -fixes pull
+> > request train. Also can't hurt to cc Linus since he reverted the other
+> > part of this already in -rc3.
+> > -Daniel
+> > >
+> > > > ---
+> > > >  drivers/gpu/drm/i915/Kconfig             |  1 -
+> > > >  drivers/gpu/drm/i915/gem/i915_gem_mman.c |  9 ++---
+> > > >  drivers/gpu/drm/i915/i915_drv.h          |  3 ++
+> > > >  drivers/gpu/drm/i915/i915_mm.c           | 44 ++++++++++++++++++++++++
+> > > >  4 files changed, 52 insertions(+), 5 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> > > > index 93f4d059fc89..1e1cb245fca7 100644
+> > > > --- a/drivers/gpu/drm/i915/Kconfig
+> > > > +++ b/drivers/gpu/drm/i915/Kconfig
+> > > > @@ -20,7 +20,6 @@ config DRM_I915
+> > > >         select INPUT if ACPI
+> > > >         select ACPI_VIDEO if ACPI
+> > > >         select ACPI_BUTTON if ACPI
+> > > > -       select IO_MAPPING
+> > > >         select SYNC_FILE
+> > > >         select IOSF_MBI
+> > > >         select CRC32
+> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > > > index f6fe5cb01438..8598a1c78a4c 100644
+> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > > > @@ -367,10 +367,11 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+> > > >                 goto err_unpin;
+> > > >
+> > > >         /* Finally, remap it using the new GTT offset */
+> > > > -       ret = io_mapping_map_user(&ggtt->iomap, area, area->vm_start +
+> > > > -                       (vma->ggtt_view.partial.offset << PAGE_SHIFT),
+> > > > -                       (ggtt->gmadr.start + vma->node.start) >> PAGE_SHIFT,
+> > > > -                       min_t(u64, vma->size, area->vm_end - area->vm_start));
+> > > > +       ret = remap_io_mapping(area,
+> > > > +                              area->vm_start + (vma->ggtt_view.partial.offset << PAGE_SHIFT),
+> > > > +                              (ggtt->gmadr.start + vma->node.start) >> PAGE_SHIFT,
+> > > > +                              min_t(u64, vma->size, area->vm_end - area->vm_start),
+> > > > +                              &ggtt->iomap);
+> > > >         if (ret)
+> > > >                 goto err_fence;
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > > > index 0f6d27da69ac..e926f20c5b82 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > > > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > > > @@ -1941,6 +1941,9 @@ int i915_reg_read_ioctl(struct drm_device *dev, void *data,
+> > > >                         struct drm_file *file);
+> > > >
+> > > >  /* i915_mm.c */
+> > > > +int remap_io_mapping(struct vm_area_struct *vma,
+> > > > +                    unsigned long addr, unsigned long pfn, unsigned long size,
+> > > > +                    struct io_mapping *iomap);
+> > > >  int remap_io_sg(struct vm_area_struct *vma,
+> > > >                 unsigned long addr, unsigned long size,
+> > > >                 struct scatterlist *sgl, resource_size_t iobase);
+> > > > diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+> > > > index 9a777b0ff59b..666808cb3a32 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_mm.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_mm.c
+> > > > @@ -37,6 +37,17 @@ struct remap_pfn {
+> > > >         resource_size_t iobase;
+> > > >  };
+> > > >
+> > > > +static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+> > > > +{
+> > > > +       struct remap_pfn *r = data;
+> > > > +
+> > > > +       /* Special PTE are not associated with any struct page */
+> > > > +       set_pte_at(r->mm, addr, pte, pte_mkspecial(pfn_pte(r->pfn, r->prot)));
+> > > > +       r->pfn++;
+> > > > +
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > >  #define use_dma(io) ((io) != -1)
+> > > >
+> > > >  static inline unsigned long sgt_pfn(const struct remap_pfn *r)
+> > > > @@ -66,7 +77,40 @@ static int remap_sg(pte_t *pte, unsigned long addr, void *data)
+> > > >         return 0;
+> > > >  }
+> > > >
+> > > > +/**
+> > > > + * remap_io_mapping - remap an IO mapping to userspace
+> > > > + * @vma: user vma to map to
+> > > > + * @addr: target user address to start at
+> > > > + * @pfn: physical address of kernel memory
+> > > > + * @size: size of map area
+> > > > + * @iomap: the source io_mapping
+> > > > + *
+> > > > + *  Note: this is only safe if the mm semaphore is held when called.
+> > > > + */
+> > > > +int remap_io_mapping(struct vm_area_struct *vma,
+> > > > +                    unsigned long addr, unsigned long pfn, unsigned long size,
+> > > > +                    struct io_mapping *iomap)
+> > > > +{
+> > > > +       struct remap_pfn r;
+> > > > +       int err;
+> > > > +
+> > > >  #define EXPECTED_FLAGS (VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP)
+> > > > +       GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
+> > > > +
+> > > > +       /* We rely on prevalidation of the io-mapping to skip track_pfn(). */
+> > > > +       r.mm = vma->vm_mm;
+> > > > +       r.pfn = pfn;
+> > > > +       r.prot = __pgprot((pgprot_val(iomap->prot) & _PAGE_CACHE_MASK) |
+> > > > +                         (pgprot_val(vma->vm_page_prot) & ~_PAGE_CACHE_MASK));
+> > > > +
+> > > > +       err = apply_to_page_range(r.mm, addr, size, remap_pfn, &r);
+> > > > +       if (unlikely(err)) {
+> > > > +               zap_vma_ptes(vma, addr, (r.pfn - pfn) << PAGE_SHIFT);
+> > > > +               return err;
+> > > > +       }
+> > > > +
+> > > > +       return 0;
+> > > > +}
+> > > >
+> > > >  /**
+> > > >   * remap_io_sg - remap an IO mapping to userspace
+> > > > --
+> > > > 2.26.3
+> > > >
+> > > > _______________________________________________
+> > > > Intel-gfx mailing list
+> > > > Intel-gfx@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> >
+> >
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
 
-> +
->  	spin_unlock_irq(&gt->irq_lock);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> new file mode 100644
-> index 000000000000..400b3a9944c8
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> @@ -0,0 +1,40 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright(c) 2020 Intel Corporation.
-> + */
-> +
-> +#include "intel_pxp.h"
-> +#include "intel_pxp_irq.h"
-> +#include "intel_pxp_pm.h"
-> +#include "intel_pxp_session.h"
-> +
-> +void intel_pxp_suspend(struct intel_pxp *pxp)
-> +{
-> +	if (!intel_pxp_is_enabled(pxp))
-> +		return;
-> +
-> +	pxp->arb_is_valid = false;
-> +
-> +	/* invalidate protected objects */
-> +	intel_pxp_invalidate(pxp);
-> +
-> +	intel_pxp_fini_hw(pxp);
-> +
-> +	pxp->global_state_attacked = false;
 
-this attacked var name is really bad :)
 
-and if we are setting this any time we disable, maybe the it would deserve to be in the fini function...
-but not sure...
-
-> +}
-> +
-> +void intel_pxp_resume(struct intel_pxp *pxp)
-> +{
-> +	if (!intel_pxp_is_enabled(pxp))
-> +		return;
-> +
-> +	/*
-> +	 * The PXP component gets automatically unbound when we go into S3 and
-> +	 * re-bound after we come out, so in that scenario we can defer the
-> +	 * hw init to the bind call.
-> +	 */
-> +	if (!pxp->pxp_component)
-> +		return;
-> +
-> +	intel_pxp_init_hw(pxp);
-> +}
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> new file mode 100644
-> index 000000000000..6f488789db6a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> @@ -0,0 +1,23 @@
-> +/* SPDX-License-Identifier: MIT */
-
-// SPDX-License-Identifier: MIT
-
-> +/*
-> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
-> + */
-> +
-> +#ifndef __INTEL_PXP_PM_H__
-> +#define __INTEL_PXP_PM_H__
-> +
-> +#include "i915_drv.h"
-> +
-> +#ifdef CONFIG_DRM_I915_PXP
-> +void intel_pxp_suspend(struct intel_pxp *pxp);
-> +void intel_pxp_resume(struct intel_pxp *pxp);
-> +#else
-> +static inline void intel_pxp_suspend(struct intel_pxp *pxp)
-> +{
-> +}
-> +static inline void intel_pxp_resume(struct intel_pxp *pxp)
-> +{
-> +}
-> +#endif
-> +
-> +#endif /* __INTEL_PXP_PM_H__ */
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> index c21620916710..893a2bf61b5c 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> @@ -21,29 +21,36 @@
->  
->  static bool intel_pxp_session_is_in_play(struct intel_pxp *pxp, u32 id)
->  {
-> -	struct intel_gt *gt = pxp_to_gt(pxp);
-> +	struct intel_uncore *uncore = pxp_to_gt(pxp)->uncore;
->  	intel_wakeref_t wakeref;
->  	u32 sip = 0;
->  
-> -	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> -		sip = intel_uncore_read(gt->uncore, GEN12_KCR_SIP);
-> +	/* if we're suspended the session is considered off */
-> +	with_intel_runtime_pm_if_in_use(uncore->rpm, wakeref)
-> +		sip = intel_uncore_read(uncore, GEN12_KCR_SIP);
->  
->  	return sip & BIT(id);
->  }
->  
->  static int pxp_wait_for_session_state(struct intel_pxp *pxp, u32 id, bool in_play)
->  {
-> -	struct intel_gt *gt = pxp_to_gt(pxp);
-> +	struct intel_uncore *uncore = pxp_to_gt(pxp)->uncore;
->  	intel_wakeref_t wakeref;
->  	u32 mask = BIT(id);
->  	int ret;
->  
-> -	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> -		ret = intel_wait_for_register(gt->uncore,
-> -					      GEN12_KCR_SIP,
-> -					      mask,
-> -					      in_play ? mask : 0,
-> -					      100);
-> +	/* if we're suspended the session is considered off */
-> +	wakeref = intel_runtime_pm_get_if_in_use(uncore->rpm);
-> +	if (!wakeref)
-> +		return in_play ? -ENODEV : 0;
-> +
-> +	ret = intel_wait_for_register(uncore,
-> +				      GEN12_KCR_SIP,
-> +				      mask,
-> +				      in_play ? mask : 0,
-> +				      100);
-> +
-> +	intel_runtime_pm_put(uncore->rpm, wakeref);
->  
->  	return ret;
->  }
-> @@ -132,6 +139,7 @@ void intel_pxp_session_work(struct work_struct *work)
->  {
->  	struct intel_pxp *pxp = container_of(work, typeof(*pxp), session_work);
->  	struct intel_gt *gt = pxp_to_gt(pxp);
-> +	intel_wakeref_t wakeref;
->  	u32 events = 0;
->  
->  	spin_lock_irq(&gt->irq_lock);
-> @@ -144,6 +152,14 @@ void intel_pxp_session_work(struct work_struct *work)
->  	if (events & PXP_INVAL_REQUIRED)
->  		intel_pxp_invalidate(pxp);
->  
-> +	/*
-> +	 * If we're processing an event while suspending then don't bother,
-> +	 * we're going to re-init everything on resume anyway.
-> +	 */
-> +	wakeref = intel_runtime_pm_get_if_in_use(gt->uncore->rpm);
-> +	if (!wakeref)
-> +		return;
-> +
->  	if (events & PXP_TERMINATION_REQUEST) {
->  		events &= ~PXP_TERMINATION_COMPLETE;
->  		pxp_terminate(pxp);
-> @@ -151,4 +167,6 @@ void intel_pxp_session_work(struct work_struct *work)
->  
->  	if (events & PXP_TERMINATION_COMPLETE)
->  		pxp_terminate_complete(pxp);
-> +
-> +	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
->  }
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> index 35b3fed4ca2f..0b6098a7b75c 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> @@ -63,14 +63,23 @@ static int intel_pxp_tee_io_message(struct intel_pxp *pxp,
->  static int i915_pxp_tee_component_bind(struct device *i915_kdev,
->  				       struct device *tee_kdev, void *data)
->  {
-> +	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
->  	struct intel_pxp *pxp = i915_dev_to_pxp(i915_kdev);
-> +	intel_wakeref_t wakeref;
->  
->  	pxp->pxp_component = data;
->  	pxp->pxp_component->tee_dev = tee_kdev;
->  
-> +	/* if we are suspended, the HW will be re-initialized on resume */
-> +	wakeref = intel_runtime_pm_get_if_in_use(&i915->runtime_pm);
-> +	if (!wakeref)
-> +		return 0;
-> +
->  	/* the component is required to fully start the PXP HW */
->  	intel_pxp_init_hw(pxp);
->  
-> +	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.29.2
-> 
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
