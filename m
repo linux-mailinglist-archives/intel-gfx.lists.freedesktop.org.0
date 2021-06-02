@@ -2,55 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E674398058
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 06:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5091739812C
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 08:34:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30F496EB5A;
-	Wed,  2 Jun 2021 04:30:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 598186EB60;
+	Wed,  2 Jun 2021 06:34:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BBA66EA8D;
- Wed,  2 Jun 2021 04:30:27 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id dj8so1266408edb.6;
- Tue, 01 Jun 2021 21:30:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rDgbnII0J7gO9tnOuLMgPFZW1dZJ4Js1Fyu0nkizAZs=;
- b=kOza2yUMbdTnkMaoNxQ9zT6DZfFI610gHbMElXI+9oTTvP8zz0XhKrD2o6zhGguIEj
- fc2LTr0Z8qdHKfZsCfpC+RnVe2bqHS4nWSRor/kQ/YLqgBxpKI3LgBF8steOQgdJlMml
- 59fn7w9FNBx872J8nZ+T/7JtZP8zu9Q7No99sABX8uLMEAtpTIi3HHBckvjRsy/HT9Bz
- aqiqSglTz+7AEPAV48KwAFETGQa8I41Cax9aRv2v3B5GrmfgHH40TqzHcBq7tft6ywI5
- 8ziaSdBNqCO4hoo3EWMc4qdmxXPY+IIt9F7HcjULk5Q4ifWv8oeDfzk3o1ybRR0s5uDD
- fzrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rDgbnII0J7gO9tnOuLMgPFZW1dZJ4Js1Fyu0nkizAZs=;
- b=HBxcTKVyepvdLvhvwmOa2yr/5m//dFbHdlcKv1TcLApXthuwuxuRiAw/f72odAVl5M
- HoG6mRy0V4dbBpbA+sfV5Bh9R8pyOcDS6z6noSytF8IYMT0bxe9nSRQFsyzNQPMNpoxb
- R/T4JbsBnchpm8K5qxgcDgqwaF1t3gXKbou4Oisj3qEaznPckrz1/hPDa1uxpr2zwJgT
- DFNZqlKeOrcS5tuBf0Ih4qy0MNxHck5ER7OTFIJvHYFBKC1gyl5ZPsT5bv8dolFEKVn9
- GA2wtrL0RnFO3HuxaVtT100DCvMK+gkBdBfCEY+KeME3m8TzvO2SOp5ndYESUJK8zcQ3
- CNEw==
-X-Gm-Message-State: AOAM5312f1dV8E2zP8d3i0+g7QLJVVAAm5aEV3RloVmhqDdLVrX4V/43
- xBAfMUiz24dNc+gv1gRa5p35Lqf2N2uV6EQ9V6w=
-X-Google-Smtp-Source: ABdhPJz0sUNsqiGAt2+H8cIT/QxMAZvx+Gbq3eO90RRbU8SMLhmUs506Cn1jeyCHiGVC8yqClzx/N7wLT7j7DfFiFX4=
-X-Received: by 2002:aa7:c545:: with SMTP id s5mr23095567edr.113.1622608225894; 
- Tue, 01 Jun 2021 21:30:25 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13A056EB5F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 06:34:40 +0000 (UTC)
+IronPort-SDR: MQaRTpROdX0d6e+FubwL4y0uRTCZRrXJaFSLBOl49PkiaGr6EJ7u4x7oha5r6YXx3MELZiIBKN
+ a0E5N03vEi/Q==
+X-IronPort-AV: E=McAfee;i="6200,9189,10002"; a="225000099"
+X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="225000099"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 23:34:40 -0700
+IronPort-SDR: p4SB5w02aAMip4lWJ9qW78vfEP078zQ0jwWaHBQ00ZhngPVY2hnZ692nR/tMbf86LNZQNYaq4f
+ 2KkzwyTbLFGg==
+X-IronPort-AV: E=Sophos;i="5.83,241,1616482800"; d="scan'208";a="416760637"
+Received: from nawaskex-mobl.ger.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.3.30])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2021 23:34:39 -0700
+Date: Tue, 1 Jun 2021 23:34:39 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210602063439.nrfejgmslba3hruy@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210527181700.1676790-1-lucas.demarchi@intel.com>
+ <20210527181700.1676790-2-lucas.demarchi@intel.com>
+ <20210601165834.GA6936@mdroper-desk1.amr.corp.intel.com>
+ <20210601171514.63lh3lqb2yprri73@ldmartin-desk2>
+ <20210601173055.GB6936@mdroper-desk1.amr.corp.intel.com>
+ <20210601191317.mn646kbpdbjw65xc@ldmartin-desk2>
+ <20210601203925.GD6936@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-References: <YLCbBR22BsQ/dpJB@jlahtine-mobl.ger.corp.intel.com>
- <162218682866.9100.50543809230103499@jlahtine-mobl.ger.corp.intel.com>
- <CAPM=9twwritR-5-iN-D4AvMMnng9PkCfZmsU3zhZZBFkGGx9Ww@mail.gmail.com>
- <CAPM=9tyb-PffapqXE4c1Ow0wVeT2a-r88VkEurUox5AFsQrfbA@mail.gmail.com>
-In-Reply-To: <CAPM=9tyb-PffapqXE4c1Ow0wVeT2a-r88VkEurUox5AFsQrfbA@mail.gmail.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 2 Jun 2021 14:30:14 +1000
-Message-ID: <CAPM=9tzAO4yoinKoUbFsWcQyLY_naqY-T-meLwc09Pkn+ZroFA@mail.gmail.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: Re: [Intel-gfx] [PULL] drm-intel-gt-next
+Content-Disposition: inline
+In-Reply-To: <20210601203925.GD6936@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/gt: replace IS_GEN and friends
+ with IS_GRAPHICS_VER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,36 +55,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2 Jun 2021 at 14:17, Dave Airlie <airlied@gmail.com> wrote:
+On Tue, Jun 01, 2021 at 01:39:25PM -0700, Matt Roper wrote:
+>On Tue, Jun 01, 2021 at 12:13:17PM -0700, Lucas De Marchi wrote:
+>> On Tue, Jun 01, 2021 at 10:30:55AM -0700, Matt Roper wrote:
+>> > On Tue, Jun 01, 2021 at 10:15:14AM -0700, Lucas De Marchi wrote:
+>> > > On Tue, Jun 01, 2021 at 09:58:34AM -0700, Matt Roper wrote:
+>> > > > On Thu, May 27, 2021 at 11:16:54AM -0700, Lucas De Marchi wrote:
+>> > > > > This was done by the following semantic patch:
+>> > > >
+>> > > > Is the commit message here out-of-date?  The cocci doesn't appear to
+>> > > > match the diff anymore.  IS_GRAPHICS_VER() is the range macro now and
+>> > > > IS_GEN is being replaced with a direct "==" comparison.
+>> > >
+>> > > not necessarily, it's included in "and friends...". Maybe rewording to
+>> > > something like "replace gen-based macros with new ver-based ones" would
+>> > > make it clearer?
+>> >
+>> > I mean that running the coccinelle rules below through spatch won't
+>> > generate the code diff here; it would generate a completely different
+>> > patch (that I don't think would build properly either).
+>>
+>> oh, ok. I fixed the issues in the .cocci and forgot to update the commit
+>> message. Thanks.
+>>
+>> Lucas De Marchi
 >
-> On Wed, 2 Jun 2021 at 10:28, Dave Airlie <airlied@gmail.com> wrote:
-> >
-> > This has these two patches applied, and it doesn't build.
-> >
-> >   drm/i915: drop the __i915_active_call pointer packing
-> >   drm/i915: Fix crash in auto_retire
-> >
-> > The latter patch shouldn't be necessary after the former, please fix
-> > that up and resend and please build test trees before I get them in
-> > future.
+>Aside from the commit messages needing updated Coccinelle rules, the
+>code deltas look correct to me.
 >
-> Oh maybe this is an unresolved conflict, not sure why drm-tip doesn't
-> catch this though, or is this next tree not in next?
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Oh looks like tip did catch it, I just didn't see it was done with a fixup.
+humn... is that to the series or only this commit?
 
-Dave.
+Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
