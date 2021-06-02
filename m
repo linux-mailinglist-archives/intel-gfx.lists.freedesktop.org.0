@@ -1,31 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91DF33984D2
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 11:01:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731583984D6
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 11:03:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D29036EBFF;
-	Wed,  2 Jun 2021 09:01:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C901D6E06D;
+	Wed,  2 Jun 2021 09:03:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D203A6EBFF;
- Wed,  2 Jun 2021 09:01:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CA7A7A8836;
- Wed,  2 Jun 2021 09:01:33 +0000 (UTC)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
+ [IPv6:2a00:1450:4864:20::131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6F96EC00;
+ Wed,  2 Jun 2021 09:03:51 +0000 (UTC)
+Received: by mail-lf1-x131.google.com with SMTP id j10so2192988lfb.12;
+ Wed, 02 Jun 2021 02:03:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=PZ04IKgINdjuS/RIIl9cv7ohmscLQb+7So1jaLlkEe4=;
+ b=s93UveRRfEUttHPB2R2aMhmrZz0Ywz1eH1d6vcQ4MmGmpgqfxwXr04PCC010wLZll2
+ 9SkdCjMKsH5LdcnV8RNykzNUWrE1Z5Lurv5ikr3woIkJkJcYFrbE9SKQNoBr6dA+IA1L
+ t1W4rD/wAboOWgTEM/zcZrb+tNvNM9pb9PCm9ShenFibTFgIXtN+HJGp/Qc1eKmABQhZ
+ jeOxMxAtPatCaJncKucXaYc7gbXvjpkEHSq4nPcBR5rljKQug6gpNTW5mTvNIF1ZtMSh
+ b8EiZSuxSEuSeT4/q3Ag6qjcjNTdNzmAIpuoUlM+hdSRQRZXsQKTHgGVgAheSKjverYT
+ 40UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=PZ04IKgINdjuS/RIIl9cv7ohmscLQb+7So1jaLlkEe4=;
+ b=bmOAZ1ubeuSs6EWLSmWM8Co663JAudxVmJ6ZsNa+nZf0Arg2pZa7azebvv1yo04dI/
+ HjbVqFXBWNVqnYKxcLipiQJ7GxJB4mgncoVPUouVIY5UZvpZw2JQsOH1xg6v3T6VdN+5
+ gAhcw+htgsbGRiPJ+lnvC75PR/hNIQr5Qv3VUc1OvHUxksrebWkhtjkt9VC3Rg61MwqT
+ Qs8o54lE77Yq3N2GHJwCL+OQnsUIvLrCcQQkpnCplbnPOyashIilGCk2n25AlO9izU2/
+ 61RTVP9g98p9UaLKa9HGIrLm+KmZPfZTsXFUnj6nKhRzHmV00VnTWyEZiAA8RGScPEjs
+ 9CHg==
+X-Gm-Message-State: AOAM533Lx+LwYNeozliOD4MRtarQjCtRtSh+CqVoEnoruFc4UvT/cH4+
+ yJq25EbCotEKZaamWq78lt4=
+X-Google-Smtp-Source: ABdhPJxQFcvAMYxA2jxqNYLeAuXyB91b4OYAFukOiu5Qj+QvLBJr0S0UmQrrrxOF3ZwQF3t4d33JFA==
+X-Received: by 2002:a05:6512:3684:: with SMTP id
+ d4mr21608812lfs.90.1622624629512; 
+ Wed, 02 Jun 2021 02:03:49 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id s8sm2278937ljg.89.2021.06.02.02.03.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 02 Jun 2021 02:03:49 -0700 (PDT)
+Date: Wed, 2 Jun 2021 12:03:28 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <20210602120328.6ad60a2e@eldfell>
+In-Reply-To: <20210601104135.29020-6-uma.shankar@intel.com>
+References: <20210601104135.29020-1-uma.shankar@intel.com>
+ <20210601104135.29020-6-uma.shankar@intel.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 02 Jun 2021 09:01:33 -0000
-Message-ID: <162262449382.11228.6353957219449797017@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210602083818.241793-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210602083818.241793-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Move_LMEM_=28VRAM=29_management_over_to_TTM_=28rev6=29?=
+Subject: Re: [Intel-gfx] [PATCH 5/9] drm: Add Client Cap for advance gamma
+ mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,55 +68,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1420841922=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1420841922==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/ETnLTaDB4IUQhdxeuQ0WIwW"; protocol="application/pgp-signature"
 
-Series: Move LMEM (VRAM) management over to TTM (rev6)
-URL   : https://patchwork.freedesktop.org/series/90681/
-State : warning
+--Sig_/ETnLTaDB4IUQhdxeuQ0WIwW
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On Tue,  1 Jun 2021 16:11:31 +0530
+Uma Shankar <uma.shankar@intel.com> wrote:
 
-$ dim checkpatch origin/drm-tip
-7b4aaf595371 drm/i915/ttm Initialize the ttm device and memory managers
--:480: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#480: 
-deleted file mode 100644
+> Introduced a client cap for advance cap mode capability. Userspace
 
-total: 0 errors, 1 warnings, 0 checks, 1531 lines checked
-9277b8007ba9 drm/i915/ttm: Embed a ttm buffer object in the i915 gem object
-ec6ab53da268 drm/ttm: Add a generic TTM memcpy move for page-based iomem
--:385: CHECK:ARCH_DEFINES: architecture specific defines should be avoided
-#385: FILE: drivers/gpu/drm/ttm/ttm_module.c:56:
-+#if defined(__i386__) || defined(__x86_64__)
+Typo: "cap mode" should be "gamma mode"?
 
--:731: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#731: 
-new file mode 100644
+> should set this to get to be able to use the new gamma_mode property.
+>=20
+> If this is not set, driver will work in legacy mode.
+>=20
+> Note: This is suggested by Ville and based on his idea, the new
+> gamma mode handling is designed.
+>=20
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/drm_atomic_uapi.c | 3 +++
+>  drivers/gpu/drm/drm_ioctl.c       | 5 +++++
+>  include/drm/drm_atomic.h          | 1 +
+>  include/drm/drm_crtc.h            | 8 ++++++++
+>  include/drm/drm_file.h            | 8 ++++++++
+>  include/uapi/drm/drm.h            | 8 ++++++++
+>  6 files changed, 33 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
+ic_uapi.c
+> index a5470a0ebbe6..7ee35bc14455 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -1036,6 +1036,8 @@ int drm_atomic_set_property(struct drm_atomic_state=
+ *state,
+>  			break;
+>  		}
+> =20
+> +		crtc_state->advance_gamma_mode_active =3D
+> +					state->advance_gamma_mode_active;
+>  		ret =3D drm_atomic_crtc_set_property(crtc,
+>  				crtc_state, prop, prop_value);
+>  		break;
+> @@ -1372,6 +1374,7 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  	drm_modeset_acquire_init(&ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE);
+>  	state->acquire_ctx =3D &ctx;
+>  	state->allow_modeset =3D !!(arg->flags & DRM_MODE_ATOMIC_ALLOW_MODESET);
+> +	state->advance_gamma_mode_active =3D file_priv->advance_gamma_mode_acti=
+ve;
+> =20
+>  retry:
+>  	copied_objs =3D 0;
+> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+> index 53d314103a37..d51f72213882 100644
+> --- a/drivers/gpu/drm/drm_ioctl.c
+> +++ b/drivers/gpu/drm/drm_ioctl.c
+> @@ -361,6 +361,11 @@ drm_setclientcap(struct drm_device *dev, void *data,=
+ struct drm_file *file_priv)
+>  			return -EINVAL;
+>  		file_priv->writeback_connectors =3D req->value;
+>  		break;
+> +	case DRM_CLIENT_CAP_ADVANCE_GAMMA_MODES:
+> +		if (req->value > 1)
+> +			return -EINVAL;
+> +		file_priv->advance_gamma_mode_active =3D req->value;
+> +		break;
+>  	default:
+>  		return -EINVAL;
+>  	}
+> diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
+> index ac5a28eff2c8..5a398a249c80 100644
+> --- a/include/drm/drm_atomic.h
+> +++ b/include/drm/drm_atomic.h
+> @@ -379,6 +379,7 @@ struct drm_atomic_state {
+>  	 * states.
+>  	 */
+>  	bool duplicated : 1;
+> +	bool advance_gamma_mode_active : 1;
 
-total: 0 errors, 1 warnings, 1 checks, 843 lines checked
-75118ce36399 drm: Add a prefetching memcpy_from_wc
-2a425a7ac3b3 drm/ttm: Use drm_memcpy_from_wc for TTM bo moves
-4032fe427110 drm/ttm: Document and optimize ttm_bo_pipeline_gutting()
-892c08ea4518 drm/ttm, drm/amdgpu: Allow the driver some control over swapping
-9da5481fa327 drm/i915/ttm: Introduce a TTM i915 gem object backend
--:449: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#449: 
-new file mode 100644
+"advance" is a verb. Did you mean "advanced"?
 
-total: 0 errors, 1 warnings, 0 checks, 1042 lines checked
-f845aa5e2a37 drm/i915/lmem: Verify checks for lmem residency
-86c2b5803474 drm/vma: Add a driver_private member to vma_node.
-32c341af114f drm/i915: Use ttm mmap handling for ttm bo's.
 
+>  	struct __drm_planes_state *planes;
+>  	struct __drm_crtcs_state *crtcs;
+>  	int num_connector;
+> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+> index 5a594f134a81..f4339fbad086 100644
+> --- a/include/drm/drm_crtc.h
+> +++ b/include/drm/drm_crtc.h
+> @@ -170,6 +170,11 @@ struct drm_crtc_state {
+>  	 */
+>  	bool color_mgmt_changed : 1;
+> =20
+> +	/**
+> +	 * This is to indicate advance gamma mode support
+> +	 */
+> +	bool advance_gamma_mode_active : 1;
+
+Same here.
+
+> +
+>  	/**
+>  	 * @no_vblank:
+>  	 *
+> @@ -1036,6 +1041,9 @@ struct drm_crtc {
+>  	 */
+>  	bool enabled;
+> =20
+> +	/** To handle advance gamma mode support */
+> +	bool advance_gamma_mode_active : 1;
+
+Same here.
+
+> +
+>  	/**
+>  	 * @mode:
+>  	 *
+> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+> index b81b3bfb08c8..4af3e1a2a158 100644
+> --- a/include/drm/drm_file.h
+> +++ b/include/drm/drm_file.h
+> @@ -201,6 +201,14 @@ struct drm_file {
+>  	 */
+>  	bool writeback_connectors;
+> =20
+> +	/**
+> +	 * This is to enable advance gamma modes using
+> +	 * gamma_mode property
+> +	 *
+> +	 * True if client understands advance gamma
+> +	 */
+> +	bool advance_gamma_mode_active : 1;
+
+Same here.
+
+> +
+>  	/**
+>  	 * @was_master:
+>  	 *
+> diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
+> index 67b94bc3c885..661efdf0c969 100644
+> --- a/include/uapi/drm/drm.h
+> +++ b/include/uapi/drm/drm.h
+> @@ -816,6 +816,14 @@ struct drm_get_cap {
+>   */
+>  #define DRM_CLIENT_CAP_WRITEBACK_CONNECTORS	5
+> =20
+> +/**
+> + * Add support for advance gamma mode UAPI
+> + * If set to 1, DRM will enable advance gamma mode
+> + * UAPI to process the gamma mode based on extended
+> + * range and segments.
+> + */
+> +#define DRM_CLIENT_CAP_ADVANCE_GAMMA_MODES     6
+
+Same here.
+
+> +
+>  /* DRM_IOCTL_SET_CLIENT_CAP ioctl argument type */
+>  struct drm_set_client_cap {
+>  	__u64 capability;
+
+
+Thanks,
+pq
+
+--Sig_/ETnLTaDB4IUQhdxeuQ0WIwW
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmC3SWMACgkQI1/ltBGq
+qqewWA/+L6RTaJItj5fJc8KpwYA3FYH/z2PjpvydIpL5S8wRX8RJzhOe8IZHTuoq
+eZO7QN7pyKNW6D2mqMHKZqnsjsfRWYzhZfLnBXC/lrai7aXfZSFr8xFqKlzO8isj
+drs0pA/neyraoLM0VBueRM+ewP4wTSH6HhCNoGRgmTEyntL6/fPizSPBXad1gVoN
+E6ZqgZotBBHwS8vW9HCe4P58fQ+rRg5ynbpcU1imAoTJQqlpYXnesIjngKZW+1kT
+mkxs707TOafnJurHA6z3foWswnQTVN/RH2R82+dICUgMwx7JrQdPGDfpQLIGmNYw
+uIKQP9LMifpRbMAYDiZ1H5G4ox3tLd757vby3+63MzT/orQYrGu3J7eNCvpfgND6
+wcgufRa+1MCNMx3Ci4aUxj1tfy/qb89qmZAhLd45NlaJZjT29YTDE/Y++jVoMCxc
+5D31WtPwynKCMAfVJCg1LMGatHPBLbvZRKeDI6s2bdtOn8Dn3Ss9x7jShq6UVqqN
+7immasozDSkf13oTBvMP+O86L46k7zaCfBn7w9y9GdwDvLtWKy7MRg2vOKgw/2Pw
+45d0VORQjIzWye2zWtwIB6E7k/NubLcZSwZko9SfCYgUyZMXV9ruk9iK7gizPS5z
+R9U6uICiwTMZVnAtWS1zzd1saV71qcHaM+fZ320AzV5cw8M9CnQ=
+=m87N
+-----END PGP SIGNATURE-----
+
+--Sig_/ETnLTaDB4IUQhdxeuQ0WIwW--
+
+--===============1420841922==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1420841922==--
