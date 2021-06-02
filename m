@@ -1,43 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29192399342
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 21:10:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE0839934C
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 21:12:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01F806EDFB;
-	Wed,  2 Jun 2021 19:10:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65F46EDFF;
+	Wed,  2 Jun 2021 19:12:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A11F6E546;
- Wed,  2 Jun 2021 19:10:19 +0000 (UTC)
-IronPort-SDR: mWZFaIogw6tPwgm6br2mp4fceM3bDV0D6u7XiVQ3wEcR0CquxQN2gM/yEQCzgeqeAwA8Ifi3qV
- 4AzN3aKkLAVA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="203682239"
-X-IronPort-AV: E=Sophos;i="5.83,242,1616482800"; d="scan'208";a="203682239"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2021 12:10:17 -0700
-IronPort-SDR: bEKxTlZiVbWC+phq4yJ9EzILe8jU4xiMWqq/nD0BEnYyxCAqDKylAkTAXEhK11Ixz2aMktsXJ9
- CLkZYaVuGGsw==
-X-IronPort-AV: E=Sophos;i="5.83,242,1616482800"; d="scan'208";a="438518297"
-Received: from ticela-az-103.amr.corp.intel.com (HELO intel.com)
- ([10.254.2.125])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2021 12:10:14 -0700
-Date: Wed, 2 Jun 2021 15:10:12 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- tomas.winkler@intel.com
-Message-ID: <YLfXlBdCwe6/DWgD@intel.com>
-References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
- <20210525054803.7387-3-daniele.ceraolospurio@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB1616EDFF;
+ Wed,  2 Jun 2021 19:12:18 +0000 (UTC)
+IronPort-SDR: inf32cM67J2S+asKWRfRgbSabEuRmB5KKCLN/IMLQCHLMnXh8LhRS7mi0piu0KI6hysSEzjJ4P
+ oKPt0BUKd0WQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="203901851"
+X-IronPort-AV: E=Sophos;i="5.83,242,1616482800"; d="scan'208";a="203901851"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2021 12:12:01 -0700
+IronPort-SDR: d63yxymjE7bbpGVsqi6AD1FmXtu0XAG/KdCab/W9hRseD3Trf8nvtN1/BorVsB5vBngUNfU3fN
+ VXXTBNlRcx9Q==
+X-IronPort-AV: E=Sophos;i="5.83,242,1616482800"; d="scan'208";a="479828611"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2021 12:12:00 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  2 Jun 2021 12:11:41 -0700
+Message-Id: <20210602191148.3344574-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210525054803.7387-3-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 02/17] mei: pxp: export pavp client to me
- client bus
+Subject: [Intel-gfx] [PATCH v2 0/7] Finish conversion to GRAPHICS_VER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,372 +44,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
- dri-devel@lists.freedesktop.org, Vitaly Lubart <vitaly.lubart@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gvt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 24, 2021 at 10:47:48PM -0700, Daniele Ceraolo Spurio wrote:
-> From: Vitaly Lubart <vitaly.lubart@intel.com>
-> =
+Latest version of previous series "drm/i915: Extend GEN renames to the
+rest of the driver" (https://patchwork.freedesktop.org/series/88825/)
+dropped one patch converting all the instances of IS_GEN() and
+INTEL_GEN() to GRAPHICS_VER() due to the patches changing the
+meaning of the macros IS_GRAPHICS_VER/GRAPHICS_VER and removal of
+IS_GRAPHICS_RANGE().
 
-> Export PAVP client to work with i915 driver,
-> for binding it uses kernel component framework.
-> =
+I couldn't find a way to convince coccinelle to fix all places, so I
+just did it manually in separate commits the places that were not
+updated.
 
-> Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
-> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
->  drivers/misc/mei/Kconfig       |   2 +
->  drivers/misc/mei/Makefile      |   1 +
->  drivers/misc/mei/pxp/Kconfig   |  13 ++
->  drivers/misc/mei/pxp/Makefile  |   7 +
->  drivers/misc/mei/pxp/mei_pxp.c | 233 +++++++++++++++++++++++++++++++++
->  drivers/misc/mei/pxp/mei_pxp.h |  18 +++
->  6 files changed, 274 insertions(+)
->  create mode 100644 drivers/misc/mei/pxp/Kconfig
->  create mode 100644 drivers/misc/mei/pxp/Makefile
->  create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
->  create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
-> =
+Finish the conversion splitting the changes so it can go to the
+different branches (drm-intel-gt-next and drm-intel-next). I also split
+the gvt changes, but I think it would be easeir to take this directly on
+drm-intel-next.
 
-> diff --git a/drivers/misc/mei/Kconfig b/drivers/misc/mei/Kconfig
-> index f5fd5b786607..0e0bcd0da852 100644
-> --- a/drivers/misc/mei/Kconfig
-> +++ b/drivers/misc/mei/Kconfig
-> @@ -47,3 +47,5 @@ config INTEL_MEI_TXE
->  	  Intel Bay Trail
->  =
+Also, please do not apply this series as I have other series I'd like to
+rebase on top before landing it.
 
->  source "drivers/misc/mei/hdcp/Kconfig"
-> +source "drivers/misc/mei/pxp/Kconfig"
-> +
-> diff --git a/drivers/misc/mei/Makefile b/drivers/misc/mei/Makefile
-> index f1c76f7ee804..d8e5165917f2 100644
-> --- a/drivers/misc/mei/Makefile
-> +++ b/drivers/misc/mei/Makefile
-> @@ -26,3 +26,4 @@ mei-$(CONFIG_EVENT_TRACING) +=3D mei-trace.o
->  CFLAGS_mei-trace.o =3D -I$(src)
->  =
+v2: update commit messages with the proper semantic patch (Matt Roper) and
+regenerate the patches to also convert changes that got added in between.
 
->  obj-$(CONFIG_INTEL_MEI_HDCP) +=3D hdcp/
-> +obj-$(CONFIG_INTEL_MEI_PXP) +=3D pxp/
-> diff --git a/drivers/misc/mei/pxp/Kconfig b/drivers/misc/mei/pxp/Kconfig
-> new file mode 100644
-> index 000000000000..4029b96afc04
-> --- /dev/null
-> +++ b/drivers/misc/mei/pxp/Kconfig
-> @@ -0,0 +1,13 @@
-> +
-> +# SPDX-License-Identifier: GPL-2.0
-> +# Copyright (c) 2020, Intel Corporation. All rights reserved.
-> +#
-s> +config INTEL_MEI_PXP
-> +	tristate "Intel PXP services of ME Interface"
-> +	select INTEL_MEI_ME
-> +	depends on DRM_I915
-> +	help
-> +	  MEI Support for PXP Services on Intel platforms.
-> +
-> +	  Enables the ME FW services required for PXP support through
-> +	  I915 display driver of Intel.
-> diff --git a/drivers/misc/mei/pxp/Makefile b/drivers/misc/mei/pxp/Makefile
-> new file mode 100644
-> index 000000000000..0329950d5794
-> --- /dev/null
-> +++ b/drivers/misc/mei/pxp/Makefile
-> @@ -0,0 +1,7 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Copyright (c) 2020, Intel Corporation. All rights reserved.
-> +#
-> +# Makefile - PXP client driver for Intel MEI Bus Driver.
-> +
-> +obj-$(CONFIG_INTEL_MEI_PXP) +=3D mei_pxp.o
-> diff --git a/drivers/misc/mei/pxp/mei_pxp.c b/drivers/misc/mei/pxp/mei_px=
-p.c
-> new file mode 100644
-> index 000000000000..cacfbedb640a
-> --- /dev/null
-> +++ b/drivers/misc/mei/pxp/mei_pxp.c
-> @@ -0,0 +1,233 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright =A9 2020 Intel Corporation
-> + */
-> +
-> +/**
-> + * DOC: MEI_PXP Client Driver
-> + *
-> + * The mei_pxp driver acts as a translation layer between PXP
-> + * protocol  implementer (I915) and ME FW by translating PXP
-> + * negotiation messages to ME FW command payloads and vice versa.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/slab.h>
-> +#include <linux/uuid.h>
-> +#include <linux/mei_cl_bus.h>
-> +#include <linux/component.h>
-> +#include <drm/drm_connector.h>
-> +#include <drm/i915_component.h>
-> +#include <drm/i915_pxp_tee_interface.h>
-> +
-> +#include "mei_pxp.h"
-> +
-> +/**
-> + * mei_pxp_send_message() - Sends a PXP message to ME FW.
-> + * @dev: device corresponding to the mei_cl_device
-> + * @message: a message buffer to send
-> + * @size: size of the message
-> + * Return: 0 on Success, <0 on Failure
-> + */
-> +static int
-> +mei_pxp_send_message(struct device *dev, const void *message, size_t siz=
-e)
-> +{
-> +	struct mei_cl_device *cldev;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !message)
-> +		return -EINVAL;
-> +
-> +	cldev =3D to_mei_cl_device(dev);
-> +
-> +	/* temporary drop const qualifier till the API is fixed */
-> +	byte =3D mei_cldev_send(cldev, (u8 *)message, size);
-> +	if (byte < 0) {
-> +		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * mei_pxp_receive_message() - Receives a PXP message from ME FW.
-> + * @dev: device corresponding to the mei_cl_device
-> + * @buffer: a message buffer to contain the received message
-> + * @size: size of the buffer
-> + * Return: bytes sent on Success, <0 on Failure
-> + */
-> +static int
-> +mei_pxp_receive_message(struct device *dev, void *buffer, size_t size)
-> +{
-> +	struct mei_cl_device *cldev;
-> +	ssize_t byte;
-> +
-> +	if (!dev || !buffer)
-> +		return -EINVAL;
-> +
-> +	cldev =3D to_mei_cl_device(dev);
-> +
-> +	byte =3D mei_cldev_recv(cldev, buffer, size);
-> +	if (byte < 0) {
-> +		dev_dbg(dev, "mei_cldev_recv failed. %zd\n", byte);
-> +		return byte;
-> +	}
-> +
-> +	return byte;
-> +}
-> +
-> +static const struct i915_pxp_component_ops mei_pxp_ops =3D {
-> +	.owner =3D THIS_MODULE,
-> +	.send =3D mei_pxp_send_message,
-> +	.recv =3D mei_pxp_receive_message,
-> +};
-> +
-> +static int mei_component_master_bind(struct device *dev)
-> +{
-> +	struct mei_cl_device *cldev =3D to_mei_cl_device(dev);
-> +	struct i915_pxp_component *comp_master =3D mei_cldev_get_drvdata(cldev);
-> +	int ret;
-> +
-> +	dev_dbg(dev, "%s\n", __func__);
-> +	comp_master->ops =3D &mei_pxp_ops;
-> +	comp_master->tee_dev =3D dev;
-> +	ret =3D component_bind_all(dev, comp_master);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static void mei_component_master_unbind(struct device *dev)
-> +{
-> +	struct mei_cl_device *cldev =3D to_mei_cl_device(dev);
-> +	struct i915_pxp_component *comp_master =3D mei_cldev_get_drvdata(cldev);
-> +
-> +	dev_dbg(dev, "%s\n", __func__);
-> +	component_unbind_all(dev, comp_master);
-> +}
-> +
-> +static const struct component_master_ops mei_component_master_ops =3D {
-> +	.bind =3D mei_component_master_bind,
-> +	.unbind =3D mei_component_master_unbind,
-> +};
-> +
-> +/**
-> + * mei_pxp_component_match - compare function for matching mei pxp.
-> + *
-> + *    The function checks if the driver is i915, the subcomponent is PXP
-> + *    and the grand parent of pxp and the parent of i915 are the same
-> + *    PCH device.
-> + *
-> + * @dev: master device
-> + * @subcomponent: subcomponent to match (I915_COMPONENT_PXP)
-> + * @data: compare data (mei pxp device)
-> + *
-> + * Return:
-> + * * 1 - if components match
-> + * * 0 - otherwise
-> + */
-> +static int mei_pxp_component_match(struct device *dev, int subcomponent,
-> +				   void *data)
-> +{
-> +	struct device *base =3D data;
-> +
-> +	if (subcomponent !=3D I915_COMPONENT_PXP)
-> +		return 0;
-> +
-> +	if (strcmp(dev->driver->name, "i915") =3D=3D 0) {
-> +		base =3D base->parent;
-> +		if (!base)
-> +			return 0;
-> +
-> +		base =3D base->parent;
-> +		dev =3D dev->parent;
-> +		return (base && dev && dev =3D=3D base);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mei_pxp_probe(struct mei_cl_device *cldev,
-> +			 const struct mei_cl_device_id *id)
-> +{
-> +	struct i915_pxp_component *comp_master;
-> +	struct component_match *master_match;
-> +	int ret;
-> +
-> +	ret =3D mei_cldev_enable(cldev);
-> +	if (ret < 0) {
-> +		dev_err(&cldev->dev, "mei_cldev_enable Failed. %d\n", ret);
-> +		goto enable_err_exit;
-> +	}
-> +
-> +	comp_master =3D kzalloc(sizeof(*comp_master), GFP_KERNEL);
-> +	if (!comp_master) {
-> +		ret =3D -ENOMEM;
-> +		goto err_exit;
-> +	}
-> +
-> +	master_match =3D NULL;
-> +	component_match_add_typed(&cldev->dev, &master_match,
-> +				  mei_pxp_component_match, &cldev->dev);
-> +	if (IS_ERR_OR_NULL(master_match)) {
-> +		ret =3D -ENOMEM;
-> +		goto err_exit;
-> +	}
-> +
-> +	mei_cldev_set_drvdata(cldev, comp_master);
-> +	ret =3D component_master_add_with_match(&cldev->dev,
-> +					      &mei_component_master_ops,
-> +					      master_match);
-> +	if (ret < 0) {
-> +		dev_err(&cldev->dev, "Master comp add failed %d\n", ret);
-> +		goto err_exit;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_exit:
-> +	mei_cldev_set_drvdata(cldev, NULL);
-> +	kfree(comp_master);
-> +	mei_cldev_disable(cldev);
-> +enable_err_exit:
-> +	return ret;
-> +}
-> +
-> +static void mei_pxp_remove(struct mei_cl_device *cldev)
-> +{
-> +	struct i915_pxp_component *comp_master =3D mei_cldev_get_drvdata(cldev);
-> +	int ret;
-> +
-> +	component_master_del(&cldev->dev, &mei_component_master_ops);
-> +	kfree(comp_master);
-> +	mei_cldev_set_drvdata(cldev, NULL);
-> +
-> +	ret =3D mei_cldev_disable(cldev);
-> +	if (ret)
-> +		dev_warn(&cldev->dev, "mei_cldev_disable() failed\n");
-> +}
-> +
-> +/* fbf6fcf1-96cf-4e2e-a6a6-1bab8cbe36b1 : PAVP GUID*/
-                                                      ^ missing space
-> +#define MEI_GUID_PXP GUID_INIT(0xfbf6fcf1, 0x96cf, 0x4e2e, 0xA6, \
-> +			       0xa6, 0x1b, 0xab, 0x8c, 0xbe, 0x36, 0xb1)
+Cc: intel-gvt-dev@lists.freedesktop.org
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
 
-I don't have the spec to confirm this... that said...
+Lucas De Marchi (7):
+  drm/i915/gt: replace IS_GEN and friends with GRAPHICS_VER
+  drm/i915/gt: Add remaining conversions to GRAPHICS_VER
+  drm/i915/gem: replace IS_GEN and friends with GRAPHICS_VER
+  drm/i915/gvt: replace IS_GEN and friends with GRAPHICS_VER
+  drm/i915: replace IS_GEN and friends with GRAPHICS_VER
+  drm/i915: Add remaining conversions to GRAPHICS_VER
+  drm/i915/display: replace IS_GEN() in commented code
 
-the implementation looks clean and with the very little that I learned
-from MEI on the recent months I'm comfortable in adding:
+ drivers/gpu/drm/i915/display/intel_tv.c       |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  6 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 +--
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
+ .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  8 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 16 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c    | 12 +--
+ .../i915/gem/selftests/i915_gem_client_blt.c  | 10 +--
+ .../i915/gem/selftests/i915_gem_coherency.c   |  4 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c | 16 ++--
+ .../drm/i915/gem/selftests/i915_gem_mman.c    | 14 ++--
+ .../drm/i915/gem/selftests/igt_gem_utils.c    | 10 +--
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.c       | 40 +++++-----
+ drivers/gpu/drm/i915/gt/gen2_engine_cs.c      |  2 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |  2 +-
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  2 +-
+ drivers/gpu/drm/i915/gt/intel_context_sseu.c  |  2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 54 ++++++-------
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  4 +-
+ .../drm/i915/gt/intel_execlists_submission.c  | 18 ++---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 18 ++---
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  | 34 ++++----
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 27 ++++---
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    | 12 +--
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  6 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_irq.c     | 10 +--
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 14 ++--
+ drivers/gpu/drm/i915/gt/intel_llc.c           |  6 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 46 +++++------
+ drivers/gpu/drm/i915/gt/intel_mocs.c          |  8 +-
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  6 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           | 16 ++--
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         | 14 ++--
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 64 +++++++--------
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 60 +++++++-------
+ drivers/gpu/drm/i915/gt/intel_sseu.c          | 14 ++--
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c  |  6 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 66 +++++++--------
+ drivers/gpu/drm/i915/gt/selftest_engine_cs.c  |  6 +-
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  4 +-
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c      |  8 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  8 +-
+ drivers/gpu/drm/i915/gt/selftest_llc.c        |  4 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  8 +-
+ drivers/gpu/drm/i915/gt/selftest_mocs.c       |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_rc6.c        |  4 +-
+ .../drm/i915/gt/selftest_ring_submission.c    |  6 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c        | 16 ++--
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |  6 +-
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |  8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c     |  2 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 10 +--
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  4 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |  8 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |  2 +-
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         | 10 +--
+ drivers/gpu/drm/i915/gvt/gtt.c                |  4 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |  6 +-
+ drivers/gpu/drm/i915/gvt/interrupt.c          |  2 +-
+ drivers/gpu/drm/i915/gvt/mmio_context.c       | 10 +--
+ drivers/gpu/drm/i915/gvt/scheduler.c          |  4 +-
+ drivers/gpu/drm/i915/gvt/vgpu.c               |  4 +-
+ drivers/gpu/drm/i915/i915_cmd_parser.c        | 10 +--
+ drivers/gpu/drm/i915/i915_debugfs.c           | 32 ++++----
+ drivers/gpu/drm/i915/i915_drv.c               | 20 ++---
+ drivers/gpu/drm/i915/i915_drv.h               | 35 ++++----
+ drivers/gpu/drm/i915/i915_gem.c               |  4 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         | 80 +++++++++----------
+ drivers/gpu/drm/i915/i915_irq.c               | 34 ++++----
+ drivers/gpu/drm/i915/i915_perf.c              | 44 +++++-----
+ drivers/gpu/drm/i915/i915_pmu.c               |  8 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 26 +++---
+ drivers/gpu/drm/i915/i915_request.c           |  4 +-
+ drivers/gpu/drm/i915/i915_suspend.c           | 16 ++--
+ drivers/gpu/drm/i915/i915_sysfs.c             |  2 +-
+ drivers/gpu/drm/i915/i915_vgpu.c              |  2 +-
+ drivers/gpu/drm/i915/intel_device_info.c      | 22 ++---
+ drivers/gpu/drm/i915/intel_dram.c             | 14 ++--
+ drivers/gpu/drm/i915/intel_pch.c              | 10 +--
+ drivers/gpu/drm/i915/intel_pm.c               | 14 ++--
+ drivers/gpu/drm/i915/intel_sideband.c         |  2 +-
+ drivers/gpu/drm/i915/intel_uncore.c           | 26 +++---
+ drivers/gpu/drm/i915/intel_wopcm.c            | 10 +--
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c |  4 +-
+ drivers/gpu/drm/i915/selftests/i915_perf.c    |  6 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c |  8 +-
+ drivers/gpu/drm/i915/selftests/igt_spinner.c  | 12 +--
+ drivers/gpu/drm/i915/selftests/intel_uncore.c |  2 +-
+ 93 files changed, 633 insertions(+), 633 deletions(-)
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Tomas, ack to get it from drm/drm-intel tree?
-
-> +
-> +static struct mei_cl_device_id mei_pxp_tbl[] =3D {
-> +	{ .uuid =3D MEI_GUID_PXP, .version =3D MEI_CL_VERSION_ANY },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(mei, mei_pxp_tbl);
-> +
-> +static struct mei_cl_driver mei_pxp_driver =3D {
-> +	.id_table =3D mei_pxp_tbl,
-> +	.name =3D KBUILD_MODNAME,
-> +	.probe =3D mei_pxp_probe,
-> +	.remove	=3D mei_pxp_remove,
-> +};
-> +
-> +module_mei_cl_driver(mei_pxp_driver);
-> +
-> +MODULE_AUTHOR("Intel Corporation");
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("MEI PXP");
-> diff --git a/drivers/misc/mei/pxp/mei_pxp.h b/drivers/misc/mei/pxp/mei_px=
-p.h
-> new file mode 100644
-> index 000000000000..e7b15373fefd
-> --- /dev/null
-> +++ b/drivers/misc/mei/pxp/mei_pxp.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright =A9 2020 Intel Corporation
-> + *
-> + * Authors:
-> + * Vitaly Lubart <vitaly.lubart@intel.com>
-> + */
-> +
-> +#ifndef __MEI_PXP_H__
-> +#define __MEI_PXP_H__
-> +
-> +/* me_pxp_status: Enumeration of all PXP Status Codes */
-> +enum me_pxp_status {
-> +	ME_PXP_STATUS_SUCCESS			=3D 0x0000,
-> +
-> +};
-> +
-> +#endif /* __MEI_PXP_H__ */
-> -- =
-
-> 2.29.2
-> =
+-- 
+2.31.1
 
 _______________________________________________
 Intel-gfx mailing list
