@@ -1,60 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5338E398545
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 11:28:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09EBD398554
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 11:32:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60D1F6E342;
-	Wed,  2 Jun 2021 09:28:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF336EC1C;
+	Wed,  2 Jun 2021 09:32:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
- [IPv6:2a00:1450:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 711C86E342;
- Wed,  2 Jun 2021 09:28:55 +0000 (UTC)
-Received: by mail-lj1-x232.google.com with SMTP id e11so1701507ljn.13;
- Wed, 02 Jun 2021 02:28:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=M194TrS8bcD9yZ374WYAbnYqYQmXXMUwq5hbG1LKbbI=;
- b=Cvubv3hrkV8pnrF9fd8fgRIgKXsMg4xWaazZ4KFAAgKQfXV+tvAtchazY/+vLWNTC4
- y1o/FhcNkoA7KGjcDJ43VhXA3n+pSNKMStzEZLnj14umhcBfui0bQqf2PYRM5geb29H/
- b1aQMmvFl7Z+sMFwItV8v8To213ci1d9MmqJsWDIz+jfQkwmYXBy0e0yhmO5mzgmsUum
- 8fi9YCLS11jQXLYugoJiOxpK/I4BwI9PqexyEuAdCs46weA+2+dbfyWdv5sWMLsVyRAR
- M4yiHBSp9WOFNIOiKtj3A6JeJxvT2KPW/MMUeYRMKYHUWiOPEa+fAznZvD04/WdArbDx
- TQIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=M194TrS8bcD9yZ374WYAbnYqYQmXXMUwq5hbG1LKbbI=;
- b=Me8pKPd3vXgt9ozC1jWktKceactKtN63Wb1R0t2TNodaekmBPSgyldscaQUaJdA0rP
- LU4+BCtqDlNgrqvF/jfpoL73n3bxKOWRj6e+cCC5rIQwnj90hWddJr2IqXEwyHShFIR+
- Cx9jF/ahtf+RvImv5grF5rMB65xdWEupyid10U8a0p0Q7g0JFQGrpDfrw9YNJbveSdtU
- kJxIBwql1fwVuZ7/gZ90oRG//fT9Oh5Z/dH8zNQSRnxPES9HHjV8MmhpEEzAvznb8yU2
- SXgGhWi1UnAP7WZrgqwe1jUTSnr1MHXSuOxW/HBgA97TbPnJsGBUkYMPB+SzkW/5712o
- PkYQ==
-X-Gm-Message-State: AOAM532/Cd7J/9HECFdwMMdbE7GCHfCIhFo1pvg327LhRY3U/fQzxqZy
- odNX+Sa0K01tcGSQhriOKbw=
-X-Google-Smtp-Source: ABdhPJxI1iDKl354xhC/C/tCOy4/GoJ2BxK6BrPrYklMca2vRk4pecvpEAQbUcJDYmGxdFm/WHxkfQ==
-X-Received: by 2002:a05:651c:151:: with SMTP id
- c17mr2434843ljd.314.1622626133888; 
- Wed, 02 Jun 2021 02:28:53 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id u4sm2134895lfl.100.2021.06.02.02.28.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Jun 2021 02:28:53 -0700 (PDT)
-Date: Wed, 2 Jun 2021 12:28:50 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Message-ID: <20210602122850.29412a29@eldfell>
-In-Reply-To: <20210601105218.29185-1-uma.shankar@intel.com>
-References: <20210601105218.29185-1-uma.shankar@intel.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 58BBB6EC1C;
+ Wed,  2 Jun 2021 09:32:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 50BF3A47DF;
+ Wed,  2 Jun 2021 09:32:16 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 00/21] Add Support for Plane Color Lut and
- CSC features
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Wed, 02 Jun 2021 09:32:16 -0000
+Message-ID: <162262633632.11229.3213876270828435605@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210602083818.241793-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210602083818.241793-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTW92?=
+ =?utf-8?q?e_LMEM_=28VRAM=29_management_over_to_TTM_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,203 +38,307 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0730644370=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2091337977=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0730644370==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/31hJ5jTLg3OyoeedSz07hM."; protocol="application/pgp-signature"
+--===============2091337977==
+Content-Type: multipart/alternative;
+ boundary="===============0775123941773016040=="
 
---Sig_/31hJ5jTLg3OyoeedSz07hM.
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+--===============0775123941773016040==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue,  1 Jun 2021 16:21:57 +0530
-Uma Shankar <uma.shankar@intel.com> wrote:
+== Series Details ==
 
-> This is how a typical display color hardware pipeline looks like:
->  +-------------------------------------------+
->  |                RAM                        |
->  |  +------+    +---------+    +---------+   |
->  |  | FB 1 |    |  FB 2   |    | FB N    |   |
->  |  +------+    +---------+    +---------+   |
->  +-------------------------------------------+
->        |  Plane Color Hardware Block |
->  +--------------------------------------------+
->  | +---v-----+   +---v-------+   +---v------+ |
->  | | Plane A |   | Plane B   |   | Plane N  | |
->  | | DeGamma |   | Degamma   |   | Degamma  | |
->  | +---+-----+   +---+-------+   +---+------+ |
->  |     |             |               |        |
->  | +---v-----+   +---v-------+   +---v------+ |
->  | |Plane A  |   | Plane B   |   | Plane N  | |
->  | |CSC/CTM  |   | CSC/CTM   |   | CSC/CTM  | |
->  | +---+-----+   +----+------+   +----+-----+ |
->  |     |              |               |       |
->  | +---v-----+   +----v------+   +----v-----+ |
->  | | Plane A |   | Plane B   |   | Plane N  | |
->  | | Gamma   |   | Gamma     |   | Gamma    | |
->  | +---+-----+   +----+------+   +----+-----+ |
->  |     |              |               |       |
->  +--------------------------------------------+
-> +------v--------------v---------------v-------|
-> ||                                           ||
-> ||           Pipe Blender                    ||
-> +--------------------+------------------------+
-> |                    |                        |
-> |        +-----------v----------+             |
-> |        |  Pipe DeGamma        |             |
-> |        |                      |             |
-> |        +-----------+----------+             |
-> |                    |            Pipe Color  |
-> |        +-----------v----------+ Hardware    |
-> |        |  Pipe CSC/CTM        |             |
-> |        |                      |             |
-> |        +-----------+----------+             |
-> |                    |                        |
-> |        +-----------v----------+             |
-> |        |  Pipe Gamma          |             |
-> |        |                      |             |
-> |        +-----------+----------+             |
-> |                    |                        |
-> +---------------------------------------------+
->                      |
->                      v
->                Pipe Output
+Series: Move LMEM (VRAM) management over to TTM (rev6)
+URL   : https://patchwork.freedesktop.org/series/90681/
+State : success
 
-Hi,
+== Summary ==
 
-this is an excellent picture. I have long been wanting schematics like
-that in the DRM UAPI documentation. Another note on that:
-https://lists.freedesktop.org/archives/dri-devel/2021-May/307310.html
+CI Bug Log - changes from CI_DRM_10159 -> Patchwork_20261
+====================================================
 
-But the schematic for DRM UAPI documentation needs to be written in
-terms of the abstract KMS pipeline with property names spelled out,
-like in what Ville sketched in that email.
+Summary
+-------
 
-> This patch series adds properties for plane color features. It adds
-> properties for degamma used to linearize data and CSC used for gamut
-> conversion. It also includes Gamma support used to again non-linearize
-> data as per panel supported color space. These can be utilize by user
-> space to convert planes from one format to another, one color space to
-> another etc.
+  **SUCCESS**
 
-This is very much welcome!
+  No regressions found.
 
-There is also the thread:
-https://lists.freedesktop.org/archives/dri-devel/2021-May/306726.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/index.html
 
-Everything mentioned will interact with each other by changing what the
-abstract KMS pixel pipeline does. I think you and Harry should probably
-look at each others' suggestions and see how to fit them all into a
-single abstract KMS pipeline.
+Known issues
+------------
 
-People are adding new pieces into KMS left and right, and I fear we
-lose sight of how everything will actually work together when all KMS
-properties are supposed to be generic and potentially present
-simultaneously. This is why I would very much like to have that *whole*
-abstract KMS pipeline documented with *everything*. Otherwise it is
-coming really hard fast to figure out how generic userspace should use
-all these KMS properties together.
+  Here are the changes found in Patchwork_20261 that come from known issues:
 
-Or if there cannot be a single abstract KMS pipeline, then sure, have
-multiple, as long as they are documented and how userspace will know
-which pipeline it is dealing with, and what things are mutually
-exclusive so we can avoid writing userspace code for combinations that
-will never exist.
+### IGT changes ###
 
+#### Issues hit ####
 
-Thanks,
-pq
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([i915#2291] / [i915#541])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html
 
-> Userspace can take smart blending decisions and utilize these hardware
-> supported plane color features to get accurate color profile. The same
-> can help in consistent color quality from source to panel taking
-> advantage of advanced color features in hardware.
->=20
-> These patches add the property interfaces and enable helper functions.
-> This series adds Intel's XE_LPD hw specific plane gamma feature. We
-> can build up and add other platform/hardware specific implementation
-> on top of this series.
->=20
-> Credits: Special mention and credits to Ville Syrjala for coming up
-> with a design for this feature and inputs. This series is based on
-> his original design and idea.
->=20
-> Note: Userspace support for this new UAPI will be done on Chrome. We
-> will notify the list once we have that ready for review.
->=20
-> ToDo: State readout for this feature will be added next.
->=20
-> Uma Shankar (21):
->   drm: Add Enhanced Gamma and color lut range attributes
->   drm: Add Plane Degamma Mode property
->   drm: Add Plane Degamma Lut property
->   drm/i915/xelpd: Define Degamma Lut range struct for HDR planes
->   drm/i915/xelpd: Add register definitions for Plane Degamma
->   drm/i915/xelpd: Enable plane color features
->   drm/i915/xelpd: Add color capabilities of SDR planes
->   drm/i915/xelpd: Program Plane Degamma Registers
->   drm/i915/xelpd: Add plane color check to glk_plane_color_ctl
->   drm/i915/xelpd: Initialize plane color features
->   drm/i915/xelpd: Load plane color luts from atomic flip
->   drm: Add Plane CTM property
->   drm: Add helper to attach Plane ctm property
->   drm/i915/xelpd: Define Plane CSC Registers
->   drm/i915/xelpd: Enable Plane CSC
->   drm: Add Plane Gamma Mode property
->   drm: Add Plane Gamma Lut property
->   drm/i915/xelpd: Define and Initialize Plane Gamma Lut range
->   drm/i915/xelpd: Add register definitions for Plane Gamma
->   drm/i915/xelpd: Program Plane Gamma Registers
->   drm/i915/xelpd: Enable plane gamma
->=20
->  Documentation/gpu/drm-kms.rst                 |  90 +++
->  drivers/gpu/drm/drm_atomic.c                  |   1 +
->  drivers/gpu/drm/drm_atomic_state_helper.c     |  12 +
->  drivers/gpu/drm/drm_atomic_uapi.c             |  38 ++
->  drivers/gpu/drm/drm_color_mgmt.c              | 177 +++++-
->  .../gpu/drm/i915/display/intel_atomic_plane.c |   6 +
->  .../gpu/drm/i915/display/intel_atomic_plane.h |   2 +
->  drivers/gpu/drm/i915/display/intel_color.c    | 513 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_color.h    |   2 +
->  .../drm/i915/display/skl_universal_plane.c    |  15 +-
->  drivers/gpu/drm/i915/i915_drv.h               |   3 +
->  drivers/gpu/drm/i915/i915_reg.h               | 176 +++++-
->  include/drm/drm_mode_object.h                 |   2 +-
->  include/drm/drm_plane.h                       |  81 +++
->  include/uapi/drm/drm_mode.h                   |  58 ++
->  15 files changed, 1170 insertions(+), 6 deletions(-)
->=20
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][3] -> [INCOMPLETE][4] ([i915#2782])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [FAIL][5] ([i915#1888]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bdw-5557u:       [DMESG-FAIL][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-tgl-u2:          [FAIL][9] ([i915#2416]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-tgl-u2/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-tgl-u2/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cml-s:           [DMESG-FAIL][11] ([i915#3462]) -> [INCOMPLETE][12] ([i915#3462])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-cml-s/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-cml-s/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-kbl-x1275:       [FAIL][13] ([i915#1436] / [i915#3363]) -> [FAIL][14] ([i915#1436] / [i915#2426] / [i915#3363])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-x1275/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-x1275/igt@runner@aborted.html
+    - fi-skl-6600u:       [FAIL][15] ([i915#1436] / [i915#3363]) -> [FAIL][16] ([i915#1436] / [i915#2426] / [i915#3363])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-skl-6600u/igt@runner@aborted.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-skl-6600u/igt@runner@aborted.html
+    - fi-glk-dsi:         [FAIL][17] ([i915#3363] / [k.org#202321]) -> [FAIL][18] ([i915#2426] / [i915#3363] / [k.org#202321])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-glk-dsi/igt@runner@aborted.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-glk-dsi/igt@runner@aborted.html
+    - fi-kbl-r:           [FAIL][19] ([i915#1436] / [i915#3363]) -> [FAIL][20] ([i915#1436] / [i915#2426] / [i915#3363])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-r/igt@runner@aborted.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-r/igt@runner@aborted.html
+    - fi-bdw-5557u:       [FAIL][21] ([i915#3462]) -> [FAIL][22] ([i915#2426] / [i915#3462])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-bdw-5557u/igt@runner@aborted.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-kbl-soraka:      [FAIL][23] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][24] ([i915#1436] / [i915#3363])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-soraka/igt@runner@aborted.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-soraka/igt@runner@aborted.html
+    - fi-kbl-7500u:       [FAIL][25] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][26] ([i915#1436] / [i915#3363])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-7500u/igt@runner@aborted.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-7500u/igt@runner@aborted.html
+    - fi-cml-u2:          [FAIL][27] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3462]) -> [FAIL][28] ([i915#3363] / [i915#3462])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-cml-u2/igt@runner@aborted.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-cml-u2/igt@runner@aborted.html
+    - fi-bxt-dsi:         [FAIL][29] ([i915#3363]) -> [FAIL][30] ([i915#2426] / [i915#3363])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-bxt-dsi/igt@runner@aborted.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-bxt-dsi/igt@runner@aborted.html
+
+  
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#2416]: https://gitlab.freedesktop.org/drm/intel/issues/2416
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
 
 
---Sig_/31hJ5jTLg3OyoeedSz07hM.
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Participating hosts (46 -> 41)
+------------------------------
 
------BEGIN PGP SIGNATURE-----
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmC3T1IACgkQI1/ltBGq
-qqfCvA//bbl5B3LEsCaWaE3Zy7KrzTIBY3dND2M6tt2soXtzv1p14YEB8ei6kGjm
-S4vc06P5qYCRj3dlj6nWW9gAAl8IKVFu20a0zUfBwZts4eOT3/wqFzeI0LTJTANg
-VEdFK1eFJAntDb15VYky6CrNaVKS8VzwbNonSaptWg2U64FWFFNhdKKoipdH2Pqv
-GbncerDI4QxCyZ9Y9h21cdR6OyAHm2Ih55I/7CXquthQvbCHudDl3WLLj7Q2dKD5
-m6mISCON7RrELzFrKJpIm+dz2l2O9AAMzBRZ62kPx86iAHD+GYE4wQif6+l8pMSF
-T6DtDK2F4aCrshSthcVhehq28TSeKj1O1lY6zu5r+iCk9fi6epuUvGD5Dk8KKqlV
-6ZVXIhgcogNikjoZ/TRs8fOjO9XubT/H+uzqmofC8Z007A+PB2DoGG7qzXM+FHuY
-AvSkUov1+HYP5Jo5HyOnAyFCU7aeStfAZp104dEJY0NVQwCyftCdQIguhLd9gv8t
-K9snvCf2aSzC55wrRl5qxSdKFk01KEfvKClFOkE9vMgS0LkU8cKYOIdFHmrupnNC
-cGU4DejMI9XPCF4nyVmwM0QcSTU6pUk4AbTJjdANwx8z0SW0cCRlJrm90YyYJOXl
-lf6zx303Mldaq2uG28dV4W+sT0R9iFMUoyezQq0Rv1tntEHZET4=
-=iZ+4
------END PGP SIGNATURE-----
 
---Sig_/31hJ5jTLg3OyoeedSz07hM.--
+Build changes
+-------------
 
---===============0730644370==
+  * Linux: CI_DRM_10159 -> Patchwork_20261
+
+  CI-20190529: 20190529
+  CI_DRM_10159: cd6eb5f605478f2fff85ec7ac39b7cf445d3deb9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6098: 1fbc1e7d602f96a7f4e2b95057eef994656b8e74 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20261: 32c341af114f0ab74cfe4c0a3afaa35de437e20f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+32c341af114f drm/i915: Use ttm mmap handling for ttm bo's.
+86c2b5803474 drm/vma: Add a driver_private member to vma_node.
+f845aa5e2a37 drm/i915/lmem: Verify checks for lmem residency
+9da5481fa327 drm/i915/ttm: Introduce a TTM i915 gem object backend
+892c08ea4518 drm/ttm, drm/amdgpu: Allow the driver some control over swapping
+4032fe427110 drm/ttm: Document and optimize ttm_bo_pipeline_gutting()
+2a425a7ac3b3 drm/ttm: Use drm_memcpy_from_wc for TTM bo moves
+75118ce36399 drm: Add a prefetching memcpy_from_wc
+ec6ab53da268 drm/ttm: Add a generic TTM memcpy move for page-based iomem
+9277b8007ba9 drm/i915/ttm: Embed a ttm buffer object in the i915 gem object
+7b4aaf595371 drm/i915/ttm Initialize the ttm device and memory managers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/index.html
+
+--===============0775123941773016040==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Move LMEM (VRAM) management over to TTM (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90681/">https://patchwork.freedesktop.org/series/90681/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10159 -&gt; Patchwork_20261</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20261 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-guc/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-tgl-u2/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2416">i915#2416</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-tgl-u2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-cml-s/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-cml-s/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
+</li>
+<li>
+<p>fi-kbl-r:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-kbl-7500u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-kbl-7500u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10159/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20261/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (46 -&gt; 41)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10159 -&gt; Patchwork_20261</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10159: cd6eb5f605478f2fff85ec7ac39b7cf445d3deb9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6098: 1fbc1e7d602f96a7f4e2b95057eef994656b8e74 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20261: 32c341af114f0ab74cfe4c0a3afaa35de437e20f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>32c341af114f drm/i915: Use ttm mmap handling for ttm bo's.<br />
+86c2b5803474 drm/vma: Add a driver_private member to vma_node.<br />
+f845aa5e2a37 drm/i915/lmem: Verify checks for lmem residency<br />
+9da5481fa327 drm/i915/ttm: Introduce a TTM i915 gem object backend<br />
+892c08ea4518 drm/ttm, drm/amdgpu: Allow the driver some control over swapping<br />
+4032fe427110 drm/ttm: Document and optimize ttm_bo_pipeline_gutting()<br />
+2a425a7ac3b3 drm/ttm: Use drm_memcpy_from_wc for TTM bo moves<br />
+75118ce36399 drm: Add a prefetching memcpy_from_wc<br />
+ec6ab53da268 drm/ttm: Add a generic TTM memcpy move for page-based iomem<br />
+9277b8007ba9 drm/i915/ttm: Embed a ttm buffer object in the i915 gem object<br />
+7b4aaf595371 drm/i915/ttm Initialize the ttm device and memory managers</p>
+
+</body>
+</html>
+
+--===============0775123941773016040==--
+
+--===============2091337977==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -274,4 +349,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0730644370==--
+--===============2091337977==--
