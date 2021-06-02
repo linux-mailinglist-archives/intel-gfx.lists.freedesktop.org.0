@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301163984FB
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 11:10:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 246BC39850F
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jun 2021 11:16:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A19D6EC0A;
-	Wed,  2 Jun 2021 09:10:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12D3A6EC13;
+	Wed,  2 Jun 2021 09:16:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B86D6EC0A;
- Wed,  2 Jun 2021 09:10:02 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id i10so2290158lfj.2;
- Wed, 02 Jun 2021 02:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=lzeeO1kSxH4S5GzoNiywVf/z9RF7yqxYawPT/9xtbNU=;
- b=tybLgPVSNi/nkDT2NZYosFBShmTKZivZ1e6MwoAMeTM7OOoFyhZd4zZqna4rAoqTW/
- JS/MPfzicyExYHGVppoK1O+C2MaGS9x4kMD3b0ct9jQKNRCdwDNG35s7SYabqqmPHAES
- FN5YsFF1Ss75ibq525F5rWDbK3EZpBKVc72Xn+Te5eT5bzv7EWp0+l6xPEruijv4SHuq
- ZS9x9Mwe0tgb/Gn6JHQ4YTqob/yud6shLV1C84aCY6VKADtglcvXUsGyHKbgqZZpPUVo
- C3MuNVHuiIsIoH7h8y9Wkz2OEMBH3pq4fXW5Y3VhxSBcZ67KVhLeh9jpf3q+EpX1dUny
- 6vxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=lzeeO1kSxH4S5GzoNiywVf/z9RF7yqxYawPT/9xtbNU=;
- b=rONa2s7yQc/j85NYMXa3Mw85ZepU7CmCLzJ5NIO7mSGuj7OzgjdnRVzcmjxqdoL5nK
- vG1QJ37axJ9a1QxZ4olD0GIisVu6xIL8AIVNwKI/RN7pBFFQbAZZKV8r63QedbVwH1Ge
- Nvb/NZThkL1Jy6JcxJ0VRLm1V2ly+wf8pEB6sY2qWYLo/Tn4XySQL9sxhStZGIUBWDgw
- Tf4hwcF42OcrepwCYNBbT/ATlY0j0zYUTOsOfQqxowO7D4zzYCZoYsErPF8E4jjtcxCa
- UCyebVSwYgzwBgDut9uspj+eM8FsIRUQzBosnAY9rQnPpowZLSo1BtjL+3N5MZYWfWnl
- K3Ow==
-X-Gm-Message-State: AOAM532xmN3uRVrwNxz3cQvHbPZNxIC0Q4CJfcb3nFGH4BD0l4Ek0loh
- 8pU1lkn0OZiRa0jIQNPZla0=
-X-Google-Smtp-Source: ABdhPJxkeK3OqbEnIppmqfdUlTyQVC3TAZ5197RGEwetMy3GqGmyY0gpPZPd6PEg8kNzSgaJAVVIqg==
-X-Received: by 2002:ac2:4d54:: with SMTP id 20mr7748938lfp.369.1622625001030; 
- Wed, 02 Jun 2021 02:10:01 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id z13sm2281889lji.115.2021.06.02.02.10.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Jun 2021 02:10:00 -0700 (PDT)
-Date: Wed, 2 Jun 2021 12:09:57 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Message-ID: <20210602120957.7a154640@eldfell>
-In-Reply-To: <20210601104135.29020-2-uma.shankar@intel.com>
-References: <20210601104135.29020-1-uma.shankar@intel.com>
- <20210601104135.29020-2-uma.shankar@intel.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4770F6EC13;
+ Wed,  2 Jun 2021 09:16:11 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 6768A3F503;
+ Wed,  2 Jun 2021 11:16:09 +0200 (CEST)
+Authentication-Results: pio-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="U+8r61NS";
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.717
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.717 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.618,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id su0KoBf9jvId; Wed,  2 Jun 2021 11:16:04 +0200 (CEST)
+Received: by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id B0F8D3F4B6;
+ Wed,  2 Jun 2021 11:16:02 +0200 (CEST)
+Received: from [192.168.0.209] (h-155-4-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 2909A36012A;
+ Wed,  2 Jun 2021 11:16:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1622625362; bh=4hCp9bO61tPGQrNvB6R+ZrLQJBkFZAEhg82TnCH31/U=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=U+8r61NSU4bkHQBy9R/k9D7YZeBOoycOa0MKvjhL4DIoMK5uuaxZTZX3LV6QsiEZB
+ Bb5pHmwbPEzHry0tsHT2Uj0TNHuVDLD9g/SuFeOksExVULzJUhMGxGxcbhWIQe5fA0
+ MgpexLpM9xO9m2rKD7wz2/IgemRwAuOy173km1FU=
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+References: <a29eaef9-2457-1393-6757-40956811daf8@linux.intel.com>
+ <a6965639-acf6-b5f5-482c-2715e7fa69d4@amd.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <b4c18e45-98c9-ce7f-b22c-c00c795844c2@shipmail.org>
+Date: Wed, 2 Jun 2021 11:16:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm: Add gamma mode property
+In-Reply-To: <a6965639-acf6-b5f5-482c-2715e7fa69d4@amd.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] Merging TTM branches through the Intel tree?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,184 +68,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2112984178=="
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2112984178==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/.k7R/rxs1Dr8aHB3DZDobUC"; protocol="application/pgp-signature"
-
---Sig_/.k7R/rxs1Dr8aHB3DZDobUC
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Tue,  1 Jun 2021 16:11:27 +0530
-Uma Shankar <uma.shankar@intel.com> wrote:
-
-> Add a gamma mode property to enable various kind of
-> gamma modes supported by platforms like: Interpolated, Split,
-> Multi Segmented, Logarithmic etc. Userspace can get this property
-> and should be able to get the platform capabilities wrt various
-> gamma modes possible and the possible ranges.
->=20
-> It can select one of the modes exposed as blob_id as an
-> enum and set the respective mode.
->=20
-> It can then create the LUT and send it to driver using
-> already available GAMMA_LUT property as blob.
->=20
-> Note: This is based on design by Ville and is being carried forward
-> based on his original idea.
->=20
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/drm_atomic_uapi.c |  5 +++
->  drivers/gpu/drm/drm_color_mgmt.c  | 75 +++++++++++++++++++++++++++++++
->  include/drm/drm_color_mgmt.h      |  8 ++++
->  include/drm/drm_crtc.h            | 14 ++++++
->  include/uapi/drm/drm_mode.h       | 43 ++++++++++++++++++
->  5 files changed, 145 insertions(+)
->=20
-
-...
-
-> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> index 13eeba2a750a..b1eead03ebe8 100644
-> --- a/include/drm/drm_crtc.h
-> +++ b/include/drm/drm_crtc.h
-> @@ -262,6 +262,13 @@ struct drm_crtc_state {
->  	 */
->  	struct drm_property_blob *mode_blob;
-> =20
-> +	/**
-> +	 * @gamma_mode: This is a blob_id and exposes the platform capabilities
-> +	 * wrt to various gamma modes and the respective lut ranges. This also
-> +	 * helps user select a gamma mode amongst the supported ones.
-> +	 */
-> +	u32 gamma_mode;
-> +
->  	/**
->  	 * @degamma_lut:
->  	 *
-> @@ -1096,6 +1103,13 @@ struct drm_crtc {
->  	 */
->  	struct drm_property *scaling_filter_property;
-> =20
-> +	/**
-> +	 * @gamma_mode_property: Optional CRTC property to enumerate and
-> +	 * select the mode of the crtc gamma/degmama LUTs. This also exposes
-> +	 * the lut ranges of the various supported gamma modes to userspace.
-> +	 */
-> +	struct drm_property *gamma_mode_property;
-> +
->  	/**
->  	 * @state:
->  	 *
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 9b6722d45f36..d7758d351936 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -819,6 +819,49 @@ struct hdr_output_metadata {
->  	};
->  };
-> =20
-> +/*
-> + * DRM_MODE_LUT_GAMMA|DRM_MODE_LUT_DEGAMMA is legal and means the LUT
-> + * can be used for either purpose, but not simultaneously. To expose
-> + * modes that support gamma and degamma simultaneously the gamma mode
-> + * must declare distinct DRM_MODE_LUT_GAMMA and DRM_MODE_LUT_DEGAMMA
-> + * ranges.
-> + */
-> +/* LUT is for gamma (after CTM) */
-> +#define DRM_MODE_LUT_GAMMA BIT(0)
-> +/* LUT is for degamma (before CTM) */
-> +#define DRM_MODE_LUT_DEGAMMA BIT(1)
-> +/* linearly interpolate between the points */
-> +#define DRM_MODE_LUT_INTERPOLATE BIT(2)
-> +/*
-> + * the last value of the previous range is the
-> + * first value of the current range.
-> + */
-> +#define DRM_MODE_LUT_REUSE_LAST BIT(3)
-> +/* the curve must be non-decreasing */
-> +#define DRM_MODE_LUT_NON_DECREASING BIT(4)
-> +/* the curve is reflected across origin for negative inputs */
-> +#define DRM_MODE_LUT_REFLECT_NEGATIVE BIT(5)
-> +/* the same curve (red) is used for blue and green channels as well */
-> +#define DRM_MODE_LUT_SINGLE_CHANNEL BIT(6)
-> +
-> +struct drm_color_lut_range {
-> +	/* DRM_MODE_LUT_* */
-> +	__u32 flags;
-> +	/* number of points on the curve */
-> +	__u16 count;
-> +	/* input/output bits per component */
-> +	__u8 input_bpc, output_bpc;
-> +	/* input start/end values */
-> +	__s32 start, end;
-> +	/* output min/max values */
-> +	__s32 min, max;
-> +};
-> +
-> +enum lut_type {
-> +	LUT_TYPE_DEGAMMA =3D 0,
-> +	LUT_TYPE_GAMMA =3D 1,
-> +};
-> +
->  #define DRM_MODE_PAGE_FLIP_EVENT 0x01
->  #define DRM_MODE_PAGE_FLIP_ASYNC 0x02
->  #define DRM_MODE_PAGE_FLIP_TARGET_ABSOLUTE 0x4
-
-Hi,
-
-where is the UAPI documentation for this new GAMMA_MODE?
-
-As a userspace dev, I have no idea what to do with the above based on
-what's written here.
-
-Also, reading the description of DRM_CLIENT_CAP_ADVANCE_GAMMA_MODES in
-patch 5/9, what difference does it make whether userspace sets or does
-not set that cap? I don't understand the implications from the
-description.
-
-
-Thanks,
-pq
-
---Sig_/.k7R/rxs1Dr8aHB3DZDobUC
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmC3SuUACgkQI1/ltBGq
-qqc6TA/+IGIrMBuAH7lstlyW/tAzUU3mUaSZ+ekQgM5Aw6IenSNI1rlk51+51NfK
-6zLLp7bej/Acrpcg99Co568RWu9f3isWFwD/fJtPJlsKzfmDgDOoj2R1y9995Z10
-IAE8R+r070zTIcYqncN90lst6Jo4AK7W+YmvzmvbuCnl1KoDTh+U+fLZarTrHb8O
-Zb1udEY2wuLL5JNArUM/IuAMAKvhdkGr+dJkRKgxgOdNRmu7yNogAeJqkmA2EvCn
-J5cqr1sU2xoc4h//Z03jC094kk/WNXdGKFOKafnapGIjDc+KjQv5FvhIrd5Gjnw3
-83+H6Xl3gVPR/PdXdz2FgJ5PBGgNkfzk/3Os//d8hRfb8DQfbIFsddci0qRMeSJE
-3/QKu6s3f1dWLLqL/nHUrVW3sAfI6tO0tR6czrwWWkxfpVjlAxB0D051DSs3m6vx
-yyiU3rnwWNLcfE6aogtRynddwKdKV8YB8fuo3KoYnpIGJ4WxfBY5fAbRzJKyJQLu
-D5E4udoGhqiYgcXztP++wJVtW2IiPCyZ9Y0GaYtEp5t4GJXCL1de/AdlbeVaZ4C8
-FXiQMah1JwfrKu0/2n4imAQ1S/c6loDUgjm5I5rOSWGZdu4RC6rgnugxwN/rLzYI
-oEV6cA+CbNzxp9gPfLET2giijDA36geGd5oGAcC42SrEJZ5VMm0=
-=3QZz
------END PGP SIGNATURE-----
-
---Sig_/.k7R/rxs1Dr8aHB3DZDobUC--
-
---===============2112984178==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2112984178==--
+Ck9uIDYvMi8yMSAxMDozMiBBTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiBVZmYgSSdtIGp1
+c3Qgd2FpdGluZyBmb3IgZmVlZGJhY2sgZnJvbSBQaGlsaXAgdG8gbWVyZ2UgYSBsYXJnZSBwYXRj
+aCAKPiBzZXQgZm9yIFRUTSB0aHJvdWdoIGRybS1taXNjLW5leHQuCj4KPiBJJ20gcHJldHR5IHN1
+cmUgd2Ugd2lsbCBydW4gaW50byBtZXJnZSBjb25mbGljdHMgaWYgeW91IHRyeSB0byBwdXNoIAo+
+IHlvdXIgY2hhbmdlcyB0aHJvdWdoIHRoZSBJbnRlbCB0cmVlLgo+Cj4gQ2hyaXN0aWFuLgoKT0ss
+IHNvIHdoYXQgd291bGQgYmUgdGhlIGJlc3QgYXBwcm9hY2ggaGVyZT8sIEFkZGluZyB0aGUgVFRN
+IHBhdGNoZXMgdG8gCmRybS1taXNjLW5leHQgd2hlbiB5b3VyIHNldCBoYXMgbGFuZGVkPwoKVGhh
+bmtzLAoKVGhvbWFzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
