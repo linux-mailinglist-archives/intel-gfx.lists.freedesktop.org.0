@@ -2,64 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74AB39A251
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 15:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D20F239A25C
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 15:40:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE55B6E03F;
-	Thu,  3 Jun 2021 13:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8946E0E7;
+	Thu,  3 Jun 2021 13:40:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D8976E03F
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 13:37:28 +0000 (UTC)
-IronPort-SDR: 8STs4NGJF8VZJ6TtL/N/ghxvQapuRNKqCpHkZDHpXNhmehNwbW5dUQWuWLbAG4lqe4l2U1+VAC
- IKl1mddeAJNw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="202185217"
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="202185217"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 06:37:28 -0700
-IronPort-SDR: iSiA+eykXJH59rLZdy49BzsoFW0Vx+P/pl5+awKi4Oyfl3a/aYJ11QnLH0eW94ZeXn14lCXxbl
- celkcfob8ZAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="550165692"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga004.jf.intel.com with ESMTP; 03 Jun 2021 06:37:27 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 3 Jun 2021 06:37:26 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 3 Jun 2021 19:07:24 +0530
-Received: from bgsmsx606.gar.corp.intel.com ([10.67.234.8]) by
- BGSMSX606.gar.corp.intel.com ([10.67.234.8]) with mapi id 15.01.2242.008;
- Thu, 3 Jun 2021 19:07:24 +0530
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit changes
- for uncompressed joiner
-Thread-Index: AQHXSNc9FInWnuQIb0SjW/tIEOKo3qsByukAgACVrkA=
-Date: Thu, 3 Jun 2021 13:37:24 +0000
-Message-ID: <2a72b3e624e748ca9fd22e84b644d2fa@intel.com>
-References: <20210514153711.2359617-1-matthew.d.roper@intel.com>
- <20210514153711.2359617-16-matthew.d.roper@intel.com>
- <87fsxzp9qx.fsf@intel.com>
-In-Reply-To: <87fsxzp9qx.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFCEC6E0E7;
+ Thu,  3 Jun 2021 13:40:42 +0000 (UTC)
+IronPort-SDR: 4CksHqKtLeqOEzZ21c3F05l1wU4OvLYwL9t/DhSz1fz8+nk7dL4BzBO7AQMlZ0SgkWVsc0ogA1
+ /bj9rWLEC3pg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="204031411"
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="204031411"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 06:40:42 -0700
+IronPort-SDR: kxD0Gd/q+CCx6tS5p+21g2SmznvorGTf/22xAI0x2KmmtmO1mnVt8dU5A6Ky4p4sOBdxZW/LCF
+ 2W9Jo9qTG4yw==
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="417382485"
+Received: from vkubarev-mobl1.ccr.corp.intel.com (HELO [10.249.254.167])
+ ([10.249.254.167])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 06:40:40 -0700
+To: Matthew Auld <matthew.william.auld@gmail.com>
+References: <20210602170716.280491-1-thomas.hellstrom@linux.intel.com>
+ <20210602170716.280491-3-thomas.hellstrom@linux.intel.com>
+ <CAM0jSHNp8Z4zMKUhKvEDN2GrMKqxAW7vDtEsr8mkfRTZtC91vA@mail.gmail.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <e8696cce-82ab-ff9f-3cf8-866496cd17d4@linux.intel.com>
+Date: Thu, 3 Jun 2021 15:40:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit
- changes for uncompressed joiner
+In-Reply-To: <CAM0jSHNp8Z4zMKUhKvEDN2GrMKqxAW7vDtEsr8mkfRTZtC91vA@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/ttm: Adjust gem flags and
+ caching settings after a move
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,247 +52,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Thursday, June 3, 2021 3:10 PM
-> To: Roper, Matthew D <matthew.d.roper@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
-> <manasi.d.navare@intel.com>; Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit changes
-> for uncompressed joiner
-> 
-> On Fri, 14 May 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
-> > From: Animesh Manna <animesh.manna@intel.com>
-> >
-> > Respective bit for master or slave to be set for uncompressed
-> > bigjoiner in dss_ctl1 register.
-> 
-> I was looking at the changes here due to a static checker complaint, and I think
-> there are a number of issues here. Some more serious than others, and some
-> predate the patch.
-> 
-> Comments inline.
-> 
-> > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c |  6 +++
-> >  drivers/gpu/drm/i915/display/intel_vdsc.c    | 40 +++++++++++++++++++-
-> >  drivers/gpu/drm/i915/display/intel_vdsc.h    |  2 +
-> >  drivers/gpu/drm/i915/i915_reg.h              |  2 +
-> >  4 files changed, 49 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index b5fd721137d3..422b59ebf6dc 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -3411,6 +3411,7 @@ static void icl_ddi_bigjoiner_pre_enable(struct
-> intel_atomic_state *state,
-> >  					 const struct intel_crtc_state
-> *crtc_state)  {
-> >  	struct intel_crtc *master = to_intel_crtc(crtc_state->uapi.crtc);
-> > +	struct drm_i915_private *dev_priv = to_i915(master->base.dev);
-> >  	struct intel_crtc_state *master_crtc_state;
-> >  	struct drm_connector_state *conn_state;
-> >  	struct drm_connector *conn;
-> > @@ -3444,6 +3445,9 @@ static void icl_ddi_bigjoiner_pre_enable(struct
-> intel_atomic_state *state,
-> >  		/* and DSC on slave */
-> >  		intel_dsc_enable(NULL, crtc_state);
-> >  	}
-> > +
-> > +	if (DISPLAY_VER(dev_priv) >= 13)
-> > +		intel_uncompressed_joiner_enable(crtc_state);
-> >  }
-> >
-> >  static void hsw_crtc_enable(struct intel_atomic_state *state, @@
-> > -6250,6 +6254,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
-> >  	}
-> >
-> >  	intel_dsc_get_config(pipe_config);
-> > +	if (DISPLAY_VER(dev_priv) >= 13 && !pipe_config-
-> >dsc.compression_enable)
-> > +		intel_uncompressed_joiner_get_config(pipe_config);
-> >
-> >  	if (!active) {
-> >  		/* bigjoiner slave doesn't enable transcoder */ diff --git
-> > a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > index adcd6752f919..efc3184d8315 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > @@ -1021,6 +1021,22 @@ static i915_reg_t dss_ctl2_reg(const struct
-> intel_crtc_state *crtc_state)
-> >  	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) : DSS_CTL2;
-> > }
-> >
-> > +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
-> > +*crtc_state)
-> 
-> Naming. Basically for any new function, the function name prefix should match
-> the file name. intel_vdsc.[ch] should have functions prefixed intel_vdsc_*(). This
-> is where we're headed to increase clarity.
-> 
-> intel_uncompressed_*() is something completely different.
-> 
-> Granted, here we already have intel_dsc_*() in intel_vdsc.c. We should probably
-> stick with intel_dsc_*(). A possible function or file rename is not out of the
-> question, but that's a separate matter.
-
-As there is not separate register for uncompressed joiner, using bitfield of dsc register only the function name can be changed to intel_dsc_uncompressed_joiner_enable().
-
-> 
-> > +{
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > +	u32 dss_ctl1_val = 0;
-> > +
-> > +	if (crtc_state->bigjoiner && !crtc_state->dsc.compression_enable) {
-> > +		if (crtc_state->bigjoiner_slave)
-> > +			dss_ctl1_val |= UNCOMPRESSED_JOINER_SLAVE;
-> > +		else
-> > +			dss_ctl1_val |= UNCOMPRESSED_JOINER_MASTER;
-> > +
-> > +		intel_de_write(dev_priv, dss_ctl1_reg(crtc_state), dss_ctl1_val);
-> > +	}
-> > +}
-> > +
-> >  void intel_dsc_enable(struct intel_encoder *encoder,
-> >  		      const struct intel_crtc_state *crtc_state)  { @@ -1060,13
-> > +1076,35 @@ void intel_dsc_disable(const struct intel_crtc_state
-> *old_crtc_state)
-> >  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> >
-> > -	if (!old_crtc_state->dsc.compression_enable)
-> > +	if (!(old_crtc_state->dsc.compression_enable &&
-> > +	      old_crtc_state->bigjoiner))
-> 
-> This fails to disable compression if we only have compression but no bigjoiner,
-> which is the more common case!
-> 
-> See also:
-> 
-> https://gitlab.freedesktop.org/drm/intel/-/issues/3537
-> https://patchwork.freedesktop.org/patch/msgid/20210603065356.15435-1-
-> vandita.kulkarni@intel.com
-> 
-
-We may need to remove both the condition check.
-In uncompressed bigjoiner, compression_enable flag will be 0 and may not clear the bit of dss_ctl1_reg.
-So can we remove both the checks, hoping it will not harm reseting the register even if it is not set. 
-
-> >  		return;
-> >
-> >  	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
-> >  	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);  }
-> >
-> > +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
-> > +*crtc_state) {
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> > +	u32 dss_ctl1;
-> > +
-> > +	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
-> > +	if (dss_ctl1 & UNCOMPRESSED_JOINER_MASTER) {
-> > +		crtc_state->bigjoiner = true;
-> > +		if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
-> > +			crtc_state->bigjoiner_linked_crtc =
-> > +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe +
-> 1);
-> > +	} else if (dss_ctl1 & UNCOMPRESSED_JOINER_SLAVE) {
-> > +		crtc_state->bigjoiner = true;
-> > +		crtc_state->bigjoiner_slave = true;
-> > +		if (!WARN_ON(crtc->pipe == PIPE_A))
-> > +			crtc_state->bigjoiner_linked_crtc =
-> > +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe -
-> 1);
-> > +	}
-> 
-> Nitpick: This duplicates a bunch of logic for figuring out master/slave.
-> 
-> The static checker warning was about crtc->pipe + 1 usage. Since
-> INTEL_NUM_PIPES() looks at the hamming weight of i915->pipe_mask, the
-> checker has a hard time figuring out it does not overflow
-> i915->pipe_to_crtc_mapping[] in intel_get_crtc_for_pipe().
-> 
-> So here in intel_vdsc.c the checks are for overflowing/underflowing the pipe
-> range. In intel_get_crtc_for_pipe() there's a check for the pipe actually existing -
-> the pipe numbering might not be contiguous.
-> 
-> Superficially the static checker warning is bogus, as in we won't overflow
-> anything. However, deep down there are issues in the consistency of the checks
-> and how to handle non-contigouous pipe numbering.
-> 
-> Indeed, this does not *need* the number. We should figure out the next *crtc*,
-> not the next pipe *number*, which may or may not be pipe + 1.
-
-dss_ctl1 value is used to identify master or slave crtc. If needed WARN_ON check can be removed... but pipe enum values like PIPE_A/B/C/D is used to get the master/slave crtc and always bigjoiner is possible with two adjacent pipes.
-
-Regards,
-Animesh
-
-> 
-> 
-> BR,
-> Jani.
-> 
-> > +}
-> > +
-> >  void intel_dsc_get_config(struct intel_crtc_state *crtc_state)  {
-> >  	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config; diff
-> > --git a/drivers/gpu/drm/i915/display/intel_vdsc.h
-> > b/drivers/gpu/drm/i915/display/intel_vdsc.h
-> > index 65d301c23580..fe4d45561253 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-> > @@ -12,11 +12,13 @@ struct intel_encoder;  struct intel_crtc_state;
-> >
-> >  bool intel_dsc_source_support(const struct intel_crtc_state
-> > *crtc_state);
-> > +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
-> > +*crtc_state);
-> >  void intel_dsc_enable(struct intel_encoder *encoder,
-> >  		      const struct intel_crtc_state *crtc_state);  void
-> > intel_dsc_disable(const struct intel_crtc_state *crtc_state);  int
-> > intel_dsc_compute_params(struct intel_encoder *encoder,
-> >  			     struct intel_crtc_state *pipe_config);
-> > +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
-> > +*crtc_state);
-> >  void intel_dsc_get_config(struct intel_crtc_state *crtc_state);  enum
-> > intel_display_power_domain  intel_dsc_power_domain(const struct
-> > intel_crtc_state *crtc_state); diff --git
-> > a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index 31bc413dbba1..dd6e0bae9573 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -11493,6 +11493,8 @@ enum skl_power_gate {
-> >  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
-> >  #define  SPLITTER_CONFIGURATION_2_SEGMENT
-> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
-> >  #define  SPLITTER_CONFIGURATION_4_SEGMENT
-> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-> > +#define  UNCOMPRESSED_JOINER_MASTER		(1 << 21)
-> > +#define  UNCOMPRESSED_JOINER_SLAVE		(1 << 20)
-> >
-> >  #define _ICL_PIPE_DSS_CTL2_PB			0x78204
-> >  #define _ICL_PIPE_DSS_CTL2_PC			0x78404
-> 
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhhbmtzIGZvciByZXZpZXdpbmcsIE1hdHRoZXcuCgpPbiA2LzMvMjEgMTI6MzUgUE0sIE1hdHRo
+ZXcgQXVsZCB3cm90ZToKPiBPbiBXZWQsIDIgSnVuIDIwMjEgYXQgMTg6MDgsIFRob21hcyBIZWxs
+c3Ryw7ZtCj4gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPiB3cm90ZToKPj4gQWZ0
+ZXIgYSBUVE0gbW92ZSB3ZSBuZWVkIHRvIHVwZGF0ZSB0aGUgaTkxNSBnZW0gZmxhZ3MgYW5kIGNh
+Y2hpbmcKPj4gc2V0dGluZ3MgdG8gcmVmbGVjdCB0aGUgbmV3IHBsYWNlbWVudC4KPj4gQWxzbyBp
+bnRyb2R1Y2UgZ3B1X2JpbmRzX2lvbWVtKCkgYW5kIGNwdV9tYXBzX2lvbWVtKCkgdG8gY2xlYW4g
+dXAgdGhlCj4+IHZhcmlvdXMgd2F5cyB3ZSBwcmV2aW91c2x5IHVzZWQgdG8gZGV0ZWN0IHRoaXMu
+Cj4+IEZpbmFsbHksIGluaXRpYWxpemUgdGhlIFRUTSBvYmplY3QgcmVzZXJ2ZWQgdG8gYmUgYWJs
+ZSB0byB1cGRhdGUKPj4gZmxhZ3MgYW5kIGNhY2hpbmcgYmVmb3JlIGFueW9uZSBlbHNlIGdldHMg
+aG9sZCBvZiB0aGUgb2JqZWN0Lgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgSGVsbHN0csO2
+bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+Cj4+IC0tLQo+PiAgIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYyB8IDExMiArKysrKysrKysrKysrKysrKysr
+LS0tLS0KPj4gICAxIGZpbGUgY2hhbmdlZCwgOTAgaW5zZXJ0aW9ucygrKSwgMjIgZGVsZXRpb25z
+KC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
+dHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMKPj4gaW5kZXgg
+YWUxMmEyYmUxMWEyLi5jNzNjNTE3NTVjMjAgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fdHRtLmMKPj4gQEAgLTcwLDYgKzcwLDE3IEBAIHN0YXRpYyBzdHJ1Y3QgdHRt
+X3BsYWNlbWVudCBpOTE1X3N5c19wbGFjZW1lbnQgPSB7Cj4+ICAgICAgICAgIC5idXN5X3BsYWNl
+bWVudCA9ICZsbWVtMF9zeXNfcGxhY2VtZW50X2ZsYWdzWzFdLAo+PiAgIH07Cj4+Cj4+ICtzdGF0
+aWMgYm9vbCBncHVfYmluZHNfaW9tZW0oc3RydWN0IHR0bV9yZXNvdXJjZSAqbWVtKQo+IFdoYXQg
+ZG9lcyBncHVfYmluZHMgbWVhbiBoZXJlPyBJdCdzIG1hcHBlZCB0aG91Z2ggdGhlIEdUVD8KCmdw
+dV9iaW5kX1hYIHdvdWxkIGhlcmUgdHJhbnNsYXRlIHRvICJtYWtlIHh4IHZpc2libGUgdG8gdGhl
+IGdwdSIsIFdlIApjb3VsZCBvZiBjb3Vyc2UgdXNlIHRoZSB0ZXJtICJncHVfbWFwcyIgaWYgeW91
+IHRoaW5rIHRoYXQgZml0cyBiZXR0ZXIuCgo+Cj4+ICt7Cj4+ICsgICAgICAgcmV0dXJuIChtZW0t
+Pm1lbV90eXBlICE9IFRUTV9QTF9TWVNURU0pOwo+PiArfQo+PiArCj4+ICtzdGF0aWMgYm9vbCBj
+cHVfbWFwc19pb21lbShzdHJ1Y3QgdHRtX3Jlc291cmNlICptZW0pCj4+ICt7Cj4+ICsgICAgICAg
+LyogT25jZSAvIGlmIHdlIHN1cHBvcnQgR0dUVCwgdGhpcyBpcyBhbHNvIGZhbHNlIGZvciBjYWNo
+ZWQgdHRtX3R0cyAqLwo+PiArICAgICAgIHJldHVybiAobWVtLT5tZW1fdHlwZSAhPSBUVE1fUExf
+U1lTVEVNKTsKPj4gK30KPiBDYW4gZHJvcCB0aGUgZXh0cmEgYnJhY2tldHMuCj4KPj4gKwo+PiAg
+IHN0YXRpYyB2b2lkIGk5MTVfdHRtX2FkanVzdF9scnUoc3RydWN0IGRybV9pOTE1X2dlbV9vYmpl
+Y3QgKm9iaik7Cj4+Cj4+ICAgc3RhdGljIHN0cnVjdCB0dG1fdHQgKmk5MTVfdHRtX3R0X2NyZWF0
+ZShzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvLAo+PiBAQCAtMTc1LDYgKzE4Niw0MSBAQCBz
+dGF0aWMgdm9pZCBpOTE1X3R0bV9mcmVlX2NhY2hlZF9pb19zdChzdHJ1Y3QgZHJtX2k5MTVfZ2Vt
+X29iamVjdCAqb2JqKQo+PiAgICAgICAgICBvYmotPnR0bS5jYWNoZWRfaW9fc3QgPSBOVUxMOwo+
+PiAgIH0KPj4KPj4gK3N0YXRpYyB2b2lkCj4+ICtpOTE1X3R0bV9hZGp1c3RfZG9tYWluc19hZnRl
+cl9jcHVfbW92ZShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+PiArewo+PiArICAg
+ICAgIHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8gPSBpOTE1X2dlbV90b190dG0ob2JqKTsK
+Pj4gKwo+PiArICAgICAgIGlmIChjcHVfbWFwc19pb21lbSgmYm8tPm1lbSkgfHwgYm8tPnR0bS0+
+Y2FjaGluZyAhPSB0dG1fY2FjaGVkKSB7Cj4+ICsgICAgICAgICAgICAgICBvYmotPndyaXRlX2Rv
+bWFpbiA9IEk5MTVfR0VNX0RPTUFJTl9XQzsKPj4gKyAgICAgICAgICAgICAgIG9iai0+cmVhZF9k
+b21haW5zID0gSTkxNV9HRU1fRE9NQUlOX1dDOwo+PiArICAgICAgIH0gZWxzZSB7Cj4+ICsgICAg
+ICAgICAgICAgICBvYmotPndyaXRlX2RvbWFpbiA9IEk5MTVfR0VNX0RPTUFJTl9DUFU7Cj4+ICsg
+ICAgICAgICAgICAgICBvYmotPnJlYWRfZG9tYWlucyA9IEk5MTVfR0VNX0RPTUFJTl9DUFU7Cj4+
+ICsgICAgICAgfQo+PiArfQo+PiArCj4+ICtzdGF0aWMgdm9pZCBpOTE1X3R0bV9hZGp1c3RfZ2Vt
+X2FmdGVyX21vdmUoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPj4gK3sKPj4gKyAg
+ICAgICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUob2JqLT5iYXNlLmRl
+dik7Cj4+ICsgICAgICAgc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibyA9IGk5MTVfZ2VtX3Rv
+X3R0bShvYmopOwo+PiArICAgICAgIHVuc2lnbmVkIGludCBjYWNoZV9sZXZlbDsKPj4gKwo+PiAr
+ICAgICAgIG9iai0+bWVtX2ZsYWdzICY9IH4oSTkxNV9CT19GTEFHX1NUUlVDVF9QQUdFIHwgSTkx
+NV9CT19GTEFHX0lPTUVNKTsKPj4gKwo+PiArICAgICAgIG9iai0+bWVtX2ZsYWdzIHw9IGNwdV9t
+YXBzX2lvbWVtKCZiby0+bWVtKSA/IEk5MTVfQk9fRkxBR19JT01FTSA6Cj4+ICsgICAgICAgICAg
+ICAgICBJOTE1X0JPX0ZMQUdfU1RSVUNUX1BBR0U7Cj4+ICsKPj4gKyAgICAgICBpZiAoKEhBU19M
+TEMoaTkxNSkgfHwgSEFTX1NOT09QKGk5MTUpKSAmJiAhZ3B1X2JpbmRzX2lvbWVtKCZiby0+bWVt
+KSAmJgo+IEkgdGhpbmsgYWxsIG1vZGVybiBodyBoYXMgc3VwcG9ydCBmb3Igc25vb3Bpbmcgb3Ig
+dGhlIGZhc3Qgc2hhcmVkIExMQy4KPiBBcmUgd2UgZXhwZWN0aW5nIHRvIGhpdCB0aGlzIHBhdGgg
+Zm9yIG5vbi1kZ3B1PwpOb3QgaW5pdGlhbGx5LCBuby4gUG9zc2libHkgbGF0ZXIuCj4gICBBbHNv
+IGJ5IGRlZmF1bHQgd2UKPiB3aWxsIGNob29zZSB0dG1fY2FjaGVkIGF0IGxlYXN0IGZvciBwbGF0
+Zm9ybXMgbGlrZSBkZzE/Ck5vdCBmb3IgZXZpY3RlZCBMTUVNLiBUaGV5IHN0aWxsIGhhdmUgdHRt
+X3dyaXRlX2NvbWJpbmUuIFVzZXItc3BhY2UgY2FuIApzdGlsbCBhY2Nlc3MgdGhvc2UgdGhyb3Vn
+aCBtbWFwKCkgd2hpbGUgZXZpY3RlZC4KPiAgIEFsc28gcGluX21hcCgpCj4gaXMgc3RpbGwgYSBz
+ZXBhcmF0ZSBpbnRlcmZhY2UgYXQgdGhpcyBwb2ludD8KWWVzLCBJIGhhZCBhIGNvbW1lbnQgb24g
+dGhhdCBpbiB5b3VyIGNhY2hpbmcgcGF0Y2ggdGhhdCBJIHJldmlld2VkLCB3ZSAKbmVlZCB0byBt
+YWtlIHN1cmUgZXZlbiBmb3IgcGluX21hcCB0aGF0IHdlIG9ubHkgbWFwIHVzaW5nIHRoZSBzaW5n
+bGUgCnN1cHBvcnRlZCBjYWNoaW5nIGF0dHJpYnV0ZXMgZm9yIHRoZSBCTy4KPj4gKyAgICAgICAg
+ICAgYm8tPnR0bS0+Y2FjaGluZyA9PSB0dG1fY2FjaGVkKSB7Cj4+ICsgICAgICAgICAgICAgICBj
+YWNoZV9sZXZlbCA9IEk5MTVfQ0FDSEVfTExDOwo+PiArICAgICAgIH0gZWxzZSB7Cj4+ICsgICAg
+ICAgICAgICAgICBjYWNoZV9sZXZlbCA9IEk5MTVfQ0FDSEVfTk9ORTsKPj4gKyAgICAgICB9Cj4+
+ICsKPj4gKyAgICAgICBpOTE1X2dlbV9vYmplY3Rfc2V0X2NhY2hlX2NvaGVyZW5jeShvYmosIGNh
+Y2hlX2xldmVsKTsKPj4gK30KPj4gKwo+PiAgIHN0YXRpYyB2b2lkIGk5MTVfdHRtX3B1cmdlKHN0
+cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4+ICAgewo+PiAgICAgICAgICBzdHJ1Y3Qg
+dHRtX2J1ZmZlcl9vYmplY3QgKmJvID0gaTkxNV9nZW1fdG9fdHRtKG9iaik7Cj4+IEBAIC0xOTAs
+OCArMjM2LDEwIEBAIHN0YXRpYyB2b2lkIGk5MTVfdHRtX3B1cmdlKHN0cnVjdCBkcm1faTkxNV9n
+ZW1fb2JqZWN0ICpvYmopCj4+Cj4+ICAgICAgICAgIC8qIFRUTSdzIHB1cmdlIGludGVyZmFjZS4g
+Tm90ZSB0aGF0IHdlIG1pZ2h0IGJlIHJlZW50ZXJpbmcuICovCj4+ICAgICAgICAgIHJldCA9IHR0
+bV9ib192YWxpZGF0ZShibywgJnBsYWNlLCAmY3R4KTsKPj4gLQo+PiAgICAgICAgICBpZiAoIXJl
+dCkgewo+PiArICAgICAgICAgICAgICAgb2JqLT53cml0ZV9kb21haW4gPSAwOwo+PiArICAgICAg
+ICAgICAgICAgb2JqLT5yZWFkX2RvbWFpbnMgPSAwOwo+PiArICAgICAgICAgICAgICAgaTkxNV90
+dG1fYWRqdXN0X2dlbV9hZnRlcl9tb3ZlKG9iaik7Cj4+ICAgICAgICAgICAgICAgICAgaTkxNV90
+dG1fZnJlZV9jYWNoZWRfaW9fc3Qob2JqKTsKPj4gICAgICAgICAgICAgICAgICBvYmotPm1tLm1h
+ZHYgPSBfX0k5MTVfTUFEVl9QVVJHRUQ7Cj4+ICAgICAgICAgIH0KPj4gQEAgLTI3MywxMiArMzIx
+LDE1IEBAIGk5MTVfdHRtX3Jlc291cmNlX2dldF9zdChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVj
+dCAqb2JqLAo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCB0dG1fcmVzb3VyY2Ug
+KnJlcykKPj4gICB7Cj4+ICAgICAgICAgIHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8gPSBp
+OTE1X2dlbV90b190dG0ob2JqKTsKPj4gLSAgICAgICBzdHJ1Y3QgdHRtX3Jlc291cmNlX21hbmFn
+ZXIgKm1hbiA9Cj4+IC0gICAgICAgICAgICAgICB0dG1fbWFuYWdlcl90eXBlKGJvLT5iZGV2LCBy
+ZXMtPm1lbV90eXBlKTsKPj4KPj4gLSAgICAgICBpZiAobWFuLT51c2VfdHQpCj4+ICsgICAgICAg
+aWYgKCFncHVfYmluZHNfaW9tZW0ocmVzKSkKPj4gICAgICAgICAgICAgICAgICByZXR1cm4gaTkx
+NV90dG1fdHRfZ2V0X3N0KGJvLT50dG0pOwo+Pgo+PiArICAgICAgIC8qCj4+ICsgICAgICAgICog
+SWYgQ1BVIG1hcHBpbmcgZGlmZmVycywgd2UgbmVlZCB0byBhZGQgdGhlIHR0bV90dCBwYWdlcyB0
+bwo+PiArICAgICAgICAqIHRoZSByZXN1bHRpbmcgc3QuIE1pZ2h0IG1ha2Ugc2Vuc2UgZm9yIEdH
+VFQuCj4+ICsgICAgICAgICovCj4+ICsgICAgICAgR0VNX1dBUk5fT04oIWNwdV9tYXBzX2lvbWVt
+KHJlcykpOwo+PiAgICAgICAgICByZXR1cm4gaW50ZWxfcmVnaW9uX3R0bV9ub2RlX3RvX3N0KG9i
+ai0+bW0ucmVnaW9uLCByZXMtPm1tX25vZGUpOwo+PiAgIH0KPj4KPj4gQEAgLTI5MCw4ICszNDEs
+NiBAQCBzdGF0aWMgaW50IGk5MTVfdHRtX21vdmUoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpi
+bywgYm9vbCBldmljdCwKPj4gICAgICAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9i
+aiA9IGk5MTVfdHRtX3RvX2dlbShibyk7Cj4+ICAgICAgICAgIHN0cnVjdCB0dG1fcmVzb3VyY2Vf
+bWFuYWdlciAqZHN0X21hbiA9Cj4+ICAgICAgICAgICAgICAgICAgdHRtX21hbmFnZXJfdHlwZShi
+by0+YmRldiwgZHN0X21lbS0+bWVtX3R5cGUpOwo+PiAtICAgICAgIHN0cnVjdCB0dG1fcmVzb3Vy
+Y2VfbWFuYWdlciAqc3JjX21hbiA9Cj4+IC0gICAgICAgICAgICAgICB0dG1fbWFuYWdlcl90eXBl
+KGJvLT5iZGV2LCBiby0+bWVtLm1lbV90eXBlKTsKPj4gICAgICAgICAgc3RydWN0IGludGVsX21l
+bW9yeV9yZWdpb24gKmRzdF9yZWcsICpzcmNfcmVnOwo+PiAgICAgICAgICB1bmlvbiB7Cj4+ICAg
+ICAgICAgICAgICAgICAgc3RydWN0IHR0bV9rbWFwX2l0ZXJfdHQgdHQ7Cj4+IEBAIC0zMzIsMzQg
+KzM4MSwzNiBAQCBzdGF0aWMgaW50IGk5MTVfdHRtX21vdmUoc3RydWN0IHR0bV9idWZmZXJfb2Jq
+ZWN0ICpibywgYm9vbCBldmljdCwKPj4gICAgICAgICAgaWYgKElTX0VSUihkc3Rfc3QpKQo+PiAg
+ICAgICAgICAgICAgICAgIHJldHVybiBQVFJfRVJSKGRzdF9zdCk7Cj4+Cj4+IC0gICAgICAgLyog
+SWYgd2Ugc3RhcnQgbWFwcGluZyBHR1RULCB3ZSBjYW4gbm8gbG9uZ2VyIHVzZSBtYW46OnVzZV90
+dCBoZXJlLiAqLwo+PiAtICAgICAgIGRzdF9pdGVyID0gZHN0X21hbi0+dXNlX3R0ID8KPj4gKyAg
+ICAgICBkc3RfaXRlciA9ICFjcHVfbWFwc19pb21lbShkc3RfbWVtKSA/Cj4+ICAgICAgICAgICAg
+ICAgICAgdHRtX2ttYXBfaXRlcl90dF9pbml0KCZfZHN0X2l0ZXIudHQsIGJvLT50dG0pIDoKPj4g
+ICAgICAgICAgICAgICAgICB0dG1fa21hcF9pdGVyX2lvbWFwX2luaXQoJl9kc3RfaXRlci5pbywg
+JmRzdF9yZWctPmlvbWFwLAo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBkc3Rfc3QsIGRzdF9yZWctPnJlZ2lvbi5zdGFydCk7Cj4+Cj4+IC0gICAgICAgc3JjX2l0
+ZXIgPSBzcmNfbWFuLT51c2VfdHQgPwo+PiArICAgICAgIHNyY19pdGVyID0gIWNwdV9tYXBzX2lv
+bWVtKCZiby0+bWVtKSA/Cj4+ICAgICAgICAgICAgICAgICAgdHRtX2ttYXBfaXRlcl90dF9pbml0
+KCZfc3JjX2l0ZXIudHQsIGJvLT50dG0pIDoKPj4gICAgICAgICAgICAgICAgICB0dG1fa21hcF9p
+dGVyX2lvbWFwX2luaXQoJl9zcmNfaXRlci5pbywgJnNyY19yZWctPmlvbWFwLAo+PiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvYmotPnR0bS5jYWNoZWRfaW9fc3Qs
+Cj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNyY19yZWctPnJl
+Z2lvbi5zdGFydCk7Cj4+Cj4+ICAgICAgICAgIHR0bV9tb3ZlX21lbWNweShibywgZHN0X21lbS0+
+bnVtX3BhZ2VzLCBkc3RfaXRlciwgc3JjX2l0ZXIpOwo+PiArICAgICAgIC8qIEJlbG93IGRzdF9t
+ZW0gYmVjb21lcyBiby0+bWVtLiAqLwo+PiAgICAgICAgICB0dG1fYm9fbW92ZV9zeW5jX2NsZWFu
+dXAoYm8sIGRzdF9tZW0pOwo+PiArICAgICAgIGk5MTVfdHRtX2FkanVzdF9kb21haW5zX2FmdGVy
+X2NwdV9tb3ZlKG9iaik7Cj4+ICAgICAgICAgIGk5MTVfdHRtX2ZyZWVfY2FjaGVkX2lvX3N0KG9i
+aik7Cj4+Cj4+IC0gICAgICAgaWYgKCFkc3RfbWFuLT51c2VfdHQpIHsKPj4gKyAgICAgICBpZiAo
+Z3B1X2JpbmRzX2lvbWVtKGRzdF9tZW0pIHx8IGNwdV9tYXBzX2lvbWVtKGRzdF9tZW0pKSB7Cj4+
+ICAgICAgICAgICAgICAgICAgb2JqLT50dG0uY2FjaGVkX2lvX3N0ID0gZHN0X3N0Owo+PiAgICAg
+ICAgICAgICAgICAgIG9iai0+dHRtLmdldF9pb19wYWdlLnNnX3BvcyA9IGRzdF9zdC0+c2dsOwo+
+PiAgICAgICAgICAgICAgICAgIG9iai0+dHRtLmdldF9pb19wYWdlLnNnX2lkeCA9IDA7Cj4+ICAg
+ICAgICAgIH0KPj4KPj4gKyAgICAgICBpOTE1X3R0bV9hZGp1c3RfZ2VtX2FmdGVyX21vdmUob2Jq
+KTsKPj4gICAgICAgICAgcmV0dXJuIDA7Cj4+ICAgfQo+Pgo+PiAgIHN0YXRpYyBpbnQgaTkxNV90
+dG1faW9fbWVtX3Jlc2VydmUoc3RydWN0IHR0bV9kZXZpY2UgKmJkZXYsIHN0cnVjdCB0dG1fcmVz
+b3VyY2UgKm1lbSkKPj4gICB7Cj4+IC0gICAgICAgaWYgKG1lbS0+bWVtX3R5cGUgPCBJOTE1X1BM
+X0xNRU0wKQo+PiArICAgICAgIGlmICghY3B1X21hcHNfaW9tZW0obWVtKSkKPj4gICAgICAgICAg
+ICAgICAgICByZXR1cm4gMDsKPj4KPj4gICAgICAgICAgbWVtLT5idXMuY2FjaGluZyA9IHR0bV93
+cml0ZV9jb21iaW5lZDsKPj4gQEAgLTQyMSw2ICs0NzIsMTYgQEAgc3RhdGljIGludCBpOTE1X3R0
+bV9nZXRfcGFnZXMoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPj4gICAgICAgICAg
+aWYgKHJldCkKPj4gICAgICAgICAgICAgICAgICByZXR1cm4gcmV0ID09IC1FTk9TUEMgPyAtRU5Y
+SU8gOiByZXQ7Cj4+Cj4+ICsgICAgICAgaTkxNV90dG1fYWRqdXN0X2xydShvYmopOwo+PiArICAg
+ICAgIGlmIChiby0+dHRtICYmICF0dG1fdHRfaXNfcG9wdWxhdGVkKGJvLT50dG0pKSB7Cj4+ICsg
+ICAgICAgICAgICAgICByZXQgPSB0dG1fdHRfcG9wdWxhdGUoYm8tPmJkZXYsIGJvLT50dG0sICZj
+dHgpOwo+PiArICAgICAgICAgICAgICAgaWYgKHJldCkKPj4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgcmV0dXJuIHJldDsKPj4gKwo+PiArICAgICAgICAgICAgICAgaTkxNV90dG1fYWRqdXN0X2Rv
+bWFpbnNfYWZ0ZXJfY3B1X21vdmUob2JqKTsKPj4gKyAgICAgICAgICAgICAgIGk5MTVfdHRtX2Fk
+anVzdF9nZW1fYWZ0ZXJfbW92ZShvYmopOwo+PiArICAgICAgIH0KPj4gKwo+PiAgICAgICAgICAv
+KiBPYmplY3QgZWl0aGVyIGhhcyBhIHBhZ2UgdmVjdG9yIG9yIGlzIGFuIGlvbWVtIG9iamVjdCAq
+Lwo+PiAgICAgICAgICBzdCA9IGJvLT50dG0gPyBpOTE1X3R0bV90dF9nZXRfc3QoYm8tPnR0bSkg
+OiBvYmotPnR0bS5jYWNoZWRfaW9fc3Q7Cj4+ICAgICAgICAgIGlmIChJU19FUlIoc3QpKQo+PiBA
+QCAtNDI4LDggKzQ4OSw2IEBAIHN0YXRpYyBpbnQgaTkxNV90dG1fZ2V0X3BhZ2VzKHN0cnVjdCBk
+cm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4+Cj4+ICAgICAgICAgIF9faTkxNV9nZW1fb2JqZWN0
+X3NldF9wYWdlcyhvYmosIHN0LCBpOTE1X3NnX2RtYV9zaXplcyhzdC0+c2dsKSk7Cj4+Cj4+IC0g
+ICAgICAgaTkxNV90dG1fYWRqdXN0X2xydShvYmopOwo+PiAtCj4+ICAgICAgICAgIHJldHVybiBy
+ZXQ7Cj4+ICAgfQo+Pgo+PiBAQCAtNTYzLDYgKzYyMiw3IEBAIHN0YXRpYyB1NjQgaTkxNV90dG1f
+bW1hcF9vZmZzZXQoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPj4KPj4gICBjb25z
+dCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdF9vcHMgaTkxNV9nZW1fdHRtX29ial9vcHMgPSB7
+Cj4+ICAgICAgICAgIC5uYW1lID0gImk5MTVfZ2VtX29iamVjdF90dG0iLAo+PiArICAgICAgIC5m
+bGFncyA9IEk5MTVfR0VNX09CSkVDVF9JU19TSFJJTktBQkxFLAo+Pgo+PiAgICAgICAgICAuZ2V0
+X3BhZ2VzID0gaTkxNV90dG1fZ2V0X3BhZ2VzLAo+PiAgICAgICAgICAucHV0X3BhZ2VzID0gaTkx
+NV90dG1fcHV0X3BhZ2VzLAo+PiBAQCAtNTk5LDYgKzY1OSwxMCBAQCBpbnQgX19pOTE1X2dlbV90
+dG1fb2JqZWN0X2luaXQoc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSwKPj4gICB7Cj4+
+ICAgICAgICAgIHN0YXRpYyBzdHJ1Y3QgbG9ja19jbGFzc19rZXkgbG9ja19jbGFzczsKPj4gICAg
+ICAgICAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBtZW0tPmk5MTU7Cj4+ICsgICAg
+ICAgc3RydWN0IHR0bV9vcGVyYXRpb25fY3R4IGN0eCA9IHsKPj4gKyAgICAgICAgICAgICAgIC5p
+bnRlcnJ1cHRpYmxlID0gdHJ1ZSwKPj4gKyAgICAgICAgICAgICAgIC5ub193YWl0X2dwdSA9IGZh
+bHNlLAo+PiArICAgICAgIH07Cj4+ICAgICAgICAgIGVudW0gdHRtX2JvX3R5cGUgYm9fdHlwZTsK
+Pj4gICAgICAgICAgc2l6ZV90IGFsaWdubWVudCA9IDA7Cj4+ICAgICAgICAgIGludCByZXQ7Cj4+
+IEBAIC02MTgsMTUgKzY4MiwxNCBAQCBpbnQgX19pOTE1X2dlbV90dG1fb2JqZWN0X2luaXQoc3Ry
+dWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSwKPj4gICAgICAgICAgaTkxNV9nZW1fb2JqZWN0
+X2luaXQob2JqLCAmaTkxNV9nZW1fdHRtX29ial9vcHMsICZsb2NrX2NsYXNzLCBmbGFncyk7Cj4+
+ICAgICAgICAgIGk5MTVfZ2VtX29iamVjdF9pbml0X21lbW9yeV9yZWdpb24ob2JqLCBtZW0pOwo+
+PiAgICAgICAgICBpOTE1X2dlbV9vYmplY3RfbWFrZV91bnNocmlua2FibGUob2JqKTsKPj4gLSAg
+ICAgICBvYmotPnJlYWRfZG9tYWlucyA9IEk5MTVfR0VNX0RPTUFJTl9XQyB8IEk5MTVfR0VNX0RP
+TUFJTl9HVFQ7Cj4+IC0gICAgICAgb2JqLT5tZW1fZmxhZ3MgfD0gSTkxNV9CT19GTEFHX0lPTUVN
+Owo+PiAtICAgICAgIGk5MTVfZ2VtX29iamVjdF9zZXRfY2FjaGVfY29oZXJlbmN5KG9iaiwgSTkx
+NV9DQUNIRV9OT05FKTsKPj4gICAgICAgICAgSU5JVF9SQURJWF9UUkVFKCZvYmotPnR0bS5nZXRf
+aW9fcGFnZS5yYWRpeCwgR0ZQX0tFUk5FTCB8IF9fR0ZQX05PV0FSTik7Cj4+ICAgICAgICAgIG11
+dGV4X2luaXQoJm9iai0+dHRtLmdldF9pb19wYWdlLmxvY2spOwo+Pgo+PiAgICAgICAgICBib190
+eXBlID0gKG9iai0+ZmxhZ3MgJiBJOTE1X0JPX0FMTE9DX1VTRVIpID8gdHRtX2JvX3R5cGVfZGV2
+aWNlIDoKPj4gICAgICAgICAgICAgICAgICB0dG1fYm9fdHlwZV9rZXJuZWw7Cj4+Cj4+ICsgICAg
+ICAgb2JqLT5iYXNlLnZtYV9ub2RlLmRyaXZlcl9wcml2YXRlID0gaTkxNV9nZW1fdG9fdHRtKG9i
+aik7Cj4+ICsKPj4gICAgICAgICAgLyoKPj4gICAgICAgICAgICogSWYgdGhpcyBmdW5jdGlvbiBm
+YWlscywgaXQgd2lsbCBjYWxsIHRoZSBkZXN0cnVjdG9yLCBidXQKPj4gICAgICAgICAgICogb3Vy
+IGNhbGxlciBzdGlsbCBvd25zIHRoZSBvYmplY3QuIFNvIG5vIGZyZWVpbmcgaW4gdGhlCj4+IEBA
+IC02MzQsMTQgKzY5NywxOSBAQCBpbnQgX19pOTE1X2dlbV90dG1fb2JqZWN0X2luaXQoc3RydWN0
+IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSwKPj4gICAgICAgICAgICogU2ltaWxhcmx5LCBpbiBk
+ZWxheWVkX2Rlc3Ryb3ksIHdlIGNhbid0IGNhbGwgdHRtX2JvX3B1dCgpCj4+ICAgICAgICAgICAq
+IHVudGlsIHN1Y2Nlc3NmdWwgaW5pdGlhbGl6YXRpb24uCj4+ICAgICAgICAgICAqLwo+PiAtICAg
+ICAgIG9iai0+YmFzZS52bWFfbm9kZS5kcml2ZXJfcHJpdmF0ZSA9IGk5MTVfZ2VtX3RvX3R0bShv
+YmopOwo+PiAtICAgICAgIHJldCA9IHR0bV9ib19pbml0KCZpOTE1LT5iZGV2LCBpOTE1X2dlbV90
+b190dG0ob2JqKSwgc2l6ZSwKPj4gLSAgICAgICAgICAgICAgICAgICAgICAgICBib190eXBlLCAm
+aTkxNV9zeXNfcGxhY2VtZW50LCBhbGlnbm1lbnQsCj4+IC0gICAgICAgICAgICAgICAgICAgICAg
+ICAgdHJ1ZSwgTlVMTCwgTlVMTCwgaTkxNV90dG1fYm9fZGVzdHJveSk7Cj4+ICsgICAgICAgcmV0
+ID0gdHRtX2JvX2luaXRfcmVzZXJ2ZWQoJmk5MTUtPmJkZXYsIGk5MTVfZ2VtX3RvX3R0bShvYmop
+LCBzaXplLAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJvX3R5cGUsICZp
+OTE1X3N5c19wbGFjZW1lbnQsIGFsaWdubWVudCwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAmY3R4LCBOVUxMLCBOVUxMLCBpOTE1X3R0bV9ib19kZXN0cm95KTsKPj4gKwo+
+PiArICAgICAgIGlmIChyZXQpCj4+ICsgICAgICAgICAgICAgICBnb3RvIG91dDsKPj4KPj4gLSAg
+ICAgICBpZiAoIXJldCkKPj4gLSAgICAgICAgICAgICAgIG9iai0+dHRtLmNyZWF0ZWQgPSB0cnVl
+Owo+PiArICAgICAgIG9iai0+dHRtLmNyZWF0ZWQgPSB0cnVlOwo+PiArICAgICAgIGk5MTVfdHRt
+X2FkanVzdF9kb21haW5zX2FmdGVyX2NwdV9tb3ZlKG9iaik7Cj4+ICsgICAgICAgaTkxNV90dG1f
+YWRqdXN0X2dlbV9hZnRlcl9tb3ZlKG9iaik7Cj4+ICsgICAgICAgaTkxNV9nZW1fb2JqZWN0X3Vu
+bG9jayhvYmopOwo+Pgo+PiArb3V0Ogo+PiAgICAgICAgICAvKiBpOTE1IHdhbnRzIC1FTlhJTyB3
+aGVuIG91dCBvZiBtZW1vcnkgcmVnaW9uIHNwYWNlLiAqLwo+PiAgICAgICAgICByZXR1cm4gKHJl
+dCA9PSAtRU5PU1BDKSA/IC1FTlhJTyA6IHJldDsKPj4gICB9Cj4+IC0tCj4+IDIuMzEuMQo+Pgo+
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBJbnRl
+bC1nZnggbWFpbGluZyBsaXN0Cj4+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4g
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
