@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26E839A5C0
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 18:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C0639A5C8
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 18:32:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2B36E575;
-	Thu,  3 Jun 2021 16:30:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD576F4C8;
+	Thu,  3 Jun 2021 16:32:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24B316E219;
- Thu,  3 Jun 2021 16:30:22 +0000 (UTC)
-IronPort-SDR: nBXssoxhqZuXnye65DywdWIIXc0UfiGQAo2Kxp/Y+mytiZvnsqeHy4Nm5AgQyshLg3Cg2YIt9g
- Uh4DrJVncWYA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="203897386"
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="203897386"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 09:30:20 -0700
-IronPort-SDR: AQHP8T5fHoX7Qs5mk6yCaiFf2ZFoLUjswH6qLC5qFt9dBPwuMD5OoIS0/YT0z7vNQehT0FCbpa
- UWR/wEk0A77A==
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="480285241"
-Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 09:30:19 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Thu,  3 Jun 2021 09:48:12 -0700
-Message-Id: <20210603164812.19045-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210603164812.19045-1-matthew.brost@intel.com>
-References: <20210603164812.19045-1-matthew.brost@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0CDC36F4DC;
+ Thu,  3 Jun 2021 16:32:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05FF0A47EB;
+ Thu,  3 Jun 2021 16:32:34 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/uc: Use platform specific defaults
- for GuC/HuC enabling
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason Ekstrand" <jason@jlekstrand.net>
+Date: Thu, 03 Jun 2021 16:32:33 -0000
+Message-ID: <162273795399.8034.15199995170510836747@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210603154027.594906-1-jason@jlekstrand.net>
+In-Reply-To: <20210603154027.594906-1-jason@jlekstrand.net>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Get_rid_of_fence_error_propagation_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,55 +38,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-The meaning of 'default' for the enable_guc module parameter has been
-updated to accurately reflect what is supported on current platforms.
-So start using the defaults instead of forcing everything off.
-Although, note that right now, the default is for everything to be off
-anyway. So this is not a change for current platforms.
+Series: drm/i915: Get rid of fence error propagation (rev2)
+URL   : https://patchwork.freedesktop.org/series/90891/
+State : warning
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/i915_params.c | 2 +-
- drivers/gpu/drm/i915/i915_params.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 0320878d96b0..e07f4cfea63a 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -160,7 +160,7 @@ i915_param_named_unsafe(edp_vswing, int, 0400,
- i915_param_named_unsafe(enable_guc, int, 0400,
- 	"Enable GuC load for GuC submission and/or HuC load. "
- 	"Required functionality can be selected using bitmask values. "
--	"(-1=auto, 0=disable [default], 1=GuC submission, 2=HuC load)");
-+	"(-1=auto [default], 0=disable, 1=GuC submission, 2=HuC load)");
- 
- i915_param_named(guc_log_level, int, 0400,
- 	"GuC firmware logging level. Requires GuC to be loaded. "
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 4a114a5ad000..f27eceb82c0f 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -59,7 +59,7 @@ struct drm_printer;
- 	param(int, disable_power_well, -1, 0400) \
- 	param(int, enable_ips, 1, 0600) \
- 	param(int, invert_brightness, 0, 0600) \
--	param(int, enable_guc, 0, 0400) \
-+	param(int, enable_guc, -1, 0400) \
- 	param(int, guc_log_level, -1, 0400) \
- 	param(char *, guc_firmware_path, NULL, 0400) \
- 	param(char *, huc_firmware_path, NULL, 0400) \
--- 
-2.28.0
+$ dim checkpatch origin/drm-tip
+20301afd39c9 drm/i915: Revert "drm/i915/gem: Asynchronous cmdparser"
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 686c7c35abc2 ("drm/i915/gem: Asynchronous cmdparser")'
+#6: 
+This reverts 686c7c35abc2 ("drm/i915/gem: Asynchronous cmdparser").  The
+
+-:23: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0edbb9ba1bfe ("drm/i915: Move cmd parser pinning to execbuffer")'
+#23: 
+This also reverts most of 0edbb9ba1bfe ("drm/i915: Move cmd parser
+
+total: 2 errors, 0 warnings, 0 checks, 482 lines checked
+b6fda25b1d9f Revert "drm/i915: Propagate errors on awaiting already signaled fences"
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#34: 
+https://lore.kernel.org/dri-devel/20210602164149.391653-2-jason@jlekstrand.net/
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+7b00404854f1 drm/i915: Remove allow_alloc from i915_gem_object_get_sg*
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0edbb9ba1bfe ("drm/i915: Move cmd parser pinning to execbuffer")'
+#6: 
+This reverts the rest of 0edbb9ba1bfe ("drm/i915: Move cmd parser
+
+total: 1 errors, 0 warnings, 0 checks, 86 lines checked
+8e472c11e36c drm/i915: Drop error handling from dma_fence_work
+1013d3982bcb Revert "drm/i915: Skip over MI_NOOP when parsing"
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a6c5e2aea704 ("drm/i915: Skip over MI_NOOP when parsing")'
+#6: 
+This reverts a6c5e2aea704 ("drm/i915: Skip over MI_NOOP when parsing").
+
+total: 1 errors, 0 warnings, 0 checks, 83 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
