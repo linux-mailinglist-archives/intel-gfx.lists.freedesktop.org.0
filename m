@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E25399C3E
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 10:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83FE4399C6E
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 10:21:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 788556F41E;
-	Thu,  3 Jun 2021 08:05:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D3F6E975;
+	Thu,  3 Jun 2021 08:21:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
- [IPv6:2a00:1450:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 141A16F41C;
- Thu,  3 Jun 2021 08:05:41 +0000 (UTC)
-Received: by mail-lf1-x132.google.com with SMTP id i9so7451701lfe.13;
- Thu, 03 Jun 2021 01:05:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=Qjlzl7LKAJKi8TUo9KnlRb8pzUxi6orV6bBvxpPrnLA=;
- b=RtcnG8cLpdUdwWSza30NsCnZRL6mXDE+x/JANlIJm20Yl2inTU2/m2qoFgC+qKNyiD
- tAezYDMsO+wrxrdRnrUTfKw0Jbx5xue7mYwFhb5o5QWvZq0EBYbagdvnf7/C72Hu2ZxZ
- a23gdj7mEXEiB9FePuONDZgx57V+k9kEQ2HfP2m4BHdtrAPlkKckH3r5S1xwye9tncue
- VwZUOnYhtjGEQ+aF/PT7c/iUf8hXogb3mHFwB5FbUuG7fczMo2bAF1Pl5rBV2vcaW+bO
- dR1ltLU3OUIKajvYXmHYbgUr2FiKlF1mWeF6ptDQx62UtlWPzoD7HIXih4Yr74+zZlAF
- i/KA==
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B88AF6E975
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 08:21:44 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id b9so7895251ejc.13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 01:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=x4D+7F4+Vl1v1auRPIqeP5RYDYXOKPbT4GzJYIpK6dM=;
+ b=Ubcg5M2zao88TMCIsomz+8StVbAkb8unLbhUzuxW09wOYKnD2ik/+z+NJIK002jgOt
+ Eux/JYjTOMDikh6Nk/aj2BIwyzH8f3izVobeK6jnP6NaG/syDGGcWEXHb/Gm0F7WppFZ
+ e3aIAh+94WFOxxmoYFd+mPi6XIR8I9o0BmxvM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=Qjlzl7LKAJKi8TUo9KnlRb8pzUxi6orV6bBvxpPrnLA=;
- b=oKUV5RtbGb7qDf/uRkOBY/Mb9agYFjQVztX0u9sO25GLep89OkXzaMoIzhQ2N58mEx
- b9Cihh4WYW35lo3y+uT85mz0ofse92I/TLyvW5Q/ZIheHhG7a13nyX7O++qF+wx/Lj6k
- e+9M+iDfJEetCbQEX3MRcVxP48T1kiiZ5iLGmf4NIs0spsmzX22WG5vTWa6IWhkKLCSz
- e2HjOQGmXhjzHj0xZGZlRDBlK7YitymN0rJKCS/Y4RN5i7W5iObJna6eO0ZlIAlOeQ+k
- r0AYz0xqUwhuDf+nEyE9IvlAUEX4sTadlJ5WEnikENMw9dItRADSd75ib26OrWYFdpUD
- z+2A==
-X-Gm-Message-State: AOAM532z6w3SYROROm0RmDjdpB0Wdp3oxt54rj0URgMHXZJ9KDSBa6sO
- PmXEVqIxrzYpAl6nzoRpbO0=
-X-Google-Smtp-Source: ABdhPJx5fVz/7fYZXZYji0VvPOBKEqTHc5qekvk0fccj1TVB04EHKVXaOzHn5+F546qyaNh3R+31Ew==
-X-Received: by 2002:a05:6512:c02:: with SMTP id
- z2mr456476lfu.303.1622707539454; 
- Thu, 03 Jun 2021 01:05:39 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id a22sm298152ljp.72.2021.06.03.01.05.38
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=x4D+7F4+Vl1v1auRPIqeP5RYDYXOKPbT4GzJYIpK6dM=;
+ b=MN+lLkrKBHU9n3vya/5ZVHwG74q2XaIqF5gnMebLCHiT5pSOQ6r97aqZP8u2uh/A0R
+ y6aqzJVdF31JqtdKk+Qv278eI7q5d0KDEBabMuq07LcQ7XPaJalhkffZoyTBQzCB8rOB
+ l8SLB1naY6tYVP7Dmotn4mLH7065jw1njXIPcdgP/4YNhOn4X1J7SJrOzjA1fyKczayG
+ lT8MHPHv/rFYWSUwkmFC5q6T+uNe32YdafUVLu41I9FjtV9DUJ8yZbpcpDB4Adk/M31B
+ rI+ZeCuWLxIDgRuI5ip1Z0xRLKOLpVD6choWTbIwmN6ycV6JN0lGprHy45CrhQoQXFCN
+ /N9g==
+X-Gm-Message-State: AOAM531n2gct0oSFglyjoTnYDAYNJh51c06cU5Oyw9A5dCcyYIYDBOR7
+ hWfRD4BiLHx9kEruRmMXRI0VCMDAOs0DCQ==
+X-Google-Smtp-Source: ABdhPJxe2s+TgY2FwvsRRWESxTIyi038fneQ89Yn6HREMp+nzv+dr13yvn35GoESceTJ+WVTignnXw==
+X-Received: by 2002:a17:906:2481:: with SMTP id
+ e1mr38345206ejb.216.1622708503364; 
+ Thu, 03 Jun 2021 01:21:43 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g11sm1345579edt.85.2021.06.03.01.21.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Jun 2021 01:05:39 -0700 (PDT)
-Date: Thu, 3 Jun 2021 11:05:27 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Message-ID: <20210603110527.39ead45e@eldfell>
-In-Reply-To: <33e9b79a413346309519f2a2499de367@intel.com>
-References: <20210601104135.29020-1-uma.shankar@intel.com>
- <20210601104135.29020-2-uma.shankar@intel.com>
- <20210602120957.7a154640@eldfell>
- <33e9b79a413346309519f2a2499de367@intel.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ Thu, 03 Jun 2021 01:21:42 -0700 (PDT)
+Date: Thu, 3 Jun 2021 10:21:39 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YLiRE+6bjJqJHUhl@phenom.ffwll.local>
+References: <20210602164149.391653-1-jason@jlekstrand.net>
+ <20210602164149.391653-4-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm: Add gamma mode property
+Content-Disposition: inline
+In-Reply-To: <20210602164149.391653-4-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Drop error handling from
+ dma_fence_work
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,125 +67,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1005696922=="
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1005696922==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/sh8hlzAqrJ2W8d.HBkYXJrA"; protocol="application/pgp-signature"
+Commit message missing here, something like "With fence error propagation
+gone and the cmd parse being sync again all users of this disappeared".
 
---Sig_/sh8hlzAqrJ2W8d.HBkYXJrA
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2 Jun 2021 20:18:19 +0000
-"Shankar, Uma" <uma.shankar@intel.com> wrote:
+On Wed, Jun 02, 2021 at 11:41:47AM -0500, Jason Ekstrand wrote:
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Reviewed-by: Jon Bloomfield <jon.bloomfield@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_clflush.c | 4 +---
+>  drivers/gpu/drm/i915/i915_sw_fence_work.c   | 5 +----
+>  drivers/gpu/drm/i915/i915_sw_fence_work.h   | 2 +-
+>  drivers/gpu/drm/i915/i915_vma.c             | 3 +--
+>  4 files changed, 4 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+> index daf9284ef1f54..f0435c6feb68b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+> @@ -24,13 +24,11 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
+>  	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
+>  }
+>  
+> -static int clflush_work(struct dma_fence_work *base)
+> +static void clflush_work(struct dma_fence_work *base)
+>  {
+>  	struct clflush *clflush = container_of(base, typeof(*clflush), base);
+>  
+>  	__do_clflush(clflush->obj);
+> -
+> -	return 0;
+>  }
+>  
+>  static void clflush_release(struct dma_fence_work *base)
+> diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+> index a3a81bb8f2c36..5b33ef23d54c9 100644
+> --- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
+> +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+> @@ -16,11 +16,8 @@ static void fence_complete(struct dma_fence_work *f)
+>  static void fence_work(struct work_struct *work)
+>  {
+>  	struct dma_fence_work *f = container_of(work, typeof(*f), work);
+> -	int err;
+>  
+> -	err = f->ops->work(f);
+> -	if (err)
+> -		dma_fence_set_error(&f->dma, err);
+> +	f->ops->work(f);
+>  
+>  	fence_complete(f);
+>  	dma_fence_put(&f->dma);
+> diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.h b/drivers/gpu/drm/i915/i915_sw_fence_work.h
+> index 2c409f11c5c59..d56806918d131 100644
+> --- a/drivers/gpu/drm/i915/i915_sw_fence_work.h
+> +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.h
+> @@ -17,7 +17,7 @@ struct dma_fence_work;
+>  
+>  struct dma_fence_work_ops {
+>  	const char *name;
+> -	int (*work)(struct dma_fence_work *f);
+> +	void (*work)(struct dma_fence_work *f);
+>  	void (*release)(struct dma_fence_work *f);
+>  };
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index a6cd0fa628477..03cdaa0f459ba 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -300,14 +300,13 @@ struct i915_vma_work {
+>  	unsigned int flags;
+>  };
+>  
+> -static int __vma_bind(struct dma_fence_work *work)
+> +static void __vma_bind(struct dma_fence_work *work)
+>  {
+>  	struct i915_vma_work *vw = container_of(work, typeof(*vw), base);
+>  	struct i915_vma *vma = vw->vma;
+>  
+>  	vma->ops->bind_vma(vw->vm, &vw->stash,
+>  			   vma, vw->cache_level, vw->flags);
+> -	return 0;
+>  }
+>  
+>  static void __vma_release(struct dma_fence_work *work)
+> -- 
+> 2.31.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-> > -----Original Message-----
-> > From: Pekka Paalanen <ppaalanen@gmail.com>
-> > Sent: Wednesday, June 2, 2021 2:40 PM
-> > To: Shankar, Uma <uma.shankar@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; M=
-odem,
-> > Bhanuprakash <bhanuprakash.modem@intel.com>
-> > Subject: Re: [PATCH 1/9] drm: Add gamma mode property
-> >=20
-> > On Tue,  1 Jun 2021 16:11:27 +0530
-> > Uma Shankar <uma.shankar@intel.com> wrote:
-> >  =20
-> > > Add a gamma mode property to enable various kind of gamma modes
-> > > supported by platforms like: Interpolated, Split, Multi Segmented,
-> > > Logarithmic etc. Userspace can get this property and should be able to
-> > > get the platform capabilities wrt various gamma modes possible and the
-> > > possible ranges.
-> > >
-> > > It can select one of the modes exposed as blob_id as an enum and set
-> > > the respective mode.
-> > >
-> > > It can then create the LUT and send it to driver using already
-> > > available GAMMA_LUT property as blob.
-> > >
-> > > Note: This is based on design by Ville and is being carried forward
-> > > based on his original idea.
-> > >
-> > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_atomic_uapi.c |  5 +++
-> > > drivers/gpu/drm/drm_color_mgmt.c  | 75 +++++++++++++++++++++++++++++++
-> > >  include/drm/drm_color_mgmt.h      |  8 ++++
-> > >  include/drm/drm_crtc.h            | 14 ++++++
-> > >  include/uapi/drm/drm_mode.h       | 43 ++++++++++++++++++
-> > >  5 files changed, 145 insertions(+)
-
-...
-
-> > Hi,
-> >=20
-> > where is the UAPI documentation for this new GAMMA_MODE?
-> > As a userspace dev, I have no idea what to do with the above based on w=
-hat's
-> > written here. =20
->=20
-> Got that, I will add more details on the UAPI usage to make things a bit =
-clearer.
->=20
-> > Also, reading the description of DRM_CLIENT_CAP_ADVANCE_GAMMA_MODES in
-> > patch 5/9, what difference does it make whether userspace sets or does =
-not set that
-> > cap? I don't understand the implications from the description. =20
->=20
-> The reason we have this Client caps is to have it co-exist with legacy cr=
-tc color properties.
-> The idea is that driver will describe the h/w luts to userspace through G=
-AMMA_MODE UAPI,
-> but the actual lut samples will still be sent through the legacy GAMMA_LU=
-T UAPI. This client
-> cap will help distinguish between legacy and this new implementation.
->=20
-> I will add more details in the UAPI description to avoid ambiguity and ex=
-plain the rationale and
-> usage of this UAPI.
->=20
-> Thanks Pekka for the looking into the series and the initial feedback.
-
-Thanks a lot, will be interesting to read those docs.
-pq
-
---Sig_/sh8hlzAqrJ2W8d.HBkYXJrA
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmC4jUcACgkQI1/ltBGq
-qqe2gQ//ZKWcS5z202c8pnPboJV49xzTEU2lRyfWxc1qxMyvx1LzIlZI3AhQCCod
-qzp8LvVf7zM+U5XmKKRRDV5H0SCCDkOGUxXb5ijOLFfPRZiyimacrOZrxobaUfK1
-418Qc41tuwQwWJCaCBd9xUniSBE8HbGo9bWlZ2OhYc1sC4W1KeAYd3/htKyWGbiK
-qjxuUan0wSXBReEXRSbcXW7/gkWEaXe2JYHyjJ/9nr0L9TtqMuT8fEfW55/ZnZiY
-ENYBsECYIlkd3FcBtaSiZ0M4DQVnmqRdv7YBrpdWZttrjY9QmySomaZlL6ELs2LG
-wHXJKznGWq+PcxhiaNieQ8caQCwmpAsDkCUFgDlcJS2H79YgibBfzdnGtufVJPmb
-CwBx6ZZgbS/CEXvNziJ0+cP2PWdScreNs/l6WhwEcWSSJJHaH77Y0kRarGWod7sB
-PU+wAOGGmOSnCIGAirYAfuCGp7sGXJqijHtrlKp9QfSoGcYkcBBfuzoFTbgIL/zC
-2kwVrb3xjvDab2yMHAo8/sAIyrFfGsGNILyyrY9Il8usbcCD4ZPZ7ldbT+KeZAvi
-fs8c8pmDcFbXi7C78kNpjdXPH8zTlct2YRfcrAWmuWwsnP7MkJHVvRKPLqDeiOi7
-9AZlBOm+r64NUdEimeU/ZxGmkq44Eo1eM9h/RqkBkvt11VEm+UU=
-=kr+R
------END PGP SIGNATURE-----
-
---Sig_/sh8hlzAqrJ2W8d.HBkYXJrA--
-
---===============1005696922==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1005696922==--
