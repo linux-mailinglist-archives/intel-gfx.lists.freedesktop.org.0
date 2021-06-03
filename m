@@ -2,47 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2259B399D21
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 10:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FB6399D31
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 10:53:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B56D6F457;
-	Thu,  3 Jun 2021 08:51:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 781176F45A;
+	Thu,  3 Jun 2021 08:53:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C38786F454;
- Thu,  3 Jun 2021 08:51:28 +0000 (UTC)
-IronPort-SDR: zeB2LUt1EFgAQ0InMK8+raCDENDCBCcPFP4vEU4NH5oPhlXyjW0acGZ9Z0MWzwXvigXNmi3Oaq
- q/s/l9/hlyQA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="265172766"
-X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="265172766"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 01:51:23 -0700
-IronPort-SDR: dgNoywGgpDz8gy+jvgdiOhZv3LOLFHWHVBmuH+4NOvneBaU6KcOyvqJtNBgHuZycLbPKnHoAPA
- JaC3I8BJjkvw==
-X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="483390583"
-Received: from aburk3x-mobl2.ger.corp.intel.com (HELO [10.213.243.139])
- ([10.213.243.139])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 01:51:21 -0700
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <de3965d8-d997-5685-0399-646d8823a27f@linux.intel.com>
- <20210525164504.GA9971@sdutt-i7>
- <d76ab0ec-4f0c-19ed-adaa-ed227af63c0e@linux.intel.com>
- <20210603041020.GA10469@sdutt-i7>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <0e95011d-2b68-d215-c2aa-2c95c4e4c466@linux.intel.com>
-Date: Thu, 3 Jun 2021 09:51:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
+ [66.111.4.224])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A941D6F45A;
+ Thu,  3 Jun 2021 08:53:25 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id EB6C2580D7B;
+ Thu,  3 Jun 2021 04:53:24 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute4.internal (MEProxy); Thu, 03 Jun 2021 04:53:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:mime-version:content-type; s=
+ fm3; bh=TJi4Qc14cGq/RjgkkyPquANWhYFO9dnl6BqwyNpPIMI=; b=o13ObOTI
+ 3SSGgrdcbKbDCqkV29FZQMjKDCKyPCz33Dx57wlwKC9OJeEz4O6nVVTsidnHpymT
+ tqv3N+Grrt0ccCbFLqCSjqX6pZEc+ugn+jtpoJh8SEBo6OjGfhLYUjaRONGK9see
+ 07M/+qjNewJMY5udh/QiyHZ1Z4AiD5mxvDwFPMYYGx6jYrWIdPAh0QDYHc3nRS/t
+ ElBI1IV8oZj8Nsu/yTldi5MoWORyXCt7bUEbTIgUGRCuLyMtO4YIHiHc+C5hppb6
+ qs9RwMzYr6OStH+M8lSaWXKYVitX6I2GH1va1JKbVj6tb/2HUkAfV12c3Fyg2DRY
+ GyBhYAdij6HN6w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm3; bh=TJi4Qc14cGq/RjgkkyPquANWhYFO9
+ dnl6BqwyNpPIMI=; b=uaqB9wwUxAm78rHqCVgIFIcWoMfQf9s7/EeLl8618GuyH
+ zLjYmYJGNwpzYGEzHhWWvKWwqCgkL+0MuODaH15rJQ7nEj/XAL5zpb7wNExk9sO6
+ 31FtN9J8vmqHFIDKJlaJYOBotjiR61p0nC5BrK7l2PNfUMHBeUoeMYZxrUMQnjGh
+ EGBpGfJ14as77Hc0mnmrdcW3CqQHuA0MoEX19cd7EhYcZINatqLX8OpiAxlPVIgw
+ otxeUhfKHPfmPk8LYceACWm765gFo+jR18Aupa8/JddzbPvlhHSE4nCw+RTKcWxY
+ ecGshlh/KUTXIJUE3lLEdV5QZXNuNSjuSLOaa5EoA==
+X-ME-Sender: <xms:g5i4YKs78bbcZDPrk1LOVzHFZojiG9J4WRBvdh1OxUyW2zb6rpaFvw>
+ <xme:g5i4YPcl7DOxSPVimnu1yaUkd-CxKn6g_keXik8u5ggEvxVloAshp0v-HEwBFimnF
+ RoA8J2Mb0nvjlKH-sk>
+X-ME-Received: <xmr:g5i4YFxsvG7YYMzVQQ54q2RmLpeL4Cwo9sLC0lcv2Div-hM9d490Ei-lpq6K5nPwddFA7NfgM-FV024UJUaokZL1NMWA1OKJxMev>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdelledgtdejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepgeeuvddtheeggeehhfeigeetffeufeelveeggfekveegieevudeljeeugedviefg
+ necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+ vggthh
+X-ME-Proxy: <xmx:g5i4YFM3SGHlNQ3eaQAs1ZVRphSEVX8VnLnmC4GqNgsiPh55Ld3Urg>
+ <xmx:g5i4YK_kO4Sh_2gMDZC7F_xRBDDtf_LWxqlBdaEQdyRvnXTHdafuiw>
+ <xmx:g5i4YNU0MDGr3XTZLFATkDyVMtLIdbPYv2ftliXcre4gVzyqU6IWjQ>
+ <xmx:hJi4YNbSdZLWh-h_SzEAte856n7f4hd5fiExbVYGKKsjlNjylfp43Q>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 3 Jun 2021 04:53:23 -0400 (EDT)
+Date: Thu, 3 Jun 2021 10:53:21 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20210603085321.l5l6flslj632yqse@gilmour>
 MIME-Version: 1.0
-In-Reply-To: <20210603041020.GA10469@sdutt-i7>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
- the i915
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,79 +74,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1551872976=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 03/06/2021 05:10, Matthew Brost wrote:
-> On Wed, Jun 02, 2021 at 04:27:18PM +0100, Tvrtko Ursulin wrote:
->>
->> On 25/05/2021 17:45, Matthew Brost wrote:
+--===============1551872976==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="omzrsib4ufkod6cu"
+Content-Disposition: inline
 
-[snip]
 
->>>>    * Kludgy way of interfacing with rest of the driver instead of refactoring
->>>> to fit (idling, breadcrumbs, scheduler, tasklets, ...).
->>>>
->>>
->>> Idling and breadcrumbs seem clean to me. Scheduler + tasklet are going
->>> away once the DRM scheduler lands. No need rework those as we are just
->>> going to rework this again.
->>
->> Well today I read the breadcrumbs patch and there is no way that's clean. It
->> goes and creates one object per engine, then deletes them, replacing with
->> GuC special one. All in the same engine setup. The same pattern of bolting
->> on the GuC repeats too much for my taste.
->>
-> 
-> I don't think creating a default object /w a ref count then decrementing
-> the ref count + replacing it with a new object is that hard to
-> understand. IMO that is way better than how things worked previously
+--omzrsib4ufkod6cu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-It's not about it being hard to understand, although it certainly is far 
-from the usual patterns, but about it being lazy design which in normal 
-times would never be allowed. Because reduced and flattened to highlight 
-the principal complaint it looks like this:
+Hi Daniel, Dave,
 
-engine_setup_for_each_engine:
-    engine->breadcrumbs = create_breadcrumbs();
-    if (guc) {
-       if (!first_class_engine) {
-         kfree(engine->breadcrumbs);
-         engine->breadcrumbs = first_class_engine->breadcrumbs;
-       } else {
-         first_class_engine->breadcrumbs->vfuncs = guc_vfuncs;
-       }
-    }
+Here's this week drm-misc-fixes PR
 
-What I suggested is that patch should not break and hack the object 
-oriented design and instead could do along the lines:
+Maxime
 
-gt_guc_setup:
-    for_each_class:
-       gt->uc.breadcrumbs[class] = create_guc_breadcrumbs();
+drm-misc-fixes-2021-06-03:
+One fix for a fb_defio breakage
+The following changes since commit 8124c8a6b35386f73523d27eacb71b5364a68c4c:
 
-engine_setup_for_each_engine:
-    if (guc)
-       engine->breadcrumbs = get(gt->uc.breadcrumbs[class]);
-    else
-       engine->breadcrumbs = create_breadcrumbs();
+  Linux 5.13-rc4 (2021-05-30 11:58:25 -1000)
 
-> where we just made implicit assumptions all over the driver of the
-> execlists backend behavior. If this was done properly in the current
-> i915 code base this really wouldn't be an issue.
+are available in the Git repository at:
 
-Don't really follow you here but it probably goes back to how upstream 
-code was there available to be refactored all this time.
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-06-03
 
-Regards,
+for you to fetch changes up to 0b78f8bcf4951af30b0ae83ea4fad27d641ab617:
 
-Tvrtko
+  Revert "fb_defio: Remove custom address_space_operations" (2021-06-01 17:38:40 +0200)
+
+----------------------------------------------------------------
+One fix for a fb_defio breakage
+
+----------------------------------------------------------------
+Matthew Wilcox (1):
+      Revert "fb_defio: Remove custom address_space_operations"
+
+ drivers/video/fbdev/core/fb_defio.c | 35 +++++++++++++++++++++++++++++++++++
+ drivers/video/fbdev/core/fbmem.c    |  4 ++++
+ include/linux/fb.h                  |  3 +++
+ 3 files changed, 42 insertions(+)
+
+--omzrsib4ufkod6cu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYLiYgQAKCRDj7w1vZxhR
+xQHXAP0RI/59Q85f+7f78/gbQ3zn5TGoxwFYIWtQ9D+7VtTLYAD/U65JQZYCLSIG
+gg3HXOjjZyxp6TJz5xsNOIWNpLZU3gU=
+=KU5p
+-----END PGP SIGNATURE-----
+
+--omzrsib4ufkod6cu--
+
+--===============1551872976==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1551872976==--
