@@ -2,90 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5E7399671
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 01:42:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1553996C4
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 02:07:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E03A96E04E;
-	Wed,  2 Jun 2021 23:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6146EEA8;
+	Thu,  3 Jun 2021 00:07:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2078.outbound.protection.outlook.com [40.107.102.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EDEC6E04E;
- Wed,  2 Jun 2021 23:42:28 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3846EEA7;
+ Thu,  3 Jun 2021 00:07:53 +0000 (UTC)
+IronPort-SDR: fRmgQ3C0nN30QBwHJ1glNreyNnu0j7J3K04t4dxT+jLUweR6VCx5WCpGECvx55m1dhnMXm/r4j
+ NWxq6U4Fu6Tg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="200914166"
+X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="200914166"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2021 17:07:51 -0700
+IronPort-SDR: 2fQUTZQKLa7bHJMiPRnBiEh26GaFD0Rpa/UsLSFD06veb0GfY3X3LJExXrhSId3yl/72f8TqW2
+ rknuHtSSMsmg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="633505121"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by fmsmga006.fm.intel.com with ESMTP; 02 Jun 2021 17:07:51 -0700
+Received: from orsmsx604.amr.corp.intel.com (10.22.229.17) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 2 Jun 2021 17:07:51 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
+ via Frontend Transport; Wed, 2 Jun 2021 17:07:51 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.4; Wed, 2 Jun 2021 17:07:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c2QiNkCt2cbZe/zJth6mJoY1AyvQtjUubsxSmIySwdWFTkDIyEt0DUhNQ7AnTqXxj2xWtmAGpzGoW2sO02m9RnWQVYzK9mEKIA5NP2Xfx//zLH4B10He0JRH7ZAG8WF41Iiv2CWMTIS8BB6gYTLYX4fmsR3rx5R4uxHJobtTG7/asrSPqcc+zP19gtXV+2aMqqtymnrRkpboQA+3LHscvF2s8G5fVC0tUN78Al/B9SMTmkShjimI2Fp257NZPcs5ntWMD6Avo6eMtKDEjKLo6wwO71Fyi/CKF3FRQcbEkYJkpVwDr4fEIJf6JojPNYkNKulqa9qgl2TqAOQbkeQ+Lw==
+ b=GuYRz8QzwMuxZo8weopUX/4gjJDWS+jeTFa38VSrxDRNLEOan540clhQ5jL9OqqpgPWxeHgloOEhwkeZdQbYz2y7Lh93LosQkpfRBvmeP2nO/MY6y0EdFhjeEjhZBgObcpsHiJIAa4YNMfm/chIFRZAIfeWLFrHWO2bH7QnfCa4AdBQf2OHUzLp3v8v9wt/n06J4zO5Ir6rvrBWCQ1kr3uVn6fuUlEYPYW9dEGPVrkVs9FWCq4fMAck7uikXesGVUWXFvFKaLfvA/3Y+ORz1dmkg8xVOGh7WQecIiCMKZUqOd974S1MS3NfSvQ1HVeFHCSb3R8hlodw6D/N2j1BuVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5yp1phFX2/hzUe7vxhgKk59cZLeDFuhjXBQLLMdLduc=;
- b=GvghCiJD8NvPOor/beL9daEfb+F3JoqCBE/1wwtPrWUnne80Kiit+XQPhJnvmaJce55EQRAs3U0IQPsMOrQprhEaLEu7xBsNvBEGj9ea3l2uJlk9M76bRIKMBVAlWSexyDfqX0BQjLYICuKi+uaxIzRgCO8bZrakRSoRdzDVBc17mmE3NMPLajB5vs+UycgXopfDUAQ+6ePQwMN5Bjm38ALqNSnoMnHxEpH1QmAwQVGP/d7V36l21zF14SPBzVPDK70Z9TJ4PymbKeJm8kP79pQ8/EfDg7tEyYDqoxhBI7SxnARaHGpg/Q0lH7zZufilgrlXddxHSjHnKIYX64/ofA==
+ bh=F2rgIKamgzym9/MrLzbzrc9j6/E016Dylf5Qqol7x/M=;
+ b=m9P424FR1F0yQs2Kejrt/7rCKp0wKpZVIs2WPvoBsG6aZvSaEM7L7x/Ns9s19Usv5TN+G01FnUYLUQ0lkLcGiBJywOBroM1udlG/GuTJy1u2qWI4EcIqRAIiZu/mtGLsaY4Smax4Ndai3q4DG9LBp21Ly8UYqQt9IbrROj/KBsg2wt2nU0DeMilc/rU9J10TBq2GfHNce3PlcoQXRE9VcYKaViQPx293rm6h9JzMfx+cN6oPS2k977xlDUfy/wyJiVHJrR769ouTduLxIv11yPQFoxMYTnFR3RI1siIP+taGFCuQ/wtkaiIsCupNf6xtv4vNCoibH2HtN70behAb+g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5yp1phFX2/hzUe7vxhgKk59cZLeDFuhjXBQLLMdLduc=;
- b=Jdtu9z9n1McMxoSncL8s1tNFXTLiFyO2kgZy8qJJQKEUXOxqXWLSqDh62ZwC82FihRyDZeee/SiAbl0igL4+GAYvhEhOrKPQ55cN+1mQdPQkw4jtmrkZSlmdqZaZkRj4GnrwPIqArN7ql2i2kmORBmMqUUfsbZxbhMCtMUyZ5CE=
-Authentication-Results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by CO6PR12MB5475.namprd12.prod.outlook.com (2603:10b6:5:354::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Wed, 2 Jun
- 2021 23:42:24 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::f455:b0b4:439:2753]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::f455:b0b4:439:2753%3]) with mapi id 15.20.4173.030; Wed, 2 Jun 2021
- 23:42:24 +0000
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- Pekka Paalanen <ppaalanen@gmail.com>
-References: <20210601105218.29185-1-uma.shankar@intel.com>
- <20210602122850.29412a29@eldfell>
- <5a9a8c3ee8d54c3ca2ccaca4aa5ad1d9@intel.com>
-From: Harry Wentland <harry.wentland@amd.com>
-Message-ID: <95e6a3e9-70d2-42d3-1289-a7de33f266c4@amd.com>
-Date: Wed, 2 Jun 2021 19:42:19 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
-In-Reply-To: <5a9a8c3ee8d54c3ca2ccaca4aa5ad1d9@intel.com>
+ bh=F2rgIKamgzym9/MrLzbzrc9j6/E016Dylf5Qqol7x/M=;
+ b=V1QKkp6fUHEioYhMR6+90udMtQePI/DRxdf4W07BbDxHjDMkSmkNyulAtXQj+N4zzqKRlW81zFaibneFSay0RVJ6FydH6HgOH2ghl/drAdebcMSNmZfY77MUa7feIo+x3nAZDKuZbcYmFZ+WwvYZHaDu5tAJRYODzSYSnK1IhHo=
+Received: from BYAPR11MB3784.namprd11.prod.outlook.com (2603:10b6:a03:fe::10)
+ by BYAPR11MB3173.namprd11.prod.outlook.com (2603:10b6:a03:1d::29)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.22; Thu, 3 Jun
+ 2021 00:07:17 +0000
+Received: from BYAPR11MB3784.namprd11.prod.outlook.com
+ ([fe80::492:b03:847d:aa8c]) by BYAPR11MB3784.namprd11.prod.outlook.com
+ ([fe80::492:b03:847d:aa8c%6]) with mapi id 15.20.4173.030; Thu, 3 Jun 2021
+ 00:07:17 +0000
+From: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v4 06/17] drm/i915/pxp: Implement funcs to
+ create the TEE channel
+Thread-Index: AQHXUSmkG9c1ydcXKkOw0zCwORZ/Y6sBdn6A
+Date: Thu, 3 Jun 2021 00:07:16 +0000
+Message-ID: <28c1689132ce15f8c88e714aafb7d630555ec3a4.camel@intel.com>
+References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
+ <20210525054803.7387-7-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20210525054803.7387-7-daniele.ceraolospurio@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-Originating-IP: [198.200.67.154]
-X-ClientProxiedBy: YQBPR0101CA0042.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c00:1::19) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.4-0ubuntu1 
+authentication-results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [192.55.52.197]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 08450d4c-9e9d-496e-5881-08d926238c6f
+x-ms-traffictypediagnostic: BYAPR11MB3173:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR11MB3173D202079A322AF15E8DB88A3C9@BYAPR11MB3173.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YfzD7W3aZgm1CNlSFboK7R/sp7xbMjD8YOid12Kg/I7bTElYe8C63kLP0EPbb/W/dPfETGZFhL/lM+I+Lxz0DOPfvOY0k8ex53VM8KHboPCzAVmKhoTe9JqFS0zJJ9us5aTpRZapT0m0DrVsTjwpcbgDUwprhO1/OSnRFKVg+vXzQYmekYqr+hV6mCGhvcrLf8thADOItvsZs37wvq6iwlGBNYCdhaXMafnh821EMUvr9AyetP2uf1YY20QSuDOIo2ZJ/OTOzajUZzzWQeuEUhiXrLhZ+vhR2KSEMrNPNLNv0WssVpE+9zpY6BhQOhpWLxzB2y8czjBKscTpKc2QMLBRMOA6mGvgobGkvxN9e/hBl8Y31NSC8u0qvQ+hQYMoxfZRJf2VVkJqWAMVKPDFuLPlAK/BWkxmS8seGVrB2dJA/Ej8zPR8jO2+g17BEBzp1GVq7/DiH5S29wIOmNK++qVL/PjQ8D8f2wtEK+64DtLdlfW7ZtVk1R3vXaqsPRfymS/4iUpfImp0XkQGI2+6Ziw9ggylY/qdr4Ir6sczw2ldILkg45t83SoQGdC5rzxJ5sUbkwes8LUFKYJHV4gkDZkwP0HCwvAZIVLEY5c/57M=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3784.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(346002)(396003)(136003)(376002)(39860400002)(186003)(66946007)(76116006)(66556008)(66476007)(83380400001)(66446008)(122000001)(478600001)(86362001)(64756008)(4326008)(2906002)(38100700002)(26005)(6486002)(8676002)(6506007)(8936002)(6512007)(316002)(54906003)(36756003)(110136005)(71200400001)(5660300002)(2616005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?utf-8?B?VlEwMVBkQU1kY0xSSElxbGtDOWZZWTM1c0lyY3RwVStOQzRDblRnVUxMUjZw?=
+ =?utf-8?B?V01vcE9RT3lzQVJpUVFMUUFtVVliMFc5bUIrTC8raC9UT21VYnhRVnBOQzBY?=
+ =?utf-8?B?ZFpsMUVFNDR0c0hzZGg3d1JqWGtubnFOQS9jWmY4RGd0SENyUHdxLzJNb2NM?=
+ =?utf-8?B?L05Uc0M1WkZxK0NxcUw5MCt2VUZ0cGUwZnJ6ZER6VVQ1eGg4RUE1VVc4QkpG?=
+ =?utf-8?B?emtLU1BpZGlNZE5VZlFJZmpzQzR5MkFvenRSNm5aWWNUMVRJKzdnQWhib1pa?=
+ =?utf-8?B?a09GWFg4RE5neE5OU1ZLaGtTMFM2bmZRcnU3VXpFNmJWMkJJL1ExWDZYaTQy?=
+ =?utf-8?B?bC9OK2FjMUdwNnROOFNkSlpGL0ZZd1ZveTBKeXZGTlNLUFVGU1VteEdZQm9B?=
+ =?utf-8?B?ekJIUzdJOUpBeGJadkx2MjFtWWJudWc0K1YzeHBqZVpLbW4wSzFpOTNWRy9q?=
+ =?utf-8?B?c1VTZytKYzRObng5V2VVYVVEbW5GUDMwcHdUenNBUWpMdzV3bUI5d2xmVTgx?=
+ =?utf-8?B?M1ZBTWJIY0Y1ZUVBVkthL3VtdnVSWVNLQ2pvRlBQazhwazVuUHkwaHhxK2hF?=
+ =?utf-8?B?MnNkeTFJSS81dHdyU1YrVmw5dWNTRkxuMGpaTUpoZ05BeGlaOFRMa0ZMSXE0?=
+ =?utf-8?B?V1NDTFVlS0Y5QWhBWCtTRTlFWk12QloweStYU0R0dWs0cmVKcVVZZE1ycEtq?=
+ =?utf-8?B?cWtRQm02THlIai9peWVzTjRYQ0gxb3hDS1RYR0hOS2tLVmw4Z3lzb09Lckgv?=
+ =?utf-8?B?N05FOHpsRElHTEZDRTdDanBBS2lFSzZ4TjY1dmg5R0hoYnJkRE4rQ200WXcy?=
+ =?utf-8?B?aWJhNVorSE9iRGE3QnRjcktlc2prR244U0w1WXdUODAwNSsyNEEwSjlSSXhZ?=
+ =?utf-8?B?ZnZRSjVsR0liZ3ZvRlFwbFdWOFVXY0JRUU03ZVg1aU1XWWRDY1pRUnovM3NK?=
+ =?utf-8?B?YjYrMU0vK2ZmZTd5VFpETjNqSE4yeVV0MDJGRXhpZEd5Qzd5WlJCSjVaVHo3?=
+ =?utf-8?B?dVYrT0tMRFFQd0pOVjdBVUhWWXNhV1lnWFZHWjV3SUVzU0x2K2dteWljck9y?=
+ =?utf-8?B?Rnc2SjQ5NWwyTEM3M0xJZnA0OVdUTkcySHlNSzdvT3R0U20rd0JZZThQbHI2?=
+ =?utf-8?B?YXZ1U081YU5XUGVDQjVaZlJKWGppWitZV2k0cFErK0d4ZTVhTjVjc1p3b0Yw?=
+ =?utf-8?B?OFdjRWprbVlxajlTNGVMOWV6UkMrNXY1RitzcjNnVTl2RWpTQlVQR0U3czdJ?=
+ =?utf-8?B?NnpmUWluU253cjZQd1NYUDhZZ2daSUtiMlpiSXNDRDJNK09BUUswVTJydlgx?=
+ =?utf-8?B?U0NaUEEyTTJzTFdLdnVaemxxTTNrRDRuOE1scFBqTTNZTjROTnRxcTFtUjdn?=
+ =?utf-8?B?N0FaZUNCN2pBdnRwOXhUKzVvQTY2bU1rQnQ4cE9QRzM1anh4ZHFZNzBPOEFj?=
+ =?utf-8?B?ems3RmNoY3pwTllwSE1jczU2WklrUmlWOWFOb1UzTXZDbzI1eXV5REhvaGZJ?=
+ =?utf-8?B?Z2lFMHNJcTR3U0RaUXNUeWduV3NvbDk4TTVyKzdSWlkvSVNDVFRpbFJPL0dM?=
+ =?utf-8?B?QUtpd3RGV25YT1hQRWQ3bFNETG5pYWZrVGVNMjdMMUpleVRtVmpZVm1MYUZL?=
+ =?utf-8?B?R1ZBTVIwMC9WK1ZPOHk4Wk9lZG5EWllQNkJuVjNtenU0NEFrSmdEUW8zc1Ar?=
+ =?utf-8?B?c1oxQ09RMmFOcWxldXIyZU1wNTl4bFJ1bGVxcFA3MTUwZXFSVWxMbnN2VnJC?=
+ =?utf-8?Q?LhPZcWFlA9VUnRqDnyGePq5elPkU633b3CCzcu5?=
+Content-ID: <F21D8F4752CB0A4D97FCDF9C9D71B8A2@namprd11.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.50.3] (198.200.67.154) by
- YQBPR0101CA0042.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00:1::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.26 via Frontend
- Transport; Wed, 2 Jun 2021 23:42:23 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2a8767cf-1722-49d8-5cb7-08d926201277
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5475:
-X-Microsoft-Antispam-PRVS: <CO6PR12MB54750E22DBE5673B15AA1CE58C3D9@CO6PR12MB5475.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dn20pd6JqZbXiJisu36U0LD7I5dC4erSrB1XBvbM1hCBfgmB6FXJ0I/y0x+UlfKvbaBYcHlkdMWm/cJF7o4ri9A3OCQYttn0ejBevGYypOiov4Jvg60CFKJkDHTtQM65pnz0C+NLwmXxkcMSmoW/7ka3QGeKDNIGLz78tEPzCyCcFiXNYRj5zcklKn5hY9CEE60RxtL5HedIACtpt1hyacTlZ7ETVLf6xg4AFTh8Vc1Eo1e2b9QXyT1GDnx6keOj9TKJsR3LFxGNFbIdqd+ddUB6sNLDi2LvJ5iH1kkEPOlTFQqNSlpC/dZ3u44wK991joim9pj1VjiggIfWXtT+aPjlgljsODnIkfEEii78IA0nemCbHV/nJ5RH7uYn/S69aJzvpawKtbicHkfwPriL8A2KrB51MIzAwcWg1EVYUIMJ9pYncl3Sj54TwAnNoBLtKCoV/zFEUvWtX8qNfUlhooJEnoluJb9mVo7QrGGyO/yKLjhJ6uDnmrzh7+EBlFny+tfr7qoLuwO/Z2WFR3Kpf2ux0ANwMM9GsPgw1hVxQPsEIu5iP80IZoMkb/DlooT4LMDM6nGJlnqZbsPrvgWm2YRQGwom1KP1i7Rk9MzdviiVBWqf2crQUmir8z76rjyfiKC1Fy1FC7MnXu4xVPyH5Nd2F9s01spRSn+LBuWbzxWxYLB0i+K/VwooNfA6RbyJDiYQNYuJmlXkqgbzlbow+hOcNR3ETrT2CrUJV+QJfcg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(39850400004)(376002)(366004)(346002)(136003)(2906002)(36756003)(316002)(110136005)(54906003)(16576012)(83380400001)(5660300002)(66556008)(31686004)(66476007)(66946007)(53546011)(16526019)(8676002)(186003)(6486002)(8936002)(38100700002)(966005)(31696002)(478600001)(4326008)(2616005)(86362001)(6666004)(44832011)(26005)(956004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: aP9D/3BSS7btNG1nubqK2WU72oArGMvQRosSJpcjY0Bu3nEp5KUeELR1Mjclu0gcbsfyXBdIf8CItmUtXUJzYxgZmGKadoqxhKAA8TsGK6rf79f/SiEWeUwbcy9/8s5T/g3LYYjA3zPouJksPHnnQq9/zDv/GxJFveRuQVYp8p/C1wpil7ee84AbDAMD7oZKd9LoUgGNP/As2idQ8cY/IFyiQK08iVbUR8YLe89AbA+pc4wskzpNVQ/MJFcQI8tLniWZe2MWQZzUrQiTDQRbYT+ft73iD7v1qWTaqUqRZV3JUri2OYulPPGjFU6bQmayC6LpbcvLVeUg0Iod33ZNS3mOVj1cDw9i2voVkFyDE2cS8BsooKYeRJ0ivHeMNAeiGERzgsTJ9odT7vjYyOlvD1fdK7HBrCvpbsZXnVuLfUOHGHsSotyPSh4RYrOVP7/hr5I/Mg+Elh//EFTAJC50s9+x+uBg1QdBNXwoOh4DnXaptTXEYW3e72hq1/FQWiqrrFU7P8yU6ku5YAV1gOPryiEGpzeECb8dqkslzxt69I0Oy42UA7a/IStIQNYQR6iPxnsTaVCnNkVfa0dK3YqgeV8l/3U9YJXsUPU42D60l0biszR0jX8EPmLIPcFVKBV5tRpXz3WN92/B5JLpLO29VIGemuQ5yrv64v1+uaF953XzkYw+egDEXCETl6AgCfmAZjoSu0iN70jNCwjQXJ0YhLzIBzhlTYi2jKYoDJfFuj4clDYTN9yWVD90E/l93SGW
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a8767cf-1722-49d8-5cb7-08d926201277
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 23:42:24.3532 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fL5Bb1v+OQpnMK0dEEyRRUPsmmI5s8pUOaQfYZtDJoJnDR/I6Igz1gcGZTikWiUBTgBeONRl5o+X6peJ4tiR/w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5475
-Subject: Re: [Intel-gfx] [PATCH 00/21] Add Support for Plane Color Lut and
- CSC features
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3784.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08450d4c-9e9d-496e-5881-08d926238c6f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2021 00:07:16.9755 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j4deqRS63uHSZ9Bl+GvQrNrfTKO+NqbQiYQwX7KBDJXUwtPDbOxwuT2QAjlTIV7RMc/5I7fV78djCdz5DXH7pCRAwNaCp35JnUNsVQ010hLujB04cRV87J8zDCjHjEd8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3173
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v4 06/17] drm/i915/pxp: Implement funcs to
+ create the TEE channel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,201 +150,246 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "Huang@freedesktop.org" <Huang@freedesktop.org>,
+ "sean.z.huang@intel.com" <sean.z.huang@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 2021-05-24 at 22:47 -0700, Daniele Ceraolo Spurio wrote:
+> From: "Huang, Sean Z" <sean.z.huang@intel.com>
+> 
+> Implement the funcs to create the TEE channel, so kernel can
+> send the TEE commands directly to TEE for creating the arbitrary
+> (default) session.
+> 
+> v2: fix locking, don't pollute dev_priv (Chris)
+> 
+> v3: wait for mei PXP component to be bound.
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <
+> daniele.ceraolospurio@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> #v2
+> ---
+>  drivers/gpu/drm/i915/Makefile              |  3 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c       | 13 ++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c   | 87
+> ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.h   | 14 ++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_types.h |  3 +
+>  5 files changed, 119 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile
+> b/drivers/gpu/drm/i915/Makefile
+> index efd950122e40..0dfff52fea24 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -275,7 +275,8 @@ i915-y += i915_perf.o
+>  
+>  # Protected execution platform (PXP) support
+>  i915-$(CONFIG_DRM_I915_PXP) += \
+> -	pxp/intel_pxp.o
+> +	pxp/intel_pxp.o \
+> +	pxp/intel_pxp_tee.o
+>  
+>  # Post-mortem debug and GPU hang state capture
+>  i915-$(CONFIG_DRM_I915_CAPTURE_ERROR) += i915_gpu_error.o
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index 3255c6da34e8..5df2a09c9e4b 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -3,6 +3,7 @@
+>   * Copyright(c) 2020 Intel Corporation.
+>   */
+>  #include "intel_pxp.h"
+> +#include "intel_pxp_tee.h"
+>  #include "gt/intel_context.h"
+>  #include "i915_drv.h"
+>  
+> @@ -50,7 +51,16 @@ void intel_pxp_init(struct intel_pxp *pxp)
+>  	if (ret)
+>  		return;
+>  
+> +	ret = intel_pxp_tee_component_init(pxp);
+> +	if (ret)
+> +		goto out_context;
+> +
+>  	drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected
+> content support initialized\n");
+> +
+> +	return;
+> +
+> +out_context:
+> +	destroy_vcs_context(pxp);
+>  }
+>  
+>  void intel_pxp_fini(struct intel_pxp *pxp)
+> @@ -58,5 +68,8 @@ void intel_pxp_fini(struct intel_pxp *pxp)
+>  	if (!intel_pxp_is_enabled(pxp))
+>  		return;
+>  
+> +	intel_pxp_tee_component_fini(pxp);
+> +
+>  	destroy_vcs_context(pxp);
+> +
+>  }
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> new file mode 100644
+> index 000000000000..4ed234d8584f
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> @@ -0,0 +1,87 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020 Intel Corporation.
+> + */
+> +
+> +#include <linux/component.h>
+> +#include "drm/i915_pxp_tee_interface.h"
+> +#include "drm/i915_component.h"
+> +#include "i915_drv.h"
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_tee.h"
+> +
+> +static inline struct intel_pxp *i915_dev_to_pxp(struct device
+> *i915_kdev)
+> +{
+> +	return &kdev_to_i915(i915_kdev)->gt.pxp;
+> +}
+> +
+> +/**
+> + * i915_pxp_tee_component_bind - bind function to pass the function
+> pointers to pxp_tee
+> + * @i915_kdev: pointer to i915 kernel device
+> + * @tee_kdev: pointer to tee kernel device
+> + * @data: pointer to pxp_tee_master containing the function pointers
+> + *
+> + * This bind function is called during the system boot or resume
+> from system sleep.
+> + *
+> + * Return: return 0 if successful.
+> + */
+> +static int i915_pxp_tee_component_bind(struct device *i915_kdev,
+> +				       struct device *tee_kdev, void
+> *data)
+> +{
+> +	struct intel_pxp *pxp = i915_dev_to_pxp(i915_kdev);
+> +
+> +	pxp->pxp_component = data;
+> +	pxp->pxp_component->tee_dev = tee_kdev;
+> +
+> +	return 0;
+> +}
+> +
+> +static void i915_pxp_tee_component_unbind(struct device *i915_kdev,
+> +					  struct device *tee_kdev, void
+> *data)
+> +{
+> +	struct intel_pxp *pxp = i915_dev_to_pxp(i915_kdev);
+> +
+> +	pxp->pxp_component = NULL;
+> +}
+> +
+> +static const struct component_ops i915_pxp_tee_component_ops = {
+> +	.bind   = i915_pxp_tee_component_bind,
+> +	.unbind = i915_pxp_tee_component_unbind,
+> +};
+> +
+> +int intel_pxp_tee_component_init(struct intel_pxp *pxp)
+> +{
+> +	int ret;
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +	struct drm_i915_private *i915 = gt->i915;
+> +
+> +	ret = component_add_typed(i915->drm.dev,
+> &i915_pxp_tee_component_ops,
+> +				  I915_COMPONENT_PXP);
+> +	if (ret < 0) {
+> +		drm_err(&i915->drm, "Failed to add PXP component
+> (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Adding the component does not guarantee that it will bind
+> properly,
+> +	 * so make sure to wait until it does.
+> +	 */
+> +	ret = wait_for(pxp->pxp_component, 50);
+> +	if (ret) {
+> +		drm_err(&i915->drm, "Failed to bind PXP component 
 
+Based on my testing with the 'wip-igt-pxp', this failed here because
+the mei-pxp was getting loaded multiple seconds later than i915. We
+might need to consider having a check for pxp_component availability on
+every IOCTL to ensure binding actually occured and succeed (==pxp-
+supported), or occured and failed (==pxp-failed, disable it), or didn't
+occure yet (==pending-retry?).
 
-On 2021-06-02 4:22 p.m., Shankar, Uma wrote:
-> 
-> 
->> -----Original Message-----
->> From: Pekka Paalanen <ppaalanen@gmail.com>
->> Sent: Wednesday, June 2, 2021 2:59 PM
->> To: Shankar, Uma <uma.shankar@intel.com>
->> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Modem,
->> Bhanuprakash <bhanuprakash.modem@intel.com>; Harry Wentland
->> <harry.wentland@amd.com>
->> Subject: Re: [PATCH 00/21] Add Support for Plane Color Lut and CSC features
->>
->> On Tue,  1 Jun 2021 16:21:57 +0530
->> Uma Shankar <uma.shankar@intel.com> wrote:
->>
->>> This is how a typical display color hardware pipeline looks like:
->>>  +-------------------------------------------+
->>>  |                RAM                        |
->>>  |  +------+    +---------+    +---------+   |
->>>  |  | FB 1 |    |  FB 2   |    | FB N    |   |
->>>  |  +------+    +---------+    +---------+   |
->>>  +-------------------------------------------+
->>>        |  Plane Color Hardware Block |
->>> +--------------------------------------------+
->>>  | +---v-----+   +---v-------+   +---v------+ |
->>>  | | Plane A |   | Plane B   |   | Plane N  | |
->>>  | | DeGamma |   | Degamma   |   | Degamma  | |
->>>  | +---+-----+   +---+-------+   +---+------+ |
->>>  |     |             |               |        |
->>>  | +---v-----+   +---v-------+   +---v------+ |
->>>  | |Plane A  |   | Plane B   |   | Plane N  | |
->>>  | |CSC/CTM  |   | CSC/CTM   |   | CSC/CTM  | |
->>>  | +---+-----+   +----+------+   +----+-----+ |
->>>  |     |              |               |       |
->>>  | +---v-----+   +----v------+   +----v-----+ |
->>>  | | Plane A |   | Plane B   |   | Plane N  | |
->>>  | | Gamma   |   | Gamma     |   | Gamma    | |
->>>  | +---+-----+   +----+------+   +----+-----+ |
->>>  |     |              |               |       |
->>>  +--------------------------------------------+
->>> +------v--------------v---------------v-------|
->>> ||                                           ||
->>> ||           Pipe Blender                    ||
->>> +--------------------+------------------------+
->>> |                    |                        |
->>> |        +-----------v----------+             |
->>> |        |  Pipe DeGamma        |             |
->>> |        |                      |             |
->>> |        +-----------+----------+             |
->>> |                    |            Pipe Color  |
->>> |        +-----------v----------+ Hardware    |
->>> |        |  Pipe CSC/CTM        |             |
->>> |        |                      |             |
->>> |        +-----------+----------+             |
->>> |                    |                        |
->>> |        +-----------v----------+             |
->>> |        |  Pipe Gamma          |             |
->>> |        |                      |             |
->>> |        +-----------+----------+             |
->>> |                    |                        |
->>> +---------------------------------------------+
->>>                      |
->>>                      v
->>>                Pipe Output
->>
->> Hi,
->>
->> this is an excellent picture. I have long been wanting schematics like that in the DRM
->> UAPI documentation. Another note on that:
->> https://lists.freedesktop.org/archives/dri-devel/2021-May/307310.html>>>
->> But the schematic for DRM UAPI documentation needs to be written in terms of the
->> abstract KMS pipeline with property names spelled out, like in what Ville sketched in
->> that email.
-> 
-> Sure Pekka, I can add that.
-> 
->>> This patch series adds properties for plane color features. It adds
->>> properties for degamma used to linearize data and CSC used for gamut
->>> conversion. It also includes Gamma support used to again non-linearize
->>> data as per panel supported color space. These can be utilize by user
->>> space to convert planes from one format to another, one color space to
->>> another etc.
->>
->> This is very much welcome!
->>
->> There is also the thread:
->> https://lists.freedesktop.org/archives/dri-devel/2021-May/306726.html>>>
->> Everything mentioned will interact with each other by changing what the abstract
->> KMS pixel pipeline does. I think you and Harry should probably look at each others'
->> suggestions and see how to fit them all into a single abstract KMS pipeline.
->>
->> People are adding new pieces into KMS left and right, and I fear we lose sight of how
->> everything will actually work together when all KMS properties are supposed to be
->> generic and potentially present simultaneously. This is why I would very much like to
->> have that *whole* abstract KMS pipeline documented with *everything*. Otherwise
->> it is coming really hard fast to figure out how generic userspace should use all these
->> KMS properties together.
->>
->> Or if there cannot be a single abstract KMS pipeline, then sure, have multiple, as long
->> as they are documented and how userspace will know which pipeline it is dealing
->> with, and what things are mutually exclusive so we can avoid writing userspace code
->> for combinations that will never exist.
-> 
-> This is a good suggestion to have the whole pipeline and properties documented along with
-> the exact usages. We may end with 2 properties almost doing similar work but needed due to
-> underlying hardware, but we can get that properly documented and defined. 
-> 
-> I will discuss with Harry and Ville as well to define this.
-> 
-
-Just wanted to let you know that I've seen and read through both of Shankar's patchsets
-and had some thoughts but haven't found the time to respond. I will respond soon.
-
-I very much agree with Pekka. We need to make sure this all plays well together and is
-well documented. Maybe a library to deal with DRM KMS color management/HDR would even
-be helpful. Not sure yet how I feel about that.
-
-Harry
-
-> Regards,
-> Uma Shankar
->>
->> Thanks,
->> pq
->>
->>> Userspace can take smart blending decisions and utilize these hardware
->>> supported plane color features to get accurate color profile. The same
->>> can help in consistent color quality from source to panel taking
->>> advantage of advanced color features in hardware.
->>>
->>> These patches add the property interfaces and enable helper functions.
->>> This series adds Intel's XE_LPD hw specific plane gamma feature. We
->>> can build up and add other platform/hardware specific implementation
->>> on top of this series.
->>>
->>> Credits: Special mention and credits to Ville Syrjala for coming up
->>> with a design for this feature and inputs. This series is based on his
->>> original design and idea.
->>>
->>> Note: Userspace support for this new UAPI will be done on Chrome. We
->>> will notify the list once we have that ready for review.
->>>
->>> ToDo: State readout for this feature will be added next.
->>>
->>> Uma Shankar (21):
->>>   drm: Add Enhanced Gamma and color lut range attributes
->>>   drm: Add Plane Degamma Mode property
->>>   drm: Add Plane Degamma Lut property
->>>   drm/i915/xelpd: Define Degamma Lut range struct for HDR planes
->>>   drm/i915/xelpd: Add register definitions for Plane Degamma
->>>   drm/i915/xelpd: Enable plane color features
->>>   drm/i915/xelpd: Add color capabilities of SDR planes
->>>   drm/i915/xelpd: Program Plane Degamma Registers
->>>   drm/i915/xelpd: Add plane color check to glk_plane_color_ctl
->>>   drm/i915/xelpd: Initialize plane color features
->>>   drm/i915/xelpd: Load plane color luts from atomic flip
->>>   drm: Add Plane CTM property
->>>   drm: Add helper to attach Plane ctm property
->>>   drm/i915/xelpd: Define Plane CSC Registers
->>>   drm/i915/xelpd: Enable Plane CSC
->>>   drm: Add Plane Gamma Mode property
->>>   drm: Add Plane Gamma Lut property
->>>   drm/i915/xelpd: Define and Initialize Plane Gamma Lut range
->>>   drm/i915/xelpd: Add register definitions for Plane Gamma
->>>   drm/i915/xelpd: Program Plane Gamma Registers
->>>   drm/i915/xelpd: Enable plane gamma
->>>
->>>  Documentation/gpu/drm-kms.rst                 |  90 +++
->>>  drivers/gpu/drm/drm_atomic.c                  |   1 +
->>>  drivers/gpu/drm/drm_atomic_state_helper.c     |  12 +
->>>  drivers/gpu/drm/drm_atomic_uapi.c             |  38 ++
->>>  drivers/gpu/drm/drm_color_mgmt.c              | 177 +++++-
->>>  .../gpu/drm/i915/display/intel_atomic_plane.c |   6 +
->>>  .../gpu/drm/i915/display/intel_atomic_plane.h |   2 +
->>>  drivers/gpu/drm/i915/display/intel_color.c    | 513 ++++++++++++++++++
->>>  drivers/gpu/drm/i915/display/intel_color.h    |   2 +
->>>  .../drm/i915/display/skl_universal_plane.c    |  15 +-
->>>  drivers/gpu/drm/i915/i915_drv.h               |   3 +
->>>  drivers/gpu/drm/i915/i915_reg.h               | 176 +++++-
->>>  include/drm/drm_mode_object.h                 |   2 +-
->>>  include/drm/drm_plane.h                       |  81 +++
->>>  include/uapi/drm/drm_mode.h                   |  58 ++
->>>  15 files changed, 1170 insertions(+), 6 deletions(-)
->>>
-> 
-
+> (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +void intel_pxp_tee_component_fini(struct intel_pxp *pxp)
+> +{
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +	struct drm_i915_private *i915 = gt->i915;
+> +
+> +	if (!pxp->pxp_component)
+> +		return;
+> +
+> +	component_del(i915->drm.dev, &i915_pxp_tee_component_ops);
+> +}
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+> b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+> new file mode 100644
+> index 000000000000..23d050a5d3e7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#ifndef __INTEL_PXP_TEE_H__
+> +#define __INTEL_PXP_TEE_H__
+> +
+> +#include "intel_pxp.h"
+> +
+> +int intel_pxp_tee_component_init(struct intel_pxp *pxp);
+> +void intel_pxp_tee_component_fini(struct intel_pxp *pxp);
+> +
+> +#endif /* __INTEL_PXP_TEE_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> index bd12c520e60a..3e95d21513e8 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> @@ -7,8 +7,11 @@
+>  #define __INTEL_PXP_TYPES_H__
+>  
+>  struct intel_context;
+> +struct i915_pxp_component;
+>  
+>  struct intel_pxp {
+> +	struct i915_pxp_component *pxp_component;
+> +
+>  	struct intel_context *ce;
+>  };
+>  
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
