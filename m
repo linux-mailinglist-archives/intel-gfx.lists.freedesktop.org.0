@@ -2,42 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D41D39A598
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 18:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A23339A5BC
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 18:29:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7A66E558;
-	Thu,  3 Jun 2021 16:17:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B1136E7EA;
+	Thu,  3 Jun 2021 16:29:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BDB56E296;
- Thu,  3 Jun 2021 16:17:15 +0000 (UTC)
-IronPort-SDR: VwKZYYB8FmDerffIEC76rr1cfGbF4a8cyrvq5T0EQYj1bIXVrt9Ia2X0yfh/4yujKXTFaZQdyu
- LEveCbD7nY+g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="204066610"
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="204066610"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 09:17:14 -0700
-IronPort-SDR: Uk/Xa5+sRXrXb8WIyGlVyPXKO8o+Fn0Vp7mUFfwKCOAPAOvySsaBGj9EIvt5F8pd8PoDj15MSF
- qstnHqQpXjDw==
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="480280893"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 09:17:13 -0700
-Date: Thu, 3 Jun 2021 09:10:14 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20210603161014.GA620@sdutt-i7>
-References: <20210603051630.2635-1-matthew.brost@intel.com>
- <20210603051630.2635-16-matthew.brost@intel.com>
- <454067aa-cb2b-541d-21a7-84706a2d93a6@intel.com>
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3139E6E5A3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 16:29:45 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id q21so9628806ybg.8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 09:29:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9rXXKQrsKPV/FTNHF+TjG0VgdXgVapwzGgt1vqwqwL4=;
+ b=O1oE+pAio21HAIQXtMnlixovz2XzsnIYQdX5ESFuzyPnz91URweb2HhFvI9rbAVjhk
+ jvVCUf9X20us1RNJl6zpZ0GpG9Ljg1j1QUkH2X+zAnhbKvHrzR68cXawY03CxiLj13bW
+ xrU5/zGvZWpWL/4N11dxkSyis/fYJRGc0748e+0Lf+YgWu0re78dQLmik7Ky81zl68Ih
+ iTfjmVwDAoFssmx90xfvbkuGPTvSvXyQ/PqiJ+RqYzcHSv+NKObLE7PvujWdn/VvFQBp
+ bArj3iQlsQcvAaRwz+tOw/N9MU0emzMB5b4uk0DP9IljCdB5uYkc6PzKRjCJDfZijfI/
+ vQkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9rXXKQrsKPV/FTNHF+TjG0VgdXgVapwzGgt1vqwqwL4=;
+ b=GJepxvL9DuZxQxH4ZKsACsHEhkj1Sa7p37w38z2Mvbo6B/OHMCWqj3RBZHqSjYYgWX
+ Oderi/gqDtws36E8W8qBSsFh02by63iuOoR+sbG3mTY2D46ldMZ7Tmpk3X69gg85q8UX
+ Agql3a3iAmfV8T1SeX8WblAha8lDMt2nkTzWEP0StkpLKbfvk6J7k2A0BpBGlkvSUdxN
+ ZcdCbV32oYQcw6uoXwqh4bYE+J7XHSDatliy6wfUwFHoKe8CCqVE5B8LulA5D4LFD4rl
+ SpkwcZO1BCJ908b0tAnG+x9lhgyWn21E4dZKfbpvNtErJ9AmwjvnLkuj+7FGiCIV3C9b
+ Ie4A==
+X-Gm-Message-State: AOAM531sHQrkFURXo23q0S0ueyVZ4A5XbH3VRvmAOZLSCQHvI/84bzks
+ PMW16Y6uiyE7sqPDxqYmE1ZlQa6Cp7VqzcrgUMOmZQ==
+X-Google-Smtp-Source: ABdhPJxgvvRx8jDRWg5V6wKNHGUkNYXN2JHHeml6afcrBbRlSZVT1Ojnd1t0TNsnWbrO8gjtE8JJySEcw4N4eoSGc+g=
+X-Received: by 2002:a5b:392:: with SMTP id k18mr1203914ybp.180.1622737784106; 
+ Thu, 03 Jun 2021 09:29:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <454067aa-cb2b-541d-21a7-84706a2d93a6@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 15/20] drm/i915/guc: Ensure H2G buffer
- updates visible before tail update
+References: <20210527162650.1182544-1-jason@jlekstrand.net>
+ <20210527162650.1182544-22-jason@jlekstrand.net>
+ <YLSoXSnKlZV/EQwD@phenom.ffwll.local>
+ <CAOFGe973O_GJ9iqKQaE17TmWoKpaCYokxupzyOkuKG6U9pEyfg@mail.gmail.com>
+ <CAKMK7uGcs_x50R98TC_c0jTXNdmgN-0AH6Vg6itn5sPU3nB6Jg@mail.gmail.com>
+In-Reply-To: <CAKMK7uGcs_x50R98TC_c0jTXNdmgN-0AH6Vg6itn5sPU3nB6Jg@mail.gmail.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Thu, 3 Jun 2021 11:29:32 -0500
+Message-ID: <CAOFGe941U-ahAs=PE8zrkRdtyBCB3aEdUfS27MBcorDJWqNsRA@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 21/29] drm/i915/gem: Use the proto-context
+ to handle create parameters (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,105 +66,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 03, 2021 at 11:44:57AM +0200, Michal Wajdeczko wrote:
-> 
-> 
-> On 03.06.2021 07:16, Matthew Brost wrote:
-> > Ensure H2G buffer updates are visible before descriptor tail updates by
-> > inserting a barrier between the H2G buffer update and the tail. The
-> > barrier is simple wmb() for SMEM and is register write for LMEM. This is
-> > needed if more than 1 H2G can be inflight at once.
-> > 
-> > If this barrier is not inserted it is possible the descriptor tail
-> > update is scene by the GuC before H2G buffer update which results in the
-> > GuC reading a corrupt H2G value. This can bring down the H2G channel
-> > among other bad things.
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 28 +++++++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > index 80976fe40fbf..31f83956bfc3 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > @@ -328,6 +328,28 @@ static u32 ct_get_next_fence(struct intel_guc_ct *ct)
-> >  	return ++ct->requests.last_fence;
-> >  }
-> >  
-> > +static void write_barrier(struct intel_guc_ct *ct)
-> > +{
-> > +	struct intel_guc *guc = ct_to_guc(ct);
-> > +	struct intel_gt *gt = guc_to_gt(guc);
-> > +
-> > +	if (i915_gem_object_is_lmem(guc->ct.vma->obj)) {
-> > +		GEM_BUG_ON(guc->send_regs.fw_domains);
-> > +		/*
-> > +		 * This register is used by the i915 and GuC for MMIO based
-> > +		 * communication. Once we are in this code CTBs are the only
-> > +		 * method the i915 uses to communicate with the GuC so it is
-> > +		 * safe to write to this register (a value of 0 is NOP for MMIO
-> > +		 * communication). If we ever start mixing CTBs and MMIOs a new
-> > +		 * register will have to be chosen.
-> > +		 */
-> > +		intel_uncore_write_fw(gt->uncore, GEN11_SOFT_SCRATCH(0), 0);
-> 
-> can't we at least start with SOFT_SCRATCH register that is not used for
-> GuC MMIO based communication on Gen12 LMEM platforms? see [1]
-> 
-
-We likely can use this but I really don't feel comfortable switching the
-register without some more testing first (e.g. let's change in this in
-internal, let it soak for bit, then make the change upstream).
-
-> I really don't feel comfortable that we are touching a register that
-> elsewhere is protected with the mutex. And mixing CTBs and MMIO is not
-> far away.
+On Thu, Jun 3, 2021 at 2:32 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 >
+> On Thu, Jun 3, 2021 at 12:23 AM Jason Ekstrand <jason@jlekstrand.net> wrote:
+> >
+> > On Mon, May 31, 2021 at 4:12 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > >
+> > > On Thu, May 27, 2021 at 11:26:42AM -0500, Jason Ekstrand wrote:
+> > > > +static int set_proto_ctx_engines(struct drm_i915_file_private *fpriv,
+> > > > +                              struct i915_gem_proto_context *pc,
+> > > > +                              const struct drm_i915_gem_context_param *args)
+> > > > +{
+> > > > +     struct drm_i915_private *i915 = fpriv->dev_priv;
+> > > > +     struct set_proto_ctx_engines set = { .i915 = i915 };
+> > > > +     struct i915_context_param_engines __user *user =
+> > > > +             u64_to_user_ptr(args->value);
+> > > > +     unsigned int n;
+> > > > +     u64 extensions;
+> > > > +     int err;
+> > > > +
+> > > > +     if (!args->size) {
+> > > > +             proto_context_free_user_engines(pc);
+> > > > +             memset(&pc->legacy_rcs_sseu, 0, sizeof(pc->legacy_rcs_sseu));
+> > >
+> > > Hm I wonder whether we shouldn't put this into the cleanup helper, and
+> > > then maybe call it proto_context_reset_user_engines()? I think that makes
+> > > the entire user engines vs sseu flow a notch clearer again.
+> >
+> > I fought with myself over this.  The other two callers of
+> > free_user_engines() would be fine with clearing out the SSEU as well,
+> > I think, but neither of them need it.  I erred on the side of putting
+> > it in the one place it's actually needed to make it clear what's going
+> > on here.  I can move it if you'd like.
+>
+> So I'm wondering about semantics here a bit, and whether this is all
+> real, as in, used in real userspace:
+>
+> Instead of resetting engines here, shouldn't we just complain if
+> there's more than one engines_set command, ever, on a context?
 
-The only code that mixes CTBs and MMIOs is SRIOV which is a ways away
-from landing.
+I don't think it's ever used.  Let's kill it.
 
-Matt
- 
-> Michal
-> 
-> [1]
-> https://lore.kernel.org/intel-gfx/51b9bd05-7d6f-29f1-de0f-3a14bade6c9c@intel.com/
-> 
-> > +	} else {
-> > +		/* wmb() sufficient for a barrier if in smem */
-> > +		wmb();
-> > +	}
-> > +}
-> > +
-> >  /**
-> >   * DOC: CTB Host to GuC request
-> >   *
-> > @@ -411,6 +433,12 @@ static int ct_write(struct intel_guc_ct *ct,
-> >  	}
-> >  	GEM_BUG_ON(tail > size);
-> >  
-> > +	/*
-> > +	 * make sure H2G buffer update and LRC tail update (if this triggering a
-> > +	 * submission) are visible before updating the descriptor tail
-> > +	 */
-> > +	write_barrier(ct);
-> > +
-> >  	/* now update desc tail (back in bytes) */
-> >  	desc->tail = tail * 4;
-> >  	return 0;
-> > 
+> > As a bit of a P.S., I really hate the SSEU handling.  It's horrible.
+> > If I had it to do all over again, SSEU would be a purly dynamic
+> > context param that you aren't allowed to set at create time.  But,
+> > sadly, we're in the mess we're in. :-(
+>
+> Yeah it's rather annoying. If we go with "only one engines_set per ctx
+> create", then maybe we could streamline the SSEU stuff some more too?
+
+It certainly gets rid of this weird corner.
+
+--Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
