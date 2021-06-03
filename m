@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F2EA39AC94
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 23:17:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A0B39AC47
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 23:09:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6B506F508;
-	Thu,  3 Jun 2021 21:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C02B36EEA1;
+	Thu,  3 Jun 2021 21:09:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DBD1F6F508;
- Thu,  3 Jun 2021 21:16:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D5762A47DB;
- Thu,  3 Jun 2021 21:16:59 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7BA26EADD;
+ Thu,  3 Jun 2021 21:09:36 +0000 (UTC)
+IronPort-SDR: hLuvdEZ3SoXci6HFwpZj1vReoWv+/5xSCtn52SGTLEStoVuphKl8lFzRVpzwZyf6BxsajIVqLq
+ 7XZzLzBS2KGQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="203966007"
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="203966007"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 14:09:34 -0700
+IronPort-SDR: HWBfmJvYNBx/modDTQ4pjPLgVb9NrIOIkNnOMP+38UjnKPvzB40XuV0MZ2Y0JubWOAao7fzLUo
+ T0XE4CMG7gog==
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="448015256"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 14:09:34 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Thu,  3 Jun 2021 14:27:13 -0700
+Message-Id: <20210603212722.59719-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Thu, 03 Jun 2021 21:16:59 -0000
-Message-ID: <162275501985.8035.7230923770033042970@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210603164113.1433476-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210603164113.1433476-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_shmem_helpers_for_vgem_=28rev5=29?=
+Subject: [Intel-gfx] [PATCH 0/9] Introduce i915_sched_engine object
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,67 +45,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: daniel.vetter@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As discussed in [1] we are breaking that large series into a several
+smaller ones. This series is stand alone patch part of step #4 which has
+no other dependencies or patches relevant to it.
 
-Series: shmem helpers for vgem (rev5)
-URL   : https://patchwork.freedesktop.org/series/90670/
-State : warning
+v2:
+ (Daniel Vetter):
+  - Split into several smaller patches
+  - Add kernel doc for i915_sched_engine
+ (Matthew Brost):
+  - Drop wrapper functions for tasklet as eventually tasklet will be
+    dropped 
 
-== Summary ==
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-$ dim checkpatch origin/drm-tip
-9e8ef4e2828c dma-buf: Require VM_PFNMAP vma for mmap
--:34: WARNING:TYPO_SPELLING: 'entires' may be misspelled - perhaps 'entries'?
-#34: 
-From auditing the various functions to insert pfn pte entires
-                                                      ^^^^^^^
+[1] https://patchwork.freedesktop.org/series/89844/
 
--:39: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#39: 
-References: https://lore.kernel.org/lkml/CAKMK7uHi+mG0z0HUmNt13QCCvutuRVjpcR0NjRL12k-WbWzkRg@mail.gmail.com/
+Matthew Brost (9):
+  drm/i915: Move priolist to new i915_sched_engine object
+  drm/i915: Add i915_sched_engine_is_empty function
+  drm/i915: Add i915_sched_engine_reset_on_empty function
+  drm/i915: Move active tracking to i915_sched_engine
+  drm/i915: Move engine->schedule to i915_sched_engine
+  drm/i915: Add kick_backend function to i915_sched_engine
+  drm/i915: Update i915_scheduler to operate on i915_sched_engine
+  drm/i915: Move submission tasklet to i915_sched_engine
+  drm/i915/doc: Add kernel doc for i915_sched_engine
 
--:97: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+ Documentation/gpu/i915.rst                    |   6 +
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c      |   4 +-
+ drivers/gpu/drm/i915/gt/intel_engine.h        |  16 -
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  72 ++--
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |   4 +-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     |   4 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  47 +--
+ drivers/gpu/drm/i915/gt/intel_engine_user.c   |   2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  | 323 +++++++++++-------
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |  12 +-
+ drivers/gpu/drm/i915/gt/mock_engine.c         |  17 +-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  36 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |   6 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |   6 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |   2 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  70 ++--
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   4 +-
+ drivers/gpu/drm/i915/i915_request.c           |  42 +--
+ drivers/gpu/drm/i915/i915_request.h           |   2 +-
+ drivers/gpu/drm/i915/i915_scheduler.c         | 168 +++++----
+ drivers/gpu/drm/i915/i915_scheduler.h         |  47 ++-
+ drivers/gpu/drm/i915/i915_scheduler_types.h   |  89 +++++
+ 22 files changed, 554 insertions(+), 425 deletions(-)
 
-total: 0 errors, 3 warnings, 0 checks, 39 lines checked
-dd1ffdf52775 drm/shmem-helper: Switch to vmf_insert_pfn
--:14: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
-#14: 
-helpers for these drivers on those platforms. As-is this wont work.
-                                                         ^^^^
-
--:17: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
-#17: 
-definitely wont fly in practice since the pages are non-contig to
-           ^^^^
-
--:108: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 3 warnings, 0 checks, 55 lines checked
-6d03cb0b1181 drm/shmem-helper: Align to page size in dumb_create
--:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 15 lines checked
-d4c823697fde drm/vgem: use shmem helpers
--:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0cf2ef46c6c0 ("drm/shmem-helper: Use cached mappings by default")'
-#22: 
-v4: I got tricked by 0cf2ef46c6c0 ("drm/shmem-helper: Use cached
-
--:326: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
-#326: FILE: drivers/gpu/drm/vgem/vgem_drv.c:104:
-+	 * coherent memory or dma-buf sharing just wont work.
- 	                                           ^^^^
-
--:457: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 2 warnings, 0 checks, 402 lines checked
-
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
