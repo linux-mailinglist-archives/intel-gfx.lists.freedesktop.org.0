@@ -2,79 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0207D39A072
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 13:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A2439A0D7
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 14:29:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D771C6ED25;
-	Thu,  3 Jun 2021 11:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A13CC6E1B2;
+	Thu,  3 Jun 2021 12:28:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56CC96ED25
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 11:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1622721577;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=e/FZoX4WIIm6XZW0ArQELD2C1vsdBoERWuy3oEiMfj0=;
- b=jVLG8EW1TCJOjKEjQorbUC1PjZQsMbsyUpudzt05r7Je6UOO+RCB5DuMTj0DYfbvirOEAE
- vfz8OSYAMAUmumbD7hzx5HpFB6LQ0TMoHtRZ9eD8zwlhaP/2u2TcxjMwH3nufHObEPdmfk
- nzJes0FQfeynEV+HOln2mbMfL+7zBHs=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-325-ruHc5gofNDiB_c-3AwYGdg-1; Thu, 03 Jun 2021 07:59:33 -0400
-X-MC-Unique: ruHc5gofNDiB_c-3AwYGdg-1
-Received: by mail-ed1-f69.google.com with SMTP id
- f12-20020a056402150cb029038fdcfb6ea2so3125147edw.14
- for <intel-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 04:59:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=e/FZoX4WIIm6XZW0ArQELD2C1vsdBoERWuy3oEiMfj0=;
- b=Ycnx0dF0pSjG38JlcMlZGmPTc8xFOtmx0F4OgcehXeO3cPnsekXTMBzBGk0jp8pMTU
- 9jZuCBULgO196VTV6pgdDPhrYhvuJQ4R2XJOP2+W1MTfqzJqhSMeOnWrhvNLprc1oIJg
- Xi0FA93qMEoWjY2BdJA0ibiEKws8ySthFCvBXyx7o6bJzxciCr2vEFTcaME/OzKI+XeR
- jxDgV9r9BQMeBnvg79LxQfdmamf7eJVl40tRY9GbIyC0DlWlGhq9IYI8mmetf4+8n2BS
- l4efpvWsVPNwd3ksdSB55DbW14jAf/KgZodn9cKA12VjzCeKnkM7dfxhpwyege2E8SFz
- tz/g==
-X-Gm-Message-State: AOAM531+0TPsC0wUY0SI1fLJb8HnYAhvJcPZsOzTvy0xpzTSNFfj8uZ5
- qDZ57PCaLzjaYngpAHa9T1UJ/zBTcgSFxwAhPRjCrJqvreq/zxt7vJtNTDPyDTFa1KKwjUe39j1
- hqA15NQB0zfZLNwnM4ynd25CtBGsd
-X-Received: by 2002:a17:906:2b85:: with SMTP id
- m5mr39462373ejg.141.1622721572026; 
- Thu, 03 Jun 2021 04:59:32 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwLrhoVTSXNrq9oOLzdqRELKVnqXPHLA//ELnJuvPrh+jVnzjKXUa2Z3o+3O301UXhhaYNPDA==
-X-Received: by 2002:a17:906:2b85:: with SMTP id
- m5mr39462359ejg.141.1622721571851; 
- Thu, 03 Jun 2021 04:59:31 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id j22sm1484711ejt.11.2021.06.03.04.59.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 03 Jun 2021 04:59:31 -0700 (PDT)
-To: Emil Velikov <emil.l.velikov@gmail.com>
-References: <20210421204804.589962-1-hdegoede@redhat.com>
- <20210421204804.589962-3-hdegoede@redhat.com>
- <CACvgo50onXuRvtXySYNHJZshSkmX8ukcMitNJAKC4dEMPTyXYw@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <fb2209f1-a6d8-4a1e-de58-00ee788aa6c2@redhat.com>
-Date: Thu, 3 Jun 2021 13:59:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 264496E171
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 12:28:58 +0000 (UTC)
+IronPort-SDR: OPBVcjLoP/0lNVzlTt9mWxitxTC0+Zoh1Me9UzfZC3s9+fb6ehGaPMO5ZcWNLRPWoD+eYOTvv1
+ 0ekLSHEUhpLQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="203844008"
+X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="203844008"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 05:28:51 -0700
+IronPort-SDR: SljwEcGJahs1AeXMdX3CubA6BpQ8PCvb+V4mjCH5q41iQoQ6q1NqeNvVzGjn1nF+m4EgVMsrh9
+ YsSmJUIIv5gA==
+X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="480204200"
+Received: from sleader-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.54.200])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 05:28:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  3 Jun 2021 15:28:41 +0300
+Message-Id: <20210603122842.22496-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CACvgo50onXuRvtXySYNHJZshSkmX8ukcMitNJAKC4dEMPTyXYw@mail.gmail.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 2/9] drm: Add privacy-screen class (v2)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/dsc: abstract helpers to get
+ bigjoiner primary/secondary crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,142 +47,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
- Marco Trevisan <marco.trevisan@canonical.com>,
- Mark Gross <mgross@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Sebastien Bacher <seb128@ubuntu.com>, David Airlie <airlied@linux.ie>,
- Mario Limonciello <mario.limonciello@outlook.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, platform-driver-x86@vger.kernel.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Mark Pearson <markpearson@lenovo.com>, Andy Shevchenko <andy@infradead.org>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Add a single point of truth for figuring out the primary/secondary crtc
+for bigjoiner instead of duplicating the magic pipe +/- 1 in multiple
+places.
 
-On 6/1/21 5:31 PM, Emil Velikov wrote:
-> Hi Hans,
-> 
-> What happened with this series, did it fall through the cracks?
+Also fix the pipe validity checks to properly take non-contiguous pipes
+into account. The current checks may theoretically overflow
+i915->pipe_to_crtc_mapping[pipe], albeit with a warning, due to fused
+off pipes, as INTEL_NUM_PIPES() returns the actual number of pipes on
+the platform, and the check is for INTEL_NUM_PIPES() == pipe + 1.
 
-Sorta, as Marco already mentioned I think people are waiting for the
-user-space branches which he has on his personal git repos to be submitted
-as offical merge-req-s to GNOME.
+Prefer primary/secondary terminology going forward.
 
-> On Wed, 21 Apr 2021 at 21:48, Hans de Goede <hdegoede@redhat.com> wrote:
-> 
->> --- /dev/null
->> +++ b/drivers/gpu/drm/drm_privacy_screen.c
-> 
->> +#include "drm_internal.h"
-> 
-> I think we don't need this include, do we?
+Fixes: 8a029c113b17 ("drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave")
+Fixes: d961eb20adb6 ("drm/i915/bigjoiner: atomic commit changes for uncompressed joiner")
+Cc: Animesh Manna <animesh.manna@intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c |  7 ++--
+ drivers/gpu/drm/i915/display/intel_vdsc.c    | 42 ++++++++++++++------
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |  2 +
+ 3 files changed, 35 insertions(+), 16 deletions(-)
 
-The drm_privacy_screen device registered by a provider
-uses /sys/class/drm as its class, quoting from
-drm_privacy_screen.c drm_privacy_screen_register():
-
-        priv->dev.class = drm_class;
-        priv->dev.type = &drm_privacy_screen_type;
-        priv->dev.parent = parent;
-        priv->dev.release = drm_privacy_screen_device_release;
-        dev_set_name(&priv->dev, "privacy_screen-%s", dev_name(parent));
-        priv->ops = ops;
-
-        priv->ops->get_hw_state(priv);
-
-        ret = device_register(&priv->dev);
-
-Notice the "priv->dev.class = drm_class", the drm_class
-variable is declared in "drm_internal.h".
-
-Note this was not present in v2. As I mentioned in the commit msg:
-
-Changes in v2:
-- Make CONFIG_DRM_PRIVACY_SCREEN a bool which controls if the drm_privacy
-  code gets built as part of the main drm module rather then making it
-  a tristate which builds its own module.
-- Add a #if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN) check to
-  drm_privacy_screen_consumer.h and define stubs when the check fails.
-  Together these 2 changes fix several dependency issues.
-- Remove module related code now that this is part of the main drm.ko
-- Use drm_class as class for the privacy-screen devices instead of
-  adding a separate class for this
-
-This is something which I changed in v2. I changed this since I didn't
-really see any good reason for drm_privacy_screen devices having their
-own class, rather then just having them sit under /sys/class/drm .
-
-I'm open to changing this if people dislike this choice.
-
-
-
->> --- /dev/null
->> +++ b/include/drm/drm_privacy_screen_consumer.h
-> 
->> +#include <drm/drm_connector.h>
-> 
-> Ditto
-
-The "enum drm_privacy_screen_status" used in various places
-comes from drm/drm_connector.h (it is the same enum which is
-used for the possible values of the drm-connector properties).
-
-
->> --- /dev/null
->> +++ b/include/drm/drm_privacy_screen_driver.h
-> 
->> +#include <drm/drm_connector.h>
-> 
-> Ditto
-> 
-> I like how you avoided leaking any DRM details within the new code,
-> modulo the includes above.
-
-I'm glad you like it. I did indeed try to make the code mostly
-independent, but as you can see above there are still some
-inter-dependencies.
-
-Because of this, the CONFIG_DRM_PRIVACY_SCREEN option also does
-not control building this into a separate module. Like many other
-DRM Kconfig options, this controls if the privacy-screen code will
-be added to drm.ko or not.
-
-Despite being 99% independent, the 2 are still intertwined at such
-a level that this is necessary. Specifically drm_core_init() calls
-drm_privacy_screen_lookup_init() to initialize the static lookup
-table which is used to see if there is a privacy-screen (and to which
-GPU,output combo it should be mapped). So if CONFIG_DRM_PRIVACY_SCREEN
-is enabled and drm.ko is builtin then it must be builtin too, at which
-point it is easiest to just make it part of drm.ko .
-
-And there also is the later added dep from drm_privacy_screen.c on
-the drm_class symbol, which means there are now symbol-deps in both
-directions, which makes building the code into drm.ko the only option.
-
-> With above tweaks, the series is:
-> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
-
-As I've tried to explain, the includes are necessary, does your
-Reviewed-by still stands when I keep the includes ?
-
-> Theoretically one could also remove the `depends on DRM` from patch
-> 8/9 but I'm not sure how much that saves us.
-
-The depends in is necessary since CONFIG_DRM_PRIVACY_SCREEN just controls
-if privacy-screen support will be added to drm.ko, if it is enabled we
-still need drm.ko ti actually be built for things to work.
-
-> HTH
-
-Yes, actually getting a review of this code helps a lot, thank you.
-
-Regards,
-
-Hans
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index caf0414e0b50..1b213ed42396 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -9603,7 +9603,6 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 					struct intel_crtc_state *old_crtc_state,
+ 					struct intel_crtc_state *new_crtc_state)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
+ 	struct intel_crtc *slave, *master;
+ 
+@@ -9619,15 +9618,15 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 	if (!new_crtc_state->bigjoiner)
+ 		return 0;
+ 
+-	if (1 + crtc->pipe >= INTEL_NUM_PIPES(dev_priv)) {
++	slave = intel_dsc_get_bigjoiner_secondary(crtc);
++	if (!slave) {
+ 		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
+ 			      "CRTC + 1 to be used, doesn't exist\n",
+ 			      crtc->base.base.id, crtc->base.name);
+ 		return -EINVAL;
+ 	}
+ 
+-	slave = new_crtc_state->bigjoiner_linked_crtc =
+-		intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
++	new_crtc_state->bigjoiner_linked_crtc = slave;
+ 	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave);
+ 	master = crtc;
+ 	if (IS_ERR(slave_crtc_state))
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 19cd9531c115..1fd81bd3ea09 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1106,6 +1106,32 @@ static i915_reg_t dss_ctl2_reg(const struct intel_crtc_state *crtc_state)
+ 	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) : DSS_CTL2;
+ }
+ 
++struct intel_crtc *
++intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc)
++{
++	struct drm_i915_private *i915 = to_i915(primary_crtc->base.dev);
++	enum pipe pipe = primary_crtc->pipe + 1;
++
++	if (drm_WARN_ON(&i915->drm, pipe >= I915_MAX_PIPES ||
++			!(INTEL_INFO(i915)->pipe_mask & BIT(pipe))))
++		return NULL;
++
++	return intel_get_crtc_for_pipe(i915, pipe);
++}
++
++struct intel_crtc *
++intel_dsc_get_bigjoiner_primary(const struct intel_crtc *secondary_crtc)
++{
++	struct drm_i915_private *i915 = to_i915(secondary_crtc->base.dev);
++	enum pipe pipe = secondary_crtc->pipe - 1;
++
++	if (drm_WARN_ON(&i915->drm, pipe <= INVALID_PIPE ||
++			!(INTEL_INFO(i915)->pipe_mask & BIT(pipe))))
++		return NULL;
++
++	return intel_get_crtc_for_pipe(i915, pipe);
++}
++
+ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -1178,15 +1204,11 @@ void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state)
+ 	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
+ 	if (dss_ctl1 & UNCOMPRESSED_JOINER_MASTER) {
+ 		crtc_state->bigjoiner = true;
+-		if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
+-			crtc_state->bigjoiner_linked_crtc =
+-				intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
++		crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
+ 	} else if (dss_ctl1 & UNCOMPRESSED_JOINER_SLAVE) {
+ 		crtc_state->bigjoiner = true;
+ 		crtc_state->bigjoiner_slave = true;
+-		if (!WARN_ON(crtc->pipe == PIPE_A))
+-			crtc_state->bigjoiner_linked_crtc =
+-				intel_get_crtc_for_pipe(dev_priv, crtc->pipe - 1);
++		crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_primary(crtc);
+ 	}
+ }
+ 
+@@ -1224,13 +1246,9 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+ 
+ 		if (!(dss_ctl1 & MASTER_BIG_JOINER_ENABLE)) {
+ 			crtc_state->bigjoiner_slave = true;
+-			if (!WARN_ON(crtc->pipe == PIPE_A))
+-				crtc_state->bigjoiner_linked_crtc =
+-					intel_get_crtc_for_pipe(dev_priv, crtc->pipe - 1);
++			crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_primary(crtc);
+ 		} else {
+-			if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
+-				crtc_state->bigjoiner_linked_crtc =
+-					intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
++			crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+index fe4d45561253..da95944f4de2 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+@@ -22,5 +22,7 @@ void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state);
+ void intel_dsc_get_config(struct intel_crtc_state *crtc_state);
+ enum intel_display_power_domain
+ intel_dsc_power_domain(const struct intel_crtc_state *crtc_state);
++struct intel_crtc *intel_dsc_get_bigjoiner_primary(const struct intel_crtc *secondary_crtc);
++struct intel_crtc *intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc);
+ 
+ #endif /* __INTEL_VDSC_H__ */
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
