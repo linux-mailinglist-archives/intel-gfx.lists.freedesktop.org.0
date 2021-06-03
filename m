@@ -2,45 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2473739A23E
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 15:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E74AB39A251
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 15:37:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CC646E16F;
-	Thu,  3 Jun 2021 13:32:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE55B6E03F;
+	Thu,  3 Jun 2021 13:37:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 590 seconds by postgrey-1.36 at gabe;
- Thu, 03 Jun 2021 12:40:41 UTC
-Received: from h1954565.stratoserver.net (sebastianwick.net
- [IPv6:2a01:238:4226:4f00:79f5:2d39:beca:3cf1])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0E1986F46D
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 12:40:41 +0000 (UTC)
-Received: by h1954565.stratoserver.net (Postfix, from userid 117)
- id 5CA2D16411A; Thu,  3 Jun 2021 14:30:49 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
- h1954565.stratoserver.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED
- autolearn=unavailable autolearn_force=no version=3.4.2
-Received: from mail.sebastianwick.net (localhost [IPv6:::1])
- by h1954565.stratoserver.net (Postfix) with ESMTP id 188D6164106;
- Thu,  3 Jun 2021 14:30:41 +0200 (CEST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D8976E03F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 13:37:28 +0000 (UTC)
+IronPort-SDR: 8STs4NGJF8VZJ6TtL/N/ghxvQapuRNKqCpHkZDHpXNhmehNwbW5dUQWuWLbAG4lqe4l2U1+VAC
+ IKl1mddeAJNw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="202185217"
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="202185217"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 06:37:28 -0700
+IronPort-SDR: iSiA+eykXJH59rLZdy49BzsoFW0Vx+P/pl5+awKi4Oyfl3a/aYJ11QnLH0eW94ZeXn14lCXxbl
+ celkcfob8ZAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="550165692"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by orsmga004.jf.intel.com with ESMTP; 03 Jun 2021 06:37:27 -0700
+Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Thu, 3 Jun 2021 06:37:26 -0700
+Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
+ BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Thu, 3 Jun 2021 19:07:24 +0530
+Received: from bgsmsx606.gar.corp.intel.com ([10.67.234.8]) by
+ BGSMSX606.gar.corp.intel.com ([10.67.234.8]) with mapi id 15.01.2242.008;
+ Thu, 3 Jun 2021 19:07:24 +0530
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit changes
+ for uncompressed joiner
+Thread-Index: AQHXSNc9FInWnuQIb0SjW/tIEOKo3qsByukAgACVrkA=
+Date: Thu, 3 Jun 2021 13:37:24 +0000
+Message-ID: <2a72b3e624e748ca9fd22e84b644d2fa@intel.com>
+References: <20210514153711.2359617-1-matthew.d.roper@intel.com>
+ <20210514153711.2359617-16-matthew.d.roper@intel.com>
+ <87fsxzp9qx.fsf@intel.com>
+In-Reply-To: <87fsxzp9qx.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Date: Thu, 03 Jun 2021 14:30:41 +0200
-From: Sebastian Wick <sebastian@sebastianwick.net>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-In-Reply-To: <20210603114730.08e66ad0@eldfell>
-References: <20210601105218.29185-1-uma.shankar@intel.com>
- <20210602122850.29412a29@eldfell>
- <5a9a8c3ee8d54c3ca2ccaca4aa5ad1d9@intel.com>
- <95e6a3e9-70d2-42d3-1289-a7de33f266c4@amd.com>
- <20210603114730.08e66ad0@eldfell>
-Message-ID: <740c5f2c1db7d8152b3932a8d7cd7c55@sebastianwick.net>
-X-Sender: sebastian@sebastianwick.net
-User-Agent: Roundcube Webmail/1.3.4
-X-Mailman-Approved-At: Thu, 03 Jun 2021 13:32:32 +0000
-Subject: Re: [Intel-gfx] [PATCH 00/21] Add Support for Plane Color Lut and
- CSC features
+Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit
+ changes for uncompressed joiner
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,185 +72,246 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Vitaly Prosyak <vitaly.prosyak@amd.com>,
- Harry Wentland <harry.wentland@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-06-03 10:47, Pekka Paalanen wrote:
-> On Wed, 2 Jun 2021 19:42:19 -0400
-> Harry Wentland <harry.wentland@amd.com> wrote:
-> 
->> On 2021-06-02 4:22 p.m., Shankar, Uma wrote:
->> >
->> >
->> >> -----Original Message-----
->> >> From: Pekka Paalanen <ppaalanen@gmail.com>
->> >> Sent: Wednesday, June 2, 2021 2:59 PM
->> >> To: Shankar, Uma <uma.shankar@intel.com>
->> >> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Modem,
->> >> Bhanuprakash <bhanuprakash.modem@intel.com>; Harry Wentland
->> >> <harry.wentland@amd.com>
->> >> Subject: Re: [PATCH 00/21] Add Support for Plane Color Lut and CSC features
->> >>
->> >> On Tue,  1 Jun 2021 16:21:57 +0530
->> >> Uma Shankar <uma.shankar@intel.com> wrote:
->> >>
->> >>> This is how a typical display color hardware pipeline looks like:
-> 
-> ...
-> 
->> >>> This patch series adds properties for plane color features. It adds
->> >>> properties for degamma used to linearize data and CSC used for gamut
->> >>> conversion. It also includes Gamma support used to again non-linearize
->> >>> data as per panel supported color space. These can be utilize by user
->> >>> space to convert planes from one format to another, one color space to
->> >>> another etc.
->> >>
->> >> This is very much welcome!
->> >>
->> >> There is also the thread:
->> >> https://lists.freedesktop.org/archives/dri-devel/2021-May/306726.html>>>
->> >> Everything mentioned will interact with each other by changing what the abstract
->> >> KMS pixel pipeline does. I think you and Harry should probably look at each others'
->> >> suggestions and see how to fit them all into a single abstract KMS pipeline.
->> >>
->> >> People are adding new pieces into KMS left and right, and I fear we lose sight of how
->> >> everything will actually work together when all KMS properties are supposed to be
->> >> generic and potentially present simultaneously. This is why I would very much like to
->> >> have that *whole* abstract KMS pipeline documented with *everything*. Otherwise
->> >> it is coming really hard fast to figure out how generic userspace should use all these
->> >> KMS properties together.
->> >>
->> >> Or if there cannot be a single abstract KMS pipeline, then sure, have multiple, as long
->> >> as they are documented and how userspace will know which pipeline it is dealing
->> >> with, and what things are mutually exclusive so we can avoid writing userspace code
->> >> for combinations that will never exist.
->> >
->> > This is a good suggestion to have the whole pipeline and properties documented along with
->> > the exact usages. We may end with 2 properties almost doing similar work but needed due to
->> > underlying hardware, but we can get that properly documented and defined.
->> >
->> > I will discuss with Harry and Ville as well to define this.
->> >
->> 
->> Just wanted to let you know that I've seen and read through both of 
->> Shankar's patchsets
->> and had some thoughts but haven't found the time to respond. I will 
->> respond soon.
-> 
-> Hi Harry,
-> 
-> awesome!
-> 
->> I very much agree with Pekka. We need to make sure this all plays well 
->> together and is
->> well documented. Maybe a library to deal with DRM KMS color 
->> management/HDR would even
->> be helpful. Not sure yet how I feel about that.
-> 
-> That is an excellent question. While I am working on Weston CM&HDR, I
-> already have issues with how to represent the color related
-> transformations. These new hardware features exposed here are nothing I
-> have prepared for, and would probably need changes to accommodate.
-> 
-> The main Weston roadmap is drafted in
-> https://gitlab.freedesktop.org/wayland/weston/-/issues/467
-> 
-> The MR that introduces the concept of a color transformation, and also
-> the whole beginnings of color management, is
-> https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/582
-> 
-> In that MR, there is a patch introducing struct weston_color_transform:
-> https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/582/diffs?commit_id=cffbf7c6b2faf7391b73ff9202774f660343bd34#ba0b86259533d5000d81c9c88109c9010eb0f641_0_77
-> 
-> The design idea there is that libweston shall have what I call "color
-> manager" module. That module handles all the policy decisions about
-> color, it uses a CMM (Little CMS 2 in this case) for all the color
-> profile computations, and based on all information it has available
-> from display EDID, ICC profile files, Wayland clients via the CM&HDR
-> protocol extension and more, it will ultimately produce
-> weston_color_transform objects.
-> 
-> weston_color_transform is a complete description of how to map a pixel
-> in one color model/space/encoding into another, maybe with user
-> preferred tuning/tone-mapping. E.g. from client content to the output's
-> blending space (output space but light-linear), or from output's
-> blending space to output's framebuffer space or maybe even monitor wire
-> space.
-> 
-> The mapping described by weston_color_transform shall be implemented by
-> libweston's GL-renderer or by the DRM-backend using KMS properties,
-> whatever works for each case. So the description cannot be opaque, it
-> has to map to GLSL shaders (easy) and KMS properties (???).
-> 
-> Now the problem is, what should weston_color_transform look like?
-> 
-> The current design has two steps in a color transform:
-> - Transfer function: identity, the traditional set of three 1D LUTs, or
->   something else.
-> - Color mapping: identity, a 3D LUT, or something else.
-> 
-> "Something else" is a placeholder for whatever we want to have, but the
-> problem in adding new types of transfer function or color mapping
-> representations (e.g. the fancy new GAMMA_MODEs) is how will the color
-> manager create the parameters for those?
 
-I think the weston_color_transform is going a bit in the wrong
-direction. While the 3D LUT can describe everything if it has enough
-precision it indeed makes sense to apply a transform before to get the
-required precision down. It doesn't have to be a TF though and we really
-don't care what it is as long as in the end the content is in the
-correct color space and dynamic range. This might be enough to get
-something off the ground right now though.
 
-In the long run however it probably makes more sense to convert the
-color transform to a complete pipeline of enumerated, parametric and
-numerical elements together with some helpers to lower (enumerated >
-parametric > numerical) and fuse elements (to the point that you can
-always convert the pipeline to a 3D LUT). The color manager ideally
-should provide a pipeline with the highest abstraction and avoid fusing
-elements if it would result in a lose of information. This is a lot more
-complex but it also gives us much better chances of finding a way to
-offload the transform.
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Thursday, June 3, 2021 3:10 PM
+> To: Roper, Matthew D <matthew.d.roper@intel.com>; intel-
+> gfx@lists.freedesktop.org
+> Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
+> <manasi.d.navare@intel.com>; Kulkarni, Vandita <vandita.kulkarni@intel.com>
+> Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit changes
+> for uncompressed joiner
+> 
+> On Fri, 14 May 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
+> > From: Animesh Manna <animesh.manna@intel.com>
+> >
+> > Respective bit for master or slave to be set for uncompressed
+> > bigjoiner in dss_ctl1 register.
+> 
+> I was looking at the changes here due to a static checker complaint, and I think
+> there are a number of issues here. Some more serious than others, and some
+> predate the patch.
+> 
+> Comments inline.
+> 
+> > Cc: Manasi Navare <manasi.d.navare@intel.com>
+> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c |  6 +++
+> >  drivers/gpu/drm/i915/display/intel_vdsc.c    | 40 +++++++++++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_vdsc.h    |  2 +
+> >  drivers/gpu/drm/i915/i915_reg.h              |  2 +
+> >  4 files changed, 49 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index b5fd721137d3..422b59ebf6dc 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -3411,6 +3411,7 @@ static void icl_ddi_bigjoiner_pre_enable(struct
+> intel_atomic_state *state,
+> >  					 const struct intel_crtc_state
+> *crtc_state)  {
+> >  	struct intel_crtc *master = to_intel_crtc(crtc_state->uapi.crtc);
+> > +	struct drm_i915_private *dev_priv = to_i915(master->base.dev);
+> >  	struct intel_crtc_state *master_crtc_state;
+> >  	struct drm_connector_state *conn_state;
+> >  	struct drm_connector *conn;
+> > @@ -3444,6 +3445,9 @@ static void icl_ddi_bigjoiner_pre_enable(struct
+> intel_atomic_state *state,
+> >  		/* and DSC on slave */
+> >  		intel_dsc_enable(NULL, crtc_state);
+> >  	}
+> > +
+> > +	if (DISPLAY_VER(dev_priv) >= 13)
+> > +		intel_uncompressed_joiner_enable(crtc_state);
+> >  }
+> >
+> >  static void hsw_crtc_enable(struct intel_atomic_state *state, @@
+> > -6250,6 +6254,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+> >  	}
+> >
+> >  	intel_dsc_get_config(pipe_config);
+> > +	if (DISPLAY_VER(dev_priv) >= 13 && !pipe_config-
+> >dsc.compression_enable)
+> > +		intel_uncompressed_joiner_get_config(pipe_config);
+> >
+> >  	if (!active) {
+> >  		/* bigjoiner slave doesn't enable transcoder */ diff --git
+> > a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > index adcd6752f919..efc3184d8315 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > @@ -1021,6 +1021,22 @@ static i915_reg_t dss_ctl2_reg(const struct
+> intel_crtc_state *crtc_state)
+> >  	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) : DSS_CTL2;
+> > }
+> >
+> > +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
+> > +*crtc_state)
+> 
+> Naming. Basically for any new function, the function name prefix should match
+> the file name. intel_vdsc.[ch] should have functions prefixed intel_vdsc_*(). This
+> is where we're headed to increase clarity.
+> 
+> intel_uncompressed_*() is something completely different.
+> 
+> Granted, here we already have intel_dsc_*() in intel_vdsc.c. We should probably
+> stick with intel_dsc_*(). A possible function or file rename is not out of the
+> question, but that's a separate matter.
 
-AFAIR lcms uses such a model and gives you access to the pipeline. If we
-want to be independent of lcms we would need our own descriptions and
-possibly lower some lcms elements to our own stuff. I'm also not sure
-how good lcms is at retaining the high level description if possible.
+As there is not separate register for uncompressed joiner, using bitfield of dsc register only the function name can be changed to intel_dsc_uncompressed_joiner_enable().
 
-> If we have ICC profiles as the original data, then we are probably
-> limited to what LCMS2 can produce. The issue with ICC profiles is that
-> they may contain 3D LUTs themselves, so not what I would call a
-> parametric model. OTOH, if we have, say, enumerated operations defined
-> by various HDR standards, we have to code those ourselves and then
-> producing whatever fancy representation is less of a problem.
 > 
-> Maybe that is how it has to be. If the color transformations are
-> defined by ICC profiles, we might be stuck with old-school KMS color
-> properties, but HDR stuff that doesn't rely on ICC can use the fancier
-> KMS properties. I'm sure interesting questions will arise when e.g. you
-> have the monitor in HDR mode, described with standard HDR terms, and
-> then you have application content described with an ICC profile (maybe
-> SDR, maybe not).
+> > +{
+> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > +	u32 dss_ctl1_val = 0;
+> > +
+> > +	if (crtc_state->bigjoiner && !crtc_state->dsc.compression_enable) {
+> > +		if (crtc_state->bigjoiner_slave)
+> > +			dss_ctl1_val |= UNCOMPRESSED_JOINER_SLAVE;
+> > +		else
+> > +			dss_ctl1_val |= UNCOMPRESSED_JOINER_MASTER;
+> > +
+> > +		intel_de_write(dev_priv, dss_ctl1_reg(crtc_state), dss_ctl1_val);
+> > +	}
+> > +}
+> > +
+> >  void intel_dsc_enable(struct intel_encoder *encoder,
+> >  		      const struct intel_crtc_state *crtc_state)  { @@ -1060,13
+> > +1076,35 @@ void intel_dsc_disable(const struct intel_crtc_state
+> *old_crtc_state)
+> >  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >
+> > -	if (!old_crtc_state->dsc.compression_enable)
+> > +	if (!(old_crtc_state->dsc.compression_enable &&
+> > +	      old_crtc_state->bigjoiner))
 > 
-> We can always get a 3D LUT out of LCMS2, so theoretically it would be
-> possible to get a huge LUT and then optimise whatever parameterised
-> model you have to that data set. But I worry that might be too costly
-> to do in-flight, at least in a way that blocks the compositor. Maybe do
-> what I hear shader compilers do: produce an unoptimal model fast, then
-> compute an optimised model asynchronously and replace when ready. And
-> disk cache(?).
+> This fails to disable compression if we only have compression but no bigjoiner,
+> which is the more common case!
 > 
-> A library probably makes sense in the long run, but for now, I would
-> have no idea at all what it should look like.
+> See also:
+> 
+> https://gitlab.freedesktop.org/drm/intel/-/issues/3537
+> https://patchwork.freedesktop.org/patch/msgid/20210603065356.15435-1-
+> vandita.kulkarni@intel.com
+> 
+
+We may need to remove both the condition check.
+In uncompressed bigjoiner, compression_enable flag will be 0 and may not clear the bit of dss_ctl1_reg.
+So can we remove both the checks, hoping it will not harm reseting the register even if it is not set. 
+
+> >  		return;
+> >
+> >  	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
+> >  	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);  }
+> >
+> > +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
+> > +*crtc_state) {
+> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> > +	u32 dss_ctl1;
+> > +
+> > +	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
+> > +	if (dss_ctl1 & UNCOMPRESSED_JOINER_MASTER) {
+> > +		crtc_state->bigjoiner = true;
+> > +		if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
+> > +			crtc_state->bigjoiner_linked_crtc =
+> > +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe +
+> 1);
+> > +	} else if (dss_ctl1 & UNCOMPRESSED_JOINER_SLAVE) {
+> > +		crtc_state->bigjoiner = true;
+> > +		crtc_state->bigjoiner_slave = true;
+> > +		if (!WARN_ON(crtc->pipe == PIPE_A))
+> > +			crtc_state->bigjoiner_linked_crtc =
+> > +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe -
+> 1);
+> > +	}
+> 
+> Nitpick: This duplicates a bunch of logic for figuring out master/slave.
+> 
+> The static checker warning was about crtc->pipe + 1 usage. Since
+> INTEL_NUM_PIPES() looks at the hamming weight of i915->pipe_mask, the
+> checker has a hard time figuring out it does not overflow
+> i915->pipe_to_crtc_mapping[] in intel_get_crtc_for_pipe().
+> 
+> So here in intel_vdsc.c the checks are for overflowing/underflowing the pipe
+> range. In intel_get_crtc_for_pipe() there's a check for the pipe actually existing -
+> the pipe numbering might not be contiguous.
+> 
+> Superficially the static checker warning is bogus, as in we won't overflow
+> anything. However, deep down there are issues in the consistency of the checks
+> and how to handle non-contigouous pipe numbering.
+> 
+> Indeed, this does not *need* the number. We should figure out the next *crtc*,
+> not the next pipe *number*, which may or may not be pipe + 1.
+
+dss_ctl1 value is used to identify master or slave crtc. If needed WARN_ON check can be removed... but pipe enum values like PIPE_A/B/C/D is used to get the master/slave crtc and always bigjoiner is possible with two adjacent pipes.
+
+Regards,
+Animesh
+
 > 
 > 
-> Thanks,
-> pq
+> BR,
+> Jani.
+> 
+> > +}
+> > +
+> >  void intel_dsc_get_config(struct intel_crtc_state *crtc_state)  {
+> >  	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config; diff
+> > --git a/drivers/gpu/drm/i915/display/intel_vdsc.h
+> > b/drivers/gpu/drm/i915/display/intel_vdsc.h
+> > index 65d301c23580..fe4d45561253 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+> > @@ -12,11 +12,13 @@ struct intel_encoder;  struct intel_crtc_state;
+> >
+> >  bool intel_dsc_source_support(const struct intel_crtc_state
+> > *crtc_state);
+> > +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
+> > +*crtc_state);
+> >  void intel_dsc_enable(struct intel_encoder *encoder,
+> >  		      const struct intel_crtc_state *crtc_state);  void
+> > intel_dsc_disable(const struct intel_crtc_state *crtc_state);  int
+> > intel_dsc_compute_params(struct intel_encoder *encoder,
+> >  			     struct intel_crtc_state *pipe_config);
+> > +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
+> > +*crtc_state);
+> >  void intel_dsc_get_config(struct intel_crtc_state *crtc_state);  enum
+> > intel_display_power_domain  intel_dsc_power_domain(const struct
+> > intel_crtc_state *crtc_state); diff --git
+> > a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 31bc413dbba1..dd6e0bae9573 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -11493,6 +11493,8 @@ enum skl_power_gate {
+> >  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
+> >  #define  SPLITTER_CONFIGURATION_2_SEGMENT
+> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
+> >  #define  SPLITTER_CONFIGURATION_4_SEGMENT
+> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
+> > +#define  UNCOMPRESSED_JOINER_MASTER		(1 << 21)
+> > +#define  UNCOMPRESSED_JOINER_SLAVE		(1 << 20)
+> >
+> >  #define _ICL_PIPE_DSS_CTL2_PB			0x78204
+> >  #define _ICL_PIPE_DSS_CTL2_PC			0x78404
+> 
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
