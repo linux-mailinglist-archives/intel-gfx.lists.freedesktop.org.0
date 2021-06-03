@@ -2,47 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C5DB399DFC
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 11:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D72C399E0C
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 11:48:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A2D36E0EB;
-	Thu,  3 Jun 2021 09:45:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE916E84A;
+	Thu,  3 Jun 2021 09:48:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CDE56E0EB;
- Thu,  3 Jun 2021 09:45:05 +0000 (UTC)
-IronPort-SDR: kVub9A2X9AdEVQ6MKkyczbuL+KzRx0Ha70cqsiVTjApIAZbT+2+SQ0byP8RrURAm0Ed1BX1KOC
- ITy/OsIuc45g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="183688912"
-X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="183688912"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 02:45:00 -0700
-IronPort-SDR: +MLnEqQ22aneiTIVDwrWYYE9rRGCn6xWyzCf/fHC7/iDWyK2xNeG8CELTZJsn3Ve3SUZdn5bD+
- lsN9WK6yBm+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="447790162"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga008.fm.intel.com with ESMTP; 03 Jun 2021 02:44:57 -0700
-Received: from [10.249.138.11] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.138.11])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 1539ivWw004939; Thu, 3 Jun 2021 10:44:57 +0100
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210603051630.2635-1-matthew.brost@intel.com>
- <20210603051630.2635-16-matthew.brost@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <454067aa-cb2b-541d-21a7-84706a2d93a6@intel.com>
-Date: Thu, 3 Jun 2021 11:44:57 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
+ [IPv6:2607:f8b0:4864:20::831])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C4CD6E84A;
+ Thu,  3 Jun 2021 09:48:43 +0000 (UTC)
+Received: by mail-qt1-x831.google.com with SMTP id v4so3967419qtp.1;
+ Thu, 03 Jun 2021 02:48:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=dSSOsIAjSoeXvheN+mVsxIwibgECqv9CPqBUuH9ed0I=;
+ b=UAmWHQ/oOpxa7fk0NbJAONnXxmoo07blTHjMxfwApTfOIpPaHQcZ2F27b2cNLv0RGO
+ hvY+bbYelWJRhwLWBzic0gB55D2fS5n0CJX5a1Rk3qyIgQkKKHpwKqO1mpv9gq2/yXZD
+ QvkE4AVHlreR1OTecrMJHzFaSxWhcbMxIYyDMh2SoQEad6MRF4DJhhFazedE+APZB/zJ
+ 0Vt9AuJzc6AdhwrHsTQxfdLB1eIeBfKdT2DlcMRrTZnmG4vIjVlfb4tGHhHWrD8g8Pit
+ JLyvUa2EJs2qf0d/wDEsHLuP15PLhDipTYjCYevz3wf7U49OdYhDz7RxWPAHiqCCDkZP
+ 3jcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=dSSOsIAjSoeXvheN+mVsxIwibgECqv9CPqBUuH9ed0I=;
+ b=PJwcQO5v9MCzB5otrb42CmycRzlQtR3twiHDEBO4EoRHGbLRdFm6OT6JKFgtoDpe4/
+ tiOsfYh7V+mE5eywj7KAxEgrKa1hmt642noX4kD32JxKbAVyTSkgYy0ErKsxoWlRf3di
+ 7UXpW/IYQyYa0G9fMp1xTuazNEv6HFi+WSQvt6a21XQv8zgM0F6S7C4Wtg7osjpccNFx
+ 52q7Vv3JIeWRgMPVVH7HErdzG7QOYFTAFhYbnLvCcpVQpMbLQZhqROPdLl0sAqSpAX1S
+ YeJpQzKLFi4AZGb/cksTNboG7eeGLzuMCbpz4etegJEXV7jIG77LwaXBjQmO1ZUxUGpK
+ LP/w==
+X-Gm-Message-State: AOAM533CwhWrZpV+AUPNd9Hz7PTwdSR/YqJzZoW0CqeUi37RqOZdfnWZ
+ P+hqd/SSHcnKjGCg6U9uCkIlOmyfDTm1dhhqilLvj5pKoyFG/w==
+X-Google-Smtp-Source: ABdhPJwFmWQaQnmwql0RxeJR4wLEoltqz8xhFgdBcFzuBjvtMXLfY3skExCasCEm+V4kRpeF39e6k/rzVqHcG3OMIlI=
+X-Received: by 2002:ac8:75d4:: with SMTP id z20mr27860812qtq.265.1622713722146; 
+ Thu, 03 Jun 2021 02:48:42 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210603051630.2635-16-matthew.brost@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 15/20] drm/i915/guc: Ensure H2G buffer
- updates visible before tail update
+References: <20210602170716.280491-1-thomas.hellstrom@linux.intel.com>
+ <20210602170716.280491-5-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210602170716.280491-5-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 3 Jun 2021 10:48:15 +0100
+Message-ID: <CAM0jSHPfNhw3e9y4eD5X+Bk-i1nkZqb1Tw194mhOFNGbHZD8xw@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/ttm: Use TTM for system memory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,93 +62,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 03.06.2021 07:16, Matthew Brost wrote:
-> Ensure H2G buffer updates are visible before descriptor tail updates by
-> inserting a barrier between the H2G buffer update and the tail. The
-> barrier is simple wmb() for SMEM and is register write for LMEM. This is
-> needed if more than 1 H2G can be inflight at once.
-> 
-> If this barrier is not inserted it is possible the descriptor tail
-> update is scene by the GuC before H2G buffer update which results in the
-> GuC reading a corrupt H2G value. This can bring down the H2G channel
-> among other bad things.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 28 +++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 80976fe40fbf..31f83956bfc3 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -328,6 +328,28 @@ static u32 ct_get_next_fence(struct intel_guc_ct *ct)
->  	return ++ct->requests.last_fence;
->  }
->  
-> +static void write_barrier(struct intel_guc_ct *ct)
-> +{
-> +	struct intel_guc *guc = ct_to_guc(ct);
-> +	struct intel_gt *gt = guc_to_gt(guc);
-> +
-> +	if (i915_gem_object_is_lmem(guc->ct.vma->obj)) {
-> +		GEM_BUG_ON(guc->send_regs.fw_domains);
-> +		/*
-> +		 * This register is used by the i915 and GuC for MMIO based
-> +		 * communication. Once we are in this code CTBs are the only
-> +		 * method the i915 uses to communicate with the GuC so it is
-> +		 * safe to write to this register (a value of 0 is NOP for MMIO
-> +		 * communication). If we ever start mixing CTBs and MMIOs a new
-> +		 * register will have to be chosen.
-> +		 */
-> +		intel_uncore_write_fw(gt->uncore, GEN11_SOFT_SCRATCH(0), 0);
-
-can't we at least start with SOFT_SCRATCH register that is not used for
-GuC MMIO based communication on Gen12 LMEM platforms? see [1]
-
-I really don't feel comfortable that we are touching a register that
-elsewhere is protected with the mutex. And mixing CTBs and MMIO is not
-far away.
-
-Michal
-
-[1]
-https://lore.kernel.org/intel-gfx/51b9bd05-7d6f-29f1-de0f-3a14bade6c9c@intel.com/
-
-> +	} else {
-> +		/* wmb() sufficient for a barrier if in smem */
-> +		wmb();
-> +	}
-> +}
-> +
->  /**
->   * DOC: CTB Host to GuC request
->   *
-> @@ -411,6 +433,12 @@ static int ct_write(struct intel_guc_ct *ct,
->  	}
->  	GEM_BUG_ON(tail > size);
->  
-> +	/*
-> +	 * make sure H2G buffer update and LRC tail update (if this triggering a
-> +	 * submission) are visible before updating the descriptor tail
-> +	 */
-> +	write_barrier(ct);
-> +
->  	/* now update desc tail (back in bytes) */
->  	desc->tail = tail * 4;
->  	return 0;
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyIEp1biAyMDIxIGF0IDE4OjA4LCBUaG9tYXMgSGVsbHN0csO2bQo8dGhvbWFzLmhl
+bGxzdHJvbUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gRm9yIGRpc2NyZXRlLCB1c2UgVFRN
+IGZvciBib3RoIGNhY2hlZCBhbmQgV0Mgc3lzdGVtIG1lbW9yeS4gVGhhdCBtZWFucwo+IHdlIGN1
+cnJlbnRseSByZWx5IG9uIHRoZSBUVE0gbWVtb3J5IGFjY291bnRpbmcgLyBzaHJpbmtlci4gRm9y
+IGNhY2hlZAo+IHN5c3RlbSBtZW1vcnkgd2Ugc2hvdWxkIGNvbnNpZGVyIHJlbWFpbmluZyBzaG1l
+bS1iYWNrZWQsIHdoaWNoIGNhbiBiZQo+IGltcGxlbWVudGVkIGZyb20gb3VyIHR0bV90dF9wb3B1
+bGF0ZSBjYWxiYWNrLiBXZSBjYW4gdGhlbiBhbHNvIHJldXNlIG91cgo+IG93biB2ZXJ5IGVsYWJv
+cmF0ZSBzaHJpbmtlciBmb3IgdGhhdCBtZW1vcnkuCj4KPiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMg
+SGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYyAgICB8IDIyICsrKysrKysrKysr
+KysrKysrKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAg
+IHwgIDMgLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uYyB8
+ICA3ICsrKysrKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3JlZ2lvbi5o
+IHwgIDggKysrKysrKysKPiAgNCBmaWxlcyBjaGFuZ2VkLCAzNiBpbnNlcnRpb25zKCspLCA0IGRl
+bGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
+X2dlbV90dG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYwo+IGlu
+ZGV4IDhlMWMwMTE2OGM2ZC4uNDJlODliZjQzNzA4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV90dG0uYwo+IEBAIC03NTUsMyArNzU1LDI1IEBAIGludCBfX2k5MTVfZ2Vt
+X3R0bV9vYmplY3RfaW5pdChzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtLAo+ICAgICAg
+ICAgLyogaTkxNSB3YW50cyAtRU5YSU8gd2hlbiBvdXQgb2YgbWVtb3J5IHJlZ2lvbiBzcGFjZS4g
+Ki8KPiAgICAgICAgIHJldHVybiAocmV0ID09IC1FTk9TUEMpID8gLUVOWElPIDogcmV0Owo+ICB9
+Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX21lbW9yeV9yZWdpb25fb3BzIHR0bV9z
+eXN0ZW1fcmVnaW9uX29wcyA9IHsKPiArICAgICAgIC5pbml0X29iamVjdCA9IF9faTkxNV9nZW1f
+dHRtX29iamVjdF9pbml0LAo+ICt9Owo+ICsKPiArc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24g
+Kgo+ICtpOTE1X2dlbV90dG1fc3lzdGVtX3NldHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
+OTE1LAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgdTE2IHR5cGUsIHUxNiBpbnN0YW5jZSkK
+PiArewo+ICsgICAgICAgc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1yOwo+ICsKPiArICAg
+ICAgIG1yID0gaW50ZWxfbWVtb3J5X3JlZ2lvbl9jcmVhdGUoaTkxNSwgMCwKPiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdG90YWxyYW1fcGFnZXMoKSA8PCBQQUdFX1NI
+SUZULAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBQQUdFX1NJWkUs
+IDAsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR5cGUsIGluc3Rh
+bmNlLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAmdHRtX3N5c3Rl
+bV9yZWdpb25fb3BzKTsKPiArICAgICAgIGlmIChJU19FUlJfT1JfTlVMTChtcikpCgpyZWdpb25f
+Y3JlYXRlIGNhbid0IHJldHVybiBOVUxMLgoKPiArICAgICAgICAgICAgICAgcmV0dXJuIG1yOwo+
+ICsKPiArICAgICAgIGludGVsX21lbW9yeV9yZWdpb25fc2V0X25hbWUobXIsICJzeXN0ZW0tdHRt
+Iik7Cj4gKyAgICAgICByZXR1cm4gbXI7Cj4gK30KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKPiBp
+bmRleCA1MjRhYWViMGU4NDIuLmM2Y2MxNmNjY2UzNiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
+cnYuaAo+IEBAIC0xNzY4LDkgKzE3NjgsNiBAQCB2b2lkIGk5MTVfZ2VtX2NsZWFudXBfdXNlcnB0
+cihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOwo+ICB2b2lkIGk5MTVfZ2VtX2lu
+aXRfZWFybHkoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsKPiAgdm9pZCBpOTE1
+X2dlbV9jbGVhbnVwX2Vhcmx5KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdik7Cj4K
+PiAtc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKmk5MTVfZ2VtX3NobWVtX3NldHVwKHN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICB1MTYgdHlwZSwgdTE2IGluc3RhbmNlKTsKPiAtCj4gIHN0YXRp
+YyBpbmxpbmUgdm9pZCBpOTE1X2dlbV9kcmFpbl9mcmVlZF9vYmplY3RzKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICppOTE1KQo+ICB7Cj4gICAgICAgICAvKgo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMKPiBpbmRleCBiZDI3ZTg5N2Q0ZDAuLmE0MmJiMzZjMmFl
+YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9u
+LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMKPiBA
+QCAtMjIwLDcgKzIyMCwxMiBAQCBpbnQgaW50ZWxfbWVtb3J5X3JlZ2lvbnNfaHdfcHJvYmUoc3Ry
+dWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4gICAgICAgICAgICAgICAgIGluc3RhbmNlID0g
+aW50ZWxfcmVnaW9uX21hcFtpXS5pbnN0YW5jZTsKPiAgICAgICAgICAgICAgICAgc3dpdGNoICh0
+eXBlKSB7Cj4gICAgICAgICAgICAgICAgIGNhc2UgSU5URUxfTUVNT1JZX1NZU1RFTToKPiAtICAg
+ICAgICAgICAgICAgICAgICAgICBtZW0gPSBpOTE1X2dlbV9zaG1lbV9zZXR1cChpOTE1LCB0eXBl
+LCBpbnN0YW5jZSk7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgaWYgKElTX0RHRlgoaTkxNSkp
+Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtZW0gPSBpOTE1X2dlbV90dG1fc3lz
+dGVtX3NldHVwKGk5MTUsIHR5cGUsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGluc3RhbmNlKTsKPiArICAgICAgICAgICAg
+ICAgICAgICAgICBlbHNlCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtZW0gPSBp
+OTE1X2dlbV9zaG1lbV9zZXR1cChpOTE1LCB0eXBlLAo+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaW5zdGFuY2UpOwo+ICAgICAgICAg
+ICAgICAgICAgICAgICAgIGJyZWFrOwo+ICAgICAgICAgICAgICAgICBjYXNlIElOVEVMX01FTU9S
+WV9TVE9MRU5fTE9DQUw6Cj4gICAgICAgICAgICAgICAgICAgICAgICAgbWVtID0gaTkxNV9nZW1f
+c3RvbGVuX2xtZW1fc2V0dXAoaTkxNSwgdHlwZSwgaW5zdGFuY2UpOwo+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmggYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmgKPiBpbmRleCA3YjVmYTk3YzBiNTkuLjRkMDg0
+NDI0YjU1YyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlf
+cmVnaW9uLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9u
+LmgKPiBAQCAtMTQyLDQgKzE0MiwxMiBAQCB2b2lkIGludGVsX21lbW9yeV9yZWdpb25fdW5yZXNl
+cnZlKHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICptZW0pOwo+ICBpbnQgaW50ZWxfbWVtb3J5
+X3JlZ2lvbl9yZXNlcnZlKHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICptZW0sCj4gICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICByZXNvdXJjZV9zaXplX3Qgb2Zmc2V0LAo+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVzb3VyY2Vfc2l6ZV90IHNpemUpOwo+ICsKPiAr
+c3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKgo+ICtpOTE1X2dlbV90dG1fc3lzdGVtX3NldHVw
+KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgdTE2IHR5cGUsIHUxNiBpbnN0YW5jZSk7Cj4gK3N0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9u
+ICoKPiAraTkxNV9nZW1fc2htZW1fc2V0dXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUs
+Cj4gKyAgICAgICAgICAgICAgICAgICAgdTE2IHR5cGUsIHUxNiBpbnN0YW5jZSk7Cj4gKwo+ICAj
+ZW5kaWYKPiAtLQo+IDIuMzEuMQo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
