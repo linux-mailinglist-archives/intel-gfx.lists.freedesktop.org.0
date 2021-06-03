@@ -1,39 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347B139A3F1
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 17:05:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A929739A3E7
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 17:03:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64D1E6F4AA;
-	Thu,  3 Jun 2021 15:04:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D1F06F48E;
+	Thu,  3 Jun 2021 15:03:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E50F6F495;
- Thu,  3 Jun 2021 15:04:57 +0000 (UTC)
-IronPort-SDR: +5ey6h70h/LmAw8cufAnxktT5KsOSP0bT4bAomOhQFK7fScYOgQu7MXmAqEISazbnXSUlTIrYT
- WErWwigJ2Gww==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="202206301"
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="202206301"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 08:04:55 -0700
-IronPort-SDR: iCTG6/1J/mH1/TYxwPuRds/7KFZ1xYZHG4iC1FeAAuIbsxTOrre2C6rETfv+Im+k/7X7ZdwE0J
- IRp+dt+J4erA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="417408677"
-Received: from vsrini4-xps-8920.iind.intel.com (HELO localhost.localdomain)
- ([10.223.163.28])
- by orsmga002.jf.intel.com with ESMTP; 03 Jun 2021 08:04:52 -0700
-From: Vidya Srinivas <vidya.srinivas@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Date: Thu,  3 Jun 2021 20:25:41 +0530
-Message-Id: <1622732141-13561-1-git-send-email-vidya.srinivas@intel.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [Intel-gfx] [PATCH i-g-t] tests/kms_color: Remove gamma code from
- degamma tests
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E2756E1E0
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 15:03:33 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id jt22so9719946ejb.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 08:03:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=mpf+22HJp3bXTLvdn/Ycffjhcm4o9o/MNAerroFOnOE=;
+ b=U7IQY+Yqtz8Hrs1nZlKCD2HYN2Uwh9i/SaVt9a8FCgR1Hqe0kGwMmrDJFOcHByMJP/
+ mRjVr8TzYc4a/3ub/VBedTorux2Z4d69vFEaftpVWp1cIrZMCmXC9FCywAJ1pnzfSlZ/
+ eruSWGAN4HZ3hlo5u5dTlfL5BsnVVjyFExfdg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=mpf+22HJp3bXTLvdn/Ycffjhcm4o9o/MNAerroFOnOE=;
+ b=llxBSyCfIz4+6KrwUrDPhRKtkoeXAitgFTklG5N1a2fdOdHrhD2I+amR4TyASj4vtY
+ OAvZYZL/3Zp/dGe5Kqn3JlyWA8TG4qQmU7njyMKK2XAcV5wroVhJNwGZKCMStBaQqjxI
+ lU3WgcC6IYmLg5MbboBPm+KAEogRrP4Ic3L3j5ry3vvXIg+teyOMFgXfqz12Qvt88Dhv
+ qwDa7vPLayvu+Yo9qrNySNY56/T0PuXjkiuxaPncAjlIIEKc7zpaPfu6pd/4x6lf/dvH
+ 95EhRXZUJ8OIbwqfZBi5mbX0uYFnUYZGlMHUqIe+vFFgh8XhKvauPv3o4Th6uDoBzQIR
+ jx9g==
+X-Gm-Message-State: AOAM533+5mWtiOphc/7FhdvLSWdDYiw9RQ6QnfIaGlFnh0DJjFoXZDfz
+ Iais3oTDEQ7+spNKGu6pv7w6kP0TAPlKjQ==
+X-Google-Smtp-Source: ABdhPJy9MJtoY89TBW+O0pLEcP09O9i8V8ABSjmBxpFj085wKOBfvRcttMvXAKfEerjN5ZUybgdPqA==
+X-Received: by 2002:a17:906:1701:: with SMTP id c1mr13936eje.425.1622732611935; 
+ Thu, 03 Jun 2021 08:03:31 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id hz10sm1621791ejc.40.2021.06.03.08.03.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Jun 2021 08:03:31 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Date: Thu,  3 Jun 2021 17:03:22 +0200
+Message-Id: <20210603150326.1326658-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.31.0
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v2 0/4] shmem helpers for igt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,95 +61,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: markyacoub@chromium.org, charlton.lin@intel.com
-MIME-Version: 1.0
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CRC should be collected without degamma transformation
-and after drawing gradient with degamma LUT.
-This patch removes things which are not related to degamma
-and makes it similar to pipe gamma test.
+Hi all,
 
-Change-Id: I37f957b3a95dfe95119f0f0941f20c10471f437c
-Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
----
- tests/kms_color.c | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+I finally figured out why CI is unhappy on some machines, we've lost WC
+mode on the vgem side!
 
-diff --git a/tests/kms_color.c b/tests/kms_color.c
-index 3a42532a5c27..2c9821cdecce 100644
---- a/tests/kms_color.c
-+++ b/tests/kms_color.c
-@@ -31,8 +31,7 @@ static void test_pipe_degamma(data_t *data,
- {
- 	igt_output_t *output;
- 	igt_display_t *display = &data->display;
--	gamma_lut_t *degamma_linear, *degamma_full;
--	gamma_lut_t *gamma_linear;
-+	gamma_lut_t *degamma_full;
- 	color_t red_green_blue[] = {
- 		{ 1.0, 0.0, 0.0 },
- 		{ 0.0, 1.0, 0.0 },
-@@ -42,11 +41,8 @@ static void test_pipe_degamma(data_t *data,
- 	igt_require(igt_pipe_obj_has_prop(primary->pipe, IGT_CRTC_DEGAMMA_LUT));
- 	igt_require(igt_pipe_obj_has_prop(primary->pipe, IGT_CRTC_GAMMA_LUT));
- 
--	degamma_linear = generate_table(data->degamma_lut_size, 1.0);
- 	degamma_full = generate_table_max(data->degamma_lut_size);
- 
--	gamma_linear = generate_table(data->gamma_lut_size, 1.0);
--
- 	for_each_valid_output_on_pipe(&data->display, primary->pipe->pipe, output) {
- 		drmModeModeInfo *mode;
- 		struct igt_fb fb_modeset, fb;
-@@ -75,8 +71,7 @@ static void test_pipe_degamma(data_t *data,
- 
- 		igt_plane_set_fb(primary, &fb_modeset);
- 		disable_ctm(primary->pipe);
--		disable_degamma(primary->pipe);
--		set_gamma(data, primary->pipe, gamma_linear);
-+		set_degamma(data, primary->pipe, degamma_full);
- 		igt_display_commit(&data->display);
- 
- 		/* Draw solid colors with no degamma transformation. */
-@@ -92,7 +87,6 @@ static void test_pipe_degamma(data_t *data,
- 		 */
- 		paint_gradient_rectangles(data, mode, red_green_blue, &fb);
- 		igt_plane_set_fb(primary, &fb);
--		set_degamma(data, primary->pipe, degamma_full);
- 		igt_display_commit(&data->display);
- 		igt_wait_for_vblank(data->drm_fd,
- 				display->pipes[primary->pipe->pipe].crtc_offset);
-@@ -105,13 +99,13 @@ static void test_pipe_degamma(data_t *data,
- 
- 		igt_plane_set_fb(primary, NULL);
- 		igt_output_set_pipe(output, PIPE_NONE);
-+		igt_display_commit2(&data->display, data->display.is_atomic ?
-+							COMMIT_ATOMIC : COMMIT_LEGACY);
- 		igt_remove_fb(data->drm_fd, &fb);
- 		igt_remove_fb(data->drm_fd, &fb_modeset);
- 	}
- 
--	free_lut(degamma_linear);
- 	free_lut(degamma_full);
--	free_lut(gamma_linear);
- }
- 
- /*
-@@ -191,6 +185,8 @@ static void test_pipe_gamma(data_t *data,
- 
- 		igt_plane_set_fb(primary, NULL);
- 		igt_output_set_pipe(output, PIPE_NONE);
-+		igt_display_commit2(&data->display, data->display.is_atomic ?
-+							COMMIT_ATOMIC : COMMIT_LEGACY);
- 		igt_remove_fb(data->drm_fd, &fb);
- 		igt_remove_fb(data->drm_fd, &fb_modeset);
- 	}
+Test-with: 20210527140732.5762-1-daniel.vetter@ffwll.ch
+
+Cheers, Daniel
+
+Daniel Vetter (4):
+  drm/gem-shmem-helper: Export drm_gem_shmem_funcs
+  drm/shmem-helper: Switch to vmf_insert_pfn
+  drm/shmem-helper: Align to page size in dumb_create
+  drm/vgem: use shmem helpers
+
+ drivers/gpu/drm/Kconfig                |   3 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c |  11 +-
+ drivers/gpu/drm/vgem/vgem_drv.c        | 346 ++-----------------------
+ include/drm/drm_gem_shmem_helper.h     |   1 +
+ 4 files changed, 25 insertions(+), 336 deletions(-)
+
 -- 
-2.7.4
+2.31.0
 
 _______________________________________________
 Intel-gfx mailing list
