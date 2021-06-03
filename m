@@ -2,64 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 337F3399FBD
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 13:25:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0207D39A072
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 13:59:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F9186E1D6;
-	Thu,  3 Jun 2021 11:25:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D771C6ED25;
+	Thu,  3 Jun 2021 11:59:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02F2F6E1D6
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 11:25:04 +0000 (UTC)
-IronPort-SDR: lB3GWTeNrnn4aW1hRVNwwFyer56tim+ESmb8KxvtaEiZMaDHF45Zw0i0VLCnotejGY29zWT7BS
- YaVDMjzYdJRw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10003"; a="289651877"
-X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="289651877"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 04:25:03 -0700
-IronPort-SDR: gr4OKLEsgdjiQmxUbDf7UgUuT6cleocd+FAsxbQiaJAfgoIhIYIbXWgKgxsGHwl9zGfmHaAp4Q
- SiQvuca1mzzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,244,1616482800"; d="scan'208";a="550008310"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga004.jf.intel.com with ESMTP; 03 Jun 2021 04:25:03 -0700
-Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 3 Jun 2021 04:25:02 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 3 Jun 2021 16:54:59 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.008;
- Thu, 3 Jun 2021 16:54:59 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in DSC
- disable
-Thread-Index: AQHXWEerkFFEh6R0kUCekRWWk2uIg6sBidmAgABuaXD//7Q1gIAAcXSQ
-Date: Thu, 3 Jun 2021 11:24:59 +0000
-Message-ID: <86877ca0c9ff4ebab0b269b91b6c3979@intel.com>
-References: <20210603065356.15435-1-vandita.kulkarni@intel.com>
- <eedaa66fa17944aeb96aa353c58db2e9@intel.com>
- <1e70025aa4e04a5396721ad4e7609340@intel.com> <87czt3p9oc.fsf@intel.com>
-In-Reply-To: <87czt3p9oc.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56CC96ED25
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 11:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1622721577;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=e/FZoX4WIIm6XZW0ArQELD2C1vsdBoERWuy3oEiMfj0=;
+ b=jVLG8EW1TCJOjKEjQorbUC1PjZQsMbsyUpudzt05r7Je6UOO+RCB5DuMTj0DYfbvirOEAE
+ vfz8OSYAMAUmumbD7hzx5HpFB6LQ0TMoHtRZ9eD8zwlhaP/2u2TcxjMwH3nufHObEPdmfk
+ nzJes0FQfeynEV+HOln2mbMfL+7zBHs=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-325-ruHc5gofNDiB_c-3AwYGdg-1; Thu, 03 Jun 2021 07:59:33 -0400
+X-MC-Unique: ruHc5gofNDiB_c-3AwYGdg-1
+Received: by mail-ed1-f69.google.com with SMTP id
+ f12-20020a056402150cb029038fdcfb6ea2so3125147edw.14
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 04:59:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=e/FZoX4WIIm6XZW0ArQELD2C1vsdBoERWuy3oEiMfj0=;
+ b=Ycnx0dF0pSjG38JlcMlZGmPTc8xFOtmx0F4OgcehXeO3cPnsekXTMBzBGk0jp8pMTU
+ 9jZuCBULgO196VTV6pgdDPhrYhvuJQ4R2XJOP2+W1MTfqzJqhSMeOnWrhvNLprc1oIJg
+ Xi0FA93qMEoWjY2BdJA0ibiEKws8ySthFCvBXyx7o6bJzxciCr2vEFTcaME/OzKI+XeR
+ jxDgV9r9BQMeBnvg79LxQfdmamf7eJVl40tRY9GbIyC0DlWlGhq9IYI8mmetf4+8n2BS
+ l4efpvWsVPNwd3ksdSB55DbW14jAf/KgZodn9cKA12VjzCeKnkM7dfxhpwyege2E8SFz
+ tz/g==
+X-Gm-Message-State: AOAM531+0TPsC0wUY0SI1fLJb8HnYAhvJcPZsOzTvy0xpzTSNFfj8uZ5
+ qDZ57PCaLzjaYngpAHa9T1UJ/zBTcgSFxwAhPRjCrJqvreq/zxt7vJtNTDPyDTFa1KKwjUe39j1
+ hqA15NQB0zfZLNwnM4ynd25CtBGsd
+X-Received: by 2002:a17:906:2b85:: with SMTP id
+ m5mr39462373ejg.141.1622721572026; 
+ Thu, 03 Jun 2021 04:59:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwLrhoVTSXNrq9oOLzdqRELKVnqXPHLA//ELnJuvPrh+jVnzjKXUa2Z3o+3O301UXhhaYNPDA==
+X-Received: by 2002:a17:906:2b85:: with SMTP id
+ m5mr39462359ejg.141.1622721571851; 
+ Thu, 03 Jun 2021 04:59:31 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id j22sm1484711ejt.11.2021.06.03.04.59.31
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 03 Jun 2021 04:59:31 -0700 (PDT)
+To: Emil Velikov <emil.l.velikov@gmail.com>
+References: <20210421204804.589962-1-hdegoede@redhat.com>
+ <20210421204804.589962-3-hdegoede@redhat.com>
+ <CACvgo50onXuRvtXySYNHJZshSkmX8ukcMitNJAKC4dEMPTyXYw@mail.gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <fb2209f1-a6d8-4a1e-de58-00ee788aa6c2@redhat.com>
+Date: Thu, 3 Jun 2021 13:59:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in
- DSC disable
+In-Reply-To: <CACvgo50onXuRvtXySYNHJZshSkmX8ukcMitNJAKC4dEMPTyXYw@mail.gmail.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 2/9] drm: Add privacy-screen class (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,71 +87,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Marco Trevisan <marco.trevisan@canonical.com>,
+ Mark Gross <mgross@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Sebastien Bacher <seb128@ubuntu.com>, David Airlie <airlied@linux.ie>,
+ Mario Limonciello <mario.limonciello@outlook.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, platform-driver-x86@vger.kernel.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Mark Pearson <markpearson@lenovo.com>, Andy Shevchenko <andy@infradead.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBOaWt1bGEsIEphbmkgPGphbmku
-bmlrdWxhQGludGVsLmNvbT4NCj4gU2VudDogVGh1cnNkYXksIEp1bmUgMywgMjAyMSAzOjExIFBN
-DQo+IFRvOiBLdWxrYXJuaSwgVmFuZGl0YSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+OyBT
-YWFyaW5lbiwgSmFuaQ0KPiA8amFuaS5zYWFyaW5lbkBpbnRlbC5jb20+OyBpbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBNYW5uYSwgQW5pbWVzaCA8YW5pbWVzaC5tYW5uYUBp
-bnRlbC5jb20+OyBOYXZhcmUsIE1hbmFzaSBEDQo+IDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29t
-Pg0KPiBTdWJqZWN0OiBSRTogW0ludGVsLWdmeF0gW1BBVENIXSBkcm0vaTkxNS9kc2M6IFJlbW92
-ZSByZWR1bmRhbnQgY2hlY2tzIGluDQo+IERTQyBkaXNhYmxlDQo+IA0KPiBPbiBUaHUsIDAzIEp1
-biAyMDIxLCAiS3Vsa2FybmksIFZhbmRpdGEiIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4N
-Cj4gd3JvdGU6DQo+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4+IEZyb206IFNh
-YXJpbmVuLCBKYW5pIDxqYW5pLnNhYXJpbmVuQGludGVsLmNvbT4NCj4gPj4gU2VudDogVGh1cnNk
-YXksIEp1bmUgMywgMjAyMSAxOjA3IFBNDQo+ID4+IFRvOiBLdWxrYXJuaSwgVmFuZGl0YSA8dmFu
-ZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+OyBpbnRlbC0NCj4gPj4gZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZw0KPiA+PiBDYzogTmlrdWxhLCBKYW5pIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+
-ID4+IFN1YmplY3Q6IFJFOiBbSW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9pOTE1L2RzYzogUmVtb3Zl
-IHJlZHVuZGFudA0KPiA+PiBjaGVja3MgaW4gRFNDIGRpc2FibGUNCj4gPj4NCj4gPj4gSGksDQo+
-ID4+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPj4gPiBGcm9tOiBJbnRlbC1nZngg
-PGludGVsLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmDQo+ID4+
-ID4gT2YgVmFuZGl0YSBLdWxrYXJuaQ0KPiA+PiA+IFNlbnQ6IHRvcnN0YWkgMy4ga2Vzw6RrdXV0
-YSAyMDIxIDkuNTQNCj4gPj4gPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0K
-PiA+PiA+IENjOiBOaWt1bGEsIEphbmkgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gPj4gPiBT
-dWJqZWN0OiBbSW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9pOTE1L2RzYzogUmVtb3ZlIHJlZHVuZGFu
-dCBjaGVja3MNCj4gPj4gPiBpbiBEU0MgZGlzYWJsZQ0KPiA+PiA+DQo+ID4+ID4gVGhlcmUgY2Fu
-IGJlIGEgY2hhbmNlIHRoYXQgcHJlIG9zIGhhcyBlbmFibGVkIERTQyBhbmQgZHJpdmVyJ3MNCj4g
-Pj4gPiBjb21wdXRlIGNvbmZpZyB3b3VsZCBub3QgbmVlZCBkc2MgdG8gYmUgZW5hYmxlZCwgaW4g
-c3VjaCBjYXNlIGlmIHdlDQo+ID4+ID4gY2hlY2sgb24gY29tcHV0ZSBjb25maWcncyBjb21wcmVz
-c2lvbiBzdGF0ZSB0byBkaXNhYmxlLCB3ZSBtaWdodA0KPiA+PiA+IGVuZCB1cCBpbiBzdGF0ZQ0K
-PiA+PiBtaXNtYXRjaC4NCj4gPj4NCj4gPj4gSSBhc3N1bWUgdGhpcyBmaXhlcyByZWFsIGdpdGxh
-YiBpc3N1ZSB0b28/DQo+ID4gT2theSwgd2lsbCBhZGQgdGhlIHRhZw0KPiA+IENsb3NlczogaHR0
-cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8zNTM3DQo+IA0K
-PiBTZWUgaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci84N2ZzeHpwOXF4LmZzZkBpbnRlbC5jb20N
-Cj4gDQo+IFRoZSBwcm9ibGVtIGlzIHdpdGggLT5iaWdqb2luZXIsIG5vdCB0aGUgZW50aXJlIHN0
-YXRlbWVudC4NClRoYW5rcyBmb3IgcG9pbnRpbmcgdGhpcyBvdXQsIHRydWUgdGhhdCBiaWdqb2lu
-ZXIgbm90IGJlaW5nIGVuYWJsZWQgd2lsbCBzdG9wIGRzYyBkaXNhYmxpbmcuDQpUaGUgYmlnam9p
-bmVyIGNoZWNrIHdhcyBtYWtpbmcgdGhlIGVudGlyZSBjb25kaXRpb24gY2hlY2sgdW5uZWNlc3Nh
-cnkuDQoNCldpbGwgdXBkYXRlIGFuZCByZWZsb2F0Lg0KDQpUaGFua3MsDQpWYW5kaXRhDQo+IA0K
-PiANCj4gQlIsDQo+IEphbmkuDQo+IA0KPiA+DQo+ID4gVGhhbmtzLA0KPiA+IFZhbmRpdGENCj4g
-Pj4NCj4gPj4gPg0KPiA+PiA+IFNpZ25lZC1vZmYtYnk6IFZhbmRpdGEgS3Vsa2FybmkgPHZhbmRp
-dGEua3Vsa2FybmlAaW50ZWwuY29tPg0KPiA+PiA+IC0tLQ0KPiA+PiA+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYyB8IDQgLS0tLQ0KPiA+PiA+ICAxIGZpbGUgY2hh
-bmdlZCwgNCBkZWxldGlvbnMoLSkNCj4gPj4gPg0KPiA+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYw0KPiA+PiA+IGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92ZHNjLmMNCj4gPj4gPiBpbmRleCAxOWNkOTUzMWMxMTUu
-LmIwNWE5NjAxMWQ5MyAxMDA2NDQNCj4gPj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX3Zkc2MuYw0KPiA+PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfdmRzYy5jDQo+ID4+ID4gQEAgLTExNjEsMTAgKzExNjEsNiBAQCB2b2lkIGlu
-dGVsX2RzY19kaXNhYmxlKGNvbnN0IHN0cnVjdA0KPiA+PiA+IGludGVsX2NydGNfc3RhdGUNCj4g
-Pj4gPiAqb2xkX2NydGNfc3RhdGUpDQo+ID4+ID4gIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9
-IHRvX2ludGVsX2NydGMob2xkX2NydGNfc3RhdGUtPnVhcGkuY3J0Yyk7DQo+ID4+ID4gIAlzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsN
-Cj4gPj4gPg0KPiA+PiA+IC0JaWYgKCEob2xkX2NydGNfc3RhdGUtPmRzYy5jb21wcmVzc2lvbl9l
-bmFibGUgJiYNCj4gPj4gPiAtCSAgICAgIG9sZF9jcnRjX3N0YXRlLT5iaWdqb2luZXIpKQ0KPiA+
-PiA+IC0JCXJldHVybjsNCj4gPj4gPiAtDQo+ID4+ID4gIAlpbnRlbF9kZV93cml0ZShkZXZfcHJp
-diwgZHNzX2N0bDFfcmVnKG9sZF9jcnRjX3N0YXRlKSwgMCk7DQo+ID4+ID4gIAlpbnRlbF9kZV93
-cml0ZShkZXZfcHJpdiwgZHNzX2N0bDJfcmVnKG9sZF9jcnRjX3N0YXRlKSwgMCk7ICB9DQo+ID4+
-ID4gLS0NCj4gPj4gPiAyLjIxLjAuNS5nYWViNTgyYQ0KPiA+PiA+DQo+ID4+ID4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPj4gPiBJbnRlbC1nZngg
-bWFpbGluZyBsaXN0DQo+ID4+ID4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiA+
-PiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4DQo+IA0KPiAtLQ0KPiBKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3Mg
-Q2VudGVyDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Hi,
+
+On 6/1/21 5:31 PM, Emil Velikov wrote:
+> Hi Hans,
+> 
+> What happened with this series, did it fall through the cracks?
+
+Sorta, as Marco already mentioned I think people are waiting for the
+user-space branches which he has on his personal git repos to be submitted
+as offical merge-req-s to GNOME.
+
+> On Wed, 21 Apr 2021 at 21:48, Hans de Goede <hdegoede@redhat.com> wrote:
+> 
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_privacy_screen.c
+> 
+>> +#include "drm_internal.h"
+> 
+> I think we don't need this include, do we?
+
+The drm_privacy_screen device registered by a provider
+uses /sys/class/drm as its class, quoting from
+drm_privacy_screen.c drm_privacy_screen_register():
+
+        priv->dev.class = drm_class;
+        priv->dev.type = &drm_privacy_screen_type;
+        priv->dev.parent = parent;
+        priv->dev.release = drm_privacy_screen_device_release;
+        dev_set_name(&priv->dev, "privacy_screen-%s", dev_name(parent));
+        priv->ops = ops;
+
+        priv->ops->get_hw_state(priv);
+
+        ret = device_register(&priv->dev);
+
+Notice the "priv->dev.class = drm_class", the drm_class
+variable is declared in "drm_internal.h".
+
+Note this was not present in v2. As I mentioned in the commit msg:
+
+Changes in v2:
+- Make CONFIG_DRM_PRIVACY_SCREEN a bool which controls if the drm_privacy
+  code gets built as part of the main drm module rather then making it
+  a tristate which builds its own module.
+- Add a #if IS_ENABLED(CONFIG_DRM_PRIVACY_SCREEN) check to
+  drm_privacy_screen_consumer.h and define stubs when the check fails.
+  Together these 2 changes fix several dependency issues.
+- Remove module related code now that this is part of the main drm.ko
+- Use drm_class as class for the privacy-screen devices instead of
+  adding a separate class for this
+
+This is something which I changed in v2. I changed this since I didn't
+really see any good reason for drm_privacy_screen devices having their
+own class, rather then just having them sit under /sys/class/drm .
+
+I'm open to changing this if people dislike this choice.
+
+
+
+>> --- /dev/null
+>> +++ b/include/drm/drm_privacy_screen_consumer.h
+> 
+>> +#include <drm/drm_connector.h>
+> 
+> Ditto
+
+The "enum drm_privacy_screen_status" used in various places
+comes from drm/drm_connector.h (it is the same enum which is
+used for the possible values of the drm-connector properties).
+
+
+>> --- /dev/null
+>> +++ b/include/drm/drm_privacy_screen_driver.h
+> 
+>> +#include <drm/drm_connector.h>
+> 
+> Ditto
+> 
+> I like how you avoided leaking any DRM details within the new code,
+> modulo the includes above.
+
+I'm glad you like it. I did indeed try to make the code mostly
+independent, but as you can see above there are still some
+inter-dependencies.
+
+Because of this, the CONFIG_DRM_PRIVACY_SCREEN option also does
+not control building this into a separate module. Like many other
+DRM Kconfig options, this controls if the privacy-screen code will
+be added to drm.ko or not.
+
+Despite being 99% independent, the 2 are still intertwined at such
+a level that this is necessary. Specifically drm_core_init() calls
+drm_privacy_screen_lookup_init() to initialize the static lookup
+table which is used to see if there is a privacy-screen (and to which
+GPU,output combo it should be mapped). So if CONFIG_DRM_PRIVACY_SCREEN
+is enabled and drm.ko is builtin then it must be builtin too, at which
+point it is easiest to just make it part of drm.ko .
+
+And there also is the later added dep from drm_privacy_screen.c on
+the drm_class symbol, which means there are now symbol-deps in both
+directions, which makes building the code into drm.ko the only option.
+
+> With above tweaks, the series is:
+> Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+
+As I've tried to explain, the includes are necessary, does your
+Reviewed-by still stands when I keep the includes ?
+
+> Theoretically one could also remove the `depends on DRM` from patch
+> 8/9 but I'm not sure how much that saves us.
+
+The depends in is necessary since CONFIG_DRM_PRIVACY_SCREEN just controls
+if privacy-screen support will be added to drm.ko, if it is enabled we
+still need drm.ko ti actually be built for things to work.
+
+> HTH
+
+Yes, actually getting a review of this code helps a lot, thank you.
+
+Regards,
+
+Hans
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
