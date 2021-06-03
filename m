@@ -1,48 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1555739AA28
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 20:37:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1742D39AA8A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 20:54:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C862E6F4ED;
-	Thu,  3 Jun 2021 18:37:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76CE86F4E9;
+	Thu,  3 Jun 2021 18:54:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C760A6F4E3
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 18:37:18 +0000 (UTC)
-IronPort-SDR: wFinX3YpCmWxst5i5Ium96H2SVgMjO1Ja7lk/ynpeYshwJREHJ/gXDVjj+bfwbXua/71GeSkeT
- RoTlQjg/qsWw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="225426303"
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="225426303"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 11:37:17 -0700
-IronPort-SDR: IzPvoTDZr3Iy4rti+nb1RJvjM/R1akQ3kTbeYoaRn4tIGFTirEz1mDlDJvKUJar8FBsbCkXAPH
- vo1E/JfF6vnw==
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="447968144"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 11:37:16 -0700
-Date: Thu, 3 Jun 2021 11:45:42 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-Message-ID: <20210603184537.GA12413@labuser-Z97X-UD5H>
-References: <20210603065356.15435-1-vandita.kulkarni@intel.com>
- <eedaa66fa17944aeb96aa353c58db2e9@intel.com>
- <1e70025aa4e04a5396721ad4e7609340@intel.com>
- <87czt3p9oc.fsf@intel.com>
- <86877ca0c9ff4ebab0b269b91b6c3979@intel.com>
- <0935357a1cd94cc7a115eca8e7a5fce9@intel.com>
- <a608d8131b314604bf3714e311ab94b9@intel.com>
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 911836E7E6
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 18:54:52 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id u7so1431910wrs.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 11:54:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=CO3ETpEHYd4w+2hgDav4tTvKCQRKE5zL1+PtSeefNgs=;
+ b=TK1eABGIeC2/pzA214WhfnCGMBYoUOIP3zKtzA1HMCyLo1OAbAfVmB8xldgKZNf6is
+ IeXTVzPDmu999SAU/iQnP+XoXCfPWoKDPsQtIfo2Td8/p0h8XwgxYIB2aDSh4CGYQOHH
+ Qf0TTQYozFnk46z27eQJiodzW4RnSwHTQcm5w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=CO3ETpEHYd4w+2hgDav4tTvKCQRKE5zL1+PtSeefNgs=;
+ b=avMUq9iQzusrpIz/JXURHFxHmDUnOa3WmBE2ioZp4dtZbqbWHc9SBeM1waEujUxHvL
+ T4/Z72H57/p1ryN1jgt0XBdYJN5XHZ8CNsMgRPsp9DqkTB78p0CYXSUk4aDFLUBpyd9O
+ Nh+Y+2evAFS90PA7DUhBf9vEyaIhuPup6RMAHZGHSzdF3I02I4QoU846NfZn/9fBFEQt
+ CEa4fq14+rNT6QnkcJX9BJU3jGB6nMmUUzQXasNqED6i19/AZGXUcOpK/2LTgghxLu4r
+ Opj/+DPUQWaBEdgrALbUJEWpktd0sTiTmFzUDDKerWqAIALya8aHis0hx+V1+x8d3gHt
+ DeaA==
+X-Gm-Message-State: AOAM5313m2SsaXXT4Wo8RbUQmJlKekdjxmADePjWk++mOc5avxpWrpoF
+ I5onV/NtVf/k2Nq8YhfVUz+7pg==
+X-Google-Smtp-Source: ABdhPJyLu2cECG1IBQe8k1JlS4f/T5QUU1oCs7BYak1SsQOhzg5N3a/KD4VnVhlWss3Oe2BjAyoxXw==
+X-Received: by 2002:a05:6000:2ca:: with SMTP id
+ o10mr422650wry.234.1622746491310; 
+ Thu, 03 Jun 2021 11:54:51 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id d131sm6692460wmd.4.2021.06.03.11.54.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Jun 2021 11:54:50 -0700 (PDT)
+Date: Thu, 3 Jun 2021 20:54:48 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Andi Shyti <andi.shyti@intel.com>
+Message-ID: <YLkleG2uo5bGYpdV@phenom.ffwll.local>
+References: <20210603150326.1326658-1-daniel.vetter@ffwll.ch>
+ <20210603150326.1326658-5-daniel.vetter@ffwll.ch>
+ <YLkieISPHgzmUnD4@intel.intel>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <a608d8131b314604bf3714e311ab94b9@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in
- DSC disable
+In-Reply-To: <YLkieISPHgzmUnD4@intel.intel>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/vgem: use shmem helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,205 +67,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Melissa Wen <melissa.srw@gmail.com>,
+ John Stultz <john.stultz@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 03, 2021 at 08:37:22AM -0700, Kulkarni, Vandita wrote:
-> > -----Original Message-----
-> > From: Manna, Animesh <animesh.manna@intel.com>
-> > Sent: Thursday, June 3, 2021 7:24 PM
-> > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; Nikula, Jani
-> > <jani.nikula@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>; inte=
-l-
-> > gfx@lists.freedesktop.org
-> > Cc: Navare, Manasi D <manasi.d.navare@intel.com>
-> > Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks =
-in
-> > DSC disable
-> > =
+On Thu, Jun 03, 2021 at 09:42:00PM +0300, Andi Shyti wrote:
+> Hi Daniel,
+> 
+> > +/*
+> > + * This just sets wc mode for shmem helpers. vgem doesn't have any begin/end cpu
+> > + * access ioctls, there must use coherent memory or dma-buf sharing just wont
+> > + * work.
+> > + */
+> > +static struct drm_gem_object *vgem_gem_create_object(struct drm_device *dev, size_t size)
+> >  {
+> > -	struct drm_vgem_gem_object *obj;
+> > -	int npages;
+> > +	struct drm_gem_shmem_object *obj;
+> >  
+> > -	obj = __vgem_gem_create(dev, attach->dmabuf->size);
+> > -	if (IS_ERR(obj))
+> > -		return ERR_CAST(obj);
+> > -
+> > -	npages = PAGE_ALIGN(attach->dmabuf->size) / PAGE_SIZE;
+> > +	obj = kzalloc(sizeof(*obj), GFP_KERNEL);
+> > +	if (!obj)
+> > +		return NULL;
+> >  
+> > -	obj->table = sg;
+> > -	obj->pages = kvmalloc_array(npages, sizeof(struct page *), GFP_KERNEL);
+> > -	if (!obj->pages) {
+> > -		__vgem_gem_destroy(obj);
+> > -		return ERR_PTR(-ENOMEM);
+> > -	}
+> > +	obj->base.funcs = &drm_gem_shmem_funcs;
+> > +	obj->map_wc = true;
+> >  
+> > -	obj->pages_pin_count++; /* perma-pinned */
+> > -	drm_prime_sg_to_page_array(obj->table, obj->pages, npages);
+> >  	return &obj->base;
+> 
+> here you are allocating a bigger object than what you are
+> returning, in size. How does it get freed?
 
-> > =
-
-> > =
-
-> > > -----Original Message-----
-> > > From: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > > Sent: Thursday, June 3, 2021 4:55 PM
-> > > To: Nikula, Jani <jani.nikula@intel.com>; Saarinen, Jani
-> > > <jani.saarinen@intel.com>; intel-gfx@lists.freedesktop.org
-> > > Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
-> > > <manasi.d.navare@intel.com>
-> > > Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks
-> > > in DSC disable
-> > >
-> > > > -----Original Message-----
-> > > > From: Nikula, Jani <jani.nikula@intel.com>
-> > > > Sent: Thursday, June 3, 2021 3:11 PM
-> > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; Saarinen, Jani
-> > > > <jani.saarinen@intel.com>; intel-gfx@lists.freedesktop.org
-> > > > Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
-> > > > <manasi.d.navare@intel.com>
-> > > > Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant
-> > > > checks in DSC disable
-> > > >
-> > > > On Thu, 03 Jun 2021, "Kulkarni, Vandita"
-> > > > <vandita.kulkarni@intel.com>
-> > > > wrote:
-> > > > >> -----Original Message-----
-> > > > >> From: Saarinen, Jani <jani.saarinen@intel.com>
-> > > > >> Sent: Thursday, June 3, 2021 1:07 PM
-> > > > >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> > > > >> gfx@lists.freedesktop.org
-> > > > >> Cc: Nikula, Jani <jani.nikula@intel.com>
-> > > > >> Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant
-> > > > >> checks in DSC disable
-> > > > >>
-> > > > >> Hi,
-> > > > >> > -----Original Message-----
-> > > > >> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
-> > > > >> > Behalf Of Vandita Kulkarni
-> > > > >> > Sent: torstai 3. kes=E4kuuta 2021 9.54
-> > > > >> > To: intel-gfx@lists.freedesktop.org
-> > > > >> > Cc: Nikula, Jani <jani.nikula@intel.com>
-> > > > >> > Subject: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant
-> > > > >> > checks in DSC disable
-> > > > >> >
-> > > > >> > There can be a chance that pre os has enabled DSC and driver's
-> > > > >> > compute config would not need dsc to be enabled, in such case
-> > > > >> > if we check on compute config's compression state to disable,
-> > > > >> > we might end up in state
-> > > > >> mismatch.
-> > > > >>
-> > > > >> I assume this fixes real gitlab issue too?
-> > > > > Okay, will add the tag
-> > > > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3537
-> > > >
-> > > > See https://lore.kernel.org/r/87fsxzp9qx.fsf@intel.com
-> > > >
-> > > > The problem is with ->bigjoiner, not the entire statement.
-> > > Thanks for pointing this out, true that bigjoiner not being enabled
-> > > will stop dsc disabling.
-> > > The bigjoiner check was making the entire condition check unnecessary.
-> > >
-> > > Will update and refloat.
-> > =
-
-> > Hi Jani/Vandita,
-> > =
-
-> > For uncompressed bigjoiner case if we want to use the same function to
-> > clear the dsc_ctrl1 register we may need to remove both the condition
-> > check.
-> > As for uncompressed bigjoiner case, compression_enable Will be 0 and wi=
-ll
-> > block in clearing the dss_ctl1_reg.
-> =
-
-> Yes, I was going through and found that bit 20 and 21 of dss_ctl1 are bei=
-ng used
-> for uncompressed joiner.
-> So when dsc is not enabled to avoid writing the register we could add
-> below code .
-> =
-
-> if (dsc)
-> 	clear dss_ctl2
-> if ( bigjoiner | dsc)
-> 	clear dss_ctl1;
-> return;
-> =
-
-> bigjoiner =3D 1 and dsc =3D 0  - uncompressed , I think there is no harm =
-in clearing dsc bits again
-> bigjoiner =3D 1 and dsc =3D 1 - compressed - uncompressed bits are alread=
-y 0
-> bigjoiner =3D 0 and dsc=3D 1 - just dsc  - clear dsc rest are 0s already
-> bigjoiner =3D 0 and dsc =3D 0  do nothing, return
-> =
-
-> If I have missed any corner case, please let me know.
-> =
-
-> Thanks,
-> Vandita
-
-I think in the original code the condition was just reversed, instead it sh=
-ould be  :
-
-if !(dsc_en || bigjoiner_en) {
-	write 0 to dss ctl 1
-	write 0 to dss ctl 2
-}
-
-So here basically it meets all the conditions you mentioned Vandita:
-
-- only when both dsc and bigjoiner are 0, it will do nothing
-- In all other cases DSC + Bigjoiner : Clear all bits including uncompresse=
-d bits which shd be 0 already
-- In dsc =3D 0, bigjoiner =3D 1 (uncompressed), it will clear both again wh=
-ich is okay since dsc bits are already 0
-
-Does this make sense?
-
-Regards
-Manasi
-
-
-> > =
-
-> > Regards,
-> > Animesh
-> > >
-> > > Thanks,
-> > > Vandita
-> > > >
-> > > >
-> > > > BR,
-> > > > Jani.
-> > > >
-> > > > >
-> > > > > Thanks,
-> > > > > Vandita
-> > > > >>
-> > > > >> >
-> > > > >> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > > > >> > ---
-> > > > >> >  drivers/gpu/drm/i915/display/intel_vdsc.c | 4 ----
-> > > > >> >  1 file changed, 4 deletions(-)
-> > > > >> >
-> > > > >> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > >> > b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > >> > index 19cd9531c115..b05a96011d93 100644
-> > > > >> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > >> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > >> > @@ -1161,10 +1161,6 @@ void intel_dsc_disable(const struct
-> > > > >> > intel_crtc_state
-> > > > >> > *old_crtc_state)
-> > > > >> >  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state-
-> > >uapi.crtc);
-> > > > >> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc-
-> > >base.dev);
-> > > > >> >
-> > > > >> > -	if (!(old_crtc_state->dsc.compression_enable &&
-> > > > >> > -	      old_crtc_state->bigjoiner))
-> > > > >> > -		return;
-> > > > >> > -
-> > > > >> >  	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
-> > > > >> >  	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);  }
-> > > > >> > --
-> > > > >> > 2.21.0.5.gaeb582a
-> > > > >> >
-> > > > >> > _______________________________________________
-> > > > >> > Intel-gfx mailing list
-> > > > >> > Intel-gfx@lists.freedesktop.org
-> > > > >> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > > >
-> > > > --
-> > > > Jani Nikula, Intel Open Source Graphics Center
+We're using the drm_gem_shmem_helper.c helpers, which set up all the shmem
+functions for us, including an appropriate free callback.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
