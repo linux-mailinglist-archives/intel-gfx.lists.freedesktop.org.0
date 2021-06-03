@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E014739A27D
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 15:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB5D739A28C
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jun 2021 15:54:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 307FA6E218;
-	Thu,  3 Jun 2021 13:49:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDCC96E188;
+	Thu,  3 Jun 2021 13:54:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA476E218
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 13:49:28 +0000 (UTC)
-IronPort-SDR: p0UTmzlOMKUPsDSb+yaGjioMezZLsPRPi6qWbvOq1Kz4w9WGVgzbZJX58yLUcFfYIKV3nIDVlJ
- gyhkiZfUOdFw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="184421161"
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="184421161"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2021 06:49:27 -0700
-IronPort-SDR: 7Nic+43mn/o22pcxenC52A2OHMkRZJ+VZqv9eRsxj5v18A0ZhAhhWLnOEZsk2pYeN2JrfFgYsM
- ovvY4xS32MZQ==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A92E6E188
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 13:54:06 +0000 (UTC)
+IronPort-SDR: aCUGBk90Ujl7tWMKIqsf2FnJ67WN2P3SmwhePgPZk8unFE7enSt7rjEKdIb5ccsWDS6UL0NfgO
+ PX6UTspdFmmg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="191388737"
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="191388737"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2021 06:54:00 -0700
+IronPort-SDR: Zh/K0xQ9SMfyrcnSyHIEQDLKU6o2H8Y9COkdUeqHMwzmyZyznG+j+wN/0SNFvFMiF4TxJqDHgs
+ i4XlJst6Y88w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="400568357"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 03 Jun 2021 06:49:27 -0700
-Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.83,246,1616482800"; d="scan'208";a="550698355"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga001.fm.intel.com with ESMTP; 03 Jun 2021 06:54:00 -0700
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 3 Jun 2021 06:49:25 -0700
+ 15.1.2242.4; Thu, 3 Jun 2021 06:53:59 -0700
 Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 3 Jun 2021 19:19:23 +0530
+ 15.1.2242.4; Thu, 3 Jun 2021 19:23:57 +0530
 Received: from bgsmsx606.gar.corp.intel.com ([10.67.234.8]) by
  BGSMSX606.gar.corp.intel.com ([10.67.234.8]) with mapi id 15.01.2242.008;
- Thu, 3 Jun 2021 19:19:23 +0530
+ Thu, 3 Jun 2021 19:23:57 +0530
 From: "Manna, Animesh" <animesh.manna@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit changes
- for uncompressed joiner
-Thread-Index: AQHXSNc9FInWnuQIb0SjW/tIEOKo3qsByukAgAAwaQCAAG9LoA==
-Date: Thu, 3 Jun 2021 13:49:23 +0000
-Message-ID: <431cb382bfc64fc6a3b88b17c0d6be88@intel.com>
-References: <20210514153711.2359617-1-matthew.d.roper@intel.com>
- <20210514153711.2359617-16-matthew.d.roper@intel.com>
- <87fsxzp9qx.fsf@intel.com> <875yyvp1q5.fsf@intel.com>
-In-Reply-To: <875yyvp1q5.fsf@intel.com>
+To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in DSC
+ disable
+Thread-Index: AQHXWEe6skhHkfzNn0WckWuDaBw3jasBidmAgAATcoCAAA8sgIAAHPKAgACEyeA=
+Date: Thu, 3 Jun 2021 13:53:57 +0000
+Message-ID: <0935357a1cd94cc7a115eca8e7a5fce9@intel.com>
+References: <20210603065356.15435-1-vandita.kulkarni@intel.com>
+ <eedaa66fa17944aeb96aa353c58db2e9@intel.com>
+ <1e70025aa4e04a5396721ad4e7609340@intel.com> <87czt3p9oc.fsf@intel.com>
+ <86877ca0c9ff4ebab0b269b91b6c3979@intel.com>
+In-Reply-To: <86877ca0c9ff4ebab0b269b91b6c3979@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -58,8 +59,8 @@ dlp-product: dlpe-windows
 dlp-reaction: no-action
 x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit
- changes for uncompressed joiner
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in
+ DSC disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,266 +73,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Thursday, June 3, 2021 6:03 PM
-> To: Roper, Matthew D <matthew.d.roper@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
-> <manasi.d.navare@intel.com>; Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit changes
-> for uncompressed joiner
-> 
-> On Thu, 03 Jun 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> > On Fri, 14 May 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
-> >> From: Animesh Manna <animesh.manna@intel.com>
-> >>
-> >> Respective bit for master or slave to be set for uncompressed
-> >> bigjoiner in dss_ctl1 register.
-> >
-> > I was looking at the changes here due to a static checker complaint,
-> > and I think there are a number of issues here. Some more serious than
-> > others, and some predate the patch.
-> >
-> > Comments inline.
-> >
-> >> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> >> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> >> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
-> >> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> >> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_display.c |  6 +++
-> >>  drivers/gpu/drm/i915/display/intel_vdsc.c    | 40 +++++++++++++++++++-
-> >>  drivers/gpu/drm/i915/display/intel_vdsc.h    |  2 +
-> >>  drivers/gpu/drm/i915/i915_reg.h              |  2 +
-> >>  4 files changed, 49 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> >> b/drivers/gpu/drm/i915/display/intel_display.c
-> >> index b5fd721137d3..422b59ebf6dc 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >> @@ -3411,6 +3411,7 @@ static void icl_ddi_bigjoiner_pre_enable(struct
-> intel_atomic_state *state,
-> >>  					 const struct intel_crtc_state
-> *crtc_state)  {
-> >>  	struct intel_crtc *master = to_intel_crtc(crtc_state->uapi.crtc);
-> >> +	struct drm_i915_private *dev_priv = to_i915(master->base.dev);
-> >>  	struct intel_crtc_state *master_crtc_state;
-> >>  	struct drm_connector_state *conn_state;
-> >>  	struct drm_connector *conn;
-> >> @@ -3444,6 +3445,9 @@ static void icl_ddi_bigjoiner_pre_enable(struct
-> intel_atomic_state *state,
-> >>  		/* and DSC on slave */
-> >>  		intel_dsc_enable(NULL, crtc_state);
-> >>  	}
-> >> +
-> >> +	if (DISPLAY_VER(dev_priv) >= 13)
-> 
-> I don't think we should add these checks here. Make sure the crtc_state only has
-> the relevant stuff enabled if the platform supports it. Don't duplicate the checks.
-
-Agree.
-
-> 
-> >> +		intel_uncompressed_joiner_enable(crtc_state);
-> 
-> As this is always called after intel_dsc_enable(), I think it would make sense to
-> move this within intel_dsc_enable().
-
-Agree.
-> 
-> >>  }
-> >>
-> >>  static void hsw_crtc_enable(struct intel_atomic_state *state, @@
-> >> -6250,6 +6254,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
-> >>  	}
-> >>
-> >>  	intel_dsc_get_config(pipe_config);
-> >> +	if (DISPLAY_VER(dev_priv) >= 13 && !pipe_config-
-> >dsc.compression_enable)
-> >> +		intel_uncompressed_joiner_get_config(pipe_config);
-> 
-> As this is always called after intel_dsc_get_config(), I think it would make sense
-> to move this within intel_dsc_get_config.
-> 
-> >>
-> >>  	if (!active) {
-> >>  		/* bigjoiner slave doesn't enable transcoder */ diff --git
-> >> a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> >> b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> >> index adcd6752f919..efc3184d8315 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> >> @@ -1021,6 +1021,22 @@ static i915_reg_t dss_ctl2_reg(const struct
-> intel_crtc_state *crtc_state)
-> >>  	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) :
-> >> DSS_CTL2;  }
-> >>
-> >> +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
-> >> +*crtc_state)
-> >
-> > Naming. Basically for any new function, the function name prefix
-> > should match the file name. intel_vdsc.[ch] should have functions
-> > prefixed intel_vdsc_*(). This is where we're headed to increase clarity.
-> >
-> > intel_uncompressed_*() is something completely different.
-> >
-> > Granted, here we already have intel_dsc_*() in intel_vdsc.c. We should
-> > probably stick with intel_dsc_*(). A possible function or file rename
-> > is not out of the question, but that's a separate matter.
-> >
-> >> +{
-> >> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> >> +	u32 dss_ctl1_val = 0;
-> >> +
-> >> +	if (crtc_state->bigjoiner && !crtc_state->dsc.compression_enable) {
-> >> +		if (crtc_state->bigjoiner_slave)
-> >> +			dss_ctl1_val |= UNCOMPRESSED_JOINER_SLAVE;
-> >> +		else
-> >> +			dss_ctl1_val |= UNCOMPRESSED_JOINER_MASTER;
-> >> +
-> >> +		intel_de_write(dev_priv, dss_ctl1_reg(crtc_state), dss_ctl1_val);
-> >> +	}
-> >> +}
-> >> +
-> >>  void intel_dsc_enable(struct intel_encoder *encoder,
-> >>  		      const struct intel_crtc_state *crtc_state)  { @@ -1060,13
-> >> +1076,35 @@ void intel_dsc_disable(const struct intel_crtc_state
-> *old_crtc_state)
-> >>  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-> >>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> >>
-> >> -	if (!old_crtc_state->dsc.compression_enable)
-> >> +	if (!(old_crtc_state->dsc.compression_enable &&
-> >> +	      old_crtc_state->bigjoiner))
-> >
-> > This fails to disable compression if we only have compression but no
-> > bigjoiner, which is the more common case!
-> >
-> > See also:
-> >
-> > https://gitlab.freedesktop.org/drm/intel/-/issues/3537
-> > https://patchwork.freedesktop.org/patch/msgid/20210603065356.15435-1-v
-> > andita.kulkarni@intel.com
-> >
-> >>  		return;
-> >>
-> >>  	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
-> >>  	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);  }
-> >>
-> >> +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
-> >> +*crtc_state) {
-> >> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> >> +	u32 dss_ctl1;
-> >> +
-> >> +	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
-> 
-> You can't read this without holding the power domain.
-> 
-> Since this is always called after intel_dsc_get_config(), I think it would make
-> sense to move this reading there.
-
-Ok.
-Earlier the plan is to have separate functions for uncompressed joiner, but as you suggested it can be done in the same functions of compressed bigjoiner code.
-Thanks Jani for review.
-
-Regards,
-Animesh
-
-> 
-> >> +	if (dss_ctl1 & UNCOMPRESSED_JOINER_MASTER) {
-> >> +		crtc_state->bigjoiner = true;
-> >> +		if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
-> >> +			crtc_state->bigjoiner_linked_crtc =
-> >> +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe +
-> 1);
-> >> +	} else if (dss_ctl1 & UNCOMPRESSED_JOINER_SLAVE) {
-> >> +		crtc_state->bigjoiner = true;
-> >> +		crtc_state->bigjoiner_slave = true;
-> >> +		if (!WARN_ON(crtc->pipe == PIPE_A))
-> >> +			crtc_state->bigjoiner_linked_crtc =
-> >> +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe -
-> 1);
-> >> +	}
-> >
-> > Nitpick: This duplicates a bunch of logic for figuring out master/slave.
-> >
-> > The static checker warning was about crtc->pipe + 1 usage. Since
-> > INTEL_NUM_PIPES() looks at the hamming weight of i915->pipe_mask, the
-> > checker has a hard time figuring out it does not overflow
-> > i915->pipe_to_crtc_mapping[] in intel_get_crtc_for_pipe().
-> >
-> > So here in intel_vdsc.c the checks are for overflowing/underflowing
-> > the pipe range. In intel_get_crtc_for_pipe() there's a check for the
-> > pipe actually existing - the pipe numbering might not be contiguous.
-> >
-> > Superficially the static checker warning is bogus, as in we won't
-> > overflow anything. However, deep down there are issues in the
-> > consistency of the checks and how to handle non-contigouous pipe
-> > numbering.
-> >
-> > Indeed, this does not *need* the number. We should figure out the next
-> > *crtc*, not the next pipe *number*, which may or may not be pipe + 1.
-> >
-> >
-> > BR,
-> > Jani.
-> >
-> >> +}
-> >> +
-> >>  void intel_dsc_get_config(struct intel_crtc_state *crtc_state)  {
-> >>  	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config; diff
-> >> --git a/drivers/gpu/drm/i915/display/intel_vdsc.h
-> >> b/drivers/gpu/drm/i915/display/intel_vdsc.h
-> >> index 65d301c23580..fe4d45561253 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-> >> @@ -12,11 +12,13 @@ struct intel_encoder;  struct intel_crtc_state;
-> >>
-> >>  bool intel_dsc_source_support(const struct intel_crtc_state
-> >> *crtc_state);
-> >> +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
-> >> +*crtc_state);
-> >>  void intel_dsc_enable(struct intel_encoder *encoder,
-> >>  		      const struct intel_crtc_state *crtc_state);  void
-> >> intel_dsc_disable(const struct intel_crtc_state *crtc_state);  int
-> >> intel_dsc_compute_params(struct intel_encoder *encoder,
-> >>  			     struct intel_crtc_state *pipe_config);
-> >> +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
-> >> +*crtc_state);
-> >>  void intel_dsc_get_config(struct intel_crtc_state *crtc_state);
-> >> enum intel_display_power_domain  intel_dsc_power_domain(const struct
-> >> intel_crtc_state *crtc_state); diff --git
-> >> a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> >> index 31bc413dbba1..dd6e0bae9573 100644
-> >> --- a/drivers/gpu/drm/i915/i915_reg.h
-> >> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> >> @@ -11493,6 +11493,8 @@ enum skl_power_gate {
-> >>  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
-> >>  #define  SPLITTER_CONFIGURATION_2_SEGMENT
-> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
-> >>  #define  SPLITTER_CONFIGURATION_4_SEGMENT
-> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-> >> +#define  UNCOMPRESSED_JOINER_MASTER		(1 << 21)
-> >> +#define  UNCOMPRESSED_JOINER_SLAVE		(1 << 20)
-> >>
-> >>  #define _ICL_PIPE_DSS_CTL2_PB			0x78204
-> >>  #define _ICL_PIPE_DSS_CTL2_PC			0x78404
-> 
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3Vsa2FybmksIFZhbmRp
+dGEgPHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29tPg0KPiBTZW50OiBUaHVyc2RheSwgSnVuZSAz
+LCAyMDIxIDQ6NTUgUE0NCj4gVG86IE5pa3VsYSwgSmFuaSA8amFuaS5uaWt1bGFAaW50ZWwuY29t
+PjsgU2FhcmluZW4sIEphbmkNCj4gPGphbmkuc2FhcmluZW5AaW50ZWwuY29tPjsgaW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogTWFubmEsIEFuaW1lc2ggPGFuaW1lc2gubWFu
+bmFAaW50ZWwuY29tPjsgTmF2YXJlLCBNYW5hc2kgRA0KPiA8bWFuYXNpLmQubmF2YXJlQGludGVs
+LmNvbT4NCj4gU3ViamVjdDogUkU6IFtJbnRlbC1nZnhdIFtQQVRDSF0gZHJtL2k5MTUvZHNjOiBS
+ZW1vdmUgcmVkdW5kYW50IGNoZWNrcyBpbiBEU0MNCj4gZGlzYWJsZQ0KPiANCj4gPiAtLS0tLU9y
+aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IE5pa3VsYSwgSmFuaSA8amFuaS5uaWt1bGFA
+aW50ZWwuY29tPg0KPiA+IFNlbnQ6IFRodXJzZGF5LCBKdW5lIDMsIDIwMjEgMzoxMSBQTQ0KPiA+
+IFRvOiBLdWxrYXJuaSwgVmFuZGl0YSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+OyBTYWFy
+aW5lbiwgSmFuaQ0KPiA+IDxqYW5pLnNhYXJpbmVuQGludGVsLmNvbT47IGludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcNCj4gPiBDYzogTWFubmEsIEFuaW1lc2ggPGFuaW1lc2gubWFubmFA
+aW50ZWwuY29tPjsgTmF2YXJlLCBNYW5hc2kgRA0KPiA+IDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwu
+Y29tPg0KPiA+IFN1YmplY3Q6IFJFOiBbSW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybS9pOTE1L2RzYzog
+UmVtb3ZlIHJlZHVuZGFudCBjaGVja3MNCj4gPiBpbiBEU0MgZGlzYWJsZQ0KPiA+DQo+ID4gT24g
+VGh1LCAwMyBKdW4gMjAyMSwgIkt1bGthcm5pLCBWYW5kaXRhIiA8dmFuZGl0YS5rdWxrYXJuaUBp
+bnRlbC5jb20+DQo+ID4gd3JvdGU6DQo+ID4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0N
+Cj4gPiA+PiBGcm9tOiBTYWFyaW5lbiwgSmFuaSA8amFuaS5zYWFyaW5lbkBpbnRlbC5jb20+DQo+
+ID4gPj4gU2VudDogVGh1cnNkYXksIEp1bmUgMywgMjAyMSAxOjA3IFBNDQo+ID4gPj4gVG86IEt1
+bGthcm5pLCBWYW5kaXRhIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT47IGludGVsLQ0KPiA+
+ID4+IGdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gPiA+PiBDYzogTmlrdWxhLCBKYW5pIDxq
+YW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+ID4gPj4gU3ViamVjdDogUkU6IFtJbnRlbC1nZnhdIFtQ
+QVRDSF0gZHJtL2k5MTUvZHNjOiBSZW1vdmUgcmVkdW5kYW50DQo+ID4gPj4gY2hlY2tzIGluIERT
+QyBkaXNhYmxlDQo+ID4gPj4NCj4gPiA+PiBIaSwNCj4gPiA+PiA+IC0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQo+ID4gPj4gPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdmeC1ib3VuY2VzQGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZz4gT24NCj4gPiA+PiA+IEJlaGFsZiBPZiBWYW5kaXRhIEt1bGth
+cm5pDQo+ID4gPj4gPiBTZW50OiB0b3JzdGFpIDMuIGtlc8Oka3V1dGEgMjAyMSA5LjU0DQo+ID4g
+Pj4gPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiA+ID4+ID4gQ2M6IE5p
+a3VsYSwgSmFuaSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0KPiA+ID4+ID4gU3ViamVjdDogW0lu
+dGVsLWdmeF0gW1BBVENIXSBkcm0vaTkxNS9kc2M6IFJlbW92ZSByZWR1bmRhbnQNCj4gPiA+PiA+
+IGNoZWNrcyBpbiBEU0MgZGlzYWJsZQ0KPiA+ID4+ID4NCj4gPiA+PiA+IFRoZXJlIGNhbiBiZSBh
+IGNoYW5jZSB0aGF0IHByZSBvcyBoYXMgZW5hYmxlZCBEU0MgYW5kIGRyaXZlcidzDQo+ID4gPj4g
+PiBjb21wdXRlIGNvbmZpZyB3b3VsZCBub3QgbmVlZCBkc2MgdG8gYmUgZW5hYmxlZCwgaW4gc3Vj
+aCBjYXNlIGlmDQo+ID4gPj4gPiB3ZSBjaGVjayBvbiBjb21wdXRlIGNvbmZpZydzIGNvbXByZXNz
+aW9uIHN0YXRlIHRvIGRpc2FibGUsIHdlDQo+ID4gPj4gPiBtaWdodCBlbmQgdXAgaW4gc3RhdGUN
+Cj4gPiA+PiBtaXNtYXRjaC4NCj4gPiA+Pg0KPiA+ID4+IEkgYXNzdW1lIHRoaXMgZml4ZXMgcmVh
+bCBnaXRsYWIgaXNzdWUgdG9vPw0KPiA+ID4gT2theSwgd2lsbCBhZGQgdGhlIHRhZw0KPiA+ID4g
+Q2xvc2VzOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVz
+LzM1MzcNCj4gPg0KPiA+IFNlZSBodHRwczovL2xvcmUua2VybmVsLm9yZy9yLzg3ZnN4enA5cXgu
+ZnNmQGludGVsLmNvbQ0KPiA+DQo+ID4gVGhlIHByb2JsZW0gaXMgd2l0aCAtPmJpZ2pvaW5lciwg
+bm90IHRoZSBlbnRpcmUgc3RhdGVtZW50Lg0KPiBUaGFua3MgZm9yIHBvaW50aW5nIHRoaXMgb3V0
+LCB0cnVlIHRoYXQgYmlnam9pbmVyIG5vdCBiZWluZyBlbmFibGVkIHdpbGwgc3RvcCBkc2MNCj4g
+ZGlzYWJsaW5nLg0KPiBUaGUgYmlnam9pbmVyIGNoZWNrIHdhcyBtYWtpbmcgdGhlIGVudGlyZSBj
+b25kaXRpb24gY2hlY2sgdW5uZWNlc3NhcnkuDQo+IA0KPiBXaWxsIHVwZGF0ZSBhbmQgcmVmbG9h
+dC4NCg0KSGkgSmFuaS9WYW5kaXRhLA0KDQpGb3IgdW5jb21wcmVzc2VkIGJpZ2pvaW5lciBjYXNl
+IGlmIHdlIHdhbnQgdG8gdXNlIHRoZSBzYW1lIGZ1bmN0aW9uIHRvIGNsZWFyIHRoZSBkc2NfY3Ry
+bDEgcmVnaXN0ZXIgd2UgbWF5IG5lZWQgdG8gcmVtb3ZlIGJvdGggdGhlIGNvbmRpdGlvbiBjaGVj
+ay4NCkFzIGZvciB1bmNvbXByZXNzZWQgYmlnam9pbmVyIGNhc2UsIGNvbXByZXNzaW9uX2VuYWJs
+ZSBXaWxsIGJlIDAgYW5kIHdpbGwgYmxvY2sgaW4gY2xlYXJpbmcgdGhlIGRzc19jdGwxX3JlZy4N
+Cg0KUmVnYXJkcywNCkFuaW1lc2gNCj4gDQo+IFRoYW5rcywNCj4gVmFuZGl0YQ0KPiA+DQo+ID4N
+Cj4gPiBCUiwNCj4gPiBKYW5pLg0KPiA+DQo+ID4gPg0KPiA+ID4gVGhhbmtzLA0KPiA+ID4gVmFu
+ZGl0YQ0KPiA+ID4+DQo+ID4gPj4gPg0KPiA+ID4+ID4gU2lnbmVkLW9mZi1ieTogVmFuZGl0YSBL
+dWxrYXJuaSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+DQo+ID4gPj4gPiAtLS0NCj4gPiA+
+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYyB8IDQgLS0tLQ0K
+PiA+ID4+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0IGRlbGV0aW9ucygtKQ0KPiA+ID4+ID4NCj4gPiA+
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2Mu
+Yw0KPiA+ID4+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYw0K
+PiA+ID4+ID4gaW5kZXggMTljZDk1MzFjMTE1Li5iMDVhOTYwMTFkOTMgMTAwNjQ0DQo+ID4gPj4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYw0KPiA+ID4+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92ZHNjLmMNCj4gPiA+
+PiA+IEBAIC0xMTYxLDEwICsxMTYxLDYgQEAgdm9pZCBpbnRlbF9kc2NfZGlzYWJsZShjb25zdCBz
+dHJ1Y3QNCj4gPiA+PiA+IGludGVsX2NydGNfc3RhdGUNCj4gPiA+PiA+ICpvbGRfY3J0Y19zdGF0
+ZSkNCj4gPiA+PiA+ICAJc3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKG9s
+ZF9jcnRjX3N0YXRlLT51YXBpLmNydGMpOw0KPiA+ID4+ID4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsNCj4gPiA+PiA+DQo+ID4g
+Pj4gPiAtCWlmICghKG9sZF9jcnRjX3N0YXRlLT5kc2MuY29tcHJlc3Npb25fZW5hYmxlICYmDQo+
+ID4gPj4gPiAtCSAgICAgIG9sZF9jcnRjX3N0YXRlLT5iaWdqb2luZXIpKQ0KPiA+ID4+ID4gLQkJ
+cmV0dXJuOw0KPiA+ID4+ID4gLQ0KPiA+ID4+ID4gIAlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwg
+ZHNzX2N0bDFfcmVnKG9sZF9jcnRjX3N0YXRlKSwgMCk7DQo+ID4gPj4gPiAgCWludGVsX2RlX3dy
+aXRlKGRldl9wcml2LCBkc3NfY3RsMl9yZWcob2xkX2NydGNfc3RhdGUpLCAwKTsgIH0NCj4gPiA+
+PiA+IC0tDQo+ID4gPj4gPiAyLjIxLjAuNS5nYWViNTgyYQ0KPiA+ID4+ID4NCj4gPiA+PiA+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4gPj4gPiBJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0DQo+ID4gPj4gPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnDQo+ID4gPj4gPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeA0KPiA+DQo+ID4gLS0NCj4gPiBKYW5pIE5pa3VsYSwgSW50ZWwgT3Bl
+biBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
