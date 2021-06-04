@@ -2,66 +2,140 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A85FF39B59D
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 11:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1C739B634
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 11:47:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFB866F5EA;
-	Fri,  4 Jun 2021 09:12:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D22E6F5EF;
+	Fri,  4 Jun 2021 09:47:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
- [IPv6:2a00:1450:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEF056F5E9
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 09:12:51 +0000 (UTC)
-Received: by mail-wr1-x42b.google.com with SMTP id n4so8562795wrw.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 02:12:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=chpk3EQ2hh64dp2WTIOzdpp1txr9bBbfzKuE+CVepDQ=;
- b=OTDC9Dxwwe3JF9gDsQwkUdFwz9Fz/39AZMyVFfV+BKv4STDDZWO4A5MoiANkSW2wzv
- nzUm/BZcIQ+yYfcSUVOrAadWYFILId3jWrQd2vWIlcL+Fxw44r5+CyQRa78F2ijvpFMf
- g2ydOeGcVMRhK6EwfB9dERrX9b9NimRKmYhoQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=chpk3EQ2hh64dp2WTIOzdpp1txr9bBbfzKuE+CVepDQ=;
- b=cleYKXJBd6QeNmj+Yf5zkq5BJviCDSduX1lXqKvz+onzp/Qf3wcH++m8M12cICkWd5
- bEZlzCLmUb/RDQr43/mHOL6VoVzDzCx7Av6jG2DlVCjL1u9at9JBsxM/OkhCItRKzZjg
- Em82MFApRLZ+TT2zkjG1aKm3iXkQ3MAtxT/HhqxNfaX48NR8v+r1GgTH2WbqQ67pNhdl
- rjBQQCkw0MhEcv1R+3YUMVO2PWoFeUTPnLNo2s9wGuXDyocPXR9IL2Ai9hfGEwSqUUa6
- XbBLv29M9BAl6FH4cIcCx2jhxDL3AMqwK6O91/dQZUcvqwG/2Xbm31gJ9KVlwAOG7/sb
- OgHA==
-X-Gm-Message-State: AOAM531MTxeR0X38a37LX3KamDAOcM3b5suCqr0t4t3Dk8G9RAbHKBJw
- c/OH8P27N6cu9zkhNHfjyQOoQQ==
-X-Google-Smtp-Source: ABdhPJy5fEKV+1sE998yeP/bHOn3KEA0UDF+I7Wk8MJkpzDWnBoHnohVMwd7SXZ1nV0GFc3zGYpKXg==
-X-Received: by 2002:adf:df09:: with SMTP id y9mr2837085wrl.108.1622797970411; 
- Fri, 04 Jun 2021 02:12:50 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l10sm3968219wrs.11.2021.06.04.02.12.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jun 2021 02:12:49 -0700 (PDT)
-Date: Fri, 4 Jun 2021 11:12:47 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Dave Airlie <airlied@gmail.com>
-Message-ID: <YLnuj0jmF8q05pta@phenom.ffwll.local>
-References: <a29eaef9-2457-1393-6757-40956811daf8@linux.intel.com>
- <a6965639-acf6-b5f5-482c-2715e7fa69d4@amd.com>
- <b4c18e45-98c9-ce7f-b22c-c00c795844c2@shipmail.org>
- <baf4f828-76c8-6b47-5bba-9b9c8e7b307b@amd.com>
- <YLfQplT8H6PdCCLX@phenom.ffwll.local>
- <c50fa98f-3735-fe04-d3f9-8a7a08a7562e@linux.intel.com>
- <CAKMK7uE+fB_+UG668O=QMXwQ9_Xb--KhzehT77HLfBoWve-zLg@mail.gmail.com>
- <68e6057c-df17-64ce-3116-cd5e79578795@amd.com>
- <a3f789a0-9e75-280a-7602-4728738024eb@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99AA96F5EF
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 09:47:51 +0000 (UTC)
+IronPort-SDR: xzkYTle2DxGJrp5jBc+vfutGMSdwPpaxpKvqGzbhuphPSgJ2FxkiSxeX8ckzPHGI/SV+xbc9ge
+ H01SORL6GBfQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="204073769"
+X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="204073769"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2021 02:47:51 -0700
+IronPort-SDR: e8NgHQqmi2EarJsrrP3n1jON/FuvGmx9N6wu6s/EATqogBuQ/rqTUIMGc19GBPJ5NQ6Wnp+Vur
+ huq0/WLbwJ7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="468272013"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by fmsmga004.fm.intel.com with ESMTP; 04 Jun 2021 02:47:51 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Fri, 4 Jun 2021 02:47:50 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
+ via Frontend Transport; Fri, 4 Jun 2021 02:47:50 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.4; Fri, 4 Jun 2021 02:47:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ScaOyB56YOw+gNSWUGTt2EvWrH2+5CW/7yctNV3AqOGRcvEmjFN2OBo8K2t2WP5hdkx8KXw/MbWvPb077qnYxUGTAgZfN1cpt/j9cM6WcInOLJWB9zMWCHp2vEMMKSv+a/ZEMbPdSp+OonUQfxbUj8MSi4iZTpepJi78jPeuTdm8LEUv+Icq+4FgbYH8QTRubGiRELTEVoM4dW5sBeff4gikB4aTV/4l6wLMrhjHDI7qz5xLlNU+G1wfT6B7b8ckgPgE5dEqQ6KY+SVkKgdlvylPk+sfF962Q4GyTJnZJZP60D10UJyeZPXJsd4JAnxvim4SXFJMaNYWwmtA5u09nQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mLOwo4J8yPuil11lQ62mespCKgIG4RZEQzifRh9Fln0=;
+ b=Eeoy0GO7YmRtLAGG43hUVUzVhWVoIJLEB0eK3rBkkxuQooTlaygGUav+WRIWEGrs+/F7FGrA9g9NqARzdDXAkCDI2cfqihbV0bHeNoQjX2BVfQ8WcLAwopWU81DFVP8QjqNEYq72+atmSn2ojo9Z2JJ2MN0zL8hrJKQMmYHSlIys9BT0M0gnNZBxCn3J5zVVR3SXBXwDtnCt+5KS1/0z0Zal/4Lv6Xkx9C5YJzou4M+td6XTkGQuFQgLesOqhwPkASzzvhmjr/OVTwRrAq0wmIpuY+t6wvShZZJLoPRGPxDTq5BawyxfBJ4pMkC6W27cPMQRPYneXgBJLmrD5NShNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mLOwo4J8yPuil11lQ62mespCKgIG4RZEQzifRh9Fln0=;
+ b=KpHb3DrAjqDfoh+f9P+83CRAhL+uXisrPj7+79AksDFeYmT6ZQCNTc2P5SiW21tPuolnid5Z+aHaJLZcl2G0iJtyO1h5tQF9QGxY9ThFLbOoTgdf086hvi+atCZIsJobROXk8KTZaC7MSbUnfTLh082SEALQAU7qR5bGvMezxJ4=
+Received: from CO6PR11MB5569.namprd11.prod.outlook.com (2603:10b6:303:139::20)
+ by CO6PR11MB5636.namprd11.prod.outlook.com (2603:10b6:5:357::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.23; Fri, 4 Jun
+ 2021 09:47:44 +0000
+Received: from CO6PR11MB5569.namprd11.prod.outlook.com
+ ([fe80::2d63:b94a:89c5:4514]) by CO6PR11MB5569.namprd11.prod.outlook.com
+ ([fe80::2d63:b94a:89c5:4514%7]) with mapi id 15.20.4195.024; Fri, 4 Jun 2021
+ 09:47:44 +0000
+From: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>
+To: "Varide, Nischal" <nischal.varide@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Varide, 
+ Nischal" <nischal.varide@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>,
+ "Gupta, Anshuman" <anshuman.gupta@intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v2 1/1] drm/i915/xelpd: Enabling dithering
+ after the CC1
+Thread-Index: AQHXV7Cz4HpUIlA7yUKs4V0Gia20j6sDl6mQ
+Date: Fri, 4 Jun 2021 09:47:44 +0000
+Message-ID: <CO6PR11MB55693D965DDBA634252CC63F8D3B9@CO6PR11MB5569.namprd11.prod.outlook.com>
+References: <20210526181728.14817-2-bhanuprakash.modem@intel.com>
+ <20210602061739.29134-1-nischal.varide@intel.com>
+ <20210602061739.29134-2-nischal.varide@intel.com>
+In-Reply-To: <20210602061739.29134-2-nischal.varide@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+authentication-results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [157.47.79.169]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d177524b-6e5a-4fb5-bd55-08d9273dcdc1
+x-ms-traffictypediagnostic: CO6PR11MB5636:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CO6PR11MB5636012BB0F010CE0A586FC08D3B9@CO6PR11MB5636.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: PWIz5CzUZE84RMUJxdwMGU8Y61o9CNdlh07lLUTe+45pfXHwLUqSkmw/STzM1F4PfDfzZRLmCNPxqL3xdL+4WU/GpAFeutpQkun5amIlN+E2XqYzoZ8V9WBAj2EhDaiLZqb+J43j6351I9NfD0P8Yff/MrEArPIf5r+puh+Rmd6mo8ys/k0knzR/M28sc6h8HBaHd+ExXkWyzCyFoedH/qjHcumEjB9oLH3ntzdFMLvtPqOma1a6P0bvwRESS730H28jqnlmO2GxYdtWRHfTq3yXyx3Dc8AbsIeH0FWovc7Zvte5yIXwTyxJ5XBfJ1rGGrFTfVDZ5aTSL+e+cM7+7JV1VlSlfZfTnazWzClhIYY2/biVPOvF7Jx43k1+wHhtwBiCqOd6MA2ciVofjD1XNRXyzkp1FOyEN82YdrWLO1sl9jqIJPYj3wN62E/QpPTm+nj9SionIhytHnYeds3NSVme9/tBhGVVLlhbfyGwk/0LQebbv1GT97enZ1GojfpzUMA0d7VWS3Z8EbTaw2MTcSufUY9RHfOsrxYy8PnAEABS6IrWZmKIrLTEoaCugpmz2EvOv6oHL3+G68SzQznhvzIPIgxlW4ryJEUsc3rUzWYafFFYXvriuZEq+zWv6Zx9KbwU+DYpEVUcmqWXfRjTAlkn2YAyNQKtJv63xpdhDIZTcqvvp1x3bwGEHJELPIiN
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR11MB5569.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(376002)(39860400002)(346002)(396003)(136003)(366004)(55016002)(38100700002)(966005)(86362001)(122000001)(9686003)(33656002)(316002)(2906002)(478600001)(26005)(7696005)(71200400001)(8676002)(5660300002)(64756008)(66946007)(66446008)(186003)(53546011)(66476007)(6636002)(921005)(8936002)(66556008)(76116006)(6506007)(83380400001)(110136005)(52536014);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?Hk13RcpVylU3CQVQWoGbWo+s8+bqrTxn+uDlCy7qFNvdJ+FoqbxApEPuwckP?=
+ =?us-ascii?Q?85HdGkJLB3TWgi6BSKM7q1/DvWWe2kZ4zWwqCtFJUzQLvMJzMwM/B4Cw0eGI?=
+ =?us-ascii?Q?8yIXdXBmc6/7Ke1Y9UpFOb7EasiiMpEXqLr6zTZ+EKEwSs9V9jYAhcin8O6K?=
+ =?us-ascii?Q?X+atKPhQoNdq9Y/KbqUcy4uM4ZSiyE7FZ7gU/QBtFHjADgJZ155idyzw09Uz?=
+ =?us-ascii?Q?0I48LLlnljljPzw7h7c1LevxdZj3kH2Fr8seb9qVw9KcR6THH3r6zuc4FnJR?=
+ =?us-ascii?Q?GHFzh9mGkquxR67xxy0XvBWvM75dfTj137LGRS+onCDYFlTdLXEG2ri/lhzD?=
+ =?us-ascii?Q?+lNeBS2CgFUyDqGrEl3nZovYfZAwssSvTCdHB7yj7QU9GiRGzNvebCMZPPNz?=
+ =?us-ascii?Q?iQpzADDR0HzMdkwpezFzyUBuS5FoX66qCRws1lCDlqjr+yCCI8Wnug1NtEuo?=
+ =?us-ascii?Q?EPE5FkQ0DSdVDbS/18ueww1wZEsQrLCHB0zkpe3Tx+mCa728bh3zEG6VY2rx?=
+ =?us-ascii?Q?VQtEXlJK1bvNvMF+n86Qmm6cRx7wJnlm3YCCoGEg3kQIZX+6c3Y+eS9imJNa?=
+ =?us-ascii?Q?Uqt+vZYoTNj0geSlFVXjp7FqZhvNcZDfeyPgSx2KLUvnUcFz7cRG+I9oZyUq?=
+ =?us-ascii?Q?PVEIa8mBtFS4Zmqzj/PZqdvlQpcbluNzHNxfr5MX5aFYXZht7Rdozx5VPV3X?=
+ =?us-ascii?Q?3kKBDqPhMI1G9CfqRRV+GTUS6eLhYaWHkzaCqzLO63jchj5tUOxm5bXjOHyM?=
+ =?us-ascii?Q?wuVddMffFX6t9JoHiZggDB4ilJCzDzEJ7PEphnliabgJeDSfBaVD/XkPnP9a?=
+ =?us-ascii?Q?EBEyPXDr6d+Nag5nLhCM2qwRaXOTML5KUwyoYzUCalofH6fAjvN4Vxr+Vy2z?=
+ =?us-ascii?Q?Hdn1Br1uD7XG6RVHdIFvc0UDuVCFPSYSfHG3ymCPoC+UvZDBCvATxFx3qsfI?=
+ =?us-ascii?Q?QfWguJMwVjLa5TQwZE8MVeRpRyikPCitxp298YDxW2qntlE5C1a8IyYVnssZ?=
+ =?us-ascii?Q?TyVFZtT/ELQ/bU0mov/ipK97OLkJNL4Cf3+FviUqddR6kSwYdzVEddXmlVDl?=
+ =?us-ascii?Q?icsEREusgC6UYyq6QFeSLKtmqB0WStZi3O2Mq79fL0xyguiT6+jyINHkfzEK?=
+ =?us-ascii?Q?+ju8vGWuqcWFxDxOKiqIS+VkffD4NZRF4aVDS2dn1TXQq4/Ts0dID1Dr8EG0?=
+ =?us-ascii?Q?topfO8q1DR/r/LSq7yLZ8dFoZpEVb1W4eQDpBo+3UzYO36tTkVFb9PCZkjhi?=
+ =?us-ascii?Q?pfD51g/z1P2up3Y+QoQQRaomKkER6GHQfuOoHcPkLeLWLKI1ees0g4Yd7Aj+?=
+ =?us-ascii?Q?B39OBUzBs7VjawOdul0o5so9?=
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <a3f789a0-9e75-280a-7602-4728738024eb@linux.intel.com>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] Merging TTM branches through the Intel tree?
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5569.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d177524b-6e5a-4fb5-bd55-08d9273dcdc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2021 09:47:44.6437 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IJsREDyXoVV9sXKT7aGAjI+Tr0mdAPj++/1T1Lyb4l3ijOwybSQrCTR1LXbs8pjHz3Vo7EyICf0QnQJy/80Ufks9tcF6ycCkZWcmy1pwu08=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5636
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v2 1/1] drm/i915/xelpd: Enabling dithering
+ after the CC1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,199 +148,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 04, 2021 at 11:01:40AM +0200, Thomas Hellstr=F6m wrote:
-> =
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Nischal
+> Varide
+> Sent: Wednesday, June 2, 2021 11:48 AM
+> To: intel-gfx@lists.freedesktop.org; Varide, Nischal
+> <nischal.varide@intel.com>; Shankar, Uma <uma.shankar@intel.com>; Gupta,
+> Anshuman <anshuman.gupta@intel.com>; Nikula, Jani <jani.nikula@intel.com>
+> Subject: [Intel-gfx] [PATCH v2 1/1] drm/i915/xelpd: Enabling dithering after
+> the CC1
+> 
+> If the panel is 12bpc then Dithering is not enabled in the Legacy
+> dithering block , instead its Enabled after the C1 CC1 pipe post
+> color space conversion.For a 6bpc pannel Dithering is enabled in
+> Legacy block.
+> 
+> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_color.c   | 7 +++++++
+>  drivers/gpu/drm/i915/display/intel_display.c | 7 ++++++-
+>  drivers/gpu/drm/i915/i915_reg.h              | 1 +
+>  3 files changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+> b/drivers/gpu/drm/i915/display/intel_color.c
+> index dab892d2251b..e11b3dbf0b95 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -1574,6 +1574,7 @@ static int glk_color_check(struct intel_crtc_state
+> *crtc_state)
+>  static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
+>  {
+>  	u32 gamma_mode = 0;
+> +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+> 
+>  	if (crtc_state->hw.degamma_lut)
+>  		gamma_mode |= PRE_CSC_GAMMA_ENABLE;
+> @@ -1588,6 +1589,12 @@ static u32 icl_gamma_mode(const struct intel_crtc_state
+> *crtc_state)
+>  	else
+>  		gamma_mode |= GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED;
+> 
+> +	if (DISPLAY_VER(i915) >= 13) {
+> +		if (!crtc_state->dither_force_disable &&
+> +				(crtc_state->pipe_bpp == 36))
+> +			gamma_mode |= POST_CC1_GAMMA_ENABLE;
+> +	}
+> +
+>  	return gamma_mode;
+>  }
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index caf0414e0b50..fd3186a5e6ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5762,7 +5762,12 @@ static void bdw_set_pipemisc(const struct
+> intel_crtc_state *crtc_state)
+>  		break;
+>  	}
+> 
+> -	if (crtc_state->dither)
+> +	/*
+> +	 * If 12bpc panel then, Enables dithering after the CC1 pipe
+> +	 * post color space conversion and not here
+> +	 */
+> +
+> +	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
 
-> On 6/4/21 9:51 AM, Christian K=F6nig wrote:
-> > Am 03.06.21 um 09:36 schrieb Daniel Vetter:
-> > > On Thu, Jun 3, 2021 at 8:50 AM Thomas Hellstr=F6m
-> > > <thomas.hellstrom@linux.intel.com> wrote:
-> > > > =
+Consider we have a config as 12bpc panel + DISPLAY_VER < 13
 
-> > > > On 6/2/21 8:40 PM, Daniel Vetter wrote:
-> > > > > On Wed, Jun 02, 2021 at 11:48:41AM +0200, Christian K=F6nig wrote:
-> > > > > > Am 02.06.21 um 11:16 schrieb Thomas Hellstr=F6m (Intel):
-> > > > > > > On 6/2/21 10:32 AM, Christian K=F6nig wrote:
-> > > > > > > > Uff I'm just waiting for feedback from Philip to
-> > > > > > > > merge a large patch
-> > > > > > > > set for TTM through drm-misc-next.
-> > > > > > > > =
+This check prevents the dither at end of the pipe and apparently icl_gamma_mode()
+will not enable the dither after CC1.
 
-> > > > > > > > I'm pretty sure we will run into merge conflicts if you try=
- to push
-> > > > > > > > your changes through the Intel tree.
-> > > > > > > > =
+So, we'll end up not enable the Dither at all.
 
-> > > > > > > > Christian.
-> > > > > > > OK, so what would be the best approach here?, Adding
-> > > > > > > the TTM patches to
-> > > > > > > drm-misc-next when your set has landed?
-> > > > > > I think I will send out out my set to Matthew once more
-> > > > > > for review, then
-> > > > > > push the common TTM stuff to drm-misc-next as much as possible.
-> > > > > > =
-
-> > > > > > Then you should be able to land your stuff to
-> > > > > > drm-misc-next and rebase on
-> > > > > > the end result.
-> > > > > > =
-
-> > > > > > Just need to note to David that drm-misc-next should be
-> > > > > > merged to drm-next
-> > > > > > before the Intel patches depending on that stuff land as well.
-> > > > > Other option (because the backmerges tend to be slow) is a
-> > > > > topic branch,
-> > > > > and we just eat/resolve the conflicts in both drm-misc-next and
-> > > > > drm-intel-gt-next in the merge commit. If it's not too bad (I hav=
-en't
-> > > > > looked at what exactly we need for the i915 side from ttm in deta=
-il).
-> > > > > =
-
-> > > > > But also often figuring out the topic branch logistics takes
-> > > > > longer than
-> > > > > just merging to drm-misc-next as the patches get ready.
-> > > > > -Daniel
-> > > > Daniel: So the thing we need to get into TTM is the iterator-based
-> > > > move_memcpy which is more adaptable than the current one and needed=
- to
-> > > > support non-linear lmem buffers, some bug-fixes and minor changes t=
-o be
-> > > > able to keep our short-term-pinning while on the LRU. A necessary e=
-vil.
-> > > > =
-
-> > > > Christian: it looks like you have landed some TTM changes already, =
-in
-> > > > particular the &bo->mem -> bo->resource change which is the main
-> > > > conflict I think.
-> > =
-
-> > Yes, I thought that pushing this with Matthew rb should solve at least a
-> > bit of the conflict.
-> > =
-
-> > > > Is the 10 patches self-allocation series the main
-> > > > remaining part?
-> > =
-
-> > Yes, exactly. I only need Matthew's, Daniel's or your ok and I'm good to
-> > go as well
-> > =
-
-> > > > That will probably cause some conflicts with already
-> > > > pushed i915 TTM setup code, but otherwise will not conflict with the
-> > > > rest of the TTM code I think, which should make it possible to brin=
-g in
-> > > > our TTM changes after conflict resolution with what you've already
-> > > > pushed. The memcpy code is pretty self-contained.
-> > > I think in that case topic branch on top of drm-next (once the ttm
-> > > bits we conflict with are there) is probably best, and then pull that
-> > > into drm-misc-next and drm-intel-gt-next. Merge window freeze is also
-> > > approach, so without topic branch we'd be stuck until like -rc2 when
-> > > drm-next reopens. I guess Maarten can do the topic branch logistics in
-> > > drm-misc.git for this.
-> > =
-
-> > That approach sounds good to me as well.
-> > =
-
-> > The amdgpu branch had some merge conflicts as well, but nothing we
-> > couldn't fix.
-> =
-
-> OK, so this is going to be a little tricky, I guess.
-> =
-
-> From what I can tell, the memcpy TTM stuff is resolved locally and can be
-> merged to drm-misc-next immediately. It might have a very minor conflict
-> with your 10 patches I think, if any.
-> =
-
-> Your 10 patches will conflict slightly with current drm-intel-gt-next I
-> think.
-> =
-
-> Remaining intel patches will conflict only with current drm-misc-next.
-> =
-
-> So We could have pull order
-> =
-
-> - drm-misc-next up to bot not including your 10 patches,
-> - drm-intel-gt-next
-> - drm-misc-next from your 10 paches and onwards,
-> - Intel's ttm enablement topic branch.
-
-If it's just slight conflicts then I wouldn't bother with careful merge
-order. Because if we do this we can get around to the i915 ttm topic
-branch only when we're back to -rc2.
-
-We can also validate any conflicts in drm-tip easily before they get baked
-in in drm-next.
-
-So I'd just go with
-- drm-misc-next gets those 10 patches from Christian and the memcpy prep
-  stuff from you, gets send to drm-next (that's probably the last feature
-  pull for 5.14 anyway, maybe another one)
-- drm-intel-gt-next gets send to drm-next
-- topic branch with remaining i915 ttm work that's in flight on top of
-  drm-next and we pull that into drm-misc-next and drm-intel-gt-next as
-  needed
-
-Only thing we need for this is a few days of testing to make sure any
-conflicts between -misc-next and -gt-next are fully validated.
-
-Adding Dave for that so he knows too.
-
-> Whether I push the ttm memcpy stuff before your 10 patches or after
-> shouldn't really matter except it might take some time to resolve the 10
-> patches - drm-intel-gt-next conflict in drm-tip.
-> =
-
-> So OK to merge the memcpy stuff to drm-misc-next now or do you want me to
-> hold on?
-> =
-
-> I'll take a look at what's remaining to review in your series. I guess it=
-'s
-> in our interest that both these series get merged asap.
-
-Yeah that part I think makes sense.
--Daniel
-
-> =
-
-> /Thomas
-> =
-
-> =
-
-> =
-
-> > =
-
-> > Christian.
-> > =
-
-> > > -Daniel
-> > =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>  		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
+> 
+>  	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 24307c49085f..fa800a77ea49 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7743,6 +7743,7 @@ enum {
+>  #define GAMMA_MODE(pipe) _MMIO_PIPE(pipe, _GAMMA_MODE_A, _GAMMA_MODE_B)
+>  #define  PRE_CSC_GAMMA_ENABLE	(1 << 31)
+>  #define  POST_CSC_GAMMA_ENABLE	(1 << 30)
+> +#define  POST_CC1_GAMMA_ENABLE  (1 << 26)
+>  #define  GAMMA_MODE_MODE_MASK	(3 << 0)
+>  #define  GAMMA_MODE_MODE_8BIT	(0 << 0)
+>  #define  GAMMA_MODE_MODE_10BIT	(1 << 0)
+> --
+> 2.29.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
