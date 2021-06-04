@@ -2,50 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B10E39BFDC
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79AEB39BFFA
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:56:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE9CA6F8A1;
-	Fri,  4 Jun 2021 18:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A4F6F8AA;
+	Fri,  4 Jun 2021 18:56:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
- [IPv6:2a00:1450:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 755466F8A3
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:48:50 +0000 (UTC)
-Received: by mail-lj1-x229.google.com with SMTP id o8so12872370ljp.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:48:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=psSmk0BzjlqtGu46X2F1KUx2Y4cHBhast9CZ7Rf61SE=;
- b=OrEoW7z5gB8gLvNO4liPws6SteXGWAo4I4AD/q6Lnj8gSnhuXDE/ofO1qTu6zkrLN+
- 9METgNVgIEMjWhuTJWOOJSDZaNNFcd8ZZv7FDs3oji26Xqy/0yQvjLbDNH/LT9kXl1p0
- 6qwBDFUCa4tCwTdxmEe+heWTCA88pOx1+5V3M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=psSmk0BzjlqtGu46X2F1KUx2Y4cHBhast9CZ7Rf61SE=;
- b=eLaDGBrNT5oNigORQmkQc/Mv1eKU6jP7XcYLedG3K5ZF4q+elFjVHuW0tp8Uu5/ZGm
- A6mV0iQngipTzknOvbBBRSM4U2b8H/QgY2Q3jZRrF0vnozn0wuRm6OUVt8rkSMDbsiaA
- VfWyKJSBaa7cIDKUOYTECPqR7ic3vbxEoX2UX+uscpc3ZKsQTk93OZTkxsVS1IBllmaW
- IZFbjQIlRUyTBHpqmTSwtNkiqgmO/3lLXwKSncjRAGTXvRVkr7x2T0wL+oBZycIWWUsQ
- RCzAdrYM4Boas1oW26vk7xpLIbomAyBj9E8voY8+kZ3+iTwrk+zLraOgIoXUWYScWPio
- v2zw==
-X-Gm-Message-State: AOAM531/qPjbGXRTxiu0NsO1Z3AQTEz4Lj2JZVH52mbhrcVB6Ddj1TbK
- ebpcJJVeVYD9ejXrgtHpAA7N7ohx5c1ZHRLKudskXw==
-X-Google-Smtp-Source: ABdhPJysm5xFkcIMW13SQPY+BlUF575dm2S569XIdTDsZ3x28jksUFYebjBnGbLr8BUeEFh+0rnbm5gH3hxmMWmdOro=
-X-Received: by 2002:a2e:8108:: with SMTP id d8mr4400846ljg.239.1622832528938; 
- Fri, 04 Jun 2021 11:48:48 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A34EB6F8AA;
+ Fri,  4 Jun 2021 18:56:47 +0000 (UTC)
+IronPort-SDR: Fcv9U04v4XE1tGgI94zh7rzqjH2PcWPtbYARZTOJ4dH4rW5bTNJpBEbVfvbab6oc6LqtwAIN1Q
+ C0mMnf1n2UVA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10005"; a="201330856"
+X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="201330856"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2021 11:56:45 -0700
+IronPort-SDR: +EGp2nhZHwFr1FvKw/JdvxBDKW0aLEBNKltmzsYc3Rigiz79U4sQoem8ATHNlGKUWaISWfj3/T
+ 0LBR3BPy1NHg==
+X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="551249362"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2021 11:56:45 -0700
+Date: Fri, 4 Jun 2021 11:49:46 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <20210604184946.GA29833@sdutt-i7>
+References: <20210603212722.59719-1-matthew.brost@intel.com>
+ <20210603212722.59719-4-matthew.brost@intel.com>
+ <CAOFGe95CkXy03G5oDEHBLHB2XNbLc2K_Uxx-rdW=Cg9RsKrYWA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210531153922.4683-1-shawn.c.lee@intel.com>
-In-Reply-To: <20210531153922.4683-1-shawn.c.lee@intel.com>
-From: Mark Yacoub <markyacoub@chromium.org>
-Date: Fri, 4 Jun 2021 14:48:38 -0400
-Message-ID: <CAJUqKUo+ZK_rVCxHfuGD+xQN6DbJUz-qM4n6jD5co0WuFk1Nhg@mail.gmail.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/kms_dp_dsc: Avoid SIGSEGV when
- release DRM connector.
+Content-Disposition: inline
+In-Reply-To: <CAOFGe95CkXy03G5oDEHBLHB2XNbLc2K_Uxx-rdW=Cg9RsKrYWA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Add
+ i915_sched_engine_reset_on_empty function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +50,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- charlton.lin@intel.com
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 31, 2021 at 11:34 AM Lee Shawn C <shawn.c.lee@intel.com> wrote:
->
-> Got SIGSEGV fault while running kms_dp_dsc test but did not
-> connect DP DSC capable monitor on eDP/DP port. This test daemon
-> should "SKIP" test without any problem. We found kms_dp_dsc
-> can't get proper drmModeConnector and caused this SIGSEGV fault
-> when release it. Make sure drmModeConnector is available before
-> free it can avoid this issue.
->
-Tested on ChromeOS on TGL (Delbin) and JSL (Drawlat).
-Tested-by: Mark Yacoub <markyacoub@chromium.org>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  tests/kms_dp_dsc.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/tests/kms_dp_dsc.c b/tests/kms_dp_dsc.c
-> index 2446fd82bba3..ea7c9f4f72ce 100644
-> --- a/tests/kms_dp_dsc.c
-> +++ b/tests/kms_dp_dsc.c
-> @@ -262,7 +262,7 @@ igt_main
->         data_t data = {};
->         igt_output_t *output;
->         drmModeRes *res;
-> -       drmModeConnector *connector;
-> +       drmModeConnector *connector = NULL;
->         int i, test_conn_cnt, test_cnt;
->         int tests[] = {DRM_MODE_CONNECTOR_eDP, DRM_MODE_CONNECTOR_DisplayPort};
->
-> @@ -311,7 +311,8 @@ igt_main
->         }
->
->         igt_fixture {
-> -               drmModeFreeConnector(connector);
-> +               if (connector)
-> +                       drmModeFreeConnector(connector);
->                 drmModeFreeResources(res);
->                 close(data.debugfs_fd);
->                 close(data.drm_fd);
-> --
-> 2.17.1
->
+On Fri, Jun 04, 2021 at 01:31:42PM -0500, Jason Ekstrand wrote:
+> On Thu, Jun 3, 2021 at 4:09 PM Matthew Brost <matthew.brost@intel.com> wrote:
+> >
+> > Rather than touching schedule state in the generic PM code, reset the
+> > priolist allocation when empty in the submission code. Add a wrapper
+> > function to do this and update the backends to call it in the correct
+> > place.
+> 
+> Seems reasonable, I think.  I'm by no means an expert but
+> 
+> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+> 
+> anyway.  My one suggestion would be to tweak the commit message to
+> talk about the functional change rather than the helper.  Something
+> like
+> 
+> drm/i915: Reset sched_engine.no_priolist immediately after dequeue
+> 
+> Typically patches which say "add a helper function" don't come with a
+> non-trivial functional change.
+> 
+
+Agree.
+
+Thanks - Matt
+
+> --Jason
+> 
+> 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_engine_pm.c            | 2 --
+> >  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 1 +
+> >  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c    | 2 ++
+> >  drivers/gpu/drm/i915/i915_scheduler.h                | 7 +++++++
+> >  4 files changed, 10 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > index b6a00dd72808..1f07ac4e0672 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > @@ -280,8 +280,6 @@ static int __engine_park(struct intel_wakeref *wf)
+> >         if (engine->park)
+> >                 engine->park(engine);
+> >
+> > -       engine->sched_engine->no_priolist = false;
+> > -
+> >         /* While gt calls i915_vma_parked(), we have to break the lock cycle */
+> >         intel_gt_pm_put_async(engine->gt);
+> >         return 0;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > index 2326a73af6d3..609753b5401a 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > @@ -1553,6 +1553,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+> >          * interrupt for secondary ports).
+> >          */
+> >         sched_engine->queue_priority_hint = queue_prio(sched_engine);
+> > +       i915_sched_engine_reset_on_empty(sched_engine);
+> >         spin_unlock(&engine->active.lock);
+> >
+> >         /*
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 5d00f2e3c1de..f4a6fbfaf82e 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -263,6 +263,8 @@ static void guc_submission_tasklet(struct tasklet_struct *t)
+> >
+> >         __guc_dequeue(engine);
+> >
+> > +       i915_sched_engine_reset_on_empty(engine->sched_engine);
+> > +
+> >         spin_unlock_irqrestore(&engine->active.lock, flags);
+> >  }
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+> > index 5bec7b3b8456..713c38c99de9 100644
+> > --- a/drivers/gpu/drm/i915/i915_scheduler.h
+> > +++ b/drivers/gpu/drm/i915/i915_scheduler.h
+> > @@ -72,6 +72,13 @@ i915_sched_engine_is_empty(struct i915_sched_engine *sched_engine)
+> >         return RB_EMPTY_ROOT(&sched_engine->queue.rb_root);
+> >  }
+> >
+> > +static inline void
+> > +i915_sched_engine_reset_on_empty(struct i915_sched_engine *sched_engine)
+> > +{
+> > +       if (i915_sched_engine_is_empty(sched_engine))
+> > +               sched_engine->no_priolist = false;
+> > +}
+> > +
+> >  void i915_request_show_with_schedule(struct drm_printer *m,
+> >                                      const struct i915_request *rq,
+> >                                      const char *prefix,
+> > --
+> > 2.28.0
+> >
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
