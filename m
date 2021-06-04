@@ -2,36 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D8239B758
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 12:46:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C1EE39B768
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 13:02:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E17B6F5FB;
-	Fri,  4 Jun 2021 10:46:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBC4D6E239;
+	Fri,  4 Jun 2021 11:02:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0986F5FB
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 10:46:41 +0000 (UTC)
-IronPort-SDR: 9mdzTF99gFzTYZ8EBiHrq8RHVrh5y3INvyV59Ar4Q+g4dVcZns3fbJD+/Rru+hkp4sg7Bd4rzX
- ImvBhmmvStdg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="289898010"
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="289898010"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 03:46:40 -0700
-IronPort-SDR: Ai1YxeU7oX4/8FkZi15ds/Wu6acrVgbBEcZsLoiSaanVynRkll97t+lZd2YFQ5xHigtKR7yxll
- w9QhnSBbYY6w==
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="468281919"
-Received: from vandita-desktop.iind.intel.com ([10.223.74.52])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 04 Jun 2021 03:46:38 -0700
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  4 Jun 2021 15:59:12 +0530
-Message-Id: <20210604102912.15185-1-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 065736E239;
+ Fri,  4 Jun 2021 11:02:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC6A3A00C9;
+ Fri,  4 Jun 2021 11:02:02 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dsc: Fix bigjoiner check in dsc_disable
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Date: Fri, 04 Jun 2021 11:02:02 -0000
+Message-ID: <162280452287.4695.8572700274847885977@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210604102912.15185-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20210604102912.15185-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dsc=3A_Fix_bigjoiner_check_in_dsc=5Fdisable?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,49 +38,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This change takes care of resetting the dss_ctl registers
-in case of dsc_disable, bigjoiner disable and also
-uncompressed joiner disable.
+== Series Details ==
 
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
-Fixes: d961eb20adb6 (drm/i915/bigjoiner: atomic commit changes for uncompressed joiner)
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3537
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Series: drm/i915/dsc: Fix bigjoiner check in dsc_disable
+URL   : https://patchwork.freedesktop.org/series/91006/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 19cd9531c115..8888514e6267 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -1161,12 +1161,12 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
--	if (!(old_crtc_state->dsc.compression_enable &&
--	      old_crtc_state->bigjoiner))
--		return;
--
--	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
--	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);
-+	/* Disable only if either of them is enabled */
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+54375f6d892e drm/i915/dsc: Fix bigjoiner check in dsc_disable
+-:31: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#31: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:1166:
 +	if (old_crtc_state->dsc.compression_enable
 +	    || old_crtc_state->dsc.compression_enable) {
-+		intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
-+		intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);
-+	}
- }
- 
- void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state)
--- 
-2.21.0.5.gaeb582a
+
+total: 0 errors, 0 warnings, 1 checks, 18 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
