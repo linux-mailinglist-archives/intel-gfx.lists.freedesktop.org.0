@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F3A39BFD3
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5621339BFD8
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:46:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF6F6F89D;
-	Fri,  4 Jun 2021 18:43:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C5656F8A0;
+	Fri,  4 Jun 2021 18:46:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 234406F89F
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:43:07 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id w33so15514103lfu.7
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:43:07 -0700 (PDT)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
+ [IPv6:2a00:1450:4864:20::12b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA556F89F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:46:47 +0000 (UTC)
+Received: by mail-lf1-x12b.google.com with SMTP id a1so5849616lfr.12
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:46:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Rio4UFWjElQ5aqOkww6xhIy4YnswqeSYJY+oI4VmrRk=;
- b=kMwRHwDoKIqQlc48bD3hXc3vQ/HnSmAX6KJGrjfrUtwRznGmQ42j8LrTcNqcgDw1M6
- QkaidaE7VIS9ebNK6PslmzYJ6Ule0Y+ilYdpiRWl/ejb5T0zXjnpjz2lNKSBZL5YSuSn
- JHfDKEgrJQJlnnPG3xUd68EI+ZtKHFtAuvoP0=
+ :cc; bh=CcgqJT8ZkkZ7A/z3l2ipf5uWh4ffG6GQsS+y29hFzEc=;
+ b=netQR9Hk9qiv0+zDpQZugUuyLClkJc1hyYn4sR4Qp8ABO6IWco2rgpjPZKlNNr4Gmj
+ 8/lkBS5fEOe/bYZawBFeF+JIUn5y5j91UrKcMsQ86myIiiJzWs7FUJA31IdpQyO+k19U
+ eSvaxKCeMCUGoKwuHhU/fSaOLj2AsjohHMmiw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Rio4UFWjElQ5aqOkww6xhIy4YnswqeSYJY+oI4VmrRk=;
- b=kvbwVoPq7RhoP+sQ+NHv62vJyPyBPnvoj+tFnChteSdjqHYT6zj7FkxeX4Z4jTX8fD
- uFIP94g7jbdUOgFIw9vbpwUGXyhKIwa8xPPo5hde9dqpr86xNzt7ojg1Gq95X6dZc56L
- +e8/cs8bqxZgzoSHoIzhb5NaHNn9Qml4JtioUtpqaRoMleraoVmhDldu7FOB5HFzT2zm
- xiSyU+I5DHS4a8iEPGGD64kfj48FVaM6Ghdytk0gMZXGpBiLWYHCuSxBBU9VlhxlZoqH
- zKCvENSRAFa0MWDbr625PJ5TKlE+HqZdLY7wQiovaxevILfEMEjzak2urYJkFgCuzdV8
- KMug==
-X-Gm-Message-State: AOAM532gVXMQWT+KWyeLvpcE/hQ7fP8oPcCh8mBPgQKG1N23ELh/vdPV
- DeH5J7vM6SlK6Jb+3XQEbSKEi10DXQbR6iIAotKjYEIcCvbg6mR8
-X-Google-Smtp-Source: ABdhPJzvD7LQOwkLaMRjYgUWjhXzCk6sh8INC/BgwTO0ZfCNJHMmuOZOdwoTjn+orld4rNHuvysc7/dMUMgUNiTno3A=
-X-Received: by 2002:a05:6512:3f9a:: with SMTP id
- x26mr3874821lfa.75.1622832185581; 
- Fri, 04 Jun 2021 11:43:05 -0700 (PDT)
+ bh=CcgqJT8ZkkZ7A/z3l2ipf5uWh4ffG6GQsS+y29hFzEc=;
+ b=CsMMwe5DJEgAFad6reHZSvKRHTtarn08FghmxQPMI5k8u0PmZ9K3pzap3bojizLJ79
+ Tza86UEdxOWo0x0PMy7fr1CUQQFvV1bjfV1+zppTk2X1Etm7xInaoPLsV78P7TIDWa9p
+ jVrsNtO2Xw8pUvpQes+mhQuHh9/BXbivRh7nn8AC4IlMmv/OUMcIknB6+h2f1S44A428
+ zfg5FI3Lld/90zoYBu7CDGnAWQRG/uXkzCK+jomiGJeq5HPeI0E0ot3+7LnR3uxsztO0
+ crv7Gl11rEcT5tBYJzK4UwpDXfHnvPuWnWTvNk5JzLAq69ihQ0CbHanHg9no4cWjIBbZ
+ lfNw==
+X-Gm-Message-State: AOAM531shHhOioJwR2ipTQ28c6JfPVVggwUfqu2Oo3tQdXu/S6E0ihsp
+ zkKYYlahIVbxdOnJlPpVa8K+d3RG21e9eUrYLlSseQ==
+X-Google-Smtp-Source: ABdhPJxpjqXpb24B12qDx/5/FkiUsMOyKCktM7R79vwwDZMc5DWBZ2nKuXoj0FAELO1Fjg9O6wcvGUUWuI0G8VILHh4=
+X-Received: by 2002:a19:6a09:: with SMTP id u9mr3582361lfu.451.1622832405449; 
+ Fri, 04 Jun 2021 11:46:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <1622176367-12608-1-git-send-email-vidya.srinivas@intel.com>
-In-Reply-To: <1622176367-12608-1-git-send-email-vidya.srinivas@intel.com>
+References: <1622175883-12405-1-git-send-email-vidya.srinivas@intel.com>
+In-Reply-To: <1622175883-12405-1-git-send-email-vidya.srinivas@intel.com>
 From: Mark Yacoub <markyacoub@chromium.org>
-Date: Fri, 4 Jun 2021 14:42:54 -0400
-Message-ID: <CAJUqKUovbY4fT8wgeDfU+OoD4S-oBbSG80gn-BdFxGGc1GYo9A@mail.gmail.com>
+Date: Fri, 4 Jun 2021 14:46:34 -0400
+Message-ID: <CAJUqKUojeh3fv2KA7=xwOWtaF+axW0EuNk3PJ0iEqft_cFXTxg@mail.gmail.com>
 To: Vidya Srinivas <vidya.srinivas@intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] [RFC] tests/drm_read: Fix subtest
- invalid-buffer
+Subject: Re: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_flip.c: Fix subtests
+ flip-vs-suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,44 +65,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 28, 2021 at 12:41 AM Vidya Srinivas
+Tested it on ChromeOS and it runs well. But I think we should fix the
+root cause instead.
+
+On Fri, May 28, 2021 at 12:33 AM Vidya Srinivas
 <vidya.srinivas@intel.com> wrote:
 >
-> Using (void *)-1 directly in read is aborting on chrome systems.
-> Following message is seen.
->
-> Starting subtest: invalid-buffer
-> *** buffer overflow detected ***: terminated
-> Received signal SIGABRT.
-> Stack trace:
-> Aborted (core dumped)
->
-> Patch just adds a pointer variable and uses it in read.
+> Some Intel Gen11 systems are not able to do a RTC wake.
+> Instead change the default SUSPEND_TEST_NONE to
+> SUSPEND_TEST_PLATFORM.
 >
 Tested on ChromeOS on TGL (Delbin) and JSL (Drawlat)
 Tested-by: Mark Yacoub <markyacoub@chromium.org>
 > Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
 > ---
->  tests/drm_read.c | 3 ++-
+>  tests/kms_flip.c | 3 ++-
 >  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> diff --git a/tests/drm_read.c b/tests/drm_read.c
-> index ccf9d822fd8d..2fdec5be4078 100644
-> --- a/tests/drm_read.c
-> +++ b/tests/drm_read.c
-> @@ -103,10 +103,11 @@ static void teardown(int fd)
->  static void test_invalid_buffer(int in)
->  {
->         int fd = setup(in, 0);
-> +       void *add = (void *)-1;
+> diff --git a/tests/kms_flip.c b/tests/kms_flip.c
+> index 8f736652be90..8afac88c9b15 100755
+> --- a/tests/kms_flip.c
+> +++ b/tests/kms_flip.c
+> @@ -835,7 +835,8 @@ static bool run_test_step(struct test_output *o, unsigned int *events)
 >
->         alarm(1);
+>         if (o->flags & TEST_SUSPEND)
+>                 igt_system_suspend_autoresume(SUSPEND_STATE_MEM,
+> -                                             SUSPEND_TEST_NONE);
+> +                                             is_i915_device(drm_fd)?
+> +                                             SUSPEND_TEST_PLATFORM:SUSPEND_TEST_NONE);
 >
-> -       igt_assert_eq(read(fd, (void *)-1, 4096), -1);
-> +       igt_assert_eq(read(fd, add, 4096), -1);
->         igt_assert_eq(errno, EFAULT);
->
->         teardown(fd);
+>         if (do_vblank && (o->flags & TEST_EINVAL) && o->vblank_state.count > 0)
+>                 igt_assert(do_wait_for_vblank(o, o->pipe, target_seq, &vbl_reply)
 > --
 > 2.7.4
 >
