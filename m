@@ -2,59 +2,118 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F184739BF68
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:14:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CD3E39BF86
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:24:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8756F888;
-	Fri,  4 Jun 2021 18:14:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E006F895;
+	Fri,  4 Jun 2021 18:24:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
- [IPv6:2607:f8b0:4864:20::b2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7E1A6F888
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:14:44 +0000 (UTC)
-Received: by mail-yb1-xb2c.google.com with SMTP id m9so8449732ybo.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:14:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=z/1wKLmqT+efNr2bWMZ+eYUJ8DWV7S41jOPk0rztU9s=;
- b=TdCV0TJClBd9qd2LOaCdhtAyiW61Q7DMTmXb6SI1yS6923ryFr7muXgJxQY0PsWOFt
- bNSS/p1VSUMoENGxjElQ8IDjhxvIsRLNlYrA69raED5D/89TsT48zVkRe1TTBzEfRLe7
- iicmQmIduWSEYXFMAkmugwSL0f0GFPYUvsA+chMzE0+c9CxXUoTp2tJeWjZWb29i+1Et
- ImrJ1P4ktV7cMblhpIr+mANmpZBW2M2uk3DYtG2AqzG+tHQiQVHTfTqZ1vOr6bNEgCvA
- GFrgYFmWC5SLgaqfHpiKAJ6kLPIfiqK0S3/z1e05B06qwKlOqlq9bphYeP9ZkBhEiqQj
- 6cFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=z/1wKLmqT+efNr2bWMZ+eYUJ8DWV7S41jOPk0rztU9s=;
- b=XrEiuFKkzGRqHoeJeMQs25qdraoD62RYIDB0K10hGECkd5TwsHEOzXJU2DeKFJOjep
- NqFTrnqBtur20/Oj7+Vo4DHYw6bVVy6rN5HV+0ArWq+KLUhXKjOWqwJeI4nejtZptqKf
- sf1xX1pDyvexh2ZC04BzDEHP9nPOLyUCmZU+ssCGd3418MtcUPcBYrx8pIvf+FZ3eZFf
- jSqkwYXd/hf5LsbRpDF/DZN+FdgYP3FoCAuaIr8PpmOTJr/kj7F5HbO8H0bK0ISoqM7Y
- 6jo8xGXJKJf4RYV7rSDrnaOAcTlRmzwBmtPjTfq3/BcwR8/vIDPTvLadmr6RaMmvdA5c
- n+dA==
-X-Gm-Message-State: AOAM532dy9OAkl+ftfNUQO/WEmjeusTfwm4tttrgYaQzB1aaj6IOr8/w
- pcci1CBex7Psbo/9F7IEG+25phmH3xv+PudQzSqcMA==
-X-Google-Smtp-Source: ABdhPJzCKZB9jUiJ2VCUa7K4lmZa43maFl4/KSCNM68HGjOri+QK5tW3iYkGH50qnYWP34nfEhlwQmdvG7awJa11n88=
-X-Received: by 2002:a25:208b:: with SMTP id g133mr6533851ybg.211.1622830483413; 
- Fri, 04 Jun 2021 11:14:43 -0700 (PDT)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam07on2077.outbound.protection.outlook.com [40.107.95.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD4D36E165;
+ Fri,  4 Jun 2021 18:24:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gpcYVsvTCGSvfAv8hP2yNOoIyU/gZ78pEBl65sYss3bmPP61qriwPrBMWgxdAkG0vUmVmKWhefqsg+IZ4HrdxDxzsfwuiRR2Dg2N/ItjlWlhOR5utVdpw7Uej2oSnhFBBowDE9yJNs0E2U55wFgpeCg0HXivn+hE5aLDNDs7Qyeg32CxqPAhroQvdaemwmIKq1S0aXo838vzXqR2bi777OmBd5u2qJEDvHtdNBQ0Dcwg9YKzKHOkbQkwOwznDgE+7LFcypuwwsHjogQ96wg8I0dsOveDxLpTi3+4ZV9BH3iraCVr36vrBcwZRvO2HLCu37VrfewbQZOAwkcgIswshQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HHUE9k9bmyumRMmPmaL8bBPP6/Rv5s+2Crf42Qy+VSQ=;
+ b=YOEtYtGznxER4mwZQDYJ0AKxg21V7aR758RuTaHoCWKDOuEJ4xUURWSdIMVL0ck1e32FmHaRLveFB0JdGVpDmsSAuMQKmytTMvczDAiK7RBk/3H1xSUykf+AqhvhmSJGOt354mHjMdJF3W32YufO0JiOgxbbCD2E8IlB9/ljsOCL9eR56p8dW3VPXMGXbja3EBZcKyqJRX17g2iv5pIJObYiqKQsgSQc0hC+9kWxHS+Dr2BuK95iUX3d78jTXEXOfqKMWdOf0kuOwyxsLI8W6XaLQZhBptDIWU7cGWN01fOeqzX0yqpOX9F7EFuChlU7guY+kCorOLAMmIRzZ0lKfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HHUE9k9bmyumRMmPmaL8bBPP6/Rv5s+2Crf42Qy+VSQ=;
+ b=2JqnQckEn58QZG6ebkcs8Os5pydmTEPHCkVfVGndukJ8HphdjWjO+vhnY9KZqYnBR46yQJ0dacCMe5v0Z/6QyGY+PQ2xcLG5k9p5bI2r9dm2SBKhsp8wgBqts/Fr8BpqYz7gcouSVYcH4oLcjeVIA9kWpeVopmgS1aAt9vmXuno=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by CO6PR12MB5489.namprd12.prod.outlook.com (2603:10b6:303:139::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Fri, 4 Jun
+ 2021 18:24:32 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::f455:b0b4:439:2753]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::f455:b0b4:439:2753%3]) with mapi id 15.20.4195.025; Fri, 4 Jun 2021
+ 18:24:31 +0000
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20210601105218.29185-1-uma.shankar@intel.com>
+ <20210601105218.29185-3-uma.shankar@intel.com>
+From: Harry Wentland <harry.wentland@amd.com>
+Message-ID: <2154f1d1-2c86-ede7-4b23-acab93e3eb00@amd.com>
+Date: Fri, 4 Jun 2021 14:24:28 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
+In-Reply-To: <20210601105218.29185-3-uma.shankar@intel.com>
+Content-Language: en-US
+X-Originating-IP: [198.200.67.154]
+X-ClientProxiedBy: YQXPR0101CA0019.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c00:15::32) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
-References: <20210603212722.59719-1-matthew.brost@intel.com>
- <20210603212722.59719-2-matthew.brost@intel.com>
- <CAOFGe964fTFG7f04Z9ktvu4bahHaPMP_gdvKjUpfC3+kwDc_og@mail.gmail.com>
- <20210604173508.GA20279@sdutt-i7>
- <CAOFGe94PY3eV=Qh6iMHsD+uTMJL=1jBwp9WsqtKhgztVC2Nbbg@mail.gmail.com>
- <20210604175156.GA22366@sdutt-i7>
-In-Reply-To: <20210604175156.GA22366@sdutt-i7>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Fri, 4 Jun 2021 13:14:31 -0500
-Message-ID: <CAOFGe97jR46XytdXxBauVafes_5xoh6H712+xRgr7cLVdnPfCQ@mail.gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: Move priolist to new
- i915_sched_engine object
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.50.3] (198.200.67.154) by
+ YQXPR0101CA0019.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00:15::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.27 via Frontend
+ Transport; Fri, 4 Jun 2021 18:24:30 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cdb16d13-70f1-4a08-1bda-08d92785ff2f
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5489:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CO6PR12MB54890A886364FDBB1F18BF478C3B9@CO6PR12MB5489.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fz9CayxSc8byDZxD6tbU1Ikz1WPKlKc7PZubwPwrw1RfAuMxbQu4kB3Z2VGr6Z/jUQ66bgf3J8KPAaI5mMnKO7c13Tm2oFFcSRo7y76fvj3ddrpOCKA+L9IB4YND4WkcnMTfGXsh6+nQHXlwsow4PSKMaaPB8Y5mfxpJC88X15h6hutRUOTKEJdn4aD65/mPV9e2fsDul2hX1sOshte72woh6qmdjaWe70NpC9PVafzBDGPIsm7ig/4e1IjgSVOjOY/lQMIY9SNkNtSnp1plz95jWeDYk7nNcAVFNpjU9Vu0Hheg+U6MMWEUoXiNXg85xjfA6WYSr0E3i90EvhGwbVhj77RX8NlO63D8x2TcDml+9kj6MG3MHoT6UZKvkX0eo0z6V4WBb8l75254rldLuYHYnQIDo2bWHUNEcpojI4hdK/pDqqS/BSc/ZrJLSL8+CAcShfkNJ0dqeqjvk0s3c3Y0gAz606NTMqv5CSsWSu/EUipEcQcnghpf6ANWEKjeWL9LVDiUSlZcf63LoaCNs51Op3tSeg+06P3fHiWuUVugVHNwr4dI+p8wkd32TU4DTKGlhO9sRS0d++x3i1ilWVEbZhwyc8GM8tqNzCHsn/C4vOsKA3V95GivkV/uMMEMN6vcvfuLrd66NNKnAmcexZ/gV1bkuGaFIloa32M1NVMlNPvYobvfnTzuIudaWUHDMPLFvAhpjIVFVrsWkS6s1KYk3hJFy8sOYZ1fi2qU94Jak81/IrRFj+7Zo/Ngwh0jnBMIqqPXEqXjBho4hZGQDrvS2AeKFtt9tBpA4CiUnGU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(376002)(39860400002)(396003)(366004)(346002)(66946007)(31686004)(44832011)(316002)(66476007)(956004)(2616005)(30864003)(86362001)(16576012)(31696002)(66556008)(83380400001)(38100700002)(966005)(36756003)(8676002)(186003)(8936002)(16526019)(53546011)(6486002)(4326008)(5660300002)(2906002)(478600001)(26005)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?MVExMU0xSnhhc1YzOHpOOTg0OENQM0tUdGtWRUwvUXM1VVNHcWJnVG9HeVNS?=
+ =?utf-8?B?Vk5KaENyU3ZjWDVGMmE2b0t3MGxMTndWckdkaXpnek5lRTEyU1p5ZnRqSFlN?=
+ =?utf-8?B?emdPOXFvMG1nd2p6Z2JQemlVcG9IVWswVE9OdzRRZVAxSlpkbDBtM3hab0Vy?=
+ =?utf-8?B?SDBLWUtpVzVnSDZRTkE2Q0FVUmF2dVVzd201eXNmeEFUWjRLbVNGcHNab1pt?=
+ =?utf-8?B?OWxvdVE2WlV6eFpWK0ZxRWJnTFYydjR3cjZ6UU90MDNXMVdYdEJCREkyNHph?=
+ =?utf-8?B?R3RXbEVCV0xZaDNwWjVxbTl5dUtkd3RTSE43UjVrUlVvSUtvTXhRL1JDVFVC?=
+ =?utf-8?B?M0FTNW1SemZEcUNFaGJnTWNqYnhhK1cyZ1NrU3RlUGFTUk9kSzhxdHpXejE5?=
+ =?utf-8?B?OXJGRFVTaENUK2F5RSs3WlpyUWpid09OcG1BMk5WQUZxaHYvUmhKMlBvRHNk?=
+ =?utf-8?B?S1BncS9FME1EaTV3Qnk5YVBHbFFNb08vNTRBdUsvbk5GQ2pyQTBiZGJ4bnVQ?=
+ =?utf-8?B?UmFNZ2JxOFBEZVVoNDgrQm5UendicUxONU54Vy8rbzZHTUtub2p2QnllM3Vy?=
+ =?utf-8?B?eXNXL0JpVExKWG04WVRnMCtRNXBnWjhDN25mL1dDdzF4WDRGajBZd3RncDFP?=
+ =?utf-8?B?cHkrelFXbHVIb1I1STdFdFhPNjZsaTN4bXhaMmE4cW1XUVFsU1ZJMis3TU9N?=
+ =?utf-8?B?bWdhdEgzRm9LbHpxSTJ6amxZR1l0K29vd3VyaFNvZlpzaDZhZGFMRjdtTzhl?=
+ =?utf-8?B?ZWlSZm1kSU52dVMrYUk1cXNQanZzSVU5cWhsRjR4UEpnT2dlK3EwL1RncXFC?=
+ =?utf-8?B?d0Mzb2gyTm0vaVl4bXZVcTl1QTdJSWpyUEZOekZTOHA2aEV2RHhRa1kyM1E1?=
+ =?utf-8?B?aG1WOS9YOWgrL051MmorczNvek9xeWFOaU1SNEdrdmIySDJFQnpndXdIMVVj?=
+ =?utf-8?B?Z0YxNXdsTHJNblFXMUZOajBOdGt5QVl6ZlpBVHd4QmIwOStTd1ZRdGhDSHlW?=
+ =?utf-8?B?Q1dSbkFZZkxUWnBWWHlrTDh6bGpjVmMwZ1VtM01FV1E5Y05aQ1dQNndXQjJo?=
+ =?utf-8?B?U2E0Q1pxV3lkNkkxRHhoVE9ld3FjRWMwR0pNOVRRYWF1VHFrNUxDNWNPcHd6?=
+ =?utf-8?B?NnNFa0Y5T01ZMkIzWmUySmVzRWtVSnNMRjkvdGVGeG5neG1tQkY0empTSDBV?=
+ =?utf-8?B?b21IR01YTGhUOS9rVEFuc0F2QkVTcDJ1N1hWMGNzYWdNY05jZ3RhbTRUVTlE?=
+ =?utf-8?B?bzZIN3JTZlk5S0FFOHhDTnlVN2J6bnpCTDU5N2hZcEdUY0FNUWNIU0h3TFYx?=
+ =?utf-8?B?azdvQTNqd2w0R01vbFVnbG02VjlBM1BqeWYxYldXUFVtYUIxMmExT2F1NFhG?=
+ =?utf-8?B?eFl6RHlqRjZlK3d3MldrSU1vbUt4ZzhITVZqL1hONXptaUpKUmhEMThDa05C?=
+ =?utf-8?B?bFB6NFVQSXhva3M0WGpVdlFhNE84bWFlVWkrS1FzK1EwTjJoYmNkcDdCRWNI?=
+ =?utf-8?B?ZWhCN3BVeEEzZEhnSnU5cFl6K2lndmRKbXRRVEhPUkhCM1dVdlNhRTZrNHJ2?=
+ =?utf-8?B?TkE0ZktNQS92YXFyOGt0TVJYVis2UFdMeXBqS2VyR0ZKYVM0UWN4TTVHdE5r?=
+ =?utf-8?B?OHVTZXpiSHQya3k5a09UYzJGMUtmUGRWVXFQcWRWU0ZEUXFmSzAweDhuTDMr?=
+ =?utf-8?B?TFpBNjhJbFU4aGdERWgvRTRFY3dETDFpUmJCdWlVbVU0TE9xN0cxS2lhdWEw?=
+ =?utf-8?Q?/iwJuvqZk3w6R05QSXKmZhbtPMHg8biad21+j7z?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cdb16d13-70f1-4a08-1bda-08d92785ff2f
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2021 18:24:31.7834 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VtpquIRIgV+7ve3DoRfEVX/nxxGEpW+EsN3ON5HGIzM2gHSbg+4Kw6Xi5QrBd30BAunNrt6K6sW70RjAzaAeJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5489
+Subject: Re: [Intel-gfx] [PATCH 02/21] drm: Add Plane Degamma Mode property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,880 +126,256 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Cyr, Aric" <Aric.Cyr@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 4, 2021 at 12:59 PM Matthew Brost <matthew.brost@intel.com> wrote:
->
-> On Fri, Jun 04, 2021 at 12:51:43PM -0500, Jason Ekstrand wrote:
-> > On Fri, Jun 4, 2021 at 12:42 PM Matthew Brost <matthew.brost@intel.com> wrote:
-> > >
-> > > On Fri, Jun 04, 2021 at 12:38:22PM -0500, Jason Ekstrand wrote:
-> > > > On Thu, Jun 3, 2021 at 4:09 PM Matthew Brost <matthew.brost@intel.com> wrote:
-> > > > >
-> > > > > Introduce i915_sched_engine object which is lower level data structure
-> > > > > that i915_scheduler / generic code can operate on without touching
-> > > > > execlist specific structures. This allows additional submission backends
-> > > > > to be added without breaking the layering.
-> > > > >
-> > > > > This is a bit of detour to integrating the i915 with the DRM scheduler
-> > > > > but this object will still exist when the DRM scheduler lands in the
-> > > > > i915. It will however look a bit different. It will encapsulate the
-> > > > > drm_gpu_scheduler object plus and common variables (to the backends)
-> > > > > related to scheduling. Regardless this is a step in the right direction.
-> > > > >
-> > > > > This patch starts the aforementioned transition by moving the the
-> > > > > priolist into the i915_sched_engine object.
-> > > > >
-> > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 14 +++-
-> > > > >  drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  4 +-
-> > > > >  drivers/gpu/drm/i915/gt/intel_engine_types.h  | 30 +------
-> > > > >  .../drm/i915/gt/intel_execlists_submission.c  | 81 +++++++++++--------
-> > > > >  drivers/gpu/drm/i915/gt/mock_engine.c         |  9 ++-
-> > > > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 19 ++---
-> > > > >  drivers/gpu/drm/i915/i915_scheduler.c         | 51 +++++++++---
-> > > > >  drivers/gpu/drm/i915/i915_scheduler.h         | 18 +++++
-> > > > >  drivers/gpu/drm/i915/i915_scheduler_types.h   | 33 ++++++++
-> > > > >  9 files changed, 169 insertions(+), 90 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > > > index 3f9a811eb02b..d0f3814440f6 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > > > @@ -583,9 +583,6 @@ void intel_engine_init_execlists(struct intel_engine_cs *engine)
-> > > > >         memset(execlists->pending, 0, sizeof(execlists->pending));
-> > > > >         execlists->active =
-> > > > >                 memset(execlists->inflight, 0, sizeof(execlists->inflight));
-> > > > > -
-> > > > > -       execlists->queue_priority_hint = INT_MIN;
-> > > > > -       execlists->queue = RB_ROOT_CACHED;
-> > > > >  }
-> > > > >
-> > > > >  static void cleanup_status_page(struct intel_engine_cs *engine)
-> > > > > @@ -712,6 +709,12 @@ static int engine_setup_common(struct intel_engine_cs *engine)
-> > > > >                 goto err_status;
-> > > > >         }
-> > > > >
-> > > > > +       engine->sched_engine = i915_sched_engine_create(ENGINE_PHYSICAL);
-> > > > > +       if (!engine->sched_engine) {
-> > > > > +               err = -ENOMEM;
-> > > > > +               goto err_sched_engine;
-> > > > > +       }
-> > > > > +
-> > > > >         err = intel_engine_init_cmd_parser(engine);
-> > > > >         if (err)
-> > > > >                 goto err_cmd_parser;
-> > > > > @@ -735,6 +738,8 @@ static int engine_setup_common(struct intel_engine_cs *engine)
-> > > > >         return 0;
-> > > > >
-> > > > >  err_cmd_parser:
-> > > > > +       i915_sched_engine_put(engine->sched_engine);
-> > > > > +err_sched_engine:
-> > > > >         intel_breadcrumbs_free(engine->breadcrumbs);
-> > > > >  err_status:
-> > > > >         cleanup_status_page(engine);
-> > > > > @@ -958,6 +963,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
-> > > > >         GEM_BUG_ON(!list_empty(&engine->active.requests));
-> > > > >         tasklet_kill(&engine->execlists.tasklet); /* flush the callback */
-> > > > >
-> > > > > +       i915_sched_engine_put(engine->sched_engine);
-> > > > >         intel_breadcrumbs_free(engine->breadcrumbs);
-> > > > >
-> > > > >         intel_engine_fini_retire(engine);
-> > > > > @@ -1281,7 +1287,7 @@ bool intel_engine_is_idle(struct intel_engine_cs *engine)
-> > > > >         intel_engine_flush_submission(engine);
-> > > > >
-> > > > >         /* ELSP is empty, but there are ready requests? E.g. after reset */
-> > > > > -       if (!RB_EMPTY_ROOT(&engine->execlists.queue.rb_root))
-> > > > > +       if (!RB_EMPTY_ROOT(&engine->sched_engine->queue.rb_root))
-> > > > >                 return false;
-> > > > >
-> > > > >         /* Ring stopped? */
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > > > > index 47f4397095e5..b6a00dd72808 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > > > > @@ -275,12 +275,12 @@ static int __engine_park(struct intel_wakeref *wf)
-> > > > >         intel_breadcrumbs_park(engine->breadcrumbs);
-> > > > >
-> > > > >         /* Must be reset upon idling, or we may miss the busy wakeup. */
-> > > > > -       GEM_BUG_ON(engine->execlists.queue_priority_hint != INT_MIN);
-> > > > > +       GEM_BUG_ON(engine->sched_engine->queue_priority_hint != INT_MIN);
-> > > > >
-> > > > >         if (engine->park)
-> > > > >                 engine->park(engine);
-> > > > >
-> > > > > -       engine->execlists.no_priolist = false;
-> > > > > +       engine->sched_engine->no_priolist = false;
-> > > > >
-> > > > >         /* While gt calls i915_vma_parked(), we have to break the lock cycle */
-> > > > >         intel_gt_pm_put_async(engine->gt);
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > > > > index 9ef349cd5cea..86b41ddec373 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > > > > @@ -59,6 +59,7 @@ struct drm_i915_reg_table;
-> > > > >  struct i915_gem_context;
-> > > > >  struct i915_request;
-> > > > >  struct i915_sched_attr;
-> > > > > +struct i915_sched_engine;
-> > > > >  struct intel_gt;
-> > > > >  struct intel_ring;
-> > > > >  struct intel_uncore;
-> > > > > @@ -152,11 +153,6 @@ struct intel_engine_execlists {
-> > > > >          */
-> > > > >         struct timer_list preempt;
-> > > > >
-> > > > > -       /**
-> > > > > -        * @default_priolist: priority list for I915_PRIORITY_NORMAL
-> > > > > -        */
-> > > > > -       struct i915_priolist default_priolist;
-> > > > > -
-> > > > >         /**
-> > > > >          * @ccid: identifier for contexts submitted to this engine
-> > > > >          */
-> > > > > @@ -191,11 +187,6 @@ struct intel_engine_execlists {
-> > > > >          */
-> > > > >         u32 reset_ccid;
-> > > > >
-> > > > > -       /**
-> > > > > -        * @no_priolist: priority lists disabled
-> > > > > -        */
-> > > > > -       bool no_priolist;
-> > > > > -
-> > > > >         /**
-> > > > >          * @submit_reg: gen-specific execlist submission register
-> > > > >          * set to the ExecList Submission Port (elsp) register pre-Gen11 and to
-> > > > > @@ -238,23 +229,8 @@ struct intel_engine_execlists {
-> > > > >         unsigned int port_mask;
-> > > > >
-> > > > >         /**
-> > > > > -        * @queue_priority_hint: Highest pending priority.
-> > > > > -        *
-> > > > > -        * When we add requests into the queue, or adjust the priority of
-> > > > > -        * executing requests, we compute the maximum priority of those
-> > > > > -        * pending requests. We can then use this value to determine if
-> > > > > -        * we need to preempt the executing requests to service the queue.
-> > > > > -        * However, since the we may have recorded the priority of an inflight
-> > > > > -        * request we wanted to preempt but since completed, at the time of
-> > > > > -        * dequeuing the priority hint may no longer may match the highest
-> > > > > -        * available request priority.
-> > > > > +        * @virtual: virtual of requests, in priority lists
-> > > >
-> > > > Having trouble parsing this.  Did you mean "queue of virtual
-> > > > requests"?  Or maybe "virtual queue of requests"?
-> > > >
-> > >
-> > > Yep, this doesn't really make sense. How about:
-> > > 'queue of requests on a virtual engine, in priority lists'
-> >
-> > I'm not sure what "in priority lists" means.
-> >
->
-> Ah, this is confusing to explain. Let me try to this again.
->
-> 'Queue of requets on a virtual engine, sorted by priority. Each RB entry
-> is a i915_priolist containing a list of requests of the same priority.'
-
-Way better!  Maybe throw a "struct" in front of "i915_priolist" so
-that kerneldoc will hyperlink properly.
-
---Jason
-
->
-> Matt
->
->
-> > --Jason
-> >
-> > > > >          */
-> > > > > -       int queue_priority_hint;
-> > > > > -
-> > > > > -       /**
-> > > > > -        * @queue: queue of requests, in priority lists
-> > > > > -        */
-> > > > > -       struct rb_root_cached queue;
-> > > > >         struct rb_root_cached virtual;
-> > > > >
-> > > > >         /**
-> > > > > @@ -332,6 +308,8 @@ struct intel_engine_cs {
-> > > > >                 struct list_head hold; /* ready requests, but on hold */
-> > > > >         } active;
-> > > > >
-> > > > > +       struct i915_sched_engine *sched_engine;
-> > > > > +
-> > > > >         /* keep a request in reserve for a [pm] barrier under oom */
-> > > > >         struct i915_request *request_pool;
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > > index 8db200422950..d1dc1db3e378 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > > @@ -273,11 +273,11 @@ static int effective_prio(const struct i915_request *rq)
-> > > > >         return prio;
-> > > > >  }
-> > > > >
-> > > > > -static int queue_prio(const struct intel_engine_execlists *execlists)
-> > > > > +static int queue_prio(const struct i915_sched_engine *sched_engine)
-> > > > >  {
-> > > > >         struct rb_node *rb;
-> > > > >
-> > > > > -       rb = rb_first_cached(&execlists->queue);
-> > > > > +       rb = rb_first_cached(&sched_engine->queue);
-> > > > >         if (!rb)
-> > > > >                 return INT_MIN;
-> > > > >
-> > > > > @@ -318,7 +318,7 @@ static bool need_preempt(const struct intel_engine_cs *engine,
-> > > > >          * to preserve FIFO ordering of dependencies.
-> > > > >          */
-> > > > >         last_prio = max(effective_prio(rq), I915_PRIORITY_NORMAL - 1);
-> > > > > -       if (engine->execlists.queue_priority_hint <= last_prio)
-> > > > > +       if (engine->sched_engine->queue_priority_hint <= last_prio)
-> > > > >                 return false;
-> > > > >
-> > > > >         /*
-> > > > > @@ -340,7 +340,7 @@ static bool need_preempt(const struct intel_engine_cs *engine,
-> > > > >          * context, it's priority would not exceed ELSP[0] aka last_prio.
-> > > > >          */
-> > > > >         return max(virtual_prio(&engine->execlists),
-> > > > > -                  queue_prio(&engine->execlists)) > last_prio;
-> > > > > +                  queue_prio(engine->sched_engine)) > last_prio;
-> > > > >  }
-> > > > >
-> > > > >  __maybe_unused static bool
-> > > > > @@ -384,7 +384,7 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
-> > > > >                         prio = rq_prio(rq);
-> > > > >                         pl = i915_sched_lookup_priolist(engine, prio);
-> > > > >                 }
-> > > > > -               GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
-> > > > > +               GEM_BUG_ON(RB_EMPTY_ROOT(&engine->sched_engine->queue.rb_root));
-> > > > >
-> > > > >                 list_move(&rq->sched.link, pl);
-> > > > >                 set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-> > > > > @@ -1139,7 +1139,7 @@ static bool needs_timeslice(const struct intel_engine_cs *engine,
-> > > > >         }
-> > > > >
-> > > > >         /* Otherwise, ELSP[0] is by itself, but may be waiting in the queue */
-> > > > > -       if (!RB_EMPTY_ROOT(&engine->execlists.queue.rb_root)) {
-> > > > > +       if (!RB_EMPTY_ROOT(&engine->sched_engine->queue.rb_root)) {
-> > > > >                 ENGINE_TRACE(engine, "timeslice required for queue\n");
-> > > > >                 return true;
-> > > > >         }
-> > > > > @@ -1236,6 +1236,7 @@ static bool completed(const struct i915_request *rq)
-> > > > >  static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >  {
-> > > > >         struct intel_engine_execlists * const execlists = &engine->execlists;
-> > > > > +       struct i915_sched_engine * const sched_engine = engine->sched_engine;
-> > > > >         struct i915_request **port = execlists->pending;
-> > > > >         struct i915_request ** const last_port = port + execlists->port_mask;
-> > > > >         struct i915_request *last, * const *active;
-> > > > > @@ -1287,7 +1288,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >                                      last->fence.context,
-> > > > >                                      last->fence.seqno,
-> > > > >                                      last->sched.attr.priority,
-> > > > > -                                    execlists->queue_priority_hint);
-> > > > > +                                    sched_engine->queue_priority_hint);
-> > > > >                         record_preemption(execlists);
-> > > > >
-> > > > >                         /*
-> > > > > @@ -1313,7 +1314,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >                                      yesno(timer_expired(&execlists->timer)),
-> > > > >                                      last->fence.context, last->fence.seqno,
-> > > > >                                      rq_prio(last),
-> > > > > -                                    execlists->queue_priority_hint,
-> > > > > +                                    sched_engine->queue_priority_hint,
-> > > > >                                      yesno(timeslice_yield(execlists, last)));
-> > > > >
-> > > > >                         /*
-> > > > > @@ -1384,7 +1385,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >                 GEM_BUG_ON(rq->engine != &ve->base);
-> > > > >                 GEM_BUG_ON(rq->context != &ve->context);
-> > > > >
-> > > > > -               if (unlikely(rq_prio(rq) < queue_prio(execlists))) {
-> > > > > +               if (unlikely(rq_prio(rq) < queue_prio(sched_engine))) {
-> > > > >                         spin_unlock(&ve->base.active.lock);
-> > > > >                         break;
-> > > > >                 }
-> > > > > @@ -1405,7 +1406,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >                              yesno(engine != ve->siblings[0]));
-> > > > >
-> > > > >                 WRITE_ONCE(ve->request, NULL);
-> > > > > -               WRITE_ONCE(ve->base.execlists.queue_priority_hint, INT_MIN);
-> > > > > +               WRITE_ONCE(ve->base.sched_engine->queue_priority_hint, INT_MIN);
-> > > > >
-> > > > >                 rb = &ve->nodes[engine->id].rb;
-> > > > >                 rb_erase_cached(rb, &execlists->virtual);
-> > > > > @@ -1450,7 +1451,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >                         break;
-> > > > >         }
-> > > > >
-> > > > > -       while ((rb = rb_first_cached(&execlists->queue))) {
-> > > > > +       while ((rb = rb_first_cached(&sched_engine->queue))) {
-> > > > >                 struct i915_priolist *p = to_priolist(rb);
-> > > > >                 struct i915_request *rq, *rn;
-> > > > >
-> > > > > @@ -1529,7 +1530,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >                         }
-> > > > >                 }
-> > > > >
-> > > > > -               rb_erase_cached(&p->node, &execlists->queue);
-> > > > > +               rb_erase_cached(&p->node, &sched_engine->queue);
-> > > > >                 i915_priolist_free(p);
-> > > > >         }
-> > > > >  done:
-> > > > > @@ -1551,7 +1552,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> > > > >          * request triggering preemption on the next dequeue (or subsequent
-> > > > >          * interrupt for secondary ports).
-> > > > >          */
-> > > > > -       execlists->queue_priority_hint = queue_prio(execlists);
-> > > > > +       sched_engine->queue_priority_hint = queue_prio(sched_engine);
-> > > > >         spin_unlock(&engine->active.lock);
-> > > > >
-> > > > >         /*
-> > > > > @@ -2123,8 +2124,8 @@ static void execlists_unhold(struct intel_engine_cs *engine,
-> > > > >          */
-> > > > >         __execlists_unhold(rq);
-> > > > >
-> > > > > -       if (rq_prio(rq) > engine->execlists.queue_priority_hint) {
-> > > > > -               engine->execlists.queue_priority_hint = rq_prio(rq);
-> > > > > +       if (rq_prio(rq) > engine->sched_engine->queue_priority_hint) {
-> > > > > +               engine->sched_engine->queue_priority_hint = rq_prio(rq);
-> > > > >                 tasklet_hi_schedule(&engine->execlists.tasklet);
-> > > > >         }
-> > > > >
-> > > > > @@ -2455,12 +2456,12 @@ static void queue_request(struct intel_engine_cs *engine,
-> > > > >  static bool submit_queue(struct intel_engine_cs *engine,
-> > > > >                          const struct i915_request *rq)
-> > > > >  {
-> > > > > -       struct intel_engine_execlists *execlists = &engine->execlists;
-> > > > > +       struct i915_sched_engine *sched_engine = engine->sched_engine;
-> > > > >
-> > > > > -       if (rq_prio(rq) <= execlists->queue_priority_hint)
-> > > > > +       if (rq_prio(rq) <= sched_engine->queue_priority_hint)
-> > > > >                 return false;
-> > > > >
-> > > > > -       execlists->queue_priority_hint = rq_prio(rq);
-> > > > > +       sched_engine->queue_priority_hint = rq_prio(rq);
-> > > > >         return true;
-> > > > >  }
-> > > > >
-> > > > > @@ -2486,7 +2487,7 @@ static void execlists_submit_request(struct i915_request *request)
-> > > > >         } else {
-> > > > >                 queue_request(engine, request);
-> > > > >
-> > > > > -               GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
-> > > > > +               GEM_BUG_ON(RB_EMPTY_ROOT(&engine->sched_engine->queue.rb_root));
-> > > > >                 GEM_BUG_ON(list_empty(&request->sched.link));
-> > > > >
-> > > > >                 if (submit_queue(engine, request))
-> > > > > @@ -2969,12 +2970,13 @@ static void nop_submission_tasklet(struct tasklet_struct *t)
-> > > > >                 from_tasklet(engine, t, execlists.tasklet);
-> > > > >
-> > > > >         /* The driver is wedged; don't process any more events. */
-> > > > > -       WRITE_ONCE(engine->execlists.queue_priority_hint, INT_MIN);
-> > > > > +       WRITE_ONCE(engine->sched_engine->queue_priority_hint, INT_MIN);
-> > > > >  }
-> > > > >
-> > > > >  static void execlists_reset_cancel(struct intel_engine_cs *engine)
-> > > > >  {
-> > > > >         struct intel_engine_execlists * const execlists = &engine->execlists;
-> > > > > +       struct i915_sched_engine * const sched_engine = engine->sched_engine;
-> > > > >         struct i915_request *rq, *rn;
-> > > > >         struct rb_node *rb;
-> > > > >         unsigned long flags;
-> > > > > @@ -3006,7 +3008,7 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
-> > > > >         intel_engine_signal_breadcrumbs(engine);
-> > > > >
-> > > > >         /* Flush the queued requests to the timeline list (for retiring). */
-> > > > > -       while ((rb = rb_first_cached(&execlists->queue))) {
-> > > > > +       while ((rb = rb_first_cached(&sched_engine->queue))) {
-> > > > >                 struct i915_priolist *p = to_priolist(rb);
-> > > > >
-> > > > >                 priolist_for_each_request_consume(rq, rn, p) {
-> > > > > @@ -3016,7 +3018,7 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
-> > > > >                         }
-> > > > >                 }
-> > > > >
-> > > > > -               rb_erase_cached(&p->node, &execlists->queue);
-> > > > > +               rb_erase_cached(&p->node, &sched_engine->queue);
-> > > > >                 i915_priolist_free(p);
-> > > > >         }
-> > > > >
-> > > > > @@ -3042,15 +3044,15 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
-> > > > >                         }
-> > > > >                         i915_request_put(rq);
-> > > > >
-> > > > > -                       ve->base.execlists.queue_priority_hint = INT_MIN;
-> > > > > +                       ve->base.sched_engine->queue_priority_hint = INT_MIN;
-> > > > >                 }
-> > > > >                 spin_unlock(&ve->base.active.lock);
-> > > > >         }
-> > > > >
-> > > > >         /* Remaining _unready_ requests will be nop'ed when submitted */
-> > > > >
-> > > > > -       execlists->queue_priority_hint = INT_MIN;
-> > > > > -       execlists->queue = RB_ROOT_CACHED;
-> > > > > +       sched_engine->queue_priority_hint = INT_MIN;
-> > > > > +       sched_engine->queue = RB_ROOT_CACHED;
-> > > > >
-> > > > >         GEM_BUG_ON(__tasklet_is_enabled(&execlists->tasklet));
-> > > > >         execlists->tasklet.callback = nop_submission_tasklet;
-> > > > > @@ -3286,7 +3288,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
-> > > > >
-> > > > >  static struct list_head *virtual_queue(struct virtual_engine *ve)
-> > > > >  {
-> > > > > -       return &ve->base.execlists.default_priolist.requests;
-> > > > > +       return &ve->base.sched_engine->default_priolist.requests;
-> > > > >  }
-> > > > >
-> > > > >  static void rcu_virtual_context_destroy(struct work_struct *wrk)
-> > > > > @@ -3344,7 +3346,10 @@ static void rcu_virtual_context_destroy(struct work_struct *wrk)
-> > > > >         lrc_fini(&ve->context);
-> > > > >         intel_context_fini(&ve->context);
-> > > > >
-> > > > > -       intel_breadcrumbs_free(ve->base.breadcrumbs);
-> > > > > +       if (ve->base.breadcrumbs)
-> > > > > +               intel_breadcrumbs_free(ve->base.breadcrumbs);
-> > > > > +       if (ve->base.sched_engine)
-> > > > > +               i915_sched_engine_put(ve->base.sched_engine);
-> > > >
-> > > > Will either of these ever actually be NULL?  The first line or two
-> > > > seems to indicate that breadcrumbs never is.
-> > > >
-> > > > >         intel_engine_free_request_pool(&ve->base);
-> > > > >
-> > > > >         kfree(ve->bonds);
-> > > > > @@ -3475,7 +3480,7 @@ static intel_engine_mask_t virtual_submission_mask(struct virtual_engine *ve)
-> > > > >
-> > > > >         ENGINE_TRACE(&ve->base, "rq=%llx:%lld, mask=%x, prio=%d\n",
-> > > > >                      rq->fence.context, rq->fence.seqno,
-> > > > > -                    mask, ve->base.execlists.queue_priority_hint);
-> > > > > +                    mask, ve->base.sched_engine->queue_priority_hint);
-> > > > >
-> > > > >         return mask;
-> > > > >  }
-> > > > > @@ -3484,7 +3489,7 @@ static void virtual_submission_tasklet(struct tasklet_struct *t)
-> > > > >  {
-> > > > >         struct virtual_engine * const ve =
-> > > > >                 from_tasklet(ve, t, base.execlists.tasklet);
-> > > > > -       const int prio = READ_ONCE(ve->base.execlists.queue_priority_hint);
-> > > > > +       const int prio = READ_ONCE(ve->base.sched_engine->queue_priority_hint);
-> > > > >         intel_engine_mask_t mask;
-> > > > >         unsigned int n;
-> > > > >
-> > > > > @@ -3552,7 +3557,7 @@ static void virtual_submission_tasklet(struct tasklet_struct *t)
-> > > > >  submit_engine:
-> > > > >                 GEM_BUG_ON(RB_EMPTY_NODE(&node->rb));
-> > > > >                 node->prio = prio;
-> > > > > -               if (first && prio > sibling->execlists.queue_priority_hint)
-> > > > > +               if (first && prio > sibling->sched_engine->queue_priority_hint)
-> > > > >                         tasklet_hi_schedule(&sibling->execlists.tasklet);
-> > > > >
-> > > > >  unlock_engine:
-> > > > > @@ -3588,7 +3593,7 @@ static void virtual_submit_request(struct i915_request *rq)
-> > > > >                 i915_request_put(ve->request);
-> > > > >         }
-> > > > >
-> > > > > -       ve->base.execlists.queue_priority_hint = rq_prio(rq);
-> > > > > +       ve->base.sched_engine->queue_priority_hint = rq_prio(rq);
-> > > > >         ve->request = i915_request_get(rq);
-> > > > >
-> > > > >         GEM_BUG_ON(!list_empty(virtual_queue(ve)));
-> > > > > @@ -3684,6 +3689,12 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
-> > > > >         intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
-> > > > >         intel_engine_init_execlists(&ve->base);
-> > > > >
-> > > > > +       ve->base.sched_engine = i915_sched_engine_create(ENGINE_VIRTUAL);
-> > > > > +       if (!ve->base.sched_engine) {
-> > > > > +               err = -ENOMEM;
-> > > > > +               goto err_put;
-> > > > > +       }
-> > > > > +
-> > > > >         ve->base.cops = &virtual_context_ops;
-> > > > >         ve->base.request_alloc = execlists_request_alloc;
-> > > > >
-> > > > > @@ -3692,7 +3703,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
-> > > > >         ve->base.bond_execute = virtual_bond_execute;
-> > > > >
-> > > > >         INIT_LIST_HEAD(virtual_queue(ve));
-> > > > > -       ve->base.execlists.queue_priority_hint = INT_MIN;
-> > > > >         tasklet_setup(&ve->base.execlists.tasklet, virtual_submission_tasklet);
-> > > > >
-> > > > >         intel_context_init(&ve->context, &ve->base);
-> > > > > @@ -3849,6 +3859,7 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
-> > > > >                                    unsigned int max)
-> > > > >  {
-> > > > >         const struct intel_engine_execlists *execlists = &engine->execlists;
-> > > > > +       const struct i915_sched_engine *sched_engine = engine->sched_engine;
-> > > > >         struct i915_request *rq, *last;
-> > > > >         unsigned long flags;
-> > > > >         unsigned int count;
-> > > > > @@ -3873,13 +3884,13 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
-> > > > >                 show_request(m, last, "\t\t", 0);
-> > > > >         }
-> > > > >
-> > > > > -       if (execlists->queue_priority_hint != INT_MIN)
-> > > > > +       if (sched_engine->queue_priority_hint != INT_MIN)
-> > > > >                 drm_printf(m, "\t\tQueue priority hint: %d\n",
-> > > > > -                          READ_ONCE(execlists->queue_priority_hint));
-> > > > > +                          READ_ONCE(sched_engine->queue_priority_hint));
-> > > > >
-> > > > >         last = NULL;
-> > > > >         count = 0;
-> > > > > -       for (rb = rb_first_cached(&execlists->queue); rb; rb = rb_next(rb)) {
-> > > > > +       for (rb = rb_first_cached(&sched_engine->queue); rb; rb = rb_next(rb)) {
-> > > > >                 struct i915_priolist *p = rb_entry(rb, typeof(*p), node);
-> > > > >
-> > > > >                 priolist_for_each_request(rq, p) {
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-> > > > > index 32589c6625e1..b1fdba13e900 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/mock_engine.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-> > > > > @@ -283,6 +283,7 @@ static void mock_engine_release(struct intel_engine_cs *engine)
-> > > > >
-> > > > >         GEM_BUG_ON(timer_pending(&mock->hw_delay));
-> > > > >
-> > > > > +       i915_sched_engine_put(engine->sched_engine);
-> > > > >         intel_breadcrumbs_free(engine->breadcrumbs);
-> > > > >
-> > > > >         intel_context_unpin(engine->kernel_context);
-> > > > > @@ -345,6 +346,10 @@ int mock_engine_init(struct intel_engine_cs *engine)
-> > > > >  {
-> > > > >         struct intel_context *ce;
-> > > > >
-> > > > > +       engine->sched_engine = i915_sched_engine_create(ENGINE_MOCK);
-> > > > > +       if (!engine->sched_engine)
-> > > > > +               return -ENOMEM;
-> > > > > +
-> > > > >         intel_engine_init_active(engine, ENGINE_MOCK);
-> > > > >         intel_engine_init_execlists(engine);
-> > > > >         intel_engine_init__pm(engine);
-> > > > > @@ -352,7 +357,7 @@ int mock_engine_init(struct intel_engine_cs *engine)
-> > > > >
-> > > > >         engine->breadcrumbs = intel_breadcrumbs_create(NULL);
-> > > > >         if (!engine->breadcrumbs)
-> > > > > -               return -ENOMEM;
-> > > > > +               goto err_schedule;
-> > > > >
-> > > > >         ce = create_kernel_context(engine);
-> > > > >         if (IS_ERR(ce))
-> > > > > @@ -366,6 +371,8 @@ int mock_engine_init(struct intel_engine_cs *engine)
-> > > > >
-> > > > >  err_breadcrumbs:
-> > > > >         intel_breadcrumbs_free(engine->breadcrumbs);
-> > > > > +err_schedule:
-> > > > > +       i915_sched_engine_put(engine->sched_engine);
-> > > > >         return -ENOMEM;
-> > > > >  }
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > > index 335719f17490..d42dea79ee64 100644
-> > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > > @@ -182,6 +182,7 @@ static void schedule_out(struct i915_request *rq)
-> > > > >  static void __guc_dequeue(struct intel_engine_cs *engine)
-> > > > >  {
-> > > > >         struct intel_engine_execlists * const execlists = &engine->execlists;
-> > > > > +       struct i915_sched_engine * const sched_engine = engine->sched_engine;
-> > > > >         struct i915_request **first = execlists->inflight;
-> > > > >         struct i915_request ** const last_port = first + execlists->port_mask;
-> > > > >         struct i915_request *last = first[0];
-> > > > > @@ -204,7 +205,7 @@ static void __guc_dequeue(struct intel_engine_cs *engine)
-> > > > >          * event.
-> > > > >          */
-> > > > >         port = first;
-> > > > > -       while ((rb = rb_first_cached(&execlists->queue))) {
-> > > > > +       while ((rb = rb_first_cached(&sched_engine->queue))) {
-> > > > >                 struct i915_priolist *p = to_priolist(rb);
-> > > > >                 struct i915_request *rq, *rn;
-> > > > >
-> > > > > @@ -224,11 +225,11 @@ static void __guc_dequeue(struct intel_engine_cs *engine)
-> > > > >                         last = rq;
-> > > > >                 }
-> > > > >
-> > > > > -               rb_erase_cached(&p->node, &execlists->queue);
-> > > > > +               rb_erase_cached(&p->node, &sched_engine->queue);
-> > > > >                 i915_priolist_free(p);
-> > > > >         }
-> > > > >  done:
-> > > > > -       execlists->queue_priority_hint =
-> > > > > +       sched_engine->queue_priority_hint =
-> > > > >                 rb ? to_priolist(rb)->priority : INT_MIN;
-> > > > >         if (submit) {
-> > > > >                 *port = schedule_in(last, port - execlists->inflight);
-> > > > > @@ -338,7 +339,7 @@ static void guc_reset_rewind(struct intel_engine_cs *engine, bool stalled)
-> > > > >
-> > > > >  static void guc_reset_cancel(struct intel_engine_cs *engine)
-> > > > >  {
-> > > > > -       struct intel_engine_execlists * const execlists = &engine->execlists;
-> > > > > +       struct i915_sched_engine * const sched_engine = engine->sched_engine;
-> > > > >         struct i915_request *rq, *rn;
-> > > > >         struct rb_node *rb;
-> > > > >         unsigned long flags;
-> > > > > @@ -368,7 +369,7 @@ static void guc_reset_cancel(struct intel_engine_cs *engine)
-> > > > >         }
-> > > > >
-> > > > >         /* Flush the queued requests to the timeline list (for retiring). */
-> > > > > -       while ((rb = rb_first_cached(&execlists->queue))) {
-> > > > > +       while ((rb = rb_first_cached(&sched_engine->queue))) {
-> > > > >                 struct i915_priolist *p = to_priolist(rb);
-> > > > >
-> > > > >                 priolist_for_each_request_consume(rq, rn, p) {
-> > > > > @@ -378,14 +379,14 @@ static void guc_reset_cancel(struct intel_engine_cs *engine)
-> > > > >                         i915_request_mark_complete(rq);
-> > > > >                 }
-> > > > >
-> > > > > -               rb_erase_cached(&p->node, &execlists->queue);
-> > > > > +               rb_erase_cached(&p->node, &sched_engine->queue);
-> > > > >                 i915_priolist_free(p);
-> > > > >         }
-> > > > >
-> > > > >         /* Remaining _unready_ requests will be nop'ed when submitted */
-> > > > >
-> > > > > -       execlists->queue_priority_hint = INT_MIN;
-> > > > > -       execlists->queue = RB_ROOT_CACHED;
-> > > > > +       sched_engine->queue_priority_hint = INT_MIN;
-> > > > > +       sched_engine->queue = RB_ROOT_CACHED;
-> > > > >
-> > > > >         spin_unlock_irqrestore(&engine->active.lock, flags);
-> > > > >  }
-> > > > > @@ -540,7 +541,7 @@ static void guc_submit_request(struct i915_request *rq)
-> > > > >
-> > > > >         queue_request(engine, rq, rq_prio(rq));
-> > > > >
-> > > > > -       GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
-> > > > > +       GEM_BUG_ON(RB_EMPTY_ROOT(&engine->sched_engine->queue.rb_root));
-> > > > >         GEM_BUG_ON(list_empty(&rq->sched.link));
-> > > > >
-> > > > >         tasklet_hi_schedule(&engine->execlists.tasklet);
-> > > > > diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> > > > > index efa638c3acc7..4953874a9ba6 100644
-> > > > > --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> > > > > +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> > > > > @@ -40,7 +40,7 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
-> > > > >         return rb_entry(rb, struct i915_priolist, node);
-> > > > >  }
-> > > > >
-> > > > > -static void assert_priolists(struct intel_engine_execlists * const execlists)
-> > > > > +static void assert_priolists(struct i915_sched_engine * const sched_engine)
-> > > > >  {
-> > > > >         struct rb_node *rb;
-> > > > >         long last_prio;
-> > > > > @@ -48,11 +48,11 @@ static void assert_priolists(struct intel_engine_execlists * const execlists)
-> > > > >         if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> > > > >                 return;
-> > > > >
-> > > > > -       GEM_BUG_ON(rb_first_cached(&execlists->queue) !=
-> > > > > -                  rb_first(&execlists->queue.rb_root));
-> > > > > +       GEM_BUG_ON(rb_first_cached(&sched_engine->queue) !=
-> > > > > +                  rb_first(&sched_engine->queue.rb_root));
-> > > > >
-> > > > >         last_prio = INT_MAX;
-> > > > > -       for (rb = rb_first_cached(&execlists->queue); rb; rb = rb_next(rb)) {
-> > > > > +       for (rb = rb_first_cached(&sched_engine->queue); rb; rb = rb_next(rb)) {
-> > > > >                 const struct i915_priolist *p = to_priolist(rb);
-> > > > >
-> > > > >                 GEM_BUG_ON(p->priority > last_prio);
-> > > > > @@ -63,21 +63,21 @@ static void assert_priolists(struct intel_engine_execlists * const execlists)
-> > > > >  struct list_head *
-> > > > >  i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
-> > > > >  {
-> > > > > -       struct intel_engine_execlists * const execlists = &engine->execlists;
-> > > > > +       struct i915_sched_engine * const sched_engine = engine->sched_engine;
-> > > > >         struct i915_priolist *p;
-> > > > >         struct rb_node **parent, *rb;
-> > > > >         bool first = true;
-> > > > >
-> > > > >         lockdep_assert_held(&engine->active.lock);
-> > > > > -       assert_priolists(execlists);
-> > > > > +       assert_priolists(sched_engine);
-> > > > >
-> > > > > -       if (unlikely(execlists->no_priolist))
-> > > > > +       if (unlikely(sched_engine->no_priolist))
-> > > > >                 prio = I915_PRIORITY_NORMAL;
-> > > > >
-> > > > >  find_priolist:
-> > > > >         /* most positive priority is scheduled first, equal priorities fifo */
-> > > > >         rb = NULL;
-> > > > > -       parent = &execlists->queue.rb_root.rb_node;
-> > > > > +       parent = &sched_engine->queue.rb_root.rb_node;
-> > > > >         while (*parent) {
-> > > > >                 rb = *parent;
-> > > > >                 p = to_priolist(rb);
-> > > > > @@ -92,7 +92,7 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
-> > > > >         }
-> > > > >
-> > > > >         if (prio == I915_PRIORITY_NORMAL) {
-> > > > > -               p = &execlists->default_priolist;
-> > > > > +               p = &sched_engine->default_priolist;
-> > > > >         } else {
-> > > > >                 p = kmem_cache_alloc(global.slab_priorities, GFP_ATOMIC);
-> > > > >                 /* Convert an allocation failure to a priority bump */
-> > > > > @@ -107,7 +107,7 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
-> > > > >                          * requests, so if userspace lied about their
-> > > > >                          * dependencies that reordering may be visible.
-> > > > >                          */
-> > > > > -                       execlists->no_priolist = true;
-> > > > > +                       sched_engine->no_priolist = true;
-> > > > >                         goto find_priolist;
-> > > > >                 }
-> > > > >         }
-> > > > > @@ -116,7 +116,7 @@ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio)
-> > > > >         INIT_LIST_HEAD(&p->requests);
-> > > > >
-> > > > >         rb_link_node(&p->node, rb, parent);
-> > > > > -       rb_insert_color_cached(&p->node, &execlists->queue, first);
-> > > > > +       rb_insert_color_cached(&p->node, &sched_engine->queue, first);
-> > > > >
-> > > > >         return &p->requests;
-> > > > >  }
-> > > > > @@ -184,7 +184,7 @@ static void kick_submission(struct intel_engine_cs *engine,
-> > > > >          * We only need to kick the tasklet once for the high priority
-> > > > >          * new context we add into the queue.
-> > > > >          */
-> > > > > -       if (prio <= engine->execlists.queue_priority_hint)
-> > > > > +       if (prio <= engine->sched_engine->queue_priority_hint)
-> > > > >                 return;
-> > > > >
-> > > > >         rcu_read_lock();
-> > > > > @@ -208,7 +208,7 @@ static void kick_submission(struct intel_engine_cs *engine,
-> > > > >                      inflight->fence.context, inflight->fence.seqno,
-> > > > >                      inflight->sched.attr.priority);
-> > > > >
-> > > > > -       engine->execlists.queue_priority_hint = prio;
-> > > > > +       engine->sched_engine->queue_priority_hint = prio;
-> > > > >         if (need_preempt(prio, rq_prio(inflight)))
-> > > > >                 tasklet_hi_schedule(&engine->execlists.tasklet);
-> > > > >
-> > > > > @@ -489,6 +489,31 @@ void i915_request_show_with_schedule(struct drm_printer *m,
-> > > > >         rcu_read_unlock();
-> > > > >  }
-> > > > >
-> > > > > +void i915_sched_engine_free(struct kref *kref)
-> > > > > +{
-> > > > > +       struct i915_sched_engine *sched_engine =
-> > > > > +               container_of(kref, typeof(*sched_engine), ref);
-> > > > > +
-> > > > > +       kfree(sched_engine);
-> > > > > +}
-> > > > > +
-> > > > > +struct i915_sched_engine *
-> > > > > +i915_sched_engine_create(unsigned int subclass)
-> > > > > +{
-> > > > > +       struct i915_sched_engine *sched_engine;
-> > > > > +
-> > > > > +       sched_engine = kzalloc(sizeof(*sched_engine), GFP_KERNEL);
-> > > > > +       if (!sched_engine)
-> > > > > +               return NULL;
-> > > > > +
-> > > > > +       kref_init(&sched_engine->ref);
-> > > > > +
-> > > > > +       sched_engine->queue = RB_ROOT_CACHED;
-> > > > > +       sched_engine->queue_priority_hint = INT_MIN;
-> > > > > +
-> > > > > +       return sched_engine;
-> > > > > +}
-> > > > > +
-> > > > >  static void i915_global_scheduler_shrink(void)
-> > > > >  {
-> > > > >         kmem_cache_shrink(global.slab_dependencies);
-> > > > > diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
-> > > > > index 858a0938f47a..91a04e34cac5 100644
-> > > > > --- a/drivers/gpu/drm/i915/i915_scheduler.h
-> > > > > +++ b/drivers/gpu/drm/i915/i915_scheduler.h
-> > > > > @@ -48,6 +48,24 @@ static inline void i915_priolist_free(struct i915_priolist *p)
-> > > > >                 __i915_priolist_free(p);
-> > > > >  }
-> > > > >
-> > > > > +struct i915_sched_engine *
-> > > > > +i915_sched_engine_create(unsigned int subclass);
-> > > > > +
-> > > > > +void i915_sched_engine_free(struct kref *kref);
-> > > > > +
-> > > > > +static inline struct i915_sched_engine *
-> > > > > +i915_sched_engine_get(struct i915_sched_engine *sched_engine)
-> > > > > +{
-> > > > > +       kref_get(&sched_engine->ref);
-> > > > > +       return sched_engine;
-> > > > > +}
-> > > > > +
-> > > > > +static inline void
-> > > > > +i915_sched_engine_put(struct i915_sched_engine *sched_engine)
-> > > > > +{
-> > > > > +       kref_put(&sched_engine->ref, i915_sched_engine_free);
-> > > > > +}
-> > > > > +
-> > > > >  void i915_request_show_with_schedule(struct drm_printer *m,
-> > > > >                                      const struct i915_request *rq,
-> > > > >                                      const char *prefix,
-> > > > > diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
-> > > > > index 343ed44d5ed4..16a054e67760 100644
-> > > > > --- a/drivers/gpu/drm/i915/i915_scheduler_types.h
-> > > > > +++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
-> > > >
-> > > > Dumb question for which I'm not really in the position of having an
-> > > > opinion:  Should this go in its own file?
-> > > >
-> > >
-> > > I think this is in the right file.
-> > >
-> > > Matt
-> > >
-> > > > Patch seems mostly mechanically correct.  Not sure where this is going
-> > > > yet, though.  I'll keep reading. :-)
-> > > >
-> > > > --Jason
-> > > >
-> > > >
-> > > > > @@ -91,4 +91,37 @@ struct i915_dependency {
-> > > > >                                 &(rq__)->sched.signalers_list, \
-> > > > >                                 signal_link)
-> > > > >
-> > > > > +struct i915_sched_engine {
-> > > > > +       struct kref ref;
-> > > > > +
-> > > > > +       /**
-> > > > > +        * @default_priolist: priority list for I915_PRIORITY_NORMAL
-> > > > > +        */
-> > > > > +       struct i915_priolist default_priolist;
-> > > > > +
-> > > > > +       /**
-> > > > > +        * @queue_priority_hint: Highest pending priority.
-> > > > > +        *
-> > > > > +        * When we add requests into the queue, or adjust the priority of
-> > > > > +        * executing requests, we compute the maximum priority of those
-> > > > > +        * pending requests. We can then use this value to determine if
-> > > > > +        * we need to preempt the executing requests to service the queue.
-> > > > > +        * However, since the we may have recorded the priority of an inflight
-> > > > > +        * request we wanted to preempt but since completed, at the time of
-> > > > > +        * dequeuing the priority hint may no longer may match the highest
-> > > > > +        * available request priority.
-> > > > > +        */
-> > > > > +       int queue_priority_hint;
-> > > > > +
-> > > > > +       /**
-> > > > > +        * @queue: queue of requests, in priority lists
-> > > > > +        */
-> > > > > +       struct rb_root_cached queue;
-> > > > > +
-> > > > > +       /**
-> > > > > +        * @no_priolist: priority lists disabled
-> > > > > +        */
-> > > > > +       bool no_priolist;
-> > > > > +};
-> > > > > +
-> > > > >  #endif /* _I915_SCHEDULER_TYPES_H_ */
-> > > > > --
-> > > > > 2.28.0
-> > > > >
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMS0wNi0wMSA2OjUxIGEubS4sIFVtYSBTaGFua2FyIHdyb3RlOgo+IEFkZCBQbGFuZSBE
+ZWdhbW1hIE1vZGUgYXMgYW4gZW51bSBwcm9wZXJ0eS4gQ3JlYXRlIGEgaGVscGVyCj4gZnVuY3Rp
+b24gZm9yIGFsbCBwbGFuZSBjb2xvciBtYW5hZ2VtZW50IGZlYXR1cmVzLgo+IAo+IFRoaXMgaXMg
+YW4gZW51bSBwcm9wZXJ0eSB3aXRoIHZhbHVlcyBhcyBibG9iX2lkJ3MgYW5kIGV4cG9zZXMKPiB0
+aGUgdmFyaW91cyBnYW1tYSBtb2RlcyBzdXBwb3J0ZWQgYW5kIHRoZSBsdXQgcmFuZ2VzLiBHZXR0
+aW5nCj4gdGhlIGJsb2IgaWQgaW4gdXNlcnNwYWNlLCB1c2VyIGNhbiBnZXQgdGhlIG1vZGUgc3Vw
+cG9ydGVkIGFuZAo+IGFsc28gdGhlIHJhbmdlIG9mIGdhbW1hIG1vZGUgc3VwcG9ydGVkIHdpdGgg
+bnVtYmVyIG9mIGx1dAo+IGNvZWZmaWNpZW50cy4gSXQgY2FuIHRoZW4gc2V0IG9uZSBvZiB0aGUg
+bW9kZXMgdXNpbmcgdGhpcwo+IGVudW0gcHJvcGVydHkuCj4gCj4gTHV0IHZhbHVlcyB3aWxsIGJl
+IHNlbnQgdGhyb3VnaCBzZXBhcmF0ZSBHQU1NQV9MVVQgYmxvYiBwcm9wZXJ0eS4KPiAKPiBTaWdu
+ZWQtb2ZmLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPgo+IC0tLQo+ICBE
+b2N1bWVudGF0aW9uL2dwdS9kcm0ta21zLnJzdCAgICAgICAgICAgICB8IDkwICsrKysrKysrKysr
+KysrKysrKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYyAgICAgICAgICAgICAg
+fCAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX3N0YXRlX2hlbHBlci5jIHwgIDIg
+Kwo+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY191YXBpLmMgICAgICAgICB8ICA0ICsKPiAg
+ZHJpdmVycy9ncHUvZHJtL2RybV9jb2xvcl9tZ210LmMgICAgICAgICAgfCA5MyArKysrKysrKysr
+KysrKysrKysrKysrLQo+ICBpbmNsdWRlL2RybS9kcm1fbW9kZV9vYmplY3QuaCAgICAgICAgICAg
+ICB8ICAyICstCj4gIGluY2x1ZGUvZHJtL2RybV9wbGFuZS5oICAgICAgICAgICAgICAgICAgIHwg
+MjMgKysrKysrCj4gIDcgZmlsZXMgY2hhbmdlZCwgMjEyIGluc2VydGlvbnMoKyksIDMgZGVsZXRp
+b25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZ3B1L2RybS1rbXMucnN0IGIv
+RG9jdW1lbnRhdGlvbi9ncHUvZHJtLWttcy5yc3QKPiBpbmRleCA4N2U1MDIzZTNmNTUuLjc1MmJl
+NTQ1ZTdkNyAxMDA2NDQKPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2dwdS9kcm0ta21zLnJzdAo+ICsr
+KyBiL0RvY3VtZW50YXRpb24vZ3B1L2RybS1rbXMucnN0Cj4gQEAgLTUxNCw5ICs1MTQsOTkgQEAg
+RGFtYWdlIFRyYWNraW5nIFByb3BlcnRpZXMKPiAgQ29sb3IgTWFuYWdlbWVudCBQcm9wZXJ0aWVz
+Cj4gIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ICAKPiArQmVsb3cgaXMgaG93IGEgdHlw
+aWNhbCBoYXJkd2FyZSBwaXBlbGluZSBmb3IgY29sb3IKPiArd2lsbCBsb29rIGxpa2U6Cj4gKwo+
+ICsuLiBrZXJuZWwtcmVuZGVyOjogRE9UCj4gKyAgIDphbHQ6IERpc3BsYXkgQ29sb3IgUGlwZWxp
+bmUKPiArICAgOmNhcHRpb246IERpc3BsYXkgQ29sb3IgUGlwZWxpbmUgT3ZlcnZpZXcKPiArCj4g
+KyAgIGRpZ3JhcGggIktNUyIgewo+ICsgICAgICBub2RlIFtzaGFwZT1ib3hdCj4gKwo+ICsgICAg
+ICBzdWJncmFwaCBjbHVzdGVyX3N0YXRpYyB7Cj4gKyAgICAgICAgICBzdHlsZT1kYXNoZWQKPiAr
+ICAgICAgICAgIGxhYmVsPSJEaXNwbGF5IENvbG9yIEhhcmR3YXJlIEJsb2NrcyIKPiArCj4gKyAg
+ICAgICAgICBub2RlIFtiZ2NvbG9yPWdyZXkgc3R5bGU9ZmlsbGVkXQo+ICsgICAgICAgICAgIlBs
+YW5lIERlZ2FtbWEgQSIgLT4gIlBsYW5lIENTQy9DVE0gQSIKPiArICAgICAgICAgICJQbGFuZSBD
+U0MvQ1RNIEEiIC0+ICJQbGFuZSBHYW1tYSBBIgo+ICsgICAgICAgICAgIlBpcGUgQmxlbmRlciIg
+W2NvbG9yPWxpZ2h0Ymx1ZSxzdHlsZT1maWxsZWQsIHdpZHRoPTUuMjUsIGhlaWdodD0wLjc1XTsK
+PiArICAgICAgICAgICJQbGFuZSBHYW1tYSBBIiAtPiAiUGlwZSBCbGVuZGVyIgo+ICsJICAiUGlw
+ZSBCbGVuZGVyIiAtPiAiUGlwZSBEZUdhbW1hIgo+ICsgICAgICAgICAgIlBpcGUgRGVHYW1tYSIg
+LT4gIlBpcGUgQ1NDL0NUTSIKPiArICAgICAgICAgICJQaXBlIENTQy9DVE0iIC0+ICJQaXBlIEdh
+bW1hIgo+ICsgICAgICAgICAgIlBpcGUgR2FtbWEiIC0+ICJQaXBlIE91dHB1dCIKPiArICAgICAg
+fQo+ICsKCkl0IG1pZ2h0IGJlIHdvcnRod2hpbGUgdG8gYWxzbyBoaWdobGlnaHQgdGhlIFlDYkNy
+IGNvZWZmaWNpZW50IG1hdHJpeCBpbiB0aGUgcGlwZWxpbmUsCmJldHdlZW4gdGhlIEZCIGFuZCBQ
+bGFuZSBkZWdhbW1hLCBpLmUuCiAgWUNiQ3IgY29lZmZpY2llbnRzID4gcGxhbmUgZGVnYW1tYSA+
+IGNzYyA+IC4uLgoKT25lIHByb2JsZW0gd2l0aCB0aGlzIHZpZXcgaXMgdGhhdCBub3QgYWxsIEhX
+IHdpbGwgc3VwcG9ydCBhbGwgKG9yIGFueSkgb2YgdGhlc2UKQ00gYmxvY2tzIG9uIGFsbCBwbGFu
+ZXMuIEZvciBleGFtcGxlLCBvbiBBTUQgSFcgY3Vyc29ycyBhcmUgdmVyeSBkaWZmZXJlbnQgZnJv
+bQpvdGhlciBwbGFuZXMgYW5kIGRvbid0IHJlYWxseSBoYXZlIGZ1bGwgQ00gc3VwcG9ydC4KCj4g
+KyAgICAgIHN1YmdyYXBoIGNsdXN0ZXJfc3RhdGljIHsKPiArICAgICAgICAgIHN0eWxlPWRhc2hl
+ZAo+ICsKPiArICAgICAgICAgIG5vZGUgW3NoYXBlPWJveF0KPiArICAgICAgICAgICJQbGFuZSBE
+ZWdhbW1hIEIiIC0+ICJQbGFuZSBDU0MvQ1RNIEIiCj4gKyAgICAgICAgICAiUGxhbmUgQ1NDL0NU
+TSBCIiAtPiAiUGxhbmUgR2FtbWEgQiIKPiArICAgICAgICAgICJQbGFuZSBHYW1tYSBCIiAtPiAi
+UGlwZSBCbGVuZGVyIgo+ICsgICAgICB9Cj4gKwo+ICsgICAgICBzdWJncmFwaCBjbHVzdGVyX3N0
+YXRpYyB7Cj4gKyAgICAgICAgICBzdHlsZT1kYXNoZWQKPiArCj4gKyAgICAgICAgICBub2RlIFtz
+aGFwZT1ib3hdCj4gKyAgICAgICAgICAiUGxhbmUgRGVnYW1tYSBDIiAtPiAiUGxhbmUgQ1NDL0NU
+TSBDIgo+ICsgICAgICAgICAgIlBsYW5lIENTQy9DVE0gQyIgLT4gIlBsYW5lIEdhbW1hIEMiCj4g
+KyAgICAgICAgICAiUGxhbmUgR2FtbWEgQyIgLT4gIlBpcGUgQmxlbmRlciIKPiArICAgICAgfQo+
+ICsKPiArICAgICAgc3ViZ3JhcGggY2x1c3Rlcl9mYiB7Cj4gKyAgICAgICAgICBzdHlsZT1kYXNo
+ZWQKPiArICAgICAgICAgIGxhYmVsPSJSQU0iCj4gKwo+ICsgICAgICAgICAgbm9kZSBbc2hhcGU9
+Ym94IHdpZHRoPTEuNyBoZWlnaHQ9MC4yXQo+ICsKPiArICAgICAgICAgICJGQiAxIiAtPiAiUGxh
+bmUgRGVnYW1tYSBBIgo+ICsgICAgICAgICAgIkZCIDIiIC0+ICJQbGFuZSBEZWdhbW1hIEIiCj4g
+KyAgICAgICAgICAiRkIgMyIgLT4gIlBsYW5lIERlZ2FtbWEgQyIKPiArICAgICAgfQo+ICsgICB9
+Cj4gKwo+ICtJbiByZWFsIHdvcmxkIHVzZWNhc2VzLAo+ICsKPiArMS4gUGxhbmUgRGVnYW1tYSBj
+YW4gYmUgdXNlZCB0byBsaW5lYXJpemUgYSBub24gbGluZWFyIGdhbW1hCj4gK2VuY29kZWQgZnJh
+bWVidWZmZXIuIFRoaXMgaXMgbmVlZGVkIHRvIGRvIGFueSBsaW5lYXIgbWF0aCBsaWtlCj4gK2Nv
+bG9yIHNwYWNlIGNvbnZlcnNpb24uIEZvciBleCwgbGluZWFyaXplIGZyYW1lcyBlbmNvZGVkIGlu
+IFNSR0IKPiArb3IgYnkgSERSIGN1cnZlLgo+ICsKPiArMi4gTGF0ZXIgUGxhbmUgQ1RNIGJsb2Nr
+IGNhbiBjb252ZXJ0IHRoZSBjb250ZW50IHRvIHNvbWUgZGlmZmVyZW50Cj4gK2NvbG9yc3BhY2Uu
+IEZvciBleCwgU1JHQiB0byBCVDIwMjAgZXRjLgo+ICsKPiArMy4gUGxhbmUgR2FtbWEgYmxvY2sg
+Y2FuIGJlIHVzZWQgbGF0ZXIgdG8gcmUtYXBwbHkgdGhlIG5vbi1saW5lYXIKPiArY3VydmUuIFRo
+aXMgY2FuIGFsc28gYmUgdXNlZCB0byBhcHBseSBUb25lIE1hcHBpbmcgZm9yIEhEUiB1c2VjYXNl
+cy4KPiArCgpUaGlzIHdvdWxkIG1lYW4geW91J3JlIGJsZW5kaW5nIGluIGdhbW1hIHNwYWNlIHdo
+aWNoIGlzIGxpa2VseSBub3Qgd2hhdAptb3N0IGNvbXBvc2l0b3JzIGV4cGVjdC4gVGhlcmUgYXJl
+IG51bWVyb3VzIGFydGljbGVzIHRoYXQgZGVzY3JpYmUgd2h5CmJsZW5kaW5nIGluIGdhbW1hIHNw
+YWNlIGlzIHByb2JsZW1hdGljLCBzdWNoIGFzIFsxXQoKWzFdIGh0dHBzOi8vbmluZWRlZ3JlZXNi
+ZWxvdy5jb20vcGhvdG9ncmFwaHkvbGluZWFyLWdhbW1hLWJsdXItbm9ybWFsLWJsZW5kLmh0bWwK
+ClRvIGJsZW5kIGluIGxpbmVhciBzcGFjZSB0aGlzIHNob3VsZCBiZSBjb25maWd1cmVkIHRvIGRv
+CgogIFBsYW5lIERlZ2FtbWEgPiBQbGFuZSBDVE0gPiBDUlRDIEdhbW1hCgpJIHRoaW5rIGl0IHdv
+dWxkIGFsc28gYmUgZ29vZCBpZiB3ZSBtb3ZlZCBhd2F5IGZyb20gY2FsbGluZyB0aGlzIGdhbW1h
+LiBJdCdzCnJlYWxseSBvbmx5IGdhbW1hIGZvciBsZWdhY3kgU0RSIHNjZW5hcmlvcy4gRm9yIEhE
+UiBjYXNlcyBJIHdvdWxkIG5ldmVyIGV4cGVjdAp0aGVzZSB0byB1c2UgZ2FtbWEgYW5kIGV2ZW4g
+dGhvdWdoIHRoZSBzUkdCIHRyYW5zZmVyIGZ1bmN0aW9uIGlzIGJhc2VkIG9uIGdhbW1hCmZ1bmN0
+aW9ucyBpdCdzIGNvbXBsaWNhdGVkIFsyXS4KClsyXSBodHRwczovL2VuLndpa2lwZWRpYS5vcmcv
+d2lraS9TUkdCCgpBIGJldHRlciB3YXkgdG8gZGVzY3JpYmUgdGhlc2Ugd291bGQgYmUgYXMgInRy
+YW5zZmVyIGZ1bmN0aW9uIiBhbmQgImludmVyc2UKdHJhbnNmZXIgZnVuY3Rpb24uIiBUaGUgc3Bh
+Y2UgYXQgdmFyaW91cyBzdGFnZXMgY291bGQgdGhlbiBiZSBkZXNjcmliZWQgYXMgbGluZWFyCm9y
+IG5vbi1saW5lYXIsIHNwZWNpZmljYWxseSBQUSwgSExHLCBzUkdCLCBCVDcwOSwgb3IgdXNpbmcg
+YW5vdGhlciB0cmFuc2ZlcgpmdW5jdGlvbi4KCkhhcnJ5Cgo+ICtBbGwgdGhlIGxheWVycyBvciBm
+cmFtZWJ1ZmZlcnMgbmVlZCB0byBiZSBjb252ZXJ0ZWQgdG8gc2FtZSBjb2xvcgo+ICtzcGFjZSBh
+bmQgZm9ybWF0IGJlZm9yZSBibGVuZGluZy4gVGhlIHBsYW5lIGNvbG9yIGhhcmR3YXJlIGJsb2Nr
+cwo+ICtjYW4gaGVscCB3aXRoIHRoaXMuIE9uY2UgdGhlIERhdGEgaXMgYmxlbmRlZCwgc2ltaWxh
+ciBjb2xvciBwcm9jZXNzaW5nCj4gK2NhbiBiZSBkb25lIG9uIGJsZW5kZWQgb3V0cHV0IHVzaW5n
+IHBpcGUgY29sb3IgaGFyZHdhcmUgYmxvY2tzLgo+ICsKPiArRFJNIFByb3BlcnRpZXMgaGF2ZSBi
+ZWVuIGNyZWF0ZWQgdG8gZGVmaW5lIGFuZCBleHBvc2UgYWxsIHRoZXNlCj4gK2hhcmR3YXJlIGJs
+b2NrcyB0byB1c2Vyc3BhY2UuIEEgdXNlcnNwYWNlIGFwcGxpY2F0aW9uIChjb21wb3NpdG9yCj4g
+K29yIGFueSBjb2xvciBhcHApIGNhbiB1c2UgdGhlc2UgaW50ZXJmYWNlcyBhbmQgZGVmaW5lIHBv
+bGljaWVzIHRvCj4gK2VmZmljaWVudGx5IHVzZSB0aGUgZGlzcGxheSBoYXJkd2FyZSBmb3Igc3Vj
+aCBjb2xvciBvcGVyYXRpb25zLgo+ICsKPiArUGlwZSBDb2xvciBNYW5hZ2VtZW50IFByb3BlcnRp
+ZXMKPiArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gKwo+ICAuLiBrZXJuZWwt
+ZG9jOjogZHJpdmVycy9ncHUvZHJtL2RybV9jb2xvcl9tZ210LmMKPiAgICAgOmRvYzogb3ZlcnZp
+ZXcKPiAgCj4gK1BsYW5lIENvbG9yIE1hbmFnZW1lbnQgUHJvcGVydGllcwo+ICstLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiArCj4gKy4uIGtlcm5lbC1kb2M6OiBkcml2ZXJzL2dw
+dS9kcm0vZHJtX2NvbG9yX21nbXQuYwo+ICsgICA6ZG9jOiBQbGFuZSBDb2xvciBQcm9wZXJ0aWVz
+Cj4gKwo+ICsuLiBrZXJuZWwtZG9jOjogZHJpdmVycy9ncHUvZHJtL2RybV9jb2xvcl9tZ210LmMK
+PiArICAgOmRvYzogZXhwb3J0Cj4gKwo+ICBUaWxlIEdyb3VwIFByb3BlcnR5Cj4gIC0tLS0tLS0t
+LS0tLS0tLS0tLS0KPiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWlj
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jCj4gaW5kZXggYThiYmIwMjE2ODRiLi44
+ODkyZDAzNjAyZjcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYwo+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmMKPiBAQCAtNzA4LDYgKzcwOCw3IEBA
+IHN0YXRpYyB2b2lkIGRybV9hdG9taWNfcGxhbmVfcHJpbnRfc3RhdGUoc3RydWN0IGRybV9wcmlu
+dGVyICpwLAo+ICAJCSAgIGRybV9nZXRfY29sb3JfZW5jb2RpbmdfbmFtZShzdGF0ZS0+Y29sb3Jf
+ZW5jb2RpbmcpKTsKPiAgCWRybV9wcmludGYocCwgIlx0Y29sb3ItcmFuZ2U9JXNcbiIsCj4gIAkJ
+ICAgZHJtX2dldF9jb2xvcl9yYW5nZV9uYW1lKHN0YXRlLT5jb2xvcl9yYW5nZSkpOwo+ICsJZHJt
+X3ByaW50ZihwLCAiXHRjb2xvcl9tZ210X2NoYW5nZWQ9JWRcbiIsIHN0YXRlLT5jb2xvcl9tZ210
+X2NoYW5nZWQpOwo+ICAKPiAgCWlmIChwbGFuZS0+ZnVuY3MtPmF0b21pY19wcmludF9zdGF0ZSkK
+PiAgCQlwbGFuZS0+ZnVuY3MtPmF0b21pY19wcmludF9zdGF0ZShwLCBzdGF0ZSk7Cj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX3N0YXRlX2hlbHBlci5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2RybV9hdG9taWNfc3RhdGVfaGVscGVyLmMKPiBpbmRleCBkZGNmNWMyYzhlNmEu
+LmYyNmIwMzg1MzcxMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19z
+dGF0ZV9oZWxwZXIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX3N0YXRlX2hl
+bHBlci5jCj4gQEAgLTMxMSw2ICszMTEsOCBAQCB2b2lkIF9fZHJtX2F0b21pY19oZWxwZXJfcGxh
+bmVfZHVwbGljYXRlX3N0YXRlKHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lLAo+ICAJc3RhdGUtPmZl
+bmNlID0gTlVMTDsKPiAgCXN0YXRlLT5jb21taXQgPSBOVUxMOwo+ICAJc3RhdGUtPmZiX2RhbWFn
+ZV9jbGlwcyA9IE5VTEw7Cj4gKwo+ICsJc3RhdGUtPmNvbG9yX21nbXRfY2hhbmdlZCA9IGZhbHNl
+Owo+ICB9Cj4gIEVYUE9SVF9TWU1CT0woX19kcm1fYXRvbWljX2hlbHBlcl9wbGFuZV9kdXBsaWNh
+dGVfc3RhdGUpOwo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNf
+dWFwaS5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfdWFwaS5jCj4gaW5kZXggNDM4ZTk1
+ODViMjI1Li40MGZhMDVmYTMzZGMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9h
+dG9taWNfdWFwaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWNfdWFwaS5jCj4g
+QEAgLTU5NSw2ICs1OTUsOCBAQCBzdGF0aWMgaW50IGRybV9hdG9taWNfcGxhbmVfc2V0X3Byb3Bl
+cnR5KHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lLAo+ICAJCXN0YXRlLT5jb2xvcl9lbmNvZGluZyA9
+IHZhbDsKPiAgCX0gZWxzZSBpZiAocHJvcGVydHkgPT0gcGxhbmUtPmNvbG9yX3JhbmdlX3Byb3Bl
+cnR5KSB7Cj4gIAkJc3RhdGUtPmNvbG9yX3JhbmdlID0gdmFsOwo+ICsJfSBlbHNlIGlmIChwcm9w
+ZXJ0eSA9PSBwbGFuZS0+ZGVnYW1tYV9tb2RlX3Byb3BlcnR5KSB7Cj4gKwkJc3RhdGUtPmRlZ2Ft
+bWFfbW9kZSA9IHZhbDsKPiAgCX0gZWxzZSBpZiAocHJvcGVydHkgPT0gY29uZmlnLT5wcm9wX2Zi
+X2RhbWFnZV9jbGlwcykgewo+ICAJCXJldCA9IGRybV9hdG9taWNfcmVwbGFjZV9wcm9wZXJ0eV9i
+bG9iX2Zyb21faWQoZGV2LAo+ICAJCQkJCSZzdGF0ZS0+ZmJfZGFtYWdlX2NsaXBzLAo+IEBAIC02
+NjEsNiArNjYzLDggQEAgZHJtX2F0b21pY19wbGFuZV9nZXRfcHJvcGVydHkoc3RydWN0IGRybV9w
+bGFuZSAqcGxhbmUsCj4gIAkJKnZhbCA9IHN0YXRlLT5jb2xvcl9lbmNvZGluZzsKPiAgCX0gZWxz
+ZSBpZiAocHJvcGVydHkgPT0gcGxhbmUtPmNvbG9yX3JhbmdlX3Byb3BlcnR5KSB7Cj4gIAkJKnZh
+bCA9IHN0YXRlLT5jb2xvcl9yYW5nZTsKPiArCX0gZWxzZSBpZiAocHJvcGVydHkgPT0gcGxhbmUt
+PmRlZ2FtbWFfbW9kZV9wcm9wZXJ0eSkgewo+ICsJCSp2YWwgPSBzdGF0ZS0+ZGVnYW1tYV9tb2Rl
+Owo+ICAJfSBlbHNlIGlmIChwcm9wZXJ0eSA9PSBjb25maWctPnByb3BfZmJfZGFtYWdlX2NsaXBz
+KSB7Cj4gIAkJKnZhbCA9IChzdGF0ZS0+ZmJfZGFtYWdlX2NsaXBzKSA/Cj4gIAkJCXN0YXRlLT5m
+Yl9kYW1hZ2VfY2xpcHMtPmJhc2UuaWQgOiAwOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vZHJtX2NvbG9yX21nbXQuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fY29sb3JfbWdtdC5jCj4g
+aW5kZXggYmIxNGY0ODhjOGY2Li4wODVlZDBkMGRiMDAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2RybV9jb2xvcl9tZ210LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2NvbG9y
+X21nbXQuYwo+IEBAIC0zNCw4ICszNCw4IEBACj4gIC8qKgo+ICAgKiBET0M6IG92ZXJ2aWV3Cj4g
+ICAqCj4gLSAqIENvbG9yIG1hbmFnZW1lbnQgb3IgY29sb3Igc3BhY2UgYWRqdXN0bWVudHMgaXMg
+c3VwcG9ydGVkIHRocm91Z2ggYSBzZXQgb2YgNQo+IC0gKiBwcm9wZXJ0aWVzIG9uIHRoZSAmZHJt
+X2NydGMgb2JqZWN0LiBUaGV5IGFyZSBzZXQgdXAgYnkgY2FsbGluZwo+ICsgKiBQaXBlIENvbG9y
+IG1hbmFnZW1lbnQgb3IgY29sb3Igc3BhY2UgYWRqdXN0bWVudHMgaXMgc3VwcG9ydGVkIHRocm91
+Z2ggYQo+ICsgKiBzZXQgb2YgNSBwcm9wZXJ0aWVzIG9uIHRoZSAmZHJtX2NydGMgb2JqZWN0LiBU
+aGV5IGFyZSBzZXQgdXAgYnkgY2FsbGluZwo+ICAgKiBkcm1fY3J0Y19lbmFibGVfY29sb3JfbWdt
+dCgpLgo+ICAgKgo+ICAgKiAiREVHQU1NQV9MVVTigJ06Cj4gQEAgLTU4NCw2ICs1ODQsOTUgQEAg
+aW50IGRybV9wbGFuZV9jcmVhdGVfY29sb3JfcHJvcGVydGllcyhzdHJ1Y3QgZHJtX3BsYW5lICpw
+bGFuZSwKPiAgfQo+ICBFWFBPUlRfU1lNQk9MKGRybV9wbGFuZV9jcmVhdGVfY29sb3JfcHJvcGVy
+dGllcyk7Cj4gIAo+ICsvKioKPiArICogRE9DOiBQbGFuZSBDb2xvciBQcm9wZXJ0aWVzCj4gKyAq
+Cj4gKyAqIFBsYW5lIENvbG9yIG1hbmFnZW1lbnQgb3IgY29sb3Igc3BhY2UgYWRqdXN0bWVudHMg
+aXMgc3VwcG9ydGVkCj4gKyAqIHRocm91Z2ggYSBzZXQgb2YgNSBwcm9wZXJ0aWVzIG9uIHRoZSAm
+ZHJtX3BsYW5lIG9iamVjdC4KPiArICoKPiArICogZGVnYW1tYV9tb2RlX3Byb3BlcnR5Ogo+ICsg
+KiAgICAgQmxvYiBwcm9wZXJ0eSB3aGljaCBhZHZlcnRpemVzIHRoZSBwb3NzaWJsZSBkZWdhbW1h
+IG1vZGVzIGFuZAo+ICsgKiAgICAgbHV0IHJhbmdlcyBzdXBwb3J0ZWQgYnkgdGhlIHBsYXRmb3Jt
+LiBUaGlzICBhbGxvd3MgdXNlcnNwYWNlCj4gKyAqICAgICB0byBxdWVyeSBhbmQgZ2V0IHRoZSBw
+bGFuZSBkZWdhbW1hIGNvbG9yIGNhcHMgYW5kIGNob29zZSB0aGUKPiArICogICAgIGFwcHJvcHJp
+YXRlIGRlZ2FtbWEgbW9kZSBhbmQgY3JlYXRlIGx1dCB2YWx1ZXMgYWNjb3JkaW5nbHkKPiArICoK
+PiArICovCj4gK2ludCBkcm1fcGxhbmVfY3JlYXRlX2NvbG9yX21nbXRfcHJvcGVydGllcyhzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2LAo+ICsJCQkJCSAgIHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lLAo+
+ICsJCQkJCSAgIGludCBudW1fdmFsdWVzKQo+ICt7Cj4gKwlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpw
+cm9wOwo+ICsKPiArCXByb3AgPSBkcm1fcHJvcGVydHlfY3JlYXRlKGRldiwgRFJNX01PREVfUFJP
+UF9FTlVNLAo+ICsJCQkJICAgIlBMQU5FX0RFR0FNTUFfTU9ERSIsIG51bV92YWx1ZXMpOwo+ICsJ
+aWYgKCFwcm9wKQo+ICsJCXJldHVybiAtRU5PTUVNOwo+ICsKPiArCXBsYW5lLT5kZWdhbW1hX21v
+ZGVfcHJvcGVydHkgPSBwcm9wOwo+ICsKPiArCXJldHVybiAwOwo+ICt9Cj4gK0VYUE9SVF9TWU1C
+T0woZHJtX3BsYW5lX2NyZWF0ZV9jb2xvcl9tZ210X3Byb3BlcnRpZXMpOwo+ICsKPiArdm9pZCBk
+cm1fcGxhbmVfYXR0YWNoX2RlZ2FtbWFfcHJvcGVydGllcyhzdHJ1Y3QgZHJtX3BsYW5lICpwbGFu
+ZSkKPiArewo+ICsJaWYgKCFwbGFuZS0+ZGVnYW1tYV9tb2RlX3Byb3BlcnR5KQo+ICsJCXJldHVy
+bjsKPiArCj4gKwlkcm1fb2JqZWN0X2F0dGFjaF9wcm9wZXJ0eSgmcGxhbmUtPmJhc2UsCj4gKwkJ
+CQkgICBwbGFuZS0+ZGVnYW1tYV9tb2RlX3Byb3BlcnR5LCAwKTsKPiArfQo+ICtFWFBPUlRfU1lN
+Qk9MKGRybV9wbGFuZV9hdHRhY2hfZGVnYW1tYV9wcm9wZXJ0aWVzKTsKPiArCj4gK2ludCBkcm1f
+cGxhbmVfY29sb3JfYWRkX2dhbW1hX2RlZ2FtbWFfbW9kZV9yYW5nZShzdHJ1Y3QgZHJtX3BsYW5l
+ICpwbGFuZSwKPiArCQkJCQkJIGNvbnN0IGNoYXIgKm5hbWUsCj4gKwkJCQkJCSBjb25zdCBzdHJ1
+Y3QgZHJtX2NvbG9yX2x1dF9yYW5nZSAqcmFuZ2VzLAo+ICsJCQkJCQkgc2l6ZV90IGxlbmd0aCwg
+ZW51bSBsdXRfdHlwZSB0eXBlKQo+ICt7Cj4gKwlzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmJs
+b2I7Cj4gKwlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpwcm9wID0gTlVMTDsKPiArCWludCBudW1fcmFu
+Z2VzID0gbGVuZ3RoIC8gc2l6ZW9mKHJhbmdlc1swXSk7Cj4gKwlpbnQgaSwgcmV0LCBudW1fdHlw
+ZXNfMDsKPiArCj4gKwlpZiAodHlwZSA9PSBMVVRfVFlQRV9ERUdBTU1BKQo+ICsJCXByb3AgPSBw
+bGFuZS0+ZGVnYW1tYV9tb2RlX3Byb3BlcnR5Owo+ICsKPiArCWlmICghcHJvcCkKPiArCQlyZXR1
+cm4gLUVJTlZBTDsKPiArCj4gKwlpZiAobGVuZ3RoID09IDAgJiYgbmFtZSkKPiArCQlyZXR1cm4g
+ZHJtX3Byb3BlcnR5X2FkZF9lbnVtKHByb3AsIDAsIG5hbWUpOwo+ICsKPiArCWlmIChXQVJOX09O
+KGxlbmd0aCA9PSAwIHx8IGxlbmd0aCAlIHNpemVvZihyYW5nZXNbMF0pICE9IDApKQo+ICsJCXJl
+dHVybiAtRUlOVkFMOwo+ICsJbnVtX3R5cGVzXzAgPSBod2VpZ2h0OChyYW5nZXNbMF0uZmxhZ3Mg
+JiAoRFJNX01PREVfTFVUX0dBTU1BIHwKPiArCQkJICAgICAgIERSTV9NT0RFX0xVVF9ERUdBTU1B
+KSk7Cj4gKwlpZiAobnVtX3R5cGVzXzAgPT0gMCkKPiArCQlyZXR1cm4gLUVJTlZBTDsKPiArCj4g
+Kwlmb3IgKGkgPSAxOyBpIDwgbnVtX3JhbmdlczsgaSsrKSB7Cj4gKwkJaW50IG51bV90eXBlcyA9
+IGh3ZWlnaHQ4KHJhbmdlc1tpXS5mbGFncyAmIChEUk1fTU9ERV9MVVRfR0FNTUEgfAo+ICsJCQkJ
+CSBEUk1fTU9ERV9MVVRfREVHQU1NQSkpOwo+ICsKPiArCQkvKiBlaXRoZXIgYWxsIHJhbmdlcyBo
+YXZlIERFR0FNTUF8R0FNTUEgb3Igbm9uZSBoYXZlIGl0ICovCj4gKwkJaWYgKG51bV90eXBlc18w
+ICE9IG51bV90eXBlcykKPiArCQkJcmV0dXJuIC1FSU5WQUw7Cj4gKwl9Cj4gKwo+ICsJYmxvYiA9
+IGRybV9wcm9wZXJ0eV9jcmVhdGVfYmxvYihwbGFuZS0+ZGV2LCBsZW5ndGgsIHJhbmdlcyk7Cj4g
+KwlpZiAoSVNfRVJSKGJsb2IpKQo+ICsJCXJldHVybiBQVFJfRVJSKGJsb2IpOwo+ICsKPiArCXJl
+dCA9IGRybV9wcm9wZXJ0eV9hZGRfZW51bShwcm9wLCBibG9iLT5iYXNlLmlkLCBuYW1lKTsKPiAr
+CWlmIChyZXQpIHsKPiArCQlkcm1fcHJvcGVydHlfYmxvYl9wdXQoYmxvYik7Cj4gKwkJcmV0dXJu
+IHJldDsKPiArCX0KPiArCj4gKwlyZXR1cm4gMDsKPiArfQo+ICtFWFBPUlRfU1lNQk9MKGRybV9w
+bGFuZV9jb2xvcl9hZGRfZ2FtbWFfZGVnYW1tYV9tb2RlX3JhbmdlKTsKPiArCj4gIC8qKgo+ICAg
+KiBkcm1fY29sb3JfbHV0X2NoZWNrIC0gY2hlY2sgdmFsaWRpdHkgb2YgbG9va3VwIHRhYmxlCj4g
+ICAqIEBsdXQ6IHByb3BlcnR5IGJsb2IgY29udGFpbmluZyBMVVQgdG8gY2hlY2sKPiBkaWZmIC0t
+Z2l0IGEvaW5jbHVkZS9kcm0vZHJtX21vZGVfb2JqZWN0LmggYi9pbmNsdWRlL2RybS9kcm1fbW9k
+ZV9vYmplY3QuaAo+IGluZGV4IGMzNGEzZTgwMzBlMS4uZDQxMjhjN2RhYTA4IDEwMDY0NAo+IC0t
+LSBhL2luY2x1ZGUvZHJtL2RybV9tb2RlX29iamVjdC5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJt
+X21vZGVfb2JqZWN0LmgKPiBAQCAtNjAsNyArNjAsNyBAQCBzdHJ1Y3QgZHJtX21vZGVfb2JqZWN0
+IHsKPiAgCXZvaWQgKCpmcmVlX2NiKShzdHJ1Y3Qga3JlZiAqa3JlZik7Cj4gIH07Cj4gIAo+IC0j
+ZGVmaW5lIERSTV9PQkpFQ1RfTUFYX1BST1BFUlRZIDI0Cj4gKyNkZWZpbmUgRFJNX09CSkVDVF9N
+QVhfUFJPUEVSVFkgMjYKPiAgLyoqCj4gICAqIHN0cnVjdCBkcm1fb2JqZWN0X3Byb3BlcnRpZXMg
+LSBwcm9wZXJ0eSB0cmFja2luZyBmb3IgJmRybV9tb2RlX29iamVjdAo+ICAgKi8KPiBkaWZmIC0t
+Z2l0IGEvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmggYi9pbmNsdWRlL2RybS9kcm1fcGxhbmUuaAo+
+IGluZGV4IDEyOTQ2MTBlODRmNC4uZTQ3NmE1OTM5ZjhlIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUv
+ZHJtL2RybV9wbGFuZS5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmgKPiBAQCAtMjM2
+LDYgKzIzNiwxNSBAQCBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlIHsKPiAgCj4gIAkvKiogQHN0YXRl
+OiBiYWNrcG9pbnRlciB0byBnbG9iYWwgZHJtX2F0b21pY19zdGF0ZSAqLwo+ICAJc3RydWN0IGRy
+bV9hdG9taWNfc3RhdGUgKnN0YXRlOwo+ICsKPiArCS8qKgo+ICsJICogQGRlZ2FtbWFfbW9kZTog
+VGhpcyBpcyBhIGJsb2JfaWQgYW5kIGV4cG9zZXMgdGhlIHBsYXRmb3JtIGNhcGFiaWxpdGllcwo+
+ICsJICogd3J0IHRvIHZhcmlvdXMgZ2FtbWEgbW9kZXMgYW5kIHRoZSByZXNwZWN0aXZlIGx1dCBy
+YW5nZXMuIFRoaXMgYWxzbwo+ICsJICogaGVscHMgdXNlciBzZWxlY3QgYSBkZWdhbW1hIG1vZGUg
+YW1vbmdzdCB0aGUgc3VwcG9ydGVkIG9uZXMuCj4gKwkgKi8KPiArCXUzMiBkZWdhbW1hX21vZGU7
+Cj4gKwo+ICsJdTggY29sb3JfbWdtdF9jaGFuZ2VkIDogMTsKPiAgfTsKPiAgCj4gIHN0YXRpYyBp
+bmxpbmUgc3RydWN0IGRybV9yZWN0Cj4gQEAgLTc0Nyw2ICs3NTYsMTIgQEAgc3RydWN0IGRybV9w
+bGFuZSB7Cj4gIAkgKiBzY2FsaW5nLgo+ICAJICovCj4gIAlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpz
+Y2FsaW5nX2ZpbHRlcl9wcm9wZXJ0eTsKPiArCj4gKwkvKioKPiArCSAqIEBkZWdhbW1hX21vZGVf
+cHJvcGVydHk6IE9wdGlvbmFsIFBsYW5lIHByb3BlcnR5IHRvIHNldCB0aGUgTFVUCj4gKwkgKiB1
+c2VkIHRvIGNvbnZlcnQgdGhlIGZyYW1lYnVmZmVyJ3MgY29sb3JzIHRvIGxpbmVhciBnYW1tYS4K
+PiArCSAqLwo+ICsJc3RydWN0IGRybV9wcm9wZXJ0eSAqZGVnYW1tYV9tb2RlX3Byb3BlcnR5Owo+
+ICB9Owo+ICAKPiAgI2RlZmluZSBvYmpfdG9fcGxhbmUoeCkgY29udGFpbmVyX29mKHgsIHN0cnVj
+dCBkcm1fcGxhbmUsIGJhc2UpCj4gQEAgLTgzOCw2ICs4NTMsMTQgQEAgdm9pZCBkcm1fcGxhbmVf
+Zm9yY2VfZGlzYWJsZShzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSk7Cj4gIGludCBkcm1fbW9kZV9w
+bGFuZV9zZXRfb2JqX3Byb3Aoc3RydWN0IGRybV9wbGFuZSAqcGxhbmUsCj4gIAkJCQkgICAgICAg
+c3RydWN0IGRybV9wcm9wZXJ0eSAqcHJvcGVydHksCj4gIAkJCQkgICAgICAgdWludDY0X3QgdmFs
+dWUpOwo+ICtpbnQgZHJtX3BsYW5lX2NyZWF0ZV9jb2xvcl9tZ210X3Byb3BlcnRpZXMoc3RydWN0
+IGRybV9kZXZpY2UgKmRldiwKPiArCQkJCQkgICBzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKPiAr
+CQkJCQkgICBpbnQgbnVtX3ZhbHVlcyk7Cj4gK3ZvaWQgZHJtX3BsYW5lX2F0dGFjaF9kZWdhbW1h
+X3Byb3BlcnRpZXMoc3RydWN0IGRybV9wbGFuZSAqcGxhbmUpOwo+ICtpbnQgZHJtX3BsYW5lX2Nv
+bG9yX2FkZF9nYW1tYV9kZWdhbW1hX21vZGVfcmFuZ2Uoc3RydWN0IGRybV9wbGFuZSAqcGxhbmUs
+Cj4gKwkJCQkJCSBjb25zdCBjaGFyICpuYW1lLAo+ICsJCQkJCQkgY29uc3Qgc3RydWN0IGRybV9j
+b2xvcl9sdXRfcmFuZ2UgKnJhbmdlcywKPiArCQkJCQkJIHNpemVfdCBsZW5ndGgsIGVudW0gbHV0
+X3R5cGUgdHlwZSk7Cj4gIAo+ICAvKioKPiAgICogZHJtX3BsYW5lX2ZpbmQgLSBmaW5kIGEgJmRy
+bV9wbGFuZQo+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Cg==
