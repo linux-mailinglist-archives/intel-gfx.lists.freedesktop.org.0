@@ -1,60 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066A739B4BE
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 10:20:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B390239B4EC
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 10:33:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D54A36E24E;
-	Fri,  4 Jun 2021 08:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B48E6E7D1;
+	Fri,  4 Jun 2021 08:33:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
- [IPv6:2a00:1450:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EF6B6E24E
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 08:20:09 +0000 (UTC)
-Received: by mail-wm1-x335.google.com with SMTP id f17so4855403wmf.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 01:20:09 -0700 (PDT)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com
+ [IPv6:2a00:1450:4864:20::32f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB5276E43F
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 08:33:11 +0000 (UTC)
+Received: by mail-wm1-x32f.google.com with SMTP id
+ h5-20020a05600c3505b029019f0654f6f1so6861763wmq.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 01:33:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=MlLRghsOuKLwjgoQCjs8GbKtMrMTYO5/H3rsXE4lnmE=;
- b=BwB8CNsPpGqA4d2iyln07GuYSNNvEKFslQL1VpguNpmtjGfhzBBIPHzNqF3JZ9qajj
- m4iba/vW4E19eMa2c9VfvmPVo84do9pu6GxQjOrQkL5u4xZesLwtyChi1bsBRDCNnMn4
- D5CcImJEq7RlvBzsKpv/srFjyo7hKOeXB3beM=
+ bh=xMmsbYICx0bmcd8SbULA2wWW7KeqB0BAXT80yg8/o3E=;
+ b=EaQ5I4xwR2fyrELNr/VGKGM7TspTtKrRNoAxHlLouGtnfLi67OYwHBw6FgVdlGHtao
+ KL6W5pXnlJML2TIAtvFZ0OsyM0Hgi0eApprcDCxfpThF0Ye2QGuFGZkzfH3JTrfpiJq5
+ D3ZA8wiMpIAinLE23StUPfXOsV/BFt7X7xIJs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=MlLRghsOuKLwjgoQCjs8GbKtMrMTYO5/H3rsXE4lnmE=;
- b=IiD1ZkWaGZsr106uRcvAMtDW3InFDJI/vYT658A2rMAxQwyNdjb8xhZ2Z6xLdVzm2f
- cT5gRYiPD1jdSNwiZzunEpznK+m5bZKrMiV4Yc9ZjECfoxJCTULi+R7MUnT8RokjxEH8
- r2SAAAJ2kX2H63Ke5noByntjLa3yhL4vSpbaoUv8WBxhhRqHXHOZ0Qipcp8TPvhRGLvz
- uiInm2tFoO4OUqbsFMAzNHIU4g9FSwUk91mQ30Cy+u8NUn0NH9ltfX4ePa7OddPWUc0l
- FQucWkbIn2mk7WKIrckzXnpxS6UGr2ok/FY4pyjj0JTPPf5ca8cMx+iQzyfjm1T63Oak
- kV/g==
-X-Gm-Message-State: AOAM531/oRgxdOeqL4vtMgmfWSFewHQyW5iYAY0THAiifw4vP/Lm8YGV
- pglp8znShf1EvkUA8acO8jw0bw==
-X-Google-Smtp-Source: ABdhPJyeDufy1MRgJYrGva2UJGEqNOq9+FmNn/sFrIuOk3Ds3HK/z+wrTHvu7JVH4REfIhNk3xuqPA==
-X-Received: by 2002:a1c:2985:: with SMTP id p127mr2387892wmp.165.1622794807872; 
- Fri, 04 Jun 2021 01:20:07 -0700 (PDT)
+ bh=xMmsbYICx0bmcd8SbULA2wWW7KeqB0BAXT80yg8/o3E=;
+ b=IH4RL/YeIqfckbJ+kAbCUCbsN/BuddrEagyRWnoLc0HtQUrhGjZ0NEqSSMxQwXSaOM
+ dTtaoAfi2Aqs96XMzFWEqmIhtzEr5kn09BTqJS16K5bOkEhQMHG+oqmmL525hL0GWc9h
+ +oe8zLFSXRfGXMdxtwYvHAFKPhSXlGFvPFrg0HapnKG5dCFwDUv9V8rY1vaICXsmG5Gw
+ aagy6kB1njcRP5Yq78/DkqtrGQ90wEZP0LdpC4RhNSCCNq1xUZDoW7gUwGeq0smvRK9O
+ StVrJr6PThnJ7HSvtgu0snkNeoY72n1ZOHtcmRBjN16x4hNEpyjjGcN5gFS93baH8cl5
+ 8m8Q==
+X-Gm-Message-State: AOAM531bUK2ZiZh0xTjrKLsyDqmn5Nrbw/WWZiH2P1K/unqwdxtKosrz
+ OoKTlohW2gFUhys1G0sqx5WCeQ==
+X-Google-Smtp-Source: ABdhPJz3PLydBzWpcS+7asn0SKurz+Q8bSiXIbtDVdziaGyb6Lehpkwt4Ue0u6nKR9V+WLLS6z+QDA==
+X-Received: by 2002:a7b:ce13:: with SMTP id m19mr1944541wmc.159.1622795590574; 
+ Fri, 04 Jun 2021 01:33:10 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k5sm6135837wrv.85.2021.06.04.01.20.07
+ by smtp.gmail.com with ESMTPSA id a123sm9260028wmd.2.2021.06.04.01.33.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jun 2021 01:20:07 -0700 (PDT)
-Date: Fri, 4 Jun 2021 10:20:05 +0200
+ Fri, 04 Jun 2021 01:33:09 -0700 (PDT)
+Date: Fri, 4 Jun 2021 10:33:07 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <YLniNZjpBz6E24cK@phenom.ffwll.local>
-References: <YLlLlTdvaTGrNmzV@phenom.ffwll.local>
- <20210603230408.54856-1-matthew.brost@intel.com>
- <20210603230408.54856-2-matthew.brost@intel.com>
+Message-ID: <YLnlQyPJZygHTHxk@phenom.ffwll.local>
+References: <20210603051630.2635-1-matthew.brost@intel.com>
+ <20210603051630.2635-14-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210603230408.54856-2-matthew.brost@intel.com>
+In-Reply-To: <20210603051630.2635-14-matthew.brost@intel.com>
 X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [v3 PATCH 2/2] drm/i915/guc: Update sizes of CTB
- buffers
+Subject: Re: [Intel-gfx] [PATCH 13/20] drm/i915/guc: Relax CTB response
+ timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,128 +74,118 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 03, 2021 at 04:04:08PM -0700, Matthew Brost wrote:
+On Wed, Jun 02, 2021 at 10:16:23PM -0700, Matthew Brost wrote:
 > From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > 
-> Future GuC will require CTB buffers sizes to be multiple of 4K.
-> Make these changes now as this shouldn't impact us too much.
+> In upcoming patch we will allow more CTB requests to be sent in
+> parallel to the GuC for processing, so we shouldn't assume any more
+> that GuC will always reply without 10ms.
+> 
+> Use bigger value from CONFIG_DRM_I915_GUC_CTB_TIMEOUT instead.
+> 
+> v2: Add CONFIG_DRM_I915_GUC_CTB_TIMEOUT config option
 > 
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> Cc: John Harrison <john.c.harrison@intel.com>
 
-Assuming this was just rebased?
+So this is a rant, but for upstream we really need to do better than
+internal:
+
+- The driver must work by default in the optimal configuration.
+
+- Any config change that we haven't validated _must_ taint the kernel
+  (this is especially for module options, but also for config settings)
+
+- Config need a real reason beyond "was useful for bring-up".
+
+Our internal tree is an absolute disaster right now, with multi-line
+kernel configs (different on each platform) and bespoke kernel config or
+the driver just fails. We're the expert on our own hw, we should know how
+it works, not offload that to users essentially asking them "how shitty do
+you think Intel hw is in responding timely".
+
+Yes I know there's a lot of these there already, they don't make a lot of
+sense either.
+
+Except if there's a real reason for this (aside from us just offloading
+testing to our users instead of doing it ourselves properly) I think we
+should hardcode this, with a comment explaining why. Maybe with a switch
+between the PF/VF case once that's landed.
 
 > ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 60 ++++++++++++-----------
->  1 file changed, 32 insertions(+), 28 deletions(-)
+>  drivers/gpu/drm/i915/Kconfig.profile      | 10 ++++++++++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |  5 ++++-
+>  2 files changed, 14 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index ec795d7c3a7d..8d1173032431 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -38,6 +38,32 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
->  #define CT_PROBE_ERROR(_ct, _fmt, ...) \
->  	i915_probe_error(ct_to_i915(ct), "CT: " _fmt, ##__VA_ARGS__)
+> diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
+> index 39328567c200..0d5475b5f28a 100644
+> --- a/drivers/gpu/drm/i915/Kconfig.profile
+> +++ b/drivers/gpu/drm/i915/Kconfig.profile
+> @@ -38,6 +38,16 @@ config DRM_I915_USERFAULT_AUTOSUSPEND
+>  	  May be 0 to disable the extra delay and solely use the device level
+>  	  runtime pm autosuspend delay tunable.
 >  
-> +/**
-> + * DOC: CTB Blob
+> +config DRM_I915_GUC_CTB_TIMEOUT
+> +	int "How long to wait for the GuC to make forward progress on CTBs (ms)"
+> +	default 1500 # milliseconds
+> +	range 10 60000
 
-These are supposed to be pulled into the kerneldoc builds, but that's not
-happening in this patch?
+Also range is definitely off, drm/scheduler will probably nuke you
+beforehand :-)
 
-Now I think the GuC docs in general are fairly outdated, so is the DOC
-review coming later, or is the DOC: header here simply cargo-culted :-)
+That's kinda another issue I have with all these kconfig knobs: Maybe we
+need a knob for "relax with reset attempts, my workloads overload my gpus
+routinely", which then scales _all_ timeouts proportionally. But letting
+the user set them all, with silly combiniations like resetting the
+workload before heartbeat or stuff like that doesn't make much sense.
 
-If it's not coming later we need to do a JIRA to clean this all up and
-link all the new/changed kerneldoc into our GuC doc structure.
+Anyway, tiny patch so hopefully I can leave this one out for now until
+we've closed this.
 -Daniel
 
-> + *
-> + * We allocate single blob to hold both CTB descriptors and buffers:
-> + *
-> + *      +--------+-----------------------------------------------+------+
-> + *      | offset | contents                                      | size |
-> + *      +========+===============================================+======+
-> + *      | 0x0000 | H2G `CTB Descriptor`_ (send)                  |      |
-> + *      +--------+-----------------------------------------------+  4K  |
-> + *      | 0x0800 | G2H `CTB Descriptor`_ (recv)                  |      |
-> + *      +--------+-----------------------------------------------+------+
-> + *      | 0x1000 | H2G `CT Buffer`_ (send)                       | n*4K |
-> + *      |        |                                               |      |
-> + *      +--------+-----------------------------------------------+------+
-> + *      | 0x1000 | G2H `CT Buffer`_ (recv)                       | m*4K |
-> + *      | + n*4K |                                               |      |
-> + *      +--------+-----------------------------------------------+------+
-> + *
-> + * Size of each `CT Buffer`_ must be multiple of 4K.
-> + * As we don't expect too many messages, for now use minimum sizes.
-> + */
-> +#define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-> +#define CTB_H2G_BUFFER_SIZE	(SZ_4K)
-> +#define CTB_G2H_BUFFER_SIZE	(SZ_4K)
+> +	help
+> +	  Configures the default timeout waiting for GuC the to make forward
+> +	  progress on CTBs. e.g. Waiting for a response to a requeset.
 > +
->  struct ct_request {
->  	struct list_head link;
->  	u32 fence;
-> @@ -175,29 +201,7 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+> +	  A range of 10 ms to 60000 ms is allowed.
+> +
+>  config DRM_I915_HEARTBEAT_INTERVAL
+>  	int "Interval between heartbeat pulses (ms)"
+>  	default 2500 # milliseconds
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 916c2b80c841..cf1fb09ef766 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -436,6 +436,7 @@ static int ct_write(struct intel_guc_ct *ct,
+>   */
+>  static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+>  {
+> +	long timeout;
+>  	int err;
 >  
->  	GEM_BUG_ON(ct->vma);
+>  	/*
+> @@ -443,10 +444,12 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+>  	 * up to that length of time, then switch to a slower sleep-wait loop.
+>  	 * No GuC command should ever take longer than 10ms.
+>  	 */
+> +	timeout = CONFIG_DRM_I915_GUC_CTB_TIMEOUT;
+> +
+>  #define done INTEL_GUC_MSG_IS_RESPONSE(READ_ONCE(req->status))
+>  	err = wait_for_us(done, 10);
+>  	if (err)
+> -		err = wait_for(done, 10);
+> +		err = wait_for(done, timeout);
+>  #undef done
 >  
-> -	/* We allocate 1 page to hold both descriptors and both buffers.
-> -	 *       ___________.....................
-> -	 *      |desc (SEND)|                   :
-> -	 *      |___________|                   PAGE/4
-> -	 *      :___________....................:
-> -	 *      |desc (RECV)|                   :
-> -	 *      |___________|                   PAGE/4
-> -	 *      :_______________________________:
-> -	 *      |cmds (SEND)                    |
-> -	 *      |                               PAGE/4
-> -	 *      |_______________________________|
-> -	 *      |cmds (RECV)                    |
-> -	 *      |                               PAGE/4
-> -	 *      |_______________________________|
-> -	 *
-> -	 * Each message can use a maximum of 32 dwords and we don't expect to
-> -	 * have more than 1 in flight at any time, so we have enough space.
-> -	 * Some logic further ahead will rely on the fact that there is only 1
-> -	 * page and that it is always mapped, so if the size is changed the
-> -	 * other code will need updating as well.
-> -	 */
-> -
-> -	blob_size = PAGE_SIZE;
-> +	blob_size = 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE + CTB_G2H_BUFFER_SIZE;
->  	err = intel_guc_allocate_and_map_vma(guc, blob_size, &ct->vma, &blob);
->  	if (unlikely(err)) {
->  		CT_PROBE_ERROR(ct, "Failed to allocate %u for CTB data (%pe)\n",
-> @@ -209,17 +213,17 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
->  
->  	/* store pointers to desc and cmds for send ctb */
->  	desc = blob;
-> -	cmds = blob + PAGE_SIZE / 2;
-> -	cmds_size = PAGE_SIZE / 4;
-> +	cmds = blob + 2 * CTB_DESC_SIZE;
-> +	cmds_size = CTB_H2G_BUFFER_SIZE;
->  	CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u\n", "send",
->  		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size);
->  
->  	guc_ct_buffer_init(&ct->ctbs.send, desc, cmds, cmds_size);
->  
->  	/* store pointers to desc and cmds for recv ctb */
-> -	desc = blob + PAGE_SIZE / 4;
-> -	cmds = blob + PAGE_SIZE / 4 + PAGE_SIZE / 2;
-> -	cmds_size = PAGE_SIZE / 4;
-> +	desc = blob + CTB_DESC_SIZE;
-> +	cmds = blob + 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE;
-> +	cmds_size = CTB_G2H_BUFFER_SIZE;
->  	CT_DEBUG(ct, "%s desc %#tx cmds %#tx size %u\n", "recv",
->  		 ptrdiff(desc, blob), ptrdiff(cmds, blob), cmds_size);
->  
+>  	if (unlikely(err))
 > -- 
 > 2.28.0
 > 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- 
 Daniel Vetter
