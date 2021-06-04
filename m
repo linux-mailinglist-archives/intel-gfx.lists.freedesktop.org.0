@@ -1,51 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D344139B93B
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 14:53:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D84C139B9B5
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 15:20:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95EE66E408;
-	Fri,  4 Jun 2021 12:53:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B1146E3D8;
+	Fri,  4 Jun 2021 13:20:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED5906E418;
- Fri,  4 Jun 2021 12:53:20 +0000 (UTC)
-IronPort-SDR: AubuWmhDw3Yo6rQO5zJT7sD3pvpMkSGEovvKqPjf8vKU9J4ZtPZK3mF93VHZJ39w9RJ+SciA+x
- 8OaTq9xdiA4Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="204261142"
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="204261142"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 05:53:19 -0700
-IronPort-SDR: 6164XZxGRCG/sRuFoQKNG1Z4imWGj8+18dzLn8D1q13mkBJ3KdctpmJUdKEsF6Rkt3VxdmU5ah
- ZRxtXk2hhRAg==
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="480624846"
-Received: from seanmc5x-mobl5.ger.corp.intel.com (HELO [10.213.231.164])
- ([10.213.231.164])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 05:53:18 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20210525135508.244659-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <20210525135508.244659-2-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <b9ae1daa-6add-1c67-58b4-16491f2e1431@linux.intel.com>
- <YK0OHJcSwWY1mm7v@phenom.ffwll.local>
- <8cf2c5f4-87a3-ce6b-150c-65fa054586a4@linux.intel.com>
- <YK9wrCayUwSDzMWG@phenom.ffwll.local>
- <59d2eee9-35c1-01fc-c226-50ad98aadb99@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <036d1a59-e78a-3eb2-c9e7-ff6909002124@linux.intel.com>
-Date: Fri, 4 Jun 2021 13:53:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-MIME-Version: 1.0
-In-Reply-To: <59d2eee9-35c1-01fc-c226-50ad98aadb99@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/1] Let userspace know if they can trust
- timeslicing by including it as part of the
- I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3D96E3D8;
+ Fri,  4 Jun 2021 13:20:11 +0000 (UTC)
+IronPort-SDR: dgjHuMzTzYHmPqqE5RS1wb7Sof7gv03BGKxaxR9szx8ia5iieXPnyLEfUjY0U3pP/z/20bPOdR
+ 98lRXzjhy26w==
+X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="183969607"
+X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="183969607"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2021 06:20:10 -0700
+IronPort-SDR: NkKqZga4abMwGN8wYJ+9wtdVvY9ooJG2ZCByZCAD9rOYV6nzDd4yIp4nYt1jKVFBgFOw9YjkUY
+ nk7RQhE67K3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="468317078"
+Received: from vsrini4-xps-8920.iind.intel.com (HELO localhost.localdomain)
+ ([10.223.163.28])
+ by fmsmga004.fm.intel.com with ESMTP; 04 Jun 2021 06:20:08 -0700
+From: Vidya Srinivas <vidya.srinivas@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	igt-dev@lists.freedesktop.org
+Date: Fri,  4 Jun 2021 18:41:02 +0530
+Message-Id: <1622812262-16592-1-git-send-email-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1622176543-12759-1-git-send-email-vidya.srinivas@intel.com>
+References: <1622176543-12759-1-git-send-email-vidya.srinivas@intel.com>
+Subject: [Intel-gfx] [PATCH] tests/kms_color: Disable gamma in degamma tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,87 +47,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- DRI Development <dri-devel@lists.freedesktop.org>, mahesh.meena@intel.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: markyacoub@chromium.org, charlton.lin@intel.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDI3LzA1LzIwMjEgMTE6MjIsIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+IAo+IE9uIDI3LzA1
-LzIwMjEgMTE6MTMsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+IE9uIFdlZCwgTWF5IDI2LCAyMDIx
-IGF0IDExOjIwOjEzQU0gKzAxMDAsIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+Pj4KPj4+IE9uIDI1
-LzA1LzIwMjEgMTU6NDcsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+Pj4gT24gVHVlLCBNYXkgMjUs
-IDIwMjEgYXQgMDM6MTk6NDdQTSArMDEwMCwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4+Pj4+Cj4+
-Pj4+ICsgZHJpLWRldmVsIGFzIHBlciBwcm9jZXNzCj4+Pj4+Cj4+Pj4+IE9uIDI1LzA1LzIwMjEg
-MTQ6NTUsIFRlamFzIFVwYWRoeWF5IHdyb3RlOgo+Pj4+Pj4gdjI6IE9ubHkgZGVjbGFyZSB0aW1l
-c2xpY2luZyBpZiB3ZSBjYW4gc2FmZWx5IHByZWVtcHQgdXNlcnNwYWNlLgo+Pj4+Pgo+Pj4+PiBD
-b21taXQgbWVzc2FnZSBnb3QgYnV0Y2hlcmVkIHVwIHNvbWVob3cgc28geW91J2xsIG5lZWQgdG8g
-Zml4IHRoYXQgCj4+Pj4+IGF0IHNvbWUKPj4+Pj4gcG9pbnQuCj4+Pj4+Cj4+Pj4+IFJlZ2FyZHMs
-Cj4+Pj4+Cj4+Pj4+IFR2cnRrbwo+Pj4+Pgo+Pj4+Pj4gRml4ZXM6IDhlZTM2ZTA0OGM5OCAoImRy
-bS9pOTE1L2V4ZWNsaXN0czogTWluaW1hbGlzdGljIHRpbWVzbGljaW5nIikKPj4+Pj4+IFNpZ25l
-ZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+Pj4+Pj4g
-Q2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4+Pj4+PiBSZXZp
-ZXdlZC1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPj4+Pj4+
-IC0tLQo+Pj4+Pj4gwqDCoMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV91
-c2VyLmMgfCAxICsKPj4+Pj4+IMKgwqDCoCBpbmNsdWRlL3VhcGkvZHJtL2k5MTVfZHJtLmjCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDEgKwo+Pj4+Pj4gwqDCoMKgIDIgZmlsZXMg
-Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspCj4+Pj4+Pgo+Pj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV91c2VyLmMgCj4+Pj4+PiBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV91c2VyLmMKPj4+Pj4+IGluZGV4IDNjY2E3ZWEy
-ZDZlYS4uMTJkMTY1NTY2ZWQyIDEwMDY0NAo+Pj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvaW50ZWxfZW5naW5lX3VzZXIuYwo+Pj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvaW50ZWxfZW5naW5lX3VzZXIuYwo+Pj4+Pj4gQEAgLTk4LDYgKzk4LDcgQEAgc3RhdGlj
-IHZvaWQgc2V0X3NjaGVkdWxlcl9jYXBzKHN0cnVjdCAKPj4+Pj4+IGRybV9pOTE1X3ByaXZhdGUg
-Kmk5MTUpCj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIE1BUChIQVNfUFJFRU1QVElPTiwg
-UFJFRU1QVElPTiksCj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIE1BUChIQVNfU0VNQVBI
-T1JFUywgU0VNQVBIT1JFUyksCj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIE1BUChTVVBQ
-T1JUU19TVEFUUywgRU5HSU5FX0JVU1lfU1RBVFMpLAo+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIE1B
-UChUSU1FU0xJQ0VfQklULCBUSU1FU0xJQ0lORyksCj4+Pj4+PiDCoMKgwqAgI3VuZGVmIE1BUAo+
-Pj4+Pj4gwqDCoMKgwqDCoMKgwqAgfTsKPj4+Pj4+IMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBpbnRl
-bF9lbmdpbmVfY3MgKmVuZ2luZTsKPj4+Pj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL3VhcGkvZHJt
-L2k5MTVfZHJtLmggCj4+Pj4+PiBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+Pj4+Pj4g
-aW5kZXggYzJjNzc1OWI3ZDJlLi5hZjIyMTJkNjExM2MgMTAwNjQ0Cj4+Pj4+PiAtLS0gYS9pbmNs
-dWRlL3VhcGkvZHJtL2k5MTVfZHJtLmgKPj4+Pj4+ICsrKyBiL2luY2x1ZGUvdWFwaS9kcm0vaTkx
-NV9kcm0uaAo+Pj4+Pj4gQEAgLTU3Miw2ICs1NzIsNyBAQCB0eXBlZGVmIHN0cnVjdCBkcm1faTkx
-NV9pcnFfd2FpdCB7Cj4+Pj4+PiDCoMKgwqAgI2RlZmluZcKgwqAgSTkxNV9TQ0hFRFVMRVJfQ0FQ
-X1BSRUVNUFRJT07CoMKgwqAgKDF1bCA8PCAyKQo+Pj4+Pj4gwqDCoMKgICNkZWZpbmXCoMKgIEk5
-MTVfU0NIRURVTEVSX0NBUF9TRU1BUEhPUkVTwqDCoMKgICgxdWwgPDwgMykKPj4+Pj4+IMKgwqDC
-oCAjZGVmaW5lwqDCoCBJOTE1X1NDSEVEVUxFUl9DQVBfRU5HSU5FX0JVU1lfU1RBVFPCoMKgwqAg
-KDF1bCA8PCA0KQo+Pj4+Pj4gKyNkZWZpbmXCoMKgIEk5MTVfU0NIRURVTEVSX0NBUF9USU1FU0xJ
-Q0lOR8KgwqDCoCAoMXVsIDw8IDUpCj4+Pj4KPj4+PiBTaW5jZSB0aGlzIGlzIHVhcGkgSSB0aGlu
-ayB3ZSBzaG91bGQgYXQgbGVhc3QgaGF2ZSBzb21lIG5pY2Uga2VybmVsZG9jCj4+Pj4gdGhhdCBl
-eHBsYWlucyB3aGF0IGV4YWN0bHkgdGhpcyBpcywgd2hhdCBmb3IgKGxpbmsgdG8gdXNlcnNwYWNl
-KSBhbmQgCj4+Pj4gYWxsCj4+Pj4gdGhhdC4gSWRlYWxseSBhbHNvIG1pbmltYWxseSBmaWxpbmcg
-aW4gdGhlIGdhcHMgaW4gb3VyIHVhcGkgZG9jcyBmb3IgCj4+Pj4gc3R1ZmYKPj4+PiB0aGlzIHJl
-ZmVyZW5jZXMuCj4+Pgo+Pj4gSUlVQyB0aGVyZSBpcyBubyB1c2Vyc3BhY2UgYXBhcnQgZnJvbSBJ
-R1QgbmVlZGluZyBpdCBub3QgdG8gZmFpbCAKPj4+IHNjaGVkdWxpbmcKPj4+IHRlc3RzIG9uIEFE
-TC4KPj4+Cj4+PiBDdXJyZW50IHRlc3RzIHVzZSAiaGFzIHByZWVtcHRpb24gKyBoYXMgc2VtYXBo
-b3JlcyIgYXMgYSBwcm94eSB0byAKPj4+IGFuc3dlciB0aGUKPj4+ICJkb2VzIHRoZSBrZXJuZWwg
-c3VwcG9ydCB0aW1lc2xpY2luZyIgcXVlc3Rpb24uIFRoaXMgc3RvcHMgd29ya2luZyAKPj4+IHdp
-dGggdGhlCj4+PiBHdWMgYmFja2VuZCBiZWNhdXNlIEd1QyBkZWNpZGVkIG5vdCB0byBzdXBwb3J0
-IHNlbWFwaG9yZXMgKGZvciAKPj4+IHJlYXNvbnMgeWV0Cj4+PiB1bmtub3duLCBzZWUgb3RoZXIg
-dGhyZWFkKSwgc28gZXhwbGljaXQgImhhcyB0aW1lc2xpY2luZyIgZmxhZyBpcyAKPj4+IG5lZWRl
-ZCBpbgo+Pj4gb3JkZXIgZm9yIHRlc3RzIHRvIGtub3cgdGhhdCBHdUMgaXMgc3VwcG9zZWQgdG8g
-c3VwcG9ydCB0aW1lc2xpY2luZywgCj4+PiBldmVuIGlmCj4+PiBpdCBkb2Vzbid0IHVzZSBzZW1h
-cGhvcmVzIGZvciBpbnRlci1yaW5nIHN5bmNocm9uaXNhdGlvbi4KPj4KPj4gU2luY2UgdGhpcyBp
-ZiBmb3IgaWd0IG9ubHk6IENhbnQgd2UgZG8ganVzdCBleHRlbmQgdGhlIGNoZWNrIGluIGlndCB3
-aXRoCj4+IGFuIHx8IEdFTiA+PSAxMj8gSSByZWFsbHkgaG9wZSB0aGF0IG91ciBmdXR1cmUgaHcg
-d2lsbCBjb250aW51ZSB0byAKPj4gc3VwcG9ydAo+PiB0aW1lc2xpY2luZyAuLi4KPiAKPiBOb3Qg
-dGhlIGdlbiAxMiBjaGVjaywgYnV0IHBvc3NpYmxlIEkgdGhpbmsuIEV4cGxpY2l0IGZlYXR1cmUg
-dGVzdCB3b3VsZCAKPiBiZSBiZXR0ZXIsIGJ1dCBpZiBkZWZpbml0ZWx5IG5vdCBhbGxvd2VkIHRo
-ZW4gYWxvbmcgdGhlIGxpbmVzIG9mOgo+IAo+IGhhc190aW1lc2xpY2luZyA9Cj4gIMKgwqDCoMKg
-KGhhc19wcmVlbXB0aW9uICYmIGhhc19zZW1hcGhvcmVzKSB8fCB1c2VzX2d1Y19zdWJtaXNzaW9u
-OwoKT25lIGNhdGNoIGlzIHRoYXQgdGltZXNsaWNpbmcgaW4gR3VDIHdpbGwgYmUgZGlzYWJsZWQg
-Ym90aCBpZiBhdCBjb21waWxlIAp0aW1lIENPTkZJR19EUk1fSTkxNV9USU1FU0xJQ0VfRFVSQVRJ
-T04gaXMgc2V0IHRvIHplcm8sIG9yIGlmIGF0IHJ1bnRpbWUgCmVuZ2luZS0+cHJvcHMudGltZXNs
-aWNlX2R1cmF0aW9uX21zIGlzIGVxdWFsbHkgc2V0IHRvIHplcm8uCgpTbyBJIHRoaW5rIHdoYXQg
-aXMgbmVlZGVkIG9uIHRvcCBvZiB0aGUgYWJvdmUgY2hlY2sgaXMgdG8gd2FsayBhbGwgCmVuZ2lu
-ZXMgaW4gc3lzZnMgYW5kIGNoZWNrIHRoYXQgdGltZXNsaWNpbmcgaGFzbid0IGV4cGxpY2l0bHkg
-YmVlbiAKZGlzYWJsZWQgZm9yIGFueSBvbmUgb2YgdGhlbS4KCklmIHdlIGFyZSB0YWxraW5nIGFi
-b3V0IHRoZSBnbG9iYWwgZmxhZyBhdCBsZWFzdC4gUGVyIGVuZ2luZSB0ZXN0cyBjb3VsZCAKZG8g
-YmV0dGVyIEkgZ3Vlc3MsIGJ1dCBJIGRvbid0IHRoaW5rIHRoYXQgY29tcGxpY2F0aW9uIGlzIHdv
-cnRoIHRoZSBlZmZvcnQuCgpSZWdhcmRzLAoKVHZydGtvCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+This patch disables gamma in degamma subtest which is missing.
+It compares CRC between (linear degamma + solid colors) and (max
+degamma + gradient colors).
+
+v2 - Addressed review comments from Bhanuprakash Modem
+
+Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+Change-Id: Ibdb91b603e2e4024d170727d24c6a5425441e2e1
+---
+ tests/kms_color.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/tests/kms_color.c b/tests/kms_color.c
+index 3a42532a5c27..41720dcdd90f 100644
+--- a/tests/kms_color.c
++++ b/tests/kms_color.c
+@@ -32,7 +32,6 @@ static void test_pipe_degamma(data_t *data,
+ 	igt_output_t *output;
+ 	igt_display_t *display = &data->display;
+ 	gamma_lut_t *degamma_linear, *degamma_full;
+-	gamma_lut_t *gamma_linear;
+ 	color_t red_green_blue[] = {
+ 		{ 1.0, 0.0, 0.0 },
+ 		{ 0.0, 1.0, 0.0 },
+@@ -45,8 +44,6 @@ static void test_pipe_degamma(data_t *data,
+ 	degamma_linear = generate_table(data->degamma_lut_size, 1.0);
+ 	degamma_full = generate_table_max(data->degamma_lut_size);
+ 
+-	gamma_linear = generate_table(data->gamma_lut_size, 1.0);
+-
+ 	for_each_valid_output_on_pipe(&data->display, primary->pipe->pipe, output) {
+ 		drmModeModeInfo *mode;
+ 		struct igt_fb fb_modeset, fb;
+@@ -75,8 +72,8 @@ static void test_pipe_degamma(data_t *data,
+ 
+ 		igt_plane_set_fb(primary, &fb_modeset);
+ 		disable_ctm(primary->pipe);
+-		disable_degamma(primary->pipe);
+-		set_gamma(data, primary->pipe, gamma_linear);
++		disable_gamma(primary->pipe);
++		set_degamma(data, primary->pipe, degamma_linear);
+ 		igt_display_commit(&data->display);
+ 
+ 		/* Draw solid colors with no degamma transformation. */
+@@ -103,15 +100,17 @@ static void test_pipe_degamma(data_t *data,
+ 		 */
+ 		igt_assert_crc_equal(&crc_fullgamma, &crc_fullcolors);
+ 
++		disable_degamma(primary->pipe);
+ 		igt_plane_set_fb(primary, NULL);
+ 		igt_output_set_pipe(output, PIPE_NONE);
++		igt_display_commit2(&data->display, data->display.is_atomic ?
++							COMMIT_ATOMIC : COMMIT_LEGACY);
+ 		igt_remove_fb(data->drm_fd, &fb);
+ 		igt_remove_fb(data->drm_fd, &fb_modeset);
+ 	}
+ 
+ 	free_lut(degamma_linear);
+ 	free_lut(degamma_full);
+-	free_lut(gamma_linear);
+ }
+ 
+ /*
+@@ -189,8 +188,11 @@ static void test_pipe_gamma(data_t *data,
+ 		 */
+ 		igt_assert_crc_equal(&crc_fullgamma, &crc_fullcolors);
+ 
++		disable_gamma(primary->pipe);
+ 		igt_plane_set_fb(primary, NULL);
+ 		igt_output_set_pipe(output, PIPE_NONE);
++		igt_display_commit2(&data->display, data->display.is_atomic ?
++							COMMIT_ATOMIC : COMMIT_LEGACY);
+ 		igt_remove_fb(data->drm_fd, &fb);
+ 		igt_remove_fb(data->drm_fd, &fb_modeset);
+ 	}
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
