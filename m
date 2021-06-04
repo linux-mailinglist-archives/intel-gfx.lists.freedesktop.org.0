@@ -2,51 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E20839BF99
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D46DF39BFA1
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:31:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77F5D6F898;
-	Fri,  4 Jun 2021 18:28:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 272686F897;
+	Fri,  4 Jun 2021 18:31:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
- [IPv6:2a00:1450:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0ADA6F898
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:28:41 +0000 (UTC)
-Received: by mail-lj1-x22d.google.com with SMTP id p20so12728552ljj.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:28:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com
+ [IPv6:2607:f8b0:4864:20::b30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9686F899
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:31:54 +0000 (UTC)
+Received: by mail-yb1-xb30.google.com with SMTP id s107so15015507ybi.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:31:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qJfjfLKhx6XeYb2Tbbu80SEd5j6TptTyCku5xHFfT5s=;
- b=jxPgE+jbxfiVHyQo/nLEsvs194XwdwmZ1m+LIIqjos91b7z3rgJdrgP2L61VdFqk/k
- HnwEtC5hKrKeIJTNPFi5MPHSQktomVlZf8czIyEQFNnmmCU9s+Ypf1z3j/82v7hWQZK4
- 3H1e1GpKqoeXCsEbTNfk546OQ9ib1KQHgWy6g=
+ :cc; bh=72ds9/XQMWTp9NqjcEMsN1fK43XfOFqWDvWzjSJ7jys=;
+ b=BHlUQYapK9VASu5c9kuFeSknwmDTQINEOff/7qre8G1DRD+bNAqxG7Vd3K1OAbslfF
+ 3bxSesjrH4NdZFy+FnZ7+4L6+AltXbv8jpQ3skqY3+rODqkRQH7M1VOb7YkciZEGpR6M
+ n5Q2E0SAHDIR4cNogJxeaSH4OVqJOBvh4TvjHCYpjfzUCU1XP6eloL4soyX7CwODvdS7
+ wXOtTl/WatcPYF78WS9cNHkIAbC3ZYaYMrkt9cpiqc7GB4nAaS1zROjvxb6eGyPA9MxS
+ hO3Mv/dXk9aaznnlRwQKktxcfTr8xLOsvX2/7rp2NjsfQYXUPABikIEmntWuY4kKdns3
+ UqVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=qJfjfLKhx6XeYb2Tbbu80SEd5j6TptTyCku5xHFfT5s=;
- b=lDTcUkz/9NHC+Ava2cIEmYUYujftkOijvbvZ5KaQWCHS8ygEvQKzc5BtwIg6Xcuqpf
- fzvAnkyH4QL1X4bkZFHitj9vLA3WOjo9WhsOG06UDPMOUdsqYF/4JMFc1Fhb47tyLkHA
- hHkixMU2rMlAlvW60fGlCbfDQbiF2ECyOutc+PBI8SfmNNfiQpYItHG3DkzzVpCyzUVS
- ocgTSh8J0nsaQxPBvRlEw5iBwUVRuuUNFmkdLzXyDUUaBX+4FeiMJT7NkjW53lLL7nux
- LaG4cDWk7wCVePdOIewxpasRtvYPnLu1+65iJipyBCmYwTM5NurSoyxhrkABNbdHxLXH
- UvQQ==
-X-Gm-Message-State: AOAM531G00gBI0nei3kdrB9GpbGADdQssPcIqQVZ5HI9ZyvLaMREA+U2
- Ew/2ffrmuWr3Dbk6urnExfSpvs49iArWvlJcNbapgA==
-X-Google-Smtp-Source: ABdhPJzkP52xtMNYhfi8H/hkInJyMmwd/QRQ2cJK973l743O4rO1XmU8DQHvuf5/JHNG//NVt+QjMUPg/jILkFWC1rM=
-X-Received: by 2002:a2e:a373:: with SMTP id i19mr4340843ljn.49.1622831320312; 
- Fri, 04 Jun 2021 11:28:40 -0700 (PDT)
+ bh=72ds9/XQMWTp9NqjcEMsN1fK43XfOFqWDvWzjSJ7jys=;
+ b=WXgnszOKRdj+y4bZJiyI0wUzUOq4UuNZulIy1mWSEE+yjOrb7AUFuYbUp61BW+eBUn
+ zqDZNOy3m1FIBMKNa/SMmRjKEo4lCbuRMEU1e7IXoobyExWfSp3VHifZyvZl1XxIbxs6
+ BRazOXUon0XkpPb8cFqqE+sy4oKCcakB6igROjWifAAbVAyah1UQ6gH+btuKBRWVAXA3
+ ddspu4CIk1K1h+2qE44g7wmQMhLUPGqY+q9W/MbymHIKfriueeCqN/U2KSjkFMV+Vls5
+ IrhkrhsnDe2NR4ufpC4LiE9AbAKKe0xxZO2pMRE5zEVfM4jfo1pKGZxNuiTJD4amcYfI
+ NIwA==
+X-Gm-Message-State: AOAM533Qy8+uYjET/m192ZspwyZZ1J0L5AGoOHIaOr/jbBy60y2YE/9w
+ Vuczgtu6Pu73ZotLC/0RwQeRDPKyfGULA3vGQvOSQQ==
+X-Google-Smtp-Source: ABdhPJzGqVcj8ezF2JzuacdpLarjAVQnu5e6NCCLljz7V9jYrbvVzh/cX51DFezor2Izq+qKJ1wdF20m0hKUIBhUqzw=
+X-Received: by 2002:a25:81c5:: with SMTP id n5mr7283571ybm.323.1622831513109; 
+ Fri, 04 Jun 2021 11:31:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <1622176543-12759-1-git-send-email-vidya.srinivas@intel.com>
- <1622739294-14346-1-git-send-email-vidya.srinivas@intel.com>
-In-Reply-To: <1622739294-14346-1-git-send-email-vidya.srinivas@intel.com>
-From: Mark Yacoub <markyacoub@chromium.org>
-Date: Fri, 4 Jun 2021 14:28:29 -0400
-Message-ID: <CAJUqKUqu7QdTszSdDeNMRgVo3LfBd=qjYKb7rWsyVE60YwWYiw@mail.gmail.com>
-To: Vidya Srinivas <vidya.srinivas@intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/kms_color: Remove gamma code
- from degamma tests
+References: <20210603212722.59719-1-matthew.brost@intel.com>
+ <20210603212722.59719-4-matthew.brost@intel.com>
+In-Reply-To: <20210603212722.59719-4-matthew.brost@intel.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Fri, 4 Jun 2021 13:31:42 -0500
+Message-ID: <CAOFGe95CkXy03G5oDEHBLHB2XNbLc2K_Uxx-rdW=Cg9RsKrYWA@mail.gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Add
+ i915_sched_engine_reset_on_empty function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,99 +63,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- charlton.lin@intel.com
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 3, 2021 at 1:04 PM Vidya Srinivas <vidya.srinivas@intel.com> wrote:
+On Thu, Jun 3, 2021 at 4:09 PM Matthew Brost <matthew.brost@intel.com> wrote:
 >
-> CRC should be collected without degamma transformation
-> and after drawing gradient with degamma LUT.
-> This patch removes things which are not related to degamma
-> and makes it similar to pipe gamma test.
->
-Tested on ChromeOS on TGL (Delbin) and JSL (Drawlat)
-Tested-by: Mark Yacoub <markyacoub@chromium.org>
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> Rather than touching schedule state in the generic PM code, reset the
+> priolist allocation when empty in the submission code. Add a wrapper
+> function to do this and update the backends to call it in the correct
+> place.
+
+Seems reasonable, I think.  I'm by no means an expert but
+
+Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+
+anyway.  My one suggestion would be to tweak the commit message to
+talk about the functional change rather than the helper.  Something
+like
+
+drm/i915: Reset sched_engine.no_priolist immediately after dequeue
+
+Typically patches which say "add a helper function" don't come with a
+non-trivial functional change.
+
+--Jason
+
+
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  tests/kms_color.c | 16 ++++++----------
->  1 file changed, 6 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c            | 2 --
+>  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 1 +
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c    | 2 ++
+>  drivers/gpu/drm/i915/i915_scheduler.h                | 7 +++++++
+>  4 files changed, 10 insertions(+), 2 deletions(-)
 >
-> diff --git a/tests/kms_color.c b/tests/kms_color.c
-> index 3a42532a5c27..2c9821cdecce 100644
-> --- a/tests/kms_color.c
-> +++ b/tests/kms_color.c
-> @@ -31,8 +31,7 @@ static void test_pipe_degamma(data_t *data,
->  {
->         igt_output_t *output;
->         igt_display_t *display = &data->display;
-> -       gamma_lut_t *degamma_linear, *degamma_full;
-> -       gamma_lut_t *gamma_linear;
-> +       gamma_lut_t *degamma_full;
->         color_t red_green_blue[] = {
->                 { 1.0, 0.0, 0.0 },
->                 { 0.0, 1.0, 0.0 },
-> @@ -42,11 +41,8 @@ static void test_pipe_degamma(data_t *data,
->         igt_require(igt_pipe_obj_has_prop(primary->pipe, IGT_CRTC_DEGAMMA_LUT));
->         igt_require(igt_pipe_obj_has_prop(primary->pipe, IGT_CRTC_GAMMA_LUT));
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index b6a00dd72808..1f07ac4e0672 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -280,8 +280,6 @@ static int __engine_park(struct intel_wakeref *wf)
+>         if (engine->park)
+>                 engine->park(engine);
 >
-> -       degamma_linear = generate_table(data->degamma_lut_size, 1.0);
->         degamma_full = generate_table_max(data->degamma_lut_size);
->
-> -       gamma_linear = generate_table(data->gamma_lut_size, 1.0);
+> -       engine->sched_engine->no_priolist = false;
 > -
->         for_each_valid_output_on_pipe(&data->display, primary->pipe->pipe, output) {
->                 drmModeModeInfo *mode;
->                 struct igt_fb fb_modeset, fb;
-> @@ -75,8 +71,7 @@ static void test_pipe_degamma(data_t *data,
+>         /* While gt calls i915_vma_parked(), we have to break the lock cycle */
+>         intel_gt_pm_put_async(engine->gt);
+>         return 0;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 2326a73af6d3..609753b5401a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -1553,6 +1553,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+>          * interrupt for secondary ports).
+>          */
+>         sched_engine->queue_priority_hint = queue_prio(sched_engine);
+> +       i915_sched_engine_reset_on_empty(sched_engine);
+>         spin_unlock(&engine->active.lock);
 >
->                 igt_plane_set_fb(primary, &fb_modeset);
->                 disable_ctm(primary->pipe);
-> -               disable_degamma(primary->pipe);
-> -               set_gamma(data, primary->pipe, gamma_linear);
-> +               set_degamma(data, primary->pipe, degamma_full);
->                 igt_display_commit(&data->display);
+>         /*
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 5d00f2e3c1de..f4a6fbfaf82e 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -263,6 +263,8 @@ static void guc_submission_tasklet(struct tasklet_struct *t)
 >
->                 /* Draw solid colors with no degamma transformation. */
-> @@ -92,7 +87,6 @@ static void test_pipe_degamma(data_t *data,
->                  */
->                 paint_gradient_rectangles(data, mode, red_green_blue, &fb);
->                 igt_plane_set_fb(primary, &fb);
-> -               set_degamma(data, primary->pipe, degamma_full);
->                 igt_display_commit(&data->display);
->                 igt_wait_for_vblank(data->drm_fd,
->                                 display->pipes[primary->pipe->pipe].crtc_offset);
-> @@ -105,13 +99,13 @@ static void test_pipe_degamma(data_t *data,
+>         __guc_dequeue(engine);
 >
->                 igt_plane_set_fb(primary, NULL);
->                 igt_output_set_pipe(output, PIPE_NONE);
-> +               igt_display_commit2(&data->display, data->display.is_atomic ?
-> +                                                       COMMIT_ATOMIC : COMMIT_LEGACY);
->                 igt_remove_fb(data->drm_fd, &fb);
->                 igt_remove_fb(data->drm_fd, &fb_modeset);
->         }
->
-> -       free_lut(degamma_linear);
->         free_lut(degamma_full);
-> -       free_lut(gamma_linear);
+> +       i915_sched_engine_reset_on_empty(engine->sched_engine);
+> +
+>         spin_unlock_irqrestore(&engine->active.lock, flags);
 >  }
 >
->  /*
-> @@ -191,6 +185,8 @@ static void test_pipe_gamma(data_t *data,
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+> index 5bec7b3b8456..713c38c99de9 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.h
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.h
+> @@ -72,6 +72,13 @@ i915_sched_engine_is_empty(struct i915_sched_engine *sched_engine)
+>         return RB_EMPTY_ROOT(&sched_engine->queue.rb_root);
+>  }
 >
->                 igt_plane_set_fb(primary, NULL);
->                 igt_output_set_pipe(output, PIPE_NONE);
-> +               igt_display_commit2(&data->display, data->display.is_atomic ?
-> +                                                       COMMIT_ATOMIC : COMMIT_LEGACY);
->                 igt_remove_fb(data->drm_fd, &fb);
->                 igt_remove_fb(data->drm_fd, &fb_modeset);
->         }
+> +static inline void
+> +i915_sched_engine_reset_on_empty(struct i915_sched_engine *sched_engine)
+> +{
+> +       if (i915_sched_engine_is_empty(sched_engine))
+> +               sched_engine->no_priolist = false;
+> +}
+> +
+>  void i915_request_show_with_schedule(struct drm_printer *m,
+>                                      const struct i915_request *rq,
+>                                      const char *prefix,
 > --
-> 2.7.4
+> 2.28.0
 >
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
