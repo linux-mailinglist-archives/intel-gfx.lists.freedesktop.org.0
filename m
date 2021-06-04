@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5621339BFD8
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5586539BFDA
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:48:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C5656F8A0;
-	Fri,  4 Jun 2021 18:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B15F36F8A2;
+	Fri,  4 Jun 2021 18:48:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA556F89F
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:46:47 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id a1so5849616lfr.12
- for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:46:47 -0700 (PDT)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 002586F8A2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:47:58 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id v22so14179918lfa.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:47:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=CcgqJT8ZkkZ7A/z3l2ipf5uWh4ffG6GQsS+y29hFzEc=;
- b=netQR9Hk9qiv0+zDpQZugUuyLClkJc1hyYn4sR4Qp8ABO6IWco2rgpjPZKlNNr4Gmj
- 8/lkBS5fEOe/bYZawBFeF+JIUn5y5j91UrKcMsQ86myIiiJzWs7FUJA31IdpQyO+k19U
- eSvaxKCeMCUGoKwuHhU/fSaOLj2AsjohHMmiw=
+ :cc; bh=1FpQJYCACu5ixG4nOY1XZoKqkzwvSt7+ZzKJ449kYAs=;
+ b=WSH4EdsauyStBsoJHLcxIth+Orl+g1P82TYIxaDZx0ytbDR+o146hYaB+xQjQCsaXm
+ 5ttoRGTU/7/0XJsyYN95gLxCC9aYKVBhSVDpjbDiwjqVWyOpi0tKUzcdOc7eAGcSlqpu
+ a6C4zWcGEzXtq967grMO2quMC4gipezyvwC+U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=CcgqJT8ZkkZ7A/z3l2ipf5uWh4ffG6GQsS+y29hFzEc=;
- b=CsMMwe5DJEgAFad6reHZSvKRHTtarn08FghmxQPMI5k8u0PmZ9K3pzap3bojizLJ79
- Tza86UEdxOWo0x0PMy7fr1CUQQFvV1bjfV1+zppTk2X1Etm7xInaoPLsV78P7TIDWa9p
- jVrsNtO2Xw8pUvpQes+mhQuHh9/BXbivRh7nn8AC4IlMmv/OUMcIknB6+h2f1S44A428
- zfg5FI3Lld/90zoYBu7CDGnAWQRG/uXkzCK+jomiGJeq5HPeI0E0ot3+7LnR3uxsztO0
- crv7Gl11rEcT5tBYJzK4UwpDXfHnvPuWnWTvNk5JzLAq69ihQ0CbHanHg9no4cWjIBbZ
- lfNw==
-X-Gm-Message-State: AOAM531shHhOioJwR2ipTQ28c6JfPVVggwUfqu2Oo3tQdXu/S6E0ihsp
- zkKYYlahIVbxdOnJlPpVa8K+d3RG21e9eUrYLlSseQ==
-X-Google-Smtp-Source: ABdhPJxpjqXpb24B12qDx/5/FkiUsMOyKCktM7R79vwwDZMc5DWBZ2nKuXoj0FAELO1Fjg9O6wcvGUUWuI0G8VILHh4=
-X-Received: by 2002:a19:6a09:: with SMTP id u9mr3582361lfu.451.1622832405449; 
- Fri, 04 Jun 2021 11:46:45 -0700 (PDT)
+ bh=1FpQJYCACu5ixG4nOY1XZoKqkzwvSt7+ZzKJ449kYAs=;
+ b=J4YXe9byJTluwVRQeozaAGkv6xgS4uDZvnJTCU4Que+EB0rKTqpMrUqoG3UVuTf8IF
+ eXqk2UIkPJki/KuTy1XNccvGsjLMbcPrYism579tzbrwJOoewHtc+S9eUC4ZaEwCxNZj
+ 3z7JVn5hGWFzJS6nR+U719+7PDXc3yjBmRWuFmTeZuwRtO5dKtqBCkRrDo1hRV9luCmn
+ RLEAnYn1PrbQGz3wMxidBhTFCC+9FRr39watmWLCESlXMvrkYkSRMUtZfm0uzWTuN5c5
+ 78Xyqm2HVYJaKkgVj1zngZVlG3DU4mfvny0avob48LZVzHXP+PYXzNBOUe8yj8xeZnyF
+ cLhg==
+X-Gm-Message-State: AOAM530gJmbJHqKwcLoNtmH09RjrNAN1aVp7xjt461orTAiMHnqBFFKt
+ wkCRUMue5GNS1EUXMCk0Uio73xkv3QoqeVsib44u3A==
+X-Google-Smtp-Source: ABdhPJwWPM0DL7d1wYb1yyS2wUK4UIoAcR5KKhVnJTVwCv4qZaXAcnvy6bIJi7uvbuajoYJjR8nWGnQfKlQvDpaKY30=
+X-Received: by 2002:ac2:4144:: with SMTP id c4mr3609737lfi.425.1622832477468; 
+ Fri, 04 Jun 2021 11:47:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <1622175883-12405-1-git-send-email-vidya.srinivas@intel.com>
-In-Reply-To: <1622175883-12405-1-git-send-email-vidya.srinivas@intel.com>
+References: <20210601034116.8396-1-shawn.c.lee@intel.com>
+In-Reply-To: <20210601034116.8396-1-shawn.c.lee@intel.com>
 From: Mark Yacoub <markyacoub@chromium.org>
-Date: Fri, 4 Jun 2021 14:46:34 -0400
-Message-ID: <CAJUqKUojeh3fv2KA7=xwOWtaF+axW0EuNk3PJ0iEqft_cFXTxg@mail.gmail.com>
-To: Vidya Srinivas <vidya.srinivas@intel.com>
-Subject: Re: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_flip.c: Fix subtests
- flip-vs-suspend
+Date: Fri, 4 Jun 2021 14:47:46 -0400
+Message-ID: <CAJUqKUpehfv4ua6MDdX4B-vThOhMZP+7WcZqEbppiYrN9dUdzw@mail.gmail.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/kms_dp_dsc: Transmit correct
+ DRM connector structure.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +65,62 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tested it on ChromeOS and it runs well. But I think we should fix the
-root cause instead.
-
-On Fri, May 28, 2021 at 12:33 AM Vidya Srinivas
-<vidya.srinivas@intel.com> wrote:
+On Mon, May 31, 2021 at 11:36 PM Lee Shawn C <shawn.c.lee@intel.com> wrote:
 >
-> Some Intel Gen11 systems are not able to do a RTC wake.
-> Instead change the default SUSPEND_TEST_NONE to
-> SUSPEND_TEST_PLATFORM.
+> 1. Pass one more parameter (current drmModeConnector) when
+>    call "run_test()". Use it to retrieve proper connector_type.
+> 2. SIGSEGV fault would happen due to "igt_output" did not
+>    store properly in "data->output". Main funciton already
+>    pass "igt_output" pointer into "run_test()" function.
+>    Use this pointer instead of "data->output" to get display mode.
+>
+> Fixes: a1772be7dede ("tests/kms_dp_dsc: Bug fix for DP on Pipe A")
 >
 Tested on ChromeOS on TGL (Delbin) and JSL (Drawlat)
 Tested-by: Mark Yacoub <markyacoub@chromium.org>
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 > ---
->  tests/kms_flip.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  tests/kms_dp_dsc.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 >
-> diff --git a/tests/kms_flip.c b/tests/kms_flip.c
-> index 8f736652be90..8afac88c9b15 100755
-> --- a/tests/kms_flip.c
-> +++ b/tests/kms_flip.c
-> @@ -835,7 +835,8 @@ static bool run_test_step(struct test_output *o, unsigned int *events)
+> diff --git a/tests/kms_dp_dsc.c b/tests/kms_dp_dsc.c
+> index ea7c9f4f72ce..e434384da369 100644
+> --- a/tests/kms_dp_dsc.c
+> +++ b/tests/kms_dp_dsc.c
+> @@ -224,11 +224,11 @@ static void update_display(data_t *data, enum dsc_test_type test_type)
+>  }
 >
->         if (o->flags & TEST_SUSPEND)
->                 igt_system_suspend_autoresume(SUSPEND_STATE_MEM,
-> -                                             SUSPEND_TEST_NONE);
-> +                                             is_i915_device(drm_fd)?
-> +                                             SUSPEND_TEST_PLATFORM:SUSPEND_TEST_NONE);
+>  static void run_test(data_t *data, igt_output_t *output,
+> -                    enum dsc_test_type test_type)
+> +                    drmModeConnector *connector, enum dsc_test_type test_type)
+>  {
+>         enum pipe pipe;
 >
->         if (do_vblank && (o->flags & TEST_EINVAL) && o->vblank_state.count > 0)
->                 igt_assert(do_wait_for_vblank(o, o->pipe, target_seq, &vbl_reply)
+> -       data->mode = igt_output_get_mode(data->output);
+> +       data->mode = igt_output_get_mode(output);
+>         igt_create_pattern_fb(data->drm_fd, data->mode->hdisplay,
+>                               data->mode->vdisplay,
+>                               DRM_FORMAT_XRGB8888,
+> @@ -239,7 +239,7 @@ static void run_test(data_t *data, igt_output_t *output,
+>                 if (is_i915_device(data->drm_fd)) {
+>                         uint32_t devid = intel_get_drm_devid(data->drm_fd);
+>
+> -                       if (data->connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
+> +                       if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
+>                             data->pipe == PIPE_A && IS_GEN11(devid)) {
+>                                 igt_debug("DSC not supported on Pipe A on external DP in Gen11 platforms\n");
+>                                 continue;
+> @@ -304,7 +304,7 @@ igt_main
+>                                         continue;
+>                                 }
+>                                 test_conn_cnt++;
+> -                               run_test(&data, output, test_basic_dsc_enable);
+> +                               run_test(&data, output, connector, test_basic_dsc_enable);
+>                         }
+>                         igt_skip_on(test_conn_cnt == 0);
+>                 }
 > --
-> 2.7.4
+> 2.17.1
 >
 _______________________________________________
 Intel-gfx mailing list
