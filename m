@@ -1,46 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BB839B598
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 11:11:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A85FF39B59D
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 11:12:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32AF66F5E5;
-	Fri,  4 Jun 2021 09:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFB866F5EA;
+	Fri,  4 Jun 2021 09:12:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A42136F5E5
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 09:11:53 +0000 (UTC)
-IronPort-SDR: tQxtUVd1X46DzweiWktBm+QmH0rjAmcxXW2B7casHYcjmBgreW8Fv8wYAFuXKbeBaM9KGkZjXx
- qeIOklNYxKVw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="204283820"
-X-IronPort-AV: E=Sophos;i="5.83,247,1616482800"; d="scan'208";a="204283820"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 02:11:52 -0700
-IronPort-SDR: 49t/ES1upIvzU1RHIefFFFDGCcmkOomqHreaY94vQ1JSsC7EtromJi0nJQDdpRtltiX+HwArCc
- fRUzzU496Gqg==
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="480572247"
-Received: from tnienhux-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.57.210])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 02:11:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Navare\, Manasi" <manasi.d.navare@intel.com>, "Manna\,
- Animesh" <animesh.manna@intel.com>
-In-Reply-To: <20210603182746.GA11948@labuser-Z97X-UD5H>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210514153711.2359617-1-matthew.d.roper@intel.com>
- <20210514153711.2359617-16-matthew.d.roper@intel.com>
- <87fsxzp9qx.fsf@intel.com> <875yyvp1q5.fsf@intel.com>
- <431cb382bfc64fc6a3b88b17c0d6be88@intel.com>
- <20210603182746.GA11948@labuser-Z97X-UD5H>
-Date: Fri, 04 Jun 2021 12:11:47 +0300
-Message-ID: <87fsxy0zak.fsf@intel.com>
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF056F5E9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 09:12:51 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id n4so8562795wrw.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 02:12:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=chpk3EQ2hh64dp2WTIOzdpp1txr9bBbfzKuE+CVepDQ=;
+ b=OTDC9Dxwwe3JF9gDsQwkUdFwz9Fz/39AZMyVFfV+BKv4STDDZWO4A5MoiANkSW2wzv
+ nzUm/BZcIQ+yYfcSUVOrAadWYFILId3jWrQd2vWIlcL+Fxw44r5+CyQRa78F2ijvpFMf
+ g2ydOeGcVMRhK6EwfB9dERrX9b9NimRKmYhoQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=chpk3EQ2hh64dp2WTIOzdpp1txr9bBbfzKuE+CVepDQ=;
+ b=cleYKXJBd6QeNmj+Yf5zkq5BJviCDSduX1lXqKvz+onzp/Qf3wcH++m8M12cICkWd5
+ bEZlzCLmUb/RDQr43/mHOL6VoVzDzCx7Av6jG2DlVCjL1u9at9JBsxM/OkhCItRKzZjg
+ Em82MFApRLZ+TT2zkjG1aKm3iXkQ3MAtxT/HhqxNfaX48NR8v+r1GgTH2WbqQ67pNhdl
+ rjBQQCkw0MhEcv1R+3YUMVO2PWoFeUTPnLNo2s9wGuXDyocPXR9IL2Ai9hfGEwSqUUa6
+ XbBLv29M9BAl6FH4cIcCx2jhxDL3AMqwK6O91/dQZUcvqwG/2Xbm31gJ9KVlwAOG7/sb
+ OgHA==
+X-Gm-Message-State: AOAM531MTxeR0X38a37LX3KamDAOcM3b5suCqr0t4t3Dk8G9RAbHKBJw
+ c/OH8P27N6cu9zkhNHfjyQOoQQ==
+X-Google-Smtp-Source: ABdhPJy5fEKV+1sE998yeP/bHOn3KEA0UDF+I7Wk8MJkpzDWnBoHnohVMwd7SXZ1nV0GFc3zGYpKXg==
+X-Received: by 2002:adf:df09:: with SMTP id y9mr2837085wrl.108.1622797970411; 
+ Fri, 04 Jun 2021 02:12:50 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id l10sm3968219wrs.11.2021.06.04.02.12.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 04 Jun 2021 02:12:49 -0700 (PDT)
+Date: Fri, 4 Jun 2021 11:12:47 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Dave Airlie <airlied@gmail.com>
+Message-ID: <YLnuj0jmF8q05pta@phenom.ffwll.local>
+References: <a29eaef9-2457-1393-6757-40956811daf8@linux.intel.com>
+ <a6965639-acf6-b5f5-482c-2715e7fa69d4@amd.com>
+ <b4c18e45-98c9-ce7f-b22c-c00c795844c2@shipmail.org>
+ <baf4f828-76c8-6b47-5bba-9b9c8e7b307b@amd.com>
+ <YLfQplT8H6PdCCLX@phenom.ffwll.local>
+ <c50fa98f-3735-fe04-d3f9-8a7a08a7562e@linux.intel.com>
+ <CAKMK7uE+fB_+UG668O=QMXwQ9_Xb--KhzehT77HLfBoWve-zLg@mail.gmail.com>
+ <68e6057c-df17-64ce-3116-cd5e79578795@amd.com>
+ <a3f789a0-9e75-280a-7602-4728738024eb@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit
- changes for uncompressed joiner
+Content-Disposition: inline
+In-Reply-To: <a3f789a0-9e75-280a-7602-4728738024eb@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] Merging TTM branches through the Intel tree?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,303 +74,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 03 Jun 2021, "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> On Thu, Jun 03, 2021 at 06:49:23AM -0700, Manna, Animesh wrote:
->> 
->> 
->> > -----Original Message-----
->> > From: Jani Nikula <jani.nikula@linux.intel.com>
->> > Sent: Thursday, June 3, 2021 6:03 PM
->> > To: Roper, Matthew D <matthew.d.roper@intel.com>; intel-
->> > gfx@lists.freedesktop.org
->> > Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
->> > <manasi.d.navare@intel.com>; Kulkarni, Vandita <vandita.kulkarni@intel.com>
->> > Subject: Re: [Intel-gfx] [CI 15/19] drm/i915/bigjoiner: atomic commit changes
->> > for uncompressed joiner
->> > 
->> > On Thu, 03 Jun 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->> > > On Fri, 14 May 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
->> > >> From: Animesh Manna <animesh.manna@intel.com>
->> > >>
->> > >> Respective bit for master or slave to be set for uncompressed
->> > >> bigjoiner in dss_ctl1 register.
->> > >
->> > > I was looking at the changes here due to a static checker complaint,
->> > > and I think there are a number of issues here. Some more serious than
->> > > others, and some predate the patch.
->> > >
->> > > Comments inline.
->> > >
->> > >> Cc: Manasi Navare <manasi.d.navare@intel.com>
->> > >> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->> > >> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
->> > >> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> > >> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
->> > >> ---
->> > >>  drivers/gpu/drm/i915/display/intel_display.c |  6 +++
->> > >>  drivers/gpu/drm/i915/display/intel_vdsc.c    | 40 +++++++++++++++++++-
->> > >>  drivers/gpu/drm/i915/display/intel_vdsc.h    |  2 +
->> > >>  drivers/gpu/drm/i915/i915_reg.h              |  2 +
->> > >>  4 files changed, 49 insertions(+), 1 deletion(-)
->> > >>
->> > >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
->> > >> b/drivers/gpu/drm/i915/display/intel_display.c
->> > >> index b5fd721137d3..422b59ebf6dc 100644
->> > >> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> > >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> > >> @@ -3411,6 +3411,7 @@ static void icl_ddi_bigjoiner_pre_enable(struct
->> > intel_atomic_state *state,
->> > >>  					 const struct intel_crtc_state
->> > *crtc_state)  {
->> > >>  	struct intel_crtc *master = to_intel_crtc(crtc_state->uapi.crtc);
->> > >> +	struct drm_i915_private *dev_priv = to_i915(master->base.dev);
->> > >>  	struct intel_crtc_state *master_crtc_state;
->> > >>  	struct drm_connector_state *conn_state;
->> > >>  	struct drm_connector *conn;
->> > >> @@ -3444,6 +3445,9 @@ static void icl_ddi_bigjoiner_pre_enable(struct
->> > intel_atomic_state *state,
->> > >>  		/* and DSC on slave */
->> > >>  		intel_dsc_enable(NULL, crtc_state);
->> > >>  	}
->> > >> +
->> > >> +	if (DISPLAY_VER(dev_priv) >= 13)
->> > 
->> > I don't think we should add these checks here. Make sure the crtc_state only has
->> > the relevant stuff enabled if the platform supports it. Don't duplicate the checks.
->> 
->> Agree.
->
->
->> 
->> > 
->> > >> +		intel_uncompressed_joiner_enable(crtc_state);
->> > 
->> > As this is always called after intel_dsc_enable(), I think it would make sense to
->> > move this within intel_dsc_enable().
->> 
->> Agree.
->
-> @Jani I had asked to create a separate joiner enable since having an uncompressed enable inside dsc_enable
-> just from the names makes it contradicting.
-> But sure may be with a comment before calling uncompressed_joiner_enable() it can be just called from inside dsc enable()
-> And instead of checking the display ver there we just use this condition:
-> if (crtc_state->bigjoiner && !crtc_state->dsc.compression_enable) {
-> 	intel_uncompressed_joiner_enable(crtc_state);
-> 	}
-> Since the atomic check ensures that only for ver >=13 is when we allow big joiner and no DSC combination.
->
-> Animesh, Jani does that sound good?
+On Fri, Jun 04, 2021 at 11:01:40AM +0200, Thomas Hellstr=F6m wrote:
+> =
 
-Yes.
+> On 6/4/21 9:51 AM, Christian K=F6nig wrote:
+> > Am 03.06.21 um 09:36 schrieb Daniel Vetter:
+> > > On Thu, Jun 3, 2021 at 8:50 AM Thomas Hellstr=F6m
+> > > <thomas.hellstrom@linux.intel.com> wrote:
+> > > > =
 
-Regarding naming semantics, I think we just need to consider DSC an
-engine that does other things than just compression. The actual
-registers being the same makes, I think, the logic harder to follow with
-these being separate steps. Also, you can then cover them with a single
-power domain get/put.
+> > > > On 6/2/21 8:40 PM, Daniel Vetter wrote:
+> > > > > On Wed, Jun 02, 2021 at 11:48:41AM +0200, Christian K=F6nig wrote:
+> > > > > > Am 02.06.21 um 11:16 schrieb Thomas Hellstr=F6m (Intel):
+> > > > > > > On 6/2/21 10:32 AM, Christian K=F6nig wrote:
+> > > > > > > > Uff I'm just waiting for feedback from Philip to
+> > > > > > > > merge a large patch
+> > > > > > > > set for TTM through drm-misc-next.
+> > > > > > > > =
 
-Anyway, care must be taken to not change the logic for compressed paths.
+> > > > > > > > I'm pretty sure we will run into merge conflicts if you try=
+ to push
+> > > > > > > > your changes through the Intel tree.
+> > > > > > > > =
 
-BR,
-Jani.
+> > > > > > > > Christian.
+> > > > > > > OK, so what would be the best approach here?, Adding
+> > > > > > > the TTM patches to
+> > > > > > > drm-misc-next when your set has landed?
+> > > > > > I think I will send out out my set to Matthew once more
+> > > > > > for review, then
+> > > > > > push the common TTM stuff to drm-misc-next as much as possible.
+> > > > > > =
+
+> > > > > > Then you should be able to land your stuff to
+> > > > > > drm-misc-next and rebase on
+> > > > > > the end result.
+> > > > > > =
+
+> > > > > > Just need to note to David that drm-misc-next should be
+> > > > > > merged to drm-next
+> > > > > > before the Intel patches depending on that stuff land as well.
+> > > > > Other option (because the backmerges tend to be slow) is a
+> > > > > topic branch,
+> > > > > and we just eat/resolve the conflicts in both drm-misc-next and
+> > > > > drm-intel-gt-next in the merge commit. If it's not too bad (I hav=
+en't
+> > > > > looked at what exactly we need for the i915 side from ttm in deta=
+il).
+> > > > > =
+
+> > > > > But also often figuring out the topic branch logistics takes
+> > > > > longer than
+> > > > > just merging to drm-misc-next as the patches get ready.
+> > > > > -Daniel
+> > > > Daniel: So the thing we need to get into TTM is the iterator-based
+> > > > move_memcpy which is more adaptable than the current one and needed=
+ to
+> > > > support non-linear lmem buffers, some bug-fixes and minor changes t=
+o be
+> > > > able to keep our short-term-pinning while on the LRU. A necessary e=
+vil.
+> > > > =
+
+> > > > Christian: it looks like you have landed some TTM changes already, =
+in
+> > > > particular the &bo->mem -> bo->resource change which is the main
+> > > > conflict I think.
+> > =
+
+> > Yes, I thought that pushing this with Matthew rb should solve at least a
+> > bit of the conflict.
+> > =
+
+> > > > Is the 10 patches self-allocation series the main
+> > > > remaining part?
+> > =
+
+> > Yes, exactly. I only need Matthew's, Daniel's or your ok and I'm good to
+> > go as well
+> > =
+
+> > > > That will probably cause some conflicts with already
+> > > > pushed i915 TTM setup code, but otherwise will not conflict with the
+> > > > rest of the TTM code I think, which should make it possible to brin=
+g in
+> > > > our TTM changes after conflict resolution with what you've already
+> > > > pushed. The memcpy code is pretty self-contained.
+> > > I think in that case topic branch on top of drm-next (once the ttm
+> > > bits we conflict with are there) is probably best, and then pull that
+> > > into drm-misc-next and drm-intel-gt-next. Merge window freeze is also
+> > > approach, so without topic branch we'd be stuck until like -rc2 when
+> > > drm-next reopens. I guess Maarten can do the topic branch logistics in
+> > > drm-misc.git for this.
+> > =
+
+> > That approach sounds good to me as well.
+> > =
+
+> > The amdgpu branch had some merge conflicts as well, but nothing we
+> > couldn't fix.
+> =
+
+> OK, so this is going to be a little tricky, I guess.
+> =
+
+> From what I can tell, the memcpy TTM stuff is resolved locally and can be
+> merged to drm-misc-next immediately. It might have a very minor conflict
+> with your 10 patches I think, if any.
+> =
+
+> Your 10 patches will conflict slightly with current drm-intel-gt-next I
+> think.
+> =
+
+> Remaining intel patches will conflict only with current drm-misc-next.
+> =
+
+> So We could have pull order
+> =
+
+> - drm-misc-next up to bot not including your 10 patches,
+> - drm-intel-gt-next
+> - drm-misc-next from your 10 paches and onwards,
+> - Intel's ttm enablement topic branch.
+
+If it's just slight conflicts then I wouldn't bother with careful merge
+order. Because if we do this we can get around to the i915 ttm topic
+branch only when we're back to -rc2.
+
+We can also validate any conflicts in drm-tip easily before they get baked
+in in drm-next.
+
+So I'd just go with
+- drm-misc-next gets those 10 patches from Christian and the memcpy prep
+  stuff from you, gets send to drm-next (that's probably the last feature
+  pull for 5.14 anyway, maybe another one)
+- drm-intel-gt-next gets send to drm-next
+- topic branch with remaining i915 ttm work that's in flight on top of
+  drm-next and we pull that into drm-misc-next and drm-intel-gt-next as
+  needed
+
+Only thing we need for this is a few days of testing to make sure any
+conflicts between -misc-next and -gt-next are fully validated.
+
+Adding Dave for that so he knows too.
+
+> Whether I push the ttm memcpy stuff before your 10 patches or after
+> shouldn't really matter except it might take some time to resolve the 10
+> patches - drm-intel-gt-next conflict in drm-tip.
+> =
+
+> So OK to merge the memcpy stuff to drm-misc-next now or do you want me to
+> hold on?
+> =
+
+> I'll take a look at what's remaining to review in your series. I guess it=
+'s
+> in our interest that both these series get merged asap.
+
+Yeah that part I think makes sense.
+-Daniel
+
+> =
+
+> /Thomas
+> =
+
+> =
+
+> =
+
+> > =
+
+> > Christian.
+> > =
+
+> > > -Daniel
+> > =
 
 
->
-> Manasi
->
->
->> > 
->> > >>  }
->> > >>
->> > >>  static void hsw_crtc_enable(struct intel_atomic_state *state, @@
->> > >> -6250,6 +6254,8 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
->> > >>  	}
->> > >>
->> > >>  	intel_dsc_get_config(pipe_config);
->> > >> +	if (DISPLAY_VER(dev_priv) >= 13 && !pipe_config-
->> > >dsc.compression_enable)
->> > >> +		intel_uncompressed_joiner_get_config(pipe_config);
->> > 
->> > As this is always called after intel_dsc_get_config(), I think it would make sense
->> > to move this within intel_dsc_get_config.
->> > 
->> > >>
->> > >>  	if (!active) {
->> > >>  		/* bigjoiner slave doesn't enable transcoder */ diff --git
->> > >> a/drivers/gpu/drm/i915/display/intel_vdsc.c
->> > >> b/drivers/gpu/drm/i915/display/intel_vdsc.c
->> > >> index adcd6752f919..efc3184d8315 100644
->> > >> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
->> > >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
->> > >> @@ -1021,6 +1021,22 @@ static i915_reg_t dss_ctl2_reg(const struct
->> > intel_crtc_state *crtc_state)
->> > >>  	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) :
->> > >> DSS_CTL2;  }
->> > >>
->> > >> +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
->> > >> +*crtc_state)
->> > >
->> > > Naming. Basically for any new function, the function name prefix
->> > > should match the file name. intel_vdsc.[ch] should have functions
->> > > prefixed intel_vdsc_*(). This is where we're headed to increase clarity.
->> > >
->> > > intel_uncompressed_*() is something completely different.
->> > >
->> > > Granted, here we already have intel_dsc_*() in intel_vdsc.c. We should
->> > > probably stick with intel_dsc_*(). A possible function or file rename
->> > > is not out of the question, but that's a separate matter.
->> > >
->> > >> +{
->> > >> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->> > >> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->> > >> +	u32 dss_ctl1_val = 0;
->> > >> +
->> > >> +	if (crtc_state->bigjoiner && !crtc_state->dsc.compression_enable) {
->> > >> +		if (crtc_state->bigjoiner_slave)
->> > >> +			dss_ctl1_val |= UNCOMPRESSED_JOINER_SLAVE;
->> > >> +		else
->> > >> +			dss_ctl1_val |= UNCOMPRESSED_JOINER_MASTER;
->> > >> +
->> > >> +		intel_de_write(dev_priv, dss_ctl1_reg(crtc_state), dss_ctl1_val);
->> > >> +	}
->> > >> +}
->> > >> +
->> > >>  void intel_dsc_enable(struct intel_encoder *encoder,
->> > >>  		      const struct intel_crtc_state *crtc_state)  { @@ -1060,13
->> > >> +1076,35 @@ void intel_dsc_disable(const struct intel_crtc_state
->> > *old_crtc_state)
->> > >>  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
->> > >>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->> > >>
->> > >> -	if (!old_crtc_state->dsc.compression_enable)
->> > >> +	if (!(old_crtc_state->dsc.compression_enable &&
->> > >> +	      old_crtc_state->bigjoiner))
->> > >
->> > > This fails to disable compression if we only have compression but no
->> > > bigjoiner, which is the more common case!
->> > >
->> > > See also:
->> > >
->> > > https://gitlab.freedesktop.org/drm/intel/-/issues/3537
->> > > https://patchwork.freedesktop.org/patch/msgid/20210603065356.15435-1-v
->> > > andita.kulkarni@intel.com
->> > >
->> > >>  		return;
->> > >>
->> > >>  	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
->> > >>  	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);  }
->> > >>
->> > >> +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
->> > >> +*crtc_state) {
->> > >> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->> > >> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->> > >> +	u32 dss_ctl1;
->> > >> +
->> > >> +	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
->> > 
->> > You can't read this without holding the power domain.
->> > 
->> > Since this is always called after intel_dsc_get_config(), I think it would make
->> > sense to move this reading there.
->> 
->> Ok.
->> Earlier the plan is to have separate functions for uncompressed joiner, but as you suggested it can be done in the same functions of compressed bigjoiner code.
->> Thanks Jani for review.
->> 
->> Regards,
->> Animesh
->> 
->> > 
->> > >> +	if (dss_ctl1 & UNCOMPRESSED_JOINER_MASTER) {
->> > >> +		crtc_state->bigjoiner = true;
->> > >> +		if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
->> > >> +			crtc_state->bigjoiner_linked_crtc =
->> > >> +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe +
->> > 1);
->> > >> +	} else if (dss_ctl1 & UNCOMPRESSED_JOINER_SLAVE) {
->> > >> +		crtc_state->bigjoiner = true;
->> > >> +		crtc_state->bigjoiner_slave = true;
->> > >> +		if (!WARN_ON(crtc->pipe == PIPE_A))
->> > >> +			crtc_state->bigjoiner_linked_crtc =
->> > >> +				intel_get_crtc_for_pipe(dev_priv, crtc->pipe -
->> > 1);
->> > >> +	}
->> > >
->> > > Nitpick: This duplicates a bunch of logic for figuring out master/slave.
->> > >
->> > > The static checker warning was about crtc->pipe + 1 usage. Since
->> > > INTEL_NUM_PIPES() looks at the hamming weight of i915->pipe_mask, the
->> > > checker has a hard time figuring out it does not overflow
->> > > i915->pipe_to_crtc_mapping[] in intel_get_crtc_for_pipe().
->> > >
->> > > So here in intel_vdsc.c the checks are for overflowing/underflowing
->> > > the pipe range. In intel_get_crtc_for_pipe() there's a check for the
->> > > pipe actually existing - the pipe numbering might not be contiguous.
->> > >
->> > > Superficially the static checker warning is bogus, as in we won't
->> > > overflow anything. However, deep down there are issues in the
->> > > consistency of the checks and how to handle non-contigouous pipe
->> > > numbering.
->> > >
->> > > Indeed, this does not *need* the number. We should figure out the next
->> > > *crtc*, not the next pipe *number*, which may or may not be pipe + 1.
->> > >
->> > >
->> > > BR,
->> > > Jani.
->> > >
->> > >> +}
->> > >> +
->> > >>  void intel_dsc_get_config(struct intel_crtc_state *crtc_state)  {
->> > >>  	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config; diff
->> > >> --git a/drivers/gpu/drm/i915/display/intel_vdsc.h
->> > >> b/drivers/gpu/drm/i915/display/intel_vdsc.h
->> > >> index 65d301c23580..fe4d45561253 100644
->> > >> --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
->> > >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
->> > >> @@ -12,11 +12,13 @@ struct intel_encoder;  struct intel_crtc_state;
->> > >>
->> > >>  bool intel_dsc_source_support(const struct intel_crtc_state
->> > >> *crtc_state);
->> > >> +void intel_uncompressed_joiner_enable(const struct intel_crtc_state
->> > >> +*crtc_state);
->> > >>  void intel_dsc_enable(struct intel_encoder *encoder,
->> > >>  		      const struct intel_crtc_state *crtc_state);  void
->> > >> intel_dsc_disable(const struct intel_crtc_state *crtc_state);  int
->> > >> intel_dsc_compute_params(struct intel_encoder *encoder,
->> > >>  			     struct intel_crtc_state *pipe_config);
->> > >> +void intel_uncompressed_joiner_get_config(struct intel_crtc_state
->> > >> +*crtc_state);
->> > >>  void intel_dsc_get_config(struct intel_crtc_state *crtc_state);
->> > >> enum intel_display_power_domain  intel_dsc_power_domain(const struct
->> > >> intel_crtc_state *crtc_state); diff --git
->> > >> a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> > >> index 31bc413dbba1..dd6e0bae9573 100644
->> > >> --- a/drivers/gpu/drm/i915/i915_reg.h
->> > >> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> > >> @@ -11493,6 +11493,8 @@ enum skl_power_gate {
->> > >>  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
->> > >>  #define  SPLITTER_CONFIGURATION_2_SEGMENT
->> > 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
->> > >>  #define  SPLITTER_CONFIGURATION_4_SEGMENT
->> > 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
->> > >> +#define  UNCOMPRESSED_JOINER_MASTER		(1 << 21)
->> > >> +#define  UNCOMPRESSED_JOINER_SLAVE		(1 << 20)
->> > >>
->> > >>  #define _ICL_PIPE_DSS_CTL2_PB			0x78204
->> > >>  #define _ICL_PIPE_DSS_CTL2_PC			0x78404
->> > 
->> > --
->> > Jani Nikula, Intel Open Source Graphics Center
+-- =
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
