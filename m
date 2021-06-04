@@ -2,42 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF6439BFD2
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D17739BFCF
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:41:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4BE6F89E;
-	Fri,  4 Jun 2021 18:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0EC06F89B;
+	Fri,  4 Jun 2021 18:41:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B02FB6F89C;
- Fri,  4 Jun 2021 18:42:39 +0000 (UTC)
-IronPort-SDR: mItKS1zyPNGdqA6pSmen6xUSfm2JzmSl/K8C+/WnuKkYbljdxyODO5lBDDTnb4DKSUeLVuFomc
- /2wSGoqgpK/Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,10005"; a="202489749"
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="202489749"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 11:42:38 -0700
-IronPort-SDR: oZSAYzurFWalJLPmQKU1dSxV6CXraDuCDFX09gnbU0YHfAdjHq74kZ/vw5mB697fh2jmKw57IO
- ++QSoYy3fEmw==
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="417843002"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 11:42:38 -0700
-Date: Fri, 4 Jun 2021 11:35:39 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20210604183539.GA26392@sdutt-i7>
-References: <20210603051630.2635-1-matthew.brost@intel.com>
- <20210603051630.2635-14-matthew.brost@intel.com>
- <YLnlQyPJZygHTHxk@phenom.ffwll.local>
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
+ [IPv6:2a00:1450:4864:20::230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 816216F89B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:41:49 +0000 (UTC)
+Received: by mail-lj1-x230.google.com with SMTP id c11so12792114ljd.6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:41:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YtUbxDxxxmyZQZnzGTxlJJEn+QskyNTm6GKN+/aCaAw=;
+ b=VzjePSnK0TH5SKFAm1m7Fn90xoT99EDHHcvH+uWXi1n9M+QFRZvgzhD9swBQsyS2jG
+ LQPlPkL1+g9vxCAj3G3h4v/tMpJW2qyR4ys1TRqllp+YZWe39WGz3EdXyRpn4Om6L7qD
+ W/ESrG5Bfp67oMEaDh9lPaqflECiLI2qZsss0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YtUbxDxxxmyZQZnzGTxlJJEn+QskyNTm6GKN+/aCaAw=;
+ b=jg4SHy54sDEM4aDlh7QmU+tQWPZ6ADBpYXm4n71sDMuGDAv2hOLll4dI7duo62f2hS
+ qZ8xCSRou0/59JIRt+Fo9tnDmmbxxRYetB6cDzwsiY+de8rSaanzdnP14yG0uhFdaJ4D
+ iQ+SKzrao76CQbCFBcQu4l5hhZh81irezlWyAYRjGDdFOg69sZG4AE2XMwPmPJxjNDsc
+ bGA9qvbrQCeuq9w8CdXjnv8FMIfa10dchuU+5RbLHy8XuYk746Wu7QgjIW0MybkHpYc/
+ 32XvS+l8DMp6t3gZPV0iwcijTv8V5naEtrg6uKDdEhoE9MI9xn6dlOK8pHeBMGJkRmFz
+ vYUQ==
+X-Gm-Message-State: AOAM531ze4pgggkFOoq9twAn32Sh4CRTostMNwGgYRknPmEHOiLsGV+0
+ ub1YlRc+iydND/uOsL+8CLz6fpXca8bVZlXkcBdHAQ==
+X-Google-Smtp-Source: ABdhPJxa5uwtKyGvBMSf/TrLfZFHU7sIrZ/PwEFvdSPJZhM2/XzNSQ14dqx16LBGm6v+iTbnFr4Pi2i6RnUGVQ+4OVw=
+X-Received: by 2002:a2e:b819:: with SMTP id u25mr4334095ljo.182.1622832107898; 
+ Fri, 04 Jun 2021 11:41:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YLnlQyPJZygHTHxk@phenom.ffwll.local>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 13/20] drm/i915/guc: Relax CTB response
- timeout
+References: <1622547939-8157-1-git-send-email-vidya.srinivas@intel.com>
+In-Reply-To: <1622547939-8157-1-git-send-email-vidya.srinivas@intel.com>
+From: Mark Yacoub <markyacoub@chromium.org>
+Date: Fri, 4 Jun 2021 14:41:37 -0400
+Message-ID: <CAJUqKUokxsKTRF0v4A-Oi5=n0wZJGQkLg94m0njESHQNcXcWew@mail.gmail.com>
+To: Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] [RFC]
+ tests/kms_plane_alpha_blend: Fix coverage-vs-premult-vs-constant tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,143 +58,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 04, 2021 at 10:33:07AM +0200, Daniel Vetter wrote:
-> On Wed, Jun 02, 2021 at 10:16:23PM -0700, Matthew Brost wrote:
-> > From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > 
-> > In upcoming patch we will allow more CTB requests to be sent in
-> > parallel to the GuC for processing, so we shouldn't assume any more
-> > that GuC will always reply without 10ms.
-> > 
-> > Use bigger value from CONFIG_DRM_I915_GUC_CTB_TIMEOUT instead.
-> > 
-> > v2: Add CONFIG_DRM_I915_GUC_CTB_TIMEOUT config option
-> > 
-> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> So this is a rant, but for upstream we really need to do better than
-> internal:
-> 
-> - The driver must work by default in the optimal configuration.
-> 
-> - Any config change that we haven't validated _must_ taint the kernel
->   (this is especially for module options, but also for config settings)
-> 
-> - Config need a real reason beyond "was useful for bring-up".
-> 
-> Our internal tree is an absolute disaster right now, with multi-line
-> kernel configs (different on each platform) and bespoke kernel config or
-> the driver just fails. We're the expert on our own hw, we should know how
-> it works, not offload that to users essentially asking them "how shitty do
-> you think Intel hw is in responding timely".
-> 
-> Yes I know there's a lot of these there already, they don't make a lot of
-> sense either.
-> 
-> Except if there's a real reason for this (aside from us just offloading
-> testing to our users instead of doing it ourselves properly) I think we
-> should hardcode this, with a comment explaining why. Maybe with a switch
-> between the PF/VF case once that's landed.
-> 
-> > ---
-> >  drivers/gpu/drm/i915/Kconfig.profile      | 10 ++++++++++
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |  5 ++++-
-> >  2 files changed, 14 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
-> > index 39328567c200..0d5475b5f28a 100644
-> > --- a/drivers/gpu/drm/i915/Kconfig.profile
-> > +++ b/drivers/gpu/drm/i915/Kconfig.profile
-> > @@ -38,6 +38,16 @@ config DRM_I915_USERFAULT_AUTOSUSPEND
-> >  	  May be 0 to disable the extra delay and solely use the device level
-> >  	  runtime pm autosuspend delay tunable.
-> >  
-> > +config DRM_I915_GUC_CTB_TIMEOUT
-> > +	int "How long to wait for the GuC to make forward progress on CTBs (ms)"
-> > +	default 1500 # milliseconds
-> > +	range 10 60000
-> 
-> Also range is definitely off, drm/scheduler will probably nuke you
-> beforehand :-)
-> 
-> That's kinda another issue I have with all these kconfig knobs: Maybe we
-> need a knob for "relax with reset attempts, my workloads overload my gpus
-> routinely", which then scales _all_ timeouts proportionally. But letting
-> the user set them all, with silly combiniations like resetting the
-> workload before heartbeat or stuff like that doesn't make much sense.
+On Tue, Jun 1, 2021 at 7:54 AM Vidya Srinivas <vidya.srinivas@intel.com> wrote:
 >
-
-Yes, the code as is the user could do some wacky stuff that doesn't make
-sense at all.
- 
-> Anyway, tiny patch so hopefully I can leave this one out for now until
-> we've closed this.
-
-No issue leaving this out as blocking CTBs are never really used anyways
-until SRIOV aside from setup / debugging. That being said, we might
-still want a higher hardcoded value in the meantime, perhaps around a
-second. I can follow up on that if needed.
-
-Matt
-
-> -Daniel
-> 
-> > +	help
-> > +	  Configures the default timeout waiting for GuC the to make forward
-> > +	  progress on CTBs. e.g. Waiting for a response to a requeset.
-> > +
-> > +	  A range of 10 ms to 60000 ms is allowed.
-> > +
-> >  config DRM_I915_HEARTBEAT_INTERVAL
-> >  	int "Interval between heartbeat pulses (ms)"
-> >  	default 2500 # milliseconds
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > index 916c2b80c841..cf1fb09ef766 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > @@ -436,6 +436,7 @@ static int ct_write(struct intel_guc_ct *ct,
-> >   */
-> >  static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
-> >  {
-> > +	long timeout;
-> >  	int err;
-> >  
-> >  	/*
-> > @@ -443,10 +444,12 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
-> >  	 * up to that length of time, then switch to a slower sleep-wait loop.
-> >  	 * No GuC command should ever take longer than 10ms.
-> >  	 */
-> > +	timeout = CONFIG_DRM_I915_GUC_CTB_TIMEOUT;
-> > +
-> >  #define done INTEL_GUC_MSG_IS_RESPONSE(READ_ONCE(req->status))
-> >  	err = wait_for_us(done, 10);
-> >  	if (err)
-> > -		err = wait_for(done, 10);
-> > +		err = wait_for(done, timeout);
-> >  #undef done
-> >  
-> >  	if (unlikely(err))
-> > -- 
-> > 2.28.0
-> > 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+> Few Gen11 systems show CRC mismatch. Make coverage-vs-premult-vs-constant
+> code similar to constant_alpha_min or basic_alpha
+>
+Tested on ChromeOS on JSL (Drawlat)
+Tested-by: Mark Yacoub <markyacoub@chromium.org>
+> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> ---
+>  tests/kms_plane_alpha_blend.c | 4 ----
+>  1 file changed, 4 deletions(-)
+>
+> diff --git a/tests/kms_plane_alpha_blend.c b/tests/kms_plane_alpha_blend.c
+> index a37cb27c7d62..224d79bd1749 100644
+> --- a/tests/kms_plane_alpha_blend.c
+> +++ b/tests/kms_plane_alpha_blend.c
+> @@ -447,10 +447,6 @@ static void coverage_premult_constant(data_t *data, enum pipe pipe, igt_plane_t
+>         igt_display_t *display = &data->display;
+>         igt_crc_t ref_crc = {}, crc = {};
+>
+> -       /* Set a background color on the primary fb for testing */
+> -       if (plane->type != DRM_PLANE_TYPE_PRIMARY)
+> -               igt_plane_set_fb(igt_pipe_get_plane_type(&display->pipes[pipe], DRM_PLANE_TYPE_PRIMARY), &data->gray_fb);
+> -
+>         igt_plane_set_prop_enum(plane, IGT_PLANE_PIXEL_BLEND_MODE, "Coverage");
+>         igt_plane_set_fb(plane, &data->argb_fb_cov_7e);
+>         igt_display_commit2(display, COMMIT_ATOMIC);
+> --
+> 2.7.4
+>
+> _______________________________________________
+> igt-dev mailing list
+> igt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
