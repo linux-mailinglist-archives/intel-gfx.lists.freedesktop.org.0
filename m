@@ -1,57 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DE5939C0A6
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 21:48:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C537639C0AC
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 21:48:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A04B6F8D2;
-	Fri,  4 Jun 2021 19:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BCCA6F56F;
+	Fri,  4 Jun 2021 19:48:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 389416E0AC;
- Fri,  4 Jun 2021 19:48:36 +0000 (UTC)
-Received: by mail-ed1-x530.google.com with SMTP id f5so7429900eds.0;
- Fri, 04 Jun 2021 12:48:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=r9MzDGzl4kF2IWp90BG+oAizg6TuArVr+J/ssWse920=;
- b=ZSOAqKuqtvpVTXY39G34EKW0p3wnokkUEtOW/jg696kULhhRVpnKJUXZARjNOY9ekf
- amuVP2/zDTjPtLnbzwcztrcWa4up6+9PatHjGObt/nd6SvfupGvcVuIMTjQMhXndv1HS
- u4My48p0HdVVko4x5UzdHj40WSOtaUyIKtuuylWp7bfXQ+xFEfIcwZf21LcuU8kXDtFQ
- s4/AgP9fK+Mrt1PFUSAt2pe1x0nhFRdhiKQYjICzeEwB2PfprUN4mwDt4FtL/wOOBq89
- 3feNCkvsBV6CkUR6/zDZZLOifg4UmWcWTRn0flrn1WHq5nC4K7yZLq5n/rrA1JJrznyw
- rEpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=r9MzDGzl4kF2IWp90BG+oAizg6TuArVr+J/ssWse920=;
- b=UXTSU4VIlwIrZCRS/FR+vTTSmb4GGTbjOf4qbLR8QzmOFKQBLLW925sQdJVcmS+Wbb
- YgfDXP3j6NPHhBJ6OnYc1MZqJo73vttrzP7Bezs0GPhXBc6ZQZ2hGgkQNAskTdKUNYgP
- sCFJHSbMS0JPoQYaEgDMrQpEOIvjqgpCFffszkVJcMGGBMKfn1Jj2SbxDCfJvi6zp9An
- 9h5sNyBn/blwqjGYuZ3UkjcuFmfBhDcVuiYD7HCX3WmnFvY233sdUitGw5jjmdzy6DnW
- HvohBBSv2wR42DmC1A0fD3l9NSKDVJrcNqhPDS6MdOHTYZFmjXEiaOmslcPm4icAEjMF
- AJTA==
-X-Gm-Message-State: AOAM532YPqigSxqp9H+0VknxruI80DYozmBXo0f8Qy99M7PX+oslWycx
- yG3YR4G65ZDgqaJggZ1Kvtxue6jT6moUVtf4dxY=
-X-Google-Smtp-Source: ABdhPJwwEZAMuJf8UdMJSEHbC8ig/HVNONdrfrAi5om1xrR/MBjTzQERPnpit5gemlpZily6+VVO7mFdlil5CPvbEio=
-X-Received: by 2002:aa7:c545:: with SMTP id s5mr6494600edr.113.1622836114660; 
- Fri, 04 Jun 2021 12:48:34 -0700 (PDT)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 806126F8D4
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 19:48:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1622836131;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=/Oq3crxGcu8BCiHyspLNPjUA4QSzXEeZmDdS/L3KIEY=;
+ b=QlNW3uIr9FuEJAEq/rHE98SLSUKfYEKbWav1LdUVH+UYNa5gztGCu9G36JjQaV6/q9mCMx
+ 7/zBw6eie3ufN8NYfGsqzEkElouBu+LiZAsbxHSK3no76nD4MoqJnSOmMVw+z9en4F6wy6
+ 5iolD5F6U9CJKV21ldPyDm76urwVvXg=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-3-5HbFtEdJMwiBpEQlW5yHJw-1; Fri, 04 Jun 2021 15:48:47 -0400
+X-MC-Unique: 5HbFtEdJMwiBpEQlW5yHJw-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2EE0E8186E5;
+ Fri,  4 Jun 2021 19:48:45 +0000 (UTC)
+Received: from x1.localdomain (ovpn-112-54.ams2.redhat.com [10.36.112.54])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D7D4E189CE;
+ Fri,  4 Jun 2021 19:48:41 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Date: Fri,  4 Jun 2021 21:48:32 +0200
+Message-Id: <20210604194840.14655-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-References: <20210526233357.9165-1-matthew.brost@intel.com>
- <20210526233357.9165-2-matthew.brost@intel.com>
- <YLplVgu7y8fzaFF0@phenom.ffwll.local>
-In-Reply-To: <YLplVgu7y8fzaFF0@phenom.ffwll.local>
-From: Dave Airlie <airlied@gmail.com>
-Date: Sat, 5 Jun 2021 05:48:23 +1000
-Message-ID: <CAPM=9twjUGfXE9bXLap=tyDnKqxP5JXquNR-rO-Zuj05Uv=v9A@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [Mesa-dev] [RFC PATCH 1/2] drm/doc/rfc: i915 GuC
- submission / DRM scheduler
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+Subject: [Intel-gfx] [PATCH 0/8] drm + usb-type-c: Add support for
+ out-of-band hotplug notification (v4)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +63,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, carl.zhang@intel.com,
- Jason Ekstrand <jason.ekstrand@intel.com>,
- mesa-dev <mesa-dev@lists.freedesktop.org>, "Vetter,
- Daniel" <daniel.vetter@intel.com>, "Koenig,
- Christian" <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, linux-usb@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gU2F0LCA1IEp1biAyMDIxIGF0IDAzOjM5LCBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwu
-Y2g+IHdyb3RlOgo+Cj4gT24gV2VkLCBNYXkgMjYsIDIwMjEgYXQgMDQ6MzM6NTZQTSAtMDcwMCwg
-TWF0dGhldyBCcm9zdCB3cm90ZToKPiA+IEFkZCBlbnRyeSBmb3IgaTkxNSBHdUMgc3VibWlzc2lv
-biAvIERSTSBzY2hlZHVsZXIgaW50ZWdyYXRpb24gcGxhbi4KPiA+IEZvbGxvdyB1cCBwYXRjaCB3
-aXRoIGRldGFpbHMgb2YgbmV3IHBhcmFsbGVsIHN1Ym1pc3Npb24gdUFQSSB0byBjb21lLgo+ID4K
-PiA+IHYyOgo+ID4gIChEYW5pZWwgVmV0dGVyKQo+ID4gICAtIEV4cGFuZCBleHBsYWluYXRpb24g
-b2Ygd2h5IGJvbmRpbmcgaXNuJ3Qgc3VwcG9ydGVkIGZvciBHdUMKPiA+ICAgICBzdWJtaXNzaW9u
-Cj4gPiAgIC0gQ0Mgc29tZSBvZiB0aGUgRFJNIHNjaGVkdWxlciBtYWludGFpbmVycwo+ID4gICAt
-IEFkZCBwcmlvcml0eSBpbmhlcml0YW5jZSAvIGJvb3N0aW5nIHVzZSBjYXNlCj4gPiAgIC0gQWRk
-IHJlYXNvbmluZyBmb3IgcmVtb3ZpbmcgaW4gb3JkZXIgYXNzdW1wdGlvbnMKPiA+ICAoRGFuaWVs
-IFN0b25lKQo+ID4gICAtIEFkZCBsaW5rcyB0byBwcmlvcml0eSBzcGVjCj4gPgo+ID4gQ2M6IENo
-cmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiA+IENjOiBMdWJlbiBU
-dWlrb3YgPGx1YmVuLnR1aWtvdkBhbWQuY29tPgo+ID4gQ2M6IEFsZXggRGV1Y2hlciA8YWxleGFu
-ZGVyLmRldWNoZXJAYW1kLmNvbT4KPiA+IENjOiBTdGV2ZW4gUHJpY2UgPHN0ZXZlbi5wcmljZUBh
-cm0uY29tPgo+ID4gQ2M6IEpvbiBCbG9vbWZpZWxkIDxqb24uYmxvb21maWVsZEBpbnRlbC5jb20+
-Cj4gPiBDYzogSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0Pgo+ID4gQ2M6IERh
-dmUgQWlybGllIDxhaXJsaWVkQGdtYWlsLmNvbT4KPiA+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5p
-ZWwudmV0dGVyQGludGVsLmNvbT4KPiA+IENjOiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0
-cmFuZC5uZXQ+Cj4gPiBDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gU2ln
-bmVkLW9mZi1ieTogTWF0dGhldyBCcm9zdCA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20+Cj4KPiBZ
-b3UgaGF2ZSBhIG9uZS1saW5lIGh1bmsgaW4gdGhlIG5leHQgcGF0Y2ggdGhhdCBwcm9iYWJseSBz
-aG91bGQgYmUgaGVyZS4KPiBXaXRoIHRoYXQgbW92ZWQuCj4KPiBSZXZpZXdlZC1ieTogRGFuaWVs
-IFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KCkFja2VkLWJ5OiBEYXZlIEFpcmxpZSA8
-YWlybGllZEByZWRoYXQuY29tPgoKQW5kIHllcyBoYXZpbmcgdGhlIHRvZG9zIGZvciBHdUMgdHJh
-Y2tlZCB3b3VsZCBiZSBnb29kIGV4dGVybmFsbHksIHNvCnByZXNzdXJlIGNhbiBiZSBhcHBsaWVk
-IGZvciBuZXcgZncgcmVsZWFzZXMgd2l0aCB0aG9zZSBmZWF0dXJlcy4KCkRhdmUuCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Here is v3 of my patchset making DP over Type-C work on devices where the
+Type-C controller does not drive the HPD pin on the GPU, but instead
+we need to forward HPD events from the Type-C controller to the DRM driver.
+
+Changes in v4:
+- Rebase on top of latest drm-tip
+- Add forward declaration for struct fwnode_handle to drm_crtc_internal.h
+  (fixes warning reported by kernel test robot <lkp@intel.com>)
+- Add Heikki's Reviewed-by to patch 7 & 8
+- Add Heikki's Tested-by to the series
+
+Changes in v3:
+- Base on top of latest drm-tip, which should fix the CI being unable to
+  apply (and thus to test) the patches
+- Make intel_acpi_assign_connector_fwnodes() take a ref on the fwnode
+  it stores in connector->fwnode and have drm_connector_cleanup() put
+  this reference
+- Drop data argument from drm_connector_oob_hotplug_event()
+- Make the Type-C DP altmode code only call drm_connector_oob_hotplug_event()
+  when the HPD bit in the status vdo changes
+- Drop the platform/x86/intel_cht_int33fe: Correct "displayport" fwnode
+  reference patch, this will be merged independently through the pdx86 tree
+
+Changes in v2:
+- Replace the bogus "drm/connector: Make the drm_sysfs connector->kdev
+  device hold a reference to the connector" patch with:
+  "drm/connector: Give connector sysfs devices there own device_type"
+  the new patch is a dep for patch 2/9 see the patches
+
+- Stop using a class-dev-iter, instead at a global connector list
+  to drm_connector.c and use that to find the connector by the fwnode,
+  similar to how we already do this in drm_panel.c and drm_bridge.c
+
+- Make drm_connector_oob_hotplug_event() take a fwnode pointer as
+  argument, rather then a drm_connector pointer and let it do the
+  lookup itself. This allows making drm_connector_find_by_fwnode() a
+  drm-internal function and avoids code outside the drm subsystem
+  potentially holding on the a drm_connector reference for a longer
+  period.
+
+This series not only touches drm subsys files but it also touches
+drivers/usb/typec/altmodes/typec_displayport.c, that file usually
+does not see a whole lot of changes. So I believe it would be best
+to just merge the entire series through drm-misc, Assuming we can
+get an ack from Greg for merging the typec_displayport.c changes
+this way.
+
+Regards,
+
+Hans
+
+
+Hans de Goede (7):
+  drm/connector: Give connector sysfs devices there own device_type
+  drm/connector: Add a fwnode pointer to drm_connector and register with
+    ACPI (v2)
+  drm/connector: Add drm_connector_find_by_fwnode() function (v3)
+  drm/connector: Add support for out-of-band hotplug notification (v3)
+  drm/i915/dp: Add support for out-of-bound hotplug events
+  usb: typec: altmodes/displayport: Make dp_altmode_notify() more
+    generic
+  usb: typec: altmodes/displayport: Notify drm subsys of hotplug events
+
+Heikki Krogerus (1):
+  drm/i915: Associate ACPI connector nodes with connector entries (v2)
+
+ drivers/gpu/drm/drm_connector.c              | 79 ++++++++++++++++++
+ drivers/gpu/drm/drm_crtc_internal.h          |  2 +
+ drivers/gpu/drm/drm_sysfs.c                  | 87 +++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_acpi.c    | 46 +++++++++++
+ drivers/gpu/drm/i915/display/intel_acpi.h    |  3 +
+ drivers/gpu/drm/i915/display/intel_display.c |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c      | 12 +++
+ drivers/usb/typec/altmodes/Kconfig           |  1 +
+ drivers/usb/typec/altmodes/displayport.c     | 58 ++++++++-----
+ include/drm/drm_connector.h                  | 25 ++++++
+ 10 files changed, 279 insertions(+), 35 deletions(-)
+
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
