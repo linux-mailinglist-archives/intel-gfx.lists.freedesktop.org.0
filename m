@@ -2,42 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AEB39BFFA
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B9539BFE5
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 20:50:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3A4F6F8AA;
-	Fri,  4 Jun 2021 18:56:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A4A6F8A3;
+	Fri,  4 Jun 2021 18:50:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A34EB6F8AA;
- Fri,  4 Jun 2021 18:56:47 +0000 (UTC)
-IronPort-SDR: Fcv9U04v4XE1tGgI94zh7rzqjH2PcWPtbYARZTOJ4dH4rW5bTNJpBEbVfvbab6oc6LqtwAIN1Q
- C0mMnf1n2UVA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10005"; a="201330856"
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="201330856"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 11:56:45 -0700
-IronPort-SDR: +EGp2nhZHwFr1FvKw/JdvxBDKW0aLEBNKltmzsYc3Rigiz79U4sQoem8ATHNlGKUWaISWfj3/T
- 0LBR3BPy1NHg==
-X-IronPort-AV: E=Sophos;i="5.83,248,1616482800"; d="scan'208";a="551249362"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 11:56:45 -0700
-Date: Fri, 4 Jun 2021 11:49:46 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <20210604184946.GA29833@sdutt-i7>
-References: <20210603212722.59719-1-matthew.brost@intel.com>
- <20210603212722.59719-4-matthew.brost@intel.com>
- <CAOFGe95CkXy03G5oDEHBLHB2XNbLc2K_Uxx-rdW=Cg9RsKrYWA@mail.gmail.com>
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAAB26E252
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 18:50:24 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id f30so15568160lfj.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 11:50:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=nEXgvCMo9WTLs7kL4lbNpIEMBy8O7bBVKP07NstWIdE=;
+ b=NyLEzNt7BL2X11T3iKfMhln+6pptqlTdqOLycNBV6YdJXkyk0tepxRNo3gseLvFYtL
+ soan/fxIj58QZ4vIQcSo3LpSXTAb3EglfbvC4lRFf8oUk5UmFRhjaFxYMDyiuZ85aZpl
+ cb+QkVTinmlOOnE1HRSWzx78r74pr4/KKHCEg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nEXgvCMo9WTLs7kL4lbNpIEMBy8O7bBVKP07NstWIdE=;
+ b=fALJCh21TBrOBen1uDQ1NQ3E25YUh/bV1t1iN0u+0AFsCEdWv9/C5P4pTNXwMKCO7Q
+ 4XsVFRo8lEoyL/u7KH8mgNapnikwn2Spen+P0Qktg4WulCsgFRmxL5aSEVU8t9sLHElb
+ s3bb+pUQQGWWcGfsNXBTguFwG8kkeWassE8RWArXkknsPFdzqWICc1zochlQvpIkiL2d
+ HW1kucVYHfbaYIkvOZYpTtGYnCJ/Et7e6P4p8FKNn2bxOttwClr4QaiS+VCz4ft7GmkB
+ XjaG+ixT+oMOg+dyApxpPCQDZFlpYZ6CPXe0x6dfKGkXMoZ5qTq/g4dtYruuwZhA+8Gn
+ voEg==
+X-Gm-Message-State: AOAM533M6hYpxdm8nsGp6ZYgUAfRqH9qf2bKSMW+cAmy73bC43A5n/sx
+ GRF2pi/sJB1nc+ht3lLKsRTHhFqfrI1WBC5Zfks3kw==
+X-Google-Smtp-Source: ABdhPJxCNq90RfhzVP7zMGBR/feNJjARhD4J2yd4l523Y3uKab7HDg0+6m+cp2YuSdpJXBzWJAvAh+Gm1ZdXy6rBH6E=
+X-Received: by 2002:a05:6512:3c86:: with SMTP id
+ h6mr3685896lfv.366.1622832623247; 
+ Fri, 04 Jun 2021 11:50:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAOFGe95CkXy03G5oDEHBLHB2XNbLc2K_Uxx-rdW=Cg9RsKrYWA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Add
- i915_sched_engine_reset_on_empty function
+References: <1622176025-12499-1-git-send-email-vidya.srinivas@intel.com>
+In-Reply-To: <1622176025-12499-1-git-send-email-vidya.srinivas@intel.com>
+From: Mark Yacoub <markyacoub@chromium.org>
+Date: Fri, 4 Jun 2021 14:50:12 -0400
+Message-ID: <CAJUqKUpEJZXGLcktaS8Jaaf-N0pPpjKP0Fi4UjmBx+Zs_DrvdQ@mail.gmail.com>
+To: Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: Re: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_big_fb: Wait for
+ vblank before collecting CRC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,114 +59,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ charlton.lin@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 04, 2021 at 01:31:42PM -0500, Jason Ekstrand wrote:
-> On Thu, Jun 3, 2021 at 4:09 PM Matthew Brost <matthew.brost@intel.com> wrote:
-> >
-> > Rather than touching schedule state in the generic PM code, reset the
-> > priolist allocation when empty in the submission code. Add a wrapper
-> > function to do this and update the backends to call it in the correct
-> > place.
-> 
-> Seems reasonable, I think.  I'm by no means an expert but
-> 
-> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
-> 
-> anyway.  My one suggestion would be to tweak the commit message to
-> talk about the functional change rather than the helper.  Something
-> like
-> 
-> drm/i915: Reset sched_engine.no_priolist immediately after dequeue
-> 
-> Typically patches which say "add a helper function" don't come with a
-> non-trivial functional change.
-> 
-
-Agree.
-
-Thanks - Matt
-
-> --Jason
-> 
-> 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_engine_pm.c            | 2 --
-> >  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 1 +
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c    | 2 ++
-> >  drivers/gpu/drm/i915/i915_scheduler.h                | 7 +++++++
-> >  4 files changed, 10 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > index b6a00dd72808..1f07ac4e0672 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > @@ -280,8 +280,6 @@ static int __engine_park(struct intel_wakeref *wf)
-> >         if (engine->park)
-> >                 engine->park(engine);
-> >
-> > -       engine->sched_engine->no_priolist = false;
-> > -
-> >         /* While gt calls i915_vma_parked(), we have to break the lock cycle */
-> >         intel_gt_pm_put_async(engine->gt);
-> >         return 0;
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > index 2326a73af6d3..609753b5401a 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > @@ -1553,6 +1553,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> >          * interrupt for secondary ports).
-> >          */
-> >         sched_engine->queue_priority_hint = queue_prio(sched_engine);
-> > +       i915_sched_engine_reset_on_empty(sched_engine);
-> >         spin_unlock(&engine->active.lock);
-> >
-> >         /*
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 5d00f2e3c1de..f4a6fbfaf82e 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -263,6 +263,8 @@ static void guc_submission_tasklet(struct tasklet_struct *t)
-> >
-> >         __guc_dequeue(engine);
-> >
-> > +       i915_sched_engine_reset_on_empty(engine->sched_engine);
-> > +
-> >         spin_unlock_irqrestore(&engine->active.lock, flags);
-> >  }
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
-> > index 5bec7b3b8456..713c38c99de9 100644
-> > --- a/drivers/gpu/drm/i915/i915_scheduler.h
-> > +++ b/drivers/gpu/drm/i915/i915_scheduler.h
-> > @@ -72,6 +72,13 @@ i915_sched_engine_is_empty(struct i915_sched_engine *sched_engine)
-> >         return RB_EMPTY_ROOT(&sched_engine->queue.rb_root);
-> >  }
-> >
-> > +static inline void
-> > +i915_sched_engine_reset_on_empty(struct i915_sched_engine *sched_engine)
-> > +{
-> > +       if (i915_sched_engine_is_empty(sched_engine))
-> > +               sched_engine->no_priolist = false;
-> > +}
-> > +
-> >  void i915_request_show_with_schedule(struct drm_printer *m,
-> >                                      const struct i915_request *rq,
-> >                                      const char *prefix,
-> > --
-> > 2.28.0
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+On Fri, May 28, 2021 at 12:36 AM Vidya Srinivas
+<vidya.srinivas@intel.com> wrote:
+>
+> Without wait for vblank, CRC mismatch is seen
+> between big and small CRC on few Gen11 systems.
+>
+Tested on ChromeOS on JSL (Drawlat).
+Tested-by: Mark Yacoub <markyacoub@chromium.org>
+> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> ---
+>  tests/kms_big_fb.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/tests/kms_big_fb.c b/tests/kms_big_fb.c
+> index b35727a09bd0..f90363c3beb2 100644
+> --- a/tests/kms_big_fb.c
+> +++ b/tests/kms_big_fb.c
+> @@ -254,6 +254,7 @@ static void unset_lut(data_t *data)
+>  static bool test_plane(data_t *data)
+>  {
+>         igt_plane_t *plane = data->plane;
+> +       igt_display_t *display = &data->display;
+>         struct igt_fb *small_fb = &data->small_fb;
+>         struct igt_fb *big_fb = &data->big_fb;
+>         int w = data->big_fb_width - small_fb->width;
+> @@ -337,16 +338,17 @@ static bool test_plane(data_t *data)
+>                 igt_display_commit2(&data->display, data->display.is_atomic ?
+>                                     COMMIT_ATOMIC : COMMIT_UNIVERSAL);
+>
+> -
+> +               igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
+>                 igt_pipe_crc_collect_crc(data->pipe_crc, &small_crc);
+>
+>                 igt_plane_set_fb(plane, big_fb);
+>                 igt_fb_set_position(big_fb, plane, x, y);
+>                 igt_fb_set_size(big_fb, plane, small_fb->width, small_fb->height);
+> +
+>                 igt_plane_set_size(plane, data->width, data->height);
+>                 igt_display_commit2(&data->display, data->display.is_atomic ?
+>                                     COMMIT_ATOMIC : COMMIT_UNIVERSAL);
+> -
+> +               igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
+>                 igt_pipe_crc_collect_crc(data->pipe_crc, &big_crc);
+>
+>                 igt_plane_set_fb(plane, NULL);
+> --
+> 2.7.4
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
