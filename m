@@ -1,67 +1,123 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D532A39B3E5
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 09:31:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7413E39B466
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jun 2021 09:55:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47A3A6F5B9;
-	Fri,  4 Jun 2021 07:31:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 504946F5C2;
+	Fri,  4 Jun 2021 07:55:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 973366F5B9
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 07:31:14 +0000 (UTC)
-IronPort-SDR: UJBObY90/g2E00WXGIMi5Im12iA9Xbv2+UgDGm+7QsaOl77h+j35HQMuihvfbJkZjzOMilIt+Q
- RmSPT6vd8XNA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10004"; a="191350257"
-X-IronPort-AV: E=Sophos;i="5.83,247,1616482800"; d="scan'208";a="191350257"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2021 00:31:13 -0700
-IronPort-SDR: kRcMYL13vyWdWEQ5fNnY4TVVCNxoiKSoaov/xsIMhP9xJRXXI9drYKba8kxdgok09zgA5ojzH5
- aPKFAhSOK40Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,247,1616482800"; d="scan'208";a="483802578"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga002.fm.intel.com with ESMTP; 04 Jun 2021 00:31:13 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 4 Jun 2021 00:31:11 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 4 Jun 2021 13:01:09 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.008;
- Fri, 4 Jun 2021 13:01:09 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Navare, Manasi D" <manasi.d.navare@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in DSC
- disable
-Thread-Index: AQHXWEerkFFEh6R0kUCekRWWk2uIg6sBidmAgABuaXD//7Q1gIAAcXSQ///VHYCAAGMKkP//7noAACRwYzA=
-Date: Fri, 4 Jun 2021 07:31:09 +0000
-Message-ID: <c964c8e14b224c8e895742ce98031fb5@intel.com>
-References: <20210603065356.15435-1-vandita.kulkarni@intel.com>
- <eedaa66fa17944aeb96aa353c58db2e9@intel.com>
- <1e70025aa4e04a5396721ad4e7609340@intel.com> <87czt3p9oc.fsf@intel.com>
- <86877ca0c9ff4ebab0b269b91b6c3979@intel.com>
- <0935357a1cd94cc7a115eca8e7a5fce9@intel.com>
- <a608d8131b314604bf3714e311ab94b9@intel.com>
- <20210603184537.GA12413@labuser-Z97X-UD5H>
-In-Reply-To: <20210603184537.GA12413@labuser-Z97X-UD5H>
-Accept-Language: en-US
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2050.outbound.protection.outlook.com [40.107.92.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A39E26F5C0;
+ Fri,  4 Jun 2021 07:55:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f4LVR9+O/WkDQR7LWqTDsh/+m4kTkbcVYAzgD3CamlFM5XAq6wRPRkou4m6zJJs3kB0uHg7syZxxU3TKThelrXe2MX2Ec0ZaJmzni4pKSuh9U8paqbiJNjQoJb6jQ1a3/IuGtwVgeD+FS6v+lrHclV4Yj9OvSEg5dI/L5rVTsPDHYaqq9zxMQMIH+wNT/AyLFWLau9oCpjHYz3K3UhvnVMVuZvpNFRYcguoKoI/m98k98Bk9LnjBPy0ynZJbKrxpvbWSfp477SXNz+SlniSoEQK+7N+iLcv0umSzWESnxyI+OrqEHA3IReVXuGgV0Xw5DLfk71pI2oPWL12eEZqurw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LhHmq0iAJ7Cffhwf62bmw/SelIQFqD5gujRd36KkDmw=;
+ b=b11rYvHJd7Tuff8asO1d02UiYkyquq66QUN6E4AdGWTbXv399StZ93/1oOaeTxkNda3UionIubqF7NGrbR+KSS2s2/XGNkduhlxiC8hJsWiedBeaWoCuvZ4SnF5XPshnOfphStbZFjtI+yJEH9ZfbGb5F/ZP+qyEKSJaR6hQy7JrRaSnGeUZnyiDElRkpndjtPZ9EGKW6auBYckzCXeP2L79G5f+aW2W70Y0cSSIBzuRKKnwbzv5WXWo9PfurkfFVo38pYMjYxq5LbUuFJob7ENaWOlYj4shk8xe/PWMMYJsySLVpzYwgJXIZH2xYi8/NUI3IWDehRPGgLKpg/hcMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LhHmq0iAJ7Cffhwf62bmw/SelIQFqD5gujRd36KkDmw=;
+ b=h2waKS0FlIoRqCPYhIf7Wh/m6r9HAC/TDZlXCjGyBGiAQtFPNwQF7VdKz84KGlrYJ7rKrA6QGLpWa0GwWt887o2aqtOgJjbqnJcEGZiU2FeAWeHaM04uxtj/hAEucNJVpFMjQg1uIiACNaBnN1OUZ6tO0I9W1bm97xM5wMXO7a8=
+Authentication-Results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB4142.namprd12.prod.outlook.com (2603:10b6:208:1dd::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Fri, 4 Jun
+ 2021 07:55:46 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34%6]) with mapi id 15.20.4195.024; Fri, 4 Jun 2021
+ 07:55:46 +0000
+To: Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+References: <a29eaef9-2457-1393-6757-40956811daf8@linux.intel.com>
+ <a6965639-acf6-b5f5-482c-2715e7fa69d4@amd.com>
+ <b4c18e45-98c9-ce7f-b22c-c00c795844c2@shipmail.org>
+ <baf4f828-76c8-6b47-5bba-9b9c8e7b307b@amd.com>
+ <YLfQplT8H6PdCCLX@phenom.ffwll.local>
+ <c50fa98f-3735-fe04-d3f9-8a7a08a7562e@linux.intel.com>
+ <CAKMK7uE+fB_+UG668O=QMXwQ9_Xb--KhzehT77HLfBoWve-zLg@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <68e6057c-df17-64ce-3116-cd5e79578795@amd.com>
+Date: Fri, 4 Jun 2021 09:51:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <CAKMK7uE+fB_+UG668O=QMXwQ9_Xb--KhzehT77HLfBoWve-zLg@mail.gmail.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+X-Originating-IP: [178.202.40.45]
+X-ClientProxiedBy: PR2P264CA0042.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:101:1::30) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in
- DSC disable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.137.54] (178.202.40.45) by
+ PR2P264CA0042.FRAP264.PROD.OUTLOOK.COM (2603:10a6:101:1::30) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4195.15 via Frontend Transport; Fri, 4 Jun 2021 07:55:45 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4810ecf0-23c2-4ddc-3c8f-08d9272e292a
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4142:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB41429C4AE61F21BF09428B82833B9@MN2PR12MB4142.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uUdIGXNC/8jBKn5U6gXBe8tFdKg8Gab9Ez88LWHvxMx1rZ3/Lw/2mceQ2LJMzb7/I1h30/1YrzuplUIwruM08QON3PQMoofSX9Ce/pDmZthkbZpqQB3jpiYTZLhKBU9qFovmdDteotIjSG9ZbF+745/rx3Ah9XQZLq50o6Qd21vSgkQRaIQAS7QY7xJP2w3yTpxHJEzVIZID2tOCdchkyFRgJljuayDUmM2cDgl8QfhZzwiIGndWrohGyypbPBAo3iRL0DVV+DSwyNkINutc7Yuee5z7XhPtNAb4SOWMghCv9AoFYa0COdPt18hxSHPVOPZXDQWgVVAcfIdfNLKKty7tACP9WviwtKwS7sLDIADa38cKg019FAYkipW1i4HRNwqhDqbNP73uUUITw9tH1LAxoHTN0wfPpI7VPbunw+Vb1tctKaYqqPeFHjmvvDNWLcvwnbWHGmozHhkF+o/Yr+xxsvsdccM/s0zMseJES0e1rFn9zC8T+mn+iAqnzSqxNJuEU3sKou33HMDW7MCeoPQh/n/1JyZXilaqpAqd14JhmMV+xuAJgqfArQv2q+eOXG8hUcsadsF/9KuWYtYcq+ztm9kZeQ+fruBMklegst476tcF5sDh+LEHlTs4lR4flOqFF3SZ+81tnkuKZwSyajCAThSifYggi5kMWC1i+2C9LVUf53pdCQ0Eb5e8nVeh
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(366004)(136003)(396003)(346002)(39860400002)(8676002)(4326008)(2906002)(6666004)(16576012)(31696002)(16526019)(66574015)(53546011)(5660300002)(186003)(316002)(2616005)(110136005)(956004)(38100700002)(6486002)(86362001)(66476007)(66556008)(8936002)(31686004)(83380400001)(36756003)(66946007)(54906003)(26005)(478600001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?Ymo1Z2E3UVQxN0FQdHdVK2NJYUR6bWNDM1d0NTVpbG5keGlXdGtSamxvRUdS?=
+ =?utf-8?B?ODl3eG9FKy9Xc3RES2N3ZlB4aXpKQXBPcGJneGtRY244TGZuTUVBdGhOOHZG?=
+ =?utf-8?B?QkJGMDRDalorT3ZsaGVPVnJBcU5meU5neTJBci9uQkhvUk9EcXY3dU5kbjM2?=
+ =?utf-8?B?d3RJamhrK3JnNjAwRlhRRUlRWGd5M08yYzFhZDVRN2VhWHY3a1EyK09yeWZ6?=
+ =?utf-8?B?WEFuT2NuR3lka2F3SGFPSVNDVENHT0dnU2FJYXlOQzI4NkJ0cnIrUXZSSTlW?=
+ =?utf-8?B?eGVkOFppOFRhb1ZlZW9mUFFKMXVxcitESWE1YUNJTmd2Z04vK2NpN0lodlg0?=
+ =?utf-8?B?RmRlNkUweVlLaGF5eXlwUkVwejUwTU9xTjZRdkErVWJqMWlFb3lMSHlVOXFJ?=
+ =?utf-8?B?dEw3MW9JNEJsSG5PZjRsMk9JazNqcHlCYVJvTmw1aFNXQmlKNGxhbGE2ODFx?=
+ =?utf-8?B?clRoVWVKclQ2dDMzZUFiNXMzQ3M3eWNQMFBSZHp6aHRBZGdTTFkyZkx4WFJr?=
+ =?utf-8?B?QktJRi81RU4yU0U3VDZmbjhLaXozRUlHd3R1K1NJREJaYU1BUVREdldUWDNQ?=
+ =?utf-8?B?SlUrRHAzL1dUZTJaOFdNU1hYNUYxNnpGZzdKNVM3WmRscTJjSzhBK1BJbWpz?=
+ =?utf-8?B?bUNEYktEZngvMUhIZXdUb0lqQ0FxcWVhdWVZaW5tK0g3ckJTQVhqRDdaNlRH?=
+ =?utf-8?B?aGtsSVB5Rnp2NXdqNTZBR1VtODlLS1l2VkdNbEYrcTJZN1pHSXFUSXBDRVNT?=
+ =?utf-8?B?ZWt0OTNYNzkvN2pKbzkzRzB5WFJGNWJlKzhodzJ3MWNhSWRYTENUK1FTUFdw?=
+ =?utf-8?B?NDlFWjNjZnhsL2lFeldiblprQVg0RDBQT3pTVXd4WDhmUG1sdi8yY080ejJK?=
+ =?utf-8?B?MnlBYnRtTklqYks2dlpWRk5rZWkxV0dPVzJzaXNMU2d6dHRvRkN2cUhKZUNo?=
+ =?utf-8?B?d1ZkUUFoNGxzUmpSb2w4R29zODlRM0VLZERldlI1Wk0xejh0SjgyYnBuRC96?=
+ =?utf-8?B?SzNIcDRZM1E1dXd1T0RTdklEbGlrdlRlc0tBUHErb0pHL2NPLzYzeDRNMzI2?=
+ =?utf-8?B?Qkl5SWQ5b3JxcnpvNGFYZDc0MWZjT3ZVTjQ2dmp2Sk1WWS84OUIvN0lJUGJB?=
+ =?utf-8?B?cmdtdVB6Z2xGd01rKzBodzBDWGtkRVhEU2JZbjZrK2huOHRWQzNFT012UW14?=
+ =?utf-8?B?bnQ4YTVvQS9QaDM3U0FQQ1I1YlFnRGIxbmUxc2pwZ0xUV2oyRVRTQkdHTjJZ?=
+ =?utf-8?B?cks5M1ZVVlZja2ZEK2xmN3g3eFEzM3NhbmE3K1NZTWFMY21YKzB6NHZTZ1Q5?=
+ =?utf-8?B?WjFsQ0ptSXh3NXJwMGVORkJuenFMRzhiMEVuenJFaGxGM0JiSkVQS0s2S3hn?=
+ =?utf-8?B?S2tTbTlQc0t4VDB6UEp4aXFUZDUrcHJuMVlDVmY4d1RHck9vN3loU3hGNGRJ?=
+ =?utf-8?B?RzA4VEFTb205QU91WE83dlpaZFNxbXZsMkpwTVlYZE1KamR5MVQ0VSttUCtr?=
+ =?utf-8?B?UG9iR29IcG1Fdjk5VHQvTXFWeXZlTDdWb28wRnBMemhleGZqKzlHYm1YUm1P?=
+ =?utf-8?B?akViWjZEb3Z2VmU3VmxQeWd5MXhiNnpSYUtaWVpOT1U3aEZ1VFU2YzVoOEZs?=
+ =?utf-8?B?SVlEa2ROZDFUUHhqMTBqQXdmbkx1UWJDTHZtTjkySUZGRGFGbzFQTTNHY1pi?=
+ =?utf-8?B?VWMwNTlIOUltUkNFemlWb2VGdlVuZXB6ZGFOWjJmV01ZVTVRQXR6eWVUL2J0?=
+ =?utf-8?Q?nfT4CWmvHInhy+lyKcmUdHvjuXOKq40kBaX+PU/?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4810ecf0-23c2-4ddc-3c8f-08d9272e292a
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2021 07:55:46.4217 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ysU8/RMxQoqUgkFBkeH1EjE72P2yEEhZT8tbrZ3iIxJxhwCyH1grk0FmSVASikg2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4142
+Subject: Re: [Intel-gfx] Merging TTM branches through the Intel tree?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,225 +130,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Navare, Manasi D <manasi.d.navare@intel.com>
-> Sent: Friday, June 4, 2021 12:16 AM
-> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> Cc: Manna, Animesh <animesh.manna@intel.com>; Nikula, Jani
-> <jani.nikula@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant checks in
-> DSC disable
-> =
-
-> On Thu, Jun 03, 2021 at 08:37:22AM -0700, Kulkarni, Vandita wrote:
-> > > -----Original Message-----
-> > > From: Manna, Animesh <animesh.manna@intel.com>
-> > > Sent: Thursday, June 3, 2021 7:24 PM
-> > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; Nikula, Jani
-> > > <jani.nikula@intel.com>; Saarinen, Jani <jani.saarinen@intel.com>;
-> > > intel- gfx@lists.freedesktop.org
-> > > Cc: Navare, Manasi D <manasi.d.navare@intel.com>
-> > > Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant
-> > > checks in DSC disable
-> > >
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> > > > Sent: Thursday, June 3, 2021 4:55 PM
-> > > > To: Nikula, Jani <jani.nikula@intel.com>; Saarinen, Jani
-> > > > <jani.saarinen@intel.com>; intel-gfx@lists.freedesktop.org
-> > > > Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
-> > > > <manasi.d.navare@intel.com>
-> > > > Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant
-> > > > checks in DSC disable
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Nikula, Jani <jani.nikula@intel.com>
-> > > > > Sent: Thursday, June 3, 2021 3:11 PM
-> > > > > To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; Saarinen,
-> > > > > Jani <jani.saarinen@intel.com>; intel-gfx@lists.freedesktop.org
-> > > > > Cc: Manna, Animesh <animesh.manna@intel.com>; Navare, Manasi D
-> > > > > <manasi.d.navare@intel.com>
-> > > > > Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant
-> > > > > checks in DSC disable
-> > > > >
-> > > > > On Thu, 03 Jun 2021, "Kulkarni, Vandita"
-> > > > > <vandita.kulkarni@intel.com>
-> > > > > wrote:
-> > > > > >> -----Original Message-----
-> > > > > >> From: Saarinen, Jani <jani.saarinen@intel.com>
-> > > > > >> Sent: Thursday, June 3, 2021 1:07 PM
-> > > > > >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> > > > > >> gfx@lists.freedesktop.org
-> > > > > >> Cc: Nikula, Jani <jani.nikula@intel.com>
-> > > > > >> Subject: RE: [Intel-gfx] [PATCH] drm/i915/dsc: Remove
-> > > > > >> redundant checks in DSC disable
-> > > > > >>
-> > > > > >> Hi,
-> > > > > >> > -----Original Message-----
-> > > > > >> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org>
-> > > > > >> > On Behalf Of Vandita Kulkarni
-> > > > > >> > Sent: torstai 3. kes=E4kuuta 2021 9.54
-> > > > > >> > To: intel-gfx@lists.freedesktop.org
-> > > > > >> > Cc: Nikula, Jani <jani.nikula@intel.com>
-> > > > > >> > Subject: [Intel-gfx] [PATCH] drm/i915/dsc: Remove redundant
-> > > > > >> > checks in DSC disable
-> > > > > >> >
-> > > > > >> > There can be a chance that pre os has enabled DSC and
-> > > > > >> > driver's compute config would not need dsc to be enabled,
-> > > > > >> > in such case if we check on compute config's compression
-> > > > > >> > state to disable, we might end up in state
-> > > > > >> mismatch.
-> > > > > >>
-> > > > > >> I assume this fixes real gitlab issue too?
-> > > > > > Okay, will add the tag
-> > > > > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3537
-> > > > >
-> > > > > See https://lore.kernel.org/r/87fsxzp9qx.fsf@intel.com
-> > > > >
-> > > > > The problem is with ->bigjoiner, not the entire statement.
-> > > > Thanks for pointing this out, true that bigjoiner not being
-> > > > enabled will stop dsc disabling.
-> > > > The bigjoiner check was making the entire condition check
-> unnecessary.
-> > > >
-> > > > Will update and refloat.
-> > >
-> > > Hi Jani/Vandita,
-> > >
-> > > For uncompressed bigjoiner case if we want to use the same function
-> > > to clear the dsc_ctrl1 register we may need to remove both the
-> > > condition check.
-> > > As for uncompressed bigjoiner case, compression_enable Will be 0 and
-> > > will block in clearing the dss_ctl1_reg.
-> >
-> > Yes, I was going through and found that bit 20 and 21 of dss_ctl1 are
-> > being used for uncompressed joiner.
-> > So when dsc is not enabled to avoid writing the register we could add
-> > below code .
-> >
-> > if (dsc)
-> > 	clear dss_ctl2
-> > if ( bigjoiner | dsc)
-> > 	clear dss_ctl1;
-> > return;
-> >
-> > bigjoiner =3D 1 and dsc =3D 0  - uncompressed , I think there is no harm
-> > in clearing dsc bits again bigjoiner =3D 1 and dsc =3D 1 - compressed -
-> > uncompressed bits are already 0 bigjoiner =3D 0 and dsc=3D 1 - just dsc=
-  -
-> > clear dsc rest are 0s already bigjoiner =3D 0 and dsc =3D 0  do nothing,
-> > return
-> >
-> > If I have missed any corner case, please let me know.
-> >
-> > Thanks,
-> > Vandita
-> =
-
-> I think in the original code the condition was just reversed, instead it =
-should
-> be  :
-> =
-
-> if !(dsc_en || bigjoiner_en) {
-> 	write 0 to dss ctl 1
-> 	write 0 to dss ctl 2
-> }
-It should be the other way.
-If neither of them are enabled then we have to just return.
-
-Since I see that dss_ctl2 also gets set in case of big joiner I shall move =
-that under
-the main check of bigjoiner OR dsc and clear both the regs.
-
-Thanks,
-Vandita
-> =
-
-> So here basically it meets all the conditions you mentioned Vandita:
-> =
-
-> - only when both dsc and bigjoiner are 0, it will do nothing
-> - In all other cases DSC + Bigjoiner : Clear all bits including uncompres=
-sed bits
-> which shd be 0 already
-> - In dsc =3D 0, bigjoiner =3D 1 (uncompressed), it will clear both again =
-which is okay
-> since dsc bits are already 0
-> =
-
-> Does this make sense?
-> =
-
-> Regards
-> Manasi
-> =
-
-> =
-
-> > >
-> > > Regards,
-> > > Animesh
-> > > >
-> > > > Thanks,
-> > > > Vandita
-> > > > >
-> > > > >
-> > > > > BR,
-> > > > > Jani.
-> > > > >
-> > > > > >
-> > > > > > Thanks,
-> > > > > > Vandita
-> > > > > >>
-> > > > > >> >
-> > > > > >> > Signed-off-by: Vandita Kulkarni
-> > > > > >> > <vandita.kulkarni@intel.com>
-> > > > > >> > ---
-> > > > > >> >  drivers/gpu/drm/i915/display/intel_vdsc.c | 4 ----
-> > > > > >> >  1 file changed, 4 deletions(-)
-> > > > > >> >
-> > > > > >> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > > >> > b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > > >> > index 19cd9531c115..b05a96011d93 100644
-> > > > > >> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > > >> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > > > > >> > @@ -1161,10 +1161,6 @@ void intel_dsc_disable(const struct
-> > > > > >> > intel_crtc_state
-> > > > > >> > *old_crtc_state)
-> > > > > >> >  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state-
-> > > >uapi.crtc);
-> > > > > >> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc-
-> > > >base.dev);
-> > > > > >> >
-> > > > > >> > -	if (!(old_crtc_state->dsc.compression_enable &&
-> > > > > >> > -	      old_crtc_state->bigjoiner))
-> > > > > >> > -		return;
-> > > > > >> > -
-> > > > > >> >  	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
-> > > > > >> >  	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state),
-> > > > > >> > 0);  }
-> > > > > >> > --
-> > > > > >> > 2.21.0.5.gaeb582a
-> > > > > >> >
-> > > > > >> > _______________________________________________
-> > > > > >> > Intel-gfx mailing list
-> > > > > >> > Intel-gfx@lists.freedesktop.org
-> > > > > >> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > > > >
-> > > > > --
-> > > > > Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QW0gMDMuMDYuMjEgdW0gMDk6MzYgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIFRodSwgSnVu
+IDMsIDIwMjEgYXQgODo1MCBBTSBUaG9tYXMgSGVsbHN0csO2bQo+IDx0aG9tYXMuaGVsbHN0cm9t
+QGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9uIDYvMi8yMSA4OjQwIFBNLCBEYW5pZWwg
+VmV0dGVyIHdyb3RlOgo+Pj4gT24gV2VkLCBKdW4gMDIsIDIwMjEgYXQgMTE6NDg6NDFBTSArMDIw
+MCwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPj4+PiBBbSAwMi4wNi4yMSB1bSAxMToxNiBzY2hy
+aWViIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCk6Cj4+Pj4+IE9uIDYvMi8yMSAxMDozMiBBTSwg
+Q2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPj4+Pj4+IFVmZiBJJ20ganVzdCB3YWl0aW5nIGZvciBm
+ZWVkYmFjayBmcm9tIFBoaWxpcCB0byBtZXJnZSBhIGxhcmdlIHBhdGNoCj4+Pj4+PiBzZXQgZm9y
+IFRUTSB0aHJvdWdoIGRybS1taXNjLW5leHQuCj4+Pj4+Pgo+Pj4+Pj4gSSdtIHByZXR0eSBzdXJl
+IHdlIHdpbGwgcnVuIGludG8gbWVyZ2UgY29uZmxpY3RzIGlmIHlvdSB0cnkgdG8gcHVzaAo+Pj4+
+Pj4geW91ciBjaGFuZ2VzIHRocm91Z2ggdGhlIEludGVsIHRyZWUuCj4+Pj4+Pgo+Pj4+Pj4gQ2hy
+aXN0aWFuLgo+Pj4+PiBPSywgc28gd2hhdCB3b3VsZCBiZSB0aGUgYmVzdCBhcHByb2FjaCBoZXJl
+PywgQWRkaW5nIHRoZSBUVE0gcGF0Y2hlcyB0bwo+Pj4+PiBkcm0tbWlzYy1uZXh0IHdoZW4geW91
+ciBzZXQgaGFzIGxhbmRlZD8KPj4+PiBJIHRoaW5rIEkgd2lsbCBzZW5kIG91dCBvdXQgbXkgc2V0
+IHRvIE1hdHRoZXcgb25jZSBtb3JlIGZvciByZXZpZXcsIHRoZW4KPj4+PiBwdXNoIHRoZSBjb21t
+b24gVFRNIHN0dWZmIHRvIGRybS1taXNjLW5leHQgYXMgbXVjaCBhcyBwb3NzaWJsZS4KPj4+Pgo+
+Pj4+IFRoZW4geW91IHNob3VsZCBiZSBhYmxlIHRvIGxhbmQgeW91ciBzdHVmZiB0byBkcm0tbWlz
+Yy1uZXh0IGFuZCByZWJhc2Ugb24KPj4+PiB0aGUgZW5kIHJlc3VsdC4KPj4+Pgo+Pj4+IEp1c3Qg
+bmVlZCB0byBub3RlIHRvIERhdmlkIHRoYXQgZHJtLW1pc2MtbmV4dCBzaG91bGQgYmUgbWVyZ2Vk
+IHRvIGRybS1uZXh0Cj4+Pj4gYmVmb3JlIHRoZSBJbnRlbCBwYXRjaGVzIGRlcGVuZGluZyBvbiB0
+aGF0IHN0dWZmIGxhbmQgYXMgd2VsbC4KPj4+IE90aGVyIG9wdGlvbiAoYmVjYXVzZSB0aGUgYmFj
+a21lcmdlcyB0ZW5kIHRvIGJlIHNsb3cpIGlzIGEgdG9waWMgYnJhbmNoLAo+Pj4gYW5kIHdlIGp1
+c3QgZWF0L3Jlc29sdmUgdGhlIGNvbmZsaWN0cyBpbiBib3RoIGRybS1taXNjLW5leHQgYW5kCj4+
+PiBkcm0taW50ZWwtZ3QtbmV4dCBpbiB0aGUgbWVyZ2UgY29tbWl0LiBJZiBpdCdzIG5vdCB0b28g
+YmFkIChJIGhhdmVuJ3QKPj4+IGxvb2tlZCBhdCB3aGF0IGV4YWN0bHkgd2UgbmVlZCBmb3IgdGhl
+IGk5MTUgc2lkZSBmcm9tIHR0bSBpbiBkZXRhaWwpLgo+Pj4KPj4+IEJ1dCBhbHNvIG9mdGVuIGZp
+Z3VyaW5nIG91dCB0aGUgdG9waWMgYnJhbmNoIGxvZ2lzdGljcyB0YWtlcyBsb25nZXIgdGhhbgo+
+Pj4ganVzdCBtZXJnaW5nIHRvIGRybS1taXNjLW5leHQgYXMgdGhlIHBhdGNoZXMgZ2V0IHJlYWR5
+Lgo+Pj4gLURhbmllbAo+PiBEYW5pZWw6IFNvIHRoZSB0aGluZyB3ZSBuZWVkIHRvIGdldCBpbnRv
+IFRUTSBpcyB0aGUgaXRlcmF0b3ItYmFzZWQKPj4gbW92ZV9tZW1jcHkgd2hpY2ggaXMgbW9yZSBh
+ZGFwdGFibGUgdGhhbiB0aGUgY3VycmVudCBvbmUgYW5kIG5lZWRlZCB0bwo+PiBzdXBwb3J0IG5v
+bi1saW5lYXIgbG1lbSBidWZmZXJzLCBzb21lIGJ1Zy1maXhlcyBhbmQgbWlub3IgY2hhbmdlcyB0
+byBiZQo+PiBhYmxlIHRvIGtlZXAgb3VyIHNob3J0LXRlcm0tcGlubmluZyB3aGlsZSBvbiB0aGUg
+TFJVLiBBIG5lY2Vzc2FyeSBldmlsLgo+Pgo+PiBDaHJpc3RpYW46IGl0IGxvb2tzIGxpa2UgeW91
+IGhhdmUgbGFuZGVkIHNvbWUgVFRNIGNoYW5nZXMgYWxyZWFkeSwgaW4KPj4gcGFydGljdWxhciB0
+aGUgJmJvLT5tZW0gLT4gYm8tPnJlc291cmNlIGNoYW5nZSB3aGljaCBpcyB0aGUgbWFpbgo+PiBj
+b25mbGljdCBJIHRoaW5rLgoKWWVzLCBJIHRob3VnaHQgdGhhdCBwdXNoaW5nIHRoaXMgd2l0aCBN
+YXR0aGV3IHJiIHNob3VsZCBzb2x2ZSBhdCBsZWFzdCBhIApiaXQgb2YgdGhlIGNvbmZsaWN0LgoK
+Pj4gSXMgdGhlIDEwIHBhdGNoZXMgc2VsZi1hbGxvY2F0aW9uIHNlcmllcyB0aGUgbWFpbgo+PiBy
+ZW1haW5pbmcgcGFydD8KClllcywgZXhhY3RseS4gSSBvbmx5IG5lZWQgTWF0dGhldydzLCBEYW5p
+ZWwncyBvciB5b3VyIG9rIGFuZCBJJ20gZ29vZCB0byAKZ28gYXMgd2VsbAoKPj4gVGhhdCB3aWxs
+IHByb2JhYmx5IGNhdXNlIHNvbWUgY29uZmxpY3RzIHdpdGggYWxyZWFkeQo+PiBwdXNoZWQgaTkx
+NSBUVE0gc2V0dXAgY29kZSwgYnV0IG90aGVyd2lzZSB3aWxsIG5vdCBjb25mbGljdCB3aXRoIHRo
+ZQo+PiByZXN0IG9mIHRoZSBUVE0gY29kZSBJIHRoaW5rLCB3aGljaCBzaG91bGQgbWFrZSBpdCBw
+b3NzaWJsZSB0byBicmluZyBpbgo+PiBvdXIgVFRNIGNoYW5nZXMgYWZ0ZXIgY29uZmxpY3QgcmVz
+b2x1dGlvbiB3aXRoIHdoYXQgeW91J3ZlIGFscmVhZHkKPj4gcHVzaGVkLiBUaGUgbWVtY3B5IGNv
+ZGUgaXMgcHJldHR5IHNlbGYtY29udGFpbmVkLgo+IEkgdGhpbmsgaW4gdGhhdCBjYXNlIHRvcGlj
+IGJyYW5jaCBvbiB0b3Agb2YgZHJtLW5leHQgKG9uY2UgdGhlIHR0bQo+IGJpdHMgd2UgY29uZmxp
+Y3Qgd2l0aCBhcmUgdGhlcmUpIGlzIHByb2JhYmx5IGJlc3QsIGFuZCB0aGVuIHB1bGwgdGhhdAo+
+IGludG8gZHJtLW1pc2MtbmV4dCBhbmQgZHJtLWludGVsLWd0LW5leHQuIE1lcmdlIHdpbmRvdyBm
+cmVlemUgaXMgYWxzbwo+IGFwcHJvYWNoLCBzbyB3aXRob3V0IHRvcGljIGJyYW5jaCB3ZSdkIGJl
+IHN0dWNrIHVudGlsIGxpa2UgLXJjMiB3aGVuCj4gZHJtLW5leHQgcmVvcGVucy4gSSBndWVzcyBN
+YWFydGVuIGNhbiBkbyB0aGUgdG9waWMgYnJhbmNoIGxvZ2lzdGljcyBpbgo+IGRybS1taXNjLmdp
+dCBmb3IgdGhpcy4KClRoYXQgYXBwcm9hY2ggc291bmRzIGdvb2QgdG8gbWUgYXMgd2VsbC4KClRo
+ZSBhbWRncHUgYnJhbmNoIGhhZCBzb21lIG1lcmdlIGNvbmZsaWN0cyBhcyB3ZWxsLCBidXQgbm90
+aGluZyB3ZSAKY291bGRuJ3QgZml4LgoKQ2hyaXN0aWFuLgoKPiAtRGFuaWVsCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
