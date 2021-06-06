@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D281639CD7C
-	for <lists+intel-gfx@lfdr.de>; Sun,  6 Jun 2021 07:42:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF5239CD7D
+	for <lists+intel-gfx@lfdr.de>; Sun,  6 Jun 2021 07:42:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 799796E5AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2F4F6E5B2;
 	Sun,  6 Jun 2021 05:42:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 045D76E580;
- Sun,  6 Jun 2021 05:42:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2CA7F6E5A4;
+ Sun,  6 Jun 2021 05:42:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E884BAADD8;
- Sun,  6 Jun 2021 05:42:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 28F2BAADD8;
+ Sun,  6 Jun 2021 05:42:09 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Sun, 06 Jun 2021 05:42:07 -0000
-Message-ID: <162295812792.16409.17054613753447467706@emeril.freedesktop.org>
+Date: Sun, 06 Jun 2021 05:42:09 -0000
+Message-ID: <162295812916.16407.11139638804486375919@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210606045050.103862-1-lucas.demarchi@intel.com>
 In-Reply-To: <20210606045050.103862-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Finish_conversion_to_GRAPHICS=5FVER?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Finish_conversion_to_GRAPHICS=5FVER?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,109 +40,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1624961570=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-
---===============1624961570==
-Content-Type: multipart/alternative;
- boundary="===============6724990185454665551=="
-
---===============6724990185454665551==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
 Series: drm/i915: Finish conversion to GRAPHICS_VER
 URL   : https://patchwork.freedesktop.org/series/91064/
-State : success
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10179 -> Patchwork_20291
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20291 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#1982] / [i915#2411])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-tgl-y/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-tgl-y/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       [FAIL][3] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][4] ([i915#1436] / [i915#3363])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-skl-6600u/igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-skl-6600u/igt@runner@aborted.html
-    - fi-kbl-soraka:      [FAIL][5] ([i915#1436] / [i915#3363]) -> [FAIL][6] ([i915#1436] / [i915#2426] / [i915#3363])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-kbl-soraka/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-kbl-soraka/igt@runner@aborted.html
-    - fi-kbl-guc:         [FAIL][7] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][8] ([i915#1436] / [i915#3363])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-kbl-guc/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-kbl-guc/igt@runner@aborted.html
-    - fi-cfl-guc:         [FAIL][9] ([i915#2426] / [i915#3363]) -> [FAIL][10] ([i915#3363])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-cfl-guc/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-cfl-guc/igt@runner@aborted.html
-    - fi-skl-6700k2:      [FAIL][11] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][12] ([i915#1436] / [i915#3363])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-skl-6700k2/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-skl-6700k2/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10179 -> Patchwork_20291
-
-  CI-20190529: 20190529
-  CI_DRM_10179: b2f3c1a4ca6d7e5eba5f85426cd6e49aee6d95e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6098: 1fbc1e7d602f96a7f4e2b95057eef994656b8e74 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20291: 9530f6c00d687aa3624643340385183a19233353 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Kernel 32bit build ==
-
-Warning: Kernel 32bit buildtest failed:
-https://intel-gfx-ci.01.org/Patchwork_20291/build_32bit.log
-
-  CALL    scripts/checksyscalls.sh
+CALL    scripts/checksyscalls.sh
   CALL    scripts/atomic/check-atomics.sh
   CHK     include/generated/compile.h
 Kernel: arch/x86/boot/bzImage is ready  (#1)
@@ -155,128 +66,10 @@ make[1]: *** Deleting file 'modules-only.symvers'
 Makefile:1759: recipe for target 'modules' failed
 make: *** [modules] Error 2
 
-
-== Linux commits ==
-
-9530f6c00d68 drm/i915: Add remaining conversions to GRAPHICS_VER
-59ddb8c3efcb drm/i915: replace IS_GEN and friends with GRAPHICS_VER
-
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/index.html
-
---===============6724990185454665551==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Finish conversion to GRAPHICS_VER</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91064/">https://patchwork.freedesktop.org/series/91064/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10179 -&gt; Patchwork_20291</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20291 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-tgl-y/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-tgl-y/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bsw-nick fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10179 -&gt; Patchwork_20291</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10179: b2f3c1a4ca6d7e5eba5f85426cd6e49aee6d95e9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6098: 1fbc1e7d602f96a7f4e2b95057eef994656b8e74 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20291: 9530f6c00d687aa3624643340385183a19233353 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Kernel 32bit build ==</p>
-<p>Warning: Kernel 32bit buildtest failed:<br />
-https://intel-gfx-ci.01.org/Patchwork_20291/build_32bit.log</p>
-<p>CALL    scripts/checksyscalls.sh<br />
-  CALL    scripts/atomic/check-atomics.sh<br />
-  CHK     include/generated/compile.h<br />
-Kernel: arch/x86/boot/bzImage is ready  (#1)<br />
-  MODPOST modules-only.symvers<br />
-ERROR: modpost: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!<br />
-ERROR: modpost: "__divdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!<br />
-scripts/Makefile.modpost:150: recipe for target 'modules-only.symvers' failed<br />
-make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-tgl-y/igt@i915_pm_rpm@module-reload.html">1</a>: <strong><em> [modules-only.symvers] Error 1<br />
-make<a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10179/fi-tgl-y/igt@i915_pm_rpm@module-reload.html">1</a>: </em></strong> Deleting file 'modules-only.symvers'<br />
-Makefile:1759: recipe for target 'modules' failed<br />
-make: *** [modules] Error 2</p>
-<p>== Linux commits ==</p>
-<p>9530f6c00d68 drm/i915: Add remaining conversions to GRAPHICS_VER<br />
-59ddb8c3efcb drm/i915: replace IS_GEN and friends with GRAPHICS_VER</p>
-
-</body>
-</html>
-
---===============6724990185454665551==--
-
---===============1624961570==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20291/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1624961570==--
