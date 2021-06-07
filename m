@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F5C39E5C0
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 19:46:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4AA539E5D0
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 19:46:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A57CF6E999;
-	Mon,  7 Jun 2021 17:46:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE59E6E99F;
+	Mon,  7 Jun 2021 17:46:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 212D66E98A;
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DEBB6E986;
  Mon,  7 Jun 2021 17:46:07 +0000 (UTC)
-IronPort-SDR: MrdlJmaQFdPdAqWId6j0SeM95lGRQzCbhUv7w1mqzuX9ukuGkZ+mhFjmC7xTE/LNcUhKgnA4km
- Q/cR9CHuK8oQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="265824464"
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="265824464"
+IronPort-SDR: AxfzeIXs8tIKNRAqi7VnXetUhKQyUfnwZcq11VYyHv5AQkTNn7TejZd/bFjU9KSS8U+eV2AKbZ
+ H2GKEFSgwfKg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="191999373"
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="191999373"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jun 2021 10:46:06 -0700
-IronPort-SDR: wQYG+gyx7YkgV+c8Md8Im14nwtROGAXpwJSNrQDU5h8p1Cxy52xRyTCKafinkj9+IIGyDMNGao
- S3hlSamU67Bw==
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="551970185"
+IronPort-SDR: 5qvGnNoBIQjrjiHlmCjDpVkz6N1cuJEA3kdRiqpWmoJlkbl46YxGgep6/ZY8aScZUJa76Inwzd
+ xl6DLLSNfD1w==
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="551970188"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2021 10:46:05 -0700
+ 07 Jun 2021 10:46:06 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Mon,  7 Jun 2021 11:03:53 -0700
-Message-Id: <20210607180356.165785-12-matthew.brost@intel.com>
+Date: Mon,  7 Jun 2021 11:03:54 -0700
+Message-Id: <20210607180356.165785-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210607180356.165785-1-matthew.brost@intel.com>
 References: <20210607180356.165785-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/13] drm/i915/guc: Kill ads.client_info
+Subject: [Intel-gfx] [PATCH 12/13] drm/i915/guc: Unified GuC log
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,59 +47,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+CgpOZXcg
-R3VDIGRvZXMgbm90IHJlcXVpcmUgaXQgYW55IG1vcmUuCgpSZXZpZXdlZC1ieTogTWF0dGhldyBC
-cm9zdCA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IE1pY2hhbCBXYWpk
-ZWN6a28gPG1pY2hhbC53YWpkZWN6a29AaW50ZWwuY29tPgpDYzogUGlvdHIgUGnDs3Jrb3dza2kg
-PHBpb3RyLnBpb3Jrb3dza2lAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L3VjL2ludGVsX2d1Y19hZHMuYyAgfCA3IC0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L3VjL2ludGVsX2d1Y19md2lmLmggfCA4ICstLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDEgaW5z
-ZXJ0aW9uKCspLCAxNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC91Yy9pbnRlbF9ndWNfYWRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9p
-bnRlbF9ndWNfYWRzLmMKaW5kZXggNmUyNmZlMDRjZTkyLi5iODIxNDU2NTJkNTcgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19hZHMuYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfYWRzLmMKQEAgLTI0LDggKzI0LDYgQEAK
-ICAqICAgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKICAqICAg
-ICAgfCBndWNfZ3Rfc3lzdGVtX2luZm8gICAgICAgICAgICAgICAgICAgIHwKICAqICAgICAgKy0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKLSAqICAgICAgfCBndWNfY2xp
-ZW50c19pbmZvICAgICAgICAgICAgICAgICAgICAgIHwKLSAqICAgICAgKy0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKICAqICAgICAgfCBwYWRkaW5nICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHwKICAqICAgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLSsgPD09IDRLIGFsaWduZWQKICAqICAgICAgfCBwcml2YXRlIGRhdGEgICAg
-ICAgICAgICAgICAgICAgICAgICAgIHwKQEAgLTM3LDcgKzM1LDYgQEAgc3RydWN0IF9fZ3VjX2Fk
-c19ibG9iIHsKIAlzdHJ1Y3QgZ3VjX2FkcyBhZHM7CiAJc3RydWN0IGd1Y19wb2xpY2llcyBwb2xp
-Y2llczsKIAlzdHJ1Y3QgZ3VjX2d0X3N5c3RlbV9pbmZvIHN5c3RlbV9pbmZvOwotCXN0cnVjdCBn
-dWNfY2xpZW50c19pbmZvIGNsaWVudHNfaW5mbzsKIH0gX19wYWNrZWQ7CiAKIHN0YXRpYyB1MzIg
-Z3VjX2Fkc19wcml2YXRlX2RhdGFfc2l6ZShzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCkBAIC0xNTIs
-MTMgKzE0OSw5IEBAIHN0YXRpYyB2b2lkIF9fZ3VjX2Fkc19pbml0KHN0cnVjdCBpbnRlbF9ndWMg
-Kmd1YykKIAogCWJhc2UgPSBpbnRlbF9ndWNfZ2d0dF9vZmZzZXQoZ3VjLCBndWMtPmFkc192bWEp
-OwogCi0JLyogQ2xpZW50cyBpbmZvICAqLwotCWJsb2ItPmNsaWVudHNfaW5mby5jbGllbnRzX251
-bSA9IDE7Ci0KIAkvKiBBRFMgKi8KIAlibG9iLT5hZHMuc2NoZWR1bGVyX3BvbGljaWVzID0gYmFz
-ZSArIHB0cl9vZmZzZXQoYmxvYiwgcG9saWNpZXMpOwogCWJsb2ItPmFkcy5ndF9zeXN0ZW1faW5m
-byA9IGJhc2UgKyBwdHJfb2Zmc2V0KGJsb2IsIHN5c3RlbV9pbmZvKTsKLQlibG9iLT5hZHMuY2xp
-ZW50c19pbmZvID0gYmFzZSArIHB0cl9vZmZzZXQoYmxvYiwgY2xpZW50c19pbmZvKTsKIAogCS8q
-IFByaXZhdGUgRGF0YSAqLwogCWJsb2ItPmFkcy5wcml2YXRlX2RhdGEgPSBiYXNlICsgZ3VjX2Fk
-c19wcml2YXRlX2RhdGFfb2Zmc2V0KGd1Yyk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC91Yy9pbnRlbF9ndWNfZndpZi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
-aW50ZWxfZ3VjX2Z3aWYuaAppbmRleCAyMjY2NDQ0ZDA3NGYuLmYyZGY1YzExYzExZCAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaAorKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfZndpZi5oCkBAIC0yOTQsMTkgKzI5
-NCwxMyBAQCBzdHJ1Y3QgZ3VjX2d0X3N5c3RlbV9pbmZvIHsKIAl1MzIgZ2VuZXJpY19ndF9zeXNp
-bmZvW0dVQ19HRU5FUklDX0dUX1NZU0lORk9fTUFYXTsKIH0gX19wYWNrZWQ7CiAKLS8qIENsaWVu
-dHMgaW5mbyAqLwotc3RydWN0IGd1Y19jbGllbnRzX2luZm8gewotCXUzMiBjbGllbnRzX251bTsK
-LQl1MzIgcmVzZXJ2ZWRbMTldOwotfSBfX3BhY2tlZDsKLQogLyogR3VDIEFkZGl0aW9uYWwgRGF0
-YSBTdHJ1Y3QgKi8KIHN0cnVjdCBndWNfYWRzIHsKIAlzdHJ1Y3QgZ3VjX21taW9fcmVnX3NldCBy
-ZWdfc3RhdGVfbGlzdFtHVUNfTUFYX0VOR0lORV9DTEFTU0VTXVtHVUNfTUFYX0lOU1RBTkNFU19Q
-RVJfQ0xBU1NdOwogCXUzMiByZXNlcnZlZDA7CiAJdTMyIHNjaGVkdWxlcl9wb2xpY2llczsKIAl1
-MzIgZ3Rfc3lzdGVtX2luZm87Ci0JdTMyIGNsaWVudHNfaW5mbzsKKwl1MzIgcmVzZXJ2ZWQxOwog
-CXUzMiBjb250cm9sX2RhdGE7CiAJdTMyIGdvbGRlbl9jb250ZXh0X2xyY2FbR1VDX01BWF9FTkdJ
-TkVfQ0xBU1NFU107CiAJdTMyIGVuZ19zdGF0ZV9zaXplW0dVQ19NQVhfRU5HSU5FX0NMQVNTRVNd
-OwotLSAKMi4yOC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+From: John Harrison <John.C.Harrison@Intel.com>
+
+GuC v57 unified the 'DPC' and 'ISR' buffers into a single buffer with
+the option for it to be larger.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c      | 15 ++++-------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h |  9 +++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c  | 29 +++++++--------------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h  |  6 ++---
+ 4 files changed, 20 insertions(+), 39 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index b773567cb080..6661dcb02239 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -219,24 +219,19 @@ static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
+ 
+ 	BUILD_BUG_ON(!CRASH_BUFFER_SIZE);
+ 	BUILD_BUG_ON(!IS_ALIGNED(CRASH_BUFFER_SIZE, UNIT));
+-	BUILD_BUG_ON(!DPC_BUFFER_SIZE);
+-	BUILD_BUG_ON(!IS_ALIGNED(DPC_BUFFER_SIZE, UNIT));
+-	BUILD_BUG_ON(!ISR_BUFFER_SIZE);
+-	BUILD_BUG_ON(!IS_ALIGNED(ISR_BUFFER_SIZE, UNIT));
++	BUILD_BUG_ON(!DEBUG_BUFFER_SIZE);
++	BUILD_BUG_ON(!IS_ALIGNED(DEBUG_BUFFER_SIZE, UNIT));
+ 
+ 	BUILD_BUG_ON((CRASH_BUFFER_SIZE / UNIT - 1) >
+ 			(GUC_LOG_CRASH_MASK >> GUC_LOG_CRASH_SHIFT));
+-	BUILD_BUG_ON((DPC_BUFFER_SIZE / UNIT - 1) >
+-			(GUC_LOG_DPC_MASK >> GUC_LOG_DPC_SHIFT));
+-	BUILD_BUG_ON((ISR_BUFFER_SIZE / UNIT - 1) >
+-			(GUC_LOG_ISR_MASK >> GUC_LOG_ISR_SHIFT));
++	BUILD_BUG_ON((DEBUG_BUFFER_SIZE / UNIT - 1) >
++			(GUC_LOG_DEBUG_MASK >> GUC_LOG_DEBUG_SHIFT));
+ 
+ 	flags = GUC_LOG_VALID |
+ 		GUC_LOG_NOTIFY_ON_HALF_FULL |
+ 		FLAG |
+ 		((CRASH_BUFFER_SIZE / UNIT - 1) << GUC_LOG_CRASH_SHIFT) |
+-		((DPC_BUFFER_SIZE / UNIT - 1) << GUC_LOG_DPC_SHIFT) |
+-		((ISR_BUFFER_SIZE / UNIT - 1) << GUC_LOG_ISR_SHIFT) |
++		((DEBUG_BUFFER_SIZE / UNIT - 1) << GUC_LOG_DEBUG_SHIFT) |
+ 		(offset << GUC_LOG_BUF_ADDR_SHIFT);
+ 
+ 	#undef UNIT
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+index f2df5c11c11d..617ec601648d 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+@@ -81,10 +81,8 @@
+ #define   GUC_LOG_ALLOC_IN_MEGABYTE	(1 << 3)
+ #define   GUC_LOG_CRASH_SHIFT		4
+ #define   GUC_LOG_CRASH_MASK		(0x3 << GUC_LOG_CRASH_SHIFT)
+-#define   GUC_LOG_DPC_SHIFT		6
+-#define   GUC_LOG_DPC_MASK	        (0x7 << GUC_LOG_DPC_SHIFT)
+-#define   GUC_LOG_ISR_SHIFT		9
+-#define   GUC_LOG_ISR_MASK	        (0x7 << GUC_LOG_ISR_SHIFT)
++#define   GUC_LOG_DEBUG_SHIFT		6
++#define   GUC_LOG_DEBUG_MASK	        (0xF << GUC_LOG_DEBUG_SHIFT)
+ #define   GUC_LOG_BUF_ADDR_SHIFT	12
+ 
+ #define GUC_CTL_WA			1
+@@ -311,8 +309,7 @@ struct guc_ads {
+ /* GuC logging structures */
+ 
+ enum guc_log_buffer_type {
+-	GUC_ISR_LOG_BUFFER,
+-	GUC_DPC_LOG_BUFFER,
++	GUC_DEBUG_LOG_BUFFER,
+ 	GUC_CRASH_DUMP_LOG_BUFFER,
+ 	GUC_MAX_LOG_BUFFER
+ };
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+index c36d5eb5bbb9..ac0931f0374b 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+@@ -197,10 +197,8 @@ static bool guc_check_log_buf_overflow(struct intel_guc_log *log,
+ static unsigned int guc_get_log_buffer_size(enum guc_log_buffer_type type)
+ {
+ 	switch (type) {
+-	case GUC_ISR_LOG_BUFFER:
+-		return ISR_BUFFER_SIZE;
+-	case GUC_DPC_LOG_BUFFER:
+-		return DPC_BUFFER_SIZE;
++	case GUC_DEBUG_LOG_BUFFER:
++		return DEBUG_BUFFER_SIZE;
+ 	case GUC_CRASH_DUMP_LOG_BUFFER:
+ 		return CRASH_BUFFER_SIZE;
+ 	default:
+@@ -245,7 +243,7 @@ static void guc_read_update_log_buffer(struct intel_guc_log *log)
+ 	src_data += PAGE_SIZE;
+ 	dst_data += PAGE_SIZE;
+ 
+-	for (type = GUC_ISR_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
++	for (type = GUC_DEBUG_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
+ 		/*
+ 		 * Make a copy of the state structure, inside GuC log buffer
+ 		 * (which is uncached mapped), on the stack to avoid reading
+@@ -463,21 +461,16 @@ int intel_guc_log_create(struct intel_guc_log *log)
+ 	 *  +===============================+ 00B
+ 	 *  |    Crash dump state header    |
+ 	 *  +-------------------------------+ 32B
+-	 *  |       DPC state header        |
++	 *  |      Debug state header       |
+ 	 *  +-------------------------------+ 64B
+-	 *  |       ISR state header        |
+-	 *  +-------------------------------+ 96B
+ 	 *  |                               |
+ 	 *  +===============================+ PAGE_SIZE (4KB)
+ 	 *  |        Crash Dump logs        |
+ 	 *  +===============================+ + CRASH_SIZE
+-	 *  |           DPC logs            |
+-	 *  +===============================+ + DPC_SIZE
+-	 *  |           ISR logs            |
+-	 *  +===============================+ + ISR_SIZE
++	 *  |          Debug logs           |
++	 *  +===============================+ + DEBUG_SIZE
+ 	 */
+-	guc_log_size = PAGE_SIZE + CRASH_BUFFER_SIZE + DPC_BUFFER_SIZE +
+-			ISR_BUFFER_SIZE;
++	guc_log_size = PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE;
+ 
+ 	vma = intel_guc_allocate_vma(guc, guc_log_size);
+ 	if (IS_ERR(vma)) {
+@@ -675,10 +668,8 @@ static const char *
+ stringify_guc_log_type(enum guc_log_buffer_type type)
+ {
+ 	switch (type) {
+-	case GUC_ISR_LOG_BUFFER:
+-		return "ISR";
+-	case GUC_DPC_LOG_BUFFER:
+-		return "DPC";
++	case GUC_DEBUG_LOG_BUFFER:
++		return "DEBUG";
+ 	case GUC_CRASH_DUMP_LOG_BUFFER:
+ 		return "CRASH";
+ 	default:
+@@ -708,7 +699,7 @@ void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p)
+ 
+ 	drm_printf(p, "\tRelay full count: %u\n", log->relay.full_count);
+ 
+-	for (type = GUC_ISR_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
++	for (type = GUC_DEBUG_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
+ 		drm_printf(p, "\t%s:\tflush count %10u, overflow count %10u\n",
+ 			   stringify_guc_log_type(type),
+ 			   log->stats[type].flush,
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+index 11fccd0b2294..ac1ee1d5ce10 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+@@ -17,12 +17,10 @@ struct intel_guc;
+ 
+ #ifdef CONFIG_DRM_I915_DEBUG_GUC
+ #define CRASH_BUFFER_SIZE	SZ_2M
+-#define DPC_BUFFER_SIZE		SZ_8M
+-#define ISR_BUFFER_SIZE		SZ_8M
++#define DEBUG_BUFFER_SIZE	SZ_16M
+ #else
+ #define CRASH_BUFFER_SIZE	SZ_8K
+-#define DPC_BUFFER_SIZE		SZ_32K
+-#define ISR_BUFFER_SIZE		SZ_32K
++#define DEBUG_BUFFER_SIZE	SZ_64K
+ #endif
+ 
+ /*
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
