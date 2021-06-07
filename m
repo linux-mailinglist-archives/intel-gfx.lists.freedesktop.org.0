@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2074B39E58F
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 19:35:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D4A739E5EB
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 19:52:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4706E971;
-	Mon,  7 Jun 2021 17:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5CE16E9A3;
+	Mon,  7 Jun 2021 17:52:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 494636E973;
- Mon,  7 Jun 2021 17:34:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45978AA01E;
- Mon,  7 Jun 2021 17:34:56 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E53776E99E;
+ Mon,  7 Jun 2021 17:52:47 +0000 (UTC)
+IronPort-SDR: OnyQ4hSgw6o3ofkNtQC93jQF4MFzNATrH7iSvIzV665C/2fIw97FrUyzK07PwhqBpQ2o8JeM1X
+ dwLEX/AbdKEw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="191782797"
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="191782797"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 10:52:46 -0700
+IronPort-SDR: wLHfDwEwlwQIqS3mQgp2YBwR1sHZF/V0JVJ+1J5zyeKTfiuibDkFZw0zTqB8vmsNl50CGaL2ij
+ oFjXDsN7Z60g==
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="418604315"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 10:52:46 -0700
+Date: Mon, 7 Jun 2021 10:45:50 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <20210607174550.GA14577@sdutt-i7>
+References: <20210607180356.165785-1-matthew.brost@intel.com>
+ <20210607180356.165785-10-matthew.brost@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Mon, 07 Jun 2021 17:34:56 -0000
-Message-ID: <162308729628.2773.15342214491392611245@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210607141216.391305-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20210607141216.391305-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciB4?=
- =?utf-8?q?86/gpu=3A_add_JasperLake_to_gen11_early_quirks_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20210607180356.165785-10-matthew.brost@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 09/13] drm/i915/doc: Include GuC ABI
+ documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,37 +49,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jun 07, 2021 at 11:03:51AM -0700, Matthew Brost wrote:
+> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> =
 
-Series: x86/gpu: add JasperLake to gen11 early quirks (rev2)
-URL   : https://patchwork.freedesktop.org/series/91082/
-State : warning
+> GuC ABI documentation is now ready to be included in i915.rst
+> =
 
-== Summary ==
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Cc: Piotr Pi=F3rkowski <piotr.piorkowski@intel.com>
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  MODPOST modules-only.symvers
-ERROR: modpost: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-ERROR: modpost: "__divdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:150: recipe for target 'modules-only.symvers' failed
-make[1]: *** [modules-only.symvers] Error 1
-make[1]: *** Deleting file 'modules-only.symvers'
-Makefile:1759: recipe for target 'modules' failed
-make: *** [modules] Error 2
+Michal - I noticed while putting this series together that there is
+kernel doc in intel_guc_ct.* but this isn't inclued in i915.rst. Do you
+think we should add the those here or in a new section (e.g. GuC CTBs)?
 
-== Logs ==
+Let me know what you think and I can fix this up before this gets
+merged.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20297/build_32bit.log
+With that, for this patch:
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> ---
+>  Documentation/gpu/i915.rst | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> =
+
+> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+> index 42ce0196930a..c7846b1d9293 100644
+> --- a/Documentation/gpu/i915.rst
+> +++ b/Documentation/gpu/i915.rst
+> @@ -518,6 +518,14 @@ GuC-based command submission
+>  .. kernel-doc:: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+>     :doc: GuC-based command submission
+>  =
+
+> +GuC ABI
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
+> +.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_ab=
+i.h
+> +.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi=
+.h
+> +.. kernel-doc:: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> +
+>  HuC
+>  ---
+>  .. kernel-doc:: drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> -- =
+
+> 2.28.0
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
