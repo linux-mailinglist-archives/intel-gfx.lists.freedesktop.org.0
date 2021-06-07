@@ -1,63 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77A8A39E633
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 20:07:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD3839E68C
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 20:24:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDF816E9AE;
-	Mon,  7 Jun 2021 18:07:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ADD46E9B6;
+	Mon,  7 Jun 2021 18:24:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98D1D6E9AE;
- Mon,  7 Jun 2021 18:07:27 +0000 (UTC)
-IronPort-SDR: +5p/t/D2vZhQy21M6cCL4U7W7oBJpE4B1Qu3eXJcbrO+WhHIVMkK5LQM5W5ehot8O45WRGNoV1
- kdK/OdfYoJlQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="185048098"
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="185048098"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C56466E02A;
+ Mon,  7 Jun 2021 18:24:01 +0000 (UTC)
+IronPort-SDR: VM48LgduYwQKB0aZY6D5IKq2hArrq+6LIJkQOB9DKQ52g7N5etvmkJXqfzqaemtVdBIkhRqrJm
+ IKz9V0OjljYg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="185051935"
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="185051935"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2021 11:07:27 -0700
-IronPort-SDR: wwnIwISEhrnfoMGxVxjWfxc/OzOOjfOJ/DCzxW1KpCS3K+Eo95D7vo6LOQJmv5Y0StqA48akcj
- 1V78AK2KW0Zw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="551317091"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga004.jf.intel.com with ESMTP; 07 Jun 2021 11:07:26 -0700
-Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 7 Jun 2021 11:07:25 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 7 Jun 2021 23:37:23 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.008;
- Mon, 7 Jun 2021 23:37:23 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>, Harry Wentland
- <harry.wentland@amd.com>
-Thread-Topic: [PATCH 0/9] Enhance pipe color support for multi segmented luts
-Thread-Index: AQHXVs2wPEDPA6xI2k+X99uG7qHEqqsD226AgAP4h4CAAQz/EA==
-Date: Mon, 7 Jun 2021 18:07:23 +0000
-Message-ID: <f14650b0e9734d309d685e6fc3f60e1e@intel.com>
-References: <20210601104135.29020-1-uma.shankar@intel.com>
- <0909131c-1340-c93b-7b80-b661497ccf73@amd.com>
- <20210607102943.5c9bceb9@eldfell>
-In-Reply-To: <20210607102943.5c9bceb9@eldfell>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+ 07 Jun 2021 11:24:01 -0700
+IronPort-SDR: xI2ghkBynp4BN09AoF0Z8UN1dsFMnjcf0d1VcQusg744KxuHkS186BHzEXZagL8sy8U443Z9w9
+ p8hjq+dXnnPA==
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="476295014"
+Received: from iwilsonx-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.28.48])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 11:24:00 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  7 Jun 2021 19:22:04 +0100
+Message-Id: <20210607182210.99036-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 0/9] Enhance pipe color support for multi
- segmented luts
+Subject: [Intel-gfx] [PATCH 0/6] Add back the buddy allocator
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,161 +45,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Sebastian Wick <sebastian@sebastianwick.net>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Pekka
-> Paalanen
-> Sent: Monday, June 7, 2021 1:00 PM
-> To: Harry Wentland <harry.wentland@amd.com>
-> Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
-> Sebastian Wick <sebastian@sebastianwick.net>; dri-devel@lists.freedesktop.org;
-> Modem, Bhanuprakash <bhanuprakash.modem@intel.com>
-> Subject: Re: [PATCH 0/9] Enhance pipe color support for multi segmented luts
-> 
-> On Fri, 4 Jun 2021 14:51:25 -0400
-> Harry Wentland <harry.wentland@amd.com> wrote:
-> 
-> > On 2021-06-01 6:41 a.m., Uma Shankar wrote:
-> > > Modern hardwares have multi segmented lut approach to prioritize the
-> > > darker regions of the spectrum. This series introduces a new UAPI to
-> > > define the lut ranges supported by the respective hardware.
-> > >
-> > > This also enables Pipe Color Management Support for Intel's XE_LPD hw.
-> > > Enable Support for Pipe Degamma with the increased lut samples
-> > > supported by hardware. This also adds support for newly introduced
-> > > Logarithmic Gamma for XE_LPD. Also added the gamma readout support.
-> > >
-> > > The Logarithmic gamma implementation on XE_LPD is non linear and
-> > > adds 25 segments with non linear lut samples in each segment. The
-> > > expectation is userspace will create the luts as per this
-> > > distribution and pass the final samples to driver to be programmed in hardware.
-> > >
-> >
-> > Is this design targetting Intel XE_LPD HW in particular or is it
-> > intended to be generic?
-> >
-> > If this is intended to be generic I think it would benefit from a lot
-> > more documentation. At this point it's difficult for me to see how to
-> > adapt this to AMD HW. It would take me a while to be comfortable to
-> > make a call on whether we can use it or not. And what about other vendors?
-> >
-> > I think we need to be cautious in directly exposing HW functionality
-> > through UAPI. The CM parts of AMD HW seem to be changing in some way
-> > each generation and it looks like the same is true for Intel. The
-> > trouble we have with adapting the old gamma/degamma properties to
-> > modern HW is some indication to me that this approach is somewhat problematic.
-> >
-> > It would be useful to understand and document the specific use-cases
-> > we want to provide to userspace implementers with this functionality.
-> > Do we want to support modern transfer functions such as PQ or HLG? If
-> > so, it might be beneficial to have an API to explicitly specify that,
-> > and then use LUT tables in drivers that are optimized for the implementing HW.
-> 
-> Hi Harry,
-> 
-> from my very limited understanding so far, enum might be fine for PQ, but HLG is not
-> just one transfer function, although it may often be confused as one. PQ and HLG
-> are fundamentally different designs to HDR broadcasting I believe. It would be
-> unfortunate to make a mistake here, engraving it into UAPI.
-
-Yes Pekka, putting this in UAPI may limit us.
-
-> > Or is the use case tone mapping? If so, would a parametric definition
-> > of tone mapping be easier to manage?
-> 
-> A very good question at least I have no idea about.
-
-Responded on earlier mail in thread. For non linear lut (gamma block), usecase is primarily tone
-mapping but there are implementations where non linear blending is seeked (AFAIR Android does that),
-so it leaves room for those usecases as well.
-
-Regards,
-Uma Shankar
-> 
-> Thanks,
-> pq
-> 
-> > > +-----+------------------------------+
-> > > | x   |  2 pow x segment|No of Entries
-> > > |     |  0              | 1          |
-> > > | 0   |  1              | 1          |
-> > > | 1   |  2              | 2          |
-> > > | 2   |  4              | 2          |
-> > > | 3   |  8              | 2          |
-> > > | 4   |  16             | 2          |
-> > > | 5   |  32             | 4          |
-> > > | 6   |  64             | 4          |
-> > > | 7   |  128            | 4          |
-> > > | 8   |  256            | 8          |
-> > > | 9   |  512            | 8          |
-> > > | 10  |  1024           | 8          |
-> > > | 11  |  2048           | 16         |
-> > > | 12  |  4096           | 16         |
-> > > | 13  |  8192           | 16         |
-> > > | 14  |  16384          | 32         |
-> > > | 15  |  32768          | 32         |
-> > > | 16  |  65536          | 64         |
-> > > | 17  |  131072         | 64         |
-> > > | 18  |  262144         | 64         |
-> > > | 19  |  524288         | 32         |
-> > > | 20  |  1048576        | 32         |
-> > > | 21  |  2097152        | 32         |
-> > > | 22  |  4194304        | 32         |
-> > > | 23  |  8388608        | 32         |
-> > > | 24  |  16777216       | 1          |
-> > > |     | Total Entries   | 511        |
-> > >  -----+-----------------+------------+
-> > >
-> > > Credits: Special mention and credits to Ville Syrjala for coming up
-> > > with a design for this feature and inputs. This series is based on
-> > > his original design.
-> > >
-> > > Note: Userspace support for this new UAPI will be done on Chrome and
-> > > plan is to get this supported on mutter as well. We will notify the
-> > > list once we have that ready for review.
-> > >
-> >
-> > Is this an RFC? If so it would be good to mark it as such.
-> >
-> > Harry
-> >
-> > > Uma Shankar (9):
-> > >   drm: Add gamma mode property
-> > >   drm/i915/xelpd: Define color lut range structure
-> > >   drm/i915/xelpd: Add support for Logarithmic gamma mode
-> > >   drm/i915/xelpd: Attach gamma mode property
-> > >   drm: Add Client Cap for advance gamma mode
-> > >   drm/i915/xelpd: logarithmic gamma enabled only with advance gamma mode
-> > >   drm/i915/xelpd: Enable Pipe Degamma
-> > >   drm/i915/xelpd: Add Pipe Color Lut caps to platform config
-> > >   drm/i915/xelpd: Enable XE_LPD Gamma Lut readout
-> > >
-> > >  drivers/gpu/drm/drm_atomic_uapi.c          |   8 +
-> > >  drivers/gpu/drm/drm_color_mgmt.c           |  75 ++++
-> > >  drivers/gpu/drm/drm_ioctl.c                |   5 +
-> > >  drivers/gpu/drm/i915/display/intel_color.c | 454 ++++++++++++++++++++-
-> > >  drivers/gpu/drm/i915/i915_pci.c            |   3 +-
-> > >  drivers/gpu/drm/i915/i915_reg.h            |   7 +
-> > >  include/drm/drm_atomic.h                   |   1 +
-> > >  include/drm/drm_color_mgmt.h               |   8 +
-> > >  include/drm/drm_crtc.h                     |  25 ++
-> > >  include/drm/drm_file.h                     |   8 +
-> > >  include/uapi/drm/drm.h                     |   8 +
-> > >  include/uapi/drm/drm_mode.h                |  43 ++
-> > >  12 files changed, 630 insertions(+), 15 deletions(-)
-> > >
-> >
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+TmVlZHMgdG8gYmUgYXBwbGllZCBvbiB0b3Agb2Y6Cmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
+dG9wLm9yZy9zZXJpZXMvOTA2ODEvCgpNYXR0aGV3IEF1bGQgKDUpOgogIGRybS9pOTE1L3R0bTog
+YWRkIHR0bV9idWRkeV9tYW4KICBkcm0vaTkxNS90dG06IGFkZCBpOTE1X3NnX2Zyb21fYnVkZHlf
+cmVzb3VyY2UKICBkcm0vaTkxNS90dG06IHBhc3MgYWxvbmcgdGhlIEk5MTVfQk9fQUxMT0NfQ09O
+VElHVU9VUwogIGRybS9pOTE1L3R0bTogc3dpdGNoIG92ZXIgdG8gdHRtX2J1ZGR5X21hbgogIGRy
+bS9pOTE1L3R0bTogcmVzdG9yZSBtaW5fcGFnZV9zaXplIGJlaGF2aW91cgoKVGhvbWFzIEhlbGxz
+dHLDtm0gKDEpOgogIGRybS9pOTE1L3R0bTogQ2FsY3VsYXRlIHRoZSBvYmplY3QgcGxhY2VtZW50
+IGF0IGdldF9wYWdlcyB0aW1lCgogZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAg
+ICAgICAgICAgIHwgICAyICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0u
+YyAgICAgICB8IDEwNSArKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfYnVkZHkuYyAgICAg
+ICAgICAgICB8IDQxMiArKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfYnVkZHku
+aCAgICAgICAgICAgICB8IDEzMyArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfc2NhdHRl
+cmxpc3QuYyAgICAgICB8ICA4MCArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9zY2F0dGVy
+bGlzdC5oICAgICAgIHwgICA1ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdHRtX2J1ZGR5
+X21hbmFnZXIuYyB8IDI0NiArKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdHRtX2J1
+ZGR5X21hbmFnZXIuaCB8ICA1NiArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5
+X3JlZ2lvbi5jICAgIHwgIDU1ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlf
+cmVnaW9uLmggICAgfCAgMjAgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3JlZ2lvbl90
+dG0uYyAgICAgICB8IDEwOCArLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3JlZ2lvbl90
+dG0uaCAgICAgICB8ICAgMiArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9i
+dWRkeS5jICAgfCA3ODkgKysrKysrKysrKysrKysrKysrCiAuLi4vZHJtL2k5MTUvc2VsZnRlc3Rz
+L2ludGVsX21lbW9yeV9yZWdpb24uYyAgfCAxNzAgKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+c2VsZnRlc3RzL21vY2tfcmVnaW9uLmMgIHwgIDE3ICstCiAxNSBmaWxlcyBjaGFuZ2VkLCAxOTcw
+IGluc2VydGlvbnMoKyksIDIzMCBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2J1ZGR5LmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2J1ZGR5LmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3R0bV9idWRkeV9tYW5hZ2VyLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3R0bV9idWRkeV9tYW5hZ2VyLmgKIGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9idWRkeS5jCgotLSAK
+Mi4yNi4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
