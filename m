@@ -1,61 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A9E39D604
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 09:30:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D30139D635
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 09:40:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0AA36E3AE;
-	Mon,  7 Jun 2021 07:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4756E517;
+	Mon,  7 Jun 2021 07:40:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
- [IPv6:2a00:1450:4864:20::131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00A466E3AE;
- Mon,  7 Jun 2021 07:30:05 +0000 (UTC)
-Received: by mail-lf1-x131.google.com with SMTP id r198so21303906lff.11;
- Mon, 07 Jun 2021 00:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=Hm+bqYAc0acRSQw44lJ54WJ0QTYWzcefCRH9RSjGtYQ=;
- b=S/u7jgq8swWok/p7FDPqmf7ihj7GdpsuWFB6ZCSgwsOsBeTj6EgmP7ooxTZ6GQL16F
- qlTFyh9SUOjpykAleDNj2HMcVKcZe1iElIUuekgUgV+RaX40lwQ8bDQZ5UR14oVCWuoW
- pXzSqCG313V40f0cX58q5BVB3St542/Nft4soNvR1xrgPbABJyom6UxvQfDcysY+Uytn
- eMcSLgAspr1l0BfQpsGKorWG7D0KFR5r212sk8eZM2kAFE62FeG8qMV2HnY45jCfFPDE
- Gjws/MwuJhyTyX1HTNbX1j5FpHqZh2lO9a4WwOcSiZnswE2mi8Y/I/FUa/vmn/nlCTH/
- UdYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=Hm+bqYAc0acRSQw44lJ54WJ0QTYWzcefCRH9RSjGtYQ=;
- b=uDE4nRidYD/2pM1awpcYKiK4/RlvOlWrTNOHjJlThPlPf5ADW6xJ9a77WfRPDlreHU
- 2PdWp16HuLAU8G7C15CDZAEMMQJ2fz7ASu9b9y6RNEchMCdJ+g+AWYwpXD36LuHLI/8h
- HNB6xIuzEODmEcxSwLcoz/0oH/Bgn8GELPalQkiznzSJ5Y95iWHvm5PINqM4BoJwlg15
- X5zLDWxdGuHUYM66Kqj5+wWR7pF1p1UPTHhQ6n1Ze4fDT+jR0O45j5kjw1cqsfXOhfQZ
- gChCfw+JTAH+DjsnFL6Un9jO79HPGQUJIrsKVjlOpcBK46nBZB4kdP8FtPI8xJ82HFg1
- jDFw==
-X-Gm-Message-State: AOAM530QkKKIlM8eq+UlumNGhys1LZvqnKX0Yxxo34pxZRuGE3RNpeEX
- UsRA3M2gDuplj3cN+ezXFhg=
-X-Google-Smtp-Source: ABdhPJyEUnlknHejWXYT8mfYjZlc/t9DsYSUycmgRHYzp4R8KLePHnGKWdsofOfqgONbP3R9rFcIlg==
-X-Received: by 2002:a05:6512:3588:: with SMTP id
- m8mr11415511lfr.309.1623051004308; 
- Mon, 07 Jun 2021 00:30:04 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id a7sm953905lfo.159.2021.06.07.00.30.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Jun 2021 00:30:03 -0700 (PDT)
-Date: Mon, 7 Jun 2021 10:29:43 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Message-ID: <20210607102943.5c9bceb9@eldfell>
-In-Reply-To: <0909131c-1340-c93b-7b80-b661497ccf73@amd.com>
-References: <20210601104135.29020-1-uma.shankar@intel.com>
- <0909131c-1340-c93b-7b80-b661497ccf73@amd.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 123DD6E4B3;
+ Mon,  7 Jun 2021 07:40:42 +0000 (UTC)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 6B764580834;
+ Mon,  7 Jun 2021 03:40:41 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute5.internal (MEProxy); Mon, 07 Jun 2021 03:40:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm3; bh=nq7E0TCtn3bqp2hAkNThKCjEhjj
+ Q30HBjKbfLIDNz5Q=; b=N/ZMqksN9XtxE/zJBMhC868H5VHJCkn7LmMr7eq/too
+ 7YeVQXt7Sj6RYkCXVZEQmQ+PHp8vohwiZFne4Oa43g7mxWREK+3nFfL0SnHJ5O9l
+ J3ebdpU/jIzTET+t6g6gIE2Z6FgysWb2R8OaRly8s3JdUOBqupfgFjflsDTZQua4
+ 5Y1KZjn81/Rudk4sP76huOdp/fprF36mB4jUwGOPF0qehioDUHyYmhPiflvJfbME
+ /gr45G3tZXBgTtZjajE1EuBKzjfOMsnfneBstMDb0cWtp7KcpzC+TZkhHaRgie++
+ 8su2NmckIhH9ROJ/U6kvRg+fDVGQGNTbA36QG3sLQZA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=nq7E0T
+ Ctn3bqp2hAkNThKCjEhjjQ30HBjKbfLIDNz5Q=; b=A5eVwM3/pJF3UwKbBWJngX
+ uJbXb7+LWwiBgcpfBHvD5c6Vgs7R3N9ExoVud1JlS9oh2lMw0svAXfXqhxjtNaFz
+ Km2A4cdfeZZvoVyACo9GpY3lXs7jSyCPbEs4hUv4nVB0Q0aR+cWAc4+zwYk5HeQj
+ OF8tEw4WsllUT40R4KCkzWcEzXaWNvjtnp17ib8R0Va/Gdpe9Ju13L4Qj6ksFuZd
+ wApHljX+ID3LXqLa6munYuj8YdJb7zypXZmykfijHI5dk+VeXxhD4HGVOSd3IbRH
+ dPCoYCGMM0KjpVoX8h/4viT2nyRImpySoqiYqqGUp2RmepGOFtcVv2B8UdAXAGRw
+ ==
+X-ME-Sender: <xms:d829YBymgtLXAL7zDrNKq18v27CKcD83QgboMqrvm3Dr8ThFEOn34g>
+ <xme:d829YBT-o7Q-KInpV-NISiudGEr-49TLRFKK54U5UDFlOwWPOCd0k-4LjT78gxmFv
+ FLNHdpFnu2Avk7HX9A>
+X-ME-Received: <xmr:d829YLV-6cnlIfc_qvqYkMYG48Edyqqa_kWzDnJHgAUxs5GxNu7ju-E_FAs0gppgm8uXh3EnvxCFgHOwV0LRTOF95k26MxWlN0Gb>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedtiedguddulecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeevveefffduveeitdegtefhhfetueffteefffdvheevvdehteethedvleff
+ gfejvdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+ eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
+ hh
+X-ME-Proxy: <xmx:d829YDj9AMoTlsTXrX4mEaFT9pm33fKEufhEtZuTXhCNjXNqmfgfiQ>
+ <xmx:d829YDDlzyF-N8z0-v6VS7SO3yoTeO24z_8LVE2ssi4FWrPleqqzYg>
+ <xmx:d829YMJRlJZ3Y1f-hj9UbQad9alHi42v7QAPTgxvAG24Z4moTS6GmA>
+ <xmx:ec29YLbAYjQfUquabT22JxVb-WZU7-TI6Pg6pVqEWsGUnmNuDSxk6Q>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Jun 2021 03:40:38 -0400 (EDT)
+Date: Mon, 7 Jun 2021 09:40:37 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <20210607074037.oxm7qbhcx7gsg6yd@gilmour>
+References: <20210604171723.10276-1-wse@tuxedocomputers.com>
+ <20210604171723.10276-3-wse@tuxedocomputers.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 0/9] Enhance pipe color support for multi
- segmented luts
+In-Reply-To: <20210604171723.10276-3-wse@tuxedocomputers.com>
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/uAPI: Add "active bpc" as feedback
+ channel for "max bpc" drm property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,182 +79,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Sebastian Wick <sebastian@sebastianwick.net>, dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1149230648=="
+Cc: tzimmermann@suse.de, intel-gfx@lists.freedesktop.org, sunpeng.li@amd.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ airlied@linux.ie, amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ harry.wentland@amd.com, christian.koenig@amd.com
+Content-Type: multipart/mixed; boundary="===============0182568641=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1149230648==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/KI4E/K1vbHM16sqc.qGZXfD"; protocol="application/pgp-signature"
 
---Sig_/KI4E/K1vbHM16sqc.qGZXfD
-Content-Type: text/plain; charset=US-ASCII
+--===============0182568641==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="p3wy26msisgyobg2"
+Content-Disposition: inline
+
+
+--p3wy26msisgyobg2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 4 Jun 2021 14:51:25 -0400
-Harry Wentland <harry.wentland@amd.com> wrote:
+Hi,
 
-> On 2021-06-01 6:41 a.m., Uma Shankar wrote:
-> > Modern hardwares have multi segmented lut approach to prioritize
-> > the darker regions of the spectrum. This series introduces a new
-> > UAPI to define the lut ranges supported by the respective hardware.
-> >=20
-> > This also enables Pipe Color Management Support for Intel's XE_LPD hw.
-> > Enable Support for Pipe Degamma with the increased lut samples
-> > supported by hardware. This also adds support for newly introduced
-> > Logarithmic Gamma for XE_LPD. Also added the gamma readout support.
-> >=20
-> > The Logarithmic gamma implementation on XE_LPD is non linear and adds 25
-> > segments with non linear lut samples in each segment. The expectation
-> > is userspace will create the luts as per this distribution and pass
-> > the final samples to driver to be programmed in hardware.
-> >  =20
+On Fri, Jun 04, 2021 at 07:17:21PM +0200, Werner Sembach wrote:
+> Add a new general drm property "active bpc" which can be used by graphic =
+drivers
+> to report the applied bit depth per pixel back to userspace.
+
+Just a heads up, we'll need an open source project that has accepted it
+before merging it.
+
+See https://www.kernel.org/doc/html/latest/gpu/drm-uapi.html#open-source-us=
+erspace-requirements
+
+> While "max bpc" can be used to change the color depth, there was no way t=
+o check
+> which one actually got used. While in theory the driver chooses the best/=
+highest
+> color depth within the max bpc setting a user might not be fully aware wh=
+at his
+> hardware is or isn't capable off. This is meant as a quick way to double =
+check
+> the setup.
 >=20
-> Is this design targetting Intel XE_LPD HW in particular or is it intended
-> to be generic?
+> In the future, automatic color calibration for screens might also depend =
+on this
+> information available.
 >=20
-> If this is intended to be generic I think it would benefit from a lot more
-> documentation. At this point it's difficult for me to see how to adapt th=
-is
-> to AMD HW. It would take me a while to be comfortable to make a call on w=
-hether
-> we can use it or not. And what about other vendors?
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> ---
+>  drivers/gpu/drm/drm_atomic_uapi.c |  2 ++
+>  drivers/gpu/drm/drm_connector.c   | 40 +++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h       | 15 ++++++++++++
+>  3 files changed, 57 insertions(+)
 >=20
-> I think we need to be cautious in directly exposing HW functionality thro=
-ugh
-> UAPI. The CM parts of AMD HW seem to be changing in some way each generat=
-ion
-> and it looks like the same is true for Intel. The trouble we have with ad=
-apting
-> the old gamma/degamma properties to modern HW is some indication to me th=
-at
-> this approach is somewhat problematic.
->=20
-> It would be useful to understand and document the specific use-cases we w=
-ant to
-> provide to userspace implementers with this functionality. Do we want to =
-support
-> modern transfer functions such as PQ or HLG? If so, it might be beneficia=
-l to
-> have an API to explicitly specify that, and then use LUT tables in driver=
-s that
-> are optimized for the implementing HW.
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
+ic_uapi.c
+> index 268bb69c2e2f..7ae4e40936b5 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -873,6 +873,8 @@ drm_atomic_connector_get_property(struct drm_connecto=
+r *connector,
+>  		*val =3D 0;
+>  	} else if (property =3D=3D connector->max_bpc_property) {
+>  		*val =3D state->max_requested_bpc;
+> +	} else if (property =3D=3D connector->active_bpc_property) {
+> +		*val =3D state->active_bpc;
+>  	} else if (connector->funcs->atomic_get_property) {
+>  		return connector->funcs->atomic_get_property(connector,
+>  				state, property, val);
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
+tor.c
+> index 7631f76e7f34..5f42a5be5822 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1195,6 +1195,13 @@ static const struct drm_prop_enum_list dp_colorspa=
+ces[] =3D {
+>   *	drm_connector_attach_max_bpc_property() to create and attach the
+>   *	property to the connector during initialization.
+>   *
+> + * active bpc:
+> + *	This read-only range property is used by userspace check the bit depth
+> + *	actually applied by the GPU driver after evaluation all hardware
 
-Hi Harry,
+                                ^ display
 
-from my very limited understanding so far, enum might be fine for PQ,
-but HLG is not just one transfer function, although it may often be
-confused as one. PQ and HLG are fundamentally different designs to HDR
-broadcasting I believe. It would be unfortunate to make a mistake here,
-engraving it into UAPI.
+Depending on the system, the display component might have a GPU attached
+or not, and the GPU might have a display component or not.
 
-> Or is the use case tone mapping? If so,
-> would a parametric definition of tone mapping be easier to manage?
+> + *	capabilities and max bpc. Drivers to use the function
+> + *	drm_connector_attach_active_bpc_property() to create and attach the
+> + *	property to the connector during initialization.
+> + *
+>   * Connectors also have one standardized atomic property:
+>   *
+>   * CRTC_ID:
+> @@ -2150,6 +2157,39 @@ int drm_connector_attach_max_bpc_property(struct d=
+rm_connector *connector,
+>  }
+>  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+> =20
+> +/**
+> + * drm_connector_attach_active_bpc_property - attach "active bpc" proper=
+ty
+> + * @connector: connector to attach active bpc property on.
+> + * @min: The minimum bit depth supported by the connector.
+> + * @max: The maximum bit depth supported by the connector.
+> + *
+> + * This is used to check the applied bit depth on a connector.
+> + *
+> + * Returns:
+> + * Zero on success, negative errno on failure.
+> + */
+> +int drm_connector_attach_active_bpc_property(struct drm_connector *conne=
+ctor,
+> +					  int min, int max)
+> +{
+> +	struct drm_device *dev =3D connector->dev;
+> +	struct drm_property *prop;
+> +
+> +	prop =3D connector->active_bpc_property;
+> +	if (!prop) {
+> +		prop =3D drm_property_create_range(dev, 0, "active bpc", min, max);
+> +		if (!prop)
+> +			return -ENOMEM;
+> +
+> +		connector->active_bpc_property =3D prop;
+> +	}
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +	connector->state->active_bpc =3D 0;
 
-A very good question at least I have no idea about.
+I guess we want to default to 8?
 
+Maxime
 
-Thanks,
-pq
-
-> > +-----+------------------------------+
-> > | x   |  2 pow x segment|No of Entries
-> > |     |  0              | 1          |
-> > | 0   |  1              | 1          |
-> > | 1   |  2              | 2          |
-> > | 2   |  4              | 2          |
-> > | 3   |  8              | 2          |
-> > | 4   |  16             | 2          |
-> > | 5   |  32             | 4          |
-> > | 6   |  64             | 4          |
-> > | 7   |  128            | 4          |
-> > | 8   |  256            | 8          |
-> > | 9   |  512            | 8          |
-> > | 10  |  1024           | 8          |
-> > | 11  |  2048           | 16         |
-> > | 12  |  4096           | 16         |
-> > | 13  |  8192           | 16         |
-> > | 14  |  16384          | 32         |
-> > | 15  |  32768          | 32         |
-> > | 16  |  65536          | 64         |
-> > | 17  |  131072         | 64         |
-> > | 18  |  262144         | 64         |
-> > | 19  |  524288         | 32         |
-> > | 20  |  1048576        | 32         |
-> > | 21  |  2097152        | 32         |
-> > | 22  |  4194304        | 32         |
-> > | 23  |  8388608        | 32         |
-> > | 24  |  16777216       | 1          |
-> > |     | Total Entries   | 511        |
-> >  -----+-----------------+------------+
-> >=20
-> > Credits: Special mention and credits to Ville Syrjala for coming up
-> > with a design for this feature and inputs. This series is based on
-> > his original design.
-> >=20
-> > Note: Userspace support for this new UAPI will be done on Chrome and
-> > plan is to get this supported on mutter as well. We will notify the
-> > list once we have that ready for review.
-> >  =20
->=20
-> Is this an RFC? If so it would be good to mark it as such.
->=20
-> Harry
->=20
-> > Uma Shankar (9):
-> >   drm: Add gamma mode property
-> >   drm/i915/xelpd: Define color lut range structure
-> >   drm/i915/xelpd: Add support for Logarithmic gamma mode
-> >   drm/i915/xelpd: Attach gamma mode property
-> >   drm: Add Client Cap for advance gamma mode
-> >   drm/i915/xelpd: logarithmic gamma enabled only with advance gamma mode
-> >   drm/i915/xelpd: Enable Pipe Degamma
-> >   drm/i915/xelpd: Add Pipe Color Lut caps to platform config
-> >   drm/i915/xelpd: Enable XE_LPD Gamma Lut readout
-> >=20
-> >  drivers/gpu/drm/drm_atomic_uapi.c          |   8 +
-> >  drivers/gpu/drm/drm_color_mgmt.c           |  75 ++++
-> >  drivers/gpu/drm/drm_ioctl.c                |   5 +
-> >  drivers/gpu/drm/i915/display/intel_color.c | 454 ++++++++++++++++++++-
-> >  drivers/gpu/drm/i915/i915_pci.c            |   3 +-
-> >  drivers/gpu/drm/i915/i915_reg.h            |   7 +
-> >  include/drm/drm_atomic.h                   |   1 +
-> >  include/drm/drm_color_mgmt.h               |   8 +
-> >  include/drm/drm_crtc.h                     |  25 ++
-> >  include/drm/drm_file.h                     |   8 +
-> >  include/uapi/drm/drm.h                     |   8 +
-> >  include/uapi/drm/drm_mode.h                |  43 ++
-> >  12 files changed, 630 insertions(+), 15 deletions(-)
-> >  =20
->=20
-
-
---Sig_/KI4E/K1vbHM16sqc.qGZXfD
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--p3wy26msisgyobg2
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmC9yucACgkQI1/ltBGq
-qqfILw//WJ1QBvfbpHEcLkjayGRhul9TCzrHG0W3x8RLTWUrA04t9t0q5AexJNpV
-4taoSRxJ4hSbPxxbnyVQCjhBarnhBSIvn/IvnFOF+bN3/9hE1RQ/jrdr7W7OEeGy
-e8jDnCgZzXXIqFZeoOmHRs3oVUNje9pbFN0jFG1QlC0acMzqoar5ISKO16WwIg60
-+9KKsdV99h70h4ZvQMdwOKWEwB5nQWtWu+3GFX1SFN32gfWRxCedhyHLCl8Uymev
-lBLq47Mo7vQGrne1fLm0xoNJ6SlrzUXMzAlbHkxqWZ6A/oeu6TC7mt2knK8Yx5Bg
-k1QPVK6e0fwemsf37K5PBUKXPYMzys83u8ThVrL/JAks3rxgYe+hJQm+D0PpUr+U
-lWm2kbeJxreHjEVotJuwoFqkgNDgrLZ/C+hu/kojehl4Rw2Jv0B9HkRjXDh1yg7E
-uFuu4lNf51IeUwhJU62YHGyWu8j5Ps4BX48fHjx2WHF/4bC9errhwGDimkIuKW2v
-6hyRr+WMcX1DwAgz2ZzTFoAoX3h5apy5IUPv1CdhTYoAjr28mcF9RyX7m8wjxL2W
-vEzRlgZTf+qnMG02pQgw3OfqtQgQgUN4+s06SjnxiYA/xoQvsSoHua5joUGf/h9X
-72bGu1vO5RFTQLRUrqS/IIMzsIQocaSrgmF5Zclu/SW7e+TzzJk=
-=MFmg
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYL3NdQAKCRDj7w1vZxhR
+xW9iAQCqBVy+34/6/7fZGJk9fSwKmxPEOrt3Z64pKzVhYa+2XQEAxB7WeGQsnb8V
+xKwe4pgJJQ+NMocJbxmxYRV5QZGhYAQ=
+=O0Ys
 -----END PGP SIGNATURE-----
 
---Sig_/KI4E/K1vbHM16sqc.qGZXfD--
+--p3wy26msisgyobg2--
 
---===============1149230648==
+--===============0182568641==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -254,4 +238,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1149230648==--
+--===============0182568641==--
