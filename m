@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F17AF39DDE5
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 15:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A6F839DE99
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 16:21:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6238F6E8C5;
-	Mon,  7 Jun 2021 13:41:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49F566E8E1;
+	Mon,  7 Jun 2021 14:21:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 15BBE6E8CA;
- Mon,  7 Jun 2021 13:41:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D332A008A;
- Mon,  7 Jun 2021 13:41:45 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3E806E8E1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Jun 2021 14:21:31 +0000 (UTC)
+IronPort-SDR: F+6I6TlnSXk7fQLx57CPM6vxRIgre+NfbPKqu0ivTTTN2o3afXBpE9NaGLWNGFBbCG7NOPmImw
+ Aw04RZ3UePJA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="184999914"
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="184999914"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 07:21:29 -0700
+IronPort-SDR: NmYoNkimBiei+r4083534GEFvKXdRoyDZ7s6x5DfwLVgIjmmdhFPgjH9T9pkKNt4wwBc4ETBtG
+ OHdXbH5RMP0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="476223411"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by FMSMGA003.fm.intel.com with ESMTP; 07 Jun 2021 07:21:27 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	mahesh.meena@intel.com
+Date: Mon,  7 Jun 2021 19:42:16 +0530
+Message-Id: <20210607141216.391305-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
-Date: Mon, 07 Jun 2021 13:41:45 -0000
-Message-ID: <162307330505.2775.8620959719984062879@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210607105342.13155-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20210607105342.13155-1-vandita.kulkarni@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915/dsc=3A_Fix_bigjoiner_check_in_dsc=5Fdisable_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH V2] x86/gpu: add JasperLake to gen11 early quirks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,37 +45,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Let's reserve JSL stolen memory for graphics.
 
-Series: drm/i915/dsc: Fix bigjoiner check in dsc_disable (rev2)
-URL   : https://patchwork.freedesktop.org/series/91006/
-State : warning
+JasperLake is a gen11 platform which is compatible with
+ICL/EHL changes.
 
-== Summary ==
+V1:
+    - Added Cc: x86@kernel.org
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  MODPOST modules-only.symvers
-ERROR: modpost: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-ERROR: modpost: "__divdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:150: recipe for target 'modules-only.symvers' failed
-make[1]: *** [modules-only.symvers] Error 1
-make[1]: *** Deleting file 'modules-only.symvers'
-Makefile:1759: recipe for target 'modules' failed
-make: *** [modules] Error 2
+Cc: x86@kernel.org
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+---
+ arch/x86/kernel/early-quirks.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-== Logs ==
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index b553ffe9b985..38837dad46e6 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -549,6 +549,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+ 	INTEL_CNL_IDS(&gen9_early_ops),
+ 	INTEL_ICL_11_IDS(&gen11_early_ops),
+ 	INTEL_EHL_IDS(&gen11_early_ops),
++	INTEL_JSL_IDS(&gen11_early_ops),
+ 	INTEL_TGL_12_IDS(&gen11_early_ops),
+ 	INTEL_RKL_IDS(&gen11_early_ops),
+ 	INTEL_ADLS_IDS(&gen11_early_ops),
+-- 
+2.31.1
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20294/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
