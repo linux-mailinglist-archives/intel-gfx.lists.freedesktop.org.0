@@ -2,137 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AF8A39CE58
-	for <lists+intel-gfx@lfdr.de>; Sun,  6 Jun 2021 11:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17AF739D2DE
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 04:20:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD72E6E3A0;
-	Sun,  6 Jun 2021 09:09:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1D66E04A;
+	Mon,  7 Jun 2021 02:20:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2E6F6E3A0;
- Sun,  6 Jun 2021 09:09:28 +0000 (UTC)
-IronPort-SDR: xXI0g2GEyftjcukemcDwhR7RTpuFMeVoEidsvte2wZFZbdBXyD5qJLLbXunGUWohrcWoOLX8nI
- 6cGZOfnezu+Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,10006"; a="204467688"
-X-IronPort-AV: E=Sophos;i="5.83,252,1616482800"; d="scan'208";a="204467688"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2021 02:09:27 -0700
-IronPort-SDR: pA1GIcsALTscFKPvDouzkX+8gvPB2jp2i+73Dad6ZqHnZBYKKL55sj8GWUCoh4TGShCC0eW7jA
- BBpFbvGEEl/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,252,1616482800"; d="scan'208";a="401372766"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga006.jf.intel.com with ESMTP; 06 Jun 2021 02:09:27 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Sun, 6 Jun 2021 02:09:27 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Sun, 6 Jun 2021 02:09:27 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.49) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Sun, 6 Jun 2021 02:09:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mFNtoODb88M0vBRnnLbwTxOfgHoiffsqjuifU7atlGE3vOCSWlDxZXGbGeHTTcKWk5Whee92j1ycCdUrpuvB1KAVfoeV9iNVFvNqams2+8Uexem0fSssUqmVpjS6V0fZoXRR1tLYeOplwLzmwh3pQIXXGEratN0u+z5kpvwV0SZ25ZuSrdxBtRCkTj0f31EGsCfWy8SgkiJnLYYB7KP26Ik6wXE8AcTlA9BRZsGBUU6hQhhy2HKLEZQpiuILHWIxcphD0WD/BMUvnV56MLSthna25Ki3Y9g0P5ks8zdPknhG1fBdnd1RWAhInffKoUeLdCRLwdQZ4d1RVFX2qjKoNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FnWCD8copqHeKgZOPkKP7ZJ03ZjCHzpqi6QKfnptOIs=;
- b=icyhiYJSCrg7c4LcQc/gzGyQG2Uc0hAt7i2QRkXF3fVgWHYrtTjms2H6iU0W0oojqJlswt3HNJGV4m27RZnQnZjDlOQ+c/G9i4gnNIFlLV349IBzamuv8Nkh1Cmm7FY+iaSwW2l99bilqLBQPTv2qnUxbOr1WXDbfkWAsc1xk/bRIdlkpExqau5k4QhE2GEVYA0nfu3hTZG7qkX5TEKtVnxIi6+mbap9E+9Y3mLa3+nvZv9z3eSTAbJV4OzDvSLU0eBI711neKQQY2tx4j57Wk+t2jbhbJIYakta2nGVoY0BT03KxTk5TVOrVoqEh9B1EOrLBgTVPzw72aSVrwfyzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FnWCD8copqHeKgZOPkKP7ZJ03ZjCHzpqi6QKfnptOIs=;
- b=uSCl+rk+8eqbgvoItrONq7zHZWY7bjqNweW69AE7/rxDk+yaDqERUfsxxmuNLUI7XT2fFBBTrLfmEoC5twdSrtk6Fclh28LCPZsc0MbgbHaLz/6Vayh/EiH9ODYC03Gb0o4vJH8PH59y99d4ukFGJyXZgMaoj/hUveemQ8xN0z4=
-Received: from CO6PR11MB5569.namprd11.prod.outlook.com (2603:10b6:303:139::20)
- by CO6PR11MB5668.namprd11.prod.outlook.com (2603:10b6:5:355::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Sun, 6 Jun
- 2021 09:09:23 +0000
-Received: from CO6PR11MB5569.namprd11.prod.outlook.com
- ([fe80::2d63:b94a:89c5:4514]) by CO6PR11MB5569.namprd11.prod.outlook.com
- ([fe80::2d63:b94a:89c5:4514%7]) with mapi id 15.20.4195.029; Sun, 6 Jun 2021
- 09:09:23 +0000
-From: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>
-To: "Srinivas, Vidya" <vidya.srinivas@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
-Thread-Topic: [PATCH] tests/kms_color: Disable gamma in degamma tests
-Thread-Index: AQHXWURf1Pj9sjBRBEim2DKlAMGVUqsGsbZA
-Date: Sun, 6 Jun 2021 09:09:23 +0000
-Message-ID: <CO6PR11MB5569C381A87795F5D6B369498D399@CO6PR11MB5569.namprd11.prod.outlook.com>
-References: <1622176543-12759-1-git-send-email-vidya.srinivas@intel.com>
- <1622812262-16592-1-git-send-email-vidya.srinivas@intel.com>
-In-Reply-To: <1622812262-16592-1-git-send-email-vidya.srinivas@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [2409:4070:201d:12a0:b9e1:6801:4e8b:1c6e]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 62262d7e-b72c-4bb1-84fa-08d928cac6d2
-x-ms-traffictypediagnostic: CO6PR11MB5668:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO6PR11MB5668727B779418B96A0235A88D399@CO6PR11MB5668.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tPrCeP5R3ymzc1FYRvT6hBvrUsWCWoWuTS4hOk7fUOcvdrhE/pusl2pcO7G/l7JxHn0ObP+iVX6nxDvLTyx+ZUHznn5VWdj1DTjLZC47LKP6GdiYBGQby5gP+Cw8uJ8+7IrCbYfmD1F7XNyR6VhjgtbqWyFer51KRtmVMF+jEsUPOgfW7IKQuTH1clho/bDT11xa8hoTYbYCpWr38lewX3yStdzDwKP+2bhXm6f6z7aJXYZ8C1g88u2uOJJpbbOJnWDxSbN7QsrC/YpnCzhECKaH1c2hHVPi5HcI5QteCwEL+mFa61Ox+dpECpf+7n+nyNw4uNJ6cKBM8hNhD5PozC57ZddHUtE94oo29fvOpoPqANhU4bvTBnxibC55mAvNT4sO+WkWzg0OWUDh6wQCtG+SCLewNIPDpHmyEHEoehKMo/s1ZE46voucidnawvGIht1iEy1/APPZnxZRyI7Q9euLw0kEfFz/Q9gLnve28MMsdPKwC8ZY/OPaIna5ArdiGAPkdNgTcO0lgGfeVWNWV1mMRWuW2W8LFkFMwFmf8LAEcqSCh/x99Oii9TfBMkJyBPuIA8trBAPJ4cmB7d++RKzBNUn+HJkEtg4/Wdpu75o=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR11MB5569.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(346002)(366004)(396003)(376002)(136003)(39860400002)(186003)(122000001)(76116006)(66476007)(66446008)(66556008)(53546011)(7696005)(6506007)(64756008)(66946007)(478600001)(8676002)(55016002)(107886003)(33656002)(5660300002)(54906003)(52536014)(2906002)(110136005)(4326008)(316002)(38100700002)(71200400001)(83380400001)(8936002)(86362001)(9686003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?eYG1qB1TVZyniHn0R7UgWaAzil4C9AM1ymdVpLAHXm+xtKfIT24g/1eTLd/I?=
- =?us-ascii?Q?PmdEwAkcbDL+1lEZHhdicX5Y8xCS+VvNJPWJ4ahNZZcvVt+au5ErcDW2xmt5?=
- =?us-ascii?Q?+o9gjFk9fYYTGIpivC0egz2ToEcsaPfmPgGLnr8w8wJ7ARj9SXHux/C+wD/m?=
- =?us-ascii?Q?rKy10gRmuD2xF+11jY7TUNjbkquLfy7EiXYmrtezPc39LBqxSSbWZYHrDtoU?=
- =?us-ascii?Q?f+ihzmAM/Jf2AnHBaSswENUe2s5gr7jC3Le01PQ4LBeBz8g3AbeuHN3ucZvj?=
- =?us-ascii?Q?MyrVVGH5aMbqkyG/xm4iMJvtbG7POtZRnpUOg1xg6HCBl6ohMXXxC+vw1MSd?=
- =?us-ascii?Q?HWPkeF1IhRZlrDXIXxaLk+dpJtmU5iBOmX9pbN3BnAGQbKiy2QmCgxIZRCQH?=
- =?us-ascii?Q?TFCeiiIbhmLMn8J4ouRWBbFYSS0ijDkApnz7nz/h6/ck7V/9r1YTFx92OTe/?=
- =?us-ascii?Q?xPj/UO+TM0buah/Hi+Mn6hd/nXirMmPKUK/THhDXwegCGF6/qKTd56NpeO6t?=
- =?us-ascii?Q?2TsqN+Pzkr0v1SG1WYeWaPu1Xrbt69ERH63CKdTqh8Zpw7A4i77suOw5JKQW?=
- =?us-ascii?Q?o2XOarhmvP6r+hXQOOLY10y8f4iJGPNFV/IugvS0E+QJthVBj351Q5BoztxU?=
- =?us-ascii?Q?BNZEQrnFtW3fml1FrjqGrtMZL56lTwMrhUS6UWD5RgMcv7NeIT2JJjP1O50o?=
- =?us-ascii?Q?F0xpGgRseQL+cFMOdTj/xfrsxdtNijQ/IQ8o9rjmtCg+tho9yEqCTv07eRa5?=
- =?us-ascii?Q?Kpn6Ui05DhvM7TwDWze7uFBEOHqpeQxPw+Lu1mLH8PseXI8SAA9qfkWUPM55?=
- =?us-ascii?Q?DsM8fN9/kCtV8nTl0iP7MRJ841AWrvSjbg2CdxdfzH+I8buqj/QtYaJIsXpJ?=
- =?us-ascii?Q?YKwi7UVbHfc9HIuSRm4ZBV1zrBuKuwcWy66M+ImpfWNottFStPKlel2n7mon?=
- =?us-ascii?Q?ds+C97/lRgW+EWnIk/UwOxbLK/bjKFoIyJPJ0F8IjPi96Fs3cn4zUPJSd3p/?=
- =?us-ascii?Q?Z4uUXRrEBl7ZMGwW2qo46yqpaAX784r7cdZdR/iUlQaUfryVX+3OLdQgv/9z?=
- =?us-ascii?Q?LRsXSBL87cogWiIT7ZaOhAAnvnsh4NPt8ShCApS1N2gAHdpTKkDGL6xTnOvu?=
- =?us-ascii?Q?edDQs71+sNKO3kImUME9HAN87uGoLAn5kADkzOz6bFmwvqOgPbwWb/Apca2/?=
- =?us-ascii?Q?Lk8tsYGdO12AOoCatHiKsZYPu4QNP5Lkl9xzAr+dRCqn3kCe/6yvbFSUj/pc?=
- =?us-ascii?Q?nOWXKTuyvbq02tw+Wy183v/UZX0EmT+Yl76BAmJYPUhR1XgfRiu31Itcxe1Q?=
- =?us-ascii?Q?PSp+41V1blxpf9SBxIR6FwXXI+weEyLrYGvOVYII3g1XHzH4mZI1vfCJEMqw?=
- =?us-ascii?Q?LobFzfcAAP63UGzHm9t1yTuRnEMO?=
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8E276E04A;
+ Mon,  7 Jun 2021 02:20:28 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Fyxt02j8Cz9sRN;
+ Mon,  7 Jun 2021 12:20:23 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1623032426;
+ bh=nOcpwf8R4Sc4oE5ZtD6iiPP8HABC/Jk7x1g/OW52Zdo=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Rxpj8871vndB89oo2UQOE+nFvH0TI5PiIMROvFbGAjp3LYivaXHinloxZC4OvJF0l
+ 4QLCxLHy6i2hA42gHMOg0z11I8L9/4ZxbNNrLydQ2AEfx/RMDqPQl9M//bSqphtUOf
+ t8vqztQB1U7fZHV4BY/qVgf8ZhU4yEqCwlyrm10F4pzB0bu/3gzaSq7md+SL0tPVB7
+ qkXu2uMf5sZ3kUnrV8HPS7NW2EB7WlcQaiX9Dz436klHIOs5OupIF0RnSV/jji2I2u
+ NwghTctJCszDFrpnOpVxfBUpYRoN24F/twqSPBVX0JsKaRaS0+9JOyVWwX3OQXCGVB
+ aYpmfbwxF5WLg==
+Date: Mon, 7 Jun 2021 12:20:21 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>, DRI
+ <dri-devel@lists.freedesktop.org>, Alex Deucher <alexdeucher@gmail.com>
+Message-ID: <20210607122021.0501d588@canb.auug.org.au>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5569.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62262d7e-b72c-4bb1-84fa-08d928cac6d2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2021 09:09:23.1556 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bKfkiCvtA/D24SRztv9TS/dGuFdnZxgOU0goKcmElSn7nFioU+BuQj5+VGZ85gGwXsq6p2ezZEDSZ0Vk3SrbkkaovsBQPbwA0ToXRK1kBUc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5668
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] tests/kms_color: Disable gamma in degamma
- tests
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with the
+ drm and amdgpu trees
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,115 +49,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "markyacoub@chromium.org" <markyacoub@chromium.org>, "Lin,
- Charlton" <charlton.lin@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Nirmoy Das <nirmoy.das@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============1280945443=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Srinivas, Vidya <vidya.srinivas@intel.com>
-> Sent: Friday, June 4, 2021 6:41 PM
-> To: intel-gfx@lists.freedesktop.org; igt-dev@lists.freedesktop.org
-> Cc: markyacoub@chromium.org; Almahallawy, Khaled
-> <khaled.almahallawy@intel.com>; Lin, Charlton <charlton.lin@intel.com>;
-> Latvala, Petri <petri.latvala@intel.com>; Modem, Bhanuprakash
-> <bhanuprakash.modem@intel.com>; Shankar, Uma <uma.shankar@intel.com>;
-> Srinivas, Vidya <vidya.srinivas@intel.com>
-> Subject: [PATCH] tests/kms_color: Disable gamma in degamma tests
-> 
-> This patch disables gamma in degamma subtest which is missing.
-> It compares CRC between (linear degamma + solid colors) and (max
-> degamma + gradient colors).
-> 
-> v2 - Addressed review comments from Bhanuprakash Modem
-> 
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> Change-Id: Ibdb91b603e2e4024d170727d24c6a5425441e2e1
-> ---
->  tests/kms_color.c | 14 ++++++++------
->  1 file changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/tests/kms_color.c b/tests/kms_color.c
-> index 3a42532a5c27..41720dcdd90f 100644
-> --- a/tests/kms_color.c
-> +++ b/tests/kms_color.c
-> @@ -32,7 +32,6 @@ static void test_pipe_degamma(data_t *data,
->  	igt_output_t *output;
->  	igt_display_t *display = &data->display;
->  	gamma_lut_t *degamma_linear, *degamma_full;
-> -	gamma_lut_t *gamma_linear;
->  	color_t red_green_blue[] = {
->  		{ 1.0, 0.0, 0.0 },
->  		{ 0.0, 1.0, 0.0 },
-> @@ -45,8 +44,6 @@ static void test_pipe_degamma(data_t *data,
->  	degamma_linear = generate_table(data->degamma_lut_size, 1.0);
->  	degamma_full = generate_table_max(data->degamma_lut_size);
-> 
-> -	gamma_linear = generate_table(data->gamma_lut_size, 1.0);
-> -
->  	for_each_valid_output_on_pipe(&data->display, primary->pipe->pipe,
-> output) {
->  		drmModeModeInfo *mode;
->  		struct igt_fb fb_modeset, fb;
-> @@ -75,8 +72,8 @@ static void test_pipe_degamma(data_t *data,
-> 
->  		igt_plane_set_fb(primary, &fb_modeset);
->  		disable_ctm(primary->pipe);
-> -		disable_degamma(primary->pipe);
-> -		set_gamma(data, primary->pipe, gamma_linear);
-> +		disable_gamma(primary->pipe);
-> +		set_degamma(data, primary->pipe, degamma_linear);
->  		igt_display_commit(&data->display);
-> 
->  		/* Draw solid colors with no degamma transformation. */
+--===============1280945443==
+Content-Type: multipart/signed; boundary="Sig_/6MXQCe35s=qlf6_v.ujY2qt";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Please fix the comment s/"no degamma"/"linear degamma"/.
-Also, we need to port this patch on "kms_color_chamelium".
+--Sig_/6MXQCe35s=qlf6_v.ujY2qt
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> @@ -103,15 +100,17 @@ static void test_pipe_degamma(data_t *data,
->  		 */
->  		igt_assert_crc_equal(&crc_fullgamma, &crc_fullcolors);
-> 
-> +		disable_degamma(primary->pipe);
->  		igt_plane_set_fb(primary, NULL);
->  		igt_output_set_pipe(output, PIPE_NONE);
-> +		igt_display_commit2(&data->display, data->display.is_atomic ?
-> +							COMMIT_ATOMIC : COMMIT_LEGACY);
->  		igt_remove_fb(data->drm_fd, &fb);
->  		igt_remove_fb(data->drm_fd, &fb_modeset);
->  	}
-> 
->  	free_lut(degamma_linear);
->  	free_lut(degamma_full);
-> -	free_lut(gamma_linear);
->  }
-> 
->  /*
-> @@ -189,8 +188,11 @@ static void test_pipe_gamma(data_t *data,
->  		 */
->  		igt_assert_crc_equal(&crc_fullgamma, &crc_fullcolors);
-> 
-> +		disable_gamma(primary->pipe);
->  		igt_plane_set_fb(primary, NULL);
->  		igt_output_set_pipe(output, PIPE_NONE);
-> +		igt_display_commit2(&data->display, data->display.is_atomic ?
-> +							COMMIT_ATOMIC : COMMIT_LEGACY);
- 
-These changes are not relevant to the degamma, but still we need these changes.
-It would be good if we mention this in commit message.
+Hi all,
 
-With above changes, this patch is
-Reviewed-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Today's linux-next merge of the drm-misc tree got a conflict in:
 
-- Bhanu
->  		igt_remove_fb(data->drm_fd, &fb);
->  		igt_remove_fb(data->drm_fd, &fb_modeset);
->  	}
-> --
-> 2.26.2
+  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+
+between commits:
+
+  b453e42a6e8b ("drm/amdgpu: Add new placement for preemptible SG BOs")
+  19a1d9350be6 ("drm/amdgpu: flush gart changes after all BO recovery")
+
+from the drm and amdgpu trees and commits:
+
+  d3116756a710 ("drm/ttm: rename bo->mem and make it a pointer")
+  bfa3357ef9ab ("drm/ttm: allocate resource object instead of embedding it =
+v2")
+
+from the drm-misc tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 832970cff64c,53a8ab8ce2a7..000000000000
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@@ -460,11 -460,10 +462,11 @@@ static int amdgpu_bo_move(struct ttm_bu
+  {
+  	struct amdgpu_device *adev;
+  	struct amdgpu_bo *abo;
+- 	struct ttm_resource *old_mem =3D &bo->mem;
++ 	struct ttm_resource *old_mem =3D bo->resource;
+  	int r;
+ =20
+ -	if (new_mem->mem_type =3D=3D TTM_PL_TT) {
+ +	if (new_mem->mem_type =3D=3D TTM_PL_TT ||
+ +	    new_mem->mem_type =3D=3D AMDGPU_PL_PREEMPT) {
+  		r =3D amdgpu_ttm_backend_bind(bo->bdev, bo->ttm, new_mem);
+  		if (r)
+  			return r;
+@@@ -965,39 -962,38 +968,39 @@@ int amdgpu_ttm_alloc_gart(struct ttm_bu
+ =20
+  	addr =3D amdgpu_gmc_agp_addr(bo);
+  	if (addr !=3D AMDGPU_BO_INVALID_OFFSET) {
+- 		bo->mem.start =3D addr >> PAGE_SHIFT;
+- 	} else {
+-=20
+- 		/* allocate GART space */
+- 		placement.num_placement =3D 1;
+- 		placement.placement =3D &placements;
+- 		placement.num_busy_placement =3D 1;
+- 		placement.busy_placement =3D &placements;
+- 		placements.fpfn =3D 0;
+- 		placements.lpfn =3D adev->gmc.gart_size >> PAGE_SHIFT;
+- 		placements.mem_type =3D TTM_PL_TT;
+- 		placements.flags =3D bo->mem.placement;
+-=20
+- 		r =3D ttm_bo_mem_space(bo, &placement, &tmp, &ctx);
+- 		if (unlikely(r))
+- 			return r;
++ 		bo->resource->start =3D addr >> PAGE_SHIFT;
++ 		return 0;
++ 	}
+ =20
+- 		/* compute PTE flags for this buffer object */
+- 		flags =3D amdgpu_ttm_tt_pte_flags(adev, bo->ttm, &tmp);
++ 	/* allocate GART space */
++ 	placement.num_placement =3D 1;
++ 	placement.placement =3D &placements;
++ 	placement.num_busy_placement =3D 1;
++ 	placement.busy_placement =3D &placements;
++ 	placements.fpfn =3D 0;
++ 	placements.lpfn =3D adev->gmc.gart_size >> PAGE_SHIFT;
++ 	placements.mem_type =3D TTM_PL_TT;
++ 	placements.flags =3D bo->resource->placement;
++=20
++ 	r =3D ttm_bo_mem_space(bo, &placement, &tmp, &ctx);
++ 	if (unlikely(r))
++ 		return r;
+ =20
+- 		/* Bind pages */
+- 		gtt->offset =3D (u64)tmp.start << PAGE_SHIFT;
+- 		r =3D amdgpu_ttm_gart_bind(adev, bo, flags);
+- 		if (unlikely(r)) {
+- 			ttm_resource_free(bo, &tmp);
+- 			return r;
+- 		}
++ 	/* compute PTE flags for this buffer object */
++ 	flags =3D amdgpu_ttm_tt_pte_flags(adev, bo->ttm, tmp);
+ =20
+- 		amdgpu_gart_invalidate_tlb(adev);
+- 		ttm_resource_free(bo, &bo->mem);
+- 		bo->mem =3D tmp;
++ 	/* Bind pages */
++ 	gtt->offset =3D (u64)tmp->start << PAGE_SHIFT;
++ 	r =3D amdgpu_ttm_gart_bind(adev, bo, flags);
++ 	if (unlikely(r)) {
++ 		ttm_resource_free(bo, &tmp);
++ 		return r;
+  	}
+ =20
+++	amdgpu_gart_invalidate_tlb(adev);
++ 	ttm_resource_free(bo, &bo->resource);
++ 	ttm_bo_assign_mem(bo, tmp);
++=20
+  	return 0;
+  }
+ =20
+@@@ -1354,16 -1349,7 +1357,16 @@@ static bool amdgpu_ttm_bo_eviction_valu
+  		}
+  	}
+ =20
+- 	switch (bo->mem.mem_type) {
++ 	switch (bo->resource->mem_type) {
+ +	case AMDGPU_PL_PREEMPT:
+ +		/* Preemptible BOs don't own system resources managed by the
+ +		 * driver (pages, VRAM, GART space). They point to resources
+ +		 * owned by someone else (e.g. pageable memory in user mode
+ +		 * or a DMABuf). They are used in a preemptible context so we
+ +		 * can guarantee no deadlocks and good QoS in case of MMU
+ +		 * notifiers or DMABuf move notifiers from the resource owner.
+ +		 */
+ +		return false;
+  	case TTM_PL_TT:
+  		if (amdgpu_bo_is_amdgpu_bo(bo) &&
+  		    amdgpu_bo_encrypted(ttm_to_amdgpu_bo(bo)))
+@@@ -1942,12 -1920,7 +1945,12 @@@ int amdgpu_fill_buffer(struct amdgpu_b
+  		return -EINVAL;
+  	}
+ =20
+- 	if (bo->tbo.mem.mem_type =3D=3D AMDGPU_PL_PREEMPT) {
+++	if (bo->tbo.resource->mem_type =3D=3D AMDGPU_PL_PREEMPT) {
+ +		DRM_ERROR("Trying to clear preemptible memory.\n");
+ +		return -EINVAL;
+ +	}
+ +
+- 	if (bo->tbo.mem.mem_type =3D=3D TTM_PL_TT) {
++ 	if (bo->tbo.resource->mem_type =3D=3D TTM_PL_TT) {
+  		r =3D amdgpu_ttm_alloc_gart(&bo->tbo);
+  		if (r)
+  			return r;
+
+--Sig_/6MXQCe35s=qlf6_v.ujY2qt
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmC9gmUACgkQAVBC80lX
+0GzKdwf/VgrAtDclvKEHs69tXAAZithzh+SefpouR0jFQMH3IW7NDahNp1VcbXnE
+w7Xp67S0g6SjzRmgka6oRRCz/mG/0Csw6LWEW1Ycv4fDtxSZ0FLaoypgZDyCzhNX
+lngF5lb0SbsFKmxd1oNxVP/w0m11Dka5lB49rcz2StsFCd4LJqOReX5df2qzm4ld
+/4pA3/+uTFY+A/EPnmXxQGh/cLrqHujY6GYXa8Akiwq4nzWPQm3iJBHkN+Ub9gU3
+qn3hQXka0tp0TlU18E4CZBDuYfZf8LGXgLdFBYrWvIFLR+XQgVrCLHAgOXGYHd5C
+WhgVKz1b0U7oP/e4dyohjkwNQ4dfOg==
+=/HuQ
+-----END PGP SIGNATURE-----
+
+--Sig_/6MXQCe35s=qlf6_v.ujY2qt--
+
+--===============1280945443==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1280945443==--
