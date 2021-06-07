@@ -2,65 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31FEA39E52D
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 19:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFE4A39E599
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 19:38:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BEC6E96A;
-	Mon,  7 Jun 2021 17:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B7BB6E978;
+	Mon,  7 Jun 2021 17:38:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A296E964;
- Mon,  7 Jun 2021 17:19:50 +0000 (UTC)
-IronPort-SDR: oudmvHwT5JhENi6Yd0c2VC2MLteT3jICSRhFDzY+a7+qqJseyBQX6s5L9eITInej9nP+CALPpu
- Ln9E+2i6gQaA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="201646290"
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="201646290"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3266E977;
+ Mon,  7 Jun 2021 17:38:03 +0000 (UTC)
+IronPort-SDR: ttP+qBXwP7+z0FAANIZGJAGb0er1L9Nr7Z1aqxQ8Ub/c4uM071cz1MztMX0unKa/F8QffYGHjF
+ X4IYBPNlsCeg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="201650105"
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="201650105"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2021 10:19:49 -0700
-IronPort-SDR: 4HeXbWujpVBs9EeyLE/hMU9ZHk1aixKsKb49ysYevJCJm4X31Plui13SmScTxrr0OCHNrSIlWj
- czcClR7PvoLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="484850949"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga002.fm.intel.com with ESMTP; 07 Jun 2021 10:19:49 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 7 Jun 2021 10:19:48 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 7 Jun 2021 22:49:46 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.008;
- Mon, 7 Jun 2021 22:49:46 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Harry Wentland <harry.wentland@amd.com>, Pekka Paalanen
- <ppaalanen@gmail.com>
-Thread-Topic: [PATCH 01/21] drm: Add Enhanced Gamma and color lut range
- attributes
-Thread-Index: AQHXVs8hSnwv/9woJ0GcfBgiln/9M6sAGuaAgAERibCAAnTRAIAFMypw
-Date: Mon, 7 Jun 2021 17:19:46 +0000
-Message-ID: <64e3d50625ba420a90e68b6359cdea65@intel.com>
-References: <20210601105218.29185-1-uma.shankar@intel.com>
- <20210601105218.29185-2-uma.shankar@intel.com>
- <20210602123335.29045e06@eldfell>
- <2015b90626a04860808eb02fa5f8a117@intel.com>
- <f51cbf2d-69c7-bd7c-379a-a74724ad6d87@amd.com>
-In-Reply-To: <f51cbf2d-69c7-bd7c-379a-a74724ad6d87@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+ 07 Jun 2021 10:37:59 -0700
+IronPort-SDR: VvVfLcvZLbbRzWa64kfVZfvW2tjKa/iU8ytxSjwGz++c6PLw3xNTuHTMpOBHyhCiqSKsGD4wFc
+ 1JjPFayG4m2A==
+X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="484857057"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 10:37:59 -0700
+Date: Mon, 7 Jun 2021 10:31:02 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20210607173101.GA11968@sdutt-i7>
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <20210506191451.77768-37-matthew.brost@intel.com>
+ <375b4de4-168f-9c4c-dbb8-f42fd6303628@linux.intel.com>
+ <20210525172121.GE14724@sdutt-i7>
+ <0f26f76f-e066-fb23-a7b2-784bb8ee771d@linux.intel.com>
+ <20210526181053.GA3435@sdutt-i7>
+ <53613c13-1cab-b9bd-3922-0389600773ee@linux.intel.com>
+ <20210527143514.GA24720@sdutt-i7>
+ <828fe399-5319-78a9-c6e3-c0c027e08e9c@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/21] drm: Add Enhanced Gamma and color lut
- range attributes
+Content-Disposition: inline
+In-Reply-To: <828fe399-5319-78a9-c6e3-c0c027e08e9c@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC PATCH 36/97] drm/i915/guc: Add non blocking
+ CTB send function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,169 +56,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Harry Wentland <harry.wentland@amd.com>
-> Sent: Friday, June 4, 2021 8:53 PM
-> To: Shankar, Uma <uma.shankar@intel.com>; Pekka Paalanen
-> <ppaalanen@gmail.com>
-> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Modem,
-> Bhanuprakash <bhanuprakash.modem@intel.com>
-> Subject: Re: [PATCH 01/21] drm: Add Enhanced Gamma and color lut range
-> attributes
+On Thu, May 27, 2021 at 04:11:50PM +0100, Tvrtko Ursulin wrote:
 > 
-> On 2021-06-02 4:26 p.m., Shankar, Uma wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: Pekka Paalanen <ppaalanen@gmail.com>
-> >> Sent: Wednesday, June 2, 2021 3:04 PM
-> >> To: Shankar, Uma <uma.shankar@intel.com>
-> >> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
-> >> Modem, Bhanuprakash <bhanuprakash.modem@intel.com>
-> >> Subject: Re: [PATCH 01/21] drm: Add Enhanced Gamma and color lut
-> >> range attributes
-> >>
-> >> On Tue,  1 Jun 2021 16:21:58 +0530
-> >> Uma Shankar <uma.shankar@intel.com> wrote:
-> >>
-> >>> Existing LUT precision structure is having only 16 bit precision.
-> >>> This is not enough for upcoming enhanced hardwares and advance
-> >>> usecases like HDR processing. Hence added a new structure with 32
-> >>> bit precision values.
-> >>>
-> >>> This also defines a new structure to define color lut ranges, along
-> >>> with related macro definitions and enums. This will help describe
-> >>> multi segmented lut ranges in the hardware.
-> >>>
-> >>> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> >>> ---
-> >>>  include/uapi/drm/drm_mode.h | 58
-> >>> +++++++++++++++++++++++++++++++++++++
-> >>>  1 file changed, 58 insertions(+)
-> >>>
-> >>> diff --git a/include/uapi/drm/drm_mode.h
-> >>> b/include/uapi/drm/drm_mode.h index 9b6722d45f36..d0ce48d2e732
-> >>> 100644
-> >>> --- a/include/uapi/drm/drm_mode.h
-> >>> +++ b/include/uapi/drm/drm_mode.h
-> >>> @@ -819,6 +819,64 @@ struct hdr_output_metadata {
-> >>>  	};
-> >>>  };
-> >>>
-> >>> +/*
-> >>> + * DRM_MODE_LUT_GAMMA|DRM_MODE_LUT_DEGAMMA is legal and
-> means
-> >> the LUT
-> >>> + * can be used for either purpose, but not simultaneously. To
-> >>> + expose
-> >>> + * modes that support gamma and degamma simultaneously the gamma
-> >>> + mode
-> >>> + * must declare distinct DRM_MODE_LUT_GAMMA and
-> >> DRM_MODE_LUT_DEGAMMA
-> >>> + * ranges.
-> >>> + */
-> >>> +/* LUT is for gamma (after CTM) */
-> >>> +#define DRM_MODE_LUT_GAMMA BIT(0)
-> >>> +/* LUT is for degamma (before CTM) */ #define DRM_MODE_LUT_DEGAMMA
-> >>> +BIT(1)
-> >>> +/* linearly interpolate between the points */ #define
-> >>> +DRM_MODE_LUT_INTERPOLATE BIT(2)
-> >>> +/*
-> >>> + * the last value of the previous range is the
-> >>> + * first value of the current range.
-> >>> + */
-> >>> +#define DRM_MODE_LUT_REUSE_LAST BIT(3)
-> >>> +/* the curve must be non-decreasing */ #define
-> >>> +DRM_MODE_LUT_NON_DECREASING BIT(4)
-> >>> +/* the curve is reflected across origin for negative inputs */
-> >>> +#define DRM_MODE_LUT_REFLECT_NEGATIVE BIT(5)
-> >>> +/* the same curve (red) is used for blue and green channels as well
-> >>> +*/ #define DRM_MODE_LUT_SINGLE_CHANNEL BIT(6)
-> >>> +
-> >>> +struct drm_color_lut_range {
-> >>> +	/* DRM_MODE_LUT_* */
-> >>> +	__u32 flags;
-> >>> +	/* number of points on the curve */
-> >>> +	__u16 count;
-> >>> +	/* input/output bits per component */
-> >>> +	__u8 input_bpc, output_bpc;
-> >>> +	/* input start/end values */
-> >>> +	__s32 start, end;
-> >>> +	/* output min/max values */
-> >>> +	__s32 min, max;
-> >>> +};
-> >>> +
-> >>> +enum lut_type {
-> >>
-> >> Unprefixed type name in UAPI headers is probably not a good idea.
-> >
-> > Ok, will rename these.
-> >
-> >>> +	LUT_TYPE_DEGAMMA = 0,
-> >>> +	LUT_TYPE_GAMMA = 1,
-> >>> +};
-> >>
-> >> All the above stuff seems to be the same in your other patch series'
-> >> patch "[PATCH 1/9] drm: Add gamma mode property". Is this series
-> >> replacing the series "[PATCH 0/9] Enhance pipe color support for
-> >> multi segmented luts" or what does this mean?
-> >
-> > The concept and idea is similar and the range definition is also
-> > common. But this series focuses on plane color management while the other one
-> is for pipe/crtc color features.
-> > Hence separated and floated them as unique series for review.
-> >
+> On 27/05/2021 15:35, Matthew Brost wrote:
+> > On Thu, May 27, 2021 at 11:02:24AM +0100, Tvrtko Ursulin wrote:
+> > > 
+> > > On 26/05/2021 19:10, Matthew Brost wrote:
+> > > 
+> > > [snip]
+> > > 
+> > > > > > > > +static int ct_send_nb(struct intel_guc_ct *ct,
+> > > > > > > > +		      const u32 *action,
+> > > > > > > > +		      u32 len,
+> > > > > > > > +		      u32 flags)
+> > > > > > > > +{
+> > > > > > > > +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> > > > > > > > +	unsigned long spin_flags;
+> > > > > > > > +	u32 fence;
+> > > > > > > > +	int ret;
+> > > > > > > > +
+> > > > > > > > +	spin_lock_irqsave(&ctb->lock, spin_flags);
+> > > > > > > > +
+> > > > > > > > +	ret = ctb_has_room(ctb, len + 1);
+> > > > > > > > +	if (unlikely(ret))
+> > > > > > > > +		goto out;
+> > > > > > > > +
+> > > > > > > > +	fence = ct_get_next_fence(ct);
+> > > > > > > > +	ret = ct_write(ct, action, len, fence, flags);
+> > > > > > > > +	if (unlikely(ret))
+> > > > > > > > +		goto out;
+> > > > > > > > +
+> > > > > > > > +	intel_guc_notify(ct_to_guc(ct));
+> > > > > > > > +
+> > > > > > > > +out:
+> > > > > > > > +	spin_unlock_irqrestore(&ctb->lock, spin_flags);
+> > > > > > > > +
+> > > > > > > > +	return ret;
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > >      static int ct_send(struct intel_guc_ct *ct,
+> > > > > > > >      		   const u32 *action,
+> > > > > > > >      		   u32 len,
+> > > > > > > > @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
+> > > > > > > >      		   u32 response_buf_size,
+> > > > > > > >      		   u32 *status)
+> > > > > > > >      {
+> > > > > > > > +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> > > > > > > >      	struct ct_request request;
+> > > > > > > >      	unsigned long flags;
+> > > > > > > >      	u32 fence;
+> > > > > > > > @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
+> > > > > > > >      	GEM_BUG_ON(!len);
+> > > > > > > >      	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+> > > > > > > >      	GEM_BUG_ON(!response_buf && response_buf_size);
+> > > > > > > > +	might_sleep();
+> > > > > > > 
+> > > > > > > Sleep is just cond_resched below or there is more?
+> > > > > > > 
+> > > > > > 
+> > > > > > Yes, the cond_resched.
+> > > > > > 
+> > > > > > > > +	/*
+> > > > > > > > +	 * We use a lazy spin wait loop here as we believe that if the CT
+> > > > > > > > +	 * buffers are sized correctly the flow control condition should be
+> > > > > > > > +	 * rare.
+> > > > > > > > +	 */
+> > > > > > > > +retry:
+> > > > > > > >      	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+> > > > > > > > +	if (unlikely(!ctb_has_room(ctb, len + 1))) {
+> > > > > > > > +		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+> > > > > > > > +		cond_resched();
+> > > > > > > > +		goto retry;
+> > > > > > > > +	}
+> > > > > > > 
+> > > > > > > If this patch is about adding a non-blocking send function, and below we can
+> > > > > > > see that it creates a fork:
+> > > > > > > 
+> > > > > > > intel_guc_ct_send:
+> > > > > > > ...
+> > > > > > > 	if (flags & INTEL_GUC_SEND_NB)
+> > > > > > > 		return ct_send_nb(ct, action, len, flags);
+> > > > > > > 
+> > > > > > >     	ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
+> > > > > > > 
+> > > > > > > Then why is there a change in ct_send here, which is not the new
+> > > > > > > non-blocking path?
+> > > > > > > 
+> > > > > > 
+> > > > > > There is not a change to ct_send(), just to intel_guc_ct_send.
+> > > > > 
+> > > > > I was doing by the diff which says:
+> > > > > 
+> > > > >    static int ct_send(struct intel_guc_ct *ct,
+> > > > >    		   const u32 *action,
+> > > > >    		   u32 len,
+> > > > > @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
+> > > > >    		   u32 response_buf_size,
+> > > > >    		   u32 *status)
+> > > > >    {
+> > > > > +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> > > > >    	struct ct_request request;
+> > > > >    	unsigned long flags;
+> > > > >    	u32 fence;
+> > > > > @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
+> > > > >    	GEM_BUG_ON(!len);
+> > > > >    	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+> > > > >    	GEM_BUG_ON(!response_buf && response_buf_size);
+> > > > > +	might_sleep();
+> > > > > +	/*
+> > > > > +	 * We use a lazy spin wait loop here as we believe that if the CT
+> > > > > +	 * buffers are sized correctly the flow control condition should be
+> > > > > +	 * rare.
+> > > > > +	 */
+> > > > > +retry:
+> > > > >    	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+> > > > > +	if (unlikely(!ctb_has_room(ctb, len + 1))) {
+> > > > > +		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+> > > > > +		cond_resched();
+> > > > > +		goto retry;
+> > > > > +	}
+> > > > > 
+> > > > > So it looks like a change to ct_send to me. Is that wrong?
+> > > 
+> > > What about this part - is the patch changing the blocking ct_send or not,
+> > > and if it is why?
+> > > 
+> > 
+> > Yes, ct_send() changes. Sorry for the confusion.
+> > 
+> > This function needs to be updated to account for the H2G space and
+> > backoff if no space is available.
 > 
-> Might be better in this case to combine both patchsets. It wasn't entirely clear to me
-> whether I could base one patchset on top of the other (doesn't look like it) and what
-> base to apply them on. I had success applying the plane stuff on drm-next and the
-> crtc stuff on drm-intel.
-
-Sure Harry, I guess its better to combine both the series to avoid any confusions.
-I will send out next version with some more UAPI documentation based on the feedback
-received.
-
-Regards,
-Uma Shankar
+> Since this one is the sleeping path, it probably can and needs to be smarter
+> than having a cond_resched busy loop added. Like sleep and get woken up when
+> there is space. Otherwise it can degenerate to busy looping via contention
+> with the non-blocking path.
 > 
-> Harry
-> 
-> > Regards,
-> > Uma Shankar
-> >>
-> >> Thanks,
-> >> pq
-> >>
-> >>> +
-> >>> +/*
-> >>> + * Creating 64 bit palette entries for better data
-> >>> + * precision. This will be required for HDR and
-> >>> + * similar color processing usecases.
-> >>> + */
-> >>> +struct drm_color_lut_ext {
-> >>> +	/*
-> >>> +	 * Data is U32.32 fixed point format.
-> >>> +	 */
-> >>> +	__u64 red;
-> >>> +	__u64 green;
-> >>> +	__u64 blue;
-> >>> +	__u64 reserved;
-> >>> +};
-> >>> +
-> >>>  #define DRM_MODE_PAGE_FLIP_EVENT 0x01  #define
-> >>> DRM_MODE_PAGE_FLIP_ASYNC 0x02  #define
-> >>> DRM_MODE_PAGE_FLIP_TARGET_ABSOLUTE 0x4
-> >
 
+That screams over enginerring a simple problem to me. If the CT channel
+is full we are really in trouble anyways - i.e. the performance is going
+to terrible as we overwhelmed the GuC with traffic. That being said,
+IGTs can do this but that really isn't a real world use case. For the
+real world, this buffer is large enough that it won't ever be full hence
+the comment + lazy spin loop.
+
+Next, it isn't like we get an interrupt or something when space
+becomes available so how would we wake this thread? Could we come up
+with a convoluted scheme where we insert ops that generated an interrupt
+at regular intervals, probably? Would it be super complicated, totally
+unnecessary, and gain use nothing - absolutely.
+
+Lastly, blocking CTBs really shouldn't ever be used. Certainly the
+submission code doesn't use these. I think SRIOV might, but those can
+probably be reworked too to use non-blocking. At some point we might
+want to scrub the driver and just delete the blocking path.
+
+Matt
+
+> Regards,
+
+> 
+> Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
