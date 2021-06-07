@@ -1,38 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6F839DE99
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 16:21:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E73639DE67
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 16:13:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49F566E8E1;
-	Mon,  7 Jun 2021 14:21:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B711B6E8DA;
+	Mon,  7 Jun 2021 14:13:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3E806E8E1
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Jun 2021 14:21:31 +0000 (UTC)
-IronPort-SDR: F+6I6TlnSXk7fQLx57CPM6vxRIgre+NfbPKqu0ivTTTN2o3afXBpE9NaGLWNGFBbCG7NOPmImw
- Aw04RZ3UePJA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="184999914"
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="184999914"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2021 07:21:29 -0700
-IronPort-SDR: NmYoNkimBiei+r4083534GEFvKXdRoyDZ7s6x5DfwLVgIjmmdhFPgjH9T9pkKNt4wwBc4ETBtG
- OHdXbH5RMP0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,255,1616482800"; d="scan'208";a="476223411"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by FMSMGA003.fm.intel.com with ESMTP; 07 Jun 2021 07:21:27 -0700
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	mahesh.meena@intel.com
-Date: Mon,  7 Jun 2021 19:42:16 +0530
-Message-Id: <20210607141216.391305-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 984026E0BF;
+ Mon,  7 Jun 2021 14:13:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9008EAADCF;
+ Mon,  7 Jun 2021 14:13:13 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH V2] x86/gpu: add JasperLake to gen11 early quirks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Wan Jiabing" <wanjiabing@vivo.com>
+Date: Mon, 07 Jun 2021 14:13:13 -0000
+Message-ID: <162307519355.2774.18250583021581662171@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210605032209.16111-1-wanjiabing@vivo.com>
+In-Reply-To: <20210605032209.16111-1-wanjiabing@vivo.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_remove_duplicated_argument?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,41 +38,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0933973101=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let's reserve JSL stolen memory for graphics.
+--===============0933973101==
+Content-Type: multipart/alternative;
+ boundary="===============3530638253815411995=="
 
-JasperLake is a gen11 platform which is compatible with
-ICL/EHL changes.
+--===============3530638253815411995==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-V1:
-    - Added Cc: x86@kernel.org
+== Series Details ==
 
-Cc: x86@kernel.org
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
----
- arch/x86/kernel/early-quirks.c | 1 +
- 1 file changed, 1 insertion(+)
+Series: drm/i915/display: remove duplicated argument
+URL   : https://patchwork.freedesktop.org/series/91086/
+State : failure
 
-diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-index b553ffe9b985..38837dad46e6 100644
---- a/arch/x86/kernel/early-quirks.c
-+++ b/arch/x86/kernel/early-quirks.c
-@@ -549,6 +549,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
- 	INTEL_CNL_IDS(&gen9_early_ops),
- 	INTEL_ICL_11_IDS(&gen11_early_ops),
- 	INTEL_EHL_IDS(&gen11_early_ops),
-+	INTEL_JSL_IDS(&gen11_early_ops),
- 	INTEL_TGL_12_IDS(&gen11_early_ops),
- 	INTEL_RKL_IDS(&gen11_early_ops),
- 	INTEL_ADLS_IDS(&gen11_early_ops),
--- 
-2.31.1
+== Summary ==
+
+Applying: drm/i915/display: remove duplicated argument
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_display_power.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+
+
+
+--===============3530638253815411995==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: remove duplicated argument</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91086/">https://patchwork.freedesktop.org/series/91086/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915/display: remove duplicated argument<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/display/intel_display_power.c<br />
+Falling back to patching base and 3-way merge...<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============3530638253815411995==--
+
+--===============0933973101==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0933973101==--
