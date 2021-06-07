@@ -1,59 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BB539D65B
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 09:52:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8802D39D69D
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 10:00:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8814D6E32F;
-	Mon,  7 Jun 2021 07:52:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8656E7EF;
+	Mon,  7 Jun 2021 08:00:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
- [IPv6:2a00:1450:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EC3388A56;
- Mon,  7 Jun 2021 07:52:39 +0000 (UTC)
-Received: by mail-lj1-x232.google.com with SMTP id z22so4953805ljh.8;
- Mon, 07 Jun 2021 00:52:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=VnwLRNd5kR0LUPEcbUD7x6J+EfFd1ZumEapw+492kUI=;
- b=M6YHQmqDQrHfqJsSaBCfrOSFeYuAx/4Wuvxqxfz55b1SM2edz/SvDqQXdLIzSnXa//
- Pmy+lXBSk4AVN0Ua2/qwhB/5yWuvGtiQdGZnG1ZrTghgDXGH8W/pC6UPS+ZnP5yu4ocG
- ZLj3bhWthn4w9J7LzPEyEuqZzaVSXUb9NrSsVMcW7s4i++gu2GoyImrsXh/lJFkNj+k8
- lvLBTozTgdtSUrDcQQ+xF7yxIBLY4noTaY5vHWPsjSuOfDo2UIvVYpJEhUILYE5YpNzC
- aCwzGGPoRoyyWSFmzpxalQLHJAFZLr/mag5V6p8Sn90DdYx6D24J3AWODazxugWCsemb
- e4vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=VnwLRNd5kR0LUPEcbUD7x6J+EfFd1ZumEapw+492kUI=;
- b=slXaj4uzP0KKqwyGZ0an3+fWoYPjOw5RgxxDHJ/IgToIXWRR8aJ6fTAB/xdqOIwYkl
- OUt2UwHDa87RS+p0OlEC3Dr9MR+iSxbIfobmhbF9dXvtNekdvaSNhoGrVlvaLqFR+L/8
- l0bVs05LMD2jGwQFQXCuEY852s3qvR99EXNnUrbheYIoORlWfBWTWtUuiaofrYrsiglH
- X2vaC3gp6BBvMENv3/J3RJ37BLgio+vGhjPw7ekF8GtEH4lca1DBHz8cBOl+POuNo4kX
- CRiAhhsw1H2MRT6YSJ664xZY09jhnlj2GfHfB9gvMSSK3GsuaRTOpVLh0xnjtlxS5/qU
- /lqg==
-X-Gm-Message-State: AOAM5326O9usy2D7lxU56nYxQq7RPVmYf2tz5sFpEwfLn+IuZQT9xEMB
- wB/hQU5cFjObAPm4RGJXnAM=
-X-Google-Smtp-Source: ABdhPJz+lZIAtnEawBFkr/CaeDTWVqXJP2b4seJMifEs5d4X8i1rjyEr38elPNLJqEl0HLg7HjyMPQ==
-X-Received: by 2002:a05:651c:1138:: with SMTP id
- e24mr13811331ljo.403.1623052357820; 
- Mon, 07 Jun 2021 00:52:37 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id e9sm896925lfc.144.2021.06.07.00.52.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Jun 2021 00:52:37 -0700 (PDT)
-Date: Mon, 7 Jun 2021 10:52:34 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <20210607105234.4bb8aae6@eldfell>
-In-Reply-To: <20210604171723.10276-3-wse@tuxedocomputers.com>
+Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 404236E848;
+ Mon,  7 Jun 2021 08:00:46 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id CFDD9C800A2;
+ Mon,  7 Jun 2021 10:00:44 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id Vz3RaQVqPJhP; Mon,  7 Jun 2021 10:00:44 +0200 (CEST)
+Received: from [IPv6:2003:e3:7f4f:6000:f5f4:4cdd:8015:9770]
+ (p200300E37F4f6000F5f44cdD80159770.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f4f:6000:f5f4:4cdd:8015:9770])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id 480A0C800E6;
+ Mon,  7 Jun 2021 10:00:31 +0200 (CEST)
+To: Maxime Ripard <maxime@cerno.tech>
 References: <20210604171723.10276-1-wse@tuxedocomputers.com>
  <20210604171723.10276-3-wse@tuxedocomputers.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ <20210607074037.oxm7qbhcx7gsg6yd@gilmour>
+From: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <55a45d9e-9784-0288-fc1f-144f99dc6c19@tuxedocomputers.com>
+Date: Mon, 7 Jun 2021 10:00:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <20210607074037.oxm7qbhcx7gsg6yd@gilmour>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH 2/4] drm/uAPI: Add "active bpc" as feedback
  channel for "max bpc" drm property
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,231 +53,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
- intel-gfx@lists.freedesktop.org, sunpeng.li@amd.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, airlied@linux.ie, alexander.deucher@amd.com,
- harry.wentland@amd.com, christian.koenig@amd.com
-Content-Type: multipart/mixed; boundary="===============0306229344=="
+Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ airlied@linux.ie, amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
+ alexander.deucher@amd.com, christian.koenig@amd.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0306229344==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/Pr+2/0V=PQE=VGC=tSRkY=f"; protocol="application/pgp-signature"
 
---Sig_/Pr+2/0V=PQE=VGC=tSRkY=f
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Fri,  4 Jun 2021 19:17:21 +0200
-Werner Sembach <wse@tuxedocomputers.com> wrote:
-
-> Add a new general drm property "active bpc" which can be used by graphic =
-drivers
-> to report the applied bit depth per pixel back to userspace.
->=20
-> While "max bpc" can be used to change the color depth, there was no way t=
-o check
-> which one actually got used. While in theory the driver chooses the best/=
-highest
-> color depth within the max bpc setting a user might not be fully aware wh=
-at his
-> hardware is or isn't capable off. This is meant as a quick way to double =
-check
-> the setup.
->=20
-> In the future, automatic color calibration for screens might also depend =
-on this
-> information available.
->=20
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
->  drivers/gpu/drm/drm_atomic_uapi.c |  2 ++
->  drivers/gpu/drm/drm_connector.c   | 40 +++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h       | 15 ++++++++++++
->  3 files changed, 57 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
-ic_uapi.c
-> index 268bb69c2e2f..7ae4e40936b5 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -873,6 +873,8 @@ drm_atomic_connector_get_property(struct drm_connecto=
-r *connector,
->  		*val =3D 0;
->  	} else if (property =3D=3D connector->max_bpc_property) {
->  		*val =3D state->max_requested_bpc;
-> +	} else if (property =3D=3D connector->active_bpc_property) {
-> +		*val =3D state->active_bpc;
->  	} else if (connector->funcs->atomic_get_property) {
->  		return connector->funcs->atomic_get_property(connector,
->  				state, property, val);
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
-tor.c
-> index 7631f76e7f34..5f42a5be5822 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -1195,6 +1195,13 @@ static const struct drm_prop_enum_list dp_colorspa=
-ces[] =3D {
->   *	drm_connector_attach_max_bpc_property() to create and attach the
->   *	property to the connector during initialization.
->   *
-> + * active bpc:
-> + *	This read-only range property is used by userspace check the bit depth
-> + *	actually applied by the GPU driver after evaluation all hardware
-> + *	capabilities and max bpc. Drivers to use the function
-> + *	drm_connector_attach_active_bpc_property() to create and attach the
-> + *	property to the connector during initialization.
-> + *
-
-Hi Werner,
-
-the idea looks good to me, but the above doc could be a little more
-fluent. May I suggest something like:
-
-	This read-only range property tells userspace the pixel color
-	bit depth actually used by the hardware display engine on "the
-	cable" on a connector. The chosen value depends on hardware
-	capabilities, both display engine and connected monitor, and
-	the "max bpc" property. Drivers shall use
-	drm_connector_attach_active_bpc_property() to install this
-	property.
-
-There should also be something said about dithering done by the display
-engine (not monitor), but I'm not sure how that should be worded. It
-may also depend on if and how userspace can know about dithering. So if
-a dithering related property is added later, maybe add a note here too
-in that patch.
-
-
-Thanks,
-pq
-
-
->   * Connectors also have one standardized atomic property:
->   *
->   * CRTC_ID:
-> @@ -2150,6 +2157,39 @@ int drm_connector_attach_max_bpc_property(struct d=
-rm_connector *connector,
->  }
->  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
-> =20
-> +/**
-> + * drm_connector_attach_active_bpc_property - attach "active bpc" proper=
-ty
-> + * @connector: connector to attach active bpc property on.
-> + * @min: The minimum bit depth supported by the connector.
-> + * @max: The maximum bit depth supported by the connector.
-> + *
-> + * This is used to check the applied bit depth on a connector.
-> + *
-> + * Returns:
-> + * Zero on success, negative errno on failure.
-> + */
-> +int drm_connector_attach_active_bpc_property(struct drm_connector *conne=
-ctor,
-> +					  int min, int max)
-> +{
-> +	struct drm_device *dev =3D connector->dev;
-> +	struct drm_property *prop;
-> +
-> +	prop =3D connector->active_bpc_property;
-> +	if (!prop) {
-> +		prop =3D drm_property_create_range(dev, 0, "active bpc", min, max);
-> +		if (!prop)
-> +			return -ENOMEM;
-> +
-> +		connector->active_bpc_property =3D prop;
-> +	}
-> +
-> +	drm_object_attach_property(&connector->base, prop, 0);
-> +	connector->state->active_bpc =3D 0;
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
-> +
->  /**
->   * drm_connector_set_vrr_capable_property - sets the variable refresh ra=
-te
->   * capable property for a connector
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 1922b278ffad..c58cba2b6afe 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -781,6 +781,13 @@ struct drm_connector_state {
->  	 */
->  	u8 max_bpc;
-> =20
-> +	/**
-> +	 * @active_bpc: Read only property set by the GPU driver to the actually
-> +	 * applied bit depth of the pixels after evaluating all hardware
-> +	 * limitations.
-> +	 */
-> +	u8 active_bpc;
-> +
->  	/**
->  	 * @hdr_output_metadata:
->  	 * DRM blob property for HDR output metadata
-> @@ -1380,6 +1387,12 @@ struct drm_connector {
->  	 */
->  	struct drm_property *max_bpc_property;
-> =20
-> +	/**
-> +	 * @active_bpc_property: Default connector property for the active bpc
-> +	 * to be driven out of the connector.
-> +	 */
-> +	struct drm_property *active_bpc_property;
-> +
->  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
->  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
->  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
-> @@ -1698,6 +1711,8 @@ int drm_connector_set_panel_orientation_with_quirk(
->  	int width, int height);
->  int drm_connector_attach_max_bpc_property(struct drm_connector *connecto=
-r,
->  					  int min, int max);
-> +int drm_connector_attach_active_bpc_property(struct drm_connector *conne=
-ctor,
-> +					  int min, int max);
-> =20
->  /**
->   * struct drm_tile_group - Tile group metadata
-
-
---Sig_/Pr+2/0V=PQE=VGC=tSRkY=f
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmC90EIACgkQI1/ltBGq
-qqdGCQ//cRerWSb24BlhxlzYGB8NQvHZrLXOSiGRs2viHwBP913JnXJGRViEDx5x
-clhIXqdHwsmh+ezmYxHhAgi6lrgNhCr+9MBkLqhX5YbHmXdwSzQBWezRibzXjbYW
-KeTvPx0z8Nvh3ViRHcb/dd4LcXflp7Ii9ksSW2avNktSJR7EZu6o+krZxTuOgKmx
-nOWXVqxEwTcLDxp/ubDbEEOTvaaYyQVpGa3wSuyOVuW4ea4i/cm9Ax+N2f0/aHCH
-Bj0F9S2qYNgGTDpGSm3myipPx2Lqd/teEqiEXH+Gxr6+vI8V+cfZz/xjoe0Ko84b
-2BEuD3t22bDLSlC6C214virxbxV7R5fWRD72XfyDmDJrILVBWV2b2ftG9pKbS4GE
-hJSbYs8eRS44o7RplbFYrJMVRf7DK3k/l8H9kpasLG36GxRMvaVtSCgrZLUBnCEb
-gMKcqvf824YjA7FWFEAASHr0lDbroSxGuzxU8Ts2wYLyuK6PCvXv9TDwc3tcMB94
-zhB3rToba+3Rmw+/lSLwp85EyHvtRTV/OrJMAZASLRVJs/mMsYCWupW1783Ueh4L
-tvRnZ/MBz48DoZpYo3bOLySG4Nb7jhGgjmYI6I9huWXHUuBcknGf4oFn7cwPXFR2
-3IOghkwAL3prSMIz80cfPeLBg7ahq2zA6C8KGj1xLU8IOST/knU=
-=6CeT
------END PGP SIGNATURE-----
-
---Sig_/Pr+2/0V=PQE=VGC=tSRkY=f--
-
---===============0306229344==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Am 07.06.21 um 09:40 schrieb Maxime Ripard:
+> Hi,
+>
+> On Fri, Jun 04, 2021 at 07:17:21PM +0200, Werner Sembach wrote:
+>> Add a new general drm property "active bpc" which can be used by graphic drivers
+>> to report the applied bit depth per pixel back to userspace.
+> Just a heads up, we'll need an open source project that has accepted it
+> before merging it.
+>
+> See https://www.kernel.org/doc/html/latest/gpu/drm-uapi.html#open-source-userspace-requirements
+Yes, I know.
+>
+>> While "max bpc" can be used to change the color depth, there was no way to check
+>> which one actually got used. While in theory the driver chooses the best/highest
+>> color depth within the max bpc setting a user might not be fully aware what his
+>> hardware is or isn't capable off. This is meant as a quick way to double check
+>> the setup.
+>>
+>> In the future, automatic color calibration for screens might also depend on this
+>> information available.
+>>
+>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+>> ---
+>>   drivers/gpu/drm/drm_atomic_uapi.c |  2 ++
+>>   drivers/gpu/drm/drm_connector.c   | 40 +++++++++++++++++++++++++++++++
+>>   include/drm/drm_connector.h       | 15 ++++++++++++
+>>   3 files changed, 57 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+>> index 268bb69c2e2f..7ae4e40936b5 100644
+>> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+>> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+>> @@ -873,6 +873,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
+>>   		*val = 0;
+>>   	} else if (property == connector->max_bpc_property) {
+>>   		*val = state->max_requested_bpc;
+>> +	} else if (property == connector->active_bpc_property) {
+>> +		*val = state->active_bpc;
+>>   	} else if (connector->funcs->atomic_get_property) {
+>>   		return connector->funcs->atomic_get_property(connector,
+>>   				state, property, val);
+>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+>> index 7631f76e7f34..5f42a5be5822 100644
+>> --- a/drivers/gpu/drm/drm_connector.c
+>> +++ b/drivers/gpu/drm/drm_connector.c
+>> @@ -1195,6 +1195,13 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+>>    *	drm_connector_attach_max_bpc_property() to create and attach the
+>>    *	property to the connector during initialization.
+>>    *
+>> + * active bpc:
+>> + *	This read-only range property is used by userspace check the bit depth
+>> + *	actually applied by the GPU driver after evaluation all hardware
+>                                  ^ display
+>
+> Depending on the system, the display component might have a GPU attached
+> or not, and the GPU might have a display component or not.
+Ok, I try to bee more clear in the wording
+>
+>> + *	capabilities and max bpc. Drivers to use the function
+>> + *	drm_connector_attach_active_bpc_property() to create and attach the
+>> + *	property to the connector during initialization.
+>> + *
+>>    * Connectors also have one standardized atomic property:
+>>    *
+>>    * CRTC_ID:
+>> @@ -2150,6 +2157,39 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+>>   }
+>>   EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+>>   
+>> +/**
+>> + * drm_connector_attach_active_bpc_property - attach "active bpc" property
+>> + * @connector: connector to attach active bpc property on.
+>> + * @min: The minimum bit depth supported by the connector.
+>> + * @max: The maximum bit depth supported by the connector.
+>> + *
+>> + * This is used to check the applied bit depth on a connector.
+>> + *
+>> + * Returns:
+>> + * Zero on success, negative errno on failure.
+>> + */
+>> +int drm_connector_attach_active_bpc_property(struct drm_connector *connector,
+>> +					  int min, int max)
+>> +{
+>> +	struct drm_device *dev = connector->dev;
+>> +	struct drm_property *prop;
+>> +
+>> +	prop = connector->active_bpc_property;
+>> +	if (!prop) {
+>> +		prop = drm_property_create_range(dev, 0, "active bpc", min, max);
+>> +		if (!prop)
+>> +			return -ENOMEM;
+>> +
+>> +		connector->active_bpc_property = prop;
+>> +	}
+>> +
+>> +	drm_object_attach_property(&connector->base, prop, 0);
+>> +	connector->state->active_bpc = 0;
+> I guess we want to default to 8?
+>
+> Maxime
+The default state should only be active when no display is connected or 
+the display is off, so I thought 0 makes more sense, as no active 
+display = no active bpc.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0306229344==--
