@@ -1,49 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6B139DB32
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 13:24:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4A639DAD3
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 13:11:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBFB36E8AB;
-	Mon,  7 Jun 2021 11:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3EA06E34B;
+	Mon,  7 Jun 2021 11:11:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 523 seconds by postgrey-1.36 at gabe;
- Sat, 05 Jun 2021 03:31:02 UTC
-Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com
- [115.236.121.144])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90E476E44D
- for <intel-gfx@lists.freedesktop.org>; Sat,  5 Jun 2021 03:31:02 +0000 (UTC)
-Received: from Wanjb.localdomain (unknown [36.152.145.182])
- by mail-m121144.qiye.163.com (Hmail) with ESMTPA id D2C4CAC00AC;
- Sat,  5 Jun 2021 11:22:16 +0800 (CST)
-From: Wan Jiabing <wanjiabing@vivo.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Imre Deak <imre.deak@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Anusha Srivatsa <anusha.srivatsa@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Sat,  5 Jun 2021 11:22:07 +0800
-Message-Id: <20210605032209.16111-1-wanjiabing@vivo.com>
-X-Mailer: git-send-email 2.20.1
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEE696E34B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Jun 2021 11:11:19 +0000 (UTC)
+IronPort-SDR: CJRwa0Zuf8EHgYr0IVqZeR9m93skgXGPJsIAuHNKRHWw/tOVg76Q11IF3RfrK0nP0M2/J0PIxt
+ A5SknJtyLetA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10007"; a="184971564"
+X-IronPort-AV: E=Sophos;i="5.83,254,1616482800"; d="scan'208";a="184971564"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 04:11:18 -0700
+IronPort-SDR: wg+tIge6aXFoF7AVGiNT1HphQvkc/KaeofNfD/YJmFm57aFAU2BQE5Vpn/evS44od06UI9E3BN
+ fSiLqcrFBO3A==
+X-IronPort-AV: E=Sophos;i="5.83,254,1616482800"; d="scan'208";a="401646642"
+Received: from vandita-desktop.iind.intel.com ([10.223.74.52])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 07 Jun 2021 04:11:16 -0700
+From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  7 Jun 2021 16:23:42 +0530
+Message-Id: <20210607105342.13155-1-vandita.kulkarni@intel.com>
+X-Mailer: git-send-email 2.21.0.5.gaeb582a
 MIME-Version: 1.0
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZQ0NIHVZKSEMdSUNITk4ZQ09VEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
- hKQ1VLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PRQ6TBw6Lj8JIwlOOEspHz0q
- KhMwCglVSlVKTUlJQ01ISEhMTkNMVTMWGhIXVQwaFRESGhkSFRw7DRINFFUYFBZFWVdZEgtZQVlI
- TVVKTklVSk9OVUpDSVlXWQgBWUFJQ0xLNwY+
-X-HM-Tid: 0a79da315725b039kuuud2c4cac00ac
-X-Mailman-Approved-At: Mon, 07 Jun 2021 11:24:51 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/display: remove duplicated argument
+Subject: [Intel-gfx] [v2] drm/i915/dsc: Fix bigjoiner check in dsc_disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,39 +44,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wan Jiabing <wanjiabing@vivo.com>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix the following coccicheck warning:
+This change takes care of resetting the dss_ctl registers
+in case of dsc_disable, bigjoiner disable and also
+uncompressed joiner disable.
 
-./drivers/gpu/drm/i915/display/intel_display_power.c:3081:1-28:
- duplicated argument to & or |
+v2: Fix formatting
 
-This commit fixes duplicate argument. It might be a typo.
-But what I can do is to remove it now.
-
-Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
+Suggested-by: Jani Nikula <jani.nikula@intel.com>
+Fixes: d961eb20adb6 (drm/i915/bigjoiner: atomic commit changes for uncompressed joiner)
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3537
+Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 3e1f6ec61514..4298ae684d7d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -3078,7 +3078,6 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_C_LANES) |	\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_D_XELPD) |	\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_E_XELPD) |	\
--	BIT_ULL(POWER_DOMAIN_AUX_C) |			\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC1) |	\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC2) |	\
- 	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC3) |	\
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 19cd9531c115..b9828852a68f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1161,12 +1161,12 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 
+-	if (!(old_crtc_state->dsc.compression_enable &&
+-	      old_crtc_state->bigjoiner))
+-		return;
+-
+-	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
+-	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);
++	/* Disable only if either of them is enabled */
++	if (old_crtc_state->dsc.compression_enable ||
++	    old_crtc_state->dsc.compression_enable) {
++		intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
++		intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);
++	}
+ }
+ 
+ void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state)
 -- 
-2.20.1
+2.21.0.5.gaeb582a
 
 _______________________________________________
 Intel-gfx mailing list
