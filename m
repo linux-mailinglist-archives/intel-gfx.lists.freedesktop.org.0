@@ -1,45 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72BF39D557
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 08:48:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A9E39D604
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Jun 2021 09:30:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2C8D6E212;
-	Mon,  7 Jun 2021 06:47:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0AA36E3AE;
+	Mon,  7 Jun 2021 07:30:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC4FC6E1E6;
- Mon,  7 Jun 2021 06:47:57 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 671CDC800E1;
- Mon,  7 Jun 2021 08:47:56 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id PWdw0pNodT0v; Mon,  7 Jun 2021 08:47:56 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f4f:6000:f5f4:4cdd:8015:9770]
- (p200300E37F4f6000F5F44cDd80159770.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f4f:6000:f5f4:4cdd:8015:9770])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 09E4FC800DF;
- Mon,  7 Jun 2021 08:47:56 +0200 (CEST)
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20210604171723.10276-1-wse@tuxedocomputers.com>
- <20210604171723.10276-5-wse@tuxedocomputers.com> <YLpjTMegcjT22vQE@intel.com>
-From: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <bd6a27e7-3ae5-ecb1-2fef-e5f8c1b6a2ac@tuxedocomputers.com>
-Date: Mon, 7 Jun 2021 08:47:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
+ [IPv6:2a00:1450:4864:20::131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00A466E3AE;
+ Mon,  7 Jun 2021 07:30:05 +0000 (UTC)
+Received: by mail-lf1-x131.google.com with SMTP id r198so21303906lff.11;
+ Mon, 07 Jun 2021 00:30:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=Hm+bqYAc0acRSQw44lJ54WJ0QTYWzcefCRH9RSjGtYQ=;
+ b=S/u7jgq8swWok/p7FDPqmf7ihj7GdpsuWFB6ZCSgwsOsBeTj6EgmP7ooxTZ6GQL16F
+ qlTFyh9SUOjpykAleDNj2HMcVKcZe1iElIUuekgUgV+RaX40lwQ8bDQZ5UR14oVCWuoW
+ pXzSqCG313V40f0cX58q5BVB3St542/Nft4soNvR1xrgPbABJyom6UxvQfDcysY+Uytn
+ eMcSLgAspr1l0BfQpsGKorWG7D0KFR5r212sk8eZM2kAFE62FeG8qMV2HnY45jCfFPDE
+ Gjws/MwuJhyTyX1HTNbX1j5FpHqZh2lO9a4WwOcSiZnswE2mi8Y/I/FUa/vmn/nlCTH/
+ UdYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=Hm+bqYAc0acRSQw44lJ54WJ0QTYWzcefCRH9RSjGtYQ=;
+ b=uDE4nRidYD/2pM1awpcYKiK4/RlvOlWrTNOHjJlThPlPf5ADW6xJ9a77WfRPDlreHU
+ 2PdWp16HuLAU8G7C15CDZAEMMQJ2fz7ASu9b9y6RNEchMCdJ+g+AWYwpXD36LuHLI/8h
+ HNB6xIuzEODmEcxSwLcoz/0oH/Bgn8GELPalQkiznzSJ5Y95iWHvm5PINqM4BoJwlg15
+ X5zLDWxdGuHUYM66Kqj5+wWR7pF1p1UPTHhQ6n1Ze4fDT+jR0O45j5kjw1cqsfXOhfQZ
+ gChCfw+JTAH+DjsnFL6Un9jO79HPGQUJIrsKVjlOpcBK46nBZB4kdP8FtPI8xJ82HFg1
+ jDFw==
+X-Gm-Message-State: AOAM530QkKKIlM8eq+UlumNGhys1LZvqnKX0Yxxo34pxZRuGE3RNpeEX
+ UsRA3M2gDuplj3cN+ezXFhg=
+X-Google-Smtp-Source: ABdhPJyEUnlknHejWXYT8mfYjZlc/t9DsYSUycmgRHYzp4R8KLePHnGKWdsofOfqgONbP3R9rFcIlg==
+X-Received: by 2002:a05:6512:3588:: with SMTP id
+ m8mr11415511lfr.309.1623051004308; 
+ Mon, 07 Jun 2021 00:30:04 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id a7sm953905lfo.159.2021.06.07.00.30.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Jun 2021 00:30:03 -0700 (PDT)
+Date: Mon, 7 Jun 2021 10:29:43 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>
+Message-ID: <20210607102943.5c9bceb9@eldfell>
+In-Reply-To: <0909131c-1340-c93b-7b80-b661497ccf73@amd.com>
+References: <20210601104135.29020-1-uma.shankar@intel.com>
+ <0909131c-1340-c93b-7b80-b661497ccf73@amd.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <YLpjTMegcjT22vQE@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/display: Add handling for new
- "active bpc" property
+Subject: Re: [Intel-gfx] [PATCH 0/9] Enhance pipe color support for multi
+ segmented luts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,98 +68,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mripard@kernel.org, sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- airlied@linux.ie, amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
- alexander.deucher@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org,
+ Sebastian Wick <sebastian@sebastianwick.net>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1149230648=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkFtIDA0LjA2LjIxIHVtIDE5OjMwIHNjaHJpZWIgVmlsbGUgU3lyasOkbMOkOgo+IE9uIEZyaSwg
-SnVuIDA0LCAyMDIxIGF0IDA3OjE3OjIzUE0gKzAyMDAsIFdlcm5lciBTZW1iYWNoIHdyb3RlOgo+
-PiBUaGlzIGNvbW1pdHMgaW1wbGVtZW50cyB0aGUgImFjdGl2ZSBicGMiIGRybSBwcm9wZXJ0eSBm
-b3IgdGhlIEludGVsIEdQVSBkcml2ZXIuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFdlcm5lciBTZW1i
-YWNoIDx3c2VAdHV4ZWRvY29tcHV0ZXJzLmNvbT4KPj4gLS0tCj4+ICAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAxMyArKysrKysrKysrKysrCj4+ICAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAgfCAgOCArKysrKystLQo+
-PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgIHwgIDQgKysr
-LQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jICAgIHwgIDQg
-KysrLQo+PiAgIDQgZmlsZXMgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMo
-LSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
-Pj4gaW5kZXggNjRlOTEwN2Q3MGY3Li5mNzg5OGQ5ZDc0MzggMTAwNjQ0Cj4+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4+IEBAIC0xMDE2NCw2ICsxMDE2
-NCw4IEBAIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSkKPj4gICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2ID0gdG9faTkxNShkZXYpOwo+PiAgIAlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X2Ny
-dGNfc3RhdGUsICpvbGRfY3J0Y19zdGF0ZTsKPj4gICAJc3RydWN0IGludGVsX2NydGMgKmNydGM7
-Cj4+ICsJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcjsKPj4gKwlzdHJ1Y3QgZHJtX2Nv
-bm5lY3Rvcl9zdGF0ZSAqbmV3X2Nvbm5fc3RhdGU7Cj4+ICAgCXU2NCBwdXRfZG9tYWluc1tJOTE1
-X01BWF9QSVBFU10gPSB7fTsKPj4gICAJaW50ZWxfd2FrZXJlZl90IHdha2VyZWYgPSAwOwo+PiAg
-IAlpbnQgaTsKPj4gQEAgLTEwMzI0LDYgKzEwMzI2LDE3IEBAIHN0YXRpYyB2b2lkIGludGVsX2F0
-b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKPj4gICAJ
-fQo+PiAgIAlpbnRlbF9ydW50aW1lX3BtX3B1dCgmZGV2X3ByaXYtPnJ1bnRpbWVfcG0sIHN0YXRl
-LT53YWtlcmVmKTsKPj4gICAKPj4gKwkvKiBFeHRyYWN0IGluZm9ybWF0aW9uIGZyb20gY3J0YyB0
-byBjb21tdW5pY2F0ZSBpdCB0byB1c2Vyc3BhY2UgYXMgY29ubmVjdG9yIHByb3BlcnRpZXMgKi8K
-Pj4gKwlmb3JfZWFjaF9uZXdfY29ubmVjdG9yX2luX3N0YXRlKCZzdGF0ZS0+YmFzZSwgY29ubmVj
-dG9yLCBuZXdfY29ubl9zdGF0ZSwgaSkgewo+PiArCQlzdHJ1Y3QgZHJtX2NydGMgKmNydGMgPSBu
-ZXdfY29ubl9zdGF0ZS0+Y3J0YzsKPj4gKwkJaWYgKGNydGMpIHsKPj4gKwkJCW5ld19jcnRjX3N0
-YXRlID0gdG9faW50ZWxfY3J0Y19zdGF0ZShkcm1fYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZSgm
-c3RhdGUtPmJhc2UsIGNydGMpKTsKPiBpbnRlbF9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKCkK
-VGhhbmtzLCB3aWxsIHVzZSB0aGF0Lgo+Cj4+ICsJCQluZXdfY29ubl9zdGF0ZS0+YWN0aXZlX2Jw
-YyA9IG5ld19jcnRjX3N0YXRlLT5waXBlX2JwcCAvIDM7Cj4+ICsJCX0KPj4gKwkJZWxzZQo+PiAr
-CQkJbmV3X2Nvbm5fc3RhdGUtPmFjdGl2ZV9icGMgPSAwOwo+PiArCX0KPiBUaGlzIGFsc28gc2Vl
-bXMgdG9vIGxhdGUuIEkgdGhpbmsgdGhlIHdob2xlIHRoaW5nIHNob3VsZCBiZQo+IGRvbmUgc29t
-ZXdoZXJlIGFyb3VuZCB0aGUgbm9ybWFsIHN3YXBfc3RhdGUoKSBzdHVmZi4KT2ssIHdpbGwgbG9v
-ayBpbnRvIGl0Lgo+Cj4+ICsKPj4gICAJLyoKPj4gICAJICogRGVmZXIgdGhlIGNsZWFudXAgb2Yg
-dGhlIG9sZCBzdGF0ZSB0byBhIHNlcGFyYXRlIHdvcmtlciB0byBub3QKPj4gICAJICogaW1wZWRl
-IHRoZSBjdXJyZW50IHRhc2sgKHVzZXJzcGFjZSBmb3IgYmxvY2tpbmcgbW9kZXNldHMpIHRoYXQK
-Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+PiBpbmRleCA2NDJjNjBm
-M2Q5YjEuLjY3ODI2YmE5NzZlZCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZHAuYwo+PiBAQCAtNDY3MSwxMCArNDY3MSwxNCBAQCBpbnRlbF9kcF9hZGRfcHJvcGVy
-dGllcyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLCBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29u
-bmVjdAo+PiAgIAkJaW50ZWxfYXR0YWNoX2ZvcmNlX2F1ZGlvX3Byb3BlcnR5KGNvbm5lY3Rvcik7
-Cj4+ICAgCj4+ICAgCWludGVsX2F0dGFjaF9icm9hZGNhc3RfcmdiX3Byb3BlcnR5KGNvbm5lY3Rv
-cik7Cj4+IC0JaWYgKEhBU19HTUNIKGRldl9wcml2KSkKPj4gKwlpZiAoSEFTX0dNQ0goZGV2X3By
-aXYpKSB7Cj4+ICAgCQlkcm1fY29ubmVjdG9yX2F0dGFjaF9tYXhfYnBjX3Byb3BlcnR5KGNvbm5l
-Y3RvciwgNiwgMTApOwo+PiAtCWVsc2UgaWYgKERJU1BMQVlfVkVSKGRldl9wcml2KSA+PSA1KQo+
-PiArCQlkcm1fY29ubmVjdG9yX2F0dGFjaF9hY3RpdmVfYnBjX3Byb3BlcnR5KGNvbm5lY3Rvciwg
-NiwgMTApOwo+PiArCX0KPj4gKwllbHNlIGlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPj0gNSkg
-ewo+PiAgIAkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfbWF4X2JwY19wcm9wZXJ0eShjb25uZWN0b3Is
-IDYsIDEyKTsKPj4gKwkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfYWN0aXZlX2JwY19wcm9wZXJ0eShj
-b25uZWN0b3IsIDYsIDEyKTsKPj4gKwl9Cj4+ICAgCj4+ICAgCS8qIFJlZ2lzdGVyIEhETUkgY29s
-b3JzcGFjZSBmb3IgY2FzZSBvZiBsc3Bjb24gKi8KPj4gICAJaWYgKGludGVsX2Jpb3NfaXNfbHNw
-Y29uX3ByZXNlbnQoZGV2X3ByaXYsIHBvcnQpKSB7Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+PiBpbmRleCAyZGFhM2Y2Nzc5MWUuLjVhMTg2OWRjMjIx
-MCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9t
-c3QuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5j
-Cj4+IEBAIC04NDQsOCArODQ0LDEwIEBAIHN0YXRpYyBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqaW50
-ZWxfZHBfYWRkX21zdF9jb25uZWN0b3Ioc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvCj4+ICAgCSAq
-Lwo+PiAgIAljb25uZWN0b3ItPm1heF9icGNfcHJvcGVydHkgPQo+PiAgIAkJaW50ZWxfZHAtPmF0
-dGFjaGVkX2Nvbm5lY3Rvci0+YmFzZS5tYXhfYnBjX3Byb3BlcnR5Owo+PiAtCWlmIChjb25uZWN0
-b3ItPm1heF9icGNfcHJvcGVydHkpCj4+ICsJaWYgKGNvbm5lY3Rvci0+bWF4X2JwY19wcm9wZXJ0
-eSkgewo+PiAgIAkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfbWF4X2JwY19wcm9wZXJ0eShjb25uZWN0
-b3IsIDYsIDEyKTsKPj4gKwkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfYWN0aXZlX2JwY19wcm9wZXJ0
-eShjb25uZWN0b3IsIDYsIDEyKTsKPj4gKwl9Cj4+ICAgCj4+ICAgCXJldHVybiBjb25uZWN0b3I7
-Cj4+ICAgCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCj4+IGlu
-ZGV4IGQ2OWYwYTZkYzI2ZC4uOGFmNzhiMjdiNmNlIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwo+PiBAQCAtMjQ2Myw4ICsyNDYzLDEwIEBAIGludGVs
-X2hkbWlfYWRkX3Byb3BlcnRpZXMoc3RydWN0IGludGVsX2hkbWkgKmludGVsX2hkbWksIHN0cnVj
-dCBkcm1fY29ubmVjdG9yICpjCj4+ICAgCQlkcm1fb2JqZWN0X2F0dGFjaF9wcm9wZXJ0eSgmY29u
-bmVjdG9yLT5iYXNlLAo+PiAgIAkJCWNvbm5lY3Rvci0+ZGV2LT5tb2RlX2NvbmZpZy5oZHJfb3V0
-cHV0X21ldGFkYXRhX3Byb3BlcnR5LCAwKTsKPj4gICAKPj4gLQlpZiAoIUhBU19HTUNIKGRldl9w
-cml2KSkKPj4gKwlpZiAoIUhBU19HTUNIKGRldl9wcml2KSkgewo+PiAgIAkJZHJtX2Nvbm5lY3Rv
-cl9hdHRhY2hfbWF4X2JwY19wcm9wZXJ0eShjb25uZWN0b3IsIDgsIDEyKTsKPj4gKwkJZHJtX2Nv
-bm5lY3Rvcl9hdHRhY2hfYWN0aXZlX2JwY19wcm9wZXJ0eShjb25uZWN0b3IsIDgsIDEyKTsKPj4g
-Kwl9Cj4+ICAgfQo+PiAgIAo+PiAgIC8qCj4+IC0tIAo+PiAyLjI1LjEKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+--===============1149230648==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/KI4E/K1vbHM16sqc.qGZXfD"; protocol="application/pgp-signature"
+
+--Sig_/KI4E/K1vbHM16sqc.qGZXfD
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, 4 Jun 2021 14:51:25 -0400
+Harry Wentland <harry.wentland@amd.com> wrote:
+
+> On 2021-06-01 6:41 a.m., Uma Shankar wrote:
+> > Modern hardwares have multi segmented lut approach to prioritize
+> > the darker regions of the spectrum. This series introduces a new
+> > UAPI to define the lut ranges supported by the respective hardware.
+> >=20
+> > This also enables Pipe Color Management Support for Intel's XE_LPD hw.
+> > Enable Support for Pipe Degamma with the increased lut samples
+> > supported by hardware. This also adds support for newly introduced
+> > Logarithmic Gamma for XE_LPD. Also added the gamma readout support.
+> >=20
+> > The Logarithmic gamma implementation on XE_LPD is non linear and adds 25
+> > segments with non linear lut samples in each segment. The expectation
+> > is userspace will create the luts as per this distribution and pass
+> > the final samples to driver to be programmed in hardware.
+> >  =20
+>=20
+> Is this design targetting Intel XE_LPD HW in particular or is it intended
+> to be generic?
+>=20
+> If this is intended to be generic I think it would benefit from a lot more
+> documentation. At this point it's difficult for me to see how to adapt th=
+is
+> to AMD HW. It would take me a while to be comfortable to make a call on w=
+hether
+> we can use it or not. And what about other vendors?
+>=20
+> I think we need to be cautious in directly exposing HW functionality thro=
+ugh
+> UAPI. The CM parts of AMD HW seem to be changing in some way each generat=
+ion
+> and it looks like the same is true for Intel. The trouble we have with ad=
+apting
+> the old gamma/degamma properties to modern HW is some indication to me th=
+at
+> this approach is somewhat problematic.
+>=20
+> It would be useful to understand and document the specific use-cases we w=
+ant to
+> provide to userspace implementers with this functionality. Do we want to =
+support
+> modern transfer functions such as PQ or HLG? If so, it might be beneficia=
+l to
+> have an API to explicitly specify that, and then use LUT tables in driver=
+s that
+> are optimized for the implementing HW.
+
+Hi Harry,
+
+from my very limited understanding so far, enum might be fine for PQ,
+but HLG is not just one transfer function, although it may often be
+confused as one. PQ and HLG are fundamentally different designs to HDR
+broadcasting I believe. It would be unfortunate to make a mistake here,
+engraving it into UAPI.
+
+> Or is the use case tone mapping? If so,
+> would a parametric definition of tone mapping be easier to manage?
+
+A very good question at least I have no idea about.
+
+
+Thanks,
+pq
+
+> > +-----+------------------------------+
+> > | x   |  2 pow x segment|No of Entries
+> > |     |  0              | 1          |
+> > | 0   |  1              | 1          |
+> > | 1   |  2              | 2          |
+> > | 2   |  4              | 2          |
+> > | 3   |  8              | 2          |
+> > | 4   |  16             | 2          |
+> > | 5   |  32             | 4          |
+> > | 6   |  64             | 4          |
+> > | 7   |  128            | 4          |
+> > | 8   |  256            | 8          |
+> > | 9   |  512            | 8          |
+> > | 10  |  1024           | 8          |
+> > | 11  |  2048           | 16         |
+> > | 12  |  4096           | 16         |
+> > | 13  |  8192           | 16         |
+> > | 14  |  16384          | 32         |
+> > | 15  |  32768          | 32         |
+> > | 16  |  65536          | 64         |
+> > | 17  |  131072         | 64         |
+> > | 18  |  262144         | 64         |
+> > | 19  |  524288         | 32         |
+> > | 20  |  1048576        | 32         |
+> > | 21  |  2097152        | 32         |
+> > | 22  |  4194304        | 32         |
+> > | 23  |  8388608        | 32         |
+> > | 24  |  16777216       | 1          |
+> > |     | Total Entries   | 511        |
+> >  -----+-----------------+------------+
+> >=20
+> > Credits: Special mention and credits to Ville Syrjala for coming up
+> > with a design for this feature and inputs. This series is based on
+> > his original design.
+> >=20
+> > Note: Userspace support for this new UAPI will be done on Chrome and
+> > plan is to get this supported on mutter as well. We will notify the
+> > list once we have that ready for review.
+> >  =20
+>=20
+> Is this an RFC? If so it would be good to mark it as such.
+>=20
+> Harry
+>=20
+> > Uma Shankar (9):
+> >   drm: Add gamma mode property
+> >   drm/i915/xelpd: Define color lut range structure
+> >   drm/i915/xelpd: Add support for Logarithmic gamma mode
+> >   drm/i915/xelpd: Attach gamma mode property
+> >   drm: Add Client Cap for advance gamma mode
+> >   drm/i915/xelpd: logarithmic gamma enabled only with advance gamma mode
+> >   drm/i915/xelpd: Enable Pipe Degamma
+> >   drm/i915/xelpd: Add Pipe Color Lut caps to platform config
+> >   drm/i915/xelpd: Enable XE_LPD Gamma Lut readout
+> >=20
+> >  drivers/gpu/drm/drm_atomic_uapi.c          |   8 +
+> >  drivers/gpu/drm/drm_color_mgmt.c           |  75 ++++
+> >  drivers/gpu/drm/drm_ioctl.c                |   5 +
+> >  drivers/gpu/drm/i915/display/intel_color.c | 454 ++++++++++++++++++++-
+> >  drivers/gpu/drm/i915/i915_pci.c            |   3 +-
+> >  drivers/gpu/drm/i915/i915_reg.h            |   7 +
+> >  include/drm/drm_atomic.h                   |   1 +
+> >  include/drm/drm_color_mgmt.h               |   8 +
+> >  include/drm/drm_crtc.h                     |  25 ++
+> >  include/drm/drm_file.h                     |   8 +
+> >  include/uapi/drm/drm.h                     |   8 +
+> >  include/uapi/drm/drm_mode.h                |  43 ++
+> >  12 files changed, 630 insertions(+), 15 deletions(-)
+> >  =20
+>=20
+
+
+--Sig_/KI4E/K1vbHM16sqc.qGZXfD
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmC9yucACgkQI1/ltBGq
+qqfILw//WJ1QBvfbpHEcLkjayGRhul9TCzrHG0W3x8RLTWUrA04t9t0q5AexJNpV
+4taoSRxJ4hSbPxxbnyVQCjhBarnhBSIvn/IvnFOF+bN3/9hE1RQ/jrdr7W7OEeGy
+e8jDnCgZzXXIqFZeoOmHRs3oVUNje9pbFN0jFG1QlC0acMzqoar5ISKO16WwIg60
++9KKsdV99h70h4ZvQMdwOKWEwB5nQWtWu+3GFX1SFN32gfWRxCedhyHLCl8Uymev
+lBLq47Mo7vQGrne1fLm0xoNJ6SlrzUXMzAlbHkxqWZ6A/oeu6TC7mt2knK8Yx5Bg
+k1QPVK6e0fwemsf37K5PBUKXPYMzys83u8ThVrL/JAks3rxgYe+hJQm+D0PpUr+U
+lWm2kbeJxreHjEVotJuwoFqkgNDgrLZ/C+hu/kojehl4Rw2Jv0B9HkRjXDh1yg7E
+uFuu4lNf51IeUwhJU62YHGyWu8j5Ps4BX48fHjx2WHF/4bC9errhwGDimkIuKW2v
+6hyRr+WMcX1DwAgz2ZzTFoAoX3h5apy5IUPv1CdhTYoAjr28mcF9RyX7m8wjxL2W
+vEzRlgZTf+qnMG02pQgw3OfqtQgQgUN4+s06SjnxiYA/xoQvsSoHua5joUGf/h9X
+72bGu1vO5RFTQLRUrqS/IIMzsIQocaSrgmF5Zclu/SW7e+TzzJk=
+=MFmg
+-----END PGP SIGNATURE-----
+
+--Sig_/KI4E/K1vbHM16sqc.qGZXfD--
+
+--===============1149230648==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1149230648==--
