@@ -1,44 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D261239EF7F
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 09:26:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8D839EF9D
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 09:34:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 529F16EAD2;
-	Tue,  8 Jun 2021 07:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40D3A6EAD9;
+	Tue,  8 Jun 2021 07:34:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F9326EAD2
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 07:26:48 +0000 (UTC)
-IronPort-SDR: lnKVpdtnu5W021tsfAQnqk1SDg1scqzMYx1jUXg6soHRVMxLYNyWV2ObfcDWGwPliST6LMEWq8
- Lw4YAr5JcwxA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="201769836"
-X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="201769836"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2021 00:26:48 -0700
-IronPort-SDR: Yvzik6zXjTBuGmqqMLCCIz/22V4ojqs65YD6vkyhuFP6w81P91ViOT0DI7poBh40kgNiM6RN59
- AebRJA1khaAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="440361394"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 08 Jun 2021 00:26:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Jun 2021 10:26:45 +0300
-Date: Tue, 8 Jun 2021 10:26:45 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <YL8btV/81CFi+ytm@intel.com>
-References: <20210514232247.144542-1-jose.souza@intel.com>
- <20210514232247.144542-4-jose.souza@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39C196EAD5;
+ Tue,  8 Jun 2021 07:34:10 +0000 (UTC)
+IronPort-SDR: 1Zx8i+gIdI1SXpRhGR7JJI0HeOCvqnuTErut13tKfVQsywLO+TmkGUwmEkpl1OZPYvl+49QeYP
+ Qds5Hgz76R7w==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="290419633"
+X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="290419633"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 00:34:09 -0700
+IronPort-SDR: OpfMSLGOC7YQZ5t73h/jw8uailJeftPv4TLgKf9BkY4zpaTt+5/jMv+7DJMGtAE+e8a8wTlok5
+ 8NW8ot4yePAg==
+X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="634985455"
+Received: from delmer-mobl.ger.corp.intel.com (HELO [10.249.254.231])
+ ([10.249.254.231])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 00:34:08 -0700
+Message-ID: <c35d9094ea1baf3d6993944451850658f550fce2.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 08 Jun 2021 09:34:05 +0200
+In-Reply-To: <20210607182210.99036-6-matthew.auld@intel.com>
+References: <20210607182210.99036-1-matthew.auld@intel.com>
+ <20210607182210.99036-6-matthew.auld@intel.com>
+User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210514232247.144542-4-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Drop FIXME about
- turn off infoframes
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915/ttm: switch over to
+ ttm_buddy_man
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,52 +49,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 14, 2021 at 04:22:47PM -0700, Jos=E9 Roberto de Souza wrote:
-> intel_dp_set_infoframes() call in intel_ddi_post_disable_dp() will
-> take care to disable all enabled infoframes.
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 1 -
->  1 file changed, 1 deletion(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 5bc5528f3091..d3bc5a1a936a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2762,7 +2762,6 @@ static void intel_ddi_pre_enable(struct intel_atomi=
-c_state *state,
->  					conn_state);
->  =
-
->  		/* FIXME precompute everything properly */
-> -		/* FIXME how do we turn infoframes off again? */
-
-The FIXME was there for LSPCON and shouldn't have been removed.
-No one has yet figured out how to do this.
-
->  		if (dig_port->lspcon.active && dig_port->dp.has_hdmi_sink)
->  			dig_port->set_infoframes(encoder, true, crtc_state,
->  						 conn_state);
-> -- =
-
-> 2.31.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAyMDIxLTA2LTA3IGF0IDE5OjIyICswMTAwLCBNYXR0aGV3IEF1bGQgd3JvdGU6Cj4g
+TW92ZSBiYWNrIHRvIHRoZSBidWRkeSBhbGxvY2F0b3IgZm9yIG1hbmFnaW5nIGRldmljZSBsb2Nh
+bCBtZW1vcnksCj4gYW5kCj4gcmVzdG9yZSB0aGUgbG9zdCBtb2NrIHNlbGZ0ZXN0cy4gS2VlcCBh
+cm91bmQgdGhlIHJhbmdlIG1hbmFnZXIKPiByZWxhdGVkCj4gYml0cywgc2luY2Ugd2UgbGlrZWx5
+IG5lZWQgdGhpcyBmb3IgbWFuYWdpbmcgc3RvbGVuIGF0IHNvbWUgcG9pbnQuCj4gRm9yCj4gc3Rv
+bGVuIHdlIGFsc28gZG9uJ3QgbmVlZCB0byByZXNlcnZlIGFueXRoaW5nIHNvIG5vIG5lZWQgdG8g
+c3VwcG9ydCBhCj4gZ2VuZXJpYyByZXNlcnZlIGludGVyZmFjZS4KPiAKPiBTaWduZWQtb2ZmLWJ5
+OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4gQ2M6IFRob21hcyBIZWxs
+c3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KCmxndG0uClJldmlld2Vk
+LWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+
+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
