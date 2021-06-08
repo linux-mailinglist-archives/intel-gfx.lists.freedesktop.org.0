@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D6D39EE73
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 07:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D42C39EE7C
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 08:03:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BC6C6E075;
-	Tue,  8 Jun 2021 05:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A9856EA1B;
+	Tue,  8 Jun 2021 06:03:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 444276EA1B;
- Tue,  8 Jun 2021 05:59:06 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ECA986EA1B;
+ Tue,  8 Jun 2021 06:03:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 39D3AAA0ED;
- Tue,  8 Jun 2021 05:59:06 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD35DA9A43;
+ Tue,  8 Jun 2021 06:03:33 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Surendrakumar Upadhyay,
  TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Tue, 08 Jun 2021 05:59:06 -0000
-Message-ID: <162313194623.418.9036622674945294542@emeril.freedesktop.org>
+Date: Tue, 08 Jun 2021 06:03:33 -0000
+Message-ID: <162313221388.419.3046025235820068050@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210608045238.393644-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20210608045238.393644-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciB4?=
- =?utf-8?q?86/gpu=3A_add_JasperLake_to_gen11_early_quirks_=28rev3=29?=
+References: <20210608053411.394166-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20210608053411.394166-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_x86/gpu=3A_add_JasperLake_to_gen11_early_quirks_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,28 +48,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: x86/gpu: add JasperLake to gen11 early quirks (rev3)
+Series: x86/gpu: add JasperLake to gen11 early quirks (rev6)
 URL   : https://patchwork.freedesktop.org/series/91082/
 State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  MODPOST modules-only.symvers
-ERROR: modpost: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-ERROR: modpost: "__divdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:150: recipe for target 'modules-only.symvers' failed
-make[1]: *** [modules-only.symvers] Error 1
-make[1]: *** Deleting file 'modules-only.symvers'
-Makefile:1759: recipe for target 'modules' failed
-make: *** [modules] Error 2
+$ dim checkpatch origin/drm-tip
+825b1f47e813 x86/gpu: add JasperLake to gen11 early quirks
+-:16: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 24ea098b7c0d ("drm/i915/jsl: Split EHL/JSL platform info and PCI ids")'
+#16: 
+commit 24ea098b7c0d80b56d62a200608e0b029056baf6
 
-== Logs ==
+total: 1 errors, 0 warnings, 0 checks, 7 lines checked
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20304/build_32bit.log
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
