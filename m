@@ -1,47 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 685C239F3B9
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 12:38:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9897539F487
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 13:03:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21D5F6E0DC;
-	Tue,  8 Jun 2021 10:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD526E111;
+	Tue,  8 Jun 2021 11:03:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1512989FC3;
- Tue,  8 Jun 2021 10:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
- s=20170329; 
- h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
- bh=sTScXVap1smEciCCWRVPGYalA2ax7y/w+lgkVVTYKF4=; 
- b=lW6hHNIF3DHzaUnMn8hTq2HDxjatBeIdd0x/4sYl5uEy9+mISLr+lqd8SdndtP3QLE/wS7807N+wg5Kq4o3+0XiS/pY7rmFNzlieuR48N5/W39rZYzcAcYCLjrYNfoLoVGX0rMyWRhXHZYTeFbJ6wfe2MMic20kGyweYLL7c4eDuP5+anewvTkpDkSFj+qMTOZASMA6fbRMH3+TQ9Eqt/YGWf3awlqfNPLVThy96DsMTmwkuhRBQJshlyl6GP1rX6YhGnPwYHLJNv4ymNJ3MAoAugVBCuCeDRyA+4AE7pP+qFy/gIZs50puOpUacLXAmQ7R/sWqRZiKZlb/XZb5vRw==;
-Received: from 106.red-79-157-245.dynamicip.rima-tde.net ([79.157.245.106]
- helo=[192.168.2.252]) by fanzine.igalia.com with esmtpsa 
- (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
- id 1lqZ88-0002m9-TN; Tue, 08 Jun 2021 12:38:44 +0200
-Message-ID: <380e8cb0f18c6f4b21c20b382668316b8962159a.camel@igalia.com>
-From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
-To: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>, 
- "events@lists.x.org"
- <events@lists.x.org>, "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
- <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
- <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
- <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Date: Tue, 08 Jun 2021 12:38:34 +0200
-In-Reply-To: <790BA4EE-E3F0-40B9-BE18-3646492F1CAE@intel.com>
-References: <790BA4EE-E3F0-40B9-BE18-3646492F1CAE@intel.com>
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 347ED6E111;
+ Tue,  8 Jun 2021 11:03:32 +0000 (UTC)
+IronPort-SDR: UPmivUV+U7ygOv/7SBBaeRfqYcwFuAyMSFidqLpyAF+NJfh8JtH7rMzgRro3ogkBjDwWBS0yHF
+ KI2hTFtWf4xA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="268674730"
+X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="268674730"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 04:03:20 -0700
+IronPort-SDR: YwYXbRV02K4qmf/ff3BjIHxbhp2CuuvSZpnYvRa+PX6eFzDU6wQEVUlPZJswYQCPkCLt7qBPI7
+ 1ozx10AUbX/w==
+X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="552237143"
+Received: from mrahim1x-mobl.gar.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.215.170.251])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 04:03:17 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  8 Jun 2021 12:02:47 +0100
+Message-Id: <20210608110254.169357-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [Mesa-dev] XDC 2021: Registration & Call for
- Proposals now open!
+Subject: [Intel-gfx] [PATCH v3 0/7] Add back the buddy allocator
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,138 +45,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "board@foundation.x.org" <board@foundation.x.org>
-Content-Type: multipart/mixed; boundary="===============1397052403=="
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1397052403==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-0Q47J+K4gENg3/THmwP5"
-
-
---=-0Q47J+K4gENg3/THmwP5
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Kind reminder. Deadline is Sunday, 4 July 2021 :-)
-
-Sam
-
-On Thu, 2021-05-20 at 10:01 +0000, Szwichtenberg, Radoslaw wrote:
-> Hello!
-> =C2=A0
-> Registration & Call for Proposals are now open for XDC 2021, which
-> will
-> take place on September 15-17, 2021. This year we will repeat as
-> virtual event.
-> =C2=A0
-> https://indico.freedesktop.org/event/1/
-> =C2=A0
-> As usual, the conference is free of charge and open to the general
-> public. If you plan on attending, please make sure to register as
-> early
-> as possible!
-> =C2=A0
-> In order to register as attendee, you will therefore need to register
-> via the XDC website. As XDC moved to a new Indico infrastructure, if
-> you previously registered on the XDC website, you need to create a
-> new
-> account again.
-> =C2=A0
-> https://indico.freedesktop.org/event/1/registrations/1/
-> =C2=A0
-> In addition to registration, the CfP is now open for talks, workshops
-> and demos at XDC 2021. While any serious proposal will be gratefully
-> considered, topics of interest to X.Org and freedesktop.org
-> developers
-> are encouraged. The program focus is on new development, ongoing
-> challenges and anything else that will spark discussions among
-> attendees in the hallway track.
-> =C2=A0
-> We are open to talks across all layers of the graphics stack, from
-> the
-> kernel to desktop environments / graphical applications and about how
-> to make things better for the developers who build them. Head to the
-> CfP page to learn more:=C2=A0
-> =C2=A0
-> https://indico.freedesktop.org/event/1/abstracts/
-> =C2=A0
-> The deadline for submissions is Sunday, 4 July 2021.
-> =C2=A0
-> Last year we modified our Reimbursement Policy to accept speaker
-> expenses for X.Org virtual events like XDC 2021. Check it out here:
-> =C2=A0
-> https://www.x.org/wiki/XorgFoundation/Policies/Reimbursement/
-> =C2=A0
-> If you have any questions, please send me an email to
-> radoslaw.szwichtenberg@intel.com,=C2=A0=C2=A0adding on CC the X.org board
-> (board
-> at foundation.x.org).
-> =C2=A0
-> And don't forget, you can follow us on Twitter for all the latest
-> updates and to stay connected:
-> =C2=A0
-> =C2=A0
-> https://twitter.com/XOrgDevConf
-> =C2=A0
-> Best,
-> =C2=A0
-> Radek
-> =C2=A0
-> P.S: a DNS redirection (xdc2021.x.org) is work in progress. Please
-> use
-> the mentioned links for the moment.
-> =C2=A0
-> =C2=A0
-> Rados=C5=82aw Szwichtenberg
-> -------------------------------------------------
-> Intel Technology Poland sp. z o.o.
-> ul. Slowackiego 173, 80-298 Gdansk
-> KRS 101882 - NIP 957-07-52-316
-> =C2=A0
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
-
-
---=-0Q47J+K4gENg3/THmwP5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmC/SKoACgkQf/S6MvF9
-w0P3tRAAjmk0pVTC5YtEm9h3e3HeepckAKQV5XGEPqqtHtxmHZWzgqX/UoewWeOJ
-TgERDD6aPxl3mmzk0/ZO/+7H2VFE73UVNJm6+zo5iaE43rwbhpGi6lX6wFNDUygL
-/J9/AR/XeShuIc110rzAfubCIGFxIhY+WlybNEKGYxbf3uqodK51Zi6P2mg8dhFm
-Vi4ttVAwLV222pmUipnv8jRSuBYSG6tcML5xZwLsa4qxVbtz8x3sLCKqm+pIpwTi
-VcdCP5faZYqImM1g916D+4cOe3kmUqmJwRv5pQEqDMxZ/A0zwCls7NtpBEaAn+fT
-pH6RHvovP1pnOLPB7Z3mZIoHJPB+SgGDDmlSop3dhUbJ0eb+Vlu/Gg1VCOkOEPUt
-KyvFlcTfG8L8fzaDlS0Si0i4sQ5aY6jdlhI5TsESd9yslSDf/WNtZmld/mTZtkpq
-DHS2KfzXoL7pKb6WIQPxeNKy9tmbSnghjUQEaWClOy/n9roI54y7SpGtPiifClWe
-7/GvC09oqG2JpQBREncN7cnJ25pU4Fwx3TwbozsZVPWDIcMVqbOBADdFdmzo4Zbs
-x2VpffVEH+cDlCWmqbbW5ut/NGYwCPf+e9Maiu/5KLgjjBJDpA1qT3J/4ss50Lds
-JXamMrMdZGAT4wats6V1uC+bBPcnMoU17jqHo3Mf9HROHfFjQ0Y=
-=grJo
------END PGP SIGNATURE-----
-
---=-0Q47J+K4gENg3/THmwP5--
-
-
---===============1397052403==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1397052403==--
-
+TmVlZHMgdG8gYmUgYXBwbGllZCBvbiB0b3Agb2Y6Cmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
+dG9wLm9yZy9zZXJpZXMvOTA2ODEvCgpNYXR0aGV3IEF1bGQgKDYpOgogIGRybS9pOTE1L3R0bTog
+YWRkIHR0bV9idWRkeV9tYW4KICBkcm0vaTkxNS90dG06IGFkZCBpOTE1X3NnX2Zyb21fYnVkZHlf
+cmVzb3VyY2UKICBkcm0vaTkxNS90dG06IHBhc3MgYWxvbmcgdGhlIEk5MTVfQk9fQUxMT0NfQ09O
+VElHVU9VUwogIGRybS9pOTE1L3R0bTogcmVtb3ZlIG5vZGUgdXNhZ2UgaW4gb3VyIG5hbWluZwog
+IGRybS9pOTE1L3R0bTogc3dpdGNoIG92ZXIgdG8gdHRtX2J1ZGR5X21hbgogIGRybS9pOTE1L3R0
+bTogcmVzdG9yZSBtaW5fcGFnZV9zaXplIGJlaGF2aW91cgoKVGhvbWFzIEhlbGxzdHLDtm0gKDEp
+OgogIGRybS9pOTE1L3R0bTogQ2FsY3VsYXRlIHRoZSBvYmplY3QgcGxhY2VtZW50IGF0IGdldF9w
+YWdlcyB0aW1lCgogZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAg
+IHwgICAyICsKIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdF90eXBlcy5oICB8
+ICAgNSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jICAgICAgIHwg
+IDk4ICsrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9idWRkeS5jICAgICAgICAgICAgIHwg
+NDEyICsrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9idWRkeS5oICAgICAgICAg
+ICAgIHwgMTMzICsrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9zY2F0dGVybGlzdC5jICAg
+ICAgIHwgIDgwICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3NjYXR0ZXJsaXN0LmggICAg
+ICAgfCAgIDUgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV90dG1fYnVkZHlfbWFuYWdlci5j
+IHwgMjQ4ICsrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV90dG1fYnVkZHlfbWFuYWdl
+ci5oIHwgIDU2ICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMg
+ICAgfCAgNTUgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uaCAg
+ICB8ICAyMCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcmVnaW9uX3R0bS5jICAgICAg
+IHwgMTM5ICsrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcmVnaW9uX3R0bS5oICAgICAg
+IHwgIDE2ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9idWRkeS5jICAg
+fCA3ODkgKysrKysrKysrKysrKysrKysrCiAuLi4vZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX21l
+bW9yeV9yZWdpb24uYyAgfCAxNzAgKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3Rz
+L21vY2tfcmVnaW9uLmMgIHwgIDI4ICstCiAxNiBmaWxlcyBjaGFuZ2VkLCAyMDAzIGluc2VydGlv
+bnMoKyksIDI1MyBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2J1ZGR5LmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2J1ZGR5LmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X3R0bV9idWRkeV9tYW5hZ2VyLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3R0bV9idWRkeV9tYW5hZ2VyLmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9idWRkeS5jCgotLSAKMi4yNi4zCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
