@@ -2,141 +2,119 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B705839EEEB
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 08:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71DDB39EF16
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 08:56:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A65E6EAAD;
-	Tue,  8 Jun 2021 06:46:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13B5D6EAAF;
+	Tue,  8 Jun 2021 06:56:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F7866EAAC;
- Tue,  8 Jun 2021 06:46:38 +0000 (UTC)
-IronPort-SDR: IFpEhg+m736i0+hNPoNaMO1BzbRbU2Psme52Ge8fZ5YVjj7LxQtKo0QFmGTbm0keYI/4oWlhb7
- B6ys8wi/fCWg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="192108495"
-X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="192108495"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2021 23:46:37 -0700
-IronPort-SDR: 4g+jbICVc+W6Ns0skT2lnsNUwsVs8PaJRJiea005mAd+YgdU2qw0iqCtQriJ5o2Lv4tOzM3cc+
- LyKkELlVKHbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,257,1616482800"; d="scan'208";a="485101893"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga002.fm.intel.com with ESMTP; 07 Jun 2021 23:46:36 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 7 Jun 2021 23:46:36 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 7 Jun 2021 23:46:35 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Mon, 7 Jun 2021 23:46:35 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.175)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Mon, 7 Jun 2021 23:46:35 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2064.outbound.protection.outlook.com [40.107.93.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47C966EAAC;
+ Tue,  8 Jun 2021 06:55:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jj9Kx58Ablp9n0GgS7EEk18/d3EN+WNCuNWE+ZOYuwc57ZKkGFbq9B3+ssRga8dBQPoqKYJMv0d1p6kH/c1JkEoG3901014af+ZSGXtGcdrWB5t4RLyO1WWUBZo6mQCuE67UonOJ7VAGOJt1KEWifwgyiQBLdxFZ6dERsSHtoE3je7BmWxS0oBfhEIJ8+DL26OynjtoFnayZPOqtavGq6NYTk98OPtTFd/a6mmAZBq3MbTAqaMhayGFlTbjV2+VgIEDpf9rftUD+PEz/GrQcFzOKRv4vTn9jT5i4L5HKzdx4g/6aPm1GxEDpDd/OFOExpyXcTqGXjJk8BxQl2RCY/w==
+ b=BBSFqG5y/yxmxPDD7RBnplFhbXRGwnG+Pdm5rhbDW2Y1UgH60CCrBOuEUna6JeDpxAzZ9LrvCo6w2DAhWssvawHsqGM+pna4kFvZRao+XuuIAZtexO5zviUkz3qJuMOo5Ubn0EMNpHK4iLseatoCEcw3UAbB9XRV99ZBGD86A7XpGgo4/73SEMPNcA4lgkLc1zr8jS0wVXV47wanuh/ZaAmmJn0vxMz0S1MP8UnbYyluegOF7ucLjncG4ajtHBumgmf5qxa9AjsDyAyQ26i4VUJKRVRTuybEFRgzshUiu4NUULh6QBKeINJvFIdPUjdEVejuryXSya0GP4QZyoww6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SC/OXNGBb5VGrnazFlobiXthhYMyYm5CyyYcRwC9Ai8=;
- b=K0/UXsl4JEssMMWQIfdAhaXbIiulYfN0fAvpkrRSckFchJ8IzrEENdR3q4ews8WhjtS40hk1I0gXEjXf1kmizofj9EHSItDARU4zFzSyhghNbhOi7Ns4B6/7HmisSjVCeDVutt9fg+q8eRfpzAWxOCFemVAkLkNktFErPyasIxKThWrxKmP0losQ4B6SnghefAHKrz2CSmijUHusOiUxZalOlLV2aFVgv7wftFBHjhTzvF7MO+qBV6FisU7Hynyuc0u9nF4fJBdgvt0JJiiKKpMZvCyhSJkL83CoO/9FgtJnEsV3CV7TwshPFT88MLQ/FlYRC5Zf9R8eZCvG2tMHxw==
+ bh=3axFji0+LJT6aH0ebwO3rSS9xTVPRSjLdfeBLY1M4Jk=;
+ b=P566nlSKIHgevTQ424iALU4bELHD/4BkTEco6cJZUxcCUt1ybwBD2JzkuS/Jj4Vt9ovwOwWouuHue3DvWImAsJH+cwNLt+FjcsIB3lFc2dbUHwQwanbNku+L9iRWFPQ1NtdVaO1blTZzLZU7CNxIUgZs6/aYOUopx1+8VoPMP6nz/N8ZLIK29K0BsWp4XzfHIF3yRNzB9MBU0dC/P8HAgONfvkXj07sz22EL90ZZcKxkYmlGnXOAFyeI0chGwdyPmuheDN3GN7kpKTSOO0wUbcA19/gv+WwK67f7ILV7b+ce9qh06tAWlspmC0Kd8/icFYDVvhLx5Jqr5eVXOoCSdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SC/OXNGBb5VGrnazFlobiXthhYMyYm5CyyYcRwC9Ai8=;
- b=OVx4SX1ugrqn7GG/AhSbXGcNuylVqtWMgfsd05AkMz64+89Y4Vfc8n2uuliBw/voS0sFMtlaCBo0KjVPtM8Ak5T7WoBAN7m2RoWYmoDGJOY53bJOJ5hFot3ZTjPlBsetCxyarHk5txBVPkvYfZU2LVdHO1vJr0aGay/9z/OYY9w=
-Received: from CO6PR11MB5569.namprd11.prod.outlook.com (2603:10b6:303:139::20)
- by CO6PR11MB5651.namprd11.prod.outlook.com (2603:10b6:5:356::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.23; Tue, 8 Jun
- 2021 06:46:33 +0000
-Received: from CO6PR11MB5569.namprd11.prod.outlook.com
- ([fe80::2d63:b94a:89c5:4514]) by CO6PR11MB5569.namprd11.prod.outlook.com
- ([fe80::2d63:b94a:89c5:4514%7]) with mapi id 15.20.4195.030; Tue, 8 Jun 2021
- 06:46:33 +0000
-From: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>
-To: "Srinivas, Vidya" <vidya.srinivas@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
-Thread-Topic: [PATCH i-g-t] tests/kms_color: Disable gamma in degamma tests
-Thread-Index: AQHXW1EsRjQBK3xmvUui2bZie5v+16sJqBmw
-Date: Tue, 8 Jun 2021 06:46:33 +0000
-Message-ID: <CO6PR11MB556903B29EDB88A1EC2EB3898D379@CO6PR11MB5569.namprd11.prod.outlook.com>
-References: <1622812262-16592-1-git-send-email-vidya.srinivas@intel.com>
- <1623037661-2087-1-git-send-email-vidya.srinivas@intel.com>
-In-Reply-To: <1623037661-2087-1-git-send-email-vidya.srinivas@intel.com>
-Accept-Language: en-US
+ bh=3axFji0+LJT6aH0ebwO3rSS9xTVPRSjLdfeBLY1M4Jk=;
+ b=dOVgu2kJNFbkODlPFq1dAOsruRsaAVwgXQS3+obSUmwPZz5uGB2EQmGcqQ3Iof5ZO51UDbpsFN/WtqSgEYhmk3v6OyL+Di/osp/lY0VY2PdA69FUibKJwzkveOZ//mBUNQBMM36RdwcGkQ4VTDnm+RfnZCRkgQ+ruo96+Wdwxng=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB4237.namprd12.prod.outlook.com (2603:10b6:208:1d6::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Tue, 8 Jun
+ 2021 06:55:56 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34%6]) with mapi id 15.20.4195.030; Tue, 8 Jun 2021
+ 06:55:56 +0000
+To: Felix Kuehling <felix.kuehling@amd.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Dave Airlie <airlied@linux.ie>, DRI <dri-devel@lists.freedesktop.org>
+References: <20210608125046.07c6deca@canb.auug.org.au>
+ <22010e38-3686-87ce-532d-4a53cae990b1@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <7b825bc4-9f81-3010-6445-d6708e34a9bd@amd.com>
+Date: Tue, 8 Jun 2021 08:55:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <22010e38-3686-87ce-532d-4a53cae990b1@amd.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [157.47.105.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 94a8a2db-21f1-4217-3236-08d92a4927cc
-x-ms-traffictypediagnostic: CO6PR11MB5651:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO6PR11MB565107FB273E61712158B5AC8D379@CO6PR11MB5651.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2887;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: byptrH6q6Coh6sZnfowFJj3W0omCn7WX2Qj5Hol0N7Sfh/NobYqC8Ws5tCXWTsKWT1u2Umm56l1I/tUjYmqwDWGXTr2wIIn1m6MZ2+yRYw+KTkH7yRj19wlnFNUfUJtKTZTtSE0G23ZsW12xtwe2JEnbiZLpYcGPPAXFjoZ44bw9P48s4fzLHZJsp8jubOTO7wsY/35jLvlEA++OaSXDBLgN6rXt5R8Ti8VNsV6/kxj5bjP/P8UKBYEgy/kDibsy6dm9LOB38XCZOmhVDEjC63fPRNdeDD9+Y9HyA25pIzzSVRfqwDgNhYbprCRj+eqGLPT57qhZqUpj0jpY8okpdb4ylOD2gVsYI1NwKEGhIiToakhXhRa9uCe9lCExkoPr4DOINiZE/4bnQFmF3axJCHDwUB8fZAY/uP/74XSIUycd8C9mkMZOlbXtAyiBNwflL5pVX1W3cDFzMhI0BmA+k+AHwZZMxBihB7x0FsfzL1bn6Glq0TcePY1HWSpAUtlgljBqOauxcNs/83iJJTkuvb/fWaNCgz+8f+RAOAP1dXYTxNJ13DA8fVmvXfIvwUfJkd5hEmZn13jU+2OmkLHNivPQ4TKQ0GAVG7YzMOgfQUA=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR11MB5569.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(396003)(346002)(136003)(366004)(376002)(39860400002)(8676002)(8936002)(38100700002)(478600001)(55016002)(83380400001)(9686003)(52536014)(2906002)(66556008)(122000001)(107886003)(86362001)(66446008)(316002)(7696005)(66476007)(33656002)(53546011)(6506007)(76116006)(54906003)(66946007)(4326008)(110136005)(71200400001)(5660300002)(26005)(186003)(64756008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Xlsmlceh7Q88ZUSXXS+B5CmS87T3QjF13voqkgZQlVkPCMXJ9m8rcFZf/Aab?=
- =?us-ascii?Q?21If6h26PkLSfnN1ir39nZP96a/BlKK2KDkk+H4k66F/shD8sDOS0npGhP8l?=
- =?us-ascii?Q?sUA4gzOQRlqVQXdYndzpQMjqXyUTe0icgbErKdyTR1ply+bHIDBU2C1u2Iqr?=
- =?us-ascii?Q?8IyraGMvB556D+4yCnUTAHblNJ5Oa97U7a97hTLwt23s5XedSpt2ryE3YK9C?=
- =?us-ascii?Q?4dFAd2w4daQg+CrHU/eqQpoS/6U5D2rQu421tTIsC1/nJlsdbQLTC+YbOxHD?=
- =?us-ascii?Q?53Rzd8vILNjwUl+Zv8keFUbh2j4P29XbxUBIwZiE1BnCoL99yrxRIeG8XkjW?=
- =?us-ascii?Q?cHP1niLNc068wr/umD6HQP5ELyBKhKv0BUzhDeEMqlBi3gcwuR6YEE2YPrOT?=
- =?us-ascii?Q?YlyKSLG5yHuYlS/eUR+6uKViue9vhaYdA32WpcjnmLT3ExENS2dUWwcspAjs?=
- =?us-ascii?Q?o3Jrx9OFrziU40+gpKAAfFyzjKZHDFfww1dK8SP1Lhp6tLCa91/BRsWlf5+l?=
- =?us-ascii?Q?Tn9/6mwd1ppZh2tcwiYsUKjQ7qdc68gasiLLwgXRJgN7wTHBtCAkut4geovU?=
- =?us-ascii?Q?a06lZ7IpRMW9WZ+Y1dIkonpGgi10cMW3b2i5vdft/kQTyWs5ZOCyRcbuAHIB?=
- =?us-ascii?Q?qp1j9uvQqI7ngCiONOSNoWGjvT3LPoDmYlrp+l7jcNsUVVN8g87oIXR7YKu6?=
- =?us-ascii?Q?i0urEI3wQAfX2atDeEuqljhQIeCbeqdk9jyhojDjuyZkwDhiBfmhN/5aagru?=
- =?us-ascii?Q?s7FTR6mBNxcNepVJ8YH6+t7Sg4UnUzDZeHGq4kWnr4VSOToFocbYXUuw0g9u?=
- =?us-ascii?Q?qpLNX6WTTFhp0ppDMdWZ+n+2349IMc7IwX8gEX9OYbaxx28mxIVKdzHfalO+?=
- =?us-ascii?Q?9wIonTA98rtQR9BVvxkI8sM1VAuaxrPlP65QYGk5KT8KoeQq6k0PCz+/mhOv?=
- =?us-ascii?Q?2h3GUncnfJ4Y6OL/7Wc7uT5fHYobeIH5vX/h+x1JbLcdIY8JcyGJ+AC4N9nM?=
- =?us-ascii?Q?GtatumCskBsa7K5VQ7Y9iymuAGUMY3Qu5+QwUErL44aCADrSYPD+IKxtueko?=
- =?us-ascii?Q?m/JtrysjxsPM8SA4SHjBrnjb8uUo7VOz1Xcr8FC4M89+p3uyQNhsx5xK6eLo?=
- =?us-ascii?Q?N3TuW1E/TKOEjK7xoSezdh1tNB2KJ6pDtFrDe0sAEcTlCIfb1vagQjzIf+X6?=
- =?us-ascii?Q?tLxJ1yc25NItioRcuI/wC3BcuxGRKFV+tqXxa+E4msnNoUdOGDdEm2kjOoxq?=
- =?us-ascii?Q?bJLRHZDXCktetjayd2oZ8c5dGkf3SWNRQg9zzVgjJIVwPl5/e04BhiOUV18B?=
- =?us-ascii?Q?Mu7cm0zTb/Kug8PYkWjHfXKA?=
+X-Originating-IP: [2a02:908:1252:fb60:197a:8536:afbe:3762]
+X-ClientProxiedBy: PR2PR09CA0005.eurprd09.prod.outlook.com
+ (2603:10a6:101:16::17) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:197a:8536:afbe:3762]
+ (2a02:908:1252:fb60:197a:8536:afbe:3762) by
+ PR2PR09CA0005.eurprd09.prod.outlook.com (2603:10a6:101:16::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4219.20 via Frontend Transport; Tue, 8 Jun 2021 06:55:54 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ecd1f24a-fcc2-4ab4-5599-08d92a4a76ea
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4237:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4237659BCBDF74C3669F8F1183379@MN2PR12MB4237.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PgRYhsyBzoRkFmivRG78VXH2NwGwfdvuiBc61VbrHswGTM2MFL+yogHRdVfTExHS9729W3b0f4HMiPQNPVUnKi6ONhJwioygZuEf0yZSEoktb8lufZAQM4wj6odgVdnvHudQPLscWaOagztXYBJs4+u2HouZpU7he9eqkqixl2THH8ZGrAjGZeYgsz9LB77mlj5c4r7hDUFxGXdBzF3WvqIOvg/SwqUq20aIvpq1PKWL4uUoZvBYG5pdVOHZHT+vQfFWE60YJ+Y/Vu/4fdIC00FmCAqdYZ+Ay5KvUaYWht5DV4D14VsrZ0/+vJ0WGZ1v17y62ZXB93M3PI+U3FIPKnZR0F85wxsWk8D1/9hlunYWq3bGanvQsYZnTlQpygOk3Dw4QehChzjDy0OtohsFEbghQJOT3dMg+ySx6u/YAzHCxY5B5WCp2unNTlAQNWvRgRc6fvp1UYRN8u8ocKhf6Tapl4zoGXymBHTunabV9Wm90PBuhCmDpv2inA0MoCNAJMGFQ8CgeQqAjwpMpAJWyC8fU3RKekWI5MhYHC0jwsnNXAmOb1PE8ZwsB0Nv/0NQPFFHdCjqazltYD0U4mIu3esa7EaVQWCq7Ui9nswmVnM3y4lpnbHUFU2oNtOVYtERVN5pej+n2HBa5oqH71sYoGNFRogf/BhoFV8VavClj/RiFSQl/CyuunimQsLeR5Ry
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(346002)(136003)(39860400002)(376002)(366004)(110136005)(66946007)(478600001)(54906003)(86362001)(316002)(66476007)(38100700002)(5660300002)(186003)(6486002)(6666004)(53546011)(66556008)(31686004)(8936002)(4326008)(36756003)(31696002)(2906002)(2616005)(16526019)(83380400001)(8676002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?Windows-1252?Q?+74qkdL0g4lg3OhYW6FXimxokW69yt2ooBlm1MLqLDJ+YHgH35qmPJrf?=
+ =?Windows-1252?Q?DCC8ZQPv/u3n8SQZu1KtQgljOfdBZ3tOq3aEUZS7CRw5fn/a9CxPnqM8?=
+ =?Windows-1252?Q?6GiYPAmsSj0trbF2dLzSpixOTtW6vjydRIy0SU3SKDnaTzM/2c/Q1xk0?=
+ =?Windows-1252?Q?w25EaVG9Zh5DyeTLOZnFsR8vdFlffC9XaRcksmvqlwcJXZRFW2WMaBPz?=
+ =?Windows-1252?Q?Ku/XUQVuOoPiX3TYU2L6wf9BLHQ8IkCQxBweyxY6SeyiKuixQ7OpOWaz?=
+ =?Windows-1252?Q?Awyrv9eo9f7kDaQdYCHzmzXUAT4ii/Jxj89ljSsZ5TL/pxDd/gxl4vwy?=
+ =?Windows-1252?Q?8pmhlH77EMAsQRB0eOmM/iIa928+Yz03xogob8lthWKTKmpha5+uQUkq?=
+ =?Windows-1252?Q?zoPfeVA4K9g7yoP+PlmyDM8tqkKUABwq9IQ+rzVqX6xAx+ReCbCI6aY5?=
+ =?Windows-1252?Q?lkr2I4RFZWAKwGBn/DuTeMSFEHR1zqexcz1ZRReCfDYeyk8E8qovVKIn?=
+ =?Windows-1252?Q?z29bUdk8pCoyrARq8tgRcsT1L/MozR9lHw8a30ewLjPKVaeYAnkTMGgr?=
+ =?Windows-1252?Q?V+P1MoI2N10NIv5f/Xw7wDU5ExhzOsRkDhYVlmi/4xkPyN78c4SZUL+E?=
+ =?Windows-1252?Q?+FEL1fv6DabuLXsOwZ66HLnpax26BqxgdWyT/5u0S6Zsb0jsmYK+KKNr?=
+ =?Windows-1252?Q?X/aKVP17PZnyLacb7LqMbJeHnr6UFr6K2BwaC6AAojeLkDwRhiBGCYxB?=
+ =?Windows-1252?Q?iyvbq/ghRkPSf+o6gECpKAmzCZ0teOhtVckDXJMaKgSRTrI9MPQLqtqy?=
+ =?Windows-1252?Q?Ff9O/rDmHcT7d+Bw2eyW1HCkqo854k2XIPicKZyUJVX2fvYYzCap8LBP?=
+ =?Windows-1252?Q?SH/Bu/dKDTRAzrxoJlmvcFg+Yx65BNkHN8vlPEXnvvTnhqnzYOCiujxB?=
+ =?Windows-1252?Q?bvGDH0W11kip7ldp1NcvsBiwIucM1SD+mpZiGZq7ePMzWFBTaFzLyMko?=
+ =?Windows-1252?Q?WBu8WTJQCdumjUvPQpc4xvxTU7yfcFUnCh0kIVTwp1gn9GntEFVXyIiQ?=
+ =?Windows-1252?Q?fLamrtAhaNZJELIfISf/Tp5tnYgE6luLkdkcMRKx/kDsp+BG9Ef+QTxm?=
+ =?Windows-1252?Q?i6N8HvpwWcCxcwW3HbJGyQur7iTfhiInMzdP9ohPhtvJ6qnqQcpZCp8H?=
+ =?Windows-1252?Q?8iQUZgwJDi9C+VGiwjp14gMFYjqsznGAnj5lrS7ZVA1BJnckfLf66a/t?=
+ =?Windows-1252?Q?QzS3BQNyn+n59yjmiZLT2HUwaDUEsfJLhKEYfqqIBIXGOzQZJf/Pm+QB?=
+ =?Windows-1252?Q?m2wCsaytLLbdDrlELcET9yMv9jT1W56uZCY9chPGxU31XsTyx42qQu0l?=
+ =?Windows-1252?Q?TaKKSupVquLjuYAo/zdLAOaFDYF4/PZVuxRoFn4riWB9Bxw/LrkvF8ff?=
+ =?Windows-1252?Q?nF53DIg3SDhwua1inv2myMriZsxL9URk+RlvfjIjuM+YvzREHVvqxrV7?=
+ =?Windows-1252?Q?7360+eV8?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecd1f24a-fcc2-4ab4-5599-08d92a4a76ea
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5569.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94a8a2db-21f1-4217-3236-08d92a4927cc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2021 06:46:33.7273 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JP3r1gwMEy833pgMBJz+4ohHPcW3bG10XwfEDuakbJl0++Vt/JqVB0LQE65te+luMxlN3ed76/P/2eYvL/FdFXM6ImB8okylls1iGXiDDcw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5651
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/kms_color: Disable gamma in
- degamma tests
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 06:55:56.4079 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: amTXm17MG6N4HJXWjotJHNfbAGpNO+jCWerlEAblTTYtLWM4DsLWQoDU7p7Eyc7i
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4237
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,183 +127,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "markyacoub@chromium.org" <markyacoub@chromium.org>, "Lin,
- Charlton" <charlton.lin@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Srinivas, Vidya <vidya.srinivas@intel.com>
-> Sent: Monday, June 7, 2021 9:18 AM
-> To: intel-gfx@lists.freedesktop.org; igt-dev@lists.freedesktop.org
-> Cc: markyacoub@chromium.org; Almahallawy, Khaled
-> <khaled.almahallawy@intel.com>; Lin, Charlton <charlton.lin@intel.com>;
-> Latvala, Petri <petri.latvala@intel.com>; Modem, Bhanuprakash
-> <bhanuprakash.modem@intel.com>; Shankar, Uma <uma.shankar@intel.com>;
-> Srinivas, Vidya <vidya.srinivas@intel.com>
-> Subject: [PATCH i-g-t] tests/kms_color: Disable gamma in degamma tests
-> 
-> This patch disables gamma in degamma subtest which is missing.
-> It compares CRC between (linear degamma + solid colors) and (max
-> degamma + gradient colors). Patch also cleans up degamma before
-> exiting degamma test and cleans up gamma before exiting gamma
-> test.
-> 
-> v2 - Addressed review comments from Bhanuprakash Modem
-> Changed full degamma for reference CRC to linear degamma
-> Added clean up of degamma end of degamma test.
-> 
-> v3 - Addressed review comments from Bhanuprakash Modem
-> Ported changes to kms_color_chamelium
-> 
-> Change-Id: Ibdb91b603e2e4024d170727d24c6a5425441e2e1
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> ---
->  tests/kms_color.c           | 14 +++++++-------
->  tests/kms_color_chamelium.c | 12 ++++++------
->  2 files changed, 13 insertions(+), 13 deletions(-)
-> 
-> diff --git a/tests/kms_color.c b/tests/kms_color.c
-> index 3a42532a5c27..1b021ac3ce0c 100644
-> --- a/tests/kms_color.c
-> +++ b/tests/kms_color.c
-> @@ -32,7 +32,6 @@ static void test_pipe_degamma(data_t *data,
->  	igt_output_t *output;
->  	igt_display_t *display = &data->display;
->  	gamma_lut_t *degamma_linear, *degamma_full;
-> -	gamma_lut_t *gamma_linear;
->  	color_t red_green_blue[] = {
->  		{ 1.0, 0.0, 0.0 },
->  		{ 0.0, 1.0, 0.0 },
-> @@ -45,8 +44,6 @@ static void test_pipe_degamma(data_t *data,
->  	degamma_linear = generate_table(data->degamma_lut_size, 1.0);
->  	degamma_full = generate_table_max(data->degamma_lut_size);
-> 
-> -	gamma_linear = generate_table(data->gamma_lut_size, 1.0);
-> -
->  	for_each_valid_output_on_pipe(&data->display, primary->pipe->pipe,
-> output) {
->  		drmModeModeInfo *mode;
->  		struct igt_fb fb_modeset, fb;
-> @@ -75,11 +72,11 @@ static void test_pipe_degamma(data_t *data,
-> 
->  		igt_plane_set_fb(primary, &fb_modeset);
->  		disable_ctm(primary->pipe);
-> -		disable_degamma(primary->pipe);
-> -		set_gamma(data, primary->pipe, gamma_linear);
-> +		disable_gamma(primary->pipe);
-> +		set_degamma(data, primary->pipe, degamma_linear);
->  		igt_display_commit(&data->display);
-> 
-> -		/* Draw solid colors with no degamma transformation. */
-> +		/* Draw solid colors with linear degamma transformation. */
->  		paint_rectangles(data, mode, red_green_blue, &fb);
->  		igt_plane_set_fb(primary, &fb);
->  		igt_display_commit(&data->display);
-> @@ -103,15 +100,16 @@ static void test_pipe_degamma(data_t *data,
->  		 */
->  		igt_assert_crc_equal(&crc_fullgamma, &crc_fullcolors);
-> 
-> +		disable_degamma(primary->pipe);
->  		igt_plane_set_fb(primary, NULL);
->  		igt_output_set_pipe(output, PIPE_NONE);
-> +		igt_display_commit(&data->display);
->  		igt_remove_fb(data->drm_fd, &fb);
->  		igt_remove_fb(data->drm_fd, &fb_modeset);
->  	}
-> 
->  	free_lut(degamma_linear);
->  	free_lut(degamma_full);
-> -	free_lut(gamma_linear);
->  }
-> 
->  /*
-> @@ -189,8 +187,10 @@ static void test_pipe_gamma(data_t *data,
->  		 */
->  		igt_assert_crc_equal(&crc_fullgamma, &crc_fullcolors);
-> 
-> +		disable_gamma(primary->pipe);
->  		igt_plane_set_fb(primary, NULL);
->  		igt_output_set_pipe(output, PIPE_NONE);
-> +		igt_display_commit(&data->display);
->  		igt_remove_fb(data->drm_fd, &fb);
->  		igt_remove_fb(data->drm_fd, &fb_modeset);
->  	}
-> diff --git a/tests/kms_color_chamelium.c b/tests/kms_color_chamelium.c
-> index 30b38b82e306..c21d64e9cc9a 100644
-> --- a/tests/kms_color_chamelium.c
-> +++ b/tests/kms_color_chamelium.c
-> @@ -36,7 +36,6 @@ static void test_pipe_degamma(data_t *data,
->  {
->  	igt_output_t *output;
->  	gamma_lut_t *degamma_linear, *degamma_full;
-> -	gamma_lut_t *gamma_linear;
->  	color_t red_green_blue[] = {
->  		{ 1.0, 0.0, 0.0 },
->  		{ 0.0, 1.0, 0.0 },
-> @@ -57,8 +56,6 @@ static void test_pipe_degamma(data_t *data,
->  	degamma_linear = generate_table(data->degamma_lut_size, 1.0);
->  	degamma_full = generate_table_max(data->degamma_lut_size);
-> 
-> -	gamma_linear = generate_table(data->gamma_lut_size, 1.0);
-> -
->  	for_each_valid_output_on_pipe(&data->display,
->  				      primary->pipe->pipe,
->  				      output) {
-> @@ -110,10 +107,10 @@ static void test_pipe_degamma(data_t *data,
->  		igt_plane_set_fb(primary, &fb_modeset);
->  		disable_ctm(primary->pipe);
->  		disable_degamma(primary->pipe);
+Hi Felix,
 
-This can be disable_gamma(), right?
+that should already be fixed in drm-tip as part of the merge of the TTM =
 
-Also, please create separate patches for kms_color & kms_color_chamelium
-under the same series.
+changes.
 
-With above changes:
-Reviewed-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+Regards,
+Christian.
 
-- Bhanu
+Am 08.06.21 um 07:37 schrieb Felix Kuehling:
+> Hi Christian,
+>
+> I based amdgpu_preempt_mgr on amdgpu_gtt_mgr and now I'm looking at what
+> changed there. Looks like I'll need to create a dummy node in
+> amdgpu_preempt_mgr_new to satisfy TTM, and free it in
+> amdgpu_preempt_mgr_del.
+>
+> Thanks,
+>  =A0 Felix
+>
+>
+> Am 2021-06-07 um 10:50 p.m. schrieb Stephen Rothwell:
+>> Hi all,
+>>
+>> After merging the drm-misc tree, today's linux-next build (x86_64
+>> allmodconfig) failed like this:
+>>
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c: In function 'amdgpu_pre=
+empt_mgr_new':
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c:75:5: error: 'struct ttm=
+_resource' has no member named 'mm_node'
+>>     75 |  mem->mm_node =3D NULL;
+>>        |     ^~
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c: At top level:
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c:129:11: error: initializ=
+ation of 'int (*)(struct ttm_resource_manager *, struct ttm_buffer_object *=
+, const struct ttm_place *, struct ttm_resource **)' from incompatible poin=
+ter type 'int (*)(struct ttm_resource_manager *, struct ttm_buffer_object *=
+, const struct ttm_place *, struct ttm_resource *)' [-Werror=3Dincompatible=
+-pointer-types]
+>>    129 |  .alloc =3D amdgpu_preempt_mgr_new,
+>>        |           ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c:129:11: note: (near init=
+ialization for 'amdgpu_preempt_mgr_func.alloc')
+>>
+>> Caused by commit
+>>
+>>    cb1c81467af3 ("drm/ttm: flip the switch for driver allocated resource=
+s v2")
+>>
+>> from the drm-misc tree interacting with commit
+>>
+>>    b453e42a6e8b ("drm/amdgpu: Add new placement for preemptible SG BOs")
+>>
+>> from the drm tree.
+>>
+>> I don't know how to fix this, so I added the following hack (a better
+>> fix would be nice):
+>>
+>> From: Stephen Rothwell <sfr@canb.auug.org.au>
+>> Date: Tue, 8 Jun 2021 12:41:16 +1000
+>> Subject: [PATCH] hack fix up for needed amdgpu_preempt_mgr_new() fix up
+>>
+>> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c b/drivers/g=
+pu/drm/amd/amdgpu/amdgpu_preempt_mgr.c
+>> index d607f314cc1b..e1a7b3e967b9 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c
+>> @@ -66,14 +66,16 @@ static DEVICE_ATTR_RO(mem_info_preempt_used);
+>>   static int amdgpu_preempt_mgr_new(struct ttm_resource_manager *man,
+>>   				  struct ttm_buffer_object *tbo,
+>>   				  const struct ttm_place *place,
+>> -				  struct ttm_resource *mem)
+>> +				  struct ttm_resource **res)
+>>   {
+>> +#if 0
+>>   	struct amdgpu_preempt_mgr *mgr =3D to_preempt_mgr(man);
+>>   =
 
-> -		set_gamma(data, primary->pipe, gamma_linear);
-> +		set_degamma(data, primary->pipe, degamma_linear);
->  		igt_display_commit(&data->display);
-> 
-> -		/* Draw solid colors with no degamma transformation. */
-> +		/* Draw solid colors with linear degamma transformation. */
->  		paint_rectangles(data, mode, red_green_blue, &fbref);
-> 
->  		/* Draw a gradient with degamma LUT to remap all
-> @@ -135,13 +132,14 @@ static void test_pipe_degamma(data_t *data,
->  					      frame_fullcolors, &fbref,
->  					      CHAMELIUM_CHECK_ANALOG);
-> 
-> +		disable_degamma(primary->pipe);
->  		igt_plane_set_fb(primary, NULL);
->  		igt_output_set_pipe(output, PIPE_NONE);
-> +		igt_display_commit(&data->display);
->  	}
-> 
->  	free_lut(degamma_linear);
->  	free_lut(degamma_full);
-> -	free_lut(gamma_linear);
->  }
-> 
->  /*
-> @@ -247,8 +245,10 @@ static void test_pipe_gamma(data_t *data,
->  					      frame_fullcolors, &fbref,
->  					      CHAMELIUM_CHECK_ANALOG);
-> 
-> +		disable_gamma(primary->pipe);
->  		igt_plane_set_fb(primary, NULL);
->  		igt_output_set_pipe(output, PIPE_NONE);
-> +		igt_display_commit(&data->display);
->  	}
-> 
->  	free_lut(gamma_full);
-> --
-> 2.7.4
+>>   	atomic64_add(mem->num_pages, &mgr->used);
+>>   =
+
+>>   	mem->mm_node =3D NULL;
+>>   	mem->start =3D AMDGPU_BO_INVALID_OFFSET;
+>> +#endif
+>>   	return 0;
+>>   }
+>>   =
+
 
 _______________________________________________
 Intel-gfx mailing list
