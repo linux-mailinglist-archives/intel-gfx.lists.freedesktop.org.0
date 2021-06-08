@@ -2,36 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046E939EDE7
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 07:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA5839EDED
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 07:08:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 107856EA9C;
-	Tue,  8 Jun 2021 05:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B93E6EA9F;
+	Tue,  8 Jun 2021 05:08:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CFEE6EA9C
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 05:01:49 +0000 (UTC)
-IronPort-SDR: klH147IEV8z1HnbBUlTa9eyOuBfAyDkvGwXsmyvX5Rn3y4bJJw78H4rxaH5qwCA7AYzf5zkg1h
- 9+snm3NkoNWw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="201753365"
-X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="201753365"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 691BB6EA9F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 05:08:16 +0000 (UTC)
+IronPort-SDR: 5HC+QLlO9zElNpj5oT8swGPPa75SUhA0guZ7r6K7rRPkgr2KgqEuK1p9IkKZ9yLGS1vnn9EsKN
+ 2r0B8lllGeRA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="202914383"
+X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="202914383"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2021 22:01:49 -0700
-IronPort-SDR: pAw2a46gOECLweqZRNYhSh+arZW+UswVUeWHjLWFI/pSG2DKeVfMogecbWSlcbWccfYBPx+L39
- B9Lp+DFA9mow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="469353601"
-Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by fmsmga004.fm.intel.com with ESMTP; 07 Jun 2021 22:01:48 -0700
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Jun 2021 10:22:38 +0530
-Message-Id: <20210608045238.393644-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-X-Mailer: git-send-email 2.31.1
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 22:08:16 -0700
+IronPort-SDR: lfX+6n56JzKKOjxqr3h7CpeSt71rIySrZU1pUxWSeH5n2KsFIYL4QP4xG/KcVG2kt21mZZOyy3
+ bNlzu7g8RLdQ==
+X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="469355372"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 22:08:15 -0700
+Date: Mon, 7 Jun 2021 22:16:49 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Message-ID: <20210608051649.GB28766@labuser-Z97X-UD5H>
+References: <20210608040659.14131-1-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH V3] x86/gpu: add JasperLake to gen11 early quirks
+Content-Disposition: inline
+In-Reply-To: <20210608040659.14131-1-vandita.kulkarni@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [v3] drm/i915/dsc: Fix bigjoiner check in
+ dsc_disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,34 +49,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TGV0J3MgcmVzZXJ2ZSBKU0wgc3RvbGVuIG1lbW9yeSBmb3IgZ3JhcGhpY3MuCgpKYXNwZXJMYWtl
-IGlzIGEgZ2VuMTEgcGxhdGZvcm0gd2hpY2ggaXMgY29tcGF0aWJsZSB3aXRoCklDTC9FSEwgY2hh
-bmdlcy4KClJlcXVpcmVkIGR1ZSB0byBiZWxvdyByZWZlcmVuY2UgcGF0Y2g6Cgpjb21taXQgMjRl
-YTA5OGI3YzBkODBiNTZkNjJhMjAwNjA4ZTBiMDI5MDU2YmFmNgpkcm0vaTkxNS9qc2w6IFNwbGl0
-IEVITC9KU0wgcGxhdGZvcm0gaW5mbyBhbmQgUENJIGlkcwoKVjI6CiAgICAtIEFkZGVkIG1haW50
-YWluZXIgbGlzdCBpbiBjYwogICAgLSBBZGRlZCBwYXRjaCByZWYgaW4gY29tbWl0IG1lc3NhZ2UK
-VjE6CiAgICAtIEFkZGVkIENjOiB4ODZAa2VybmVsLm9yZwoKQ2M6IFRob21hcyBHbGVpeG5lciA8
-dGdseEBsaW51dHJvbml4LmRlPgpDYzogSW5nbyBNb2xuYXIgPG1pbmdvQHJlZGhhdC5jb20+CkNj
-OiBCb3Jpc2xhdiBQZXRrb3YgPGJwQGFsaWVuOC5kZT4KQ2M6ICJILiBQZXRlciBBbnZpbiIgPGhw
-YUB6eXRvci5jb20+CkNjOiB4ODZAa2VybmVsLm9yZwpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6
-YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFRlamFzIFVwYWRoeWF5IDx0
-ZWphc2t1bWFyeC5zdXJlbmRyYWt1bWFyLnVwYWRoeWF5QGludGVsLmNvbT4KLS0tCiBhcmNoL3g4
-Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMgfCAxICsKIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlv
-bigrKQoKZGlmZiAtLWdpdCBhL2FyY2gveDg2L2tlcm5lbC9lYXJseS1xdWlya3MuYyBiL2FyY2gv
-eDg2L2tlcm5lbC9lYXJseS1xdWlya3MuYwppbmRleCBiNTUzZmZlOWI5ODUuLjM4ODM3ZGFkNDZl
-NiAxMDA2NDQKLS0tIGEvYXJjaC94ODYva2VybmVsL2Vhcmx5LXF1aXJrcy5jCisrKyBiL2FyY2gv
-eDg2L2tlcm5lbC9lYXJseS1xdWlya3MuYwpAQCAtNTQ5LDYgKzU0OSw3IEBAIHN0YXRpYyBjb25z
-dCBzdHJ1Y3QgcGNpX2RldmljZV9pZCBpbnRlbF9lYXJseV9pZHNbXSBfX2luaXRjb25zdCA9IHsK
-IAlJTlRFTF9DTkxfSURTKCZnZW45X2Vhcmx5X29wcyksCiAJSU5URUxfSUNMXzExX0lEUygmZ2Vu
-MTFfZWFybHlfb3BzKSwKIAlJTlRFTF9FSExfSURTKCZnZW4xMV9lYXJseV9vcHMpLAorCUlOVEVM
-X0pTTF9JRFMoJmdlbjExX2Vhcmx5X29wcyksCiAJSU5URUxfVEdMXzEyX0lEUygmZ2VuMTFfZWFy
-bHlfb3BzKSwKIAlJTlRFTF9SS0xfSURTKCZnZW4xMV9lYXJseV9vcHMpLAogCUlOVEVMX0FETFNf
-SURTKCZnZW4xMV9lYXJseV9vcHMpLAotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, Jun 08, 2021 at 09:36:59AM +0530, Vandita Kulkarni wrote:
+> This change takes care of resetting the dss_ctl registers
+> in case of dsc_disable, bigjoiner disable and also
+> uncompressed joiner disable.
+> 
+> v2: Fix formatting
+> v3: Fix the typo (Mansi)
+> 
+> Suggested-by: Jani Nikula <jani.nikula@intel.com>
+> Fixes: d961eb20adb6 (drm/i915/bigjoiner: atomic commit changes for uncompressed joiner)
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3537
+> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+
+Looks good to me with this fix
+
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+
+Manasi
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index 19cd9531c115..7121b66bf96d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -1161,12 +1161,12 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+>  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  
+> -	if (!(old_crtc_state->dsc.compression_enable &&
+> -	      old_crtc_state->bigjoiner))
+> -		return;
+> -
+> -	intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
+> -	intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);
+> +	/* Disable only if either of them is enabled */
+> +	if (old_crtc_state->dsc.compression_enable ||
+> +	    old_crtc_state->bigjoiner) {
+> +		intel_de_write(dev_priv, dss_ctl1_reg(old_crtc_state), 0);
+> +		intel_de_write(dev_priv, dss_ctl2_reg(old_crtc_state), 0);
+> +	}
+>  }
+>  
+>  void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state)
+> -- 
+> 2.21.0.5.gaeb582a
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
