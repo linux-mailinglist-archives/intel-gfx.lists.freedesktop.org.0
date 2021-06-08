@@ -1,54 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06F839FD01
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 19:02:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 549D139FD20
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 19:06:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10BF4897B5;
-	Tue,  8 Jun 2021 17:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80D366E1F7;
+	Tue,  8 Jun 2021 17:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 966F7897B5
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 17:02:38 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id m21so17495385lfg.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Jun 2021 10:02:38 -0700 (PDT)
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com
+ [IPv6:2607:f8b0:4864:20::f34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E48E6E1F7;
+ Tue,  8 Jun 2021 17:06:03 +0000 (UTC)
+Received: by mail-qv1-xf34.google.com with SMTP id x2so10516599qvo.8;
+ Tue, 08 Jun 2021 10:06:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=toOECyx+hk21hJG9J9qoRrYWtQnEeRDq4FPl3C2GcLI=;
- b=LLRdMnK4Ap/En34ilchp3oWZ/Z/dX3pheHLu3Q5bL8wYkHXWa7k/qMSu8zSLwveLc5
- jneutlc2uYMCW6+9jX3tB0N9SJM6y+/ezyVJYOJV7xqmkAlXmw9BHTbbtNTLYftffDfC
- +/ERbGdCZpn2JPxU4xmQjp/WdCGfFNQffjDzVSZ87QT1EYvHKx4Hfthn0G5O+TDZz+eJ
- 3QWFQnCqOaZcD1f8H7lRhUJemMziqUCZje3MGwGPPRezrUj0Jyhd84qdTYcfKIPyMQ3T
- gGf2pgwE1dLVu7EuXCuCGFFJ12WzJttzKP+WQ1ZMerdHRL6Lie5z+l0bQvXpFFhWM3Rl
- yPXg==
+ :cc:content-transfer-encoding;
+ bh=EoJCPJeppcrfpor3LbZM2DRcMtWosmdzMRz51+rh2XU=;
+ b=GvUxCEN12JOoAjOqV929Kwlx26hCldND/Ini+4Dz175Gx9RKJu3J8XZgpFFGRhxP8E
+ rplbjRbxfGymXfXRxpxQgI7RYoRVA+OjDKYg/OZFVUse474g0wIa+Apg9xPa3UmUcVWr
+ dW2jygpb8pHSxZSHr0c5gelAe8LpDTyH5WKpweRdOhmXQ9okYajkEXSTVaxIzEciwl1I
+ byWbAXxpDUUf0ytSKnPyvuyKj833oX35tuTt+mdZ3XVFZV+Q3lNIxvhWob9IW2jNqUSL
+ 3Hbs0Au78YhzspCYudHIMEjvYy+qtnovytgRxv88PjROyWnhLECi54fI4pZHNwazCeyH
+ qGzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=toOECyx+hk21hJG9J9qoRrYWtQnEeRDq4FPl3C2GcLI=;
- b=k4cwplaIOYO/D2HDyHH/RmLrgd1H/VrP+Pi8yG2NVStkj8ccWnTr1qYQbBcm28YG3/
- hK/eyQPTnXrJiVCLsq570ntMSxboDhfxaXDvf8fw+y4M0LCLsNbIRv+8xaU87JQ6+Ofz
- HMStzV3MJ66K21qmBSstxyE8bdfBT/zxvI82TKZ9GzMPwu7kI6dqD94WyWKXLPnoge22
- rrCksCstQDri8bPDc60fxNaAGnBE/1KqhwF6kXxH1tAzW/RTlrmcZMTd2mkrK2h+f591
- 2VGUiDUhHqS7EAdMrLIrvxAwVnIslcE5wIBCd7vwHXqe4EFTjiJLHR4FPwEc53eUPHum
- mDdQ==
-X-Gm-Message-State: AOAM531txWuVHqTLkGLq5C0sYFxVjv/Sf2j+Xxr3fOIZvzgrcscfsJ6A
- GH7MiOjelhYzsmEtRJZJuhGHISIAjl+ODu3Dkg0=
-X-Google-Smtp-Source: ABdhPJzpQiYSbMTTpHyvCKbqZ771KTVL/5bdPDXqeU442LJBBTD9plSBRfE21TAYFTrFfCuUk03YJ1WyCapCALIR8OY=
-X-Received: by 2002:a05:6512:3216:: with SMTP id
- d22mr15739567lfe.23.1623171756683; 
- Tue, 08 Jun 2021 10:02:36 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=EoJCPJeppcrfpor3LbZM2DRcMtWosmdzMRz51+rh2XU=;
+ b=IfwWmYiX3yZk/HyfiGkr55nuVvuCgPLOTHP3zIAytSnT2Q4NWiEzxy5MSKfIhEqoyd
+ 6Rn4MVissTrTLmJJyHwuFKX+JVZV9TzfUGlCBeuBhUnFUw+/jWmtaRbt6fLqNqL3twPr
+ ztpCHqOrvIAaX8VYZgAXb/7VWJaDRgYFOEbQ9pOb32eKbYiXU9PTEXgs2b0RT6XNEWZP
+ 9IgV5wCIcmayN9HoM3Adkh36tSmxvaiWHtBx5SfOeS+7Ov6i0UlcfAvNMu337xmkALmp
+ EG20MWUxmAHEyICVBNY6o82h1pf5x5idgU3OCSDn7QsHFQhL5mDuXEI/ONAe1zT6u90x
+ H+WQ==
+X-Gm-Message-State: AOAM531m+YS5tmun2sejA58kiV1P2w/jPwGUuIc1rZQ+Cg5hErKBNwxp
+ GZpii0/sgFjAZike57Nj0spqtUbhxIQl1E9lV7U=
+X-Google-Smtp-Source: ABdhPJzcJvnJcxEeb45p7x85e3PoV0Ay/dRb9l1DCuS3u68nixW2N79wTOlSZIbbyrRvnpedbfQA/7UjC1XwWDhFX1o=
+X-Received: by 2002:ad4:5fc7:: with SMTP id jq7mr1072641qvb.41.1623171962296; 
+ Tue, 08 Jun 2021 10:06:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210608132845.475357-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20210608132845.475357-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Tue, 8 Jun 2021 10:02:24 -0700
-Message-ID: <CAKi4VAKg2gZTJKC=HsseLLKjsbBAMbGNd7_ZhE=+9XQ2gb4tUA@mail.gmail.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH V4] drm/i915/jsl: Add W/A 1409054076 for JSL
+References: <20210608092846.64198-1-thomas.hellstrom@linux.intel.com>
+ <20210608092846.64198-2-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210608092846.64198-2-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 8 Jun 2021 18:05:35 +0100
+Message-ID: <CAM0jSHOp0AitoARY0HNHg6MXyJ+Ryg6-0+1VxMMYkBDk7vOP1g@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915: Reference objects on the ww
+ object list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,164 +63,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 8, 2021 at 6:38 AM Tejas Upadhyay
-<tejaskumarx.surendrakumar.upadhyay@intel.com> wrote:
->
-> When pipe A is disabled and MIPI DSI is enabled on pipe B,
-> the AMT KVMR feature will incorrectly see pipe A as enabled.
-> Set 0x42080 bit 23=1 before enabling DSI on pipe B and leave
-> it set while DSI is enabled on pipe B. No impact to setting
-> it all the time.
->
-> Changes since V3:
->         - More meaningful name to workaround - Imre
->         - Remove boolean check clear flag
->         - Add WA_verify hook in dsi sync_state
-> Changes since V2:
->         - Used REG_BIT, ignored pipe A and used sw state check - Jani
->         - Made function wrapper - Jani
-> Changes since V1:
->         - ./dim checkpatch errors addressed
->
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 45 ++++++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h        |  1 +
->  2 files changed, 46 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 16812488c5dd..1bd049cc3aee 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1253,15 +1253,37 @@ static void gen11_dsi_pre_enable(struct intel_atomic_state *state,
->         gen11_dsi_set_transcoder_timings(encoder, pipe_config);
->  }
->
-> +/*
-> + * WA 1409054076:ICL,JSL,EHL
-
-Please let's keep consistency in these comments. Look around the
-driver to see how to properly format
-these.
-
-Old workarounds that had names:
-WaNameInCamelCase: kbl,cnl
-
-For all new WAs (including this one):
-Wa_<number>:icl,jsl,ehl
-
-Lucas De Marchi
-
-> + * When pipe A is disabled and MIPI DSI is enabled on pipe B,
-> + * the AMT KVMR feature will incorrectly see pipe A as enabled.
-> + * Set 0x42080 bit 23=1 before enabling DSI on pipe B and leave
-> + * it set while DSI is enabled on pipe B
-> + */
-> +static void icl_apply_kvmr_pipe_a_wa(struct intel_encoder *encoder,
-> +                                    enum pipe pipe, bool enable)
-> +{
-> +       struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +
-> +       if ((DISPLAY_VER(dev_priv) == 11) && pipe == PIPE_B) {
-> +               intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> +                            IGNORE_KVMR_PIPE_A,
-> +                            enable ? IGNORE_KVMR_PIPE_A : 0);
-> +       }
-> +}
->  static void gen11_dsi_enable(struct intel_atomic_state *state,
->                              struct intel_encoder *encoder,
->                              const struct intel_crtc_state *crtc_state,
->                              const struct drm_connector_state *conn_state)
->  {
->         struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-> +       struct intel_crtc *crtc = to_intel_crtc(conn_state->crtc);
->
->         drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
->
-> +       /* wa 1409054076:icl,jsl,ehl */
-> +       icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, true);
-> +
->         /* step6d: enable dsi transcoder */
->         gen11_dsi_enable_transcoder(encoder);
->
-> @@ -1415,6 +1437,7 @@ static void gen11_dsi_disable(struct intel_atomic_state *state,
->                               const struct drm_connector_state *old_conn_state)
->  {
->         struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-> +       struct intel_crtc *crtc = to_intel_crtc(old_conn_state->crtc);
->
->         /* step1: turn off backlight */
->         intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_OFF);
-> @@ -1423,6 +1446,9 @@ static void gen11_dsi_disable(struct intel_atomic_state *state,
->         /* step2d,e: disable transcoder and wait */
->         gen11_dsi_disable_transcoder(encoder);
->
-> +       /* wa 1409054076:icl,jsl,ehl */
-> +       icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, false);
-> +
->         /* step2f,g: powerdown panel */
->         gen11_dsi_powerdown_panel(encoder);
->
-> @@ -1548,6 +1574,24 @@ static void gen11_dsi_get_config(struct intel_encoder *encoder,
->                 pipe_config->mode_flags |= I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
->  }
->
-> +static void gen11_dsi_sync_state(struct intel_encoder *encoder,
-> +                                const struct intel_crtc_state *crtc_state)
-> +{
-> +       struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +       struct intel_crtc *intel_crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +       enum pipe pipe = intel_crtc->pipe;
-> +
-> +       /* wa verify 1409054076:icl,jsl,ehl */
-> +       if ((DISPLAY_VER(dev_priv) == 11) &&
-> +           pipe == PIPE_B &&
-> +           !(intel_de_read(dev_priv, CHICKEN_PAR1_1)
-> +             & IGNORE_KVMR_PIPE_A))
-> +               drm_dbg_kms(&dev_priv->drm,
-> +                           "[ENCODER:%d:%s] wa 1409054076 failed\n",
-> +                           encoder->base.base.id,
-> +                           encoder->base.name);
-> +}
-> +
->  static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
->                                         struct intel_crtc_state *crtc_state)
->  {
-> @@ -1966,6 +2010,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
->         encoder->post_disable = gen11_dsi_post_disable;
->         encoder->port = port;
->         encoder->get_config = gen11_dsi_get_config;
-> +       encoder->sync_state = gen11_dsi_sync_state;
->         encoder->update_pipe = intel_panel_update_backlight;
->         encoder->compute_config = gen11_dsi_compute_config;
->         encoder->get_hw_state = gen11_dsi_get_hw_state;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index eb13c601d680..cbe055ffe98d 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8107,6 +8107,7 @@ enum {
->  # define CHICKEN3_DGMG_DONE_FIX_DISABLE                (1 << 2)
->
->  #define CHICKEN_PAR1_1                 _MMIO(0x42080)
-> +#define  IGNORE_KVMR_PIPE_A            REG_BIT(23)
->  #define  KBL_ARB_FILL_SPARE_22         REG_BIT(22)
->  #define  DIS_RAM_BYPASS_PSR2_MAN_TRACK (1 << 16)
->  #define  SKL_DE_COMPRESSED_HASH_MODE   (1 << 15)
-> --
-> 2.31.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCA4IEp1biAyMDIxIGF0IDEwOjI5LCBUaG9tYXMgSGVsbHN0csO2bQo8dGhvbWFzLmhl
+bGxzdHJvbUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gU2luY2UgdGhlIHd3IHRyYW5zYWN0
+aW9uIGVuZHBvaW50IGVhc2lseSBlbmQgdXAgZmFyIG91dC1vZi1zY29wZSBvZgo+IHRoZSBvYmpl
+Y3RzIG9uIHRoZSB3dyBvYmplY3QgbGlzdCwgcGFydGljdWxhcmx5IGZvciBjb250ZW5kaW5nIGxv
+Y2sKPiBvYmplY3RzLCBtYWtlIHN1cmUgd2UgcmVmZXJlbmNlIG9iamVjdHMgb24gdGhlIGxpc3Qg
+c28gdGhleSBkb24ndAo+IGRpc2FwcGVhciB1bmRlciB1cy4KPgo+IFRoaXMgY29tZXMgd2l0aCBh
+IHBlcmZvcm1hbmNlIHBlbmFsdHkgc28gaXQncyBiZWVuIGRlYmF0ZWQgd2hldGhlciB0aGlzCj4g
+aXMgcmVhbGx5IG5lZWRlZC4gQnV0IEkgdGhpbmsgdGhpcyBpcyBtb3RpdmF0ZWQgYnkgdGhlIGZh
+Y3QgdGhhdCBsb2NraW5nCj4gaXMgdHlwaWNhbGx5IGRpZmZpY3VsdCB0byBnZXQgcmlnaHQsIGFu
+ZCB3aGF0ZXZlciB3ZSBjYW4gZG8gdG8gbWFrZSBpdAo+IHNpbXBsZXIgZm9yIGRldmVsb3BlcnMg
+bW92aW5nIGZvcndhcmQgc2hvdWxkIGJlIGRvbmUsIHVubGVzcyB0aGUKPiBwZXJmb3JtYW5jZSBp
+bXBhY3QgaXMgZmFyIHRvbyBoaWdoLgo+Cj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIEhlbGxzdHLD
+tm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogTWF0dGhl
+dyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZngK
