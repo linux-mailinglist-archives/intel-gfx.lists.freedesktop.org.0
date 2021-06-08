@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD9139EE31
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 07:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7AC039EE42
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 07:43:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3626E6EAA3;
-	Tue,  8 Jun 2021 05:36:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 100F489EF7;
+	Tue,  8 Jun 2021 05:43:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 404046EAA3
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 05:36:13 +0000 (UTC)
-IronPort-SDR: fM+MmK9bajKmP+SAoLRhr2H0Nw6nX7F3B303mJcGAz/CUReXw4N5rr3uJSGxsdZEEAfzs5OB3J
- 7QhHIRDMbM7g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="191885124"
-X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="191885124"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 641D389D61
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 05:43:24 +0000 (UTC)
+IronPort-SDR: oD+SSB4FbRG77xYEci5V8mm4pDeRaxb9jqbVqOzM2iaQ375h9e2CE6bOg2xwL/Ae58O00fPt5Z
+ 1MtK132h0WVQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="204799318"
+X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="204799318"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2021 22:36:12 -0700
-IronPort-SDR: ANgAT1f8EyL0Cej//ehb9Tk9CAazuDLPp+jJI2soHvLTS/RWcCS9C+tCWAU/TUI6CqhvNAP/1Y
- gLNHd3zonHCQ==
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2021 22:43:23 -0700
+IronPort-SDR: 6UdjRjHbqCP2eNWp/JNEZ7IpIO2nSoscb5zpxgs+NO1UdxDi2NE/Wt4i5lzI5aIUWnfiQztmIr
+ tAGLDlktma2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="440335106"
+X-IronPort-AV: E=Sophos;i="5.83,256,1616482800"; d="scan'208";a="440336475"
 Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
- by orsmga007.jf.intel.com with ESMTP; 07 Jun 2021 22:36:11 -0700
+ by orsmga007.jf.intel.com with ESMTP; 07 Jun 2021 22:43:21 -0700
 From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 To: intel-gfx@lists.freedesktop.org, tglx@linutronix.de, mingo@redhat.com,
- bp@alien8.de
-Date: Tue,  8 Jun 2021 10:57:00 +0530
-Message-Id: <20210608052700.394114-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ bp@alien8.de, hpa@zytor.com, x86@kernel.org, jose.souza@intel.com
+Date: Tue,  8 Jun 2021 11:04:11 +0530
+Message-Id: <20210608053411.394166-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH V3] x86/gpu: add JasperLake to gen11 early quirks
