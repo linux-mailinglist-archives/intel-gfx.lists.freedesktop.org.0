@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB29B39F5F3
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 14:02:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45E939F683
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jun 2021 14:25:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA7806E12C;
-	Tue,  8 Jun 2021 12:02:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D01D6E87F;
+	Tue,  8 Jun 2021 12:25:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A41E16E12C;
- Tue,  8 Jun 2021 12:02:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9BE78A47E2;
- Tue,  8 Jun 2021 12:02:21 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09A7B6E270;
+ Tue,  8 Jun 2021 12:25:28 +0000 (UTC)
+IronPort-SDR: GZGDE5ec6G2bWo7Faa5N2hnB3AySIs3yKtB28MuybSo64Oqg+mNyziSXziUcF4dQuJ0mOBmAZj
+ oyGfwECtwy/Q==
+X-IronPort-AV: E=McAfee;i="6200,9189,10008"; a="201812209"
+X-IronPort-AV: E=Sophos;i="5.83,258,1616482800"; d="scan'208";a="201812209"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 05:25:23 -0700
+IronPort-SDR: fL2z5j/mpwBU3+gEKQ9nBh6YSL4Ul0rPcQr1myqsJ4jkVjW3nvCICV5wggktbUGPoxHXvOlxnH
+ jeumqi0vpA8Q==
+X-IronPort-AV: E=Sophos;i="5.83,258,1616482800"; d="scan'208";a="485195612"
+Received: from skallurr-mobl.ger.corp.intel.com (HELO [10.249.254.100])
+ ([10.249.254.100])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 05:25:21 -0700
+Message-ID: <d86d0a9749fe71aa91e80c8c83db65eebae6fe2b.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Tue, 08 Jun 2021 14:25:18 +0200
+In-Reply-To: <20210608110254.169357-6-matthew.auld@intel.com>
+References: <20210608110254.169357-1-matthew.auld@intel.com>
+ <20210608110254.169357-6-matthew.auld@intel.com>
+User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 08 Jun 2021 12:02:21 -0000
-Message-ID: <162315374160.421.14729507096318694308@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210608092846.64198-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210608092846.64198-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Prereqs_for_TTM_accelerated_migration?=
+Subject: Re: [Intel-gfx] [PATCH v3 5/7] drm/i915/ttm: remove node usage in
+ our naming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,81 +49,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Prereqs for TTM accelerated migration
-URL   : https://patchwork.freedesktop.org/series/91155/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-2242ed7d4819 drm/i915: Reference objects on the ww object list
-80e16d0ed0bd drm/i915: Break out dma_resv ww locking utilities to separate files
--:140: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#140: 
-new file mode 100644
-
--:165: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#165: FILE: drivers/gpu/drm/i915/i915_gem_ww.c:21:
-+	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
-
-total: 0 errors, 2 warnings, 0 checks, 183 lines checked
-593821a10769 drm/i915: Introduce a ww transaction helper
--:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_ww' - possible side-effects?
-#55: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
-+#define for_i915_gem_ww(_ww, _err, _intr)			\
-+	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
-+	     _err = __i915_gem_ww_fini(_ww, _err))
-
--:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
-#55: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
-+#define for_i915_gem_ww(_ww, _err, _intr)			\
-+	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
-+	     _err = __i915_gem_ww_fini(_ww, _err))
-
-total: 0 errors, 0 warnings, 2 checks, 41 lines checked
-c7566defcd7c drm/i915/gt: Add an insert_entry for gen8_ppgtt
-26a16841f182 drm/i915/gt: Add a routine to iterate over the pagetables of a GTT
-8e6cf3a8e8b3 drm/i915/gt: Export the pinned context constructor
-8bd34da39144 drm/i915/gt: Pipelined page migration
--:66: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#66: 
-new file mode 100644
-
--:879: WARNING:LINE_SPACING: Missing a blank line after declarations
-#879: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:176:
-+	struct drm_i915_private *i915 = migrate->context->engine->i915;
-+	I915_RND_STATE(prng);
-
--:908: WARNING:LINE_SPACING: Missing a blank line after declarations
-#908: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:205:
-+	struct threaded_migrate *thread;
-+	I915_RND_STATE(prng);
-
--:933: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-#933: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:230:
-+	msleep(10); /* start all threads before we kthread_stop() */
-
-total: 0 errors, 4 warnings, 0 checks, 932 lines checked
-09387b6a62ee drm/i915/gt: Pipelined clear
--:353: WARNING:LINE_SPACING: Missing a blank line after declarations
-#353: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:311:
-+	struct drm_i915_private *i915 = migrate->context->engine->i915;
-+	I915_RND_STATE(prng);
-
-total: 0 errors, 1 warnings, 0 checks, 378 lines checked
-15bf0f5044d2 drm/i915/gt: Setup a default migration context on the GT
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIxLTA2LTA4IGF0IDEyOjAyICswMTAwLCBNYXR0aGV3IEF1bGQgd3JvdGU6Cj4g
+Tm93IHRoYXQgdHRtX3Jlc291cmNlX21hbmFnZXIganVzdCByZXR1cm5zIGEgZ2VuZXJpYyB0dG1f
+cmVzb3VyY2Ugd2UKPiBkb24ndCBuZWVkIHRvIHJlZmVyZW5jZSB0aGUgbW1fbm9kZSBzdHVmZiBh
+bnltb3JlIHdoaWNoIG1vc3RseSBvbmx5Cj4gbWFrZXMgc2Vuc2UgZm9yIGRybV9tbV9ub2RlLiBJ
+biB0aGUgbmV4dCBmZXcgcGF0Y2hlcyB3ZSB3YW50IHN3aXRjaAo+IG92ZXIKPiB0byB0aGUgdHRt
+X2J1ZGR5X21hbiB3aGljaCBpcyBqdXN0IGFub3RoZXIgdHlwZSBvZiB0dG1fcmVzb3VyY2Ugc28K
+PiByZWZsZWN0IHRoYXQgaW4gdGhlIG5hbWluZy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3
+IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4gQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIDx0
+aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KClJldmlld2VkLWJ5OiBUaG9tYXMgSGVs
+bHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
