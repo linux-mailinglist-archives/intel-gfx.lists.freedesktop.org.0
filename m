@@ -2,62 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065C93A1F12
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ABE23A1F13
 	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 23:30:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C7486EB8D;
-	Wed,  9 Jun 2021 21:30:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 276DF6EB8E;
+	Wed,  9 Jun 2021 21:30:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com
- [IPv6:2607:f8b0:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB806EB8B
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 21:30:14 +0000 (UTC)
-Received: by mail-pl1-x629.google.com with SMTP id c13so13457638plz.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 14:30:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=TVM6IqkVxgF758A5cge42oRP8xpTXQAuAHmNBA0fFv0=;
- b=vgD4miESEhiOO5Ipfy3sfslWwzjyKiWCpZSzZlqy1cwgg/0zWGow0db1bcdXr3B5ia
- rtDv6xX9JPJYEWQ5kysiQSLrXXhR019g1tJ4DntjjzxJRSaa+Ao3f0QnSFUBAiwtw6sv
- Rr7n13Nn+zxAzb4t19CvQnBOQZOSGJ3R0HORQNdlCHufvfgBh7jCgEQpmcLKLOM/PJcH
- 1pr5Uq66suhIxO7xa9XqwmzQV7wrx4MjhKBRPm0bPItaH8aEWWjLUBv3Fobfwg0lqGWg
- gNEp+5aQCRpHlaoNF5MP6jw7cIl7gYtcsl4ofbCPEdStThOpD2VI80+zSxoXdM+i8G39
- /scQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=TVM6IqkVxgF758A5cge42oRP8xpTXQAuAHmNBA0fFv0=;
- b=bup27XW7EDJSHbPydE90RyCMHV1DPWX3xXRgxA959LIXwWloZ/LCr2NFb336Gao+LL
- z2DgRVQSFk7qOXYS1aMyVOxUGeYP4A9T4r2pRV3pZGIyd13fT1iGGtkT4IlNlEpyOjLC
- vTeSE1PXXmX6OISbOx7Kd5sploGVqoFCMZUb3sVNuQ0UO48k4HINUI131Bjc2tcGhZoO
- evdB+R658EAwZmuXUQAvtuDOnW4bwTk/qPvT0hdPRz6vwCZHxIOOX3/fEntmMLbT89Pq
- lV+jjH4/9HSqoVRKKdoFqRqbtyPd+7/6F9QrH7qjFrFVbnhKtBJBZsuDvppyZUjVZyr7
- rhlA==
-X-Gm-Message-State: AOAM531t80kd/x9EwmgLU5ZHx2DOhezA3Hc3nHVJt9u7JB3zqDZ+JUFa
- CVT00j+wq//GMV9/Giz+7hPCNQ==
-X-Google-Smtp-Source: ABdhPJxA7otZafFMLRTV6Q2ddhPEa1XgHZ6ZhrzXeSXf6tntPEcgFP6S38N9qoUqvaOPomgnSMqFzg==
-X-Received: by 2002:a17:90a:bd18:: with SMTP id
- y24mr6503097pjr.83.1623274214438; 
- Wed, 09 Jun 2021 14:30:14 -0700 (PDT)
-Received: from omlet.lan (jfdmzpr04-ext.jf.intel.com. [134.134.137.73])
- by smtp.gmail.com with ESMTPSA id u14sm519133pjx.14.2021.06.09.14.30.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Jun 2021 14:30:14 -0700 (PDT)
-From: Jason Ekstrand <jason@jlekstrand.net>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Jun 2021 16:29:59 -0500
-Message-Id: <20210609212959.471209-6-jason@jlekstrand.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210609212959.471209-1-jason@jlekstrand.net>
-References: <20210609212959.471209-1-jason@jlekstrand.net>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEFCF6EB8B;
+ Wed,  9 Jun 2021 21:30:18 +0000 (UTC)
+IronPort-SDR: GH5+gztCbymHGSyVnN5TeyDRzGvMCBGuhqbLL2lnYKjkOwJJJhoCGX/+IValN+Q0WjhWwlMBgq
+ wkiodeLVZ8iQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="290803631"
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="290803631"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 14:30:06 -0700
+IronPort-SDR: Cm4G1uFBRp/NJN/M7hhbQcEhYfIFQCBApQtpaIxxbRECwzZB/I0+9howBJTnounfqcwW9ga5Ny
+ B3vh36WVaRzg==
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="552116750"
+Received: from akshayka-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.254.35.119])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 14:30:02 -0700
+Date: Wed, 9 Jun 2021 17:30:00 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YMEy2Ew82BeL/hDK@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] DONOTMERGE: dma-buf: Get rid of
- dma_fence_get_rcu_safe
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,146 +45,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBoZWxwZXIgZXhpc3RlZCB0byBoYW5kbGUgdGhlIHdlaXJkIGNvcm5lci1jYXNlcyBjYXVz
-ZWQgYnkgdXNpbmcKU0xBQl9UWVBFU0FGRV9CWV9SQ1UgZm9yIGJhY2tpbmcgZG1hX2ZlbmNlLiAg
-Tm93IHRoYXQgbm8gb25lIGlzIHVzaW5nCnRoYXQgYW55bW9yZSAoaTkxNSB3YXMgdGhlIG9ubHkg
-cmVhbCB1c2VyKSwgZG1hX2ZlbmNlX2dldF9yY3UgaXMKc3VmZmljaWVudC4gIFRoZSBvbmUgc2xp
-Z2h0bHkgYW5ub3lpbmcgdGhpbmcgd2UgaGF2ZSB0byBkZWFsIHdpdGggaGVyZQppcyB0aGF0IGRt
-YV9mZW5jZV9nZXRfcmN1X3NhZmUgZGlkIGFuIHJjdV9kZXJlZmVyZW5jZSBhcyB3ZWxsIGFzIGEK
-U0xBQl9UWVBFU0FGRV9CWV9SQ1Utc2FmZSBkbWFfZmVuY2VfZ2V0X3JjdS4gIFRoaXMgbWVhbnMg
-ZWFjaCBjYWxsIHNpdGUKZW5kcyB1cCBiZWluZyAzIGxpbmVzIGluc3RlYWQgb2YgMS4KClNpZ25l
-ZC1vZmYtYnk6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4KQ2M6IERhbmll
-bCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+CkNjOiBDaHJpc3RpYW4gS8O2bmlnIDxj
-aHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CkNjOiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBp
-bnRlbC5jb20+CkNjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXgu
-aW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVuY2UtY2hhaW4uYyAgICAgICAg
-IHwgIDggKystLQogZHJpdmVycy9kbWEtYnVmL2RtYS1yZXN2LmMgICAgICAgICAgICAgICAgfCAg
-NCArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ZlbmNlLmMgfCAgNCArLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9hY3RpdmUuaCAgICAgICAgfCAgNCArLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV92bWEuYyAgICAgICAgICAgfCAgNCArLQogaW5jbHVkZS9kcm0v
-ZHJtX3N5bmNvYmouaCAgICAgICAgICAgICAgICAgfCAgNCArLQogaW5jbHVkZS9saW51eC9kbWEt
-ZmVuY2UuaCAgICAgICAgICAgICAgICAgfCA1MCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogaW5j
-bHVkZS9saW51eC9kbWEtcmVzdi5oICAgICAgICAgICAgICAgICAgfCAgNCArLQogOCBmaWxlcyBj
-aGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspLCA1OSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2RtYS1idWYvZG1hLWZlbmNlLWNoYWluLmMgYi9kcml2ZXJzL2RtYS1idWYvZG1hLWZl
-bmNlLWNoYWluLmMKaW5kZXggN2QxMjllNjhhYzcwMS4uNDZkZmM3ZDk0ZDhlZCAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9kbWEtYnVmL2RtYS1mZW5jZS1jaGFpbi5jCisrKyBiL2RyaXZlcnMvZG1hLWJ1
-Zi9kbWEtZmVuY2UtY2hhaW4uYwpAQCAtMTUsMTUgKzE1LDE3IEBAIHN0YXRpYyBib29sIGRtYV9m
-ZW5jZV9jaGFpbl9lbmFibGVfc2lnbmFsaW5nKHN0cnVjdCBkbWFfZmVuY2UgKmZlbmNlKTsKICAq
-IGRtYV9mZW5jZV9jaGFpbl9nZXRfcHJldiAtIHVzZSBSQ1UgdG8gZ2V0IGEgcmVmZXJlbmNlIHRv
-IHRoZSBwcmV2aW91cyBmZW5jZQogICogQGNoYWluOiBjaGFpbiBub2RlIHRvIGdldCB0aGUgcHJl
-dmlvdXMgbm9kZSBmcm9tCiAgKgotICogVXNlIGRtYV9mZW5jZV9nZXRfcmN1X3NhZmUgdG8gZ2V0
-IGEgcmVmZXJlbmNlIHRvIHRoZSBwcmV2aW91cyBmZW5jZSBvZiB0aGUKLSAqIGNoYWluIG5vZGUu
-CisgKiBVc2UgcmN1X2RlcmVmZXJlbmNlIGFuZCBkbWFfZmVuY2VfZ2V0X3JjdSB0byBnZXQgYSBy
-ZWZlcmVuY2UgdG8gdGhlCisgKiBwcmV2aW91cyBmZW5jZSBvZiB0aGUgY2hhaW4gbm9kZS4KICAq
-Lwogc3RhdGljIHN0cnVjdCBkbWFfZmVuY2UgKmRtYV9mZW5jZV9jaGFpbl9nZXRfcHJldihzdHJ1
-Y3QgZG1hX2ZlbmNlX2NoYWluICpjaGFpbikKIHsKIAlzdHJ1Y3QgZG1hX2ZlbmNlICpwcmV2Owog
-CiAJcmN1X3JlYWRfbG9jaygpOwotCXByZXYgPSBkbWFfZmVuY2VfZ2V0X3JjdV9zYWZlKCZjaGFp
-bi0+cHJldik7CisJcHJldiA9IHJjdV9kZXJlZmVyZW5jZShjaGFpbi0+cHJldik7CisJaWYgKHBy
-ZXYpCisJCXByZXYgPSBkbWFfZmVuY2VfZ2V0X3JjdShwcmV2KTsKIAlyY3VfcmVhZF91bmxvY2so
-KTsKIAlyZXR1cm4gcHJldjsKIH0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZG1hLWJ1Zi9kbWEtcmVz
-di5jIGIvZHJpdmVycy9kbWEtYnVmL2RtYS1yZXN2LmMKaW5kZXggZjI2YzcxNzQ3ZDQzYS4uY2Zl
-MGRiM2NjYTI5MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9kbWEtYnVmL2RtYS1yZXN2LmMKKysrIGIv
-ZHJpdmVycy9kbWEtYnVmL2RtYS1yZXN2LmMKQEAgLTM3Niw3ICszNzYsOSBAQCBpbnQgZG1hX3Jl
-c3ZfY29weV9mZW5jZXMoc3RydWN0IGRtYV9yZXN2ICpkc3QsIHN0cnVjdCBkbWFfcmVzdiAqc3Jj
-KQogCQlkc3RfbGlzdCA9IE5VTEw7CiAJfQogCi0JbmV3ID0gZG1hX2ZlbmNlX2dldF9yY3Vfc2Fm
-ZSgmc3JjLT5mZW5jZV9leGNsKTsKKwluZXcgPSByY3VfZGVyZWZlcmVuY2Uoc3JjLT5mZW5jZV9l
-eGNsKTsKKwlpZiAobmV3KQorCQluZXcgPSBkbWFfZmVuY2VfZ2V0X3JjdShuZXcpOwogCXJjdV9y
-ZWFkX3VubG9jaygpOwogCiAJc3JjX2xpc3QgPSBkbWFfcmVzdl9zaGFyZWRfbGlzdChkc3QpOwpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ZlbmNlLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmVuY2UuYwppbmRleCA3MmQ5YjkyYjE3
-NTQ3Li4wYWViNjExN2YzODkzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfZmVuY2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-ZmVuY2UuYwpAQCAtMTYxLDcgKzE2MSw5IEBAIGludCBhbWRncHVfZmVuY2VfZW1pdChzdHJ1Y3Qg
-YW1kZ3B1X3JpbmcgKnJpbmcsIHN0cnVjdCBkbWFfZmVuY2UgKipmLAogCQlzdHJ1Y3QgZG1hX2Zl
-bmNlICpvbGQ7CiAKIAkJcmN1X3JlYWRfbG9jaygpOwotCQlvbGQgPSBkbWFfZmVuY2VfZ2V0X3Jj
-dV9zYWZlKHB0cik7CisJCW9sZCA9IHJjdV9kZXJlZmVyZW5jZSgqcHRyKTsKKwkJaWYgKG9sZCkK
-KwkJCW9sZCA9IGRtYV9mZW5jZV9nZXRfcmN1KG9sZCk7CiAJCXJjdV9yZWFkX3VubG9jaygpOwog
-CiAJCWlmIChvbGQpIHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfYWN0
-aXZlLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2FjdGl2ZS5oCmluZGV4IGQwZmVkYTY4
-Yjg3NGYuLmJkODljZmM4MDZjYTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfYWN0aXZlLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9hY3RpdmUuaApAQCAt
-MTAzLDcgKzEwMyw5IEBAIGk5MTVfYWN0aXZlX2ZlbmNlX2dldChzdHJ1Y3QgaTkxNV9hY3RpdmVf
-ZmVuY2UgKmFjdGl2ZSkKIAlzdHJ1Y3QgZG1hX2ZlbmNlICpmZW5jZTsKIAogCXJjdV9yZWFkX2xv
-Y2soKTsKLQlmZW5jZSA9IGRtYV9mZW5jZV9nZXRfcmN1X3NhZmUoJmFjdGl2ZS0+ZmVuY2UpOwor
-CWZlbmNlID0gcmN1X2RlcmVmZXJlbmNlKGFjdGl2ZS0+ZmVuY2UpOworCWlmIChmZW5jZSkKKwkJ
-ZmVuY2UgPSBkbWFfZmVuY2VfZ2V0X3JjdShmZW5jZSk7CiAJcmN1X3JlYWRfdW5sb2NrKCk7CiAK
-IAlyZXR1cm4gZmVuY2U7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Zt
-YS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWEuYwppbmRleCAwZjIyN2YyOGIyODAy
-Li5lZDAzODhkOTkxOTdlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Zt
-YS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hLmMKQEAgLTM1MSw3ICszNTEs
-OSBAQCBpbnQgaTkxNV92bWFfd2FpdF9mb3JfYmluZChzdHJ1Y3QgaTkxNV92bWEgKnZtYSkKIAkJ
-c3RydWN0IGRtYV9mZW5jZSAqZmVuY2U7CiAKIAkJcmN1X3JlYWRfbG9jaygpOwotCQlmZW5jZSA9
-IGRtYV9mZW5jZV9nZXRfcmN1X3NhZmUoJnZtYS0+YWN0aXZlLmV4Y2wuZmVuY2UpOworCQlmZW5j
-ZSA9IHJjdV9kZXJlZmVyZW5jZSh2bWEtPmFjdGl2ZS5leGNsLmZlbmNlKTsKKwkJaWYgKGZlbmNl
-KQorCQkJZmVuY2UgPSBkbWFfZmVuY2VfZ2V0X3JjdShmZW5jZSk7CiAJCXJjdV9yZWFkX3VubG9j
-aygpOwogCQlpZiAoZmVuY2UpIHsKIAkJCWVyciA9IGRtYV9mZW5jZV93YWl0KGZlbmNlLCBNQVhf
-U0NIRURVTEVfVElNRU9VVCk7CmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fc3luY29iai5o
-IGIvaW5jbHVkZS9kcm0vZHJtX3N5bmNvYmouaAppbmRleCA2Y2Y3MjQzYTFkYzVlLi42YzQ1ZDUy
-OTg4YmNjIDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9kcm1fc3luY29iai5oCisrKyBiL2luY2x1
-ZGUvZHJtL2RybV9zeW5jb2JqLmgKQEAgLTEwNSw3ICsxMDUsOSBAQCBkcm1fc3luY29ial9mZW5j
-ZV9nZXQoc3RydWN0IGRybV9zeW5jb2JqICpzeW5jb2JqKQogCXN0cnVjdCBkbWFfZmVuY2UgKmZl
-bmNlOwogCiAJcmN1X3JlYWRfbG9jaygpOwotCWZlbmNlID0gZG1hX2ZlbmNlX2dldF9yY3Vfc2Fm
-ZSgmc3luY29iai0+ZmVuY2UpOworCWZlbmNlID0gcmN1X2RlcmVmZXJlbmNlKHN5bmNvYmotPmZl
-bmNlKTsKKwlpZiAoZmVuY2UpCisJCWZlbmNlID0gZG1hX2ZlbmNlX2dldF9yY3Uoc3luY29iai0+
-ZmVuY2UpOwogCXJjdV9yZWFkX3VubG9jaygpOwogCiAJcmV0dXJuIGZlbmNlOwpkaWZmIC0tZ2l0
-IGEvaW5jbHVkZS9saW51eC9kbWEtZmVuY2UuaCBiL2luY2x1ZGUvbGludXgvZG1hLWZlbmNlLmgK
-aW5kZXggNmZmYjRiMmM2MzcxNS4uZjRhMmFiMmIxYWU0NiAxMDA2NDQKLS0tIGEvaW5jbHVkZS9s
-aW51eC9kbWEtZmVuY2UuaAorKysgYi9pbmNsdWRlL2xpbnV4L2RtYS1mZW5jZS5oCkBAIC0zMDcs
-NTYgKzMwNyw2IEBAIHN0YXRpYyBpbmxpbmUgc3RydWN0IGRtYV9mZW5jZSAqZG1hX2ZlbmNlX2dl
-dF9yY3Uoc3RydWN0IGRtYV9mZW5jZSAqZmVuY2UpCiAJCXJldHVybiBOVUxMOwogfQogCi0vKioK
-LSAqIGRtYV9mZW5jZV9nZXRfcmN1X3NhZmUgIC0gYWNxdWlyZSBhIHJlZmVyZW5jZSB0byBhbiBS
-Q1UgdHJhY2tlZCBmZW5jZQotICogQGZlbmNlcDogcG9pbnRlciB0byBmZW5jZSB0byBpbmNyZWFz
-ZSByZWZjb3VudCBvZgotICoKLSAqIEZ1bmN0aW9uIHJldHVybnMgTlVMTCBpZiBubyByZWZjb3Vu
-dCBjb3VsZCBiZSBvYnRhaW5lZCwgb3IgdGhlIGZlbmNlLgotICogVGhpcyBmdW5jdGlvbiBoYW5k
-bGVzIGFjcXVpcmluZyBhIHJlZmVyZW5jZSB0byBhIGZlbmNlIHRoYXQgbWF5IGJlCi0gKiByZWFs
-bG9jYXRlZCB3aXRoaW4gdGhlIFJDVSBncmFjZSBwZXJpb2QgKHN1Y2ggYXMgd2l0aCBTTEFCX1RZ
-UEVTQUZFX0JZX1JDVSksCi0gKiBzbyBsb25nIGFzIHRoZSBjYWxsZXIgaXMgdXNpbmcgUkNVIG9u
-IHRoZSBwb2ludGVyIHRvIHRoZSBmZW5jZS4KLSAqCi0gKiBBbiBhbHRlcm5hdGl2ZSBtZWNoYW5p
-c20gaXMgdG8gZW1wbG95IGEgc2VxbG9jayB0byBwcm90ZWN0IGEgYnVuY2ggb2YKLSAqIGZlbmNl
-cywgc3VjaCBhcyB1c2VkIGJ5IHN0cnVjdCBkbWFfcmVzdi4gV2hlbiB1c2luZyBhIHNlcWxvY2ss
-Ci0gKiB0aGUgc2VxbG9jayBtdXN0IGJlIHRha2VuIGJlZm9yZSBhbmQgY2hlY2tlZCBhZnRlciBh
-IHJlZmVyZW5jZSB0byB0aGUKLSAqIGZlbmNlIGlzIGFjcXVpcmVkIChhcyBzaG93biBoZXJlKS4K
-LSAqCi0gKiBUaGUgY2FsbGVyIGlzIHJlcXVpcmVkIHRvIGhvbGQgdGhlIFJDVSByZWFkIGxvY2su
-Ci0gKi8KLXN0YXRpYyBpbmxpbmUgc3RydWN0IGRtYV9mZW5jZSAqCi1kbWFfZmVuY2VfZ2V0X3Jj
-dV9zYWZlKHN0cnVjdCBkbWFfZmVuY2UgX19yY3UgKipmZW5jZXApCi17Ci0JZG8gewotCQlzdHJ1
-Y3QgZG1hX2ZlbmNlICpmZW5jZTsKLQotCQlmZW5jZSA9IHJjdV9kZXJlZmVyZW5jZSgqZmVuY2Vw
-KTsKLQkJaWYgKCFmZW5jZSkKLQkJCXJldHVybiBOVUxMOwotCi0JCWlmICghZG1hX2ZlbmNlX2dl
-dF9yY3UoZmVuY2UpKQotCQkJY29udGludWU7Ci0KLQkJLyogVGhlIGF0b21pY19pbmNfbm90X3pl
-cm8oKSBpbnNpZGUgZG1hX2ZlbmNlX2dldF9yY3UoKQotCQkgKiBwcm92aWRlcyBhIGZ1bGwgbWVt
-b3J5IGJhcnJpZXIgdXBvbiBzdWNjZXNzIChzdWNoIGFzIG5vdykuCi0JCSAqIFRoaXMgaXMgcGFp
-cmVkIHdpdGggdGhlIHdyaXRlIGJhcnJpZXIgZnJvbSBhc3NpZ25pbmcKLQkJICogdG8gdGhlIF9f
-cmN1IHByb3RlY3RlZCBmZW5jZSBwb2ludGVyIHNvIHRoYXQgaWYgdGhhdAotCQkgKiBwb2ludGVy
-IHN0aWxsIG1hdGNoZXMgdGhlIGN1cnJlbnQgZmVuY2UsIHdlIGtub3cgd2UKLQkJICogaGF2ZSBz
-dWNjZXNzZnVsbHkgYWNxdWlyZSBhIHJlZmVyZW5jZSB0byBpdC4gSWYgaXQgbm8KLQkJICogbG9u
-Z2VyIG1hdGNoZXMsIHdlIGFyZSBob2xkaW5nIGEgcmVmZXJlbmNlIHRvIHNvbWUgb3RoZXIKLQkJ
-ICogcmVhbGxvY2F0ZWQgcG9pbnRlci4gVGhpcyBpcyBwb3NzaWJsZSBpZiB0aGUgYWxsb2NhdG9y
-Ci0JCSAqIGlzIHVzaW5nIGEgZnJlZWxpc3QgbGlrZSBTTEFCX1RZUEVTQUZFX0JZX1JDVSB3aGVy
-ZSB0aGUKLQkJICogZmVuY2UgcmVtYWlucyB2YWxpZCBmb3IgdGhlIFJDVSBncmFjZSBwZXJpb2Qs
-IGJ1dCBpdAotCQkgKiBtYXkgYmUgcmVhbGxvY2F0ZWQuIFdoZW4gdXNpbmcgc3VjaCBhbGxvY2F0
-b3JzLCB3ZSBhcmUKLQkJICogcmVzcG9uc2libGUgZm9yIGVuc3VyaW5nIHRoZSByZWZlcmVuY2Ug
-d2UgZ2V0IGlzIHRvCi0JCSAqIHRoZSByaWdodCBmZW5jZSwgYXMgYmVsb3cuCi0JCSAqLwotCQlp
-ZiAoZmVuY2UgPT0gcmN1X2FjY2Vzc19wb2ludGVyKCpmZW5jZXApKQotCQkJcmV0dXJuIHJjdV9w
-b2ludGVyX2hhbmRvZmYoZmVuY2UpOwotCi0JCWRtYV9mZW5jZV9wdXQoZmVuY2UpOwotCX0gd2hp
-bGUgKDEpOwotfQotCiAjaWZkZWYgQ09ORklHX0xPQ0tERVAKIGJvb2wgZG1hX2ZlbmNlX2JlZ2lu
-X3NpZ25hbGxpbmcodm9pZCk7CiB2b2lkIGRtYV9mZW5jZV9lbmRfc2lnbmFsbGluZyhib29sIGNv
-b2tpZSk7CmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2RtYS1yZXN2LmggYi9pbmNsdWRlL2xp
-bnV4L2RtYS1yZXN2LmgKaW5kZXggNTYyYjg4NWNmOWMzZC4uYTM4YzAyMWYzNzlhZiAxMDA2NDQK
-LS0tIGEvaW5jbHVkZS9saW51eC9kbWEtcmVzdi5oCisrKyBiL2luY2x1ZGUvbGludXgvZG1hLXJl
-c3YuaApAQCAtMjQ4LDcgKzI0OCw5IEBAIGRtYV9yZXN2X2dldF9leGNsX3VubG9ja2VkKHN0cnVj
-dCBkbWFfcmVzdiAqb2JqKQogCQlyZXR1cm4gTlVMTDsKIAogCXJjdV9yZWFkX2xvY2soKTsKLQlm
-ZW5jZSA9IGRtYV9mZW5jZV9nZXRfcmN1X3NhZmUoJm9iai0+ZmVuY2VfZXhjbCk7CisJZmVuY2Ug
-PSByY3VfZGVyZWZlcmVuY2Uob2JqLT5mZW5jZV9leGNsKTsKKwlpZiAoZmVuY2UpCisJCWZlbmNl
-ID0gZG1hX2ZlbmNlX2dldF9yY3UoZmVuY2UpOwogCXJjdV9yZWFkX3VubG9jaygpOwogCiAJcmV0
-dXJuIGZlbmNlOwotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+Hi Dave and Daniel,
+
+Here goes the last pull request towards 5.14.
+Mostly it is ADL-P enabling related and a few other things.
+
+drm-intel-next-2021-06-09:
+
+Cross-subsystem Changes:
+
+-  x86/gpu: add JasperLake to gen11 early quirks
+  (Although the patch lacks the Ack info, it has been Acked by Borislav)
+
+Driver Changes:
+
+- General DMC improves (Anusha)
+- More ADL-P enabling (Vandita, Matt, Jose, Mika, Anusha, Imre, Lucas, Jani=
+, Manasi, Ville, Stanislav)
+- Introduce MBUS relative dbuf offset (Ville)
+- PSR fixes and improvements (Gwan, Jose, Ville)
+- Re-enable LTTPR non-transparent LT mode for DPCD_REV < 1.4 (Ville)
+- Remove duplicated declarations (Shaokun, Wan)
+- Check HDMI sink deep color capabilities during .mode_valid (Ville)
+- Fix display flicker screan related to console and FBC (Chris)
+- Remaining conversions of GRAPHICS_VER (Lucas)
+- Drop invalid FIXME (Jose)
+- Fix bigjoiner check in dsc_disable (Vandita)
+
+Thanks,
+Rodrigo.
+
+The following changes since commit 9a91e5e0af5e03940d0eec72c36364a1701de240:
+
+  Merge tag 'amd-drm-next-5.14-2021-05-21' of https://gitlab.freedesktop.or=
+g/agd5f/linux into drm-next (2021-05-21 15:59:05 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-2021-06-09
+
+for you to fetch changes up to 0d6695b112762aa7aad28c46e65561389b6f50d6:
+
+  drm/i915/adl_p: Same slices mask is not same Dbuf state (2021-06-09 17:24=
+:58 +0300)
+
+----------------------------------------------------------------
+Cross-subsystem Changes:
+
+-  x86/gpu: add JasperLake to gen11 early quirks
+  (Although the patch lacks the Ack info, it has been Acked by Borislav)
+
+Driver Changes:
+
+- General DMC improves (Anusha)
+- More ADL-P enabling (Vandita, Matt, Jose, Mika, Anusha, Imre, Lucas, Jani=
+, Manasi, Ville, Stanislav)
+- Introduce MBUS relative dbuf offset (Ville)
+- PSR fixes and improvements (Gwan, Jose, Ville)
+- Re-enable LTTPR non-transparent LT mode for DPCD_REV < 1.4 (Ville)
+- Remove duplicated declarations (Shaokun, Wan)
+- Check HDMI sink deep color capabilities during .mode_valid (Ville)
+- Fix display flicker screan related to console and FBC (Chris)
+- Remaining conversions of GRAPHICS_VER (Lucas)
+- Drop invalid FIXME (Jose)
+- Fix bigjoiner check in dsc_disable (Vandita)
+
+----------------------------------------------------------------
+Anusha Srivatsa (13):
+      drm/i915/dmc: s/intel_csr/intel_dmc
+      drm/i915/dmc: s/HAS_CSR/HAS_DMC
+      drm/i915/dmc: Rename macro names containing csr
+      drm/i915/dmc: Rename functions names having "csr"
+      drm/i915/dmc: s/intel_csr.c/intel_dmc.c and s/intel_csr.h/intel_dmc.h
+      drm/i915/adl_p: Setup ports/phys
+      drm/i915/adl_p: Add PLL Support
+      drm/i915/adlp: Add PIPE_MISC2 programming
+      drm/i915/adl_p: Update memory bandwidth parameters
+      drm/i915/gvt: Add missing macro name changes
+      drm/i915/dmc: s/DRM_ERROR/drm_err
+      drm/i915/dmc: Add intel_dmc_has_payload() helper
+      drm/i915/dmc: Move struct intel_dmc to intel_dmc.h
+
+Chris Wilson (1):
+      drm/i915/display: relax 2big checking around initial fb
+
+Gwan-gyeong Mun (4):
+      drm/i915/display: Replace dc3co_enabled with dc3co_exitline on intel_=
+psr struct
+      drm/i915/display: Add PSR interrupt error check function
+      drm/i915/display: Remove a redundant function argument from intel_psr=
+_enable_source()
+      drm/i915/display: Introduce new intel_psr_pause/resume function
+
+Imre Deak (9):
+      drm/i915/adl_p: Program DP/HDMI link rate to DDI_BUF_CTL
+      drm/i915: Reenable LTTPR non-transparent LT mode for DPCD_REV<1.4
+      drm/i915/adlp: Require DPT FB CCS color planes to be 2MB aligned
+      drm/i915/adlp: Fix GEM VM asserts for DPT VMs
+      drm/i915/debugfs: Print remap info for DPT VMAs as well
+      drm/i915/adlp: Add missing TBT AUX -> PW#2 power domain dependencies
+      drm/i915/ddi: Flush encoder power domain ref puts during driver unload
+      drm/i915: Fix incorrect assert about pending power domain async-put w=
+ork
+      drm/i915/adlp: Fix AUX power well -> PHY mapping
+
+Jani Nikula (1):
+      drm/i915/adl_p: enable MSO on pipe B
+
+Jos=E9 Roberto de Souza (10):
+      drm/i915/adl_p: Implement TC sequences
+      drm/i915/adl_p: Don't config MBUS and DBUF during display initializat=
+ion
+      drm/i915/display/adl_p: Drop earlier return in tc_has_modular_fia()
+      drm/i915/adl_p: Handle TC cold
+      drm/i915: WA for zero memory channel
+      drm/i915/display/adl_p: Allow DC3CO in pipe and port B
+      drm/i915/display/adl_p: Disable PSR2
+      drm/i915/display: Fix fastsets involving PSR
+      drm/i915/display: Allow fastsets when DP_SDP_VSC infoframe do not mat=
+ch with PSR enabled
+      drm/i915/display: Drop FIXME about turn off infoframes
+
+Lucas De Marchi (5):
+      drm/i915/display: fix typo when returning table
+      drm/i915/gvt: replace IS_GEN and friends with GRAPHICS_VER
+      drm/i915/display: replace IS_GEN() in commented code
+      drm/i915: replace IS_GEN and friends with GRAPHICS_VER
+      drm/i915: Add remaining conversions to GRAPHICS_VER
+
+Manasi Navare (2):
+      drm/i915/xelpd: Add VRR guardband for VRR CTL
+      drm/i915: Initialize the mbus_offset to fix Klockwork issue
+
+Matt Roper (2):
+      drm/i915/adl_p: Add dedicated SAGV watermarks
+      drm/i915/xelpd: Enhanced pipe underrun reporting
+
+Mika Kahola (2):
+      drm/i915/adl_p: Tx escape clock with DSI
+      drm/i915/adl_p: Define and use ADL-P specific DP translation tables
+
+Rodrigo Vivi (1):
+      Merge drm/drm-next into drm-intel-next
+
+Shaokun Zhang (1):
+      drm/i915: Remove the repeated declaration
+
+Stanislav Lisovskiy (2):
+      drm/i915/adl_p: CDCLK crawl support for ADL
+      drm/i915/adl_p: Same slices mask is not same Dbuf state
+
+Tejas Upadhyay (1):
+      x86/gpu: add JasperLake to gen11 early quirks
+
+Vandita Kulkarni (5):
+      drm/i915/xelpd: Calculate VDSC RC parameters
+      drm/i915/xelpd: Add rc_qp_table for rcparams calculation
+      drm/i915/adl_p: Add ddb allocation support
+      drm/i915/adl_p: MBUS programming
+      drm/i915/dsc: Fix bigjoiner check in dsc_disable
+
+Ville Syrj=E4l=E4 (10):
+      drm/i915: Introduce MBUS relative dbuf offsets
+      drm/i915: Extract intel_hdmi_bpc_possible()
+      drm/i915: Move has_hdmi_sink check into intel_hdmi_bpc_possible()
+      drm/i915: Move platform checks into intel_hdmi_bpc_possible()
+      drm/i915: Check sink deep color capabilitis during HDMI .mode_valid()
+      drm/i915: Move the TMDS clock division into intel_hdmi_mode_clock_val=
+id()
+      drm/i915: Drop redundant has_hdmi_sink check
+      drm/i915/adl_p: Disable FIFO underrun recovery
+      drm/i915/adl_p: Implement Wa_22012358565
+      drm/i915: Disable PSR around cdclk changes
+
+Wan Jiabing (1):
+      drm/i915/display: remove duplicated argument
+
+ Documentation/gpu/i915.rst                         |  12 +-
+ arch/x86/kernel/early-quirks.c                     |   1 +
+ drivers/gpu/drm/i915/Makefile                      |   3 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c             |  21 +-
+ drivers/gpu/drm/i915/display/intel_atomic.c        |  20 ++
+ drivers/gpu/drm/i915/display/intel_atomic.h        |   1 +
+ drivers/gpu/drm/i915/display/intel_bw.c            |   4 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c         |  85 ++++-
+ drivers/gpu/drm/i915/display/intel_csr.h           |  21 --
+ drivers/gpu/drm/i915/display/intel_cursor.c        |   4 +
+ drivers/gpu/drm/i915/display/intel_ddi.c           |  53 ++-
+ drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c |  53 +++
+ drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h |   4 +
+ drivers/gpu/drm/i915/display/intel_display.c       | 143 +++++++-
+ .../gpu/drm/i915/display/intel_display_debugfs.c   |  30 +-
+ drivers/gpu/drm/i915/display/intel_display_power.c | 139 ++++----
+ drivers/gpu/drm/i915/display/intel_display_types.h |   5 +-
+ .../drm/i915/display/{intel_csr.c =3D> intel_dmc.c}  | 386 +++++++++++----=
+------
+ drivers/gpu/drm/i915/display/intel_dmc.h           |  43 +++
+ .../gpu/drm/i915/display/intel_dp_link_training.c  |  71 ++--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  69 +++-
+ drivers/gpu/drm/i915/display/intel_fb.c            |  13 +-
+ drivers/gpu/drm/i915/display/intel_fifo_underrun.c |  57 ++-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          | 104 +++---
+ drivers/gpu/drm/i915/display/intel_psr.c           | 187 +++++++---
+ drivers/gpu/drm/i915/display/intel_psr.h           |   2 +
+ drivers/gpu/drm/i915/display/intel_qp_tables.c     | 309 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_qp_tables.h     |  14 +
+ drivers/gpu/drm/i915/display/intel_tc.c            | 152 +++++++-
+ drivers/gpu/drm/i915/display/intel_tc.h            |   2 +
+ drivers/gpu/drm/i915/display/intel_tv.c            |   2 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c          | 117 ++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.c           |  58 +++-
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  27 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.h                |   3 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c              |   8 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c                  |   2 +-
+ drivers/gpu/drm/i915/gvt/fb_decoder.c              |  10 +-
+ drivers/gpu/drm/i915/gvt/gtt.c                     |   4 +-
+ drivers/gpu/drm/i915/gvt/handlers.c                |  14 +-
+ drivers/gpu/drm/i915/gvt/interrupt.c               |   2 +-
+ drivers/gpu/drm/i915/gvt/mmio_context.c            |  10 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c               |   4 +-
+ drivers/gpu/drm/i915/gvt/vgpu.c                    |   4 +-
+ drivers/gpu/drm/i915/i915_cmd_parser.c             |  10 +-
+ drivers/gpu/drm/i915/i915_debugfs.c                |  47 ++-
+ drivers/gpu/drm/i915/i915_drv.c                    |  28 +-
+ drivers/gpu/drm/i915/i915_drv.h                    |  64 ++--
+ drivers/gpu/drm/i915/i915_gem.c                    |   4 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c              |  92 ++---
+ drivers/gpu/drm/i915/i915_irq.c                    |  53 +--
+ drivers/gpu/drm/i915/i915_irq.h                    |   1 +
+ drivers/gpu/drm/i915/i915_pci.c                    |   5 +-
+ drivers/gpu/drm/i915/i915_perf.c                   |  44 +--
+ drivers/gpu/drm/i915/i915_pmu.c                    |   8 +-
+ drivers/gpu/drm/i915/i915_reg.h                    | 200 ++++++++---
+ drivers/gpu/drm/i915/i915_request.c                |   4 +-
+ drivers/gpu/drm/i915/i915_suspend.c                |  16 +-
+ drivers/gpu/drm/i915/i915_sysfs.c                  |   2 +-
+ drivers/gpu/drm/i915/i915_vgpu.c                   |   2 +-
+ drivers/gpu/drm/i915/i915_vma.c                    |   2 +-
+ drivers/gpu/drm/i915/i915_vma.h                    |   7 +-
+ drivers/gpu/drm/i915/intel_device_info.c           |  24 +-
+ drivers/gpu/drm/i915/intel_device_info.h           |   4 +-
+ drivers/gpu/drm/i915/intel_dram.c                  |  14 +-
+ drivers/gpu/drm/i915/intel_pch.c                   |  10 +-
+ drivers/gpu/drm/i915/intel_pm.c                    | 323 +++++++++++++++--
+ drivers/gpu/drm/i915/intel_pm.h                    |   4 +-
+ drivers/gpu/drm/i915/intel_sideband.c              |   2 +-
+ drivers/gpu/drm/i915/intel_uncore.c                |  24 +-
+ drivers/gpu/drm/i915/intel_wopcm.c                 |  10 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   4 +-
+ drivers/gpu/drm/i915/selftests/i915_perf.c         |   6 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c      |   8 +-
+ drivers/gpu/drm/i915/selftests/igt_spinner.c       |  12 +-
+ drivers/gpu/drm/i915/selftests/intel_uncore.c      |   2 +-
+ 76 files changed, 2421 insertions(+), 888 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/display/intel_csr.h
+ rename drivers/gpu/drm/i915/display/{intel_csr.c =3D> intel_dmc.c} (61%)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dmc.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_qp_tables.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_qp_tables.h
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
