@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60C593A1E8A
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 23:05:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 683663A1E8D
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 23:06:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8A5E6E098;
-	Wed,  9 Jun 2021 21:05:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3AE26E0AC;
+	Wed,  9 Jun 2021 21:06:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F2776E098
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 21:05:56 +0000 (UTC)
-IronPort-SDR: XZbFs5YtmU3uA7s9dsf1R1oC/19oau0sAL5h2HjcwoxmSS8cn1YMtRU8patdrqN5oz5fx3uopp
- 1DRZX2CtsL2g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="205198970"
-X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="205198970"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 14:05:55 -0700
-IronPort-SDR: gQEucSRF8enMNaZ+wIFKsUvbWisnybUN29Z+nSb9mhghFxhUoe6GhL+gYOprZ2988gvHSAc6nO
- H5ydMX+bWgfw==
-X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="482541024"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 043F76E09F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 21:06:28 +0000 (UTC)
+IronPort-SDR: VAjvnipl4R3JetAEFmXEv3vsTmbOE+3mZejHdMFC/t/JsR7GAKi84BWxKxVw2fcH0wJcP7toSr
+ LH+cq3HXZO1g==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="203318915"
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="203318915"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 14:06:27 -0700
+IronPort-SDR: daBBm9eYCi8Cx0NvoidlUySbnzJRVTxFVM07Mv9ab2rfWYAB4/+cbTD8fYsDrUUunyJq2fWhv2
+ CwwOPAABhqQw==
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="638119030"
 Received: from akshayka-mobl.amr.corp.intel.com (HELO intel.com)
  ([10.254.35.119])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 14:05:54 -0700
-Date: Wed, 9 Jun 2021 17:05:53 -0400
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 14:06:27 -0700
+Date: Wed, 9 Jun 2021 17:06:25 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <YMEtMR/1f4fkIsmV@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <YMEtUTOzneK1ZZO+@intel.com>
 References: <20210609085632.22026-1-ville.syrjala@linux.intel.com>
- <20210609085632.22026-4-ville.syrjala@linux.intel.com>
- <YMCnofgoTGL0Qwp0@intel.com> <YMCw+hnkHVYyWqfM@intel.com>
+ <20210609085632.22026-6-ville.syrjala@linux.intel.com>
+ <YMCqFKkUQ7ksprUI@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YMCw+hnkHVYyWqfM@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Clean up
- intel_find_initial_plane_obj() a bit
+In-Reply-To: <YMCqFKkUQ7ksprUI@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Clean up
+ intel_fbdev_init_bios() a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,251 +56,243 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 09, 2021 at 03:15:54PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Wed, Jun 09, 2021 at 07:36:01AM -0400, Rodrigo Vivi wrote:
-> > On Wed, Jun 09, 2021 at 11:56:29AM +0300, Ville Syrjala wrote:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > =
-
-> > > Sort out the mess with the local variables in
-> > > intel_find_initial_plane_obj(). Get rid of all aliasing pointers
-> > > and use standard naming/types.
-> > > =
-
-> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 113 ++++++++++-------=
---
-> > >  1 file changed, 62 insertions(+), 51 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index 78815a1ac0ca..1615501685c9 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -1914,20 +1914,50 @@ static void intel_dpt_unpin(struct i915_addre=
-ss_space *vm)
-> > >  	i915_vma_put(dpt->vma);
-> > >  }
-> > >  =
-
-> > > +static bool
-> > > +intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
-> > > +			      const struct intel_initial_plane_config *plane_config,
-> > > +			      struct drm_framebuffer **fb,
-> > > +			      struct i915_vma **vma)
-> > > +{
-> > > +	struct intel_crtc *crtc;
-> > > +
-> > > +	for_each_intel_crtc(&i915->drm, crtc) {
-> > > +		struct intel_crtc_state *crtc_state =3D
-> > > +			to_intel_crtc_state(crtc->base.state);
-> > > +		struct intel_plane *plane =3D
-> > > +			to_intel_plane(crtc->base.primary);
-> > > +		struct intel_plane_state *plane_state =3D
-> > > +			to_intel_plane_state(plane->base.state);
-> > > +
-> > > +		if (!crtc_state->uapi.active)
-> > > +			continue;
-> > > +
-> > > +		if (!plane_state->ggtt_vma)
-> > > +			continue;
-> > > +
-> > > +		if (intel_plane_ggtt_offset(plane_state) =3D=3D plane_config->base=
-) {
-> > > +			*fb =3D plane_state->hw.fb;
-> > > +			*vma =3D plane_state->ggtt_vma;
-> > > +			return true;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	return false;
-> > > +}
-> > > +
-> > >  static void
-> > > -intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
-> > > +intel_find_initial_plane_obj(struct intel_crtc *crtc,
-> > >  			     struct intel_initial_plane_config *plane_config)
-> > >  {
-> > > -	struct drm_device *dev =3D intel_crtc->base.dev;
-> > > +	struct drm_device *dev =3D crtc->base.dev;
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(dev);
-> > > -	struct drm_crtc *c;
-> > > -	struct drm_plane *primary =3D intel_crtc->base.primary;
-> > > -	struct drm_plane_state *plane_state =3D primary->state;
-> > > -	struct intel_plane *intel_plane =3D to_intel_plane(primary);
-> > > -	struct intel_plane_state *intel_state =3D
-> > > -		to_intel_plane_state(plane_state);
-> > >  	struct intel_crtc_state *crtc_state =3D
-> > > -		to_intel_crtc_state(intel_crtc->base.state);
-> > > +		to_intel_crtc_state(crtc->base.state);
-> > > +	struct intel_plane *plane =3D
-> > > +		to_intel_plane(crtc->base.primary);
-> > > +	struct intel_plane_state *plane_state =3D
-> > > +		to_intel_plane_state(plane->base.state);
-> > >  	struct drm_framebuffer *fb;
-> > >  	struct i915_vma *vma;
-> > >  =
-
-> > > @@ -1939,7 +1969,7 @@ intel_find_initial_plane_obj(struct intel_crtc =
-*intel_crtc,
-> > >  	if (!plane_config->fb)
-> > >  		return;
-> > >  =
-
-> > > -	if (intel_alloc_initial_plane_obj(intel_crtc, plane_config)) {
-> > > +	if (intel_alloc_initial_plane_obj(crtc, plane_config)) {
-> > >  		fb =3D &plane_config->fb->base;
-> > >  		vma =3D plane_config->vma;
-> > >  		goto valid_fb;
-> > > @@ -1949,25 +1979,8 @@ intel_find_initial_plane_obj(struct intel_crtc=
- *intel_crtc,
-> > >  	 * Failed to alloc the obj, check to see if we should share
-> > >  	 * an fb with another CRTC instead
-> > >  	 */
-> > > -	for_each_crtc(dev, c) {
-> > > -		struct intel_plane_state *state;
-> > > -
-> > > -		if (c =3D=3D &intel_crtc->base)
-> > > -			continue;
-> > > -
-> > > -		if (!to_intel_crtc_state(c->state)->uapi.active)
-> > > -			continue;
-> > > -
-> > > -		state =3D to_intel_plane_state(c->primary->state);
-> > > -		if (!state->ggtt_vma)
-> > > -			continue;
-> > > -
-> > > -		if (intel_plane_ggtt_offset(state) =3D=3D plane_config->base) {
-> > > -			fb =3D state->hw.fb;
-> > > -			vma =3D state->ggtt_vma;
-> > > -			goto valid_fb;
-> > > -		}
-> > > -	}
-> > > +	if (intel_reuse_initial_plane_obj(dev_priv, plane_config, &fb, &vma=
-))
-> > > +		goto valid_fb;
-> > >  =
-
-> > >  	/*
-> > >  	 * We've failed to reconstruct the BIOS FB.  Current display state
-> > > @@ -1976,7 +1989,7 @@ intel_find_initial_plane_obj(struct intel_crtc =
-*intel_crtc,
-> > >  	 * simplest solution is to just disable the primary plane now and
-> > >  	 * pretend the BIOS never had it enabled.
-> > >  	 */
-> > > -	intel_plane_disable_noatomic(intel_crtc, intel_plane);
-> > > +	intel_plane_disable_noatomic(crtc, plane);
-> > >  	if (crtc_state->bigjoiner) {
-> > >  		struct intel_crtc *slave =3D
-> > >  			crtc_state->bigjoiner_linked_crtc;
-> > > @@ -1986,40 +1999,38 @@ intel_find_initial_plane_obj(struct intel_crt=
-c *intel_crtc,
-> > >  	return;
-> > >  =
-
-> > >  valid_fb:
-> > > -	plane_state->rotation =3D plane_config->rotation;
-> > > -	intel_fb_fill_view(to_intel_framebuffer(fb), plane_state->rotation,
-> > > -			   &intel_state->view);
-> > > +	plane_state->uapi.rotation =3D plane_config->rotation;
-> > > +	intel_fb_fill_view(to_intel_framebuffer(fb),
-> > > +			   plane_state->uapi.rotation, &plane_state->view);
-> > >  =
-
-> > >  	__i915_vma_pin(vma);
-> > > -	intel_state->ggtt_vma =3D i915_vma_get(vma);
-> > > -	if (intel_plane_uses_fence(intel_state) && i915_vma_pin_fence(vma) =
-=3D=3D 0)
-> > > -		if (vma->fence)
-> > > -			intel_state->flags |=3D PLANE_HAS_FENCE;
-> > > +	plane_state->ggtt_vma =3D i915_vma_get(vma);
-> > > +	if (intel_plane_uses_fence(plane_state) &&
-> > > +	    i915_vma_pin_fence(vma) =3D=3D 0 && vma->fence)
-> > > +		plane_state->flags |=3D PLANE_HAS_FENCE;
-> > >  =
-
-> > > -	plane_state->src_x =3D 0;
-> > > -	plane_state->src_y =3D 0;
-> > > -	plane_state->src_w =3D fb->width << 16;
-> > > -	plane_state->src_h =3D fb->height << 16;
-> > > +	plane_state->uapi.src_x =3D 0;
-> > > +	plane_state->uapi.src_y =3D 0;
-> > > +	plane_state->uapi.src_w =3D fb->width << 16;
-> > > +	plane_state->uapi.src_h =3D fb->height << 16;
-> > >  =
-
-> > > -	plane_state->crtc_x =3D 0;
-> > > -	plane_state->crtc_y =3D 0;
-> > > -	plane_state->crtc_w =3D fb->width;
-> > > -	plane_state->crtc_h =3D fb->height;
-> > > +	plane_state->uapi.crtc_x =3D 0;
-> > > +	plane_state->uapi.crtc_y =3D 0;
-> > > +	plane_state->uapi.crtc_w =3D fb->width;
-> > > +	plane_state->uapi.crtc_h =3D fb->height;
-> > >  =
-
-> > >  	if (plane_config->tiling)
-> > >  		dev_priv->preserve_bios_swizzle =3D true;
-> > >  =
-
-> > > -	plane_state->fb =3D fb;
-> > > +	plane_state->uapi.fb =3D fb;
+On Wed, Jun 09, 2021 at 07:46:28AM -0400, Rodrigo Vivi wrote:
+> On Wed, Jun 09, 2021 at 11:56:31AM +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > =
 
-> > I believe we should have a separated patch for these plane_state uapi c=
-hanges
+> > Sort out the mess with the local variables in
+> > intel_fbdev_init_bios(). Get rid of all aliasing pointers,
+> > use standard naming/types, and introduc a few more locals
 > =
 
-> There is no change here. &to_intel_plane_state(s)->uapi =3D=3D s
+>                                          ^ typo
+> =
 
-Duh! of course...
+> > in the loops to avoid the hard to read long struct walks.
+> > =
 
+> > While at we also polish the debugs a bit to use the
+> > canonical [CRTC:%d:%s] style.
+> > =
+
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_fbdev.c | 94 +++++++++++++---------
+> >  1 file changed, 56 insertions(+), 38 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/d=
+rm/i915/display/intel_fbdev.c
+> > index 4af40229f5ec..df05d285f0bd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> > @@ -335,32 +335,43 @@ static void intel_fbdev_destroy(struct intel_fbde=
+v *ifbdev)
+> >   * fbcon), so we just find the biggest and use that.
+> >   */
+> >  static bool intel_fbdev_init_bios(struct drm_device *dev,
+> > -				 struct intel_fbdev *ifbdev)
+> > +				  struct intel_fbdev *ifbdev)
+> >  {
+> >  	struct drm_i915_private *i915 =3D to_i915(dev);
+> >  	struct intel_framebuffer *fb =3D NULL;
+> > -	struct drm_crtc *crtc;
+> > -	struct intel_crtc *intel_crtc;
+> > +	struct intel_crtc *crtc;
+> >  	unsigned int max_size =3D 0;
+> >  =
+
+> >  	/* Find the largest fb */
+> > -	for_each_crtc(dev, crtc) {
+> > +	for_each_intel_crtc(dev, crtc) {
+> > +		struct intel_crtc_state *crtc_state =3D
+> > +			to_intel_crtc_state(crtc->base.state);
+> > +		struct intel_plane *plane =3D
+> > +			to_intel_plane(crtc->base.primary);
+> > +		struct intel_plane_state *plane_state =3D
+> > +			to_intel_plane_state(plane->base.state);
+> >  		struct drm_i915_gem_object *obj =3D
+> > -			intel_fb_obj(crtc->primary->state->fb);
+> > -		intel_crtc =3D to_intel_crtc(crtc);
+> > +			intel_fb_obj(plane_state->uapi.fb);
+> =
+
+> oh, here we have again that plane_state uapi change that I don't understa=
+nd
+> and I'm not seeing any mention in any commit msg..
+
+sorry...
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-
-
 > =
 
+> >  =
+
+> > -		if (!crtc->state->active || !obj) {
+> > +		if (!crtc_state->uapi.active) {
+> >  			drm_dbg_kms(&i915->drm,
+> > -				    "pipe %c not active or no fb, skipping\n",
+> > -				    pipe_name(intel_crtc->pipe));
+> > +				    "[CRTC:%d:%s] not active, skipping\n",
+> > +				    crtc->base.base.id, crtc->base.name);
+> > +			continue;
+> > +		}
+> > +
+> > +		if (!obj) {
+> > +			drm_dbg_kms(&i915->drm,
+> > +				    "[PLANE:%d:%s] no fb, skipping\n",
+> > +				    plane->base.base.id, plane->base.name);
+> >  			continue;
+> >  		}
+> >  =
+
+> >  		if (obj->base.size > max_size) {
+> >  			drm_dbg_kms(&i915->drm,
+> > -				    "found possible fb from plane %c\n",
+> > -				    pipe_name(intel_crtc->pipe));
+> > -			fb =3D to_intel_framebuffer(crtc->primary->state->fb);
+> > +				    "found possible fb from [PLANE:%d:%s]\n",
+> > +				    plane->base.base.id, plane->base.name);
+> > +			fb =3D to_intel_framebuffer(plane_state->uapi.fb);
+> >  			max_size =3D obj->base.size;
+> >  		}
+> >  	}
+> > @@ -372,60 +383,62 @@ static bool intel_fbdev_init_bios(struct drm_devi=
+ce *dev,
+> >  	}
+> >  =
+
+> >  	/* Now make sure all the pipes will fit into it */
+> > -	for_each_crtc(dev, crtc) {
+> > +	for_each_intel_crtc(dev, crtc) {
+> > +		struct intel_crtc_state *crtc_state =3D
+> > +			to_intel_crtc_state(crtc->base.state);
+> > +		struct intel_plane *plane =3D
+> > +			to_intel_plane(crtc->base.primary);
+> >  		unsigned int cur_size;
+> >  =
+
+> > -		intel_crtc =3D to_intel_crtc(crtc);
+> > -
+> > -		if (!crtc->state->active) {
+> > +		if (!crtc_state->uapi.active) {
+> >  			drm_dbg_kms(&i915->drm,
+> > -				    "pipe %c not active, skipping\n",
+> > -				    pipe_name(intel_crtc->pipe));
+> > +				    "[CRTC:%d:%s] not active, skipping\n",
+> > +				    crtc->base.base.id, crtc->base.name);
+> >  			continue;
+> >  		}
+> >  =
+
+> > -		drm_dbg_kms(&i915->drm, "checking plane %c for BIOS fb\n",
+> > -			    pipe_name(intel_crtc->pipe));
+> > +		drm_dbg_kms(&i915->drm, "checking [PLANE:%d:%s] for BIOS fb\n",
+> > +			    plane->base.base.id, plane->base.name);
+> >  =
+
+> >  		/*
+> >  		 * See if the plane fb we found above will fit on this
+> >  		 * pipe.  Note we need to use the selected fb's pitch and bpp
+> >  		 * rather than the current pipe's, since they differ.
+> >  		 */
+> > -		cur_size =3D crtc->state->adjusted_mode.crtc_hdisplay;
+> > +		cur_size =3D crtc_state->uapi.adjusted_mode.crtc_hdisplay;
+> >  		cur_size =3D cur_size * fb->base.format->cpp[0];
+> >  		if (fb->base.pitches[0] < cur_size) {
+> >  			drm_dbg_kms(&i915->drm,
+> > -				    "fb not wide enough for plane %c (%d vs %d)\n",
+> > -				    pipe_name(intel_crtc->pipe),
+> > +				    "fb not wide enough for [PLANE:%d:%s] (%d vs %d)\n",
+> > +				    plane->base.base.id, plane->base.name,
+> >  				    cur_size, fb->base.pitches[0]);
+> >  			fb =3D NULL;
+> >  			break;
+> >  		}
+> >  =
+
+> > -		cur_size =3D crtc->state->adjusted_mode.crtc_vdisplay;
+> > +		cur_size =3D crtc_state->uapi.adjusted_mode.crtc_vdisplay;
+> >  		cur_size =3D intel_fb_align_height(&fb->base, 0, cur_size);
+> >  		cur_size *=3D fb->base.pitches[0];
+> >  		drm_dbg_kms(&i915->drm,
+> > -			    "pipe %c area: %dx%d, bpp: %d, size: %d\n",
+> > -			    pipe_name(intel_crtc->pipe),
+> > -			    crtc->state->adjusted_mode.crtc_hdisplay,
+> > -			    crtc->state->adjusted_mode.crtc_vdisplay,
+> > +			    "[CRTC:%d:%s] area: %dx%d, bpp: %d, size: %d\n",
+> > +			    crtc->base.base.id, crtc->base.name,
+> > +			    crtc_state->uapi.adjusted_mode.crtc_hdisplay,
+> > +			    crtc_state->uapi.adjusted_mode.crtc_vdisplay,
+> >  			    fb->base.format->cpp[0] * 8,
+> >  			    cur_size);
+> >  =
+
+> >  		if (cur_size > max_size) {
+> >  			drm_dbg_kms(&i915->drm,
+> > -				    "fb not big enough for plane %c (%d vs %d)\n",
+> > -				    pipe_name(intel_crtc->pipe),
+> > +				    "fb not big enough for [PLANE:%d:%s] (%d vs %d)\n",
+> > +				    plane->base.base.id, plane->base.name,
+> >  				    cur_size, max_size);
+> >  			fb =3D NULL;
+> >  			break;
+> >  		}
+> >  =
+
+> >  		drm_dbg_kms(&i915->drm,
+> > -			    "fb big enough for plane %c (%d >=3D %d)\n",
+> > -			    pipe_name(intel_crtc->pipe),
+> > +			    "fb big enough [PLANE:%d:%s] (%d >=3D %d)\n",
+> > +			    plane->base.base.id, plane->base.name,
+> >  			    max_size, cur_size);
+> >  	}
+> >  =
+
+> > @@ -441,15 +454,20 @@ static bool intel_fbdev_init_bios(struct drm_devi=
+ce *dev,
+> >  	drm_framebuffer_get(&ifbdev->fb->base);
+> >  =
+
+> >  	/* Final pass to check if any active pipes don't have fbs */
+> > -	for_each_crtc(dev, crtc) {
+> > -		intel_crtc =3D to_intel_crtc(crtc);
+> > +	for_each_intel_crtc(dev, crtc) {
+> > +		struct intel_crtc_state *crtc_state =3D
+> > +			to_intel_crtc_state(crtc->base.state);
+> > +		struct intel_plane *plane =3D
+> > +			to_intel_plane(crtc->base.primary);
+> > +		struct intel_plane_state *plane_state =3D
+> > +			to_intel_plane_state(plane->base.state);
+> >  =
+
+> > -		if (!crtc->state->active)
+> > +		if (!crtc_state->uapi.active)
+> >  			continue;
+> >  =
+
+> > -		drm_WARN(dev, !crtc->primary->state->fb,
+> > -			 "re-used BIOS config but lost an fb on crtc %d\n",
+> > -			 crtc->base.id);
+> > +		drm_WARN(dev, !plane_state->uapi.fb,
+> > +			 "re-used BIOS config but lost an fb on [PLANE:%d:%s]\n",
+> > +			 plane->base.base.id, plane->base.name);
+> >  	}
+> >  =
+
+> >  =
+
+> > -- =
+
+> > 2.31.1
 > > =
 
-> > >  	drm_framebuffer_get(fb);
-> > >  =
-
-> > > -	plane_state->crtc =3D &intel_crtc->base;
-> > > -	intel_plane_copy_uapi_to_hw_state(intel_state, intel_state,
-> > > -					  intel_crtc);
-> > > +	plane_state->uapi.crtc =3D &crtc->base;
-> > > +	intel_plane_copy_uapi_to_hw_state(plane_state, plane_state, crtc);
-> > >  =
-
-> > >  	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
-> > >  =
-
-> > > -	atomic_or(to_intel_plane(primary)->frontbuffer_bit,
-> > > -		  &to_intel_frontbuffer(fb)->bits);
-> > > +	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
-> > >  }
-> > >  =
-
-> > >  unsigned int
-> > > -- =
-
-> > > 2.31.1
-> > > =
-
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
