@@ -2,41 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533863A0CAA
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 08:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3FA3A0C76
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 08:34:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3516E04A;
-	Wed,  9 Jun 2021 06:45:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B11E26E0D6;
+	Wed,  9 Jun 2021 06:34:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6694B6E039
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 06:45:46 +0000 (UTC)
-IronPort-SDR: Hr6oG5miXd69KSyookLqmZbchEByWIZEAjTJWU4EQ9G/JebK5b725c8Op5KqQKUSvRH1NpsVw/
- 7/ChL/r1HFBw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="203161299"
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="203161299"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2021 23:45:46 -0700
-IronPort-SDR: 2gDnACKdCCwgwv2NWb8pnD685LffME+WhjAelrk3asJDvF+NVPBv13VwezRD/nov2LYb1PwUJq
- 1pDCpjGic2JA==
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="448183699"
-Received: from nischal-desktop.iind.intel.com ([10.223.74.174])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2021 23:45:44 -0700
-From: Nischal Varide <nischal.varide@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF5956E0D6;
+ Wed,  9 Jun 2021 06:34:47 +0000 (UTC)
+IronPort-SDR: u5DcUwIvC3h7BXb6bVl3R/7eyvUIdR11LaJI/zRBJH9zqDGxcwkJqHCfOqjoZg/nvhzr9Kxycy
+ cKz7ReMmfxxg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="268868875"
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="268868875"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 23:34:47 -0700
+IronPort-SDR: dK3sOhMys9p6HyLNjO+s5/pR6rdE+fPtUcJDd1O+urh4+kOeU6bN4+dRsnmnrNhFDNDkiFrWfy
+ ok6nSc4kh4cg==
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="482265758"
+Received: from ekolpasx-mobl.ccr.corp.intel.com (HELO thellst-mobl1.intel.com)
+ ([10.249.254.109])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2021 23:34:44 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org,
-	nischal.varide@intel.com
-Date: Wed,  9 Jun 2021 05:23:30 +0530
-Message-Id: <20210608235330.21057-2-nischal.varide@intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210608235330.21057-1-nischal.varide@intel.com>
-References: <20210602061739.29134-2-nischal.varide@intel.com>
- <20210608235330.21057-1-nischal.varide@intel.com>
+	dri-devel@lists.freedesktop.org
+Date: Wed,  9 Jun 2021 08:34:27 +0200
+Message-Id: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 1/1] drm/i915/xelpd: Enabling dithering after
- the CC1
+Subject: [Intel-gfx] [PATCH v2 0/9] Prereqs for TTM accelerated migration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,86 +46,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: matthew.auld@intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the panel is 12bpc then Dithering is not enabled in the Legacy
-dithering block , instead its Enabled after the C1 CC1 pipe post
-color space conversion.For a 6bpc pannel Dithering is enabled in
-Legacy block.
-
-Signed-off-by: Nischal Varide <nischal.varide@intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c   |  7 +++++++
- drivers/gpu/drm/i915/display/intel_display.c | 11 ++++++++++-
- drivers/gpu/drm/i915/i915_reg.h              |  1 +
- 3 files changed, 18 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index dab892d2251b..e11b3dbf0b95 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -1574,6 +1574,7 @@ static int glk_color_check(struct intel_crtc_state *crtc_state)
- static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
- {
- 	u32 gamma_mode = 0;
-+	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
- 
- 	if (crtc_state->hw.degamma_lut)
- 		gamma_mode |= PRE_CSC_GAMMA_ENABLE;
-@@ -1588,6 +1589,12 @@ static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
- 	else
- 		gamma_mode |= GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED;
- 
-+	if (DISPLAY_VER(i915) >= 13) {
-+		if (!crtc_state->dither_force_disable &&
-+				(crtc_state->pipe_bpp == 36))
-+			gamma_mode |= POST_CC1_GAMMA_ENABLE;
-+	}
-+
- 	return gamma_mode;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index caf0414e0b50..5345779cfce2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5762,7 +5762,16 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
- 		break;
- 	}
- 
--	if (crtc_state->dither)
-+	/*
-+	 * If 12bpc panel then, Enables dithering after the CC1 pipe
-+	 * post color space conversion and not here for display_ver
-+	 * greater than or equal to thirteen.
-+	 */
-+
-+	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
-+		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
-+
-+	if (crtc_state->dither && (crtc_state->pipe_bpp == 36) && (DISPLAY_VER(dev_priv) < 13))
- 		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
- 
- 	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 24307c49085f..fa800a77ea49 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7743,6 +7743,7 @@ enum {
- #define GAMMA_MODE(pipe) _MMIO_PIPE(pipe, _GAMMA_MODE_A, _GAMMA_MODE_B)
- #define  PRE_CSC_GAMMA_ENABLE	(1 << 31)
- #define  POST_CSC_GAMMA_ENABLE	(1 << 30)
-+#define  POST_CC1_GAMMA_ENABLE  (1 << 26)
- #define  GAMMA_MODE_MODE_MASK	(3 << 0)
- #define  GAMMA_MODE_MODE_8BIT	(0 << 0)
- #define  GAMMA_MODE_MODE_10BIT	(1 << 0)
--- 
-2.29.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QSBjb3VwbGUgb2YgcGF0Y2hlcyBmcm9tIENocmlzIHdoaWNoIGltcGxlbWVudCBwaXBlbGluZWQg
+bWlncmF0aW9uIGFuZApjbGVhcnMgYnkgYXRvbWljYWxseSB3cml0aW5nIHRoZSBQVEVzIGluIHBs
+YWNlIGJlZm9yZSBwZXJmb3JtaW5nIHRoZQphY3R1YWwgYmxpdC4KClNvbWUgd3cgdXRpbGl0aWVz
+IG1haW5seSBmb3IgdGhlIGFjY29tcGFueWluZyBzZWxmdGVzdHMgYWRkZWQgYnkgVGhvbWFzLAph
+cyB3ZWxsIGFzIG1vZGlmaWVkIHRoZSBhYm92ZSBwYXRjaGVzIGZvciB3dyBsb2NraW5nLSBhbmQg
+bG1lbSBzdXBwb3J0LgoKVGhlIGFjdHVhbCBob29rIHVwIHRvIHRoZSBpOTE1IHR0bSBiYWNrZW5k
+IGlzIGJlaW5nIHdvcmtlZCBvbiBhbmQgbm90CmluY2x1ZGVkIHlldCwgc28gdGhpcyBpcyBjb25z
+aWRlcmVkIHRvIGJlIGFuIGVhcmx5IHJldmlldyBvcHBvcnR1bml0eS4KCnYyOgotIEEgY291cGxl
+IG9mIG1pbm9yIHN0eWxlIGZpeGVzIHBvaW50ZWQgb3V0IGJ5IE1hdHRoZXcgQXVsZAotIEV4cG9y
+dCBhbmQgdXNlIGludGVsX2VuZ2luZV9kZXN0cm95X3Bpbm5lZF9jb250ZXh0KCkgdG8gYWRkcmVz
+cyBhCiAgQ0kgd2FybmluZyAvIGZhaWx1cmUuCgpDaHJpcyBXaWxzb24gKDYpOgogIGRybS9pOTE1
+L2d0OiBBZGQgYW4gaW5zZXJ0X2VudHJ5IGZvciBnZW44X3BwZ3R0CiAgZHJtL2k5MTUvZ3Q6IEFk
+ZCBhIHJvdXRpbmUgdG8gaXRlcmF0ZSBvdmVyIHRoZSBwYWdldGFibGVzIG9mIGEgR1RUCiAgZHJt
+L2k5MTUvZ3Q6IEV4cG9ydCB0aGUgcGlubmVkIGNvbnRleHQgY29uc3RydWN0b3IgYW5kIGRlc3Ry
+dWN0b3IKICBkcm0vaTkxNS9ndDogUGlwZWxpbmVkIHBhZ2UgbWlncmF0aW9uCiAgZHJtL2k5MTUv
+Z3Q6IFBpcGVsaW5lZCBjbGVhcgogIGRybS9pOTE1L2d0OiBTZXR1cCBhIGRlZmF1bHQgbWlncmF0
+aW9uIGNvbnRleHQgb24gdGhlIEdUCgpUaG9tYXMgSGVsbHN0csO2bSAoMyk6CiAgZHJtL2k5MTU6
+IFJlZmVyZW5jZSBvYmplY3RzIG9uIHRoZSB3dyBvYmplY3QgbGlzdAogIGRybS9pOTE1OiBCcmVh
+ayBvdXQgZG1hX3Jlc3Ygd3cgbG9ja2luZyB1dGlsaXRpZXMgdG8gc2VwYXJhdGUgZmlsZXMKICBk
+cm0vaTkxNTogSW50cm9kdWNlIGEgd3cgdHJhbnNhY3Rpb24gaGVscGVyCgogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAgIHwgICAyICsKIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCAgICB8ICAgOSArLQogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvZ2VuOF9wcGd0dC5jICAgICAgICAgIHwgIDY4ICsrCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9ndC9pbnRlbF9lbmdpbmUuaCAgICAgICAgfCAgMTIgKwogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvaW50ZWxfZW5naW5lX2NzLmMgICAgIHwgIDI3ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9ncHVfY29tbWFuZHMuaCAgfCAgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvaW50ZWxfZ3QuYyAgICAgICAgICAgIHwgICA0ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L2ludGVsX2d0X3R5cGVzLmggICAgICB8ICAgMyArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF9ndHQuaCAgICAgICAgICAgfCAgIDcgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
+ZWxfbWlncmF0ZS5jICAgICAgIHwgNjg1ICsrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5oICAgICAgIHwgIDY1ICsrCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9taWdyYXRlX3R5cGVzLmggfCAgMTUgKwogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvaW50ZWxfcmVuZGVyc3RhdGUuaCAgIHwgICAxICsKIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX3JpbmcuaCAgICAgICAgICB8ICAgMSArCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9zZWxmdGVzdF9taWdyYXRlLmMgICAgfCA2NzEgKysrKysrKysrKysrKysrKysKIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMgICAgICAgICAgICAgICB8ICA1MiAtLQogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uaCAgICAgICAgICAgICAgIHwgIDEyIC0KIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmMgICAgICAgICAgICB8ICA2MyArKwogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuaCAgICAgICAgICAgIHwgIDUwICsrCiAuLi4vZHJtL2k5
+MTUvc2VsZnRlc3RzL2k5MTVfbGl2ZV9zZWxmdGVzdHMuaCAgfCAgIDEgKwogLi4uL2RybS9pOTE1
+L3NlbGZ0ZXN0cy9pOTE1X3BlcmZfc2VsZnRlc3RzLmggIHwgICAxICsKIDIxIGZpbGVzIGNoYW5n
+ZWQsIDE2NzUgaW5zZXJ0aW9ucygrKSwgNzYgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2
+NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5jCiBjcmVhdGUgbW9kZSAx
+MDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5oCiBjcmVhdGUgbW9k
+ZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZV90eXBlcy5oCiBj
+cmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfbWlncmF0
+ZS5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cu
+YwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmgK
+Ci0tIAoyLjMxLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
