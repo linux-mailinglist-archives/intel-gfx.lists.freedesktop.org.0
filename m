@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8956E3A0FB3
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 11:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC233A0FB6
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 11:32:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEA916E28A;
-	Wed,  9 Jun 2021 09:31:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 045966E28A;
+	Wed,  9 Jun 2021 09:32:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 93A376E28A;
- Wed,  9 Jun 2021 09:31:38 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 91D0F6E28A;
+ Wed,  9 Jun 2021 09:32:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7F0ACA8836;
- Wed,  9 Jun 2021 09:31:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 89D5EA8836;
+ Wed,  9 Jun 2021 09:32:27 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nischal Varide" <nischal.varide@intel.com>
-Date: Wed, 09 Jun 2021 09:31:38 -0000
-Message-ID: <162323109851.27475.2969457600339872111@emeril.freedesktop.org>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Date: Wed, 09 Jun 2021 09:32:27 -0000
+Message-ID: <162323114755.27478.5681127423446137219@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210526181728.14817-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20210526181728.14817-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/xelpd=3A_Enabling_dithering_after_the_CC1_=28rev3=29?=
+References: <20210609065914.4454-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20210609065914.4454-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsc=3A_Fix_bigjoiner_check_in_dsc=5Fdisable_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,39 +40,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0473643308=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUveGVscGQ6IEVuYWJsaW5nIGRp
-dGhlcmluZyBhZnRlciB0aGUgQ0MxIChyZXYzKQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZy
-ZWVkZXNrdG9wLm9yZy9zZXJpZXMvOTA1OTQvClN0YXRlIDogZmFpbHVyZQoKPT0gU3VtbWFyeSA9
-PQoKQ0FMTCAgICBzY3JpcHRzL2NoZWNrc3lzY2FsbHMuc2gKICBDQUxMICAgIHNjcmlwdHMvYXRv
-bWljL2NoZWNrLWF0b21pY3Muc2gKICBERVNDRU5EIG9ianRvb2wKICBDSEsgICAgIGluY2x1ZGUv
-Z2VuZXJhdGVkL2NvbXBpbGUuaAogIENDIFtNXSAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMubwpkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Rpc3BsYXlfZGVidWdmcy5jOiBJbiBmdW5jdGlvbiDigJhkaXRoZXJfc3RhdGVfc2hvd+KA
-mToKZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYzoy
-MTc5OjI5OiBlcnJvcjog4oCYR0FNTUFfTU9ERV9ESVRIRVJfQUZURVJfQ0Mx4oCZIHVuZGVjbGFy
-ZWQgKGZpcnN0IHVzZSBpbiB0aGlzIGZ1bmN0aW9uKTsgZGlkIHlvdSBtZWFuIOKAmERSTV9NT0RF
-X0RJVEhFUklOR19PTuKAmT8KICAgKGNydGNfc3RhdGUtPmdhbW1hX21vZGUgJiBHQU1NQV9NT0RF
-X0RJVEhFUl9BRlRFUl9DQzEpID8gMSA6IDApOwogICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgogICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IERSTV9NT0RFX0RJVEhFUklOR19PTgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXlfZGVidWdmcy5jOjIxNzk6Mjk6IG5vdGU6IGVhY2ggdW5kZWNsYXJlZCBpZGVudGlm
-aWVyIGlzIHJlcG9ydGVkIG9ubHkgb25jZSBmb3IgZWFjaCBmdW5jdGlvbiBpdCBhcHBlYXJzIGlu
-CnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6MjcyOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMubycgZmFpbGVkCm1ha2Vb
-NF06ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVn
-ZnMub10gRXJyb3IgMQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUxNTogcmVjaXBlIGZvciB0YXJn
-ZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dw
-dS9kcm0vaTkxNV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUxNTogcmVjaXBlIGZv
-ciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9n
-cHUvZHJtXSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTE1OiByZWNpcGUgZm9yIHRh
-cmdldCAnZHJpdmVycy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJv
-ciAyCk1ha2VmaWxlOjE4NDQ6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFr
-ZTogKioqIFtkcml2ZXJzXSBFcnJvciAyCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+--===============0473643308==
+Content-Type: multipart/alternative;
+ boundary="===============0114902259903784072=="
+
+--===============0114902259903784072==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/dsc: Fix bigjoiner check in dsc_disable (rev5)
+URL   : https://patchwork.freedesktop.org/series/91006/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915/dsc: Fix bigjoiner check in dsc_disable
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_vdsc.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+
+
+
+--===============0114902259903784072==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dsc: Fix bigjoiner check in dsc_disable (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91006/">https://patchwork.freedesktop.org/series/91006/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Applying: drm/i915/dsc: Fix bigjoiner check in dsc_disable<br />
+Using index info to reconstruct a base tree...<br />
+M   drivers/gpu/drm/i915/display/intel_vdsc.c<br />
+Falling back to patching base and 3-way merge...<br />
+No changes -- Patch already applied.</p>
+
+</body>
+</html>
+
+--===============0114902259903784072==--
+
+--===============0473643308==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0473643308==--
