@@ -2,60 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79C33A1580
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 15:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEB153A15DB
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 15:42:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBCA06E2E1;
-	Wed,  9 Jun 2021 13:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A9536E314;
+	Wed,  9 Jun 2021 13:42:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEA776E314
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 13:24:04 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id l2so25508105wrw.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 06:24:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=t3Or10sfr9dZmBseRAQSnnc/yUYQ2O/mJsEgLeSYKwM=;
- b=JuYQd3nbizfY0ZCj6hVbkzT3jlZJdcVChEj0aRrgNGtgTvb/t3+Mu5Fruwt8S3c1rR
- jGyRjbnaxcANI+TamCy2UwnZnPFfdOTs6zNTXXATY1GM0zQd+y9N6ydOI2JUlCyCPTyQ
- bgIMT+LXFPg21SdVC4AO2rd9KPK7ORphu5xNk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=t3Or10sfr9dZmBseRAQSnnc/yUYQ2O/mJsEgLeSYKwM=;
- b=UfLUmnzvNp5E1B5VgY/70C+p3WfVUk6Ir+b1APqIIYZ/i0WEWv134dHDElaJqUj+vc
- RP66MfCP/R6nvbDXViuLMmRy4NWGoJXHhWPYj5vJvsnNRPMVOpYPkgcbr2YIsxze//HF
- 0dNhkpey5ID7M7bnZj6p9167oIb6d8UcUGDHfAiVXfgu1fmyO39kxAK/M6uRnQxDaSDI
- KuuuPK3/b1Hgl85a8ga7z2VYpt2DSAsg5aDSWFdeOu7kD6cfXS4/oxt93olMT864KIOK
- WA/amLMFVIIcSfWpEd2voHsnLSe2dgMAGJYEFySB66v6Evl436aKvq9JELdmql7aQUN1
- 4wMw==
-X-Gm-Message-State: AOAM530Ez25a0M2cu7qSXntmU0cslpKW9XbrpRJphj3RgFZct9o4ETeo
- VjPe2SccPYgmZLqI31Y394cQ0g==
-X-Google-Smtp-Source: ABdhPJz9IU3Wj2CNkH7/kTpjZ/hDJkBTL/24zXgdwsn+jgwitDx4lydzLmF/coTC+2cdcILmnOAdfw==
-X-Received: by 2002:adf:a401:: with SMTP id d1mr28026610wra.55.1623245043445; 
- Wed, 09 Jun 2021 06:24:03 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id x125sm19296439wmg.37.2021.06.09.06.24.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Jun 2021 06:24:02 -0700 (PDT)
-Date: Wed, 9 Jun 2021 15:24:00 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <YMDA8IqqZ5IgvRf4@phenom.ffwll.local>
-References: <20210603051630.2635-1-matthew.brost@intel.com>
- <20210603051630.2635-14-matthew.brost@intel.com>
- <YLnlQyPJZygHTHxk@phenom.ffwll.local>
- <20210604183539.GA26392@sdutt-i7>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 950386E2E1;
+ Wed,  9 Jun 2021 13:42:47 +0000 (UTC)
+IronPort-SDR: uLtGke1akuY/4/Fxp3RiH3ZQqWNMPYkaoeSMDihhVYb+HJP9Km30g42jY/ftSJQ7cElxXGcDEf
+ +7YsUnCC8q7Q==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="226443557"
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="226443557"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 06:42:47 -0700
+IronPort-SDR: yqJD6s2GqpnD7kjI1gd2vKk30P4M533hm+gKbRMN4PryaYevWGpNggO11eNONfdfUB4dXGL3CW
+ ybWU/UHmEC2g==
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="482387071"
+Received: from mjkelly-mobl1.ger.corp.intel.com (HELO [10.213.215.68])
+ ([10.213.215.68])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 06:42:44 -0700
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
+ <20210609063436.284332-9-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <074fd3b7-4cd2-5616-c3f3-9733680bbcdd@intel.com>
+Date: Wed, 9 Jun 2021 14:42:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210604183539.GA26392@sdutt-i7>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 13/20] drm/i915/guc: Relax CTB response
- timeout
+In-Reply-To: <20210609063436.284332-9-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] [PATCH v2 8/9] drm/i915/gt: Pipelined clear
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,154 +51,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 04, 2021 at 11:35:39AM -0700, Matthew Brost wrote:
-> On Fri, Jun 04, 2021 at 10:33:07AM +0200, Daniel Vetter wrote:
-> > On Wed, Jun 02, 2021 at 10:16:23PM -0700, Matthew Brost wrote:
-> > > From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > > 
-> > > In upcoming patch we will allow more CTB requests to be sent in
-> > > parallel to the GuC for processing, so we shouldn't assume any more
-> > > that GuC will always reply without 10ms.
-> > > 
-> > > Use bigger value from CONFIG_DRM_I915_GUC_CTB_TIMEOUT instead.
-> > > 
-> > > v2: Add CONFIG_DRM_I915_GUC_CTB_TIMEOUT config option
-> > > 
-> > > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > 
-> > So this is a rant, but for upstream we really need to do better than
-> > internal:
-> > 
-> > - The driver must work by default in the optimal configuration.
-> > 
-> > - Any config change that we haven't validated _must_ taint the kernel
-> >   (this is especially for module options, but also for config settings)
-> > 
-> > - Config need a real reason beyond "was useful for bring-up".
-> > 
-> > Our internal tree is an absolute disaster right now, with multi-line
-> > kernel configs (different on each platform) and bespoke kernel config or
-> > the driver just fails. We're the expert on our own hw, we should know how
-> > it works, not offload that to users essentially asking them "how shitty do
-> > you think Intel hw is in responding timely".
-> > 
-> > Yes I know there's a lot of these there already, they don't make a lot of
-> > sense either.
-> > 
-> > Except if there's a real reason for this (aside from us just offloading
-> > testing to our users instead of doing it ourselves properly) I think we
-> > should hardcode this, with a comment explaining why. Maybe with a switch
-> > between the PF/VF case once that's landed.
-> > 
-> > > ---
-> > >  drivers/gpu/drm/i915/Kconfig.profile      | 10 ++++++++++
-> > >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |  5 ++++-
-> > >  2 files changed, 14 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
-> > > index 39328567c200..0d5475b5f28a 100644
-> > > --- a/drivers/gpu/drm/i915/Kconfig.profile
-> > > +++ b/drivers/gpu/drm/i915/Kconfig.profile
-> > > @@ -38,6 +38,16 @@ config DRM_I915_USERFAULT_AUTOSUSPEND
-> > >  	  May be 0 to disable the extra delay and solely use the device level
-> > >  	  runtime pm autosuspend delay tunable.
-> > >  
-> > > +config DRM_I915_GUC_CTB_TIMEOUT
-> > > +	int "How long to wait for the GuC to make forward progress on CTBs (ms)"
-> > > +	default 1500 # milliseconds
-> > > +	range 10 60000
-> > 
-> > Also range is definitely off, drm/scheduler will probably nuke you
-> > beforehand :-)
-> > 
-> > That's kinda another issue I have with all these kconfig knobs: Maybe we
-> > need a knob for "relax with reset attempts, my workloads overload my gpus
-> > routinely", which then scales _all_ timeouts proportionally. But letting
-> > the user set them all, with silly combiniations like resetting the
-> > workload before heartbeat or stuff like that doesn't make much sense.
-> >
-> 
-> Yes, the code as is the user could do some wacky stuff that doesn't make
-> sense at all.
->  
-> > Anyway, tiny patch so hopefully I can leave this one out for now until
-> > we've closed this.
-> 
-> No issue leaving this out as blocking CTBs are never really used anyways
-> until SRIOV aside from setup / debugging. That being said, we might
-> still want a higher hardcoded value in the meantime, perhaps around a
-> second. I can follow up on that if needed.
-
-Yeah just patch with updated hardcoded value sounds good to me.
--Daniel
-
-> 
-> Matt
-> 
-> > -Daniel
-> > 
-> > > +	help
-> > > +	  Configures the default timeout waiting for GuC the to make forward
-> > > +	  progress on CTBs. e.g. Waiting for a response to a requeset.
-> > > +
-> > > +	  A range of 10 ms to 60000 ms is allowed.
-> > > +
-> > >  config DRM_I915_HEARTBEAT_INTERVAL
-> > >  	int "Interval between heartbeat pulses (ms)"
-> > >  	default 2500 # milliseconds
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > > index 916c2b80c841..cf1fb09ef766 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > > @@ -436,6 +436,7 @@ static int ct_write(struct intel_guc_ct *ct,
-> > >   */
-> > >  static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
-> > >  {
-> > > +	long timeout;
-> > >  	int err;
-> > >  
-> > >  	/*
-> > > @@ -443,10 +444,12 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
-> > >  	 * up to that length of time, then switch to a slower sleep-wait loop.
-> > >  	 * No GuC command should ever take longer than 10ms.
-> > >  	 */
-> > > +	timeout = CONFIG_DRM_I915_GUC_CTB_TIMEOUT;
-> > > +
-> > >  #define done INTEL_GUC_MSG_IS_RESPONSE(READ_ONCE(req->status))
-> > >  	err = wait_for_us(done, 10);
-> > >  	if (err)
-> > > -		err = wait_for(done, 10);
-> > > +		err = wait_for(done, timeout);
-> > >  #undef done
-> > >  
-> > >  	if (unlikely(err))
-> > > -- 
-> > > 2.28.0
-> > > 
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > 
-> > -- 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMDkvMDYvMjAyMSAwNzozNCwgVGhvbWFzIEhlbGxzdHLDtm0gd3JvdGU6Cj4gRnJvbTogQ2hy
+aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gCj4gVXBkYXRlIHRoZSBQVEUg
+YW5kIGVtaXQgYSBjbGVhciB3aXRoaW4gYSBzaW5nbGUgdW5wcmVlbXB0aWJsZSBwYWNrZXQKPiBz
+dWNoIHRoYXQgd2UgY2FuIHNjaGVkdWxlIGFuZCBwaXBlbGluZSBjbGVhcnMuCj4gCj4gU2lnbmVk
+LW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ28tZGV2
+ZWxvcGVkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRl
+bC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ry
+b21AbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
+ZWxfbWlncmF0ZS5jICAgIHwgMTQxICsrKysrKysrKysrKysrKysrKwo+ICAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5oICAgIHwgIDIwICsrKwo+ICAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfbWlncmF0ZS5jIHwgMTYzICsrKysrKysrKysrKysrKysrKysr
+Kwo+ICAgMyBmaWxlcyBjaGFuZ2VkLCAzMjQgaW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdyYXRlLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9taWdyYXRlLmMKPiBpbmRleCA3MDc3NjMxNjg2M2QuLmZkYTA1Y2Uz
+ZWI5YyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdyYXRl
+LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdyYXRlLmMKPiBAQCAt
+NDkwLDYgKzQ5MCwxMTIgQEAgaW50ZWxfY29udGV4dF9taWdyYXRlX2NvcHkoc3RydWN0IGludGVs
+X2NvbnRleHQgKmNlLAo+ICAgCXJldHVybiBlcnI7Cj4gICB9Cj4gICAKPiArc3RhdGljIGludCBl
+bWl0X2NsZWFyKHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxLCBpbnQgc2l6ZSwgdTMyIHZhbHVlKQo+
+ICt7Cj4gKwljb25zdCBpbnQgZ2VuID0gSU5URUxfR0VOKHJxLT5lbmdpbmUtPmk5MTUpOwo+ICsJ
+dTMyICpjczsKPiArCj4gKwlHRU1fQlVHX09OKHNpemUgPj4gUEFHRV9TSElGVCA+IFMxNl9NQVgp
+Owo+ICsKPiArCWNzID0gaW50ZWxfcmluZ19iZWdpbihycSwgZ2VuID49IDggPyA4IDogNik7Cj4g
+KwlpZiAoSVNfRVJSKGNzKSkKPiArCQlyZXR1cm4gUFRSX0VSUihjcyk7Cj4gKwo+ICsJaWYgKGdl
+biA+PSA4KSB7Cj4gKwkJKmNzKysgPSBYWV9DT0xPUl9CTFRfQ01EIHwgQkxUX1dSSVRFX1JHQkEg
+fCAoNyAtIDIpOwo+ICsJCSpjcysrID0gQkxUX0RFUFRIXzMyIHwgQkxUX1JPUF9DT0xPUl9DT1BZ
+IHwgUEFHRV9TSVpFOwo+ICsJCSpjcysrID0gMDsKPiArCQkqY3MrKyA9IHNpemUgPj4gUEFHRV9T
+SElGVCA8PCAxNiB8IFBBR0VfU0laRSAvIDQ7Cj4gKwkJKmNzKysgPSAwOyAvKiBvZmZzZXQgKi8K
+PiArCQkqY3MrKyA9IDA7CgpNaXNzaW5nIGZlZWRpbmcgdGhlIGVuZ2luZSBpbnN0YW5jZSBpbnRv
+IHRoZSB1cHBlciBkd29yZCBmb3IgdGhlIG9mZnNldD8KCj4gKwkJKmNzKysgPSB2YWx1ZTsKPiAr
+CQkqY3MrKyA9IE1JX05PT1A7Cj4gKwl9IGVsc2Ugewo+ICsJCSpjcysrID0gWFlfQ09MT1JfQkxU
+X0NNRCB8IEJMVF9XUklURV9SR0JBIHwgKDYgLSAyKTsKPiArCQkqY3MrKyA9IEJMVF9ERVBUSF8z
+MiB8IEJMVF9ST1BfQ09MT1JfQ09QWSB8IFBBR0VfU0laRTsKPiArCQkqY3MrKyA9IDA7Cj4gKwkJ
+KmNzKysgPSBzaXplID4+IFBBR0VfU0hJRlQgPDwgMTYgfCBQQUdFX1NJWkUgLyA0Owo+ICsJCSpj
+cysrID0gMDsKPiArCQkqY3MrKyA9IHZhbHVlOwo+ICsJfQo+ICsKPiArCWludGVsX3JpbmdfYWR2
+YW5jZShycSwgY3MpOwo+ICsJcmV0dXJuIDA7Cj4gK30KPiArCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
