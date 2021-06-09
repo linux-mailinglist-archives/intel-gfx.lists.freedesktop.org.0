@@ -1,50 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACBFE3A1EF0
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 23:24:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17133A1F00
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 23:29:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2547E6EB41;
-	Wed,  9 Jun 2021 21:24:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D00A6EB59;
+	Wed,  9 Jun 2021 21:29:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-41104.protonmail.ch (mail-41104.protonmail.ch
- [185.70.41.104])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 580D86EB41
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 21:24:12 +0000 (UTC)
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 181B06EB59
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 21:29:30 +0000 (UTC)
 Received: from mail-03.mail-europe.com (mail-0301.mail-europe.com
  [188.165.51.139])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits))
  (No client certificate requested)
- by mail-41104.protonmail.ch (Postfix) with ESMTPS id 4G0g8p6cYGz4xn82
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 21:24:10 +0000 (UTC)
-Authentication-Results: mail-41104.protonmail.ch;
+ by mail-4321.protonmail.ch (Postfix) with ESMTPS id 4G0g8r4fQgz4xVtT
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 21:24:12 +0000 (UTC)
+Authentication-Results: mail-4321.protonmail.ch;
  dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
- header.b="hQBhLhVm"
-Date: Wed, 09 Jun 2021 21:23:56 +0000
+ header.b="XTDKNX2o"
+Date: Wed, 09 Jun 2021 21:24:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1623273847;
- bh=D+ACLAmLPQ5dBv9UiHgwR4PZFqis8ssRuE9zja0/b20=;
+ s=protonmail3; t=1623273848;
+ bh=CRpCmV6JJvjSWIefuOMH4SCsYiJSl92J72nXZg36ElE=;
  h=Date:To:From:Cc:Reply-To:Subject:From;
- b=hQBhLhVmqv1cyqvqr2JDFuq5p9TAS81wiRGwfJikG0bFfgXPU3906hromnuCmSj4Q
- F5sgltxwWTv8ROLXQnh7Q2UE3PcOziWxBP/bIRQ7EtmEdbGQobgieciRnD7o21/y+2
- 9sW+pyDVe4MMVFsXDWwu1+cJqRGal6ac87Ri8UldQkPLkEaSyjjbAvU9cntZebnQe4
- geGAIgr2AIiN4WIymH9/GcKp1uWPCMaU8kCICDq2Hk93NNNy11vPyuu7OcwUtp2SFz
- /idqalXq5cUIihAZzl6bd8RAO+zrC8rMi7GB+ScOn9OSLVBybcKOkntBG6z8NKkWJ7
- 9vGOpfXmBqdew==
+ b=XTDKNX2oTSMf5r8Z9kCRg0LOrMUAnlSW83jpURVJFYUe2G9xmU1ff6Rlbn5CIhTDL
+ wx+NewdFxon7fANrvUD8KISS5ZrZ+bLoDfAb2tCCai4lrkDgFja1bPdVeJevr+oCLi
+ pjJWaE/zBfix/endv7nQNt6qXYl8anyDV/h84ZqNfAimI12uCMFu5TQNVXeyLH9P2Z
+ 5OmKPb9HkvRdIoJlS1zkKomuiINMoqCZuHhmOFhriJebtRyM5gus5mTgFmKHVbbFra
+ nlnSaw2toviWN2VQus1cd/1IMTreN2g0IOhcYIZuoBeW2I20EXBYZ54m9/k92sUd+M
+ J31em3eI58x+Q==
 To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 From: Simon Ser <contact@emersion.fr>
-Message-ID: <cSqLvJmgHix8R8X5lp2E2h6Z8zLOKxDkLfkm8mL3Zg@cp3-web-029.plabs.ch>
+Message-ID: <s2nCZi12JRcxrixhDW8UTiJsEpPvIQhnFBMtgdRXMk@cp3-web-020.plabs.ch>
 MIME-Version: 1.0
 X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
  DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
  autolearn=disabled version=3.4.4
 X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
  mailout.protonmail.ch
-Subject: [Intel-gfx] [PATCH v2 5/7] drm/probe-helper: use
- drm_kms_helper_connector_hotplug_event
+Subject: [Intel-gfx] [PATCH v2 6/7] i915/display/dp: send a more
+ fine-grained link-status uevent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,59 +64,29 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If an hotplug event only updates a single connector, use
-drm_kms_helper_connector_hotplug_event instead of
-drm_kms_helper_hotplug_event.
+When link-status changes, send a hotplug uevent which contains the
+connector and property ID. That way, user-space can more easily
+figure out that only the link-status property of this connector has
+been updated.
 
 Signed-off-by: Simon Ser <contact@emersion.fr>
 ---
- drivers/gpu/drm/drm_probe_helper.c | 19 +++++++++++++++----
- 1 file changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-index 8cc673267cba..f4130c1a90e2 100644
---- a/drivers/gpu/drm/drm_probe_helper.c
-+++ b/drivers/gpu/drm/drm_probe_helper.c
-@@ -843,7 +843,7 @@ EXPORT_SYMBOL(drm_kms_helper_poll_fini);
-  */
- bool drm_helper_hpd_irq_event(struct drm_device *dev)
- {
--	struct drm_connector *connector;
-+	struct drm_connector *connector, *changed_connector = NULL;
- 	struct drm_connector_list_iter conn_iter;
- 	enum drm_connector_status old_status;
- 	bool changed = false;
-@@ -883,16 +883,27 @@ bool drm_helper_hpd_irq_event(struct drm_device *dev)
- 		 * Check if epoch counter had changed, meaning that we need
- 		 * to send a uevent.
- 		 */
--		if (old_epoch_counter != connector->epoch_counter)
-+		if (old_epoch_counter != connector->epoch_counter) {
-+			if (changed) {
-+				if (changed_connector)
-+					drm_connector_put(changed_connector);
-+				changed_connector = NULL;
-+			} else {
-+				drm_connector_get(connector);
-+				changed_connector = connector;
-+			}
- 			changed = true;
-+		}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 5c9222283044..0ce44a97dd14 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5276,6 +5276,8 @@ static void intel_dp_modeset_retry_work_fn(struct work_struct *work)
+ 	mutex_unlock(&connector->dev->mode_config.mutex);
+ 	/* Send Hotplug uevent so userspace can reprobe */
+ 	drm_kms_helper_hotplug_event(connector->dev);
++	drm_sysfs_connector_status_event(connector,
++					 connector->dev->mode_config.link_status_property);
+ }
  
- 	}
- 	drm_connector_list_iter_end(&conn_iter);
- 	mutex_unlock(&dev->mode_config.mutex);
- 
--	if (changed) {
-+	if (changed_connector) {
-+		drm_kms_helper_connector_hotplug_event(changed_connector);
-+		drm_connector_put(changed_connector);
-+	} else if (changed) {
- 		drm_kms_helper_hotplug_event(dev);
--		DRM_DEBUG_KMS("Sent hotplug event\n");
- 	}
- 
- 	return changed;
+ bool
 -- 
 2.31.1
 
