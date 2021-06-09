@@ -1,57 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2331B3A1A86
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 18:07:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A72B83A1B3D
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 18:51:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 119D66E99C;
-	Wed,  9 Jun 2021 16:07:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05276E07F;
+	Wed,  9 Jun 2021 16:50:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com
- [IPv6:2607:f8b0:4864:20::b36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD2CB6E999
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 16:07:54 +0000 (UTC)
-Received: by mail-yb1-xb36.google.com with SMTP id n133so36249733ybf.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 09:07:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4dsTQd/cZiVT06IEBrbQaFjTb+psFYvUW3roEtVwXNc=;
- b=OiAdmusdF5t5gLlNbipHmjTv3nVZKUDYkOgBkamFD+aqS3RnFRM2AgQ/px9zC+K7v6
- bkaqiMGUlXjf8dBJRv6e6hDrphr8IZeelypZpGrk81nhWnAj9ChKp/I8B3OB0OFZ3+nB
- HCxK+6ebxeb/ji0gy8/nwIhHHXxfwU41FMXseZgRIpJA097T2vMiMV0TR7yAc9D77kdr
- +LY26hDlOtD4oGr7E1NUkkIvZw2IOCq1cQq4AGZ8suS/1jSO2Erja+A3zv7T3armc90L
- l8Rheb9FIK42a7uHmqS0rp96VLT78baEDOa3PZQN0Si69uncJjlkSWQO5pt08Z06ZG91
- hpXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=4dsTQd/cZiVT06IEBrbQaFjTb+psFYvUW3roEtVwXNc=;
- b=Yqteem4LPZi/zQu6V6l3wQwipuqVDJoFC3MADWHzoFXxWDNUCDuGnbWoWa591Mly9g
- 5MjOYb60SKWf/cihyU0Oy1llkBnz2on/VtXDvKR5SI57pfBQCUEdTaLbvdFDCmkNM/fy
- 0Z7P1MiQmCMDXVfXuWjbA1JnNp28XxLjy6FJxDZIktqyGHPmSvvG3zPqIjQux0k3N2fC
- 3EMe2wDcrjK6eSYa5kpuDlVewVXg3twk52ecYT0nPgjppc/6lvQIQovYek8OV0OpeBsn
- hDSXJsCs83hyb9CFv5/I7OfPRC/NJ026xkU4yLaQiynJpMUCO2Oo3Ylf/RS9mNzjYnEA
- J7PA==
-X-Gm-Message-State: AOAM533FQOMiolRraJHL7gl3FW4bxZuFEOxHuSk2Cyd4fP1UP6QIxVs0
- kw9F7VqkttXT/nLTXgsktltFN8+Fhv8ajDOEyeOnQA==
-X-Google-Smtp-Source: ABdhPJwihizNzfXYV+nW9kuMWphS37wT2eNcqES9vSVtvsVTQnBf1kTl7v6i5FV8sxfoX5PqhLNSqKf/CFVHxe5kjCo=
-X-Received: by 2002:a5b:850:: with SMTP id v16mr993551ybq.139.1623254874036;
- Wed, 09 Jun 2021 09:07:54 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6D3A6E07F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 16:50:57 +0000 (UTC)
+IronPort-SDR: AtcFQ1wkcd8GQ8rl0A4RfveuWGdX22QNF2eNwv63p/61BhQ/pFVlpgVDPdh+2ZwfTn6EKyQKsQ
+ St2AwVniBJBA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="192222782"
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="192222782"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 09:50:55 -0700
+IronPort-SDR: n5c0T3G5KK/Goh05BSVjE5PJA8PmXkQ6HihPOoCjTPdlPcA8nqm0eaiqCK4jiv2IIu+lLEnyZc
+ XkUqSyolekXg==
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="482452049"
+Received: from ochaldek-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.111])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 09:50:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210603122842.22496-2-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210603122842.22496-1-jani.nikula@intel.com>
+ <20210603122842.22496-2-jani.nikula@intel.com>
+Date: Wed, 09 Jun 2021 19:50:50 +0300
+Message-ID: <87pmwvyob9.fsf@intel.com>
 MIME-Version: 1.0
-References: <20210609043613.102962-1-jason@jlekstrand.net>
- <20210609043613.102962-32-jason@jlekstrand.net>
- <YMCo5N8cn902qLgc@phenom.ffwll.local>
-In-Reply-To: <YMCo5N8cn902qLgc@phenom.ffwll.local>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Wed, 9 Jun 2021 11:07:42 -0500
-Message-ID: <CAOFGe94EOR0A4EH=bKRhAvxemkNvXktBWKhXKbCRZ8BgZ=r2+Q@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 31/31] drm/i915: Drop some RCU usage around
- context VMs
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dsc: use crtc index for
+ bigjoiner primary/secondary crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,78 +49,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 9, 2021 at 6:41 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> On Tue, Jun 08, 2021 at 11:36:13PM -0500, Jason Ekstrand wrote:
-> > This instance now only happens during context creation so there's no way
-> > we can race with a context close/destroy.  We don't need to bother with
-> > the RCU and can access the pointer directly.
-> >
-> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
->
-> There's another one in execbuf.c, and the real crux is that we need to
-> fully audit the lifetimes of everything. I think it's better to do this
-> all together in a seperate patch series, which entirely removes the rcu
-> barrier on the i915_address_space cleanup, and also removes the rcu
-> protection from everywhere else.
->
-> Otherwise we just have an inconsistent mess that happens to work,
-> sometimes.
+On Thu, 03 Jun 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+> Pipe numbering isn't guaranteed to be contiguous; there may be fused off
+> pipes in the middle. The current bigjoiner primary/secondary crtc lookup
+> with pipe +/- 1 does not take this into account, and may fail
+> unexpectedly. Fixing this while using pipe numbering gets complicated.
 
-Ok, let's drop this for now.
+This is broken; pipes need to be contiguous for big joiner regardless of
+whether pipes have been fused off.
 
---Jason
+BR,
+Jani.
 
-> -Daniel
 >
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_context.c | 13 +++++--------
-> >  1 file changed, 5 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index 5312142daa0c0..ffdfed536ce9a 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -787,15 +787,12 @@ static int intel_context_set_gem(struct intel_context *ce,
-> >
-> >       ce->ring_size = SZ_16K;
-> >
-> > -     if (rcu_access_pointer(ctx->vm)) {
-> > -             struct i915_address_space *vm;
-> > -
-> > -             rcu_read_lock();
-> > -             vm = context_get_vm_rcu(ctx); /* hmm */
-> > -             rcu_read_unlock();
-> > -
-> > +     if (ctx->vm) {
-> > +             /* This only happens during context creation so no need to
-> > +              * bother with any RCU nonsense.
-> > +              */
-> >               i915_vm_put(ce->vm);
-> > -             ce->vm = vm;
-> > +             ce->vm = i915_vm_get(ctx->vm);
-> >       }
-> >
-> >       if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
-> > --
-> > 2.31.1
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Switch to using crtc index +/- 1 instead. They are contiguous, and the
+> crtc lookup neatly handles overflows and underflows. The performance
+> penalty from the crtc list lookup is neglible.
 >
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+> Fixes: 8a029c113b17 ("drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave")
+> Fixes: d961eb20adb6 ("drm/i915/bigjoiner: atomic commit changes for uncompressed joiner")
+> Cc: Animesh Manna <animesh.manna@intel.com>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 31 +++++++++++------------
+>  1 file changed, 15 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index 1fd81bd3ea09..1d757b040bce 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -1106,30 +1106,29 @@ static i915_reg_t dss_ctl2_reg(const struct intel_crtc_state *crtc_state)
+>  	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) : DSS_CTL2;
+>  }
+>  
+> -struct intel_crtc *
+> -intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc)
+> +static struct intel_crtc *
+> +get_linked_crtc(const struct intel_crtc *crtc, int index)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(primary_crtc->base.dev);
+> -	enum pipe pipe = primary_crtc->pipe + 1;
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_crtc *linked_crtc;
+>  
+> -	if (drm_WARN_ON(&i915->drm, pipe >= I915_MAX_PIPES ||
+> -			!(INTEL_INFO(i915)->pipe_mask & BIT(pipe))))
+> -		return NULL;
+> +	linked_crtc = to_intel_crtc(drm_crtc_from_index(&i915->drm, index));
+>  
+> -	return intel_get_crtc_for_pipe(i915, pipe);
+> +	drm_WARN_ON(&i915->drm, !linked_crtc);
+> +
+> +	return linked_crtc;
+>  }
+>  
+>  struct intel_crtc *
+> -intel_dsc_get_bigjoiner_primary(const struct intel_crtc *secondary_crtc)
+> +intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(secondary_crtc->base.dev);
+> -	enum pipe pipe = secondary_crtc->pipe - 1;
+> -
+> -	if (drm_WARN_ON(&i915->drm, pipe <= INVALID_PIPE ||
+> -			!(INTEL_INFO(i915)->pipe_mask & BIT(pipe))))
+> -		return NULL;
+> +	return get_linked_crtc(primary_crtc, primary_crtc->base.index + 1);
+> +}
+>  
+> -	return intel_get_crtc_for_pipe(i915, pipe);
+> +struct intel_crtc *
+> +intel_dsc_get_bigjoiner_primary(const struct intel_crtc *secondary_crtc)
+> +{
+> +	return get_linked_crtc(secondary_crtc, secondary_crtc->base.index - 1);
+>  }
+>  
+>  void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
