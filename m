@@ -2,44 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E6B3A1402
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 14:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A4823A140D
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 14:17:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DE5A89CB8;
-	Wed,  9 Jun 2021 12:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA816E976;
+	Wed,  9 Jun 2021 12:17:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCEAC89CB8
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 12:15:57 +0000 (UTC)
-IronPort-SDR: 8GKw6eeqpnLq/4GZBHu8v8kLxMiSd8Ca2n5/XsRw62Ha9NNwOyT130CXPSQqA86Uno5q4MKADK
- H6+AIX7XEHOQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="192168168"
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="192168168"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 05:15:57 -0700
-IronPort-SDR: lssOi19Hzpc32pp5PGStD4gItj/iwFMtcVhXMoTOE7PGILoHqwUEpXqV57o4sOcj6UyYUsTPsm
- m9zZa99V06ig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="552656763"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 09 Jun 2021 05:15:54 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Jun 2021 15:15:54 +0300
-Date: Wed, 9 Jun 2021 15:15:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <YMCw+hnkHVYyWqfM@intel.com>
-References: <20210609085632.22026-1-ville.syrjala@linux.intel.com>
- <20210609085632.22026-4-ville.syrjala@linux.intel.com>
- <YMCnofgoTGL0Qwp0@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42E8989CD7;
+ Wed,  9 Jun 2021 12:17:15 +0000 (UTC)
+IronPort-SDR: MorWPcIQxJn24FuXtzjA9Jpu5ejmaraQ4VaT3/ovAx9tjbFEWKU71VvqLJTN9Ba7IjvFw36G8L
+ KlRQUn7Juf3g==
+X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="205022708"
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="205022708"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 05:17:02 -0700
+IronPort-SDR: xTIiQOPvJAUrafdTVGhUC13TuU9ZIjU+bf8j4V9gcCvMJAzqewedKAUSUV86uohn90qqmBqM33
+ Walq3qWmeGDA==
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="440824558"
+Received: from hkrasnod-mobl1.ger.corp.intel.com (HELO [10.249.254.21])
+ ([10.249.254.21])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 05:16:59 -0700
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
+ <YMCqm48rZIKLYk/s@phenom.ffwll.local>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <9f38fc28-15fb-2736-ba01-503821fdbe54@linux.intel.com>
+Date: Wed, 9 Jun 2021 14:16:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YMCnofgoTGL0Qwp0@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Clean up
- intel_find_initial_plane_obj() a bit
+In-Reply-To: <YMCqm48rZIKLYk/s@phenom.ffwll.local>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 0/9] Prereqs for TTM accelerated migration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,243 +50,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 09, 2021 at 07:36:01AM -0400, Rodrigo Vivi wrote:
-> On Wed, Jun 09, 2021 at 11:56:29AM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
-
-> > Sort out the mess with the local variables in
-> > intel_find_initial_plane_obj(). Get rid of all aliasing pointers
-> > and use standard naming/types.
-> > =
-
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 113 ++++++++++---------
-> >  1 file changed, 62 insertions(+), 51 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 78815a1ac0ca..1615501685c9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -1914,20 +1914,50 @@ static void intel_dpt_unpin(struct i915_address=
-_space *vm)
-> >  	i915_vma_put(dpt->vma);
-> >  }
-> >  =
-
-> > +static bool
-> > +intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
-> > +			      const struct intel_initial_plane_config *plane_config,
-> > +			      struct drm_framebuffer **fb,
-> > +			      struct i915_vma **vma)
-> > +{
-> > +	struct intel_crtc *crtc;
-> > +
-> > +	for_each_intel_crtc(&i915->drm, crtc) {
-> > +		struct intel_crtc_state *crtc_state =3D
-> > +			to_intel_crtc_state(crtc->base.state);
-> > +		struct intel_plane *plane =3D
-> > +			to_intel_plane(crtc->base.primary);
-> > +		struct intel_plane_state *plane_state =3D
-> > +			to_intel_plane_state(plane->base.state);
-> > +
-> > +		if (!crtc_state->uapi.active)
-> > +			continue;
-> > +
-> > +		if (!plane_state->ggtt_vma)
-> > +			continue;
-> > +
-> > +		if (intel_plane_ggtt_offset(plane_state) =3D=3D plane_config->base) {
-> > +			*fb =3D plane_state->hw.fb;
-> > +			*vma =3D plane_state->ggtt_vma;
-> > +			return true;
-> > +		}
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > +
-> >  static void
-> > -intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
-> > +intel_find_initial_plane_obj(struct intel_crtc *crtc,
-> >  			     struct intel_initial_plane_config *plane_config)
-> >  {
-> > -	struct drm_device *dev =3D intel_crtc->base.dev;
-> > +	struct drm_device *dev =3D crtc->base.dev;
-> >  	struct drm_i915_private *dev_priv =3D to_i915(dev);
-> > -	struct drm_crtc *c;
-> > -	struct drm_plane *primary =3D intel_crtc->base.primary;
-> > -	struct drm_plane_state *plane_state =3D primary->state;
-> > -	struct intel_plane *intel_plane =3D to_intel_plane(primary);
-> > -	struct intel_plane_state *intel_state =3D
-> > -		to_intel_plane_state(plane_state);
-> >  	struct intel_crtc_state *crtc_state =3D
-> > -		to_intel_crtc_state(intel_crtc->base.state);
-> > +		to_intel_crtc_state(crtc->base.state);
-> > +	struct intel_plane *plane =3D
-> > +		to_intel_plane(crtc->base.primary);
-> > +	struct intel_plane_state *plane_state =3D
-> > +		to_intel_plane_state(plane->base.state);
-> >  	struct drm_framebuffer *fb;
-> >  	struct i915_vma *vma;
-> >  =
-
-> > @@ -1939,7 +1969,7 @@ intel_find_initial_plane_obj(struct intel_crtc *i=
-ntel_crtc,
-> >  	if (!plane_config->fb)
-> >  		return;
-> >  =
-
-> > -	if (intel_alloc_initial_plane_obj(intel_crtc, plane_config)) {
-> > +	if (intel_alloc_initial_plane_obj(crtc, plane_config)) {
-> >  		fb =3D &plane_config->fb->base;
-> >  		vma =3D plane_config->vma;
-> >  		goto valid_fb;
-> > @@ -1949,25 +1979,8 @@ intel_find_initial_plane_obj(struct intel_crtc *=
-intel_crtc,
-> >  	 * Failed to alloc the obj, check to see if we should share
-> >  	 * an fb with another CRTC instead
-> >  	 */
-> > -	for_each_crtc(dev, c) {
-> > -		struct intel_plane_state *state;
-> > -
-> > -		if (c =3D=3D &intel_crtc->base)
-> > -			continue;
-> > -
-> > -		if (!to_intel_crtc_state(c->state)->uapi.active)
-> > -			continue;
-> > -
-> > -		state =3D to_intel_plane_state(c->primary->state);
-> > -		if (!state->ggtt_vma)
-> > -			continue;
-> > -
-> > -		if (intel_plane_ggtt_offset(state) =3D=3D plane_config->base) {
-> > -			fb =3D state->hw.fb;
-> > -			vma =3D state->ggtt_vma;
-> > -			goto valid_fb;
-> > -		}
-> > -	}
-> > +	if (intel_reuse_initial_plane_obj(dev_priv, plane_config, &fb, &vma))
-> > +		goto valid_fb;
-> >  =
-
-> >  	/*
-> >  	 * We've failed to reconstruct the BIOS FB.  Current display state
-> > @@ -1976,7 +1989,7 @@ intel_find_initial_plane_obj(struct intel_crtc *i=
-ntel_crtc,
-> >  	 * simplest solution is to just disable the primary plane now and
-> >  	 * pretend the BIOS never had it enabled.
-> >  	 */
-> > -	intel_plane_disable_noatomic(intel_crtc, intel_plane);
-> > +	intel_plane_disable_noatomic(crtc, plane);
-> >  	if (crtc_state->bigjoiner) {
-> >  		struct intel_crtc *slave =3D
-> >  			crtc_state->bigjoiner_linked_crtc;
-> > @@ -1986,40 +1999,38 @@ intel_find_initial_plane_obj(struct intel_crtc =
-*intel_crtc,
-> >  	return;
-> >  =
-
-> >  valid_fb:
-> > -	plane_state->rotation =3D plane_config->rotation;
-> > -	intel_fb_fill_view(to_intel_framebuffer(fb), plane_state->rotation,
-> > -			   &intel_state->view);
-> > +	plane_state->uapi.rotation =3D plane_config->rotation;
-> > +	intel_fb_fill_view(to_intel_framebuffer(fb),
-> > +			   plane_state->uapi.rotation, &plane_state->view);
-> >  =
-
-> >  	__i915_vma_pin(vma);
-> > -	intel_state->ggtt_vma =3D i915_vma_get(vma);
-> > -	if (intel_plane_uses_fence(intel_state) && i915_vma_pin_fence(vma) =
-=3D=3D 0)
-> > -		if (vma->fence)
-> > -			intel_state->flags |=3D PLANE_HAS_FENCE;
-> > +	plane_state->ggtt_vma =3D i915_vma_get(vma);
-> > +	if (intel_plane_uses_fence(plane_state) &&
-> > +	    i915_vma_pin_fence(vma) =3D=3D 0 && vma->fence)
-> > +		plane_state->flags |=3D PLANE_HAS_FENCE;
-> >  =
-
-> > -	plane_state->src_x =3D 0;
-> > -	plane_state->src_y =3D 0;
-> > -	plane_state->src_w =3D fb->width << 16;
-> > -	plane_state->src_h =3D fb->height << 16;
-> > +	plane_state->uapi.src_x =3D 0;
-> > +	plane_state->uapi.src_y =3D 0;
-> > +	plane_state->uapi.src_w =3D fb->width << 16;
-> > +	plane_state->uapi.src_h =3D fb->height << 16;
-> >  =
-
-> > -	plane_state->crtc_x =3D 0;
-> > -	plane_state->crtc_y =3D 0;
-> > -	plane_state->crtc_w =3D fb->width;
-> > -	plane_state->crtc_h =3D fb->height;
-> > +	plane_state->uapi.crtc_x =3D 0;
-> > +	plane_state->uapi.crtc_y =3D 0;
-> > +	plane_state->uapi.crtc_w =3D fb->width;
-> > +	plane_state->uapi.crtc_h =3D fb->height;
-> >  =
-
-> >  	if (plane_config->tiling)
-> >  		dev_priv->preserve_bios_swizzle =3D true;
-> >  =
-
-> > -	plane_state->fb =3D fb;
-> > +	plane_state->uapi.fb =3D fb;
-> =
-
-> I believe we should have a separated patch for these plane_state uapi cha=
-nges
-
-There is no change here. &to_intel_plane_state(s)->uapi =3D=3D s
-
-> =
-
-> >  	drm_framebuffer_get(fb);
-> >  =
-
-> > -	plane_state->crtc =3D &intel_crtc->base;
-> > -	intel_plane_copy_uapi_to_hw_state(intel_state, intel_state,
-> > -					  intel_crtc);
-> > +	plane_state->uapi.crtc =3D &crtc->base;
-> > +	intel_plane_copy_uapi_to_hw_state(plane_state, plane_state, crtc);
-> >  =
-
-> >  	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
-> >  =
-
-> > -	atomic_or(to_intel_plane(primary)->frontbuffer_bit,
-> > -		  &to_intel_frontbuffer(fb)->bits);
-> > +	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
-> >  }
-> >  =
-
-> >  unsigned int
-> > -- =
-
-> > 2.31.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDYvOS8yMSAxOjQ4IFBNLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+IE9uIFdlZCwgSnVuIDA5
+LCAyMDIxIGF0IDA4OjM0OjI3QU0gKzAyMDAsIFRob21hcyBIZWxsc3Ryw7ZtIHdyb3RlOgo+PiBB
+IGNvdXBsZSBvZiBwYXRjaGVzIGZyb20gQ2hyaXMgd2hpY2ggaW1wbGVtZW50IHBpcGVsaW5lZCBt
+aWdyYXRpb24gYW5kCj4+IGNsZWFycyBieSBhdG9taWNhbGx5IHdyaXRpbmcgdGhlIFBURXMgaW4g
+cGxhY2UgYmVmb3JlIHBlcmZvcm1pbmcgdGhlCj4+IGFjdHVhbCBibGl0Lgo+Pgo+PiBTb21lIHd3
+IHV0aWxpdGllcyBtYWlubHkgZm9yIHRoZSBhY2NvbXBhbnlpbmcgc2VsZnRlc3RzIGFkZGVkIGJ5
+IFRob21hcywKPj4gYXMgd2VsbCBhcyBtb2RpZmllZCB0aGUgYWJvdmUgcGF0Y2hlcyBmb3Igd3cg
+bG9ja2luZy0gYW5kIGxtZW0gc3VwcG9ydC4KPj4KPj4gVGhlIGFjdHVhbCBob29rIHVwIHRvIHRo
+ZSBpOTE1IHR0bSBiYWNrZW5kIGlzIGJlaW5nIHdvcmtlZCBvbiBhbmQgbm90Cj4+IGluY2x1ZGVk
+IHlldCwgc28gdGhpcyBpcyBjb25zaWRlcmVkIHRvIGJlIGFuIGVhcmx5IHJldmlldyBvcHBvcnR1
+bml0eS4KPj4KPj4gdjI6Cj4+IC0gQSBjb3VwbGUgb2YgbWlub3Igc3R5bGUgZml4ZXMgcG9pbnRl
+ZCBvdXQgYnkgTWF0dGhldyBBdWxkCj4+IC0gRXhwb3J0IGFuZCB1c2UgaW50ZWxfZW5naW5lX2Rl
+c3Ryb3lfcGlubmVkX2NvbnRleHQoKSB0byBhZGRyZXNzIGEKPj4gbHMgICBDSSB3YXJuaW5nIC8g
+ZmFpbHVyZS4KPiBKdXN0IHRvIGNoZWNrIG15IHVuZGVyc3RhbmRpbmcgb2YgdGhlIHBsYW46IFRo
+ZXNlIGFyZSB0aGUgbmV3IHdpbmRvd2VkCj4gY2xlYXIvYmx0IGZ1bmN0aW9ucyB3aGljaCB3ZSBw
+bGFuIHRvIHVzZSBldmVyeXdoZXJlLCBiZWNhdXNlIGxlc3MgbmFzdHkKPiBsb2NraW5nIGltcGxp
+Y2F0aW9ucz8gQW5kIHRoZSBjbGVhci9ibHQgd2UgY3VycmVudGx5IGhhdmUgaW4gdXBzdHJlYW0g
+d2lsbAo+IGJlIHJlcGxhY2VkPwoKWWVzLiBUaGVzZSBhcmUgZm9yIExNRU0gY2xlYXJpbmcgYW5k
+IG1pZ3JhdGlvbi4gSXQgbG9va3MgdG8gbWUgbGlrZSB0aGUgCm90aGVyIG9uZXMgd2UgaGF2ZSBp
+biB1cHN0cmVhbSBhcmUgYWN0dWFsbHkgdW51c2VkIGV4Y2VwdCBmb3Igc2VsZnRlc3RzLiAKV2Un
+cmUgYWN0dWFsbHkgdXNpbmcgQ1BVIGNsZWFyaW5nIGZvciBub3cuCgo+Cj4gSWYgc28gd291bGQg
+YmUgbmljZSBpZiB0aGlzIHBhdGNoIHNldCBpbmNsdWRlcyB0aGF0IHJlcGxhY2VtZW50IHdvcmsg
+KEkKPiB0aGluayByaWdodCBub3cgYWxsIHdlIGhhdmUgaXMgdGhlIGNsZWFyIGZvciBsbWVtKSwg
+aW5jbHVkaW5nIHVwZGF0aW5nIG9mCj4gc2VsZnRlc3RzIGFuZCBzdHVmZiBsaWtlIHRoYXQuIEp1
+c3QgdG8gYXZvaWQgaGF2aW5nIHR3byB3YXlzIHRvIGRvIHRoZQo+IHNhbWUgdGhpbmcgaW4gdGhl
+IGRyaXZlci4KCk9LLCBJJ2xsIGhhdmUgYSBsb29rIGF0IHN0cmlwcGluZyB0aGUgZXhpc3Rpbmcg
+Y29kZS4gSWYgd2UgbmVlZCBpdCAKbW92aW5nIGZvcndhcmQsIHdlIGNhbiBhbHdheXMgcmUtYWRk
+LgoKL1Rob21hcwoKCj4gLURhbmllbAo+Cj4+IENocmlzIFdpbHNvbiAoNik6Cj4+ICAgIGRybS9p
+OTE1L2d0OiBBZGQgYW4gaW5zZXJ0X2VudHJ5IGZvciBnZW44X3BwZ3R0Cj4+ICAgIGRybS9pOTE1
+L2d0OiBBZGQgYSByb3V0aW5lIHRvIGl0ZXJhdGUgb3ZlciB0aGUgcGFnZXRhYmxlcyBvZiBhIEdU
+VAo+PiAgICBkcm0vaTkxNS9ndDogRXhwb3J0IHRoZSBwaW5uZWQgY29udGV4dCBjb25zdHJ1Y3Rv
+ciBhbmQgZGVzdHJ1Y3Rvcgo+PiAgICBkcm0vaTkxNS9ndDogUGlwZWxpbmVkIHBhZ2UgbWlncmF0
+aW9uCj4+ICAgIGRybS9pOTE1L2d0OiBQaXBlbGluZWQgY2xlYXIKPj4gICAgZHJtL2k5MTUvZ3Q6
+IFNldHVwIGEgZGVmYXVsdCBtaWdyYXRpb24gY29udGV4dCBvbiB0aGUgR1QKPj4KPj4gVGhvbWFz
+IEhlbGxzdHLDtm0gKDMpOgo+PiAgICBkcm0vaTkxNTogUmVmZXJlbmNlIG9iamVjdHMgb24gdGhl
+IHd3IG9iamVjdCBsaXN0Cj4+ICAgIGRybS9pOTE1OiBCcmVhayBvdXQgZG1hX3Jlc3Ygd3cgbG9j
+a2luZyB1dGlsaXRpZXMgdG8gc2VwYXJhdGUgZmlsZXMKPj4gICAgZHJtL2k5MTU6IEludHJvZHVj
+ZSBhIHd3IHRyYW5zYWN0aW9uIGhlbHBlcgo+Pgo+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01h
+a2VmaWxlICAgICAgICAgICAgICAgICB8ICAgMiArCj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX29iamVjdC5oICAgIHwgICA5ICstCj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvZ2VuOF9wcGd0dC5jICAgICAgICAgIHwgIDY4ICsrCj4+ICAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvaW50ZWxfZW5naW5lLmggICAgICAgIHwgIDEyICsKPj4gICBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfY3MuYyAgICAgfCAgMjcgKy0KPj4gICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC9pbnRlbF9ncHVfY29tbWFuZHMuaCAgfCAgIDIgKwo+PiAgIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX2d0LmMgICAgICAgICAgICB8ICAgNCArCj4+ICAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfdHlwZXMuaCAgICAgIHwgICAzICsKPj4gICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndHQuaCAgICAgICAgICAgfCAgIDcgKwo+PiAgIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX21pZ3JhdGUuYyAgICAgICB8IDY4NSArKysrKysr
+KysrKysrKysrKysKPj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdyYXRlLmgg
+ICAgICAgfCAgNjUgKysKPj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdyYXRl
+X3R5cGVzLmggfCAgMTUgKwo+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlbmRl
+cnN0YXRlLmggICB8ICAgMSArCj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmlu
+Zy5oICAgICAgICAgIHwgICAxICsKPj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVz
+dF9taWdyYXRlLmMgICAgfCA2NzEgKysrKysrKysrKysrKysrKysKPj4gICBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2dlbS5jICAgICAgICAgICAgICAgfCAgNTIgLS0KPj4gICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X2dlbS5oICAgICAgICAgICAgICAgfCAgMTIgLQo+PiAgIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmMgICAgICAgICAgICB8ICA2MyArKwo+PiAgIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmggICAgICAgICAgICB8ICA1MCArKwo+PiAgIC4u
+Li9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9saXZlX3NlbGZ0ZXN0cy5oICB8ICAgMSArCj4+ICAg
+Li4uL2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X3BlcmZfc2VsZnRlc3RzLmggIHwgICAxICsKPj4g
+ICAyMSBmaWxlcyBjaGFuZ2VkLCAxNjc1IGluc2VydGlvbnMoKyksIDc2IGRlbGV0aW9ucygtKQo+
+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdy
+YXRlLmMKPj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
+ZWxfbWlncmF0ZS5oCj4+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L2ludGVsX21pZ3JhdGVfdHlwZXMuaAo+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9taWdyYXRlLmMKPj4gICBjcmVhdGUgbW9kZSAxMDA2
+NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuYwo+PiAgIGNyZWF0ZSBtb2RlIDEw
+MDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV93dy5oCj4+Cj4+IC0tIAo+PiAyLjMx
+LjEKPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Pj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+PiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
