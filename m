@@ -1,42 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28193A1339
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 13:46:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0CBF3A135F
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 13:48:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 209716E038;
-	Wed,  9 Jun 2021 11:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3152C6E183;
+	Wed,  9 Jun 2021 11:48:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAACF6E133
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 11:46:31 +0000 (UTC)
-IronPort-SDR: cpoenatJvB+2C+Or7Y3tMM+fJ9no9LyUwtJt3Hqv5hEwj4Lwad7O7ueHRIrv8ZDvhxAL8MC7z8
- IaWzDz6X3V5g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="226423507"
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="226423507"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 04:46:29 -0700
-IronPort-SDR: Wro16CBwF+i0yjYyDuAeDN1nCmNYWfzys13Gsvc3TBlU09Ea9Owt9XYx7w0udEhmpz8PRMKonh
- LAx6VYDeQBmQ==
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="469846692"
-Received: from akshayka-mobl.amr.corp.intel.com (HELO intel.com)
- ([10.254.35.119])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 04:46:29 -0700
-Date: Wed, 9 Jun 2021 07:46:28 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <YMCqFKkUQ7ksprUI@intel.com>
-References: <20210609085632.22026-1-ville.syrjala@linux.intel.com>
- <20210609085632.22026-6-ville.syrjala@linux.intel.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA1376E133
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 11:48:47 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ t4-20020a1c77040000b029019d22d84ebdso4074982wmi.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 04:48:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=mBF7zxqvS60vi9Ebk6adzb8slsOwbiwvZeFxm8noKbA=;
+ b=iJTj2Bc5VJqeOdJBmugmRHmU0GdawOeXbpxda2jIZjlYhJlsYW7Cm5l7kjGK4k6JfP
+ /6dEbiuCwtImyTuGJHxkhvJo6uyHUf0FmWaX7VCDGIP9PViMmLZ3wr95+KzK0kGtNwK6
+ jzBjCp6x1Ifb4lzEdaZuktW8n6jkRjJxDkT3s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=mBF7zxqvS60vi9Ebk6adzb8slsOwbiwvZeFxm8noKbA=;
+ b=J0yQNNhwB0qaBazVp98lrcsDNkGXssWtpKr0Wi8FcMJ6JMwJMNRTYBpwzuTG36m0mD
+ 3pfuU4jYP7OiBM7e6jeZ+dqWnCKhix9jgknsovwnNahmNWpawAb1LvuFOPks4P1Oz1Sh
+ OEeSCs21/qu9It7ItAm8CZUY+8p039MGIzvNu4grNEPbKTBbarpUcm6RJFIZFLI2Djzc
+ WeMwBt2mBMBAd53w7j3yWV++SVCnXkZyGNf4qHJKpCgkqGrAIoR9gFvNKdRwuZaAlFWO
+ qDx2c6KfVErkM28YwUCJLufrmouTHrzns9YQNWPJ9zQaj1DzV1Lr8+jqsZkX/AVoUeau
+ gEWg==
+X-Gm-Message-State: AOAM5328OKC2MRn1eavKO/JQuIMI8/ClUil4KynL6dkvRUN7ez8hTMeC
+ QRL5i8gjn0l/0g8ng5mDrZ7XQw==
+X-Google-Smtp-Source: ABdhPJyM3nXF3e6nKOZ8pK7Ctg1HKTz+N+Yoy5VbkNzSO1/JKk4zBN10uZct+/Q5g5EcKpprxduWRw==
+X-Received: by 2002:a1c:1dd5:: with SMTP id d204mr9335601wmd.140.1623239326333; 
+ Wed, 09 Jun 2021 04:48:46 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g17sm18632411wrp.61.2021.06.09.04.48.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Jun 2021 04:48:45 -0700 (PDT)
+Date: Wed, 9 Jun 2021 13:48:43 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <YMCqm48rZIKLYk/s@phenom.ffwll.local>
+References: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210609085632.22026-6-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Clean up
- intel_fbdev_init_bios() a bit
+In-Reply-To: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH v2 0/9] Prereqs for TTM accelerated migration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,228 +66,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 09, 2021 at 11:56:31AM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+On Wed, Jun 09, 2021 at 08:34:27AM +0200, Thomas Hellstr=F6m wrote:
+> A couple of patches from Chris which implement pipelined migration and
+> clears by atomically writing the PTEs in place before performing the
+> actual blit.
 > =
 
-> Sort out the mess with the local variables in
-> intel_fbdev_init_bios(). Get rid of all aliasing pointers,
-> use standard naming/types, and introduc a few more locals
-
-                                         ^ typo
-
-> in the loops to avoid the hard to read long struct walks.
+> Some ww utilities mainly for the accompanying selftests added by Thomas,
+> as well as modified the above patches for ww locking- and lmem support.
 > =
 
-> While at we also polish the debugs a bit to use the
-> canonical [CRTC:%d:%s] style.
+> The actual hook up to the i915 ttm backend is being worked on and not
+> included yet, so this is considered to be an early review opportunity.
 > =
 
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbdev.c | 94 +++++++++++++---------
->  1 file changed, 56 insertions(+), 38 deletions(-)
+> v2:
+> - A couple of minor style fixes pointed out by Matthew Auld
+> - Export and use intel_engine_destroy_pinned_context() to address a
+>ls   CI warning / failure.
+
+Just to check my understanding of the plan: These are the new windowed
+clear/blt functions which we plan to use everywhere, because less nasty
+locking implications? And the clear/blt we currently have in upstream will
+be replaced?
+
+If so would be nice if this patch set includes that replacement work (I
+think right now all we have is the clear for lmem), including updating of
+selftests and stuff like that. Just to avoid having two ways to do the
+same thing in the driver.
+-Daniel
+
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
-/i915/display/intel_fbdev.c
-> index 4af40229f5ec..df05d285f0bd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -335,32 +335,43 @@ static void intel_fbdev_destroy(struct intel_fbdev =
-*ifbdev)
->   * fbcon), so we just find the biggest and use that.
->   */
->  static bool intel_fbdev_init_bios(struct drm_device *dev,
-> -				 struct intel_fbdev *ifbdev)
-> +				  struct intel_fbdev *ifbdev)
->  {
->  	struct drm_i915_private *i915 =3D to_i915(dev);
->  	struct intel_framebuffer *fb =3D NULL;
-> -	struct drm_crtc *crtc;
-> -	struct intel_crtc *intel_crtc;
-> +	struct intel_crtc *crtc;
->  	unsigned int max_size =3D 0;
->  =
+> Chris Wilson (6):
+>   drm/i915/gt: Add an insert_entry for gen8_ppgtt
+>   drm/i915/gt: Add a routine to iterate over the pagetables of a GTT
+>   drm/i915/gt: Export the pinned context constructor and destructor
+>   drm/i915/gt: Pipelined page migration
+>   drm/i915/gt: Pipelined clear
+>   drm/i915/gt: Setup a default migration context on the GT
+> =
 
->  	/* Find the largest fb */
-> -	for_each_crtc(dev, crtc) {
-> +	for_each_intel_crtc(dev, crtc) {
-> +		struct intel_crtc_state *crtc_state =3D
-> +			to_intel_crtc_state(crtc->base.state);
-> +		struct intel_plane *plane =3D
-> +			to_intel_plane(crtc->base.primary);
-> +		struct intel_plane_state *plane_state =3D
-> +			to_intel_plane_state(plane->base.state);
->  		struct drm_i915_gem_object *obj =3D
-> -			intel_fb_obj(crtc->primary->state->fb);
-> -		intel_crtc =3D to_intel_crtc(crtc);
-> +			intel_fb_obj(plane_state->uapi.fb);
+> Thomas Hellstr=F6m (3):
+>   drm/i915: Reference objects on the ww object list
+>   drm/i915: Break out dma_resv ww locking utilities to separate files
+>   drm/i915: Introduce a ww transaction helper
+> =
 
-oh, here we have again that plane_state uapi change that I don't understand
-and I'm not seeing any mention in any commit msg..
-
->  =
-
-> -		if (!crtc->state->active || !obj) {
-> +		if (!crtc_state->uapi.active) {
->  			drm_dbg_kms(&i915->drm,
-> -				    "pipe %c not active or no fb, skipping\n",
-> -				    pipe_name(intel_crtc->pipe));
-> +				    "[CRTC:%d:%s] not active, skipping\n",
-> +				    crtc->base.base.id, crtc->base.name);
-> +			continue;
-> +		}
-> +
-> +		if (!obj) {
-> +			drm_dbg_kms(&i915->drm,
-> +				    "[PLANE:%d:%s] no fb, skipping\n",
-> +				    plane->base.base.id, plane->base.name);
->  			continue;
->  		}
->  =
-
->  		if (obj->base.size > max_size) {
->  			drm_dbg_kms(&i915->drm,
-> -				    "found possible fb from plane %c\n",
-> -				    pipe_name(intel_crtc->pipe));
-> -			fb =3D to_intel_framebuffer(crtc->primary->state->fb);
-> +				    "found possible fb from [PLANE:%d:%s]\n",
-> +				    plane->base.base.id, plane->base.name);
-> +			fb =3D to_intel_framebuffer(plane_state->uapi.fb);
->  			max_size =3D obj->base.size;
->  		}
->  	}
-> @@ -372,60 +383,62 @@ static bool intel_fbdev_init_bios(struct drm_device=
- *dev,
->  	}
->  =
-
->  	/* Now make sure all the pipes will fit into it */
-> -	for_each_crtc(dev, crtc) {
-> +	for_each_intel_crtc(dev, crtc) {
-> +		struct intel_crtc_state *crtc_state =3D
-> +			to_intel_crtc_state(crtc->base.state);
-> +		struct intel_plane *plane =3D
-> +			to_intel_plane(crtc->base.primary);
->  		unsigned int cur_size;
->  =
-
-> -		intel_crtc =3D to_intel_crtc(crtc);
-> -
-> -		if (!crtc->state->active) {
-> +		if (!crtc_state->uapi.active) {
->  			drm_dbg_kms(&i915->drm,
-> -				    "pipe %c not active, skipping\n",
-> -				    pipe_name(intel_crtc->pipe));
-> +				    "[CRTC:%d:%s] not active, skipping\n",
-> +				    crtc->base.base.id, crtc->base.name);
->  			continue;
->  		}
->  =
-
-> -		drm_dbg_kms(&i915->drm, "checking plane %c for BIOS fb\n",
-> -			    pipe_name(intel_crtc->pipe));
-> +		drm_dbg_kms(&i915->drm, "checking [PLANE:%d:%s] for BIOS fb\n",
-> +			    plane->base.base.id, plane->base.name);
->  =
-
->  		/*
->  		 * See if the plane fb we found above will fit on this
->  		 * pipe.  Note we need to use the selected fb's pitch and bpp
->  		 * rather than the current pipe's, since they differ.
->  		 */
-> -		cur_size =3D crtc->state->adjusted_mode.crtc_hdisplay;
-> +		cur_size =3D crtc_state->uapi.adjusted_mode.crtc_hdisplay;
->  		cur_size =3D cur_size * fb->base.format->cpp[0];
->  		if (fb->base.pitches[0] < cur_size) {
->  			drm_dbg_kms(&i915->drm,
-> -				    "fb not wide enough for plane %c (%d vs %d)\n",
-> -				    pipe_name(intel_crtc->pipe),
-> +				    "fb not wide enough for [PLANE:%d:%s] (%d vs %d)\n",
-> +				    plane->base.base.id, plane->base.name,
->  				    cur_size, fb->base.pitches[0]);
->  			fb =3D NULL;
->  			break;
->  		}
->  =
-
-> -		cur_size =3D crtc->state->adjusted_mode.crtc_vdisplay;
-> +		cur_size =3D crtc_state->uapi.adjusted_mode.crtc_vdisplay;
->  		cur_size =3D intel_fb_align_height(&fb->base, 0, cur_size);
->  		cur_size *=3D fb->base.pitches[0];
->  		drm_dbg_kms(&i915->drm,
-> -			    "pipe %c area: %dx%d, bpp: %d, size: %d\n",
-> -			    pipe_name(intel_crtc->pipe),
-> -			    crtc->state->adjusted_mode.crtc_hdisplay,
-> -			    crtc->state->adjusted_mode.crtc_vdisplay,
-> +			    "[CRTC:%d:%s] area: %dx%d, bpp: %d, size: %d\n",
-> +			    crtc->base.base.id, crtc->base.name,
-> +			    crtc_state->uapi.adjusted_mode.crtc_hdisplay,
-> +			    crtc_state->uapi.adjusted_mode.crtc_vdisplay,
->  			    fb->base.format->cpp[0] * 8,
->  			    cur_size);
->  =
-
->  		if (cur_size > max_size) {
->  			drm_dbg_kms(&i915->drm,
-> -				    "fb not big enough for plane %c (%d vs %d)\n",
-> -				    pipe_name(intel_crtc->pipe),
-> +				    "fb not big enough for [PLANE:%d:%s] (%d vs %d)\n",
-> +				    plane->base.base.id, plane->base.name,
->  				    cur_size, max_size);
->  			fb =3D NULL;
->  			break;
->  		}
->  =
-
->  		drm_dbg_kms(&i915->drm,
-> -			    "fb big enough for plane %c (%d >=3D %d)\n",
-> -			    pipe_name(intel_crtc->pipe),
-> +			    "fb big enough [PLANE:%d:%s] (%d >=3D %d)\n",
-> +			    plane->base.base.id, plane->base.name,
->  			    max_size, cur_size);
->  	}
->  =
-
-> @@ -441,15 +454,20 @@ static bool intel_fbdev_init_bios(struct drm_device=
- *dev,
->  	drm_framebuffer_get(&ifbdev->fb->base);
->  =
-
->  	/* Final pass to check if any active pipes don't have fbs */
-> -	for_each_crtc(dev, crtc) {
-> -		intel_crtc =3D to_intel_crtc(crtc);
-> +	for_each_intel_crtc(dev, crtc) {
-> +		struct intel_crtc_state *crtc_state =3D
-> +			to_intel_crtc_state(crtc->base.state);
-> +		struct intel_plane *plane =3D
-> +			to_intel_plane(crtc->base.primary);
-> +		struct intel_plane_state *plane_state =3D
-> +			to_intel_plane_state(plane->base.state);
->  =
-
-> -		if (!crtc->state->active)
-> +		if (!crtc_state->uapi.active)
->  			continue;
->  =
-
-> -		drm_WARN(dev, !crtc->primary->state->fb,
-> -			 "re-used BIOS config but lost an fb on crtc %d\n",
-> -			 crtc->base.id);
-> +		drm_WARN(dev, !plane_state->uapi.fb,
-> +			 "re-used BIOS config but lost an fb on [PLANE:%d:%s]\n",
-> +			 plane->base.base.id, plane->base.name);
->  	}
->  =
-
->  =
+>  drivers/gpu/drm/i915/Makefile                 |   2 +
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |   9 +-
+>  drivers/gpu/drm/i915/gt/gen8_ppgtt.c          |  68 ++
+>  drivers/gpu/drm/i915/gt/intel_engine.h        |  12 +
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  27 +-
+>  drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |   2 +
+>  drivers/gpu/drm/i915/gt/intel_gt.c            |   4 +
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           |   7 +
+>  drivers/gpu/drm/i915/gt/intel_migrate.c       | 685 ++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_migrate.h       |  65 ++
+>  drivers/gpu/drm/i915/gt/intel_migrate_types.h |  15 +
+>  drivers/gpu/drm/i915/gt/intel_renderstate.h   |   1 +
+>  drivers/gpu/drm/i915/gt/intel_ring.h          |   1 +
+>  drivers/gpu/drm/i915/gt/selftest_migrate.c    | 671 +++++++++++++++++
+>  drivers/gpu/drm/i915/i915_gem.c               |  52 --
+>  drivers/gpu/drm/i915/i915_gem.h               |  12 -
+>  drivers/gpu/drm/i915/i915_gem_ww.c            |  63 ++
+>  drivers/gpu/drm/i915/i915_gem_ww.h            |  50 ++
+>  .../drm/i915/selftests/i915_live_selftests.h  |   1 +
+>  .../drm/i915/selftests/i915_perf_selftests.h  |   1 +
+>  21 files changed, 1675 insertions(+), 76 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_migrate.c
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_migrate.h
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_migrate_types.h
+>  create mode 100644 drivers/gpu/drm/i915/gt/selftest_migrate.c
+>  create mode 100644 drivers/gpu/drm/i915/i915_gem_ww.c
+>  create mode 100644 drivers/gpu/drm/i915/i915_gem_ww.h
+> =
 
 > -- =
 
@@ -281,6 +159,12 @@ and I'm not seeing any mention in any commit msg..
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
