@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37D53A164B
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 15:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1A63A16C9
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 16:14:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E6FF6E3B7;
-	Wed,  9 Jun 2021 13:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 283FE6E41D;
+	Wed,  9 Jun 2021 14:14:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0E806E3B7;
- Wed,  9 Jun 2021 13:58:41 +0000 (UTC)
-IronPort-SDR: 10z0L9Sc7/wmtTB1NABivrMyG92UN5wa6Nb3Dx91Yqwshc9yy0hShh8ZMTbqSXr7R80/7zlz5e
- K3BGUOj//lHw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="204889130"
-X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="204889130"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 06:58:41 -0700
-IronPort-SDR: zXYbYZcLHvs6Qf83PutEiCoDZ0PI4u0aKc5nBHndmVx1YGzmW423GqyIIi6MSfz3yhuqNMdfbQ
- f0vlXuhGRxQg==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F07306E400;
+ Wed,  9 Jun 2021 14:14:08 +0000 (UTC)
+IronPort-SDR: FNj0EshpGQKthOHntbKw3Q3239EmAd1nBT1P2OLEV4jZ1V+Z8KDvWw1nuZAhSJoSDZ0ZFug3rb
+ R6dJISCDK/3w==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="184767843"
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="184767843"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 07:14:08 -0700
+IronPort-SDR: LxNH69iEapDqEho/93Fiayhz8oXsxZfhqx/Ji/t9cAgRmcYBd2nny2vTRYaDiUyOH5kIAhL3QP
+ lBr8Bc67Os5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="449951816"
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="635432948"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga008.fm.intel.com with ESMTP; 09 Jun 2021 06:58:39 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 09 Jun 2021 07:14:06 -0700
 Received: from [10.249.139.139] (mwajdecz-MOBL.ger.corp.intel.com
  [10.249.139.139])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 159DwcEd028647; Wed, 9 Jun 2021 14:58:38 +0100
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
+ 159EE5Fi032589; Wed, 9 Jun 2021 15:14:05 +0100
+To: Matthew Brost <matthew.brost@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 References: <20210506191451.77768-1-matthew.brost@intel.com>
  <20210506191451.77768-37-matthew.brost@intel.com>
  <375b4de4-168f-9c4c-dbb8-f42fd6303628@linux.intel.com>
@@ -41,14 +41,13 @@ References: <20210506191451.77768-1-matthew.brost@intel.com>
  <20210527143514.GA24720@sdutt-i7>
  <828fe399-5319-78a9-c6e3-c0c027e08e9c@linux.intel.com>
  <20210607173101.GA11968@sdutt-i7>
- <2706c890-5145-4edb-acd1-b9862caba8cf@linux.intel.com>
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <c5917e2c-b2ec-93f1-8cf0-046886f5f709@intel.com>
-Date: Wed, 9 Jun 2021 15:58:38 +0200
+Message-ID: <d8bda772-6c9d-8513-d2c0-ea126ece5a24@intel.com>
+Date: Wed, 9 Jun 2021 16:14:05 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <2706c890-5145-4edb-acd1-b9862caba8cf@linux.intel.com>
+In-Reply-To: <20210607173101.GA11968@sdutt-i7>
 Content-Language: en-US
 Subject: Re: [Intel-gfx] [RFC PATCH 36/97] drm/i915/guc: Add non blocking
  CTB send function
@@ -66,158 +65,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAwOC4wNi4yMDIxIDEwOjM5LCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPiAKPiBPbiAwNy8w
-Ni8yMDIxIDE4OjMxLCBNYXR0aGV3IEJyb3N0IHdyb3RlOgo+PiBPbiBUaHUsIE1heSAyNywgMjAy
-MSBhdCAwNDoxMTo1MFBNICswMTAwLCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPj4+Cj4+PiBPbiAy
-Ny8wNS8yMDIxIDE1OjM1LCBNYXR0aGV3IEJyb3N0IHdyb3RlOgo+Pj4+IE9uIFRodSwgTWF5IDI3
-LCAyMDIxIGF0IDExOjAyOjI0QU0gKzAxMDAsIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+Pj4+Pgo+
-Pj4+PiBPbiAyNi8wNS8yMDIxIDE5OjEwLCBNYXR0aGV3IEJyb3N0IHdyb3RlOgo+Pj4+Pgo+Pj4+
-PiBbc25pcF0KPj4+Pj4KPj4+Pj4+Pj4+PiArc3RhdGljIGludCBjdF9zZW5kX25iKHN0cnVjdCBp
-bnRlbF9ndWNfY3QgKmN0LAo+Pj4+Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBj
-b25zdCB1MzIgKmFjdGlvbiwKPj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-dTMyIGxlbiwKPj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdTMyIGZsYWdz
-KQo+Pj4+Pj4+Pj4+ICt7Cj4+Pj4+Pj4+Pj4gK8KgwqDCoCBzdHJ1Y3QgaW50ZWxfZ3VjX2N0X2J1
-ZmZlciAqY3RiID0gJmN0LT5jdGJzLnNlbmQ7Cj4+Pj4+Pj4+Pj4gK8KgwqDCoCB1bnNpZ25lZCBs
-b25nIHNwaW5fZmxhZ3M7Cj4+Pj4+Pj4+Pj4gK8KgwqDCoCB1MzIgZmVuY2U7Cj4+Pj4+Pj4+Pj4g
-K8KgwqDCoCBpbnQgcmV0Owo+Pj4+Pj4+Pj4+ICsKPj4+Pj4+Pj4+PiArwqDCoMKgIHNwaW5fbG9j
-a19pcnFzYXZlKCZjdGItPmxvY2ssIHNwaW5fZmxhZ3MpOwo+Pj4+Pj4+Pj4+ICsKPj4+Pj4+Pj4+
-PiArwqDCoMKgIHJldCA9IGN0Yl9oYXNfcm9vbShjdGIsIGxlbiArIDEpOwo+Pj4+Pj4+Pj4+ICvC
-oMKgwqAgaWYgKHVubGlrZWx5KHJldCkpCj4+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGdvdG8g
-b3V0Owo+Pj4+Pj4+Pj4+ICsKPj4+Pj4+Pj4+PiArwqDCoMKgIGZlbmNlID0gY3RfZ2V0X25leHRf
-ZmVuY2UoY3QpOwo+Pj4+Pj4+Pj4+ICvCoMKgwqAgcmV0ID0gY3Rfd3JpdGUoY3QsIGFjdGlvbiwg
-bGVuLCBmZW5jZSwgZmxhZ3MpOwo+Pj4+Pj4+Pj4+ICvCoMKgwqAgaWYgKHVubGlrZWx5KHJldCkp
-Cj4+Pj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGdvdG8gb3V0Owo+Pj4+Pj4+Pj4+ICsKPj4+Pj4+
-Pj4+PiArwqDCoMKgIGludGVsX2d1Y19ub3RpZnkoY3RfdG9fZ3VjKGN0KSk7Cj4+Pj4+Pj4+Pj4g
-Kwo+Pj4+Pj4+Pj4+ICtvdXQ6Cj4+Pj4+Pj4+Pj4gK8KgwqDCoCBzcGluX3VubG9ja19pcnFyZXN0
-b3JlKCZjdGItPmxvY2ssIHNwaW5fZmxhZ3MpOwo+Pj4+Pj4+Pj4+ICsKPj4+Pj4+Pj4+PiArwqDC
-oMKgIHJldHVybiByZXQ7Cj4+Pj4+Pj4+Pj4gK30KPj4+Pj4+Pj4+PiArCj4+Pj4+Pj4+Pj4gwqDC
-oMKgwqDCoCBzdGF0aWMgaW50IGN0X3NlbmQoc3RydWN0IGludGVsX2d1Y19jdCAqY3QsCj4+Pj4+
-Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3QgdTMyICphY3Rpb24s
-Cj4+Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdTMyIGxlbiwKPj4+
-Pj4+Pj4+PiBAQCAtNDczLDYgKzU0MSw3IEBAIHN0YXRpYyBpbnQgY3Rfc2VuZChzdHJ1Y3QgaW50
-ZWxfZ3VjX2N0ICpjdCwKPj4+Pj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCB1MzIgcmVzcG9uc2VfYnVmX3NpemUsCj4+Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgdTMyICpzdGF0dXMpCj4+Pj4+Pj4+Pj4gwqDCoMKgwqDCoCB7Cj4+Pj4+Pj4+
-Pj4gK8KgwqDCoCBzdHJ1Y3QgaW50ZWxfZ3VjX2N0X2J1ZmZlciAqY3RiID0gJmN0LT5jdGJzLnNl
-bmQ7Cj4+Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBjdF9yZXF1ZXN0IHJlcXVl
-c3Q7Cj4+Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHVuc2lnbmVkIGxvbmcgZmxhZ3M7Cj4+
-Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHUzMiBmZW5jZTsKPj4+Pj4+Pj4+PiBAQCAtNDgy
-LDggKzU1MSwyMCBAQCBzdGF0aWMgaW50IGN0X3NlbmQoc3RydWN0IGludGVsX2d1Y19jdCAqY3Qs
-Cj4+Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIEdFTV9CVUdfT04oIWxlbik7Cj4+Pj4+Pj4+
-Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIEdFTV9CVUdfT04obGVuICYgfkdVQ19DVF9NU0dfTEVOX01B
-U0spOwo+Pj4+Pj4+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBHRU1fQlVHX09OKCFyZXNwb25zZV9i
-dWYgJiYgcmVzcG9uc2VfYnVmX3NpemUpOwo+Pj4+Pj4+Pj4+ICvCoMKgwqAgbWlnaHRfc2xlZXAo
-KTsKPj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiBTbGVlcCBpcyBqdXN0IGNvbmRfcmVzY2hlZCBiZWxvdyBv
-ciB0aGVyZSBpcyBtb3JlPwo+Pj4+Pj4+Pj4KPj4+Pj4+Pj4KPj4+Pj4+Pj4gWWVzLCB0aGUgY29u
-ZF9yZXNjaGVkLgo+Pj4+Pj4+Pgo+Pj4+Pj4+Pj4+ICvCoMKgwqAgLyoKPj4+Pj4+Pj4+PiArwqDC
-oMKgwqAgKiBXZSB1c2UgYSBsYXp5IHNwaW4gd2FpdCBsb29wIGhlcmUgYXMgd2UgYmVsaWV2ZSB0
-aGF0Cj4+Pj4+Pj4+Pj4gaWYgdGhlIENUCj4+Pj4+Pj4+Pj4gK8KgwqDCoMKgICogYnVmZmVycyBh
-cmUgc2l6ZWQgY29ycmVjdGx5IHRoZSBmbG93IGNvbnRyb2wgY29uZGl0aW9uCj4+Pj4+Pj4+Pj4g
-c2hvdWxkIGJlCj4+Pj4+Pj4+Pj4gK8KgwqDCoMKgICogcmFyZS4KPj4+Pj4+Pj4+PiArwqDCoMKg
-wqAgKi8KPj4+Pj4+Pj4+PiArcmV0cnk6Cj4+Pj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHNw
-aW5fbG9ja19pcnFzYXZlKCZjdC0+Y3Ricy5zZW5kLmxvY2ssIGZsYWdzKTsKPj4+Pj4+Pj4+PiAr
-wqDCoMKgIGlmICh1bmxpa2VseSghY3RiX2hhc19yb29tKGN0YiwgbGVuICsgMSkpKSB7Cj4+Pj4+
-Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmN0LT5jdGJzLnNl
-bmQubG9jaywgZmxhZ3MpOwo+Pj4+Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCBjb25kX3Jlc2NoZWQo
-KTsKPj4+Pj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgZ290byByZXRyeTsKPj4+Pj4+Pj4+PiArwqDC
-oMKgIH0KPj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiBJZiB0aGlzIHBhdGNoIGlzIGFib3V0IGFkZGluZyBh
-IG5vbi1ibG9ja2luZyBzZW5kIGZ1bmN0aW9uLCBhbmQKPj4+Pj4+Pj4+IGJlbG93IHdlIGNhbgo+
-Pj4+Pj4+Pj4gc2VlIHRoYXQgaXQgY3JlYXRlcyBhIGZvcms6Cj4+Pj4+Pj4+Pgo+Pj4+Pj4+Pj4g
-aW50ZWxfZ3VjX2N0X3NlbmQ6Cj4+Pj4+Pj4+PiAuLi4KPj4+Pj4+Pj4+IMKgwqDCoMKgaWYgKGZs
-YWdzICYgSU5URUxfR1VDX1NFTkRfTkIpCj4+Pj4+Pj4+PiDCoMKgwqDCoMKgwqDCoCByZXR1cm4g
-Y3Rfc2VuZF9uYihjdCwgYWN0aW9uLCBsZW4sIGZsYWdzKTsKPj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiDC
-oMKgwqDCoMKgwqDCoMKgIHJldCA9IGN0X3NlbmQoY3QsIGFjdGlvbiwgbGVuLCByZXNwb25zZV9i
-dWYsCj4+Pj4+Pj4+PiByZXNwb25zZV9idWZfc2l6ZSwgJnN0YXR1cyk7Cj4+Pj4+Pj4+Pgo+Pj4+
-Pj4+Pj4gVGhlbiB3aHkgaXMgdGhlcmUgYSBjaGFuZ2UgaW4gY3Rfc2VuZCBoZXJlLCB3aGljaCBp
-cyBub3QgdGhlIG5ldwo+Pj4+Pj4+Pj4gbm9uLWJsb2NraW5nIHBhdGg/Cj4+Pj4+Pj4+Pgo+Pj4+
-Pj4+Pgo+Pj4+Pj4+PiBUaGVyZSBpcyBub3QgYSBjaGFuZ2UgdG8gY3Rfc2VuZCgpLCBqdXN0IHRv
-IGludGVsX2d1Y19jdF9zZW5kLgo+Pj4+Pj4+Cj4+Pj4+Pj4gSSB3YXMgZG9pbmcgYnkgdGhlIGRp
-ZmYgd2hpY2ggc2F5czoKPj4+Pj4+Pgo+Pj4+Pj4+IMKgwqDCoCBzdGF0aWMgaW50IGN0X3NlbmQo
-c3RydWN0IGludGVsX2d1Y19jdCAqY3QsCj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBjb25zdCB1MzIgKmFjdGlvbiwKPj4+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHUzMiBsZW4sCj4+Pj4+Pj4gQEAgLTQ3Myw2ICs1NDEsNyBAQCBzdGF0aWMgaW50IGN0X3Nl
-bmQoc3RydWN0IGludGVsX2d1Y19jdCAqY3QsCj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCB1MzIgcmVzcG9uc2VfYnVmX3NpemUsCj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCB1MzIgKnN0YXR1cykKPj4+Pj4+PiDCoMKgwqAgewo+Pj4+Pj4+ICvCoMKgwqAg
-c3RydWN0IGludGVsX2d1Y19jdF9idWZmZXIgKmN0YiA9ICZjdC0+Y3Ricy5zZW5kOwo+Pj4+Pj4+
-IMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBjdF9yZXF1ZXN0IHJlcXVlc3Q7Cj4+Pj4+Pj4gwqDCoMKg
-wqDCoMKgwqAgdW5zaWduZWQgbG9uZyBmbGFnczsKPj4+Pj4+PiDCoMKgwqDCoMKgwqDCoCB1MzIg
-ZmVuY2U7Cj4+Pj4+Pj4gQEAgLTQ4Miw4ICs1NTEsMjAgQEAgc3RhdGljIGludCBjdF9zZW5kKHN0
-cnVjdCBpbnRlbF9ndWNfY3QgKmN0LAo+Pj4+Pj4+IMKgwqDCoMKgwqDCoMKgIEdFTV9CVUdfT04o
-IWxlbik7Cj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqAgR0VNX0JVR19PTihsZW4gJiB+R1VDX0NUX01T
-R19MRU5fTUFTSyk7Cj4+Pj4+Pj4gwqDCoMKgwqDCoMKgwqAgR0VNX0JVR19PTighcmVzcG9uc2Vf
-YnVmICYmIHJlc3BvbnNlX2J1Zl9zaXplKTsKPj4+Pj4+PiArwqDCoMKgIG1pZ2h0X3NsZWVwKCk7
-Cj4+Pj4+Pj4gK8KgwqDCoCAvKgo+Pj4+Pj4+ICvCoMKgwqDCoCAqIFdlIHVzZSBhIGxhenkgc3Bp
-biB3YWl0IGxvb3AgaGVyZSBhcyB3ZSBiZWxpZXZlIHRoYXQgaWYKPj4+Pj4+PiB0aGUgQ1QKPj4+
-Pj4+PiArwqDCoMKgwqAgKiBidWZmZXJzIGFyZSBzaXplZCBjb3JyZWN0bHkgdGhlIGZsb3cgY29u
-dHJvbCBjb25kaXRpb24KPj4+Pj4+PiBzaG91bGQgYmUKPj4+Pj4+PiArwqDCoMKgwqAgKiByYXJl
-Lgo+Pj4+Pj4+ICvCoMKgwqDCoCAqLwo+Pj4+Pj4+ICtyZXRyeToKPj4+Pj4+PiDCoMKgwqDCoMKg
-wqDCoCBzcGluX2xvY2tfaXJxc2F2ZSgmY3QtPmN0YnMuc2VuZC5sb2NrLCBmbGFncyk7Cj4+Pj4+
-Pj4gK8KgwqDCoCBpZiAodW5saWtlbHkoIWN0Yl9oYXNfcm9vbShjdGIsIGxlbiArIDEpKSkgewo+
-Pj4+Pj4+ICvCoMKgwqDCoMKgwqDCoCBzcGluX3VubG9ja19pcnFyZXN0b3JlKCZjdC0+Y3Ricy5z
-ZW5kLmxvY2ssIGZsYWdzKTsKPj4+Pj4+PiArwqDCoMKgwqDCoMKgwqAgY29uZF9yZXNjaGVkKCk7
-Cj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGdvdG8gcmV0cnk7Cj4+Pj4+Pj4gK8KgwqDCoCB9Cj4+
-Pj4+Pj4KPj4+Pj4+PiBTbyBpdCBsb29rcyBsaWtlIGEgY2hhbmdlIHRvIGN0X3NlbmQgdG8gbWUu
-IElzIHRoYXQgd3Jvbmc/Cj4+Pj4+Cj4+Pj4+IFdoYXQgYWJvdXQgdGhpcyBwYXJ0IC0gaXMgdGhl
-IHBhdGNoIGNoYW5naW5nIHRoZSBibG9ja2luZyBjdF9zZW5kCj4+Pj4+IG9yIG5vdCwKPj4+Pj4g
-YW5kIGlmIGl0IGlzIHdoeT8KPj4+Pj4KPj4+Pgo+Pj4+IFllcywgY3Rfc2VuZCgpIGNoYW5nZXMu
-IFNvcnJ5IGZvciB0aGUgY29uZnVzaW9uLgo+Pj4+Cj4+Pj4gVGhpcyBmdW5jdGlvbiBuZWVkcyB0
-byBiZSB1cGRhdGVkIHRvIGFjY291bnQgZm9yIHRoZSBIMkcgc3BhY2UgYW5kCj4+Pj4gYmFja29m
-ZiBpZiBubyBzcGFjZSBpcyBhdmFpbGFibGUuCj4+Pgo+Pj4gU2luY2UgdGhpcyBvbmUgaXMgdGhl
-IHNsZWVwaW5nIHBhdGgsIGl0IHByb2JhYmx5IGNhbiBhbmQgbmVlZHMgdG8gYmUKPj4+IHNtYXJ0
-ZXIKPj4+IHRoYW4gaGF2aW5nIGEgY29uZF9yZXNjaGVkIGJ1c3kgbG9vcCBhZGRlZC4gTGlrZSBz
-bGVlcCBhbmQgZ2V0IHdva2VuCj4+PiB1cCB3aGVuCj4+PiB0aGVyZSBpcyBzcGFjZS4gT3RoZXJ3
-aXNlIGl0IGNhbiBkZWdlbmVyYXRlIHRvIGJ1c3kgbG9vcGluZyB2aWEKPj4+IGNvbnRlbnRpb24K
-Pj4+IHdpdGggdGhlIG5vbi1ibG9ja2luZyBwYXRoLgo+Pj4KPj4KPj4gVGhhdCBzY3JlYW1zIG92
-ZXIgZW5naW5lcnJpbmcgYSBzaW1wbGUgcHJvYmxlbSB0byBtZS4gSWYgdGhlIENUIGNoYW5uZWwK
-Pj4gaXMgZnVsbCB3ZSBhcmUgcmVhbGx5IGluIHRyb3VibGUgYW55d2F5cyAtIGkuZS4gdGhlIHBl
-cmZvcm1hbmNlIGlzIGdvaW5nCj4+IHRvIHRlcnJpYmxlIGFzIHdlIG92ZXJ3aGVsbWVkIHRoZSBH
-dUMgd2l0aCB0cmFmZmljLiBUaGF0IGJlaW5nIHNhaWQsCj4gCj4gUGVyZm9ybWFuY2Ugb2Ygd2hh
-dCB3b3VsZCBiZSB0ZXJyaWJsZT8gU29tZXRoaW5nIHJlbGF0aW5nIHRvIHN1Ym1pdHRpbmcKPiBu
-ZXcgam9icyB0byB0aGUgR1BVIEkgZ3Vlc3MuIE9yIHNvbWV0aGluZyBTUklPViByZWxhdGVkIGFz
-IHlvdSBoaW50IGJlbG93Lgo+IAo+IEJ1dCB0aGVyZSBpcyBubyByZWFsIHJlYXNvbiB3aHkgQ1BV
-IGN5Y2xlcy9wb3dlciBzaG91bGQgc3VmZmVyIGlmIEd1QyBpcwo+IGJ1c3kuCj4gCj4gT2theSwg
-aWYgaXQgY2FuJ3QgaGFwcGVuIGluIHJlYWwgd29ybGQgdGhlbiBpdCdzIHBvc3NpYmx5IHBhc3Nh
-YmxlIGFzIGEKCmlmIHRoYXQgY2FuJ3QgaGFwcGVuIGluIHJlYWwgd29ybGQsIHRoZW4gbWF5YmUg
-d2UgY2FuIGp1c3QgcmV0dXJuCi1FTk9TUEMvLUVCVVNZIHRvIHJlcG9ydCB0aGF0ICd1bmV4cGVj
-dGVkJyBjYXNlLCBpbnN0ZWFkIG9mIGhpZGluZyBpdApiZWhpbmQgc2lsZW50IGJ1c3kgbG9vcCA/
-Cgo+IGRlc2lnbiBvZiBhIGNvbW11bmljYXRpb24gaW50ZXJmYWNlLiBCdXQgdG8gbWUgaXQgbGVh
-dmVzIGEgYmFkIHRhc3RlIGFuZAo+IGEgZG91YnQgdGhhdCB0aGVyZSBpcyB0aGlzIG90aGVyIGFz
-cGVjdCBvZiB0aGUgcmVhbCB3b3JsZC4gQW5kIHRoYXQgaXMKPiB3aGVuIHRoZSB1bmV4cGVjdGVk
-IGhhcHBlbnMuIEV2ZW4gdGhlIG1vc3QgdHJpdmlhbCB0aGluZ3MgbGlrZSBhIGJ1ZyBpbgo+IEd1
-QyBmaXJtd2FyZSBjYXVzZXMgdGhlIGRyaXZlciB0byBidXN5IHNwaW4gaW4gdGhlcmUuIFNvIG5v
-dCBtdWNoCj4gaGFwcGVuaW5nIG9uIHRoZSBtYWNoaW5lIGJ1dCBDUFUgY29yZXMgcGlubmVkIGJ1
-cm5pbmcgY3ljbGVzIGluIHRoaXMKPiBjb2RlLiBJdCdzIGp1c3QgbGF6eSBhbmQgbm90IHJvYnVz
-dCBkZXNpZ24uICJCdWcgI25ubm5uIC0gSGlnaCBDUFUgdXNhZ2UKPiBhbmQgR1VJIGJsb2NrZWQg
-LSBTb2x1dGlvbjogVXBncmFkZSBHdUMgZmlybXdhcmUgYW5kIF9yZWJvb3RfIHRoZQo+IG1hY2hp
-bmUiLiBPaCB3ZWxsLi4KPiAKPiBBdCBsZWFzdCBJIHRoaW5rIHRoZSBjb21taXQgbWVzc2FnZSBz
-aG91bGQgc3BlbGwgb3V0IGNsZWFybHkgdGhhdCBhIGJ1c3kKPiBsb29waW5nIHBhdGggaXMgYmVp
-bmcgYWRkZWQgdG8gdGhlIHNsZWVwaW5nIHNlbmQgYXMgYSBkb3duc2lkZSBvZgo+IGltcGxlbWVu
-dGF0aW9uIGNob2ljZXMuIFN0aWxsLCBmb3IgdGhlIHJlY29yZCwgSSBvYmplY3QgdG8gdGhlIGRl
-c2lnbi4KPiAKPiBSZWdhcmRzLAo+IAo+IFR2cnRrbwo+IAo+PiBJR1RzIGNhbiBkbyB0aGlzIGJ1
-dCB0aGF0IHJlYWxseSBpc24ndCBhIHJlYWwgd29ybGQgdXNlIGNhc2UuIEZvciB0aGUKPj4gcmVh
-bCB3b3JsZCwgdGhpcyBidWZmZXIgaXMgbGFyZ2UgZW5vdWdoIHRoYXQgaXQgd29uJ3QgZXZlciBi
-ZSBmdWxsIGhlbmNlCj4+IHRoZSBjb21tZW50ICsgbGF6eSBzcGluIGxvb3AuCj4+Cj4+IE5leHQs
-IGl0IGlzbid0IGxpa2Ugd2UgZ2V0IGFuIGludGVycnVwdCBvciBzb21ldGhpbmcgd2hlbiBzcGFj
-ZQo+PiBiZWNvbWVzIGF2YWlsYWJsZSBzbyBob3cgd291bGQgd2Ugd2FrZSB0aGlzIHRocmVhZD8g
-Q291bGQgd2UgY29tZSB1cAo+PiB3aXRoIGEgY29udm9sdXRlZCBzY2hlbWUgd2hlcmUgd2UgaW5z
-ZXJ0IG9wcyB0aGF0IGdlbmVyYXRlZCBhbiBpbnRlcnJ1cHQKPj4gYXQgcmVndWxhciBpbnRlcnZh
-bHMsIHByb2JhYmx5PyBXb3VsZCBpdCBiZSBzdXBlciBjb21wbGljYXRlZCwgdG90YWxseQo+PiB1
-bm5lY2Vzc2FyeSwgYW5kIGdhaW4gdXNlIG5vdGhpbmcgLSBhYnNvbHV0ZWx5Lgo+Pgo+PiBMYXN0
-bHksIGJsb2NraW5nIENUQnMgcmVhbGx5IHNob3VsZG4ndCBldmVyIGJlIHVzZWQuIENlcnRhaW5s
-eSB0aGUKPj4gc3VibWlzc2lvbiBjb2RlIGRvZXNuJ3QgdXNlIHRoZXNlLiBJIHRoaW5rIFNSSU9W
-IG1pZ2h0LCBidXQgdGhvc2UgY2FuCj4+IHByb2JhYmx5IGJlIHJld29ya2VkIHRvbyB0byB1c2Ug
-bm9uLWJsb2NraW5nLiBBdCBzb21lIHBvaW50IHdlIG1pZ2h0Cj4+IHdhbnQgdG8gc2NydWIgdGhl
-IGRyaXZlciBhbmQganVzdCBkZWxldGUgdGhlIGJsb2NraW5nIHBhdGguCj4+Cj4+IE1hdHQKPj4K
-Pj4+IFJlZ2FyZHMsCj4+Cj4+Pgo+Pj4gVHZydGtvCj4gX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+
+
+On 07.06.2021 19:31, Matthew Brost wrote:
+> On Thu, May 27, 2021 at 04:11:50PM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 27/05/2021 15:35, Matthew Brost wrote:
+>>> On Thu, May 27, 2021 at 11:02:24AM +0100, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 26/05/2021 19:10, Matthew Brost wrote:
+>>>>
+>>>> [snip]
+>>>>
+>>>>>>>>> +static int ct_send_nb(struct intel_guc_ct *ct,
+>>>>>>>>> +		      const u32 *action,
+>>>>>>>>> +		      u32 len,
+>>>>>>>>> +		      u32 flags)
+>>>>>>>>> +{
+>>>>>>>>> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>>>>>>>>> +	unsigned long spin_flags;
+>>>>>>>>> +	u32 fence;
+>>>>>>>>> +	int ret;
+>>>>>>>>> +
+>>>>>>>>> +	spin_lock_irqsave(&ctb->lock, spin_flags);
+>>>>>>>>> +
+>>>>>>>>> +	ret = ctb_has_room(ctb, len + 1);
+>>>>>>>>> +	if (unlikely(ret))
+>>>>>>>>> +		goto out;
+>>>>>>>>> +
+>>>>>>>>> +	fence = ct_get_next_fence(ct);
+>>>>>>>>> +	ret = ct_write(ct, action, len, fence, flags);
+>>>>>>>>> +	if (unlikely(ret))
+>>>>>>>>> +		goto out;
+>>>>>>>>> +
+>>>>>>>>> +	intel_guc_notify(ct_to_guc(ct));
+>>>>>>>>> +
+>>>>>>>>> +out:
+>>>>>>>>> +	spin_unlock_irqrestore(&ctb->lock, spin_flags);
+>>>>>>>>> +
+>>>>>>>>> +	return ret;
+>>>>>>>>> +}
+>>>>>>>>> +
+>>>>>>>>>      static int ct_send(struct intel_guc_ct *ct,
+>>>>>>>>>      		   const u32 *action,
+>>>>>>>>>      		   u32 len,
+>>>>>>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>>>>>      		   u32 response_buf_size,
+>>>>>>>>>      		   u32 *status)
+>>>>>>>>>      {
+>>>>>>>>> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>>>>>>>>>      	struct ct_request request;
+>>>>>>>>>      	unsigned long flags;
+>>>>>>>>>      	u32 fence;
+>>>>>>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>>>>>      	GEM_BUG_ON(!len);
+>>>>>>>>>      	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+>>>>>>>>>      	GEM_BUG_ON(!response_buf && response_buf_size);
+>>>>>>>>> +	might_sleep();
+>>>>>>>>
+>>>>>>>> Sleep is just cond_resched below or there is more?
+>>>>>>>>
+>>>>>>>
+>>>>>>> Yes, the cond_resched.
+>>>>>>>
+>>>>>>>>> +	/*
+>>>>>>>>> +	 * We use a lazy spin wait loop here as we believe that if the CT
+>>>>>>>>> +	 * buffers are sized correctly the flow control condition should be
+>>>>>>>>> +	 * rare.
+>>>>>>>>> +	 */
+>>>>>>>>> +retry:
+>>>>>>>>>      	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+>>>>>>>>> +	if (unlikely(!ctb_has_room(ctb, len + 1))) {
+>>>>>>>>> +		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+>>>>>>>>> +		cond_resched();
+>>>>>>>>> +		goto retry;
+>>>>>>>>> +	}
+>>>>>>>>
+>>>>>>>> If this patch is about adding a non-blocking send function, and below we can
+>>>>>>>> see that it creates a fork:
+>>>>>>>>
+>>>>>>>> intel_guc_ct_send:
+>>>>>>>> ...
+>>>>>>>> 	if (flags & INTEL_GUC_SEND_NB)
+>>>>>>>> 		return ct_send_nb(ct, action, len, flags);
+>>>>>>>>
+>>>>>>>>     	ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
+>>>>>>>>
+>>>>>>>> Then why is there a change in ct_send here, which is not the new
+>>>>>>>> non-blocking path?
+>>>>>>>>
+>>>>>>>
+>>>>>>> There is not a change to ct_send(), just to intel_guc_ct_send.
+>>>>>>
+>>>>>> I was doing by the diff which says:
+>>>>>>
+>>>>>>    static int ct_send(struct intel_guc_ct *ct,
+>>>>>>    		   const u32 *action,
+>>>>>>    		   u32 len,
+>>>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>>    		   u32 response_buf_size,
+>>>>>>    		   u32 *status)
+>>>>>>    {
+>>>>>> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>>>>>>    	struct ct_request request;
+>>>>>>    	unsigned long flags;
+>>>>>>    	u32 fence;
+>>>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
+>>>>>>    	GEM_BUG_ON(!len);
+>>>>>>    	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+>>>>>>    	GEM_BUG_ON(!response_buf && response_buf_size);
+>>>>>> +	might_sleep();
+>>>>>> +	/*
+>>>>>> +	 * We use a lazy spin wait loop here as we believe that if the CT
+>>>>>> +	 * buffers are sized correctly the flow control condition should be
+>>>>>> +	 * rare.
+>>>>>> +	 */
+>>>>>> +retry:
+>>>>>>    	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+>>>>>> +	if (unlikely(!ctb_has_room(ctb, len + 1))) {
+>>>>>> +		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+>>>>>> +		cond_resched();
+>>>>>> +		goto retry;
+>>>>>> +	}
+>>>>>>
+>>>>>> So it looks like a change to ct_send to me. Is that wrong?
+>>>>
+>>>> What about this part - is the patch changing the blocking ct_send or not,
+>>>> and if it is why?
+>>>>
+>>>
+>>> Yes, ct_send() changes. Sorry for the confusion.
+>>>
+>>> This function needs to be updated to account for the H2G space and
+>>> backoff if no space is available.
+>>
+>> Since this one is the sleeping path, it probably can and needs to be smarter
+>> than having a cond_resched busy loop added. Like sleep and get woken up when
+>> there is space. Otherwise it can degenerate to busy looping via contention
+>> with the non-blocking path.
+>>
+> 
+> That screams over enginerring a simple problem to me. If the CT channel
+> is full we are really in trouble anyways - i.e. the performance is going
+> to terrible as we overwhelmed the GuC with traffic. That being said,
+> IGTs can do this but that really isn't a real world use case. For the
+> real world, this buffer is large enough that it won't ever be full hence
+> the comment + lazy spin loop.
+> 
+> Next, it isn't like we get an interrupt or something when space
+> becomes available so how would we wake this thread? Could we come up
+> with a convoluted scheme where we insert ops that generated an interrupt
+> at regular intervals, probably? Would it be super complicated, totally
+> unnecessary, and gain use nothing - absolutely.
+> 
+> Lastly, blocking CTBs really shouldn't ever be used. Certainly the
+> submission code doesn't use these. I think SRIOV might, but those can
+> probably be reworked too to use non-blocking. At some point we might
+> want to scrub the driver and just delete the blocking path.
+
+I guess the main problem is not with "blocking CTBs", as now only
+calling thread is "blocked" waiting for reply and other threads can
+still send their CTBs (blocked/nonblocking), but the fact that we are
+sending too many messages, stopping only when CTB is full, and even then
+trying hard to squeeze that message again.
+
+it should be caller responsibility to throttle its stream of
+non-blocking CTBs if either we are running out of CTB but if we have too
+many "non-blocking" requests in flight.
+
+making CTB buffer just larger and larger does not solve the problem,
+only makes it less visible
+
+and as you are using busy-loop to send even 'non-blocking' CTBs, it
+might indicate that your code is not prepared to step-back in case of
+any temporary CTB congestion
+
+also note that currently all CTB messages are asynchronous, REQUEST /
+RESPONSE pair could be processed in fully non-blocking approach, but
+that would require refactoring of part driver into event-driven state
+machine, as sometimes we can't move forward without information that we
+are waiting from the GuC (and blocking was simplest solution for that)
+
+but if your submission code is already  event-driven, then it should be
+easier to trigger state machine into 'retry' mode without using this
+busy-loop
+
+> 
+> Matt
+> 
+>> Regards,
+> 
+>>
+>> Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
