@@ -1,45 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920843A1CCF
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 20:31:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F8A3A1DAD
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 21:25:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCF9D6EACA;
-	Wed,  9 Jun 2021 18:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE4E66EAE1;
+	Wed,  9 Jun 2021 19:25:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F7026EA95;
- Wed,  9 Jun 2021 18:31:06 +0000 (UTC)
-IronPort-SDR: /7zTofgrN51Vmij7e1ALenlZt9J3X5ETJx4ERCRRCmXlyqUhFwX2+XCH3HQBO9lnS9RgcZJjZT
- TLD+GM5M3hQg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="268991697"
-X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="268991697"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 11:31:05 -0700
-IronPort-SDR: lnmHA+e+hAUUN7Vw0gp3Oy14Mz9YU3lB0SlYhr6UNuAliincOux4Vgnkv/gpbk0R8pHzkozsGU
- e88rBEaN+UJA==
-X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="402531898"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.212.56.85])
- ([10.212.56.85])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 11:31:05 -0700
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210603164812.19045-1-matthew.brost@intel.com>
- <20210603164812.19045-2-matthew.brost@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <2eee394b-a040-2912-600c-51c08f9960c9@intel.com>
-Date: Wed, 9 Jun 2021 11:31:02 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
-MIME-Version: 1.0
-In-Reply-To: <20210603164812.19045-2-matthew.brost@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F04D86EAE1
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 19:25:38 +0000 (UTC)
+IronPort-SDR: 2N60TPBYWh1NpqWt/c8/Ny5jpuNGRfqSG1VDVtMVM0nmiFAocKCokzI5WMbBfRaTJBzglq8eVx
+ b8MifSa5QDrA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="202125135"
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="202125135"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 12:25:38 -0700
+IronPort-SDR: VlLmEiljn1OOpSoBJg/jYtYfFzmv9MbR0lr5eLZ1k+wfTxctv+is78XHimwU/vm/KZJMHUh536
+ aYDnhakMCZyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,261,1616482800"; d="scan'208";a="419389838"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga002.jf.intel.com with ESMTP; 09 Jun 2021 12:25:37 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 9 Jun 2021 12:25:37 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 9 Jun 2021 12:25:36 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.008;
+ Wed, 9 Jun 2021 12:25:36 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v2 4/4] drm/i915/display: Drop FIXME about turn off
+ infoframes
+Thread-Index: AQHXSRefIIBe/a95zUucXle+Kye526sKUm6AgAJcMIA=
+Date: Wed, 9 Jun 2021 19:25:36 +0000
+Message-ID: <07ca2b6b6e730531d4387436002cc86608839398.camel@intel.com>
+References: <20210514232247.144542-1-jose.souza@intel.com>
+ <20210514232247.144542-4-jose.souza@intel.com> <YL8btV/81CFi+ytm@intel.com>
+In-Reply-To: <YL8btV/81CFi+ytm@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/uc: Use platform specific
- defaults for GuC/HuC enabling
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-ID: <F30088D927997B44AD8CD76D709FF250@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Drop FIXME about
+ turn off infoframes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,64 +67,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 6/3/2021 9:48 AM, Matthew Brost wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
->
-> The meaning of 'default' for the enable_guc module parameter has been
-> updated to accurately reflect what is supported on current platforms.
-> So start using the defaults instead of forcing everything off.
-> Although, note that right now, the default is for everything to be off
-> anyway. So this is not a change for current platforms.
->
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Double checked the CI results and the 2 errors are unrelated.
-Pushed to gt-next.
-
-Daniele
-
-> ---
->   drivers/gpu/drm/i915/i915_params.c | 2 +-
->   drivers/gpu/drm/i915/i915_params.h | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 0320878d96b0..e07f4cfea63a 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -160,7 +160,7 @@ i915_param_named_unsafe(edp_vswing, int, 0400,
->   i915_param_named_unsafe(enable_guc, int, 0400,
->   	"Enable GuC load for GuC submission and/or HuC load. "
->   	"Required functionality can be selected using bitmask values. "
-> -	"(-1=auto, 0=disable [default], 1=GuC submission, 2=HuC load)");
-> +	"(-1=auto [default], 0=disable, 1=GuC submission, 2=HuC load)");
->   
->   i915_param_named(guc_log_level, int, 0400,
->   	"GuC firmware logging level. Requires GuC to be loaded. "
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> index 4a114a5ad000..f27eceb82c0f 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -59,7 +59,7 @@ struct drm_printer;
->   	param(int, disable_power_well, -1, 0400) \
->   	param(int, enable_ips, 1, 0600) \
->   	param(int, invert_brightness, 0, 0600) \
-> -	param(int, enable_guc, 0, 0400) \
-> +	param(int, enable_guc, -1, 0400) \
->   	param(int, guc_log_level, -1, 0400) \
->   	param(char *, guc_firmware_path, NULL, 0400) \
->   	param(char *, huc_firmware_path, NULL, 0400) \
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIxLTA2LTA4IGF0IDEwOjI2ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIEZyaSwgTWF5IDE0LCAyMDIxIGF0IDA0OjIyOjQ3UE0gLTA3MDAsIEpvc8OpIFJvYmVy
+dG8gZGUgU291emEgd3JvdGU6DQo+ID4gaW50ZWxfZHBfc2V0X2luZm9mcmFtZXMoKSBjYWxsIGlu
+IGludGVsX2RkaV9wb3N0X2Rpc2FibGVfZHAoKSB3aWxsDQo+ID4gdGFrZSBjYXJlIHRvIGRpc2Fi
+bGUgYWxsIGVuYWJsZWQgaW5mb2ZyYW1lcy4NCj4gPiANCj4gPiBDYzogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PD
+qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDEgLQ0KPiA+ICAxIGZp
+bGUgY2hhbmdlZCwgMSBkZWxldGlvbigtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kZGkuYw0KPiA+IGluZGV4IDViYzU1MjhmMzA5MS4uZDNiYzVhMWE5MzZh
+IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
+LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+
+ID4gQEAgLTI3NjIsNyArMjc2Miw2IEBAIHN0YXRpYyB2b2lkIGludGVsX2RkaV9wcmVfZW5hYmxl
+KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+ICAJCQkJCWNvbm5fc3RhdGUp
+Ow0KPiA+ICANCj4gPiAgCQkvKiBGSVhNRSBwcmVjb21wdXRlIGV2ZXJ5dGhpbmcgcHJvcGVybHkg
+Ki8NCj4gPiAtCQkvKiBGSVhNRSBob3cgZG8gd2UgdHVybiBpbmZvZnJhbWVzIG9mZiBhZ2Fpbj8g
+Ki8NCj4gDQo+IFRoZSBGSVhNRSB3YXMgdGhlcmUgZm9yIExTUENPTiBhbmQgc2hvdWxkbid0IGhh
+dmUgYmVlbiByZW1vdmVkLg0KPiBObyBvbmUgaGFzIHlldCBmaWd1cmVkIG91dCBob3cgdG8gZG8g
+dGhpcy4NCg0KaW50ZWxfZGRpX3Bvc3RfZGlzYWJsZV9kcCgpLT5pbnRlbF9kcF9zZXRfaW5mb2Zy
+YW1lcygpIHdpbGwgYmUgZXhlY3V0ZWQgZm9yIExTUENPTiwgb3IgYW0gSSBtaXNzaW5nIHNvbWV0
+aGluZz8NCg0KPiANCj4gPiAgCQlpZiAoZGlnX3BvcnQtPmxzcGNvbi5hY3RpdmUgJiYgZGlnX3Bv
+cnQtPmRwLmhhc19oZG1pX3NpbmspDQo+ID4gIAkJCWRpZ19wb3J0LT5zZXRfaW5mb2ZyYW1lcyhl
+bmNvZGVyLCB0cnVlLCBjcnRjX3N0YXRlLA0KPiA+ICAJCQkJCQkgY29ubl9zdGF0ZSk7DQo+ID4g
+LS0gDQo+ID4gMi4zMS4xDQo+IA0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZngK
