@@ -2,63 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE323A1C14
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E4B3A1C15
 	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 19:44:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E78036EA8A;
-	Wed,  9 Jun 2021 17:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4136EA8E;
+	Wed,  9 Jun 2021 17:44:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com
- [IPv6:2607:f8b0:4864:20::1034])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EAD16EA89
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 17:44:32 +0000 (UTC)
-Received: by mail-pj1-x1034.google.com with SMTP id
- go18-20020a17090b03d2b029016e4ae973f7so780033pjb.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 10:44:32 -0700 (PDT)
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
+ [IPv6:2607:f8b0:4864:20::630])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44BCC6EA89
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 17:44:34 +0000 (UTC)
+Received: by mail-pl1-x630.google.com with SMTP id v11so4481392ply.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 10:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=G+hLgeiGvYpyFrjLGrbFT9e+VhCR6ZRDXGOupSKTV44=;
- b=amjbHSsbeANUvL/3K1dxs2SRmTU0/jqX1aE7rUjCsFTCzb8IhoXoPKI7qmsC4vUvhM
- YyH9GEaYHJlEsFiPGxvMt1lKMDt1xMy9OResAisNo1QRD5SznzqtZH1As9yquvo35quc
- YGw6/KjFTlRQcbl7qo/rzv1yyPrgOm4iuRqqOQEZPZmRQfSwx6MT5L9bRtCQBr5+GKrr
- cxhflsX2SGm/0cBnmksDGpZ0bTh5kktdMrd4vHrkgQfC8wo3o8revhgJcTj7Ip1y77/m
- OssaYkBOcet8yYru9bF5fplull1e9zBuxAvV2U62bJ30pXwfbHsfFaThxdjiruumfv6F
- 5sgQ==
+ bh=J/NWS0wAR/VhL8RD3Lx0MO0tkjU+AYvOrjsMp/U2PwQ=;
+ b=J6FRKznFxml2xStBAulr402ia5feXCh5og5zLI1P5EhuX//Nwawgvr5IlDSVYUxCkx
+ awq55lqjQEwhyfp4sRJtl5ONTPDQ32Wv4ZrtN7k4jwnkkQO9+5SqrV+vOxjEH/3Zl9YS
+ KZRtYRIEGz7cSyxWTpor0OBJ5kIqXpK1Acpqug/EkifqsYrISR4oeUZ+RYul62a+PEqh
+ WE3sz7ownMhnRCYTRQRvL7LBzIJZ8GsMqoF8jjaJ3fYaOMl7LQoOC6jxT5d5MfR4yOb+
+ HZw2ObqRSiygblFf8jmdnyZlfb89Inl9Pr4VTBGdLFWkColxMkP6hgm04U8yTOrVoCGM
+ eMNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=G+hLgeiGvYpyFrjLGrbFT9e+VhCR6ZRDXGOupSKTV44=;
- b=VQCjSXHv8KqbZG4cTIzUyuz3HNMw4wITZ8TT/8Nv7Sl9qEgqyleyAGBbpVNvZLOzmq
- +9qk+CARQyVNgyjGdQ0ML0KN4OWMAEib7c/lO0hXohisK6c6giKsro1ZCXvhUjOtYUQ/
- oIHf6169OG11EQWrZI1wQhY6GnUj5MyM1dJbq7Rog6n1B+cCGZGuP4W+T2siVEqw17d3
- 2NRmgFLzIykVy132p9JjeIAvK68EmOF3ETCZxJT0Wt15PQxdk6kyydYw7dnrrZsi1Frv
- MLk6kWdIoBrdEEbvRXgZzyHbJTBaJXYay+DRJSiBoUBs8WhRrvzr0Bj7y25M4knIi+UM
- oc/Q==
-X-Gm-Message-State: AOAM533+5eHAo33II9BVoRn+XDE+acpTfgpuYIG2feUU4w1SdWCTYlTt
- yHkDuPrClremNTE6TLfAOt4aow==
-X-Google-Smtp-Source: ABdhPJzRHJbkf31MUgBFOoeMfiReksDZyvwcoAtc531uf+fkuEHz78+O6x4+4oUlmQn22eg5u8FiwQ==
-X-Received: by 2002:a17:90a:24a:: with SMTP id
- t10mr712014pje.178.1623260672178; 
- Wed, 09 Jun 2021 10:44:32 -0700 (PDT)
+ bh=J/NWS0wAR/VhL8RD3Lx0MO0tkjU+AYvOrjsMp/U2PwQ=;
+ b=C6W5IhKh8KbI/P600FghFLRv6mAdk7UsAOdkGZVs9qbCTfCuDhDu37JGavwpnMfECP
+ 8XwSoFT6n56VKMG4iz7f9FeMJOY8+iV+BpLqLTFDK+v5QIw/ME9pIOf0UcHq7+9PLyGQ
+ uGg7OCRWuWCXpyOlpODh4vAx3apWwX2+McUlHLo8N3upvsnPEn3LdE612IlQbiAEdauy
+ jtAFPkFQVXthfm+w/5Zqgxd+nQ5iLtQVi9mRnMn4LWYGprQ+zzNL1oVXDz40vRZ5hzbR
+ oRZtOkSedfeLHAE/6JZxHZq6XoiHZJNHbaFkoEGfr9NLJ23iPRvJcKpXwS77HhRZmzKl
+ 3UXA==
+X-Gm-Message-State: AOAM531ugziJ6CpRRYHN0EQHTATTsJZdhZQZsKhxF6d5m3+rHakH53yk
+ Wlz/DFpownwNcgnHVb+qWIlYGw==
+X-Google-Smtp-Source: ABdhPJxh/IsShVpa/K8PIjw379Q5U3NWtwJDcn755+r6kcWX6SzAJ5bwiH99j32EuZxf/TctzLvakg==
+X-Received: by 2002:a17:90a:4a0e:: with SMTP id
+ e14mr11867265pjh.209.1623260673801; 
+ Wed, 09 Jun 2021 10:44:33 -0700 (PDT)
 Received: from omlet.lan (jfdmzpr04-ext.jf.intel.com. [134.134.137.73])
- by smtp.gmail.com with ESMTPSA id b10sm208619pfi.122.2021.06.09.10.44.30
+ by smtp.gmail.com with ESMTPSA id b10sm208619pfi.122.2021.06.09.10.44.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Jun 2021 10:44:31 -0700 (PDT)
+ Wed, 09 Jun 2021 10:44:33 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed,  9 Jun 2021 12:43:52 -0500
-Message-Id: <20210609174418.249585-6-jason@jlekstrand.net>
+Date: Wed,  9 Jun 2021 12:43:53 -0500
+Message-Id: <20210609174418.249585-7-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210609174418.249585-1-jason@jlekstrand.net>
 References: <20210609174418.249585-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 05/31] drm/i915/gem: Return void from
- context_apply_all
+Subject: [Intel-gfx] [PATCH 06/31] drm/i915: Drop the CONTEXT_CLONE API (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,91 +75,330 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-None of the callbacks we use with it return an error code anymore; they
-all return 0 unconditionally.
+This API allows one context to grab bits out of another context upon
+creation.  It can be used as a short-cut for setparam(getparam()) for
+things like I915_CONTEXT_PARAM_VM.  However, it's never been used by any
+real userspace.  It's used by a few IGT tests and that's it.  Since it
+doesn't add any real value (most of the stuff you can CLONE you can copy
+in other ways), drop it.
+
+There is one thing that this API allows you to clone which you cannot
+clone via getparam/setparam: timelines.  However, timelines are an
+implementation detail of i915 and not really something that needs to be
+exposed to userspace.  Also, sharing timelines between contexts isn't
+obviously useful and supporting it has the potential to complicate i915
+internally.  It also doesn't add any functionality that the client can't
+get in other ways.  If a client really wants a shared timeline, they can
+use a syncobj and set it as an in and out fence on every submit.
+
+v2 (Jason Ekstrand):
+ - More detailed commit message
 
 Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 26 +++++++--------------
- 1 file changed, 8 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 199 +-----------------
+ .../drm/i915/gt/intel_execlists_submission.c  |  28 ---
+ .../drm/i915/gt/intel_execlists_submission.h  |   3 -
+ include/uapi/drm/i915_drm.h                   |  16 +-
+ 4 files changed, 6 insertions(+), 240 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 9750a1ac7023e..3503d46c88cbf 100644
+index 3503d46c88cbf..9f9369d3c0004 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -718,32 +718,25 @@ __context_engines_await(const struct i915_gem_context *ctx,
- 	return engines;
+@@ -1957,207 +1957,14 @@ static int create_setparam(struct i915_user_extension __user *ext, void *data)
+ 	return ctx_setparam(arg->fpriv, arg->ctx, &local.param);
  }
  
--static int
-+static void
- context_apply_all(struct i915_gem_context *ctx,
--		  int (*fn)(struct intel_context *ce, void *data),
-+		  void (*fn)(struct intel_context *ce, void *data),
- 		  void *data)
+-static int clone_engines(struct i915_gem_context *dst,
+-			 struct i915_gem_context *src)
++static int invalid_ext(struct i915_user_extension __user *ext, void *data)
  {
- 	struct i915_gem_engines_iter it;
- 	struct i915_gem_engines *e;
- 	struct intel_context *ce;
--	int err = 0;
- 
- 	e = __context_engines_await(ctx, NULL);
--	for_each_gem_engine(ce, e, it) {
--		err = fn(ce, data);
--		if (err)
--			break;
+-	struct i915_gem_engines *clone, *e;
+-	bool user_engines;
+-	unsigned long n;
+-
+-	e = __context_engines_await(src, &user_engines);
+-	if (!e)
+-		return -ENOENT;
+-
+-	clone = alloc_engines(e->num_engines);
+-	if (!clone)
+-		goto err_unlock;
+-
+-	for (n = 0; n < e->num_engines; n++) {
+-		struct intel_engine_cs *engine;
+-
+-		if (!e->engines[n]) {
+-			clone->engines[n] = NULL;
+-			continue;
+-		}
+-		engine = e->engines[n]->engine;
+-
+-		/*
+-		 * Virtual engines are singletons; they can only exist
+-		 * inside a single context, because they embed their
+-		 * HW context... As each virtual context implies a single
+-		 * timeline (each engine can only dequeue a single request
+-		 * at any time), it would be surprising for two contexts
+-		 * to use the same engine. So let's create a copy of
+-		 * the virtual engine instead.
+-		 */
+-		if (intel_engine_is_virtual(engine))
+-			clone->engines[n] =
+-				intel_execlists_clone_virtual(engine);
+-		else
+-			clone->engines[n] = intel_context_create(engine);
+-		if (IS_ERR_OR_NULL(clone->engines[n])) {
+-			__free_engines(clone, n);
+-			goto err_unlock;
+-		}
+-
+-		intel_context_set_gem(clone->engines[n], dst);
 -	}
-+	for_each_gem_engine(ce, e, it)
-+		fn(ce, data);
- 	i915_sw_fence_complete(&e->fence);
+-	clone->num_engines = n;
+-	i915_sw_fence_complete(&e->fence);
 -
+-	/* Serialised by constructor */
+-	engines_idle_release(dst, rcu_replace_pointer(dst->engines, clone, 1));
+-	if (user_engines)
+-		i915_gem_context_set_user_engines(dst);
+-	else
+-		i915_gem_context_clear_user_engines(dst);
+-	return 0;
+-
+-err_unlock:
+-	i915_sw_fence_complete(&e->fence);
+-	return -ENOMEM;
+-}
+-
+-static int clone_flags(struct i915_gem_context *dst,
+-		       struct i915_gem_context *src)
+-{
+-	dst->user_flags = src->user_flags;
+-	return 0;
+-}
+-
+-static int clone_schedattr(struct i915_gem_context *dst,
+-			   struct i915_gem_context *src)
+-{
+-	dst->sched = src->sched;
+-	return 0;
+-}
+-
+-static int clone_sseu(struct i915_gem_context *dst,
+-		      struct i915_gem_context *src)
+-{
+-	struct i915_gem_engines *e = i915_gem_context_lock_engines(src);
+-	struct i915_gem_engines *clone;
+-	unsigned long n;
+-	int err;
+-
+-	/* no locking required; sole access under constructor*/
+-	clone = __context_engines_static(dst);
+-	if (e->num_engines != clone->num_engines) {
+-		err = -EINVAL;
+-		goto unlock;
+-	}
+-
+-	for (n = 0; n < e->num_engines; n++) {
+-		struct intel_context *ce = e->engines[n];
+-
+-		if (clone->engines[n]->engine->class != ce->engine->class) {
+-			/* Must have compatible engine maps! */
+-			err = -EINVAL;
+-			goto unlock;
+-		}
+-
+-		/* serialises with set_sseu */
+-		err = intel_context_lock_pinned(ce);
+-		if (err)
+-			goto unlock;
+-
+-		clone->engines[n]->sseu = ce->sseu;
+-		intel_context_unlock_pinned(ce);
+-	}
+-
+-	err = 0;
+-unlock:
+-	i915_gem_context_unlock_engines(src);
 -	return err;
- }
- 
--static int __apply_ppgtt(struct intel_context *ce, void *vm)
-+static void __apply_ppgtt(struct intel_context *ce, void *vm)
- {
- 	i915_vm_put(ce->vm);
- 	ce->vm = i915_vm_get(vm);
--	return 0;
- }
- 
- static struct i915_address_space *
-@@ -783,10 +776,9 @@ static void __set_timeline(struct intel_timeline **dst,
- 		intel_timeline_put(old);
- }
- 
--static int __apply_timeline(struct intel_context *ce, void *timeline)
-+static void __apply_timeline(struct intel_context *ce, void *timeline)
- {
- 	__set_timeline(&ce->timeline, timeline);
--	return 0;
- }
- 
- static void __assign_timeline(struct i915_gem_context *ctx,
-@@ -1841,19 +1833,17 @@ set_persistence(struct i915_gem_context *ctx,
- 	return __context_set_persistence(ctx, args->value);
- }
- 
--static int __apply_priority(struct intel_context *ce, void *arg)
-+static void __apply_priority(struct intel_context *ce, void *arg)
- {
- 	struct i915_gem_context *ctx = arg;
- 
- 	if (!intel_engine_has_timeslices(ce->engine))
--		return 0;
-+		return;
- 
- 	if (ctx->sched.priority >= I915_PRIORITY_NORMAL)
- 		intel_context_set_use_semaphores(ce);
- 	else
- 		intel_context_clear_use_semaphores(ce);
+-}
+-
+-static int clone_timeline(struct i915_gem_context *dst,
+-			  struct i915_gem_context *src)
+-{
+-	if (src->timeline)
+-		__assign_timeline(dst, src->timeline);
 -
 -	return 0;
+-}
+-
+-static int clone_vm(struct i915_gem_context *dst,
+-		    struct i915_gem_context *src)
+-{
+-	struct i915_address_space *vm;
+-	int err = 0;
+-
+-	if (!rcu_access_pointer(src->vm))
+-		return 0;
+-
+-	rcu_read_lock();
+-	vm = context_get_vm_rcu(src);
+-	rcu_read_unlock();
+-
+-	if (!mutex_lock_interruptible(&dst->mutex)) {
+-		__assign_ppgtt(dst, vm);
+-		mutex_unlock(&dst->mutex);
+-	} else {
+-		err = -EINTR;
+-	}
+-
+-	i915_vm_put(vm);
+-	return err;
+-}
+-
+-static int create_clone(struct i915_user_extension __user *ext, void *data)
+-{
+-	static int (* const fn[])(struct i915_gem_context *dst,
+-				  struct i915_gem_context *src) = {
+-#define MAP(x, y) [ilog2(I915_CONTEXT_CLONE_##x)] = y
+-		MAP(ENGINES, clone_engines),
+-		MAP(FLAGS, clone_flags),
+-		MAP(SCHEDATTR, clone_schedattr),
+-		MAP(SSEU, clone_sseu),
+-		MAP(TIMELINE, clone_timeline),
+-		MAP(VM, clone_vm),
+-#undef MAP
+-	};
+-	struct drm_i915_gem_context_create_ext_clone local;
+-	const struct create_ext *arg = data;
+-	struct i915_gem_context *dst = arg->ctx;
+-	struct i915_gem_context *src;
+-	int err, bit;
+-
+-	if (copy_from_user(&local, ext, sizeof(local)))
+-		return -EFAULT;
+-
+-	BUILD_BUG_ON(GENMASK(BITS_PER_TYPE(local.flags) - 1, ARRAY_SIZE(fn)) !=
+-		     I915_CONTEXT_CLONE_UNKNOWN);
+-
+-	if (local.flags & I915_CONTEXT_CLONE_UNKNOWN)
+-		return -EINVAL;
+-
+-	if (local.rsvd)
+-		return -EINVAL;
+-
+-	rcu_read_lock();
+-	src = __i915_gem_context_lookup_rcu(arg->fpriv, local.clone_id);
+-	rcu_read_unlock();
+-	if (!src)
+-		return -ENOENT;
+-
+-	GEM_BUG_ON(src == dst);
+-
+-	for (bit = 0; bit < ARRAY_SIZE(fn); bit++) {
+-		if (!(local.flags & BIT(bit)))
+-			continue;
+-
+-		err = fn[bit](dst, src);
+-		if (err)
+-			return err;
+-	}
+-
+-	return 0;
++	return -EINVAL;
  }
  
- static int set_priority(struct i915_gem_context *ctx,
+ static const i915_user_extension_fn create_extensions[] = {
+ 	[I915_CONTEXT_CREATE_EXT_SETPARAM] = create_setparam,
+-	[I915_CONTEXT_CREATE_EXT_CLONE] = create_clone,
++	[I915_CONTEXT_CREATE_EXT_CLONE] = invalid_ext,
+ };
+ 
+ static bool client_is_banned(struct drm_i915_file_private *file_priv)
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index fc77592d88a96..f9ffaece12213 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -3776,34 +3776,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 	return ERR_PTR(err);
+ }
+ 
+-struct intel_context *
+-intel_execlists_clone_virtual(struct intel_engine_cs *src)
+-{
+-	struct virtual_engine *se = to_virtual_engine(src);
+-	struct intel_context *dst;
+-
+-	dst = intel_execlists_create_virtual(se->siblings,
+-					     se->num_siblings);
+-	if (IS_ERR(dst))
+-		return dst;
+-
+-	if (se->num_bonds) {
+-		struct virtual_engine *de = to_virtual_engine(dst->engine);
+-
+-		de->bonds = kmemdup(se->bonds,
+-				    sizeof(*se->bonds) * se->num_bonds,
+-				    GFP_KERNEL);
+-		if (!de->bonds) {
+-			intel_context_put(dst);
+-			return ERR_PTR(-ENOMEM);
+-		}
+-
+-		de->num_bonds = se->num_bonds;
+-	}
+-
+-	return dst;
+-}
+-
+ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
+ 				     const struct intel_engine_cs *master,
+ 				     const struct intel_engine_cs *sibling)
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+index 4ca9b475e252f..c0b23f69535ed 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+@@ -36,9 +36,6 @@ struct intel_context *
+ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 			       unsigned int count);
+ 
+-struct intel_context *
+-intel_execlists_clone_virtual(struct intel_engine_cs *src);
+-
+ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
+ 				     const struct intel_engine_cs *master,
+ 				     const struct intel_engine_cs *sibling);
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index e527f5f7e0dea..62c988a022f7c 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1889,20 +1889,10 @@ struct drm_i915_gem_context_create_ext_setparam {
+ 	struct drm_i915_gem_context_param param;
+ };
+ 
+-struct drm_i915_gem_context_create_ext_clone {
++/* This API has been removed.  On the off chance someone somewhere has
++ * attempted to use it, never re-use this extension number.
++ */
+ #define I915_CONTEXT_CREATE_EXT_CLONE 1
+-	struct i915_user_extension base;
+-	__u32 clone_id;
+-	__u32 flags;
+-#define I915_CONTEXT_CLONE_ENGINES	(1u << 0)
+-#define I915_CONTEXT_CLONE_FLAGS	(1u << 1)
+-#define I915_CONTEXT_CLONE_SCHEDATTR	(1u << 2)
+-#define I915_CONTEXT_CLONE_SSEU		(1u << 3)
+-#define I915_CONTEXT_CLONE_TIMELINE	(1u << 4)
+-#define I915_CONTEXT_CLONE_VM		(1u << 5)
+-#define I915_CONTEXT_CLONE_UNKNOWN -(I915_CONTEXT_CLONE_VM << 1)
+-	__u64 rsvd;
+-};
+ 
+ struct drm_i915_gem_context_destroy {
+ 	__u32 ctx_id;
 -- 
 2.31.1
 
