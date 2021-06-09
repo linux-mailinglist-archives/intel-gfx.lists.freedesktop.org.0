@@ -2,59 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E85F3A12FA
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 13:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0133A130E
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 13:42:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64DC889E98;
-	Wed,  9 Jun 2021 11:41:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C05989E15;
+	Wed,  9 Jun 2021 11:42:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBE636E133
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 11:41:27 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- k5-20020a05600c1c85b02901affeec3ef8so4111375wms.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 04:41:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=UnSonGVClf8V1RsFNHy6Xe8G95gO3GAycYrAogtXCWI=;
- b=PoJuBeqSVhCFiQKtvYsmLSYpLijZPExuEkTKjXCCN10FekOwrc9t8dZZ80MwRu9Rpt
- bAeZo6RUaN9ozoOoJuh6Akkx0QmIT74f3Yzh1sqg5JqpgTwT4dj1orGLivovLOCDDNdt
- oVTY2MfCTT7uTUnc/QZO891u2o4CcKDfMFyhk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=UnSonGVClf8V1RsFNHy6Xe8G95gO3GAycYrAogtXCWI=;
- b=Y7Vm/uMjVAD3PFawSLVDgMAEwcPB7vU9HTVTzyLqNQWgs6YRCS1XZrdFkTgwkG3wL8
- O/bZF5TWBgNoOYegOtpz8/l8WbbCbRocrxnq0gLmh9rpvkdmmoUDbyMPJFpZKWbcvpry
- hbt4gmc0CK9Qq6F+2exQee8SRMi1+NTi9+a+teAG1UYOSen02C2RRsxRbyg7OitparXf
- s7m1HU2XWg05XcvbmbR47h5bNk26QleMQJRBuhjSH54XXagRxBEkI0OzCl88MEkggsee
- s5qVoGlfIwiJXBq6j9u2vBeOcGU+FEvJG17agCs6CcdevwCHP8eMC5vciXU8R71EMWD1
- tDVg==
-X-Gm-Message-State: AOAM530oEMEzm42T6aGW/AmXaUUGMUmg0Ib99DCBb/AaAr0Gj3BOsJTy
- yswrd1cpR2fjK1cGfzIloDh5ShBp4cJIRw==
-X-Google-Smtp-Source: ABdhPJxCKHf/Hj5JOnotvaOIQpAJk5lSDbAO0VJw2Q9DdfG+ZRAh9MZkxxistRlAK8zLc/ZmllmzQQ==
-X-Received: by 2002:a1c:7402:: with SMTP id p2mr9230339wmc.88.1623238886451;
- Wed, 09 Jun 2021 04:41:26 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l2sm23020973wrp.21.2021.06.09.04.41.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Jun 2021 04:41:25 -0700 (PDT)
-Date: Wed, 9 Jun 2021 13:41:24 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YMCo5N8cn902qLgc@phenom.ffwll.local>
-References: <20210609043613.102962-1-jason@jlekstrand.net>
- <20210609043613.102962-32-jason@jlekstrand.net>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4603E89E15
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 11:42:09 +0000 (UTC)
+IronPort-SDR: 1I9QX5wTeaD9cvomKWsvQa6/aaekzH+PpiDNtWobO54lfpENstNhXxzJmogRbaRZb39jKfw6QA
+ OrcqV3kPzkdA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="204867061"
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="204867061"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 04:42:08 -0700
+IronPort-SDR: qDUwN65R5A/ieZl9Sao5dAd8clZwF78gE+f2eFYHMe314VLVmYCgbuwptZSxEY8DaxZZgssant
+ JvMRGqvCwhKQ==
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="482351160"
+Received: from ochaldek-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.34.111])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 04:42:07 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210526143729.2563672-3-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210526143729.2563672-1-imre.deak@intel.com>
+ <20210526143729.2563672-3-imre.deak@intel.com>
+Date: Wed, 09 Jun 2021 14:42:04 +0300
+Message-ID: <87y2bjz2lv.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210609043613.102962-32-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 31/31] drm/i915: Drop some RCU usage around
- context VMs
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/adlp: Fix AUX power well ->
+ PHY mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,70 +49,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 08, 2021 at 11:36:13PM -0500, Jason Ekstrand wrote:
-> This instance now only happens during context creation so there's no way
-> we can race with a context close/destroy.  We don't need to bother with
-> the RCU and can access the pointer directly.
-> 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-
-There's another one in execbuf.c, and the real crux is that we need to
-fully audit the lifetimes of everything. I think it's better to do this
-all together in a seperate patch series, which entirely removes the rcu
-barrier on the i915_address_space cleanup, and also removes the rcu
-protection from everywhere else.
-
-Otherwise we just have an inconsistent mess that happens to work,
-sometimes.
--Daniel
-
+On Wed, 26 May 2021, Imre Deak <imre.deak@intel.com> wrote:
+> On ADL_P the power well->PHY mapping doesn't follow the mapping on previous
+> platforms, fix this up.
+>
+> While at it remove the redundant dev_priv param from
+> icl_tc_phy_aux_ch().
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 13 +++++--------
->  1 file changed, 5 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 5312142daa0c0..ffdfed536ce9a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -787,15 +787,12 @@ static int intel_context_set_gem(struct intel_context *ce,
+>  .../drm/i915/display/intel_display_power.c    | 34 ++++++++++---------
+>  1 file changed, 18 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index a95bbf23e6b7c..7ddd63114b36b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -291,8 +291,7 @@ static void hsw_power_well_pre_disable(struct drm_i915_private *dev_priv,
+>  #define ICL_TBT_AUX_PW_TO_CH(pw_idx)	\
+>  	((pw_idx) - ICL_PW_CTL_IDX_AUX_TBT1 + AUX_CH_C)
 >  
->  	ce->ring_size = SZ_16K;
+> -static enum aux_ch icl_tc_phy_aux_ch(struct drm_i915_private *dev_priv,
+> -				     struct i915_power_well *power_well)
+> +static enum aux_ch icl_aux_pw_to_ch(const struct i915_power_well *power_well)
+>  {
+>  	int pw_idx = power_well->desc->hsw.idx;
 >  
-> -	if (rcu_access_pointer(ctx->vm)) {
-> -		struct i915_address_space *vm;
+> @@ -327,6 +326,15 @@ aux_ch_to_digital_port(struct drm_i915_private *dev_priv,
+>  	return dig_port;
+>  }
+>  
+> +static enum phy icl_aux_pw_to_phy(struct drm_i915_private *i915,
+> +				  const struct i915_power_well *power_well)
+> +{
+> +	enum aux_ch aux_ch = icl_aux_pw_to_ch(power_well);
+> +	struct intel_digital_port *dig_port = aux_ch_to_digital_port(i915, aux_ch);
+
+Replying to an already merged patch...
+
+aux_ch_to_digital_port() may return NULL but we don't really check this
+anywhere.
+
+Any thoughts how this should be handled?
+
+BR,
+Jani.
+
+
+> +
+> +	return intel_port_to_phy(i915, dig_port->base.port);
+> +}
+> +
+>  static void hsw_wait_for_power_well_enable(struct drm_i915_private *dev_priv,
+>  					   struct i915_power_well *power_well,
+>  					   bool timeout_expected)
+> @@ -468,15 +476,13 @@ static void hsw_power_well_disable(struct drm_i915_private *dev_priv,
+>  	hsw_wait_for_power_well_disable(dev_priv, power_well);
+>  }
+>  
+> -#define ICL_AUX_PW_TO_PHY(pw_idx)	((pw_idx) - ICL_PW_CTL_IDX_AUX_A)
 > -
-> -		rcu_read_lock();
-> -		vm = context_get_vm_rcu(ctx); /* hmm */
-> -		rcu_read_unlock();
-> -
-> +	if (ctx->vm) {
-> +		/* This only happens during context creation so no need to
-> +		 * bother with any RCU nonsense.
-> +		 */
->  		i915_vm_put(ce->vm);
-> -		ce->vm = vm;
-> +		ce->vm = i915_vm_get(ctx->vm);
->  	}
+>  static void
+>  icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>  				    struct i915_power_well *power_well)
+>  {
+>  	const struct i915_power_well_regs *regs = power_well->desc->hsw.regs;
+>  	int pw_idx = power_well->desc->hsw.idx;
+> -	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);
+> +	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+>  	u32 val;
 >  
->  	if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
-> -- 
-> 2.31.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>  	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+> @@ -508,7 +514,7 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+>  {
+>  	const struct i915_power_well_regs *regs = power_well->desc->hsw.regs;
+>  	int pw_idx = power_well->desc->hsw.idx;
+> -	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);
+> +	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+>  	u32 val;
+>  
+>  	drm_WARN_ON(&dev_priv->drm, !IS_ICELAKE(dev_priv));
+> @@ -595,7 +601,7 @@ static void
+>  icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>  				 struct i915_power_well *power_well)
+>  {
+> -	enum aux_ch aux_ch = icl_tc_phy_aux_ch(dev_priv, power_well);
+> +	enum aux_ch aux_ch = icl_aux_pw_to_ch(power_well);
+>  	struct intel_digital_port *dig_port = aux_ch_to_digital_port(dev_priv, aux_ch);
+>  	const struct i915_power_well_regs *regs = power_well->desc->hsw.regs;
+>  	bool is_tbt = power_well->desc->hsw.is_tc_tbt;
+> @@ -643,7 +649,7 @@ static void
+>  icl_tc_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+>  				  struct i915_power_well *power_well)
+>  {
+> -	enum aux_ch aux_ch = icl_tc_phy_aux_ch(dev_priv, power_well);
+> +	enum aux_ch aux_ch = icl_aux_pw_to_ch(power_well);
+>  	struct intel_digital_port *dig_port = aux_ch_to_digital_port(dev_priv, aux_ch);
+>  
+>  	icl_tc_port_assert_ref_held(dev_priv, power_well, dig_port);
+> @@ -655,11 +661,9 @@ static void
+>  icl_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>  			  struct i915_power_well *power_well)
+>  {
+> -	int pw_idx = power_well->desc->hsw.idx;
+> -	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);  /* non-TBT only */
+> -	bool is_tbt = power_well->desc->hsw.is_tc_tbt;
+> +	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+>  
+> -	if (is_tbt || intel_phy_is_tc(dev_priv, phy))
+> +	if (intel_phy_is_tc(dev_priv, phy))
+>  		return icl_tc_phy_aux_power_well_enable(dev_priv, power_well);
+>  	else if (IS_ICELAKE(dev_priv))
+>  		return icl_combo_phy_aux_power_well_enable(dev_priv,
+> @@ -672,11 +676,9 @@ static void
+>  icl_aux_power_well_disable(struct drm_i915_private *dev_priv,
+>  			   struct i915_power_well *power_well)
+>  {
+> -	int pw_idx = power_well->desc->hsw.idx;
+> -	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);  /* non-TBT only */
+> -	bool is_tbt = power_well->desc->hsw.is_tc_tbt;
+> +	enum phy phy = icl_aux_pw_to_phy(dev_priv, power_well);
+>  
+> -	if (is_tbt || intel_phy_is_tc(dev_priv, phy))
+> +	if (intel_phy_is_tc(dev_priv, phy))
+>  		return icl_tc_phy_aux_power_well_disable(dev_priv, power_well);
+>  	else if (IS_ICELAKE(dev_priv))
+>  		return icl_combo_phy_aux_power_well_disable(dev_priv,
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
