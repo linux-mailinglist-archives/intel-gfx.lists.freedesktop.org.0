@@ -1,62 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61283A0B6F
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 06:36:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6600C3A0B72
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 06:37:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A42916ECB8;
-	Wed,  9 Jun 2021 04:36:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 313B56ECBB;
+	Wed,  9 Jun 2021 04:36:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
- [IPv6:2607:f8b0:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27FCC6ECB4
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 04:36:39 +0000 (UTC)
-Received: by mail-pg1-x533.google.com with SMTP id l184so2851722pgd.8
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Jun 2021 21:36:39 -0700 (PDT)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E21DA6ECB6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 04:36:40 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id g24so619075pji.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 08 Jun 2021 21:36:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=JRyS0b/MDwky2Oet+tqD0NXnx6ZIc/C0lZsUrgwwGVk=;
- b=HyZH1Q77dU99+LcYZhlZmWWkU/aHjE5qHkw+bwhQqggHsFT1MQCK5zbdwM7uedWBsv
- Ln8QQFgfC67Wqrk0xUQRNCIUumr8qnU0UIZNsGiQN+EUMvvfyeNoCOFvrIER86QS59HD
- bPR5WVHBf/TAOuy0k/k30cBKGJizmGtcs6dmEwj3MXd/OX/UlSOVgahmE5n14r/k06he
- AWj8aTZyLnfJFwC2JYZNGEw3dryvUHCJu2r/MF30KSq/isV7kQTM0SqJTd2Xt//c4xek
- qeJfLOOah9G8vWFzL2ZBQtQhgOEX4Ze3D2q+NhRGNLLBD7xql+eF8CLxTQ5ThyfRIJyt
- X1HQ==
+ bh=p9LihMbkz0D/b2xxGApls+quCG+XTK2bjRKq93kZNxc=;
+ b=LWLx5p6JF/p4rNvszWkrqxwmgR2JVANQ+wTkXYxU13bzomn0b3qgTP2iranm0QYa1l
+ vgLQEEZ7AUQ5gMXXwh1QCYtqdfCr/719tX3VzFXmtEftKYFkveDgOim1BCQuvA38LuKh
+ ao6fq3iOUfeqhb+2i3oqBGu1iCgtCmeDL1wpOe3dRHNeUr0D9C2j9Ym5VAc0/T/zT/+0
+ uR09rFKqVkZLTNqpD7LoW1SInDlVjcDTZV6mUuMxrJxp//p2wGjyFoQYwzg2zTifkTgw
+ Xu+fV0KAipkoaMBVpDiXR3Fv5Ob93ixfmYdxjVjZPq152XU6ilC7KSut4+JNOh2/AjT+
+ 0JUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=JRyS0b/MDwky2Oet+tqD0NXnx6ZIc/C0lZsUrgwwGVk=;
- b=UaAhdG0cq3lcsMcTKyNMX5EjYVkEdCCMfK6OWsQ8SKzpEY1v7hWWLyVzFSWoF4UKLD
- WG674QXuqm7RS/mOJajB/njkyNNaEyZ8vnQPylBdiSZHuz/jF6TLpAgUk1WVybTXkgVs
- r3cR53DkOsXi9DO8ROFdvTbPyWPb2Lto9rwptdGvmOYo3UEC+8R8Qq8vlcrTKKp1dZhz
- SqsCXpYzOlYP6904RNn6crxnKt/P7l/ojSnRvRKFQ3lHwpJLqdQV3P23yGKWZwROkiSx
- OVlY5BGfd2N8MEVDsVVGA0u/fpFy4+G8jM7AJHkN6CAyhmyDraV9QQhe64MM85JLN6bg
- 5VgA==
-X-Gm-Message-State: AOAM533FAJJk72untxD5J4vjN5u3SjMVvxNZPb7X96phKYNS7e3gSj23
- C7yC/CZkVtejpnz/4he5klve8pglycJ+SQ==
-X-Google-Smtp-Source: ABdhPJxmPjdcroVAc4u4/4ktuEmzm1bipG0L3XSVQo7OOS0cwSX+4gmBN8qx8EOXAUbCkgQFqj9cPg==
-X-Received: by 2002:a63:d818:: with SMTP id b24mr1864646pgh.386.1623213398685; 
- Tue, 08 Jun 2021 21:36:38 -0700 (PDT)
+ bh=p9LihMbkz0D/b2xxGApls+quCG+XTK2bjRKq93kZNxc=;
+ b=JZ2BOdwHxOcNnbLt2K/Ld0Ksd8gme8GpkHQMPYqB4SR8kq0Y7gvBZ6HZ1lcrD0t5Px
+ Y1xKOjTWmS2o8gev5X0lKkv3u3NI2FOqZ7RZ6ODLKRYbf58GwFbjeqJACo6f1rhhUdWC
+ mIZ7UCc/aOuh1X/isLsm1is0HpYIYbHHNmesSx0ajGpAEAJI8uXyY0dn4o6xF6SS170a
+ ybvwoDulLtj7zD+uzBOTG+c/de6DcxEKW5RUIU3GhzzcGr6cCPXhQCMwSJvMXbmLClGW
+ WtzYnBGT14tIo2TAdEeO30B60DkW9cLaH5qdXebqw+hs7b/BEivO1xTovCbNF1MRtA7Q
+ hTnQ==
+X-Gm-Message-State: AOAM532zDFrG8BR9n9xW3yHiSBSO0dxEbzJ9x4xlJs5qFkR8ibc0WY87
+ 24Yu1D+MUC3GjPgXPmDI77yWDA==
+X-Google-Smtp-Source: ABdhPJzd8IH5cOGba0SX5eAsNk29mZlcgz4tLh+O6PSGEmXPiUJhwfomC1IriBGPFE8PZMzjEpYx/A==
+X-Received: by 2002:a17:902:728e:b029:101:c3b7:a47f with SMTP id
+ d14-20020a170902728eb0290101c3b7a47fmr3563291pll.21.1623213400390; 
+ Tue, 08 Jun 2021 21:36:40 -0700 (PDT)
 Received: from omlet.com (jfdmzpr06-ext.jf.intel.com. [134.134.137.75])
- by smtp.gmail.com with ESMTPSA id t5sm11991612pfe.116.2021.06.08.21.36.36
+ by smtp.gmail.com with ESMTPSA id t5sm11991612pfe.116.2021.06.08.21.36.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Jun 2021 21:36:38 -0700 (PDT)
+ Tue, 08 Jun 2021 21:36:40 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Tue,  8 Jun 2021 23:35:53 -0500
-Message-Id: <20210609043613.102962-12-jason@jlekstrand.net>
+Date: Tue,  8 Jun 2021 23:35:54 -0500
+Message-Id: <20210609043613.102962-13-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210609043613.102962-1-jason@jlekstrand.net>
 References: <20210609043613.102962-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/31] drm/i915/request: Remove the hook from
- await_execution
+Subject: [Intel-gfx] [PATCH 12/31] drm/i915/gem: Disallow creating contexts
+ with too many engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,166 +76,35 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This was only ever used for FENCE_SUBMIT automatic engine selection
-which was removed in the previous commit.
+There's no sense in allowing userspace to create more engines than it
+can possibly access via execbuf.
 
 Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  3 +-
- drivers/gpu/drm/i915/i915_request.c           | 42 ++++---------------
- drivers/gpu/drm/i915/i915_request.h           |  4 +-
- 3 files changed, 9 insertions(+), 40 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 88e7cbf8fc5f8..720487ad6a5a4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -3473,8 +3473,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	if (in_fence) {
- 		if (args->flags & I915_EXEC_FENCE_SUBMIT)
- 			err = i915_request_await_execution(eb.request,
--							   in_fence,
--							   NULL);
-+							   in_fence);
- 		else
- 			err = i915_request_await_dma_fence(eb.request,
- 							   in_fence);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 1014c71cf7f52..bb142f944f550 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -49,7 +49,6 @@
- struct execute_cb {
- 	struct irq_work work;
- 	struct i915_sw_fence *fence;
--	void (*hook)(struct i915_request *rq, struct dma_fence *signal);
- 	struct i915_request *signal;
- };
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 5eca91ded3423..0ba8506fb966f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -1639,11 +1639,11 @@ set_engines(struct i915_gem_context *ctx,
+ 		return -EINVAL;
+ 	}
  
-@@ -180,17 +179,6 @@ static void irq_execute_cb(struct irq_work *wrk)
- 	kmem_cache_free(global.slab_execute_cbs, cb);
- }
- 
--static void irq_execute_cb_hook(struct irq_work *wrk)
--{
--	struct execute_cb *cb = container_of(wrk, typeof(*cb), work);
--
--	cb->hook(container_of(cb->fence, struct i915_request, submit),
--		 &cb->signal->fence);
--	i915_request_put(cb->signal);
--
--	irq_execute_cb(wrk);
--}
--
- static __always_inline void
- __notify_execute_cb(struct i915_request *rq, bool (*fn)(struct irq_work *wrk))
- {
-@@ -517,17 +505,12 @@ static bool __request_in_flight(const struct i915_request *signal)
- static int
- __await_execution(struct i915_request *rq,
- 		  struct i915_request *signal,
--		  void (*hook)(struct i915_request *rq,
--			       struct dma_fence *signal),
- 		  gfp_t gfp)
- {
- 	struct execute_cb *cb;
- 
--	if (i915_request_is_active(signal)) {
--		if (hook)
--			hook(rq, &signal->fence);
-+	if (i915_request_is_active(signal))
- 		return 0;
--	}
- 
- 	cb = kmem_cache_alloc(global.slab_execute_cbs, gfp);
- 	if (!cb)
-@@ -537,12 +520,6 @@ __await_execution(struct i915_request *rq,
- 	i915_sw_fence_await(cb->fence);
- 	init_irq_work(&cb->work, irq_execute_cb);
- 
--	if (hook) {
--		cb->hook = hook;
--		cb->signal = i915_request_get(signal);
--		cb->work.func = irq_execute_cb_hook;
--	}
--
- 	/*
- 	 * Register the callback first, then see if the signaler is already
- 	 * active. This ensures that if we race with the
-@@ -1253,7 +1230,7 @@ emit_semaphore_wait(struct i915_request *to,
- 		goto await_fence;
- 
- 	/* Only submit our spinner after the signaler is running! */
--	if (__await_execution(to, from, NULL, gfp))
-+	if (__await_execution(to, from, gfp))
- 		goto await_fence;
- 
- 	if (__emit_semaphore_wait(to, from, from->fence.seqno))
-@@ -1284,16 +1261,14 @@ static int intel_timeline_sync_set_start(struct intel_timeline *tl,
- 
- static int
- __i915_request_await_execution(struct i915_request *to,
--			       struct i915_request *from,
--			       void (*hook)(struct i915_request *rq,
--					    struct dma_fence *signal))
-+			       struct i915_request *from)
- {
- 	int err;
- 
- 	GEM_BUG_ON(intel_context_is_barrier(from->context));
- 
- 	/* Submit both requests at the same time */
--	err = __await_execution(to, from, hook, I915_FENCE_GFP);
-+	err = __await_execution(to, from, I915_FENCE_GFP);
- 	if (err)
- 		return err;
- 
-@@ -1406,9 +1381,7 @@ i915_request_await_external(struct i915_request *rq, struct dma_fence *fence)
- 
- int
- i915_request_await_execution(struct i915_request *rq,
--			     struct dma_fence *fence,
--			     void (*hook)(struct i915_request *rq,
--					  struct dma_fence *signal))
-+			     struct dma_fence *fence)
- {
- 	struct dma_fence **child = &fence;
- 	unsigned int nchild = 1;
-@@ -1441,8 +1414,7 @@ i915_request_await_execution(struct i915_request *rq,
- 
- 		if (dma_fence_is_i915(fence))
- 			ret = __i915_request_await_execution(rq,
--							     to_request(fence),
--							     hook);
-+							     to_request(fence));
- 		else
- 			ret = i915_request_await_external(rq, fence);
- 		if (ret < 0)
-@@ -1468,7 +1440,7 @@ await_request_submit(struct i915_request *to, struct i915_request *from)
- 							&from->submit,
- 							I915_FENCE_GFP);
- 	else
--		return __i915_request_await_execution(to, from, NULL);
-+		return __i915_request_await_execution(to, from);
- }
- 
- static int
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 270f6cd37650c..63b087a7f5707 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -352,9 +352,7 @@ int i915_request_await_object(struct i915_request *to,
- int i915_request_await_dma_fence(struct i915_request *rq,
- 				 struct dma_fence *fence);
- int i915_request_await_execution(struct i915_request *rq,
--				 struct dma_fence *fence,
--				 void (*hook)(struct i915_request *rq,
--					      struct dma_fence *signal));
-+				 struct dma_fence *fence);
- 
- void i915_request_add(struct i915_request *rq);
- 
+-	/*
+-	 * Note that I915_EXEC_RING_MASK limits execbuf to only using the
+-	 * first 64 engines defined here.
+-	 */
+ 	num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
++	/* RING_MASK has no shift so we can use it directly here */
++	if (num_engines > I915_EXEC_RING_MASK + 1)
++		return -EINVAL;
++
+ 	set.engines = alloc_engines(num_engines);
+ 	if (!set.engines)
+ 		return -ENOMEM;
 -- 
 2.31.1
 
