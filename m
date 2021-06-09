@@ -1,60 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C390E3A12D2
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 13:35:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138B93A12D5
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 13:36:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 892226E0C6;
-	Wed,  9 Jun 2021 11:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794DD6E0C6;
+	Wed,  9 Jun 2021 11:36:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA916E0C6
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 11:35:01 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id f2so25053241wri.11
- for <intel-gfx@lists.freedesktop.org>; Wed, 09 Jun 2021 04:35:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=TIgx/WvBPfnQ8G5yi2IgcZIjCeAImmizOfbpCUDKvwU=;
- b=lHJcIuPIq1lIcWzSC9RUseWCL39QYovuzqmf7xsonxzdC8gJaaPm10uQ+QuQH1/Owp
- PY+5fX2HZ6TM/TERBOTF7uvDEcGmacuwjf6LYLzFPa0MiILdJni+WLO91MCDJMtV2yMz
- ijZXDm0ypKVX4v5LJ7b5Pq8/BykAS57q3hM3k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=TIgx/WvBPfnQ8G5yi2IgcZIjCeAImmizOfbpCUDKvwU=;
- b=c8zswxKveJabNUjD8tyimwigNvI7H3srKa8ZfQakYXGomL5h9lb2R5M7tL6r7R7TNH
- Ju9oDiqEplTgaK9kXoJ39vE3PZHnM1C3NefMr4rQGnsXHvfP+Q+YZB9XgLt64O18u2CB
- utxQqBX/AeERyefElPa9LEiasQnVTySg/DFr2FQcp7/za1d4xWK4qYxI6kSeEBAS+PqR
- dOgZGA1qVhzSZPfucSsoXSSH9ghUp9T1gLQZoF9C/diRxY/PZtqxnuXw5/8ea78B9rH2
- H04PYVfwYuerq2QTlAq0C/up6MKsxsg1enBr8Hhlk5lB+EIN33w4kzHUhqR/ikD38tOj
- oAhA==
-X-Gm-Message-State: AOAM530turwk3NP6JWs4++ZST/JXVxsmQxif1UUdVVdZuU9DBExPdP+x
- vc/lmR0mFLAjYxVIRJLounyIcA==
-X-Google-Smtp-Source: ABdhPJzBKEpxyhzp5nfMPPTH2F5gSqdTOVneQegPE4M7GbNj4J3Y+gOncu2LcwTEsV06Ok7Cw7/mHA==
-X-Received: by 2002:adf:ce90:: with SMTP id r16mr28923366wrn.146.1623238499675; 
- Wed, 09 Jun 2021 04:34:59 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id m132sm21435253wmf.10.2021.06.09.04.34.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Jun 2021 04:34:59 -0700 (PDT)
-Date: Wed, 9 Jun 2021 13:34:57 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YMCnYQEkilQVI5ww@phenom.ffwll.local>
-References: <20210609043613.102962-1-jason@jlekstrand.net>
- <20210609043613.102962-26-jason@jlekstrand.net>
- <YMCnKNoKz1GpdOzO@phenom.ffwll.local>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62EF96E0C6
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 11:36:04 +0000 (UTC)
+IronPort-SDR: uMiRj3g1DZFbFRjrXs5mWJsrQaZSta0vCEjzAMXiKd02D0e+5TMdKNZsYa5MN3xu05GJOoskTV
+ yvWndzGQYr7A==
+X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="203199770"
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="203199770"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 04:36:03 -0700
+IronPort-SDR: t1Ak+685P93SJOicpdg0ODL42L2f67hj2PZp6TIspFCZ9sBGGStPBIInjIs7se2iuIRjgVMTvU
+ eguoad9aHzNg==
+X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="482349792"
+Received: from akshayka-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.254.35.119])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2021 04:36:02 -0700
+Date: Wed, 9 Jun 2021 07:36:01 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <YMCnofgoTGL0Qwp0@intel.com>
+References: <20210609085632.22026-1-ville.syrjala@linux.intel.com>
+ <20210609085632.22026-4-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YMCnKNoKz1GpdOzO@phenom.ffwll.local>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 25/31] drm/i915/gem: Don't allow changing
- the VM on running contexts (v2)
+In-Reply-To: <20210609085632.22026-4-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Clean up
+ intel_find_initial_plane_obj() a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,516 +49,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 09, 2021 at 01:34:00PM +0200, Daniel Vetter wrote:
-> On Tue, Jun 08, 2021 at 11:36:07PM -0500, Jason Ekstrand wrote:
-> > When the APIs were added to manage VMs more directly from userspace, the
-> > questionable choice was made to allow changing out the VM on a context
-> > at any time.  This is horribly racy and there's absolutely no reason why
-> > any userspace would want to do this outside of testing that exact race.
-> > By removing support for CONTEXT_PARAM_VM from ctx_setparam, we make it
-> > impossible to change out the VM after the context has been fully
-> > created.  This lets us delete a bunch of deferred task code as well as a
-> > duplicated (and slightly different) copy of the code which programs the
-> > PPGTT registers.
-> > 
-> > v2 (Jason Ekstrand):
-> >  - Expand the commit message
+On Wed, Jun 09, 2021 at 11:56:29AM +0300, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Also tsk, tsk for non mentioning you're dropping the __rcu here, that's a
-rather crucial change and without 0day complaining I'd have overlooked it.
--Daniel
+> Sort out the mess with the local variables in
+> intel_find_initial_plane_obj(). Get rid of all aliasing pointers
+> and use standard naming/types.
+> =
 
-> > 
-> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> 
-> Need to retract this r-b here until the issue below is fixed.
-> 
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 262 ------------------
-> >  .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +-
-> >  .../drm/i915/gem/selftests/i915_gem_context.c | 119 --------
-> >  .../drm/i915/selftests/i915_mock_selftests.h  |   1 -
-> >  4 files changed, 1 insertion(+), 383 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index f74c22dc506ec..2f3d92224d2fe 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -1633,120 +1633,6 @@ int i915_gem_vm_destroy_ioctl(struct drm_device *dev, void *data,
-> >  	return 0;
-> >  }
-> >  
-> > -struct context_barrier_task {
-> > -	struct i915_active base;
-> > -	void (*task)(void *data);
-> > -	void *data;
-> > -};
-> > -
-> > -static void cb_retire(struct i915_active *base)
-> > -{
-> > -	struct context_barrier_task *cb = container_of(base, typeof(*cb), base);
-> > -
-> > -	if (cb->task)
-> > -		cb->task(cb->data);
-> > -
-> > -	i915_active_fini(&cb->base);
-> > -	kfree(cb);
-> > -}
-> > -
-> > -I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
-> > -static int context_barrier_task(struct i915_gem_context *ctx,
-> > -				intel_engine_mask_t engines,
-> > -				bool (*skip)(struct intel_context *ce, void *data),
-> > -				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
-> > -				int (*emit)(struct i915_request *rq, void *data),
-> > -				void (*task)(void *data),
-> > -				void *data)
-> > -{
-> > -	struct context_barrier_task *cb;
-> > -	struct i915_gem_engines_iter it;
-> > -	struct i915_gem_engines *e;
-> > -	struct i915_gem_ww_ctx ww;
-> > -	struct intel_context *ce;
-> > -	int err = 0;
-> > -
-> > -	GEM_BUG_ON(!task);
-> > -
-> > -	cb = kmalloc(sizeof(*cb), GFP_KERNEL);
-> > -	if (!cb)
-> > -		return -ENOMEM;
-> > -
-> > -	i915_active_init(&cb->base, NULL, cb_retire, 0);
-> > -	err = i915_active_acquire(&cb->base);
-> > -	if (err) {
-> > -		kfree(cb);
-> > -		return err;
-> > -	}
-> > -
-> > -	e = __context_engines_await(ctx, NULL);
-> > -	if (!e) {
-> > -		i915_active_release(&cb->base);
-> > -		return -ENOENT;
-> > -	}
-> > -
-> > -	for_each_gem_engine(ce, e, it) {
-> > -		struct i915_request *rq;
-> > -
-> > -		if (I915_SELFTEST_ONLY(context_barrier_inject_fault &
-> > -				       ce->engine->mask)) {
-> > -			err = -ENXIO;
-> > -			break;
-> > -		}
-> > -
-> > -		if (!(ce->engine->mask & engines))
-> > -			continue;
-> > -
-> > -		if (skip && skip(ce, data))
-> > -			continue;
-> > -
-> > -		i915_gem_ww_ctx_init(&ww, true);
-> > -retry:
-> > -		err = intel_context_pin_ww(ce, &ww);
-> > -		if (err)
-> > -			goto err;
-> > -
-> > -		if (pin)
-> > -			err = pin(ce, &ww, data);
-> > -		if (err)
-> > -			goto err_unpin;
-> > -
-> > -		rq = i915_request_create(ce);
-> > -		if (IS_ERR(rq)) {
-> > -			err = PTR_ERR(rq);
-> > -			goto err_unpin;
-> > -		}
-> > -
-> > -		err = 0;
-> > -		if (emit)
-> > -			err = emit(rq, data);
-> > -		if (err == 0)
-> > -			err = i915_active_add_request(&cb->base, rq);
-> > -
-> > -		i915_request_add(rq);
-> > -err_unpin:
-> > -		intel_context_unpin(ce);
-> > -err:
-> > -		if (err == -EDEADLK) {
-> > -			err = i915_gem_ww_ctx_backoff(&ww);
-> > -			if (!err)
-> > -				goto retry;
-> > -		}
-> > -		i915_gem_ww_ctx_fini(&ww);
-> > -
-> > -		if (err)
-> > -			break;
-> > -	}
-> > -	i915_sw_fence_complete(&e->fence);
-> > -
-> > -	cb->task = err ? NULL : task; /* caller needs to unwind instead */
-> > -	cb->data = data;
-> > -
-> > -	i915_active_release(&cb->base);
-> > -
-> > -	return err;
-> > -}
-> > -
-> >  static int get_ppgtt(struct drm_i915_file_private *file_priv,
-> >  		     struct i915_gem_context *ctx,
-> >  		     struct drm_i915_gem_context_param *args)
-> > @@ -1779,150 +1665,6 @@ static int get_ppgtt(struct drm_i915_file_private *file_priv,
-> >  	return err;
-> >  }
-> >  
-> > -static void set_ppgtt_barrier(void *data)
-> > -{
-> > -	struct i915_address_space *old = data;
-> > -
-> > -	if (GRAPHICS_VER(old->i915) < 8)
-> > -		gen6_ppgtt_unpin_all(i915_vm_to_ppgtt(old));
-> > -
-> > -	i915_vm_close(old);
-> > -}
-> > -
-> > -static int pin_ppgtt_update(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data)
-> > -{
-> > -	struct i915_address_space *vm = ce->vm;
-> > -
-> > -	if (!HAS_LOGICAL_RING_CONTEXTS(vm->i915))
-> > -		/* ppGTT is not part of the legacy context image */
-> > -		return gen6_ppgtt_pin(i915_vm_to_ppgtt(vm), ww);
-> > -
-> > -	return 0;
-> > -}
-> > -
-> > -static int emit_ppgtt_update(struct i915_request *rq, void *data)
-> > -{
-> > -	struct i915_address_space *vm = rq->context->vm;
-> > -	struct intel_engine_cs *engine = rq->engine;
-> > -	u32 base = engine->mmio_base;
-> > -	u32 *cs;
-> > -	int i;
-> > -
-> > -	if (i915_vm_is_4lvl(vm)) {
-> > -		struct i915_ppgtt *ppgtt = i915_vm_to_ppgtt(vm);
-> > -		const dma_addr_t pd_daddr = px_dma(ppgtt->pd);
-> > -
-> > -		cs = intel_ring_begin(rq, 6);
-> > -		if (IS_ERR(cs))
-> > -			return PTR_ERR(cs);
-> > -
-> > -		*cs++ = MI_LOAD_REGISTER_IMM(2);
-> > -
-> > -		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_UDW(base, 0));
-> > -		*cs++ = upper_32_bits(pd_daddr);
-> > -		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_LDW(base, 0));
-> > -		*cs++ = lower_32_bits(pd_daddr);
-> > -
-> > -		*cs++ = MI_NOOP;
-> > -		intel_ring_advance(rq, cs);
-> > -	} else if (HAS_LOGICAL_RING_CONTEXTS(engine->i915)) {
-> > -		struct i915_ppgtt *ppgtt = i915_vm_to_ppgtt(vm);
-> > -		int err;
-> > -
-> > -		/* Magic required to prevent forcewake errors! */
-> > -		err = engine->emit_flush(rq, EMIT_INVALIDATE);
-> > -		if (err)
-> > -			return err;
-> > -
-> > -		cs = intel_ring_begin(rq, 4 * GEN8_3LVL_PDPES + 2);
-> > -		if (IS_ERR(cs))
-> > -			return PTR_ERR(cs);
-> > -
-> > -		*cs++ = MI_LOAD_REGISTER_IMM(2 * GEN8_3LVL_PDPES) | MI_LRI_FORCE_POSTED;
-> > -		for (i = GEN8_3LVL_PDPES; i--; ) {
-> > -			const dma_addr_t pd_daddr = i915_page_dir_dma_addr(ppgtt, i);
-> > -
-> > -			*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_UDW(base, i));
-> > -			*cs++ = upper_32_bits(pd_daddr);
-> > -			*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_LDW(base, i));
-> > -			*cs++ = lower_32_bits(pd_daddr);
-> > -		}
-> > -		*cs++ = MI_NOOP;
-> > -		intel_ring_advance(rq, cs);
-> > -	}
-> > -
-> > -	return 0;
-> > -}
-> > -
-> > -static bool skip_ppgtt_update(struct intel_context *ce, void *data)
-> > -{
-> > -	if (HAS_LOGICAL_RING_CONTEXTS(ce->engine->i915))
-> > -		return !ce->state;
-> > -	else
-> > -		return !atomic_read(&ce->pin_count);
-> > -}
-> > -
-> > -static int set_ppgtt(struct drm_i915_file_private *file_priv,
-> > -		     struct i915_gem_context *ctx,
-> > -		     struct drm_i915_gem_context_param *args)
-> > -{
-> > -	struct i915_address_space *vm, *old;
-> > -	int err;
-> > -
-> > -	if (args->size)
-> > -		return -EINVAL;
-> > -
-> > -	if (!rcu_access_pointer(ctx->vm))
-> > -		return -ENODEV;
-> > -
-> > -	if (upper_32_bits(args->value))
-> > -		return -ENOENT;
-> > -
-> > -	vm = i915_gem_vm_lookup(file_priv, args->value);
-> > -	if (!vm)
-> > -		return -ENOENT;
-> > -
-> > -	err = mutex_lock_interruptible(&ctx->mutex);
-> > -	if (err)
-> > -		goto out;
-> > -
-> > -	if (i915_gem_context_is_closed(ctx)) {
-> > -		err = -ENOENT;
-> > -		goto unlock;
-> > -	}
-> > -
-> > -	if (vm == rcu_access_pointer(ctx->vm))
-> > -		goto unlock;
-> > -
-> > -	old = __set_ppgtt(ctx, vm);
-> > -
-> > -	/* Teardown the existing obj:vma cache, it will have to be rebuilt. */
-> > -	lut_close(ctx);
-> > -
-> > -	/*
-> > -	 * We need to flush any requests using the current ppgtt before
-> > -	 * we release it as the requests do not hold a reference themselves,
-> > -	 * only indirectly through the context.
-> > -	 */
-> > -	err = context_barrier_task(ctx, ALL_ENGINES,
-> > -				   skip_ppgtt_update,
-> > -				   pin_ppgtt_update,
-> > -				   emit_ppgtt_update,
-> > -				   set_ppgtt_barrier,
-> > -				   old);
-> > -	if (err) {
-> > -		i915_vm_close(__set_ppgtt(ctx, old));
-> > -		i915_vm_close(old);
-> > -		lut_close(ctx); /* force a rebuild of the old obj:vma cache */
-> > -	}
-> > -
-> > -unlock:
-> > -	mutex_unlock(&ctx->mutex);
-> > -out:
-> > -	i915_vm_put(vm);
-> > -	return err;
-> > -}
-> > -
-> >  int
-> >  i915_gem_user_to_context_sseu(struct intel_gt *gt,
-> >  			      const struct drm_i915_gem_context_param_sseu *user,
-> > @@ -2458,10 +2200,6 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
-> >  		ret = set_sseu(ctx, args);
-> >  		break;
-> >  
-> > -	case I915_CONTEXT_PARAM_VM:
-> > -		ret = set_ppgtt(fpriv, ctx, args);
-> > -		break;
-> > -
-> >  	case I915_CONTEXT_PARAM_ENGINES:
-> >  		ret = set_engines(ctx, args);
-> >  		break;
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> > index 94c03a97cb77c..540ad16204a97 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> > @@ -262,7 +262,7 @@ struct i915_gem_context {
-> >  	 * In other modes, this is a NULL pointer with the expectation that
-> >  	 * the caller uses the shared global GTT.
-> >  	 */
-> > -	struct i915_address_space __rcu *vm;
-> > +	struct i915_address_space *vm;
-> 
-> Ok, you fixed this wrong. We can't just drop the __rcu here because in
-> various places we're probably relying on rcu_read_lock to give us a
-> temporary reference. Until that is sorted, the __rcu here needs to stay.
-> 
-> That also takes of the 0day issue the kernel reported.
-> 
-> To fixe the __rcu mismatches in i915_gem_context you probably need to
-> sprinkle some rcu_assign_pointer around.
-> 
-> With that addressed again
-> 
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> 
-> >  
-> >  	/**
-> >  	 * @pid: process id of creator
-> > diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > index dbcfa28a9d91b..92544a174cc9a 100644
-> > --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > @@ -1875,125 +1875,6 @@ static int igt_vm_isolation(void *arg)
-> >  	return err;
-> >  }
-> >  
-> > -static bool skip_unused_engines(struct intel_context *ce, void *data)
-> > -{
-> > -	return !ce->state;
-> > -}
-> > -
-> > -static void mock_barrier_task(void *data)
-> > -{
-> > -	unsigned int *counter = data;
-> > -
-> > -	++*counter;
-> > -}
-> > -
-> > -static int mock_context_barrier(void *arg)
-> > -{
-> > -#undef pr_fmt
-> > -#define pr_fmt(x) "context_barrier_task():" # x
-> > -	struct drm_i915_private *i915 = arg;
-> > -	struct i915_gem_context *ctx;
-> > -	struct i915_request *rq;
-> > -	unsigned int counter;
-> > -	int err;
-> > -
-> > -	/*
-> > -	 * The context barrier provides us with a callback after it emits
-> > -	 * a request; useful for retiring old state after loading new.
-> > -	 */
-> > -
-> > -	ctx = mock_context(i915, "mock");
-> > -	if (!ctx)
-> > -		return -ENOMEM;
-> > -
-> > -	counter = 0;
-> > -	err = context_barrier_task(ctx, 0, NULL, NULL, NULL,
-> > -				   mock_barrier_task, &counter);
-> > -	if (err) {
-> > -		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
-> > -		goto out;
-> > -	}
-> > -	if (counter == 0) {
-> > -		pr_err("Did not retire immediately with 0 engines\n");
-> > -		err = -EINVAL;
-> > -		goto out;
-> > -	}
-> > -
-> > -	counter = 0;
-> > -	err = context_barrier_task(ctx, ALL_ENGINES, skip_unused_engines,
-> > -				   NULL, NULL, mock_barrier_task, &counter);
-> > -	if (err) {
-> > -		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
-> > -		goto out;
-> > -	}
-> > -	if (counter == 0) {
-> > -		pr_err("Did not retire immediately for all unused engines\n");
-> > -		err = -EINVAL;
-> > -		goto out;
-> > -	}
-> > -
-> > -	rq = igt_request_alloc(ctx, i915->gt.engine[RCS0]);
-> > -	if (IS_ERR(rq)) {
-> > -		pr_err("Request allocation failed!\n");
-> > -		goto out;
-> > -	}
-> > -	i915_request_add(rq);
-> > -
-> > -	counter = 0;
-> > -	context_barrier_inject_fault = BIT(RCS0);
-> > -	err = context_barrier_task(ctx, ALL_ENGINES, NULL, NULL, NULL,
-> > -				   mock_barrier_task, &counter);
-> > -	context_barrier_inject_fault = 0;
-> > -	if (err == -ENXIO)
-> > -		err = 0;
-> > -	else
-> > -		pr_err("Did not hit fault injection!\n");
-> > -	if (counter != 0) {
-> > -		pr_err("Invoked callback on error!\n");
-> > -		err = -EIO;
-> > -	}
-> > -	if (err)
-> > -		goto out;
-> > -
-> > -	counter = 0;
-> > -	err = context_barrier_task(ctx, ALL_ENGINES, skip_unused_engines,
-> > -				   NULL, NULL, mock_barrier_task, &counter);
-> > -	if (err) {
-> > -		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
-> > -		goto out;
-> > -	}
-> > -	mock_device_flush(i915);
-> > -	if (counter == 0) {
-> > -		pr_err("Did not retire on each active engines\n");
-> > -		err = -EINVAL;
-> > -		goto out;
-> > -	}
-> > -
-> > -out:
-> > -	mock_context_close(ctx);
-> > -	return err;
-> > -#undef pr_fmt
-> > -#define pr_fmt(x) x
-> > -}
-> > -
-> > -int i915_gem_context_mock_selftests(void)
-> > -{
-> > -	static const struct i915_subtest tests[] = {
-> > -		SUBTEST(mock_context_barrier),
-> > -	};
-> > -	struct drm_i915_private *i915;
-> > -	int err;
-> > -
-> > -	i915 = mock_gem_device();
-> > -	if (!i915)
-> > -		return -ENOMEM;
-> > -
-> > -	err = i915_subtests(tests, i915);
-> > -
-> > -	mock_destroy_device(i915);
-> > -	return err;
-> > -}
-> > -
-> >  int i915_gem_context_live_selftests(struct drm_i915_private *i915)
-> >  {
-> >  	static const struct i915_subtest tests[] = {
-> > diff --git a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
-> > index 34e5caf380933..0c22e0fc9059c 100644
-> > --- a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
-> > +++ b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
-> > @@ -32,5 +32,4 @@ selftest(vma, i915_vma_mock_selftests)
-> >  selftest(evict, i915_gem_evict_mock_selftests)
-> >  selftest(gtt, i915_gem_gtt_mock_selftests)
-> >  selftest(hugepages, i915_gem_huge_page_mock_selftests)
-> > -selftest(contexts, i915_gem_context_mock_selftests)
-> >  selftest(memory_region, intel_memory_region_mock_selftests)
-> > -- 
-> > 2.31.1
-> > 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 113 ++++++++++---------
+>  1 file changed, 62 insertions(+), 51 deletions(-)
+> =
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 78815a1ac0ca..1615501685c9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1914,20 +1914,50 @@ static void intel_dpt_unpin(struct i915_address_s=
+pace *vm)
+>  	i915_vma_put(dpt->vma);
+>  }
+>  =
+
+> +static bool
+> +intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
+> +			      const struct intel_initial_plane_config *plane_config,
+> +			      struct drm_framebuffer **fb,
+> +			      struct i915_vma **vma)
+> +{
+> +	struct intel_crtc *crtc;
+> +
+> +	for_each_intel_crtc(&i915->drm, crtc) {
+> +		struct intel_crtc_state *crtc_state =3D
+> +			to_intel_crtc_state(crtc->base.state);
+> +		struct intel_plane *plane =3D
+> +			to_intel_plane(crtc->base.primary);
+> +		struct intel_plane_state *plane_state =3D
+> +			to_intel_plane_state(plane->base.state);
+> +
+> +		if (!crtc_state->uapi.active)
+> +			continue;
+> +
+> +		if (!plane_state->ggtt_vma)
+> +			continue;
+> +
+> +		if (intel_plane_ggtt_offset(plane_state) =3D=3D plane_config->base) {
+> +			*fb =3D plane_state->hw.fb;
+> +			*vma =3D plane_state->ggtt_vma;
+> +			return true;
+> +		}
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  static void
+> -intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
+> +intel_find_initial_plane_obj(struct intel_crtc *crtc,
+>  			     struct intel_initial_plane_config *plane_config)
+>  {
+> -	struct drm_device *dev =3D intel_crtc->base.dev;
+> +	struct drm_device *dev =3D crtc->base.dev;
+>  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> -	struct drm_crtc *c;
+> -	struct drm_plane *primary =3D intel_crtc->base.primary;
+> -	struct drm_plane_state *plane_state =3D primary->state;
+> -	struct intel_plane *intel_plane =3D to_intel_plane(primary);
+> -	struct intel_plane_state *intel_state =3D
+> -		to_intel_plane_state(plane_state);
+>  	struct intel_crtc_state *crtc_state =3D
+> -		to_intel_crtc_state(intel_crtc->base.state);
+> +		to_intel_crtc_state(crtc->base.state);
+> +	struct intel_plane *plane =3D
+> +		to_intel_plane(crtc->base.primary);
+> +	struct intel_plane_state *plane_state =3D
+> +		to_intel_plane_state(plane->base.state);
+>  	struct drm_framebuffer *fb;
+>  	struct i915_vma *vma;
+>  =
+
+> @@ -1939,7 +1969,7 @@ intel_find_initial_plane_obj(struct intel_crtc *int=
+el_crtc,
+>  	if (!plane_config->fb)
+>  		return;
+>  =
+
+> -	if (intel_alloc_initial_plane_obj(intel_crtc, plane_config)) {
+> +	if (intel_alloc_initial_plane_obj(crtc, plane_config)) {
+>  		fb =3D &plane_config->fb->base;
+>  		vma =3D plane_config->vma;
+>  		goto valid_fb;
+> @@ -1949,25 +1979,8 @@ intel_find_initial_plane_obj(struct intel_crtc *in=
+tel_crtc,
+>  	 * Failed to alloc the obj, check to see if we should share
+>  	 * an fb with another CRTC instead
+>  	 */
+> -	for_each_crtc(dev, c) {
+> -		struct intel_plane_state *state;
+> -
+> -		if (c =3D=3D &intel_crtc->base)
+> -			continue;
+> -
+> -		if (!to_intel_crtc_state(c->state)->uapi.active)
+> -			continue;
+> -
+> -		state =3D to_intel_plane_state(c->primary->state);
+> -		if (!state->ggtt_vma)
+> -			continue;
+> -
+> -		if (intel_plane_ggtt_offset(state) =3D=3D plane_config->base) {
+> -			fb =3D state->hw.fb;
+> -			vma =3D state->ggtt_vma;
+> -			goto valid_fb;
+> -		}
+> -	}
+> +	if (intel_reuse_initial_plane_obj(dev_priv, plane_config, &fb, &vma))
+> +		goto valid_fb;
+>  =
+
+>  	/*
+>  	 * We've failed to reconstruct the BIOS FB.  Current display state
+> @@ -1976,7 +1989,7 @@ intel_find_initial_plane_obj(struct intel_crtc *int=
+el_crtc,
+>  	 * simplest solution is to just disable the primary plane now and
+>  	 * pretend the BIOS never had it enabled.
+>  	 */
+> -	intel_plane_disable_noatomic(intel_crtc, intel_plane);
+> +	intel_plane_disable_noatomic(crtc, plane);
+>  	if (crtc_state->bigjoiner) {
+>  		struct intel_crtc *slave =3D
+>  			crtc_state->bigjoiner_linked_crtc;
+> @@ -1986,40 +1999,38 @@ intel_find_initial_plane_obj(struct intel_crtc *i=
+ntel_crtc,
+>  	return;
+>  =
+
+>  valid_fb:
+> -	plane_state->rotation =3D plane_config->rotation;
+> -	intel_fb_fill_view(to_intel_framebuffer(fb), plane_state->rotation,
+> -			   &intel_state->view);
+> +	plane_state->uapi.rotation =3D plane_config->rotation;
+> +	intel_fb_fill_view(to_intel_framebuffer(fb),
+> +			   plane_state->uapi.rotation, &plane_state->view);
+>  =
+
+>  	__i915_vma_pin(vma);
+> -	intel_state->ggtt_vma =3D i915_vma_get(vma);
+> -	if (intel_plane_uses_fence(intel_state) && i915_vma_pin_fence(vma) =3D=
+=3D 0)
+> -		if (vma->fence)
+> -			intel_state->flags |=3D PLANE_HAS_FENCE;
+> +	plane_state->ggtt_vma =3D i915_vma_get(vma);
+> +	if (intel_plane_uses_fence(plane_state) &&
+> +	    i915_vma_pin_fence(vma) =3D=3D 0 && vma->fence)
+> +		plane_state->flags |=3D PLANE_HAS_FENCE;
+>  =
+
+> -	plane_state->src_x =3D 0;
+> -	plane_state->src_y =3D 0;
+> -	plane_state->src_w =3D fb->width << 16;
+> -	plane_state->src_h =3D fb->height << 16;
+> +	plane_state->uapi.src_x =3D 0;
+> +	plane_state->uapi.src_y =3D 0;
+> +	plane_state->uapi.src_w =3D fb->width << 16;
+> +	plane_state->uapi.src_h =3D fb->height << 16;
+>  =
+
+> -	plane_state->crtc_x =3D 0;
+> -	plane_state->crtc_y =3D 0;
+> -	plane_state->crtc_w =3D fb->width;
+> -	plane_state->crtc_h =3D fb->height;
+> +	plane_state->uapi.crtc_x =3D 0;
+> +	plane_state->uapi.crtc_y =3D 0;
+> +	plane_state->uapi.crtc_w =3D fb->width;
+> +	plane_state->uapi.crtc_h =3D fb->height;
+>  =
+
+>  	if (plane_config->tiling)
+>  		dev_priv->preserve_bios_swizzle =3D true;
+>  =
+
+> -	plane_state->fb =3D fb;
+> +	plane_state->uapi.fb =3D fb;
+
+I believe we should have a separated patch for these plane_state uapi chang=
+es
+
+>  	drm_framebuffer_get(fb);
+>  =
+
+> -	plane_state->crtc =3D &intel_crtc->base;
+> -	intel_plane_copy_uapi_to_hw_state(intel_state, intel_state,
+> -					  intel_crtc);
+> +	plane_state->uapi.crtc =3D &crtc->base;
+> +	intel_plane_copy_uapi_to_hw_state(plane_state, plane_state, crtc);
+>  =
+
+>  	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
+>  =
+
+> -	atomic_or(to_intel_plane(primary)->frontbuffer_bit,
+> -		  &to_intel_frontbuffer(fb)->bits);
+> +	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
+>  }
+>  =
+
+>  unsigned int
+> -- =
+
+> 2.31.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
