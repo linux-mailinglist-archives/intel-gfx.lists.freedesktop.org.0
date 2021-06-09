@@ -1,45 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 524D33A0E0B
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 09:49:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 411113A0E23
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jun 2021 09:54:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A65D6E408;
-	Wed,  9 Jun 2021 07:48:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 722BF6E408;
+	Wed,  9 Jun 2021 07:54:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C76C6E3F5;
- Wed,  9 Jun 2021 07:48:57 +0000 (UTC)
-IronPort-SDR: LhpRjwSgmrtLEwh3bRfGL0pimIF/GRiZVtljLvRr7e6JkjlhQ9pKfY48Uu4PP6/3z93P2iNohx
- WsdnZYZU5c+g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="203170468"
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="203170468"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 00:48:56 -0700
-IronPort-SDR: bNbEWc6dlQm1Pu6euELkCrFAfFxYiNA36U6WPAGtbBlvD9MoUcaZsfl1deTewYyUkshvh5u0Q7
- r1fsA+1/kw+g==
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="419196825"
-Received: from gbwalsh-mobl6.ger.corp.intel.com (HELO [10.252.10.147])
- ([10.252.10.147])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 00:48:54 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
- <20210609063436.284332-6-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <90884b67-742d-cdf3-4201-fcdf27a596df@intel.com>
-Date: Wed, 9 Jun 2021 08:48:53 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6F8B76E408;
+ Wed,  9 Jun 2021 07:54:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 66F8FA47E2;
+ Wed,  9 Jun 2021 07:54:54 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210609063436.284332-6-thomas.hellstrom@linux.intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH v2 5/9] drm/i915/gt: Add a routine to
- iterate over the pagetables of a GTT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Wed, 09 Jun 2021 07:54:54 -0000
+Message-ID: <162322529439.27476.804040964434359083@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210609063436.284332-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Prereqs_for_TTM_accelerated_migration_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,18 +38,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMDkvMDYvMjAyMSAwNzozNCwgVGhvbWFzIEhlbGxzdHLDtm0gd3JvdGU6Cj4gRnJvbTogQ2hy
-aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gCj4gSW4gdGhlIG5leHQgcGF0
-Y2gsIHdlIHdpbGwgd2FudCB0byBsb29rIGF0IHRoZSBkbWEgYWRkcmVzc2VzIG9mCj4gaW5kaXZp
-ZHVhbCBwYWdlIHRhYmxlcywgc28gYWRkIGEgcm91dGluZSB0byBpdGVyYXRlIG92ZXIgdGhlbS4K
-PiAKPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51
-az4KUmV2aWV3ZWQtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: Prereqs for TTM accelerated migration (rev2)
+URL   : https://patchwork.freedesktop.org/series/91155/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+be1926db749f drm/i915: Reference objects on the ww object list
+ae3f71f8fc2d drm/i915: Break out dma_resv ww locking utilities to separate files
+-:141: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#141: 
+new file mode 100644
+
+-:166: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#166: FILE: drivers/gpu/drm/i915/i915_gem_ww.c:21:
++	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
+
+total: 0 errors, 2 warnings, 0 checks, 183 lines checked
+8bf111e86cf9 drm/i915: Introduce a ww transaction helper
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_ww' - possible side-effects?
+#56: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
++#define for_i915_gem_ww(_ww, _err, _intr)			\
++	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
++	     _err = __i915_gem_ww_fini(_ww, _err))
+
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
+#56: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
++#define for_i915_gem_ww(_ww, _err, _intr)			\
++	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
++	     _err = __i915_gem_ww_fini(_ww, _err))
+
+total: 0 errors, 0 warnings, 2 checks, 41 lines checked
+50f6709e7fff drm/i915/gt: Add an insert_entry for gen8_ppgtt
+e63c320c3025 drm/i915/gt: Add a routine to iterate over the pagetables of a GTT
+86e3a5a7d285 drm/i915/gt: Export the pinned context constructor and destructor
+5fcf6685a775 drm/i915/gt: Pipelined page migration
+-:66: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#66: 
+new file mode 100644
+
+-:880: WARNING:LINE_SPACING: Missing a blank line after declarations
+#880: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:176:
++	struct drm_i915_private *i915 = migrate->context->engine->i915;
++	I915_RND_STATE(prng);
+
+-:909: WARNING:LINE_SPACING: Missing a blank line after declarations
+#909: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:205:
++	struct threaded_migrate *thread;
++	I915_RND_STATE(prng);
+
+-:934: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
+#934: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:230:
++	msleep(10); /* start all threads before we kthread_stop() */
+
+total: 0 errors, 4 warnings, 0 checks, 933 lines checked
+b4f5bf5e3091 drm/i915/gt: Pipelined clear
+-:353: WARNING:LINE_SPACING: Missing a blank line after declarations
+#353: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:311:
++	struct drm_i915_private *i915 = migrate->context->engine->i915;
++	I915_RND_STATE(prng);
+
+total: 0 errors, 1 warnings, 0 checks, 378 lines checked
+a6745617acf0 drm/i915/gt: Setup a default migration context on the GT
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
