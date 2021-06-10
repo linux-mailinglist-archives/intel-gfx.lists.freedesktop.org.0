@@ -1,67 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483E63A2F46
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 17:28:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6238E3A2FC1
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 17:47:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 257E66ED64;
-	Thu, 10 Jun 2021 15:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 174C56ED64;
+	Thu, 10 Jun 2021 15:47:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
- [IPv6:2a00:1450:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D97C6E364
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 15:27:54 +0000 (UTC)
-Received: by mail-wr1-x42b.google.com with SMTP id o3so2791235wri.8
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 08:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=vjkKF1o7a7pOxgz6JOD56UknsGpZnXsYpkehMi+OpXQ=;
- b=Cxj2ZsBevXwmudjEmt4adHS06b8nQL1ZUC49Vg7wApgJfDRqq2cFuvbPlROIRrHRV9
- Nr9Cw5uxBqjZ3yexS3iJr9o87bYGLDR7o01G3H7w+EBnLySOBHF95le36N+n72kGl53i
- vG3h1K2R3HGLOzOGfqKmJ8Y9AEI7XWoWBwKJE=
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com
+ [IPv6:2607:f8b0:4864:20::234])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053276E49B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 15:40:57 +0000 (UTC)
+Received: by mail-oi1-x234.google.com with SMTP id t140so2604270oih.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 08:40:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=jIeOXVZdX3oss7/1RmWBNPIezQSeenQ/7A4FW9ywRDo=;
+ b=AS8+jF/qVkTPU8/koMEES0Y3StOcif6labsTuHWKlsV87lalI6EK6YupX1A8t83FJV
+ CQ8RxtGouzYSsWJQQNszeTqhqrxbM/p/vv2QLT2k+N/tirlWatqUqYXKaka50zMQ+QlP
+ 8sm9ge1jMnNbAa+BG5iyUMqSlxSaH074NH5MJ7Awpg7PogVHgIa1nPFQhseHAfZj39L3
+ 7NmjFg9Z4GS0nfMllprS/NGNJU5GfOgvliaGyUa8sBYAc5lE9B+X/3V1K5/PPxQ3F3WC
+ ySECIccK7K5+N8Siq+GLR/wwA8NWv2xu4S/yWtgvkmZOJqQ29tYelHqFQfOleXe8HctU
+ CaBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=vjkKF1o7a7pOxgz6JOD56UknsGpZnXsYpkehMi+OpXQ=;
- b=Y9msr9zJeujgOE0w2iSQLLXCXVfmSXOoYhgN0F2Ig87Dv1Jos8ykJl4BeT4Gn898yx
- /Low25qVekVk2C728N3NmJ/m6hfCmGmORwxaPkcVU7X78GZkHDELr5bJ8uQQNBi1X55m
- UCH0yjlr8hdDpxhqdrYWCAFfiqUP6zAXCz9k6aIOVmfsE0X/QKyJcXoQIYWHRDMv2idQ
- xZgfUrTFS7PWru8rSFdyaBzrAzTRXT+IGR6Ksk+/nkJY/VYK90XGJKX+dTLwK7FyO0vu
- aP3L6TuzYUA+vPQ722ygfZesHA3+cARn+IwhhdmEq5S99nVOAqyvwP8jkSA2cODoe2zs
- BkgQ==
-X-Gm-Message-State: AOAM5339r9wcdOHSg0ZqcyGC2v/TBsuGbYowTHaP/CegnpsXrGs6eSdK
- ec6dZWOLSrkf8rwOLoMrvetp/g==
-X-Google-Smtp-Source: ABdhPJwrsbmJpqnlBQL3Z2QaWiKV6j4St1J5GpGkq85pYKJITuVxU9wKMmQ9chkidKwQb/zT4vbh3Q==
-X-Received: by 2002:a5d:4050:: with SMTP id w16mr6122224wrp.99.1623338872874; 
- Thu, 10 Jun 2021 08:27:52 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id o3sm4794184wrc.0.2021.06.10.08.27.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Jun 2021 08:27:51 -0700 (PDT)
-Date: Thu, 10 Jun 2021 17:27:48 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <YMIvdJ91DFZfybNm@phenom.ffwll.local>
-References: <20210525172121.GE14724@sdutt-i7>
- <0f26f76f-e066-fb23-a7b2-784bb8ee771d@linux.intel.com>
- <20210526181053.GA3435@sdutt-i7>
- <53613c13-1cab-b9bd-3922-0389600773ee@linux.intel.com>
- <20210527143514.GA24720@sdutt-i7>
- <828fe399-5319-78a9-c6e3-c0c027e08e9c@linux.intel.com>
- <20210607173101.GA11968@sdutt-i7>
- <2706c890-5145-4edb-acd1-b9862caba8cf@linux.intel.com>
- <CAKMK7uENywXraNAfrU_3iP16zse+S5M7EMOrx7D0z-+AjSqaqA@mail.gmail.com>
- <20210609231023.GB5471@sdutt-i7>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=jIeOXVZdX3oss7/1RmWBNPIezQSeenQ/7A4FW9ywRDo=;
+ b=V5QdzpDGB3B/LlmQTDN0cCEJnYOZMFbCH0T8QlMFgVQKqqPbcMQ+xs+TJOeRef0ILW
+ 9mN3biMKO9E9mRb2eEpBfVSNJiWv/RyvCUEaDF+KsO5hBroPimnbaA/jTNVStzhO5iKV
+ y6/scAfy9Vv7pL6uiGm9k2ouhD+fHyL6EtA9mhjpXgJEKHJDtMTQWLSFOWRQSjiItr/a
+ Ou2YIrS9qJK7uBa4NpfmwcxZbfKYRrpggITZu3EoYQyNHnf2tp3KynusFJ+0rdPRreub
+ A1heomf/UTvRNUmuBIDgmF1lt2lpV6UKrgqvpIKatBcrFNs2wToaY3vcY41yW5Ytotg+
+ zvaA==
+X-Gm-Message-State: AOAM53058qOC4Gl4QyMufm5mLveanRsPYXPk7KpO/pkacfHNtwjbLqOu
+ QNyiJymyI36uRhpLlRFQOr8VohsI+pxy9uLUMoNUUQ==
+X-Google-Smtp-Source: ABdhPJyqbdXAyn4whN6gEhpiSFX5lOGReknxmYTjBobcqUZp7JqIBse5vTvv4zisINtvdGX+2FwkEMQ+HgVSRrM5yeM=
+X-Received: by 2002:a54:408b:: with SMTP id i11mr3976129oii.132.1623339657061; 
+ Thu, 10 Jun 2021 08:40:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210609231023.GB5471@sdutt-i7>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [RFC PATCH 36/97] drm/i915/guc: Add non blocking
- CTB send function
+References: <548dd463-3942-00a1-85c3-232897dea1a3@canonical.com>
+ <162332615476.15946.17135355064135638083@jlahtine-mobl.ger.corp.intel.com>
+In-Reply-To: <162332615476.15946.17135355064135638083@jlahtine-mobl.ger.corp.intel.com>
+From: Jesse Barnes <jsbarnes@google.com>
+Date: Thu, 10 Jun 2021 08:40:45 -0700
+Message-ID: <CAJmaN==rk+C_C_-avQ9vuC8LkJbgL=P3by0+p4LC9dZN_Urv4g@mail.gmail.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+X-Mailman-Approved-At: Thu, 10 Jun 2021 15:47:07 +0000
+Subject: Re: [Intel-gfx] Computation of return value being discarded in
+ get_cpu_power() in drivers/platform/x86/intel_ips.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,228 +63,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Jason Ekstrand <jason.ekstrand@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Mark Gross <mgross@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ platform-driver-x86@vger.kernel.org,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Colin Ian King <colin.king@canonical.com>
+Content-Type: multipart/mixed; boundary="===============1214586668=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 09, 2021 at 04:10:23PM -0700, Matthew Brost wrote:
-> On Tue, Jun 08, 2021 at 10:46:15AM +0200, Daniel Vetter wrote:
-> > On Tue, Jun 8, 2021 at 10:39 AM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
-> > >
-> > >
-> > > On 07/06/2021 18:31, Matthew Brost wrote:
-> > > > On Thu, May 27, 2021 at 04:11:50PM +0100, Tvrtko Ursulin wrote:
-> > > >>
-> > > >> On 27/05/2021 15:35, Matthew Brost wrote:
-> > > >>> On Thu, May 27, 2021 at 11:02:24AM +0100, Tvrtko Ursulin wrote:
-> > > >>>>
-> > > >>>> On 26/05/2021 19:10, Matthew Brost wrote:
-> > > >>>>
-> > > >>>> [snip]
-> > > >>>>
-> > > >>>>>>>>> +static int ct_send_nb(struct intel_guc_ct *ct,
-> > > >>>>>>>>> +                   const u32 *action,
-> > > >>>>>>>>> +                   u32 len,
-> > > >>>>>>>>> +                   u32 flags)
-> > > >>>>>>>>> +{
-> > > >>>>>>>>> +     struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > > >>>>>>>>> +     unsigned long spin_flags;
-> > > >>>>>>>>> +     u32 fence;
-> > > >>>>>>>>> +     int ret;
-> > > >>>>>>>>> +
-> > > >>>>>>>>> +     spin_lock_irqsave(&ctb->lock, spin_flags);
-> > > >>>>>>>>> +
-> > > >>>>>>>>> +     ret = ctb_has_room(ctb, len + 1);
-> > > >>>>>>>>> +     if (unlikely(ret))
-> > > >>>>>>>>> +             goto out;
-> > > >>>>>>>>> +
-> > > >>>>>>>>> +     fence = ct_get_next_fence(ct);
-> > > >>>>>>>>> +     ret = ct_write(ct, action, len, fence, flags);
-> > > >>>>>>>>> +     if (unlikely(ret))
-> > > >>>>>>>>> +             goto out;
-> > > >>>>>>>>> +
-> > > >>>>>>>>> +     intel_guc_notify(ct_to_guc(ct));
-> > > >>>>>>>>> +
-> > > >>>>>>>>> +out:
-> > > >>>>>>>>> +     spin_unlock_irqrestore(&ctb->lock, spin_flags);
-> > > >>>>>>>>> +
-> > > >>>>>>>>> +     return ret;
-> > > >>>>>>>>> +}
-> > > >>>>>>>>> +
-> > > >>>>>>>>>       static int ct_send(struct intel_guc_ct *ct,
-> > > >>>>>>>>>                          const u32 *action,
-> > > >>>>>>>>>                          u32 len,
-> > > >>>>>>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > >>>>>>>>>                          u32 response_buf_size,
-> > > >>>>>>>>>                          u32 *status)
-> > > >>>>>>>>>       {
-> > > >>>>>>>>> +     struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > > >>>>>>>>>               struct ct_request request;
-> > > >>>>>>>>>               unsigned long flags;
-> > > >>>>>>>>>               u32 fence;
-> > > >>>>>>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > >>>>>>>>>               GEM_BUG_ON(!len);
-> > > >>>>>>>>>               GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
-> > > >>>>>>>>>               GEM_BUG_ON(!response_buf && response_buf_size);
-> > > >>>>>>>>> +     might_sleep();
-> > > >>>>>>>>
-> > > >>>>>>>> Sleep is just cond_resched below or there is more?
-> > > >>>>>>>>
-> > > >>>>>>>
-> > > >>>>>>> Yes, the cond_resched.
-> > > >>>>>>>
-> > > >>>>>>>>> +     /*
-> > > >>>>>>>>> +      * We use a lazy spin wait loop here as we believe that if the CT
-> > > >>>>>>>>> +      * buffers are sized correctly the flow control condition should be
-> > > >>>>>>>>> +      * rare.
-> > > >>>>>>>>> +      */
-> > > >>>>>>>>> +retry:
-> > > >>>>>>>>>               spin_lock_irqsave(&ct->ctbs.send.lock, flags);
-> > > >>>>>>>>> +     if (unlikely(!ctb_has_room(ctb, len + 1))) {
-> > > >>>>>>>>> +             spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > > >>>>>>>>> +             cond_resched();
-> > > >>>>>>>>> +             goto retry;
-> > > >>>>>>>>> +     }
-> > > >>>>>>>>
-> > > >>>>>>>> If this patch is about adding a non-blocking send function, and below we can
-> > > >>>>>>>> see that it creates a fork:
-> > > >>>>>>>>
-> > > >>>>>>>> intel_guc_ct_send:
-> > > >>>>>>>> ...
-> > > >>>>>>>>        if (flags & INTEL_GUC_SEND_NB)
-> > > >>>>>>>>                return ct_send_nb(ct, action, len, flags);
-> > > >>>>>>>>
-> > > >>>>>>>>        ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
-> > > >>>>>>>>
-> > > >>>>>>>> Then why is there a change in ct_send here, which is not the new
-> > > >>>>>>>> non-blocking path?
-> > > >>>>>>>>
-> > > >>>>>>>
-> > > >>>>>>> There is not a change to ct_send(), just to intel_guc_ct_send.
-> > > >>>>>>
-> > > >>>>>> I was doing by the diff which says:
-> > > >>>>>>
-> > > >>>>>>     static int ct_send(struct intel_guc_ct *ct,
-> > > >>>>>>                     const u32 *action,
-> > > >>>>>>                     u32 len,
-> > > >>>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > >>>>>>                     u32 response_buf_size,
-> > > >>>>>>                     u32 *status)
-> > > >>>>>>     {
-> > > >>>>>> +        struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > > >>>>>>          struct ct_request request;
-> > > >>>>>>          unsigned long flags;
-> > > >>>>>>          u32 fence;
-> > > >>>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > >>>>>>          GEM_BUG_ON(!len);
-> > > >>>>>>          GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
-> > > >>>>>>          GEM_BUG_ON(!response_buf && response_buf_size);
-> > > >>>>>> +        might_sleep();
-> > > >>>>>> +        /*
-> > > >>>>>> +         * We use a lazy spin wait loop here as we believe that if the CT
-> > > >>>>>> +         * buffers are sized correctly the flow control condition should be
-> > > >>>>>> +         * rare.
-> > > >>>>>> +         */
-> > > >>>>>> +retry:
-> > > >>>>>>          spin_lock_irqsave(&ct->ctbs.send.lock, flags);
-> > > >>>>>> +        if (unlikely(!ctb_has_room(ctb, len + 1))) {
-> > > >>>>>> +                spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > > >>>>>> +                cond_resched();
-> > > >>>>>> +                goto retry;
-> > > >>>>>> +        }
-> > > >>>>>>
-> > > >>>>>> So it looks like a change to ct_send to me. Is that wrong?
-> > > >>>>
-> > > >>>> What about this part - is the patch changing the blocking ct_send or not,
-> > > >>>> and if it is why?
-> > > >>>>
-> > > >>>
-> > > >>> Yes, ct_send() changes. Sorry for the confusion.
-> > > >>>
-> > > >>> This function needs to be updated to account for the H2G space and
-> > > >>> backoff if no space is available.
-> > > >>
-> > > >> Since this one is the sleeping path, it probably can and needs to be smarter
-> > > >> than having a cond_resched busy loop added. Like sleep and get woken up when
-> > > >> there is space. Otherwise it can degenerate to busy looping via contention
-> > > >> with the non-blocking path.
-> > > >>
-> > > >
-> > > > That screams over enginerring a simple problem to me. If the CT channel
-> > > > is full we are really in trouble anyways - i.e. the performance is going
-> > > > to terrible as we overwhelmed the GuC with traffic. That being said,
-> > >
-> > > Performance of what would be terrible? Something relating to submitting
-> > > new jobs to the GPU I guess. Or something SRIOV related as you hint below.
-> > >
-> > > But there is no real reason why CPU cycles/power should suffer if GuC is
-> > > busy.
-> > >
-> > > Okay, if it can't happen in real world then it's possibly passable as a
-> > > design of a communication interface. But to me it leaves a bad taste and
-> > > a doubt that there is this other aspect of the real world. And that is
-> > > when the unexpected happens. Even the most trivial things like a bug in
-> > > GuC firmware causes the driver to busy spin in there. So not much
-> > > happening on the machine but CPU cores pinned burning cycles in this
-> > > code. It's just lazy and not robust design. "Bug #nnnnn - High CPU usage
-> > > and GUI blocked - Solution: Upgrade GuC firmware and _reboot_ the
-> > > machine". Oh well..
-> > >
-> > > At least I think the commit message should spell out clearly that a busy
-> > > looping path is being added to the sleeping send as a downside of
-> > > implementation choices. Still, for the record, I object to the design.
-> > >
-> > > > IGTs can do this but that really isn't a real world use case. For the
-> > > > real world, this buffer is large enough that it won't ever be full hence
-> > > > the comment + lazy spin loop.
-> > > >
-> > > > Next, it isn't like we get an interrupt or something when space
-> > > > becomes available so how would we wake this thread? Could we come up
-> > > > with a convoluted scheme where we insert ops that generated an interrupt
-> > > > at regular intervals, probably? Would it be super complicated, totally
-> > > > unnecessary, and gain use nothing - absolutely.
-> > > >
-> > > > Lastly, blocking CTBs really shouldn't ever be used. Certainly the
-> > > > submission code doesn't use these. I think SRIOV might, but those can
-> > > > probably be reworked too to use non-blocking. At some point we might
-> > > > want to scrub the driver and just delete the blocking path.
-> > 
-> > I'd do an s/cond_resched()/msleep(1)/ and comment explaining why we
-> > just don't care about this. That checks of the cpu wasting in this
-> > case (GuC is overloaded, it wont come back anytime soon anyway) and
-> > explains why we really don't want to make this any more clever or
-> > complex code (because comment can explain why we wont hit this in
-> > actual real world usage except when something else is on fire already
-> > anyway).
-> > 
-> 
-> Sounds good.
-> 
-> > If you want to go absolutely overkill and it's not too much work, make
-> > the msleep interruptible or check for signals, and bail out. That way
-> > the process can be made unstuck with ^C at least.
-> 
-> This loop is already bound by a timer and if no forward progress is made
-> we pop out of this loop. It is assumed if this happens the GuC / GPU is
-> dead a and full GPU reset will have to be issued. A following patch
-> adds the timer, a bit later in submission section of the series a patch
-> is added to trigger the reset.
+--===============1214586668==
+Content-Type: multipart/alternative; boundary="0000000000009c528c05c46b37e9"
 
-Yeah timeout bail-out works too, and if you then switch it from timeout to
-also interruptible it shouldn't be much more code. It's just nice to not
-have any uninterruptible sleep.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+--0000000000009c528c05c46b37e9
+Content-Type: text/plain; charset="UTF-8"
+
+It may be ok to drop this driver entirely now too; I doubt anyone is
+relying on GPU turbo in Ironlake for anything critical anymore.  That would
+allow for some simplifications in i915 too if it's still supported.
+
+Jesse
+
+On Thu, Jun 10, 2021 at 4:56 AM Joonas Lahtinen <
+joonas.lahtinen@linux.intel.com> wrote:
+
+> (Address for Hans was corrupt in previous message, which confused my mail
+> client. Sorry for duplicate message, the other is without From: field).
+>
+> + Jesse
+>
+> Quoting Colin Ian King (2021-06-09 14:50:07)
+> > Hi,
+> >
+> > I was reviewing some old unassigned variable warnings from static
+> > analysis by Coverity and found an issue introduced with the following
+> > commit:
+> >
+> > commit aa7ffc01d254c91a36bf854d57a14049c6134c72
+> > Author: Jesse Barnes <jbarnes@virtuousgeek.org>
+> > Date:   Fri May 14 15:41:14 2010 -0700
+> >
+> >     x86 platform driver: intelligent power sharing driver
+> >
+> > The analysis is as follows:
+> >
+> > drivers/platform/x86/intel_ips.c
+> >
+> >  871 static u32 get_cpu_power(struct ips_driver *ips, u32 *last, int
+> period)
+> >  872 {
+> >  873        u32 val;
+> >  874        u32 ret;
+> >  875
+> >  876        /*
+> >  877         * CEC is in joules/65535.  Take difference over time to
+> >  878         * get watts.
+> >  879         */
+> >  880        val = thm_readl(THM_CEC);
+> >  881
+> >  882        /* period is in ms and we want mW */
+> >  883        ret = (((val - *last) * 1000) / period);
+> >
+> > Unused value (UNUSED_VALUE)
+> > assigned_value:  Assigning value from ret * 1000U / 65535U to ret here,
+> > but that stored value is not used.
+> >
+> >  884        ret = (ret * 1000) / 65535;
+> >  885        *last = val;
+> >  886
+> >  887        return 0;
+> >  888 }
+> >
+> > I'm really not sure why ret is being calculated on lines 883,884 and not
+> > being used. Should that be *last = ret on line 885? Looks suspect anyhow.
+>
+> According to git blame code seems to have been disabled intentionally by
+> the
+> following commit:
+>
+> commit 96f3823f537088c13735cfdfbf284436c802352a
+> Author: Jesse Barnes <jbarnes@virtuousgeek.org>
+> Date:   Tue Oct 5 14:50:59 2010 -0400
+>
+>     [PATCH 2/2] IPS driver: disable CPU turbo
+>
+>     The undocumented interface we're using for reading CPU power seems to
+> be
+>     overreporting power.  Until we figure out how to correct it, disable
+> CPU
+>     turbo and power reporting to be safe.  This will keep the CPU within
+> default
+>     limits and still allow us to increase GPU frequency as needed.
+>
+> Maybe wrap the code after thm_readl() in #if 0 in case somebody ends up
+> wanting to fix it? Or eliminate completely.
+>
+> In theory the thm_readl() may affect the system behavior so would not
+> remove that for extra paranoia.
+>
+> Regards, Joonas
+>
+> > Colin
+> >
+> >
+>
+
+--0000000000009c528c05c46b37e9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">It may be ok to drop this driver entirely now too; I doubt=
+ anyone is relying on GPU turbo in Ironlake for anything critical anymore.=
+=C2=A0 That would allow for some simplifications in i915 too if it&#39;s st=
+ill supported.<div><br></div><div>Jesse</div></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 10, 2021 at 4:56 A=
+M Joonas Lahtinen &lt;<a href=3D"mailto:joonas.lahtinen@linux.intel.com">jo=
+onas.lahtinen@linux.intel.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">(Address for Hans was corrupt in previous mess=
+age, which confused my mail<br>
+client. Sorry for duplicate message, the other is without From: field).<br>
+<br>
++ Jesse<br>
+<br>
+Quoting Colin Ian King (2021-06-09 14:50:07)<br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; I was reviewing some old unassigned variable warnings from static<br>
+&gt; analysis by Coverity and found an issue introduced with the following<=
+br>
+&gt; commit:<br>
+&gt; <br>
+&gt; commit aa7ffc01d254c91a36bf854d57a14049c6134c72<br>
+&gt; Author: Jesse Barnes &lt;<a href=3D"mailto:jbarnes@virtuousgeek.org" t=
+arget=3D"_blank">jbarnes@virtuousgeek.org</a>&gt;<br>
+&gt; Date:=C2=A0 =C2=A0Fri May 14 15:41:14 2010 -0700<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0x86 platform driver: intelligent power sharing driv=
+er<br>
+&gt; <br>
+&gt; The analysis is as follows:<br>
+&gt; <br>
+&gt; drivers/platform/x86/intel_ips.c<br>
+&gt; <br>
+&gt;=C2=A0 871 static u32 get_cpu_power(struct ips_driver *ips, u32 *last, =
+int period)<br>
+&gt;=C2=A0 872 {<br>
+&gt;=C2=A0 873=C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 val;<br>
+&gt;=C2=A0 874=C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 ret;<br>
+&gt;=C2=A0 875<br>
+&gt;=C2=A0 876=C2=A0 =C2=A0 =C2=A0 =C2=A0 /*<br>
+&gt;=C2=A0 877=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0* CEC is in joules/65535.=
+=C2=A0 Take difference over time to<br>
+&gt;=C2=A0 878=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0* get watts.<br>
+&gt;=C2=A0 879=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*/<br>
+&gt;=C2=A0 880=C2=A0 =C2=A0 =C2=A0 =C2=A0 val =3D thm_readl(THM_CEC);<br>
+&gt;=C2=A0 881<br>
+&gt;=C2=A0 882=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* period is in ms and we want mW=
+ */<br>
+&gt;=C2=A0 883=C2=A0 =C2=A0 =C2=A0 =C2=A0 ret =3D (((val - *last) * 1000) /=
+ period);<br>
+&gt; <br>
+&gt; Unused value (UNUSED_VALUE)<br>
+&gt; assigned_value:=C2=A0 Assigning value from ret * 1000U / 65535U to ret=
+ here,<br>
+&gt; but that stored value is not used.<br>
+&gt; <br>
+&gt;=C2=A0 884=C2=A0 =C2=A0 =C2=A0 =C2=A0 ret =3D (ret * 1000) / 65535;<br>
+&gt;=C2=A0 885=C2=A0 =C2=A0 =C2=A0 =C2=A0 *last =3D val;<br>
+&gt;=C2=A0 886<br>
+&gt;=C2=A0 887=C2=A0 =C2=A0 =C2=A0 =C2=A0 return 0;<br>
+&gt;=C2=A0 888 }<br>
+&gt; <br>
+&gt; I&#39;m really not sure why ret is being calculated on lines 883,884 a=
+nd not<br>
+&gt; being used. Should that be *last =3D ret on line 885? Looks suspect an=
+yhow.<br>
+<br>
+According to git blame code seems to have been disabled intentionally by th=
+e<br>
+following commit:<br>
+<br>
+commit 96f3823f537088c13735cfdfbf284436c802352a<br>
+Author: Jesse Barnes &lt;<a href=3D"mailto:jbarnes@virtuousgeek.org" target=
+=3D"_blank">jbarnes@virtuousgeek.org</a>&gt;<br>
+Date:=C2=A0 =C2=A0Tue Oct 5 14:50:59 2010 -0400<br>
+<br>
+=C2=A0 =C2=A0 [PATCH 2/2] IPS driver: disable CPU turbo<br>
+<br>
+=C2=A0 =C2=A0 The undocumented interface we&#39;re using for reading CPU po=
+wer seems to be<br>
+=C2=A0 =C2=A0 overreporting power.=C2=A0 Until we figure out how to correct=
+ it, disable CPU<br>
+=C2=A0 =C2=A0 turbo and power reporting to be safe.=C2=A0 This will keep th=
+e CPU within default<br>
+=C2=A0 =C2=A0 limits and still allow us to increase GPU frequency as needed=
+.<br>
+<br>
+Maybe wrap the code after thm_readl() in #if 0 in case somebody ends up<br>
+wanting to fix it? Or eliminate completely.<br>
+<br>
+In theory the thm_readl() may affect the system behavior so would not<br>
+remove that for extra paranoia.<br>
+<br>
+Regards, Joonas<br>
+<br>
+&gt; Colin<br>
+&gt; <br>
+&gt; <br>
+</blockquote></div>
+
+--0000000000009c528c05c46b37e9--
+
+--===============1214586668==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1214586668==--
