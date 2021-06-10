@@ -1,40 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF81F3A297E
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 12:40:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46EEC3A29FE
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 13:16:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A02A76E499;
-	Thu, 10 Jun 2021 10:40:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7CC26ED05;
+	Thu, 10 Jun 2021 11:15:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6F956E499;
- Thu, 10 Jun 2021 10:40:21 +0000 (UTC)
-IronPort-SDR: J7YIBuNnB5cqi/kB9c8RYBqi4LpuxwzxA80hxoBnipT1QHT9FDsaCoAE6+IYCaS/4R7gsRHDWx
- hQnplg2MknuQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="269125146"
-X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="269125146"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2021 03:40:18 -0700
-IronPort-SDR: nDsp7ngTXPj8MCume9uDc80QRr2jtf1hP+wuNkrtyIMtoKYnXkq7t45fIBPSGZRjfVc9U0Eg7I
- dsNsybanBXiQ==
-X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="448672052"
-Received: from jmotowid-mobl.ger.corp.intel.com (HELO
- zkempczy-mobl2.ger.corp.intel.com) ([10.213.30.122])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2021 03:40:17 -0700
-From: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 10 Jun 2021 12:39:55 +0200
-Message-Id: <20210610103955.67802-1-zbigniew.kempczynski@intel.com>
-X-Mailer: git-send-email 2.26.0
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDF026ECFE;
+ Thu, 10 Jun 2021 11:15:56 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id AADEA21A24;
+ Thu, 10 Jun 2021 11:15:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1623323754; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=KPkeWPOWywAL8VyLGcjXNCoMMiLWZc8fOKIBbx0sc1E=;
+ b=JOu7qo49NyzpFx85vYSLKzPmbBJUc1WWuefeFxRDtBb3q15rNxiVRoZ3QyC7nCkFQBSmVi
+ Y34/MAGRpM3J+qrsZIO/QQ08OGh91ilSaWPzaZw5dyEdbqC2QgjVHe84XmBbxF6n9lpZGS
+ dBXwh9mDaBQUYdPuJLzO3i3VuJPId08=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1623323754;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=KPkeWPOWywAL8VyLGcjXNCoMMiLWZc8fOKIBbx0sc1E=;
+ b=jUmGEmqYGURY7lD8KpoACqGV0zzGJ+zjaDalGSi2CA9LWm7feSPUTEXrLIixppuYwQSBUc
+ 1LGjwiGPLk8j5jBQ==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 7098F118DD;
+ Thu, 10 Jun 2021 11:15:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1623323754; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=KPkeWPOWywAL8VyLGcjXNCoMMiLWZc8fOKIBbx0sc1E=;
+ b=JOu7qo49NyzpFx85vYSLKzPmbBJUc1WWuefeFxRDtBb3q15rNxiVRoZ3QyC7nCkFQBSmVi
+ Y34/MAGRpM3J+qrsZIO/QQ08OGh91ilSaWPzaZw5dyEdbqC2QgjVHe84XmBbxF6n9lpZGS
+ dBXwh9mDaBQUYdPuJLzO3i3VuJPId08=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1623323754;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=KPkeWPOWywAL8VyLGcjXNCoMMiLWZc8fOKIBbx0sc1E=;
+ b=jUmGEmqYGURY7lD8KpoACqGV0zzGJ+zjaDalGSi2CA9LWm7feSPUTEXrLIixppuYwQSBUc
+ 1LGjwiGPLk8j5jBQ==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id vF2aGWr0wWCYdgAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Thu, 10 Jun 2021 11:15:54 +0000
+Date: Thu, 10 Jun 2021 13:15:53 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YMH0ad8qoREx9YZK@linux-uq9g>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Add relocation exceptions for two
- other platforms
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,52 +74,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgaGF2ZSBlc3RhYmxpc2hlZCBwcmV2aW91c2x5IHdlIHN0b3AgdXNpbmcgcmVsb2NhdGlvbnMg
-c3RhcnRpbmcKZnJvbSBnZW4xMiBwbGF0Zm9ybXMgd2l0aCBUaWdlcmxha2UgYXMgYW4gZXhjZXB0
-aW9uLiBXZSBrZWVwIHRoaXMKc3RhdGVtZW50IGJ1dCB3ZSB3YW50IHRvIGVuYWJsZSByZWxvY2F0
-aW9ucyBjb25kaXRpb25hbGx5IGZvcgpSb2NrZXRsYWtlIGFuZCBBbGRlcmxha2UgdW5kZXIgcmVx
-dWlyZV9mb3JjZV9wcm9iZSBmbGFnIHNldC4KCktlZXBpbmcgcmVsb2NhdGlvbnMgdW5kZXIgcmVx
-dWlyZV9mb3JjZV9wcm9iZSBmbGFnIGlzIGludGVyaW0gc29sdXRpb24KdW50aWwgSUdUcyB3aWxs
-IGJlIHJld3JpdHRlbiB0byB1c2Ugc29mdHBpbi4KCnYyOiAtIHJlbW92ZSBpbmxpbmUgZnJvbSBm
-dW5jdGlvbiBkZWZpbml0aW9uIChKYW5pKQogICAgLSBmaXggaW5kZW50YXRpb24KCnYzOiBjaGFu
-Z2UgdG8gR1JBUEhJQ1NfVkVSKCkgKFpiaWduaWV3KQoKU2lnbmVkLW9mZi1ieTogWmJpZ25pZXcg
-S2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+CkNjOiBEYXZlIEFp
-cmxpZSA8YWlybGllZEByZWRoYXQuY29tPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRl
-ckBpbnRlbC5jb20+CkNjOiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+CkFj
-a2VkLWJ5OiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgotLS0KIC4uLi9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyAgICB8IDI0ICsrKysrKysrKysrKysrKy0t
-LS0KIDEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCmluZGV4IGE4
-YWJjOWFmNWZmNC4uMzBjNGYwNTQ5ZWEwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKQEAgLTQ5MSwxNiArNDkxLDMwIEBAIGViX3VucmVzZXJ2
-ZV92bWEoc3RydWN0IGViX3ZtYSAqZXYpCiAJZXYtPmZsYWdzICY9IH5fX0VYRUNfT0JKRUNUX1JF
-U0VSVkVEOwogfQogCitzdGF0aWMgYm9vbCBwbGF0Zm9ybV9oYXNfcmVsb2NzX2VuYWJsZWQoY29u
-c3Qgc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIpCit7CisJLyoKKwkgKiBSZWxvY2F0aW9ucyBh
-cmUgZGlzYWxsb3dlZCBzdGFydGluZyBmcm9tIGdlbjEyIHdpdGggVGlnZXJsYWtlCisJICogYXMg
-YW4gZXhjZXB0aW9uLiBXZSBhbGxvdyB0ZW1wb3JhcmlseSB1c2UgcmVsb2NhdGlvbnMgZm9yIFJv
-Y2tldGxha2UKKwkgKiBhbmQgQWxkZXJsYWtlIHdoZW4gcmVxdWlyZV9mb3JjZV9wcm9iZSBmbGFn
-IGlzIHNldC4KKwkgKi8KKwlpZiAoR1JBUEhJQ1NfVkVSKGViLT5pOTE1KSA8IDEyIHx8IElTX1RJ
-R0VSTEFLRShlYi0+aTkxNSkpCisJCXJldHVybiB0cnVlOworCisJaWYgKElOVEVMX0lORk8oZWIt
-Pmk5MTUpLT5yZXF1aXJlX2ZvcmNlX3Byb2JlICYmCisJICAgIChJU19ST0NLRVRMQUtFKGViLT5p
-OTE1KSB8fCBJU19BTERFUkxBS0VfUyhlYi0+aTkxNSkgfHwKKwkgICAgIElTX0FMREVSTEFLRV9Q
-KGViLT5pOTE1KSkpCisJCXJldHVybiB0cnVlOworCisJcmV0dXJuIGZhbHNlOworfQorCiBzdGF0
-aWMgaW50CiBlYl92YWxpZGF0ZV92bWEoc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIsCiAJCXN0
-cnVjdCBkcm1faTkxNV9nZW1fZXhlY19vYmplY3QyICplbnRyeSwKIAkJc3RydWN0IGk5MTVfdm1h
-ICp2bWEpCiB7Ci0JLyogUmVsb2NhdGlvbnMgYXJlIGRpc2FsbG93ZWQgZm9yIGFsbCBwbGF0Zm9y
-bXMgYWZ0ZXIgVEdMLUxQLiAgVGhpcwotCSAqIGFsc28gY292ZXJzIGFsbCBwbGF0Zm9ybXMgd2l0
-aCBsb2NhbCBtZW1vcnkuCi0JICovCi0JaWYgKGVudHJ5LT5yZWxvY2F0aW9uX2NvdW50ICYmCi0J
-ICAgIEdSQVBISUNTX1ZFUihlYi0+aTkxNSkgPj0gMTIgJiYgIUlTX1RJR0VSTEFLRShlYi0+aTkx
-NSkpCisJaWYgKGVudHJ5LT5yZWxvY2F0aW9uX2NvdW50ICYmICFwbGF0Zm9ybV9oYXNfcmVsb2Nz
-X2VuYWJsZWQoZWIpKQogCQlyZXR1cm4gLUVJTlZBTDsKIAogCWlmICh1bmxpa2VseShlbnRyeS0+
-ZmxhZ3MgJiBlYi0+aW52YWxpZF9mbGFncykpCi0tIAoyLjI2LjAKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hi Dave and Daniel,
+
+here's the second PR for drm-misc-next for this week, and the final one
+for 5.14. I backmerged drm-next for the TTM changes. As for highlights
+nouveau now has eDP backlight support and udmabuf supports huge pages.
+
+Best regards
+Thomas
+
+drm-misc-next-2021-06-10:
+drm-misc-next for 5.14:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+ * dma-buf: Support huge pages in udmabuf
+
+Core Changes:
+
+ * Backmerge of drm/drm-next
+
+ * drm/dp: Import eDP backlight code from i915
+
+Driver Changes:
+
+ * drm/bridge: TI SN65DSI83: Fix sparse warnings
+
+ * drm/i915: Cleanup eDP backlight code before moving it into helper
+
+ * drm/nouveau: Support DPCD backlights; Fix GEM init for internal BOs
+The following changes since commit c707b73f0cfb1acc94a20389aecde65e6385349b:
+
+  Merge tag 'amd-drm-next-5.14-2021-06-09' of https://gitlab.freedesktop.or=
+g/agd5f/linux into drm-next (2021-06-10 13:47:13 +1000)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2021-06-10
+
+for you to fetch changes up to 86441fa29e57940eeb00f35fefb1853c1fbe67bb:
+
+  Merge drm/drm-next into drm-misc-next (2021-06-10 12:18:54 +0200)
+
+----------------------------------------------------------------
+drm-misc-next for 5.14:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+ * dma-buf: Support huge pages in udmabuf
+
+Core Changes:
+
+ * Backmerge of drm/drm-next
+
+ * drm/dp: Import eDP backlight code from i915
+
+Driver Changes:
+
+ * drm/bridge: TI SN65DSI83: Fix sparse warnings
+
+ * drm/i915: Cleanup eDP backlight code before moving it into helper
+
+ * drm/nouveau: Support DPCD backlights; Fix GEM init for internal BOs
+
+----------------------------------------------------------------
+Christian K=F6nig (1):
+      drm/nouveau: init the base GEM fields for internal BOs
+
+Lyude Paul (9):
+      drm/i915/dpcd_bl: Remove redundant AUX backlight frequency calculatio=
+ns
+      drm/i915/dpcd_bl: Handle drm_dpcd_read/write() return values correctly
+      drm/i915/dpcd_bl: Cleanup intel_dp_aux_vesa_enable_backlight() a bit
+      drm/i915/dpcd_bl: Cache some backlight capabilities in intel_panel.ba=
+cklight
+      drm/i915/dpcd_bl: Move VESA backlight enabling code closer together
+      drm/i915/dpcd_bl: Return early in vesa_calc_max_backlight if we can't=
+ read PWMGEN_BIT_COUNT
+      drm/i915/dpcd_bl: Print return codes for VESA backlight failures
+      drm/dp: Extract i915's eDP backlight code into DRM helpers
+      drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau
+
+Marek Vasut (1):
+      drm/bridge: ti-sn65dsi83: Fix sparse warnings
+
+Thomas Zimmermann (1):
+      Merge drm/drm-next into drm-misc-next
+
+Vivek Kasireddy (1):
+      udmabuf: Add support for mapping hugepages (v4)
+
+ drivers/dma-buf/udmabuf.c                          |  50 ++-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |  21 +-
+ drivers/gpu/drm/drm_dp_helper.c                    | 347 +++++++++++++++++=
+++++
+ drivers/gpu/drm/i915/display/intel_display_types.h |   2 +-
+ .../gpu/drm/i915/display/intel_dp_aux_backlight.c  | 329 +++--------------=
+--
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |  28 ++
+ drivers/gpu/drm/nouveau/nouveau_backlight.c        | 166 +++++++++-
+ drivers/gpu/drm/nouveau/nouveau_bo.c               |   6 +
+ drivers/gpu/drm/nouveau/nouveau_connector.h        |   9 +-
+ drivers/gpu/drm/nouveau/nouveau_encoder.h          |   1 +
+ include/drm/drm_dp_helper.h                        |  48 +++
+ 11 files changed, 682 insertions(+), 325 deletions(-)
+
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
