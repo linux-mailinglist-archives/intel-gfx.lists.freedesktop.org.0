@@ -1,54 +1,80 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 356F93A2FC2
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 17:47:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBCEB3A2FE8
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 17:55:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 685BB6ED82;
-	Thu, 10 Jun 2021 15:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E27D26ED64;
+	Thu, 10 Jun 2021 15:55:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
- [IPv6:2607:f8b0:4864:20::231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 629EC6ED14
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 15:43:53 +0000 (UTC)
-Received: by mail-oi1-x231.google.com with SMTP id m137so2573323oig.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 08:43:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bIkOC7ijnAkY9Mv5y+9kSysZ6u0yFrSnVrFQUWyVl0k=;
- b=PoYNHPf/2yuR5K/nzjrK6zwk0D4OD9xdvf7Py80pXwPb5pQTwpnWUb/UmeC49+VD9k
- 8jyk2PS5KwoZXvKxZcIf5lnopBxandWalBuxXJ3JuiC/vRN5aQK7PwfM9B0dU/ZkaYQo
- NTgcCS4uI9If9wkCr73EkhnJBZLYw3l+WKS2bfJuoHdpbAysYLLZqMThyvijKJt39uRC
- KLemQgY0EXkvGHgxIyxalj5XyyKC8JCd+i62eoHNmvjOiA9e/9w/9/5ZtxXqISusrwdv
- 8TMSzD9kESyYjbGqEBnskid1PlTrV8tvsFGCvHS+lVMm/HoDBWGeBcqQ6TwAqRwnwnq2
- FQdA==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB9A6ED64
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 15:55:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1623340525;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iZQG49OMdPKGkVDjxzrA9bmQ2IiyK39OfqmeMQ/HNjI=;
+ b=Q5mN55avTcxInUR1ZgvjWQBqocRHkYOebEYEaElZKrCqLUvE730mA9js9gdU8nhCw5A+2j
+ 5y/9Hcetri1TncfF0Xk61IIE9ENCDikft5z29N0VzmMAOMf0uc3D3GQE0lflDI0/55Pe/s
+ 75Y6r8j7ckiB9vwll1b7JPrLP1l1e20=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-287-Ipk494-YMv66fxswqaqoBg-1; Thu, 10 Jun 2021 11:55:22 -0400
+X-MC-Unique: Ipk494-YMv66fxswqaqoBg-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ v8-20020a0564023488b0290393873961f6so7024761edc.17
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 08:55:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=bIkOC7ijnAkY9Mv5y+9kSysZ6u0yFrSnVrFQUWyVl0k=;
- b=sEG4YGMGN+wq9efqwxh2KU4IpOiVg7+gc2xEA1Wfmfeudbeq7nlS4qqezA2Gh+FOA1
- ehflEiz8XkffavaxHzxlUaI+SUUTwswS67kSSzs/ukQpyMVI+brXjgRcpLF/qeBwUx9e
- Ogmhw98FZvIdt0swzdzC9UOciK8SI93YNdxjJZ4GKivVzX2FlmQkXkBkqLwkXYyri1PV
- gMGLWIscx2Z5fDWBCArrLho2h+vpP7uvWhyIHUAtKCoYN+fkhiHrdDbTTPHum0cDG+Am
- isAvTXax+0dgZ+ZC1tE/ltWn3lImnXr8D50SgVpbmesLiJVE0YOAOdERHYG+g1EArNcc
- aixg==
-X-Gm-Message-State: AOAM533bOe4RFtvc8hXSZjSsng+um9IrzcL8pt8+/JVvHNIlsGL0YRAR
- W1OIQjR0nskQcqxg/vycTrgo9UWWoTUbzBMOu1CsBw==
-X-Google-Smtp-Source: ABdhPJzOHeoZSvYc1NerQZgvWa/MQnTSIUxyjUv8ITSmLs44wRNwhb1SwHGpge4+SkLY/DhDACQsez6dQfmAKaWL+1M=
-X-Received: by 2002:a54:408b:: with SMTP id i11mr3984419oii.132.1623339832419; 
- Thu, 10 Jun 2021 08:43:52 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=iZQG49OMdPKGkVDjxzrA9bmQ2IiyK39OfqmeMQ/HNjI=;
+ b=ng4IE25DS97pzFemdhoFc0gCd/ipx1OE+NotNhZdQzp741e8NLM6ojQRSXSNzS5U00
+ hDaVRB+3r3LQtuO+u2AC7+h0muYE4VG7nEZszKMtFjQsLKGZ3TxlJFPG3zqMXqrixQ6r
+ qBnAWeUVbS4rsu4PKqzLVJW1Wk36sSOHW/LPfnMEG079lSCQTvSFRc7ubc2SBMhex7yL
+ Cva53S1tqiRN2yE1F2uF3Ab9vl362XLFdSpIm1a6nZSowyiqco7d5y0sz9HAWvEvY5yP
+ IxDqL4JZdDYls5wq6GQDLP9nlSvMPJjuLkZRds4lWmTcQrg5DWHaIreNQdRy4NusFKYf
+ zhMw==
+X-Gm-Message-State: AOAM531rAzUARLGwifd6k9AtT08K8gAgiDw9G/OEqY6Owvu5UavMDcp9
+ AXK6KMwhUOOLfm6weiNBka9gNW2Gxx2JB3jcnhjkRbn/5TWdaH75ITi4rdwkuNXfP1YzB4pHxZ9
+ YxtyXhGgx8w/V2ODsAM4M4LIMWBNk
+X-Received: by 2002:aa7:c6c2:: with SMTP id b2mr162824eds.8.1623340520941;
+ Thu, 10 Jun 2021 08:55:20 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzegUSmNkouCVxXgL5EpM34N2tl0oLxPr9grZP9q3YInG4mkvVxKvf1gpjZDLfSXaCu5fvtcw==
+X-Received: by 2002:aa7:c6c2:: with SMTP id b2mr162805eds.8.1623340520764;
+ Thu, 10 Jun 2021 08:55:20 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id jp6sm1224885ejb.85.2021.06.10.08.55.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 10 Jun 2021 08:55:20 -0700 (PDT)
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Colin Ian King <colin.king@canonical.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Mark Gross <mgross@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jesse Barnes <jsbarnes@google.com>
 References: <548dd463-3942-00a1-85c3-232897dea1a3@canonical.com>
  <162332615476.15946.17135355064135638083@jlahtine-mobl.ger.corp.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <7e13032d-1472-9c50-1dba-9dcebc76729f@redhat.com>
+Date: Thu, 10 Jun 2021 17:55:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
+MIME-Version: 1.0
 In-Reply-To: <162332615476.15946.17135355064135638083@jlahtine-mobl.ger.corp.intel.com>
-From: Jesse Barnes <jsbarnes@google.com>
-Date: Thu, 10 Jun 2021 08:43:40 -0700
-Message-ID: <CAJmaN=ma2vFqB8c=g7YyV6zeKx1dFRDx7o9JmFgse4QTc6C84Q@mail.gmail.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-X-Mailman-Approved-At: Thu, 10 Jun 2021 15:47:07 +0000
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
 Subject: Re: [Intel-gfx] Computation of return value being discarded in
  get_cpu_power() in drivers/platform/x86/intel_ips.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -63,101 +89,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Gross <mgross@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+Cc: intel-gfx@lists.freedesktop.org,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- platform-driver-x86@vger.kernel.org,
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Colin Ian King <colin.king@canonical.com>
+ platform-driver-x86@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Arg html email sorry.  Resending plain text:
+Hi,
 
-It may be ok to drop this driver entirely now too; I doubt anyone is
-relying on GPU turbo in Ironlake for anything critical anymore.  That
-would allow for some simplifications in i915 too if it's still
-supported.
-
-
-On Thu, Jun 10, 2021 at 4:56 AM Joonas Lahtinen
-<joonas.lahtinen@linux.intel.com> wrote:
->
+On 6/10/21 1:55 PM, Joonas Lahtinen wrote:
 > (Address for Hans was corrupt in previous message, which confused my mail
 > client. Sorry for duplicate message, the other is without From: field).
->
+> 
 > + Jesse
->
+> 
 > Quoting Colin Ian King (2021-06-09 14:50:07)
-> > Hi,
-> >
-> > I was reviewing some old unassigned variable warnings from static
-> > analysis by Coverity and found an issue introduced with the following
-> > commit:
-> >
-> > commit aa7ffc01d254c91a36bf854d57a14049c6134c72
-> > Author: Jesse Barnes <jbarnes@virtuousgeek.org>
-> > Date:   Fri May 14 15:41:14 2010 -0700
-> >
-> >     x86 platform driver: intelligent power sharing driver
-> >
-> > The analysis is as follows:
-> >
-> > drivers/platform/x86/intel_ips.c
-> >
-> >  871 static u32 get_cpu_power(struct ips_driver *ips, u32 *last, int period)
-> >  872 {
-> >  873        u32 val;
-> >  874        u32 ret;
-> >  875
-> >  876        /*
-> >  877         * CEC is in joules/65535.  Take difference over time to
-> >  878         * get watts.
-> >  879         */
-> >  880        val = thm_readl(THM_CEC);
-> >  881
-> >  882        /* period is in ms and we want mW */
-> >  883        ret = (((val - *last) * 1000) / period);
-> >
-> > Unused value (UNUSED_VALUE)
-> > assigned_value:  Assigning value from ret * 1000U / 65535U to ret here,
-> > but that stored value is not used.
-> >
-> >  884        ret = (ret * 1000) / 65535;
-> >  885        *last = val;
-> >  886
-> >  887        return 0;
-> >  888 }
-> >
-> > I'm really not sure why ret is being calculated on lines 883,884 and not
-> > being used. Should that be *last = ret on line 885? Looks suspect anyhow.
->
-> According to git blame code seems to have been disabled intentionally by the
-> following commit:
->
-> commit 96f3823f537088c13735cfdfbf284436c802352a
-> Author: Jesse Barnes <jbarnes@virtuousgeek.org>
-> Date:   Tue Oct 5 14:50:59 2010 -0400
->
->     [PATCH 2/2] IPS driver: disable CPU turbo
->
->     The undocumented interface we're using for reading CPU power seems to be
->     overreporting power.  Until we figure out how to correct it, disable CPU
->     turbo and power reporting to be safe.  This will keep the CPU within default
->     limits and still allow us to increase GPU frequency as needed.
->
-> Maybe wrap the code after thm_readl() in #if 0 in case somebody ends up
-> wanting to fix it? Or eliminate completely.
->
-> In theory the thm_readl() may affect the system behavior so would not
-> remove that for extra paranoia.
->
-> Regards, Joonas
->
-> > Colin
-> >
-> >
+>> Hi,
+>>
+>> I was reviewing some old unassigned variable warnings from static
+>> analysis by Coverity and found an issue introduced with the following
+>> commit:
+>>
+>> commit aa7ffc01d254c91a36bf854d57a14049c6134c72
+>> Author: Jesse Barnes <jbarnes@virtuousgeek.org>
+>> Date:   Fri May 14 15:41:14 2010 -0700
+>>
+>>     x86 platform driver: intelligent power sharing driver
+>>
+>> The analysis is as follows:
+>>
+>> drivers/platform/x86/intel_ips.c
+>>
+>>  871 static u32 get_cpu_power(struct ips_driver *ips, u32 *last, int period)
+>>  872 {
+>>  873        u32 val;
+>>  874        u32 ret;
+>>  875
+>>  876        /*
+>>  877         * CEC is in joules/65535.  Take difference over time to
+>>  878         * get watts.
+>>  879         */
+>>  880        val = thm_readl(THM_CEC);
+>>  881
+>>  882        /* period is in ms and we want mW */
+>>  883        ret = (((val - *last) * 1000) / period);
+>>
+>> Unused value (UNUSED_VALUE)
+>> assigned_value:  Assigning value from ret * 1000U / 65535U to ret here,
+>> but that stored value is not used.
+>>
+>>  884        ret = (ret * 1000) / 65535;
+>>  885        *last = val;
+>>  886
+>>  887        return 0;
+>>  888 }
+>>
+>> I'm really not sure why ret is being calculated on lines 883,884 and not
+>> being used. Should that be *last = ret on line 885? Looks suspect anyhow.
+
+This has already been fixed (yesterday actually) in linux-next:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/commit/?h=for-next&id=13c3b4f76073d73dd81e418295902676153f6cb5
+
+Regards,
+
+Hans
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
