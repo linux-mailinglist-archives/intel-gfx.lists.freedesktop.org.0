@@ -2,44 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D425B3A2AE1
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 13:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C630E3A2B52
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 14:18:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCD7F6ED08;
-	Thu, 10 Jun 2021 11:56:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B15DB89EB4;
+	Thu, 10 Jun 2021 12:18:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 137216ED07;
- Thu, 10 Jun 2021 11:56:01 +0000 (UTC)
-IronPort-SDR: 1kr396TygGqFyzxizX3fkOOlUfWSwH5aQP6pXEDEBZ+40sRk46QYaLVZYtNf5K+WRANYfM3kzt
- LAG7du8AsCPA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="184971928"
-X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="184971928"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AA1589EB4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 12:18:34 +0000 (UTC)
+IronPort-SDR: JJm1Uc1xVN9k6kdUlbqY3y56sJ6HWVgz4IBjXBcLV0ProO0Zb7Z9nF8NQS/SSp9A3u38vDRD8z
+ hxjZUMShd8PQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="226678247"
+X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="226678247"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2021 04:56:00 -0700
-IronPort-SDR: 4HvAtng04rI4EJIc41e55QWKIaW7jQqGvhjYUtLTF0hdMxIBFL6IQ5+7pimANgYAGLEbf4SHuB
- XVJpwNFOA9Qw==
-X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="402663181"
-Received: from jwalsh5-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.28.33])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2021 04:55:57 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2021 05:18:34 -0700
+IronPort-SDR: 6XwORwHgDrAXTo8/JR2wVcvuifZFBzlHBe7x1LLRwVIyHio2NkJP7ClQiDun7kV+1lxTFA3G8w
+ FBSu3k82k18w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="402669259"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 10 Jun 2021 05:18:32 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Jun 2021 15:18:31 +0300
+Date: Thu, 10 Jun 2021 15:18:31 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <YMIDF+fA5GTJ8Bqs@intel.com>
+References: <20210514232247.144542-1-jose.souza@intel.com>
+ <20210514232247.144542-4-jose.souza@intel.com>
+ <YL8btV/81CFi+ytm@intel.com>
+ <07ca2b6b6e730531d4387436002cc86608839398.camel@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <548dd463-3942-00a1-85c3-232897dea1a3@canonical.com>
-References: <548dd463-3942-00a1-85c3-232897dea1a3@canonical.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: "Hans de Goede" <hdegoede@redhat.com>,
- Colin Ian King <colin.king@canonical.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Mark Gross <mgross@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jesse Barnes <jsbarnes@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <162332615476.15946.17135355064135638083@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Thu, 10 Jun 2021 14:55:54 +0300
-Subject: Re: [Intel-gfx] Computation of return value being discarded in
- get_cpu_power() in drivers/platform/x86/intel_ips.c
+Content-Disposition: inline
+In-Reply-To: <07ca2b6b6e730531d4387436002cc86608839398.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: Drop FIXME about
+ turn off infoframes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,89 +53,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- platform-driver-x86@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(Address for Hans was corrupt in previous message, which confused my mail
-client. Sorry for duplicate message, the other is without From: field).
+On Wed, Jun 09, 2021 at 07:25:36PM +0000, Souza, Jose wrote:
+> On Tue, 2021-06-08 at 10:26 +0300, Ville Syrj=E4l=E4 wrote:
+> > On Fri, May 14, 2021 at 04:22:47PM -0700, Jos=E9 Roberto de Souza wrote:
+> > > intel_dp_set_infoframes() call in intel_ddi_post_disable_dp() will
+> > > take care to disable all enabled infoframes.
+> > > =
 
-+ Jesse
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 1 -
+> > >  1 file changed, 1 deletion(-)
+> > > =
 
-Quoting Colin Ian King (2021-06-09 14:50:07)
-> Hi,
-> 
-> I was reviewing some old unassigned variable warnings from static
-> analysis by Coverity and found an issue introduced with the following
-> commit:
-> 
-> commit aa7ffc01d254c91a36bf854d57a14049c6134c72
-> Author: Jesse Barnes <jbarnes@virtuousgeek.org>
-> Date:   Fri May 14 15:41:14 2010 -0700
-> 
->     x86 platform driver: intelligent power sharing driver
-> 
-> The analysis is as follows:
-> 
-> drivers/platform/x86/intel_ips.c
-> 
->  871 static u32 get_cpu_power(struct ips_driver *ips, u32 *last, int period)
->  872 {
->  873        u32 val;
->  874        u32 ret;
->  875
->  876        /*
->  877         * CEC is in joules/65535.  Take difference over time to
->  878         * get watts.
->  879         */
->  880        val = thm_readl(THM_CEC);
->  881
->  882        /* period is in ms and we want mW */
->  883        ret = (((val - *last) * 1000) / period);
-> 
-> Unused value (UNUSED_VALUE)
-> assigned_value:  Assigning value from ret * 1000U / 65535U to ret here,
-> but that stored value is not used.
-> 
->  884        ret = (ret * 1000) / 65535;
->  885        *last = val;
->  886
->  887        return 0;
->  888 }
-> 
-> I'm really not sure why ret is being calculated on lines 883,884 and not
-> being used. Should that be *last = ret on line 885? Looks suspect anyhow.
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
+rm/i915/display/intel_ddi.c
+> > > index 5bc5528f3091..d3bc5a1a936a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -2762,7 +2762,6 @@ static void intel_ddi_pre_enable(struct intel_a=
+tomic_state *state,
+> > >  					conn_state);
+> > >  =
 
-According to git blame code seems to have been disabled intentionally by the
-following commit:
-  
-commit 96f3823f537088c13735cfdfbf284436c802352a
-Author: Jesse Barnes <jbarnes@virtuousgeek.org>
-Date:   Tue Oct 5 14:50:59 2010 -0400
-  
-    [PATCH 2/2] IPS driver: disable CPU turbo
-  
-    The undocumented interface we're using for reading CPU power seems to be
-    overreporting power.  Until we figure out how to correct it, disable CPU
-    turbo and power reporting to be safe.  This will keep the CPU within default
-    limits and still allow us to increase GPU frequency as needed.
-  
-Maybe wrap the code after thm_readl() in #if 0 in case somebody ends up
-wanting to fix it? Or eliminate completely.
-  
-In theory the thm_readl() may affect the system behavior so would not
-remove that for extra paranoia.
-  
-Regards, Joonas
+> > >  		/* FIXME precompute everything properly */
+> > > -		/* FIXME how do we turn infoframes off again? */
+> > =
 
-> Colin
-> 
-> 
+> > The FIXME was there for LSPCON and shouldn't have been removed.
+> > No one has yet figured out how to do this.
+> =
+
+> intel_ddi_post_disable_dp()->intel_dp_set_infoframes() will be executed f=
+or LSPCON, or am I missing something?
+
+LSPCON generates its own infoframes, so turning off the video DIP does
+diddly squat.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
