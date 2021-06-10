@@ -1,31 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 835AA3A2673
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 10:20:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0F43A26D5
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 10:23:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D58106EC6D;
-	Thu, 10 Jun 2021 08:20:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF92B6EC7E;
+	Thu, 10 Jun 2021 08:23:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A05026E866;
- Thu, 10 Jun 2021 08:20:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8DFB1A7DFC;
- Thu, 10 Jun 2021 08:20:15 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6496EC6D;
+ Thu, 10 Jun 2021 08:23:20 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id r5so1869463lfr.5;
+ Thu, 10 Jun 2021 01:23:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=tvqfHyNBngUi+gzgwhD+HPPQiG20JFWoWT08MBcVNqE=;
+ b=IaZ2g8xpczLrvPriAU7Rv/lVIUDmjxDlCQNVG43JyPn0o5gtNoerdMVNsGD9aoeBJJ
+ Hfb22SFnu5N84Rn48GRq6+Dz0rnPIQgHfrHGSjgkG0aJqDyL6Y+8ZON2Vx7fapzq1Jlm
+ ScaDq3crWn6GXbJ3MGADkjKzOdQIietHCzDOJg30JsktTcbtBiDfrrQ6/LIZLmk/Olbr
+ fzgraDccieLAnboJ2joPn5U4H3+V+/pabM0W+rsvIqzemR2ybzmfbi0/bD2IJ3jm1wxF
+ MMIXfKOMAjqZLA6O1fFUkSFHxSff1oiPBFi4NFOeOAM/2i7crVoVGkPYcu6iptvFCEf1
+ /ZCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=tvqfHyNBngUi+gzgwhD+HPPQiG20JFWoWT08MBcVNqE=;
+ b=W9CT6om+8t7C7F/qrnkfACABIMXREWYN71R+Q4ftgajkRoYEkNTDZQSNImHyMhi/GA
+ 5bWzdjgyp2+mESx7zimTuxfsUQmtevWUKCHRb+tOpQMkEZfpPh/T1MI5gic8e0kNSeC+
+ Gipeg1dqRQxqdrN/gEmmo+n+kBawa6aluZwT5NVDAKSAnxLtkP9cjVN3M9YVrsRAZQps
+ cPSXV/BDt2JAGWoCKnP9LCvv57Q/Kg9NCHdVNqg2zKf1wIshtQuOUPoqNqUFxyvvNpEx
+ ZQtNbwn7DCdxC/Tp0RIReTXikMXxwyYOhDHAj82EKhges+XTnFWfBjKcRWRbfzGNAHmo
+ q7+Q==
+X-Gm-Message-State: AOAM531Bu/IQAXBbcAdKXHM0GebFYoeg61bVFEO969wo0Rvf+g/s6cWa
+ ykhdJ04UZ07fMef+7cBhd/M=
+X-Google-Smtp-Source: ABdhPJxcH2TMgG3WCcZ+Oxs38G1glk+4HDDDXtGsrbFmPPkwzsh/aUX0rTrr927lSA+BorFMcHh7Sw==
+X-Received: by 2002:a05:6512:3d1d:: with SMTP id
+ d29mr1171053lfv.623.1623313398701; 
+ Thu, 10 Jun 2021 01:23:18 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id v3sm228947lfa.77.2021.06.10.01.23.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 10 Jun 2021 01:23:18 -0700 (PDT)
+Date: Thu, 10 Jun 2021 11:23:15 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Simon Ser <contact@emersion.fr>
+Message-ID: <20210610112315.3370f1a4@eldfell>
+In-Reply-To: <I7ivMNimkOH0GJ5SVonqiNBfYEunXBeQpK7ehs64Bk@cp4-web-028.plabs.ch>
+References: <I7ivMNimkOH0GJ5SVonqiNBfYEunXBeQpK7ehs64Bk@cp4-web-028.plabs.ch>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 10 Jun 2021 08:20:15 -0000
-Message-ID: <162331321557.27730.4249246600593916050@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210610070152.572423-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210610070152.572423-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTW92?=
- =?utf-8?q?e_LMEM_=28VRAM=29_management_over_to_TTM_=28rev7=29?=
+Subject: Re: [Intel-gfx] [PATCH v2 1/7] drm/sysfs: introduce
+ drm_sysfs_connector_hotplug_event
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,260 +67,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0373470742=="
+Cc: alexander.deucher@amd.com, michel@daenzer.net,
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1010553553=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0373470742==
-Content-Type: multipart/alternative;
- boundary="===============8568317835645985642=="
+--===============1010553553==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/zHgt6RgBo2EGXgKXtQy1VAZ"; protocol="application/pgp-signature"
 
---===============8568317835645985642==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/zHgt6RgBo2EGXgKXtQy1VAZ
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+On Wed, 09 Jun 2021 21:23:27 +0000
+Simon Ser <contact@emersion.fr> wrote:
 
-Series: Move LMEM (VRAM) management over to TTM (rev7)
-URL   : https://patchwork.freedesktop.org/series/90681/
-State : success
+> This function sends a hotplug uevent with a CONNECTOR property.
+>=20
+> Signed-off-by: Simon Ser <contact@emersion.fr>
+> ---
+>  drivers/gpu/drm/drm_sysfs.c | 25 +++++++++++++++++++++++++
+>  include/drm/drm_sysfs.h     |  1 +
+>  2 files changed, 26 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
+> index 968a9560b4aa..8423e44c3035 100644
+> --- a/drivers/gpu/drm/drm_sysfs.c
+> +++ b/drivers/gpu/drm/drm_sysfs.c
+> @@ -343,6 +343,31 @@ void drm_sysfs_hotplug_event(struct drm_device *dev)
+>  }
+>  EXPORT_SYMBOL(drm_sysfs_hotplug_event);
+> =20
+> +/**
+> + * drm_sysfs_connector_hotplug_event - generate a DRM uevent for any con=
+nector
+> + * change
+> + * @connector: connector which has changed
+> + *
+> + * Send a uevent for the DRM connector specified by @connector. This wil=
+l send
+> + * a uevent with the properties HOTPLUG=3D1 and CONNECTOR.
+> + */
+> +void drm_sysfs_connector_hotplug_event(struct drm_connector *connector)
+> +{
+> +	struct drm_device *dev =3D connector->dev;
+> +	char hotplug_str[] =3D "HOTPLUG=3D1", conn_id[21];
+> +	char *envp[] =3D { hotplug_str, conn_id, NULL };
+> +
+> +	snprintf(conn_id, sizeof(conn_id),
+> +		 "CONNECTOR=3D%u", connector->base.id);
+> +
+> +	drm_dbg_kms(connector->dev,
+> +		    "[CONNECTOR:%d:%s] generating connector hotplug event\n",
+> +		    connector->base.id, connector->name);
+> +
+> +	kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
+> +}
+> +EXPORT_SYMBOL(drm_sysfs_connector_hotplug_event);
 
-== Summary ==
+Hi,
 
-CI Bug Log - changes from CI_DRM_10202 -> Patchwork_20327
-====================================================
+I believe this change would be safe for Weston while Weston would not
+take advantage of the optimisation without patching it. The idea seems
+fine to me, and patching Weston to take advantage of this would be fine
+too.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20327 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - {fi-tgl-1115g4}:    [FAIL][3] ([i915#1888]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - {fi-tgl-dsi}:       [DMESG-WARN][5] ([i915#2867]) -> [PASS][6] +6 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-tgl-dsi/igt@i915_selftest@live@gt_mocs.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-tgl-dsi/igt@i915_selftest@live@gt_mocs.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8109u:       [INCOMPLETE][7] ([i915#3462]) -> [DMESG-FAIL][8] ([i915#3462])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-    - fi-cml-s:           [INCOMPLETE][9] ([i915#3462]) -> [DMESG-FAIL][10] ([i915#3462])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cml-s/igt@i915_selftest@live@execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cml-s/igt@i915_selftest@live@execlists.html
-
-  * igt@runner@aborted:
-    - fi-cfl-8700k:       [FAIL][11] ([i915#2426] / [i915#3363]) -> [FAIL][12] ([i915#3363])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-8700k/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-8700k/igt@runner@aborted.html
-    - fi-cfl-8109u:       [FAIL][13] ([i915#3363]) -> [FAIL][14] ([i915#2426] / [i915#3363])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-8109u/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-8109u/igt@runner@aborted.html
-    - fi-cml-s:           [FAIL][15] ([i915#3363] / [i915#3462]) -> [FAIL][16] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3462])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cml-s/igt@runner@aborted.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cml-s/igt@runner@aborted.html
-    - fi-cfl-guc:         [FAIL][17] ([i915#2426] / [i915#3363]) -> [FAIL][18] ([i915#3363])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-guc/igt@runner@aborted.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-guc/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
+I can't say anything about the kernel internal details on how to
+implement this, and I don't recall if the per-connector epoch counter
+was supposed to the exposed to userspace, offering a different way to
+do the same.
 
 
-Participating hosts (43 -> 37)
-------------------------------
+Thanks,
+pq
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 bat-adlp-4 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10202 -> Patchwork_20327
-
-  CI-20190529: 20190529
-  CI_DRM_10202: fd6558f89b99a9e2ce6e6f7bfe2c1ccff83064df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6103: 3aa79e55e73d4a49a5222e5dfde486b800a29fe7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20327: 0355e4ef7ec177d1b83a30d7206f656a075c38e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0355e4ef7ec1 drm/i915: Use ttm mmap handling for ttm bo's.
-d8ecdd2ce72b drm/vma: Add a driver_private member to vma_node.
-a5ae182c509d drm/i915/lmem: Verify checks for lmem residency
-d8fd5dd73ad8 drm/i915/ttm: Introduce a TTM i915 gem object backend
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/index.html
-
---===============8568317835645985642==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> +
+>  /**
+>   * drm_sysfs_connector_status_event - generate a DRM uevent for connector
+>   * property status change
+> diff --git a/include/drm/drm_sysfs.h b/include/drm/drm_sysfs.h
+> index d454ef617b2c..6273cac44e47 100644
+> --- a/include/drm/drm_sysfs.h
+> +++ b/include/drm/drm_sysfs.h
+> @@ -11,6 +11,7 @@ int drm_class_device_register(struct device *dev);
+>  void drm_class_device_unregister(struct device *dev);
+> =20
+>  void drm_sysfs_hotplug_event(struct drm_device *dev);
+> +void drm_sysfs_connector_hotplug_event(struct drm_connector *connector);
+>  void drm_sysfs_connector_status_event(struct drm_connector *connector,
+>  				      struct drm_property *property);
+>  #endif
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+--Sig_/zHgt6RgBo2EGXgKXtQy1VAZ
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
+-----BEGIN PGP SIGNATURE-----
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Move LMEM (VRAM) management over to TTM (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90681/">https://patchwork.freedesktop.org/series/90681/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDBy/MACgkQI1/ltBGq
+qqcnVg//b8urqcs7lXMMe2ZfhWKSTm8/at96q0h9H+5MBE6ilWXfDLY101tG8YsN
+mm0HvJJZBTAJmNnq5y2+7YPUXdF30mvSQTGIR0Zyi/DvRTBLRyMWZZ4+VMBQ8X1h
+HF2Jb0Vhur8lXClv2OpREnZZ2Aa/64u70/2UfWbPqqNaJQ5W9Ovy4IuGkMJwRrod
+1gSdHmC4ifwgXCbmNDUZ+ptu24Qg3B8ts38DiXz13c1pSpUiu8oyDbSwikySa1q4
+FaJJd/dRftIQV59uI37jnYv8hpTahvbp5lx+6+fV9K7d8YvoR6ADvHg8a5BnIk/L
+X+Becgicalj97JV+hbDyvzoGudJnhRn+qpanaMdfoa2JAQlpFcUSDJuAkD0vGDPq
+pJKsVJipdIOu5qHGYqhNomYQY3/1KCyfc8/0acsjKDybIyvaDC2YYw3ia+e2wmVe
+MjO7ZEd2107P3a4NBVjlK/43s5FvphpPROIBy0/Dbtb1lv7eMa8ojleunrp2ILCS
+EcYbMkyTlrex2ORhr0+MK/3NU3FYZZXRSXcGwG3HsXR9cKAeHZRPvBYkY73pLuCI
+08LOoyjJ7dUCeDrwqS/zN8FGOmNHwac0AYGXitnInzKIEaoNNDNR5bKlP9HPWCBs
+jiVsYd4HfH1fGETXigFUAV/nxfDpPv7KCWJpiI2D4Fx8wW9OJhw=
+=aB2J
+-----END PGP SIGNATURE-----
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/index.html</a></td></tr>
+--Sig_/zHgt6RgBo2EGXgKXtQy1VAZ--
 
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10202 -&gt; Patchwork_20327</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20327 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-tgl-dsi/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-tgl-dsi/igt@i915_selftest@live@gt_mocs.html">PASS</a> +6 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cml-s/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cml-s/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cml-s/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cml-s/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10202/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20327/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 37)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10202 -&gt; Patchwork_20327</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10202: fd6558f89b99a9e2ce6e6f7bfe2c1ccff83064df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6103: 3aa79e55e73d4a49a5222e5dfde486b800a29fe7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20327: 0355e4ef7ec177d1b83a30d7206f656a075c38e9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0355e4ef7ec1 drm/i915: Use ttm mmap handling for ttm bo's.<br />
-d8ecdd2ce72b drm/vma: Add a driver_private member to vma_node.<br />
-a5ae182c509d drm/i915/lmem: Verify checks for lmem residency<br />
-d8fd5dd73ad8 drm/i915/ttm: Introduce a TTM i915 gem object backend</p>
-
-</body>
-</html>
-
---===============8568317835645985642==--
-
---===============0373470742==
+--===============1010553553==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -302,4 +196,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0373470742==--
+--===============1010553553==--
