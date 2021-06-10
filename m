@@ -1,154 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E51A3A2773
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 10:52:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C076F3A27B7
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jun 2021 11:05:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96E896EC9F;
-	Thu, 10 Jun 2021 08:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8933F6EC8F;
+	Thu, 10 Jun 2021 09:05:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE776EC8D;
- Thu, 10 Jun 2021 08:52:48 +0000 (UTC)
-IronPort-SDR: KfF93eNM38rAkDc2DOyq+Q+U5dJ7pdOw6q4yapu730IXMHb8SvofhRx4HrzZM73OyK476Axnzm
- oa5Vsbjn9lDA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="202231233"
-X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="202231233"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2021 01:52:42 -0700
-IronPort-SDR: nXS++Mvg6WAIWRg7Dqn1Snm5jKVQ+yVkKxiOoVgbLd42eEByAPKVyF+UtXHAitOjXOADPckgCC
- MTUZfAnMMIYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="402622042"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga006.jf.intel.com with ESMTP; 10 Jun 2021 01:52:42 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 10 Jun 2021 01:52:42 -0700
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 10 Jun 2021 01:52:41 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Thu, 10 Jun 2021 01:52:41 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Thu, 10 Jun 2021 01:52:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IrtRLIAkW0BJ/Id7C9DpFBNhtpOvqSAJVcE8k8KCny0iSCbQK3bClEm3TkaTLp7mDkutaEJiT5TeFv7+SiVBT8r5T5jMbeZZIMFdfgCI2M7osiMgGQ07nem6s15uyGPU50ihi2SLVWmWwC5lVqTOitWMR0Q1W/ZpS275PlyXZ8bXEnVe9xwcrqy8ps6XXIi0mDABSMzk3YoqWy0ORN9tlW/RtNOT2IjkiaDAhE45s2jHaiqh2vopu/mj77BLmpFSUqyX23++rW0UXsUPBBgPo7UvJf+F676onNsT9KrRRYHiiCTJq7ULryabxdi7algQcpMjM7lZrLw3UQyNfb6AWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dGl4irQPD7b+cJzI3R0pZjl40ADPvOiN5WS1bdyQxEA=;
- b=WkJpC6ZBx3JNkZCLRAiNVI0wdTGPBRLzLxQsXuFwgRGrEMrJFWE7I3cC2+2amI3dBqmw3PlHR7MWAA/ZUzi+w4btw6J7thFzIcMWmJsFvBioc5rfrlb8+E7v4arzDH1goMXoymTfqtSM3tH8vKnI+xXrrqO6fkGD2pT/To6q0NeJKZ0iHdxn+DJDae0ajn55dDHbw8yQu05P3eqkuUSySYC0NgLztRKbHaLIcWSRuKABRESelUzF0KRl5DK7qJorp93UL3QHpcB+u9cCxnQUqAtF9PeJUXdSq8QwslwpSnJK2+tA7zBbHi77WX6Z/0uVl49m/qKIt3906fycoPuXgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dGl4irQPD7b+cJzI3R0pZjl40ADPvOiN5WS1bdyQxEA=;
- b=WPl2jLXR4JYPs7oqpBJmmEXOLH3V9EWEJJwIOFZVvD7BYn5UhfZMfhWAmvVw33pPawrUP6B+Wz3EuoLbRXN2LFBxMPIiCxOrXHcURuCllrR7e5z6REAzKbWWjrnWJ3teOaCTFWUzf2SqLZXsvoTlAqNZYUyCc8w4cjkXw6VqAj8=
-Received: from BY5PR11MB4372.namprd11.prod.outlook.com (2603:10b6:a03:1bb::25)
- by SJ0PR11MB4847.namprd11.prod.outlook.com (2603:10b6:a03:2d9::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21; Thu, 10 Jun
- 2021 08:52:38 +0000
-Received: from BY5PR11MB4372.namprd11.prod.outlook.com
- ([fe80::f1e6:d3d4:9f66:1626]) by BY5PR11MB4372.namprd11.prod.outlook.com
- ([fe80::f1e6:d3d4:9f66:1626%3]) with mapi id 15.20.4195.030; Thu, 10 Jun 2021
- 08:52:38 +0000
-From: "Srinivas, Vidya" <vidya.srinivas@intel.com>
-To: "Latvala, Petri" <petri.latvala@intel.com>
-Thread-Topic: [igt-dev] [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_big_fb: Wait
- for vblank before collecting CRC
-Thread-Index: AQHXU3r+0BLlTn3Au0CMvXxolxn81qsJwWIAgAAI/oCAAAPTMIAAGIuggAArU4CAAussIIAAB1CA////5nA=
-Date: Thu, 10 Jun 2021 08:52:38 +0000
-Message-ID: <BY5PR11MB43728FBA9BCC7BDCFE9588CE89359@BY5PR11MB4372.namprd11.prod.outlook.com>
-References: <1622176025-12499-1-git-send-email-vidya.srinivas@intel.com>
- <CO6PR11MB55693230CBD2262DDCF5A0C18D379@CO6PR11MB5569.namprd11.prod.outlook.com>
- <80bed39a-e899-f211-ae2f-279312b52084@gmail.com>
- <BY5PR11MB4372F22C0AF1AEC2CD3A20D089379@BY5PR11MB4372.namprd11.prod.outlook.com>
- <BY5PR11MB437298B9B622322E6663495E89379@BY5PR11MB4372.namprd11.prod.outlook.com>
- <dc3df242-57b9-13f9-c5ab-42acadc39c86@gmail.com>
- <BY5PR11MB43727C61A55E03DA6EE2C53589359@BY5PR11MB4372.namprd11.prod.outlook.com>
- <YMHSfaK9We4Mzh54@platvala-desk.ger.corp.intel.com>
-In-Reply-To: <YMHSfaK9We4Mzh54@platvala-desk.ger.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [45.127.46.22]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d39a5b55-c363-45f8-d8ec-08d92bed195e
-x-ms-traffictypediagnostic: SJ0PR11MB4847:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SJ0PR11MB484739C1EC2A0C601CF006CE89359@SJ0PR11MB4847.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: h/QWsd0uDYtURM0aao4N3naLob547W06yZ/hZRurbrGQKmJdUlrC94q54r3Ysu001k5j2qSYEdSTx3qCSODJyBqKwuaYcy2+EzmefgYzxeCIMJjfw8v3jPch3DyV0Z0L6CnBjEeeAREjasZ2l8P80uZBUp6RlfwiViAHTtYGxg+qdiu4xzsHMeUMbE9OBXhm3LfTl+2XQWyk1YlSWNCw/fRv/vXEHvjaR00kFYBD2GRbFnV65jB1FwmKhbGuQ7dL4mtF495+Vbn9+zEfhmAWk6QEr597/7RKs8Bp5AytTTW4RCbPix0PgnyLdy18LebF42rLDCAJ1RUeQm0tb7WU6psGsTEzmmn72nT9M6OiqwIPX/8G41V2BkXREAuXRfFyum+EUqLrHwJFY7A/7SICZE1ZVqtt6EZg09hk0CZfbmHadfD1dcNk9ucIkoRhgOQ/gKNLK3aapvDjd7Deb/A7OZyNc0cDb6ebAokvth/I5gMpALKEPrQnfNxU4oNYbYAm6Qim+dOBAGX8ysyJHVEEtDJHGloJ4QakbETOs5Jr5haIgesv0vPMxbSDGwHlWppt4ULkxIbNvtFdwBboLtQCM8yZoMaBw3esj8dw+O8nuFQCRRtFiqyX9ig/PGVGcyYxBYGE/hccXU4alZ/rid2lOAza7iQJitrBAbyeO6s623nNMyVGnhy7tkAqeu7bY/vpr/nN/3BmC6SjIrJWw2Fzcg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB4372.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(136003)(376002)(366004)(39860400002)(346002)(396003)(66446008)(71200400001)(66556008)(66476007)(186003)(64756008)(4326008)(66946007)(33656002)(53546011)(6506007)(8676002)(76116006)(52536014)(107886003)(38100700002)(478600001)(316002)(966005)(54906003)(86362001)(122000001)(4744005)(5660300002)(9686003)(55016002)(83380400001)(6862004)(26005)(6636002)(2906002)(8936002)(7696005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RFVDYVNOOElnRys3TGlHRDZReGthU3RzSEhEQVJydTNyaU00R3d4cTlibEJy?=
- =?utf-8?B?UG9PYmE3WlNmMHB6MTZIaDhiUmFyR3lmT3JWbGM4UHRoTFNlS3h2SlBRdFR4?=
- =?utf-8?B?aS9XVllZMnhEWW1FT254VXBnQXY5aU9IbUlIb05IeXZ2YzlvK2VWNUJlaFVY?=
- =?utf-8?B?MXJWZWJwT0E2ZGREeTJLaUt0YndtTmt2eVVzSHArRkV6bDE2V09xQVQ0eGpw?=
- =?utf-8?B?VXZIc0J2bFVQeDYweFZqQVZJamYrQjIxdyt6d0l4eXVqcG0yTUloSFBUdFJ5?=
- =?utf-8?B?Yy9uVFZZV0t0Wmw0ZisxS09EL29EaWRFd0NsWDhQOUxBblF1dWh2VUh0dzVY?=
- =?utf-8?B?OG1XVW9uODdMSUJ2dTZnZktCTnVVTGFVVHhuaFN4aHpNc0ZUb3pSYmFvSTZU?=
- =?utf-8?B?RmM0Sm5JcWxjcTExUmZsSmdyc2d5Y1R2bGhGdnFMWTl6TVdSNkY3aE5Cek5i?=
- =?utf-8?B?ZmgyMlB5VkYvQ1F0b1Z4T2xXSTJqMC9CQTNXZitEMTA3YTh4U3Jock4xeGha?=
- =?utf-8?B?S25veFVVaXg1cVc3Z2tQa0tPUzJYTytHbUxnSFRiRWZ2Ymhwd0pVc2YySldZ?=
- =?utf-8?B?ZXhyZ25aS01UWm96ek9JTXo0WTh6ejd4WkVvRGhoVXlLQjFBU3E1UG5FcVZG?=
- =?utf-8?B?dHZiTnM3MDllVEtWQnBvL2lLR0hKc0NOVldPNDBOVXRMdWtXd0NmWTUrNnVZ?=
- =?utf-8?B?Q2JLeVhKOWZEcVN2NlR5TU9la1BObTBPTi9hVXZwMUtzNXIvSWpvVXJXdjRy?=
- =?utf-8?B?ajlGOVRxV1VCTGxjQThpYUlBcHVmOFp3eUZsd1Qra0xnNFUveGF5L2lESEQ5?=
- =?utf-8?B?UFZ0eFNYNnFwUlF0ZG5yWFdmUU1jbW81U056V2dITXUxU1NyYUVzM0R1cVh0?=
- =?utf-8?B?dXBLOGtJQ0lXWDFyZkxYVmJTZ2FnV2tNeFlKckpwZWZzY3paeklBcnpzRHM2?=
- =?utf-8?B?Y3d5UlI0dUtvSTRoQ0k5dWZHVEhkVEhDZGdBY3lSRVJzSFpYaVA2Z2tPOTRJ?=
- =?utf-8?B?bTBwb1NRdDdLMU1iRTRpUjFyTGUzakVhL0h0ZTQ3THlnc2lRWnUydWFCZnMw?=
- =?utf-8?B?R0xpWkVBT3FTTFpheEtoUFRzSFpFbnprMFl4L3g5R0o0K0pBQmxUdW1STW1x?=
- =?utf-8?B?emNheGlNZFFLTWloRkRrNTZGcWZvT1ZObEcwY3J3eWthZnRINk91eUFnYjNV?=
- =?utf-8?B?ZlFkMVRhUmk3NnA4aUVPL2RaWVpPVGRoUmlvcXNaTnVvZmVnWkZzZWIrRHBl?=
- =?utf-8?B?cHVJeExCZWFBdU1XSUsycE5DTzZWR1dyVExaNE1iRXFib29ndHkzYXVKb3cv?=
- =?utf-8?B?OHFReW1LUGppM081d3F0SXNobU0zVW80di83cFBhc3FBelRKdWxBZFVvOXls?=
- =?utf-8?B?NEViTmdYNy9uYXdZQmV4UDY3Q0F2bzVSZXlRc1lLeWdDZ21DRmxtME5ud3Iy?=
- =?utf-8?B?QmVjU2JRdUJMN09GUDRVUGg1bmlWUzhuckNKaWIzcENKYllhbnQzbnRsdjFQ?=
- =?utf-8?B?VkVqZllXTHE2Q3lnTVM2aVVDWmliZmU0YklldnVCVmo0MFJJdEVqc3FSenA1?=
- =?utf-8?B?MU5IeWtxOFpGNEVtSHI4aERRbE11dkRXcUlYSlZqdCtzU3V1Kyt4SDFQYkNT?=
- =?utf-8?B?VnB3Y25PYjg5OEhucWdTZjVHVTRXQXB4amdHYVMyRUltMy9LYnd4TVZjbGRD?=
- =?utf-8?B?Zmx4Mjc0RTBYcGxDL1l4akpRekJnOUFxWkNtc3ZXNGh2M0lzc2RKZjlGVGs4?=
- =?utf-8?Q?FtOaJ23XNjYV4vUJe8suf/9x3DLfz8i2OCXilv0?=
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D4DC6EC8F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 09:05:42 +0000 (UTC)
+IronPort-SDR: fM+JqAzQF8KDkiUwe9toveyQoSVDPi9bbkV9IK8W2WPK7BVygpnMysR68GG3e1//68/Jt+Fef8
+ IcN0JAW5CvnA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10010"; a="192576501"
+X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="192576501"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2021 02:05:38 -0700
+IronPort-SDR: ApKATthyH4I2wFcA2cG1ssrrpBhsVupn65wPXS649ewhXUYV66pC3Av4cX9s5F3lgQr2iUjTTX
+ V+doOZaCZR4w==
+X-IronPort-AV: E=Sophos;i="5.83,263,1616482800"; d="scan'208";a="482759023"
+Received: from ksilivan-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.34.247])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2021 02:05:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Jun 2021 12:05:28 +0300
+Message-Id: <20210610090528.20511-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4372.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d39a5b55-c363-45f8-d8ec-08d92bed195e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2021 08:52:38.0876 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VB8boJoWGN/a1XJOe00XsCb5wzXg37/tIfcF3RIw9ANsN5N5pxAkV1WMrzHelxq+mpZBUF+Mt/lE2cfGZliptEDMH+mnVSzWrxugWvESY1s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4847
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] [RFC] tests/kms_big_fb:
- Wait for vblank before collecting CRC
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH v2] drm/i915/dsc: abstract helpers to get
+ bigjoiner primary/secondary crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,34 +47,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Lin, 
- Charlton" <charlton.lin@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhhbmsgeW91IHNvIG11Y2ggUGV0cmkuIEkgc2VlIGl04oCZcyBhIFBBU1MgZm9yIGFsbW9zdCBl
-dmVyeXRoaW5nIGV4Y2VwdCBvbiBvbmUgR0xLLg0KDQpSZWdhcmRzDQpWaWR5YQ0KDQotLS0tLU9y
-aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogTGF0dmFsYSwgUGV0cmkgPHBldHJpLmxhdHZhbGFA
-aW50ZWwuY29tPiANClNlbnQ6IFRodXJzZGF5LCBKdW5lIDEwLCAyMDIxIDI6MjEgUE0NClRvOiBT
-cmluaXZhcywgVmlkeWEgPHZpZHlhLnNyaW5pdmFzQGludGVsLmNvbT4NCkNjOiBqdWhhcGVra2Eu
-aGVpa2tpbGFAZ21haWwuY29tOyBNb2RlbSwgQmhhbnVwcmFrYXNoIDxiaGFudXByYWthc2gubW9k
-ZW1AaW50ZWwuY29tPjsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaWd0LWRldkBs
-aXN0cy5mcmVlZGVza3RvcC5vcmc7IExpbiwgQ2hhcmx0b24gPGNoYXJsdG9uLmxpbkBpbnRlbC5j
-b20+DQpTdWJqZWN0OiBSZTogW2lndC1kZXZdIFtJbnRlbC1nZnhdIFtQQVRDSCBpLWctdF0gW1JG
-Q10gdGVzdHMva21zX2JpZ19mYjogV2FpdCBmb3IgdmJsYW5rIGJlZm9yZSBjb2xsZWN0aW5nIENS
-Qw0KDQpPbiBUaHUsIEp1biAxMCwgMjAyMSBhdCAwODozODo0MkFNICswMDAwLCBTcmluaXZhcywg
-VmlkeWEgd3JvdGU6DQo+IEhlbGxvIEp1aGEtUGVra2EsDQo+IA0KPiBodHRwczovL3BhdGNod29y
-ay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzkwMzg5LyNyZXY3IHNob3dzIFBBU1MgZm9yIGFsbCBD
-SS4NCj4gSG93ZXZlciBJIGRvbuKAmXQgc2VlIGttc19iaWdfZmIgYWxsIHRoZSBzdWJ0ZXN0cyBy
-dW5uaW5nIGluIENJLiBJbiB0aGUgDQo+IGxvZ3MgSSBzZWUgcGFzcyBmb3IgbGluZWFyLTMyYnBw
-LXJvdGF0ZS0wDQoNClRoZSBkZWZhdWx0IHZpZXcgaW4gdGhlIENJIHJlc3VsdHMgb25seSBzaG93
-cyB0ZXN0cyB0aGF0IGhhdmUgaXNzdWVzLiAidmlldyAtPiBzaGFyZHMgYWxsIiBmcm9tIHRoZSB0
-b3Agc2hvd3MgYWxsIHRlc3RzLg0KDQpodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL0lHVFBXXzU5MDcvc2hhcmRzLWFsbC5odG1sP3Rlc3RmaWx0ZXI9a21zX2JpZ19mYg0K
-DQoNCi0tDQpQZXRyaSBMYXR2YWxhDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+Add a single point of truth for figuring out the primary/secondary crtc
+for bigjoiner instead of duplicating the magic pipe +/- 1 in multiple
+places.
+
+Also fix the pipe validity checks to properly take non-contiguous pipes
+into account. The current checks may theoretically overflow
+i915->pipe_to_crtc_mapping[pipe], albeit with a warning, due to fused
+off pipes, as INTEL_NUM_PIPES() returns the actual number of pipes on
+the platform, and the check is for INTEL_NUM_PIPES() == pipe + 1.
+
+Prefer primary/secondary terminology going forward.
+
+v2:
+- Improved abstractions for pipe validity etc.
+
+Fixes: 8a029c113b17 ("drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave")
+Fixes: d961eb20adb6 ("drm/i915/bigjoiner: atomic commit changes for uncompressed joiner")
+Cc: Animesh Manna <animesh.manna@intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+---
+
+Dropped patch 2/2 [1], as the pipes need to be adjacent for big joiner,
+even if pipes have been fused off.
+
+[1] https://patchwork.freedesktop.org/patch/msgid/20210603122842.22496-2-jani.nikula@intel.com
+---
+ drivers/gpu/drm/i915/display/intel_display.c  |  7 ++--
+ .../drm/i915/display/intel_display_types.h    |  8 ++++
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 40 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |  1 +
+ 4 files changed, 40 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 362bff9beb5c..3bad4e00f7be 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -9618,7 +9618,6 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 					struct intel_crtc_state *old_crtc_state,
+ 					struct intel_crtc_state *new_crtc_state)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
+ 	struct intel_crtc *slave, *master;
+ 
+@@ -9634,15 +9633,15 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+ 	if (!new_crtc_state->bigjoiner)
+ 		return 0;
+ 
+-	if (1 + crtc->pipe >= INTEL_NUM_PIPES(dev_priv)) {
++	slave = intel_dsc_get_bigjoiner_secondary(crtc);
++	if (!slave) {
+ 		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
+ 			      "CRTC + 1 to be used, doesn't exist\n",
+ 			      crtc->base.base.id, crtc->base.name);
+ 		return -EINVAL;
+ 	}
+ 
+-	slave = new_crtc_state->bigjoiner_linked_crtc =
+-		intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
++	new_crtc_state->bigjoiner_linked_crtc = slave;
+ 	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave);
+ 	master = crtc;
+ 	if (IS_ERR(slave_crtc_state))
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 15e91a99c8b9..7d64d8487fbe 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1723,6 +1723,14 @@ vlv_pipe_to_channel(enum pipe pipe)
+ 	}
+ }
+ 
++static inline bool intel_pipe_valid(struct drm_i915_private *i915, enum pipe pipe)
++{
++	return (pipe >= 0 &&
++		pipe < ARRAY_SIZE(i915->pipe_to_crtc_mapping) &&
++		INTEL_INFO(i915)->pipe_mask & BIT(pipe) &&
++		i915->pipe_to_crtc_mapping[pipe]);
++}
++
+ static inline struct intel_crtc *
+ intel_get_first_crtc(struct drm_i915_private *dev_priv)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 7121b66bf96d..85749370508c 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1106,6 +1106,27 @@ static i915_reg_t dss_ctl2_reg(const struct intel_crtc_state *crtc_state)
+ 	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) : DSS_CTL2;
+ }
+ 
++static struct intel_crtc *
++_get_crtc_for_pipe(struct drm_i915_private *i915, enum pipe pipe)
++{
++	if (!intel_pipe_valid(i915, pipe))
++		return NULL;
++
++	return intel_get_crtc_for_pipe(i915, pipe);
++}
++
++struct intel_crtc *
++intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc)
++{
++	return _get_crtc_for_pipe(to_i915(primary_crtc->base.dev), primary_crtc->pipe + 1);
++}
++
++static struct intel_crtc *
++intel_dsc_get_bigjoiner_primary(const struct intel_crtc *secondary_crtc)
++{
++	return _get_crtc_for_pipe(to_i915(secondary_crtc->base.dev), secondary_crtc->pipe - 1);
++}
++
+ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -1178,15 +1199,13 @@ void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state)
+ 	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
+ 	if (dss_ctl1 & UNCOMPRESSED_JOINER_MASTER) {
+ 		crtc_state->bigjoiner = true;
+-		if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
+-			crtc_state->bigjoiner_linked_crtc =
+-				intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
++		crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
++		drm_WARN_ON(&dev_priv->drm, !crtc_state->bigjoiner_linked_crtc);
+ 	} else if (dss_ctl1 & UNCOMPRESSED_JOINER_SLAVE) {
+ 		crtc_state->bigjoiner = true;
+ 		crtc_state->bigjoiner_slave = true;
+-		if (!WARN_ON(crtc->pipe == PIPE_A))
+-			crtc_state->bigjoiner_linked_crtc =
+-				intel_get_crtc_for_pipe(dev_priv, crtc->pipe - 1);
++		crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_primary(crtc);
++		drm_WARN_ON(&dev_priv->drm, !crtc_state->bigjoiner_linked_crtc);
+ 	}
+ }
+ 
+@@ -1224,14 +1243,11 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+ 
+ 		if (!(dss_ctl1 & MASTER_BIG_JOINER_ENABLE)) {
+ 			crtc_state->bigjoiner_slave = true;
+-			if (!WARN_ON(crtc->pipe == PIPE_A))
+-				crtc_state->bigjoiner_linked_crtc =
+-					intel_get_crtc_for_pipe(dev_priv, crtc->pipe - 1);
++			crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_primary(crtc);
+ 		} else {
+-			if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
+-				crtc_state->bigjoiner_linked_crtc =
+-					intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
++			crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
+ 		}
++		drm_WARN_ON(&dev_priv->drm, !crtc_state->bigjoiner_linked_crtc);
+ 	}
+ 
+ 	/* FIXME: add more state readout as needed */
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+index fe4d45561253..dfb1fd38deb4 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+@@ -22,5 +22,6 @@ void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state);
+ void intel_dsc_get_config(struct intel_crtc_state *crtc_state);
+ enum intel_display_power_domain
+ intel_dsc_power_domain(const struct intel_crtc_state *crtc_state);
++struct intel_crtc *intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc);
+ 
+ #endif /* __INTEL_VDSC_H__ */
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
