@@ -1,46 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA5A13A3B99
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 08:03:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4113A3BAC
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 08:08:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19B646E516;
-	Fri, 11 Jun 2021 06:03:42 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE2E6E516;
- Fri, 11 Jun 2021 06:03:41 +0000 (UTC)
-IronPort-SDR: nfYg/70h4a/0XP9NMBs8iZ8ViGJMur7TOz0leZPbCPC8/crFFW/1zsHIPyFDC9Fs6G+4j8xvK1
- LszNs5Xf4WzQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10011"; a="203633936"
-X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="203633936"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2021 23:03:40 -0700
-IronPort-SDR: 4ADGqb/TkjQkW2Y0dYyZThVURQfnL11wsYyYbWCUEY9N7r3rWcNwfLYwWGCWwHEwVoAzX67f20
- PQt4Im+IGq2A==
-X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="483146810"
-Received: from vrupchan-mobl.gar.corp.intel.com (HELO [10.252.48.175])
- ([10.252.48.175])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2021 23:03:39 -0700
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20210610204626.2995262-1-John.C.Harrison@Intel.com>
- <20210610204626.2995262-4-John.C.Harrison@Intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <62b061ab-2027-8ce8-73dc-83d5dd742555@intel.com>
-Date: Fri, 11 Jun 2021 09:03:36 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6698F6E520;
+	Fri, 11 Jun 2021 06:08:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEDE96E520;
+ Fri, 11 Jun 2021 06:08:50 +0000 (UTC)
+IronPort-SDR: mGvJjPc00O9htdNYe9awbSeOoxgq9bvygOYb+AThyvVt5ZEm5GAAPlscJOnqqpX3Gfes9ix5bd
+ qrYt5D9SCFSA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10011"; a="269317933"
+X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="269317933"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2021 23:08:48 -0700
+IronPort-SDR: YXAMYoVmnVO0xFrY4iVVJ6JLv/QsawTVEHmjbD4/audOgTyL9GXXzWDpA2KRop8NIG2Fk/uR1r
+ /UfVq+XcfV2Q==
+X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="449000311"
+Received: from skallurr-mobl.ger.corp.intel.com (HELO thellst-mobl1.intel.com)
+ ([10.249.254.170])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2021 23:08:46 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 11 Jun 2021 08:08:38 +0200
+Message-Id: <20210611060838.647973-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210610204626.2995262-4-John.C.Harrison@Intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/uapi: Add query for L3 bank
- count
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Reorder tasklet_disable vs
+ local_bh_disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,144 +47,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI-Devel@Lists.FreeDesktop.Org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/06/2021 23:46, John.C.Harrison@Intel.com wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
->
-> Various UMDs need to know the L3 bank count. So add a query API for it.
->
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt.c | 15 +++++++++++++++
->   drivers/gpu/drm/i915/gt/intel_gt.h |  1 +
->   drivers/gpu/drm/i915/i915_query.c  | 22 ++++++++++++++++++++++
->   drivers/gpu/drm/i915/i915_reg.h    |  1 +
->   include/uapi/drm/i915_drm.h        |  1 +
->   5 files changed, 40 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 2161bf01ef8b..708bb3581d83 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -704,3 +704,18 @@ void intel_gt_info_print(const struct intel_gt_info *info,
->   
->   	intel_sseu_dump(&info->sseu, p);
->   }
-> +
-> +int intel_gt_get_l3bank_count(struct intel_gt *gt)
-> +{
-> +	struct drm_i915_private *i915 = gt->i915;
-> +	intel_wakeref_t wakeref;
-> +	u32 fuse3;
-> +
-> +	if (GRAPHICS_VER(i915) < 12)
-> +		return -ENODEV;
-> +
-> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> +		fuse3 = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
-> +
-> +	return hweight32(REG_FIELD_GET(GEN12_GT_L3_MODE_MASK, ~fuse3));
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-> index 7ec395cace69..46aa1cf4cf30 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-> @@ -77,6 +77,7 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
->   
->   void intel_gt_info_print(const struct intel_gt_info *info,
->   			 struct drm_printer *p);
-> +int intel_gt_get_l3bank_count(struct intel_gt *gt);
->   
->   void intel_gt_watchdog_work(struct work_struct *work);
->   
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index 96bd8fb3e895..0e92bb2d21b2 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -10,6 +10,7 @@
->   #include "i915_perf.h"
->   #include "i915_query.h"
->   #include <uapi/drm/i915_drm.h>
-> +#include "gt/intel_gt.h"
->   
->   static int copy_query_item(void *query_hdr, size_t query_sz,
->   			   u32 total_length,
-> @@ -502,6 +503,26 @@ static int query_hwconfig_table(struct drm_i915_private *i915,
->   	return hwconfig->size;
->   }
->   
-> +static int query_l3banks(struct drm_i915_private *i915,
-> +			 struct drm_i915_query_item *query_item)
-> +{
-> +	u32 banks;
-> +
-> +	if (query_item->length == 0)
-> +		return sizeof(banks);
-> +
-> +	if (query_item->length < sizeof(banks))
-> +		return -EINVAL;
-> +
-> +	banks = intel_gt_get_l3bank_count(&i915->gt);
-> +
-> +	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
-> +			 &banks, sizeof(banks)))
-> +		return -EFAULT;
-> +
-> +	return sizeof(banks);
-> +}
-> +
->   static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->   					struct drm_i915_query_item *query_item) = {
->   	query_topology_info,
-> @@ -509,6 +530,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->   	query_perf_config,
->   	query_memregion_info,
->   	query_hwconfig_table,
-> +	query_l3banks,
->   };
->   
->   int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index eb13c601d680..e9ba88fe3db7 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3099,6 +3099,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
->   #define	GEN10_MIRROR_FUSE3		_MMIO(0x9118)
->   #define GEN10_L3BANK_PAIR_COUNT     4
->   #define GEN10_L3BANK_MASK   0x0F
-> +#define GEN12_GT_L3_MODE_MASK 0xFF
->   
->   #define GEN8_EU_DISABLE0		_MMIO(0x9134)
->   #define   GEN8_EU_DIS0_S0_MASK		0xffffff
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 87d369cae22a..20d18cca5066 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2234,6 +2234,7 @@ struct drm_i915_query_item {
->   #define DRM_I915_QUERY_PERF_CONFIG      3
->   #define DRM_I915_QUERY_MEMORY_REGIONS   4
->   #define DRM_I915_QUERY_HWCONFIG_TABLE   5
-> +#define DRM_I915_QUERY_L3_BANK_COUNT    6
-
-
-A little bit of documentation about the format of the return data would 
-be nice :)
-
-
--Lionel
-
-
->   /* Must be kept compact -- no holes and well documented */
->   
->   	/**
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CgpEdWUgdG8gYSBj
+aGFuZ2UgaW4gcmVxdWlyZW1lbnRzIHRoYXQgZGlzYWxsb3dzIHRhc2tsZXRfZGlzYWJsZSgpIGJl
+aW5nCmNhbGxlZCBmcm9tIGF0b21pYyBjb250ZXh0LCByZWFycmFuZ2UgdGhlIHNlbGZ0ZXN0IHRv
+IGF2b2lkIGRvaW5nIHNvLgoKPDM+IFszMjQuOTQyOTM5XSBCVUc6IHNsZWVwaW5nIGZ1bmN0aW9u
+IGNhbGxlZCBmcm9tIGludmFsaWQgY29udGV4dCBhdCBrZXJuZWwvc29mdGlycS5jOjg4OAo8Mz4g
+WzMyNC45NDI5NTJdIGluX2F0b21pYygpOiAxLCBpcnFzX2Rpc2FibGVkKCk6IDAsIG5vbl9ibG9j
+azogMCwgcGlkOiA1NjAxLCBuYW1lOiBpOTE1X3NlbGZ0ZXN0Cjw0PiBbMzI0Ljk0Mjk2MF0gMSBs
+b2NrIGhlbGQgYnkgaTkxNV9zZWxmdGVzdC81NjAxOgo8ND4gWzMyNC45NDI5NjNdICAjMDogZmZm
+Zjg4ODEwMWQxOTI0MCAoJmRldi0+bXV0ZXgpey4uLi59LXszOjN9LCBhdDogZGV2aWNlX2RyaXZl
+cl9hdHRhY2grMHgxOC8weDUwCjwzPiBbMzI0Ljk0Mjk4N10gUHJlZW1wdGlvbiBkaXNhYmxlZCBh
+dDoKPDM+IFszMjQuOTQyOTkwXSBbPGZmZmZmZmZmYTAyNmZiZDI+XSBsaXZlX2hvbGRfcmVzZXQu
+cGFydC42NSsweGMyLzB4MmYwIFtpOTE1XQo8ND4gWzMyNC45NDMyNTVdIENQVTogMCBQSUQ6IDU2
+MDEgQ29tbTogaTkxNV9zZWxmdGVzdCBUYWludGVkOiBHICAgICBVICAgICAgICAgICAgNS4xMy4w
+LXJjNS1DSS1DSV9EUk1fMTAxOTcrICMxCjw0PiBbMzI0Ljk0MzI1OV0gSGFyZHdhcmUgbmFtZTog
+SW50ZWwgQ29ycC4gR2VtaW5pbGFrZS9HTEsgUlZQMiBMUDRTRCAoMDcpLCBCSU9TIEdFTEtSVlBB
+Llg2NC4wMDYyLkIzMC4xNzA4MjIyMTQ2IDA4LzIyLzIwMTcKPDQ+IFszMjQuOTQzMjYzXSBDYWxs
+IFRyYWNlOgo8ND4gWzMyNC45NDMyNjddICBkdW1wX3N0YWNrKzB4N2YvMHhhZAo8ND4gWzMyNC45
+NDMyNzZdICBfX19taWdodF9zbGVlcC5jb2xkLjEyMysweGYyLzB4MTA2Cjw0PiBbMzI0Ljk0MzI4
+Nl0gIHRhc2tsZXRfdW5sb2NrX3dhaXQrMHgyZS8weGIwCjw0PiBbMzI0Ljk0MzI5MV0gID8ga3Rp
+bWVfZ2V0X3JhdysweDgxLzB4MTIwCjw0PiBbMzI0Ljk0MzMwNV0gIGxpdmVfaG9sZF9yZXNldC5w
+YXJ0LjY1KzB4MWFiLzB4MmYwIFtpOTE1XQo8ND4gWzMyNC45NDM1MDBdICBfX2k5MTVfc3VidGVz
+dHMuY29sZC43KzB4NDIvMHg5MiBbaTkxNV0KPDQ+IFszMjQuOTQzNzIzXSAgPyBfX2k5MTVfbGl2
+ZV90ZWFyZG93bisweDUwLzB4NTAgW2k5MTVdCjw0PiBbMzI0Ljk0MzkyMl0gID8gX19pbnRlbF9n
+dF9saXZlX3NldHVwKzB4MzAvMHgzMCBbaTkxNV0KCkZpeGVzOiBkYTA0NDc0NzQwMWZjICgidGFz
+a2xldHM6IFJlcGxhY2Ugc3BpbiB3YWl0IGluIHRhc2tsZXRfdW5sb2NrX3dhaXQoKSIpClNpZ25l
+ZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpSZXZpZXdl
+ZC1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29t
+PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2V4ZWNsaXN0cy5jIHwgNTUg
+KysrKysrKysrKysrLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzMiBpbnNlcnRpb25zKCspLCAy
+MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxm
+dGVzdF9leGVjbGlzdHMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X2V4ZWNs
+aXN0cy5jCmluZGV4IGVhMjIwM2FmMDc2NC4uMWM4MTA4ZDMwYjg1IDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9leGVjbGlzdHMuYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9leGVjbGlzdHMuYwpAQCAtNTUxLDYgKzU1MSwzMiBAQCBz
+dGF0aWMgaW50IGxpdmVfcGluX3Jld2luZCh2b2lkICphcmcpCiAJcmV0dXJuIGVycjsKIH0KIAor
+c3RhdGljIGludCBlbmdpbmVfbG9ja19yZXNldF90YXNrbGV0KHN0cnVjdCBpbnRlbF9lbmdpbmVf
+Y3MgKmVuZ2luZSkKK3sKKwl0YXNrbGV0X2Rpc2FibGUoJmVuZ2luZS0+ZXhlY2xpc3RzLnRhc2ts
+ZXQpOworCWxvY2FsX2JoX2Rpc2FibGUoKTsKKworCWlmICh0ZXN0X2FuZF9zZXRfYml0KEk5MTVf
+UkVTRVRfRU5HSU5FICsgZW5naW5lLT5pZCwKKwkJCSAgICAgJmVuZ2luZS0+Z3QtPnJlc2V0LmZs
+YWdzKSkgeworCQlsb2NhbF9iaF9lbmFibGUoKTsKKwkJdGFza2xldF9lbmFibGUoJmVuZ2luZS0+
+ZXhlY2xpc3RzLnRhc2tsZXQpOworCisJCWludGVsX2d0X3NldF93ZWRnZWQoZW5naW5lLT5ndCk7
+CisJCXJldHVybiAtRUJVU1k7CisJfQorCisJcmV0dXJuIDA7Cit9CisKK3N0YXRpYyB2b2lkIGVu
+Z2luZV91bmxvY2tfcmVzZXRfdGFza2xldChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUp
+Cit7CisJY2xlYXJfYW5kX3dha2VfdXBfYml0KEk5MTVfUkVTRVRfRU5HSU5FICsgZW5naW5lLT5p
+ZCwKKwkJCSAgICAgICZlbmdpbmUtPmd0LT5yZXNldC5mbGFncyk7CisKKwlsb2NhbF9iaF9lbmFi
+bGUoKTsKKwl0YXNrbGV0X2VuYWJsZSgmZW5naW5lLT5leGVjbGlzdHMudGFza2xldCk7Cit9CisK
+IHN0YXRpYyBpbnQgbGl2ZV9ob2xkX3Jlc2V0KHZvaWQgKmFyZykKIHsKIAlzdHJ1Y3QgaW50ZWxf
+Z3QgKmd0ID0gYXJnOwpAQCAtNTk4LDE1ICs2MjQsOSBAQCBzdGF0aWMgaW50IGxpdmVfaG9sZF9y
+ZXNldCh2b2lkICphcmcpCiAKIAkJLyogV2UgaGF2ZSBvdXIgcmVxdWVzdCBleGVjdXRpbmcsIG5v
+dyByZW1vdmUgaXQgYW5kIHJlc2V0ICovCiAKLQkJbG9jYWxfYmhfZGlzYWJsZSgpOwotCQlpZiAo
+dGVzdF9hbmRfc2V0X2JpdChJOTE1X1JFU0VUX0VOR0lORSArIGlkLAotCQkJCSAgICAgJmd0LT5y
+ZXNldC5mbGFncykpIHsKLQkJCWxvY2FsX2JoX2VuYWJsZSgpOwotCQkJaW50ZWxfZ3Rfc2V0X3dl
+ZGdlZChndCk7Ci0JCQllcnIgPSAtRUJVU1k7CisJCWVyciA9IGVuZ2luZV9sb2NrX3Jlc2V0X3Rh
+c2tsZXQoZW5naW5lKTsKKwkJaWYgKGVycikKIAkJCWdvdG8gb3V0OwotCQl9Ci0JCXRhc2tsZXRf
+ZGlzYWJsZSgmZW5naW5lLT5leGVjbGlzdHMudGFza2xldCk7CiAKIAkJZW5naW5lLT5leGVjbGlz
+dHMudGFza2xldC5jYWxsYmFjaygmZW5naW5lLT5leGVjbGlzdHMudGFza2xldCk7CiAJCUdFTV9C
+VUdfT04oZXhlY2xpc3RzX2FjdGl2ZSgmZW5naW5lLT5leGVjbGlzdHMpICE9IHJxKTsKQEAgLTYx
+OCwxMCArNjM4LDcgQEAgc3RhdGljIGludCBsaXZlX2hvbGRfcmVzZXQodm9pZCAqYXJnKQogCQlf
+X2ludGVsX2VuZ2luZV9yZXNldF9iaChlbmdpbmUsIE5VTEwpOwogCQlHRU1fQlVHX09OKHJxLT5m
+ZW5jZS5lcnJvciAhPSAtRUlPKTsKIAotCQl0YXNrbGV0X2VuYWJsZSgmZW5naW5lLT5leGVjbGlz
+dHMudGFza2xldCk7Ci0JCWNsZWFyX2FuZF93YWtlX3VwX2JpdChJOTE1X1JFU0VUX0VOR0lORSAr
+IGlkLAotCQkJCSAgICAgICZndC0+cmVzZXQuZmxhZ3MpOwotCQlsb2NhbF9iaF9lbmFibGUoKTsK
+KwkJZW5naW5lX3VubG9ja19yZXNldF90YXNrbGV0KGVuZ2luZSk7CiAKIAkJLyogQ2hlY2sgdGhh
+dCB3ZSBkbyBub3QgcmVzdWJtaXQgdGhlIGhlbGQgcmVxdWVzdCAqLwogCQlpZiAoIWk5MTVfcmVx
+dWVzdF93YWl0KHJxLCAwLCBIWiAvIDUpKSB7CkBAIC00NTg1LDE1ICs0NjAyLDkgQEAgc3RhdGlj
+IGludCByZXNldF92aXJ0dWFsX2VuZ2luZShzdHJ1Y3QgaW50ZWxfZ3QgKmd0LAogCUdFTV9CVUdf
+T04oZW5naW5lID09IHZlLT5lbmdpbmUpOwogCiAJLyogVGFrZSBvd25lcnNoaXAgb2YgdGhlIHJl
+c2V0IGFuZCB0YXNrbGV0ICovCi0JbG9jYWxfYmhfZGlzYWJsZSgpOwotCWlmICh0ZXN0X2FuZF9z
+ZXRfYml0KEk5MTVfUkVTRVRfRU5HSU5FICsgZW5naW5lLT5pZCwKLQkJCSAgICAgJmd0LT5yZXNl
+dC5mbGFncykpIHsKLQkJbG9jYWxfYmhfZW5hYmxlKCk7Ci0JCWludGVsX2d0X3NldF93ZWRnZWQo
+Z3QpOwotCQllcnIgPSAtRUJVU1k7CisJZXJyID0gZW5naW5lX2xvY2tfcmVzZXRfdGFza2xldChl
+bmdpbmUpOworCWlmIChlcnIpCiAJCWdvdG8gb3V0X2hlYXJ0YmVhdDsKLQl9Ci0JdGFza2xldF9k
+aXNhYmxlKCZlbmdpbmUtPmV4ZWNsaXN0cy50YXNrbGV0KTsKIAogCWVuZ2luZS0+ZXhlY2xpc3Rz
+LnRhc2tsZXQuY2FsbGJhY2soJmVuZ2luZS0+ZXhlY2xpc3RzLnRhc2tsZXQpOwogCUdFTV9CVUdf
+T04oZXhlY2xpc3RzX2FjdGl2ZSgmZW5naW5lLT5leGVjbGlzdHMpICE9IHJxKTsKQEAgLTQ2MTIs
+OSArNDYyMyw3IEBAIHN0YXRpYyBpbnQgcmVzZXRfdmlydHVhbF9lbmdpbmUoc3RydWN0IGludGVs
+X2d0ICpndCwKIAlHRU1fQlVHX09OKHJxLT5mZW5jZS5lcnJvciAhPSAtRUlPKTsKIAogCS8qIFJl
+bGVhc2Ugb3VyIGdyYXNwIG9uIHRoZSBlbmdpbmUsIGxldHRpbmcgQ1MgZmxvdyBhZ2FpbiAqLwot
+CXRhc2tsZXRfZW5hYmxlKCZlbmdpbmUtPmV4ZWNsaXN0cy50YXNrbGV0KTsKLQljbGVhcl9hbmRf
+d2FrZV91cF9iaXQoSTkxNV9SRVNFVF9FTkdJTkUgKyBlbmdpbmUtPmlkLCAmZ3QtPnJlc2V0LmZs
+YWdzKTsKLQlsb2NhbF9iaF9lbmFibGUoKTsKKwllbmdpbmVfdW5sb2NrX3Jlc2V0X3Rhc2tsZXQo
+ZW5naW5lKTsKIAogCS8qIENoZWNrIHRoYXQgd2UgZG8gbm90IHJlc3VibWl0IHRoZSBoZWxkIHJl
+cXVlc3QgKi8KIAlpOTE1X3JlcXVlc3RfZ2V0KHJxKTsKLS0gCjIuMzEuMQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
