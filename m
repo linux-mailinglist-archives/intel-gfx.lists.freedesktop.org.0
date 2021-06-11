@@ -2,50 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CDB13A4695
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 18:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1E93A4775
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 19:06:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7B356F38A;
-	Fri, 11 Jun 2021 16:35:12 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com
- [IPv6:2607:f8b0:4864:20::c29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55F1A6F395
- for <Intel-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 16:35:12 +0000 (UTC)
-Received: by mail-oo1-xc29.google.com with SMTP id
- k21-20020a4a2a150000b029024955603642so850513oof.8
- for <Intel-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 09:35:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=c8+VfhakVMOMCfkN1aeqZv3IRwZIYZy7cCGoNsrx02k=;
- b=PCApNfQMon7QGAQcF4cIvq1bo6PKe7w9j0frmZtuMDBrWmFr/0a8mMgQrPHB74JJAt
- n+Gj/LD4bCWRmUveM6iOXbLdbOHb5NDeqytrn4+B6fqzZ9IJ5IHlVk5/+w3QBFYOTz49
- dpSS/jMfNRGGOR5TJ7hYG2EN601szxdB/wpbk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=c8+VfhakVMOMCfkN1aeqZv3IRwZIYZy7cCGoNsrx02k=;
- b=gAgaixFVHgpguuJk4AVSkQDX1mQI7I9x66k/sQIUB2crEUYdF9Qv7rTwsmGCpdcLC1
- 7+qveSGZj4SjEfSanny6hPo1SBZ0mtl7vvcV9jCG0ziSqNNrPAz34DGl5crqUEzlIyY/
- cgwrF7Z4dKRo9p8E2QFJCjCH5e1f5YKc8FQWTd87CTwMv7g7G0aMxfdUhuNE5c1HElq1
- VDtIfutshE9tMXJT8arQ020yqCdFU4Qak0Jqlg5ex+OIGa6v5jtP3+meD43qv9sWaUVk
- mGNk8OsJqR7YTGbynPmCRpO8R77W4jKUQxszXcm0iuSMN00fZKsmFNVHVcMLtW+hG1Pi
- ZDKA==
-X-Gm-Message-State: AOAM533kfWHNZwuTTU+yQAqV6KKyghom1y98nm8Gg68eXagLlFy6H8lv
- x03COoYy44Z8klkKZ87EUX9nYBvgEkcbjkVkdvCkRA==
-X-Google-Smtp-Source: ABdhPJyJjd+GuCZmlMNkgZCeZ9+naXLINbrG1wRxL+su0PnFd24LFXHPXdCBCn65ZaYzL/PnuGAtNBGEpDWYECyklmQ=
-X-Received: by 2002:a4a:d4c7:: with SMTP id r7mr3769531oos.85.1623429311372;
- Fri, 11 Jun 2021 09:35:11 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 303156F387;
+	Fri, 11 Jun 2021 17:06:45 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BA2FB6F37F;
+ Fri, 11 Jun 2021 17:06:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B2C02A0169;
+ Fri, 11 Jun 2021 17:06:43 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210611163109.1085592-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210611163109.1085592-1-tvrtko.ursulin@linux.intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 11 Jun 2021 18:35:00 +0200
-Message-ID: <CAKMK7uEfOt5zET0LL-noxHybWGefBK580Dn_zOyL4oKyhwGDnA@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Document the Virtual Engine uAPI
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Fri, 11 Jun 2021 17:06:43 -0000
+Message-ID: <162343120370.29313.4665087769079487289@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210611143409.827727-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20210611143409.827727-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gen11=3A_use_ffs_for_minconfig_slice/subslice?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,247 +38,345 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <Intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2033810094=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 11, 2021 at 6:31 PM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->
-> A little bit of documentation covering the topics of engine discovery,
-> context engine maps and virtual engines. It is not very detailed but
-> supposed to be a starting point of giving a brief high level overview of
-> general principles and intended use cases.
->
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+--===============2033810094==
+Content-Type: multipart/alternative;
+ boundary="===============8110612195167916592=="
 
-This is great stuff, but I think it'd be better within the uapi
-headers and then pulled in. It's not very customary, but you can write
-very extensive kerneldoc for an uapi struct, and I think for uapi
-that's a pretty good approach. So including all the examples and
-everything.
+--===============8110612195167916592==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'm bringing this up and the very next section is the Locking guide.
-And clearly that thing did not work out as documentation, I feel like
-just dumping lots of docs into i915.rst is a good place for where they
-disappear and get forgotten :-(
+== Series Details ==
 
-Thanks, Daniel
+Series: drm/i915/gen11: use ffs for minconfig slice/subslice
+URL   : https://patchwork.freedesktop.org/series/91398/
+State : success
 
-> ---
->  Documentation/gpu/i915.rst | 184 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 184 insertions(+)
->
-> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> index 42ce0196930a..8e5ab299c31f 100644
-> --- a/Documentation/gpu/i915.rst
-> +++ b/Documentation/gpu/i915.rst
-> @@ -335,6 +335,190 @@ for execution also include a list of all locations within buffers that
->  refer to GPU-addresses so that the kernel can edit the buffer correctly.
->  This process is dubbed relocation.
->
-> +Engine Discovery uAPI
-> +---------------------
-> +
-> +Engine discovery uAPI is a way of enumerating physical engines present in a GPU
-> +associated with an open i915 DRM file descriptor. This supersedes the old way of
-> +using `DRM_IOCTL_I915_GETPARAM` and engine identifiers like
-> +`I915_PARAM_HAS_BLT`.
-> +
-> +The need for this interface came starting with Icelake and newer GPUs, which
-> +started to establish a pattern of having multiple engines of a same class, where
-> +not all instances were always completely functionally equivalent.
-> +
-> +Entry point for this uapi is `DRM_IOCTL_I915_QUERY` with the
-> +`DRM_I915_QUERY_ENGINE_INFO` as the queried item id.
-> +
-> +Example for getting the list of engines:
-> +
-> +.. code-block:: C
-> +
-> +       struct drm_i915_query_engine_info *info;
-> +       struct drm_i915_query_item item = {
-> +               .query_id = DRM_I915_QUERY_ENGINE_INFO;
-> +       };
-> +       struct drm_i915_query query = {
-> +               .num_items = 1,
-> +               .items_ptr = (uintptr_t)&item,
-> +       };
-> +       int err, i;
-> +
-> +       // First query the size of the blob we need, this needs to be large
-> +       // enough to hold our array of engines. The kernel will fill out the
-> +       // item.length for us, which is the number of bytes we need.
-> +       //
-> +       // Alternatively a large buffer can be allocated straight away enabling
-> +       // querying in one pass, in which case item.length should contain the
-> +       // length of the provided buffer.
-> +       err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
-> +       if (err) ...
-> +
-> +       info = calloc(1, item.length);
-> +       // Now that we allocated the required number of bytes, we call the ioctl
-> +       // again, this time with the data_ptr pointing to our newly allocated
-> +       // blob, which the kernel can then populate with info on all engines.
-> +       item.data_ptr = (uintptr_t)&info,
-> +
-> +       err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
-> +       if (err) ...
-> +
-> +       // We can now access each engine in the array
-> +       for (i = 0; i < info->num_engines; i++) {
-> +               struct drm_i915_engine_info einfo = info->engines[i];
-> +               u16 class = einfo.engine.class;
-> +               u16 instance = einfo.engine.instance;
-> +               ....
-> +       }
-> +
-> +       free(info);
-> +
-> +Each of the enumerated engines, apart from being defined by its class and
-> +instance (see `struct i915_engine_class_instance`), also can have flags and
-> +capabilities defined as documented in i915_drm.h.
-> +
-> +For instance video engines which support HEVC encoding will have the
-> +`I915_VIDEO_CLASS_CAPABILITY_HEVC` capability bit set.
-> +
-> +Engine discovery only fully comes to its own when combined with the new way of
-> +addressing engines when submitting batch buffers using contexts with engine
-> +maps configured.
-> +
-> +Context Engine Map uAPI
-> +-----------------------
-> +
-> +Context engine map is a new way of addressing engines when submitting batch-
-> +buffers, replacing the existing way of using identifiers like `I915_EXEC_BLT`
-> +inside the flags field of `struct drm_i915_gem_execbuffer2`.
-> +
-> +To use it created GEM contexts need to be configured with a list of engines
-> +the user is intending to submit to. This is accomplished using the
-> +`I915_CONTEXT_PARAM_ENGINES` parameter and `struct i915_context_param_engines`.
-> +
-> +For such contexts the `I915_EXEC_RING_MASK` field becomes an index into the
-> +configured map.
-> +
-> +Example of creating such context and submitting against it:
-> +
-> +.. code-block:: C
-> +
-> +       I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 2) = {
-> +               .engines = { { I915_ENGINE_CLASS_RENDER, 0 },
-> +                            { I915_ENGINE_CLASS_COPY, 0 } }
-> +       };
-> +       struct drm_i915_gem_context_create_ext_setparam p_engines = {
-> +               .base = {
-> +                       .name = I915_CONTEXT_CREATE_EXT_SETPARAM,
-> +               },
-> +               .param = {
-> +                       .param = I915_CONTEXT_PARAM_ENGINES,
-> +                       .value = to_user_pointer(&engines),
-> +                       .size = sizeof(engines),
-> +               },
-> +       };
-> +       struct drm_i915_gem_context_create_ext create = {
-> +               .flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
-> +               .extensions = to_user_pointer(&p_engines);
-> +       };
-> +
-> +       ctx_id = gem_context_create_ext(drm_fd, &create);
-> +
-> +       // We have now created a GEM context with two engines in the map:
-> +       // Index 0 points to rcs0 while index 1 points to bcs0. Other engines
-> +       // will not be accessible from this context.
-> +
-> +       ...
-> +       execbuf.rsvd1 = ctx_id;
-> +       execbuf.flags = 0; // Submits to index0, which is rcs0 for this context
-> +       gem_execbuf(drm_fd, &execbuf);
-> +
-> +       ...
-> +       execbuf.rsvd1 = ctx_id;
-> +       execbuf.flags = 1; // Submits to index0, which is bcs0 for this context
-> +       gem_execbuf(drm_fd, &execbuf);
-> +
-> +Virtual Engine uAPI
-> +-------------------
-> +
-> +Virtual engine is a concept where userspace is able to configure a set of
-> +physical engines, submit a batch buffer, and let the driver execute it on any
-> +engine from the set as it sees fit.
-> +
-> +This is primarily useful on parts which have multiple instances of a same class
-> +engine, like for example GT3+ Skylake parts with their two VCS engines.
-> +
-> +For instance userspace can enumerate all engines of a certain class using the
-> +previously described `Engine Discovery uAPI`_. After
-> +that userspace can create a GEM context with a placeholder slot for the virtual
-> +engine (using `I915_ENGINE_CLASS_INVALID` and `I915_ENGINE_CLASS_INVALID_NONE`
-> +for class and instance respectively) and finally using the
-> +`I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE` extension place a virtual engine in the
-> +same reserved slot.
-> +
-> +Example of creating a virtual engine and submitting a batch buffer to it:
-> +
-> +.. code-block:: C
-> +
-> +       I915_DEFINE_CONTEXT_ENGINES_LOAD_BALANCE(virtual, 2) = {
-> +               .base.name = I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE,
-> +               .engine_index = 0, // Place this virtual engine into engine map slot 0
-> +               .num_siblings = 2,
-> +               .engines = { { I915_ENGINE_CLASS_VIDEO, 0 },
-> +                            { I915_ENGINE_CLASS_VIDEO, 1 }, },
-> +       };
-> +       I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {
-> +               .engines = { { I915_ENGINE_CLASS_INVALID,
-> +                              I915_ENGINE_CLASS_INVALID_NONE } },
-> +               .extensions = to_user_pointer(&virtual), // Chains with the load_balance extension
-> +       };
-> +       struct drm_i915_gem_context_create_ext_setparam p_engines = {
-> +               .base = {
-> +                       .name = I915_CONTEXT_CREATE_EXT_SETPARAM,
-> +               },
-> +               .param = {
-> +                       .param = I915_CONTEXT_PARAM_ENGINES,
-> +                       .value = to_user_pointer(&engines),
-> +                       .size = sizeof(engines),
-> +               },
-> +       };
-> +       struct drm_i915_gem_context_create_ext create = {
-> +               .flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
-> +               .extensions = to_user_pointer(&p_engines);
-> +       };
-> +
-> +       ctx_id = gem_context_create_ext(drm_fd, &create);
-> +
-> +       // Now we have created a GEM context with its engine map containing a
-> +       // single virtual engine. Submissions to this slot can go either to
-> +       // vcs0 or vcs1, depending on the load balancing algorithm used inside
-> +       // the driver. The load balancing is dynamic from one batch buffer to
-> +       // another and transparent to userspace.
-> +
-> +       ...
-> +       execbuf.rsvd1 = ctx_id;
-> +       execbuf.flags = 0; // Submits to index0 which is the virtual engine
-> +       gem_execbuf(drm_fd, &execbuf);
-> +
->  Locking Guidelines
->  ------------------
->
-> --
-> 2.30.2
->
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10212 -> Patchwork_20346
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20346:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@execlists:
+    - {fi-ehl-2}:         [DMESG-FAIL][1] ([i915#1222]) -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-ehl-2/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-ehl-2/igt@i915_selftest@live@execlists.html
+    - {fi-jsl-1}:         NOTRUN -> [DMESG-FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-jsl-1/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - {fi-ehl-2}:         [DMESG-FAIL][4] ([i915#1222]) -> [FAIL][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-ehl-2/igt@i915_selftest@live@gt_engines.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-ehl-2/igt@i915_selftest@live@gt_engines.html
+    - {fi-jsl-1}:         NOTRUN -> [FAIL][6] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-jsl-1/igt@i915_selftest@live@gt_engines.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20346 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][7] ([i915#2283])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bdw-5557u:       NOTRUN -> [DMESG-FAIL][8] ([i915#3462])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_psr@cursor_plane_move:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][9] ([fdo#109271]) +5 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - {fi-ehl-2}:         [DMESG-WARN][10] ([i915#1222]) -> [PASS][11] +33 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-ehl-2/igt@i915_module_load@reload.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-ehl-2/igt@i915_module_load@reload.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [DMESG-FAIL][12] ([i915#3462]) -> [INCOMPLETE][13] ([i915#2782] / [i915#2940] / [i915#3462])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+    - fi-icl-u2:          [INCOMPLETE][14] ([i915#2782] / [i915#3462]) -> [DMESG-FAIL][15] ([i915#3462])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-icl-u2/igt@i915_selftest@live@execlists.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-icl-u2/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-skl-6600u:       [FAIL][16] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][17] ([i915#1436] / [i915#3363])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-skl-6600u/igt@runner@aborted.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-skl-6600u/igt@runner@aborted.html
+    - fi-icl-u2:          [FAIL][18] ([i915#2782] / [i915#3363]) -> [FAIL][19] ([i915#2426] / [i915#2782] / [i915#3363])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-icl-u2/igt@runner@aborted.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-icl-u2/igt@runner@aborted.html
+    - fi-bdw-5557u:       [FAIL][20] ([i915#1602] / [i915#2029]) -> [FAIL][21] ([i915#3462])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-bdw-5557u/igt@runner@aborted.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-kbl-soraka:      [FAIL][22] ([i915#1436] / [i915#3363]) -> [FAIL][23] ([i915#1436] / [i915#2426] / [i915#3363])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-kbl-soraka/igt@runner@aborted.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-kbl-soraka/igt@runner@aborted.html
+    - fi-cml-u2:          [FAIL][24] ([i915#3363] / [i915#3462]) -> [FAIL][25] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3462])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-cml-u2/igt@runner@aborted.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-cml-u2/igt@runner@aborted.html
+    - fi-bxt-dsi:         [FAIL][26] ([i915#3363]) -> [FAIL][27] ([i915#2426] / [i915#3363])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-bxt-dsi/igt@runner@aborted.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bxt-dsi/igt@runner@aborted.html
+    - fi-cfl-guc:         [FAIL][28] ([i915#2426] / [i915#3363]) -> [FAIL][29] ([i915#3363])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-cfl-guc/igt@runner@aborted.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-cfl-guc/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Participating hosts (46 -> 39)
+------------------------------
+
+  Additional (1): fi-jsl-1 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan bat-adlp-4 bat-adls-4 fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10212 -> Patchwork_20346
+
+  CI-20190529: 20190529
+  CI_DRM_10212: d6a4e59ffc78a058586d57930708ba706d765be4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6104: f8f81bd3752f3126a47d9dbba2d0ab29f7c17a19 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20346: 7852f437365b42c23af21b6cfecc4c5c11cbdf3e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7852f437365b drm/i915/gen11: use ffs for minconfig slice/subslice
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/index.html
+
+--===============8110612195167916592==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gen11: use ffs for minconfig slice/subslice</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91398/">https://patchwork.freedesktop.org/series/91398/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10212 -&gt; Patchwork_20346</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20346:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>
+<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-ehl-2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1222">i915#1222</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-ehl-2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a></p>
+</li>
+<li>
+<p>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-jsl-1/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>
+<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-ehl-2/igt@i915_selftest@live@gt_engines.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1222">i915#1222</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-ehl-2/igt@i915_selftest@live@gt_engines.html">FAIL</a></p>
+</li>
+<li>
+<p>{fi-jsl-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-jsl-1/igt@i915_selftest@live@gt_engines.html">FAIL</a> +1 similar issue</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20346 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@cursor_plane_move:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +5 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-ehl-2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1222">i915#1222</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-ehl-2/igt@i915_module_load@reload.html">PASS</a> +33 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-bsw-nick/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-icl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-icl-u2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
+</li>
+<li>
+<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+<li>
+<p>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10212/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20346/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (46 -&gt; 39)</h2>
+<p>Additional (1): fi-jsl-1 <br />
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan bat-adlp-4 bat-adls-4 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10212 -&gt; Patchwork_20346</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10212: d6a4e59ffc78a058586d57930708ba706d765be4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6104: f8f81bd3752f3126a47d9dbba2d0ab29f7c17a19 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20346: 7852f437365b42c23af21b6cfecc4c5c11cbdf3e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>7852f437365b drm/i915/gen11: use ffs for minconfig slice/subslice</p>
+
+</body>
+</html>
+
+--===============8110612195167916592==--
+
+--===============2033810094==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2033810094==--
