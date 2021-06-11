@@ -2,43 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9A023A3E39
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 10:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6672D3A3E5B
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 10:54:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FFCE6E5D5;
-	Fri, 11 Jun 2021 08:44:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAD226E874;
+	Fri, 11 Jun 2021 08:54:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C98296E5D5;
- Fri, 11 Jun 2021 08:44:49 +0000 (UTC)
-IronPort-SDR: pX59LqmZDt96XCUPlm+O862Y9xxYBpfUakCmLKaY2T9RgPRXkIUnsdKDqy812K8kjPBsuXIchB
- j8NdzkWwMRrg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10011"; a="291119975"
-X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="291119975"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2021 01:44:48 -0700
-IronPort-SDR: EiBj2fXSpae8CZbbM03w6p08QI57PqoqFL1Xd00WTOoXVCmhy8sji5KNK2jmsWYwLAfx3ckwn7
- /KlrjFPtvjOg==
-X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="638623521"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7826E874;
+ Fri, 11 Jun 2021 08:54:37 +0000 (UTC)
+IronPort-SDR: Q9GayliTAOO5+O7lpyD5OTXPBcBBkJ06T4V5QLahExNE6fTKTlpHEbnOMIIbH9srO0BLvGE8sC
+ h7Exp8TPg5GA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10011"; a="203655245"
+X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="203655245"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2021 01:54:36 -0700
+IronPort-SDR: +ymItIaFr5iG13sDsC15ksfQ3edEWSkEP1szTvNLaRSlqBOHnUzKlvtAS7JAQ3j5uPpqkKSrF3
+ kb/En17ggAwg==
+X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; d="scan'208";a="403155412"
 Received: from anunitax-mobl1.gar.corp.intel.com (HELO intel.com)
  ([10.254.36.102])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2021 01:44:48 -0700
-Date: Fri, 11 Jun 2021 04:44:46 -0400
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2021 01:54:35 -0700
+Date: Fri, 11 Jun 2021 04:54:32 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <YMMifuBecqT4mE+M@intel.com>
-References: <20210525054803.7387-1-daniele.ceraolospurio@intel.com>
- <20210525054803.7387-14-daniele.ceraolospurio@intel.com>
- <YLev6vAt4gEHAeFj@intel.com>
- <6e2a064a-a218-2915-00f2-d453fad3f0c0@intel.com>
+To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Message-ID: <YMMkyKf/B/9P8nFe@intel.com>
+References: <20210610103955.67802-1-zbigniew.kempczynski@intel.com>
+ <YMIjXG1x7dwAsJxj@intel.com> <20210611060900.GA3298@zkempczy-mobl2>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <6e2a064a-a218-2915-00f2-d453fad3f0c0@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 13/17] drm/i915/pxp: Enable PXP power
- management
+In-Reply-To: <20210611060900.GA3298@zkempczy-mobl2>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add relocation exceptions for two
+ other platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,414 +49,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Huang@freedesktop.org, intel-gfx@lists.freedesktop.org, "Huang,
- Sean Z" <sean.z.huang@intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 10, 2021 at 03:58:13PM -0700, Daniele Ceraolo Spurio wrote:
-> =
-
-> =
-
-> On 6/2/2021 9:20 AM, Rodrigo Vivi wrote:
-> > On Mon, May 24, 2021 at 10:47:59PM -0700, Daniele Ceraolo Spurio wrote:
-> > > From: "Huang, Sean Z" <sean.z.huang@intel.com>
-> > > =
-
-> > > During the power event S3+ sleep/resume, hardware will lose all the
-> > > encryption keys for every hardware session, even though the
-> > > session state might still be marked as alive after resume. Therefore,
-> > > we should consider the session as dead on suspend and invalidate all =
-the
-> > > objects. The session will be automatically restarted on the first
-> > > protected submission on resume.
-> > > =
-
-> > > v2: runtime suspend also invalidates the keys
-> > > v3: fix return codes, simplify rpm ops (Chris), use the new worker fu=
-nc
-> > > v4: invalidate the objects on suspend, don't re-create the arb sesson=
- on
-> > > resume (delayed to first submission).
-> > > =
-
-> > > Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
-> > > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.co=
-m>
-> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/Makefile                |  1 +
-> > >   drivers/gpu/drm/i915/gt/intel_gt_pm.c        | 15 +++++++-
-> > >   drivers/gpu/drm/i915/i915_drv.c              |  2 +
-> > >   drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     | 11 ++++--
-> > >   drivers/gpu/drm/i915/pxp/intel_pxp_pm.c      | 40 +++++++++++++++++=
-+++
-> > >   drivers/gpu/drm/i915/pxp/intel_pxp_pm.h      | 23 +++++++++++
-> > >   drivers/gpu/drm/i915/pxp/intel_pxp_session.c | 38 ++++++++++++++---=
---
-> > >   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  9 +++++
-> > >   8 files changed, 124 insertions(+), 15 deletions(-)
-> > >   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> > >   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Mak=
-efile
-> > > index 29331bbb3e98..9cce0bf9a50f 100644
-> > > --- a/drivers/gpu/drm/i915/Makefile
-> > > +++ b/drivers/gpu/drm/i915/Makefile
-> > > @@ -278,6 +278,7 @@ i915-$(CONFIG_DRM_I915_PXP) +=3D \
-> > >   	pxp/intel_pxp.o \
-> > >   	pxp/intel_pxp_cmd.o \
-> > >   	pxp/intel_pxp_irq.o \
-> > > +	pxp/intel_pxp_pm.o \
-> > >   	pxp/intel_pxp_session.o \
-> > >   	pxp/intel_pxp_tee.o
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/=
-i915/gt/intel_gt_pm.c
-> > > index aef3084e8b16..91151a02f7a2 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-> > > @@ -19,6 +19,7 @@
-> > >   #include "intel_rc6.h"
-> > >   #include "intel_rps.h"
-> > >   #include "intel_wakeref.h"
-> > > +#include "pxp/intel_pxp_pm.h"
-> > >   static void user_forcewake(struct intel_gt *gt, bool suspend)
-> > >   {
-> > > @@ -265,6 +266,8 @@ int intel_gt_resume(struct intel_gt *gt)
-> > >   	intel_uc_resume(&gt->uc);
-> > > +	intel_pxp_resume(&gt->pxp);
-> > > +
-> > >   	user_forcewake(gt, false);
-> > >   out_fw:
-> > > @@ -299,6 +302,7 @@ void intel_gt_suspend_prepare(struct intel_gt *gt)
-> > >   	user_forcewake(gt, true);
-> > >   	wait_for_suspend(gt);
-> > > +	intel_pxp_suspend(&gt->pxp);
-> > >   	intel_uc_suspend(&gt->uc);
-> > >   }
-> > > @@ -349,6 +353,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
-> > >   void intel_gt_runtime_suspend(struct intel_gt *gt)
-> > >   {
-> > > +	intel_pxp_suspend(&gt->pxp);
-> > >   	intel_uc_runtime_suspend(&gt->uc);
-> > >   	GT_TRACE(gt, "\n");
-> > > @@ -356,11 +361,19 @@ void intel_gt_runtime_suspend(struct intel_gt *=
-gt)
-> > >   int intel_gt_runtime_resume(struct intel_gt *gt)
-> > >   {
-> > > +	int ret;
-> > > +
-> > >   	GT_TRACE(gt, "\n");
-> > >   	intel_gt_init_swizzling(gt);
-> > >   	intel_ggtt_restore_fences(gt->ggtt);
-> > > -	return intel_uc_runtime_resume(&gt->uc);
-> > > +	ret =3D intel_uc_runtime_resume(&gt->uc);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	intel_pxp_resume(&gt->pxp);
-> > > +
-> > > +	return 0;
-> > >   }
-> > >   static ktime_t __intel_gt_get_awake_time(const struct intel_gt *gt)
-> > > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i=
-915_drv.c
-> > > index 2f06bb7b3ed2..6543e5577709 100644
-> > > --- a/drivers/gpu/drm/i915/i915_drv.c
-> > > +++ b/drivers/gpu/drm/i915/i915_drv.c
-> > > @@ -68,6 +68,8 @@
-> > >   #include "gt/intel_gt_pm.h"
-> > >   #include "gt/intel_rc6.h"
-> > > +#include "pxp/intel_pxp_pm.h"
-> > > +
-> > >   #include "i915_debugfs.h"
-> > >   #include "i915_drv.h"
-> > >   #include "i915_ioc32.h"
-> > > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/d=
-rm/i915/pxp/intel_pxp_irq.c
-> > > index a230d0034e50..9e5847c653f2 100644
-> > > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> > > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> > > @@ -9,6 +9,7 @@
-> > >   #include "gt/intel_gt_irq.h"
-> > >   #include "i915_irq.h"
-> > >   #include "i915_reg.h"
-> > > +#include "intel_runtime_pm.h"
-> > >   /**
-> > >    * intel_pxp_irq_handler - Handles PXP interrupts.
-> > > @@ -62,11 +63,13 @@ void intel_pxp_irq_enable(struct intel_pxp *pxp)
-> > >   	struct intel_gt *gt =3D pxp_to_gt(pxp);
-> > >   	spin_lock_irq(&gt->irq_lock);
-> > > -	if (!pxp->irq_enabled) {
-> > > +
-> > > +	if (!pxp->irq_enabled)
-> > >   		WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
-> > > -		__pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
-> > > -		pxp->irq_enabled =3D true;
-> > > -	}
-> > > +
-> > > +	__pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
-> > > +	pxp->irq_enabled =3D true;
-> > why?
-> > and if we really need this maybe worth a squash on the other patch or a=
- separated new one?
-> =
-
-> I had some troubles with the driver resetting all interrupts on S3 exit
-> behind the PXP code, so wanted to make sure we always enabled them when we
-> entered this function.=A0 I can squash this change in the patch that adds=
- the
-> irq logic if you think that's better.
-
-yeap, please...
-squash there or a separated patch explaining your issue.
-
-> =
-
-> > =
-
-> > > +
-> > >   	spin_unlock_irq(&gt->irq_lock);
-> > >   }
-> > > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c b/drivers/gpu/dr=
-m/i915/pxp/intel_pxp_pm.c
-> > > new file mode 100644
-> > > index 000000000000..400b3a9944c8
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
-> > > @@ -0,0 +1,40 @@
-> > > +// SPDX-License-Identifier: MIT
-> > > +/*
-> > > + * Copyright(c) 2020 Intel Corporation.
-> > > + */
-> > > +
-> > > +#include "intel_pxp.h"
-> > > +#include "intel_pxp_irq.h"
-> > > +#include "intel_pxp_pm.h"
-> > > +#include "intel_pxp_session.h"
-> > > +
-> > > +void intel_pxp_suspend(struct intel_pxp *pxp)
-> > > +{
-> > > +	if (!intel_pxp_is_enabled(pxp))
-> > > +		return;
-> > > +
-> > > +	pxp->arb_is_valid =3D false;
-> > > +
-> > > +	/* invalidate protected objects */
-> > > +	intel_pxp_invalidate(pxp);
-> > > +
-> > > +	intel_pxp_fini_hw(pxp);
-> > > +
-> > > +	pxp->global_state_attacked =3D false;
-> > this attacked var name is really bad :)
-> =
-
-> pxp->hw_state_invalidated?
-
-I like this more... but up to you!
-
-> =
-
-> > =
-
-> > and if we are setting this any time we disable, maybe the it would dese=
-rve to be in the fini function...
-> > but not sure...
-> =
-
-> I'd prefer to keep it out of the fini_hw, but I'll double check if I can
-> wrap it up more nicely.
-
-ack!
-
-> =
-
-> > =
-
-> > > +}
-> > > +
-> > > +void intel_pxp_resume(struct intel_pxp *pxp)
-> > > +{
-> > > +	if (!intel_pxp_is_enabled(pxp))
-> > > +		return;
-> > > +
-> > > +	/*
-> > > +	 * The PXP component gets automatically unbound when we go into S3 =
-and
-> > > +	 * re-bound after we come out, so in that scenario we can defer the
-> > > +	 * hw init to the bind call.
-> > > +	 */
-> > > +	if (!pxp->pxp_component)
-> > > +		return;
-> > > +
-> > > +	intel_pxp_init_hw(pxp);
-> > > +}
-> > > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h b/drivers/gpu/dr=
-m/i915/pxp/intel_pxp_pm.h
-> > > new file mode 100644
-> > > index 000000000000..6f488789db6a
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-> > > @@ -0,0 +1,23 @@
-> > > +/* SPDX-License-Identifier: MIT */
-> > // SPDX-License-Identifier: MIT
-> =
-
-> Don't we use /* for SPDX in headers?
-
-Duh! (facepalm)
-you are right /**/ for .h and // for .c
-https://www.kernel.org/doc/html/latest/process/license-rules.html
-
-sorry
-
-> =
-
-> Daniele
-> =
-
-> > > +/*
-> > > + * Copyright(c) 2020, Intel Corporation. All rights reserved.
-> > > + */
-> > > +
-> > > +#ifndef __INTEL_PXP_PM_H__
-> > > +#define __INTEL_PXP_PM_H__
-> > > +
-> > > +#include "i915_drv.h"
-> > > +
-> > > +#ifdef CONFIG_DRM_I915_PXP
-> > > +void intel_pxp_suspend(struct intel_pxp *pxp);
-> > > +void intel_pxp_resume(struct intel_pxp *pxp);
-> > > +#else
-> > > +static inline void intel_pxp_suspend(struct intel_pxp *pxp)
-> > > +{
-> > > +}
-> > > +static inline void intel_pxp_resume(struct intel_pxp *pxp)
-> > > +{
-> > > +}
-> > > +#endif
-> > > +
-> > > +#endif /* __INTEL_PXP_PM_H__ */
-> > > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/g=
-pu/drm/i915/pxp/intel_pxp_session.c
-> > > index c21620916710..893a2bf61b5c 100644
-> > > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> > > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> > > @@ -21,29 +21,36 @@
-> > >   static bool intel_pxp_session_is_in_play(struct intel_pxp *pxp, u32=
- id)
-> > >   {
-> > > -	struct intel_gt *gt =3D pxp_to_gt(pxp);
-> > > +	struct intel_uncore *uncore =3D pxp_to_gt(pxp)->uncore;
-> > >   	intel_wakeref_t wakeref;
-> > >   	u32 sip =3D 0;
-> > > -	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> > > -		sip =3D intel_uncore_read(gt->uncore, GEN12_KCR_SIP);
-> > > +	/* if we're suspended the session is considered off */
-> > > +	with_intel_runtime_pm_if_in_use(uncore->rpm, wakeref)
-> > > +		sip =3D intel_uncore_read(uncore, GEN12_KCR_SIP);
-> > >   	return sip & BIT(id);
-> > >   }
-> > >   static int pxp_wait_for_session_state(struct intel_pxp *pxp, u32 id=
-, bool in_play)
-> > >   {
-> > > -	struct intel_gt *gt =3D pxp_to_gt(pxp);
-> > > +	struct intel_uncore *uncore =3D pxp_to_gt(pxp)->uncore;
-> > >   	intel_wakeref_t wakeref;
-> > >   	u32 mask =3D BIT(id);
-> > >   	int ret;
-> > > -	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> > > -		ret =3D intel_wait_for_register(gt->uncore,
-> > > -					      GEN12_KCR_SIP,
-> > > -					      mask,
-> > > -					      in_play ? mask : 0,
-> > > -					      100);
-> > > +	/* if we're suspended the session is considered off */
-> > > +	wakeref =3D intel_runtime_pm_get_if_in_use(uncore->rpm);
-> > > +	if (!wakeref)
-> > > +		return in_play ? -ENODEV : 0;
-> > > +
-> > > +	ret =3D intel_wait_for_register(uncore,
-> > > +				      GEN12_KCR_SIP,
-> > > +				      mask,
-> > > +				      in_play ? mask : 0,
-> > > +				      100);
-> > > +
-> > > +	intel_runtime_pm_put(uncore->rpm, wakeref);
-> > >   	return ret;
-> > >   }
-> > > @@ -132,6 +139,7 @@ void intel_pxp_session_work(struct work_struct *w=
-ork)
-> > >   {
-> > >   	struct intel_pxp *pxp =3D container_of(work, typeof(*pxp), session=
-_work);
-> > >   	struct intel_gt *gt =3D pxp_to_gt(pxp);
-> > > +	intel_wakeref_t wakeref;
-> > >   	u32 events =3D 0;
-> > >   	spin_lock_irq(&gt->irq_lock);
-> > > @@ -144,6 +152,14 @@ void intel_pxp_session_work(struct work_struct *=
-work)
-> > >   	if (events & PXP_INVAL_REQUIRED)
-> > >   		intel_pxp_invalidate(pxp);
-> > > +	/*
-> > > +	 * If we're processing an event while suspending then don't bother,
-> > > +	 * we're going to re-init everything on resume anyway.
-> > > +	 */
-> > > +	wakeref =3D intel_runtime_pm_get_if_in_use(gt->uncore->rpm);
-> > > +	if (!wakeref)
-> > > +		return;
-> > > +
-> > >   	if (events & PXP_TERMINATION_REQUEST) {
-> > >   		events &=3D ~PXP_TERMINATION_COMPLETE;
-> > >   		pxp_terminate(pxp);
-> > > @@ -151,4 +167,6 @@ void intel_pxp_session_work(struct work_struct *w=
-ork)
-> > >   	if (events & PXP_TERMINATION_COMPLETE)
-> > >   		pxp_terminate_complete(pxp);
-> > > +
-> > > +	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-> > >   }
-> > > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/d=
-rm/i915/pxp/intel_pxp_tee.c
-> > > index 35b3fed4ca2f..0b6098a7b75c 100644
-> > > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> > > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
-> > > @@ -63,14 +63,23 @@ static int intel_pxp_tee_io_message(struct intel_=
-pxp *pxp,
-> > >   static int i915_pxp_tee_component_bind(struct device *i915_kdev,
-> > >   				       struct device *tee_kdev, void *data)
-> > >   {
-> > > +	struct drm_i915_private *i915 =3D kdev_to_i915(i915_kdev);
-> > >   	struct intel_pxp *pxp =3D i915_dev_to_pxp(i915_kdev);
-> > > +	intel_wakeref_t wakeref;
-> > >   	pxp->pxp_component =3D data;
-> > >   	pxp->pxp_component->tee_dev =3D tee_kdev;
-> > > +	/* if we are suspended, the HW will be re-initialized on resume */
-> > > +	wakeref =3D intel_runtime_pm_get_if_in_use(&i915->runtime_pm);
-> > > +	if (!wakeref)
-> > > +		return 0;
-> > > +
-> > >   	/* the component is required to fully start the PXP HW */
-> > >   	intel_pxp_init_hw(pxp);
-> > > +	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> > > +
-> > >   	return 0;
-> > >   }
-> > > -- =
-
-> > > 2.29.2
-> > > =
-
-> =
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCBKdW4gMTEsIDIwMjEgYXQgMDg6MDk6MDBBTSArMDIwMCwgWmJpZ25pZXcgS2VtcGN6
+ecWEc2tpIHdyb3RlOgo+IE9uIFRodSwgSnVuIDEwLCAyMDIxIGF0IDEwOjM2OjEyQU0gLTA0MDAs
+IFJvZHJpZ28gVml2aSB3cm90ZToKPiA+IE9uIFRodSwgSnVuIDEwLCAyMDIxIGF0IDEyOjM5OjU1
+UE0gKzAyMDAsIFpiaWduaWV3IEtlbXBjennFhHNraSB3cm90ZToKPiA+ID4gV2UgaGF2ZSBlc3Rh
+Ymxpc2hlZCBwcmV2aW91c2x5IHdlIHN0b3AgdXNpbmcgcmVsb2NhdGlvbnMgc3RhcnRpbmcKPiA+
+ID4gZnJvbSBnZW4xMiBwbGF0Zm9ybXMgd2l0aCBUaWdlcmxha2UgYXMgYW4gZXhjZXB0aW9uLiBX
+ZSBrZWVwIHRoaXMKPiA+ID4gc3RhdGVtZW50IGJ1dCB3ZSB3YW50IHRvIGVuYWJsZSByZWxvY2F0
+aW9ucyBjb25kaXRpb25hbGx5IGZvcgo+ID4gPiBSb2NrZXRsYWtlIGFuZCBBbGRlcmxha2UgdW5k
+ZXIgcmVxdWlyZV9mb3JjZV9wcm9iZSBmbGFnIHNldC4KPiA+ID4gCj4gPiA+IEtlZXBpbmcgcmVs
+b2NhdGlvbnMgdW5kZXIgcmVxdWlyZV9mb3JjZV9wcm9iZSBmbGFnIGlzIGludGVyaW0gc29sdXRp
+b24KPiA+ID4gdW50aWwgSUdUcyB3aWxsIGJlIHJld3JpdHRlbiB0byB1c2Ugc29mdHBpbi4KPiA+
+IAo+ID4gaG1tLi4uIHRvIGJlIHJlYWxseSBob25lc3QgSSdtIG5vdCBzbyBoYXBweSB0aGF0IHdl
+IGFyZSBpbnRyb2R1Y2luZwo+ID4gYSBuZXcgY3JpdGVyaWEgdG8gdGhlIGZvcmNlX3Byb2JlLgo+
+ID4gCj4gPiBUaGUgY3JpdGVyaWEgd2FzIHRvIGhhdmUgYSBmdW5jdGlvbmFsIGRyaXZlciBhbmQg
+bm90IHRvIHRyYWNrIHVhcGkuCj4gPiAKPiA+IEJ1dCBvbiB0aGUgb3RoZXIgaGFuZCBJIGRvIHJl
+Y29nbml6ZSB0aGF0IHRoZSBjdXJyZW50IGRlZmluaXRpb24KPiA+IG9mIHRoZSBmbGFnIGFsbG93
+cyB0aGF0LCBiZWNhdXNlIHdlIGhhdmUgZXN0YWJsaXNoZWQgdGhhdCB3aXRoCj4gPiB0aGlzIGJl
+aGF2aW9yLCB0aGUgImRyaXZlciBmb3IgbmV3IEludGVsIGdyYXBoaWNzIGRldmljZXMgdGhhdAo+
+ID4gYXJlIHJlY29nbml6ZWQgYnV0IG5vdCBwcm9wZXJseSBzdXBwb3J0ZWQgYnkgdGhpcyBrZXJu
+ZWwgdmVyc2lvbiIKPiA+IChhcyBzdGF0ZWQgaW4gdGhlIEtjb25maWcgZm9yIHRoZSBEUk1fSTkx
+NV9GT1JDRV9QUk9CRSkuCj4gPiAKPiA+IEhvd2V2ZXIuLi4KPiA+IAo+ID4gPiAKPiA+ID4gdjI6
+IC0gcmVtb3ZlIGlubGluZSBmcm9tIGZ1bmN0aW9uIGRlZmluaXRpb24gKEphbmkpCj4gPiA+ICAg
+ICAtIGZpeCBpbmRlbnRhdGlvbgo+ID4gPiAKPiA+ID4gdjM6IGNoYW5nZSB0byBHUkFQSElDU19W
+RVIoKSAoWmJpZ25pZXcpCj4gPiA+IAo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBaYmlnbmlldyBLZW1w
+Y3p5xYRza2kgPHpiaWduaWV3LmtlbXBjenluc2tpQGludGVsLmNvbT4KPiA+ID4gQ2M6IERhdmUg
+QWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gPiA+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5p
+ZWwudmV0dGVyQGludGVsLmNvbT4KPiA+ID4gQ2M6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVr
+c3RyYW5kLm5ldD4KPiA+ID4gQWNrZWQtYnk6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5j
+b20+Cj4gPiA+IC0tLQo+ID4gPiAgLi4uL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1
+ZmZlci5jICAgIHwgMjQgKysrKysrKysrKysrKysrLS0tLQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQs
+IDE5IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4gPiA+IAo+ID4gPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKPiA+ID4gaW5kZXggYThh
+YmM5YWY1ZmY0Li4zMGM0ZjA1NDllYTAgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKPiA+ID4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+ID4gPiBAQCAtNDkxLDE2ICs0OTEs
+MzAgQEAgZWJfdW5yZXNlcnZlX3ZtYShzdHJ1Y3QgZWJfdm1hICpldikKPiA+ID4gIAlldi0+Zmxh
+Z3MgJj0gfl9fRVhFQ19PQkpFQ1RfUkVTRVJWRUQ7Cj4gPiA+ICB9Cj4gPiA+ICAKPiA+ID4gK3N0
+YXRpYyBib29sIHBsYXRmb3JtX2hhc19yZWxvY3NfZW5hYmxlZChjb25zdCBzdHJ1Y3QgaTkxNV9l
+eGVjYnVmZmVyICplYikKPiA+ID4gK3sKPiA+ID4gKwkvKgo+ID4gPiArCSAqIFJlbG9jYXRpb25z
+IGFyZSBkaXNhbGxvd2VkIHN0YXJ0aW5nIGZyb20gZ2VuMTIgd2l0aCBUaWdlcmxha2UKPiA+ID4g
+KwkgKiBhcyBhbiBleGNlcHRpb24uIFdlIGFsbG93IHRlbXBvcmFyaWx5IHVzZSByZWxvY2F0aW9u
+cyBmb3IgUm9ja2V0bGFrZQo+ID4gPiArCSAqIGFuZCBBbGRlcmxha2Ugd2hlbiByZXF1aXJlX2Zv
+cmNlX3Byb2JlIGZsYWcgaXMgc2V0Lgo+ID4gPiArCSAqLwo+ID4gPiArCWlmIChHUkFQSElDU19W
+RVIoZWItPmk5MTUpIDwgMTIgfHwgSVNfVElHRVJMQUtFKGViLT5pOTE1KSkKPiA+ID4gKwkJcmV0
+dXJuIHRydWU7Cj4gPiA+ICsKPiA+ID4gKwlpZiAoSU5URUxfSU5GTyhlYi0+aTkxNSktPnJlcXVp
+cmVfZm9yY2VfcHJvYmUgJiYKPiA+ID4gKwkgICAgKElTX1JPQ0tFVExBS0UoZWItPmk5MTUpCj4g
+PiAKPiA+IFRoaXMgc2hpcCBoYXMgc2FpbGVkLi4uIFJLTCBpcyBub3QgcHJvdGVjdGVkIGJ5IHRo
+aXMgZmxhZyBhbnkgbG9uZ2VyLgo+ID4gU2hvdWxkIHRoaXMgYmUgb24gdGhlIFRHTCBzaWRlIG5v
+dz8KPiAKPiArTHVjYXMKPiAKPiBJIHRoaW5rIG5vLCBSS0wgaGFzIHJlbG9jYXRpb25zIGRpc2Fi
+bGVkIHNvIHdlIGNhbm5vdCBwdXQgaXQgdG8gVEdMIHNpZGUuCj4gU28gaWYgUktMIGlzIGFscmVh
+ZHkgcmVsZWFzZWQgdGhlbiBwdXR0aW5nIGl0IHVuZGVyIHJlcXVpcmVfZm9yY2VfcHJvYmUgCj4g
+ZmxhZyBpcyB3cm9uZyBhbmQgb25seSBJIGNhbiBkbyBpcyB0byByZW1vdmUgaXQgZnJvbSB0aGF0
+IGNvbmRpdGlvbi4gCj4gVGhlcmUncyBubyBvcHRpb24gdG8gdW5ibG9jayBSS0wgb24gSUdUIENJ
+IHVudGlsIHdlIHJld3JpdGUgYWxsIHRoZSB0ZXN0cy4KPiBXZSBoYXZlIHRvIHJlbHkgdGhlbiBv
+biBBREwqIHdpdGggcmVxdWlyZV9mb3JjZV9wcm9iZSBmbGFnIHRvIGNoZWNrIGhvdwo+IEFETCB3
+aWxsIHdvcmsgd2l0aCByZWxvY2F0aW9ucy4gCgpTby4uLiBJJ20gY29uZnVzZWQgbm93LiBJJ20g
+bWlzc2luZyB0aGUgcG9pbnQgb2YgdGhpcyBwYXRjaCB0aGVuLgpJIHRob3VnaHQgdGhlIHJlYXNv
+biB3YXMgdG8gcHJvdGVjdCBmcm9tIGFueSB1c2VyIHNwYWNlIHRvIGF0dGVtcHQgdG8KdXNlIHRo
+ZSByZWxvY2F0aW9uLCB1bmxlc3MgdXNpbmcgdGhlIGZvcmNlX3Byb2JlIHRlbXBvcmFyaWx5IG9u
+bHkgZm9yCnRoZXNlIHBsYXRmb3Jtcy4KQnV0IGlmIEknbSB1bmRlcnN0YW5kaW5nIGNvcnJlY3Rs
+eSBub3cgaXQgaXMgb25seSB0byBzaWxlbmNlIENJPyEKSXMgdGhhdCB0aGUgY2FzZT8KSXMgdGhl
+IENJIG5vaXNlIHNvIGJhZD8KCj4gCj4gPiAKPiA+ID4gIHx8IElTX0FMREVSTEFLRV9TKGViLT5p
+OTE1KSB8fAo+ID4gPiArCSAgICAgSVNfQUxERVJMQUtFX1AoZWItPmk5MTUpKSkKPiA+IAo+ID4g
+SG93IHRvIGVuc3VyZSB0aGF0IHdlIHdpbGwgZWFzaWx5IGNhdGNoIHRoaXMgd2hlbiByZW1vdmlu
+ZyB0aGUKPiA+IGZsYWc/Cj4gPiAKPiA+IEkgbWVhbiwgc2hvdWxkIHdlIGhhdmUgYSBHRU1fQlVH
+IG9yIGRybV9lcnIgbWVzc2FnZSB3aGVuIHRoZXNlCj4gPiBwbGF0Zm9ybXMgaW4gdGhpcyBsaXN0
+IGhhcyBub3QgdGhlIHJlcXVpcmVkX2ZvcmNlX3Byb2JlPwo+IAo+IEkgZG9uJ3QgdGhpbmsgd2Ug
+bmVlZCBHRU1fQlVHKCkvZHJtX2VycigpIC0gd2hlbiBJR1QgdGVzdHMgd2lsbCBzdXBwb3J0Cj4g
+Ym90aCAtIHJlbG9jICsgbm8tcmVsb2MgLSB0aGVuIGNvbmRpdGlvbiB3aWxsIGJlIGxpbWl0ZWQg
+dG86Cj4gCj4gICAgICAgICBpZiAoR1JBUEhJQ1NfVkVSKGViLT5pOTE1KSA8IDEyIHx8IElTX1RJ
+R0VSTEFLRShlYi0+aTkxNSkpCj4gICAgICAgICAgICAgICAgIHJldHVybiB0cnVlOwo+ICAKPiAg
+ICAgICAgIHJldHVybiBmYWxzZTsKPiAKPiBzbyByZXF1aXJlX2ZvcmNlX3Byb2JlIGNvbmRpdGlv
+biB3aWxsIGJlIGRlbGV0ZWQgYW5kIHdlIHdvbid0IG5lZWQgaXQKPiBhbnltb3JlIChJR1RzIHdp
+bGwgYmUgcmVhZHkpLgoKeWVzLi4uCmJ1dCB0aGVuLCB3aGVuIHdlIHJlbW92ZSB0aGUgZmxhZyB3
+ZSB3aWxsIGZvcmdldCB0byBjb21lIGhlcmUgYW5kIHJlbW92ZQp0aGlzIGNoZWNrLgoKT2gsIGFu
+ZCBJIGp1c3QgdGhvdWdodCB0aGF0IHdlIG1pZ2h0IG5lZWQgZHJtX2Vycm9yIHdoZW4gdGhlIHBy
+b3RlY3Rpb24KZG9lc24ndCBleGlzdCBmb3IgdGhlIHBsYXRmb3JtLCBidXQgYWxzbyBhIGRybV9p
+bmZvIHRvIHRoZSB1c2VyIHRvIHRlbGwKdGhpcyBpcyBhIHRlbXBvcmFyeSBhY2NlcHRlZCBiZWhh
+dmlvciwgYnV0IHRoYXQgd2lsbCBiZSByZW1vdmVkIGxhdGVyCgpUaGUgY29uY2VybiBpcyBpZiBh
+bnkgb3RoZXIgdXNlcnNwYWNlIHdhcyB1c2luZyB0aGUgZmxhZyBhbmQgc3VkZGVudGx5IG1vdmUg
+dG8gYQp2ZXJzaW9uIHdpdGhvdXQgdGhlIGZsYWcsIGl0IHdvdWxkIGJlIGNvbnNpZGVyZWQgYSBy
+ZWdyZXNzaW9uLi4uCgo+IAo+IC0tCj4gWmJpZ25pZXcKPiAKPiA+IAo+ID4gPiArCQlyZXR1cm4g
+dHJ1ZTsKPiA+ID4gKwo+ID4gPiArCXJldHVybiBmYWxzZTsKPiA+ID4gK30KPiA+ID4gKwo+ID4g
+PiAgc3RhdGljIGludAo+ID4gPiAgZWJfdmFsaWRhdGVfdm1hKHN0cnVjdCBpOTE1X2V4ZWNidWZm
+ZXIgKmViLAo+ID4gPiAgCQlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNfb2JqZWN0MiAqZW50cnks
+Cj4gPiA+ICAJCXN0cnVjdCBpOTE1X3ZtYSAqdm1hKQo+ID4gPiAgewo+ID4gPiAtCS8qIFJlbG9j
+YXRpb25zIGFyZSBkaXNhbGxvd2VkIGZvciBhbGwgcGxhdGZvcm1zIGFmdGVyIFRHTC1MUC4gIFRo
+aXMKPiA+ID4gLQkgKiBhbHNvIGNvdmVycyBhbGwgcGxhdGZvcm1zIHdpdGggbG9jYWwgbWVtb3J5
+Lgo+ID4gPiAtCSAqLwo+ID4gPiAtCWlmIChlbnRyeS0+cmVsb2NhdGlvbl9jb3VudCAmJgo+ID4g
+PiAtCSAgICBHUkFQSElDU19WRVIoZWItPmk5MTUpID49IDEyICYmICFJU19USUdFUkxBS0UoZWIt
+Pmk5MTUpKQo+ID4gPiArCWlmIChlbnRyeS0+cmVsb2NhdGlvbl9jb3VudCAmJiAhcGxhdGZvcm1f
+aGFzX3JlbG9jc19lbmFibGVkKGViKSkKPiA+ID4gIAkJcmV0dXJuIC1FSU5WQUw7Cj4gPiA+ICAK
+PiA+ID4gIAlpZiAodW5saWtlbHkoZW50cnktPmZsYWdzICYgZWItPmludmFsaWRfZmxhZ3MpKQo+
+ID4gPiAtLSAKPiA+ID4gMi4yNi4wCj4gPiA+IAo+ID4gPiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4g
+PiA+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+ID4gaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
