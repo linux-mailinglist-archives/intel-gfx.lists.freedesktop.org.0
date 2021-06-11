@@ -1,63 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 391153A4223
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 14:40:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C3A13A4266
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jun 2021 14:50:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7291F6EE75;
-	Fri, 11 Jun 2021 12:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1BF56EE91;
+	Fri, 11 Jun 2021 12:50:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C82726EE75
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 12:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1623415254;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=lE67WyKbl741YpDCTe3QkT0OdknMJfyRErLnc4JjkJk=;
- b=AOhRzkL2yxzOL2SQhrp29v7Te7y/7OvLjVw57iTbXsU8RCZcH56xgXR5+0pPZPZnvmL+53
- 2iLlR43HUFXJE+x7HOFkntfSG/o+treI9LoFtDIVdeRZBShbV8x8N7UIkuaXaBR5sENF1B
- Ohdor1mQMW1fS/OEC8hkchL2bivctBU=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-483-tDRVUUZtNSy-5sW1P9P8dw-1; Fri, 11 Jun 2021 08:40:50 -0400
-X-MC-Unique: tDRVUUZtNSy-5sW1P9P8dw-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
- [10.5.11.12])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5F5111923762;
- Fri, 11 Jun 2021 12:40:47 +0000 (UTC)
-Received: from localhost (ovpn-113-95.ams2.redhat.com [10.36.113.95])
- by smtp.corp.redhat.com (Postfix) with ESMTPS id D32A260C05;
- Fri, 11 Jun 2021 12:40:42 +0000 (UTC)
-From: Cornelia Huck <cohuck@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@linux.ie>, Tony
- Krowiak <akrowiak@linux.ibm.com>, Alex Williamson
- <alex.williamson@redhat.com>, Christian Borntraeger
- <borntraeger@de.ibm.com>, Jonathan Corbet <corbet@lwn.net>, Daniel Vetter
- <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, Vasily Gorbik
- <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jani Nikula
- <jani.nikula@linux.intel.com>, Jason Herne <jjherne@linux.ibm.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org, Kirti
- Wankhede <kwankhede@nvidia.com>, linux-doc@vger.kernel.org,
- linux-s390@vger.kernel.org, Halil Pasic <pasic@linux.ibm.com>, Rodrigo
- Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <6-v1-324b2038f212+1041f1-vfio3a_jgg@nvidia.com>
-Organization: Red Hat GmbH
-References: <6-v1-324b2038f212+1041f1-vfio3a_jgg@nvidia.com>
-User-Agent: Notmuch/0.32.1 (https://notmuchmail.org)
-Date: Fri, 11 Jun 2021 14:40:41 +0200
-Message-ID: <87czsszi9i.fsf@redhat.com>
+Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
+ [213.80.101.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6B046EE91
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 12:50:41 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id D8F113F6F3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 14:50:39 +0200 (CEST)
+Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="jnmeCtOl";
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 8lVg_MdEJ4BS for <intel-gfx@lists.freedesktop.org>;
+ Fri, 11 Jun 2021 14:50:38 +0200 (CEST)
+Received: by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id AE0483F6DE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 14:50:38 +0200 (CEST)
+Received: from [192.168.0.209] (unknown [192.198.151.43])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id D5343360132
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 14:50:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1623415838; bh=2vmOwzLsRh/UMV02oa5VM8WADDz7GzGZ0VMNPL8YLbM=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=jnmeCtOlNSA/oAlvGC8dmVqJXFQ2fw5/zfW4XvRKlzqzpl4dI5wX4MFIVhdaUWrny
+ 99aR/3YKo8c8spTIpluYWWYQjLb12aPXBLTgPi8cUMKDRmku19w2K6ZKuj7/RO+ZJu
+ b/ZaAMc0xpx3YTHGlrOOh4b2Ws8pJhgGQbvnEf5s=
+To: intel-gfx@lists.freedesktop.org
+References: <eb71ee2d-3413-6ca8-0b7c-a58695f00b77@linux.intel.com>
+ <162340805657.68262.6607541005525077753@jlahtine-mobl.ger.corp.intel.com>
+ <162340998262.68262.6045527397253780242@jlahtine-mobl.ger.corp.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <b105591a-44a3-55d5-f0d0-a4bd832f28d2@shipmail.org>
+Date: Fri, 11 Jun 2021 14:50:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
-Subject: Re: [Intel-gfx] [PATCH 06/10] vfio/mdev: Remove
- CONFIG_VFIO_MDEV_DEVICE
+In-Reply-To: <162340998262.68262.6045527397253780242@jlahtine-mobl.ger.corp.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PULL] topic/i915-ttm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,35 +69,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 07 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-> For some reason the vfio_mdev shim mdev_driver has its own module and
-> kconfig. As the next patch requires access to it from mdev.ko merge the
-> two modules together and remove VFIO_MDEV_DEVICE.
+On 6/11/21 1:13 PM, Joonas Lahtinen wrote:
+> Quoting Joonas Lahtinen (2021-06-11 13:40:56)
+>> Quoting Maarten Lankhorst (2021-06-11 12:27:15)
+>>> Pull request for drm-misc-next and drm-intel-gt-next.
+>>>
+>>> topic/i915-ttm-2021-06-11:
+>>> drm-misc and drm-intel pull request for topic/i915-ttm:
+>>> - Convert i915 lmem handling to ttm.
+>>> - Add a patch to temporarily add a driver_private member to vma_node.
+>>> - Use this to allow mixed object mmap handling for i915.
+>>> The following changes since commit 1bd8a7dc28c1c410f1ceefae1f2a97c06d1a67c2:
+>>>
+>>>    Merge tag 'exynos-drm-next-for-v5.14' of git://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos into drm-next (2021-06-11 14:19:12 +1000)
+>> This base is not in drm-misc-next or drm-intel-gt-next, so effectively
+>> we would end up pulling 478 extra commits from drm-next as a result. And
+>> also causing all the warnings for those commits. I don't think we should
+>> do that?
+>>
+>> The common ancestor would be ccd1950c2f7e38ae45aeefb99a08b39407cd6c63
+>> "Merge tag 'drm-intel-gt-next-2021-05-28' of git://anongit.freedesktop.org/drm/drm-intel into drm-next"
+>> Should we re-do the topic branch based on that?
+> This problem seems to come from the fact that only the PR from yesterday
+> that got merged to drm-next had the dependency patches. The previous
+> backmerge of drm-next was requested too early.
 >
-> A later patch deletes this driver entirely.
->
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  Documentation/s390/vfio-ap.rst   |  1 -
->  arch/s390/Kconfig                |  2 +-
->  drivers/gpu/drm/i915/Kconfig     |  2 +-
->  drivers/vfio/mdev/Kconfig        |  7 -------
->  drivers/vfio/mdev/Makefile       |  3 +--
->  drivers/vfio/mdev/mdev_core.c    | 16 ++++++++++++++--
->  drivers/vfio/mdev/mdev_private.h |  2 ++
->  drivers/vfio/mdev/vfio_mdev.c    | 24 +-----------------------
->  samples/Kconfig                  |  6 +++---
->  9 files changed, 23 insertions(+), 40 deletions(-)
+> I've solved this with least hassle by backmerging drm-next again and
+> then applying the PR to drm-intel-gt-next.
 
-I think you missed my earlier
+Yeah, that was motivated by our first i915 ttm patches IIRC depending on 
+some recent changes in TTM, and then in addition we made changes to TTM 
+that we were asked to merge through drm-misc-next to avoid conflicts. In 
+hindsight it might have actually been better to merge the TTM changes 
+through drm-intel-gt-next and take responsibility of resolving i915/TTM 
+conflicts as they appear in drm-tip...
 
-Reviewed-by: Cornelia Huck <cohuck@redhat.com>
+/Thomas
+
 
 _______________________________________________
 Intel-gfx mailing list
