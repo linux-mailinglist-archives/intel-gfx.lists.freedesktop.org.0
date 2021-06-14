@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D9C3A6BA2
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 18:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E9F3A6BA7
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 18:26:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A118A89E2A;
-	Mon, 14 Jun 2021 16:26:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B589E89E8C;
+	Mon, 14 Jun 2021 16:26:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1529889E0C;
- Mon, 14 Jun 2021 16:26:33 +0000 (UTC)
-IronPort-SDR: +T9LeKqAwoQ/pI0Stgd80fvhWGfrL2dn3UWGrijnjCTb7gH/5h87Xvu+kZqoN6axydQFRkj/us
- jIdnUP9P3Xug==
-X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="204008287"
-X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="204008287"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ACFC89E8C;
+ Mon, 14 Jun 2021 16:26:41 +0000 (UTC)
+IronPort-SDR: ycd6vjdsQZQpxIxj8lotmavFleOw6FWVLeeY/tFrk9+BsFfioJZP5NVjS7GwMmbI4YOu5mil9Y
+ Vddx7H3HJAfA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="204008305"
+X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="204008305"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2021 09:26:30 -0700
-IronPort-SDR: IlBxe3jhDAKxK3cOdSwgl5nN5h/6p0NiLi5YriSbUBfftNtrmXIqY5bvd7YK8h/uSmF2g/sxCu
- uVVE2oQt72AA==
-X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="449946673"
+ 14 Jun 2021 09:26:32 -0700
+IronPort-SDR: iYID+3tjPlgfY+hA7XA3HmAVN+Kd6Vh3eOBa/KFAIO8Hwxdq5nylir7opRVzURlpKiAOLTH7xs
+ owJyY7rDa+XQ==
+X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="449946679"
 Received: from fnygreen-mobl1.ger.corp.intel.com (HELO
  thellst-mobl1.intel.com) ([10.249.254.50])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2021 09:26:28 -0700
+ 14 Jun 2021 09:26:30 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Mon, 14 Jun 2021 18:26:03 +0200
-Message-Id: <20210614162612.294869-4-thomas.hellstrom@linux.intel.com>
+Date: Mon, 14 Jun 2021 18:26:04 +0200
+Message-Id: <20210614162612.294869-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210614162612.294869-1-thomas.hellstrom@linux.intel.com>
 References: <20210614162612.294869-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 03/12] drm/i915: Introduce a ww transaction
- helper
+Subject: [Intel-gfx] [PATCH v3 04/12] drm/i915/gt: Add an insert_entry for
+ gen8_ppgtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,42 +49,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: matthew.auld@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW50cm9kdWNlIGEgZm9yX2k5MTVfZ2VtX3d3KCl7fSB1dGlsaXR5IHRvIGhlbHAgbWFrZSB0aGUg
-Y29kZQphcm91bmQgYSB3dyB0cmFuc2FjdGlvbiBtb3JlIHJlYWRhYmxlLgoKU2lnbmVkLW9mZi1i
-eTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgpS
-ZXZpZXdlZC1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgotLS0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmggfCAzMSArKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKy0KIDEgZmlsZSBjaGFuZ2VkLCAzMCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuaCBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmgKaW5kZXggZjJkODc2OWU0MTE4Li5mNmIx
-YTc5NjY2N2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmgK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuaApAQCAtMTEsMTEgKzExLDQw
-IEBAIHN0cnVjdCBpOTE1X2dlbV93d19jdHggewogCXN0cnVjdCB3d19hY3F1aXJlX2N0eCBjdHg7
-CiAJc3RydWN0IGxpc3RfaGVhZCBvYmpfbGlzdDsKIAlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVj
-dCAqY29udGVuZGVkOwotCWJvb2wgaW50cjsKKwl1bnNpZ25lZCBzaG9ydCBpbnRyOworCXVuc2ln
-bmVkIHNob3J0IGxvb3A7CiB9OwogCiB2b2lkIGk5MTVfZ2VtX3d3X2N0eF9pbml0KHN0cnVjdCBp
-OTE1X2dlbV93d19jdHggKmN0eCwgYm9vbCBpbnRyKTsKIHZvaWQgaTkxNV9nZW1fd3dfY3R4X2Zp
-bmkoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqY3R4KTsKIGludCBfX211c3RfY2hlY2sgaTkxNV9n
-ZW1fd3dfY3R4X2JhY2tvZmYoc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqY3R4KTsKIHZvaWQgaTkx
-NV9nZW1fd3dfdW5sb2NrX3NpbmdsZShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKTsK
-KworLyogSW50ZXJuYWwgZnVuY3Rpb25zIHVzZWQgYnkgdGhlIGlubGluZXMhIERvbid0IHVzZS4g
-Ki8KK3N0YXRpYyBpbmxpbmUgaW50IF9faTkxNV9nZW1fd3dfZmluaShzdHJ1Y3QgaTkxNV9nZW1f
-d3dfY3R4ICp3dywgaW50IGVycikKK3sKKwl3dy0+bG9vcCA9IDA7CisJaWYgKGVyciA9PSAtRURF
-QURMSykgeworCQllcnIgPSBpOTE1X2dlbV93d19jdHhfYmFja29mZih3dyk7CisJCWlmICghZXJy
-KQorCQkJd3ctPmxvb3AgPSAxOworCX0KKworCWlmICghd3ctPmxvb3ApCisJCWk5MTVfZ2VtX3d3
-X2N0eF9maW5pKHd3KTsKKworCXJldHVybiBlcnI7Cit9CisKK3N0YXRpYyBpbmxpbmUgdm9pZAor
-X19pOTE1X2dlbV93d19pbml0KHN0cnVjdCBpOTE1X2dlbV93d19jdHggKnd3LCBib29sIGludHIp
-Cit7CisJaTkxNV9nZW1fd3dfY3R4X2luaXQod3csIGludHIpOworCXd3LT5sb29wID0gMTsKK30K
-KworI2RlZmluZSBmb3JfaTkxNV9nZW1fd3coX3d3LCBfZXJyLCBfaW50cikJCQlcCisJZm9yIChf
-X2k5MTVfZ2VtX3d3X2luaXQoX3d3LCBfaW50cik7IChfd3cpLT5sb29wOwlcCisJICAgICBfZXJy
-ID0gX19pOTE1X2dlbV93d19maW5pKF93dywgX2VycikpCisKICNlbmRpZgotLSAKMi4zMS4xCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+From: Chris Wilson <chris@chris-wilson.co.uk>
+
+In the next patch, we will want to write a PTE for an explicit
+dma address, outside of the usual vma.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index 21c8b7350b7a..1b676d7700bf 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -555,6 +555,24 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+ 	}
+ }
+ 
++static void gen8_ppgtt_insert_entry(struct i915_address_space *vm,
++				    dma_addr_t addr,
++				    u64 offset,
++				    enum i915_cache_level level,
++				    u32 flags)
++{
++	u64 idx = offset >> GEN8_PTE_SHIFT;
++	struct i915_page_directory * const pdp =
++		gen8_pdp_for_page_index(vm, idx);
++	struct i915_page_directory *pd =
++		i915_pd_entry(pdp, gen8_pd_index(idx, 2));
++	gen8_pte_t *vaddr;
++
++	vaddr = px_vaddr(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
++	vaddr[gen8_pd_index(idx, 0)] = gen8_pte_encode(addr, level, flags);
++	clflush_cache_range(&vaddr[gen8_pd_index(idx, 0)], sizeof(*vaddr));
++}
++
+ static int gen8_init_scratch(struct i915_address_space *vm)
+ {
+ 	u32 pte_flags;
+@@ -734,6 +752,7 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
+ 
+ 	ppgtt->vm.bind_async_flags = I915_VMA_LOCAL_BIND;
+ 	ppgtt->vm.insert_entries = gen8_ppgtt_insert;
++	ppgtt->vm.insert_page = gen8_ppgtt_insert_entry;
+ 	ppgtt->vm.allocate_va_range = gen8_ppgtt_alloc;
+ 	ppgtt->vm.clear_range = gen8_ppgtt_clear;
+ 
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
