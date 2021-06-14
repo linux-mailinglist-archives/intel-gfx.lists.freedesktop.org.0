@@ -1,56 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EAFF3A6B21
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 17:59:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3FF3A6B52
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 18:10:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A53B489C86;
-	Mon, 14 Jun 2021 15:59:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 437F689D5B;
+	Mon, 14 Jun 2021 16:10:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
- [IPv6:2a00:1450:4864:20::535])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 423CF89C86;
- Mon, 14 Jun 2021 15:59:42 +0000 (UTC)
-Received: by mail-ed1-x535.google.com with SMTP id cb9so47250004edb.1;
- Mon, 14 Jun 2021 08:59:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=oAo6qWwfla/zQj4s5qtRwWaGJwCOG62qXo2Ky4GvdO4=;
- b=Jb2xnKKkCCR/EiTZ5CEdmKXDLgjYj4rhWlVhQuoeu3sR9nbdcxeviCq/uYXn5NWLRq
- AILGo2aEeU+vfk0aJzYGovAfpCC6iz89eclFfcu0fXL0Dxujz4s6hb7umVcP4rua6S1R
- kDDBfjsdH8FSfLyG8ctXEO7UpFKt7x4MZTgKusDQJOS+h0FSWBCRzaXoxbDHyjV1vqfK
- u+PYdsdZaUNbAm5PdLih3BtpZ+h9C04OIQj8qQzufv3BN/w1zo2kvKUiWyoMaMkTI89T
- pDQHpQuyCyHANWk+SnGN3qDl6+6bcPD2VmMRSuVi15dBED7/kKbOQA/U3uxpbvu0Vlcn
- ehWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=oAo6qWwfla/zQj4s5qtRwWaGJwCOG62qXo2Ky4GvdO4=;
- b=PY1YHYKnXPZp43ue5A773EdG5VdNlKPWKlA52TuO5/7HO0SjkTjB/so3uPYHkWrqpD
- xwsX2/GfTGHHE+ClDzV1jmHb2Xb6Qz52M/Xuy2ULLiEfq21M6YuiwmQg+ymP9do5xqBz
- NlFYPRFnLzPh1RuiJ4HTuHpU0WyGDaCrQi98BDrRhAUn+dqX+ccxCalKm4uBzzt8Zn/L
- Woh6Q5d3IVOrNZawXkeVL2b78/ldBY7+LDZ61Tt/hsM4WIjC+xc9zYOCRZOf8kIaSYrP
- s2LVS0ADBsWyrYA1QnkaQUHSdprraa+YK94r2MMIje8UmtP3q2MIAgDyj6WzUPdeith0
- Ni2Q==
-X-Gm-Message-State: AOAM5329ITXq9E+M7VxsQ/MICmEqJPoo0FOQTDxhSqjq1eOZqwMZ5y50
- /DVWEEo+XNhE8BgCNueLf2xH12Q0FqPtRBAFrcs=
-X-Google-Smtp-Source: ABdhPJykGh542EKVwndcqL7v7940RKSkiGDcrluyyKSF5XTLYi6zV7rLIAdPrZGXPgPgmJt64op0LE55eutXVy+WicA=
-X-Received: by 2002:a50:ee18:: with SMTP id g24mr17905076eds.11.1623686380809; 
- Mon, 14 Jun 2021 08:59:40 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4AA1C89D44;
+ Mon, 14 Jun 2021 16:10:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 43F5DAA3D8;
+ Mon, 14 Jun 2021 16:10:40 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210608174320.37429-1-wse@tuxedocomputers.com>
- <20210608174320.37429-3-wse@tuxedocomputers.com>
- <20210610105524.4dd2a40f@eldfell>
-In-Reply-To: <20210610105524.4dd2a40f@eldfell>
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-Date: Mon, 14 Jun 2021 17:59:29 +0200
-Message-ID: <CAEsyxyjZoLSZSu76aJ6a_Hg_b=eH2Am6ioM=cLz05ciVDEqboQ@mail.gmail.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v2 2/7] drm/uAPI: Add "active bpc" as
- feedback channel for "max bpc" drm property
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 14 Jun 2021 16:10:40 -0000
+Message-ID: <162368704025.10185.11492677372080257944@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210614092227.97421-1-matthew.auld@intel.com>
+In-Reply-To: <20210614092227.97421-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_allow_DG1_autoprobe_for_CONFIG=5FBROKEN?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,253 +38,369 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>, tzimmermann@suse.de,
- intel-gfx <intel-gfx@lists.freedesktop.org>, "Li,
- Sun peng \(Leo\)" <sunpeng.li@amd.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, David Airlie <airlied@linux.ie>,
- Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, "Koenig,
- Christian" <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2009288966=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 10, 2021 at 9:55 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
->
-> On Tue,  8 Jun 2021 19:43:15 +0200
-> Werner Sembach <wse@tuxedocomputers.com> wrote:
->
-> > Add a new general drm property "active bpc" which can be used by graphic drivers
-> > to report the applied bit depth per pixel back to userspace.
-> >
+--===============2009288966==
+Content-Type: multipart/alternative;
+ boundary="===============9114507119239750854=="
 
-Maybe "bit depth per pixel" -> "bit depth per pixel color component"
-for slightly more clarity?
+--===============9114507119239750854==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > While "max bpc" can be used to change the color depth, there was no way to check
-> > which one actually got used. While in theory the driver chooses the best/highest
-> > color depth within the max bpc setting a user might not be fully aware what his
-> > hardware is or isn't capable off. This is meant as a quick way to double check
-> > the setup.
-> >
-> > In the future, automatic color calibration for screens might also depend on this
-> > information being available.
-> >
-> > Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> > ---
-> >  drivers/gpu/drm/drm_atomic_uapi.c |  2 ++
-> >  drivers/gpu/drm/drm_connector.c   | 41 +++++++++++++++++++++++++++++++
-> >  include/drm/drm_connector.h       | 15 +++++++++++
-> >  3 files changed, 58 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-> > index 268bb69c2e2f..7ae4e40936b5 100644
-> > --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> > @@ -873,6 +873,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
-> >               *val = 0;
-> >       } else if (property == connector->max_bpc_property) {
-> >               *val = state->max_requested_bpc;
-> > +     } else if (property == connector->active_bpc_property) {
-> > +             *val = state->active_bpc;
-> >       } else if (connector->funcs->atomic_get_property) {
-> >               return connector->funcs->atomic_get_property(connector,
-> >                               state, property, val);
-> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> > index 7631f76e7f34..c0c3c09bfed0 100644
-> > --- a/drivers/gpu/drm/drm_connector.c
-> > +++ b/drivers/gpu/drm/drm_connector.c
-> > @@ -1195,6 +1195,14 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
-> >   *   drm_connector_attach_max_bpc_property() to create and attach the
-> >   *   property to the connector during initialization.
-> >   *
-> > + * active bpc:
-> > + *   This read-only range property tells userspace the pixel color bit depth
-> > + *   actually used by the hardware display engine on "the cable" on a
-> > + *   connector. The chosen value depends on hardware capabilities, both
-> > + *   display engine and connected monitor, and the "max bpc" property.
-> > + *   Drivers shall use drm_connector_attach_active_bpc_property() to install
-> > + *   this property.
-> > + *
->
-> This description is now clear to me, but I wonder, is it also how
-> others understand it wrt. dithering?
->
-> Dithering done on monitor is irrelevant, because we are talking about
-> "on the cable" pixels. But since we are talking about "on the cable"
-> pixels, also dithering done by the display engine must not factor in.
-> Should the dithering done by display engine result in higher "active
-> bpc" number than what is actually transmitted on the cable?
->
-> I cannot guess what userspace would want exactly. I think the
-> strict "on the cable" interpretation is a safe bet, because it then
-> gives a lower limit on observed bpc. Dithering settings should be
-> exposed with other KMS properties, so userspace can factor those in.
-> But to be absolutely sure, we'd have to ask some color management
-> experts.
->
-> Cc'ing Mario in case he has an opinion.
->
+== Series Details ==
 
-Thanks. I like this a lot, in fact such a connector property was on my
-todo list / wish list for something like that!
+Series: drm/i915: allow DG1 autoprobe for CONFIG_BROKEN
+URL   : https://patchwork.freedesktop.org/series/91440/
+State : success
 
-I agree with the "active bpc" definition here in this patch and
-Pekka's comments. I want what goes out over the cable, not including
-any effects of dithering. At least AMD's amdpu-kms driver exposes
-"active bpc" already as a per-connector property in debugfs, and i use
-reported output from there a lot to debug problems with respect to HDR
-display or high color precision output, and to verify i'm not fooling
-myself wrt. what goes out, compared to what dithering may "fake" on
-top of it.
+== Summary ==
 
-Software like mine would greatly benefit from getting this directly
-off the connector, ie. as a RandR output property, just like with "max
-bpc", as mapping X11 output names to driver output names is a guessing
-game, directing regular users to those debugfs files is tedious and
-error prone, and many regular users don't have root permissions
-anyway.
+CI Bug Log - changes from CI_DRM_10219 -> Patchwork_20355
+====================================================
 
-Sometimes one wants to prioritize "active bpc" over resolution or
-refresh rate, and especially on now more common HDR displays, and
-actual bit depth also changes depending on bandwidth requirements vs.
-availability, and how well DP link training went with a flaky or loose
-cable, like only getting 10 bpc for HDR-10 when running on less than
-maximum resolution or refresh rate, and the cable "just right". This
-can be very puzzling without actual feedback over true "active bpc".
+Summary
+-------
 
-It would also be very beneficial to also have reporting and control
-over gpu dithering state via a read/write property. Some drivers like
-nouveau-kms have that, and i think some older non-atomic amd drivers
-had it at some point in time iirc, which was useful, also for
-debugging of dithering induced issues, when one wants to pass-through
-a 8 bpc framebuffer unmodified to special display equipment, and
-dithering silently kicked in and is messing things up.
+  **SUCCESS**
 
-And a read only property for DSC active would be good to account for the future.
+  No regressions found.
 
-> Since "active bpc" is related to "max bpc", the both should follow the
-> same definition. Do they do that now?
->
-> Maybe a clarifying note about interaction with dithering would still be
-> good to have here.
->
-+1
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/index.html
 
->
-> I recall reading some comments from you about having problems with
-> making this immutable. Is it properly immutable now?
->
-> That is, drm_info reports the property as "(immutable)".
-> https://github.com/ascent12/drm_info
->
-> If we are not sure if DSC could result in lower observed bpc than
-> "active bpc", then DSC state would need to be exposed as a KMS property
-> too, with a note that it invalidates what "active bpc" shows. Or maybe
-> "active bpc" should be "unknown" in that case?
->
+Possible new issues
+-------------------
 
-Yes. Or could we have some way of disabling DSC per connector in the
-future? I'm not familiar with current implementations, but i'd very
-much would like to have a selectable tradeoff if i want a "pure" video
-signal and maybe not get some high resolution / refresh rate modes on
-low-bandwidth cables, or if i want max resolution/refresh but some
-lossy perceptual compression.
+  Here are the unknown changes that may have been introduced in Patchwork_20355:
 
-thanks,
--mario
+### IGT changes ###
 
->
-> Thanks,
-> pq
->
-> >   * Connectors also have one standardized atomic property:
-> >   *
-> >   * CRTC_ID:
-> > @@ -2150,6 +2158,39 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
-> >  }
-> >  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
-> >
-> > +/**
-> > + * drm_connector_attach_active_bpc_property - attach "active bpc" property
-> > + * @connector: connector to attach active bpc property on.
-> > + * @min: The minimum bit depth supported by the connector.
-> > + * @max: The maximum bit depth supported by the connector.
-> > + *
-> > + * This is used to check the applied bit depth on a connector.
-> > + *
-> > + * Returns:
-> > + * Zero on success, negative errno on failure.
-> > + */
-> > +int drm_connector_attach_active_bpc_property(struct drm_connector *connector,
-> > +                                       int min, int max)
-> > +{
-> > +     struct drm_device *dev = connector->dev;
-> > +     struct drm_property *prop;
-> > +
-> > +     prop = connector->active_bpc_property;
-> > +     if (!prop) {
-> > +             prop = drm_property_create_range(dev, 0, "active bpc", min, max);
-> > +             if (!prop)
-> > +                     return -ENOMEM;
-> > +
-> > +             connector->active_bpc_property = prop;
-> > +     }
-> > +
-> > +     drm_object_attach_property(&connector->base, prop, 0);
-> > +     connector->state->active_bpc = 0;
-> > +
-> > +     return 0;
-> > +}
-> > +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
-> > +
-> >  /**
-> >   * drm_connector_set_vrr_capable_property - sets the variable refresh rate
-> >   * capable property for a connector
-> > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> > index 1922b278ffad..c58cba2b6afe 100644
-> > --- a/include/drm/drm_connector.h
-> > +++ b/include/drm/drm_connector.h
-> > @@ -781,6 +781,13 @@ struct drm_connector_state {
-> >        */
-> >       u8 max_bpc;
-> >
-> > +     /**
-> > +      * @active_bpc: Read only property set by the GPU driver to the actually
-> > +      * applied bit depth of the pixels after evaluating all hardware
-> > +      * limitations.
-> > +      */
-> > +     u8 active_bpc;
-> > +
-> >       /**
-> >        * @hdr_output_metadata:
-> >        * DRM blob property for HDR output metadata
-> > @@ -1380,6 +1387,12 @@ struct drm_connector {
-> >        */
-> >       struct drm_property *max_bpc_property;
-> >
-> > +     /**
-> > +      * @active_bpc_property: Default connector property for the active bpc
-> > +      * to be driven out of the connector.
-> > +      */
-> > +     struct drm_property *active_bpc_property;
-> > +
-> >  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
-> >  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
-> >  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
-> > @@ -1698,6 +1711,8 @@ int drm_connector_set_panel_orientation_with_quirk(
-> >       int width, int height);
-> >  int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
-> >                                         int min, int max);
-> > +int drm_connector_attach_active_bpc_property(struct drm_connector *connector,
-> > +                                       int min, int max);
-> >
-> >  /**
-> >   * struct drm_tile_group - Tile group metadata
->
+#### Possible regressions ####
+
+  * {igt@kms_flip@basic-flip-vs-modeset@d-hdmi-a2} (NEW):
+    - {fi-dg1-1}:         NOTRUN -> [FAIL][1] +3 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@kms_flip@basic-flip-vs-modeset@d-hdmi-a2.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gt_lrc:
+    - {fi-dg1-1}:         NOTRUN -> [DMESG-FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@kms_addfb_basic@invalid-get-prop-any:
+    - {fi-dg1-1}:         NOTRUN -> [WARN][3] +6 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@kms_addfb_basic@invalid-get-prop-any.html
+
+  * igt@kms_flip@basic-flip-vs-modeset@a-hdmi-a2:
+    - {fi-dg1-1}:         NOTRUN -> [FAIL][4] +61 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@kms_flip@basic-flip-vs-modeset@a-hdmi-a2.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - {fi-dg1-1}:         NOTRUN -> [SKIP][5] +41 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@prime_vgem@basic-fence-read.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_10219 and Patchwork_20355:
+
+### New IGT tests (9) ###
+
+  * igt@gem_exec_basic@basic@bcs0-lmem0:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_exec_basic@basic@rcs0-lmem0:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.00] s
+
+  * igt@gem_exec_basic@basic@vcs0-lmem0:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_exec_basic@basic@vcs1-lmem0:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_exec_basic@basic@vecs0-lmem0:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.01] s
+
+  * igt@kms_flip@basic-flip-vs-modeset@d-hdmi-a2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.01] s
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-hdmi-a2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.01] s
+
+  * igt@kms_flip@basic-plain-flip@d-hdmi-a2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.01] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20355 that come from known issues:
+
+### CI changes ###
+
+#### Possible fixes ####
+
+  * boot:
+    - {fi-dg1-1}:         [FAIL][6] ([i915#2788]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10219/fi-dg1-1/boot.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [PASS][8] -> [DMESG-FAIL][9] ([i915#165])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10219/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#2788]: https://gitlab.freedesktop.org/drm/intel/issues/2788
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10219 -> Patchwork_20355
+
+  CI-20190529: 20190529
+  CI_DRM_10219: 75a3dafbc374d49f0762a19e3aa83cc321ae0e62 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6104: f8f81bd3752f3126a47d9dbba2d0ab29f7c17a19 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20355: 2de9cbda3daf82509ebcd6c5089fe7a4b7a93eec @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2de9cbda3daf drm/i915: allow DG1 autoprobe for CONFIG_BROKEN
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/index.html
+
+--===============9114507119239750854==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: allow DG1 autoprobe for CONFIG_BROKEN</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91440/">https://patchwork.freedesktop.org/series/91440/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10219 -&gt; Patchwork_20355</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20355:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>{igt@kms_flip@basic-flip-vs-modeset@d-hdmi-a2} (NEW):<ul>
+<li>{fi-dg1-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@kms_flip@basic-flip-vs-modeset@d-hdmi-a2.html">FAIL</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>{fi-dg1-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@invalid-get-prop-any:</p>
+<ul>
+<li>{fi-dg1-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@kms_addfb_basic@invalid-get-prop-any.html">WARN</a> +6 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@a-hdmi-a2:</p>
+<ul>
+<li>{fi-dg1-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@kms_flip@basic-flip-vs-modeset@a-hdmi-a2.html">FAIL</a> +61 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>{fi-dg1-1}:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/igt@prime_vgem@basic-fence-read.html">SKIP</a> +41 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_10219 and Patchwork_20355:</p>
+<h3>New IGT tests (9)</h3>
+<ul>
+<li>
+<p>igt@gem_exec_basic@basic@bcs0-lmem0:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_basic@basic@rcs0-lmem0:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_basic@basic@vcs0-lmem0:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_basic@basic@vcs1-lmem0:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_basic@basic@vecs0-lmem0:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@d-hdmi-a2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset@d-hdmi-a2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-hdmi-a2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@d-hdmi-a2:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20355 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>boot:<ul>
+<li>{fi-dg1-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10219/fi-dg1-1/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2788">i915#2788</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-dg1-1/boot.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10219/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20355/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10219 -&gt; Patchwork_20355</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10219: 75a3dafbc374d49f0762a19e3aa83cc321ae0e62 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6104: f8f81bd3752f3126a47d9dbba2d0ab29f7c17a19 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20355: 2de9cbda3daf82509ebcd6c5089fe7a4b7a93eec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>2de9cbda3daf drm/i915: allow DG1 autoprobe for CONFIG_BROKEN</p>
+
+</body>
+</html>
+
+--===============9114507119239750854==--
+
+--===============2009288966==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2009288966==--
