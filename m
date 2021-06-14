@@ -1,116 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F4D3A6781
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 15:11:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 756053A67F0
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 15:32:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D49A789D77;
-	Mon, 14 Jun 2021 13:11:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E66EF8997C;
+	Mon, 14 Jun 2021 13:32:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2076.outbound.protection.outlook.com [40.107.236.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 289CB891D2;
- Mon, 14 Jun 2021 12:35:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PiRZiCpMSRvJlqTLr1cRWjDWGw47vtF6MjCaFw9MfpPqFxdYZM4p2dnH96pbDX5ZVssJXZh1Z02z7eRhhQKYhxaMQlPDxm/6rcSff4hzG8PC5PRdV9SjhRfqpL5Fwc52JNFYlneeCXQMRIKED2JDn9v1nA2PfZR9a4lCtg9PZ3gbxQOWWDemSkw4A21ayQ1ulr8eBHWj1SjyiYadDHmm/U2S9tH/LhMCb11YsuwdlfesgE4ur2uHWqRE3UHKlUlyFYI1bBQIW0QVAtxn5Ts+ct8pnhxy6x0qqLb4Ifp1Kc2IxqKBh7uAbvcpEoBpAAJsI3WNYuv3josfmyxPvCi7QQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vovSBIAn7YDUdNibZX/0zlm501S26NvUyJxE/ZzwU+I=;
- b=flsSXnvgI/E9xqPOeV01yidpo8y4ySBjAx4A89wfGgwl+syjChIhC9pUiz8mMBZlcAOGP0gwQKDwcCOk2n55SvTaApklY07wwo4oU2NbXuVVwqU4BQGWBNncYqOcz0rUqqYYfGBLg9OoLwVUIC4l+sDk2j+QObaeyeLKCmwuewSi2f2fI1J/a5OaCPg5KZa/FkUF6Mn2rGTVYz5EBT6y6CyRRHQwN4i5EuVOAM58QtWV6NQSnSNT1CT+TUf5T182Db81+QTa6/5KJe9lS4LDvL8TLsW4QriHqo8X7AGM1WuUNFHobXeL/mJ3a9gSN67ROUZgvyHY94RFqHuSaG4/Jw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vovSBIAn7YDUdNibZX/0zlm501S26NvUyJxE/ZzwU+I=;
- b=OspOGafCWmjnLI4mOgppf+pUGqVWTcGb4joVLsEH27IoktTw5grXcsc8h670pcXlxhJe8dff5NnZqwAAe3/FlF4A1iWBY3CiM1LyoCCff/6kgkrCC/L+IPJE4tcWFoLtXRC+h3/Tqr9FtdxWnEEtcmplHvjdq8TbCzsJQzK8nRyh1mArVL2dq8wrjQnIg80NjdWh+Kb7pzo+HRZF9udBI6VDDN7cHtwThJv61TUlGp7CSHPe29pfe9m/RVY07sgDbHXHWm/ApiC3ONWcwSV68SDIfI66OMkVCr1re52t/6tXOIyjLZazO2Mry5eejVKXbCdz7tUlQj2OGPgNwcTTDA==
-Authentication-Results: redhat.com; dkim=none (message not signed)
- header.d=none;redhat.com; dmarc=none action=none header.from=nvidia.com;
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
- by BL1PR12MB5062.namprd12.prod.outlook.com (2603:10b6:208:313::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Mon, 14 Jun
- 2021 12:35:20 +0000
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::3d51:a3b9:8611:684e]) by BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::3d51:a3b9:8611:684e%7]) with mapi id 15.20.4219.025; Mon, 14 Jun 2021
- 12:35:20 +0000
-Date: Mon, 14 Jun 2021 09:35:19 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Cornelia Huck <cohuck@redhat.com>,
-	Christoph Hellwig <hch@infradead.org>
-Message-ID: <20210614123519.GF1002214@nvidia.com>
-References: <6-v1-324b2038f212+1041f1-vfio3a_jgg@nvidia.com>
- <87czsszi9i.fsf@redhat.com>
-Content-Disposition: inline
-In-Reply-To: <87czsszi9i.fsf@redhat.com>
-X-Originating-IP: [47.55.113.94]
-X-ClientProxiedBy: MN2PR11CA0018.namprd11.prod.outlook.com
- (2603:10b6:208:23b::23) To BL0PR12MB5506.namprd12.prod.outlook.com
- (2603:10b6:208:1cb::22)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A3E78997C;
+ Mon, 14 Jun 2021 13:32:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 52054AA0ED;
+ Mon, 14 Jun 2021 13:32:55 +0000 (UTC)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mlx.ziepe.ca (47.55.113.94) by
- MN2PR11CA0018.namprd11.prod.outlook.com (2603:10b6:208:23b::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend
- Transport; Mon, 14 Jun 2021 12:35:20 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1lsloF-006bV0-AN; Mon, 14 Jun 2021 09:35:19 -0300
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 440c66ce-493f-4a3b-b36d-08d92f30df63
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5062:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5062C7178F276E2D49DFEA52C2319@BL1PR12MB5062.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pOBNgkY3H7TCi2Wf1Hc9OByZnup2/jHPIMUrYBedkFZuzSILp6qt7HOrrcBQM0B8sbURXCU+IGLiPtL8HDff6CZOlNWopdKEWpnAJ4wWhlCtgwSG+pMXyK1WKWOpP9mcZqkV0labkFaJ5u+iub4wt0JbYwjeZan8Hk9DgiPCJN4pOpnx+QJkOG2VpB7P2FrASt3PyiZv8TXIA+9vEbNtOYmpUAk0M0GBuIDjHrsUiYzZ/+FPDvj3ePC1nibv0uHj4uXCOkuQKQmpWkUwRXE17KOI/nwuA3rFVWmS9+b1T/9Pn0zPglNlyIR4WDQu062e6Rn/gxbm0/DzBC058c57xw/i5r6liSsz1lEBA3wpsX6iCiF6AoFO9U0qMsoda5lK0c3qrTi2WwoBTQsYnBqzpGL04/HyyaijnbYmX5zTCSW2WAB1v0ysmtd+AaedhE0+tz42JfH95FqQvCBGN01o5ah1UF9tgxNQ6nMc16B25GG/DlsriMB2wR35qJLngIlci80kQsy8OsCcl3jktmHsT21XlYQvHCoi4WYSikSJc7LvMv4oZ6KzlAtLCJedsagyZIcO4cL8b5EOpjmSpITeRC4fsk/+3/v8iBdWyKkZnkg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(39860400002)(136003)(346002)(396003)(366004)(26005)(54906003)(38100700002)(7416002)(478600001)(1076003)(5660300002)(2906002)(186003)(110136005)(316002)(9746002)(9786002)(66946007)(86362001)(66556008)(66476007)(4326008)(2616005)(8936002)(8676002)(426003)(33656002)(36756003)(83380400001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/EPXrdp5hIgF+IpWyc3+63FGVz7onYnAAcehTGg6TcpRRWdgzy6xbhbG1v9L?=
- =?us-ascii?Q?CizF/yxOOLIdTeXB+LXqGNarLJRGPBJTrUt/vs4ycmB0xr9R2lEM2oX4Y0yu?=
- =?us-ascii?Q?8o7FXkduvxKpqJUC7Cs4WQdsR26aoNeC9qdm9ebLUueLDz/BWBc4xpkcGYVh?=
- =?us-ascii?Q?C7xmjC4zQz+V/qd82wHRGuLLuNXV1HmJWin6U2s1Oh+FLsOnOiwENc3IYJq0?=
- =?us-ascii?Q?nZnGY2TGEp93bif+aor6GnCrEu8HV24xVsfdG8uvIB4w7z6DtpRieuEk3O1V?=
- =?us-ascii?Q?6nFx3tyrxLoE2TD55uvdNntIM3o5hMMv76FYOno0M6j9xuTdTqAAN2VI4h3+?=
- =?us-ascii?Q?2VuT0pzqu1Smf+mgaX1AU3pVBuSZxQ0oPq1Ol4N8pVWlLYRCdGWKSvYjcJBr?=
- =?us-ascii?Q?q1e1L04xGYT7vPe1So0VZZk5RfdDzacTNWR7BnKTM+8GY8cy3e1tgaPTs7Mz?=
- =?us-ascii?Q?JZ0jt2NixLAlhmpltDLI540UbJfyAhjc8PsBcI+rtkLO/tVJdJ03dlS45cyG?=
- =?us-ascii?Q?DmDeqiYgbNQWulH7fjMrH8VcQxqCweUWe59WyTzIg+8hzFGZa+UjjHXgltEe?=
- =?us-ascii?Q?MyYwVo2MBa72+ojBGahJj4vP46Gwtm3I+VrCRUsbKQyXKIOzDiyiOHaibQrh?=
- =?us-ascii?Q?1V4A+fheRxlbFzSTQtky9hojLz/mIqr6M4Q0SeO/VTSggzzqs6cO62jXHNFJ?=
- =?us-ascii?Q?ilkj3+tpSXT/9A+7bv14crzx+bx/UwOO+34VdTdMkaqh+Laov/njSrZQJ/6s?=
- =?us-ascii?Q?R6KUHdG12LkLilsC5nQsZ85F3ams7fRWKx9/qdGkHYMXsQm7fQi0jH45USDZ?=
- =?us-ascii?Q?xf6YtS/jfjs4AgHeWuwh+qulI3gGkmBoqO6txeaJV+VRJSjX5bwx+NPdDiPz?=
- =?us-ascii?Q?jLYhNAbyigoOWcAyu2pVWHCepWmp4FRJrPQUxPFd7KxICLbCHwRvV0xQ6uaL?=
- =?us-ascii?Q?S3FDZPMlG/HUZcOuT9ZPLMi2gCr8LxL7/C1vEqXM2T0xSv+fwxZPlk+hDfLE?=
- =?us-ascii?Q?1XfRAGR56nfiZt72J9U6haAvPrxZMqA/A8vaCqgcfbZws+6E8p9vr3mW+gtz?=
- =?us-ascii?Q?y9QPQ5fAVBcuzBciU4Aa3hiTUR4rm536hLHkSX/qBv8Rz+BceHi6KG2Y69qu?=
- =?us-ascii?Q?dqMtvxFJI3OBEOk05nVb5Kn0zL75vmxP1jhF095dbFYbLcpbXeAXTZuCz1tJ?=
- =?us-ascii?Q?WtS7rvqTMD/jJqDqiGbKA0CzQZwCA9TXRk7MRq6DFZav04f/Ttp0KzvxW4hE?=
- =?us-ascii?Q?brCFxyCTTg/OwWEUNLsF5UtaIzeirSXguO/5oGA8QjWmM9Rpe1qT4XYhv20j?=
- =?us-ascii?Q?xWSn4V3oNML2oLyIGfCbcoXo?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 440c66ce-493f-4a3b-b36d-08d92f30df63
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2021 12:35:20.4943 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MkQEsu3mdmWXm+E1boqrHRoMOGTz8Om3AHM+y1zYKAY1VO78lLmeLHAjyAdkQP9+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5062
-X-Mailman-Approved-At: Mon, 14 Jun 2021 13:11:22 +0000
-Subject: Re: [Intel-gfx] [PATCH 06/10] vfio/mdev: Remove
- CONFIG_VFIO_MDEV_DEVICE
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Mon, 14 Jun 2021 13:32:55 -0000
+Message-ID: <162367757531.10185.17907514126137116200@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210614090959.1527987-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210614090959.1527987-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Document_the_Virtual_Engine_uAPI_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,48 +38,422 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tony Krowiak <akrowiak@linux.ibm.com>, Jason Herne <jjherne@linux.ibm.com>,
- kvm@vger.kernel.org, Vasily Gorbik <gor@linux.ibm.com>,
- Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@linux.ie>,
- linux-s390@vger.kernel.org, Heiko Carstens <hca@linux.ibm.com>,
- linux-doc@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
- dri-devel@lists.freedesktop.org, Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 11, 2021 at 02:40:41PM +0200, Cornelia Huck wrote:
-> On Mon, Jun 07 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> 
-> > For some reason the vfio_mdev shim mdev_driver has its own module and
-> > kconfig. As the next patch requires access to it from mdev.ko merge the
-> > two modules together and remove VFIO_MDEV_DEVICE.
-> >
-> > A later patch deletes this driver entirely.
-> >
-> > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> >  Documentation/s390/vfio-ap.rst   |  1 -
-> >  arch/s390/Kconfig                |  2 +-
-> >  drivers/gpu/drm/i915/Kconfig     |  2 +-
-> >  drivers/vfio/mdev/Kconfig        |  7 -------
-> >  drivers/vfio/mdev/Makefile       |  3 +--
-> >  drivers/vfio/mdev/mdev_core.c    | 16 ++++++++++++++--
-> >  drivers/vfio/mdev/mdev_private.h |  2 ++
-> >  drivers/vfio/mdev/vfio_mdev.c    | 24 +-----------------------
-> >  samples/Kconfig                  |  6 +++---
-> >  9 files changed, 23 insertions(+), 40 deletions(-)
-> 
-> I think you missed my earlier
-> 
-> Reviewed-by: Cornelia Huck <cohuck@redhat.com>
+== Series Details ==
 
-Yes, my mistake, I didn't think there were any tags in the v1 posting
+Series: drm/i915: Document the Virtual Engine uAPI (rev2)
+URL   : https://patchwork.freedesktop.org/series/91406/
+State : warning
 
-Thanks,
-Jason
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+af02f5aa318e drm/i915: Document the Virtual Engine uAPI
+-:76: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#76: FILE: include/uapi/drm/i915_drm.h:1831:
++ * ^II915_DEFINE_CONTEXT_ENGINES_LOAD_BALANCE(virtual, 2) = {$
+
+-:77: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#77: FILE: include/uapi/drm/i915_drm.h:1832:
++ * ^I^I.base.name = I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE,$
+
+-:78: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#78: FILE: include/uapi/drm/i915_drm.h:1833:
++ * ^I^I.engine_index = 0, // Place this virtual engine into engine map slot 0$
+
+-:79: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#79: FILE: include/uapi/drm/i915_drm.h:1834:
++ * ^I^I.num_siblings = 2,$
+
+-:80: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#80: FILE: include/uapi/drm/i915_drm.h:1835:
++ * ^I^I.engines = { { I915_ENGINE_CLASS_VIDEO, 0 },$
+
+-:81: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#81: FILE: include/uapi/drm/i915_drm.h:1836:
++ * ^I^I^I     { I915_ENGINE_CLASS_VIDEO, 1 }, },$
+
+-:82: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#82: FILE: include/uapi/drm/i915_drm.h:1837:
++ * ^I};$
+
+-:83: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#83: FILE: include/uapi/drm/i915_drm.h:1838:
++ * ^II915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {$
+
+-:84: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#84: FILE: include/uapi/drm/i915_drm.h:1839:
++ * ^I^I.engines = { { I915_ENGINE_CLASS_INVALID,$
+
+-:85: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#85: FILE: include/uapi/drm/i915_drm.h:1840:
++ * ^I^I^I       I915_ENGINE_CLASS_INVALID_NONE } },$
+
+-:86: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#86: FILE: include/uapi/drm/i915_drm.h:1841:
++ * ^I^I.extensions = to_user_pointer(&virtual), // Chains after load_balance extension$
+
+-:87: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#87: FILE: include/uapi/drm/i915_drm.h:1842:
++ * ^I};$
+
+-:88: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#88: FILE: include/uapi/drm/i915_drm.h:1843:
++ * ^Istruct drm_i915_gem_context_create_ext_setparam p_engines = {$
+
+-:89: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#89: FILE: include/uapi/drm/i915_drm.h:1844:
++ * ^I^I.base = {$
+
+-:90: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#90: FILE: include/uapi/drm/i915_drm.h:1845:
++ * ^I^I^I.name = I915_CONTEXT_CREATE_EXT_SETPARAM,$
+
+-:91: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#91: FILE: include/uapi/drm/i915_drm.h:1846:
++ * ^I^I},$
+
+-:92: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#92: FILE: include/uapi/drm/i915_drm.h:1847:
++ * ^I^I.param = {$
+
+-:93: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#93: FILE: include/uapi/drm/i915_drm.h:1848:
++ * ^I^I^I.param = I915_CONTEXT_PARAM_ENGINES,$
+
+-:94: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#94: FILE: include/uapi/drm/i915_drm.h:1849:
++ * ^I^I^I.value = to_user_pointer(&engines),$
+
+-:95: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#95: FILE: include/uapi/drm/i915_drm.h:1850:
++ * ^I^I^I.size = sizeof(engines),$
+
+-:96: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#96: FILE: include/uapi/drm/i915_drm.h:1851:
++ * ^I^I},$
+
+-:97: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#97: FILE: include/uapi/drm/i915_drm.h:1852:
++ * ^I};$
+
+-:98: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#98: FILE: include/uapi/drm/i915_drm.h:1853:
++ * ^Istruct drm_i915_gem_context_create_ext create = {$
+
+-:99: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#99: FILE: include/uapi/drm/i915_drm.h:1854:
++ * ^I^I.flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,$
+
+-:100: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#100: FILE: include/uapi/drm/i915_drm.h:1855:
++ * ^I^I.extensions = to_user_pointer(&p_engines);$
+
+-:101: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#101: FILE: include/uapi/drm/i915_drm.h:1856:
++ * ^I};$
+
+-:103: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#103: FILE: include/uapi/drm/i915_drm.h:1858:
++ * ^Ictx_id = gem_context_create_ext(drm_fd, &create);$
+
+-:105: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#105: FILE: include/uapi/drm/i915_drm.h:1860:
++ * ^I// Now we have created a GEM context with its engine map containing a$
+
+-:106: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#106: FILE: include/uapi/drm/i915_drm.h:1861:
++ * ^I// single virtual engine. Submissions to this slot can go either to$
+
+-:107: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#107: FILE: include/uapi/drm/i915_drm.h:1862:
++ * ^I// vcs0 or vcs1, depending on the load balancing algorithm used inside$
+
+-:108: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#108: FILE: include/uapi/drm/i915_drm.h:1863:
++ * ^I// the driver. The load balancing is dynamic from one batch buffer to$
+
+-:109: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#109: FILE: include/uapi/drm/i915_drm.h:1864:
++ * ^I// another and transparent to userspace.$
+
+-:111: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#111: FILE: include/uapi/drm/i915_drm.h:1866:
++ * ^I...$
+
+-:112: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#112: FILE: include/uapi/drm/i915_drm.h:1867:
++ * ^Iexecbuf.rsvd1 = ctx_id;$
+
+-:113: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#113: FILE: include/uapi/drm/i915_drm.h:1868:
++ * ^Iexecbuf.flags = 0; // Submits to index 0 which is the virtual engine$
+
+-:114: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#114: FILE: include/uapi/drm/i915_drm.h:1869:
++ * ^Igem_execbuf(drm_fd, &execbuf);$
+
+-:143: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#143: FILE: include/uapi/drm/i915_drm.h:1967:
++ * ^II915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 2) = {$
+
+-:144: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#144: FILE: include/uapi/drm/i915_drm.h:1968:
++ * ^I^I.engines = { { I915_ENGINE_CLASS_RENDER, 0 },$
+
+-:145: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#145: FILE: include/uapi/drm/i915_drm.h:1969:
++ * ^I^I^I     { I915_ENGINE_CLASS_COPY, 0 } }$
+
+-:146: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#146: FILE: include/uapi/drm/i915_drm.h:1970:
++ * ^I};$
+
+-:147: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#147: FILE: include/uapi/drm/i915_drm.h:1971:
++ * ^Istruct drm_i915_gem_context_create_ext_setparam p_engines = {$
+
+-:148: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#148: FILE: include/uapi/drm/i915_drm.h:1972:
++ * ^I^I.base = {$
+
+-:149: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#149: FILE: include/uapi/drm/i915_drm.h:1973:
++ * ^I^I^I.name = I915_CONTEXT_CREATE_EXT_SETPARAM,$
+
+-:150: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#150: FILE: include/uapi/drm/i915_drm.h:1974:
++ * ^I^I},$
+
+-:151: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#151: FILE: include/uapi/drm/i915_drm.h:1975:
++ * ^I^I.param = {$
+
+-:152: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#152: FILE: include/uapi/drm/i915_drm.h:1976:
++ * ^I^I^I.param = I915_CONTEXT_PARAM_ENGINES,$
+
+-:153: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#153: FILE: include/uapi/drm/i915_drm.h:1977:
++ * ^I^I^I.value = to_user_pointer(&engines),$
+
+-:154: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#154: FILE: include/uapi/drm/i915_drm.h:1978:
++ * ^I^I^I.size = sizeof(engines),$
+
+-:155: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#155: FILE: include/uapi/drm/i915_drm.h:1979:
++ * ^I^I},$
+
+-:156: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#156: FILE: include/uapi/drm/i915_drm.h:1980:
++ * ^I};$
+
+-:157: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#157: FILE: include/uapi/drm/i915_drm.h:1981:
++ * ^Istruct drm_i915_gem_context_create_ext create = {$
+
+-:158: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#158: FILE: include/uapi/drm/i915_drm.h:1982:
++ * ^I^I.flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,$
+
+-:159: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#159: FILE: include/uapi/drm/i915_drm.h:1983:
++ * ^I^I.extensions = to_user_pointer(&p_engines);$
+
+-:160: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#160: FILE: include/uapi/drm/i915_drm.h:1984:
++ * ^I};$
+
+-:162: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#162: FILE: include/uapi/drm/i915_drm.h:1986:
++ * ^Ictx_id = gem_context_create_ext(drm_fd, &create);$
+
+-:164: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#164: FILE: include/uapi/drm/i915_drm.h:1988:
++ * ^I// We have now created a GEM context with two engines in the map:$
+
+-:165: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#165: FILE: include/uapi/drm/i915_drm.h:1989:
++ * ^I// Index 0 points to rcs0 while index 1 points to bcs0. Other engines$
+
+-:166: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#166: FILE: include/uapi/drm/i915_drm.h:1990:
++ * ^I// will not be accessible from this context.$
+
+-:168: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#168: FILE: include/uapi/drm/i915_drm.h:1992:
++ * ^I...$
+
+-:169: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#169: FILE: include/uapi/drm/i915_drm.h:1993:
++ * ^Iexecbuf.rsvd1 = ctx_id;$
+
+-:170: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#170: FILE: include/uapi/drm/i915_drm.h:1994:
++ * ^Iexecbuf.flags = 0; // Submits to index 0, which is rcs0 for this context$
+
+-:171: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#171: FILE: include/uapi/drm/i915_drm.h:1995:
++ * ^Igem_execbuf(drm_fd, &execbuf);$
+
+-:173: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#173: FILE: include/uapi/drm/i915_drm.h:1997:
++ * ^I...$
+
+-:174: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#174: FILE: include/uapi/drm/i915_drm.h:1998:
++ * ^Iexecbuf.rsvd1 = ctx_id;$
+
+-:175: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#175: FILE: include/uapi/drm/i915_drm.h:1999:
++ * ^Iexecbuf.flags = 1; // Submits to index 0, which is bcs0 for this context$
+
+-:176: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#176: FILE: include/uapi/drm/i915_drm.h:2000:
++ * ^Igem_execbuf(drm_fd, &execbuf);$
+
+-:205: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#205: FILE: include/uapi/drm/i915_drm.h:2515:
++ * ^Istruct drm_i915_query_engine_info *info;$
+
+-:206: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#206: FILE: include/uapi/drm/i915_drm.h:2516:
++ * ^Istruct drm_i915_query_item item = {$
+
+-:207: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#207: FILE: include/uapi/drm/i915_drm.h:2517:
++ * ^I^I.query_id = DRM_I915_QUERY_ENGINE_INFO;$
+
+-:208: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#208: FILE: include/uapi/drm/i915_drm.h:2518:
++ * ^I};$
+
+-:209: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#209: FILE: include/uapi/drm/i915_drm.h:2519:
++ * ^Istruct drm_i915_query query = {$
+
+-:210: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#210: FILE: include/uapi/drm/i915_drm.h:2520:
++ * ^I^I.num_items = 1,$
+
+-:211: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#211: FILE: include/uapi/drm/i915_drm.h:2521:
++ * ^I^I.items_ptr = (uintptr_t)&item,$
+
+-:212: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#212: FILE: include/uapi/drm/i915_drm.h:2522:
++ * ^I};$
+
+-:213: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#213: FILE: include/uapi/drm/i915_drm.h:2523:
++ * ^Iint err, i;$
+
+-:215: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#215: FILE: include/uapi/drm/i915_drm.h:2525:
++ * ^I// First query the size of the blob we need, this needs to be large$
+
+-:216: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#216: FILE: include/uapi/drm/i915_drm.h:2526:
++ * ^I// enough to hold our array of engines. The kernel will fill out the$
+
+-:217: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#217: FILE: include/uapi/drm/i915_drm.h:2527:
++ * ^I// item.length for us, which is the number of bytes we need.$
+
+-:218: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#218: FILE: include/uapi/drm/i915_drm.h:2528:
++ * ^I//$
+
+-:219: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#219: FILE: include/uapi/drm/i915_drm.h:2529:
++ * ^I// Alternatively a large buffer can be allocated straight away enabling$
+
+-:220: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#220: FILE: include/uapi/drm/i915_drm.h:2530:
++ * ^I// querying in one pass, in which case item.length should contain the$
+
+-:221: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#221: FILE: include/uapi/drm/i915_drm.h:2531:
++ * ^I// length of the provided buffer.$
+
+-:222: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#222: FILE: include/uapi/drm/i915_drm.h:2532:
++ * ^Ierr = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);$
+
+-:223: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#223: FILE: include/uapi/drm/i915_drm.h:2533:
++ * ^Iif (err) ...$
+
+-:225: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#225: FILE: include/uapi/drm/i915_drm.h:2535:
++ * ^Iinfo = calloc(1, item.length);$
+
+-:226: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#226: FILE: include/uapi/drm/i915_drm.h:2536:
++ * ^I// Now that we allocated the required number of bytes, we call the ioctl$
+
+-:227: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#227: FILE: include/uapi/drm/i915_drm.h:2537:
++ * ^I// again, this time with the data_ptr pointing to our newly allocated$
+
+-:228: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#228: FILE: include/uapi/drm/i915_drm.h:2538:
++ * ^I// blob, which the kernel can then populate with info on all engines.$
+
+-:229: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#229: FILE: include/uapi/drm/i915_drm.h:2539:
++ * ^Iitem.data_ptr = (uintptr_t)&info,$
+
+-:231: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#231: FILE: include/uapi/drm/i915_drm.h:2541:
++ * ^Ierr = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);$
+
+-:232: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#232: FILE: include/uapi/drm/i915_drm.h:2542:
++ * ^Iif (err) ...$
+
+-:234: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#234: FILE: include/uapi/drm/i915_drm.h:2544:
++ * ^I// We can now access each engine in the array$
+
+-:235: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#235: FILE: include/uapi/drm/i915_drm.h:2545:
++ * ^Ifor (i = 0; i < info->num_engines; i++) {$
+
+-:236: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#236: FILE: include/uapi/drm/i915_drm.h:2546:
++ * ^I^Istruct drm_i915_engine_info einfo = info->engines[i];$
+
+-:237: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#237: FILE: include/uapi/drm/i915_drm.h:2547:
++ * ^I^Iu16 class = einfo.engine.class;$
+
+-:238: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#238: FILE: include/uapi/drm/i915_drm.h:2548:
++ * ^I^Iu16 instance = einfo.engine.instance;$
+
+-:239: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#239: FILE: include/uapi/drm/i915_drm.h:2549:
++ * ^I^I....$
+
+-:240: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#240: FILE: include/uapi/drm/i915_drm.h:2550:
++ * ^I}$
+
+-:242: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#242: FILE: include/uapi/drm/i915_drm.h:2552:
++ * ^Ifree(info);$
+
+total: 0 errors, 99 warnings, 0 checks, 230 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
