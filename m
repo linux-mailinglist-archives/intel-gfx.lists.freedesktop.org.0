@@ -1,39 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0660E3A6646
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 14:09:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 968EE3A66DE
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 14:45:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45AC189BF8;
-	Mon, 14 Jun 2021 12:09:19 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCB3389BF5;
- Mon, 14 Jun 2021 12:09:17 +0000 (UTC)
-IronPort-SDR: LaDPWxU9qdB4zpQIyTvRLUUFEOMKxD18Sjc/tKG9ocCM8rFf+lKroaK5IHJSE69RkhuayXpRuX
- IoOgp4DjtlqA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10014"; a="202773121"
-X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="202773121"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2021 05:09:16 -0700
-IronPort-SDR: iVnDN4SgdIyX7vBzrCiMYxzsAn2L37LySqtr7lbgh+PR/R56VNpYD/OFuZEVwt5WKcSwU4anoZ
- 3NOgybdMXVfA==
-X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="420763271"
-Received: from crowley-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.235.99])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2021 05:09:14 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Jun 2021 13:09:06 +0100
-Message-Id: <20210614120906.1616120-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A31089D02;
+	Mon, 14 Jun 2021 12:45:44 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
+ [IPv6:2607:f8b0:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D249589D02
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Jun 2021 12:45:43 +0000 (UTC)
+Received: by mail-pf1-x42b.google.com with SMTP id a127so4641224pfa.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Jun 2021 05:45:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+ bh=0WPH3hjxXBLsSpR7DWHsVJlt9dhkg5b/9bT0LLsWmo0=;
+ b=ZG0sX2lQCF9+s9b3JXRpSAFu3a+dyqh8u264TEvZUod7aE9f7jmj/EcQtCQPMSy0XU
+ q6V7ZIImpi3E4fyA4Sgl32befqpBoWLXMb1r31el8SdtftiIZLABolBoM/f0gtTrTe8O
+ Pp+DGQd18YckizMSqdAorKKGWdRxkJtnvgcCw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition;
+ bh=0WPH3hjxXBLsSpR7DWHsVJlt9dhkg5b/9bT0LLsWmo0=;
+ b=KZqPzqGE8Wq4VDVtvn+p+r9UpWteeyvVVZFekORC/94ZgdmV4iwmshqUWGm4hQZM9N
+ aEJ65fu3io1hj/okSUr0idqGyo1YaKbjYVlShsQ4vb7HTeoNuONpZBXVrwfSAC3D0HyN
+ BxjL8gHYUqC5GZKp0AaMxa4pjUFBNL30gdF6zg9sqozwtJDqjTHNPgV1i34AlOX0C4NR
+ NUFMNmsSGs6+Qrb1WtjNitUF3tjpG7ykoIh/m0+yhacbPVKBVD7z9LlFVXQR0O4NEtKD
+ 5zu6PeQa3/WI3EWmK6ssZPL7IxC+JKYpXgF/sjpp9mdanWH4tip93rGFHKFBwXpHZYoD
+ gSAg==
+X-Gm-Message-State: AOAM531+aZl2ZVMpS1QzBS8H7q4+fvRoSUFH0sEdsq5MU6sIq5I0BeKL
+ +Xof7gQfnOOHSzkIpl/RzRuN2w==
+X-Google-Smtp-Source: ABdhPJyVl60sQemzfpMYfU7sBdra5ITiOkMCODvou3wJumVZHT15gIThHUNcK01ELLsBz9W2sLkV1Q==
+X-Received: by 2002:a63:3ec3:: with SMTP id
+ l186mr16665906pga.371.1623674743459; 
+ Mon, 14 Jun 2021 05:45:43 -0700 (PDT)
+Received: from google.com ([2409:10:2e40:5100:f64:2ecb:b3c0:fd80])
+ by smtp.gmail.com with ESMTPSA id mi10sm16609030pjb.10.2021.06.14.05.45.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 14 Jun 2021 05:45:42 -0700 (PDT)
+Date: Mon, 14 Jun 2021 21:45:37 +0900
+From: Sergey Senozhatsky <senozhatsky@chromium.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <YMdPcWZi4x7vnCxI@google.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Be more gentle with exiting
- non-persistent context
+Content-Disposition: inline
+Subject: [Intel-gfx] drm/i915: __GFP_RETRY_MAYFAIL allocations in stable
+ kernels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,216 +65,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zhen Han <zhen.han@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>,
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Hi,
 
-When a non-persistent context exits we currently mark it as banned in
-order to trigger fast termination of any outstanding GPU jobs it may have
-left running.
+We are observing some user-space crashes (sigabort, segfaults etc.)
+under moderate memory pressure (pretty far from severe pressure) which
+have one thing in common - restrictive GFP mask in setup_scratch_page().
 
-In doing so we apply a very strict 1ms limit in which the left over job
-has to preempt before we issues an engine resets.
+For instance, (stable 4.19) drivers/gpu/drm/i915/i915_gem_gtt.c
 
-Some workloads are not able to cleanly preempt in that time window and it
-can be argued that it would instead be better to give them a bit more
-grace since avoiding engine resets is generally preferrable.
+(trimmed down version)
 
-To achieve this the patch splits handling of banned contexts from simply
-exited non-persistent ones and then applies different timeouts for both
-and also extends the criteria which determines if a request should be
-scheduled back in after preemption or not.
+static int gen8_init_scratch(struct i915_address_space *vm)
+{
+        setup_scratch_page(vm, __GFP_HIGHMEM);
 
-15ms preempt timeout grace is given to exited non-persistent contexts
-which have been empirically tested to satisfy customers requirements
-and still provides reasonably quick cleanup post exit.
+        vm->scratch_pt = alloc_pt(vm);
+        vm->scratch_pd = alloc_pd(vm);
+        if (use_4lvl(vm)) {
+                vm->scratch_pdp = alloc_pdp(vm);
+        }
+}
 
-v2:
- * Streamline fast path checks.
+gen8_init_scratch() function puts a rather inconsistent restrictions on mm.
 
-v3:
- * Simplify by using only schedulable status.
- * Increase timeout to 20ms.
+Looking at it line by line:
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Zhen Han <zhen.han@intel.com>
+setup_scratch_page() uses very restrictive gfp mask:
+	__GFP_HIGHMEM | __GFP_ZERO | __GFP_RETRY_MAYFAIL
+
+it doesn't try to reclaim anything and fails almost immediately.
+
+alloc_pt() - uses more permissive gfp mask:
+	GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN
+
+alloc_pd() - likewise:
+	GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN
+
+alloc_pdp() - very permissive gfp mask:
+	GFP_KERNEL
+
+
+So can all allocations in gen8_init_scratch() use
+	GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN
+?
+
+E.g.
+
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c      | 16 ++++++++++------
- drivers/gpu/drm/i915/gt/intel_context.c          |  2 ++
- drivers/gpu/drm/i915/gt/intel_context.h          | 11 +++++++++++
- drivers/gpu/drm/i915/gt/intel_context_types.h    |  1 +
- .../gpu/drm/i915/gt/intel_execlists_submission.c | 11 +++++++++--
- drivers/gpu/drm/i915/i915_request.c              |  2 +-
- 6 files changed, 34 insertions(+), 9 deletions(-)
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+index a12430187108..e862680b9c93 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+@@ -792,7 +792,7 @@ alloc_pdp(struct i915_address_space *vm)
+ 
+        GEM_BUG_ON(!use_4lvl(vm));
+ 
+-       pdp = kzalloc(sizeof(*pdp), GFP_KERNEL);
++       pdp = kzalloc(sizeof(*pdp), I915_GFP_ALLOW_FAIL);
+        if (!pdp)
+                return ERR_PTR(-ENOMEM);
+ 
+@@ -1262,7 +1262,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+ {
+        int ret;
+ 
+-       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
++       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+        if (ret)
+                return ret;
+ 
+@@ -1972,7 +1972,7 @@ static int gen6_ppgtt_init_scratch(struct gen6_hw_ppgtt *ppgtt)
+        u32 pde;
+        int ret;
+ 
+-       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
++       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+        if (ret)
+                return ret;
+ 
+@@ -3078,7 +3078,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+                return -ENOMEM;
+        }
+ 
+-       ret = setup_scratch_page(&ggtt->vm, GFP_DMA32);
++       ret = setup_scratch_page(&ggtt->vm, GFP_KERNEL | GFP_DMA32);
+        if (ret) {
+                DRM_ERROR("Scratch setup failed\n");
+                /* iounmap will also get called at remove, but meh */
+---
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 7720b8c22c81..463d4aa9cf63 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -426,7 +426,8 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
- 	return engine;
- }
- 
--static void kill_engines(struct i915_gem_engines *engines, bool ban)
-+static void
-+kill_engines(struct i915_gem_engines *engines, bool ban, bool persistent)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
-@@ -443,6 +444,9 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
- 
- 		if (ban && intel_context_set_banned(ce))
- 			continue;
-+		else if (!persistent &&
-+			 !intel_context_clear_schedulable(ce))
-+			continue;
- 
- 		/*
- 		 * Check the current active state of this context; if we
-@@ -454,7 +458,7 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
- 		engine = active_engine(ce);
- 
- 		/* First attempt to gracefully cancel the context */
--		if (engine && !__cancel_engine(engine) && ban)
-+		if (engine && !__cancel_engine(engine) && (ban || !persistent))
- 			/*
- 			 * If we are unable to send a preemptive pulse to bump
- 			 * the context from the GPU, we have to resort to a full
-@@ -466,8 +470,6 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
- 
- static void kill_context(struct i915_gem_context *ctx)
- {
--	bool ban = (!i915_gem_context_is_persistent(ctx) ||
--		    !ctx->i915->params.enable_hangcheck);
- 	struct i915_gem_engines *pos, *next;
- 
- 	spin_lock_irq(&ctx->stale.lock);
-@@ -480,7 +482,8 @@ static void kill_context(struct i915_gem_context *ctx)
- 
- 		spin_unlock_irq(&ctx->stale.lock);
- 
--		kill_engines(pos, ban);
-+		kill_engines(pos, !ctx->i915->params.enable_hangcheck,
-+			     i915_gem_context_is_persistent(ctx));
- 
- 		spin_lock_irq(&ctx->stale.lock);
- 		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
-@@ -526,7 +529,8 @@ static void engines_idle_release(struct i915_gem_context *ctx,
- 
- kill:
- 	if (list_empty(&engines->link)) /* raced, already closed */
--		kill_engines(engines, true);
-+		kill_engines(engines, true,
-+			     i915_gem_context_is_persistent(ctx));
- 
- 	i915_sw_fence_commit(&engines->fence);
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 4033184f13b9..9d539f48d7c6 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -373,6 +373,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
- 	ce->sseu = engine->sseu;
- 	ce->ring = __intel_context_ring_size(SZ_4K);
- 
-+	__set_bit(CONTEXT_SCHEDULABLE, &ce->flags);
-+
- 	ewma_runtime_init(&ce->runtime.avg);
- 
- 	ce->vm = i915_vm_get(engine->gt->vm);
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index f83a73a2b39f..2d00ccd2a865 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -217,9 +217,20 @@ static inline bool intel_context_is_banned(const struct intel_context *ce)
- 
- static inline bool intel_context_set_banned(struct intel_context *ce)
- {
-+	clear_bit(CONTEXT_SCHEDULABLE, &ce->flags);
- 	return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
- }
- 
-+static inline bool intel_context_clear_schedulable(struct intel_context *ce)
-+{
-+	return test_and_clear_bit(CONTEXT_SCHEDULABLE, &ce->flags);
-+}
-+
-+static inline bool intel_context_is_schedulable(const struct intel_context *ce)
-+{
-+	return test_bit(CONTEXT_SCHEDULABLE, &ce->flags);
-+}
-+
- static inline bool
- intel_context_force_single_submission(const struct intel_context *ce)
- {
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index ed8c447a7346..79d0bff7927a 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -95,6 +95,7 @@ struct intel_context {
- #define CONTEXT_BANNED			6
- #define CONTEXT_FORCE_SINGLE_SUBMISSION	7
- #define CONTEXT_NOPREEMPT		8
-+#define CONTEXT_SCHEDULABLE		9  /* Unless banned or non-persistent closed. */
- 
- 	struct {
- 		u64 timeout_us;
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index fc77592d88a9..ed9c4f6969f5 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -479,7 +479,7 @@ __execlists_schedule_in(struct i915_request *rq)
- 		     !intel_engine_has_heartbeat(engine)))
- 		intel_context_set_banned(ce);
- 
--	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
-+	if (unlikely(!intel_context_is_schedulable(ce) || bad_request(rq)))
- 		reset_active(rq, engine);
- 
- 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-@@ -1205,12 +1205,19 @@ static void record_preemption(struct intel_engine_execlists *execlists)
- static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
- 					    const struct i915_request *rq)
- {
-+	struct intel_context *ce;
-+
- 	if (!rq)
- 		return 0;
- 
-+	ce = rq->context;
-+
- 	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
--	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
-+	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
- 		return 1;
-+	/* Longer grace for closed non-persistent contexts to avoid resets. */
-+	else if (unlikely(!intel_context_is_schedulable(ce)))
-+		return 20;
- 
- 	return READ_ONCE(engine->props.preempt_timeout_ms);
- }
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 1014c71cf7f5..5beaa18d6c7a 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -660,7 +660,7 @@ bool __i915_request_submit(struct i915_request *request)
- 		goto active;
- 	}
- 
--	if (unlikely(intel_context_is_banned(request->context)))
-+	if (unlikely(!intel_context_is_schedulable(request->context)))
- 		i915_request_set_error_once(request, -EIO);
- 
- 	if (unlikely(fatal_error(request->fence.error)))
--- 
-2.30.2
 
+
+It's quite similar on stable 5.4 - setup_scratch_page() uses restrictive
+gfp mask again.
+
+---
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+index f614646ed3f9..99d78b1052df 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+@@ -1378,7 +1378,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+                return 0;
+        }
+ 
+-       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
++       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+        if (ret)
+                return ret;
+ 
+@@ -1753,7 +1753,7 @@ static int gen6_ppgtt_init_scratch(struct gen6_ppgtt *ppgtt)
+        struct i915_page_directory * const pd = ppgtt->base.pd;
+        int ret;
+ 
+-       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
++       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+        if (ret)
+                return ret;
+ 
+@@ -2860,7 +2860,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+                return -ENOMEM;
+        }
+ 
+-       ret = setup_scratch_page(&ggtt->vm, GFP_DMA32);
++       ret = setup_scratch_page(&ggtt->vm, GFP_KERNEL | GFP_DMA32);
+        if (ret) {
+                DRM_ERROR("Scratch setup failed\n");
+                /* iounmap will also get called at remove, but meh */
+---
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
