@@ -1,46 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C31CD3A69C5
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 17:09:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EAFF3A6B21
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 17:59:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1634989DF7;
-	Mon, 14 Jun 2021 15:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A53B489C86;
+	Mon, 14 Jun 2021 15:59:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D77F589AAD;
- Mon, 14 Jun 2021 15:09:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=tSo9Hpl+FIjggQ0Eg4B6IaldlQiHETlG3jF8lV9bDUk=; b=JpF1dIQx9W6rry1ZBYIt4gzqEe
- +sfkd3WlEozBliuAO0u5ZqqMd6y21bxhOgqaVtCBMTxKLaSihsExvu6p3hswMf5iuBDGa4b0AiLLE
- 4UcqPvitcQmYpdZuZtiZaNfWmfSwbY/CD2SQkSOPEA76ZQp2AMslRGt7/yBROBRuEjye0MDyHt8uu
- 0jpi+3TtLHqj93uTl9SPxYTo46YFaPzinChh76eNZCDxATWjdM+uKn5OwOitSCW1ftea8C+cdfzP6
- mQ/80+3klKQ85dwmksArh3h9uhHzL6PpckO2Bd/DPBcfyiQ5hA+++hM/PGqDoBPnCnRaUznbMgxON
- nUTDaa9Q==;
-Received: from [2001:4bb8:19b:fdce:4b1a:b4aa:22d8:1629] (helo=localhost)
- by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lsoDK-00EfrF-CM; Mon, 14 Jun 2021 15:09:23 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jason Gunthorpe <jgg@nvidia.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Kirti Wankhede <kwankhede@nvidia.com>
-Date: Mon, 14 Jun 2021 17:08:46 +0200
-Message-Id: <20210614150846.4111871-11-hch@lst.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210614150846.4111871-1-hch@lst.de>
-References: <20210614150846.4111871-1-hch@lst.de>
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
+ [IPv6:2a00:1450:4864:20::535])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 423CF89C86;
+ Mon, 14 Jun 2021 15:59:42 +0000 (UTC)
+Received: by mail-ed1-x535.google.com with SMTP id cb9so47250004edb.1;
+ Mon, 14 Jun 2021 08:59:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=oAo6qWwfla/zQj4s5qtRwWaGJwCOG62qXo2Ky4GvdO4=;
+ b=Jb2xnKKkCCR/EiTZ5CEdmKXDLgjYj4rhWlVhQuoeu3sR9nbdcxeviCq/uYXn5NWLRq
+ AILGo2aEeU+vfk0aJzYGovAfpCC6iz89eclFfcu0fXL0Dxujz4s6hb7umVcP4rua6S1R
+ kDDBfjsdH8FSfLyG8ctXEO7UpFKt7x4MZTgKusDQJOS+h0FSWBCRzaXoxbDHyjV1vqfK
+ u+PYdsdZaUNbAm5PdLih3BtpZ+h9C04OIQj8qQzufv3BN/w1zo2kvKUiWyoMaMkTI89T
+ pDQHpQuyCyHANWk+SnGN3qDl6+6bcPD2VmMRSuVi15dBED7/kKbOQA/U3uxpbvu0Vlcn
+ ehWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=oAo6qWwfla/zQj4s5qtRwWaGJwCOG62qXo2Ky4GvdO4=;
+ b=PY1YHYKnXPZp43ue5A773EdG5VdNlKPWKlA52TuO5/7HO0SjkTjB/so3uPYHkWrqpD
+ xwsX2/GfTGHHE+ClDzV1jmHb2Xb6Qz52M/Xuy2ULLiEfq21M6YuiwmQg+ymP9do5xqBz
+ NlFYPRFnLzPh1RuiJ4HTuHpU0WyGDaCrQi98BDrRhAUn+dqX+ccxCalKm4uBzzt8Zn/L
+ Woh6Q5d3IVOrNZawXkeVL2b78/ldBY7+LDZ61Tt/hsM4WIjC+xc9zYOCRZOf8kIaSYrP
+ s2LVS0ADBsWyrYA1QnkaQUHSdprraa+YK94r2MMIje8UmtP3q2MIAgDyj6WzUPdeith0
+ Ni2Q==
+X-Gm-Message-State: AOAM5329ITXq9E+M7VxsQ/MICmEqJPoo0FOQTDxhSqjq1eOZqwMZ5y50
+ /DVWEEo+XNhE8BgCNueLf2xH12Q0FqPtRBAFrcs=
+X-Google-Smtp-Source: ABdhPJykGh542EKVwndcqL7v7940RKSkiGDcrluyyKSF5XTLYi6zV7rLIAdPrZGXPgPgmJt64op0LE55eutXVy+WicA=
+X-Received: by 2002:a50:ee18:: with SMTP id g24mr17905076eds.11.1623686380809; 
+ Mon, 14 Jun 2021 08:59:40 -0700 (PDT)
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Intel-gfx] [PATCH 10/10] vfio/mbochs: Convert to use
- vfio_register_group_dev()
+References: <20210608174320.37429-1-wse@tuxedocomputers.com>
+ <20210608174320.37429-3-wse@tuxedocomputers.com>
+ <20210610105524.4dd2a40f@eldfell>
+In-Reply-To: <20210610105524.4dd2a40f@eldfell>
+From: Mario Kleiner <mario.kleiner.de@gmail.com>
+Date: Mon, 14 Jun 2021 17:59:29 +0200
+Message-ID: <CAEsyxyjZoLSZSu76aJ6a_Hg_b=eH2Am6ioM=cLz05ciVDEqboQ@mail.gmail.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v2 2/7] drm/uAPI: Add "active bpc" as
+ feedback channel for "max bpc" drm property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,513 +63,252 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tony Krowiak <akrowiak@linux.ibm.com>, Jason Herne <jjherne@linux.ibm.com>,
- kvm@vger.kernel.org, Vasily Gorbik <gor@linux.ibm.com>,
- Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@linux.ie>,
- linux-s390@vger.kernel.org, Heiko Carstens <hca@linux.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, intel-gfx@lists.freedesktop.org
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>, tzimmermann@suse.de,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Li,
+ Sun peng \(Leo\)" <sunpeng.li@amd.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+ Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, "Koenig,
+ Christian" <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jason Gunthorpe <jgg@nvidia.com>
+On Thu, Jun 10, 2021 at 9:55 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
+>
+> On Tue,  8 Jun 2021 19:43:15 +0200
+> Werner Sembach <wse@tuxedocomputers.com> wrote:
+>
+> > Add a new general drm property "active bpc" which can be used by graphic drivers
+> > to report the applied bit depth per pixel back to userspace.
+> >
 
-This is straightforward conversion, the mdev_state is actually serving as
-the vfio_device and we can replace all the mdev_get_drvdata()'s and the
-wonky dead code with a simple container_of().
+Maybe "bit depth per pixel" -> "bit depth per pixel color component"
+for slightly more clarity?
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
-Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- samples/vfio-mdev/mbochs.c | 163 +++++++++++++++++++++----------------
- 1 file changed, 91 insertions(+), 72 deletions(-)
+> > While "max bpc" can be used to change the color depth, there was no way to check
+> > which one actually got used. While in theory the driver chooses the best/highest
+> > color depth within the max bpc setting a user might not be fully aware what his
+> > hardware is or isn't capable off. This is meant as a quick way to double check
+> > the setup.
+> >
+> > In the future, automatic color calibration for screens might also depend on this
+> > information being available.
+> >
+> > Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> > ---
+> >  drivers/gpu/drm/drm_atomic_uapi.c |  2 ++
+> >  drivers/gpu/drm/drm_connector.c   | 41 +++++++++++++++++++++++++++++++
+> >  include/drm/drm_connector.h       | 15 +++++++++++
+> >  3 files changed, 58 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> > index 268bb69c2e2f..7ae4e40936b5 100644
+> > --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> > @@ -873,6 +873,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
+> >               *val = 0;
+> >       } else if (property == connector->max_bpc_property) {
+> >               *val = state->max_requested_bpc;
+> > +     } else if (property == connector->active_bpc_property) {
+> > +             *val = state->active_bpc;
+> >       } else if (connector->funcs->atomic_get_property) {
+> >               return connector->funcs->atomic_get_property(connector,
+> >                               state, property, val);
+> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> > index 7631f76e7f34..c0c3c09bfed0 100644
+> > --- a/drivers/gpu/drm/drm_connector.c
+> > +++ b/drivers/gpu/drm/drm_connector.c
+> > @@ -1195,6 +1195,14 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+> >   *   drm_connector_attach_max_bpc_property() to create and attach the
+> >   *   property to the connector during initialization.
+> >   *
+> > + * active bpc:
+> > + *   This read-only range property tells userspace the pixel color bit depth
+> > + *   actually used by the hardware display engine on "the cable" on a
+> > + *   connector. The chosen value depends on hardware capabilities, both
+> > + *   display engine and connected monitor, and the "max bpc" property.
+> > + *   Drivers shall use drm_connector_attach_active_bpc_property() to install
+> > + *   this property.
+> > + *
+>
+> This description is now clear to me, but I wonder, is it also how
+> others understand it wrt. dithering?
+>
+> Dithering done on monitor is irrelevant, because we are talking about
+> "on the cable" pixels. But since we are talking about "on the cable"
+> pixels, also dithering done by the display engine must not factor in.
+> Should the dithering done by display engine result in higher "active
+> bpc" number than what is actually transmitted on the cable?
+>
+> I cannot guess what userspace would want exactly. I think the
+> strict "on the cable" interpretation is a safe bet, because it then
+> gives a lower limit on observed bpc. Dithering settings should be
+> exposed with other KMS properties, so userspace can factor those in.
+> But to be absolutely sure, we'd have to ask some color management
+> experts.
+>
+> Cc'ing Mario in case he has an opinion.
+>
 
-diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
-index 881ef9a7296f..6c0f229db36a 100644
---- a/samples/vfio-mdev/mbochs.c
-+++ b/samples/vfio-mdev/mbochs.c
-@@ -130,6 +130,7 @@ static struct class	*mbochs_class;
- static struct cdev	mbochs_cdev;
- static struct device	mbochs_dev;
- static int		mbochs_used_mbytes;
-+static const struct vfio_device_ops mbochs_dev_ops;
- 
- struct vfio_region_info_ext {
- 	struct vfio_region_info          base;
-@@ -160,6 +161,7 @@ struct mbochs_dmabuf {
- 
- /* State of each mdev device */
- struct mdev_state {
-+	struct vfio_device vdev;
- 	u8 *vconfig;
- 	u64 bar_mask[3];
- 	u32 memory_bar_mask;
-@@ -425,11 +427,9 @@ static void handle_edid_blob(struct mdev_state *mdev_state, u16 offset,
- 		memcpy(buf, mdev_state->edid_blob + offset, count);
- }
- 
--static ssize_t mdev_access(struct mdev_device *mdev, char *buf, size_t count,
--			   loff_t pos, bool is_write)
-+static ssize_t mdev_access(struct mdev_state *mdev_state, char *buf,
-+			   size_t count, loff_t pos, bool is_write)
- {
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
--	struct device *dev = mdev_dev(mdev);
- 	struct page *pg;
- 	loff_t poff;
- 	char *map;
-@@ -478,7 +478,7 @@ static ssize_t mdev_access(struct mdev_device *mdev, char *buf, size_t count,
- 		put_page(pg);
- 
- 	} else {
--		dev_dbg(dev, "%s: %s @0x%llx (unhandled)\n",
-+		dev_dbg(mdev_state->vdev.dev, "%s: %s @0x%llx (unhandled)\n",
- 			__func__, is_write ? "WR" : "RD", pos);
- 		ret = -1;
- 		goto accessfailed;
-@@ -493,9 +493,8 @@ static ssize_t mdev_access(struct mdev_device *mdev, char *buf, size_t count,
- 	return ret;
- }
- 
--static int mbochs_reset(struct mdev_device *mdev)
-+static int mbochs_reset(struct mdev_state *mdev_state)
- {
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
- 	u32 size64k = mdev_state->memsize / (64 * 1024);
- 	int i;
- 
-@@ -506,12 +505,13 @@ static int mbochs_reset(struct mdev_device *mdev)
- 	return 0;
- }
- 
--static int mbochs_create(struct mdev_device *mdev)
-+static int mbochs_probe(struct mdev_device *mdev)
- {
- 	const struct mbochs_type *type =
- 		&mbochs_types[mdev_get_type_group_id(mdev)];
- 	struct device *dev = mdev_dev(mdev);
- 	struct mdev_state *mdev_state;
-+	int ret = -ENOMEM;
- 
- 	if (type->mbytes + mbochs_used_mbytes > max_mbytes)
- 		return -ENOMEM;
-@@ -519,6 +519,7 @@ static int mbochs_create(struct mdev_device *mdev)
- 	mdev_state = kzalloc(sizeof(struct mdev_state), GFP_KERNEL);
- 	if (mdev_state == NULL)
- 		return -ENOMEM;
-+	vfio_init_group_dev(&mdev_state->vdev, &mdev->dev, &mbochs_dev_ops);
- 
- 	mdev_state->vconfig = kzalloc(MBOCHS_CONFIG_SPACE_SIZE, GFP_KERNEL);
- 	if (mdev_state->vconfig == NULL)
-@@ -537,7 +538,6 @@ static int mbochs_create(struct mdev_device *mdev)
- 
- 	mutex_init(&mdev_state->ops_lock);
- 	mdev_state->mdev = mdev;
--	mdev_set_drvdata(mdev, mdev_state);
- 	INIT_LIST_HEAD(&mdev_state->dmabufs);
- 	mdev_state->next_id = 1;
- 
-@@ -547,32 +547,38 @@ static int mbochs_create(struct mdev_device *mdev)
- 	mdev_state->edid_regs.edid_offset = MBOCHS_EDID_BLOB_OFFSET;
- 	mdev_state->edid_regs.edid_max_size = sizeof(mdev_state->edid_blob);
- 	mbochs_create_config_space(mdev_state);
--	mbochs_reset(mdev);
-+	mbochs_reset(mdev_state);
- 
- 	mbochs_used_mbytes += type->mbytes;
-+
-+	ret = vfio_register_group_dev(&mdev_state->vdev);
-+	if (ret)
-+		goto err_mem;
-+	dev_set_drvdata(&mdev->dev, mdev_state);
- 	return 0;
- 
- err_mem:
- 	kfree(mdev_state->vconfig);
- 	kfree(mdev_state);
--	return -ENOMEM;
-+	return ret;
- }
- 
--static int mbochs_remove(struct mdev_device *mdev)
-+static void mbochs_remove(struct mdev_device *mdev)
- {
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
-+	struct mdev_state *mdev_state = dev_get_drvdata(&mdev->dev);
- 
- 	mbochs_used_mbytes -= mdev_state->type->mbytes;
--	mdev_set_drvdata(mdev, NULL);
-+	vfio_unregister_group_dev(&mdev_state->vdev);
- 	kfree(mdev_state->pages);
- 	kfree(mdev_state->vconfig);
- 	kfree(mdev_state);
--	return 0;
- }
- 
--static ssize_t mbochs_read(struct mdev_device *mdev, char __user *buf,
-+static ssize_t mbochs_read(struct vfio_device *vdev, char __user *buf,
- 			   size_t count, loff_t *ppos)
- {
-+	struct mdev_state *mdev_state =
-+		container_of(vdev, struct mdev_state, vdev);
- 	unsigned int done = 0;
- 	int ret;
- 
-@@ -582,7 +588,7 @@ static ssize_t mbochs_read(struct mdev_device *mdev, char __user *buf,
- 		if (count >= 4 && !(*ppos % 4)) {
- 			u32 val;
- 
--			ret =  mdev_access(mdev, (char *)&val, sizeof(val),
-+			ret =  mdev_access(mdev_state, (char *)&val, sizeof(val),
- 					   *ppos, false);
- 			if (ret <= 0)
- 				goto read_err;
-@@ -594,7 +600,7 @@ static ssize_t mbochs_read(struct mdev_device *mdev, char __user *buf,
- 		} else if (count >= 2 && !(*ppos % 2)) {
- 			u16 val;
- 
--			ret = mdev_access(mdev, (char *)&val, sizeof(val),
-+			ret = mdev_access(mdev_state, (char *)&val, sizeof(val),
- 					  *ppos, false);
- 			if (ret <= 0)
- 				goto read_err;
-@@ -606,7 +612,7 @@ static ssize_t mbochs_read(struct mdev_device *mdev, char __user *buf,
- 		} else {
- 			u8 val;
- 
--			ret = mdev_access(mdev, (char *)&val, sizeof(val),
-+			ret = mdev_access(mdev_state, (char *)&val, sizeof(val),
- 					  *ppos, false);
- 			if (ret <= 0)
- 				goto read_err;
-@@ -629,9 +635,11 @@ static ssize_t mbochs_read(struct mdev_device *mdev, char __user *buf,
- 	return -EFAULT;
- }
- 
--static ssize_t mbochs_write(struct mdev_device *mdev, const char __user *buf,
-+static ssize_t mbochs_write(struct vfio_device *vdev, const char __user *buf,
- 			    size_t count, loff_t *ppos)
- {
-+	struct mdev_state *mdev_state =
-+		container_of(vdev, struct mdev_state, vdev);
- 	unsigned int done = 0;
- 	int ret;
- 
-@@ -644,7 +652,7 @@ static ssize_t mbochs_write(struct mdev_device *mdev, const char __user *buf,
- 			if (copy_from_user(&val, buf, sizeof(val)))
- 				goto write_err;
- 
--			ret = mdev_access(mdev, (char *)&val, sizeof(val),
-+			ret = mdev_access(mdev_state, (char *)&val, sizeof(val),
- 					  *ppos, true);
- 			if (ret <= 0)
- 				goto write_err;
-@@ -656,7 +664,7 @@ static ssize_t mbochs_write(struct mdev_device *mdev, const char __user *buf,
- 			if (copy_from_user(&val, buf, sizeof(val)))
- 				goto write_err;
- 
--			ret = mdev_access(mdev, (char *)&val, sizeof(val),
-+			ret = mdev_access(mdev_state, (char *)&val, sizeof(val),
- 					  *ppos, true);
- 			if (ret <= 0)
- 				goto write_err;
-@@ -668,7 +676,7 @@ static ssize_t mbochs_write(struct mdev_device *mdev, const char __user *buf,
- 			if (copy_from_user(&val, buf, sizeof(val)))
- 				goto write_err;
- 
--			ret = mdev_access(mdev, (char *)&val, sizeof(val),
-+			ret = mdev_access(mdev_state, (char *)&val, sizeof(val),
- 					  *ppos, true);
- 			if (ret <= 0)
- 				goto write_err;
-@@ -754,9 +762,10 @@ static const struct vm_operations_struct mbochs_region_vm_ops = {
- 	.fault = mbochs_region_vm_fault,
- };
- 
--static int mbochs_mmap(struct mdev_device *mdev, struct vm_area_struct *vma)
-+static int mbochs_mmap(struct vfio_device *vdev, struct vm_area_struct *vma)
- {
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
-+	struct mdev_state *mdev_state =
-+		container_of(vdev, struct mdev_state, vdev);
- 
- 	if (vma->vm_pgoff != MBOCHS_MEMORY_BAR_OFFSET >> PAGE_SHIFT)
- 		return -EINVAL;
-@@ -963,7 +972,7 @@ mbochs_dmabuf_find_by_id(struct mdev_state *mdev_state, u32 id)
- static int mbochs_dmabuf_export(struct mbochs_dmabuf *dmabuf)
- {
- 	struct mdev_state *mdev_state = dmabuf->mdev_state;
--	struct device *dev = mdev_dev(mdev_state->mdev);
-+	struct device *dev = mdev_state->vdev.dev;
- 	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
- 	struct dma_buf *buf;
- 
-@@ -991,15 +1000,10 @@ static int mbochs_dmabuf_export(struct mbochs_dmabuf *dmabuf)
- 	return 0;
- }
- 
--static int mbochs_get_region_info(struct mdev_device *mdev,
-+static int mbochs_get_region_info(struct mdev_state *mdev_state,
- 				  struct vfio_region_info_ext *ext)
- {
- 	struct vfio_region_info *region_info = &ext->base;
--	struct mdev_state *mdev_state;
--
--	mdev_state = mdev_get_drvdata(mdev);
--	if (!mdev_state)
--		return -EINVAL;
- 
- 	if (region_info->index >= MBOCHS_NUM_REGIONS)
- 		return -EINVAL;
-@@ -1047,15 +1051,13 @@ static int mbochs_get_region_info(struct mdev_device *mdev,
- 	return 0;
- }
- 
--static int mbochs_get_irq_info(struct mdev_device *mdev,
--			       struct vfio_irq_info *irq_info)
-+static int mbochs_get_irq_info(struct vfio_irq_info *irq_info)
- {
- 	irq_info->count = 0;
- 	return 0;
- }
- 
--static int mbochs_get_device_info(struct mdev_device *mdev,
--				  struct vfio_device_info *dev_info)
-+static int mbochs_get_device_info(struct vfio_device_info *dev_info)
- {
- 	dev_info->flags = VFIO_DEVICE_FLAGS_PCI;
- 	dev_info->num_regions = MBOCHS_NUM_REGIONS;
-@@ -1063,11 +1065,9 @@ static int mbochs_get_device_info(struct mdev_device *mdev,
- 	return 0;
- }
- 
--static int mbochs_query_gfx_plane(struct mdev_device *mdev,
-+static int mbochs_query_gfx_plane(struct mdev_state *mdev_state,
- 				  struct vfio_device_gfx_plane_info *plane)
- {
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
--	struct device *dev = mdev_dev(mdev);
- 	struct mbochs_dmabuf *dmabuf;
- 	struct mbochs_mode mode;
- 	int ret;
-@@ -1121,18 +1121,16 @@ static int mbochs_query_gfx_plane(struct mdev_device *mdev,
- done:
- 	if (plane->drm_plane_type == DRM_PLANE_TYPE_PRIMARY &&
- 	    mdev_state->active_id != plane->dmabuf_id) {
--		dev_dbg(dev, "%s: primary: %d => %d\n", __func__,
--			mdev_state->active_id, plane->dmabuf_id);
-+		dev_dbg(mdev_state->vdev.dev, "%s: primary: %d => %d\n",
-+			__func__, mdev_state->active_id, plane->dmabuf_id);
- 		mdev_state->active_id = plane->dmabuf_id;
- 	}
- 	mutex_unlock(&mdev_state->ops_lock);
- 	return 0;
- }
- 
--static int mbochs_get_gfx_dmabuf(struct mdev_device *mdev,
--				 u32 id)
-+static int mbochs_get_gfx_dmabuf(struct mdev_state *mdev_state, u32 id)
- {
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
- 	struct mbochs_dmabuf *dmabuf;
- 
- 	mutex_lock(&mdev_state->ops_lock);
-@@ -1154,9 +1152,11 @@ static int mbochs_get_gfx_dmabuf(struct mdev_device *mdev,
- 	return dma_buf_fd(dmabuf->buf, 0);
- }
- 
--static long mbochs_ioctl(struct mdev_device *mdev, unsigned int cmd,
--			unsigned long arg)
-+static long mbochs_ioctl(struct vfio_device *vdev, unsigned int cmd,
-+			 unsigned long arg)
- {
-+	struct mdev_state *mdev_state =
-+		container_of(vdev, struct mdev_state, vdev);
- 	int ret = 0;
- 	unsigned long minsz, outsz;
- 
-@@ -1173,7 +1173,7 @@ static long mbochs_ioctl(struct mdev_device *mdev, unsigned int cmd,
- 		if (info.argsz < minsz)
- 			return -EINVAL;
- 
--		ret = mbochs_get_device_info(mdev, &info);
-+		ret = mbochs_get_device_info(&info);
- 		if (ret)
- 			return ret;
- 
-@@ -1197,7 +1197,7 @@ static long mbochs_ioctl(struct mdev_device *mdev, unsigned int cmd,
- 		if (outsz > sizeof(info))
- 			return -EINVAL;
- 
--		ret = mbochs_get_region_info(mdev, &info);
-+		ret = mbochs_get_region_info(mdev_state, &info);
- 		if (ret)
- 			return ret;
- 
-@@ -1220,7 +1220,7 @@ static long mbochs_ioctl(struct mdev_device *mdev, unsigned int cmd,
- 		    (info.index >= VFIO_PCI_NUM_IRQS))
- 			return -EINVAL;
- 
--		ret = mbochs_get_irq_info(mdev, &info);
-+		ret = mbochs_get_irq_info(&info);
- 		if (ret)
- 			return ret;
- 
-@@ -1243,7 +1243,7 @@ static long mbochs_ioctl(struct mdev_device *mdev, unsigned int cmd,
- 		if (plane.argsz < minsz)
- 			return -EINVAL;
- 
--		ret = mbochs_query_gfx_plane(mdev, &plane);
-+		ret = mbochs_query_gfx_plane(mdev_state, &plane);
- 		if (ret)
- 			return ret;
- 
-@@ -1260,19 +1260,19 @@ static long mbochs_ioctl(struct mdev_device *mdev, unsigned int cmd,
- 		if (get_user(dmabuf_id, (__u32 __user *)arg))
- 			return -EFAULT;
- 
--		return mbochs_get_gfx_dmabuf(mdev, dmabuf_id);
-+		return mbochs_get_gfx_dmabuf(mdev_state, dmabuf_id);
- 	}
- 
- 	case VFIO_DEVICE_SET_IRQS:
- 		return -EINVAL;
- 
- 	case VFIO_DEVICE_RESET:
--		return mbochs_reset(mdev);
-+		return mbochs_reset(mdev_state);
- 	}
- 	return -ENOTTY;
- }
- 
--static int mbochs_open(struct mdev_device *mdev)
-+static int mbochs_open(struct vfio_device *vdev)
- {
- 	if (!try_module_get(THIS_MODULE))
- 		return -ENODEV;
-@@ -1280,9 +1280,10 @@ static int mbochs_open(struct mdev_device *mdev)
- 	return 0;
- }
- 
--static void mbochs_close(struct mdev_device *mdev)
-+static void mbochs_close(struct vfio_device *vdev)
- {
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
-+	struct mdev_state *mdev_state =
-+		container_of(vdev, struct mdev_state, vdev);
- 	struct mbochs_dmabuf *dmabuf, *tmp;
- 
- 	mutex_lock(&mdev_state->ops_lock);
-@@ -1306,8 +1307,7 @@ static ssize_t
- memory_show(struct device *dev, struct device_attribute *attr,
- 	    char *buf)
- {
--	struct mdev_device *mdev = mdev_from_dev(dev);
--	struct mdev_state *mdev_state = mdev_get_drvdata(mdev);
-+	struct mdev_state *mdev_state = dev_get_drvdata(dev);
- 
- 	return sprintf(buf, "%d MB\n", mdev_state->type->mbytes);
- }
-@@ -1398,18 +1398,30 @@ static struct attribute_group *mdev_type_groups[] = {
- 	NULL,
- };
- 
-+static const struct vfio_device_ops mbochs_dev_ops = {
-+	.open = mbochs_open,
-+	.release = mbochs_close,
-+	.read = mbochs_read,
-+	.write = mbochs_write,
-+	.ioctl = mbochs_ioctl,
-+	.mmap = mbochs_mmap,
-+};
-+
-+static struct mdev_driver mbochs_driver = {
-+	.driver = {
-+		.name = "mbochs",
-+		.owner = THIS_MODULE,
-+		.mod_name = KBUILD_MODNAME,
-+		.dev_groups = mdev_dev_groups,
-+	},
-+	.probe = mbochs_probe,
-+	.remove	= mbochs_remove,
-+};
-+
- static const struct mdev_parent_ops mdev_fops = {
- 	.owner			= THIS_MODULE,
--	.mdev_attr_groups	= mdev_dev_groups,
-+	.device_driver		= &mbochs_driver,
- 	.supported_type_groups	= mdev_type_groups,
--	.create			= mbochs_create,
--	.remove			= mbochs_remove,
--	.open			= mbochs_open,
--	.release		= mbochs_close,
--	.read			= mbochs_read,
--	.write			= mbochs_write,
--	.ioctl			= mbochs_ioctl,
--	.mmap			= mbochs_mmap,
- };
- 
- static const struct file_operations vd_fops = {
-@@ -1434,11 +1446,15 @@ static int __init mbochs_dev_init(void)
- 	cdev_add(&mbochs_cdev, mbochs_devt, MINORMASK + 1);
- 	pr_info("%s: major %d\n", __func__, MAJOR(mbochs_devt));
- 
-+	ret = mdev_register_driver(&mbochs_driver);
-+	if (ret)
-+		goto err_cdev;
-+
- 	mbochs_class = class_create(THIS_MODULE, MBOCHS_CLASS_NAME);
- 	if (IS_ERR(mbochs_class)) {
- 		pr_err("Error: failed to register mbochs_dev class\n");
- 		ret = PTR_ERR(mbochs_class);
--		goto failed1;
-+		goto err_driver;
- 	}
- 	mbochs_dev.class = mbochs_class;
- 	mbochs_dev.release = mbochs_device_release;
-@@ -1446,19 +1462,21 @@ static int __init mbochs_dev_init(void)
- 
- 	ret = device_register(&mbochs_dev);
- 	if (ret)
--		goto failed2;
-+		goto err_class;
- 
- 	ret = mdev_register_device(&mbochs_dev, &mdev_fops);
- 	if (ret)
--		goto failed3;
-+		goto err_device;
- 
- 	return 0;
- 
--failed3:
-+err_device:
- 	device_unregister(&mbochs_dev);
--failed2:
-+err_class:
- 	class_destroy(mbochs_class);
--failed1:
-+err_driver:
-+	mdev_unregister_driver(&mbochs_driver);
-+err_cdev:
- 	cdev_del(&mbochs_cdev);
- 	unregister_chrdev_region(mbochs_devt, MINORMASK + 1);
- 	return ret;
-@@ -1470,6 +1488,7 @@ static void __exit mbochs_dev_exit(void)
- 	mdev_unregister_device(&mbochs_dev);
- 
- 	device_unregister(&mbochs_dev);
-+	mdev_unregister_driver(&mbochs_driver);
- 	cdev_del(&mbochs_cdev);
- 	unregister_chrdev_region(mbochs_devt, MINORMASK + 1);
- 	class_destroy(mbochs_class);
--- 
-2.30.2
+Thanks. I like this a lot, in fact such a connector property was on my
+todo list / wish list for something like that!
 
+I agree with the "active bpc" definition here in this patch and
+Pekka's comments. I want what goes out over the cable, not including
+any effects of dithering. At least AMD's amdpu-kms driver exposes
+"active bpc" already as a per-connector property in debugfs, and i use
+reported output from there a lot to debug problems with respect to HDR
+display or high color precision output, and to verify i'm not fooling
+myself wrt. what goes out, compared to what dithering may "fake" on
+top of it.
+
+Software like mine would greatly benefit from getting this directly
+off the connector, ie. as a RandR output property, just like with "max
+bpc", as mapping X11 output names to driver output names is a guessing
+game, directing regular users to those debugfs files is tedious and
+error prone, and many regular users don't have root permissions
+anyway.
+
+Sometimes one wants to prioritize "active bpc" over resolution or
+refresh rate, and especially on now more common HDR displays, and
+actual bit depth also changes depending on bandwidth requirements vs.
+availability, and how well DP link training went with a flaky or loose
+cable, like only getting 10 bpc for HDR-10 when running on less than
+maximum resolution or refresh rate, and the cable "just right". This
+can be very puzzling without actual feedback over true "active bpc".
+
+It would also be very beneficial to also have reporting and control
+over gpu dithering state via a read/write property. Some drivers like
+nouveau-kms have that, and i think some older non-atomic amd drivers
+had it at some point in time iirc, which was useful, also for
+debugging of dithering induced issues, when one wants to pass-through
+a 8 bpc framebuffer unmodified to special display equipment, and
+dithering silently kicked in and is messing things up.
+
+And a read only property for DSC active would be good to account for the future.
+
+> Since "active bpc" is related to "max bpc", the both should follow the
+> same definition. Do they do that now?
+>
+> Maybe a clarifying note about interaction with dithering would still be
+> good to have here.
+>
++1
+
+>
+> I recall reading some comments from you about having problems with
+> making this immutable. Is it properly immutable now?
+>
+> That is, drm_info reports the property as "(immutable)".
+> https://github.com/ascent12/drm_info
+>
+> If we are not sure if DSC could result in lower observed bpc than
+> "active bpc", then DSC state would need to be exposed as a KMS property
+> too, with a note that it invalidates what "active bpc" shows. Or maybe
+> "active bpc" should be "unknown" in that case?
+>
+
+Yes. Or could we have some way of disabling DSC per connector in the
+future? I'm not familiar with current implementations, but i'd very
+much would like to have a selectable tradeoff if i want a "pure" video
+signal and maybe not get some high resolution / refresh rate modes on
+low-bandwidth cables, or if i want max resolution/refresh but some
+lossy perceptual compression.
+
+thanks,
+-mario
+
+>
+> Thanks,
+> pq
+>
+> >   * Connectors also have one standardized atomic property:
+> >   *
+> >   * CRTC_ID:
+> > @@ -2150,6 +2158,39 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+> >  }
+> >  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+> >
+> > +/**
+> > + * drm_connector_attach_active_bpc_property - attach "active bpc" property
+> > + * @connector: connector to attach active bpc property on.
+> > + * @min: The minimum bit depth supported by the connector.
+> > + * @max: The maximum bit depth supported by the connector.
+> > + *
+> > + * This is used to check the applied bit depth on a connector.
+> > + *
+> > + * Returns:
+> > + * Zero on success, negative errno on failure.
+> > + */
+> > +int drm_connector_attach_active_bpc_property(struct drm_connector *connector,
+> > +                                       int min, int max)
+> > +{
+> > +     struct drm_device *dev = connector->dev;
+> > +     struct drm_property *prop;
+> > +
+> > +     prop = connector->active_bpc_property;
+> > +     if (!prop) {
+> > +             prop = drm_property_create_range(dev, 0, "active bpc", min, max);
+> > +             if (!prop)
+> > +                     return -ENOMEM;
+> > +
+> > +             connector->active_bpc_property = prop;
+> > +     }
+> > +
+> > +     drm_object_attach_property(&connector->base, prop, 0);
+> > +     connector->state->active_bpc = 0;
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
+> > +
+> >  /**
+> >   * drm_connector_set_vrr_capable_property - sets the variable refresh rate
+> >   * capable property for a connector
+> > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> > index 1922b278ffad..c58cba2b6afe 100644
+> > --- a/include/drm/drm_connector.h
+> > +++ b/include/drm/drm_connector.h
+> > @@ -781,6 +781,13 @@ struct drm_connector_state {
+> >        */
+> >       u8 max_bpc;
+> >
+> > +     /**
+> > +      * @active_bpc: Read only property set by the GPU driver to the actually
+> > +      * applied bit depth of the pixels after evaluating all hardware
+> > +      * limitations.
+> > +      */
+> > +     u8 active_bpc;
+> > +
+> >       /**
+> >        * @hdr_output_metadata:
+> >        * DRM blob property for HDR output metadata
+> > @@ -1380,6 +1387,12 @@ struct drm_connector {
+> >        */
+> >       struct drm_property *max_bpc_property;
+> >
+> > +     /**
+> > +      * @active_bpc_property: Default connector property for the active bpc
+> > +      * to be driven out of the connector.
+> > +      */
+> > +     struct drm_property *active_bpc_property;
+> > +
+> >  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
+> >  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
+> >  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
+> > @@ -1698,6 +1711,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+> >       int width, int height);
+> >  int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+> >                                         int min, int max);
+> > +int drm_connector_attach_active_bpc_property(struct drm_connector *connector,
+> > +                                       int min, int max);
+> >
+> >  /**
+> >   * struct drm_tile_group - Tile group metadata
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
