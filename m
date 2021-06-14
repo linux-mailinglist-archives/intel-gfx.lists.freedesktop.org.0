@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5308A3A6E04
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 20:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F023A6E1D
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 20:17:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF8196E05C;
-	Mon, 14 Jun 2021 18:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D466E175;
+	Mon, 14 Jun 2021 18:17:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6656A89D8E;
- Mon, 14 Jun 2021 18:11:17 +0000 (UTC)
-IronPort-SDR: wiD3j3zcwkLlFCNsMWzB8TB2XaFmu7knektV3KKwIn6hEMClnoJm2LLjJYkomYd7yxTJrWOVrZ
- AcdtpXyHoOwQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="193166765"
-X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="193166765"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0728F6E170;
+ Mon, 14 Jun 2021 18:17:33 +0000 (UTC)
+IronPort-SDR: jglDB98ltWhNz6bb1Z+TqX8a//0/KXsxPzOAaMKAiJe7+ue7rLTv6HJoOkQA07eaZWQrDU5iaW
+ xjAJHGiUh71A==
+X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="186229245"
+X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="186229245"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2021 11:11:14 -0700
-IronPort-SDR: PpqjV1Lx0nBcYLZ9XTXRaWtmPwyMXMCa7dQPwkhTv3Ly6+u7NUiQI+IrcxzU4i+niDdipuc9Av
- cCUBQKTUoN6A==
-X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="451673506"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2021 11:17:33 -0700
+IronPort-SDR: Nz7H1KGdtKhEtChAFMwN05YXs/pTsYcsmwelBe1q4tNosdp7krug5hhNmJJIgDWBuAk5JHnh+Y
+ OfgQ6c0Zpybw==
+X-IronPort-AV: E=Sophos;i="5.83,273,1616482800"; d="scan'208";a="451674924"
 Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.254.188.63])
  ([10.254.188.63])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2021 11:11:13 -0700
+ 14 Jun 2021 11:17:32 -0700
 To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org
 References: <20210610043649.144416-1-matthew.brost@intel.com>
- <20210610043649.144416-3-matthew.brost@intel.com>
+ <20210610043649.144416-7-matthew.brost@intel.com>
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <92fec549-b8da-b67a-f581-9c2890082ae7@intel.com>
-Date: Mon, 14 Jun 2021 11:11:09 -0700
+Message-ID: <3308a8a7-9c6d-fd74-b534-6c1506bee5a3@intel.com>
+Date: Mon, 14 Jun 2021 11:17:30 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <20210610043649.144416-3-matthew.brost@intel.com>
+In-Reply-To: <20210610043649.144416-7-matthew.brost@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 02/13] drm/i915/guc: Update MMIO based
- communication
+Subject: Re: [Intel-gfx] [PATCH 06/13] drm/i915/guc: New definition of the
+ CTB descriptor
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,194 +52,296 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA2LzkvMjAyMSA5OjM2IFBNLCBNYXR0aGV3IEJyb3N0IHdyb3RlOgo+IEZyb206IE1pY2hh
-bCBXYWpkZWN6a28gPG1pY2hhbC53YWpkZWN6a29AaW50ZWwuY29tPgo+Cj4gVGhlIE1NSU8gYmFz
-ZWQgSG9zdC10by1HdUMgY29tbXVuaWNhdGlvbiBwcm90b2NvbCBoYXMgYmVlbgo+IHVwZGF0ZWQg
-dG8gdXNlIHVuaWZpZWQgSFhHIG1lc3NhZ2VzLgo+Cj4gVXBkYXRlIG91ciBpbnRlbF9ndWNfc2Vu
-ZF9tbWlvKCkgZnVuY3Rpb24gYnkgY29ycmVjdGx5IGhhbmRsZQo+IEJVU1ksIFJFVFJZIGFuZCBG
-QUlMVVJFIHJlcGxpZXMuIEFsc28gdXBkYXRlIG91ciBkb2N1bWVudGF0aW9uLgo+Cj4gU2luY2Ug
-c29tZSBvZiB0aGUgbmV3IE1NSU8gYWN0aW9ucyBtYXkgdXNlIERBVEEwIGZyb20gTU1JTyBIWEcK
-PiByZXNwb25zZSwgd2UgbXVzdCB1cGRhdGUgaW50ZWxfZ3VjX3NlbmRfbW1pbygpIHRvIGNvcHkg
-ZnVsbCByZXNwb25zZSwKPiBpbmNsdWRpbmcgSFhHIGhlYWRlci4gVGhlcmUgd2lsbCBiZSBubyBp
-bXBhY3QgdG8gZXhpc3RpbmcgdXNlcnMgYXMgYWxsCj4gb2YgdGhlbSBhcmUgb25seSByZWx5aW5n
-IGp1c3Qgb24gcmV0dXJuIGNvZGUuCj4KPiB2MjoKPiAgIChEYW5pZWxlKQo+ICAgIC0gcHJlZmZl
-cmVkIC0+IHByZWZlcnJlZAo+ICAgIC0gTWF4IE1NSU8gRFcgc2V0IHRvIDQKPiAgICAtIFVwZGF0
-ZSBjb21taXQgbWVzc2FnZQo+Cj4gR3VDOiA1NS4wLjAKPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3
-IEJyb3N0IDxtYXR0aGV3LmJyb3N0QGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNaWNoYWwg
-V2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPiBDYzogUGlvdHIgUGnDs3Jr
-b3dza2kgPHBpb3RyLnBpb3Jrb3dza2lAaW50ZWwuY29tPgo+IENjOiBNaWNoYWwgV2luaWFyc2tp
-IDxtaWNoYWwud2luaWFyc2tpQGludGVsLmNvbT4gI3YzCj4gLS0tCj4gICAuLi4vZ3QvdWMvYWJp
-L2d1Y19jb21tdW5pY2F0aW9uX21taW9fYWJpLmggICAgfCA2NSArKysrKysrLS0tLS0tCj4gICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYyAgICAgICAgfCA5MiArKysrKysr
-KysrKysrKy0tLS0tCj4gICAyIGZpbGVzIGNoYW5nZWQsIDk4IGluc2VydGlvbnMoKyksIDU5IGRl
-bGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2Fi
-aS9ndWNfY29tbXVuaWNhdGlvbl9tbWlvX2FiaS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
-dWMvYWJpL2d1Y19jb21tdW5pY2F0aW9uX21taW9fYWJpLmgKPiBpbmRleCBiZTA2NmE2MmU5ZTAu
-LmJiZjFkZGI3NzQzNCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9h
-YmkvZ3VjX2NvbW11bmljYXRpb25fbW1pb19hYmkuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L3VjL2FiaS9ndWNfY29tbXVuaWNhdGlvbl9tbWlvX2FiaS5oCj4gQEAgLTcsNDYgKzcs
-NDMgQEAKPiAgICNkZWZpbmUgX0FCSV9HVUNfQ09NTVVOSUNBVElPTl9NTUlPX0FCSV9ICj4gICAK
-PiAgIC8qKgo+IC0gKiBET0M6IE1NSU8gYmFzZWQgY29tbXVuaWNhdGlvbgo+ICsgKiBET0M6IEd1
-QyBNTUlPIGJhc2VkIGNvbW11bmljYXRpb24KPiAgICAqCj4gLSAqIFRoZSBNTUlPIGJhc2VkIGNv
-bW11bmljYXRpb24gYmV0d2VlbiBIb3N0IGFuZCBHdUMgdXNlcyBzb2Z0d2FyZSBzY3JhdGNoCj4g
-LSAqIHJlZ2lzdGVycywgd2hlcmUgZmlyc3QgcmVnaXN0ZXIgaG9sZHMgZGF0YSB0cmVhdGVkIGFz
-IG1lc3NhZ2UgaGVhZGVyLAo+IC0gKiBhbmQgb3RoZXIgcmVnaXN0ZXJzIGFyZSB1c2VkIHRvIGhv
-bGQgbWVzc2FnZSBwYXlsb2FkLgo+ICsgKiBUaGUgTU1JTyBiYXNlZCBjb21tdW5pY2F0aW9uIGJl
-dHdlZW4gSG9zdCBhbmQgR3VDIHJlbGllcyBvbiBzcGVjaWFsCj4gKyAqIGhhcmR3YXJlIHJlZ2lz
-dGVycyB3aGljaCBmb3JtYXQgY291bGQgYmUgZGVmaW5lZCBieSB0aGUgc29mdHdhcmUKPiArICog
-KHNvIGNhbGxlZCBzY3JhdGNoIHJlZ2lzdGVycykuCj4gICAgKgo+IC0gKiBGb3IgR2VuOSssIEd1
-QyB1c2VzIHNvZnR3YXJlIHNjcmF0Y2ggcmVnaXN0ZXJzIDB4QzE4MC0weEMxQjgsCj4gLSAqIGJ1
-dCBubyBIMkcgY29tbWFuZCB0YWtlcyBtb3JlIHRoYW4gOCBwYXJhbWV0ZXJzIGFuZCB0aGUgR3VD
-IEZXCj4gLSAqIGl0c2VsZiB1c2VzIGFuIDgtZWxlbWVudCBhcnJheSB0byBzdG9yZSB0aGUgSDJH
-IG1lc3NhZ2UuCj4gKyAqIEVhY2ggTU1JTyBiYXNlZCBtZXNzYWdlLCBib3RoIEhvc3QgdG8gR3VD
-IChIMkcpIGFuZCBHdUMgdG8gSG9zdCAoRzJIKQo+ICsgKiBtZXNzYWdlcywgd2hpY2ggbWF4aW11
-bSBsZW5ndGggZGVwZW5kcyBvbiBudW1iZXIgb2YgYXZhaWxhYmxlIHNjcmF0Y2gKPiArICogcmVn
-aXN0ZXJzLCBpcyBkaXJlY3RseSB3cml0dGVuIGludG8gdGhvc2Ugc2NyYXRjaCByZWdpc3RlcnMu
-Cj4gICAgKgo+IC0gKiAgICAgICstLS0tLS0tLS0tLSstLS0tLS0tLS0rLS0tLS0tLS0tKy0tLS0t
-LS0tLSsKPiAtICogICAgICB8ICBNTUlPWzBdICB8IE1NSU9bMV0gfCAgIC4uLiAgIHwgTU1JT1tu
-XSB8Cj4gLSAqICAgICAgKy0tLS0tLS0tLS0tKy0tLS0tLS0tLSstLS0tLS0tLS0rLS0tLS0tLS0t
-Kwo+IC0gKiAgICAgIHwgaGVhZGVyICAgIHwgICAgICBvcHRpb25hbCBwYXlsb2FkICAgICAgIHwK
-PiAtICogICAgICArPT09PT09Kz09PT0rPT09PT09PT09Kz09PT09PT09PSs9PT09PT09PT0rCj4g
-LSAqICAgICAgfCAzMToyOHx0eXBlfCAgICAgICAgIHwgICAgICAgICB8ICAgICAgICAgfAo+IC0g
-KiAgICAgICstLS0tLS0rLS0tLSsgICAgICAgICB8ICAgICAgICAgfCAgICAgICAgIHwKPiAtICog
-ICAgICB8IDI3OjE2fGRhdGF8ICAgICAgICAgfCAgICAgICAgIHwgICAgICAgICB8Cj4gLSAqICAg
-ICAgKy0tLS0tLSstLS0tKyAgICAgICAgIHwgICAgICAgICB8ICAgICAgICAgfAo+IC0gKiAgICAg
-IHwgIDE1OjB8Y29kZXwgICAgICAgICB8ICAgICAgICAgfCAgICAgICAgIHwKPiAtICogICAgICAr
-LS0tLS0tKy0tLS0rLS0tLS0tLS0tKy0tLS0tLS0tLSstLS0tLS0tLS0rCj4gKyAqIEZvciBHZW45
-KywgdGhlcmUgYXJlIDE2IHNvZnR3YXJlIHNjcmF0Y2ggcmVnaXN0ZXJzIDB4QzE4MC0weEMxQjgs
-Cj4gKyAqIGJ1dCBubyBIMkcgY29tbWFuZCB0YWtlcyBtb3JlIHRoYW4gNCBwYXJhbWV0ZXJzIGFu
-ZCB0aGUgR3VDIGZpcm13YXJlCj4gKyAqIGl0c2VsZiB1c2VzIGFuIDQtZWxlbWVudCBhcnJheSB0
-byBzdG9yZSB0aGUgSDJHIG1lc3NhZ2UuCgpJIGRvbjt0IHRoaW5rIHRoaXMgcGFydCBvbiBob3cg
-dGhlIEd1QyBzdG9yZXMgdGhlIGRhdGEgdXMgdHJ1ZSBhbnltb3JlLCAKc28gSSdkIGp1c3QgcmVt
-b3ZlIGl0LiBXaXRoIHRoYXQ6CgpSZXZpZXdlZC1ieTogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8
-ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KCkRhbmllbGUKCj4gICAgKgo+IC0gKiBU
-aGUgbWVzc2FnZSBoZWFkZXIgY29uc2lzdHMgb2Y6Cj4gKyAqIEZvciBHZW4xMSssIHRoZXJlIGFy
-ZSBhZGRpdGlvbmFsIDQgcmVnaXN0ZXJzIDB4MTkwMjQwLTB4MTkwMjRDLCB3aGljaAo+ICsgKiBh
-cmUsIHJlZ2FyZGxlc3Mgb24gbG93ZXIgY291bnQsIHByZWZlcnJlZCBvdmVyIGxlZ2FjeSBvbmVz
-Lgo+ICAgICoKPiAtICogLSAqKnR5cGUqKiwgaW5kaWNhdGVzIG1lc3NhZ2UgdHlwZQo+IC0gKiAt
-ICoqY29kZSoqLCBpbmRpY2F0ZXMgbWVzc2FnZSBjb2RlLCBpcyBzcGVjaWZpYyBmb3IgKip0eXBl
-KioKPiAtICogLSAqKmRhdGEqKiwgaW5kaWNhdGVzIG1lc3NhZ2UgZGF0YSwgb3B0aW9uYWwsIGRl
-cGVuZHMgb24gKipjb2RlKioKPiAtICoKPiAtICogVGhlIGZvbGxvd2luZyBtZXNzYWdlICoqdHlw
-ZXMqKiBhcmUgc3VwcG9ydGVkOgo+IC0gKgo+IC0gKiAtICoqUkVRVUVTVCoqLCBpbmRpY2F0ZXMg
-SG9zdC10by1HdUMgcmVxdWVzdCwgcmVxdWVzdGVkIEd1QyBhY3Rpb24gY29kZQo+IC0gKiAgIG11
-c3QgYmUgcHJpb3ZpZGVkIGluICoqY29kZSoqIGZpZWxkLiBPcHRpb25hbCBhY3Rpb24gc3BlY2lm
-aWMgcGFyYW1ldGVycwo+IC0gKiAgIGNhbiBiZSBwcm92aWRlZCBpbiByZW1haW5pbmcgcGF5bG9h
-ZCByZWdpc3RlcnMgb3IgKipkYXRhKiogZmllbGQuCj4gLSAqCj4gLSAqIC0gKipSRVNQT05TRSoq
-LCBpbmRpY2F0ZXMgR3VDLXRvLUhvc3QgcmVzcG9uc2UgZnJvbSBlYXJsaWVyIEd1QyByZXF1ZXN0
-LAo+IC0gKiAgIGFjdGlvbiByZXNwb25zZSBzdGF0dXMgd2lsbCBiZSBwcm92aWRlZCBpbiAqKmNv
-ZGUqKiBmaWVsZC4gT3B0aW9uYWwKPiAtICogICByZXNwb25zZSBkYXRhIGNhbiBiZSByZXR1cm5l
-ZCBpbiByZW1haW5pbmcgcGF5bG9hZCByZWdpc3RlcnMgb3IgKipkYXRhKioKPiAtICogICBmaWVs
-ZC4KPiArICogVGhlIE1NSU8gYmFzZWQgY29tbXVuaWNhdGlvbiBpcyBtYWlubHkgdXNlZCBkdXJp
-bmcgZHJpdmVyIGluaXRpYWxpemF0aW9uCj4gKyAqIHBoYXNlIHRvIHNldHVwIHRoZSBgQ1RCIGJh
-c2VkIGNvbW11bmljYXRpb25gXyB0aGF0IHdpbGwgYmUgdXNlZCBhZnRlcndhcmRzLgo+ICAgICov
-Cj4gICAKPiAtI2RlZmluZSBHVUNfTUFYX01NSU9fTVNHX0xFTgkJOAo+ICsjZGVmaW5lIEdVQ19N
-QVhfTU1JT19NU0dfTEVOCQk0Cj4gKwo+ICsvKioKPiArICogRE9DOiBNTUlPIEhYRyBNZXNzYWdl
-Cj4gKyAqCj4gKyAqIEZvcm1hdCBvZiB0aGUgTU1JTyBtZXNzYWdlcyBmb2xsb3dzIGRlZmluaXRp
-b25zIG9mIGBIWEcgTWVzc2FnZWBfLgo+ICsgKgo+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+
-ICsgKiAgfCAgIHwgQml0cyAgfCBEZXNjcmlwdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgfAo+ICsgKiAgKz09PSs9PT09PT09Kz09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Kwo+ICsg
-KiAgfCAwIHwgIDMxOjAgfCAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tKyAgfAo+ICsgKiAgKy0tLSstLS0tLS0tKyAgfCAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgfAo+ICsgKiAg
-fC4uLnwgICAgICAgfCAgfCAgRW1iZWRkZWQgYEhYRyBNZXNzYWdlYF8gICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgfCAgfAo+ICsgKiAgKy0tLSstLS0tLS0tKyAgfCAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgfAo+ICsgKiAgfCBu
-IHwgIDMxOjAgfCAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tKyAgfAo+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ICsgKi8KPiAgIAo+
-ICAgI2VuZGlmIC8qIF9BQklfR1VDX0NPTU1VTklDQVRJT05fTU1JT19BQklfSCAqLwo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5jCj4gaW5kZXggZjE0N2NiMzg5YTIwLi5iNzcz
-NTY3Y2IwODAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
-Z3VjLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYwo+IEBA
-IC0zNzYsMjkgKzM3NiwyNyBAQCB2b2lkIGludGVsX2d1Y19maW5pKHN0cnVjdCBpbnRlbF9ndWMg
-Kmd1YykKPiAgIC8qCj4gICAgKiBUaGlzIGZ1bmN0aW9uIGltcGxlbWVudHMgdGhlIE1NSU8gYmFz
-ZWQgaG9zdCB0byBHdUMgaW50ZXJmYWNlLgo+ICAgICovCj4gLWludCBpbnRlbF9ndWNfc2VuZF9t
-bWlvKHN0cnVjdCBpbnRlbF9ndWMgKmd1YywgY29uc3QgdTMyICphY3Rpb24sIHUzMiBsZW4sCj4g
-K2ludCBpbnRlbF9ndWNfc2VuZF9tbWlvKHN0cnVjdCBpbnRlbF9ndWMgKmd1YywgY29uc3QgdTMy
-ICpyZXF1ZXN0LCB1MzIgbGVuLAo+ICAgCQkJdTMyICpyZXNwb25zZV9idWYsIHUzMiByZXNwb25z
-ZV9idWZfc2l6ZSkKPiAgIHsKPiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gZ3Vj
-X3RvX2d0KGd1YyktPmk5MTU7Cj4gICAJc3RydWN0IGludGVsX3VuY29yZSAqdW5jb3JlID0gZ3Vj
-X3RvX2d0KGd1YyktPnVuY29yZTsKPiAtCXUzMiBzdGF0dXM7Cj4gKwl1MzIgaGVhZGVyOwo+ICAg
-CWludCBpOwo+ICAgCWludCByZXQ7Cj4gICAKPiAgIAlHRU1fQlVHX09OKCFsZW4pOwo+ICAgCUdF
-TV9CVUdfT04obGVuID4gZ3VjLT5zZW5kX3JlZ3MuY291bnQpOwo+ICAgCj4gLQkvKiBXZSBleHBl
-Y3Qgb25seSBhY3Rpb24gY29kZSAqLwo+IC0JR0VNX0JVR19PTigqYWN0aW9uICYgfklOVEVMX0dV
-Q19NU0dfQ09ERV9NQVNLKTsKPiAtCj4gLQkvKiBJZiBDVCBpcyBhdmFpbGFibGUsIHdlIGV4cGVj
-dCB0byB1c2UgTU1JTyBvbmx5IGR1cmluZyBpbml0L2ZpbmkgKi8KPiAtCUdFTV9CVUdfT04oKmFj
-dGlvbiAhPSBJTlRFTF9HVUNfQUNUSU9OX1JFR0lTVEVSX0NPTU1BTkRfVFJBTlNQT1JUX0JVRkZF
-UiAmJgo+IC0JCSAgICphY3Rpb24gIT0gSU5URUxfR1VDX0FDVElPTl9ERVJFR0lTVEVSX0NPTU1B
-TkRfVFJBTlNQT1JUX0JVRkZFUik7Cj4gKwlHRU1fQlVHX09OKEZJRUxEX0dFVChHVUNfSFhHX01T
-R18wX09SSUdJTiwgcmVxdWVzdFswXSkgIT0gR1VDX0hYR19PUklHSU5fSE9TVCk7Cj4gKwlHRU1f
-QlVHX09OKEZJRUxEX0dFVChHVUNfSFhHX01TR18wX1RZUEUsIHJlcXVlc3RbMF0pICE9IEdVQ19I
-WEdfVFlQRV9SRVFVRVNUKTsKPiAgIAo+ICAgCW11dGV4X2xvY2soJmd1Yy0+c2VuZF9tdXRleCk7
-Cj4gICAJaW50ZWxfdW5jb3JlX2ZvcmNld2FrZV9nZXQodW5jb3JlLCBndWMtPnNlbmRfcmVncy5m
-d19kb21haW5zKTsKPiAgIAo+ICtyZXRyeToKPiAgIAlmb3IgKGkgPSAwOyBpIDwgbGVuOyBpKysp
-Cj4gLQkJaW50ZWxfdW5jb3JlX3dyaXRlKHVuY29yZSwgZ3VjX3NlbmRfcmVnKGd1YywgaSksIGFj
-dGlvbltpXSk7Cj4gKwkJaW50ZWxfdW5jb3JlX3dyaXRlKHVuY29yZSwgZ3VjX3NlbmRfcmVnKGd1
-YywgaSksIHJlcXVlc3RbaV0pOwo+ICAgCj4gICAJaW50ZWxfdW5jb3JlX3Bvc3RpbmdfcmVhZCh1
-bmNvcmUsIGd1Y19zZW5kX3JlZyhndWMsIGkgLSAxKSk7Cj4gICAKPiBAQCAtNDEwLDMwICs0MDgs
-NzQgQEAgaW50IGludGVsX2d1Y19zZW5kX21taW8oc3RydWN0IGludGVsX2d1YyAqZ3VjLCBjb25z
-dCB1MzIgKmFjdGlvbiwgdTMyIGxlbiwKPiAgIAkgKi8KPiAgIAlyZXQgPSBfX2ludGVsX3dhaXRf
-Zm9yX3JlZ2lzdGVyX2Z3KHVuY29yZSwKPiAgIAkJCQkJICAgZ3VjX3NlbmRfcmVnKGd1YywgMCks
-Cj4gLQkJCQkJICAgSU5URUxfR1VDX01TR19UWVBFX01BU0ssCj4gLQkJCQkJICAgSU5URUxfR1VD
-X01TR19UWVBFX1JFU1BPTlNFIDw8Cj4gLQkJCQkJICAgSU5URUxfR1VDX01TR19UWVBFX1NISUZU
-LAo+IC0JCQkJCSAgIDEwLCAxMCwgJnN0YXR1cyk7Cj4gLQkvKiBJZiBHdUMgZXhwbGljaXRseSBy
-ZXR1cm5lZCBhbiBlcnJvciwgY29udmVydCBpdCB0byAtRUlPICovCj4gLQlpZiAoIXJldCAmJiAh
-SU5URUxfR1VDX01TR19JU19SRVNQT05TRV9TVUNDRVNTKHN0YXR1cykpCj4gLQkJcmV0ID0gLUVJ
-TzsKPiArCQkJCQkgICBHVUNfSFhHX01TR18wX09SSUdJTiwKPiArCQkJCQkgICBGSUVMRF9QUkVQ
-KEdVQ19IWEdfTVNHXzBfT1JJR0lOLAo+ICsJCQkJCQkgICAgICBHVUNfSFhHX09SSUdJTl9HVUMp
-LAo+ICsJCQkJCSAgIDEwLCAxMCwgJmhlYWRlcik7Cj4gKwlpZiAodW5saWtlbHkocmV0KSkgewo+
-ICt0aW1lb3V0Ogo+ICsJCWRybV9lcnIoJmk5MTUtPmRybSwgIm1taW8gcmVxdWVzdCAlI3g6IG5v
-IHJlcGx5ICV4XG4iLAo+ICsJCQlyZXF1ZXN0WzBdLCBoZWFkZXIpOwo+ICsJCWdvdG8gb3V0Owo+
-ICsJfQo+ICAgCj4gLQlpZiAocmV0KSB7Cj4gLQkJRFJNX0VSUk9SKCJNTUlPOiBHdUMgYWN0aW9u
-ICUjeCBmYWlsZWQgd2l0aCBlcnJvciAlZCAlI3hcbiIsCj4gLQkJCSAgYWN0aW9uWzBdLCByZXQs
-IHN0YXR1cyk7Cj4gKwlpZiAoRklFTERfR0VUKEdVQ19IWEdfTVNHXzBfVFlQRSwgaGVhZGVyKSA9
-PSBHVUNfSFhHX1RZUEVfTk9fUkVTUE9OU0VfQlVTWSkgewo+ICsjZGVmaW5lIGRvbmUgKHsgaGVh
-ZGVyID0gaW50ZWxfdW5jb3JlX3JlYWQodW5jb3JlLCBndWNfc2VuZF9yZWcoZ3VjLCAwKSk7IFwK
-PiArCQlGSUVMRF9HRVQoR1VDX0hYR19NU0dfMF9PUklHSU4sIGhlYWRlcikgIT0gR1VDX0hYR19P
-UklHSU5fR1VDIHx8IFwKPiArCQlGSUVMRF9HRVQoR1VDX0hYR19NU0dfMF9UWVBFLCBoZWFkZXIp
-ICE9IEdVQ19IWEdfVFlQRV9OT19SRVNQT05TRV9CVVNZOyB9KQo+ICsKPiArCQlyZXQgPSB3YWl0
-X2Zvcihkb25lLCAxMDAwKTsKPiArCQlpZiAodW5saWtlbHkocmV0KSkKPiArCQkJZ290byB0aW1l
-b3V0Owo+ICsJCWlmICh1bmxpa2VseShGSUVMRF9HRVQoR1VDX0hYR19NU0dfMF9PUklHSU4sIGhl
-YWRlcikgIT0KPiArCQkJCSAgICAgICBHVUNfSFhHX09SSUdJTl9HVUMpKQo+ICsJCQlnb3RvIHBy
-b3RvOwo+ICsjdW5kZWYgZG9uZQo+ICsJfQo+ICsKPiArCWlmIChGSUVMRF9HRVQoR1VDX0hYR19N
-U0dfMF9UWVBFLCBoZWFkZXIpID09IEdVQ19IWEdfVFlQRV9OT19SRVNQT05TRV9SRVRSWSkgewo+
-ICsJCXUzMiByZWFzb24gPSBGSUVMRF9HRVQoR1VDX0hYR19SRVRSWV9NU0dfMF9SRUFTT04sIGhl
-YWRlcik7Cj4gKwo+ICsJCWRybV9kYmcoJmk5MTUtPmRybSwgIm1taW8gcmVxdWVzdCAlI3g6IHJl
-dHJ5aW5nLCByZWFzb24gJXVcbiIsCj4gKwkJCXJlcXVlc3RbMF0sIHJlYXNvbik7Cj4gKwkJZ290
-byByZXRyeTsKPiArCX0KPiArCj4gKwlpZiAoRklFTERfR0VUKEdVQ19IWEdfTVNHXzBfVFlQRSwg
-aGVhZGVyKSA9PSBHVUNfSFhHX1RZUEVfUkVTUE9OU0VfRkFJTFVSRSkgewo+ICsJCXUzMiBoaW50
-ID0gRklFTERfR0VUKEdVQ19IWEdfRkFJTFVSRV9NU0dfMF9ISU5ULCBoZWFkZXIpOwo+ICsJCXUz
-MiBlcnJvciA9IEZJRUxEX0dFVChHVUNfSFhHX0ZBSUxVUkVfTVNHXzBfRVJST1IsIGhlYWRlcik7
-Cj4gKwo+ICsJCWRybV9lcnIoJmk5MTUtPmRybSwgIm1taW8gcmVxdWVzdCAlI3g6IGZhaWx1cmUg
-JXgvJXVcbiIsCj4gKwkJCXJlcXVlc3RbMF0sIGVycm9yLCBoaW50KTsKPiArCQlyZXQgPSAtRU5Y
-SU87Cj4gKwkJZ290byBvdXQ7Cj4gKwl9Cj4gKwo+ICsJaWYgKEZJRUxEX0dFVChHVUNfSFhHX01T
-R18wX1RZUEUsIGhlYWRlcikgIT0gR1VDX0hYR19UWVBFX1JFU1BPTlNFX1NVQ0NFU1MpIHsKPiAr
-cHJvdG86Cj4gKwkJZHJtX2VycigmaTkxNS0+ZHJtLCAibW1pbyByZXF1ZXN0ICUjeDogdW5leHBl
-Y3RlZCByZXBseSAlI3hcbiIsCj4gKwkJCXJlcXVlc3RbMF0sIGhlYWRlcik7Cj4gKwkJcmV0ID0g
-LUVQUk9UTzsKPiAgIAkJZ290byBvdXQ7Cj4gICAJfQo+ICAgCj4gICAJaWYgKHJlc3BvbnNlX2J1
-Zikgewo+IC0JCWludCBjb3VudCA9IG1pbihyZXNwb25zZV9idWZfc2l6ZSwgZ3VjLT5zZW5kX3Jl
-Z3MuY291bnQgLSAxKTsKPiArCQlpbnQgY291bnQgPSBtaW4ocmVzcG9uc2VfYnVmX3NpemUsIGd1
-Yy0+c2VuZF9yZWdzLmNvdW50KTsKPiAgIAo+IC0JCWZvciAoaSA9IDA7IGkgPCBjb3VudDsgaSsr
-KQo+ICsJCUdFTV9CVUdfT04oIWNvdW50KTsKPiArCj4gKwkJcmVzcG9uc2VfYnVmWzBdID0gaGVh
-ZGVyOwo+ICsKPiArCQlmb3IgKGkgPSAxOyBpIDwgY291bnQ7IGkrKykKPiAgIAkJCXJlc3BvbnNl
-X2J1ZltpXSA9IGludGVsX3VuY29yZV9yZWFkKHVuY29yZSwKPiAtCQkJCQkJCSAgICBndWNfc2Vu
-ZF9yZWcoZ3VjLCBpICsgMSkpOwo+IC0JfQo+ICsJCQkJCQkJICAgIGd1Y19zZW5kX3JlZyhndWMs
-IGkpKTsKPiAgIAo+IC0JLyogVXNlIGRhdGEgZnJvbSB0aGUgR3VDIHJlc3BvbnNlIGFzIG91ciBy
-ZXR1cm4gdmFsdWUgKi8KPiAtCXJldCA9IElOVEVMX0dVQ19NU0dfVE9fREFUQShzdGF0dXMpOwo+
-ICsJCS8qIFVzZSBudW1iZXIgb2YgY29waWVkIGR3b3JkcyBhcyBvdXIgcmV0dXJuIHZhbHVlICov
-Cj4gKwkJcmV0ID0gY291bnQ7Cj4gKwl9IGVsc2Ugewo+ICsJCS8qIFVzZSBkYXRhIGZyb20gdGhl
-IEd1QyByZXNwb25zZSBhcyBvdXIgcmV0dXJuIHZhbHVlICovCj4gKwkJcmV0ID0gRklFTERfR0VU
-KEdVQ19IWEdfUkVTUE9OU0VfTVNHXzBfREFUQTAsIGhlYWRlcik7Cj4gKwl9Cj4gICAKPiAgIG91
-dDoKPiAgIAlpbnRlbF91bmNvcmVfZm9yY2V3YWtlX3B1dCh1bmNvcmUsIGd1Yy0+c2VuZF9yZWdz
-LmZ3X2RvbWFpbnMpOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+
+
+On 6/9/2021 9:36 PM, Matthew Brost wrote:
+> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>
+> Definition of the CTB descriptor has changed, leaving only
+> minimal shared fields like HEAD/TAIL/STATUS.
+>
+> Both HEAD and TAIL are now in dwords.
+>
+> Add some ABI documentation and implement required changes.
+>
+> v2:
+>   (Daniele)
+>    - Drop GUC_CTB_STATUS_NO_BACKCHANNEL, GUC_CTB_STATUS_NO_BACKCHANNEL
+>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   .../gt/uc/abi/guc_communication_ctb_abi.h     | 68 +++++++++++++-----
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 70 +++++++++----------
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  2 +-
+>   3 files changed, 83 insertions(+), 57 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> index d38935f47ecf..88f1fc2a19e0 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> @@ -7,6 +7,56 @@
+>   #define _ABI_GUC_COMMUNICATION_CTB_ABI_H
+>   
+>   #include <linux/types.h>
+> +#include <linux/build_bug.h>
+> +
+> +#include "guc_messages_abi.h"
+> +
+> +/**
+> + * DOC: CT Buffer
+> + *
+> + * TBD
+
+This still needs to either be filled in or removed.
+
+> + */
+> +
+> +/**
+> + * DOC: CTB Descriptor
+> + *
+> + *  +---+-------+--------------------------------------------------------------+
+> + *  |   | Bits  | Description                                                  |
+> + *  +===+=======+==============================================================+
+> + *  | 0 |  31:0 | **HEAD** - offset (in dwords) to the last dword that was     |
+> + *  |   |       | read from the `CT Buffer`_.                                  |
+> + *  |   |       | It can only be updated by the receiver.                      |
+> + *  +---+-------+--------------------------------------------------------------+
+> + *  | 1 |  31:0 | **TAIL** - offset (in dwords) to the last dword that was     |
+> + *  |   |       | written to the `CT Buffer`_.                                 |
+> + *  |   |       | It can only be updated by the sender.                        |
+> + *  +---+-------+--------------------------------------------------------------+
+> + *  | 2 |  31:0 | **STATUS** - status of the CTB                               |
+> + *  |   |       |                                                              |
+> + *  |   |       |   - _`GUC_CTB_STATUS_NO_ERROR` = 0 (normal operation)        |
+> + *  |   |       |   - _`GUC_CTB_STATUS_OVERFLOW` = 1 (head/tail too large)     |
+> + *  |   |       |   - _`GUC_CTB_STATUS_UNDERFLOW` = 2 (truncated message)      |
+> + *  |   |       |   - _`GUC_CTB_STATUS_MISMATCH` = 4 (head/tail modified)      |
+> + *  +---+-------+--------------------------------------------------------------+
+> + *  |...|       | RESERVED = MBZ                                               |
+> + *  +---+-------+--------------------------------------------------------------+
+> + *  | 15|  31:0 | RESERVED = MBZ                                               |
+> + *  +---+-------+--------------------------------------------------------------+
+> + */
+> +
+> +struct guc_ct_buffer_desc {
+> +	u32 head;
+> +	u32 tail;
+> +	u32 status;
+> +#define GUC_CTB_STATUS_NO_ERROR				0
+> +#define GUC_CTB_STATUS_OVERFLOW				(1 << 0)
+> +#define GUC_CTB_STATUS_UNDERFLOW			(1 << 1)
+> +#define GUC_CTB_STATUS_MISMATCH				(1 << 2)
+> +#define GUC_CTB_STATUS_NO_BACKCHANNEL			(1 << 3)
+> +#define GUC_CTB_STATUS_MALFORMED_MSG			(1 << 4)
+
+You forgot to drop the defines here.
+
+Daniele
+
+> +	u32 reserved[13];
+> +} __packed;
+> +static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+>   
+>   /**
+>    * DOC: CTB based communication
+> @@ -60,24 +110,6 @@
+>    * - **flags**, holds various bits to control message handling
+>    */
+>   
+> -/*
+> - * Describes single command transport buffer.
+> - * Used by both guc-master and clients.
+> - */
+> -struct guc_ct_buffer_desc {
+> -	u32 addr;		/* gfx address */
+> -	u64 host_private;	/* host private data */
+> -	u32 size;		/* size in bytes */
+> -	u32 head;		/* offset updated by GuC*/
+> -	u32 tail;		/* offset updated by owner */
+> -	u32 is_in_error;	/* error indicator */
+> -	u32 reserved1;
+> -	u32 reserved2;
+> -	u32 owner;		/* id of the channel owner */
+> -	u32 owner_sub_id;	/* owner-defined field for extra tracking */
+> -	u32 reserved[5];
+> -} __packed;
+> -
+>   /* Type of command transport buffer */
+>   #define INTEL_GUC_CT_BUFFER_TYPE_SEND	0x0u
+>   #define INTEL_GUC_CT_BUFFER_TYPE_RECV	0x1u
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 63056ea0631e..3241a477196f 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -112,32 +112,28 @@ static inline const char *guc_ct_buffer_type_to_str(u32 type)
+>   	}
+>   }
+>   
+> -static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc,
+> -				    u32 cmds_addr, u32 size)
+> +static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
+>   {
+>   	memset(desc, 0, sizeof(*desc));
+> -	desc->addr = cmds_addr;
+> -	desc->size = size;
+> -	desc->owner = CTB_OWNER_HOST;
+>   }
+>   
+> -static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb, u32 cmds_addr)
+> +static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
+>   {
+>   	ctb->broken = false;
+> -	guc_ct_buffer_desc_init(ctb->desc, cmds_addr, ctb->size);
+> +	guc_ct_buffer_desc_init(ctb->desc);
+>   }
+>   
+>   static void guc_ct_buffer_init(struct intel_guc_ct_buffer *ctb,
+>   			       struct guc_ct_buffer_desc *desc,
+> -			       u32 *cmds, u32 size)
+> +			       u32 *cmds, u32 size_in_bytes)
+>   {
+> -	GEM_BUG_ON(size % 4);
+> +	GEM_BUG_ON(size_in_bytes % 4);
+>   
+>   	ctb->desc = desc;
+>   	ctb->cmds = cmds;
+> -	ctb->size = size;
+> +	ctb->size = size_in_bytes / 4;
+>   
+> -	guc_ct_buffer_reset(ctb, 0);
+> +	guc_ct_buffer_reset(ctb);
+>   }
+>   
+>   static int guc_action_register_ct_buffer(struct intel_guc *guc,
+> @@ -279,10 +275,10 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>   
+>   	/* (re)initialize descriptors */
+>   	cmds = base + ptrdiff(ct->ctbs.send.cmds, blob);
+> -	guc_ct_buffer_reset(&ct->ctbs.send, cmds);
+> +	guc_ct_buffer_reset(&ct->ctbs.send);
+>   
+>   	cmds = base + ptrdiff(ct->ctbs.recv.cmds, blob);
+> -	guc_ct_buffer_reset(&ct->ctbs.recv, cmds);
+> +	guc_ct_buffer_reset(&ct->ctbs.recv);
+>   
+>   	/*
+>   	 * Register both CT buffers starting with RECV buffer.
+> @@ -391,17 +387,15 @@ static int ct_write(struct intel_guc_ct *ct,
+>   	if (unlikely(ctb->broken))
+>   		return -EPIPE;
+>   
+> -	if (unlikely(desc->is_in_error))
+> +	if (unlikely(desc->status))
+>   		goto corrupted;
+>   
+> -	if (unlikely(!IS_ALIGNED(head | tail, 4) ||
+> -		     (tail | head) >= size))
+> +	if (unlikely((tail | head) >= size)) {
+> +		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+> +			 head, tail, size);
+> +		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>   		goto corrupted;
+> -
+> -	/* later calculations will be done in dwords */
+> -	head /= 4;
+> -	tail /= 4;
+> -	size /= 4;
+> +	}
+>   
+>   	/*
+>   	 * tail == head condition indicates empty. GuC FW does not support
+> @@ -447,14 +441,14 @@ static int ct_write(struct intel_guc_ct *ct,
+>   	 */
+>   	write_barrier(ct);
+>   
+> -	/* now update desc tail (back in bytes) */
+> -	desc->tail = tail * 4;
+> +	/* now update descriptor */
+> +	WRITE_ONCE(desc->tail, tail);
+> +
+>   	return 0;
+>   
+>   corrupted:
+> -	CT_ERROR(ct, "Corrupted descriptor addr=%#x head=%u tail=%u size=%u\n",
+> -		 desc->addr, desc->head, desc->tail, desc->size);
+> -	desc->is_in_error = 1;
+> +	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+> +		 desc->head, desc->tail, desc->status);
+>   	ctb->broken = true;
+>   	return -EPIPE;
+>   }
+> @@ -640,17 +634,15 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>   	if (unlikely(ctb->broken))
+>   		return -EPIPE;
+>   
+> -	if (unlikely(desc->is_in_error))
+> +	if (unlikely(desc->status))
+>   		goto corrupted;
+>   
+> -	if (unlikely(!IS_ALIGNED(head | tail, 4) ||
+> -		     (tail | head) >= size))
+> +	if (unlikely((tail | head) >= size)) {
+> +		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+> +			 head, tail, size);
+> +		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>   		goto corrupted;
+> -
+> -	/* later calculations will be done in dwords */
+> -	head /= 4;
+> -	tail /= 4;
+> -	size /= 4;
+> +	}
+>   
+>   	/* tail == head condition indicates empty */
+>   	available = tail - head;
+> @@ -677,6 +669,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>   			      size - head : available - 1), &cmds[head],
+>   			 4 * (head + available - 1 > size ?
+>   			      available - 1 - size + head : 0), &cmds[0]);
+> +		desc->status |= GUC_CTB_STATUS_UNDERFLOW;
+>   		goto corrupted;
+>   	}
+>   
+> @@ -699,13 +692,14 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>   	}
+>   	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>   
+> -	desc->head = head * 4;
+> +	/* now update descriptor */
+> +	WRITE_ONCE(desc->head, head);
+> +
+>   	return available - len;
+>   
+>   corrupted:
+> -	CT_ERROR(ct, "Corrupted descriptor addr=%#x head=%u tail=%u size=%u\n",
+> -		 desc->addr, desc->head, desc->tail, desc->size);
+> -	desc->is_in_error = 1;
+> +	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+> +		 desc->head, desc->tail, desc->status);
+>   	ctb->broken = true;
+>   	return -EPIPE;
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> index 7d3cd375d6a7..905202caaad3 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> @@ -31,7 +31,7 @@ struct intel_guc;
+>    * @lock: protects access to the commands buffer and buffer descriptor
+>    * @desc: pointer to the buffer descriptor
+>    * @cmds: pointer to the commands buffer
+> - * @size: size of the commands buffer
+> + * @size: size of the commands buffer in dwords
+>    * @broken: flag to indicate if descriptor data is broken
+>    */
+>   struct intel_guc_ct_buffer {
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
