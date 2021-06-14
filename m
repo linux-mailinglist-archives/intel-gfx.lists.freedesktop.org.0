@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E303A5CCF
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 08:16:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450B13A5CD6
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 08:17:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62C2989D83;
-	Mon, 14 Jun 2021 06:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A99E289D84;
+	Mon, 14 Jun 2021 06:17:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F26D89D83;
- Mon, 14 Jun 2021 06:16:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCCFF89D83;
+ Mon, 14 Jun 2021 06:17:39 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 6D6E667373; Mon, 14 Jun 2021 08:16:44 +0200 (CEST)
-Date: Mon, 14 Jun 2021 08:16:44 +0200
+ id 2951067373; Mon, 14 Jun 2021 08:17:37 +0200 (CEST)
+Date: Mon, 14 Jun 2021 08:17:36 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210614061644.GA28343@lst.de>
+Message-ID: <20210614061736.GB28343@lst.de>
 References: <20210611152659.2142983-1-tientzu@chromium.org>
- <20210611152659.2142983-2-tientzu@chromium.org>
+ <20210611152659.2142983-3-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210611152659.2142983-2-tientzu@chromium.org>
+In-Reply-To: <20210611152659.2142983-3-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v9 01/14] swiotlb: Refactor swiotlb init
- functions
+Subject: Re: [Intel-gfx] [PATCH v9 02/14] swiotlb: Refactor
+ swiotlb_create_debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,21 +68,29 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 11, 2021 at 11:26:46PM +0800, Claire Chang wrote:
-> +	spin_lock_init(&mem->lock);
-> +	for (i = 0; i < mem->nslabs; i++) {
-> +		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> +		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> +		mem->slots[i].alloc_size = 0;
-> +	}
-> +
-> +	if (memory_decrypted)
-> +		set_memory_decrypted((unsigned long)vaddr, bytes >> PAGE_SHIFT);
-> +	memset(vaddr, 0, bytes);
+On Fri, Jun 11, 2021 at 11:26:47PM +0800, Claire Chang wrote:
+> Split the debugfs creation to make the code reusable for supporting
+> different bounce buffer pools, e.g. restricted DMA pool.
+> 
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> ---
+>  kernel/dma/swiotlb.c | 23 ++++++++++++++++-------
+>  1 file changed, 16 insertions(+), 7 deletions(-)
+> 
+> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+> index 1a1208c81e85..8a3e2b3b246d 100644
+> --- a/kernel/dma/swiotlb.c
+> +++ b/kernel/dma/swiotlb.c
+> @@ -64,6 +64,9 @@
+>  enum swiotlb_force swiotlb_force;
+>  
+>  struct io_tlb_mem *io_tlb_default_mem;
+> +#ifdef CONFIG_DEBUG_FS
+> +static struct dentry *debugfs_dir;
+> +#endif
 
-We don't really need to do this call before the memset.  Which means we
-can just move it to the callers that care instead of having a bool
-argument.
+What about moving this declaration into the main CONFIG_DEBUG_FS block
+near the functions using it?
 
 Otherwise looks good:
 
