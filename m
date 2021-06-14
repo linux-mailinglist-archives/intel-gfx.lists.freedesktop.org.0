@@ -1,76 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309E93A5D9B
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 09:21:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81EF03A5E4C
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 10:20:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 191E089CF8;
-	Mon, 14 Jun 2021 07:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1FF89C3B;
+	Mon, 14 Jun 2021 08:20:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06BE689CF2;
- Mon, 14 Jun 2021 07:21:40 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 6678D21960;
- Mon, 14 Jun 2021 07:21:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1623655299; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
- b=FFA3IQJs+NHkXNOC2xFIvWMkbE/cQtrM1fGWhyyeC06i6ZnFegX51JVXEMWGdBm1X5TPWa
- S2HSC5/6MlsNOY/mZSXUganc7GUVMTkpVqgjcMKxrJfHkopJwpe1P5dRaNzE6vzoS/O2jI
- kI40eUiuvvffqCnt8edsNzudlrtrK0k=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1623655299;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
- b=S/JNfAi0l1N9oyZTjrVoIbGhhperr17w4xvBKQffsTt8pIog7CfQpDnrJFLTLD2IxoJ48E
- zSO+ESDdZy3gYoBg==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 2DE81118DD;
- Mon, 14 Jun 2021 07:21:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1623655299; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
- b=FFA3IQJs+NHkXNOC2xFIvWMkbE/cQtrM1fGWhyyeC06i6ZnFegX51JVXEMWGdBm1X5TPWa
- S2HSC5/6MlsNOY/mZSXUganc7GUVMTkpVqgjcMKxrJfHkopJwpe1P5dRaNzE6vzoS/O2jI
- kI40eUiuvvffqCnt8edsNzudlrtrK0k=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1623655299;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
- b=S/JNfAi0l1N9oyZTjrVoIbGhhperr17w4xvBKQffsTt8pIog7CfQpDnrJFLTLD2IxoJ48E
- zSO+ESDdZy3gYoBg==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id ba+eCYMDx2CyfwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Mon, 14 Jun 2021 07:21:39 +0000
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <eb71ee2d-3413-6ca8-0b7c-a58695f00b77@linux.intel.com>
- <162340805657.68262.6607541005525077753@jlahtine-mobl.ger.corp.intel.com>
- <162340998262.68262.6045527397253780242@jlahtine-mobl.ger.corp.intel.com>
- <dbdd436a-523d-f7d2-db2e-15ea45f435ca@suse.de>
- <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <a9cba36e-9d97-c64b-1701-06779993e47a@suse.de>
-Date: Mon, 14 Jun 2021 09:21:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2A5789C3B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Jun 2021 08:20:50 +0000 (UTC)
+IronPort-SDR: 97UOEpBRLv03ninTc4LUKquCZ59V6LGZXLqXRVwyw+HHwiSHEa+abYVckiKgi/pKU5X0/tcQd7
+ pIWPo+rPVTkw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10014"; a="192888465"
+X-IronPort-AV: E=Sophos;i="5.83,272,1616482800"; d="scan'208";a="192888465"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2021 01:20:47 -0700
+IronPort-SDR: +bfnQUxYu+gTshTkzhc/pluqDA84UxkEPpuhHW2tQy1KwHviJbCbtcD8eTEMhUe2Fr3l+BZo+K
+ fp1VczqP/SOw==
+X-IronPort-AV: E=Sophos;i="5.83,272,1616482800"; d="scan'208";a="554026240"
+Received: from alampel-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.36.98])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2021 01:20:44 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Navare\, Manasi" <manasi.d.navare@intel.com>
+In-Reply-To: <20210611231846.GA12407@labuser-Z97X-UD5H>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210610090528.20511-1-jani.nikula@intel.com>
+ <20210611231846.GA12407@labuser-Z97X-UD5H>
+Date: Mon, 14 Jun 2021 11:20:41 +0300
+Message-ID: <87wnqwyi06.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
-Subject: Re: [Intel-gfx] [PULL] topic/i915-ttm
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dsc: abstract helpers to get
+ bigjoiner primary/secondary crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,242 +49,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, dim-tools@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1465298142=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1465298142==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7"
+On Fri, 11 Jun 2021, "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
+> On Thu, Jun 10, 2021 at 12:05:28PM +0300, Jani Nikula wrote:
+>> Add a single point of truth for figuring out the primary/secondary crtc
+>> for bigjoiner instead of duplicating the magic pipe +/- 1 in multiple
+>> places.
+>> 
+>> Also fix the pipe validity checks to properly take non-contiguous pipes
+>> into account. The current checks may theoretically overflow
+>> i915->pipe_to_crtc_mapping[pipe], albeit with a warning, due to fused
+>> off pipes, as INTEL_NUM_PIPES() returns the actual number of pipes on
+>> the platform, and the check is for INTEL_NUM_PIPES() == pipe + 1.
+>> 
+>> Prefer primary/secondary terminology going forward.
+>> 
+>> v2:
+>> - Improved abstractions for pipe validity etc.
+>> 
+>> Fixes: 8a029c113b17 ("drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave")
+>> Fixes: d961eb20adb6 ("drm/i915/bigjoiner: atomic commit changes for uncompressed joiner")
+>> Cc: Animesh Manna <animesh.manna@intel.com>
+>> Cc: Manasi Navare <manasi.d.navare@intel.com>
+>> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> 
+>> ---
+>> 
+>> Dropped patch 2/2 [1], as the pipes need to be adjacent for big joiner,
+>> even if pipes have been fused off.
+>> 
+>> [1] https://patchwork.freedesktop.org/patch/msgid/20210603122842.22496-2-jani.nikula@intel.com
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display.c  |  7 ++--
+>>  .../drm/i915/display/intel_display_types.h    |  8 ++++
+>>  drivers/gpu/drm/i915/display/intel_vdsc.c     | 40 +++++++++++++------
+>>  drivers/gpu/drm/i915/display/intel_vdsc.h     |  1 +
+>>  4 files changed, 40 insertions(+), 16 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 362bff9beb5c..3bad4e00f7be 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -9618,7 +9618,6 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+>>  					struct intel_crtc_state *old_crtc_state,
+>>  					struct intel_crtc_state *new_crtc_state)
+>>  {
+>> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+>>  	struct intel_crtc_state *slave_crtc_state, *master_crtc_state;
+>>  	struct intel_crtc *slave, *master;
+>>  
+>> @@ -9634,15 +9633,15 @@ static int intel_atomic_check_bigjoiner(struct intel_atomic_state *state,
+>>  	if (!new_crtc_state->bigjoiner)
+>>  		return 0;
+>>  
+>> -	if (1 + crtc->pipe >= INTEL_NUM_PIPES(dev_priv)) {
+>> +	slave = intel_dsc_get_bigjoiner_secondary(crtc);
+>> +	if (!slave) {
+>>  		DRM_DEBUG_KMS("[CRTC:%d:%s] Big joiner configuration requires "
+>>  			      "CRTC + 1 to be used, doesn't exist\n",
+>>  			      crtc->base.base.id, crtc->base.name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> -	slave = new_crtc_state->bigjoiner_linked_crtc =
+>> -		intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
+>> +	new_crtc_state->bigjoiner_linked_crtc = slave;
+>>  	slave_crtc_state = intel_atomic_get_crtc_state(&state->base, slave);
+>>  	master = crtc;
+>>  	if (IS_ERR(slave_crtc_state))
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index 15e91a99c8b9..7d64d8487fbe 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -1723,6 +1723,14 @@ vlv_pipe_to_channel(enum pipe pipe)
+>>  	}
+>>  }
+>>  
+>> +static inline bool intel_pipe_valid(struct drm_i915_private *i915, enum pipe pipe)
+>> +{
+>> +	return (pipe >= 0 &&
+>> +		pipe < ARRAY_SIZE(i915->pipe_to_crtc_mapping) &&
+>> +		INTEL_INFO(i915)->pipe_mask & BIT(pipe) &&
+>> +		i915->pipe_to_crtc_mapping[pipe]);
+>
+> So no need to check INTEL_NUM_PIPES as long as the index exists in pipe_to_crtc_mappings correct?
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7
-Content-Type: multipart/mixed; boundary="uMyGzyoSgX88vxUiR6Ax6Vye8hlNCn2r5";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>,
- dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sean Paul <sean@poorly.run>
-Message-ID: <a9cba36e-9d97-c64b-1701-06779993e47a@suse.de>
-Subject: Re: [PULL] topic/i915-ttm
-References: <eb71ee2d-3413-6ca8-0b7c-a58695f00b77@linux.intel.com>
- <162340805657.68262.6607541005525077753@jlahtine-mobl.ger.corp.intel.com>
- <162340998262.68262.6045527397253780242@jlahtine-mobl.ger.corp.intel.com>
- <dbdd436a-523d-f7d2-db2e-15ea45f435ca@suse.de>
- <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
-In-Reply-To: <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
+Checking against INTEL_NUM_PIPES() is just plain wrong, because pipe may
+be >= INTEL_NUM_PIPES() if pipes have been fused off.
 
---uMyGzyoSgX88vxUiR6Ax6Vye8hlNCn2r5
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+>
+>> +}
+>> +
+>>  static inline struct intel_crtc *
+>>  intel_get_first_crtc(struct drm_i915_private *dev_priv)
+>>  {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> index 7121b66bf96d..85749370508c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> @@ -1106,6 +1106,27 @@ static i915_reg_t dss_ctl2_reg(const struct intel_crtc_state *crtc_state)
+>>  	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) : DSS_CTL2;
+>>  }
+>>  
+>> +static struct intel_crtc *
+>> +_get_crtc_for_pipe(struct drm_i915_private *i915, enum pipe pipe)
+>> +{
+>> +	if (!intel_pipe_valid(i915, pipe))
+>> +		return NULL;
+>> +
+>> +	return intel_get_crtc_for_pipe(i915, pipe);
+>> +}
+>
+> Can we not include intel_pipe_valid() check in intel_get_crtc_for_pipe() so that any other function that calls intel_get_crtc_for_pipe() also
+> validates the pipe ?
 
-Hi
+There's a use case for intel_dsc_get_bigjoiner_secondary() that requires
+graceful error handling withouth a WARN. intel_get_crtc_for_pipe()
+always WARNs on invalid pipe.
 
-Am 14.06.21 um 08:46 schrieb Joonas Lahtinen:
-> Quoting Thomas Zimmermann (2021-06-13 21:54:03)
->> Hi Joonas
->>
->> Am 11.06.21 um 13:13 schrieb Joonas Lahtinen:
->>> Quoting Joonas Lahtinen (2021-06-11 13:40:56)
->>>> Quoting Maarten Lankhorst (2021-06-11 12:27:15)
->>>>> Pull request for drm-misc-next and drm-intel-gt-next.
->>>>>
->>>>> topic/i915-ttm-2021-06-11:
->>>>> drm-misc and drm-intel pull request for topic/i915-ttm:
->>>>> - Convert i915 lmem handling to ttm.
->>>>> - Add a patch to temporarily add a driver_private member to vma_nod=
-e.
->>>>> - Use this to allow mixed object mmap handling for i915.
->>>>> The following changes since commit 1bd8a7dc28c1c410f1ceefae1f2a97c0=
-6d1a67c2:
->>>>>
->>>>>     Merge tag 'exynos-drm-next-for-v5.14' of git://git.kernel.org/p=
-ub/scm/linux/kernel/git/daeinki/drm-exynos into drm-next (2021-06-11 14:1=
-9:12 +1000)
->>>>
->>>> This base is not in drm-misc-next or drm-intel-gt-next, so effective=
-ly
->>>> we would end up pulling 478 extra commits from drm-next as a result.=
- And
->>>> also causing all the warnings for those commits. I don't think we sh=
-ould
->>>> do that?
->>>>
->>>> The common ancestor would be ccd1950c2f7e38ae45aeefb99a08b39407cd6c6=
-3
->>>> "Merge tag 'drm-intel-gt-next-2021-05-28' of git://anongit.freedeskt=
-op.org/drm/drm-intel into drm-next"
->>>> Should we re-do the topic branch based on that?
->>>
->>> This problem seems to come from the fact that only the PR from yester=
-day
->>> that got merged to drm-next had the dependency patches. The previous
->>> backmerge of drm-next was requested too early.
->>>
->>> I've solved this with least hassle by backmerging drm-next again and
->>> then applying the PR to drm-intel-gt-next.
->>>
->>> I think drm-misc-next should do the same (exact commit was
->>> 1bd8a7dc28c1c410f1ceefae1f2a97c06d1a67c2).
->>
->> I did a backmerge from drm-next recently and drm-misc-next can merge t=
-he
->> patches in tags/topic/i915-ttm-2021-06-11 without additions.
->>
->> I assume you to updated drm-intel-gt-next without redoing the PR?
->=20
-> Correct.
+We should probably use intel_pipe_valid() in intel_get_crtc_for_pipe()
+too, and WARN, but that's for another patch another time.
 
-Some patches landed in drm-next. I now did another backmerge and then=20
-merged the topic branch.
-
-Best regards
-Thomas
-
->=20
-> Regards, Joonas
->=20
->>
->> Best regards
->> Thomas
->>
->>>
->>> Regards, Joonas
->>>
->>>> However the DIM docs[1] indeed do say: "For topic branches shared wi=
-thin
->>>> the gpu/drm subsystem, base it on the latest drm-next branch." I thi=
-nk
->>>> the docs don't take into account the current period where drm-next i=
-s
->>>> being actively updated as we speak.
->>>>
->>>> Should we update the docs to use 'git merge-base' or something else?=
-
->>>>
->>>> Regards, Joonas
->>>>
->>>> [1]: https://drm.pages.freedesktop.org/maintainer-tools/dim.html#cro=
-ss-subsystem-topic-branches
->>>>
->>>>>
->>>>> are available in the Git repository at:
->>>>>
->>>>>     git://anongit.freedesktop.org/drm/drm-misc tags/topic/i915-ttm-=
-2021-06-11
->>>>>
->>>>> for you to fetch changes up to cf3e3e86d77970211e0983130e896ae24260=
-1003:
->>>>>
->>>>>     drm/i915: Use ttm mmap handling for ttm bo's. (2021-06-11 10:53=
-:25 +0200)
->>>>>
->>>>> ----------------------------------------------------------------
->>>>> drm-misc and drm-intel pull request for topic/i915-ttm:
->>>>> - Convert i915 lmem handling to ttm.
->>>>> - Add a patch to temporarily add a driver_private member to vma_nod=
-e.
->>>>> - Use this to allow mixed object mmap handling for i915.
->>>>>
->>>>> ----------------------------------------------------------------
->>>>> Maarten Lankhorst (2):
->>>>>         drm/vma: Add a driver_private member to vma_node.
->>>>>         drm/i915: Use ttm mmap handling for ttm bo's.
->>>>>
->>>>> Thomas Hellstr=C3=B6m (2):
->>>>>         drm/i915/ttm: Introduce a TTM i915 gem object backend
->>>>>         drm/i915/lmem: Verify checks for lmem residency
->>>>>
->>>>>    drivers/gpu/drm/drm_gem.c                          |   9 -
->>>>>    drivers/gpu/drm/i915/Makefile                      |   1 +
->>>>>    drivers/gpu/drm/i915/display/intel_display.c       |   2 +-
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_create.c         |   9 +-
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_lmem.c           | 126 ++--
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_lmem.h           |   5 -
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_mman.c           |  83 ++-
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_object.c         | 143 +++--
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_object.h         |  19 +-
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  30 +-
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_pages.c          |   3 +-
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_region.c         |   6 +-
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_ttm.c            | 647 +++++++=
-++++++++++++++
->>>>>    drivers/gpu/drm/i915/gem/i915_gem_ttm.h            |  48 ++
->>>>>    drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  90 +--
->>>>>    drivers/gpu/drm/i915/gt/intel_region_lmem.c        |   3 +-
->>>>>    drivers/gpu/drm/i915/i915_gem.c                    |   5 +-
->>>>>    drivers/gpu/drm/i915/intel_memory_region.c         |   1 -
->>>>>    drivers/gpu/drm/i915/intel_memory_region.h         |   1 -
->>>>>    drivers/gpu/drm/i915/intel_region_ttm.c            |   8 +-
->>>>>    drivers/gpu/drm/i915/intel_region_ttm.h            |  11 +-
->>>>>    drivers/gpu/drm/i915/selftests/igt_mmap.c          |  25 +-
->>>>>    drivers/gpu/drm/i915/selftests/igt_mmap.h          |  12 +-
->>>>>    include/drm/drm_vma_manager.h                      |   2 +-
->>>>>    24 files changed, 1039 insertions(+), 250 deletions(-)
->>>>>    create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>>>    create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm.h
->>
->> --=20
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
->> (HRB 36809, AG N=C3=BCrnberg)
->> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
->>
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+BR,
+Jani.
 
 
---uMyGzyoSgX88vxUiR6Ax6Vye8hlNCn2r5--
+>
+> Manasi
+>
+>
+>> +
+>> +struct intel_crtc *
+>> +intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc)
+>> +{
+>> +	return _get_crtc_for_pipe(to_i915(primary_crtc->base.dev), primary_crtc->pipe + 1);
+>> +}
+>> +
+>> +static struct intel_crtc *
+>> +intel_dsc_get_bigjoiner_primary(const struct intel_crtc *secondary_crtc)
+>> +{
+>> +	return _get_crtc_for_pipe(to_i915(secondary_crtc->base.dev), secondary_crtc->pipe - 1);
+>> +}
+>> +
+>>  void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+>>  {
+>>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> @@ -1178,15 +1199,13 @@ void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state)
+>>  	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc_state));
+>>  	if (dss_ctl1 & UNCOMPRESSED_JOINER_MASTER) {
+>>  		crtc_state->bigjoiner = true;
+>> -		if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
+>> -			crtc_state->bigjoiner_linked_crtc =
+>> -				intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
+>> +		crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
+>> +		drm_WARN_ON(&dev_priv->drm, !crtc_state->bigjoiner_linked_crtc);
+>>  	} else if (dss_ctl1 & UNCOMPRESSED_JOINER_SLAVE) {
+>>  		crtc_state->bigjoiner = true;
+>>  		crtc_state->bigjoiner_slave = true;
+>> -		if (!WARN_ON(crtc->pipe == PIPE_A))
+>> -			crtc_state->bigjoiner_linked_crtc =
+>> -				intel_get_crtc_for_pipe(dev_priv, crtc->pipe - 1);
+>> +		crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_primary(crtc);
+>> +		drm_WARN_ON(&dev_priv->drm, !crtc_state->bigjoiner_linked_crtc);
+>>  	}
+>>  }
+>>  
+>> @@ -1224,14 +1243,11 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+>>  
+>>  		if (!(dss_ctl1 & MASTER_BIG_JOINER_ENABLE)) {
+>>  			crtc_state->bigjoiner_slave = true;
+>> -			if (!WARN_ON(crtc->pipe == PIPE_A))
+>> -				crtc_state->bigjoiner_linked_crtc =
+>> -					intel_get_crtc_for_pipe(dev_priv, crtc->pipe - 1);
+>> +			crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_primary(crtc);
+>>  		} else {
+>> -			if (!WARN_ON(INTEL_NUM_PIPES(dev_priv) == crtc->pipe + 1))
+>> -				crtc_state->bigjoiner_linked_crtc =
+>> -					intel_get_crtc_for_pipe(dev_priv, crtc->pipe + 1);
+>> +			crtc_state->bigjoiner_linked_crtc = intel_dsc_get_bigjoiner_secondary(crtc);
+>>  		}
+>> +		drm_WARN_ON(&dev_priv->drm, !crtc_state->bigjoiner_linked_crtc);
+>>  	}
+>>  
+>>  	/* FIXME: add more state readout as needed */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+>> index fe4d45561253..dfb1fd38deb4 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+>> @@ -22,5 +22,6 @@ void intel_uncompressed_joiner_get_config(struct intel_crtc_state *crtc_state);
+>>  void intel_dsc_get_config(struct intel_crtc_state *crtc_state);
+>>  enum intel_display_power_domain
+>>  intel_dsc_power_domain(const struct intel_crtc_state *crtc_state);
+>> +struct intel_crtc *intel_dsc_get_bigjoiner_secondary(const struct intel_crtc *primary_crtc);
+>>  
+>>  #endif /* __INTEL_VDSC_H__ */
+>> -- 
+>> 2.20.1
+>> 
 
---IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDHA4IFAwAAAAAACgkQlh/E3EQov+AT
-tBAAidiE21fsBreej9nVEY7UQhjx3Ho7Nl7LZh5juKUicoxaMBWYPTm+eb0n10/jtFpY2/y0nV8r
-XAFG+TJk1dmhZU6GRYVi9/nvtskuoV12JhvmCcqFJLWO/FSQ1J1hWYwT5cbKNh6RqruZZ/Ffv/Cp
-Nd3YX1u/paT/JtLRu3/nLbn3QqSuui7NY/yA+HtDVGAzntC08g+ZwRziOBGrg2fSSr5vlkMXCSXL
-cjTqVlw3nqM8nSdGsfvY1yymuZ2tIhjBSgmXdQL3YPvVcnjthBG/sHeVdw3aF+NrHAOhSa1I6O+J
-YSfvneWw44CuBGJQaPC8/sbPP2HMLG38S6Kzir31n41OqBNeUJg6+G1AaoRXfx/Y8IAox/i1BB6q
-FUxG6I0nR9Vfs/iDwJeTkY2XP4mrxydHFxO8dsjkOJy03V3E13V8XpUMK1LQ1mVwpfRlc2x6LDla
-HP8w/yMcjLUJs4MDFXkFj1QrG+VhzHBUGOiIfJQ01mAHLn5uYwMVQPODzYTDXR6yzenXvRB3lS4W
-TY4tJAJqnniMLVzsBrsRxCmLl4mNUqGK/G7UjCL4LgcUaAVxGfBayoWbkZihRG64JIhIMl7D4YFr
-6CHUjmk3syvd8gNPPZr38iqfib7gTFHRvXCcX8Xv/DKKfhPhh3XH0GQ0UbeOv0UUqqs/amVigf/m
-7wU=
-=VuoH
------END PGP SIGNATURE-----
-
---IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7--
-
---===============1465298142==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1465298142==--
