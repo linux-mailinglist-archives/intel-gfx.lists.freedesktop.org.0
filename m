@@ -1,45 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F36FA3A5D39
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 08:47:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 309E93A5D9B
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 09:21:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2FF89D86;
-	Mon, 14 Jun 2021 06:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 191E089CF8;
+	Mon, 14 Jun 2021 07:21:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F86689DB4;
- Mon, 14 Jun 2021 06:47:36 +0000 (UTC)
-IronPort-SDR: 2gqv1rMp2qr2CXOZ8RECocnNb42xuwm08mb/Kq1Uc4uMH6xRi2XIaTE0Mr+Cdlv5/Sd5X9oFBZ
- yg57EFP4QXEQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10014"; a="205585054"
-X-IronPort-AV: E=Sophos;i="5.83,272,1616482800"; d="scan'208";a="205585054"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2021 23:47:35 -0700
-IronPort-SDR: VANaoVw9vsRHWnOOHI6P30cNoqRgsIVvFyiKI8GyKjIDxcBNOJ5c9UC64EK0ZJ7H2Wk9BWYVZ4
- 3gl7cUixClCw==
-X-IronPort-AV: E=Sophos;i="5.83,272,1616482800"; d="scan'208";a="420689176"
-Received: from iaoflynx-mobl3.amr.corp.intel.com (HELO localhost)
- ([10.252.30.21])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2021 23:46:32 -0700
-MIME-Version: 1.0
-In-Reply-To: <dbdd436a-523d-f7d2-db2e-15ea45f435ca@suse.de>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06BE689CF2;
+ Mon, 14 Jun 2021 07:21:40 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 6678D21960;
+ Mon, 14 Jun 2021 07:21:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1623655299; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
+ b=FFA3IQJs+NHkXNOC2xFIvWMkbE/cQtrM1fGWhyyeC06i6ZnFegX51JVXEMWGdBm1X5TPWa
+ S2HSC5/6MlsNOY/mZSXUganc7GUVMTkpVqgjcMKxrJfHkopJwpe1P5dRaNzE6vzoS/O2jI
+ kI40eUiuvvffqCnt8edsNzudlrtrK0k=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1623655299;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
+ b=S/JNfAi0l1N9oyZTjrVoIbGhhperr17w4xvBKQffsTt8pIog7CfQpDnrJFLTLD2IxoJ48E
+ zSO+ESDdZy3gYoBg==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 2DE81118DD;
+ Mon, 14 Jun 2021 07:21:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1623655299; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
+ b=FFA3IQJs+NHkXNOC2xFIvWMkbE/cQtrM1fGWhyyeC06i6ZnFegX51JVXEMWGdBm1X5TPWa
+ S2HSC5/6MlsNOY/mZSXUganc7GUVMTkpVqgjcMKxrJfHkopJwpe1P5dRaNzE6vzoS/O2jI
+ kI40eUiuvvffqCnt8edsNzudlrtrK0k=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1623655299;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LSoCQ6+rqMdBnZPV5SwwSjgwN1SLswXRuppaGUsYN7k=;
+ b=S/JNfAi0l1N9oyZTjrVoIbGhhperr17w4xvBKQffsTt8pIog7CfQpDnrJFLTLD2IxoJ48E
+ zSO+ESDdZy3gYoBg==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id ba+eCYMDx2CyfwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Mon, 14 Jun 2021 07:21:39 +0000
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 References: <eb71ee2d-3413-6ca8-0b7c-a58695f00b77@linux.intel.com>
  <162340805657.68262.6607541005525077753@jlahtine-mobl.ger.corp.intel.com>
  <162340998262.68262.6045527397253780242@jlahtine-mobl.ger.corp.intel.com>
  <dbdd436a-523d-f7d2-db2e-15ea45f435ca@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Mon, 14 Jun 2021 09:46:22 +0300
+ <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <a9cba36e-9d97-c64b-1701-06779993e47a@suse.de>
+Date: Mon, 14 Jun 2021 09:21:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
+MIME-Version: 1.0
+In-Reply-To: <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
 Subject: Re: [Intel-gfx] [PULL] topic/i915-ttm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,110 +85,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Thomas Hellstrom <thellstrom@vmware.com>, dim-tools@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1465298142=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUaG9tYXMgWmltbWVybWFubiAoMjAyMS0wNi0xMyAyMTo1NDowMykKPiBIaSBKb29u
-YXMKPiAKPiBBbSAxMS4wNi4yMSB1bSAxMzoxMyBzY2hyaWViIEpvb25hcyBMYWh0aW5lbjoKPiA+
-IFF1b3RpbmcgSm9vbmFzIExhaHRpbmVuICgyMDIxLTA2LTExIDEzOjQwOjU2KQo+ID4+IFF1b3Rp
-bmcgTWFhcnRlbiBMYW5raG9yc3QgKDIwMjEtMDYtMTEgMTI6Mjc6MTUpCj4gPj4+IFB1bGwgcmVx
-dWVzdCBmb3IgZHJtLW1pc2MtbmV4dCBhbmQgZHJtLWludGVsLWd0LW5leHQuCj4gPj4+Cj4gPj4+
-IHRvcGljL2k5MTUtdHRtLTIwMjEtMDYtMTE6Cj4gPj4+IGRybS1taXNjIGFuZCBkcm0taW50ZWwg
-cHVsbCByZXF1ZXN0IGZvciB0b3BpYy9pOTE1LXR0bToKPiA+Pj4gLSBDb252ZXJ0IGk5MTUgbG1l
-bSBoYW5kbGluZyB0byB0dG0uCj4gPj4+IC0gQWRkIGEgcGF0Y2ggdG8gdGVtcG9yYXJpbHkgYWRk
-IGEgZHJpdmVyX3ByaXZhdGUgbWVtYmVyIHRvIHZtYV9ub2RlLgo+ID4+PiAtIFVzZSB0aGlzIHRv
-IGFsbG93IG1peGVkIG9iamVjdCBtbWFwIGhhbmRsaW5nIGZvciBpOTE1Lgo+ID4+PiBUaGUgZm9s
-bG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IDFiZDhhN2RjMjhjMWM0MTBmMWNlZWZhZTFmMmE5
-N2MwNmQxYTY3YzI6Cj4gPj4+Cj4gPj4+ICAgIE1lcmdlIHRhZyAnZXh5bm9zLWRybS1uZXh0LWZv
-ci12NS4xNCcgb2YgZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0
-L2RhZWlua2kvZHJtLWV4eW5vcyBpbnRvIGRybS1uZXh0ICgyMDIxLTA2LTExIDE0OjE5OjEyICsx
-MDAwKQo+ID4+Cj4gPj4gVGhpcyBiYXNlIGlzIG5vdCBpbiBkcm0tbWlzYy1uZXh0IG9yIGRybS1p
-bnRlbC1ndC1uZXh0LCBzbyBlZmZlY3RpdmVseQo+ID4+IHdlIHdvdWxkIGVuZCB1cCBwdWxsaW5n
-IDQ3OCBleHRyYSBjb21taXRzIGZyb20gZHJtLW5leHQgYXMgYSByZXN1bHQuIEFuZAo+ID4+IGFs
-c28gY2F1c2luZyBhbGwgdGhlIHdhcm5pbmdzIGZvciB0aG9zZSBjb21taXRzLiBJIGRvbid0IHRo
-aW5rIHdlIHNob3VsZAo+ID4+IGRvIHRoYXQ/Cj4gPj4KPiA+PiBUaGUgY29tbW9uIGFuY2VzdG9y
-IHdvdWxkIGJlIGNjZDE5NTBjMmY3ZTM4YWU0NWFlZWZiOTlhMDhiMzk0MDdjZDZjNjMKPiA+PiAi
-TWVyZ2UgdGFnICdkcm0taW50ZWwtZ3QtbmV4dC0yMDIxLTA1LTI4JyBvZiBnaXQ6Ly9hbm9uZ2l0
-LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtLWludGVsIGludG8gZHJtLW5leHQiCj4gPj4gU2hvdWxk
-IHdlIHJlLWRvIHRoZSB0b3BpYyBicmFuY2ggYmFzZWQgb24gdGhhdD8KPiA+IAo+ID4gVGhpcyBw
-cm9ibGVtIHNlZW1zIHRvIGNvbWUgZnJvbSB0aGUgZmFjdCB0aGF0IG9ubHkgdGhlIFBSIGZyb20g
-eWVzdGVyZGF5Cj4gPiB0aGF0IGdvdCBtZXJnZWQgdG8gZHJtLW5leHQgaGFkIHRoZSBkZXBlbmRl
-bmN5IHBhdGNoZXMuIFRoZSBwcmV2aW91cwo+ID4gYmFja21lcmdlIG9mIGRybS1uZXh0IHdhcyBy
-ZXF1ZXN0ZWQgdG9vIGVhcmx5Lgo+ID4gCj4gPiBJJ3ZlIHNvbHZlZCB0aGlzIHdpdGggbGVhc3Qg
-aGFzc2xlIGJ5IGJhY2ttZXJnaW5nIGRybS1uZXh0IGFnYWluIGFuZAo+ID4gdGhlbiBhcHBseWlu
-ZyB0aGUgUFIgdG8gZHJtLWludGVsLWd0LW5leHQuCj4gPiAKPiA+IEkgdGhpbmsgZHJtLW1pc2Mt
-bmV4dCBzaG91bGQgZG8gdGhlIHNhbWUgKGV4YWN0IGNvbW1pdCB3YXMKPiA+IDFiZDhhN2RjMjhj
-MWM0MTBmMWNlZWZhZTFmMmE5N2MwNmQxYTY3YzIpLgo+IAo+IEkgZGlkIGEgYmFja21lcmdlIGZy
-b20gZHJtLW5leHQgcmVjZW50bHkgYW5kIGRybS1taXNjLW5leHQgY2FuIG1lcmdlIHRoZSAKPiBw
-YXRjaGVzIGluIHRhZ3MvdG9waWMvaTkxNS10dG0tMjAyMS0wNi0xMSB3aXRob3V0IGFkZGl0aW9u
-cy4KPiAKPiBJIGFzc3VtZSB5b3UgdG8gdXBkYXRlZCBkcm0taW50ZWwtZ3QtbmV4dCB3aXRob3V0
-IHJlZG9pbmcgdGhlIFBSPwoKQ29ycmVjdC4KClJlZ2FyZHMsIEpvb25hcwoKPiAKPiBCZXN0IHJl
-Z2FyZHMKPiBUaG9tYXMKPiAKPiA+IAo+ID4gUmVnYXJkcywgSm9vbmFzCj4gPiAKPiA+PiBIb3dl
-dmVyIHRoZSBESU0gZG9jc1sxXSBpbmRlZWQgZG8gc2F5OiAiRm9yIHRvcGljIGJyYW5jaGVzIHNo
-YXJlZCB3aXRoaW4KPiA+PiB0aGUgZ3B1L2RybSBzdWJzeXN0ZW0sIGJhc2UgaXQgb24gdGhlIGxh
-dGVzdCBkcm0tbmV4dCBicmFuY2guIiBJIHRoaW5rCj4gPj4gdGhlIGRvY3MgZG9uJ3QgdGFrZSBp
-bnRvIGFjY291bnQgdGhlIGN1cnJlbnQgcGVyaW9kIHdoZXJlIGRybS1uZXh0IGlzCj4gPj4gYmVp
-bmcgYWN0aXZlbHkgdXBkYXRlZCBhcyB3ZSBzcGVhay4KPiA+Pgo+ID4+IFNob3VsZCB3ZSB1cGRh
-dGUgdGhlIGRvY3MgdG8gdXNlICdnaXQgbWVyZ2UtYmFzZScgb3Igc29tZXRoaW5nIGVsc2U/Cj4g
-Pj4KPiA+PiBSZWdhcmRzLCBKb29uYXMKPiA+Pgo+ID4+IFsxXTogaHR0cHM6Ly9kcm0ucGFnZXMu
-ZnJlZWRlc2t0b3Aub3JnL21haW50YWluZXItdG9vbHMvZGltLmh0bWwjY3Jvc3Mtc3Vic3lzdGVt
-LXRvcGljLWJyYW5jaGVzCj4gPj4KPiA+Pj4KPiA+Pj4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0
-IHJlcG9zaXRvcnkgYXQ6Cj4gPj4+Cj4gPj4+ICAgIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Au
-b3JnL2RybS9kcm0tbWlzYyB0YWdzL3RvcGljL2k5MTUtdHRtLTIwMjEtMDYtMTEKPiA+Pj4KPiA+
-Pj4gZm9yIHlvdSB0byBmZXRjaCBjaGFuZ2VzIHVwIHRvIGNmM2UzZTg2ZDc3OTcwMjExZTA5ODMx
-MzBlODk2YWUyNDI2MDEwMDM6Cj4gPj4+Cj4gPj4+ICAgIGRybS9pOTE1OiBVc2UgdHRtIG1tYXAg
-aGFuZGxpbmcgZm9yIHR0bSBibydzLiAoMjAyMS0wNi0xMSAxMDo1MzoyNSArMDIwMCkKPiA+Pj4K
-PiA+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQo+ID4+PiBkcm0tbWlzYyBhbmQgZHJtLWludGVsIHB1bGwgcmVxdWVzdCBm
-b3IgdG9waWMvaTkxNS10dG06Cj4gPj4+IC0gQ29udmVydCBpOTE1IGxtZW0gaGFuZGxpbmcgdG8g
-dHRtLgo+ID4+PiAtIEFkZCBhIHBhdGNoIHRvIHRlbXBvcmFyaWx5IGFkZCBhIGRyaXZlcl9wcml2
-YXRlIG1lbWJlciB0byB2bWFfbm9kZS4KPiA+Pj4gLSBVc2UgdGhpcyB0byBhbGxvdyBtaXhlZCBv
-YmplY3QgbW1hcCBoYW5kbGluZyBmb3IgaTkxNS4KPiA+Pj4KPiA+Pj4gLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ID4+PiBN
-YWFydGVuIExhbmtob3JzdCAoMik6Cj4gPj4+ICAgICAgICBkcm0vdm1hOiBBZGQgYSBkcml2ZXJf
-cHJpdmF0ZSBtZW1iZXIgdG8gdm1hX25vZGUuCj4gPj4+ICAgICAgICBkcm0vaTkxNTogVXNlIHR0
-bSBtbWFwIGhhbmRsaW5nIGZvciB0dG0gYm8ncy4KPiA+Pj4KPiA+Pj4gVGhvbWFzIEhlbGxzdHLD
-tm0gKDIpOgo+ID4+PiAgICAgICAgZHJtL2k5MTUvdHRtOiBJbnRyb2R1Y2UgYSBUVE0gaTkxNSBn
-ZW0gb2JqZWN0IGJhY2tlbmQKPiA+Pj4gICAgICAgIGRybS9pOTE1L2xtZW06IFZlcmlmeSBjaGVj
-a3MgZm9yIGxtZW0gcmVzaWRlbmN5Cj4gPj4+Cj4gPj4+ICAgZHJpdmVycy9ncHUvZHJtL2RybV9n
-ZW0uYyAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDkgLQo+ID4+PiAgIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgIHwgICAxICsKPiA+Pj4gICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgICAgICB8ICAgMiAr
-LQo+ID4+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jcmVhdGUuYyAgICAg
-ICAgIHwgICA5ICstCj4gPj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xt
-ZW0uYyAgICAgICAgICAgfCAxMjYgKystLQo+ID4+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9sbWVtLmggICAgICAgICAgIHwgICA1IC0KPiA+Pj4gICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5jICAgICAgICAgICB8ICA4MyArKy0KPiA+Pj4gICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMgICAgICAgICB8IDE0MyAr
-KystLQo+ID4+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCAg
-ICAgICAgIHwgIDE5ICstCj4gPj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X29iamVjdF90eXBlcy5oICAgfCAgMzAgKy0KPiA+Pj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fcGFnZXMuYyAgICAgICAgICB8ICAgMyArLQo+ID4+PiAgIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9yZWdpb24uYyAgICAgICAgIHwgICA2ICstCj4gPj4+ICAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jICAgICAgICAgICAgfCA2NDcg
-KysrKysrKysrKysrKysrKysrKysrCj4gPj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
-MTVfZ2VtX3R0bS5oICAgICAgICAgICAgfCAgNDggKysKPiA+Pj4gICBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX21tYW4uYyB8ICA5MCArLS0KPiA+Pj4gICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZWdpb25fbG1lbS5jICAgICAgICB8ICAgMyArLQo+
-ID4+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMgICAgICAgICAgICAgICAgICAg
-IHwgICA1ICstCj4gPj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3JlZ2lv
-bi5jICAgICAgICAgfCAgIDEgLQo+ID4+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21l
-bW9yeV9yZWdpb24uaCAgICAgICAgIHwgICAxIC0KPiA+Pj4gICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pbnRlbF9yZWdpb25fdHRtLmMgICAgICAgICAgICB8ICAgOCArLQo+ID4+PiAgIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3JlZ2lvbl90dG0uaCAgICAgICAgICAgIHwgIDExICstCj4gPj4+
-ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2lndF9tbWFwLmMgICAgICAgICAgfCAg
-MjUgKy0KPiA+Pj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X21tYXAuaCAg
-ICAgICAgICB8ICAxMiArLQo+ID4+PiAgIGluY2x1ZGUvZHJtL2RybV92bWFfbWFuYWdlci5oICAg
-ICAgICAgICAgICAgICAgICAgIHwgICAyICstCj4gPj4+ICAgMjQgZmlsZXMgY2hhbmdlZCwgMTAz
-OSBpbnNlcnRpb25zKCspLCAyNTAgZGVsZXRpb25zKC0pCj4gPj4+ICAgY3JlYXRlIG1vZGUgMTAw
-NjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYwo+ID4+PiAgIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmgKPiAK
-PiAtLSAKPiBUaG9tYXMgWmltbWVybWFubgo+IEdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXIKPiBT
-VVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgKPiBNYXhmZWxkc3RyLiA1LCA5MDQw
-OSBOw7xybmJlcmcsIEdlcm1hbnkKPiAoSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpCj4gR2VzY2jD
-pGZ0c2bDvGhyZXI6IEZlbGl4IEltZW5kw7ZyZmZlcgo+IApfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1465298142==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7
+Content-Type: multipart/mixed; boundary="uMyGzyoSgX88vxUiR6Ax6Vye8hlNCn2r5";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>,
+ dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sean Paul <sean@poorly.run>
+Message-ID: <a9cba36e-9d97-c64b-1701-06779993e47a@suse.de>
+Subject: Re: [PULL] topic/i915-ttm
+References: <eb71ee2d-3413-6ca8-0b7c-a58695f00b77@linux.intel.com>
+ <162340805657.68262.6607541005525077753@jlahtine-mobl.ger.corp.intel.com>
+ <162340998262.68262.6045527397253780242@jlahtine-mobl.ger.corp.intel.com>
+ <dbdd436a-523d-f7d2-db2e-15ea45f435ca@suse.de>
+ <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
+In-Reply-To: <162365318254.3468.3267791653088176005@jlahtine-mobl.ger.corp.intel.com>
+
+--uMyGzyoSgX88vxUiR6Ax6Vye8hlNCn2r5
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 14.06.21 um 08:46 schrieb Joonas Lahtinen:
+> Quoting Thomas Zimmermann (2021-06-13 21:54:03)
+>> Hi Joonas
+>>
+>> Am 11.06.21 um 13:13 schrieb Joonas Lahtinen:
+>>> Quoting Joonas Lahtinen (2021-06-11 13:40:56)
+>>>> Quoting Maarten Lankhorst (2021-06-11 12:27:15)
+>>>>> Pull request for drm-misc-next and drm-intel-gt-next.
+>>>>>
+>>>>> topic/i915-ttm-2021-06-11:
+>>>>> drm-misc and drm-intel pull request for topic/i915-ttm:
+>>>>> - Convert i915 lmem handling to ttm.
+>>>>> - Add a patch to temporarily add a driver_private member to vma_nod=
+e.
+>>>>> - Use this to allow mixed object mmap handling for i915.
+>>>>> The following changes since commit 1bd8a7dc28c1c410f1ceefae1f2a97c0=
+6d1a67c2:
+>>>>>
+>>>>>     Merge tag 'exynos-drm-next-for-v5.14' of git://git.kernel.org/p=
+ub/scm/linux/kernel/git/daeinki/drm-exynos into drm-next (2021-06-11 14:1=
+9:12 +1000)
+>>>>
+>>>> This base is not in drm-misc-next or drm-intel-gt-next, so effective=
+ly
+>>>> we would end up pulling 478 extra commits from drm-next as a result.=
+ And
+>>>> also causing all the warnings for those commits. I don't think we sh=
+ould
+>>>> do that?
+>>>>
+>>>> The common ancestor would be ccd1950c2f7e38ae45aeefb99a08b39407cd6c6=
+3
+>>>> "Merge tag 'drm-intel-gt-next-2021-05-28' of git://anongit.freedeskt=
+op.org/drm/drm-intel into drm-next"
+>>>> Should we re-do the topic branch based on that?
+>>>
+>>> This problem seems to come from the fact that only the PR from yester=
+day
+>>> that got merged to drm-next had the dependency patches. The previous
+>>> backmerge of drm-next was requested too early.
+>>>
+>>> I've solved this with least hassle by backmerging drm-next again and
+>>> then applying the PR to drm-intel-gt-next.
+>>>
+>>> I think drm-misc-next should do the same (exact commit was
+>>> 1bd8a7dc28c1c410f1ceefae1f2a97c06d1a67c2).
+>>
+>> I did a backmerge from drm-next recently and drm-misc-next can merge t=
+he
+>> patches in tags/topic/i915-ttm-2021-06-11 without additions.
+>>
+>> I assume you to updated drm-intel-gt-next without redoing the PR?
+>=20
+> Correct.
+
+Some patches landed in drm-next. I now did another backmerge and then=20
+merged the topic branch.
+
+Best regards
+Thomas
+
+>=20
+> Regards, Joonas
+>=20
+>>
+>> Best regards
+>> Thomas
+>>
+>>>
+>>> Regards, Joonas
+>>>
+>>>> However the DIM docs[1] indeed do say: "For topic branches shared wi=
+thin
+>>>> the gpu/drm subsystem, base it on the latest drm-next branch." I thi=
+nk
+>>>> the docs don't take into account the current period where drm-next i=
+s
+>>>> being actively updated as we speak.
+>>>>
+>>>> Should we update the docs to use 'git merge-base' or something else?=
+
+>>>>
+>>>> Regards, Joonas
+>>>>
+>>>> [1]: https://drm.pages.freedesktop.org/maintainer-tools/dim.html#cro=
+ss-subsystem-topic-branches
+>>>>
+>>>>>
+>>>>> are available in the Git repository at:
+>>>>>
+>>>>>     git://anongit.freedesktop.org/drm/drm-misc tags/topic/i915-ttm-=
+2021-06-11
+>>>>>
+>>>>> for you to fetch changes up to cf3e3e86d77970211e0983130e896ae24260=
+1003:
+>>>>>
+>>>>>     drm/i915: Use ttm mmap handling for ttm bo's. (2021-06-11 10:53=
+:25 +0200)
+>>>>>
+>>>>> ----------------------------------------------------------------
+>>>>> drm-misc and drm-intel pull request for topic/i915-ttm:
+>>>>> - Convert i915 lmem handling to ttm.
+>>>>> - Add a patch to temporarily add a driver_private member to vma_nod=
+e.
+>>>>> - Use this to allow mixed object mmap handling for i915.
+>>>>>
+>>>>> ----------------------------------------------------------------
+>>>>> Maarten Lankhorst (2):
+>>>>>         drm/vma: Add a driver_private member to vma_node.
+>>>>>         drm/i915: Use ttm mmap handling for ttm bo's.
+>>>>>
+>>>>> Thomas Hellstr=C3=B6m (2):
+>>>>>         drm/i915/ttm: Introduce a TTM i915 gem object backend
+>>>>>         drm/i915/lmem: Verify checks for lmem residency
+>>>>>
+>>>>>    drivers/gpu/drm/drm_gem.c                          |   9 -
+>>>>>    drivers/gpu/drm/i915/Makefile                      |   1 +
+>>>>>    drivers/gpu/drm/i915/display/intel_display.c       |   2 +-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_create.c         |   9 +-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_lmem.c           | 126 ++--
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_lmem.h           |   5 -
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_mman.c           |  83 ++-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_object.c         | 143 +++--
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_object.h         |  19 +-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_object_types.h   |  30 +-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_pages.c          |   3 +-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_region.c         |   6 +-
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_ttm.c            | 647 +++++++=
+++++++++++++++
+>>>>>    drivers/gpu/drm/i915/gem/i915_gem_ttm.h            |  48 ++
+>>>>>    drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |  90 +--
+>>>>>    drivers/gpu/drm/i915/gt/intel_region_lmem.c        |   3 +-
+>>>>>    drivers/gpu/drm/i915/i915_gem.c                    |   5 +-
+>>>>>    drivers/gpu/drm/i915/intel_memory_region.c         |   1 -
+>>>>>    drivers/gpu/drm/i915/intel_memory_region.h         |   1 -
+>>>>>    drivers/gpu/drm/i915/intel_region_ttm.c            |   8 +-
+>>>>>    drivers/gpu/drm/i915/intel_region_ttm.h            |  11 +-
+>>>>>    drivers/gpu/drm/i915/selftests/igt_mmap.c          |  25 +-
+>>>>>    drivers/gpu/drm/i915/selftests/igt_mmap.h          |  12 +-
+>>>>>    include/drm/drm_vma_manager.h                      |   2 +-
+>>>>>    24 files changed, 1039 insertions(+), 250 deletions(-)
+>>>>>    create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+>>>>>    create mode 100644 drivers/gpu/drm/i915/gem/i915_gem_ttm.h
+>>
+>> --=20
+>> Thomas Zimmermann
+>> Graphics Driver Developer
+>> SUSE Software Solutions Germany GmbH
+>> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+>> (HRB 36809, AG N=C3=BCrnberg)
+>> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+>>
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--uMyGzyoSgX88vxUiR6Ax6Vye8hlNCn2r5--
+
+--IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDHA4IFAwAAAAAACgkQlh/E3EQov+AT
+tBAAidiE21fsBreej9nVEY7UQhjx3Ho7Nl7LZh5juKUicoxaMBWYPTm+eb0n10/jtFpY2/y0nV8r
+XAFG+TJk1dmhZU6GRYVi9/nvtskuoV12JhvmCcqFJLWO/FSQ1J1hWYwT5cbKNh6RqruZZ/Ffv/Cp
+Nd3YX1u/paT/JtLRu3/nLbn3QqSuui7NY/yA+HtDVGAzntC08g+ZwRziOBGrg2fSSr5vlkMXCSXL
+cjTqVlw3nqM8nSdGsfvY1yymuZ2tIhjBSgmXdQL3YPvVcnjthBG/sHeVdw3aF+NrHAOhSa1I6O+J
+YSfvneWw44CuBGJQaPC8/sbPP2HMLG38S6Kzir31n41OqBNeUJg6+G1AaoRXfx/Y8IAox/i1BB6q
+FUxG6I0nR9Vfs/iDwJeTkY2XP4mrxydHFxO8dsjkOJy03V3E13V8XpUMK1LQ1mVwpfRlc2x6LDla
+HP8w/yMcjLUJs4MDFXkFj1QrG+VhzHBUGOiIfJQ01mAHLn5uYwMVQPODzYTDXR6yzenXvRB3lS4W
+TY4tJAJqnniMLVzsBrsRxCmLl4mNUqGK/G7UjCL4LgcUaAVxGfBayoWbkZihRG64JIhIMl7D4YFr
+6CHUjmk3syvd8gNPPZr38iqfib7gTFHRvXCcX8Xv/DKKfhPhh3XH0GQ0UbeOv0UUqqs/amVigf/m
+7wU=
+=VuoH
+-----END PGP SIGNATURE-----
+
+--IQMGzgjxKmq0qL9rj5bHaxRC8v17knEm7--
+
+--===============1465298142==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1465298142==--
