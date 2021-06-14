@@ -1,28 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3F93A5D18
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 08:28:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B23C3A5D20
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 08:28:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5098489D84;
-	Mon, 14 Jun 2021 06:28:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C2DE89617;
+	Mon, 14 Jun 2021 06:28:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E3B889D84;
- Mon, 14 Jun 2021 06:28:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE9F689D86;
+ Mon, 14 Jun 2021 06:28:21 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id DE87267373; Mon, 14 Jun 2021 08:28:01 +0200 (CEST)
-Date: Mon, 14 Jun 2021 08:28:01 +0200
+ id 4C6E068AFE; Mon, 14 Jun 2021 08:28:19 +0200 (CEST)
+Date: Mon, 14 Jun 2021 08:28:18 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210614062801.GJ28343@lst.de>
+Message-ID: <20210614062818.GK28343@lst.de>
 References: <20210611152659.2142983-1-tientzu@chromium.org>
  <20210611152659.2142983-12-tientzu@chromium.org>
+ <20210614062801.GJ28343@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210611152659.2142983-12-tientzu@chromium.org>
+In-Reply-To: <20210614062801.GJ28343@lst.de>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 Subject: Re: [Intel-gfx] [PATCH v9 11/14] swiotlb: Add restricted DMA
  alloc/free support.
@@ -68,8 +69,11 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I think merging this with the next two patches would be a little more
-clear.
+On Mon, Jun 14, 2021 at 08:28:01AM +0200, Christoph Hellwig wrote:
+> I think merging this with the next two patches would be a little more
+> clear.
+
+Sorry, I mean the next patch and the previous one.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
