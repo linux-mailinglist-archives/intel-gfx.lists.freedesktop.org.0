@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08EE3A5CE4
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 08:21:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 993053A5CEC
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jun 2021 08:21:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5405589D86;
-	Mon, 14 Jun 2021 06:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 178F089D84;
+	Mon, 14 Jun 2021 06:21:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 740DA89D84;
- Mon, 14 Jun 2021 06:21:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B8E089D84;
+ Mon, 14 Jun 2021 06:21:42 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id B72AF67373; Mon, 14 Jun 2021 08:21:18 +0200 (CEST)
-Date: Mon, 14 Jun 2021 08:21:18 +0200
+ id 2608B68AFE; Mon, 14 Jun 2021 08:21:40 +0200 (CEST)
+Date: Mon, 14 Jun 2021 08:21:39 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210614062118.GD28343@lst.de>
+Message-ID: <20210614062139.GE28343@lst.de>
 References: <20210611152659.2142983-1-tientzu@chromium.org>
- <20210611152659.2142983-5-tientzu@chromium.org>
+ <20210611152659.2142983-6-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210611152659.2142983-5-tientzu@chromium.org>
+In-Reply-To: <20210611152659.2142983-6-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v9 04/14] swiotlb: Add restricted DMA pool
- initialization
+Subject: Re: [Intel-gfx] [PATCH v9 05/14] swiotlb: Update is_swiotlb_buffer
+ to add a struct device argument
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,13 +68,9 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 11, 2021 at 11:26:49PM +0800, Claire Chang wrote:
-> Add the initialization function to create restricted DMA pools from
-> matching reserved-memory nodes.
+Looks good,
 
-Bisection hazard:  we should only add the new config option when the
-code is actually read to be used.  So this patch should move to the end
-of the series.
+Reviewed-by: Christoph Hellwig <hch@lst.de>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
