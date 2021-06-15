@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2019D3A7B63
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 12:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 759CA3A7B76
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 12:09:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 864A76E22B;
-	Tue, 15 Jun 2021 10:04:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3323D6E237;
+	Tue, 15 Jun 2021 10:09:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6823F6E22B;
- Tue, 15 Jun 2021 10:04:58 +0000 (UTC)
-IronPort-SDR: Bp1Xg9ALpj+aIl4qF06rWzW38OWvYuxBLQoEEHry8hgtham6tXXEmBpH7/0WC/yGMU6c3VwXAy
- DeQq/w522Zcg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="202936426"
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="202936426"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3516E237
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 10:09:51 +0000 (UTC)
+IronPort-SDR: KOdIVMy8GZsJN5aQqNt7ong8oFYikFLSaJmzde+kcqnYdZaZkMy4vculhwe+OuDh0Q5K9acCQ/
+ l8c1LgKcMibQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="202937215"
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="202937215"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 03:04:55 -0700
-IronPort-SDR: +UjwLZMwunbmfgGDXoNm+iFrmQijOgNiP1LX8apgWcvQfmvrXHabfvL45l0MT0PkvY3Jihzzrf
- gFIjaeObAVEw==
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="421076013"
-Received: from ramaling-i9x.iind.intel.com ([10.99.66.205])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 03:04:53 -0700
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Tue, 15 Jun 2021 15:36:21 +0530
-Message-Id: <20210615100621.5805-1-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <0e309744-4d13-69de-2ad8-ee0df5cd46c1@linux.intel.com>
-References: <0e309744-4d13-69de-2ad8-ee0df5cd46c1@linux.intel.com>
+ 15 Jun 2021 03:09:50 -0700
+IronPort-SDR: dgS4vx8cgndOr+Uif+Yl1ksInKE1L/ycHI57yYKK0L5OnkMTBSgfwx2DK/y2UeKZ3aLoix3Uen
+ zQxEiFcVd0HA==
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="639626470"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2021 03:09:49 -0700
+Date: Tue, 15 Jun 2021 13:09:46 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <20210615100946.GB916542@ideak-desk.fi.intel.com>
+References: <20210614114851.839925-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/ttm: accelerated move implementation
+Content-Disposition: inline
+In-Reply-To: <20210614114851.839925-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH V5] drm/i915/jsl: Add W/A 1409054076 for JSL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,91 +46,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW52b2tlcyB0aGUgcGlwZWxpbmVkIHBhZ2UgbWlncmF0aW9uIHRocm91Z2ggYmx0LCBmb3IKaTkx
-NV90dG1fbW92ZSByZXF1ZXN0cyBvZiBldmljdGlvbiBhbmQgYWxzbyBvYmogY2xlYXIuCgp2MjoK
-IC0gc3ViZnVuY3Rpb24gZm9yIGFjY2VsX21vdmUgKFRob21hcykKIC0gZW5naW5lX3BtX2dldC9w
-dXQgYXJvdW5kIGNvbnRleHRfbW92ZS9jbGVhciAoVGhvbWFzKQogLSBJbnZhbGlkYXRpb24gYXQg
-YWNjZWxfY2xlYXIgKFRob21hcykKCnYzOgogLSBUaW1lb3V0IGlzIHNldCBmb3IgTUFYX1NDSEVE
-VUxFX1RJTUVPVVQgKFRob21hcykKIC0gcy9UVE1fUExfUFJJVi9JOTE1X1BMX0xNRU0wIChUaG9t
-YXMpCgpTaWduZWQtb2ZmLWJ5OiBSYW1hbGluZ2FtIEMgPHJhbWFsaW5nYW0uY0BpbnRlbC5jb20+
-ClJldmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5p
-bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jIHwg
-ODggKysrKysrKysrKysrKysrKysrKysrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDc1IGluc2VydGlv
-bnMoKyksIDEzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2dlbS9pOTE1X2dlbV90dG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90
-dG0uYwppbmRleCAzNzQ4MDk4YjQyZDUuLjk0NTcxNzU3ZmI0MiAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2dlbS9pOTE1X2dlbV90dG0uYwpAQCAtMTUsNiArMTUsOSBAQAogI2luY2x1ZGUgImdlbS9p
-OTE1X2dlbV90dG0uaCIKICNpbmNsdWRlICJnZW0vaTkxNV9nZW1fbW1hbi5oIgogCisjaW5jbHVk
-ZSAiZ3QvaW50ZWxfbWlncmF0ZS5oIgorI2luY2x1ZGUgImd0L2ludGVsX2VuZ2luZV9wbS5oIgor
-CiAjZGVmaW5lIEk5MTVfUExfTE1FTTAgVFRNX1BMX1BSSVYKICNkZWZpbmUgSTkxNV9QTF9TWVNU
-RU0gVFRNX1BMX1NZU1RFTQogI2RlZmluZSBJOTE1X1BMX1NUT0xFTiBUVE1fUExfVlJBTQpAQCAt
-MjgyLDYgKzI4NSw2MiBAQCBpOTE1X3R0bV9yZXNvdXJjZV9nZXRfc3Qoc3RydWN0IGRybV9pOTE1
-X2dlbV9vYmplY3QgKm9iaiwKIAlyZXR1cm4gaW50ZWxfcmVnaW9uX3R0bV9ub2RlX3RvX3N0KG9i
-ai0+bW0ucmVnaW9uLCByZXMtPm1tX25vZGUpOwogfQogCitzdGF0aWMgaW50IGk5MTVfdHRtX2Fj
-Y2VsX21vdmUoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywKKwkJCSAgICAgICBzdHJ1Y3Qg
-dHRtX3Jlc291cmNlICpkc3RfbWVtLAorCQkJICAgICAgIHN0cnVjdCBzZ190YWJsZSAqZHN0X3N0
-KQoreworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gY29udGFpbmVyX29mKGJvLT5i
-ZGV2LCB0eXBlb2YoKmk5MTUpLAorCQkJCQkJICAgICBiZGV2KTsKKwlzdHJ1Y3QgdHRtX3Jlc291
-cmNlX21hbmFnZXIgKnNyY19tYW4gPQorCQl0dG1fbWFuYWdlcl90eXBlKGJvLT5iZGV2LCBiby0+
-bWVtLm1lbV90eXBlKTsKKwlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqID0gaTkxNV90
-dG1fdG9fZ2VtKGJvKTsKKwlzdHJ1Y3Qgc2dfdGFibGUgKnNyY19zdDsKKwlzdHJ1Y3QgaTkxNV9y
-ZXF1ZXN0ICpycTsKKwlpbnQgcmV0OworCisJaWYgKCFpOTE1LT5ndC5taWdyYXRlLmNvbnRleHQp
-CisJCXJldHVybiAtRUlOVkFMOworCisJaWYgKCFiby0+dHRtIHx8ICF0dG1fdHRfaXNfcG9wdWxh
-dGVkKGJvLT50dG0pKSB7CisJCWlmIChiby0+dHlwZSA9PSB0dG1fYm9fdHlwZV9rZXJuZWwpCisJ
-CQlyZXR1cm4gLUVJTlZBTDsKKworCQlpZiAoYm8tPnR0bSAmJgorCQkgICAgIShiby0+dHRtLT5w
-YWdlX2ZsYWdzICYgVFRNX1BBR0VfRkxBR19aRVJPX0FMTE9DKSkKKwkJCXJldHVybiAwOworCisJ
-CWludGVsX2VuZ2luZV9wbV9nZXQoaTkxNS0+Z3QubWlncmF0ZS5jb250ZXh0LT5lbmdpbmUpOwor
-CQlyZXQgPSBpbnRlbF9jb250ZXh0X21pZ3JhdGVfY2xlYXIoaTkxNS0+Z3QubWlncmF0ZS5jb250
-ZXh0LCBOVUxMLAorCQkJCQkJICBkc3Rfc3QtPnNnbCwgSTkxNV9DQUNIRV9OT05FLAorCQkJCQkJ
-ICBkc3RfbWVtLT5tZW1fdHlwZSA+PSBJOTE1X1BMX0xNRU0wLAorCQkJCQkJICAwLCAmcnEpOwor
-CisJCWlmICghcmV0ICYmIHJxKSB7CisJCQlpOTE1X3JlcXVlc3Rfd2FpdChycSwgMCwgTUFYX1ND
-SEVEVUxFX1RJTUVPVVQpOworCQkJaTkxNV9yZXF1ZXN0X3B1dChycSk7CisJCX0KKwkJaW50ZWxf
-ZW5naW5lX3BtX3B1dChpOTE1LT5ndC5taWdyYXRlLmNvbnRleHQtPmVuZ2luZSk7CisJfSBlbHNl
-IHsKKwkJc3JjX3N0ID0gc3JjX21hbi0+dXNlX3R0ID8gaTkxNV90dG1fdHRfZ2V0X3N0KGJvLT50
-dG0pIDoKKwkJCQkJCW9iai0+dHRtLmNhY2hlZF9pb19zdDsKKworCQlpbnRlbF9lbmdpbmVfcG1f
-Z2V0KGk5MTUtPmd0Lm1pZ3JhdGUuY29udGV4dC0+ZW5naW5lKTsKKwkJcmV0ID0gaW50ZWxfY29u
-dGV4dF9taWdyYXRlX2NvcHkoaTkxNS0+Z3QubWlncmF0ZS5jb250ZXh0LAorCQkJCQkJIE5VTEws
-IHNyY19zdC0+c2dsLCBJOTE1X0NBQ0hFX05PTkUsCisJCQkJCQkgYm8tPm1lbS5tZW1fdHlwZSA+
-PSBJOTE1X1BMX0xNRU0wLAorCQkJCQkJIGRzdF9zdC0+c2dsLCBJOTE1X0NBQ0hFX05PTkUsCisJ
-CQkJCQkgZHN0X21lbS0+bWVtX3R5cGUgPj0gSTkxNV9QTF9MTUVNMCwKKwkJCQkJCSAmcnEpOwor
-CQlpZiAoIXJldCAmJiBycSkgeworCQkJaTkxNV9yZXF1ZXN0X3dhaXQocnEsIDAsIE1BWF9TQ0hF
-RFVMRV9USU1FT1VUKTsKKwkJCWk5MTVfcmVxdWVzdF9wdXQocnEpOworCQl9CisJCWludGVsX2Vu
-Z2luZV9wbV9wdXQoaTkxNS0+Z3QubWlncmF0ZS5jb250ZXh0LT5lbmdpbmUpOworCX0KKworCXJl
-dHVybiByZXQ7Cit9CisKIHN0YXRpYyBpbnQgaTkxNV90dG1fbW92ZShzdHJ1Y3QgdHRtX2J1ZmZl
-cl9vYmplY3QgKmJvLCBib29sIGV2aWN0LAogCQkJIHN0cnVjdCB0dG1fb3BlcmF0aW9uX2N0eCAq
-Y3R4LAogCQkJIHN0cnVjdCB0dG1fcmVzb3VyY2UgKmRzdF9tZW0sCkBAIC0zMzIsMTkgKzM5MSwy
-MiBAQCBzdGF0aWMgaW50IGk5MTVfdHRtX21vdmUoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpi
-bywgYm9vbCBldmljdCwKIAlpZiAoSVNfRVJSKGRzdF9zdCkpCiAJCXJldHVybiBQVFJfRVJSKGRz
-dF9zdCk7CiAKLQkvKiBJZiB3ZSBzdGFydCBtYXBwaW5nIEdHVFQsIHdlIGNhbiBubyBsb25nZXIg
-dXNlIG1hbjo6dXNlX3R0IGhlcmUuICovCi0JZHN0X2l0ZXIgPSBkc3RfbWFuLT51c2VfdHQgPwot
-CQl0dG1fa21hcF9pdGVyX3R0X2luaXQoJl9kc3RfaXRlci50dCwgYm8tPnR0bSkgOgotCQl0dG1f
-a21hcF9pdGVyX2lvbWFwX2luaXQoJl9kc3RfaXRlci5pbywgJmRzdF9yZWctPmlvbWFwLAotCQkJ
-CQkgZHN0X3N0LCBkc3RfcmVnLT5yZWdpb24uc3RhcnQpOwotCi0Jc3JjX2l0ZXIgPSBzcmNfbWFu
-LT51c2VfdHQgPwotCQl0dG1fa21hcF9pdGVyX3R0X2luaXQoJl9zcmNfaXRlci50dCwgYm8tPnR0
-bSkgOgotCQl0dG1fa21hcF9pdGVyX2lvbWFwX2luaXQoJl9zcmNfaXRlci5pbywgJnNyY19yZWct
-PmlvbWFwLAotCQkJCQkgb2JqLT50dG0uY2FjaGVkX2lvX3N0LAotCQkJCQkgc3JjX3JlZy0+cmVn
-aW9uLnN0YXJ0KTsKLQotCXR0bV9tb3ZlX21lbWNweShibywgZHN0X21lbS0+bnVtX3BhZ2VzLCBk
-c3RfaXRlciwgc3JjX2l0ZXIpOworCXJldCA9IGk5MTVfdHRtX2FjY2VsX21vdmUoYm8sIGRzdF9t
-ZW0sIGRzdF9zdCk7CisJaWYgKHJldCkgeworCQkvKiBJZiB3ZSBzdGFydCBtYXBwaW5nIEdHVFQs
-IHdlIGNhbiBubyBsb25nZXIgdXNlIG1hbjo6dXNlX3R0IGhlcmUuICovCisJCWRzdF9pdGVyID0g
-ZHN0X21hbi0+dXNlX3R0ID8KKwkJCXR0bV9rbWFwX2l0ZXJfdHRfaW5pdCgmX2RzdF9pdGVyLnR0
-LCBiby0+dHRtKSA6CisJCQl0dG1fa21hcF9pdGVyX2lvbWFwX2luaXQoJl9kc3RfaXRlci5pbywg
-JmRzdF9yZWctPmlvbWFwLAorCQkJCQkJIGRzdF9zdCwgZHN0X3JlZy0+cmVnaW9uLnN0YXJ0KTsK
-KworCQlzcmNfaXRlciA9IHNyY19tYW4tPnVzZV90dCA/CisJCQl0dG1fa21hcF9pdGVyX3R0X2lu
-aXQoJl9zcmNfaXRlci50dCwgYm8tPnR0bSkgOgorCQkJdHRtX2ttYXBfaXRlcl9pb21hcF9pbml0
-KCZfc3JjX2l0ZXIuaW8sICZzcmNfcmVnLT5pb21hcCwKKwkJCQkJCSBvYmotPnR0bS5jYWNoZWRf
-aW9fc3QsCisJCQkJCQkgc3JjX3JlZy0+cmVnaW9uLnN0YXJ0KTsKKworCQl0dG1fbW92ZV9tZW1j
-cHkoYm8sIGRzdF9tZW0tPm51bV9wYWdlcywgZHN0X2l0ZXIsIHNyY19pdGVyKTsKKwl9CiAJdHRt
-X2JvX21vdmVfc3luY19jbGVhbnVwKGJvLCBkc3RfbWVtKTsKIAlpOTE1X3R0bV9mcmVlX2NhY2hl
-ZF9pb19zdChvYmopOwogCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+On Mon, Jun 14, 2021 at 05:18:51PM +0530, Tejas Upadhyay wrote:
+> When pipe A is disabled and MIPI DSI is enabled on pipe B,
+> the AMT KVMR feature will incorrectly see pipe A as enabled.
+> Set 0x42080 bit 23=1 before enabling DSI on pipe B and leave
+> it set while DSI is enabled on pipe B. No impact to setting
+> it all the time.
+> 
+> Changes since V4:
+>         - Modified function comment Wa_<number>:icl,jsl,ehl - Lucas
+>         - Modified debug message in sync state - Imre
+> Changes since V3:
+>         - More meaningful name to workaround - Imre
+>         - Remove boolean check clear flag
+>         - Add WA_verify hook in dsi sync_state
+> Changes since V2:
+>         - Used REG_BIT, ignored pipe A and used sw state check - Jani
+>         - Made function wrapper - Jani
+> Changes since V1:
+>         - ./dim checkpatch errors addressed
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 44 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h        |  1 +
+>  2 files changed, 45 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 16812488c5dd..17e318eb1ad0 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1253,15 +1253,37 @@ static void gen11_dsi_pre_enable(struct intel_atomic_state *state,
+>  	gen11_dsi_set_transcoder_timings(encoder, pipe_config);
+>  }
+>  
+> +/*
+> + * Wa_1409054076:icl,jsl,ehl
+> + * When pipe A is disabled and MIPI DSI is enabled on pipe B,
+> + * the AMT KVMR feature will incorrectly see pipe A as enabled.
+> + * Set 0x42080 bit 23=1 before enabling DSI on pipe B and leave
+> + * it set while DSI is enabled on pipe B
+> + */
+> +static void icl_apply_kvmr_pipe_a_wa(struct intel_encoder *encoder,
+> +				     enum pipe pipe, bool enable)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +
+> +	if ((DISPLAY_VER(dev_priv) == 11) && pipe == PIPE_B) {
+
+Redundant braces around a single simple statement.
+
+> +		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+> +			     IGNORE_KVMR_PIPE_A,
+> +			     enable ? IGNORE_KVMR_PIPE_A : 0);
+> +	}
+> +}
+>  static void gen11_dsi_enable(struct intel_atomic_state *state,
+>  			     struct intel_encoder *encoder,
+>  			     const struct intel_crtc_state *crtc_state,
+>  			     const struct drm_connector_state *conn_state)
+>  {
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+> +	struct intel_crtc *crtc = to_intel_crtc(conn_state->crtc);
+>  
+>  	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
+>  
+> +	/* Wa_1409054076:icl,jsl,ehl */
+> +	icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, true);
+> +
+>  	/* step6d: enable dsi transcoder */
+>  	gen11_dsi_enable_transcoder(encoder);
+>  
+> @@ -1415,6 +1437,7 @@ static void gen11_dsi_disable(struct intel_atomic_state *state,
+>  			      const struct drm_connector_state *old_conn_state)
+>  {
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+> +	struct intel_crtc *crtc = to_intel_crtc(old_conn_state->crtc);
+>  
+>  	/* step1: turn off backlight */
+>  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_OFF);
+> @@ -1423,6 +1446,9 @@ static void gen11_dsi_disable(struct intel_atomic_state *state,
+>  	/* step2d,e: disable transcoder and wait */
+>  	gen11_dsi_disable_transcoder(encoder);
+>  
+> +	/* Wa_1409054076:icl,jsl,ehl */
+> +	icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, false);
+> +
+>  	/* step2f,g: powerdown panel */
+>  	gen11_dsi_powerdown_panel(encoder);
+>  
+> @@ -1548,6 +1574,23 @@ static void gen11_dsi_get_config(struct intel_encoder *encoder,
+>  		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
+>  }
+>  
+> +static void gen11_dsi_sync_state(struct intel_encoder *encoder,
+> +				 const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_crtc *intel_crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	enum pipe pipe = intel_crtc->pipe;
+> +
+> +	/* wa verify 1409054076:icl,jsl,ehl */
+> +	if ((DISPLAY_VER(dev_priv) == 11) && pipe == PIPE_B &&
+> +	    !(intel_de_read(dev_priv, CHICKEN_PAR1_1) & IGNORE_KVMR_PIPE_A))
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "[ENCODER:%d:%s] BIOS left IGNORE_KVMR_PIPE_A\t"
+> +			    "cleared with pipe B enabled\n",
+
+No need to wrap these kind of strings to help grepping for a message and \t
+in the middle of a line doesn't look correct. With that fixed:
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> +			    encoder->base.base.id,
+> +			    encoder->base.name);
+> +}
+> +
+>  static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
+>  					struct intel_crtc_state *crtc_state)
+>  {
+> @@ -1966,6 +2009,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+>  	encoder->post_disable = gen11_dsi_post_disable;
+>  	encoder->port = port;
+>  	encoder->get_config = gen11_dsi_get_config;
+> +	encoder->sync_state = gen11_dsi_sync_state;
+>  	encoder->update_pipe = intel_panel_update_backlight;
+>  	encoder->compute_config = gen11_dsi_compute_config;
+>  	encoder->get_hw_state = gen11_dsi_get_hw_state;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index e915ec034c98..955027799d1d 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -8107,6 +8107,7 @@ enum {
+>  # define CHICKEN3_DGMG_DONE_FIX_DISABLE		(1 << 2)
+>  
+>  #define CHICKEN_PAR1_1			_MMIO(0x42080)
+> +#define  IGNORE_KVMR_PIPE_A		REG_BIT(23)
+>  #define  KBL_ARB_FILL_SPARE_22		REG_BIT(22)
+>  #define  DIS_RAM_BYPASS_PSR2_MAN_TRACK	(1 << 16)
+>  #define  SKL_DE_COMPRESSED_HASH_MODE	(1 << 15)
+> -- 
+> 2.31.1
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
