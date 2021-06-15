@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8B83A8055
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:36:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0603A8062
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:38:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B65AD6E30D;
-	Tue, 15 Jun 2021 13:36:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E94F6E328;
+	Tue, 15 Jun 2021 13:38:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 595C66E30D;
- Tue, 15 Jun 2021 13:36:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52357AA0ED;
- Tue, 15 Jun 2021 13:36:39 +0000 (UTC)
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68FCA6E2D8;
+ Tue, 15 Jun 2021 13:38:03 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 4EF4667373; Tue, 15 Jun 2021 15:37:58 +0200 (CEST)
+Date: Tue, 15 Jun 2021 15:37:58 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Claire Chang <tientzu@chromium.org>
+Message-ID: <20210615133758.GA20389@lst.de>
+References: <20210615132711.553451-1-tientzu@chromium.org>
+ <20210615132711.553451-2-tientzu@chromium.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Tue, 15 Jun 2021 13:36:39 -0000
-Message-ID: <162376419933.8819.4284370819516280088@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210615131451.61023-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210615131451.61023-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_i915_TTM_sync_accelerated_migration_and_clear_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20210615132711.553451-2-tientzu@chromium.org>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH v10 01/12] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,93 +38,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ jxgao@google.com, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Jun 15, 2021 at 09:27:00PM +0800, Claire Chang wrote:
+> Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
+> initialization to make the code reusable.
 
-Series: i915 TTM sync accelerated migration and clear (rev3)
-URL   : https://patchwork.freedesktop.org/series/91463/
-State : warning
+Looks good,
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-84d52ccba4bc drm/i915: Reference objects on the ww object list
-dad033f5d41d drm/i915: Break out dma_resv ww locking utilities to separate files
--:141: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#141: 
-new file mode 100644
-
--:166: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#166: FILE: drivers/gpu/drm/i915/i915_gem_ww.c:21:
-+	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
-
-total: 0 errors, 2 warnings, 0 checks, 183 lines checked
-170905ae335a drm/i915: Introduce a ww transaction helper
--:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_ww' - possible side-effects?
-#56: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
-+#define for_i915_gem_ww(_ww, _err, _intr)			\
-+	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
-+	     _err = __i915_gem_ww_fini(_ww, _err))
-
--:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
-#56: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
-+#define for_i915_gem_ww(_ww, _err, _intr)			\
-+	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
-+	     _err = __i915_gem_ww_fini(_ww, _err))
-
-total: 0 errors, 0 warnings, 2 checks, 41 lines checked
-1d7d203cc9de drm/i915/gt: Add an insert_entry for gen8_ppgtt
-b8de4e1527e9 drm/i915/gt: Add a routine to iterate over the pagetables of a GTT
-9c144ca818bb drm/i915/gt: Export the pinned context constructor and destructor
-ee3ad654412a drm/i915/gt: Pipelined page migration
--:66: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#66: 
-new file mode 100644
-
--:878: WARNING:LINE_SPACING: Missing a blank line after declarations
-#878: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:176:
-+	struct drm_i915_private *i915 = migrate->context->engine->i915;
-+	I915_RND_STATE(prng);
-
--:907: WARNING:LINE_SPACING: Missing a blank line after declarations
-#907: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:205:
-+	struct threaded_migrate *thread;
-+	I915_RND_STATE(prng);
-
--:932: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-#932: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:230:
-+	msleep(10); /* start all threads before we kthread_stop() */
-
-total: 0 errors, 4 warnings, 0 checks, 931 lines checked
-35222babd9d2 drm/i915/gt: Pipelined clear
--:355: WARNING:LINE_SPACING: Missing a blank line after declarations
-#355: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:311:
-+	struct drm_i915_private *i915 = migrate->context->engine->i915;
-+	I915_RND_STATE(prng);
-
-total: 0 errors, 1 warnings, 0 checks, 380 lines checked
-1196a59da677 drm/i915/gt: Setup a default migration context on the GT
-54c4a427f357 drm/i915/ttm: accelerated move implementation
-656ff10118e4 drm/i915/gem: Zap the client blt code
--:35: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#35: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 146 lines checked
-51bd492a35f8 drm/i915/gem: Zap the i915_gem_object_blt code
--:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#29: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 65 lines checked
-
-
+Reviewed-by: Christoph Hellwig <hch@lst.de>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
