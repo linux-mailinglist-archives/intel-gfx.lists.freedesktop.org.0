@@ -1,58 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF02F3A7E86
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 14:57:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC2033A7EE7
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:15:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E61686E2D8;
-	Tue, 15 Jun 2021 12:57:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23C1489FF7;
+	Tue, 15 Jun 2021 13:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0724A89C85
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 12:57:24 +0000 (UTC)
-IronPort-SDR: HWwdwZg52q+fQj1QeqcMk85b0z/ILDMQHQCwfq3/BbsKPoobdw2+RqEFo9kQ0KIJJ0Th3ESaRG
- VAG7OU3J5FJw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="202958055"
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="202958055"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 05:57:24 -0700
-IronPort-SDR: QdNzWessukLwDJZVPpS66rl3eeHRVPnuxhOfxcSux0fZ6yqpI38Nxy96QBQbSF7y329vSTc/gj
- nP+txuGoQWVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="471643237"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by fmsmga004.fm.intel.com with ESMTP; 15 Jun 2021 05:57:24 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Tue, 15 Jun 2021 13:57:22 +0100
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.008;
- Tue, 15 Jun 2021 18:27:21 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Force a TypeC PHY disconnect
- during suspend/shutdown
-Thread-Index: AQHXXh//AQF0ysQe1kGAWjgL4Npi6asVD3PA
-Date: Tue, 15 Jun 2021 12:57:20 +0000
-Message-ID: <41580e47375f4fe192d2258529d50c69@intel.com>
-References: <20210610174223.605904-1-imre.deak@intel.com>
-In-Reply-To: <20210610174223.605904-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C951389FCA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 13:15:05 +0000 (UTC)
+IronPort-SDR: TDGCckTejmA8oD55hEKvedbmQfN3Zqq1qsO8WXy2Qm5TAcgjh0li70CFzEKo0clNK/JJ3Rp8U7
+ GOmajgVLjrFQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="205804343"
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="205804343"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2021 06:15:05 -0700
+IronPort-SDR: k5HrV2F49YeqZ6jOMPDQIBVlQV7d70ZlCpuAo529aqESq+tKUCnWT7xpkRT85K5jEJ119CpVxz
+ bLFkBdrxwAPw==
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="554443295"
+Received: from vgribano-mobl.ccr.corp.intel.com (HELO thellst-mobl1.intel.com)
+ ([10.249.254.53])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2021 06:15:03 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Jun 2021 15:14:39 +0200
+Message-Id: <20210615131451.61023-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Force a TypeC PHY disconnect
- during suspend/shutdown
+Subject: [Intel-gfx] [PATCH v4 00/12] i915 TTM sync accelerated migration
+ and clear
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,211 +46,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Chiu <chris.chiu@canonical.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Imre Deak
-> Sent: Thursday, June 10, 2021 11:12 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Chris Chiu <chris.chiu@canonical.com>
-> Subject: [Intel-gfx] [PATCH] drm/i915: Force a TypeC PHY disconnect during
-> suspend/shutdown
-> 
-> Disconnect TypeC PHYs during system suspend and shutdown, even with the
-> corresponding TypeC sink still plugged to its connector, since leaving the PHY
-> connected causes havoc at least during system resume in the presence of an Nvidia
-> card.
-> 
-> Note that this will only make a difference in the TypeC DP alternate mode, since in
-> Thunderbolt alternate mode the PHY is never owned by the display engine and there
-> is no notion of PHY ownership in legacy mode (the display engine being the only
-> possible owner in that mode and the TypeC subsystem not having anything to do
-> with the port in that case).
-
-Change looks good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3500
-> Reported-and-tested-by: Chris Chiu <chris.chiu@canonical.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 34 ++++++++++++++++++++++--
-> drivers/gpu/drm/i915/display/intel_tc.c  | 34 +++++++++++++++++++-----
-> drivers/gpu/drm/i915/display/intel_tc.h  |  2 ++
->  3 files changed, 61 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 390869bd6b633..7e25d0f80b78f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4496,6 +4496,36 @@ static bool intel_ddi_is_tc(struct drm_i915_private
-> *i915, enum port port)
->  		return false;
->  }
-> 
-> +static void intel_ddi_encoder_suspend(struct intel_encoder *encoder) {
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	enum phy phy = intel_port_to_phy(i915, encoder->port);
-> +
-> +	intel_dp_encoder_suspend(encoder);
-> +
-> +	if (!intel_phy_is_tc(i915, phy))
-> +		return;
-> +
-> +	intel_tc_port_disconnect_phy(dig_port);
-> +}
-> +
-> +void intel_ddi_encoder_shutdown(struct intel_encoder *encoder) {
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> +	enum phy phy = intel_port_to_phy(i915, encoder->port);
-> +
-> +	intel_dp_encoder_shutdown(encoder);
-> +
-> +	if (!intel_phy_is_tc(i915, phy))
-> +		return;
-> +
-> +	intel_tc_port_disconnect_phy(dig_port);
-> +}
-> +
->  #define port_tc_name(port) ((port) - PORT_TC1 + '1')  #define
-> tc_port_name(tc_port) ((tc_port) - TC_PORT_1 + '1')
-> 
-> @@ -4605,8 +4635,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv,
-> enum port port)
->  	encoder->get_hw_state = intel_ddi_get_hw_state;
->  	encoder->sync_state = intel_ddi_sync_state;
->  	encoder->initial_fastset_check = intel_ddi_initial_fastset_check;
-> -	encoder->suspend = intel_dp_encoder_suspend;
-> -	encoder->shutdown = intel_dp_encoder_shutdown;
-> +	encoder->suspend = intel_ddi_encoder_suspend;
-> +	encoder->shutdown = intel_ddi_encoder_shutdown;
->  	encoder->get_power_domains = intel_ddi_get_power_domains;
-> 
->  	encoder->type = INTEL_OUTPUT_DDI;
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c
-> b/drivers/gpu/drm/i915/display/intel_tc.c
-> index c23c210a55f5c..3ffece568ed98 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -556,7 +556,7 @@ intel_tc_port_get_target_mode(struct intel_digital_port
-> *dig_port)  }
-> 
->  static void intel_tc_port_reset_mode(struct intel_digital_port *dig_port,
-> -				     int required_lanes)
-> +				     int required_lanes, bool force_disconnect)
->  {
->  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	enum tc_port_mode old_tc_mode = dig_port->tc_mode; @@ -572,7 +572,8
-> @@ static void intel_tc_port_reset_mode(struct intel_digital_port *dig_port,
->  	}
-> 
->  	icl_tc_phy_disconnect(dig_port);
-> -	icl_tc_phy_connect(dig_port, required_lanes);
-> +	if (!force_disconnect)
-> +		icl_tc_phy_connect(dig_port, required_lanes);
-> 
->  	drm_dbg_kms(&i915->drm, "Port %s: TC port mode reset (%s -> %s)\n",
->  		    dig_port->tc_port_name,
-> @@ -662,7 +663,7 @@ bool intel_tc_port_connected(struct intel_encoder
-> *encoder)  }
-> 
->  static void __intel_tc_port_lock(struct intel_digital_port *dig_port,
-> -				 int required_lanes)
-> +				 int required_lanes, bool force_disconnect)
->  {
->  	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	intel_wakeref_t wakeref;
-> @@ -676,8 +677,9 @@ static void __intel_tc_port_lock(struct intel_digital_port
-> *dig_port,
-> 
->  		tc_cold_wref = tc_cold_block(dig_port);
-> 
-> -		if (intel_tc_port_needs_reset(dig_port))
-> -			intel_tc_port_reset_mode(dig_port, required_lanes);
-> +		if (force_disconnect || intel_tc_port_needs_reset(dig_port))
-> +			intel_tc_port_reset_mode(dig_port, required_lanes,
-> +						 force_disconnect);
-> 
->  		tc_cold_unblock(dig_port, tc_cold_wref);
->  	}
-> @@ -688,7 +690,7 @@ static void __intel_tc_port_lock(struct intel_digital_port
-> *dig_port,
-> 
->  void intel_tc_port_lock(struct intel_digital_port *dig_port)  {
-> -	__intel_tc_port_lock(dig_port, 1);
-> +	__intel_tc_port_lock(dig_port, 1, false);
->  }
-> 
->  void intel_tc_port_unlock(struct intel_digital_port *dig_port) @@ -702,6 +704,24
-> @@ void intel_tc_port_unlock(struct intel_digital_port *dig_port)
->  				      wakeref);
->  }
-> 
-> +/**
-> + * intel_tc_port_disconnect_phy: disconnect TypeC PHY from display port
-> + * @dig_port: digital port
-> + *
-> + * Disconnect the given digital port from its TypeC PHY (handing back
-> +the
-> + * control of the PHY to the TypeC subsystem). The only purpose of this
-> + * function is to force the disconnect even with a TypeC display output
-> +still
-> + * plugged to the TypeC connector, which is required by the TypeC
-> +firmwares
-> + * during system suspend and shutdown. Otherwise - during the unplug
-> +event
-> + * handling - the PHY ownership is released automatically by
-> + * intel_tc_port_reset_mode(), when calling this function is not required.
-> + */
-> +void intel_tc_port_disconnect_phy(struct intel_digital_port *dig_port)
-> +{
-> +	__intel_tc_port_lock(dig_port, 1, true);
-> +	intel_tc_port_unlock(dig_port);
-> +}
-> +
->  bool intel_tc_port_ref_held(struct intel_digital_port *dig_port)  {
->  	return mutex_is_locked(&dig_port->tc_lock) || @@ -711,7 +731,7 @@ bool
-> intel_tc_port_ref_held(struct intel_digital_port *dig_port)  void
-> intel_tc_port_get_link(struct intel_digital_port *dig_port,
->  			    int required_lanes)
->  {
-> -	__intel_tc_port_lock(dig_port, required_lanes);
-> +	__intel_tc_port_lock(dig_port, required_lanes, false);
->  	dig_port->tc_link_refcount++;
->  	intel_tc_port_unlock(dig_port);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h
-> b/drivers/gpu/drm/i915/display/intel_tc.h
-> index 0eacbd76ec155..0c881f645e279 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
-> @@ -13,6 +13,8 @@ struct intel_digital_port;  struct intel_encoder;
-> 
->  bool intel_tc_port_connected(struct intel_encoder *encoder);
-> +void intel_tc_port_disconnect_phy(struct intel_digital_port *dig_port);
-> +
->  u32 intel_tc_port_get_lane_mask(struct intel_digital_port *dig_port);
->  u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port);
-> int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port);
-> --
-> 2.27.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBwYXRjaHNldCBpbXBsZW1lbnRzIHN5bmNocm9ub3VzIGFjY2VsZXJhdGVkIG1pZ3JhdGlv
+biBhbmQgY2xlYXJpbmcKZm9yIGk5MTUgb24gVFRNLiBXZSBwbGFuIHRvIGZvbGxvdyB1cCB3aXRo
+IHRoZXNlIG9wZXJhdGlvbnMgbWFkZQphc3luY2hyb25vdXMgdG8gdGhlIGV4dGVudCBvZiBUVE0g
+c3VwcG9ydCBmb3IgdGhhdDoKCkEgY291cGxlIG9mIHBhdGNoZXMgZnJvbSBDaHJpcyB3aGljaCBp
+bXBsZW1lbnQgcGlwZWxpbmVkIG1pZ3JhdGlvbiBhbmQKY2xlYXJzIGJ5IGF0b21pY2FsbHkgd3Jp
+dGluZyB0aGUgUFRFcyBpbiBwbGFjZSBiZWZvcmUgcGVyZm9ybWluZyB0aGUKYWN0dWFsIGJsaXQu
+CgpTb21lIHd3IHV0aWxpdGllcyBtYWlubHkgZm9yIHRoZSBhY2NvbXBhbnlpbmcgc2VsZnRlc3Rz
+IGFkZGVkIGJ5IFRob21hcywKYXMgd2VsbCBhcyBtb2RpZmllZCB0aGUgYWJvdmUgcGF0Y2hlcyBm
+b3Igd3cgbG9ja2luZy0gYW5kIGxtZW0gc3VwcG9ydC4KCkhvb2tlZCB1cCB0byBvdXIgVFRNIGJh
+Y2tlbmQgYnkgUmFtYWxpbmdhbQoKRmluYWxseSwgb24gcmVxdWVzdCBmcm9tIERhbmllbCwgd2Ug
+ZGl0Y2ggb2xkIGJsaXQgY29kZSB3aGljaCBpcyBub3cgb2Jzb2xldGUuCgp2MjoKLSBBIGNvdXBs
+ZSBvZiBtaW5vciBzdHlsZSBmaXhlcyBwb2ludGVkIG91dCBieSBNYXR0aGV3IEF1bGQKLSBFeHBv
+cnQgYW5kIHVzZSBpbnRlbF9lbmdpbmVfZGVzdHJveV9waW5uZWRfY29udGV4dCgpIHRvIGFkZHJl
+c3MgYQogIENJIHdhcm5pbmcgLyBmYWlsdXJlLgp2MzoKLSBBY2NlbGVyYXRpb24gaG9va2VkIHVw
+IHRvIFRUTQotIE1pbm9yIGZpeGVzIHRvIHJldmlldyBjb21tZW50cyAoUG9pbnRlZCBvdXQgYnkg
+TWF0dGhldyBBdWxkKQotIEZpeCBwaXBlbGluZWQgYmxpdCBoYW5kbGluZyBvZiBlbmdpbmUgaW5z
+dGFuY2VzIChQb2ludGVkIG91dCBieSBNYXR0aGV3IEF1bGQpCi0gRGl0Y2ggb2xkIGJsaXQgY29k
+ZSwgKFBvaW50ZWQgb3V0IGJ5IERhbmllbCkKdjQ6Ci0gUmVzY3VlIGEgc2VsZnRlc3QgdGhhdCB3
+YXMgcmVtb3ZlZCB3aXRoIHRoZSBvbGQgYmxpdCBjb2RlCiAgKFBvaW50ZWQgb3V0IGJ5IE1hdHRo
+ZXcgQXVsZCkKLSBFeHRlbmRlZCBncHUgd2FpdHMgaW4gdGhlIFRUTSBhY2NlbCBtb3ZlIGZ1bmN0
+aW9uCiAgKFBvaW50ZWQgb3V0IGJ5IFRob21hcyBIZWxsc3Ryw7ZtKQoKQ2hyaXMgV2lsc29uICg2
+KToKICBkcm0vaTkxNS9ndDogQWRkIGFuIGluc2VydF9lbnRyeSBmb3IgZ2VuOF9wcGd0dAogIGRy
+bS9pOTE1L2d0OiBBZGQgYSByb3V0aW5lIHRvIGl0ZXJhdGUgb3ZlciB0aGUgcGFnZXRhYmxlcyBv
+ZiBhIEdUVAogIGRybS9pOTE1L2d0OiBFeHBvcnQgdGhlIHBpbm5lZCBjb250ZXh0IGNvbnN0cnVj
+dG9yIGFuZCBkZXN0cnVjdG9yCiAgZHJtL2k5MTUvZ3Q6IFBpcGVsaW5lZCBwYWdlIG1pZ3JhdGlv
+bgogIGRybS9pOTE1L2d0OiBQaXBlbGluZWQgY2xlYXIKICBkcm0vaTkxNS9ndDogU2V0dXAgYSBk
+ZWZhdWx0IG1pZ3JhdGlvbiBjb250ZXh0IG9uIHRoZSBHVAoKUmFtYWxpbmdhbSBDICgxKToKICBk
+cm0vaTkxNS90dG06IGFjY2VsZXJhdGVkIG1vdmUgaW1wbGVtZW50YXRpb24KClRob21hcyBIZWxs
+c3Ryw7ZtICg1KToKICBkcm0vaTkxNTogUmVmZXJlbmNlIG9iamVjdHMgb24gdGhlIHd3IG9iamVj
+dCBsaXN0CiAgZHJtL2k5MTU6IEJyZWFrIG91dCBkbWFfcmVzdiB3dyBsb2NraW5nIHV0aWxpdGll
+cyB0byBzZXBhcmF0ZSBmaWxlcwogIGRybS9pOTE1OiBJbnRyb2R1Y2UgYSB3dyB0cmFuc2FjdGlv
+biBoZWxwZXIKICBkcm0vaTkxNS9nZW06IFphcCB0aGUgY2xpZW50IGJsdCBjb2RlCiAgZHJtL2k5
+MTUvZ2VtOiBaYXAgdGhlIGk5MTVfZ2VtX29iamVjdF9ibHQgY29kZQoKIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L01ha2VmaWxlICAgICAgICAgICAgICAgICB8ICAgNSArLQogLi4uL2dwdS9kcm0vaTkx
+NS9nZW0vaTkxNV9nZW1fY2xpZW50X2JsdC5jICAgIHwgMzU1IC0tLS0tLS0tLQogLi4uL2dwdS9k
+cm0vaTkxNS9nZW0vaTkxNV9nZW1fY2xpZW50X2JsdC5oICAgIHwgIDIxIC0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCAgICB8ICAgOSArLQogLi4uL2dwdS9kcm0v
+aTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0X2JsdC5jICAgIHwgNDYxIC0tLS0tLS0tLS0tLQogLi4u
+L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0X2JsdC5oICAgIHwgIDM5IC0KIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYyAgICAgICB8ICA4OCArKy0KIC4uLi9p
+OTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fY2xpZW50X2JsdC5jICB8IDExNCArLS0KIC4uLi9p
+OTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fb2JqZWN0X2JsdC5jICB8IDU5NyAtLS0tLS0tLS0t
+LS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2dlbjhfcHBndHQuYyAgICAgICAgICB8ICA2
+OCArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lLmggICAgICAgIHwgIDEy
+ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jICAgICB8ICAyNyAr
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3B1X2NvbW1hbmRzLmggIHwgICAyICsK
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0LmMgICAgICAgICAgICB8ICAgNCArCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF90eXBlcy5oICAgICAgfCAgIDMgKwogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3R0LmggICAgICAgICAgIHwgICA3ICsKIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX21pZ3JhdGUuYyAgICAgICB8IDY4NyArKysrKysrKysr
+KysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX21pZ3JhdGUuaCAgICAgICB8
+ICA2NSArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZV90eXBlcy5oIHwg
+IDE1ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlbmRlcnN0YXRlLmggICB8ICAg
+MSArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5nLmggICAgICAgICAgfCAgIDEg
+KwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfbWlncmF0ZS5jICAgIHwgNjY5ICsr
+KysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jICAgICAgICAg
+ICAgICAgfCAgNTIgLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmggICAgICAgICAg
+ICAgICB8ICAxMiAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV93dy5jICAgICAgICAg
+ICAgfCAgNjMgKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmggICAgICAgICAg
+ICB8ICA1MCArKwogLi4uL2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2xpdmVfc2VsZnRlc3RzLmgg
+IHwgICAyICstCiAuLi4vZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfcGVyZl9zZWxmdGVzdHMuaCAg
+fCAgIDIgKy0KIC4uLi9kcm0vaTkxNS9zZWxmdGVzdHMvaW50ZWxfbWVtb3J5X3JlZ2lvbi5jICB8
+ICAyMSArLQogMjkgZmlsZXMgY2hhbmdlZCwgMTc2NiBpbnNlcnRpb25zKCspLCAxNjg2IGRlbGV0
+aW9ucygtKQogZGVsZXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
+X2dlbV9jbGllbnRfYmx0LmMKIGRlbGV0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9nZW0vaTkxNV9nZW1fY2xpZW50X2JsdC5oCiBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdF9ibHQuYwogZGVsZXRlIG1vZGUgMTAwNjQ0
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfYmx0LmgKIGRlbGV0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX29i
+amVjdF9ibHQuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
+dGVsX21pZ3JhdGUuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L2ludGVsX21pZ3JhdGUuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L2ludGVsX21pZ3JhdGVfdHlwZXMuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X21pZ3JhdGUuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2dlbV93dy5oCgotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
