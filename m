@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC5F3A80CB
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F5F3A8109
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:42:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 708B089BE8;
-	Tue, 15 Jun 2021 13:40:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7916E2D8;
+	Tue, 15 Jun 2021 13:42:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9BB89BE8;
- Tue, 15 Jun 2021 13:40:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDB16E2D8;
+ Tue, 15 Jun 2021 13:42:11 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id C138F67373; Tue, 15 Jun 2021 15:40:32 +0200 (CEST)
-Date: Tue, 15 Jun 2021 15:40:32 +0200
+ id 3D5CB67373; Tue, 15 Jun 2021 15:42:09 +0200 (CEST)
+Date: Tue, 15 Jun 2021 15:42:08 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210615134032.GI20389@lst.de>
+Message-ID: <20210615134208.GJ20389@lst.de>
 References: <20210615132711.553451-1-tientzu@chromium.org>
- <20210615132711.553451-10-tientzu@chromium.org>
+ <20210615132711.553451-11-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210615132711.553451-10-tientzu@chromium.org>
+In-Reply-To: <20210615132711.553451-11-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v10 09/12] swiotlb: Add restricted DMA pool
- initialization
+Subject: Re: [Intel-gfx] [PATCH v10 10/12] swiotlb: Add restricted DMA
+ alloc/free support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,21 +68,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 15, 2021 at 09:27:08PM +0800, Claire Chang wrote:
-> Add the initialization function to create restricted DMA pools from
-> matching reserved-memory nodes.
+On Tue, Jun 15, 2021 at 09:27:09PM +0800, Claire Chang wrote:
+> Add the functions, swiotlb_{alloc,free} to support the memory allocation
+> from restricted DMA pool.
 > 
-> Regardless of swiotlb setting, the restricted DMA pool is preferred if
-> available.
+> The restricted DMA pool is preferred if available.
 > 
-> The restricted DMA pools provide a basic level of protection against the
-> DMA overwriting buffer contents at unexpected times. However, to protect
-> against general data leakage and system memory corruption, the system
-> needs to provide a way to lock down the memory access, e.g., MPU.
-> 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> Note that since coherent allocation needs remapping, one must set up
+> another device coherent pool by shared-dma-pool and use
+> dma_alloc_from_dev_coherent instead for atomic coherent allocation.
 
-Looks good,
+Note: when applied this should go before the next patch to make sure
+bisection works fine.
+
+>  #ifdef CONFIG_DMA_RESTRICTED_POOL
+> +struct page *swiotlb_alloc(struct device *dev, size_t size)
+> +{
+> +	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
+> +	phys_addr_t tlb_addr;
+> +	int index;
+> +
+> +	/*
+> +	 * Skip io_tlb_default_mem since swiotlb_alloc doesn't support atomic
+> +	 * coherent allocation. Otherwise might break existing devices.
+> +	 * One must set up another device coherent pool by shared-dma-pool and
+> +	 * use dma_alloc_from_dev_coherent instead for atomic coherent
+> +	 * allocation to avoid mempry remapping.
+
+s/mempry/memory/g
+
+Otherwise looks good:
 
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 _______________________________________________
