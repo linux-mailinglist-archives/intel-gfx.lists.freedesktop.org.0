@@ -2,38 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759CA3A7B76
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 12:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73A253A7B90
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 12:14:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3323D6E237;
-	Tue, 15 Jun 2021 10:09:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5ABE88007;
+	Tue, 15 Jun 2021 10:14:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3516E237
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 10:09:51 +0000 (UTC)
-IronPort-SDR: KOdIVMy8GZsJN5aQqNt7ong8oFYikFLSaJmzde+kcqnYdZaZkMy4vculhwe+OuDh0Q5K9acCQ/
- l8c1LgKcMibQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="202937215"
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="202937215"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 03:09:50 -0700
-IronPort-SDR: dgS4vx8cgndOr+Uif+Yl1ksInKE1L/ycHI57yYKK0L5OnkMTBSgfwx2DK/y2UeKZ3aLoix3Uen
- zQxEiFcVd0HA==
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="639626470"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 03:09:49 -0700
-Date: Tue, 15 Jun 2021 13:09:46 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Message-ID: <20210615100946.GB916542@ideak-desk.fi.intel.com>
-References: <20210614114851.839925-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9811688007
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 10:14:17 +0000 (UTC)
+IronPort-SDR: VWvYuOenAGAYskvPAignEt9N8k39PsosxJd9FXg5ti7UZMeFXeCrxJ5bYXdwlkd4AUv7nbfb2d
+ vqi5hU13rwPQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="186335727"
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="186335727"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2021 03:14:17 -0700
+IronPort-SDR: nO36+rN6jjn8Kg0CaODFCPxvQ7cd8Ico1vjTDcBvk+RhTh5zfP1e0X8Nf4/P8zaqqEqS2QaD18
+ 9OEwcEZBzLTg==
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="484418628"
+Received: from jmelinn-mobl.ger.corp.intel.com (HELO [10.213.219.14])
+ ([10.213.219.14])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2021 03:14:10 -0700
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210615033433.1574397-1-matthew.d.roper@intel.com>
+ <20210615033433.1574397-4-matthew.d.roper@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <bf053f43-9321-5e44-ce25-0dd94c18f703@linux.intel.com>
+Date: Tue, 15 Jun 2021 11:14:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210614114851.839925-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [Intel-gfx] [PATCH V5] drm/i915/jsl: Add W/A 1409054076 for JSL
+In-Reply-To: <20210615033433.1574397-4-matthew.d.roper@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Add support for explicit
+ L3BANK steering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,154 +52,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 14, 2021 at 05:18:51PM +0530, Tejas Upadhyay wrote:
-> When pipe A is disabled and MIPI DSI is enabled on pipe B,
-> the AMT KVMR feature will incorrectly see pipe A as enabled.
-> Set 0x42080 bit 23=1 before enabling DSI on pipe B and leave
-> it set while DSI is enabled on pipe B. No impact to setting
-> it all the time.
+
+On 15/06/2021 04:34, Matt Roper wrote:
+> Because Render Power Gating restricts us to just a single subslice as a
+> valid steering target for reads of multicast registers in a SUBSLICE
+> range, the default steering we setup at init may not lead to a suitable
+> target for L3BANK multicast register.  In cases where it does not, use
+> explicit runtime steering whenever an L3BANK multicast register is read.
 > 
-> Changes since V4:
->         - Modified function comment Wa_<number>:icl,jsl,ehl - Lucas
->         - Modified debug message in sync state - Imre
-> Changes since V3:
->         - More meaningful name to workaround - Imre
->         - Remove boolean check clear flag
->         - Add WA_verify hook in dsi sync_state
-> Changes since V2:
->         - Used REG_BIT, ignored pipe A and used sw state check - Jani
->         - Made function wrapper - Jani
-> Changes since V1:
->         - ./dim checkpatch errors addressed
+> While we're at it, let's simplify the function a little bit and drop its
+> support for gen10/CNL since no such platforms ever materialized for real
+> use.  Multicast register steering is already an area that causes enough
+> confusion; no need to complicate it with what's effectively dead code.
 > 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 44 ++++++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h        |  1 +
->  2 files changed, 45 insertions(+)
+>   drivers/gpu/drm/i915/gt/intel_gt.c          | 18 +++++
+>   drivers/gpu/drm/i915/gt/intel_gt_types.h    |  4 +
+>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 84 ++++++---------------
+>   3 files changed, 46 insertions(+), 60 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 16812488c5dd..17e318eb1ad0 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1253,15 +1253,37 @@ static void gen11_dsi_pre_enable(struct intel_atomic_state *state,
->  	gen11_dsi_set_transcoder_timings(encoder, pipe_config);
->  }
->  
-> +/*
-> + * Wa_1409054076:icl,jsl,ehl
-> + * When pipe A is disabled and MIPI DSI is enabled on pipe B,
-> + * the AMT KVMR feature will incorrectly see pipe A as enabled.
-> + * Set 0x42080 bit 23=1 before enabling DSI on pipe B and leave
-> + * it set while DSI is enabled on pipe B
-> + */
-> +static void icl_apply_kvmr_pipe_a_wa(struct intel_encoder *encoder,
-> +				     enum pipe pipe, bool enable)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index f2bea1c20d56..2c9cc34b0cbd 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -83,6 +83,11 @@ void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt)
+>   	gt->ggtt = ggtt;
+>   }
+>   
+> +static const struct intel_mmio_range icl_l3bank_steering_table[] = {
+> +       { 0x00B100, 0x00B3FF },
+> +       { 0xFFFFFF, 0xFFFFFF }, /* terminating entry */
+> +};
 > +
-> +	if ((DISPLAY_VER(dev_priv) == 11) && pipe == PIPE_B) {
+>   int intel_gt_init_mmio(struct intel_gt *gt)
+>   {
+>   	intel_gt_init_clock_frequency(gt);
+> @@ -90,6 +95,13 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+>   	intel_uc_init_mmio(&gt->uc);
+>   	intel_sseu_info_init(gt);
+>   
+> +	if (GRAPHICS_VER(gt->i915) >= 11) {
+> +		gt->steering_table[L3BANK] = icl_l3bank_steering_table;
+> +		gt->info.l3bank_mask =
+> +			intel_uncore_read(&gt->i915->uncore, GEN10_MIRROR_FUSE3) &
 
-Redundant braces around a single simple statement.
+gt->uncore, unless there's a special reason not to.
 
-> +		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> +			     IGNORE_KVMR_PIPE_A,
-> +			     enable ? IGNORE_KVMR_PIPE_A : 0);
+Regards,
+
+Tvrtko
+
+> +			GEN10_L3BANK_MASK;
 > +	}
-> +}
->  static void gen11_dsi_enable(struct intel_atomic_state *state,
->  			     struct intel_encoder *encoder,
->  			     const struct intel_crtc_state *crtc_state,
->  			     const struct drm_connector_state *conn_state)
->  {
->  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-> +	struct intel_crtc *crtc = to_intel_crtc(conn_state->crtc);
->  
->  	drm_WARN_ON(state->base.dev, crtc_state->has_pch_encoder);
->  
-> +	/* Wa_1409054076:icl,jsl,ehl */
-> +	icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, true);
 > +
->  	/* step6d: enable dsi transcoder */
->  	gen11_dsi_enable_transcoder(encoder);
->  
-> @@ -1415,6 +1437,7 @@ static void gen11_dsi_disable(struct intel_atomic_state *state,
->  			      const struct drm_connector_state *old_conn_state)
->  {
->  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-> +	struct intel_crtc *crtc = to_intel_crtc(old_conn_state->crtc);
->  
->  	/* step1: turn off backlight */
->  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_OFF);
-> @@ -1423,6 +1446,9 @@ static void gen11_dsi_disable(struct intel_atomic_state *state,
->  	/* step2d,e: disable transcoder and wait */
->  	gen11_dsi_disable_transcoder(encoder);
->  
-> +	/* Wa_1409054076:icl,jsl,ehl */
-> +	icl_apply_kvmr_pipe_a_wa(encoder, crtc->pipe, false);
+>   	return intel_engines_init_mmio(gt);
+>   }
+>   
+> @@ -744,6 +756,12 @@ static void intel_gt_get_valid_steering(struct intel_gt *gt,
+>   					u8 *sliceid, u8 *subsliceid)
+>   {
+>   	switch (type) {
+> +	case L3BANK:
+> +		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
 > +
->  	/* step2f,g: powerdown panel */
->  	gen11_dsi_powerdown_panel(encoder);
->  
-> @@ -1548,6 +1574,23 @@ static void gen11_dsi_get_config(struct intel_encoder *encoder,
->  		pipe_config->mode_flags |= I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
->  }
->  
-> +static void gen11_dsi_sync_state(struct intel_encoder *encoder,
-> +				 const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_crtc *intel_crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	enum pipe pipe = intel_crtc->pipe;
+> +		*sliceid = __ffs(gt->info.l3bank_mask);
+> +		*subsliceid = 0;        /* unused */
+> +		break;
+>   	default:
+>   		MISSING_CASE(type);
+>   		*sliceid = 0;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index 47957837c8c0..5ecad25de6ed 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -48,6 +48,8 @@ struct intel_mmio_range {
+>    * need to explicitly re-steer reads of registers of the other type.
+>    */
+>   enum intel_steering_type {
+> +	L3BANK,
 > +
-> +	/* wa verify 1409054076:icl,jsl,ehl */
-> +	if ((DISPLAY_VER(dev_priv) == 11) && pipe == PIPE_B &&
-> +	    !(intel_de_read(dev_priv, CHICKEN_PAR1_1) & IGNORE_KVMR_PIPE_A))
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "[ENCODER:%d:%s] BIOS left IGNORE_KVMR_PIPE_A\t"
-> +			    "cleared with pipe B enabled\n",
-
-No need to wrap these kind of strings to help grepping for a message and \t
-in the middle of a line doesn't look correct. With that fixed:
-
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> +			    encoder->base.base.id,
-> +			    encoder->base.name);
-> +}
+>   	NUM_STEERING_TYPES
+>   };
+>   
+> @@ -174,6 +176,8 @@ struct intel_gt {
+>   		/* Media engine access to SFC per instance */
+>   		u8 vdbox_sfc_access;
+>   
+> +		u32 l3bank_mask;
 > +
->  static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
->  					struct intel_crtc_state *crtc_state)
->  {
-> @@ -1966,6 +2009,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
->  	encoder->post_disable = gen11_dsi_post_disable;
->  	encoder->port = port;
->  	encoder->get_config = gen11_dsi_get_config;
-> +	encoder->sync_state = gen11_dsi_sync_state;
->  	encoder->update_pipe = intel_panel_update_backlight;
->  	encoder->compute_config = gen11_dsi_compute_config;
->  	encoder->get_hw_state = gen11_dsi_get_hw_state;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index e915ec034c98..955027799d1d 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -8107,6 +8107,7 @@ enum {
->  # define CHICKEN3_DGMG_DONE_FIX_DISABLE		(1 << 2)
->  
->  #define CHICKEN_PAR1_1			_MMIO(0x42080)
-> +#define  IGNORE_KVMR_PIPE_A		REG_BIT(23)
->  #define  KBL_ARB_FILL_SPARE_22		REG_BIT(22)
->  #define  DIS_RAM_BYPASS_PSR2_MAN_TRACK	(1 << 16)
->  #define  SKL_DE_COMPRESSED_HASH_MODE	(1 << 15)
-> -- 
-> 2.31.1
+>   		/* Slice/subslice/EU info */
+>   		struct sseu_dev_info sseu;
+>   	} info;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 689045d3752b..a0be3c09a7f9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -944,71 +944,37 @@ cfl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>   }
+>   
+>   static void
+> -wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+> +icl_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>   {
+>   	const struct sseu_dev_info *sseu = &i915->gt.info.sseu;
+>   	unsigned int slice, subslice;
+> -	u32 l3_en, mcr, mcr_mask;
+> +	u32 mcr, mcr_mask;
+>   
+> -	GEM_BUG_ON(GRAPHICS_VER(i915) < 10);
+> +	GEM_BUG_ON(GRAPHICS_VER(i915) < 11);
+> +	GEM_BUG_ON(hweight8(sseu->slice_mask) > 1);
+> +	slice = 0;
+>   
+>   	/*
+> -	 * WaProgramMgsrForL3BankSpecificMmioReads: cnl,icl
+> -	 * L3Banks could be fused off in single slice scenario. If that is
+> -	 * the case, we might need to program MCR select to a valid L3Bank
+> -	 * by default, to make sure we correctly read certain registers
+> -	 * later on (in the range 0xB100 - 0xB3FF).
+> -	 *
+> -	 * WaProgramMgsrForCorrectSliceSpecificMmioReads:cnl,icl
+> -	 * Before any MMIO read into slice/subslice specific registers, MCR
+> -	 * packet control register needs to be programmed to point to any
+> -	 * enabled s/ss pair. Otherwise, incorrect values will be returned.
+> -	 * This means each subsequent MMIO read will be forwarded to an
+> -	 * specific s/ss combination, but this is OK since these registers
+> -	 * are consistent across s/ss in almost all cases. In the rare
+> -	 * occasions, such as INSTDONE, where this value is dependent
+> -	 * on s/ss combo, the read should be done with read_subslice_reg.
+> -	 *
+> -	 * Since GEN8_MCR_SELECTOR contains dual-purpose bits which select both
+> -	 * to which subslice, or to which L3 bank, the respective mmio reads
+> -	 * will go, we have to find a common index which works for both
+> -	 * accesses.
+> -	 *
+> -	 * Case where we cannot find a common index fortunately should not
+> -	 * happen in production hardware, so we only emit a warning instead of
+> -	 * implementing something more complex that requires checking the range
+> -	 * of every MMIO read.
+> +	 * Although a platform may have subslices, we need to always steer
+> +	 * reads to the lowest instance that isn't fused off.  When Render
+> +	 * Power Gating is enabled, grabbing forcewake will only power up a
+> +	 * single subslice (the "minconfig") if there isn't a real workload
+> +	 * that needs to be run; this means that if we steer register reads to
+> +	 * one of the higher subslices, we run the risk of reading back 0's or
+> +	 * random garbage.
+>   	 */
+> +	subslice = __ffs(intel_sseu_get_subslices(sseu, slice));
+>   
+> -	if (GRAPHICS_VER(i915) >= 10 && is_power_of_2(sseu->slice_mask)) {
+> -		u32 l3_fuse =
+> -			intel_uncore_read(&i915->uncore, GEN10_MIRROR_FUSE3) &
+> -			GEN10_L3BANK_MASK;
+> -
+> -		drm_dbg(&i915->drm, "L3 fuse = %x\n", l3_fuse);
+> -		l3_en = ~(l3_fuse << GEN10_L3BANK_PAIR_COUNT | l3_fuse);
+> -	} else {
+> -		l3_en = ~0;
+> -	}
+> +	/*
+> +	 * If the subslice we picked above also steers us to a valid L3 bank,
+> +	 * then we can just rely on the default steering and won't need to
+> +	 * worry about explicitly re-steering L3BANK reads later.
+> +	 */
+> +	if (i915->gt.info.l3bank_mask & BIT(subslice))
+> +		i915->gt.steering_table[L3BANK] = NULL;
+>   
+> -	slice = fls(sseu->slice_mask) - 1;
+> -	subslice = fls(l3_en & intel_sseu_get_subslices(sseu, slice));
+> -	if (!subslice) {
+> -		drm_warn(&i915->drm,
+> -			 "No common index found between subslice mask %x and L3 bank mask %x!\n",
+> -			 intel_sseu_get_subslices(sseu, slice), l3_en);
+> -		subslice = fls(l3_en);
+> -		drm_WARN_ON(&i915->drm, !subslice);
+> -	}
+> -	subslice--;
+> -
+> -	if (GRAPHICS_VER(i915) >= 11) {
+> -		mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
+> -		mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+> -	} else {
+> -		mcr = GEN8_MCR_SLICE(slice) | GEN8_MCR_SUBSLICE(subslice);
+> -		mcr_mask = GEN8_MCR_SLICE_MASK | GEN8_MCR_SUBSLICE_MASK;
+> -	}
+> +	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
+> +	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+>   
+>   	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
+>   
+> @@ -1018,8 +984,6 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>   static void
+>   cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>   {
+> -	wa_init_mcr(i915, wal);
+> -
+>   	/* WaInPlaceDecompressionHang:cnl */
+>   	wa_write_or(wal,
+>   		    GEN9_GAMT_ECO_REG_RW_IA,
+> @@ -1029,7 +993,7 @@ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>   static void
+>   icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>   {
+> -	wa_init_mcr(i915, wal);
+> +	icl_wa_init_mcr(i915, wal);
+>   
+>   	/* WaInPlaceDecompressionHang:icl */
+>   	wa_write_or(wal,
+> @@ -1111,7 +1075,7 @@ static void
+>   gen12_gt_workarounds_init(struct drm_i915_private *i915,
+>   			  struct i915_wa_list *wal)
+>   {
+> -	wa_init_mcr(i915, wal);
+> +	icl_wa_init_mcr(i915, wal);
+>   
+>   	/* Wa_14011060649:tgl,rkl,dg1,adls */
+>   	wa_14011060649(i915, wal);
 > 
 _______________________________________________
 Intel-gfx mailing list
