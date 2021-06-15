@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1100D3A7BFD
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 12:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B4243A7C69
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 12:50:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 459DD89D6C;
-	Tue, 15 Jun 2021 10:31:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04E266E22B;
+	Tue, 15 Jun 2021 10:49:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18B9D89D6C
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 10:31:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 738AE6E02C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 10:49:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1623753105;
+ s=mimecast20190719; t=1623754192;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=F8QWQfVZrepeYJ8pBFnyNbs8hCa7lpsmDCFMZoGlYqY=;
- b=GU8nFKMRDb4TfR8nSsh7A4Zo0VU2hrzyzwiKtqvCXCgA49j9/iEdZGeI3WA6oksAXNAiPi
- fSPz+6dolBZ3kkVuwM1SGNqKgG8Q1u+tM+Adi792UeF2Ag18uvtnVr9s9WcjSwvO7h3J33
- XX5O8TZQFTGTmk51LAaOQq98ZBRbpAM=
+ bh=x1ren7OSMjaDh6q/6WrOJye4kFus7TOYh5vtXdd/RZc=;
+ b=g0DgSjIF+EeU+it5cpFrYUdorJiWj1g4I5l1+jKjQjnslsa7ihJUuuO96nK6iTKcuU1lz2
+ 07I2Ia6tLGQDnudNi6IzEUe0tjODgkj1W8BFjsTrxwqvfjWFMHmAXA+PBwPs2F9YmsLrri
+ tIQbv7hxhV7RwHCiychvqDr8FQflTQQ=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-244-qtllWZvcM3q_pedBpzFCUA-1; Tue, 15 Jun 2021 06:31:43 -0400
-X-MC-Unique: qtllWZvcM3q_pedBpzFCUA-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
+ us-mta-86-b-Wl5m1PMUiDRtr-mHZcyw-1; Tue, 15 Jun 2021 06:49:49 -0400
+X-MC-Unique: b-Wl5m1PMUiDRtr-mHZcyw-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7E849EC1A0;
- Tue, 15 Jun 2021 10:31:41 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 24806947;
+ Tue, 15 Jun 2021 10:49:45 +0000 (UTC)
 Received: from localhost (ovpn-113-156.ams2.redhat.com [10.36.113.156])
- by smtp.corp.redhat.com (Postfix) with ESMTPS id D8D9460877;
- Tue, 15 Jun 2021 10:31:37 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id A5EAA5D9CA;
+ Tue, 15 Jun 2021 10:49:40 +0000 (UTC)
 From: Cornelia Huck <cohuck@redhat.com>
 To: Christoph Hellwig <hch@lst.de>, Greg Kroah-Hartman
  <gregkh@linuxfoundation.org>, Jason Gunthorpe <jgg@nvidia.com>, Alex
  Williamson <alex.williamson@redhat.com>, Kirti Wankhede
  <kwankhede@nvidia.com>
-In-Reply-To: <20210614150846.4111871-4-hch@lst.de>
+In-Reply-To: <20210614150846.4111871-6-hch@lst.de>
 Organization: Red Hat GmbH
 References: <20210614150846.4111871-1-hch@lst.de>
- <20210614150846.4111871-4-hch@lst.de>
+ <20210614150846.4111871-6-hch@lst.de>
 User-Agent: Notmuch/0.32.1 (https://notmuchmail.org)
-Date: Tue, 15 Jun 2021 12:31:36 +0200
-Message-ID: <87eed3xvuf.fsf@redhat.com>
+Date: Tue, 15 Jun 2021 12:49:39 +0200
+Message-ID: <87bl87xv0c.fsf@redhat.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: Re: [Intel-gfx] [PATCH 03/10] driver core: Flow the return code
- from ->probe() through to sysfs bind
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Subject: Re: [Intel-gfx] [PATCH 05/10] driver core: Export
+ device_driver_attach()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,30 +78,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, Jun 14 2021, Christoph Hellwig <hch@lst.de> wrote:
 
-> Currently really_probe() returns 1 on success and 0 if the probe() call
-> fails. This return code arrangement is designed to be useful for
-> __device_attach_driver() which is walking the device list and trying every
-> driver. 0 means to keep trying.
+> From: Jason Gunthorpe <jgg@nvidia.com>
 >
-> However, it is not useful for the other places that call through to
-> really_probe() that do actually want to see the probe() return code.
+> This is intended as a replacement API for device_bind_driver(). It has at
+> least the following benefits:
 >
-> For instance bind_store() would be better to return the actual error code
-> from the driver's probe method, not discarding it and returning -ENODEV.
+> - Internal locking. Few of the users of device_bind_driver() follow the
+>   locking rules
 >
-> Reorganize things so that really_probe() returns the error code from
-> ->probe as a (inverted) positive number, and 0 for successful attach.
+> - Calls device driver probe() internally. Notably this means that devm
+>   support for probe works correctly as probe() error will call
+>   devres_release_all()
 >
-> With this, __device_attach_driver can ignore the (positive) probe errors,
-> return 1 to exit the loop for a successful binding and pass on the
-> other negative errors, while device_driver_attach simplify inverts the
-> positive errors and returns all errors to the sysfs code.
+> - struct device_driver -> dev_groups is supported
 >
+> - Simplified calling convention, no need to manually call probe().
+>
+> The general usage is for situations that already know what driver to bind
+> and need to ensure the bind is synchronized with other logic. Call
+> device_driver_attach() after device_add().
+>
+> If probe() returns a failure then this will be preserved up through to the
+> error return of device_driver_attach().
+>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 > Signed-off-by: Christoph Hellwig <hch@lst.de>
 > ---
->  drivers/base/bus.c |  6 +-----
->  drivers/base/dd.c  | 29 ++++++++++++++++++++---------
->  2 files changed, 21 insertions(+), 14 deletions(-)
+>  drivers/base/base.h    | 1 -
+>  drivers/base/dd.c      | 3 +++
+>  include/linux/device.h | 2 ++
+>  3 files changed, 5 insertions(+), 1 deletion(-)
 
 Reviewed-by: Cornelia Huck <cohuck@redhat.com>
 
