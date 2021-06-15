@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C753A8202
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 16:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 506F53A8207
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 16:11:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 130D66E30D;
-	Tue, 15 Jun 2021 14:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B28286E328;
+	Tue, 15 Jun 2021 14:11:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3195C6E30D;
- Tue, 15 Jun 2021 14:11:33 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A72961450;
- Tue, 15 Jun 2021 14:11:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1623766293;
- bh=mVFIHg+/59exqXTM1KsGORgctLZycuRDb46GunrOss4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=p3YAI+T/7vqnOYp3tofopk6vP5xyH0NRN9Cu04rKsrmQ5KrPQK42vmaw4BaWioU78
- DdF/hYIUl9LJ7p3NnVo0pStw3Lw3w6LBEGUqx3Z626GziDs4kbB/OxuXgjreES15Nn
- H/hnHEj49etmMWdabnoVvR5/SWIww+gahOYZbb9o=
-Date: Tue, 15 Jun 2021 16:11:29 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <YMi1EcrhatlaH4AX@kroah.com>
-References: <20210615133519.754763-1-hch@lst.de>
- <20210615133519.754763-8-hch@lst.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 740CA6E2D8;
+ Tue, 15 Jun 2021 14:11:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6C457AA0EB;
+ Tue, 15 Jun 2021 14:11:53 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210615133519.754763-8-hch@lst.de>
-Subject: Re: [Intel-gfx] [PATCH 07/10] vfio/mdev: Allow the mdev_parent_ops
- to specify the device driver to bind
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Christoph Hellwig" <hch@lst.de>
+Date: Tue, 15 Jun 2021 14:11:53 -0000
+Message-ID: <162376631343.8816.10276499519895953785@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210615133519.754763-1-hch@lst.de>
+In-Reply-To: <20210615133519.754763-1-hch@lst.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/10=5D_driver_core=3A_Pull_requir?=
+ =?utf-8?q?ed_checks_into_driver=5Fprobe=5Fdevice=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,40 +39,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org,
- Jonathan Corbet <corbet@lwn.net>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Jason Gunthorpe <jgg@nvidia.com>, intel-gfx@lists.freedesktop.org,
- Jason Herne <jjherne@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Tony Krowiak <akrowiak@linux.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 15, 2021 at 03:35:16PM +0200, Christoph Hellwig wrote:
-> From: Jason Gunthorpe <jgg@nvidia.com>
-> 
-> This allows a mdev driver to opt out of using vfio_mdev.c, instead the
-> driver will provide a 'struct mdev_driver' and register directly with the
-> driver core.
-> 
-> Much of mdev_parent_ops becomes unused in this mode:
-> - create()/remove() are done via the mdev_driver probe()/remove()
-> - mdev_attr_groups becomes mdev_driver driver.dev_groups
-> - Wrapper function callbacks are replaced with the same ones from
->   struct vfio_device_ops
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
+== Series Details ==
 
-Messy, but ok...
+Series: series starting with [01/10] driver core: Pull required checks into driver_probe_device()
+URL   : https://patchwork.freedesktop.org/series/91520/
+State : warning
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+6d13827dce62 driver core: Pull required checks into driver_probe_device()
+-:114: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 70 lines checked
+cc49d7d5df77 driver core: Better distinguish probe errors in really_probe
+-:23: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#23: FILE: drivers/base/dd.c:516:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 96 lines checked
+be3368a66990 driver core: Flow the return code from ->probe() through to sysfs bind
+76221f2ba6be driver core: Don't return EPROBE_DEFER to userspace during sysfs bind
+124cc27a8e08 driver core: Export device_driver_attach()
+-:76: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
+d7ed7066acc6 vfio/mdev: Remove CONFIG_VFIO_MDEV_DEVICE
+-:204: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 113 lines checked
+edc2c7ed6aee vfio/mdev: Allow the mdev_parent_ops to specify the device driver to bind
+-:138: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 99 lines checked
+8164aceb1947 vfio/mtty: Convert to use vfio_register_group_dev()
+-:188: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#188: FILE: samples/vfio-mdev/mtty.c:831:
++static ssize_t mtty_write(struct vfio_device *vdev, const char __user *buf,
+ 		   size_t count, loff_t *ppos)
+
+-:249: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#249: FILE: samples/vfio-mdev/mtty.c:1010:
++static int mtty_get_region_info(struct mdev_state *mdev_state,
+ 			 struct vfio_region_info *region_info,
+
+-:292: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#292: FILE: samples/vfio-mdev/mtty.c:1084:
++static long mtty_ioctl(struct vfio_device *vdev, unsigned int cmd,
+ 			unsigned long arg)
+
+-:468: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 3 checks, 425 lines checked
+292a0ba08d06 vfio/mdpy: Convert to use vfio_register_group_dev()
+-:122: WARNING:TRACING_LOGGING: Unnecessary ftrace-like logging - prefer using ftrace
+#122: FILE: samples/vfio-mdev/mdpy.c:275:
++	dev_info(&mdev->dev, "%s\n", __func__);
+
+-:453: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 2 warnings, 0 checks, 406 lines checked
+a34fb1f64411 vfio/mbochs: Convert to use vfio_register_group_dev()
+-:491: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 440 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
