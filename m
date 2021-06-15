@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA363A8093
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001803A8097
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:39:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03B9A6E30D;
-	Tue, 15 Jun 2021 13:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64B8889C08;
+	Tue, 15 Jun 2021 13:39:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 844C789B69;
- Tue, 15 Jun 2021 13:38:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F09C89C08;
+ Tue, 15 Jun 2021 13:39:05 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 1FDA367373; Tue, 15 Jun 2021 15:38:50 +0200 (CEST)
-Date: Tue, 15 Jun 2021 15:38:49 +0200
+ id 3CF0668AFE; Tue, 15 Jun 2021 15:39:03 +0200 (CEST)
+Date: Tue, 15 Jun 2021 15:39:02 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210615133849.GD20389@lst.de>
+Message-ID: <20210615133902.GE20389@lst.de>
 References: <20210615132711.553451-1-tientzu@chromium.org>
- <20210615132711.553451-5-tientzu@chromium.org>
+ <20210615132711.553451-6-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210615132711.553451-5-tientzu@chromium.org>
+In-Reply-To: <20210615132711.553451-6-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v10 04/12] swiotlb: Update is_swiotlb_buffer
+Subject: Re: [Intel-gfx] [PATCH v10 05/12] swiotlb: Update is_swiotlb_active
  to add a struct device argument
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,8 +68,8 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 15, 2021 at 09:27:03PM +0800, Claire Chang wrote:
-> Update is_swiotlb_buffer to add a struct device argument. This will be
+On Tue, Jun 15, 2021 at 09:27:04PM +0800, Claire Chang wrote:
+> Update is_swiotlb_active to add a struct device argument. This will be
 > useful later to allow for different pools.
 > 
 > Signed-off-by: Claire Chang <tientzu@chromium.org>
