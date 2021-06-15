@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56A003A7546
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 05:35:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 950053A7547
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 05:35:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDE8D6E1F8;
-	Tue, 15 Jun 2021 03:35:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 682FF6E201;
+	Tue, 15 Jun 2021 03:35:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70B2D6E1F6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D830889FAD
  for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 03:35:12 +0000 (UTC)
-IronPort-SDR: gSMEZCMKJcddP9PZWTBf/F7Sii9pbUfeSp8B8WrwRe4ew+3Ch2yZ7wJZxagaCNVofjlDbF4F/M
- winhHVU+HHqw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="267064991"
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="267064991"
+IronPort-SDR: YCgCnGF4GLiyMCmRhpFFTMv7WglizhajfFOuN8CfNScARc932ZBuSVwfct/i45PPI3DciDY7f5
+ XQxYQ6QtEVvw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="267064992"
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="267064992"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2021 20:35:08 -0700
-IronPort-SDR: 133b10ZlPGZUmf1vCbU6yIszkEvZHRZsjE3H2gV+pYtHSnBZcFCG+dp4/NQs8dcQsy6WQABjld
- Wdv/HhFbu5fw==
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="415274360"
+IronPort-SDR: bDqcxjtOcxubAckGPiI/D3NMLWPtEd/BzRmTBOWtyojYxoPEBnkf3OaeVOXEuE7I1ABdvlAaUe
+ DzhPfUO/wDcw==
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="415274363"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2021 20:35:08 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Jun 2021 20:34:32 -0700
-Message-Id: <20210615033433.1574397-3-matthew.d.roper@intel.com>
+Date: Mon, 14 Jun 2021 20:34:33 -0700
+Message-Id: <20210615033433.1574397-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210615033433.1574397-1-matthew.d.roper@intel.com>
 References: <20210615033433.1574397-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Add GT support for multiple types
- of multicast steering
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Add support for explicit L3BANK
+ steering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,287 +52,214 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Although most of our multicast registers are replicated per-subslice, we
-also have a small number of multicast registers that are replicated
-per-l3 bank instead.  For both types of multicast registers we need to
-make sure we steer reads of these registers to a valid instance.
-Ideally we'd like to find a specific instance ID that would steer reads
-of either type of multicast register to a valid instance (i.e., not
-fused off and not powered down), but sometimes the combination of
-part-specific fusing and the additional restrictions imposed by Render
-Power Gating make it impossible to find any overlap between the set of
-valid subslices and valid l3 banks.  This problem will become even more
-noticeable on our upcoming platforms since they will be adding
-additional types of multicast registers with new types of replication
-and rules for finding valid instances for reads.
+Because Render Power Gating restricts us to just a single subslice as a
+valid steering target for reads of multicast registers in a SUBSLICE
+range, the default steering we setup at init may not lead to a suitable
+target for L3BANK multicast register.  In cases where it does not, use
+explicit runtime steering whenever an L3BANK multicast register is read.
 
-To handle this we'll continue to pick a suitable subslice instance at
-driver startup and program this as the default (sliceid,subsliceid)
-setting in the steering control register (0xFDC).  In cases where we
-need to read another type of multicast GT register, but the default
-subslice steering would not correspond to a valid instance, we'll
-explicitly re-steer the single read to a valid value, perform the read,
-and then reset the steering to it's "subslice" default.
-
-This patch adds the general functionality to prepare for this explicit
-steering of other multicast register types.  We'll plug L3 bank steering
-into this in the next patch, and then add additional types of multicast
-registers when the support for our next upcoming platform arrives.
+While we're at it, let's simplify the function a little bit and drop its
+support for gen10/CNL since no such platforms ever materialized for real
+use.  Multicast register steering is already an area that causes enough
+confusion; no need to complicate it with what's effectively dead code.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c            | 84 +++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gt.h            |  8 ++
- drivers/gpu/drm/i915/gt/intel_gt_types.h      | 22 +++++
- drivers/gpu/drm/i915/gt/intel_workarounds.c   | 28 ++++---
- .../gpu/drm/i915/gt/selftest_workarounds.c    |  2 +-
- 5 files changed, 131 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt.c          | 18 +++++
+ drivers/gpu/drm/i915/gt/intel_gt_types.h    |  4 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 84 ++++++---------------
+ 3 files changed, 46 insertions(+), 60 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 2161bf01ef8b..f2bea1c20d56 100644
+index f2bea1c20d56..2c9cc34b0cbd 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt.c
 +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -697,6 +697,90 @@ void intel_gt_driver_late_release(struct intel_gt *gt)
- 	intel_engines_free(gt);
+@@ -83,6 +83,11 @@ void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt)
+ 	gt->ggtt = ggtt;
  }
  
-+/**
-+ * intel_gt_reg_needs_read_steering - determine whether a register read
-+ *     requires explicit steering
-+ * @gt: GT structure
-+ * @reg: the register to check steering requirements for
-+ * @type: type of multicast steering to check
-+ *
-+ * Determines whether @reg needs explicit steering of a specific type for
-+ * reads.
-+ *
-+ * Returns false if @reg does not belong to a register range of the given
-+ * steering type, or if the default (subslice-based) steering IDs are suitable
-+ * for @type steering too.
-+ */
-+static bool intel_gt_reg_needs_read_steering(struct intel_gt *gt,
-+					     i915_reg_t reg,
-+					     enum intel_steering_type type)
-+{
-+	const u32 offset = i915_mmio_reg_offset(reg);
-+	const struct intel_mmio_range *entry;
++static const struct intel_mmio_range icl_l3bank_steering_table[] = {
++       { 0x00B100, 0x00B3FF },
++       { 0xFFFFFF, 0xFFFFFF }, /* terminating entry */
++};
 +
-+	if (likely(!intel_gt_needs_read_steering(gt, type)))
-+		return false;
-+
-+	for (entry = gt->steering_table[type]; entry->start < 0xFFFFFF; entry++) {
-+		if (offset >= entry->start && offset <= entry->end)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+/**
-+ * intel_gt_get_valid_steering - determines valid IDs for a class of MCR steering
-+ * @gt: GT structure
-+ * @type: multicast register type
-+ * @sliceid: Slice ID returned
-+ * @subsliceid: Subslice ID returned
-+ *
-+ * Determines sliceid and subsliceid values that will steer reads
-+ * of a specific multicast register class to a valid value.
-+ */
-+static void intel_gt_get_valid_steering(struct intel_gt *gt,
-+					enum intel_steering_type type,
-+					u8 *sliceid, u8 *subsliceid)
-+{
-+	switch (type) {
-+	default:
-+		MISSING_CASE(type);
-+		*sliceid = 0;
-+		*subsliceid = 0;
-+	}
-+}
-+
-+/**
-+ * intel_gt_read_register_fw - reads a GT register with support for multicast
-+ * @gt: GT structure
-+ * @reg: register to read
-+ *
-+ * This function will read a GT register.  If the register is a multicast
-+ * register, the read will be steered to a valid instance (i.e., one that
-+ * isn't fused off or powered down by power gating).
-+ *
-+ * Returns the value from a valid instance of @reg.
-+ */
-+u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg)
-+{
-+	int type;
-+	u8 sliceid, subsliceid;
-+
-+	for (type = 0; type < NUM_STEERING_TYPES; type++) {
-+		if (intel_gt_reg_needs_read_steering(gt, reg, type)) {
-+			intel_gt_get_valid_steering(gt, type, &sliceid,
-+						    &subsliceid);
-+			return intel_uncore_read_with_mcr_steering_fw(gt->uncore,
-+								      reg,
-+								      sliceid,
-+								      subsliceid);
-+		}
-+	}
-+
-+	return intel_uncore_read_fw(gt->uncore, reg);
-+}
-+
- void intel_gt_info_print(const struct intel_gt_info *info,
- 			 struct drm_printer *p)
+ int intel_gt_init_mmio(struct intel_gt *gt)
  {
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 7ec395cace69..e7aabe0cc5bf 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -75,6 +75,14 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
- 	return unlikely(test_bit(I915_WEDGED, &gt->reset.flags));
+ 	intel_gt_init_clock_frequency(gt);
+@@ -90,6 +95,13 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+ 	intel_uc_init_mmio(&gt->uc);
+ 	intel_sseu_info_init(gt);
+ 
++	if (GRAPHICS_VER(gt->i915) >= 11) {
++		gt->steering_table[L3BANK] = icl_l3bank_steering_table;
++		gt->info.l3bank_mask =
++			intel_uncore_read(&gt->i915->uncore, GEN10_MIRROR_FUSE3) &
++			GEN10_L3BANK_MASK;
++	}
++
+ 	return intel_engines_init_mmio(gt);
  }
  
-+static inline bool intel_gt_needs_read_steering(struct intel_gt *gt,
-+						enum intel_steering_type type)
-+{
-+	return gt->steering_table[type];
-+}
+@@ -744,6 +756,12 @@ static void intel_gt_get_valid_steering(struct intel_gt *gt,
+ 					u8 *sliceid, u8 *subsliceid)
+ {
+ 	switch (type) {
++	case L3BANK:
++		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
 +
-+u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg);
-+
- void intel_gt_info_print(const struct intel_gt_info *info,
- 			 struct drm_printer *p);
- 
++		*sliceid = __ffs(gt->info.l3bank_mask);
++		*subsliceid = 0;        /* unused */
++		break;
+ 	default:
+ 		MISSING_CASE(type);
+ 		*sliceid = 0;
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index fecfacf551d5..47957837c8c0 100644
+index 47957837c8c0..5ecad25de6ed 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
 +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -31,6 +31,26 @@ struct i915_ggtt;
- struct intel_engine_cs;
- struct intel_uncore;
- 
-+struct intel_mmio_range {
-+       u32 start;
-+       u32 end;
-+};
+@@ -48,6 +48,8 @@ struct intel_mmio_range {
+  * need to explicitly re-steer reads of registers of the other type.
+  */
+ enum intel_steering_type {
++	L3BANK,
 +
-+/*
-+ * The hardware has multiple kinds of multicast register ranges that need
-+ * special register steering (and future platforms are expected to add
-+ * additional types).
-+ *
-+ * During driver startup, we initialize the steering control register to
-+ * direct reads to a slice/subslice that are valid for the 'subslice' class
-+ * of multicast registers.  If another type of steering does not have any
-+ * overlap in valid steering targets with 'subslice' style registers, we will
-+ * need to explicitly re-steer reads of registers of the other type.
-+ */
-+enum intel_steering_type {
-+	NUM_STEERING_TYPES
-+};
-+
- enum intel_submission_method {
- 	INTEL_SUBMISSION_RING,
- 	INTEL_SUBMISSION_ELSP,
-@@ -145,6 +165,8 @@ struct intel_gt {
+ 	NUM_STEERING_TYPES
+ };
  
- 	struct i915_vma *scratch;
+@@ -174,6 +176,8 @@ struct intel_gt {
+ 		/* Media engine access to SFC per instance */
+ 		u8 vdbox_sfc_access;
  
-+	const struct intel_mmio_range *steering_table[NUM_STEERING_TYPES];
++		u32 l3bank_mask;
 +
- 	struct intel_gt_info {
- 		intel_engine_mask_t engine_mask;
- 		u8 num_engines;
+ 		/* Slice/subslice/EU info */
+ 		struct sseu_dev_info sseu;
+ 	} info;
 diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index b62d1e31a645..689045d3752b 100644
+index 689045d3752b..a0be3c09a7f9 100644
 --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1247,8 +1247,9 @@ wa_verify(const struct i915_wa *wa, u32 cur, const char *name, const char *from)
+@@ -944,71 +944,37 @@ cfl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
  }
  
  static void
--wa_list_apply(struct intel_uncore *uncore, const struct i915_wa_list *wal)
-+wa_list_apply(struct intel_gt *gt, const struct i915_wa_list *wal)
+-wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
++icl_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
  {
-+	struct intel_uncore *uncore = gt->uncore;
- 	enum forcewake_domains fw;
- 	unsigned long flags;
- 	struct i915_wa *wa;
-@@ -1263,13 +1264,16 @@ wa_list_apply(struct intel_uncore *uncore, const struct i915_wa_list *wal)
- 	intel_uncore_forcewake_get__locked(uncore, fw);
+ 	const struct sseu_dev_info *sseu = &i915->gt.info.sseu;
+ 	unsigned int slice, subslice;
+-	u32 l3_en, mcr, mcr_mask;
++	u32 mcr, mcr_mask;
  
- 	for (i = 0, wa = wal->list; i < wal->count; i++, wa++) {
--		if (wa->clr)
--			intel_uncore_rmw_fw(uncore, wa->reg, wa->clr, wa->set);
--		else
--			intel_uncore_write_fw(uncore, wa->reg, wa->set);
-+		u32 val, old = 0;
-+
-+		/* open-coded rmw due to steering */
-+		old = wa->clr ? intel_gt_read_register_fw(gt, wa->reg) : 0;
-+		val = (old & ~wa->clr) | wa->set;
-+		if (val != old || !wa->clr)
-+			intel_uncore_write_fw(uncore, wa->reg, val);
-+
- 		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
--			wa_verify(wa,
--				  intel_uncore_read_fw(uncore, wa->reg),
-+			wa_verify(wa, intel_gt_read_register_fw(gt, wa->reg),
- 				  wal->name, "application");
- 	}
+-	GEM_BUG_ON(GRAPHICS_VER(i915) < 10);
++	GEM_BUG_ON(GRAPHICS_VER(i915) < 11);
++	GEM_BUG_ON(hweight8(sseu->slice_mask) > 1);
++	slice = 0;
  
-@@ -1279,10 +1283,10 @@ wa_list_apply(struct intel_uncore *uncore, const struct i915_wa_list *wal)
+ 	/*
+-	 * WaProgramMgsrForL3BankSpecificMmioReads: cnl,icl
+-	 * L3Banks could be fused off in single slice scenario. If that is
+-	 * the case, we might need to program MCR select to a valid L3Bank
+-	 * by default, to make sure we correctly read certain registers
+-	 * later on (in the range 0xB100 - 0xB3FF).
+-	 *
+-	 * WaProgramMgsrForCorrectSliceSpecificMmioReads:cnl,icl
+-	 * Before any MMIO read into slice/subslice specific registers, MCR
+-	 * packet control register needs to be programmed to point to any
+-	 * enabled s/ss pair. Otherwise, incorrect values will be returned.
+-	 * This means each subsequent MMIO read will be forwarded to an
+-	 * specific s/ss combination, but this is OK since these registers
+-	 * are consistent across s/ss in almost all cases. In the rare
+-	 * occasions, such as INSTDONE, where this value is dependent
+-	 * on s/ss combo, the read should be done with read_subslice_reg.
+-	 *
+-	 * Since GEN8_MCR_SELECTOR contains dual-purpose bits which select both
+-	 * to which subslice, or to which L3 bank, the respective mmio reads
+-	 * will go, we have to find a common index which works for both
+-	 * accesses.
+-	 *
+-	 * Case where we cannot find a common index fortunately should not
+-	 * happen in production hardware, so we only emit a warning instead of
+-	 * implementing something more complex that requires checking the range
+-	 * of every MMIO read.
++	 * Although a platform may have subslices, we need to always steer
++	 * reads to the lowest instance that isn't fused off.  When Render
++	 * Power Gating is enabled, grabbing forcewake will only power up a
++	 * single subslice (the "minconfig") if there isn't a real workload
++	 * that needs to be run; this means that if we steer register reads to
++	 * one of the higher subslices, we run the risk of reading back 0's or
++	 * random garbage.
+ 	 */
++	subslice = __ffs(intel_sseu_get_subslices(sseu, slice));
  
- void intel_gt_apply_workarounds(struct intel_gt *gt)
+-	if (GRAPHICS_VER(i915) >= 10 && is_power_of_2(sseu->slice_mask)) {
+-		u32 l3_fuse =
+-			intel_uncore_read(&i915->uncore, GEN10_MIRROR_FUSE3) &
+-			GEN10_L3BANK_MASK;
+-
+-		drm_dbg(&i915->drm, "L3 fuse = %x\n", l3_fuse);
+-		l3_en = ~(l3_fuse << GEN10_L3BANK_PAIR_COUNT | l3_fuse);
+-	} else {
+-		l3_en = ~0;
+-	}
++	/*
++	 * If the subslice we picked above also steers us to a valid L3 bank,
++	 * then we can just rely on the default steering and won't need to
++	 * worry about explicitly re-steering L3BANK reads later.
++	 */
++	if (i915->gt.info.l3bank_mask & BIT(subslice))
++		i915->gt.steering_table[L3BANK] = NULL;
+ 
+-	slice = fls(sseu->slice_mask) - 1;
+-	subslice = fls(l3_en & intel_sseu_get_subslices(sseu, slice));
+-	if (!subslice) {
+-		drm_warn(&i915->drm,
+-			 "No common index found between subslice mask %x and L3 bank mask %x!\n",
+-			 intel_sseu_get_subslices(sseu, slice), l3_en);
+-		subslice = fls(l3_en);
+-		drm_WARN_ON(&i915->drm, !subslice);
+-	}
+-	subslice--;
+-
+-	if (GRAPHICS_VER(i915) >= 11) {
+-		mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
+-		mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+-	} else {
+-		mcr = GEN8_MCR_SLICE(slice) | GEN8_MCR_SUBSLICE(subslice);
+-		mcr_mask = GEN8_MCR_SLICE_MASK | GEN8_MCR_SUBSLICE_MASK;
+-	}
++	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
++	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+ 
+ 	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
+ 
+@@ -1018,8 +984,6 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
  {
--	wa_list_apply(gt->uncore, &gt->i915->gt_wa_list);
-+	wa_list_apply(gt, &gt->i915->gt_wa_list);
- }
- 
--static bool wa_list_verify(struct intel_uncore *uncore,
-+static bool wa_list_verify(struct intel_gt *gt,
- 			   const struct i915_wa_list *wal,
- 			   const char *from)
+-	wa_init_mcr(i915, wal);
+-
+ 	/* WaInPlaceDecompressionHang:cnl */
+ 	wa_write_or(wal,
+ 		    GEN9_GAMT_ECO_REG_RW_IA,
+@@ -1029,7 +993,7 @@ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
  {
-@@ -1292,7 +1296,7 @@ static bool wa_list_verify(struct intel_uncore *uncore,
+-	wa_init_mcr(i915, wal);
++	icl_wa_init_mcr(i915, wal);
  
- 	for (i = 0, wa = wal->list; i < wal->count; i++, wa++)
- 		ok &= wa_verify(wa,
--				intel_uncore_read(uncore, wa->reg),
-+				intel_gt_read_register_fw(gt, wa->reg),
- 				wal->name, from);
- 
- 	return ok;
-@@ -1300,7 +1304,7 @@ static bool wa_list_verify(struct intel_uncore *uncore,
- 
- bool intel_gt_verify_workarounds(struct intel_gt *gt, const char *from)
+ 	/* WaInPlaceDecompressionHang:icl */
+ 	wa_write_or(wal,
+@@ -1111,7 +1075,7 @@ static void
+ gen12_gt_workarounds_init(struct drm_i915_private *i915,
+ 			  struct i915_wa_list *wal)
  {
--	return wa_list_verify(gt->uncore, &gt->i915->gt_wa_list, from);
-+	return wa_list_verify(gt, &gt->i915->gt_wa_list, from);
- }
+-	wa_init_mcr(i915, wal);
++	icl_wa_init_mcr(i915, wal);
  
- __maybe_unused
-@@ -2081,7 +2085,7 @@ void intel_engine_init_workarounds(struct intel_engine_cs *engine)
- 
- void intel_engine_apply_workarounds(struct intel_engine_cs *engine)
- {
--	wa_list_apply(engine->uncore, &engine->wa_list);
-+	wa_list_apply(engine->gt, &engine->wa_list);
- }
- 
- struct mcr_range {
-diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-index c30754daf4b1..7ebc4edb8ecf 100644
---- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-@@ -1147,7 +1147,7 @@ verify_wa_lists(struct intel_gt *gt, struct wa_lists *lists,
- 	enum intel_engine_id id;
- 	bool ok = true;
- 
--	ok &= wa_list_verify(gt->uncore, &lists->gt_wa_list, str);
-+	ok &= wa_list_verify(gt, &lists->gt_wa_list, str);
- 
- 	for_each_engine(engine, gt, id) {
- 		struct intel_context *ce;
+ 	/* Wa_14011060649:tgl,rkl,dg1,adls */
+ 	wa_14011060649(i915, wal);
 -- 
 2.25.4
 
