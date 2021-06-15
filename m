@@ -1,31 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C484C3A7E1C
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 14:22:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0883A7E23
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 14:24:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D37266E2C7;
-	Tue, 15 Jun 2021 12:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A7E06E28B;
+	Tue, 15 Jun 2021 12:24:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3B3426E28B;
- Tue, 15 Jun 2021 12:22:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DA0CEA8830;
- Tue, 15 Jun 2021 12:21:59 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BC16E28B;
+ Tue, 15 Jun 2021 12:24:20 +0000 (UTC)
+IronPort-SDR: gxRTVrOGzEksF7JABUPyJwaGh2ulcG6s9AUSBmJ8gjHAYpr9TwNjwlNcN3+xLniX8t1vgMBn4w
+ 0hYawWAAKO2Q==
+X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="193286964"
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="193286964"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2021 05:24:19 -0700
+IronPort-SDR: 7o6rPd65e8j0kJE3BN0JdExwbqOgDko7R8Y9YWPn7xW+91i40cSc/zr75+dDvyg0vvotvSmBAG
+ IYNqwACpeX2Q==
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="487762188"
+Received: from vgribano-mobl.ccr.corp.intel.com (HELO thellst-mobl1.intel.com)
+ ([10.249.254.53])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2021 05:24:17 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 15 Jun 2021 14:24:08 +0200
+Message-Id: <20210615122408.32347-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Tue, 15 Jun 2021 12:21:59 -0000
-Message-ID: <162375971987.8817.12859566192714544789@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210615105613.851491-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20210615105613.851491-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/jsl=3A_Add_W/A_1409054076_for_JSL_=28rev6=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/ttm: Fix memory leaks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,136 +46,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1067123747=="
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1067123747==
-Content-Type: multipart/alternative;
- boundary="===============1258501929304222771=="
-
---===============1258501929304222771==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/jsl: Add W/A 1409054076 for JSL (rev6)
-URL   : https://patchwork.freedesktop.org/series/90129/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10225 -> Patchwork_20368
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20368/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (48 -> 39)
-------------------------------
-
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 bat-adls-4 fi-ctg-p8600 bat-adls-3 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10225 -> Patchwork_20368
-
-  CI-20190529: 20190529
-  CI_DRM_10225: 52beaf52657f49ffda64af3c46548fb0907cf66d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6107: 2bec4e7619f04d2ca86006917acd3b5c86fb73a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20368: 291cdfd7d170fa0a9bf08e5c14b68e876ed68c5c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-291cdfd7d170 drm/i915/jsl: Add W/A 1409054076 for JSL
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20368/index.html
-
---===============1258501929304222771==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/jsl: Add W/A 1409054076 for JSL (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90129/">https://patchwork.freedesktop.org/series/90129/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20368/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20368/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10225 -&gt; Patchwork_20368</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20368/index.html</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (48 -&gt; 39)</h2>
-<p>Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 bat-adls-4 fi-ctg-p8600 bat-adls-3 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10225 -&gt; Patchwork_20368</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10225: 52beaf52657f49ffda64af3c46548fb0907cf66d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6107: 2bec4e7619f04d2ca86006917acd3b5c86fb73a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20368: 291cdfd7d170fa0a9bf08e5c14b68e876ed68c5c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>291cdfd7d170 drm/i915/jsl: Add W/A 1409054076 for JSL</p>
-
-</body>
-</html>
-
---===============1258501929304222771==--
-
---===============1067123747==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1067123747==--
+Rml4IHR3byBtZW1vcnkgbGVha3MgaW50cm9kdWNlZCB3aXRoIHRoZSB0dG0gYmFja2VuZC4KCkZp
+eGVzOiAyMTNkNTA5Mjc3NjMgKCJkcm0vaTkxNS90dG06IEludHJvZHVjZSBhIFRUTSBpOTE1IGdl
+bSBvYmplY3QgYmFja2VuZCIpClNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
+YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fdHRtLmMgfCAyICsrCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCsp
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCmluZGV4IDA4YjcyYzI4MGNi
+NS4uODA1OWNiNjFiYzNjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
+NV9nZW1fdHRtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5j
+CkBAIC0xMjIsNiArMTIyLDcgQEAgc3RhdGljIHZvaWQgaTkxNV90dG1fdHRfZGVzdHJveShzdHJ1
+Y3QgdHRtX2RldmljZSAqYmRldiwgc3RydWN0IHR0bV90dCAqdHRtKQogCXN0cnVjdCBpOTE1X3R0
+bV90dCAqaTkxNV90dCA9IGNvbnRhaW5lcl9vZih0dG0sIHR5cGVvZigqaTkxNV90dCksIHR0bSk7
+CiAKIAl0dG1fdHRfZGVzdHJveV9jb21tb24oYmRldiwgdHRtKTsKKwl0dG1fdHRfZmluaSh0dG0p
+OwogCWtmcmVlKGk5MTVfdHQpOwogfQogCkBAIC0yMTcsNiArMjE4LDcgQEAgc3RhdGljIHZvaWQg
+aTkxNV90dG1fZGVsZXRlX21lbV9ub3RpZnkoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibykK
+IAogCWlmIChsaWtlbHkob2JqKSkgewogCQkvKiBUaGlzIHJlbGVhc2VzIGFsbCBnZW0gb2JqZWN0
+IGJpbmRpbmdzIHRvIHRoZSBiYWNrZW5kLiAqLworCQlpOTE1X3R0bV9mcmVlX2NhY2hlZF9pb19z
+dChvYmopOwogCQlfX2k5MTVfZ2VtX2ZyZWVfb2JqZWN0KG9iaik7CiAJfQogfQotLSAKMi4zMS4x
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
