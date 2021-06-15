@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F0603A8062
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:38:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6913A8064
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:38:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E94F6E328;
-	Tue, 15 Jun 2021 13:38:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03E8F6E2D8;
+	Tue, 15 Jun 2021 13:38:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68FCA6E2D8;
- Tue, 15 Jun 2021 13:38:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A15C26E2D8;
+ Tue, 15 Jun 2021 13:38:15 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 4EF4667373; Tue, 15 Jun 2021 15:37:58 +0200 (CEST)
-Date: Tue, 15 Jun 2021 15:37:58 +0200
+ id CC6DF68AFE; Tue, 15 Jun 2021 15:38:12 +0200 (CEST)
+Date: Tue, 15 Jun 2021 15:38:12 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210615133758.GA20389@lst.de>
+Message-ID: <20210615133812.GB20389@lst.de>
 References: <20210615132711.553451-1-tientzu@chromium.org>
- <20210615132711.553451-2-tientzu@chromium.org>
+ <20210615132711.553451-3-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210615132711.553451-2-tientzu@chromium.org>
+In-Reply-To: <20210615132711.553451-3-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v10 01/12] swiotlb: Refactor swiotlb init
- functions
+Subject: Re: [Intel-gfx] [PATCH v10 02/12] swiotlb: Refactor
+ swiotlb_create_debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,9 +68,11 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 15, 2021 at 09:27:00PM +0800, Claire Chang wrote:
-> Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
-> initialization to make the code reusable.
+On Tue, Jun 15, 2021 at 09:27:01PM +0800, Claire Chang wrote:
+> Split the debugfs creation to make the code reusable for supporting
+> different bounce buffer pools.
+> 
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
 
 Looks good,
 
