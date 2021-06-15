@@ -2,30 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F5F3A8109
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C123A817B
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:54:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7916E2D8;
-	Tue, 15 Jun 2021 13:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41AA889993;
+	Tue, 15 Jun 2021 13:54:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDB16E2D8;
- Tue, 15 Jun 2021 13:42:11 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 3D5CB67373; Tue, 15 Jun 2021 15:42:09 +0200 (CEST)
-Date: Tue, 15 Jun 2021 15:42:08 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210615134208.GJ20389@lst.de>
-References: <20210615132711.553451-1-tientzu@chromium.org>
- <20210615132711.553451-11-tientzu@chromium.org>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0311B89993
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 13:54:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1623765249;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LTPum8fRwPooExg8+HCTnewiRqyT0ffgzpim9aaEyrQ=;
+ b=fT32omds+YZOlFfKGtjZcNxCc+0gyIMbfCtRnxE6OInXNgeL8cnUThmelI3zlZw5K7zmFO
+ Murv3QcimuV7zFCsOingvrU5PLollI9KPiowZzK0voNQBqFOltkF31SIg0hZahwT5x5jdv
+ oL48Xe91qEaitWkrC5sqgPm4H9FeHko=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-150-C13r6FEsM8GkbdBbTqx5OQ-1; Tue, 15 Jun 2021 09:54:05 -0400
+X-MC-Unique: C13r6FEsM8GkbdBbTqx5OQ-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 36B141084F40;
+ Tue, 15 Jun 2021 13:54:03 +0000 (UTC)
+Received: from localhost (ovpn-113-156.ams2.redhat.com [10.36.113.156])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id D17571037F22;
+ Tue, 15 Jun 2021 13:53:47 +0000 (UTC)
+From: Cornelia Huck <cohuck@redhat.com>
+To: Christoph Hellwig <hch@lst.de>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Jason Gunthorpe <jgg@nvidia.com>, Alex
+ Williamson <alex.williamson@redhat.com>, Kirti Wankhede
+ <kwankhede@nvidia.com>
+In-Reply-To: <20210615133519.754763-3-hch@lst.de>
+Organization: Red Hat GmbH
+References: <20210615133519.754763-1-hch@lst.de>
+ <20210615133519.754763-3-hch@lst.de>
+User-Agent: Notmuch/0.32.1 (https://notmuchmail.org)
+Date: Tue, 15 Jun 2021 15:53:46 +0200
+Message-ID: <8735tjxmhh.fsf@redhat.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210615132711.553451-11-tientzu@chromium.org>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v10 10/12] swiotlb: Add restricted DMA
- alloc/free support
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Subject: Re: [Intel-gfx] [PATCH 02/10] driver core: Better distinguish probe
+ errors in really_probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,68 +63,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
- mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
- sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
- mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Christoph Hellwig <hch@lst.de>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- jxgao@google.com, Will Deacon <will@kernel.org>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
- Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
- Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
- boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
- tfiga@chromium.org,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
- Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Cc: Tony Krowiak <akrowiak@linux.ibm.com>, Jason Herne <jjherne@linux.ibm.com>,
+ kvm@vger.kernel.org, Vasily Gorbik <gor@linux.ibm.com>,
+ Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@linux.ie>,
+ linux-s390@vger.kernel.org, Heiko Carstens <hca@linux.ibm.com>,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 15, 2021 at 09:27:09PM +0800, Claire Chang wrote:
-> Add the functions, swiotlb_{alloc,free} to support the memory allocation
-> from restricted DMA pool.
-> 
-> The restricted DMA pool is preferred if available.
-> 
-> Note that since coherent allocation needs remapping, one must set up
-> another device coherent pool by shared-dma-pool and use
-> dma_alloc_from_dev_coherent instead for atomic coherent allocation.
+On Tue, Jun 15 2021, Christoph Hellwig <hch@lst.de> wrote:
 
-Note: when applied this should go before the next patch to make sure
-bisection works fine.
-
->  #ifdef CONFIG_DMA_RESTRICTED_POOL
-> +struct page *swiotlb_alloc(struct device *dev, size_t size)
-> +{
-> +	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
-> +	phys_addr_t tlb_addr;
-> +	int index;
+> really_probe tries to special case errors from ->probe, but due to all
+> other initialization added to the function over time now a lot of
+> internal errors hit that code path as well.  Untangle that by adding
+> a new probe_err local variable and apply the special casing only to
+> that.
+>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/base/dd.c | 72 +++++++++++++++++++++++++++--------------------
+>  1 file changed, 42 insertions(+), 30 deletions(-)
+>
+> diff --git a/drivers/base/dd.c b/drivers/base/dd.c
+> index 7477d3322b3a..fd83817240e6 100644
+> --- a/drivers/base/dd.c
+> +++ b/drivers/base/dd.c
+> @@ -513,12 +513,44 @@ static ssize_t state_synced_show(struct device *dev,
+>  }
+>  static DEVICE_ATTR_RO(state_synced);
+>  
 > +
-> +	/*
-> +	 * Skip io_tlb_default_mem since swiotlb_alloc doesn't support atomic
-> +	 * coherent allocation. Otherwise might break existing devices.
-> +	 * One must set up another device coherent pool by shared-dma-pool and
-> +	 * use dma_alloc_from_dev_coherent instead for atomic coherent
-> +	 * allocation to avoid mempry remapping.
+> +static int call_driver_probe(struct device *dev, struct device_driver *drv)
+> +{
+> +	int ret = 0;
+> +
+> +	if (dev->bus->probe)
+> +		ret = dev->bus->probe(dev);
+> +	else if (drv->probe)
+> +		ret = drv->probe(dev);
+> +
+> +	switch (ret) {
+> +	case 0:
+> +		break;
+> +	case -EPROBE_DEFER:
+> +		/* Driver requested deferred probing */
+> +		dev_dbg(dev, "Driver %s requests probe deferral\n", drv->name);
+> +		break;
+> +	case -ENODEV:
+> +	case -ENXIO:
+> +		pr_debug("%s: probe of %s rejects match %d\n",
+> +			 drv->name, dev_name(dev), ret);
+> +		break;
+> +	default:
+> +		/* driver matched but the probe failed */
+> +		pr_warn("%s: probe of %s failed with error %d\n",
+> +			drv->name, dev_name(dev), ret);
 
-s/mempry/memory/g
+Convert these two pr_* to dev_* when touching the code anyway?
 
-Otherwise looks good:
+> +		break;
+> +	}
+> +
+> +	return ret;
+> +}
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+(...)
+
+Reviewed-by: Cornelia Huck <cohuck@redhat.com>
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
