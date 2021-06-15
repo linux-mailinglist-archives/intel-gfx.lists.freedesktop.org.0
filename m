@@ -1,43 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4733A7E43
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 14:35:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B33F3A7E81
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 14:56:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54CAB6E2ED;
-	Tue, 15 Jun 2021 12:35:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2320389C85;
+	Tue, 15 Jun 2021 12:56:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C05366E2E3;
- Tue, 15 Jun 2021 12:35:22 +0000 (UTC)
-IronPort-SDR: PHKsVc0H80ADA/jvX5KjlBHi1LogSAcZQF04iNRgjBWmYxSwfQOoceLLz8Yb4OwuiLQL07kJ2U
- CQs+HhHUM7cA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10015"; a="269829221"
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="269829221"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 05:35:20 -0700
-IronPort-SDR: 0ppNb/nI+vahgTzDi26pSb+IbJ3yS7yB3SPGF0rePm3iTDY3yYmeExgvzccD5a/9bj+GPPyFaq
- kMtiX7DKorbQ==
-X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; d="scan'208";a="484455237"
-Received: from aperelma-mobl.ger.corp.intel.com (HELO [10.252.37.64])
- ([10.252.37.64])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 05:35:18 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210615122408.32347-1-thomas.hellstrom@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <222f7ebd-d746-f6b9-3524-f3195a95e3aa@linux.intel.com>
-Date: Tue, 15 Jun 2021 14:35:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6D03789C1E;
+ Tue, 15 Jun 2021 12:56:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 64A0DA8832;
+ Tue, 15 Jun 2021 12:56:39 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210615122408.32347-1-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: Fix memory leaks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Tue, 15 Jun 2021 12:56:39 -0000
+Message-ID: <162376179938.8819.457696311957390815@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210615113600.30660-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210615113600.30660-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Perform_execbuffer_object_locking_as_a_separate_step?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,33 +38,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0516291703=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMTUtMDYtMjAyMSBvbSAxNDoyNCBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtOgo+IEZpeCB0
-d28gbWVtb3J5IGxlYWtzIGludHJvZHVjZWQgd2l0aCB0aGUgdHRtIGJhY2tlbmQuCj4KPiBGaXhl
-czogMjEzZDUwOTI3NzYzICgiZHJtL2k5MTUvdHRtOiBJbnRyb2R1Y2UgYSBUVE0gaTkxNSBnZW0g
-b2JqZWN0IGJhY2tlbmQiKQo+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
-YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jIHwgMiArKwo+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRp
-b25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X3R0bS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCj4gaW5kZXgg
-MDhiNzJjMjgwY2I1Li44MDU5Y2I2MWJjM2MgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX3R0bS5jCj4gQEAgLTEyMiw2ICsxMjIsNyBAQCBzdGF0aWMgdm9pZCBpOTE1X3R0
-bV90dF9kZXN0cm95KHN0cnVjdCB0dG1fZGV2aWNlICpiZGV2LCBzdHJ1Y3QgdHRtX3R0ICp0dG0p
-Cj4gIAlzdHJ1Y3QgaTkxNV90dG1fdHQgKmk5MTVfdHQgPSBjb250YWluZXJfb2YodHRtLCB0eXBl
-b2YoKmk5MTVfdHQpLCB0dG0pOwo+ICAKPiAgCXR0bV90dF9kZXN0cm95X2NvbW1vbihiZGV2LCB0
-dG0pOwo+ICsJdHRtX3R0X2ZpbmkodHRtKTsKPiAgCWtmcmVlKGk5MTVfdHQpOwo+ICB9Cj4gIAo+
-IEBAIC0yMTcsNiArMjE4LDcgQEAgc3RhdGljIHZvaWQgaTkxNV90dG1fZGVsZXRlX21lbV9ub3Rp
-Znkoc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibykKPiAgCj4gIAlpZiAobGlrZWx5KG9iaikp
-IHsKPiAgCQkvKiBUaGlzIHJlbGVhc2VzIGFsbCBnZW0gb2JqZWN0IGJpbmRpbmdzIHRvIHRoZSBi
-YWNrZW5kLiAqLwo+ICsJCWk5MTVfdHRtX2ZyZWVfY2FjaGVkX2lvX3N0KG9iaik7Cj4gIAkJX19p
-OTE1X2dlbV9mcmVlX29iamVjdChvYmopOwo+ICAJfQo+ICB9CgpSZXZpZXdlZC1ieTogTWFhcnRl
-biBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============0516291703==
+Content-Type: multipart/alternative;
+ boundary="===============8962932633854912876=="
+
+--===============8962932633854912876==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: Perform execbuffer object locking as a separate step
+URL   : https://patchwork.freedesktop.org/series/91506/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10225 -> Patchwork_20369
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20369/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20369 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][1] ([i915#3303]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20369/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3544]: https://gitlab.freedesktop.org/drm/intel/issues/3544
+
+
+Participating hosts (48 -> 39)
+------------------------------
+
+  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 bat-adls-4 fi-ctg-p8600 bat-adls-3 fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10225 -> Patchwork_20369
+
+  CI-20190529: 20190529
+  CI_DRM_10225: 52beaf52657f49ffda64af3c46548fb0907cf66d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6107: 2bec4e7619f04d2ca86006917acd3b5c86fb73a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20369: 2e4245d2a116b28f046a6feb3fe16729725ae321 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2e4245d2a116 drm/i915: Perform execbuffer object locking as a separate step
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20369/index.html
+
+--===============8962932633854912876==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Perform execbuffer object locking as a separate step</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91506/">https://patchwork.freedesktop.org/series/91506/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20369/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20369/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10225 -&gt; Patchwork_20369</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20369/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20369 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20369/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (48 -&gt; 39)</h2>
+<p>Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 bat-adls-4 fi-ctg-p8600 bat-adls-3 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10225 -&gt; Patchwork_20369</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10225: 52beaf52657f49ffda64af3c46548fb0907cf66d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6107: 2bec4e7619f04d2ca86006917acd3b5c86fb73a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20369: 2e4245d2a116b28f046a6feb3fe16729725ae321 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>2e4245d2a116 drm/i915: Perform execbuffer object locking as a separate step</p>
+
+</body>
+</html>
+
+--===============8962932633854912876==--
+
+--===============0516291703==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0516291703==--
