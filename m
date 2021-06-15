@@ -1,31 +1,115 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D5C3A83D2
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 17:21:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7681F3A83FA
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 17:28:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B73836E3AC;
-	Tue, 15 Jun 2021 15:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD63189CBE;
+	Tue, 15 Jun 2021 15:28:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5CA6989C88;
- Tue, 15 Jun 2021 15:21:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 53C76AA01E;
- Tue, 15 Jun 2021 15:21:11 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2072.outbound.protection.outlook.com [40.107.94.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF1D56E128;
+ Tue, 15 Jun 2021 15:27:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MLm8xPlGPU7P1UCl/Xip4kQ1McLNoWhcTTQNOxjGhjxx9rgvm4t/uYWS0jNIpY3r2mc+yals4L3j1Q72tQTRzGJXL/XCRKePhHsqzO6rxSWlQv1gBeoauZu+mQ1F9SbEn8xmZrMTUenevLdnjHRLTp5wAPFQGMmuE/zrI39xNySU8ocFpvU0pTYy/zyA5tzzqOU0KrSI5wdsswZgURx93AbEsuQarJZrnhGvFChePIcYjWRX/uGekuTyGciTE4O8+0D2Gl7xIpAtBy/AvHT579klPzh12zEGFcNtB6IgHbr6yN+VfSB7/rptILQa/HuaAKv77bTRsH/Jr09gSQaVNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nPaTbR5qOjvH9FJGuIeGCpTGt34lXHjFtnUB08uGOG8=;
+ b=P77QHFoYX2Sq0NNjTfuPAKuBq3mEEp03RVFAnm7B3x7dY8hDmQ1A2JIKK2++nbgGV4J6PphBrcYmLrMB92vsfup3UeZDgC8CRmnHLW0/UiXoSNdgfODDsQkCVyxOTNhw7S27RbiZ9ltvtgMCrCeIR5ALtNqNMSD0Okh+ynodNOXg0TxOUaYbIRgDntbZQUiEWGqqmq1cftW6wtxpqjMgEoMbKilShAlTAS9HC+nNpCF7J8xofpwQO6/HeWvakExxOQs8iAfS/jn4lYPRCIDLoQjZPl975zC/UZ5y2uT7jlECVs/Arxs36URVyjpI72a8JUMJzNI4DZJeT8ujFQLIZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nPaTbR5qOjvH9FJGuIeGCpTGt34lXHjFtnUB08uGOG8=;
+ b=eD1W6VHhzbXSC9Zx6UOOa+uxdWYxWAmBiNopmGgsSEd47YftbTA09MW5eWmtpRJslZqR10hLwElQLUgqtaO+hEaevz/3HJpmGrOraDVa/9z3Z8nPdtx7Gb2SG22zR8rNyjh9cKjUC6HqSB7ShPp4VdgkD4EeEDvkpNfL4kz6Kx8wexXntdd7TMEWmiDMT5ETKU5l2XO1wUfgT6xiPx1xBqJhKc2fVoZH6fo20z2V203vzgFho9CW0uNglzBPq84TdwP74lECd7HdgCY7x42NdNqtQnOP9sed7XGuQohSvcWeKML6Jakca4SJCgljTgndc/qZeq/pi8iEGh/f9YhoSw==
+Authentication-Results: lst.de; dkim=none (message not signed)
+ header.d=none;lst.de; dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
+ by BL0PR12MB5555.namprd12.prod.outlook.com (2603:10b6:208:1c2::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.23; Tue, 15 Jun
+ 2021 15:27:46 +0000
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::3d51:a3b9:8611:684e]) by BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::3d51:a3b9:8611:684e%8]) with mapi id 15.20.4242.016; Tue, 15 Jun 2021
+ 15:27:46 +0000
+Date: Tue, 15 Jun 2021 12:27:44 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20210615152744.GU1002214@nvidia.com>
+References: <20210614150846.4111871-1-hch@lst.de> <YMg49UF8of2yHWum@kroah.com>
+ <20210615055021.GB21080@lst.de>
+Content-Disposition: inline
+In-Reply-To: <20210615055021.GB21080@lst.de>
+X-Originating-IP: [47.55.113.94]
+X-ClientProxiedBy: BL1PR13CA0260.namprd13.prod.outlook.com
+ (2603:10b6:208:2ba::25) To BL0PR12MB5506.namprd12.prod.outlook.com
+ (2603:10b6:208:1cb::22)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Werner Sembach" <wse@tuxedocomputers.com>
-Date: Tue, 15 Jun 2021 15:21:11 -0000
-Message-ID: <162377047131.8818.3895458550927508949@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210615141426.6001-1-wse@tuxedocomputers.com>
-In-Reply-To: <20210615141426.6001-1-wse@tuxedocomputers.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTmV3?=
- =?utf-8?q?_uAPI_drm_properties_for_color_management?=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mlx.ziepe.ca (47.55.113.94) by
+ BL1PR13CA0260.namprd13.prod.outlook.com (2603:10b6:208:2ba::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.9 via Frontend
+ Transport; Tue, 15 Jun 2021 15:27:45 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1ltAye-007AAY-SE; Tue, 15 Jun 2021 12:27:44 -0300
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 44dcfcfc-1004-4ac8-de06-08d930122049
+X-MS-TrafficTypeDiagnostic: BL0PR12MB5555:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BL0PR12MB5555EAF43F86D6F250FBC07CC2309@BL0PR12MB5555.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hRMiPbKkpDnhHmTcxlc1V/7QFa8+GwFHMMnQoYHBPXLWlwoTMQHbEULvtJMCqEeRZC3mYJb4WoGea+d4galRWBz4bSeyZE1CQKD27DHDp6A01Yle7UcHxbQPl7e9+NT8VLCHqwL7YHdGRTb1NnBGl+osCikHaRRwC8RHtxNSHqs8aIxRz8qYytKesQcTbZHqh3DQP/Li3i5p19lsRkfkaVbRT+5jLHivOhzGyzuXr39B+NL2JGsa7PkzfhrJBkrD3fjMcTqoX/0nkJUK2maaCnU2oagoEPxXcdtk4QLu3TTYadTxsSCWrO0MCd/UbP1mcynGP58EDx2tssWe3xLVX6PA9Nqg9flyXkMUFkBFP71iBIgxYB+4V1zV5oGBC9QD7A8vQI1e0lG1wDgkrpKXTXkTZnkSHzUqQeNyDoGLXAXk0dhi2pwTfzKYtZHvh2t93ClrQQcJw7gM6F3EDo/ZCZrx58QBNVIjwHdjM+UHIXhuhO2WRIY1McvJVoV0qoeGfSmXkFKRvfrTgmCrQajodSVbWqtVMLm/tewAMr6bhGQ3GinBYNhS9EXPUKh8hhNBuutZlH9N3T4WnQUyK+tvpKhz3nTHFlEDRs9eM3X8TFM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(54906003)(7416002)(9746002)(9786002)(498600001)(6916009)(4744005)(2616005)(5660300002)(66946007)(38100700002)(26005)(83380400001)(426003)(8676002)(4326008)(66556008)(36756003)(33656002)(186003)(2906002)(66476007)(8936002)(1076003)(86362001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?23xGDNv98FYbxKREKW0GhW1+akIZpRFkHRyyTNlNMr9ssCRBarThxcvlX2eC?=
+ =?us-ascii?Q?Y2HtWK/a6CuaIDNq9pbC+CeQXdnqbMnoEhOzcB4w0MCzm0Wxi0cxXTZfBuNv?=
+ =?us-ascii?Q?dC7qvCoiHWVAp1NAjqgYHB1GiVLBbI/y3bvC47OxMmsYobYp5BGoXAmUpYNk?=
+ =?us-ascii?Q?QYg6SBlCvrLvVeuteK7auqQ82mgVaTwQ8B8AV+tCb0lN+KiJoZ1xVHBmCZeb?=
+ =?us-ascii?Q?cRLk32OLlSDFIZ9cYFhOLT2rNrWWnCSo6y2E2Cjim8x87m93QLwdMma8oFU4?=
+ =?us-ascii?Q?Vtxu7nRi6YxxWWl7GRGgkoW7yt262eg7WUOMxMeYS9Q08gR7Z1iaROVl7yM9?=
+ =?us-ascii?Q?vOHBMXY2GsEeilffvjuKpxnDAfVFZ+mxXiIotrc0nAfNBpMZYKTagkl09EGQ?=
+ =?us-ascii?Q?ouCH5e/jpth9fdzrFOKtvRisgRZiw9VgSQQciHdw15eNKR6NLt8zv1fYCcDM?=
+ =?us-ascii?Q?t3u6vmBO35NwLmLgNrW3f5Hq0xsfwVVhNZkXaeqIBuqvf2VEflQBMlhnCZ5+?=
+ =?us-ascii?Q?zdb2LKKecmJ19uTcwpOdlFml9ERJkrP9kmo/zlO7sVDbwobrs3g5RUXSEPKw?=
+ =?us-ascii?Q?AJzYdx/GixkeU4tlOWJf8dsbSVHHLOpDLO1CH8iUj/BXOl7bUKpfGDGHO63R?=
+ =?us-ascii?Q?llX9CUVC9qXFw3nNjqHMntZcUalN4IbAGgK2BFO9uqhGvQsPcrjFtjxTeH9h?=
+ =?us-ascii?Q?VJ6v1r7qyQYF2c9JIHVoXhdSdck5IXjYcWaYSmAAWQXUX9MsK+U+D8pD54Eo?=
+ =?us-ascii?Q?QWiTPKOM7fR7wlh1MXEquDppUVyiRwDbKY/xjqsP6Z1NZzu4ZpU5ERit1HTv?=
+ =?us-ascii?Q?KtqJENo4AE7hca2qHwEjoS6bPRw0l3hwcoK1X111E1VreawgFvGy5TRb6JfX?=
+ =?us-ascii?Q?n2E33b087rNhEVk63FoOESFoMLltLQtMEeRXM+XAKBaSAr9v3bNPVQSnTUd3?=
+ =?us-ascii?Q?DQ0n2JLNFK2+Og0g9fgZ9tw1VQQ2EDqb3zm/iWTaZtk3pg8Q1FvxVYNWK7qT?=
+ =?us-ascii?Q?P94NHA4wJ+iXqDnol1kgkQB/l8+Npf9i1Ivi1JWddMUKfi9N0a4Jz01kWChO?=
+ =?us-ascii?Q?pH2ry0+sbn+Q3Mz3S1pQ7zAKUl1Q8Au3uagedISJ6NEhbRfS3mG5Id+PTYXU?=
+ =?us-ascii?Q?4ZS2+6r5kghXZNI9/iuJzjLIYXDkymDXMhDj2gZQoNDbG3E3aLxjHwgmt/Bj?=
+ =?us-ascii?Q?+6kZP6y5bGhGyu1w0OQQ71pRXqIcdTj6N8wnoLFKC787c2E3ajwt4nPW2Qzu?=
+ =?us-ascii?Q?OUgWPLvYA44QQaTMnddjH73IY/5MJuDV36nOWsj5teAsbdClLTBmzHhmPXUo?=
+ =?us-ascii?Q?E8fkTBe/9Yb4+FB5VZf8nJIF?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44dcfcfc-1004-4ac8-de06-08d930122049
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2021 15:27:46.1470 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ODg9KfC3v6zrdNqnXo2EGbKfpgjjfLW8/C4ODXjg5XqTTQQdzLXQDTaeYkU0zXrW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB5555
+X-Mailman-Approved-At: Tue, 15 Jun 2021 15:28:34 +0000
+Subject: Re: [Intel-gfx] Allow mdev drivers to directly create the
+ vfio_device (v2 / alternative)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,264 +122,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1995156484=="
+Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Tony Krowiak <akrowiak@linux.ibm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Cornelia Huck <cohuck@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1995156484==
-Content-Type: multipart/alternative;
- boundary="===============1382649281992805637=="
+On Tue, Jun 15, 2021 at 07:50:21AM +0200, Christoph Hellwig wrote:
+> On Tue, Jun 15, 2021 at 07:21:57AM +0200, Greg Kroah-Hartman wrote:
+> > This looks much better as far as the driver core changes go, thank you
+> > for doing this.
+> > 
+> > I'm guessing there will be at least one more revision of this.
+> 
+> Yes.
+> 
+> > Do you
+> > want this to go through my driver core tree or is there a mdev tree it
+> > should go through?  Either is fine for me.
+> 
+> Either way is fine with me.  Alex, do you have a preference?
 
---===============1382649281992805637==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I would prefer to see it go to Alex's tree since there are more vfio
+patches following this that might get to this merge window.
 
-== Series Details ==
+If you want the driver core part on a branch you can pull/etc I can
+organize that.
 
-Series: New uAPI drm properties for color management
-URL   : https://patchwork.freedesktop.org/series/91523/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10225 -> Patchwork_20374
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20374:
-
-### CI changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * boot:
-    - {fi-tgl-dsi}:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-tgl-dsi/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-tgl-dsi/boot.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20374 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-bsw-nick:        [PASS][3] -> [INCOMPLETE][4] ([i915#2539])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-bsw-nick/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-bsw-nick/igt@gem_exec_suspend@basic-s0.html
-    - fi-bsw-kefka:       [PASS][5] -> [INCOMPLETE][6] ([i915#2539])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [PASS][7] -> [INCOMPLETE][8] ([i915#2782])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-icl-y:           NOTRUN -> [FAIL][9] ([i915#2782])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-icl-y/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][10] ([i915#3303]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2539]: https://gitlab.freedesktop.org/drm/intel/issues/2539
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-
-
-Participating hosts (48 -> 29)
-------------------------------
-
-  Missing    (19): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-bwr-2160 fi-snb-2520m fi-ilk-650 fi-ctg-p8600 fi-hsw-4770 bat-adls-4 bat-adlp-4 bat-adls-3 fi-ivb-3770 fi-elk-e7500 fi-pnv-d510 fi-bdw-samus bat-jsl-1 fi-snb-2600 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10225 -> Patchwork_20374
-
-  CI-20190529: 20190529
-  CI_DRM_10225: 52beaf52657f49ffda64af3c46548fb0907cf66d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6107: 2bec4e7619f04d2ca86006917acd3b5c86fb73a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20374: 72afa8c54272c4ced810d2dd2629f5a5a9e6dbd3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-72afa8c54272 drm/i915/display: Add handling for new "preferred color format" property
-8624713f5dea drm/amd/display: Add handling for new "preferred color format" property
-a52e822d83fb drm/uAPI: Add "preferred color format" drm property as setting for userspace
-3f6c38f8c4e1 drm/i915/display: Add handling for new "active color range" property
-fa47f470080a drm/amd/display: Add handling for new "active color range" property
-0fccadb22ab7 drm/uAPI: Add "active color range" drm property as feedback for userspace
-ae0a4cc4b63e drm/i915/display: Add handling for new "active color format" property
-60256618fa4c drm/amd/display: Add handling for new "active color format" property
-212584fff8b9 drm/uAPI: Add "active color format" drm property as feedback for userspace
-e2c98762abb7 drm/i915/display: Add handling for new "active bpc" property
-8681f2f96c3c drm/amd/display: Add handling for new "active bpc" property
-e8e22adbee4c drm/uAPI: Add "active bpc" as feedback channel for "max bpc" drm property
-c50d857bd4d3 drm/amd/display: Add missing cases convert_dc_color_depth_into_bpc
-3ad7ae056858 drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/index.html
-
---===============1382649281992805637==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>New uAPI drm properties for color management</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91523/">https://patchwork.freedesktop.org/series/91523/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10225 -&gt; Patchwork_20374</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20374:</p>
-<h3>CI changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>boot:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-tgl-dsi/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-tgl-dsi/boot.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20374 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-bsw-nick/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-bsw-nick/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2539">i915#2539</a>)</p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2539">i915#2539</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-icl-y/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-icl-y/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-icl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10225/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20374/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (48 -&gt; 29)</h2>
-<p>Missing    (19): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-bwr-2160 fi-snb-2520m fi-ilk-650 fi-ctg-p8600 fi-hsw-4770 bat-adls-4 bat-adlp-4 bat-adls-3 fi-ivb-3770 fi-elk-e7500 fi-pnv-d510 fi-bdw-samus bat-jsl-1 fi-snb-2600 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10225 -&gt; Patchwork_20374</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10225: 52beaf52657f49ffda64af3c46548fb0907cf66d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6107: 2bec4e7619f04d2ca86006917acd3b5c86fb73a0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20374: 72afa8c54272c4ced810d2dd2629f5a5a9e6dbd3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>72afa8c54272 drm/i915/display: Add handling for new "preferred color format" property<br />
-8624713f5dea drm/amd/display: Add handling for new "preferred color format" property<br />
-a52e822d83fb drm/uAPI: Add "preferred color format" drm property as setting for userspace<br />
-3f6c38f8c4e1 drm/i915/display: Add handling for new "active color range" property<br />
-fa47f470080a drm/amd/display: Add handling for new "active color range" property<br />
-0fccadb22ab7 drm/uAPI: Add "active color range" drm property as feedback for userspace<br />
-ae0a4cc4b63e drm/i915/display: Add handling for new "active color format" property<br />
-60256618fa4c drm/amd/display: Add handling for new "active color format" property<br />
-212584fff8b9 drm/uAPI: Add "active color format" drm property as feedback for userspace<br />
-e2c98762abb7 drm/i915/display: Add handling for new "active bpc" property<br />
-8681f2f96c3c drm/amd/display: Add handling for new "active bpc" property<br />
-e8e22adbee4c drm/uAPI: Add "active bpc" as feedback channel for "max bpc" drm property<br />
-c50d857bd4d3 drm/amd/display: Add missing cases convert_dc_color_depth_into_bpc<br />
-3ad7ae056858 drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check</p>
-
-</body>
-</html>
-
---===============1382649281992805637==--
-
---===============1995156484==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1995156484==--
