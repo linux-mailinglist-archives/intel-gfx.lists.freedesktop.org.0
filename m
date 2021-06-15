@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601C33A7781
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 09:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 208AA3A77B5
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 09:10:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88E296E182;
-	Tue, 15 Jun 2021 07:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 767536E188;
+	Tue, 15 Jun 2021 07:10:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF3F6E17F
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 07:01:52 +0000 (UTC)
-Received: from mail-ed1-f70.google.com ([209.85.208.70])
- by youngberry.canonical.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <kai.heng.feng@canonical.com>) id 1lt354-0003D0-Od
- for intel-gfx@lists.freedesktop.org; Tue, 15 Jun 2021 07:01:50 +0000
-Received: by mail-ed1-f70.google.com with SMTP id
- x12-20020a05640226ccb0290393aaa6e811so11802255edd.19
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 00:01:50 -0700 (PDT)
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
+ [IPv6:2a00:1450:4864:20::241])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 109426E182;
+ Tue, 15 Jun 2021 07:10:37 +0000 (UTC)
+Received: by mail-lj1-x241.google.com with SMTP id s22so23570025ljg.5;
+ Tue, 15 Jun 2021 00:10:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=GgowLPOR+RXWuxl1Kqlx9KFwgkDLT8onrt6cQOK+tpU=;
+ b=FkZKkQrSjBeMzl5fdJc/zRmkoPuZGInGAewHDeGVB8BTzTYGUPxVUcBX6KU6KQpg1g
+ TUaodvUbXZ/R9zRIaGqclaHfDU0TT6qNSeIWGES9nOX/0fGGjJI68oyLMTu+xArKnlbv
+ DKlGZsVfxnYpDwA3Z+gmpyJbpFAPT56xTSHiOaZPeAHpowVSiG7zsVF9j4VVquEhmo/m
+ NItdjV+efWl0ER6jKE4G1Ov+Yr0fFdbrL/c9bqoYSu8BQHx04BDvI/5BqFmIWpBnqVT0
+ cGqsOPjjHqjYZIc5viyUG/Aqw/ilQXXqW3gcLjuDD57SQR9cNZ+uqt9MOU5Uye2OtXNF
+ m0KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RLIhQ5PXrLvdYmFmLwCtPCnE63dd34mWBn86fHsJHAY=;
- b=EFBs0o3dJEq9n+tSGkUcULhcMKjoaeqlDZZog1M4s5za3Xiv5RjvdMJwWSciX9C3jV
- hkjGP+p/BPuUXaz3/1AwAK1HKwcnVZbPjuAYesGaRiYaviG5a7Ahzbc79bcP9LGpUEpO
- V307XuIU1MLVGCRzheBXTc6870owddrGZgb0O0SignKpLxEveB96Op6E12uCaLRTb0Bb
- 3qJSRBcRAPMtWH4XPBtryxp/AdFV1N3ioVE54H1zVG3EF5KVK/rOxS362ReDQf9W3az0
- 9CEJfXW32iHaL0xmSHdfLgCzMNKOGxlqzlBorbvbTPQyKDLlAO289MsVu2PgYUzULXHO
- 6evw==
-X-Gm-Message-State: AOAM533FlFmOPnNSh5lzNpC98Win6Bz7Yrcn9xPkScRleNys4OsKeWfv
- jQ6J8y/vLYLBNJ0uZcYoAsO/dEgZnst+DI3UhAvpvGC/MC0BUGlicD5kx4XZqifcY3GmfwHD35Z
- IgOZENc/G7ke7e0dmhSykeWv+dJjW5IxLL466ddUac509GgtsZ2z5/Q2Q81ag5g==
-X-Received: by 2002:a17:907:9c2:: with SMTP id
- bx2mr508193ejc.322.1623740510320; 
- Tue, 15 Jun 2021 00:01:50 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzFw2trtSLk8k2LAomln5c9EFUyGliZfM/0G9KDSfYd2UaI1t5fTBwl2b3H2qUtcXD/+HS0RfkRO3F8ka1BPxc=
-X-Received: by 2002:a17:907:9c2:: with SMTP id
- bx2mr508161ejc.322.1623740510061; 
- Tue, 15 Jun 2021 00:01:50 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=GgowLPOR+RXWuxl1Kqlx9KFwgkDLT8onrt6cQOK+tpU=;
+ b=BS8WxWvKFu4GAAxqm7Whu6m3S6Okp2F5uJvks0rVpbanLceIxIDP72PTgXsVb0wsrl
+ NTmCsCzbHhBVnGOPD8+/vyZ8W8SAmiZqlIydrvMKKcYad/k7VDZJfarbJD7k6kOtNUEw
+ HVzVMHIe/vayVDhHyc8Kseq85RPJ4mei/MEhBFOVWLxCkoZx0OAz1UGMRsbdR10Y/doW
+ UDsXqyZtiDHgX/ovBz5ID8yER5DpLzU7Jkssxa3xuR4u+aeIEEzkFoldxoU+Q++/HpKb
+ w59AlRebZluzdLP48mVCreeUthWBbw7xiOlrZjS5mdrTNa6IgSwDu1bI3JAEXfLlMkb1
+ FusA==
+X-Gm-Message-State: AOAM530G3RlW2g2GKBv8Ntr55TlwrBigyim404A+0s9EaDQQQjF3DTIC
+ BxJv5FweSY9lIH+daTHyoF0=
+X-Google-Smtp-Source: ABdhPJwNFjxzY6l2gyV7Of5lAR90kMH3Bo+Mt5siZzPZTvyQeN2Rf65Xse0SDCVGhieTqMm6RlMyQA==
+X-Received: by 2002:a2e:9194:: with SMTP id f20mr16234145ljg.373.1623741035389; 
+ Tue, 15 Jun 2021 00:10:35 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id d23sm1705500lfe.183.2021.06.15.00.10.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Jun 2021 00:10:35 -0700 (PDT)
+Date: Tue, 15 Jun 2021 10:10:32 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <20210615101032.51bd5ac2@eldfell>
+In-Reply-To: <20210610211442.643307-1-jason@jlekstrand.net>
+References: <20210610210925.642582-4-jason@jlekstrand.net>
+ <20210610211442.643307-1-jason@jlekstrand.net>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210520065832.614245-1-kai.heng.feng@canonical.com>
- <CAAd53p4mYybfBsSpd497jOTKwE+aiCvTD9OEvMtROkgjdRHp=g@mail.gmail.com>
-In-Reply-To: <CAAd53p4mYybfBsSpd497jOTKwE+aiCvTD9OEvMtROkgjdRHp=g@mail.gmail.com>
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Date: Tue, 15 Jun 2021 15:01:38 +0800
-Message-ID: <CAAd53p7mN7Lumqbe+g1w9D2C3whEUn53c01Otf3hiOoqjtzk8g@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Invoke another _DSM to enable
- MUX on HP Workstation laptops
+Subject: Re: [Intel-gfx] [PATCH 3/6] dma-buf: Document DMA_BUF_IOCTL_SYNC
+ (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,140 +67,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Takashi Iwai <tiwai@suse.de>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1189610354=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 4, 2021 at 11:57 PM Kai-Heng Feng
-<kai.heng.feng@canonical.com> wrote:
->
-> On Thu, May 20, 2021 at 2:58 PM Kai-Heng Feng
-> <kai.heng.feng@canonical.com> wrote:
-> >
-> > On HP Fury G7 Workstations, graphics output is re-routed from Intel GFX
-> > to discrete GFX after S3. This is not desirable, because userspace will
-> > treat connected display as a new one, losing display settings.
-> >
-> > The expected behavior is to let discrete GFX drives all external
-> > displays.
-> >
-> > The platform in question uses ACPI method \_SB.PCI0.HGME to enable MUX.
-> > The method is inside the another _DSM, so add the _DSM and call it
-> > accordingly.
-> >
-> > I also tested some MUX-less and iGPU only laptops with that _DSM, no
-> > regression was found.
-> >
-> > v4:
-> >  - Rebase.
-> >  - Change the DSM name to avoid confusion.
-> >  - Move the function call to intel_opregion.
-> >
-> > v3:
-> >  - Remove BXT from names.
-> >  - Change the parameter type.
-> >  - Fold the function into intel_modeset_init_hw().
-> >
-> > v2:
-> >  - Forward declare struct pci_dev.
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3113
-> > References: https://lore.kernel.org/intel-gfx/1460040732-31417-4-git-send-email-animesh.manna@intel.com/
-> > Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
->
-> A gentle ping...
+--===============1189610354==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/j7jSXYhb9xgTdXUHj.Ogj1h"; protocol="application/pgp-signature"
 
-Another gentle ping...
+--Sig_/j7jSXYhb9xgTdXUHj.Ogj1h
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
->
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_acpi.c     | 19 +++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_acpi.h     |  3 +++
-> >  drivers/gpu/drm/i915/display/intel_opregion.c |  3 +++
-> >  3 files changed, 25 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > index 833d0c1be4f1..7cfe91fc05f2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > @@ -19,6 +19,12 @@ static const guid_t intel_dsm_guid =
-> >         GUID_INIT(0x7ed873d3, 0xc2d0, 0x4e4f,
-> >                   0xa8, 0x54, 0x0f, 0x13, 0x17, 0xb0, 0x1c, 0x2c);
-> >
-> > +#define INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED 0 /* No args */
-> > +
-> > +static const guid_t intel_dsm_guid2 =
-> > +       GUID_INIT(0x3e5b41c6, 0xeb1d, 0x4260,
-> > +                 0x9d, 0x15, 0xc7, 0x1f, 0xba, 0xda, 0xe4, 0x14);
-> > +
-> >  static char *intel_dsm_port_name(u8 id)
-> >  {
-> >         switch (id) {
-> > @@ -176,6 +182,19 @@ void intel_unregister_dsm_handler(void)
-> >  {
-> >  }
-> >
-> > +void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
-> > +{
-> > +       struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> > +       acpi_handle dhandle;
-> > +
-> > +       dhandle = ACPI_HANDLE(&pdev->dev);
-> > +       if (!dhandle)
-> > +               return;
-> > +
-> > +       acpi_evaluate_dsm(dhandle, &intel_dsm_guid2, INTEL_DSM_REVISION_ID,
-> > +                         INTEL_DSM_FN_GET_BIOS_DATA_FUNCS_SUPPORTED, NULL);
-> > +}
-> > +
-> >  /*
-> >   * ACPI Specification, Revision 5.0, Appendix B.3.2 _DOD (Enumerate All Devices
-> >   * Attached to the Display Adapter).
-> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.h b/drivers/gpu/drm/i915/display/intel_acpi.h
-> > index e8b068661d22..9f197401c313 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_acpi.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.h
-> > @@ -11,11 +11,14 @@ struct drm_i915_private;
-> >  #ifdef CONFIG_ACPI
-> >  void intel_register_dsm_handler(void);
-> >  void intel_unregister_dsm_handler(void);
-> > +void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915);
-> >  void intel_acpi_device_id_update(struct drm_i915_private *i915);
-> >  #else
-> >  static inline void intel_register_dsm_handler(void) { return; }
-> >  static inline void intel_unregister_dsm_handler(void) { return; }
-> >  static inline
-> > +void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915) { return; }
-> > +static inline
-> >  void intel_acpi_device_id_update(struct drm_i915_private *i915) { return; }
-> >  #endif /* CONFIG_ACPI */
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> > index dfd724e506b5..3855fba70980 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> > @@ -1078,6 +1078,9 @@ void intel_opregion_resume(struct drm_i915_private *i915)
-> >                 opregion->asle->ardy = ASLE_ARDY_READY;
-> >         }
-> >
-> > +       /* Some platforms abuse the _DSM to enable MUX */
-> > +       intel_dsm_get_bios_data_funcs_supported(i915);
-> > +
-> >         intel_opregion_notify_adapter(i915, PCI_D0);
-> >  }
-> >
-> > --
-> > 2.31.1
-> >
+On Thu, 10 Jun 2021 16:14:42 -0500
+Jason Ekstrand <jason@jlekstrand.net> wrote:
+
+> This adds a new "DMA Buffer ioctls" section to the dma-buf docs and adds
+> documentation for DMA_BUF_IOCTL_SYNC.
+>=20
+> v2 (Daniel Vetter):
+>  - Fix a couple typos
+>  - Add commentary about synchronization with other devices
+>  - Use item list format for describing flags
+>=20
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> ---
+>  Documentation/driver-api/dma-buf.rst |  8 +++++
+>  include/uapi/linux/dma-buf.h         | 46 +++++++++++++++++++++++++++-
+>  2 files changed, 53 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/driver-api/dma-buf.rst b/Documentation/driver-=
+api/dma-buf.rst
+> index 7f21425d9435a..0d4c13ec1a800 100644
+> --- a/Documentation/driver-api/dma-buf.rst
+> +++ b/Documentation/driver-api/dma-buf.rst
+> @@ -88,6 +88,9 @@ consider though:
+>  - The DMA buffer FD is also pollable, see `Implicit Fence Poll Support`_=
+ below for
+>    details.
+> =20
+> +- The DMA buffer FD also supports a few dma-buf-specific ioctls, see
+> +  `DMA Buffer ioctls`_ below for details.
+> +
+>  Basic Operation and Device DMA Access
+>  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> =20
+> @@ -106,6 +109,11 @@ Implicit Fence Poll Support
+>  .. kernel-doc:: drivers/dma-buf/dma-buf.c
+>     :doc: implicit fence polling
+> =20
+> +DMA Buffer ioctls
+> +~~~~~~~~~~~~~~~~~
+> +
+> +.. kernel-doc:: include/uapi/linux/dma-buf.h
+> +
+>  Kernel Functions and Structures Reference
+>  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> =20
+> diff --git a/include/uapi/linux/dma-buf.h b/include/uapi/linux/dma-buf.h
+> index 7f30393b92c3b..1c131002fe1ee 100644
+> --- a/include/uapi/linux/dma-buf.h
+> +++ b/include/uapi/linux/dma-buf.h
+> @@ -22,8 +22,52 @@
+> =20
+>  #include <linux/types.h>
+> =20
+> -/* begin/end dma-buf functions used for userspace mmap. */
+> +/**
+> + * struct dma_buf_sync - Synchronize with CPU access.
+> + *
+> + * When a DMA buffer is accessed from the CPU via mmap, it is not always
+> + * possible to guarantee coherency between the CPU-visible map and under=
+lying
+> + * memory.  To manage coherency, DMA_BUF_IOCTL_SYNC must be used to brac=
+ket
+> + * any CPU access to give the kernel the chance to shuffle memory around=
+ if
+> + * needed.
+> + *
+> + * Prior to accessing the map, the client must call DMA_BUF_IOCTL_SYNC
+> + * with DMA_BUF_SYNC_START and the appropriate read/write flags.  Once t=
+he
+> + * access is complete, the client should call DMA_BUF_IOCTL_SYNC with
+> + * DMA_BUF_SYNC_END and the same read/write flags.
+> + *
+> + * The synchronization provided via DMA_BUF_IOCTL_SYNC only provides cac=
+he
+> + * coherency.  It does not prevent other processes or devices from
+> + * accessing the memory at the same time.  If synchronization with a GPU=
+ or
+> + * other device driver is required, it is the client's responsibility to
+> + * wait for buffer to be ready for reading or writing.
+
+... before calling this ioctl.
+
+Maybe that would be worthwhile to add?
+
+Likewise, submit follow-up work to GPU et al. only after calling this
+ioctl with SYNC_END?
+
+Anyway, looks nice to me.
+
+Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
+
+
+Thanks,
+pq
+
+>  If the driver or
+> + * API with which the client is interacting uses implicit synchronizatio=
+n,
+> + * this can be done via poll() on the DMA buffer file descriptor.  If the
+> + * driver or API requires explicit synchronization, the client may have =
+to
+> + * wait on a sync_file or other synchronization primitive outside the sc=
+ope
+> + * of the DMA buffer API.
+> + */
+>  struct dma_buf_sync {
+> +	/**
+> +	 * @flags: Set of access flags
+> +	 *
+> +	 * DMA_BUF_SYNC_START:
+> +	 *     Indicates the start of a map access session.
+> +	 *
+> +	 * DMA_BUF_SYNC_END:
+> +	 *     Indicates the end of a map access session.
+> +	 *
+> +	 * DMA_BUF_SYNC_READ:
+> +	 *     Indicates that the mapped DMA buffer will be read by the
+> +	 *     client via the CPU map.
+> +	 *
+> +	 * DMA_BUF_SYNC_WRITE:
+> +	 *     Indicates that the mapped DMA buffer will be written by the
+> +	 *     client via the CPU map.
+> +	 *
+> +	 * DMA_BUF_SYNC_RW:
+> +	 *     An alias for DMA_BUF_SYNC_READ | DMA_BUF_SYNC_WRITE.
+> +	 */
+>  	__u64 flags;
+>  };
+> =20
+
+
+--Sig_/j7jSXYhb9xgTdXUHj.Ogj1h
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDIUmgACgkQI1/ltBGq
+qqf7Dw//Q4gjwMQcrS9Vj2KgFXsK8uFaOCmkGZKfUxHrn3nMnenPxkMh1uC/vyr5
+GlNtYIH1kVQpeAnCKns/Qed64+hMEmihUkxSqqzs40y3GSM02JcXe/vo8tH2uriH
+eOrG76XfH2MKCxQsd6Vtfwgqc332v/G5BiY1gI8L0LN/mMiUmqCadyosWACk5kkf
+aT+fDV5r6IPRi+IHEYLLKdvui0GsUlccntnuQe+iZPvt14GYW5/aO8s5PnSscpSK
+awsUfXJE8GmL+X9dDHFEdUXr4bJ3QmfofARWkyCSeJnBF4u3yCcJORVMNb1BJUGQ
+ooc1c6wMKe39I04RWaDwzMiTKeQSeLvqfmudEZeQMH9uiCkC2aKHUddFtwfbzcaj
+7kIB1Xgw1eiiYjOVFI90z4ABwHtQTiz3RVq9m9veehbDZy7rYPI5EyUyD8jOLqUE
+5pOck3NY0g11AKTqAEJQdrmKHwL+bINRg4roEQaOqzfA0BiULqf0GGSlAvu4Q6Uq
+gyAHDEOTK1HXlA9Zw43J+q2RNqofLD2B7JHpOORXIYR2BDCZtnJvm5FDieuIGxWo
++vRF/o6fcEabFGZUcqN19VgLRx+Gsy0ZlQx82Vrk7bZB3jzPN0/ynPy2BFM34x3X
+mNKzYAh8Pg/1B3EdSlDqDw1H7cyTeBizI4NymPEw/IbWRsPrjlc=
+=oa9Q
+-----END PGP SIGNATURE-----
+
+--Sig_/j7jSXYhb9xgTdXUHj.Ogj1h--
+
+--===============1189610354==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1189610354==--
