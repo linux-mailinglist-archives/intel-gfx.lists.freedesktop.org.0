@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3153A80AE
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 651323A80B1
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jun 2021 15:39:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D80589B70;
-	Tue, 15 Jun 2021 13:39:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F696E329;
+	Tue, 15 Jun 2021 13:39:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8CD389B70;
- Tue, 15 Jun 2021 13:39:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B57C389BE8;
+ Tue, 15 Jun 2021 13:39:48 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 7B81967373; Tue, 15 Jun 2021 15:39:35 +0200 (CEST)
-Date: Tue, 15 Jun 2021 15:39:35 +0200
+ id 4BA0568AFE; Tue, 15 Jun 2021 15:39:46 +0200 (CEST)
+Date: Tue, 15 Jun 2021 15:39:45 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210615133935.GF20389@lst.de>
+Message-ID: <20210615133945.GG20389@lst.de>
 References: <20210615132711.553451-1-tientzu@chromium.org>
- <20210615132711.553451-7-tientzu@chromium.org>
+ <20210615132711.553451-8-tientzu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210615132711.553451-7-tientzu@chromium.org>
+In-Reply-To: <20210615132711.553451-8-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v10 06/12] swiotlb: Use is_dev_swiotlb_force
- for swiotlb data bouncing
+Subject: Re: [Intel-gfx] [PATCH v10 07/12] swiotlb: Move alloc_size to
+ swiotlb_find_slots
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,10 +68,9 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 15, 2021 at 09:27:05PM +0800, Claire Chang wrote:
-> Propagate the swiotlb_force setting into io_tlb_default_mem->force and
-> use it to determine whether to bounce the data or not. This will be
-> useful later to allow for different pools.
+On Tue, Jun 15, 2021 at 09:27:06PM +0800, Claire Chang wrote:
+> Rename find_slots to swiotlb_find_slots and move the maintenance of
+> alloc_size to it for better code reusability later.
 > 
 > Signed-off-by: Claire Chang <tientzu@chromium.org>
 
