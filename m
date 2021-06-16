@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0333A8FF8
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 05:53:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B1FE3A8FFB
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 05:53:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F367F6E49B;
-	Wed, 16 Jun 2021 03:53:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82C936E4B3;
+	Wed, 16 Jun 2021 03:53:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15D8E6E46B
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 03:53:45 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id 69so431343plc.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 20:53:45 -0700 (PDT)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9773C6E4B3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 03:53:53 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ 13-20020a17090a08cdb029016eed209ca4so958743pjn.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jun 2021 20:53:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=e9Vw6CwKftyWUkkMr8FpV3VZb4mbe4UuYsuH+xmCJ+M=;
- b=jc3T7c7VZDi587k2gT/eeg1/s25EMO4Lxy72AFhkTEa79olBru5uzce93B9VJJc7mb
- tv4xxblNNZSpK3BVn4J++3E61DthzfhVz93hD3eVM82+a9MHX0s1kWeLhR0ckmjZau/d
- yaE/e99lxczNFRLPelQucPShcgrTyXCG38jN8=
+ bh=eU61psdxuacInDbxGN0V8O121x7LcVp3cBkwTdMQ+YI=;
+ b=G+MHCjWefSWSsBn+zFsqavx79K0f1OgfsPHA3pIJ7ZUrc94j/9bKUmi3fYlnxX6sx7
+ MpFnLUq23wOmkqNgWIGDoG5ljrkEFDbKSDT6O1jD22wjvWPKV2kuzmbOLBWoI6lHX43m
+ 0UxMGANvZTFecxtxMJ6BmCdD5qQlDyW8Evmz8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=e9Vw6CwKftyWUkkMr8FpV3VZb4mbe4UuYsuH+xmCJ+M=;
- b=joOYYnfDsUCc8pB37PRgycSv2z4FhJamsjEGGgvMP6DPtAfg/Pk0UxtTlAnfrDM2Hc
- PEDNjXEWJt5lXmOvGptmImv0kJK1gyX+GDri/3/JK4sW6iCtBRO9aaEKZnWRJuh6GkIF
- O58NQD5/OuSdxjrvApHp5O1fnrEFJwE17r9hTULb+qYzJ7Wktkd2xjOIMy3eC6JsDby2
- Mj9nxGAakJHI4NzhUKiX2YsOZk6BcAo0g8pL8L6utpWklHV6pnj21sWp6loQq4DEXAlE
- SbD+A/N+5P5Mh1LYBwY6euBrw4aoHQmGabvC2GhPzQWYF/ckJRc6ZtV38T8C/f2ZN83v
- lU9A==
-X-Gm-Message-State: AOAM53015M95cGKsDyG67otrvB6SwwundhL/DzCnLXtpSJL/B5knGlJK
- qf6Gfyf8t6HLpj9IcXx6IEXkFg==
-X-Google-Smtp-Source: ABdhPJzC2GZu70JiqqjaeNpM5+wD1r3IbZYNkxwRBj90E6QvUGdzry0LzgTDbMYz2ZJVNaBcQldqkQ==
-X-Received: by 2002:a17:90b:318:: with SMTP id
- ay24mr8150844pjb.150.1623815624668; 
- Tue, 15 Jun 2021 20:53:44 -0700 (PDT)
+ bh=eU61psdxuacInDbxGN0V8O121x7LcVp3cBkwTdMQ+YI=;
+ b=rSTMNZ5cVIfaUmuROb5B0zGu/Yd4eAR+1PKGZMJm0ul7a24kZmeEpogMrV3eMkUVxd
+ qC2cOBVufxqeOWm2DuwVzpSuInO0tJLVLgl41aEmPdTzB2OjEkKyQ6Ymcl43m7QJCVny
+ Gn9mvgHogA+1R4tCsnKjSv4sapnKnIwsKqA70IGSvYZiAydHtdRfNF9wfHFvIWn0NOWa
+ BoDxxAzBbhdbToDm3eGFVr/uBUUjFZ0OhosPh4e9oawx3qu9HtvAvNnYpPxwzlWNEoeK
+ qezkaQMr95io4PbKfzCxOBBTXLGcx8DL/oMQVSeMfoRLS9XN2Txai3RY17GNwYqiHtOp
+ Uf7A==
+X-Gm-Message-State: AOAM531rjJq6fMN7b2CPxLZl30F4jykU90zgPrCimn4GpHZwuuMIram8
+ Qn1FYHMqRsaFXRqINmbxZhsARQ==
+X-Google-Smtp-Source: ABdhPJz+/n8SXXk477Y7KP8AZrN6dcjdprvaWXKVwnDO1qXcju51BlhAASYnAFCrwZ+85V6bo0r6Hw==
+X-Received: by 2002:a17:902:b409:b029:114:afa6:7f4a with SMTP id
+ x9-20020a170902b409b0290114afa67f4amr7247326plr.56.1623815633242; 
+ Tue, 15 Jun 2021 20:53:53 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:3d52:f252:7393:1992])
- by smtp.gmail.com with UTF8SMTPSA id i21sm523349pfd.219.2021.06.15.20.53.37
+ by smtp.gmail.com with UTF8SMTPSA id x22sm557553pjp.37.2021.06.15.20.53.46
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Jun 2021 20:53:44 -0700 (PDT)
+ Tue, 15 Jun 2021 20:53:52 -0700 (PDT)
 From: Claire Chang <tientzu@chromium.org>
 To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -50,14 +51,14 @@ To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Wed, 16 Jun 2021 11:52:34 +0800
-Message-Id: <20210616035240.840463-7-tientzu@chromium.org>
+Date: Wed, 16 Jun 2021 11:52:35 +0800
+Message-Id: <20210616035240.840463-8-tientzu@chromium.org>
 X-Mailer: git-send-email 2.32.0.272.g935e593368-goog
 In-Reply-To: <20210616035240.840463-1-tientzu@chromium.org>
 References: <20210616035240.840463-1-tientzu@chromium.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v11 06/12] swiotlb: Use is_dev_swiotlb_force for
- swiotlb data bouncing
+Subject: [Intel-gfx] [PATCH v11 07/12] swiotlb: Move alloc_size to
+ swiotlb_find_slots
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,103 +95,65 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Propagate the swiotlb_force setting into io_tlb_default_mem->force and
-use it to determine whether to bounce the data or not. This will be
-useful later to allow for different pools.
+Rename find_slots to swiotlb_find_slots and move the maintenance of
+alloc_size to it for better code reusability later.
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 ---
- include/linux/swiotlb.h | 11 +++++++++++
- kernel/dma/direct.c     |  2 +-
- kernel/dma/direct.h     |  2 +-
- kernel/dma/swiotlb.c    |  4 ++++
- 4 files changed, 17 insertions(+), 2 deletions(-)
+ kernel/dma/swiotlb.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-index dd1c30a83058..efcd56e3a16c 100644
---- a/include/linux/swiotlb.h
-+++ b/include/linux/swiotlb.h
-@@ -84,6 +84,7 @@ extern enum swiotlb_force swiotlb_force;
-  *		unmap calls.
-  * @debugfs:	The dentry to debugfs.
-  * @late_alloc:	%true if allocated using the page allocator
-+ * @force:      %true if swiotlb is forced
-  */
- struct io_tlb_mem {
- 	phys_addr_t start;
-@@ -94,6 +95,7 @@ struct io_tlb_mem {
- 	spinlock_t lock;
- 	struct dentry *debugfs;
- 	bool late_alloc;
-+	bool force;
- 	struct io_tlb_slot {
- 		phys_addr_t orig_addr;
- 		size_t alloc_size;
-@@ -109,6 +111,11 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
- 	return mem && paddr >= mem->start && paddr < mem->end;
- }
- 
-+static inline bool is_dev_swiotlb_force(struct device *dev)
-+{
-+	return dev->dma_io_tlb_mem->force;
-+}
-+
- void __init swiotlb_exit(void);
- unsigned int swiotlb_max_segment(void);
- size_t swiotlb_max_mapping_size(struct device *dev);
-@@ -120,6 +127,10 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
- {
- 	return false;
- }
-+static inline bool is_dev_swiotlb_force(struct device *dev)
-+{
-+	return false;
-+}
- static inline void swiotlb_exit(void)
- {
- }
-diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index 7a88c34d0867..3713461d6fe0 100644
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -496,7 +496,7 @@ size_t dma_direct_max_mapping_size(struct device *dev)
- {
- 	/* If SWIOTLB is active, use its maximum mapping size */
- 	if (is_swiotlb_active(dev) &&
--	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
-+	    (dma_addressing_limited(dev) || is_dev_swiotlb_force(dev)))
- 		return swiotlb_max_mapping_size(dev);
- 	return SIZE_MAX;
- }
-diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
-index 13e9e7158d94..6c4d13caceb1 100644
---- a/kernel/dma/direct.h
-+++ b/kernel/dma/direct.h
-@@ -87,7 +87,7 @@ static inline dma_addr_t dma_direct_map_page(struct device *dev,
- 	phys_addr_t phys = page_to_phys(page) + offset;
- 	dma_addr_t dma_addr = phys_to_dma(dev, phys);
- 
--	if (unlikely(swiotlb_force == SWIOTLB_FORCE))
-+	if (is_dev_swiotlb_force(dev))
- 		return swiotlb_map(dev, phys, size, dir, attrs);
- 
- 	if (unlikely(!dma_capable(dev, dma_addr, size, true))) {
 diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index 101abeb0a57d..a9907ac262fc 100644
+index a9907ac262fc..037772724b3c 100644
 --- a/kernel/dma/swiotlb.c
 +++ b/kernel/dma/swiotlb.c
-@@ -179,6 +179,10 @@ static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
- 	mem->end = mem->start + bytes;
- 	mem->index = 0;
- 	mem->late_alloc = late_alloc;
-+
-+	if (swiotlb_force == SWIOTLB_FORCE)
-+		mem->force = true;
-+
- 	spin_lock_init(&mem->lock);
- 	for (i = 0; i < mem->nslabs; i++) {
- 		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+@@ -431,8 +431,8 @@ static unsigned int wrap_index(struct io_tlb_mem *mem, unsigned int index)
+  * Find a suitable number of IO TLB entries size that will fit this request and
+  * allocate a buffer from that IO TLB pool.
+  */
+-static int find_slots(struct device *dev, phys_addr_t orig_addr,
+-		size_t alloc_size)
++static int swiotlb_find_slots(struct device *dev, phys_addr_t orig_addr,
++			      size_t alloc_size)
+ {
+ 	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
+ 	unsigned long boundary_mask = dma_get_seg_boundary(dev);
+@@ -487,8 +487,11 @@ static int find_slots(struct device *dev, phys_addr_t orig_addr,
+ 	return -1;
+ 
+ found:
+-	for (i = index; i < index + nslots; i++)
++	for (i = index; i < index + nslots; i++) {
+ 		mem->slots[i].list = 0;
++		mem->slots[i].alloc_size =
++			alloc_size - ((i - index) << IO_TLB_SHIFT);
++	}
+ 	for (i = index - 1;
+ 	     io_tlb_offset(i) != IO_TLB_SEGSIZE - 1 &&
+ 	     mem->slots[i].list; i--)
+@@ -529,7 +532,7 @@ phys_addr_t swiotlb_tbl_map_single(struct device *dev, phys_addr_t orig_addr,
+ 		return (phys_addr_t)DMA_MAPPING_ERROR;
+ 	}
+ 
+-	index = find_slots(dev, orig_addr, alloc_size + offset);
++	index = swiotlb_find_slots(dev, orig_addr, alloc_size + offset);
+ 	if (index == -1) {
+ 		if (!(attrs & DMA_ATTR_NO_WARN))
+ 			dev_warn_ratelimited(dev,
+@@ -543,11 +546,8 @@ phys_addr_t swiotlb_tbl_map_single(struct device *dev, phys_addr_t orig_addr,
+ 	 * This is needed when we sync the memory.  Then we sync the buffer if
+ 	 * needed.
+ 	 */
+-	for (i = 0; i < nr_slots(alloc_size + offset); i++) {
++	for (i = 0; i < nr_slots(alloc_size + offset); i++)
+ 		mem->slots[index + i].orig_addr = slot_addr(orig_addr, i);
+-		mem->slots[index + i].alloc_size =
+-			alloc_size - (i << IO_TLB_SHIFT);
+-	}
+ 	tlb_addr = slot_addr(mem->start, index) + offset;
+ 	if (!(attrs & DMA_ATTR_SKIP_CPU_SYNC) &&
+ 	    (dir == DMA_TO_DEVICE || dir == DMA_BIDIRECTIONAL))
 -- 
 2.32.0.272.g935e593368-goog
 
