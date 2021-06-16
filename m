@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C29E3A8DCB
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 02:42:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D75F23A8DD8
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 02:49:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C99DC6E454;
-	Wed, 16 Jun 2021 00:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DBE46E4AB;
+	Wed, 16 Jun 2021 00:49:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ABC56E444
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 00:42:24 +0000 (UTC)
-IronPort-SDR: DjFDxQ4ue4WO7gLa7ABvptKpBLnuiaaMUmhgjRhH5byeBbbj5aonDHvEKS45pOAbfpe7AJhqh3
- 0Q9ryWE4o74A==
-X-IronPort-AV: E=McAfee;i="6200,9189,10016"; a="186468447"
-X-IronPort-AV: E=Sophos;i="5.83,276,1616482800"; d="scan'208";a="186468447"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 17:42:23 -0700
-IronPort-SDR: XVvPYtTD57EBDVmgMCy8k1VIqo94aUpyDaQAUvDIbMTKcVQiKr1hOAtQBSulo59kY/mnIxb7TE
- KjRuwgrKCHOA==
-X-IronPort-AV: E=Sophos;i="5.83,276,1616482800"; d="scan'208";a="478896389"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2021 17:42:23 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Jun 2021 17:42:13 -0700
-Message-Id: <20210616004213.1705079-4-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210616004213.1705079-1-matthew.d.roper@intel.com>
-References: <20210616004213.1705079-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E342689C13;
+ Wed, 16 Jun 2021 00:49:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC14FAA3D8;
+ Wed, 16 Jun 2021 00:49:43 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2.1 3/3] drm/i915: Add support for explicit
- L3BANK steering
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Wed, 16 Jun 2021 00:49:43 -0000
+Message-ID: <162380458386.8273.11219766665508443324@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210616001302.84233-1-matthew.brost@intel.com>
+In-Reply-To: <20210616001302.84233-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgVXBk?=
+ =?utf-8?q?ate_firmware_to_v62=2E0=2E0_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,229 +38,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0832127347=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Because Render Power Gating restricts us to just a single subslice as a
-valid steering target for reads of multicast registers in a SUBSLICE
-range, the default steering we setup at init may not lead to a suitable
-target for L3BANK multicast register.  In cases where it does not, use
-explicit runtime steering whenever an L3BANK multicast register is read.
+--===============0832127347==
+Content-Type: multipart/alternative;
+ boundary="===============3259679290878614596=="
 
-While we're at it, let's simplify the function a little bit and drop its
-support for gen10/CNL since no such platforms ever materialized for real
-use.  Multicast register steering is already an area that causes enough
-confusion; no need to complicate it with what's effectively dead code.
+--===============3259679290878614596==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
- - Use gt->uncore instead of gt->i915->uncore.  (Tvrtko)
- - Use {} as table terminator.  (Rodrigo)
+== Series Details ==
 
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c          | 18 +++++
- drivers/gpu/drm/i915/gt/intel_gt_types.h    |  4 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 84 ++++++---------------
- 3 files changed, 46 insertions(+), 60 deletions(-)
+Series: Update firmware to v62.0.0 (rev4)
+URL   : https://patchwork.freedesktop.org/series/91106/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 66299105da66..25a3ecf9892a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -83,6 +83,11 @@ void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt)
- 	gt->ggtt = ggtt;
- }
- 
-+static const struct intel_mmio_range icl_l3bank_steering_table[] = {
-+	{ 0x00B100, 0x00B3FF },
-+	{},
-+};
-+
- int intel_gt_init_mmio(struct intel_gt *gt)
- {
- 	intel_gt_init_clock_frequency(gt);
-@@ -90,6 +95,13 @@ int intel_gt_init_mmio(struct intel_gt *gt)
- 	intel_uc_init_mmio(&gt->uc);
- 	intel_sseu_info_init(gt);
- 
-+	if (GRAPHICS_VER(gt->i915) >= 11) {
-+		gt->steering_table[L3BANK] = icl_l3bank_steering_table;
-+		gt->info.l3bank_mask =
-+			intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
-+			GEN10_L3BANK_MASK;
-+	}
-+
- 	return intel_engines_init_mmio(gt);
- }
- 
-@@ -744,6 +756,12 @@ static void intel_gt_get_valid_steering(struct intel_gt *gt,
- 					u8 *sliceid, u8 *subsliceid)
- {
- 	switch (type) {
-+	case L3BANK:
-+		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
-+
-+		*sliceid = __ffs(gt->info.l3bank_mask);
-+		*subsliceid = 0;        /* unused */
-+		break;
- 	default:
- 		MISSING_CASE(type);
- 		*sliceid = 0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index f2c274eee1e6..80dc131e862f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -48,6 +48,8 @@ struct intel_mmio_range {
-  * need to explicitly re-steer reads of registers of the other type.
-  */
- enum intel_steering_type {
-+	L3BANK,
-+
- 	NUM_STEERING_TYPES
- };
- 
-@@ -174,6 +176,8 @@ struct intel_gt {
- 		/* Media engine access to SFC per instance */
- 		u8 vdbox_sfc_access;
- 
-+		u32 l3bank_mask;
-+
- 		/* Slice/subslice/EU info */
- 		struct sseu_dev_info sseu;
- 	} info;
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 93c74d4cae02..d9a5a445ceec 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -945,71 +945,37 @@ cfl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- }
- 
- static void
--wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+icl_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
- 	const struct sseu_dev_info *sseu = &i915->gt.info.sseu;
- 	unsigned int slice, subslice;
--	u32 l3_en, mcr, mcr_mask;
-+	u32 mcr, mcr_mask;
- 
--	GEM_BUG_ON(GRAPHICS_VER(i915) < 10);
-+	GEM_BUG_ON(GRAPHICS_VER(i915) < 11);
-+	GEM_BUG_ON(hweight8(sseu->slice_mask) > 1);
-+	slice = 0;
- 
- 	/*
--	 * WaProgramMgsrForL3BankSpecificMmioReads: cnl,icl
--	 * L3Banks could be fused off in single slice scenario. If that is
--	 * the case, we might need to program MCR select to a valid L3Bank
--	 * by default, to make sure we correctly read certain registers
--	 * later on (in the range 0xB100 - 0xB3FF).
--	 *
--	 * WaProgramMgsrForCorrectSliceSpecificMmioReads:cnl,icl
--	 * Before any MMIO read into slice/subslice specific registers, MCR
--	 * packet control register needs to be programmed to point to any
--	 * enabled s/ss pair. Otherwise, incorrect values will be returned.
--	 * This means each subsequent MMIO read will be forwarded to an
--	 * specific s/ss combination, but this is OK since these registers
--	 * are consistent across s/ss in almost all cases. In the rare
--	 * occasions, such as INSTDONE, where this value is dependent
--	 * on s/ss combo, the read should be done with read_subslice_reg.
--	 *
--	 * Since GEN8_MCR_SELECTOR contains dual-purpose bits which select both
--	 * to which subslice, or to which L3 bank, the respective mmio reads
--	 * will go, we have to find a common index which works for both
--	 * accesses.
--	 *
--	 * Case where we cannot find a common index fortunately should not
--	 * happen in production hardware, so we only emit a warning instead of
--	 * implementing something more complex that requires checking the range
--	 * of every MMIO read.
-+	 * Although a platform may have subslices, we need to always steer
-+	 * reads to the lowest instance that isn't fused off.  When Render
-+	 * Power Gating is enabled, grabbing forcewake will only power up a
-+	 * single subslice (the "minconfig") if there isn't a real workload
-+	 * that needs to be run; this means that if we steer register reads to
-+	 * one of the higher subslices, we run the risk of reading back 0's or
-+	 * random garbage.
- 	 */
-+	subslice = __ffs(intel_sseu_get_subslices(sseu, slice));
- 
--	if (GRAPHICS_VER(i915) >= 10 && is_power_of_2(sseu->slice_mask)) {
--		u32 l3_fuse =
--			intel_uncore_read(&i915->uncore, GEN10_MIRROR_FUSE3) &
--			GEN10_L3BANK_MASK;
--
--		drm_dbg(&i915->drm, "L3 fuse = %x\n", l3_fuse);
--		l3_en = ~(l3_fuse << GEN10_L3BANK_PAIR_COUNT | l3_fuse);
--	} else {
--		l3_en = ~0;
--	}
-+	/*
-+	 * If the subslice we picked above also steers us to a valid L3 bank,
-+	 * then we can just rely on the default steering and won't need to
-+	 * worry about explicitly re-steering L3BANK reads later.
-+	 */
-+	if (i915->gt.info.l3bank_mask & BIT(subslice))
-+		i915->gt.steering_table[L3BANK] = NULL;
- 
--	slice = fls(sseu->slice_mask) - 1;
--	subslice = fls(l3_en & intel_sseu_get_subslices(sseu, slice));
--	if (!subslice) {
--		drm_warn(&i915->drm,
--			 "No common index found between subslice mask %x and L3 bank mask %x!\n",
--			 intel_sseu_get_subslices(sseu, slice), l3_en);
--		subslice = fls(l3_en);
--		drm_WARN_ON(&i915->drm, !subslice);
--	}
--	subslice--;
--
--	if (GRAPHICS_VER(i915) >= 11) {
--		mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
--		mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
--	} else {
--		mcr = GEN8_MCR_SLICE(slice) | GEN8_MCR_SUBSLICE(subslice);
--		mcr_mask = GEN8_MCR_SLICE_MASK | GEN8_MCR_SUBSLICE_MASK;
--	}
-+	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
-+	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
- 
- 	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
- 
-@@ -1019,8 +985,6 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
- static void
- cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
--	wa_init_mcr(i915, wal);
--
- 	/* WaInPlaceDecompressionHang:cnl */
- 	wa_write_or(wal,
- 		    GEN9_GAMT_ECO_REG_RW_IA,
-@@ -1030,7 +994,7 @@ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- static void
- icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
--	wa_init_mcr(i915, wal);
-+	icl_wa_init_mcr(i915, wal);
- 
- 	/* WaInPlaceDecompressionHang:icl */
- 	wa_write_or(wal,
-@@ -1112,7 +1076,7 @@ static void
- gen12_gt_workarounds_init(struct drm_i915_private *i915,
- 			  struct i915_wa_list *wal)
- {
--	wa_init_mcr(i915, wal);
-+	icl_wa_init_mcr(i915, wal);
- 
- 	/* Wa_14011060649:tgl,rkl,dg1,adls,adl-p */
- 	wa_14011060649(i915, wal);
--- 
-2.25.4
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10226 -> Patchwork_20379
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20379 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +23 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#2283])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - {fi-tgl-1115g4}:    [FAIL][4] ([i915#1888]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][6] ([i915#2782]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+
+
+Participating hosts (43 -> 38)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10226 -> Patchwork_20379
+
+  CI-20190529: 20190529
+  CI_DRM_10226: e59107e71dfda22b959337ca2dd68b1bcbe78710 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6108: be59e0579cca677566c85540219fb9545e9afadf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20379: 386ac142a39041acd5bd35391567056b9146e62f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+386ac142a390 drm/i915/doc: Include GuC ABI documentation
+899d9ce395b2 drm/i915/guc: Update firmware to v62.0.0
+20bd5d817f52 drm/i915/guc: Introduce unified HXG messages
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/index.html
+
+--===============3259679290878614596==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Update firmware to v62.0.0 (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91106/">https://patchwork.freedesktop.org/series/91106/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10226 -&gt; Patchwork_20379</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20379 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20379/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10226 -&gt; Patchwork_20379</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10226: e59107e71dfda22b959337ca2dd68b1bcbe78710 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6108: be59e0579cca677566c85540219fb9545e9afadf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20379: 386ac142a39041acd5bd35391567056b9146e62f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>386ac142a390 drm/i915/doc: Include GuC ABI documentation<br />
+899d9ce395b2 drm/i915/guc: Update firmware to v62.0.0<br />
+20bd5d817f52 drm/i915/guc: Introduce unified HXG messages</p>
+
+</body>
+</html>
+
+--===============3259679290878614596==--
+
+--===============0832127347==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0832127347==--
