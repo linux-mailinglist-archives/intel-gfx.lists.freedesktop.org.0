@@ -1,67 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6322C3AA333
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 20:31:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446953AA36E
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 20:45:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 577DA6E7DC;
-	Wed, 16 Jun 2021 18:31:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F1A86E7E6;
+	Wed, 16 Jun 2021 18:44:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 094366E7D2;
- Wed, 16 Jun 2021 18:31:01 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 0FDD921A32;
- Wed, 16 Jun 2021 18:30:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1623868259; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=SD241883/A8l3q7BUPDTLNeAP4VA2r7X8fyXELkXA/o=;
- b=vy7BYo+8daQBLJfctH7Z8uFkLeSvlGMZUU9ad+GG906cUWn6tPF4XFU678lT9x/pES0qJj
- AsAJ/eegvQbtlo/LUwDlsaEJLak3wSIUIGE5REmPK6SEfdQhWOC9ORj5C/1vD48Fx3AUY4
- qMsFg/Z5z7EmfTMJmJxxjAW/nVe4SJw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1623868259;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=SD241883/A8l3q7BUPDTLNeAP4VA2r7X8fyXELkXA/o=;
- b=zRYln5XFip8+oRh2ZjLhgfw9Y4b2yH6bS6DwG2eayeNXMXlcgzpGSIOI1wdM7kgf3ORc1v
- s/2yUHhTXdoq6lCw==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id CC0A5118DD;
- Wed, 16 Jun 2021 18:30:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1623868259; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=SD241883/A8l3q7BUPDTLNeAP4VA2r7X8fyXELkXA/o=;
- b=vy7BYo+8daQBLJfctH7Z8uFkLeSvlGMZUU9ad+GG906cUWn6tPF4XFU678lT9x/pES0qJj
- AsAJ/eegvQbtlo/LUwDlsaEJLak3wSIUIGE5REmPK6SEfdQhWOC9ORj5C/1vD48Fx3AUY4
- qMsFg/Z5z7EmfTMJmJxxjAW/nVe4SJw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1623868259;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=SD241883/A8l3q7BUPDTLNeAP4VA2r7X8fyXELkXA/o=;
- b=zRYln5XFip8+oRh2ZjLhgfw9Y4b2yH6bS6DwG2eayeNXMXlcgzpGSIOI1wdM7kgf3ORc1v
- s/2yUHhTXdoq6lCw==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id 8jWNMGJDymDqVwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Wed, 16 Jun 2021 18:30:58 +0000
-Date: Wed, 16 Jun 2021 20:30:57 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YMpDYfRjFqjfrMke@linux-uq9g.fritz.box>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BBD6D6E7DC;
+ Wed, 16 Jun 2021 18:44:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B25B1AA01E;
+ Wed, 16 Jun 2021 18:44:57 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jiapeng Chong" <jiapeng.chong@linux.alibaba.com>
+Date: Wed, 16 Jun 2021 18:44:57 -0000
+Message-ID: <162386909770.8272.18157506884355180218@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1623823318-6759-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+In-Reply-To: <1623823318-6759-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Fix_duplicate_included_intel=5Fregion=5Flmem=2Eh?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,68 +38,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0823212039=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+--===============0823212039==
+Content-Type: multipart/alternative;
+ boundary="===============3581619399159969926=="
 
-here's this week's PR for drm-misc-next-fixes.
+--===============3581619399159969926==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Best regards
-Thomas
+== Series Details ==
 
-drm-misc-next-fixes-2021-06-16:
-Short summary of fixes pull:
+Series: drm/i915/gt: Fix duplicate included intel_region_lmem.h
+URL   : https://patchwork.freedesktop.org/series/91571/
+State : success
 
- * hyperv: advertise the correct formatmodifiers for its primary plane
- * dp_mst: VCPI fixes to make it work with StarTech hub
+== Summary ==
 
-The following changes since commit 1bd8a7dc28c1c410f1ceefae1f2a97c06d1a67c2:
+CI Bug Log - changes from CI_DRM_10230 -> Patchwork_20387
+====================================================
 
-  Merge tag 'exynos-drm-next-for-v5.14' of git://git.kernel.org/pub/scm/lin=
-ux/kernel/git/daeinki/drm-exynos into drm-next (2021-06-11 14:19:12 +1000)
+Summary
+-------
 
-are available in the Git repository at:
+  **SUCCESS**
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-=
-06-16
+  No regressions found.
 
-for you to fetch changes up to 3769e4c0af5b82c8ea21d037013cb9564dfaa51f:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/index.html
 
-  drm/dp_mst: Avoid to mess up payload table by ports in stale topology (20=
-21-06-16 12:57:46 -0400)
+Known issues
+------------
 
-----------------------------------------------------------------
-Short summary of fixes pull:
+  Here are the changes found in Patchwork_20387 that come from known issues:
 
- * hyperv: advertise the correct formatmodifiers for its primary plane
- * dp_mst: VCPI fixes to make it work with StarTech hub
+### IGT changes ###
 
-----------------------------------------------------------------
-Pu Lehui (1):
-      drm/hyperv: Fix unused const variable 'hyperv_modifiers'
+#### Issues hit ####
 
-Wayne Lin (2):
-      drm/dp_mst: Do not set proposed vcpi directly
-      drm/dp_mst: Avoid to mess up payload table by ports in stale topology
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-skl-6700k2:      [PASS][1] -> [DMESG-WARN][2] ([i915#1602])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10230/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
 
- drivers/gpu/drm/drm_dp_mst_topology.c       | 65 +++++++++++++++++--------=
-----
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c |  2 +-
- 2 files changed, 40 insertions(+), 27 deletions(-)
+  * igt@runner@aborted:
+    - fi-skl-6700k2:      NOTRUN -> [FAIL][3] ([i915#3363])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-skl-6700k2/igt@runner@aborted.html
 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-(HRB 36809, AG N=FCrnberg)
-Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all@dma_fence:
+    - fi-pnv-d510:        [FAIL][4] -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10230/fi-pnv-d510/igt@dmabuf@all@dma_fence.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-pnv-d510/igt@dmabuf@all@dma_fence.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][6] ([i915#3303]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10230/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
+
+
+Participating hosts (43 -> 38)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10230 -> Patchwork_20387
+
+  CI-20190529: 20190529
+  CI_DRM_10230: 03937139a4149d1cb76e7677e5da15bc414d56dc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6109: 61ba2ed489540e6a8a649be38abb075b3ab4d28a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20387: e7f5505c8345f569d59d359fbd9d276d23c4556f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e7f5505c8345 drm/i915/gt: Fix duplicate included intel_region_lmem.h
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/index.html
+
+--===============3581619399159969926==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Fix duplicate included intel_region_lmem.h</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91571/">https://patchwork.freedesktop.org/series/91571/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10230 -&gt; Patchwork_20387</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20387 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10230/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all@dma_fence:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10230/fi-pnv-d510/igt@dmabuf@all@dma_fence.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-pnv-d510/igt@dmabuf@all@dma_fence.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10230/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20387/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10230 -&gt; Patchwork_20387</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10230: 03937139a4149d1cb76e7677e5da15bc414d56dc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6109: 61ba2ed489540e6a8a649be38abb075b3ab4d28a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20387: e7f5505c8345f569d59d359fbd9d276d23c4556f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e7f5505c8345 drm/i915/gt: Fix duplicate included intel_region_lmem.h</p>
+
+</body>
+</html>
+
+--===============3581619399159969926==--
+
+--===============0823212039==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0823212039==--
