@@ -1,29 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF3E3A941B
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 09:34:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 194363A9421
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 09:35:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 059526E1A7;
-	Wed, 16 Jun 2021 07:34:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76D4D6E1A7;
+	Wed, 16 Jun 2021 07:35:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8D9D66E1A7;
- Wed, 16 Jun 2021 07:34:35 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 735066E1A7;
+ Wed, 16 Jun 2021 07:35:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89578AADD0;
- Wed, 16 Jun 2021 07:34:35 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6F24FA73C9;
+ Wed, 16 Jun 2021 07:35:31 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Claire Chang" <tientzu@chromium.org>
-Date: Wed, 16 Jun 2021 07:34:35 -0000
-Message-ID: <162382887555.8275.12853103261441727763@emeril.freedesktop.org>
+Date: Wed, 16 Jun 2021 07:35:31 -0000
+Message-ID: <162382893145.8275.17228180661376467293@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210616035240.840463-1-tientzu@chromium.org>
-In-Reply-To: <20210616035240.840463-1-tientzu@chromium.org>
+References: <20210616062157.953777-1-tientzu@chromium.org>
+In-Reply-To: <20210616062157.953777-1-tientzu@chromium.org>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBS?=
  =?utf-8?q?estricted_DMA?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -48,7 +48,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 == Series Details ==
 
 Series: Restricted DMA
-URL   : https://patchwork.freedesktop.org/series/91548/
+URL   : https://patchwork.freedesktop.org/series/91553/
 State : failure
 
 == Summary ==
