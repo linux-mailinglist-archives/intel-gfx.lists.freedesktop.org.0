@@ -1,32 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5389C3A972A
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 12:22:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2E03A9735
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 12:25:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC366E055;
-	Wed, 16 Jun 2021 10:22:21 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA2B06E055;
- Wed, 16 Jun 2021 10:22:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A69EEAADD0;
- Wed, 16 Jun 2021 10:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 185136E09A;
+	Wed, 16 Jun 2021 10:25:18 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
+ [IPv6:2607:f8b0:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C18899D4
+ for <Intel-GFX@lists.freedesktop.org>; Wed, 16 Jun 2021 10:25:16 +0000 (UTC)
+Received: by mail-ot1-x336.google.com with SMTP id
+ w23-20020a9d5a970000b02903d0ef989477so1960893oth.9
+ for <Intel-GFX@lists.freedesktop.org>; Wed, 16 Jun 2021 03:25:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=0jUF6vczkVAJdRgKZwAxHhYyT8EqRuSqu1cpD+OKfJ8=;
+ b=QB8f4vOT1o9pB/Ka5GlgK2RSyUWpM3xOcoGSH0urELmwOcvE9gxq9Bs6SkgBApCksF
+ plpUbYGVVKC9yoSVS0VdrymPpRlK/Yoiuz4n8NAkp4NsiG0j22IRe2ZP/tLapLzfHkak
+ kMaRHQfO1E5R17JRRhNB3IRZAfZVNi10gQ+P8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=0jUF6vczkVAJdRgKZwAxHhYyT8EqRuSqu1cpD+OKfJ8=;
+ b=egYRuI02S2R3NJ41VKlf8A1PdR6zGCjClE7FR1JCvALKbkQMc81z4tH9/vdSmX2tPc
+ UMK1GekFTDFVnmzsn4/KOqLX1ZfRm02Srns5IxXMZCZygKH4qzOTvzC1OQwR7YXDf1cQ
+ 4L4ZI6hJ92pBweTbQMokwRJKNPt0MaFVJOCcvbcNZLBgTbLyONfqAS8eU0v/H7jC94ZK
+ Blym+Rl58g+8qlc071a6AfUuJgONgrcPrCNd27hvu3OGdAGW6QvsC7wyFyYXMOq+jUFH
+ AHwp1m2ePvXRiyaMPBWWBb2aEv8Anq4eyFYt0MAeq9c62inJmPUqzdcGF2FdTGF4ld59
+ /wew==
+X-Gm-Message-State: AOAM531jqubEpCeFT/dhzhF2xMJtFI60fJNRvx7ekPR1NUZMVpF9tEEU
+ KtZU5QtMUqQSeix/VcwWj8XiNIBAncCpf/2Umj+vUg==
+X-Google-Smtp-Source: ABdhPJx1f5VEC37QhV1o7Mh/1Tg3T6ecwGKhYxMEyQsOCriyGSHipcKpl2tAZm9jXrW+ADneYUExlq4exxx2BwxiXtg=
+X-Received: by 2002:a9d:12eb:: with SMTP id g98mr3314343otg.303.1623839115588; 
+ Wed, 16 Jun 2021 03:25:15 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Wed, 16 Jun 2021 10:22:19 -0000
-Message-ID: <162383893965.8273.631555000979036171@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210614120906.1616120-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210614120906.1616120-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Be_more_gentle_with_exiting_non-persistent_context_=28?=
- =?utf-8?q?rev5=29?=
+References: <20210610204626.2995262-1-John.C.Harrison@Intel.com>
+ <20210610204626.2995262-4-John.C.Harrison@Intel.com>
+In-Reply-To: <20210610204626.2995262-4-John.C.Harrison@Intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Wed, 16 Jun 2021 12:25:04 +0200
+Message-ID: <CAKMK7uGO8U9a8yq73MV=xSbTA+tCQi5nqiZSD9Hwbi==fZ=R5A@mail.gmail.com>
+To: John Harrison <John.C.Harrison@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/uapi: Add query for L3 bank
+ count
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,201 +60,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2106240839=="
+Cc: intel-gfx <Intel-GFX@lists.freedesktop.org>,
+ dri-devel <DRI-Devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2106240839==
-Content-Type: multipart/alternative;
- boundary="===============0877253028498743145=="
+On Thu, Jun 10, 2021 at 10:46 PM <John.C.Harrison@intel.com> wrote:
+>
+> From: John Harrison <John.C.Harrison@Intel.com>
+>
+> Various UMDs need to know the L3 bank count. So add a query API for it.
 
---===============0877253028498743145==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Please link to both the igt test submission for this (there's not even
+a Test-with: on the cover letter) and the merge requests for the
+various UMD which uses new uapi. Also as other mentioned, full uapi
+kerneldoc is needed too. Please fill in any gaps in the existing docs
+that relate to your addition directly (like we've e.g. done for the
+extension chaining when adding lmem support).
 
-== Series Details ==
+Thanks, Daniel
 
-Series: drm/i915: Be more gentle with exiting non-persistent context (rev5)
-URL   : https://patchwork.freedesktop.org/series/89644/
-State : success
+>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c | 15 +++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt.h |  1 +
+>  drivers/gpu/drm/i915/i915_query.c  | 22 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h    |  1 +
+>  include/uapi/drm/i915_drm.h        |  1 +
+>  5 files changed, 40 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 2161bf01ef8b..708bb3581d83 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -704,3 +704,18 @@ void intel_gt_info_print(const struct intel_gt_info *info,
+>
+>         intel_sseu_dump(&info->sseu, p);
+>  }
+> +
+> +int intel_gt_get_l3bank_count(struct intel_gt *gt)
+> +{
+> +       struct drm_i915_private *i915 = gt->i915;
+> +       intel_wakeref_t wakeref;
+> +       u32 fuse3;
+> +
+> +       if (GRAPHICS_VER(i915) < 12)
+> +               return -ENODEV;
+> +
+> +       with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +               fuse3 = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
+> +
+> +       return hweight32(REG_FIELD_GET(GEN12_GT_L3_MODE_MASK, ~fuse3));
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+> index 7ec395cace69..46aa1cf4cf30 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> @@ -77,6 +77,7 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
+>
+>  void intel_gt_info_print(const struct intel_gt_info *info,
+>                          struct drm_printer *p);
+> +int intel_gt_get_l3bank_count(struct intel_gt *gt);
+>
+>  void intel_gt_watchdog_work(struct work_struct *work);
+>
+> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> index 96bd8fb3e895..0e92bb2d21b2 100644
+> --- a/drivers/gpu/drm/i915/i915_query.c
+> +++ b/drivers/gpu/drm/i915/i915_query.c
+> @@ -10,6 +10,7 @@
+>  #include "i915_perf.h"
+>  #include "i915_query.h"
+>  #include <uapi/drm/i915_drm.h>
+> +#include "gt/intel_gt.h"
+>
+>  static int copy_query_item(void *query_hdr, size_t query_sz,
+>                            u32 total_length,
+> @@ -502,6 +503,26 @@ static int query_hwconfig_table(struct drm_i915_private *i915,
+>         return hwconfig->size;
+>  }
+>
+> +static int query_l3banks(struct drm_i915_private *i915,
+> +                        struct drm_i915_query_item *query_item)
+> +{
+> +       u32 banks;
+> +
+> +       if (query_item->length == 0)
+> +               return sizeof(banks);
+> +
+> +       if (query_item->length < sizeof(banks))
+> +               return -EINVAL;
+> +
+> +       banks = intel_gt_get_l3bank_count(&i915->gt);
+> +
+> +       if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+> +                        &banks, sizeof(banks)))
+> +               return -EFAULT;
+> +
+> +       return sizeof(banks);
+> +}
+> +
+>  static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>                                         struct drm_i915_query_item *query_item) = {
+>         query_topology_info,
+> @@ -509,6 +530,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>         query_perf_config,
+>         query_memregion_info,
+>         query_hwconfig_table,
+> +       query_l3banks,
+>  };
+>
+>  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index eb13c601d680..e9ba88fe3db7 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -3099,6 +3099,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  #define        GEN10_MIRROR_FUSE3              _MMIO(0x9118)
+>  #define GEN10_L3BANK_PAIR_COUNT     4
+>  #define GEN10_L3BANK_MASK   0x0F
+> +#define GEN12_GT_L3_MODE_MASK 0xFF
+>
+>  #define GEN8_EU_DISABLE0               _MMIO(0x9134)
+>  #define   GEN8_EU_DIS0_S0_MASK         0xffffff
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 87d369cae22a..20d18cca5066 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -2234,6 +2234,7 @@ struct drm_i915_query_item {
+>  #define DRM_I915_QUERY_PERF_CONFIG      3
+>  #define DRM_I915_QUERY_MEMORY_REGIONS   4
+>  #define DRM_I915_QUERY_HWCONFIG_TABLE   5
+> +#define DRM_I915_QUERY_L3_BANK_COUNT    6
+>  /* Must be kept compact -- no holes and well documented */
+>
+>         /**
+> --
+> 2.25.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10226 -> Patchwork_20384
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20384 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +23 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#2291] / [i915#541])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - {fi-tgl-1115g4}:    [FAIL][5] ([i915#1888]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10226 -> Patchwork_20384
-
-  CI-20190529: 20190529
-  CI_DRM_10226: e59107e71dfda22b959337ca2dd68b1bcbe78710 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6108: be59e0579cca677566c85540219fb9545e9afadf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20384: e16557e3eeacf8b307a95f2c0c421240e0f11a0e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e16557e3eeac drm/i915: Be more gentle with exiting non-persistent context
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/index.html
-
---===============0877253028498743145==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Be more gentle with exiting non-persistent context (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89644/">https://patchwork.freedesktop.org/series/89644/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10226 -&gt; Patchwork_20384</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20384 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10226/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20384/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10226 -&gt; Patchwork_20384</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10226: e59107e71dfda22b959337ca2dd68b1bcbe78710 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6108: be59e0579cca677566c85540219fb9545e9afadf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20384: e16557e3eeacf8b307a95f2c0c421240e0f11a0e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e16557e3eeac drm/i915: Be more gentle with exiting non-persistent context</p>
-
-</body>
-</html>
-
---===============0877253028498743145==--
-
---===============2106240839==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2106240839==--
