@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656F43A969B
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 11:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2593C3A96F1
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 12:08:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A38856E550;
-	Wed, 16 Jun 2021 09:53:05 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 90EC56E56A;
- Wed, 16 Jun 2021 09:53:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79319AA0ED;
- Wed, 16 Jun 2021 09:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27D4F6E09A;
+	Wed, 16 Jun 2021 10:08:50 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 863756E57E;
+ Wed, 16 Jun 2021 10:08:48 +0000 (UTC)
+IronPort-SDR: U+/+G5WVFVVvNjzdNnLsh+3X8uiocfevqOjnf3/aMJ8/MxMyxjLdsRs30NtOSWIoP+LNX856yI
+ aoOHi6uNnkcA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10016"; a="269999269"
+X-IronPort-AV: E=Sophos;i="5.83,277,1616482800"; d="scan'208";a="269999269"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2021 03:08:47 -0700
+IronPort-SDR: NBsdTn2Jss6yGUE6ERgVSwx8X/Wx5TBRfOB5vxjU84WJzn19ugF4xlcX1/61rD+5c3DFCPmK7r
+ 2bIvsx+Jp0hw==
+X-IronPort-AV: E=Sophos;i="5.83,277,1616482800"; d="scan'208";a="442835889"
+Received: from tomfin1x-mobl1.ger.corp.intel.com (HELO [10.213.246.124])
+ ([10.213.246.124])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2021 03:08:46 -0700
+To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
+References: <20210610204626.2995262-1-John.C.Harrison@Intel.com>
+ <20210610204626.2995262-4-John.C.Harrison@Intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <4a8623d4-4450-ea64-b0dc-70e6458d77df@linux.intel.com>
+Date: Wed, 16 Jun 2021 11:08:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Wed, 16 Jun 2021 09:53:04 -0000
-Message-ID: <162383718446.8274.2531370418626557273@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210614120906.1616120-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210614120906.1616120-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Be_more_gentle_with_exiting_non-persistent_cont?=
- =?utf-8?q?ext_=28rev5=29?=
+In-Reply-To: <20210610204626.2995262-4-John.C.Harrison@Intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/uapi: Add query for L3 bank
+ count
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,31 +52,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: DRI-Devel@Lists.FreeDesktop.Org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Be more gentle with exiting non-persistent context (rev5)
-URL   : https://patchwork.freedesktop.org/series/89644/
-State : warning
+On 10/06/2021 21:46, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> Various UMDs need to know the L3 bank count. So add a query API for it.
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_gt.c | 15 +++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_gt.h |  1 +
+>   drivers/gpu/drm/i915/i915_query.c  | 22 ++++++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_reg.h    |  1 +
+>   include/uapi/drm/i915_drm.h        |  1 +
+>   5 files changed, 40 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 2161bf01ef8b..708bb3581d83 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -704,3 +704,18 @@ void intel_gt_info_print(const struct intel_gt_info *info,
+>   
+>   	intel_sseu_dump(&info->sseu, p);
+>   }
+> +
+> +int intel_gt_get_l3bank_count(struct intel_gt *gt)
+> +{
+> +	struct drm_i915_private *i915 = gt->i915;
+> +	intel_wakeref_t wakeref;
+> +	u32 fuse3;
+> +
+> +	if (GRAPHICS_VER(i915) < 12)
+> +		return -ENODEV;
+> +
+> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> +		fuse3 = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
+> +
+> +	return hweight32(REG_FIELD_GET(GEN12_GT_L3_MODE_MASK, ~fuse3));
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+> index 7ec395cace69..46aa1cf4cf30 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> @@ -77,6 +77,7 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
+>   
+>   void intel_gt_info_print(const struct intel_gt_info *info,
+>   			 struct drm_printer *p);
+> +int intel_gt_get_l3bank_count(struct intel_gt *gt);
+>   
+>   void intel_gt_watchdog_work(struct work_struct *work);
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> index 96bd8fb3e895..0e92bb2d21b2 100644
+> --- a/drivers/gpu/drm/i915/i915_query.c
+> +++ b/drivers/gpu/drm/i915/i915_query.c
+> @@ -10,6 +10,7 @@
+>   #include "i915_perf.h"
+>   #include "i915_query.h"
+>   #include <uapi/drm/i915_drm.h>
+> +#include "gt/intel_gt.h"
+>   
+>   static int copy_query_item(void *query_hdr, size_t query_sz,
+>   			   u32 total_length,
+> @@ -502,6 +503,26 @@ static int query_hwconfig_table(struct drm_i915_private *i915,
+>   	return hwconfig->size;
+>   }
+>   
+> +static int query_l3banks(struct drm_i915_private *i915,
+> +			 struct drm_i915_query_item *query_item)
+> +{
+> +	u32 banks;
+> +
+> +	if (query_item->length == 0)
+> +		return sizeof(banks);
+> +
+> +	if (query_item->length < sizeof(banks))
+> +		return -EINVAL;
+> +
+> +	banks = intel_gt_get_l3bank_count(&i915->gt);
 
-== Summary ==
+Having spotted i915->gt I am thinking whether this should be future 
+proofed to take, say, struct i915_engine_class_instance as input. If one 
+need different GTs will have different L3 config. Alternative is adding 
+a new query at that point. No strong opinion either way.
 
-$ dim checkpatch origin/drm-tip
-e16557e3eeac drm/i915: Be more gentle with exiting non-persistent context
--:66: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 25)
-#66: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:448:
-+		else if (!persistent)
-+			 skip = !intel_context_clear_schedulable(ce);
+Otherwise yes, I agree with adding flags mbz check and documenting the 
+uapi as other people have suggested.
 
-total: 0 errors, 1 warnings, 0 checks, 201 lines checked
+Regards,
 
+Tvrtko
 
+> +
+> +	if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+> +			 &banks, sizeof(banks)))
+> +		return -EFAULT;
+> +
+> +	return sizeof(banks);
+> +}
+> +
+>   static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>   					struct drm_i915_query_item *query_item) = {
+>   	query_topology_info,
+> @@ -509,6 +530,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>   	query_perf_config,
+>   	query_memregion_info,
+>   	query_hwconfig_table,
+> +	query_l3banks,
+>   };
+>   
+>   int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index eb13c601d680..e9ba88fe3db7 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -3099,6 +3099,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>   #define	GEN10_MIRROR_FUSE3		_MMIO(0x9118)
+>   #define GEN10_L3BANK_PAIR_COUNT     4
+>   #define GEN10_L3BANK_MASK   0x0F
+> +#define GEN12_GT_L3_MODE_MASK 0xFF
+>   
+>   #define GEN8_EU_DISABLE0		_MMIO(0x9134)
+>   #define   GEN8_EU_DIS0_S0_MASK		0xffffff
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 87d369cae22a..20d18cca5066 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -2234,6 +2234,7 @@ struct drm_i915_query_item {
+>   #define DRM_I915_QUERY_PERF_CONFIG      3
+>   #define DRM_I915_QUERY_MEMORY_REGIONS   4
+>   #define DRM_I915_QUERY_HWCONFIG_TABLE   5
+> +#define DRM_I915_QUERY_L3_BANK_COUNT    6
+>   /* Must be kept compact -- no holes and well documented */
+>   
+>   	/**
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
