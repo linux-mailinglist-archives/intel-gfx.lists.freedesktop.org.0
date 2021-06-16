@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80B323A9CBB
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 15:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD16E3A9D7D
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jun 2021 16:24:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C92D6E17B;
-	Wed, 16 Jun 2021 13:54:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CB7E89F6E;
+	Wed, 16 Jun 2021 14:24:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A2626E17B
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 13:54:26 +0000 (UTC)
-IronPort-SDR: ZWwb/wzWKOdGY7D3Gl/sAqADlBqoq+7C1UqXw3+xPZPGChO5HTvr35XdZ2nhrP0JqMFmLraF4c
- uxgb0WJ0blbA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10016"; a="291810777"
-X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; d="scan'208";a="291810777"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E7A789F6E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 14:24:51 +0000 (UTC)
+IronPort-SDR: /y2TEn0Er3IWa5em8peVimltTSn694B1b/NNPt83iPU+yAWDy4WR0So0w4OH2ef/Mr4WGK0XsL
+ m9ZDDemCkIog==
+X-IronPort-AV: E=McAfee;i="6200,9189,10016"; a="193493855"
+X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; d="scan'208";a="193493855"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2021 06:54:26 -0700
-IronPort-SDR: ZQcqLE99k8mCPw52cpniOUDPDH4qr/kXdczC2nkAPPbf5JtrdjRaPCu6rwVzA5wzb/P8xikt50
- yyXWxvbml8vA==
-X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; d="scan'208";a="484886988"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2021 07:24:50 -0700
+IronPort-SDR: jaqC8/6v1NmyUY3kITLSmy9MtrXqSDHJMFWjB6+bYatW8Wgpgo4qQSLDUk/GhLCCfw9Uwu2D6s
+ uiIQ/X9cJ9zA==
+X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; d="scan'208";a="484896052"
 Received: from smarell1-mobl.amr.corp.intel.com (HELO intel.com)
  ([10.255.32.120])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2021 06:54:24 -0700
-Date: Wed, 16 Jun 2021 09:54:22 -0400
+ 16 Jun 2021 07:24:50 -0700
+Date: Wed, 16 Jun 2021 10:24:48 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Message-ID: <YMoCjgccQpxH3p4t@intel.com>
-References: <20210616094802.63372-1-zbigniew.kempczynski@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <YMoJsAm3EE3fGVfx@intel.com>
+References: <20210616004213.1705079-1-matthew.d.roper@intel.com>
+ <20210616004213.1705079-3-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210616094802.63372-1-zbigniew.kempczynski@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add relocation exceptions for two
- other platforms
+In-Reply-To: <20210616004213.1705079-3-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2.1 2/3] drm/i915: Add GT support for
+ multiple types of multicast steering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,67 +49,333 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBKdW4gMTYsIDIwMjEgYXQgMTE6NDg6MDJBTSArMDIwMCwgWmJpZ25pZXcgS2VtcGN6
-ecWEc2tpIHdyb3RlOgo+IEZvciB0b3BpYy9pbnRlbC1mb3ItQ0kgYnJhbmNoIG9ubHkuCj4gCj4g
-V2UgaGF2ZSBlc3RhYmxpc2hlZCBwcmV2aW91c2x5IHdlIHN0b3AgdXNpbmcgcmVsb2NhdGlvbnMg
-c3RhcnRpbmcKPiBmcm9tIGdlbjEyIHBsYXRmb3JtcyB3aXRoIFRpZ2VybGFrZSBhcyBhbiBleGNl
-cHRpb24uIFdlIGtlZXAgdGhpcwo+IHN0YXRlbWVudCBidXQgd2Ugd2FudCB0byBlbmFibGUgcmVs
-b2NhdGlvbnMgY29uZGl0aW9uYWxseSBmb3IKPiBBbGRlcmxha2UgUytQIHVuZGVyIHJlcXVpcmVf
-Zm9yY2VfcHJvYmUgZmxhZyBzZXQuCj4gCj4gS2VlcGluZyByZWxvY2F0aW9ucyB1bmRlciByZXF1
-aXJlX2ZvcmNlX3Byb2JlIGZsYWcgaXMgaW50ZXJpbSBzb2x1dGlvbgo+IHVudGlsIElHVHMgd2ls
-bCBiZSByZXdyaXR0ZW4gdG8gdXNlIHNvZnRwaW4uCj4gCj4gdjI6IC0gcmVtb3ZlIGlubGluZSBm
-cm9tIGZ1bmN0aW9uIGRlZmluaXRpb24gKEphbmkpCj4gICAgIC0gZml4IGluZGVudGF0aW9uCj4g
-Cj4gdjM6IGNoYW5nZSB0byBHUkFQSElDU19WRVIoKSAoWmJpZ25pZXcpCj4gCj4gdjQ6IHJlbW92
-ZSBSS0wgZnJvbSBmbGFnIGFzIGl0IGlzIGFscmVhZHkgc2hpcHBlZCAoUm9kcmlnbykKPiAKPiB2
-NTogcHJlcGFyZSBwYXRjaCB0byBiZSB1c2VkIHdpdGhpbiB0b3BpYy9pbnRlbC1mb3ItQ0kgYnJh
-bmNoIG9ubHkKPiAKPiBTaWduZWQtb2ZmLWJ5OiBaYmlnbmlldyBLZW1wY3p5xYRza2kgPHpiaWdu
-aWV3LmtlbXBjenluc2tpQGludGVsLmNvbT4KPiBDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVk
-aGF0LmNvbT4KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Cj4g
-Q2M6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4KPiBDYzogUm9kcmlnbyBW
-aXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPgo+IEFja2VkLWJ5OiBEYXZlIEFpcmxpZSA8YWly
-bGllZEByZWRoYXQuY29tPgo+IEFja2VkLWJ5OiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBp
-bnRlbC5jb20+Cj4gLS0tCj4gIC4uLi9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZm
-ZXIuYyAgICB8IDIxICsrKysrKysrKysrKysrLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDE2IGlu
-c2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCj4gaW5kZXggNzYwYzhhZWZlYTNhLi45MDZlZTAx
-MTY0NDMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4
-ZWNidWZmZXIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVj
-YnVmZmVyLmMKPiBAQCAtNDkxLDE2ICs0OTEsMjcgQEAgZWJfdW5yZXNlcnZlX3ZtYShzdHJ1Y3Qg
-ZWJfdm1hICpldikKPiAgCWV2LT5mbGFncyAmPSB+X19FWEVDX09CSkVDVF9SRVNFUlZFRDsKPiAg
-fQo+ICAKPiArc3RhdGljIGJvb2wgcGxhdGZvcm1faGFzX3JlbG9jc19lbmFibGVkKGNvbnN0IHN0
-cnVjdCBpOTE1X2V4ZWNidWZmZXIgKmViKQo+ICt7Cj4gKwkvKgo+ICsJICogUmVsb2NhdGlvbnMg
-YXJlIGRpc2FsbG93ZWQgc3RhcnRpbmcgZnJvbSBnZW4xMiB3aXRoIFRpZ2VybGFrZQo+ICsJICog
-YXMgYW4gZXhjZXB0aW9uLiBXZSBhbGxvdyB0ZW1wb3JhcmlseSB1c2UgcmVsb2NhdGlvbnMgZm9y
-IEFsZGVybGFrZQo+ICsJICogd2hlbiByZXF1aXJlX2ZvcmNlX3Byb2JlIGZsYWcgaXMgc2V0LgoK
-VG8gd2hvZXZlciBlbmQgdXAgYXBwbHlpbmcgdGhpcyBwYXRjaCwgcGxlYXNlIGZpeCB0aGUgY29t
-bWVudCBoZXJlIHdoaWxlCnB1c2hpbmcgdG8gdG9waWMvY29yZS1mb3ItQ0kuCgorICAgICAgIC8q
-CisgICAgICAgICogUmVsb2NhdGlvbnMgYXJlIGRpc2FsbG93ZWQgc3RhcnRpbmcgZnJvbSBnZW4x
-MiB3aXRoIFRpZ2VybGFrZQorICAgICAgICAqIGFzIGFuIGV4Y2VwdGlvbi4gVG8gdW5ibG9jayBD
-SSwgd2UgYXJlIHRlbXBvcmFyaWx5IGFsbG93aW5nIGl0CisgICAgICAgICogZm9yIFJvY2tldGxh
-a2UgYW5kIEFsZGVybGFrZQorICAgICAgICAqLwoKCj4gKwkgKi8KPiArCWlmIChHUkFQSElDU19W
-RVIoZWItPmk5MTUpIDwgMTIgfHwgSVNfVElHRVJMQUtFKGViLT5pOTE1KSB8fAo+ICsJICAgIElT
-X1JPQ0tFVExBS0UoZWItPmk5MTUpIHx8IElTX0FMREVSTEFLRV9TKGViLT5pOTE1KSB8fAo+ICsJ
-ICAgIElTX0FMREVSTEFLRV9QKGViLT5pOTE1KSkKPiArCQlyZXR1cm4gdHJ1ZTsKPiArCj4gKwly
-ZXR1cm4gZmFsc2U7Cj4gK30KPiArCj4gIHN0YXRpYyBpbnQKPiAgZWJfdmFsaWRhdGVfdm1hKHN0
-cnVjdCBpOTE1X2V4ZWNidWZmZXIgKmViLAo+ICAJCXN0cnVjdCBkcm1faTkxNV9nZW1fZXhlY19v
-YmplY3QyICplbnRyeSwKPiAgCQlzdHJ1Y3QgaTkxNV92bWEgKnZtYSkKPiAgewo+IC0JLyogUmVs
-b2NhdGlvbnMgYXJlIGRpc2FsbG93ZWQgZm9yIGFsbCBwbGF0Zm9ybXMgYWZ0ZXIgVEdMLUxQLiAg
-VGhpcwo+IC0JICogYWxzbyBjb3ZlcnMgYWxsIHBsYXRmb3JtcyB3aXRoIGxvY2FsIG1lbW9yeS4K
-PiAtCSAqLwo+IC0JaWYgKGVudHJ5LT5yZWxvY2F0aW9uX2NvdW50ICYmCj4gLQkgICAgR1JBUEhJ
-Q1NfVkVSKGViLT5pOTE1KSA+PSAxMiAmJiAhSVNfVElHRVJMQUtFKGViLT5pOTE1KSkKPiArCWlm
-IChlbnRyeS0+cmVsb2NhdGlvbl9jb3VudCAmJiAhcGxhdGZvcm1faGFzX3JlbG9jc19lbmFibGVk
-KGViKSkKPiAgCQlyZXR1cm4gLUVJTlZBTDsKPiAgCj4gIAlpZiAodW5saWtlbHkoZW50cnktPmZs
-YWdzICYgZWItPmludmFsaWRfZmxhZ3MpKQo+IC0tIAo+IDIuMjYuMAo+IAo+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, Jun 15, 2021 at 05:42:12PM -0700, Matt Roper wrote:
+> Although most of our multicast registers are replicated per-subslice, we
+> also have a small number of multicast registers that are replicated
+> per-l3 bank instead.  For both types of multicast registers we need to
+> make sure we steer reads of these registers to a valid instance.
+> Ideally we'd like to find a specific instance ID that would steer reads
+> of either type of multicast register to a valid instance (i.e., not
+> fused off and not powered down), but sometimes the combination of
+> part-specific fusing and the additional restrictions imposed by Render
+> Power Gating make it impossible to find any overlap between the set of
+> valid subslices and valid l3 banks.  This problem will become even more
+> noticeable on our upcoming platforms since they will be adding
+> additional types of multicast registers with new types of replication
+> and rules for finding valid instances for reads.
+> 
+> To handle this we'll continue to pick a suitable subslice instance at
+> driver startup and program this as the default (sliceid,subsliceid)
+> setting in the steering control register (0xFDC).  In cases where we
+> need to read another type of multicast GT register, but the default
+> subslice steering would not correspond to a valid instance, we'll
+> explicitly re-steer the single read to a valid value, perform the read,
+> and then reset the steering to it's "subslice" default.
+> 
+> This patch adds the general functionality to prepare for this explicit
+> steering of other multicast register types.  We'll plug L3 bank steering
+> into this in the next patch, and then add additional types of multicast
+> registers when the support for our next upcoming platform arrives.
+> 
+> v2:
+>  - Use entry->end==0 as table terminator.  (Rodrigo)
+>  - Grab forcewake in wa_list_verify() now that we're using accessors
+>    that assume forcewake is already held.
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c            | 84 +++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt.h            |  8 ++
+>  drivers/gpu/drm/i915/gt/intel_gt_types.h      | 22 +++++
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 39 ++++++---
+>  .../gpu/drm/i915/gt/selftest_workarounds.c    |  2 +-
+>  5 files changed, 142 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 2161bf01ef8b..66299105da66 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -697,6 +697,90 @@ void intel_gt_driver_late_release(struct intel_gt *gt)
+>  	intel_engines_free(gt);
+>  }
+>  
+> +/**
+> + * intel_gt_reg_needs_read_steering - determine whether a register read
+> + *     requires explicit steering
+> + * @gt: GT structure
+> + * @reg: the register to check steering requirements for
+> + * @type: type of multicast steering to check
+> + *
+> + * Determines whether @reg needs explicit steering of a specific type for
+> + * reads.
+> + *
+> + * Returns false if @reg does not belong to a register range of the given
+> + * steering type, or if the default (subslice-based) steering IDs are suitable
+> + * for @type steering too.
+> + */
+> +static bool intel_gt_reg_needs_read_steering(struct intel_gt *gt,
+> +					     i915_reg_t reg,
+> +					     enum intel_steering_type type)
+> +{
+> +	const u32 offset = i915_mmio_reg_offset(reg);
+> +	const struct intel_mmio_range *entry;
+> +
+> +	if (likely(!intel_gt_needs_read_steering(gt, type)))
+> +		return false;
+> +
+> +	for (entry = gt->steering_table[type]; !entry->end; entry++) {
+
+shouldn't it be:
+for (entry = gt->steering_table[type]; entry->end; entry++) {
+?!
+
+or maybe this is just the proof that the 0xFFFF terminator
+is less confusing?! :)
+
+with this fixed:
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+> +		if (offset >= entry->start && offset <= entry->end)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +/**
+> + * intel_gt_get_valid_steering - determines valid IDs for a class of MCR steering
+> + * @gt: GT structure
+> + * @type: multicast register type
+> + * @sliceid: Slice ID returned
+> + * @subsliceid: Subslice ID returned
+> + *
+> + * Determines sliceid and subsliceid values that will steer reads
+> + * of a specific multicast register class to a valid value.
+> + */
+> +static void intel_gt_get_valid_steering(struct intel_gt *gt,
+> +					enum intel_steering_type type,
+> +					u8 *sliceid, u8 *subsliceid)
+> +{
+> +	switch (type) {
+> +	default:
+> +		MISSING_CASE(type);
+> +		*sliceid = 0;
+> +		*subsliceid = 0;
+> +	}
+> +}
+> +
+> +/**
+> + * intel_gt_read_register_fw - reads a GT register with support for multicast
+> + * @gt: GT structure
+> + * @reg: register to read
+> + *
+> + * This function will read a GT register.  If the register is a multicast
+> + * register, the read will be steered to a valid instance (i.e., one that
+> + * isn't fused off or powered down by power gating).
+> + *
+> + * Returns the value from a valid instance of @reg.
+> + */
+> +u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg)
+> +{
+> +	int type;
+> +	u8 sliceid, subsliceid;
+> +
+> +	for (type = 0; type < NUM_STEERING_TYPES; type++) {
+> +		if (intel_gt_reg_needs_read_steering(gt, reg, type)) {
+> +			intel_gt_get_valid_steering(gt, type, &sliceid,
+> +						    &subsliceid);
+> +			return intel_uncore_read_with_mcr_steering_fw(gt->uncore,
+> +								      reg,
+> +								      sliceid,
+> +								      subsliceid);
+> +		}
+> +	}
+> +
+> +	return intel_uncore_read_fw(gt->uncore, reg);
+> +}
+> +
+>  void intel_gt_info_print(const struct intel_gt_info *info,
+>  			 struct drm_printer *p)
+>  {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+> index 7ec395cace69..e7aabe0cc5bf 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> @@ -75,6 +75,14 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
+>  	return unlikely(test_bit(I915_WEDGED, &gt->reset.flags));
+>  }
+>  
+> +static inline bool intel_gt_needs_read_steering(struct intel_gt *gt,
+> +						enum intel_steering_type type)
+> +{
+> +	return gt->steering_table[type];
+> +}
+> +
+> +u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg);
+> +
+>  void intel_gt_info_print(const struct intel_gt_info *info,
+>  			 struct drm_printer *p);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> index fecfacf551d5..f2c274eee1e6 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+> @@ -31,6 +31,26 @@ struct i915_ggtt;
+>  struct intel_engine_cs;
+>  struct intel_uncore;
+>  
+> +struct intel_mmio_range {
+> +	u32 start;
+> +	u32 end;
+> +};
+> +
+> +/*
+> + * The hardware has multiple kinds of multicast register ranges that need
+> + * special register steering (and future platforms are expected to add
+> + * additional types).
+> + *
+> + * During driver startup, we initialize the steering control register to
+> + * direct reads to a slice/subslice that are valid for the 'subslice' class
+> + * of multicast registers.  If another type of steering does not have any
+> + * overlap in valid steering targets with 'subslice' style registers, we will
+> + * need to explicitly re-steer reads of registers of the other type.
+> + */
+> +enum intel_steering_type {
+> +	NUM_STEERING_TYPES
+> +};
+> +
+>  enum intel_submission_method {
+>  	INTEL_SUBMISSION_RING,
+>  	INTEL_SUBMISSION_ELSP,
+> @@ -145,6 +165,8 @@ struct intel_gt {
+>  
+>  	struct i915_vma *scratch;
+>  
+> +	const struct intel_mmio_range *steering_table[NUM_STEERING_TYPES];
+> +
+>  	struct intel_gt_info {
+>  		intel_engine_mask_t engine_mask;
+>  		u8 num_engines;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 977a76e648e0..93c74d4cae02 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1248,8 +1248,9 @@ wa_verify(const struct i915_wa *wa, u32 cur, const char *name, const char *from)
+>  }
+>  
+>  static void
+> -wa_list_apply(struct intel_uncore *uncore, const struct i915_wa_list *wal)
+> +wa_list_apply(struct intel_gt *gt, const struct i915_wa_list *wal)
+>  {
+> +	struct intel_uncore *uncore = gt->uncore;
+>  	enum forcewake_domains fw;
+>  	unsigned long flags;
+>  	struct i915_wa *wa;
+> @@ -1264,13 +1265,16 @@ wa_list_apply(struct intel_uncore *uncore, const struct i915_wa_list *wal)
+>  	intel_uncore_forcewake_get__locked(uncore, fw);
+>  
+>  	for (i = 0, wa = wal->list; i < wal->count; i++, wa++) {
+> -		if (wa->clr)
+> -			intel_uncore_rmw_fw(uncore, wa->reg, wa->clr, wa->set);
+> -		else
+> -			intel_uncore_write_fw(uncore, wa->reg, wa->set);
+> +		u32 val, old = 0;
+> +
+> +		/* open-coded rmw due to steering */
+> +		old = wa->clr ? intel_gt_read_register_fw(gt, wa->reg) : 0;
+> +		val = (old & ~wa->clr) | wa->set;
+> +		if (val != old || !wa->clr)
+> +			intel_uncore_write_fw(uncore, wa->reg, val);
+> +
+>  		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+> -			wa_verify(wa,
+> -				  intel_uncore_read_fw(uncore, wa->reg),
+> +			wa_verify(wa, intel_gt_read_register_fw(gt, wa->reg),
+>  				  wal->name, "application");
+>  	}
+>  
+> @@ -1280,28 +1284,39 @@ wa_list_apply(struct intel_uncore *uncore, const struct i915_wa_list *wal)
+>  
+>  void intel_gt_apply_workarounds(struct intel_gt *gt)
+>  {
+> -	wa_list_apply(gt->uncore, &gt->i915->gt_wa_list);
+> +	wa_list_apply(gt, &gt->i915->gt_wa_list);
+>  }
+>  
+> -static bool wa_list_verify(struct intel_uncore *uncore,
+> +static bool wa_list_verify(struct intel_gt *gt,
+>  			   const struct i915_wa_list *wal,
+>  			   const char *from)
+>  {
+> +	struct intel_uncore *uncore = gt->uncore;
+>  	struct i915_wa *wa;
+> +	enum forcewake_domains fw;
+> +	unsigned long flags;
+>  	unsigned int i;
+>  	bool ok = true;
+>  
+> +	fw = wal_get_fw_for_rmw(uncore, wal);
+> +
+> +	spin_lock_irqsave(&uncore->lock, flags);
+> +	intel_uncore_forcewake_get__locked(uncore, fw);
+> +
+>  	for (i = 0, wa = wal->list; i < wal->count; i++, wa++)
+>  		ok &= wa_verify(wa,
+> -				intel_uncore_read(uncore, wa->reg),
+> +				intel_gt_read_register_fw(gt, wa->reg),
+>  				wal->name, from);
+>  
+> +	intel_uncore_forcewake_put__locked(uncore, fw);
+> +	spin_unlock_irqrestore(&uncore->lock, flags);
+> +
+>  	return ok;
+>  }
+>  
+>  bool intel_gt_verify_workarounds(struct intel_gt *gt, const char *from)
+>  {
+> -	return wa_list_verify(gt->uncore, &gt->i915->gt_wa_list, from);
+> +	return wa_list_verify(gt, &gt->i915->gt_wa_list, from);
+>  }
+>  
+>  __maybe_unused
+> @@ -2084,7 +2099,7 @@ void intel_engine_init_workarounds(struct intel_engine_cs *engine)
+>  
+>  void intel_engine_apply_workarounds(struct intel_engine_cs *engine)
+>  {
+> -	wa_list_apply(engine->uncore, &engine->wa_list);
+> +	wa_list_apply(engine->gt, &engine->wa_list);
+>  }
+>  
+>  struct mcr_range {
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> index c30754daf4b1..7ebc4edb8ecf 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+> @@ -1147,7 +1147,7 @@ verify_wa_lists(struct intel_gt *gt, struct wa_lists *lists,
+>  	enum intel_engine_id id;
+>  	bool ok = true;
+>  
+> -	ok &= wa_list_verify(gt->uncore, &lists->gt_wa_list, str);
+> +	ok &= wa_list_verify(gt, &lists->gt_wa_list, str);
+>  
+>  	for_each_engine(engine, gt, id) {
+>  		struct intel_context *ce;
+> -- 
+> 2.25.4
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
