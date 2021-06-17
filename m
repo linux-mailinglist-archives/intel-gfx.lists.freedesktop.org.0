@@ -2,38 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA993ACC1E
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 15:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1427F3ACC98
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 15:44:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAC686EA09;
-	Fri, 18 Jun 2021 13:25:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C74A6EA1B;
+	Fri, 18 Jun 2021 13:44:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD696EA09
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 13:25:27 +0000 (UTC)
-IronPort-SDR: TrDsG2SQEKOOZQBiMv/FgAqNL0hzXED2WLSin5JKqoYmLsBhb/F4uWkIpECtS7Xzu4LD2Jvl3K
- KT7FDarOxuTA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10018"; a="292182821"
-X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; d="scan'208";a="292182821"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2021 06:25:27 -0700
-IronPort-SDR: kfFkeOyJ9m1+fXUZWXluZX/VE3/XIr6hKIdMWRcAM9yENdNXZoH7VnRl80FsDlhRJz7yCnkW0S
- yIOezlwejCNA==
-X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; d="scan'208";a="622389431"
-Received: from jhogberg-mobl1.ger.corp.intel.com (HELO
- thellst-mobl1.intel.com) ([10.249.254.60])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2021 06:25:25 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Jun 2021 15:25:15 +0200
-Message-Id: <20210618132515.163277-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80CF16E0CC;
+ Thu, 17 Jun 2021 23:30:46 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 668C56113E;
+ Thu, 17 Jun 2021 23:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1623972646;
+ bh=rr/c3XeFS+9sdYq4bUvVJ43Rq1hQvVCPc1yQzRKz0M4=;
+ h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+ b=WNUjjRc9qiEKd1v6ch2oCBMCLr//p27BpMcgjvENehNLikMoev5Wqn272QTxx71CW
+ 3D3qfUT5ju+4mKjQzOKKH9gG669sTY/7NSboz0Exn9xL7XiAsYwisipa8+ZFly/R/o
+ DXSq4guI2oTMIWCnLtIfK2u7Aepnlt6Tlb4iaOHXykPvtPc0PDNGmILxhwM/W20xwP
+ EkxLcDsLyTSrutO0JMWUgmxdcIo9gQkjJat7Q9uy0cpusxn7iT8yBAyZlIVSiyaPd+
+ yrJcoSW9cwD0kiFZO94T+u3eUXoEusH4WrtVqLy3ZnfWy+/EPI7J5AbbnN0JrKQ05d
+ sMIO+8CCUsK0g==
+Date: Thu, 17 Jun 2021 16:30:43 -0700 (PDT)
+From: Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To: Claire Chang <tientzu@chromium.org>
+In-Reply-To: <20210617062635.1660944-2-tientzu@chromium.org>
+Message-ID: <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s>
+References: <20210617062635.1660944-1-tientzu@chromium.org>
+ <20210617062635.1660944-2-tientzu@chromium.org>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/ttm: Fix incorrect assumptions
- about ttm_bo_validate() semantics
+X-Mailman-Approved-At: Fri, 18 Jun 2021 13:44:51 +0000
+Subject: Re: [Intel-gfx] [PATCH v13 01/12] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,85 +49,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ jxgao@google.com, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgaGF2ZSBhc3N1bWVkIHRoYXQgaWYgdGhlIGN1cnJlbnQgcGxhY2VtZW50IHdhcyBub3QgdGhl
-IHJlcXVlc3RlZApwbGFjZW1lbnQsIGJ1dCBpbnN0ZWFkIG9uZSBvZiB0aGUgYnVzeSBwbGFjZW1l
-bnRzLCBhIFRUTSBtb3ZlIHdvdWxkIGhhdmUKYmVlbiB0cmlnZ2VyZWQuIFRoYXQgaXMgbm90IHRo
-ZSBjYXNlLgoKU28gd2hlbiB3ZSBpbml0aWFsbHkgcGxhY2UgTE1FTSBvYmplY3RzIGluICJMaW1i
-byIsICh0aGF0IGlzIHN5c3RlbQpwbGFjZW1lbnQgd2l0aG91dCBhbnkgcGFnZXMgYWxsb2NhdGVk
-KSwgdG8gYmUgYWJsZSB0byBkZWZlciBjbGVhcmluZwpvYmplY3RzIHVudGlsIGZpcnN0IGdldF9w
-YWdlcygpLCB0aGUgZmlyc3QgZ2V0X3BhZ2VzKCkgd291bGQgaGFwcGlseSBrZWVwCm9iamVjdHMg
-aW4gc3lzdGVtIG1lbW9yeSBpZiB0aGF0IGlzIG9uZSBvZiB0aGUgYWxsb3dlZCBwbGFjZW1lbnRz
-LiBBbmQKc2luY2Ugd2UgZG9uJ3QgeWV0IHN1cHBvcnQgaTkxNSBHRU0gc3lzdGVtIG1lbW9yeSBm
-cm9tIFRUTSwgZXZlcnl0aGluZwpicmVha3MgYXBhcnQuCgpTbyBtYWtlIHN1cmUgd2UgdHJ5IHRo
-ZSByZXF1ZXN0ZWQgcGxhY2VtZW50IGZpcnN0LCBpZiBubyBldmljdGlvbiBpcwpuZWVkZWQuIElm
-IHRoYXQgZmFpbHMsIHJldHJ5IHdpdGggYWxsIGFsbG93ZWQgcGxhY2VtZW50cyBhbHNvIGFsbG93
-aW5nCmV2aWN0aW9ucy4gQWxzbyBtYWtlIHN1cmUgd2UgaGFuZGxlIFRUTSBmYWlsdXJlIGNvZGVz
-IGNvcnJlY3RseS4KCkFsc28gdGVtcG9yYXJpbHkgKHVudGlsIHdlIHN1cHBvcnQgaTkxNSBHRU0g
-c3lzdGVtIG9uIFRUTSksIHJlc3RyaWN0CmFsbG93ZWQgcGxhY2VtZW50cyB0byB0aGUgcmVxdWVz
-dGVkIHBsYWNlbWVudCB0byBhdm9pZCB0aGluZ3MgZmFsbGluZwphcGFydCBzaG91bGQgTE1FTSBi
-ZSBmdWxsLgoKRml4ZXM6IDM4ZjI4YzA2OTVjMCAoImRybS9pOTE1L3R0bTogQ2FsY3VsYXRlIHRo
-ZSBvYmplY3QgcGxhY2VtZW50IGF0IGdldF9wYWdlcyB0aW1lKQpTaWduZWQtb2ZmLWJ5OiBUaG9t
-YXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+ClJldmlld2Vk
-LWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Ci0tCnYyOgotIFVwZGF0
-ZWQgYSBjb21tZW50IGFuZCBhZGRlZCBhIFItQi4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fdHRtLmMgfCA2NCArKysrKysrKysrKysrKysrKysrKysrKy0tCiAxIGZpbGUg
-Y2hhbmdlZCwgNjEgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMKaW5kZXggZGY0NjUzNWNjYTQ3Li5jNWRlYjhiNzIyN2Mg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMKQEAgLTY0LDYgKzY0LDMz
-IEBAIHN0YXRpYyBzdHJ1Y3QgdHRtX3BsYWNlbWVudCBpOTE1X3N5c19wbGFjZW1lbnQgPSB7CiAJ
-LmJ1c3lfcGxhY2VtZW50ID0gJnN5c19wbGFjZW1lbnRfZmxhZ3MsCiB9OwogCitzdGF0aWMgaW50
-IGk5MTVfdHRtX2Vycl90b19nZW0oaW50IGVycikKK3sKKwkvKiBGYXN0cGF0aCAqLworCWlmIChs
-aWtlbHkoIWVycikpCisJCXJldHVybiAwOworCisJc3dpdGNoIChlcnIpIHsKKwljYXNlIC1FQlVT
-WToKKwkJLyoKKwkJICogVFRNIGxpa2VzIHRvIGNvbnZlcnQgLUVERUFETEsgdG8gLUVCVVNZLCBh
-bmQgd2FudHMgdXMgdG8KKwkJICogcmVzdGFydCB0aGUgb3BlcmF0aW9uLCBzaW5jZSB3ZSBkb24n
-dCByZWNvcmQgdGhlIGNvbnRlbmRpbmcKKwkJICogbG9jay4gV2UgdXNlIC1FQUdBSU4gdG8gcmVz
-dGFydC4KKwkJICovCisJCXJldHVybiAtRUFHQUlOOworCWNhc2UgLUVOT1NQQzoKKwkJLyoKKwkJ
-ICogTWVtb3J5IHR5cGUgLyByZWdpb24gaXMgZnVsbCwgYW5kIHdlIGNhbid0IGV2aWN0LgorCQkg
-KiBFeGNlcHQgcG9zc2libHkgc3lzdGVtLCB0aGF0IHJldHVybnMgLUVOT01FTTsKKwkJICovCisJ
-CXJldHVybiAtRU5YSU87CisJZGVmYXVsdDoKKwkJYnJlYWs7CisJfQorCisJcmV0dXJuIGVycjsK
-K30KKwogc3RhdGljIHZvaWQgaTkxNV90dG1fYWRqdXN0X2xydShzdHJ1Y3QgZHJtX2k5MTVfZ2Vt
-X29iamVjdCAqb2JqKTsKIAogc3RhdGljIGVudW0gdHRtX2NhY2hpbmcKQEAgLTUyMiwxNSArNTQ5
-LDQ2IEBAIHN0YXRpYyBpbnQgaTkxNV90dG1fZ2V0X3BhZ2VzKHN0cnVjdCBkcm1faTkxNV9nZW1f
-b2JqZWN0ICpvYmopCiAJc3RydWN0IHNnX3RhYmxlICpzdDsKIAlzdHJ1Y3QgdHRtX3BsYWNlIHJl
-cXVlc3RlZCwgYnVzeVtJOTE1X1RUTV9NQVhfUExBQ0VNRU5UU107CiAJc3RydWN0IHR0bV9wbGFj
-ZW1lbnQgcGxhY2VtZW50OworCWludCByZWFsX251bV9idXN5OwogCWludCByZXQ7CiAKIAlHRU1f
-QlVHX09OKG9iai0+bW0ubl9wbGFjZW1lbnRzID4gSTkxNV9UVE1fTUFYX1BMQUNFTUVOVFMpOwog
-CiAJLyogTW92ZSB0byB0aGUgcmVxdWVzdGVkIHBsYWNlbWVudC4gKi8KIAlpOTE1X3R0bV9wbGFj
-ZW1lbnRfZnJvbV9vYmoob2JqLCAmcmVxdWVzdGVkLCBidXN5LCAmcGxhY2VtZW50KTsKKworCS8q
-CisJICogRm9yIG5vdyB3ZSBzdXBwb3J0IExNRU0gb25seSB3aXRoIFRUTS4KKwkgKiBUT0RPOiBS
-ZW1vdmUgd2l0aCBzeXN0ZW0gc3VwcG9ydAorCSAqLworCUdFTV9CVUdfT04ocmVxdWVzdGVkLm1l
-bV90eXBlIDwgSTkxNV9QTF9MTUVNMCB8fAorCQkgICBidXN5WzBdLm1lbV90eXBlIDwgSTkxNV9Q
-TF9MTUVNMCk7CisKKwkvKiBGaXJzdCB0cnkgb25seSB0aGUgcmVxdWVzdGVkIHBsYWNlbWVudC4g
-Tm8gZXZpY3Rpb24uICovCisJcmVhbF9udW1fYnVzeSA9IGZldGNoX2FuZF96ZXJvKCZwbGFjZW1l
-bnQubnVtX2J1c3lfcGxhY2VtZW50KTsKIAlyZXQgPSB0dG1fYm9fdmFsaWRhdGUoYm8sICZwbGFj
-ZW1lbnQsICZjdHgpOwotCWlmIChyZXQpCi0JCXJldHVybiByZXQgPT0gLUVOT1NQQyA/IC1FTlhJ
-TyA6IHJldDsKKwlpZiAocmV0KSB7CisJCXJldCA9IGk5MTVfdHRtX2Vycl90b19nZW0ocmV0KTsK
-KwkJLyoKKwkJICogQW55dGhpbmcgdGhhdCB3YW50cyB0byByZXN0YXJ0IHRoZSBvcGVyYXRpb24g
-Z2V0cyB0bworCQkgKiBkbyB0aGF0LgorCQkgKi8KKwkJaWYgKHJldCA9PSAtRURFQURMSyB8fCBy
-ZXQgPT0gLUVJTlRSIHx8IHJldCA9PSAtRVJFU1RBUlRTWVMgfHwKKwkJICAgIHJldCA9PSAtRUFH
-QUlOKQorCQkJcmV0dXJuIHJldDsKKworCQkvKiBUT0RPOiBSZW1vdmUgdGhpcyB3aGVuIHdlIHN1
-cHBvcnQgc3lzdGVtIGFzIFRUTS4gKi8KKwkJcmVhbF9udW1fYnVzeSA9IDE7CisKKwkJLyoKKwkJ
-ICogSWYgdGhlIGluaXRpYWwgYXR0ZW1wdCBmYWlscywgYWxsb3cgYWxsIGFjY2VwdGVkIHBsYWNl
-bWVudHMsCisJCSAqIGV2aWN0aW5nIGlmIG5lY2Vzc2FyeS4KKwkJICovCisJCXBsYWNlbWVudC5u
-dW1fYnVzeV9wbGFjZW1lbnQgPSByZWFsX251bV9idXN5OworCQlyZXQgPSB0dG1fYm9fdmFsaWRh
-dGUoYm8sICZwbGFjZW1lbnQsICZjdHgpOworCQlpZiAocmV0KQorCQkJcmV0dXJuIGk5MTVfdHRt
-X2Vycl90b19nZW0ocmV0KTsKKwl9CiAKIAkvKiBPYmplY3QgZWl0aGVyIGhhcyBhIHBhZ2UgdmVj
-dG9yIG9yIGlzIGFuIGlvbWVtIG9iamVjdCAqLwogCXN0ID0gYm8tPnR0bSA/IGk5MTVfdHRtX3R0
-X2dldF9zdChiby0+dHRtKSA6IG9iai0+dHRtLmNhY2hlZF9pb19zdDsKQEAgLTc0MSw1ICs3OTks
-NSBAQCBpbnQgX19pOTE1X2dlbV90dG1fb2JqZWN0X2luaXQoc3RydWN0IGludGVsX21lbW9yeV9y
-ZWdpb24gKm1lbSwKIAkJb2JqLT50dG0uY3JlYXRlZCA9IHRydWU7CiAKIAkvKiBpOTE1IHdhbnRz
-IC1FTlhJTyB3aGVuIG91dCBvZiBtZW1vcnkgcmVnaW9uIHNwYWNlLiAqLwotCXJldHVybiAocmV0
-ID09IC1FTk9TUEMpID8gLUVOWElPIDogcmV0OworCXJldHVybiBpOTE1X3R0bV9lcnJfdG9fZ2Vt
-KHJldCk7CiB9Ci0tIAoyLjMxLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+On Thu, 17 Jun 2021, Claire Chang wrote:
+> Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
+> initialization to make the code reusable.
+> 
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+> Tested-by: Will Deacon <will@kernel.org>
+> ---
+>  kernel/dma/swiotlb.c | 50 ++++++++++++++++++++++----------------------
+>  1 file changed, 25 insertions(+), 25 deletions(-)
+> 
+> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+> index 52e2ac526757..47bb2a766798 100644
+> --- a/kernel/dma/swiotlb.c
+> +++ b/kernel/dma/swiotlb.c
+> @@ -168,9 +168,28 @@ void __init swiotlb_update_mem_attributes(void)
+>  	memset(vaddr, 0, bytes);
+>  }
+>  
+> -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
+> +				    unsigned long nslabs, bool late_alloc)
+>  {
+> +	void *vaddr = phys_to_virt(start);
+>  	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+> +
+> +	mem->nslabs = nslabs;
+> +	mem->start = start;
+> +	mem->end = mem->start + bytes;
+> +	mem->index = 0;
+> +	mem->late_alloc = late_alloc;
+> +	spin_lock_init(&mem->lock);
+> +	for (i = 0; i < mem->nslabs; i++) {
+> +		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> +		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> +		mem->slots[i].alloc_size = 0;
+> +	}
+> +	memset(vaddr, 0, bytes);
+> +}
+> +
+> +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> +{
+>  	struct io_tlb_mem *mem;
+>  	size_t alloc_size;
+>  
+> @@ -186,16 +205,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+>  	if (!mem)
+>  		panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
+>  		      __func__, alloc_size, PAGE_SIZE);
+> -	mem->nslabs = nslabs;
+> -	mem->start = __pa(tlb);
+> -	mem->end = mem->start + bytes;
+> -	mem->index = 0;
+> -	spin_lock_init(&mem->lock);
+> -	for (i = 0; i < mem->nslabs; i++) {
+> -		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> -		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> -		mem->slots[i].alloc_size = 0;
+> -	}
+> +
+> +	swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
+>  
+>  	io_tlb_default_mem = mem;
+>  	if (verbose)
+> @@ -282,8 +293,8 @@ swiotlb_late_init_with_default_size(size_t default_size)
+>  int
+>  swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+>  {
+> -	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+>  	struct io_tlb_mem *mem;
+> +	unsigned long bytes = nslabs << IO_TLB_SHIFT;
+>  
+>  	if (swiotlb_force == SWIOTLB_NO_FORCE)
+>  		return 0;
+> @@ -297,20 +308,9 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+>  	if (!mem)
+>  		return -ENOMEM;
+>  
+> -	mem->nslabs = nslabs;
+> -	mem->start = virt_to_phys(tlb);
+> -	mem->end = mem->start + bytes;
+> -	mem->index = 0;
+> -	mem->late_alloc = 1;
+> -	spin_lock_init(&mem->lock);
+> -	for (i = 0; i < mem->nslabs; i++) {
+> -		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> -		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> -		mem->slots[i].alloc_size = 0;
+> -	}
+> -
+> +	memset(mem, 0, sizeof(*mem));
+> +	swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
+>  	set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
+> -	memset(tlb, 0, bytes);
+ 
+This is good for swiotlb_late_init_with_tbl. However I have just noticed
+that mem could also be allocated from swiotlb_init_with_tbl, in which
+case the zeroing is missing. I think we need another memset in
+swiotlb_init_with_tbl as well. Or maybe it could be better to have a
+single memset at the beginning of swiotlb_init_io_tlb_mem instead. Up to
+you.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
