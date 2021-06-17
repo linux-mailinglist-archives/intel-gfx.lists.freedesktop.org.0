@@ -2,44 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1663ABD4D
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 22:13:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 440D23ABDB9
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 22:54:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C01736E3AA;
-	Thu, 17 Jun 2021 20:12:57 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 961096E02A;
- Thu, 17 Jun 2021 20:12:56 +0000 (UTC)
-IronPort-SDR: QcLwU6NVjusGJBwexyJSCjh++NrZqg94Z72EM4MQB6VoZ75mcsGY4KfikUX7sCSAio6Z9DruFW
- LHkPK9r1hefg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10018"; a="227964212"
-X-IronPort-AV: E=Sophos;i="5.83,281,1616482800"; d="scan'208";a="227964212"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2021 13:12:56 -0700
-IronPort-SDR: NcvT08L8pNOMzcCeyoJteFj4rfwjqhl/FTwDI2Fc0vQtvO5DaXvsBoR6HAwJlS8EqDLA0B+heb
- c9CDDCAQT/TA==
-X-IronPort-AV: E=Sophos;i="5.83,281,1616482800"; d="scan'208";a="622150914"
-Received: from bmoran1x-mobl3.ger.corp.intel.com (HELO [10.213.219.91])
- ([10.213.219.91])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2021 13:12:54 -0700
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20210614090959.1527987-1-tvrtko.ursulin@linux.intel.com>
- <YMuDlNtXajUYcbqo@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a34db25a-ce09-7052-7012-09f70b7b9a89@linux.intel.com>
-Date: Thu, 17 Jun 2021 21:12:53 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id D62D16E3AA;
+	Thu, 17 Jun 2021 20:54:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2F546E3AA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 20:54:37 +0000 (UTC)
+IronPort-SDR: Qe0JUNiBgVKcr02wozTod1qucpte6ubnTN6Sx4ouE98IogBn437lbFhPuRcX0I5iVX4m3lAGPb
+ wXH/VavSHUhw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10018"; a="203425021"
+X-IronPort-AV: E=Sophos;i="5.83,281,1616482800"; d="scan'208";a="203425021"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2021 13:54:37 -0700
+IronPort-SDR: nm6SAQaigEKr2EEORupuWW8YyG8APfPQk1rIM7V5cZ5qJpPL0kOPQjHVENZrvn1LvqyV5EUi+5
+ Nxa60iNGiHLw==
+X-IronPort-AV: E=Sophos;i="5.83,281,1616482800"; d="scan'208";a="555323194"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2021 13:54:37 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 17 Jun 2021 13:54:25 -0700
+Message-Id: <20210617205425.1931820-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20210617005516.1866085-1-matthew.d.roper@intel.com>
+References: <20210617005516.1866085-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YMuDlNtXajUYcbqo@phenom.ffwll.local>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Document the Virtual Engine
- uAPI
+Subject: [Intel-gfx] [PATCH v4 3/3] drm/i915: Add support for explicit
+ L3BANK steering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,300 +47,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Because Render Power Gating restricts us to just a single subslice as a
+valid steering target for reads of multicast registers in a SUBSLICE
+range, the default steering we setup at init may not lead to a suitable
+target for L3BANK multicast register.  In cases where it does not, use
+explicit runtime steering whenever an L3BANK multicast register is read.
 
-On 17/06/2021 18:17, Daniel Vetter wrote:
-> On Mon, Jun 14, 2021 at 10:09:59AM +0100, Tvrtko Ursulin wrote:
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> A little bit of documentation covering the topics of engine discovery,
->> context engine maps and virtual engines. It is not very detailed but
->> supposed to be a starting point of giving a brief high level overview of
->> general principles and intended use cases.
->>
->> v2:
->>   * Have the text in uapi header and link from there.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Daniel Vetter <daniel@ffwll.ch>
-> 
-> What I meant was the kerneldoc directly as kerneldoc for the uapi structs,
-> like Matt has done for e.g. drm_i915_gem_create_ext_memory_regions.
+While we're at it, let's simplify the function a little bit and drop its
+support for gen10/CNL since no such platforms ever materialized for real
+use.  Multicast register steering is already an area that causes enough
+confusion; no need to complicate it with what's effectively dead code.
 
-Hm I wanted to add some commentary to give a high level picture of this 
-area and not necessarily focus on uapi structs details. Some of them (at 
-least one I think) already have their own documentation and the rest 
-could be added in detail. But I do think a short "story" in the order of 
-chapters I added to i915.rst makes sense as reading material.
+v2:
+ - Use gt->uncore instead of gt->i915->uncore.  (Tvrtko)
+ - Use {} as table terminator.  (Rodrigo)
 
-> But then I also realized that Matt hasn't set up the include for this, so
-> it's not automatic at all yet :-/
+v3:
+ - L3bank fuse register is a disable mask rather than an enable mask.
+   We need to invert it before use.  (CI)
 
-No idea what where how you mean. The fact i915_drm.h docs are not pulled 
-in anywhere?
+v4:
+ - L3bank ID goes in the subslice field, not the slice field.  (CI)
 
-Regards,
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.c          | 18 +++++
+ drivers/gpu/drm/i915/gt/intel_gt_types.h    |  4 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 84 ++++++---------------
+ 3 files changed, 46 insertions(+), 60 deletions(-)
 
-Tvrtko
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 80badc54b19d..a668f6670ce0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -83,6 +83,11 @@ void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt)
+ 	gt->ggtt = ggtt;
+ }
+ 
++static const struct intel_mmio_range icl_l3bank_steering_table[] = {
++	{ 0x00B100, 0x00B3FF },
++	{},
++};
++
+ int intel_gt_init_mmio(struct intel_gt *gt)
+ {
+ 	intel_gt_init_clock_frequency(gt);
+@@ -90,6 +95,13 @@ int intel_gt_init_mmio(struct intel_gt *gt)
+ 	intel_uc_init_mmio(&gt->uc);
+ 	intel_sseu_info_init(gt);
+ 
++	if (GRAPHICS_VER(gt->i915) >= 11) {
++		gt->steering_table[L3BANK] = icl_l3bank_steering_table;
++		gt->info.l3bank_mask =
++			~intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
++			GEN10_L3BANK_MASK;
++	}
++
+ 	return intel_engines_init_mmio(gt);
+ }
+ 
+@@ -744,6 +756,12 @@ static void intel_gt_get_valid_steering(struct intel_gt *gt,
+ 					u8 *sliceid, u8 *subsliceid)
+ {
+ 	switch (type) {
++	case L3BANK:
++		GEM_DEBUG_WARN_ON(!gt->info.l3bank_mask); /* should be impossible! */
++
++		*sliceid = 0;		/* unused */
++		*subsliceid = __ffs(gt->info.l3bank_mask);
++		break;
+ 	default:
+ 		MISSING_CASE(type);
+ 		*sliceid = 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index f2c274eee1e6..80dc131e862f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -48,6 +48,8 @@ struct intel_mmio_range {
+  * need to explicitly re-steer reads of registers of the other type.
+  */
+ enum intel_steering_type {
++	L3BANK,
++
+ 	NUM_STEERING_TYPES
+ };
+ 
+@@ -174,6 +176,8 @@ struct intel_gt {
+ 		/* Media engine access to SFC per instance */
+ 		u8 vdbox_sfc_access;
+ 
++		u32 l3bank_mask;
++
+ 		/* Slice/subslice/EU info */
+ 		struct sseu_dev_info sseu;
+ 	} info;
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 93c74d4cae02..d9a5a445ceec 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -945,71 +945,37 @@ cfl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ }
+ 
+ static void
+-wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
++icl_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+ 	const struct sseu_dev_info *sseu = &i915->gt.info.sseu;
+ 	unsigned int slice, subslice;
+-	u32 l3_en, mcr, mcr_mask;
++	u32 mcr, mcr_mask;
+ 
+-	GEM_BUG_ON(GRAPHICS_VER(i915) < 10);
++	GEM_BUG_ON(GRAPHICS_VER(i915) < 11);
++	GEM_BUG_ON(hweight8(sseu->slice_mask) > 1);
++	slice = 0;
+ 
+ 	/*
+-	 * WaProgramMgsrForL3BankSpecificMmioReads: cnl,icl
+-	 * L3Banks could be fused off in single slice scenario. If that is
+-	 * the case, we might need to program MCR select to a valid L3Bank
+-	 * by default, to make sure we correctly read certain registers
+-	 * later on (in the range 0xB100 - 0xB3FF).
+-	 *
+-	 * WaProgramMgsrForCorrectSliceSpecificMmioReads:cnl,icl
+-	 * Before any MMIO read into slice/subslice specific registers, MCR
+-	 * packet control register needs to be programmed to point to any
+-	 * enabled s/ss pair. Otherwise, incorrect values will be returned.
+-	 * This means each subsequent MMIO read will be forwarded to an
+-	 * specific s/ss combination, but this is OK since these registers
+-	 * are consistent across s/ss in almost all cases. In the rare
+-	 * occasions, such as INSTDONE, where this value is dependent
+-	 * on s/ss combo, the read should be done with read_subslice_reg.
+-	 *
+-	 * Since GEN8_MCR_SELECTOR contains dual-purpose bits which select both
+-	 * to which subslice, or to which L3 bank, the respective mmio reads
+-	 * will go, we have to find a common index which works for both
+-	 * accesses.
+-	 *
+-	 * Case where we cannot find a common index fortunately should not
+-	 * happen in production hardware, so we only emit a warning instead of
+-	 * implementing something more complex that requires checking the range
+-	 * of every MMIO read.
++	 * Although a platform may have subslices, we need to always steer
++	 * reads to the lowest instance that isn't fused off.  When Render
++	 * Power Gating is enabled, grabbing forcewake will only power up a
++	 * single subslice (the "minconfig") if there isn't a real workload
++	 * that needs to be run; this means that if we steer register reads to
++	 * one of the higher subslices, we run the risk of reading back 0's or
++	 * random garbage.
+ 	 */
++	subslice = __ffs(intel_sseu_get_subslices(sseu, slice));
+ 
+-	if (GRAPHICS_VER(i915) >= 10 && is_power_of_2(sseu->slice_mask)) {
+-		u32 l3_fuse =
+-			intel_uncore_read(&i915->uncore, GEN10_MIRROR_FUSE3) &
+-			GEN10_L3BANK_MASK;
+-
+-		drm_dbg(&i915->drm, "L3 fuse = %x\n", l3_fuse);
+-		l3_en = ~(l3_fuse << GEN10_L3BANK_PAIR_COUNT | l3_fuse);
+-	} else {
+-		l3_en = ~0;
+-	}
++	/*
++	 * If the subslice we picked above also steers us to a valid L3 bank,
++	 * then we can just rely on the default steering and won't need to
++	 * worry about explicitly re-steering L3BANK reads later.
++	 */
++	if (i915->gt.info.l3bank_mask & BIT(subslice))
++		i915->gt.steering_table[L3BANK] = NULL;
+ 
+-	slice = fls(sseu->slice_mask) - 1;
+-	subslice = fls(l3_en & intel_sseu_get_subslices(sseu, slice));
+-	if (!subslice) {
+-		drm_warn(&i915->drm,
+-			 "No common index found between subslice mask %x and L3 bank mask %x!\n",
+-			 intel_sseu_get_subslices(sseu, slice), l3_en);
+-		subslice = fls(l3_en);
+-		drm_WARN_ON(&i915->drm, !subslice);
+-	}
+-	subslice--;
+-
+-	if (GRAPHICS_VER(i915) >= 11) {
+-		mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
+-		mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+-	} else {
+-		mcr = GEN8_MCR_SLICE(slice) | GEN8_MCR_SUBSLICE(subslice);
+-		mcr_mask = GEN8_MCR_SLICE_MASK | GEN8_MCR_SUBSLICE_MASK;
+-	}
++	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
++	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+ 
+ 	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
+ 
+@@ -1019,8 +985,6 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+-	wa_init_mcr(i915, wal);
+-
+ 	/* WaInPlaceDecompressionHang:cnl */
+ 	wa_write_or(wal,
+ 		    GEN9_GAMT_ECO_REG_RW_IA,
+@@ -1030,7 +994,7 @@ cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ static void
+ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+-	wa_init_mcr(i915, wal);
++	icl_wa_init_mcr(i915, wal);
+ 
+ 	/* WaInPlaceDecompressionHang:icl */
+ 	wa_write_or(wal,
+@@ -1112,7 +1076,7 @@ static void
+ gen12_gt_workarounds_init(struct drm_i915_private *i915,
+ 			  struct i915_wa_list *wal)
+ {
+-	wa_init_mcr(i915, wal);
++	icl_wa_init_mcr(i915, wal);
+ 
+ 	/* Wa_14011060649:tgl,rkl,dg1,adls,adl-p */
+ 	wa_14011060649(i915, wal);
+-- 
+2.25.4
 
-> -Daniel
-> 
->> ---
->>   Documentation/gpu/i915.rst  |  18 ++++
->>   include/uapi/drm/i915_drm.h | 188 ++++++++++++++++++++++++++++++++++++
->>   2 files changed, 206 insertions(+)
->>
->> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
->> index 42ce0196930a..00aa55bbe0fd 100644
->> --- a/Documentation/gpu/i915.rst
->> +++ b/Documentation/gpu/i915.rst
->> @@ -335,6 +335,24 @@ for execution also include a list of all locations within buffers that
->>   refer to GPU-addresses so that the kernel can edit the buffer correctly.
->>   This process is dubbed relocation.
->>   
->> +Engine Discovery uAPI
->> +---------------------
->> +
->> +.. kernel-doc:: include/uapi/drm/i915_drm.h
->> +   :doc: Engine Discovery uAPI
->> +
->> +Context Engine Map uAPI
->> +-----------------------
->> +
->> +.. kernel-doc:: include/uapi/drm/i915_drm.h
->> +   :doc: Context Engine Map uAPI
->> +
->> +Virtual Engine uAPI
->> +-------------------
->> +
->> +.. kernel-doc:: include/uapi/drm/i915_drm.h
->> +   :doc: Virtual Engine uAPI
->> +
->>   Locking Guidelines
->>   ------------------
->>   
->> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->> index a1cb4aa035a9..2f70c48567c0 100644
->> --- a/include/uapi/drm/i915_drm.h
->> +++ b/include/uapi/drm/i915_drm.h
->> @@ -1806,6 +1806,69 @@ struct drm_i915_gem_context_param_sseu {
->>   	__u32 rsvd;
->>   };
->>   
->> +/**
->> + * DOC: Virtual Engine uAPI
->> + *
->> + * Virtual engine is a concept where userspace is able to configure a set of
->> + * physical engines, submit a batch buffer, and let the driver execute it on any
->> + * engine from the set as it sees fit.
->> + *
->> + * This is primarily useful on parts which have multiple instances of a same
->> + * class engine, like for example GT3+ Skylake parts with their two VCS engines.
->> + *
->> + * For instance userspace can enumerate all engines of a certain class using the
->> + * previously described `Engine Discovery uAPI`_. After that userspace can
->> + * create a GEM context with a placeholder slot for the virtual engine (using
->> + * `I915_ENGINE_CLASS_INVALID` and `I915_ENGINE_CLASS_INVALID_NONE` for class
->> + * and instance respectively) and finally using the
->> + * `I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE` extension place a virtual engine in
->> + * the same reserved slot.
->> + *
->> + * Example of creating a virtual engine and submitting a batch buffer to it:
->> + *
->> + * .. code-block:: C
->> + *
->> + * 	I915_DEFINE_CONTEXT_ENGINES_LOAD_BALANCE(virtual, 2) = {
->> + * 		.base.name = I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE,
->> + * 		.engine_index = 0, // Place this virtual engine into engine map slot 0
->> + * 		.num_siblings = 2,
->> + * 		.engines = { { I915_ENGINE_CLASS_VIDEO, 0 },
->> + * 			     { I915_ENGINE_CLASS_VIDEO, 1 }, },
->> + * 	};
->> + * 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {
->> + * 		.engines = { { I915_ENGINE_CLASS_INVALID,
->> + * 			       I915_ENGINE_CLASS_INVALID_NONE } },
->> + * 		.extensions = to_user_pointer(&virtual), // Chains after load_balance extension
->> + * 	};
->> + * 	struct drm_i915_gem_context_create_ext_setparam p_engines = {
->> + * 		.base = {
->> + * 			.name = I915_CONTEXT_CREATE_EXT_SETPARAM,
->> + * 		},
->> + * 		.param = {
->> + * 			.param = I915_CONTEXT_PARAM_ENGINES,
->> + * 			.value = to_user_pointer(&engines),
->> + * 			.size = sizeof(engines),
->> + * 		},
->> + * 	};
->> + * 	struct drm_i915_gem_context_create_ext create = {
->> + * 		.flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
->> + * 		.extensions = to_user_pointer(&p_engines);
->> + * 	};
->> + *
->> + * 	ctx_id = gem_context_create_ext(drm_fd, &create);
->> + *
->> + * 	// Now we have created a GEM context with its engine map containing a
->> + * 	// single virtual engine. Submissions to this slot can go either to
->> + * 	// vcs0 or vcs1, depending on the load balancing algorithm used inside
->> + * 	// the driver. The load balancing is dynamic from one batch buffer to
->> + * 	// another and transparent to userspace.
->> + *
->> + * 	...
->> + * 	execbuf.rsvd1 = ctx_id;
->> + * 	execbuf.flags = 0; // Submits to index 0 which is the virtual engine
->> + * 	gem_execbuf(drm_fd, &execbuf);
->> + */
->> +
->>   /*
->>    * i915_context_engines_load_balance:
->>    *
->> @@ -1882,6 +1945,61 @@ struct i915_context_engines_bond {
->>   	struct i915_engine_class_instance engines[N__]; \
->>   } __attribute__((packed)) name__
->>   
->> +/**
->> + * DOC: Context Engine Map uAPI
->> + *
->> + * Context engine map is a new way of addressing engines when submitting batch-
->> + * buffers, replacing the existing way of using identifiers like `I915_EXEC_BLT`
->> + * inside the flags field of `struct drm_i915_gem_execbuffer2`.
->> + *
->> + * To use it created GEM contexts need to be configured with a list of engines
->> + * the user is intending to submit to. This is accomplished using the
->> + * `I915_CONTEXT_PARAM_ENGINES` parameter and `struct
->> + * i915_context_param_engines`.
->> + *
->> + * For such contexts the `I915_EXEC_RING_MASK` field becomes an index into the
->> + * configured map.
->> + *
->> + * Example of creating such context and submitting against it:
->> + *
->> + * .. code-block:: C
->> + *
->> + * 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 2) = {
->> + * 		.engines = { { I915_ENGINE_CLASS_RENDER, 0 },
->> + * 			     { I915_ENGINE_CLASS_COPY, 0 } }
->> + * 	};
->> + * 	struct drm_i915_gem_context_create_ext_setparam p_engines = {
->> + * 		.base = {
->> + * 			.name = I915_CONTEXT_CREATE_EXT_SETPARAM,
->> + * 		},
->> + * 		.param = {
->> + * 			.param = I915_CONTEXT_PARAM_ENGINES,
->> + * 			.value = to_user_pointer(&engines),
->> + * 			.size = sizeof(engines),
->> + * 		},
->> + * 	};
->> + * 	struct drm_i915_gem_context_create_ext create = {
->> + * 		.flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
->> + * 		.extensions = to_user_pointer(&p_engines);
->> + * 	};
->> + *
->> + * 	ctx_id = gem_context_create_ext(drm_fd, &create);
->> + *
->> + * 	// We have now created a GEM context with two engines in the map:
->> + * 	// Index 0 points to rcs0 while index 1 points to bcs0. Other engines
->> + * 	// will not be accessible from this context.
->> + *
->> + * 	...
->> + * 	execbuf.rsvd1 = ctx_id;
->> + * 	execbuf.flags = 0; // Submits to index 0, which is rcs0 for this context
->> + * 	gem_execbuf(drm_fd, &execbuf);
->> + *
->> + * 	...
->> + * 	execbuf.rsvd1 = ctx_id;
->> + * 	execbuf.flags = 1; // Submits to index 0, which is bcs0 for this context
->> + * 	gem_execbuf(drm_fd, &execbuf);
->> + */
->> +
->>   struct i915_context_param_engines {
->>   	__u64 extensions; /* linked chain of extension blocks, 0 terminates */
->>   #define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE 0 /* see i915_context_engines_load_balance */
->> @@ -2375,6 +2493,76 @@ struct drm_i915_query_topology_info {
->>   	__u8 data[];
->>   };
->>   
->> +/**
->> + * DOC: Engine Discovery uAPI
->> + *
->> + * Engine discovery uAPI is a way of enumerating physical engines present in a
->> + * GPU associated with an open i915 DRM file descriptor. This supersedes the old
->> + * way of using `DRM_IOCTL_I915_GETPARAM` and engine identifiers like
->> + * `I915_PARAM_HAS_BLT`.
->> + *
->> + * The need for this interface came starting with Icelake and newer GPUs, which
->> + * started to establish a pattern of having multiple engines of a same class,
->> + * where not all instances were always completely functionally equivalent.
->> + *
->> + * Entry point for this uapi is `DRM_IOCTL_I915_QUERY` with the
->> + * `DRM_I915_QUERY_ENGINE_INFO` as the queried item id.
->> + *
->> + * Example for getting the list of engines:
->> + *
->> + * .. code-block:: C
->> + *
->> + * 	struct drm_i915_query_engine_info *info;
->> + * 	struct drm_i915_query_item item = {
->> + * 		.query_id = DRM_I915_QUERY_ENGINE_INFO;
->> + * 	};
->> + * 	struct drm_i915_query query = {
->> + * 		.num_items = 1,
->> + * 		.items_ptr = (uintptr_t)&item,
->> + * 	};
->> + * 	int err, i;
->> + *
->> + * 	// First query the size of the blob we need, this needs to be large
->> + * 	// enough to hold our array of engines. The kernel will fill out the
->> + * 	// item.length for us, which is the number of bytes we need.
->> + * 	//
->> + * 	// Alternatively a large buffer can be allocated straight away enabling
->> + * 	// querying in one pass, in which case item.length should contain the
->> + * 	// length of the provided buffer.
->> + * 	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
->> + * 	if (err) ...
->> + *
->> + * 	info = calloc(1, item.length);
->> + * 	// Now that we allocated the required number of bytes, we call the ioctl
->> + * 	// again, this time with the data_ptr pointing to our newly allocated
->> + * 	// blob, which the kernel can then populate with info on all engines.
->> + * 	item.data_ptr = (uintptr_t)&info,
->> + *
->> + * 	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
->> + * 	if (err) ...
->> + *
->> + * 	// We can now access each engine in the array
->> + * 	for (i = 0; i < info->num_engines; i++) {
->> + * 		struct drm_i915_engine_info einfo = info->engines[i];
->> + * 		u16 class = einfo.engine.class;
->> + * 		u16 instance = einfo.engine.instance;
->> + * 		....
->> + * 	}
->> + *
->> + * 	free(info);
->> + *
->> + * Each of the enumerated engines, apart from being defined by its class and
->> + * instance (see `struct i915_engine_class_instance`), also can have flags and
->> + * capabilities defined as documented in i915_drm.h.
->> + *
->> + * For instance video engines which support HEVC encoding will have the
->> + * `I915_VIDEO_CLASS_CAPABILITY_HEVC` capability bit set.
->> + *
->> + * Engine discovery only fully comes to its own when combined with the new way
->> + * of addressing engines when submitting batch buffers using contexts with
->> + * engine maps configured.
->> + */
->> +
->>   /**
->>    * struct drm_i915_engine_info
->>    *
->> -- 
->> 2.30.2
->>
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
