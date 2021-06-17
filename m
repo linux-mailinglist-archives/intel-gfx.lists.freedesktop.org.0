@@ -2,30 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 448C23AAF8B
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 11:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 841B33AAFCC
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 11:33:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30CA66E8CB;
-	Thu, 17 Jun 2021 09:17:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 264FE6E8D0;
+	Thu, 17 Jun 2021 09:33:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C410B6E8CA;
- Thu, 17 Jun 2021 09:17:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BC5E4A0078;
- Thu, 17 Jun 2021 09:17:27 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCF0A6E846;
+ Thu, 17 Jun 2021 00:09:32 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 70EFE61351;
+ Thu, 17 Jun 2021 00:09:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1623888572;
+ bh=mN2okVVdTICmc/8v91DABSXp7kK2mc41VelpLLMzraM=;
+ h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+ b=ZYuvhN96769HVBf9HwXfEMrx5h2joXFESxJj/lRenrF7yXWLZjtrg1PWIka+vT/Q0
+ oFtXyOpOZ9yR7QPt6WZ9qiVwYGYEJ72zE5pEW7HiR62r0bK1cPffUlPeluSwwsGV++
+ 8riMe4sA8jh8H05UnuJF58KJLPG9dNHhkmEpW63Symhvau9C6X5CTpmeRZXg03FBNA
+ YdmM71is91QiA8p/farR5qTSk/+kZjwaUjrHEt7/cAUyCA79A0OF17vUa8D0c+gd+H
+ nwIEeujLTdx4sfeAu0ptJEutsq4BmObXoP4A9/HlakW6ogsicBITdzMemlH7LIUWJw
+ GZfH7kl1LZ6XQ==
+Date: Wed, 16 Jun 2021 17:09:29 -0700 (PDT)
+From: Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To: Claire Chang <tientzu@chromium.org>
+In-Reply-To: <20210616062157.953777-12-tientzu@chromium.org>
+Message-ID: <alpine.DEB.2.21.2106161651290.24906@sstabellini-ThinkPad-T480s>
+References: <20210616062157.953777-1-tientzu@chromium.org>
+ <20210616062157.953777-12-tientzu@chromium.org>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 17 Jun 2021 09:17:27 -0000
-Message-ID: <162392144774.3751.15669177194583069415@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210617083719.497619-1-matthew.auld@intel.com>
-In-Reply-To: <20210617083719.497619-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ttm=3A_remove_unused_function?=
+X-Mailman-Approved-At: Thu, 17 Jun 2021 09:33:12 +0000
+Subject: Re: [Intel-gfx] [PATCH v12 11/12] dt-bindings: of: Add restricted
+ DMA pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,162 +49,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0144869503=="
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ jxgao@google.com, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ tfiga@chromium.org,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0144869503==
-Content-Type: multipart/alternative;
- boundary="===============7826514041164184813=="
+On Wed, 16 Jun 2021, Claire Chang wrote:
+> Introduce the new compatible string, restricted-dma-pool, for restricted
+> DMA. One can specify the address and length of the restricted DMA memory
+> region by restricted-dma-pool in the reserved-memory node.
+> 
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> ---
+>  .../reserved-memory/reserved-memory.txt       | 36 +++++++++++++++++--
+>  1 file changed, 33 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> index e8d3096d922c..46804f24df05 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> @@ -51,6 +51,23 @@ compatible (optional) - standard definition
+>            used as a shared pool of DMA buffers for a set of devices. It can
+>            be used by an operating system to instantiate the necessary pool
+>            management subsystem if necessary.
+> +        - restricted-dma-pool: This indicates a region of memory meant to be
+> +          used as a pool of restricted DMA buffers for a set of devices. The
+> +          memory region would be the only region accessible to those devices.
+> +          When using this, the no-map and reusable properties must not be set,
+> +          so the operating system can create a virtual mapping that will be used
+> +          for synchronization. The main purpose for restricted DMA is to
+> +          mitigate the lack of DMA access control on systems without an IOMMU,
+> +          which could result in the DMA accessing the system memory at
+> +          unexpected times and/or unexpected addresses, possibly leading to data
+> +          leakage or corruption. The feature on its own provides a basic level
+> +          of protection against the DMA overwriting buffer contents at
+> +          unexpected times. However, to protect against general data leakage and
+> +          system memory corruption, the system needs to provide way to lock down
+> +          the memory access, e.g., MPU. Note that since coherent allocation
+> +          needs remapping, one must set up another device coherent pool by
+> +          shared-dma-pool and use dma_alloc_from_dev_coherent instead for atomic
+> +          coherent allocation.
+>          - vendor specific string in the form <vendor>,[<device>-]<usage>
+>  no-map (optional) - empty property
+>      - Indicates the operating system must not create a virtual mapping
+> @@ -85,10 +102,11 @@ memory-region-names (optional) - a list of names, one for each corresponding
+>  
+>  Example
+>  -------
+> -This example defines 3 contiguous regions are defined for Linux kernel:
+> +This example defines 4 contiguous regions for Linux kernel:
+>  one default of all device drivers (named linux,cma@72000000 and 64MiB in size),
+> -one dedicated to the framebuffer device (named framebuffer@78000000, 8MiB), and
+> -one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+> +one dedicated to the framebuffer device (named framebuffer@78000000, 8MiB),
+> +one for multimedia processing (named multimedia-memory@77000000, 64MiB), and
+> +one for restricted dma pool (named restricted_dma_reserved@0x50000000, 64MiB).
+>  
+>  / {
+>  	#address-cells = <1>;
+> @@ -120,6 +138,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+>  			compatible = "acme,multimedia-memory";
+>  			reg = <0x77000000 0x4000000>;
+>  		};
+> +
+> +		restricted_dma_reserved: restricted_dma_reserved {
+> +			compatible = "restricted-dma-pool";
+> +			reg = <0x50000000 0x4000000>;
+> +		};
+>  	};
+>  
+>  	/* ... */
+> @@ -138,4 +161,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+>  		memory-region = <&multimedia_reserved>;
+>  		/* ... */
+>  	};
+> +
+> +	pcie_device: pcie_device@0,0 {
+> +		reg = <0x83010000 0x0 0x00000000 0x0 0x00100000
+> +		       0x83010000 0x0 0x00100000 0x0 0x00100000>;
+> +		memory-region = <&restricted_dma_mem_reserved>;
 
---===============7826514041164184813==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/ttm: remove unused function
-URL   : https://patchwork.freedesktop.org/series/91621/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10233 -> Patchwork_20399
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20399/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20399 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - {fi-tgl-dsi}:       [DMESG-WARN][1] ([i915#1982] / [i915#2411]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10233/fi-tgl-dsi/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20399/fi-tgl-dsi/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10233 -> Patchwork_20399
-
-  CI-20190529: 20190529
-  CI_DRM_10233: e00d16681acd7e91fd02f800adcc20cca89f6127 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6109: 61ba2ed489540e6a8a649be38abb075b3ab4d28a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20399: 61c7ef8b74704e264cf0278033ae155b28cb95fc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-61c7ef8b7470 drm/i915/ttm: remove unused function
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20399/index.html
-
---===============7826514041164184813==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ttm: remove unused function</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91621/">https://patchwork.freedesktop.org/series/91621/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20399/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20399/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10233 -&gt; Patchwork_20399</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20399/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20399 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10233/fi-tgl-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20399/fi-tgl-dsi/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10233 -&gt; Patchwork_20399</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10233: e00d16681acd7e91fd02f800adcc20cca89f6127 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6109: 61ba2ed489540e6a8a649be38abb075b3ab4d28a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20399: 61c7ef8b74704e264cf0278033ae155b28cb95fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>61c7ef8b7470 drm/i915/ttm: remove unused function</p>
-
-</body>
-</html>
-
---===============7826514041164184813==--
-
---===============0144869503==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Shouldn't it be &restricted_dma_reserved ?
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0144869503==--
