@@ -1,31 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 579643AAC98
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 08:40:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2373AACB5
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 08:49:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 735FB6E86E;
-	Thu, 17 Jun 2021 06:40:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE51F6E882;
+	Thu, 17 Jun 2021 06:49:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 897CD6E0C4;
- Thu, 17 Jun 2021 06:40:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79477A7DFC;
- Thu, 17 Jun 2021 06:40:47 +0000 (UTC)
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
+ [IPv6:2607:f8b0:4864:20::130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A3ED6E882
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 06:49:13 +0000 (UTC)
+Received: by mail-il1-x130.google.com with SMTP id j14so4483216ila.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 23:49:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=IqsCA/yjikDS1aCYzllqiH9HoLVcQQhYIn5qSeonABE=;
+ b=GiFPgetacPTJVsGZ3MFWgSvQPnCdoTJhc4FxcdhnTR1mIKLWNYkC5qsclOh1Nu4T0t
+ 2JBHLcEHEvZiTaAAwPJzRshEva/oe1afpxIyCNXuS6Yc5SEiWBAid4ULBNFnG08bi+4b
+ 5Y3w62S7YQM/biDmcuEcWF0r86zBUuRahetbQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=IqsCA/yjikDS1aCYzllqiH9HoLVcQQhYIn5qSeonABE=;
+ b=GtLACv2+cY1eRnOdUZVeGJSrYKvaEOLdi7E7oZ/Q6BdWgAeG9cfzMlbSkX/26CNmxS
+ jd8ou9K6tK/LJsPSYDnf8B3SpTxfDQqhWsBmxKSBhAWj2dV/VsBrtrWkSJj8vSCACws+
+ ADjjQFQ90SWFuh08Kq0cGE9+EGVUFowbHg9arTWZC9WesX6xt5TKjd/2lYHEloRll806
+ 3DDNrjwfE0k0iU0Y98dW8LHY2/lBPy9WNZR/MK7JTmxa48NdSh1ovKGFW0pdRS9Z0wYo
+ 3EauvzaFzaP7R0ACWf4/7nnKbUuiS331GuB1XvG+bOuT2b4VeMf8OaL9QybjlOT43dvp
+ youA==
+X-Gm-Message-State: AOAM5318CayrptggCpZAwiutG7p2uHq3ep0cTzpZUH5p88jcb2rSPHD0
+ +iwHqurrSJ9+c9Ys4RXkNaMea9wDJFfvrg==
+X-Google-Smtp-Source: ABdhPJz6HxN88+ZFectTSHAu2OJq9uhFWLL40aTHUZXSdSzpO5o7HYorMzberUpFikRdT1ddf+j6KQ==
+X-Received: by 2002:a92:c7cf:: with SMTP id g15mr2492079ilk.28.1623912552626; 
+ Wed, 16 Jun 2021 23:49:12 -0700 (PDT)
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com.
+ [209.85.166.170])
+ by smtp.gmail.com with ESMTPSA id e2sm331638iot.50.2021.06.16.23.49.12
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 16 Jun 2021 23:49:12 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id x12so4502264ill.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 23:49:12 -0700 (PDT)
+X-Received: by 2002:a05:6602:2344:: with SMTP id
+ r4mr2559955iot.69.1623912068770; 
+ Wed, 16 Jun 2021 23:41:08 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Thu, 17 Jun 2021 06:40:47 -0000
-Message-ID: <162391204747.3752.12653845612787422623@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210617063018.92802-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210617063018.92802-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_i915_TTM_sync_accelerated_migration_and_clear_=28rev4=29?=
+References: <20210616062157.953777-1-tientzu@chromium.org>
+ <20210616120837.GA22783@willie-the-truck>
+In-Reply-To: <20210616120837.GA22783@willie-the-truck>
+From: Claire Chang <tientzu@chromium.org>
+Date: Thu, 17 Jun 2021 14:40:57 +0800
+X-Gmail-Original-Message-ID: <CALiNf28SSxhs_+9Oq=pyOc7OWWDyWrtZLUqXKQKin6dRyXwo=w@mail.gmail.com>
+Message-ID: <CALiNf28SSxhs_+9Oq=pyOc7OWWDyWrtZLUqXKQKin6dRyXwo=w@mail.gmail.com>
+To: Will Deacon <will@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH v12 00/12] Restricted DMA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,93 +70,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ Jianxiong Gao <jxgao@google.com>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
+ Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: i915 TTM sync accelerated migration and clear (rev4)
-URL   : https://patchwork.freedesktop.org/series/91463/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-05e61818c510 drm/i915: Reference objects on the ww object list
-b3d1124db2b3 drm/i915: Break out dma_resv ww locking utilities to separate files
--:141: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#141: 
-new file mode 100644
-
--:166: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#166: FILE: drivers/gpu/drm/i915/i915_gem_ww.c:21:
-+	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
-
-total: 0 errors, 2 warnings, 0 checks, 183 lines checked
-3d2c4703e490 drm/i915: Introduce a ww transaction helper
--:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_ww' - possible side-effects?
-#56: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
-+#define for_i915_gem_ww(_ww, _err, _intr)			\
-+	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
-+	     _err = __i915_gem_ww_fini(_ww, _err))
-
--:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
-#56: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:46:
-+#define for_i915_gem_ww(_ww, _err, _intr)			\
-+	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
-+	     _err = __i915_gem_ww_fini(_ww, _err))
-
-total: 0 errors, 0 warnings, 2 checks, 41 lines checked
-55d91f54ea63 drm/i915/gt: Add an insert_entry for gen8_ppgtt
-63732fd3b3dd drm/i915/gt: Add a routine to iterate over the pagetables of a GTT
-dafe4c39f77d drm/i915/gt: Export the pinned context constructor and destructor
-1348ed66563c drm/i915/gt: Pipelined page migration
--:67: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#67: 
-new file mode 100644
-
--:879: WARNING:LINE_SPACING: Missing a blank line after declarations
-#879: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:176:
-+	struct drm_i915_private *i915 = migrate->context->engine->i915;
-+	I915_RND_STATE(prng);
-
--:908: WARNING:LINE_SPACING: Missing a blank line after declarations
-#908: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:205:
-+	struct threaded_migrate *thread;
-+	I915_RND_STATE(prng);
-
--:933: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see Documentation/timers/timers-howto.rst
-#933: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:230:
-+	msleep(10); /* start all threads before we kthread_stop() */
-
-total: 0 errors, 4 warnings, 0 checks, 931 lines checked
-50c44cdbf0dc drm/i915/gt: Pipelined clear
--:356: WARNING:LINE_SPACING: Missing a blank line after declarations
-#356: FILE: drivers/gpu/drm/i915/gt/selftest_migrate.c:311:
-+	struct drm_i915_private *i915 = migrate->context->engine->i915;
-+	I915_RND_STATE(prng);
-
-total: 0 errors, 1 warnings, 0 checks, 380 lines checked
-af79c48203b1 drm/i915/gt: Setup a default migration context on the GT
-44bc96f6062f drm/i915/ttm: accelerated move implementation
-f96ba67920e0 drm/i915/gem: Zap the client blt code
--:35: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#35: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 146 lines checked
-0c1b355b98b0 drm/i915/gem: Zap the i915_gem_object_blt code
--:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#29: 
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 66 lines checked
-
-
+v13: https://lore.kernel.org/patchwork/cover/1448001/
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
