@@ -2,61 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A59C73AAC2C
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 08:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E35B3AAC3A
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 08:30:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADC126E86E;
-	Thu, 17 Jun 2021 06:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0F6E6E08E;
+	Thu, 17 Jun 2021 06:30:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
- [IPv6:2607:f8b0:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AAE26E08E
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 06:28:31 +0000 (UTC)
-Received: by mail-pf1-x42b.google.com with SMTP id p13so4227323pfw.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 23:28:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=xfRvKXXPDGozL9xpkc2RXgCWY6OxEYfQN41+lxoFnvY=;
- b=P0DcuqP8d/CAJT5H3BXTszPLFR8/POeZwYtbY1hzB0BZSzBVE99MQjVTdgEtJMNxza
- 8C5V55pgNOpxdtHe4MvP5ZXgHC+nHMSC0PqmBhg9/ppxPOVo1PsZ+EwMp7aMo1+zOeWe
- KqOQ2EnOhWaUxUqrPUYZrFAZhB0ZZNObJmz4g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=xfRvKXXPDGozL9xpkc2RXgCWY6OxEYfQN41+lxoFnvY=;
- b=A8kXK2zklLYkOvG6su+lzJks367e9l6ieddfRaIdq8BqoufYS0YFIj2Y0lNprQT4EE
- TuvMChieRSzG5eq0gcdC+q3hdggxUCRiuPNit97n5Z+K0jTHqzymngU1v6bMiIlG4Cpi
- bZuyj5oXAkCNz+6X03ZcMke57WkRF8ZzmBwClKQytkxjipJFJ+j/MV2zjDWal3S5Ee1Q
- siTfKuD5TANTowZsfp3N/FFSTR+soUSgNKFcq5PMlahZoLewE2WXNBILrcyxiOeHGd7U
- kmW84+kgPXfz7tVA198370bN4iD4RQk0su6sXTYiptJ8vGo22fIM08FM3LMsOJtcINv5
- bHAQ==
-X-Gm-Message-State: AOAM530acuC5vPth0hxs7d+QyXQEVKugDyKMONPqeTlZ/OFaOlE/SBzP
- HxA7wrmyKca3LlkwXwx8tqJVeA==
-X-Google-Smtp-Source: ABdhPJxBUnvdEKrFvX9gwkhRYpe6iM3TMIr0SMX+wx5+SenBzwe41Fi6FDk/v+JnW0WePmCPk48T7g==
-X-Received: by 2002:a63:f009:: with SMTP id k9mr3590765pgh.356.1623911310959; 
- Wed, 16 Jun 2021 23:28:30 -0700 (PDT)
-Received: from localhost ([2401:fa00:95:205:e349:a6ae:d3d0:1621])
- by smtp.gmail.com with UTF8SMTPSA id o186sm3871495pfb.59.2021.06.16.23.28.23
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Jun 2021 23:28:30 -0700 (PDT)
-From: Claire Chang <tientzu@chromium.org>
-To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
- jgross@suse.com, Christoph Hellwig <hch@lst.de>,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Thu, 17 Jun 2021 14:26:35 +0800
-Message-Id: <20210617062635.1660944-13-tientzu@chromium.org>
-X-Mailer: git-send-email 2.32.0.288.g62a8d224e6-goog
-In-Reply-To: <20210617062635.1660944-1-tientzu@chromium.org>
-References: <20210617062635.1660944-1-tientzu@chromium.org>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD1CC6E08E;
+ Thu, 17 Jun 2021 06:30:32 +0000 (UTC)
+IronPort-SDR: xWmVcCXmTkXYZXaNYe+OQcMG1D66H8254JydAVOobxaap+ePBweqB7kQL7pCJeOQZv2rvhvhOy
+ eVcGTWzIlJ+w==
+X-IronPort-AV: E=McAfee;i="6200,9189,10017"; a="203287810"
+X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; d="scan'208";a="203287810"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2021 23:30:32 -0700
+IronPort-SDR: fzLpPSpQzsg92gDULo8Uc8Gh/HBvS1F16uGn52GQbHXvyhhwxDbHDKGjzFsCWp1Z7kGpFJkHGU
+ sSpqIxDx1SOg==
+X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; d="scan'208";a="554302632"
+Received: from vanderss-mobl.ger.corp.intel.com (HELO thellst-mobl1.intel.com)
+ ([10.249.254.193])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2021 23:30:28 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Thu, 17 Jun 2021 08:30:06 +0200
+Message-Id: <20210617063018.92802-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v13 12/12] of: Add plumbing for restricted DMA
- pool
+Subject: [Intel-gfx] [PATCH v5 00/12] i915 TTM sync accelerated migration
+ and clear
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,134 +47,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- grant.likely@arm.com, paulus@samba.org, mingo@kernel.org, jxgao@google.com,
- sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
- xypron.glpk@gmx.de, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- airlied@linux.ie, Robin Murphy <robin.murphy@arm.com>,
- Nicolas Boichat <drinkcat@chromium.org>, bhelgaas@google.com,
- tientzu@chromium.org, Dan Williams <dan.j.williams@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>, tfiga@chromium.org,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
- bauerman@linux.ibm.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If a device is not behind an IOMMU, we look up the device node and set
-up the restricted DMA when the restricted-dma-pool is presented.
-
-Signed-off-by: Claire Chang <tientzu@chromium.org>
-Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-Tested-by: Will Deacon <will@kernel.org>
----
- drivers/of/address.c    | 33 +++++++++++++++++++++++++++++++++
- drivers/of/device.c     |  3 +++
- drivers/of/of_private.h |  6 ++++++
- 3 files changed, 42 insertions(+)
-
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 73ddf2540f3f..cdf700fba5c4 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -8,6 +8,7 @@
- #include <linux/logic_pio.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
-+#include <linux/of_reserved_mem.h>
- #include <linux/pci.h>
- #include <linux/pci_regs.h>
- #include <linux/sizes.h>
-@@ -1022,6 +1023,38 @@ int of_dma_get_range(struct device_node *np, const struct bus_dma_region **map)
- 	of_node_put(node);
- 	return ret;
- }
-+
-+int of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
-+{
-+	struct device_node *node, *of_node = dev->of_node;
-+	int count, i;
-+
-+	count = of_property_count_elems_of_size(of_node, "memory-region",
-+						sizeof(u32));
-+	/*
-+	 * If dev->of_node doesn't exist or doesn't contain memory-region, try
-+	 * the OF node having DMA configuration.
-+	 */
-+	if (count <= 0) {
-+		of_node = np;
-+		count = of_property_count_elems_of_size(
-+			of_node, "memory-region", sizeof(u32));
-+	}
-+
-+	for (i = 0; i < count; i++) {
-+		node = of_parse_phandle(of_node, "memory-region", i);
-+		/*
-+		 * There might be multiple memory regions, but only one
-+		 * restricted-dma-pool region is allowed.
-+		 */
-+		if (of_device_is_compatible(node, "restricted-dma-pool") &&
-+		    of_device_is_available(node))
-+			return of_reserved_mem_device_init_by_idx(dev, of_node,
-+								  i);
-+	}
-+
-+	return 0;
-+}
- #endif /* CONFIG_HAS_DMA */
- 
- /**
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 6cb86de404f1..e68316836a7a 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -165,6 +165,9 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 
- 	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
- 
-+	if (!iommu)
-+		return of_dma_set_restricted_buffer(dev, np);
-+
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(of_dma_configure_id);
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index d9e6a324de0a..25cebbed5f02 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -161,12 +161,18 @@ struct bus_dma_region;
- #if defined(CONFIG_OF_ADDRESS) && defined(CONFIG_HAS_DMA)
- int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map);
-+int of_dma_set_restricted_buffer(struct device *dev, struct device_node *np);
- #else
- static inline int of_dma_get_range(struct device_node *np,
- 		const struct bus_dma_region **map)
- {
- 	return -ENODEV;
- }
-+static inline int of_dma_set_restricted_buffer(struct device *dev,
-+					       struct device_node *np)
-+{
-+	return -ENODEV;
-+}
- #endif
- 
- #endif /* _LINUX_OF_PRIVATE_H */
--- 
-2.32.0.288.g62a8d224e6-goog
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBwYXRjaHNldCBpbXBsZW1lbnRzIHN5bmNocm9ub3VzIGFjY2VsZXJhdGVkIG1pZ3JhdGlv
+biBhbmQgY2xlYXJpbmcKZm9yIGk5MTUgb24gVFRNLiBXZSBwbGFuIHRvIGZvbGxvdyB1cCB3aXRo
+IHRoZXNlIG9wZXJhdGlvbnMgbWFkZQphc3luY2hyb25vdXMgdG8gdGhlIGV4dGVudCBvZiBUVE0g
+c3VwcG9ydCBmb3IgdGhhdDoKCkEgY291cGxlIG9mIHBhdGNoZXMgZnJvbSBDaHJpcyB3aGljaCBp
+bXBsZW1lbnQgcGlwZWxpbmVkIG1pZ3JhdGlvbiBhbmQKY2xlYXJzIGJ5IGF0b21pY2FsbHkgd3Jp
+dGluZyB0aGUgUFRFcyBpbiBwbGFjZSBiZWZvcmUgcGVyZm9ybWluZyB0aGUKYWN0dWFsIGJsaXQu
+CgpTb21lIHd3IHV0aWxpdGllcyBtYWlubHkgZm9yIHRoZSBhY2NvbXBhbnlpbmcgc2VsZnRlc3Rz
+IGFkZGVkIGJ5IFRob21hcywKYXMgd2VsbCBhcyBtb2RpZmllZCB0aGUgYWJvdmUgcGF0Y2hlcyBm
+b3Igd3cgbG9ja2luZy0gYW5kIGxtZW0gc3VwcG9ydC4KCkhvb2tlZCB1cCB0byBvdXIgVFRNIGJh
+Y2tlbmQgYnkgUmFtYWxpbmdhbQoKRmluYWxseSwgb24gcmVxdWVzdCBmcm9tIERhbmllbCwgd2Ug
+ZGl0Y2ggb2xkIGJsaXQgY29kZSB3aGljaCBpcyBub3cgb2Jzb2xldGUuCgp2MjoKLSBBIGNvdXBs
+ZSBvZiBtaW5vciBzdHlsZSBmaXhlcyBwb2ludGVkIG91dCBieSBNYXR0aGV3IEF1bGQKLSBFeHBv
+cnQgYW5kIHVzZSBpbnRlbF9lbmdpbmVfZGVzdHJveV9waW5uZWRfY29udGV4dCgpIHRvIGFkZHJl
+c3MgYQogIENJIHdhcm5pbmcgLyBmYWlsdXJlLgp2MzoKLSBBY2NlbGVyYXRpb24gaG9va2VkIHVw
+IHRvIFRUTQotIE1pbm9yIGZpeGVzIHRvIHJldmlldyBjb21tZW50cyAoUG9pbnRlZCBvdXQgYnkg
+TWF0dGhldyBBdWxkKQotIEZpeCBwaXBlbGluZWQgYmxpdCBoYW5kbGluZyBvZiBlbmdpbmUgaW5z
+dGFuY2VzIChQb2ludGVkIG91dCBieSBNYXR0aGV3IEF1bGQpCi0gRGl0Y2ggb2xkIGJsaXQgY29k
+ZSwgKFBvaW50ZWQgb3V0IGJ5IERhbmllbCkKdjQ6Ci0gUmVzY3VlIGEgc2VsZnRlc3QgdGhhdCB3
+YXMgcmVtb3ZlZCB3aXRoIHRoZSBvbGQgYmxpdCBjb2RlCiAgKFBvaW50ZWQgb3V0IGJ5IE1hdHRo
+ZXcgQXVsZCkKLSBFeHRlbmRlZCBncHUgd2FpdHMgaW4gdGhlIFRUTSBhY2NlbCBtb3ZlIGZ1bmN0
+aW9uCiAgKFBvaW50ZWQgb3V0IGJ5IFRob21hcyBIZWxsc3Ryw7ZtKQp2NToKLSBNaW5vciByZWJh
+c2Ugb24gYnVkZHkgc2VyaWVzLgotIEFkZGVkIFItQnMgZm9yIHRoZSBsYXN0IHBhdGNoZXMuCgpD
+aHJpcyBXaWxzb24gKDYpOgogIGRybS9pOTE1L2d0OiBBZGQgYW4gaW5zZXJ0X2VudHJ5IGZvciBn
+ZW44X3BwZ3R0CiAgZHJtL2k5MTUvZ3Q6IEFkZCBhIHJvdXRpbmUgdG8gaXRlcmF0ZSBvdmVyIHRo
+ZSBwYWdldGFibGVzIG9mIGEgR1RUCiAgZHJtL2k5MTUvZ3Q6IEV4cG9ydCB0aGUgcGlubmVkIGNv
+bnRleHQgY29uc3RydWN0b3IgYW5kIGRlc3RydWN0b3IKICBkcm0vaTkxNS9ndDogUGlwZWxpbmVk
+IHBhZ2UgbWlncmF0aW9uCiAgZHJtL2k5MTUvZ3Q6IFBpcGVsaW5lZCBjbGVhcgogIGRybS9pOTE1
+L2d0OiBTZXR1cCBhIGRlZmF1bHQgbWlncmF0aW9uIGNvbnRleHQgb24gdGhlIEdUCgpSYW1hbGlu
+Z2FtIEMgKDEpOgogIGRybS9pOTE1L3R0bTogYWNjZWxlcmF0ZWQgbW92ZSBpbXBsZW1lbnRhdGlv
+bgoKVGhvbWFzIEhlbGxzdHLDtm0gKDUpOgogIGRybS9pOTE1OiBSZWZlcmVuY2Ugb2JqZWN0cyBv
+biB0aGUgd3cgb2JqZWN0IGxpc3QKICBkcm0vaTkxNTogQnJlYWsgb3V0IGRtYV9yZXN2IHd3IGxv
+Y2tpbmcgdXRpbGl0aWVzIHRvIHNlcGFyYXRlIGZpbGVzCiAgZHJtL2k5MTU6IEludHJvZHVjZSBh
+IHd3IHRyYW5zYWN0aW9uIGhlbHBlcgogIGRybS9pOTE1L2dlbTogWmFwIHRoZSBjbGllbnQgYmx0
+IGNvZGUKICBkcm0vaTkxNS9nZW06IFphcCB0aGUgaTkxNV9nZW1fb2JqZWN0X2JsdCBjb2RlCgog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAgIHwgICA1ICstCiAu
+Li4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0LmMgICAgfCAzNTUgLS0tLS0t
+LS0tCiAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0LmggICAgfCAgMjEg
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oICAgIHwgICA5ICst
+CiAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfYmx0LmMgICAgfCA0NjEgLS0t
+LS0tLS0tLS0tCiAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3RfYmx0LmggICAg
+fCAgMzkgLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jICAgICAgIHwg
+IDg4ICsrLQogLi4uL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9jbGllbnRfYmx0LmMgIHwg
+MTE0ICstLQogLi4uL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9vYmplY3RfYmx0LmMgIHwg
+NTk3IC0tLS0tLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvZ2VuOF9wcGd0dC5j
+ICAgICAgICAgIHwgIDY4ICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmUu
+aCAgICAgICAgfCAgMTIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX2Nz
+LmMgICAgIHwgIDI3ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ncHVfY29tbWFu
+ZHMuaCAgfCAgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3QuYyAgICAgICAg
+ICAgIHwgICA0ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3R5cGVzLmggICAg
+ICB8ICAgMyArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndHQuaCAgICAgICAgICAg
+fCAgIDcgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5jICAgICAgIHwg
+Njg3ICsrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWln
+cmF0ZS5oICAgICAgIHwgIDY1ICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9taWdy
+YXRlX3R5cGVzLmggfCAgMTUgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVuZGVy
+c3RhdGUuaCAgIHwgICAxICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JpbmcuaCAg
+ICAgICAgICB8ICAgMSArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9taWdyYXRl
+LmMgICAgfCA2NjkgKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+Z2VtLmMgICAgICAgICAgICAgICB8ICA1MiAtLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9n
+ZW0uaCAgICAgICAgICAgICAgIHwgIDEyIC0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2Vt
+X3d3LmMgICAgICAgICAgICB8ICA2MyArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1f
+d3cuaCAgICAgICAgICAgIHwgIDUwICsrCiAuLi4vZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfbGl2
+ZV9zZWxmdGVzdHMuaCAgfCAgIDIgKy0KIC4uLi9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9wZXJm
+X3NlbGZ0ZXN0cy5oICB8ICAgMiArLQogLi4uL2RybS9pOTE1L3NlbGZ0ZXN0cy9pbnRlbF9tZW1v
+cnlfcmVnaW9uLmMgIHwgIDIxICstCiAyOSBmaWxlcyBjaGFuZ2VkLCAxNzY2IGluc2VydGlvbnMo
+KyksIDE2ODYgZGVsZXRpb25zKC0pCiBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ2VtL2k5MTVfZ2VtX2NsaWVudF9ibHQuYwogZGVsZXRlIG1vZGUgMTAwNjQ0IGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jbGllbnRfYmx0LmgKIGRlbGV0ZSBtb2RlIDEw
+MDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0X2JsdC5jCiBkZWxl
+dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdF9i
+bHQuaAogZGVsZXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVz
+dHMvaTkxNV9nZW1fb2JqZWN0X2JsdC5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZS5oCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbWlncmF0ZV90eXBlcy5oCiBjcmVhdGUgbW9kZSAxMDA2
+NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfbWlncmF0ZS5jCiBjcmVhdGUgbW9k
+ZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fd3cuYwogY3JlYXRlIG1vZGUg
+MTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX3d3LmgKCi0tIAoyLjMxLjEKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
