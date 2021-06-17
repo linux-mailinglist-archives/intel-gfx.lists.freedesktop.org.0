@@ -1,38 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9560C3AAEE7
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 10:37:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 043EE3AAEEB
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jun 2021 10:39:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6236E8A8;
-	Thu, 17 Jun 2021 08:37:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D93A56E8BF;
+	Thu, 17 Jun 2021 08:38:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A502B6E8A8
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 08:37:28 +0000 (UTC)
-IronPort-SDR: vsW8rCXnyJIJlyU+dH8iz3tV6P5Phzi4KOBL5TA0ntC28up3cbx+BrnsGGJskhi+vhQyBxziv5
- 87C49An+se3Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,10017"; a="206147322"
-X-IronPort-AV: E=Sophos;i="5.83,280,1616482800"; d="scan'208";a="206147322"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2021 01:37:27 -0700
-IronPort-SDR: DaI2+PVkvFzDA8uQKRjKiq46yDNPDb7xPeZEfcXWWO+ic03Peh6UvybXlNp+LQPCfyN3U8tur4
- pU1CN4U/g1Ww==
-X-IronPort-AV: E=Sophos;i="5.83,280,1616482800"; d="scan'208";a="450951012"
-Received: from scjonesx-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.17.1])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2021 01:37:25 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Jun 2021 09:37:19 +0100
-Message-Id: <20210617083719.497619-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB7106E8BE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 08:38:55 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id v9so5770153wrx.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 01:38:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=niCJQ3H8AiHapfvyh3qbwW9BZG651eP8Po7X5NizSRs=;
+ b=jp0Mzj9zmTwFtVCASubVR/oVj32rfOuUhACHWfrgCM89xghuMfAYFlEMTD+NJB4p7C
+ 5HQ8wYsmYKgvHGKa+OAXfWs7Z31qzkuzZhf2DC7hCB+l/a3pqAUKblQAJwajUCxhS8hC
+ +XKkEh8dPH2iP+LT64GSyehgfV4L9Q9rT45J4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=niCJQ3H8AiHapfvyh3qbwW9BZG651eP8Po7X5NizSRs=;
+ b=P9SBdu6c+ujh/Ic7uE4qUvix0oJ4oVq1FZoKGdvemdX92BjGOqWiedR5lqJ4cruhOG
+ D4lIaKFR2KVQzuN+peBgACVjzadGyf+QBfLcpSpd2+c+1Yxe1cNh7gCuNS37NtPBG0i9
+ X3W6L1vWQQlTjSMPsBAvslqtn/iHJWCW7bJwNiEr2IL3isPrydZUmsmXduIjVDaZqsEr
+ yu7Uoldu8yN/1X9In1BJQEPDYmzy5MsDda3mNHEbiSnEm1Fz9LHVpx4MMncAl5I6preR
+ F4KhHup5yt0e1rtVSHI7N0uEHJAWqYODg/XxTFycD3D70yU3QTHj2BujZvf4Niw7VhSe
+ DbaA==
+X-Gm-Message-State: AOAM533u+XxxCH0jPn7QDIaRIopWNXNYb67kj6jRLzHajSs7JjB3zjcb
+ Nl5zwFxgrjv+hxcg+PkyUrce+g==
+X-Google-Smtp-Source: ABdhPJzq2dDQkQHFt47tYXkGJs+DBPqLWvkeegznk76cvDOsSLU/YJURuRP+fIgCcSVnFNQfHQ/VIQ==
+X-Received: by 2002:a5d:64c3:: with SMTP id f3mr4211251wri.263.1623919134514; 
+ Thu, 17 Jun 2021 01:38:54 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id s7sm4504849wru.67.2021.06.17.01.38.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 17 Jun 2021 01:38:54 -0700 (PDT)
+Date: Thu, 17 Jun 2021 10:38:52 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <YMsKHLshWwakmUAR@phenom.ffwll.local>
+References: <20210616090350.828696-1-daniel.vetter@ffwll.ch>
+ <CAM0jSHMTc6o5M=xbYJDoR0NWpEthOcHMSB=Pb4dHnV9gdDj9eA@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/ttm: remove unused function
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHMTc6o5M=xbYJDoR0NWpEthOcHMSB=Pb4dHnV9gdDj9eA@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Remove duplicated call to
+ ops->pread
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,48 +67,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-aW50ZWxfcmVnaW9uX3R0bV9ub2RlX2ZyZWUgaXMgbm8gbG9uZ2VyIHVzZWQuIEFsc28gZml4dXAg
-dGhlIHJlbGF0ZWQKa2VybmVsZG9jLgoKUmVwb3J0ZWQtYnk6IGtlcm5lbCB0ZXN0IHJvYm90IDxs
-a3BAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBp
-bnRlbC5jb20+CkNjOiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5p
-bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcmVnaW9uX3R0bS5jIHwg
-MTQgKysrLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDExIGRl
-bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3JlZ2lv
-bl90dG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3JlZ2lvbl90dG0uYwppbmRleCBk
-NTNkNzhkZWMyYmUuLjRjZDEwZjM2NGU4NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfcmVnaW9uX3R0bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Jl
-Z2lvbl90dG0uYwpAQCAtMTQxLDcgKzE0MSw3IEBAIHN0cnVjdCBzZ190YWJsZSAqaW50ZWxfcmVn
-aW9uX3R0bV9yZXNvdXJjZV90b19zdChzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtCiAK
-ICNpZmRlZiBDT05GSUdfRFJNX0k5MTVfU0VMRlRFU1QKIC8qKgotICogaW50ZWxfcmVnaW9uX3R0
-bV9ub2RlX2FsbG9jIC0gQWxsb2NhdGUgbWVtb3J5IHJlc291cmNlcyBmcm9tIGEgcmVnaW9uCisg
-KiBpbnRlbF9yZWdpb25fdHRtX3Jlc291cmNlX2FsbG9jIC0gQWxsb2NhdGUgbWVtb3J5IHJlc291
-cmNlcyBmcm9tIGEgcmVnaW9uCiAgKiBAbWVtOiBUaGUgbWVtb3J5IHJlZ2lvbiwKICAqIEBzaXpl
-OiBUaGUgcmVxdWVzdGVkIHNpemUgaW4gYnl0ZXMKICAqIEBmbGFnczogQWxsb2NhdGlvbiBmbGFn
-cwpAQCAtMTUwLDggKzE1MCw4IEBAIHN0cnVjdCBzZ190YWJsZSAqaW50ZWxfcmVnaW9uX3R0bV9y
-ZXNvdXJjZV90b19zdChzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtCiAgKiBtZW1vcnkg
-ZnJvbSBzdGFuZGFsb25lIFRUTSByYW5nZSBtYW5hZ2Vycywgd2l0aG91dCB0aGUgVFRNIGV2aWN0
-aW9uCiAgKiBmdW5jdGlvbmFsaXR5LiBEb24ndCB1c2UgaWYgeW91IGFyZSBub3QgY29tcGxldGVs
-eSBzdXJlIHRoYXQncyB0aGUKICAqIGNhc2UuIFRoZSByZXR1cm5lZCBvcGFxdWUgbm9kZSBjYW4g
-YmUgY29udmVydGVkIHRvIGFuIHNnX3RhYmxlIHVzaW5nCi0gKiBpbnRlbF9yZWdpb25fdHRtX25v
-ZGVfdG9fc3QoKSwgYW5kIGNhbiBiZSBmcmVlZCB1c2luZwotICogaW50ZWxfcmVnaW9uX3R0bV9u
-b2RlX2ZyZWUoKS4KKyAqIGludGVsX3JlZ2lvbl90dG1fcmVzb3VyY2VfdG9fc3QoKSwgYW5kIGNh
-biBiZSBmcmVlZCB1c2luZworICogaW50ZWxfcmVnaW9uX3R0bV9yZXNvdXJjZV9mcmVlKCkuCiAg
-KgogICogUmV0dXJuOiBBIHZhbGlkIHBvaW50ZXIgb24gc3VjY2VzcywgYW4gZXJyb3IgcG9pbnRl
-ciBvbiBmYWlsdXJlLgogICovCkBAIC0xNzgsMTQgKzE3OCw2IEBAIGludGVsX3JlZ2lvbl90dG1f
-cmVzb3VyY2VfYWxsb2Moc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSwKIAogI2VuZGlm
-CiAKLXZvaWQgaW50ZWxfcmVnaW9uX3R0bV9ub2RlX2ZyZWUoc3RydWN0IGludGVsX21lbW9yeV9y
-ZWdpb24gKm1lbSwKLQkJCQlzdHJ1Y3QgdHRtX3Jlc291cmNlICpyZXMpCi17Ci0Jc3RydWN0IHR0
-bV9yZXNvdXJjZV9tYW5hZ2VyICptYW4gPSBtZW0tPnJlZ2lvbl9wcml2YXRlOwotCi0JbWFuLT5m
-dW5jLT5mcmVlKG1hbiwgcmVzKTsKLX0KLQogLyoqCiAgKiBpbnRlbF9yZWdpb25fdHRtX3Jlc291
-cmNlX2ZyZWUgLSBGcmVlIGEgcmVzb3VyY2UgYWxsb2NhdGVkIGZyb20gYSByZXNvdXJjZSBtYW5h
-Z2VyCiAgKiBAbWVtOiBUaGUgcmVnaW9uIHRoZSByZXNvdXJjZSB3YXMgYWxsb2NhdGVkIGZyb20u
-Ci0tIAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eAo=
+On Wed, Jun 16, 2021 at 11:45:28AM +0100, Matthew Auld wrote:
+> On Wed, 16 Jun 2021 at 10:04, Daniel Vetter <daniel.vetter@ffwll.ch> wrot=
+e:
+> >
+> > Between
+> >
+> > commit ae30af84edb5b7cc95485922e43afd909a892e1b
+> > Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Date:   Tue Mar 23 16:50:00 2021 +0100
+> >
+> >     drm/i915: Disable userptr pread/pwrite support.
+> >
+> > and
+> >
+> > commit 0049b688459b846f819b6e51c24cd0781fcfde41
+> > Author: Matthew Auld <matthew.auld@intel.com>
+> > Date:   Thu Nov 5 15:49:33 2020 +0000
+> >
+> >     drm/i915/gem: Allow backends to override pread implementation
+> >
+> > this accidentally landed twice.
+> >
+> > Cc: Matthew Auld <matthew.auld@intel.com
+> > Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com
+
+Pushed to drm-intel-gt-next, thanks for your review.
+-Daniel
+
+> =
+
+> > ---
+> >  drivers/gpu/drm/i915/i915_gem.c | 6 ------
+> >  1 file changed, 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i91=
+5_gem.c
+> > index 6a0a3f0e36e1..07aa80773a02 100644
+> > --- a/drivers/gpu/drm/i915/i915_gem.c
+> > +++ b/drivers/gpu/drm/i915/i915_gem.c
+> > @@ -469,12 +469,6 @@ i915_gem_pread_ioctl(struct drm_device *dev, void =
+*data,
+> >         if (ret !=3D -ENODEV)
+> >                 goto out;
+> >
+> > -       ret =3D -ENODEV;
+> > -       if (obj->ops->pread)
+> > -               ret =3D obj->ops->pread(obj, args);
+> > -       if (ret !=3D -ENODEV)
+> > -               goto out;
+> > -
+> >         ret =3D i915_gem_object_wait(obj,
+> >                                    I915_WAIT_INTERRUPTIBLE,
+> >                                    MAX_SCHEDULE_TIMEOUT);
+> > --
+> > 2.32.0.rc2
+> >
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
