@@ -1,66 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13AF43AC69D
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 10:56:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 101843AC624
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 10:31:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C5CA6E998;
-	Fri, 18 Jun 2021 08:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3046F6E986;
+	Fri, 18 Jun 2021 08:31:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 4686 seconds by postgrey-1.36 at gabe;
- Fri, 18 Jun 2021 08:56:33 UTC
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C333C6E998
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 08:56:33 +0000 (UTC)
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 15I7Mo87003220; Fri, 18 Jun 2021 07:38:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=Bva+99kIbUt8U5GBoQCrjaYa7N50E6Drwc+bAxhYFtU=;
- b=XgABNxHkPvj3NbI1NVpSUdBksdCkXUfNHFyGXCT+v6fDpW55FZ0WVmEvVlajTRSUwxoU
- U62ZBWbtKM/NFZqkkq/y58as9pJvoc9Crvqaqfme2gqujY8DaeLFYDp4fmBwQh91AwZz
- OeHocI6uApIqjG+jsNc/8BC2uV+xpIU9RBRgahzy9Xjv0Mmmqcia2xpleqX4+jhxkQxi
- WRJ0OJ1I165LHWo88IxhLLHpksfi4ikqmGhjroxZ1MiNWtK5JSZ6ZQh9mpOWhOUc8462
- 8MxGm7d+K7SVVqdCV2EGIDg49QHJtrqf8keiMDgAx/OsxeP3XCeQkHAk+CzaB5fc/vcW aQ== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
- by mx0b-00069f02.pphosted.com with ESMTP id 39770hcu5n-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 18 Jun 2021 07:38:24 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
- by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 15I7T20X080299;
- Fri, 18 Jun 2021 07:38:23 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
- by userp3030.oracle.com with ESMTP id 396war5309-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 18 Jun 2021 07:38:23 +0000
-Received: from userp3030.oracle.com (userp3030.oracle.com [127.0.0.1])
- by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 15I7cNBx098104;
- Fri, 18 Jun 2021 07:38:23 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
- by userp3030.oracle.com with ESMTP id 396war52yt-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 18 Jun 2021 07:38:23 +0000
-Received: from abhmp0019.oracle.com (abhmp0019.oracle.com [141.146.116.25])
- by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 15I7cMq0020820;
- Fri, 18 Jun 2021 07:38:22 GMT
-Received: from mwanda (/102.222.70.252)
- by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Fri, 18 Jun 2021 00:38:21 -0700
-Date: Fri, 18 Jun 2021 10:38:16 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: michal.wajdeczko@intel.com
-Message-ID: <YMxNaH5MQakeg1L7@mwanda>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D83CE6E841;
+ Fri, 18 Jun 2021 08:31:32 +0000 (UTC)
+IronPort-SDR: /rn+ZTWrPAT38lZcXcqwQKCfCwbs1VQoRaqSKGBGHsi67hA8ew1Ad72xWBFWgjK/8KSFQXz/EA
+ XKmFnYgxDnuw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10018"; a="204689094"
+X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; d="scan'208";a="204689094"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2021 01:31:31 -0700
+IronPort-SDR: qu5/NKVZLN2eS0CYpr1BxnA8ENYRLHB/xFhOcb58yhBEbSB3xxTaLLZP4m86G1t7JO+wb+hRWC
+ NezK20j2T1hw==
+X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; d="scan'208";a="479759540"
+Received: from jhogberg-mobl1.ger.corp.intel.com (HELO
+ thellst-mobl1.intel.com) ([10.249.254.60])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2021 01:31:29 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 18 Jun 2021 10:31:17 +0200
+Message-Id: <20210618083117.158081-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Proofpoint-GUID: M4da_Tpurrvuv3Cp6IQ8kxyR0XxZEtC4
-X-Proofpoint-ORIG-GUID: M4da_Tpurrvuv3Cp6IQ8kxyR0XxZEtC4
-Subject: [Intel-gfx] [bug report] drm/i915/guc: Add support for data
- reporting in GuC responses
+Subject: [Intel-gfx] [PATCH] drm/i915/ttm: Fix incorrect assumptions about
+ ttm_bo_validate() semantics
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,76 +47,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Michal Wajdeczko,
-
-The patch b839a869dfc9: "drm/i915/guc: Add support for data reporting
-in GuC responses" from Mar 26, 2018, leads to the following static
-checker warning:
-
-	drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:307 intel_guc_ct_enable()
-	error: passing non negative 4095 to ERR_PTR
-
-drivers/gpu/drm/i915/gt/uc/.intel_guc.c
-   405          intel_guc_notify(guc);
-   406  
-   407          /*
-   408           * No GuC command should ever take longer than 10ms.
-   409           * Fast commands should still complete in 10us.
-   410           */
-   411          ret = __intel_wait_for_register_fw(uncore,
-   412                                             guc_send_reg(guc, 0),
-   413                                             INTEL_GUC_MSG_TYPE_MASK,
-   414                                             INTEL_GUC_MSG_TYPE_RESPONSE <<
-   415                                             INTEL_GUC_MSG_TYPE_SHIFT,
-   416                                             10, 10, &status);
-   417          /* If GuC explicitly returned an error, convert it to -EIO */
-   418          if (!ret && !INTEL_GUC_MSG_IS_RESPONSE_SUCCESS(status))
-   419                  ret = -EIO;
-
-If __intel_wait_for_register_fw() fails then either "ret" is set or
-"status" status has a code and "ret" becomes -EIO.
-
-   420  
-   421          if (ret) {
-   422                  DRM_ERROR("MMIO: GuC action %#x failed with error %d %#x\n",
-   423                            action[0], ret, status);
-   424                  goto out;
-
-So if there is any errors we return here.
-
-   425          }
-   426  
-   427          if (response_buf) {
-   428                  int count = min(response_buf_size, guc->send_regs.count - 1);
-   429  
-   430                  for (i = 0; i < count; i++)
-   431                          response_buf[i] = intel_uncore_read(uncore,
-   432                                                              guc_send_reg(guc, i + 1));
-   433          }
-   434  
-   435          /* Use data from the GuC response as our return value */
-   436          ret = INTEL_GUC_MSG_TO_DATA(status);
-
-But this is setting "ret" to something positive in the 0xffff range.
-The caller treats it as an error code.
-
-   437  
-   438  out:
-   439          intel_uncore_forcewake_put(uncore, guc->send_regs.fw_domains);
-   440          mutex_unlock(&guc->send_mutex);
-   441  
-   442          return ret;
-   443  }
-
-regards,
-dan carpenter
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgaGF2ZSBhc3N1bWVkIHRoYXQgaWYgdGhlIGN1cnJlbnQgcGxhY2VtZW50IHdhcyBub3QgdGhl
+IHJlcXVlc3RlZApwbGFjZW1lbnQsIGJ1dCBpbnN0ZWFkIG9uZSBvZiB0aGUgYnVzeSBwbGFjZW1l
+bnRzLCBhIFRUTSBtb3ZlIHdvdWxkIGhhdmUKYmVlbiB0cmlnZ2VyZWQuIFRoYXQgaXMgbm90IHRo
+ZSBjYXNlLgoKU28gd2hlbiB3ZSBpbml0aWFsbHkgcGxhY2UgTE1FTSBvYmplY3RzIGluICJMaW1i
+byIsICh0aGF0IGlzIHN5c3RlbQpwbGFjZW1lbnQgd2l0aG91dCBhbnkgcGFnZXMgYWxsb2NhdGVk
+KSwgdG8gYmUgYWJsZSB0byBkZWZlciBjbGVhcmluZwpvYmplY3RzIHVudGlsIGZpcnN0IGdldF9w
+YWdlcygpLCB0aGUgZmlyc3QgZ2V0X3BhZ2VzKCkgd291bGQgaGFwcGlseSBrZWVwCm9iamVjdHMg
+aW4gc3lzdGVtIG1lbW9yeSBpZiB0aGF0IGlzIG9uZSBvZiB0aGUgYWxsb3dlZCBwbGFjZW1lbnRz
+LiBBbmQKc2luY2Ugd2UgZG9uJ3QgeWV0IHN1cHBvcnQgaTkxNSBHRU0gc3lzdGVtIG1lbW9yeSBm
+cm9tIFRUTSwgZXZlcnl0aGluZwpicmVha3MgYXBhcnQuCgpTbyBtYWtlIHN1cmUgd2UgdHJ5IHRo
+ZSByZXF1ZXN0ZWQgcGxhY2VtZW50IGZpcnN0LCBpZiBubyBldmljdGlvbiBpcwpuZWVkZWQuIElm
+IHRoYXQgZmFpbHMsIHJldHJ5IHdpdGggYWxsIGFsbG93ZWQgcGxhY2VtZW50cyBhbHNvIGFsbG93
+aW5nCmV2aWN0aW9ucy4gQWxzbyBtYWtlIHN1cmUgd2UgaGFuZGxlIFRUTSBmYWlsdXJlIGNvZGVz
+IGNvcnJlY3RseS4KCkFsc28gdGVtcG9yYXJpbHkgKHVudGlsIHdlIHN1cHBvcnQgaTkxNSBHRU0g
+c3lzdGVtIG9uIFRUTSksIHJlc3RyaWN0CmFsbG93ZWQgcGxhY2VtZW50cyB0byB0aGUgcmVxdWVz
+dGVkIHBsYWNlbWVudCB0byBhdm9pZCB0aGluZ3MgZmFsbGluZwphcGFydCBzaG91bGQgTE1FTSBi
+ZSBmdWxsLgoKRml4ZXM6IDM4ZjI4YzA2OTVjMCAoImRybS9pOTE1L3R0bTogQ2FsY3VsYXRlIHRo
+ZSBvYmplY3QgcGxhY2VtZW50IGF0IGdldF9wYWdlcyB0aW1lKQpTaWduZWQtb2ZmLWJ5OiBUaG9t
+YXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jIHwgNjEgKysrKysrKysrKysrKysr
+KysrKysrKystLQogMSBmaWxlIGNoYW5nZWQsIDU4IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCmluZGV4IGRmNDY1MzVj
+Y2E0Ny4uNGJiMDQ0MGY2OTNjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
+aTkxNV9nZW1fdHRtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0
+bS5jCkBAIC02NCw2ICs2NCwzMCBAQCBzdGF0aWMgc3RydWN0IHR0bV9wbGFjZW1lbnQgaTkxNV9z
+eXNfcGxhY2VtZW50ID0gewogCS5idXN5X3BsYWNlbWVudCA9ICZzeXNfcGxhY2VtZW50X2ZsYWdz
+LAogfTsKIAorc3RhdGljIGludCBpOTE1X3R0bV9lcnJfdG9fZ2VtKGludCBlcnIpCit7CisJLyog
+RmFzdHBhdGggKi8KKwlpZiAobGlrZWx5KCFlcnIpKQorCQlyZXR1cm4gMDsKKworCXN3aXRjaCAo
+ZXJyKSB7CisJY2FzZSAtRUJVU1k6CisJCS8qCisJCSAqIFRUTSBsaWtlcyB0byBjb252ZXJ0IC1F
+REVBRExLIHRvIC1FQlVTWSwgYW5kIHdhbnRzIHVzIHRvCisJCSAqIHJlc3RhcnQgdGhlIG9wZXJh
+dGlvbiwgc2luY2Ugd2UgZG9uJ3QgcmVjb3JkIHRoZSBjb250ZW5kaW5nCisJCSAqIGxvY2suIFdl
+IHVzZSAtRUFHQUlOIHRvIHJlc3RhcnQuCisJCSAqLworCQlyZXR1cm4gLUVBR0FJTjsKKwljYXNl
+IC1FTk9TUEM6CisJCS8qIE1lbW9yeSB0eXBlIC8gcmVnaW9uIGlzIGZ1bGwsIGFuZCB3ZSBjYW4n
+dCBldmljdC4gKi8KKwkJcmV0dXJuIC1FTlhJTzsKKwlkZWZhdWx0OgorCQlicmVhazsKKwl9CisK
+KwlyZXR1cm4gZXJyOworfQorCiBzdGF0aWMgdm9pZCBpOTE1X3R0bV9hZGp1c3RfbHJ1KHN0cnVj
+dCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOwogCiBzdGF0aWMgZW51bSB0dG1fY2FjaGluZwpA
+QCAtNTIyLDE1ICs1NDYsNDYgQEAgc3RhdGljIGludCBpOTE1X3R0bV9nZXRfcGFnZXMoc3RydWN0
+IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKIAlzdHJ1Y3Qgc2dfdGFibGUgKnN0OwogCXN0cnVj
+dCB0dG1fcGxhY2UgcmVxdWVzdGVkLCBidXN5W0k5MTVfVFRNX01BWF9QTEFDRU1FTlRTXTsKIAlz
+dHJ1Y3QgdHRtX3BsYWNlbWVudCBwbGFjZW1lbnQ7CisJaW50IHJlYWxfbnVtX2J1c3k7CiAJaW50
+IHJldDsKIAogCUdFTV9CVUdfT04ob2JqLT5tbS5uX3BsYWNlbWVudHMgPiBJOTE1X1RUTV9NQVhf
+UExBQ0VNRU5UUyk7CiAKIAkvKiBNb3ZlIHRvIHRoZSByZXF1ZXN0ZWQgcGxhY2VtZW50LiAqLwog
+CWk5MTVfdHRtX3BsYWNlbWVudF9mcm9tX29iaihvYmosICZyZXF1ZXN0ZWQsIGJ1c3ksICZwbGFj
+ZW1lbnQpOworCisJLyoKKwkgKiBGb3Igbm93IHdlIHN1cHBvcnQgTE1FTSBvbmx5IHdpdGggVFRN
+LgorCSAqIFRPRE86IFJlbW92ZSB3aXRoIHN5c3RlbSBzdXBwb3J0CisJICovCisJR0VNX0JVR19P
+TihyZXF1ZXN0ZWQubWVtX3R5cGUgPCBJOTE1X1BMX0xNRU0wIHx8CisJCSAgIGJ1c3lbMF0ubWVt
+X3R5cGUgPCBJOTE1X1BMX0xNRU0wKTsKKworCS8qIEZpcnN0IHRyeSBvbmx5IHRoZSByZXF1ZXN0
+ZWQgcGxhY2VtZW50LiBObyBldmljdGlvbi4gKi8KKwlyZWFsX251bV9idXN5ID0gZmV0Y2hfYW5k
+X3plcm8oJnBsYWNlbWVudC5udW1fYnVzeV9wbGFjZW1lbnQpOwogCXJldCA9IHR0bV9ib192YWxp
+ZGF0ZShibywgJnBsYWNlbWVudCwgJmN0eCk7Ci0JaWYgKHJldCkKLQkJcmV0dXJuIHJldCA9PSAt
+RU5PU1BDID8gLUVOWElPIDogcmV0OworCWlmIChyZXQpIHsKKwkJcmV0ID0gaTkxNV90dG1fZXJy
+X3RvX2dlbShyZXQpOworCQkvKgorCQkgKiBBbnl0aGluZyB0aGF0IHdhbnRzIHRvIHJlc3RhcnQg
+dGhlIG9wZXJhdGlvbiBnZXRzIHRvCisJCSAqIGRvIHRoYXQuCisJCSAqLworCQlpZiAocmV0ID09
+IC1FREVBRExLIHx8IHJldCA9PSAtRUlOVFIgfHwgcmV0ID09IC1FUkVTVEFSVFNZUyB8fAorCQkg
+ICAgcmV0ID09IC1FQUdBSU4pCisJCQlyZXR1cm4gcmV0OworCisJCS8qIFRPRE86IFJlbW92ZSB0
+aGlzIHdoZW4gd2Ugc3VwcG9ydCBzeXN0ZW0gYXMgVFRNLiAqLworCQlyZWFsX251bV9idXN5ID0g
+MTsKKworCQkvKgorCQkgKiBJZiB0aGUgaW5pdGlhbCBhdHRlbXB0IGZhaWxzLCBhbGxvdyBhbGwg
+YWNjZXB0ZWQgcGxhY2VtZW50cywKKwkJICogZXZpY3RpbmcgaWYgbmVjZXNzYXJ5LgorCQkgKi8K
+KwkJcGxhY2VtZW50Lm51bV9idXN5X3BsYWNlbWVudCA9IHJlYWxfbnVtX2J1c3k7CisJCXJldCA9
+IHR0bV9ib192YWxpZGF0ZShibywgJnBsYWNlbWVudCwgJmN0eCk7CisJCWlmIChyZXQpCisJCQly
+ZXR1cm4gaTkxNV90dG1fZXJyX3RvX2dlbShyZXQpOworCX0KIAogCS8qIE9iamVjdCBlaXRoZXIg
+aGFzIGEgcGFnZSB2ZWN0b3Igb3IgaXMgYW4gaW9tZW0gb2JqZWN0ICovCiAJc3QgPSBiby0+dHRt
+ID8gaTkxNV90dG1fdHRfZ2V0X3N0KGJvLT50dG0pIDogb2JqLT50dG0uY2FjaGVkX2lvX3N0OwpA
+QCAtNzQxLDUgKzc5Niw1IEBAIGludCBfX2k5MTVfZ2VtX3R0bV9vYmplY3RfaW5pdChzdHJ1Y3Qg
+aW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtLAogCQlvYmotPnR0bS5jcmVhdGVkID0gdHJ1ZTsKIAog
+CS8qIGk5MTUgd2FudHMgLUVOWElPIHdoZW4gb3V0IG9mIG1lbW9yeSByZWdpb24gc3BhY2UuICov
+Ci0JcmV0dXJuIChyZXQgPT0gLUVOT1NQQykgPyAtRU5YSU8gOiByZXQ7CisJcmV0dXJuIGk5MTVf
+dHRtX2Vycl90b19nZW0ocmV0KTsKIH0KLS0gCjIuMzEuMQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
