@@ -2,47 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E61B3B176C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 11:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB4B3B17F4
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 12:16:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 479686E89D;
-	Wed, 23 Jun 2021 09:58:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2ADB6E8A8;
+	Wed, 23 Jun 2021 10:16:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 839456E0A8;
- Wed, 23 Jun 2021 09:58:52 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id EE319C8009D;
- Wed, 23 Jun 2021 11:58:50 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id 5EkzRVUYpOD1; Wed, 23 Jun 2021 11:58:50 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f39:4900:3156:839d:aed8:6ea6]
- (p200300e37f3949003156839daED86Ea6.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f39:4900:3156:839d:aed8:6ea6])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 6935BC80099;
- Wed, 23 Jun 2021 11:58:50 +0200 (CEST)
-To: Pekka Paalanen <ppaalanen@gmail.com>
-References: <20210618091116.14428-1-wse@tuxedocomputers.com>
- <20210618091116.14428-18-wse@tuxedocomputers.com>
- <20210622102955.1e0488b1@eldfell>
- <ded3d448-4837-f38d-9878-f5d764712db7@tuxedocomputers.com>
- <20210623110156.4791505e@eldfell>
-From: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <ef491826-6aaa-754d-cc89-9190974d8767@tuxedocomputers.com>
-Date: Wed, 23 Jun 2021 11:58:47 +0200
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76A6D6EA1E;
+ Fri, 18 Jun 2021 14:09:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YJSsYvboq8gK2ur+DEJF7/J3IbzVkGpEzFSjZTQotrndojQ62R8+OibN05lQOSwpuRc5yfOJDVQ2BVstOZuRkgARLmJEedTW7/rb4NlqIdG/nSgXjlDPcGA1Bt4ylj1XnEo6/nUi+wHUwWTF3JwoVkJYMu7HlE2dU/pgZ8FDqjbAuoOCBKpYqxRKAz3w/ztqSwpT6Vod3rwpqF14EMGOG0qerWCrHKYmtzTohr2Sq2EeN3kg5pCgJZqLJtKOuFE1+piunZKuc1WJ6WPlW3X250BUvk8p2BVkiraXkGlwBmKS2V9lqjQKki18TVvmKpn9vbaH33eQvvuc2iq56sN1Sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oLRi1XsPF7LgTrIYyzkEtdY9k36UwfVsdF2v+x/5S7Y=;
+ b=TPRxPNpmSTJ/7vN1brX9+s2241iEZh09BhG6JVeUU09lOFXod+A15TqUFVEnNjvSqVI08EutTgspB2uGyk4fOxGW64vkzNmXqYSHoknJoM/xNx9Y8fSVib8DBrhlkTxPCdsmrfcKE4LThxydPppibLHnc7cQ8W/h0YiE+FAROIuH+8TlA/iLle1UkIZOo3BVM6TgRr/dUp1TJNSbBP28UFn7VQaVu2wqYvpnzy7VXoCwBG1zpo1B3AUkbfFtDU5rLW44pTkMKByGlZopoiH6iVwPR32388WBJ7XVHrnPzjuck8iDAf7HLSOv1UL060FuspIg3RA9tI22zAKQZJA+ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oLRi1XsPF7LgTrIYyzkEtdY9k36UwfVsdF2v+x/5S7Y=;
+ b=QkUKm9sET1rE+gXzqy9H/m4lcTx8io7KEu+5iEyilS9oOa536mQ9CuuzUlzqObo8Aqc/DocZRkn8x5EgNoclnkM+a94e4DFoy3ffNlXcdMSAejySPZ7CV8WK9ZTyTrzXWxITeNJ+c38M9xEbthHMZ/icYFKs5avw+x92jS1O4xU=
+Authentication-Results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB1355.namprd12.prod.outlook.com (2603:10b6:3:6e::7) by
+ DM5PR12MB1708.namprd12.prod.outlook.com (2603:10b6:3:10e::22) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4242.19; Fri, 18 Jun 2021 14:09:22 +0000
+Received: from DM5PR12MB1355.namprd12.prod.outlook.com
+ ([fe80::6437:2e87:f7dc:a686]) by DM5PR12MB1355.namprd12.prod.outlook.com
+ ([fe80::6437:2e87:f7dc:a686%12]) with mapi id 15.20.4219.026; Fri, 18 Jun
+ 2021 14:09:22 +0000
+To: Claire Chang <tientzu@chromium.org>,
+ Stefano Stabellini <sstabellini@kernel.org>
+References: <20210617062635.1660944-1-tientzu@chromium.org>
+ <20210617062635.1660944-2-tientzu@chromium.org>
+ <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s>
+ <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
+From: Tom Lendacky <thomas.lendacky@amd.com>
+Message-ID: <741a34cc-547c-984d-8af4-2f309880acfa@amd.com>
+Date: Fri, 18 Jun 2021 09:09:17 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.8.1
+In-Reply-To: <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
+Content-Language: en-US
+X-Originating-IP: [67.79.209.213]
+X-ClientProxiedBy: SN4PR0601CA0004.namprd06.prod.outlook.com
+ (2603:10b6:803:2f::14) To DM5PR12MB1355.namprd12.prod.outlook.com
+ (2603:10b6:3:6e::7)
 MIME-Version: 1.0
-In-Reply-To: <20210623110156.4791505e@eldfell>
-Content-Language: de-DE
-Subject: Re: [Intel-gfx] [PATCH v4 17/17] drm/amd/display: Add handling for
- new "Broadcast RGB" property
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from office-ryzen.texastahm.com (67.79.209.213) by
+ SN4PR0601CA0004.namprd06.prod.outlook.com (2603:10b6:803:2f::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19 via Frontend
+ Transport; Fri, 18 Jun 2021 14:09:19 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f221e95d-4e30-47fa-acd3-08d93262abdb
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1708:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB17081865F840834BCF17A650EC0D9@DM5PR12MB1708.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: W81zqNegGhXtmyGutYcXqZK6WKj93KvXEUQwinaX80I9UREJRH1X5ZjFo1bKCiBISoKjvPxFNrviGDgVpQw4M2gllzpECvkJWY31E4OCRtIQaq/+3i9fVL2/FWbzndFFmn2/y+Y5dZPeDx3ZIjwt6mOIuKijzIrzFQ7L07JWGQYcqmOaeNlKVE4rRh56CXuZQSFnvAy9O88DDyIBhSA15TxXobwBeyTQc3xSDctJrRF5sOM9pXIQNjT5lZWdEQR4xbKUdhtfp05lOLmbPIRSJcZQQwovsa52ZlzKn/NBTrjz5vqID/h+QlQpFRrBnO7I08jU+Z+zsoXIHstg6kSSgQ2UpU4Rqlv1EO4zKV/ShGbXgk2s1K2G0pJ1wpIHGmiRTwe/4FVtjVflUFLZdKECngBqGM4OUHsiEvIw6xj2dLFgkO1T/6vX0rIrWZPxn0eaHxGVv+xfGX6fpFkETbq5u79tnzKR5hgOZg2W85yQYeB8urPkhQEF7InNTbkkk6ZkrP6jjoNlBC/mg9wfDaylrRMM7DCner6q6TQ65AT0vHCMj1zGXzP8mAUQY8fy7AGzIrZAYKE+Q/p2lScDVNETcZNZlpdUzPXuQD4KNWNhh/JqTvD/fctFNKibIOQ0kWQP2L7pdUNyyHHO1WMMu3iAVHU8inHMg9CXJD30R9W34kljaPWy58nsvxvQExo0YNdotgHO21WNgw0xATsJMmODiG0GBp8KgvACKlNj80F4coAEgQWg5shi8PBatp0KTneYofTkP67Va0k2my2pPOGXG/JoKR5pQ4pBlKjmk8U2z4ObHjREhC0onwr2djrKFcQdKQzDyK/vHjjb8/LTdYo3vg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1355.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(346002)(396003)(366004)(39860400002)(136003)(83380400001)(186003)(8936002)(16526019)(26005)(4326008)(6486002)(7416002)(31696002)(66556008)(7366002)(6506007)(5660300002)(53546011)(2906002)(54906003)(38100700002)(8676002)(966005)(86362001)(45080400002)(66946007)(36756003)(478600001)(7406005)(6512007)(66476007)(2616005)(316002)(956004)(110136005)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTF1VW8zMVRmaGpmRzFsSWRqT08wSW5zbFMvbFp6VGtDQXJpc1ZCT0doNCs3?=
+ =?utf-8?B?YkxZMlpmMDFVUTZETXRLU0RsMCtwalpJWHlLaDh1U2ZZL2pCSnVCNXdvdUZQ?=
+ =?utf-8?B?NG1nOUJ3bDh2NEkzN1VrempKQUpERzgwZ2dRSWZPcEZLRGhtU2N2Qkw0Q2FH?=
+ =?utf-8?B?OTV0RWxiWnBrWmczM2FwWTlvRVYzVzljOW9xYTg4ZWhsc01rVVlodWdFUEx4?=
+ =?utf-8?B?UFJzcEpIMjcrbGRVcVBoeFVjL09YemszMFNnd1pPRi84bFhibXIvbGhRSk93?=
+ =?utf-8?B?Uis2WHFSakxvUjQ0ZUF1USt2NU05Z2tXZkV6TXZBdzdLL0RqWmpMbUF5K1Zv?=
+ =?utf-8?B?TnMvSThpODNDMURUaEVmcG5EVFVEdjdpZ2R4RVlaR01NQVBqOGp3cjhxcnE2?=
+ =?utf-8?B?b0daNFlPcVorYzlWV2IrNXJiQTA0R1VRY0FrWjV6UmVrYVM0U0VBUFpMYWMr?=
+ =?utf-8?B?V3ZmU1pHSnVlUWpnRkJzOTB2Rkl3MDJnL3lRWVJuMkw0OS9nV3llMHMrSWU4?=
+ =?utf-8?B?QkNjbGNIMjNNM002Q0pjeDhxL0E3Z29qVm1GQTdmUEpiajAxMGU1NVVJNFo2?=
+ =?utf-8?B?WWYrS0V3QWNkSUFZbjVGRU5pQXg5V2hmTHhCaStPUnF3SVlOTHg1VHJmUjUr?=
+ =?utf-8?B?a3FuOVFhYUNmQlk2Rk43aHNQTUo0Z29kQ3N2V3dFVkxnQlh6Z3cvZGtpTTBJ?=
+ =?utf-8?B?bytrdDdKTm1iV3UvZnNpcjJkNC9RRCtwZlllUmQzOEs4UnZONytFMzZZNnk3?=
+ =?utf-8?B?UDFPSEtwUDBGTGpldEJEVmtSNm42SC9PckxwaGxkaUlJMDU4T3lzWldPTUtM?=
+ =?utf-8?B?clUzVlpjcDVuYWk3akYrZ0V1RmNwMXZFWVA5S0p4UzA3eUh6azFKVWtBRE5q?=
+ =?utf-8?B?MVorMkVnY3l1dFpjNHRzK3E0YTIrSFRjQWlBRnhoZG01UVJNRGMzZXcrb3RD?=
+ =?utf-8?B?Z1BSS3FBNm95bFdQemF0eitMMWZvS3Uva1ZlQWI0ZFd3MTB3cXJaS1FiSnRx?=
+ =?utf-8?B?V2xkbGJvRnE1VnpMYUZUYjFvQi9RWmwzODcrajFsQzlDQjJaYWo0dDQ1UVB5?=
+ =?utf-8?B?cGhpek5NS3hReDcvUVUvZUpoN2V1Q1pxbGNjMUVqUG44MWhMUU94eml6c2Rl?=
+ =?utf-8?B?dmdpQysyVWppaE1qbXp6YUh4U0lyZU5TN1VueFFxazdienhmTDVmV1VyeDlT?=
+ =?utf-8?B?dXFrNFgwLzNkeDFqRkdmcUFHNjhjWncwTHdKWkk3YVhJWnlMTGNGNkVNc29r?=
+ =?utf-8?B?Z3NzSnZLQW5HRXFTMWZYdWdmT21samhtN0JMdzFzTmNLb21ZaHJyVnVqQnpB?=
+ =?utf-8?B?VGVkMnFlTktvcldFQVdZMGxBQ1drNjdLV213N3ZIY3c3UGlCUmZuUXFmeHpF?=
+ =?utf-8?B?TEJZRnN0U2hKeUx2S0RjWFVSZjllazZ4ckViUm1VSWQ1U0g1L1ZOZ1ZPL2k3?=
+ =?utf-8?B?OG81QlFkK3lnUW5weUFJVnVqSnMyNndCSjdJdi9EazBlekxkYThJYldqMDhr?=
+ =?utf-8?B?KzRaUUI3OFE1NlNCV1J3elBEVlNBTUtUdTU0eU5Ld3lQKzFER1oyb1ZEL2c0?=
+ =?utf-8?B?aklFUEg1bGR2TXp1NE9Nd3dQVU81ZGJXb0FKUG01Tk5ZYUlPTWRWenpJbnAx?=
+ =?utf-8?B?M01vYjh1THg4V0VaNDYvVXl1WDZ6aVI5TTFITlRDNzdTMGRmQ21NOTFOZEpz?=
+ =?utf-8?B?eno3RGo1dFhiR2c1ZE1WOHlTVnVGenc3L2QrbHZ0S1diWTJJcDVhWEhUc2Fi?=
+ =?utf-8?Q?esIpSlmSoBBKai4kWvfAW6bnueBOslxVkn4yALT?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f221e95d-4e30-47fa-acd3-08d93262abdb
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1355.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 14:09:22.5058 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Fc+b5bk+EKsqI5tf6Y9m5leX8+yq5/ThpNw9DurxKQTMG6UvMLJkVdybTkyH0xi09bRkLzh9r2w1pSsYiVXV4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1708
+X-Mailman-Approved-At: Wed, 23 Jun 2021 10:16:28 +0000
+Subject: Re: [Intel-gfx] [PATCH v13 01/12] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,111 +130,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
- alexander.deucher@amd.com, christian.koenig@amd.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Nicolas Boichat <drinkcat@chromium.org>,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ Jianxiong Gao <jxgao@google.com>, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjMuMDYuMjEgdW0gMTA6MDEgc2NocmllYiBQZWtrYSBQYWFsYW5lbjoKPiBPbiBUdWUsIDIy
-IEp1biAyMDIxIDExOjI4OjU3ICswMjAwCj4gV2VybmVyIFNlbWJhY2ggPHdzZUB0dXhlZG9jb21w
-dXRlcnMuY29tPiB3cm90ZToKPgo+PiBBbSAyMi4wNi4yMSB1bSAwOToyOSBzY2hyaWViIFBla2th
-IFBhYWxhbmVuOgo+Pj4gT24gRnJpLCAxOCBKdW4gMjAyMSAxMToxMToxNiArMDIwMAo+Pj4gV2Vy
-bmVyIFNlbWJhY2ggPHdzZUB0dXhlZG9jb21wdXRlcnMuY29tPiB3cm90ZToKPj4+ICAKPj4+PiBU
-aGlzIGNvbW1pdCBpbXBsZW1lbnRzIHRoZSAiQnJvYWRjYXN0IFJHQiIgZHJtIHByb3BlcnR5IGZv
-ciB0aGUgQU1EIEdQVQo+Pj4+IGRyaXZlci4KPj4+Pgo+Pj4+IFNpZ25lZC1vZmYtYnk6IFdlcm5l
-ciBTZW1iYWNoIDx3c2VAdHV4ZWRvY29tcHV0ZXJzLmNvbT4KPj4+PiAtLS0KPj4+PiAgLi4uL2dw
-dS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIHwgMjIgKysrKysrKysrKysr
-KystLS0tLQo+Pj4+ICAuLi4vZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX21zdF90eXBlcy5j
-ICAgfCAgNCArKysrCj4+Pj4gIDIgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKSwgNSBk
-ZWxldGlvbnMoLSkKPj4+Pgo+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rp
-c3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5
-L2FtZGdwdV9kbS9hbWRncHVfZG0uYwo+Pj4+IGluZGV4IDlmZmQyZjlkM2Q3NS4uYzVkYmY5NDhh
-NDdhIDEwMDY0NAo+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVf
-ZG0vYW1kZ3B1X2RtLmMKPj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1k
-Z3B1X2RtL2FtZGdwdV9kbS5jCj4+Pj4gQEAgLTUyNTIsNyArNTI1Miw4IEBAIGdldF9hc3BlY3Rf
-cmF0aW8oY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGVfaW4pCj4+Pj4gIH0KPj4+
-PiAgCj4+Pj4gIHN0YXRpYyBlbnVtIGRjX2NvbG9yX3NwYWNlCj4+Pj4gLWdldF9vdXRwdXRfY29s
-b3Jfc3BhY2UoY29uc3Qgc3RydWN0IGRjX2NydGNfdGltaW5nICpkY19jcnRjX3RpbWluZykKPj4+
-PiArZ2V0X291dHB1dF9jb2xvcl9zcGFjZShjb25zdCBzdHJ1Y3QgZGNfY3J0Y190aW1pbmcgKmRj
-X2NydGNfdGltaW5nLAo+Pj4+ICsJCSAgICAgICBlbnVtIGRybV9tb2RlX2NvbG9yX3JhbmdlIHBy
-ZWZlcnJlZF9jb2xvcl9yYW5nZSkKPj4+PiAgewo+Pj4+ICAJZW51bSBkY19jb2xvcl9zcGFjZSBj
-b2xvcl9zcGFjZSA9IENPTE9SX1NQQUNFX1NSR0I7Cj4+Pj4gIAo+Pj4+IEBAIC01MjY3LDEzICs1
-MjY4LDE3IEBAIGdldF9vdXRwdXRfY29sb3Jfc3BhY2UoY29uc3Qgc3RydWN0IGRjX2NydGNfdGlt
-aW5nICpkY19jcnRjX3RpbWluZykKPj4+PiAgCQkgKiByZXNwZWN0aXZlbHkKPj4+PiAgCQkgKi8K
-Pj4+PiAgCQlpZiAoZGNfY3J0Y190aW1pbmctPnBpeF9jbGtfMTAwaHogPiAyNzAzMDApIHsKPj4+
-PiAtCQkJaWYgKGRjX2NydGNfdGltaW5nLT5mbGFncy5ZX09OTFkpCj4+Pj4gKwkJCWlmIChkY19j
-cnRjX3RpbWluZy0+ZmxhZ3MuWV9PTkxZCj4+Pj4gKwkJCQkJfHwgcHJlZmVycmVkX2NvbG9yX3Jh
-bmdlID09Cj4+Pj4gKwkJCQkJCURSTV9NT0RFX0NPTE9SX1JBTkdFX0xJTUlURURfMTZfMjM1KQo+
-Pj4+ICAJCQkJY29sb3Jfc3BhY2UgPQo+Pj4+ICAJCQkJCUNPTE9SX1NQQUNFX1lDQkNSNzA5X0xJ
-TUlURUQ7Cj4+Pj4gIAkJCWVsc2UKPj4+PiAgCQkJCWNvbG9yX3NwYWNlID0gQ09MT1JfU1BBQ0Vf
-WUNCQ1I3MDk7ICAKPj4+IEhpLAo+Pj4KPj4+IGRvZXMgdGhpcyBtZWFuIHRoYXQgYW1kZ3B1IHdv
-dWxkIGJlIHVzaW5nIGEgcHJvcGVydHkgbmFtZWQgIkJyb2FkY2FzdAo+Pj4gUkdCIiB0byBjb250
-cm9sIHRoZSByYW5nZSBvZiBZQ2JDciB0b28/ICAKPj4gWWVzLCBiZWNhdXNlIEkgYXZvaWRlZCBj
-cmVhdGluZyBhIG5ldyBwcm9wZXJ0eSwgYnV0IEknbSBub3QgcmVhbGx5IGhhcHB5IHdpdGggaXQg
-ZWl0aGVyLgo+Pgo+PiBQb3NzaWJpbGl0eSAxOiBVc2UgIkJyb2FkY2FzdCBSR0IiIGZvciBZJ0Ni
-Q3IgdG9vIGFuZCBjbGFyaWZ5IGluIGRvY3VtZW50YXRpb24KPj4gwqDCoMKgIC0gc3RpbGwgY29u
-ZnVzaW5nIG5hbWUKPj4gwqDCoMKgIC0gbGltaXRlZCBkb2VzIG5vdCBtZWFuIHNvbWV0aGluZyBh
-IGxpdHRsZSBiaXQgZGlmZmVyZW50IGZvciBZJ0NiQ3IgYW5kIG5vdCBzdHJpY3RseSAxNi0yMzU6
-Cj4+IGh0dHBzOi8vd3d3Lmtlcm5lbC5vcmcvZG9jL2h0bWwvdjUuMTIvdXNlcnNwYWNlLWFwaS9t
-ZWRpYS92NGwvY29sb3JzcGFjZXMtZGVmcy5odG1sI2MuVjRMLnY0bDJfcXVhbnRpemF0aW9uICwg
-YnV0IG5hbWUKPj4gb2Ygb3B0aW9uIGlzIGdpdmVuIGJ5IHByZWV4aXN0aW5nIHByb3BlcnR5Cj4+
-Cj4+IFBvc3NpYmlsaXR5IDI6IERlcHJlY2F0ZSAiQnJvYWRjYXN0IFJHQiIgYW5kIGEgYSBtb3Jl
-IG5ldXRyYWwgc291bmRpbmcgInByZWZlcnJlZCBjb2xvciByYW5nZSIsIHdpdGggdGhlIG1vcmUg
-bmV1dHJhbAo+PiBzb3VuZGluZyAibGltaXRlZCIgb3B0aW9uIGluc3RlYWQgb2YgIkxpbWl0ZWQg
-MTY6MjM1Igo+PiDCoMKgwqAgLSBXaGF0J3MgdGhlIHJlbGF0aW9uIGJldHdlZW4gdGhlIDI/IHBx
-IG1lbnRpb25lZCBvbiB0aGUgYW1kZ3B1Cj4+IGdpdGxhYiB0aGF0IHRoZXJlIGlzIGEgcG9zaWJp
-bGl0eSBmb3IgdXNlcnNwYWNlIHRvIGhhdmUgb25seSB0aGUgbmV3Cj4+IG9yIHRoZSBvbGQgb25l
-IHNob3duCj4gSXQncyBqdXN0IGFuIGlkZWEgdGhhdCB3ZSBjb3VsZCBkZWNpZGUgdG8gZXhwb3Nl
-IG9ubHkgb25lIG9yIHRoZSBvdGhlcgo+IHByb3BlcnR5LiBJdCB3b3VsZCBuZWVkIHRvIGJlIGVu
-Z2luZWVyZWQgaW4gY29kZSwgZ28gdGhyb3VnaCB0aGUgVUFQSQo+IHZhbGlkYXRpb24gd2l0aCB1
-c2Vyc3BhY2UgZXRjLiBJJ20gbm90IGF3YXJlIG9mIHRoaXMgYmVpbmcgZG9uZSBiZWZvcmUKPiBl
-eGFjdGx5IGxpa2UgdGhpcywgYnV0IERSTSBjbGllbnQgY2FwcyBleGlzdC4KPgo+PiDCoMKgwqAg
-LSBBbHRlcm5hdGl2ZWx5IGlnbm9yZSAiQnJvYWRjYXN0IFJHQiIgd2hlbiAicHJlZmVycmVkIGNv
-bG9yIHJhbmdlIiBpcyBzZXQgYW5kIGhhdmUgdGhlbSBjb2V4aXN0Pwo+IERldGVybWluaW5nICJp
-cyBzZXQiIG1lYW5zIHdlIHdvdWxkIG5lZWQgInVuc2V0IiB2YWx1ZSBmb3IgInByZWZlcnJlZAo+
-IGNvbG9yIHJhbmdlIi4gQnV0IHRoZXJlIGlzIG5vIG5vdGlvbiBvZiB3aG8gc2V0IGl0LiBJZiBz
-b21lIEtNUyBjbGllbnQKPiBkZWNpZGVzIHRvIHNldCBpdCwgdGhlbiBpdCB3aWxsIGxpa2VseSBy
-ZW1haW4gc2V0LCBldmVuIGlmIHlvdSBuZXh0Cj4gc3RhcnQgYW5vdGhlciBLTVMgY2xpZW50IHdo
-byBkb2VzIG5vdCB1c2UgdGhpcyBwcm9wZXJ0eSAtIGl0IHdvdWxkIGp1c3QKPiBjb25mdXNlIHVz
-ZXJzIHdoZW4gIkJyb2FkY2FzdCBSR0IiIHNpbGVudGx5IHN0b3BwZWQgd29ya2luZyB3aGlsZSBp
-dAo+IHN0aWxsIGV4aXN0cy4KVW5zZXQgd291bGQgYmUgdGhlICJhdXRvIiBvcHRpb24uIEJ1dCBp
-IHRoaW5rIHRoaXMgcHJvYmxlbSBleGlzdHMgYWxyZWFkeSBlLmcuIGEgS01TIGNsaWVudCBpcyB1
-bmF3YXJlIG9mIHRoZSBuZXcKInByZWZlcnJlZCBjb2xvciBmb3JtYXQiIHByb3BlcnR5IGFuZCBz
-ZXRzICJCcm9hZGNhc3QgUkdCIiBvbiBpbnRlbCB3aGljaCBkb2VzIG5vdGhpbmcgaW4gdGhlIGNh
-c2Ugb2YgWSdDYkNyLgoKU2luY2UgdGhlIHByb3BlcnRpZXMgYWZmZWN0aW5nIGVhY2ggb3RoZXIs
-IGhhdmluZyBvbmx5IG9uZSBub3QgYXQgZGVmYXVsdCwgcG90ZW50aWFsbHkgYnJlYWtzIEtNUyBj
-bGllbnRzIHVuYXdhcmUgb2YKdGhlbSByZWdhcmRsZXNzLgo+Cj4gU28gSSBkb24ndCB0aGluayB0
-aGlzIGlzIGEgZ29vZCBzb2x1dGlvbi4KPgo+IFdoZW4gY29uc2lkZXJpbmcgYSBuZXcgcHJvcGVy
-dHksIHdoYXQgSSB3cm90ZSBqdXN0IGVhcmxpZXIgZml0IGhlcmU6Cj4gaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMjEtSnVuZS8zMTIyNDguaHRtbAo+
-Cj4gVGhlcmUgYXJlIG1vcmUgcXVlc3Rpb25zIHRoYXQganVzdCB3aGF0IGRvZXMgdGhlIGxpbWl0
-ZWQgcmFuZ2UgYWN0dWFsbHkKPiBtZWFuLgo+Cj4+PiBUaGF0IGlzIHN1cnByaXNpbmcuIElmIHRo
-aXMgaXMgdHJ1bHkgd2FudGVkLCB0aGVuIHRoZSBkb2N1bWVudGF0aW9uIG9mCj4+PiAiQnJvYWRj
-YXN0IFJHQiIgbXVzdCBzYXkgdGhhdCBpdCBhcHBsaWVzIHRvIFlDYkNyIHRvby4KPj4+Cj4+PiBE
-b2VzIGFtZGdwdSBkbyB0aGUgc2FtZSBhcyBpbnRlbCB3cnQuIHRvIHRoZSBxdWVzdGlvbiBhYm91
-dCB3aG9zZQo+Pj4gcmVzcG9uc2liaWxpdHkgaXQgaXMgdG8gbWFrZSB0aGUgcGl4ZWxzIGF0IHRo
-ZSBjb25uZWN0b3IgdG8gbWF0Y2ggdGhlCj4+PiBzZXQgcmFuZ2U/ICAKPj4gSSBndWVzcyB0aGUg
-a2VybmVsIGRyaXZlciBkb2VzIHRoZSBjb252ZXJzaW9uLCBidXQgaSBoYXZlIHRvIGNoZWNrCj4+
-IGZvciBib3RoLgo+Pgo+PiBGb3IgSW50ZWwgSSBkaWQgbm90IGNoYW5nZSB0aGUgYmVoYXZpb3Ig
-b2YgQm9yYWRjYXN0IFJHQiwgYnV0IGkgdGhpbmsKPj4gaXQncyBub3QgY2xlYXJseSBzcGVjaWZp
-ZWQgaW4gdGhlIGRvY3Mgd2hlcmUgdGhlIGNvbnZlcnNpb24gaGFwcGVucy4KPiBSaWdodCwgYXQg
-dGhlIHZlcnkgbGVhc3QgdGhlIGN1cnJlbnQgYmVoYXZpb3VyIG5lZWRzIHRvIGJlIGRvY3VtZW50
-ZWQKPiBiZWZvcmUgZW5yb2xsaW5nIHRoaXMgcHJvcGVydHkgdG8gYW55IG1vcmUgZHJpdmVycywg
-c28gdGhhdCB0aG9zZQo+IGRyaXZlcnMgY2FuIHRoZW4gYmUgcmV2aWV3ZWQgdG8gd29yayB0aGUg
-c2FtZSB3YXkuCj4KPiBZb3Ugbm90aWNlIEkgZGlkbid0IGFjdHVhbGx5IGFuc3dlciB5b3VyIHF1
-ZXN0aW9uIDEgb3IgMi4gSSBkb24ndCBrbm93Lgo+IEdvaW5nIHdpdGggMSBpcyBlYXN5IGNvbXBh
-cmVkIHRvIDIsIGV2ZW4gaWYgdGhlIG5hbWVzIGFyZSBhd2t3YXJkIGJ1dAo+IGl0IHRlY2huaWNh
-bGx5IHNob3VsZG4ndCBjYXVzZSBhbnkgcHJvYmxlbXMuIDIgbWF5IG9yIG1heSBub3QgYmUKPiBi
-ZXR0ZXIsIGFuZCB1bnRpbCB3ZSBoYXZlIGFuc3dlcnMgdG8gd2hpY2ggZGVzaWduIGlzIGJldHRl
-ciwgaXQncyBtYXliZQo+IGJlc3QgdG8gbGVhdmUgb3B0aW9uIDIgYWxvbmU/Ck9LLCBJIHdpbGwg
-dHJ5IHRvIHZhbGlkYXRlIHRoZSBiZWhhdmlvciBvZiB0aGUgSW50ZWwgZHJpdmVyIGFuZCBiZSBk
-ZXRhaWxlZCBpbiB0aGUgZG9jdW1lbnRhdGlvbiwgYnV0IGtlZXAgdGhlCmltcGxlbWVudGF0aW9u
-IGxpa2UgdGhpcyBub3cgKHVubGVzcyB0aGUgaW50ZWwgZHJpdmVyIGRvZXMgc29tZXRoaW5nIGRp
-ZmZlcmVudCB0aGVuIEkgdGhvdWdodCBvZmMpLgo+Cj4KPiBUaGFua3MsCj4gcHEKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 6/18/21 1:25 AM, Claire Chang wrote:
+> On Fri, Jun 18, 2021 at 7:30 AM Stefano Stabellini
+> <sstabellini@kernel.org> wrote:
+>>
+>> On Thu, 17 Jun 2021, Claire Chang wrote:
+>>> Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
+>>> initialization to make the code reusable.
+>>>
+>>> Signed-off-by: Claire Chang <tientzu@chromium.org>
+>>> Reviewed-by: Christoph Hellwig <hch@lst.de>
+>>> Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+>>> Tested-by: Will Deacon <will@kernel.org>
+>>> ---
+>>>  kernel/dma/swiotlb.c | 50 ++++++++++++++++++++++----------------------
+>>>  1 file changed, 25 insertions(+), 25 deletions(-)
+>>>
+>>> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+>>> index 52e2ac526757..47bb2a766798 100644
+>>> --- a/kernel/dma/swiotlb.c
+>>> +++ b/kernel/dma/swiotlb.c
+>>> @@ -168,9 +168,28 @@ void __init swiotlb_update_mem_attributes(void)
+>>>       memset(vaddr, 0, bytes);
+>>>  }
+>>>
+>>> -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+>>> +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
+>>> +                                 unsigned long nslabs, bool late_alloc)
+>>>  {
+>>> +     void *vaddr = phys_to_virt(start);
+>>>       unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+>>> +
+>>> +     mem->nslabs = nslabs;
+>>> +     mem->start = start;
+>>> +     mem->end = mem->start + bytes;
+>>> +     mem->index = 0;
+>>> +     mem->late_alloc = late_alloc;
+>>> +     spin_lock_init(&mem->lock);
+>>> +     for (i = 0; i < mem->nslabs; i++) {
+>>> +             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+>>> +             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+>>> +             mem->slots[i].alloc_size = 0;
+>>> +     }
+>>> +     memset(vaddr, 0, bytes);
+>>> +}
+>>> +
+>>> +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+>>> +{
+>>>       struct io_tlb_mem *mem;
+>>>       size_t alloc_size;
+>>>
+>>> @@ -186,16 +205,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+>>>       if (!mem)
+>>>               panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
+>>>                     __func__, alloc_size, PAGE_SIZE);
+>>> -     mem->nslabs = nslabs;
+>>> -     mem->start = __pa(tlb);
+>>> -     mem->end = mem->start + bytes;
+>>> -     mem->index = 0;
+>>> -     spin_lock_init(&mem->lock);
+>>> -     for (i = 0; i < mem->nslabs; i++) {
+>>> -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+>>> -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+>>> -             mem->slots[i].alloc_size = 0;
+>>> -     }
+>>> +
+>>> +     swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
+>>>
+>>>       io_tlb_default_mem = mem;
+>>>       if (verbose)
+>>> @@ -282,8 +293,8 @@ swiotlb_late_init_with_default_size(size_t default_size)
+>>>  int
+>>>  swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+>>>  {
+>>> -     unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+>>>       struct io_tlb_mem *mem;
+>>> +     unsigned long bytes = nslabs << IO_TLB_SHIFT;
+>>>
+>>>       if (swiotlb_force == SWIOTLB_NO_FORCE)
+>>>               return 0;
+>>> @@ -297,20 +308,9 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+>>>       if (!mem)
+>>>               return -ENOMEM;
+>>>
+>>> -     mem->nslabs = nslabs;
+>>> -     mem->start = virt_to_phys(tlb);
+>>> -     mem->end = mem->start + bytes;
+>>> -     mem->index = 0;
+>>> -     mem->late_alloc = 1;
+>>> -     spin_lock_init(&mem->lock);
+>>> -     for (i = 0; i < mem->nslabs; i++) {
+>>> -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+>>> -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+>>> -             mem->slots[i].alloc_size = 0;
+>>> -     }
+>>> -
+>>> +     memset(mem, 0, sizeof(*mem));
+>>> +     swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
+>>>       set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
+>>> -     memset(tlb, 0, bytes);
+>>
+>> This is good for swiotlb_late_init_with_tbl. However I have just noticed
+>> that mem could also be allocated from swiotlb_init_with_tbl, in which
+>> case the zeroing is missing. I think we need another memset in
+>> swiotlb_init_with_tbl as well. Or maybe it could be better to have a
+>> single memset at the beginning of swiotlb_init_io_tlb_mem instead. Up to
+>> you.
+> 
+> swiotlb_init_with_tbl uses memblock_alloc to allocate the io_tlb_mem
+> and memblock_alloc[1] will do memset in memblock_alloc_try_nid[2], so
+> swiotlb_init_with_tbl is also good.
+> I'm happy to add the memset in swiotlb_init_io_tlb_mem if you think
+> it's clearer and safer.
+
+On x86, if the memset is done before set_memory_decrypted() and memory
+encryption is active, then the memory will look like ciphertext afterwards
+and not be zeroes. If zeroed memory is required, then a memset must be
+done after the set_memory_decrypted() calls.
+
+Thanks,
+Tom
+
+> 
+> [1] https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.13-rc6%2Fsource%2Finclude%2Flinux%2Fmemblock.h%23L407&amp;data=04%7C01%7Cthomas.lendacky%40amd.com%7C3e33e04212b84f9e4ed108d932230511%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637595948355050693%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=TGBDj18KuSHTb45EBz%2Bypfbr4Xgqb1aGTRDCTIpIgJo%3D&amp;reserved=0
+> [2] https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.13-rc6%2Fsource%2Fmm%2Fmemblock.c%23L1555&amp;data=04%7C01%7Cthomas.lendacky%40amd.com%7C3e33e04212b84f9e4ed108d932230511%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637595948355060689%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=K%2FWbN6iKN9JNtwDSkIaKH2BVLdDTWhn8tPfNdCOVkSA%3D&amp;reserved=0
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
