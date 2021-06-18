@@ -2,62 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212683AC0C1
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 04:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 475DF3AC0CD
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 04:31:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BAD06E855;
-	Fri, 18 Jun 2021 02:29:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A1996E96D;
+	Fri, 18 Jun 2021 02:31:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com
- [IPv6:2607:f8b0:4864:20::532])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1673E6E855
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 02:29:36 +0000 (UTC)
-Received: by mail-pg1-x532.google.com with SMTP id e33so6551020pgm.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 19:29:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=date:from:to:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=lfPVG5Rlds1gsdNwyYiwTk3qXAK1bjtNSBW/loIyjKY=;
- b=E2p6v27bJYXXFcPeI5HII06b35v9VeR4Y4LrX8rCAPy1EKcPKWRNCLSeoRvFB6gu7a
- 20danzHU+5B4CO5YgjmOJsLR+X+AJ+glc5VcTxedFJ3oKqjyLWzZO24FXuUSB+0naqmE
- k6pwiekhhbjBwqo4/5qvEF6ACa0hCftM65IOE=
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBA96E95C;
+ Fri, 18 Jun 2021 02:31:04 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id ji1so7143914ejc.4;
+ Thu, 17 Jun 2021 19:31:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=9yyyMKBrphDCvLIddP9ExwdOR8yx43CwQU58A8Mo1ww=;
+ b=O+dgbFp2mVh4QjCx+3yoci5Uy6VErpQ3ZEdgcCGibpOzManzD/fqTPoASpkxldm7WX
+ R2z/jpyo1cDqKF6UuSwOJJHl18CkCVdBpasuLXVFNt9lGP1vNG6vmbPjs3P1CLkZ3SDs
+ 9y0grF+3s5jHP5G3OkEggW1xxZhk5I5EbjEot5UHSMcT5vy/kfVBFeIz3VkdGpKMbnve
+ Y2c1aMg7qVyZTBc9gyC63SqRZkwZyEZBHUX1/jvZzzNF3Cdd/TlP9Or8yQi1GukAGkEW
+ jFAeYc+gd8HhFJ4Pere4GQtVJdHl8oLUYWWJwoE1QPjTDhNzHOzMBwmWkagxTx7f4TJB
+ TLmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=lfPVG5Rlds1gsdNwyYiwTk3qXAK1bjtNSBW/loIyjKY=;
- b=MZGNpe/8xMD31BET3SZwTuhFso6YB6Q575tECQQfx7JN4e2JYx4mwl9SE+k9A05e0v
- YylU3i+JbA/uHJ60Yz6mvUaVKb4HEmSBvSq02Crzmfo3Wf9J1PuAOq7huT9/7ksybkiU
- mb8b6VFwWoejTqgjacG5FodUSOxpv6mM5O4OC4aFTUAIpkGr3d4eXvJiVtf+nwQZ6eX9
- TBN/PhsPi/BTIRPZGVKpIL12Qd1QoNf9KkdqomSTJ22k6z4EJnKR/AUhmWUhwyeTzesd
- K42Tpi5qlclKIqRWFR2ZAJCNhrB4Tva7n9rs3AM4fBf0HbWmrb+xDvZJrXPqB8PEO0jX
- rmow==
-X-Gm-Message-State: AOAM533L12t6uoLXJYyyuaXIkE5qcsnktYTxxfivtbGqvvgLwN8d6QLM
- CcErVXbq2Bk0X0WoszemBrqaOw==
-X-Google-Smtp-Source: ABdhPJyS6c3QGhrzjMIrW+aGUG63njKnr2ncdaOY4gTWMcv6MJ1tkZvI9BCbGpvn07MueABqKDk/xQ==
-X-Received: by 2002:a63:5c4a:: with SMTP id n10mr7829823pgm.279.1623983375774; 
- Thu, 17 Jun 2021 19:29:35 -0700 (PDT)
-Received: from google.com ([2409:10:2e40:5100:51a0:fc:f202:9f8])
- by smtp.gmail.com with ESMTPSA id v7sm6368683pfi.187.2021.06.17.19.29.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Jun 2021 19:29:35 -0700 (PDT)
-Date: Fri, 18 Jun 2021 11:29:30 +0900
-From: Sergey Senozhatsky <senozhatsky@chromium.org>
-To: Sergey Senozhatsky <senozhatsky@chromium.org>,
- Matthew Auld <matthew.william.auld@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Chris Wilson <chris@chris-wilson.co.uk>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-ID: <YMwFCoHzjnuH80p6@google.com>
-References: <YMdPcWZi4x7vnCxI@google.com> <YMuGGqs4cDotxuKO@phenom.ffwll.local>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=9yyyMKBrphDCvLIddP9ExwdOR8yx43CwQU58A8Mo1ww=;
+ b=oCoAPvir6yQhgCnZKH90g2ktkzUwKipkkmU4VhiOnMJGzZSFCCOxPRjfJWMegtPMyE
+ SWZ/9HLNVQgaC0AUnSSAro9kdN8pU16fvRSPUzEqliXaElT5Nql/nhCLYywjSqiE6hkw
+ sv/3L4IE+QKWRJ3JiFMgDJaiq4q1t/Vbvo+ASbUd20uP1zazll2wONaei8DE3poUAtm5
+ 1EqnH5tci8c7MDTh6PCnMvwJagP2tKVFc6YD/zlKK3rchgNEoj3M+JOctveF6UDuu8b6
+ SXgr0jf+RpY9QEjDWd3RxUrfRkhipBdBkHabeD82UDYFk3BguH2GNo//ZJeOL7A93nyf
+ V75w==
+X-Gm-Message-State: AOAM533W8xt+lPLsrwqUFpR6AlsJuTibOT2PCdviXPx8VVKnaQyA3+A1
+ yIUCxgh2k7lfDdPDrocrDgMPN8TQOqX06eYfgQgfQTFYbDE=
+X-Google-Smtp-Source: ABdhPJxoUgOAMMVdZNTVGxwg01ArBwMp09+yJRs+7IiV5Ux0OaRp7DPZ4tKclos5bp4REsMEcf2s/3qRFIDnGsbHteY=
+X-Received: by 2002:a17:907:d92:: with SMTP id
+ go18mr8577855ejc.317.1623983462682; 
+ Thu, 17 Jun 2021 19:31:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YMuGGqs4cDotxuKO@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] drm/i915: __GFP_RETRY_MAYFAIL allocations in stable
- kernels
+References: <YMpDYfRjFqjfrMke@linux-uq9g.fritz.box>
+ <CAPM=9tz-8WVAt5r_P+fH+SLnfnaPw-u-u9h8PvcioxVn6Ye_Fg@mail.gmail.com>
+In-Reply-To: <CAPM=9tz-8WVAt5r_P+fH+SLnfnaPw-u-u9h8PvcioxVn6Ye_Fg@mail.gmail.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 18 Jun 2021 12:30:51 +1000
+Message-ID: <CAPM=9tyQMXVTaggmiTrqXkaH_RsTOcNW9CA98CbFf0kwqP_T5Q@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, Lyude Paul <lyude@redhat.com>
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,55 +63,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On (21/06/17 19:27), Daniel Vetter wrote:
-> > 
-> > So can all allocations in gen8_init_scratch() use
-> > 	GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN
-> 
-> Yeah that looks all fairly broken tbh. The only thing I didn't know was
-> that GFP_DMA32 wasn't a full gfp mask with reclaim bits set as needed. I
-> guess it would be clearer if we use GFP_KERNEL | __GFP_DMA32 for these.
-
-Looks good.
-
-> The commit that introduced a lot of this, including I915_GFP_ALLOW_FAIL
-> seems to be
-> 
-> commit 1abb70f5955d1a9021f96359a2c6502ca569b68d
-> Author: Chris Wilson <chris@chris-wilson.co.uk>
-> Date:   Tue May 22 09:36:43 2018 +0100
-> 
->     drm/i915/gtt: Allow pagedirectory allocations to fail
-> 
-> which used a selftest as justification, not real world workloads, so looks
-> rather dubious.
-
-Exactly, the commit we landed internally partially reverts 1abb70f5955
-in 4.19 and 5.4 kernels. I don't mind I915_GFP_ALLOW_FAIL and so on, I
-kept those bits, but we need reclaim. I can reproduce cases when order:0
-allocation fails with
-	__GFP_HIGHMEM|__GFP_RETRY_MAYFAIL
-but succeeds with
-	GFP_KERNEL|__GFP_HIGHMEM|__GFP_RETRY_MAYFAIL
-
-
-ON a side note, I'm not very sure if __GFP_RETRY_MAYFAIL is actually
-needed. Especially seeing it in syscalls is a bit uncommon:
-
-  drm_ioctl()
-   i915_gem_context_create_ioctl()
-    i915_gem_create_context()
-     i915_ppgtt_create()
-      setup_scratch_page()           // __GFP_RETRY_MAYFAIL
-
-But with GFP_KERNEL at least it tries to make some reclaim progress
-between retries, so it seems to be good enough.
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAxOCBKdW4gMjAyMSBhdCAxMjoyNiwgRGF2ZSBBaXJsaWUgPGFpcmxpZWRAZ21haWwu
+Y29tPiB3cm90ZToKPgo+IHdoZW4gSSBwdWxsZWQgdGhpcyBpbiBkcm0tbmV4dCBJIGdvdCB0aGVz
+ZS4KPgo+IHdlcmUgdGhlIG1zdCBmaXhlcyBtZWFudCBmb3IgbmV4dCBvciBmaXhlcyBidHc/IEkn
+bSBub3QgcmVhbGx5IHN1cmUsCj4gYnV0IGVpdGhlciB3YXkgSSBkb24ndCB0aGluayB0aGlzIGlz
+IGEgbG9jYWwgcmVhc29uIGl0IGRvZXNuJ3QgYnVpbGQKPiBvciBkaWQgSSBtaXNzIHNvbWV0aGlu
+Zz8KCkhpIFRob21hcywKClBsZWFzZSByZXNlbmQgd2l0aCB0aGUgZml4IEx5dWRlIGhhcyBwdXNo
+ZWQgKGp1c3Qga2VlcCBidWlsZGluZywganVzdAprZWVwIGJ1aWxkaW5nKS4KClRoYW5rcywKRGF2
+ZS4KPgo+IERhdmUuCj4KPiAvaG9tZS9haXJsaWVkL2RldmVsL2tlcm5lbC9kaW0vc3JjL2RyaXZl
+cnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmM6Cj4gSW4gZnVuY3Rpb24g4oCYZHJtX2Rw
+X3VwZGF0ZV9wYXlsb2FkX3BhcnQx4oCZOgo+IC9ob21lL2FpcmxpZWQvZGV2ZWwva2VybmVsL2Rp
+bS9zcmMvaW5jbHVkZS9kcm0vZHJtX3ByaW50Lmg6NDUwOjI3Ogo+IGVycm9yOiByZXF1ZXN0IGZv
+ciBtZW1iZXIg4oCYZGV24oCZIGluIHNvbWV0aGluZyBub3QgYSBzdHJ1Y3R1cmUgb3IgdW5pb24K
+PiAgIDQ1MCB8ICBkcm1fZGV2X2RiZygoZHJtKSA/IChkcm0pLT5kZXYgOiBOVUxMLCBEUk1fVVRf
+S01TLCBmbXQsICMjX19WQV9BUkdTX18pCj4gICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIF5+Cj4gL2hvbWUvYWlybGllZC9kZXZlbC9rZXJuZWwvZGltL3NyYy9kcml2ZXJzL2dwdS9k
+cm0vZHJtX2RwX21zdF90b3BvbG9neS5jOjMzOTI6NToKPiBub3RlOiBpbiBleHBhbnNpb24gb2Yg
+bWFjcm8g4oCYZHJtX2RiZ19rbXPigJkKPiAgMzM5MiB8ICAgICBkcm1fZGJnX2ttcygiVmlydHVh
+bCBjaGFubmVsICVkIGlzIG5vdCBpbiBjdXJyZW50IHRvcG9sb2d5XG4iLCBpKTsKPiAgICAgICB8
+ICAgICBefn5+fn5+fn5+fgo+IC9ob21lL2FpcmxpZWQvZGV2ZWwva2VybmVsL2RpbS9zcmMvZHJp
+dmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYzozMzkyOjY4Ogo+IHdhcm5pbmc6IHBh
+c3NpbmcgYXJndW1lbnQgMyBvZiDigJhkcm1fZGV2X2RiZ+KAmSBtYWtlcyBwb2ludGVyIGZyb20K
+PiBpbnRlZ2VyIHdpdGhvdXQgYSBjYXN0IFstV2ludC1jb252ZXJzaW9uXQo+ICAzMzkyIHwgICAg
+IGRybV9kYmdfa21zKCJWaXJ0dWFsIGNoYW5uZWwgJWQgaXMgbm90IGluIGN1cnJlbnQgdG9wb2xv
+Z3lcbiIsIGkpOwo+ICAgICAgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF4KPiAgICAgICB8ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4g
+ICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgaW50Cj4gL2hvbWUvYWlybGllZC9kZXZlbC9rZXJuZWwvZGltL3Ny
+Yy9pbmNsdWRlL2RybS9kcm1fcHJpbnQuaDo0NTA6NTM6Cj4gbm90ZTogaW4gZGVmaW5pdGlvbiBv
+ZiBtYWNybyDigJhkcm1fZGJnX2ttc+KAmQo+ICAgNDUwIHwgIGRybV9kZXZfZGJnKChkcm0pID8g
+KGRybSktPmRldiA6IE5VTEwsIERSTV9VVF9LTVMsIGZtdCwgIyNfX1ZBX0FSR1NfXykKPiAgICAg
+ICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBe
+fn4KPiAvaG9tZS9haXJsaWVkL2RldmVsL2tlcm5lbC9kaW0vc3JjL2luY2x1ZGUvZHJtL2RybV9w
+cmludC5oOjMzODoxNjoKPiBub3RlOiBleHBlY3RlZCDigJhjb25zdCBjaGFyICrigJkgYnV0IGFy
+Z3VtZW50IGlzIG9mIHR5cGUg4oCYaW504oCZCj4gICAzMzggfCAgICBjb25zdCBjaGFyICpmb3Jt
+YXQsIC4uLik7Cj4gICAgICAgfCAgICB+fn5+fn5+fn5+fn5efn5+fn4KPiAvaG9tZS9haXJsaWVk
+L2RldmVsL2tlcm5lbC9kaW0vc3JjL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5
+LmM6MzQwNzo1MzoKPiBlcnJvcjogbWFjcm8gImRybV9kYmdfa21zIiByZXF1aXJlcyAzIGFyZ3Vt
+ZW50cywgYnV0IG9ubHkgMSBnaXZlbgo+ICAzNDA3IHwgICAgICAgZHJtX2RiZ19rbXMoIkZhaWw6
+c2V0IHBheWxvYWQgdG8gaW52YWxpZCBzaW5rIik7Cj4gICAgICAgfCAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXgo+IEluIGZpbGUgaW5jbHVkZWQg
+ZnJvbQo+IC9ob21lL2FpcmxpZWQvZGV2ZWwva2VybmVsL2RpbS9zcmMvZHJpdmVycy9ncHUvZHJt
+L2RybV9kcF9tc3RfdG9wb2xvZ3kuYzo0NToKPiAvaG9tZS9haXJsaWVkL2RldmVsL2tlcm5lbC9k
+aW0vc3JjL2luY2x1ZGUvZHJtL2RybV9wcmludC5oOjQ0OTogbm90ZToKPiBtYWNybyAiZHJtX2Ri
+Z19rbXMiIGRlZmluZWQgaGVyZQo+ICAgNDQ5IHwgI2RlZmluZSBkcm1fZGJnX2ttcyhkcm0sIGZt
+dCwgLi4uKSAgICAgXAo+ICAgICAgIHwKPiAvaG9tZS9haXJsaWVkL2RldmVsL2tlcm5lbC9kaW0v
+c3JjL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmM6MzQwNzo3Ogo+IGVycm9y
+OiDigJhkcm1fZGJnX2ttc+KAmSB1bmRlY2xhcmVkIChmaXJzdCB1c2UgaW4gdGhpcyBmdW5jdGlv
+bikKPiAgMzQwNyB8ICAgICAgIGRybV9kYmdfa21zKCJGYWlsOnNldCBwYXlsb2FkIHRvIGludmFs
+aWQgc2luayIpOwo+ICAgICAgIHwgICAgICAgXn5+fn5+fn5+fn4KPiAvaG9tZS9haXJsaWVkL2Rl
+dmVsL2tlcm5lbC9kaW0vc3JjL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmM6
+MzQwNzo3Ogo+IG5vdGU6IGVhY2ggdW5kZWNsYXJlZCBpZGVudGlmaWVyIGlzIHJlcG9ydGVkIG9u
+bHkgb25jZSBmb3IgZWFjaAo+IGZ1bmN0aW9uIGl0IGFwcGVhcnMgaW4KPiBtYWtlWzRdOiAqKiog
+Wy9ob21lL2FpcmxpZWQvZGV2ZWwva2VybmVsL2RpbS9zcmMvc2NyaXB0cy9NYWtlZmlsZS5idWls
+ZDoyNzI6Cj4gZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kub10gRXJyb3IgMQo+
+IG1ha2VbNF06ICoqKiBXYWl0aW5nIGZvciB1bmZpbmlzaGVkIGpvYnMuLi4uCj4KPiBPbiBUaHUs
+IDE3IEp1biAyMDIxIGF0IDA0OjMwLCBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3Vz
+ZS5kZT4gd3JvdGU6Cj4gPgo+ID4gSGkgRGF2ZSBhbmQgRGFuaWVsLAo+ID4KPiA+IGhlcmUncyB0
+aGlzIHdlZWsncyBQUiBmb3IgZHJtLW1pc2MtbmV4dC1maXhlcy4KPiA+Cj4gPiBCZXN0IHJlZ2Fy
+ZHMKPiA+IFRob21hcwo+ID4KPiA+IGRybS1taXNjLW5leHQtZml4ZXMtMjAyMS0wNi0xNjoKPiA+
+IFNob3J0IHN1bW1hcnkgb2YgZml4ZXMgcHVsbDoKPiA+Cj4gPiAgKiBoeXBlcnY6IGFkdmVydGlz
+ZSB0aGUgY29ycmVjdCBmb3JtYXRtb2RpZmllcnMgZm9yIGl0cyBwcmltYXJ5IHBsYW5lCj4gPiAg
+KiBkcF9tc3Q6IFZDUEkgZml4ZXMgdG8gbWFrZSBpdCB3b3JrIHdpdGggU3RhclRlY2ggaHViCj4g
+Pgo+ID4gVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdCAxYmQ4YTdkYzI4YzFjNDEw
+ZjFjZWVmYWUxZjJhOTdjMDZkMWE2N2MyOgo+ID4KPiA+ICAgTWVyZ2UgdGFnICdleHlub3MtZHJt
+LW5leHQtZm9yLXY1LjE0JyBvZiBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tl
+cm5lbC9naXQvZGFlaW5raS9kcm0tZXh5bm9zIGludG8gZHJtLW5leHQgKDIwMjEtMDYtMTEgMTQ6
+MTk6MTIgKzEwMDApCj4gPgo+ID4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkg
+YXQ6Cj4gPgo+ID4gICBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtLW1pc2Mg
+dGFncy9kcm0tbWlzYy1uZXh0LWZpeGVzLTIwMjEtMDYtMTYKPiA+Cj4gPiBmb3IgeW91IHRvIGZl
+dGNoIGNoYW5nZXMgdXAgdG8gMzc2OWU0YzBhZjViODJjOGVhMjFkMDM3MDEzY2I5NTY0ZGZhYTUx
+ZjoKPiA+Cj4gPiAgIGRybS9kcF9tc3Q6IEF2b2lkIHRvIG1lc3MgdXAgcGF5bG9hZCB0YWJsZSBi
+eSBwb3J0cyBpbiBzdGFsZSB0b3BvbG9neSAoMjAyMS0wNi0xNiAxMjo1Nzo0NiAtMDQwMCkKPiA+
+Cj4gPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tCj4gPiBTaG9ydCBzdW1tYXJ5IG9mIGZpeGVzIHB1bGw6Cj4gPgo+ID4gICog
+aHlwZXJ2OiBhZHZlcnRpc2UgdGhlIGNvcnJlY3QgZm9ybWF0bW9kaWZpZXJzIGZvciBpdHMgcHJp
+bWFyeSBwbGFuZQo+ID4gICogZHBfbXN0OiBWQ1BJIGZpeGVzIHRvIG1ha2UgaXQgd29yayB3aXRo
+IFN0YXJUZWNoIGh1Ygo+ID4KPiA+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiA+IFB1IExlaHVpICgxKToKPiA+ICAgICAg
+IGRybS9oeXBlcnY6IEZpeCB1bnVzZWQgY29uc3QgdmFyaWFibGUgJ2h5cGVydl9tb2RpZmllcnMn
+Cj4gPgo+ID4gV2F5bmUgTGluICgyKToKPiA+ICAgICAgIGRybS9kcF9tc3Q6IERvIG5vdCBzZXQg
+cHJvcG9zZWQgdmNwaSBkaXJlY3RseQo+ID4gICAgICAgZHJtL2RwX21zdDogQXZvaWQgdG8gbWVz
+cyB1cCBwYXlsb2FkIHRhYmxlIGJ5IHBvcnRzIGluIHN0YWxlIHRvcG9sb2d5Cj4gPgo+ID4gIGRy
+aXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMgICAgICAgfCA2NSArKysrKysrKysr
+KysrKysrKy0tLS0tLS0tLS0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9oeXBlcnYvaHlwZXJ2X2Ry
+bV9tb2Rlc2V0LmMgfCAgMiArLQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgNDAgaW5zZXJ0aW9ucygr
+KSwgMjcgZGVsZXRpb25zKC0pCj4gPgo+ID4gLS0KPiA+IFRob21hcyBaaW1tZXJtYW5uCj4gPiBH
+cmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyCj4gPiBTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBHZXJt
+YW55IEdtYkgKPiA+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQo+ID4g
+KEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQo+ID4gR2VzY2jDpGZ0c2bDvGhyZXI6IEZlbGl4IElt
+ZW5kw7ZyZmZlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
