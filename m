@@ -2,66 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F803AC6A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 10:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2F73AC6D8
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 11:11:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D26DF6E998;
-	Fri, 18 Jun 2021 08:58:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FF936E9B4;
+	Fri, 18 Jun 2021 09:11:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 127216E998;
- Fri, 18 Jun 2021 08:58:14 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id B089621ACA;
- Fri, 18 Jun 2021 08:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624006692; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=yvC5i/r5SAQg9pojYeOAMekoljsB4R2HJiZhKtU+M20=;
- b=zWkZ2W51Rj9l3XzN1HQpULMYBd6dijMNcltmq5xIPYDO6RLipB4jTgTedk69Q/oNlvzqSp
- Vj1qJYPG6gG7/lhNtfiemILCGPQV9+SQ7wDskriTl7Lesz6GaJe6sdZ8NeSVtNc/8MxXUY
- ocLGtUCDlx/+9jcj5bcIzJz8bT8oIJ8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624006692;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=yvC5i/r5SAQg9pojYeOAMekoljsB4R2HJiZhKtU+M20=;
- b=RNr84aC0ZlOj2k+3q2Vw8xeIQ1YF5rCFKEbcHl0gkrr/9eyvZBLxrPl8IZYLZmdDIvbWSY
- 0guUXGYkMosR58Bw==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 7A5B6118DD;
- Fri, 18 Jun 2021 08:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624006692; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=yvC5i/r5SAQg9pojYeOAMekoljsB4R2HJiZhKtU+M20=;
- b=zWkZ2W51Rj9l3XzN1HQpULMYBd6dijMNcltmq5xIPYDO6RLipB4jTgTedk69Q/oNlvzqSp
- Vj1qJYPG6gG7/lhNtfiemILCGPQV9+SQ7wDskriTl7Lesz6GaJe6sdZ8NeSVtNc/8MxXUY
- ocLGtUCDlx/+9jcj5bcIzJz8bT8oIJ8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624006692;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=yvC5i/r5SAQg9pojYeOAMekoljsB4R2HJiZhKtU+M20=;
- b=RNr84aC0ZlOj2k+3q2Vw8xeIQ1YF5rCFKEbcHl0gkrr/9eyvZBLxrPl8IZYLZmdDIvbWSY
- 0guUXGYkMosR58Bw==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id 6LTpHCRgzGAdJAAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Fri, 18 Jun 2021 08:58:12 +0000
-Date: Fri, 18 Jun 2021 10:58:11 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YMxgI1oluBpPyfu6@linux-uq9g.fritz.box>
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CEC56E999;
+ Fri, 18 Jun 2021 09:11:32 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id AE2D8C800B7;
+ Fri, 18 Jun 2021 11:11:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10026)
+ with LMTP id zQ1WkbLuMcXL; Fri, 18 Jun 2021 11:11:30 +0200 (CEST)
+Received: from wsembach-tuxedo.fritz.box
+ (p200300e37f3949001760E5710682cA7E.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f39:4900:1760:e571:682:ca7e])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPA id 3F4B5C800B3;
+ Fri, 18 Jun 2021 11:11:29 +0200 (CEST)
+From: Werner Sembach <wse@tuxedocomputers.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Date: Fri, 18 Jun 2021 11:10:59 +0200
+Message-Id: <20210618091116.14428-1-wse@tuxedocomputers.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Subject: [Intel-gfx] [PATCH v4 00/17] New uAPI drm properties for color
+ management
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,72 +51,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Implementation of https://lkml.org/lkml/2021/5/12/764 now feature complete
+albeit not fully tested.
 
-here's the extra PR for drm-misc-next-fixes for this week. In addition
-to the previous fixes, it only contains the dp_mst build fix.
+I have not yet corrected the DSC behavior and double checked the dithering
+behavior. I release the feature complete patch series now anyways so that
+work on the userspace implementation can start.
 
-Best regards
-Thomas
+I have no DP MST splitter at hand. I tried my best to not break anything,
+but if one who has one could test it would be very helpful.
 
-drm-misc-next-fixes-2021-06-18:
-Short summary of fixes pull:
+amdgpu in the former implementation was full color range only, albeit there
+was a path prepared for limited color range on both rgb and ycbcr encoding,
+which was never selected however. With the Broadcast RGB property, a user
+can now select this program path.
 
- * hyperv: advertise the correct formatmodifiers for its primary plane
- * dp_mst: VCPI fixes to make it work with StarTech hub; Fix build error
+On i915 Broadcast RGB still only affects rgb as ycbcr was and is always
+limited with this driver, which I didn't change.
 
-The following changes since commit 1bd8a7dc28c1c410f1ceefae1f2a97c06d1a67c2:
+gma500 driver still uses it's own implementation of the "Broadcast RGB"
+property, which doesn't have an "Automatic" setting. I too didn't touch
+this as I can't test a corresponding card.
 
-  Merge tag 'exynos-drm-next-for-v5.14' of git://git.kernel.org/pub/scm/lin=
-ux/kernel/git/daeinki/drm-exynos into drm-next (2021-06-11 14:19:12 +1000)
 
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-=
-06-18
-
-for you to fetch changes up to 24ff3dc18b99c4b912ab1746e803ddb3be5ced4c:
-
-  drm/dp_mst: Add missing drm parameters to recently added call to drm_dbg_=
-kms() (2021-06-16 15:53:15 -0400)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * hyperv: advertise the correct formatmodifiers for its primary plane
- * dp_mst: VCPI fixes to make it work with StarTech hub; Fix build error
-
-----------------------------------------------------------------
-Jos=E9 Roberto de Souza (1):
-      drm/dp_mst: Add missing drm parameters to recently added call to drm_=
-dbg_kms()
-
-Pu Lehui (1):
-      drm/hyperv: Fix unused const variable 'hyperv_modifiers'
-
-Wayne Lin (2):
-      drm/dp_mst: Do not set proposed vcpi directly
-      drm/dp_mst: Avoid to mess up payload table by ports in stale topology
-
- drivers/gpu/drm/drm_dp_mst_topology.c       | 68 ++++++++++++++++++-------=
-----
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c |  2 +-
- 2 files changed, 43 insertions(+), 27 deletions(-)
-
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-(HRB 36809, AG N=FCrnberg)
-Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
