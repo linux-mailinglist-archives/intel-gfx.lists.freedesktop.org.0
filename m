@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FCC3ACD9E
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 16:33:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD343ACE05
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 16:54:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 308856E0A1;
-	Fri, 18 Jun 2021 14:33:46 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9B306E0A1;
- Fri, 18 Jun 2021 14:33:45 +0000 (UTC)
-IronPort-SDR: Jjn31rDqOOZvT4N1sRrk9hoUHfj3lkn2JCVxRz+IWd76LHy59DgkayKEl5blNq5vMdb6ERHvh2
- bpFuc2mrXZ3g==
-X-IronPort-AV: E=McAfee;i="6200,9189,10019"; a="186254198"
-X-IronPort-AV: E=Sophos;i="5.83,284,1616482800"; d="scan'208";a="186254198"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2021 07:33:45 -0700
-IronPort-SDR: NYoRAIQ09af53OKHIqPMIrbtWsMRHUwjmafSJ+wRsKARx1ffglv6c6Uz5HhnZxs1OjpegcWrGY
- pH/y9zGFd0ZA==
-X-IronPort-AV: E=Sophos;i="5.83,284,1616482800"; d="scan'208";a="485703743"
-Received: from liamday-mobl.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.201.174])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2021 07:33:43 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Jun 2021 15:33:36 +0100
-Message-Id: <20210618143336.2502976-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88DC66EA2F;
+	Fri, 18 Jun 2021 14:54:33 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 640DD6EA27;
+ Fri, 18 Jun 2021 14:54:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5BE80A73C9;
+ Fri, 18 Jun 2021 14:54:32 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Document the Virtual Engine uAPI
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Surendrakumar Upadhyay,
+ TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Fri, 18 Jun 2021 14:54:32 -0000
+Message-ID: <162402807235.1291.18408234618382552530@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210618114606.865705-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20210618114606.865705-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gen11=3A_Disable_cursor_clock_gating_in_HDR_mode?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,227 +39,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1971506422=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+--===============1971506422==
+Content-Type: multipart/alternative;
+ boundary="===============0024427607445116667=="
 
-A little bit of documentation covering the topics of engine discovery,
-context engine maps and virtual engines. It is not very detailed but
-supposed to be a starting point of giving a brief high level overview of
-general principles and intended use cases.
+--===============0024427607445116667==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v3:
- * Move text to driver-uapi.rst.
+== Series Details ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
----
-Pick between v2 with text in i915_drm.h, or this v3 in driver-uapi.rst.
----
- Documentation/gpu/driver-uapi.rst | 184 ++++++++++++++++++++++++++++++
- 1 file changed, 184 insertions(+)
+Series: drm/i915/gen11: Disable cursor clock gating in HDR mode
+URL   : https://patchwork.freedesktop.org/series/91674/
+State : success
 
-diff --git a/Documentation/gpu/driver-uapi.rst b/Documentation/gpu/driver-uapi.rst
-index 4411e6919a3d..17013fb68618 100644
---- a/Documentation/gpu/driver-uapi.rst
-+++ b/Documentation/gpu/driver-uapi.rst
-@@ -5,4 +5,188 @@ DRM Driver uAPI
- drm/i915 uAPI
- =============
- 
-+Engine Discovery uAPI
-+---------------------
-+
-+Engine discovery uAPI is a way of enumerating physical engines present in a GPU
-+associated with an open i915 DRM file descriptor. This supersedes the old way of
-+using `DRM_IOCTL_I915_GETPARAM` and engine identifiers like
-+`I915_PARAM_HAS_BLT`.
-+
-+The need for this interface came starting with Icelake and newer GPUs, which
-+started establishing a pattern of having multiple engines of a same class, where
-+not all instances were always completely functionally equivalent.
-+
-+Entry point for this uapi is `DRM_IOCTL_I915_QUERY` with the
-+`DRM_I915_QUERY_ENGINE_INFO` as the queried item id.
-+
-+Example for getting the list of engines:
-+
-+.. code-block:: C
-+
-+	struct drm_i915_query_engine_info *info;
-+	struct drm_i915_query_item item = {
-+		.query_id = DRM_I915_QUERY_ENGINE_INFO;
-+	};
-+	struct drm_i915_query query = {
-+		.num_items = 1,
-+		.items_ptr = (uintptr_t)&item,
-+	};
-+	int err, i;
-+
-+	// First query the size of the blob we need, this needs to be large
-+	// enough to hold our array of engines. The kernel will fill out the
-+	// item.length for us, which is the number of bytes we need.
-+	//
-+	// Alternatively a large buffer can be allocated straight away enabling
-+	// querying in one pass, in which case item.length should contain the
-+	// length of the provided buffer.
-+	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
-+	if (err) ...
-+
-+	info = calloc(1, item.length);
-+	// Now that we allocated the required number of bytes, we call the ioctl
-+	// again, this time with the data_ptr pointing to our newly allocated
-+	// blob, which the kernel can then populate with info on all engines.
-+	item.data_ptr = (uintptr_t)&info,
-+
-+	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
-+	if (err) ...
-+
-+	// We can now access each engine in the array
-+	for (i = 0; i < info->num_engines; i++) {
-+		struct drm_i915_engine_info einfo = info->engines[i];
-+		u16 class = einfo.engine.class;
-+		u16 instance = einfo.engine.instance;
-+		....
-+	}
-+
-+	free(info);
-+
-+Each of the enumerated engines, apart from being defined by its class and
-+instance (see `struct i915_engine_class_instance`), also can have flags and
-+capabilities defined as documented in i915_drm.h.
-+
-+For instance video engines which support HEVC encoding will have the
-+`I915_VIDEO_CLASS_CAPABILITY_HEVC` capability bit set.
-+
-+Engine discovery only fully comes to its own when combined with the new way of
-+addressing engines when submitting batch buffers using contexts with engine
-+maps configured.
-+
-+Context Engine Map uAPI
-+-----------------------
-+
-+Context engine map is a new way of addressing engines when submitting batch-
-+buffers, replacing the existing way of using identifiers like `I915_EXEC_BLT`
-+inside the flags field of `struct drm_i915_gem_execbuffer2`.
-+
-+To use it created GEM contexts need to be configured with a list of engines
-+the user is intending to submit to. This is accomplished using the
-+`I915_CONTEXT_PARAM_ENGINES` parameter and `struct i915_context_param_engines`.
-+
-+For such contexts the `I915_EXEC_RING_MASK` field becomes an index into the
-+configured map.
-+
-+Example of creating such context and submitting against it:
-+
-+.. code-block:: C
-+
-+	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 2) = {
-+		.engines = { { I915_ENGINE_CLASS_RENDER, 0 },
-+			     { I915_ENGINE_CLASS_COPY, 0 } }
-+	};
-+	struct drm_i915_gem_context_create_ext_setparam p_engines = {
-+		.base = {
-+			.name = I915_CONTEXT_CREATE_EXT_SETPARAM,
-+		},
-+		.param = {
-+			.param = I915_CONTEXT_PARAM_ENGINES,
-+			.value = to_user_pointer(&engines),
-+			.size = sizeof(engines),
-+		},
-+	};
-+	struct drm_i915_gem_context_create_ext create = {
-+		.flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
-+		.extensions = to_user_pointer(&p_engines);
-+	};
-+
-+	ctx_id = gem_context_create_ext(drm_fd, &create);
-+
-+	// We have now created a GEM context with two engines in the map:
-+	// Index 0 points to rcs0 while index 1 points to bcs0. Other engines
-+	// will not be accessible from this context.
-+
-+	...
-+	execbuf.rsvd1 = ctx_id;
-+	execbuf.flags = 0; // Submits to index 0, which is rcs0 for this context
-+	gem_execbuf(drm_fd, &execbuf);
-+
-+	...
-+	execbuf.rsvd1 = ctx_id;
-+	execbuf.flags = 1; // Submits to index 0, which is bcs0 for this context
-+	gem_execbuf(drm_fd, &execbuf);
-+
-+Virtual Engine uAPI
-+-------------------
-+
-+Virtual engine is a concept where userspace is able to configure a set of
-+physical engines, submit a batch buffer, and let the driver execute it on any
-+engine from the set as it sees fit.
-+
-+This is primarily useful on parts which have multiple instances of a same class
-+engine, like for example GT3+ Skylake parts with their two VCS engines.
-+
-+For instance userspace can enumerate all engines of a certain class using the
-+previously described `Engine Discovery uAPI`_. After
-+that userspace can create a GEM context with a placeholder slot for the virtual
-+engine (using `I915_ENGINE_CLASS_INVALID` and `I915_ENGINE_CLASS_INVALID_NONE`
-+for class and instance respectively) and finally using the
-+`I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE` extension place a virtual engine in the
-+same reserved slot.
-+
-+Example of creating a virtual engine and submitting a batch buffer to it:
-+
-+.. code-block:: C
-+
-+	I915_DEFINE_CONTEXT_ENGINES_LOAD_BALANCE(virtual, 2) = {
-+		.base.name = I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE,
-+		.engine_index = 0, // Place this virtual engine into engine map slot 0
-+		.num_siblings = 2,
-+		.engines = { { I915_ENGINE_CLASS_VIDEO, 0 },
-+			     { I915_ENGINE_CLASS_VIDEO, 1 }, },
-+	};
-+	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {
-+		.engines = { { I915_ENGINE_CLASS_INVALID,
-+			       I915_ENGINE_CLASS_INVALID_NONE } },
-+		.extensions = to_user_pointer(&virtual), // Chains after load_balance extension
-+	};
-+	struct drm_i915_gem_context_create_ext_setparam p_engines = {
-+		.base = {
-+			.name = I915_CONTEXT_CREATE_EXT_SETPARAM,
-+		},
-+		.param = {
-+			.param = I915_CONTEXT_PARAM_ENGINES,
-+			.value = to_user_pointer(&engines),
-+			.size = sizeof(engines),
-+		},
-+	};
-+	struct drm_i915_gem_context_create_ext create = {
-+		.flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
-+		.extensions = to_user_pointer(&p_engines);
-+	};
-+
-+	ctx_id = gem_context_create_ext(drm_fd, &create);
-+
-+	// Now we have created a GEM context with its engine map containing a
-+	// single virtual engine. Submissions to this slot can go either to
-+	// vcs0 or vcs1, depending on the load balancing algorithm used inside
-+	// the driver. The load balancing is dynamic from one batch buffer to
-+	// another and transparent to userspace.
-+
-+	...
-+	execbuf.rsvd1 = ctx_id;
-+	execbuf.flags = 0; // Submits to index 0 which is the virtual engine
-+	gem_execbuf(drm_fd, &execbuf);
-+
- .. kernel-doc:: include/uapi/drm/i915_drm.h
--- 
-2.30.2
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10242 -> Patchwork_20410
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20410 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bdw-5557u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#541])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@perf:
+    - {fi-tgl-dsi}:       [DMESG-WARN][3] ([i915#2867]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (42 -> 37)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10242 -> Patchwork_20410
+
+  CI-20190529: 20190529
+  CI_DRM_10242: a31069c62e8586aa92907539ab948412c1d5f5a0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6112: a17cc0c5d096fabfd516848c114bc411e11130f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20410: 6dbc5d4acf9318cdf4e0fc3d40e8443647425a6c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6dbc5d4acf93 drm/i915/gen11: Disable cursor clock gating in HDR mode
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/index.html
+
+--===============0024427607445116667==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gen11: Disable cursor clock gating in HDR mode</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91674/">https://patchwork.freedesktop.org/series/91674/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10242 -&gt; Patchwork_20410</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20410 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@perf:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-tgl-dsi/igt@i915_selftest@live@perf.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20410/fi-tgl-dsi/igt@i915_selftest@live@perf.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (42 -&gt; 37)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10242 -&gt; Patchwork_20410</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10242: a31069c62e8586aa92907539ab948412c1d5f5a0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6112: a17cc0c5d096fabfd516848c114bc411e11130f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20410: 6dbc5d4acf9318cdf4e0fc3d40e8443647425a6c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>6dbc5d4acf93 drm/i915/gen11: Disable cursor clock gating in HDR mode</p>
+
+</body>
+</html>
+
+--===============0024427607445116667==--
+
+--===============1971506422==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1971506422==--
