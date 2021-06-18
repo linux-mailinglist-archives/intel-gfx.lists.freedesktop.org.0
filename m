@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B09F3AC717
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 11:12:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFC73AC7FA
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 11:47:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A24FE6E9FA;
-	Fri, 18 Jun 2021 09:11:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB7DD6E9CF;
+	Fri, 18 Jun 2021 09:47:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 569996E9CA;
- Fri, 18 Jun 2021 09:11:49 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 119256E9CB;
+ Fri, 18 Jun 2021 09:47:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 49F77AADD6;
- Fri, 18 Jun 2021 09:11:49 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 088A2A47EA;
+ Fri, 18 Jun 2021 09:47:51 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 18 Jun 2021 09:11:49 -0000
-Message-ID: <162400750929.1291.12123216809090072259@emeril.freedesktop.org>
+To: "Werner Sembach" <wse@tuxedocomputers.com>
+Date: Fri, 18 Jun 2021 09:47:51 -0000
+Message-ID: <162400967100.1294.15646271940215568363@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210618083117.158081-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210618083117.158081-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ttm=3A_Fix_incorrect_assumptions_about_ttm=5Fbo=5Fvalidat?=
- =?utf-8?q?e=28=29_semantics?=
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+In-Reply-To: <20210618091116.14428-1-wse@tuxedocomputers.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_New_uAPI_drm_properties_for_color_management_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,174 +40,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0731580994=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0731580994==
-Content-Type: multipart/alternative;
- boundary="===============7959247527909715817=="
-
---===============7959247527909715817==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/ttm: Fix incorrect assumptions about ttm_bo_validate() semantics
-URL   : https://patchwork.freedesktop.org/series/91661/
-State : success
+Series: New uAPI drm properties for color management (rev2)
+URL   : https://patchwork.freedesktop.org/series/91523/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10242 -> Patchwork_20407
-====================================================
+$ dim checkpatch origin/drm-tip
+8a1dbc104f1d drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+-:32: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#32: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5356:
+ 	if (drm_mode_is_420_only(info, mode_in)
++			|| (drm_mode_is_420_also(info, mode_in) && aconnector->force_yuv420_output))
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 11 lines checked
+a184c9f6c5f9 drm/amd/display: Add missing cases convert_dc_color_depth_into_bpc
+5d445706107f drm/uAPI: Add "active bpc" as feedback channel for "max bpc" drm property
+f27795b7edfc drm/amd/display: Add handling for new "active bpc" property
+-:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#40: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:9097:
++				drm_connector_set_active_bpc_property(connector,
++					convert_dc_color_depth_into_bpc(
 
-  **SUCCESS**
+-:40: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#40: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:9097:
++					convert_dc_color_depth_into_bpc(
 
-  No regressions found.
+-:42: CHECK:BRACES: Unbalanced braces around else statement
+#42: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:9099:
++		} else
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/index.html
+total: 0 errors, 0 warnings, 3 checks, 42 lines checked
+d894e2d6d92c drm/i915/display: Add handling for new "active bpc" property
+-:33: CHECK:BRACES: braces {} should be used on all arms of this statement
+#33: FILE: drivers/gpu/drm/i915/display/intel_display.c:10917:
++		if (crtc) {
+[...]
++		} else
+[...]
 
-Known issues
-------------
+-:38: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#38: FILE: drivers/gpu/drm/i915/display/intel_display.c:10922:
++			drm_connector_set_active_bpc_property(connector,
++				new_crtc_state->pipe_bpp / 3);
 
-  Here are the changes found in Patchwork_20407 that come from known issues:
+-:39: CHECK:BRACES: Unbalanced braces around else statement
+#39: FILE: drivers/gpu/drm/i915/display/intel_display.c:10923:
++		} else
 
-### IGT changes ###
+total: 0 errors, 0 warnings, 3 checks, 66 lines checked
+01063e3e0973 drm/uAPI: Add "active color format" drm property as feedback for userspace
+b3388b2b31a3 drm/amd/display: Add handling for new "active color format" property
+-:20: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#20: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:6718:
++static int convert_dc_pixel_encoding_into_drm_color_format(
 
-#### Issues hit ####
+-:60: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#60: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:9119:
++				drm_connector_set_active_color_format_property(connector,
++					convert_dc_pixel_encoding_into_drm_color_format(
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#1372])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+-:60: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#60: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:9119:
++					convert_dc_pixel_encoding_into_drm_color_format(
 
-  
-#### Possible fixes ####
+total: 0 errors, 0 warnings, 3 checks, 61 lines checked
+d20d983e5c00 drm/i915/display: Add handling for new "active color format" property
+-:44: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#44: FILE: drivers/gpu/drm/i915/display/intel_display.c:10939:
++			drm_connector_set_active_color_format_property(connector,
++				convert_intel_output_format_into_drm_color_format(
 
-  * igt@i915_selftest@live@perf:
-    - {fi-tgl-dsi}:       [DMESG-WARN][3] ([i915#2867]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-tgl-dsi/igt@i915_selftest@live@perf.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/fi-tgl-dsi/igt@i915_selftest@live@perf.html
+-:44: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#44: FILE: drivers/gpu/drm/i915/display/intel_display.c:10939:
++				convert_intel_output_format_into_drm_color_format(
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+total: 0 errors, 0 warnings, 2 checks, 64 lines checked
+38cabfeae439 drm/uAPI: Add "active color range" drm property as feedback for userspace
+34a60f410858 drm/amd/display: Add handling for new "active color range" property
+-:63: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#63: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:9150:
++				drm_connector_set_active_color_range_property(connector,
++					convert_dc_color_space_into_drm_mode_color_range(
 
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+-:63: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#63: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:9150:
++					convert_dc_color_space_into_drm_mode_color_range(
 
+total: 0 errors, 0 warnings, 2 checks, 65 lines checked
+4a5eb1073840 drm/i915/display: Add handling for new "active color range" property
+-:21: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#21: FILE: drivers/gpu/drm/i915/display/intel_display.c:10942:
++			drm_connector_set_active_color_range_property(connector,
++				new_crtc_state->limited_color_range ?
 
-Participating hosts (42 -> 37)
-------------------------------
+total: 0 errors, 0 warnings, 1 checks, 45 lines checked
+c75e0d2c86bc drm/uAPI: Add "preferred color format" drm property as setting for userspace
+7c574ffde4b2 drm/amd/display: Add handling for new "preferred color format" property
+-:25: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#25: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5356:
++	if (connector_state
++			&& (connector_state->preferred_color_format == DRM_COLOR_FORMAT_YCRCB420
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+-:26: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#26: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5357:
++			&& (connector_state->preferred_color_format == DRM_COLOR_FORMAT_YCRCB420
++			|| aconnector->force_yuv420_output) && drm_mode_is_420(info, mode_in))
 
+-:31: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#31: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5360:
++	else if (connector_state
++			&& connector_state->preferred_color_format == DRM_COLOR_FORMAT_YCRCB444
 
-Build changes
--------------
+-:32: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#32: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5361:
++			&& connector_state->preferred_color_format == DRM_COLOR_FORMAT_YCRCB444
++			&& connector->display_info.color_formats & DRM_COLOR_FORMAT_YCRCB444)
 
-  * Linux: CI_DRM_10242 -> Patchwork_20407
+-:36: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#36: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5364:
++	else if (connector_state
++			&& connector_state->preferred_color_format == DRM_COLOR_FORMAT_RGB444
 
-  CI-20190529: 20190529
-  CI_DRM_10242: a31069c62e8586aa92907539ab948412c1d5f5a0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6112: a17cc0c5d096fabfd516848c114bc411e11130f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20407: 88154e0600a8c8bc833dd9d869ae4863e91975c5 @ git://anongit.freedesktop.org/gfx-ci/linux
+-:37: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#37: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5365:
++			&& connector_state->preferred_color_format == DRM_COLOR_FORMAT_RGB444
++			&& !drm_mode_is_420_only(info, mode_in))
 
+-:48: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#48: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5376:
++		else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCRCB444)
++				&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
 
-== Linux commits ==
+total: 0 errors, 0 warnings, 7 checks, 55 lines checked
+7036e14723d4 drm/i915/display: Add handling for new "preferred color format" property
+fb7489fcb966 drm/uAPI: Move "Broadcast RGB" property from driver specific to general context
+0e59e4efe994 drm/i915/display: Use the general "Broadcast RGB" implementation
+c085286ee017 drm/amd/display: Add handling for new "Broadcast RGB" property
+-:32: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#32: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5272:
++			if (dc_crtc_timing->flags.Y_ONLY
++					|| preferred_color_range ==
 
-88154e0600a8 drm/i915/ttm: Fix incorrect assumptions about ttm_bo_validate() semantics
+-:41: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#41: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c:5280:
++			if (dc_crtc_timing->flags.Y_ONLY
++					|| preferred_color_range ==
 
-== Logs ==
+total: 0 errors, 0 warnings, 2 checks, 67 lines checked
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/index.html
-
---===============7959247527909715817==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ttm: Fix incorrect assumptions about ttm_bo_validate() semantics</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91661/">https://patchwork.freedesktop.org/series/91661/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10242 -&gt; Patchwork_20407</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20407 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@perf:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10242/fi-tgl-dsi/igt@i915_selftest@live@perf.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20407/fi-tgl-dsi/igt@i915_selftest@live@perf.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10242 -&gt; Patchwork_20407</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10242: a31069c62e8586aa92907539ab948412c1d5f5a0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6112: a17cc0c5d096fabfd516848c114bc411e11130f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20407: 88154e0600a8c8bc833dd9d869ae4863e91975c5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>88154e0600a8 drm/i915/ttm: Fix incorrect assumptions about ttm_bo_validate() semantics</p>
-
-</body>
-</html>
-
---===============7959247527909715817==--
-
---===============0731580994==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0731580994==--
