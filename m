@@ -1,55 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57F03AD48C
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 23:45:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1873AD4D1
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Jun 2021 00:09:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B5786EAB0;
-	Fri, 18 Jun 2021 21:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59B316EAB8;
+	Fri, 18 Jun 2021 22:08:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1686EAB0
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 21:45:10 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id c5so12214822wrq.9
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 14:45:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ss+LFnKcGJ5vuvfVFFGPPqAeJlikCEoZrl/m4U6LMRw=;
- b=L0TYh5eNjO3bBlOw+qfm0dAIFyH0pSW2/Y82jXvp+fp0bZIdIiwVH0sjmOtzUJLQP2
- zobnV4rHKddP0MCPZHTfW2Dv1zA7XrVvcj3Rib6xPokdP/KBcXpiRSmGxkh6SFbIh2LS
- 2pF4e4Swjzlna/BX/XV8bisbWwSUjFIDzhIQs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ss+LFnKcGJ5vuvfVFFGPPqAeJlikCEoZrl/m4U6LMRw=;
- b=RP4+IGmN+swVUr6zUDJe4JEtgpIRFx6XeosiatcBSThg4GFC9WnU7uQmOEJHQcGt/w
- +RvclmBaxfFO7kM2Zx+g4Gu7VMJft9zR+OA/FcRiVGilVSgVsjnZXcAOnwX3oO+GpH6E
- /lE/U+6uCklBrCNeJfjM6YQxi62Cm7aoBwjjpvFDRR9xt/z4B6cGmbdyiLWMjYw7q5F6
- CRb54F3EZaL5E+2sFUW8WAdBZ2pztjimf+uRd4hxLdmlZq7ECdSQLLbzJf3CbbS3hYCQ
- D89+pRYAWXV3koRGwlgbvkrVEOLM9ahzEw0TWnWx+GoFN142MfxO5aDLwQVY9C9XZ0MX
- YDlQ==
-X-Gm-Message-State: AOAM531xg5ISTqq8VVDizRaiP1O5+MGK+SqodawaKDgVaNxpg3Q1cbK+
- sq09nY/1/mwZEIK2Bct6A8L+VE1TB1UdEQ==
-X-Google-Smtp-Source: ABdhPJyHNQqJIh/kyvwMAFiH4f8cfBI0Yp6YcdOJaaO10SPVgr3WyRK41gxBwrfIpGuh8LdqIIhrFw==
-X-Received: by 2002:adf:fd90:: with SMTP id d16mr14761921wrr.35.1624052708769; 
- Fri, 18 Jun 2021 14:45:08 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q6sm8311350wma.16.2021.06.18.14.45.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Jun 2021 14:45:08 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Fri, 18 Jun 2021 23:45:03 +0200
-Message-Id: <20210618214503.1773805-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.32.0.rc2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1B1CC6EAB8;
+ Fri, 18 Jun 2021 22:08:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1275EA0078;
+ Fri, 18 Jun 2021 22:08:58 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/eb: Fix pagefault disabling in the
- first slowpath
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 18 Jun 2021 22:08:58 -0000
+Message-ID: <162405413805.1292.1695129962969915569@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210618214503.1773805-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210618214503.1773805-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/eb=3A_Fix_pagefault_disabling_in_the_first_slowpat?=
+ =?utf-8?q?h?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,79 +39,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
- Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW4KCmNvbW1pdCBlYmMwODA4ZmEyZGEwNTQ4YTc4ZTcxNTg1ODAyNGNiODFjZDczMmJjCkF1dGhv
-cjogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkRhdGU6ICAgVHVlIE9j
-dCAxOCAxMzowMjo1MSAyMDE2ICswMTAwCgogICAgZHJtL2k5MTU6IFJlc3RyaWN0IHBhZ2VmYXVs
-dCBkaXNhYmxpbmcgdG8ganVzdCBhcm91bmQgY29weV9mcm9tX3VzZXIoKQoKd2UgZW50aXJlbHkg
-bWlzc2VkIHRoYXQgdGhlcmUncyBhIHNsb3cgcGF0aCBjYWxsIHRvIGViX3JlbG9jYXRlX2VudHJ5
-CihvciBpOTE1X2dlbV9leGVjYnVmZmVyX3JlbG9jYXRlX2VudHJ5IGFzIGl0IHdhcyBjYWxsZWQg
-YmFjayB0aGVuKQp3aGljaCB3YXMgbGVmdCBmdWxseSB3cmFwcGVkIGJ5IHBhZ2VmYXVsdF9kaXNh
-YmxlL2VuYWJsZSgpIGNhbGxzLgpQcmV2aW91c2x5IGFueSBpc3N1ZXMgd2l0aCBibG9ja2luZyBj
-YWxscyB3aGVyZSBoYW5kbGVkIGJ5IHRoZQpmb2xsb3dpbmcgY29kZToKCgkvKiB3ZSBjYW4ndCB3
-YWl0IGZvciByZW5kZXJpbmcgd2l0aCBwYWdlZmF1bHRzIGRpc2FibGVkICovCglpZiAocGFnZWZh
-dWx0X2Rpc2FibGVkKCkgJiYgIW9iamVjdF9pc19pZGxlKG9iaikpCgkJcmV0dXJuIC1FRkFVTFQ7
-CgpOb3cgYXQgdGhpcyBwb2ludCB0aGUgcHJlZmF1bHRpbmcgd2FzIHN0aWxsIGFyb3VuZCwgd2hp
-Y2ggbWVhbnMgaW4Kbm9ybWFsIGFwcGxpY2F0aW9ucyBpdCB3YXMgdmVyeSBoYXJkIHRvIGhpdCB0
-aGlzIGJ1Zy4gTm8gaWRlYSB3aHkgdGhlCnJlZ3Jlc3Npb25zIGluIGlndHMgd2VyZW4ndCBjYXVn
-aHQuCgpOb3cgdGhpcyBhbGwgY2hhbmdlZCBiaWcgdGltZSB3aXRoIDIgcGF0Y2hlcyBtZXJnZWQg
-Y2xvc2VseSB0b2dldGhlci4KCkZpcnN0Cgpjb21taXQgMjg4OWNhYTkyMzIxMDlhZmM4ODgxZjI5
-YTIyMDVhYmViNTcwOWQwYwpBdXRob3I6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29u
-LmNvLnVrPgpEYXRlOiAgIEZyaSBKdW4gMTYgMTU6MDU6MTkgMjAxNyArMDEwMAoKICAgIGRybS9p
-OTE1OiBFbGltaW5hdGUgbG90cyBvZiBpdGVyYXRpb25zIG92ZXIgdGhlIGV4ZWNvYmplY3RzIGFy
-cmF5CgpyZW1vdmVzIHRoZSBwcmVmYXVsdGluZyBmcm9tIHRoZSBmaXJzdCByZWxvY2F0aW9uIHBh
-dGgsIHB1c2hpbmcgaXQgaW50bwp0aGUgZmlyc3Qgc2xvd3BhdGggKG9mIHdoaWNoIHRoaXMgcGF0
-Y2ggYWRkZWQgYSB0b3RhbCBvZiAzIGVzY2FsYXRpb24KbGV2ZWxzKS4gVGhpcyB3b3VsZCBoYXZl
-IHJlYWxseSBxdWlja2x5IHVuY292ZXJlZCB0aGUgYWJvdmUgYnVnLCB3ZXJlCml0IG5vdCBmb3Ig
-aW1tZWRpYXRlIGFkZGluZyBhIGR1Y3QtdGFwZSBvbiB0b3Agd2l0aAoKY29tbWl0IDdkZDRmNjcy
-OWY5MjQzYmQ3MDQ2YzZmMDRjMTA3YTQ1NmJkYTM4ZWIKQXV0aG9yOiBDaHJpcyBXaWxzb24gPGNo
-cmlzQGNocmlzLXdpbHNvbi5jby51az4KRGF0ZTogICBGcmkgSnVuIDE2IDE1OjA1OjI0IDIwMTcg
-KzAxMDAKCiAgICBkcm0vaTkxNTogQXN5bmMgR1BVIHJlbG9jYXRpb24gcHJvY2Vzc2luZwoKYnkg
-cHVzaGluZyBhbGwgYWxsIHRoZSByZWxvY2F0aW9uIHBhdGNoaW5nIHRvIHRoZSBncHUgaWYgdGhl
-IGJ1ZmZlcgp3YXMgYnVzeSwgd2hpY2ggYXZvaWRlZCBhbGwgdGhlIHBvc3NpYmxlIGJsb2NraW5n
-IGNhbGxzLgoKVGhlIGVudGlyZSBzbG93cGF0aCB3YXMgdGhlbiBmdXJ0aGVybW9yZSBkaXRjaGVk
-IGluCgpjb21taXQgN2RjOGYxMTQzNzc4YTM1YjE5MGY5NDEzZjIyOGIzY2YyOGY2N2Y4ZApBdXRo
-b3I6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpEYXRlOiAgIFdlZCBN
-YXIgMTEgMTY6MDM6MTAgMjAyMCArMDAwMAoKICAgICAgICBkcm0vaTkxNS9nZW06IERyb3AgcmVs
-b2NhdGlvbiBzbG93cGF0aAoKYW5kIHJlc3VycmVjdGVkIGluCgpjb21taXQgZmQxNTAwZmNkNDQy
-MGVlZTA2ZTJjN2YzYWE2MDY3Yjc4YWMwNTg3MQpBdXRob3I6IE1hYXJ0ZW4gTGFua2hvcnN0IDxt
-YWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+CkRhdGU6ICAgV2VkIEF1ZyAxOSAxNjow
-ODo0MyAyMDIwICswMjAwCgogICAgICAgIFJldmVydCAiZHJtL2k5MTUvZ2VtOiBEcm9wIHJlbG9j
-YXRpb24gc2xvd3BhdGgiLgoKYnV0IHRoaXMgZGlkIG5vdCBmdXJ0aGVyIGltcGFjdCB3aGF0J3Mg
-Z29pbmcgb24uCgpTaW5jZSBwYWdlZmF1bHRfZGlzYWJsZS9lbmFibGUgaXMgYW4gYXRvbWljIHNl
-Y3Rpb24sIGFueSBzbGVlcGluZyBpbgp0aGVyZSBpcyBwcm9oaWJpdGVkLCBhbmQgd2UgZGVmaW5p
-dGVseSBkbyB0aGF0IHdpdGhvdXQgZ3B1IHJlbG9jYXRpb25zCnNpbmNlIHdlIGhhdmUgdG8gd2Fp
-dCBmb3IgdGhlIGdwdSB1c2FnZSB0byBmaW5pc2ggYmVmb3JlIHdlIGNhbiBwYXRjaAp1cCB0aGUg
-cmVsb2NhdGlvbnMuCgpTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVy
-QGludGVsLmNvbT4KQ2M6IEpvbiBCbG9vbWZpZWxkIDxqb24uYmxvb21maWVsZEBpbnRlbC5jb20+
-CkNjOiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IE1hYXJ0ZW4g
-TGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+CkNjOiBKb29uYXMg
-TGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+CkNjOiBEYW5pZWwgVmV0
-dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgpDYzogIlRob21hcyBIZWxsc3Ryw7ZtIiA8dGhv
-bWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CkNjOiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcu
-YXVsZEBpbnRlbC5jb20+CkNjOiBMaW9uZWwgTGFuZHdlcmxpbiA8bGlvbmVsLmcubGFuZHdlcmxp
-bkBpbnRlbC5jb20+CkNjOiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgpDYzogSmFz
-b24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMgfCAyIC0tCiAxIGZpbGUgY2hhbmdlZCwgMiBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fZXhlY2J1ZmZlci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNi
-dWZmZXIuYwppbmRleCA2NTM5YjgyZGRhNTQuLjdmZjJmYzNjMGIyYyAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCkBAIC0yMDgyLDkgKzIwODIs
-NyBAQCBzdGF0aWMgbm9pbmxpbmUgaW50IGViX3JlbG9jYXRlX3BhcnNlX3Nsb3coc3RydWN0IGk5
-MTVfZXhlY2J1ZmZlciAqZWIsCiAKIAlsaXN0X2Zvcl9lYWNoX2VudHJ5KGV2LCAmZWItPnJlbG9j
-cywgcmVsb2NfbGluaykgewogCQlpZiAoIWhhdmVfY29weSkgewotCQkJcGFnZWZhdWx0X2Rpc2Fi
-bGUoKTsKIAkJCWVyciA9IGViX3JlbG9jYXRlX3ZtYShlYiwgZXYpOwotCQkJcGFnZWZhdWx0X2Vu
-YWJsZSgpOwogCQkJaWYgKGVycikKIAkJCQlicmVhazsKIAkJfSBlbHNlIHsKLS0gCjIuMzIuMC5y
-YzIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/eb: Fix pagefault disabling in the first slowpath
+URL   : https://patchwork.freedesktop.org/series/91691/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+2a6b87403e3a drm/i915/eb: Fix pagefault disabling in the first slowpath
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ebc0808fa2da ("drm/i915: Restrict pagefault disabling to just around copy_from_user()")'
+#11: 
+commit ebc0808fa2da0548a78e715858024cb81cd732bc
+
+-:35: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2889caa92321 ("drm/i915: Eliminate lots of iterations over the execobjects array")'
+#35: 
+commit 2889caa9232109afc8881f29a2205abeb5709d0c
+
+-:46: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 7dd4f6729f92 ("drm/i915: Async GPU relocation processing")'
+#46: 
+commit 7dd4f6729f9243bd7046c6f04c107a456bda38eb
+
+-:52: WARNING:REPEATED_WORD: Possible repeated word: 'all'
+#52: 
+by pushing all all the relocation patching to the gpu if the buffer
+
+-:57: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 7dc8f1143778 ("drm/i915/gem: Drop relocation slowpath")'
+#57: 
+commit 7dc8f1143778a35b190f9413f228b3cf28f67f8d
+
+-:65: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fd1500fcd442 ("Revert "drm/i915/gem: Drop relocation slowpath".")'
+#65: 
+commit fd1500fcd4420eee06e2c7f3aa6067b78ac05871
+
+-:103: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 5 errors, 2 warnings, 0 checks, 9 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
