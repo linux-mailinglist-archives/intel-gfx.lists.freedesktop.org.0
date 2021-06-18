@@ -2,142 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A482D3AC3CB
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 08:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A113AC3D4
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jun 2021 08:26:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B8356E858;
-	Fri, 18 Jun 2021 06:24:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E43386E859;
+	Fri, 18 Jun 2021 06:26:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C8486E858;
- Fri, 18 Jun 2021 06:24:38 +0000 (UTC)
-IronPort-SDR: 0vrH0t5QZ/myuqa53XAxfVE4v8Sl2+fPIuillBNEiVg/0HXlN/pnAnrSwpCz4u1AVAYP/ZKyG7
- M0JeK2wmWbug==
-X-IronPort-AV: E=McAfee;i="6200,9189,10018"; a="270352127"
-X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; d="scan'208";a="270352127"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2021 23:24:37 -0700
-IronPort-SDR: 0JxbI/9xg6fEPekwHEQpIGnM9bPnbdDN01Ge2fDK7VxCr6rvHBohfXWdl5VehhfNo0UyO2KE21
- BMjuKysD+DXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; d="scan'208";a="555482197"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga001.fm.intel.com with ESMTP; 17 Jun 2021 23:24:37 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 17 Jun 2021 23:24:36 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Thu, 17 Jun 2021 23:24:36 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.172)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Thu, 17 Jun 2021 23:24:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CHDtNUhSmurgBM6P9gGEUcxmPkGooBBVgwAKsfCU7+idMSHej6URrGTDxiCnGvVlhA1QiyZiGJHbhsOHQ7TbXya/F4+Cw5n6SMfUZagEG9tiNDCAqhlySow2MR25a4j5KtjEAX+Tc8mF3VmmqadUyz+S/vhQfPBzb7dZUwNJMEEAf2lqxZfE5bZdPs8YdCjlf8qBCuNz2/BqcazKKpM6PM2nCgwH4DaPXWjsFgx+Hxm7ieu0dLik+qG9T0KKdO1+mHBmz2Dfzq2g/+9YpfirtIlVhX/RWCkV56SCSceb0OdV7C2ejOeauE3gxzCYdv2lUZdx4HK8mFL7vPeQMw+ptA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iHn2YLoLV7vYIlns51+3Ci94rosd3jLByQ88q28vsvs=;
- b=KHI3V+PooqRARItcQvIIIWKt+Y+njvaj81l+yozqKeASBWp0DKK7/tWMjanFW2wlj5YDrjRdJvWd3b7hLIesLZPgdCzyz0//FcBRVGA6GYhW57gCsg2E4j8O83iaDvvBDzOMxuKsqFjr5t9hFYHLM9tBU6/4hxlNF8fbXuhmpCXc6PJ+Hwg0YFCNn6wWGCJeE/Yu4NI6Zgaq47XGhQwPCyL8Z2/usMBQGt/Zyb6eJCRDP6QTF/j+RtEwK4iaTmokNKvhunSyoqOw5PfE4dGNnZQ69YdMm0KL1QB2RALsNjQe9JP6tJdQc1hzmdDZO88z0qorPawmMkYmeeSJZPp+zA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iHn2YLoLV7vYIlns51+3Ci94rosd3jLByQ88q28vsvs=;
- b=Nsye9vT1hyMFDVMtxHwSYzNMGBYac0KWN/5xsS9YgmXjyM6vepGxpdi/jdh4fX0o5ozrHaIotsgGWc8ckRfes1M+PozpPKS97/n0vrVs/oV/hDnlgxhZ6MChybYVzWyWcPfLXfkbGXS9P2OSm4EPy6x5Mg8H5H4ptC+sHbz+FrI=
-Received: from BY5PR11MB4372.namprd11.prod.outlook.com (2603:10b6:a03:1bb::25)
- by BY5PR11MB4037.namprd11.prod.outlook.com (2603:10b6:a03:188::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Fri, 18 Jun
- 2021 06:24:32 +0000
-Received: from BY5PR11MB4372.namprd11.prod.outlook.com
- ([fe80::8109:b283:489b:b094]) by BY5PR11MB4372.namprd11.prod.outlook.com
- ([fe80::8109:b283:489b:b094%7]) with mapi id 15.20.4219.026; Fri, 18 Jun 2021
- 06:24:32 +0000
-From: "Srinivas, Vidya" <vidya.srinivas@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend:
- Don't set primary fb color in coverage-vs-premult-vs-constant
-Thread-Index: AQHXVvDWfvOp7XrUnUOZT77fKuGya6sOOTQAgAA/naCAAFshcIAF/ewAgASU9/A=
-Date: Fri, 18 Jun 2021 06:24:32 +0000
-Message-ID: <BY5PR11MB4372A68B06BFFF1D3C11B294890D9@BY5PR11MB4372.namprd11.prod.outlook.com>
-References: <1622547939-8157-1-git-send-email-vidya.srinivas@intel.com>
- <1622556485-9375-1-git-send-email-vidya.srinivas@intel.com>
- <CO6PR11MB556976C4EC81D88FC86D1C768D349@CO6PR11MB5569.namprd11.prod.outlook.com>
- <BY5PR11MB437213735019658A601D098D89349@BY5PR11MB4372.namprd11.prod.outlook.com>
- <BY5PR11MB4372B0A65DA52560451EAA5289349@BY5PR11MB4372.namprd11.prod.outlook.com>
- <BY5PR11MB437250EA6AD698B6D28D9D1089309@BY5PR11MB4372.namprd11.prod.outlook.com>
-In-Reply-To: <BY5PR11MB437250EA6AD698B6D28D9D1089309@BY5PR11MB4372.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=intel.com;
-x-originating-ip: [45.127.46.168]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8d171c4b-b425-4276-a520-08d93221bc61
-x-ms-traffictypediagnostic: BY5PR11MB4037:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR11MB40378921CC5D36DD44BE4784890D9@BY5PR11MB4037.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 7Jdpe0vWll9+ziQCXrW3aaNa0s2kSCFtuMU+wUw/m0u6Tr3FUT7jioVwVep/BttvWSRbxbN3FXE538gQZZ7REW+Zo7B9Iki0lWoL6OrorXZKdCAgNzv3c4iUBEiwTnuTq+SrfQZyp1pu6EuUo4vlf4CX7OTHpTRLW93ON4Sb+01P9lYwLzhcgrIabzSZYpr0QlKZ7W9pY3OeKVthRyqu1uu3dtA4nipjnLWTnYKs44Bs12b16e16pBm0VfF9g0zn5hlTq2oN4KvdRzAdrItFgGuENvFmOY4nCg/f2hb/QX532zrIkRw25XWuWlDF6L0Uo/OBmSRbA8CCbwPlzyvgF0Ul4GrpFdCl1a1FEoxSXw9ACqOlCkPObsYEArSJmQq2Mc+2o3Cbln1T40jFH3QWHbBfygSVp36zTd2f20Iz7iKg00U3B5jMwIqm0ibduKxUz02jTc0+dFnH3T+xPSZ+WX9Gk8OhWJze2BZA7uw3pU3Bfi9AqEjmGP0HAKjXJeDZha2LvFHPEr6UcDGnQ8s4irv0hW5qKtcyEUUFyxryGwJpIEG6ldYzmIHwD3uMv8+11UN82wZChyBztYZsZNSnP3HOMYR7xqnLhE1ovBSnrRXhktz6PIYcRXnVyKFkObl3
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB4372.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(376002)(346002)(136003)(396003)(366004)(39860400002)(8676002)(66556008)(966005)(66476007)(107886003)(38100700002)(71200400001)(83380400001)(26005)(122000001)(55016002)(53546011)(64756008)(6506007)(33656002)(7696005)(52536014)(54906003)(66446008)(76116006)(316002)(478600001)(8936002)(2906002)(9686003)(86362001)(4326008)(186003)(66946007)(110136005)(5660300002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MBw5xmI/oAqa+FAcO8SvWDS7Qx6eleeng35sBP4ZXc2RI9VxJmTBYmy06CJl?=
- =?us-ascii?Q?3nKOUMhGQBYcMAeEpNs+JfckGXupHcQrha0NxwoJ9UjJstOY94HtbVi5veTK?=
- =?us-ascii?Q?flh6zRVZd630ZAJrYd5T6SUXNfggVS3bLiXOxyXla6vFba5mZ4YdRTBp84WB?=
- =?us-ascii?Q?8HNqe8GiSQoXgygr36FzvNBugEgg2xT8QEkletg59yXiOoAGdzcpowAr1LDh?=
- =?us-ascii?Q?ymHj8MjFL0tbJkqFp/TDTT3ypD8hUmoWDcWEAKX3malzHqNQEt5BkzgFMp/f?=
- =?us-ascii?Q?+Mqgy2VPUiFQnM7ktWTwK/IQYWu/crXqT8W3pBE5R7lHSOOmuHWd0gEmPkPi?=
- =?us-ascii?Q?3WtSo5jGUEIjoRJtn3jyVQ3mHEj3LsCbjUkdA33959xKLtnk4jaoXdC13iKi?=
- =?us-ascii?Q?8uPp9UaciXJCF3A5AgoCindGD2ttP9kj3trF+b+4SxFxqPSaqGrUeCAg4DVV?=
- =?us-ascii?Q?b6ROCKUtxpIhLsLs6TMEb0buhIWSpQ0e6r/cFRRF9M7ibjcAUccIF8Ha6uWh?=
- =?us-ascii?Q?CBg81eYpgn8OXH6D6LDuLQMkcy4r0y1x00xBiITnaYNbOpZAA3GPwgv1x9tz?=
- =?us-ascii?Q?/K+vUNeUvRaDwKNNgfdbRRS5dbdmk7I2BWxoj7bJICvXK04RxbLPjYz/vr0r?=
- =?us-ascii?Q?74Qu0ly6XmvWfh3WBiYAaonotmiznUrSubSs7bWBef3wetSbwHKWNCiRULv3?=
- =?us-ascii?Q?x2EfzD/2pfYoZJ50d67MnpoKYF4QIARoV1pAQF1eyjVdLG/KjtPcEOXMVK/S?=
- =?us-ascii?Q?KIpFXLIfbIT7j8R1Mvq1SqzC5dXmsSXNVibPOJQMbF8Np7Gh13tVtobRtI0N?=
- =?us-ascii?Q?a8CBEON38jnKnmEQgq6H8qAvxoO1yMspeWBZ1mp4ZpVa05dS6MavXnxupSZr?=
- =?us-ascii?Q?QVyGfxKxMlG60inhj0RyQqQCoRsfIibvLBlIvoJ7Jd2WT1TXzC43FmsiE56z?=
- =?us-ascii?Q?KWIAWJdtIArWtiSbtSzyZYqvlik+5jaeXjnjazLY/dLJagX4Vc4xVg9EHWOZ?=
- =?us-ascii?Q?pAaWr8O//ztgINy3qsBujWIPguheQW6j7FUiYn1qmzRX64s0KTGr62Bqg0QJ?=
- =?us-ascii?Q?6hJrU+pXSKvCdauHpW0KtMKusK5juozruz3HuUVQBnQlzDvMU4mtrSPQStgT?=
- =?us-ascii?Q?QZAW+Wmkisz9mBJBrxUuIrm3r0TSOMHP5SCV9V0Ax2F2o+HqxG3exkflcA5O?=
- =?us-ascii?Q?FnIfX9P9W7rpJZlSkSmhWSZ+DNhpZ02rA6wOxoHUW9+KUXFk5IMIGCgyH+hS?=
- =?us-ascii?Q?myoGAJhAGVmIU/yGo9GvaRlOV3pgVpAeIqjJghN9uHMkicwX0gRz0cZhwBFx?=
- =?us-ascii?Q?CgROUnUFyX8MW4nWKnZvqo/z?=
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com
+ [IPv6:2607:f8b0:4864:20::734])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE5576E859
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 06:26:03 +0000 (UTC)
+Received: by mail-qk1-x734.google.com with SMTP id 5so8353886qkc.8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 23:26:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=K4gmwVrd4ipCgh7Pt4U3qK6zM5RZFqVsfT+5m/JaTNY=;
+ b=b3TOMvQ1kXF7QuAFyHdOkvmT8LXOEbUEDAbnT1VD77ESf6dWqJqkel2pij6H8qazUH
+ qeKiHzooTElNu69H2pMv9jI9D4woaiXlDH7E4nc1glsurOz9EYewwC9YHW+cnkiHTax7
+ tbypLVBnZif7y60KH97lEwI+rEiH+ILoO0+Go=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=K4gmwVrd4ipCgh7Pt4U3qK6zM5RZFqVsfT+5m/JaTNY=;
+ b=MGGD5E0eKk0n+hfAu/frvQ+5eLWRBdwGDzjloD3iJcEVaGjRdW53Qh2X7uQV1uOPds
+ njcyTmxnzj5d2bSLudGDbBnWPTWHKn9T1FSOXsaMtLxGcbnb366ctP7Z7QrGInIBii3S
+ bxhjrzFZH9Hvl5xO+B1Wum/V2yiPUWVtq6GE9FtVDjJeKGJE7wt8caT0cS/Sw6NRlAE2
+ sa20T4soZ1rrqSdXfy2Oi4StcJt2q+A7FfZ7+il103cYjKdvNgy+h517teP/nYtyswOS
+ cnUSoJMEsPZSCQ6rRRPvgvH5aCIYz8dpcSTgzf7AUxwgRzZdEeu3kXPB6sntNm3scR5p
+ GX0g==
+X-Gm-Message-State: AOAM531Z54j9EMRnb5pqHJGJSZRZNbzYMmYQfMpqYypW+udL6VRi2j5+
+ QspKQP0Lc17ZRNrKjeUiBSNOhcq/j5CuJA==
+X-Google-Smtp-Source: ABdhPJyywy13SbupTRLZMPD9rqJaFIQkMMQaoQ5zGLLCxEvhSY3VtLMGb1BRB8HdQm4XiSwSpK5fUA==
+X-Received: by 2002:a05:620a:74c:: with SMTP id
+ i12mr3445234qki.283.1623997562485; 
+ Thu, 17 Jun 2021 23:26:02 -0700 (PDT)
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com.
+ [209.85.160.173])
+ by smtp.gmail.com with ESMTPSA id z2sm3198260qkc.111.2021.06.17.23.25.59
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 17 Jun 2021 23:26:00 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id z4so6772618qts.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 23:25:59 -0700 (PDT)
+X-Received: by 2002:a02:384b:: with SMTP id v11mr1842282jae.90.1623997548077; 
+ Thu, 17 Jun 2021 23:25:48 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4372.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d171c4b-b425-4276-a520-08d93221bc61
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2021 06:24:32.4132 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vym9IUSN4V+1/JCTSpKZ2oH+exqoH2gBtVMS93Ex7NNW3T6r0sYpTP9XaZ6dkOVwx/zpwMPeebOX0dkfRa+9Ehpz0lBX/Bg8D+7mF3O3oVA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4037
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend:
- Don't set primary fb color in coverage-vs-premult-vs-constant
+References: <20210617062635.1660944-1-tientzu@chromium.org>
+ <20210617062635.1660944-2-tientzu@chromium.org>
+ <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s>
+In-Reply-To: <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s>
+From: Claire Chang <tientzu@chromium.org>
+Date: Fri, 18 Jun 2021 14:25:37 +0800
+X-Gmail-Original-Message-ID: <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
+Message-ID: <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
+To: Stefano Stabellini <sstabellini@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH v13 01/12] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,122 +72,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Nicolas Boichat <drinkcat@chromium.org>,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ Jianxiong Gao <jxgao@google.com>, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+On Fri, Jun 18, 2021 at 7:30 AM Stefano Stabellini
+<sstabellini@kernel.org> wrote:
+>
+> On Thu, 17 Jun 2021, Claire Chang wrote:
+> > Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
+> > initialization to make the code reusable.
+> >
+> > Signed-off-by: Claire Chang <tientzu@chromium.org>
+> > Reviewed-by: Christoph Hellwig <hch@lst.de>
+> > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+> > Tested-by: Will Deacon <will@kernel.org>
+> > ---
+> >  kernel/dma/swiotlb.c | 50 ++++++++++++++++++++++----------------------
+> >  1 file changed, 25 insertions(+), 25 deletions(-)
+> >
+> > diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+> > index 52e2ac526757..47bb2a766798 100644
+> > --- a/kernel/dma/swiotlb.c
+> > +++ b/kernel/dma/swiotlb.c
+> > @@ -168,9 +168,28 @@ void __init swiotlb_update_mem_attributes(void)
+> >       memset(vaddr, 0, bytes);
+> >  }
+> >
+> > -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> > +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
+> > +                                 unsigned long nslabs, bool late_alloc)
+> >  {
+> > +     void *vaddr = phys_to_virt(start);
+> >       unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+> > +
+> > +     mem->nslabs = nslabs;
+> > +     mem->start = start;
+> > +     mem->end = mem->start + bytes;
+> > +     mem->index = 0;
+> > +     mem->late_alloc = late_alloc;
+> > +     spin_lock_init(&mem->lock);
+> > +     for (i = 0; i < mem->nslabs; i++) {
+> > +             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> > +             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> > +             mem->slots[i].alloc_size = 0;
+> > +     }
+> > +     memset(vaddr, 0, bytes);
+> > +}
+> > +
+> > +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> > +{
+> >       struct io_tlb_mem *mem;
+> >       size_t alloc_size;
+> >
+> > @@ -186,16 +205,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> >       if (!mem)
+> >               panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
+> >                     __func__, alloc_size, PAGE_SIZE);
+> > -     mem->nslabs = nslabs;
+> > -     mem->start = __pa(tlb);
+> > -     mem->end = mem->start + bytes;
+> > -     mem->index = 0;
+> > -     spin_lock_init(&mem->lock);
+> > -     for (i = 0; i < mem->nslabs; i++) {
+> > -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> > -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> > -             mem->slots[i].alloc_size = 0;
+> > -     }
+> > +
+> > +     swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
+> >
+> >       io_tlb_default_mem = mem;
+> >       if (verbose)
+> > @@ -282,8 +293,8 @@ swiotlb_late_init_with_default_size(size_t default_size)
+> >  int
+> >  swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+> >  {
+> > -     unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+> >       struct io_tlb_mem *mem;
+> > +     unsigned long bytes = nslabs << IO_TLB_SHIFT;
+> >
+> >       if (swiotlb_force == SWIOTLB_NO_FORCE)
+> >               return 0;
+> > @@ -297,20 +308,9 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+> >       if (!mem)
+> >               return -ENOMEM;
+> >
+> > -     mem->nslabs = nslabs;
+> > -     mem->start = virt_to_phys(tlb);
+> > -     mem->end = mem->start + bytes;
+> > -     mem->index = 0;
+> > -     mem->late_alloc = 1;
+> > -     spin_lock_init(&mem->lock);
+> > -     for (i = 0; i < mem->nslabs; i++) {
+> > -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> > -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> > -             mem->slots[i].alloc_size = 0;
+> > -     }
+> > -
+> > +     memset(mem, 0, sizeof(*mem));
+> > +     swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
+> >       set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
+> > -     memset(tlb, 0, bytes);
+>
+> This is good for swiotlb_late_init_with_tbl. However I have just noticed
+> that mem could also be allocated from swiotlb_init_with_tbl, in which
+> case the zeroing is missing. I think we need another memset in
+> swiotlb_init_with_tbl as well. Or maybe it could be better to have a
+> single memset at the beginning of swiotlb_init_io_tlb_mem instead. Up to
+> you.
 
-Humble request for review of this please https://patchwork.freedesktop.org/series/90828/
-Can anyone kindly help review this so we can request for merge?
+swiotlb_init_with_tbl uses memblock_alloc to allocate the io_tlb_mem
+and memblock_alloc[1] will do memset in memblock_alloc_try_nid[2], so
+swiotlb_init_with_tbl is also good.
+I'm happy to add the memset in swiotlb_init_io_tlb_mem if you think
+it's clearer and safer.
 
-Thank you so much.
-
-Regards
-Vidya
-
------Original Message-----
-From: Srinivas, Vidya 
-Sent: Tuesday, June 15, 2021 1:55 PM
-To: Modem, Bhanuprakash <Bhanuprakash.Modem@intel.com>; intel-gfx@lists.freedesktop.org; igt-dev@lists.freedesktop.org
-Cc: Shankar, Uma <uma.shankar@intel.com>
-Subject: RE: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend: Don't set primary fb color in coverage-vs-premult-vs-constant
-
-Hello Bhanu,
-
-Sorry for the trouble. Kindly can you check if rev 3 is okay? Thanks a lot.
-
-Regards
-Vidya
-
------Original Message-----
-From: Srinivas, Vidya
-Sent: Friday, June 11, 2021 6:28 PM
-To: Modem, Bhanuprakash <Bhanuprakash.Modem@intel.com>; intel-gfx@lists.freedesktop.org; igt-dev@lists.freedesktop.org
-Subject: RE: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend: Don't set primary fb color in coverage-vs-premult-vs-constant
-
-Hello Bhanu,
-
-I have uploaded version 3 where I have not removed primary plane.
-Instead I have added a commit of the primary plane and I have changed alpha.
-This passes on Gen11 systems.
-
-Kindly check https://patchwork.freedesktop.org/patch/438831/?series=90828&rev=3 and suggest.
-
-Thank you so much.
-
-Regards
-Vidya
-
------Original Message-----
-From: Srinivas, Vidya
-Sent: Friday, June 11, 2021 1:00 PM
-To: Modem, Bhanuprakash <Bhanuprakash.Modem@intel.com>; intel-gfx@lists.freedesktop.org; igt-dev@lists.freedesktop.org
-Subject: RE: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend: Don't set primary fb color in coverage-vs-premult-vs-constant
-
-Thank you Bhanu. This test is failing on all planes > 0. Only plane 0 passes.
-If I skip plane 1, it fails on 2 and so on.
-Changing the way CRC is being collected also is not helping. Adding vblank is also not helping.
-
-Regards
-Vidya
-
------Original Message-----
-From: Modem, Bhanuprakash <bhanuprakash.modem@intel.com>
-Sent: Friday, June 11, 2021 9:11 AM
-To: Srinivas, Vidya <vidya.srinivas@intel.com>; intel-gfx@lists.freedesktop.org; igt-dev@lists.freedesktop.org
-Subject: RE: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend: Don't set primary fb color in coverage-vs-premult-vs-constant
-
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of 
-> Vidya Srinivas
-> Sent: Tuesday, June 1, 2021 7:38 PM
-> To: intel-gfx@lists.freedesktop.org; igt-dev@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH i-g-t] [RFC] tests/kms_plane_alpha_blend: 
-> Don't set primary fb color in coverage-vs-premult-vs-constant
-> 
-> Patch removes setting primary fb color in 
-> coverage-vs-premult-vs-constant as this is causing CRC mismatch on few Gen11 systems.
-
-I am not sure how Primary plane's bg color causing CRC mismatch.
-Also, as this test runs on all planes (those are having the props "alpha" and "pixel blend mode"), is this test failing on a particular plane?
-
-- Bhanu
-
-> Similar change has already been done in tests constant_alpha_min and 
-> basic_alpha where the test runs on all planes but dont set the primary 
-> fb color.
-> 
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> ---
->  tests/kms_plane_alpha_blend.c | 4 ----
->  1 file changed, 4 deletions(-)
-> 
-> diff --git a/tests/kms_plane_alpha_blend.c 
-> b/tests/kms_plane_alpha_blend.c index a37cb27c7d62..224d79bd1749
-> 100644
-> --- a/tests/kms_plane_alpha_blend.c
-> +++ b/tests/kms_plane_alpha_blend.c
-> @@ -447,10 +447,6 @@ static void coverage_premult_constant(data_t 
-> *data, enum pipe pipe, igt_plane_t
->  	igt_display_t *display = &data->display;
->  	igt_crc_t ref_crc = {}, crc = {};
-> 
-> -	/* Set a background color on the primary fb for testing */
-> -	if (plane->type != DRM_PLANE_TYPE_PRIMARY)
-> -		igt_plane_set_fb(igt_pipe_get_plane_type(&display->pipes[pipe],
-> DRM_PLANE_TYPE_PRIMARY), &data->gray_fb);
-> -
->  	igt_plane_set_prop_enum(plane, IGT_PLANE_PIXEL_BLEND_MODE, "Coverage");
->  	igt_plane_set_fb(plane, &data->argb_fb_cov_7e);
->  	igt_display_commit2(display, COMMIT_ATOMIC);
-> --
-> 2.7.4
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+[1] https://elixir.bootlin.com/linux/v5.13-rc6/source/include/linux/memblock.h#L407
+[2] https://elixir.bootlin.com/linux/v5.13-rc6/source/mm/memblock.c#L1555
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
