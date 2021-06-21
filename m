@@ -1,31 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E109F3AF667
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 21:46:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A033AF6C3
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 22:19:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 671B26E046;
-	Mon, 21 Jun 2021 19:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E246E07B;
+	Mon, 21 Jun 2021 20:19:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0E47E6E046;
- Mon, 21 Jun 2021 19:46:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F21C6A00C9;
- Mon, 21 Jun 2021 19:46:02 +0000 (UTC)
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24A6E6E07B;
+ Mon, 21 Jun 2021 20:19:51 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id AC60868B05; Mon, 21 Jun 2021 22:19:46 +0200 (CEST)
+Date: Mon, 21 Jun 2021 22:19:46 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Stefano Stabellini <sstabellini@kernel.org>
+Message-ID: <20210621201946.GA13822@lst.de>
+References: <20210617062635.1660944-1-tientzu@chromium.org>
+ <20210617062635.1660944-2-tientzu@chromium.org>
+ <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s>
+ <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
+ <741a34cc-547c-984d-8af4-2f309880acfa@amd.com>
+ <20210618143212.GA19284@lst.de>
+ <alpine.DEB.2.21.2106211052270.24906@sstabellini-ThinkPad-T480s>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
-Date: Mon, 21 Jun 2021 19:46:02 -0000
-Message-ID: <162430476296.19769.17877909738632216228@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210621191415.29823-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20210621191415.29823-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUGlw?=
- =?utf-8?q?e_DMC_bits?=
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.21.2106211052270.24906@sstabellini-ThinkPad-T480s>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH v13 01/12] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,142 +43,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1664646253=="
+Cc: thomas.hellstrom@linux.intel.com, heikki.krogerus@linux.intel.com,
+ linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
+ benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+ Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Nicolas Boichat <drinkcat@chromium.org>,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, Tom Lendacky <thomas.lendacky@amd.com>,
+ Jianxiong Gao <jxgao@google.com>, Will Deacon <will@kernel.org>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Claire Chang <tientzu@chromium.org>, boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1664646253==
-Content-Type: multipart/alternative;
- boundary="===============5932188958878823877=="
+On Mon, Jun 21, 2021 at 10:59:20AM -0700, Stefano Stabellini wrote:
+> Just as a clarification: I was referring to the zeroing of "mem" in
+> swiotlb_late_init_with_tbl and swiotlb_init_with_tbl. While it looks
+> like Tom and Christoph are talking about the zeroing of "tlb".
 
---===============5932188958878823877==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Indeed. 
 
-== Series Details ==
+> 
+> The zeroing of "mem" is required as some fields of struct io_tlb_mem
+> need to be initialized to zero. While the zeroing of "tlb" is not
+> required except from the point of view of not leaking sensitive data as
+> Christoph mentioned.
+> 
+> Either way, Claire's v14 patch 01/12 looks fine to me.
 
-Series: Pipe DMC bits
-URL   : https://patchwork.freedesktop.org/series/91746/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10256 -> Patchwork_20421
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20421/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (44 -> 38)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-cfl-8700k fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10256 -> Patchwork_20421
-
-  CI-20190529: 20190529
-  CI_DRM_10256: 2a5df66b6597af17e2c3e3fff1a2271a6079412b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6115: 4ef420186b82f1a6d9c9b69d2f8de4fd100a2af3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20421: 162182d31dc0abc9864acaba856737f63bb766aa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-162182d31dc0 drm/i915/adl_p: Load DMC
-b3db0b3770f8 drm/i915/adl_p: Pipe B DMC Support
-2dc1d7a2161e drm/i915/xelpd: Pipe A DMC plugging
-81c0a903179b drm/i915/dmc: Introduce DMC_FW_MAIN
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20421/index.html
-
---===============5932188958878823877==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Pipe DMC bits</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91746/">https://patchwork.freedesktop.org/series/91746/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20421/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20421/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10256 -&gt; Patchwork_20421</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20421/index.html</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-cfl-8700k fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10256 -&gt; Patchwork_20421</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10256: 2a5df66b6597af17e2c3e3fff1a2271a6079412b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6115: 4ef420186b82f1a6d9c9b69d2f8de4fd100a2af3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20421: 162182d31dc0abc9864acaba856737f63bb766aa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>162182d31dc0 drm/i915/adl_p: Load DMC<br />
-b3db0b3770f8 drm/i915/adl_p: Pipe B DMC Support<br />
-2dc1d7a2161e drm/i915/xelpd: Pipe A DMC plugging<br />
-81c0a903179b drm/i915/dmc: Introduce DMC_FW_MAIN</p>
-
-</body>
-</html>
-
---===============5932188958878823877==--
-
---===============1664646253==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Agreed.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1664646253==--
