@@ -2,27 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 024633AE845
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 13:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 684CB3AE846
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 13:41:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 511E389DE3;
-	Mon, 21 Jun 2021 11:41:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7684389DF9;
+	Mon, 21 Jun 2021 11:41:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl
  [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5451289DE3
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 11:41:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A1AF89DE3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 11:41:28 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 21 Jun 2021 13:41:22 +0200
-Message-Id: <20210621114123.3131534-2-maarten.lankhorst@linux.intel.com>
+Date: Mon, 21 Jun 2021 13:41:23 +0200
+Message-Id: <20210621114123.3131534-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.31.0
 In-Reply-To: <20210621114123.3131534-1-maarten.lankhorst@linux.intel.com>
 References: <20210621114123.3131534-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Use intel_context->pin_mutex only
- for context allocation
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Remove
+ intel_context->ops->(pre_pin/post_unpin)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,265 +40,348 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rename pin_mutex to alloc_mutex, and only use it for context allocation.
-This will allow us to simplify __intel_context_do_pin_ww, which no longer
-needs to run the pre_pin callback separately.
+Now that intel_context->pin_mutex is gone, the reason for splitting
+pre_pin/post_unpin ops is also gone. Remove those ops, and handle
+this detail inside guc/execlists submission only.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c       | 40 ++++++---------
- drivers/gpu/drm/i915/gt/intel_context.h       | 17 +++++--
- drivers/gpu/drm/i915/gt/intel_context_param.c | 49 ++++++++++++-------
- drivers/gpu/drm/i915/gt/intel_context_sseu.c  |  2 +-
- drivers/gpu/drm/i915/gt/intel_context_types.h |  2 +-
- 5 files changed, 62 insertions(+), 48 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c       | 19 ++-----
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  4 +-
+ .../drm/i915/gt/intel_execlists_submission.c  | 50 ++++++++-----------
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 16 +-----
+ drivers/gpu/drm/i915/gt/mock_engine.c         | 14 +-----
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 25 ++++++----
+ 6 files changed, 44 insertions(+), 84 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 4033184f13b9..e6dab37c4266 100644
+index e6dab37c4266..b630c1968794 100644
 --- a/drivers/gpu/drm/i915/gt/intel_context.c
 +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -53,7 +53,10 @@ int intel_context_alloc_state(struct intel_context *ce)
+@@ -207,8 +207,6 @@ static void intel_context_post_unpin(struct intel_context *ce)
+ int __intel_context_do_pin_ww(struct intel_context *ce,
+ 			      struct i915_gem_ww_ctx *ww)
  {
- 	int err = 0;
+-	bool handoff = false;
+-	void *vaddr;
+ 	int err;
  
--	if (mutex_lock_interruptible(&ce->pin_mutex))
-+	if (test_bit(CONTEXT_ALLOC_BIT, &ce->flags))
-+		return 0;
-+
-+	if (mutex_lock_interruptible(&ce->alloc_mutex))
- 		return -EINTR;
- 
- 	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
-@@ -66,11 +69,12 @@ int intel_context_alloc_state(struct intel_context *ce)
- 		if (unlikely(err))
- 			goto unlock;
- 
-+		smp_mb__before_atomic();
- 		set_bit(CONTEXT_ALLOC_BIT, &ce->flags);
- 	}
- 
- unlock:
--	mutex_unlock(&ce->pin_mutex);
-+	mutex_unlock(&ce->alloc_mutex);
- 	return err;
- }
- 
-@@ -205,19 +209,11 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
- {
- 	bool handoff = false;
- 	void *vaddr;
--	int err = 0;
--
--	if (unlikely(!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))) {
--		err = intel_context_alloc_state(ce);
--		if (err)
--			return err;
--	}
-+	int err;
- 
--	/*
--	 * We always pin the context/ring/timeline here, to ensure a pin
--	 * refcount for __intel_context_active(), which prevent a lock
--	 * inversion of ce->pin_mutex vs dma_resv_lock().
--	 */
-+	err = intel_context_alloc_state(ce);
-+	if (err)
-+		return err;
- 
- 	err = i915_gem_object_lock(ce->timeline->hwsp_ggtt->obj, ww);
- 	if (!err && ce->ring->vma->obj)
-@@ -237,24 +233,20 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+ 	err = intel_context_alloc_state(ce);
+@@ -229,40 +227,32 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
  	if (err)
- 		goto err_release;
+ 		goto err_ctx_unpin;
  
--	err = mutex_lock_interruptible(&ce->pin_mutex);
+-	err = ce->ops->pre_pin(ce, ww, &vaddr);
 -	if (err)
--		goto err_post_unpin;
+-		goto err_release;
 -
  	if (unlikely(intel_context_is_closed(ce))) {
  		err = -ENOENT;
--		goto err_unlock;
-+		goto err_post_unpin;
+-		goto err_post_unpin;
++		goto err_release;
  	}
  
  	if (likely(!atomic_add_unless(&ce->pin_count, 1, 0))) {
  		err = intel_context_active_acquire(ce);
  		if (unlikely(err))
--			goto err_unlock;
-+			goto err_post_unpin;
+-			goto err_post_unpin;
++			goto err_release;
  
- 		err = ce->ops->pin(ce, vaddr);
+-		err = ce->ops->pin(ce, vaddr);
++		err = ce->ops->pin(ce, ww);
  		if (err) {
  			intel_context_active_release(ce);
--			goto err_unlock;
-+			goto err_post_unpin;
+-			goto err_post_unpin;
++			goto err_release;
  		}
  
  		CE_TRACE(ce, "pin ring:{start:%08x, head:%04x, tail:%04x}\n",
-@@ -268,8 +260,6 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+ 			 i915_ggtt_offset(ce->ring->vma),
+ 			 ce->ring->head, ce->ring->tail);
+ 
+-		handoff = true;
+ 		smp_mb__before_atomic(); /* flush pin before it is visible */
+ 		atomic_inc(&ce->pin_count);
+ 	}
  
  	GEM_BUG_ON(!intel_context_is_pinned(ce)); /* no overflow! */
  
--err_unlock:
--	mutex_unlock(&ce->pin_mutex);
- err_post_unpin:
- 	if (!handoff)
- 		ce->ops->post_unpin(ce);
-@@ -381,7 +371,7 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
- 	spin_lock_init(&ce->signal_lock);
- 	INIT_LIST_HEAD(&ce->signals);
+-err_post_unpin:
+-	if (!handoff)
+-		ce->ops->post_unpin(ce);
+ err_release:
+ 	i915_active_release(&ce->active);
+ err_ctx_unpin:
+@@ -303,7 +293,6 @@ void intel_context_unpin(struct intel_context *ce)
  
--	mutex_init(&ce->pin_mutex);
-+	mutex_init(&ce->alloc_mutex);
- 
- 	i915_active_init(&ce->active,
- 			 __intel_context_active, __intel_context_retire, 0);
-@@ -393,7 +383,7 @@ void intel_context_fini(struct intel_context *ce)
- 		intel_timeline_put(ce->timeline);
- 	i915_vm_put(ce->vm);
- 
--	mutex_destroy(&ce->pin_mutex);
-+	mutex_destroy(&ce->alloc_mutex);
- 	i915_active_fini(&ce->active);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index f83a73a2b39f..4cf6901fcb81 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -49,9 +49,16 @@ int intel_context_reconfigure_sseu(struct intel_context *ce,
-  * intel_context_is_pinned() remains stable.
-  */
- static inline int intel_context_lock_pinned(struct intel_context *ce)
--	__acquires(ce->pin_mutex)
- {
--	return mutex_lock_interruptible(&ce->pin_mutex);
-+	int ret = intel_context_alloc_state(ce);
-+
-+	if (ret)
-+		return ret;
-+
-+	if (ce->state)
-+		return i915_gem_object_lock_interruptible(ce->state->obj, NULL);
-+	else
-+		return i915_gem_object_lock_interruptible(ce->timeline->hwsp_ggtt->obj, NULL);
- }
- 
- /**
-@@ -76,9 +83,11 @@ intel_context_is_pinned(struct intel_context *ce)
-  * Releases the lock earlier acquired by intel_context_unlock_pinned().
-  */
- static inline void intel_context_unlock_pinned(struct intel_context *ce)
--	__releases(ce->pin_mutex)
- {
--	mutex_unlock(&ce->pin_mutex);
-+	if (ce->state)
-+		return i915_gem_object_unlock(ce->state->obj);
-+	else
-+		return i915_gem_object_unlock(ce->timeline->hwsp_ggtt->obj);
- }
- 
- int __intel_context_do_pin(struct intel_context *ce);
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_param.c b/drivers/gpu/drm/i915/gt/intel_context_param.c
-index 412c36d1b1dd..eba026d63361 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_param.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context_param.c
-@@ -10,13 +10,34 @@
- 
- int intel_context_set_ring_size(struct intel_context *ce, long sz)
- {
-+	struct intel_ring *ring;
- 	int err;
- 
- 	if (ce->engine->gt->submission_method == INTEL_SUBMISSION_RING)
- 		return 0;
- 
--	if (intel_context_lock_pinned(ce))
--		return -EINTR;
-+	/* Try fast case (unallocated) first */
-+	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
-+		bool done = false;
-+
-+		err = mutex_lock_interruptible(&ce->alloc_mutex);
-+		if (err)
-+			return err;
-+
-+		if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
-+			ce->ring = __intel_context_ring_size(sz);
-+			done = true;
-+		}
-+		mutex_unlock(&ce->alloc_mutex);
-+
-+		if (done)
-+			return 0;
-+	}
-+
-+	/* Context already allocated */
-+	err = intel_context_lock_pinned(ce);
-+	if (err)
-+		return err;
- 
- 	err = i915_active_wait(&ce->active);
- 	if (err < 0)
-@@ -27,23 +48,17 @@ int intel_context_set_ring_size(struct intel_context *ce, long sz)
- 		goto unlock;
- 	}
- 
--	if (test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
--		struct intel_ring *ring;
--
--		/* Replace the existing ringbuffer */
--		ring = intel_engine_create_ring(ce->engine, sz);
--		if (IS_ERR(ring)) {
--			err = PTR_ERR(ring);
--			goto unlock;
--		}
-+	/* Replace the existing ringbuffer */
-+	ring = intel_engine_create_ring(ce->engine, sz);
-+	if (IS_ERR(ring)) {
-+		err = PTR_ERR(ring);
-+		goto unlock;
-+	}
- 
--		intel_ring_put(ce->ring);
--		ce->ring = ring;
-+	intel_ring_put(ce->ring);
-+	ce->ring = ring;
- 
--		/* Context image will be updated on next pin */
--	} else {
--		ce->ring = __intel_context_ring_size(sz);
--	}
-+	/* Context image will be updated on next pin */
- 
- unlock:
- 	intel_context_unlock_pinned(ce);
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_sseu.c b/drivers/gpu/drm/i915/gt/intel_context_sseu.c
-index e86d8255feec..447b278b107b 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_sseu.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context_sseu.c
-@@ -42,7 +42,7 @@ gen8_modify_rpcs(struct intel_context *ce, const struct intel_sseu sseu)
- 	struct i915_request *rq;
- 	int ret;
- 
--	lockdep_assert_held(&ce->pin_mutex);
-+	assert_object_held(ce->state->obj);
+ 	CE_TRACE(ce, "unpin\n");
+ 	ce->ops->unpin(ce);
+-	ce->ops->post_unpin(ce);
  
  	/*
- 	 * If the context is not idle, we have to submit an ordered request to
+ 	 * Once released, we may asynchronously drop the active reference.
 diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index ed8c447a7346..b104d5e9d3b6 100644
+index b104d5e9d3b6..e10057901c6c 100644
 --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
 +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -122,7 +122,7 @@ struct intel_context {
- 	unsigned int active_count; /* protected by timeline->mutex */
+@@ -35,10 +35,8 @@ struct intel_context_ops {
  
- 	atomic_t pin_count;
--	struct mutex pin_mutex; /* guards pinning and associated on-gpuing */
-+	struct mutex alloc_mutex; /* guards allocation (ops->alloc) */
+ 	int (*alloc)(struct intel_context *ce);
  
- 	/**
- 	 * active: Active tracker for the rq activity (inc. external) on this
+-	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
+-	int (*pin)(struct intel_context *ce, void *vaddr);
++	int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww);
+ 	void (*unpin)(struct intel_context *ce);
+-	void (*post_unpin)(struct intel_context *ce);
+ 
+ 	void (*enter)(struct intel_context *ce);
+ 	void (*exit)(struct intel_context *ce);
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index cdb2126a159a..6a1a45ffe816 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2509,35 +2509,38 @@ static void execlists_submit_request(struct i915_request *request)
+ }
+ 
+ static int
+-__execlists_context_pre_pin(struct intel_context *ce,
+-			    struct intel_engine_cs *engine,
+-			    struct i915_gem_ww_ctx *ww, void **vaddr)
++__execlists_context_pin(struct intel_context *ce,
++			struct intel_engine_cs *engine,
++			struct i915_gem_ww_ctx *ww)
+ {
+ 	int err;
++	void *vaddr;
+ 
+-	err = lrc_pre_pin(ce, engine, ww, vaddr);
++	err = lrc_pre_pin(ce, engine, ww, &vaddr);
+ 	if (err)
+ 		return err;
+ 
+ 	if (!__test_and_set_bit(CONTEXT_INIT_BIT, &ce->flags)) {
+-		lrc_init_state(ce, engine, *vaddr);
++		lrc_init_state(ce, engine, vaddr);
+ 
+ 		 __i915_gem_object_flush_map(ce->state->obj, 0, engine->context_size);
+ 	}
+ 
+-	return 0;
++	err = lrc_pin(ce, ce->engine, vaddr);
++	if (err)
++		lrc_post_unpin(ce);
++	return err;
+ }
+ 
+-static int execlists_context_pre_pin(struct intel_context *ce,
+-				     struct i915_gem_ww_ctx *ww,
+-				     void **vaddr)
++static int execlists_context_pin(struct intel_context *ce, struct i915_gem_ww_ctx *ww)
+ {
+-	return __execlists_context_pre_pin(ce, ce->engine, ww, vaddr);
++	return __execlists_context_pin(ce, ce->engine, ww);
+ }
+ 
+-static int execlists_context_pin(struct intel_context *ce, void *vaddr)
++static void execlists_context_unpin(struct intel_context *ce)
+ {
+-	return lrc_pin(ce, ce->engine, vaddr);
++	lrc_unpin(ce);
++	lrc_post_unpin(ce);
+ }
+ 
+ static int execlists_context_alloc(struct intel_context *ce)
+@@ -2545,15 +2548,14 @@ static int execlists_context_alloc(struct intel_context *ce)
+ 	return lrc_alloc(ce, ce->engine);
+ }
+ 
++
+ static const struct intel_context_ops execlists_context_ops = {
+ 	.flags = COPS_HAS_INFLIGHT,
+ 
+ 	.alloc = execlists_context_alloc,
+ 
+-	.pre_pin = execlists_context_pre_pin,
+ 	.pin = execlists_context_pin,
+-	.unpin = lrc_unpin,
+-	.post_unpin = lrc_post_unpin,
++	.unpin = execlists_context_unpin,
+ 
+ 	.enter = intel_context_enter_engine,
+ 	.exit = intel_context_exit_engine,
+@@ -3467,21 +3469,11 @@ static int virtual_context_alloc(struct intel_context *ce)
+ 	return lrc_alloc(ce, ve->siblings[0]);
+ }
+ 
+-static int virtual_context_pre_pin(struct intel_context *ce,
+-				   struct i915_gem_ww_ctx *ww,
+-				   void **vaddr)
+-{
+-	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+-
+-	 /* Note: we must use a real engine class for setting up reg state */
+-	return __execlists_context_pre_pin(ce, ve->siblings[0], ww, vaddr);
+-}
+-
+-static int virtual_context_pin(struct intel_context *ce, void *vaddr)
++static int virtual_context_pin(struct intel_context *ce, struct i915_gem_ww_ctx *ww)
+ {
+ 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+ 
+-	return lrc_pin(ce, ve->siblings[0], vaddr);
++	return __execlists_context_pin(ce, ve->siblings[0], ww);
+ }
+ 
+ static void virtual_context_enter(struct intel_context *ce)
+@@ -3511,10 +3503,8 @@ static const struct intel_context_ops virtual_context_ops = {
+ 
+ 	.alloc = virtual_context_alloc,
+ 
+-	.pre_pin = virtual_context_pre_pin,
+ 	.pin = virtual_context_pin,
+-	.unpin = lrc_unpin,
+-	.post_unpin = lrc_post_unpin,
++	.unpin = execlists_context_unpin,
+ 
+ 	.enter = virtual_context_enter,
+ 	.exit = virtual_context_exit,
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 5d42a12ef3d6..85b6a4d60e07 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -467,9 +467,8 @@ static int ring_context_init_default_state(struct intel_context *ce,
+ 	return 0;
+ }
+ 
+-static int ring_context_pre_pin(struct intel_context *ce,
+-				struct i915_gem_ww_ctx *ww,
+-				void **unused)
++static int ring_context_pin(struct intel_context *ce,
++			    struct i915_gem_ww_ctx *ww)
+ {
+ 	struct i915_address_space *vm;
+ 	int err = 0;
+@@ -498,10 +497,6 @@ static void __context_unpin_ppgtt(struct intel_context *ce)
+ }
+ 
+ static void ring_context_unpin(struct intel_context *ce)
+-{
+-}
+-
+-static void ring_context_post_unpin(struct intel_context *ce)
+ {
+ 	__context_unpin_ppgtt(ce);
+ }
+@@ -572,11 +567,6 @@ static int ring_context_alloc(struct intel_context *ce)
+ 	return 0;
+ }
+ 
+-static int ring_context_pin(struct intel_context *ce, void *unused)
+-{
+-	return 0;
+-}
+-
+ static void ring_context_reset(struct intel_context *ce)
+ {
+ 	intel_ring_reset(ce->ring, ce->ring->emit);
+@@ -586,10 +576,8 @@ static void ring_context_reset(struct intel_context *ce)
+ static const struct intel_context_ops ring_context_ops = {
+ 	.alloc = ring_context_alloc,
+ 
+-	.pre_pin = ring_context_pre_pin,
+ 	.pin = ring_context_pin,
+ 	.unpin = ring_context_unpin,
+-	.post_unpin = ring_context_post_unpin,
+ 
+ 	.enter = intel_context_enter_engine,
+ 	.exit = intel_context_exit_engine,
+diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
+index 68970398e4ef..3e4f6ef705c9 100644
+--- a/drivers/gpu/drm/i915/gt/mock_engine.c
++++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+@@ -123,10 +123,6 @@ static void mock_context_unpin(struct intel_context *ce)
+ {
+ }
+ 
+-static void mock_context_post_unpin(struct intel_context *ce)
+-{
+-}
+-
+ static void mock_context_destroy(struct kref *ref)
+ {
+ 	struct intel_context *ce = container_of(ref, typeof(*ce), ref);
+@@ -166,13 +162,7 @@ static int mock_context_alloc(struct intel_context *ce)
+ 	return 0;
+ }
+ 
+-static int mock_context_pre_pin(struct intel_context *ce,
+-				struct i915_gem_ww_ctx *ww, void **unused)
+-{
+-	return 0;
+-}
+-
+-static int mock_context_pin(struct intel_context *ce, void *unused)
++static int mock_context_pin(struct intel_context *ce, struct i915_gem_ww_ctx *ww)
+ {
+ 	return 0;
+ }
+@@ -184,10 +174,8 @@ static void mock_context_reset(struct intel_context *ce)
+ static const struct intel_context_ops mock_context_ops = {
+ 	.alloc = mock_context_alloc,
+ 
+-	.pre_pin = mock_context_pre_pin,
+ 	.pin = mock_context_pin,
+ 	.unpin = mock_context_unpin,
+-	.post_unpin = mock_context_post_unpin,
+ 
+ 	.enter = intel_context_enter_engine,
+ 	.exit = intel_context_exit_engine,
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index e9c237b18692..5b26c0103429 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -437,25 +437,32 @@ static int guc_context_alloc(struct intel_context *ce)
+ 	return lrc_alloc(ce, ce->engine);
+ }
+ 
+-static int guc_context_pre_pin(struct intel_context *ce,
+-			       struct i915_gem_ww_ctx *ww,
+-			       void **vaddr)
++static int guc_context_pin(struct intel_context *ce, struct i915_gem_ww_ctx *ww)
+ {
+-	return lrc_pre_pin(ce, ce->engine, ww, vaddr);
++	void *vaddr;
++	int err;
++
++	err = lrc_pre_pin(ce, ce->engine, ww, &vaddr);
++	if (err)
++		return err;
++
++	err = lrc_pin(ce, ce->engine, vaddr);
++	if (err)
++		lrc_post_unpin(ce);
++	return err;
+ }
+ 
+-static int guc_context_pin(struct intel_context *ce, void *vaddr)
++static void guc_context_unpin(struct intel_context *ce)
+ {
+-	return lrc_pin(ce, ce->engine, vaddr);
++	lrc_unpin(ce);
++	lrc_post_unpin(ce);
+ }
+ 
+ static const struct intel_context_ops guc_context_ops = {
+ 	.alloc = guc_context_alloc,
+ 
+-	.pre_pin = guc_context_pre_pin,
+ 	.pin = guc_context_pin,
+-	.unpin = lrc_unpin,
+-	.post_unpin = lrc_post_unpin,
++	.unpin = guc_context_unpin,
+ 
+ 	.enter = intel_context_enter_engine,
+ 	.exit = intel_context_exit_engine,
 -- 
 2.31.0
 
