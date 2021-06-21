@@ -2,48 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 444933AEA09
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 15:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F243AEAC8
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 16:10:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D956E10C;
-	Mon, 21 Jun 2021 13:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 447656E161;
+	Mon, 21 Jun 2021 14:10:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B850B6E10C
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 13:28:05 +0000 (UTC)
-IronPort-SDR: JIfIm9nhE73z1VZYazp/v3PEJ6jMLbpH37k6mI923W1aFRkDXw8pTR/tb5rf8ZS1a7/sndEUmu
- nZ+PHkqIrmjQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10021"; a="205017189"
-X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="205017189"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2021 06:28:05 -0700
-IronPort-SDR: bvkEj7rxV+z45e9damYF176sL0/3x50DEGUZzLfTc2cxwaazWPYvhs+cVm8Trz/aQB8e4qP6Vk
- BtjdPNBTi0wA==
-X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="453881064"
-Received: from plogin-mobl.ger.corp.intel.com (HELO [10.249.33.137])
- ([10.249.33.137])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2021 06:28:04 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210621114123.3131534-1-maarten.lankhorst@linux.intel.com>
- <04424cbf-750a-4cb9-a99a-6a5a3671452f@linux.intel.com>
- <74c6afe5-a76f-1895-d37b-d738978e2804@linux.intel.com>
- <1d7486eb-27df-17cd-e4a6-3ac45ecf7a36@linux.intel.com>
- <7c012b08-eebc-ceba-7fa7-be2a0a830b25@linux.intel.com>
- <ecadb3a4-fb8a-9533-81ad-6b2daaaa9fa6@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <5caf2c40-1a88-2b9c-c867-4abc849457f6@linux.intel.com>
-Date: Mon, 21 Jun 2021 15:28:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB356E161
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 14:10:38 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id e22so16283005wrc.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 07:10:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=AGlV2MD6otn2QQN/+YuOax/yo3OPIlMQZ3cJytPNMxk=;
+ b=dxIdwiUMehn6sA5E239voC+h18YFW+FN8JYbk25dQdz3MmrWeISh71T/6F/prqU6Yd
+ PEFjzOn86SLmtfjabSAUl8gxsEiYQXRaC/IUMf3ZMnotC/iO7EjQQo9XmMTb3DkOrA7H
+ 69+3iL0eMuT86aKepTsRZXvhrg/tP8rSDhZEo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=AGlV2MD6otn2QQN/+YuOax/yo3OPIlMQZ3cJytPNMxk=;
+ b=uCqijrH1aDP3kfMD3deNc6pPx/ixM8B2mOZQ3JWnq0UWZHFjWR6Tc01paLySVvSspq
+ msis/I65/a+zolpLw8I7z483SCkCMqfu3p0e1HGlrz64ivZpNE4jvdMGBl4LwiZiVk5+
+ sGKMI9vUI6k5xsNVi06nakd+mm4SVEkP64XFo+KXEWLk1QPmoRWjTcGUtvz3NOAtEfvd
+ +N0rv/kZ4+wyHFRdliKFb6vaNZLd1cEiKhF41xu1Cv7e2ev1p3mWAZ3nt5q7Pr1OWmnw
+ nuab7uuigHn5YPbnvli36wjrmeQqmycW74Pri8fg+KzEL4dq/I4OPwBALi1d/P5Rc83Y
+ O9zg==
+X-Gm-Message-State: AOAM533V6WU4zH2wx2PyEznbDp4ZiPfLRgCJekLCP9eM9IQg0q7Iw/xN
+ C4iZ0p3tI74tZIK8VBDGlkwveA==
+X-Google-Smtp-Source: ABdhPJx5OqTU3rT2HYNagde8SKe39dhIr0kjKox8JE94Ej/JAxsw9e4p7LE3RW3Rig5FzCstV1cfEQ==
+X-Received: by 2002:adf:f592:: with SMTP id f18mr14083074wro.81.1624284636881; 
+ Mon, 21 Jun 2021 07:10:36 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f12sm21491418wru.81.2021.06.21.07.10.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Jun 2021 07:10:36 -0700 (PDT)
+Date: Mon, 21 Jun 2021 16:10:34 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <YNCd2m9yvaUhR9MN@phenom.ffwll.local>
+Mail-Followup-To: Matthew Auld <matthew.william.auld@gmail.com>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ kernel list <linux-kernel@vger.kernel.org>
+References: <YMdPcWZi4x7vnCxI@google.com> <YMuGGqs4cDotxuKO@phenom.ffwll.local>
+ <CAM0jSHMYk3GeZTP7FQ8z2H02GfCcJsUeNwbzH3GLdRVxvMzqDg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <ecadb3a4-fb8a-9533-81ad-6b2daaaa9fa6@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Do not allow setting ring
- size for legacy ring submission
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHMYk3GeZTP7FQ8z2H02GfCcJsUeNwbzH3GLdRVxvMzqDg@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] drm/i915: __GFP_RETRY_MAYFAIL allocations in stable
+ kernels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,58 +76,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ kernel list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMjEtMDYtMjAyMSBvbSAxNToyMCBzY2hyZWVmIFR2cnRrbyBVcnN1bGluOgo+Cj4gT24gMjEv
-MDYvMjAyMSAxNDoxMiwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4+Cj4+IE9uIDIxLzA2LzIwMjEg
-MTQ6MDcsIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+Pj4gT3AgMjEtMDYtMjAyMSBvbSAxNDo1
-MiBzY2hyZWVmIFR2cnRrbyBVcnN1bGluOgo+Pj4+Cj4+Pj4gT24gMjEvMDYvMjAyMSAxMzowOCwg
-VHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4+Pj4+Cj4+Pj4+IEkgaGFkIHNvbWUgcXVlc3Rpb25zIG9u
-IHRoZSB0cnlib3QgbWFpbGluZyBsaXN0LCBsZXQgbWUgY29weSZwYXN0ZS4uCj4+Pj4+Cj4+Pj4+
-IE9uIDIxLzA2LzIwMjEgMTI6NDEsIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+Pj4+Pj4gSXQg
-ZG9lc24ndCB3b3JrIGZvciBsZWdhY3kgcmluZyBzdWJtaXNzaW9uLCBhbmQgaXMgaW4gdGhlIGJl
-c3QgY2FzZQo+Pj4+Pj4gaWdub3JlZC4KPj4+Pj4KPj4+Pj4gTG9va3MgcmVqZWN0ZWQgaW5zdGVh
-ZCBvZiBpZ25vcmVkOgo+Pj4+Pgo+Pj4+PiBzdGF0aWMgaW50IHNldF9yaW5nc2l6ZShzdHJ1Y3Qg
-aTkxNV9nZW1fY29udGV4dCAqY3R4LAo+Pj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBz
-dHJ1Y3QgZHJtX2k5MTVfZ2VtX2NvbnRleHRfcGFyYW0gKmFyZ3MpCj4+Pj4+IHsKPj4+Pj4gwqDC
-oMKgwqDCoCBpZiAoIUhBU19MT0dJQ0FMX1JJTkdfQ09OVEVYVFMoY3R4LT5pOTE1KSkKPj4+Pj4g
-wqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRU5PREVWOwo+Pj4+Pj4KPj4+Pj4+IEluIHRoZSB3
-b3JzdCBjYXNlIHdlIGVuZCB1cCBmcmVlaW5nIGVuZ2luZS0+bGVnYWN5LnJpbmcgZm9yIGFsbCBv
-dGhlcgo+Pj4+Pj4gYWN0aXZlIGVuZ2luZXMsIHJlc3VsdGluZyBpbiBhIHVzZS1hZnRlci1mcmVl
-Lgo+Pj4+Pgo+Pj4+PiBXb3JzdCBjYXNlIGlzIGNsb25pbmcgYmVjYXVzZSByaW5nX2NvbnRleHRf
-YWxsb2MgaXMgbm90IHRha2luZyBhIHJlZmVyZW5jZSB0byBlbmdpbmUtPmxlZ2FjeS5yaW5nLCBv
-ciBzb21ldGhpbmcgZWxzZT8KPj4+Pgo+Pj4+IE5vIGNhbid0IGJlIHRoYXQsIGl0IHdhcyBteSBp
-bmNvbXBsZXRlIGFuYWx5c2lzIGxhc3Qgd2Vlay4gU2luY2UgcmluZ19jb250ZXh0X2Rlc3Ryb3kg
-ZG9lcyBub3QgYWN0dWFsbHkgZnJlZSB0aGUgbGVnYWN5IHJpbmcgSSBkb24ndCBzZWUgYW55IHVz
-ZSBhZnRlciBmcmVlIHBhdGhzLgo+Pj4+Cj4+Pj4gUmVnYXJkcywKPj4+Cj4+PiBIbW0sIGl0IGdl
-dHMgc3R1Y2sgaW5zaWRlIGludGVsX2NvbnRleHRfc2V0X3Jpbmdfc2l6ZSB3aGVuIGNsb25pbmcg
-ZW5naW5lcy4uCj4+Pgo+Pj4gSSBndWVzcyBpdCBjYW4ndCBoYXBwZW4gaW4gcHJhY3RpY2UsIGp1
-c3QgdGhlIGNvZGUgaW50cm9kdWNlcyB0aGUgcmFjZSBieSBwcmVhbGxvY2F0aW5nCj4+PiBpbnNp
-ZGUgaW50ZWxfY29udGV4dF9sb2NrX3Bpbm5lZCgpLi4KPj4KPj4gIlRoZSBjb2RlIiBiZWluZyB0
-aGUgcmVzdCBvZiB5b3VyIHNlcmllcz8gSGF2ZW4ndCBsb29rZWQgaW4gdGhlcmUsIGJ1dCBjYW4n
-dCBmaW5kIGEgcHJvYmxlbSBpbiB1cHN0cmVhbS4gU2luY2UgYXMgeW91IHNheSwgY29weV9yaW5n
-X3NpemUgd2lsbCBydW4gYnV0IGludGVsX2NvbnRleHRfc2V0X3Jpbmdfc2l6ZSB3aWxsIG5vdCBm
-cmVlLWFuZC1hbGxvY2F0ZSBvbGQvbmV3IHJpbmcgc2luY2UgY2xvbmVkIGNvbnRleHQgZG9lcyBu
-b3QgaGF2ZSBhIHN0YXRlIGFsbG9jYXRlZCB5ZXQuCj4KPiBQLlMuIFB1dHRpbmcgYSBIQVNfTE9H
-SUNBTF9SSU5HX0NPTlRFWFRTIGNoZWNrIGluIGNvcHlfcmluZ19zaXplIHdvdWxkIGJlIGEgYml0
-IHVuZm9ydHVuYXRlIGJlY2F1c2UgbGF5ZXJpbmcgaXMgYSBiaXQgYnJva2VuIGF0IHRoZSBtb21l
-bnQgYW5kIHRoYXQgd291bGRuJ3QgbWFrZSBpdCBiZXR0ZXIuCj4KPiBUbyBjbGFyaWZ5IG15IHRo
-aW5raW5nOiBBdCB0aGUgbW9tZW50IGFsbG9jYXRpbmcgdGhlIHJpbmcgaXMgcmVzcG9uc2liaWxp
-dHkgb2YgYSBiYWNrZW5kIHNwZWNpZmljIGhvb2suIEFwYXJ0IGZyb20gdGhlIGdlbmVyaWMgaW50
-ZWxfY29udGV4dF9zZXRfcmluZ19zaXplIHdoaWNoIGJyZWFrcyB0aGF0IGJ5IGFsbG9jYXRpbmcg
-aW4gdGhlIGxheWVyIGFib3ZlIHRoZSBiYWNrZW5kLiBTbyBwcm9wZXIgZml4IGNvdWxkIGJlIHRv
-IGludHJvZHVjZSBiYWNrZW5kIHNwZWNpZmljIGhvb2tzIGZvciByaW5nIGFsbG9jYXRpb24vZnJl
-ZWluZy4KPgo+ICpJZiogeW91IG5lZWQgdG8gYWxsb2NhdGUgdGhlIHN0YXRlIHNvIGVhcmx5Li4g
-bm90IHN1cmUgYWJvdXQgdGhhdC4gSSdkIGZpcnN0IG5lZWQgdG8gdW5kZXJzdGFuZCB3aHkuIElm
-IHlvdSBzYXkgaXQgaXMgYSByYWNlIHRoZW4gaXQgd2FzIGFsbCBhY2NpZGVudGFsPyAKCkkgbm90
-aWNlZCBpdCBtb3N0bHkgd2hlbiBkZWJ1Z2dpbmcuIEkgZml4ZWQgaXQgY3VycmVubHkgYnkgbm90
-IGFsbG9jYXRpbmcgc3RhdGUgaW4gc2V0X3Jpbmdfc2l6ZSB1bm5lY2Vzc2FyaWx5LCBoZW5jZSB0
-aGlzIHBhdGNoIGlzIG5vIGxvbmdlciBuZWVkZWQuIDopCgpTbyBpZiB0aGF0J3MgdGhlIG9ubHkg
-dGhpbmcsIEkgY2FuIGp1c3QgZHJvcCB0aGlzIHBhdGNoIGVudGlyZWx5LgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, Jun 18, 2021 at 04:46:24PM +0100, Matthew Auld wrote:
+> On Thu, 17 Jun 2021 at 18:27, Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Mon, Jun 14, 2021 at 09:45:37PM +0900, Sergey Senozhatsky wrote:
+> > > Hi,
+> > >
+> > > We are observing some user-space crashes (sigabort, segfaults etc.)
+> > > under moderate memory pressure (pretty far from severe pressure) which
+> > > have one thing in common - restrictive GFP mask in setup_scratch_page().
+> > >
+> > > For instance, (stable 4.19) drivers/gpu/drm/i915/i915_gem_gtt.c
+> > >
+> > > (trimmed down version)
+> > >
+> > > static int gen8_init_scratch(struct i915_address_space *vm)
+> > > {
+> > >         setup_scratch_page(vm, __GFP_HIGHMEM);
+> > >
+> > >         vm->scratch_pt = alloc_pt(vm);
+> > >         vm->scratch_pd = alloc_pd(vm);
+> > >         if (use_4lvl(vm)) {
+> > >                 vm->scratch_pdp = alloc_pdp(vm);
+> > >         }
+> > > }
+> > >
+> > > gen8_init_scratch() function puts a rather inconsistent restrictions on mm.
+> > >
+> > > Looking at it line by line:
+> > >
+> > > setup_scratch_page() uses very restrictive gfp mask:
+> > >       __GFP_HIGHMEM | __GFP_ZERO | __GFP_RETRY_MAYFAIL
+> > >
+> > > it doesn't try to reclaim anything and fails almost immediately.
+> > >
+> > > alloc_pt() - uses more permissive gfp mask:
+> > >       GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN
+> > >
+> > > alloc_pd() - likewise:
+> > >       GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN
+> > >
+> > > alloc_pdp() - very permissive gfp mask:
+> > >       GFP_KERNEL
+> > >
+> > >
+> > > So can all allocations in gen8_init_scratch() use
+> > >       GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN
+> >
+> > Yeah that looks all fairly broken tbh. The only thing I didn't know was
+> > that GFP_DMA32 wasn't a full gfp mask with reclaim bits set as needed. I
+> > guess it would be clearer if we use GFP_KERNEL | __GFP_DMA32 for these.
+> >
+> > The commit that introduced a lot of this, including I915_GFP_ALLOW_FAIL
+> > seems to be
+> >
+> > commit 1abb70f5955d1a9021f96359a2c6502ca569b68d
+> > Author: Chris Wilson <chris@chris-wilson.co.uk>
+> > Date:   Tue May 22 09:36:43 2018 +0100
+> >
+> >     drm/i915/gtt: Allow pagedirectory allocations to fail
+> >
+> > which used a selftest as justification, not real world workloads, so looks
+> > rather dubious.
+> >
+> > Adding Matt Auld to this thread, maybe he has ideas.
+> 
+> The latest code is quite different, but for both scratch and the
+> various paging structures it's now sharing the same GFP
+> flags(I915_GFP_ALLOW_FAIL). And for the actual backing page, which is
+> now a GEM object, we use i915_gem_object_get_pages_internal().
+> 
+> Not sure why scratch wants to be different, and I don't recall
+> anything funny. At first I thought it might have been related to
+> needing only one scratch page/directory etc which was then shared
+> between different VMs, but I don't think we had read-only support in
+> the driver at that point, so can't be that. But I guess once we did
+> add that seeing failures in init_scratch() was very unlikely, at least
+> until gen11+ arrived which then broke read-only support in the HW.
+
+If there is something, then shmem get_pages has some reason to use
+__GFP_RETRY_MAYFAIL - at least way back when dev->struct_mutex was still
+everywhere we had some paths to directly reclaim gem bo when the
+allocations failed.
+
+But I think that all disappeared, so all the reasons for MAYFAIL have gone
+away - if there's no fallback or call to our own shrinker or anything like
+that, then we must rely on core mm to try really hard to find the memory
+we want.
+
+This all goes back to
+
+commit 07f73f6912667621276b002e33844ef283d98203
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Mon Sep 14 16:50:30 2009 +0100
+
+    drm/i915: Improve behaviour under memory pressure
+
+but with a lot of detours and confusion going on (__GFP_NORETRY wasn't
+actually what we wanted, which is why __GFP_RETRY_MAYFAIL now exists).
+-Daniel
+
+> 
+> >
+> > Thanks, Daniel
+> >
+> > > ?
+> > >
+> > > E.g.
+> > >
+> > > ---
+> > > diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > > index a12430187108..e862680b9c93 100644
+> > > --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > > +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > > @@ -792,7 +792,7 @@ alloc_pdp(struct i915_address_space *vm)
+> > >
+> > >         GEM_BUG_ON(!use_4lvl(vm));
+> > >
+> > > -       pdp = kzalloc(sizeof(*pdp), GFP_KERNEL);
+> > > +       pdp = kzalloc(sizeof(*pdp), I915_GFP_ALLOW_FAIL);
+> > >         if (!pdp)
+> > >                 return ERR_PTR(-ENOMEM);
+> > >
+> > > @@ -1262,7 +1262,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+> > >  {
+> > >         int ret;
+> > >
+> > > -       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
+> > > +       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+> > >         if (ret)
+> > >                 return ret;
+> > >
+> > > @@ -1972,7 +1972,7 @@ static int gen6_ppgtt_init_scratch(struct gen6_hw_ppgtt *ppgtt)
+> > >         u32 pde;
+> > >         int ret;
+> > >
+> > > -       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
+> > > +       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+> > >         if (ret)
+> > >                 return ret;
+> > >
+> > > @@ -3078,7 +3078,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+> > >                 return -ENOMEM;
+> > >         }
+> > >
+> > > -       ret = setup_scratch_page(&ggtt->vm, GFP_DMA32);
+> > > +       ret = setup_scratch_page(&ggtt->vm, GFP_KERNEL | GFP_DMA32);
+> > >         if (ret) {
+> > >                 DRM_ERROR("Scratch setup failed\n");
+> > >                 /* iounmap will also get called at remove, but meh */
+> > > ---
+> > >
+> > >
+> > >
+> > > It's quite similar on stable 5.4 - setup_scratch_page() uses restrictive
+> > > gfp mask again.
+> > >
+> > > ---
+> > > diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > > index f614646ed3f9..99d78b1052df 100644
+> > > --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > > +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > > @@ -1378,7 +1378,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+> > >                 return 0;
+> > >         }
+> > >
+> > > -       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
+> > > +       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+> > >         if (ret)
+> > >                 return ret;
+> > >
+> > > @@ -1753,7 +1753,7 @@ static int gen6_ppgtt_init_scratch(struct gen6_ppgtt *ppgtt)
+> > >         struct i915_page_directory * const pd = ppgtt->base.pd;
+> > >         int ret;
+> > >
+> > > -       ret = setup_scratch_page(vm, __GFP_HIGHMEM);
+> > > +       ret = setup_scratch_page(vm, GFP_KERNEL | __GFP_HIGHMEM);
+> > >         if (ret)
+> > >                 return ret;
+> > >
+> > > @@ -2860,7 +2860,7 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
+> > >                 return -ENOMEM;
+> > >         }
+> > >
+> > > -       ret = setup_scratch_page(&ggtt->vm, GFP_DMA32);
+> > > +       ret = setup_scratch_page(&ggtt->vm, GFP_KERNEL | GFP_DMA32);
+> > >         if (ret) {
+> > >                 DRM_ERROR("Scratch setup failed\n");
+> > >                 /* iounmap will also get called at remove, but meh */
+> > > ---
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
