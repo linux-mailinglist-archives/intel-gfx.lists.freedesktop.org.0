@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DCFB3AF4BA
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 20:15:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C80C3AF5DF
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 21:14:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCFE96E332;
-	Mon, 21 Jun 2021 18:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 120916E3D6;
+	Mon, 21 Jun 2021 19:14:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 102FC6E32F;
- Mon, 21 Jun 2021 18:15:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0816BA008A;
- Mon, 21 Jun 2021 18:15:46 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3DD06E3D6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 19:14:17 +0000 (UTC)
+IronPort-SDR: cu6TMYlTk0CbhG8Tlkf/Rb3gFI5v1Af2BANBkm+vChK9vxoA3CzEZ2PNnFblNxuPr1tmB6rv8Z
+ a2ygN8qzKLMA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10022"; a="292545246"
+X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="292545246"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2021 12:14:16 -0700
+IronPort-SDR: z/28WKebLxHcGP5pnHLfKBM5+2Y1RlUiwusDCMCZ/w/6b+0XEnxkWMUcQrYA6RSbxANlgjI1Ay
+ gP4Ov0L2ln2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="406067944"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by orsmga003.jf.intel.com with ESMTP; 21 Jun 2021 12:14:15 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 21 Jun 2021 12:14:11 -0700
+Message-Id: <20210621191415.29823-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Mon, 21 Jun 2021 18:15:45 -0000
-Message-ID: <162429934599.19770.17230169719309063381@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210621174415.1721198-1-imre.deak@intel.com>
-In-Reply-To: <20210621174415.1721198-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQUxT?=
- =?utf-8?q?A=3A_hda=3A_Release_display_power_reference_during_shutdown/reb?=
- =?utf-8?q?oot?=
+Subject: [Intel-gfx] [CI 0/4] Pipe DMC bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,155 +44,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1838855622=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1838855622==
-Content-Type: multipart/alternative;
- boundary="===============0683452374670248029=="
+One change from previous verison is a fix of SKL
+regression. Corner cases for stepping-substepping
+combination was missing from fw_info_matches_stepping()
+helper. Luckily SKL was the only platform in CI that came
+under this category and DMC refused to load.
 
---===============0683452374670248029==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v2: SKL fix tested on SKL.
 
-== Series Details ==
-
-Series: ALSA: hda: Release display power reference during shutdown/reboot
-URL   : https://patchwork.freedesktop.org/series/91742/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10255 -> Patchwork_20420
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20420/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20420 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-cml-s:           [DMESG-WARN][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10255/fi-cml-s/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20420/fi-cml-s/igt@debugfs_test@read_all_entries.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+v3: Minor changes in Pipe DMC plugging patch
+as suggested by Lucas
+ 
+v4: Remove the sanity check for MMIO that no longer
+apply to newer platforms.(Anusha)
 
 
-Participating hosts (44 -> 38)
-------------------------------
+Anusha Srivatsa (4):
+  drm/i915/dmc: Introduce DMC_FW_MAIN
+  drm/i915/xelpd: Pipe A DMC plugging
+  drm/i915/adl_p: Pipe B DMC Support
+  drm/i915/adl_p: Load DMC
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-ctg-p8600 fi-bdw-samus 
+ .../drm/i915/display/intel_display_debugfs.c  |   6 +-
+ .../drm/i915/display/intel_display_power.c    |   5 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 165 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  23 ++-
+ drivers/gpu/drm/i915/i915_reg.h               |   2 +-
+ 5 files changed, 123 insertions(+), 78 deletions(-)
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10255 -> Patchwork_20420
-
-  CI-20190529: 20190529
-  CI_DRM_10255: 33910d77746495afd054c12d50f158be8039bac0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6115: 4ef420186b82f1a6d9c9b69d2f8de4fd100a2af3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20420: 386f0f4fbaa72ac03e89304ca7550568d6061f59 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-386f0f4fbaa7 ALSA: hda: Release display power reference during shutdown/reboot
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20420/index.html
-
---===============0683452374670248029==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>ALSA: hda: Release display power reference during shutdown/reboot</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91742/">https://patchwork.freedesktop.org/series/91742/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20420/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20420/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10255 -&gt; Patchwork_20420</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20420/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20420 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10255/fi-cml-s/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20420/fi-cml-s/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10255 -&gt; Patchwork_20420</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10255: 33910d77746495afd054c12d50f158be8039bac0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6115: 4ef420186b82f1a6d9c9b69d2f8de4fd100a2af3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20420: 386f0f4fbaa72ac03e89304ca7550568d6061f59 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>386f0f4fbaa7 ALSA: hda: Release display power reference during shutdown/reboot</p>
-
-</body>
-</html>
-
---===============0683452374670248029==--
-
---===============1838855622==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.32.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1838855622==--
