@@ -2,45 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D683AE96C
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 14:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 861583AE9C0
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 15:09:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DE5D89FE6;
-	Mon, 21 Jun 2021 12:52:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C1E989A92;
+	Mon, 21 Jun 2021 13:09:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8269089FE6
- for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 12:52:56 +0000 (UTC)
-IronPort-SDR: QyAqpEmIO00KFLrCNM2JxdTAveuHM/uwRaXvXtAm3p6y2LKu+zQBosAKQAaqiEWz33gQWWlTnj
- mHEZFoL4xhfA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10021"; a="193970413"
-X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="193970413"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2021 05:52:55 -0700
-IronPort-SDR: 6MOEuOH/kidriq9/vJ0gIkIOBvs8J0oxxglI43f0KppRW0FMRvPy1ocpNZtb5MZaGo33Ra1tUo
- CVik583PTERg==
-X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="405949229"
-Received: from bchikkop-mobl.ger.corp.intel.com (HELO [10.213.238.150])
- ([10.213.238.150])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2021 05:52:54 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210621114123.3131534-1-maarten.lankhorst@linux.intel.com>
- <04424cbf-750a-4cb9-a99a-6a5a3671452f@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <74c6afe5-a76f-1895-d37b-d738978e2804@linux.intel.com>
-Date: Mon, 21 Jun 2021 13:52:52 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F202689A92
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 13:09:00 +0000 (UTC)
+IronPort-SDR: uq9s2kxIYRZ5D/Az7CmRNs+V3tnGJVlYWYNK09ngollMHR+hAO2Ro5frzTbf5fU6Txd0kQnpQe
+ Kxe/s82dj3Zw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10021"; a="206784301"
+X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="206784301"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2021 06:05:18 -0700
+IronPort-SDR: bPWc9e62rNXZjfK6Jmz51Hz6wM9denWkj1TChhYYe6+Kc2QxmQ9nA6aUWysnwTfP+aA9womN9M
+ Vcxl3vHN7nJQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,289,1616482800"; d="scan'208";a="417054936"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by fmsmga007.fm.intel.com with ESMTP; 21 Jun 2021 06:05:17 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 21 Jun 2021 18:26:22 +0530
+Message-Id: <20210621125622.877864-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <04424cbf-750a-4cb9-a99a-6a5a3671452f@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Do not allow setting ring
- size for legacy ring submission
+Subject: [Intel-gfx] [PATCH V2] drm/i915/ehl: Update MOCS table for EHL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,48 +44,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDIxLzA2LzIwMjEgMTM6MDgsIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+IAo+IEkgaGFkIHNv
-bWUgcXVlc3Rpb25zIG9uIHRoZSB0cnlib3QgbWFpbGluZyBsaXN0LCBsZXQgbWUgY29weSZwYXN0
-ZS4uCj4gCj4gT24gMjEvMDYvMjAyMSAxMjo0MSwgTWFhcnRlbiBMYW5raG9yc3Qgd3JvdGU6Cj4+
-IEl0IGRvZXNuJ3Qgd29yayBmb3IgbGVnYWN5IHJpbmcgc3VibWlzc2lvbiwgYW5kIGlzIGluIHRo
-ZSBiZXN0IGNhc2UKPj4gaWdub3JlZC4KPiAKPiBMb29rcyByZWplY3RlZCBpbnN0ZWFkIG9mIGln
-bm9yZWQ6Cj4gCj4gc3RhdGljIGludCBzZXRfcmluZ3NpemUoc3RydWN0IGk5MTVfZ2VtX2NvbnRl
-eHQgKmN0eCwKPiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2Nv
-bnRleHRfcGFyYW0gKmFyZ3MpCj4gewo+ICDCoMKgwqAgaWYgKCFIQVNfTE9HSUNBTF9SSU5HX0NP
-TlRFWFRTKGN0eC0+aTkxNSkpCj4gIMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRU5PREVWOwo+Pgo+
-PiBJbiB0aGUgd29yc3QgY2FzZSB3ZSBlbmQgdXAgZnJlZWluZyBlbmdpbmUtPmxlZ2FjeS5yaW5n
-IGZvciBhbGwgb3RoZXIKPj4gYWN0aXZlIGVuZ2luZXMsIHJlc3VsdGluZyBpbiBhIHVzZS1hZnRl
-ci1mcmVlLgo+IAo+IFdvcnN0IGNhc2UgaXMgY2xvbmluZyBiZWNhdXNlIHJpbmdfY29udGV4dF9h
-bGxvYyBpcyBub3QgdGFraW5nIGEgCj4gcmVmZXJlbmNlIHRvIGVuZ2luZS0+bGVnYWN5LnJpbmcs
-IG9yIHNvbWV0aGluZyBlbHNlPwoKTm8gY2FuJ3QgYmUgdGhhdCwgaXQgd2FzIG15IGluY29tcGxl
-dGUgYW5hbHlzaXMgbGFzdCB3ZWVrLiBTaW5jZSAKcmluZ19jb250ZXh0X2Rlc3Ryb3kgZG9lcyBu
-b3QgYWN0dWFsbHkgZnJlZSB0aGUgbGVnYWN5IHJpbmcgSSBkb24ndCBzZWUgCmFueSB1c2UgYWZ0
-ZXIgZnJlZSBwYXRocy4KClJlZ2FyZHMsCgpUdnJ0a28KCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IE1h
-YXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4+IEZp
-eGVzOiA4OGJlNzZjZGFmYzcgKCJkcm0vaTkxNTogQWxsb3cgdXNlcnNwYWNlIHRvIHNwZWNpZnkg
-cmluZ3NpemUgb24gCj4+IGNvbnN0cnVjdGlvbiIpCj4+IENjOiBDaHJpcyBXaWxzb24gPGNocmlz
-QGNocmlzLXdpbHNvbi5jby51az4KPj4gLS0tCj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX2NvbnRleHRfcGFyYW0uYyB8IDMgKysrCj4+IMKgIDEgZmlsZSBjaGFuZ2VkLCAzIGlu
-c2VydGlvbnMoKykKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX2NvbnRleHRfcGFyYW0uYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9j
-b250ZXh0X3BhcmFtLmMKPj4gaW5kZXggNjVkY2QwOTAyNDVkLi40MTJjMzZkMWIxZGQgMTAwNjQ0
-Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2NvbnRleHRfcGFyYW0uYwo+
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0X3BhcmFtLmMKPj4g
-QEAgLTEyLDYgKzEyLDkgQEAgaW50IGludGVsX2NvbnRleHRfc2V0X3Jpbmdfc2l6ZShzdHJ1Y3Qg
-aW50ZWxfY29udGV4dCAKPj4gKmNlLCBsb25nIHN6KQo+PiDCoCB7Cj4+IMKgwqDCoMKgwqAgaW50
-IGVycjsKPj4gK8KgwqDCoCBpZiAoY2UtPmVuZ2luZS0+Z3QtPnN1Ym1pc3Npb25fbWV0aG9kID09
-IElOVEVMX1NVQk1JU1NJT05fUklORykKPj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiAwOwo+PiAr
-Cj4+IMKgwqDCoMKgwqAgaWYgKGludGVsX2NvbnRleHRfbG9ja19waW5uZWQoY2UpKQo+PiDCoMKg
-wqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FSU5UUjsKPj4KPiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPiBJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+From: Matt Roper <matthew.d.roper@intel.com>
+
+These extra EHL entries were not behaving as expected without proper
+flushing implemented in kernel.
+Commit a679f58d0510 ("drm/i915: Flush pages on acquisition")
+introduces proper flushing to make it work as expected.
+
+Hence adding those EHL entries back.
+
+Changes since V1:
+	- commit message modified with Commit - Joonas
+
+Cc: Francisco Jerez <francisco.jerez.plata@intel.com>
+Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Fixes: 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")
+Link: https://patchwork.freedesktop.org/patch/msgid/20191112224757.25116-1-matthew.d.roper@intel.com
+---
+ drivers/gpu/drm/i915/gt/intel_mocs.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+index 17848807f111..7d9ef0210805 100644
+--- a/drivers/gpu/drm/i915/gt/intel_mocs.c
++++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+@@ -194,6 +194,14 @@ static const struct drm_i915_mocs_entry broxton_mocs_table[] = {
+ 	MOCS_ENTRY(15, \
+ 		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2) | LE_AOM(1), \
+ 		   L3_3_WB), \
++	/* Bypass LLC - Uncached (EHL+) */ \
++	MOCS_ENTRY(16, \
++		   LE_1_UC | LE_TC_1_LLC | LE_SCF(1), \
++		   L3_1_UC), \
++	/* Bypass LLC - L3 (Read-Only) (EHL+) */ \
++	MOCS_ENTRY(17, \
++		   LE_1_UC | LE_TC_1_LLC | LE_SCF(1), \
++		   L3_3_WB), \
+ 	/* Self-Snoop - L3 + LLC */ \
+ 	MOCS_ENTRY(18, \
+ 		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SSE(3), \
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
