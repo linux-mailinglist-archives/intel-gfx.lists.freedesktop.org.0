@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E493AF811
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jun 2021 23:51:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B44843AF8DB
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 00:56:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3653B6E42C;
-	Mon, 21 Jun 2021 21:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84C3C89F73;
+	Mon, 21 Jun 2021 22:56:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE0E76E42C;
- Mon, 21 Jun 2021 21:51:34 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 77C5461001;
- Mon, 21 Jun 2021 21:51:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1624312294;
- bh=Fy2DlTQ614EsPInH+BOlGYzRWNw6vYRiIxlEBh10hjM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=TCp24i/7mctA1ruAQpDib2jt1TfrviJXZ4iKuOtJuRTBa6ndOtE+bAV+CPRZBt8kS
- XGo1rlKUo+3nt93xclMfkDQ9DfDFGt/P3dGUXXq5TStXMzKglASy0HVDt6Yc2FVsk4
- IvBrGYdtVeBXX9NlMrxIrt1/lPGMPBGkk28mHC60MuYkJh/+S6EuEO/kDxZGfEuHOs
- YGaCmmRMzAIZeXnPSKFwoT0jsUSXf7GKXAr6zY8ylFJIG5aAni6okeoqTnVeNuMEqV
- AHji025yjA7blxxzY3B7RBoH9YpD5qdux3Ve90Wr0yJvSvQfmIavLBA2ZoVwXwL8zE
- aPt9BdHU6sxNg==
-Date: Mon, 21 Jun 2021 16:51:32 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20210621215132.GA3305893@bjorn-Precision-5520>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1805389F73;
+ Mon, 21 Jun 2021 22:56:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 04D95AA0ED;
+ Mon, 21 Jun 2021 22:56:45 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210621215009.GA3305615@bjorn-Precision-5520>
-Subject: Re: [Intel-gfx] [bugzilla-daemon@bugzilla.kernel.org: [Bug 213519]
- New: WARNING on system reboot in:
- drivers/gpu/drm/i915/intel_runtime_pm.c:635
- intel_runtime_pm_driver_release]
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 21 Jun 2021 22:56:44 -0000
+Message-ID: <162431620499.19766.14599820607182120668@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210621193644.105627-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210621193644.105627-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Move_system_memory_to_TTM_for_discrete_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,98 +38,277 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Joel <j-comm@westvi.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0579107215=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[+cc Joel (reporter)]
+--===============0579107215==
+Content-Type: multipart/alternative;
+ boundary="===============5356340868753484575=="
 
-On Mon, Jun 21, 2021 at 04:50:14PM -0500, Bjorn Helgaas wrote:
-> ----- Forwarded message from bugzilla-daemon@bugzilla.kernel.org -----
-> 
-> Date: Mon, 21 Jun 2021 02:50:09 +0000
-> From: bugzilla-daemon@bugzilla.kernel.org
-> To: bjorn@helgaas.com
-> Subject: [Bug 213519] New: WARNING on system reboot in:
-> 	drivers/gpu/drm/i915/intel_runtime_pm.c:635 intel_runtime_pm_driver_release
-> Message-ID: <bug-213519-41252@https.bugzilla.kernel.org/>
-> 
-> https://bugzilla.kernel.org/show_bug.cgi?id=213519
-> 
->             Bug ID: 213519
->            Summary: WARNING on system reboot in:
->                     drivers/gpu/drm/i915/intel_runtime_pm.c:635
->                     intel_runtime_pm_driver_release
->            Product: Drivers
->            Version: 2.5
->     Kernel Version: 5.12.12
->           Hardware: x86-64
->                 OS: Linux
->               Tree: Mainline
->             Status: NEW
->           Severity: normal
->           Priority: P1
->          Component: PCI
->           Assignee: drivers_pci@kernel-bugs.osdl.org
->           Reporter: j-comm@westvi.com
->         Regression: No
-> 
-> Created attachment 297517
->   --> https://bugzilla.kernel.org/attachment.cgi?id=297517&action=edit
-> Contents of 'warning' stack trace, etc.
-> 
-> As mentioned in summary - warning message in this routine at system reboot. Try
-> as I might, I cannot include the text of the warning directly here in the
-> description without losing carriage returns, so I include it as a text
-> attachment.
-> 
-> ----- End forwarded message -----
-> 
-> [Attachment contents below]
-> 
-> [  239.019148] ------------[ cut here ]------------
-> [  239.024226] i915 0000:00:02.0: i915 raw-wakerefs=1 wakelocks=1 on cleanup
-> [  239.031561] WARNING: CPU: 4 PID: 2484 at drivers/gpu/drm/i915/intel_runtime_pm.c:635 intel_runtime_pm_driver_release+0x4f/0x60
-> [  239.043974] Modules linked in: mei_wdt x86_pkg_temp_thermal ghash_clmulni_intel mei_me mei cryptd
-> [  239.053656] CPU: 4 PID: 2484 Comm: reboot Not tainted 5.12.12 #1
-> [  239.060236] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./NUC-8665UE, BIOS P1.50 06/04/2021
-> [  239.070766] RIP: 0010:intel_runtime_pm_driver_release+0x4f/0x60
-> [  239.077256] Code: 10 4c 8b 6f 50 4d 85 ed 75 03 4c 8b 2f e8 59 8f 11 00 41 89 d8 44 89 e1 4c 89 ea 48 89 c6 48 c7 c7 f8 25 7d b0 e8 06 e8 67 00 <0f> 0b 5b 41 5c 41 5d 5d c3 0f 1f 84 00 00 00 00 00 55 48 89 e5 48
-> [  239.097700] RSP: 0018:ffffb8c682f3bd30 EFLAGS: 00010286
-> [  239.103422] RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffffb0af01e8
-> [  239.111185] RDX: 0000000000000000 RSI: 00000000ffffdfff RDI: ffffffffb0a401e0
-> [  239.118850] RBP: ffffb8c682f3bd48 R08: 0000000000000000 R09: ffffb8c682f3bb08
-> [  239.126617] R10: ffffb8c682f3bb00 R11: ffffffffb0b20228 R12: 0000000000000001
-> [  239.134390] R13: ffff978680d114b0 R14: ffff97868197eae8 R15: 00000000fee1dead
-> [  239.142203] FS:  00007f741a182580(0000) GS:ffff9789dc500000(0000) knlGS:0000000000000000
-> [  239.151044] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [  239.157318] CR2: 000000000169f4c8 CR3: 000000019cf14003 CR4: 00000000003706e0
-> [  239.165098] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> [  239.172874] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> [  239.180658] Call Trace:
-> [  239.183346]  i915_driver_shutdown+0xcf/0xe0
-> [  239.187920]  i915_pci_shutdown+0x10/0x20
-> [  239.192181]  pci_device_shutdown+0x35/0x60
-> [  239.196629]  device_shutdown+0x156/0x1b0
-> [  239.200827]  __do_sys_reboot.cold+0x2f/0x5b
-> [  239.205410]  __x64_sys_reboot+0x16/0x20
-> [  239.209586]  do_syscall_64+0x38/0x50
-> [  239.213399]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> [  239.218837] RIP: 0033:0x7f741a0a9bc3
-> [  239.222740] Code: 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 89 fa be 69 19 12 28 bf ad de e1 fe b8 a9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 05 c3 0f 1f 40 00 48 8b 15 71 c2 0c 00 f7 d8
-> [  239.243228] RSP: 002b:00007ffcc2a16488 EFLAGS: 00000206 ORIG_RAX: 00000000000000a9
-> [  239.251503] RAX: ffffffffffffffda RBX: 00007ffcc2a165d8 RCX: 00007f741a0a9bc3
-> [  239.259304] RDX: 0000000001234567 RSI: 0000000028121969 RDI: 00000000fee1dead
-> [  239.267105] RBP: 0000000000000004 R08: 0000000000000000 R09: 000000000169e2e0
-> [  239.274926] R10: fffffffffffffd06 R11: 0000000000000206 R12: 0000000000000000
-> [  239.282719] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
-> [  239.290433] ---[ end trace cd9d07db38ec6618 ]---
-> 
+--===============5356340868753484575==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: Move system memory to TTM for discrete (rev6)
+URL   : https://patchwork.freedesktop.org/series/90898/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10257_full -> Patchwork_20422_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20422_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20422_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20422_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_big_fb@y-tiled-16bpp-rotate-180:
+    - shard-iclb:         NOTRUN -> [DMESG-WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-iclb1/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html
+    - shard-tglb:         NOTRUN -> [DMESG-WARN][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-tglb6/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html
+
+  * igt@kms_color@pipe-a-gamma:
+    - shard-snb:          NOTRUN -> [DMESG-WARN][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-snb2/igt@kms_color@pipe-a-gamma.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20422_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_sseu@invalid-args:
+    - shard-apl:          NOTRUN -> [SKIP][4] ([fdo#109271]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-apl2/igt@gem_ctx_sseu@invalid-args.html
+
+  * igt@kms_big_fb@y-tiled-16bpp-rotate-180:
+    - shard-glk:          NOTRUN -> [DMESG-WARN][5] ([i915#1610])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-glk8/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html
+    - shard-kbl:          NOTRUN -> [DMESG-WARN][6] ([i915#1610])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-kbl3/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html
+
+  * igt@kms_color_chamelium@pipe-a-ctm-0-75:
+    - shard-snb:          NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-snb6/igt@kms_color_chamelium@pipe-a-ctm-0-75.html
+
+  * igt@kms_concurrent@pipe-a:
+    - shard-skl:          NOTRUN -> [DMESG-WARN][8] ([i915#1610]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-skl8/igt@kms_concurrent@pipe-a.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-32x32-random:
+    - shard-snb:          NOTRUN -> [SKIP][9] ([fdo#109271]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-snb7/igt@kms_cursor_crc@pipe-b-cursor-32x32-random.html
+
+  * igt@kms_cursor_legacy@cursora-vs-flipa-legacy:
+    - shard-apl:          NOTRUN -> [DMESG-WARN][10] ([i915#1610]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-apl7/igt@kms_cursor_legacy@cursora-vs-flipa-legacy.html
+
+  
+#### Warnings ####
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:
+    - shard-apl:          [DMESG-WARN][11] ([i915#1610] / [i915#180]) -> [DMESG-WARN][12] ([i915#1610])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10257/shard-apl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-apl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10257 -> Patchwork_20422
+
+  CI-20190529: 20190529
+  CI_DRM_10257: d8f301b1b81563fb1d542c623d98ac6816d8f7e1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6115: 4ef420186b82f1a6d9c9b69d2f8de4fd100a2af3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20422: 0c2a7578bd6c7aa377ed0b7865a1e23245fa3ce6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/index.html
+
+--===============5356340868753484575==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Move system memory to TTM for discrete (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90898/">https://patchwork.freedesktop.org/series/90898/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10257_full -&gt; Patchwork_20422_full</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20422_full absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20422_full, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20422_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_big_fb@y-tiled-16bpp-rotate-180:</p>
+<ul>
+<li>
+<p>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-iclb1/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-tglb6/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html">DMESG-WARN</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color@pipe-a-gamma:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-snb2/igt@kms_color@pipe-a-gamma.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20422_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_ctx_sseu@invalid-args:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-apl2/igt@gem_ctx_sseu@invalid-args.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-16bpp-rotate-180:</p>
+<ul>
+<li>
+<p>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-glk8/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</p>
+</li>
+<li>
+<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-kbl3/igt@kms_big_fb@y-tiled-16bpp-rotate-180.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-a-ctm-0-75:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-snb6/igt@kms_color_chamelium@pipe-a-ctm-0-75.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_concurrent@pipe-a:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-skl8/igt@kms_concurrent@pipe-a.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-b-cursor-32x32-random:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-snb7/igt@kms_cursor_crc@pipe-b-cursor-32x32-random.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@cursora-vs-flipa-legacy:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-apl7/igt@kms_cursor_legacy@cursora-vs-flipa-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10257/shard-apl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20422/shard-apl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>No changes in participating hosts</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10257 -&gt; Patchwork_20422</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10257: d8f301b1b81563fb1d542c623d98ac6816d8f7e1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6115: 4ef420186b82f1a6d9c9b69d2f8de4fd100a2af3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20422: 0c2a7578bd6c7aa377ed0b7865a1e23245fa3ce6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============5356340868753484575==--
+
+--===============0579107215==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0579107215==--
