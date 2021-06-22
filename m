@@ -1,41 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FB73B0D8A
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 21:16:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF2A3B0D8F
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 21:20:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 878FF6E877;
-	Tue, 22 Jun 2021 19:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CEB76E156;
+	Tue, 22 Jun 2021 19:20:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com
- [91.221.196.228])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0746E875
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 19:15:56 +0000 (UTC)
-Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
- by mx2.smtp.larsendata.com (Halon) with ESMTPS
- id 4df655c1-d38e-11eb-a36f-0050568cd888;
- Tue, 22 Jun 2021 19:16:11 +0000 (UTC)
-Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
- [80.162.45.141])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: sam@ravnborg.org)
- by mail01.mxhotel.dk (Postfix) with ESMTPSA id 9236E194B05;
- Tue, 22 Jun 2021 21:16:00 +0200 (CEST)
-Date: Tue, 22 Jun 2021 21:15:53 +0200
-X-Report-Abuse-To: abuse@mxhotel.dk
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YNI26R5tdoTcEBaR@ravnborg.org>
-References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
- <20210622165511.3169559-13-daniel.vetter@ffwll.ch>
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com
+ [IPv6:2607:f8b0:4864:20::c2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC2EB6E072
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 19:20:04 +0000 (UTC)
+Received: by mail-oo1-xc2f.google.com with SMTP id
+ 67-20020a4a01460000b0290245b81f6261so126166oor.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 12:20:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=IXTyvMzccD44HreGd+lTW6UPC/c6n0CNj/56dlhspnE=;
+ b=jnrGKCc5k+rj2MWFkDqYwdwLo96z0bMl1L8GBzaSBanYW5s9QkrSoWIBy0C8sqBpiE
+ sJp0+r8NksBdwWhFF0jipEeTILNVYlU4GGWVUekaNY/wa/lXH+zpc8tYd9r6p58jVT/q
+ Y5HpOmjHxg7Zv+LdXx+OztqFobp4mnwzmSb0w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=IXTyvMzccD44HreGd+lTW6UPC/c6n0CNj/56dlhspnE=;
+ b=Y/uGb8Z2MS+LMnA2lB1lQBDtr2mXZ6sbmSYDNn17FuPPE8Jc0zZ7TajnQuDyBIhiIk
+ VSCLJCHY27JyIfcw/Yt0cER2bOXBQblVEqw1CW6TR3bESqZqHme80Dx1lowdontG8qWz
+ qTZOGiPk8Ep1NXnqkOD0iJF1l9JxkjqJ8WyRWp3EnoqnufP1E1wQjlzcpfMJqz/ujEG8
+ 1lbrEJu9rwCBW6M5VWKZ2fed+Hy/u8TYt9etWbQccWuGq3UmvV0fb7Y2BrEBnP0AiUul
+ kG4+pGN0lSRH7hqqjMBB+GGT7zALY5lYznH5NjjuvU8RkmB6pfcDb+eGlUW44lIHarAQ
+ cJnw==
+X-Gm-Message-State: AOAM532vPSCHH/FbrWVO+yDqgWwy2khReE+4BhIUwyAn2DH9W0PYCY4m
+ zRsew2MYTkmkhl/MYj6ZaZt3bZxaZM5jgyVgzW+e/A==
+X-Google-Smtp-Source: ABdhPJymCc3vHixvjSqTi5/BbnUPvRWX6NdnjghdlEx76K/WySHKdsKsTkAYb3Xk7+ky8kEKHa35K21lsy/Je7GeXFo=
+X-Received: by 2002:a4a:9b99:: with SMTP id x25mr4621885ooj.85.1624389604204; 
+ Tue, 22 Jun 2021 12:20:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210622165511.3169559-13-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 12/15] drm/simple-helper:
- drm_gem_simple_display_pipe_prepare_fb as default
+References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
+ <20210622165511.3169559-2-daniel.vetter@ffwll.ch>
+ <YNIw1g5HVCzvmKzP@ravnborg.org>
+In-Reply-To: <YNIw1g5HVCzvmKzP@ravnborg.org>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 22 Jun 2021 21:19:53 +0200
+Message-ID: <CAKMK7uE-c7evbXhNs9htsJ2wKWSMVcS=HHauvQ19-+9BT8NwSw@mail.gmail.com>
+To: Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [Intel-gfx] [PATCH 01/15] dma-resv: Fix kerneldoc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,112 +61,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
-
-On Tue, Jun 22, 2021 at 06:55:08PM +0200, Daniel Vetter wrote:
-> It's tedious to review this all the time, and my audit showed that
-> arcpgu actually forgot to set this.
-> =
-
-> Make this the default and stop worrying.
-> =
-
-> Again I sprinkled WARN_ON_ONCE on top to make sure we don't have
-> strange combinations of hooks: cleanup_fb without prepare_fb doesn't
-> make sense, and since simpler drivers are all new they better be GEM
-> based drivers.
-> =
-
-> v2: Warn and bail when it's _not_ a GEM driver (Noralf)
-> =
-
-> Cc: Noralf Tr=F8nnes <noralf@tronnes.org>
-> Acked-by: Noralf Tr=F8nnes <noralf@tronnes.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> ---
->  drivers/gpu/drm/drm_simple_kms_helper.c | 12 ++++++++++--
->  include/drm/drm_simple_kms_helper.h     |  7 +++++--
->  2 files changed, 15 insertions(+), 4 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_simple_kms_helper.c b/drivers/gpu/drm/dr=
-m_simple_kms_helper.c
-> index 0b095a313c44..735f4f34bcc4 100644
-> --- a/drivers/gpu/drm/drm_simple_kms_helper.c
-> +++ b/drivers/gpu/drm/drm_simple_kms_helper.c
-> @@ -9,6 +9,8 @@
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_gem_atomic_helper.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_plane_helper.h>
->  #include <drm/drm_probe_helper.h>
-> @@ -225,8 +227,14 @@ static int drm_simple_kms_plane_prepare_fb(struct dr=
-m_plane *plane,
->  	struct drm_simple_display_pipe *pipe;
->  =
-
->  	pipe =3D container_of(plane, struct drm_simple_display_pipe, plane);
-> -	if (!pipe->funcs || !pipe->funcs->prepare_fb)
-> -		return 0;
-> +	if (!pipe->funcs || !pipe->funcs->prepare_fb) {
-> +		if (WARN_ON_ONCE(!drm_core_check_feature(plane->dev, DRIVER_GEM)))
-> +			return 0;
-> +
-> +		WARN_ON_ONCE(pipe->funcs && pipe->funcs->cleanup_fb);
-> +
-> +		return drm_gem_simple_display_pipe_prepare_fb(pipe, state);
-> +	}
->  =
-
->  	return pipe->funcs->prepare_fb(pipe, state);
->  }
-> diff --git a/include/drm/drm_simple_kms_helper.h b/include/drm/drm_simple=
-_kms_helper.h
-> index ef9944e9c5fc..363a9a8c3587 100644
-> --- a/include/drm/drm_simple_kms_helper.h
-> +++ b/include/drm/drm_simple_kms_helper.h
-> @@ -116,8 +116,11 @@ struct drm_simple_display_pipe_funcs {
->  	 * the documentation for the &drm_plane_helper_funcs.prepare_fb hook for
->  	 * more details.
->  	 *
-> -	 * Drivers which always have their buffers pinned should use
-> -	 * drm_gem_simple_display_pipe_prepare_fb() for this hook.
-> +	 * For GEM drivers who neither have a @prepare_fb not @cleanup_fb hook
-> +	 * set drm_gem_simple_display_pipe_prepare_fb() is called automatically
-> +	 * to implement this.
-Same comments like before.
-
-	Sam
-
-         * Other drivers which need additional plane
-> +	 * processing can call drm_gem_simple_display_pipe_prepare_fb() from
-> +	 * their @prepare_fb hook.
->  	 */
->  	int (*prepare_fb)(struct drm_simple_display_pipe *pipe,
->  			  struct drm_plane_state *plane_state);
-> -- =
-
-> 2.32.0.rc2
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBKdW4gMjIsIDIwMjEgYXQgODo1MCBQTSBTYW0gUmF2bmJvcmcgPHNhbUByYXZuYm9y
+Zy5vcmc+IHdyb3RlOgo+Cj4gSGkgRGFuaWVsLAo+Cj4gT24gVHVlLCBKdW4gMjIsIDIwMjEgYXQg
+MDY6NTQ6NTdQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+IE92ZXJzaWdodCBmcm9t
+Cj4gPgo+ID4gY29tbWl0IDZlZGJkNmFiYjc4M2Q1NGY2YWM0YzNlZDVjZDllNTBjZmY2YzE1ZTkK
+PiA+IEF1dGhvcjogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+
+ID4gRGF0ZTogICBNb24gTWF5IDEwIDE2OjE0OjA5IDIwMjEgKzAyMDAKPgo+IHRoaXMgaXMgd2hh
+dCB3ZSB1c2VzIEZpeGVzOiAuLi4gZm9yLgo+Cj4gSXQgbG9va3Mgd3JvbmcgdG8gaGlkZSBpdCBp
+biB0aGUgZGVzY3JpcHRpb24uCgpJJ3ZlIGhvbmVzdGx5IGJlY29tZSBhIGJpdCB2YXJ5IG9mIHVz
+aW5nIEZpeGVzOiBmb3IgZG9jcy9jb21tZW50cwpiZWNhdXNlIHRoZSBzdGFibGUgYXV0b3NlbGVj
+dCBib3RzIGFyZSBfcmVhbGx5XyBrZWVuIG9uIHBpY2tpbmcgdXAKYW55dGhpbmcgd2l0aCBhIEZp
+eGVzOiBsaW5lIGluIGl0LiBBbmQgdGhhdCBmZWVscyBhIGJpdCBsaWtlIG5vbnNlbnNlLgotRGFu
+aWVsCgo+Cj4gICAgICAgICBTYW0KPgo+ID4KPiA+ICAgICBkbWEtYnVmOiByZW5hbWUgYW5kIGNs
+ZWFudXAgZG1hX3Jlc3ZfZ2V0X2V4Y2wgdjMKPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwg
+VmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiA+IENjOiBTdW1pdCBTZW13YWwgPHN1
+bWl0LnNlbXdhbEBsaW5hcm8ub3JnPgo+ID4gQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0
+aWFuLmtvZW5pZ0BhbWQuY29tPgo+ID4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZwo+
+ID4gQ2M6IGxpbmFyby1tbS1zaWdAbGlzdHMubGluYXJvLm9yZwo+ID4gLS0tCj4gPiAgaW5jbHVk
+ZS9saW51eC9kbWEtcmVzdi5oIHwgMiArLQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlv
+bigrKSwgMSBkZWxldGlvbigtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2Rt
+YS1yZXN2LmggYi9pbmNsdWRlL2xpbnV4L2RtYS1yZXN2LmgKPiA+IGluZGV4IDU2MmI4ODVjZjlj
+My4uZTFjYTIwODBhMWZmIDEwMDY0NAo+ID4gLS0tIGEvaW5jbHVkZS9saW51eC9kbWEtcmVzdi5o
+Cj4gPiArKysgYi9pbmNsdWRlL2xpbnV4L2RtYS1yZXN2LmgKPiA+IEBAIC0yMTIsNyArMjEyLDcg
+QEAgc3RhdGljIGlubGluZSB2b2lkIGRtYV9yZXN2X3VubG9jayhzdHJ1Y3QgZG1hX3Jlc3YgKm9i
+aikKPiA+ICB9Cj4gPgo+ID4gIC8qKgo+ID4gLSAqIGRtYV9yZXN2X2V4Y2x1c2l2ZSAtIHJldHVy
+biB0aGUgb2JqZWN0J3MgZXhjbHVzaXZlIGZlbmNlCj4gPiArICogZG1hX3Jlc3ZfZXhjbF9mZW5j
+ZSAtIHJldHVybiB0aGUgb2JqZWN0J3MgZXhjbHVzaXZlIGZlbmNlCj4gPiAgICogQG9iajogdGhl
+IHJlc2VydmF0aW9uIG9iamVjdAo+ID4gICAqCj4gPiAgICogUmV0dXJucyB0aGUgZXhjbHVzaXZl
+IGZlbmNlIChpZiBhbnkpLiBDYWxsZXIgbXVzdCBlaXRoZXIgaG9sZCB0aGUgb2JqZWN0cwo+ID4g
+LS0KPiA+IDIuMzIuMC5yYzIKCgoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIs
+IEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
