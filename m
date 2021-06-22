@@ -1,43 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB293B05FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 15:41:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B66D3B0740
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 16:18:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5CF66E041;
-	Tue, 22 Jun 2021 13:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9A3F6E575;
+	Tue, 22 Jun 2021 14:18:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 927336E041
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 13:41:23 +0000 (UTC)
-IronPort-SDR: 9shjUzl857hfI8R1sKhoRyuv1K51S491LZKggqMesDH8Zba3pEsA9jinR7scgTfI/MhZpdRRzc
- RZtcVGzSmfrA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10022"; a="206873529"
-X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="206873529"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D767C6E575
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 14:18:03 +0000 (UTC)
+IronPort-SDR: ywiFvPJEY9wUjnG5vYtsEc13kmblDFVPf827H/xw+Kbs61lwtC/sZ/nzvgnkPBLVNXcdeFnOzo
+ +Ow6ztPiDYBA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10023"; a="206880234"
+X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="206880234"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2021 06:41:21 -0700
-IronPort-SDR: ns6RYT4PnssQDk3PnYixhijf9rqguS7KlW1f1LmUOqJ4/lCJnImQdzUgKBkq9TKxxnJRTDFtZ3
- pkGVVo6miRbQ==
-X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="486917128"
+ 22 Jun 2021 07:18:01 -0700
+IronPort-SDR: QbPoFk0yBj7hEK2TONZPliF0ijtOmmo35pT4QGFa+c+JsWjo0fEr0d2cRWnSXtYSF6BTzq003X
+ r9CDbjRe0i9w==
+X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="452632766"
 Received: from shlomitt-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.58.221])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2021 06:41:14 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Navare\, Manasi" <manasi.d.navare@intel.com>
-In-Reply-To: <20210621213447.GA20257@labuser-Z97X-UD5H>
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2021 07:17:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210622133107.7422-1-shawn.c.lee@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210610090528.20511-1-jani.nikula@intel.com>
- <20210611231846.GA12407@labuser-Z97X-UD5H> <87wnqwyi06.fsf@intel.com>
- <20210621213447.GA20257@labuser-Z97X-UD5H>
-Date: Tue, 22 Jun 2021 16:41:08 +0300
-Message-ID: <877dimuidn.fsf@intel.com>
+References: <20210622133107.7422-1-shawn.c.lee@intel.com>
+Date: Tue, 22 Jun 2021 17:17:53 +0300
+Message-ID: <8735taugoe.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dsc: abstract helpers to get
- bigjoiner primary/secondary crtc
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: keep backlight_enable on until
+ turn eDP display off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,20 +48,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Cooper Chiou <cooper.chiou@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 21 Jun 2021, "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> Reviewed-by: Manasi Navare <manasi.dl.navare@intel.com>
+On Tue, 22 Jun 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+> This workaround is specific for a particular panel on Google
+> chromebook project. When user space daemon enter idle state.
+> It request adjust brightness to 0, turn backlight_enable signal
+> off and keep eDP main link active.
+>
+> On general LCD, this behavior might not be a problem.
+> But on this panel, its tcon would expect source to execute
+> full eDP power off sequence after drop backlight_enable signal.
+> Without eDP power off sequence. Even source try to turn
+> backlight_enable signal on and restore proper brightness level.
+> This panel is not able to light on again.
+>
+> This WA ignored the request from user space daemon to disable
+> backlight_enable signal and keep it on always. When user space
+> request kernel to turn eDP display off, kernel driver still
+> can control backlight_enable signal properly. It would not
+> impact standard eDP power off sequence.
+>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_panel.c  |  4 ++-
+>  drivers/gpu/drm/i915/display/intel_quirks.c | 34 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_drv.h             |  1 +
+>  3 files changed, 38 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 7d7a60b4d2de..0212b53d932b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -1311,6 +1311,7 @@ static void intel_panel_set_backlight(const struct drm_connector_state *conn_sta
+>  static int intel_backlight_device_update_status(struct backlight_device *bd)
+>  {
+>  	struct intel_connector *connector = bl_get_data(bd);
+> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+>  	struct drm_device *dev = connector->base.dev;
+>  
+> @@ -1330,7 +1331,8 @@ static int intel_backlight_device_update_status(struct backlight_device *bd)
+>  		if (panel->backlight.power) {
+>  			bool enable = bd->props.power == FB_BLANK_UNBLANK &&
+>  				bd->props.brightness != 0;
+> -			panel->backlight.power(connector, enable);
+> +			if (enable || !(dev_priv->quirks & QUIRK_KEEP_BACKLIGHT_ENABLE_ON))
+> +				panel->backlight.power(connector, enable);
 
-Thanks, pushed to drm-intel-next.
+We'll want to avoid the hook altogether in this case, instead of
+complicating the logic even more. Something like:
+
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5286,7 +5286,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	}
+ 
+ 	intel_panel_init(&intel_connector->panel, fixed_mode, downclock_mode);
+-	intel_connector->panel.backlight.power = intel_pps_backlight_power;
++	if (!(dev_priv->quirks & QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
++		intel_connector->panel.backlight.power = intel_pps_backlight_power;
+ 	intel_panel_setup_backlight(connector, pipe);
+ 
+ 	if (fixed_mode) {
+
+---
+
+Please adjust the quirk name and debug logs accordingly.
+
+Truth be told I'd rather nuke the hook completely. But it was a request
+from Chrome to have this lightweight sub-state to black out the display,
+without mode set, using the panel power sequencer in cases where we
+can't set the backlight PWM to 0.
+
+Hmm. Is the brightness controlled using PWM or DPCD? We probably
+shouldn't do this at all when the brightness control is done using DPCD.
 
 BR,
-Jani
+Jani.
 
+
+>  		}
+>  	} else {
+>  		bd->props.power = FB_BLANK_POWERDOWN;
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index 98dd787b00e3..ed57b083edbb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -53,6 +53,12 @@ static void quirk_increase_ddi_disabled_time(struct drm_i915_private *i915)
+>  	drm_info(&i915->drm, "Applying Increase DDI Disabled quirk\n");
+>  }
+>  
+> +static void quirk_keep_backlight_enable_on(struct drm_i915_private *i915)
+> +{
+> +	i915->quirks |= QUIRK_KEEP_BACKLIGHT_ENABLE_ON;
+> +	drm_info(&i915->drm, "applying keep backlight enable on quirk\n");
+> +}
+> +
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+> @@ -72,6 +78,12 @@ static int intel_dmi_reverse_brightness(const struct dmi_system_id *id)
+>  	return 1;
+>  }
+>  
+> +static int backlight_wa_callback(const struct dmi_system_id *id)
+> +{
+> +	DRM_INFO("This is WA to ignore backlight off to prevent OLED panel issue on %s device\n", id->ident);
+> +	return 1;
+> +}
+> +
+>  static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>  	{
+>  		.dmi_id_list = &(const struct dmi_system_id[]) {
+> @@ -96,6 +108,28 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>  		},
+>  		.hook = quirk_invert_brightness,
+>  	},
+> +	{
+> +		.dmi_id_list = &(const struct dmi_system_id[]) {
+> +			{
+> +				.callback = backlight_wa_callback,
+> +				.ident = "Google Lillipup",
+> +				.matches = {DMI_MATCH(DMI_BOARD_VENDOR, "Google"),
+> +					    DMI_MATCH(DMI_BOARD_NAME, "Lindar"),
+> +					    DMI_MATCH(DMI_PRODUCT_SKU, "sku524294"),
+> +				},
+> +			},
+> +			{
+> +				.callback = backlight_wa_callback,
+> +				.ident = "Google Lillipup",
+> +				.matches = {DMI_MATCH(DMI_BOARD_VENDOR, "Google"),
+> +					    DMI_MATCH(DMI_BOARD_NAME, "Lindar"),
+> +					    DMI_MATCH(DMI_PRODUCT_SKU, "sku524295"),
+> +				},
+> +			},
+> +			{ }
+> +		},
+> +		.hook = quirk_keep_backlight_enable_on,
+> +	},
+>  };
+>  
+>  static struct intel_quirk intel_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 01e11fe38642..8103919bf3b4 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -467,6 +467,7 @@ struct i915_drrs {
+>  #define QUIRK_PIN_SWIZZLED_PAGES (1<<5)
+>  #define QUIRK_INCREASE_T12_DELAY (1<<6)
+>  #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
+> +#define QUIRK_KEEP_BACKLIGHT_ENABLE_ON (1<<8)
+>  
+>  struct intel_fbdev;
+>  struct intel_fbc_work;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
