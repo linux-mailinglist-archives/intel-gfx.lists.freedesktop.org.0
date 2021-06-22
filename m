@@ -1,45 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C113AFCBC
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 07:47:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72DD53AFD36
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 08:46:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB4086E192;
-	Tue, 22 Jun 2021 05:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E292289216;
+	Tue, 22 Jun 2021 06:46:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6686A6E192;
- Tue, 22 Jun 2021 05:47:36 +0000 (UTC)
-IronPort-SDR: NGQYgujlHFVJJdN/JHltJUYMLNz8ZS8IxktkqvWrLsI+M3Tu3TasOxR3sJqgVK5tGjP4u4t4Si
- LDP/VZ0tsjrg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10022"; a="186678772"
-X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="186678772"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2021 22:47:35 -0700
-IronPort-SDR: Xa4sJ66Lr1JQ9BKSICa/MZ6REP8ljw97E23ha3csYq/JMYSmlCc+UCxN0rY4R7PBDccxLbwFdF
- l8fcDzA31Vdw==
-X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="623351156"
-Received: from acarr-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.16.96])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2021 22:47:32 -0700
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85A5189216;
+ Tue, 22 Jun 2021 06:46:52 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id q23so18142878ljh.0;
+ Mon, 21 Jun 2021 23:46:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=5qnWo/SzLWfySyvC7Oz1YEdmg8IJi0qS1OM10gavIVM=;
+ b=qGOTF9ANdk9jqKq5x7XngP9yQf1BKuIkfVRzBYSYS5hJiOFL5O92U9pRYalQKJuJgu
+ kpM8d53zaRFQ59zEF5mJIbuDAcnRilSR0o23nMwA9e+qCMYFQU3Ta+L+lzN5I1mzc9Wt
+ UZ5madbcX7Avcr3Yk2+VWAw66Yzvb1Xy2FD7ad6A1zZamYs5qp0Km2uhFxZaYEwemkv7
+ in46kB4yCHhILncBQzG1lAWNlsrmQjA8913muxB9+Sa/842sFDcYKbeOJOGXmBNfNGkg
+ E81gX0B3lIjZwqBY/91/QxaTMDixTHaEGg0HQ8CF0oEzuAN68Hq9n31l5KStk/n6ZNp6
+ fK7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=5qnWo/SzLWfySyvC7Oz1YEdmg8IJi0qS1OM10gavIVM=;
+ b=nEMthWPYMMgv6QwHClwISyAhulq3BSNcvwW3mOj3B8dHAdTltR/gSJju5YiLfnKcWL
+ BSdxH1GCIeHEJaxQfjYG5OOWn9sk0VK7igC6LJAs2iHedNiURzKKuob6fy0+aCzEIWOW
+ iPM5ikxCOL+HJxzxShYLvdAn76QRSJVtboYoqtsatc9xpKaDwVDEQwmsm8Yv32zwxBEA
+ 0mQuwYNLvtAB3naxkwsKbtmQ01JdDota9KkuoMWUJ3xttTcYxnYpYk+MH3BrzHzOGdmt
+ Bltibm9XcRUh0f/nALBTyiXO3T7ZaWv+VuLfBaVdB6Ui5NW1Bm5oIo4F7p5JutPjjT3q
+ BXVg==
+X-Gm-Message-State: AOAM531h6A1muxrtzAnJWsUYfL4lh+OnfGmWBwXpslwOUPEI/L+0sXqq
+ SGaZiw5q4ETL+A73/grRJyw=
+X-Google-Smtp-Source: ABdhPJxt+x9fRCrxtpDUQmq8RAr+FIHUZ04aUI4+siOs7ZLczFPO/DuJWRh0z501SLJ1DSLjFL+zgA==
+X-Received: by 2002:a2e:9f45:: with SMTP id v5mr1826207ljk.171.1624344410861; 
+ Mon, 21 Jun 2021 23:46:50 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id t7sm2101366lfe.172.2021.06.21.23.46.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Jun 2021 23:46:50 -0700 (PDT)
+Date: Tue, 22 Jun 2021 09:46:39 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <20210622094639.4f41003b@eldfell>
+In-Reply-To: <20210618091116.14428-4-wse@tuxedocomputers.com>
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+ <20210618091116.14428-4-wse@tuxedocomputers.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210621215132.GA3305893@bjorn-Precision-5520>
-References: <20210621215132.GA3305893@bjorn-Precision-5520>
-To: Bjorn Helgaas <helgaas@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <162434084991.3949.14453965475185293493@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 22 Jun 2021 08:47:29 +0300
-Subject: Re: [Intel-gfx] [bugzilla-daemon@bugzilla.kernel.org: [Bug 213519]
- New: WARNING on system reboot in:
- drivers/gpu/drm/i915/intel_runtime_pm.c:635
- intel_runtime_pm_driver_release]
+Subject: Re: [Intel-gfx] [PATCH v4 03/17] drm/uAPI: Add "active bpc" as
+ feedback channel for "max bpc" drm property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,112 +67,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Joel <j-comm@westvi.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
+ intel-gfx@lists.freedesktop.org, sunpeng.li@amd.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, airlied@linux.ie, alexander.deucher@amd.com,
+ harry.wentland@amd.com, christian.koenig@amd.com
+Content-Type: multipart/mixed; boundary="===============1556943752=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Joel,
+--===============1556943752==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/9B79vWVpJMlAP_qOfW3sima"; protocol="application/pgp-signature"
 
-That seems like a genuine bug. Could you file it at the i915 bug tracker
-with all the requested information to make sure we can take a look at
-it:
+--Sig_/9B79vWVpJMlAP_qOfW3sima
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+On Fri, 18 Jun 2021 11:11:02 +0200
+Werner Sembach <wse@tuxedocomputers.com> wrote:
 
-Are you able to try different kernel versions to bisect which kernel
-version/commit introduced the WARN?
+> Add a new general drm property "active bpc" which can be used by graphic
+> drivers to report the applied bit depth per pixel back to userspace.
+>=20
+> While "max bpc" can be used to change the color depth, there was no way to
+> check which one actually got used. While in theory the driver chooses the
+> best/highest color depth within the max bpc setting a user might not be
+> fully aware what his hardware is or isn't capable off. This is meant as a
+> quick way to double check the setup.
+>=20
+> In the future, automatic color calibration for screens might also depend =
+on
+> this information being available.
+>=20
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> ---
+>  drivers/gpu/drm/drm_connector.c | 51 +++++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h     |  8 ++++++
+>  2 files changed, 59 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
+tor.c
+> index da39e7ff6965..943f6b61053b 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1197,6 +1197,14 @@ static const struct drm_prop_enum_list dp_colorspa=
+ces[] =3D {
+>   *	drm_connector_attach_max_bpc_property() to create and attach the
+>   *	property to the connector during initialization.
+>   *
+> + * active bpc:
+> + *	This read-only range property tells userspace the pixel color bit dep=
+th
+> + *	actually used by the hardware display engine on "the cable" on a
+> + *	connector. The chosen value depends on hardware capabilities, both
+> + *	display engine and connected monitor, and the "max bpc" property.
+> + *	Drivers shall use drm_connector_attach_active_bpc_property() to insta=
+ll
+> + *	this property.
+> + *
+>   * Connectors also have one standardized atomic property:
+>   *
+>   * CRTC_ID:
+> @@ -2152,6 +2160,49 @@ int drm_connector_attach_max_bpc_property(struct d=
+rm_connector *connector,
+>  }
+>  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+> =20
+> +/**
+> + * drm_connector_attach_active_bpc_property - attach "active bpc" proper=
+ty
+> + * @connector: connector to attach active bpc property on.
+> + * @min: The minimum bit depth supported by the connector.
+> + * @max: The maximum bit depth supported by the connector.
+> + *
+> + * This is used to check the applied bit depth on a connector.
+> + *
+> + * Returns:
+> + * Zero on success, negative errno on failure.
+> + */
+> +int drm_connector_attach_active_bpc_property(struct drm_connector *conne=
+ctor, int min, int max)
+> +{
+> +	struct drm_device *dev =3D connector->dev;
+> +	struct drm_property *prop;
+> +
+> +	if (!connector->active_bpc_property) {
+> +		prop =3D drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE, "acti=
+ve bpc",
+> +						 min, max);
+> +		if (!prop)
+> +			return -ENOMEM;
+> +
+> +		connector->active_bpc_property =3D prop;
+> +		drm_object_attach_property(&connector->base, prop, 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
+> +
+> +/**
+> + * drm_connector_set_active_bpc_property - sets the active bits per colo=
+r property for a connector
+> + * @connector: drm connector
+> + * @active_bpc: bits per color for the connector currently active on "th=
+e cable"
+> + *
+> + * Should be used by atomic drivers to update the active bits per color =
+over a connector.
+> + */
+> +void drm_connector_set_active_bpc_property(struct drm_connector *connect=
+or, int active_bpc)
+> +{
+> +	drm_object_property_set_value(&connector->base, connector->active_bpc_p=
+roperty, active_bpc);
+> +}
+> +EXPORT_SYMBOL(drm_connector_set_active_bpc_property);
+> +
+>  /**
+>   * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPU=
+T_METADA" property
+>   * @connector: connector to attach the property on.
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 714d1a01c065..eee86de62a5f 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1380,6 +1380,12 @@ struct drm_connector {
+>  	 */
+>  	struct drm_property *max_bpc_property;
+> =20
+> +	/**
+> +	 * @active_bpc_property: Default connector property for the active bpc
+> +	 * to be driven out of the connector.
+> +	 */
+> +	struct drm_property *active_bpc_property;
+> +
+>  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
+>  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
+>  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
+> @@ -1702,6 +1708,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+>  	int width, int height);
+>  int drm_connector_attach_max_bpc_property(struct drm_connector *connecto=
+r,
+>  					  int min, int max);
+> +int drm_connector_attach_active_bpc_property(struct drm_connector *conne=
+ctor, int min, int max);
+> +void drm_connector_set_active_bpc_property(struct drm_connector *connect=
+or, int active_bpc);
+> =20
+>  /**
+>   * struct drm_tile_group - Tile group metadata
 
-Regards, Joonas
+Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
 
-Quoting Bjorn Helgaas (2021-06-22 00:51:32)
-> [+cc Joel (reporter)]
-> 
-> On Mon, Jun 21, 2021 at 04:50:14PM -0500, Bjorn Helgaas wrote:
-> > ----- Forwarded message from bugzilla-daemon@bugzilla.kernel.org -----
-> > 
-> > Date: Mon, 21 Jun 2021 02:50:09 +0000
-> > From: bugzilla-daemon@bugzilla.kernel.org
-> > To: bjorn@helgaas.com
-> > Subject: [Bug 213519] New: WARNING on system reboot in:
-> >       drivers/gpu/drm/i915/intel_runtime_pm.c:635 intel_runtime_pm_driver_release
-> > Message-ID: <bug-213519-41252@https.bugzilla.kernel.org/>
-> > 
-> > https://bugzilla.kernel.org/show_bug.cgi?id=213519
-> > 
-> >             Bug ID: 213519
-> >            Summary: WARNING on system reboot in:
-> >                     drivers/gpu/drm/i915/intel_runtime_pm.c:635
-> >                     intel_runtime_pm_driver_release
-> >            Product: Drivers
-> >            Version: 2.5
-> >     Kernel Version: 5.12.12
-> >           Hardware: x86-64
-> >                 OS: Linux
-> >               Tree: Mainline
-> >             Status: NEW
-> >           Severity: normal
-> >           Priority: P1
-> >          Component: PCI
-> >           Assignee: drivers_pci@kernel-bugs.osdl.org
-> >           Reporter: j-comm@westvi.com
-> >         Regression: No
-> > 
-> > Created attachment 297517
-> >   --> https://bugzilla.kernel.org/attachment.cgi?id=297517&action=edit
-> > Contents of 'warning' stack trace, etc.
-> > 
-> > As mentioned in summary - warning message in this routine at system reboot. Try
-> > as I might, I cannot include the text of the warning directly here in the
-> > description without losing carriage returns, so I include it as a text
-> > attachment.
-> > 
-> > ----- End forwarded message -----
-> > 
-> > [Attachment contents below]
-> > 
-> > [  239.019148] ------------[ cut here ]------------
-> > [  239.024226] i915 0000:00:02.0: i915 raw-wakerefs=1 wakelocks=1 on cleanup
-> > [  239.031561] WARNING: CPU: 4 PID: 2484 at drivers/gpu/drm/i915/intel_runtime_pm.c:635 intel_runtime_pm_driver_release+0x4f/0x60
-> > [  239.043974] Modules linked in: mei_wdt x86_pkg_temp_thermal ghash_clmulni_intel mei_me mei cryptd
-> > [  239.053656] CPU: 4 PID: 2484 Comm: reboot Not tainted 5.12.12 #1
-> > [  239.060236] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./NUC-8665UE, BIOS P1.50 06/04/2021
-> > [  239.070766] RIP: 0010:intel_runtime_pm_driver_release+0x4f/0x60
-> > [  239.077256] Code: 10 4c 8b 6f 50 4d 85 ed 75 03 4c 8b 2f e8 59 8f 11 00 41 89 d8 44 89 e1 4c 89 ea 48 89 c6 48 c7 c7 f8 25 7d b0 e8 06 e8 67 00 <0f> 0b 5b 41 5c 41 5d 5d c3 0f 1f 84 00 00 00 00 00 55 48 89 e5 48
-> > [  239.097700] RSP: 0018:ffffb8c682f3bd30 EFLAGS: 00010286
-> > [  239.103422] RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffffb0af01e8
-> > [  239.111185] RDX: 0000000000000000 RSI: 00000000ffffdfff RDI: ffffffffb0a401e0
-> > [  239.118850] RBP: ffffb8c682f3bd48 R08: 0000000000000000 R09: ffffb8c682f3bb08
-> > [  239.126617] R10: ffffb8c682f3bb00 R11: ffffffffb0b20228 R12: 0000000000000001
-> > [  239.134390] R13: ffff978680d114b0 R14: ffff97868197eae8 R15: 00000000fee1dead
-> > [  239.142203] FS:  00007f741a182580(0000) GS:ffff9789dc500000(0000) knlGS:0000000000000000
-> > [  239.151044] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > [  239.157318] CR2: 000000000169f4c8 CR3: 000000019cf14003 CR4: 00000000003706e0
-> > [  239.165098] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> > [  239.172874] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> > [  239.180658] Call Trace:
-> > [  239.183346]  i915_driver_shutdown+0xcf/0xe0
-> > [  239.187920]  i915_pci_shutdown+0x10/0x20
-> > [  239.192181]  pci_device_shutdown+0x35/0x60
-> > [  239.196629]  device_shutdown+0x156/0x1b0
-> > [  239.200827]  __do_sys_reboot.cold+0x2f/0x5b
-> > [  239.205410]  __x64_sys_reboot+0x16/0x20
-> > [  239.209586]  do_syscall_64+0x38/0x50
-> > [  239.213399]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> > [  239.218837] RIP: 0033:0x7f741a0a9bc3
-> > [  239.222740] Code: 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 89 fa be 69 19 12 28 bf ad de e1 fe b8 a9 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 05 c3 0f 1f 40 00 48 8b 15 71 c2 0c 00 f7 d8
-> > [  239.243228] RSP: 002b:00007ffcc2a16488 EFLAGS: 00000206 ORIG_RAX: 00000000000000a9
-> > [  239.251503] RAX: ffffffffffffffda RBX: 00007ffcc2a165d8 RCX: 00007f741a0a9bc3
-> > [  239.259304] RDX: 0000000001234567 RSI: 0000000028121969 RDI: 00000000fee1dead
-> > [  239.267105] RBP: 0000000000000004 R08: 0000000000000000 R09: 000000000169e2e0
-> > [  239.274926] R10: fffffffffffffd06 R11: 0000000000000206 R12: 0000000000000000
-> > [  239.282719] R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
-> > [  239.290433] ---[ end trace cd9d07db38ec6618 ]---
-> > 
+
+Thanks,
+pq
+
+--Sig_/9B79vWVpJMlAP_qOfW3sima
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDRh08ACgkQI1/ltBGq
+qqefDxAAnTLRWiJXKt324iuUjpCGVbdJKhpZM0IKnG4RtItTZyLGLQgUzh95qRiN
+g3YnCGoMa3pxgSgMtq3j+PidIdjquAEfJs351qFJtIxuPjNrfWM0GBRmUQFQdauq
+2xyUju8k8LaqBiasR8ulgGGZYbOWfqgcZh6GamzsSU/39wec6Pmlx7Ehoa2cYjBp
+sL9fc7aemSh2igjWhIOdB53hB1r5DUAaDWqLxVuSQrKZnDlheDlbydbcVxfy6hG/
+J71k/4sPopKcVzi0/o3wRs8jRIulvQC9f3+PVm84XeVuOWwsgR7euepL/ZImBmiw
+1UwvLB4Q50ZAbKa4bi3VxC6E9taIjnc3LTvyM1wlMFyb3mWBgd549rMImyVdQfHf
+/Sol9zzE3BY81fo61KJ+4QIU/6S2uE2KIIpYBDKQm0k7CRscwRUXvnSOgGlY1uSZ
+uAkOck8vbxbUfZl5AGRKIA5ybHrtC6TqQJQ9fLS2naCo4s2zN8U30od21Gt0s7tC
+5uLTqGoKMUSb/8UigJyIZGz3enuTegtUf+LcANyzZstCjGj1IIbN/HbvgWFIC3cz
+L+EcnH9b9unBCpndvaMt0CzSGkEZmIXVCpCQYmr4OIV3xpngl5liayo6+BvhWUWt
+ok+4G8SrDoVM59h9MrEiTpOcFScFQB1dB+zThRWUd1r27nxZGnM=
+=nxUW
+-----END PGP SIGNATURE-----
+
+--Sig_/9B79vWVpJMlAP_qOfW3sima--
+
+--===============1556943752==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1556943752==--
