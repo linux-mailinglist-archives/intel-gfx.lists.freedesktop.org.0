@@ -2,53 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02EA3B0D94
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 21:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BFA23B0DF2
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 21:58:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 328796E873;
-	Tue, 22 Jun 2021 19:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20EE76E1BD;
+	Tue, 22 Jun 2021 19:58:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com
- [IPv6:2607:f8b0:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA7B6E873
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 19:21:22 +0000 (UTC)
-Received: by mail-ot1-x32e.google.com with SMTP id
- j11-20020a9d738b0000b02903ea3c02ded8so22304468otk.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 12:21:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=NLND4Ku01kSAPaPQnJOp1FH7Yq9QVSRTNQQ4RbCxk0w=;
- b=e5CaOZBOftVhbkEerPYPtaLJCTi7dkW17rRGwPvuHPJJoz1+U4machk4c/sWYYds9F
- ix+7YOv/rHYeIbZ5mOBktSK7y1oi02liHSKSjMkzWSsFNHipPhBp/d7g5CMC1O/Zq8dO
- aKmYXEe0vLST278s3JBJERKtZVE+IDiO8pDyQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=NLND4Ku01kSAPaPQnJOp1FH7Yq9QVSRTNQQ4RbCxk0w=;
- b=Cl1zsnZYqZYvrF8PKY1IbBjGKRWhyBYB+IJ1XgB1hiFUqjPMzDnhp8aKl0FDDMYmhX
- kPhJ90tk5y8E4qySskGp4mmhfl88U5xEbICg8Z7kpFebf6aPYWlWB8R9wovlUYigpyU4
- kYb5V5Oc57q9FTcPJpVIf6i6cybZarmUE0hUDPN615sNMTEEnYmxp3gjJRYXrKqee8NM
- ur91iYXSBGy0cTeY0cg1z2vaHaAgpI5L0vJKfNulhmiVx04ON0oHxdwcd0AmkeqnA3xF
- 1nNJAzwz3ngkax1vI96JdsNFX3YpDehHSGc+h+eN8JbclXBYWiF0DJUv0kBtUxyVhMXZ
- pCvA==
-X-Gm-Message-State: AOAM533aQXwwf15t5N2Da2zJgYgInzZ+/Ptan4mBopQoZXld2bUuJd2O
- rZTYl13R19rtPLytAldTdBzhNNdnalK+ARWwDSJlAA==
-X-Google-Smtp-Source: ABdhPJxEjFo8oIALPvZRWajZYHHD9+zYYML42DA/uD7PRo7j950Ok3AXzR/g8ARzZSUBUYI2JILIZh+XPK5Vw12qP60=
-X-Received: by 2002:a9d:12eb:: with SMTP id g98mr4360330otg.303.1624389681754; 
- Tue, 22 Jun 2021 12:21:21 -0700 (PDT)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3164C6E1BD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 19:58:20 +0000 (UTC)
+IronPort-SDR: d7DdYkzIcA1cIeoR4TLZXJraMSWrrq8Aql/HOwZzPpWwbMJyPpgeGGm7jJZ5MqwnX7i7LGkUMG
+ 1SBLpkGfv2fw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10023"; a="187514551"
+X-IronPort-AV: E=Sophos;i="5.83,292,1616482800"; d="scan'208";a="187514551"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2021 12:58:19 -0700
+IronPort-SDR: 9SyrK++RfignipaiV+5Hs+N4oQOF/UIBMD13hR/I22UjWcdYHrXPeIhBRjVTur5eXBl+iHvl3G
+ WTwkZB/YacCQ==
+X-IronPort-AV: E=Sophos;i="5.83,292,1616482800"; d="scan'208";a="406443483"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2021 12:58:17 -0700
+Date: Tue, 22 Jun 2021 22:58:13 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Takashi Iwai <tiwai@suse.de>
+Message-ID: <20210622195813.GE1749688@ideak-desk.fi.intel.com>
+References: <20210621174415.1721198-1-imre.deak@intel.com>
+ <s5h5yy6q8yh.wl-tiwai@suse.de>
 MIME-Version: 1.0
-References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
- <20210622165511.3169559-3-daniel.vetter@ffwll.ch>
- <YNIzkSg5kwp9gdCR@ravnborg.org>
-In-Reply-To: <YNIzkSg5kwp9gdCR@ravnborg.org>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 22 Jun 2021 21:21:10 +0200
-Message-ID: <CAKMK7uHSade-GobvwXXP2ArNPFr0qOA+2-V1W36MqHYk0wj_+g@mail.gmail.com>
-To: Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [Intel-gfx] [PATCH 02/15] dma-buf: Switch to inline kerneldoc
+Content-Disposition: inline
+In-Reply-To: <s5h5yy6q8yh.wl-tiwai@suse.de>
+Subject: Re: [Intel-gfx] [PATCH] ALSA: hda: Release display power reference
+ during shutdown/reboot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,79 +48,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Deepak R Varma <mh12gx2825@gmail.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Kevin Wang <kevin1.wang@amd.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Nirmoy Das <nirmoy.das@amd.com>, Chen Li <chenli@uniontech.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Thomas Voegtle <tv@lio96.de>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdW4gMjIsIDIwMjEgYXQgOTowMSBQTSBTYW0gUmF2bmJvcmcgPHNhbUByYXZuYm9y
-Zy5vcmc+IHdyb3RlOgo+Cj4gSGkgRGFuaWVsLgo+Cj4gT24gVHVlLCBKdW4gMjIsIDIwMjEgYXQg
-MDY6NTQ6NThQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+IEFsc28gcmV2aWV3ICYg
-dXBkYXRlIGV2ZXJ5dGhpbmcgd2hpbGUgd2UncmUgYXQgaXQuCj4gPgo+ID4gVGhpcyBpcyBwcmVw
-IHdvcmsgdG8gc21hc2ggYSB0b24gb2Ygc3R1ZmYgaW50byB0aGUga2VybmVsZG9jIGZvcgo+ID4g
-QHJlc3YuCj4gPgo+ID4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRl
-ckBpbnRlbC5jb20+Cj4gPiBDYzogU3VtaXQgU2Vtd2FsIDxzdW1pdC5zZW13YWxAbGluYXJvLm9y
-Zz4KPiA+IENjOiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4K
-PiA+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Cj4gPiBDYzog
-RGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiA+IENjOiBEYXZlIEFpcmxp
-ZSA8YWlybGllZEByZWRoYXQuY29tPgo+ID4gQ2M6IE5pcm1veSBEYXMgPG5pcm1veS5kYXNAYW1k
-LmNvbT4KPiA+IENjOiBEZWVwYWsgUiBWYXJtYSA8bWgxMmd4MjgyNUBnbWFpbC5jb20+Cj4gPiBD
-YzogQ2hlbiBMaSA8Y2hlbmxpQHVuaW9udGVjaC5jb20+Cj4gPiBDYzogS2V2aW4gV2FuZyA8a2V2
-aW4xLndhbmdAYW1kLmNvbT4KPiA+IENjOiBsaW51eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmcKPiA+
-IENjOiBsaW5hcm8tbW0tc2lnQGxpc3RzLmxpbmFyby5vcmcKPiA+IC0tLQo+ID4gIGluY2x1ZGUv
-bGludXgvZG1hLWJ1Zi5oIHwgMTA3ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0t
-LS0tLS0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgODMgaW5zZXJ0aW9ucygrKSwgMjQgZGVsZXRpb25z
-KC0pCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvZG1hLWJ1Zi5oIGIvaW5jbHVk
-ZS9saW51eC9kbWEtYnVmLmgKPiA+IGluZGV4IDkyZWVjMzhhMDNhYS4uNmQxOGI5ZTQ0OGI5IDEw
-MDY0NAo+ID4gLS0tIGEvaW5jbHVkZS9saW51eC9kbWEtYnVmLmgKPiA+ICsrKyBiL2luY2x1ZGUv
-bGludXgvZG1hLWJ1Zi5oCj4gPiBAQCAtMjg5LDI4ICsyODksNiBAQCBzdHJ1Y3QgZG1hX2J1Zl9v
-cHMgewo+ID4KPiA+ICAvKioKPiA+ICAgKiBzdHJ1Y3QgZG1hX2J1ZiAtIHNoYXJlZCBidWZmZXIg
-b2JqZWN0Cj4gPiAtICogQHNpemU6IHNpemUgb2YgdGhlIGJ1ZmZlcjsgaW52YXJpYW50IG92ZXIg
-dGhlIGxpZmV0aW1lIG9mIHRoZSBidWZmZXIuCj4gPiAtICogQGZpbGU6IGZpbGUgcG9pbnRlciB1
-c2VkIGZvciBzaGFyaW5nIGJ1ZmZlcnMgYWNyb3NzLCBhbmQgZm9yIHJlZmNvdW50aW5nLgo+ID4g
-LSAqIEBhdHRhY2htZW50czogbGlzdCBvZiBkbWFfYnVmX2F0dGFjaG1lbnQgdGhhdCBkZW5vdGVz
-IGFsbCBkZXZpY2VzIGF0dGFjaGVkLAo+ID4gLSAqICAgICAgICAgICAgICAgcHJvdGVjdGVkIGJ5
-IGRtYV9yZXN2IGxvY2suCj4gPiAtICogQG9wczogZG1hX2J1Zl9vcHMgYXNzb2NpYXRlZCB3aXRo
-IHRoaXMgYnVmZmVyIG9iamVjdC4KPiA+IC0gKiBAbG9jazogdXNlZCBpbnRlcm5hbGx5IHRvIHNl
-cmlhbGl6ZSBsaXN0IG1hbmlwdWxhdGlvbiwgYXR0YWNoL2RldGFjaCBhbmQKPiA+IC0gKiAgICAg
-ICAgdm1hcC91bm1hcAo+ID4gLSAqIEB2bWFwcGluZ19jb3VudGVyOiB1c2VkIGludGVybmFsbHkg
-dG8gcmVmY250IHRoZSB2bWFwcwo+ID4gLSAqIEB2bWFwX3B0cjogdGhlIGN1cnJlbnQgdm1hcCBw
-dHIgaWYgdm1hcHBpbmdfY291bnRlciA+IDAKPiA+IC0gKiBAZXhwX25hbWU6IG5hbWUgb2YgdGhl
-IGV4cG9ydGVyOyB1c2VmdWwgZm9yIGRlYnVnZ2luZy4KPiA+IC0gKiBAbmFtZTogdXNlcnNwYWNl
-LXByb3ZpZGVkIG5hbWU7IHVzZWZ1bCBmb3IgYWNjb3VudGluZyBhbmQgZGVidWdnaW5nLAo+ID4g
-LSAqICAgICAgICBwcm90ZWN0ZWQgYnkgQHJlc3YuCj4gPiAtICogQG5hbWVfbG9jazogc3Bpbmxv
-Y2sgdG8gcHJvdGVjdCBuYW1lIGFjY2Vzcwo+ID4gLSAqIEBvd25lcjogcG9pbnRlciB0byBleHBv
-cnRlciBtb2R1bGU7IHVzZWQgZm9yIHJlZmNvdW50aW5nIHdoZW4gZXhwb3J0ZXIgaXMgYQo+ID4g
-LSAqICAgICAgICAga2VybmVsIG1vZHVsZS4KPiA+IC0gKiBAbGlzdF9ub2RlOiBub2RlIGZvciBk
-bWFfYnVmIGFjY291bnRpbmcgYW5kIGRlYnVnZ2luZy4KPiA+IC0gKiBAcHJpdjogZXhwb3J0ZXIg
-c3BlY2lmaWMgcHJpdmF0ZSBkYXRhIGZvciB0aGlzIGJ1ZmZlciBvYmplY3QuCj4gPiAtICogQHJl
-c3Y6IHJlc2VydmF0aW9uIG9iamVjdCBsaW5rZWQgdG8gdGhpcyBkbWEtYnVmCj4gPiAtICogQHBv
-bGw6IGZvciB1c2Vyc3BhY2UgcG9sbCBzdXBwb3J0Cj4gPiAtICogQGNiX2V4Y2w6IGZvciB1c2Vy
-c3BhY2UgcG9sbCBzdXBwb3J0Cj4gPiAtICogQGNiX3NoYXJlZDogZm9yIHVzZXJzcGFjZSBwb2xs
-IHN1cHBvcnQKPiA+IC0gKiBAc3lzZnNfZW50cnk6IGZvciBleHBvc2luZyBpbmZvcm1hdGlvbiBh
-Ym91dCB0aGlzIGJ1ZmZlciBpbiBzeXNmcy4KPgo+IFRoaXMgc2VudGVuY2UKPiA+ICAgKiBUaGUg
-YXR0YWNobWVudF91aWQgbWVtYmVyIG9mIEBzeXNmc19lbnRyeSBpcyBwcm90ZWN0ZWQgYnkgZG1h
-X3Jlc3YgbG9jawo+ID4gICAqIGFuZCBpcyBpbmNyZW1lbnRlZCBvbiBlYWNoIGF0dGFjaC4KPiBi
-ZWxvbmdzIHRvIHRoZSBwYXJhZ3JhcGggZGVzY3JpYmluZyBzeXNmc19lbnRyeSBhbmQgc2hvdWxk
-IGJlIG1vdmVkIHRvby4KPiBPciBtYXliZSByZXdvcmRlZCBhbmQgdGhlbiBkb2N1bWVudCBhbGwg
-ZmllbGRzIGluIGRtYV9idWZfc3lzZnNfZW50cnk/CgpVbmZvcnR1bmF0ZWx5IGtlcm5lbGRvYyBs
-b3N0IHRoZSBhYmlsaXR5IHRvIGRvY3VtZW50IGVtYmVkZGVkCnN0cnVjdHMvdW5pb25zLiBBdCBs
-ZWFzdCBsYXN0IHRpbWUgSSBjaGVja2VkLCBpdCdzIGEgYml0IGEgYmlrZXNoZWQuClNvIEknZCBu
-ZWVkIHRvIHB1bGwgdGhlIGVudGlyZSBzdHJ1Y3Qgb3V0LiBJJ2xsIGp1c3QgbW92ZSBpdCBzaW5j
-ZQppdCdzIGluZGVlZCBtaXNwbGFjZWQuCgo+IFdpdGggdGhpcyBmaXhlZDoKPiBBY2tlZC1ieTog
-U2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgoKVGhhbmtzIGZvciB0YWtpbmcgYSBsb29r
-LgotRGFuaWVsCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jw
-b3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+On Tue, Jun 22, 2021 at 04:18:14PM +0200, Takashi Iwai wrote:
+> On Mon, 21 Jun 2021 19:44:15 +0200,
+> Imre Deak wrote:
+> > 
+> > Make sure the HDA driver's display power reference is released during
+> > shutdown/reboot.
+> > 
+> > During the shutdown/reboot sequence the pci device core calls the
+> > pm_runtime_resume handler for all devices before calling the driver's
+> > shutdown callback and so the HDA driver's runtime resume callback will
+> > acquire a display power reference (on HSW/BDW). This triggers a power
+> > reference held WARN on HSW/BDW in the i915 driver's subsequent shutdown
+> > handler, which expects all display power references to be released by
+> > that time.
+> > 
+> > Since the HDA controller is stopped in the shutdown handler in any case,
+> > let's follow here the same sequence as the one during runtime suspend.
+> > This will also reset the HDA link and drop the display power reference,
+> > getting rid of the above WARN.
+> 
+> As kbuild bot suggested, __azx_runtime_suspend() is defined only with
+> CONFIG_PM.  We need either moving the function out of ifdef CONFIG_PM
+> block, or having CONFIG_PM conditional call there.
+
+Thanks, missed that. I think we need to drop the power ref in the !CONFIG_PM
+case as well (since AFAICS then the ref is held after the device is probed), so
+I'd move __azx_runtime_suspend() out of the CONFIG_PM block (and perhaps rename
+it to azx_shutdown_chip).
+
+> I myself have no much preference,  but maybe the latter can be easier
+> to be cherry-picked to stable kernels.
+
+To my knowledge this only fixes the book-keeping in the i915 driver, so
+not sure if it's a stable material.
+
+Trying things now with !CONFIG_PM, I noticed that the HDA codec would still
+keep a separate power reference (which was dropped for me with CONFIG_PM, as
+the codec was runtime suspended). To fix that we'd need something like the
+following (on top of the above changes in a separate patch), any
+comments on it?:
+
+diff --git a/include/sound/core.h b/include/sound/core.h
+index c4ade121727df..5228dec658ad6 100644
+--- a/include/sound/core.h
++++ b/include/sound/core.h
+@@ -61,6 +61,7 @@ struct snd_device_ops {
+ 	int (*dev_free)(struct snd_device *dev);
+ 	int (*dev_register)(struct snd_device *dev);
+ 	int (*dev_disconnect)(struct snd_device *dev);
++	void (*dev_shutdown)(struct snd_device *dev);
+ };
+ 
+ struct snd_device {
+@@ -314,6 +315,7 @@ void snd_device_disconnect(struct snd_card *card, void *device_data);
+ void snd_device_disconnect_all(struct snd_card *card);
+ void snd_device_free(struct snd_card *card, void *device_data);
+ void snd_device_free_all(struct snd_card *card);
++void snd_device_shutdown_all(struct snd_card *card);
+ int snd_device_get_state(struct snd_card *card, void *device_data);
+ 
+ /* isadma.c */
+diff --git a/sound/core/device.c b/sound/core/device.c
+index bf0b04a7ee797..7c695f8a72f5b 100644
+--- a/sound/core/device.c
++++ b/sound/core/device.c
+@@ -238,6 +238,17 @@ void snd_device_free_all(struct snd_card *card)
+ 		__snd_device_free(dev);
+ }
+ 
++void snd_device_shutdown_all(struct snd_card *card)
++{
++	struct snd_device *dev;
++
++	list_for_each_entry_reverse(dev, &card->devices, list) {
++		if (dev->ops->dev_shutdown)
++			dev->ops->dev_shutdown(dev);
++	}
++}
++EXPORT_SYMBOL_GPL(snd_device_shutdown_all);
++
+ /**
+  * snd_device_get_state - Get the current state of the given device
+  * @card: the card instance
+diff --git a/sound/pci/hda/hda_codec.c b/sound/pci/hda/hda_codec.c
+index 5462f771c2f90..6da105bc57f58 100644
+--- a/sound/pci/hda/hda_codec.c
++++ b/sound/pci/hda/hda_codec.c
+@@ -866,6 +866,13 @@ static void snd_hda_codec_dev_release(struct device *dev)
+ 		kfree(codec);
+ }
+ 
++static void snd_hda_codec_dev_shutdown(struct snd_device *device)
++{
++	struct hda_codec *codec = device->device_data;
++
++	codec_display_power(codec, false);
++}
++
+ #define DEV_NAME_LEN 31
+ 
+ static int snd_hda_codec_device_init(struct hda_bus *bus, struct snd_card *card,
+@@ -930,6 +937,7 @@ int snd_hda_codec_device_new(struct hda_bus *bus, struct snd_card *card,
+ 	static const struct snd_device_ops dev_ops = {
+ 		.dev_register = snd_hda_codec_dev_register,
+ 		.dev_free = snd_hda_codec_dev_free,
++		.dev_shutdown = snd_hda_codec_dev_shutdown,
+ 	};
+ 
+ 	dev_dbg(card->dev, "%s: entry\n", __func__);
+diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+index f5ab0b682adcc..6ca05c6633fc6 100644
+--- a/sound/pci/hda/hda_intel.c
++++ b/sound/pci/hda/hda_intel.c
+@@ -2382,8 +2382,10 @@ static void azx_shutdown(struct pci_dev *pci)
+ 	if (!card)
+ 		return;
+ 	chip = card->private_data;
+-	if (chip && chip->running)
++	if (chip && chip->running) {
++		snd_device_shutdown_all(card);
+ 		azx_shutdown_chip(chip);
++	}
+ }
+ 
+ /* PCI IDs */
+
+> thanks,
+> 
+> Takashi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
