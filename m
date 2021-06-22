@@ -1,60 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5913AFDE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 09:30:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D6D3AFE6E
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 09:54:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 141D86E3F7;
-	Tue, 22 Jun 2021 07:30:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1822E6E3F7;
+	Tue, 22 Jun 2021 07:54:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com
- [IPv6:2a00:1450:4864:20::12c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED54E6E332;
- Tue, 22 Jun 2021 07:30:00 +0000 (UTC)
-Received: by mail-lf1-x12c.google.com with SMTP id i13so34301765lfc.7;
- Tue, 22 Jun 2021 00:30:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=Sv8DdLTv1kY+QXwSsZTiRnv68zLQuIFoSj5TZbvWCS8=;
- b=jAULjniH6ZqqojOc/QNDiCaJCpB3oN/gJegKGvTHE0+OhiKxhn/pAVo1ipEua4O4i/
- VV1/dvrvAF6xpwPBVJ1q7TPgHKgSaClc6a0KW0GjBc03APM3daY8RqU3J/Kqxs2dbjnB
- sw1H+ASk3urfcCQz9Ra6O+nqIk1dunByytEZbdgBllDE0/ffko5QWf+Mh6dKHQp8wXWb
- 7544JHLsCdzKkFNmPyyPgoUZuU9OXCjG80IBJCi8zj5+Nzax/NyJYkVAGAImjaVWlBVb
- JO/VDFWKItI0D+CBFf4bupjX/MrqdR1FRhcQSGynK6js90+b1gw/UxszgCxPNbgHKqLH
- Pfew==
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6179F6E400
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 07:54:17 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id j2so11914270wrs.12
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 00:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=LhH8oe/P3I1pzGmmehyVUQA+j57rQxFhoVV75MXvrbE=;
+ b=iMYkmuMmAuc7zCSmFtjhahXRlmloWJjVkF/yHNExxDjbBJPt3xiwKtj9qr9Iqq3cBd
+ GKjNg+bmnWoDpyJhSL8AklbZkYxHv7pu4AiebKBhnlyKv5Zm4UfmKUp7mRy9ZwwDSPQH
+ 9Z+cl/OM7FFHdXLOMqHJbuaz4ApyMUDbFSGWk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=Sv8DdLTv1kY+QXwSsZTiRnv68zLQuIFoSj5TZbvWCS8=;
- b=hfBwcMQAkwJoAf8Yz6JVX1kR1ahWG0yVKJIOYBrwvwhFRoS/WWqbfFcErIhC+g3BlH
- IirNcOzMa+TGQoU0Dfg7NbCMsc/9E6TKvg62GN0Kz0tWHMBhznFy/LXTuxzgIz0gQ9vv
- jqiQifjDhkwtTcSHUSee/3EBVnBiy0e+hlNcYWj71soQyJ6uOh0Ht0KJKSJn4bED9oGl
- QBZXZIlK2uH15OKL0y/WpBJayWVlCeKl+mRsQ8WfSqMIWocxKfFtjOKiPs6xiZ6DJ+2X
- JrTTMJznAhhkJ1TyJV+lMxH3kJuHODlFFlMsyq+zGXilut5rLmMUfLS6JM2U/iOzqrXa
- dglw==
-X-Gm-Message-State: AOAM530a54hG/nUf1qvngbJe4USsoHfJPDZirJARH6W1MVpJp6ttjHyn
- f6JaopZnUzfcHU04yG6MW8M=
-X-Google-Smtp-Source: ABdhPJyxleQq5z6Eu705vZIzav8X4uaCPaSh4tUtxKJ/MuVlb/+y6Xt//iEA40whMERPJVHdYepsLA==
-X-Received: by 2002:ac2:4109:: with SMTP id b9mr1785198lfi.566.1624346999327; 
- Tue, 22 Jun 2021 00:29:59 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id j16sm2401462ljh.66.2021.06.22.00.29.58
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=LhH8oe/P3I1pzGmmehyVUQA+j57rQxFhoVV75MXvrbE=;
+ b=VDI5WLHlj4UO7USQICRWfnaHe8IGLupq48rxvuUYmDkNc7B0JB1Un4BTIapMM/koqS
+ rsVfCCC9r33UqcFbUr5DgHw4zcnIKcnBTnRQw+wR5saQuHr58clAxZzhQBeD2lGDPDAr
+ xUoyr3WhNvH7r6WGzHtyvMI4oDU6qbf+sKCQdbNR1DPorhK98KdArL1B8mHesgiAdul/
+ R8+i5f92TrvSb5uyY61Ez+rtdi3egUiSOUAsppbo2/9CYgct4SIo5PLCYKbEMJmQ8g1K
+ CTlvq7HCdjFtxLLZQE/IO7uMG6r7hjurFxAWoWBvQy04rlT5j6kzSFxKoXSVnDkMb0vu
+ f9SQ==
+X-Gm-Message-State: AOAM531zR0Z8IjHPy5iFb6nyLXoxEuiRD9xkYELyp0cXSQqgnBtwHRKM
+ 26XycPN/UKwfhQelqyxAhryUEXbTGExMrA==
+X-Google-Smtp-Source: ABdhPJxQCH5xUKVEpxaBsZxWEb9pvwGN+FqzCFhxrWDsS+CTUL0E7qjy4lEy4pSUTFUm+EvaPXXXmA==
+X-Received: by 2002:adf:e2cf:: with SMTP id d15mr3084891wrj.48.1624348455854; 
+ Tue, 22 Jun 2021 00:54:15 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id v16sm20949920wrr.6.2021.06.22.00.54.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Jun 2021 00:29:59 -0700 (PDT)
-Date: Tue, 22 Jun 2021 10:29:55 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <20210622102955.1e0488b1@eldfell>
-In-Reply-To: <20210618091116.14428-18-wse@tuxedocomputers.com>
-References: <20210618091116.14428-1-wse@tuxedocomputers.com>
- <20210618091116.14428-18-wse@tuxedocomputers.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ Tue, 22 Jun 2021 00:54:15 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Date: Tue, 22 Jun 2021 09:54:09 +0200
+Message-Id: <20210622075409.2673805-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.32.0.rc2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 17/17] drm/amd/display: Add handling for
- new "Broadcast RGB" property
+Subject: [Intel-gfx] [PATCH] Revert "drm: add a locked version of
+ drm_is_current_master"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,178 +62,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
- intel-gfx@lists.freedesktop.org, sunpeng.li@amd.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, airlied@linux.ie, alexander.deucher@amd.com,
- harry.wentland@amd.com, christian.koenig@amd.com
-Content-Type: multipart/mixed; boundary="===============1507162365=="
+Cc: Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ stable@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1507162365==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/c3Ac5T5eA2BEPFgV0t7N7F/"; protocol="application/pgp-signature"
+This reverts commit 1815d9c86e3090477fbde066ff314a7e9721ee0f.
 
---Sig_/c3Ac5T5eA2BEPFgV0t7N7F/
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Unfortunately this inverts the locking hierarchy, so back to the
+drawing board. Full lockdep splat below:
 
-On Fri, 18 Jun 2021 11:11:16 +0200
-Werner Sembach <wse@tuxedocomputers.com> wrote:
+======================================================
+WARNING: possible circular locking dependency detected
+5.13.0-rc7-CI-CI_DRM_10254+ #1 Not tainted
+------------------------------------------------------
+kms_frontbuffer/1087 is trying to acquire lock:
+ffff88810dcd01a8 (&dev->master_mutex){+.+.}-{3:3}, at: drm_is_current_master+0x1b/0x40
+but task is already holding lock:
+ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
+which lock already depends on the new lock.
+the existing dependency chain (in reverse order) is:
+-> #2 (&dev->mode_config.mutex){+.+.}-{3:3}:
+       __mutex_lock+0xab/0x970
+       drm_client_modeset_probe+0x22e/0xca0
+       __drm_fb_helper_initial_config_and_unlock+0x42/0x540
+       intel_fbdev_initial_config+0xf/0x20 [i915]
+       async_run_entry_fn+0x28/0x130
+       process_one_work+0x26d/0x5c0
+       worker_thread+0x37/0x380
+       kthread+0x144/0x170
+       ret_from_fork+0x1f/0x30
+-> #1 (&client->modeset_mutex){+.+.}-{3:3}:
+       __mutex_lock+0xab/0x970
+       drm_client_modeset_commit_locked+0x1c/0x180
+       drm_client_modeset_commit+0x1c/0x40
+       __drm_fb_helper_restore_fbdev_mode_unlocked+0x88/0xb0
+       drm_fb_helper_set_par+0x34/0x40
+       intel_fbdev_set_par+0x11/0x40 [i915]
+       fbcon_init+0x270/0x4f0
+       visual_init+0xc6/0x130
+       do_bind_con_driver+0x1e5/0x2d0
+       do_take_over_console+0x10e/0x180
+       do_fbcon_takeover+0x53/0xb0
+       register_framebuffer+0x22d/0x310
+       __drm_fb_helper_initial_config_and_unlock+0x36c/0x540
+       intel_fbdev_initial_config+0xf/0x20 [i915]
+       async_run_entry_fn+0x28/0x130
+       process_one_work+0x26d/0x5c0
+       worker_thread+0x37/0x380
+       kthread+0x144/0x170
+       ret_from_fork+0x1f/0x30
+-> #0 (&dev->master_mutex){+.+.}-{3:3}:
+       __lock_acquire+0x151e/0x2590
+       lock_acquire+0xd1/0x3d0
+       __mutex_lock+0xab/0x970
+       drm_is_current_master+0x1b/0x40
+       drm_mode_getconnector+0x37e/0x4a0
+       drm_ioctl_kernel+0xa8/0xf0
+       drm_ioctl+0x1e8/0x390
+       __x64_sys_ioctl+0x6a/0xa0
+       do_syscall_64+0x39/0xb0
+       entry_SYSCALL_64_after_hwframe+0x44/0xae
+other info that might help us debug this:
+Chain exists of: &dev->master_mutex --> &client->modeset_mutex --> &dev->mode_config.mutex
+ Possible unsafe locking scenario:
+       CPU0                    CPU1
+       ----                    ----
+  lock(&dev->mode_config.mutex);
+                               lock(&client->modeset_mutex);
+                               lock(&dev->mode_config.mutex);
+  lock(&dev->master_mutex);
+*** DEADLOCK ***
+1 lock held by kms_frontbuffer/1087:
+ #0: ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
+stack backtrace:
+CPU: 7 PID: 1087 Comm: kms_frontbuffer Not tainted 5.13.0-rc7-CI-CI_DRM_10254+ #1
+Hardware name: Intel Corporation Ice Lake Client Platform/IceLake U DDR4 SODIMM PD RVP TLC, BIOS ICLSFWR1.R00.3234.A01.1906141750 06/14/2019
+Call Trace:
+ dump_stack+0x7f/0xad
+ check_noncircular+0x12e/0x150
+ __lock_acquire+0x151e/0x2590
+ lock_acquire+0xd1/0x3d0
+ __mutex_lock+0xab/0x970
+ drm_is_current_master+0x1b/0x40
+ drm_mode_getconnector+0x37e/0x4a0
+ drm_ioctl_kernel+0xa8/0xf0
+ drm_ioctl+0x1e8/0x390
+ __x64_sys_ioctl+0x6a/0xa0
+ do_syscall_64+0x39/0xb0
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
 
-> This commit implements the "Broadcast RGB" drm property for the AMD GPU
-> driver.
->=20
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 22 ++++++++++++++-----
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  4 ++++
->  2 files changed, 21 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 9ffd2f9d3d75..c5dbf948a47a 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -5252,7 +5252,8 @@ get_aspect_ratio(const struct drm_display_mode *mod=
-e_in)
->  }
-> =20
->  static enum dc_color_space
-> -get_output_color_space(const struct dc_crtc_timing *dc_crtc_timing)
-> +get_output_color_space(const struct dc_crtc_timing *dc_crtc_timing,
-> +		       enum drm_mode_color_range preferred_color_range)
->  {
->  	enum dc_color_space color_space =3D COLOR_SPACE_SRGB;
-> =20
-> @@ -5267,13 +5268,17 @@ get_output_color_space(const struct dc_crtc_timin=
-g *dc_crtc_timing)
->  		 * respectively
->  		 */
->  		if (dc_crtc_timing->pix_clk_100hz > 270300) {
-> -			if (dc_crtc_timing->flags.Y_ONLY)
-> +			if (dc_crtc_timing->flags.Y_ONLY
-> +					|| preferred_color_range =3D=3D
-> +						DRM_MODE_COLOR_RANGE_LIMITED_16_235)
->  				color_space =3D
->  					COLOR_SPACE_YCBCR709_LIMITED;
->  			else
->  				color_space =3D COLOR_SPACE_YCBCR709;
+daniel@phenom:~/linux/drm-misc-fixes$ dim fixes 1815d9c86e3090477fbde066ff314a7e9721ee0f
+Fixes: 1815d9c86e30 ("drm: add a locked version of drm_is_current_master")
+Cc: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Cc: Emil Velikov <emil.l.velikov@gmail.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+---
+ drivers/gpu/drm/drm_auth.c | 51 ++++++++++++++------------------------
+ 1 file changed, 19 insertions(+), 32 deletions(-)
 
-Hi,
-
-does this mean that amdgpu would be using a property named "Broadcast
-RGB" to control the range of YCbCr too?
-
-That is surprising. If this is truly wanted, then the documentation of
-"Broadcast RGB" must say that it applies to YCbCr too.
-
-Does amdgpu do the same as intel wrt. to the question about whose
-responsibility it is to make the pixels at the connector to match the
-set range?
-
-
-Thanks,
-pq
-
->  		} else {
-> -			if (dc_crtc_timing->flags.Y_ONLY)
-> +			if (dc_crtc_timing->flags.Y_ONLY
-> +					|| preferred_color_range =3D=3D
-> +						DRM_MODE_COLOR_RANGE_LIMITED_16_235)
->  				color_space =3D
->  					COLOR_SPACE_YCBCR601_LIMITED;
->  			else
-> @@ -5283,7 +5288,10 @@ get_output_color_space(const struct dc_crtc_timing=
- *dc_crtc_timing)
->  	}
->  	break;
->  	case PIXEL_ENCODING_RGB:
-> -		color_space =3D COLOR_SPACE_SRGB;
-> +		if (preferred_color_range =3D=3D DRM_MODE_COLOR_RANGE_LIMITED_16_235)
-> +			color_space =3D COLOR_SPACE_SRGB_LIMITED;
-> +		else
-> +			color_space =3D COLOR_SPACE_SRGB;
->  		break;
-> =20
->  	default:
-> @@ -5429,7 +5437,10 @@ static void fill_stream_properties_from_drm_displa=
-y_mode(
-> =20
->  	timing_out->aspect_ratio =3D get_aspect_ratio(mode_in);
-> =20
-> -	stream->output_color_space =3D get_output_color_space(timing_out);
-> +	stream->output_color_space =3D get_output_color_space(timing_out,
-> +							    connector_state ?
-> +							    connector_state->preferred_color_range :
-> +							    DRM_MODE_COLOR_RANGE_UNSET);
-> =20
->  	stream->out_transfer_func->type =3D TF_TYPE_PREDEFINED;
->  	stream->out_transfer_func->tf =3D TRANSFER_FUNCTION_SRGB;
-> @@ -7780,6 +7791,7 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_=
-display_manager *dm,
->  		drm_connector_attach_active_bpc_property(&aconnector->base, 8, 16);
->  		drm_connector_attach_preferred_color_format_property(&aconnector->base=
-);
->  		drm_connector_attach_active_color_format_property(&aconnector->base);
-> +		drm_connector_attach_preferred_color_range_property(&aconnector->base);
->  		drm_connector_attach_active_color_range_property(&aconnector->base);
->  	}
-> =20
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 2563788ba95a..80e1389fd0ec 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -421,6 +421,10 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topology_m=
-gr *mgr,
->  	if (connector->active_color_format_property)
->  		drm_connector_attach_active_color_format_property(&aconnector->base);
-> =20
-> +	connector->preferred_color_range_property =3D master->base.preferred_co=
-lor_range_property;
-> +	if (connector->preferred_color_range_property)
-> +		drm_connector_attach_preferred_color_range_property(&aconnector->base);
-> +
->  	connector->active_color_range_property =3D master->base.active_color_ra=
-nge_property;
->  	if (connector->active_color_range_property)
->  		drm_connector_attach_active_color_range_property(&aconnector->base);
-
-
---Sig_/c3Ac5T5eA2BEPFgV0t7N7F/
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDRkXMACgkQI1/ltBGq
-qqfhCA//RdPwONXlGKN0tquJBHVdI25v6rSIH4cX/Nmg4W4i5jwQBeGgRInN/tBA
-tCAVLGzlT0wB9nxvOD4sKkFaStwoQVyWKx7BJYcYCBshdU96LP3Th8LPR9DK36Tr
-c0/fwpZy7scUj8/pear58shSiC9jhGovJW1xvI7JPu4DcTdWEBr8+odAxb3/FDQr
-tW9qeMAx8tCNTXryO3N3Rj270+Uqg52qJd357ADJ6uDGcc2kkbwyMCWI0maY/znO
-xlZaQIA6NDBNJv4SCmT8VQ68mT3uHYt7gz4r+LgIkNhsUIP4eJtIuqiGHoDwvGUc
-FBqfYWC2/8hOyYsZfsKl69fxwUN5hqnyG666YPCHT2hTAI7bKsW8bHcu9fyjIqM3
-2onCUAmUU5RzO5OR0B3KW5g4SWuJ+EC40EilHLD8hNET212N2S78U4bLeX6vo1dv
-Mx3A/ULl6clOfdxODhOdLcY7VQGpSDYEeQCktNo9qvf9DKHZDVX5qDgewFBAPzUK
-ga4bhxH50sIXpP0HjuZmyCIKqoewc0MPpmSSP/36L2CqI0um2Lw9n1XNamI/8ymj
-z4bhI0GVz5ru7mi7SDpZPZNj9429yGonnZtZw9GMwK1YFDD0kfnaQOd8JVIPFC9V
-8HlTV/y7F4HStNFTsGNQxpoXLGio8+Cmdz2Fh+7JUIDz2IhTrlI=
-=c5Cf
------END PGP SIGNATURE-----
-
---Sig_/c3Ac5T5eA2BEPFgV0t7N7F/--
-
---===============1507162365==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+index 86d4b72e95cb..232abbba3686 100644
+--- a/drivers/gpu/drm/drm_auth.c
++++ b/drivers/gpu/drm/drm_auth.c
+@@ -61,35 +61,6 @@
+  * trusted clients.
+  */
+ 
+-static bool drm_is_current_master_locked(struct drm_file *fpriv)
+-{
+-	lockdep_assert_held_once(&fpriv->master->dev->master_mutex);
+-
+-	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+-}
+-
+-/**
+- * drm_is_current_master - checks whether @priv is the current master
+- * @fpriv: DRM file private
+- *
+- * Checks whether @fpriv is current master on its device. This decides whether a
+- * client is allowed to run DRM_MASTER IOCTLs.
+- *
+- * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
+- * - the current master is assumed to own the non-shareable display hardware.
+- */
+-bool drm_is_current_master(struct drm_file *fpriv)
+-{
+-	bool ret;
+-
+-	mutex_lock(&fpriv->master->dev->master_mutex);
+-	ret = drm_is_current_master_locked(fpriv);
+-	mutex_unlock(&fpriv->master->dev->master_mutex);
+-
+-	return ret;
+-}
+-EXPORT_SYMBOL(drm_is_current_master);
+-
+ int drm_getmagic(struct drm_device *dev, void *data, struct drm_file *file_priv)
+ {
+ 	struct drm_auth *auth = data;
+@@ -252,7 +223,7 @@ int drm_setmaster_ioctl(struct drm_device *dev, void *data,
+ 	if (ret)
+ 		goto out_unlock;
+ 
+-	if (drm_is_current_master_locked(file_priv))
++	if (drm_is_current_master(file_priv))
+ 		goto out_unlock;
+ 
+ 	if (dev->master) {
+@@ -301,7 +272,7 @@ int drm_dropmaster_ioctl(struct drm_device *dev, void *data,
+ 	if (ret)
+ 		goto out_unlock;
+ 
+-	if (!drm_is_current_master_locked(file_priv)) {
++	if (!drm_is_current_master(file_priv)) {
+ 		ret = -EINVAL;
+ 		goto out_unlock;
+ 	}
+@@ -350,7 +321,7 @@ void drm_master_release(struct drm_file *file_priv)
+ 	if (file_priv->magic)
+ 		idr_remove(&file_priv->master->magic_map, file_priv->magic);
+ 
+-	if (!drm_is_current_master_locked(file_priv))
++	if (!drm_is_current_master(file_priv))
+ 		goto out;
+ 
+ 	drm_legacy_lock_master_cleanup(dev, master);
+@@ -371,6 +342,22 @@ void drm_master_release(struct drm_file *file_priv)
+ 	mutex_unlock(&dev->master_mutex);
+ }
+ 
++/**
++ * drm_is_current_master - checks whether @priv is the current master
++ * @fpriv: DRM file private
++ *
++ * Checks whether @fpriv is current master on its device. This decides whether a
++ * client is allowed to run DRM_MASTER IOCTLs.
++ *
++ * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
++ * - the current master is assumed to own the non-shareable display hardware.
++ */
++bool drm_is_current_master(struct drm_file *fpriv)
++{
++	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
++}
++EXPORT_SYMBOL(drm_is_current_master);
++
+ /**
+  * drm_master_get - reference a master pointer
+  * @master: &struct drm_master
+-- 
+2.32.0.rc2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1507162365==--
