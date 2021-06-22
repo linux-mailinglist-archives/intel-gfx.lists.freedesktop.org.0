@@ -1,31 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48303B0B8C
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 19:39:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F15EA3B0CBD
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 20:20:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D07236E870;
-	Tue, 22 Jun 2021 17:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2ED76E870;
+	Tue, 22 Jun 2021 18:20:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4F1206E870;
- Tue, 22 Jun 2021 17:38:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 48112A66C9;
- Tue, 22 Jun 2021 17:38:58 +0000 (UTC)
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
+ [IPv6:2607:f8b0:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E12F96E87F;
+ Tue, 22 Jun 2021 18:20:08 +0000 (UTC)
+Received: by mail-oi1-x232.google.com with SMTP id s17so434613oij.0;
+ Tue, 22 Jun 2021 11:20:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=29hikt8SUCNhjVnea4G3Tt6U2VKimPI9xOdyygn6y2o=;
+ b=CZ9m2GCYl3/yRI7h1IWxxp6TOejM4xOmGC4KpzjeYdz81AHrXtUWyI89o0oJoZEqEO
+ 4M0lSdJJLM09L8Iu+QVRYMyvzCwO277e5L2CFRffawfY7hti2B+l01moMiqeK6VYIfMy
+ xipBv2IcBYtsXCTXc4P0t6+b9PbMayyeC9h/Rtow4aXXkqlqUHIsJZ5rbH2IHoG0qNTV
+ 3i1Lg5Ep7aavjIc1coARhze9+h/4cP9P7IJTVr7PgXluFZ0cvGNPeb60iQu98O5T86PA
+ wOUsSWE71SOtJEbFESRfEOs+Vh5hNmKwQjMMRE0HdP2wXKTosk4iXMis11i+oxQslA66
+ dv0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=29hikt8SUCNhjVnea4G3Tt6U2VKimPI9xOdyygn6y2o=;
+ b=kS9RQQzIMNaP4XkkehPKJRyx5ZlfcomIQ+zfYJ0L0VlA5zGI9ZjAiq5JobY0hWxQnR
+ RFh04YBTg5AwnGxrxKv5UMXCPM39TwKojGjACNeRIYKXaroIE3IHArxMmgcHG+octPBh
+ 4Lo8+AuA+VmnrwHwGvGe/X0saJBNimrrg+WHZ2yUrofTmqipiiojmBRIktXd03s8HHBH
+ Nok5m6zCAWtFKyqhFTPykZC0AqutwDo3YoyqLhlHR89mbFp2WQ4YeY0JN9BBCdw6GyM3
+ 2uDBvgm6ft8BexdjyZj96w/PRo1M2F0EZGsfZy8pB7qzkhP4/KylHSJ58HWd81TMWMd3
+ U/ww==
+X-Gm-Message-State: AOAM531nt1ydQwTASi4son0XLVnDnXCQ9TrT9NgFVlJ+xk4sSAU3yox2
+ F2hw7T5xnplquTBnUlCDL96bYrNrtuqYffi+1vo=
+X-Google-Smtp-Source: ABdhPJyUgVQFlY0rBQR5TacbcyoHIMybYd5BiSysGFReHN0iSspTqQlRZ1YcySHqv8KLv5Rmbaa0C9Yyyx8ixm9qE9w=
+X-Received: by 2002:a05:6808:c3:: with SMTP id t3mr71122oic.5.1624386008138;
+ Tue, 22 Jun 2021 11:20:08 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Tue, 22 Jun 2021 17:38:58 -0000
-Message-ID: <162438353826.30778.17484466930735916517@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaW1w?=
- =?utf-8?q?licit_fencing/dma-resv_rules_for_shared_buffers?=
+ <20210622165511.3169559-2-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210622165511.3169559-2-daniel.vetter@ffwll.ch>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 22 Jun 2021 14:19:56 -0400
+Message-ID: <CADnq5_N00p5VSqj3gEkFSEALOU2qbD=WkHMpsW0saz9iG_RZnA@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 01/15] dma-resv: Fix kerneldoc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,209 +62,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0542432157=="
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0542432157==
-Content-Type: multipart/alternative;
- boundary="===============0126213306201277690=="
-
---===============0126213306201277690==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: implicit fencing/dma-resv rules for shared buffers
-URL   : https://patchwork.freedesktop.org/series/91789/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10263 -> Patchwork_20431
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20431 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +15 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-7567u:       [PASS][2] -> [DMESG-FAIL][3] ([i915#2291] / [i915#541])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10263/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@runner@aborted:
-    - fi-skl-guc:         NOTRUN -> [FAIL][4] ([i915#2426] / [i915#3363])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/fi-skl-guc/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10263 -> Patchwork_20431
-
-  CI-20190529: 20190529
-  CI_DRM_10263: 5b5e458879485ea4eb87d4208b95a33ee5437fcc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20431: 76d518e4d7e7790bd832f6d103b8e6a309750710 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-76d518e4d7e7 RFC: drm/amdgpu: Implement a proper implicit fencing uapi
-15977ff8b76f drm/gem: Tiny kernel clarification for drm_gem_fence_array_add
-2ac97cd30e0f drm/tiny: drm_gem_simple_display_pipe_prepare_fb is the default
-c2d4255f903b drm/simple-helper: drm_gem_simple_display_pipe_prepare_fb as default
-07b7f877328f drm/omap: Follow implicit fencing in prepare_fb
-829aa12253aa drm/vram-helpers: Create DRM_GEM_VRAM_PLANE_HELPER_FUNCS
-a8e5d51acf68 drm/armada: Remove prepare/cleanup_fb hooks
-c761bfef9a8f drm/<driver>: drm_gem_plane_helper_prepare_fb is now the default
-d7729f8bfaf7 drm/atomic-helper: make drm_gem_plane_helper_prepare_fb the default
-370f17f25d5e drm/panfrost: Fix implicit sync
-804e59e3e0f4 drm/panfrost: Use xarray and helpers for depedency tracking
-2662cbf1df91 drm/panfrost: Shrink sched_lock
-0589bfb59341 dma-buf: Document dma-buf implicit fencing/resv fencing rules
-d3ab5dc6443a dma-buf: Switch to inline kerneldoc
-fa13cbf232a0 dma-resv: Fix kerneldoc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/index.html
-
---===============0126213306201277690==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>implicit fencing/dma-resv rules for shared buffers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91789/">https://patchwork.freedesktop.org/series/91789/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10263 -&gt; Patchwork_20431</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20431 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10263/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20431/fi-skl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10263 -&gt; Patchwork_20431</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10263: 5b5e458879485ea4eb87d4208b95a33ee5437fcc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20431: 76d518e4d7e7790bd832f6d103b8e6a309750710 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>76d518e4d7e7 RFC: drm/amdgpu: Implement a proper implicit fencing uapi<br />
-15977ff8b76f drm/gem: Tiny kernel clarification for drm_gem_fence_array_add<br />
-2ac97cd30e0f drm/tiny: drm_gem_simple_display_pipe_prepare_fb is the default<br />
-c2d4255f903b drm/simple-helper: drm_gem_simple_display_pipe_prepare_fb as default<br />
-07b7f877328f drm/omap: Follow implicit fencing in prepare_fb<br />
-829aa12253aa drm/vram-helpers: Create DRM_GEM_VRAM_PLANE_HELPER_FUNCS<br />
-a8e5d51acf68 drm/armada: Remove prepare/cleanup_fb hooks<br />
-c761bfef9a8f drm/<driver>: drm_gem_plane_helper_prepare_fb is now the default<br />
-d7729f8bfaf7 drm/atomic-helper: make drm_gem_plane_helper_prepare_fb the default<br />
-370f17f25d5e drm/panfrost: Fix implicit sync<br />
-804e59e3e0f4 drm/panfrost: Use xarray and helpers for depedency tracking<br />
-2662cbf1df91 drm/panfrost: Shrink sched_lock<br />
-0589bfb59341 dma-buf: Document dma-buf implicit fencing/resv fencing rules<br />
-d3ab5dc6443a dma-buf: Switch to inline kerneldoc<br />
-fa13cbf232a0 dma-resv: Fix kerneldoc</p>
-
-</body>
-</html>
-
---===============0126213306201277690==--
-
---===============0542432157==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0542432157==--
+T24gVHVlLCBKdW4gMjIsIDIwMjEgYXQgMTI6NTUgUE0gRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZl
+dHRlckBmZndsbC5jaD4gd3JvdGU6Cj4KPiBPdmVyc2lnaHQgZnJvbQo+Cj4gY29tbWl0IDZlZGJk
+NmFiYjc4M2Q1NGY2YWM0YzNlZDVjZDllNTBjZmY2YzE1ZTkKPiBBdXRob3I6IENocmlzdGlhbiBL
+w7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBEYXRlOiAgIE1vbiBNYXkgMTAgMTY6
+MTQ6MDkgMjAyMSArMDIwMAo+Cj4gICAgIGRtYS1idWY6IHJlbmFtZSBhbmQgY2xlYW51cCBkbWFf
+cmVzdl9nZXRfZXhjbCB2Mwo+Cj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVs
+LnZldHRlckBpbnRlbC5jb20+Cj4gQ2M6IFN1bWl0IFNlbXdhbCA8c3VtaXQuc2Vtd2FsQGxpbmFy
+by5vcmc+Cj4gQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29t
+Pgo+IENjOiBsaW51eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzogbGluYXJvLW1tLXNpZ0Bs
+aXN0cy5saW5hcm8ub3JnCgpSZXZpZXdlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1
+Y2hlckBhbWQuY29tPgoKPiAtLS0KPiAgaW5jbHVkZS9saW51eC9kbWEtcmVzdi5oIHwgMiArLQo+
+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPgo+IGRpZmYg
+LS1naXQgYS9pbmNsdWRlL2xpbnV4L2RtYS1yZXN2LmggYi9pbmNsdWRlL2xpbnV4L2RtYS1yZXN2
+LmgKPiBpbmRleCA1NjJiODg1Y2Y5YzMuLmUxY2EyMDgwYTFmZiAxMDA2NDQKPiAtLS0gYS9pbmNs
+dWRlL2xpbnV4L2RtYS1yZXN2LmgKPiArKysgYi9pbmNsdWRlL2xpbnV4L2RtYS1yZXN2LmgKPiBA
+QCAtMjEyLDcgKzIxMiw3IEBAIHN0YXRpYyBpbmxpbmUgdm9pZCBkbWFfcmVzdl91bmxvY2soc3Ry
+dWN0IGRtYV9yZXN2ICpvYmopCj4gIH0KPgo+ICAvKioKPiAtICogZG1hX3Jlc3ZfZXhjbHVzaXZl
+IC0gcmV0dXJuIHRoZSBvYmplY3QncyBleGNsdXNpdmUgZmVuY2UKPiArICogZG1hX3Jlc3ZfZXhj
+bF9mZW5jZSAtIHJldHVybiB0aGUgb2JqZWN0J3MgZXhjbHVzaXZlIGZlbmNlCj4gICAqIEBvYmo6
+IHRoZSByZXNlcnZhdGlvbiBvYmplY3QKPiAgICoKPiAgICogUmV0dXJucyB0aGUgZXhjbHVzaXZl
+IGZlbmNlIChpZiBhbnkpLiBDYWxsZXIgbXVzdCBlaXRoZXIgaG9sZCB0aGUgb2JqZWN0cwo+IC0t
+Cj4gMi4zMi4wLnJjMgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
