@@ -2,30 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A45E3B05B5
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 15:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 228B63B05C6
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 15:25:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55FA36E500;
-	Tue, 22 Jun 2021 13:19:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2DC26E0CB;
+	Tue, 22 Jun 2021 13:25:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 34F9689933;
- Tue, 22 Jun 2021 13:19:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2CA2FA7DFB;
- Tue, 22 Jun 2021 13:19:02 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Tue, 22 Jun 2021 13:19:02 -0000
-Message-ID: <162436794215.30778.5302960126261139712@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210622095843.132549-1-matthew.auld@intel.com>
-In-Reply-To: <20210622095843.132549-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ttm=3A_consider_all_placements_for_the_page_alignment?=
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 490606E0CB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 13:25:29 +0000 (UTC)
+IronPort-SDR: EobNP4KbLH1ng6qLkY8CLqkxko94EIMX0fQuFGjyADBFYLVasnRko1ElsmlnxdmJs/HsFlZVxG
+ GhJdzXuMHTsA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10022"; a="206996466"
+X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="206996466"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2021 06:25:28 -0700
+IronPort-SDR: bg+eXxW92EeQyj1bWSPVaxx7sXIyyGXPvlsTyVkoPeJCrHUZ8O0hO6SLQM+cdtO+LsDpReZZxT
+ TKrt1VFXuuVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="480810959"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.12])
+ by FMSMGA003.fm.intel.com with ESMTP; 22 Jun 2021 06:25:26 -0700
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 22 Jun 2021 21:31:07 +0800
+Message-Id: <20210622133107.7422-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915: keep backlight_enable on until turn
+ eDP display off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,184 +44,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1465140851=="
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1465140851==
-Content-Type: multipart/alternative;
- boundary="===============9140771418092904504=="
+This workaround is specific for a particular panel on Google
+chromebook project. When user space daemon enter idle state.
+It request adjust brightness to 0, turn backlight_enable signal
+off and keep eDP main link active.
 
---===============9140771418092904504==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On general LCD, this behavior might not be a problem.
+But on this panel, its tcon would expect source to execute
+full eDP power off sequence after drop backlight_enable signal.
+Without eDP power off sequence. Even source try to turn
+backlight_enable signal on and restore proper brightness level.
+This panel is not able to light on again.
 
-== Series Details ==
+This WA ignored the request from user space daemon to disable
+backlight_enable signal and keep it on always. When user space
+request kernel to turn eDP display off, kernel driver still
+can control backlight_enable signal properly. It would not
+impact standard eDP power off sequence.
 
-Series: drm/i915/ttm: consider all placements for the page alignment
-URL   : https://patchwork.freedesktop.org/series/91771/
-State : success
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
 
-== Summary ==
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_panel.c  |  4 ++-
+ drivers/gpu/drm/i915/display/intel_quirks.c | 34 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h             |  1 +
+ 3 files changed, 38 insertions(+), 1 deletion(-)
 
-CI Bug Log - changes from CI_DRM_10261 -> Patchwork_20428
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20428 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][1] ([fdo#109271]) +24 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/fi-skl-6700k2/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#533])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-skl-6700k2:      [INCOMPLETE][3] ([i915#146] / [i915#2405]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10261/fi-skl-6700k2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/fi-skl-6700k2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10261 -> Patchwork_20428
-
-  CI-20190529: 20190529
-  CI_DRM_10261: 132b189b72a94328f17fd70321bfe63e5b4208e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20428: 67e27a0991ed4f46ec11cfa727d7c7de543981e0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-67e27a0991ed drm/i915/ttm: consider all placements for the page alignment
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/index.html
-
---===============9140771418092904504==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ttm: consider all placements for the page alignment</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91771/">https://patchwork.freedesktop.org/series/91771/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10261 -&gt; Patchwork_20428</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20428 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/fi-skl-6700k2/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +24 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
-<li>fi-skl-6700k2:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10261/fi-skl-6700k2/igt@kms_chamelium@common-hpd-after-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/146">i915#146</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20428/fi-skl-6700k2/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10261 -&gt; Patchwork_20428</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10261: 132b189b72a94328f17fd70321bfe63e5b4208e9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20428: 67e27a0991ed4f46ec11cfa727d7c7de543981e0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>67e27a0991ed drm/i915/ttm: consider all placements for the page alignment</p>
-
-</body>
-</html>
-
---===============9140771418092904504==--
-
---===============1465140851==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 7d7a60b4d2de..0212b53d932b 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -1311,6 +1311,7 @@ static void intel_panel_set_backlight(const struct drm_connector_state *conn_sta
+ static int intel_backlight_device_update_status(struct backlight_device *bd)
+ {
+ 	struct intel_connector *connector = bl_get_data(bd);
++	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+ 	struct intel_panel *panel = &connector->panel;
+ 	struct drm_device *dev = connector->base.dev;
+ 
+@@ -1330,7 +1331,8 @@ static int intel_backlight_device_update_status(struct backlight_device *bd)
+ 		if (panel->backlight.power) {
+ 			bool enable = bd->props.power == FB_BLANK_UNBLANK &&
+ 				bd->props.brightness != 0;
+-			panel->backlight.power(connector, enable);
++			if (enable || !(dev_priv->quirks & QUIRK_KEEP_BACKLIGHT_ENABLE_ON))
++				panel->backlight.power(connector, enable);
+ 		}
+ 	} else {
+ 		bd->props.power = FB_BLANK_POWERDOWN;
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 98dd787b00e3..ed57b083edbb 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -53,6 +53,12 @@ static void quirk_increase_ddi_disabled_time(struct drm_i915_private *i915)
+ 	drm_info(&i915->drm, "Applying Increase DDI Disabled quirk\n");
+ }
+ 
++static void quirk_keep_backlight_enable_on(struct drm_i915_private *i915)
++{
++	i915->quirks |= QUIRK_KEEP_BACKLIGHT_ENABLE_ON;
++	drm_info(&i915->drm, "applying keep backlight enable on quirk\n");
++}
++
+ struct intel_quirk {
+ 	int device;
+ 	int subsystem_vendor;
+@@ -72,6 +78,12 @@ static int intel_dmi_reverse_brightness(const struct dmi_system_id *id)
+ 	return 1;
+ }
+ 
++static int backlight_wa_callback(const struct dmi_system_id *id)
++{
++	DRM_INFO("This is WA to ignore backlight off to prevent OLED panel issue on %s device\n", id->ident);
++	return 1;
++}
++
+ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 	{
+ 		.dmi_id_list = &(const struct dmi_system_id[]) {
+@@ -96,6 +108,28 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 		},
+ 		.hook = quirk_invert_brightness,
+ 	},
++	{
++		.dmi_id_list = &(const struct dmi_system_id[]) {
++			{
++				.callback = backlight_wa_callback,
++				.ident = "Google Lillipup",
++				.matches = {DMI_MATCH(DMI_BOARD_VENDOR, "Google"),
++					    DMI_MATCH(DMI_BOARD_NAME, "Lindar"),
++					    DMI_MATCH(DMI_PRODUCT_SKU, "sku524294"),
++				},
++			},
++			{
++				.callback = backlight_wa_callback,
++				.ident = "Google Lillipup",
++				.matches = {DMI_MATCH(DMI_BOARD_VENDOR, "Google"),
++					    DMI_MATCH(DMI_BOARD_NAME, "Lindar"),
++					    DMI_MATCH(DMI_PRODUCT_SKU, "sku524295"),
++				},
++			},
++			{ }
++		},
++		.hook = quirk_keep_backlight_enable_on,
++	},
+ };
+ 
+ static struct intel_quirk intel_quirks[] = {
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 01e11fe38642..8103919bf3b4 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -467,6 +467,7 @@ struct i915_drrs {
+ #define QUIRK_PIN_SWIZZLED_PAGES (1<<5)
+ #define QUIRK_INCREASE_T12_DELAY (1<<6)
+ #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
++#define QUIRK_KEEP_BACKLIGHT_ENABLE_ON (1<<8)
+ 
+ struct intel_fbdev;
+ struct intel_fbc_work;
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1465140851==--
