@@ -1,57 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 005FF3B0095
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 11:44:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 161C63B00C1
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 11:50:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CCEB6E462;
-	Tue, 22 Jun 2021 09:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BDC76E462;
+	Tue, 22 Jun 2021 09:50:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com
- [IPv6:2607:f8b0:4864:20::731])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A06C76E0F7;
- Tue, 22 Jun 2021 09:44:34 +0000 (UTC)
-Received: by mail-qk1-x731.google.com with SMTP id q64so31478609qke.7;
- Tue, 22 Jun 2021 02:44:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=pNxxKfZLfVLg4XC6djnWj2VNlNbQrX2kWG1kWvz9lU8=;
- b=XQl2m3A663C9SZFGk+fIHl0O5/ojb6SVdH2P+0s4U6PvWBESd7NQdjzgjGpWRUEaPt
- GpWDwgLUBKZSXvHpccxDlwEfMHo3pD5M+NOZG36RxDDQSImEX2t3tzb69ocJvV7wkV3I
- 47e/D8dBO4l5KPuObK20ULx4/TZ+GtFBtEPIvGP+Af8GJoB7op7ZPYrHKmtOvNzUxp2Q
- zKu1/kwYH9rSLI45P0tYMWeq0iHSbKI3u5wpDHMTxVjJPzANxx92EQPZI4chIKkq+1Lh
- DJ3nSly/KXqBPMLj5qmYNuKR5qfwIgs2MQnAWS68vA2rPDNotrPmyfLur2opT9vOdO1t
- zRWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=pNxxKfZLfVLg4XC6djnWj2VNlNbQrX2kWG1kWvz9lU8=;
- b=mhZiJo8Yfjd8A5eKy+slQED3JRxaziLV9cL96i9F6xJE4N8zIPdaLQC4nw/3wybUOl
- jsqWJzADyHHHhdTe5pySNZaPjrEFpqyuDMJU+hOePyCd7R344SWRpx6quDAzsfLy1KB6
- FlUKLxAxY44qm1Y4X7kutr88ndrAy5yFEJ7bJWQ/Bor0cvocXix6shOWSJu1AssOrn6s
- F3EhMYOSSfcO/ncYAG52AqPREOPWzLLtx5b5N5iQV5vy+zYbLthSAKCwaLV7uoz52WQZ
- 2kvcwYb5JZIoTqBpOq+8REkfYuMvs0VPpfp4LWKFbSCuqyu2Zvfnxh///2nZmV1M11rd
- EZCg==
-X-Gm-Message-State: AOAM530s1LWAd7+X/+6pEIz04AvCqzCoZrukckNMmP6+7m4PX1QG2VBW
- d6lZQcCnaa3rZQWewQGiml8SSyNCQvKJe5vSRyNHvxLgOe5GMQ==
-X-Google-Smtp-Source: ABdhPJxG2rdp8hzFyVCfepjI7blg5hqGQdfZzr5O4K3rINaKsPXMtsHz1Oa0MWsNnXKEfh5ZtpSd17vOZhu1+dfQFxI=
-X-Received: by 2002:a05:620a:919:: with SMTP id
- v25mr3091688qkv.327.1624355073596; 
- Tue, 22 Jun 2021 02:44:33 -0700 (PDT)
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2BE76E462;
+ Tue, 22 Jun 2021 09:50:25 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id 4FA3CC8009E;
+ Tue, 22 Jun 2021 11:50:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id 4jXpwzV4Ylre; Tue, 22 Jun 2021 11:50:23 +0200 (CEST)
+Received: from [IPv6:2003:e3:7f39:4900:2847:eb91:7f60:5216]
+ (p200300E37F3949002847Eb917F605216.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f39:4900:2847:eb91:7f60:5216])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id A53E7C8009B;
+ Tue, 22 Jun 2021 11:50:23 +0200 (CEST)
+To: Pekka Paalanen <ppaalanen@gmail.com>
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+ <20210618091116.14428-10-wse@tuxedocomputers.com>
+ <20210622100042.4041624a@eldfell>
+From: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <56d079d4-841a-0ca5-b8a6-d2c10f91d211@tuxedocomputers.com>
+Date: Tue, 22 Jun 2021 11:50:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210622093418.153400-1-thomas.hellstrom@linux.intel.com>
- <20210622093418.153400-3-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210622093418.153400-3-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 22 Jun 2021 10:44:07 +0100
-Message-ID: <CAM0jSHMWG4tGSHDGzuKw+qC5D-PoXzfDJa_QCdwpn=p20fkC4Q@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v7 2/3] drm/i915/ttm: Adjust gem flags and
- caching settings after a move
+In-Reply-To: <20210622100042.4041624a@eldfell>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 09/17] drm/uAPI: Add "active color range"
+ drm property as feedback for userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,75 +53,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: mripard@kernel.org, sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ airlied@linux.ie, amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
+ alexander.deucher@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMiBKdW4gMjAyMSBhdCAxMDozNCwgVGhvbWFzIEhlbGxzdHLDtm0KPHRob21hcy5o
-ZWxsc3Ryb21AbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IEFmdGVyIGEgVFRNIG1vdmUgb3Ig
-b2JqZWN0IGluaXQgd2UgbmVlZCB0byB1cGRhdGUgdGhlIGk5MTUgZ2VtIGZsYWdzIGFuZAo+IGNh
-Y2hpbmcgc2V0dGluZ3MgdG8gcmVmbGVjdCB0aGUgbmV3IHBsYWNlbWVudC4gQ3VycmVudGx5IGNh
-Y2hpbmcgc2V0dGluZ3MKPiBhcmUgbm90IGNoYW5nZWQgZHVyaW5nIHRoZSBsaWZldGltZSBvZiBh
-biBvYmplY3QsIGFsdGhvdWdoIHRoYXQgbWlnaHQKPiBjaGFuZ2UgbW92aW5nIGZvcndhcmQgaWYg
-d2UgcnVuIGludG8gcGVyZm9ybWFuY2UgaXNzdWVzIG9yIGlzc3VlcyB3aXRoCj4gV0Mgc3lzdGVt
-IHBhZ2UgYWxsb2NhdGlvbnMuCj4gQWxzbyBpbnRyb2R1Y2UgZ3B1X2JpbmRzX2lvbWVtKCkgYW5k
-IGNwdV9tYXBzX2lvbWVtKCkgdG8gY2xlYW4gdXAgdGhlCj4gdmFyaW91cyB3YXlzIHdlIHByZXZp
-b3VzbHkgdXNlZCB0byBkZXRlY3QgdGhpcy4KPiBGaW5hbGx5LCBpbml0aWFsaXplIHRoZSBUVE0g
-b2JqZWN0IHJlc2VydmVkIHRvIGJlIGFibGUgdG8gdXBkYXRlCj4gZmxhZ3MgYW5kIGNhY2hpbmcg
-YmVmb3JlIGFueW9uZSBlbHNlIGdldHMgaG9sZCBvZiB0aGUgb2JqZWN0Lgo+Cj4gU2lnbmVkLW9m
-Zi1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29t
-Pgo+IFJldmlld2VkLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4g
-LS0tCj4gdjY6Cj4gLSBSZWJhc2Ugb24gYWNjZWxlcmF0ZWQgdHRtIG1vdmVzLgo+IC0tLQoKPHNu
-aXA+Cgo+IEBAIC03NzUsMTQgKzg0NSwxMyBAQCBpbnQgX19pOTE1X2dlbV90dG1fb2JqZWN0X2lu
-aXQoc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSwKPiAgICAgICAgIGk5MTVfZ2VtX29i
-amVjdF9pbml0KG9iaiwgJmk5MTVfZ2VtX3R0bV9vYmpfb3BzLCAmbG9ja19jbGFzcywgZmxhZ3Mp
-Owo+ICAgICAgICAgaTkxNV9nZW1fb2JqZWN0X2luaXRfbWVtb3J5X3JlZ2lvbihvYmosIG1lbSk7
-Cj4gICAgICAgICBpOTE1X2dlbV9vYmplY3RfbWFrZV91bnNocmlua2FibGUob2JqKTsKPiAtICAg
-ICAgIG9iai0+cmVhZF9kb21haW5zID0gSTkxNV9HRU1fRE9NQUlOX1dDIHwgSTkxNV9HRU1fRE9N
-QUlOX0dUVDsKPiAtICAgICAgIG9iai0+bWVtX2ZsYWdzIHw9IEk5MTVfQk9fRkxBR19JT01FTTsK
-PiAtICAgICAgIGk5MTVfZ2VtX29iamVjdF9zZXRfY2FjaGVfY29oZXJlbmN5KG9iaiwgSTkxNV9D
-QUNIRV9OT05FKTsKPiAgICAgICAgIElOSVRfUkFESVhfVFJFRSgmb2JqLT50dG0uZ2V0X2lvX3Bh
-Z2UucmFkaXgsIEdGUF9LRVJORUwgfCBfX0dGUF9OT1dBUk4pOwo+ICAgICAgICAgbXV0ZXhfaW5p
-dCgmb2JqLT50dG0uZ2V0X2lvX3BhZ2UubG9jayk7Cj4gICAgICAgICBib190eXBlID0gKG9iai0+
-ZmxhZ3MgJiBJOTE1X0JPX0FMTE9DX1VTRVIpID8gdHRtX2JvX3R5cGVfZGV2aWNlIDoKPiAgICAg
-ICAgICAgICAgICAgdHRtX2JvX3R5cGVfa2VybmVsOwo+Cj4gKyAgICAgICBvYmotPmJhc2Uudm1h
-X25vZGUuZHJpdmVyX3ByaXZhdGUgPSBpOTE1X2dlbV90b190dG0ob2JqKTsKPiArCj4gICAgICAg
-ICAvKgo+ICAgICAgICAgICogSWYgdGhpcyBmdW5jdGlvbiBmYWlscywgaXQgd2lsbCBjYWxsIHRo
-ZSBkZXN0cnVjdG9yLCBidXQKPiAgICAgICAgICAqIG91ciBjYWxsZXIgc3RpbGwgb3ducyB0aGUg
-b2JqZWN0LiBTbyBubyBmcmVlaW5nIGluIHRoZQo+IEBAIC03OTAsMTQgKzg1OSwxNiBAQCBpbnQg
-X19pOTE1X2dlbV90dG1fb2JqZWN0X2luaXQoc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1l
-bSwKPiAgICAgICAgICAqIFNpbWlsYXJseSwgaW4gZGVsYXllZF9kZXN0cm95LCB3ZSBjYW4ndCBj
-YWxsIHR0bV9ib19wdXQoKQo+ICAgICAgICAgICogdW50aWwgc3VjY2Vzc2Z1bCBpbml0aWFsaXph
-dGlvbi4KPiAgICAgICAgICAqLwo+IC0gICAgICAgb2JqLT5iYXNlLnZtYV9ub2RlLmRyaXZlcl9w
-cml2YXRlID0gaTkxNV9nZW1fdG9fdHRtKG9iaik7Cj4gLSAgICAgICByZXQgPSB0dG1fYm9faW5p
-dCgmaTkxNS0+YmRldiwgaTkxNV9nZW1fdG9fdHRtKG9iaiksIHNpemUsCj4gLSAgICAgICAgICAg
-ICAgICAgICAgICAgICBib190eXBlLCAmaTkxNV9zeXNfcGxhY2VtZW50LAo+IC0gICAgICAgICAg
-ICAgICAgICAgICAgICAgbWVtLT5taW5fcGFnZV9zaXplID4+IFBBR0VfU0hJRlQsCj4gLSAgICAg
-ICAgICAgICAgICAgICAgICAgICB0cnVlLCBOVUxMLCBOVUxMLCBpOTE1X3R0bV9ib19kZXN0cm95
-KTsKPiAtICAgICAgIGlmICghcmV0KQo+IC0gICAgICAgICAgICAgICBvYmotPnR0bS5jcmVhdGVk
-ID0gdHJ1ZTsKPiAtCj4gLSAgICAgICAvKiBpOTE1IHdhbnRzIC1FTlhJTyB3aGVuIG91dCBvZiBt
-ZW1vcnkgcmVnaW9uIHNwYWNlLiAqLwo+IC0gICAgICAgcmV0dXJuIGk5MTVfdHRtX2Vycl90b19n
-ZW0ocmV0KTsKPiArICAgICAgIHJldCA9IHR0bV9ib19pbml0X3Jlc2VydmVkKCZpOTE1LT5iZGV2
-LCBpOTE1X2dlbV90b190dG0ob2JqKSwgc2l6ZSwKPiArICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIGJvX3R5cGUsICZpOTE1X3N5c19wbGFjZW1lbnQsIDEsCgptZW0tPm1pbl9wYWdl
-X3NpemUgPj4gUEFHRV9TSElGVD8gQWx0aG91Z2gganVzdCByZWFsaXNlZCB0aGF0IGxvb2tzCmlm
-Znkgc2luY2UgaXQgb25seSBjb25zaWRlcnMgdGhlIGN1cnJlbnQgcmVnaW9uLCB3aGVuIGl0IHNo
-b3VsZApjb25zaWRlciBhbGwgZnV0dXJlIHBsYWNlbWVudHMuIEkgd29uZGVyIGlmIGl0IG1ha2Vz
-IHNlbnNlIHRvIG1ha2UKcGFnZV9hbGlnbm1lbnQgcGFydCBvZiB0dG1fcGxhY2U/IEFueXdheSwg
-aXQgZG9lc24ndCBtYXR0ZXIgZm9yIHRoaXMKc2VyaWVzLgoKPiArICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICZjdHgsIE5VTEwsIE5VTEwsIGk5MTVfdHRtX2JvX2Rlc3Ryb3kpOwo+
-ICsgICAgICAgaWYgKHJldCkKPiArICAgICAgICAgICAgICAgcmV0dXJuIGk5MTVfdHRtX2Vycl90
-b19nZW0ocmV0KTsKPiArCj4gKyAgICAgICBvYmotPnR0bS5jcmVhdGVkID0gdHJ1ZTsKPiArICAg
-ICAgIGk5MTVfdHRtX2FkanVzdF9kb21haW5zX2FmdGVyX21vdmUob2JqKTsKPiArICAgICAgIGk5
-MTVfdHRtX2FkanVzdF9nZW1fYWZ0ZXJfbW92ZShvYmopOwo+ICsgICAgICAgaTkxNV9nZW1fb2Jq
-ZWN0X3VubG9jayhvYmopOwo+ICsKPiArICAgICAgIHJldHVybiAwOwo+ICB9Cj4gLS0KPiAyLjMx
-LjEKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4g
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+Am 22.06.21 um 09:00 schrieb Pekka Paalanen:
+> On Fri, 18 Jun 2021 11:11:08 +0200
+> Werner Sembach <wse@tuxedocomputers.com> wrote:
+>
+>> Add a new general drm property "active color range" which can be used by
+>> graphic drivers to report the used color range back to userspace.
+>>
+>> There was no way to check which color range got actually used on a given
+>> monitor. To surely predict this, one must know the exact capabilities of
+>> the monitor and what the default behaviour of the used driver is. This
+>> property helps eliminating the guessing at this point.
+>>
+>> In the future, automatic color calibration for screens might also depend on
+>> this information being available.
+>>
+>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+>> ---
+>>  drivers/gpu/drm/drm_connector.c | 59 +++++++++++++++++++++++++++++++++
+>>  include/drm/drm_connector.h     | 27 +++++++++++++++
+>>  2 files changed, 86 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+>> index 684d7abdf0eb..818de58d972f 100644
+>> --- a/drivers/gpu/drm/drm_connector.c
+>> +++ b/drivers/gpu/drm/drm_connector.c
+>> @@ -897,6 +897,12 @@ static const struct drm_prop_enum_list drm_active_color_format_enum_list[] = {
+>>  	{ DRM_COLOR_FORMAT_YCRCB420, "ycbcr420" },
+>>  };
+>>  
+>> +static const struct drm_prop_enum_list drm_active_color_range_enum_list[] = {
+>> +	{ DRM_MODE_COLOR_RANGE_UNSET, "Unknown" },
+>> +	{ DRM_MODE_COLOR_RANGE_FULL, "Full" },
+>> +	{ DRM_MODE_COLOR_RANGE_LIMITED_16_235, "Limited 16:235" },
+> Doesn't "limited" mean different numbers on RGB vs. Y vs. CbCr? I have
+> a vague recollection that at least one of them was different from the
+> others.
+
+Yes, seems like it does:
+https://www.kernel.org/doc/html/v5.12/userspace-api/media/v4l/colorspaces-defs.html#c.V4L.v4l2_quantization
+
+I carried the option names over from "Broadcast RGB", see my other e-mail for more details.
+
+>
+> Documenting DRM_MODE_COLOR_RANGE_UNSET as "unspecified/default" while
+> the string for it is "Unknown" seems inconsistent to me. I would
+> recommend to avoid the word "default" because "reset to defaults" might
+> become a thing one day, and that probably is not the same default as
+> here.
+>
+> Is there actually a case for "unknown"? How can it be not known? Or
+> does it mean "not applicable"?
+
+Unknown is when no monitor is connected or is when the connector/monitor is disabled.
+
+It also is the initial value when the driver fails to correctly set the property. This shouldn't happen, but I'm
+wondering if I should still introduce an _ERROR state instead for this case?
+
+I will rename it, maybe "unset" to match the enum? "not applicable" also fits if either the error state is defined or
+not necessary.
+
+>
+> Otherwise looks good to me.
+>
+>
+> Thanks,
+> pq
+>
+>
+>> +};
+>> +
+>>  DRM_ENUM_NAME_FN(drm_get_dp_subconnector_name,
+>>  		 drm_dp_subconnector_enum_list)
+>>  
+>> @@ -1221,6 +1227,14 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+>>   *	drm_connector_attach_active_color_format_property() to install this
+>>   *	property.
+>>   *
+>> + * active color range:
+>> + *	This read-only property tells userspace the color range actually used by
+>> + *	the hardware display engine on "the cable" on a connector. The chosen
+>> + *	value depends on hardware capabilities of the monitor and the used color
+>> + *	format. Drivers shall use
+>> + *	drm_connector_attach_active_color_range_property() to install this
+>> + *	property.
+>> + *
+>>   * Connectors also have one standardized atomic property:
+>>   *
+>>   * CRTC_ID:
+>> @@ -2264,6 +2278,51 @@ void drm_connector_set_active_color_format_property(struct drm_connector *connec
+>>  }
+>>  EXPORT_SYMBOL(drm_connector_set_active_color_format_property);
+>>  
+>> +/**
+>> + * drm_connector_attach_active_color_range_property - attach "active color range" property
+>> + * @connector: connector to attach active color range property on.
+>> + *
+>> + * This is used to check the applied color range on a connector.
+>> + *
+>> + * Returns:
+>> + * Zero on success, negative errno on failure.
+>> + */
+>> +int drm_connector_attach_active_color_range_property(struct drm_connector *connector)
+>> +{
+>> +	struct drm_device *dev = connector->dev;
+>> +	struct drm_property *prop;
+>> +
+>> +	if (!connector->active_color_range_property) {
+>> +		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE, "active color range",
+>> +						drm_active_color_range_enum_list,
+>> +						ARRAY_SIZE(drm_active_color_range_enum_list));
+>> +		if (!prop)
+>> +			return -ENOMEM;
+>> +
+>> +		connector->active_color_range_property = prop;
+>> +		drm_object_attach_property(&connector->base, prop, DRM_MODE_COLOR_RANGE_UNSET);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL(drm_connector_attach_active_color_range_property);
+>> +
+>> +/**
+>> + * drm_connector_set_active_color_range_property - sets the active color range property for a
+>> + * connector
+>> + * @connector: drm connector
+>> + * @active_color_range: color range for the connector currently active on "the cable"
+>> + *
+>> + * Should be used by atomic drivers to update the active color range over a connector.
+>> + */
+>> +void drm_connector_set_active_color_range_property(struct drm_connector *connector,
+>> +						   enum drm_mode_color_range active_color_range)
+>> +{
+>> +	drm_object_property_set_value(&connector->base, connector->active_color_range_property,
+>> +				      active_color_range);
+>> +}
+>> +EXPORT_SYMBOL(drm_connector_set_active_color_range_property);
+>> +
+>>  /**
+>>   * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
+>>   * @connector: connector to attach the property on.
+>> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+>> index 8a5197f14e87..9fb7119b7a02 100644
+>> --- a/include/drm/drm_connector.h
+>> +++ b/include/drm/drm_connector.h
+>> @@ -648,6 +648,24 @@ struct drm_tv_connector_state {
+>>  	unsigned int hue;
+>>  };
+>>  
+>> +/**
+>> + * enum drm_mode_color_range - color_range info for &drm_connector
+>> + *
+>> + * This enum is used to represent full or limited color range on the display
+>> + * connector signal.
+>> + *
+>> + * @DRM_MODE_COLOR_RANGE_UNSET:		Color range is unspecified/default.
+>> + * @DRM_MODE_COLOR_RANGE_FULL:		Color range is full range, 0-255 for
+>> + *					8-Bit color depth.
+>> + * DRM_MODE_COLOR_RANGE_LIMITED_16_235:	Color range is limited range, 16-235 for
+>> + *					8-Bit color depth.
+>> + */
+>> +enum drm_mode_color_range {
+>> +	DRM_MODE_COLOR_RANGE_UNSET,
+>> +	DRM_MODE_COLOR_RANGE_FULL,
+>> +	DRM_MODE_COLOR_RANGE_LIMITED_16_235,
+>> +};
+>> +
+>>  /**
+>>   * struct drm_connector_state - mutable connector state
+>>   */
+>> @@ -1392,6 +1410,12 @@ struct drm_connector {
+>>  	 */
+>>  	struct drm_property *active_color_format_property;
+>>  
+>> +	/**
+>> +	 * @active_color_range_property: Default connector property for the
+>> +	 * active color range to be driven out of the connector.
+>> +	 */
+>> +	struct drm_property *active_color_range_property;
+>> +
+>>  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
+>>  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
+>>  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
+>> @@ -1719,6 +1743,9 @@ void drm_connector_set_active_bpc_property(struct drm_connector *connector, int
+>>  int drm_connector_attach_active_color_format_property(struct drm_connector *connector);
+>>  void drm_connector_set_active_color_format_property(struct drm_connector *connector,
+>>  						    u32 active_color_format);
+>> +int drm_connector_attach_active_color_range_property(struct drm_connector *connector);
+>> +void drm_connector_set_active_color_range_property(struct drm_connector *connector,
+>> +						   enum drm_mode_color_range active_color_range);
+>>  
+>>  /**
+>>   * struct drm_tile_group - Tile group metadata
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
