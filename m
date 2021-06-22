@@ -2,45 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD083B0B18
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 19:06:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 926B03B0B20
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 19:08:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB6616E817;
-	Tue, 22 Jun 2021 17:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCCC88929A;
+	Tue, 22 Jun 2021 17:08:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FEA66E0F4;
- Tue, 22 Jun 2021 17:06:47 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id E528EC800A8;
- Tue, 22 Jun 2021 19:06:45 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id TuehJwAt2jeS; Tue, 22 Jun 2021 19:06:45 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f39:4900:c2fa:5078:90c:9046]
- (p200300e37F394900C2fA5078090C9046.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f39:4900:c2fa:5078:90c:9046])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 7C062C800A7;
- Tue, 22 Jun 2021 19:06:45 +0200 (CEST)
-To: Pekka Paalanen <ppaalanen@gmail.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <8c0d7ad8-7ade-bf8a-0414-cc795fbb6aa2@tuxedocomputers.com>
- <YJvSUCCPvWz7y/r7@intel.com> <20210519123405.4d3218a7@eldfell>
-From: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <faf25c43-656d-bbb3-d2f2-8205353e19f6@tuxedocomputers.com>
-Date: Tue, 22 Jun 2021 19:06:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 274A06E817;
+ Tue, 22 Jun 2021 17:08:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1FFD1A882E;
+ Tue, 22 Jun 2021 17:08:25 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210519123405.4d3218a7@eldfell>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] New uAPI for color management proposal and feedback
- request
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Tue, 22 Jun 2021 17:08:25 -0000
+Message-ID: <162438170512.30778.8525353108018555427@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_implicit_fencing/dma-resv_rules_for_shared_buffers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,106 +38,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- intel-gfx@lists.freedesktop.org,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkFtIDE5LjA1LjIxIHVtIDExOjM0IHNjaHJpZWIgUGVra2EgUGFhbGFuZW46Cj4gT24gV2VkLCAx
-MiBNYXkgMjAyMSAxNjowNDoxNiArMDMwMAo+IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
-YUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4+IE9uIFdlZCwgTWF5IDEyLCAyMDIxIGF0IDAy
-OjA2OjU2UE0gKzAyMDAsIFdlcm5lciBTZW1iYWNoIHdyb3RlOgo+Pj4gSGVsbG8sCj4+Pgo+Pj4g
-SW4gYWRkaXRpb24gdG8gdGhlIGV4aXN0aW5nICJtYXggYnBjIiwgYW5kICJCcm9hZGNhc3QgUkdC
-L291dHB1dF9jc2MiIGRybSBwcm9wZXJ0aWVzIEkgcHJvcG9zZSA0IG5ldyBwcm9wZXJ0aWVzOgo+
-Pj4gInByZWZlcnJlZCBwaXhlbCBlbmNvZGluZyIsICJhY3RpdmUgY29sb3IgZGVwdGgiLCAiYWN0
-aXZlIGNvbG9yIHJhbmdlIiwgYW5kICJhY3RpdmUgcGl4ZWwgZW5jb2RpbmciCj4+Pgo+Pj4KPj4+
-IE1vdGl2YXRpb246Cj4+Pgo+Pj4gQ3VycmVudCBtb25pdG9ycyBoYXZlIGEgdmFyaWV0eSBwaXhl
-bCBlbmNvZGluZ3MgYXZhaWxhYmxlOiBSR0IsIFlDYkNyIDQ6NDo0LCBZQ2JDciA0OjI6MiwgWUNi
-Q3IgNDoyOjAuCj4+Pgo+Pj4gSW4gYWRkaXRpb24gdGhleSBtaWdodCBiZSBmdWxsIG9yIGxpbWl0
-ZWQgUkdCIHJhbmdlIGFuZCB0aGUgbW9uaXRvcnMgYWNjZXB0IGRpZmZlcmVudCBiaXQgZGVwdGhz
-Lgo+Pj4KPj4+IEN1cnJlbnRseSB0aGUga2VybmVsIGRyaXZlciBmb3IgQU1EIGFuZCBJbnRlbCBH
-UFVzIGF1dG9tYXRpY2FsbHkgY29uZmlndXJlIHRoZSBjb2xvciBzZXR0aW5ncyBhdXRvbWF0aWNh
-bGx5IHdpdGggbGl0dGxlCj4+PiB0byBubyBpbmZsdWVuY2Ugb2YgdGhlIHVzZXIuIEhvd2V2ZXIg
-dGhlcmUgYXJlIHNldmVyYWwgcmVhbCB3b3JsZCBzY2VuYXJpb3Mgd2hlcmUgdGhlIHVzZXIgbWln
-aHQgZGlzYWdyZWUgd2l0aCB0aGUKPj4+IGRlZmF1bHQgY2hvc2VuIGJ5IHRoZSBkcml2ZXJzIGFu
-ZCB3YW50cyB0byBzZXQgaGlzIG9yIGhlciBvd24gcHJlZmVyZW5jZS4KPj4+Cj4+PiBTb21lIGV4
-YW1wbGVzOgo+Pj4KPj4+IDEuIFdoaWxlIFJHQiBhbmQgWUNiQ3IgNDo0OjQgaW4gdGhlb3J5IGNh
-cnJ5IHRoZSBzYW1lIGFtb3VudCBvZiBjb2xvciBpbmZvcm1hdGlvbiwgc29tZSBzY3JlZW5zIG1p
-Z2h0IGxvb2sgYmV0dGVyIG9uIG9uZQo+Pj4gdGhhbiB0aGUgb3RoZXIgYmVjYXVzZSBvZiBiYWQg
-aW50ZXJuYWwgY29udmVyc2lvbi4gVGhlIGRyaXZlciBjdXJyZW50bHkgaG93ZXZlciBoYXMgYSBm
-aXhlZCBkZWZhdWx0IHRoYXQgaXMgY2hvc2VuIGlmCj4+PiBhdmFpbGFibGUgKFJHQiBmb3IgSW50
-ZWwgYW5kIFlDYkNyIDQ6NDo0IGZvciBBTUQpLiBUaGUgb25seSB3YXkgdG8gY2hhbmdlIHRoaXMg
-Y3VycmVudGx5IGlzIGJ5IGVkaXRpbmcgYW5kIG92ZXJsb2FkaW5nCj4+PiB0aGUgZWRpZCByZXBv
-cnRlZCBieSB0aGUgbW9uaXRvciB0byB0aGUga2VybmVsLgo+Pj4KPj4+IDIuIFJHQiBhbmQgWUNi
-Q3IgNDo0OjQgbmVlZCBhIGhpZ2hlciBwb3J0IGNsb2NrIHRoZW4gWUNiQ3IgNDoyOjAuIFNvbWUg
-aGFyZHdhcmUgbWlnaHQgcmVwb3J0IHRoYXQgaXQgc3VwcG9ydHMgdGhlIGhpZ2hlcgo+Pj4gcG9y
-dCBjbG9jaywgYnV0IGJlY2F1c2Ugb2YgYmFkIHNoaWVsZGluZyBvbiB0aGUgUEMsIHRoZSBjYWJs
-ZSwgb3IgdGhlIG1vbml0b3IgdGhlIHNjcmVlbiBjdXRzIG91dCBldmVyeSBmZXcgc2Vjb25kcyB3
-aGVuCj4+PiBSR0Igb3IgWUNiQ3IgNDo0OjQgZW5jb2RpbmcgaXMgdXNlZCwgd2hpbGUgWUNiQ3Ig
-NDoyOjAgbWlnaHQganVzdCB3b3JrIGZpbmUgd2l0aG91dCBjaGFuZ2luZyBoYXJkd2FyZS4gVGhl
-IGRyaXZlcnMKPj4+IGN1cnJlbnRseSBob3dldmVyIGFsd2F5cyBkZWZhdWx0IHRvIHRoZSAiYmVz
-dCBhdmFpbGFibGUiIG9wdGlvbiBldmVuIGlmIGl0IG1pZ2h0IGJlIGJyb2tlbi4KPj4+Cj4+PiAz
-LiBTb21lIHNjcmVlbnMgbmF0aXZlbHkgb25seSBzdXBwb3J0aW5nIDgtYml0IGNvbG9yLCBzaW11
-bGF0ZSAxMC1CaXQgY29sb3IgYnkgcmFwaWRseSBzd2l0Y2hpbmcgYmV0d2VlbiAyIGFkamFjZW50
-Cj4+PiBjb2xvcnMuIFRoZXkgYWR2ZXJ0aXNlIHRoZW1zZWx2ZXMgdG8gdGhlIGtlcm5lbCBhcyAx
-MC1iaXQgbW9uaXRvcnMgYnV0IHRoZSB1c2VyIG1pZ2h0IG5vdCBsaWtlIHRoZSAiZmFrZSIgMTAt
-Yml0IGVmZmVjdAo+Pj4gYW5kIHByZWZlciBydW5uaW5nIGF0IHRoZSBuYXRpdmUgOC1iaXQgcGVy
-IGNvbG9yLgo+Pj4KPj4+IDQuIFNvbWUgc2NyZWVucyBhcmUgZmFsc2VseSBjbGFzc2lmaWVkIGFz
-IGZ1bGwgUkdCIHJhbmdlIHdpbGUgdGhleSBhY3R1YWxseSB1c2UgbGltaXRlZCBSR0IgcmFuZ2Uu
-IFRoaXMgcmVzdWx0cyBpbgo+Pj4gd2FzaGVkIG91dCBjb2xvcnMgaW4gZGFyayBhbmQgYnJpZ2h0
-IHNjZW5lcy4gQSB1c2VyIG92ZXJyaWRlIGNhbiBiZSBoZWxwZnVsIHRvIG1hbnVhbGx5IGZpeCB0
-aGlzIGlzc3VlIHdoZW4gaXQgb2NjdXJzLgo+Pj4KPj4+IFRoZXJlIGFscmVhZHkgZXhpc3Qgc2V2
-ZXJhbCByZXF1ZXN0cywgZGlzY3Vzc2lvbiwgYW5kIHBhdGNoZXMgcmVnYXJkaW5nIHRoZSB0aGVt
-YXRpYzoKPj4+Cj4+PiAtIGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vYW1kLy0v
-aXNzdWVzLzQ3Ngo+Pj4KPj4+IC0gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9h
-bWQvLS9pc3N1ZXMvMTU0OAo+Pj4KPj4+IC0gaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMjEvNS83
-LzY5NQo+Pj4KPj4+IC0gaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMjEvNS8xMS80MTYKPj4+Cj4g
-Li4uCj4KPj4+IEFkb3B0aW9uOgo+Pj4KPj4+IEEgS0RFIGRldiB3YW50cyB0byBpbXBsZW1lbnQg
-dGhlIHNldHRpbmdzIGluIHRoZSBLREUgc2V0dGluZ3MgR1VJOgo+Pj4gaHR0cHM6Ly9naXRsYWIu
-ZnJlZWRlc2t0b3Aub3JnL2RybS9hbWQvLS9pc3N1ZXMvNDc2I25vdGVfOTEyMzcwCj4+Pgo+Pj4g
-VHV4ZWRvIENvbXB1dGVycyAobXkgZW1wbG95ZXIpIHdhbnRzIHRvIGltcGxlbWVudCB0aGUgc2V0
-dGluZ3MgZGVza3RvcCBlbnZpcm9ubWVudCBhZ25vc3RpYyBpbiBUdXhlZG8gQ29udHJvbCBDZW50
-ZXIuIEkKPj4+IHdpbGwgc3RhcnQgd29yayBvbiB0aGlzIGluIHBhcmFsbGVsIHRvIGltcGxlbWVu
-dGluZyB0aGUgbmV3IGtlcm5lbCBjb2RlLiAgCj4+IEkgc3VzcGVjdCBldmVyeW9uZSB3b3VsZCBi
-ZSBoYXBwaWVyIHRvIGFjY2VwdCBuZXcgdWFwaSBpZiB3ZSBoYWQKPj4gbXVsdGlwbGUgY29tcG9z
-aXRvcnMgc2lnbmVkIHVwIHRvIGltcGxlbWVudCBpdC4KPiBJIHRoaW5rIGhhdmluZyBXZXN0b24g
-c3VwcG9ydCBmb3IgdGhlc2Ugd291bGQgYmUgZ29vZCwgYnV0IGZvciBub3cgaXQKPiB3b24ndCBi
-ZSBtdWNoIG9mIGFuIFVJOiBqdXN0IHdlc3Rvbi5pbmkgdG8gc2V0LCBhbmQgdGhlIGxvZyB0byBz
-ZWUgd2hhdAo+IGhhcHBlbmVkLgoKU2luY2UgYSBmaXJzdCB2ZXJzaW9uIG9mIHRoZSBwYXRjaCBz
-ZXQgaXMgbm93IGZlYXR1cmUgY29tcGxldGUsIHBsZWFzZSBsZXQgbWUga25vdyBpZiBhIE1SIHJl
-Z2FyZGluZyB0aGlzIGlzIHN0YXJ0ZWQuCgpUaGFua3MKCj4KPiBIb3dldmVyLCBrbm93aW5nIHdo
-YXQgaGFwcGVuZWQgaXMgZ29pbmcgdG8gYmUgaW1wb3J0YW50IGZvciBjb2xvcgo+IGNhbGlicmF0
-aW9uIGF1ZGl0aW5nOgo+IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy93YXlsYW5kL3dl
-c3Rvbi8tL2lzc3Vlcy80NjcKPgo+IFllcywgcGxlYXNlLCB2ZXJ5IG11Y2ggZm9yIHJlYWQtb25s
-eSBwcm9wZXJ0aWVzIGZvciB0aGUgZmVlZGJhY2sgcGFydC4KPiBQcm9wZXJ0aWVzIHRoYXQgYm90
-aCB1c2Vyc3BhY2UgYW5kIGtlcm5lbCB3aWxsIHdyaXRlIGFyZSBoYXJkIHRvIGRlYWwKPiB3aXRo
-IGluIGdlbmVyYWwuCj4KPiBCdHcuICJtYXggYnBjIiBJIGNhbiBraW5kIG9mIGd1ZXNzIHRoYXQg
-Y29udmVyc2lvbiBmcm9tIGZyYW1lYnVmZmVyCj4gZm9ybWF0IHRvIHRoZSB3aXJlIGJwYyBoYXBw
-ZW5zIGF1dG9tYXRpY2FsbHkgYW5kIG9ubHkgYXMgdGhlIGZpbmFsCj4gc3RlcCwgYnV0ICJCcm9h
-ZGNhc3QgUkdCIiBpcyBtb3JlIGNvbXBsaWNhdGVkOiBpcyB0aGUgb3V0cHV0IGZyb20gdGhlCj4g
-YWJzdHJhY3QgcGl4ZWwgcGlwZWxpbmUgc2VudCBhcy1pcyBhbmQgIkJyb2FkY2FzdCBSR0IiIGlz
-IGp1c3QgYW5vdGhlcgo+IGluZm9yZnJhbWUgYml0IHRvIHRoZSBtb25pdG9yLCBvciBkb2VzICJC
-cm9hZGNhc3QgUkdCIiBzZXR0aW5nIGFjdHVhbGx5Cj4gY2hhbmdlIHdoYXQgaGFwcGVucyBpbiB0
-aGUgcGl4ZWwgcGlwZWxpbmUgKmFuZCogc2V0IGluZm9mcmFtZSBiaXRzPwo+Cj4gTXkgdmFndWUg
-cmVjb2xsZWN0aW9uIGlzIHRoYXQgZnJhbWVidWZmZXIgd2FzIGFsd2F5cyBhc3N1bWVkIHRvIGJl
-IGluCj4gZnVsbCByYW5nZSwgYW5kIHRoZW4gaWYgIkJyb2FkY2FzdCBSR0IiIHdhcyBzZXQgdG8g
-bGltaXRlZCByYW5nZSwgdGhlCj4gZHJpdmVyIHdvdWxkIG1hbmdsZSB0aGUgcGl4ZWwgcGlwZWxp
-bmUgdG8gY29udmVydCBmcm9tIGZ1bGwgdG8gbGltaXRlZAo+IHJhbmdlLiBUaGlzIG1lYW5zIHRo
-YXQgaXQgd291bGQgYmUgaW1wb3NzaWJsZSB0byBoYXZlIGxpbWl0ZWQgcmFuZ2UKPiBkYXRhIGlu
-IGEgZnJhbWVidWZmZXIsIG9yIHRoZXJlIG1pZ2h0IGJlIGEgZG91YmxlLWNvbnZlcnNpb24gYnkK
-PiB1c2Vyc3BhY2UgcHJvZ3JhbW1pbmcgYSBMVVQgZm9yIGxpbWl0ZWQtPmZ1bGwgYW5kIHRoZW4g
-dGhlIGRyaXZlcgo+IGFkZGluZyBmdWxsLT5saW1pdGVkLiBJJ20gYWxzbyBjb25mdXNlZCBob3cg
-ZnVsbC9saW1pdGVkIHdvcmtzIHdoZW4KPiBmcmFtZWJ1ZmZlciBpcyBpbiBSR0IvWUNiQ3IgYW5k
-IHRoZSBtb25pdG9yIHdpcmUgZm9ybWF0IGlzIGluIFJHQi9ZQ2JDcgo+IGFuZCB0aGVyZSBtYXkg
-YmUgUkdCLT5ZQ2JDUiBvciBZQ2JDUi0+UkdCIGNvbnZlcnNpb25zIGdvaW5nIG9uIC0gb3IKPiBt
-YXliZSBldmVuIEZCIFlDYkNSIC0+IFJHQiAtPiBERUdBTU1BIC0+IENUTSAtPiBHQU1NQSAtPiBZ
-Q2JDUi4KPgo+IEkgd2lzaCBzb21lb25lIGRyZXcgYSBwaWN0dXJlIG9mIHRoZSBLTVMgYWJzdHJh
-Y3QgcGl4ZWwgcGlwZWxpbmUgd2l0aAo+IGFsbCB0aGUgZXhpc3RpbmcgS01TIHByb3BlcnRpZXMg
-aW4gaXQuIDotKQo+Cj4KPiBUaGFua3MsCj4gcHEKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: implicit fencing/dma-resv rules for shared buffers
+URL   : https://patchwork.freedesktop.org/series/91789/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+fa13cbf232a0 dma-resv: Fix kerneldoc
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 6edbd6abb783 ("dma-buf: rename and cleanup dma_resv_get_excl v3")'
+#11: 
+commit 6edbd6abb783d54f6ac4c3ed5cd9e50cff6c15e9
+
+-:35: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+d3ab5dc6443a dma-buf: Switch to inline kerneldoc
+-:94: WARNING:TYPO_SPELLING: 'superseeded' may be misspelled - perhaps 'superseded'?
+#94: FILE: include/linux/dma-buf.h:335:
++	 * vmap/unmap. Note that in many cases this is superseeded by
+ 	                                               ^^^^^^^^^^^
+
+-:175: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 2 warnings, 0 checks, 142 lines checked
+0589bfb59341 dma-buf: Document dma-buf implicit fencing/resv fencing rules
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#15: 
+https://dri.freedesktop.org/docs/drm/driver-api/dma-buf.html#reservation-objects
+
+-:140: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 049aca4363d8 ("drm/amdgpu: fix using shared fence for exported BOs v2")'
+#140: 
+commit 049aca4363d8af87cab8d53de5401602db3b9999
+
+-:155: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9b495a588799 ("dma-buf: add poll support, v3")'
+#155: 
+	commit 9b495a5887994a6d74d5c261d012083a92b94738
+
+-:183: WARNING:REPEATED_WORD: Possible repeated word: 'to'
+#183: 
+  writes, and a per-bo flag to to skip implicit fencing in the CS
+
+-:200: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
+#200: 
+  wont notice the perf impact. I think we can ignore LTS distros who
+  ^^^^
+
+-:233: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 8c505bdc9c8b ("drm/amdgpu: rework dma_resv handling v3")'
+#233: 
+commit 8c505bdc9c8b955223b054e34a0be9c3d841cd20 (drm-misc/drm-misc-next)
+
+-:313: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 3 errors, 4 warnings, 0 checks, 45 lines checked
+2662cbf1df91 drm/panfrost: Shrink sched_lock
+-:41: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+804e59e3e0f4 drm/panfrost: Use xarray and helpers for depedency tracking
+-:254: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 197 lines checked
+370f17f25d5e drm/panfrost: Fix implicit sync
+-:49: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+d7729f8bfaf7 drm/atomic-helper: make drm_gem_plane_helper_prepare_fb the default
+-:87: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 44 lines checked
+c761bfef9a8f drm/<driver>: drm_gem_plane_helper_prepare_fb is now the default
+-:231: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 104 lines checked
+a8e5d51acf68 drm/armada: Remove prepare/cleanup_fb hooks
+-:88: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+829aa12253aa drm/vram-helpers: Create DRM_GEM_VRAM_PLANE_HELPER_FUNCS
+-:84: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
+07b7f877328f drm/omap: Follow implicit fencing in prepare_fb
+-:33: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+c2d4255f903b drm/simple-helper: drm_gem_simple_display_pipe_prepare_fb as default
+-:78: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+2ac97cd30e0f drm/tiny: drm_gem_simple_display_pipe_prepare_fb is the default
+-:203: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 98 lines checked
+15977ff8b76f drm/gem: Tiny kernel clarification for drm_gem_fence_array_add
+-:34: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+76d518e4d7e7 RFC: drm/amdgpu: Implement a proper implicit fencing uapi
+-:25: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 177ae09b5d69 ("drm/amdgpu: introduce AMDGPU_GEM_CREATE_EXPLICIT_SYNC v2")'
+#25: 
+commit 177ae09b5d699a5ebd1cafcee78889db968abf54
+
+-:62: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#62: 
+  https://lore.kernel.org/dri-devel/20210520190007.534046-4-jason@jlekstrand.net/
+
+-:82: WARNING:TYPO_SPELLING: 'unecessary' may be misspelled - perhaps 'unnecessary'?
+#82: 
+fencing and remove all unecessary stall points due to them.
+                       ^^^^^^^^^^
+
+-:203: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#203: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c:1765:
++	DRM_IOCTL_DEF_DRV(AMDGPU_SETPARAM, amdgpu_setparam_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                  ^
+
+-:240: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#240: FILE: include/uapi/drm/amdgpu_drm.h:75:
++#define DRM_IOCTL_AMDGPU_SETPARAM	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SETPARAM, struct drm_amdgpu_setparam)
+
+-:258: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 4 warnings, 1 checks, 104 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
