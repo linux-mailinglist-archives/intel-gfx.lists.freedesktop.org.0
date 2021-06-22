@@ -2,40 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6A73B0063
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 11:34:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7B963B007F
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jun 2021 11:43:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 251896E484;
-	Tue, 22 Jun 2021 09:34:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FFD86E462;
+	Tue, 22 Jun 2021 09:43:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F109E6E466;
- Tue, 22 Jun 2021 09:34:36 +0000 (UTC)
-IronPort-SDR: +P/iBCZg89c1xpKbz9rU6cOgY6DJCk9e6uHo2wO6qaN5ACz+eZ7ZuaRdqhAls9bBrajY8VGgWC
- +AowK35LWsYA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10022"; a="194159564"
-X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="194159564"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2021 02:34:35 -0700
-IronPort-SDR: Q9Q8Lw5zDph6t6U4M0UqmuRs6hFebsZLu0N59zwosXOTOGeYvz6M7fC0RSXfqH8nhxlziYJtP+
- 8MFG1+G7FLLA==
-X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="623410046"
-Received: from clanggaa-mobl1.ger.corp.intel.com (HELO
- thellst-mobl1.intel.com) ([10.249.254.95])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2021 02:34:34 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 22 Jun 2021 11:34:18 +0200
-Message-Id: <20210622093418.153400-4-thomas.hellstrom@linux.intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 514CA6E462
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 09:43:24 +0000 (UTC)
+IronPort-SDR: lgiK8Gt/fo7ZhpxTlbva7RlZI6HelZvbeE2JAvZSiqWEuEMjOagwJkVysxbbDwAOAYpH+TcbLf
+ NRrD+arfprFQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10022"; a="187402644"
+X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="187402644"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2021 02:43:21 -0700
+IronPort-SDR: eTvgE+W6S/iVWP2X6xX1OfF3f1JIrLtf73S0bCXuhWvkDg1PtSAvILuyy82YzUj/ArylBR08WI
+ 0TYC/nBZMu7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; d="scan'208";a="480760693"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by FMSMGA003.fm.intel.com with ESMTP; 22 Jun 2021 02:43:17 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 22 Jun 2021 15:04:24 +0530
+Message-Id: <20210622093424.886133-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210622093418.153400-1-thomas.hellstrom@linux.intel.com>
-References: <20210622093418.153400-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v7 3/3] drm/i915/ttm: Use TTM for system memory
+Subject: [Intel-gfx] [PATCH V4] drm/i915/gen11: Disable cursor clock gating
+ in HDR mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,133 +45,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rm9yIGRpc2NyZXRlLCB1c2UgVFRNIGZvciBib3RoIGNhY2hlZCBhbmQgV0Mgc3lzdGVtIG1lbW9y
-eS4gVGhhdCBtZWFucwp3ZSBjdXJyZW50bHkgcmVseSBvbiB0aGUgVFRNIG1lbW9yeSBhY2NvdW50
-aW5nIC8gc2hyaW5rZXIuIEZvciBjYWNoZWQKc3lzdGVtIG1lbW9yeSB3ZSBzaG91bGQgY29uc2lk
-ZXIgcmVtYWluaW5nIHNobWVtLWJhY2tlZCwgd2hpY2ggY2FuIGJlCmltcGxlbWVudGVkIGZyb20g
-b3VyIHR0bV90dF9wb3B1bGF0ZSBjYWxsYmFjay4gV2UgY2FuIHRoZW4gYWxzbyByZXVzZSBvdXIK
-b3duIHZlcnkgZWxhYm9yYXRlIHNocmlua2VyIGZvciB0aGF0IG1lbW9yeS4KClNpZ25lZC1vZmYt
-Ynk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4K
-UmV2aWV3ZWQtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KLS0tCnYy
-OgotIEZpeCBJU19FUlJfT1JfTlVMTCgpIGNoZWNrIHRvIElTX0VSUigpIChSZXBvcnRlZCBieSBN
-YXR0aGV3IEF1bGQpCnYzOgotIENvbW1pdCBtZXNzYWdlIHR5cG8gZml4CnY2OgotIEZpeCBUT0RP
-OnMgZm9yIHN1cHBvcnRpbmcgc3lzdGVtIG1lbW9yeSB3aXRoIFRUTS4KLSBVcGRhdGUgdGhlIG9i
-amVjdCBHRU0gcmVnaW9uIGFmdGVyIGEgVFRNIG1vdmUgaWYgY29tcGF0aWJsZS4KLSBBZGQgYSBj
-b3VwbGUgb2Ygd2FybmluZ3MgZm9yIHNobWVtIG9uIERHRlguCi0tLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX3NobWVtLmMgIHwgIDMgKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2dlbS9pOTE1X2dlbV90dG0uYyAgICB8IDUxICsrKysrKysrKysrKysrKysrLS0tLS0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgICB8ICAzIC0tCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMgfCAgNyArKy0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uaCB8ICA4ICsrKysKIDUgZmlsZXMgY2hhbmdlZCwg
-NTggaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3NobWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fc2htZW0uYwppbmRleCA3YWExYzk1YzdiN2QuLjM2NDhhZTFkNjYyOCAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3NobWVtLmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3NobWVtLmMKQEAgLTI4NCw2ICsyODQs
-NyBAQCBfX2k5MTVfZ2VtX29iamVjdF9yZWxlYXNlX3NobWVtKHN0cnVjdCBkcm1faTkxNV9nZW1f
-b2JqZWN0ICpvYmosCiAJCQkJYm9vbCBuZWVkc19jbGZsdXNoKQogewogCUdFTV9CVUdfT04ob2Jq
-LT5tbS5tYWR2ID09IF9fSTkxNV9NQURWX1BVUkdFRCk7CisJR0VNX1dBUk5fT04oSVNfREdGWCh0
-b19pOTE1KG9iai0+YmFzZS5kZXYpKSk7CiAKIAlpZiAob2JqLT5tbS5tYWR2ID09IEk5MTVfTUFE
-Vl9ET05UTkVFRCkKIAkJb2JqLT5tbS5kaXJ0eSA9IGZhbHNlOwpAQCAtMzAyLDYgKzMwMyw3IEBA
-IHZvaWQgaTkxNV9nZW1fb2JqZWN0X3B1dF9wYWdlc19zaG1lbShzdHJ1Y3QgZHJtX2k5MTVfZ2Vt
-X29iamVjdCAqb2JqLCBzdHJ1Y3Qgc2dfCiAJc3RydWN0IHBhZ2V2ZWMgcHZlYzsKIAlzdHJ1Y3Qg
-cGFnZSAqcGFnZTsKIAorCUdFTV9XQVJOX09OKElTX0RHRlgodG9faTkxNShvYmotPmJhc2UuZGV2
-KSkpOwogCV9faTkxNV9nZW1fb2JqZWN0X3JlbGVhc2Vfc2htZW0ob2JqLCBwYWdlcywgdHJ1ZSk7
-CiAKIAlpOTE1X2dlbV9ndHRfZmluaXNoX3BhZ2VzKG9iaiwgcGFnZXMpOwpAQCAtNTYwLDYgKzU2
-Miw3IEBAIGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW1fZnJvbV9kYXRhKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAlyZXNvdXJjZV9zaXplX3Qgb2Zmc2V0OwogCWludCBl
-cnI7CiAKKwlHRU1fV0FSTl9PTihJU19ER0ZYKGRldl9wcml2KSk7CiAJb2JqID0gaTkxNV9nZW1f
-b2JqZWN0X2NyZWF0ZV9zaG1lbShkZXZfcHJpdiwgcm91bmRfdXAoc2l6ZSwgUEFHRV9TSVpFKSk7
-CiAJaWYgKElTX0VSUihvYmopKQogCQlyZXR1cm4gb2JqOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX3R0bS5jCmluZGV4IDk2NmIyOTJkMDdkYS4uMDcwOTdmMTUwMDY1IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCkBAIC0yODYsNiArMjg2LDI1IEBAIHN0
-YXRpYyB2b2lkIGk5MTVfdHRtX2FkanVzdF9nZW1fYWZ0ZXJfbW92ZShzdHJ1Y3QgZHJtX2k5MTVf
-Z2VtX29iamVjdCAqb2JqKQogewogCXN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8gPSBpOTE1
-X2dlbV90b190dG0ob2JqKTsKIAl1bnNpZ25lZCBpbnQgY2FjaGVfbGV2ZWw7CisJdW5zaWduZWQg
-aW50IGk7CisKKwkvKgorCSAqIElmIG9iamVjdCB3YXMgbW92ZWQgdG8gYW4gYWxsb3dhYmxlIHJl
-Z2lvbiwgdXBkYXRlIHRoZSBvYmplY3QKKwkgKiByZWdpb24gdG8gY29uc2lkZXIgaXQgbWlncmF0
-ZWQuIE5vdGUgdGhhdCBpZiBpdCdzIGN1cnJlbnRseSBub3QKKwkgKiBpbiBhbiBhbGxvd2FibGUg
-cmVnaW9uLCBpdCdzIGV2aWN0ZWQgYW5kIHdlIGRvbid0IHVwZGF0ZSB0aGUKKwkgKiBvYmplY3Qg
-cmVnaW9uLgorCSAqLworCWlmIChpbnRlbF9yZWdpb25fdG9fdHRtX3R5cGUob2JqLT5tbS5yZWdp
-b24pICE9IGJvLT5yZXNvdXJjZS0+bWVtX3R5cGUpIHsKKwkJZm9yIChpID0gMDsgaSA8IG9iai0+
-bW0ubl9wbGFjZW1lbnRzOyArK2kpIHsKKwkJCXN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICpt
-ciA9IG9iai0+bW0ucGxhY2VtZW50c1tpXTsKKworCQkJaWYgKGludGVsX3JlZ2lvbl90b190dG1f
-dHlwZShtcikgPT0gYm8tPnJlc291cmNlLT5tZW1fdHlwZSAmJgorCQkJICAgIG1yICE9IG9iai0+
-bW0ucmVnaW9uKSB7CisJCQkJaW50ZWxfbWVtb3J5X3JlZ2lvbl9wdXQob2JqLT5tbS5yZWdpb24p
-OworCQkJCW9iai0+bW0ucmVnaW9uID0gaW50ZWxfbWVtb3J5X3JlZ2lvbl9nZXQobXIpOworCQkJ
-fQorCQl9CisJfQogCiAJb2JqLT5tZW1fZmxhZ3MgJj0gfihJOTE1X0JPX0ZMQUdfU1RSVUNUX1BB
-R0UgfCBJOTE1X0JPX0ZMQUdfSU9NRU0pOwogCkBAIC02MTUsMTMgKzYzNCw2IEBAIHN0YXRpYyBp
-bnQgaTkxNV90dG1fZ2V0X3BhZ2VzKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCiAJ
-LyogTW92ZSB0byB0aGUgcmVxdWVzdGVkIHBsYWNlbWVudC4gKi8KIAlpOTE1X3R0bV9wbGFjZW1l
-bnRfZnJvbV9vYmoob2JqLCAmcmVxdWVzdGVkLCBidXN5LCAmcGxhY2VtZW50KTsKIAotCS8qCi0J
-ICogRm9yIG5vdyB3ZSBzdXBwb3J0IExNRU0gb25seSB3aXRoIFRUTS4KLQkgKiBUT0RPOiBSZW1v
-dmUgd2l0aCBzeXN0ZW0gc3VwcG9ydAotCSAqLwotCUdFTV9CVUdfT04ocmVxdWVzdGVkLm1lbV90
-eXBlIDwgSTkxNV9QTF9MTUVNMCB8fAotCQkgICBidXN5WzBdLm1lbV90eXBlIDwgSTkxNV9QTF9M
-TUVNMCk7Ci0KIAkvKiBGaXJzdCB0cnkgb25seSB0aGUgcmVxdWVzdGVkIHBsYWNlbWVudC4gTm8g
-ZXZpY3Rpb24uICovCiAJcmVhbF9udW1fYnVzeSA9IGZldGNoX2FuZF96ZXJvKCZwbGFjZW1lbnQu
-bnVtX2J1c3lfcGxhY2VtZW50KTsKIAlyZXQgPSB0dG1fYm9fdmFsaWRhdGUoYm8sICZwbGFjZW1l
-bnQsICZjdHgpOwpAQCAtNjM1LDkgKzY0Nyw2IEBAIHN0YXRpYyBpbnQgaTkxNV90dG1fZ2V0X3Bh
-Z2VzKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCiAJCSAgICByZXQgPT0gLUVBR0FJ
-TikKIAkJCXJldHVybiByZXQ7CiAKLQkJLyogVE9ETzogUmVtb3ZlIHRoaXMgd2hlbiB3ZSBzdXBw
-b3J0IHN5c3RlbSBhcyBUVE0uICovCi0JCXJlYWxfbnVtX2J1c3kgPSAxOwotCiAJCS8qCiAJCSAq
-IElmIHRoZSBpbml0aWFsIGF0dGVtcHQgZmFpbHMsIGFsbG93IGFsbCBhY2NlcHRlZCBwbGFjZW1l
-bnRzLAogCQkgKiBldmljdGluZyBpZiBuZWNlc3NhcnkuCkBAIC04NzIsMyArODgxLDI1IEBAIGlu
-dCBfX2k5MTVfZ2VtX3R0bV9vYmplY3RfaW5pdChzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAq
-bWVtLAogCiAJcmV0dXJuIDA7CiB9CisKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfbWVtb3J5
-X3JlZ2lvbl9vcHMgdHRtX3N5c3RlbV9yZWdpb25fb3BzID0geworCS5pbml0X29iamVjdCA9IF9f
-aTkxNV9nZW1fdHRtX29iamVjdF9pbml0LAorfTsKKworc3RydWN0IGludGVsX21lbW9yeV9yZWdp
-b24gKgoraTkxNV9nZW1fdHRtX3N5c3RlbV9zZXR1cChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSwKKwkJCSAgdTE2IHR5cGUsIHUxNiBpbnN0YW5jZSkKK3sKKwlzdHJ1Y3QgaW50ZWxfbWVt
-b3J5X3JlZ2lvbiAqbXI7CisKKwltciA9IGludGVsX21lbW9yeV9yZWdpb25fY3JlYXRlKGk5MTUs
-IDAsCisJCQkJCXRvdGFscmFtX3BhZ2VzKCkgPDwgUEFHRV9TSElGVCwKKwkJCQkJUEFHRV9TSVpF
-LCAwLAorCQkJCQl0eXBlLCBpbnN0YW5jZSwKKwkJCQkJJnR0bV9zeXN0ZW1fcmVnaW9uX29wcyk7
-CisJaWYgKElTX0VSUihtcikpCisJCXJldHVybiBtcjsKKworCWludGVsX21lbW9yeV9yZWdpb25f
-c2V0X25hbWUobXIsICJzeXN0ZW0tdHRtIik7CisJcmV0dXJuIG1yOworfQpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfZHJ2LmgKaW5kZXggMDFlMTFmZTM4NjQyLi5iZmJmYmFlNTc1NzMgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9kcnYuaApAQCAtMTc1MSw5ICsxNzUxLDYgQEAgdm9pZCBpOTE1X2dlbV9jbGVhbnVwX3Vz
-ZXJwdHIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsKIHZvaWQgaTkxNV9nZW1f
-aW5pdF9lYXJseShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOwogdm9pZCBpOTE1
-X2dlbV9jbGVhbnVwX2Vhcmx5KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdik7CiAK
-LXN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICppOTE1X2dlbV9zaG1lbV9zZXR1cChzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKLQkJCQkJCSB1MTYgdHlwZSwgdTE2IGluc3RhbmNlKTsK
-LQogc3RhdGljIGlubGluZSB2b2lkIGk5MTVfZ2VtX2RyYWluX2ZyZWVkX29iamVjdHMoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCiB7CiAJLyoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX21lbW9yeV9yZWdpb24uYwppbmRleCBkZjU5Zjg4NGQzN2MuLjc3OWViMmZhOTBiNiAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3JlZ2lvbi5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uYwpAQCAtMTczLDcgKzE3
-MywxMiBAQCBpbnQgaW50ZWxfbWVtb3J5X3JlZ2lvbnNfaHdfcHJvYmUoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmk5MTUpCiAJCWluc3RhbmNlID0gaW50ZWxfcmVnaW9uX21hcFtpXS5pbnN0YW5j
-ZTsKIAkJc3dpdGNoICh0eXBlKSB7CiAJCWNhc2UgSU5URUxfTUVNT1JZX1NZU1RFTToKLQkJCW1l
-bSA9IGk5MTVfZ2VtX3NobWVtX3NldHVwKGk5MTUsIHR5cGUsIGluc3RhbmNlKTsKKwkJCWlmIChJ
-U19ER0ZYKGk5MTUpKQorCQkJCW1lbSA9IGk5MTVfZ2VtX3R0bV9zeXN0ZW1fc2V0dXAoaTkxNSwg
-dHlwZSwKKwkJCQkJCQkJaW5zdGFuY2UpOworCQkJZWxzZQorCQkJCW1lbSA9IGk5MTVfZ2VtX3No
-bWVtX3NldHVwKGk5MTUsIHR5cGUsCisJCQkJCQkJICAgaW5zdGFuY2UpOwogCQkJYnJlYWs7CiAJ
-CWNhc2UgSU5URUxfTUVNT1JZX1NUT0xFTl9MT0NBTDoKIAkJCW1lbSA9IGk5MTVfZ2VtX3N0b2xl
-bl9sbWVtX3NldHVwKGk5MTUsIHR5cGUsIGluc3RhbmNlKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2ludGVsX21lbW9yeV9yZWdpb24uaAppbmRleCAyYmU4NDMzZDM3M2EuLmIxYjllNDYxZDUzYiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3JlZ2lvbi5oCisr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24uaApAQCAtMTI1LDQg
-KzEyNSwxMiBAQCBpbnRlbF9tZW1vcnlfcmVnaW9uX3NldF9uYW1lKHN0cnVjdCBpbnRlbF9tZW1v
-cnlfcmVnaW9uICptZW0sCiBpbnQgaW50ZWxfbWVtb3J5X3JlZ2lvbl9yZXNlcnZlKHN0cnVjdCBp
-bnRlbF9tZW1vcnlfcmVnaW9uICptZW0sCiAJCQkJcmVzb3VyY2Vfc2l6ZV90IG9mZnNldCwKIAkJ
-CQlyZXNvdXJjZV9zaXplX3Qgc2l6ZSk7CisKK3N0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICoK
-K2k5MTVfZ2VtX3R0bV9zeXN0ZW1fc2V0dXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUs
-CisJCQkgIHUxNiB0eXBlLCB1MTYgaW5zdGFuY2UpOworc3RydWN0IGludGVsX21lbW9yeV9yZWdp
-b24gKgoraTkxNV9nZW1fc2htZW1fc2V0dXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUs
-CisJCSAgICAgdTE2IHR5cGUsIHUxNiBpbnN0YW5jZSk7CisKICNlbmRpZgotLSAKMi4zMS4xCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Display underrun in HDR mode when cursor is enabled.
+RTL fix will be implemented CLKGATE_DIS_PSL_A bit 28-46520h.
+As per W/A 1604331009, Disable cursor clock gating in HDR mode.
+
+Bspec : 33451
+
+Changes since V3:
+	- Disable WA when not in HDR mode or cursor plane not active - Ville
+	- Extract required args from crtc_state - Ville
+	- Create HDR mode API using bdw_set_pipemisc ref - Ville
+	- Tested with HDR video as well full setmode, WA applies and disables
+Changes since V2:
+        - Made it general gen11 WA
+        - Removed WA needed check
+        - Added cursor plane active check
+        - Once WA enable, software will not disable
+Changes since V1:
+        - Modified way CLKGATE_DIS_PSL bit 28 was modified
+
+Cc: Souza Jose <jose.souza@intel.com>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 27 ++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h              |  5 ++++
+ 2 files changed, 32 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 6be1b31af07b..e1ea03b918df 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -358,6 +358,13 @@ static void intel_update_czclk(struct drm_i915_private *dev_priv)
+ 		dev_priv->czclk_freq);
+ }
+ 
++static bool
++is_hdr_mode(const struct intel_crtc_state *crtc_state)
++{
++	return (crtc_state->active_planes & ~(icl_hdr_plane_mask() |
++		BIT(PLANE_CURSOR))) == 0;
++}
++
+ /* WA Display #0827: Gen9:all */
+ static void
+ skl_wa_827(struct drm_i915_private *dev_priv, enum pipe pipe, bool enable)
+@@ -383,6 +390,23 @@ icl_wa_scalerclkgating(struct drm_i915_private *dev_priv, enum pipe pipe,
+ 		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);
+ }
+ 
++/* Wa_1604331009:icl,jsl,ehl */
++	static void
++icl_wa_cursorclkgating(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++
++	if (is_hdr_mode(crtc_state) &&
++	    crtc_state->active_planes & BIT(PLANE_CURSOR) &&
++	    IS_GEN(dev_priv, 11))
++		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(crtc->pipe),
++			     CURSOR_GATING_DIS, CURSOR_GATING_DIS);
++	else
++		intel_de_rmw(dev_priv, CLKGATE_DIS_PSL(crtc->pipe),
++			     CURSOR_GATING_DIS, 0);
++}
++
+ static bool
+ is_trans_port_sync_slave(const struct intel_crtc_state *crtc_state)
+ {
+@@ -2939,6 +2963,9 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 	    needs_scalerclk_wa(new_crtc_state))
+ 		icl_wa_scalerclkgating(dev_priv, pipe, true);
+ 
++	/* Wa_1604331009:icl,jsl,ehl */
++	icl_wa_cursorclkgating(new_crtc_state);
++
+ 	/*
+ 	 * Vblank time updates from the shadow to live plane control register
+ 	 * are blocked if the memory self-refresh mode is active at that
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index c857fafb8a30..703d708c773e 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4235,6 +4235,11 @@ enum {
+ #define INF_UNIT_LEVEL_CLKGATE		_MMIO(0x9560)
+ #define   CGPSF_CLKGATE_DIS		(1 << 3)
+ 
++/*
++ * GEN11 clock gating regs
++ */
++#define   CURSOR_GATING_DIS            BIT(28)
++
+ /*
+  * Display engine regs
+  */
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
