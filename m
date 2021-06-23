@@ -2,60 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6408A3B1D61
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24E303B1D63
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:15:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 490196E931;
-	Wed, 23 Jun 2021 15:15:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8770A6E933;
+	Wed, 23 Jun 2021 15:15:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
- [IPv6:2a00:1450:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BECC6E931
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 15:15:11 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id l1so4592978ejb.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 08:15:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=DvsYEcXsNWTy6Jnkq47KIklkbgVvy5KtMShh7FtY3u0=;
- b=WlyCtxxrit0F13PB5LKVc4W8ioTDxZGoz0BDxhp5ADy/+x0DPfJAboMCXqIWhMcdLM
- fG/7Lud5ltzga56OxZ3HjQOTY4JYgDVcvHd5L5Es73O2G10XryTWLzzy68cbS0Bc9LMT
- Vy9D6jY1Dy+wQUgKscUFQz8BiTIsqJcWTtFOg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=DvsYEcXsNWTy6Jnkq47KIklkbgVvy5KtMShh7FtY3u0=;
- b=Hl+H11TYmOClw0pmsSQvcN+V8VrZkTbBPlTCHnEO9GfGX6IO47eiadrwKWnlpWaWvt
- mu57L4uQgS3c2kGd8GHFtBISNje3UdeVEltSSk1QFicLDsEVan9ByJZlakFwzl51mgdB
- cCePRDqgpE4gma9jwEvKdEQkZwur0nzk9EdWmEVAHsjMSy8//S0XUgbZrp96/H/08+qI
- vF3EclPlZ0LKOaNCJvR0db4funjLo3J1SaTWcfCysaKKSUGD6zk1ttMA1E5g1l6Wasgt
- TxA4gG+T0GNBeu3KDJdXRPqCHs+JKYKe8x4MrQoCyvUk6miGQA56yuemLK/gL8gK2IAJ
- Fejw==
-X-Gm-Message-State: AOAM533IIQ1G04hm/yIbjHwpy7ERlJNqsHrg7C8nGCRRJcjQquAEmiBV
- kWI6hNyBWO54DzT8ILt+Di5/5Q==
-X-Google-Smtp-Source: ABdhPJzKLxUo3F8LpT0py8NX3d9PVLeW21ZVMvCiRMqKaQMl+9VP6WwlxqUsTydvPwu4FdZbDj+/aA==
-X-Received: by 2002:a17:906:2608:: with SMTP id
- h8mr531968ejc.380.1624461309756; 
- Wed, 23 Jun 2021 08:15:09 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id h6sm192144edj.91.2021.06.23.08.15.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Jun 2021 08:15:09 -0700 (PDT)
-Date: Wed, 23 Jun 2021 17:15:07 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <YNNP+0YuiqsBxpZK@phenom.ffwll.local>
-References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
- <20210622165511.3169559-2-daniel.vetter@ffwll.ch>
- <87f6529c-caf0-6e4b-6506-b0e2d1a0f9e0@amd.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5B976E933;
+ Wed, 23 Jun 2021 15:15:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CF1BDA73C9;
+ Wed, 23 Jun 2021 15:15:29 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87f6529c-caf0-6e4b-6506-b0e2d1a0f9e0@amd.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 01/15] dma-resv: Fix kerneldoc
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Wed, 23 Jun 2021 15:15:29 -0000
+Message-ID: <162446132984.30470.16981479068525016095@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210623134601.2128663-1-imre.deak@intel.com>
+In-Reply-To: <20210623134601.2128663-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_ALSA=3A_hda=3A_Release_controller_d?=
+ =?utf-8?q?isplay_power_during_shutdown/reboot?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,71 +39,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- linaro-mm-sig@lists.linaro.org, Daniel Vetter <daniel.vetter@intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1268555693=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 23, 2021 at 10:31:18AM +0200, Christian K=F6nig wrote:
-> Am 22.06.21 um 18:54 schrieb Daniel Vetter:
-> > Oversight from
-> > =
+--===============1268555693==
+Content-Type: multipart/alternative;
+ boundary="===============0008890299546910874=="
 
-> > commit 6edbd6abb783d54f6ac4c3ed5cd9e50cff6c15e9
-> > Author: Christian K=F6nig <christian.koenig@amd.com>
-> > Date:   Mon May 10 16:14:09 2021 +0200
-> > =
+--===============0008890299546910874==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> >      dma-buf: rename and cleanup dma_resv_get_excl v3
-> > =
+== Series Details ==
 
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> > Cc: "Christian K=F6nig" <christian.koenig@amd.com>
-> > Cc: linux-media@vger.kernel.org
-> > Cc: linaro-mm-sig@lists.linaro.org
-> =
+Series: series starting with [1/2] ALSA: hda: Release controller display power during shutdown/reboot
+URL   : https://patchwork.freedesktop.org/series/91815/
+State : success
 
-> Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
+== Summary ==
 
-Pushed to drm-misc-next.
--Daniel
+CI Bug Log - changes from CI_DRM_10268 -> Patchwork_20440
+====================================================
 
-> =
+Summary
+-------
 
-> > ---
-> >   include/linux/dma-resv.h | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > =
+  **SUCCESS**
 
-> > diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
-> > index 562b885cf9c3..e1ca2080a1ff 100644
-> > --- a/include/linux/dma-resv.h
-> > +++ b/include/linux/dma-resv.h
-> > @@ -212,7 +212,7 @@ static inline void dma_resv_unlock(struct dma_resv =
-*obj)
-> >   }
-> >   /**
-> > - * dma_resv_exclusive - return the object's exclusive fence
-> > + * dma_resv_excl_fence - return the object's exclusive fence
-> >    * @obj: the reservation object
-> >    *
-> >    * Returns the exclusive fence (if any). Caller must either hold the =
-objects
-> =
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20440 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-sdma:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271]) +59 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@amdgpu/amd_basic@cs-sdma.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cfl-8109u:       [PASS][2] -> [INCOMPLETE][3] ([i915#155])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10268/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [PASS][5] -> [INCOMPLETE][6] ([i915#2782] / [i915#2940])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10268/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@vga-hpd-fast:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@kms_chamelium@vga-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-guc:         NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@runner@aborted:
+    - fi-bsw-kefka:       NOTRUN -> [FAIL][9] ([fdo#109271] / [i915#1436])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-bsw-kefka/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
--- =
+Participating hosts (41 -> 36)
+------------------------------
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  Additional (1): fi-kbl-guc 
+  Missing    (6): fi-ilk-m540 fi-skl-guc fi-bsw-cyan bat-adlp-4 fi-dg1-1 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10268 -> Patchwork_20440
+
+  CI-20190529: 20190529
+  CI_DRM_10268: 0e0529132a50160a0e8bd0aa9608226445a3299b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20440: 8cc451e3f4c2fd79547d39e3581bd8488f8eb1f4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8cc451e3f4c2 ALSA: hda: Release codec display power during shutdown/reboot
+150ed9082a2d ALSA: hda: Release controller display power during shutdown/reboot
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/index.html
+
+--===============0008890299546910874==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] ALSA: hda: Release controller display power during shutdown/reboot</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91815/">https://patchwork.freedesktop.org/series/91815/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10268 -&gt; Patchwork_20440</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20440 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-sdma:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +59 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10268/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10268/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-hpd-fast:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-kbl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20440/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (41 -&gt; 36)</h2>
+<p>Additional (1): fi-kbl-guc <br />
+  Missing    (6): fi-ilk-m540 fi-skl-guc fi-bsw-cyan bat-adlp-4 fi-dg1-1 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10268 -&gt; Patchwork_20440</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10268: 0e0529132a50160a0e8bd0aa9608226445a3299b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20440: 8cc451e3f4c2fd79547d39e3581bd8488f8eb1f4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8cc451e3f4c2 ALSA: hda: Release codec display power during shutdown/reboot<br />
+150ed9082a2d ALSA: hda: Release controller display power during shutdown/reboot</p>
+
+</body>
+</html>
+
+--===============0008890299546910874==--
+
+--===============1268555693==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1268555693==--
