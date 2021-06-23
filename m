@@ -1,44 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF293B1DA4
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:30:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86AE33B1DBA
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:39:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79ECE6E935;
-	Wed, 23 Jun 2021 15:30:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC4CB6E0E7;
+	Wed, 23 Jun 2021 15:39:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3C7C6E935
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 15:30:30 +0000 (UTC)
-IronPort-SDR: jE/r1yuYEJxvQOT5KSKjuKjIeRyN45RpMdRzVRdvK7pTU9SSQWpOe2W6Uner5EITjJgHSCBWcQ
- m11ChVebDKNg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="194428747"
-X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="194428747"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2021 08:30:27 -0700
-IronPort-SDR: R/mt6I4PKKyO4JtkHZB++e4i2wgy7x1M/Bo5a3zvIWj9W+KGZRzkXdsc7apV+7Gb+xIioeLDK5
- 7rRFPy8Zoa/Q==
-X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="454690816"
-Received: from unknown (HELO [10.237.72.175]) ([10.237.72.175])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2021 08:30:25 -0700
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210616203158.118111-1-jose.souza@intel.com>
- <20210616203158.118111-2-jose.souza@intel.com>
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Message-ID: <3255ec2c-5966-1d56-9a2d-4d8ce72201eb@intel.com>
-Date: Wed, 23 Jun 2021 18:30:22 +0300
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C38796E0A5;
+ Wed, 23 Jun 2021 15:39:07 +0000 (UTC)
+IronPort-SDR: km5PMpkPjFNcktH3IYm3UNDNrkdU1BrKgmbRj1zHXupyXuJOm1hv0+Pl3oYQhtuaMjHzkFx0vt
+ oYjUBg9jaidQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="207227061"
+X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="207227061"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2021 08:37:50 -0700
+IronPort-SDR: uQATegq+LaGq+FStDklOV0A9pVBG3AJqenodJVVVhVaD3viVZGAF2GScLYIAtAw+j1PfLQmxQ/
+ IGPs3e2cGhTw==
+X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="639493343"
+Received: from bkuncer-mobl1.ger.corp.intel.com (HELO [10.249.254.243])
+ ([10.249.254.243])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2021 08:37:49 -0700
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <20210621193644.105627-1-thomas.hellstrom@linux.intel.com>
+ <20210621193644.105627-2-thomas.hellstrom@linux.intel.com>
+ <YNNOoqnFOWw1Xgrf@phenom.ffwll.local>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <0415be07-452e-d7de-ecfa-9c0f80ad5fee@linux.intel.com>
+Date: Wed, 23 Jun 2021 17:37:46 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-In-Reply-To: <20210616203158.118111-2-jose.souza@intel.com>
+In-Reply-To: <YNNOoqnFOWw1Xgrf@phenom.ffwll.local>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/display/adl_p: Implement
- Wa_22012278275
+Subject: Re: [Intel-gfx] [PATCH v6 1/3] drm/i915: Update object placement
+ flags to be mutable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,74 +52,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+ dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA2LzE2LzIxIDExOjMxIFBNLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIHdyb3RlOgo+IFRo
-ZSBQU1IyX0NUTCBpbyBidWZmZXIgd2FrZSBhbmQgZmFzdCB3YWtlIHZhbHVlcyBkbyBub3QgbWF0
-Y2gKPiBleHBlY3RlZCBpbiBwcmUgcHJvZHVjdGlvbiBoYXJkd2FyZSwgc28gaGVyZSBhZGRpbmcg
-YSB0YWJsZSB0aGF0Cj4gbWF0Y2hlcyB3aXRoIEhXIHRvIHByb2dyYW0gaXQgd2l0aCB2YWx1ZXMg
-dGhhdCBIVyBleHBlY3QuCj4gCj4gQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVu
-QGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3Nl
-LnNvdXphQGludGVsLmNvbT4KPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfcHNyLmMgfCAyOSArKysrKysrKysrKysrKysrKysrKysrKy0KPiAgIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgfCAgNiArKystLQo+ICAgMiBmaWxlcyBjaGFu
-Z2VkLCAzMiBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwo+IGluZGV4IGZkZTMwZjkzNzUwNGUuLmM4ZDU2Mzg3
-ZDkyMzMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9w
-c3IuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKPiBA
-QCAtNTQyLDcgKzU0MiwzNCBAQCBzdGF0aWMgdm9pZCBoc3dfYWN0aXZhdGVfcHNyMihzdHJ1Y3Qg
-aW50ZWxfZHAgKmludGVsX2RwKQo+ICAgCXZhbCB8PSBFRFBfUFNSMl9GUkFNRV9CRUZPUkVfU1Uo
-aW50ZWxfZHAtPnBzci5zaW5rX3N5bmNfbGF0ZW5jeSArIDEpOwo+ICAgCXZhbCB8PSBpbnRlbF9w
-c3IyX2dldF90cF90aW1lKGludGVsX2RwKTsKPiAgIAo+IC0JaWYgKERJU1BMQVlfVkVSKGRldl9w
-cml2KSA+PSAxMikgewo+ICsJLyogV2FfMjIwMTIyNzgyNzU6YWRscCAqLwo+ICsJaWYgKElTX0FE
-TFBfRElTUExBWV9TVEVQKGRldl9wcml2LCBTVEVQX0EwLCBTVEVQX0QxKSkgewo+ICsJCXN0YXRp
-YyBjb25zdCB1OCBtYXBbXSA9IHsKPiArCQkJMiwgLyogNSBsaW5lcyAqLwo+ICsJCQkxLCAvKiA2
-IGxpbmVzICovCj4gKwkJCTAsIC8qIDcgbGluZXMgKi8KPiArCQkJMywgLyogOCBsaW5lcyAqLwo+
-ICsJCQk2LCAvKiA5IGxpbmVzICovCj4gKwkJCTUsIC8qIDEwIGxpbmVzICovCj4gKwkJCTQsIC8q
-IDExIGxpbmVzICovCj4gKwkJCTcsIC8qIDEyIGxpbmVzICovCj4gKwkJfTsKPiArCQkvKgo+ICsJ
-CSAqIFN0aWxsIHVzaW5nIHRoZSBkZWZhdWx0IElPX0JVRkZFUl9XQUtFIGFuZCBGQVNUX1dBS0Us
-IHNlZQo+ICsJCSAqIGNvbW1lbnRzIGJlbGxvdyBmb3IgbW9yZSBpbmZvcm1hdGlvbgp0eXBvIG9u
-IGNvbW1lbnRzOyBiZWxsb3cKZXhjZXB0IGZvciB0aGUgdHlwbywgbG9va3MgZ29vZCB0byBtZS4K
-ClJldmlld2VkLWJ5OiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+
-Cj4gKwkJICovCj4gKwkJdTMyIHRtcCwgbGluZXMgPSA3Owo+ICsKPiArCQl2YWwgfD0gVEdMX0VE
-UF9QU1IyX0JMT0NLX0NPVU5UX05VTV8yOwo+ICsKPiArCQl0bXAgPSBtYXBbbGluZXMgLSBUR0xf
-RURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUlOX0xJTkVTXTsKPiArCQl0bXAgPSB0bXAgPDwgVEdM
-X0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX1NISUZUOwo+ICsJCXZhbCB8PSB0bXA7Cj4gKwo+ICsJ
-CXRtcCA9IG1hcFtsaW5lcyAtIFRHTF9FRFBfUFNSMl9GQVNUX1dBS0VfTUlOX0xJTkVTXTsKPiAr
-CQl0bXAgPSB0bXAgPDwgVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NSU5fU0hJRlQ7Cj4gKwkJdmFs
-IHw9IHRtcDsKPiArCX0gZWxzZSBpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49IDEyKSB7Cj4g
-ICAJCS8qCj4gICAJCSAqIFRPRE86IDcgbGluZXMgb2YgSU9fQlVGRkVSX1dBS0UgYW5kIEZBU1Rf
-V0FLRSBhcmUgZGVmYXVsdAo+ICAgCQkgKiB2YWx1ZXMgZnJvbSBCU3BlYy4gSW4gb3JkZXIgdG8g
-c2V0dGluZyBhbiBvcHRpbWFsIHBvd2VyCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4gaW5kZXgg
-OTU1MDI3Nzk5ZDFkZS4uNGE5OGU0OWM1ODgxMiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X3JlZy5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcu
-aAo+IEBAIC00NTk2LDEzICs0NTk2LDE1IEBAIGVudW0gewo+ICAgI2RlZmluZSAgIEVEUF9QU1Iy
-X0lPX0JVRkZFUl9XQUtFKGxpbmVzKQkoKEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX01BWF9MSU5F
-UyAtIChsaW5lcykpIDw8IDEzKQo+ICAgI2RlZmluZSAgIEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtF
-X01BU0sJCSgzIDw8IDEzKQo+ICAgI2RlZmluZSAgIFRHTF9FRFBfUFNSMl9JT19CVUZGRVJfV0FL
-RV9NSU5fTElORVMJNQo+IC0jZGVmaW5lICAgVEdMX0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFKGxp
-bmVzKQkoKChsaW5lcykgLSBUR0xfRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUlOX0xJTkVTKSA8
-PCAxMykKPiArI2RlZmluZSAgIFRHTF9FRFBfUFNSMl9JT19CVUZGRVJfV0FLRV9TSElGVAkxMwo+
-ICsjZGVmaW5lICAgVEdMX0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFKGxpbmVzKQkoKChsaW5lcykg
-LSBUR0xfRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUlOX0xJTkVTKSA8PCBUR0xfRURQX1BTUjJf
-SU9fQlVGRkVSX1dBS0VfU0hJRlQpCj4gICAjZGVmaW5lICAgVEdMX0VEUF9QU1IyX0lPX0JVRkZF
-Ul9XQUtFX01BU0sJKDcgPDwgMTMpCj4gICAjZGVmaW5lICAgRURQX1BTUjJfRkFTVF9XQUtFX01B
-WF9MSU5FUwkJOAo+ICAgI2RlZmluZSAgIEVEUF9QU1IyX0ZBU1RfV0FLRShsaW5lcykJCSgoRURQ
-X1BTUjJfRkFTVF9XQUtFX01BWF9MSU5FUyAtIChsaW5lcykpIDw8IDExKQo+ICAgI2RlZmluZSAg
-IEVEUF9QU1IyX0ZBU1RfV0FLRV9NQVNLCQkoMyA8PCAxMSkKPiAgICNkZWZpbmUgICBUR0xfRURQ
-X1BTUjJfRkFTVF9XQUtFX01JTl9MSU5FUwk1Cj4gLSNkZWZpbmUgICBUR0xfRURQX1BTUjJfRkFT
-VF9XQUtFKGxpbmVzKQkJKCgobGluZXMpIC0gVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NSU5fTElO
-RVMpIDw8IDEwKQo+ICsjZGVmaW5lICAgVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NSU5fU0hJRlQJ
-MTAKPiArI2RlZmluZSAgIFRHTF9FRFBfUFNSMl9GQVNUX1dBS0UobGluZXMpCQkoKChsaW5lcykg
-LSBUR0xfRURQX1BTUjJfRkFTVF9XQUtFX01JTl9MSU5FUykgPDwgVEdMX0VEUF9QU1IyX0ZBU1Rf
-V0FLRV9NSU5fU0hJRlQpCj4gICAjZGVmaW5lICAgVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NQVNL
-CQkoNyA8PCAxMCkKPiAgICNkZWZpbmUgICBFRFBfUFNSMl9UUDJfVElNRV81MDB1cwkJKDAgPDwg
-OCkKPiAgICNkZWZpbmUgICBFRFBfUFNSMl9UUDJfVElNRV8xMDB1cwkJKDEgPDwgOCkKPiAKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Thanks for reviewing, Daniel.
+
+On 6/23/21 5:09 PM, Daniel Vetter wrote:
+>
+>>   
+>> +	unsigned int mem_flags:2;
+> Is the entire bitfield array all protected by dma_resv_lock? If not I'd
+> just go with a full field, avoids headaches and all that.
+>
+> Also kerneldoc for this would be really sweet. Means some work to get it
+> going,
+
+Yeah, late documentation review comments after v9 ought to be forbidden ;)
+
+> but somewhere we need to stop hacking together undocumented ad-hoc
+> locking schemes :-/
+
+Hmm, this was intended to replace the change of and access of object ops 
+*without* the lock held and with proper asserts added in the accessors, 
+so it was not really intended to be an ad-hoc locking scheme, It's 
+simply placement related things are updated under the lock.
+
+I'll update the code and resend.
+
+/Thomas
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
