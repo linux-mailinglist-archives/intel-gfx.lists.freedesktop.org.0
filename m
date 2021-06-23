@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1803B1F21
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 19:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 819C83B1F35
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 19:05:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB0956E95D;
-	Wed, 23 Jun 2021 17:00:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7C686E959;
+	Wed, 23 Jun 2021 17:05:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1FB596E959;
- Wed, 23 Jun 2021 17:00:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 03D8F6E959;
+ Wed, 23 Jun 2021 17:05:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 18D87A00E6;
- Wed, 23 Jun 2021 17:00:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5332A41FB;
+ Wed, 23 Jun 2021 17:05:04 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Wed, 23 Jun 2021 17:00:54 -0000
-Message-ID: <162446765407.30472.12227015977025063025@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Wed, 23 Jun 2021 17:05:04 -0000
+Message-ID: <162446790490.30471.4483200425670893383@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210623143411.293630-1-matthew.auld@intel.com>
-In-Reply-To: <20210623143411.293630-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ttm=3A_fix_static_warning?=
+References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_implicit_fencing/dma-resv_rules_for_shared_buffers_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,195 +41,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1118025517=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1118025517==
-Content-Type: multipart/alternative;
- boundary="===============7142409134333896999=="
-
---===============7142409134333896999==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/ttm: fix static warning
-URL   : https://patchwork.freedesktop.org/series/91821/
-State : success
+Series: implicit fencing/dma-resv rules for shared buffers (rev5)
+URL   : https://patchwork.freedesktop.org/series/91789/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10268 -> Patchwork_20443
-====================================================
+$ dim checkpatch origin/drm-tip
+ec4dbdd1b8f4 dma-resv: Fix kerneldoc
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 6edbd6abb783 ("dma-buf: rename and cleanup dma_resv_get_excl v3")'
+#11: 
+commit 6edbd6abb783d54f6ac4c3ed5cd9e50cff6c15e9
 
-Summary
--------
+-:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  **SUCCESS**
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+2757dca29ffc dma-buf: Switch to inline kerneldoc
+-:102: WARNING:TYPO_SPELLING: 'superseeded' may be misspelled - perhaps 'superseded'?
+#102: FILE: include/linux/dma-buf.h:333:
++	 * vmap/unmap. Note that in many cases this is superseeded by
+ 	                                               ^^^^^^^^^^^
 
-  No regressions found.
+-:193: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/index.html
+total: 0 errors, 2 warnings, 0 checks, 154 lines checked
+ee5ebd9f360f dma-buf: Document dma-buf implicit fencing/resv fencing rules
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#15: 
+https://dri.freedesktop.org/docs/drm/driver-api/dma-buf.html#reservation-objects
 
-Known issues
-------------
+-:140: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 049aca4363d8 ("drm/amdgpu: fix using shared fence for exported BOs v2")'
+#140: 
+commit 049aca4363d8af87cab8d53de5401602db3b9999
 
-  Here are the changes found in Patchwork_20443 that come from known issues:
+-:155: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9b495a588799 ("dma-buf: add poll support, v3")'
+#155: 
+	commit 9b495a5887994a6d74d5c261d012083a92b94738
 
-### IGT changes ###
+-:183: WARNING:REPEATED_WORD: Possible repeated word: 'to'
+#183: 
+  writes, and a per-bo flag to to skip implicit fencing in the CS
 
-#### Issues hit ####
+-:200: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
+#200: 
+  wont notice the perf impact. I think we can ignore LTS distros who
+  ^^^^
 
-  * igt@amdgpu/amd_basic@cs-sdma:
-    - fi-kbl-guc:         NOTRUN -> [SKIP][1] ([fdo#109271]) +59 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@amdgpu/amd_basic@cs-sdma.html
+-:233: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 8c505bdc9c8b ("drm/amdgpu: rework dma_resv handling v3")'
+#233: 
+commit 8c505bdc9c8b955223b054e34a0be9c3d841cd20 (drm-misc/drm-misc-next)
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-guc:         NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@gem_huc_copy@huc-copy.html
+-:320: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * igt@kms_chamelium@vga-hpd-fast:
-    - fi-kbl-guc:         NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@kms_chamelium@vga-hpd-fast.html
+total: 3 errors, 4 warnings, 0 checks, 45 lines checked
+f4a64c4c4a3c drm/panfrost: Shrink sched_lock
+-:42: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-guc:         NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#533])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+9a0f2341b633 drm/panfrost: Use xarray and helpers for depedency tracking
+-:255: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+total: 0 errors, 1 warnings, 0 checks, 197 lines checked
+c234633ef5d4 drm/panfrost: Fix implicit sync
+-:50: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+8660ea15e738 drm/atomic-helper: make drm_gem_plane_helper_prepare_fb the default
+-:21: WARNING:REPEATED_WORD: Possible repeated word: 'not'
+#21: 
+v2: It's neither ... nor, not not (Sam)
 
+-:90: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-Participating hosts (41 -> 38)
-------------------------------
+total: 0 errors, 2 warnings, 0 checks, 44 lines checked
+7e0e4eba2802 drm/<driver>: drm_gem_plane_helper_prepare_fb is now the default
+-:231: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  Additional (1): fi-kbl-guc 
-  Missing    (4): fi-ilk-m540 fi-bdw-samus fi-bsw-cyan bat-adlp-4 
+total: 0 errors, 1 warnings, 0 checks, 104 lines checked
+b580cc0434b9 drm/armada: Remove prepare/cleanup_fb hooks
+-:88: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
+total: 0 errors, 1 warnings, 0 checks, 57 lines checked
+1248a0b5d17a drm/vram-helpers: Create DRM_GEM_VRAM_PLANE_HELPER_FUNCS
+-:84: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-Build changes
--------------
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
+2d0b037b1bdb drm/omap: Follow implicit fencing in prepare_fb
+-:33: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-  * Linux: CI_DRM_10268 -> Patchwork_20443
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+dd7d69020b37 drm/simple-helper: drm_gem_simple_display_pipe_prepare_fb as default
+-:22: WARNING:REPEATED_WORD: Possible repeated word: 'not'
+#22: 
+v3: It's neither ... nor, not not (Sam)
 
-  CI-20190529: 20190529
-  CI_DRM_10268: 0e0529132a50160a0e8bd0aa9608226445a3299b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20443: 884185292bdfbf2866923c74cad01a142c9131e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+-:81: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
+total: 0 errors, 2 warnings, 0 checks, 37 lines checked
+a59a7001144a drm/tiny: drm_gem_simple_display_pipe_prepare_fb is the default
+-:203: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-== Linux commits ==
+total: 0 errors, 1 warnings, 0 checks, 98 lines checked
+24934c721047 drm/gem: Tiny kernel clarification for drm_gem_fence_array_add
+-:35: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-884185292bdf drm/i915/ttm: fix static warning
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+ab7b3daba258 RFC: drm/amdgpu: Implement a proper implicit fencing uapi
+-:25: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 177ae09b5d69 ("drm/amdgpu: introduce AMDGPU_GEM_CREATE_EXPLICIT_SYNC v2")'
+#25: 
+commit 177ae09b5d699a5ebd1cafcee78889db968abf54
 
-== Logs ==
+-:62: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#62: 
+  https://lore.kernel.org/dri-devel/20210520190007.534046-4-jason@jlekstrand.net/
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/index.html
+-:82: WARNING:TYPO_SPELLING: 'unecessary' may be misspelled - perhaps 'unnecessary'?
+#82: 
+fencing and remove all unecessary stall points due to them.
+                       ^^^^^^^^^^
 
---===============7142409134333896999==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:203: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#203: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c:1765:
++	DRM_IOCTL_DEF_DRV(AMDGPU_SETPARAM, amdgpu_setparam_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	                                                                  ^
 
+-:240: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#240: FILE: include/uapi/drm/amdgpu_drm.h:75:
++#define DRM_IOCTL_AMDGPU_SETPARAM	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SETPARAM, struct drm_amdgpu_setparam)
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:258: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
+total: 1 errors, 4 warnings, 1 checks, 104 lines checked
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/ttm: fix static warning</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91821/">https://patchwork.freedesktop.org/series/91821/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10268 -&gt; Patchwork_20443</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20443 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-sdma:</p>
-<ul>
-<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@amdgpu/amd_basic@cs-sdma.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +59 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-hpd-fast:</p>
-<ul>
-<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@kms_chamelium@vga-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20443/fi-kbl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Additional (1): fi-kbl-guc <br />
-  Missing    (4): fi-ilk-m540 fi-bdw-samus fi-bsw-cyan bat-adlp-4 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10268 -&gt; Patchwork_20443</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10268: 0e0529132a50160a0e8bd0aa9608226445a3299b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20443: 884185292bdfbf2866923c74cad01a142c9131e3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>884185292bdf drm/i915/ttm: fix static warning</p>
-
-</body>
-</html>
-
---===============7142409134333896999==--
-
---===============1118025517==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1118025517==--
