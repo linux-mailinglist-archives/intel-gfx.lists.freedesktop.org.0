@@ -2,112 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38BE83B17F3
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 12:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 403A93B17F5
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 12:16:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 311106E8A5;
-	Wed, 23 Jun 2021 10:16:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4B2B6E8A9;
+	Wed, 23 Jun 2021 10:16:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2069.outbound.protection.outlook.com [40.107.93.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 975456E87F;
- Wed, 23 Jun 2021 00:05:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B3/KBdJDauQ7dVt5+j3SNsPYpt1TvZFwcKBAe/soen3qdXoWy/gKEc+plQ7pohVAa5gCm47wBBjYygAqdsZfnxN2AOj1etAaTLVtNs6NMm8ZMrkuTf/7Y6H7aDU0yjuUTf8M/c9RcloWuzKJ+Tw5b+wBaemP9QOzXAWV+NwCzIG70rqsy+5zPBQfj/qLJajjjCEw71/XKNdH45M9k/yx1mXdRgNyEuacgwT04rbD3BTtAMiLG0Gr81Uw5TLVXjIwdmUtWh/sNgIb/qZu6SlbNTy9HU4DhTouIRxs4RRB/OkfJCDcpWf+u6OrLGEPUZ7mJFFYa40nOHtCeyVTX8xTPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=00vjd5eelAB3Z7Vn7EjsipaY4AuovUAUgikKTrMKhzM=;
- b=lXEulpoItrKWYdS/wGXx7cnk4ZQRk7/IPZa/5nSNzSn7NE8130514GFVTO5+8VxU5/GmbWltpSaZabrvjNI9GLr9T9PLkuy/VQ2qUS/sTVCv1qraFglMNj+g99jf2mOsMpjMVAT8tTv5BIt631uU2pRFwVsPgXaEBKrwZak4D7TesDuA2kykh0l5XERVXV7gGIMMGgfFCfcBdze20bxlO40gRZQaeRIZPgHppQo6l/gVzcEuhEFq+npBNw7F6nVUtbZ0UhoDnWOqO9KtyH5wU0tqaP9jYdEegO4Jy7c+6DPcuDIlg5rpQCTdcfxyOcrkKLyzOCctZYbrl+k4mndrfg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=00vjd5eelAB3Z7Vn7EjsipaY4AuovUAUgikKTrMKhzM=;
- b=jsNY7CzXfOG07PJuCaZasImaDQMH7rmjvakSFgWf74FikzwL0O4Z/4kTOl51yVpToh2ovtBVBKEhP76CCLM2PPQOgY9/REnC1keEUJRr9isqXr0oxuhwmV2GKH+W3y2gPwL+5hLm2zzBY8c/iMU404D8HvPi2IGrd+uW9f15iWcgAVDWB6KbFBlfXwj7XsIoDRolCbZIG3Sg9UQEGL1S86ofAGbKvvLH9tH5qDqSbaaYMk7SxUEprv20648i1rzZHv7Fafs5tWIcFqiRcr8olmMV8YxTDyzYw+N6iWCwjMY3uOy1Tlm5YfOhEavViog33blxHaIwweMoknNHZI0g0A==
-Authentication-Results: lst.de; dkim=none (message not signed)
- header.d=none;lst.de; dmarc=none action=none header.from=nvidia.com;
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
- by BL1PR12MB5206.namprd12.prod.outlook.com (2603:10b6:208:31c::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.18; Wed, 23 Jun
- 2021 00:05:51 +0000
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::3d51:a3b9:8611:684e]) by BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::3d51:a3b9:8611:684e%8]) with mapi id 15.20.4264.018; Wed, 23 Jun 2021
- 00:05:51 +0000
-Date: Tue, 22 Jun 2021 21:05:50 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <20210623000550.GI2371267@nvidia.com>
-References: <20210617142218.1877096-1-hch@lst.de>
-Content-Disposition: inline
-In-Reply-To: <20210617142218.1877096-1-hch@lst.de>
-X-Originating-IP: [47.55.113.94]
-X-ClientProxiedBy: BL0PR02CA0048.namprd02.prod.outlook.com
- (2603:10b6:207:3d::25) To BL0PR12MB5506.namprd12.prod.outlook.com
- (2603:10b6:208:1cb::22)
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com
+ [IPv6:2607:f8b0:4864:20::533])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5593C89B7D;
+ Wed, 23 Jun 2021 08:09:17 +0000 (UTC)
+Received: by mail-pg1-x533.google.com with SMTP id e33so1116158pgm.3;
+ Wed, 23 Jun 2021 01:09:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:subject:to:cc:references:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=GelCnd5q7HqKlcNkNFvA+hI74Sq6lVXWthbKSfoDoxQ=;
+ b=iXkwXoCrXQVxHtEjpfyCe/MBIYYwvjBrwrGXQXfpfQz7gAycv1HaOwOC05y5+gIIYS
+ wFwa2zVQXfg8Tw8k3CSS6hs11wOgv/qt3IEkzh/wIw23RetBXj55LYpruOWzk1Q5Idid
+ wnVWKvxpXO9ZPYShWMKm1oFmETbmin4/xZEbDbE0qkoBOoMkPp8YASlRlZzttjdqukOd
+ 5or8fJm0T8IryqczDB5QC+ywXj8+p2AfyVUEgKDubtuhvN78CyJFE8EQlf4YOCPz6h3t
+ ilF2Mt61IPVmBAW+q1QUr24AGdOr4ldEgskdPt1hMTqAe3wot2YYlQ4qj00dA6DrE4CC
+ 105w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:subject:to:cc:references:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=GelCnd5q7HqKlcNkNFvA+hI74Sq6lVXWthbKSfoDoxQ=;
+ b=AZVkyo2j1SY+1HH4XYQJxWXY5sRy1cNEySG/B8d+LpdJMUi2+/cqR35uhWYOijs7jr
+ m371ASQXNZfk7nQiJa4yDFxVwLWJ1lmSwRs+jEktb5NAoidOfcklhNrOMnPHlXckMBG5
+ l137VYze3OVeVOjh0776DI+FyhCeheQrOplCRsaeEM4xOIh4C5Co1NUpYNOwP6HwXQ/4
+ sVCybSvQ1x+7g5Cw3o1xVfOziyG65eET9gx9FWWS677OPvhvrVvNB8JBKuKtoshFOrhe
+ N2QmiahD911kTXjOmJbhyOe9v2y3zbXo65zCewUoLrORt8uqSg596ACsL1nB7kFgeWl+
+ O/6Q==
+X-Gm-Message-State: AOAM532qJ8XgiYh66GjHz4zaPSUv38aASPNEJ5m4hXfS+l7X1Qxo7tcX
+ Q+/G4zJ02Vx0wYljB24x5jUD7NEVSd2ciW4aXb4=
+X-Google-Smtp-Source: ABdhPJyVb9C2UJJeAZ7pvXZggmqlGiMoRT89FiccVC0afdoJhXKWRot+K2sEXDSQ2g0n0L7T1VJl3g==
+X-Received: by 2002:aa7:8707:0:b029:306:7e78:ee7a with SMTP id
+ b7-20020aa787070000b02903067e78ee7amr2905766pfo.29.1624435756822; 
+ Wed, 23 Jun 2021 01:09:16 -0700 (PDT)
+Received: from [192.168.1.237] ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id s20sm4930672pjn.23.2021.06.23.01.09.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 23 Jun 2021 01:09:16 -0700 (PDT)
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+References: <20210622075409.2673805-1-daniel.vetter@ffwll.ch>
+Message-ID: <94029dc6-6e8c-2a33-0efa-bfca678fc6b1@gmail.com>
+Date: Wed, 23 Jun 2021 16:09:11 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mlx.ziepe.ca (47.55.113.94) by
- BL0PR02CA0048.namprd02.prod.outlook.com (2603:10b6:207:3d::25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4242.21 via Frontend Transport; Wed, 23 Jun 2021 00:05:51 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1lvqOs-00BGsO-Ht; Tue, 22 Jun 2021 21:05:50 -0300
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: db3435c1-3125-49fe-86d3-08d935daa988
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5206:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5206A1FB5B9C0F2BD51DB5EBC2089@BL1PR12MB5206.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FMI2kWyz/BN5MjZjGURmfvJglsflb5Bhsj7jW8FZNjXnC0fY8oppCwp3C3+R2Wxn5v1CFgn/9au0Pp2vb+mvhDpkG1FM0rIXZRn9XE5+3XYJqdY52a7/UGR5vOMIcGc+SrbraqxX7Zmzbp48AyIJs8oB2G3rprXVBylUUYOuO8MysGSmoslMEmOOFjSoGvgeczOusPcXzEq1IVOEtnCVfDDkz7dmvMul5Q8BQrVGvC1zV1h+PQK9uGMOWvjNM0YGQZY9G6n6egEfLgGnEaox8FERjKnP21YOc/q/St73VJ74nJgE5pQc2GaeokHLKZMMx+TRN0ycsgtwgLOzNQULXhY1xFktQ2BL626JmtrEc/3t+2t/WOgDwyD/nD2004rGZMKaP++tswPMBVMAfGGjlON+CYwX6A75DN72MM3CtiIMDVWXJiiOkz8LRfCajitpp3Of8aal40iCCBxEanHVf63bbHyQmMHsKtKYsora+c4n800HNvuM8iiv8stYDEv82I2riHnCw+vJn7W6CyW1mlNrwhpTGxGsLnLAk/NAT7GOKiIiQT7sT1mS7dO+ZpeUz3xLrZxYSYKTOESYP1MfZKaeevhdMWoQKHHDS9z6/ey1V3wkuEkg8gb/YJbflbqtR5200d7hhzoGKAd/YZMCEqj009Wq/57dnAF1RmX8drftCak4uhhsQMpn47AbTd2pcbizzWesIFKIkzkd52LP9a53Q5x1Gt3BSKa65FfoWRjn3KaX1sVOFe4gxezeOakmblH7giunK4rmCVfthp6S9Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(366004)(396003)(346002)(376002)(6916009)(8676002)(36756003)(8936002)(86362001)(9786002)(9746002)(478600001)(316002)(38100700002)(2616005)(426003)(966005)(2906002)(4744005)(66946007)(1076003)(66556008)(66476007)(54906003)(5660300002)(26005)(33656002)(7416002)(186003)(4326008);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?p8OXyhdzcu+DPmcstmmHumq6IL7nNzruzvpzeWheHwnLpZ7hRqia9G41pO3K?=
- =?us-ascii?Q?4Oe16pCitCvVYdXU40sCtnXAXmM36UX+vrhKNEnOqnqkRyLPeHkw9+KtxuLC?=
- =?us-ascii?Q?nlDDs1br4BNAx/w1vF4GwAiQQQ0KEMFCpYjjo+Q1I8BPWw6PMYKLOYipoAxt?=
- =?us-ascii?Q?RDYpT33/IZghZUz+OoR/ljnHXc3mOJruyzn/VI1BNi/FGeoQEaLxlRT7xDCz?=
- =?us-ascii?Q?2jLUWYZIsYYIsZZCUAyxwQm23jLykuE+jGmePPBFNDEle4XEG/D8lJvz7E53?=
- =?us-ascii?Q?cZUGFmfzPMGc82aqo1PcuSQ5bGqp0J5hwww9w2HYb+GWitoJWPyOhMGAl9DI?=
- =?us-ascii?Q?Pjv21fQ+vl5wKfJKveUeeSSfxZui3lYAEHLUURLOazFLjpCtCLug2PYgt5x4?=
- =?us-ascii?Q?XXtUHDN/azMk38Sx+EPi9RRzInnyfW5cFXb5bLm6e+t7u+RPCca3wvayF24b?=
- =?us-ascii?Q?mFxUDxK2i8edZXDMXvZRl7VKEBG8saFUQP+LB9T82GqiFqvehf/fh/cRZU4A?=
- =?us-ascii?Q?QZx0Gj5Fdvap7yakWprOFT/418Xo3su4IGo1Z0ey8JPvYG9w97bg34VUQJTk?=
- =?us-ascii?Q?nzsJbAvi/1+qyiViwS5oXdQe1h409bzRmL8oEJCd2h/uTS+4jAR9MwuWUZG8?=
- =?us-ascii?Q?HZsM/m5GSUrJnsVnbgGhl4xXpdXaBvZLRUVeBfP6/RR0hMSnWYEPHROqrGKg?=
- =?us-ascii?Q?PMpopIlqJbYiLlD8nBVbo5+pviYwMja4uD5eTWKKldUUoYbiY2wtgN0JwRPH?=
- =?us-ascii?Q?e+Vkmmr/r+CpZ2yUBJoYfeksoiU3s/nnaN7Ul7bWTOcoN4fwxxBysJGvP/7h?=
- =?us-ascii?Q?qXzG3oD14Ep7BylXWwXPI9tcfPltFKi/awdm4GaKq5U+zyCkmAtT1NOlligE?=
- =?us-ascii?Q?qJ5SeiJKHK+P5d5YToFZ/GBnQy8uR1YrDUZogwJPjjH+etrXm/g6/NNhkw/3?=
- =?us-ascii?Q?+ulD5IoYyzted5o8HGKXeHI5XnDj6LaB8unF8hbQ3oAqb/TaM4H1XKTGZM0b?=
- =?us-ascii?Q?i5WhusVsf9qMLN3IZV2b7ZZlgOz/brC9wk8ZK7NeLdKagSxQSFGufJC21et1?=
- =?us-ascii?Q?yvukRezvP5xvSQJaF7zVrv0LhiIXehVKiIkv/2eTVaLVLR4doaF0JQH8UQMM?=
- =?us-ascii?Q?u/rNinWe0wcbq+zo/I3DeBsDpo2GEsmjowQQRatPrpWwtWYkaMHXPp7eUFZL?=
- =?us-ascii?Q?4RdsyyPQZU+XAvnYctYnZgwxI3ZbmM8OTWJnINTCXz16YgkSwIxEFeMC6psn?=
- =?us-ascii?Q?Zvj6uxdU3xoZu+ttiCbXhVWl8iz6TXgYYIEvpDHp6JjwFPRQ4jr1814enl1X?=
- =?us-ascii?Q?DykCWpNBC1R39XWHV7Iwg0Jm?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db3435c1-3125-49fe-86d3-08d935daa988
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2021 00:05:51.5245 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UjBGZjHrBZ+ImINUr7RJ9ye3BtoW5h/xfhAjdOoZ5oMF6HbtDLAt602iD5iIx6JL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5206
+In-Reply-To: <20210622075409.2673805-1-daniel.vetter@ffwll.ch>
+Content-Language: en-US
 X-Mailman-Approved-At: Wed, 23 Jun 2021 10:16:28 +0000
-Subject: Re: [Intel-gfx] Allow mdev drivers to directly create the
- vfio_device (v4)
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm: add a locked version of
+ drm_is_current_master"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,40 +73,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org,
- Jonathan Corbet <corbet@lwn.net>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Tony Krowiak <akrowiak@linux.ibm.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Cornelia Huck <cohuck@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
+ stable@vger.kernel.org, DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 17, 2021 at 04:22:08PM +0200, Christoph Hellwig wrote:
-> This is my alternative take on this series from Jason:
+On 22/6/21 3:54 pm, Daniel Vetter wrote:
+> This reverts commit 1815d9c86e3090477fbde066ff314a7e9721ee0f.
 > 
-> https://lore.kernel.org/dri-devel/87czsszi9i.fsf@redhat.com/T/
+> Unfortunately this inverts the locking hierarchy, so back to the
+> drawing board. Full lockdep splat below:
 > 
-> The mdev/vfio parts are exactly the same, but this solves the driver core
-> changes for the direct probing without the in/out flag that Greg hated,
-> which cause a little more work, but probably make the result better.
+> ======================================================
+> WARNING: possible circular locking dependency detected
+> 5.13.0-rc7-CI-CI_DRM_10254+ #1 Not tainted
+> ------------------------------------------------------
+> kms_frontbuffer/1087 is trying to acquire lock:
+> ffff88810dcd01a8 (&dev->master_mutex){+.+.}-{3:3}, at: drm_is_current_master+0x1b/0x40
+> but task is already holding lock:
+> ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
+> which lock already depends on the new lock.
+> the existing dependency chain (in reverse order) is:
+> -> #2 (&dev->mode_config.mutex){+.+.}-{3:3}:
+>         __mutex_lock+0xab/0x970
+>         drm_client_modeset_probe+0x22e/0xca0
+>         __drm_fb_helper_initial_config_and_unlock+0x42/0x540
+>         intel_fbdev_initial_config+0xf/0x20 [i915]
+>         async_run_entry_fn+0x28/0x130
+>         process_one_work+0x26d/0x5c0
+>         worker_thread+0x37/0x380
+>         kthread+0x144/0x170
+>         ret_from_fork+0x1f/0x30
+> -> #1 (&client->modeset_mutex){+.+.}-{3:3}:
+>         __mutex_lock+0xab/0x970
+>         drm_client_modeset_commit_locked+0x1c/0x180
+>         drm_client_modeset_commit+0x1c/0x40
+>         __drm_fb_helper_restore_fbdev_mode_unlocked+0x88/0xb0
+>         drm_fb_helper_set_par+0x34/0x40
+>         intel_fbdev_set_par+0x11/0x40 [i915]
+>         fbcon_init+0x270/0x4f0
+>         visual_init+0xc6/0x130
+>         do_bind_con_driver+0x1e5/0x2d0
+>         do_take_over_console+0x10e/0x180
+>         do_fbcon_takeover+0x53/0xb0
+>         register_framebuffer+0x22d/0x310
+>         __drm_fb_helper_initial_config_and_unlock+0x36c/0x540
+>         intel_fbdev_initial_config+0xf/0x20 [i915]
+>         async_run_entry_fn+0x28/0x130
+>         process_one_work+0x26d/0x5c0
+>         worker_thread+0x37/0x380
+>         kthread+0x144/0x170
+>         ret_from_fork+0x1f/0x30
+> -> #0 (&dev->master_mutex){+.+.}-{3:3}:
+>         __lock_acquire+0x151e/0x2590
+>         lock_acquire+0xd1/0x3d0
+>         __mutex_lock+0xab/0x970
+>         drm_is_current_master+0x1b/0x40
+>         drm_mode_getconnector+0x37e/0x4a0
+>         drm_ioctl_kernel+0xa8/0xf0
+>         drm_ioctl+0x1e8/0x390
+>         __x64_sys_ioctl+0x6a/0xa0
+>         do_syscall_64+0x39/0xb0
+>         entry_SYSCALL_64_after_hwframe+0x44/0xae
+> other info that might help us debug this:
+> Chain exists of: &dev->master_mutex --> &client->modeset_mutex --> &dev->mode_config.mutex
+>   Possible unsafe locking scenario:
+>         CPU0                    CPU1
+>         ----                    ----
+>    lock(&dev->mode_config.mutex);
+>                                 lock(&client->modeset_mutex);
+>                                 lock(&dev->mode_config.mutex);
+>    lock(&dev->master_mutex);
+> *** DEADLOCK ***
 
-I did some testing and it looks good, thanks
+Hi Daniel,
 
-I see Alex has this in hch-mdev-direct-v4 in linux-next now, so
-expecting this to be in the next merge window?
+Just a thought.
 
-The AP prep patches seemed sorted so I'll resend the AP patch in three
-weeks
+Since &dev->mode_config.mutex is the modeset BKL and its scope isn't 
+clear, keeping the dependency as is would mean that any lock that 
+depends on &dev->mode_config.mutex would also depend on 
+&client->modeset_mutex. Seems like this might be vulnerable to more 
+circular dependencies.
 
-Jason
+Would it make sense to invert the locking dependency for 
+&client->modeset_mutex and &dev->mode_config.mutex to become 
+&dev->mode_config.mutex --> &client->modeset_mutex? Something like this:
+
+diff --git a/drivers/gpu/drm/drm_client_modeset.c 
+b/drivers/gpu/drm/drm_client_modeset.c
+index ced09c7c06f9..859f99d97cde 100644
+--- a/drivers/gpu/drm/drm_client_modeset.c
++++ b/drivers/gpu/drm/drm_client_modeset.c
+@@ -811,9 +811,9 @@ int drm_client_modeset_probe(struct drm_client_dev 
+*client, unsigned int width,
+  		goto out;
+  	}
+
++	mutex_lock(&dev->mode_config.mutex);
+  	mutex_lock(&client->modeset_mutex);
+
+-	mutex_lock(&dev->mode_config.mutex);
+  	for (i = 0; i < connector_count; i++)
+  		total_modes_count += connectors[i]->funcs->fill_modes(connectors[i], 
+width, height);
+  	if (!total_modes_count)
+@@ -838,7 +838,6 @@ int drm_client_modeset_probe(struct drm_client_dev 
+*client, unsigned int width,
+  		drm_client_pick_crtcs(client, connectors, connector_count,
+  				      crtcs, modes, 0, width, height);
+  	}
+-	mutex_unlock(&dev->mode_config.mutex);
+
+  	drm_client_modeset_release(client);
+
+@@ -869,6 +868,7 @@ int drm_client_modeset_probe(struct drm_client_dev 
+*client, unsigned int width,
+  	}
+
+  	mutex_unlock(&client->modeset_mutex);
++	mutex_unlock(&dev->mode_config.mutex);
+  out:
+  	kfree(crtcs);
+  	kfree(modes);
+diff --git a/drivers/gpu/drm/drm_fb_helper.c 
+b/drivers/gpu/drm/drm_fb_helper.c
+index f6baa2046124..74302d110609 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -1443,8 +1443,8 @@ static int pan_display_legacy(struct 
+fb_var_screeninfo *var,
+  	struct drm_mode_set *modeset;
+  	int ret = 0;
+
+-	mutex_lock(&client->modeset_mutex);
+  	drm_modeset_lock_all(fb_helper->dev);
++	mutex_lock(&client->modeset_mutex);
+  	drm_client_for_each_modeset(modeset, client) {
+  		modeset->x = var->xoffset;
+  		modeset->y = var->yoffset;
+@@ -1457,8 +1457,8 @@ static int pan_display_legacy(struct 
+fb_var_screeninfo *var,
+  			}
+  		}
+  	}
+-	drm_modeset_unlock_all(fb_helper->dev);
+  	mutex_unlock(&client->modeset_mutex);
++	drm_modeset_unlock_all(fb_helper->dev);
+
+  	return ret;
+  }
+
+> 1 lock held by kms_frontbuffer/1087:
+>   #0: ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
+> stack backtrace:
+> CPU: 7 PID: 1087 Comm: kms_frontbuffer Not tainted 5.13.0-rc7-CI-CI_DRM_10254+ #1
+> Hardware name: Intel Corporation Ice Lake Client Platform/IceLake U DDR4 SODIMM PD RVP TLC, BIOS ICLSFWR1.R00.3234.A01.1906141750 06/14/2019
+> Call Trace:
+>   dump_stack+0x7f/0xad
+>   check_noncircular+0x12e/0x150
+>   __lock_acquire+0x151e/0x2590
+>   lock_acquire+0xd1/0x3d0
+>   __mutex_lock+0xab/0x970
+>   drm_is_current_master+0x1b/0x40
+>   drm_mode_getconnector+0x37e/0x4a0
+>   drm_ioctl_kernel+0xa8/0xf0
+>   drm_ioctl+0x1e8/0x390
+>   __x64_sys_ioctl+0x6a/0xa0
+>   do_syscall_64+0x39/0xb0
+>   entry_SYSCALL_64_after_hwframe+0x44/0xae
+> 
+> daniel@phenom:~/linux/drm-misc-fixes$ dim fixes 1815d9c86e3090477fbde066ff314a7e9721ee0f
+> Fixes: 1815d9c86e30 ("drm: add a locked version of drm_is_current_master")
+> Cc: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> Cc: Emil Velikov <emil.l.velikov@gmail.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> ---
+>   drivers/gpu/drm/drm_auth.c | 51 ++++++++++++++------------------------
+>   1 file changed, 19 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+> index 86d4b72e95cb..232abbba3686 100644
+> --- a/drivers/gpu/drm/drm_auth.c
+> +++ b/drivers/gpu/drm/drm_auth.c
+> @@ -61,35 +61,6 @@
+>    * trusted clients.
+>    */
+>   
+> -static bool drm_is_current_master_locked(struct drm_file *fpriv)
+> -{
+> -	lockdep_assert_held_once(&fpriv->master->dev->master_mutex);
+> -
+> -	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+> -}
+> -
+> -/**
+> - * drm_is_current_master - checks whether @priv is the current master
+> - * @fpriv: DRM file private
+> - *
+> - * Checks whether @fpriv is current master on its device. This decides whether a
+> - * client is allowed to run DRM_MASTER IOCTLs.
+> - *
+> - * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
+> - * - the current master is assumed to own the non-shareable display hardware.
+> - */
+> -bool drm_is_current_master(struct drm_file *fpriv)
+> -{
+> -	bool ret;
+> -
+> -	mutex_lock(&fpriv->master->dev->master_mutex);
+> -	ret = drm_is_current_master_locked(fpriv);
+> -	mutex_unlock(&fpriv->master->dev->master_mutex);
+> -
+> -	return ret;
+> -}
+> -EXPORT_SYMBOL(drm_is_current_master);
+> -
+>   int drm_getmagic(struct drm_device *dev, void *data, struct drm_file *file_priv)
+>   {
+>   	struct drm_auth *auth = data;
+> @@ -252,7 +223,7 @@ int drm_setmaster_ioctl(struct drm_device *dev, void *data,
+>   	if (ret)
+>   		goto out_unlock;
+>   
+> -	if (drm_is_current_master_locked(file_priv))
+> +	if (drm_is_current_master(file_priv))
+>   		goto out_unlock;
+>   
+>   	if (dev->master) {
+> @@ -301,7 +272,7 @@ int drm_dropmaster_ioctl(struct drm_device *dev, void *data,
+>   	if (ret)
+>   		goto out_unlock;
+>   
+> -	if (!drm_is_current_master_locked(file_priv)) {
+> +	if (!drm_is_current_master(file_priv)) {
+>   		ret = -EINVAL;
+>   		goto out_unlock;
+>   	}
+> @@ -350,7 +321,7 @@ void drm_master_release(struct drm_file *file_priv)
+>   	if (file_priv->magic)
+>   		idr_remove(&file_priv->master->magic_map, file_priv->magic);
+>   
+> -	if (!drm_is_current_master_locked(file_priv))
+> +	if (!drm_is_current_master(file_priv))
+>   		goto out;
+>   
+>   	drm_legacy_lock_master_cleanup(dev, master);
+> @@ -371,6 +342,22 @@ void drm_master_release(struct drm_file *file_priv)
+>   	mutex_unlock(&dev->master_mutex);
+>   }
+>   
+> +/**
+> + * drm_is_current_master - checks whether @priv is the current master
+> + * @fpriv: DRM file private
+> + *
+> + * Checks whether @fpriv is current master on its device. This decides whether a
+> + * client is allowed to run DRM_MASTER IOCTLs.
+> + *
+> + * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
+> + * - the current master is assumed to own the non-shareable display hardware.
+> + */
+> +bool drm_is_current_master(struct drm_file *fpriv)
+> +{
+> +	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+> +}
+> +EXPORT_SYMBOL(drm_is_current_master);
+> +
+>   /**
+>    * drm_master_get - reference a master pointer
+>    * @master: &struct drm_master
+> 
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
