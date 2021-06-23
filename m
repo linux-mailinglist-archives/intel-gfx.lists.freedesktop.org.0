@@ -2,65 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB763B5B50
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D466F3B5B56
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:31:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF80C6E3D3;
-	Mon, 28 Jun 2021 09:31:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5930D6E3E3;
+	Mon, 28 Jun 2021 09:31:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
- [IPv6:2607:f8b0:4864:20::1036])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED4AB6E8BD;
- Wed, 23 Jun 2021 12:02:59 +0000 (UTC)
-Received: by mail-pj1-x1036.google.com with SMTP id g24so1373587pji.4;
- Wed, 23 Jun 2021 05:02:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=fQH2VhS640xPyWRrnlWS1Vp5yXvD7bzUh0HWl4/D5zI=;
- b=UKn6D4Q/W/Mprkh286udm+ozfSvf5BA1+yxQJZ59a7UPhsLzTqYat4/bD0m6p7tTxf
- i+yCwBqXirczXYTI/tGkgpE2+RWzlqZAEiOQO8KL9gOQfSmNkNsj/1aXPVVMILi5EKMo
- 5pC8+p8RC9abtX6C7icd0HgyQMxQQx64DzD1sFgWEFArla1nV5+9fTnywo+fg4Rc+/n+
- 7lOIqmSGkvYBtaw16Bxuj9nRKKE+K67QRtvB92RSWVPf1QvNHdW19VYD3INO+mHa51By
- bNh4d0PkoKI5avZX5gSJ2ieaZlsmbTdMBwTtI21f9DSM07KoBM76Zc9pOv4Enynx47Gz
- Gt/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=fQH2VhS640xPyWRrnlWS1Vp5yXvD7bzUh0HWl4/D5zI=;
- b=Zl7MW+odivlsl3AtgB31chidG9zP3LWKR7p5b5sF8xPUs30x3soDzS+3as8jgTS7MC
- Hh0Yxtsn9CL0YSR6Fc2tKtH9aHp+cEEZWex7NCrkYlNkaOXE4wxtbnwjfD+VL40q+6A9
- xDET5z0BBdAT+VOIyFXAfi2OhjyTixku/7InvOMxUF3uFrLO/OU1htnwigtUaJVysu+e
- loqYY5CiGzhrfcXBZNejR9KTpLouPe+IBDfqUEjQ9EXn7TqIL5GtFgGTKe3QmCe9oz9Q
- /86uWa3kRiQFTsQV6/KYubiXMRRtRTmT+T7vlEAU+zhrv5ku6KXBioIbBbHGwk5RBaeC
- Xs5A==
-X-Gm-Message-State: AOAM532fiqMLzcEGqW/0S2NLhytcz6HctGJBRqOveoxib57uM17cIceb
- ac+Nb8pNWRL1j6LPNCcZXnY=
-X-Google-Smtp-Source: ABdhPJweV71CyzVQrkFMii0jIjJyGhbPAtS7xI4iS8ZHu2pKazRE/PXu/MEWuJx9NkAEelJ1t7A5pw==
-X-Received: by 2002:a17:902:7103:b029:124:72fd:fbd1 with SMTP id
- a3-20020a1709027103b029012472fdfbd1mr15263564pll.64.1624449779375; 
- Wed, 23 Jun 2021 05:02:59 -0700 (PDT)
-Received: from [192.168.1.237] ([118.200.190.93])
- by smtp.gmail.com with ESMTPSA id b6sm22785525pgw.67.2021.06.23.05.02.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Jun 2021 05:02:58 -0700 (PDT)
-To: daniel@ffwll.ch
-References: <20210623113740.6260-1-desmondcheongzx@gmail.com>
- <20210623113740.6260-2-desmondcheongzx@gmail.com>
-From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Message-ID: <322b9a09-7375-a41a-abf6-4fc1108f8926@gmail.com>
-Date: Wed, 23 Jun 2021 20:02:53 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+X-Greylist: delayed 365 seconds by postgrey-1.36 at gabe;
+ Wed, 23 Jun 2021 16:45:43 UTC
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com
+ [199.106.114.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7651E6E94B;
+ Wed, 23 Jun 2021 16:45:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1624466743; x=1656002743;
+ h=subject:to:cc:references:from:message-id:date:
+ mime-version:in-reply-to:content-transfer-encoding;
+ bh=bD3fHcpKfJA9p2zej1L/UrxZaxu1AH26pxH4pa5HgfE=;
+ b=W7xmtGPpyeokpZYkmVeWkFl8DJJoFvggvJrR1TwtZMShA7CYCR85Pu5f
+ mGYNV3uDyV9aa8Kc8lsqXw3hXDin8WAUA2J0MWHWnuOTG9cJd697E5a1k
+ x+tnohIKXwR+DEYZ9ZqCoomQeJgR+BZ2aTl/d0r/hC/UBn9KYXJizGwYX U=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 23 Jun 2021 09:39:37 -0700
+X-QCInternal: smtphost
+Received: from nasanexm03e.na.qualcomm.com ([10.85.0.48])
+ by ironmsg01-sd.qualcomm.com with ESMTP/TLS/AES256-SHA;
+ 23 Jun 2021 09:39:35 -0700
+Received: from [10.38.240.33] (10.80.80.8) by nasanexm03e.na.qualcomm.com
+ (10.85.0.48) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 23 Jun
+ 2021 09:39:31 -0700
+To: Claire Chang <tientzu@chromium.org>, Rob Herring <robh+dt@kernel.org>,
+ <mpe@ellerman.id.au>, Joerg Roedel <joro@8bytes.org>, Will Deacon
+ <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Konrad Rzeszutek
+ Wilk <konrad.wilk@oracle.com>, <boris.ostrovsky@oracle.com>,
+ <jgross@suse.com>, Christoph Hellwig <hch@lst.de>, Marek Szyprowski
+ <m.szyprowski@samsung.com>
+References: <20210619034043.199220-1-tientzu@chromium.org>
+ <20210619034043.199220-7-tientzu@chromium.org>
+From: Qian Cai <quic_qiancai@quicinc.com>
+Message-ID: <76c3343d-72e5-9df3-8924-5474ee698ef4@quicinc.com>
+Date: Wed, 23 Jun 2021 12:39:29 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210623113740.6260-2-desmondcheongzx@gmail.com>
+In-Reply-To: <20210619034043.199220-7-tientzu@chromium.org>
 Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanexm03e.na.qualcomm.com (10.85.0.48)
 X-Mailman-Approved-At: Mon, 28 Jun 2021 09:31:03 +0000
-Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm: add a locked version of
- drm_is_current_master
+Subject: Re: [Intel-gfx] [PATCH v14 06/12] swiotlb: Use
+ is_swiotlb_force_bounce for swiotlb data bouncing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,254 +67,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, airlied@linux.ie,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org, mripard@kernel.org,
- tzimmermann@suse.de, skhan@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org, christian.koenig@amd.com,
- linux-media@vger.kernel.org
+Cc: heikki.krogerus@linux.intel.com,
+ linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
+ benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+ mingo@kernel.org, jxgao@google.com, sstabellini@kernel.org,
+ Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, matthew.auld@intel.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, bskeggs@redhat.com,
+ thomas.hellstrom@linux.intel.com, Jim Quinlan <james.quinlan@broadcom.com>,
+ intel-gfx@lists.freedesktop.org, Robin Murphy <robin.murphy@arm.com>,
+ Nicolas Boichat <drinkcat@chromium.org>, bhelgaas@google.com,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, airlied@linux.ie,
+ Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ lkml <linux-kernel@vger.kernel.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ thomas.lendacky@amd.com, linuxppc-dev@lists.ozlabs.org, bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23/6/21 7:37 pm, Desmond Cheong Zhi Xi wrote:
-> While checking the master status of the DRM file in
-> drm_is_current_master(), the device's master mutex should be
-> held. Without the mutex, the pointer fpriv->master may be freed
-> concurrently by another process calling drm_setmaster_ioctl(). This
-> could lead to use-after-free errors when the pointer is subsequently
-> dereferenced in drm_lease_owner().
+
+
+On 6/18/2021 11:40 PM, Claire Chang wrote:
+> Propagate the swiotlb_force into io_tlb_default_mem->force_bounce and
+> use it to determine whether to bounce the data or not. This will be
+> useful later to allow for different pools.
 > 
-> The callers of drm_is_current_master() from drm_auth.c hold the
-> device's master mutex, but external callers do not. Hence, we implement
-> drm_is_current_master_locked() to be used within drm_auth.c, and
-> modify drm_is_current_master() to grab the device's master mutex
-> before checking the master status.
-> 
-> Additionally, to avoid a circular lock dependency by introducing
-> drm_device.master_mutex into drm_is_current_master(), we move the call
-> to drm_is_current_master() in drm_mode_getconnector out from the
-> section locked by &dev->mode_config.mutex.
-> 
-> Failing to avoid this lock dependency produces the following lockdep
-> splat:
-> 
-> ======================================================
-> WARNING: possible circular locking dependency detected
-> 5.13.0-rc7-CI-CI_DRM_10254+ #1 Not tainted
-> ------------------------------------------------------
-> kms_frontbuffer/1087 is trying to acquire lock:
-> ffff88810dcd01a8 (&dev->master_mutex){+.+.}-{3:3}, at: drm_is_current_master+0x1b/0x40
-> but task is already holding lock:
-> ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
-> which lock already depends on the new lock.
-> the existing dependency chain (in reverse order) is:
-> -> #2 (&dev->mode_config.mutex){+.+.}-{3:3}:
->         __mutex_lock+0xab/0x970
->         drm_client_modeset_probe+0x22e/0xca0
->         __drm_fb_helper_initial_config_and_unlock+0x42/0x540
->         intel_fbdev_initial_config+0xf/0x20 [i915]
->         async_run_entry_fn+0x28/0x130
->         process_one_work+0x26d/0x5c0
->         worker_thread+0x37/0x380
->         kthread+0x144/0x170
->         ret_from_fork+0x1f/0x30
-> -> #1 (&client->modeset_mutex){+.+.}-{3:3}:
->         __mutex_lock+0xab/0x970
->         drm_client_modeset_commit_locked+0x1c/0x180
->         drm_client_modeset_commit+0x1c/0x40
->         __drm_fb_helper_restore_fbdev_mode_unlocked+0x88/0xb0
->         drm_fb_helper_set_par+0x34/0x40
->         intel_fbdev_set_par+0x11/0x40 [i915]
->         fbcon_init+0x270/0x4f0
->         visual_init+0xc6/0x130
->         do_bind_con_driver+0x1e5/0x2d0
->         do_take_over_console+0x10e/0x180
->         do_fbcon_takeover+0x53/0xb0
->         register_framebuffer+0x22d/0x310
->         __drm_fb_helper_initial_config_and_unlock+0x36c/0x540
->         intel_fbdev_initial_config+0xf/0x20 [i915]
->         async_run_entry_fn+0x28/0x130
->         process_one_work+0x26d/0x5c0
->         worker_thread+0x37/0x380
->         kthread+0x144/0x170
->         ret_from_fork+0x1f/0x30
-> -> #0 (&dev->master_mutex){+.+.}-{3:3}:
->         __lock_acquire+0x151e/0x2590
->         lock_acquire+0xd1/0x3d0
->         __mutex_lock+0xab/0x970
->         drm_is_current_master+0x1b/0x40
->         drm_mode_getconnector+0x37e/0x4a0
->         drm_ioctl_kernel+0xa8/0xf0
->         drm_ioctl+0x1e8/0x390
->         __x64_sys_ioctl+0x6a/0xa0
->         do_syscall_64+0x39/0xb0
->         entry_SYSCALL_64_after_hwframe+0x44/0xae
-> other info that might help us debug this:
-> Chain exists of: &dev->master_mutex --> &client->modeset_mutex --> &dev->mode_config.mutex
->   Possible unsafe locking scenario:
->         CPU0                    CPU1
->         ----                    ----
->    lock(&dev->mode_config.mutex);
->                                 lock(&client->modeset_mutex);
->                                 lock(&dev->mode_config.mutex);
->    lock(&dev->master_mutex);
-> *** DEADLOCK ***
-> 1 lock held by kms_frontbuffer/1087:
->   #0: ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
-> stack backtrace:
-> CPU: 7 PID: 1087 Comm: kms_frontbuffer Not tainted 5.13.0-rc7-CI-CI_DRM_10254+ #1
-> Hardware name: Intel Corporation Ice Lake Client Platform/IceLake U DDR4 SODIMM PD RVP TLC, BIOS ICLSFWR1.R00.3234.A01.1906141750 06/14/2019
-> Call Trace:
->   dump_stack+0x7f/0xad
->   check_noncircular+0x12e/0x150
->   __lock_acquire+0x151e/0x2590
->   lock_acquire+0xd1/0x3d0
->   __mutex_lock+0xab/0x970
->   drm_is_current_master+0x1b/0x40
->   drm_mode_getconnector+0x37e/0x4a0
->   drm_ioctl_kernel+0xa8/0xf0
->   drm_ioctl+0x1e8/0x390
->   __x64_sys_ioctl+0x6a/0xa0
->   do_syscall_64+0x39/0xb0
->   entry_SYSCALL_64_after_hwframe+0x44/0xae
-> 
-> Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+> Tested-by: Will Deacon <will@kernel.org>
+> Acked-by: Stefano Stabellini <sstabellini@kernel.org>
+
+Reverting the rest of the series up to this patch fixed a boot crash with NVMe on today's linux-next.
+
+[   22.286574][    T7] Unable to handle kernel paging request at virtual address dfff80000000000e
+[   22.295225][    T7] Mem abort info:
+[   22.298743][    T7]   ESR = 0x96000004
+[   22.302496][    T7]   EC = 0x25: DABT (current EL), IL = 32 bits
+[   22.308525][    T7]   SET = 0, FnV = 0
+[   22.312274][    T7]   EA = 0, S1PTW = 0
+[   22.316131][    T7]   FSC = 0x04: level 0 translation fault
+[   22.321704][    T7] Data abort info:
+[   22.325278][    T7]   ISV = 0, ISS = 0x00000004
+[   22.329840][    T7]   CM = 0, WnR = 0
+[   22.333503][    T7] [dfff80000000000e] address between user and kernel address ranges
+[   22.338543][  T256] igb 0006:01:00.0: Intel(R) Gigabit Ethernet Network Connection
+[   22.341400][    T7] Internal error: Oops: 96000004 [#1] SMP
+[   22.348915][  T256] igb 0006:01:00.0: eth0: (PCIe:2.5Gb/s:Width x1) 4c:38:d5:09:c8:83
+[   22.354458][    T7] Modules linked in: igb(+) i2c_algo_bit nvme mlx5_core(+) i2c_core nvme_core firmware_class
+[   22.362512][  T256] igb 0006:01:00.0: eth0: PBA No: G69016-004
+[   22.372287][    T7] CPU: 13 PID: 7 Comm: kworker/u64:0 Not tainted 5.13.0-rc7-next-20210623+ #47
+[   22.372293][    T7] Hardware name: MiTAC RAPTOR EV-883832-X3-0001/RAPTOR, BIOS 1.6 06/28/2020
+[   22.372298][    T7] Workqueue: nvme-reset-wq nvme_reset_work [nvme]
+[   22.378145][  T256] igb 0006:01:00.0: Using MSI-X interrupts. 4 rx queue(s), 4 tx queue(s)
+[   22.386901][    T7] 
+[   22.386905][    T7] pstate: 10000005 (nzcV daif -PAN -UAO -TCO BTYPE=--)
+[   22.386910][    T7] pc : dma_direct_map_sg+0x304/0x8f0
+
+is_swiotlb_force_bounce at /usr/src/linux-next/./include/linux/swiotlb.h:119
+(inlined by) dma_direct_map_page at /usr/src/linux-next/kernel/dma/direct.h:90
+(inlined by) dma_direct_map_sg at /usr/src/linux-next/kernel/dma/direct.c:428
+
+[   22.386919][    T7] lr : dma_map_sg_attrs+0x6c/0x118
+[   22.386924][    T7] sp : ffff80001dc8eac0
+[   22.386926][    T7] x29: ffff80001dc8eac0 x28: ffff0000199e70b0 x27: 0000000000000000
+[   22.386935][    T7] x26: ffff000847ee7000 x25: ffff80001158e570 x24: 0000000000000002
+[   22.386943][    T7] x23: dfff800000000000 x22: 0000000000000100 x21: ffff0000199e7460
+[   22.386951][    T7] x20: ffff0000199e7488 x19: 0000000000000001 x18: ffff000010062670
+[   22.386955][  T253] Unable to handle kernel paging request at virtual address dfff80000000000e
+[   22.386958][    T7] x17: ffff8000109f6a90 x16: ffff8000109e1b4c x15: ffff800009303420
+[   22.386965][  T253] Mem abort info:
+[   22.386967][    T7] x14: 0000000000000001 x13: ffff80001158e000
+[   22.386970][  T253]   ESR = 0x96000004
+[   22.386972][    T7]  x12: 1fffe00108fdce01
+[   22.386975][  T253]   EC = 0x25: DABT (current EL), IL = 32 bits
+[   22.386976][    T7] x11: 1fffe00108fdce03 x10: ffff000847ee700c x9 : 0000000000000004
+[   22.386981][  T253]   SET = 0, FnV = 0
+[   22.386983][    T7] 
+[   22.386985][    T7] x8 : ffff700003b91d72
+[   22.386986][  T253]   EA = 0, S1PTW = 0
+[   22.386987][    T7]  x7 : 0000000000000000 x6 : 000000000000000e
+[   22.386990][  T253]   FSC = 0x04: level 0 translation fault
+[   22.386992][    T7] 
+[   22.386994][    T7] x5 : dfff800000000000
+[   22.386995][  T253] Data abort info:
+[   22.386997][    T7]  x4 : 00000008c7ede000
+[   22.386999][  T253]   ISV = 0, ISS = 0x00000004
+[   22.386999][    T7]  x3 : 00000008c7ede000
+[   22.387003][    T7] x2 : 0000000000001000
+[   22.387003][  T253]   CM = 0, WnR = 0
+[   22.387006][    T7]  x1 : 0000000000000000 x0 : 0000000000000071
+[   22.387008][  T253] [dfff80000000000e] address between user and kernel address ranges
+[   22.387011][    T7] 
+[   22.387013][    T7] Call trace:
+[   22.387016][    T7]  dma_direct_map_sg+0x304/0x8f0
+[   22.387022][    T7]  dma_map_sg_attrs+0x6c/0x118
+[   22.387026][    T7]  nvme_map_data+0x2ec/0x21d8 [nvme]
+[   22.387040][    T7]  nvme_queue_rq+0x274/0x3f0 [nvme]
+[   22.387052][    T7]  blk_mq_dispatch_rq_list+0x2ec/0x18a0
+[   22.387060][    T7]  __blk_mq_sched_dispatch_requests+0x2a0/0x3e8
+[   22.387065][    T7]  blk_mq_sched_dispatch_requests+0xa4/0x100
+[   22.387070][    T7]  __blk_mq_run_hw_queue+0x148/0x1d8
+[   22.387075][    T7]  __blk_mq_delay_run_hw_queue+0x3f8/0x730
+[   22.414539][  T269] igb 0006:01:00.0 enP6p1s0: renamed from eth0
+[   22.418957][    T7]  blk_mq_run_hw_queue+0x148/0x248
+[   22.418969][    T7]  blk_mq_sched_insert_request+0x2a4/0x330
+[   22.418975][    T7]  blk_execute_rq_nowait+0xc8/0x118
+[   22.418981][    T7]  blk_execute_rq+0xd4/0x188
+[   22.453203][  T255] udevadm (255) used greatest stack depth: 57408 bytes left
+[   22.456504][    T7]  __nvme_submit_sync_cmd+0x4e0/0x730 [nvme_core]
+[   22.673245][    T7]  nvme_identify_ctrl.isra.0+0x124/0x1e0 [nvme_core]
+[   22.679784][    T7]  nvme_init_identify+0x90/0x1868 [nvme_core]
+[   22.685713][    T7]  nvme_init_ctrl_finish+0x1a8/0xb88 [nvme_core]
+[   22.691903][    T7]  nvme_reset_work+0xe5c/0x2aa4 [nvme]
+[   22.697219][    T7]  process_one_work+0x7e4/0x19a0
+[   22.702005][    T7]  worker_thread+0x334/0xae0
+[   22.706442][    T7]  kthread+0x3bc/0x470
+[   22.710359][    T7]  ret_from_fork+0x10/0x18
+[   22.714627][    T7] Code: f941ef81 9101c420 1200080e d343fc06 (38f768c6) 
+[   22.721407][    T7] ---[ end trace 1f3c4181ae408676 ]---
+[   22.726712][    T7] Kernel panic - not syncing: Oops: Fatal exception
+[   22.733169][    T7] SMP: stopping secondary CPUs
+[   23.765164][    T7] SMP: failed to stop secondary CPUs 13,15
+[   23.770818][    T7] Kernel Offset: disabled
+[   23.774991][    T7] CPU features: 0x00000251,20000846
+[   23.780034][    T7] Memory Limit: none
+[   23.783794][    T7] ---[ end Kernel panic - not syncing: Oops: Fatal exception ]---
+
 > ---
->   drivers/gpu/drm/drm_auth.c      | 51 +++++++++++++++++++++------------
->   drivers/gpu/drm/drm_connector.c |  5 +++-
->   2 files changed, 36 insertions(+), 20 deletions(-)
+>  drivers/xen/swiotlb-xen.c |  2 +-
+>  include/linux/swiotlb.h   | 11 +++++++++++
+>  kernel/dma/direct.c       |  2 +-
+>  kernel/dma/direct.h       |  2 +-
+>  kernel/dma/swiotlb.c      |  4 ++++
+>  5 files changed, 18 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-> index f00e5abdbbf4..ab1863c5a5a0 100644
-> --- a/drivers/gpu/drm/drm_auth.c
-> +++ b/drivers/gpu/drm/drm_auth.c
-> @@ -61,6 +61,35 @@
->    * trusted clients.
->    */
->   
-> +static bool drm_is_current_master_locked(struct drm_file *fpriv)
+> diff --git a/drivers/xen/swiotlb-xen.c b/drivers/xen/swiotlb-xen.c
+> index 0c6ed09f8513..4730a146fa35 100644
+> --- a/drivers/xen/swiotlb-xen.c
+> +++ b/drivers/xen/swiotlb-xen.c
+> @@ -369,7 +369,7 @@ static dma_addr_t xen_swiotlb_map_page(struct device *dev, struct page *page,
+>  	if (dma_capable(dev, dev_addr, size, true) &&
+>  	    !range_straddles_page_boundary(phys, size) &&
+>  		!xen_arch_need_swiotlb(dev, phys, dev_addr) &&
+> -		swiotlb_force != SWIOTLB_FORCE)
+> +		!is_swiotlb_force_bounce(dev))
+>  		goto done;
+>  
+>  	/*
+> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+> index dd1c30a83058..8d8855c77d9a 100644
+> --- a/include/linux/swiotlb.h
+> +++ b/include/linux/swiotlb.h
+> @@ -84,6 +84,7 @@ extern enum swiotlb_force swiotlb_force;
+>   *		unmap calls.
+>   * @debugfs:	The dentry to debugfs.
+>   * @late_alloc:	%true if allocated using the page allocator
+> + * @force_bounce: %true if swiotlb bouncing is forced
+>   */
+>  struct io_tlb_mem {
+>  	phys_addr_t start;
+> @@ -94,6 +95,7 @@ struct io_tlb_mem {
+>  	spinlock_t lock;
+>  	struct dentry *debugfs;
+>  	bool late_alloc;
+> +	bool force_bounce;
+>  	struct io_tlb_slot {
+>  		phys_addr_t orig_addr;
+>  		size_t alloc_size;
+> @@ -109,6 +111,11 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
+>  	return mem && paddr >= mem->start && paddr < mem->end;
+>  }
+>  
+> +static inline bool is_swiotlb_force_bounce(struct device *dev)
 > +{
-> +	lockdep_assert_held_once(&fpriv->minor->dev->master_mutex);
-> +
-> +	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+> +	return dev->dma_io_tlb_mem->force_bounce;
 > +}
 > +
-> +/**
-> + * drm_is_current_master - checks whether @priv is the current master
-> + * @fpriv: DRM file private
-> + *
-> + * Checks whether @fpriv is current master on its device. This decides whether a
-> + * client is allowed to run DRM_MASTER IOCTLs.
-> + *
-> + * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
-> + * - the current master is assumed to own the non-shareable display hardware.
-> + */
-> +bool drm_is_current_master(struct drm_file *fpriv)
+>  void __init swiotlb_exit(void);
+>  unsigned int swiotlb_max_segment(void);
+>  size_t swiotlb_max_mapping_size(struct device *dev);
+> @@ -120,6 +127,10 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
+>  {
+>  	return false;
+>  }
+> +static inline bool is_swiotlb_force_bounce(struct device *dev)
 > +{
-> +	bool ret;
-> +
-> +	mutex_lock(&fpriv->minor->dev->master_mutex);
-> +	ret = drm_is_current_master_locked(fpriv);
-> +	mutex_unlock(&fpriv->minor->dev->master_mutex);
-> +
-> +	return ret;
+> +	return false;
 > +}
-> +EXPORT_SYMBOL(drm_is_current_master);
+>  static inline void swiotlb_exit(void)
+>  {
+>  }
+> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
+> index 7a88c34d0867..a92465b4eb12 100644
+> --- a/kernel/dma/direct.c
+> +++ b/kernel/dma/direct.c
+> @@ -496,7 +496,7 @@ size_t dma_direct_max_mapping_size(struct device *dev)
+>  {
+>  	/* If SWIOTLB is active, use its maximum mapping size */
+>  	if (is_swiotlb_active(dev) &&
+> -	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
+> +	    (dma_addressing_limited(dev) || is_swiotlb_force_bounce(dev)))
+>  		return swiotlb_max_mapping_size(dev);
+>  	return SIZE_MAX;
+>  }
+> diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
+> index 13e9e7158d94..4632b0f4f72e 100644
+> --- a/kernel/dma/direct.h
+> +++ b/kernel/dma/direct.h
+> @@ -87,7 +87,7 @@ static inline dma_addr_t dma_direct_map_page(struct device *dev,
+>  	phys_addr_t phys = page_to_phys(page) + offset;
+>  	dma_addr_t dma_addr = phys_to_dma(dev, phys);
+>  
+> -	if (unlikely(swiotlb_force == SWIOTLB_FORCE))
+> +	if (is_swiotlb_force_bounce(dev))
+>  		return swiotlb_map(dev, phys, size, dir, attrs);
+>  
+>  	if (unlikely(!dma_capable(dev, dma_addr, size, true))) {
+> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+> index 8a120f42340b..0d294bbf274c 100644
+> --- a/kernel/dma/swiotlb.c
+> +++ b/kernel/dma/swiotlb.c
+> @@ -179,6 +179,10 @@ static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
+>  	mem->end = mem->start + bytes;
+>  	mem->index = 0;
+>  	mem->late_alloc = late_alloc;
 > +
->   int drm_getmagic(struct drm_device *dev, void *data, struct drm_file *file_priv)
->   {
->   	struct drm_auth *auth = data;
-> @@ -223,7 +252,7 @@ int drm_setmaster_ioctl(struct drm_device *dev, void *data,
->   	if (ret)
->   		goto out_unlock;
->   
-> -	if (drm_is_current_master(file_priv))
-> +	if (drm_is_current_master_locked(file_priv))
->   		goto out_unlock;
->   
->   	if (dev->master) {
-> @@ -272,7 +301,7 @@ int drm_dropmaster_ioctl(struct drm_device *dev, void *data,
->   	if (ret)
->   		goto out_unlock;
->   
-> -	if (!drm_is_current_master(file_priv)) {
-> +	if (!drm_is_current_master_locked(file_priv)) {
->   		ret = -EINVAL;
->   		goto out_unlock;
->   	}
-> @@ -321,7 +350,7 @@ void drm_master_release(struct drm_file *file_priv)
->   	if (file_priv->magic)
->   		idr_remove(&file_priv->master->magic_map, file_priv->magic);
->   
-> -	if (!drm_is_current_master(file_priv))
-> +	if (!drm_is_current_master_locked(file_priv))
->   		goto out;
->   
->   	drm_legacy_lock_master_cleanup(dev, master);
-> @@ -342,22 +371,6 @@ void drm_master_release(struct drm_file *file_priv)
->   	mutex_unlock(&dev->master_mutex);
->   }
->   
-> -/**
-> - * drm_is_current_master - checks whether @priv is the current master
-> - * @fpriv: DRM file private
-> - *
-> - * Checks whether @fpriv is current master on its device. This decides whether a
-> - * client is allowed to run DRM_MASTER IOCTLs.
-> - *
-> - * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
-> - * - the current master is assumed to own the non-shareable display hardware.
-> - */
-> -bool drm_is_current_master(struct drm_file *fpriv)
-> -{
-> -	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
-> -}
-> -EXPORT_SYMBOL(drm_is_current_master);
-> -
->   /**
->    * drm_master_get - reference a master pointer
->    * @master: &struct drm_master
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index da39e7ff6965..a5f63bad3893 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -2414,6 +2414,7 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
->   	struct drm_mode_modeinfo u_mode;
->   	struct drm_mode_modeinfo __user *mode_ptr;
->   	uint32_t __user *encoder_ptr;
-> +	bool is_current_master;
->   
->   	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->   		return -EOPNOTSUPP;
-> @@ -2444,9 +2445,11 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
->   	out_resp->connector_type = connector->connector_type;
->   	out_resp->connector_type_id = connector->connector_type_id;
->   
-> +	is_current_master = drm_is_current_master(file_priv)
+> +	if (swiotlb_force == SWIOTLB_FORCE)
+> +		mem->force_bounce = true;
 > +
->   	mutex_lock(&dev->mode_config.mutex);
->   	if (out_resp->count_modes == 0) {
-> -		if (drm_is_current_master(file_priv))
-> +		if (is_current_master)
->   			connector->funcs->fill_modes(connector,
->   						     dev->mode_config.max_width,
->   						     dev->mode_config.max_height);
+>  	spin_lock_init(&mem->lock);
+>  	for (i = 0; i < mem->nslabs; i++) {
+>  		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
 > 
-
-Hi Daniel,
-
-My bad, I just realized that this patch won't apply to stable because of 
-the changes to drm_connector.c.
-
-Will the intel-gfx CI apply the patches in order if I break up this 
-patch and move the changes to drm_connector.c earlier in the series?
-
-Best wishes,
-Desmond
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
