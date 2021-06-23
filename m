@@ -2,39 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AC513B59DF
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 09:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB763B5B50
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:31:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1DDA89DA4;
-	Mon, 28 Jun 2021 07:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF80C6E3D3;
+	Mon, 28 Jun 2021 09:31:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 441B489D8D;
- Mon, 28 Jun 2021 07:41:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10028"; a="188284711"
-X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="188284711"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2021 00:41:40 -0700
-X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="454423265"
-Received: from danielmi-mobl2.ger.corp.intel.com (HELO [10.249.254.242])
- ([10.249.254.242])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2021 00:41:39 -0700
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210625122751.590289-1-matthew.auld@intel.com>
- <20210625122751.590289-2-matthew.auld@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <b6ee3701-2662-315c-3c2a-c4d92623fbbc@linux.intel.com>
-Date: Mon, 28 Jun 2021 09:41:36 +0200
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED4AB6E8BD;
+ Wed, 23 Jun 2021 12:02:59 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id g24so1373587pji.4;
+ Wed, 23 Jun 2021 05:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=fQH2VhS640xPyWRrnlWS1Vp5yXvD7bzUh0HWl4/D5zI=;
+ b=UKn6D4Q/W/Mprkh286udm+ozfSvf5BA1+yxQJZ59a7UPhsLzTqYat4/bD0m6p7tTxf
+ i+yCwBqXirczXYTI/tGkgpE2+RWzlqZAEiOQO8KL9gOQfSmNkNsj/1aXPVVMILi5EKMo
+ 5pC8+p8RC9abtX6C7icd0HgyQMxQQx64DzD1sFgWEFArla1nV5+9fTnywo+fg4Rc+/n+
+ 7lOIqmSGkvYBtaw16Bxuj9nRKKE+K67QRtvB92RSWVPf1QvNHdW19VYD3INO+mHa51By
+ bNh4d0PkoKI5avZX5gSJ2ieaZlsmbTdMBwTtI21f9DSM07KoBM76Zc9pOv4Enynx47Gz
+ Gt/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=fQH2VhS640xPyWRrnlWS1Vp5yXvD7bzUh0HWl4/D5zI=;
+ b=Zl7MW+odivlsl3AtgB31chidG9zP3LWKR7p5b5sF8xPUs30x3soDzS+3as8jgTS7MC
+ Hh0Yxtsn9CL0YSR6Fc2tKtH9aHp+cEEZWex7NCrkYlNkaOXE4wxtbnwjfD+VL40q+6A9
+ xDET5z0BBdAT+VOIyFXAfi2OhjyTixku/7InvOMxUF3uFrLO/OU1htnwigtUaJVysu+e
+ loqYY5CiGzhrfcXBZNejR9KTpLouPe+IBDfqUEjQ9EXn7TqIL5GtFgGTKe3QmCe9oz9Q
+ /86uWa3kRiQFTsQV6/KYubiXMRRtRTmT+T7vlEAU+zhrv5ku6KXBioIbBbHGwk5RBaeC
+ Xs5A==
+X-Gm-Message-State: AOAM532fiqMLzcEGqW/0S2NLhytcz6HctGJBRqOveoxib57uM17cIceb
+ ac+Nb8pNWRL1j6LPNCcZXnY=
+X-Google-Smtp-Source: ABdhPJweV71CyzVQrkFMii0jIjJyGhbPAtS7xI4iS8ZHu2pKazRE/PXu/MEWuJx9NkAEelJ1t7A5pw==
+X-Received: by 2002:a17:902:7103:b029:124:72fd:fbd1 with SMTP id
+ a3-20020a1709027103b029012472fdfbd1mr15263564pll.64.1624449779375; 
+ Wed, 23 Jun 2021 05:02:59 -0700 (PDT)
+Received: from [192.168.1.237] ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id b6sm22785525pgw.67.2021.06.23.05.02.54
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 23 Jun 2021 05:02:58 -0700 (PDT)
+To: daniel@ffwll.ch
+References: <20210623113740.6260-1-desmondcheongzx@gmail.com>
+ <20210623113740.6260-2-desmondcheongzx@gmail.com>
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Message-ID: <322b9a09-7375-a41a-abf6-4fc1108f8926@gmail.com>
+Date: Wed, 23 Jun 2021 20:02:53 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210625122751.590289-2-matthew.auld@intel.com>
+In-Reply-To: <20210623113740.6260-2-desmondcheongzx@gmail.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/gem: only allow WB for smem
- only placements
+X-Mailman-Approved-At: Mon, 28 Jun 2021 09:31:03 +0000
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm: add a locked version of
+ drm_is_current_master
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,66 +73,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, airlied@linux.ie,
+ gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org, mripard@kernel.org,
+ tzimmermann@suse.de, skhan@linuxfoundation.org,
+ linux-kernel-mentees@lists.linuxfoundation.org, christian.koenig@amd.com,
+ linux-media@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDYvMjUvMjEgMjoyNyBQTSwgTWF0dGhldyBBdWxkIHdyb3RlOgo+IFdlIG9ubHkgc3VwcG9y
-dCBzaW5nbGUgbW9kZSBhbmQgdGhpcyBzaG91bGQgYmUgaW1tdXRhYmxlLiBGb3Igc21lbSBvbmx5
-Cj4gcGxhY2VtZW50cyBvbiBER0ZYIHRoaXMgc2hvdWxkIGJlIFdCLiBPbiBERzEgZXZlcnl0aGlu
-ZyBpcyBzbm9vcGVkLAo+IGFsd2F5cywgYW5kIHNvIHNob3VsZCBiZSBjb2hlcmVudC4KPgo+IEk5
-MTVfR0VNX0RPTUFJTl9HVFQgbG9va3MgbGlrZSBpdCdzIGZvciB0aGUgYXBlcnR1cmUgd2hpY2gg
-aXMgbm93IGdvbmUKPiBmb3IgREdGWCwgc28gaG9wZWZ1bGx5IGNhbiBhbHNvIGJlIHNhZmVseSBy
-ZWplY3RlZC4KPgo+IFNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGlu
-dGVsLmNvbT4KPiBDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXgu
-aW50ZWwuY29tPgo+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGlu
-dXguaW50ZWwuY29tPgo+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNo
-Pgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jIHwg
-IDcgKysrKysrKwo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYyAg
-IHwgMTAgKysrKysrKysrKwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspCj4K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jCj4gaW5kZXggZDBj
-OTE2OTdiYjIyLi5lMzQ1OWE1MjRlNjQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX2RvbWFpbi5jCj4gQEAgLTU3Nyw2ICs1NzcsMTMgQEAgaTkxNV9nZW1fc2V0X2Rv
-bWFpbl9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAo+ICAgCQlnb3Rv
-IG91dF91bnBpbjsKPiAgIAl9Cj4gICAKPiArCWlmIChJU19ER0ZYKHRvX2k5MTUob2JqLT5iYXNl
-LmRldikpICYmIG9iai0+bW0ubl9wbGFjZW1lbnRzID09IDEgJiYKPiArCSAgICBpOTE1X2dlbV9v
-YmplY3RfcGxhY2VtZW50c19jb250YWluX3R5cGUob2JqLCBJTlRFTF9NRU1PUllfU1lTVEVNKSAm
-Jgo+ICsJICAgIHJlYWRfZG9tYWlucyAhPSBJOTE1X0dFTV9ET01BSU5fQ1BVKSB7Cj4gKwkJZXJy
-ID0gLUVJTlZBTDsKPiArCQlnb3RvIG91dF91bnBpbjsKPiArCX0KPiArCj4gICAJaWYgKHJlYWRf
-ZG9tYWlucyAmIEk5MTVfR0VNX0RPTUFJTl9XQykKPiAgIAkJZXJyID0gaTkxNV9nZW1fb2JqZWN0
-X3NldF90b193Y19kb21haW4ob2JqLCB3cml0ZV9kb21haW4pOwo+ICAgCWVsc2UgaWYgKHJlYWRf
-ZG9tYWlucyAmIEk5MTVfR0VNX0RPTUFJTl9HVFQpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fbW1hbi5jCj4gaW5kZXggZjM1ODZiMzZkZDUzLi5hZmM5ZjNkYzM4YjkgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYwo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMKPiBAQCAtNjczLDYgKzY3
-Myw3IEBAIF9fYXNzaWduX21tYXBfb2Zmc2V0KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpv
-YmosCj4gICAJCSAgICAgZW51bSBpOTE1X21tYXBfdHlwZSBtbWFwX3R5cGUsCj4gICAJCSAgICAg
-dTY0ICpvZmZzZXQsIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKPiAgIHsKPiArCXN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICppOTE1ID0gdG9faTkxNShvYmotPmJhc2UuZGV2KTsKPiAgIAlzdHJ1Y3Qg
-aTkxNV9tbWFwX29mZnNldCAqbW1vOwo+ICAgCj4gICAJaWYgKGk5MTVfZ2VtX29iamVjdF9uZXZl
-cl9tbWFwKG9iaikpCj4gQEAgLTY5Nyw2ICs2OTgsMTUgQEAgX19hc3NpZ25fbW1hcF9vZmZzZXQo
-c3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPiAgIAkgICAgaTkxNV9nZW1fb2JqZWN0
-X3BsYWNlbWVudHNfY29udGFpbl90eXBlKG9iaiwgSU5URUxfTUVNT1JZX0xPQ0FMKSkKPiAgIAkJ
-cmV0dXJuIC1FTk9ERVY7Cj4gICAKPiArCS8qCj4gKwkgKiBGb3Igc21lbSBvbmx5IHBsYWNlbWVu
-dHMgb24gREdGWCB3ZSBuZWVkIHRvIGRlZmF1bHQgdG8gV0IuIE9uIERHMQo+ICsJICogZXZlcnl0
-aGluZyBpcyBzbm9vcGVkIGFsd2F5cywgc28gc2hvdWxkIGFsd2F5cyBiZSBjb2hlcmVudC4KPiAr
-CSAqLwo+ICsJIGlmIChJU19ER0ZYKGk5MTUpICYmCj4gKwkgICAgIG1tYXBfdHlwZSAhPSBJOTE1
-X01NQVBfVFlQRV9XQiAmJiBvYmotPm1tLm5fcGxhY2VtZW50cyA9PSAxICYmCj4gKwkgICAgIGk5
-MTVfZ2VtX29iamVjdF9wbGFjZW1lbnRzX2NvbnRhaW5fdHlwZShvYmosIElOVEVMX01FTU9SWV9T
-WVNURU0pKQo+ICsJCXJldHVybiAtRU5PREVWOwo+ICsKClNhbWUgdGhpbmcgaGVyZSBhcyBpbiB0
-aGUgcHJldmlvdXMgcGF0Y2guCgpBbHNvIGRvIHdlIG5lZWQgdG8gbW9kaWZ5IGk5MTVfY29oZXJl
-bnRfbWFwX3R5cGUoKSB0byBhbHNvIGluY2x1ZGUgCkhBU19TTk9PUCgpPwoKV2hpbGUgd2UncmUg
-YXQgaXQsIHRoYXQgImFsd2F5c19jb2hlcmVudCIgYXJndW1lbnQgdG8gCmk5MTVfY29oZXJlbnRf
-bWFwX3R5cGUoKSBhcHBlYXJzIHNjYXJ5IHRvIG1lIGFuZCBwcm9iYWJseSBuZWVkcyBzb21lIApk
-b2N1bWVudGF0aW9uLiBJdCBzZWVtcyB1c2VkIGZvciBwYWdlLXRhYmxlcy4gSXMgaXQgYmVjYXVz
-ZSB3ZSBrbm93IAp0aG9zZSBhcmUgYWx3YXlzIHNub29wZWQ/CgovVGhvbWFzCgoKPiAgIAltbW8g
-PSBtbWFwX29mZnNldF9hdHRhY2gob2JqLCBtbWFwX3R5cGUsIGZpbGUpOwo+ICAgCWlmIChJU19F
-UlIobW1vKSkKPiAgIAkJcmV0dXJuIFBUUl9FUlIobW1vKTsKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 23/6/21 7:37 pm, Desmond Cheong Zhi Xi wrote:
+> While checking the master status of the DRM file in
+> drm_is_current_master(), the device's master mutex should be
+> held. Without the mutex, the pointer fpriv->master may be freed
+> concurrently by another process calling drm_setmaster_ioctl(). This
+> could lead to use-after-free errors when the pointer is subsequently
+> dereferenced in drm_lease_owner().
+> 
+> The callers of drm_is_current_master() from drm_auth.c hold the
+> device's master mutex, but external callers do not. Hence, we implement
+> drm_is_current_master_locked() to be used within drm_auth.c, and
+> modify drm_is_current_master() to grab the device's master mutex
+> before checking the master status.
+> 
+> Additionally, to avoid a circular lock dependency by introducing
+> drm_device.master_mutex into drm_is_current_master(), we move the call
+> to drm_is_current_master() in drm_mode_getconnector out from the
+> section locked by &dev->mode_config.mutex.
+> 
+> Failing to avoid this lock dependency produces the following lockdep
+> splat:
+> 
+> ======================================================
+> WARNING: possible circular locking dependency detected
+> 5.13.0-rc7-CI-CI_DRM_10254+ #1 Not tainted
+> ------------------------------------------------------
+> kms_frontbuffer/1087 is trying to acquire lock:
+> ffff88810dcd01a8 (&dev->master_mutex){+.+.}-{3:3}, at: drm_is_current_master+0x1b/0x40
+> but task is already holding lock:
+> ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
+> which lock already depends on the new lock.
+> the existing dependency chain (in reverse order) is:
+> -> #2 (&dev->mode_config.mutex){+.+.}-{3:3}:
+>         __mutex_lock+0xab/0x970
+>         drm_client_modeset_probe+0x22e/0xca0
+>         __drm_fb_helper_initial_config_and_unlock+0x42/0x540
+>         intel_fbdev_initial_config+0xf/0x20 [i915]
+>         async_run_entry_fn+0x28/0x130
+>         process_one_work+0x26d/0x5c0
+>         worker_thread+0x37/0x380
+>         kthread+0x144/0x170
+>         ret_from_fork+0x1f/0x30
+> -> #1 (&client->modeset_mutex){+.+.}-{3:3}:
+>         __mutex_lock+0xab/0x970
+>         drm_client_modeset_commit_locked+0x1c/0x180
+>         drm_client_modeset_commit+0x1c/0x40
+>         __drm_fb_helper_restore_fbdev_mode_unlocked+0x88/0xb0
+>         drm_fb_helper_set_par+0x34/0x40
+>         intel_fbdev_set_par+0x11/0x40 [i915]
+>         fbcon_init+0x270/0x4f0
+>         visual_init+0xc6/0x130
+>         do_bind_con_driver+0x1e5/0x2d0
+>         do_take_over_console+0x10e/0x180
+>         do_fbcon_takeover+0x53/0xb0
+>         register_framebuffer+0x22d/0x310
+>         __drm_fb_helper_initial_config_and_unlock+0x36c/0x540
+>         intel_fbdev_initial_config+0xf/0x20 [i915]
+>         async_run_entry_fn+0x28/0x130
+>         process_one_work+0x26d/0x5c0
+>         worker_thread+0x37/0x380
+>         kthread+0x144/0x170
+>         ret_from_fork+0x1f/0x30
+> -> #0 (&dev->master_mutex){+.+.}-{3:3}:
+>         __lock_acquire+0x151e/0x2590
+>         lock_acquire+0xd1/0x3d0
+>         __mutex_lock+0xab/0x970
+>         drm_is_current_master+0x1b/0x40
+>         drm_mode_getconnector+0x37e/0x4a0
+>         drm_ioctl_kernel+0xa8/0xf0
+>         drm_ioctl+0x1e8/0x390
+>         __x64_sys_ioctl+0x6a/0xa0
+>         do_syscall_64+0x39/0xb0
+>         entry_SYSCALL_64_after_hwframe+0x44/0xae
+> other info that might help us debug this:
+> Chain exists of: &dev->master_mutex --> &client->modeset_mutex --> &dev->mode_config.mutex
+>   Possible unsafe locking scenario:
+>         CPU0                    CPU1
+>         ----                    ----
+>    lock(&dev->mode_config.mutex);
+>                                 lock(&client->modeset_mutex);
+>                                 lock(&dev->mode_config.mutex);
+>    lock(&dev->master_mutex);
+> *** DEADLOCK ***
+> 1 lock held by kms_frontbuffer/1087:
+>   #0: ffff88810dcd0488 (&dev->mode_config.mutex){+.+.}-{3:3}, at: drm_mode_getconnector+0x1c6/0x4a0
+> stack backtrace:
+> CPU: 7 PID: 1087 Comm: kms_frontbuffer Not tainted 5.13.0-rc7-CI-CI_DRM_10254+ #1
+> Hardware name: Intel Corporation Ice Lake Client Platform/IceLake U DDR4 SODIMM PD RVP TLC, BIOS ICLSFWR1.R00.3234.A01.1906141750 06/14/2019
+> Call Trace:
+>   dump_stack+0x7f/0xad
+>   check_noncircular+0x12e/0x150
+>   __lock_acquire+0x151e/0x2590
+>   lock_acquire+0xd1/0x3d0
+>   __mutex_lock+0xab/0x970
+>   drm_is_current_master+0x1b/0x40
+>   drm_mode_getconnector+0x37e/0x4a0
+>   drm_ioctl_kernel+0xa8/0xf0
+>   drm_ioctl+0x1e8/0x390
+>   __x64_sys_ioctl+0x6a/0xa0
+>   do_syscall_64+0x39/0xb0
+>   entry_SYSCALL_64_after_hwframe+0x44/0xae
+> 
+> Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> ---
+>   drivers/gpu/drm/drm_auth.c      | 51 +++++++++++++++++++++------------
+>   drivers/gpu/drm/drm_connector.c |  5 +++-
+>   2 files changed, 36 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+> index f00e5abdbbf4..ab1863c5a5a0 100644
+> --- a/drivers/gpu/drm/drm_auth.c
+> +++ b/drivers/gpu/drm/drm_auth.c
+> @@ -61,6 +61,35 @@
+>    * trusted clients.
+>    */
+>   
+> +static bool drm_is_current_master_locked(struct drm_file *fpriv)
+> +{
+> +	lockdep_assert_held_once(&fpriv->minor->dev->master_mutex);
+> +
+> +	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+> +}
+> +
+> +/**
+> + * drm_is_current_master - checks whether @priv is the current master
+> + * @fpriv: DRM file private
+> + *
+> + * Checks whether @fpriv is current master on its device. This decides whether a
+> + * client is allowed to run DRM_MASTER IOCTLs.
+> + *
+> + * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
+> + * - the current master is assumed to own the non-shareable display hardware.
+> + */
+> +bool drm_is_current_master(struct drm_file *fpriv)
+> +{
+> +	bool ret;
+> +
+> +	mutex_lock(&fpriv->minor->dev->master_mutex);
+> +	ret = drm_is_current_master_locked(fpriv);
+> +	mutex_unlock(&fpriv->minor->dev->master_mutex);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_is_current_master);
+> +
+>   int drm_getmagic(struct drm_device *dev, void *data, struct drm_file *file_priv)
+>   {
+>   	struct drm_auth *auth = data;
+> @@ -223,7 +252,7 @@ int drm_setmaster_ioctl(struct drm_device *dev, void *data,
+>   	if (ret)
+>   		goto out_unlock;
+>   
+> -	if (drm_is_current_master(file_priv))
+> +	if (drm_is_current_master_locked(file_priv))
+>   		goto out_unlock;
+>   
+>   	if (dev->master) {
+> @@ -272,7 +301,7 @@ int drm_dropmaster_ioctl(struct drm_device *dev, void *data,
+>   	if (ret)
+>   		goto out_unlock;
+>   
+> -	if (!drm_is_current_master(file_priv)) {
+> +	if (!drm_is_current_master_locked(file_priv)) {
+>   		ret = -EINVAL;
+>   		goto out_unlock;
+>   	}
+> @@ -321,7 +350,7 @@ void drm_master_release(struct drm_file *file_priv)
+>   	if (file_priv->magic)
+>   		idr_remove(&file_priv->master->magic_map, file_priv->magic);
+>   
+> -	if (!drm_is_current_master(file_priv))
+> +	if (!drm_is_current_master_locked(file_priv))
+>   		goto out;
+>   
+>   	drm_legacy_lock_master_cleanup(dev, master);
+> @@ -342,22 +371,6 @@ void drm_master_release(struct drm_file *file_priv)
+>   	mutex_unlock(&dev->master_mutex);
+>   }
+>   
+> -/**
+> - * drm_is_current_master - checks whether @priv is the current master
+> - * @fpriv: DRM file private
+> - *
+> - * Checks whether @fpriv is current master on its device. This decides whether a
+> - * client is allowed to run DRM_MASTER IOCTLs.
+> - *
+> - * Most of the modern IOCTL which require DRM_MASTER are for kernel modesetting
+> - * - the current master is assumed to own the non-shareable display hardware.
+> - */
+> -bool drm_is_current_master(struct drm_file *fpriv)
+> -{
+> -	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+> -}
+> -EXPORT_SYMBOL(drm_is_current_master);
+> -
+>   /**
+>    * drm_master_get - reference a master pointer
+>    * @master: &struct drm_master
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index da39e7ff6965..a5f63bad3893 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -2414,6 +2414,7 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
+>   	struct drm_mode_modeinfo u_mode;
+>   	struct drm_mode_modeinfo __user *mode_ptr;
+>   	uint32_t __user *encoder_ptr;
+> +	bool is_current_master;
+>   
+>   	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+>   		return -EOPNOTSUPP;
+> @@ -2444,9 +2445,11 @@ int drm_mode_getconnector(struct drm_device *dev, void *data,
+>   	out_resp->connector_type = connector->connector_type;
+>   	out_resp->connector_type_id = connector->connector_type_id;
+>   
+> +	is_current_master = drm_is_current_master(file_priv)
+> +
+>   	mutex_lock(&dev->mode_config.mutex);
+>   	if (out_resp->count_modes == 0) {
+> -		if (drm_is_current_master(file_priv))
+> +		if (is_current_master)
+>   			connector->funcs->fill_modes(connector,
+>   						     dev->mode_config.max_width,
+>   						     dev->mode_config.max_height);
+> 
+
+Hi Daniel,
+
+My bad, I just realized that this patch won't apply to stable because of 
+the changes to drm_connector.c.
+
+Will the intel-gfx CI apply the patches in order if I break up this 
+patch and move the changes to drm_connector.c earlier in the series?
+
+Best wishes,
+Desmond
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
