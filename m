@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B577D3B1D8D
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:22:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93C153B1D95
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:24:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C298B6E92E;
-	Wed, 23 Jun 2021 15:22:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00AE26E935;
+	Wed, 23 Jun 2021 15:24:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C0466E92E;
- Wed, 23 Jun 2021 15:22:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 93184AA0EB;
- Wed, 23 Jun 2021 15:22:50 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8A946E935
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 15:24:25 +0000 (UTC)
+IronPort-SDR: KNWRI332NYglKMRgGFtYT2xFZP0UZsjdM4OUyzURDzP1nOpoSLPfRy/JFM3CTWP2lQUccw4oiX
+ sKzTtqlHisTA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="228858527"
+X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="228858527"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2021 08:24:25 -0700
+IronPort-SDR: CZ5FdbsV0+zaBEqcylGRcBrf9JMMhF/bqxD2C/n6WcHkkKC5A0XG0p+mVkH592G/wWhiaxu/oE
+ HIVBBQA6Bohg==
+X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="639487030"
+Received: from bkuncer-mobl1.ger.corp.intel.com (HELO [10.249.254.243])
+ ([10.249.254.243])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2021 08:24:24 -0700
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210623143411.293630-1-matthew.auld@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <462c50ef-71fb-81fb-8358-d3c79deb493f@linux.intel.com>
+Date: Wed, 23 Jun 2021 17:24:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 23 Jun 2021 15:22:50 -0000
-Message-ID: <162446177057.30471.3810669538467653985@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210623140410.15869-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210623140410.15869-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_Move_system_memory_to_TTM_for_discrete_=28rev9=29?=
+In-Reply-To: <20210623143411.293630-1-matthew.auld@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ttm: fix static warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,29 +49,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Move system memory to TTM for discrete (rev9)
-URL   : https://patchwork.freedesktop.org/series/90898/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/gem/i915_gem_ttm.c:809:38: warning: symbol 'i915_gem_ttm_obj_ops' was not declared. Should it be static?
--O:drivers/gpu/drm/i915/gem/i915_gem_ttm.c:733:38: warning: symbol 'i915_gem_ttm_obj_ops' was not declared. Should it be static?
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDYvMjMvMjEgNDozNCBQTSwgTWF0dGhldyBBdWxkIHdyb3RlOgo+IHdhcm5pbmc6IHN5bWJv
+bCAnaTkxNV9nZW1fdHRtX29ial9vcHMnIHdhcyBub3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBz
+dGF0aWM/Cj4KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRl
+bC5jb20+Cj4gQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4Lmlu
+dGVsLmNvbT4KPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0u
+YyB8IDIgKy0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigt
+KQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0u
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYwo+IGluZGV4IGM1ZGVi
+OGI3MjI3Yy4uY2Y1NTQwYzE1MzdiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV90dG0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
+X2dlbV90dG0uYwo+IEBAIC03MzAsNyArNzMwLDcgQEAgc3RhdGljIHU2NCBpOTE1X3R0bV9tbWFw
+X29mZnNldChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ICAgCXJldHVybiBkcm1f
+dm1hX25vZGVfb2Zmc2V0X2FkZHIoJm9iai0+YmFzZS52bWFfbm9kZSk7Cj4gICB9Cj4gICAKPiAt
+Y29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Rfb3BzIGk5MTVfZ2VtX3R0bV9vYmpfb3Bz
+ID0gewo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Rfb3BzIGk5MTVf
+Z2VtX3R0bV9vYmpfb3BzID0gewo+ICAgCS5uYW1lID0gImk5MTVfZ2VtX29iamVjdF90dG0iLAo+
+ICAgCS5mbGFncyA9IEk5MTVfR0VNX09CSkVDVF9IQVNfSU9NRU0sCj4gICAKClJldmlld2VkLWJ5
+OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
