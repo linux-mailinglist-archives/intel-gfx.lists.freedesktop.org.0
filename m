@@ -1,42 +1,113 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F2883B17F6
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 12:16:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BE83B17F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 12:16:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 985C36E8AB;
-	Wed, 23 Jun 2021 10:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311106E8A5;
+	Wed, 23 Jun 2021 10:16:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34A6D6E0D7;
- Tue, 22 Jun 2021 21:03:01 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B82596108E;
- Tue, 22 Jun 2021 21:02:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1624395780;
- bh=v96U5qnlOhDf3w1FKsu7SjrxREMp2X2HSv3JOsCkgmU=;
- h=Date:From:To:cc:Subject:In-Reply-To:References:From;
- b=jp86WFjWXckU//EExyz6NMfilYlNSGD/Sp+e74iycIMnJPnrnvb2f/IMZhcf30u/Y
- nZN/eIYPHlNFb7aaAK4BGrzQ8h60A0DeuaUctP8s9mDpf/LCXTiw3xhjYNzVwnhtzX
- TCr/gTHfn3WY41P/JfXANtN8uFlsPQPDxHmgwY0xOxtbMzYm2w8bezm6pQenS5mO9T
- QACOuqiKoEaVeTvNfrREoxgLiMZfrcQDhTBPBD0g1ngPW8KyWNjA64wNxxoLTDCtna
- okD7zfnO67pIIlP+aLcNDcQOeKWv20TpkQkk9C2UIZdw5p+0AdNoxQDYVfglebC4DR
- 9wbHzTawfV26w==
-Date: Tue, 22 Jun 2021 14:02:58 -0700 (PDT)
-From: Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
-To: Claire Chang <tientzu@chromium.org>
-In-Reply-To: <20210619034043.199220-2-tientzu@chromium.org>
-Message-ID: <alpine.DEB.2.21.2106221402390.24906@sstabellini-ThinkPad-T480s>
-References: <20210619034043.199220-1-tientzu@chromium.org>
- <20210619034043.199220-2-tientzu@chromium.org>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2069.outbound.protection.outlook.com [40.107.93.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 975456E87F;
+ Wed, 23 Jun 2021 00:05:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B3/KBdJDauQ7dVt5+j3SNsPYpt1TvZFwcKBAe/soen3qdXoWy/gKEc+plQ7pohVAa5gCm47wBBjYygAqdsZfnxN2AOj1etAaTLVtNs6NMm8ZMrkuTf/7Y6H7aDU0yjuUTf8M/c9RcloWuzKJ+Tw5b+wBaemP9QOzXAWV+NwCzIG70rqsy+5zPBQfj/qLJajjjCEw71/XKNdH45M9k/yx1mXdRgNyEuacgwT04rbD3BTtAMiLG0Gr81Uw5TLVXjIwdmUtWh/sNgIb/qZu6SlbNTy9HU4DhTouIRxs4RRB/OkfJCDcpWf+u6OrLGEPUZ7mJFFYa40nOHtCeyVTX8xTPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=00vjd5eelAB3Z7Vn7EjsipaY4AuovUAUgikKTrMKhzM=;
+ b=lXEulpoItrKWYdS/wGXx7cnk4ZQRk7/IPZa/5nSNzSn7NE8130514GFVTO5+8VxU5/GmbWltpSaZabrvjNI9GLr9T9PLkuy/VQ2qUS/sTVCv1qraFglMNj+g99jf2mOsMpjMVAT8tTv5BIt631uU2pRFwVsPgXaEBKrwZak4D7TesDuA2kykh0l5XERVXV7gGIMMGgfFCfcBdze20bxlO40gRZQaeRIZPgHppQo6l/gVzcEuhEFq+npBNw7F6nVUtbZ0UhoDnWOqO9KtyH5wU0tqaP9jYdEegO4Jy7c+6DPcuDIlg5rpQCTdcfxyOcrkKLyzOCctZYbrl+k4mndrfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=00vjd5eelAB3Z7Vn7EjsipaY4AuovUAUgikKTrMKhzM=;
+ b=jsNY7CzXfOG07PJuCaZasImaDQMH7rmjvakSFgWf74FikzwL0O4Z/4kTOl51yVpToh2ovtBVBKEhP76CCLM2PPQOgY9/REnC1keEUJRr9isqXr0oxuhwmV2GKH+W3y2gPwL+5hLm2zzBY8c/iMU404D8HvPi2IGrd+uW9f15iWcgAVDWB6KbFBlfXwj7XsIoDRolCbZIG3Sg9UQEGL1S86ofAGbKvvLH9tH5qDqSbaaYMk7SxUEprv20648i1rzZHv7Fafs5tWIcFqiRcr8olmMV8YxTDyzYw+N6iWCwjMY3uOy1Tlm5YfOhEavViog33blxHaIwweMoknNHZI0g0A==
+Authentication-Results: lst.de; dkim=none (message not signed)
+ header.d=none;lst.de; dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
+ by BL1PR12MB5206.namprd12.prod.outlook.com (2603:10b6:208:31c::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.18; Wed, 23 Jun
+ 2021 00:05:51 +0000
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::3d51:a3b9:8611:684e]) by BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::3d51:a3b9:8611:684e%8]) with mapi id 15.20.4264.018; Wed, 23 Jun 2021
+ 00:05:51 +0000
+Date: Tue, 22 Jun 2021 21:05:50 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20210623000550.GI2371267@nvidia.com>
+References: <20210617142218.1877096-1-hch@lst.de>
+Content-Disposition: inline
+In-Reply-To: <20210617142218.1877096-1-hch@lst.de>
+X-Originating-IP: [47.55.113.94]
+X-ClientProxiedBy: BL0PR02CA0048.namprd02.prod.outlook.com
+ (2603:10b6:207:3d::25) To BL0PR12MB5506.namprd12.prod.outlook.com
+ (2603:10b6:208:1cb::22)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mlx.ziepe.ca (47.55.113.94) by
+ BL0PR02CA0048.namprd02.prod.outlook.com (2603:10b6:207:3d::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4242.21 via Frontend Transport; Wed, 23 Jun 2021 00:05:51 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1lvqOs-00BGsO-Ht; Tue, 22 Jun 2021 21:05:50 -0300
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: db3435c1-3125-49fe-86d3-08d935daa988
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5206:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5206A1FB5B9C0F2BD51DB5EBC2089@BL1PR12MB5206.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FMI2kWyz/BN5MjZjGURmfvJglsflb5Bhsj7jW8FZNjXnC0fY8oppCwp3C3+R2Wxn5v1CFgn/9au0Pp2vb+mvhDpkG1FM0rIXZRn9XE5+3XYJqdY52a7/UGR5vOMIcGc+SrbraqxX7Zmzbp48AyIJs8oB2G3rprXVBylUUYOuO8MysGSmoslMEmOOFjSoGvgeczOusPcXzEq1IVOEtnCVfDDkz7dmvMul5Q8BQrVGvC1zV1h+PQK9uGMOWvjNM0YGQZY9G6n6egEfLgGnEaox8FERjKnP21YOc/q/St73VJ74nJgE5pQc2GaeokHLKZMMx+TRN0ycsgtwgLOzNQULXhY1xFktQ2BL626JmtrEc/3t+2t/WOgDwyD/nD2004rGZMKaP++tswPMBVMAfGGjlON+CYwX6A75DN72MM3CtiIMDVWXJiiOkz8LRfCajitpp3Of8aal40iCCBxEanHVf63bbHyQmMHsKtKYsora+c4n800HNvuM8iiv8stYDEv82I2riHnCw+vJn7W6CyW1mlNrwhpTGxGsLnLAk/NAT7GOKiIiQT7sT1mS7dO+ZpeUz3xLrZxYSYKTOESYP1MfZKaeevhdMWoQKHHDS9z6/ey1V3wkuEkg8gb/YJbflbqtR5200d7hhzoGKAd/YZMCEqj009Wq/57dnAF1RmX8drftCak4uhhsQMpn47AbTd2pcbizzWesIFKIkzkd52LP9a53Q5x1Gt3BSKa65FfoWRjn3KaX1sVOFe4gxezeOakmblH7giunK4rmCVfthp6S9Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(136003)(366004)(396003)(346002)(376002)(6916009)(8676002)(36756003)(8936002)(86362001)(9786002)(9746002)(478600001)(316002)(38100700002)(2616005)(426003)(966005)(2906002)(4744005)(66946007)(1076003)(66556008)(66476007)(54906003)(5660300002)(26005)(33656002)(7416002)(186003)(4326008);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?p8OXyhdzcu+DPmcstmmHumq6IL7nNzruzvpzeWheHwnLpZ7hRqia9G41pO3K?=
+ =?us-ascii?Q?4Oe16pCitCvVYdXU40sCtnXAXmM36UX+vrhKNEnOqnqkRyLPeHkw9+KtxuLC?=
+ =?us-ascii?Q?nlDDs1br4BNAx/w1vF4GwAiQQQ0KEMFCpYjjo+Q1I8BPWw6PMYKLOYipoAxt?=
+ =?us-ascii?Q?RDYpT33/IZghZUz+OoR/ljnHXc3mOJruyzn/VI1BNi/FGeoQEaLxlRT7xDCz?=
+ =?us-ascii?Q?2jLUWYZIsYYIsZZCUAyxwQm23jLykuE+jGmePPBFNDEle4XEG/D8lJvz7E53?=
+ =?us-ascii?Q?cZUGFmfzPMGc82aqo1PcuSQ5bGqp0J5hwww9w2HYb+GWitoJWPyOhMGAl9DI?=
+ =?us-ascii?Q?Pjv21fQ+vl5wKfJKveUeeSSfxZui3lYAEHLUURLOazFLjpCtCLug2PYgt5x4?=
+ =?us-ascii?Q?XXtUHDN/azMk38Sx+EPi9RRzInnyfW5cFXb5bLm6e+t7u+RPCca3wvayF24b?=
+ =?us-ascii?Q?mFxUDxK2i8edZXDMXvZRl7VKEBG8saFUQP+LB9T82GqiFqvehf/fh/cRZU4A?=
+ =?us-ascii?Q?QZx0Gj5Fdvap7yakWprOFT/418Xo3su4IGo1Z0ey8JPvYG9w97bg34VUQJTk?=
+ =?us-ascii?Q?nzsJbAvi/1+qyiViwS5oXdQe1h409bzRmL8oEJCd2h/uTS+4jAR9MwuWUZG8?=
+ =?us-ascii?Q?HZsM/m5GSUrJnsVnbgGhl4xXpdXaBvZLRUVeBfP6/RR0hMSnWYEPHROqrGKg?=
+ =?us-ascii?Q?PMpopIlqJbYiLlD8nBVbo5+pviYwMja4uD5eTWKKldUUoYbiY2wtgN0JwRPH?=
+ =?us-ascii?Q?e+Vkmmr/r+CpZ2yUBJoYfeksoiU3s/nnaN7Ul7bWTOcoN4fwxxBysJGvP/7h?=
+ =?us-ascii?Q?qXzG3oD14Ep7BylXWwXPI9tcfPltFKi/awdm4GaKq5U+zyCkmAtT1NOlligE?=
+ =?us-ascii?Q?qJ5SeiJKHK+P5d5YToFZ/GBnQy8uR1YrDUZogwJPjjH+etrXm/g6/NNhkw/3?=
+ =?us-ascii?Q?+ulD5IoYyzted5o8HGKXeHI5XnDj6LaB8unF8hbQ3oAqb/TaM4H1XKTGZM0b?=
+ =?us-ascii?Q?i5WhusVsf9qMLN3IZV2b7ZZlgOz/brC9wk8ZK7NeLdKagSxQSFGufJC21et1?=
+ =?us-ascii?Q?yvukRezvP5xvSQJaF7zVrv0LhiIXehVKiIkv/2eTVaLVLR4doaF0JQH8UQMM?=
+ =?us-ascii?Q?u/rNinWe0wcbq+zo/I3DeBsDpo2GEsmjowQQRatPrpWwtWYkaMHXPp7eUFZL?=
+ =?us-ascii?Q?4RdsyyPQZU+XAvnYctYnZgwxI3ZbmM8OTWJnINTCXz16YgkSwIxEFeMC6psn?=
+ =?us-ascii?Q?Zvj6uxdU3xoZu+ttiCbXhVWl8iz6TXgYYIEvpDHp6JjwFPRQ4jr1814enl1X?=
+ =?us-ascii?Q?DykCWpNBC1R39XWHV7Iwg0Jm?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db3435c1-3125-49fe-86d3-08d935daa988
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2021 00:05:51.5245 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UjBGZjHrBZ+ImINUr7RJ9ye3BtoW5h/xfhAjdOoZ5oMF6HbtDLAt602iD5iIx6JL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5206
 X-Mailman-Approved-At: Wed, 23 Jun 2021 10:16:28 +0000
-Subject: Re: [Intel-gfx] [PATCH v14 01/12] swiotlb: Refactor swiotlb init
- functions
+Subject: Re: [Intel-gfx] Allow mdev drivers to directly create the
+ vfio_device (v4)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,142 +120,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
- mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
- sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
- mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Christoph Hellwig <hch@lst.de>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- jxgao@google.com, Will Deacon <will@kernel.org>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
- Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
- Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
- boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, lkml <linux-kernel@vger.kernel.org>,
- tfiga@chromium.org,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
- thomas.lendacky@amd.com, Robin Murphy <robin.murphy@arm.com>,
- bauerman@linux.ibm.com
+Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Tony Krowiak <akrowiak@linux.ibm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Cornelia Huck <cohuck@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 19 Jun 2021, Claire Chang wrote:
-> Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
-> initialization to make the code reusable.
+On Thu, Jun 17, 2021 at 04:22:08PM +0200, Christoph Hellwig wrote:
+> This is my alternative take on this series from Jason:
 > 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-> Tested-by: Will Deacon <will@kernel.org>
-
-Acked-by: Stefano Stabellini <sstabellini@kernel.org>
-
-
-> ---
->  kernel/dma/swiotlb.c | 50 ++++++++++++++++++++++----------------------
->  1 file changed, 25 insertions(+), 25 deletions(-)
+> https://lore.kernel.org/dri-devel/87czsszi9i.fsf@redhat.com/T/
 > 
-> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-> index 52e2ac526757..1f9b2b9e7490 100644
-> --- a/kernel/dma/swiotlb.c
-> +++ b/kernel/dma/swiotlb.c
-> @@ -168,9 +168,28 @@ void __init swiotlb_update_mem_attributes(void)
->  	memset(vaddr, 0, bytes);
->  }
->  
-> -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
-> +				    unsigned long nslabs, bool late_alloc)
->  {
-> +	void *vaddr = phys_to_virt(start);
->  	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
-> +
-> +	mem->nslabs = nslabs;
-> +	mem->start = start;
-> +	mem->end = mem->start + bytes;
-> +	mem->index = 0;
-> +	mem->late_alloc = late_alloc;
-> +	spin_lock_init(&mem->lock);
-> +	for (i = 0; i < mem->nslabs; i++) {
-> +		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> +		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> +		mem->slots[i].alloc_size = 0;
-> +	}
-> +	memset(vaddr, 0, bytes);
-> +}
-> +
-> +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> +{
->  	struct io_tlb_mem *mem;
->  	size_t alloc_size;
->  
-> @@ -186,16 +205,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
->  	if (!mem)
->  		panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
->  		      __func__, alloc_size, PAGE_SIZE);
-> -	mem->nslabs = nslabs;
-> -	mem->start = __pa(tlb);
-> -	mem->end = mem->start + bytes;
-> -	mem->index = 0;
-> -	spin_lock_init(&mem->lock);
-> -	for (i = 0; i < mem->nslabs; i++) {
-> -		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> -		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> -		mem->slots[i].alloc_size = 0;
-> -	}
-> +
-> +	swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
->  
->  	io_tlb_default_mem = mem;
->  	if (verbose)
-> @@ -282,8 +293,8 @@ swiotlb_late_init_with_default_size(size_t default_size)
->  int
->  swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
->  {
-> -	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
->  	struct io_tlb_mem *mem;
-> +	unsigned long bytes = nslabs << IO_TLB_SHIFT;
->  
->  	if (swiotlb_force == SWIOTLB_NO_FORCE)
->  		return 0;
-> @@ -297,20 +308,9 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
->  	if (!mem)
->  		return -ENOMEM;
->  
-> -	mem->nslabs = nslabs;
-> -	mem->start = virt_to_phys(tlb);
-> -	mem->end = mem->start + bytes;
-> -	mem->index = 0;
-> -	mem->late_alloc = 1;
-> -	spin_lock_init(&mem->lock);
-> -	for (i = 0; i < mem->nslabs; i++) {
-> -		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> -		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> -		mem->slots[i].alloc_size = 0;
-> -	}
-> -
-> +	memset(mem, 0, sizeof(*mem));
->  	set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
-> -	memset(tlb, 0, bytes);
-> +	swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
->  
->  	io_tlb_default_mem = mem;
->  	swiotlb_print_info();
-> -- 
-> 2.32.0.288.g62a8d224e6-goog
-> 
+> The mdev/vfio parts are exactly the same, but this solves the driver core
+> changes for the direct probing without the in/out flag that Greg hated,
+> which cause a little more work, but probably make the result better.
+
+I did some testing and it looks good, thanks
+
+I see Alex has this in hch-mdev-direct-v4 in linux-next now, so
+expecting this to be in the next merge window?
+
+The AP prep patches seemed sorted so I'll resend the AP patch in three
+weeks
+
+Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
