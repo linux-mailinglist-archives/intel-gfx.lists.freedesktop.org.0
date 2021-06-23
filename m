@@ -1,42 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93D523B10AD
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 01:37:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABE63B1151
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 03:21:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 043376E82F;
-	Tue, 22 Jun 2021 23:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC7456E883;
+	Wed, 23 Jun 2021 01:21:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 193D36E82F
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 23:37:27 +0000 (UTC)
-IronPort-SDR: ThDXI+yIEq+FJgJVhByNrCx3zjwgGNsnXHdIb8SYfZjjgFDgZ7S/F7oiqI9RH/w+2MzX+vKnBq
- ZuMPo6Nkpkig==
-X-IronPort-AV: E=McAfee;i="6200,9189,10023"; a="228720231"
-X-IronPort-AV: E=Sophos;i="5.83,292,1616482800"; d="scan'208";a="228720231"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2021 16:37:26 -0700
-IronPort-SDR: NuEjYASw3FcO7ldh1EtLxRXwwYf/99PfASNnPGhqxBDwV2kUqhv1MWDfXTZ7u+iXcYYg2kvNjt
- J7n6/uzFfARQ==
-X-IronPort-AV: E=Sophos;i="5.83,292,1616482800"; d="scan'208";a="490472454"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2021 16:37:26 -0700
-Date: Tue, 22 Jun 2021 16:37:25 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20210622233725.GX951094@mdroper-desk1.amr.corp.intel.com>
-References: <20210622212210.3746133-1-lucas.demarchi@intel.com>
- <20210622232812.GV951094@mdroper-desk1.amr.corp.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 898FE6E84B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 01:21:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1624411280;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=6WZjidwpALD0+6okLjRpzpQCZxBF9g0JCe+CU6OJZxo=;
+ b=cZHnSC89gbIAWWcRT9UJhnH41wDlBldJwiBRVp2bpErPQXDJFv/TzXDuTGgGfI7dD+tilt
+ CehZBb/iOjBosGe6umczxrlVrwVBqftwJUUu4kPMvXT+oiPHaR+Y0Fn6fQfQVdgA2VMvk9
+ 1qRvE084CPFlTxBPiIhF1VdjhhNO8wE=
+Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com
+ [209.85.210.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-387-XbFrfG8pO-aBvolS04C-8g-1; Tue, 22 Jun 2021 21:21:18 -0400
+X-MC-Unique: XbFrfG8pO-aBvolS04C-8g-1
+Received: by mail-ot1-f71.google.com with SMTP id
+ e16-20020a0568302010b02903feaaa5cf10so223078otp.8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Jun 2021 18:21:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:organization:mime-version:content-transfer-encoding;
+ bh=6WZjidwpALD0+6okLjRpzpQCZxBF9g0JCe+CU6OJZxo=;
+ b=dzI8jAxPI36d0MvPAFOBmftxIl0RF/g3IxMtQ6V3vNbmgh0rUmQKf7KZzFkm6T6u3z
+ sJUL5IqS0LB3lFFohTUhkE3369YRUmd3IiNnMQkxijoG6iskeKgrocrklq0FGXy0UJDV
+ nx9a32aXEeAInSn2BeE46y787MFM7Cm8yEgDOy29M3jgC0zL1RI5o8sbQ/YqDzwLLldt
+ fdVoBDTbDOlaLoE5VwdTxnL7XIjvuGJMUTDfEu4nZnuxFEhZ1PiYoSep1K/zK6btF4fu
+ auzeNRW75GY3wvz9eoTrGTzgPggbxSf5dAEWnSmveJrBfB0sFOIjOH8rGZLdpU4Ak3M2
+ Korw==
+X-Gm-Message-State: AOAM5322WEOL/mKkGeFES5wUjf1+sTQazVALVgDoV9zKmko1/MnDLNMq
+ MHjDYgCBdKwfcfJiIuYAiJ2MhIvS6TMnD99dqa4+GdlWDLDAH47FU0AGfh1t4Q1f8nhY/MuZrYU
+ K99fHWdQQ56EbkP3pZKxqpirTRmJb
+X-Received: by 2002:a9d:c04:: with SMTP id 4mr5426565otr.245.1624411278071;
+ Tue, 22 Jun 2021 18:21:18 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxIMydhH4YIk5UlsJLWeyye09J8NdqydLo549hleKoU/i5XuOd4xS2Z30zIrGFONsoACRmAyw==
+X-Received: by 2002:a9d:c04:: with SMTP id 4mr5426545otr.245.1624411277887;
+ Tue, 22 Jun 2021 18:21:17 -0700 (PDT)
+Received: from redhat.com ([198.99.80.109])
+ by smtp.gmail.com with ESMTPSA id q18sm239916otf.72.2021.06.22.18.21.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Jun 2021 18:21:17 -0700 (PDT)
+Date: Tue, 22 Jun 2021 19:21:15 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20210622192115.71e7e333.alex.williamson@redhat.com>
+In-Reply-To: <20210623000550.GI2371267@nvidia.com>
+References: <20210617142218.1877096-1-hch@lst.de>
+ <20210623000550.GI2371267@nvidia.com>
+Organization: Red Hat
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210622232812.GV951094@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display: fix level 0
- adjustement on display ver >= 12
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] Allow mdev drivers to directly create the
+ vfio_device (v4)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,106 +81,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, Christoph Hellwig <hch@lst.de>,
+ linux-s390@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Tony Krowiak <akrowiak@linux.ibm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Cornelia Huck <cohuck@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 22, 2021 at 04:28:14PM -0700, Matt Roper wrote:
-> On Tue, Jun 22, 2021 at 02:22:09PM -0700, Lucas De Marchi wrote:
-> > We should no longer increment level 0 by 1usec when we have 16Gb DIMMs.
-> > Instead spec says to add 3usec (as opposed to 2) to each valid level
-> > when punit replies 0 to level 0.
+On Tue, 22 Jun 2021 21:05:50 -0300
+Jason Gunthorpe <jgg@nvidia.com> wrote:
+
+> On Thu, Jun 17, 2021 at 04:22:08PM +0200, Christoph Hellwig wrote:
+> > This is my alternative take on this series from Jason:
 > > 
-> > So set wm_lv_0_adjust_needed to false for DISPLAY_VER() >= 12 and set
-> > the proper adjustement value when handling WaWmMemoryReadLatency.
+> > https://lore.kernel.org/dri-devel/87czsszi9i.fsf@redhat.com/T/
 > > 
-> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > The mdev/vfio parts are exactly the same, but this solves the driver core
+> > changes for the direct probing without the in/out flag that Greg hated,
+> > which cause a little more work, but probably make the result better.  
 > 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-Might also be worth adding
-
-Bspec: 49326, 4381
-
-to the commit message while applying.
-
+> I did some testing and it looks good, thanks
 > 
-> > ---
-> >  drivers/gpu/drm/i915/intel_dram.c |  3 +--
-> >  drivers/gpu/drm/i915/intel_pm.c   | 13 +++++++------
-> >  2 files changed, 8 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-> > index 50fdea84ba70..879b0f007be3 100644
-> > --- a/drivers/gpu/drm/i915/intel_dram.c
-> > +++ b/drivers/gpu/drm/i915/intel_dram.c
-> > @@ -484,8 +484,7 @@ static int gen11_get_dram_info(struct drm_i915_private *i915)
-> >  
-> >  static int gen12_get_dram_info(struct drm_i915_private *i915)
-> >  {
-> > -	/* Always needed for GEN12+ */
-> > -	i915->dram_info.wm_lv_0_adjust_needed = true;
-> > +	i915->dram_info.wm_lv_0_adjust_needed = false;
-> >  
-> >  	return icl_pcode_read_mem_global_info(i915);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> > index ef8d9b2284b3..be2931d54b95 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -2911,18 +2911,20 @@ static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
-> >  		}
-> >  
-> >  		/*
-> > -		 * WaWmMemoryReadLatency:skl+,glk
-> > +		 * WaWmMemoryReadLatency
-> >  		 *
-> >  		 * punit doesn't take into account the read latency so we need
-> > -		 * to add 2us to the various latency levels we retrieve from the
-> > -		 * punit when level 0 response data us 0us.
-> > +		 * to add proper adjustement to each valid level we retrieve
-> > +		 * from the punit when level 0 response data is 0us.
-> >  		 */
-> >  		if (wm[0] == 0) {
-> > -			wm[0] += 2;
-> > +			u8 adjust = DISPLAY_VER(dev_priv) >= 12 ? 3 : 2;
-> > +
-> > +			wm[0] += adjust;
-> >  			for (level = 1; level <= max_level; level++) {
-> >  				if (wm[level] == 0)
-> >  					break;
-> > -				wm[level] += 2;
-> > +				wm[level] += adjust;
-> >  			}
-> >  		}
-> >  
-> > @@ -2934,7 +2936,6 @@ static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
-> >  		 */
-> >  		if (dev_priv->dram_info.wm_lv_0_adjust_needed)
-> >  			wm[0] += 1;
-> > -
-> >  	} else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
-> >  		u64 sskpd = intel_uncore_read64(uncore, MCH_SSKPD);
-> >  
-> > -- 
-> > 2.31.1
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+> I see Alex has this in hch-mdev-direct-v4 in linux-next now, so
+> expecting this to be in the next merge window?
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Yeah, sorry I didn't send out an "applied" note, end of the day
+yesterday and forgot today.  My bad.  I expect this to go into v5.14
+given the acks and Greg's deferral for the driver-core changes to go
+through the vfio tree.  Speak now, or... Thanks,
+
+Alex
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
