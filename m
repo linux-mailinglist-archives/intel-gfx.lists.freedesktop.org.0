@@ -2,31 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFDE33B18BC
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 13:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE2AC3B18BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 13:19:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 612B189FC5;
-	Wed, 23 Jun 2021 11:18:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 465B06E8B1;
+	Wed, 23 Jun 2021 11:19:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B04E589DB2;
- Wed, 23 Jun 2021 11:18:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A8A3CA8832;
- Wed, 23 Jun 2021 11:18:28 +0000 (UTC)
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA4D989FC5;
+ Wed, 23 Jun 2021 11:19:43 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id B2A3DC800A7;
+ Wed, 23 Jun 2021 13:19:41 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id VnxvvrRkcqOg; Wed, 23 Jun 2021 13:19:41 +0200 (CEST)
+Received: from [IPv6:2003:e3:7f39:4900:3156:839d:aed8:6ea6]
+ (p200300e37f3949003156839daED86Ea6.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f39:4900:3156:839d:aed8:6ea6])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id 3B189C8009D;
+ Wed, 23 Jun 2021 13:19:41 +0200 (CEST)
+To: Pekka Paalanen <ppaalanen@gmail.com>
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+ <20210618091116.14428-10-wse@tuxedocomputers.com>
+ <20210622100042.4041624a@eldfell>
+ <56d079d4-841a-0ca5-b8a6-d2c10f91d211@tuxedocomputers.com>
+ <k_QeCRpur3SNNIspBiTHOTT6Oj1pSteEO3MzyQFUG0lSXmEqJUI2tMXJ6wR9chzUHGahdQApJZrUxdJvIv6s8aXr2DBdoHg-2PsGH4kEMyA=@emersion.fr>
+ <20210623103256.01d680ba@eldfell>
+ <5947f768-dd87-6b39-ecfc-b7c4aaa88aca@tuxedocomputers.com>
+ <20210623141423.3f6c3e9f@eldfell>
+From: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <fe83dcd2-889d-f9de-fc4e-b25b1887cb80@tuxedocomputers.com>
+Date: Wed, 23 Jun 2021 13:19:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Date: Wed, 23 Jun 2021 11:18:28 -0000
-Message-ID: <162444710868.30471.13518734475253049292@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210623072144.890147-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-In-Reply-To: <20210623072144.890147-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftest=3A_Extend_ctx=5Ftimestamp_ICL_workaround_to_GEN1?=
- =?utf-8?q?1_=28rev2=29?=
+In-Reply-To: <20210623141423.3f6c3e9f@eldfell>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 09/17] drm/uAPI: Add "active color range"
+ drm property as feedback for userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,199 +58,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1146764113=="
+Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
+ alexander.deucher@amd.com, christian.koenig@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1146764113==
-Content-Type: multipart/alternative;
- boundary="===============3515846017440578213=="
-
---===============3515846017440578213==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/selftest: Extend ctx_timestamp ICL workaround to GEN11 (rev2)
-URL   : https://patchwork.freedesktop.org/series/91805/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10266 -> Patchwork_20438
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20438 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@requests:
-    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2] ([i915#3432])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-cml-s/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-cml-s/igt@i915_selftest@live@requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-soraka:      [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-kbl-soraka/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-kbl-soraka/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_engines:
-    - {fi-ehl-2}:         [FAIL][5] ([i915#3628]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-ehl-2/igt@i915_selftest@live@gt_engines.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-ehl-2/igt@i915_selftest@live@gt_engines.html
-    - {fi-jsl-1}:         [FAIL][7] ([i915#3628]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-jsl-1/igt@i915_selftest@live@gt_engines.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-jsl-1/igt@i915_selftest@live@gt_engines.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3432]: https://gitlab.freedesktop.org/drm/intel/issues/3432
-  [i915#3628]: https://gitlab.freedesktop.org/drm/intel/issues/3628
-
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10266 -> Patchwork_20438
-
-  CI-20190529: 20190529
-  CI_DRM_10266: 186513ad0e0c815f0afeda3ffe748dca3e4a5be7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20438: ee9c4a68721a45ecd6dd410e2095585c92f39d55 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ee9c4a68721a drm/i915/selftest: Extend ctx_timestamp ICL workaround to GEN11
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/index.html
-
---===============3515846017440578213==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftest: Extend ctx_timestamp ICL workaround to GEN11 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91805/">https://patchwork.freedesktop.org/series/91805/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10266 -&gt; Patchwork_20438</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20438 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-cml-s/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-cml-s/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3432">i915#3432</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-kbl-soraka/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>
-<p>{fi-ehl-2}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-ehl-2/igt@i915_selftest@live@gt_engines.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3628">i915#3628</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-ehl-2/igt@i915_selftest@live@gt_engines.html">PASS</a></p>
-</li>
-<li>
-<p>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10266/fi-jsl-1/igt@i915_selftest@live@gt_engines.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3628">i915#3628</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20438/fi-jsl-1/igt@i915_selftest@live@gt_engines.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10266 -&gt; Patchwork_20438</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10266: 186513ad0e0c815f0afeda3ffe748dca3e4a5be7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20438: ee9c4a68721a45ecd6dd410e2095585c92f39d55 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ee9c4a68721a drm/i915/selftest: Extend ctx_timestamp ICL workaround to GEN11</p>
-
-</body>
-</html>
-
---===============3515846017440578213==--
-
---===============1146764113==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Am 23.06.21 um 13:14 schrieb Pekka Paalanen:
+> On Wed, 23 Jun 2021 12:17:40 +0200
+> Werner Sembach <wse@tuxedocomputers.com> wrote:
+>
+>> Am 23.06.21 um 09:32 schrieb Pekka Paalanen:
+>>> On Tue, 22 Jun 2021 11:48:52 +0000
+>>> Simon Ser <contact@emersion.fr> wrote:
+>>>  
+>>>> On Tuesday, June 22nd, 2021 at 11:50, Werner Sembach <wse@tuxedocomputers.com> wrote:
+>>>>  
+>>>>> Unknown is when no monitor is connected or is when the
+>>>>> connector/monitor is disabled.    
+>>>> I think the other connector props (link-status, non-desktop, etc) don't
+>>>> have a special "unset" value, and instead the value is set to a random
+>>>> enum entry. User-space should ignore the prop on these disconnected
+>>>> connectors anyways.  
+>>> That sounds fine to me.  
+>> Currently the only case for "not applicable" is when the monitor is
+>> disconnected, but sicne the properties are so interdependent, there
+>> might be a case in the future where e.g. a color format that has no
+>> differentiation between full and limited arises. When there is no
+>> special unset/not applicable option, the userspace has to know
+>> exactly when an option is valid or not, possible requiring additional
+>> logic.
+>>
+>> Setting a "not applicable" value allows userspace to be more dumb,
+>> without much hassle on the kernelspace side.
+> That's a good point too. So "not applicable" would be a value, but
+> "unknown" would not be.
+Ok, I have already renamed the "unknown" option to "not applicable" in my next revision (not yet posted to the mailing
+list).
+>
+>
+> Thanks,
+> pq
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1146764113==--
