@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819C83B1F35
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 19:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C90A3B1F3C
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 19:07:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7C686E959;
-	Wed, 23 Jun 2021 17:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 893516E95F;
+	Wed, 23 Jun 2021 17:07:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 03D8F6E959;
- Wed, 23 Jun 2021 17:05:05 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 650676E95E;
+ Wed, 23 Jun 2021 17:07:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E5332A41FB;
- Wed, 23 Jun 2021 17:05:04 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5D845A41FB;
+ Wed, 23 Jun 2021 17:07:47 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Wed, 23 Jun 2021 17:05:04 -0000
-Message-ID: <162446790490.30471.4483200425670893383@emeril.freedesktop.org>
+Date: Wed, 23 Jun 2021 17:07:47 -0000
+Message-ID: <162446806735.30473.6175134375671043948@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
 In-Reply-To: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_implicit_fencing/dma-resv_rules_for_shared_buffers_=28rev5?=
- =?utf-8?q?=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?implicit_fencing/dma-resv_rules_for_shared_buffers_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,131 +53,82 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-ec4dbdd1b8f4 dma-resv: Fix kerneldoc
--:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 6edbd6abb783 ("dma-buf: rename and cleanup dma_resv_get_excl v3")'
-#11: 
-commit 6edbd6abb783d54f6ac4c3ed5cd9e50cff6c15e9
-
--:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-2757dca29ffc dma-buf: Switch to inline kerneldoc
--:102: WARNING:TYPO_SPELLING: 'superseeded' may be misspelled - perhaps 'superseded'?
-#102: FILE: include/linux/dma-buf.h:333:
-+	 * vmap/unmap. Note that in many cases this is superseeded by
- 	                                               ^^^^^^^^^^^
-
--:193: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 154 lines checked
-ee5ebd9f360f dma-buf: Document dma-buf implicit fencing/resv fencing rules
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-https://dri.freedesktop.org/docs/drm/driver-api/dma-buf.html#reservation-objects
-
--:140: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 049aca4363d8 ("drm/amdgpu: fix using shared fence for exported BOs v2")'
-#140: 
-commit 049aca4363d8af87cab8d53de5401602db3b9999
-
--:155: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9b495a588799 ("dma-buf: add poll support, v3")'
-#155: 
-	commit 9b495a5887994a6d74d5c261d012083a92b94738
-
--:183: WARNING:REPEATED_WORD: Possible repeated word: 'to'
-#183: 
-  writes, and a per-bo flag to to skip implicit fencing in the CS
-
--:200: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
-#200: 
-  wont notice the perf impact. I think we can ignore LTS distros who
-  ^^^^
-
--:233: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 8c505bdc9c8b ("drm/amdgpu: rework dma_resv handling v3")'
-#233: 
-commit 8c505bdc9c8b955223b054e34a0be9c3d841cd20 (drm-misc/drm-misc-next)
-
--:320: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 3 errors, 4 warnings, 0 checks, 45 lines checked
-f4a64c4c4a3c drm/panfrost: Shrink sched_lock
--:42: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 17 lines checked
-9a0f2341b633 drm/panfrost: Use xarray and helpers for depedency tracking
--:255: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 197 lines checked
-c234633ef5d4 drm/panfrost: Fix implicit sync
--:50: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-8660ea15e738 drm/atomic-helper: make drm_gem_plane_helper_prepare_fb the default
--:21: WARNING:REPEATED_WORD: Possible repeated word: 'not'
-#21: 
-v2: It's neither ... nor, not not (Sam)
-
--:90: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 44 lines checked
-7e0e4eba2802 drm/<driver>: drm_gem_plane_helper_prepare_fb is now the default
--:231: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 104 lines checked
-b580cc0434b9 drm/armada: Remove prepare/cleanup_fb hooks
--:88: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 57 lines checked
-1248a0b5d17a drm/vram-helpers: Create DRM_GEM_VRAM_PLANE_HELPER_FUNCS
--:84: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 45 lines checked
-2d0b037b1bdb drm/omap: Follow implicit fencing in prepare_fb
--:33: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 15 lines checked
-dd7d69020b37 drm/simple-helper: drm_gem_simple_display_pipe_prepare_fb as default
--:22: WARNING:REPEATED_WORD: Possible repeated word: 'not'
-#22: 
-v3: It's neither ... nor, not not (Sam)
-
--:81: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 37 lines checked
-a59a7001144a drm/tiny: drm_gem_simple_display_pipe_prepare_fb is the default
--:203: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 98 lines checked
-24934c721047 drm/gem: Tiny kernel clarification for drm_gem_fence_array_add
--:35: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
-ab7b3daba258 RFC: drm/amdgpu: Implement a proper implicit fencing uapi
--:25: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 177ae09b5d69 ("drm/amdgpu: introduce AMDGPU_GEM_CREATE_EXPLICIT_SYNC v2")'
-#25: 
-commit 177ae09b5d699a5ebd1cafcee78889db968abf54
-
--:62: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#62: 
-  https://lore.kernel.org/dri-devel/20210520190007.534046-4-jason@jlekstrand.net/
-
--:82: WARNING:TYPO_SPELLING: 'unecessary' may be misspelled - perhaps 'unnecessary'?
-#82: 
-fencing and remove all unecessary stall points due to them.
-                       ^^^^^^^^^^
-
--:203: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
-#203: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c:1765:
-+	DRM_IOCTL_DEF_DRV(AMDGPU_SETPARAM, amdgpu_setparam_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
- 	                                                                  ^
-
--:240: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
-#240: FILE: include/uapi/drm/amdgpu_drm.h:75:
-+#define DRM_IOCTL_AMDGPU_SETPARAM	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SETPARAM, struct drm_amdgpu_setparam)
-
--:258: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 4 warnings, 1 checks, 104 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/display/intel_display.c:1893:21:    expected struct i915_vma *[assigned] vma
++drivers/gpu/drm/i915/display/intel_display.c:1893:21:    got void [noderef] __iomem *[assigned] iomem
++drivers/gpu/drm/i915/display/intel_display.c:1893:21: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gem/i915_gem_ttm.c:733:38: warning: symbol 'i915_gem_ttm_obj_ops' was not declared. Should it be static?
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_ring_submission.c:1207:24: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/selftests/test-drm_damage_helper.c:244:25: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/selftests/test-drm_damage_helper.c:268:23: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/ttm/ttm_bo.c:1157:9: warning: context imbalance in 'ttm_bo_swapout' - unexpected unlock
++drivers/gpu/drm/ttm/ttm_bo.c:309:28: warning: context imbalance in 'ttm_bo_cleanup_refs' - unexpected unlock
++drivers/gpu/drm/ttm/ttm_bo.c:367:27: warning: context imbalance in 'ttm_bo_delayed_delete' - different lock contexts for basic block
++drivers/gpu/drm/ttm/ttm_bo.c:633:5: warning: context imbalance in 'ttm_mem_evict_first' - wrong count at exit
++drivers/gpu/drm/ttm/ttm_bo_util.c:281:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:281:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:281:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:284:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:284:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:284:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:287:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:287:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:287:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:367:28:    expected void volatile [noderef] __iomem *addr
++drivers/gpu/drm/ttm/ttm_bo_util.c:367:28:    got void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:367:28: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/ttm/ttm_device.c:130:5: warning: context imbalance in 'ttm_device_swapout' - wrong count at exit
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/seqlock.h:840:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:840:24: warning: trying to copy expression type 31
++./include/linux/seqlock.h:866:16: warning: trying to copy expression type 31
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 
 _______________________________________________
