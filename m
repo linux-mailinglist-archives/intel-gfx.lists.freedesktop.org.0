@@ -2,54 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991083B1ED6
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 18:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8981C3B1EEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 18:45:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596216E954;
-	Wed, 23 Jun 2021 16:40:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D67766E957;
+	Wed, 23 Jun 2021 16:45:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
- [IPv6:2607:f8b0:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5B126E94B
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 16:40:32 +0000 (UTC)
-Received: by mail-oi1-x22b.google.com with SMTP id d19so3984355oic.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 09:40:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=bO3c0b9bzbqPxvGmERe0nw3g2m3wyHb0ArYewc22GjQ=;
- b=DfoDoZ1ATLOkPaoJJP1Y7Recb/hAUT58sys4flMjVyoDcCCj6MIPWobP35k276tjun
- m2Qpp8n2WyNNmg/DWg2tEVkuWg3wJfRFrJmDb0y/OcQc1esqZFUFmqCp9UW6J7brOidk
- rX+bwu4KzBcJZkU37RV+ZYYNZwZZ69NurIxxo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=bO3c0b9bzbqPxvGmERe0nw3g2m3wyHb0ArYewc22GjQ=;
- b=LSqaQ6JcDSkEm3NAKnf3ziLGoSLbjngFAqsxmhqac1ivYU5tUmQfIo0NQFjRI3cakr
- lcJPymYGTTxZB6pKlEAR2ExPXT9OGdSgqOXtJGGuKFmXjDKbHcwWhIpEjX3ims4CTYb+
- bMD9LDdl/iC0IfMTTqB0q0qP9iDYV3V+kwbQM2ia4ynHSVKOZzFhB7YxVyOrN1Pm9Hix
- O7LMhxmM05SVVWw5LVMnRTByP9W4N7FPDYFE5JcQu4SLCDxXW8RrN2Xt7iJU7cSL3ojZ
- nrcInQyTIwIV1x2FYhVutp83JIKcN4wiGofBjQJK+RL51vpl1RQFDZk9SoPkSGMd7wDC
- QQtw==
-X-Gm-Message-State: AOAM531ZZCB6tEBOqsmomagHeU62clQ0E0fDvweKvA8jNyrzhE6tg5v6
- vZhAKEIR34UihSLsyfpIYWR0LWfVY0ZWXS8wfYvdtg==
-X-Google-Smtp-Source: ABdhPJyoNgJIYOchT7dS33bxVfM9JG6GsPV457EI4PNXGKki7TlM99Ox1QmJPsnohK7Glr2xGWwmZXGSfqBa/K0/ATQ=
-X-Received: by 2002:a54:4889:: with SMTP id r9mr3836956oic.101.1624466431860; 
- Wed, 23 Jun 2021 09:40:31 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE0076E977
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 16:45:27 +0000 (UTC)
+IronPort-SDR: xiWl8GuTxxfbYr/8J+z+PyD+slwT8rYbwvcER48GG6mquDe3FInzirPwLq07RAfrYMIcNCYcC+
+ X5IbC/J3O7vw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="207241083"
+X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="207241083"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2021 09:45:24 -0700
+IronPort-SDR: j7IIqjtzLTLV5KmRzVZ7vMmPtBVLYmNfAQqZ01MkHv+aQnsXBaaq5gHzEUNMQjwlHGeSUooHKA
+ FyeraWIBD45Q==
+X-IronPort-AV: E=Sophos;i="5.83,294,1616482800"; d="scan'208";a="487382429"
+Received: from huynhn-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.249.35.176])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2021 09:45:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210622153225.24578-1-shawn.c.lee@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210622133107.7422-1-shawn.c.lee@intel.com>
+ <20210622153225.24578-1-shawn.c.lee@intel.com>
+Date: Wed, 23 Jun 2021 19:45:17 +0300
+Message-ID: <87lf70ttr6.fsf@intel.com>
 MIME-Version: 1.0
-References: <20210621193644.105627-1-thomas.hellstrom@linux.intel.com>
- <20210621193644.105627-2-thomas.hellstrom@linux.intel.com>
- <YNNOoqnFOWw1Xgrf@phenom.ffwll.local>
- <0415be07-452e-d7de-ecfa-9c0f80ad5fee@linux.intel.com>
-In-Reply-To: <0415be07-452e-d7de-ecfa-9c0f80ad5fee@linux.intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 23 Jun 2021 18:40:20 +0200
-Message-ID: <CAKMK7uGnyGSqXjuMFid4vFkgQMhjRDt+1HdoLTsE3aSqp6A4Yw@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v6 1/3] drm/i915: Update object placement
- flags to be mutable
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: keep backlight_enable on until
+ turn eDP display off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +49,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBKdW4gMjMsIDIwMjEgYXQgNTozOCBQTSBUaG9tYXMgSGVsbHN0csO2bQo8dGhvbWFz
-LmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gVGhhbmtzIGZvciByZXZpZXdp
-bmcsIERhbmllbC4KPgo+IE9uIDYvMjMvMjEgNTowOSBQTSwgRGFuaWVsIFZldHRlciB3cm90ZToK
-PiA+Cj4gPj4KPiA+PiArICAgIHVuc2lnbmVkIGludCBtZW1fZmxhZ3M6MjsKPiA+IElzIHRoZSBl
-bnRpcmUgYml0ZmllbGQgYXJyYXkgYWxsIHByb3RlY3RlZCBieSBkbWFfcmVzdl9sb2NrPyBJZiBu
-b3QgSSdkCj4gPiBqdXN0IGdvIHdpdGggYSBmdWxsIGZpZWxkLCBhdm9pZHMgaGVhZGFjaGVzIGFu
-ZCBhbGwgdGhhdC4KPiA+Cj4gPiBBbHNvIGtlcm5lbGRvYyBmb3IgdGhpcyB3b3VsZCBiZSByZWFs
-bHkgc3dlZXQuIE1lYW5zIHNvbWUgd29yayB0byBnZXQgaXQKPiA+IGdvaW5nLAo+Cj4gWWVhaCwg
-bGF0ZSBkb2N1bWVudGF0aW9uIHJldmlldyBjb21tZW50cyBhZnRlciB2OSBvdWdodCB0byBiZSBm
-b3JiaWRkZW4gOykKCldlbGwgSSB0aGluayB3ZSBzaG91bGQgaGF2ZSBsb2NraW5nIGFuZCBhbGwg
-dGhhdCBkb2N1bWVudGVkIGZyb20gdGhlCnN0YXJ0IG1heWJlIDotUAoKQnV0IHllYWggSSBrbm93
-IGl0J3MgYSBiaXQgbGF0ZSwgc28gdG90YWxseSBmaW5lIGlmIHRoYXQncyBkb25lIGFzIGEKZm9s
-bG93IHVwIG9uIHRvcC4gQnV0IGZvciBuZXcgc3R1ZmYgb3IgcmV2aXNlZCBzdHVmZiB3ZSBuZWVk
-IHRvIHN0YXJ0CnNvbWV3aGVyZSwgYW5kICJtYXliZSBsYXRlciB3aGVuIHdlIGhhdmUgdGltZSIg
-anVzdCBuZXZlciBjdXRzIGl0IC4uLgoKPgo+ID4gYnV0IHNvbWV3aGVyZSB3ZSBuZWVkIHRvIHN0
-b3AgaGFja2luZyB0b2dldGhlciB1bmRvY3VtZW50ZWQgYWQtaG9jCj4gPiBsb2NraW5nIHNjaGVt
-ZXMgOi0vCj4KPiBIbW0sIHRoaXMgd2FzIGludGVuZGVkIHRvIHJlcGxhY2UgdGhlIGNoYW5nZSBv
-ZiBhbmQgYWNjZXNzIG9mIG9iamVjdCBvcHMKPiAqd2l0aG91dCogdGhlIGxvY2sgaGVsZCBhbmQg
-d2l0aCBwcm9wZXIgYXNzZXJ0cyBhZGRlZCBpbiB0aGUgYWNjZXNzb3JzLAo+IHNvIGl0IHdhcyBu
-b3QgcmVhbGx5IGludGVuZGVkIHRvIGJlIGFuIGFkLWhvYyBsb2NraW5nIHNjaGVtZSwgSXQncwo+
-IHNpbXBseSBwbGFjZW1lbnQgcmVsYXRlZCB0aGluZ3MgYXJlIHVwZGF0ZWQgdW5kZXIgdGhlIGxv
-Y2suCgpZZWFoIHRoaXMgd2FzIG1vcmUgbWVhbnQgYXMgYSBnZW5lcmFsIGNvbW1lbnQuIEUuZy4g
-aW4gc3RydWN0IGk5MTVfdm1hCndlIG5vdyBoYXZlIHRoZSBzaXR1YXRpb24gdGhhdCB3ZSBoYXZl
-IDIgb3ZlcmxhcHBpbmcgbG9ja2luZyBzY2hlbWVzLAphbmQgaXQncyBhbG1vc3QgaW1wb3NzaWJs
-ZSB0byBmaWd1cmUgb3V0IHdoaWNoIGlzIGluZmVjdCBmb3Igd2hpY2gKcGllY2VzLiBJJ2QgbGlr
-ZSB0byBhdm9pZCB0aGF0IGlmIGF0IGFsbCBwb3NzaWJsZS4KCj4gSSdsbCB1cGRhdGUgdGhlIGNv
-ZGUgYW5kIHJlc2VuZC4KClRoYW5rcywgRGFuaWVsCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJl
-IEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, 22 Jun 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+> This workaround is specific for a particular panel on Google
+> chromebook project. When user space daemon enter idle state.
+> It request adjust brightness to 0, turn backlight_enable signal
+> off and keep eDP main link active.
+>
+> On general LCD, this behavior might not be a problem.
+> But on this panel, its tcon would expect source to execute
+> full eDP power off sequence after drop backlight_enable signal.
+> Without eDP power off sequence. Even source try to turn
+> backlight_enable signal on and restore proper brightness level.
+> This panel is not able to light on again.
+>
+> This WA ignored the request from user space daemon to disable
+> backlight_enable signal and keep it on always. When user space
+> request kernel to turn eDP display off, kernel driver still
+> can control backlight_enable signal properly. It would not
+> impact standard eDP power off sequence.
+>
+> v2: modify the quirk name and debug messages.
+>     unregister backlight.power callback for specific device.
+>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c     |  3 +-
+>  drivers/gpu/drm/i915/display/intel_quirks.c | 34 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_drv.h             |  1 +
+>  3 files changed, 37 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6cc03b9e4321..d3312b9bcc6f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5238,7 +5238,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  	}
+>  
+>  	intel_panel_init(&intel_connector->panel, fixed_mode, downclock_mode);
+> -	intel_connector->panel.backlight.power = intel_pps_backlight_power;
+> +	if (!(dev_priv->quirks & QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
+> +		intel_connector->panel.backlight.power = intel_pps_backlight_power;
+>  	intel_panel_setup_backlight(connector, pipe);
+>  
+>  	if (fixed_mode) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index 98dd787b00e3..5f3cb006db01 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -53,6 +53,12 @@ static void quirk_increase_ddi_disabled_time(struct drm_i915_private *i915)
+>  	drm_info(&i915->drm, "Applying Increase DDI Disabled quirk\n");
+>  }
+>  
+> +static void quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
+> +{
+> +	i915->quirks |= QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK;
+> +	drm_info(&i915->drm, "Applying no pps backlight power quirk\n");
+> +}
+> +
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+> @@ -72,6 +78,12 @@ static int intel_dmi_reverse_brightness(const struct dmi_system_id *id)
+>  	return 1;
+>  }
+>  
+> +static int intel_dmi_no_pps_backlight(const struct dmi_system_id *id)
+> +{
+> +	DRM_INFO("This workaround prevented panel backlight issue on %s device\n", id->ident);
+
+Not sure I like the verbose "This workaround ..." style messages.
+
+Contrast with what the messages for reverse polarity would be via dmi:
+
+"Backlight polarity reversed on %s\n"
+->
+"applying inverted panel brightness quirk\n"
+
+> +	return 1;
+> +}
+> +
+>  static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>  	{
+>  		.dmi_id_list = &(const struct dmi_system_id[]) {
+> @@ -96,6 +108,28 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>  		},
+>  		.hook = quirk_invert_brightness,
+>  	},
+> +	{
+> +		.dmi_id_list = &(const struct dmi_system_id[]) {
+> +			{
+> +				.callback = intel_dmi_no_pps_backlight,
+> +				.ident = "Google Lillipup",
+> +				.matches = {DMI_MATCH(DMI_BOARD_VENDOR, "Google"),
+> +					    DMI_MATCH(DMI_BOARD_NAME, "Lindar"),
+> +					    DMI_MATCH(DMI_PRODUCT_SKU, "sku524294"),
+> +				},
+> +			},
+> +			{
+> +				.callback = intel_dmi_no_pps_backlight,
+> +				.ident = "Google Lillipup",
+> +				.matches = {DMI_MATCH(DMI_BOARD_VENDOR, "Google"),
+> +					    DMI_MATCH(DMI_BOARD_NAME, "Lindar"),
+> +					    DMI_MATCH(DMI_PRODUCT_SKU, "sku524295"),
+> +				},
+
+I think you should use DMI_EXACT_MATCH instead of DMI_MATCH. The former
+users strcmp while the latter uses strstr for comparison.
+
+The .ident string should probably be different for the two cases;
+otherwise the DRM_INFO() logging above does not differentiate between
+the two.
+
+Sorry for not catching all of these at v1 review. Anyway, this is just
+small details, the approach is fine.
+
+
+BR,
+Jani.
+
+> +			},
+> +			{ }
+> +		},
+> +		.hook = quirk_no_pps_backlight_power_hook,
+> +	},
+>  };
+>  
+>  static struct intel_quirk intel_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 01e11fe38642..5a065be0792a 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -467,6 +467,7 @@ struct i915_drrs {
+>  #define QUIRK_PIN_SWIZZLED_PAGES (1<<5)
+>  #define QUIRK_INCREASE_T12_DELAY (1<<6)
+>  #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
+> +#define QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK (1<<8)
+>  
+>  struct intel_fbdev;
+>  struct intel_fbc_work;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
