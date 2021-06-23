@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7DA3B1EB5
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 18:30:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DA5D3B1EB6
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 18:30:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ADF66E94F;
-	Wed, 23 Jun 2021 16:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97D456E954;
+	Wed, 23 Jun 2021 16:30:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 877A16E94B;
- Wed, 23 Jun 2021 16:30:05 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 88C356E954;
+ Wed, 23 Jun 2021 16:30:38 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 77158AADCF;
- Wed, 23 Jun 2021 16:30:05 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84CB3AADCF;
+ Wed, 23 Jun 2021 16:30:38 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Wed, 23 Jun 2021 16:30:05 -0000
-Message-ID: <162446580545.30470.2600856023293289911@emeril.freedesktop.org>
+Date: Wed, 23 Jun 2021 16:30:38 -0000
+Message-ID: <162446583854.30472.2657588628282406624@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210623143411.293630-1-matthew.auld@intel.com>
 In-Reply-To: <20210623143411.293630-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/ttm=3A_fix_static_warning?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/ttm=3A_fix_static_warning?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,13 +53,11 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-884185292bdf drm/i915/ttm: fix static warning
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-warning: symbol 'i915_gem_ttm_obj_ops' was not declared. Should it be static?
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-O:drivers/gpu/drm/i915/gem/i915_gem_ttm.c:733:38: warning: symbol 'i915_gem_ttm_obj_ops' was not declared. Should it be static?
++
 
 
 _______________________________________________
