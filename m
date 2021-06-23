@@ -2,60 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78CE3B1D44
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07CFB3B1D4F
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Jun 2021 17:12:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD996E931;
-	Wed, 23 Jun 2021 15:09:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B4D56E930;
+	Wed, 23 Jun 2021 15:12:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84E7A6E92D
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 15:09:27 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id d16so1093009ejm.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 08:09:27 -0700 (PDT)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
+ [IPv6:2a00:1450:4864:20::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A6186E930
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 15:12:18 +0000 (UTC)
+Received: by mail-ej1-x62b.google.com with SMTP id ji1so4600704ejc.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 08:12:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=e3RUXDc6ju6O3fj0zz0nRjyIEFzyZm2t3crK1Y+IzKQ=;
- b=Bi7Lo6zodDaMCyh925i5Zr86ZuYJhOJk8nEUNkFD/6o6QYR/lNMVgplSvMVB+EZp6c
- 3RozQHED2OfTTnTPqop+iQffoDSsZw5al8t9ulbu4B7ZCOhfflb0GBSUy/yum0J9x5kA
- LF8Jaa/bhXSIyOrNuM3SnkjunrfvMNrs36c1Q=
+ bh=3y+KpMWjSfkunjXUwYFJ6kZNhxpq+5TW5mhxInmbGtQ=;
+ b=f9nn3ewCrvOiVb3SWt5bua/7cj86/IBQcQMF1DdCGwJlxfQWvebySb8uxawzkSA9CN
+ rX2zZKh2lC3wyJ0K779VU+fBuEB6e/sTNpa3sa136q6hgOTSxHv/Mfu0DbjvwCQlGMgZ
+ tgFzgzibr8TZupKFlnfvS76s7KNMf5rpO5s54=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=e3RUXDc6ju6O3fj0zz0nRjyIEFzyZm2t3crK1Y+IzKQ=;
- b=n4rdxk2enX4k2e+FUQkMGqgco//m0Les8wWeVUJiQ+jBIyVWZrru+GMfOXRaynwE0F
- ew4CdCcMjI5SvBNKzoZMfvS1DBXyyT5ujDS/b76ZFVEUGt/xwBpqwpcp8VqBmXD7zFUA
- FQx2wb8FbeOW+H7bJ1mpbC8P0vsrzxVereBNyXAPegn5kaoNUvCQUpiBj6+M/uRLsmtG
- 1YsDnXbjFWDom2+waXCNDmiE55A2+XY88CftoC6XTWyhhRLH3hP6/3BSPDUlnEPjhHDw
- mvJMCENce8J+QgKhZL1pLAs0wBZaER/jFHSqIwkwdBvJAzVoQghqtQekRMaXxUNPZ4XS
- LZBA==
-X-Gm-Message-State: AOAM530M7N1d6ePhnckf+5eKo7Iry3G0EDjV2OfiQCE0UaiOFxvxvKFW
- IfgUZk5yeD6tcqZ8k27RnE0uQTUQ4IF7LA==
-X-Google-Smtp-Source: ABdhPJx2tnmI2XMIkbMxMf5QW7ajXtGYeGod41mEgtVWrsHFy8An8t6vh4IGc50tm4Bn822NrO3EoQ==
-X-Received: by 2002:a17:907:1b02:: with SMTP id
- mp2mr531477ejc.196.1624460965154; 
- Wed, 23 Jun 2021 08:09:25 -0700 (PDT)
+ bh=3y+KpMWjSfkunjXUwYFJ6kZNhxpq+5TW5mhxInmbGtQ=;
+ b=UrKTIgtL72SRrICJLglA+8M2rh7pRT82NAFMX2SoFChycQhqghCE0O1nDmHk5fvvXj
+ SQZdHDXeuapX0zkfr2IJR9NZm7sK3SDJke/Efi4CpCUvdWm6xkcd95IVW72JTL/bV7rx
+ pNbdOTHuCH7PX2Z9mKpWEoU5+OZ2ZrKRRSZHpgTG+bI/aNY3qZ4nGfwn3so53gJMoaIl
+ 0rw+JdGGTRTITeC8Lo+OeY2vJDLhGNN3vjUAC42Huxa1HE75IctARW6INey8b6KX+9kS
+ W1WOXCC4h877Ti4I8sLphJosEDqqcnvc2In8mC2ziLoM4n71tuO2Gi6w/o/RYA/r5Cqp
+ 1yRw==
+X-Gm-Message-State: AOAM533Y48mi+tS/uM40/4tvyeFL2LfaxI7G9DUE4PQZLfMkeQAd9QF9
+ QYSQNG8b1DKWzHZoaR7y1XV/MA==
+X-Google-Smtp-Source: ABdhPJy2MWq3jqWweX7Me0GG0dXd1oIOG+tty2iSml+Y5qyNGuE2xo4pxVIIqI9VGfKR1D38BZCf5A==
+X-Received: by 2002:a17:907:a8f:: with SMTP id
+ by15mr502158ejc.91.1624461136049; 
+ Wed, 23 Jun 2021 08:12:16 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id w8sm173125edc.39.2021.06.23.08.09.24
+ by smtp.gmail.com with ESMTPSA id yh13sm43863ejb.28.2021.06.23.08.12.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Jun 2021 08:09:24 -0700 (PDT)
-Date: Wed, 23 Jun 2021 17:09:22 +0200
+ Wed, 23 Jun 2021 08:12:15 -0700 (PDT)
+Date: Wed, 23 Jun 2021 17:12:13 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <YNNOoqnFOWw1Xgrf@phenom.ffwll.local>
-References: <20210621193644.105627-1-thomas.hellstrom@linux.intel.com>
- <20210621193644.105627-2-thomas.hellstrom@linux.intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <YNNPTV/uxBJTsk5S@phenom.ffwll.local>
+References: <CAKMK7uGOrro7-2+OVJse3CcuZO66kreq-XjL45Ay5vhL=2TZvQ@mail.gmail.com>
+ <3bf45006-4256-763d-601b-3a25a7057820@amd.com>
+ <CAP+8YyH1xyYVfEkYVudCn+=jyiWxoZgDndrcSLM0Qq=E9_GDKg@mail.gmail.com>
+ <421cb10d-92a7-0780-3d38-d4cabd008c0c@amd.com>
+ <CAKMK7uEjc+tZCKB8Yu3_zAjOgYLPBhnYebHOXgxpFaSunuPCfA@mail.gmail.com>
+ <682d2f3b-8ba3-cccb-1385-1f74f0b06ada@amd.com>
+ <CAKMK7uGNNJZBMLvqXE9GkXESf-uZDWVxA5y+J2eKX9giNPXdZw@mail.gmail.com>
+ <CAP+8YyEGZFFVOaRW+AB4iTX_4qjqg-Wo9K21N2y1ScWK2Stzmg@mail.gmail.com>
+ <YNNNWATIKtvzFTsb@phenom.ffwll.local>
+ <5a3c9ea8-adb9-4662-55e2-19672e14b163@amd.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210621193644.105627-2-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <5a3c9ea8-adb9-4662-55e2-19672e14b163@amd.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v6 1/3] drm/i915: Update object placement
- flags to be mutable
+Subject: Re: [Intel-gfx] [PATCH 15/15] RFC: drm/amdgpu: Implement a proper
+ implicit fencing uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,548 +76,674 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
- dri-devel@lists.freedesktop.org
+Cc: Rob Clark <robdclark@chromium.org>, Daniel Stone <daniels@collabora.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Kevin Wang <kevin1.wang@amd.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ "Kristian H . Kristensen" <hoegsberg@google.com>,
+ Chen Li <chenli@uniontech.com>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ mesa-dev <mesa-dev@lists.freedesktop.org>, Dave Airlie <airlied@gmail.com>,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
+ Dennis Li <Dennis.Li@amd.com>, Deepak R Varma <mh12gx2825@gmail.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 21, 2021 at 09:36:42PM +0200, Thomas Hellstr=F6m wrote:
-> The object ops i915_GEM_OBJECT_HAS_IOMEM and the object
-> I915_BO_ALLOC_STRUCT_PAGE flags are considered immutable by
-> much of our code. Introduce a new mem_flags member to hold these
-> and make sure checks for these flags being set are either done
-> under the object lock or with pages properly pinned. The flags
-> will change during migration under the object lock.
+On Wed, Jun 23, 2021 at 05:07:17PM +0200, Christian K=F6nig wrote:
+> Am 23.06.21 um 17:03 schrieb Daniel Vetter:
+> > On Wed, Jun 23, 2021 at 04:58:27PM +0200, Bas Nieuwenhuizen wrote:
+> > > On Wed, Jun 23, 2021 at 4:50 PM Daniel Vetter <daniel.vetter@ffwll.ch=
+> wrote:
+> > > > On Wed, Jun 23, 2021 at 4:02 PM Christian K=F6nig
+> > > > <christian.koenig@amd.com> wrote:
+> > > > > Am 23.06.21 um 15:49 schrieb Daniel Vetter:
+> > > > > > On Wed, Jun 23, 2021 at 3:44 PM Christian K=F6nig
+> > > > > > <christian.koenig@amd.com> wrote:
+> > > > > > > Am 23.06.21 um 15:38 schrieb Bas Nieuwenhuizen:
+> > > > > > > > On Wed, Jun 23, 2021 at 2:59 PM Christian K=F6nig
+> > > > > > > > <christian.koenig@amd.com> wrote:
+> > > > > > > > > Am 23.06.21 um 14:18 schrieb Daniel Vetter:
+> > > > > > > > > > On Wed, Jun 23, 2021 at 11:45 AM Bas Nieuwenhuizen
+> > > > > > > > > > <bas@basnieuwenhuizen.nl> wrote:
+> > > > > > > > > > > On Tue, Jun 22, 2021 at 6:55 PM Daniel Vetter <daniel=
+.vetter@ffwll.ch> wrote:
+> > > > > > > > > > > > WARNING: Absolutely untested beyond "gcc isn't dyin=
+g in agony".
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > Implicit fencing done properly needs to treat the i=
+mplicit fencing
+> > > > > > > > > > > > slots like a funny kind of IPC mailbox. In other wo=
+rds it needs to be
+> > > > > > > > > > > > explicitly. This is the only way it will mesh well =
+with explicit
+> > > > > > > > > > > > fencing userspace like vk, and it's also the bare m=
+inimum required to
+> > > > > > > > > > > > be able to manage anything else that wants to use t=
+he same buffer on
+> > > > > > > > > > > > multiple engines in parallel, and still be able to =
+share it through
+> > > > > > > > > > > > implicit sync.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > amdgpu completely lacks such an uapi. Fix this.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > Luckily the concept of ignoring implicit fences exi=
+sts already, and
+> > > > > > > > > > > > takes care of all the complexities of making sure t=
+hat non-optional
+> > > > > > > > > > > > fences (like bo moves) are not ignored. This suppor=
+t was added in
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > commit 177ae09b5d699a5ebd1cafcee78889db968abf54
+> > > > > > > > > > > > Author: Andres Rodriguez <andresx7@gmail.com>
+> > > > > > > > > > > > Date:   Fri Sep 15 20:44:06 2017 -0400
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > >         drm/amdgpu: introduce AMDGPU_GEM_CREATE_EXP=
+LICIT_SYNC v2
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > Unfortuantely it's the wrong semantics, because it'=
+s a bo flag and
+> > > > > > > > > > > > disables implicit sync on an allocated buffer compl=
+etely.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > We _do_ want implicit sync, but control it explicit=
+ly. For this we
+> > > > > > > > > > > > need a flag on the drm_file, so that a given usersp=
+ace (like vulkan)
+> > > > > > > > > > > > can manage the implicit sync slots explicitly. The =
+other side of the
+> > > > > > > > > > > > pipeline (compositor, other process or just differe=
+nt stage in a media
+> > > > > > > > > > > > pipeline in the same process) can then either do th=
+e same, or fully
+> > > > > > > > > > > > participate in the implicit sync as implemented by =
+the kernel by
+> > > > > > > > > > > > default.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > By building on the existing flag for buffers we avo=
+id any issues with
+> > > > > > > > > > > > opening up additional security concerns - anything =
+this new flag here
+> > > > > > > > > > > > allows is already.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > All drivers which supports this concept of a usersp=
+ace-specific
+> > > > > > > > > > > > opt-out of implicit sync have a flag in their CS io=
+ctl, but in reality
+> > > > > > > > > > > > that turned out to be a bit too inflexible. See the=
+ discussion below,
+> > > > > > > > > > > > let's try to do a bit better for amdgpu.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > This alone only allows us to completely avoid any s=
+talls due to
+> > > > > > > > > > > > implicit sync, it does not yet allow us to use impl=
+icit sync as a
+> > > > > > > > > > > > strange form of IPC for sync_file.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > For that we need two more pieces:
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > - a way to get the current implicit sync fences out=
+ of a buffer. Could
+> > > > > > > > > > > >       be done in a driver ioctl, but everyone needs=
+ this, and generally a
+> > > > > > > > > > > >       dma-buf is involved anyway to establish the s=
+haring. So an ioctl on
+> > > > > > > > > > > >       the dma-buf makes a ton more sense:
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > >       https://nam11.safelinks.protection.outlook.co=
+m/?url=3Dhttps%3A%2F%2Flore.kernel.org%2Fdri-devel%2F20210520190007.534046-=
+4-jason%40jlekstrand.net%2F&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com=
+%7C517f0d3467324e7ce05008d936581f60%7C3dd8961fe4884e608e11a82d994e183d%7C0%=
+7C0%7C637600574408265873%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIj=
+oiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DgntXLzlrqPxYj4Q=
+3mQflD3arT9ad40S9AqsvtOXV4nk%3D&amp;reserved=3D0
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > >       Current drivers in upstream solves this by ha=
+ving the opt-out flag
+> > > > > > > > > > > >       on their CS ioctl. This has the downside that=
+ very often the CS
+> > > > > > > > > > > >       which must actually stall for the implicit fe=
+nce is run a while
+> > > > > > > > > > > >       after the implicit fence point was logically =
+sampled per the api
+> > > > > > > > > > > >       spec (vk passes an explicit syncobj around fo=
+r that afaiui), and so
+> > > > > > > > > > > >       results in oversync. Converting the implicit =
+sync fences into a
+> > > > > > > > > > > >       snap-shot sync_file is actually accurate.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > - Simillar we need to be able to set the exclusive =
+implicit fence.
+> > > > > > > > > > > >       Current drivers again do this with a CS ioctl=
+ flag, with again the
+> > > > > > > > > > > >       same problems that the time the CS happens ad=
+ditional dependencies
+> > > > > > > > > > > >       have been added. An explicit ioctl to only in=
+sert a sync_file (while
+> > > > > > > > > > > >       respecting the rules for how exclusive and sh=
+ared fence slots must
+> > > > > > > > > > > >       be update in struct dma_resv) is much better.=
+ This is proposed here:
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > >       https://nam11.safelinks.protection.outlook.co=
+m/?url=3Dhttps%3A%2F%2Flore.kernel.org%2Fdri-devel%2F20210520190007.534046-=
+5-jason%40jlekstrand.net%2F&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com=
+%7C517f0d3467324e7ce05008d936581f60%7C3dd8961fe4884e608e11a82d994e183d%7C0%=
+7C0%7C637600574408265873%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIj=
+oiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DYtqHT756jlt5NX7=
+Ydr3Kk1UMTb98nQhlcOlrnr%2B48HE%3D&amp;reserved=3D0
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > These three pieces together allow userspace to full=
+y control implicit
+> > > > > > > > > > > > fencing and remove all unecessary stall points due =
+to them.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > Well, as much as the implicit fencing model fundame=
+ntally allows:
+> > > > > > > > > > > > There is only one set of fences, you can only choos=
+e to sync against
+> > > > > > > > > > > > only writers (exclusive slot), or everyone. Hence s=
+uballocating
+> > > > > > > > > > > > multiple buffers or anything else like this is fund=
+amentally not
+> > > > > > > > > > > > possible, and can only be fixed by a proper explici=
+t fencing model.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > Aside from that caveat this model gets implicit fen=
+cing as closely to
+> > > > > > > > > > > > explicit fencing semantics as possible:
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > On the actual implementation I opted for a simple s=
+etparam ioctl, no
+> > > > > > > > > > > > locking (just atomic reads/writes) for simplicity. =
+There is a nice
+> > > > > > > > > > > > flag parameter in the VM ioctl which we could use, =
+except:
+> > > > > > > > > > > > - it's not checked, so userspace likely passes garb=
+age
+> > > > > > > > > > > > - there's already a comment that userspace _does_ p=
+ass garbage in the
+> > > > > > > > > > > >       priority field
+> > > > > > > > > > > > So yeah unfortunately this flag parameter for setti=
+ng vm flags is
+> > > > > > > > > > > > useless, and we need to hack up a new one.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > v2: Explain why a new SETPARAM (Jason)
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > v3: Bas noticed I forgot to hook up the dependency-=
+side shortcut. We
+> > > > > > > > > > > > need both, or this doesn't do much.
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > v4: Rebase over the amdgpu patch to always set the =
+implicit sync
+> > > > > > > > > > > > fences.
+> > > > > > > > > > > So I think there is still a case missing in this impl=
+ementation.
+> > > > > > > > > > > Consider these 3 cases
+> > > > > > > > > > > =
+
+> > > > > > > > > > > (format: a->b: b waits on a. Yes, I know arrows are h=
+ard)
+> > > > > > > > > > > =
+
+> > > > > > > > > > > explicit->explicit: This doesn't wait now, which is g=
+ood
+> > > > > > > > > > > Implicit->explicit: This doesn't wait now, which is g=
+ood
+> > > > > > > > > > > explicit->implicit : This still waits as the explicit=
+ submission still
+> > > > > > > > > > > adds shared fences and most things that set an exclus=
+ive fence for
+> > > > > > > > > > > implicit sync will hence wait on it.
+> > > > > > > > > > > =
+
+> > > > > > > > > > > This is probably good enough for what radv needs now =
+but also sounds
+> > > > > > > > > > > like a risk wrt baking in new uapi behavior that we d=
+on't want to be
+> > > > > > > > > > > the end result.
+> > > > > > > > > > > =
+
+> > > > > > > > > > > Within AMDGPU this is probably solvable in two ways:
+> > > > > > > > > > > =
+
+> > > > > > > > > > > 1) Downgrade AMDGPU_SYNC_NE_OWNER to AMDGPU_SYNC_EXPL=
+ICIT for shared fences.
+> > > > > > > > > > I'm not sure that works. I think the right fix is that =
+radeonsi also
+> > > > > > > > > > switches to this model, with maybe a per-bo CS flag to =
+set indicate
+> > > > > > > > > > write access, to cut down on the number of ioctls that =
+are needed
+> > > > > > > > > > otherwise on shared buffers. This per-bo flag would ess=
+entially select
+> > > > > > > > > > between SYNC_NE_OWNER and SYNC_EXPLICIT on a per-buffer=
+ basis.
+> > > > > > > > > Yeah, but I'm still not entirely sure why that approach i=
+sn't sufficient?
+> > > > > > > > > =
+
+> > > > > > > > > Problem with the per context or per vm flag is that you t=
+hen don't get
+> > > > > > > > > any implicit synchronization any more when another proces=
+s starts using
+> > > > > > > > > the buffer.
+> > > > > > > > That is exactly what I want for Vulkan :)
+> > > > > > > Yeah, but as far as I know this is not something we can do.
+> > > > > > > =
+
+> > > > > > > See we have use cases like screen capture and debug which rel=
+y on that
+> > > > > > > behavior.
+> > > > > > They will keep working, if (and only if) the vulkan side sets t=
+he
+> > > > > > winsys fences correctly. Also, everything else in vulkan aside =
+from
+> > > > > > winsys is explicitly not synced at all, you have to import drm =
+syncobj
+> > > > > > timeline on the gl side.
+> > > > > > =
+
+> > > > > > > The only thing we can do is to say on a per buffer flag that =
+a buffer
+> > > > > > > should not participate in implicit sync at all.
+> > > > > > Nah, this doesn't work. Because it's not a global decision, is =
+a local
+> > > > > > decision for the rendered. Vulkan wants to control implicit sync
+> > > > > > explicitly, and the kernel can't force more synchronization. If=
+ a
+> > > > > > buffer is shared as a winsys buffer between vulkan client and g=
+l using
+> > > > > > compositor, then you _have_ to use implicit sync on it. But vk =
+needs
+> > > > > > to set the fences directly (and if the app gets it wrong, you g=
+et
+> > > > > > misrendering, but that is the specified behavour of vulkan).
+> > > > > Yeah, but that's exactly what we tried to avoid.
+> > > > > =
+
+> > > > > Mhm, when we attach the flag to the process/VM then this would br=
+eak the
+> > > > > use case of VA-API and Vulkan in the same process.
+> > > > > =
+
+> > > > > But I think if you attach the flag to the context that should ind=
+eed
+> > > > > work fine.
+> > > > Yeah that's a question I have, whether the drm_file is shared within
+> > > > one process among everything, or whether radeonsi/libva/vk each have
+> > > > their own. If each have their own drm_file, then we should be fine,
+> > > > otherwise we need to figure out another place to put this (worst ca=
+se
+> > > > as a CS extension that vk just sets on every submit).
+> > > libdrm_amdgpu dedupes it all so we mostly end up with one drm_file per
+> > > process (modulo minigbm on chromeos and modulo a master fd).
+> > > =
+
+> > > That said the current proposal is for the context right? And on the
+> > > context this should pretty much work? So I'm not sure why this is the
+> > > part we are discussing?
+> > It's on the fpriv->vm, so on the FD. I assumed vulkan at least would wa=
+nt
+> > to have it's private VM for this. And on the quick I didn't see any oth=
+er
+> > way to create a VM than to have an FD of your own.
 > =
 
-> Signed-off-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> ---
-> v2:
-> - Unconditionally set VM_IO on our VMAs in line with the rest core gem
->   and TTM. Since the bo might be migrated while the VMA is still alive,
->   there is no sense, whether or not it maps iomem might change.
-> v6:
-> - Introduce a __i915_gem_object_is_lmem() to be used in situations where =
-we
->   know that a fence that can't currently signal keeps the object from bei=
-ng
->   migrated or evicted.
-> - Move a couple of shmem warnings for DGFX to a later patch where we
->   actually move system memory to TTM.
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_internal.c  |  4 +-
->  drivers/gpu/drm/i915/gem/i915_gem_lmem.c      | 22 +++++++++++
->  drivers/gpu/drm/i915/gem/i915_gem_lmem.h      |  2 +
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 12 +++---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c    | 38 +++++++++++++++++++
->  drivers/gpu/drm/i915/gem/i915_gem_object.h    | 14 ++-----
->  .../gpu/drm/i915/gem/i915_gem_object_types.h  | 20 +++++-----
->  drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  7 ++--
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  4 +-
->  .../drm/i915/gem/selftests/huge_gem_object.c  |  4 +-
->  .../gpu/drm/i915/gem/selftests/huge_pages.c   |  5 +--
->  .../drm/i915/gem/selftests/i915_gem_mman.c    |  4 +-
->  .../drm/i915/gem/selftests/i915_gem_phys.c    |  3 +-
->  drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
->  17 files changed, 101 insertions(+), 46 deletions(-)
+> You can't have your own FD in libdrm_amdgpu userspace. We had a pretty ha=
+rd
+> design discussion about that already.
 > =
 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_internal.c b/drivers/gpu/d=
-rm/i915/gem/i915_gem_internal.c
-> index ce6b664b10aa..13b217f75055 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_internal.c
-> @@ -177,8 +177,8 @@ i915_gem_object_create_internal(struct drm_i915_priva=
-te *i915,
->  		return ERR_PTR(-ENOMEM);
->  =
+> What you could do is to load your own copy of libdrm_amdgpu, but I won't
+> recommend that.
+> =
 
->  	drm_gem_private_object_init(&i915->drm, &obj->base, size);
-> -	i915_gem_object_init(obj, &i915_gem_object_internal_ops, &lock_class,
-> -			     I915_BO_ALLOC_STRUCT_PAGE);
-> +	i915_gem_object_init(obj, &i915_gem_object_internal_ops, &lock_class, 0=
+> Just putting the flag on the context instead of the VM is much cleaner as
+> far as I can see anyway.
+
+Helper for the blind? If you gues expect me to move that myself ...
+-Daniel
+
+> =
+
+> Christian.
+> =
+
+> > If there's something else that means "gpu context with it's own vm" then
+> > the flag would need to be moved there, pointers appreciated (but maybe
+> > someone with hw + userspace can do that quicker).
+> > -Daniel
+> > =
+
+> > > > Also yes this risks that a vk app which was violationing the winsys
+> > > > spec will now break, which is why I think we should do this sooner
+> > > > than later. Otherwise the list of w/a we might need to apply in vk
+> > > > userspace will become very long :-( At least since this is purely
+> > > > opt-in from userspace, we only need to have the w/a list in userspa=
+ce,
+> > > > where mesa has the infrastructure for that already.
+> > > > -Daniel
+> > > > =
+
+> > > > > Christian.
+> > > > > =
+
+> > > > > > -Daniel
+> > > > > > =
+
+> > > > > > > Regards,
+> > > > > > > Christian.
+> > > > > > > =
+
+> > > > > > > > > > The current amdgpu uapi just doesn't allow any other mo=
+del without an
+> > > > > > > > > > explicit opt-in. So current implicit sync userspace jus=
+t has to
+> > > > > > > > > > oversync, there's not much choice.
+> > > > > > > > > > =
+
+> > > > > > > > > > > 2) Have an EXPLICIT fence owner that is used for expl=
+icit submissions
+> > > > > > > > > > > that is ignored by AMDGPU_SYNC_NE_OWNER.
+> > > > > > > > > > > =
+
+> > > > > > > > > > > But this doesn't solve cross-driver interactions here.
+> > > > > > > > > > Yeah cross-driver is still entirely unsolved, because
+> > > > > > > > > > amdgpu_bo_explicit_sync() on the bo didn't solve that e=
+ither.
+> > > > > > > > > Hui? You have lost me. Why is that still unsolved?
+> > > > > > > > The part we're trying to solve with this patch is Vulkan sh=
+ould not
+> > > > > > > > participate in any implicit sync at all wrt submissions (an=
+d then
+> > > > > > > > handle the implicit sync for WSI explicitly using the fence
+> > > > > > > > import/export stuff that Jason wrote). As long we add share=
+d fences to
+> > > > > > > > the dma_resv we participate in implicit sync (at the level =
+of an
+> > > > > > > > implicit sync read) still, at least from the perspective of=
+ later jobs
+> > > > > > > > waiting on these fences.
+> > > > > > > > =
+
+> > > > > > > > > Regards,
+> > > > > > > > > Christian.
+> > > > > > > > > =
+
+> > > > > > > > > > -Daniel
+> > > > > > > > > > =
+
+> > > > > > > > > > > > Cc: mesa-dev@lists.freedesktop.org
+> > > > > > > > > > > > Cc: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+> > > > > > > > > > > > Cc: Dave Airlie <airlied@gmail.com>
+> > > > > > > > > > > > Cc: Rob Clark <robdclark@chromium.org>
+> > > > > > > > > > > > Cc: Kristian H. Kristensen <hoegsberg@google.com>
+> > > > > > > > > > > > Cc: Michel D=E4nzer <michel@daenzer.net>
+> > > > > > > > > > > > Cc: Daniel Stone <daniels@collabora.com>
+> > > > > > > > > > > > Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> > > > > > > > > > > > Cc: "Christian K=F6nig" <christian.koenig@amd.com>
+> > > > > > > > > > > > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > > > > > > > > > > > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > > > > > > > > > > Cc: Deepak R Varma <mh12gx2825@gmail.com>
+> > > > > > > > > > > > Cc: Chen Li <chenli@uniontech.com>
+> > > > > > > > > > > > Cc: Kevin Wang <kevin1.wang@amd.com>
+> > > > > > > > > > > > Cc: Dennis Li <Dennis.Li@amd.com>
+> > > > > > > > > > > > Cc: Luben Tuikov <luben.tuikov@amd.com>
+> > > > > > > > > > > > Cc: linaro-mm-sig@lists.linaro.org
+> > > > > > > > > > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.c=
+om>
+> > > > > > > > > > > > ---
+> > > > > > > > > > > >      drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c  |  7 +=
+++++--
+> > > > > > > > > > > >      drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 21 +=
+++++++++++++++++++++
+> > > > > > > > > > > >      drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  |  6 +=
++++++
+> > > > > > > > > > > >      include/uapi/drm/amdgpu_drm.h           | 10 +=
++++++++++
+> > > > > > > > > > > >      4 files changed, 42 insertions(+), 2 deletions=
+(-)
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=
+ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> > > > > > > > > > > > index 65df34c17264..c5386d13eb4a 100644
+> > > > > > > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> > > > > > > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+> > > > > > > > > > > > @@ -498,6 +498,7 @@ static int amdgpu_cs_parser_bos=
+(struct amdgpu_cs_parser *p,
+> > > > > > > > > > > >             struct amdgpu_bo *gds;
+> > > > > > > > > > > >             struct amdgpu_bo *gws;
+> > > > > > > > > > > >             struct amdgpu_bo *oa;
+> > > > > > > > > > > > +       bool no_implicit_sync =3D READ_ONCE(fpriv->=
+vm.no_implicit_sync);
+> > > > > > > > > > > >             int r;
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > >             INIT_LIST_HEAD(&p->validated);
+> > > > > > > > > > > > @@ -577,7 +578,8 @@ static int amdgpu_cs_parser_bos=
+(struct amdgpu_cs_parser *p,
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > >                     e->bo_va =3D amdgpu_vm_bo_find(=
+vm, bo);
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > -               if (bo->tbo.base.dma_buf && !amdgpu=
+_bo_explicit_sync(bo)) {
+> > > > > > > > > > > > +               if (bo->tbo.base.dma_buf &&
+> > > > > > > > > > > > +                   !(no_implicit_sync || amdgpu_bo=
+_explicit_sync(bo))) {
+> > > > > > > > > > > >                             e->chain =3D dma_fence_=
+chain_alloc();
+> > > > > > > > > > > >                             if (!e->chain) {
+> > > > > > > > > > > >                                     r =3D -ENOMEM;
+> > > > > > > > > > > > @@ -649,6 +651,7 @@ static int amdgpu_cs_sync_rings=
+(struct amdgpu_cs_parser *p)
+> > > > > > > > > > > >      {
+> > > > > > > > > > > >             struct amdgpu_fpriv *fpriv =3D p->filp-=
+>driver_priv;
+> > > > > > > > > > > >             struct amdgpu_bo_list_entry *e;
+> > > > > > > > > > > > +       bool no_implicit_sync =3D READ_ONCE(fpriv->=
+vm.no_implicit_sync);
+> > > > > > > > > > > >             int r;
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > >             list_for_each_entry(e, &p->validated, t=
+v.head) {
+> > > > > > > > > > > > @@ -656,7 +659,7 @@ static int amdgpu_cs_sync_rings=
+(struct amdgpu_cs_parser *p)
+> > > > > > > > > > > >                     struct dma_resv *resv =3D bo->t=
+bo.base.resv;
+> > > > > > > > > > > >                     enum amdgpu_sync_mode sync_mode;
+> > > > > > > > > > > > =
+
+> > > > > > > > > > > > -               sync_mode =3D amdgpu_bo_explicit_sy=
+nc(bo) ?
+> > > > > > > > > > > > +               sync_mode =3D no_implicit_sync || a=
+mdgpu_bo_explicit_sync(bo) ?
+> > > > > > > > > > > >                             AMDGPU_SYNC_EXPLICIT : =
+AMDGPU_SYNC_NE_OWNER;
+> > > > > > > > > > > >                     r =3D amdgpu_sync_resv(p->adev,=
+ &p->job->sync, resv, sync_mode,
+> > > > > > > > > > > >                                          &fpriv->vm=
 );
-> +	obj->mem_flags |=3D I915_BO_FLAG_STRUCT_PAGE;
->  =
+> > > > > > > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.=
+c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > > > > > > > > > > index c080ba15ae77..f982626b5328 100644
+> > > > > > > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > > > > > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > > > > > > > > > > @@ -1724,6 +1724,26 @@ int amdgpu_file_to_fpriv(str=
+uct file *filp, struct amdgpu_fpriv **fpriv)
+> > > > > > > > > > > >             return 0;
+> > > > > > > > > > > >      }
+> > > > > > > > > > > > =
 
->  	/*
->  	 * Mark the object as volatile, such that the pages are marked as
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i=
-915/gem/i915_gem_lmem.c
-> index d539dffa1554..41d5182cd367 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> @@ -71,6 +71,28 @@ bool i915_gem_object_is_lmem(struct drm_i915_gem_objec=
-t *obj)
->  		      mr->type =3D=3D INTEL_MEMORY_STOLEN_LOCAL);
->  }
->  =
+> > > > > > > > > > > > +int amdgpu_setparam_ioctl(struct drm_device *dev, =
+void *data,
+> > > > > > > > > > > > +                         struct drm_file *filp)
+> > > > > > > > > > > > +{
+> > > > > > > > > > > > +       struct drm_amdgpu_setparam *setparam =3D da=
+ta;
+> > > > > > > > > > > > +       struct amdgpu_fpriv *fpriv =3D filp->driver=
+_priv;
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +       switch (setparam->param) {
+> > > > > > > > > > > > +       case AMDGPU_SETPARAM_NO_IMPLICIT_SYNC:
+> > > > > > > > > > > > +               if (setparam->value)
+> > > > > > > > > > > > +                       WRITE_ONCE(fpriv->vm.no_imp=
+licit_sync, true);
+> > > > > > > > > > > > +               else
+> > > > > > > > > > > > +                       WRITE_ONCE(fpriv->vm.no_imp=
+licit_sync, false);
+> > > > > > > > > > > > +               break;
+> > > > > > > > > > > > +       default:
+> > > > > > > > > > > > +               return -EINVAL;
+> > > > > > > > > > > > +       }
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +       return 0;
+> > > > > > > > > > > > +}
+> > > > > > > > > > > > +
+> > > > > > > > > > > >      const struct drm_ioctl_desc amdgpu_ioctls_kms[=
+] =3D {
+> > > > > > > > > > > >             DRM_IOCTL_DEF_DRV(AMDGPU_GEM_CREATE, am=
+dgpu_gem_create_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> > > > > > > > > > > >             DRM_IOCTL_DEF_DRV(AMDGPU_CTX, amdgpu_ct=
+x_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> > > > > > > > > > > > @@ -1742,6 +1762,7 @@ const struct drm_ioctl_desc a=
+mdgpu_ioctls_kms[] =3D {
+> > > > > > > > > > > >             DRM_IOCTL_DEF_DRV(AMDGPU_GEM_VA, amdgpu=
+_gem_va_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> > > > > > > > > > > >             DRM_IOCTL_DEF_DRV(AMDGPU_GEM_OP, amdgpu=
+_gem_op_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> > > > > > > > > > > >             DRM_IOCTL_DEF_DRV(AMDGPU_GEM_USERPTR, a=
+mdgpu_gem_userptr_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> > > > > > > > > > > > +       DRM_IOCTL_DEF_DRV(AMDGPU_SETPARAM, amdgpu_s=
+etparam_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> > > > > > > > > > > >      };
+> > > > > > > > > > > > =
 
-> +/**
-> + * __i915_gem_object_is_lmem - Whether the object is resident in
-> + * lmem while in the fence signaling critical path.
-> + * @obj: The object to check.
-> + *
-> + * This function is intended to be called from within the fence signaling
-> + * path where the fence keeps the object from being migrated. For example
-> + * during gpu reset or similar.
-> + *
-> + * Return: Whether the object is resident in lmem.
-> + */
-> +bool __i915_gem_object_is_lmem(struct drm_i915_gem_object *obj)
-> +{
-> +	struct intel_memory_region *mr =3D READ_ONCE(obj->mm.region);
-> +
-> +#ifdef CONFIG_LOCKDEP
-> +	GEM_WARN_ON(dma_resv_test_signaled(obj->base.resv, true));
-> +#endif
-> +	return mr && (mr->type =3D=3D INTEL_MEMORY_LOCAL ||
-> +		      mr->type =3D=3D INTEL_MEMORY_STOLEN_LOCAL);
-> +}
-> +
->  struct drm_i915_gem_object *
->  i915_gem_object_create_lmem(struct drm_i915_private *i915,
->  			    resource_size_t size,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i=
-915/gem/i915_gem_lmem.h
-> index ea76fd11ccb0..27a611deba47 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> @@ -21,6 +21,8 @@ i915_gem_object_lmem_io_map(struct drm_i915_gem_object =
-*obj,
->  =
+> > > > > > > > > > > >      static const struct drm_driver amdgpu_kms_driv=
+er =3D {
+> > > > > > > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h=
+ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> > > > > > > > > > > > index ddb85a85cbba..0e8c440c6303 100644
+> > > > > > > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> > > > > > > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+> > > > > > > > > > > > @@ -321,6 +321,12 @@ struct amdgpu_vm {
+> > > > > > > > > > > >             bool                    bulk_moveable;
+> > > > > > > > > > > >             /* Flag to indicate if VM is used for c=
+ompute */
+> > > > > > > > > > > >             bool                    is_compute_cont=
+ext;
+> > > > > > > > > > > > +       /*
+> > > > > > > > > > > > +        * Flag to indicate whether implicit sync s=
+hould always be skipped on
+> > > > > > > > > > > > +        * this context. We do not care about races=
+ at all, userspace is allowed
+> > > > > > > > > > > > +        * to shoot itself with implicit sync to it=
+s fullest liking.
+> > > > > > > > > > > > +        */
+> > > > > > > > > > > > +       bool no_implicit_sync;
+> > > > > > > > > > > >      };
+> > > > > > > > > > > > =
 
->  bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
->  =
+> > > > > > > > > > > >      struct amdgpu_vm_manager {
+> > > > > > > > > > > > diff --git a/include/uapi/drm/amdgpu_drm.h b/includ=
+e/uapi/drm/amdgpu_drm.h
+> > > > > > > > > > > > index 0cbd1540aeac..9eae245c14d6 100644
+> > > > > > > > > > > > --- a/include/uapi/drm/amdgpu_drm.h
+> > > > > > > > > > > > +++ b/include/uapi/drm/amdgpu_drm.h
+> > > > > > > > > > > > @@ -54,6 +54,7 @@ extern "C" {
+> > > > > > > > > > > >      #define DRM_AMDGPU_VM                  0x13
+> > > > > > > > > > > >      #define DRM_AMDGPU_FENCE_TO_HANDLE     0x14
+> > > > > > > > > > > >      #define DRM_AMDGPU_SCHED               0x15
+> > > > > > > > > > > > +#define DRM_AMDGPU_SETPARAM            0x16
+> > > > > > > > > > > > =
 
-> +bool __i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
-> +
->  struct drm_i915_gem_object *
->  i915_gem_object_create_lmem(struct drm_i915_private *i915,
->  			    resource_size_t size,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i=
-915/gem/i915_gem_mman.c
-> index 2fd155742bd2..6497a2dbdab9 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -684,7 +684,7 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
->  =
+> > > > > > > > > > > >      #define DRM_IOCTL_AMDGPU_GEM_CREATE    DRM_IOW=
+R(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+> > > > > > > > > > > >      #define DRM_IOCTL_AMDGPU_GEM_MMAP      DRM_IOW=
+R(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+> > > > > > > > > > > > @@ -71,6 +72,7 @@ extern "C" {
+> > > > > > > > > > > >      #define DRM_IOCTL_AMDGPU_VM            DRM_IOW=
+R(DRM_COMMAND_BASE + DRM_AMDGPU_VM, union drm_amdgpu_vm)
+> > > > > > > > > > > >      #define DRM_IOCTL_AMDGPU_FENCE_TO_HANDLE DRM_I=
+OWR(DRM_COMMAND_BASE + DRM_AMDGPU_FENCE_TO_HANDLE, union drm_amdgpu_fence_t=
+o_handle)
+> > > > > > > > > > > >      #define DRM_IOCTL_AMDGPU_SCHED         DRM_IOW=
+(DRM_COMMAND_BASE + DRM_AMDGPU_SCHED, union drm_amdgpu_sched)
+> > > > > > > > > > > > +#define DRM_IOCTL_AMDGPU_SETPARAM      DRM_IOW(DRM=
+_COMMAND_BASE + DRM_AMDGPU_SETPARAM, struct drm_amdgpu_setparam)
+> > > > > > > > > > > > =
 
->  	if (mmap_type !=3D I915_MMAP_TYPE_GTT &&
->  	    !i915_gem_object_has_struct_page(obj) &&
-> -	    !i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM))
-> +	    !i915_gem_object_has_iomem(obj))
->  		return -ENODEV;
->  =
+> > > > > > > > > > > >      /**
+> > > > > > > > > > > >       * DOC: memory domains
+> > > > > > > > > > > > @@ -306,6 +308,14 @@ union drm_amdgpu_sched {
+> > > > > > > > > > > >             struct drm_amdgpu_sched_in in;
+> > > > > > > > > > > >      };
+> > > > > > > > > > > > =
 
->  	mmo =3D mmap_offset_attach(obj, mmap_type, file);
-> @@ -708,7 +708,12 @@ __assign_mmap_offset_handle(struct drm_file *file,
->  	if (!obj)
->  		return -ENOENT;
->  =
+> > > > > > > > > > > > +#define AMDGPU_SETPARAM_NO_IMPLICIT_SYNC       1
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +struct drm_amdgpu_setparam {
+> > > > > > > > > > > > +       /* AMDGPU_SETPARAM_* */
+> > > > > > > > > > > > +       __u32   param;
+> > > > > > > > > > > > +       __u32   value;
+> > > > > > > > > > > > +};
+> > > > > > > > > > > > +
+> > > > > > > > > > > >      /*
+> > > > > > > > > > > >       * This is not a reliable API and you should e=
+xpect it to fail for any
+> > > > > > > > > > > >       * number of reasons and have fallback path th=
+at do not use userptr to
+> > > > > > > > > > > > --
+> > > > > > > > > > > > 2.32.0.rc2
+> > > > > > > > > > > > =
 
-> +	err =3D i915_gem_object_lock_interruptible(obj, NULL);
-> +	if (err)
-> +		goto out_put;
->  	err =3D __assign_mmap_offset(obj, mmap_type, offset, file);
-> +	i915_gem_object_unlock(obj);
-> +out_put:
->  	i915_gem_object_put(obj);
->  	return err;
->  }
-> @@ -932,10 +937,7 @@ int i915_gem_mmap(struct file *filp, struct vm_area_=
-struct *vma)
->  		return PTR_ERR(anon);
->  	}
->  =
+> > > > =
 
-> -	vma->vm_flags |=3D VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP;
-> -
-> -	if (i915_gem_object_has_iomem(obj))
-> -		vma->vm_flags |=3D VM_IO;
-> +	vma->vm_flags |=3D VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_IO;
->  =
-
->  	/*
->  	 * We keep the ref on mmo->obj, not vm_file, but we require
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm=
-/i915/gem/i915_gem_object.c
-> index cf18c430d51f..07e8ff9a8aae 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -475,6 +475,44 @@ bool i915_gem_object_migratable(struct drm_i915_gem_=
-object *obj)
->  	return obj->mm.n_placements > 1;
->  }
->  =
-
-> +/**
-> + * i915_gem_object_has_struct_page - Whether the object is page-backed
-> + * @obj: The object to query.
-> + *
-> + * This function should only be called while the object is locked or pin=
-ned,
-> + * otherwise the page backing may change under the caller.
-> + *
-> + * Return: True if page-backed, false otherwise.
-> + */
-> +bool i915_gem_object_has_struct_page(const struct drm_i915_gem_object *o=
-bj)
-> +{
-> +#ifdef CONFIG_LOCKDEP
-> +	if (IS_DGFX(to_i915(obj->base.dev)) &&
-> +	    i915_gem_object_evictable((void __force *)obj))
-> +		assert_object_held_shared(obj);
-> +#endif
-> +	return obj->mem_flags & I915_BO_FLAG_STRUCT_PAGE;
-> +}
-> +
-> +/**
-> + * i915_gem_object_has_iomem - Whether the object is iomem-backed
-> + * @obj: The object to query.
-> + *
-> + * This function should only be called while the object is locked or pin=
-ned,
-> + * otherwise the iomem backing may change under the caller.
-> + *
-> + * Return: True if iomem-backed, false otherwise.
-> + */
-> +bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj)
-> +{
-> +#ifdef CONFIG_LOCKDEP
-> +	if (IS_DGFX(to_i915(obj->base.dev)) &&
-> +	    i915_gem_object_evictable((void __force *)obj))
-> +		assert_object_held_shared(obj);
-> +#endif
-> +	return obj->mem_flags & I915_BO_FLAG_IOMEM;
-> +}
-> +
->  void i915_gem_init__objects(struct drm_i915_private *i915)
->  {
->  	INIT_WORK(&i915->mm.free_work, __i915_gem_free_work);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm=
-/i915/gem/i915_gem_object.h
-> index 7bf4dd46d8d2..ea3224a480c4 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -148,7 +148,7 @@ i915_gem_object_put(struct drm_i915_gem_object *obj)
->  /*
->   * If more than one potential simultaneous locker, assert held.
->   */
-> -static inline void assert_object_held_shared(struct drm_i915_gem_object =
-*obj)
-> +static inline void assert_object_held_shared(const struct drm_i915_gem_o=
-bject *obj)
->  {
->  	/*
->  	 * Note mm list lookup is protected by
-> @@ -266,17 +266,9 @@ i915_gem_object_type_has(const struct drm_i915_gem_o=
-bject *obj,
->  	return obj->ops->flags & flags;
->  }
->  =
-
-> -static inline bool
-> -i915_gem_object_has_struct_page(const struct drm_i915_gem_object *obj)
-> -{
-> -	return obj->flags & I915_BO_ALLOC_STRUCT_PAGE;
-> -}
-> +bool i915_gem_object_has_struct_page(const struct drm_i915_gem_object *o=
-bj);
->  =
-
-> -static inline bool
-> -i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj)
-> -{
-> -	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM);
-> -}
-> +bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
->  =
-
->  static inline bool
->  i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/g=
-pu/drm/i915/gem/i915_gem_object_types.h
-> index 3a2d9ecf8e03..28dec0787b3d 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -33,10 +33,9 @@ struct i915_lut_handle {
->  =
-
->  struct drm_i915_gem_object_ops {
->  	unsigned int flags;
-> -#define I915_GEM_OBJECT_HAS_IOMEM	BIT(1)
-> -#define I915_GEM_OBJECT_IS_SHRINKABLE	BIT(2)
-> -#define I915_GEM_OBJECT_IS_PROXY	BIT(3)
-> -#define I915_GEM_OBJECT_NO_MMAP		BIT(4)
-> +#define I915_GEM_OBJECT_IS_SHRINKABLE	BIT(1)
-> +#define I915_GEM_OBJECT_IS_PROXY	BIT(2)
-> +#define I915_GEM_OBJECT_NO_MMAP		BIT(3)
->  =
-
->  	/* Interface between the GEM object and its backing storage.
->  	 * get_pages() is called once prior to the use of the associated set
-> @@ -201,17 +200,18 @@ struct drm_i915_gem_object {
->  	unsigned long flags;
->  #define I915_BO_ALLOC_CONTIGUOUS BIT(0)
->  #define I915_BO_ALLOC_VOLATILE   BIT(1)
-> -#define I915_BO_ALLOC_STRUCT_PAGE BIT(2)
-> -#define I915_BO_ALLOC_CPU_CLEAR  BIT(3)
-> -#define I915_BO_ALLOC_USER       BIT(4)
-> +#define I915_BO_ALLOC_CPU_CLEAR  BIT(2)
-> +#define I915_BO_ALLOC_USER       BIT(3)
->  #define I915_BO_ALLOC_FLAGS (I915_BO_ALLOC_CONTIGUOUS | \
->  			     I915_BO_ALLOC_VOLATILE | \
-> -			     I915_BO_ALLOC_STRUCT_PAGE | \
->  			     I915_BO_ALLOC_CPU_CLEAR | \
->  			     I915_BO_ALLOC_USER)
-> -#define I915_BO_READONLY         BIT(5)
-> -#define I915_TILING_QUIRK_BIT    6 /* unknown swizzling; do not release!=
- */
-> +#define I915_BO_READONLY         BIT(4)
-> +#define I915_TILING_QUIRK_BIT    5 /* unknown swizzling; do not release!=
- */
->  =
-
-> +	unsigned int mem_flags:2;
-
-Is the entire bitfield array all protected by dma_resv_lock? If not I'd
-just go with a full field, avoids headaches and all that.
-
-Also kerneldoc for this would be really sweet. Means some work to get it
-going, but somewhere we need to stop hacking together undocumented ad-hoc
-locking schemes :-/
-
-> +#define I915_BO_FLAG_STRUCT_PAGE BIT(0)
-> +#define I915_BO_FLAG_IOMEM       BIT(1)
->  	/*
->  	 * Is the object to be mapped as read-only to the GPU
->  	 * Only honoured if hardware has relevant pte bit
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/=
-i915/gem/i915_gem_pages.c
-> index 086005c1c7ea..f2f850e31b8e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -351,7 +351,7 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_obj=
-ect *obj,
->  	int err;
->  =
-
->  	if (!i915_gem_object_has_struct_page(obj) &&
-> -	    !i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM))
-> +	    !i915_gem_object_has_iomem(obj))
->  		return ERR_PTR(-ENXIO);
->  =
-
->  	assert_object_held(obj);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i=
-915/gem/i915_gem_phys.c
-> index be72ad0634ba..7986612f48fa 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> @@ -76,7 +76,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i9=
-15_gem_object *obj)
->  	intel_gt_chipset_flush(&to_i915(obj->base.dev)->gt);
->  =
-
->  	/* We're no longer struct page backed */
-> -	obj->flags &=3D ~I915_BO_ALLOC_STRUCT_PAGE;
-> +	obj->mem_flags &=3D ~I915_BO_FLAG_STRUCT_PAGE;
->  	__i915_gem_object_set_pages(obj, st, sg->length);
->  =
-
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/=
-i915/gem/i915_gem_shmem.c
-> index 5d16c4462fda..7aa1c95c7b7d 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -444,7 +444,7 @@ shmem_pread(struct drm_i915_gem_object *obj,
->  =
-
->  static void shmem_release(struct drm_i915_gem_object *obj)
->  {
-> -	if (obj->flags & I915_BO_ALLOC_STRUCT_PAGE)
-> +	if (i915_gem_object_has_struct_page(obj))
->  		i915_gem_object_release_memory_region(obj);
->  =
-
->  	fput(obj->base.filp);
-> @@ -513,9 +513,8 @@ static int shmem_object_init(struct intel_memory_regi=
-on *mem,
->  	mapping_set_gfp_mask(mapping, mask);
->  	GEM_BUG_ON(!(mapping_gfp_mask(mapping) & __GFP_RECLAIM));
->  =
-
-> -	i915_gem_object_init(obj, &i915_gem_shmem_ops, &lock_class,
-> -			     I915_BO_ALLOC_STRUCT_PAGE);
-> -
-> +	i915_gem_object_init(obj, &i915_gem_shmem_ops, &lock_class, 0);
-> +	obj->mem_flags |=3D I915_BO_FLAG_STRUCT_PAGE;
->  	obj->write_domain =3D I915_GEM_DOMAIN_CPU;
->  	obj->read_domains =3D I915_GEM_DOMAIN_CPU;
->  =
-
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i9=
-15/gem/i915_gem_ttm.c
-> index c5deb8b7227c..b5dd3b7037f4 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -732,7 +732,6 @@ static u64 i915_ttm_mmap_offset(struct drm_i915_gem_o=
-bject *obj)
->  =
-
->  const struct drm_i915_gem_object_ops i915_gem_ttm_obj_ops =3D {
->  	.name =3D "i915_gem_object_ttm",
-> -	.flags =3D I915_GEM_OBJECT_HAS_IOMEM,
->  =
-
->  	.get_pages =3D i915_ttm_get_pages,
->  	.put_pages =3D i915_ttm_put_pages,
-> @@ -777,6 +776,7 @@ int __i915_gem_ttm_object_init(struct intel_memory_re=
-gion *mem,
->  	i915_gem_object_init_memory_region(obj, mem);
->  	i915_gem_object_make_unshrinkable(obj);
->  	obj->read_domains =3D I915_GEM_DOMAIN_WC | I915_GEM_DOMAIN_GTT;
-> +	obj->mem_flags |=3D I915_BO_FLAG_IOMEM;
->  	i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
->  	INIT_RADIX_TREE(&obj->ttm.get_io_page.radix, GFP_KERNEL | __GFP_NOWARN);
->  	mutex_init(&obj->ttm.get_io_page.lock);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/dr=
-m/i915/gem/i915_gem_userptr.c
-> index 4b0acc7eaa27..56edfeff8c02 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> @@ -510,8 +510,8 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
->  		return -ENOMEM;
->  =
-
->  	drm_gem_private_object_init(dev, &obj->base, args->user_size);
-> -	i915_gem_object_init(obj, &i915_gem_userptr_ops, &lock_class,
-> -			     I915_BO_ALLOC_STRUCT_PAGE);
-> +	i915_gem_object_init(obj, &i915_gem_userptr_ops, &lock_class, 0);
-> +	obj->mem_flags =3D I915_BO_FLAG_STRUCT_PAGE;
->  	obj->read_domains =3D I915_GEM_DOMAIN_CPU;
->  	obj->write_domain =3D I915_GEM_DOMAIN_CPU;
->  	i915_gem_object_set_cache_coherency(obj, I915_CACHE_LLC);
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c b/drive=
-rs/gpu/drm/i915/gem/selftests/huge_gem_object.c
-> index 0c8ecfdf5405..f963b8e1e37b 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c
-> @@ -114,8 +114,8 @@ huge_gem_object(struct drm_i915_private *i915,
->  		return ERR_PTR(-ENOMEM);
->  =
-
->  	drm_gem_private_object_init(&i915->drm, &obj->base, dma_size);
-> -	i915_gem_object_init(obj, &huge_ops, &lock_class,
-> -			     I915_BO_ALLOC_STRUCT_PAGE);
-> +	i915_gem_object_init(obj, &huge_ops, &lock_class, 0);
-> +	obj->mem_flags |=3D I915_BO_FLAG_STRUCT_PAGE;
->  =
-
->  	obj->read_domains =3D I915_GEM_DOMAIN_CPU;
->  	obj->write_domain =3D I915_GEM_DOMAIN_CPU;
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gp=
-u/drm/i915/gem/selftests/huge_pages.c
-> index dadd485bc52f..ccc67ed1a84b 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-> @@ -167,9 +167,8 @@ huge_pages_object(struct drm_i915_private *i915,
->  		return ERR_PTR(-ENOMEM);
->  =
-
->  	drm_gem_private_object_init(&i915->drm, &obj->base, size);
-> -	i915_gem_object_init(obj, &huge_page_ops, &lock_class,
-> -			     I915_BO_ALLOC_STRUCT_PAGE);
-> -
-> +	i915_gem_object_init(obj, &huge_page_ops, &lock_class, 0);
-> +	obj->mem_flags |=3D I915_BO_FLAG_STRUCT_PAGE;
->  	i915_gem_object_set_volatile(obj);
->  =
-
->  	obj->write_domain =3D I915_GEM_DOMAIN_CPU;
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers=
-/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> index 44b5de06ce64..fcea0ddabcc5 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> @@ -837,7 +837,7 @@ static bool can_mmap(struct drm_i915_gem_object *obj,=
- enum i915_mmap_type type)
->  =
-
->  	if (type !=3D I915_MMAP_TYPE_GTT &&
->  	    !i915_gem_object_has_struct_page(obj) &&
-> -	    !i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM))
-> +	    !i915_gem_object_has_iomem(obj))
->  		return false;
->  =
-
->  	return true;
-> @@ -991,7 +991,7 @@ static const char *repr_mmap_type(enum i915_mmap_type=
- type)
->  static bool can_access(const struct drm_i915_gem_object *obj)
->  {
->  	return i915_gem_object_has_struct_page(obj) ||
-> -	       i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM);
-> +	       i915_gem_object_has_iomem(obj);
->  }
->  =
-
->  static int __igt_mmap_access(struct drm_i915_private *i915,
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c b/drivers=
-/gpu/drm/i915/gem/selftests/i915_gem_phys.c
-> index 3a6ce87f8b52..d43d8dae0f69 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_phys.c
-> @@ -25,13 +25,14 @@ static int mock_phys_object(void *arg)
->  		goto out;
->  	}
->  =
-
-> +	i915_gem_object_lock(obj, NULL);
->  	if (!i915_gem_object_has_struct_page(obj)) {
-> +		i915_gem_object_unlock(obj);
->  		err =3D -EINVAL;
->  		pr_err("shmem has no struct page\n");
->  		goto out_obj;
->  	}
->  =
-
-> -	i915_gem_object_lock(obj, NULL);
->  	err =3D i915_gem_object_attach_phys(obj, PAGE_SIZE);
->  	i915_gem_object_unlock(obj);
->  	if (err) {
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915=
-/i915_gpu_error.c
-> index cb182c6d265a..a2c58b54a592 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1039,7 +1039,7 @@ i915_vma_coredump_create(const struct intel_gt *gt,
->  			if (ret)
->  				break;
->  		}
-> -	} else if (i915_gem_object_is_lmem(vma->obj)) {
-> +	} else if (__i915_gem_object_is_lmem(vma->obj)) {
->  		struct intel_memory_region *mem =3D vma->obj->mm.region;
->  		dma_addr_t dma;
->  =
-
-> -- =
-
-> 2.31.1
+> > > > --
+> > > > Daniel Vetter
+> > > > Software Engineer, Intel Corporation
+> > > > https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2F=
+blog.ffwll.ch%2F&amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7C517f0d34=
+67324e7ce05008d936581f60%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C63760=
+0574408265873%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
+CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3Dtc6ZdgYzOXpER4vpuOiOlyIsr7=
+YTAHLMcuFaNjSs6YE%3D&amp;reserved=3D0
 > =
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
