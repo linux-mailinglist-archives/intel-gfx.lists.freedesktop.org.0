@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7973B32AF
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 17:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C1E53B32D4
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 17:48:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3806EB2E;
-	Thu, 24 Jun 2021 15:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A257D6EC41;
+	Thu, 24 Jun 2021 15:48:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 47E876EB2E;
- Thu, 24 Jun 2021 15:35:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45901AADD0;
- Thu, 24 Jun 2021 15:35:54 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D9E76EB5E;
+ Thu, 24 Jun 2021 15:48:41 +0000 (UTC)
+IronPort-SDR: K7BkZt89mNhsRSouk3qgbYVJhKsX+S3uAbkQ7B5v0YmpGc/g+2ajyfq5VSk0TGc/FeiSNgZ3LG
+ adRXE/NpwLbw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="268630784"
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="268630784"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 08:48:40 -0700
+IronPort-SDR: zBwbJmFI9wx/89LsVN1u+c7y3aF8xYk5lgETlLZpOrklgTgsf11ryBzbYPT7JC25hqikPV6uFO
+ DHLspgvYQQWA==
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="424115448"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 08:48:39 -0700
+Date: Thu, 24 Jun 2021 08:41:58 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <20210624154158.GA1629@sdutt-i7>
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <20210624070516.21893-4-matthew.brost@intel.com>
+ <0b04e2ee-f5f3-3eb9-ad9f-a595f1942e4c@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 24 Jun 2021 15:35:54 -0000
-Message-ID: <162454895428.1851.14181582668084037840@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210624112914.311984-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210624112914.311984-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Reinstate_the_mmap_ioctl_for_some_platforms_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <0b04e2ee-f5f3-3eb9-ad9f-a595f1942e4c@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 03/47] drm/i915/guc: Increase size of CTB
+ buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,170 +50,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1867097166=="
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1867097166==
-Content-Type: multipart/alternative;
- boundary="===============7626223760688939129=="
+On Thu, Jun 24, 2021 at 03:49:55PM +0200, Michal Wajdeczko wrote:
+> 
+> 
+> On 24.06.2021 09:04, Matthew Brost wrote:
+> > With the introduction of non-blocking CTBs more than one CTB can be in
+> > flight at a time. Increasing the size of the CTBs should reduce how
+> > often software hits the case where no space is available in the CTB
+> > buffer.
+> > 
+> > Cc: John Harrison <john.c.harrison@intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 11 ++++++++---
+> >  1 file changed, 8 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> > index 07f080ddb9ae..a17215920e58 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> > @@ -58,11 +58,16 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
+> >   *      +--------+-----------------------------------------------+------+
+> >   *
+> >   * Size of each `CT Buffer`_ must be multiple of 4K.
+> > - * As we don't expect too many messages, for now use minimum sizes.
+> > + * We don't expect too many messages in flight at any time, unless we are
+> > + * using the GuC submission. In that case each request requires a minimum
+> > + * 2 dwords which gives us a maximum 256 queue'd requests. Hopefully this
+> > + * enough space to avoid backpressure on the driver. We increase the size
+> > + * of the receive buffer (relative to the send) to ensure a G2H response
+> > + * CTB has a landing spot.
+> >   */
+> >  #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
+> >  #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
+> > -#define CTB_G2H_BUFFER_SIZE	(SZ_4K)
+> > +#define CTB_G2H_BUFFER_SIZE	(4 * CTB_H2G_BUFFER_SIZE)
+> >  
+> >  struct ct_request {
+> >  	struct list_head link;
+> > @@ -641,7 +646,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+> >  	/* beware of buffer wrap case */
+> >  	if (unlikely(available < 0))
+> >  		available += size;
+> > -	CT_DEBUG(ct, "available %d (%u:%u)\n", available, head, tail);
+> > +	CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail, size);
+> 
+> CTB size is already printed in intel_guc_ct_init() and is fixed so not
+> sure if repeating it on every ct_read has any benefit
+> 
 
---===============7626223760688939129==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I'd say more debug the better and if CT_DEBUG is enabled the logs are
+very verbose so an extra value doesn't really hurt.
 
-== Series Details ==
+Matt
 
-Series: drm/i915: Reinstate the mmap ioctl for some platforms (rev2)
-URL   : https://patchwork.freedesktop.org/series/91865/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10276 -> Patchwork_20455
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20455 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#2782] / [i915#2940])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10276/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][3] ([fdo#109271] / [i915#1436])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/fi-bsw-nick/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10276 -> Patchwork_20455
-
-  CI-20190529: 20190529
-  CI_DRM_10276: dc72fe3798577491293de99bfcf132e5d321ab7e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20455: fa79f45b7695f89ccddfe7e3377b095bff8218f5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fa79f45b7695 drm/i915: Reinstate the mmap ioctl for some platforms
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/index.html
-
---===============7626223760688939129==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Reinstate the mmap ioctl for some platforms (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91865/">https://patchwork.freedesktop.org/series/91865/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10276 -&gt; Patchwork_20455</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20455 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10276/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20455/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10276 -&gt; Patchwork_20455</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10276: dc72fe3798577491293de99bfcf132e5d321ab7e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20455: fa79f45b7695f89ccddfe7e3377b095bff8218f5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fa79f45b7695 drm/i915: Reinstate the mmap ioctl for some platforms</p>
-
-</body>
-</html>
-
---===============7626223760688939129==--
-
---===============1867097166==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> >  	GEM_BUG_ON(available < 0);
+> >  
+> >  	header = cmds[head];
+> > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1867097166==--
