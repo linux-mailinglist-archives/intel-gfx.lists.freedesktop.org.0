@@ -2,123 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2FD33B2F5B
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 14:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 149B63B2F79
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 14:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6340A6EB7B;
-	Thu, 24 Jun 2021 12:49:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 197DB6EADA;
+	Thu, 24 Jun 2021 12:57:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C0A76EB75;
- Thu, 24 Jun 2021 12:49:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oSgRJZJf2V0JsVX8UVGrK9d4AyYa6gWPyBP7Y2yoXSjnOzS8Jz7E82NbW0PTCVm3ViHbWWYnRIs7HoQL62UseoT9c1hfjWaxqfQlGmtwBQv9jgiC+gOhBiCFb0k48DRTla1EMXe8xVOYBd00HQ6+4AxnlobyVxqO0gKCIzWicPr08Y+CpbEwE7F6TtproIhjaiMbdx6RyKl9pyxl9rMzaqsnMh9z2hnvGcoOFkoDciDCGuP80S5HGv21ff5KiIgk8mdixnki4enSe5k3SrmmgCYjsOQYG1rs6AH8LwH5HhIR/kDf231WxzkDJ+6eb/n96k3Il/Z1GnhBDiOrgaqVag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zSA5C5L5i34apyhce66kppg6YzZ8Q2QDtRY/BSTf9j8=;
- b=QG39wlC3XkInB8h+wwwhqgxtmIs9OfPA5yaWBODxsvuM80S2KLm3KvFFsyAiySVNGeoVMYfnZGKFUf/k2Utv0hJ/OXDfZ1bSo1UUklZBUlXbRWFS2ACYA8rSWlXeEgieybVY9nic0Wn7p9+k3yPVbyZ3RLUeNeM61sOp+onFrKxTzfCMCgmAC67wdHfvvnnLLCo+wmXuVYZklUAr2xnJyw09+bav8wYcnQfcH0F6RZsZbOlKBR2BgL3EHpRg+NOfzZMN6HiyEoxm/fztpPPULsukRDSkWIusqpVXfkGh917a3zn35AL8NYvAvQQMpIf/S9vi34OnvxO8EuaQcH+HjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zSA5C5L5i34apyhce66kppg6YzZ8Q2QDtRY/BSTf9j8=;
- b=RcULALPjQDVoxi9v1hFUz3CFxjFkQw0GjVadMls8DEf6F13Kws4x0zz2HjH092Oei4qrYwnJZvWeJYfI+8XBMNBtGVGo0Xj2pVtKWf0J1hDFdGnboj1CiSubf+9suK9A4KskmCPY4yztEdWr0WiW2Fwsvma6W0M0gr9AAre3Ffs=
-Authentication-Results: linux.ie; dkim=none (message not signed)
- header.d=none;linux.ie; dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
- by MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.18; Thu, 24 Jun
- 2021 12:49:00 +0000
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::6c9e:1e08:7617:f756]) by MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::6c9e:1e08:7617:f756%5]) with mapi id 15.20.4264.020; Thu, 24 Jun 2021
- 12:49:00 +0000
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
- <20210622165511.3169559-15-daniel.vetter@ffwll.ch>
- <4ed8f1d3-eb9c-74d6-d93f-ee28971af7f6@amd.com>
- <YNR9hSMVmzYmotF0@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <4fba7964-3306-4e2a-f87e-906ebedbe7fe@amd.com>
-Date: Thu, 24 Jun 2021 14:48:54 +0200
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5596EADA;
+ Thu, 24 Jun 2021 12:57:48 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 7CFC81FD40;
+ Thu, 24 Jun 2021 12:57:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624539466; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
+ b=u3LjD6oZssj/mJkoGStiSAvIHllAs+WCZqbgI6BOg34/wy6NHBbzTQ1JSVyR10sH/NyAAw
+ pJl/nhBITtCxww7p96mvF926pQTQ0Gnk+voDz/USxmzhEd10NSPQzg7wj0bremchN+1FAC
+ 43RglR2P5jMZtZBUFtwX3C3sZNzp5eg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624539466;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
+ b=skIn5fqMc0iuV1PMO3x3WjCWGfF0W6cyrE+GtqtdFjaVEN9HzBM8/z3ojcgJYirCjjhOr/
+ y3pCmtMNeAOKcwCA==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 81AF511A97;
+ Thu, 24 Jun 2021 12:57:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624539466; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
+ b=u3LjD6oZssj/mJkoGStiSAvIHllAs+WCZqbgI6BOg34/wy6NHBbzTQ1JSVyR10sH/NyAAw
+ pJl/nhBITtCxww7p96mvF926pQTQ0Gnk+voDz/USxmzhEd10NSPQzg7wj0bremchN+1FAC
+ 43RglR2P5jMZtZBUFtwX3C3sZNzp5eg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624539466;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
+ b=skIn5fqMc0iuV1PMO3x3WjCWGfF0W6cyrE+GtqtdFjaVEN9HzBM8/z3ojcgJYirCjjhOr/
+ y3pCmtMNeAOKcwCA==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id V0K6HkmB1GBJTAAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 12:57:45 +0000
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Thierry Reding <thierry.reding@gmail.com>
+References: <20210624072916.27703-1-tzimmermann@suse.de>
+ <20210624072916.27703-5-tzimmermann@suse.de> <87im23u1ok.fsf@intel.com>
+ <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de> <877dijtzl2.fsf@intel.com>
+ <af21db75-584f-aec0-9659-d5386f27b4ea@suse.de>
+ <YNR0m2DJsdIW3NAZ@orome.fritz.box> <87zgvfsalz.fsf@intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <0b0b7cda-9808-f0ed-4122-2d8eeaa8f7c3@suse.de>
+Date: Thu, 24 Jun 2021 14:57:44 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
-In-Reply-To: <YNR9hSMVmzYmotF0@phenom.ffwll.local>
-Content-Language: en-US
-X-Originating-IP: [2a02:908:1252:fb60:8a1c:e700:29c4:44b6]
-X-ClientProxiedBy: AM4PR0101CA0079.eurprd01.prod.exchangelabs.com
- (2603:10a6:200:41::47) To MN2PR12MB3775.namprd12.prod.outlook.com
- (2603:10b6:208:159::19)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:8a1c:e700:29c4:44b6]
- (2a02:908:1252:fb60:8a1c:e700:29c4:44b6) by
- AM4PR0101CA0079.eurprd01.prod.exchangelabs.com (2603:10a6:200:41::47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.18 via Frontend
- Transport; Thu, 24 Jun 2021 12:48:58 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e38fbf74-7a48-4ef4-3cb0-08d9370e7006
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4192:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB41923F899DDFA41040E8084E83079@MN2PR12MB4192.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:172;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /rN4lpJ0YhU/0BEm4jxRH04ohPKThKQCADDyEd1PdXrzO5gdPWzH62Wl2FI79sf/E4wwRocnyArzAQVULiJauTVZbuarwgT4lbhOzoIoolLBNpyKXlEX52XeKd5izDv6k3z4CnF2cIHjdAwqQ85+enOsp0p4Ojn2PbaReEamStPsH2qPAyI1oxsSZ74cOnoVmFyGbQUHKamn7Rs7FtUwiLrWfE0lgONjteqGNvN+CYoaz0mGFi5Cs/UpxJnOPfAvVizER7P6fZMePAijMb+C8CioZCm3OneO1uULdzkazfeQLrVeMfxK2RhgqvJny7fp3TG9f1OieTnYwzeCzPU4oaIvCZt3Sv/XxHwHCLPjIuavbbDbDypfYhIh5BCZYZe7YhqWMdDXqvGGtymKUkFzeECkKX3ujOiKTziWLwG58n+789rXV+9U5J/hgfwIBtjojhMdTLYUQRBHnVUVTJjALbG88MO/G/gCx2pi2B/xtpEMcEHNkk7fJvPtrr9bQ/4SuuqrH47WoyNxEJgyDyyoX71VYoFfEqXWmHcuj/nbcco7nodNoXBI3IkHR0Jrv0vnWM0JZ6gxcKywG9kgP3iOhlBvadqJ5KyBEksn1P0mquV6cll3Vm7A4uwglIWMXvZH1/mpuXASsQXmEbptQUAwuGcyFyN1XfUViDVEFA9rseY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(366004)(376002)(346002)(136003)(39860400002)(66946007)(54906003)(36756003)(31686004)(66476007)(66556008)(6916009)(5660300002)(31696002)(8676002)(186003)(16526019)(83380400001)(8936002)(2616005)(6666004)(316002)(2906002)(478600001)(66574015)(7416002)(38100700002)(6486002)(86362001)(4326008)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Ujg2N2Fpdm85aXlOc21oTW1xbVQ2THFESXdVMmltZi9UcG96cHJxTlkxM2Zs?=
- =?utf-8?B?UjVzb21QQmN1YVdhREVDbFgxbm9QZ1RxdUMxZ1FLWE0xck1IbklkVnN4N0FN?=
- =?utf-8?B?VEIyWXFRR2Ixd3NrTDZVakdycnBGOHpXYjlqdjNhQTNiNzFMZVFiTlV4RDJS?=
- =?utf-8?B?Rm5mR1gxbVN2WXF1N1VPN3BHWXRBMVovelg1WEVubXJhL0hJaW9SRFNvNzZz?=
- =?utf-8?B?SDJUbGJVUnFHZnNuRll3N1N6NGUrUnhMVkJrMTlhcVhlZ1oxSzAvZ3NrUGtP?=
- =?utf-8?B?RjllTVgvQjNqZ0Y2elEyTVFPams5N2twWGNLT1BwRGxwMDM5bjYxRE5vMk9J?=
- =?utf-8?B?dTBIV0ZBdEZ6cWEvZWQ4WDU0NFpJZFhIQjV4UWJTMjBtZEVGWDU4eVhtYjQ3?=
- =?utf-8?B?ZjhROHJ6NERQbGNwNURJcnN0Z2JOYkNtdUJISlozd1hDenNKQmc0YUs4SE05?=
- =?utf-8?B?YWUwc1hwOXJlMWxocHZ1dlZ5azFqMzYzT0lUMTVja1dUT0NIN1NFa2QwNity?=
- =?utf-8?B?OVBlUWVNU0dJeUlOMldyVFN2SmlaVHZiVDNyQVBDbnUvQ3hDYnNjZ0pBK2k1?=
- =?utf-8?B?VEZ5bWJrYjZaNkJEeGUrYSszcXlZTFVWQ0VjWGt3czIvZWh2RXRiNFpWL0RJ?=
- =?utf-8?B?SlpPSFA1NmZmanQ0TUlDNDZoZDd5ejRqakZxYkRNanRvN2MzVmduZHVuRmNQ?=
- =?utf-8?B?d3B6NXJqWXd4cVpBbXpWazc0UGFrYjVhdWg3ekxaK3lINGJ3d3ZPUWFsZkRp?=
- =?utf-8?B?NXBBME5xdXBSeGsydWpCTk01WnI2Z1pva0kxYnY2SFpMSFdNdzhsb0pvM3Jq?=
- =?utf-8?B?VmRvWFZtZjJGNGQybjlESFJuQ0d1NGJMajdMYURLMkcvWmlqMTBobGJvL2ov?=
- =?utf-8?B?RnpRcUxBUFZPenU0YmsrdFRqL1piM21CdnlPZGxoWjRkUmRDc1V0UnI1eWtN?=
- =?utf-8?B?cnJ2TTJDbFhQQmxiTG9lajh5NHNNZ3MzQ082bEpOU29VdkE0QVlPTzI3UGFt?=
- =?utf-8?B?ZUN5MlpIaVpQVmIwazFrUm1mWkN1dm1FeHM5MkRQd1ZvREpZTE8xUllIdkJ5?=
- =?utf-8?B?TllmVkg4YnF0bFlTUmJEVjVWY1MrenQ5eTNyVFdQajV5NXpIbjZ1VHRaN3Qy?=
- =?utf-8?B?bWpSbGtLb1Awbm1HNVo0NkpOTGdmS0NuU0ZRMjUwTUFadnhEcmhoNnVkdWxJ?=
- =?utf-8?B?aE9WdTR3Rzh4Z1cwbjNmZFhoL0JQbXJZNE5ZbjBzUURMU1Z1SEhRTXgxbUR4?=
- =?utf-8?B?UFQ0TnBYL1FuTzNJUURVdVRzSFVQOHhHa0FQVEZIMDFFQzUyRC9FK1puOTlm?=
- =?utf-8?B?SnZ1NTc3bENjc2JOMnpMcmw1M0gwQ3ZXdWExWGx1R0tybVdQVjNad0dvM3Jw?=
- =?utf-8?B?U20reHpLZ1lyb3poQ3o2eG9oMlljVlVCRm01d01RU3lFVXZYQWNzUEdkY0NN?=
- =?utf-8?B?a1c4dElZdFlucDdZbkFqaFBHWmlTNmZQS3d5Tzkzb1R1WFU5dUpiNFI1SDgz?=
- =?utf-8?B?YnVyM0hqSVpsWVJ5bnk4VWZxNlFEekN2UUx1eVhSUXZ4cDk0a3dZdE1KNDFO?=
- =?utf-8?B?YUt4bmtWTGlNU0d2eTZCdWtiSGF5L1hPVFRJV2VqNlZDUnVuTFNmYWgyRjlF?=
- =?utf-8?B?YUNBcGp0L0JxR2Z0REkrT3lWa1VtZWl2Q2dKODdadXI3dS9ndUxHc0E3TWZz?=
- =?utf-8?B?QzhiUWlJQmJxZXZKcUlOd0VaLzd2c0FBZENiTi94ZWlVbTk2Sk02UGtWN21a?=
- =?utf-8?B?bDFCQVJwRlZFcm5kK25UWDhwWTAzZXRCbHNKODFhd0d4QTQ1VzlaeTRCNEV2?=
- =?utf-8?B?aGd5UVhUTGxJTGpidk9XMTgwS2M5RTZxVEsrZ0kxR3I1R1dRV2pFbzd4KzZG?=
- =?utf-8?Q?7VRucUOV9Ma6j?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e38fbf74-7a48-4ef4-3cb0-08d9370e7006
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2021 12:49:00.0271 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J7OtS8chWSsv15OBQM9W2FLBS+lDm+qnOBgqY20tU+DQCFiaBJ7e6Mo8/ykjlH/X
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4192
-Subject: Re: [Intel-gfx] [PATCH 14/15] drm/gem: Tiny kernel clarification
- for drm_gem_fence_array_add
+In-Reply-To: <87zgvfsalz.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 04/27] drm: Don't test for IRQ support in
+ VBLANK ioctls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,47 +83,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, Lucas Stach <l.stach@pengutronix.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: hamohammed.sa@gmail.com, emma@anholt.net, airlied@linux.ie,
+ nouveau@lists.freedesktop.org, laurentiu.palcu@oss.nxp.com,
+ alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
+ linux@armlinux.org.uk, melissa.srw@gmail.com, matthias.bgg@gmail.com,
+ laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
+ mihail.atanassov@arm.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-samsung-soc@vger.kernel.org, jy0922.shim@samsung.com,
+ krzysztof.kozlowski@canonical.com, tomba@kernel.org, michal.simek@xilinx.com,
+ jernej.skrabec@gmail.com, jonathanh@nvidia.com,
+ linux-rockchip@lists.infradead.org, wens@csie.org, james.qian.wang@arm.com,
+ linux-imx@nxp.com, xinliang.liu@linaro.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, linux-graphics-maintainer@vmware.com,
+ kong.kongxinwei@hisilicon.com, s.hauer@pengutronix.de, bskeggs@redhat.com,
+ chunkuang.hu@kernel.org, mcoquelin.stm32@gmail.com, puck.chen@hisilicon.com,
+ intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com,
+ rodrigosiqueiramelo@gmail.com, shawnguo@kernel.org, yannick.fertre@foss.st.com,
+ Xinhui.Pan@amd.com, sw0312.kim@samsung.com, hjc@rock-chips.com,
+ linux-sunxi@lists.linux.dev, kyungmin.park@samsung.com,
+ kieran.bingham+renesas@ideasonboard.com, philippe.cornu@foss.st.com,
+ kernel@pengutronix.de, alexander.deucher@amd.com, tiantao6@hisilicon.com,
+ jyri.sarha@iki.fi, christian.koenig@amd.com
+Content-Type: multipart/mixed; boundary="===============0177979077=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpBbSAyNC4wNi4yMSB1bSAxNDo0MSBzY2hyaWViIERhbmllbCBWZXR0ZXI6Cj4gT24gV2VkLCBK
-dW4gMjMsIDIwMjEgYXQgMTA6NDI6NTBBTSArMDIwMCwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToK
-Pj4gQW0gMjIuMDYuMjEgdW0gMTg6NTUgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+Pj4gU3BvdHRl
-ZCB3aGlsZSB0cnlpbmcgdG8gY29udmVydCBwYW5mcm9zdCB0byB0aGVzZS4KPj4+Cj4+PiBTaWdu
-ZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPj4+IENj
-OiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPj4+IENjOiBM
-dWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25peC5kZT4KPj4+IENjOiBNYWFydGVuIExhbmto
-b3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+Pj4gQ2M6IE1heGltZSBS
-aXBhcmQgPG1yaXBhcmRAa2VybmVsLm9yZz4KPj4+IENjOiBUaG9tYXMgWmltbWVybWFubiA8dHpp
-bW1lcm1hbm5Ac3VzZS5kZT4KPj4+IENjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+
-Cj4+PiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgo+Pj4gLS0tCj4+PiAgICBk
-cml2ZXJzL2dwdS9kcm0vZHJtX2dlbS5jIHwgMyArKysKPj4+ICAgIDEgZmlsZSBjaGFuZ2VkLCAz
-IGluc2VydGlvbnMoKykKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9n
-ZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtLmMKPj4+IGluZGV4IGJhMmU2NGVkOGI0Ny4u
-NjhkZWIxZGU4MjM1IDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9nZW0uYwo+
-Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9nZW0uYwo+Pj4gQEAgLTEzMDIsNiArMTMwMiw5
-IEBAIEVYUE9SVF9TWU1CT0woZHJtX2dlbV91bmxvY2tfcmVzZXJ2YXRpb25zKTsKPj4+ICAgICAq
-IEBmZW5jZV9hcnJheTogYXJyYXkgb2YgZG1hX2ZlbmNlICogZm9yIHRoZSBqb2IgdG8gYmxvY2sg
-b24uCj4+PiAgICAgKiBAZmVuY2U6IHRoZSBkbWFfZmVuY2UgdG8gYWRkIHRvIHRoZSBsaXN0IG9m
-IGRlcGVuZGVuY2llcy4KPj4+ICAgICAqCj4+PiArICogVGhpcyBmdW5jdGlvbnMgY29uc3VtZXMg
-dGhlIHJlZmVyZW5jZSBmb3IgQGZlbmNlIGJvdGggb24gc3VjY2VzcyBhbmQgZXJyb3IKPj4+ICsg
-KiBjYXNlcy4KPj4+ICsgKgo+PiBPaCwgdGhlIGxhdGVyIGlzIGEgYml0IHVnbHkgSSB0aGluay4g
-QnV0IGdvb2QgdG8ga25vdy4KPj4KPj4gUmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNo
-cmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBNZXJnZWQgdG8gZHJtLW1pc2MtbmV4dCwgdGhhbmtz
-IGZvciB0YWtpbmcgYSBsb29rLiBDYW4geW91IHBlcmhhcHMgdGFrZSBhCj4gbG9vayBhdCB0aGUg
-ZHJtL2FybWFkYSBwYXRjaCB0b28sIHRoZW4gSSB0aGluayBJIGhhdmUgcmV2aWV3cy9hY2tzIGZv
-ciBhbGwKPiBvZiB0aGVtPwoKV2hhdCBhcmUgeW91IHRhbGtpbmcgYWJvdXQ/IEkgb25seSBzZWUg
-ZHJtL2FybWFkYSBwYXRjaGVzIGZvciB0aGUgaXJxIApzdHVmZiBUaG9tYXMgaXMgd29ya2luZyBv
-bi4KCkNocmlzdGlhbi4KCj4KPiBUaGFua3MsIERhbmllbAo+Cj4+PiAgICAgKiBSZXR1cm5zOgo+
-Pj4gICAgICogMCBvbiBzdWNjZXNzLCBvciBhbiBlcnJvciBvbiBmYWlsaW5nIHRvIGV4cGFuZCB0
-aGUgYXJyYXkuCj4+PiAgICAgKi8KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0177979077==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0
+Content-Type: multipart/mixed; boundary="lmd8tCC7cJwEr0gUau7cSsDcSUmocjFNc";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Thierry Reding <thierry.reding@gmail.com>
+Cc: hamohammed.sa@gmail.com, emma@anholt.net, airlied@linux.ie,
+ nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com, liviu.dudau@arm.com,
+ alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
+ michal.simek@xilinx.com, melissa.srw@gmail.com, linux-tegra@vger.kernel.org,
+ laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
+ linux@armlinux.org.uk, mihail.atanassov@arm.com,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
+ linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ wens@csie.org, jernej.skrabec@gmail.com, jonathanh@nvidia.com,
+ xinliang.liu@linaro.org, kong.kongxinwei@hisilicon.com,
+ james.qian.wang@arm.com, linux-imx@nxp.com,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ linux-graphics-maintainer@vmware.com, intel-gfx@lists.freedesktop.org,
+ bskeggs@redhat.com, chunkuang.hu@kernel.org, puck.chen@hisilicon.com,
+ s.hauer@pengutronix.de, rodrigosiqueiramelo@gmail.com,
+ laurentiu.palcu@oss.nxp.com, matthias.bgg@gmail.com, kernel@pengutronix.de,
+ linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
+ amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com, tomba@kernel.org,
+ jyri.sarha@iki.fi, yannick.fertre@foss.st.com, Xinhui.Pan@amd.com,
+ sw0312.kim@samsung.com, hjc@rock-chips.com, christian.koenig@amd.com,
+ linux-sunxi@lists.linux.dev, kyungmin.park@samsung.com,
+ kieran.bingham+renesas@ideasonboard.com, philippe.cornu@foss.st.com,
+ alexander.deucher@amd.com, tiantao6@hisilicon.com, shawnguo@kernel.org
+Message-ID: <0b0b7cda-9808-f0ed-4122-2d8eeaa8f7c3@suse.de>
+Subject: Re: [PATCH v3 04/27] drm: Don't test for IRQ support in VBLANK ioctls
+References: <20210624072916.27703-1-tzimmermann@suse.de>
+ <20210624072916.27703-5-tzimmermann@suse.de> <87im23u1ok.fsf@intel.com>
+ <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de> <877dijtzl2.fsf@intel.com>
+ <af21db75-584f-aec0-9659-d5386f27b4ea@suse.de>
+ <YNR0m2DJsdIW3NAZ@orome.fritz.box> <87zgvfsalz.fsf@intel.com>
+In-Reply-To: <87zgvfsalz.fsf@intel.com>
+
+--lmd8tCC7cJwEr0gUau7cSsDcSUmocjFNc
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 24.06.21 um 14:36 schrieb Jani Nikula:
+> On Thu, 24 Jun 2021, Thierry Reding <thierry.reding@gmail.com> wrote:
+>> On Thu, Jun 24, 2021 at 11:07:57AM +0200, Thomas Zimmermann wrote:
+>>> Hi
+>>>
+>>> Am 24.06.21 um 10:51 schrieb Jani Nikula:
+>>>> On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>>>>> Hi
+>>>>>
+>>>>> Am 24.06.21 um 10:06 schrieb Jani Nikula:
+>>>>>> On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote=
+:
+>>>>>>> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_v=
+blank.c
+>>>>>>> index 3417e1ac7918..10fe16bafcb6 100644
+>>>>>>> --- a/drivers/gpu/drm/drm_vblank.c
+>>>>>>> +++ b/drivers/gpu/drm/drm_vblank.c
+>>>>>>> @@ -1748,8 +1748,16 @@ int drm_wait_vblank_ioctl(struct drm_devic=
+e *dev, void *data,
+>>>>>>>     	unsigned int pipe_index;
+>>>>>>>     	unsigned int flags, pipe, high_pipe;
+>>>>>>> -	if (!dev->irq_enabled)
+>>>>>>> -		return -EOPNOTSUPP;
+>>>>>>> +#if defined(CONFIG_DRM_LEGACY)
+>>>>>>> +	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY))) {
+>>>>>>> +		if (!dev->irq_enabled)
+>>>>>>> +			return -EOPNOTSUPP;
+>>>>>>> +	} else /* if DRIVER_MODESET */
+>>>>>>> +#endif
+>>>>>>> +	{
+>>>>>>> +		if (!drm_dev_has_vblank(dev))
+>>>>>>> +			return -EOPNOTSUPP;
+>>>>>>> +	}
+>>>>>>
+>>>>>> Sheesh I hate this kind of inline #ifdefs.
+>>>>>>
+>>>>>> Two alternate suggestions that I believe should be as just efficie=
+nt:
+>>>>>
+>>>>> Or how about:
+>>>>>
+>>>>> static bool drm_wait_vblank_supported(struct drm_device *dev)
+>>>>>
+>>>>> {
+>>>>>
+>>>>> if defined(CONFIG_DRM_LEGACY)
+>>>>> 	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
+>>>>>
+>>>>> 		return dev->irq_enabled;
+>>>>>
+>>>>> #endif
+>>>>> 	return drm_dev_has_vblank(dev);
+>>>>>
+>>>>> }
+>>>>>
+>>>>>
+>>>>> ?
+>>>>>
+>>>>> It's inline, but still readable.
+>>>>
+>>>> It's definitely better than the original, but it's unclear to me why=
+
+>>>> you'd prefer this over option 2) below. I guess the only reason I ca=
+n
+>>>> think of is emphasizing the conditional compilation. However,
+>>>> IS_ENABLED() is widely used in this manner specifically to avoid inl=
+ine
+>>>> #if, and the compiler optimizes it away.
+>>>
+>>> It's simply more readable to me as the condition is simpler. But opti=
+on 2 is
+>>> also ok.
+>>
+>> Perhaps do something like this, then:
+>>
+>> 	if (IS_ENABLED(CONFIG_DRM_LEGACY)) {
+>> 		if (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
+>> 			return dev->irq_enabled;
+>> 	}
+>>
+>> 	return drm_dev_has_vblank(dev);
+>>
+>> That's about just as readable as the variant involving the preprocesso=
+r
+>> but has all the benefits of not using the preprocessor.
+>=20
+> Looks like a winner to me. :)
+
+That's the most readable.
+
+But I just remembered that irq_enabled will likely become legacy-only in =
+
+the device structure. We'll need an ifdef variant then. :/
+
+Best regards
+Thomas
+
+>=20
+> BR,
+> Jani.
+>=20
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--lmd8tCC7cJwEr0gUau7cSsDcSUmocjFNc--
+
+--uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDUgUgFAwAAAAAACgkQlh/E3EQov+Bk
+HA/9GKE6DtrNVTmNxi2Q1NuMTT4X0e/U8VAQ+IlFKl8xxDejBHRg5B2w4IWO1ryG0fVvwJTmulCJ
+4oIF7texau6jTumwKhAXbRwUOjdRyO1EVchjVjZ9OCG9+pab1hN4k6aH8EmG1Jbk47pgPrcn72Eb
+/Wk9L3GlqhVg/h5/gXnNXX7lE3N/zwms6VexWkqGXOQN8/eRK03NFHIaim9TH2ZwA52ePGCFxf7X
+qGCSxGUsTDfpjp1wh7vHkZQu8Xob/WUqBe8VD4l6qSxXmaaK6GX8PkcR/KHSaEQTbT9+xeiaARfc
+fL+AAzsKgwT7VHQiBtiDp+vTFSb7Smqb1njcV6XKoT22ChKIkwXgosP0un57vun3nbUCINjkSWhH
+sIDquVu33/iLM0phsJJGzNBVZIZ/TKjNZLN0xKL14t3QCiGaPmgK2T4oIIddEpEWDpC44+ReNuG+
+gmDsDDCGlph9N3IQ3hFbmZEbE3zq3wpoNZc8waPul0MIh3NP4oVXqFWKfZQHe5ZG2L+SsXA0mD3V
+JQ4YgpDzpqDrPVZN3e7IDy5AIAq8lHKQ7HjDnk9BAeU07ugunwtotH8nLRpsxEoH2rqRPHWLbskz
+MH+boqUIKPbGSWWh3OCLIsONS9XZR5dnZG2etdxPgteJRgWatYNmdaacVJzZt/epo1ZxEnEZXi3C
+DRk=
+=+AeC
+-----END PGP SIGNATURE-----
+
+--uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0--
+
+--===============0177979077==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0177979077==--
