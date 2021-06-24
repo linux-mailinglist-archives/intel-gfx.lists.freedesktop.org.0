@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D983B2D28
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 13:01:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E80CA3B2D30
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 13:04:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7C3C6EAB7;
-	Thu, 24 Jun 2021 11:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C0626EA1F;
+	Thu, 24 Jun 2021 11:04:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC2B76EAB7
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 11:01:19 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi
- [62.78.145.57])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 571A61254;
- Thu, 24 Jun 2021 12:48:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1624531713;
- bh=fIk5wMEN1B7CMPOBGbKPIoyHWGb/NJbW3Q+hz7HFjMM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=OoLj5b8l/ofOHdX9hMnRB54xFpHcmL5qCdyqf0btt+Wqy//1J8rGXdoC24H1uq8n1
- 048gJuhXofMiwBWBvQAq72XeLSOhwF8Jn/QOm5PZoqoyR+V/AZX9s6u3YYgXawYOjf
- yqs50G3bJBKCjDvGArnYQnXaHNQWu9PnXSCiArt0=
-Date: Thu, 24 Jun 2021 13:48:03 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <YNRi4yR6lQTix7ar@pendragon.ideasonboard.com>
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-25-tzimmermann@suse.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5C65D6E9F8;
+ Thu, 24 Jun 2021 11:04:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 53BB1A73C9;
+ Thu, 24 Jun 2021 11:04:45 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210624072916.27703-25-tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH v3 24/27] drm/vkms: Don't set struct
- drm_device.irq_enabled
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 24 Jun 2021 11:04:45 -0000
+Message-ID: <162453268531.1852.10027077712141863437@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210624083113.365039-1-matthew.auld@intel.com>
+In-Reply-To: <20210624083113.365039-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/dg1=3A_Compute_MEM_Bandwid?=
+ =?utf-8?q?th_using_MCHBAR?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,70 +39,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, heiko@sntech.de, emma@anholt.net, airlied@linux.ie,
- nouveau@lists.freedesktop.org, alexandre.torgue@foss.st.com,
- dri-devel@lists.freedesktop.org, michal.simek@xilinx.com,
- melissa.srw@gmail.com, linux-tegra@vger.kernel.org, thierry.reding@gmail.com,
- amd-gfx@lists.freedesktop.org, benjamin.gaignard@linaro.org,
- linux@armlinux.org.uk, mihail.atanassov@arm.com, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- wens@csie.org, jernej.skrabec@gmail.com, jonathanh@nvidia.com,
- xinliang.liu@linaro.org, kong.kongxinwei@hisilicon.com,
- james.qian.wang@arm.com, linux-imx@nxp.com, intel-gfx@lists.freedesktop.org,
- linux-graphics-maintainer@vmware.com, linux-sunxi@lists.linux.dev,
- bskeggs@redhat.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
- puck.chen@hisilicon.com, s.hauer@pengutronix.de, mripard@kernel.org,
- inki.dae@samsung.com, rodrigosiqueiramelo@gmail.com, john.stultz@linaro.org,
- laurentiu.palcu@oss.nxp.com, matthias.bgg@gmail.com, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
- hyun.kwon@xilinx.com, tomba@kernel.org, jyri.sarha@iki.fi,
- yannick.fertre@foss.st.com, Xinhui.Pan@amd.com, sw0312.kim@samsung.com,
- hjc@rock-chips.com, christian.koenig@amd.com, kyungmin.park@samsung.com,
- kieran.bingham+renesas@ideasonboard.com, philippe.cornu@foss.st.com,
- alexander.deucher@amd.com, tiantao6@hisilicon.com, shawnguo@kernel.org,
- zackr@vmware.com, l.stach@pengutronix.de
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1337960535=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+--===============1337960535==
+Content-Type: multipart/alternative;
+ boundary="===============1063391849777769837=="
 
-Thank you for the patch.
+--===============1063391849777769837==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jun 24, 2021 at 09:29:13AM +0200, Thomas Zimmermann wrote:
-> The field drm_device.irq_enabled is only used by legacy drivers
-> with userspace modesetting. Don't set it in vkms.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+== Series Details ==
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Series: series starting with [1/2] drm/i915/dg1: Compute MEM Bandwidth using MCHBAR
+URL   : https://patchwork.freedesktop.org/series/91848/
+State : success
 
-> ---
->  drivers/gpu/drm/vkms/vkms_drv.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
-> index 027ffe759440..496de38ad983 100644
-> --- a/drivers/gpu/drm/vkms/vkms_drv.c
-> +++ b/drivers/gpu/drm/vkms/vkms_drv.c
-> @@ -163,8 +163,6 @@ static int vkms_create(struct vkms_config *config)
->  		goto out_devres;
->  	}
->  
-> -	vkms_device->drm.irq_enabled = true;
-> -
->  	ret = drm_vblank_init(&vkms_device->drm, 1);
->  	if (ret) {
->  		DRM_ERROR("Failed to vblank\n");
+== Summary ==
 
--- 
-Regards,
+CI Bug Log - changes from CI_DRM_10273 -> Patchwork_20451
+====================================================
 
-Laurent Pinchart
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20451 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +9 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-y:           [PASS][2] -> [INCOMPLETE][3] ([i915#2782])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10273/fi-icl-y/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-icl-y:           NOTRUN -> [FAIL][4] ([i915#2782])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Missing    (3): fi-skl-guc fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10273 -> Patchwork_20451
+
+  CI-20190529: 20190529
+  CI_DRM_10273: 7e8fb717a07aaf86771e709855436312f546965b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20451: 9ce7776ed8c0b023dd9725fa5db6fe039704a5ba @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9ce7776ed8c0 drm/i915/dg1: Double memory bandwidth available
+3c3f748f9977 drm/i915/dg1: Compute MEM Bandwidth using MCHBAR
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html
+
+--===============1063391849777769837==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/dg1: Compute MEM Bandwidth using MCHBAR</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91848/">https://patchwork.freedesktop.org/series/91848/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10273 -&gt; Patchwork_20451</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20451 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10273/fi-icl-y/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Missing    (3): fi-skl-guc fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10273 -&gt; Patchwork_20451</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10273: 7e8fb717a07aaf86771e709855436312f546965b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20451: 9ce7776ed8c0b023dd9725fa5db6fe039704a5ba @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9ce7776ed8c0 drm/i915/dg1: Double memory bandwidth available<br />
+3c3f748f9977 drm/i915/dg1: Compute MEM Bandwidth using MCHBAR</p>
+
+</body>
+</html>
+
+--===============1063391849777769837==--
+
+--===============1337960535==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1337960535==--
