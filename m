@@ -1,76 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149B63B2F79
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 14:57:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D43E63B2F80
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 14:58:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 197DB6EADA;
-	Thu, 24 Jun 2021 12:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 471AE6EB2F;
+	Thu, 24 Jun 2021 12:58:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5596EADA;
- Thu, 24 Jun 2021 12:57:48 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 7CFC81FD40;
- Thu, 24 Jun 2021 12:57:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624539466; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
- b=u3LjD6oZssj/mJkoGStiSAvIHllAs+WCZqbgI6BOg34/wy6NHBbzTQ1JSVyR10sH/NyAAw
- pJl/nhBITtCxww7p96mvF926pQTQ0Gnk+voDz/USxmzhEd10NSPQzg7wj0bremchN+1FAC
- 43RglR2P5jMZtZBUFtwX3C3sZNzp5eg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624539466;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
- b=skIn5fqMc0iuV1PMO3x3WjCWGfF0W6cyrE+GtqtdFjaVEN9HzBM8/z3ojcgJYirCjjhOr/
- y3pCmtMNeAOKcwCA==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 81AF511A97;
- Thu, 24 Jun 2021 12:57:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624539466; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
- b=u3LjD6oZssj/mJkoGStiSAvIHllAs+WCZqbgI6BOg34/wy6NHBbzTQ1JSVyR10sH/NyAAw
- pJl/nhBITtCxww7p96mvF926pQTQ0Gnk+voDz/USxmzhEd10NSPQzg7wj0bremchN+1FAC
- 43RglR2P5jMZtZBUFtwX3C3sZNzp5eg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624539466;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=nlRQ0RGts2fg2n9D/bEIlhwvWJbNJH9fkaGW/6cqJVk=;
- b=skIn5fqMc0iuV1PMO3x3WjCWGfF0W6cyrE+GtqtdFjaVEN9HzBM8/z3ojcgJYirCjjhOr/
- y3pCmtMNeAOKcwCA==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id V0K6HkmB1GBJTAAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 12:57:45 +0000
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Thierry Reding <thierry.reding@gmail.com>
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-5-tzimmermann@suse.de> <87im23u1ok.fsf@intel.com>
- <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de> <877dijtzl2.fsf@intel.com>
- <af21db75-584f-aec0-9659-d5386f27b4ea@suse.de>
- <YNR0m2DJsdIW3NAZ@orome.fritz.box> <87zgvfsalz.fsf@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <0b0b7cda-9808-f0ed-4122-2d8eeaa8f7c3@suse.de>
-Date: Thu, 24 Jun 2021 14:57:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
+ [IPv6:2607:f8b0:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB44B6EB2F;
+ Thu, 24 Jun 2021 12:58:00 +0000 (UTC)
+Received: by mail-pf1-x42e.google.com with SMTP id q192so5092642pfc.7;
+ Thu, 24 Jun 2021 05:58:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:subject:to:cc:references:in-reply-to:mime-version
+ :message-id:content-transfer-encoding;
+ bh=uZuciq1P1LLIv86omk3p15CWzxu9H3VjtHemSC+vWOI=;
+ b=rznw7O6D2Zt35p7Og+3iCwDgw2dkNPfwzD7rlUMP0y2Ej6O0tM+y3kSEcf8SWyT54d
+ ublbOGuxe9Umj5fFSx3kLcve+5qwIiX31Bd1k9qJoijVaEMTrXxDg0VCRopT0Otp624H
+ vQfbCt9QT5NQGNwfAmJ+KqkgxcPuOAOPjB6i02zSgoYEerKJgc/pbPT1wHARr0++dvZS
+ Cel9tp2O0yGrWOTbrGUMXfBkZ8Eb/NzV2+WsHAOwG6gVAXQkKI9dWxURNSfgfHu0j01+
+ sMqgBmAGdH9hfo97BHqdnz3MvquYkt7SnDT6LlXF4LTAyCM7dcMF+YevSRJYr4EeGBsv
+ ThKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:subject:to:cc:references:in-reply-to
+ :mime-version:message-id:content-transfer-encoding;
+ bh=uZuciq1P1LLIv86omk3p15CWzxu9H3VjtHemSC+vWOI=;
+ b=Ocs4AtefsbgeLgOLTC4u8v9kb1f0/cTGV5CGGenCnLMkkV7m7+nRW3LUlj4nKrzz0s
+ IbjR3loDFxw+ukEyuWlTP5j0uC7nYazBJ2LWKmWlOEPKxW6A+Y/rZ9k/Zkw52Sos9gA2
+ WTojPYmmRtprXZ5KDk81x7QJr1ao4lMJGLbb1IgTQCc+3ohFOKBfXhmkH8shngK19T8I
+ QRdA7j2/O1On5lE7gIxzqHEZLYUxI+aP/bgRF6rh+0qJknZLFdpdBz60GS6yfAkZ/Pcp
+ avyl3vS1MTfXgDGnaxCo03JbCLSFzYws/1VcZicwPBZnq3BFTr2DnwCrNlBVmML+xtXu
+ i7+A==
+X-Gm-Message-State: AOAM533yJkuUiYpE3rR44pxgy3Bk0N8kTwYdE2hvUP2lZie8RLJEGiua
+ Tk51EqXfGvyMqLZ4YMub4YY=
+X-Google-Smtp-Source: ABdhPJyRyvJn5C7VYeX4UgUoQTwK2Wl40+EfEX+5KjgwzBTc5sLi33BY4sgc5lVA8ilsgegR5j26Eg==
+X-Received: by 2002:a63:530a:: with SMTP id h10mr4685438pgb.98.1624539480323; 
+ Thu, 24 Jun 2021 05:58:00 -0700 (PDT)
+Received: from localhost (60-242-147-73.tpgi.com.au. [60.242.147.73])
+ by smtp.gmail.com with ESMTPSA id h22sm2909006pfc.21.2021.06.24.05.57.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Jun 2021 05:58:00 -0700 (PDT)
+Date: Thu, 24 Jun 2021 22:57:54 +1000
+From: Nicholas Piggin <npiggin@gmail.com>
+To: Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>, Huacai Chen
+ <chenhuacai@kernel.org>, Marc Zyngier <maz@kernel.org>, Paul Mackerras
+ <paulus@ozlabs.org>, Paolo Bonzini <pbonzini@redhat.com>, David Stevens
+ <stevensd@chromium.org>, Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
+ <zhi.a.wang@intel.com>
+References: <20210624035749.4054934-1-stevensd@google.com>
+ <1624530624.8jff1f4u11.astroid@bobo.none>
+ <1624534759.nj0ylor2eh.astroid@bobo.none>
+ <0d3a699a-15eb-9f1b-0735-79d14736f38c@redhat.com>
+In-Reply-To: <0d3a699a-15eb-9f1b-0735-79d14736f38c@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <87zgvfsalz.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 04/27] drm: Don't test for IRQ support in
- VBLANK ioctls
+Message-Id: <1624539354.6zggpdrdbw.astroid@bobo.none>
+Subject: Re: [Intel-gfx] [PATCH 0/6] KVM: Remove uses of struct page from
+ x86 and arm64 MMU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,232 +73,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, emma@anholt.net, airlied@linux.ie,
- nouveau@lists.freedesktop.org, laurentiu.palcu@oss.nxp.com,
- alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
- linux@armlinux.org.uk, melissa.srw@gmail.com, matthias.bgg@gmail.com,
- laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
- mihail.atanassov@arm.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-samsung-soc@vger.kernel.org, jy0922.shim@samsung.com,
- krzysztof.kozlowski@canonical.com, tomba@kernel.org, michal.simek@xilinx.com,
- jernej.skrabec@gmail.com, jonathanh@nvidia.com,
- linux-rockchip@lists.infradead.org, wens@csie.org, james.qian.wang@arm.com,
- linux-imx@nxp.com, xinliang.liu@linaro.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-graphics-maintainer@vmware.com,
- kong.kongxinwei@hisilicon.com, s.hauer@pengutronix.de, bskeggs@redhat.com,
- chunkuang.hu@kernel.org, mcoquelin.stm32@gmail.com, puck.chen@hisilicon.com,
- intel-gfx@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com,
- rodrigosiqueiramelo@gmail.com, shawnguo@kernel.org, yannick.fertre@foss.st.com,
- Xinhui.Pan@amd.com, sw0312.kim@samsung.com, hjc@rock-chips.com,
- linux-sunxi@lists.linux.dev, kyungmin.park@samsung.com,
- kieran.bingham+renesas@ideasonboard.com, philippe.cornu@foss.st.com,
- kernel@pengutronix.de, alexander.deucher@amd.com, tiantao6@hisilicon.com,
- jyri.sarha@iki.fi, christian.koenig@amd.com
-Content-Type: multipart/mixed; boundary="===============0177979077=="
+Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ David Stevens <stevensd@google.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>, intel-gfx@lists.freedesktop.org,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kvmarm@lists.cs.columbia.edu,
+ Will Deacon <will@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ James Morse <james.morse@arm.com>, kvm-ppc@vger.kernel.org,
+ Sean Christopherson <seanjc@google.com>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, linux-mips@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>,
+ linux-arm-kernel@lists.infradead.org, Jim Mattson <jmattson@google.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0177979077==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0
-Content-Type: multipart/mixed; boundary="lmd8tCC7cJwEr0gUau7cSsDcSUmocjFNc";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Thierry Reding <thierry.reding@gmail.com>
-Cc: hamohammed.sa@gmail.com, emma@anholt.net, airlied@linux.ie,
- nouveau@lists.freedesktop.org, rodrigo.vivi@intel.com, liviu.dudau@arm.com,
- alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
- michal.simek@xilinx.com, melissa.srw@gmail.com, linux-tegra@vger.kernel.org,
- laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
- linux@armlinux.org.uk, mihail.atanassov@arm.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- wens@csie.org, jernej.skrabec@gmail.com, jonathanh@nvidia.com,
- xinliang.liu@linaro.org, kong.kongxinwei@hisilicon.com,
- james.qian.wang@arm.com, linux-imx@nxp.com,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- linux-graphics-maintainer@vmware.com, intel-gfx@lists.freedesktop.org,
- bskeggs@redhat.com, chunkuang.hu@kernel.org, puck.chen@hisilicon.com,
- s.hauer@pengutronix.de, rodrigosiqueiramelo@gmail.com,
- laurentiu.palcu@oss.nxp.com, matthias.bgg@gmail.com, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
- amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com, tomba@kernel.org,
- jyri.sarha@iki.fi, yannick.fertre@foss.st.com, Xinhui.Pan@amd.com,
- sw0312.kim@samsung.com, hjc@rock-chips.com, christian.koenig@amd.com,
- linux-sunxi@lists.linux.dev, kyungmin.park@samsung.com,
- kieran.bingham+renesas@ideasonboard.com, philippe.cornu@foss.st.com,
- alexander.deucher@amd.com, tiantao6@hisilicon.com, shawnguo@kernel.org
-Message-ID: <0b0b7cda-9808-f0ed-4122-2d8eeaa8f7c3@suse.de>
-Subject: Re: [PATCH v3 04/27] drm: Don't test for IRQ support in VBLANK ioctls
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-5-tzimmermann@suse.de> <87im23u1ok.fsf@intel.com>
- <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de> <877dijtzl2.fsf@intel.com>
- <af21db75-584f-aec0-9659-d5386f27b4ea@suse.de>
- <YNR0m2DJsdIW3NAZ@orome.fritz.box> <87zgvfsalz.fsf@intel.com>
-In-Reply-To: <87zgvfsalz.fsf@intel.com>
-
---lmd8tCC7cJwEr0gUau7cSsDcSUmocjFNc
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 24.06.21 um 14:36 schrieb Jani Nikula:
-> On Thu, 24 Jun 2021, Thierry Reding <thierry.reding@gmail.com> wrote:
->> On Thu, Jun 24, 2021 at 11:07:57AM +0200, Thomas Zimmermann wrote:
->>> Hi
->>>
->>> Am 24.06.21 um 10:51 schrieb Jani Nikula:
->>>> On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->>>>> Hi
->>>>>
->>>>> Am 24.06.21 um 10:06 schrieb Jani Nikula:
->>>>>> On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote=
-:
->>>>>>> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_v=
-blank.c
->>>>>>> index 3417e1ac7918..10fe16bafcb6 100644
->>>>>>> --- a/drivers/gpu/drm/drm_vblank.c
->>>>>>> +++ b/drivers/gpu/drm/drm_vblank.c
->>>>>>> @@ -1748,8 +1748,16 @@ int drm_wait_vblank_ioctl(struct drm_devic=
-e *dev, void *data,
->>>>>>>     	unsigned int pipe_index;
->>>>>>>     	unsigned int flags, pipe, high_pipe;
->>>>>>> -	if (!dev->irq_enabled)
->>>>>>> -		return -EOPNOTSUPP;
->>>>>>> +#if defined(CONFIG_DRM_LEGACY)
->>>>>>> +	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY))) {
->>>>>>> +		if (!dev->irq_enabled)
->>>>>>> +			return -EOPNOTSUPP;
->>>>>>> +	} else /* if DRIVER_MODESET */
->>>>>>> +#endif
->>>>>>> +	{
->>>>>>> +		if (!drm_dev_has_vblank(dev))
->>>>>>> +			return -EOPNOTSUPP;
->>>>>>> +	}
->>>>>>
->>>>>> Sheesh I hate this kind of inline #ifdefs.
->>>>>>
->>>>>> Two alternate suggestions that I believe should be as just efficie=
-nt:
->>>>>
->>>>> Or how about:
->>>>>
->>>>> static bool drm_wait_vblank_supported(struct drm_device *dev)
->>>>>
->>>>> {
->>>>>
->>>>> if defined(CONFIG_DRM_LEGACY)
->>>>> 	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
->>>>>
->>>>> 		return dev->irq_enabled;
->>>>>
->>>>> #endif
->>>>> 	return drm_dev_has_vblank(dev);
->>>>>
->>>>> }
->>>>>
->>>>>
->>>>> ?
->>>>>
->>>>> It's inline, but still readable.
+Excerpts from Paolo Bonzini's message of June 24, 2021 10:41 pm:
+> On 24/06/21 13:42, Nicholas Piggin wrote:
+>> Excerpts from Nicholas Piggin's message of June 24, 2021 8:34 pm:
+>>> Excerpts from David Stevens's message of June 24, 2021 1:57 pm:
+>>>> KVM supports mapping VM_IO and VM_PFNMAP memory into the guest by using
+>>>> follow_pte in gfn_to_pfn. However, the resolved pfns may not have
+>>>> assoicated struct pages, so they should not be passed to pfn_to_page.
+>>>> This series removes such calls from the x86 and arm64 secondary MMU. To
+>>>> do this, this series modifies gfn_to_pfn to return a struct page in
+>>>> addition to a pfn, if the hva was resolved by gup. This allows the
+>>>> caller to call put_page only when necessated by gup.
 >>>>
->>>> It's definitely better than the original, but it's unclear to me why=
-
->>>> you'd prefer this over option 2) below. I guess the only reason I ca=
-n
->>>> think of is emphasizing the conditional compilation. However,
->>>> IS_ENABLED() is widely used in this manner specifically to avoid inl=
-ine
->>>> #if, and the compiler optimizes it away.
+>>>> This series provides a helper function that unwraps the new return type
+>>>> of gfn_to_pfn to provide behavior identical to the old behavior. As I
+>>>> have no hardware to test powerpc/mips changes, the function is used
+>>>> there for minimally invasive changes. Additionally, as gfn_to_page and
+>>>> gfn_to_pfn_cache are not integrated with mmu notifier, they cannot be
+>>>> easily changed over to only use pfns.
+>>>>
+>>>> This addresses CVE-2021-22543 on x86 and arm64.
 >>>
->>> It's simply more readable to me as the condition is simpler. But opti=
-on 2 is
->>> also ok.
->>
->> Perhaps do something like this, then:
->>
->> 	if (IS_ENABLED(CONFIG_DRM_LEGACY)) {
->> 		if (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
->> 			return dev->irq_enabled;
->> 	}
->>
->> 	return drm_dev_has_vblank(dev);
->>
->> That's about just as readable as the variant involving the preprocesso=
-r
->> but has all the benefits of not using the preprocessor.
->=20
-> Looks like a winner to me. :)
+>>> Does this fix the problem? (untested I don't have a POC setup at hand,
+>>> but at least in concept)
+>> 
+>> This one actually compiles at least. Unfortunately I don't have much
+>> time in the near future to test, and I only just found out about this
+>> CVE a few hours ago.
+> 
+> And it also works (the reproducer gets an infinite stream of userspace 
+> exits and especially does not crash).  We can still go for David's 
+> solution later since MMU notifiers are able to deal with this pages, but 
+> it's a very nice patch for stable kernels.
 
-That's the most readable.
+Oh nice, thanks for testing. How's this?
 
-But I just remembered that irq_enabled will likely become legacy-only in =
+Thanks,
+Nick
 
-the device structure. We'll need an ifdef variant then. :/
+---
 
-Best regards
-Thomas
+KVM: Fix page ref underflow for regions with valid but non-refcounted pages
 
->=20
-> BR,
-> Jani.
->=20
->=20
+It's possible to create a region which maps valid but non-refcounted
+pages (e.g., tail pages of non-compound higher order allocations). These
+host pages can then be returned by gfn_to_page, gfn_to_pfn, etc., family
+of APIs, which take a reference to the page, which takes it from 0 to 1.
+When the reference is dropped, this will free the page incorrectly.
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+Fix this by only taking a reference on the page if it was non-zero,
+which indicates it is participating in normal refcounting (and can be
+released with put_page).
 
+Signed-off-by: Nicholas Piggin <npiggin@gmail.com>
+---
+ virt/kvm/kvm_main.c | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
 
---lmd8tCC7cJwEr0gUau7cSsDcSUmocjFNc--
-
---uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDUgUgFAwAAAAAACgkQlh/E3EQov+Bk
-HA/9GKE6DtrNVTmNxi2Q1NuMTT4X0e/U8VAQ+IlFKl8xxDejBHRg5B2w4IWO1ryG0fVvwJTmulCJ
-4oIF7texau6jTumwKhAXbRwUOjdRyO1EVchjVjZ9OCG9+pab1hN4k6aH8EmG1Jbk47pgPrcn72Eb
-/Wk9L3GlqhVg/h5/gXnNXX7lE3N/zwms6VexWkqGXOQN8/eRK03NFHIaim9TH2ZwA52ePGCFxf7X
-qGCSxGUsTDfpjp1wh7vHkZQu8Xob/WUqBe8VD4l6qSxXmaaK6GX8PkcR/KHSaEQTbT9+xeiaARfc
-fL+AAzsKgwT7VHQiBtiDp+vTFSb7Smqb1njcV6XKoT22ChKIkwXgosP0un57vun3nbUCINjkSWhH
-sIDquVu33/iLM0phsJJGzNBVZIZ/TKjNZLN0xKL14t3QCiGaPmgK2T4oIIddEpEWDpC44+ReNuG+
-gmDsDDCGlph9N3IQ3hFbmZEbE3zq3wpoNZc8waPul0MIh3NP4oVXqFWKfZQHe5ZG2L+SsXA0mD3V
-JQ4YgpDzpqDrPVZN3e7IDy5AIAq8lHKQ7HjDnk9BAeU07ugunwtotH8nLRpsxEoH2rqRPHWLbskz
-MH+boqUIKPbGSWWh3OCLIsONS9XZR5dnZG2etdxPgteJRgWatYNmdaacVJzZt/epo1ZxEnEZXi3C
-DRk=
-=+AeC
------END PGP SIGNATURE-----
-
---uZAbLLO6gAsgbliLJ4wVdD8Q3Prh3JDl0--
-
---===============0177979077==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
+index 6a6bc7af0e28..46fb042837d2 100644
+--- a/virt/kvm/kvm_main.c
++++ b/virt/kvm/kvm_main.c
+@@ -2055,6 +2055,13 @@ static bool vma_is_valid(struct vm_area_struct *vma, bool write_fault)
+ 	return true;
+ }
+ 
++static int kvm_try_get_pfn(kvm_pfn_t pfn)
++{
++	if (kvm_is_reserved_pfn(pfn))
++		return 1;
++	return get_page_unless_zero(pfn_to_page(pfn));
++}
++
+ static int hva_to_pfn_remapped(struct vm_area_struct *vma,
+ 			       unsigned long addr, bool *async,
+ 			       bool write_fault, bool *writable,
+@@ -2104,13 +2111,21 @@ static int hva_to_pfn_remapped(struct vm_area_struct *vma,
+ 	 * Whoever called remap_pfn_range is also going to call e.g.
+ 	 * unmap_mapping_range before the underlying pages are freed,
+ 	 * causing a call to our MMU notifier.
++	 *
++	 * Certain IO or PFNMAP mappings can be backed with valid
++	 * struct pages, but be allocated without refcounting e.g.,
++	 * tail pages of non-compound higher order allocations, which
++	 * would then underflow the refcount when the caller does the
++	 * required put_page. Don't allow those pages here.
+ 	 */ 
+-	kvm_get_pfn(pfn);
++	if (!kvm_try_get_pfn(pfn))
++		r = -EFAULT;
+ 
+ out:
+ 	pte_unmap_unlock(ptep, ptl);
+ 	*p_pfn = pfn;
+-	return 0;
++
++	return r;
+ }
+ 
+ /*
+-- 
+2.23.0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0177979077==--
