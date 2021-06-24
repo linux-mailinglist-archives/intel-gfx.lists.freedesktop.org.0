@@ -2,62 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21003B3040
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 15:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD193B3048
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 15:41:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ECE66EB93;
-	Thu, 24 Jun 2021 13:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C2FF6EB94;
+	Thu, 24 Jun 2021 13:41:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28FB56EB90
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 13:39:26 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- h21-20020a1ccc150000b02901d4d33c5ca0so3658015wmb.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 06:39:26 -0700 (PDT)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 651EB6EB93
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 13:41:49 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id g7so2099309wri.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 06:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=nAn0b+6cO0H79Gi5ozqr1ZKgVo31/Ju4Tdkm3z40D+4=;
- b=H3/UfvEZ0+blCsyXdDGIB6FOAez0UMZNPONnat4wlXG8AX+VaTb2mqhwMb2gty3rxB
- HfJCTNwD08h12DMrda3jFIXehlFO4FDisy0D+iupa0n1q9cr32JbfVcL2PoXPKFRvu3e
- V19xHRctr+m7tu/qEqYLgi2nm08+gpZtOOi0U=
+ bh=FjNCqJKC4Y1RLns/XS8aAMxmVEkgXAOsPLe38vXYZw4=;
+ b=StsOy8gcKSE6fgXgqNzcG4KKUFLz3Ej1CvQbaQbeBlcW77X5GmHwSCJ1cCCKmF3iUo
+ xEIJavlnTHil2FXV+8lThyvYh+Yj4lwB3fWD16B2+UCnQ/TH3yYv7vpLwJp8h/YNn+VE
+ ffZsBHLoxvfIyne6aOHuOPN1p97SpCRfrJoi8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=nAn0b+6cO0H79Gi5ozqr1ZKgVo31/Ju4Tdkm3z40D+4=;
- b=LhqACIZ46Ss4q2agA6bC9JOKgeiKlOxUm8Bxud6ncbd92lrPn6eoB1TKMgYAS7EEnJ
- ANDw83WWOLcoz7XmiSFV+1/n6cIjm2puvmxk+dtBgAa9teXE3pqMdHhS1tRo5XMIzalp
- pz2gekUi+FB2pP5yjy2c1vUgq0D1S3BMpsiSdaqom7PqRiHElBSfxq7HxzqoHa/iZobj
- Xiq9dU2vaF7+u4VoHmhPC8PvrklX6bjc0hNdRA+ffuops9Lr3YJPPAw9EO2iBv/giO7i
- mumoebzjwIKeMwpKUi3J5vpWgmnT8zqtPmy50cmveUEkSTUAztJizLYnbuJ2swYLX0G5
- d3SQ==
-X-Gm-Message-State: AOAM531wqrRZ3DbRMCPpFaH5AI6o3Yb2K0L5LTF5iL0Mfi0dx7c8AmmY
- t3G9jB3aynswlrhwO8SPNyGltO2HH50e5Q==
-X-Google-Smtp-Source: ABdhPJyeWLeb970zBqUbQd26WZzOsWfny+XpW51E092fcqjJllFr6S5Ub//JxERujzf5kRaOsGhaFw==
-X-Received: by 2002:a05:600c:1c2a:: with SMTP id
- j42mr4257781wms.173.1624541964875; 
- Thu, 24 Jun 2021 06:39:24 -0700 (PDT)
+ bh=FjNCqJKC4Y1RLns/XS8aAMxmVEkgXAOsPLe38vXYZw4=;
+ b=DUH2gtH47kFXGkYtuKxfpj300mbhBYbOOisXt/yeV6NZLrYmArWZqtSscA9vEfQoFn
+ agjerl31cqx0eN80UufgqFjlEzVWe1Ydz9FF4+XE7eQjxxoXkbhuZWIZO5dbhGi+8Fso
+ d0X3uJlWoohRXDUtQitEjrhJsqAhAAbPMrvxfs7ZjzgOmDCWLIyAeyiVwoEY7Qe9O/T6
+ W15fXkGz+2U+StnWbPL6/VTrLxtv0Y+fwEqGwuuCYQJGwo+1LTtgF/H16OUMtE4pjjRf
+ QPt+O5H/iZ2sLGTHIIGq5kH3NzoXMuVlcaKJ2/eeXdTEMTVK0PoDMwTyhbyPlSk0vIfP
+ KJCQ==
+X-Gm-Message-State: AOAM532Z0gT+rRSDjei7wPBpplc6gsWLGgpE4esISF/0HGWRQoNxC5+F
+ B14xTQK+wpJXYkt8VhOeppvIbg==
+X-Google-Smtp-Source: ABdhPJzoh7guSpX+otzlPPnAeqEiddDQTsa2xWiA7Trp2QX6r0I8ZUPaW4riiTz9RCfRbaqeMTVx8Q==
+X-Received: by 2002:a5d:5146:: with SMTP id u6mr4620731wrt.341.1624542108185; 
+ Thu, 24 Jun 2021 06:41:48 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id 12sm6871248wmj.12.2021.06.24.06.39.24
+ by smtp.gmail.com with ESMTPSA id b7sm3317927wrw.20.2021.06.24.06.41.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jun 2021 06:39:24 -0700 (PDT)
-Date: Thu, 24 Jun 2021 15:39:22 +0200
+ Thu, 24 Jun 2021 06:41:47 -0700 (PDT)
+Date: Thu, 24 Jun 2021 15:41:45 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <YNSLCkFVDoly65QZ@phenom.ffwll.local>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <YNSLmQXuowJLP8Se@phenom.ffwll.local>
 References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
- <20210622165511.3169559-11-daniel.vetter@ffwll.ch>
- <da2c2108-6f48-6a85-db71-c93614484369@suse.de>
+ <20210622165511.3169559-15-daniel.vetter@ffwll.ch>
+ <4ed8f1d3-eb9c-74d6-d93f-ee28971af7f6@amd.com>
+ <YNR9hSMVmzYmotF0@phenom.ffwll.local>
+ <4fba7964-3306-4e2a-f87e-906ebedbe7fe@amd.com>
+ <YNSJaizc5BpmTM8p@phenom.ffwll.local>
+ <3800d89a-3591-daf5-6a9a-292f95c58619@amd.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <da2c2108-6f48-6a85-db71-c93614484369@suse.de>
+In-Reply-To: <3800d89a-3591-daf5-6a9a-292f95c58619@amd.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 10/15] drm/vram-helpers: Create
- DRM_GEM_VRAM_PLANE_HELPER_FUNCS
+Subject: Re: [Intel-gfx] [PATCH 14/15] drm/gem: Tiny kernel clarification
+ for drm_gem_fence_array_add
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,154 +72,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Dave Airlie <airlied@redhat.com>, Tian Tao <tiantao6@hisilicon.com>
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 24, 2021 at 09:46:20AM +0200, Thomas Zimmermann wrote:
-> Hi
+On Thu, Jun 24, 2021 at 03:35:19PM +0200, Christian K=F6nig wrote:
+> Am 24.06.21 um 15:32 schrieb Daniel Vetter:
+> > On Thu, Jun 24, 2021 at 02:48:54PM +0200, Christian K=F6nig wrote:
+> > > =
+
+> > > Am 24.06.21 um 14:41 schrieb Daniel Vetter:
+> > > > On Wed, Jun 23, 2021 at 10:42:50AM +0200, Christian K=F6nig wrote:
+> > > > > Am 22.06.21 um 18:55 schrieb Daniel Vetter:
+> > > > > > Spotted while trying to convert panfrost to these.
+> > > > > > =
+
+> > > > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > > > > Cc: "Christian K=F6nig" <christian.koenig@amd.com>
+> > > > > > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > > Cc: Maxime Ripard <mripard@kernel.org>
+> > > > > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > > > > > Cc: David Airlie <airlied@linux.ie>
+> > > > > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > > > > ---
+> > > > > >     drivers/gpu/drm/drm_gem.c | 3 +++
+> > > > > >     1 file changed, 3 insertions(+)
+> > > > > > =
+
+> > > > > > diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_ge=
+m.c
+> > > > > > index ba2e64ed8b47..68deb1de8235 100644
+> > > > > > --- a/drivers/gpu/drm/drm_gem.c
+> > > > > > +++ b/drivers/gpu/drm/drm_gem.c
+> > > > > > @@ -1302,6 +1302,9 @@ EXPORT_SYMBOL(drm_gem_unlock_reservations=
+);
+> > > > > >      * @fence_array: array of dma_fence * for the job to block =
+on.
+> > > > > >      * @fence: the dma_fence to add to the list of dependencies.
+> > > > > >      *
+> > > > > > + * This functions consumes the reference for @fence both on su=
+ccess and error
+> > > > > > + * cases.
+> > > > > > + *
+> > > > > Oh, the later is a bit ugly I think. But good to know.
+> > > > > =
+
+> > > > > Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
+> > > > Merged to drm-misc-next, thanks for taking a look. Can you perhaps =
+take a
+> > > > look at the drm/armada patch too, then I think I have reviews/acks =
+for all
+> > > > of them?
+> > > What are you talking about? I only see drm/armada patches for the irq=
+ stuff
+> > > Thomas is working on.
+> > There was one in this series, but Maxime was quicker. I'm going to apply
+> > all the remaining ones now. After that I'll send out a patch set to add
+> > some dependency tracking to drm_sched_job so that there's not so much
+> > copypasta going on there. I stumbled over that when reviewing how we
+> > handle dependencies.
 > =
 
-> Am 22.06.21 um 18:55 schrieb Daniel Vetter:
-> > Like we have for the shadow helpers too, and roll it out to drivers.
-> =
+> Do you mean a common container for dma_fence objects a drm_sched_job depe=
+nds
+> on?
 
-> In addition to the plane-helper macro, you may also want to add
-> DRM_GEM_VRAM_SIMPLE_DISPLAY_PIPE_FUNCS and use it in bochs.
+Yup. Well the real usefulness is the interfaces, so that you can just grep
+for those when trying to figure out htf a driver handles its implicit
+dependencies. And amdgpu is unfortunately going to be a bit in the cold
+because it's special (but should be able to benefit too, just more than
+1-2 patches to convert it over).
 
-Hm I guess we can do that when we have a 2nd such case. I was more aiming
-to make it as friction-less as possible that drivers end up with a
-prepare_fb implementation which fishes out the implicit fences as needed
-in this series.
-
-Thanks for looking at this patch, I'm merging them all to drm-misc-next
-now.
+Anyway I'm going to type the cover letter rsn.
 -Daniel
-
-> =
-
-> Best regards
-> Thomas
-> =
-
-> > =
-
-> > Acked-by: Tian Tao <tiantao6@hisilicon.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Dave Airlie <airlied@redhat.com>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Hans de Goede <hdegoede@redhat.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: Tian Tao <tiantao6@hisilicon.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >   drivers/gpu/drm/ast/ast_mode.c                 |  3 +--
-> >   drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c |  3 +--
-> >   drivers/gpu/drm/vboxvideo/vbox_mode.c          |  3 +--
-> >   include/drm/drm_gem_vram_helper.h              | 12 ++++++++++++
-> >   4 files changed, 15 insertions(+), 6 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ast_m=
-ode.c
-> > index e5996ae03c49..f5d58c3088fe 100644
-> > --- a/drivers/gpu/drm/ast/ast_mode.c
-> > +++ b/drivers/gpu/drm/ast/ast_mode.c
-> > @@ -612,8 +612,7 @@ ast_primary_plane_helper_atomic_disable(struct drm_=
-plane *plane,
-> >   }
-> >   static const struct drm_plane_helper_funcs ast_primary_plane_helper_f=
-uncs =3D {
-> > -	.prepare_fb =3D drm_gem_vram_plane_helper_prepare_fb,
-> > -	.cleanup_fb =3D drm_gem_vram_plane_helper_cleanup_fb,
-> > +	DRM_GEM_VRAM_PLANE_HELPER_FUNCS,
-> >   	.atomic_check =3D ast_primary_plane_helper_atomic_check,
-> >   	.atomic_update =3D ast_primary_plane_helper_atomic_update,
-> >   	.atomic_disable =3D ast_primary_plane_helper_atomic_disable,
-> > diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c b/drivers/g=
-pu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> > index 29b8332b2bca..ccf80e369b4b 100644
-> > --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> > +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> > @@ -158,8 +158,7 @@ static const struct drm_plane_funcs hibmc_plane_fun=
-cs =3D {
-> >   };
-> >   static const struct drm_plane_helper_funcs hibmc_plane_helper_funcs =
-=3D {
-> > -	.prepare_fb	=3D drm_gem_vram_plane_helper_prepare_fb,
-> > -	.cleanup_fb	=3D drm_gem_vram_plane_helper_cleanup_fb,
-> > +	DRM_GEM_VRAM_PLANE_HELPER_FUNCS,
-> >   	.atomic_check =3D hibmc_plane_atomic_check,
-> >   	.atomic_update =3D hibmc_plane_atomic_update,
-> >   };
-> > diff --git a/drivers/gpu/drm/vboxvideo/vbox_mode.c b/drivers/gpu/drm/vb=
-oxvideo/vbox_mode.c
-> > index 964381d55fc1..972c83b720aa 100644
-> > --- a/drivers/gpu/drm/vboxvideo/vbox_mode.c
-> > +++ b/drivers/gpu/drm/vboxvideo/vbox_mode.c
-> > @@ -488,8 +488,7 @@ static const struct drm_plane_helper_funcs vbox_pri=
-mary_helper_funcs =3D {
-> >   	.atomic_check =3D vbox_primary_atomic_check,
-> >   	.atomic_update =3D vbox_primary_atomic_update,
-> >   	.atomic_disable =3D vbox_primary_atomic_disable,
-> > -	.prepare_fb	=3D drm_gem_vram_plane_helper_prepare_fb,
-> > -	.cleanup_fb	=3D drm_gem_vram_plane_helper_cleanup_fb,
-> > +	DRM_GEM_VRAM_PLANE_HELPER_FUNCS,
-> >   };
-> >   static const struct drm_plane_funcs vbox_primary_plane_funcs =3D {
-> > diff --git a/include/drm/drm_gem_vram_helper.h b/include/drm/drm_gem_vr=
-am_helper.h
-> > index 27ed7e9243b9..f48d181c824b 100644
-> > --- a/include/drm/drm_gem_vram_helper.h
-> > +++ b/include/drm/drm_gem_vram_helper.h
-> > @@ -124,6 +124,18 @@ void
-> >   drm_gem_vram_plane_helper_cleanup_fb(struct drm_plane *plane,
-> >   				     struct drm_plane_state *old_state);
-> > +/**
-> > + * DRM_GEM_VRAM_PLANE_HELPER_FUNCS -
-> > + *	Initializes struct drm_plane_helper_funcs for VRAM handling
-> > + *
-> > + * Drivers may use GEM BOs as VRAM helpers for the framebuffer memory.=
- This
-> > + * macro initializes struct drm_plane_helper_funcs to use the respecti=
-ve helper
-> > + * functions.
-> > + */
-> > +#define DRM_GEM_VRAM_PLANE_HELPER_FUNCS \
-> > +	.prepare_fb =3D drm_gem_vram_plane_helper_prepare_fb, \
-> > +	.cleanup_fb =3D drm_gem_vram_plane_helper_cleanup_fb
-> > +
-> >   /*
-> >    * Helpers for struct drm_simple_display_pipe_funcs
-> >    */
-> > =
-
-> =
-
-> -- =
-
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-> (HRB 36809, AG N=FCrnberg)
-> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
-> =
-
-
-
-
-
 -- =
 
 Daniel Vetter
