@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F25353B3332
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 17:57:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4BDB3B3339
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 17:57:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49E186EC4B;
-	Thu, 24 Jun 2021 15:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F05A86EC49;
+	Thu, 24 Jun 2021 15:57:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
- [IPv6:2607:f8b0:4864:20::102f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D09E36EC5D
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 15:57:09 +0000 (UTC)
-Received: by mail-pj1-x102f.google.com with SMTP id
- s17-20020a17090a8811b029016e89654f93so6202341pjn.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:57:09 -0700 (PDT)
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com
+ [IPv6:2607:f8b0:4864:20::1032])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 232086EC49
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 15:57:19 +0000 (UTC)
+Received: by mail-pj1-x1032.google.com with SMTP id
+ z3-20020a17090a3983b029016bc232e40bso3751581pjb.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:57:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=WbwCPwkWNsZyfDNcMOTWOtrRGSDB7ukqN5rFm3/fcqM=;
- b=ST6t0XkrMRO5f6HAim2SUwLoqEUtVKc7/G35fun8pnEgrYgmaoy7jqM/CzM5ROKScW
- CaGs/CYeApWd6boKyliYyHZkZ8m75hN3AsFBcdHAPE4h8DeZNWtiFC9jFlW6gHYxntTL
- /JewURtKdZPaJv0dBLRhrI68g5ieBdJUAcjT8=
+ bh=YPdZA059qJtBhHo92L+QtxB+I/HHPOi+M+A9tEqXqKY=;
+ b=PjlqqBPlZ7HlVzWQ/NG7jUEmdRoSGdDyyhsicywtHJWmlQpajkDrqtejX1sn/5F2sS
+ SwwO3EzEcXtbM4jLQSoe8mUbP22ohS6knOWK2YU5Q+OvqR8ORZOMLvrptba985Ay6g72
+ 468Ys8fEwAI9IAi2Nx5OeG0lVcTQ7r4EAMUuk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=WbwCPwkWNsZyfDNcMOTWOtrRGSDB7ukqN5rFm3/fcqM=;
- b=HDFHsYeyuEkx8oYTEP+m6Csof2jbKpTK+0t2ckhgkRk82qjujNewWF/83/t2gtC5hZ
- m+1qmljNoizyrrsXn2hJ951lwRwT+VxLu4a64g3XcaqhcFu7kcXUTIa77A4bvIJwmcCg
- 4ShOCCjFCNRBUG8er7OND5Xmb3TPGjOZiIn8Ux1CBRDrvvrKq6Rm2eqLrHAjBJ72IUdG
- 4WpJXu5XHGCsy2OHehFr1vPUUjikD6UB81i0nIMocPz2hq4jGI0Zyiy8ArjENeoI5Ax1
- 1PEn0dAxTTClhQqhZAQJNUc/K427decXvXWsRTE9Wlx2EllyCJTCY6DeCN1CGzSm8VPt
- aVyg==
-X-Gm-Message-State: AOAM532bk4U4x+8fxqV27p5MhwSypmv57ZB3Pnoql/FAoP/lsQR+9SHB
- 0tqembJ4ZfZMb5ANtWC1cWBlTw==
-X-Google-Smtp-Source: ABdhPJwI7EWsoc2ppnuqnW/9yjxiTzSeTHN60zP/WQgGph69JaVmO4yY57xwR4157oqtL7lcnhpfUA==
-X-Received: by 2002:a17:903:1043:b029:11e:7489:9bad with SMTP id
- f3-20020a1709031043b029011e74899badmr5076690plc.34.1624550229453; 
- Thu, 24 Jun 2021 08:57:09 -0700 (PDT)
+ bh=YPdZA059qJtBhHo92L+QtxB+I/HHPOi+M+A9tEqXqKY=;
+ b=IKBNBkEK1HW7Ch17m5RpwKRC5dOwDKqBj3UVrQe3GZFc/yWNMMvV+t8A48HMhhb5Mz
+ 8Nb9Xj5UqBdkz14gvaAhoNDUeBXwhpy1M6LCdXCm7ZnB6HEelUu3UaQWjnCB+bNcXoHV
+ 5ehXDJ9E2AjamfAlwejb00H0WcMGHKl1n5hFxi9L0wS5XMDJfQZx53fiY/JaO3e+gBPj
+ QkTenQ6oOuyy/vGIzGAfEyPHFTfZPNpyfHkQxeJ9qjIKNw7NOHECaz73GKVcwp24syxe
+ 68PzZrQXexxFI9S6Qwsv7YyFMSs/JPRbDhnjHKftPvgqLqERr5hUqWrN6zqn9DunrQPg
+ GzXQ==
+X-Gm-Message-State: AOAM533TDJPqs77r9xKolPtVuicqXb3eFxEjijrEOf/gbAa8JDreunDV
+ egKJn7dkeFr2RNdhAIolO6yfUQ==
+X-Google-Smtp-Source: ABdhPJxRwzuvR6w9vPa8M+gkJy/ziAGvgsthCKYRNma8WFuVe3INiwBpDz8jqeLqK9XJyVskEplkvw==
+X-Received: by 2002:a17:90b:1d06:: with SMTP id
+ on6mr5855940pjb.149.1624550238780; 
+ Thu, 24 Jun 2021 08:57:18 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:165a:99ec:42d5:d8b])
- by smtp.gmail.com with UTF8SMTPSA id x143sm3365707pfc.6.2021.06.24.08.57.01
+ by smtp.gmail.com with UTF8SMTPSA id s4sm2950901pjn.31.2021.06.24.08.57.11
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 24 Jun 2021 08:57:09 -0700 (PDT)
+ Thu, 24 Jun 2021 08:57:18 -0700 (PDT)
 From: Claire Chang <tientzu@chromium.org>
 To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -51,14 +51,14 @@ To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Thu, 24 Jun 2021 23:55:24 +0800
-Message-Id: <20210624155526.2775863-11-tientzu@chromium.org>
+Date: Thu, 24 Jun 2021 23:55:25 +0800
+Message-Id: <20210624155526.2775863-12-tientzu@chromium.org>
 X-Mailer: git-send-email 2.32.0.288.g62a8d224e6-goog
 In-Reply-To: <20210624155526.2775863-1-tientzu@chromium.org>
 References: <20210624155526.2775863-1-tientzu@chromium.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v15 10/12] swiotlb: Add restricted DMA pool
- initialization
+Subject: [Intel-gfx] [PATCH v15 11/12] dt-bindings: of: Add restricted DMA
+ pool
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,158 +96,84 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the initialization function to create restricted DMA pools from
-matching reserved-memory nodes.
-
-Regardless of swiotlb setting, the restricted DMA pool is preferred if
-available.
-
-The restricted DMA pools provide a basic level of protection against the
-DMA overwriting buffer contents at unexpected times. However, to protect
-against general data leakage and system memory corruption, the system
-needs to provide a way to lock down the memory access, e.g., MPU.
+Introduce the new compatible string, restricted-dma-pool, for restricted
+DMA. One can specify the address and length of the restricted DMA memory
+region by restricted-dma-pool in the reserved-memory node.
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
-Reviewed-by: Christoph Hellwig <hch@lst.de>
 Tested-by: Stefano Stabellini <sstabellini@kernel.org>
 Tested-by: Will Deacon <will@kernel.org>
 ---
- include/linux/swiotlb.h |  3 +-
- kernel/dma/Kconfig      | 14 ++++++++
- kernel/dma/swiotlb.c    | 76 +++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 92 insertions(+), 1 deletion(-)
+ .../reserved-memory/reserved-memory.txt       | 36 +++++++++++++++++--
+ 1 file changed, 33 insertions(+), 3 deletions(-)
 
-diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-index 3b9454d1e498..39284ff2a6cd 100644
---- a/include/linux/swiotlb.h
-+++ b/include/linux/swiotlb.h
-@@ -73,7 +73,8 @@ extern enum swiotlb_force swiotlb_force;
-  *		range check to see if the memory was in fact allocated by this
-  *		API.
-  * @nslabs:	The number of IO TLB blocks (in groups of 64) between @start and
-- *		@end. This is command line adjustable via setup_io_tlb_npages.
-+ *		@end. For default swiotlb, this is command line adjustable via
-+ *		setup_io_tlb_npages.
-  * @used:	The number of used IO TLB block.
-  * @list:	The free list describing the number of free entries available
-  *		from each index.
-diff --git a/kernel/dma/Kconfig b/kernel/dma/Kconfig
-index 77b405508743..3e961dc39634 100644
---- a/kernel/dma/Kconfig
-+++ b/kernel/dma/Kconfig
-@@ -80,6 +80,20 @@ config SWIOTLB
- 	bool
- 	select NEED_DMA_MAP_STATE
+diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+index e8d3096d922c..39b5f4c5a511 100644
+--- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
++++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+@@ -51,6 +51,23 @@ compatible (optional) - standard definition
+           used as a shared pool of DMA buffers for a set of devices. It can
+           be used by an operating system to instantiate the necessary pool
+           management subsystem if necessary.
++        - restricted-dma-pool: This indicates a region of memory meant to be
++          used as a pool of restricted DMA buffers for a set of devices. The
++          memory region would be the only region accessible to those devices.
++          When using this, the no-map and reusable properties must not be set,
++          so the operating system can create a virtual mapping that will be used
++          for synchronization. The main purpose for restricted DMA is to
++          mitigate the lack of DMA access control on systems without an IOMMU,
++          which could result in the DMA accessing the system memory at
++          unexpected times and/or unexpected addresses, possibly leading to data
++          leakage or corruption. The feature on its own provides a basic level
++          of protection against the DMA overwriting buffer contents at
++          unexpected times. However, to protect against general data leakage and
++          system memory corruption, the system needs to provide way to lock down
++          the memory access, e.g., MPU. Note that since coherent allocation
++          needs remapping, one must set up another device coherent pool by
++          shared-dma-pool and use dma_alloc_from_dev_coherent instead for atomic
++          coherent allocation.
+         - vendor specific string in the form <vendor>,[<device>-]<usage>
+ no-map (optional) - empty property
+     - Indicates the operating system must not create a virtual mapping
+@@ -85,10 +102,11 @@ memory-region-names (optional) - a list of names, one for each corresponding
  
-+config DMA_RESTRICTED_POOL
-+	bool "DMA Restricted Pool"
-+	depends on OF && OF_RESERVED_MEM
-+	select SWIOTLB
-+	help
-+	  This enables support for restricted DMA pools which provide a level of
-+	  DMA memory protection on systems with limited hardware protection
-+	  capabilities, such as those lacking an IOMMU.
-+
-+	  For more information see
-+	  <Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt>
-+	  and <kernel/dma/swiotlb.c>.
-+	  If unsure, say "n".
-+
- #
- # Should be selected if we can mmap non-coherent mappings to userspace.
- # The only thing that is really required is a way to set an uncached bit
-diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index 6a7c6e30eb4b..3baf49c9b766 100644
---- a/kernel/dma/swiotlb.c
-+++ b/kernel/dma/swiotlb.c
-@@ -39,6 +39,13 @@
- #ifdef CONFIG_DEBUG_FS
- #include <linux/debugfs.h>
- #endif
-+#ifdef CONFIG_DMA_RESTRICTED_POOL
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/of_fdt.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/slab.h>
-+#endif
+ Example
+ -------
+-This example defines 3 contiguous regions are defined for Linux kernel:
++This example defines 4 contiguous regions for Linux kernel:
+ one default of all device drivers (named linux,cma@72000000 and 64MiB in size),
+-one dedicated to the framebuffer device (named framebuffer@78000000, 8MiB), and
+-one for multimedia processing (named multimedia-memory@77000000, 64MiB).
++one dedicated to the framebuffer device (named framebuffer@78000000, 8MiB),
++one for multimedia processing (named multimedia-memory@77000000, 64MiB), and
++one for restricted dma pool (named restricted_dma_reserved@0x50000000, 64MiB).
  
- #include <asm/io.h>
- #include <asm/dma.h>
-@@ -737,4 +744,73 @@ bool swiotlb_free(struct device *dev, struct page *page, size_t size)
- 	return true;
- }
+ / {
+ 	#address-cells = <1>;
+@@ -120,6 +138,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+ 			compatible = "acme,multimedia-memory";
+ 			reg = <0x77000000 0x4000000>;
+ 		};
++
++		restricted_dma_reserved: restricted_dma_reserved {
++			compatible = "restricted-dma-pool";
++			reg = <0x50000000 0x4000000>;
++		};
+ 	};
  
-+static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-+				    struct device *dev)
-+{
-+	struct io_tlb_mem *mem = rmem->priv;
-+	unsigned long nslabs = rmem->size >> IO_TLB_SHIFT;
+ 	/* ... */
+@@ -138,4 +161,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+ 		memory-region = <&multimedia_reserved>;
+ 		/* ... */
+ 	};
 +
-+	/*
-+	 * Since multiple devices can share the same pool, the private data,
-+	 * io_tlb_mem struct, will be initialized by the first device attached
-+	 * to it.
-+	 */
-+	if (!mem) {
-+		mem = kzalloc(struct_size(mem, slots, nslabs), GFP_KERNEL);
-+		if (!mem)
-+			return -ENOMEM;
-+
-+		set_memory_decrypted((unsigned long)phys_to_virt(rmem->base),
-+				     rmem->size >> PAGE_SHIFT);
-+		swiotlb_init_io_tlb_mem(mem, rmem->base, nslabs, false);
-+		mem->force_bounce = true;
-+		mem->for_alloc = true;
-+
-+		rmem->priv = mem;
-+
-+		if (IS_ENABLED(CONFIG_DEBUG_FS)) {
-+			mem->debugfs =
-+				debugfs_create_dir(rmem->name, debugfs_dir);
-+			swiotlb_create_debugfs_files(mem);
-+		}
-+	}
-+
-+	dev->dma_io_tlb_mem = mem;
-+
-+	return 0;
-+}
-+
-+static void rmem_swiotlb_device_release(struct reserved_mem *rmem,
-+					struct device *dev)
-+{
-+	dev->dma_io_tlb_mem = io_tlb_default_mem;
-+}
-+
-+static const struct reserved_mem_ops rmem_swiotlb_ops = {
-+	.device_init = rmem_swiotlb_device_init,
-+	.device_release = rmem_swiotlb_device_release,
-+};
-+
-+static int __init rmem_swiotlb_setup(struct reserved_mem *rmem)
-+{
-+	unsigned long node = rmem->fdt_node;
-+
-+	if (of_get_flat_dt_prop(node, "reusable", NULL) ||
-+	    of_get_flat_dt_prop(node, "linux,cma-default", NULL) ||
-+	    of_get_flat_dt_prop(node, "linux,dma-default", NULL) ||
-+	    of_get_flat_dt_prop(node, "no-map", NULL))
-+		return -EINVAL;
-+
-+	if (PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
-+		pr_err("Restricted DMA pool must be accessible within the linear mapping.");
-+		return -EINVAL;
-+	}
-+
-+	rmem->ops = &rmem_swiotlb_ops;
-+	pr_info("Reserved memory: created restricted DMA pool at %pa, size %ld MiB\n",
-+		&rmem->base, (unsigned long)rmem->size / SZ_1M);
-+	return 0;
-+}
-+
-+RESERVEDMEM_OF_DECLARE(dma, "restricted-dma-pool", rmem_swiotlb_setup);
- #endif /* CONFIG_DMA_RESTRICTED_POOL */
++	pcie_device: pcie_device@0,0 {
++		reg = <0x83010000 0x0 0x00000000 0x0 0x00100000
++		       0x83010000 0x0 0x00100000 0x0 0x00100000>;
++		memory-region = <&restricted_dma_reserved>;
++		/* ... */
++	};
+ };
 -- 
 2.32.0.288.g62a8d224e6-goog
 
