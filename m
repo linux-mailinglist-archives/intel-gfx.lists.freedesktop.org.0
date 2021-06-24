@@ -1,32 +1,86 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDC73B3228
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 17:01:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F1F3B32AD
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 17:35:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0206EC19;
-	Thu, 24 Jun 2021 15:01:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67E166EB30;
+	Thu, 24 Jun 2021 15:35:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 170EA6EC19;
- Thu, 24 Jun 2021 15:01:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0FF72A66C9;
- Thu, 24 Jun 2021 15:01:34 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 903D16EB30
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 15:35:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1624548932;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=f6k4ykVaPXFxqKCeveqsqgjZTsHJh+2Hx0FU9Hu8Shk=;
+ b=fEwzt1Ur7YqA7l19kiUugGJRO/H/dvI+1x7GM/mgPG5F4QUtx+W0HI8u0m96/5ozq+RbCi
+ 3T32lRrJx4rRV1849gEUVzpzd6XTkxIEo+A3krIkt30LVuyZwN1CrpHJ1JLiekYIoTO7Y8
+ Rdl2pVPnEFdzKdgoXeuqVj9b84ScU3Q=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-122-DtrcSNjaPvynLVokkiVF0A-1; Thu, 24 Jun 2021 11:35:29 -0400
+X-MC-Unique: DtrcSNjaPvynLVokkiVF0A-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ b11-20020a1ce40b0000b02901e5309e25ebso1919849wmh.9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:35:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=f6k4ykVaPXFxqKCeveqsqgjZTsHJh+2Hx0FU9Hu8Shk=;
+ b=RPZdJLkkzpb97j1Vctp/e6BqzkREMnMXcTVo0QfJCrsVWIRqMqHSMeZ3NAdqGE72rn
+ Z9vfIseFcom+vE4PEyog7jyaNgUK1l/D2DodwheUO02BYFr0e4I7MtHOVWnRcYT5tYBL
+ uxcdXBravzrUFqZH4BidiWExClN8mfJCK/DpfHklsbyvgYSjDKEfT7AYTEwfso7P51QK
+ xi9khPiqI290P/2kuU1P2twA+S4dQC57zDyGBWDKOTzQanuF0Y+uhoXdspngTzr757TX
+ NHrpk31+L2I7ftYh8107BhmRaJ+WFXBax4IKvZoKrgtMvtb7azhqZj9YHutNwOSltraX
+ DEGQ==
+X-Gm-Message-State: AOAM533HFRcAF8PWdW+IM0cry/x5TY06qbMNP8CCcTXhVfbE8VIF6IAD
+ FoydYPj3D/hNoj6MjWfRd/gCym5Mwi+i/4UOU5mQmeR/c8DhB2JxJkj4JUwyI+VQyWZ6GSTc9Af
+ kxmwTLiQP/gkpXOWeyKq+XLySbLCA
+X-Received: by 2002:a05:6000:1251:: with SMTP id
+ j17mr5373885wrx.122.1624548927955; 
+ Thu, 24 Jun 2021 08:35:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwBnDqu4vf3bAIylFJkD7JiEEmgRW9T3VoP4swdNx5pmdzHboAZtCJNJi7bVPTY8V2i+hs/AQ==
+X-Received: by 2002:a05:6000:1251:: with SMTP id
+ j17mr5373864wrx.122.1624548927675; 
+ Thu, 24 Jun 2021 08:35:27 -0700 (PDT)
+Received: from ?IPv6:2001:b07:6468:f312:c8dd:75d4:99ab:290a?
+ ([2001:b07:6468:f312:c8dd:75d4:99ab:290a])
+ by smtp.gmail.com with ESMTPSA id v18sm4013288wrv.24.2021.06.24.08.35.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 24 Jun 2021 08:35:27 -0700 (PDT)
+To: Nicholas Piggin <npiggin@gmail.com>,
+ Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
+ Huacai Chen <chenhuacai@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Paul Mackerras <paulus@ozlabs.org>, David Stevens <stevensd@chromium.org>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
+References: <20210624035749.4054934-1-stevensd@google.com>
+ <1624530624.8jff1f4u11.astroid@bobo.none>
+ <1624534759.nj0ylor2eh.astroid@bobo.none>
+ <0d3a699a-15eb-9f1b-0735-79d14736f38c@redhat.com>
+ <1624539354.6zggpdrdbw.astroid@bobo.none>
+From: Paolo Bonzini <pbonzini@redhat.com>
+Message-ID: <81d99029-ec40-19c5-5647-20607d78dab0@redhat.com>
+Date: Thu, 24 Jun 2021 17:35:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hsin-Yi Wang" <hsinyi@chromium.org>
-Date: Thu, 24 Jun 2021 15:01:34 -0000
-Message-ID: <162454689403.1852.14022358846270669907@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210624105517.3886963-1-hsinyi@chromium.org>
-In-Reply-To: <20210624105517.3886963-1-hsinyi@chromium.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv6=2CRESEND=2C1/3=5D_gpu=3A_drm=3A_separat?=
- =?utf-8?q?e_panel_orientation_property_creating_and_value_setting?=
+In-Reply-To: <1624539354.6zggpdrdbw.astroid@bobo.none>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=pbonzini@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 0/6] KVM: Remove uses of struct page from
+ x86 and arm64 MMU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,150 +93,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1411556195=="
+Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ David Stevens <stevensd@google.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>, intel-gfx@lists.freedesktop.org,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kvmarm@lists.cs.columbia.edu,
+ Will Deacon <will@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ James Morse <james.morse@arm.com>, kvm-ppc@vger.kernel.org,
+ Sean Christopherson <seanjc@google.com>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, linux-mips@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>,
+ linux-arm-kernel@lists.infradead.org, Jim Mattson <jmattson@google.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1411556195==
-Content-Type: multipart/alternative;
- boundary="===============4560914288457680527=="
+On 24/06/21 14:57, Nicholas Piggin wrote:
+> KVM: Fix page ref underflow for regions with valid but non-refcounted pages
 
---===============4560914288457680527==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+It doesn't really fix the underflow, it disallows mapping them in the 
+first place.  Since in principle things can break, I'd rather be 
+explicit, so let's go with "KVM: do not allow mapping valid but 
+non-reference-counted pages".
 
-== Series Details ==
+> It's possible to create a region which maps valid but non-refcounted
+> pages (e.g., tail pages of non-compound higher order allocations). These
+> host pages can then be returned by gfn_to_page, gfn_to_pfn, etc., family
+> of APIs, which take a reference to the page, which takes it from 0 to 1.
+> When the reference is dropped, this will free the page incorrectly.
+> 
+> Fix this by only taking a reference on the page if it was non-zero,
 
-Series: series starting with [v6,RESEND,1/3] gpu: drm: separate panel orientation property creating and value setting
-URL   : https://patchwork.freedesktop.org/series/91867/
-State : success
+s/on the page/on valid pages/ (makes clear that invalid pages are fine 
+without refcounting).
 
-== Summary ==
+Thank you *so* much, I'm awful at Linux mm.
 
-CI Bug Log - changes from CI_DRM_10276 -> Patchwork_20454
-====================================================
+Paolo
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20454/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20454 that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10276 -> Patchwork_20454
-
-  CI-20190529: 20190529
-  CI_DRM_10276: dc72fe3798577491293de99bfcf132e5d321ab7e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20454: d46a8e1bd812aa3619c3cd1d278bbb639bbaa7d0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d46a8e1bd812 arm64: dts: mt8183: Add panel rotation
-39f7ae8abfee drm/mediatek: init panel orientation property
-8e0b6d8e41b6 gpu: drm: separate panel orientation property creating and value setting
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20454/index.html
-
---===============4560914288457680527==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v6,RESEND,1/3] gpu: drm: separate panel orientation property creating and value setting</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91867/">https://patchwork.freedesktop.org/series/91867/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20454/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20454/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10276 -&gt; Patchwork_20454</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20454/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20454 that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10276 -&gt; Patchwork_20454</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10276: dc72fe3798577491293de99bfcf132e5d321ab7e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20454: d46a8e1bd812aa3619c3cd1d278bbb639bbaa7d0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d46a8e1bd812 arm64: dts: mt8183: Add panel rotation<br />
-39f7ae8abfee drm/mediatek: init panel orientation property<br />
-8e0b6d8e41b6 gpu: drm: separate panel orientation property creating and value setting</p>
-
-</body>
-</html>
-
---===============4560914288457680527==--
-
---===============1411556195==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> which indicates it is participating in normal refcounting (and can be
+> released with put_page).
+> 
+> Signed-off-by: Nicholas Piggin<npiggin@gmail.com>
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1411556195==--
