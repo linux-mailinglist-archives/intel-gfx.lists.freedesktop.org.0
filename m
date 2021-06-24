@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25E4A3B2AB1
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B4B63B2AB9
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:50:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0BC6EAA1;
-	Thu, 24 Jun 2021 08:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 143726EB1E;
+	Thu, 24 Jun 2021 08:50:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91C9D6EA4A
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:48:46 +0000 (UTC)
-IronPort-SDR: bl+1GaiwgunLWZslDq+UbDUxiuXURHR5GW4JEeVGD3a3Mlktw4adSR4U2vHsdGLEe/zQ/3mSCi
- XHRX66gtYDyA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="194728621"
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="194728621"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 01:48:44 -0700
-IronPort-SDR: J2e1bp1heFQF96XLOwox6ot6bsd82kbqT+tsMguU4cFjPUTs/hc5avQgTjLsTohuyNKwsyplkn
- Lnxgj8bNTefQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="487680711"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by orsmga001.jf.intel.com with ESMTP; 24 Jun 2021 01:48:44 -0700
-Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 24 Jun 2021 01:48:43 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 24 Jun 2021 14:18:41 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.008;
- Thu, 24 Jun 2021 14:18:41 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [V3] drm/i915/display: Fix state mismatch in drm infoframe
-Thread-Index: AQHXOAl7S3TfGXOCY0OLgLy1bqv01qsjOs4g
-Date: Thu, 24 Jun 2021 08:48:41 +0000
-Message-ID: <e3301e08f15b416a8c206071d495e3f5@intel.com>
-References: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25F136EB1E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:50:36 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id df12so7427716edb.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 01:50:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=oxdoHUsK0W5Vkc6v3ozAbG6S64dO7oMqRlfcZ1AR5Tw=;
+ b=NicX0IdNFdFOpyxOhMQXp4qAOrdMPdvlwAt/x0UhEr5no/+goCP7lHZQX38SYfkevW
+ WoqIhd9NpuB/K4curfvqPLF9BTfFLp9S+AHgBuupUsos8ptvAEZsQGv2tIZ1amK4uMw5
+ NOwM0SSf7Zk6C8Q3I8bg0cKGPkr3fZVjMrDYk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=oxdoHUsK0W5Vkc6v3ozAbG6S64dO7oMqRlfcZ1AR5Tw=;
+ b=fHKGOi/CBXy2sY1p5g49VFBf3lKKN+PFfy2AjwnxyuKKMHw77NDNlqFxiQKddxSn6+
+ +iQJKMd3PJlkgKr15To0E1nqrQEVEO6W+5fGZW2sDN7qiTIZDUzco2DOuLM+eGPJsByF
+ 0bI0k33V2PzxK8Ywv0vD8r5VDuA+rSi/b9Me27r0APqphVftyY4T/ki3uaP2TGJi78WN
+ 8ey41PHrBSh/Nx8kR473alfAD+IjAxg7PcqtWqYexO1SkCtLMhTkKiDPd6uJkrESBTj+
+ MOLzZezPBCQs1i1h0gvp153yNgxI7/q5aVwecq8XnjRP22hX9QzefoRKVUPbmk7Zgkyp
+ fUOw==
+X-Gm-Message-State: AOAM533C0V07dNjF0Db5bbNkTuXn9vhf6u/i7kWN7OQ9I/HOsLyJ6PZK
+ XzAxZmTrkDnVem+rpPK5+k97wCajcVSD/Q==
+X-Google-Smtp-Source: ABdhPJyBRUQfxKQ3f4GipFfrx1iREWz9mi+9hN9U3K0t0vPSIX1B/kuj2aIDuKtsPpm1guWBk4a1dw==
+X-Received: by 2002:a05:6402:6d3:: with SMTP id
+ n19mr5789270edy.248.1624524634711; 
+ Thu, 24 Jun 2021 01:50:34 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id j22sm925778ejt.11.2021.06.24.01.50.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Jun 2021 01:50:34 -0700 (PDT)
+Date: Thu, 24 Jun 2021 10:50:32 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <YNRHWIaGX1f9OZff@phenom.ffwll.local>
+References: <20210623172706.315165-1-matthew.auld@intel.com>
+ <YNOISja0iGhcdomF@phenom.ffwll.local>
+ <CAM0jSHNRP5kvKSBqM3ALJSP3JH8EKWvSo289yRW9xfqd=t3-UQ@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [V3] drm/i915/display: Fix state mismatch in drm
- infoframe
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHNRP5kvKSBqM3ALJSP3JH8EKWvSo289yRW9xfqd=t3-UQ@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: add back the avail tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,64 +68,274 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTW9kZW0sIEJoYW51cHJh
-a2FzaCA8YmhhbnVwcmFrYXNoLm1vZGVtQGludGVsLmNvbT4NCj4gU2VudDogRnJpZGF5LCBBcHJp
-bCAyMywgMjAyMSA3OjQ2IFBNDQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-DQo+IENjOiBNb2RlbSwgQmhhbnVwcmFrYXNoIDxiaGFudXByYWthc2gubW9kZW1AaW50ZWwuY29t
-PjsgU2hhbmthciwgVW1hDQo+IDx1bWEuc2hhbmthckBpbnRlbC5jb20+OyBWaWxsZSBTeXJqw6Rs
-w6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbVjNdIGRybS9p
-OTE1L2Rpc3BsYXk6IEZpeCBzdGF0ZSBtaXNtYXRjaCBpbiBkcm0gaW5mb2ZyYW1lDQo+IA0KPiBX
-aGlsZSByZWFkaW5nIHRoZSBTRFAgaW5mb2ZyYW1lLCB3ZSBhcmUgZ2V0dGluZyBmaWx0ZXJlZCB3
-aXRoIHRoZSBlbmNvZGVyIHR5cGUNCj4gSU5URUxfT1VUUFVUX0RESSB3aGljaCBjYXVzZXMgdGhl
-IGluZm9mcmFtZSBtaXNtYXRjaC4gVGhpcyBwYXRjaCB3aWxsIGRyb3ANCj4gZW5jb2Rlci0+dHlw
-ZSBjaGVjayBhcyB3ZSBjYW4gbWFzayBpbmRpdmlkdWFsIGluZm9mcmFtZSB0eXBlLg0KDQpJdCB3
-aWxsIGJlIGdvb2QgdG8gbWVudGlvbiB0aGF0IGlzc3VlIGhhcHBlbnMgd2l0aCBlRFAuIFdpdGgg
-dGhhdCBhZGRlZCwNCg0KUmV2aWV3ZWQtYnk6IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRl
-bC5jb20+DQoNCj4gWzEwMjUuNjA2NTU2XSBpOTE1IDAwMDA6MDA6MDIuMDogW2RybV0gKkVSUk9S
-KiBtaXNtYXRjaCBpbiBkcm0gaW5mb2ZyYW1lDQo+IFsxMDI1LjYwNzg2NV0gaTkxNSAwMDAwOjAw
-OjAyLjA6IFtkcm1dICpFUlJPUiogZXhwZWN0ZWQ6DQo+IFsxMDI1LjYwNzg3OV0gaTkxNSAwMDAw
-OjAwOjAyLjA6IEhETUkgaW5mb2ZyYW1lOiBEeW5hbWljIFJhbmdlIGFuZCBNYXN0ZXJpbmcsDQo+
-IHZlcnNpb24gMSwgbGVuZ3RoIDI2IFsxMDI1LjYwNzg4OV0gaTkxNSAwMDAwOjAwOjAyLjA6IGxl
-bmd0aDogMjYgWzEwMjUuNjA3ODk4XSBpOTE1DQo+IDAwMDA6MDA6MDIuMDogbWV0YWRhdGEgdHlw
-ZTogMCBbMTAyNS42MDgyOTJdIGk5MTUgMDAwMDowMDowMi4wOiBlb3RmOiAyDQo+IFsxMDI1LjYw
-ODMwMl0gaTkxNSAwMDAwOjAwOjAyLjA6IHhbMF06IDM1NDAwIFsxMDI1LjYwODMxMl0gaTkxNSAw
-MDAwOjAwOjAyLjA6DQo+IHlbMF06IDE0NTk5IFsxMDI1LjYwOTExNV0gaTkxNSAwMDAwOjAwOjAy
-LjA6IHhbMV06IDg1MDAgWzEwMjUuNjA5OTQ3XSBpOTE1DQo+IDAwMDA6MDA6MDIuMDogeVsxXTog
-Mzk4NTAgWzEwMjUuNjA5OTU5XSBpOTE1IDAwMDA6MDA6MDIuMDogeFsyXTogNjU1MA0KPiBbMTAy
-NS42MDk5NzBdIGk5MTUgMDAwMDowMDowMi4wOiB5WzJdOiAyMzAwIFsxMDI1LjYwOTk4MF0gaTkx
-NSAwMDAwOjAwOjAyLjA6DQo+IHdoaXRlIHBvaW50IHg6IDE1NjM0IFsxMDI1LjYwOTk4OV0gaTkx
-NSAwMDAwOjAwOjAyLjA6IHdoaXRlIHBvaW50IHk6IDE2NDUwDQo+IFsxMDI1LjYxMDM4MV0gaTkx
-NSAwMDAwOjAwOjAyLjA6IG1heF9kaXNwbGF5X21hc3RlcmluZ19sdW1pbmFuY2U6IDEwMDANCj4g
-WzEwMjUuNjEwMzkyXSBpOTE1IDAwMDA6MDA6MDIuMDogbWluX2Rpc3BsYXlfbWFzdGVyaW5nX2x1
-bWluYW5jZTogNTAwDQo+IFsxMDI1LjYxMDQwMV0gaTkxNSAwMDAwOjAwOjAyLjA6IG1heF9jbGw6
-IDUwMCBbMTAyNS42MTA4MTZdIGk5MTUgMDAwMDowMDowMi4wOg0KPiBtYXhfZmFsbDogMTAwMCBb
-MTAyNS42MTI0NTddIGk5MTUgMDAwMDowMDowMi4wOiBbZHJtXSAqRVJST1IqIGZvdW5kOg0KPiBb
-MTAyNS42MTQzNTRdIC0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0tLSBbMTAyNS42
-MTYyNDRdIHBpcGUgc3RhdGUgZG9lc24ndA0KPiBtYXRjaCENCj4gWzEwMjUuNjE3NjQwXSBXQVJO
-SU5HOiBDUFU6IDYgUElEOiAyMTE0IGF0DQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheS5jOjkzMzINCj4gaW50ZWxfYXRvbWljX2NvbW1pdF90YWlsKzB4MTRkNC8w
-eDE3YzAgW2k5MTVdDQo+IA0KPiBWMjoNCj4gKiBEcm9wIGVuY29kZXItPnR5cGUgY2hlY2sNCj4g
-DQo+IFYzOg0KPiAqIFJlbW92ZSBpbnRlcm5hbCByZXZpZXdzDQo+IA0KPiBDYzogVW1hIFNoYW5r
-YXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4NCj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEJoYW51cHJha2FzaCBN
-b2RlbSA8YmhhbnVwcmFrYXNoLm1vZGVtQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCAzIC0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQs
-IDMgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcC5jDQo+IGluZGV4IDRhZDEyZGRlNTkzOC4uMjgwYjBiNWVlNzBlIDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IEBAIC0zMDE0LDkgKzMwMTQsNiBA
-QCB2b2lkIGludGVsX3JlYWRfZHBfc2RwKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0K
-PiAgCQkgICAgICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsDQo+ICAJCSAg
-ICAgICB1bnNpZ25lZCBpbnQgdHlwZSkNCj4gIHsNCj4gLQlpZiAoZW5jb2Rlci0+dHlwZSAhPSBJ
-TlRFTF9PVVRQVVRfRERJKQ0KPiAtCQlyZXR1cm47DQo+IC0NCj4gIAlzd2l0Y2ggKHR5cGUpIHsN
-Cj4gIAljYXNlIERQX1NEUF9WU0M6DQo+ICAJCWludGVsX3JlYWRfZHBfdnNjX3NkcChlbmNvZGVy
-LCBjcnRjX3N0YXRlLA0KPiAtLQ0KPiAyLjIwLjENCg0KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Jun 23, 2021 at 08:35:30PM +0100, Matthew Auld wrote:
+> On Wed, 23 Jun 2021 at 20:15, Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Wed, Jun 23, 2021 at 06:27:06PM +0100, Matthew Auld wrote:
+> > > Looks like it got lost along the way, so add it back. This is needed =
+for
+> > > the region query uAPI where we want to report a snapshot of how much
+> > > lmem is available.
+> > >
+> > > This time around let's push it directly into the allocator, which
+> > > simplifies things, like not having to care about internal fragmentati=
+on,
+> > > or having to remember to track things for all possible interfaces that
+> > > might want to allocate or reserve pages.
+> > >
+> > > v2(Thomas): add some more kernel doc
+> > >
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> > > Reviewed-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> >
+> > Since this is uapi, do umds use this? Or just igt?
+> >
+> > Please record both the umd user for this and the igts that verifies this
+> > is not nonsense to the commit message. We need to be much better with
+> > keeping records for our uapi additions, there's been some really badly
+> > justified uapi in the past that turned out to be for testcases only.
+> =
+
+> For the userspace justification, I pinged you and Jason about that in
+> the previous thread, since it's not completely clear if real userspace
+> even cares about this. I can maybe just limit it to debugfs?
+
+Sorry I missed that ping. If it's just for igt then debugfs should be good
+enough. Otherwise I'd do a quick check on the internal code repos and
+maybe ping Jason on irc if he misses this, just in case we've overlooked
+something.
+-Daniel
+
+> =
+
+> > -Daniel
+> >
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_buddy.c             |  6 ++++++
+> > >  drivers/gpu/drm/i915/i915_buddy.h             |  1 +
+> > >  drivers/gpu/drm/i915/i915_debugfs.c           |  5 +++--
+> > >  drivers/gpu/drm/i915/i915_query.c             |  2 +-
+> > >  drivers/gpu/drm/i915/i915_ttm_buddy_manager.c | 13 +++++++++++++
+> > >  drivers/gpu/drm/i915/i915_ttm_buddy_manager.h |  2 ++
+> > >  drivers/gpu/drm/i915/intel_memory_region.c    | 15 +++++++++++++++
+> > >  drivers/gpu/drm/i915/intel_memory_region.h    |  4 ++++
+> > >  8 files changed, 45 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/i915_buddy.c b/drivers/gpu/drm/i915=
+/i915_buddy.c
+> > > index 29dd7d0310c1..27cd2487a18f 100644
+> > > --- a/drivers/gpu/drm/i915/i915_buddy.c
+> > > +++ b/drivers/gpu/drm/i915/i915_buddy.c
+> > > @@ -80,6 +80,7 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 s=
+ize, u64 chunk_size)
+> > >       size =3D round_down(size, chunk_size);
+> > >
+> > >       mm->size =3D size;
+> > > +     mm->avail =3D size;
+> > >       mm->chunk_size =3D chunk_size;
+> > >       mm->max_order =3D ilog2(size) - ilog2(chunk_size);
+> > >
+> > > @@ -159,6 +160,8 @@ void i915_buddy_fini(struct i915_buddy_mm *mm)
+> > >               i915_block_free(mm, mm->roots[i]);
+> > >       }
+> > >
+> > > +     GEM_WARN_ON(mm->avail !=3D mm->size);
+> > > +
+> > >       kfree(mm->roots);
+> > >       kfree(mm->free_list);
+> > >       kmem_cache_destroy(mm->slab_blocks);
+> > > @@ -235,6 +238,7 @@ void i915_buddy_free(struct i915_buddy_mm *mm,
+> > >                    struct i915_buddy_block *block)
+> > >  {
+> > >       GEM_BUG_ON(!i915_buddy_block_is_allocated(block));
+> > > +     mm->avail +=3D i915_buddy_block_size(mm, block);
+> > >       __i915_buddy_free(mm, block);
+> > >  }
+> > >
+> > > @@ -288,6 +292,7 @@ i915_buddy_alloc(struct i915_buddy_mm *mm, unsign=
+ed int order)
+> > >       }
+> > >
+> > >       mark_allocated(block);
+> > > +     mm->avail -=3D i915_buddy_block_size(mm, block);
+> > >       kmemleak_update_trace(block);
+> > >       return block;
+> > >
+> > > @@ -373,6 +378,7 @@ int i915_buddy_alloc_range(struct i915_buddy_mm *=
+mm,
+> > >                       }
+> > >
+> > >                       mark_allocated(block);
+> > > +                     mm->avail -=3D i915_buddy_block_size(mm, block);
+> > >                       list_add_tail(&block->link, &allocated);
+> > >                       continue;
+> > >               }
+> > > diff --git a/drivers/gpu/drm/i915/i915_buddy.h b/drivers/gpu/drm/i915=
+/i915_buddy.h
+> > > index 37f8c42071d1..feb7c1bb6244 100644
+> > > --- a/drivers/gpu/drm/i915/i915_buddy.h
+> > > +++ b/drivers/gpu/drm/i915/i915_buddy.h
+> > > @@ -70,6 +70,7 @@ struct i915_buddy_mm {
+> > >       /* Must be at least PAGE_SIZE */
+> > >       u64 chunk_size;
+> > >       u64 size;
+> > > +     u64 avail;
+> > >  };
+> > >
+> > >  static inline u64
+> > > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i9=
+15/i915_debugfs.c
+> > > index cc745751ac53..4765f220469e 100644
+> > > --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> > > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> > > @@ -246,8 +246,9 @@ static int i915_gem_object_info(struct seq_file *=
+m, void *data)
+> > >                  atomic_read(&i915->mm.free_count),
+> > >                  i915->mm.shrink_memory);
+> > >       for_each_memory_region(mr, i915, id)
+> > > -             seq_printf(m, "%s: total:%pa, available:%pa bytes\n",
+> > > -                        mr->name, &mr->total, &mr->avail);
+> > > +             seq_printf(m, "%s: total:%pa, available:%llu bytes\n",
+> > > +                        mr->name, &mr->total,
+> > > +                        intel_memory_region_get_avail(mr));
+> > >
+> > >       return 0;
+> > >  }
+> > > diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915=
+/i915_query.c
+> > > index e49da36c62fb..f10dcea94ac9 100644
+> > > --- a/drivers/gpu/drm/i915/i915_query.c
+> > > +++ b/drivers/gpu/drm/i915/i915_query.c
+> > > @@ -465,7 +465,7 @@ static int query_memregion_info(struct drm_i915_p=
+rivate *i915,
+> > >               info.region.memory_class =3D mr->type;
+> > >               info.region.memory_instance =3D mr->instance;
+> > >               info.probed_size =3D mr->total;
+> > > -             info.unallocated_size =3D mr->avail;
+> > > +             info.unallocated_size =3D intel_memory_region_get_avail=
+(mr);
+> > >
+> > >               if (__copy_to_user(info_ptr, &info, sizeof(info)))
+> > >                       return -EFAULT;
+> > > diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/=
+gpu/drm/i915/i915_ttm_buddy_manager.c
+> > > index fc7ad5c035b8..562d11edc5e4 100644
+> > > --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> > > +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+> > > @@ -246,3 +246,16 @@ int i915_ttm_buddy_man_reserve(struct ttm_resour=
+ce_manager *man,
+> > >       return ret;
+> > >  }
+> > >
+> > > +/**
+> > > + * i915_ttm_buddy_man_avail - Get the currently available size
+> > > + * @man: The buddy allocator ttm manager
+> > > + *
+> > > + * Return: The available size in bytes
+> > > + */
+> > > +u64 i915_ttm_buddy_man_get_avail(struct ttm_resource_manager *man)
+> > > +{
+> > > +     struct i915_ttm_buddy_manager *bman =3D to_buddy_manager(man);
+> > > +     struct i915_buddy_mm *mm =3D &bman->mm;
+> > > +
+> > > +     return mm->avail;
+> > > +}
+> > > diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h b/drivers/=
+gpu/drm/i915/i915_ttm_buddy_manager.h
+> > > index 26026213e20a..39f5b1a4c3e7 100644
+> > > --- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+> > > +++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
+> > > @@ -53,4 +53,6 @@ int i915_ttm_buddy_man_fini(struct ttm_device *bdev,
+> > >  int i915_ttm_buddy_man_reserve(struct ttm_resource_manager *man,
+> > >                              u64 start, u64 size);
+> > >
+> > > +u64 i915_ttm_buddy_man_get_avail(struct ttm_resource_manager *man);
+> > > +
+> > >  #endif
+> > > diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu=
+/drm/i915/intel_memory_region.c
+> > > index df59f884d37c..d5edf088be48 100644
+> > > --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> > > +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> > > @@ -132,6 +132,21 @@ void intel_memory_region_set_name(struct intel_m=
+emory_region *mem,
+> > >       va_end(ap);
+> > >  }
+> > >
+> > > +/**
+> > > + * intel_memory_region_get_avail - Get the currently available size =
+for the
+> > > + * region
+> > > + * @mr: The memory region
+> > > + *
+> > > + * Return: The available size in bytes
+> > > + */
+> > > +u64 intel_memory_region_get_avail(struct intel_memory_region *mr)
+> > > +{
+> > > +     if (mr->type =3D=3D INTEL_MEMORY_LOCAL)
+> > > +             return i915_ttm_buddy_man_get_avail(mr->region_private);
+> > > +
+> > > +     return mr->avail;
+> > > +}
+> > > +
+> > >  static void __intel_memory_region_destroy(struct kref *kref)
+> > >  {
+> > >       struct intel_memory_region *mem =3D
+> > > diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu=
+/drm/i915/intel_memory_region.h
+> > > index 2be8433d373a..6f7a073d5a70 100644
+> > > --- a/drivers/gpu/drm/i915/intel_memory_region.h
+> > > +++ b/drivers/gpu/drm/i915/intel_memory_region.h
+> > > @@ -74,6 +74,7 @@ struct intel_memory_region {
+> > >       resource_size_t io_start;
+> > >       resource_size_t min_page_size;
+> > >       resource_size_t total;
+> > > +     /* Do not access directly. Use the accessor instead. */
+> > >       resource_size_t avail;
+> > >
+> > >       u16 type;
+> > > @@ -125,4 +126,7 @@ intel_memory_region_set_name(struct intel_memory_=
+region *mem,
+> > >  int intel_memory_region_reserve(struct intel_memory_region *mem,
+> > >                               resource_size_t offset,
+> > >                               resource_size_t size);
+> > > +
+> > > +u64 intel_memory_region_get_avail(struct intel_memory_region *mem);
+> > > +
+> > >  #endif
+> > > --
+> > > 2.26.3
+> > >
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
