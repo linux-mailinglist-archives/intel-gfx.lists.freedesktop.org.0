@@ -1,66 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43E63B2F80
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 14:58:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E92C3B2FE1
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 15:17:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 471AE6EB2F;
-	Thu, 24 Jun 2021 12:58:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 292E46EB84;
+	Thu, 24 Jun 2021 13:17:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
- [IPv6:2607:f8b0:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB44B6EB2F;
- Thu, 24 Jun 2021 12:58:00 +0000 (UTC)
-Received: by mail-pf1-x42e.google.com with SMTP id q192so5092642pfc.7;
- Thu, 24 Jun 2021 05:58:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:subject:to:cc:references:in-reply-to:mime-version
- :message-id:content-transfer-encoding;
- bh=uZuciq1P1LLIv86omk3p15CWzxu9H3VjtHemSC+vWOI=;
- b=rznw7O6D2Zt35p7Og+3iCwDgw2dkNPfwzD7rlUMP0y2Ej6O0tM+y3kSEcf8SWyT54d
- ublbOGuxe9Umj5fFSx3kLcve+5qwIiX31Bd1k9qJoijVaEMTrXxDg0VCRopT0Otp624H
- vQfbCt9QT5NQGNwfAmJ+KqkgxcPuOAOPjB6i02zSgoYEerKJgc/pbPT1wHARr0++dvZS
- Cel9tp2O0yGrWOTbrGUMXfBkZ8Eb/NzV2+WsHAOwG6gVAXQkKI9dWxURNSfgfHu0j01+
- sMqgBmAGdH9hfo97BHqdnz3MvquYkt7SnDT6LlXF4LTAyCM7dcMF+YevSRJYr4EeGBsv
- ThKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:subject:to:cc:references:in-reply-to
- :mime-version:message-id:content-transfer-encoding;
- bh=uZuciq1P1LLIv86omk3p15CWzxu9H3VjtHemSC+vWOI=;
- b=Ocs4AtefsbgeLgOLTC4u8v9kb1f0/cTGV5CGGenCnLMkkV7m7+nRW3LUlj4nKrzz0s
- IbjR3loDFxw+ukEyuWlTP5j0uC7nYazBJ2LWKmWlOEPKxW6A+Y/rZ9k/Zkw52Sos9gA2
- WTojPYmmRtprXZ5KDk81x7QJr1ao4lMJGLbb1IgTQCc+3ohFOKBfXhmkH8shngK19T8I
- QRdA7j2/O1On5lE7gIxzqHEZLYUxI+aP/bgRF6rh+0qJknZLFdpdBz60GS6yfAkZ/Pcp
- avyl3vS1MTfXgDGnaxCo03JbCLSFzYws/1VcZicwPBZnq3BFTr2DnwCrNlBVmML+xtXu
- i7+A==
-X-Gm-Message-State: AOAM533yJkuUiYpE3rR44pxgy3Bk0N8kTwYdE2hvUP2lZie8RLJEGiua
- Tk51EqXfGvyMqLZ4YMub4YY=
-X-Google-Smtp-Source: ABdhPJyRyvJn5C7VYeX4UgUoQTwK2Wl40+EfEX+5KjgwzBTc5sLi33BY4sgc5lVA8ilsgegR5j26Eg==
-X-Received: by 2002:a63:530a:: with SMTP id h10mr4685438pgb.98.1624539480323; 
- Thu, 24 Jun 2021 05:58:00 -0700 (PDT)
-Received: from localhost (60-242-147-73.tpgi.com.au. [60.242.147.73])
- by smtp.gmail.com with ESMTPSA id h22sm2909006pfc.21.2021.06.24.05.57.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jun 2021 05:58:00 -0700 (PDT)
-Date: Thu, 24 Jun 2021 22:57:54 +1000
-From: Nicholas Piggin <npiggin@gmail.com>
-To: Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>, Huacai Chen
- <chenhuacai@kernel.org>, Marc Zyngier <maz@kernel.org>, Paul Mackerras
- <paulus@ozlabs.org>, Paolo Bonzini <pbonzini@redhat.com>, David Stevens
- <stevensd@chromium.org>, Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
- <zhi.a.wang@intel.com>
-References: <20210624035749.4054934-1-stevensd@google.com>
- <1624530624.8jff1f4u11.astroid@bobo.none>
- <1624534759.nj0ylor2eh.astroid@bobo.none>
- <0d3a699a-15eb-9f1b-0735-79d14736f38c@redhat.com>
-In-Reply-To: <0d3a699a-15eb-9f1b-0735-79d14736f38c@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EA6656EB84;
+ Thu, 24 Jun 2021 13:17:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E40AAAA0ED;
+ Thu, 24 Jun 2021 13:17:11 +0000 (UTC)
 MIME-Version: 1.0
-Message-Id: <1624539354.6zggpdrdbw.astroid@bobo.none>
-Subject: Re: [Intel-gfx] [PATCH 0/6] KVM: Remove uses of struct page from
- x86 and arm64 MMU
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>
+Date: Thu, 24 Jun 2021 13:17:11 -0000
+Message-ID: <162454063190.1851.11068306616196460060@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Fix_state_mismatch_in_drm_infoframe_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,124 +38,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- David Stevens <stevensd@google.com>,
- Alexandru Elisei <alexandru.elisei@arm.com>, intel-gfx@lists.freedesktop.org,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, kvmarm@lists.cs.columbia.edu,
- Will Deacon <will@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
- James Morse <james.morse@arm.com>, kvm-ppc@vger.kernel.org,
- Sean Christopherson <seanjc@google.com>,
- Vitaly Kuznetsov <vkuznets@redhat.com>, linux-mips@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>,
- linux-arm-kernel@lists.infradead.org, Jim Mattson <jmattson@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1662101141=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Excerpts from Paolo Bonzini's message of June 24, 2021 10:41 pm:
-> On 24/06/21 13:42, Nicholas Piggin wrote:
->> Excerpts from Nicholas Piggin's message of June 24, 2021 8:34 pm:
->>> Excerpts from David Stevens's message of June 24, 2021 1:57 pm:
->>>> KVM supports mapping VM_IO and VM_PFNMAP memory into the guest by using
->>>> follow_pte in gfn_to_pfn. However, the resolved pfns may not have
->>>> assoicated struct pages, so they should not be passed to pfn_to_page.
->>>> This series removes such calls from the x86 and arm64 secondary MMU. To
->>>> do this, this series modifies gfn_to_pfn to return a struct page in
->>>> addition to a pfn, if the hva was resolved by gup. This allows the
->>>> caller to call put_page only when necessated by gup.
->>>>
->>>> This series provides a helper function that unwraps the new return type
->>>> of gfn_to_pfn to provide behavior identical to the old behavior. As I
->>>> have no hardware to test powerpc/mips changes, the function is used
->>>> there for minimally invasive changes. Additionally, as gfn_to_page and
->>>> gfn_to_pfn_cache are not integrated with mmu notifier, they cannot be
->>>> easily changed over to only use pfns.
->>>>
->>>> This addresses CVE-2021-22543 on x86 and arm64.
->>>
->>> Does this fix the problem? (untested I don't have a POC setup at hand,
->>> but at least in concept)
->> 
->> This one actually compiles at least. Unfortunately I don't have much
->> time in the near future to test, and I only just found out about this
->> CVE a few hours ago.
-> 
-> And it also works (the reproducer gets an infinite stream of userspace 
-> exits and especially does not crash).  We can still go for David's 
-> solution later since MMU notifiers are able to deal with this pages, but 
-> it's a very nice patch for stable kernels.
+--===============1662101141==
+Content-Type: multipart/alternative;
+ boundary="===============4553457978268022615=="
 
-Oh nice, thanks for testing. How's this?
+--===============4553457978268022615==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks,
-Nick
+== Series Details ==
 
----
+Series: drm/i915/display: Fix state mismatch in drm infoframe (rev5)
+URL   : https://patchwork.freedesktop.org/series/89225/
+State : success
 
-KVM: Fix page ref underflow for regions with valid but non-refcounted pages
+== Summary ==
 
-It's possible to create a region which maps valid but non-refcounted
-pages (e.g., tail pages of non-compound higher order allocations). These
-host pages can then be returned by gfn_to_page, gfn_to_pfn, etc., family
-of APIs, which take a reference to the page, which takes it from 0 to 1.
-When the reference is dropped, this will free the page incorrectly.
+CI Bug Log - changes from CI_DRM_10274 -> Patchwork_20453
+====================================================
 
-Fix this by only taking a reference on the page if it was non-zero,
-which indicates it is participating in normal refcounting (and can be
-released with put_page).
+Summary
+-------
 
-Signed-off-by: Nicholas Piggin <npiggin@gmail.com>
----
- virt/kvm/kvm_main.c | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+  **SUCCESS**
 
-diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
-index 6a6bc7af0e28..46fb042837d2 100644
---- a/virt/kvm/kvm_main.c
-+++ b/virt/kvm/kvm_main.c
-@@ -2055,6 +2055,13 @@ static bool vma_is_valid(struct vm_area_struct *vma, bool write_fault)
- 	return true;
- }
- 
-+static int kvm_try_get_pfn(kvm_pfn_t pfn)
-+{
-+	if (kvm_is_reserved_pfn(pfn))
-+		return 1;
-+	return get_page_unless_zero(pfn_to_page(pfn));
-+}
-+
- static int hva_to_pfn_remapped(struct vm_area_struct *vma,
- 			       unsigned long addr, bool *async,
- 			       bool write_fault, bool *writable,
-@@ -2104,13 +2111,21 @@ static int hva_to_pfn_remapped(struct vm_area_struct *vma,
- 	 * Whoever called remap_pfn_range is also going to call e.g.
- 	 * unmap_mapping_range before the underlying pages are freed,
- 	 * causing a call to our MMU notifier.
-+	 *
-+	 * Certain IO or PFNMAP mappings can be backed with valid
-+	 * struct pages, but be allocated without refcounting e.g.,
-+	 * tail pages of non-compound higher order allocations, which
-+	 * would then underflow the refcount when the caller does the
-+	 * required put_page. Don't allow those pages here.
- 	 */ 
--	kvm_get_pfn(pfn);
-+	if (!kvm_try_get_pfn(pfn))
-+		r = -EFAULT;
- 
- out:
- 	pte_unmap_unlock(ptep, ptl);
- 	*p_pfn = pfn;
--	return 0;
-+
-+	return r;
- }
- 
- /*
--- 
-2.23.0
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20453 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][2] ([i915#3159])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [PASS][3] -> [INCOMPLETE][4] ([i915#2782] / [i915#2940])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10274/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
+
+
+Participating hosts (43 -> 40)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10274 -> Patchwork_20453
+
+  CI-20190529: 20190529
+  CI_DRM_10274: 0f49e4d085430915c86c990722817b8ddec84480 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20453: 588c71ac65adcf7ab6a0a5c382b7196b425d0611 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+588c71ac65ad drm/i915/display: Fix state mismatch in drm infoframe
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html
+
+--===============4553457978268022615==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Fix state mismatch in drm infoframe (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89225/">https://patchwork.freedesktop.org/series/89225/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10274 -&gt; Patchwork_20453</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20453 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10274/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 40)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10274 -&gt; Patchwork_20453</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10274: 0f49e4d085430915c86c990722817b8ddec84480 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20453: 588c71ac65adcf7ab6a0a5c382b7196b425d0611 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>588c71ac65ad drm/i915/display: Fix state mismatch in drm infoframe</p>
+
+</body>
+</html>
+
+--===============4553457978268022615==--
+
+--===============1662101141==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1662101141==--
