@@ -2,64 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583B23B2A76
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D98AE3B2A63
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:31:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25F106EB1C;
-	Thu, 24 Jun 2021 08:34:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D2206EAE2;
+	Thu, 24 Jun 2021 08:31:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 380026EB1D
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:34:33 +0000 (UTC)
-Received: from lupine.hi.pengutronix.de
- ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1lwKg5-0005gL-Pp; Thu, 24 Jun 2021 10:25:37 +0200
-Received: from pza by lupine with local (Exim 4.92)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1lwKfk-0005je-QP; Thu, 24 Jun 2021 10:25:16 +0200
-Message-ID: <2c06d7eab5a20191723eb1d9a8027978342c66e9.camel@pengutronix.de>
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@linux.ie,  alexander.deucher@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com,  james.qian.wang@arm.com, liviu.dudau@arm.com,
- mihail.atanassov@arm.com,  brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
- inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com, 
- kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com, 
- xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org, 
- kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com, 
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de, shawnguo@kernel.org, 
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
- linux-imx@nxp.com, chunkuang.hu@kernel.org, matthias.bgg@gmail.com, 
- bskeggs@redhat.com, tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de, 
- benjamin.gaignard@linaro.org, yannick.fertre@foss.st.com, 
- philippe.cornu@foss.st.com, mcoquelin.stm32@gmail.com, 
- alexandre.torgue@foss.st.com, wens@csie.org, jernej.skrabec@gmail.com, 
- thierry.reding@gmail.com, jonathanh@nvidia.com, jyri.sarha@iki.fi,
- emma@anholt.net,  linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- hyun.kwon@xilinx.com,  laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com,  jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, linux@armlinux.org.uk, 
- kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com, 
- melissa.srw@gmail.com, hamohammed.sa@gmail.com
-Date: Thu, 24 Jun 2021 10:25:16 +0200
-In-Reply-To: <20210624072916.27703-12-tzimmermann@suse.de>
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-12-tzimmermann@suse.de>
-User-Agent: Evolution 3.30.5-1.1 
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E81006EAE2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:31:24 +0000 (UTC)
+IronPort-SDR: fabZUTUgDCPooPFvrIt0dK1G3M+yoABHk8DRyj28wzgmTnRC005CCKsV+NxfAjxrbIbdhE5fAX
+ /pB03+gGtooA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="194726208"
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="194726208"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:31:24 -0700
+IronPort-SDR: +DF2DwkgktLNz1ckTh72rMOEPoSQJGmB6aX+tpn0AiQCqQdxgJmB7j7BLvs6X7PrclxkfD17If
+ rhffH9qeOJ0g==
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="423999185"
+Received: from ryanmcla-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.220.55])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:31:20 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 24 Jun 2021 09:31:12 +0100
+Message-Id: <20210624083113.365039-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-Subject: Re: [Intel-gfx] [PATCH v3 11/27] drm/imx: Don't set struct
- drm_device.irq_enabled
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/dg1: Compute MEM Bandwidth using
+ MCHBAR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,59 +46,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-tegra@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2021-06-24 at 09:29 +0200, Thomas Zimmermann wrote:
-> The field drm_device.irq_enabled is only used by legacy drivers
-> with userspace modesetting. Don't set it in imx.
-> 
-> v3:
-> 	* move dcss changes into separate patch (Laurentiu)
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> ---
->  drivers/gpu/drm/imx/imx-drm-core.c | 11 -----------
->  1 file changed, 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/imx/imx-drm-core.c b/drivers/gpu/drm/imx/imx-drm-core.c
-> index 76819a8ac37f..9558e9e1b431 100644
-> --- a/drivers/gpu/drm/imx/imx-drm-core.c
-> +++ b/drivers/gpu/drm/imx/imx-drm-core.c
-> @@ -207,17 +207,6 @@ static int imx_drm_bind(struct device *dev)
->  	if (IS_ERR(drm))
->  		return PTR_ERR(drm);
->  
-> -	/*
-> -	 * enable drm irq mode.
-> -	 * - with irq_enabled = true, we can use the vblank feature.
-> -	 *
-> -	 * P.S. note that we wouldn't use drm irq handler but
-> -	 *      just specific driver own one instead because
-> -	 *      drm framework supports only one irq handler and
-> -	 *      drivers can well take care of their interrupts
-> -	 */
-> -	drm->irq_enabled = true;
-> -
->  	/*
->  	 * set max width and height as default value(4096x4096).
->  	 * this value would be used to check framebuffer size limitation
-
-Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-
-regards
-Philipp
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogQ2xpbnQgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KClRoZSBQVU5J
+VCBGVyBpcyBjdXJyZW50bHkgcmV0dXJuaW5nIDAgZm9yIGFsbCBtZW1vcnkgYmFuZHdpZHRoCnBh
+cmFtZXRlcnMuIFJlYWQgdGhlIHZhbHVlcyBkaXJlY3RseSBmcm9tIE1DSEJBUiBvZmZzZXRzIDB4
+NTkxOCBhbmQKMHg0MDAwKDQpLiBUaGlzIGlzIGEgdGVtcG9yYXJ5IFdBIHVudGlsIHRoZSBQVU5J
+VCBGVyByZXR1cm5zIHZhbGlkCnZhbHVlcy4KCnYyKEx1Y2FzKTogdGlkeSB1cCBjaGVja2luZyBm
+b3IgcmV0IHNsaWdodGx5CgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
+bC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
+PgpDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KQ2M6IEphbmkgU2Fh
+cmluZW4gPGphbmkuc2FhcmluZW5AaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBDbGludCBUYXls
+b3IgPGNsaW50b24uYS50YXlsb3JAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3Vs
+YSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1h
+dHRoZXcuYXVsZEBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9idy5jIHwgNTIgKysrKysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQs
+IDUyIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2J3LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMK
+aW5kZXggYmZiMzk4ZjA0MzJlLi42MmE3MGYzNjRmMmIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2J3LmMKQEAgLTIzLDYgKzIzLDUzIEBAIHN0cnVjdCBpbnRlbF9xZ3ZfaW5m
+byB7CiAJdTggdF9ibDsKIH07CiAKKyNkZWZpbmUgU0FfUEVSRl9TVEFUVVNfMF8wXzBfTUNIQkFS
+X1BDIF9NTUlPKE1DSEJBUl9NSVJST1JfQkFTRV9TTkIgKyAweDU5MTgpCisjZGVmaW5lICBERzFf
+UUNMS19SQVRJT19NQVNLICgweEZGIDw8IDIpCisjZGVmaW5lICBERzFfUUNMS19SQVRJT19TSElG
+VCAyCisjZGVmaW5lICBERzFfUUNMS19SRUZFUkVOQ0UgKDEgPDwgMTApCisKKyNkZWZpbmUgTUNI
+QkFSX0NIMF9DUl9UQ19QUkVfMF8wXzBfTUNIQkFSIF9NTUlPKE1DSEJBUl9NSVJST1JfQkFTRV9T
+TkIgKyAweDQwMDApCisjZGVmaW5lIE1DSEJBUl9DSDBfQ1JfVENfUFJFXzBfMF8wX01DSEJBUl9I
+SUdIIF9NTUlPKE1DSEJBUl9NSVJST1JfQkFTRV9TTkIgKyAweDQwMDQpCisjZGVmaW5lIE1DSEJB
+Ul9DSDFfQ1JfVENfUFJFXzBfMF8wX01DSEJBUiBfTU1JTyhNQ0hCQVJfTUlSUk9SX0JBU0VfU05C
+ICsgMHg0NDAwKQorI2RlZmluZSBNQ0hCQVJfQ0gxX0NSX1RDX1BSRV8wXzBfMF9NQ0hCQVJfSElH
+SCBfTU1JTyhNQ0hCQVJfTUlSUk9SX0JBU0VfU05CICsgMHg0NDA0KQorI2RlZmluZSAgREcxX0RS
+QU1fVF9SQ0RfTUFTSyAoMHg3RiA8PCA5KQorI2RlZmluZSAgREcxX0RSQU1fVF9SQ0RfU0hJRlQg
+OQorI2RlZmluZSAgREcxX0RSQU1fVF9SRFBSRV9NQVNLICgweDNGIDw8IDExKQorI2RlZmluZSAg
+REcxX0RSQU1fVF9SRFBSRV9TSElGVCAxMQorI2RlZmluZSAgREcxX0RSQU1fVF9SQVNfTUFTSyAo
+MHhGRiA8PCAxKQorI2RlZmluZSAgREcxX0RSQU1fVF9SQVNfU0hJRlQgMQorI2RlZmluZSAgREcx
+X0RSQU1fVF9SUF9NQVNLICgweDdGIDw8IDApCisjZGVmaW5lICBERzFfRFJBTV9UX1JQX1NISUZU
+IDAKKworc3RhdGljIGludCBkZzFfbWNoYmFyX3JlYWRfcWd2X3BvaW50X2luZm8oc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAorCQkJCQkgIHN0cnVjdCBpbnRlbF9xZ3ZfcG9pbnQg
+KnNwLAorCQkJCQkgIGludCBwb2ludCkKK3sKKwl1MzIgdmFsID0gMDsKKwl1MzIgZGNsa19yYXRp
+byA9IDAsIGRjbGtfcmVmZXJlbmNlID0gMDsKKworCXZhbCA9IGludGVsX3VuY29yZV9yZWFkKCZk
+ZXZfcHJpdi0+dW5jb3JlLCBTQV9QRVJGX1NUQVRVU18wXzBfMF9NQ0hCQVJfUEMpOworCWRjbGtf
+cmF0aW8gPSAodmFsICYgREcxX1FDTEtfUkFUSU9fTUFTSykgPj4gREcxX1FDTEtfUkFUSU9fU0hJ
+RlQ7CisJaWYgKHZhbCAmIERHMV9RQ0xLX1JFRkVSRU5DRSkKKwkJZGNsa19yZWZlcmVuY2UgPSA2
+OyAvKiA2ICogMTYuNjY2IE1IeiA9IDEwMCBNSHogKi8KKwllbHNlCisJCWRjbGtfcmVmZXJlbmNl
+ID0gODsgLyogOCAqIDE2LjY2NiBNSHogPSAxMzMgTUh6ICovCisJc3AtPmRjbGsgPSBkY2xrX3Jh
+dGlvICogZGNsa19yZWZlcmVuY2U7CisJaWYgKHNwLT5kY2xrID09IDApCisJCXJldHVybiAtRUlO
+VkFMOworCisJdmFsID0gaW50ZWxfdW5jb3JlX3JlYWQoJmRldl9wcml2LT51bmNvcmUsIE1DSEJB
+Ul9DSDBfQ1JfVENfUFJFXzBfMF8wX01DSEJBUik7CisJc3AtPnRfcnAgPSAodmFsICYgREcxX0RS
+QU1fVF9SUF9NQVNLKSA+PiBERzFfRFJBTV9UX1JQX1NISUZUOworCXNwLT50X3JkcHJlID0gKHZh
+bCAmIERHMV9EUkFNX1RfUkRQUkVfTUFTSykgPj4gREcxX0RSQU1fVF9SRFBSRV9TSElGVDsKKwor
+CXZhbCA9IGludGVsX3VuY29yZV9yZWFkKCZkZXZfcHJpdi0+dW5jb3JlLCBNQ0hCQVJfQ0gwX0NS
+X1RDX1BSRV8wXzBfMF9NQ0hCQVJfSElHSCk7CisJc3AtPnRfcmNkID0gKHZhbCAmIERHMV9EUkFN
+X1RfUkNEX01BU0spID4+IERHMV9EUkFNX1RfUkNEX1NISUZUOworCXNwLT50X3JhcyA9ICh2YWwg
+JiBERzFfRFJBTV9UX1JBU19NQVNLKSA+PiBERzFfRFJBTV9UX1JBU19TSElGVDsKKworCXNwLT50
+X3JjID0gc3AtPnRfcnAgKyBzcC0+dF9yYXM7CisJcmV0dXJuIDA7Cit9CisKIHN0YXRpYyBpbnQg
+aWNsX3Bjb2RlX3JlYWRfcWd2X3BvaW50X2luZm8oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2LAogCQkJCQkgc3RydWN0IGludGVsX3Fndl9wb2ludCAqc3AsCiAJCQkJCSBpbnQgcG9p
+bnQpCkBAIC0xMDAsNiArMTQ3LDExIEBAIHN0YXRpYyBpbnQgaWNsX2dldF9xZ3ZfcG9pbnRzKHN0
+cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkJc3RydWN0IGludGVsX3Fndl9wb2lu
+dCAqc3AgPSAmcWktPnBvaW50c1tpXTsKIAogCQlyZXQgPSBpY2xfcGNvZGVfcmVhZF9xZ3ZfcG9p
+bnRfaW5mbyhkZXZfcHJpdiwgc3AsIGkpOworCQlpZiAoSVNfREcxKGRldl9wcml2KSAmJiAocmV0
+IHx8IHNwLT5kY2xrID09IDApKSB7CisJCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIkZh
+aWxlZCB0byBnZXQgbWVtb3J5IHN1YnN5c3RlbSBpbmZvcm1hdGlvbiB2aWEgcGNvZGUuIElGV0kg
+bmVlZHMgdXBkYXRlLiBUcnlpbmcgd2l0aCBNQ0hCQVJcbiIpOworCQkJcmV0ID0gZGcxX21jaGJh
+cl9yZWFkX3Fndl9wb2ludF9pbmZvKGRldl9wcml2LCBzcCwgaSk7CisJCX0KKwogCQlpZiAocmV0
+KQogCQkJcmV0dXJuIHJldDsKIAotLSAKMi4yNi4zCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZngK
