@@ -2,31 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E80CA3B2D30
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 13:04:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C494B3B2D3D
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 13:08:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C0626EA1F;
-	Thu, 24 Jun 2021 11:04:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2CC6EA1F;
+	Thu, 24 Jun 2021 11:08:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5C65D6E9F8;
- Thu, 24 Jun 2021 11:04:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 53BB1A73C9;
- Thu, 24 Jun 2021 11:04:45 +0000 (UTC)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04B13880C6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 11:08:26 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id g7so1558692wri.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 04:08:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QIhYwuUZh1E/gonAIS7dcnqcARAdk59HgVxHGkujk1w=;
+ b=KYg6sCUgU5Bqq9lAHCwCyNk4iI8OOFRlW6guSXIP6LW87QwTsKYBYg3RnfRmt9k40Q
+ mAp7Ad15MW5TVGrFh3HBAkqdPtc66Y3aMeWBrxtNnrw5qt8Oowa9wVcsYAlRfzrPWhZk
+ rSfe9CqA4jUh2Iba07CNWbJByS6WmOvmSIaUc0CdCAVGyB7kBssEDVHwnwe0Hkaf4ZDk
+ syGZAHp2spHeo7I1VkNl2ClSeQWeQhHBx5ltlruReLfOemdneSModtJiMAbs2cNJgCwR
+ UEozWtd6Cbxre5SJsIle1RzEnYLkopuJHt9C9jX8RkiTEfNFAFH0C6U3RUZ6VEMOQND3
+ 4Ocg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QIhYwuUZh1E/gonAIS7dcnqcARAdk59HgVxHGkujk1w=;
+ b=bPcDIBUfKR3jNFlT9IPu6paaMJY1cHHhx6CCNq3QCB45BZw6uB3hGwJcUlc6NKxffG
+ P/p6y+FHOYhtst7bu3hEbSO/3nZEknn0C0s5Ey3KmviIprcGNVsi50PCKhLDKrnmeiZg
+ FH74I22StRgv/lEOlbQfM7nNQazdpEZ740ELUTr5AAlKguUhBRXJF+bNnHtjLrmnhyLS
+ rs45aTQawR4svGpGk5o2j+QiZ0NqXx+50M8DFgsnKpzmxwbctLcPXI8yshgEgmdYT3b6
+ Iz3on/g3Bq927IOEFVPfJpfzJc1tHgPEKD/CcK334+cYfN9/OITDqG6S+/Y/m5OtFFZs
+ K5wA==
+X-Gm-Message-State: AOAM532CNIivrjGlW6QaO/H0wKN34vEVPhP8MZDTgMiusdsOj6SQQB45
+ YHKy5pOpzDutDVZVCFi8KgRUs9t/aaf0mmzlVCB0lA==
+X-Google-Smtp-Source: ABdhPJxZoRSMXwTUmNasGUwFhckdvqD70ZR4JKM/20OMS3RCLqJgbufNanpEClxPKCBbMcnvj83uF/kwgAhx/e5SHjs=
+X-Received: by 2002:a5d:47cf:: with SMTP id o15mr3920624wrc.6.1624532904531;
+ Thu, 24 Jun 2021 04:08:24 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 24 Jun 2021 11:04:45 -0000
-Message-ID: <162453268531.1852.10027077712141863437@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210624083113.365039-1-matthew.auld@intel.com>
-In-Reply-To: <20210624083113.365039-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/dg1=3A_Compute_MEM_Bandwid?=
- =?utf-8?q?th_using_MCHBAR?=
+References: <20210622165511.3169559-4-daniel.vetter@ffwll.ch>
+ <20210623161955.3371466-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210623161955.3371466-1-daniel.vetter@ffwll.ch>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Thu, 24 Jun 2021 12:08:11 +0100
+Message-ID: <CAPj87rN_P7u5JGWBOHc5BEXiz1Znek6fDTyj-uVr2nwEcGX_XA@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [Mesa-dev] [PATCH] dma-buf: Document dma-buf
+ implicit fencing/resv fencing rules
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,180 +63,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1337960535=="
+Cc: Rob Clark <robdclark@chromium.org>, Daniel Stone <daniels@collabora.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Kevin Wang <kevin1.wang@amd.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ "Kristian H . Kristensen" <hoegsberg@google.com>,
+ Chen Li <chenli@uniontech.com>, ML mesa-dev <mesa-dev@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Dennis Li <Dennis.Li@amd.com>,
+ Deepak R Varma <mh12gx2825@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1337960535==
-Content-Type: multipart/alternative;
- boundary="===============1063391849777769837=="
+Hi,
 
---===============1063391849777769837==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 23 Jun 2021 at 17:20, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> +        *
+> +        * IMPLICIT SYNCHRONIZATION RULES:
+> +        *
+> +        * Drivers which support implicit synchronization of buffer access as
+> +        * e.g. exposed in `Implicit Fence Poll Support`_ should follow the
+> +        * below rules.
 
-== Series Details ==
+'Should' ... ? Must.
 
-Series: series starting with [1/2] drm/i915/dg1: Compute MEM Bandwidth using MCHBAR
-URL   : https://patchwork.freedesktop.org/series/91848/
-State : success
+> +        * - Drivers should add a shared fence through
+> +        *   dma_resv_add_shared_fence() for anything the userspace API
+> +        *   considers a read access. This highly depends upon the API and
+> +        *   window system: E.g. OpenGL is generally implicitly synchronized on
+> +        *   Linux, but explicitly synchronized on Android. Whereas Vulkan is
+> +        *   generally explicitly synchronized for everything, and window system
+> +        *   buffers have explicit API calls (which then need to make sure the
+> +        *   implicit fences store here in @resv are updated correctly).
+> +        *
+> +        * - [...]
 
-== Summary ==
+Mmm, I think this is all right, but it could be worded much more
+clearly. Right now it's a bunch of points all smashed into one, and
+there's a lot of room for misinterpretation.
 
-CI Bug Log - changes from CI_DRM_10273 -> Patchwork_20451
-====================================================
+Here's a strawman, starting with most basic and restrictive, working
+through to when you're allowed to wriggle your way out:
 
-Summary
--------
+Rule 1: Drivers must add a shared fence through
+dma_resv_add_shared_fence() for any read accesses against that buffer.
+This appends a fence to the shared array, ensuring that any future
+non-read access will be synchronised against this operation to only
+begin after it has completed.
 
-  **SUCCESS**
+Rule 2: Drivers must add an exclusive fence through
+dma_resv_add_excl_fence() for any write accesses against that buffer.
+This replaces the exclusive fence with the new operation, ensuring
+that all future access will be synchronised against this operation to
+only begin after it has completed.
 
-  No regressions found.
+Rule 3: Drivers must synchronise all accesses to buffers against
+existing implicit fences. Read accesses must synchronise against the
+exclusive fence (read-after-write), and write accesses must
+synchronise against both the exclusive (write-after-write) and shared
+(write-after-read) fences.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html
+Note 1: Users like OpenGL and window systems on non-Android userspace
+are generally implicitly synchronised. An implicitly-synchronised
+userspace is unaware of fences from prior operations, so the kernel
+mediates scheduling to create the illusion that GPU work is FIFO. For
+example, an application will flush and schedule GPU write work to
+render its image, then immediately tell the window system to display
+that image; the window system may immediately flush and schedule GPU
+read work to display that image, with neither waiting for the write to
+have completed. The kernel provides coherence by synchronising the
+read access against the write fence in the exclusive slot, so that the
+image displayed is correct.
 
-Known issues
-------------
+Note 2: Users like Vulkan and Android window system are generally
+explicitly synchronised. An explicitly-synchronised userspace is
+responsible for tracking its own read and write access and providing
+the kernel with synchronisation barriers. For instance, a Vulkan
+application rendering to a buffer and subsequently using it as a read
+texture, must annotate the read operation with a read-after-write
+synchronisation barrier.
 
-  Here are the changes found in Patchwork_20451 that come from known issues:
+Note 3: Implicit and explicit userspace can coexist. For instance, an
+explicitly-synchronised Vulkan application may be running as a client
+of an implicitly-synchronised window system which uses OpenGL for
+composition; an implicitly-synchronised OpenGL application may be
+running as a client of a window system which uses Vulkan for
+composition.
 
-### IGT changes ###
+Note 4: Some subsystems, for example V4L2, do not pipeline operations,
+and instead only return to userspace when the scheduled work against a
+buffer has fully retired.
 
-#### Issues hit ####
+Exemption 1: Fully self-coherent userspace may skip implicit
+synchronisation barriers. For instance, accesses between two
+Vulkan-internal buffers allocated by a single application do not need
+to synchronise against each other's implicit fences, as the client is
+responsible for explicitly providing barriers for access. A
+self-contained OpenGL userspace also has no need to implicitly
+synchronise its access if the driver instead tracks all access and
+inserts the appropriate synchronisation barriers.
 
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +9 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+Exemption 2: When implicit and explicit userspace coexist, the
+explicit side may skip intermediate synchronisation, and only place
+synchronisation barriers at transition points. For example, a Vulkan
+compositor displaying a buffer from an OpenGL application would need
+to synchronise its first access against the fence placed in the
+exclusive implicit-synchronisation slot. Once this read has fully
+retired, the compositor has no need to participate in implicit
+synchronisation until it is ready to return the buffer to the
+application, at which point it must insert all its non-retired
+accesses into the shared slot, which the application will then
+synchronise future write accesses against.
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [PASS][2] -> [INCOMPLETE][3] ([i915#2782])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10273/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-icl-y:           NOTRUN -> [FAIL][4] ([i915#2782])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-
-
-Participating hosts (40 -> 37)
-------------------------------
-
-  Missing    (3): fi-skl-guc fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10273 -> Patchwork_20451
-
-  CI-20190529: 20190529
-  CI_DRM_10273: 7e8fb717a07aaf86771e709855436312f546965b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20451: 9ce7776ed8c0b023dd9725fa5db6fe039704a5ba @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9ce7776ed8c0 drm/i915/dg1: Double memory bandwidth available
-3c3f748f9977 drm/i915/dg1: Compute MEM Bandwidth using MCHBAR
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html
-
---===============1063391849777769837==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/dg1: Compute MEM Bandwidth using MCHBAR</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91848/">https://patchwork.freedesktop.org/series/91848/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10273 -&gt; Patchwork_20451</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20451 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10273/fi-icl-y/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20451/fi-icl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (40 -&gt; 37)</h2>
-<p>Missing    (3): fi-skl-guc fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10273 -&gt; Patchwork_20451</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10273: 7e8fb717a07aaf86771e709855436312f546965b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20451: 9ce7776ed8c0b023dd9725fa5db6fe039704a5ba @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9ce7776ed8c0 drm/i915/dg1: Double memory bandwidth available<br />
-3c3f748f9977 drm/i915/dg1: Compute MEM Bandwidth using MCHBAR</p>
-
-</body>
-</html>
-
---===============1063391849777769837==--
-
---===============1337960535==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Cheers,
+Daniel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1337960535==--
