@@ -1,41 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC37F3B2A64
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:31:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB143B2A68
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:32:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02EB66EB0E;
-	Thu, 24 Jun 2021 08:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78AD46EB19;
+	Thu, 24 Jun 2021 08:32:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01EC46EB0E
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:31:26 +0000 (UTC)
-IronPort-SDR: z4YXXbcKCIVvcCqL0IsNjmA1VYvOegG8lh83WNhU0qb/fWqvPiEPSU+NHQvQD1MCSB5pGjrWcR
- 2muxmiCRjG1w==
-X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="194726213"
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="194726213"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 01:31:26 -0700
-IronPort-SDR: YyeBTQbDBCqCJCMRiBu/mZPcnA5YNyHOhwcm1HwjDIEgmJOVty0hcJ8zSm6ZfUsSXYGLp66LSW
- SZ5Il3FQb4xw==
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="423999187"
-Received: from ryanmcla-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.213.220.55])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 01:31:23 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 24 Jun 2021 09:31:13 +0100
-Message-Id: <20210624083113.365039-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210624083113.365039-1-matthew.auld@intel.com>
-References: <20210624083113.365039-1-matthew.auld@intel.com>
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25FCD6EAE2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:32:33 +0000 (UTC)
+Received: from lupine.hi.pengutronix.de
+ ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1lwKmk-0006cm-HJ; Thu, 24 Jun 2021 10:32:30 +0200
+Received: from pza by lupine with local (Exim 4.92)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1lwKmX-0006oO-Cb; Thu, 24 Jun 2021 10:32:17 +0200
+Message-ID: <43f805608f1172b73c62717f6cdc72c7a15d145c.camel@pengutronix.de>
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
+ <dri-devel@lists.freedesktop.org>
+Date: Thu, 24 Jun 2021 10:32:17 +0200
+In-Reply-To: <20210622165511.3169559-9-daniel.vetter@ffwll.ch>
+References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
+ <20210622165511.3169559-9-daniel.vetter@ffwll.ch>
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dg1: Double memory bandwidth
- available
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [PATCH 08/15] drm/<driver>:
+ drm_gem_plane_helper_prepare_fb is now the default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,41 +51,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Heiko Stuebner <heiko@sntech.de>, Neil Armstrong <narmstrong@baylibre.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Stefan Agner <stefan@agner.ch>, linux-mips@vger.kernel.org,
+ Paul Cercueil <paul@crapouillou.net>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Fabio Estevam <festevam@gmail.com>,
+ linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
+ Marek Vasut <marex@denx.de>, Kevin Hilman <khilman@baylibre.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org,
+ Chen-Yu Tsai <wens@csie.org>, NXP Linux Team <linux-imx@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, linux-mediatek@lists.infradead.org,
+ Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Tomi Valkeinen <tomba@kernel.org>,
+ Jyri Sarha <jyri.sarha@iki.fi>, Yannick Fertre <yannick.fertre@foss.st.com>,
+ Sandy Huang <hjc@rock-chips.com>, linux-sunxi@lists.linux.dev,
+ Philippe Cornu <philippe.cornu@foss.st.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ2xpbnQgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KClVzZSBNQ0hC
-QVIgR2Vhcl90eXBlIGluZm9ybWF0aW9uIHRvIGNvbXB1dGUgbWVtb3J5IGJhbmR3aWR0aCBhdmFp
-bGFibGUKZHVyaW5nIE1DSEJBUiBjYWxjdWxhdGlvbnMuCgpUZXN0ZWQtYnk6IFN3YXRpIFNoYXJt
-YSA8c3dhdGkyLnNoYXJtYUBpbnRlbC5jb20+CkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRl
-bWFyY2hpQGludGVsLmNvbT4KQ2M6IFN3YXRpIFNoYXJtYSA8c3dhdGkyLnNoYXJtYUBpbnRlbC5j
-b20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpT
-aWduZWQtb2ZmLWJ5OiBDbGludCBUYXlsb3IgPGNsaW50b24uYS50YXlsb3JAaW50ZWwuY29tPgpT
-aWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgpTaWduZWQt
-b2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Ci0tLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jIHwgOCArKysrKysrKwogMSBmaWxlIGNo
-YW5nZWQsIDggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfYncuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-YncuYwppbmRleCA2MmE3MGYzNjRmMmIuLjYwM2JjMzY2OWUzZCAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfYncuYwpAQCAtNDEsNiArNDEsOSBAQCBzdHJ1Y3QgaW50ZWxfcWd2
-X2luZm8gewogI2RlZmluZSAgREcxX0RSQU1fVF9SUF9NQVNLICgweDdGIDw8IDApCiAjZGVmaW5l
-ICBERzFfRFJBTV9UX1JQX1NISUZUIDAKIAorI2RlZmluZSAgSUNMX0dFQVJfVFlQRV9NQVNLICgw
-eDAxIDw8IDE2KQorI2RlZmluZSAgSUNMX0dFQVJfVFlQRV9TSElGVCAxNgorCiBzdGF0aWMgaW50
-IGRnMV9tY2hiYXJfcmVhZF9xZ3ZfcG9pbnRfaW5mbyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-ZGV2X3ByaXYsCiAJCQkJCSAgc3RydWN0IGludGVsX3Fndl9wb2ludCAqc3AsCiAJCQkJCSAgaW50
-IHBvaW50KQpAQCAtNTUsNiArNTgsMTEgQEAgc3RhdGljIGludCBkZzFfbWNoYmFyX3JlYWRfcWd2
-X3BvaW50X2luZm8oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCWVsc2UKIAkJ
-ZGNsa19yZWZlcmVuY2UgPSA4OyAvKiA4ICogMTYuNjY2IE1IeiA9IDEzMyBNSHogKi8KIAlzcC0+
-ZGNsayA9IGRjbGtfcmF0aW8gKiBkY2xrX3JlZmVyZW5jZTsKKworCXZhbCA9IGludGVsX3VuY29y
-ZV9yZWFkKCZkZXZfcHJpdi0+dW5jb3JlLCBTS0xfTUNfQklPU19EQVRBXzBfMF8wX01DSEJBUl9Q
-Q1UpOworCWlmICgodmFsICYgSUNMX0dFQVJfVFlQRV9NQVNLKSA+PiBJQ0xfR0VBUl9UWVBFX1NI
-SUZUKQorCQlzcC0+ZGNsayAqPSAyOworCiAJaWYgKHNwLT5kY2xrID09IDApCiAJCXJldHVybiAt
-RUlOVkFMOwogCi0tIAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+On Tue, 2021-06-22 at 18:55 +0200, Daniel Vetter wrote:
+> No need to set it explicitly.
+> 
+[...]
+>  drivers/gpu/drm/imx/ipuv3-plane.c           | 1 -
+>  14 files changed, 15 deletions(-)
+> 
+[...]
+> diff --git a/drivers/gpu/drm/imx/ipuv3-plane.c b/drivers/gpu/drm/imx/ipuv3-plane.c
+> index 8710f55d2579..ef114b6aa691 100644
+> --- a/drivers/gpu/drm/imx/ipuv3-plane.c
+> +++ b/drivers/gpu/drm/imx/ipuv3-plane.c
+> @@ -772,7 +772,6 @@ static void ipu_plane_atomic_update(struct drm_plane *plane,
+>  }
+>  
+>  static const struct drm_plane_helper_funcs ipu_plane_helper_funcs = {
+> -	.prepare_fb = drm_gem_plane_helper_prepare_fb,
+>  	.atomic_check = ipu_plane_atomic_check,
+>  	.atomic_disable = ipu_plane_atomic_disable,
+>  	.atomic_update = ipu_plane_atomic_update,
+
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+regards
+Philipp
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
