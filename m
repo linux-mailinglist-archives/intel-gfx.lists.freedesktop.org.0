@@ -1,63 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D20FD3B2E80
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 14:02:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B70C3B2E8A
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 14:04:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD736EB68;
-	Thu, 24 Jun 2021 12:02:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B332D6EB78;
+	Thu, 24 Jun 2021 12:04:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 256EA6EB62;
- Thu, 24 Jun 2021 12:02:30 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- u8-20020a7bcb080000b02901e44e9caa2aso3354776wmj.4; 
- Thu, 24 Jun 2021 05:02:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=+SpIYl8f+mm4xc/wATx8xxQwIh7YjYdlE5uQ7ip0aaU=;
- b=A4ZJSYnWcvNDaAGkscckQ1T0JedTdFDVSuL2YBNdwwF7acWK0AZcsU5zvsVBjaEnE0
- vsxLXeiOkPXV0sDkt5mf5/o226lI7HBeiLI3sEq1aMRGbypsf6Bch2Kg62wRL1La4pDI
- oGZydtxItkAsfL83TfuEmUWoDMxV7rufPNivK3ryBzWPLuL+5usBc6MglcCUM6IzelM8
- Nz6qtrU0C9W4JeYrs7rwBFAjukEAoFywD8y16Q8wkRFeIXm2GbxrFHrfjHBLNTda9rqV
- SY0IiWXgH48K8ZPh9MWtQ5Dh1jLdaybwti7HCY0TZjkN9TbYA/yL3MNnHzS9FYivGbwv
- lUKg==
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com
+ [IPv6:2607:f8b0:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41E9B6EB6B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 12:04:44 +0000 (UTC)
+Received: by mail-ot1-x335.google.com with SMTP id
+ i12-20020a05683033ecb02903346fa0f74dso5280359otu.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 05:04:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=SRZUzaogma2KSZfmisHDH0LYwRTQJaRPPiJFQQsihe0=;
+ b=K7m6Xw7CFTpq4mCVggngNelDAIVOo2Nwg3JSlD4n3vQU8Tno91XAU7+o2XuusKv3GM
+ fLiNYSWR216kMXs1LRJ78isZQBwGCJuzyqMu9wDQE9sSuX/i1r3WUq96SHRKMiPwwOOs
+ 3ilVyTLvqEQlYUHPakVH65M+NycWTHDkTpPHo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=+SpIYl8f+mm4xc/wATx8xxQwIh7YjYdlE5uQ7ip0aaU=;
- b=JwWySRSrae4yzNjJApTF+dyBb/ry5QMyc5FX9Gs7VMLVeq2opPzH4XBMDl1zDWjjHz
- g37f5TqkI6MvaBltty5I6jbf0yntrWB1LL6m9k8hwYv8WfzY6yN4v4Y7Xyx/wpWNrYrS
- v6YzNQaP9MnpeGePd69weFmQ6neEjyMffX49wU63ITn2TZ/hy5xvij2wGXBszdVIi7+R
- Fx1g0hogWCGW2WfhxhWb5wxmrDgCIng5d61bww+y/tA8qVh65+PpChymZWI/Z1XiilnI
- ror5YAfJ4wXlKtImnq8WyWptlZsum8nz/ouB5RHf7Yf5ie5EvQ1q1oXs1MpLDrpazPar
- ojAw==
-X-Gm-Message-State: AOAM533p+aQZdEogF92aEXcnwOBQ7fuyOJRmxR+k91oLFOL+fGQFL8pz
- ZoLGYNXcaUgJraFWfdfexyg=
-X-Google-Smtp-Source: ABdhPJwnAQpQT/2sEz7viSMJ7t/+2zmdWLWtmPK9rh67Szq5oWv4lL/lZy1xAEGpP06+iHH3w5wUNg==
-X-Received: by 2002:a05:600c:4a19:: with SMTP id
- c25mr3844668wmp.125.1624536148907; 
- Thu, 24 Jun 2021 05:02:28 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
- by smtp.gmail.com with ESMTPSA id c12sm2972417wrw.46.2021.06.24.05.02.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jun 2021 05:02:27 -0700 (PDT)
-Date: Thu, 24 Jun 2021 14:04:30 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <YNR0zpVzMxQauzet@orome.fritz.box>
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-22-tzimmermann@suse.de>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=SRZUzaogma2KSZfmisHDH0LYwRTQJaRPPiJFQQsihe0=;
+ b=TRDRmNGx1xY/UFpSHnqPYJ9u+NSyiBHclACsV2mAWcR1eIlM4Y4IYxFp7oOEPk3RXd
+ CQlazf1UVCOklYAr+UTCjQxgiG0FGdVpLwZfn6njGSYLL84zaAWoxzum+KRRy1xraM2I
+ 72Q65DPdCOcVq89YptZwmpc3p6XAt7IC8r3WiVy7NtwZI1SQOtUOaxdge7DSFW8sqTCi
+ Dy5TWdFhJYlHtZYkljrpfqZP/NZgqr9/lBnydXVHjSNIL3N5a515/v5yPmDQtw/fR7oJ
+ Ci7WlnqG0IM3JxFOF65eGxBPL89ftS7QFqxgJf/Q8C3/fCUyNCuCE2xbSnP8rvRPJRDD
+ puAA==
+X-Gm-Message-State: AOAM530Ze7+sQ/UTdHs1EE5MOUhnmV3OKg6C1UQqD+wtUukjAvIg8cUc
+ bFpMqzmhcnesNMcLNOL/1UFltjSUuGlSHuB5nmxxHA==
+X-Google-Smtp-Source: ABdhPJxWjeXokMrQHGnfkYM1kXZ1nCTGW4RfMPr510MRVjRPqQyaHAbMMCZYOlXCFag3x+biBRw+xWG6wASJzxeNyVs=
+X-Received: by 2002:a05:6830:2370:: with SMTP id
+ r16mr4332451oth.188.1624536283558; 
+ Thu, 24 Jun 2021 05:04:43 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210624072916.27703-22-tzimmermann@suse.de>
-User-Agent: Mutt/2.0.7 (481f3800) (2021-05-04)
-Subject: Re: [Intel-gfx] [PATCH v3 21/27] drm/tegra: Don't set struct
- drm_device.irq_enabled
+References: <20210624112914.311984-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210624112914.311984-1-thomas.hellstrom@linux.intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Thu, 24 Jun 2021 14:04:32 +0200
+Message-ID: <CAKMK7uEeV0nvf+4ae2rYQHMBQ2rm2NNKT+n8CvDU=gdaEXHHBw@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Reinstate the mmap ioctl for
+ some platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,91 +61,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, heiko@sntech.de, emma@anholt.net, airlied@linux.ie,
- nouveau@lists.freedesktop.org, alexandre.torgue@foss.st.com,
- dri-devel@lists.freedesktop.org, michal.simek@xilinx.com,
- melissa.srw@gmail.com, linux-tegra@vger.kernel.org,
- laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
- linux@armlinux.org.uk, mihail.atanassov@arm.com, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- wens@csie.org, jernej.skrabec@gmail.com, jonathanh@nvidia.com,
- xinliang.liu@linaro.org, kong.kongxinwei@hisilicon.com,
- james.qian.wang@arm.com, linux-imx@nxp.com, intel-gfx@lists.freedesktop.org,
- linux-graphics-maintainer@vmware.com, linux-sunxi@lists.linux.dev,
- bskeggs@redhat.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
- puck.chen@hisilicon.com, s.hauer@pengutronix.de,
- Daniel Vetter <daniel.vetter@ffwll.ch>, mripard@kernel.org,
- inki.dae@samsung.com, rodrigosiqueiramelo@gmail.com, john.stultz@linaro.org,
- laurentiu.palcu@oss.nxp.com, matthias.bgg@gmail.com, kernel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
- amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com, tomba@kernel.org,
- jyri.sarha@iki.fi, yannick.fertre@foss.st.com, Xinhui.Pan@amd.com,
- sw0312.kim@samsung.com, hjc@rock-chips.com, christian.koenig@amd.com,
- kyungmin.park@samsung.com, kieran.bingham+renesas@ideasonboard.com,
- philippe.cornu@foss.st.com, alexander.deucher@amd.com, tiantao6@hisilicon.com,
- shawnguo@kernel.org, zackr@vmware.com, l.stach@pengutronix.de
-Content-Type: multipart/mixed; boundary="===============1923426552=="
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1923426552==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ENqalYeZVO/RAx3+"
-Content-Disposition: inline
-
-
---ENqalYeZVO/RAx3+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jun 24, 2021 at 09:29:10AM +0200, Thomas Zimmermann wrote:
-> The field drm_device.irq_enabled is only used by legacy drivers
-> with userspace modesetting. Don't set it in tegra.
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> ---
->  drivers/gpu/drm/tegra/drm.c | 7 -------
->  1 file changed, 7 deletions(-)
-
-Acked-by: Thierry Reding <treding@nvidia.com>
-
---ENqalYeZVO/RAx3+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmDUdM4ACgkQ3SOs138+
-s6Ed0A/5ASxTJhpMIfL1u/g0kk5pjZX8ukNK72+ftE+sJWJhxDmTGuM+EzcPNaNg
-sKT+65FK2YsGeoA5fnN9QKWuUyS+bpExys5n39Aty+YN4tI4CV7CbU9OJeYm9Iru
-i+Ziu6gkJl2SYom/+cxuU42UkUDkQkWofYRel+HJZeDMogSRAIhiiQy5/fadGiJc
-36fJrXjueiB3EZjkg7CubNsLgy08qblR+sZGpuq4RIc3aVe6j6U8QxHiZ1eA7tMD
-ki2Nmub5WThcAUGn/ky+FD9m/yfieoI9sPkVWRpAF0oa6SDp6YO/oPFf2hJzl4jk
-HPXABfAWIYFTEzjFkGdRHjOfGgahPAXvwd1ku5zjBuFSH3vM9kNaNRuIQe2Rg9ti
-p3+b5RfPlO/1fiVRkuzXwROpjWNW44Y+eVVyee84h813aqYh9OOLJVrmxmrzZ1Xx
-mzDTvyZXuxtVb79T4XSkb0LnRw3wrraylMLP1X4/QTqttUBoWgYeKM5MwDgy+6zH
-Bx1VWtnjn9NmwEPfRmPpwIQNByNJ2DG/E8wZmEfeqJAEHo1SLOYaBixh9W7DUlWC
-e9mZFcD+tYSTurqcg0mS5T1mSPJGyCjcZFP27RkFRSc9JbRAQt2uuKcr1R54mjTh
-gAJ6mf8hPIWA8Q6ro+2TgW8p0X/wbPsnZdXjZrTGBsV1QA84k+M=
-=pLLR
------END PGP SIGNATURE-----
-
---ENqalYeZVO/RAx3+--
-
---===============1923426552==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1923426552==--
+T24gVGh1LCBKdW4gMjQsIDIwMjEgYXQgMToyOSBQTSBUaG9tYXMgSGVsbHN0csO2bQo8dGhvbWFz
+LmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gUmVpbnN0YXRlIHRoZSBtbWFw
+IGlvY3RsIGZvciBhbGwgY3VycmVudCBpbnRlZ3JhdGVkIHBsYXRmb3Jtcy4KPiBUaGUgaW50ZW50
+aW9uIHdhcyByZWFsbHkgdG8gaGF2ZSBpdCBkaXNhYmxlZCBmb3IgZGlzY3JldGUgZ3JhcGhpY3MK
+PiB3aGVyZSB3ZSBlbmZvcmNlIGEgc2luZ2xlIG1tYXAgbW9kZS4KPgo+IEZpeGVzOiAzNWNiZDkx
+ZWI1NDEgKCJkcm0vaTkxNTogRGlzYWJsZSBtbWFwIGlvY3RsIGZvciBnZW4xMisiKQo+IFNpZ25l
+ZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVs
+LmNvbT4KPiBSZXZpZXdlZC1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29t
+PgoKQWNrZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cgo+IC0t
+LQo+IHYyOgo+IC0gQWRkZWQgYSBSLUIuCj4gLSBGaXhlZCB1cCB0aGUgY29kZSBjb21tZW50IGEg
+Yml0Lgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5jIHwg
+NyArKysrLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25z
+KC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21t
+YW4uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMKPiBpbmRleCAy
+ZmQxNTU3NDJiZDIuLjRmNTBhNTA4YzdhMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX21tYW4uYwo+IEBAIC02MiwxMCArNjIsMTEgQEAgaTkxNV9nZW1fbW1hcF9pb2N0
+bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAo+ICAgICAgICAgc3RydWN0IGRy
+bV9pOTE1X2dlbV9vYmplY3QgKm9iajsKPiAgICAgICAgIHVuc2lnbmVkIGxvbmcgYWRkcjsKPgo+
+IC0gICAgICAgLyogbW1hcCBpb2N0bCBpcyBkaXNhbGxvd2VkIGZvciBhbGwgcGxhdGZvcm1zIGFm
+dGVyIFRHTC1MUC4gIFRoaXMgYWxzbwo+IC0gICAgICAgICogY292ZXJzIGFsbCBwbGF0Zm9ybXMg
+d2l0aCBsb2NhbCBtZW1vcnkuCj4gKyAgICAgICAvKgo+ICsgICAgICAgICogbW1hcCBpb2N0bCBp
+cyBkaXNhbGxvd2VkIGZvciBhbGwgZGlzY3JldGUgcGxhdGZvcm1zLAo+ICsgICAgICAgICogYW5k
+IGZvciBhbGwgcGxhdGZvcm1zIHdpdGggR1JBUEhJQ1NfVkVSID4gMTIuCj4gICAgICAgICAgKi8K
+PiAtICAgICAgIGlmIChHUkFQSElDU19WRVIoaTkxNSkgPj0gMTIgJiYgIUlTX1RJR0VSTEFLRShp
+OTE1KSkKPiArICAgICAgIGlmIChJU19ER0ZYKGk5MTUpIHx8IEdSQVBISUNTX1ZFUihpOTE1KSA+
+IDEyKQo+ICAgICAgICAgICAgICAgICByZXR1cm4gLUVPUE5PVFNVUFA7Cj4KPiAgICAgICAgIGlm
+IChhcmdzLT5mbGFncyAmIH4oSTkxNV9NTUFQX1dDKSkKPiAtLQo+IDIuMzEuMQo+CgoKLS0gCkRh
+bmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9i
+bG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
