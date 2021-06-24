@@ -2,66 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844E13B2720
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 08:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0283B2762
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 08:28:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC5B16E9F0;
-	Thu, 24 Jun 2021 06:06:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 021966E9F3;
+	Thu, 24 Jun 2021 06:28:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
- [IPv6:2607:f8b0:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11F496E9F0
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 06:06:03 +0000 (UTC)
-Received: by mail-pf1-x42d.google.com with SMTP id c8so4277091pfp.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 23:06:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=osJqntoZHJL8VeQbE2d8Gx1TrOiajWQXazXH9w70kIY=;
- b=f09JHaTt6yY9HlwcujpzmyCJbvbUoIE0cZNa0aICkCK68T/rODYze/6/aKRkuFqgtc
- aQSgGc4CEL1bXaOSKVo+xlBop7hH5m1EqqxXbZi8VyWUJmFL6g6BM4X4ZMkMlYffhkXb
- itPPZk67YIl+8XjGG/C0lboNwjIIr80wXQ+NM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=osJqntoZHJL8VeQbE2d8Gx1TrOiajWQXazXH9w70kIY=;
- b=n1YPgOVQt8XfyOoV69XT9iKhhZkU7qg8TfDDSklIY6NuPTB2KcgBBo8UJ9XXUsPSir
- Ie6YSVVS1EFsV2BaZ+17nypINTJsf0069Upk0/HDYNVMZEbiCZ94WkdzGfvZMNJcLy7k
- ugyxLGFK0gCn35vx8dDLQFLRX9p9Y7+k2Lqy+HqnUdmdyngxbju1cHNxEPOvRQ64tNj+
- HSsvap1c/NV+LcASMNiGrLNbbyzuqKYL1uSqjiUnlQDN5g4oVk+vakJHo0SXR2x8r/j0
- bD2fBwOHLPckG0XiZoP8Om872k0N1HwrijNeKzZvNNNuV+YafynXGNNPgtFk7kQVeBUn
- hdBg==
-X-Gm-Message-State: AOAM532fyroGqFw3qV2FY8N2tJf3JzfXI8cU4Xd4STUjOE8bWO/EfxtA
- /D+nCPGBqbrTwaKp1++WkHi2YgVP3cOy1Q==
-X-Google-Smtp-Source: ABdhPJzf2fsp36DON5An5ElbppSBhIAmzgUFJVc6nJalUlhVTmSwOyvIS0awx+GKSqI0jUwg2Bu8dg==
-X-Received: by 2002:a63:e453:: with SMTP id i19mr3347255pgk.134.1624514762465; 
- Wed, 23 Jun 2021 23:06:02 -0700 (PDT)
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com.
- [209.85.215.175])
- by smtp.gmail.com with ESMTPSA id hk16sm1235593pjb.1.2021.06.23.23.06.00
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Jun 2021 23:06:01 -0700 (PDT)
-Received: by mail-pg1-f175.google.com with SMTP id e22so3835075pgv.10
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 23:06:00 -0700 (PDT)
-X-Received: by 2002:a92:750c:: with SMTP id q12mr2332407ilc.303.1624514749926; 
- Wed, 23 Jun 2021 23:05:49 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 60A2F6E83B;
+ Thu, 24 Jun 2021 06:28:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58811A8830;
+ Thu, 24 Jun 2021 06:28:20 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210619034043.199220-1-tientzu@chromium.org>
- <20210619034043.199220-7-tientzu@chromium.org>
- <76c3343d-72e5-9df3-8924-5474ee698ef4@quicinc.com>
- <20210623183736.GA472@willie-the-truck>
- <19d4c7a2-744d-21e0-289c-a576e1f0e6f3@quicinc.com>
- <20210624054315.GA25381@lst.de>
-In-Reply-To: <20210624054315.GA25381@lst.de>
-From: Claire Chang <tientzu@chromium.org>
-Date: Thu, 24 Jun 2021 14:05:39 +0800
-X-Gmail-Original-Message-ID: <CALiNf288ZLMhY3E8E3N+z9rkwi1viWNLm1wwMEwT4rNwh3FfwQ@mail.gmail.com>
-Message-ID: <CALiNf288ZLMhY3E8E3N+z9rkwi1viWNLm1wwMEwT4rNwh3FfwQ@mail.gmail.com>
-To: Christoph Hellwig <hch@lst.de>
-Subject: Re: [Intel-gfx] [PATCH v14 06/12] swiotlb: Use
- is_swiotlb_force_bounce for swiotlb data bouncing
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Thu, 24 Jun 2021 06:28:20 -0000
+Message-ID: <162451610033.1850.6432601640753740287@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210622133107.7422-1-shawn.c.lee@intel.com>
+In-Reply-To: <20210622133107.7422-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_keep_backlight=5Fenable_on_until_turn_eDP_display_off_?=
+ =?utf-8?b?KHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,64 +39,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com,
- linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
- benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
- Jianxiong Gao <jxgao@google.com>, Stefano Stabellini <sstabellini@kernel.org>,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Dan Williams <dan.j.williams@intel.com>, matthew.auld@intel.com,
- Nicolas Boichat <drinkcat@chromium.org>, thomas.hellstrom@linux.intel.com,
- Jim Quinlan <james.quinlan@broadcom.com>, Will Deacon <will@kernel.org>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- intel-gfx@lists.freedesktop.org, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- airlied@linux.ie, Thierry Reding <treding@nvidia.com>,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- Qian Cai <quic_qiancai@quicinc.com>, lkml <linux-kernel@vger.kernel.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- xypron.glpk@gmx.de, Tom Lendacky <thomas.lendacky@amd.com>,
- linuxppc-dev@lists.ozlabs.org, bauerman@linux.ibm.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0133407314=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 24, 2021 at 1:43 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> On Wed, Jun 23, 2021 at 02:44:34PM -0400, Qian Cai wrote:
-> > is_swiotlb_force_bounce at /usr/src/linux-next/./include/linux/swiotlb.h:119
-> >
-> > is_swiotlb_force_bounce() was the new function introduced in this patch here.
-> >
-> > +static inline bool is_swiotlb_force_bounce(struct device *dev)
-> > +{
-> > +     return dev->dma_io_tlb_mem->force_bounce;
-> > +}
->
-> To me the crash looks like dev->dma_io_tlb_mem is NULL.  Can you
-> turn this into :
->
->         return dev->dma_io_tlb_mem && dev->dma_io_tlb_mem->force_bounce;
->
-> for a quick debug check?
+--===============0133407314==
+Content-Type: multipart/alternative;
+ boundary="===============0154294779798102878=="
 
-I just realized that dma_io_tlb_mem might be NULL like Christoph
-pointed out since swiotlb might not get initialized.
-However,  `Unable to handle kernel paging request at virtual address
-dfff80000000000e` looks more like the address is garbage rather than
-NULL?
-I wonder if that's because dev->dma_io_tlb_mem is not assigned
-properly (which means device_initialize is not called?).
+--===============0154294779798102878==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: keep backlight_enable on until turn eDP display off (rev4)
+URL   : https://patchwork.freedesktop.org/series/91780/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10271 -> Patchwork_20448
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20448 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +10 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bdw-5557u:       [PASS][2] -> [DMESG-FAIL][3] ([i915#541])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271]) +63 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (41 -> 38)
+------------------------------
+
+  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10271 -> Patchwork_20448
+
+  CI-20190529: 20190529
+  CI_DRM_10271: 7a4a01d6716339c418394dbeb9a20d55bbb9a9ba @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20448: 8f8d8fc4ecbcb12609676c49faed23fc68eb78f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8f8d8fc4ecbc drm/i915: keep backlight_enable on until turn eDP display off
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html
+
+--===============0154294779798102878==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: keep backlight_enable on until turn eDP display off (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91780/">https://patchwork.freedesktop.org/series/91780/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10271 -&gt; Patchwork_20448</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20448 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +63 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 38)</h2>
+<p>Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10271 -&gt; Patchwork_20448</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10271: 7a4a01d6716339c418394dbeb9a20d55bbb9a9ba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20448: 8f8d8fc4ecbcb12609676c49faed23fc68eb78f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8f8d8fc4ecbc drm/i915: keep backlight_enable on until turn eDP display off</p>
+
+</body>
+</html>
+
+--===============0154294779798102878==--
+
+--===============0133407314==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0133407314==--
