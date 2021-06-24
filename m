@@ -1,73 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 903243B29AF
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 09:46:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 295743B29B1
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 09:47:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BAB76E9FB;
-	Thu, 24 Jun 2021 07:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 862B16EA44;
+	Thu, 24 Jun 2021 07:47:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 753BC6E9FB;
- Thu, 24 Jun 2021 07:46:22 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 2D07A2197E;
- Thu, 24 Jun 2021 07:46:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624520781; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=jVwcri593ba1CJ2aKAAm70yjSxT1JVgNF5z4CPQfIdM=;
- b=OXRjV1BzshWsnMiv9ICZbEo/UP8KUTPx8LxQBoe1fMKhN2ZlrOvvaDBsoFGi24EBT5Q4/Y
- tHnsU1t9IAbqCBPqNtN+7WWsmm7iVox5yB9CD68uY8mxr4nKBMthEq/sxbfAZ0V861Hw/2
- FJ/MCVibFKJ3PuBI77Vg+fwNOi0yQdo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624520781;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=jVwcri593ba1CJ2aKAAm70yjSxT1JVgNF5z4CPQfIdM=;
- b=Q/N1aDghXQPGF4NfTpM6eis30ImlC/QnFF7ADuPWJkkFKQk9HPkA0455+uTo2gVAxW3fBS
- y7Jrp7CRvRABgABA==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id F2A7F11A97;
- Thu, 24 Jun 2021 07:46:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624520781; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=jVwcri593ba1CJ2aKAAm70yjSxT1JVgNF5z4CPQfIdM=;
- b=OXRjV1BzshWsnMiv9ICZbEo/UP8KUTPx8LxQBoe1fMKhN2ZlrOvvaDBsoFGi24EBT5Q4/Y
- tHnsU1t9IAbqCBPqNtN+7WWsmm7iVox5yB9CD68uY8mxr4nKBMthEq/sxbfAZ0V861Hw/2
- FJ/MCVibFKJ3PuBI77Vg+fwNOi0yQdo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624520781;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=jVwcri593ba1CJ2aKAAm70yjSxT1JVgNF5z4CPQfIdM=;
- b=Q/N1aDghXQPGF4NfTpM6eis30ImlC/QnFF7ADuPWJkkFKQk9HPkA0455+uTo2gVAxW3fBS
- y7Jrp7CRvRABgABA==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id 2uJXOkw41GDFCQAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 07:46:20 +0000
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
- <20210622165511.3169559-11-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <da2c2108-6f48-6a85-db71-c93614484369@suse.de>
-Date: Thu, 24 Jun 2021 09:46:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 731536EA44;
+ Thu, 24 Jun 2021 07:47:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6837AA7DFB;
+ Thu, 24 Jun 2021 07:47:01 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210622165511.3169559-11-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 10/15] drm/vram-helpers: Create
- DRM_GEM_VRAM_PLANE_HELPER_FUNCS
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Thu, 24 Jun 2021 07:47:01 -0000
+Message-ID: <162452082141.1853.3980770163697243119@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+In-Reply-To: <20210624070516.21893-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgR3VD?=
+ =?utf-8?q?_submission_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,188 +38,333 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Dave Airlie <airlied@redhat.com>, Tian Tao <tiantao6@hisilicon.com>
-Content-Type: multipart/mixed; boundary="===============1822158726=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1343725363=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1822158726==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="sdO51lUl8HAYV5M4qG0S8bJTLtGR7P5hS"
+--===============1343725363==
+Content-Type: multipart/alternative;
+ boundary="===============6470316270556623564=="
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---sdO51lUl8HAYV5M4qG0S8bJTLtGR7P5hS
-Content-Type: multipart/mixed; boundary="VR22UcpH8RRuI3cLNCnkwnmHKzdC3E0wH";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Tian Tao <tiantao6@hisilicon.com>, Hans de Goede <hdegoede@redhat.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <da2c2108-6f48-6a85-db71-c93614484369@suse.de>
-Subject: Re: [PATCH 10/15] drm/vram-helpers: Create
- DRM_GEM_VRAM_PLANE_HELPER_FUNCS
-References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
- <20210622165511.3169559-11-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210622165511.3169559-11-daniel.vetter@ffwll.ch>
+--===============6470316270556623564==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---VR22UcpH8RRuI3cLNCnkwnmHKzdC3E0wH
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi
+Series: GuC submission support
+URL   : https://patchwork.freedesktop.org/series/91840/
+State : failure
 
-Am 22.06.21 um 18:55 schrieb Daniel Vetter:
-> Like we have for the shadow helpers too, and roll it out to drivers.
+== Summary ==
 
-In addition to the plane-helper macro, you may also want to add=20
-DRM_GEM_VRAM_SIMPLE_DISPLAY_PIPE_FUNCS and use it in bochs.
+CI Bug Log - changes from CI_DRM_10271 -> Patchwork_20449
+====================================================
 
-Best regards
-Thomas
+Summary
+-------
 
->=20
-> Acked-by: Tian Tao <tiantao6@hisilicon.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Tian Tao <tiantao6@hisilicon.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->   drivers/gpu/drm/ast/ast_mode.c                 |  3 +--
->   drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c |  3 +--
->   drivers/gpu/drm/vboxvideo/vbox_mode.c          |  3 +--
->   include/drm/drm_gem_vram_helper.h              | 12 ++++++++++++
->   4 files changed, 15 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ast_m=
-ode.c
-> index e5996ae03c49..f5d58c3088fe 100644
-> --- a/drivers/gpu/drm/ast/ast_mode.c
-> +++ b/drivers/gpu/drm/ast/ast_mode.c
-> @@ -612,8 +612,7 @@ ast_primary_plane_helper_atomic_disable(struct drm_=
-plane *plane,
->   }
->  =20
->   static const struct drm_plane_helper_funcs ast_primary_plane_helper_f=
-uncs =3D {
-> -	.prepare_fb =3D drm_gem_vram_plane_helper_prepare_fb,
-> -	.cleanup_fb =3D drm_gem_vram_plane_helper_cleanup_fb,
-> +	DRM_GEM_VRAM_PLANE_HELPER_FUNCS,
->   	.atomic_check =3D ast_primary_plane_helper_atomic_check,
->   	.atomic_update =3D ast_primary_plane_helper_atomic_update,
->   	.atomic_disable =3D ast_primary_plane_helper_atomic_disable,
-> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c b/drivers/g=
-pu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> index 29b8332b2bca..ccf80e369b4b 100644
-> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> @@ -158,8 +158,7 @@ static const struct drm_plane_funcs hibmc_plane_fun=
-cs =3D {
->   };
->  =20
->   static const struct drm_plane_helper_funcs hibmc_plane_helper_funcs =3D=
- {
-> -	.prepare_fb	=3D drm_gem_vram_plane_helper_prepare_fb,
-> -	.cleanup_fb	=3D drm_gem_vram_plane_helper_cleanup_fb,
-> +	DRM_GEM_VRAM_PLANE_HELPER_FUNCS,
->   	.atomic_check =3D hibmc_plane_atomic_check,
->   	.atomic_update =3D hibmc_plane_atomic_update,
->   };
-> diff --git a/drivers/gpu/drm/vboxvideo/vbox_mode.c b/drivers/gpu/drm/vb=
-oxvideo/vbox_mode.c
-> index 964381d55fc1..972c83b720aa 100644
-> --- a/drivers/gpu/drm/vboxvideo/vbox_mode.c
-> +++ b/drivers/gpu/drm/vboxvideo/vbox_mode.c
-> @@ -488,8 +488,7 @@ static const struct drm_plane_helper_funcs vbox_pri=
-mary_helper_funcs =3D {
->   	.atomic_check =3D vbox_primary_atomic_check,
->   	.atomic_update =3D vbox_primary_atomic_update,
->   	.atomic_disable =3D vbox_primary_atomic_disable,
-> -	.prepare_fb	=3D drm_gem_vram_plane_helper_prepare_fb,
-> -	.cleanup_fb	=3D drm_gem_vram_plane_helper_cleanup_fb,
-> +	DRM_GEM_VRAM_PLANE_HELPER_FUNCS,
->   };
->  =20
->   static const struct drm_plane_funcs vbox_primary_plane_funcs =3D {
-> diff --git a/include/drm/drm_gem_vram_helper.h b/include/drm/drm_gem_vr=
-am_helper.h
-> index 27ed7e9243b9..f48d181c824b 100644
-> --- a/include/drm/drm_gem_vram_helper.h
-> +++ b/include/drm/drm_gem_vram_helper.h
-> @@ -124,6 +124,18 @@ void
->   drm_gem_vram_plane_helper_cleanup_fb(struct drm_plane *plane,
->   				     struct drm_plane_state *old_state);
->  =20
-> +/**
-> + * DRM_GEM_VRAM_PLANE_HELPER_FUNCS -
-> + *	Initializes struct drm_plane_helper_funcs for VRAM handling
-> + *
-> + * Drivers may use GEM BOs as VRAM helpers for the framebuffer memory.=
- This
-> + * macro initializes struct drm_plane_helper_funcs to use the respecti=
-ve helper
-> + * functions.
-> + */
-> +#define DRM_GEM_VRAM_PLANE_HELPER_FUNCS \
-> +	.prepare_fb =3D drm_gem_vram_plane_helper_prepare_fb, \
-> +	.cleanup_fb =3D drm_gem_vram_plane_helper_cleanup_fb
-> +
->   /*
->    * Helpers for struct drm_simple_display_pipe_funcs
->    */
->=20
+  **FAILURE**
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+  Serious unknown changes coming with Patchwork_20449 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20449, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20449:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_auth@basic-auth:
+    - fi-kbl-8809g:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-kbl-8809g/igt@core_auth@basic-auth.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-kbl-8809g/igt@core_auth@basic-auth.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-snb-2520m:       [PASS][3] -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-snb-2520m/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-snb-2520m/igt@i915_selftest@live@workarounds.html
+    - fi-snb-2600:        [PASS][5] -> [DMESG-FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-snb-2600/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-snb-2600/igt@i915_selftest@live@workarounds.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20449 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][7] ([fdo#109271]) +15 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][8] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][9] ([fdo#109271]) +63 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       NOTRUN -> [FAIL][10] ([i915#3363])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
 
 
---VR22UcpH8RRuI3cLNCnkwnmHKzdC3E0wH--
+Participating hosts (41 -> 38)
+------------------------------
 
---sdO51lUl8HAYV5M4qG0S8bJTLtGR7P5hS
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
 
------BEGIN PGP SIGNATURE-----
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDUOEwFAwAAAAAACgkQlh/E3EQov+Bh
-LQ/9Fd1xO2doOMm0ADWxlcIvsaFwKGOr47fKb1OuqlKnFfbTZy4Z7nJwtBCxGVxw/63L1JT3AZJa
-WRDowp+0SaMTGbwTLTXsEX10I6BYKd5Ij1FjvUx2uUUOKJCx9Appbzbk8MCEGVOcuv/+zAT1IZLs
-DEuKd0uMrEOX4y3EbdQ475usDMZ68xLgDIChhKyNT3hysYXMMqjkjy2tAgnyLdGbkzPtTbrlSEJr
-B62EnVy775ygeYZw2GgyZP09v7lem9EtwynSiGMQUO3mOUNdq5m3QCEV//KcHCQDgmWMT1wbzUbs
-I8wq6idlCbQgeUXsrdFXVLQ+UXoCrpvjR3O+HQC0rmYQrX/zlDCwKX7a7xAn/X5HDUYdQ79kVdq5
-SIKeldD0q51oTRBGoZYgARNjkt4Vvk0gBChGahH/nM5Wtt0kDG7/dybjN9qGXyMzU0lwWysXaxRX
-Z7Ir94t5aO9Gs22V8sNzYkT3EdfddgxYmSnwrzj/jyksmd0pz3m8Zccpsrqf3Z1C1+39yTiZ0lKF
-i1MEfLnMdiw8Krq9q2CGJX3PylmVKz8CIpxY8128bc108XczQlZY1b0PEo4WZfCwFabMka/pA4iC
-KoHetRbknJUcsqoExpsLPJf2Yf46K86zpdTOwEGMhya66/00lS9q4J60Z8fBtNyu10q9sL8gqy0/
-NaA=
-=dasV
------END PGP SIGNATURE-----
+Build changes
+-------------
 
---sdO51lUl8HAYV5M4qG0S8bJTLtGR7P5hS--
+  * Linux: CI_DRM_10271 -> Patchwork_20449
 
---===============1822158726==
+  CI-20190529: 20190529
+  CI_DRM_10271: 7a4a01d6716339c418394dbeb9a20d55bbb9a9ba @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20449: 8a320e973471dadebf185470543bfff31807af3f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8a320e973471 drm/i915/guc: Unblock GuC submission on Gen11+
+b49edbcc9280 drm/i915/guc: Add golden context to GuC ADS
+9bedfd84c9e8 drm/i915/guc: Include scheduling policies in the debugfs state dump
+055c438902ea drm/i915/guc: Connect reset modparam updates to GuC policy flags
+2529cfc15930 drm/i915/guc: Hook GuC scheduling policies up
+c24a302b3409 drm/i915/guc: Fix for error capture after full GPU reset with GuC
+d43f902c9f69 drm/i915/guc: Capture error state on context reset
+cf156af71348 drm/i915/guc: Enable GuC engine reset
+b7f2c290b8da drm/i915/guc: Don't complain about reset races
+adcd1418b513 drm/i915/guc: Provide mmio list to be saved/restored on engine reset
+ee41dea700c0 drm/i915/guc: Enable the timer expired interrupt for GuC
+5560a36d3f00 drm/i915/guc: Handle engine reset failure notification
+a921fc062048 drm/i915/guc: Handle context reset notification
+345f1eca0a86 drm/i915/guc: Suspend/resume implementation for new interface
+17b20c0c8bd7 drm/i915/guc: Add disable interrupts to guc sanitize
+848ca056fc3e drm/i915: Reset GPU immediately if submission is disabled
+3c79abc34b26 drm/i915/guc: Reset implementation for new GuC interface
+7ae740c21ec4 drm/i915/guc: Direct all breadcrumbs for a class to single breadcrumbs
+2fca6597dcd8 drm/i915/guc: Disable bonding extension with GuC submission
+81e0788642e7 drm/i915: Hold reference to intel_context over life of i915_request
+5ca8f1a503a8 drm/i915: Track 'serial' counts for virtual engines
+351767d30288 drm/i915/guc: GuC virtual engines
+37ebee77b9c2 drm/i915: Add intel_context tracing
+4adb7ce61e5f drm/i915/guc: Add several request trace points
+c84dc5dbebea drm/i915/guc: Update GuC debugfs to support new GuC
+a03438ead8d3 drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC
+588df5bce44c drm/i915/guc: Ensure G2H response has space in buffer
+59c796b965e6 drm/i915/guc: Disable semaphores when using GuC scheduling
+e53180c87b60 drm/i915/guc: Ensure request ordering via completion fences
+195129a34fbe drm/i915: Disable preempt busywait when using GuC scheduling
+e7452c180185 drm/i915/guc: Extend deregistration fence to schedule disable
+9e9fc047e7c1 drm/i915/guc: Disable engine barriers with GuC during unpin
+53890c0d5072 drm/i915/guc: Defer context unpin until scheduling is disabled
+0ddf4a0e5ead drm/i915/guc: Insert fence on context when deregistering
+b9faec389671 drm/i915/guc: Implement GuC context operations for new inteface
+86db42bdbf1a drm/i915/guc: Add bypass tasklet submission path to GuC
+0478ac5fcc47 drm/i915/guc: Implement GuC submission tasklet
+dbd8df00f28f drm/i915/guc: Add lrc descriptor context lookup array
+9cc26b390c65 drm/i915/guc: Remove GuC stage descriptor, add lrc descriptor
+071d7fa76a91 drm/i915/guc: Add new GuC interface defines and structures
+28324246d8aa drm/i915/guc: Module load failure test for CT buffer creation
+2c9efd827987 drm/i915/guc: Optimize CTB writes and reads
+c0779d6fc3b7 drm/i915/guc: Add stall timer to non blocking CTB send function
+3d4dab7e7c81 drm/i915/guc: Add non blocking CTB send function
+beb15fc92c92 drm/i915/guc: Increase size of CTB buffers
+743d703ec315 drm/i915/guc: Improve error message for unsolicited CT response
+a582e9c666ff drm/i915/guc: Relax CTB response timeout
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/index.html
+
+--===============6470316270556623564==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>GuC submission support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91840/">https://patchwork.freedesktop.org/series/91840/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10271 -&gt; Patchwork_20449</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20449 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20449, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20449:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@core_auth@basic-auth:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-kbl-8809g/igt@core_auth@basic-auth.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-kbl-8809g/igt@core_auth@basic-auth.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>
+<p>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-snb-2520m/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-snb-2520m/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
+</li>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-snb-2600/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-snb-2600/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20449 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +15 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +63 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20449/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 38)</h2>
+<p>Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10271 -&gt; Patchwork_20449</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10271: 7a4a01d6716339c418394dbeb9a20d55bbb9a9ba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20449: 8a320e973471dadebf185470543bfff31807af3f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8a320e973471 drm/i915/guc: Unblock GuC submission on Gen11+<br />
+b49edbcc9280 drm/i915/guc: Add golden context to GuC ADS<br />
+9bedfd84c9e8 drm/i915/guc: Include scheduling policies in the debugfs state dump<br />
+055c438902ea drm/i915/guc: Connect reset modparam updates to GuC policy flags<br />
+2529cfc15930 drm/i915/guc: Hook GuC scheduling policies up<br />
+c24a302b3409 drm/i915/guc: Fix for error capture after full GPU reset with GuC<br />
+d43f902c9f69 drm/i915/guc: Capture error state on context reset<br />
+cf156af71348 drm/i915/guc: Enable GuC engine reset<br />
+b7f2c290b8da drm/i915/guc: Don't complain about reset races<br />
+adcd1418b513 drm/i915/guc: Provide mmio list to be saved/restored on engine reset<br />
+ee41dea700c0 drm/i915/guc: Enable the timer expired interrupt for GuC<br />
+5560a36d3f00 drm/i915/guc: Handle engine reset failure notification<br />
+a921fc062048 drm/i915/guc: Handle context reset notification<br />
+345f1eca0a86 drm/i915/guc: Suspend/resume implementation for new interface<br />
+17b20c0c8bd7 drm/i915/guc: Add disable interrupts to guc sanitize<br />
+848ca056fc3e drm/i915: Reset GPU immediately if submission is disabled<br />
+3c79abc34b26 drm/i915/guc: Reset implementation for new GuC interface<br />
+7ae740c21ec4 drm/i915/guc: Direct all breadcrumbs for a class to single breadcrumbs<br />
+2fca6597dcd8 drm/i915/guc: Disable bonding extension with GuC submission<br />
+81e0788642e7 drm/i915: Hold reference to intel_context over life of i915_request<br />
+5ca8f1a503a8 drm/i915: Track 'serial' counts for virtual engines<br />
+351767d30288 drm/i915/guc: GuC virtual engines<br />
+37ebee77b9c2 drm/i915: Add intel_context tracing<br />
+4adb7ce61e5f drm/i915/guc: Add several request trace points<br />
+c84dc5dbebea drm/i915/guc: Update GuC debugfs to support new GuC<br />
+a03438ead8d3 drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC<br />
+588df5bce44c drm/i915/guc: Ensure G2H response has space in buffer<br />
+59c796b965e6 drm/i915/guc: Disable semaphores when using GuC scheduling<br />
+e53180c87b60 drm/i915/guc: Ensure request ordering via completion fences<br />
+195129a34fbe drm/i915: Disable preempt busywait when using GuC scheduling<br />
+e7452c180185 drm/i915/guc: Extend deregistration fence to schedule disable<br />
+9e9fc047e7c1 drm/i915/guc: Disable engine barriers with GuC during unpin<br />
+53890c0d5072 drm/i915/guc: Defer context unpin until scheduling is disabled<br />
+0ddf4a0e5ead drm/i915/guc: Insert fence on context when deregistering<br />
+b9faec389671 drm/i915/guc: Implement GuC context operations for new inteface<br />
+86db42bdbf1a drm/i915/guc: Add bypass tasklet submission path to GuC<br />
+0478ac5fcc47 drm/i915/guc: Implement GuC submission tasklet<br />
+dbd8df00f28f drm/i915/guc: Add lrc descriptor context lookup array<br />
+9cc26b390c65 drm/i915/guc: Remove GuC stage descriptor, add lrc descriptor<br />
+071d7fa76a91 drm/i915/guc: Add new GuC interface defines and structures<br />
+28324246d8aa drm/i915/guc: Module load failure test for CT buffer creation<br />
+2c9efd827987 drm/i915/guc: Optimize CTB writes and reads<br />
+c0779d6fc3b7 drm/i915/guc: Add stall timer to non blocking CTB send function<br />
+3d4dab7e7c81 drm/i915/guc: Add non blocking CTB send function<br />
+beb15fc92c92 drm/i915/guc: Increase size of CTB buffers<br />
+743d703ec315 drm/i915/guc: Improve error message for unsolicited CT response<br />
+a582e9c666ff drm/i915/guc: Relax CTB response timeout</p>
+
+</body>
+</html>
+
+--===============6470316270556623564==--
+
+--===============1343725363==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -272,4 +375,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1822158726==--
+--===============1343725363==--
