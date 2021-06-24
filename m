@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 626CA3B5B61
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFE33B5B64
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:32:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE5CF6E408;
-	Mon, 28 Jun 2021 09:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31D706E3DB;
+	Mon, 28 Jun 2021 09:32:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com
- [199.106.114.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB636EBAC;
- Thu, 24 Jun 2021 14:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1624543860; x=1656079860;
- h=subject:to:cc:references:from:message-id:date:
- mime-version:in-reply-to:content-transfer-encoding;
- bh=jIPt55RUzMMbkq7vhbeD6czYPulB4Zz8LFVe0v3gRZ0=;
- b=CbSwpOTVg3NEaVEsIcdSI8DBHqB/juX4NC9YL4WiIw9Dz789ljHAv1oP
- f0KLxQFbEwTudWX0nxJYTeK3sxcUCOtLVCxEQvwJdaVmllN5WyDvD9q5V
- XmuxopkkkC6Hn5Jyg73zn1ZTNOxvtlzrE+xoAIOl3E/BdiN7BZpceUcOE 4=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Jun 2021 07:10:59 -0700
-X-QCInternal: smtphost
-Received: from nasanexm03e.na.qualcomm.com ([10.85.0.48])
- by ironmsg04-sd.qualcomm.com with ESMTP/TLS/AES256-SHA;
- 24 Jun 2021 07:10:57 -0700
-Received: from [10.111.163.161] (10.80.80.8) by nasanexm03e.na.qualcomm.com
- (10.85.0.48) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Thu, 24 Jun
- 2021 07:10:52 -0700
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>
-References: <20210619034043.199220-1-tientzu@chromium.org>
- <20210619034043.199220-7-tientzu@chromium.org>
- <76c3343d-72e5-9df3-8924-5474ee698ef4@quicinc.com>
- <20210623183736.GA472@willie-the-truck>
- <19d4c7a2-744d-21e0-289c-a576e1f0e6f3@quicinc.com>
- <20210624054315.GA25381@lst.de>
- <CALiNf288ZLMhY3E8E3N+z9rkwi1viWNLm1wwMEwT4rNwh3FfwQ@mail.gmail.com>
- <364e6715-eafd-fc4a-e0af-ce2a042756b4@arm.com>
- <20210624111855.GA1382@willie-the-truck>
- <452155d2-c98e-23f6-86d6-3a2ff2e74783@arm.com>
- <20210624114829.GB1382@willie-the-truck>
-From: Qian Cai <quic_qiancai@quicinc.com>
-Message-ID: <43ec9dd6-12c0-98ec-8d5d-b2904292721e@quicinc.com>
-Date: Thu, 24 Jun 2021 10:10:51 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com
+ [IPv6:2607:f8b0:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE836EC27
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 15:36:45 +0000 (UTC)
+Received: by mail-pl1-x62e.google.com with SMTP id i4so3136249plt.12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:36:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=oSmcLkLaYmb30K4x2o5V0PgF5sReFf2n8jT9UaERRsg=;
+ b=bSQo4DhU2KuL3CjUZN64j4WcwdggQch/R7XnEdix2NVuOf40qPGfYHBno8Xm619GAr
+ wg2kvoNy4VPNerE1UJQqTO/mn+wSl2WW8B9f7dL8xOzOgdg74JEfehGKdbWSQ0+1rr/t
+ 2LEY4HKbsscIOGINiR9uO5OVpBxOglyxXqSvwqqzzZpKt1BhIehu/QDEuFSbgcAbmd1A
+ 2Vn5BfcWryEpw7ny/6e9BAwB13V5uLq3/TeIlPL3nNBaDSZ9vfocg3yuStOuQjDnW2a3
+ vbLINUOPqFtht9Zb0kQj2xFTxtidhP/wmPjkGUm290ZvEfhGiSSc1t+MN7azCayA+NIy
+ PYiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=oSmcLkLaYmb30K4x2o5V0PgF5sReFf2n8jT9UaERRsg=;
+ b=qxnIC3QK3mReG21rDQVw4h8S5SJuh6QOFN5htvdS6DJYYI4juzPTOTakTnOQoGtpY3
+ qglyFAtobYso906UQnM+HFJ/RT94cgbJy5fFQYPQP39LmTuZG5ZZyPhhX4lh8xMgK49Z
+ KUADMWf/w2416XCup7kAumQhL5evMf+IdWKn7copgLI8PZDBb58NOopKkqmzqSez/6d3
+ AO4kj6hDY4vjGzaCJ0h7lQm3D/60iYw0L+9t2gcIk7WRx31M/G8WZ1hEr0mfQJ1052W2
+ FHEAX8fHeOVvs2BTvLhFPePRV62NlrF3bbCxuLY0CFPWuXUjxt6aCqUHHweEZ3Rb87JH
+ kpmg==
+X-Gm-Message-State: AOAM530vemjlDWrajKHTk/7WovYKshxhLpDVhF63qQT/tR+hSritLSIM
+ pNvKSeY7yELiXrW8e17NzxM9oQ==
+X-Google-Smtp-Source: ABdhPJxfmbtVti63yi0rwniZ/V3vp7ddChowhbbwk916pZwapRYWPu+wwBqr+2N8fYjWJaOb0U93+Q==
+X-Received: by 2002:a17:90a:8542:: with SMTP id
+ a2mr14115924pjw.185.1624549004763; 
+ Thu, 24 Jun 2021 08:36:44 -0700 (PDT)
+Received: from google.com (157.214.185.35.bc.googleusercontent.com.
+ [35.185.214.157])
+ by smtp.gmail.com with ESMTPSA id p1sm3132065pfp.137.2021.06.24.08.36.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Jun 2021 08:36:44 -0700 (PDT)
+Date: Thu, 24 Jun 2021 15:36:40 +0000
+From: Sean Christopherson <seanjc@google.com>
+To: Paolo Bonzini <pbonzini@redhat.com>
+Message-ID: <YNSmiOsmJin4UPcG@google.com>
+References: <20210624035749.4054934-1-stevensd@google.com>
+ <20210624035749.4054934-2-stevensd@google.com>
+ <1624524156.04etgk7zmz.astroid@bobo.none>
+ <4816287a-b9a9-d3f4-f844-06922d696e06@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20210624114829.GB1382@willie-the-truck>
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanexm03c.na.qualcomm.com (10.85.0.106) To
- nasanexm03e.na.qualcomm.com (10.85.0.48)
+Content-Disposition: inline
+In-Reply-To: <4816287a-b9a9-d3f4-f844-06922d696e06@redhat.com>
 X-Mailman-Approved-At: Mon, 28 Jun 2021 09:31:03 +0000
-Subject: Re: [Intel-gfx] [PATCH v14 06/12] swiotlb: Use
- is_swiotlb_force_bounce for swiotlb data bouncing
+Subject: Re: [Intel-gfx] [PATCH 1/6] KVM: x86/mmu: release audited pfns
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,87 +72,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com,
- linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
- benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- Frank Rowand <frowand.list@gmail.com>, Christoph Hellwig <hch@lst.de>,
- Jianxiong Gao <jxgao@google.com>, Stefano Stabellini <sstabellini@kernel.org>,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, mingo@kernel.org,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Dan Williams <dan.j.williams@intel.com>, matthew.auld@intel.com,
- Nicolas Boichat <drinkcat@chromium.org>, thomas.hellstrom@linux.intel.com,
- Jim Quinlan <james.quinlan@broadcom.com>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- intel-gfx@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Claire Chang <tientzu@chromium.org>,
- boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- airlied@linux.ie, Thierry Reding <treding@nvidia.com>,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- xypron.glpk@gmx.de, Tom Lendacky <thomas.lendacky@amd.com>,
- linuxppc-dev@lists.ozlabs.org, bauerman@linux.ibm.com
+Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ Paul Mackerras <paulus@ozlabs.org>, Will Deacon <will@kernel.org>,
+ kvmarm@lists.cs.columbia.edu, Marc Zyngier <maz@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Huacai Chen <chenhuacai@kernel.org>,
+ Alexandru Elisei <alexandru.elisei@arm.com>,
+ Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, intel-gfx@lists.freedesktop.org,
+ kvm-ppc@vger.kernel.org, Nicholas Piggin <npiggin@gmail.com>,
+ intel-gvt-dev@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ Jim Mattson <jmattson@google.com>, linux-kernel@vger.kernel.org,
+ James Morse <james.morse@arm.com>, David Stevens <stevensd@chromium.org>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, linuxppc-dev@lists.ozlabs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 6/24/2021 7:48 AM, Will Deacon wrote:
-> Ok, diff below which attempts to tackle the offset issue I mentioned as
-> well. Qian Cai -- please can you try with these changes?
-
-This works fine.
-
+On Thu, Jun 24, 2021, Paolo Bonzini wrote:
+> On 24/06/21 10:43, Nicholas Piggin wrote:
+> > Excerpts from David Stevens's message of June 24, 2021 1:57 pm:
+> > > From: David Stevens <stevensd@chromium.org>
+> > 
+> > Changelog? This looks like a bug, should it have a Fixes: tag?
 > 
-> Will
-> 
-> --->8
-> 
-> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-> index 175b6c113ed8..39284ff2a6cd 100644
-> --- a/include/linux/swiotlb.h
-> +++ b/include/linux/swiotlb.h
-> @@ -116,7 +116,9 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
->  
->  static inline bool is_swiotlb_force_bounce(struct device *dev)
->  {
-> -       return dev->dma_io_tlb_mem->force_bounce;
-> +       struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
-> +
-> +       return mem && mem->force_bounce;
->  }
->  
->  void __init swiotlb_exit(void);
-> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-> index 44be8258e27b..0ffbaae9fba2 100644
-> --- a/kernel/dma/swiotlb.c
-> +++ b/kernel/dma/swiotlb.c
-> @@ -449,6 +449,7 @@ static int swiotlb_find_slots(struct device *dev, phys_addr_t orig_addr,
->                 dma_get_min_align_mask(dev) & ~(IO_TLB_SIZE - 1);
->         unsigned int nslots = nr_slots(alloc_size), stride;
->         unsigned int index, wrap, count = 0, i;
-> +       unsigned int offset = swiotlb_align_offset(dev, orig_addr);
->         unsigned long flags;
->  
->         BUG_ON(!nslots);
-> @@ -497,7 +498,7 @@ static int swiotlb_find_slots(struct device *dev, phys_addr_t orig_addr,
->         for (i = index; i < index + nslots; i++) {
->                 mem->slots[i].list = 0;
->                 mem->slots[i].alloc_size =
-> -                       alloc_size - ((i - index) << IO_TLB_SHIFT);
-> +                       alloc_size - (offset + ((i - index) << IO_TLB_SHIFT));
->         }
->         for (i = index - 1;
->              io_tlb_offset(i) != IO_TLB_SEGSIZE - 1 &&
-> 
+> Probably has been there forever... The best way to fix the bug would be to
+> nuke mmu_audit.c, which I've threatened to do many times but never followed
+> up on.
+
+Yar.  It has only survived because it hasn't required any maintenance.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
