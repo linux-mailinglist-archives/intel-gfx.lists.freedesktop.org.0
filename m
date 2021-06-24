@@ -2,31 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 889D73B3171
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 16:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3E23B31BD
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 16:48:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E47706EC0E;
-	Thu, 24 Jun 2021 14:33:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 867FC6EC0E;
+	Thu, 24 Jun 2021 14:48:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4ECA86EC0E;
- Thu, 24 Jun 2021 14:33:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 46BABA73C7;
- Thu, 24 Jun 2021 14:33:06 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74C796EC0E;
+ Thu, 24 Jun 2021 14:48:36 +0000 (UTC)
+IronPort-SDR: eEqDQO7EnnSUoqms6Rk+78nmlu2fAOziEvPP0mbsi6Qo26txufQyIsCrqg4wSe9hQi8k149aLm
+ ccXkbMJ8v7fg==
+X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="207522423"
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="207522423"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 07:48:35 -0700
+IronPort-SDR: gyy864myTvpqgkNLq5OarZTqIb0Ns7mdFpZmMIGkOfy4tbz3Ewk0bcDFZqxr8kXOW0fQroE8J9
+ bL9hAVaYl4Aw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="406665319"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga006.jf.intel.com with ESMTP; 24 Jun 2021 07:48:34 -0700
+Received: from [10.249.129.39] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.129.39])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 15OEmXBr002087; Thu, 24 Jun 2021 15:48:33 +0100
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <20210624070516.21893-5-matthew.brost@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <761f2063-7fe6-518b-d05e-67f8fadb9a9c@intel.com>
+Date: Thu, 24 Jun 2021 16:48:32 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hsin-Yi Wang" <hsinyi@chromium.org>
-Date: Thu, 24 Jun 2021 14:33:06 -0000
-Message-ID: <162454518628.1851.5955870260565638792@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210624105517.3886963-1-hsinyi@chromium.org>
-In-Reply-To: <20210624105517.3886963-1-hsinyi@chromium.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5Bv6=2CRESEND=2C1/3=5D_gpu=3A_drm=3A_sepa?=
- =?utf-8?q?rate_panel_orientation_property_creating_and_value_setting?=
+In-Reply-To: <20210624070516.21893-5-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 04/47] drm/i915/guc: Add non blocking CTB
+ send function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,257 +55,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [v6,RESEND,1/3] gpu: drm: separate panel orientation property creating and value setting
-URL   : https://patchwork.freedesktop.org/series/91867/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1345:25: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1345:25:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1345:25:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1346:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1346:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1346:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1405:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1405:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1405:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:310:16: error: incompatible types in comparison expression (different type sizes):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:310:16:    unsigned long *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:310:16:    unsigned long long *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:275:25: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:275:25:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:275:25:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:276:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:330:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:330:17:    struct dma_fence *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:330:17:    struct dma_fence [noderef] __rcu *
-+drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h:90:56: error: marked inline, but without a definition
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CgpPbiAyNC4wNi4yMDIxIDA5OjA0LCBNYXR0aGV3IEJyb3N0IHdyb3RlOgo+IEFkZCBub24gYmxv
+Y2tpbmcgQ1RCIHNlbmQgZnVuY3Rpb24sIGludGVsX2d1Y19zZW5kX25iLiBHdUMgc3VibWlzc2lv
+bgo+IHdpbGwgc2VuZCBDVEJzIGluIHRoZSBjcml0aWNhbCBwYXRoIGFuZCBkb2VzIG5vdCBuZWVk
+IHRvIHdhaXQgZm9yIHRoZXNlCj4gQ1RCcyB0byBjb21wbGV0ZSBiZWZvcmUgbW92aW5nIG9uLCBo
+ZW5jZSB0aGUgbmVlZCBmb3IgdGhpcyBuZXcgZnVuY3Rpb24uCj4gCj4gVGhlIG5vbi1ibG9ja2lu
+ZyBDVEIgbm93IG11c3QgaGF2ZSBhIGZsb3cgY29udHJvbCBtZWNoYW5pc20gdG8gZW5zdXJlCj4g
+dGhlIGJ1ZmZlciBpc24ndCBvdmVycnVuLiBBIGxhenkgc3BpbiB3YWl0IGlzIHVzZWQgYXMgd2Ug
+YmVsaWV2ZSB0aGUKPiBmbG93IGNvbnRyb2wgY29uZGl0aW9uIHNob3VsZCBiZSByYXJlIHdpdGgg
+YSBwcm9wZXJseSBzaXplZCBidWZmZXIuCj4gCj4gVGhlIGZ1bmN0aW9uLCBpbnRlbF9ndWNfc2Vu
+ZF9uYiwgaXMgZXhwb3J0ZWQgaW4gdGhpcyBwYXRjaCBidXQgdW51c2VkLgo+IFNldmVyYWwgcGF0
+Y2hlcyBsYXRlciBpbiB0aGUgc2VyaWVzIG1ha2UgdXNlIG9mIHRoaXMgZnVuY3Rpb24uCj4gCj4g
+U2lnbmVkLW9mZi1ieTogSm9obiBIYXJyaXNvbiA8Sm9obi5DLkhhcnJpc29uQEludGVsLmNvbT4K
+PiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEJyb3N0IDxtYXR0aGV3LmJyb3N0QGludGVsLmNvbT4K
+PiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmggICAgfCAxMiAr
+KystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19jdC5jIHwgNzcgKysr
+KysrKysrKysrKysrKysrKysrLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
+Z3VjX2N0LmggfCAgMyArLQo+ICAzIGZpbGVzIGNoYW5nZWQsIDgyIGluc2VydGlvbnMoKyksIDEw
+IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
+Yy9pbnRlbF9ndWMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5oCj4g
+aW5kZXggNGFiYzU5ZjZmM2NkLi4yNGIxZGY2YWQ0YWUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC91Yy9pbnRlbF9ndWMuaAo+IEBAIC03NCw3ICs3NCwxNSBAQCBzdGF0aWMgaW5saW5lIHN0
+cnVjdCBpbnRlbF9ndWMgKmxvZ190b19ndWMoc3RydWN0IGludGVsX2d1Y19sb2cgKmxvZykKPiAg
+c3RhdGljCj4gIGlubGluZSBpbnQgaW50ZWxfZ3VjX3NlbmQoc3RydWN0IGludGVsX2d1YyAqZ3Vj
+LCBjb25zdCB1MzIgKmFjdGlvbiwgdTMyIGxlbikKPiAgewo+IC0JcmV0dXJuIGludGVsX2d1Y19j
+dF9zZW5kKCZndWMtPmN0LCBhY3Rpb24sIGxlbiwgTlVMTCwgMCk7Cj4gKwlyZXR1cm4gaW50ZWxf
+Z3VjX2N0X3NlbmQoJmd1Yy0+Y3QsIGFjdGlvbiwgbGVuLCBOVUxMLCAwLCAwKTsKPiArfQo+ICsK
+PiArI2RlZmluZSBJTlRFTF9HVUNfU0VORF9OQgkJQklUKDMxKQoKaG1tLCB0aGlzIGZsYWcgcmVh
+bGx5IGJlbG9uZ3MgdG8gaW50ZWxfZ3VjX2N0X3NlbmQoKSBzbyBpdCBzaG91bGQgYmUKZGVmaW5l
+ZCBhcyBDVEIgZmxhZyBuZWFyIHRoYXQgZnVuY3Rpb24gZGVjbGFyYXRpb24KCj4gK3N0YXRpYwo+
+ICtpbmxpbmUgaW50IGludGVsX2d1Y19zZW5kX25iKHN0cnVjdCBpbnRlbF9ndWMgKmd1YywgY29u
+c3QgdTMyICphY3Rpb24sIHUzMiBsZW4pCj4gK3sKPiArCXJldHVybiBpbnRlbF9ndWNfY3Rfc2Vu
+ZCgmZ3VjLT5jdCwgYWN0aW9uLCBsZW4sIE5VTEwsIDAsCj4gKwkJCQkgSU5URUxfR1VDX1NFTkRf
+TkIpOwo+ICB9Cj4gIAo+ICBzdGF0aWMgaW5saW5lIGludAo+IEBAIC04Miw3ICs5MCw3IEBAIGlu
+dGVsX2d1Y19zZW5kX2FuZF9yZWNlaXZlKHN0cnVjdCBpbnRlbF9ndWMgKmd1YywgY29uc3QgdTMy
+ICphY3Rpb24sIHUzMiBsZW4sCj4gIAkJCSAgIHUzMiAqcmVzcG9uc2VfYnVmLCB1MzIgcmVzcG9u
+c2VfYnVmX3NpemUpCj4gIHsKPiAgCXJldHVybiBpbnRlbF9ndWNfY3Rfc2VuZCgmZ3VjLT5jdCwg
+YWN0aW9uLCBsZW4sCj4gLQkJCQkgcmVzcG9uc2VfYnVmLCByZXNwb25zZV9idWZfc2l6ZSk7Cj4g
+KwkJCQkgcmVzcG9uc2VfYnVmLCByZXNwb25zZV9idWZfc2l6ZSwgMCk7Cj4gIH0KPiAgCj4gIHN0
+YXRpYyBpbmxpbmUgdm9pZCBpbnRlbF9ndWNfdG9faG9zdF9ldmVudF9oYW5kbGVyKHN0cnVjdCBp
+bnRlbF9ndWMgKmd1YykKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
+aW50ZWxfZ3VjX2N0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfY3Qu
+Ywo+IGluZGV4IGExNzIxNTkyMGU1OC4uYzlhNjVkMDU5MTFmIDEwMDY0NAo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19jdC5jCj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2N0LmMKPiBAQCAtMyw2ICszLDExIEBACj4gICAqIENv
+cHlyaWdodCDCqSAyMDE2LTIwMTkgSW50ZWwgQ29ycG9yYXRpb24KPiAgICovCj4gIAo+ICsjaW5j
+bHVkZSA8bGludXgvY2lyY19idWYuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2t0aW1lLmg+Cj4gKyNp
+bmNsdWRlIDxsaW51eC90aW1lNjQuaD4KPiArI2luY2x1ZGUgPGxpbnV4L3RpbWVrZWVwaW5nLmg+
+Cj4gKwo+ICAjaW5jbHVkZSAiaTkxNV9kcnYuaCIKPiAgI2luY2x1ZGUgImludGVsX2d1Y19jdC5o
+Igo+ICAjaW5jbHVkZSAiZ3QvaW50ZWxfZ3QuaCIKPiBAQCAtMzczLDcgKzM3OCw3IEBAIHN0YXRp
+YyB2b2lkIHdyaXRlX2JhcnJpZXIoc3RydWN0IGludGVsX2d1Y19jdCAqY3QpCj4gIHN0YXRpYyBp
+bnQgY3Rfd3JpdGUoc3RydWN0IGludGVsX2d1Y19jdCAqY3QsCj4gIAkJICAgIGNvbnN0IHUzMiAq
+YWN0aW9uLAo+ICAJCSAgICB1MzIgbGVuIC8qIGluIGR3b3JkcyAqLywKPiAtCQkgICAgdTMyIGZl
+bmNlKQo+ICsJCSAgICB1MzIgZmVuY2UsIHUzMiBmbGFncykKPiAgewo+ICAJc3RydWN0IGludGVs
+X2d1Y19jdF9idWZmZXIgKmN0YiA9ICZjdC0+Y3Ricy5zZW5kOwo+ICAJc3RydWN0IGd1Y19jdF9i
+dWZmZXJfZGVzYyAqZGVzYyA9IGN0Yi0+ZGVzYzsKPiBAQCAtNDIxLDkgKzQyNiwxMyBAQCBzdGF0
+aWMgaW50IGN0X3dyaXRlKHN0cnVjdCBpbnRlbF9ndWNfY3QgKmN0LAo+ICAJCSBGSUVMRF9QUkVQ
+KEdVQ19DVEJfTVNHXzBfTlVNX0RXT1JEUywgbGVuKSB8Cj4gIAkJIEZJRUxEX1BSRVAoR1VDX0NU
+Ql9NU0dfMF9GRU5DRSwgZmVuY2UpOwo+ICAKPiAtCWh4ZyA9IEZJRUxEX1BSRVAoR1VDX0hYR19N
+U0dfMF9UWVBFLCBHVUNfSFhHX1RZUEVfUkVRVUVTVCkgfAo+IC0JICAgICAgRklFTERfUFJFUChH
+VUNfSFhHX1JFUVVFU1RfTVNHXzBfQUNUSU9OIHwKPiAtCQkJIEdVQ19IWEdfUkVRVUVTVF9NU0df
+MF9EQVRBMCwgYWN0aW9uWzBdKTsKPiArCWh4ZyA9IChmbGFncyAmIElOVEVMX0dVQ19TRU5EX05C
+KSA/Cj4gKwkJKEZJRUxEX1BSRVAoR1VDX0hYR19NU0dfMF9UWVBFLCBHVUNfSFhHX1RZUEVfRVZF
+TlQpIHwKPiArCQkgRklFTERfUFJFUChHVUNfSFhHX0VWRU5UX01TR18wX0FDVElPTiB8Cj4gKwkJ
+CSAgICBHVUNfSFhHX0VWRU5UX01TR18wX0RBVEEwLCBhY3Rpb25bMF0pKSA6Cj4gKwkJKEZJRUxE
+X1BSRVAoR1VDX0hYR19NU0dfMF9UWVBFLCBHVUNfSFhHX1RZUEVfUkVRVUVTVCkgfAo+ICsJCSBG
+SUVMRF9QUkVQKEdVQ19IWEdfUkVRVUVTVF9NU0dfMF9BQ1RJT04gfAo+ICsJCQkgICAgR1VDX0hY
+R19SRVFVRVNUX01TR18wX0RBVEEwLCBhY3Rpb25bMF0pKTsKCm9yIGFzIHdlIGFscmVhZHkgc3dp
+dGNoZWQgdG8gYWNjZXB0IGFuZCByZXR1cm4gd2hvbGUgSFhHIG1lc3NhZ2VzIGluCmd1Y19zZW5k
+X21taW8oKSBtYXliZSB3ZSBzaG91bGQgZG8gdGhlIHNhbWUgZm9yIENUQiB2YXJpYW50IHRvbyBh
+bmQKaW5zdGVhZCBvZiB1c2luZyBleHRyYSBmbGFnIGp1c3QgbGV0IGNhbGxlciB0byBwcmVwYXJl
+IHByb3BlciBIWEcgaGVhZGVyCndpdGggSFhHX0VWRU5UIHR5cGUgYW5kIHRoZW4gaW4gQ1RCIGNv
+ZGUganVzdCBsb29rIGF0IHRoaXMgdHlwZSB0byBtYWtlCmRlY2lzaW9uIHdoaWNoIGNvZGUgcGF0
+aCB0byB1c2UKCm5vdGUgdGhhdCBleGlzdGluZyBjYWxsZXJzIHNob3VsZCBub3QgYmUgaW1wYWN0
+ZWQsIGFzIGZ1bGwgSFhHIGhlYWRlcgpmb3IgdGhlIFJFUVVFU1QgbWVzc2FnZSBsb29rcyBleGFj
+dGx5IHRoZSBzYW1lIGFzICJhY3Rpb24iIGNvZGUgYWxvbmUuCgo+ICAKPiAgCUNUX0RFQlVHKGN0
+LCAid3JpdGluZyAodGFpbCAldSkgJSpwaCAlKnBoICUqcGhcbiIsCj4gIAkJIHRhaWwsIDQsICZo
+ZWFkZXIsIDQsICZoeGcsIDQgKiAobGVuIC0gMSksICZhY3Rpb25bMV0pOwo+IEBAIC00OTgsNiAr
+NTA3LDQ2IEBAIHN0YXRpYyBpbnQgd2FpdF9mb3JfY3RfcmVxdWVzdF91cGRhdGUoc3RydWN0IGN0
+X3JlcXVlc3QgKnJlcSwgdTMyICpzdGF0dXMpCj4gIAlyZXR1cm4gZXJyOwo+ICB9Cj4gIAo+ICtz
+dGF0aWMgaW5saW5lIGJvb2wgaDJnX2hhc19yb29tKHN0cnVjdCBpbnRlbF9ndWNfY3RfYnVmZmVy
+ICpjdGIsIHUzMiBsZW5fZHcpCj4gK3sKPiArCXN0cnVjdCBndWNfY3RfYnVmZmVyX2Rlc2MgKmRl
+c2MgPSBjdGItPmRlc2M7Cj4gKwl1MzIgaGVhZCA9IFJFQURfT05DRShkZXNjLT5oZWFkKTsKPiAr
+CXUzMiBzcGFjZTsKPiArCj4gKwlzcGFjZSA9IENJUkNfU1BBQ0UoZGVzYy0+dGFpbCwgaGVhZCwg
+Y3RiLT5zaXplKTsKPiArCj4gKwlyZXR1cm4gc3BhY2UgPj0gbGVuX2R3OwoKaGVyZSB5b3UgYXJl
+IHJldHVybmluZyB0cnVlKDEpIGFzIGhhcyByb29tCgo+ICt9Cj4gKwo+ICtzdGF0aWMgaW50IGN0
+X3NlbmRfbmIoc3RydWN0IGludGVsX2d1Y19jdCAqY3QsCj4gKwkJICAgICAgY29uc3QgdTMyICph
+Y3Rpb24sCj4gKwkJICAgICAgdTMyIGxlbiwKPiArCQkgICAgICB1MzIgZmxhZ3MpCj4gK3sKPiAr
+CXN0cnVjdCBpbnRlbF9ndWNfY3RfYnVmZmVyICpjdGIgPSAmY3QtPmN0YnMuc2VuZDsKPiArCXVu
+c2lnbmVkIGxvbmcgc3Bpbl9mbGFnczsKPiArCXUzMiBmZW5jZTsKPiArCWludCByZXQ7Cj4gKwo+
+ICsJc3Bpbl9sb2NrX2lycXNhdmUoJmN0Yi0+bG9jaywgc3Bpbl9mbGFncyk7Cj4gKwo+ICsJcmV0
+ID0gaDJnX2hhc19yb29tKGN0YiwgbGVuICsgMSk7CgpidXQgaGVyZSB5b3UgdHJlYXQgIjEiIGl0
+IGFzIGVuIGVycm9yCgphbmQgdGhpcyAiMSIgaXMgR1VDX0hYR19NU0dfTUlOX0xFTiwgcmlnaHQg
+PwoKPiArCWlmICh1bmxpa2VseShyZXQpKQo+ICsJCWdvdG8gb3V0Owo+ICsKPiArCWZlbmNlID0g
+Y3RfZ2V0X25leHRfZmVuY2UoY3QpOwo+ICsJcmV0ID0gY3Rfd3JpdGUoY3QsIGFjdGlvbiwgbGVu
+LCBmZW5jZSwgZmxhZ3MpOwo+ICsJaWYgKHVubGlrZWx5KHJldCkpCj4gKwkJZ290byBvdXQ7Cj4g
+Kwo+ICsJaW50ZWxfZ3VjX25vdGlmeShjdF90b19ndWMoY3QpKTsKPiArCj4gK291dDoKPiArCXNw
+aW5fdW5sb2NrX2lycXJlc3RvcmUoJmN0Yi0+bG9jaywgc3Bpbl9mbGFncyk7Cj4gKwo+ICsJcmV0
+dXJuIHJldDsKPiArfQo+ICsKPiAgc3RhdGljIGludCBjdF9zZW5kKHN0cnVjdCBpbnRlbF9ndWNf
+Y3QgKmN0LAo+ICAJCSAgIGNvbnN0IHUzMiAqYWN0aW9uLAo+ICAJCSAgIHUzMiBsZW4sCj4gQEAg
+LTUwNSw2ICs1NTQsNyBAQCBzdGF0aWMgaW50IGN0X3NlbmQoc3RydWN0IGludGVsX2d1Y19jdCAq
+Y3QsCj4gIAkJICAgdTMyIHJlc3BvbnNlX2J1Zl9zaXplLAo+ICAJCSAgIHUzMiAqc3RhdHVzKQo+
+ICB7Cj4gKwlzdHJ1Y3QgaW50ZWxfZ3VjX2N0X2J1ZmZlciAqY3RiID0gJmN0LT5jdGJzLnNlbmQ7
+Cj4gIAlzdHJ1Y3QgY3RfcmVxdWVzdCByZXF1ZXN0Owo+ICAJdW5zaWduZWQgbG9uZyBmbGFnczsK
+PiAgCXUzMiBmZW5jZTsKPiBAQCAtNTE0LDggKzU2NCwyMCBAQCBzdGF0aWMgaW50IGN0X3NlbmQo
+c3RydWN0IGludGVsX2d1Y19jdCAqY3QsCj4gIAlHRU1fQlVHX09OKCFsZW4pOwo+ICAJR0VNX0JV
+R19PTihsZW4gJiB+R1VDX0NUX01TR19MRU5fTUFTSyk7Cj4gIAlHRU1fQlVHX09OKCFyZXNwb25z
+ZV9idWYgJiYgcmVzcG9uc2VfYnVmX3NpemUpOwo+ICsJbWlnaHRfc2xlZXAoKTsKPiAgCj4gKwkv
+Kgo+ICsJICogV2UgdXNlIGEgbGF6eSBzcGluIHdhaXQgbG9vcCBoZXJlIGFzIHdlIGJlbGlldmUg
+dGhhdCBpZiB0aGUgQ1QKPiArCSAqIGJ1ZmZlcnMgYXJlIHNpemVkIGNvcnJlY3RseSB0aGUgZmxv
+dyBjb250cm9sIGNvbmRpdGlvbiBzaG91bGQgYmUKPiArCSAqIHJhcmUuCgpzaG91bGRuJ3Qgd2Ug
+YXQgbGVhc3QgdHJ5IHRvIGxvZyBzdWNoIGNhc2VzIHdpdGggUkFURV9MSU1JVEVEIHRvIGZpbmQK
+b3V0IGhvdyAicmFyZSIgaXQgaXMsIG9yIGlmIHJlYWxseSB1bmxpa2VseSBqdXN0IHJldHVybiAt
+RUJVU1kgYXMgaW4KY2FzZSBvZiBub24tYmxvY2tpbmcgc2VuZCA/Cgo+ICsJICovCj4gK3JldHJ5
+Ogo+ICAJc3Bpbl9sb2NrX2lycXNhdmUoJmN0LT5jdGJzLnNlbmQubG9jaywgZmxhZ3MpOwo+ICsJ
+aWYgKHVubGlrZWx5KCFoMmdfaGFzX3Jvb20oY3RiLCBsZW4gKyAxKSkpIHsKPiArCQlzcGluX3Vu
+bG9ja19pcnFyZXN0b3JlKCZjdC0+Y3Ricy5zZW5kLmxvY2ssIGZsYWdzKTsKPiArCQljb25kX3Jl
+c2NoZWQoKTsKPiArCQlnb3RvIHJldHJ5Owo+ICsJfQo+ICAKPiAgCWZlbmNlID0gY3RfZ2V0X25l
+eHRfZmVuY2UoY3QpOwo+ICAJcmVxdWVzdC5mZW5jZSA9IGZlbmNlOwo+IEBAIC01MjcsNyArNTg5
+LDcgQEAgc3RhdGljIGludCBjdF9zZW5kKHN0cnVjdCBpbnRlbF9ndWNfY3QgKmN0LAo+ICAJbGlz
+dF9hZGRfdGFpbCgmcmVxdWVzdC5saW5rLCAmY3QtPnJlcXVlc3RzLnBlbmRpbmcpOwo+ICAJc3Bp
+bl91bmxvY2soJmN0LT5yZXF1ZXN0cy5sb2NrKTsKPiAgCj4gLQllcnIgPSBjdF93cml0ZShjdCwg
+YWN0aW9uLCBsZW4sIGZlbmNlKTsKPiArCWVyciA9IGN0X3dyaXRlKGN0LCBhY3Rpb24sIGxlbiwg
+ZmVuY2UsIDApOwo+ICAKPiAgCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmN0LT5jdGJzLnNlbmQu
+bG9jaywgZmxhZ3MpOwo+ICAKPiBAQCAtNTY5LDcgKzYzMSw3IEBAIHN0YXRpYyBpbnQgY3Rfc2Vu
+ZChzdHJ1Y3QgaW50ZWxfZ3VjX2N0ICpjdCwKPiAgICogQ29tbWFuZCBUcmFuc3BvcnQgKENUKSBi
+dWZmZXIgYmFzZWQgR3VDIHNlbmQgZnVuY3Rpb24uCj4gICAqLwo+ICBpbnQgaW50ZWxfZ3VjX2N0
+X3NlbmQoc3RydWN0IGludGVsX2d1Y19jdCAqY3QsIGNvbnN0IHUzMiAqYWN0aW9uLCB1MzIgbGVu
+LAo+IC0JCSAgICAgIHUzMiAqcmVzcG9uc2VfYnVmLCB1MzIgcmVzcG9uc2VfYnVmX3NpemUpCj4g
+KwkJICAgICAgdTMyICpyZXNwb25zZV9idWYsIHUzMiByZXNwb25zZV9idWZfc2l6ZSwgdTMyIGZs
+YWdzKQo+ICB7Cj4gIAl1MzIgc3RhdHVzID0gfjA7IC8qIHVuZGVmaW5lZCAqLwo+ICAJaW50IHJl
+dDsKPiBAQCAtNTc5LDYgKzY0MSw5IEBAIGludCBpbnRlbF9ndWNfY3Rfc2VuZChzdHJ1Y3QgaW50
+ZWxfZ3VjX2N0ICpjdCwgY29uc3QgdTMyICphY3Rpb24sIHUzMiBsZW4sCj4gIAkJcmV0dXJuIC1F
+Tk9ERVY7Cj4gIAl9Cj4gIAo+ICsJaWYgKGZsYWdzICYgSU5URUxfR1VDX1NFTkRfTkIpCj4gKwkJ
+cmV0dXJuIGN0X3NlbmRfbmIoY3QsIGFjdGlvbiwgbGVuLCBmbGFncyk7Cj4gKwo+ICAJcmV0ID0g
+Y3Rfc2VuZChjdCwgYWN0aW9uLCBsZW4sIHJlc3BvbnNlX2J1ZiwgcmVzcG9uc2VfYnVmX3NpemUs
+ICZzdGF0dXMpOwo+ICAJaWYgKHVubGlrZWx5KHJldCA8IDApKSB7Cj4gIAkJQ1RfRVJST1IoY3Qs
+ICJTZW5kaW5nIGFjdGlvbiAlI3ggZmFpbGVkIChlcnI9JWQgc3RhdHVzPSUjWClcbiIsCj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19jdC5oIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2N0LmgKPiBpbmRleCAxYWUyZGRlNmRi
+OTMuLmViNjkyNjMzMjRiYSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
+Yy9pbnRlbF9ndWNfY3QuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVs
+X2d1Y19jdC5oCj4gQEAgLTQyLDcgKzQyLDYgQEAgc3RydWN0IGludGVsX2d1Y19jdF9idWZmZXIg
+ewo+ICAJYm9vbCBicm9rZW47Cj4gIH07Cj4gIAo+IC0KPiAgLyoqIFRvcC1sZXZlbCBzdHJ1Y3R1
+cmUgZm9yIENvbW1hbmQgVHJhbnNwb3J0IHJlbGF0ZWQgZGF0YQo+ICAgKgo+ICAgKiBJbmNsdWRl
+cyBhIHBhaXIgb2YgQ1QgYnVmZmVycyBmb3IgYmktZGlyZWN0aW9uYWwgY29tbXVuaWNhdGlvbiBh
+bmQgdHJhY2tpbmcKPiBAQCAtODgsNyArODcsNyBAQCBzdGF0aWMgaW5saW5lIGJvb2wgaW50ZWxf
+Z3VjX2N0X2VuYWJsZWQoc3RydWN0IGludGVsX2d1Y19jdCAqY3QpCj4gIH0KPiAgCj4gIGludCBp
+bnRlbF9ndWNfY3Rfc2VuZChzdHJ1Y3QgaW50ZWxfZ3VjX2N0ICpjdCwgY29uc3QgdTMyICphY3Rp
+b24sIHUzMiBsZW4sCj4gLQkJICAgICAgdTMyICpyZXNwb25zZV9idWYsIHUzMiByZXNwb25zZV9i
+dWZfc2l6ZSk7Cj4gKwkJICAgICAgdTMyICpyZXNwb25zZV9idWYsIHUzMiByZXNwb25zZV9idWZf
+c2l6ZSwgdTMyIGZsYWdzKTsKPiAgdm9pZCBpbnRlbF9ndWNfY3RfZXZlbnRfaGFuZGxlcihzdHJ1
+Y3QgaW50ZWxfZ3VjX2N0ICpjdCk7Cj4gIAo+ICAjZW5kaWYgLyogX0lOVEVMX0dVQ19DVF9IXyAq
+Lwo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
