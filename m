@@ -2,31 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0283B2762
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 08:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8FDB3B280D
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 08:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 021966E9F3;
-	Thu, 24 Jun 2021 06:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D83E76E9F6;
+	Thu, 24 Jun 2021 06:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 60A2F6E83B;
- Thu, 24 Jun 2021 06:28:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 58811A8830;
- Thu, 24 Jun 2021 06:28:20 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 499C96E9F6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 06:57:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1624517863;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=igFDOV6BxGJ7IfsozRxLlI1SBnI7ilQNQtLZk9DKzFQ=;
+ b=NfMKvr8Ax1E1LpAoe9jSBidAQj+ol3buwQmpYHGZG+kDQY+eCVgPPndbFH8AmRYtuUGdd6
+ 73Dbvk1gl3N6WMgE0j2Ge8KPXEThGtYmYzN2ufR5BXrPwwfcYj9hfimVKweuRvymgVyEEw
+ vdbW6duZZOGeWQm/vjJkitKFrUcOawo=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-544-Ny50-_ZGONK_jopk_bmJjQ-1; Thu, 24 Jun 2021 02:57:41 -0400
+X-MC-Unique: Ny50-_ZGONK_jopk_bmJjQ-1
+Received: by mail-wm1-f72.google.com with SMTP id
+ i82-20020a1c22550000b02901d64e84b3c9so1251156wmi.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jun 2021 23:57:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=igFDOV6BxGJ7IfsozRxLlI1SBnI7ilQNQtLZk9DKzFQ=;
+ b=ijyD0/QyxCjAc/a1B+cWfr0ZdVM5BVkq7scvBDYYc6wNilP2b4WPjN/IN3leUvfrYK
+ LX2FAIRBqfg8Hy1veuaC4k1i6OzWSNplQySYs21egvy4tiXBMrErSPdLMxd7jBtU85mg
+ 7qGdDgwR5T8eqMJcSN2OCqXj7p3KsBEoanLyL6oAYd+XLDyBtc6784EouNE1Z/lcDZID
+ 8y/6/OlxAFDSYLckCpBD7ujHZ5SX3ParYgi/wGJygWJHGzSL9OJ50+q669ArO/cF7BF6
+ 06GZj1CDe3+hEc0skk+EI5WSlAdw46nbmTVhzixMI+tJcyC6c1HBTAYHANpKeZ+J580m
+ DXwA==
+X-Gm-Message-State: AOAM532FSvszNXmG1wZM8/rlDovL3odrB0yCr99SbzYAYgEXL1zE27WD
+ M2P4JjAUaZ65EdsDets/Wf5wwxoSYn8S/mB4FMMx+VWNZ2IkiVnq4y/oGSfI0FeO4sDPTf3mhHS
+ hjT52KfJuqHnWwIfSe8jaB+ujqz0R
+X-Received: by 2002:a05:6000:1889:: with SMTP id
+ a9mr85623wri.141.1624517860519; 
+ Wed, 23 Jun 2021 23:57:40 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzdqChWxI2TqFhdGI9pdTdW0OY2cpxOML9ILwZzD3plJUW6I8N3vbOFGhbVC127GRhm0xAu2w==
+X-Received: by 2002:a05:6000:1889:: with SMTP id
+ a9mr85587wri.141.1624517860347; 
+ Wed, 23 Jun 2021 23:57:40 -0700 (PDT)
+Received: from ?IPv6:2001:b07:6468:f312:c8dd:75d4:99ab:290a?
+ ([2001:b07:6468:f312:c8dd:75d4:99ab:290a])
+ by smtp.gmail.com with ESMTPSA id o26sm1900491wmr.29.2021.06.23.23.57.38
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 23 Jun 2021 23:57:39 -0700 (PDT)
+To: David Stevens <stevensd@chromium.org>, Marc Zyngier <maz@kernel.org>,
+ Huacai Chen <chenhuacai@kernel.org>,
+ Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
+ Paul Mackerras <paulus@ozlabs.org>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>
+References: <20210624035749.4054934-1-stevensd@google.com>
+From: Paolo Bonzini <pbonzini@redhat.com>
+Message-ID: <20baae77-785c-5d46-e00c-41d86c2fbc56@redhat.com>
+Date: Thu, 24 Jun 2021 08:57:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Thu, 24 Jun 2021 06:28:20 -0000
-Message-ID: <162451610033.1850.6432601640753740287@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210622133107.7422-1-shawn.c.lee@intel.com>
-In-Reply-To: <20210622133107.7422-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_keep_backlight=5Fenable_on_until_turn_eDP_display_off_?=
- =?utf-8?b?KHJldjQp?=
+In-Reply-To: <20210624035749.4054934-1-stevensd@google.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=pbonzini@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 0/6] KVM: Remove uses of struct page from
+ x86 and arm64 MMU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,195 +89,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0133407314=="
+Cc: David Stevens <stevensd@google.com>, intel-gvt-dev@lists.freedesktop.org,
+ Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ Will Deacon <will@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Sean Christopherson <seanjc@google.com>, Joerg Roedel <joro@8bytes.org>,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ kvm-ppc@vger.kernel.org, linux-mips@vger.kernel.org,
+ James Morse <james.morse@arm.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, Vitaly Kuznetsov <vkuznets@redhat.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>, kvmarm@lists.cs.columbia.edu,
+ linux-arm-kernel@lists.infradead.org, Jim Mattson <jmattson@google.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0133407314==
-Content-Type: multipart/alternative;
- boundary="===============0154294779798102878=="
+On 24/06/21 05:57, David Stevens wrote:
+> KVM supports mapping VM_IO and VM_PFNMAP memory into the guest by using
+> follow_pte in gfn_to_pfn. However, the resolved pfns may not have
+> assoicated struct pages, so they should not be passed to pfn_to_page.
+> This series removes such calls from the x86 and arm64 secondary MMU. To
+> do this, this series modifies gfn_to_pfn to return a struct page in
+> addition to a pfn, if the hva was resolved by gup. This allows the
+> caller to call put_page only when necessated by gup.
+> 
+> This series provides a helper function that unwraps the new return type
+> of gfn_to_pfn to provide behavior identical to the old behavior. As I
+> have no hardware to test powerpc/mips changes, the function is used
+> there for minimally invasive changes. Additionally, as gfn_to_page and
+> gfn_to_pfn_cache are not integrated with mmu notifier, they cannot be
+> easily changed over to only use pfns.
+> 
+> This addresses CVE-2021-22543 on x86 and arm64.
 
---===============0154294779798102878==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you very much for this.  I agree that it makes sense to have a 
+minimal change; I had similar changes almost ready, but was stuck with 
+deadlocks in the gfn_to_pfn_cache case.  In retrospect I should have 
+posted something similar to your patches.
 
-== Series Details ==
+I have started reviewing the patches, and they look good.  I will try to 
+include them in 5.13.
 
-Series: drm/i915: keep backlight_enable on until turn eDP display off (rev4)
-URL   : https://patchwork.freedesktop.org/series/91780/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10271 -> Patchwork_20448
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20448 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +10 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-bdw-5557u:       [PASS][2] -> [DMESG-FAIL][3] ([i915#541])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][5] ([fdo#109271]) +63 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (41 -> 38)
-------------------------------
-
-  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10271 -> Patchwork_20448
-
-  CI-20190529: 20190529
-  CI_DRM_10271: 7a4a01d6716339c418394dbeb9a20d55bbb9a9ba @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20448: 8f8d8fc4ecbcb12609676c49faed23fc68eb78f2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8f8d8fc4ecbc drm/i915: keep backlight_enable on until turn eDP display off
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html
-
---===============0154294779798102878==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: keep backlight_enable on until turn eDP display off (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91780/">https://patchwork.freedesktop.org/series/91780/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10271 -&gt; Patchwork_20448</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20448 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10271/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bdw-5557u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20448/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +63 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10271 -&gt; Patchwork_20448</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10271: 7a4a01d6716339c418394dbeb9a20d55bbb9a9ba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20448: 8f8d8fc4ecbcb12609676c49faed23fc68eb78f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8f8d8fc4ecbc drm/i915: keep backlight_enable on until turn eDP display off</p>
-
-</body>
-</html>
-
---===============0154294779798102878==--
-
---===============0133407314==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Paolo
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0133407314==--
