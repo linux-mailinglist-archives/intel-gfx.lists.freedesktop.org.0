@@ -2,44 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D0D53B2BCC
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 11:49:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74143B2C02
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 11:58:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4B4B6EB42;
-	Thu, 24 Jun 2021 09:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 428C66EA6E;
+	Thu, 24 Jun 2021 09:58:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E20BA6EB42
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 09:49:00 +0000 (UTC)
-IronPort-SDR: LMten/0ieALgA0UGcBcx8rIQaP7GCxLWaF7JOVXPug3OwCuCwoa7+WX9gYXi5qsKCmxuvXfzyO
- CCqcRS5ZQzIQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="207254803"
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="207254803"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 02:48:45 -0700
-IronPort-SDR: 9OJO/olZh+ZvjlM6WBOFBTizjuqerqKqgt4msGuSNDhoYaExxzvgpfIkonzpTJeShWNGY9NW87
- Iv+hM7tnc98w==
-X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="454999611"
-Received: from akaluza-mobl.ger.corp.intel.com (HELO [10.213.220.199])
- ([10.213.220.199])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 02:48:44 -0700
-To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210623072144.890147-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <67246d0b-bc74-7b5b-23ae-a1895acea8bb@linux.intel.com>
-Date: Thu, 24 Jun 2021 10:48:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7203D6EA6C;
+ Thu, 24 Jun 2021 09:58:03 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id s14so3443612pfg.0;
+ Thu, 24 Jun 2021 02:58:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:subject:to:cc:references:in-reply-to:mime-version
+ :message-id:content-transfer-encoding;
+ bh=2/FXkDvvz78LZzi8vEuw9P0gxvIPqn8+9Qh994D56qo=;
+ b=EhX2h/EGnTWqdqRQbpZlpJcgT0oJJ6o7Nef8q7EtPvI99smF5fr4TIG1Xp5CmTthMl
+ XHQzIJWggbxJUXpq8OIPTnYOso57K6OBKZR9lvcFT5+8SBJA9849ahv3W1ndrCYtoccT
+ yygIYTNJlnGOy5EhAkMecjcGkX/PpQmk6jKwKuAM0vg6/CjPiKQtp4B/woWoN5Oxyu7M
+ ua8ZUETzbjTOqOpCOLZ+ZXZ4cbXcI88NdWfpPkU+Dnz/3z1CLTZvVnhoG0DpsDAi9bV1
+ nK9pW2bxw2DMCvsnbAXlJB/lKwAPvP15NgJgI5cnQ6vQYvzhGuulMUnoZMx6s+4VaanO
+ Eqdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:subject:to:cc:references:in-reply-to
+ :mime-version:message-id:content-transfer-encoding;
+ bh=2/FXkDvvz78LZzi8vEuw9P0gxvIPqn8+9Qh994D56qo=;
+ b=NqtVuGKe9/9HL3gtQfc6MptGDoulqDT5jEjl0+qFxTMhrZSDmplCFu1ANMv9dyTEaG
+ az6TT1F08JcB7zubBEpog5Zf6TDXpl9LzXP2rp0G6DFE4Z3Yqy/ERBFlVFxiRAkLycK0
+ M0JcOjGV0CaYUq+on1ODgl8BYTSRPcd0b4PwJwaLE0D501MotbNeEp/d+Cjr+6AU983S
+ eK+TYwYrD5xUVmkeNXVpamr042Cx/7KRvJhsnAcc0/Lqe4GVoiAyEeAoNJ54EsadM5dw
+ TdHJcHmPMchCmp84L/277YnpdK12a9CtULkmaUyNqoRdHiUKPdp+zaqfUMpUm8diCqFo
+ /6ug==
+X-Gm-Message-State: AOAM5331ouQjoUXx26FEttY8OtjTAR7X491ph+SgUNynG33TemHN9bXF
+ EaU4ahZ5Yi5ISWEWBIWfVc0=
+X-Google-Smtp-Source: ABdhPJzzKwhLHCAEARj7N7XbHWSLsSDNrl/BU7M36fXftqZpKf9BHg/7Rmx6MuG9ZeVpPhgC2xWSpQ==
+X-Received: by 2002:a62:1857:0:b029:302:fb56:df52 with SMTP id
+ 84-20020a6218570000b0290302fb56df52mr4317733pfy.3.1624528683047; 
+ Thu, 24 Jun 2021 02:58:03 -0700 (PDT)
+Received: from localhost (60-242-147-73.tpgi.com.au. [60.242.147.73])
+ by smtp.gmail.com with ESMTPSA id y20sm2759510pfb.207.2021.06.24.02.58.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Jun 2021 02:58:02 -0700 (PDT)
+Date: Thu, 24 Jun 2021 19:57:57 +1000
+From: Nicholas Piggin <npiggin@gmail.com>
+To: Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>, Huacai Chen
+ <chenhuacai@kernel.org>, Marc Zyngier <maz@kernel.org>, Paul Mackerras
+ <paulus@ozlabs.org>, Paolo Bonzini <pbonzini@redhat.com>, David Stevens
+ <stevensd@chromium.org>, Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
+ <zhi.a.wang@intel.com>
+References: <20210624035749.4054934-1-stevensd@google.com>
+ <20210624035749.4054934-3-stevensd@google.com>
+ <1624524331.zsin3qejl9.astroid@bobo.none>
+ <201b68a7-10ea-d656-0c1e-5511b1f22674@redhat.com>
+In-Reply-To: <201b68a7-10ea-d656-0c1e-5511b1f22674@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20210623072144.890147-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftest: Extend ctx_timestamp ICL
- workaround to GEN11
+Message-Id: <1624528342.s2ezcyp90x.astroid@bobo.none>
+Subject: Re: [Intel-gfx] [PATCH 2/6] KVM: mmu: also return page from
+ gfn_to_pfn
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,48 +74,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>, intel-gfx@lists.freedesktop.org,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kvmarm@lists.cs.columbia.edu,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ kvm-ppc@vger.kernel.org, Sean Christopherson <seanjc@google.com>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, linux-mips@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>,
+ linux-arm-kernel@lists.infradead.org, Jim Mattson <jmattson@google.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 23/06/2021 08:21, Tejas Upadhyay wrote:
-> EHL and JSL are also observing requirement for 80ns interval for
-> CTX_TIMESTAMP thus extending it to GEN11.
-
-If testing confirms this:
-
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-You only may need to change that INTEL_GEN to GRAPHICS_VER since I think 
-that's the new thing now.
-
-Regards,
-
-Tvrtko
-
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+Excerpts from Paolo Bonzini's message of June 24, 2021 7:42 pm:
+> On 24/06/21 10:52, Nicholas Piggin wrote:
+>>> For now, wrap all calls to gfn_to_pfn functions in the new helper
+>>> function. Callers which don't need the page struct will be updated in
+>>> follow-up patches.
+>> Hmm. You mean callers that do need the page will be updated? Normally
+>> if there will be leftover users that don't need the struct page then
+>> you would go the other way and keep the old call the same, and add a new
+>> one (gfn_to_pfn_page) just for those that need it.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> index 72cca3f0da21..d0afadf34649 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-> @@ -173,8 +173,8 @@ static int __live_engine_timestamps(struct intel_engine_cs *engine)
->   	d_ctx = trifilter(s_ctx);
->   
->   	d_ctx *= engine->gt->clock_frequency;
-> -	if (IS_ICELAKE(engine->i915))
-> -		d_ring *= 12500000; /* Fixed 80ns for icl ctx timestamp? */
-> +	if (IS_GEN(engine->i915, 11))
-> +		d_ring *= 12500000; /* Fixed 80ns for GEN11 ctx timestamp? */
->   	else
->   		d_ring *= engine->gt->clock_frequency;
->   
-> 
+> Needing kvm_pfn_page_unwrap is a sign that something might be buggy, so 
+> it's a good idea to move the short name to the common case and the ugly 
+> kvm_pfn_page_unwrap(gfn_to_pfn(...)) for the weird one.  In fact I'm not 
+> sure there should be any kvm_pfn_page_unwrap in the end.
+
+If all callers were updated that is one thing, but from the changelog
+it sounds like that would not happen and there would be some gfn_to_pfn
+users left over.
+
+But yes in the end you would either need to make gfn_to_pfn never return
+a page found via follow_pte, or change all callers to the new way. If 
+the plan is for the latter then I guess that's fine.
+
+Thanks,
+Nick
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
