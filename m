@@ -2,30 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E92C3B2FE1
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 15:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E383B2FFF
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 15:32:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 292E46EB84;
-	Thu, 24 Jun 2021 13:17:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B79C6EB89;
+	Thu, 24 Jun 2021 13:32:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EA6656EB84;
- Thu, 24 Jun 2021 13:17:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E40AAAA0ED;
- Thu, 24 Jun 2021 13:17:11 +0000 (UTC)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 977D36EB86
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 13:32:30 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ l18-20020a1ced120000b029014c1adff1edso6256258wmh.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 06:32:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=UFhiEJt504RTMqp8+hAmLUOvZwafHba6yxHF1LCXlIs=;
+ b=NApO4BqpqZKbsAPF2q7911aiX0XFllNygyqDwm4IpfIkqxF/qWVA0VnvAuV0FxRdCF
+ 6K5D9Z3plpwX8SDdOqUsJjeJZz/Y5lFX8XUrxROI+89xMLhUqqlzSCrLAPF/HRLjBWE1
+ T/Ci+swNVAFxxNMtP58pmAxZaM3O3xDFYRElo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=UFhiEJt504RTMqp8+hAmLUOvZwafHba6yxHF1LCXlIs=;
+ b=ew3fuEFVbDGVgB2LrbogKLo8z6EAgxRz+Y7XXnGehVp/P6Ti6a3h754BdwyMdT622y
+ lKYj7ob4opgNHEO0+QKPia3JAiYWw931Xu6oxf7lLvq3S14ZJy3bi+UrVkZ3S7T3Epm8
+ JaZvaJb1ExNN8ZKMmLBbImkgIJrS1aeTBwxwCS3ymtgPXWZBaj0f7ARnDTdWVNRl6hO8
+ /1FV/89MrqRsaCycZqGYLg/81xBe2vtZuhr62Dl/b0QQdQvSiatF75XHeUaw3KAwRBe8
+ xmPrwXG/7Z2Snd1Vrd/Sr+Qc81UG5IX9EFhAD2jhrWZ9sMuHX7QEW8xwI6Hom1z8LGR4
+ faNQ==
+X-Gm-Message-State: AOAM530eIIoKMIIamKOcBaFBrM2R8sEMtTC9ID6JEHY6JilLhLYGghdI
+ BsKxcP4G2dFwX2Tz7lHA8h5aNQ==
+X-Google-Smtp-Source: ABdhPJymDBd9yUGzh0GWCdZP9XBIxJSPvo36dzctTaDRmiC9UV0XJC81gCId6b7YQmM7kwKhDQUcYA==
+X-Received: by 2002:a7b:cb8d:: with SMTP id m13mr4353165wmi.8.1624541549303;
+ Thu, 24 Jun 2021 06:32:29 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id y4sm3225289wrw.71.2021.06.24.06.32.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Jun 2021 06:32:28 -0700 (PDT)
+Date: Thu, 24 Jun 2021 15:32:26 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <YNSJaizc5BpmTM8p@phenom.ffwll.local>
+References: <20210622165511.3169559-1-daniel.vetter@ffwll.ch>
+ <20210622165511.3169559-15-daniel.vetter@ffwll.ch>
+ <4ed8f1d3-eb9c-74d6-d93f-ee28971af7f6@amd.com>
+ <YNR9hSMVmzYmotF0@phenom.ffwll.local>
+ <4fba7964-3306-4e2a-f87e-906ebedbe7fe@amd.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Modem, Bhanuprakash" <bhanuprakash.modem@intel.com>
-Date: Thu, 24 Jun 2021 13:17:11 -0000
-Message-ID: <162454063190.1851.11068306616196460060@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
-In-Reply-To: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Fix_state_mismatch_in_drm_infoframe_=28rev5=29?=
+Content-Disposition: inline
+In-Reply-To: <4fba7964-3306-4e2a-f87e-906ebedbe7fe@amd.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 14/15] drm/gem: Tiny kernel clarification
+ for drm_gem_fence_array_add
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,188 +71,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1662101141=="
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1662101141==
-Content-Type: multipart/alternative;
- boundary="===============4553457978268022615=="
+On Thu, Jun 24, 2021 at 02:48:54PM +0200, Christian K=F6nig wrote:
+> =
 
---===============4553457978268022615==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> =
 
-== Series Details ==
+> Am 24.06.21 um 14:41 schrieb Daniel Vetter:
+> > On Wed, Jun 23, 2021 at 10:42:50AM +0200, Christian K=F6nig wrote:
+> > > Am 22.06.21 um 18:55 schrieb Daniel Vetter:
+> > > > Spotted while trying to convert panfrost to these.
+> > > > =
 
-Series: drm/i915/display: Fix state mismatch in drm infoframe (rev5)
-URL   : https://patchwork.freedesktop.org/series/89225/
-State : success
+> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > > Cc: "Christian K=F6nig" <christian.koenig@amd.com>
+> > > > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > Cc: Maxime Ripard <mripard@kernel.org>
+> > > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > > > Cc: David Airlie <airlied@linux.ie>
+> > > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > > ---
+> > > >    drivers/gpu/drm/drm_gem.c | 3 +++
+> > > >    1 file changed, 3 insertions(+)
+> > > > =
 
-== Summary ==
+> > > > diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> > > > index ba2e64ed8b47..68deb1de8235 100644
+> > > > --- a/drivers/gpu/drm/drm_gem.c
+> > > > +++ b/drivers/gpu/drm/drm_gem.c
+> > > > @@ -1302,6 +1302,9 @@ EXPORT_SYMBOL(drm_gem_unlock_reservations);
+> > > >     * @fence_array: array of dma_fence * for the job to block on.
+> > > >     * @fence: the dma_fence to add to the list of dependencies.
+> > > >     *
+> > > > + * This functions consumes the reference for @fence both on succes=
+s and error
+> > > > + * cases.
+> > > > + *
+> > > Oh, the later is a bit ugly I think. But good to know.
+> > > =
 
-CI Bug Log - changes from CI_DRM_10274 -> Patchwork_20453
-====================================================
+> > > Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
+> > Merged to drm-misc-next, thanks for taking a look. Can you perhaps take=
+ a
+> > look at the drm/armada patch too, then I think I have reviews/acks for =
+all
+> > of them?
+> =
 
-Summary
--------
+> What are you talking about? I only see drm/armada patches for the irq stu=
+ff
+> Thomas is working on.
 
-  **SUCCESS**
+There was one in this series, but Maxime was quicker. I'm going to apply
+all the remaining ones now. After that I'll send out a patch set to add
+some dependency tracking to drm_sched_job so that there's not so much
+copypasta going on there. I stumbled over that when reviewing how we
+handle dependencies.
+-Daniel
+-- =
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20453 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][2] ([i915#3159])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [PASS][3] -> [INCOMPLETE][4] ([i915#2782] / [i915#2940])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10274/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
-
-
-Participating hosts (43 -> 40)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10274 -> Patchwork_20453
-
-  CI-20190529: 20190529
-  CI_DRM_10274: 0f49e4d085430915c86c990722817b8ddec84480 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20453: 588c71ac65adcf7ab6a0a5c382b7196b425d0611 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-588c71ac65ad drm/i915/display: Fix state mismatch in drm infoframe
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html
-
---===============4553457978268022615==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Fix state mismatch in drm infoframe (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89225/">https://patchwork.freedesktop.org/series/89225/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10274 -&gt; Patchwork_20453</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20453 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10274/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20453/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 40)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10274 -&gt; Patchwork_20453</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10274: 0f49e4d085430915c86c990722817b8ddec84480 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6117: 3ba0a02404f243d6d8f232c6215163cc4b0fd699 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20453: 588c71ac65adcf7ab6a0a5c382b7196b425d0611 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>588c71ac65ad drm/i915/display: Fix state mismatch in drm infoframe</p>
-
-</body>
-</html>
-
---===============4553457978268022615==--
-
---===============1662101141==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1662101141==--
