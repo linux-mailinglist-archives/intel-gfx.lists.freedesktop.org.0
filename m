@@ -1,93 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A11A3B2A54
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:29:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A2C93B2A5A
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 10:29:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 628806EAE2;
-	Thu, 24 Jun 2021 08:29:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E80C46EABF;
+	Thu, 24 Jun 2021 08:29:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A932E6E9E5;
- Thu, 24 Jun 2021 08:29:02 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id F29331FD6B;
- Thu, 24 Jun 2021 08:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624523341; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=0L5nz5bVnzlvJV0RjY8gCyLPBlQHqLtg4oioZgDj7sE=;
- b=H47JB6rfcTZrnBwfDErNXWaKzTNfBpYnmnio3CIpCf8t3632jgCaxwzRMuz/mdYp9Yz/ao
- XSsgx7UAK+VYhayo4uFpTyl/3X8uoFfqI08rv4ZeVShxNVAAOQlTrHJrmV0DfbOJNybTYR
- PultKHLRqSOLL93gXfamRbzfV6CrU1E=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624523341;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=0L5nz5bVnzlvJV0RjY8gCyLPBlQHqLtg4oioZgDj7sE=;
- b=VGe9rG6so5c34BqO1pSCopzOeVyTNgfweNOXlBZdbQ53I4/7QT/vY1xqauJkC9BafqA9j+
- S6Kg5u/bUT8FLqDw==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id BFDDD11A97;
- Thu, 24 Jun 2021 08:28:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1624523340; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=0L5nz5bVnzlvJV0RjY8gCyLPBlQHqLtg4oioZgDj7sE=;
- b=rfyPFlnrx0gMc6BzpqKzRr4E3RL5MMa6uTkl3g1ggRTmxlP/GEjI3N6ZCDgG/PSEW4V9I0
- CC9jy4Fmuhh7S49OTyfzuUHxDuNa2tvtlWT3wAA3WMrsIHEFs9k1tZdMvnRFdCnsdtksqQ
- RICsUBNTluOuPynz67gyFio3iP0eMNA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1624523340;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=0L5nz5bVnzlvJV0RjY8gCyLPBlQHqLtg4oioZgDj7sE=;
- b=wgWw5+iHWQ5qv3h7jV7wxXmyKHYRMe8CDc7lR0BDGQmqx/Do4XbDkNVtHpd2XiGqlnj6YX
- 1A74dssIJKaSWNBw==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id zwiRLUtC1GBNIQAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 08:28:59 +0000
-To: Jani Nikula <jani.nikula@linux.intel.com>, daniel@ffwll.ch,
- airlied@linux.ie, alexander.deucher@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com,
- mihail.atanassov@arm.com, brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, inki.dae@samsung.com,
- jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com,
- krzysztof.kozlowski@canonical.com, xinliang.liu@linaro.org,
- tiantao6@hisilicon.com, john.stultz@linaro.org,
- kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de, p.zabel@pengutronix.de,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, linux-imx@nxp.com, chunkuang.hu@kernel.org,
- matthias.bgg@gmail.com, bskeggs@redhat.com, tomba@kernel.org,
- hjc@rock-chips.com, heiko@sntech.de, benjamin.gaignard@linaro.org,
- yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
- jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
- jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
- zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com, rodrigo.vivi@intel.com, linux@armlinux.org.uk,
- kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
- melissa.srw@gmail.com, hamohammed.sa@gmail.com
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-5-tzimmermann@suse.de> <87im23u1ok.fsf@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de>
-Date: Thu, 24 Jun 2021 10:28:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFFC56EABF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 08:29:27 +0000 (UTC)
+IronPort-SDR: uiacNRqHck/uVsRm0cT5NoR+GH2Y67vZzDxs0wkx55BCKDtlVSlPpgQzBaf9X3Hy8P1WsL6cBo
+ ycgYPr0kFSVw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="207364443"
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="207364443"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:29:14 -0700
+IronPort-SDR: DbU8OO8K6zmKQG7dTiz7+UlLePUI966nEweYLZ6CB5MWKlKm0vtBWqhfMHVVCKuHnXj7LkI+VV
+ MB7vV1t6f+hA==
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="453340954"
+Received: from schulke-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.242])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 01:29:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210624053932.21037-1-shawn.c.lee@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210622133107.7422-1-shawn.c.lee@intel.com>
+ <20210624053932.21037-1-shawn.c.lee@intel.com>
+Date: Thu, 24 Jun 2021 11:29:09 +0300
+Message-ID: <87a6nfu0mi.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <87im23u1ok.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 04/27] drm: Don't test for IRQ support in
- VBLANK ioctls
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: keep backlight_enable on until
+ turn eDP display off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,310 +49,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-rockchip@lists.infradead.org,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-tegra@vger.kernel.org,
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============1048257041=="
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1048257041==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="XeS7eJ5JPg7IwjZ7mWHplNVbGBiq1dAM5"
+On Thu, 24 Jun 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+> This workaround is specific for a particular panel on Google
+> chromebook project. When user space daemon enter idle state.
+> It request adjust brightness to 0, turn backlight_enable signal
+> off and keep eDP main link active.
+>
+> On general LCD, this behavior might not be a problem.
+> But on this panel, its tcon would expect source to execute
+> full eDP power off sequence after drop backlight_enable signal.
+> Without eDP power off sequence. Even source try to turn
+> backlight_enable signal on and restore proper brightness level.
+> This panel is not able to light on again.
+>
+> This WA ignored the request from user space daemon to disable
+> backlight_enable signal and keep it on always. When user space
+> request kernel to turn eDP display off, kernel driver still
+> can control backlight_enable signal properly. It would not
+> impact standard eDP power off sequence.
+>
+> v2: 1. modify the quirk name and debug messages.
+>     2. unregister backlight.power callback for specific device.
+> v3: 1. modify debug output messages.
+>     2. use DMI_EXACT_MATCH instead of DMI_MATCH.
+>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---XeS7eJ5JPg7IwjZ7mWHplNVbGBiq1dAM5
-Content-Type: multipart/mixed; boundary="zYjFVN6LbQJto7YyRvmktHhbjS3oGNxBZ";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>, daniel@ffwll.ch,
- airlied@linux.ie, alexander.deucher@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com,
- mihail.atanassov@arm.com, brian.starkey@arm.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, inki.dae@samsung.com,
- jy0922.shim@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com,
- krzysztof.kozlowski@canonical.com, xinliang.liu@linaro.org,
- tiantao6@hisilicon.com, john.stultz@linaro.org,
- kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
- laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de, p.zabel@pengutronix.de,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, linux-imx@nxp.com, chunkuang.hu@kernel.org,
- matthias.bgg@gmail.com, bskeggs@redhat.com, tomba@kernel.org,
- hjc@rock-chips.com, heiko@sntech.de, benjamin.gaignard@linaro.org,
- yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
- jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
- jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
- zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
- michal.simek@xilinx.com, rodrigo.vivi@intel.com, linux@armlinux.org.uk,
- kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
- melissa.srw@gmail.com, hamohammed.sa@gmail.com
-Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
- linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-tegra@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-Message-ID: <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de>
-Subject: Re: [PATCH v3 04/27] drm: Don't test for IRQ support in VBLANK ioctls
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-5-tzimmermann@suse.de> <87im23u1ok.fsf@intel.com>
-In-Reply-To: <87im23u1ok.fsf@intel.com>
+Thanks, pushed to drm-intel-next.
 
---zYjFVN6LbQJto7YyRvmktHhbjS3oGNxBZ
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c     |  3 +-
+>  drivers/gpu/drm/i915/display/intel_quirks.c | 34 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_drv.h             |  1 +
+>  3 files changed, 37 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6cc03b9e4321..d3312b9bcc6f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5238,7 +5238,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  	}
+>  
+>  	intel_panel_init(&intel_connector->panel, fixed_mode, downclock_mode);
+> -	intel_connector->panel.backlight.power = intel_pps_backlight_power;
+> +	if (!(dev_priv->quirks & QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
+> +		intel_connector->panel.backlight.power = intel_pps_backlight_power;
+>  	intel_panel_setup_backlight(connector, pipe);
+>  
+>  	if (fixed_mode) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index 98dd787b00e3..8a52b7a16774 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -53,6 +53,12 @@ static void quirk_increase_ddi_disabled_time(struct drm_i915_private *i915)
+>  	drm_info(&i915->drm, "Applying Increase DDI Disabled quirk\n");
+>  }
+>  
+> +static void quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
+> +{
+> +	i915->quirks |= QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK;
+> +	drm_info(&i915->drm, "Applying no pps backlight power quirk\n");
+> +}
+> +
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+> @@ -72,6 +78,12 @@ static int intel_dmi_reverse_brightness(const struct dmi_system_id *id)
+>  	return 1;
+>  }
+>  
+> +static int intel_dmi_no_pps_backlight(const struct dmi_system_id *id)
+> +{
+> +	DRM_INFO("No pps backlight support on %s\n", id->ident);
+> +	return 1;
+> +}
+> +
+>  static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>  	{
+>  		.dmi_id_list = &(const struct dmi_system_id[]) {
+> @@ -96,6 +108,28 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>  		},
+>  		.hook = quirk_invert_brightness,
+>  	},
+> +	{
+> +		.dmi_id_list = &(const struct dmi_system_id[]) {
+> +			{
+> +				.callback = intel_dmi_no_pps_backlight,
+> +				.ident = "Google Lillipup sku524294",
+> +				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Google"),
+> +					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "Lindar"),
+> +					    DMI_EXACT_MATCH(DMI_PRODUCT_SKU, "sku524294"),
+> +				},
+> +			},
+> +			{
+> +				.callback = intel_dmi_no_pps_backlight,
+> +				.ident = "Google Lillipup sku524295",
+> +				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Google"),
+> +					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "Lindar"),
+> +					    DMI_EXACT_MATCH(DMI_PRODUCT_SKU, "sku524295"),
+> +				},
+> +			},
+> +			{ }
+> +		},
+> +		.hook = quirk_no_pps_backlight_power_hook,
+> +	},
+>  };
+>  
+>  static struct intel_quirk intel_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 01e11fe38642..5a065be0792a 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -467,6 +467,7 @@ struct i915_drrs {
+>  #define QUIRK_PIN_SWIZZLED_PAGES (1<<5)
+>  #define QUIRK_INCREASE_T12_DELAY (1<<6)
+>  #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
+> +#define QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK (1<<8)
+>  
+>  struct intel_fbdev;
+>  struct intel_fbc_work;
 
-Hi
-
-Am 24.06.21 um 10:06 schrieb Jani Nikula:
-> On Thu, 24 Jun 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> For KMS drivers, replace the IRQ check in VBLANK ioctls with a check f=
-or
->> vblank support. IRQs might be enabled wthout vblanking being supported=
-=2E
->>
->> This change also removes the DRM framework's only dependency on IRQ st=
-ate
->> for non-legacy drivers. For legacy drivers with userspace modesetting,=
-
->> the original test remains in drm_wait_vblank_ioctl().
->>
->> v3:
->> 	* optimize test in drm_wait_vblank_ioctl() for KMS case (Liviu)
->> 	* update docs for drm_irq_uninstall()
->> v2:
->> 	* keep the old test for legacy drivers in
->> 	  drm_wait_vblank_ioctl() (Daniel)
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->> ---
->>   drivers/gpu/drm/drm_irq.c    | 13 ++++---------
->>   drivers/gpu/drm/drm_vblank.c | 16 ++++++++++++----
->>   2 files changed, 16 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
->> index c3bd664ea733..945dd82e2ea3 100644
->> --- a/drivers/gpu/drm/drm_irq.c
->> +++ b/drivers/gpu/drm/drm_irq.c
->> @@ -74,10 +74,8 @@
->>    * only supports devices with a single interrupt on the main device =
-stored in
->>    * &drm_device.dev and set as the device paramter in drm_dev_alloc()=
-=2E
->>    *
->> - * These IRQ helpers are strictly optional. Drivers which roll their =
-own only
->> - * need to set &drm_device.irq_enabled to signal the DRM core that vb=
-lank
->> - * interrupts are working. Since these helpers don't automatically cl=
-ean up the
->> - * requested interrupt like e.g. devm_request_irq() they're not reall=
-y
->> + * These IRQ helpers are strictly optional. Since these helpers don't=
- automatically
->> + * clean up the requested interrupt like e.g. devm_request_irq() they=
-'re not really
->>    * recommended.
->>    */
->>  =20
->> @@ -91,9 +89,7 @@
->>    * and after the installation.
->>    *
->>    * This is the simplified helper interface provided for drivers with=
- no special
->> - * needs. Drivers which need to install interrupt handlers for multip=
-le
->> - * interrupts must instead set &drm_device.irq_enabled to signal the =
-DRM core
->> - * that vblank interrupts are available.
->> + * needs.
->>    *
->>    * @irq must match the interrupt number that would be passed to requ=
-est_irq(),
->>    * if called directly instead of using this helper function.
->> @@ -156,8 +152,7 @@ EXPORT_SYMBOL(drm_irq_install);
->>    *
->>    * Calls the driver's &drm_driver.irq_uninstall function and unregis=
-ters the IRQ
->>    * handler.  This should only be called by drivers which used drm_ir=
-q_install()
->> - * to set up their interrupt handler. Other drivers must only reset
->> - * &drm_device.irq_enabled to false.
->> + * to set up their interrupt handler.
->>    *
->>    * Note that for kernel modesetting drivers it is a bug if this func=
-tion fails.
->>    * The sanity checks are only to catch buggy user modesetting driver=
-s which call
->> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank=
-=2Ec
->> index 3417e1ac7918..10fe16bafcb6 100644
->> --- a/drivers/gpu/drm/drm_vblank.c
->> +++ b/drivers/gpu/drm/drm_vblank.c
->> @@ -1748,8 +1748,16 @@ int drm_wait_vblank_ioctl(struct drm_device *de=
-v, void *data,
->>   	unsigned int pipe_index;
->>   	unsigned int flags, pipe, high_pipe;
->>  =20
->> -	if (!dev->irq_enabled)
->> -		return -EOPNOTSUPP;
->> +#if defined(CONFIG_DRM_LEGACY)
->> +	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY))) {
->> +		if (!dev->irq_enabled)
->> +			return -EOPNOTSUPP;
->> +	} else /* if DRIVER_MODESET */
->> +#endif
->> +	{
->> +		if (!drm_dev_has_vblank(dev))
->> +			return -EOPNOTSUPP;
->> +	}
->=20
-> Sheesh I hate this kind of inline #ifdefs.
->=20
-> Two alternate suggestions that I believe should be as just efficient:
-
-Or how about:
-
-static bool drm_wait_vblank_supported(struct drm_device *dev)
-
-{
-
-if defined(CONFIG_DRM_LEGACY)
-	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
-
-		return dev->irq_enabled;
-
-#endif
-	return drm_dev_has_vblank(dev);
-
-}
-
-
-?
-
-It's inline, but still readable.
-
-Best regards
-Thomas
-
->=20
-> 1) The more verbose:
->=20
-> #if defined(CONFIG_DRM_LEGACY)
-> static bool drm_wait_vblank_supported(struct drm_device *dev)
-> {
-> 	if  (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
-> 		return dev->irq_enabled;
-> 	else
-> 		return drm_dev_has_vblank(dev);
-> }
-> #else
-> static bool drm_wait_vblank_supported(struct drm_device *dev)
-> {
-> 	return drm_dev_has_vblank(dev);
-> }
-> #endif
->=20
-> 2) The more compact:
->=20
-> static bool drm_wait_vblank_supported(struct drm_device *dev)
-> {
-> 	if  (IS_ENABLED(CONFIG_DRM_LEGACY) && unlikely(drm_core_check_feature(=
-dev, DRIVER_LEGACY)))
-> 		return dev->irq_enabled;
-> 	else
-> 		return drm_dev_has_vblank(dev);
-> }
->=20
-> Then, in drm_wait_vblank_ioctl().
->=20
-> 	if (!drm_wait_vblank_supported(dev))
-> 		return -EOPNOTSUPP;
->=20
-> The compiler should do the right thing without any explicit inline
-> keywords etc.
->=20
-> BR,
-> Jani.
->=20
->>  =20
->>   	if (vblwait->request.type & _DRM_VBLANK_SIGNAL)
->>   		return -EINVAL;
->> @@ -2023,7 +2031,7 @@ int drm_crtc_get_sequence_ioctl(struct drm_devic=
-e *dev, void *data,
->>   	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->>   		return -EOPNOTSUPP;
->>  =20
->> -	if (!dev->irq_enabled)
->> +	if (!drm_dev_has_vblank(dev))
->>   		return -EOPNOTSUPP;
->>  =20
->>   	crtc =3D drm_crtc_find(dev, file_priv, get_seq->crtc_id);
->> @@ -2082,7 +2090,7 @@ int drm_crtc_queue_sequence_ioctl(struct drm_dev=
-ice *dev, void *data,
->>   	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->>   		return -EOPNOTSUPP;
->>  =20
->> -	if (!dev->irq_enabled)
->> +	if (!drm_dev_has_vblank(dev))
->>   		return -EOPNOTSUPP;
->>  =20
->>   	crtc =3D drm_crtc_find(dev, file_priv, queue_seq->crtc_id);
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---zYjFVN6LbQJto7YyRvmktHhbjS3oGNxBZ--
-
---XeS7eJ5JPg7IwjZ7mWHplNVbGBiq1dAM5
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDUQksFAwAAAAAACgkQlh/E3EQov+CO
-tBAAscKEApzwALsL/afbcm5uKvx5iVv2dEDtvThHqwM/vLySjYR97Sf8prBBklUa9XgOJYT3X8rC
-c0t3Uzq4+VIxvZIKgYydECvLfVRwq2MJXr3y5SxsFVA1GpH0kfHj0hoXjy5PINp3GJQReIlvReTd
-OmKzv5fejYkixYbEmJcn/TMilZvcevMrgBTOybnVAoC37xDEochnf9GmoofpS5HnSuGFucNn+Wqv
-REeGPKDeGDFyQHtGxv4vjsFqoJSiqWtQUemnQhuTeeZoPUbxDXU6sR77LDz/S3mmTDOmCPC8IFn1
-/J+8HVQi1UJLew7unH7VVMbsIzhJs08qaebBl5uWcW2qElDlKIKShgCMmp1DhkmlVaUFoWeomP6R
-DYL9GXnrbQ81rcOFipoZd/MYhO0F7TtLufsHBJ2t3KOwTYfLwXkF7NCwU7Sb/ABG+WcVFIW47I9s
-qwtU3BXWIy2bp19c3bqCc4HX6+V847yKXSa5k6ZMy9KaraKlFtymY/fmDGwEhprS2DPM0VIl0qg7
-yU0usq5cMV5Y9uREDDb3TFT1j+8HvvA0Ghm9dnhzYc9OAl44HtGp1pVaRFq/FL8Q4mG7fdeY8cSv
-Yv9Eq4DU8xhTmGJfJa5lM6MgIL0Xc9Pkni9cetDt8+WTRgcNZqcfFYIF0+M99NEvfuoboHNBTcXJ
-qWc=
-=qKXa
------END PGP SIGNATURE-----
-
---XeS7eJ5JPg7IwjZ7mWHplNVbGBiq1dAM5--
-
---===============1048257041==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1048257041==--
