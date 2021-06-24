@@ -2,40 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82D133B2C71
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 12:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A2783B2C7F
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 12:34:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5AEF6EB4E;
-	Thu, 24 Jun 2021 10:27:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E6F66EAAA;
+	Thu, 24 Jun 2021 10:34:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id B3CB86EB4D;
- Thu, 24 Jun 2021 10:27:34 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 051AA31B;
- Thu, 24 Jun 2021 03:27:34 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BA68A3F718;
- Thu, 24 Jun 2021 03:27:33 -0700 (PDT)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
- id 75E09684F2B; Thu, 24 Jun 2021 11:27:32 +0100 (BST)
-Date: Thu, 24 Jun 2021 11:27:32 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20210624102732.3h7lnsik7mkbphgw@e110455-lin.cambridge.arm.com>
-References: <20210624072916.27703-1-tzimmermann@suse.de>
- <20210624072916.27703-5-tzimmermann@suse.de>
- <87im23u1ok.fsf@intel.com>
- <b5e7729f-ed11-e9ca-386e-562feb2bd2b7@suse.de>
- <877dijtzl2.fsf@intel.com>
- <af21db75-584f-aec0-9659-d5386f27b4ea@suse.de>
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com
+ [IPv6:2607:f8b0:4864:20::1035])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA006EAA3;
+ Thu, 24 Jun 2021 10:34:32 +0000 (UTC)
+Received: by mail-pj1-x1035.google.com with SMTP id
+ m15-20020a17090a5a4fb029016f385ffad0so3226131pji.0; 
+ Thu, 24 Jun 2021 03:34:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:subject:to:cc:references:in-reply-to:mime-version
+ :message-id:content-transfer-encoding;
+ bh=ISlLS/Bnqpf/oAWEGOJgKBZ0Rb18u3bU0Ep0kv2LMg0=;
+ b=ItVpaR72A3eWg+6QNdd9RNw76aFcKOXvgi86A4U+ygjRobuSVtqGLn83lJQMbfCPA4
+ LQIa3P9bWqZxWn65q97p0mTXZfMJxza4XBkddIpoDzA0Y1gz2b4OTCDChEW1fNnXNMtx
+ Fd/HR/h+M9YqDeioWNf5AArKjGRkQ+rrWucptSeSf/UUf6QUwL4Nowo/4rEimVbdxS4Q
+ CrrkCNn+4rsxvoMWh2fX66Avx4PzjnR2opDju0qKu/sbanWcGLqwESvvdl5Yw6PwyCya
+ zQM4h5g6tjIbnWhNNgTE1fjofoOSBjtXdTRyzTMD0NSsHlc5YkGJ7hehN9KlI5q5bxjS
+ Pecg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:subject:to:cc:references:in-reply-to
+ :mime-version:message-id:content-transfer-encoding;
+ bh=ISlLS/Bnqpf/oAWEGOJgKBZ0Rb18u3bU0Ep0kv2LMg0=;
+ b=t1j5ApqGnpQqaLjYNihhiucDo529FxhzaUjrzHNTop3coFyzh+reTsGcddTF1sQh5o
+ J2G8eHP8K+R+QeEfOVWppIuqAkKcZ/GF1Yr0fzAUo4dYY+eG7raEgamtKxasJPAwODm1
+ x38IYzAB//NcXpRuockh+gn6kg259c1402TeStc1NXw9oS89Sud4+wVDZz2Ah7NPOlzB
+ T/LsSld524GfJ/VkztoA9zo6fq6Jx7qCdaneI85jH/rxaIBCyWbq6pq1PrXJvuOgO6zs
+ 24XInn9e+KHBY2r9S0ijs/hvN6wbJ4KA0BocmO7MfCc9a5WDFx68pVigbP/2SOVGiYVr
+ PLlw==
+X-Gm-Message-State: AOAM533stQQHoancNMKFDL245V5ymp6XOgTDKo/losZbwguySMOllxA5
+ YZQfwaQO1skrLNWTJGE6IDU=
+X-Google-Smtp-Source: ABdhPJy6kajrzF0OadUDC6nHAS6U7gmSDYSh4DBdORcOqITOBjGnDhRDrYwGVGZv+udz0pGSetXg8w==
+X-Received: by 2002:a17:90b:4ac6:: with SMTP id
+ mh6mr15043416pjb.210.1624530871905; 
+ Thu, 24 Jun 2021 03:34:31 -0700 (PDT)
+Received: from localhost (60-242-147-73.tpgi.com.au. [60.242.147.73])
+ by smtp.gmail.com with ESMTPSA id k63sm7664839pjh.13.2021.06.24.03.34.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Jun 2021 03:34:31 -0700 (PDT)
+Date: Thu, 24 Jun 2021 20:34:25 +1000
+From: Nicholas Piggin <npiggin@gmail.com>
+To: Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>, Huacai Chen
+ <chenhuacai@kernel.org>, Marc Zyngier <maz@kernel.org>, Paul Mackerras
+ <paulus@ozlabs.org>, Paolo Bonzini <pbonzini@redhat.com>, David Stevens
+ <stevensd@chromium.org>, Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
+ <zhi.a.wang@intel.com>
+References: <20210624035749.4054934-1-stevensd@google.com>
+In-Reply-To: <20210624035749.4054934-1-stevensd@google.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <af21db75-584f-aec0-9659-d5386f27b4ea@suse.de>
-Subject: Re: [Intel-gfx] [PATCH v3 04/27] drm: Don't test for IRQ support in
- VBLANK ioctls
+Message-Id: <1624530624.8jff1f4u11.astroid@bobo.none>
+Subject: Re: [Intel-gfx] [PATCH 0/6] KVM: Remove uses of struct page from
+ x86 and arm64 MMU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,119 +72,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, heiko@sntech.de, emma@anholt.net, airlied@linux.ie,
- nouveau@lists.freedesktop.org, alexandre.torgue@foss.st.com,
- dri-devel@lists.freedesktop.org, michal.simek@xilinx.com,
- melissa.srw@gmail.com, linux-tegra@vger.kernel.org, thierry.reding@gmail.com,
- laurent.pinchart@ideasonboard.com, benjamin.gaignard@linaro.org,
- linux@armlinux.org.uk, mihail.atanassov@arm.com, festevam@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
- linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
- wens@csie.org, jernej.skrabec@gmail.com, jonathanh@nvidia.com,
- xinliang.liu@linaro.org, kong.kongxinwei@hisilicon.com,
- james.qian.wang@arm.com, linux-imx@nxp.com,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-graphics-maintainer@vmware.com,
- intel-gfx@lists.freedesktop.org, bskeggs@redhat.com, chunkuang.hu@kernel.org,
- p.zabel@pengutronix.de, puck.chen@hisilicon.com, s.hauer@pengutronix.de,
- inki.dae@samsung.com, rodrigosiqueiramelo@gmail.com, john.stultz@linaro.org,
- mripard@kernel.org, laurentiu.palcu@oss.nxp.com, matthias.bgg@gmail.com,
- kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
- mcoquelin.stm32@gmail.com, amd-gfx@lists.freedesktop.org, hyun.kwon@xilinx.com,
- tomba@kernel.org, jyri.sarha@iki.fi, yannick.fertre@foss.st.com,
- Xinhui.Pan@amd.com, sw0312.kim@samsung.com, hjc@rock-chips.com,
- christian.koenig@amd.com, linux-sunxi@lists.linux.dev,
- kyungmin.park@samsung.com, kieran.bingham+renesas@ideasonboard.com,
- philippe.cornu@foss.st.com, alexander.deucher@amd.com, tiantao6@hisilicon.com,
- shawnguo@kernel.org, zackr@vmware.com, l.stach@pengutronix.de
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
+ David Stevens <stevensd@google.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>, intel-gfx@lists.freedesktop.org,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kvmarm@lists.cs.columbia.edu,
+ Will Deacon <will@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ James Morse <james.morse@arm.com>, kvm-ppc@vger.kernel.org,
+ Sean Christopherson <seanjc@google.com>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, linux-mips@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>,
+ linux-arm-kernel@lists.infradead.org, Jim Mattson <jmattson@google.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBKdW4gMjQsIDIwMjEgYXQgMTE6MDc6NTdBTSArMDIwMCwgVGhvbWFzIFppbW1lcm1h
-bm4gd3JvdGU6Cj4gSGkKPiAKPiBBbSAyNC4wNi4yMSB1bSAxMDo1MSBzY2hyaWViIEphbmkgTmlr
-dWxhOgo+ID4gT24gVGh1LCAyNCBKdW4gMjAyMSwgVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJt
-YW5uQHN1c2UuZGU+IHdyb3RlOgo+ID4gPiBIaQo+ID4gPiAKPiA+ID4gQW0gMjQuMDYuMjEgdW0g
-MTA6MDYgc2NocmllYiBKYW5pIE5pa3VsYToKPiA+ID4gPiBPbiBUaHUsIDI0IEp1biAyMDIxLCBU
-aG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4gd3JvdGU6Cj4gPiA+ID4gPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9kcm1fdmJsYW5rLmMKPiA+ID4gPiA+IGluZGV4IDM0MTdlMWFjNzkxOC4uMTBmZTE2YmFmY2I2
-IDEwMDY0NAo+ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+ID4g
-PiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYwo+ID4gPiA+ID4gQEAgLTE3
-NDgsOCArMTc0OCwxNiBAQCBpbnQgZHJtX3dhaXRfdmJsYW5rX2lvY3RsKHN0cnVjdCBkcm1fZGV2
-aWNlICpkZXYsIHZvaWQgKmRhdGEsCj4gPiA+ID4gPiAgICAJdW5zaWduZWQgaW50IHBpcGVfaW5k
-ZXg7Cj4gPiA+ID4gPiAgICAJdW5zaWduZWQgaW50IGZsYWdzLCBwaXBlLCBoaWdoX3BpcGU7Cj4g
-PiA+ID4gPiAtCWlmICghZGV2LT5pcnFfZW5hYmxlZCkKPiA+ID4gPiA+IC0JCXJldHVybiAtRU9Q
-Tk9UU1VQUDsKPiA+ID4gPiA+ICsjaWYgZGVmaW5lZChDT05GSUdfRFJNX0xFR0FDWSkKPiA+ID4g
-PiA+ICsJaWYgICh1bmxpa2VseShkcm1fY29yZV9jaGVja19mZWF0dXJlKGRldiwgRFJJVkVSX0xF
-R0FDWSkpKSB7Cj4gPiA+ID4gPiArCQlpZiAoIWRldi0+aXJxX2VuYWJsZWQpCj4gPiA+ID4gPiAr
-CQkJcmV0dXJuIC1FT1BOT1RTVVBQOwo+ID4gPiA+ID4gKwl9IGVsc2UgLyogaWYgRFJJVkVSX01P
-REVTRVQgKi8KPiA+ID4gPiA+ICsjZW5kaWYKPiA+ID4gPiA+ICsJewo+ID4gPiA+ID4gKwkJaWYg
-KCFkcm1fZGV2X2hhc192YmxhbmsoZGV2KSkKPiA+ID4gPiA+ICsJCQlyZXR1cm4gLUVPUE5PVFNV
-UFA7Cj4gPiA+ID4gPiArCX0KPiA+ID4gPiAKPiA+ID4gPiBTaGVlc2ggSSBoYXRlIHRoaXMga2lu
-ZCBvZiBpbmxpbmUgI2lmZGVmcy4KPiA+ID4gPiAKPiA+ID4gPiBUd28gYWx0ZXJuYXRlIHN1Z2dl
-c3Rpb25zIHRoYXQgSSBiZWxpZXZlIHNob3VsZCBiZSBhcyBqdXN0IGVmZmljaWVudDoKPiA+ID4g
-Cj4gPiA+IE9yIGhvdyBhYm91dDoKPiA+ID4gCj4gPiA+IHN0YXRpYyBib29sIGRybV93YWl0X3Zi
-bGFua19zdXBwb3J0ZWQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiA+ID4gCj4gPiA+IHsKPiA+
-ID4gCj4gPiA+IGlmIGRlZmluZWQoQ09ORklHX0RSTV9MRUdBQ1kpCj4gPiA+IAlpZiAgKHVubGlr
-ZWx5KGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoZGV2LCBEUklWRVJfTEVHQUNZKSkpCj4gPiA+IAo+
-ID4gPiAJCXJldHVybiBkZXYtPmlycV9lbmFibGVkOwo+ID4gPiAKPiA+ID4gI2VuZGlmCj4gPiA+
-IAlyZXR1cm4gZHJtX2Rldl9oYXNfdmJsYW5rKGRldik7Cj4gPiA+IAo+ID4gPiB9Cj4gPiA+IAo+
-ID4gPiAKPiA+ID4gPwo+ID4gPiAKPiA+ID4gSXQncyBpbmxpbmUsIGJ1dCBzdGlsbCByZWFkYWJs
-ZS4KPiA+IAo+ID4gSXQncyBkZWZpbml0ZWx5IGJldHRlciB0aGFuIHRoZSBvcmlnaW5hbCwgYnV0
-IGl0J3MgdW5jbGVhciB0byBtZSB3aHkKPiA+IHlvdSdkIHByZWZlciB0aGlzIG92ZXIgb3B0aW9u
-IDIpIGJlbG93LiBJIGd1ZXNzIHRoZSBvbmx5IHJlYXNvbiBJIGNhbgo+ID4gdGhpbmsgb2YgaXMg
-ZW1waGFzaXppbmcgdGhlIGNvbmRpdGlvbmFsIGNvbXBpbGF0aW9uLiBIb3dldmVyLAo+ID4gSVNf
-RU5BQkxFRCgpIGlzIHdpZGVseSB1c2VkIGluIHRoaXMgbWFubmVyIHNwZWNpZmljYWxseSB0byBh
-dm9pZCBpbmxpbmUKPiA+ICNpZiwgYW5kIHRoZSBjb21waWxlciBvcHRpbWl6ZXMgaXQgYXdheS4K
-PiAKPiBJdCdzIHNpbXBseSBtb3JlIHJlYWRhYmxlIHRvIG1lIGFzIHRoZSBjb25kaXRpb24gaXMg
-c2ltcGxlci4gQnV0IG9wdGlvbiAyIGlzCj4gYWxzbyBvay4KCkVpdGhlciBvcHRpb24gbG9va3Mg
-Z29vZCB0byBtZS4KClJldmlld2VkLWJ5OiBMaXZpdSBEdWRhdSA8bGl2aXUuZHVkYXVAYXJtLmNv
-bT4KClRoYW5rcyBmb3IgZG9pbmcgdGhhdCEKTGl2aXUKCj4gCj4gQmVzdCByZWdhcmRzCj4gVGhv
-bWFzCj4gCj4gPiAKPiA+IEJSLAo+ID4gSmFuaS4KPiA+IAo+ID4gCj4gPiA+IAo+ID4gPiBCZXN0
-IHJlZ2FyZHMKPiA+ID4gVGhvbWFzCj4gPiA+IAo+ID4gPiA+IAo+ID4gPiA+IDEpIFRoZSBtb3Jl
-IHZlcmJvc2U6Cj4gPiA+ID4gCj4gPiA+ID4gI2lmIGRlZmluZWQoQ09ORklHX0RSTV9MRUdBQ1kp
-Cj4gPiA+ID4gc3RhdGljIGJvb2wgZHJtX3dhaXRfdmJsYW5rX3N1cHBvcnRlZChzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2KQo+ID4gPiA+IHsKPiA+ID4gPiAJaWYgICh1bmxpa2VseShkcm1fY29yZV9j
-aGVja19mZWF0dXJlKGRldiwgRFJJVkVSX0xFR0FDWSkpKQo+ID4gPiA+IAkJcmV0dXJuIGRldi0+
-aXJxX2VuYWJsZWQ7Cj4gPiA+ID4gCWVsc2UKPiA+ID4gPiAJCXJldHVybiBkcm1fZGV2X2hhc192
-YmxhbmsoZGV2KTsKPiA+ID4gPiB9Cj4gPiA+ID4gI2Vsc2UKPiA+ID4gPiBzdGF0aWMgYm9vbCBk
-cm1fd2FpdF92Ymxhbmtfc3VwcG9ydGVkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gPiA+ID4g
-ewo+ID4gPiA+IAlyZXR1cm4gZHJtX2Rldl9oYXNfdmJsYW5rKGRldik7Cj4gPiA+ID4gfQo+ID4g
-PiA+ICNlbmRpZgo+ID4gPiA+IAo+ID4gPiA+IDIpIFRoZSBtb3JlIGNvbXBhY3Q6Cj4gPiA+ID4g
-Cj4gPiA+ID4gc3RhdGljIGJvb2wgZHJtX3dhaXRfdmJsYW5rX3N1cHBvcnRlZChzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2KQo+ID4gPiA+IHsKPiA+ID4gPiAJaWYgIChJU19FTkFCTEVEKENPTkZJR19E
-Uk1fTEVHQUNZKSAmJiB1bmxpa2VseShkcm1fY29yZV9jaGVja19mZWF0dXJlKGRldiwgRFJJVkVS
-X0xFR0FDWSkpKQo+ID4gPiA+IAkJcmV0dXJuIGRldi0+aXJxX2VuYWJsZWQ7Cj4gPiA+ID4gCWVs
-c2UKPiA+ID4gPiAJCXJldHVybiBkcm1fZGV2X2hhc192YmxhbmsoZGV2KTsKPiA+ID4gPiB9Cj4g
-PiA+ID4gCj4gPiA+ID4gVGhlbiwgaW4gZHJtX3dhaXRfdmJsYW5rX2lvY3RsKCkuCj4gPiA+ID4g
-Cj4gPiA+ID4gCWlmICghZHJtX3dhaXRfdmJsYW5rX3N1cHBvcnRlZChkZXYpKQo+ID4gPiA+IAkJ
-cmV0dXJuIC1FT1BOT1RTVVBQOwo+ID4gPiA+IAo+ID4gPiA+IFRoZSBjb21waWxlciBzaG91bGQg
-ZG8gdGhlIHJpZ2h0IHRoaW5nIHdpdGhvdXQgYW55IGV4cGxpY2l0IGlubGluZQo+ID4gPiA+IGtl
-eXdvcmRzIGV0Yy4KPiA+ID4gPiAKPiA+ID4gPiBCUiwKPiA+ID4gPiBKYW5pLgo+ID4gPiA+IAo+
-ID4gPiA+ID4gICAgCWlmICh2Ymx3YWl0LT5yZXF1ZXN0LnR5cGUgJiBfRFJNX1ZCTEFOS19TSUdO
-QUwpCj4gPiA+ID4gPiAgICAJCXJldHVybiAtRUlOVkFMOwo+ID4gPiA+ID4gQEAgLTIwMjMsNyAr
-MjAzMSw3IEBAIGludCBkcm1fY3J0Y19nZXRfc2VxdWVuY2VfaW9jdGwoc3RydWN0IGRybV9kZXZp
-Y2UgKmRldiwgdm9pZCAqZGF0YSwKPiA+ID4gPiA+ICAgIAlpZiAoIWRybV9jb3JlX2NoZWNrX2Zl
-YXR1cmUoZGV2LCBEUklWRVJfTU9ERVNFVCkpCj4gPiA+ID4gPiAgICAJCXJldHVybiAtRU9QTk9U
-U1VQUDsKPiA+ID4gPiA+IC0JaWYgKCFkZXYtPmlycV9lbmFibGVkKQo+ID4gPiA+ID4gKwlpZiAo
-IWRybV9kZXZfaGFzX3ZibGFuayhkZXYpKQo+ID4gPiA+ID4gICAgCQlyZXR1cm4gLUVPUE5PVFNV
-UFA7Cj4gPiA+ID4gPiAgICAJY3J0YyA9IGRybV9jcnRjX2ZpbmQoZGV2LCBmaWxlX3ByaXYsIGdl
-dF9zZXEtPmNydGNfaWQpOwo+ID4gPiA+ID4gQEAgLTIwODIsNyArMjA5MCw3IEBAIGludCBkcm1f
-Y3J0Y19xdWV1ZV9zZXF1ZW5jZV9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpk
-YXRhLAo+ID4gPiA+ID4gICAgCWlmICghZHJtX2NvcmVfY2hlY2tfZmVhdHVyZShkZXYsIERSSVZF
-Ul9NT0RFU0VUKSkKPiA+ID4gPiA+ICAgIAkJcmV0dXJuIC1FT1BOT1RTVVBQOwo+ID4gPiA+ID4g
-LQlpZiAoIWRldi0+aXJxX2VuYWJsZWQpCj4gPiA+ID4gPiArCWlmICghZHJtX2Rldl9oYXNfdmJs
-YW5rKGRldikpCj4gPiA+ID4gPiAgICAJCXJldHVybiAtRU9QTk9UU1VQUDsKPiA+ID4gPiA+ICAg
-IAljcnRjID0gZHJtX2NydGNfZmluZChkZXYsIGZpbGVfcHJpdiwgcXVldWVfc2VxLT5jcnRjX2lk
-KTsKPiA+ID4gPiAKPiA+IAo+IAo+IC0tIAo+IFRob21hcyBaaW1tZXJtYW5uCj4gR3JhcGhpY3Mg
-RHJpdmVyIERldmVsb3Blcgo+IFNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSAo+
-IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQo+IChIUkIgMzY4MDksIEFH
-IE7DvHJuYmVyZykKPiBHZXNjaMOkZnRzZsO8aHJlcjogRmVsaXggSW1lbmTDtnJmZmVyCj4gCgoK
-CgotLSAKPT09PT09PT09PT09PT09PT09PT0KfCBJIHdvdWxkIGxpa2UgdG8gfAp8IGZpeCB0aGUg
-d29ybGQsICB8CnwgYnV0IHRoZXkncmUgbm90IHwKfCBnaXZpbmcgbWUgdGhlICAgfAogXCBzb3Vy
-Y2UgY29kZSEgIC8KICAtLS0tLS0tLS0tLS0tLS0KICAgIMKvXF8o44OEKV8vwq8KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Excerpts from David Stevens's message of June 24, 2021 1:57 pm:
+> KVM supports mapping VM_IO and VM_PFNMAP memory into the guest by using
+> follow_pte in gfn_to_pfn. However, the resolved pfns may not have
+> assoicated struct pages, so they should not be passed to pfn_to_page.
+> This series removes such calls from the x86 and arm64 secondary MMU. To
+> do this, this series modifies gfn_to_pfn to return a struct page in
+> addition to a pfn, if the hva was resolved by gup. This allows the
+> caller to call put_page only when necessated by gup.
+> 
+> This series provides a helper function that unwraps the new return type
+> of gfn_to_pfn to provide behavior identical to the old behavior. As I
+> have no hardware to test powerpc/mips changes, the function is used
+> there for minimally invasive changes. Additionally, as gfn_to_page and
+> gfn_to_pfn_cache are not integrated with mmu notifier, they cannot be
+> easily changed over to only use pfns.
+> 
+> This addresses CVE-2021-22543 on x86 and arm64.
+
+Does this fix the problem? (untested I don't have a POC setup at hand,
+but at least in concept)
+
+I have no problem with improving the API and probably in the direction 
+of your series is good. But there seems to be a lot of unfixed arch code 
+and broken APIs remaining left to do after your series too. This might 
+be most suitable to backport and as a base for your series that can take
+more time to convert to new APIs.
+
+Thanks,
+Nick
+
+---
+
+diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
+index 6a6bc7af0e28..e208c279d903 100644
+--- a/virt/kvm/kvm_main.c
++++ b/virt/kvm/kvm_main.c
+@@ -2104,13 +2104,21 @@ static int hva_to_pfn_remapped(struct vm_area_struct *vma,
+ 	 * Whoever called remap_pfn_range is also going to call e.g.
+ 	 * unmap_mapping_range before the underlying pages are freed,
+ 	 * causing a call to our MMU notifier.
++	 *
++	 * Certain IO or PFNMAP mappings can be backed with valid
++	 * struct pages, but be allocated without refcounting e.g.,
++	 * tail pages of non-compound higher order allocations, which
++	 * would then underflow the refcount when the caller does the
++	 * required put_page. Don't allow those pages here.
+ 	 */ 
+-	kvm_get_pfn(pfn);
++	if (!kvm_try_get_pfn(pfn))
++		r = -EFAULT;
+ 
+ out:
+ 	pte_unmap_unlock(ptep, ptl);
+ 	*p_pfn = pfn;
+-	return 0;
++
++	return r;
+ }
+ 
+ /*
+@@ -2487,6 +2495,13 @@ void kvm_set_pfn_accessed(kvm_pfn_t pfn)
+ }
+ EXPORT_SYMBOL_GPL(kvm_set_pfn_accessed);
+ 
++static int kvm_try_get_pfn(kvm_pfn_t pfn)
++{
++	if (kvm_is_reserved_pfn(pfn))
++		return 1;
++	return get_page_unless_zero(pfn_to_page(pfn));
++}
++
+ void kvm_get_pfn(kvm_pfn_t pfn)
+ {
+ 	if (!kvm_is_reserved_pfn(pfn))
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
