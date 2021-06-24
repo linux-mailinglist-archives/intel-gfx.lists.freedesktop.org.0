@@ -1,67 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4D53B34BE
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 19:25:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9257A3B34E1
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 19:37:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABEC56EC68;
-	Thu, 24 Jun 2021 17:25:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B7796EC6D;
+	Thu, 24 Jun 2021 17:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4866C6EC68
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 17:25:49 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id i94so7567190wri.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 10:25:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=BxgprfPQz14rzIPw369+/e5IhsgPNdmWhXEXBvQHkqI=;
- b=kFcxpC4IUHlIo0esw8hqM+9teolDWMT+2J3uGmx1mQ/s2Tw1STJai7MwY3vanVYNP5
- AzeyMVP+KGxui8aaLXjZKjCToqWJeEQ9BCpMXZCUk+fkBqyf6r3HY/zRrN//Rb61DetL
- hiPZU27cjd4dL38RcTn98/cTu1kuiShkRU1Kg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=BxgprfPQz14rzIPw369+/e5IhsgPNdmWhXEXBvQHkqI=;
- b=gim6zleI8j2b+L43qLrZp4lCfE7i+mXmQ1GqbimzBzm9fPKoe5Ted9piG+Zv05rmLK
- 87uQuOwcsSHj2FjbGmBOlpG8qG/MIAm/twjG4BRejACl0l52gyRXgg/qPPtDA2GLnOxL
- 3ku/jnORcAhudf76EiU81y8+6J5kI3M89rElL9AzS8P/DTqzWpSmdmXY1xeXxa8WM46R
- E+xdGZf3drJH089gRIlO9N8SaDzxBt+90RH5FysGbA93QKl7P44B4blzr3zod7I5f0fT
- 25g2SFYDqrM5Puy0YGHIh/6vhSr5WFrgtDtKN+lSbeN5KvWuRLNbBXInqldv2r5flz7G
- qJqQ==
-X-Gm-Message-State: AOAM531idzqyEb/OHj8Zpg2dI/E4pgrSVoovG5DiIV8Xmzswkm71cI1n
- BH0CbfhiYAqMJ1tSo/PSeiCq6w==
-X-Google-Smtp-Source: ABdhPJwxN4b2i7sBY1fypXpLiInN0nUQVX4BvWk2zFtFe8VPvCbiqSrSpaZMVnDYvijpehL8TOi8MA==
-X-Received: by 2002:a5d:61ce:: with SMTP id q14mr5899790wrv.313.1624555547921; 
- Thu, 24 Jun 2021 10:25:47 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p16sm3859481wrs.52.2021.06.24.10.25.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jun 2021 10:25:47 -0700 (PDT)
-Date: Thu, 24 Jun 2021 19:25:45 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <YNTAGSjJRfjTNWz7@phenom.ffwll.local>
-References: <20210526181053.GA3435@sdutt-i7>
- <53613c13-1cab-b9bd-3922-0389600773ee@linux.intel.com>
- <20210527143514.GA24720@sdutt-i7>
- <828fe399-5319-78a9-c6e3-c0c027e08e9c@linux.intel.com>
- <20210607173101.GA11968@sdutt-i7>
- <2706c890-5145-4edb-acd1-b9862caba8cf@linux.intel.com>
- <CAKMK7uENywXraNAfrU_3iP16zse+S5M7EMOrx7D0z-+AjSqaqA@mail.gmail.com>
- <20210609231023.GB5471@sdutt-i7>
- <YMIvdJ91DFZfybNm@phenom.ffwll.local>
- <20210624163833.GA8705@sdutt-i7>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 928456EC6D;
+ Thu, 24 Jun 2021 17:37:04 +0000 (UTC)
+IronPort-SDR: eZJVyYsAqvqDklWS+i7woYyz1/Jf8wUSMexbcRxlZqhkAFbVNeQt/iFppRdTVaYbQeDmecB08/
+ fcndOnuPD3VA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="268657696"
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="268657696"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 10:37:03 -0700
+IronPort-SDR: tylIs0MlcI8V/0Tv8WKOcSK6wSzf51S7TSSEhK15J8woTUp1/aEvUuWagv2Qbgw5rCUlVoqpp2
+ Z29IVQKSw8Yg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; d="scan'208";a="406717641"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga006.jf.intel.com with ESMTP; 24 Jun 2021 10:37:02 -0700
+Received: from [10.249.129.39] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.129.39])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 15OHb1bO019127; Thu, 24 Jun 2021 18:37:01 +0100
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <20210624070516.21893-6-matthew.brost@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <d8454345-bba9-7173-4d03-83581c6ee583@intel.com>
+Date: Thu, 24 Jun 2021 19:37:01 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210624163833.GA8705@sdutt-i7>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [RFC PATCH 36/97] drm/i915/guc: Add non blocking
- CTB send function
+In-Reply-To: <20210624070516.21893-6-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 05/47] drm/i915/guc: Add stall timer to non
+ blocking CTB send function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,240 +55,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Jason Ekstrand <jason.ekstrand@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 24, 2021 at 09:38:33AM -0700, Matthew Brost wrote:
-> On Thu, Jun 10, 2021 at 05:27:48PM +0200, Daniel Vetter wrote:
-> > On Wed, Jun 09, 2021 at 04:10:23PM -0700, Matthew Brost wrote:
-> > > On Tue, Jun 08, 2021 at 10:46:15AM +0200, Daniel Vetter wrote:
-> > > > On Tue, Jun 8, 2021 at 10:39 AM Tvrtko Ursulin
-> > > > <tvrtko.ursulin@linux.intel.com> wrote:
-> > > > >
-> > > > >
-> > > > > On 07/06/2021 18:31, Matthew Brost wrote:
-> > > > > > On Thu, May 27, 2021 at 04:11:50PM +0100, Tvrtko Ursulin wrote:
-> > > > > >>
-> > > > > >> On 27/05/2021 15:35, Matthew Brost wrote:
-> > > > > >>> On Thu, May 27, 2021 at 11:02:24AM +0100, Tvrtko Ursulin wrote:
-> > > > > >>>>
-> > > > > >>>> On 26/05/2021 19:10, Matthew Brost wrote:
-> > > > > >>>>
-> > > > > >>>> [snip]
-> > > > > >>>>
-> > > > > >>>>>>>>> +static int ct_send_nb(struct intel_guc_ct *ct,
-> > > > > >>>>>>>>> +                   const u32 *action,
-> > > > > >>>>>>>>> +                   u32 len,
-> > > > > >>>>>>>>> +                   u32 flags)
-> > > > > >>>>>>>>> +{
-> > > > > >>>>>>>>> +     struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > > > > >>>>>>>>> +     unsigned long spin_flags;
-> > > > > >>>>>>>>> +     u32 fence;
-> > > > > >>>>>>>>> +     int ret;
-> > > > > >>>>>>>>> +
-> > > > > >>>>>>>>> +     spin_lock_irqsave(&ctb->lock, spin_flags);
-> > > > > >>>>>>>>> +
-> > > > > >>>>>>>>> +     ret = ctb_has_room(ctb, len + 1);
-> > > > > >>>>>>>>> +     if (unlikely(ret))
-> > > > > >>>>>>>>> +             goto out;
-> > > > > >>>>>>>>> +
-> > > > > >>>>>>>>> +     fence = ct_get_next_fence(ct);
-> > > > > >>>>>>>>> +     ret = ct_write(ct, action, len, fence, flags);
-> > > > > >>>>>>>>> +     if (unlikely(ret))
-> > > > > >>>>>>>>> +             goto out;
-> > > > > >>>>>>>>> +
-> > > > > >>>>>>>>> +     intel_guc_notify(ct_to_guc(ct));
-> > > > > >>>>>>>>> +
-> > > > > >>>>>>>>> +out:
-> > > > > >>>>>>>>> +     spin_unlock_irqrestore(&ctb->lock, spin_flags);
-> > > > > >>>>>>>>> +
-> > > > > >>>>>>>>> +     return ret;
-> > > > > >>>>>>>>> +}
-> > > > > >>>>>>>>> +
-> > > > > >>>>>>>>>       static int ct_send(struct intel_guc_ct *ct,
-> > > > > >>>>>>>>>                          const u32 *action,
-> > > > > >>>>>>>>>                          u32 len,
-> > > > > >>>>>>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > > > >>>>>>>>>                          u32 response_buf_size,
-> > > > > >>>>>>>>>                          u32 *status)
-> > > > > >>>>>>>>>       {
-> > > > > >>>>>>>>> +     struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > > > > >>>>>>>>>               struct ct_request request;
-> > > > > >>>>>>>>>               unsigned long flags;
-> > > > > >>>>>>>>>               u32 fence;
-> > > > > >>>>>>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > > > >>>>>>>>>               GEM_BUG_ON(!len);
-> > > > > >>>>>>>>>               GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
-> > > > > >>>>>>>>>               GEM_BUG_ON(!response_buf && response_buf_size);
-> > > > > >>>>>>>>> +     might_sleep();
-> > > > > >>>>>>>>
-> > > > > >>>>>>>> Sleep is just cond_resched below or there is more?
-> > > > > >>>>>>>>
-> > > > > >>>>>>>
-> > > > > >>>>>>> Yes, the cond_resched.
-> > > > > >>>>>>>
-> > > > > >>>>>>>>> +     /*
-> > > > > >>>>>>>>> +      * We use a lazy spin wait loop here as we believe that if the CT
-> > > > > >>>>>>>>> +      * buffers are sized correctly the flow control condition should be
-> > > > > >>>>>>>>> +      * rare.
-> > > > > >>>>>>>>> +      */
-> > > > > >>>>>>>>> +retry:
-> > > > > >>>>>>>>>               spin_lock_irqsave(&ct->ctbs.send.lock, flags);
-> > > > > >>>>>>>>> +     if (unlikely(!ctb_has_room(ctb, len + 1))) {
-> > > > > >>>>>>>>> +             spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > > > > >>>>>>>>> +             cond_resched();
-> > > > > >>>>>>>>> +             goto retry;
-> > > > > >>>>>>>>> +     }
-> > > > > >>>>>>>>
-> > > > > >>>>>>>> If this patch is about adding a non-blocking send function, and below we can
-> > > > > >>>>>>>> see that it creates a fork:
-> > > > > >>>>>>>>
-> > > > > >>>>>>>> intel_guc_ct_send:
-> > > > > >>>>>>>> ...
-> > > > > >>>>>>>>        if (flags & INTEL_GUC_SEND_NB)
-> > > > > >>>>>>>>                return ct_send_nb(ct, action, len, flags);
-> > > > > >>>>>>>>
-> > > > > >>>>>>>>        ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
-> > > > > >>>>>>>>
-> > > > > >>>>>>>> Then why is there a change in ct_send here, which is not the new
-> > > > > >>>>>>>> non-blocking path?
-> > > > > >>>>>>>>
-> > > > > >>>>>>>
-> > > > > >>>>>>> There is not a change to ct_send(), just to intel_guc_ct_send.
-> > > > > >>>>>>
-> > > > > >>>>>> I was doing by the diff which says:
-> > > > > >>>>>>
-> > > > > >>>>>>     static int ct_send(struct intel_guc_ct *ct,
-> > > > > >>>>>>                     const u32 *action,
-> > > > > >>>>>>                     u32 len,
-> > > > > >>>>>> @@ -473,6 +541,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > > > >>>>>>                     u32 response_buf_size,
-> > > > > >>>>>>                     u32 *status)
-> > > > > >>>>>>     {
-> > > > > >>>>>> +        struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > > > > >>>>>>          struct ct_request request;
-> > > > > >>>>>>          unsigned long flags;
-> > > > > >>>>>>          u32 fence;
-> > > > > >>>>>> @@ -482,8 +551,20 @@ static int ct_send(struct intel_guc_ct *ct,
-> > > > > >>>>>>          GEM_BUG_ON(!len);
-> > > > > >>>>>>          GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
-> > > > > >>>>>>          GEM_BUG_ON(!response_buf && response_buf_size);
-> > > > > >>>>>> +        might_sleep();
-> > > > > >>>>>> +        /*
-> > > > > >>>>>> +         * We use a lazy spin wait loop here as we believe that if the CT
-> > > > > >>>>>> +         * buffers are sized correctly the flow control condition should be
-> > > > > >>>>>> +         * rare.
-> > > > > >>>>>> +         */
-> > > > > >>>>>> +retry:
-> > > > > >>>>>>          spin_lock_irqsave(&ct->ctbs.send.lock, flags);
-> > > > > >>>>>> +        if (unlikely(!ctb_has_room(ctb, len + 1))) {
-> > > > > >>>>>> +                spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > > > > >>>>>> +                cond_resched();
-> > > > > >>>>>> +                goto retry;
-> > > > > >>>>>> +        }
-> > > > > >>>>>>
-> > > > > >>>>>> So it looks like a change to ct_send to me. Is that wrong?
-> > > > > >>>>
-> > > > > >>>> What about this part - is the patch changing the blocking ct_send or not,
-> > > > > >>>> and if it is why?
-> > > > > >>>>
-> > > > > >>>
-> > > > > >>> Yes, ct_send() changes. Sorry for the confusion.
-> > > > > >>>
-> > > > > >>> This function needs to be updated to account for the H2G space and
-> > > > > >>> backoff if no space is available.
-> > > > > >>
-> > > > > >> Since this one is the sleeping path, it probably can and needs to be smarter
-> > > > > >> than having a cond_resched busy loop added. Like sleep and get woken up when
-> > > > > >> there is space. Otherwise it can degenerate to busy looping via contention
-> > > > > >> with the non-blocking path.
-> > > > > >>
-> > > > > >
-> > > > > > That screams over enginerring a simple problem to me. If the CT channel
-> > > > > > is full we are really in trouble anyways - i.e. the performance is going
-> > > > > > to terrible as we overwhelmed the GuC with traffic. That being said,
-> > > > >
-> > > > > Performance of what would be terrible? Something relating to submitting
-> > > > > new jobs to the GPU I guess. Or something SRIOV related as you hint below.
-> > > > >
-> > > > > But there is no real reason why CPU cycles/power should suffer if GuC is
-> > > > > busy.
-> > > > >
-> > > > > Okay, if it can't happen in real world then it's possibly passable as a
-> > > > > design of a communication interface. But to me it leaves a bad taste and
-> > > > > a doubt that there is this other aspect of the real world. And that is
-> > > > > when the unexpected happens. Even the most trivial things like a bug in
-> > > > > GuC firmware causes the driver to busy spin in there. So not much
-> > > > > happening on the machine but CPU cores pinned burning cycles in this
-> > > > > code. It's just lazy and not robust design. "Bug #nnnnn - High CPU usage
-> > > > > and GUI blocked - Solution: Upgrade GuC firmware and _reboot_ the
-> > > > > machine". Oh well..
-> > > > >
-> > > > > At least I think the commit message should spell out clearly that a busy
-> > > > > looping path is being added to the sleeping send as a downside of
-> > > > > implementation choices. Still, for the record, I object to the design.
-> > > > >
-> > > > > > IGTs can do this but that really isn't a real world use case. For the
-> > > > > > real world, this buffer is large enough that it won't ever be full hence
-> > > > > > the comment + lazy spin loop.
-> > > > > >
-> > > > > > Next, it isn't like we get an interrupt or something when space
-> > > > > > becomes available so how would we wake this thread? Could we come up
-> > > > > > with a convoluted scheme where we insert ops that generated an interrupt
-> > > > > > at regular intervals, probably? Would it be super complicated, totally
-> > > > > > unnecessary, and gain use nothing - absolutely.
-> > > > > >
-> > > > > > Lastly, blocking CTBs really shouldn't ever be used. Certainly the
-> > > > > > submission code doesn't use these. I think SRIOV might, but those can
-> > > > > > probably be reworked too to use non-blocking. At some point we might
-> > > > > > want to scrub the driver and just delete the blocking path.
-> > > > 
-> > > > I'd do an s/cond_resched()/msleep(1)/ and comment explaining why we
-> > > > just don't care about this. That checks of the cpu wasting in this
-> > > > case (GuC is overloaded, it wont come back anytime soon anyway) and
-> > > > explains why we really don't want to make this any more clever or
-> > > > complex code (because comment can explain why we wont hit this in
-> > > > actual real world usage except when something else is on fire already
-> > > > anyway).
-> > > > 
-> > > 
-> > > Sounds good.
-> > > 
-> > > > If you want to go absolutely overkill and it's not too much work, make
-> > > > the msleep interruptible or check for signals, and bail out. That way
-> > > > the process can be made unstuck with ^C at least.
-> > > 
-> > > This loop is already bound by a timer and if no forward progress is made
-> > > we pop out of this loop. It is assumed if this happens the GuC / GPU is
-> > > dead a and full GPU reset will have to be issued. A following patch
-> > > adds the timer, a bit later in submission section of the series a patch
-> > > is added to trigger the reset.
-> > 
-> > Yeah timeout bail-out works too, and if you then switch it from timeout to
-> > also interruptible it shouldn't be much more code. It's just nice to not
-> > have any uninterruptible sleep.
-> > -Daniel
-> 
-> I didn't get this in my next rev as I didn't know how to do this off
-> hand but I think all I need to add is something like this to each
-> iteration of the busy loops, right?
-> 
-> if (signal_pending_state(TASK_INTERRUPTIBLE, current))
-> 	bail out of busy loop, and return and error
 
-Yeah. Or since this is all hopeless already anyway, go with
-msleep_interruptible().
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+
+On 24.06.2021 09:04, Matthew Brost wrote:
+> Implement a stall timer which fails H2G CTBs once a period of time
+> with no forward progress is reached to prevent deadlock.
+> 
+> Also update to ct_write to return -EIO rather than -EPIPE on a
+> corrupted descriptor.
+
+by doing so you will have the same error code for two different problems:
+
+a) corrupted CTB descriptor (definitely unrecoverable)
+b) long stall in CTB processing (still recoverable)
+
+while caller is explicitly instructed to retry only on:
+
+c) temporary stall in CTB processing (likely recoverable)
+
+so why do we want to limit our diagnostics?
+
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 47 +++++++++++++++++++++--
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  4 ++
+>  2 files changed, 48 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index c9a65d05911f..27ec30b5ef47 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -319,6 +319,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>  		goto err_deregister;
+>  
+>  	ct->enabled = true;
+> +	ct->stall_time = KTIME_MAX;
+>  
+>  	return 0;
+>  
+> @@ -392,7 +393,7 @@ static int ct_write(struct intel_guc_ct *ct,
+>  	unsigned int i;
+>  
+>  	if (unlikely(ctb->broken))
+> -		return -EPIPE;
+> +		return -EIO;
+>  
+>  	if (unlikely(desc->status))
+>  		goto corrupted;
+> @@ -464,7 +465,7 @@ static int ct_write(struct intel_guc_ct *ct,
+>  	CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u status=%#x\n",
+>  		 desc->head, desc->tail, desc->status);
+>  	ctb->broken = true;
+> -	return -EPIPE;
+> +	return -EIO;
+>  }
+>  
+>  /**
+> @@ -507,6 +508,18 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+>  	return err;
+>  }
+>  
+> +#define GUC_CTB_TIMEOUT_MS	1500
+
+it's 150% of core CTB timeout, maybe we should correlate them ?
+
+> +static inline bool ct_deadlocked(struct intel_guc_ct *ct)
+> +{
+> +	long timeout = GUC_CTB_TIMEOUT_MS;
+> +	bool ret = ktime_ms_delta(ktime_get(), ct->stall_time) > timeout;
+> +
+> +	if (unlikely(ret))
+> +		CT_ERROR(ct, "CT deadlocked\n");
+
+nit: in commit message you said all these changes are to "prevent
+deadlock" so maybe this message should rather be:
+
+	int delta = ktime_ms_delta(ktime_get(), ct->stall_time);
+
+	CT_ERROR(ct, "Communication stalled for %dms\n", delta);
+
+(note that CT_ERROR already adds "CT" prefix)
+
+> +
+> +	return ret;
+> +}
+> +
+>  static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
+>  {
+>  	struct guc_ct_buffer_desc *desc = ctb->desc;
+> @@ -518,6 +531,26 @@ static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
+>  	return space >= len_dw;
+>  }
+>  
+> +static int has_room_nb(struct intel_guc_ct *ct, u32 len_dw)
+> +{
+> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> +
+> +	lockdep_assert_held(&ct->ctbs.send.lock);
+> +
+> +	if (unlikely(!h2g_has_room(ctb, len_dw))) {
+> +		if (ct->stall_time == KTIME_MAX)
+> +			ct->stall_time = ktime_get();
+> +
+> +		if (unlikely(ct_deadlocked(ct)))
+
+and maybe above message should be printed somewhere around here when we
+detect "deadlock" for the first time?
+
+> +			return -EIO;
+> +		else
+> +			return -EBUSY;
+> +	}
+> +
+> +	ct->stall_time = KTIME_MAX;
+> +	return 0;
+> +}
+> +
+>  static int ct_send_nb(struct intel_guc_ct *ct,
+>  		      const u32 *action,
+>  		      u32 len,
+> @@ -530,7 +563,7 @@ static int ct_send_nb(struct intel_guc_ct *ct,
+>  
+>  	spin_lock_irqsave(&ctb->lock, spin_flags);
+>  
+> -	ret = h2g_has_room(ctb, len + 1);
+> +	ret = has_room_nb(ct, len + 1);
+>  	if (unlikely(ret))
+>  		goto out;
+>  
+> @@ -574,11 +607,19 @@ static int ct_send(struct intel_guc_ct *ct,
+>  retry:
+>  	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+>  	if (unlikely(!h2g_has_room(ctb, len + 1))) {
+> +		if (ct->stall_time == KTIME_MAX)
+> +			ct->stall_time = ktime_get();
+
+as this is a repeated pattern, maybe it should be moved to h2g_has_room
+or other wrapper ?
+
+>  		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+> +
+> +		if (unlikely(ct_deadlocked(ct)))
+> +			return -EIO;
+> +
+>  		cond_resched();
+>  		goto retry;
+>  	}
+>  
+> +	ct->stall_time = KTIME_MAX;
+
+this one too
+
+> +
+>  	fence = ct_get_next_fence(ct);
+>  	request.fence = fence;
+>  	request.status = 0;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> index eb69263324ba..55ef7c52472f 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/spinlock.h>
+>  #include <linux/workqueue.h>
+> +#include <linux/ktime.h>
+>  
+>  #include "intel_guc_fwif.h"
+>  
+> @@ -68,6 +69,9 @@ struct intel_guc_ct {
+>  		struct list_head incoming; /* incoming requests */
+>  		struct work_struct worker; /* handler for incoming requests */
+>  	} requests;
+> +
+> +	/** @stall_time: time of first time a CTB submission is stalled */
+> +	ktime_t stall_time;
+>  };
+>  
+>  void intel_guc_ct_init_early(struct intel_guc_ct *ct);
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
