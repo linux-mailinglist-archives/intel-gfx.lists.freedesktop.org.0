@@ -1,41 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C06EE3B27DF
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 08:49:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E4A3B286A
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 09:16:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC4716EA4E;
-	Thu, 24 Jun 2021 06:47:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28B816EA3A;
+	Thu, 24 Jun 2021 07:16:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE4D66EA15;
- Thu, 24 Jun 2021 06:47:31 +0000 (UTC)
-IronPort-SDR: WMXGhkqlYW3zVZGUBeZo8775dYpgbeZMQIlY8+zPu/2KXghlntDpqvevRszKpG0//VWa0zXssF
- qQHBS5+GPuOw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10024"; a="207346785"
-X-IronPort-AV: E=Sophos;i="5.83,295,1616482800"; d="scan'208";a="207346785"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2021 23:47:26 -0700
-IronPort-SDR: JFZsl6U2jDVYdFHBInzU9Csg6lyCx1vsfxRCrnKh1KsRaX50yqqiCiFmi6I0Y5hczEWEhCpEr6
- 45RnXtv3qugw==
-X-IronPort-AV: E=Sophos;i="5.83,295,1616482800"; d="scan'208";a="556391004"
-Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2021 23:47:26 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Thu, 24 Jun 2021 00:05:16 -0700
-Message-Id: <20210624070516.21893-48-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210624070516.21893-1-matthew.brost@intel.com>
-References: <20210624070516.21893-1-matthew.brost@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C4B6EA3A;
+ Thu, 24 Jun 2021 07:16:42 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 81F2A1FD54;
+ Thu, 24 Jun 2021 07:16:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624519001; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=doEBp5GBpPTErS+YHfy8q3MJp0PbBKpajkTSw1GBNu8=;
+ b=ryXjj8EaxTHz200n51XOfyWuVqpJir5ZY7nluf2GfU2VIRPYSuo41f6x7ZWfTBBHooOzuk
+ deT1skpq5syxqcwzCYvw58b/eiaHKIQepa3YGdwlXcAetxFviMb7OEVsKHGXkzD6d5q0vK
+ TvX9+u+LqaeB754fJpYurbfiNai803s=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624519001;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=doEBp5GBpPTErS+YHfy8q3MJp0PbBKpajkTSw1GBNu8=;
+ b=b9UdZw9rOfzviY01WS1PgA6u2kyS+7vO9GSF2QeAwVFmH5w+eHs8Y8kshquY3247DZtfLv
+ Yd/1dhjgxKtRdIBA==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 47FD511A97;
+ Thu, 24 Jun 2021 07:16:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624519001; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=doEBp5GBpPTErS+YHfy8q3MJp0PbBKpajkTSw1GBNu8=;
+ b=ryXjj8EaxTHz200n51XOfyWuVqpJir5ZY7nluf2GfU2VIRPYSuo41f6x7ZWfTBBHooOzuk
+ deT1skpq5syxqcwzCYvw58b/eiaHKIQepa3YGdwlXcAetxFviMb7OEVsKHGXkzD6d5q0vK
+ TvX9+u+LqaeB754fJpYurbfiNai803s=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624519001;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=doEBp5GBpPTErS+YHfy8q3MJp0PbBKpajkTSw1GBNu8=;
+ b=b9UdZw9rOfzviY01WS1PgA6u2kyS+7vO9GSF2QeAwVFmH5w+eHs8Y8kshquY3247DZtfLv
+ Yd/1dhjgxKtRdIBA==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id 0NctEFkx1GBmeQAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Thu, 24 Jun 2021 07:16:41 +0000
+Date: Thu, 24 Jun 2021 09:16:39 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YNQxVybBGdjLMUQJ@linux-uq9g>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 47/47] drm/i915/guc: Unblock GuC submission on
- Gen11+
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,112 +74,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Hi Dave and Daniel,
 
-Unblock GuC submission on Gen11+ platforms.
+here's the drm-misc-next-fixes PR for this week.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h            |  1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  8 ++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h |  3 +--
- drivers/gpu/drm/i915/gt/uc/intel_uc.c             | 14 +++++++++-----
- 4 files changed, 19 insertions(+), 7 deletions(-)
+Best regards
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index fae01dc8e1b9..77981788204f 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -54,6 +54,7 @@ struct intel_guc {
- 	struct ida guc_ids;
- 	struct list_head guc_id_list;
- 
-+	bool submission_supported;
- 	bool submission_selected;
- 
- 	struct i915_vma *ads_vma;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index a427336ce916..405339202280 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -2042,6 +2042,13 @@ void intel_guc_submission_disable(struct intel_guc *guc)
- 	/* Note: By the time we're here, GuC may have already been reset */
- }
- 
-+static bool __guc_submission_supported(struct intel_guc *guc)
-+{
-+	/* GuC submission is unavailable for pre-Gen11 */
-+	return intel_guc_is_supported(guc) &&
-+	       INTEL_GEN(guc_to_gt(guc)->i915) >= 11;
-+}
-+
- static bool __guc_submission_selected(struct intel_guc *guc)
- {
- 	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
-@@ -2054,6 +2061,7 @@ static bool __guc_submission_selected(struct intel_guc *guc)
- 
- void intel_guc_submission_init_early(struct intel_guc *guc)
- {
-+	guc->submission_supported = __guc_submission_supported(guc);
- 	guc->submission_selected = __guc_submission_selected(guc);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-index a2a3fad72be1..be767eb6ff71 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-@@ -37,8 +37,7 @@ int intel_guc_wait_for_pending_msg(struct intel_guc *guc,
- 
- static inline bool intel_guc_submission_is_supported(struct intel_guc *guc)
- {
--	/* XXX: GuC submission is unavailable for now */
--	return false;
-+	return guc->submission_supported;
- }
- 
- static inline bool intel_guc_submission_is_wanted(struct intel_guc *guc)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 7a69c3c027e9..61be0aa81492 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -34,8 +34,15 @@ static void uc_expand_default_options(struct intel_uc *uc)
- 		return;
- 	}
- 
--	/* Default: enable HuC authentication only */
--	i915->params.enable_guc = ENABLE_GUC_LOAD_HUC;
-+	/* Intermediate platforms are HuC authentication only */
-+	if (IS_DG1(i915) || IS_ALDERLAKE_S(i915)) {
-+		drm_dbg(&i915->drm, "Disabling GuC only due to old platform\n");
-+		i915->params.enable_guc = ENABLE_GUC_LOAD_HUC;
-+		return;
-+	}
-+
-+	/* Default: enable HuC authentication and GuC submission */
-+	i915->params.enable_guc = ENABLE_GUC_LOAD_HUC | ENABLE_GUC_SUBMISSION;
- }
- 
- /* Reset GuC providing us with fresh state for both GuC and HuC.
-@@ -313,9 +320,6 @@ static int __uc_init(struct intel_uc *uc)
- 	if (i915_inject_probe_failure(uc_to_gt(uc)->i915))
- 		return -ENOMEM;
- 
--	/* XXX: GuC submission is unavailable for now */
--	GEM_BUG_ON(intel_uc_uses_guc_submission(uc));
--
- 	ret = intel_guc_init(guc);
- 	if (ret)
- 		return ret;
--- 
-2.28.0
+drm-misc-next-fixes-2021-06-24:
+Short summary of fixes pull:
 
+ * amdgpu: Fix test for allocation failures
+The following changes since commit 24ff3dc18b99c4b912ab1746e803ddb3be5ced4c:
+
+  drm/dp_mst: Add missing drm parameters to recently added call to drm_dbg_=
+kms() (2021-06-16 15:53:15 -0400)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-=
+06-24
+
+for you to fetch changes up to eed75ce7c8260e0d5612ced4a88180ab991e207c:
+
+  drm/amdgpu: fix amdgpu_preempt_mgr_new() (2021-06-21 15:24:29 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * amdgpu: Fix test for allocation failures
+
+----------------------------------------------------------------
+Dan Carpenter (1):
+      drm/amdgpu: fix amdgpu_preempt_mgr_new()
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
