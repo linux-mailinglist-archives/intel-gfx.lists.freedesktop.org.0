@@ -1,61 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B913B2CB1
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 12:43:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D823B2D10
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jun 2021 12:56:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC876EB53;
-	Thu, 24 Jun 2021 10:43:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D21D6EB5B;
+	Thu, 24 Jun 2021 10:56:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
- [IPv6:2607:f8b0:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 027AE6EAAA;
- Thu, 24 Jun 2021 10:43:35 +0000 (UTC)
-Received: by mail-pl1-x633.google.com with SMTP id x22so2726573pll.11;
- Thu, 24 Jun 2021 03:43:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:subject:to:cc:references:in-reply-to:mime-version
- :message-id:content-transfer-encoding;
- bh=Ntmvbr4Rsn/lopxAADIIDgcNErNmU/zbadQcByBiYK4=;
- b=Uzc43caEhY2Ti31+lpHHW0AZ5sLCVj6W+n4t/ez5IgVzQkVZOibK2DIWQ0+CAuzt9U
- PpuIA4kDsyK3chDvHhxE+YawXhAPb2eWGecCvYilJeif5bW1AWaPBDm7W4vYjxTYq4eX
- vsAbVyUYfQJDK46zRrnjfoRU3RdSuUfndWfij+20vPjPzE9a8Ky+gzwBiWuGHYujrH97
- b1g8G9j+MqQ6oKRgvSqRRvZdf9oww+7IytooiBQtjKLAdCQfMAXpO/dc/FMWyHkr12JS
- ZqabhMCopqc94H8G+WPpptqvIqeO4Wfi2qlPKFQXomh5RWpLJ4WGRgIbJ4SL7OebaZ9b
- Cu7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:subject:to:cc:references:in-reply-to
- :mime-version:message-id:content-transfer-encoding;
- bh=Ntmvbr4Rsn/lopxAADIIDgcNErNmU/zbadQcByBiYK4=;
- b=i7lHDa8Ur67n4na+tYB2JCOOIf77AaqawIsOGHKgKbE9w8+58Jf6tcVtY+bWkuzvNn
- AFWJj63ss9syD/bYQW3V4eLiyagFCaqCt+PyaRy2h1znF6DhV0lwv8zcntRyfJKs7cLK
- Y+N3xsLRQxVUgi2Wh/PhpeD2VORZVAKI/tgHeer/hckhp02IKUdPbz5eh/dwQEXunTDC
- xjtj67a7O84/xCsGCB5v9rywdqIL1zXmy0uWvuwZAieEJtSUfC9OkKj8tawZ8NQNLrSc
- DzJeZ2kisjY+6Lww6Syg/KlvogBmksuFE09W8YdhvpXPBleCAuAlmaf1iNRYBH4nmGhr
- IhAg==
-X-Gm-Message-State: AOAM530RReXkHPEreAXVfgUzUlut6brZPBSmGMw0aIfELupr10b8OekT
- vgPnWMWHiJa8c4+6Q3wxMno=
-X-Google-Smtp-Source: ABdhPJwSbcPeLeFEknq5SPs1K9/7wAZ9//Y8XUJsBm0HOgxDXNJ+d8W1kIX2/TWCimMS0wf9W28w6Q==
-X-Received: by 2002:a17:90a:ce87:: with SMTP id
- g7mr14492750pju.189.1624531415692; 
- Thu, 24 Jun 2021 03:43:35 -0700 (PDT)
-Received: from localhost (60-242-147-73.tpgi.com.au. [60.242.147.73])
- by smtp.gmail.com with ESMTPSA id n12sm2540624pfu.5.2021.06.24.03.43.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jun 2021 03:43:35 -0700 (PDT)
-Date: Thu, 24 Jun 2021 20:43:29 +1000
-From: Nicholas Piggin <npiggin@gmail.com>
-To: Marc Zyngier <maz@kernel.org>
-References: <20210624035749.4054934-1-stevensd@google.com>
- <20210624035749.4054934-4-stevensd@google.com>
- <1624524744.2sr7o7ix86.astroid@bobo.none> <87mtrfinks.wl-maz@kernel.org>
-In-Reply-To: <87mtrfinks.wl-maz@kernel.org>
+X-Greylist: delayed 517 seconds by postgrey-1.36 at gabe;
+ Thu, 24 Jun 2021 10:56:19 UTC
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8171F6EB5B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 10:56:19 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi
+ [62.78.145.57])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 842B9532;
+ Thu, 24 Jun 2021 12:47:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1624531659;
+ bh=ZNycYCdpm5oEjlFfF/sEqNXjEFO/n03c+byQ10Bt5bw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=CGN9DVFsEHoPFf+pGvo+BS5Oqq8sbq0BRLQS9wPa02YfsZbZHe42KSDL8SiS8nknQ
+ Dlh8v3FIrtFZ+aIelYdI0hq6VcbgqVLgvJq3npv5I27MKCnHAHxEiouigFeN+ZPJ+I
+ gY9uoWeAbXhjpnjIo6lsntNy9MnvXU5it7HqZ5l0=
+Date: Thu, 24 Jun 2021 13:47:08 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <YNRirARS1AIVncc+@pendragon.ideasonboard.com>
+References: <20210624072916.27703-1-tzimmermann@suse.de>
+ <20210624072916.27703-17-tzimmermann@suse.de>
 MIME-Version: 1.0
-Message-Id: <1624531381.4bht02wxsj.astroid@bobo.none>
-Subject: Re: [Intel-gfx] [PATCH 3/6] KVM: x86/mmu: avoid struct page in MMU
+Content-Disposition: inline
+In-Reply-To: <20210624072916.27703-17-tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH v3 16/27] drm/rcar-du: Don't set struct
+ drm_device.irq_enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,55 +49,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mips@vger.kernel.org,
- Paul Mackerras <paulus@ozlabs.org>, Will Deacon <will@kernel.org>,
- kvmarm@lists.cs.columbia.edu, intel-gvt-dev@lists.freedesktop.org,
- Joerg Roedel <joro@8bytes.org>, Huacai Chen <chenhuacai@kernel.org>,
- Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, intel-gfx@lists.freedesktop.org,
- kvm-ppc@vger.kernel.org, Alexandru Elisei <alexandru.elisei@arm.com>,
- linux-arm-kernel@lists.infradead.org, Jim Mattson <jmattson@google.com>,
- Sean Christopherson <seanjc@google.com>, linux-kernel@vger.kernel.org,
- James Morse <james.morse@arm.com>, David Stevens <stevensd@chromium.org>,
- Paolo Bonzini <pbonzini@redhat.com>, Vitaly Kuznetsov <vkuznets@redhat.com>,
- linuxppc-dev@lists.ozlabs.org
+Cc: hamohammed.sa@gmail.com, heiko@sntech.de, emma@anholt.net, airlied@linux.ie,
+ nouveau@lists.freedesktop.org, alexandre.torgue@foss.st.com,
+ dri-devel@lists.freedesktop.org, michal.simek@xilinx.com,
+ melissa.srw@gmail.com, linux-tegra@vger.kernel.org, thierry.reding@gmail.com,
+ amd-gfx@lists.freedesktop.org, benjamin.gaignard@linaro.org,
+ linux@armlinux.org.uk, mihail.atanassov@arm.com, festevam@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ jy0922.shim@samsung.com, krzysztof.kozlowski@canonical.com,
+ linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ wens@csie.org, jernej.skrabec@gmail.com, jonathanh@nvidia.com,
+ xinliang.liu@linaro.org, kong.kongxinwei@hisilicon.com,
+ james.qian.wang@arm.com, linux-imx@nxp.com, intel-gfx@lists.freedesktop.org,
+ linux-graphics-maintainer@vmware.com, linux-sunxi@lists.linux.dev,
+ bskeggs@redhat.com, chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
+ puck.chen@hisilicon.com, s.hauer@pengutronix.de, mripard@kernel.org,
+ inki.dae@samsung.com, rodrigosiqueiramelo@gmail.com, john.stultz@linaro.org,
+ laurentiu.palcu@oss.nxp.com, matthias.bgg@gmail.com, kernel@pengutronix.de,
+ linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
+ hyun.kwon@xilinx.com, tomba@kernel.org, jyri.sarha@iki.fi,
+ yannick.fertre@foss.st.com, Xinhui.Pan@amd.com, sw0312.kim@samsung.com,
+ hjc@rock-chips.com, christian.koenig@amd.com, kyungmin.park@samsung.com,
+ kieran.bingham+renesas@ideasonboard.com, philippe.cornu@foss.st.com,
+ alexander.deucher@amd.com, tiantao6@hisilicon.com, shawnguo@kernel.org,
+ zackr@vmware.com, l.stach@pengutronix.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Excerpts from Marc Zyngier's message of June 24, 2021 8:06 pm:
-> On Thu, 24 Jun 2021 09:58:00 +0100,
-> Nicholas Piggin <npiggin@gmail.com> wrote:
->> 
->> Excerpts from David Stevens's message of June 24, 2021 1:57 pm:
->> > From: David Stevens <stevensd@chromium.org>
->> >  out_unlock:
->> >  	if (is_tdp_mmu_root(vcpu->kvm, vcpu->arch.mmu->root_hpa))
->> >  		read_unlock(&vcpu->kvm->mmu_lock);
->> >  	else
->> >  		write_unlock(&vcpu->kvm->mmu_lock);
->> > -	kvm_release_pfn_clean(pfn);
->> > +	if (pfnpg.page)
->> > +		put_page(pfnpg.page);
->> >  	return r;
->> >  }
->> 
->> How about
->> 
->>   kvm_release_pfn_page_clean(pfnpg);
-> 
-> I'm not sure. I always found kvm_release_pfn_clean() ugly, because it
-> doesn't mark the page 'clean'. I find put_page() more correct.
-> 
-> Something like 'kvm_put_pfn_page()' would make more sense, but I'm so
-> bad at naming things that I could just as well call it 'bob()'.
+Hi Thomas,
 
-That seems like a fine name to me. A little better than bob.
+Thank you for the patch.
 
-Thanks,
-Nick
+On Thu, Jun 24, 2021 at 09:29:05AM +0200, Thomas Zimmermann wrote:
+> The field drm_device.irq_enabled is only used by legacy drivers
+> with userspace modesetting. Don't set it in rcar-du.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  drivers/gpu/drm/rcar-du/rcar_du_drv.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
+> index bfbff90588cb..e289a66594a7 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_drv.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
+> @@ -593,8 +593,6 @@ static int rcar_du_probe(struct platform_device *pdev)
+>  		goto error;
+>  	}
+>  
+> -	rcdu->ddev.irq_enabled = 1;
+> -
+>  	/*
+>  	 * Register the DRM device with the core and the connectors with
+>  	 * sysfs.
+
+-- 
+Regards,
+
+Laurent Pinchart
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
