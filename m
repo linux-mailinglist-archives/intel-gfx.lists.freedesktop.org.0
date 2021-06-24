@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E52FA3B3966
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 00:48:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 975F73B3994
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 00:54:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 142026E096;
-	Thu, 24 Jun 2021 22:48:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE3256E9B5;
+	Thu, 24 Jun 2021 22:54:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B04E46E9B0;
- Thu, 24 Jun 2021 22:48:02 +0000 (UTC)
-IronPort-SDR: kjXyy9sEsjXNFs2azaEPfu8NbHOCV973D5Ia68Uy1gFbyOohlPnECUtHbhXb3ebiMbC63W2BLc
- kfk3ay2qggRA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="293207147"
-X-IronPort-AV: E=Sophos;i="5.83,297,1616482800"; d="scan'208";a="293207147"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 15:48:02 -0700
-IronPort-SDR: xkz2W3CXSZM2uGkOao5XPei/BaGIJuzUiIWe83hMF+DuRFVViz8PG5//He/whDnBmzJWXE4hwW
- yGUCNOSRZyfQ==
-X-IronPort-AV: E=Sophos;i="5.83,297,1616482800"; d="scan'208";a="406795443"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 730826E0AD;
+ Thu, 24 Jun 2021 22:54:13 +0000 (UTC)
+IronPort-SDR: fPx++KjLvS1nxQyh7SQT8SX/D8v5RkMqIJIr2kCIXATOigzIabvCYW5hGsEfiWdxnSiK6yCz/9
+ c7HEHU3HwO9A==
+X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="271428129"
+X-IronPort-AV: E=Sophos;i="5.83,297,1616482800"; d="scan'208";a="271428129"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 15:54:12 -0700
+IronPort-SDR: 2hwq9t2NbBxRIlC3tOgYmqD3ROEZf3Y8zGyMxKX3wu8iAJFhQGz9XikwQcN7qDKSihrRvuuksS
+ ET9gEf8am78A==
+X-IronPort-AV: E=Sophos;i="5.83,297,1616482800"; d="scan'208";a="474675276"
 Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2021 15:48:01 -0700
-Date: Thu, 24 Jun 2021 15:41:19 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2021 15:54:11 -0700
+Date: Thu, 24 Jun 2021 15:47:30 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20210624224119.GA19733@sdutt-i7>
+Message-ID: <20210624224728.GB19733@sdutt-i7>
 References: <20210624070516.21893-1-matthew.brost@intel.com>
  <20210624070516.21893-5-matthew.brost@intel.com>
  <761f2063-7fe6-518b-d05e-67f8fadb9a9c@intel.com>
@@ -261,13 +261,6 @@ request *req, u32 *status)
 > message (including HXG header) will make it cleaner
 > =
 
-
-Yes, I know. See above. To me GUC_HXG_MSG_MIN_LEN makes zero sense and
-it is worse than adding + 1. This + 1 accounts for the CT header not the
-HXG header. If any we add a new define, GUC_CT_HDR_LEN, and add that.
-
-Matt
-
 > we can try do it later but by doing it right now we would avoid
 > introducing this send_nb() function and deprecating them long term again
 > =
@@ -328,6 +321,13 @@ Matt
 > decide about next steps
 > =
 
+
+And have to rewrite reset of the stack with the new behavior, that seems
+wrong. This function is allowed to block, so let it.
+
+If you want to do this but all means go ahead but I'll likely NACK it as
+over engineered.
+
 > > this, but IGTs likely can hit rather easily. It really is only
 > > interesting if real workloads hit this. Regardless that can be a follow
 > > up.
@@ -335,7 +335,14 @@ Matt
 
 > if we hide retry in a silent loop then we will not find it out if we hit
 > this condition (IGT or real WL) or not
-> =
+>
+
+We don't care if this is hit in IGTs as this isn't a real world use
+case and will spam the dmesg if we hit this. I can make a note of this
+as an open and we can revisit later.
+
+Matt
+ =
 
 > > =
 
