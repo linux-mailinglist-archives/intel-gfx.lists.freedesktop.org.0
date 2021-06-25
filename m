@@ -2,97 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7639E3B5B5B
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6B4F3B5B60
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:31:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BA786E406;
-	Mon, 28 Jun 2021 09:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E75F6E3D0;
+	Mon, 28 Jun 2021 09:31:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 893 seconds by postgrey-1.36 at gabe;
- Fri, 25 Jun 2021 07:59:43 UTC
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADD076ECDA;
- Fri, 25 Jun 2021 07:59:43 +0000 (UTC)
-Received: from pps.filterd (m0127361.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 15P7XgSr163083; Fri, 25 Jun 2021 03:58:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=dKTZ5LGvIvXYN5hrxescceB4a+549WmZAfPHPpWY4Mw=;
- b=aWt4tRZtCOJ+mGxI9BelzcO6ojLT44Ap4RkL67WA0yRy5mvyPnuqGbe+PsHDDjroEZnK
- FS+4fhDv0x9lSbkNQ20IeeRSmOX20wRyZcHQ60otM2zfSiJweJ3Z8Vf45GOaUWPzobb8
- MejQbpDGQafNC4WT9B02wBAo9AqLsXQSkd3kwHpc2q95cCQ3DYomcOnUvl4WYqwEFnXX
- NYXfv0TrMrf05Ba4xE1Em4vtML0qExLnMyxGpsyQy0dYdt+OQzr/RXLybgWT/YTrvmqL
- ED/DcP4NIOtA5OjUKTQweH+acU1yfsolWy4TgAu7HFWO35IHHhU+QmU/Ed6/r0QvScw+ bg== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 39d9h6bhph-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 25 Jun 2021 03:58:34 -0400
-Received: from m0127361.ppops.net (m0127361.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 15P7Xs32163940;
- Fri, 25 Jun 2021 03:58:34 -0400
-Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com
- [169.51.49.98])
- by mx0a-001b2d01.pphosted.com with ESMTP id 39d9h6bhnp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 25 Jun 2021 03:58:33 -0400
-Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
- by ppma03ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 15P7rV4f015718;
- Fri, 25 Jun 2021 07:58:31 GMT
-Received: from b06cxnps3075.portsmouth.uk.ibm.com
- (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
- by ppma03ams.nl.ibm.com with ESMTP id 399878awsw-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 25 Jun 2021 07:58:31 +0000
-Received: from d06av26.portsmouth.uk.ibm.com (d06av26.portsmouth.uk.ibm.com
- [9.149.105.62])
- by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 15P7wTYI22413732
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 25 Jun 2021 07:58:29 GMT
-Received: from d06av26.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 71C89AE057;
- Fri, 25 Jun 2021 07:58:29 +0000 (GMT)
-Received: from d06av26.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id DA31DAE04D;
- Fri, 25 Jun 2021 07:58:27 +0000 (GMT)
-Received: from oc7455500831.ibm.com (unknown [9.171.31.44])
- by d06av26.portsmouth.uk.ibm.com (Postfix) with ESMTP;
- Fri, 25 Jun 2021 07:58:27 +0000 (GMT)
-To: David Stevens <stevensd@chromium.org>, Marc Zyngier <maz@kernel.org>,
- Huacai Chen <chenhuacai@kernel.org>,
- Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
- Paul Mackerras <paulus@ozlabs.org>,
- Paolo Bonzini <pbonzini@redhat.com>, Nick Piggin <npiggin@gmail.com>
-References: <20210625073616.2184426-1-stevensd@google.com>
- <20210625073616.2184426-2-stevensd@google.com>
-From: Christian Borntraeger <borntraeger@de.ibm.com>
-Message-ID: <183b71c1-6bb0-8d05-e2ce-e452253259a8@de.ibm.com>
-Date: Fri, 25 Jun 2021 09:58:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B25A36ED93;
+ Fri, 25 Jun 2021 12:30:16 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A4C9361463;
+ Fri, 25 Jun 2021 12:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1624624216;
+ bh=236dSGX7ExOVPv4h0UeOksGQ8SgYCOQ7aXD3NGK83S0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=bCaWwZtC9a0kNjsO191mUbtUcojnviRFMJnXBZ/UQc+wZDgM8hUcreC3qNCEkirNE
+ bbLWlaMbJfBXlg05V08tS0sV+lbJ6mjPNoN7Y8AT15UfxghYQbA3zVDmQkdENHWUeg
+ aoWWbni5r3mbAZmV1yWyb6Qtn3Rm3bH4e4imD6DcErBaFTOVYzmckxYQM6wCi00qxL
+ IKspsHt2W8+A5P7LrhMSB0wLC0J5AtiueFbpUWEKsYqOURtPkRdQJiwA+N05SkMbY0
+ yNml1K+qGwoAZk+3C0lKdhaf1wsPR1zKe7fVETOXT9FqPpHlh5Z2ca5kWomvg9Dx6c
+ 8Pdmk/dzJ5M/g==
+Date: Fri, 25 Jun 2021 13:30:05 +0100
+From: Will Deacon <will@kernel.org>
+To: Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+Message-ID: <20210625123004.GA3170@willie-the-truck>
+References: <20210624155526.2775863-1-tientzu@chromium.org>
+ <YNTa1C5uvz+qWryf@char.us.oracle.com>
 MIME-Version: 1.0
-In-Reply-To: <20210625073616.2184426-2-stevensd@google.com>
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: BdtyyjbTQMfPEY6MWTdYEs3ooRdifkK5
-X-Proofpoint-GUID: vG6ohtKq4JE7ZH-Uvo7-8RgtHyEscIYL
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.790
- definitions=2021-06-25_02:2021-06-24,
- 2021-06-25 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 spamscore=0
- clxscore=1015 malwarescore=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 suspectscore=0 priorityscore=1501
- adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2106250043
+Content-Disposition: inline
+In-Reply-To: <YNTa1C5uvz+qWryf@char.us.oracle.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Mailman-Approved-At: Mon, 28 Jun 2021 09:31:03 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 1/5] KVM: do not allow mapping valid but
- non-refcounted pages
+Subject: Re: [Intel-gfx] [PATCH v15 00/12] Restricted DMA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,88 +48,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm-ppc@vger.kernel.org, intel-gvt-dev@lists.freedesktop.org,
- Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- Will Deacon <will@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Sean Christopherson <seanjc@google.com>, Joerg Roedel <joro@8bytes.org>,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, Vitaly Kuznetsov <vkuznets@redhat.com>,
- Alexandru Elisei <alexandru.elisei@arm.com>, kvmarm@lists.cs.columbia.edu,
- Jim Mattson <jmattson@google.com>
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
+ mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ jxgao@google.com, airlied@linux.ie, Dan Williams <dan.j.williams@intel.com>,
+ linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
+ bhelgaas@google.com, Claire Chang <tientzu@chromium.org>,
+ boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, quic_qiancai@quicinc.com,
+ lkml <linux-kernel@vger.kernel.org>, tfiga@chromium.org,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ thomas.lendacky@amd.com, Robin Murphy <robin.murphy@arm.com>,
+ bauerman@linux.ibm.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jun 24, 2021 at 03:19:48PM -0400, Konrad Rzeszutek Wilk wrote:
+> On Thu, Jun 24, 2021 at 11:55:14PM +0800, Claire Chang wrote:
+> > This series implements mitigations for lack of DMA access control on
+> > systems without an IOMMU, which could result in the DMA accessing the
+> > system memory at unexpected times and/or unexpected addresses, possibly
+> > leading to data leakage or corruption.
+> > 
+> > For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+> > not behind an IOMMU. As PCI-e, by design, gives the device full access to
+> > system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+> > to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+> > full chain of exploits; [2], [3]).
+> > 
+> > To mitigate the security concerns, we introduce restricted DMA. Restricted
+> > DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+> > specially allocated region and does memory allocation from the same region.
+> > The feature on its own provides a basic level of protection against the DMA
+> > overwriting buffer contents at unexpected times. However, to protect
+> > against general data leakage and system memory corruption, the system needs
+> > to provide a way to restrict the DMA to a predefined memory region (this is
+> > usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
+> > 
+> > [1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
+> > [1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
+> > [2] https://blade.tencent.com/en/advisories/qualpwn/
+> > [3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
+> > [4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
+> > 
+> > v15:
+> > - Apply Will's diff (https://lore.kernel.org/patchwork/patch/1448957/#1647521)
+> >   to fix the crash reported by Qian.
+> > - Add Stefano's Acked-by tag for patch 01/12 from v14
+> 
+> That all should be now be on
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/konrad/swiotlb.git/
+> devel/for-linus-5.14 (and linux-next)
 
+Thanks Konrad!
 
-On 25.06.21 09:36, David Stevens wrote:
-> From: Nicholas Piggin <npiggin@gmail.com>
-> 
-> It's possible to create a region which maps valid but non-refcounted
-> pages (e.g., tail pages of non-compound higher order allocations). These
-> host pages can then be returned by gfn_to_page, gfn_to_pfn, etc., family
-> of APIs, which take a reference to the page, which takes it from 0 to 1.
-> When the reference is dropped, this will free the page incorrectly.
-> 
-> Fix this by only taking a reference on the page if it was non-zero,
-> which indicates it is participating in normal refcounting (and can be
-> released with put_page).
-> 
-> Signed-off-by: Nicholas Piggin <npiggin@gmail.com>
-
-I guess this would be the small fix for stable? Do we want to add that cc?
-
-Reviewed-by: Christian Borntraeger <borntraeger@de.ibm.com>
-> ---
->   virt/kvm/kvm_main.c | 19 +++++++++++++++++--
->   1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/virt/kvm/kvm_main.c b/virt/kvm/kvm_main.c
-> index 3dcc2abbfc60..f7445c3bcd90 100644
-> --- a/virt/kvm/kvm_main.c
-> +++ b/virt/kvm/kvm_main.c
-> @@ -2175,6 +2175,13 @@ static bool vma_is_valid(struct vm_area_struct *vma, bool write_fault)
->   	return true;
->   }
-> 
-> +static int kvm_try_get_pfn(kvm_pfn_t pfn)
-> +{
-> +	if (kvm_is_reserved_pfn(pfn))
-> +		return 1;
-> +	return get_page_unless_zero(pfn_to_page(pfn));
-> +}
-> +
->   static int hva_to_pfn_remapped(struct vm_area_struct *vma,
->   			       unsigned long addr, bool *async,
->   			       bool write_fault, bool *writable,
-> @@ -2224,13 +2231,21 @@ static int hva_to_pfn_remapped(struct vm_area_struct *vma,
->   	 * Whoever called remap_pfn_range is also going to call e.g.
->   	 * unmap_mapping_range before the underlying pages are freed,
->   	 * causing a call to our MMU notifier.
-> +	 *
-> +	 * Certain IO or PFNMAP mappings can be backed with valid
-> +	 * struct pages, but be allocated without refcounting e.g.,
-> +	 * tail pages of non-compound higher order allocations, which
-> +	 * would then underflow the refcount when the caller does the
-> +	 * required put_page. Don't allow those pages here.
->   	 */
-> -	kvm_get_pfn(pfn);
-> +	if (!kvm_try_get_pfn(pfn))
-> +		r = -EFAULT;
-> 
->   out:
->   	pte_unmap_unlock(ptep, ptl);
->   	*p_pfn = pfn;
-> -	return 0;
-> +
-> +	return r;
->   }
-> 
->   /*
-> 
+Will
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
