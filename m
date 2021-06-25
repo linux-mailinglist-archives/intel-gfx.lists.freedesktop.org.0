@@ -1,41 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8563B432E
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 14:29:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8E53B4415
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 15:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 729E66ED93;
-	Fri, 25 Jun 2021 12:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0136ED88;
+	Fri, 25 Jun 2021 13:09:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E386EDA1;
- Fri, 25 Jun 2021 12:29:25 +0000 (UTC)
-IronPort-SDR: tinL7PQZOLyqh354YZ8i3BNWfVTGG/RzkSVEx5TMf/c6bwsyCLq/b8yLq0Gw1U5bdFk9jyi3Wr
- dz2I1ewywATA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="204651944"
-X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="204651944"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2021 05:29:25 -0700
-IronPort-SDR: o9zTTdibYqXD3kj8Pr8r0KqBlid3YrPFhZSa9f05VNMEIGw3Q31wl3UZ6va6iWEgMjISgK9vA9
- g8tijQH8Honw==
-X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="488165498"
-Received: from adalyx-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.15.48])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2021 05:29:23 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Jun 2021 13:27:51 +0100
-Message-Id: <20210625122751.590289-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210625122751.590289-1-matthew.auld@intel.com>
-References: <20210625122751.590289-1-matthew.auld@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C6886ED88;
+ Fri, 25 Jun 2021 13:09:34 +0000 (UTC)
+IronPort-SDR: 5tCVwS945GT759tIZyES/NKpQ9eHk8SJz14wADNd4fwnEHKGDhxc/ZKMQF2/RcTAIsg+n68vA7
+ yIEy5NXhCnEQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="205838686"
+X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="205838686"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2021 06:09:33 -0700
+IronPort-SDR: r0uyrPHrOaSe9Mkjtjf3Sf7WIO1YEWMBrTiRtXssRIuDokFkqAuzst/P5BYmrKVMPOis88g9Dx
+ 2BtmBURJEJ+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="445645161"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga007.jf.intel.com with ESMTP; 25 Jun 2021 06:09:32 -0700
+Received: from [10.249.158.233] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.158.233])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 15PD9TTe009701; Fri, 25 Jun 2021 14:09:30 +0100
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <20210624070516.21893-7-matthew.brost@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <a44cf19c-d84d-6408-5571-b9a35bb2b3ce@intel.com>
+Date: Fri, 25 Jun 2021 15:09:29 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/gem: only allow WB for smem
- only placements
+In-Reply-To: <20210624070516.21893-7-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 06/47] drm/i915/guc: Optimize CTB writes and
+ reads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,58 +55,288 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2Ugb25seSBzdXBwb3J0IHNpbmdsZSBtb2RlIGFuZCB0aGlzIHNob3VsZCBiZSBpbW11dGFibGUu
-IEZvciBzbWVtIG9ubHkKcGxhY2VtZW50cyBvbiBER0ZYIHRoaXMgc2hvdWxkIGJlIFdCLiBPbiBE
-RzEgZXZlcnl0aGluZyBpcyBzbm9vcGVkLAphbHdheXMsIGFuZCBzbyBzaG91bGQgYmUgY29oZXJl
-bnQuCgpJOTE1X0dFTV9ET01BSU5fR1RUIGxvb2tzIGxpa2UgaXQncyBmb3IgdGhlIGFwZXJ0dXJl
-IHdoaWNoIGlzIG5vdyBnb25lCmZvciBER0ZYLCBzbyBob3BlZnVsbHkgY2FuIGFsc28gYmUgc2Fm
-ZWx5IHJlamVjdGVkLgoKU2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRA
-aW50ZWwuY29tPgpDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXgu
-aW50ZWwuY29tPgpDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4
-LmludGVsLmNvbT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Ci0t
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jIHwgIDcgKysrKysr
-KwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYyAgIHwgMTAgKysrKysr
-KysrKwogMiBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jCmluZGV4IGQwYzkxNjk3YmIyMi4uZTM0NTlhNTI0
-ZTY0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWlu
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jCkBAIC01
-NzcsNiArNTc3LDEzIEBAIGk5MTVfZ2VtX3NldF9kb21haW5faW9jdGwoc3RydWN0IGRybV9kZXZp
-Y2UgKmRldiwgdm9pZCAqZGF0YSwKIAkJZ290byBvdXRfdW5waW47CiAJfQogCisJaWYgKElTX0RH
-RlgodG9faTkxNShvYmotPmJhc2UuZGV2KSkgJiYgb2JqLT5tbS5uX3BsYWNlbWVudHMgPT0gMSAm
-JgorCSAgICBpOTE1X2dlbV9vYmplY3RfcGxhY2VtZW50c19jb250YWluX3R5cGUob2JqLCBJTlRF
-TF9NRU1PUllfU1lTVEVNKSAmJgorCSAgICByZWFkX2RvbWFpbnMgIT0gSTkxNV9HRU1fRE9NQUlO
-X0NQVSkgeworCQllcnIgPSAtRUlOVkFMOworCQlnb3RvIG91dF91bnBpbjsKKwl9CisKIAlpZiAo
-cmVhZF9kb21haW5zICYgSTkxNV9HRU1fRE9NQUlOX1dDKQogCQllcnIgPSBpOTE1X2dlbV9vYmpl
-Y3Rfc2V0X3RvX3djX2RvbWFpbihvYmosIHdyaXRlX2RvbWFpbik7CiAJZWxzZSBpZiAocmVhZF9k
-b21haW5zICYgSTkxNV9HRU1fRE9NQUlOX0dUVCkKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
-NV9nZW1fbW1hbi5jCmluZGV4IGYzNTg2YjM2ZGQ1My4uYWZjOWYzZGMzOGI5IDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMKQEAgLTY3Myw2ICs2NzMsNyBAQCBfX2Fz
-c2lnbl9tbWFwX29mZnNldChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAogCQkgICAg
-IGVudW0gaTkxNV9tbWFwX3R5cGUgbW1hcF90eXBlLAogCQkgICAgIHU2NCAqb2Zmc2V0LCBzdHJ1
-Y3QgZHJtX2ZpbGUgKmZpbGUpCiB7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0
-b19pOTE1KG9iai0+YmFzZS5kZXYpOwogCXN0cnVjdCBpOTE1X21tYXBfb2Zmc2V0ICptbW87CiAK
-IAlpZiAoaTkxNV9nZW1fb2JqZWN0X25ldmVyX21tYXAob2JqKSkKQEAgLTY5Nyw2ICs2OTgsMTUg
-QEAgX19hc3NpZ25fbW1hcF9vZmZzZXQoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwK
-IAkgICAgaTkxNV9nZW1fb2JqZWN0X3BsYWNlbWVudHNfY29udGFpbl90eXBlKG9iaiwgSU5URUxf
-TUVNT1JZX0xPQ0FMKSkKIAkJcmV0dXJuIC1FTk9ERVY7CiAKKwkvKgorCSAqIEZvciBzbWVtIG9u
-bHkgcGxhY2VtZW50cyBvbiBER0ZYIHdlIG5lZWQgdG8gZGVmYXVsdCB0byBXQi4gT24gREcxCisJ
-ICogZXZlcnl0aGluZyBpcyBzbm9vcGVkIGFsd2F5cywgc28gc2hvdWxkIGFsd2F5cyBiZSBjb2hl
-cmVudC4KKwkgKi8KKwkgaWYgKElTX0RHRlgoaTkxNSkgJiYKKwkgICAgIG1tYXBfdHlwZSAhPSBJ
-OTE1X01NQVBfVFlQRV9XQiAmJiBvYmotPm1tLm5fcGxhY2VtZW50cyA9PSAxICYmCisJICAgICBp
-OTE1X2dlbV9vYmplY3RfcGxhY2VtZW50c19jb250YWluX3R5cGUob2JqLCBJTlRFTF9NRU1PUllf
-U1lTVEVNKSkKKwkJcmV0dXJuIC1FTk9ERVY7CisKIAltbW8gPSBtbWFwX29mZnNldF9hdHRhY2go
-b2JqLCBtbWFwX3R5cGUsIGZpbGUpOwogCWlmIChJU19FUlIobW1vKSkKIAkJcmV0dXJuIFBUUl9F
-UlIobW1vKTsKLS0gCjIuMjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+
+
+On 24.06.2021 09:04, Matthew Brost wrote:
+> CTB writes are now in the path of command submission and should be
+> optimized for performance. Rather than reading CTB descriptor values
+> (e.g. head, tail) which could result in accesses across the PCIe bus,
+> store shadow local copies and only read/write the descriptor values when
+> absolutely necessary. Also store the current space in the each channel
+> locally.
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 76 ++++++++++++++---------
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  6 ++
+>  2 files changed, 51 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 27ec30b5ef47..1fd5c69358ef 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -130,6 +130,10 @@ static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
+>  static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
+>  {
+>  	ctb->broken = false;
+> +	ctb->tail = 0;
+> +	ctb->head = 0;
+> +	ctb->space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size);
+> +
+>  	guc_ct_buffer_desc_init(ctb->desc);
+>  }
+>  
+> @@ -383,10 +387,8 @@ static int ct_write(struct intel_guc_ct *ct,
+>  {
+>  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>  	struct guc_ct_buffer_desc *desc = ctb->desc;
+> -	u32 head = desc->head;
+> -	u32 tail = desc->tail;
+> +	u32 tail = ctb->tail;
+>  	u32 size = ctb->size;
+> -	u32 used;
+>  	u32 header;
+>  	u32 hxg;
+>  	u32 *cmds = ctb->cmds;
+> @@ -398,25 +400,14 @@ static int ct_write(struct intel_guc_ct *ct,
+>  	if (unlikely(desc->status))
+>  		goto corrupted;
+>  
+> -	if (unlikely((tail | head) >= size)) {
+> +#ifdef CONFIG_DRM_I915_DEBUG_GUC
+
+since we are caching tail, we may want to check if it's sill correct:
+
+	tail = READ_ONCE(desc->tail);
+	if (unlikely(tail != ctb->tail)) {
+  		CT_ERROR(ct, "Tail was modified %u != %u\n",
+			 tail, ctb->tail);
+  		desc->status |= GUC_CTB_STATUS_MISMATCH;
+  		goto corrupted;
+	}
+
+and since we own the tail then we can be more strict:
+
+	GEM_BUG_ON(tail > size);
+
+and then finally just check GuC head:
+
+	head = READ_ONCE(desc->head);
+	if (unlikely(head >= size)) {
+		...
+
+> +	if (unlikely((desc->tail | desc->head) >= size)) {
+>  		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+> -			 head, tail, size);
+> +			 desc->head, desc->tail, size);
+>  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>  		goto corrupted;
+>  	}
+> -
+> -	/*
+> -	 * tail == head condition indicates empty. GuC FW does not support
+> -	 * using up the entire buffer to get tail == head meaning full.
+> -	 */
+> -	if (tail < head)
+> -		used = (size - head) + tail;
+> -	else
+> -		used = tail - head;
+> -
+> -	/* make sure there is a space including extra dw for the fence */
+> -	if (unlikely(used + len + 1 >= size))
+> -		return -ENOSPC;
+> +#endif
+>  
+>  	/*
+>  	 * dw0: CT header (including fence)
+> @@ -457,7 +448,9 @@ static int ct_write(struct intel_guc_ct *ct,
+>  	write_barrier(ct);
+>  
+>  	/* now update descriptor */
+> +	ctb->tail = tail;
+>  	WRITE_ONCE(desc->tail, tail);
+> +	ctb->space -= len + 1;
+
+this magic "1" is likely GUC_CTB_MSG_MIN_LEN, right ?
+
+>  
+>  	return 0;
+>  
+> @@ -473,7 +466,7 @@ static int ct_write(struct intel_guc_ct *ct,
+>   * @req:	pointer to pending request
+>   * @status:	placeholder for status
+>   *
+> - * For each sent request, Guc shall send bac CT response message.
+> + * For each sent request, GuC shall send back CT response message.
+>   * Our message handler will update status of tracked request once
+>   * response message with given fence is received. Wait here and
+>   * check for valid response status value.
+> @@ -520,24 +513,35 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
+>  	return ret;
+>  }
+>  
+> -static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
+> +static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
+>  {
+> -	struct guc_ct_buffer_desc *desc = ctb->desc;
+> -	u32 head = READ_ONCE(desc->head);
+> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> +	u32 head;
+>  	u32 space;
+>  
+> -	space = CIRC_SPACE(desc->tail, head, ctb->size);
+> +	if (ctb->space >= len_dw)
+> +		return true;
+> +
+> +	head = READ_ONCE(ctb->desc->head);
+> +	if (unlikely(head > ctb->size)) {
+> +		CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u size=%u\n",
+> +			  ctb->desc->head, ctb->desc->tail, ctb->size);
+> +		ctb->desc->status |= GUC_CTB_STATUS_OVERFLOW;
+> +		ctb->broken = true;
+> +		return false;
+> +	}
+> +
+> +	space = CIRC_SPACE(ctb->tail, head, ctb->size);
+> +	ctb->space = space;
+
+maybe here we could mark stall_time ?
+
+ 	if (space >= len_dw)
+		return true;
+
+	if (ct->stall_time == KTIME_MAX)
+		ct->stall_time = ktime_get();
+	return false;
+
+>  
+>  	return space >= len_dw;
+
+btw, maybe to avoid filling CTB to the last dword, this should be
+
+	space > len_dw
+
+note the earlier comment:
+
+/*
+ * tail == head condition indicates empty. GuC FW does not support
+ * using up the entire buffer to get tail == head meaning full.
+ */
+
+>  }
+>  
+>  static int has_room_nb(struct intel_guc_ct *ct, u32 len_dw)
+>  {
+> -	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> -
+>  	lockdep_assert_held(&ct->ctbs.send.lock);
+>  
+> -	if (unlikely(!h2g_has_room(ctb, len_dw))) {
+> +	if (unlikely(!h2g_has_room(ct, len_dw))) {
+>  		if (ct->stall_time == KTIME_MAX)
+>  			ct->stall_time = ktime_get();
+>  
+> @@ -606,10 +610,10 @@ static int ct_send(struct intel_guc_ct *ct,
+>  	 */
+>  retry:
+>  	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+> -	if (unlikely(!h2g_has_room(ctb, len + 1))) {
+> +	if (unlikely(!h2g_has_room(ct, len + 1))) {
+>  		if (ct->stall_time == KTIME_MAX)
+>  			ct->stall_time = ktime_get();
+> -		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+> +		spin_unlock_irqrestore(&ctb->lock, flags);
+>  
+>  		if (unlikely(ct_deadlocked(ct)))
+>  			return -EIO;
+> @@ -632,7 +636,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>  
+>  	err = ct_write(ct, action, len, fence, 0);
+>  
+> -	spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+> +	spin_unlock_irqrestore(&ctb->lock, flags);
+>  
+>  	if (unlikely(err))
+>  		goto unlink;
+> @@ -720,7 +724,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>  {
+>  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
+>  	struct guc_ct_buffer_desc *desc = ctb->desc;
+> -	u32 head = desc->head;
+> +	u32 head = ctb->head;
+>  	u32 tail = desc->tail;
+>  	u32 size = ctb->size;
+>  	u32 *cmds = ctb->cmds;
+> @@ -735,12 +739,21 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>  	if (unlikely(desc->status))
+>  		goto corrupted;
+>  
+> -	if (unlikely((tail | head) >= size)) {
+> +#ifdef CONFIG_DRM_I915_DEBUG_GUC
+
+as above we may want to check if our cached head was not modified
+
+> +	if (unlikely((desc->tail | desc->head) >= size)) {
+>  		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+>  			 head, tail, size);
+>  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>  		goto corrupted;
+>  	}
+> +#else
+> +	if (unlikely((tail | ctb->head) >= size)) {
+> +		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+> +			 head, tail, size);
+> +		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+> +		goto corrupted;
+> +	}
+> +#endif
+>  
+>  	/* tail == head condition indicates empty */
+>  	available = tail - head;
+> @@ -790,6 +803,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>  	}
+>  	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>  
+> +	ctb->head = head;
+>  	/* now update descriptor */
+>  	WRITE_ONCE(desc->head, head);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> index 55ef7c52472f..9924335e2ee6 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> @@ -33,6 +33,9 @@ struct intel_guc;
+>   * @desc: pointer to the buffer descriptor
+>   * @cmds: pointer to the commands buffer
+>   * @size: size of the commands buffer in dwords
+> + * @head: local shadow copy of head in dwords
+> + * @tail: local shadow copy of tail in dwords
+> + * @space: local shadow copy of space in dwords
+>   * @broken: flag to indicate if descriptor data is broken
+>   */
+>  struct intel_guc_ct_buffer {
+> @@ -40,6 +43,9 @@ struct intel_guc_ct_buffer {
+>  	struct guc_ct_buffer_desc *desc;
+>  	u32 *cmds;
+>  	u32 size;
+> +	u32 tail;
+> +	u32 head;
+> +	u32 space;
+
+in later patch this is changing to atomic_t
+maybe we can start with it ?
+
+>  	bool broken;
+>  };
+>  
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
