@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E8E53B4415
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 15:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C78AA3B443D
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 15:17:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0136ED88;
-	Fri, 25 Jun 2021 13:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E65906EDBE;
+	Fri, 25 Jun 2021 13:17:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C6886ED88;
- Fri, 25 Jun 2021 13:09:34 +0000 (UTC)
-IronPort-SDR: 5tCVwS945GT759tIZyES/NKpQ9eHk8SJz14wADNd4fwnEHKGDhxc/ZKMQF2/RcTAIsg+n68vA7
- yIEy5NXhCnEQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="205838686"
-X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="205838686"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2021 06:09:33 -0700
-IronPort-SDR: r0uyrPHrOaSe9Mkjtjf3Sf7WIO1YEWMBrTiRtXssRIuDokFkqAuzst/P5BYmrKVMPOis88g9Dx
- 2BtmBURJEJ+w==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BBCC6EDBE;
+ Fri, 25 Jun 2021 13:17:54 +0000 (UTC)
+IronPort-SDR: l9Bd8AG7PB73njZYT9Xp+J64suwe1fbMUouC5MuqcwH+ZhGTKVeBkY0TqyRJVKDxVmJsZgEufV
+ a4ILRzMLtJng==
+X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="293301193"
+X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="293301193"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2021 06:17:53 -0700
+IronPort-SDR: Yqraf/QGs1D4lo0nWC5JKm96JXTtc82TUPNkMRBBRQqkve75oE6gUdC/iG+E63mz9Ts4wF1bI/
+ ZSJ2cBb9L4Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="445645161"
+X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="481847273"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga007.jf.intel.com with ESMTP; 25 Jun 2021 06:09:32 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 25 Jun 2021 06:17:52 -0700
 Received: from [10.249.158.233] (mwajdecz-MOBL.ger.corp.intel.com
  [10.249.158.233])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 15PD9TTe009701; Fri, 25 Jun 2021 14:09:30 +0100
+ 15PDHpvJ011411; Fri, 25 Jun 2021 14:17:51 +0100
 To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org
 References: <20210624070516.21893-1-matthew.brost@intel.com>
- <20210624070516.21893-7-matthew.brost@intel.com>
+ <20210624070516.21893-11-matthew.brost@intel.com>
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <a44cf19c-d84d-6408-5571-b9a35bb2b3ce@intel.com>
-Date: Fri, 25 Jun 2021 15:09:29 +0200
+Message-ID: <fa12d809-0b13-b816-d36d-d251b70918a6@intel.com>
+Date: Fri, 25 Jun 2021 15:17:51 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210624070516.21893-7-matthew.brost@intel.com>
+In-Reply-To: <20210624070516.21893-11-matthew.brost@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/47] drm/i915/guc: Optimize CTB writes and
- reads
+Subject: Re: [Intel-gfx] [PATCH 10/47] drm/i915/guc: Add lrc descriptor
+ context lookup array
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,277 +63,115 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 24.06.2021 09:04, Matthew Brost wrote:
-> CTB writes are now in the path of command submission and should be
-> optimized for performance. Rather than reading CTB descriptor values
-> (e.g. head, tail) which could result in accesses across the PCIe bus,
-> store shadow local copies and only read/write the descriptor values when
-> absolutely necessary. Also store the current space in the each channel
-> locally.
+> Add lrc descriptor context lookup array which can resolve the
+> intel_context from the lrc descriptor index. In addition to lookup, it
+> can determine in the lrc descriptor context is currently registered with
+> the GuC by checking if an entry for a descriptor index is present.
+> Future patches in the series will make use of this array.
+
+s/lrc/LRC
+
 > 
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Cc: John Harrison <john.c.harrison@intel.com>
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 76 ++++++++++++++---------
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  6 ++
->  2 files changed, 51 insertions(+), 31 deletions(-)
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  5 +++
+>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 32 +++++++++++++++++--
+>  2 files changed, 35 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 27ec30b5ef47..1fd5c69358ef 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -130,6 +130,10 @@ static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
->  static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
->  {
->  	ctb->broken = false;
-> +	ctb->tail = 0;
-> +	ctb->head = 0;
-> +	ctb->space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index b28fa54214f2..2313d9fc087b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -6,6 +6,8 @@
+>  #ifndef _INTEL_GUC_H_
+>  #define _INTEL_GUC_H_
+>  
+> +#include "linux/xarray.h"
+
+#include <linux/xarray.h>
+
 > +
->  	guc_ct_buffer_desc_init(ctb->desc);
+>  #include "intel_uncore.h"
+>  #include "intel_guc_fw.h"
+>  #include "intel_guc_fwif.h"
+> @@ -46,6 +48,9 @@ struct intel_guc {
+>  	struct i915_vma *lrc_desc_pool;
+>  	void *lrc_desc_pool_vaddr;
+>  
+> +	/* guc_id to intel_context lookup */
+> +	struct xarray context_lookup;
+> +
+>  	/* Control params for fw initialization */
+>  	u32 params[GUC_CTL_MAX_DWORDS];
+
+btw, IIRC there was idea to move most struct definitions to
+intel_guc_types.h, is this still a plan ?
+
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index a366890fb840..23a94a896a0b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -65,8 +65,6 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
+>  	return rb_entry(rb, struct i915_priolist, node);
 >  }
 >  
-> @@ -383,10 +387,8 @@ static int ct_write(struct intel_guc_ct *ct,
+> -/* Future patches will use this function */
+> -__attribute__ ((unused))
+>  static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
 >  {
->  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
->  	struct guc_ct_buffer_desc *desc = ctb->desc;
-> -	u32 head = desc->head;
-> -	u32 tail = desc->tail;
-> +	u32 tail = ctb->tail;
->  	u32 size = ctb->size;
-> -	u32 used;
->  	u32 header;
->  	u32 hxg;
->  	u32 *cmds = ctb->cmds;
-> @@ -398,25 +400,14 @@ static int ct_write(struct intel_guc_ct *ct,
->  	if (unlikely(desc->status))
->  		goto corrupted;
->  
-> -	if (unlikely((tail | head) >= size)) {
-> +#ifdef CONFIG_DRM_I915_DEBUG_GUC
-
-since we are caching tail, we may want to check if it's sill correct:
-
-	tail = READ_ONCE(desc->tail);
-	if (unlikely(tail != ctb->tail)) {
-  		CT_ERROR(ct, "Tail was modified %u != %u\n",
-			 tail, ctb->tail);
-  		desc->status |= GUC_CTB_STATUS_MISMATCH;
-  		goto corrupted;
-	}
-
-and since we own the tail then we can be more strict:
-
-	GEM_BUG_ON(tail > size);
-
-and then finally just check GuC head:
-
-	head = READ_ONCE(desc->head);
-	if (unlikely(head >= size)) {
-		...
-
-> +	if (unlikely((desc->tail | desc->head) >= size)) {
->  		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
-> -			 head, tail, size);
-> +			 desc->head, desc->tail, size);
->  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
->  		goto corrupted;
->  	}
-> -
-> -	/*
-> -	 * tail == head condition indicates empty. GuC FW does not support
-> -	 * using up the entire buffer to get tail == head meaning full.
-> -	 */
-> -	if (tail < head)
-> -		used = (size - head) + tail;
-> -	else
-> -		used = tail - head;
-> -
-> -	/* make sure there is a space including extra dw for the fence */
-> -	if (unlikely(used + len + 1 >= size))
-> -		return -ENOSPC;
-> +#endif
->  
->  	/*
->  	 * dw0: CT header (including fence)
-> @@ -457,7 +448,9 @@ static int ct_write(struct intel_guc_ct *ct,
->  	write_barrier(ct);
->  
->  	/* now update descriptor */
-> +	ctb->tail = tail;
->  	WRITE_ONCE(desc->tail, tail);
-> +	ctb->space -= len + 1;
-
-this magic "1" is likely GUC_CTB_MSG_MIN_LEN, right ?
-
->  
->  	return 0;
->  
-> @@ -473,7 +466,7 @@ static int ct_write(struct intel_guc_ct *ct,
->   * @req:	pointer to pending request
->   * @status:	placeholder for status
->   *
-> - * For each sent request, Guc shall send bac CT response message.
-> + * For each sent request, GuC shall send back CT response message.
->   * Our message handler will update status of tracked request once
->   * response message with given fence is received. Wait here and
->   * check for valid response status value.
-> @@ -520,24 +513,35 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
->  	return ret;
+>  	struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
+> @@ -76,6 +74,15 @@ static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
+>  	return &base[index];
 >  }
 >  
-> -static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
-> +static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
->  {
-> -	struct guc_ct_buffer_desc *desc = ctb->desc;
-> -	u32 head = READ_ONCE(desc->head);
-> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> +	u32 head;
->  	u32 space;
->  
-> -	space = CIRC_SPACE(desc->tail, head, ctb->size);
-> +	if (ctb->space >= len_dw)
-> +		return true;
+> +static inline struct intel_context *__get_context(struct intel_guc *guc, u32 id)
+> +{
+> +	struct intel_context *ce = xa_load(&guc->context_lookup, id);
 > +
-> +	head = READ_ONCE(ctb->desc->head);
-> +	if (unlikely(head > ctb->size)) {
-> +		CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u size=%u\n",
-> +			  ctb->desc->head, ctb->desc->tail, ctb->size);
-> +		ctb->desc->status |= GUC_CTB_STATUS_OVERFLOW;
-> +		ctb->broken = true;
-> +		return false;
-> +	}
+> +	GEM_BUG_ON(id >= GUC_MAX_LRC_DESCRIPTORS);
 > +
-> +	space = CIRC_SPACE(ctb->tail, head, ctb->size);
-> +	ctb->space = space;
-
-maybe here we could mark stall_time ?
-
- 	if (space >= len_dw)
-		return true;
-
-	if (ct->stall_time == KTIME_MAX)
-		ct->stall_time = ktime_get();
-	return false;
-
->  
->  	return space >= len_dw;
-
-btw, maybe to avoid filling CTB to the last dword, this should be
-
-	space > len_dw
-
-note the earlier comment:
-
-/*
- * tail == head condition indicates empty. GuC FW does not support
- * using up the entire buffer to get tail == head meaning full.
- */
-
->  }
->  
->  static int has_room_nb(struct intel_guc_ct *ct, u32 len_dw)
+> +	return ce;
+> +}
+> +
+>  static int guc_lrc_desc_pool_create(struct intel_guc *guc)
 >  {
-> -	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> -
->  	lockdep_assert_held(&ct->ctbs.send.lock);
->  
-> -	if (unlikely(!h2g_has_room(ctb, len_dw))) {
-> +	if (unlikely(!h2g_has_room(ct, len_dw))) {
->  		if (ct->stall_time == KTIME_MAX)
->  			ct->stall_time = ktime_get();
->  
-> @@ -606,10 +610,10 @@ static int ct_send(struct intel_guc_ct *ct,
->  	 */
->  retry:
->  	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
-> -	if (unlikely(!h2g_has_room(ctb, len + 1))) {
-> +	if (unlikely(!h2g_has_room(ct, len + 1))) {
->  		if (ct->stall_time == KTIME_MAX)
->  			ct->stall_time = ktime_get();
-> -		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> +		spin_unlock_irqrestore(&ctb->lock, flags);
->  
->  		if (unlikely(ct_deadlocked(ct)))
->  			return -EIO;
-> @@ -632,7 +636,7 @@ static int ct_send(struct intel_guc_ct *ct,
->  
->  	err = ct_write(ct, action, len, fence, 0);
->  
-> -	spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> +	spin_unlock_irqrestore(&ctb->lock, flags);
->  
->  	if (unlikely(err))
->  		goto unlink;
-> @@ -720,7 +724,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
->  {
->  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
->  	struct guc_ct_buffer_desc *desc = ctb->desc;
-> -	u32 head = desc->head;
-> +	u32 head = ctb->head;
->  	u32 tail = desc->tail;
->  	u32 size = ctb->size;
->  	u32 *cmds = ctb->cmds;
-> @@ -735,12 +739,21 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
->  	if (unlikely(desc->status))
->  		goto corrupted;
->  
-> -	if (unlikely((tail | head) >= size)) {
-> +#ifdef CONFIG_DRM_I915_DEBUG_GUC
-
-as above we may want to check if our cached head was not modified
-
-> +	if (unlikely((desc->tail | desc->head) >= size)) {
->  		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
->  			 head, tail, size);
->  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
->  		goto corrupted;
->  	}
-> +#else
-> +	if (unlikely((tail | ctb->head) >= size)) {
-> +		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
-> +			 head, tail, size);
-> +		desc->status |= GUC_CTB_STATUS_OVERFLOW;
-> +		goto corrupted;
-> +	}
-> +#endif
->  
->  	/* tail == head condition indicates empty */
->  	available = tail - head;
-> @@ -790,6 +803,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
->  	}
->  	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
->  
-> +	ctb->head = head;
->  	/* now update descriptor */
->  	WRITE_ONCE(desc->head, head);
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> index 55ef7c52472f..9924335e2ee6 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> @@ -33,6 +33,9 @@ struct intel_guc;
->   * @desc: pointer to the buffer descriptor
->   * @cmds: pointer to the commands buffer
->   * @size: size of the commands buffer in dwords
-> + * @head: local shadow copy of head in dwords
-> + * @tail: local shadow copy of tail in dwords
-> + * @space: local shadow copy of space in dwords
->   * @broken: flag to indicate if descriptor data is broken
->   */
->  struct intel_guc_ct_buffer {
-> @@ -40,6 +43,9 @@ struct intel_guc_ct_buffer {
->  	struct guc_ct_buffer_desc *desc;
->  	u32 *cmds;
 >  	u32 size;
-> +	u32 tail;
-> +	u32 head;
-> +	u32 space;
-
-in later patch this is changing to atomic_t
-maybe we can start with it ?
-
->  	bool broken;
->  };
+> @@ -96,6 +103,25 @@ static void guc_lrc_desc_pool_destroy(struct intel_guc *guc)
+>  	i915_vma_unpin_and_release(&guc->lrc_desc_pool, I915_VMA_RELEASE_MAP);
+>  }
+>  
+> +static inline void reset_lrc_desc(struct intel_guc *guc, u32 id)
+> +{
+> +	struct guc_lrc_desc *desc = __get_lrc_desc(guc, id);
+> +
+> +	memset(desc, 0, sizeof(*desc));
+> +	xa_erase_irq(&guc->context_lookup, id);
+> +}
+> +
+> +static inline bool lrc_desc_registered(struct intel_guc *guc, u32 id)
+> +{
+> +	return __get_context(guc, id);
+> +}
+> +
+> +static inline void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
+> +					   struct intel_context *ce)
+> +{
+> +	xa_store_irq(&guc->context_lookup, id, ce, GFP_ATOMIC);
+> +}
+> +
+>  static void guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+>  {
+>  	/* Leaving stub as this function will be used in future patches */
+> @@ -400,6 +426,8 @@ int intel_guc_submission_init(struct intel_guc *guc)
+>  	 */
+>  	GEM_BUG_ON(!guc->lrc_desc_pool);
+>  
+> +	xa_init_flags(&guc->context_lookup, XA_FLAGS_LOCK_IRQ);
+> +
+>  	return 0;
+>  }
 >  
 > 
 _______________________________________________
