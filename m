@@ -1,49 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B09053B42D5
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 14:03:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D01C3B4328
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 14:29:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0F786ED98;
-	Fri, 25 Jun 2021 12:03:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE6B96E138;
+	Fri, 25 Jun 2021 12:29:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC2D16EDAE;
- Fri, 25 Jun 2021 12:03:51 +0000 (UTC)
-IronPort-SDR: SS7+MTwp3lm0l6HpKw/TqQ1fJRpFy9bTHKPXyRJv/YyFrEBxOEgzgF6miosUy6xZ8yd/PLDLSw
- IhsV44PT1CgQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="207592094"
-X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="207592094"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA4F6E138;
+ Fri, 25 Jun 2021 12:29:24 +0000 (UTC)
+IronPort-SDR: uA9JRwMBxxcd6t/O0cgBQWZf5w4tYlegKp687j2/9KZ9L3DMjyMJxI8YfPjzhJsCeibYqRszKg
+ 2q6TlhDqePIw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10025"; a="204651942"
+X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="204651942"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2021 05:03:45 -0700
-IronPort-SDR: pVrKN1E2/V05ki7uEUhKCaRwLGYr/o06JhRO7g+2m+nTzwPRzaSebX5aCI7FqoXWUWjRlku0H4
- DQx0A7+o85KQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="488158409"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga001.jf.intel.com with ESMTP; 25 Jun 2021 05:03:41 -0700
-Received: from [10.249.158.233] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.158.233])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 15PC3drJ023148; Fri, 25 Jun 2021 13:03:40 +0100
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20210624070516.21893-1-matthew.brost@intel.com>
- <20210624070516.21893-4-matthew.brost@intel.com>
- <0b04e2ee-f5f3-3eb9-ad9f-a595f1942e4c@intel.com>
- <20210624154158.GA1629@sdutt-i7>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <5264ef27-efbd-1adf-b45c-602a59fb4d6d@intel.com>
-Date: Fri, 25 Jun 2021 14:03:39 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2021 05:29:23 -0700
+IronPort-SDR: Zzr4R56rSB12nsbF7Z/QVWmTlz86jKzrFTr3RQhFlfP83U3HS8XlR71etHFfDa1qG8lH/NZE1j
+ nkj9NOga0nfA==
+X-IronPort-AV: E=Sophos;i="5.83,298,1616482800"; d="scan'208";a="488165493"
+Received: from adalyx-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.15.48])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2021 05:29:21 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Jun 2021 13:27:50 +0100
+Message-Id: <20210625122751.590289-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-In-Reply-To: <20210624154158.GA1629@sdutt-i7>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 03/47] drm/i915/guc: Increase size of CTB
- buffers
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/gem: only allow WC for lmem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,80 +45,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 24.06.2021 17:41, Matthew Brost wrote:
-> On Thu, Jun 24, 2021 at 03:49:55PM +0200, Michal Wajdeczko wrote:
->>
->>
->> On 24.06.2021 09:04, Matthew Brost wrote:
->>> With the introduction of non-blocking CTBs more than one CTB can be in
->>> flight at a time. Increasing the size of the CTBs should reduce how
->>> often software hits the case where no space is available in the CTB
->>> buffer.
->>>
->>> Cc: John Harrison <john.c.harrison@intel.com>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 11 ++++++++---
->>>  1 file changed, 8 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->>> index 07f080ddb9ae..a17215920e58 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->>> @@ -58,11 +58,16 @@ static inline struct drm_device *ct_to_drm(struct intel_guc_ct *ct)
->>>   *      +--------+-----------------------------------------------+------+
->>>   *
->>>   * Size of each `CT Buffer`_ must be multiple of 4K.
->>> - * As we don't expect too many messages, for now use minimum sizes.
->>> + * We don't expect too many messages in flight at any time, unless we are
->>> + * using the GuC submission. In that case each request requires a minimum
->>> + * 2 dwords which gives us a maximum 256 queue'd requests. Hopefully this
->>> + * enough space to avoid backpressure on the driver. We increase the size
->>> + * of the receive buffer (relative to the send) to ensure a G2H response
->>> + * CTB has a landing spot.
->>>   */
->>>  #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
->>>  #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
->>> -#define CTB_G2H_BUFFER_SIZE	(SZ_4K)
->>> +#define CTB_G2H_BUFFER_SIZE	(4 * CTB_H2G_BUFFER_SIZE)
->>>  
->>>  struct ct_request {
->>>  	struct list_head link;
->>> @@ -641,7 +646,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
->>>  	/* beware of buffer wrap case */
->>>  	if (unlikely(available < 0))
->>>  		available += size;
->>> -	CT_DEBUG(ct, "available %d (%u:%u)\n", available, head, tail);
->>> +	CT_DEBUG(ct, "available %d (%u:%u:%u)\n", available, head, tail, size);
->>
->> CTB size is already printed in intel_guc_ct_init() and is fixed so not
->> sure if repeating it on every ct_read has any benefit
->>
-> 
-> I'd say more debug the better and if CT_DEBUG is enabled the logs are
-> very verbose so an extra value doesn't really hurt.
-
-fair, but this doesn't mean we should add little/no value item, anyway
-since DEBUG_GUC is if off by default, this is:
-
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
-> 
-> Matt
-> 
->>>  	GEM_BUG_ON(available < 0);
->>>  
->>>  	header = cmds[head];
->>>
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBpcyBhbHJlYWR5IHRoZSBjYXNlIGZvciBvdXIga2VybmVsIGludGVybmFsIG1hcHBpbmdz
+LCBhbmQgc2luY2Ugd2UKbm93IG9ubHkgc3VwcG9ydCBhIHNpbmdsZSBtb2RlIHRoaXMgc2hvdWxk
+IGFsd2F5cyBiZSBXQyBpZiB0aGUgb2JqZWN0CmNhbiBiZSBwbGFjZWQgaW4gbG1lbS4KCnYyOiBy
+ZWJhc2UgYW5kIGFsc28gdXBkYXRlIHNldF9kb21haW4KClNpZ25lZC1vZmYtYnk6IE1hdHRoZXcg
+QXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
+YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFy
+dGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwu
+dmV0dGVyQGZmd2xsLmNoPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9k
+b21haW4uYyB8ICA2ICsrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21t
+YW4uYyAgIHwgIDkgKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
+b2JqZWN0LmMgfCAyMSArKysrKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV9vYmplY3QuaCB8ICA0ICsrKysKIDQgZmlsZXMgY2hhbmdlZCwgNDAgaW5z
+ZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dl
+bV9kb21haW4uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYwpp
+bmRleCAwNzM4MjIxMDBkYTcuLmQwYzkxNjk3YmIyMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV9kb21haW4uYwpAQCAtNTcxLDYgKzU3MSwxMiBAQCBpOTE1X2dlbV9zZXRf
+ZG9tYWluX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsCiAJaWYgKFJF
+QURfT05DRShvYmotPndyaXRlX2RvbWFpbikgPT0gcmVhZF9kb21haW5zKQogCQlnb3RvIG91dF91
+bnBpbjsKIAorCWlmIChpOTE1X2dlbV9vYmplY3RfcGxhY2VtZW50c19jb250YWluX3R5cGUob2Jq
+LCBJTlRFTF9NRU1PUllfTE9DQUwpICYmCisJICAgIHJlYWRfZG9tYWlucyAhPSBJOTE1X0dFTV9E
+T01BSU5fV0MpIHsKKwkJZXJyID0gLUVJTlZBTDsKKwkJZ290byBvdXRfdW5waW47CisJfQorCiAJ
+aWYgKHJlYWRfZG9tYWlucyAmIEk5MTVfR0VNX0RPTUFJTl9XQykKIAkJZXJyID0gaTkxNV9nZW1f
+b2JqZWN0X3NldF90b193Y19kb21haW4ob2JqLCB3cml0ZV9kb21haW4pOwogCWVsc2UgaWYgKHJl
+YWRfZG9tYWlucyAmIEk5MTVfR0VNX0RPTUFJTl9HVFQpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX21tYW4uYwppbmRleCBhOTBmNzk2ZTg1YzAuLmYzNTg2YjM2ZGQ1MyAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYworKysgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbW1hbi5jCkBAIC02ODgsNiArNjg4LDE1IEBA
+IF9fYXNzaWduX21tYXBfb2Zmc2V0KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCiAJ
+ICAgICFpOTE1X2dlbV9vYmplY3RfaGFzX2lvbWVtKG9iaikpCiAJCXJldHVybiAtRU5PREVWOwog
+CisJLyoKKwkgKiBOb3RlIHRoYXQgZXZlbiBpZiB0aGUgb2JqZWN0IGNhbiBhbHNvIGJlIHBsYWNl
+ZCBpbiBzbWVtIHRoZW4gd2Ugc3RpbGwKKwkgKiBtYXAgYXMgV0MgaGVyZSwgc2luY2Ugd2UgY2Fu
+IG9ubHkgc3VwcG9ydCBhIHNpbmdsZSBtb2RlLiBPbiBERzEgdGhpcworCSAqIHN1Y2tzIHNpbmNl
+IHdlIGNhbid0IHR1cm4gb2ZmIHNub29waW5nIGZvciB0aGlzIGNhc2UuCisJICovCisJaWYgKG1t
+YXBfdHlwZSAhPSBJOTE1X01NQVBfVFlQRV9XQyAmJgorCSAgICBpOTE1X2dlbV9vYmplY3RfcGxh
+Y2VtZW50c19jb250YWluX3R5cGUob2JqLCBJTlRFTF9NRU1PUllfTE9DQUwpKQorCQlyZXR1cm4g
+LUVOT0RFVjsKKwogCW1tbyA9IG1tYXBfb2Zmc2V0X2F0dGFjaChvYmosIG1tYXBfdHlwZSwgZmls
+ZSk7CiAJaWYgKElTX0VSUihtbW8pKQogCQlyZXR1cm4gUFRSX0VSUihtbW8pOwpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5jIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5jCmluZGV4IDA3ZThmZjlhOGFhZS4uMzI2
+OTU2YzE4Zjc2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
+b2JqZWN0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5j
+CkBAIC01MTMsNiArNTEzLDI3IEBAIGJvb2wgaTkxNV9nZW1fb2JqZWN0X2hhc19pb21lbShjb25z
+dCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQogCXJldHVybiBvYmotPm1lbV9mbGFn
+cyAmIEk5MTVfQk9fRkxBR19JT01FTTsKIH0KIAorLyoqCisgKiBpOTE1X2dlbV9vYmplY3RfcGxh
+Y2VtZW50c19jb250YWluX3R5cGUgLSBDaGVjayB3aGV0aGVyIHRoZSBvYmplY3QgY2FuIGJlCisg
+KiBwbGFjZWQgYXQgY2VydGFpbiBtZW1vcnkgdHlwZQorICogQG9iajogUG9pbnRlciB0byB0aGUg
+b2JqZWN0CisgKiBAdHlwZTogVGhlIG1lbW9yeSB0eXBlIHRvIGNoZWNrCisgKgorICogUmV0dXJu
+OiBUcnVlIGlmIHRoZSBvYmplY3QgY2FuIGJlIHBsYWNlZCBpbiBAdHlwZS4gRmFsc2Ugb3RoZXJ3
+aXNlLgorICovCitib29sIGk5MTVfZ2VtX29iamVjdF9wbGFjZW1lbnRzX2NvbnRhaW5fdHlwZShz
+dHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAorCQkJCQkgICAgIGVudW0gaW50ZWxfbWVt
+b3J5X3R5cGUgdHlwZSkKK3sKKwl1bnNpZ25lZCBpbnQgaTsKKworCWZvciAoaSA9IDA7IGkgPCBv
+YmotPm1tLm5fcGxhY2VtZW50czsgaSsrKSB7CisJCWlmIChvYmotPm1tLnBsYWNlbWVudHNbaV0t
+PnR5cGUgPT0gdHlwZSkKKwkJCXJldHVybiB0cnVlOworCX0KKworCXJldHVybiBmYWxzZTsKK30K
+Kwogdm9pZCBpOTE1X2dlbV9pbml0X19vYmplY3RzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
+OTE1KQogewogCUlOSVRfV09SSygmaTkxNS0+bW0uZnJlZV93b3JrLCBfX2k5MTVfZ2VtX2ZyZWVf
+d29yayk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2Jq
+ZWN0LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmgKaW5kZXgg
+ZWEzMjI0YTQ4MGM0Li5lMWRhYTU4YmMyMjUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
+aTkxNV9nZW1fb2JqZWN0LmgKQEAgLTEyLDYgKzEyLDcgQEAKICNpbmNsdWRlIDxkcm0vZHJtX2Rl
+dmljZS5oPgogCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9mcm9udGJ1ZmZlci5oIgorI2luY2x1
+ZGUgImludGVsX21lbW9yeV9yZWdpb24uaCIKICNpbmNsdWRlICJpOTE1X2dlbV9vYmplY3RfdHlw
+ZXMuaCIKICNpbmNsdWRlICJpOTE1X2dlbV9ndHQuaCIKICNpbmNsdWRlICJpOTE1X2dlbV93dy5o
+IgpAQCAtNTk3LDYgKzU5OCw5IEBAIGJvb2wgaTkxNV9nZW1fb2JqZWN0X21pZ3JhdGFibGUoc3Ry
+dWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaik7CiAKIGJvb2wgaTkxNV9nZW1fb2JqZWN0X3Zh
+bGlkYXRlc190b19sbWVtKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOwogCitib29s
+IGk5MTVfZ2VtX29iamVjdF9wbGFjZW1lbnRzX2NvbnRhaW5fdHlwZShzdHJ1Y3QgZHJtX2k5MTVf
+Z2VtX29iamVjdCAqb2JqLAorCQkJCQkgICAgIGVudW0gaW50ZWxfbWVtb3J5X3R5cGUgdHlwZSk7
+CisKICNpZmRlZiBDT05GSUdfTU1VX05PVElGSUVSCiBzdGF0aWMgaW5saW5lIGJvb2wKIGk5MTVf
+Z2VtX29iamVjdF9pc191c2VycHRyKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCi0t
+IAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
