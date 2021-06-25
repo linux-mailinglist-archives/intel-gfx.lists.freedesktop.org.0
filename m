@@ -2,83 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AAF63B3E38
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 10:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F069B3B3E74
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 10:22:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7309B6ECE4;
-	Fri, 25 Jun 2021 08:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB6406ECF0;
+	Fri, 25 Jun 2021 08:22:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83B536ECE9
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Jun 2021 08:07:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1624608447;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=WsuZzmc69l3ui1BgglnMF86Cw0fADvcr/OA+7H4A20w=;
- b=jK0/NpFVp4oMevRWYSWRsakDd42UE7hcTrOSylVlUYAqVgsIs2eTQFyCFvYaWOH9l1dgJX
- mI7hL8T9her949OZD1uxufDCANXBHrAxm9IEBE7IonhGDYPdzNzgM7FXtZFO9w0a6oyyFP
- 5LtcrHhGQfQ6TBgTfUyWYAOPQ16cXJA=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-157-LhFI8n8INq2h1UfWVmHI6g-1; Fri, 25 Jun 2021 04:07:25 -0400
-X-MC-Unique: LhFI8n8INq2h1UfWVmHI6g-1
-Received: by mail-ej1-f70.google.com with SMTP id
- f8-20020a1709064dc8b02904996ccd94c0so2815776ejw.9
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Jun 2021 01:07:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=WsuZzmc69l3ui1BgglnMF86Cw0fADvcr/OA+7H4A20w=;
- b=O3L10aBJsN1okR9u1XOTAo4P5wMREpGtwHWL3zZkI2gWpveElL+JBXLj5Onavlcexh
- N+QM3eyNdU3S5vkH1UcCoHoPSDcmTV7GG+PD0vbXNgN/hSkL++QBRLfZRCdhxRh88BA1
- 2tlyt6QmvsJa/qv4O9mFPogBGfMVuJqd5ciS9S376SPgOXpD9Q4vk14G4xbMoE0159aH
- qEA6q3N5ZftGT21N2GxNM5IRVmA/A4wnLWpsnfOYCMUSrNqIFRrPHmNwx7Yuxc5/E6RE
- M1zwaExB8/efONwMF8bjmWvwVyBYZcZ5IlY83TuYAVE7dATfOY9qurRLc8r/BdKuqTqX
- y3nQ==
-X-Gm-Message-State: AOAM531vQbmYDIFTSLXdX6OD6DEQJFEMYN3M5x+0wuTUCTBQinjHHW0Y
- sCrXUP9QUE62OZDJYT0UZDaSXhyyzjHpNQzTt1NmG1+R8GZfWEG1aJ05U78DWiv6QvhczuuyXBT
- 3gL5Bm5xd4Pdv0+Pf/adL6JFTE0oH
-X-Received: by 2002:a17:907:96a8:: with SMTP id
- hd40mr9411673ejc.546.1624608443999; 
- Fri, 25 Jun 2021 01:07:23 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxVB3z+OXWUecb9ahGrJESZcqrbKx9pnQ6XoxJ6GZ25cMxxTZOEeAuP3MqM1WxvBDGMvZ/qcw==
-X-Received: by 2002:a17:907:96a8:: with SMTP id
- hd40mr9411623ejc.546.1624608443667; 
- Fri, 25 Jun 2021 01:07:23 -0700 (PDT)
-Received: from ?IPv6:2001:b07:6468:f312:c8dd:75d4:99ab:290a?
- ([2001:b07:6468:f312:c8dd:75d4:99ab:290a])
- by smtp.gmail.com with ESMTPSA id cf3sm1879380edb.39.2021.06.25.01.07.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Jun 2021 01:07:23 -0700 (PDT)
-To: Christian Borntraeger <borntraeger@de.ibm.com>,
- David Stevens <stevensd@chromium.org>, Marc Zyngier <maz@kernel.org>,
- Huacai Chen <chenhuacai@kernel.org>,
- Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
- Paul Mackerras <paulus@ozlabs.org>, Nick Piggin <npiggin@gmail.com>
-References: <20210625073616.2184426-1-stevensd@google.com>
- <20210625073616.2184426-2-stevensd@google.com>
- <183b71c1-6bb0-8d05-e2ce-e452253259a8@de.ibm.com>
-From: Paolo Bonzini <pbonzini@redhat.com>
-Message-ID: <5e865b84-7b8f-bd2d-5e74-f46b257ad858@redhat.com>
-Date: Fri, 25 Jun 2021 10:07:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA816E0EC;
+ Fri, 25 Jun 2021 08:22:26 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id C124721C22;
+ Fri, 25 Jun 2021 08:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609344; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=xmMBjdIQxn88DbEVG5TvHaTNv0fMM7Fk0W+dtuw1P5k=;
+ b=c8mqqRyyGvgW96sIBzNkUvBvL9cL2p9CBVkbGrhlqk7HC6jdBkgB+8HQzxgWo22Kj6axOs
+ fz/qKGkTy37Qgctvsv5asTkubcrcsvEvHyAxx9AqUmS7WqfIk64opdOyOxjF+V29YhUKKL
+ /EB3+wqaeeW+1GcazmAh0rrp7atuNKw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609344;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=xmMBjdIQxn88DbEVG5TvHaTNv0fMM7Fk0W+dtuw1P5k=;
+ b=rpkFMIxIqKtJO2iW62YOJLHcKB93dVaWkjMtNJVNDBMDnIW1WJDAPufXr013u+Ngc7k7bZ
+ 4iFa6YeY3o7yg8CA==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 9B57111A97;
+ Fri, 25 Jun 2021 08:22:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1624609344; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=xmMBjdIQxn88DbEVG5TvHaTNv0fMM7Fk0W+dtuw1P5k=;
+ b=c8mqqRyyGvgW96sIBzNkUvBvL9cL2p9CBVkbGrhlqk7HC6jdBkgB+8HQzxgWo22Kj6axOs
+ fz/qKGkTy37Qgctvsv5asTkubcrcsvEvHyAxx9AqUmS7WqfIk64opdOyOxjF+V29YhUKKL
+ /EB3+wqaeeW+1GcazmAh0rrp7atuNKw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1624609344;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=xmMBjdIQxn88DbEVG5TvHaTNv0fMM7Fk0W+dtuw1P5k=;
+ b=rpkFMIxIqKtJO2iW62YOJLHcKB93dVaWkjMtNJVNDBMDnIW1WJDAPufXr013u+Ngc7k7bZ
+ 4iFa6YeY3o7yg8CA==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id Ky8IJT+S1WAISwAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Fri, 25 Jun 2021 08:22:23 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, james.qian.wang@arm.com,
+ liviu.dudau@arm.com, mihail.atanassov@arm.com, brian.starkey@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ inki.dae@samsung.com, jy0922.shim@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, krzysztof.kozlowski@canonical.com,
+ xinliang.liu@linaro.org, tiantao6@hisilicon.com, john.stultz@linaro.org,
+ kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com,
+ laurentiu.palcu@oss.nxp.com, l.stach@pengutronix.de,
+ p.zabel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ chunkuang.hu@kernel.org, matthias.bgg@gmail.com, bskeggs@redhat.com,
+ tomba@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
+ yannick.fertre@foss.st.com, philippe.cornu@foss.st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@csie.org,
+ jernej.skrabec@gmail.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
+ jyri.sarha@iki.fi, emma@anholt.net, linux-graphics-maintainer@vmware.com,
+ zackr@vmware.com, hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
+ michal.simek@xilinx.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, linux@armlinux.org.uk,
+ kieran.bingham+renesas@ideasonboard.com, rodrigosiqueiramelo@gmail.com,
+ melissa.srw@gmail.com, hamohammed.sa@gmail.com
+Date: Fri, 25 Jun 2021 10:21:55 +0200
+Message-Id: <20210625082222.3845-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <183b71c1-6bb0-8d05-e2ce-e452253259a8@de.ibm.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=pbonzini@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 1/5] KVM: do not allow mapping valid but
- non-refcounted pages
+Subject: [Intel-gfx] [PATCH v4 00/27] Deprecate struct drm_device.irq_enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,69 +91,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm-ppc@vger.kernel.org, intel-gvt-dev@lists.freedesktop.org,
- Wanpeng Li <wanpengli@tencent.com>, kvm@vger.kernel.org,
- Will Deacon <will@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Sean Christopherson <seanjc@google.com>, Joerg Roedel <joro@8bytes.org>,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, Vitaly Kuznetsov <vkuznets@redhat.com>,
- Alexandru Elisei <alexandru.elisei@arm.com>, kvmarm@lists.cs.columbia.edu,
- Jim Mattson <jmattson@google.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-tegra@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjUvMDYvMjEgMDk6NTgsIENocmlzdGlhbiBCb3JudHJhZWdlciB3cm90ZToKPiAKPiAKPiBP
-biAyNS4wNi4yMSAwOTozNiwgRGF2aWQgU3RldmVucyB3cm90ZToKPj4gRnJvbTogTmljaG9sYXMg
-UGlnZ2luIDxucGlnZ2luQGdtYWlsLmNvbT4KPj4KPj4gSXQncyBwb3NzaWJsZSB0byBjcmVhdGUg
-YSByZWdpb24gd2hpY2ggbWFwcyB2YWxpZCBidXQgbm9uLXJlZmNvdW50ZWQKPj4gcGFnZXMgKGUu
-Zy4sIHRhaWwgcGFnZXMgb2Ygbm9uLWNvbXBvdW5kIGhpZ2hlciBvcmRlciBhbGxvY2F0aW9ucyku
-IFRoZXNlCj4+IGhvc3QgcGFnZXMgY2FuIHRoZW4gYmUgcmV0dXJuZWQgYnkgZ2ZuX3RvX3BhZ2Us
-IGdmbl90b19wZm4sIGV0Yy4sIGZhbWlseQo+PiBvZiBBUElzLCB3aGljaCB0YWtlIGEgcmVmZXJl
-bmNlIHRvIHRoZSBwYWdlLCB3aGljaCB0YWtlcyBpdCBmcm9tIDAgdG8gMS4KPj4gV2hlbiB0aGUg
-cmVmZXJlbmNlIGlzIGRyb3BwZWQsIHRoaXMgd2lsbCBmcmVlIHRoZSBwYWdlIGluY29ycmVjdGx5
-Lgo+Pgo+PiBGaXggdGhpcyBieSBvbmx5IHRha2luZyBhIHJlZmVyZW5jZSBvbiB0aGUgcGFnZSBp
-ZiBpdCB3YXMgbm9uLXplcm8sCj4+IHdoaWNoIGluZGljYXRlcyBpdCBpcyBwYXJ0aWNpcGF0aW5n
-IGluIG5vcm1hbCByZWZjb3VudGluZyAoYW5kIGNhbiBiZQo+PiByZWxlYXNlZCB3aXRoIHB1dF9w
-YWdlKS4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTmljaG9sYXMgUGlnZ2luIDxucGlnZ2luQGdtYWls
-LmNvbT4KPiAKPiBJIGd1ZXNzIHRoaXMgd291bGQgYmUgdGhlIHNtYWxsIGZpeCBmb3Igc3RhYmxl
-PyBEbyB3ZSB3YW50IHRvIGFkZCB0aGF0IGNjPwo+IAo+IFJldmlld2VkLWJ5OiBDaHJpc3RpYW4g
-Qm9ybnRyYWVnZXIgPGJvcm50cmFlZ2VyQGRlLmlibS5jb20+CgpZZXMsIHRoaXMgb25lIGlzIGdv
-aW5nIHRvIExpbnVzIHRvZGF5LiAgVGhlIHJlc3QgaXMgZm9yIDUuMTUuCgpQYW9sbwoKPj4gLS0t
-Cj4+IMKgIHZpcnQva3ZtL2t2bV9tYWluLmMgfCAxOSArKysrKysrKysrKysrKysrKy0tCj4+IMKg
-IDEgZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Pgo+PiBk
-aWZmIC0tZ2l0IGEvdmlydC9rdm0va3ZtX21haW4uYyBiL3ZpcnQva3ZtL2t2bV9tYWluLmMKPj4g
-aW5kZXggM2RjYzJhYmJmYzYwLi5mNzQ0NWMzYmNkOTAgMTAwNjQ0Cj4+IC0tLSBhL3ZpcnQva3Zt
-L2t2bV9tYWluLmMKPj4gKysrIGIvdmlydC9rdm0va3ZtX21haW4uYwo+PiBAQCAtMjE3NSw2ICsy
-MTc1LDEzIEBAIHN0YXRpYyBib29sIHZtYV9pc192YWxpZChzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3Qg
-Cj4+ICp2bWEsIGJvb2wgd3JpdGVfZmF1bHQpCj4+IMKgwqDCoMKgwqAgcmV0dXJuIHRydWU7Cj4+
-IMKgIH0KPj4KPj4gK3N0YXRpYyBpbnQga3ZtX3RyeV9nZXRfcGZuKGt2bV9wZm5fdCBwZm4pCj4+
-ICt7Cj4+ICvCoMKgwqAgaWYgKGt2bV9pc19yZXNlcnZlZF9wZm4ocGZuKSkKPj4gK8KgwqDCoMKg
-wqDCoMKgIHJldHVybiAxOwo+PiArwqDCoMKgIHJldHVybiBnZXRfcGFnZV91bmxlc3NfemVybyhw
-Zm5fdG9fcGFnZShwZm4pKTsKPj4gK30KPj4gKwo+PiDCoCBzdGF0aWMgaW50IGh2YV90b19wZm5f
-cmVtYXBwZWQoc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEsCj4+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdW5zaWduZWQgbG9uZyBhZGRyLCBib29sICphc3luYywK
-Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBib29sIHdyaXRlX2Zh
-dWx0LCBib29sICp3cml0YWJsZSwKPj4gQEAgLTIyMjQsMTMgKzIyMzEsMjEgQEAgc3RhdGljIGlu
-dCBodmFfdG9fcGZuX3JlbWFwcGVkKHN0cnVjdCAKPj4gdm1fYXJlYV9zdHJ1Y3QgKnZtYSwKPj4g
-wqDCoMKgwqDCoMKgICogV2hvZXZlciBjYWxsZWQgcmVtYXBfcGZuX3JhbmdlIGlzIGFsc28gZ29p
-bmcgdG8gY2FsbCBlLmcuCj4+IMKgwqDCoMKgwqDCoCAqIHVubWFwX21hcHBpbmdfcmFuZ2UgYmVm
-b3JlIHRoZSB1bmRlcmx5aW5nIHBhZ2VzIGFyZSBmcmVlZCwKPj4gwqDCoMKgwqDCoMKgICogY2F1
-c2luZyBhIGNhbGwgdG8gb3VyIE1NVSBub3RpZmllci4KPj4gK8KgwqDCoMKgICoKPj4gK8KgwqDC
-oMKgICogQ2VydGFpbiBJTyBvciBQRk5NQVAgbWFwcGluZ3MgY2FuIGJlIGJhY2tlZCB3aXRoIHZh
-bGlkCj4+ICvCoMKgwqDCoCAqIHN0cnVjdCBwYWdlcywgYnV0IGJlIGFsbG9jYXRlZCB3aXRob3V0
-IHJlZmNvdW50aW5nIGUuZy4sCj4+ICvCoMKgwqDCoCAqIHRhaWwgcGFnZXMgb2Ygbm9uLWNvbXBv
-dW5kIGhpZ2hlciBvcmRlciBhbGxvY2F0aW9ucywgd2hpY2gKPj4gK8KgwqDCoMKgICogd291bGQg
-dGhlbiB1bmRlcmZsb3cgdGhlIHJlZmNvdW50IHdoZW4gdGhlIGNhbGxlciBkb2VzIHRoZQo+PiAr
-wqDCoMKgwqAgKiByZXF1aXJlZCBwdXRfcGFnZS4gRG9uJ3QgYWxsb3cgdGhvc2UgcGFnZXMgaGVy
-ZS4KPj4gwqDCoMKgwqDCoMKgICovCj4+IC3CoMKgwqAga3ZtX2dldF9wZm4ocGZuKTsKPj4gK8Kg
-wqDCoCBpZiAoIWt2bV90cnlfZ2V0X3BmbihwZm4pKQo+PiArwqDCoMKgwqDCoMKgwqAgciA9IC1F
-RkFVTFQ7Cj4+Cj4+IMKgIG91dDoKPj4gwqDCoMKgwqDCoCBwdGVfdW5tYXBfdW5sb2NrKHB0ZXAs
-IHB0bCk7Cj4+IMKgwqDCoMKgwqAgKnBfcGZuID0gcGZuOwo+PiAtwqDCoMKgIHJldHVybiAwOwo+
-PiArCj4+ICvCoMKgwqAgcmV0dXJuIHI7Cj4+IMKgIH0KPj4KPj4gwqAgLyoKPj4KPiAKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Remove references to struct drm_device.irq_enabled from modern
+DRM drivers and core.
+
+KMS drivers enable IRQs for their devices internally. They don't
+have to keep track of the IRQ state via irq_enabled. For vblanking,
+it's cleaner to test for vblanking support directly than to test
+for enabled IRQs.
+
+The first 3 patches replace uses of irq_enabled that are not
+required.
+
+Patch 4 fixes vblank ioctls to actually test for vblank support
+instead of IRQs (for KMS drivers).
+
+The rest of the patchset removes irq_enabled from all non-legacy
+drivers. The only exceptions are i915 and omapdrm, which have an
+internal dpendency on the field's value. For these drivers, the
+state gets duplicated internally.
+
+With the patchset applied, drivers can later switch over to plain
+Linux IRQ interfaces and DRM's IRQ midlayer can be declared legacy.
+
+v4:
+	* avoid preprocessor ifdef in drm_wait_vblank_ioctl()
+	  (Jani, Thierry)
+v3:
+	* update armada, i915, rcar-du and vkms as well (Laurent)
+	* optimize drm_wait_vblank_ioctl() for KMS (Liviu)
+	* move imx/dcss changes into their own patch (Laurentiu)
+	* doc cleanups
+v2:
+	* keep the original test for legacy drivers in
+	  drm_wait_vblank_ioctl() (Daniel)
+
+Thomas Zimmermann (27):
+  drm/amdgpu: Track IRQ state in local device state
+  drm/hibmc: Call drm_irq_uninstall() unconditionally
+  drm/radeon: Track IRQ state in local device state
+  drm: Don't test for IRQ support in VBLANK ioctls
+  drm/armada: Don't set struct drm_device.irq_enabled
+  drm/i915: Track IRQ state in local device state
+  drm/komeda: Don't set struct drm_device.irq_enabled
+  drm/malidp: Don't set struct drm_device.irq_enabled
+  drm/exynos: Don't set struct drm_device.irq_enabled
+  drm/kirin: Don't set struct drm_device.irq_enabled
+  drm/imx: Don't set struct drm_device.irq_enabled
+  drm/imx/dcss: Don't set struct drm_device.irq_enabled
+  drm/mediatek: Don't set struct drm_device.irq_enabled
+  drm/nouveau: Don't set struct drm_device.irq_enabled
+  drm/omapdrm: Track IRQ state in local device state
+  drm/rcar-du: Don't set struct drm_device.irq_enabled
+  drm/rockchip: Don't set struct drm_device.irq_enabled
+  drm/sti: Don't set struct drm_device.irq_enabled
+  drm/stm: Don't set struct drm_device.irq_enabled
+  drm/sun4i: Don't set struct drm_device.irq_enabled
+  drm/tegra: Don't set struct drm_device.irq_enabled
+  drm/tidss: Don't use struct drm_device.irq_enabled
+  drm/vc4: Don't set struct drm_device.irq_enabled
+  drm/vkms: Don't set struct drm_device.irq_enabled
+  drm/vmwgfx: Don't set struct drm_device.irq_enabled
+  drm/xlnx: Don't set struct drm_device.irq_enabled
+  drm/zte: Don't set struct drm_device.irq_enabled
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c         |  6 +++---
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c |  4 ----
+ drivers/gpu/drm/arm/malidp_drv.c                |  4 ----
+ drivers/gpu/drm/armada/armada_drv.c             |  2 --
+ drivers/gpu/drm/drm_irq.c                       | 13 ++++---------
+ drivers/gpu/drm/drm_vblank.c                    | 15 ++++++++++++---
+ drivers/gpu/drm/exynos/exynos_drm_drv.c         | 10 ----------
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c |  3 +--
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c |  2 --
+ drivers/gpu/drm/i915/i915_drv.h                 |  2 ++
+ drivers/gpu/drm/i915/i915_irq.c                 |  8 ++++----
+ drivers/gpu/drm/imx/dcss/dcss-kms.c             |  3 ---
+ drivers/gpu/drm/imx/imx-drm-core.c              | 11 -----------
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c          |  6 ------
+ drivers/gpu/drm/nouveau/nouveau_drm.c           |  3 ---
+ drivers/gpu/drm/omapdrm/omap_drv.h              |  2 ++
+ drivers/gpu/drm/omapdrm/omap_irq.c              |  6 +++---
+ drivers/gpu/drm/radeon/radeon_fence.c           |  2 +-
+ drivers/gpu/drm/radeon/radeon_irq_kms.c         | 16 ++++++++--------
+ drivers/gpu/drm/rcar-du/rcar_du_drv.c           |  2 --
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c     |  6 ------
+ drivers/gpu/drm/sti/sti_compositor.c            |  2 --
+ drivers/gpu/drm/stm/ltdc.c                      |  3 ---
+ drivers/gpu/drm/sun4i/sun4i_drv.c               |  2 --
+ drivers/gpu/drm/tegra/drm.c                     |  7 -------
+ drivers/gpu/drm/tidss/tidss_irq.c               |  3 ---
+ drivers/gpu/drm/vc4/vc4_kms.c                   |  1 -
+ drivers/gpu/drm/vkms/vkms_drv.c                 |  2 --
+ drivers/gpu/drm/vmwgfx/vmwgfx_irq.c             |  8 --------
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c             |  2 --
+ drivers/gpu/drm/zte/zx_drm_drv.c                |  6 ------
+ 31 files changed, 40 insertions(+), 122 deletions(-)
+
+
+base-commit: 8c1323b422f8473421682ba783b5949ddd89a3f4
+prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+--
+2.32.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
