@@ -1,43 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 467713B48D3
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 20:33:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BA293B48F6
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Jun 2021 20:50:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05DA56EE36;
-	Fri, 25 Jun 2021 18:33:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 552C56EE36;
+	Fri, 25 Jun 2021 18:49:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39D166EE22;
- Fri, 25 Jun 2021 18:33:39 +0000 (UTC)
-IronPort-SDR: ZTd/xzfQlazQgJ6ikc66WYbbTo5Drx0xIw39v/UPAWaVLp1hFFi08QA04m9wYeZAazEg9Ap0xm
- LFPYhKlV37OQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,10026"; a="205898287"
-X-IronPort-AV: E=Sophos;i="5.83,299,1616482800"; d="scan'208";a="205898287"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A40656EE2F;
+ Fri, 25 Jun 2021 18:49:56 +0000 (UTC)
+IronPort-SDR: WFxuc/qHMQzyX0bMHlG7aS8VUfQTxDsLhoHRFEtjLqCCnarNTAo2dbTr7Kws3swZ84i7POUZYo
+ STGnrLFV0SIw==
+X-IronPort-AV: E=McAfee;i="6200,9189,10026"; a="207544742"
+X-IronPort-AV: E=Sophos;i="5.83,299,1616482800"; d="scan'208";a="207544742"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2021 11:33:37 -0700
-IronPort-SDR: Rn+xBHqn1DCgup3e4rGDpSWxH/SJAOiiERYvx1HZUyMu10kT5FfOKVmuhTMIhnafgI//Mh3y4T
- bbwaMyz6cY9g==
-X-IronPort-AV: E=Sophos;i="5.83,299,1616482800"; d="scan'208";a="455527273"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2021 11:49:49 -0700
+IronPort-SDR: n7Ft7dLYQjfzeEHu3a+gsOJ7bRdVaKyJP/3/dJ6btGPLj8Zx7uhZlhwJAhhS6RNgrgxM9yMdCx
+ o1x9f+UEiNCQ==
+X-IronPort-AV: E=Sophos;i="5.83,299,1616482800"; d="scan'208";a="455531518"
+Received: from liordavi-mobl.ger.corp.intel.com (HELO [10.249.254.242])
+ ([10.249.254.242])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2021 11:33:37 -0700
-Date: Fri, 25 Jun 2021 11:26:56 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20210625182654.GA18715@sdutt-i7>
-References: <20210624070516.21893-1-matthew.brost@intel.com>
- <20210624070516.21893-7-matthew.brost@intel.com>
- <a44cf19c-d84d-6408-5571-b9a35bb2b3ce@intel.com>
+ 25 Jun 2021 11:49:48 -0700
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+References: <20210624183110.22582-1-thomas.hellstrom@linux.intel.com>
+ <20210624183110.22582-5-thomas.hellstrom@linux.intel.com>
+ <5304ae661abb43a0816a485db9d3bbb5@intel.com>
+ <cd90ba70-15f8-af0a-8810-2ee7939622a2@linux.intel.com>
+ <5e9a46340f254928be6264e4e61eeab8@intel.com>
+ <8cffb2f2-4401-2cdf-1ab3-98cc2d879b00@linux.intel.com>
+ <6ca4bd4f3fde427ea8e2b0de61bbde65@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <3aa6d76f-eb4e-c2c7-0e8c-f87960cbff00@linux.intel.com>
+Date: Fri, 25 Jun 2021 20:49:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <a44cf19c-d84d-6408-5571-b9a35bb2b3ce@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 06/47] drm/i915/guc: Optimize CTB writes and
- reads
+In-Reply-To: <6ca4bd4f3fde427ea8e2b0de61bbde65@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/gem: Migrate to system at
+ dma-buf map time
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,310 +58,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Auld, Matthew" <matthew.auld@intel.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 25, 2021 at 03:09:29PM +0200, Michal Wajdeczko wrote:
-> 
-> 
-> On 24.06.2021 09:04, Matthew Brost wrote:
-> > CTB writes are now in the path of command submission and should be
-> > optimized for performance. Rather than reading CTB descriptor values
-> > (e.g. head, tail) which could result in accesses across the PCIe bus,
-> > store shadow local copies and only read/write the descriptor values when
-> > absolutely necessary. Also store the current space in the each channel
-> > locally.
-> > 
-> > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 76 ++++++++++++++---------
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  6 ++
-> >  2 files changed, 51 insertions(+), 31 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > index 27ec30b5ef47..1fd5c69358ef 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > @@ -130,6 +130,10 @@ static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
-> >  static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
-> >  {
-> >  	ctb->broken = false;
-> > +	ctb->tail = 0;
-> > +	ctb->head = 0;
-> > +	ctb->space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size);
-> > +
-> >  	guc_ct_buffer_desc_init(ctb->desc);
-> >  }
-> >  
-> > @@ -383,10 +387,8 @@ static int ct_write(struct intel_guc_ct *ct,
-> >  {
-> >  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> >  	struct guc_ct_buffer_desc *desc = ctb->desc;
-> > -	u32 head = desc->head;
-> > -	u32 tail = desc->tail;
-> > +	u32 tail = ctb->tail;
-> >  	u32 size = ctb->size;
-> > -	u32 used;
-> >  	u32 header;
-> >  	u32 hxg;
-> >  	u32 *cmds = ctb->cmds;
-> > @@ -398,25 +400,14 @@ static int ct_write(struct intel_guc_ct *ct,
-> >  	if (unlikely(desc->status))
-> >  		goto corrupted;
-> >  
-> > -	if (unlikely((tail | head) >= size)) {
-> > +#ifdef CONFIG_DRM_I915_DEBUG_GUC
-> 
-> since we are caching tail, we may want to check if it's sill correct:
-> 
-> 	tail = READ_ONCE(desc->tail);
-> 	if (unlikely(tail != ctb->tail)) {
->   		CT_ERROR(ct, "Tail was modified %u != %u\n",
-> 			 tail, ctb->tail);
->   		desc->status |= GUC_CTB_STATUS_MISMATCH;
->   		goto corrupted;
-> 	}
-> 
-> and since we own the tail then we can be more strict:
-> 
-> 	GEM_BUG_ON(tail > size);
-> 
-> and then finally just check GuC head:
-> 
-> 	head = READ_ONCE(desc->head);
-> 	if (unlikely(head >= size)) {
-> 		...
-> 
-
-Sure, but still hidden behind CONFIG_DRM_I915_DEBUG_GUC, right?
-
-> > +	if (unlikely((desc->tail | desc->head) >= size)) {
-> >  		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
-> > -			 head, tail, size);
-> > +			 desc->head, desc->tail, size);
-> >  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
-> >  		goto corrupted;
-> >  	}
-> > -
-> > -	/*
-> > -	 * tail == head condition indicates empty. GuC FW does not support
-> > -	 * using up the entire buffer to get tail == head meaning full.
-> > -	 */
-> > -	if (tail < head)
-> > -		used = (size - head) + tail;
-> > -	else
-> > -		used = tail - head;
-> > -
-> > -	/* make sure there is a space including extra dw for the fence */
-> > -	if (unlikely(used + len + 1 >= size))
-> > -		return -ENOSPC;
-> > +#endif
-> >  
-> >  	/*
-> >  	 * dw0: CT header (including fence)
-> > @@ -457,7 +448,9 @@ static int ct_write(struct intel_guc_ct *ct,
-> >  	write_barrier(ct);
-> >  
-> >  	/* now update descriptor */
-> > +	ctb->tail = tail;
-> >  	WRITE_ONCE(desc->tail, tail);
-> > +	ctb->space -= len + 1;
-> 
-> this magic "1" is likely GUC_CTB_MSG_MIN_LEN, right ?
->
-
-Yes.
- 
-> >  
-> >  	return 0;
-> >  
-> > @@ -473,7 +466,7 @@ static int ct_write(struct intel_guc_ct *ct,
-> >   * @req:	pointer to pending request
-> >   * @status:	placeholder for status
-> >   *
-> > - * For each sent request, Guc shall send bac CT response message.
-> > + * For each sent request, GuC shall send back CT response message.
-> >   * Our message handler will update status of tracked request once
-> >   * response message with given fence is received. Wait here and
-> >   * check for valid response status value.
-> > @@ -520,24 +513,35 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
-> >  	return ret;
-> >  }
-> >  
-> > -static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
-> > +static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
-> >  {
-> > -	struct guc_ct_buffer_desc *desc = ctb->desc;
-> > -	u32 head = READ_ONCE(desc->head);
-> > +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > +	u32 head;
-> >  	u32 space;
-> >  
-> > -	space = CIRC_SPACE(desc->tail, head, ctb->size);
-> > +	if (ctb->space >= len_dw)
-> > +		return true;
-> > +
-> > +	head = READ_ONCE(ctb->desc->head);
-> > +	if (unlikely(head > ctb->size)) {
-> > +		CT_ERROR(ct, "Corrupted descriptor head=%u tail=%u size=%u\n",
-> > +			  ctb->desc->head, ctb->desc->tail, ctb->size);
-> > +		ctb->desc->status |= GUC_CTB_STATUS_OVERFLOW;
-> > +		ctb->broken = true;
-> > +		return false;
-> > +	}
-> > +
-> > +	space = CIRC_SPACE(ctb->tail, head, ctb->size);
-> > +	ctb->space = space;
-> 
-> maybe here we could mark stall_time ?
-> 
->  	if (space >= len_dw)
-> 		return true;
-> 
-> 	if (ct->stall_time == KTIME_MAX)
-> 		ct->stall_time = ktime_get();
-> 	return false;
->
-
-No. See my eariler comment [1] about why I'd rather leave this to the
-caller. 
-
-[1] https://patchwork.freedesktop.org/patch/440703/?series=91840&rev=1
-
-> >  
-> >  	return space >= len_dw;
-> 
-> btw, maybe to avoid filling CTB to the last dword, this should be
-> 
-> 	space > len_dw
-> 
-
-CIRC_SPACE leaves an extra DW already.
-
-> note the earlier comment:
-> 
-> /*
->  * tail == head condition indicates empty. GuC FW does not support
->  * using up the entire buffer to get tail == head meaning full.
->  */
->
-
-Yes, again CIRC_SPACE uses this same algorithm.
-
-Matt
- 
-> >  }
-> >  
-> >  static int has_room_nb(struct intel_guc_ct *ct, u32 len_dw)
-> >  {
-> > -	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
-> > -
-> >  	lockdep_assert_held(&ct->ctbs.send.lock);
-> >  
-> > -	if (unlikely(!h2g_has_room(ctb, len_dw))) {
-> > +	if (unlikely(!h2g_has_room(ct, len_dw))) {
-> >  		if (ct->stall_time == KTIME_MAX)
-> >  			ct->stall_time = ktime_get();
-> >  
-> > @@ -606,10 +610,10 @@ static int ct_send(struct intel_guc_ct *ct,
-> >  	 */
-> >  retry:
-> >  	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
-> > -	if (unlikely(!h2g_has_room(ctb, len + 1))) {
-> > +	if (unlikely(!h2g_has_room(ct, len + 1))) {
-> >  		if (ct->stall_time == KTIME_MAX)
-> >  			ct->stall_time = ktime_get();
-> > -		spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > +		spin_unlock_irqrestore(&ctb->lock, flags);
-> >  
-> >  		if (unlikely(ct_deadlocked(ct)))
-> >  			return -EIO;
-> > @@ -632,7 +636,7 @@ static int ct_send(struct intel_guc_ct *ct,
-> >  
-> >  	err = ct_write(ct, action, len, fence, 0);
-> >  
-> > -	spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
-> > +	spin_unlock_irqrestore(&ctb->lock, flags);
-> >  
-> >  	if (unlikely(err))
-> >  		goto unlink;
-> > @@ -720,7 +724,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> >  {
-> >  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
-> >  	struct guc_ct_buffer_desc *desc = ctb->desc;
-> > -	u32 head = desc->head;
-> > +	u32 head = ctb->head;
-> >  	u32 tail = desc->tail;
-> >  	u32 size = ctb->size;
-> >  	u32 *cmds = ctb->cmds;
-> > @@ -735,12 +739,21 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> >  	if (unlikely(desc->status))
-> >  		goto corrupted;
-> >  
-> > -	if (unlikely((tail | head) >= size)) {
-> > +#ifdef CONFIG_DRM_I915_DEBUG_GUC
-> 
-> as above we may want to check if our cached head was not modified
-> 
-> > +	if (unlikely((desc->tail | desc->head) >= size)) {
-> >  		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
-> >  			 head, tail, size);
-> >  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
-> >  		goto corrupted;
-> >  	}
-> > +#else
-> > +	if (unlikely((tail | ctb->head) >= size)) {
-> > +		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
-> > +			 head, tail, size);
-> > +		desc->status |= GUC_CTB_STATUS_OVERFLOW;
-> > +		goto corrupted;
-> > +	}
-> > +#endif
-> >  
-> >  	/* tail == head condition indicates empty */
-> >  	available = tail - head;
-> > @@ -790,6 +803,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
-> >  	}
-> >  	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
-> >  
-> > +	ctb->head = head;
-> >  	/* now update descriptor */
-> >  	WRITE_ONCE(desc->head, head);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> > index 55ef7c52472f..9924335e2ee6 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> > @@ -33,6 +33,9 @@ struct intel_guc;
-> >   * @desc: pointer to the buffer descriptor
-> >   * @cmds: pointer to the commands buffer
-> >   * @size: size of the commands buffer in dwords
-> > + * @head: local shadow copy of head in dwords
-> > + * @tail: local shadow copy of tail in dwords
-> > + * @space: local shadow copy of space in dwords
-> >   * @broken: flag to indicate if descriptor data is broken
-> >   */
-> >  struct intel_guc_ct_buffer {
-> > @@ -40,6 +43,9 @@ struct intel_guc_ct_buffer {
-> >  	struct guc_ct_buffer_desc *desc;
-> >  	u32 *cmds;
-> >  	u32 size;
-> > +	u32 tail;
-> > +	u32 head;
-> > +	u32 space;
-> 
-> in later patch this is changing to atomic_t
-> maybe we can start with it ?
-> 
-> >  	bool broken;
-> >  };
-> >  
-> > 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGksIE1pa2UsCgpPbiA2LzI1LzIxIDc6NTcgUE0sIFJ1aGwsIE1pY2hhZWwgSiB3cm90ZToKPj4g
+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KPj4gRnJvbTogVGhvbWFzIEhlbGxzdHLDtm0gPHRo
+b21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+PiBTZW50OiBGcmlkYXksIEp1bmUgMjUs
+IDIwMjEgMTo1MiBQTQo+PiBUbzogUnVobCwgTWljaGFlbCBKIDxtaWNoYWVsLmoucnVobEBpbnRl
+bC5jb20+OyBpbnRlbC0KPj4gZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgZHJpLWRldmVsQGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBDYzogQXVsZCwgTWF0dGhldyA8bWF0dGhldy5hdWxkQGlu
+dGVsLmNvbT4KPj4gU3ViamVjdDogUmU6IFtQQVRDSCA0LzRdIGRybS9pOTE1L2dlbTogTWlncmF0
+ZSB0byBzeXN0ZW0gYXQgZG1hLWJ1ZiBtYXAKPj4gdGltZQo+Pgo+Pgo+PiBPbiA2LzI1LzIxIDc6
+MzggUE0sIFJ1aGwsIE1pY2hhZWwgSiB3cm90ZToKPj4+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQo+Pj4+IEZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4
+LmludGVsLmNvbT4KPj4+PiBTZW50OiBGcmlkYXksIEp1bmUgMjUsIDIwMjEgMTI6MTggUE0KPj4+
+PiBUbzogUnVobCwgTWljaGFlbCBKIDxtaWNoYWVsLmoucnVobEBpbnRlbC5jb20+OyBpbnRlbC0K
+Pj4+PiBnZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCj4+Pj4gQ2M6IEF1bGQsIE1hdHRoZXcgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4+
+Pj4gU3ViamVjdDogUmU6IFtQQVRDSCA0LzRdIGRybS9pOTE1L2dlbTogTWlncmF0ZSB0byBzeXN0
+ZW0gYXQgZG1hLWJ1Zgo+PiBtYXAKPj4+PiB0aW1lCj4+Pj4KPj4+PiBIaSwgTWljaGFlbCwKPj4+
+Pgo+Pj4+IHRoYW5rcyBmb3IgbG9va2luZyBhdCB0aGlzLgo+Pj4+Cj4+Pj4gT24gNi8yNS8yMSA2
+OjAyIFBNLCBSdWhsLCBNaWNoYWVsIEogd3JvdGU6Cj4+Pj4+PiAtLS0tLU9yaWdpbmFsIE1lc3Nh
+Z2UtLS0tLQo+Pj4+Pj4gRnJvbTogZHJpLWRldmVsIDxkcmktZGV2ZWwtYm91bmNlc0BsaXN0cy5m
+cmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZgo+PiBPZgo+Pj4+Pj4gVGhvbWFzIEhlbGxzdHLDtm0K
+Pj4+Pj4+IFNlbnQ6IFRodXJzZGF5LCBKdW5lIDI0LCAyMDIxIDI6MzEgUE0KPj4+Pj4+IFRvOiBp
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCj4+Pj4+PiBDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGlu
+dXguaW50ZWwuY29tPjsgQXVsZCwKPj4+PiBNYXR0aGV3Cj4+Pj4+PiA8bWF0dGhldy5hdWxkQGlu
+dGVsLmNvbT4KPj4+Pj4+IFN1YmplY3Q6IFtQQVRDSCA0LzRdIGRybS9pOTE1L2dlbTogTWlncmF0
+ZSB0byBzeXN0ZW0gYXQgZG1hLWJ1ZiBtYXAKPj4+PiB0aW1lCj4+Pj4+PiBVbnRpbCB3ZSBzdXBw
+b3J0IHAycCBkbWEgb3IgYXMgYSBjb21wbGVtZW50IHRvIHRoYXQsIG1pZ3JhdGUgZGF0YQo+Pj4+
+Pj4gdG8gc3lzdGVtIG1lbW9yeSBhdCBkbWEtYnVmIG1hcCB0aW1lIGlmIHBvc3NpYmxlLgo+Pj4+
+Pj4KPj4+Pj4+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0
+cm9tQGxpbnV4LmludGVsLmNvbT4KPj4+Pj4+IC0tLQo+Pj4+Pj4gZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jIHwgOSArKysrKysrKy0KPj4+Pj4+IDEgZmlsZSBjaGFu
+Z2VkLCA4IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4+Pj4+Cj4+Pj4+PiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jCj4+Pj4+PiBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+Pj4+Pj4gaW5kZXgg
+NjE2YzNhMmYxYmFmLi5hNTJmODg1YmMwOWEgMTAwNjQ0Cj4+Pj4+PiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMKPj4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+Pj4+Pj4gQEAgLTI1LDcgKzI1LDE0IEBA
+IHN0YXRpYyBzdHJ1Y3Qgc2dfdGFibGUKPj4+PiAqaTkxNV9nZW1fbWFwX2RtYV9idWYoc3RydWN0
+Cj4+Pj4+PiBkbWFfYnVmX2F0dGFjaG1lbnQgKmF0dGFjaG1lCj4+Pj4+PiAJc3RydWN0IHNjYXR0
+ZXJsaXN0ICpzcmMsICpkc3Q7Cj4+Pj4+PiAJaW50IHJldCwgaTsKPj4+Pj4+Cj4+Pj4+PiAtCXJl
+dCA9IGk5MTVfZ2VtX29iamVjdF9waW5fcGFnZXNfdW5sb2NrZWQob2JqKTsKPj4+Pj4+ICsJcmV0
+ID0gaTkxNV9nZW1fb2JqZWN0X2xvY2tfaW50ZXJydXB0aWJsZShvYmosIE5VTEwpOwo+Pj4+PiBI
+bW0sIEkgYmVsaWV2ZSBpbiBtb3N0IGNhc2VzIHRoYXQgdGhlIGNhbGxlciBzaG91bGQgYmUgaG9s
+ZGluZyB0aGUKPj4+Pj4gbG9jayAob2JqZWN0IGRtYS1yZXN2KSBvbiB0aGlzIG9iamVjdCBhbHJl
+YWR5Lgo+Pj4+IFllcywgSSBhZ3JlZSwgSW4gcGFydGljdWxhciBmb3Igb3RoZXIgaW5zdGFuY2Vz
+IG9mIG91ciBvd24gZHJpdmVyLMKgIGF0Cj4+Pj4gbGVhc3Qgc2luY2UgdGhlIGRtYV9yZXN2IGlu
+dHJvZHVjdGlvbi4KPj4+Pgo+Pj4+IEJ1dCBJIGFsc28gdGhpbmsgdGhhdCdzIGEgcHJlLWV4aXN0
+aW5nIGJ1Zywgc2luY2UKPj4+PiBpOTE1X2dlbV9vYmplY3RfcGluX3BhZ2VzX3VubG9ja2VkKCkg
+d2lsbCBhbHNvIHRha2UgdGhlIGxvY2suCj4+PiBPdWNoIHllcy4gIE1pc3NlZCB0aGF0Lgo+Pj4K
+Pj4+PiBJIFRoaW5rIHdlIG5lZWQgdG8gaW5pdGlhbGx5IG1ha2UgdGhlIGV4cG9ydGVyIGR5bmFt
+aWMtY2FwYWJsZSB0bwo+Pj4+IHJlc29sdmUgdGhpcywgYW5kIGRyb3AgdGhlIGxvY2tpbmcgaGVy
+ZSBjb21wbGV0ZWx5LCBhcyBkbWEtYnVmIGRvY3Mgc2F5cwo+Pj4+IHRoYXQgd2UncmUgdGhlbiBn
+dWFyYW50ZWVkIHRvIGdldCBjYWxsZWQgd2l0aCB0aGUgb2JqZWN0IGxvY2sgaGVsZC4KPj4+Pgo+
+Pj4+IEkgZmlndXJlIGlmIHdlIG1ha2UgdGhlIGV4cG9ydGVyIGR5bmFtaWMsIHdlIG5lZWQgdG8g
+bWlncmF0ZSBhbHJlYWR5IGF0Cj4+Pj4gZG1hX2J1Zl9waW4gdGltZSBzbyB3ZSBkb24ndCBwaW4g
+dGhlIG9iamVjdCBpbiB0aGUgd3JvbmcgbG9jYXRpb24uCj4+PiBUaGUgZXhwb3J0ZXIgYXMgZHlu
+YW1pYyAgKG9wcy0+cGluIGlzIGF2YWlsYWJsZSkgaXMgb3B0aW9uYWwsIGJ1dCBpbXBvcnRlcgo+
+Pj4gZHluYW1pYyAob3BzLT5tb3ZlX25vdGlmeSkgaXMgcmVxdWlyZWQuCj4+Pgo+Pj4gV2l0aCB0
+aGF0IGluIG1pbmQsIGl0IHdvdWxkIHNlZW0gdGhhdCB0aGVyZSBhcmUgdGhyZWUgcG9zc2libGUg
+Y29tYmluYXRpb25zCj4+PiBmb3IgdGhlIG1pZ3JhdGUgdG8gYmUgYXR0ZW1wdGVkOgo+Pj4KPj4+
+IDEpIGluIHRoZSBvcHMtPnBpbiBmdW5jdGlvbiAoZXhwb3J0X2R5bmFtaWMgIT0gaW1wb3J0X2R5
+bmFtaWMsIGR1cmluZwo+PiBhdHRhY2gpCj4+PiAyKSBpbiB0aGUgb3BzLT5waW4gZnVuY3Rpb24g
+KGV4cG9ydF9keW5hbWljIGFuZAo+PiAhQ09ORklHX0RNQUJVRl9NT1ZFX05PVElGWSkgZHVyaW5n
+IG1hcHBpbmcKPj4+IDMpIGFuZCBwb3NzaWJseSBpbiBvcHMtPm1hcF9kbWFfYnVmIChleG9ydF9k
+eW5hbWljIGlhbmQKPj4gQ09ORklHX0RNQUJVRl9NT1ZFX05PVElGWSkKPj4+IFNpbmNlIG9uZSBw
+b3NzaWJpbGl0eSBoYXMgdG8gYmUgaW4gdGhlIG1hcHBpbmcgZnVuY3Rpb24sIGl0IHNlZW1zIHRo
+YXQgaWYgd2UKPj4+IGNhbiBmaWd1cmUgb3V0IHRoZSBsb2NraW5nLCB0aGF0IHRoZSBtaWdyYXRl
+IHNob3VsZCBwcm9iYWJseSBiZSBhdmFpbGFibGUKPj4gaGVyZS4KPj4+IE1pa2UKPj4gU28gcGVy
+aGFwcyBqdXN0IHRvIGluaXRpYWxseSBmaXggdGhlIGJ1Zywgd2UgY291bGQganVzdCBpbXBsZW1l
+bnQgTk9QCj4+IHBpbigpIGFuZCB1bnBpbigpIGNhbGxiYWNrcyBhbmQgZHJvcCB0aGUgbG9ja2lu
+ZyBpbiBtYXBfYXR0YWNoKCkgYW5kCj4+IHJlcGxhY2UgaXQgd2l0aCBhbiBhc3NlcnRfb2JqZWN0
+X2hlbGQoKTsKPiBUaGF0IGlzIHRoZSBzdGlja3kgcGFydCBvZiB0aGUgbW92ZSBub3RpZnkgQVBJ
+Lgo+Cj4gSWYgeW91IGRvIHRoZSBhdHRhY2hfZHluYW1pYyB5b3UgaGF2ZSB0byBoYXZlIGFuIG9w
+cyB3aXRoIG1vdmVfbm90aWZ5Lgo+Cj4gKGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4
+L3Y1LjEzLXJjNy9zb3VyY2UvZHJpdmVycy9kbWEtYnVmL2RtYS1idWYuYyNMNzMwKQo+Cj4gSWYg
+eW91IGRvbid0IGhhdmUgdGhhdCwgaS5lLiBqdXN0IHRoZSBwaW4gaW50ZXJmYWNlLCB0aGUgYXR0
+YWNoIHdpbGwgYmUKPiByZWplY3RlZCwgYW5kIHlvdSB3aWxsIG5vdCBnZXQgdGhlIGNhbGxiYWNr
+cy4KCkkgdW5kZXJzdG9vZCB0aGF0IGFzIHRoZSByZXF1aXJlbWVudCBmb3IgbW92ZV9ub3RpZnkg
+aXMgb25seSBpZiB0aGUgCippbXBvcnRlciogZGVjbGFyZXMgZHluYW1pYy4gQSBkeW5hbWljIGV4
+cG9ydGVyIGNvdWxkIGNob29zZSB3aGV0aGVyIHRvIApjYWxsIG1vdmVfbm90aWZ5KCkgb24gZXZp
+Y3Rpb24gb3IgdG8gcGluIGFuZCBuZXZlciBldmljdC4gSWYgdGhlIAppbXBvcnRlciBpcyBub24t
+ZHluYW1pYywgdGhlIGNvcmUgY2FsbHMgcGluKCkgYW5kIHRoZSBvbmx5IGNob2ljZSBpcyB0byAK
+cGluIGFuZCBuZXZlciBldmljdC4KClNvIGlmIHdlIHRlbXBvcmFyaWx5IGNob29zZSB0byBwaW4g
+YW5kIG5ldmVyIGV2aWN0IGZvciAqZXZlcnl0aGluZyosIChhcyAKdGhlIGN1cnJlbnQgY29kZSBk
+b2VzIG5vdyksIEkgdGhpbmsgd2Ugc2hvdWxkIGJlIGdvb2QgZm9yIG5vdywgYW5kIHRoZW4gCndl
+IGNhbiBpbXBsZW1lbnQgYWxsIGZhbmN5IHAycCBhbmQgbW92ZV9ub3RpZnkgc3R1ZmYgb24gdG9w
+IG9mIHRoYXQuCgovVGhvbWFzCgoKPgo+IFNvIEkgdGhpbmsgdGhhdCB0aGUgb25seSB0aGluZyB3
+ZSBjYW4gZG8gZm9yIG5vdyBpcyB0byBkb3AgdGhlIGxvY2tpbmcgYW5kIGFkZCB0aGUKPgo+IGFz
+c2VydF9vYmplY3RfaGVsZCgpOwo+Cj4gTQoKCgo+Cj4+IC9UaG9tYXMKPj4KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
