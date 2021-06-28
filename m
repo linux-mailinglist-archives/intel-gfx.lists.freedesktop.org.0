@@ -2,48 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03C53B5B62
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 870913B5B73
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 11:38:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6636E40A;
-	Mon, 28 Jun 2021 09:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A0E6E3B7;
+	Mon, 28 Jun 2021 09:38:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 890766E9B6;
- Sat, 26 Jun 2021 06:35:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
- s=20170329; 
- h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
- bh=ccSBQjSdQ0yyRGKtd2TN6frnfy5qFmhpR4DjfGkepkE=; 
- b=YaJ+LNitNLTcPjZP3ob9seOFY7b65vc0hq8Re1L4MYfp4gvEqbQ1c7pXOVTEH9L+HXmr1mrMHlsOMkRbb7EcpErU9vArDwAUargOOUXVZ/kC815UjA2ZQB+V5gL3kfpN+s1GhPTU1j4nCm24C7GhTAPm34dDa9cxvah+JoLo5hCb7zeVVzmddExLrQV/Dx6oIBHOLWR3YP31RbIVP8dBFfUWj5dXncKHBpWJjHSkmXFbDE7Fx3BWJ/6i+PDqP0L2r52huDerwXNkehSup0GsnYvSQV4MQ5HwYuiREbnZpWqc6noxTpWPlBR/qGJNmzIa1iiHPVMpfuAtf79xPlplpA==;
-Received: from 1.pool85-50-22.dynamic.orange.es ([85.50.22.1]
- helo=[192.168.1.119]) by fanzine.igalia.com with esmtpsa 
- (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
- id 1lx1ui-0005dT-TN; Sat, 26 Jun 2021 08:35:37 +0200
-Message-ID: <0032ceefa7c39bdd03907565ab9762ad6007eb80.camel@igalia.com>
-From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
-To: "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>, 
- "events@lists.x.org"
- <events@lists.x.org>, "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org"
- <mesa-dev@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "etnaviv@lists.freedesktop.org"
- <etnaviv@lists.freedesktop.org>, "freedreno@lists.freedesktop.org"
- <freedreno@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Date: Sat, 26 Jun 2021 08:35:26 +0200
-In-Reply-To: <380e8cb0f18c6f4b21c20b382668316b8962159a.camel@igalia.com>
-References: <790BA4EE-E3F0-40B9-BE18-3646492F1CAE@intel.com>
- <380e8cb0f18c6f4b21c20b382668316b8962159a.camel@igalia.com>
-User-Agent: Evolution 3.40.2 (3.40.2-1.fc34) 
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD4916E3B7;
+ Mon, 28 Jun 2021 09:38:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10028"; a="271778926"
+X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="271778926"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2021 02:38:05 -0700
+X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="454450822"
+Received: from danielmi-mobl2.ger.corp.intel.com (HELO [10.249.254.242])
+ ([10.249.254.242])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2021 02:38:03 -0700
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210625122751.590289-1-matthew.auld@intel.com>
+ <20210625122751.590289-2-matthew.auld@intel.com>
+ <b6ee3701-2662-315c-3c2a-c4d92623fbbc@linux.intel.com>
+ <a7722f16-2f7b-b213-8a2d-27d5f02d893f@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <d19caf7e-ed3b-5cfe-632a-46536aac03f4@linux.intel.com>
+Date: Mon, 28 Jun 2021 11:38:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 28 Jun 2021 09:31:03 +0000
-Subject: Re: [Intel-gfx] [Mesa-dev] XDC 2021: Registration & Call for
- Proposals now open!
+In-Reply-To: <a7722f16-2f7b-b213-8a2d-27d5f02d893f@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/gem: only allow WB for smem
+ only placements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,157 +49,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "board@foundation.x.org" <board@foundation.x.org>
-Content-Type: multipart/mixed; boundary="===============1777755275=="
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1777755275==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-01vBJSSMux+wzjjp4LED"
-
-
---=-01vBJSSMux+wzjjp4LED
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-One week!
-
-Don't forget to submit your proposals!
-
-Sam
-
-On Tue, 2021-06-08 at 12:38 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
-> Kind reminder. Deadline is Sunday, 4 July 2021 :-)
->=20
-> Sam
->=20
-> On Thu, 2021-05-20 at 10:01 +0000, Szwichtenberg, Radoslaw wrote:
-> > Hello!
-> > =C2=A0
-> > Registration & Call for Proposals are now open for XDC 2021, which
-> > will
-> > take place on September 15-17, 2021. This year we will repeat as
-> > virtual event.
-> > =C2=A0
-> > https://indico.freedesktop.org/event/1/
-> > =C2=A0
-> > As usual, the conference is free of charge and open to the general
-> > public. If you plan on attending, please make sure to register as
-> > early
-> > as possible!
-> > =C2=A0
-> > In order to register as attendee, you will therefore need to
-> > register
-> > via the XDC website. As XDC moved to a new Indico infrastructure,
-> > if
-> > you previously registered on the XDC website, you need to create a
-> > new
-> > account again.
-> > =C2=A0
-> > https://indico.freedesktop.org/event/1/registrations/1/
-> > =C2=A0
-> > In addition to registration, the CfP is now open for talks,
-> > workshops
-> > and demos at XDC 2021. While any serious proposal will be
-> > gratefully
-> > considered, topics of interest to X.Org and freedesktop.org
-> > developers
-> > are encouraged. The program focus is on new development, ongoing
-> > challenges and anything else that will spark discussions among
-> > attendees in the hallway track.
-> > =C2=A0
-> > We are open to talks across all layers of the graphics stack, from
-> > the
-> > kernel to desktop environments / graphical applications and about
-> > how
-> > to make things better for the developers who build them. Head to
-> > the
-> > CfP page to learn more:=C2=A0
-> > =C2=A0
-> > https://indico.freedesktop.org/event/1/abstracts/
-> > =C2=A0
-> > The deadline for submissions is Sunday, 4 July 2021.
-> > =C2=A0
-> > Last year we modified our Reimbursement Policy to accept speaker
-> > expenses for X.Org virtual events like XDC 2021. Check it out here:
-> > =C2=A0
-> > https://www.x.org/wiki/XorgFoundation/Policies/Reimbursement/
-> > =C2=A0
-> > If you have any questions, please send me an email to
-> > radoslaw.szwichtenberg@intel.com,=C2=A0=C2=A0adding on CC the X.org boa=
-rd
-> > (board
-> > at foundation.x.org).
-> > =C2=A0
-> > And don't forget, you can follow us on Twitter for all the latest
-> > updates and to stay connected:
-> > =C2=A0
-> > =C2=A0
-> > https://twitter.com/XOrgDevConf
-> > =C2=A0
-> > Best,
-> > =C2=A0
-> > Radek
-> > =C2=A0
-> > P.S: a DNS redirection (xdc2021.x.org) is work in progress. Please
-> > use
-> > the mentioned links for the moment.
-> > =C2=A0
-> > =C2=A0
-> > Rados=C5=82aw Szwichtenberg
-> > -------------------------------------------------
-> > Intel Technology Poland sp. z o.o.
-> > ul. Slowackiego 173, 80-298 Gdansk
-> > KRS 101882 - NIP 957-07-52-316
-> > =C2=A0
-> > _______________________________________________
-> > mesa-dev mailing list
-> > mesa-dev@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/mesa-dev
->=20
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
-
-
---=-01vBJSSMux+wzjjp4LED
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmDWyq4ACgkQf/S6MvF9
-w0NeCA/+NKJD5cvxuz9Kgx4Q3zeKFaiT5K6l1uYCeoJhhftn5RejAoMTX/eChdoS
-ryG9w4LYKrplDwk2qDSKsrmUudxP8uoMJvtCXr8tkBwAwFwSKh0hUakr5sEOboCF
-+r1QnA9+pO+RTte3mTI0fkBRHQpE+iuit6ajL6VklzKHL3JR7bXd14YQDOllHBLo
-2m4fnT2552jAFB564Ws+c532MS5wOzSxmn1KCTmonscCD7ibawtImz9AkFrKO6H2
-prTX2lceXZEfNKUVBe2GdGTKY3b5IgprYGHezzTQ2OEB7ahuLgkCJhhybhtJgDBZ
-4PHSndp41jMF9ppg4PDch5VDkjuN5xxzeDgATdAt1aNaYqr1QuaMdQg5bGmYVWxA
-i8y9JstwBwrStSa2PlVDxHU4kYl8H2v3A4Bh40yO8euunb1kWYjMfjNvE2/4b7iM
-Ypnx4XRI3RV19HtAxjUvx67syWBzqSUYEr+DhmerikOmE7rA8a2rGSTpOJRJjYFt
-ziEcDgJbMrzbOE/+EYf93+FRotnBY7g7pzAq7WEOKx7fb9gB0nghpWD7GYxEIRn0
-cHkgj3huK4joxPgz3ezvOfN8v9LzW8xzf0g7KXCrgxzRwFjBv+O22mNgz4SgsTnd
-j9Ha/GpoZUxn4knkiuBIU+De8dCdIDUuvRKVIJlsMQVMAj2aNkI=
-=9mIJ
------END PGP SIGNATURE-----
-
---=-01vBJSSMux+wzjjp4LED--
-
-
---===============1777755275==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1777755275==--
-
+SGksCgpPbiA2LzI4LzIxIDExOjEyIEFNLCBNYXR0aGV3IEF1bGQgd3JvdGU6Cj4gT24gMjgvMDYv
+MjAyMSAwODo0MSwgVGhvbWFzIEhlbGxzdHLDtm0gd3JvdGU6Cj4+Cj4+IE9uIDYvMjUvMjEgMjoy
+NyBQTSwgTWF0dGhldyBBdWxkIHdyb3RlOgo+Pj4gV2Ugb25seSBzdXBwb3J0IHNpbmdsZSBtb2Rl
+IGFuZCB0aGlzIHNob3VsZCBiZSBpbW11dGFibGUuIEZvciBzbWVtIG9ubHkKPj4+IHBsYWNlbWVu
+dHMgb24gREdGWCB0aGlzIHNob3VsZCBiZSBXQi4gT24gREcxIGV2ZXJ5dGhpbmcgaXMgc25vb3Bl
+ZCwKPj4+IGFsd2F5cywgYW5kIHNvIHNob3VsZCBiZSBjb2hlcmVudC4KPj4+Cj4+PiBJOTE1X0dF
+TV9ET01BSU5fR1RUIGxvb2tzIGxpa2UgaXQncyBmb3IgdGhlIGFwZXJ0dXJlIHdoaWNoIGlzIG5v
+dyBnb25lCj4+PiBmb3IgREdGWCwgc28gaG9wZWZ1bGx5IGNhbiBhbHNvIGJlIHNhZmVseSByZWpl
+Y3RlZC4KPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBp
+bnRlbC5jb20+Cj4+PiBDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGlu
+dXguaW50ZWwuY29tPgo+Pj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3Jz
+dEBsaW51eC5pbnRlbC5jb20+Cj4+PiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBm
+ZndsbC5jaD4KPj4+IC0tLQo+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
+X2RvbWFpbi5jIHzCoCA3ICsrKysrKysKPj4+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
+OTE1X2dlbV9tbWFuLmPCoMKgIHwgMTAgKysrKysrKysrKwo+Pj4gwqAgMiBmaWxlcyBjaGFuZ2Vk
+LCAxNyBpbnNlcnRpb25zKCspCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYyAKPj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX2RvbWFpbi5jCj4+PiBpbmRleCBkMGM5MTY5N2JiMjIuLmUzNDU5YTUyNGU2NCAx
+MDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4u
+Ywo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jCj4+
+PiBAQCAtNTc3LDYgKzU3NywxMyBAQCBpOTE1X2dlbV9zZXRfZG9tYWluX2lvY3RsKHN0cnVjdCBk
+cm1fZGV2aWNlIAo+Pj4gKmRldiwgdm9pZCAqZGF0YSwKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBn
+b3RvIG91dF91bnBpbjsKPj4+IMKgwqDCoMKgwqAgfQo+Pj4gK8KgwqDCoCBpZiAoSVNfREdGWCh0
+b19pOTE1KG9iai0+YmFzZS5kZXYpKSAmJiBvYmotPm1tLm5fcGxhY2VtZW50cyA9PSAKPj4+IDEg
+JiYKPj4+ICvCoMKgwqDCoMKgwqDCoCBpOTE1X2dlbV9vYmplY3RfcGxhY2VtZW50c19jb250YWlu
+X3R5cGUob2JqLCAKPj4+IElOVEVMX01FTU9SWV9TWVNURU0pICYmCj4+PiArwqDCoMKgwqDCoMKg
+wqAgcmVhZF9kb21haW5zICE9IEk5MTVfR0VNX0RPTUFJTl9DUFUpIHsKPj4+ICvCoMKgwqDCoMKg
+wqDCoCBlcnIgPSAtRUlOVkFMOwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGdvdG8gb3V0X3VucGluOwo+
+Pj4gK8KgwqDCoCB9Cj4+PiArCj4+PiDCoMKgwqDCoMKgIGlmIChyZWFkX2RvbWFpbnMgJiBJOTE1
+X0dFTV9ET01BSU5fV0MpCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZXJyID0gaTkxNV9nZW1fb2Jq
+ZWN0X3NldF90b193Y19kb21haW4ob2JqLCB3cml0ZV9kb21haW4pOwo+Pj4gwqDCoMKgwqDCoCBl
+bHNlIGlmIChyZWFkX2RvbWFpbnMgJiBJOTE1X0dFTV9ET01BSU5fR1RUKQo+Pj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMgCj4+PiBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMKPj4+IGluZGV4IGYzNTg2YjM2ZGQ1
+My4uYWZjOWYzZGMzOGI5IDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX21tYW4uYwo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
+Z2VtX21tYW4uYwo+Pj4gQEAgLTY3Myw2ICs2NzMsNyBAQCBfX2Fzc2lnbl9tbWFwX29mZnNldChz
+dHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAKPj4+ICpvYmosCj4+PiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIGVudW0gaTkxNV9tbWFwX3R5cGUgbW1hcF90eXBlLAo+Pj4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCB1NjQgKm9mZnNldCwgc3RydWN0IGRybV9maWxlICpmaWxlKQo+
+Pj4gwqAgewo+Pj4gK8KgwqDCoCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5
+MTUob2JqLT5iYXNlLmRldik7Cj4+PiDCoMKgwqDCoMKgIHN0cnVjdCBpOTE1X21tYXBfb2Zmc2V0
+ICptbW87Cj4+PiDCoMKgwqDCoMKgIGlmIChpOTE1X2dlbV9vYmplY3RfbmV2ZXJfbW1hcChvYmop
+KQo+Pj4gQEAgLTY5Nyw2ICs2OTgsMTUgQEAgX19hc3NpZ25fbW1hcF9vZmZzZXQoc3RydWN0IGRy
+bV9pOTE1X2dlbV9vYmplY3QgCj4+PiAqb2JqLAo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIGk5MTVf
+Z2VtX29iamVjdF9wbGFjZW1lbnRzX2NvbnRhaW5fdHlwZShvYmosIAo+Pj4gSU5URUxfTUVNT1JZ
+X0xPQ0FMKSkKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVOT0RFVjsKPj4+ICvCoMKg
+wqAgLyoKPj4+ICvCoMKgwqDCoCAqIEZvciBzbWVtIG9ubHkgcGxhY2VtZW50cyBvbiBER0ZYIHdl
+IG5lZWQgdG8gZGVmYXVsdCB0byBXQi4gCj4+PiBPbiBERzEKPj4+ICvCoMKgwqDCoCAqIGV2ZXJ5
+dGhpbmcgaXMgc25vb3BlZCBhbHdheXMsIHNvIHNob3VsZCBhbHdheXMgYmUgY29oZXJlbnQuCj4+
+PiArwqDCoMKgwqAgKi8KPj4+ICvCoMKgwqDCoCBpZiAoSVNfREdGWChpOTE1KSAmJgo+Pj4gK8Kg
+wqDCoMKgwqDCoMKgwqAgbW1hcF90eXBlICE9IEk5MTVfTU1BUF9UWVBFX1dCICYmIG9iai0+bW0u
+bl9wbGFjZW1lbnRzID09IAo+Pj4gMSAmJgo+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgaTkxNV9nZW1f
+b2JqZWN0X3BsYWNlbWVudHNfY29udGFpbl90eXBlKG9iaiwgCj4+PiBJTlRFTF9NRU1PUllfU1lT
+VEVNKSkKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVOT0RFVjsKPj4+ICsKPj4KPj4gU2Ft
+ZSB0aGluZyBoZXJlIGFzIGluIHRoZSBwcmV2aW91cyBwYXRjaC4KPj4KPj4gQWxzbyBkbyB3ZSBu
+ZWVkIHRvIG1vZGlmeSBpOTE1X2NvaGVyZW50X21hcF90eXBlKCkgdG8gYWxzbyBpbmNsdWRlIAo+
+PiBIQVNfU05PT1AoKT8KPj4KPj4gV2hpbGUgd2UncmUgYXQgaXQsIHRoYXQgImFsd2F5c19jb2hl
+cmVudCIgYXJndW1lbnQgdG8gCj4+IGk5MTVfY29oZXJlbnRfbWFwX3R5cGUoKSBhcHBlYXJzIHNj
+YXJ5IHRvIG1lIGFuZCBwcm9iYWJseSBuZWVkcyBzb21lIAo+PiBkb2N1bWVudGF0aW9uLiBJdCBz
+ZWVtcyB1c2VkIGZvciBwYWdlLXRhYmxlcy4gSXMgaXQgYmVjYXVzZSB3ZSBrbm93IAo+PiB0aG9z
+ZSBhcmUgYWx3YXlzIHNub29wZWQ/Cj4KPiBZZWFoLCBpdCdzIGVpdGhlciBiZWNhdXNlIHRoZSBj
+YWxsZXIgaGFzL3dpbGwgbWFyayB0aGUgcGFnZXMgYXMgCj4gY29oZXJlbnQod2hpY2ggdHJhbnNs
+YXRlcyB0byBzb21lIHNwZWNpYWwgcHBHVFQgYml0cyksIG9yIHdlIG1hbnVhbGx5IAo+IGZsdXNo
+IG91cnNlbHZlcy4gSW4gaTkxNV9jb2hlcmVudF9tYXBfdHlwZSgpIHdlIHNob3VsZCBhY2NvdW50
+IGZvciBERzEgCj4gc29tZWhvdy4KPgo+IEhpc3RvcmljYWxseSBJIGRvbid0IHRoaW5rIHdlIGVu
+YWJsZWQgc25vb3BpbmcgYnkgZGVmYXVsdCBzaW5jZSBpdCdzIAo+IGNvbnNpZGVyZWQgc2xvdyBj
+b21wYXJlZCB0byBzaGFyZWQgTExDLiBPbiBERzEgdGhpcyBpcyBhIGRpZmZlcmVudCAKPiBzdG9y
+eSB0aG91Z2guCj4KPiBBbHNvIHRoZSBwaW5fbWFwKCkgaW50ZXJmYWNlIGlzIHByZXR0eSBtdWNo
+IG9ubHkgZm9yIGtlcm5lbCBpbnRlcm5hbCAKPiBvYmplY3RzLCBzbyBJIGRvbid0IHRoaW5rIHdl
+IGhhdmUgYW55IHVzZXJzIHdoaWNoIHRyeSB0byBtYXAgdXNlcnNwYWNlIAo+IG9iamVjdHMgd2l0
+aCB0aGF0IGludGVyZmFjZS4gT2ssIGV4Y2VwdCBmb3Igdm1fYWNjZXNzIGl0IHNlZW1zLCBidXQg
+Cj4gdGhhdCBzaG91bGQgaG9wZWZ1bGx5IGJlIGEgc2ltcGxlIGZpeCB0byB1c2UgdGhlIGNvcnJl
+Y3QgY2FjaGluZyBtb2RlPyAKPiBXZSBjYW4gbWF5YmUgYWRkIHNvbWUgc2FuaXR5IGNoZWNraW5n
+IHRoZXJlIGlmIHNvbWVvbmUgdHJpZXMgdG8gbWFwIGEgCj4gdXNlcnNwYWNlIG9iamVjdD8KSSdt
+IG5vdCBmdWxseSBzdXJlIHRoYXQncyBzdWZmaWNpZW50LCBzZWUgYmVsb3cuCj4KPiBGb3IgYWxs
+IHRoZSBvdGhlciBjYWxsZXJzIG9mIHBpbl9tYXAoKSB3aGljaCBzaG91bGQgYWxsIGJlIGtlcm5l
+bCAKPiBpbnRlcm5hbCBkbyB3ZSBzdGlsbCBuZWVkIHRvIGZvcmNlIFdCIGZvciBzeXN0ZW0gbWVt
+b3J5PyBCeSBkZXNpZ24gd2UgCj4gb25seSBzdXBwb3J0IGEgc2luZ2xlIG1tLm1hcHBpbmcgdGhl
+cmUuIEZvciBsbWVtIHdlIGFscmVhZHkgdXNlIFdDIG9ubHkuCgpXZSdyZSBvbmx5IGFsbG93ZWQg
+dG8gbWFwIHdpdGggdGhlIHNhbWUgY2FjaGluZyBtb2RlIGFzIHRoZSBsaW5lYXIgCmtlcm5lbCBt
+YXBwaW5nIGZvciBkaXNjcmV0ZS4gT3RoZXJ3aXNlIHRoaW5ncyBtYXkgYmxvdyB1cCBvbiBub24t
+aW50ZWwgCmFyY2hpdGVjdHVyZXMuIFdlIGNhbiBwcm9iYWJseSB1cGRhdGUgMTk1X3R0bV9zZWxl
+Y3RfdHRfY2FjaGluZyB0byAKYWx3YXlzIHVzZSBXQiBmb3Igc3lzdGVtIHBhZ2VzIGZvciBrZXJu
+ZWwgb2JqZWN0cywgYnV0IHRoZW4gd2UgbXVzdCBtYWtlIApzdXJlIHdlIGRvbid0IHRyeSB0byBt
+YXAgdGhlc2UgV0MuCgovVGhvbWFzCgoKPgo+Pgo+PiAvVGhvbWFzCj4+Cj4+Cj4+PiDCoMKgwqDC
+oMKgIG1tbyA9IG1tYXBfb2Zmc2V0X2F0dGFjaChvYmosIG1tYXBfdHlwZSwgZmlsZSk7Cj4+PiDC
+oMKgwqDCoMKgIGlmIChJU19FUlIobW1vKSkKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4g
+UFRSX0VSUihtbW8pOwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
