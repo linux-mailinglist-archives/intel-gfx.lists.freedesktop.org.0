@@ -1,51 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEBA03B6736
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 19:03:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 494C33B679F
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 19:27:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4584C6E4D7;
-	Mon, 28 Jun 2021 17:03:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE3666E4F3;
+	Mon, 28 Jun 2021 17:27:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14A6D6E4D4;
- Mon, 28 Jun 2021 17:03:08 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 780A7C800E0;
- Mon, 28 Jun 2021 19:03:06 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id s55WI_sueaYA; Mon, 28 Jun 2021 19:03:06 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f39:4900:5a7:8b5d:f9f7:c452]
- (p200300E37F39490005A78B5dF9f7C452.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f39:4900:5a7:8b5d:f9f7:c452])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 5D0CBC800CE;
- Mon, 28 Jun 2021 19:03:05 +0200 (CEST)
-To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-References: <20210618091116.14428-1-wse@tuxedocomputers.com>
- <20210618091116.14428-4-wse@tuxedocomputers.com>
-From: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <18bbd0cf-4c37-ce9d-eb63-de4131a201e1@tuxedocomputers.com>
-Date: Mon, 28 Jun 2021 19:03:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8D0B36E4F3;
+ Mon, 28 Jun 2021 17:27:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 85F27A00E6;
+ Mon, 28 Jun 2021 17:27:41 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210618091116.14428-4-wse@tuxedocomputers.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 03/17] drm/uAPI: Add "active bpc" as
- feedback channel for "max bpc" drm property
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 28 Jun 2021 17:27:41 -0000
+Message-ID: <162490126154.2573.12285239475551864947@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210628144626.76126-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210628144626.76126-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Introduce_a_migrate_interface_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,151 +38,226 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0803345443=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 18.06.21 um 11:11 schrieb Werner Sembach:
-> Add a new general drm property "active bpc" which can be used by graphic
-> drivers to report the applied bit depth per pixel back to userspace.
->
-> While "max bpc" can be used to change the color depth, there was no way to
-> check which one actually got used. While in theory the driver chooses the
-> best/highest color depth within the max bpc setting a user might not be
-> fully aware what his hardware is or isn't capable off. This is meant as a
-> quick way to double check the setup.
->
-> In the future, automatic color calibration for screens might also depend on
-> this information being available.
->
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
->  drivers/gpu/drm/drm_connector.c | 51 +++++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h     |  8 ++++++
->  2 files changed, 59 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index da39e7ff6965..943f6b61053b 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -1197,6 +1197,14 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
->   *	drm_connector_attach_max_bpc_property() to create and attach the
->   *	property to the connector during initialization.
->   *
-> + * active bpc:
-> + *	This read-only range property tells userspace the pixel color bit depth
-> + *	actually used by the hardware display engine on "the cable" on a
-> + *	connector. The chosen value depends on hardware capabilities, both
-> + *	display engine and connected monitor, and the "max bpc" property.
-> + *	Drivers shall use drm_connector_attach_active_bpc_property() to install
-> + *	this property.
-> + *
+--===============0803345443==
+Content-Type: multipart/alternative;
+ boundary="===============1333169596684200953=="
 
-Regarding "on the cable" and dithering: As far as I can tell, what the dithering option does, is setting a hardware
-register here:
+--===============1333169596684200953==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/display/intel_display.c#L4534
+== Series Details ==
 
-- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/display/intel_display.c#L4571
+Series: drm/i915/gem: Introduce a migrate interface (rev3)
+URL   : https://patchwork.freedesktop.org/series/91890/
+State : success
 
-So dithering seems to be calculated by fixed purpose hardware/firmware outside of the driver?
+== Summary ==
 
-The Intel driver does not seem to set a target bpc/bpp for this hardware so I guess it defaults to 6 or 8 bpc?
+CI Bug Log - changes from CI_DRM_10284 -> Patchwork_20479
+====================================================
 
-Similar things happen on amd. Here the output dither depth seems to be written to a fixed value however:
+Summary
+-------
 
-- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c#L828
+  **SUCCESS**
 
-- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c#L769
+  No regressions found.
 
-Does anyone know about a resource where I can read up on the used registers and what this hardware actually does?
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/index.html
 
-My proposal for now: "max bpc" affects what happens before dither, so I would keep "active bpc" the same and add another
-drm property "dither active: true/false". No additional property to control dither, as amdgpu does have one already
-(which isn't always active?) and Intel driver does only seem prepared for dithering at 6bpc (albeit I don't know why to
-dither at 6bpc and what depth to dither to?).
+New tests
+---------
 
->   * Connectors also have one standardized atomic property:
->   *
->   * CRTC_ID:
-> @@ -2152,6 +2160,49 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
->  }
->  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
->  
-> +/**
-> + * drm_connector_attach_active_bpc_property - attach "active bpc" property
-> + * @connector: connector to attach active bpc property on.
-> + * @min: The minimum bit depth supported by the connector.
-> + * @max: The maximum bit depth supported by the connector.
-> + *
-> + * This is used to check the applied bit depth on a connector.
-> + *
-> + * Returns:
-> + * Zero on success, negative errno on failure.
-> + */
-> +int drm_connector_attach_active_bpc_property(struct drm_connector *connector, int min, int max)
-> +{
-> +	struct drm_device *dev = connector->dev;
-> +	struct drm_property *prop;
-> +
-> +	if (!connector->active_bpc_property) {
-> +		prop = drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE, "active bpc",
-> +						 min, max);
-> +		if (!prop)
-> +			return -ENOMEM;
-> +
-> +		connector->active_bpc_property = prop;
-> +		drm_object_attach_property(&connector->base, prop, 0);
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
-> +
-> +/**
-> + * drm_connector_set_active_bpc_property - sets the active bits per color property for a connector
-> + * @connector: drm connector
-> + * @active_bpc: bits per color for the connector currently active on "the cable"
-> + *
-> + * Should be used by atomic drivers to update the active bits per color over a connector.
-> + */
-> +void drm_connector_set_active_bpc_property(struct drm_connector *connector, int active_bpc)
-> +{
-> +	drm_object_property_set_value(&connector->base, connector->active_bpc_property, active_bpc);
-> +}
-> +EXPORT_SYMBOL(drm_connector_set_active_bpc_property);
-> +
->  /**
->   * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
->   * @connector: connector to attach the property on.
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 714d1a01c065..eee86de62a5f 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -1380,6 +1380,12 @@ struct drm_connector {
->  	 */
->  	struct drm_property *max_bpc_property;
->  
-> +	/**
-> +	 * @active_bpc_property: Default connector property for the active bpc
-> +	 * to be driven out of the connector.
-> +	 */
-> +	struct drm_property *active_bpc_property;
-> +
->  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
->  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
->  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
-> @@ -1702,6 +1708,8 @@ int drm_connector_set_panel_orientation_with_quirk(
->  	int width, int height);
->  int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
->  					  int min, int max);
-> +int drm_connector_attach_active_bpc_property(struct drm_connector *connector, int min, int max);
-> +void drm_connector_set_active_bpc_property(struct drm_connector *connector, int active_bpc);
->  
->  /**
->   * struct drm_tile_group - Tile group metadata
+  New tests have been introduced between CI_DRM_10284 and Patchwork_20479:
+
+### New IGT tests (1) ###
+
+  * igt@i915_selftest@live@gem_migrate:
+    - Statuses : 33 pass(s)
+    - Exec time: [0.43, 5.28] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20479 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][2] -> [INCOMPLETE][3] ([i915#2782] / [i915#2940])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10284/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][4] ([fdo#109271] / [i915#1436])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-bsw-nick/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][5] ([i915#2782]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10284/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+
+
+Participating hosts (40 -> 36)
+------------------------------
+
+  Missing    (4): fi-bsw-cyan fi-hsw-4200u fi-bdw-samus fi-bsw-n3050 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10284 -> Patchwork_20479
+
+  CI-20190529: 20190529
+  CI_DRM_10284: c4cc46175b38e554eab7ac3d1b95a85c79963d4a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6120: c45c6b727c1efaced0b53620bd41c8e4facfb31f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20479: effbc92a43a968b385dca5695e50487386c8d33c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+effbc92a43a9 drm/i915/gem: Migrate to system at dma-buf map time
+00ac06b936ba drm/i915/gem: Fix same-driver-another-instance dma-buf export
+65e3941fa259 drm/i915/display: Migrate objects to LMEM if possible for display
+fb5a2bfc3766 drm/i915/gem: Introduce a selftest for the gem object migrate functionality
+673d9747bd21 drm/i915/gem: Implement object migration
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/index.html
+
+--===============1333169596684200953==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gem: Introduce a migrate interface (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91890/">https://patchwork.freedesktop.org/series/91890/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10284 -&gt; Patchwork_20479</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_10284 and Patchwork_20479:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@i915_selftest@live@gem_migrate:<ul>
+<li>Statuses : 33 pass(s)</li>
+<li>Exec time: [0.43, 5.28] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20479 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10284/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10284/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20479/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 36)</h2>
+<p>Missing    (4): fi-bsw-cyan fi-hsw-4200u fi-bdw-samus fi-bsw-n3050 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10284 -&gt; Patchwork_20479</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10284: c4cc46175b38e554eab7ac3d1b95a85c79963d4a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6120: c45c6b727c1efaced0b53620bd41c8e4facfb31f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20479: effbc92a43a968b385dca5695e50487386c8d33c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>effbc92a43a9 drm/i915/gem: Migrate to system at dma-buf map time<br />
+00ac06b936ba drm/i915/gem: Fix same-driver-another-instance dma-buf export<br />
+65e3941fa259 drm/i915/display: Migrate objects to LMEM if possible for display<br />
+fb5a2bfc3766 drm/i915/gem: Introduce a selftest for the gem object migrate functionality<br />
+673d9747bd21 drm/i915/gem: Implement object migration</p>
+
+</body>
+</html>
+
+--===============1333169596684200953==--
+
+--===============0803345443==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0803345443==--
