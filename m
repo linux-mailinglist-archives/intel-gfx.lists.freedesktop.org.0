@@ -2,30 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08CA3B6726
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 18:58:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEBA03B6736
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 19:03:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4234E89DCF;
-	Mon, 28 Jun 2021 16:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4584C6E4D7;
+	Mon, 28 Jun 2021 17:03:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F1CE589DC7;
- Mon, 28 Jun 2021 16:58:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED990A73C9;
- Mon, 28 Jun 2021 16:58:33 +0000 (UTC)
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14A6D6E4D4;
+ Mon, 28 Jun 2021 17:03:08 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id 780A7C800E0;
+ Mon, 28 Jun 2021 19:03:06 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id s55WI_sueaYA; Mon, 28 Jun 2021 19:03:06 +0200 (CEST)
+Received: from [IPv6:2003:e3:7f39:4900:5a7:8b5d:f9f7:c452]
+ (p200300E37F39490005A78B5dF9f7C452.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f39:4900:5a7:8b5d:f9f7:c452])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id 5D0CBC800CE;
+ Mon, 28 Jun 2021 19:03:05 +0200 (CEST)
+To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+ <20210618091116.14428-4-wse@tuxedocomputers.com>
+From: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <18bbd0cf-4c37-ce9d-eb63-de4131a201e1@tuxedocomputers.com>
+Date: Mon, 28 Jun 2021 19:03:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 28 Jun 2021 16:58:33 -0000
-Message-ID: <162489951397.2572.544938694052909379@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210628144626.76126-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210628144626.76126-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/gem=3A_Introduce_a_migrate_interface_=28rev3=29?=
+In-Reply-To: <20210618091116.14428-4-wse@tuxedocomputers.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 03/17] drm/uAPI: Add "active bpc" as
+ feedback channel for "max bpc" drm property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,78 +58,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Am 18.06.21 um 11:11 schrieb Werner Sembach:
+> Add a new general drm property "active bpc" which can be used by graphic
+> drivers to report the applied bit depth per pixel back to userspace.
+>
+> While "max bpc" can be used to change the color depth, there was no way to
+> check which one actually got used. While in theory the driver chooses the
+> best/highest color depth within the max bpc setting a user might not be
+> fully aware what his hardware is or isn't capable off. This is meant as a
+> quick way to double check the setup.
+>
+> In the future, automatic color calibration for screens might also depend on
+> this information being available.
+>
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> ---
+>  drivers/gpu/drm/drm_connector.c | 51 +++++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h     |  8 ++++++
+>  2 files changed, 59 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index da39e7ff6965..943f6b61053b 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1197,6 +1197,14 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+>   *	drm_connector_attach_max_bpc_property() to create and attach the
+>   *	property to the connector during initialization.
+>   *
+> + * active bpc:
+> + *	This read-only range property tells userspace the pixel color bit depth
+> + *	actually used by the hardware display engine on "the cable" on a
+> + *	connector. The chosen value depends on hardware capabilities, both
+> + *	display engine and connected monitor, and the "max bpc" property.
+> + *	Drivers shall use drm_connector_attach_active_bpc_property() to install
+> + *	this property.
+> + *
 
-Series: drm/i915/gem: Introduce a migrate interface (rev3)
-URL   : https://patchwork.freedesktop.org/series/91890/
-State : warning
+Regarding "on the cable" and dithering: As far as I can tell, what the dithering option does, is setting a hardware
+register here:
 
-== Summary ==
+- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/display/intel_display.c#L4534
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1207:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/display/intel_display.c#L4571
 
+So dithering seems to be calculated by fixed purpose hardware/firmware outside of the driver?
 
+The Intel driver does not seem to set a target bpc/bpp for this hardware so I guess it defaults to 6 or 8 bpc?
+
+Similar things happen on amd. Here the output dither depth seems to be written to a fixed value however:
+
+- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c#L828
+
+- https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/display/dc/dce/dce_transform.c#L769
+
+Does anyone know about a resource where I can read up on the used registers and what this hardware actually does?
+
+My proposal for now: "max bpc" affects what happens before dither, so I would keep "active bpc" the same and add another
+drm property "dither active: true/false". No additional property to control dither, as amdgpu does have one already
+(which isn't always active?) and Intel driver does only seem prepared for dithering at 6bpc (albeit I don't know why to
+dither at 6bpc and what depth to dither to?).
+
+>   * Connectors also have one standardized atomic property:
+>   *
+>   * CRTC_ID:
+> @@ -2152,6 +2160,49 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+>  }
+>  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+>  
+> +/**
+> + * drm_connector_attach_active_bpc_property - attach "active bpc" property
+> + * @connector: connector to attach active bpc property on.
+> + * @min: The minimum bit depth supported by the connector.
+> + * @max: The maximum bit depth supported by the connector.
+> + *
+> + * This is used to check the applied bit depth on a connector.
+> + *
+> + * Returns:
+> + * Zero on success, negative errno on failure.
+> + */
+> +int drm_connector_attach_active_bpc_property(struct drm_connector *connector, int min, int max)
+> +{
+> +	struct drm_device *dev = connector->dev;
+> +	struct drm_property *prop;
+> +
+> +	if (!connector->active_bpc_property) {
+> +		prop = drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE, "active bpc",
+> +						 min, max);
+> +		if (!prop)
+> +			return -ENOMEM;
+> +
+> +		connector->active_bpc_property = prop;
+> +		drm_object_attach_property(&connector->base, prop, 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
+> +
+> +/**
+> + * drm_connector_set_active_bpc_property - sets the active bits per color property for a connector
+> + * @connector: drm connector
+> + * @active_bpc: bits per color for the connector currently active on "the cable"
+> + *
+> + * Should be used by atomic drivers to update the active bits per color over a connector.
+> + */
+> +void drm_connector_set_active_bpc_property(struct drm_connector *connector, int active_bpc)
+> +{
+> +	drm_object_property_set_value(&connector->base, connector->active_bpc_property, active_bpc);
+> +}
+> +EXPORT_SYMBOL(drm_connector_set_active_bpc_property);
+> +
+>  /**
+>   * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
+>   * @connector: connector to attach the property on.
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 714d1a01c065..eee86de62a5f 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1380,6 +1380,12 @@ struct drm_connector {
+>  	 */
+>  	struct drm_property *max_bpc_property;
+>  
+> +	/**
+> +	 * @active_bpc_property: Default connector property for the active bpc
+> +	 * to be driven out of the connector.
+> +	 */
+> +	struct drm_property *active_bpc_property;
+> +
+>  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
+>  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
+>  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
+> @@ -1702,6 +1708,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+>  	int width, int height);
+>  int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+>  					  int min, int max);
+> +int drm_connector_attach_active_bpc_property(struct drm_connector *connector, int min, int max);
+> +void drm_connector_set_active_bpc_property(struct drm_connector *connector, int active_bpc);
+>  
+>  /**
+>   * struct drm_tile_group - Tile group metadata
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
