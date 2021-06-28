@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8643B5C6F
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 12:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9033B5C70
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jun 2021 12:21:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03E056E426;
-	Mon, 28 Jun 2021 10:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E0CE6E41D;
+	Mon, 28 Jun 2021 10:21:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 135CC6E41D;
- Mon, 28 Jun 2021 10:20:48 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10028"; a="206100739"
-X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="206100739"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2021 03:20:47 -0700
-X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="419118257"
-Received: from vipulcha-mobl.ger.corp.intel.com (HELO [10.213.225.54])
- ([10.213.225.54])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2021 03:20:45 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210625122751.590289-1-matthew.auld@intel.com>
- <20210625122751.590289-2-matthew.auld@intel.com>
- <b6ee3701-2662-315c-3c2a-c4d92623fbbc@linux.intel.com>
- <a7722f16-2f7b-b213-8a2d-27d5f02d893f@intel.com>
- <d19caf7e-ed3b-5cfe-632a-46536aac03f4@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <55e1981f-8945-1370-8753-d5749e0d69ba@intel.com>
-Date: Mon, 28 Jun 2021 11:20:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C862D6E41B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Jun 2021 10:21:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10028"; a="207744055"
+X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="207744055"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2021 03:21:20 -0700
+X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; d="scan'208";a="456271518"
+Received: from mdosreme-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.252.19.149])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2021 03:21:18 -0700
 MIME-Version: 1.0
-In-Reply-To: <d19caf7e-ed3b-5cfe-632a-46536aac03f4@linux.intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/gem: only allow WB for smem
- only placements
+In-Reply-To: <20210624095359.GA29649@duo.ucw.cz>
+References: <20210624095359.GA29649@duo.ucw.cz>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Pavel Machek <pavel@ucw.cz>, intel-gfx@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, kernel list <linux-kernel@vger.kernel.org>,
+ rodrigo.vivi@intel.com
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <162487567602.6944.6736788493261786550@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Mon, 28 Jun 2021 13:21:16 +0300
+Subject: Re: [Intel-gfx] 5.13-rc6 on thinkpad X220: graphics hangs with
+ recent mainline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,113 +47,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjgvMDYvMjAyMSAxMDozOCwgVGhvbWFzIEhlbGxzdHLDtm0gd3JvdGU6Cj4gSGksCj4gCj4g
-T24gNi8yOC8yMSAxMToxMiBBTSwgTWF0dGhldyBBdWxkIHdyb3RlOgo+PiBPbiAyOC8wNi8yMDIx
-IDA4OjQxLCBUaG9tYXMgSGVsbHN0csO2bSB3cm90ZToKPj4+Cj4+PiBPbiA2LzI1LzIxIDI6Mjcg
-UE0sIE1hdHRoZXcgQXVsZCB3cm90ZToKPj4+PiBXZSBvbmx5IHN1cHBvcnQgc2luZ2xlIG1vZGUg
-YW5kIHRoaXMgc2hvdWxkIGJlIGltbXV0YWJsZS4gRm9yIHNtZW0gb25seQo+Pj4+IHBsYWNlbWVu
-dHMgb24gREdGWCB0aGlzIHNob3VsZCBiZSBXQi4gT24gREcxIGV2ZXJ5dGhpbmcgaXMgc25vb3Bl
-ZCwKPj4+PiBhbHdheXMsIGFuZCBzbyBzaG91bGQgYmUgY29oZXJlbnQuCj4+Pj4KPj4+PiBJOTE1
-X0dFTV9ET01BSU5fR1RUIGxvb2tzIGxpa2UgaXQncyBmb3IgdGhlIGFwZXJ0dXJlIHdoaWNoIGlz
-IG5vdyBnb25lCj4+Pj4gZm9yIERHRlgsIHNvIGhvcGVmdWxseSBjYW4gYWxzbyBiZSBzYWZlbHkg
-cmVqZWN0ZWQuCj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcu
-YXVsZEBpbnRlbC5jb20+Cj4+Pj4gQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0
-cm9tQGxpbnV4LmludGVsLmNvbT4KPj4+PiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4u
-bGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPj4+PiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVs
-LnZldHRlckBmZndsbC5jaD4KPj4+PiAtLS0KPj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fZG9tYWluLmMgfMKgIDcgKysrKysrKwo+Pj4+IMKgIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmPCoMKgIHwgMTAgKysrKysrKysrKwo+Pj4+IMKgIDIg
-ZmlsZXMgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKQo+Pj4+Cj4+Pj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYyAKPj4+PiBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYwo+Pj4+IGluZGV4IGQwYzkxNjk3YmIy
-Mi4uZTM0NTlhNTI0ZTY0IDEwMDY0NAo+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9kb21haW4uYwo+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9kb21haW4uYwo+Pj4+IEBAIC01NzcsNiArNTc3LDEzIEBAIGk5MTVfZ2VtX3NldF9k
-b21haW5faW9jdGwoc3RydWN0IGRybV9kZXZpY2UgCj4+Pj4gKmRldiwgdm9pZCAqZGF0YSwKPj4+
-PiDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byBvdXRfdW5waW47Cj4+Pj4gwqDCoMKgwqDCoCB9Cj4+
-Pj4gK8KgwqDCoCBpZiAoSVNfREdGWCh0b19pOTE1KG9iai0+YmFzZS5kZXYpKSAmJiBvYmotPm1t
-Lm5fcGxhY2VtZW50cyA9PSAKPj4+PiAxICYmCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGk5MTVfZ2Vt
-X29iamVjdF9wbGFjZW1lbnRzX2NvbnRhaW5fdHlwZShvYmosIAo+Pj4+IElOVEVMX01FTU9SWV9T
-WVNURU0pICYmCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJlYWRfZG9tYWlucyAhPSBJOTE1X0dFTV9E
-T01BSU5fQ1BVKSB7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgIGVyciA9IC1FSU5WQUw7Cj4+Pj4gK8Kg
-wqDCoMKgwqDCoMKgIGdvdG8gb3V0X3VucGluOwo+Pj4+ICvCoMKgwqAgfQo+Pj4+ICsKPj4+PiDC
-oMKgwqDCoMKgIGlmIChyZWFkX2RvbWFpbnMgJiBJOTE1X0dFTV9ET01BSU5fV0MpCj4+Pj4gwqDC
-oMKgwqDCoMKgwqDCoMKgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9zZXRfdG9fd2NfZG9tYWluKG9i
-aiwgd3JpdGVfZG9tYWluKTsKPj4+PiDCoMKgwqDCoMKgIGVsc2UgaWYgKHJlYWRfZG9tYWlucyAm
-IEk5MTVfR0VNX0RPTUFJTl9HVFQpCj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMgCj4+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fbW1hbi5jCj4+Pj4gaW5kZXggZjM1ODZiMzZkZDUzLi5hZmM5ZjNkYzM4YjkgMTAw
-NjQ0Cj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYwo+
-Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMKPj4+PiBA
-QCAtNjczLDYgKzY3Myw3IEBAIF9fYXNzaWduX21tYXBfb2Zmc2V0KHN0cnVjdCBkcm1faTkxNV9n
-ZW1fb2JqZWN0IAo+Pj4+ICpvYmosCj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBl
-bnVtIGk5MTVfbW1hcF90eXBlIG1tYXBfdHlwZSwKPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHU2NCAqb2Zmc2V0LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUpCj4+Pj4gwqAgewo+Pj4+
-ICvCoMKgwqAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KG9iai0+YmFz
-ZS5kZXYpOwo+Pj4+IMKgwqDCoMKgwqAgc3RydWN0IGk5MTVfbW1hcF9vZmZzZXQgKm1tbzsKPj4+
-PiDCoMKgwqDCoMKgIGlmIChpOTE1X2dlbV9vYmplY3RfbmV2ZXJfbW1hcChvYmopKQo+Pj4+IEBA
-IC02OTcsNiArNjk4LDE1IEBAIF9fYXNzaWduX21tYXBfb2Zmc2V0KHN0cnVjdCBkcm1faTkxNV9n
-ZW1fb2JqZWN0IAo+Pj4+ICpvYmosCj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIGk5MTVfZ2VtX29i
-amVjdF9wbGFjZW1lbnRzX2NvbnRhaW5fdHlwZShvYmosIAo+Pj4+IElOVEVMX01FTU9SWV9MT0NB
-TCkpCj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRU5PREVWOwo+Pj4+ICvCoMKgwqAg
-LyoKPj4+PiArwqDCoMKgwqAgKiBGb3Igc21lbSBvbmx5IHBsYWNlbWVudHMgb24gREdGWCB3ZSBu
-ZWVkIHRvIGRlZmF1bHQgdG8gV0IuIAo+Pj4+IE9uIERHMQo+Pj4+ICvCoMKgwqDCoCAqIGV2ZXJ5
-dGhpbmcgaXMgc25vb3BlZCBhbHdheXMsIHNvIHNob3VsZCBhbHdheXMgYmUgY29oZXJlbnQuCj4+
-Pj4gK8KgwqDCoMKgICovCj4+Pj4gK8KgwqDCoMKgIGlmIChJU19ER0ZYKGk5MTUpICYmCj4+Pj4g
-K8KgwqDCoMKgwqDCoMKgwqAgbW1hcF90eXBlICE9IEk5MTVfTU1BUF9UWVBFX1dCICYmIG9iai0+
-bW0ubl9wbGFjZW1lbnRzID09IAo+Pj4+IDEgJiYKPj4+PiArwqDCoMKgwqDCoMKgwqDCoCBpOTE1
-X2dlbV9vYmplY3RfcGxhY2VtZW50c19jb250YWluX3R5cGUob2JqLCAKPj4+PiBJTlRFTF9NRU1P
-UllfU1lTVEVNKSkKPj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FTk9ERVY7Cj4+Pj4gKwo+
-Pj4KPj4+IFNhbWUgdGhpbmcgaGVyZSBhcyBpbiB0aGUgcHJldmlvdXMgcGF0Y2guCj4+Pgo+Pj4g
-QWxzbyBkbyB3ZSBuZWVkIHRvIG1vZGlmeSBpOTE1X2NvaGVyZW50X21hcF90eXBlKCkgdG8gYWxz
-byBpbmNsdWRlIAo+Pj4gSEFTX1NOT09QKCk/Cj4+Pgo+Pj4gV2hpbGUgd2UncmUgYXQgaXQsIHRo
-YXQgImFsd2F5c19jb2hlcmVudCIgYXJndW1lbnQgdG8gCj4+PiBpOTE1X2NvaGVyZW50X21hcF90
-eXBlKCkgYXBwZWFycyBzY2FyeSB0byBtZSBhbmQgcHJvYmFibHkgbmVlZHMgc29tZSAKPj4+IGRv
-Y3VtZW50YXRpb24uIEl0IHNlZW1zIHVzZWQgZm9yIHBhZ2UtdGFibGVzLiBJcyBpdCBiZWNhdXNl
-IHdlIGtub3cgCj4+PiB0aG9zZSBhcmUgYWx3YXlzIHNub29wZWQ/Cj4+Cj4+IFllYWgsIGl0J3Mg
-ZWl0aGVyIGJlY2F1c2UgdGhlIGNhbGxlciBoYXMvd2lsbCBtYXJrIHRoZSBwYWdlcyBhcyAKPj4g
-Y29oZXJlbnQod2hpY2ggdHJhbnNsYXRlcyB0byBzb21lIHNwZWNpYWwgcHBHVFQgYml0cyksIG9y
-IHdlIG1hbnVhbGx5IAo+PiBmbHVzaCBvdXJzZWx2ZXMuIEluIGk5MTVfY29oZXJlbnRfbWFwX3R5
-cGUoKSB3ZSBzaG91bGQgYWNjb3VudCBmb3IgREcxIAo+PiBzb21laG93Lgo+Pgo+PiBIaXN0b3Jp
-Y2FsbHkgSSBkb24ndCB0aGluayB3ZSBlbmFibGVkIHNub29waW5nIGJ5IGRlZmF1bHQgc2luY2Ug
-aXQncyAKPj4gY29uc2lkZXJlZCBzbG93IGNvbXBhcmVkIHRvIHNoYXJlZCBMTEMuIE9uIERHMSB0
-aGlzIGlzIGEgZGlmZmVyZW50IAo+PiBzdG9yeSB0aG91Z2guCj4+Cj4+IEFsc28gdGhlIHBpbl9t
-YXAoKSBpbnRlcmZhY2UgaXMgcHJldHR5IG11Y2ggb25seSBmb3Iga2VybmVsIGludGVybmFsIAo+
-PiBvYmplY3RzLCBzbyBJIGRvbid0IHRoaW5rIHdlIGhhdmUgYW55IHVzZXJzIHdoaWNoIHRyeSB0
-byBtYXAgdXNlcnNwYWNlIAo+PiBvYmplY3RzIHdpdGggdGhhdCBpbnRlcmZhY2UuIE9rLCBleGNl
-cHQgZm9yIHZtX2FjY2VzcyBpdCBzZWVtcywgYnV0IAo+PiB0aGF0IHNob3VsZCBob3BlZnVsbHkg
-YmUgYSBzaW1wbGUgZml4IHRvIHVzZSB0aGUgY29ycmVjdCBjYWNoaW5nIG1vZGU/IAo+PiBXZSBj
-YW4gbWF5YmUgYWRkIHNvbWUgc2FuaXR5IGNoZWNraW5nIHRoZXJlIGlmIHNvbWVvbmUgdHJpZXMg
-dG8gbWFwIGEgCj4+IHVzZXJzcGFjZSBvYmplY3Q/Cj4gSSdtIG5vdCBmdWxseSBzdXJlIHRoYXQn
-cyBzdWZmaWNpZW50LCBzZWUgYmVsb3cuCj4+Cj4+IEZvciBhbGwgdGhlIG90aGVyIGNhbGxlcnMg
-b2YgcGluX21hcCgpIHdoaWNoIHNob3VsZCBhbGwgYmUga2VybmVsIAo+PiBpbnRlcm5hbCBkbyB3
-ZSBzdGlsbCBuZWVkIHRvIGZvcmNlIFdCIGZvciBzeXN0ZW0gbWVtb3J5PyBCeSBkZXNpZ24gd2Ug
-Cj4+IG9ubHkgc3VwcG9ydCBhIHNpbmdsZSBtbS5tYXBwaW5nIHRoZXJlLiBGb3IgbG1lbSB3ZSBh
-bHJlYWR5IHVzZSBXQyBvbmx5Lgo+IAo+IFdlJ3JlIG9ubHkgYWxsb3dlZCB0byBtYXAgd2l0aCB0
-aGUgc2FtZSBjYWNoaW5nIG1vZGUgYXMgdGhlIGxpbmVhciAKPiBrZXJuZWwgbWFwcGluZyBmb3Ig
-ZGlzY3JldGUuIE90aGVyd2lzZSB0aGluZ3MgbWF5IGJsb3cgdXAgb24gbm9uLWludGVsIAo+IGFy
-Y2hpdGVjdHVyZXMuIFdlIGNhbiBwcm9iYWJseSB1cGRhdGUgMTk1X3R0bV9zZWxlY3RfdHRfY2Fj
-aGluZyB0byAKPiBhbHdheXMgdXNlIFdCIGZvciBzeXN0ZW0gcGFnZXMgZm9yIGtlcm5lbCBvYmpl
-Y3RzLCBidXQgdGhlbiB3ZSBtdXN0IG1ha2UgCj4gc3VyZSB3ZSBkb24ndCB0cnkgdG8gbWFwIHRo
-ZXNlIFdDLgoKT2ssIGRvIHlvdSB0aGluayB0aGF0IHNob3VsZCBiZSBhIHNlcGFyYXRlIHNlcmll
-cz8gSXQgbG9va3MgbGlrZSBvdXIgCmludGVybmFsIG9iamVjdHMgZG9uJ3QgdXNlIHR0bSg/KS4g
-U2hvdWxkIGl0PyBJZiBzbyBzaG91bGQgd2UgbWFrZSBhIApyZWdpb24gZm9yIGl0LCBvciBjYW4g
-d2UganVzdCBtYWtlIGNyZWF0ZV9pbnRlcm5hbCB1c2UgdGhlIHR0bSBzeXN0ZW0gCnJlZ2lvbj8g
-SXQgc2hvdWxkIGJlIHByZXR0eSBtdWNoIHRoZSBzYW1lLCBleGNlcHQgd2UgZG9uJ3Qgd2FudCAK
-c3dhcHBpbmcsIGNsZWFyaW5nIG9yIGV2aWN0aW9uLCBhbmQgaWRlYWxseSB3ZSB3b3VsZCBoYXZl
-IHNvbWUgd2F5IG9mIAptYXJraW5nIHRoZSBwYWdlcyBhcyB2b2xhdGlsZShJIHRoaW5rIHdlIGNh
-biBqdXN0IGtlZXAgSVNfU0hSSU5LQUJMRSBmb3IgCnRoYXQpLgoKT3IgY2FuIHdlIGtlZXAgY3Jl
-YXRlX2ludGVybmFsIGFzIGlzIGFuZCB0aGVuIGl0J3MganVzdCBhIGNhc2Ugb2YgCmRlYWxpbmcg
-d2l0aCBhbGwgdGhlIHBpbl9tYXAoKSBjYWxsZXJzPwoKPiAKPiAvVGhvbWFzCj4gCj4gCj4+Cj4+
-Pgo+Pj4gL1Rob21hcwo+Pj4KPj4+Cj4+Pj4gwqDCoMKgwqDCoCBtbW8gPSBtbWFwX29mZnNldF9h
-dHRhY2gob2JqLCBtbWFwX3R5cGUsIGZpbGUpOwo+Pj4+IMKgwqDCoMKgwqAgaWYgKElTX0VSUiht
-bW8pKQo+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gUFRSX0VSUihtbW8pOwpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Pavel Machek (2021-06-24 12:53:59)
+> Hi!
+> 
+> I'm getting graphics problems with 5.13-rc:
+> 
+> Debian 10.9, X, chromium and flightgear is in use. Things were more
+> stable than this with previous kernels.
+> 
+> Any ideas?
+
+The error you are seeing:
+
+> [185300.784992] i915 0000:00:02.0: [drm] Resetting chip for stopped heartbeat on rcs0
+> [185300.888694] i915 0000:00:02.0: [drm] fgfs[27370] context reset due to GPU hang
+
+That just indicates that the rendering took too long. It could be caused
+by a change in how the application renders, userspace driver or i915. So
+a previously on-the-edge-of-timeout operation may have got pushed beyond
+the timeout, or the rendering genuinely got completely stuck.
+
+If you only updated the kernel, not the application or userspace, could
+you bisect the commit that introduced the behavior and report:
+
+https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+
+We have changes around this area, so would be helpful if you can bisect
+the commit that started the behavior.
+
+Regards, Joonas
+
+> 
+> Best regards,
+>                                                                 Pavel
+> 
+> [185233.329693] wlp3s0: deauthenticated from 5c:f4:ab:10:d2:bb (Reason: 16=GROUP_KEY_HANDSHAKE_TIMEOUT)
+> [185234.040352] wlp3s0: authenticate with 5c:f4:ab:10:d2:bb
+> [185234.043836] wlp3s0: send auth to 5c:f4:ab:10:d2:bb (try 1/3)
+> [185234.046652] wlp3s0: authenticated
+> [185234.049087] wlp3s0: associate with 5c:f4:ab:10:d2:bb (try 1/3)
+> [185234.052667] wlp3s0: RX AssocResp from 5c:f4:ab:10:d2:bb (capab=0x411 status=0 aid=1)
+> [185234.055398] wlp3s0: associated
+> [185300.784992] i915 0000:00:02.0: [drm] Resetting chip for stopped heartbeat on rcs0
+> [185300.888694] i915 0000:00:02.0: [drm] fgfs[27370] context reset due to GPU hang
+> [185472.274563] usb 2-1.1: USB disconnect, device number 3
+> [185472.274578] usb 2-1.1.2: USB disconnect, device number 5
+> [185472.281518] hid-generic 0003:04F2:0111.0003: usb_submit_urb(ctrl) failed: -19
+> [185472.299837] hid-generic 0003:04F2:0111.0003: usb_submit_urb(ctrl) failed: -19
+> [185472.305986] hid-generic 0003:04F2:0111.0003: usb_submit_urb(ctrl) failed: -19
+> [185472.328012] hid-generic 0003:04F2:0111.0003: usb_submit_urb(ctrl) failed: -19
+> [185472.333738] usb 2-1.1.3: USB disconnect, device number 6
+> [185673.454821] usb 2-1.1: new high-speed USB device number 7 using ehci-pci
+> [185673.563486] usb 2-1.1: New USB device found, idVendor=1a40, idProduct=0101, bcdDevice= 1.11
+> [185673.563502] usb 2-1.1: New USB device strings: Mfr=0, Product=1, SerialNumber=0
+> [185673.563509] usb 2-1.1: Product: USB 2.0 Hub
+> [185673.564488] hub 2-1.1:1.0: USB hub found
+> [185673.564595] hub 2-1.1:1.0: 4 ports detected
+> ...
+> [207277.385543] wlp3s0: deauthenticated from 5c:f4:ab:10:d2:bb (Reason: 16=GROUP_KEY_HANDSHAKE_TIMEOUT)
+> [207278.062061] wlp3s0: authenticate with 5c:f4:ab:10:d2:bb
+> [207278.068175] wlp3s0: send auth to 5c:f4:ab:10:d2:bb (try 1/3)
+> [207278.070985] wlp3s0: authenticated
+> [207278.075545] wlp3s0: associate with 5c:f4:ab:10:d2:bb (try 1/3)
+> [207278.080793] wlp3s0: RX AssocResp from 5c:f4:ab:10:d2:bb (capab=0x411 status=0 aid=1)
+> [207278.084081] wlp3s0: associated
+> [207564.046469] i915 0000:00:02.0: [drm] Resetting chip for stopped heartbeat on rcs0
+> [207564.150293] i915 0000:00:02.0: [drm] fgfs[25729] context reset due to GPU hang
+> [209075.178776] wlp3s0: deauthenticated from 5c:f4:ab:10:d2:bb (Reason: 16=GROUP_KEY_HANDSHAKE_TIMEOUT)
+> [209075.841872] wlp3s0: authenticate with 5c:f4:ab:10:d2:bb
+> [209075.845305] wlp3s0: send auth to 5c:f4:ab:10:d2:bb (try 1/3)
+> [209075.851186] wlp3s0: authenticated
+> [209075.852537] wlp3s0: associate with 5c:f4:ab:10:d2:bb (try 1/3)
+> [209075.855972] wlp3s0: RX AssocResp from 5c:f4:ab:10:d2:bb (capab=0x411 status=0 aid=1)
+> [209075.858522] wlp3s0: associated
+> [210159.723726] PM: suspend entry (deep)
+> [210159.741497] Filesystems sync: 0.017 seconds
+> [210159.743585] Freezing user space processes ... (elapsed 0.009 seconds) done.
+> [210159.753345] OOM killer disabled.
+> [210159.753349] Freezing remaining freezable tasks ... (elapsed 0.003 seconds) done.
+> [210159.757357] printk: Suspending console(s) (use no_console_suspend to debug)
+> [210159.945365] sd 2:0:0:0: [sdb] Synchronizing SCSI cache
+> [210159.945443] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+> [210159.945651] sd 0:0:0:0: [sda] Stopping disk
+> [210159.947225] sd 2:0:0:0: [sdb] Stopping disk
+> [210160.019791] wlp3s0: deauthenticating from 5c:f4:ab:10:d2:bb by local choice (Reason: 3=DEAUTH_LEAVING)
+> [210160.021158] e1000e: EEE TX LPI TIMER: 00000011
+> [210161.245106] PM: suspend devices took 1.488 seconds
+> [210161.266601] ACPI: EC: interrupt blocked
+> [210161.305431] ACPI: Preparing to enter system sleep state S3
+> [210161.313532] ACPI: EC: event blocked
+> [210161.313535] ACPI: EC: EC stopped
+> [210161.313537] PM: Saving platform NVS memory
+> [210161.313548] Disabling non-boot CPUs ...
+> ...
+> [224698.957159] wlp3s0: associated
+> [229707.724067] wlp3s0: deauthenticated from 5c:f4:ab:10:d2:bb (Reason: 16=GROUP_KEY_HANDSHAKE_TIMEOUT)
+> [229708.370607] wlp3s0: authenticate with 5c:f4:ab:10:d2:bb
+> [229708.373732] wlp3s0: send auth to 5c:f4:ab:10:d2:bb (try 1/3)
+> [229708.376501] wlp3s0: authenticated
+> [229708.379997] wlp3s0: associate with 5c:f4:ab:10:d2:bb (try 1/3)
+> [229708.383773] wlp3s0: RX AssocResp from 5c:f4:ab:10:d2:bb (capab=0x411 status=0 aid=1)
+> [229708.386423] wlp3s0: associated
+> [229756.518759] i915 0000:00:02.0: [drm] Resetting chip for stopped heartbeat on rcs0
+> [229756.622596] i915 0000:00:02.0: [drm] fgfs[2648] context reset due to GPU hang
+> 
+> -- 
+> http://www.livejournal.com/~pavelmachek
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
