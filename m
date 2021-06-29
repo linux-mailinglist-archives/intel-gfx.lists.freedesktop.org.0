@@ -1,54 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28DFF3B7693
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 18:39:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CD93B76E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 19:03:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E47C96E8CB;
-	Tue, 29 Jun 2021 16:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 988A189CF3;
+	Tue, 29 Jun 2021 17:03:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
- [IPv6:2607:f8b0:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11DDC6E8CB
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 16:39:29 +0000 (UTC)
-Received: by mail-ot1-x333.google.com with SMTP id
- v6-20020a0568300906b0290464d9be9510so11806904ott.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 09:39:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=xZnZ+U4go1KfwiNZo+sk8ZQg5LcypnMWP2JzKM8ADxg=;
- b=X/iJFPSPU8YbBUQrwjpbkr2fsPqACSlQMr2hVz+mkBD+v33C1TaU0rl32msgvojTYy
- UxQ5l5qUzpRLYuFpKAyY83r4MkpRDpYIoKukKAEjyHvuScaYBvewZ3v4hg4kUg0f4Fe6
- t6ctna9jdKfuZaCZyESakroC8DlphWtefIO6s=
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16D3689CDD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 17:03:44 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id u6so58477wrs.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 10:03:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:organization:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=1mzwo7wjAUa0IJEbXNRwxkpgdnTr5r+kaQt26hfpS9Q=;
+ b=QmmxT28DkHNzpao9vOpgiqd/+dJLsDibGQbrStNZ7JbAn0dorBqHkDj0WWKEfZk7OQ
+ FNxBzNYYbYzgKsCZ0j18iEU1KtSxaIL4Fyk8uM4HCQ67154O4rhEmH9kLiuRXoOrC5q7
+ S624F07BLgYEYsvGXAHARz0QA4dg1CTiaNym2G/4ZRiWeANMPe2N15L3MveDp/WgRSYk
+ IJA2nKKslgAsYg8dbGq8sMAXlDTQQYlDUbjGPAMWzEYVYvDRIOTDYXncAhpesbhqxL40
+ 4Pb94hp2YdPRJ2JAMke+tMLiLTqa8JIZadNCDJ75yRoh9swK/MMMGXHQQBoAwR42SkSD
+ djPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=xZnZ+U4go1KfwiNZo+sk8ZQg5LcypnMWP2JzKM8ADxg=;
- b=ULbn893CeKF3wHPB4iQBTbwAV8Xi6cjj/JRdekkuldzAC7SH1rq50SdWhCa9bzPQOS
- C8N+niEqbexYNQ3qxU9im8xEUzsugvygJB+nRCLG5duoh3FOVv6B8V2bTRO35aFyhm3v
- 4o7pwc6xhCBjiAL+dV4ZOmET5YjSOiekYlgjqHypxGP54zFxLKRnpiNiOkMJj5aTBfmt
- 8jnpIdhjKvlTAjwu9HaF58RyhYVKSELscYrbhy6OjJ3g50OLd8AR4M9uNMHdl/bCAird
- rVViLjgrpo0ZwymOIndC5S+sgZ2WdcqLV6oJBni3TizAsrlkPWzsVIIWJayYVsL/nbg3
- do1A==
-X-Gm-Message-State: AOAM533zYanczzrwYx69fC9tDPEa46AlYDSXVLfwbr37AsHOemSOYDW8
- YUAYwqKmcT+IMfuf2H0vK7hJ7mceG+/sVwqVD4A6ow==
-X-Google-Smtp-Source: ABdhPJz+eWmuBZcpnYy5rLX2+bRyXE01xMzcDhXowktKtk5lTjpVjGOxnq70s6QTm0uR2dgKDiSXzK6BFS918drS4L8=
-X-Received: by 2002:a9d:2037:: with SMTP id n52mr5065798ota.303.1624984769145; 
- Tue, 29 Jun 2021 09:39:29 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=1mzwo7wjAUa0IJEbXNRwxkpgdnTr5r+kaQt26hfpS9Q=;
+ b=mwDNeWB8qBbqjZeq6pq4HWZ6anXYEXSfR5OkGpd9Th+a3yrClcQDgmC+xYT+/AFZ3X
+ k1ykVz7xsV7n6sh4W7qSXWgmvbImG7t2+6VUBYiWcPcU1pD0R8X0aje1CaY8rNmc7WjL
+ x36nOCfCgN5GoGosJT1uUZzC7LZUU9TZN4Hs0fCtiB9J8jRlWKRfVglFWJ4g9RmDYB25
+ Q0oVojUrIdogqQqprR4cw8A54g9rgDhgsaBc80fkqy35amx41q4lwBSiuOk9m/5jz0uD
+ eltM7cI803ECQMWdctWY/7KmGRNHbhnEDfAyQucyT+HP0dakP7PYmVpIpAE3sHA9pM/0
+ VsiA==
+X-Gm-Message-State: AOAM531HLU1RWBtqS09dqwZ5uuzkHTU7uafI9LwLej7vTVDkPlcvR3Uw
+ dtiTbh1054qsRTG/uldfhVtWvA==
+X-Google-Smtp-Source: ABdhPJw9BHdV2PhR+4EY9fQcITZ83GZhxsD5N3hVP1Z53THaNgNupwsLwr8mtFaReraEAQtYUI3qaQ==
+X-Received: by 2002:adf:ff8e:: with SMTP id j14mr34485328wrr.374.1624986222594; 
+ Tue, 29 Jun 2021 10:03:42 -0700 (PDT)
+Received: from ?IPv6:2001:861:44c0:66c0:9ed5:b63d:622c:fb4e?
+ ([2001:861:44c0:66c0:9ed5:b63d:622c:fb4e])
+ by smtp.gmail.com with ESMTPSA id h10sm3399285wmb.40.2021.06.29.10.03.37
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 29 Jun 2021 10:03:37 -0700 (PDT)
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@redhat.com
+References: <20210629135833.22679-1-tzimmermann@suse.de>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <32c2b8f1-e8e5-c161-ed87-f80190173552@baylibre.com>
+Date: Tue, 29 Jun 2021 19:03:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210625084740.1586-1-tzimmermann@suse.de>
- <YNtGBg1+D6L1MVHl@intel.com>
-In-Reply-To: <YNtGBg1+D6L1MVHl@intel.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 29 Jun 2021 18:39:18 +0200
-Message-ID: <CAKMK7uGe2W3aRK7cn=JPdQwVbnWSDxjV43ur0CMDPZk5se1LmA@mail.gmail.com>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Drop all references to DRM IRQ
- midlayer
+In-Reply-To: <20210629135833.22679-1-tzimmermann@suse.de>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/aperture: Pass DRM driver structure
+ instead of driver name
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,79 +75,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Wilson, Chris" <chris@chris-wilson.co.uk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-hyperv@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linux-rockchip@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ linux-tegra@vger.kernel.org, spice-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, freedreno@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdW4gMjksIDIwMjEgYXQgNjoxMSBQTSBWaWxsZSBTeXJqw6Rsw6QKPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIEZyaSwgSnVuIDI1LCAyMDIxIGF0
-IDEwOjQ3OjQwQU0gKzAyMDAsIFRob21hcyBaaW1tZXJtYW5uIHdyb3RlOgo+ID4gUmVtb3ZlIGFs
-bCByZWZlcmVuY2VzIHRvIERSTSdzIElSUSBtaWRsYXllci4KPiA+Cj4gPiBUaGUgY29kZSBpbiB4
-Y3NfcmVzdW1lKCkgcHJvYmFibHkgZGlkbid0IHdvcmsgYXMgaW50ZW5kZWQuIEl0IHVzZXMKPiA+
-IHN0cnVjdCBkcm1fZGV2aWNlLmlycSwgd2hpY2ggaXMgYWxsb2NhdGVkIHRvIDAsIGJ1dCBuZXZl
-ciBpbml0aWFsaXplZAo+ID4gYnkgaTkxNSB0byB0aGUgZGV2aWNlJ3MgaW50ZXJydXB0IG51bWJl
-ci4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
-c3VzZS5kZT4KPiA+IEZpeGVzOiA1MzZmNzdiMWNhYTAgKCJkcm0vaTkxNS9ndDogQ2FsbCBzdG9w
-X3JpbmcoKSBmcm9tIHJpbmcgcmVzdW1lLCBhZ2FpbiIpCj4gPiBDYzogQ2hyaXMgV2lsc29uIDxj
-aHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gPiBDYzogTWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9w
-cGFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRl
-ckBmZndsbC5jaD4KPiA+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+
-Cj4gPiBDYzogSm9vbmFzIExhaHRpbmVuIDxqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29t
-Pgo+ID4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRl
-bC5jb20+Cj4gPiBDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+
-Cj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5nX3N1Ym1pc3Np
-b24uYyB8IDMgKystCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyAgICAgICAg
-ICAgICAgICAgfCAxIC0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jICAgICAg
-ICAgICAgICAgICB8IDEgLQo+ID4gIDMgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAz
-IGRlbGV0aW9ucygtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF9yaW5nX3N1Ym1pc3Npb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3Jpbmdfc3VibWlzc2lvbi5jCj4gPiBpbmRleCA1ZDQyYTEyZWYzZDYuLmQ4OTNhYWFlZDc0ZiAx
-MDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jpbmdfc3VibWlz
-c2lvbi5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5nX3N1Ym1p
-c3Npb24uYwo+ID4gQEAgLTE4MCwxMiArMTgwLDEzIEBAIHN0YXRpYyBib29sIHN0b3BfcmluZyhz
-dHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpCj4gPiAgc3RhdGljIGludCB4Y3NfcmVzdW1l
-KHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKPiA+ICB7Cj4gPiAgICAgICBzdHJ1Y3Qg
-aW50ZWxfcmluZyAqcmluZyA9IGVuZ2luZS0+bGVnYWN5LnJpbmc7Cj4gPiArICAgICBzdHJ1Y3Qg
-cGNpX2RldiAqcGRldiA9IHRvX3BjaV9kZXYoZW5naW5lLT5pOTE1LT5kcm0uZGV2KTsKPiA+Cj4g
-PiAgICAgICBFTkdJTkVfVFJBQ0UoZW5naW5lLCAicmluZzp7SEVBRDolMDR4LCBUQUlMOiUwNHh9
-XG4iLAo+ID4gICAgICAgICAgICAgICAgICAgIHJpbmctPmhlYWQsIHJpbmctPnRhaWwpOwo+ID4K
-PiA+ICAgICAgIC8qIERvdWJsZSBjaGVjayB0aGUgcmluZyBpcyBlbXB0eSAmIGRpc2FibGVkIGJl
-Zm9yZSB3ZSByZXN1bWUgKi8KPiA+IC0gICAgIHN5bmNocm9uaXplX2hhcmRpcnEoZW5naW5lLT5p
-OTE1LT5kcm0uaXJxKTsKPiA+ICsgICAgIHN5bmNocm9uaXplX2hhcmRpcnEocGRldi0+aXJxKTsK
-Pgo+IFdlIGhhdmUgaW50ZWxfc3luY2hyb25pemVfaXJxKCkgdG8gaGlkZSBhbGwgdGhlc2UgbXVu
-ZGFuZSBkZXRhaWxzLgo+IE1pZ2h0IHdhbnQgdG8gYWRkIGEgbWF0Y2hpbmcgaW50ZWxfc3luY2hy
-b25pemVfaGFyZGlycSgpLgoKSG0gSSB3b25kZXIgd2hldGhlciB3ZSBzaG91bGRuJ3QganVzdCB1
-c2UgdGhlIG5vcm1hbCBzeW5jaHJvbml6ZV9pcnEoKQpoZXJlLiBXZSBkb24ndCBoYXZlIGEgdGhy
-ZWFkZWQgaXJxIGhhbmRsZXIsIGFuZCB0aGlzIHNob3VsZCBiZSBjYWxsZWQKZnJvbSBwcm9jZXNz
-IGNvbnRleHQuIGludGVsLWdmeC1jaSB3aWxsIGNhdGNoIGlmIEknbSB3cm9uZyA6LSkKLURhbmll
-bAoKPgo+ID4gICAgICAgaWYgKCFzdG9wX3JpbmcoZW5naW5lKSkKPiA+ICAgICAgICAgICAgICAg
-Z290byBlcnI7Cj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-ZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCj4gPiBpbmRleCA4NTBiNDk5
-YzcxYzguLjczZGU0NTQ3MmY2MCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZHJ2LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiA+
-IEBAIC00Miw3ICs0Miw2IEBACj4gPiAgI2luY2x1ZGUgPGRybS9kcm1fYXBlcnR1cmUuaD4KPiA+
-ICAjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWNfaGVscGVyLmg+Cj4gPiAgI2luY2x1ZGUgPGRybS9k
-cm1faW9jdGwuaD4KPiA+IC0jaW5jbHVkZSA8ZHJtL2RybV9pcnEuaD4KPiA+ICAjaW5jbHVkZSA8
-ZHJtL2RybV9tYW5hZ2VkLmg+Cj4gPiAgI2luY2x1ZGUgPGRybS9kcm1fcHJvYmVfaGVscGVyLmg+
-Cj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiBpbmRleCBhMTFiZGI2NjcyNDEuLmVl
-ZjYxNmQ5NmYxMiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJx
-LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPiA+IEBAIC0zMyw3
-ICszMyw2IEBACj4gPiAgI2luY2x1ZGUgPGxpbnV4L3N5c3JxLmg+Cj4gPgo+ID4gICNpbmNsdWRl
-IDxkcm0vZHJtX2Rydi5oPgo+ID4gLSNpbmNsdWRlIDxkcm0vZHJtX2lycS5oPgo+ID4KPiA+ICAj
-aW5jbHVkZSAiZGlzcGxheS9pbnRlbF9kZS5oIgo+ID4gICNpbmNsdWRlICJkaXNwbGF5L2ludGVs
-X2Rpc3BsYXlfdHlwZXMuaCIKPiA+Cj4gPiBiYXNlLWNvbW1pdDogOGMxMzIzYjQyMmY4NDczNDIx
-NjgyYmE3ODNiNTk0OWRkZDg5YTNmNAo+ID4gcHJlcmVxdWlzaXRlLXBhdGNoLWlkOiBjMmIyZjA4
-ZjBlY2NjOWY1ZGYwYzBkYTQ5ZmExZDM2MjY3ZGViMTFkCj4gPiBwcmVyZXF1aXNpdGUtcGF0Y2gt
-aWQ6IGM2N2U1ZDg4NmE0N2I3ZDAyNjZkODExMDA4Mzc1NTdmZGEzNGNiMjQKPiA+IC0tCj4gPiAy
-LjMyLjAKPgo+IC0tCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKCgoKLS0gCkRhbmllbCBWZXR0
-ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xs
-LmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hi,
+
+On 29/06/2021 15:58, Thomas Zimmermann wrote:
+> Print the name of the DRM driver when taking over fbdev devices. Makes
+> the output to dmesg more consistent. Note that the driver name is only
+> used for printing a string to the kernel log. No UAPI is affected by this
+> change.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+
+...
+
+>  drivers/gpu/drm/meson/meson_drv.c             |  2 +-
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+...
+
+>  
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index a7388bf7c838..3d0ccc7eef1b 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -285,7 +285,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  	 * Remove early framebuffers (ie. simplefb). The framebuffer can be
+>  	 * located anywhere in RAM
+>  	 */
+> -	ret = drm_aperture_remove_framebuffers(false, "meson-drm-fb");
+> +	ret = drm_aperture_remove_framebuffers(false, &meson_driver);
+>  	if (ret)
+>  		goto free_drm;
+>  
+
+...
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
