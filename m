@@ -1,48 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62DCA3B7171
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:39:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9171D3B7177
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:40:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F71689F41;
-	Tue, 29 Jun 2021 11:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC46C6E86E;
+	Tue, 29 Jun 2021 11:40:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 362C789DFB;
- Tue, 29 Jun 2021 11:39:20 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id EDBD9C80062;
- Tue, 29 Jun 2021 13:39:18 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id I7QdrTSmtBys; Tue, 29 Jun 2021 13:39:18 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f39:4900:84eb:1779:dd70:1696]
- (p200300E37f39490084eB1779dd701696.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f39:4900:84eb:1779:dd70:1696])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 735CDC80042;
- Tue, 29 Jun 2021 13:39:18 +0200 (CEST)
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>, Simon Ser <contact@emersion.fr>
-References: <20210618091116.14428-1-wse@tuxedocomputers.com>
- <20210618091116.14428-13-wse@tuxedocomputers.com>
- <20210622101516.6a53831c@eldfell>
- <jIDQ2rRRMWlhDDPf08Z8xZlEE8HTBx7fHsylFdK0joSSFVyES8D444Giyiji9zbIm7dU4QpbsXZLvIDTbGW0wEoUWKsMEI4evizn0UdGMvM=@emersion.fr>
- <20210629141712.21f00c38@eldfell>
-Message-ID: <6d8716e0-e68a-e7b7-a341-a7471c413e9c@tuxedocomputers.com>
-Date: Tue, 29 Jun 2021 13:39:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 897EE6E86E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 11:40:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10029"; a="206306734"
+X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="206306734"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 04:40:53 -0700
+X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="641276248"
+Received: from cuzum-mobl.ger.corp.intel.com (HELO localhost) ([10.249.36.143])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 04:40:49 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Nischal Varide <nischal.varide@intel.com>, intel-gfx@lists.freedesktop.org,
+ nischal.varide@intel.com, uma.shankar@intel.com, anshuman.gupta@intel.com
+In-Reply-To: <20210611025447.17234-1-nischal.varide@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210611025447.17234-1-nischal.varide@intel.com>
+Date: Tue, 29 Jun 2021 14:40:45 +0300
+Message-ID: <87a6n8sxtu.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210629141712.21f00c38@eldfell>
-Content-Language: de-DE
-Subject: Re: [Intel-gfx] [PATCH v4 12/17] drm/uAPI: Add "preferred color
- format" drm property as setting for userspace
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/xelpd: Enabling dithering after
+ the CC1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,98 +44,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Am 29.06.21 um 13:17 schrieb Pekka Paalanen:
-> On Tue, 29 Jun 2021 08:12:54 +0000
-> Simon Ser <contact@emersion.fr> wrote:
->
->> On Tuesday, June 22nd, 2021 at 09:15, Pekka Paalanen <ppaalanen@gmail.com> wrote:
->>
->>> yes, I think this makes sense, even if it is a property that one can't
->>> tell for sure what it does before hand.
->>>
->>> Using a pair of properties, preference and active, to ask for something
->>> and then check what actually worked is good for reducing the
->>> combinatorial explosion caused by needing to "atomic TEST_ONLY commit"
->>> test different KMS configurations. Userspace has a better chance of
->>> finding a configuration that is possible.
->>>
->>> OTOH, this has the problem than in UI one cannot tell the user in
->>> advance which options are truly possible. Given that KMS properties are
->>> rarely completely independent, and in this case known to depend on
->>> several other KMS properties, I think it is good enough to know after
->>> the fact.
->>>
->>> If a driver does not use what userspace prefers, there is no way to
->>> understand why, or what else to change to make it happen. That problem
->>> exists anyway, because TEST_ONLY commits do not give useful feedback
->>> but only a yes/no.  
->> By submitting incremental atomic reqs with TEST_ONLY (i.e. only changing one
->> property at a time), user-space can discover which property makes the atomic
->> commit fail.
-> That works if the properties are independent of each other. Color
-> range, color format, bpc and more may all be interconnected,
-> allowing only certain combinations to work.
->
-> If all these properties have "auto" setting too, then it would be
-> possible to probe each property individually, but that still does not
-> tell which combinations are valid.
->
-> If you probe towards a certain configuration by setting the properties
-> one by one, then depending on the order you pick the properties, you
-> may come to a different conclusion on which property breaks the
-> configuration.
+Cc: Ville and Daniel for archeology...
 
-My mind crossed another point that must be considered: When plugin in a Monitor a list of possible Resolutions+Framerate
-combinations is created for xrandr and other userspace (I guess by atomic checks? but I don't know). During this drm
-properties are already considered, which is no problem atm because as far as i can tell there is currently no drm
-property that would make a certain Resolutions+Framerate combination unreachable that would be possible with everything
-on default.
+On Fri, 11 Jun 2021, Nischal Varide <nischal.varide@intel.com> wrote:
+> If the panel is 12bpc then Dithering is not enabled in the Legacy
+> dithering block , instead its Enabled after the C1 CC1 pipe post
+> color space conversion.For a 6bpc pannel Dithering is enabled in
+> Legacy block.
 
-However for example forcing YCbCr420 encoding would limit the available resolutions (my screen for example only supports
-YCbCr420 on 4k@60 and @50Hz and on no other resolution or frequency (native is 2560x1440@144Hz).
+Currently, we only ever enable dithering for 6 bpc displays. See commit
+e8fa4270536d ("drm/i915: Only dither on 6bpc panels"). This is decided
+at the end of intel_modeset_pipe_config().
 
-So would a "force color format" that does not get resetted on repluging/reenabling a monitor break the output, for
-example, of an not updated xrandr, unaware of this new property?
+The big question here is if we want to expand the use of dithering. I
+guess we could be able to reduce banding if we did?
 
->> I'm not a fan of this "preference" property approach. The only way to find out
->> whether it's possible to change the color format is to perform a user-visible
->> change (with a regular atomic commit) and check whether it worked
->> after-the-fact. This is unlike all other existing KMS properties.
-> I agree. FWIW, "max bpc" exists already.
+> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_color.c   |  7 +++++++
+>  drivers/gpu/drm/i915/display/intel_display.c | 11 ++++++++++-
+>  drivers/gpu/drm/i915/i915_reg.h              |  1 +
+>  3 files changed, 18 insertions(+), 1 deletion(-)
 >
->> I'd much rather see a more general approach to fix this combinatorial explosion
->> than to add special-cases like this.
-> What would you suggest?
->
-> Maybe all properties should have an "auto" value in addition to the
-> explicit no-negotiation values where at all possible?
->
-> That might help probing each property individually with TEST_ONLY
-> commits, but it says nothing about combinations.
->
-> A feedback list perhaps? TEST_ONLY commit somehow returning a list of
-> property/value tuples indicating what value the "auto" valued
-> properties actually get?
->
-> What should a kernel driver optimize for when determining "auto" values?
->
->
-> Thanks,
-> pq
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> index dab892d2251b..c7af583200c4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -1574,6 +1574,7 @@ static int glk_color_check(struct intel_crtc_state *crtc_state)
+>  static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
+>  {
+>  	u32 gamma_mode = 0;
+> +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+>  
+>  	if (crtc_state->hw.degamma_lut)
+>  		gamma_mode |= PRE_CSC_GAMMA_ENABLE;
+> @@ -1588,6 +1589,12 @@ static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
+>  	else
+>  		gamma_mode |= GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED;
+>  
+> +	if (DISPLAY_VER(i915) >= 13) {
+> +		if (!crtc_state->dither_force_disable &&
+> +				(crtc_state->pipe_bpp == 36))
+> +			gamma_mode |= POST_CC1_DITHER_ENABLE;
+> +	}
+
+This enables dithering independent of crtc_state->dither. That doesn't
+seem like a good idea. I think the decision should be made at the end of
+intel_modeset_pipe_config().
+
+	if (DISPLAY_VER(i915) >= 13 && crtc_state->dither &&
+	    crtc_state->pipe_bpp == 36)
+		gamma_mode |= POST_CC1_DITHER_ENABLE;
+
+Obviously, as we currently only enable dithering for 6 bpc, this would
+become a nop if it looked at crtc_state->dither and pipe_bpp only.
+
+> +
+>  	return gamma_mode;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 362bff9beb5c..3a7feb246745 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5762,7 +5762,16 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
+>  		break;
+>  	}
+>  
+> -	if (crtc_state->dither)
+> +	/*
+> +	 * If 12bpc panel then, Enables dithering after the CC1 pipe
+> +	 * post color space conversion and not here for display_ver
+> +	 * greater than or equal to thirteen.
+> +	 */
+> +
+> +	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
+> +		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
+> +
+> +	if (crtc_state->dither && (crtc_state->pipe_bpp == 36) && (DISPLAY_VER(dev_priv) < 13))
+>  		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
+
+This is what you're trying to say:
+
+	/* 12 bpc dithering is done at post CSC gamma for display 13+ */
+	if (crtc_state->dither &&
+	    (crtc_state->pipe_bpp != 36 || DISPLAY_VER(dev_priv) < 13))
+		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
+
+Again, this is a nop until we decide to use dithering more.
+
+>  
+>  	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index e915ec034c98..33dba13fa94d 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7743,6 +7743,7 @@ enum {
+>  #define GAMMA_MODE(pipe) _MMIO_PIPE(pipe, _GAMMA_MODE_A, _GAMMA_MODE_B)
+>  #define  PRE_CSC_GAMMA_ENABLE	(1 << 31)
+>  #define  POST_CSC_GAMMA_ENABLE	(1 << 30)
+> +#define  POST_CC1_DITHER_ENABLE (1 << 26)
+>  #define  GAMMA_MODE_MODE_MASK	(3 << 0)
+>  #define  GAMMA_MODE_MODE_8BIT	(0 << 0)
+>  #define  GAMMA_MODE_MODE_10BIT	(1 << 0)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
