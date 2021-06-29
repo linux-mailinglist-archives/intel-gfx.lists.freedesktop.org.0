@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D1A63B780F
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 20:55:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776C33B7879
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 21:17:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52E1D6E8E8;
-	Tue, 29 Jun 2021 18:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9053C6E8F6;
+	Tue, 29 Jun 2021 19:17:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7876E8E1;
- Tue, 29 Jun 2021 18:54:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="195368287"
-X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="195368287"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 759AE6E8F0;
+ Tue, 29 Jun 2021 19:17:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="195372666"
+X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="195372666"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 11:54:57 -0700
-X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="641421829"
-Received: from liubin1-mobl.amr.corp.intel.com (HELO intel.com) ([10.212.5.44])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 11:54:55 -0700
-Date: Tue, 29 Jun 2021 14:54:54 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YNtsfguvCRSROBUZ@intel.com>
+ 29 Jun 2021 12:17:19 -0700
+X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="425589407"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 12:17:19 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Tue, 29 Jun 2021 12:35:09 -0700
+Message-Id: <20210629193511.124099-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-next-fixes
+Subject: [Intel-gfx] [PATCH 0/2] GuC submission / DRM scheduler integration
+ plan + new uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,64 +42,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Subject and patches say it all.
 
-Here goes drm-intel-next-fixes-2021-06-29:
+v2: Address comments, patches have details of changes
+v3: Address comments, patches have details of changes
+v4: Address comments, patches have details of changes
+v5: Fix checkpatch and docs warnings
 
-The biggest fix is the restoration of mmap ioctl for gen12 integrated parts
-which lack was breaking ADL-P with media stack.
-Besides that a small selftest fix and a theoretical overflow on
-i915->pipe_to_crtc_mapping.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Thanks,
-Rodrigo.
+Matthew Brost (2):
+  drm/doc/rfc: i915 GuC submission / DRM scheduler
+  drm/doc/rfc: i915 new parallel submission uAPI plan
 
-The following changes since commit 1bd8a7dc28c1c410f1ceefae1f2a97c06d1a67c2:
+ Documentation/gpu/rfc/i915_parallel_execbuf.h | 122 +++++++++++++++
+ Documentation/gpu/rfc/i915_scheduler.rst      | 148 ++++++++++++++++++
+ Documentation/gpu/rfc/index.rst               |   4 +
+ 3 files changed, 274 insertions(+)
+ create mode 100644 Documentation/gpu/rfc/i915_parallel_execbuf.h
+ create mode 100644 Documentation/gpu/rfc/i915_scheduler.rst
 
-  Merge tag 'exynos-drm-next-for-v5.14' of git://git.kernel.org/pub/scm/lin=
-ux/kernel/git/daeinki/drm-exynos into drm-next (2021-06-11 14:19:12 +1000)
+-- 
+2.28.0
 
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-next-fixes-202=
-1-06-29
-
-for you to fetch changes up to c90c4c6574f3feaf2203b5671db1907a1e15c653:
-
-  drm/i915: Reinstate the mmap ioctl for some platforms (2021-06-28 07:43:5=
-6 -0400)
-
-----------------------------------------------------------------
-The biggest fix is the restoration of mmap ioctl for gen12 integrated parts
-which lack was breaking ADL-P with media stack.
-Besides that a small selftest fix and a theoretical overflow on
-i915->pipe_to_crtc_mapping.
-
-----------------------------------------------------------------
-Chris Wilson (1):
-      drm/i915/selftests: Reorder tasklet_disable vs local_bh_disable
-
-Jani Nikula (1):
-      drm/i915/dsc: abstract helpers to get bigjoiner primary/secondary crtc
-
-Thomas Hellstr=F6m (1):
-      drm/i915: Reinstate the mmap ioctl for some platforms
-
- drivers/gpu/drm/i915/display/intel_display.c       |  7 ++-
- drivers/gpu/drm/i915/display/intel_display_types.h |  8 ++++
- drivers/gpu/drm/i915/display/intel_vdsc.c          | 40 +++++++++++-----
- drivers/gpu/drm/i915/display/intel_vdsc.h          |  1 +
- drivers/gpu/drm/i915/gem/i915_gem_mman.c           |  7 +--
- drivers/gpu/drm/i915/gt/selftest_execlists.c       | 55 +++++++++++++-----=
-----
- 6 files changed, 76 insertions(+), 42 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
