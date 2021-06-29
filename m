@@ -2,67 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93CD93B76E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 19:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF8F3B76FE
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 19:15:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 988A189CF3;
-	Tue, 29 Jun 2021 17:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37AC56E8CD;
+	Tue, 29 Jun 2021 17:15:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16D3689CDD
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 17:03:44 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id u6so58477wrs.5
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 10:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:organization:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=1mzwo7wjAUa0IJEbXNRwxkpgdnTr5r+kaQt26hfpS9Q=;
- b=QmmxT28DkHNzpao9vOpgiqd/+dJLsDibGQbrStNZ7JbAn0dorBqHkDj0WWKEfZk7OQ
- FNxBzNYYbYzgKsCZ0j18iEU1KtSxaIL4Fyk8uM4HCQ67154O4rhEmH9kLiuRXoOrC5q7
- S624F07BLgYEYsvGXAHARz0QA4dg1CTiaNym2G/4ZRiWeANMPe2N15L3MveDp/WgRSYk
- IJA2nKKslgAsYg8dbGq8sMAXlDTQQYlDUbjGPAMWzEYVYvDRIOTDYXncAhpesbhqxL40
- 4Pb94hp2YdPRJ2JAMke+tMLiLTqa8JIZadNCDJ75yRoh9swK/MMMGXHQQBoAwR42SkSD
- djPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=1mzwo7wjAUa0IJEbXNRwxkpgdnTr5r+kaQt26hfpS9Q=;
- b=mwDNeWB8qBbqjZeq6pq4HWZ6anXYEXSfR5OkGpd9Th+a3yrClcQDgmC+xYT+/AFZ3X
- k1ykVz7xsV7n6sh4W7qSXWgmvbImG7t2+6VUBYiWcPcU1pD0R8X0aje1CaY8rNmc7WjL
- x36nOCfCgN5GoGosJT1uUZzC7LZUU9TZN4Hs0fCtiB9J8jRlWKRfVglFWJ4g9RmDYB25
- Q0oVojUrIdogqQqprR4cw8A54g9rgDhgsaBc80fkqy35amx41q4lwBSiuOk9m/5jz0uD
- eltM7cI803ECQMWdctWY/7KmGRNHbhnEDfAyQucyT+HP0dakP7PYmVpIpAE3sHA9pM/0
- VsiA==
-X-Gm-Message-State: AOAM531HLU1RWBtqS09dqwZ5uuzkHTU7uafI9LwLej7vTVDkPlcvR3Uw
- dtiTbh1054qsRTG/uldfhVtWvA==
-X-Google-Smtp-Source: ABdhPJw9BHdV2PhR+4EY9fQcITZ83GZhxsD5N3hVP1Z53THaNgNupwsLwr8mtFaReraEAQtYUI3qaQ==
-X-Received: by 2002:adf:ff8e:: with SMTP id j14mr34485328wrr.374.1624986222594; 
- Tue, 29 Jun 2021 10:03:42 -0700 (PDT)
-Received: from ?IPv6:2001:861:44c0:66c0:9ed5:b63d:622c:fb4e?
- ([2001:861:44c0:66c0:9ed5:b63d:622c:fb4e])
- by smtp.gmail.com with ESMTPSA id h10sm3399285wmb.40.2021.06.29.10.03.37
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 29 Jun 2021 10:03:37 -0700 (PDT)
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@redhat.com
-References: <20210629135833.22679-1-tzimmermann@suse.de>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <32c2b8f1-e8e5-c161-ed87-f80190173552@baylibre.com>
-Date: Tue, 29 Jun 2021 19:03:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C13C46E8CD;
+ Tue, 29 Jun 2021 17:15:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BA27BA8836;
+ Tue, 29 Jun 2021 17:15:33 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210629135833.22679-1-tzimmermann@suse.de>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/aperture: Pass DRM driver structure
- instead of driver name
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Desmond Cheong Zhi Xi" <desmondcheongzx@gmail.com>
+Date: Tue, 29 Jun 2021 17:15:33 -0000
+Message-ID: <162498693373.9056.9454478464164699357@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210629033706.20537-1-desmondcheongzx@gmail.com>
+In-Reply-To: <20210629033706.20537-1-desmondcheongzx@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_address_potential_UAF_bugs_with_drm=5Fmaster_ptrs_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,53 +39,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- linux-tegra@vger.kernel.org, spice-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, freedreno@lists.freedesktop.org,
- linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 29/06/2021 15:58, Thomas Zimmermann wrote:
-> Print the name of the DRM driver when taking over fbdev devices. Makes
-> the output to dmesg more consistent. Note that the driver name is only
-> used for printing a string to the kernel log. No UAPI is affected by this
-> change.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
+Series: drm: address potential UAF bugs with drm_master ptrs (rev2)
+URL   : https://patchwork.freedesktop.org/series/91969/
+State : warning
 
-...
+== Summary ==
 
->  drivers/gpu/drm/meson/meson_drv.c             |  2 +-
+$ dim checkpatch origin/drm-tip
+74cef89ae027 drm: avoid circular locks in drm_mode_getconnector
+cb2470da87f5 drm: add a locked version of drm_is_current_master
+5c1685ef444e drm: protect drm_master pointers in drm_lease.c
+-:94: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!master"
+#94: FILE: drivers/gpu/drm/drm_lease.c:116:
++	if (master == NULL)
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+-:113: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!master"
+#113: FILE: drivers/gpu/drm/drm_lease.c:144:
++	if (master == NULL)
 
-...
+-:136: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!master"
+#136: FILE: drivers/gpu/drm/drm_lease.c:177:
++	if (master == NULL)
 
->  
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index a7388bf7c838..3d0ccc7eef1b 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -285,7 +285,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->  	 * Remove early framebuffers (ie. simplefb). The framebuffer can be
->  	 * located anywhere in RAM
->  	 */
-> -	ret = drm_aperture_remove_framebuffers(false, "meson-drm-fb");
-> +	ret = drm_aperture_remove_framebuffers(false, &meson_driver);
->  	if (ret)
->  		goto free_drm;
->  
+total: 0 errors, 0 warnings, 3 checks, 269 lines checked
 
-...
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
