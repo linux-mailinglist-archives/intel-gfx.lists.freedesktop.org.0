@@ -1,70 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4546F3B7631
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 18:07:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E98963B7646
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 18:11:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B98646E8C3;
-	Tue, 29 Jun 2021 16:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C5D6E8C6;
+	Tue, 29 Jun 2021 16:11:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA92B6E8C4
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 16:07:06 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id i8so4241862wrc.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 09:07:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=8Qqg2kHKap9tEq2fr8LzwiEtJhjPZLmt3+WFM7MygfM=;
- b=ZUXDHQDO1+8U0LdnMNBVwDh/9+SJg5oqfBdysdYL2jsWUpcML4Cs2icAeZxcynEiVK
- isP3D4mZYKSnMK2NLx5Y6JIgRJJJpZrXI7ZVzPizayJl/az40JXoYhZXpM97vDf/Y+2M
- 5EAhnM3cjtztaZTP3e1GS6hHvDPFF9Dyo3upw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=8Qqg2kHKap9tEq2fr8LzwiEtJhjPZLmt3+WFM7MygfM=;
- b=o+PUTFx3wkKclrhnHZo32zKYb/joYMU4+2K5Q3tQwqJ0kI8i6INdbVW0zgxpiEMSv+
- XJVWtsERvYmTNIpPxCkrcBbewycaLJYGKJibBB4g1a+wkJjnEoeH7LFNz9CuQ0FkaTMQ
- lO8HMu+k7Tke7XiRa7gkQKB4WYYGU2Qe4elAIGEcknAtN6G94w1QVFNdPLo6U9qZcySt
- kNwl0T3ic3hOOS//r7+Ohe8nUDuGxlpYaTKBcU/MCCr9Fb6FA8AQCAsx+ylVhSkHfLx2
- +Ftc0BPtFHyoukhLs3eDsFnJu9swMDrGT1KCOngqDoEJLsw3XHgCrPHsKrX8rteHe+VQ
- SrwQ==
-X-Gm-Message-State: AOAM530OUiqh4euqy1VLHOt6CeTMK23vj3uZB29xMZQ68/VQ3c85plYF
- 7PVvJAsfbqUExkm1BHOU/jrqJQ==
-X-Google-Smtp-Source: ABdhPJy1jqAR0YE1o9PaSsvkYs5Fll1ev502/8tirW6C4kdO3/xxnsEo067Zc8h+ebgtHs/2cyRIMw==
-X-Received: by 2002:a05:6000:10:: with SMTP id
- h16mr809726wrx.367.1624982825474; 
- Tue, 29 Jun 2021 09:07:05 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p9sm2086612wmm.17.2021.06.29.09.07.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Jun 2021 09:07:04 -0700 (PDT)
-Date: Tue, 29 Jun 2021 18:07:02 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Message-ID: <YNtFJhUw0U2s1TW0@phenom.ffwll.local>
-Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- skhan@linuxfoundation.org, gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- emil.l.velikov@gmail.com
-References: <20210629033706.20537-1-desmondcheongzx@gmail.com>
- <20210629033706.20537-4-desmondcheongzx@gmail.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF186E8C6;
+ Tue, 29 Jun 2021 16:11:21 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="205170316"
+X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="205170316"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 09:10:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="419649867"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga007.fm.intel.com with SMTP; 29 Jun 2021 09:10:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 29 Jun 2021 19:10:46 +0300
+Date: Tue, 29 Jun 2021 19:10:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <YNtGBg1+D6L1MVHl@intel.com>
+References: <20210625084740.1586-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210629033706.20537-4-desmondcheongzx@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v5 3/3] drm: protect drm_master pointers in
- drm_lease.c
+In-Reply-To: <20210625084740.1586-1-tzimmermann@suse.de>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Drop all references to DRM IRQ
+ midlayer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,394 +46,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tzimmermann@suse.de, Daniel Vetter <daniel.vetter@ffwll.ch>,
- airlied@linux.ie, gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, mripard@kernel.org, christian.koenig@amd.com,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org,
- sumit.semwal@linaro.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ lucas.demarchi@intel.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 29, 2021 at 11:37:06AM +0800, Desmond Cheong Zhi Xi wrote:
-> Currently, direct copies of drm_file->master pointers should be
-> protected by drm_device.master_mutex when being dereferenced. This is
-> because drm_file->master is not invariant for the lifetime of
-> drm_file. If drm_file is not the creator of master, then
-> drm_file->is_master is false, and a call to drm_setmaster_ioctl will
-> invoke drm_new_set_master, which then allocates a new master for
-> drm_file and puts the old master.
-> 
-> Thus, without holding drm_device.master_mutex, the old value of
-> drm_file->master could be freed while it is being used by another
-> concurrent process.
-> 
-> In drm_lease.c, there are multiple instances where drm_file->master is
-> accessed and dereferenced while drm_device.master_mutex is not
-> held. This makes drm_lease.c vulnerable to use-after-free bugs.
-> 
-> We address this issue in 3 ways:
-> 
-> 1. Clarify in the kerneldoc that drm_file->master is protected by
-> drm_device.master_mutex.
-> 
-> 2. Add a new drm_file_get_master() function that calls drm_master_get
-> on drm_file->master while holding on to drm_device.master_mutex. Since
-> drm_master_get increments the reference count of master, this
-> prevents master from being freed until we unreference it with
-> drm_master_put.
-> 
-> 3. In each case where drm_file->master is directly accessed and
-> eventually dereferenced in drm_lease.c, we wrap the access in a call
-> to the new drm_file_get_master function, then unreference the master
-> pointer once we are done using it.
-> 
-> Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+On Fri, Jun 25, 2021 at 10:47:40AM +0200, Thomas Zimmermann wrote:
+> Remove all references to DRM's IRQ midlayer.
+> =
 
-Series looks very nice, let's see what intel-gfx-ci says. You should get a
-mail, but results are also here:
+> The code in xcs_resume() probably didn't work as intended. It uses
+> struct drm_device.irq, which is allocated to 0, but never initialized
+> by i915 to the device's interrupt number.
+> =
 
-https://patchwork.freedesktop.org/series/91969/#rev2
-
-One tiny comment below.
-
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Fixes: 536f77b1caa0 ("drm/i915/gt: Call stop_ring() from ring resume, aga=
+in")
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/drm_auth.c  | 25 ++++++++++++
->  drivers/gpu/drm/drm_lease.c | 77 +++++++++++++++++++++++++++----------
->  include/drm/drm_auth.h      |  1 +
->  include/drm/drm_file.h      | 15 ++++++--
->  4 files changed, 95 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-> index ab1863c5a5a0..c36a0b72be26 100644
-> --- a/drivers/gpu/drm/drm_auth.c
-> +++ b/drivers/gpu/drm/drm_auth.c
-> @@ -384,6 +384,31 @@ struct drm_master *drm_master_get(struct drm_master *master)
->  }
->  EXPORT_SYMBOL(drm_master_get);
->  
-> +/**
-> + * drm_file_get_master - reference &drm_file.master of @file_priv
-> + * @file_priv: DRM file private
-> + *
-> + * Increments the reference count of @file_priv's &drm_file.master and returns
-> + * the &drm_file.master. If @file_priv has no &drm_file.master, returns NULL.
-> + *
-> + * Master pointers returned from this function should be unreferenced using
-> + * drm_master_put().
-> + */
-> +struct drm_master *drm_file_get_master(struct drm_file *file_priv)
-> +{
-> +	struct drm_master *master = NULL;
-> +
-> +	mutex_lock(&file_priv->minor->dev->master_mutex);
-> +	if (!file_priv->master)
-> +		goto unlock;
-> +	master = drm_master_get(file_priv->master);
-> +
-> +unlock:
-> +	mutex_unlock(&file_priv->minor->dev->master_mutex);
-> +	return master;
-> +}
-> +EXPORT_SYMBOL(drm_file_get_master);
-> +
->  static void drm_master_destroy(struct kref *kref)
+>  drivers/gpu/drm/i915/gt/intel_ring_submission.c | 3 ++-
+>  drivers/gpu/drm/i915/i915_drv.c                 | 1 -
+>  drivers/gpu/drm/i915/i915_irq.c                 | 1 -
+>  3 files changed, 2 insertions(+), 3 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gp=
+u/drm/i915/gt/intel_ring_submission.c
+> index 5d42a12ef3d6..d893aaaed74f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -180,12 +180,13 @@ static bool stop_ring(struct intel_engine_cs *engin=
+e)
+>  static int xcs_resume(struct intel_engine_cs *engine)
 >  {
->  	struct drm_master *master = container_of(kref, struct drm_master, refcount);
-> diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
-> index 00fb433bcef1..cdcc87fa9685 100644
-> --- a/drivers/gpu/drm/drm_lease.c
-> +++ b/drivers/gpu/drm/drm_lease.c
-> @@ -106,10 +106,19 @@ static bool _drm_has_leased(struct drm_master *master, int id)
->   */
->  bool _drm_lease_held(struct drm_file *file_priv, int id)
->  {
-> -	if (!file_priv || !file_priv->master)
-> +	bool ret;
-> +	struct drm_master *master;
-> +
-> +	if (!file_priv)
->  		return true;
->  
-> -	return _drm_lease_held_master(file_priv->master, id);
-> +	master = drm_file_get_master(file_priv);
-> +	if (master == NULL)
-> +		return true;
-> +	ret = _drm_lease_held_master(master, id);
-> +	drm_master_put(&master);
-> +
-> +	return ret;
->  }
->  
->  /**
-> @@ -128,13 +137,20 @@ bool drm_lease_held(struct drm_file *file_priv, int id)
->  	struct drm_master *master;
->  	bool ret;
->  
-> -	if (!file_priv || !file_priv->master || !file_priv->master->lessor)
-> +	if (!file_priv)
->  		return true;
->  
-> -	master = file_priv->master;
-> +	master = drm_file_get_master(file_priv);
-> +	if (master == NULL)
-> +		return true;
-> +	if (!master->lessor) {
-> +		drm_master_put(&master);
-> +		return true;
-> +	}
->  	mutex_lock(&master->dev->mode_config.idr_mutex);
->  	ret = _drm_lease_held_master(master, id);
->  	mutex_unlock(&master->dev->mode_config.idr_mutex);
-> +	drm_master_put(&master);
->  	return ret;
->  }
->  
-> @@ -154,10 +170,16 @@ uint32_t drm_lease_filter_crtcs(struct drm_file *file_priv, uint32_t crtcs_in)
->  	int count_in, count_out;
->  	uint32_t crtcs_out = 0;
->  
-> -	if (!file_priv || !file_priv->master || !file_priv->master->lessor)
-> +	if (!file_priv)
->  		return crtcs_in;
->  
-> -	master = file_priv->master;
-> +	master = drm_file_get_master(file_priv);
-> +	if (master == NULL)
-> +		return crtcs_in;
-> +	if (!master->lessor) {
-> +		drm_master_put(&master);
-> +		return crtcs_in;
-> +	}
->  	dev = master->dev;
->  
->  	count_in = count_out = 0;
-> @@ -176,6 +198,7 @@ uint32_t drm_lease_filter_crtcs(struct drm_file *file_priv, uint32_t crtcs_in)
->  		count_in++;
->  	}
->  	mutex_unlock(&master->dev->mode_config.idr_mutex);
-> +	drm_master_put(&master);
->  	return crtcs_out;
->  }
->  
-> @@ -489,7 +512,7 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  	size_t object_count;
->  	int ret = 0;
->  	struct idr leases;
-> -	struct drm_master *lessor = lessor_priv->master;
-> +	struct drm_master *lessor;
->  	struct drm_master *lessee = NULL;
->  	struct file *lessee_file = NULL;
->  	struct file *lessor_file = lessor_priv->filp;
-> @@ -501,12 +524,6 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> -	/* Do not allow sub-leases */
-> -	if (lessor->lessor) {
-> -		DRM_DEBUG_LEASE("recursive leasing not allowed\n");
-> -		return -EINVAL;
-> -	}
-> -
->  	/* need some objects */
->  	if (cl->object_count == 0) {
->  		DRM_DEBUG_LEASE("no objects in lease\n");
-> @@ -518,12 +535,22 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  		return -EINVAL;
->  	}
->  
-> +	lessor = drm_file_get_master(lessor_priv);
-> +	/* Do not allow sub-leases */
-> +	if (lessor->lessor) {
-> +		DRM_DEBUG_LEASE("recursive leasing not allowed\n");
-> +		ret = -EINVAL;
-> +		goto out_lessor;
-> +	}
-> +
->  	object_count = cl->object_count;
->  
->  	object_ids = memdup_user(u64_to_user_ptr(cl->object_ids),
->  			array_size(object_count, sizeof(__u32)));
-> -	if (IS_ERR(object_ids))
-> -		return PTR_ERR(object_ids);
-> +	if (IS_ERR(object_ids)) {
-> +		ret = PTR_ERR(object_ids);
-> +		goto out_lessor;
-> +	}
->  
->  	idr_init(&leases);
->  
-> @@ -534,14 +561,15 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  	if (ret) {
->  		DRM_DEBUG_LEASE("lease object lookup failed: %i\n", ret);
->  		idr_destroy(&leases);
-> -		return ret;
-> +		goto out_lessor;
->  	}
->  
->  	/* Allocate a file descriptor for the lease */
->  	fd = get_unused_fd_flags(cl->flags & (O_CLOEXEC | O_NONBLOCK));
->  	if (fd < 0) {
->  		idr_destroy(&leases);
-> -		return fd;
-> +		ret = fd;
-> +		goto out_lessor;
->  	}
->  
->  	DRM_DEBUG_LEASE("Creating lease\n");
-> @@ -577,6 +605,7 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  	/* Hook up the fd */
->  	fd_install(fd, lessee_file);
->  
-> +	drm_master_put(&lessor);
->  	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl succeeded\n");
->  	return 0;
->  
-> @@ -586,6 +615,8 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
->  out_leases:
->  	put_unused_fd(fd);
->  
-> +out_lessor:
-> +	drm_master_put(&lessor);
->  	DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl failed: %d\n", ret);
->  	return ret;
->  }
-> @@ -608,7 +639,7 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
->  	struct drm_mode_list_lessees *arg = data;
->  	__u32 __user *lessee_ids = (__u32 __user *) (uintptr_t) (arg->lessees_ptr);
->  	__u32 count_lessees = arg->count_lessees;
-> -	struct drm_master *lessor = lessor_priv->master, *lessee;
-> +	struct drm_master *lessor, *lessee;
->  	int count;
->  	int ret = 0;
->  
-> @@ -619,6 +650,7 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> +	lessor = drm_file_get_master(lessor_priv);
->  	DRM_DEBUG_LEASE("List lessees for %d\n", lessor->lessee_id);
->  
->  	mutex_lock(&dev->mode_config.idr_mutex);
-> @@ -642,6 +674,7 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
->  		arg->count_lessees = count;
->  
->  	mutex_unlock(&dev->mode_config.idr_mutex);
-> +	drm_master_put(&lessor);
->  
->  	return ret;
->  }
-> @@ -661,7 +694,7 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
->  	struct drm_mode_get_lease *arg = data;
->  	__u32 __user *object_ids = (__u32 __user *) (uintptr_t) (arg->objects_ptr);
->  	__u32 count_objects = arg->count_objects;
-> -	struct drm_master *lessee = lessee_priv->master;
-> +	struct drm_master *lessee;
->  	struct idr *object_idr;
->  	int count;
->  	void *entry;
-> @@ -675,6 +708,7 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> +	lessee = drm_file_get_master(lessee_priv);
->  	DRM_DEBUG_LEASE("get lease for %d\n", lessee->lessee_id);
->  
->  	mutex_lock(&dev->mode_config.idr_mutex);
-> @@ -702,6 +736,7 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
->  		arg->count_objects = count;
->  
->  	mutex_unlock(&dev->mode_config.idr_mutex);
-> +	drm_master_put(&lessee);
->  
->  	return ret;
->  }
-> @@ -720,7 +755,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
->  				void *data, struct drm_file *lessor_priv)
->  {
->  	struct drm_mode_revoke_lease *arg = data;
-> -	struct drm_master *lessor = lessor_priv->master;
-> +	struct drm_master *lessor;
->  	struct drm_master *lessee;
->  	int ret = 0;
->  
-> @@ -730,6 +765,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_MODESET))
->  		return -EOPNOTSUPP;
->  
-> +	lessor = drm_file_get_master(lessor_priv);
->  	mutex_lock(&dev->mode_config.idr_mutex);
->  
->  	lessee = _drm_find_lessee(lessor, arg->lessee_id);
-> @@ -750,6 +786,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
->  
->  fail:
->  	mutex_unlock(&dev->mode_config.idr_mutex);
-> +	drm_master_put(&lessor);
->  
->  	return ret;
->  }
-> diff --git a/include/drm/drm_auth.h b/include/drm/drm_auth.h
-> index 6bf8b2b78991..f99d3417f304 100644
-> --- a/include/drm/drm_auth.h
-> +++ b/include/drm/drm_auth.h
-> @@ -107,6 +107,7 @@ struct drm_master {
->  };
->  
->  struct drm_master *drm_master_get(struct drm_master *master);
-> +struct drm_master *drm_file_get_master(struct drm_file *file_priv);
->  void drm_master_put(struct drm_master **master);
->  bool drm_is_current_master(struct drm_file *fpriv);
->  
-> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> index b81b3bfb08c8..e9931fca4ab7 100644
-> --- a/include/drm/drm_file.h
-> +++ b/include/drm/drm_file.h
-> @@ -226,9 +226,18 @@ struct drm_file {
->  	/**
->  	 * @master:
->  	 *
-> -	 * Master this node is currently associated with. Only relevant if
-> -	 * drm_is_primary_client() returns true. Note that this only
-> -	 * matches &drm_device.master if the master is the currently active one.
-> +	 * Master this node is currently associated with. Protected by struct
-> +	 * &drm_device.master_mutex.
-> +	 *
-> +	 * Only relevant if drm_is_primary_client() returns true. Note that
-> +	 * this only matches &drm_device.master if the master is the currently
-> +	 * active one.
-> +	 *
-> +	 * When obtaining a copy of this pointer, it is recommended to either
+>  	struct intel_ring *ring =3D engine->legacy.ring;
+> +	struct pci_dev *pdev =3D to_pci_dev(engine->i915->drm.dev);
+>  =
 
-I found this a bit confusing, since I generally don't think of
-dereferencing the pointer as "taking a copy". That's more for the entire
-datastructure when you have a memcpy() call, or kmemdup() or something
-like that. Also "it is recommended" is a bit weak if you get a
-use-after-free if you dont :-)
+>  	ENGINE_TRACE(engine, "ring:{HEAD:%04x, TAIL:%04x}\n",
+>  		     ring->head, ring->tail);
+>  =
 
-So instead "When dererencing this pointer either hold ... or use
-drm_file_get_master() ...."
+>  	/* Double check the ring is empty & disabled before we resume */
+> -	synchronize_hardirq(engine->i915->drm.irq);
+> +	synchronize_hardirq(pdev->irq);
 
-Cheers, Daniel
+We have intel_synchronize_irq() to hide all these mundane details.
+Might want to add a matching intel_synchronize_hardirq().
 
-> +	 * hold struct &drm_device.master_mutex for the duration of the
-> +	 * pointer's use, or to use drm_file_get_master() if struct
-> +	 * &drm_device.master_mutex is not currently held and there is no other
-> +	 * need to hold it. This prevents @master from being freed during use.
->  	 *
->  	 * See also @authentication and @is_master and the :ref:`section on
->  	 * primary nodes and authentication <drm_primary_node>`.
-> -- 
-> 2.25.1
-> 
+>  	if (!stop_ring(engine))
+>  		goto err;
+>  =
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index 850b499c71c8..73de45472f60 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -42,7 +42,6 @@
+>  #include <drm/drm_aperture.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_ioctl.h>
+> -#include <drm/drm_irq.h>
+>  #include <drm/drm_managed.h>
+>  #include <drm/drm_probe_helper.h>
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index a11bdb667241..eef616d96f12 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -33,7 +33,6 @@
+>  #include <linux/sysrq.h>
+>  =
+
+>  #include <drm/drm_drv.h>
+> -#include <drm/drm_irq.h>
+>  =
+
+>  #include "display/intel_de.h"
+>  #include "display/intel_display_types.h"
+> =
+
+> base-commit: 8c1323b422f8473421682ba783b5949ddd89a3f4
+> prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
+> prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+> -- =
+
+> 2.32.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
