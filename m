@@ -1,43 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF003B79D0
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 23:20:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B08443B79F7
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 23:36:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66C0B6E8FC;
-	Tue, 29 Jun 2021 21:20:17 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49FF26E8FC;
- Tue, 29 Jun 2021 21:20:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="205233779"
-X-IronPort-AV: E=Sophos;i="5.83,310,1616482800"; d="scan'208";a="205233779"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 14:20:14 -0700
-X-IronPort-AV: E=Sophos;i="5.83,310,1616482800"; d="scan'208";a="419747339"
-Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.209.46.34])
- ([10.209.46.34])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 14:20:13 -0700
-To: Matthew Brost <matthew.brost@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-References: <20210624070516.21893-1-matthew.brost@intel.com>
- <20210624070516.21893-11-matthew.brost@intel.com>
- <fa12d809-0b13-b816-d36d-d251b70918a6@intel.com>
- <20210625172659.GA11719@sdutt-i7>
-From: John Harrison <john.c.harrison@intel.com>
-Message-ID: <8b91c327-752f-4649-1aa3-d3c549e70eb4@intel.com>
-Date: Tue, 29 Jun 2021 14:20:11 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2656A6E043;
+	Tue, 29 Jun 2021 21:36:57 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7AE76E043
+ for <Intel-GFX@lists.freedesktop.org>; Tue, 29 Jun 2021 21:36:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="188622722"
+X-IronPort-AV: E=Sophos;i="5.83,310,1616482800"; d="scan'208";a="188622722"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 14:36:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,310,1616482800"; d="scan'208";a="558856856"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
+ by fmsmga001.fm.intel.com with ESMTP; 29 Jun 2021 14:36:55 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Date: Tue, 29 Jun 2021 14:36:54 -0700
+Message-Id: <20210629213654.2684950-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210625172659.GA11719@sdutt-i7>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 10/47] drm/i915/guc: Add lrc descriptor
- context lookup array
+Subject: [Intel-gfx] [CI] PR for new GuC v62.0.3 and HuC v7.9.3 binaries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,150 +40,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6/25/2021 10:26, Matthew Brost wrote:
-> On Fri, Jun 25, 2021 at 03:17:51PM +0200, Michal Wajdeczko wrote:
->> On 24.06.2021 09:04, Matthew Brost wrote:
->>> Add lrc descriptor context lookup array which can resolve the
->>> intel_context from the lrc descriptor index. In addition to lookup, it
->>> can determine in the lrc descriptor context is currently registered with
->>> the GuC by checking if an entry for a descriptor index is present.
->>> Future patches in the series will make use of this array.
->> s/lrc/LRC
->>
-> I guess? lrc and LRC are used interchangeably throughout the current
-> code base.
-It is an abbreviation so LRC is technically the correct version for a 
-comment. The fact that other existing comments are incorrect is not a 
-valid reason to perpetuate a mistake :). Might as well fix it if you are 
-going to repost the patch anyway for any other reason, but I would not 
-call it a blocking issue.
+The following changes since commit d79c26779d459063b8052b7fe0a48bce4e08d0d9:
 
-Also, 'can determine in the' should be 'can determine if the'. Again, 
-not exactly a blocking issue but should be fixed.
+  amdgpu: update vcn firmware for green sardine for 21.20 (2021-06-29 07:26:03 -0400)
 
->>> Cc: John Harrison <john.c.harrison@intel.com>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  5 +++
->>>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 32 +++++++++++++++++--
->>>   2 files changed, 35 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->>> index b28fa54214f2..2313d9fc087b 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->>> @@ -6,6 +6,8 @@
->>>   #ifndef _INTEL_GUC_H_
->>>   #define _INTEL_GUC_H_
->>>   
->>> +#include "linux/xarray.h"
->> #include <linux/xarray.h>
->>
-> Yep.
->
->>> +
->>>   #include "intel_uncore.h"
->>>   #include "intel_guc_fw.h"
->>>   #include "intel_guc_fwif.h"
->>> @@ -46,6 +48,9 @@ struct intel_guc {
->>>   	struct i915_vma *lrc_desc_pool;
->>>   	void *lrc_desc_pool_vaddr;
->>>   
->>> +	/* guc_id to intel_context lookup */
->>> +	struct xarray context_lookup;
->>> +
->>>   	/* Control params for fw initialization */
->>>   	u32 params[GUC_CTL_MAX_DWORDS];
->> btw, IIRC there was idea to move most struct definitions to
->> intel_guc_types.h, is this still a plan ?
->>
-> I don't ever recall discussing this but we can certainly do this. For
-> what it is worth we do introduce intel_guc_submission_types.h a bit
-> later. I'll make a note about intel_guc_types.h though.
->
-> Matt
-Yeah, my only recollection was about the submission types header. Are 
-there sufficient non-submission fields in the GuC structure to warrant a 
-general GuC types header?
+are available in the Git repository at:
 
-With the commit message tweaks and #include fix mentioned above, it 
-looks good to me.
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+  git://anongit.freedesktop.org/drm/drm-firmware guc_62.0_huc_7.9
 
+for you to fetch changes up to f4d897acd200190350a5f2148316c51c6c57bc9b:
 
->>>   
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index a366890fb840..23a94a896a0b 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -65,8 +65,6 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
->>>   	return rb_entry(rb, struct i915_priolist, node);
->>>   }
->>>   
->>> -/* Future patches will use this function */
->>> -__attribute__ ((unused))
->>>   static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
->>>   {
->>>   	struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
->>> @@ -76,6 +74,15 @@ static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
->>>   	return &base[index];
->>>   }
->>>   
->>> +static inline struct intel_context *__get_context(struct intel_guc *guc, u32 id)
->>> +{
->>> +	struct intel_context *ce = xa_load(&guc->context_lookup, id);
->>> +
->>> +	GEM_BUG_ON(id >= GUC_MAX_LRC_DESCRIPTORS);
->>> +
->>> +	return ce;
->>> +}
->>> +
->>>   static int guc_lrc_desc_pool_create(struct intel_guc *guc)
->>>   {
->>>   	u32 size;
->>> @@ -96,6 +103,25 @@ static void guc_lrc_desc_pool_destroy(struct intel_guc *guc)
->>>   	i915_vma_unpin_and_release(&guc->lrc_desc_pool, I915_VMA_RELEASE_MAP);
->>>   }
->>>   
->>> +static inline void reset_lrc_desc(struct intel_guc *guc, u32 id)
->>> +{
->>> +	struct guc_lrc_desc *desc = __get_lrc_desc(guc, id);
->>> +
->>> +	memset(desc, 0, sizeof(*desc));
->>> +	xa_erase_irq(&guc->context_lookup, id);
->>> +}
->>> +
->>> +static inline bool lrc_desc_registered(struct intel_guc *guc, u32 id)
->>> +{
->>> +	return __get_context(guc, id);
->>> +}
->>> +
->>> +static inline void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
->>> +					   struct intel_context *ce)
->>> +{
->>> +	xa_store_irq(&guc->context_lookup, id, ce, GFP_ATOMIC);
->>> +}
->>> +
->>>   static void guc_add_request(struct intel_guc *guc, struct i915_request *rq)
->>>   {
->>>   	/* Leaving stub as this function will be used in future patches */
->>> @@ -400,6 +426,8 @@ int intel_guc_submission_init(struct intel_guc *guc)
->>>   	 */
->>>   	GEM_BUG_ON(!guc->lrc_desc_pool);
->>>   
->>> +	xa_init_flags(&guc->context_lookup, XA_FLAGS_LOCK_IRQ);
->>> +
->>>   	return 0;
->>>   }
->>>   
->>>
+  firmware/i915/guc: Add HuC v7.9.3 for TGL & DG1 (2021-06-29 14:20:03 -0700)
 
+----------------------------------------------------------------
+John Harrison (3):
+      firmware/i915/guc: Add GuC v62.0.0 for all platforms
+      firmware/i915/guc: Add GuC v62.0.3 for ADL-P
+      firmware/i915/guc: Add HuC v7.9.3 for TGL & DG1
+
+ WHENCE                   |  38 +++++++++++++++++++++++++++++++++++++-
+ i915/adlp_guc_62.0.3.bin | Bin 0 -> 336704 bytes
+ i915/bxt_guc_62.0.0.bin  | Bin 0 -> 199616 bytes
+ i915/cml_guc_62.0.0.bin  | Bin 0 -> 200448 bytes
+ i915/dg1_guc_62.0.0.bin  | Bin 0 -> 315648 bytes
+ i915/dg1_huc_7.9.3.bin   | Bin 0 -> 589888 bytes
+ i915/ehl_guc_62.0.0.bin  | Bin 0 -> 327488 bytes
+ i915/glk_guc_62.0.0.bin  | Bin 0 -> 200000 bytes
+ i915/icl_guc_62.0.0.bin  | Bin 0 -> 327488 bytes
+ i915/kbl_guc_62.0.0.bin  | Bin 0 -> 200448 bytes
+ i915/skl_guc_62.0.0.bin  | Bin 0 -> 199552 bytes
+ i915/tgl_guc_62.0.0.bin  | Bin 0 -> 326016 bytes
+ i915/tgl_huc_7.9.3.bin   | Bin 0 -> 589888 bytes
+ 13 files changed, 37 insertions(+), 1 deletion(-)
+ create mode 100644 i915/adlp_guc_62.0.3.bin
+ create mode 100644 i915/bxt_guc_62.0.0.bin
+ create mode 100644 i915/cml_guc_62.0.0.bin
+ create mode 100644 i915/dg1_guc_62.0.0.bin
+ create mode 100644 i915/dg1_huc_7.9.3.bin
+ create mode 100644 i915/ehl_guc_62.0.0.bin
+ create mode 100644 i915/glk_guc_62.0.0.bin
+ create mode 100644 i915/icl_guc_62.0.0.bin
+ create mode 100644 i915/kbl_guc_62.0.0.bin
+ create mode 100644 i915/skl_guc_62.0.0.bin
+ create mode 100644 i915/tgl_guc_62.0.0.bin
+ create mode 100644 i915/tgl_huc_7.9.3.bin
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
