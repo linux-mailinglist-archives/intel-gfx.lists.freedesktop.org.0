@@ -1,63 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF88C3B713B
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:17:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C903B7163
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:37:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 881666E85B;
-	Tue, 29 Jun 2021 11:17:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3F7D6E862;
+	Tue, 29 Jun 2021 11:37:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
- [IPv6:2a00:1450:4864:20::141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A53F6E85A;
- Tue, 29 Jun 2021 11:17:26 +0000 (UTC)
-Received: by mail-lf1-x141.google.com with SMTP id q16so24632755lfr.4;
- Tue, 29 Jun 2021 04:17:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=co2MnmhqTunRm8w19zQP35XSCvF/jJ76gA/W9GlIUz0=;
- b=JBet+L1/xGCXdWUkOprU0gLpjHcspyWMX41k11zgcAWXmzhI9gm3YIixLkNTJlqVB/
- XcWiFb1eTuuQ0kZPvEkUrb3UuAcYdsKHD/D12Eaov5Lzyd9QnJCwNNchJ8ukHTIasmKs
- SFGy7bdYdELyUi/4Cs4D+h5baTLqNvlmps9/xqsI+9OHQKc8Rq13MEKERP9VFoa5IgQG
- W+ULAaQCMLpup1hbsAmWwrAshrxJwNGepLcM9rge/JvfV2nG6weCZl5M0tIBdw+xf5i9
- 7vS+4WIflZLG5RqKPfZoLlErqKzj99hms0mYKEi1B3mu0Gv99P1J6P91mtxFB1BPzUWQ
- zw6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=co2MnmhqTunRm8w19zQP35XSCvF/jJ76gA/W9GlIUz0=;
- b=dEx9qcmRv6VLhuUB+ukXR4jsHosz5pZRRhN58ixCm3giLXOWBST6RccPM/u+Q/VsKt
- Crhc7Z6FLHr5BiSbAUWCWfG+X72qopg9PxcGm5ZrNerEMz7ILHkAY4biZTv+PZTIAa4V
- lJYCqtDBtPc1PWDUUoXmxqOX198nJoPA3AftDeOFPck5Hr66WwfZYh/QSiKwrxLYlrnq
- VgfSgp35xX8Do1C3mYFm43uZbAo4hqOes/4bCkJCCAXLaM+GXRXtgyrqpJSAmdjstvxc
- FTNjOd5KsyF8b4RDcuDWkRA1GJjgiAG4P9XNq73UFQNHJaVTqREXS6OJukxJX3Vb8b/1
- GUBw==
-X-Gm-Message-State: AOAM533d6S1HtuCF50oBbwKsijc2OPMyh1W6T4iogns5K1sGwhYkBFTt
- V2C/a2ch7HaqZ+y94BAOvqU=
-X-Google-Smtp-Source: ABdhPJyGUNfsY7ynhRA9iabVuy2UenX5kT6gcct7E/4hF5q63/J3+g9SwmUC5LFXj4H6uuIg3SuXrQ==
-X-Received: by 2002:a05:6512:3305:: with SMTP id
- k5mr22335683lfe.132.1624965444978; 
- Tue, 29 Jun 2021 04:17:24 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id v19sm1848185ljh.118.2021.06.29.04.17.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 29 Jun 2021 04:17:24 -0700 (PDT)
-Date: Tue, 29 Jun 2021 14:17:12 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Simon Ser <contact@emersion.fr>
-Message-ID: <20210629141712.21f00c38@eldfell>
-In-Reply-To: <jIDQ2rRRMWlhDDPf08Z8xZlEE8HTBx7fHsylFdK0joSSFVyES8D444Giyiji9zbIm7dU4QpbsXZLvIDTbGW0wEoUWKsMEI4evizn0UdGMvM=@emersion.fr>
-References: <20210618091116.14428-1-wse@tuxedocomputers.com>
- <20210618091116.14428-13-wse@tuxedocomputers.com>
- <20210622101516.6a53831c@eldfell>
- <jIDQ2rRRMWlhDDPf08Z8xZlEE8HTBx7fHsylFdK0joSSFVyES8D444Giyiji9zbIm7dU4QpbsXZLvIDTbGW0wEoUWKsMEI4evizn0UdGMvM=@emersion.fr>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0662D6E862;
+ Tue, 29 Jun 2021 11:37:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10029"; a="269259968"
+X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="269259968"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 04:37:30 -0700
+X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="625600007"
+Received: from ettammin-mobl1.ger.corp.intel.com (HELO
+ thellst-mobl1.intel.com) ([10.249.254.141])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 04:37:28 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 29 Jun 2021 13:37:10 +0200
+Message-Id: <20210629113713.154654-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 12/17] drm/uAPI: Add "preferred color
- format" drm property as setting for userspace
+Subject: [Intel-gfx] [PATCH v4 0/3] drm/i915/gem: Introduce a migrate
+ interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,130 +43,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- airlied@linux.ie, amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
- alexander.deucher@amd.com, christian.koenig@amd.com
-Content-Type: multipart/mixed; boundary="===============1750579050=="
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ matthew.auld@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1750579050==
-Content-Type: multipart/signed; boundary="Sig_/LAj=Yh72UIUuJMQi5B=dyga";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/LAj=Yh72UIUuJMQi5B=dyga
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, 29 Jun 2021 08:12:54 +0000
-Simon Ser <contact@emersion.fr> wrote:
-
-> On Tuesday, June 22nd, 2021 at 09:15, Pekka Paalanen <ppaalanen@gmail.com=
-> wrote:
->=20
-> > yes, I think this makes sense, even if it is a property that one can't
-> > tell for sure what it does before hand.
-> >
-> > Using a pair of properties, preference and active, to ask for something
-> > and then check what actually worked is good for reducing the
-> > combinatorial explosion caused by needing to "atomic TEST_ONLY commit"
-> > test different KMS configurations. Userspace has a better chance of
-> > finding a configuration that is possible.
-> >
-> > OTOH, this has the problem than in UI one cannot tell the user in
-> > advance which options are truly possible. Given that KMS properties are
-> > rarely completely independent, and in this case known to depend on
-> > several other KMS properties, I think it is good enough to know after
-> > the fact.
-> >
-> > If a driver does not use what userspace prefers, there is no way to
-> > understand why, or what else to change to make it happen. That problem
-> > exists anyway, because TEST_ONLY commits do not give useful feedback
-> > but only a yes/no. =20
->=20
-> By submitting incremental atomic reqs with TEST_ONLY (i.e. only changing =
-one
-> property at a time), user-space can discover which property makes the ato=
-mic
-> commit fail.
-
-That works if the properties are independent of each other. Color
-range, color format, bpc and more may all be interconnected,
-allowing only certain combinations to work.
-
-If all these properties have "auto" setting too, then it would be
-possible to probe each property individually, but that still does not
-tell which combinations are valid.
-
-If you probe towards a certain configuration by setting the properties
-one by one, then depending on the order you pick the properties, you
-may come to a different conclusion on which property breaks the
-configuration.
-
-> I'm not a fan of this "preference" property approach. The only way to fin=
-d out
-> whether it's possible to change the color format is to perform a user-vis=
-ible
-> change (with a regular atomic commit) and check whether it worked
-> after-the-fact. This is unlike all other existing KMS properties.
-
-I agree. FWIW, "max bpc" exists already.
-
-> I'd much rather see a more general approach to fix this combinatorial exp=
-losion
-> than to add special-cases like this.
-
-What would you suggest?
-
-Maybe all properties should have an "auto" value in addition to the
-explicit no-negotiation values where at all possible?
-
-That might help probing each property individually with TEST_ONLY
-commits, but it says nothing about combinations.
-
-A feedback list perhaps? TEST_ONLY commit somehow returning a list of
-property/value tuples indicating what value the "auto" valued
-properties actually get?
-
-What should a kernel driver optimize for when determining "auto" values?
-
-
-Thanks,
-pq
-
---Sig_/LAj=Yh72UIUuJMQi5B=dyga
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDbATgACgkQI1/ltBGq
-qqcYExAAkwmMC2LyEGzVad5N3ja6Gax0qc3Wpe2Cw40DuxFKcr1j6wJ7AHT4Rmli
-R334a3TJ+3OPRzjeDnw28S4Ycx3ZEDVgPQ7g0pVBCGfSGze1gCaJRGd3sUFQDQxn
-OVdgRoP/sSHbOKylhXb74+UPYcw3MJfUed0EiPAZC9XE2gnxiv8tprcGkm6N0Xm3
-WYzu6Ssr7VGzKGmVDGg0cyjHHVZ6aOwmk9vxgI2KAoqeIr4rxycR07qxGARik5XP
-6GlZZ0s+zysJSPCwLu6gfDK//BhCGIdEXZ7wFp1k7Di5mPbygR/KJIa9rWmLLW7k
-RUi+QFcdfnJj7JNOq3Zx99ksh3RTjBzl0PQVa7YyTl0uZbBCR0JKb7BXntqhCKRL
-PY5ELnIRjezTDJ/9+gYQcnwASN7iyshKTXQAcg9aAmUz5u0pD8QcW/xC7+gq1MNQ
-v06S4Is633ONw5MAti7FsdqT42FxwoNdaDXgZKnnJV9UW2s81yUUkKftw2d1krXR
-EeWumEOlIIFqo95FCs9PW5PiAYMODq3tukBkaJyZnTf1rX7bqfuf4Z9rxI+dFIsc
-CKiql+ZpWTaJmp9sAGeaUcVtW52kiq4spGHRKct36Ahc1QeKsNzhmrmebHhAPMcB
-Klt909YOQ1LqqP0SiDmTZQVvQ8qYeS2wViXZE0e8ezLgLUe97pA=
-=9IoA
------END PGP SIGNATURE-----
-
---Sig_/LAj=Yh72UIUuJMQi5B=dyga--
-
---===============1750579050==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1750579050==--
+V2Ugd2FudCB0byBiZSBhYmxlIHRvIGV4cGxpY2l0bHkgbWlncmF0ZSBvYmplY3RzIGJldHdlZW4g
+Z2VtIG1lbW9yeQpyZWdpb25zLCBpbml0aWFsbHkgZm9yIGRpc3BsYXkgYW5kIGRtYS1idWYsIGJ1
+dCB0aGVyZSBtaWdodCBiZSBtb3JlCnVzZS1jYXNlcyBjb21pbmcgdXAuCgpJbnRyb2R1Y2UgYSBn
+ZW0gbWlncmF0ZSBpbnRlcmZhY2UsIGFkZCBhIHNlbGZ0ZXN0IGFuZCB1c2UgaXQgZm9yCmRpc3Bs
+YXkgZmIgcGlubmluZyBhbmQgZG1hLWJ1ZiBtYXBwaW5nLgoKVGhpcyBzZXJpZXMgc2hvdWxkIG1h
+a2UgYWNjZWxlcmF0ZWQgZGVza3RvcCB3b3JrIG9uIERHMSB3aXRoIERHMS1lbmFibGVkCk9wZW5H
+TC4KCnYyOgotIEFkZHJlc3MgcmV2aWV3IGNvbW1lbnRzIGJ5IE1hdHRoZXcgQXVsZCBvbiBwYXRj
+aCAxLzUuIE1vcmUgZGV0YWlscyBvbgogIHRoZSBwYXRjaCBjb21taXQgbWVzc2FnZS4KLSBBZGRy
+ZXNzIGEgZG1hLWJ1ZiBsb2NraW5nIGlzc3VlIHBvaW50ZWQgb3V0IGJ5IE1pY2hhZWwgUnVobCwg
+YW5kCiAgYWRkIGEgc2VsZnRlc3QgdG8gY2F0Y2ggdGhhdCBpc3N1ZSBtb3ZpbmcgZm9yd2FyZC4K
+LSBSZWJhc2UgdGhlIGRtYS1idWYgbWlncmF0aW9uIHBhdGNoIG9uIHRoZSBhYm92ZS1tZW50aW9u
+ZWQgZml4LgoKdjM6Ci0gRml4IGk5MTVfZ2VtX29iamVjdF9jYW5fbWlncmF0ZSgpIHRvIHJldHVy
+biB0cnVlIGlmIG9iamVjdCBpcyBhbHJlYWR5IGluCiAgdGhlIGNvcnJlY3QgcmVnaW9uLCBldmVu
+IGlmIHRoZSBvYmplY3Qgb3BzIGRvZXNuJ3QgaGF2ZSBhIG1pZ3JhdGUoKQogIGNhbGxiYWNrLgot
+IFVwZGF0ZSB0eXBvIGluIGNvbW1pdCBtZXNzYWdlLgoKdjQ6Ci0gRGl0Y2ggZG1hLWJ1ZiBwYXRj
+aGVzIGZvciBub3cuCi0gSW1wcm92ZSBkb2N1bWVudGF0aW9uIChTdWdnZXN0ZWQgYnkgTWF0dGV3
+IEF1bGQgYW5kIE1pY2hhZWwgUnVobCkKLSBBbHdheXMgYXNzdW1lIFRUTSBtaWdyYXRpb24gaGl0
+cyBhIFRUTSBtb3ZlIGFuZCB1bnNldHMgdGhlIHBhZ2VzIHRocm91Z2gKICBtb3ZlX25vdGlmeS4g
+KFJlcG9ydGVkIGJ5IE1hdHRoZXcgQXVsZCkKLSBBZGQgYSBkbWFfZmVuY2VfbWlnaHRfd2FpdCgp
+IGFubm90YXRpb24gdG8KICBpOTE1X2dlbV9vYmplY3Rfd2FpdF9taWdyYXRpb24oKSAoU3VnZ2Vz
+dGVkIGJ5IERhbmllbCBWZXR0ZXIpCi0gU2VsZnRlc3QgdXBkYXRlcyAoU2VlIHNwZWNpZmljcyBv
+biB0aGF0IHBhdGNoKS4KLSBBZGRlZCBSLUJzCgpNYXR0aGV3IEF1bGQgKDEpOgogIGRybS9pOTE1
+L2dlbTogSW50cm9kdWNlIGEgc2VsZnRlc3QgZm9yIHRoZSBnZW0gb2JqZWN0IG1pZ3JhdGUKICAg
+IGZ1bmN0aW9uYWxpdHkKClRob21hcyBIZWxsc3Ryw7ZtICgyKToKICBkcm0vaTkxNS9nZW06IElt
+cGxlbWVudCBvYmplY3QgbWlncmF0aW9uCiAgZHJtL2k5MTUvZGlzcGxheTogTWlncmF0ZSBvYmpl
+Y3RzIHRvIExNRU0gaWYgcG9zc2libGUgZm9yIGRpc3BsYXkKCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgfCAgIDUgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV9kb21haW4uYyAgICB8ICAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX2xtZW0uYyAgICAgIHwgIDIxIC0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fb2JqZWN0LmMgICAgfCAxMTMgKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCAgICB8ICAxMiArLQogLi4uL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fb2JqZWN0X3R5cGVzLmggIHwgICA5ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV90dG0uYyAgICAgICB8ICA3NyArKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV93YWl0LmMgICAgICB8ICAxOSArKwogLi4uL2RybS9pOTE1L2dlbS9z
+ZWxmdGVzdHMvaTkxNV9nZW1fbWlncmF0ZS5jIHwgMjU4ICsrKysrKysrKysrKysrKysrKwogLi4u
+L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2xpdmVfc2VsZnRlc3RzLmggIHwgICAxICsKIDEwIGZp
+bGVzIGNoYW5nZWQsIDQ4MSBpbnNlcnRpb25zKCspLCAzNiBkZWxldGlvbnMoLSkKIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX21p
+Z3JhdGUuYwoKLS0gCjIuMzEuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4Cg==
