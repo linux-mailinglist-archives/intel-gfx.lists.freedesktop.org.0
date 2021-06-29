@@ -1,38 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015933B74FC
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 17:12:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B513B7509
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 17:18:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 031E76E8B2;
-	Tue, 29 Jun 2021 15:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFFE46E8B3;
+	Tue, 29 Jun 2021 15:18:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 595A86E8AE;
- Tue, 29 Jun 2021 15:12:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="195318944"
-X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="195318944"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 08:12:33 -0700
-X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="408203451"
-Received: from ettammin-mobl1.ger.corp.intel.com (HELO
- thellst-mobl1.intel.com) ([10.249.254.141])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 08:12:31 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 29 Jun 2021 17:12:03 +0200
-Message-Id: <20210629151203.209465-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210629151203.209465-1-thomas.hellstrom@linux.intel.com>
-References: <20210629151203.209465-1-thomas.hellstrom@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE5076E8B3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 15:18:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="195459893"
+X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="195459893"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 08:17:55 -0700
+X-IronPort-AV: E=Sophos;i="5.83,309,1616482800"; d="scan'208";a="643751106"
+Received: from liubin1-mobl.amr.corp.intel.com (HELO intel.com) ([10.212.5.44])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2021 08:17:54 -0700
+Date: Tue, 29 Jun 2021 11:17:53 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <YNs5ofqwVZ0WVnwO@intel.com>
+References: <20210629105356.927359-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 3/3] drm/i915/display: Migrate objects to
- LMEM if possible for display
+Content-Disposition: inline
+In-Reply-To: <20210629105356.927359-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/jsl: Remove require_force_probe
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,84 +43,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T2JqZWN0cyBpbnRlbmRlZCB0byBiZSB1c2VkIGFzIGRpc3BsYXkgZnJhbWVidWZmZXJzIG11c3Qg
-cmVzaWRlIGluCkxNRU0gZm9yIGRpc2NyZXRlLiBJZiB0aGV5IGhhcHBlbiB0byBub3QgZG8gdGhh
-dCwgbWlncmF0ZSB0aGVtIHRvCkxNRU0gYmVmb3JlIHBpbm5pbmcuCgpTaWduZWQtb2ZmLWJ5OiBU
-aG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+ClJldmll
-d2VkLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Ci0tLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAgNSArKysrLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jICAgfCAgMiArLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYyAgICAgfCAyMSAtLS0tLS0tLS0tLS0tLS0t
-LS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oICAgfCAgMiAt
-LQogNCBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDI1IGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggZWVjNmM5
-ZTljZGE3Li4wMjZjMjhjNjEyZjAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheS5jCkBAIC0xMzMxLDYgKzEzMzEsOSBAQCBpbnRlbF9waW5fYW5kX2ZlbmNl
-X2ZiX29iaihzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiwKIAlyZXQgPSBpOTE1X2dlbV9vYmpl
-Y3RfbG9jayhvYmosICZ3dyk7CiAJaWYgKCFyZXQgJiYgcGh5c19jdXJzb3IpCiAJCXJldCA9IGk5
-MTVfZ2VtX29iamVjdF9hdHRhY2hfcGh5cyhvYmosIGFsaWdubWVudCk7CisJZWxzZSBpZiAoIXJl
-dCAmJiBIQVNfTE1FTShkZXZfcHJpdikpCisJCXJldCA9IGk5MTVfZ2VtX29iamVjdF9taWdyYXRl
-KG9iaiwgJnd3LCBJTlRFTF9SRUdJT05fTE1FTSk7CisJLyogVE9ETzogRG8gd2UgbmVlZCB0byBz
-eW5jIHdoZW4gbWlncmF0aW9uIGJlY29tZXMgYXN5bmM/ICovCiAJaWYgKCFyZXQpCiAJCXJldCA9
-IGk5MTVfZ2VtX29iamVjdF9waW5fcGFnZXMob2JqKTsKIAlpZiAocmV0KQpAQCAtMTE3NzgsNyAr
-MTE3ODEsNyBAQCBpbnRlbF91c2VyX2ZyYW1lYnVmZmVyX2NyZWF0ZShzdHJ1Y3QgZHJtX2Rldmlj
-ZSAqZGV2LAogCiAJLyogb2JqZWN0IGlzIGJhY2tlZCB3aXRoIExNRU0gZm9yIGRpc2NyZXRlICov
-CiAJaTkxNSA9IHRvX2k5MTUob2JqLT5iYXNlLmRldik7Ci0JaWYgKEhBU19MTUVNKGk5MTUpICYm
-ICFpOTE1X2dlbV9vYmplY3RfdmFsaWRhdGVzX3RvX2xtZW0ob2JqKSkgeworCWlmIChIQVNfTE1F
-TShpOTE1KSAmJiAhaTkxNV9nZW1fb2JqZWN0X2Nhbl9taWdyYXRlKG9iaiwgSU5URUxfUkVHSU9O
-X0xNRU0pKSB7CiAJCS8qIG9iamVjdCBpcyAicmVtb3RlIiwgbm90IGluIGxvY2FsIG1lbW9yeSAq
-LwogCQlpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7CiAJCXJldHVybiBFUlJfUFRSKC1FUkVNT1RF
-KTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4u
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYwppbmRleCAwNzM4
-MjIxMDBkYTcuLjdkMTQwMGIxMzQyOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX2RvbWFpbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV9kb21haW4uYwpAQCAtMzc1LDcgKzM3NSw3IEBAIGk5MTVfZ2VtX29iamVjdF9waW5fdG9f
-ZGlzcGxheV9wbGFuZShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAogCXN0cnVjdCBp
-OTE1X3ZtYSAqdm1hOwogCWludCByZXQ7CiAKLQkvKiBGcmFtZSBidWZmZXIgbXVzdCBiZSBpbiBM
-TUVNIChubyBtaWdyYXRpb24geWV0KSAqLworCS8qIEZyYW1lIGJ1ZmZlciBtdXN0IGJlIGluIExN
-RU0gKi8KIAlpZiAoSEFTX0xNRU0oaTkxNSkgJiYgIWk5MTVfZ2VtX29iamVjdF9pc19sbWVtKG9i
-aikpCiAJCXJldHVybiBFUlJfUFRSKC1FSU5WQUwpOwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbG1lbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX2xtZW0uYwppbmRleCA0MWQ1MTgyY2QzNjcuLmJlMWQxMjI1NzRhZiAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbG1lbS5jCkBAIC0yMywyNyArMjMsNiBAQCBp
-OTE1X2dlbV9vYmplY3RfbG1lbV9pb19tYXAoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9i
-aiwKIAlyZXR1cm4gaW9fbWFwcGluZ19tYXBfd2MoJm9iai0+bW0ucmVnaW9uLT5pb21hcCwgb2Zm
-c2V0LCBzaXplKTsKIH0KIAotLyoqCi0gKiBpOTE1X2dlbV9vYmplY3RfdmFsaWRhdGVzX3RvX2xt
-ZW0gLSBXaGV0aGVyIHRoZSBvYmplY3QgaXMgcmVzaWRlbnQgaW4KLSAqIGxtZW0gd2hlbiBwYWdl
-cyBhcmUgcHJlc2VudC4KLSAqIEBvYmo6IFRoZSBvYmplY3QgdG8gY2hlY2suCi0gKgotICogTWln
-cmF0YWJsZSBvYmplY3RzIHJlc2lkZW5jeSBtYXkgY2hhbmdlIGZyb20gdW5kZXIgdXMgaWYgdGhl
-IG9iamVjdCBpcwotICogbm90IHBpbm5lZCBvciBsb2NrZWQuIFRoaXMgZnVuY3Rpb24gaXMgaW50
-ZW5kZWQgdG8gYmUgdXNlZCB0byBjaGVjayB3aGV0aGVyCi0gKiB0aGUgb2JqZWN0IGNhbiBvbmx5
-IHJlc2lkZSBpbiBsbWVtIHdoZW4gcGFnZXMgYXJlIHByZXNlbnQuCi0gKgotICogUmV0dXJuOiBX
-aGV0aGVyIHRoZSBvYmplY3QgaXMgYWx3YXlzIHJlc2lkZW50IGluIGxtZW0gd2hlbiBwYWdlcyBh
-cmUKLSAqIHByZXNlbnQuCi0gKi8KLWJvb2wgaTkxNV9nZW1fb2JqZWN0X3ZhbGlkYXRlc190b19s
-bWVtKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCi17Ci0Jc3RydWN0IGludGVsX21l
-bW9yeV9yZWdpb24gKm1yID0gUkVBRF9PTkNFKG9iai0+bW0ucmVnaW9uKTsKLQotCXJldHVybiAh
-aTkxNV9nZW1fb2JqZWN0X21pZ3JhdGFibGUob2JqKSAmJgotCQltciAmJiAobXItPnR5cGUgPT0g
-SU5URUxfTUVNT1JZX0xPQ0FMIHx8Ci0JCSAgICAgICBtci0+dHlwZSA9PSBJTlRFTF9NRU1PUllf
-U1RPTEVOX0xPQ0FMKTsKLX0KLQogLyoqCiAgKiBpOTE1X2dlbV9vYmplY3RfaXNfbG1lbSAtIFdo
-ZXRoZXIgdGhlIG9iamVjdCBpcyByZXNpZGVudCBpbgogICogbG1lbQpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oCmluZGV4IDhjYmQ3YTUzMzRlMi4uZDQyM2Q4Y2Fj
-NGYyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0
-LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oCkBAIC01
-OTcsOCArNTk3LDYgQEAgYm9vbCBpOTE1X2dlbV9vYmplY3RfZXZpY3RhYmxlKHN0cnVjdCBkcm1f
-aTkxNV9nZW1fb2JqZWN0ICpvYmopOwogCiBib29sIGk5MTVfZ2VtX29iamVjdF9taWdyYXRhYmxl
-KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOwogCi1ib29sIGk5MTVfZ2VtX29iamVj
-dF92YWxpZGF0ZXNfdG9fbG1lbShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKTsKLQog
-aW50IGk5MTVfZ2VtX29iamVjdF9taWdyYXRlKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpv
-YmosCiAJCQkgICAgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3csCiAJCQkgICAgZW51bSBpbnRl
-bF9yZWdpb25faWQgaWQpOwotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+On Tue, Jun 29, 2021 at 04:23:56PM +0530, Tejas Upadhyay wrote:
+> Removing force probe protection from JSL platform. Did
+> not observe warnings, errors, flickering or any visual
+> defects while doing ordinary tasks like browsing and
+> editing documents in a two monitor setup.
+> 
+> For more info drm-tip idle run results :
+> https://intel-gfx-ci.01.org/tree/drm-tip/drmtip.html?
+> 
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/i915_pci.c | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index f1f43192f9fb..bc3c14ce92f7 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -853,7 +853,6 @@ static const struct intel_device_info ehl_info = {
+>  static const struct intel_device_info jsl_info = {
+>  	GEN11_FEATURES,
+>  	PLATFORM(INTEL_JASPERLAKE),
+> -	.require_force_probe = 1,
+>  	.platform_engine_mask = BIT(RCS0) | BIT(BCS0) | BIT(VCS0) | BIT(VECS0),
+>  	.ppgtt_size = 36,
+>  };
+> -- 
+> 2.31.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
