@@ -2,37 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6643B716D
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:37:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3FE53B7168
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:37:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29AFE6E867;
-	Tue, 29 Jun 2021 11:37:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA7B96E866;
+	Tue, 29 Jun 2021 11:37:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 826AA6E866;
- Tue, 29 Jun 2021 11:37:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10029"; a="269259991"
-X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="269259991"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 04:37:36 -0700
-X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="625600037"
-Received: from ettammin-mobl1.ger.corp.intel.com (HELO
- thellst-mobl1.intel.com) ([10.249.254.141])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 04:37:34 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 29 Jun 2021 13:37:13 +0200
-Message-Id: <20210629113713.154654-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210629113713.154654-1-thomas.hellstrom@linux.intel.com>
-References: <20210629113713.154654-1-thomas.hellstrom@linux.intel.com>
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 091596E866;
+ Tue, 29 Jun 2021 11:37:39 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id 48B46C80042;
+ Tue, 29 Jun 2021 13:37:37 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id U-TI7LU7VLy4; Tue, 29 Jun 2021 13:37:36 +0200 (CEST)
+Received: from [IPv6:2003:e3:7f39:4900:84eb:1779:dd70:1696]
+ (p200300e37f39490084eB1779Dd701696.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f39:4900:84eb:1779:dd70:1696])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id 87F93C80062;
+ Tue, 29 Jun 2021 13:37:36 +0200 (CEST)
+To: Pekka Paalanen <ppaalanen@gmail.com>, Simon Ser <contact@emersion.fr>
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+ <20210618091116.14428-13-wse@tuxedocomputers.com>
+ <20210622101516.6a53831c@eldfell>
+ <jIDQ2rRRMWlhDDPf08Z8xZlEE8HTBx7fHsylFdK0joSSFVyES8D444Giyiji9zbIm7dU4QpbsXZLvIDTbGW0wEoUWKsMEI4evizn0UdGMvM=@emersion.fr>
+ <20210629141712.21f00c38@eldfell>
+From: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <87dd8549-349b-b720-8583-1799b3973a4d@tuxedocomputers.com>
+Date: Tue, 29 Jun 2021 13:37:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 3/3] drm/i915/display: Migrate objects to
- LMEM if possible for display
+In-Reply-To: <20210629141712.21f00c38@eldfell>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 12/17] drm/uAPI: Add "preferred color
+ format" drm property as setting for userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,84 +55,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- matthew.auld@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
+ alexander.deucher@amd.com, christian.koenig@amd.com
+Content-Type: multipart/mixed; boundary="===============0171558654=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T2JqZWN0cyBpbnRlbmRlZCB0byBiZSB1c2VkIGFzIGRpc3BsYXkgZnJhbWVidWZmZXJzIG11c3Qg
-cmVzaWRlIGluCkxNRU0gZm9yIGRpc2NyZXRlLiBJZiB0aGV5IGhhcHBlbiB0byBub3QgZG8gdGhh
-dCwgbWlncmF0ZSB0aGVtIHRvCkxNRU0gYmVmb3JlIHBpbm5pbmcuCgpTaWduZWQtb2ZmLWJ5OiBU
-aG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+ClJldmll
-d2VkLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Ci0tLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAgNSArKysrLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jICAgfCAgMiArLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYyAgICAgfCAyMSAtLS0tLS0tLS0tLS0tLS0t
-LS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oICAgfCAgMiAt
-LQogNCBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDI1IGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggZWVjNmM5
-ZTljZGE3Li4wMjZjMjhjNjEyZjAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheS5jCkBAIC0xMzMxLDYgKzEzMzEsOSBAQCBpbnRlbF9waW5fYW5kX2ZlbmNl
-X2ZiX29iaihzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiwKIAlyZXQgPSBpOTE1X2dlbV9vYmpl
-Y3RfbG9jayhvYmosICZ3dyk7CiAJaWYgKCFyZXQgJiYgcGh5c19jdXJzb3IpCiAJCXJldCA9IGk5
-MTVfZ2VtX29iamVjdF9hdHRhY2hfcGh5cyhvYmosIGFsaWdubWVudCk7CisJZWxzZSBpZiAoIXJl
-dCAmJiBIQVNfTE1FTShkZXZfcHJpdikpCisJCXJldCA9IGk5MTVfZ2VtX29iamVjdF9taWdyYXRl
-KG9iaiwgJnd3LCBJTlRFTF9SRUdJT05fTE1FTSk7CisJLyogVE9ETzogRG8gd2UgbmVlZCB0byBz
-eW5jIHdoZW4gbWlncmF0aW9uIGJlY29tZXMgYXN5bmM/ICovCiAJaWYgKCFyZXQpCiAJCXJldCA9
-IGk5MTVfZ2VtX29iamVjdF9waW5fcGFnZXMob2JqKTsKIAlpZiAocmV0KQpAQCAtMTE3NzgsNyAr
-MTE3ODEsNyBAQCBpbnRlbF91c2VyX2ZyYW1lYnVmZmVyX2NyZWF0ZShzdHJ1Y3QgZHJtX2Rldmlj
-ZSAqZGV2LAogCiAJLyogb2JqZWN0IGlzIGJhY2tlZCB3aXRoIExNRU0gZm9yIGRpc2NyZXRlICov
-CiAJaTkxNSA9IHRvX2k5MTUob2JqLT5iYXNlLmRldik7Ci0JaWYgKEhBU19MTUVNKGk5MTUpICYm
-ICFpOTE1X2dlbV9vYmplY3RfdmFsaWRhdGVzX3RvX2xtZW0ob2JqKSkgeworCWlmIChIQVNfTE1F
-TShpOTE1KSAmJiAhaTkxNV9nZW1fb2JqZWN0X2Nhbl9taWdyYXRlKG9iaiwgSU5URUxfUkVHSU9O
-X0xNRU0pKSB7CiAJCS8qIG9iamVjdCBpcyAicmVtb3RlIiwgbm90IGluIGxvY2FsIG1lbW9yeSAq
-LwogCQlpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7CiAJCXJldHVybiBFUlJfUFRSKC1FUkVNT1RF
-KTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4u
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYwppbmRleCAwNzM4
-MjIxMDBkYTcuLjdkMTQwMGIxMzQyOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX2RvbWFpbi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV9kb21haW4uYwpAQCAtMzc1LDcgKzM3NSw3IEBAIGk5MTVfZ2VtX29iamVjdF9waW5fdG9f
-ZGlzcGxheV9wbGFuZShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAogCXN0cnVjdCBp
-OTE1X3ZtYSAqdm1hOwogCWludCByZXQ7CiAKLQkvKiBGcmFtZSBidWZmZXIgbXVzdCBiZSBpbiBM
-TUVNIChubyBtaWdyYXRpb24geWV0KSAqLworCS8qIEZyYW1lIGJ1ZmZlciBtdXN0IGJlIGluIExN
-RU0gKi8KIAlpZiAoSEFTX0xNRU0oaTkxNSkgJiYgIWk5MTVfZ2VtX29iamVjdF9pc19sbWVtKG9i
-aikpCiAJCXJldHVybiBFUlJfUFRSKC1FSU5WQUwpOwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbG1lbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX2xtZW0uYwppbmRleCA0MWQ1MTgyY2QzNjcuLmJlMWQxMjI1NzRhZiAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbG1lbS5jCkBAIC0yMywyNyArMjMsNiBAQCBp
-OTE1X2dlbV9vYmplY3RfbG1lbV9pb19tYXAoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9i
-aiwKIAlyZXR1cm4gaW9fbWFwcGluZ19tYXBfd2MoJm9iai0+bW0ucmVnaW9uLT5pb21hcCwgb2Zm
-c2V0LCBzaXplKTsKIH0KIAotLyoqCi0gKiBpOTE1X2dlbV9vYmplY3RfdmFsaWRhdGVzX3RvX2xt
-ZW0gLSBXaGV0aGVyIHRoZSBvYmplY3QgaXMgcmVzaWRlbnQgaW4KLSAqIGxtZW0gd2hlbiBwYWdl
-cyBhcmUgcHJlc2VudC4KLSAqIEBvYmo6IFRoZSBvYmplY3QgdG8gY2hlY2suCi0gKgotICogTWln
-cmF0YWJsZSBvYmplY3RzIHJlc2lkZW5jeSBtYXkgY2hhbmdlIGZyb20gdW5kZXIgdXMgaWYgdGhl
-IG9iamVjdCBpcwotICogbm90IHBpbm5lZCBvciBsb2NrZWQuIFRoaXMgZnVuY3Rpb24gaXMgaW50
-ZW5kZWQgdG8gYmUgdXNlZCB0byBjaGVjayB3aGV0aGVyCi0gKiB0aGUgb2JqZWN0IGNhbiBvbmx5
-IHJlc2lkZSBpbiBsbWVtIHdoZW4gcGFnZXMgYXJlIHByZXNlbnQuCi0gKgotICogUmV0dXJuOiBX
-aGV0aGVyIHRoZSBvYmplY3QgaXMgYWx3YXlzIHJlc2lkZW50IGluIGxtZW0gd2hlbiBwYWdlcyBh
-cmUKLSAqIHByZXNlbnQuCi0gKi8KLWJvb2wgaTkxNV9nZW1fb2JqZWN0X3ZhbGlkYXRlc190b19s
-bWVtKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCi17Ci0Jc3RydWN0IGludGVsX21l
-bW9yeV9yZWdpb24gKm1yID0gUkVBRF9PTkNFKG9iai0+bW0ucmVnaW9uKTsKLQotCXJldHVybiAh
-aTkxNV9nZW1fb2JqZWN0X21pZ3JhdGFibGUob2JqKSAmJgotCQltciAmJiAobXItPnR5cGUgPT0g
-SU5URUxfTUVNT1JZX0xPQ0FMIHx8Ci0JCSAgICAgICBtci0+dHlwZSA9PSBJTlRFTF9NRU1PUllf
-U1RPTEVOX0xPQ0FMKTsKLX0KLQogLyoqCiAgKiBpOTE1X2dlbV9vYmplY3RfaXNfbG1lbSAtIFdo
-ZXRoZXIgdGhlIG9iamVjdCBpcyByZXNpZGVudCBpbgogICogbG1lbQpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oCmluZGV4IDhjYmQ3YTUzMzRlMi4uZDQyM2Q4Y2Fj
-NGYyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0
-LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oCkBAIC01
-OTcsOCArNTk3LDYgQEAgYm9vbCBpOTE1X2dlbV9vYmplY3RfZXZpY3RhYmxlKHN0cnVjdCBkcm1f
-aTkxNV9nZW1fb2JqZWN0ICpvYmopOwogCiBib29sIGk5MTVfZ2VtX29iamVjdF9taWdyYXRhYmxl
-KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopOwogCi1ib29sIGk5MTVfZ2VtX29iamVj
-dF92YWxpZGF0ZXNfdG9fbG1lbShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKTsKLQog
-aW50IGk5MTVfZ2VtX29iamVjdF9taWdyYXRlKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpv
-YmosCiAJCQkgICAgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCAqd3csCiAJCQkgICAgZW51bSBpbnRl
-bF9yZWdpb25faWQgaWQpOwotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+This is a multi-part message in MIME format.
+--===============0171558654==
+Content-Type: multipart/alternative;
+ boundary="------------272B2815390602721D6B1871"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------272B2815390602721D6B1871
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+
+Am 29.06.21 um 13:17 schrieb Pekka Paalanen:
+> On Tue, 29 Jun 2021 08:12:54 +0000
+> Simon Ser <contact@emersion.fr> wrote:
+>
+>> On Tuesday, June 22nd, 2021 at 09:15, Pekka Paalanen <ppaalanen@gmail.com> wrote:
+>>
+>>> yes, I think this makes sense, even if it is a property that one can't
+>>> tell for sure what it does before hand.
+>>>
+>>> Using a pair of properties, preference and active, to ask for something
+>>> and then check what actually worked is good for reducing the
+>>> combinatorial explosion caused by needing to "atomic TEST_ONLY commit"
+>>> test different KMS configurations. Userspace has a better chance of
+>>> finding a configuration that is possible.
+>>>
+>>> OTOH, this has the problem than in UI one cannot tell the user in
+>>> advance which options are truly possible. Given that KMS properties are
+>>> rarely completely independent, and in this case known to depend on
+>>> several other KMS properties, I think it is good enough to know after
+>>> the fact.
+>>>
+>>> If a driver does not use what userspace prefers, there is no way to
+>>> understand why, or what else to change to make it happen. That problem
+>>> exists anyway, because TEST_ONLY commits do not give useful feedback
+>>> but only a yes/no.  
+>> By submitting incremental atomic reqs with TEST_ONLY (i.e. only changing one
+>> property at a time), user-space can discover which property makes the atomic
+>> commit fail.
+> That works if the properties are independent of each other. Color
+> range, color format, bpc and more may all be interconnected,
+> allowing only certain combinations to work.
+>
+> If all these properties have "auto" setting too, then it would be
+> possible to probe each property individually, but that still does not
+> tell which combinations are valid.
+>
+> If you probe towards a certain configuration by setting the properties
+> one by one, then depending on the order you pick the properties, you
+> may come to a different conclusion on which property breaks the
+> configuration.
+
+My mind crossed another point that must be considered: When plugin in a Monitor a list of possible Resolutions+Framerate
+combinations is created for xrandr and other userspace (I guess by atomic checks? but I don't know). During this drm
+properties are already considered, which is no problem atm because as far as i can tell there is currently no drm
+property that would make a certain Resolutions+Framerate combination unreachable that would be possible with everything
+on default.
+
+However for example forcing YCbCr420 encoding would limit the available resolutions (my screen for example only supports
+YCbCr420 on 4k@60 and @50Hz and on no other resolution or frequency (native is 2560x1440@144Hz).
+
+So would a "force color format" that does not get resetted on repluging/reenabling a monitor break the output, for
+example, of an not updated xrandr, unaware of this new property?
+
+>
+>> I'm not a fan of this "preference" property approach. The only way to find out
+>> whether it's possible to change the color format is to perform a user-visible
+>> change (with a regular atomic commit) and check whether it worked
+>> after-the-fact. This is unlike all other existing KMS properties.
+> I agree. FWIW, "max bpc" exists already.
+>
+>> I'd much rather see a more general approach to fix this combinatorial explosion
+>> than to add special-cases like this.
+> What would you suggest?
+>
+> Maybe all properties should have an "auto" value in addition to the
+> explicit no-negotiation values where at all possible?
+>
+> That might help probing each property individually with TEST_ONLY
+> commits, but it says nothing about combinations.
+>
+> A feedback list perhaps? TEST_ONLY commit somehow returning a list of
+> property/value tuples indicating what value the "auto" valued
+> properties actually get?
+>
+> What should a kernel driver optimize for when determining "auto" values?
+>
+>
+> Thanks,
+> pq
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--------------272B2815390602721D6B1871
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">Am 29.06.21 um 13:17 schrieb Pekka
+      Paalanen:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20210629141712.21f00c38@eldfell">
+      <pre class="moz-quote-pre" wrap="">On Tue, 29 Jun 2021 08:12:54 +0000
+Simon Ser <a class="moz-txt-link-rfc2396E" href="mailto:contact@emersion.fr">&lt;contact@emersion.fr&gt;</a> wrote:
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">On Tuesday, June 22nd, 2021 at 09:15, Pekka Paalanen <a class="moz-txt-link-rfc2396E" href="mailto:ppaalanen@gmail.com">&lt;ppaalanen@gmail.com&gt;</a> wrote:
+
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">yes, I think this makes sense, even if it is a property that one can't
+tell for sure what it does before hand.
+
+Using a pair of properties, preference and active, to ask for something
+and then check what actually worked is good for reducing the
+combinatorial explosion caused by needing to "atomic TEST_ONLY commit"
+test different KMS configurations. Userspace has a better chance of
+finding a configuration that is possible.
+
+OTOH, this has the problem than in UI one cannot tell the user in
+advance which options are truly possible. Given that KMS properties are
+rarely completely independent, and in this case known to depend on
+several other KMS properties, I think it is good enough to know after
+the fact.
+
+If a driver does not use what userspace prefers, there is no way to
+understand why, or what else to change to make it happen. That problem
+exists anyway, because TEST_ONLY commits do not give useful feedback
+but only a yes/no.  
+</pre>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">
+By submitting incremental atomic reqs with TEST_ONLY (i.e. only changing one
+property at a time), user-space can discover which property makes the atomic
+commit fail.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+That works if the properties are independent of each other. Color
+range, color format, bpc and more may all be interconnected,
+allowing only certain combinations to work.
+
+If all these properties have "auto" setting too, then it would be
+possible to probe each property individually, but that still does not
+tell which combinations are valid.
+
+If you probe towards a certain configuration by setting the properties
+one by one, then depending on the order you pick the properties, you
+may come to a different conclusion on which property breaks the
+configuration.</pre>
+    </blockquote>
+    <p>My mind crossed another point that must be considered: When
+      plugin in a Monitor a list of possible Resolutions+Framerate
+      combinations is created for xrandr and other userspace (I guess by
+      atomic checks? but I don't know). During this drm properties are
+      already considered, which is no problem atm because as far as i
+      can tell there is currently no drm property that would make a
+      certain Resolutions+Framerate combination unreachable that would
+      be possible with everything on default.</p>
+    <p>However for example forcing YCbCr420 encoding would limit the
+      available resolutions (my screen for example only supports
+      YCbCr420 on 4k@60 and @50Hz and on no other resolution or
+      frequency (native is 2560x1440@144Hz).</p>
+    <p>So would a "force color format" that does not get resetted on
+      repluging/reenabling a monitor break the output, for example, of
+      an not updated xrandr, unaware of this new property?<br>
+    </p>
+    <blockquote type="cite" cite="mid:20210629141712.21f00c38@eldfell">
+      <pre class="moz-quote-pre" wrap="">
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">I'm not a fan of this "preference" property approach. The only way to find out
+whether it's possible to change the color format is to perform a user-visible
+change (with a regular atomic commit) and check whether it worked
+after-the-fact. This is unlike all other existing KMS properties.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+I agree. FWIW, "max bpc" exists already.
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">I'd much rather see a more general approach to fix this combinatorial explosion
+than to add special-cases like this.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+What would you suggest?
+
+Maybe all properties should have an "auto" value in addition to the
+explicit no-negotiation values where at all possible?
+
+That might help probing each property individually with TEST_ONLY
+commits, but it says nothing about combinations.
+
+A feedback list perhaps? TEST_ONLY commit somehow returning a list of
+property/value tuples indicating what value the "auto" valued
+properties actually get?
+
+What should a kernel driver optimize for when determining "auto" values?
+
+
+Thanks,
+pq
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+amd-gfx mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------272B2815390602721D6B1871--
+
+--===============0171558654==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0171558654==--
