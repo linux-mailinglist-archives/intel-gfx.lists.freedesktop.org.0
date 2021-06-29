@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9171D3B7177
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:40:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5787F3B71A0
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jun 2021 13:53:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC46C6E86E;
-	Tue, 29 Jun 2021 11:40:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A73606E876;
+	Tue, 29 Jun 2021 11:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897EE6E86E
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 11:40:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10029"; a="206306734"
-X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="206306734"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 04:40:53 -0700
-X-IronPort-AV: E=Sophos;i="5.83,308,1616482800"; d="scan'208";a="641276248"
-Received: from cuzum-mobl.ger.corp.intel.com (HELO localhost) ([10.249.36.143])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2021 04:40:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Nischal Varide <nischal.varide@intel.com>, intel-gfx@lists.freedesktop.org,
- nischal.varide@intel.com, uma.shankar@intel.com, anshuman.gupta@intel.com
-In-Reply-To: <20210611025447.17234-1-nischal.varide@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210611025447.17234-1-nischal.varide@intel.com>
-Date: Tue, 29 Jun 2021 14:40:45 +0300
-Message-ID: <87a6n8sxtu.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 98EDB6E876;
+ Tue, 29 Jun 2021 11:53:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8F975A00E6;
+ Tue, 29 Jun 2021 11:53:13 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/xelpd: Enabling dithering after
- the CC1
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "K, SrinivasX" <srinivasx.k@intel.com>
+Date: Tue, 29 Jun 2021 11:53:13 -0000
+Message-ID: <162496759355.9055.10442038653779759182@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210629104954.927151-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+In-Reply-To: <20210629104954.927151-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/ehl=3A_Remove_require=5Fforce=5Fprobe_protection_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,120 +39,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0723489190=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0723489190==
+Content-Type: multipart/alternative;
+ boundary="===============2732724250219459586=="
 
-Cc: Ville and Daniel for archeology...
+--===============2732724250219459586==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Fri, 11 Jun 2021, Nischal Varide <nischal.varide@intel.com> wrote:
-> If the panel is 12bpc then Dithering is not enabled in the Legacy
-> dithering block , instead its Enabled after the C1 CC1 pipe post
-> color space conversion.For a 6bpc pannel Dithering is enabled in
-> Legacy block.
+== Series Details ==
 
-Currently, we only ever enable dithering for 6 bpc displays. See commit
-e8fa4270536d ("drm/i915: Only dither on 6bpc panels"). This is decided
-at the end of intel_modeset_pipe_config().
+Series: drm/i915/ehl: Remove require_force_probe protection (rev2)
+URL   : https://patchwork.freedesktop.org/series/82413/
+State : success
 
-The big question here is if we want to expand the use of dithering. I
-guess we could be able to reduce banding if we did?
+== Summary ==
 
-> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c   |  7 +++++++
->  drivers/gpu/drm/i915/display/intel_display.c | 11 ++++++++++-
->  drivers/gpu/drm/i915/i915_reg.h              |  1 +
->  3 files changed, 18 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index dab892d2251b..c7af583200c4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1574,6 +1574,7 @@ static int glk_color_check(struct intel_crtc_state *crtc_state)
->  static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
->  {
->  	u32 gamma_mode = 0;
-> +	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
->  
->  	if (crtc_state->hw.degamma_lut)
->  		gamma_mode |= PRE_CSC_GAMMA_ENABLE;
-> @@ -1588,6 +1589,12 @@ static u32 icl_gamma_mode(const struct intel_crtc_state *crtc_state)
->  	else
->  		gamma_mode |= GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED;
->  
-> +	if (DISPLAY_VER(i915) >= 13) {
-> +		if (!crtc_state->dither_force_disable &&
-> +				(crtc_state->pipe_bpp == 36))
-> +			gamma_mode |= POST_CC1_DITHER_ENABLE;
-> +	}
+CI Bug Log - changes from CI_DRM_10285 -> Patchwork_20483
+====================================================
 
-This enables dithering independent of crtc_state->dither. That doesn't
-seem like a good idea. I think the decision should be made at the end of
-intel_modeset_pipe_config().
+Summary
+-------
 
-	if (DISPLAY_VER(i915) >= 13 && crtc_state->dither &&
-	    crtc_state->pipe_bpp == 36)
-		gamma_mode |= POST_CC1_DITHER_ENABLE;
+  **SUCCESS**
 
-Obviously, as we currently only enable dithering for 6 bpc, this would
-become a nop if it looked at crtc_state->dither and pipe_bpp only.
+  No regressions found.
 
-> +
->  	return gamma_mode;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 362bff9beb5c..3a7feb246745 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5762,7 +5762,16 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
->  		break;
->  	}
->  
-> -	if (crtc_state->dither)
-> +	/*
-> +	 * If 12bpc panel then, Enables dithering after the CC1 pipe
-> +	 * post color space conversion and not here for display_ver
-> +	 * greater than or equal to thirteen.
-> +	 */
-> +
-> +	if (crtc_state->dither && (crtc_state->pipe_bpp != 36))
-> +		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
-> +
-> +	if (crtc_state->dither && (crtc_state->pipe_bpp == 36) && (DISPLAY_VER(dev_priv) < 13))
->  		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20483/index.html
 
-This is what you're trying to say:
+Known issues
+------------
 
-	/* 12 bpc dithering is done at post CSC gamma for display 13+ */
-	if (crtc_state->dither &&
-	    (crtc_state->pipe_bpp != 36 || DISPLAY_VER(dev_priv) < 13))
-		val |= PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
+  Here are the changes found in Patchwork_20483 that come from known issues:
 
-Again, this is a nop until we decide to use dithering more.
+### IGT changes ###
 
->  
->  	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index e915ec034c98..33dba13fa94d 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7743,6 +7743,7 @@ enum {
->  #define GAMMA_MODE(pipe) _MMIO_PIPE(pipe, _GAMMA_MODE_A, _GAMMA_MODE_B)
->  #define  PRE_CSC_GAMMA_ENABLE	(1 << 31)
->  #define  POST_CSC_GAMMA_ENABLE	(1 << 30)
-> +#define  POST_CC1_DITHER_ENABLE (1 << 26)
->  #define  GAMMA_MODE_MODE_MASK	(3 << 0)
->  #define  GAMMA_MODE_MODE_8BIT	(0 << 0)
->  #define  GAMMA_MODE_MODE_10BIT	(1 << 0)
+#### Possible fixes ####
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][1] ([i915#1372]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10285/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20483/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10285 -> Patchwork_20483
+
+  CI-20190529: 20190529
+  CI_DRM_10285: e65a658751fc5d3be5b0f4bcc4731e66ca1a537a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6121: a63ceb48e6c3e733d04156b32fba3b4f4d5ad794 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20483: 3c0a30438d88faf3ddc92454d1c6610962d6e263 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3c0a30438d88 drm/i915/ehl: Remove require_force_probe protection
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20483/index.html
+
+--===============2732724250219459586==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ehl: Remove require_force_probe protection (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/82413/">https://patchwork.freedesktop.org/series/82413/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20483/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20483/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10285 -&gt; Patchwork_20483</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20483/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20483 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_chamelium@dp-crc-fast:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10285/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20483/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Missing    (3): fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10285 -&gt; Patchwork_20483</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10285: e65a658751fc5d3be5b0f4bcc4731e66ca1a537a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6121: a63ceb48e6c3e733d04156b32fba3b4f4d5ad794 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20483: 3c0a30438d88faf3ddc92454d1c6610962d6e263 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>3c0a30438d88 drm/i915/ehl: Remove require_force_probe protection</p>
+
+</body>
+</html>
+
+--===============2732724250219459586==--
+
+--===============0723489190==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0723489190==--
