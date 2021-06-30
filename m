@@ -1,56 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795B03B84AC
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 16:06:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD533B84EE
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 16:18:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5334D89B68;
-	Wed, 30 Jun 2021 14:06:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B5666E9EB;
+	Wed, 30 Jun 2021 14:18:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7504189B68;
- Wed, 30 Jun 2021 14:06:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="208393988"
-X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="208393988"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2021 07:06:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="419998503"
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
- by fmsmga007.fm.intel.com with ESMTP; 30 Jun 2021 07:06:28 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 30 Jun 2021 15:06:27 +0100
-Received: from orsmsx611.amr.corp.intel.com ([10.22.229.24]) by
- ORSMSX611.amr.corp.intel.com ([10.22.229.24]) with mapi id 15.01.2242.008;
- Wed, 30 Jun 2021 07:06:25 -0700
-From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>, =?iso-8859-1?Q?Thomas_Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, =?iso-8859-1?Q?Christian_K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>
-Thread-Topic: [PATCH 1/2] drm/i915/gem: Make our dma-buf exporter dynamic
-Thread-Index: AQHXbbDbcCzl3bor8UyA0zcg957MZKstCtoA//+LpVA=
-Date: Wed, 30 Jun 2021 14:06:25 +0000
-Message-ID: <4233471ec6ad405db119663e588e3013@intel.com>
-References: <20210630130701.349458-1-thomas.hellstrom@linux.intel.com>
- <20210630130701.349458-2-thomas.hellstrom@linux.intel.com>
- <YNx5QuPR4VdXB2u3@phenom.ffwll.local>
-In-Reply-To: <YNx5QuPR4VdXB2u3@phenom.ffwll.local>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.0.76
-x-originating-ip: [10.1.200.100]
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B36DE6E9EA;
+ Wed, 30 Jun 2021 14:18:17 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 6B1D41FEAE;
+ Wed, 30 Jun 2021 14:18:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1625062696; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=uB2cL7pxHguFx0of0kEY0Ut1RSooggjmTGSffUI/v7o=;
+ b=kLmCZ0vOozafGq9bnz2dweQUtCcIvWUdo2GnBMtD1AdtjX/Kn9YoL1OB9juzdn1uiGm9QV
+ k/A4kBHXG8Xfubff9NLLAE/I2FAeoGfIY06hdifialu2UD/oCORC4EyHmK8H8zdJznUEav
+ yCY1GwAGWLdJGpy9e5zFOYiiL6lUEj8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1625062696;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=uB2cL7pxHguFx0of0kEY0Ut1RSooggjmTGSffUI/v7o=;
+ b=oVI/xyinfTAoOvDhmidgxH4EkL7dT0F6GP8uFBmSWB89gWUstpIHnaheRNJxtqIL4ZB4Gi
+ Dn0vETqMLiu/2KCA==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 34FBC118DD;
+ Wed, 30 Jun 2021 14:18:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1625062696; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=uB2cL7pxHguFx0of0kEY0Ut1RSooggjmTGSffUI/v7o=;
+ b=kLmCZ0vOozafGq9bnz2dweQUtCcIvWUdo2GnBMtD1AdtjX/Kn9YoL1OB9juzdn1uiGm9QV
+ k/A4kBHXG8Xfubff9NLLAE/I2FAeoGfIY06hdifialu2UD/oCORC4EyHmK8H8zdJznUEav
+ yCY1GwAGWLdJGpy9e5zFOYiiL6lUEj8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1625062696;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=uB2cL7pxHguFx0of0kEY0Ut1RSooggjmTGSffUI/v7o=;
+ b=oVI/xyinfTAoOvDhmidgxH4EkL7dT0F6GP8uFBmSWB89gWUstpIHnaheRNJxtqIL4ZB4Gi
+ Dn0vETqMLiu/2KCA==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id KR0ADCh93GBYFAAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Wed, 30 Jun 2021 14:18:16 +0000
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <20210630095228.6665-1-tzimmermann@suse.de>
+ <20210630095228.6665-2-tzimmermann@suse.de>
+ <YNxMLb60vNDuTcdM@phenom.ffwll.local>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <ce44caf4-1823-121b-5db4-61eaa9827327@suse.de>
+Date: Wed, 30 Jun 2021 16:18:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Make our dma-buf exporter
- dynamic
+In-Reply-To: <YNxMLb60vNDuTcdM@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/i915: Use the correct IRQ during
+ resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,327 +80,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Auld,
- Matthew" <matthew.auld@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: airlied@linux.ie, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk
+Content-Type: multipart/mixed; boundary="===============0092394626=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
->-----Original Message-----
->From: Daniel Vetter <daniel@ffwll.ch>
->Sent: Wednesday, June 30, 2021 10:02 AM
->To: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>; Christian K=F6n=
-ig
-><ckoenig.leichtzumerken@gmail.com>
->Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Auld,
->Matthew <matthew.auld@intel.com>; maarten.lankhorst@linux.intel.com;
->daniel@ffwll.ch; Ruhl, Michael J <michael.j.ruhl@intel.com>
->Subject: Re: [PATCH 1/2] drm/i915/gem: Make our dma-buf exporter dynamic
->
->On Wed, Jun 30, 2021 at 03:07:00PM +0200, Thomas Hellstr=F6m wrote:
->> If our exported dma-bufs are imported by another instance of our driver,
->> that instance will typically have the imported dma-bufs locked during
->> dma_buf_map_attachment(). But the exporter also locks the same
->reservation
->> object in the map_dma_buf() callback, which leads to recursive locking.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0092394626==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="a30RO2t3JXHEiirTgF6hZ3eL9QhW3hHFz"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--a30RO2t3JXHEiirTgF6hZ3eL9QhW3hHFz
+Content-Type: multipart/mixed; boundary="r5rQSf3n0gVOq0ugtBXSd8ar4zo1cOaYe";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: matthew.brost@intel.com, airlied@linux.ie, mika.kuoppala@linux.intel.com,
+ intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, lucas.demarchi@intel.com
+Message-ID: <ce44caf4-1823-121b-5db4-61eaa9827327@suse.de>
+Subject: Re: [PATCH v3 1/2] drm/i915: Use the correct IRQ during resume
+References: <20210630095228.6665-1-tzimmermann@suse.de>
+ <20210630095228.6665-2-tzimmermann@suse.de>
+ <YNxMLb60vNDuTcdM@phenom.ffwll.local>
+In-Reply-To: <YNxMLb60vNDuTcdM@phenom.ffwll.local>
+
+--r5rQSf3n0gVOq0ugtBXSd8ar4zo1cOaYe
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 30.06.21 um 12:49 schrieb Daniel Vetter:
+> On Wed, Jun 30, 2021 at 11:52:27AM +0200, Thomas Zimmermann wrote:
+>> The code in xcs_resume() probably didn't work as intended. It uses
+>> struct drm_device.irq, which is allocated to 0, but never initialized
+>> by i915 to the device's interrupt number.
 >>
->> Add a live selftest to exercise both dynamic and non-dynamic exports,
->> and as a workaround until we fully support dynamic import and export,
->> declare the exporter dynamic by providing pin() and unpin()
->implementations.
->> For dynamic importers, make sure we keep the pinning also in
->map_dma_buf(),
->> to ensure we never need to call dma_buf_move_notify().
->> Calling dma_buf_move_notify() is at the discretion of the exporter.
->>
+>> v3:
+>> 	* also use intel_synchronize_hardirq() at another callsite
 >> v2:
->> - Extend the selftest with a fake dynamic importer.
->> - Provide real pin and unpin callbacks to not abuse the interface.
+>> 	* wrap irq code in intel_synchronize_hardirq() (Ville)
 >>
->> Reported-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
->> Signed-off-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
->
->I'm not happy with this, because i915 is currently violating the dma-resv
->fencing rules for dynamic dma-buf.
->
->Yes since this is just the exporter we can probably get away with yolo'ing
->things, but Christian and me just spend a lot of angry typing figuring out
->what the rules actually are, so I really don't like bending them even more
->just because it's less typing.
->
->All we need for a quick interim fix is to not take the dma_resv_lock from
->our map/unamp callbacks. Pinning our backing storage from attach/detach
->callbacks (which are also called under dma_resv_lock) would also achieve
->that, without mudding any waters. So essentially just moving the
->pin/unpin_pages_unlocked and we should be good, which is almost as little
->typing.
->
->Michael, since Thomas is on vacations now, care to type that up? The
->selftest is imo solid.
-
-Yes, I will get that done.
-
-Mike
-
->This is also consistent with what all other ttm based drivers do (aside
->from amdgpu, which is fully dynamic), see drm_gem_map_attach in
->drm_prime.c
->
->Adding Christian as fyi.
->-Daniel
->
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Fixes: 536f77b1caa0 ("drm/i915/gt: Call stop_ring() from ring resume, =
+again")
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 >> ---
->>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  31 ++++-
->>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  | 116
->+++++++++++++++++-
->>  2 files changed, 143 insertions(+), 4 deletions(-)
+>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c       | 2 +-
+>>   drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 +-
+>>   drivers/gpu/drm/i915/i915_irq.c                 | 5 +++++
+>>   drivers/gpu/drm/i915/i915_irq.h                 | 1 +
+>>   4 files changed, 8 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> index 616c3a2f1baf..918c19df7b66 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
->> @@ -12,6 +12,8 @@
->>  #include "i915_gem_object.h"
->>  #include "i915_scatterlist.h"
->>
->> +I915_SELFTEST_DECLARE(static bool force_different_devices;)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/d=
+rm/i915/gt/intel_engine_cs.c
+>> index 88694822716a..5ca3d1664335 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> @@ -1229,7 +1229,7 @@ bool intel_engine_is_idle(struct intel_engine_cs=
+ *engine)
+>>   		return true;
+>>  =20
+>>   	/* Waiting to drain ELSP? */
+>> -	synchronize_hardirq(to_pci_dev(engine->i915->drm.dev)->irq);
+>> +	intel_synchronize_hardirq(engine->i915);
+>>   	intel_engine_flush_submission(engine);
+>>  =20
+>>   	/* ELSP is empty, but there are ready requests? E.g. after reset */=
+
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers=
+/gpu/drm/i915/gt/intel_ring_submission.c
+>> index 5d42a12ef3d6..1b5a22a83db6 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>> @@ -185,7 +185,7 @@ static int xcs_resume(struct intel_engine_cs *engi=
+ne)
+>>   		     ring->head, ring->tail);
+>>  =20
+>>   	/* Double check the ring is empty & disabled before we resume */
+>> -	synchronize_hardirq(engine->i915->drm.irq);
+>> +	intel_synchronize_hardirq(engine->i915);
+>>   	if (!stop_ring(engine))
+>>   		goto err;
+>>  =20
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i9=
+15_irq.c
+>> index 7d0ce8b9f8ed..2203dca19895 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> @@ -4575,3 +4575,8 @@ void intel_synchronize_irq(struct drm_i915_priva=
+te *i915)
+>>   {
+>>   	synchronize_irq(to_pci_dev(i915->drm.dev)->irq);
+>>   }
 >> +
->>  static struct drm_i915_gem_object *dma_buf_to_obj(struct dma_buf
->*buf)
->>  {
->>  	return to_intel_bo(buf->priv);
->> @@ -25,7 +27,14 @@ static struct sg_table
->*i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
->>  	struct scatterlist *src, *dst;
->>  	int ret, i;
->>
->> -	ret =3D i915_gem_object_pin_pages_unlocked(obj);
->> +	assert_object_held(obj);
->> +
->> +	/*
->> +	 * Note. In the dynamic importer case, the object is not yet pinned.
->> +	 * Let's pin it here to avoid having to call the move_notify
->> +	 * callback, The call of which is not yet implemented.
->> +	 */
->> +	ret =3D i915_gem_object_pin_pages(obj);
->>  	if (ret)
->>  		goto err;
->>
->> @@ -168,6 +177,21 @@ static int i915_gem_end_cpu_access(struct
->dma_buf *dma_buf, enum dma_data_direct
->>  	return err;
->>  }
->>
->> +static int i915_gem_dmabuf_pin(struct dma_buf_attachment *attach)
+>> +void intel_synchronize_hardirq(struct drm_i915_private *i915)
 >> +{
->> +	struct drm_i915_gem_object *obj =3D dma_buf_to_obj(attach-
->>dmabuf);
->> +
->> +	assert_object_held(obj);
->> +	return i915_gem_object_pin_pages(obj);
+>> +	synchronize_hardirq(to_pci_dev(i915->drm.dev)->irq);
+>=20
+> I honestly think the hardirq here is about as much cargo-culted as usin=
+g
+> the wrong irq number.
+>=20
+> I'd just use intel_synchronize_irq in both places and see whether CI
+> complains, then go with that.
+
+Well, ok. I don't think I have Sandybridge HW available. Would the Intel =
+
+CI infrastructure catch any problems with such a change?
+
+Best regards
+Thomas
+
+> -Daniel
+>=20
 >> +}
->> +
->> +static void i915_gem_dmabuf_unpin(struct dma_buf_attachment *attach)
->> +{
->> +	struct drm_i915_gem_object *obj =3D dma_buf_to_obj(attach-
->>dmabuf);
->> +
->> +	i915_gem_object_unpin_pages(obj);
->> +}
->> +
->>  static const struct dma_buf_ops i915_dmabuf_ops =3D  {
->>  	.map_dma_buf =3D i915_gem_map_dma_buf,
->>  	.unmap_dma_buf =3D i915_gem_unmap_dma_buf,
->> @@ -177,6 +201,8 @@ static const struct dma_buf_ops i915_dmabuf_ops =3D
->{
->>  	.vunmap =3D i915_gem_dmabuf_vunmap,
->>  	.begin_cpu_access =3D i915_gem_begin_cpu_access,
->>  	.end_cpu_access =3D i915_gem_end_cpu_access,
->> +	.pin =3D i915_gem_dmabuf_pin,
->> +	.unpin =3D i915_gem_dmabuf_unpin,
->>  };
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i9=
+15_irq.h
+>> index db34d5dbe402..e43b6734f21b 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.h
+>> +++ b/drivers/gpu/drm/i915/i915_irq.h
+>> @@ -94,6 +94,7 @@ void intel_runtime_pm_disable_interrupts(struct drm_=
+i915_private *dev_priv);
+>>   void intel_runtime_pm_enable_interrupts(struct drm_i915_private *dev=
+_priv);
+>>   bool intel_irqs_enabled(struct drm_i915_private *dev_priv);
+>>   void intel_synchronize_irq(struct drm_i915_private *i915);
+>> +void intel_synchronize_hardirq(struct drm_i915_private *i915);
+>>  =20
+>>   int intel_get_crtc_scanline(struct intel_crtc *crtc);
+>>   void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_pr=
+iv,
+>> --=20
+>> 2.32.0
 >>
->>  struct dma_buf *i915_gem_prime_export(struct drm_gem_object
->*gem_obj, int flags)
->> @@ -241,7 +267,8 @@ struct drm_gem_object
->*i915_gem_prime_import(struct drm_device *dev,
->>  	if (dma_buf->ops =3D=3D &i915_dmabuf_ops) {
->>  		obj =3D dma_buf_to_obj(dma_buf);
->>  		/* is it from our device? */
->> -		if (obj->base.dev =3D=3D dev) {
->> +		if (obj->base.dev =3D=3D dev &&
->> +		    !I915_SELFTEST_ONLY(force_different_devices)) {
->>  			/*
->>  			 * Importing dmabuf exported from out own gem
->increases
->>  			 * refcount on gem itself instead of f_count of
->dmabuf.
->> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->> index dd74bc09ec88..868b3469ecbd 100644
->> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
->> @@ -35,7 +35,7 @@ static int igt_dmabuf_export(void *arg)
->>  static int igt_dmabuf_import_self(void *arg)
->>  {
->>  	struct drm_i915_private *i915 =3D arg;
->> -	struct drm_i915_gem_object *obj;
->> +	struct drm_i915_gem_object *obj, *import_obj;
->>  	struct drm_gem_object *import;
->>  	struct dma_buf *dmabuf;
->>  	int err;
->> @@ -65,14 +65,125 @@ static int igt_dmabuf_import_self(void *arg)
->>  		err =3D -EINVAL;
->>  		goto out_import;
->>  	}
->> +	import_obj =3D to_intel_bo(import);
->> +
->> +	i915_gem_object_lock(import_obj, NULL);
->> +	err =3D ____i915_gem_object_get_pages(import_obj);
->> +	i915_gem_object_unlock(import_obj);
->> +	if (err) {
->> +		pr_err("Same object dma-buf get_pages failed!\n");
->> +		goto out_import;
->> +	}
->>
->>  	err =3D 0;
->>  out_import:
->> -	i915_gem_object_put(to_intel_bo(import));
->> +	i915_gem_object_put(import_obj);
->> +out_dmabuf:
->> +	dma_buf_put(dmabuf);
->> +out:
->> +	i915_gem_object_put(obj);
->> +	return err;
->> +}
->> +
->> +static void igt_dmabuf_move_notify(struct dma_buf_attachment *attach)
->> +{
->> +	GEM_WARN_ON(1);
->> +}
->> +
->> +static const struct dma_buf_attach_ops igt_dmabuf_attach_ops =3D {
->> +	.move_notify =3D igt_dmabuf_move_notify,
->> +};
->> +
->> +static int igt_dmabuf_import_same_driver(void *arg)
->> +{
->> +	struct drm_i915_private *i915 =3D arg;
->> +	struct drm_i915_gem_object *obj, *import_obj;
->> +	struct drm_gem_object *import;
->> +	struct dma_buf *dmabuf;
->> +	struct dma_buf_attachment *import_attach;
->> +	struct sg_table *st;
->> +	long timeout;
->> +	int err;
->> +
->> +	force_different_devices =3D true;
->> +	obj =3D i915_gem_object_create_shmem(i915, PAGE_SIZE);
->> +	if (IS_ERR(obj))
->> +		goto out_ret;
->> +
->> +	dmabuf =3D i915_gem_prime_export(&obj->base, 0);
->> +	if (IS_ERR(dmabuf)) {
->> +		pr_err("i915_gem_prime_export failed with err=3D%d\n",
->> +		       (int)PTR_ERR(dmabuf));
->> +		err =3D PTR_ERR(dmabuf);
->> +		goto out;
->> +	}
->> +
->> +	import =3D i915_gem_prime_import(&i915->drm, dmabuf);
->> +	if (IS_ERR(import)) {
->> +		pr_err("i915_gem_prime_import failed with err=3D%d\n",
->> +		       (int)PTR_ERR(import));
->> +		err =3D PTR_ERR(import);
->> +		goto out_dmabuf;
->> +	}
->> +
->> +	if (import =3D=3D &obj->base) {
->> +		pr_err("i915_gem_prime_import reused gem object!\n");
->> +		err =3D -EINVAL;
->> +		goto out_import;
->> +	}
->> +
->> +	import_obj =3D to_intel_bo(import);
->> +
->> +	i915_gem_object_lock(import_obj, NULL);
->> +	err =3D ____i915_gem_object_get_pages(import_obj);
->> +	if (err) {
->> +		pr_err("Different objects dma-buf get_pages failed!\n");
->> +		i915_gem_object_unlock(import_obj);
->> +		goto out_import;
->> +	}
->> +
->> +	/*
->> +	 * If the exported object is not in system memory, something
->> +	 * weird is going on. TODO: When p2p is supported, this is no
->> +	 * longer considered weird.
->> +	 */
->> +	if (obj->mm.region !=3D i915->mm.regions[INTEL_REGION_SMEM]) {
->> +		pr_err("Exported dma-buf is not in system memory\n");
->> +		err =3D -EINVAL;
->> +	}
->> +
->> +	i915_gem_object_unlock(import_obj);
->> +
->> +	/* Now try a fake dynamic importer */
->> +	import_attach =3D dma_buf_dynamic_attach(dmabuf, obj->base.dev-
->>dev,
->> +					       &igt_dmabuf_attach_ops,
->> +					       NULL);
->> +	if (IS_ERR(import_attach))
->> +		goto out_import;
->> +
->> +	dma_resv_lock(dmabuf->resv, NULL);
->> +	st =3D dma_buf_map_attachment(import_attach,
->DMA_BIDIRECTIONAL);
->> +	dma_resv_unlock(dmabuf->resv);
->> +	if (IS_ERR(st))
->> +		goto out_detach;
->> +
->> +	timeout =3D dma_resv_wait_timeout(dmabuf->resv, false, true, 5 *
->HZ);
->> +	if (!timeout) {
->> +		pr_err("dmabuf wait for exclusive fence timed out.\n");
->> +		timeout =3D -ETIME;
->> +	}
->> +	err =3D timeout > 0 ? 0 : timeout;
->> +	dma_buf_unmap_attachment(import_attach, st,
->DMA_BIDIRECTIONAL);
->> +out_detach:
->> +	dma_buf_detach(dmabuf, import_attach);
->> +out_import:
->> +	i915_gem_object_put(import_obj);
->>  out_dmabuf:
->>  	dma_buf_put(dmabuf);
->>  out:
->>  	i915_gem_object_put(obj);
->> +out_ret:
->> +	force_different_devices =3D false;
->>  	return err;
->>  }
->>
->> @@ -286,6 +397,7 @@ int i915_gem_dmabuf_live_selftests(struct
->drm_i915_private *i915)
->>  {
->>  	static const struct i915_subtest tests[] =3D {
->>  		SUBTEST(igt_dmabuf_export),
->> +		SUBTEST(igt_dmabuf_import_same_driver),
->>  	};
->>
->>  	return i915_subtests(tests, i915);
->> --
->> 2.31.1
->>
->
->--
->Daniel Vetter
->Software Engineer, Intel Corporation
->http://blog.ffwll.ch
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--r5rQSf3n0gVOq0ugtBXSd8ar4zo1cOaYe--
+
+--a30RO2t3JXHEiirTgF6hZ3eL9QhW3hHFz
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDcfScFAwAAAAAACgkQlh/E3EQov+C5
+xg/+KhqHd3uPCVG77kDRARlJ0YJ0NkwnqvwS6cm2Ysjkho1aFCUR3KZ7lp7nvwB4Z2THvQaTnKHG
+Y28G3CBK4gay1m6P22ntYq8wLKx/2zQUC8vtLasMSnoOxNELRYgTOoIrnAnSEopSdQsAxFtNGIR8
+xdm8cnvSKE18AmWYUzaPCoZrOP3OY2bZlIKJpRQfOHo6s0JfCXyhmW0v3QMLUqIKqUVXs0oIXx3F
+/AmseHy3oT0HTbOH3SChHg1Fe/rJ+V4fyNyHVDjJHWvpxYCqE+Dkd1n8YdQAE7GnLuUaJYpNVf4q
+3kAyTy+2o/H1jefUFRA1OzfVG6vLLSsBpM2r4MwBGU0nhPSLhutScAUZHPsZ524b9gsqKDak9ckJ
+xlX4EEX/LyA097Pi3JC/jiLUQcoDlimfnF6LfQVUtZSfuIg8djm8VRF8lgN31v51TAdOUCnBBglS
+XmLRY6kRbBYfJezZtBDtiSS5ZqEFPdDHKP6xNCqr/VwDOS9ymsNuwbqnUBLjl+fmSFBtHKyfcmgV
+Hypk7S6guxaV+KQT6VpeKpXT3D9iyXcLthLqo8zyXstEoy3Q6+z9pb4pbkxxK3+6BAyqz0SvjNv/
+L2Y9Q5g3t9UC7yRVdoqblInvhIfi/Y/MmU+KbdcaW9cWaQC3NLKd3w8Nf2FWBLj6A6qsvcLmZmp9
+QII=
+=atNS
+-----END PGP SIGNATURE-----
+
+--a30RO2t3JXHEiirTgF6hZ3eL9QhW3hHFz--
+
+--===============0092394626==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0092394626==--
