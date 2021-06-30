@@ -1,57 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB5893B816F
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 13:46:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A193B8171
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 13:46:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 133586E997;
-	Wed, 30 Jun 2021 11:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D82D6E998;
+	Wed, 30 Jun 2021 11:46:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3A0F6E997
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 11:46:14 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="188711737"
-X-IronPort-AV: E=Sophos;i="5.83,311,1616482800"; d="scan'208";a="188711737"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2021 04:46:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,311,1616482800"; d="scan'208";a="641680675"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by fmsmga006.fm.intel.com with ESMTP; 30 Jun 2021 04:46:14 -0700
-Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 30 Jun 2021 04:46:13 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 30 Jun 2021 17:16:11 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.008;
- Wed, 30 Jun 2021 17:16:11 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "20210601100228.6064-3-anshuman.gupta@intel.com"
- <20210601100228.6064-3-anshuman.gupta@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [v2] drm/i915: Tweaked Wa_14010685332 for all PCHs
-Thread-Index: AQHXbaHALe7lch6rFUKF8HKeqJr0eKssb1OQ
-Date: Wed, 30 Jun 2021 11:46:11 +0000
-Message-ID: <fd25a443e2c54906bbbcdb51165f7fc5@intel.com>
-References: <5830863.31r3eYUQgx@acelan-xps15-9560>
-In-Reply-To: <5830863.31r3eYUQgx@acelan-xps15-9560>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 486956E998;
+ Wed, 30 Jun 2021 11:46:38 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id F068C1FE78;
+ Wed, 30 Jun 2021 11:46:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1625053596; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=mJlJKRCeEkCggsWzP6gvoOKOja7JUXFm1Gs9/8pxrws=;
+ b=tJGnx50LItyXg+3ay7yc5RxaubPmuUJ2C6VEeJRSmR7KVoZd3twsQqmIILl5q5yHqjUNSc
+ bPo/EVCReukxBjMnFenqiIGIXyoKJK3KnEt8zSEBB0DUjNtK0D9XuGGcpomqaRfwUkwT3p
+ GXU6EwCx+BWRNBgQnxMU9sESnysLWV0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1625053596;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=mJlJKRCeEkCggsWzP6gvoOKOja7JUXFm1Gs9/8pxrws=;
+ b=BH/5z9IcCR4lrwkENCPdTwZF+sspQ8TL9VzmrE61rdFbANMPsJSNuyx5UMJBtSnn267tGv
+ aZw6yqAABSPwQ/AA==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id BED97118DD;
+ Wed, 30 Jun 2021 11:46:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1625053596; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=mJlJKRCeEkCggsWzP6gvoOKOja7JUXFm1Gs9/8pxrws=;
+ b=tJGnx50LItyXg+3ay7yc5RxaubPmuUJ2C6VEeJRSmR7KVoZd3twsQqmIILl5q5yHqjUNSc
+ bPo/EVCReukxBjMnFenqiIGIXyoKJK3KnEt8zSEBB0DUjNtK0D9XuGGcpomqaRfwUkwT3p
+ GXU6EwCx+BWRNBgQnxMU9sESnysLWV0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1625053596;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=mJlJKRCeEkCggsWzP6gvoOKOja7JUXFm1Gs9/8pxrws=;
+ b=BH/5z9IcCR4lrwkENCPdTwZF+sspQ8TL9VzmrE61rdFbANMPsJSNuyx5UMJBtSnn267tGv
+ aZw6yqAABSPwQ/AA==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id 3PCMLZxZ3GC3OQAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Wed, 30 Jun 2021 11:46:36 +0000
+To: Greg KH <gregkh@linuxfoundation.org>
+References: <20210630095228.6665-1-tzimmermann@suse.de>
+ <20210630095228.6665-3-tzimmermann@suse.de> <YNxCHDGA+x2Xe9pM@kroah.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <f705e5a3-b7fb-fe56-f125-f14205c50fbc@suse.de>
+Date: Wed, 30 Jun 2021 13:46:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v2] drm/i915: Tweaked Wa_14010685332 for all PCHs
+In-Reply-To: <YNxCHDGA+x2Xe9pM@kroah.com>
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915: Drop all references to DRM
+ IRQ midlayer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,55 +79,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ stable@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============2093770284=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============2093770284==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="AhhbWt4vrssvgdxfMnbJHBB34rATnM0Rf"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--AhhbWt4vrssvgdxfMnbJHBB34rATnM0Rf
+Content-Type: multipart/mixed; boundary="3S6GyhA9ETC7gdifDc31QiS0vgvwdsfJb";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: matthew.brost@intel.com, airlied@linux.ie, mika.kuoppala@linux.intel.com,
+ intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ stable@vger.kernel.org, lucas.demarchi@intel.com
+Message-ID: <f705e5a3-b7fb-fe56-f125-f14205c50fbc@suse.de>
+Subject: Re: [PATCH v3 2/2] drm/i915: Drop all references to DRM IRQ midlayer
+References: <20210630095228.6665-1-tzimmermann@suse.de>
+ <20210630095228.6665-3-tzimmermann@suse.de> <YNxCHDGA+x2Xe9pM@kroah.com>
+In-Reply-To: <YNxCHDGA+x2Xe9pM@kroah.com>
+
+--3S6GyhA9ETC7gdifDc31QiS0vgvwdsfJb
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 30.06.21 um 12:06 schrieb Greg KH:
+> On Wed, Jun 30, 2021 at 11:52:28AM +0200, Thomas Zimmermann wrote:
+>> Remove all references to DRM's IRQ midlayer. i915 uses Linux' interrup=
+t
+>> functions directly.
+>>
+>> v2:
+>> 	* also remove an outdated comment
+>> 	* move IRQ fix into separate patch
+>> 	* update Fixes tag (Daniel)
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Fixes: b318b82455bd ("drm/i915: Nuke drm_driver irq vfuncs")
+>> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Cc: <stable@vger.kernel.org> # v5.4+
+>> ---
+>>   drivers/gpu/drm/i915/i915_drv.c | 1 -
+>>   drivers/gpu/drm/i915/i915_irq.c | 5 -----
+>>   2 files changed, 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i9=
+15_drv.c
+>> index 850b499c71c8..73de45472f60 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.c
+>> +++ b/drivers/gpu/drm/i915/i915_drv.c
+>> @@ -42,7 +42,6 @@
+>>   #include <drm/drm_aperture.h>
+>>   #include <drm/drm_atomic_helper.h>
+>>   #include <drm/drm_ioctl.h>
+>> -#include <drm/drm_irq.h>
+>>   #include <drm/drm_managed.h>
+>>   #include <drm/drm_probe_helper.h>
+>>  =20
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i9=
+15_irq.c
+>> index 2203dca19895..1d4c683c9de9 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> @@ -33,7 +33,6 @@
+>>   #include <linux/sysrq.h>
+>>  =20
+>>   #include <drm/drm_drv.h>
+>> -#include <drm/drm_irq.h>
+>>  =20
+>>   #include "display/intel_de.h"
+>>   #include "display/intel_display_types.h"
+>> @@ -4564,10 +4563,6 @@ void intel_runtime_pm_enable_interrupts(struct =
+drm_i915_private *dev_priv)
+>>  =20
+>>   bool intel_irqs_enabled(struct drm_i915_private *dev_priv)
+>>   {
+>> -	/*
+>> -	 * We only use drm_irq_uninstall() at unload and VT switch, so
+>> -	 * this is the only thing we need to check.
+>> -	 */
+>>   	return dev_priv->runtime_pm.irqs_enabled;
+>>   }
+>>  =20
+>> --=20
+>> 2.32.0
+>>
+>=20
+> How is this a stable-kernel-related fix?
+
+Sorry, it isn't. I forgot to remove the rsp Cc tag.
+
+Best regards
+Thomas
+
+>=20
+> thanks,
+>=20
+> greg k-h
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
-> -----Original Message-----
-> From: AceLan Kao <acelan@gmail.com> On Behalf Of
-> acelan.kao@canonical.com
-> Sent: Wednesday, June 30, 2021 4:49 PM
-> To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Subject: Re: [v2] drm/i915: Tweaked Wa_14010685332 for all PCHs
-> 
-> > dispcnlunit1_cp_xosc_clkreq clock observed to be active on TGL-H
-> > platform despite Wa_14010685332 original sequence, thus blocks entry
-> > to deeper s0ix state.
-> >
-> > The Tweaked Wa_14010685332 sequence fixes this issue, therefore use
-> > tweaked
-> > Wa_14010685332 sequence for every PCH since PCH_CNP.
-> >
-> > v2:
-> > - removed RKL from comment and simplified condition. [Rodrigo]
-> >
-> > Fixes: b896898c7369 ("drm/i915: Tweaked Wa_14010685332 for PCHs used
-> > on
-> > gen11 platforms") Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >
-> >  .../drm/i915/display/intel_display_power.c    | 16 +++++++-------
-> >  drivers/gpu/drm/i915/i915_irq.c               | 21 -------------------
-> >  2 files changed, 8 insertions(+), 29 deletions(-)
-> Hi,
-> 
-> I didn't see this patch shown in mainline kernel tree, nor in drm-tip, May I know
-> what the patch's status now?
-We have observed that this patch does not fix the issue on some platforms.
-That is the reason patch is not merged yet.
-Br,
-Anshuman Gupta.
-> 
-> 
+--3S6GyhA9ETC7gdifDc31QiS0vgvwdsfJb--
+
+--AhhbWt4vrssvgdxfMnbJHBB34rATnM0Rf
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDcWZwFAwAAAAAACgkQlh/E3EQov+A2
+ew/+Mj6/gdeqqVkIBhzsJb9KT8UBkWGzxg38FP4FNtE1dzU/3Ej3cZqns09ga7Jgx7CJQNkDDmVk
+DT4IVotp6d+0vUjm4IrBHf4YrfM1HFfWb0xlwPz5Ku7GbAfwL7JVEoOc/zx7oJyWwx5xmwOWpoQ6
+SUynEmC4/G9Hwd8YpH66u+26bVNb/94ungvIT1ag7wwMSmNZTHHPAz3MXLEMW7ExCNRXhaAR+ELm
+CH4Qu3KUO1BgAuS7bAs4xBWq+S7SEnL3cj5XJ56GQYJYtILhSQ5coIjY5Py9Rkw4niQQMBNaYrh9
+/TLUTDtPjXOkTNhEbb2wD6MvzxgTx42nV0oVjNDYpqefMxdAvs3GHfsWL73Q/Pe35B6WRzsYZ8ie
+L3A9wIrdrwoR945Gpp+iepECiiM6bDyWsLOFg9I2IHuYhsaAQmXJN1OCFe6EqNOT/Nm+i3I9HAGw
++SG1ufL3CjxBvMI5DinnmeKHIaQIo7Zjc8uXjj8zJeLJgzMZ9Y5pe/UYf2d7haMZ3HdUfq6pNTPE
+GU+7t0+jOB1hQhWtJbmTrOqyNNFT50g+woAPjEU/GzNxzk4ufwkr1v6IGM4bfA09/lFQ9XgKIV/0
+89LwaGDgDdv1LsR4oTvUBjuSUt1IKdijI0Bdw90zE30EThRSF4wz4ugIvrwzAmWjdEsW4A0bO/zu
+fUA=
+=RLlo
+-----END PGP SIGNATURE-----
+
+--AhhbWt4vrssvgdxfMnbJHBB34rATnM0Rf--
+
+--===============2093770284==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2093770284==--
