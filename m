@@ -1,62 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DDD43B7ED7
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 10:21:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A06FC3B7ED6
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 10:21:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4AF66E8D0;
-	Wed, 30 Jun 2021 08:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 245896E0AC;
+	Wed, 30 Jun 2021 08:21:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9736A6E8D0;
- Wed, 30 Jun 2021 08:21:54 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id r16so2090210ljk.9;
- Wed, 30 Jun 2021 01:21:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=hZsvTLZOLa73TaoUFrO86oENQd+0mQCVdwH24gWx43k=;
- b=DgQzfN/7iPgfgzWuMdVHu/wR0geA31ByXd6YZMg/u3mN0nrZy55bUX93RrOxrVyzea
- aCCSmp2orxNAnz2QHWtc9EbF+T0aeWJT0SIWO9HE2faqYVJu2BSbe2xhokzDY2REQ2k+
- 4XJROrW6yNMTwJDyr7mL/MQk8XfdmNtRz4QLe2R3eFO2gEU4oIybELseKDXeaSXxYUc3
- 5nOT26bw4UtNT9WwfL8ZA7gCq2q/TLzkjSb33qTxuXMguv4Yhhm4u8E6xSDWjMPQwHfC
- 0J7ZOtsUdswpt91k63RAyX5obB49HssBECKDUsNVzd7JMuQ6glpYt3bAzDnLZxM/MsSh
- dGrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=hZsvTLZOLa73TaoUFrO86oENQd+0mQCVdwH24gWx43k=;
- b=lPzc8y0ai4irSEwpNi5G3OYfofu3KPIyQfWmoNU+xiDyZ70hL7rNbn2T4m5Kbx4/UP
- 2Ec5N7JVXU2iHdOVxoyHZsP+dHab6aZadN539Zzj34+e7mIGBinMofSD2phyDBIsDxUj
- GSrTzNsayBcij/HXJd0AYJ2uvtod053oebceJLWwKHOS6b3709mlsVRWD0VEmNJUVD0V
- fuF2XSnQTcold5A7jkTTwtu2MU1/0rPuqD/K4fOqygeQe0A6vnC+ZQ402t/wNhN1FbGH
- 8CuBnDTx4mxPThcrc+SRvLKvXSwgoNGlmNG9/7xwRpkmOgDK65xo1GbqoAwjv5s/LP7Y
- 029Q==
-X-Gm-Message-State: AOAM531ai+x+FMvLem8KyM0oy78GpIAjNuZb/0eBWVyMYYXM4YUx+ROG
- Dx7U+c+8Kj+9l4g/eY3DH/Y=
-X-Google-Smtp-Source: ABdhPJyQ2kBBBjZ329tk3iOGWtBvA7R4zWVLnLft0NfFi9Hf3QYoWO2nGq/YRNBGVkyWV4i9QaZxmQ==
-X-Received: by 2002:a2e:b179:: with SMTP id a25mr7052329ljm.151.1625041312867; 
- Wed, 30 Jun 2021 01:21:52 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id o15sm1483903lfu.134.2021.06.30.01.21.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 30 Jun 2021 01:21:52 -0700 (PDT)
-Date: Wed, 30 Jun 2021 11:21:41 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <20210630112141.319f67eb@eldfell>
-In-Reply-To: <11cd3340-46a1-9a6a-88f5-95c225863509@tuxedocomputers.com>
-References: <20210618091116.14428-1-wse@tuxedocomputers.com>
- <20210618091116.14428-4-wse@tuxedocomputers.com>
- <18bbd0cf-4c37-ce9d-eb63-de4131a201e1@tuxedocomputers.com>
- <11cd3340-46a1-9a6a-88f5-95c225863509@tuxedocomputers.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B26D96E0AC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 08:21:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="269444669"
+X-IronPort-AV: E=Sophos;i="5.83,311,1616482800"; d="scan'208";a="269444669"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2021 01:21:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,311,1616482800"; d="scan'208";a="457129382"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga008.fm.intel.com with ESMTP; 30 Jun 2021 01:21:46 -0700
+Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 30 Jun 2021 01:21:45 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 30 Jun 2021 13:51:43 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.008;
+ Wed, 30 Jun 2021 13:51:43 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>, "Modem, Bhanuprakash"
+ <bhanuprakash.modem@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [V3] drm/i915/display: Fix state mismatch in drm infoframe
+Thread-Index: AQHXOAl7S3TfGXOCY0OLgLy1bqv01qsjOs4ggAlmwfA=
+Date: Wed, 30 Jun 2021 08:21:43 +0000
+Message-ID: <60ca0c5c230a48f29e0ad0abd16ff60d@intel.com>
+References: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
+ <e3301e08f15b416a8c206071d495e3f5@intel.com>
+In-Reply-To: <e3301e08f15b416a8c206071d495e3f5@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 03/17] drm/uAPI: Add "active bpc" as
- feedback channel for "max bpc" drm property
+Subject: Re: [Intel-gfx] [V3] drm/i915/display: Fix state mismatch in drm
+ infoframe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,282 +66,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
- intel-gfx@lists.freedesktop.org, sunpeng.li@amd.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, airlied@linux.ie, alexander.deucher@amd.com,
- harry.wentland@amd.com, christian.koenig@amd.com
-Content-Type: multipart/mixed; boundary="===============0289349692=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0289349692==
-Content-Type: multipart/signed; boundary="Sig_/d+W4/r3y/cicXeDeLKMi=2J";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/d+W4/r3y/cicXeDeLKMi=2J
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, 29 Jun 2021 13:02:05 +0200
-Werner Sembach <wse@tuxedocomputers.com> wrote:
-
-> Am 28.06.21 um 19:03 schrieb Werner Sembach:
-> > Am 18.06.21 um 11:11 schrieb Werner Sembach: =20
-> >> Add a new general drm property "active bpc" which can be used by graph=
-ic
-> >> drivers to report the applied bit depth per pixel back to userspace.
-> >>
-> >> While "max bpc" can be used to change the color depth, there was no wa=
-y to
-> >> check which one actually got used. While in theory the driver chooses =
-the
-> >> best/highest color depth within the max bpc setting a user might not be
-> >> fully aware what his hardware is or isn't capable off. This is meant a=
-s a
-> >> quick way to double check the setup.
-> >>
-> >> In the future, automatic color calibration for screens might also depe=
-nd on
-> >> this information being available.
-> >>
-> >> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> >> ---
-> >>  drivers/gpu/drm/drm_connector.c | 51 +++++++++++++++++++++++++++++++++
-> >>  include/drm/drm_connector.h     |  8 ++++++
-> >>  2 files changed, 59 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_con=
-nector.c
-> >> index da39e7ff6965..943f6b61053b 100644
-> >> --- a/drivers/gpu/drm/drm_connector.c
-> >> +++ b/drivers/gpu/drm/drm_connector.c
-> >> @@ -1197,6 +1197,14 @@ static const struct drm_prop_enum_list dp_color=
-spaces[] =3D {
-> >>   *	drm_connector_attach_max_bpc_property() to create and attach the
-> >>   *	property to the connector during initialization.
-> >>   *
-> >> + * active bpc:
-> >> + *	This read-only range property tells userspace the pixel color bit =
-depth
-> >> + *	actually used by the hardware display engine on "the cable" on a
-> >> + *	connector. The chosen value depends on hardware capabilities, both
-> >> + *	display engine and connected monitor, and the "max bpc" property.
-> >> + *	Drivers shall use drm_connector_attach_active_bpc_property() to in=
-stall
-> >> + *	this property.
-> >> + * =20
-> > Regarding "on the cable" and dithering: As far as I can tell, what the =
-dithering option does, is setting a hardware
-> > register here:
-> >
-> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/di=
-splay/intel_display.c#L4534
-> >
-> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/di=
-splay/intel_display.c#L4571
-> >
-> > So dithering seems to be calculated by fixed purpose hardware/firmware =
-outside of the driver?
-> >
-> > The Intel driver does not seem to set a target bpc/bpp for this hardwar=
-e so I guess it defaults to 6 or 8 bpc? =20
->=20
-> Never mind it does. This switch-case does affect the dithering output:
-> https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/displa=
-y/intel_display.c#L4537
-
-Hi,
-
-I obviously do not know the intel driver or hardware at all, but
-to me that just looks like translating from bits per pixel to bits per
-channel in RGB mapping?
-
-> As found in this documentation p.548:
-> https://01.org/sites/default/files/documentation/intel-gfx-prm-osrc-lkf-v=
-ol02c-commandreference-registers-part2.pdf
->=20
-> So max bpc and active bpc are affecting/affected by the bpc after ditheri=
-ng.
-
-By definition, if the cable carries N bpc, then dithering does not
-change that. The cable still carries N bpc, but due to spatial or
-temporal dithering, the *observed* color resolution may or may not be
-higher than the cable bpc.
-
-Of course, if the cable bpc is 8, and dithering targets 6 bpc, then 2
-LSB on the cable are always zero, right?
-
-Maybe one would want to do that if the monitor has a 6 bit panel and it
-simply ignored the 2 LSB, and the cable cannot go down to 6 bpc.
-
-So, what does "max bpc" mean right now?
-
-It seems like dither on/off is insufficient information, one would also
-need to control the dithering target bpc. I suppose the driver has a
-policy on how it chooses the target bpc, but what is that policy? Is
-the dither target bpc the cable bpc or the sink bpc?
-
-Needless to say, I'm quite confused.
-
-
-Thanks,
-pq
-
-> >
-> > Similar things happen on amd. Here the output dither depth seems to be =
-written to a fixed value however:
-> >
-> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/dis=
-play/dc/dce/dce_transform.c#L828
-> >
-> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/dis=
-play/dc/dce/dce_transform.c#L769
-> >
-> > Does anyone know about a resource where I can read up on the used regis=
-ters and what this hardware actually does? =20
-> Searching now for a similar register reference for AMD GPUs.
-> >
-> > My proposal for now: "max bpc" affects what happens before dither, so I=
- would keep "active bpc" the same and add another
-> > drm property "dither active: true/false". No additional property to con=
-trol dither, as amdgpu does have one already
-> > (which isn't always active?) and Intel driver does only seem prepared f=
-or dithering at 6bpc (albeit I don't know why to
-> > dither at 6bpc and what depth to dither to?).
-> > =20
-> >>   * Connectors also have one standardized atomic property:
-> >>   *
-> >>   * CRTC_ID:
-> >> @@ -2152,6 +2160,49 @@ int drm_connector_attach_max_bpc_property(struc=
-t drm_connector *connector,
-> >>  }
-> >>  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
-> >> =20
-> >> +/**
-> >> + * drm_connector_attach_active_bpc_property - attach "active bpc" pro=
-perty
-> >> + * @connector: connector to attach active bpc property on.
-> >> + * @min: The minimum bit depth supported by the connector.
-> >> + * @max: The maximum bit depth supported by the connector.
-> >> + *
-> >> + * This is used to check the applied bit depth on a connector.
-> >> + *
-> >> + * Returns:
-> >> + * Zero on success, negative errno on failure.
-> >> + */
-> >> +int drm_connector_attach_active_bpc_property(struct drm_connector *co=
-nnector, int min, int max)
-> >> +{
-> >> +	struct drm_device *dev =3D connector->dev;
-> >> +	struct drm_property *prop;
-> >> +
-> >> +	if (!connector->active_bpc_property) {
-> >> +		prop =3D drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE, "a=
-ctive bpc",
-> >> +						 min, max);
-> >> +		if (!prop)
-> >> +			return -ENOMEM;
-> >> +
-> >> +		connector->active_bpc_property =3D prop;
-> >> +		drm_object_attach_property(&connector->base, prop, 0);
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
-> >> +
-> >> +/**
-> >> + * drm_connector_set_active_bpc_property - sets the active bits per c=
-olor property for a connector
-> >> + * @connector: drm connector
-> >> + * @active_bpc: bits per color for the connector currently active on =
-"the cable"
-> >> + *
-> >> + * Should be used by atomic drivers to update the active bits per col=
-or over a connector.
-> >> + */
-> >> +void drm_connector_set_active_bpc_property(struct drm_connector *conn=
-ector, int active_bpc)
-> >> +{
-> >> +	drm_object_property_set_value(&connector->base, connector->active_bp=
-c_property, active_bpc);
-> >> +}
-> >> +EXPORT_SYMBOL(drm_connector_set_active_bpc_property);
-> >> +
-> >>  /**
-> >>   * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OU=
-TPUT_METADA" property
-> >>   * @connector: connector to attach the property on.
-> >> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> >> index 714d1a01c065..eee86de62a5f 100644
-> >> --- a/include/drm/drm_connector.h
-> >> +++ b/include/drm/drm_connector.h
-> >> @@ -1380,6 +1380,12 @@ struct drm_connector {
-> >>  	 */
-> >>  	struct drm_property *max_bpc_property;
-> >> =20
-> >> +	/**
-> >> +	 * @active_bpc_property: Default connector property for the active b=
-pc
-> >> +	 * to be driven out of the connector.
-> >> +	 */
-> >> +	struct drm_property *active_bpc_property;
-> >> +
-> >>  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
-> >>  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
-> >>  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
-> >> @@ -1702,6 +1708,8 @@ int drm_connector_set_panel_orientation_with_qui=
-rk(
-> >>  	int width, int height);
-> >>  int drm_connector_attach_max_bpc_property(struct drm_connector *conne=
-ctor,
-> >>  					  int min, int max);
-> >> +int drm_connector_attach_active_bpc_property(struct drm_connector *co=
-nnector, int min, int max);
-> >> +void drm_connector_set_active_bpc_property(struct drm_connector *conn=
-ector, int active_bpc);
-> >> =20
-> >>  /**
-> >>   * struct drm_tile_group - Tile group metadata =20
-> > _______________________________________________
-> > amd-gfx mailing list
-> > amd-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx =20
-
-
---Sig_/d+W4/r3y/cicXeDeLKMi=2J
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDcKZUACgkQI1/ltBGq
-qqeqdg/8CF5zxg8SC07EblgJxP2vCkieAX19ZtS60gATvWdGS+YPe2s3KgxYoT/5
-D9Dy00MHpCRAIsfuQzHUywPyh4ikcBfQhSShHhCx2wj39AI4bzScJqqseHweXPKB
-528knact4LDNt01vtLE04ICXq+jiQWyGqaiDoEpxgVC2cVT7gYfZh5fSfWfZuVRu
-Zqcetbv95nxFRA0Zsb139J5LqDuyIncewfIyzvYJ5TSWrVSyesCFsuwH5WS7XpTK
-GxVvGvAMHH9M3TMnWRyGE96fWxjpmyJlkPHE6RPA08CjXvKd+NzFKs2tBkmiI7A+
-L1/qwiWsQSt6lrqlXULcVV0RU4KUJChIIEYbWvKjGlUpuqiISavGJX6ulv623TpX
-DZcYgAEd2GWiHV9J3nr0N9o7G3B/GZlp43helBstOgCq2pwP0XDepbUgSDi3Sjf5
-t1gmFPTrvbo6LXo9iuuvLnUooS17raiGmxV9JgIY+gFul9AhlPDzUIsX7U3fM60P
-UE4VNbkS9HZLFFPlNrE/bScWasiHw0TPrO76nHBNALPu7Si/IiUbsAWtKm5eOB+V
-cVov1b1bDEDE5pxKW/hoWewg6HGBTsCEOsY4frDG/hE9Kvg3V58eYOCclBQYqQxw
-aPqTJuyFi6jkc+Mu0sMcd3U00hKz4QLdDqMLgknnqEKAXvhZqX8=
-=PU5d
------END PGP SIGNATURE-----
-
---Sig_/d+W4/r3y/cicXeDeLKMi=2J--
-
---===============0289349692==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0289349692==--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBTaGFua2Fy
+LA0KPiBVbWENCj4gU2VudDogVGh1cnNkYXksIEp1bmUgMjQsIDIwMjEgMjoxOSBQTQ0KPiBUbzog
+TW9kZW0sIEJoYW51cHJha2FzaCA8YmhhbnVwcmFrYXNoLm1vZGVtQGludGVsLmNvbT47IGludGVs
+LQ0KPiBnZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4
+XSBbVjNdIGRybS9pOTE1L2Rpc3BsYXk6IEZpeCBzdGF0ZSBtaXNtYXRjaCBpbiBkcm0gaW5mb2Zy
+YW1lDQo+IA0KPiANCj4gDQo+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiBGcm9t
+OiBNb2RlbSwgQmhhbnVwcmFrYXNoIDxiaGFudXByYWthc2gubW9kZW1AaW50ZWwuY29tPg0KPiA+
+IFNlbnQ6IEZyaWRheSwgQXByaWwgMjMsIDIwMjEgNzo0NiBQTQ0KPiA+IFRvOiBpbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4gQ2M6IE1vZGVtLCBCaGFudXByYWthc2ggPGJoYW51
+cHJha2FzaC5tb2RlbUBpbnRlbC5jb20+OyBTaGFua2FyLCBVbWENCj4gPiA8dW1hLnNoYW5rYXJA
+aW50ZWwuY29tPjsgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNv
+bT4NCj4gPiBTdWJqZWN0OiBbVjNdIGRybS9pOTE1L2Rpc3BsYXk6IEZpeCBzdGF0ZSBtaXNtYXRj
+aCBpbiBkcm0gaW5mb2ZyYW1lDQo+ID4NCj4gPiBXaGlsZSByZWFkaW5nIHRoZSBTRFAgaW5mb2Zy
+YW1lLCB3ZSBhcmUgZ2V0dGluZyBmaWx0ZXJlZCB3aXRoIHRoZQ0KPiA+IGVuY29kZXIgdHlwZSBJ
+TlRFTF9PVVRQVVRfRERJIHdoaWNoIGNhdXNlcyB0aGUgaW5mb2ZyYW1lIG1pc21hdGNoLg0KPiA+
+IFRoaXMgcGF0Y2ggd2lsbCBkcm9wDQo+ID4gZW5jb2Rlci0+dHlwZSBjaGVjayBhcyB3ZSBjYW4g
+bWFzayBpbmRpdmlkdWFsIGluZm9mcmFtZSB0eXBlLg0KPiANCj4gSXQgd2lsbCBiZSBnb29kIHRv
+IG1lbnRpb24gdGhhdCBpc3N1ZSBoYXBwZW5zIHdpdGggZURQLiBXaXRoIHRoYXQgYWRkZWQsDQo+
+IA0KPiBSZXZpZXdlZC1ieTogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4NCg0K
+Q2hhbmdlIHB1c2hlZCB0byBkcm0taW50ZWwtbmV4dC4NClRoYW5rcyBmb3IgdGhlIHBhdGNoLg0K
+DQpSZWdhcmRzLA0KVW1hIFNoYW5rYXINCj4gPiBbMTAyNS42MDY1NTZdIGk5MTUgMDAwMDowMDow
+Mi4wOiBbZHJtXSAqRVJST1IqIG1pc21hdGNoIGluIGRybQ0KPiA+IGluZm9mcmFtZSBbMTAyNS42
+MDc4NjVdIGk5MTUgMDAwMDowMDowMi4wOiBbZHJtXSAqRVJST1IqIGV4cGVjdGVkOg0KPiA+IFsx
+MDI1LjYwNzg3OV0gaTkxNSAwMDAwOjAwOjAyLjA6IEhETUkgaW5mb2ZyYW1lOiBEeW5hbWljIFJh
+bmdlIGFuZA0KPiA+IE1hc3RlcmluZywgdmVyc2lvbiAxLCBsZW5ndGggMjYgWzEwMjUuNjA3ODg5
+XSBpOTE1IDAwMDA6MDA6MDIuMDoNCj4gPiBsZW5ndGg6IDI2IFsxMDI1LjYwNzg5OF0gaTkxNQ0K
+PiA+IDAwMDA6MDA6MDIuMDogbWV0YWRhdGEgdHlwZTogMCBbMTAyNS42MDgyOTJdIGk5MTUgMDAw
+MDowMDowMi4wOiBlb3RmOg0KPiA+IDIgWzEwMjUuNjA4MzAyXSBpOTE1IDAwMDA6MDA6MDIuMDog
+eFswXTogMzU0MDAgWzEwMjUuNjA4MzEyXSBpOTE1IDAwMDA6MDA6MDIuMDoNCj4gPiB5WzBdOiAx
+NDU5OSBbMTAyNS42MDkxMTVdIGk5MTUgMDAwMDowMDowMi4wOiB4WzFdOiA4NTAwIFsxMDI1LjYw
+OTk0N10NCj4gPiBpOTE1DQo+ID4gMDAwMDowMDowMi4wOiB5WzFdOiAzOTg1MCBbMTAyNS42MDk5
+NTldIGk5MTUgMDAwMDowMDowMi4wOiB4WzJdOiA2NTUwDQo+ID4gWzEwMjUuNjA5OTcwXSBpOTE1
+IDAwMDA6MDA6MDIuMDogeVsyXTogMjMwMCBbMTAyNS42MDk5ODBdIGk5MTUgMDAwMDowMDowMi4w
+Og0KPiA+IHdoaXRlIHBvaW50IHg6IDE1NjM0IFsxMDI1LjYwOTk4OV0gaTkxNSAwMDAwOjAwOjAy
+LjA6IHdoaXRlIHBvaW50IHk6DQo+ID4gMTY0NTAgWzEwMjUuNjEwMzgxXSBpOTE1IDAwMDA6MDA6
+MDIuMDoNCj4gPiBtYXhfZGlzcGxheV9tYXN0ZXJpbmdfbHVtaW5hbmNlOiAxMDAwIFsxMDI1LjYx
+MDM5Ml0gaTkxNSAwMDAwOjAwOjAyLjA6DQo+ID4gbWluX2Rpc3BsYXlfbWFzdGVyaW5nX2x1bWlu
+YW5jZTogNTAwIFsxMDI1LjYxMDQwMV0gaTkxNSAwMDAwOjAwOjAyLjA6IG1heF9jbGw6DQo+IDUw
+MCBbMTAyNS42MTA4MTZdIGk5MTUgMDAwMDowMDowMi4wOg0KPiA+IG1heF9mYWxsOiAxMDAwIFsx
+MDI1LjYxMjQ1N10gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm1dICpFUlJPUiogZm91bmQ6DQo+ID4g
+WzEwMjUuNjE0MzU0XSAtLS0tLS0tLS0tLS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0gWzEwMjUu
+NjE2MjQ0XSBwaXBlDQo+ID4gc3RhdGUgZG9lc24ndCBtYXRjaCENCj4gPiBbMTAyNS42MTc2NDBd
+IFdBUk5JTkc6IENQVTogNiBQSUQ6IDIxMTQgYXQNCj4gPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYzo5MzMyDQo+ID4gaW50ZWxfYXRvbWljX2NvbW1pdF90YWls
+KzB4MTRkNC8weDE3YzAgW2k5MTVdDQo+ID4NCj4gPiBWMjoNCj4gPiAqIERyb3AgZW5jb2Rlci0+
+dHlwZSBjaGVjaw0KPiA+DQo+ID4gVjM6DQo+ID4gKiBSZW1vdmUgaW50ZXJuYWwgcmV2aWV3cw0K
+PiA+DQo+ID4gQ2M6IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5jb20+DQo+ID4gQ2M6
+IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+ID4gU2ln
+bmVkLW9mZi1ieTogQmhhbnVwcmFrYXNoIE1vZGVtIDxiaGFudXByYWthc2gubW9kZW1AaW50ZWwu
+Y29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
+LmMgfCAzIC0tLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBkZWxldGlvbnMoLSkNCj4gPg0KPiA+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4g
+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiA+IGluZGV4IDRh
+ZDEyZGRlNTkzOC4uMjgwYjBiNWVlNzBlIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiA+IEBAIC0zMDE0LDkgKzMwMTQsNiBAQCB2b2lkIGludGVs
+X3JlYWRfZHBfc2RwKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiA+ICAJCSAgICAg
+ICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwNCj4gPiAgCQkgICAgICAgdW5z
+aWduZWQgaW50IHR5cGUpDQo+ID4gIHsNCj4gPiAtCWlmIChlbmNvZGVyLT50eXBlICE9IElOVEVM
+X09VVFBVVF9EREkpDQo+ID4gLQkJcmV0dXJuOw0KPiA+IC0NCj4gPiAgCXN3aXRjaCAodHlwZSkg
+ew0KPiA+ICAJY2FzZSBEUF9TRFBfVlNDOg0KPiA+ICAJCWludGVsX3JlYWRfZHBfdnNjX3NkcChl
+bmNvZGVyLCBjcnRjX3N0YXRlLA0KPiA+IC0tDQo+ID4gMi4yMC4xDQo+IA0KPiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBJbnRlbC1nZnggbWFpbGlu
+ZyBsaXN0DQo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngNCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
