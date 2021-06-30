@@ -1,141 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00FA13B82D2
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 15:25:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8DBC3B8495
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 16:01:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6168A6E0FF;
-	Wed, 30 Jun 2021 13:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1136489DD5;
+	Wed, 30 Jun 2021 14:01:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98DBB6E0FF
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 13:25:04 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10030"; a="195500339"
-X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="195500339"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2021 06:25:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="419988223"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga007.fm.intel.com with ESMTP; 30 Jun 2021 06:25:02 -0700
-Received: from fmsmsx609.amr.corp.intel.com (10.18.126.89) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 30 Jun 2021 06:25:02 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx609.amr.corp.intel.com (10.18.126.89) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 30 Jun 2021 06:25:02 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
- via Frontend Transport; Wed, 30 Jun 2021 06:25:02 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.48) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.4; Wed, 30 Jun 2021 06:25:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pz85EWSZJWMVAZr2Rspnbl7SXQOUk2jbUEKmgT5yJdaso9O9MPduinqnZeWu7kF1FQzzIobZO2lRqGn/KxVytpKXrXUyhBNfh0yCHh1fj6ZP0s1sxxxg8C0KSwNuKotne63Y2yUXSQnc1bkdkZkbT6lq0uWXJcs4ESVb6pEuBO8NIoHZrvwBkZEICSl0tRC/4mu8eAGyuk4SgUjn/g/OtUZaQiaRzmQuA6m5o1INq8cnZ5EpoGwT4COUqlKZqfyb4vVCImi43MqNL0AX4ElnUlb0veIcUlfryJkrHPU8O5qM2ZjnkWlOlGdYSDcQ3X2bbBU6AHKxvuKbqqlP0NYxKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DDsT/+8p5HeqURsoYCXgyOG77F9Vs5vkDkBtBRR+DYQ=;
- b=hiI1vhxzHwuAA6Mz+LycK6jYViCYt4WCwegkmSwHxA4C1L60SesuZ12y70ac3DCS4lnpPx7Av2HVG9OFCLj4QzESgKcyvgCYGm0MNTBWGZxa2UcAe2HQngQmXvMa7n7fX65hiAJa7AxOl2yZZuRC0lvfSoqmzBsUAOC9Z1/q5pzd2Q4nmpoj5FmiBSz2YupDw9T/F56EN1k1ggQY9Lzw6bRhN/wSq0roimJQb9zmieyzNaPNaocEHj+MwC70WsP8TsIHEgGEoSHbi0zCH8cuJNGwktot+CH6OXd8d9UptTMrdUNcaGwMEg9ab+v6SFhDO8RdxmSglMc60Icc5Ex8Mw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DDsT/+8p5HeqURsoYCXgyOG77F9Vs5vkDkBtBRR+DYQ=;
- b=qZN4iicmQ2bxf9LLcjwQsdxE4GP+Vaxt1gvQTvRcRcs165WolF8EU6VagJGpYTD1F1qVcKOr9Yq1l99Oy2UWe+ndzj8PW7QCQJ3Lc5eTmFcRsCOMj6gqoLpHoKJe1vY1uTntgkKM0mLzUi14F91kq7bsUT0oCMv9kYsZuZfEtN4=
-Received: from DM6PR11MB4594.namprd11.prod.outlook.com (2603:10b6:5:2a0::12)
- by DM5PR11MB1769.namprd11.prod.outlook.com (2603:10b6:3:10a::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.20; Wed, 30 Jun
- 2021 13:24:59 +0000
-Received: from DM6PR11MB4594.namprd11.prod.outlook.com
- ([fe80::1918:2232:99e4:e088]) by DM6PR11MB4594.namprd11.prod.outlook.com
- ([fe80::1918:2232:99e4:e088%9]) with mapi id 15.20.4264.026; Wed, 30 Jun 2021
- 13:24:59 +0000
-From: "Patnana, Venkata Sai" <venkata.sai.patnana@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Navare, 
- Manasi D" <manasi.d.navare@intel.com>, "Kulkarni, Vandita"
- <vandita.kulkarni@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2 1/2] drm/i915/display/dsc: Add Per
- connector debugfs node for DSC BPP enable
-Thread-Index: AQHXbLTDpeAaWdo77kWdqFxdYU9+hKsrDqGAgAEJU+CAAHGFkA==
-Date: Wed, 30 Jun 2021 13:24:59 +0000
-Message-ID: <DM6PR11MB4594C12C0BDD22EADD5813A3B3019@DM6PR11MB4594.namprd11.prod.outlook.com>
-References: <20210629065156.30301-1-venkata.sai.patnana@intel.com>
- <20210629065156.30301-2-venkata.sai.patnana@intel.com>
- <875yxwspqg.fsf@intel.com>
- <DM6PR11MB45947698BD6584B1B56912A7B3019@DM6PR11MB4594.namprd11.prod.outlook.com>
-In-Reply-To: <DM6PR11MB45947698BD6584B1B56912A7B3019@DM6PR11MB4594.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-Mentions: manasi.d.navare@intel.com,vandita.kulkarni@intel.com
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [2401:4900:4b57:d9cc:b4a7:c47:934d:15d2]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e257ab0b-12c8-457d-5529-08d93bca7600
-x-ms-traffictypediagnostic: DM5PR11MB1769:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR11MB17698A83C7953425A9965ED5B3019@DM5PR11MB1769.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1107;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: deldlrABl/5941AjO3NEdrMpP/EEOemepQMd9qmvuT8eZGjOHOkjr8Le1tSldhjZoN77qJSKAtWEENs65lDj44yeA5s2E8RW21xkPp8UU+62u5WLwd6uRRRNK0kpcBxHkIJxSIYAOi1SMkNjw/aCONstaSdPTwecGR4aqDCPrcuYTa/sFo7TD2UDwG71tFsKx1JvnOWqyfwBKsMVCZ1I9LsC4V51PoNRyT2C+0aCzRVTkGagIW6HL6hAn4HFvI/95V7r42qvsCrSqFCGVqQnT4bhpGKDUS7YODouxOTp+xgR1fg6omF3qCKl8E8HVgTGF6l8L4JipBoumitbvFgw6vTduDRS3JfekU4hfxSRtK3lS8m6voxO4PvE3JCOuiHLlnMZd8mK5flofi9CkdWSQEFjymwMZC+yzThkxCdJ4BrhISKgC54MFDcCxwjkjcBEnTFMfP+wRg9q38PRtgO9t0DDICpJeDFi9F7R64JA+aD+1G3uoiGt640SoksM85g6aeq2CGaBx6iMUkpdyxRdqoJp9v8I7T2cHRoxefIgxyLnkzZNFV3HOZN9ntqV9AdkJTsz0BTunMIHLQW+q+jbQfyBbvG42jrMeNOE0mNZ5gSdUUv7rJk3duDXCSvrsdzzCmwGFXX94JohPR9sy71eUw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB4594.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(396003)(136003)(39860400002)(366004)(376002)(346002)(478600001)(66446008)(64756008)(66556008)(8936002)(53546011)(66946007)(9686003)(122000001)(2906002)(66476007)(76116006)(52536014)(6506007)(110136005)(55016002)(86362001)(83380400001)(316002)(186003)(71200400001)(6636002)(5660300002)(8676002)(7696005)(2940100002)(38100700002)(33656002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0erfeoZl6XhQWExO0ei/v9rK8bgqdXlF7bcOnvZFppim2/SbUGtGnDjouKmn?=
- =?us-ascii?Q?m+w9ry6pNPXhjlfKJ5iyzSYsBNblygD5Cn/2/87bYSu1Zy6FI5Sp+kfv9f9+?=
- =?us-ascii?Q?O4FUhrvrgVrGFcN6GwWycBIeSlXSdILcP5QSwquNJgUvrD7RS8aewf0HHdgH?=
- =?us-ascii?Q?CsIhQApOJUNl7G9EM5W6BCKAU3iYtTYigss3JCuU+mn7yOFt7SZlPvaKMtgk?=
- =?us-ascii?Q?TsvpQavCjMy+f0aWt1aEkegbMjzhy+LWtqD1efcpXpH2e6vM9QE2pTKqQjI1?=
- =?us-ascii?Q?yPXsAGN7Nsu4gAP6gYiswL6mszIfzg068ATghGZYhTsjir6OZHUUCYgXyxPt?=
- =?us-ascii?Q?umSuvUTWLDTChr3t4oKmrjmm37YPuzG8LKwRTCuMdoZeghAwSVVbCDxXymi3?=
- =?us-ascii?Q?4o0NNufYyHeWib/5QLAJSNX+wLGTCmQUMGO5PSYWN/Az/HolQIW4l4r9z6YO?=
- =?us-ascii?Q?JaejBgsVcvUx+zOJhumuFwzZiSAA89kZZ+RmOSoOapdlSxBVZZk63Lfu4muU?=
- =?us-ascii?Q?LoPZsiU+JUR2MvKtBcRH3zSQ+J9nwmNYoeJLIupR7lw1w5aeF/IrrcTm2CuP?=
- =?us-ascii?Q?oUYTG2tW9NNGptWZELenQYJ0/F8ZKCoEpY8gUiR3sex2oT2cZ+HI3D5ibNwi?=
- =?us-ascii?Q?eU8Gmj/rOVrLMEqAQ8necrZBC7Mk0pJQDn3XP7eGQ9OjH3gn8LplkkDl0osL?=
- =?us-ascii?Q?+u17m7KwMQnROZo39ojQyFDggqVdd+T+cm/XSxEqpMdqMWeADPR2J1rzUV/7?=
- =?us-ascii?Q?yLw2NA1F3fPPBfZkyPTqkLVXsmFPWK6O72u+rUJE2oYRA5rKn0MVXGbc6gPt?=
- =?us-ascii?Q?YhO6bFSmrFzbhYG25EXY6TYzgj4NWQldo5/SoGxkDvUjZO9ipsX456xRLA4x?=
- =?us-ascii?Q?DhdzA3NKsUkRGQ1s/RVXE8sY0o9uXGoyusD+zXuOtk54lDOgSzpYOb8i/m23?=
- =?us-ascii?Q?ENaRprmJIn1JpS7u8I9SlpX1pT/XtEhyojgVL1oBcpt4hVZNBxB1cPb6HE2F?=
- =?us-ascii?Q?2o9/JYaEVcHHmTtntKF1VQb/heEyZQIvRNjn55L+NvxxZ5c/N8Phb7G9oU4s?=
- =?us-ascii?Q?LxwEf05vmIEJc/ykRhuiE14+txBCwovFJaG0eQof3oOqZsbtt+NImbvg66hP?=
- =?us-ascii?Q?HQI+Bddz6SRrSfdAU2fUz18gfGzeZAonYJEuDc07Hk/VzkwDTkq8q5TJmoei?=
- =?us-ascii?Q?YZCf3LLZ4Uxv9BpKaHJNo+RwifxmUMaXvZfX8r02HT06UL9jHMK4sm6+Tdol?=
- =?us-ascii?Q?Sw88/qjDz5B5wLShJUvz1TCsXzJ65nlsiqT2js1/IjopNXggzFzTX0dp16P7?=
- =?us-ascii?Q?omyLjllvqe8L7inpewR3zms3vLknPHK5MtlRk46OzW3s4vggWcJGj4d0YAjt?=
- =?us-ascii?Q?SUWkU99stwUk5i8GiWdrD2zBOeeL?=
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AECD589DD5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 14:01:42 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id t15so435425wry.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 07:01:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=I33y3vXd0EYfV4gR2dXfpeXWwS4fnRZQsVBSWiEdcQM=;
+ b=U+piM9HvuRFiWHCD0T5SOiHQ+eN6HS24PFj/scgm4f8QuD9qNjpFjviLLN/pYEi6iA
+ UvuEGZYbowIicnh1GEJrQfogB84J59T0USuxn0R3BnJw4ZvUtUsbA1KjuK9CsIHA08M8
+ sqISWRrIjtp7P/+zzhg1FXysx8VbeWJu7o2OY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=I33y3vXd0EYfV4gR2dXfpeXWwS4fnRZQsVBSWiEdcQM=;
+ b=dQjez0x0lwyTmigUPGD4BDHo1dagTBkvVGWjT9xpF0mTiA6B1JqTWvMhJoHdkcI5p/
+ G3N/wofPSVaA38j4csAdLpDEmaj3WNejcLGyr43qzpLTpoCO91bBUw41Bc1WuE5v5Cta
+ LI0aH0vX4NPqx0+ce5/Gdi7+W2IjOzkcejrIp7FiJnAK0TPOSHmFie2w3uy7IEC1l1W8
+ 9W1BUQJ4Siv37IX4IsObRaxwsIfuXx4/F/iBDg39fmU6bmQE5gvYrY6jT+VXGMVMQ/9y
+ ZH+7nAoHfN3ZM1RAa3Dz2AYa3629ejzgA1p3I3ZpyV2qMmrhwBgxCJ0gr8hyxE5TP9Lu
+ RQZA==
+X-Gm-Message-State: AOAM533uJ8wfxYyVDzlfSAdhZkndaIlIDjBeWOESGFP9MqUAww06CvNQ
+ +eGVcI4JJ7g5+myMApotbC+xgQ==
+X-Google-Smtp-Source: ABdhPJyzNK4u0x2JcvphkN5BJxzLL8siBxL0qhaGXn5BNOLMbeu8esKAhHdmPSvPP4P/VknvFoMKTQ==
+X-Received: by 2002:adf:ec10:: with SMTP id x16mr18274983wrn.271.1625061701312; 
+ Wed, 30 Jun 2021 07:01:41 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id m6sm26275964wrw.9.2021.06.30.07.01.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 30 Jun 2021 07:01:40 -0700 (PDT)
+Date: Wed, 30 Jun 2021 16:01:38 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <YNx5QuPR4VdXB2u3@phenom.ffwll.local>
+References: <20210630130701.349458-1-thomas.hellstrom@linux.intel.com>
+ <20210630130701.349458-2-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4594.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e257ab0b-12c8-457d-5529-08d93bca7600
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2021 13:24:59.7746 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Icg50SpcSiBy9o/to4xPDaHt60M9o9vjKB0/X5CAyMR2v/if/8XKHPEk/C8LuOrsLr5VjCglgtD0CdKkJIolfRyp6jpeUNfxoq0XR4wyBGI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1769
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/display/dsc: Add Per
- connector debugfs node for DSC BPP enable
+Content-Disposition: inline
+In-Reply-To: <20210630130701.349458-2-thomas.hellstrom@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Make our dma-buf exporter
+ dynamic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,234 +68,313 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ matthew.auld@intel.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Jun 30, 2021 at 03:07:00PM +0200, Thomas Hellstr=F6m wrote:
+> If our exported dma-bufs are imported by another instance of our driver,
+> that instance will typically have the imported dma-bufs locked during
+> dma_buf_map_attachment(). But the exporter also locks the same reservation
+> object in the map_dma_buf() callback, which leads to recursive locking.
+> =
+
+> Add a live selftest to exercise both dynamic and non-dynamic exports,
+> and as a workaround until we fully support dynamic import and export,
+> declare the exporter dynamic by providing pin() and unpin() implementatio=
+ns.
+> For dynamic importers, make sure we keep the pinning also in map_dma_buf(=
+),
+> to ensure we never need to call dma_buf_move_notify().
+> Calling dma_buf_move_notify() is at the discretion of the exporter.
+> =
+
+> v2:
+> - Extend the selftest with a fake dynamic importer.
+> - Provide real pin and unpin callbacks to not abuse the interface.
+> =
+
+> Reported-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> Signed-off-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+
+I'm not happy with this, because i915 is currently violating the dma-resv
+fencing rules for dynamic dma-buf.
+
+Yes since this is just the exporter we can probably get away with yolo'ing
+things, but Christian and me just spend a lot of angry typing figuring out
+what the rules actually are, so I really don't like bending them even more
+just because it's less typing.
+
+All we need for a quick interim fix is to not take the dma_resv_lock from
+our map/unamp callbacks. Pinning our backing storage from attach/detach
+callbacks (which are also called under dma_resv_lock) would also achieve
+that, without mudding any waters. So essentially just moving the
+pin/unpin_pages_unlocked and we should be good, which is almost as little
+typing.
+
+Michael, since Thomas is on vacations now, care to type that up? The
+selftest is imo solid.
+
+This is also consistent with what all other ttm based drivers do (aside
+from amdgpu, which is fully dynamic), see drm_gem_map_attach in
+drm_prime.c
+
+Adding Christian as fyi.
+-Daniel
+
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  31 ++++-
+>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  | 116 +++++++++++++++++-
+>  2 files changed, 143 insertions(+), 4 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm=
+/i915/gem/i915_gem_dmabuf.c
+> index 616c3a2f1baf..918c19df7b66 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
+> @@ -12,6 +12,8 @@
+>  #include "i915_gem_object.h"
+>  #include "i915_scatterlist.h"
+>  =
+
+> +I915_SELFTEST_DECLARE(static bool force_different_devices;)
+> +
+>  static struct drm_i915_gem_object *dma_buf_to_obj(struct dma_buf *buf)
+>  {
+>  	return to_intel_bo(buf->priv);
+> @@ -25,7 +27,14 @@ static struct sg_table *i915_gem_map_dma_buf(struct dm=
+a_buf_attachment *attachme
+>  	struct scatterlist *src, *dst;
+>  	int ret, i;
+>  =
+
+> -	ret =3D i915_gem_object_pin_pages_unlocked(obj);
+> +	assert_object_held(obj);
+> +
+> +	/*
+> +	 * Note. In the dynamic importer case, the object is not yet pinned.
+> +	 * Let's pin it here to avoid having to call the move_notify
+> +	 * callback, The call of which is not yet implemented.
+> +	 */
+> +	ret =3D i915_gem_object_pin_pages(obj);
+>  	if (ret)
+>  		goto err;
+>  =
+
+> @@ -168,6 +177,21 @@ static int i915_gem_end_cpu_access(struct dma_buf *d=
+ma_buf, enum dma_data_direct
+>  	return err;
+>  }
+>  =
+
+> +static int i915_gem_dmabuf_pin(struct dma_buf_attachment *attach)
+> +{
+> +	struct drm_i915_gem_object *obj =3D dma_buf_to_obj(attach->dmabuf);
+> +
+> +	assert_object_held(obj);
+> +	return i915_gem_object_pin_pages(obj);
+> +}
+> +
+> +static void i915_gem_dmabuf_unpin(struct dma_buf_attachment *attach)
+> +{
+> +	struct drm_i915_gem_object *obj =3D dma_buf_to_obj(attach->dmabuf);
+> +
+> +	i915_gem_object_unpin_pages(obj);
+> +}
+> +
+>  static const struct dma_buf_ops i915_dmabuf_ops =3D  {
+>  	.map_dma_buf =3D i915_gem_map_dma_buf,
+>  	.unmap_dma_buf =3D i915_gem_unmap_dma_buf,
+> @@ -177,6 +201,8 @@ static const struct dma_buf_ops i915_dmabuf_ops =3D  {
+>  	.vunmap =3D i915_gem_dmabuf_vunmap,
+>  	.begin_cpu_access =3D i915_gem_begin_cpu_access,
+>  	.end_cpu_access =3D i915_gem_end_cpu_access,
+> +	.pin =3D i915_gem_dmabuf_pin,
+> +	.unpin =3D i915_gem_dmabuf_unpin,
+>  };
+>  =
+
+>  struct dma_buf *i915_gem_prime_export(struct drm_gem_object *gem_obj, in=
+t flags)
+> @@ -241,7 +267,8 @@ struct drm_gem_object *i915_gem_prime_import(struct d=
+rm_device *dev,
+>  	if (dma_buf->ops =3D=3D &i915_dmabuf_ops) {
+>  		obj =3D dma_buf_to_obj(dma_buf);
+>  		/* is it from our device? */
+> -		if (obj->base.dev =3D=3D dev) {
+> +		if (obj->base.dev =3D=3D dev &&
+> +		    !I915_SELFTEST_ONLY(force_different_devices)) {
+>  			/*
+>  			 * Importing dmabuf exported from out own gem increases
+>  			 * refcount on gem itself instead of f_count of dmabuf.
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drive=
+rs/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+> index dd74bc09ec88..868b3469ecbd 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
+> @@ -35,7 +35,7 @@ static int igt_dmabuf_export(void *arg)
+>  static int igt_dmabuf_import_self(void *arg)
+>  {
+>  	struct drm_i915_private *i915 =3D arg;
+> -	struct drm_i915_gem_object *obj;
+> +	struct drm_i915_gem_object *obj, *import_obj;
+>  	struct drm_gem_object *import;
+>  	struct dma_buf *dmabuf;
+>  	int err;
+> @@ -65,14 +65,125 @@ static int igt_dmabuf_import_self(void *arg)
+>  		err =3D -EINVAL;
+>  		goto out_import;
+>  	}
+> +	import_obj =3D to_intel_bo(import);
+> +
+> +	i915_gem_object_lock(import_obj, NULL);
+> +	err =3D ____i915_gem_object_get_pages(import_obj);
+> +	i915_gem_object_unlock(import_obj);
+> +	if (err) {
+> +		pr_err("Same object dma-buf get_pages failed!\n");
+> +		goto out_import;
+> +	}
+>  =
+
+>  	err =3D 0;
+>  out_import:
+> -	i915_gem_object_put(to_intel_bo(import));
+> +	i915_gem_object_put(import_obj);
+> +out_dmabuf:
+> +	dma_buf_put(dmabuf);
+> +out:
+> +	i915_gem_object_put(obj);
+> +	return err;
+> +}
+> +
+> +static void igt_dmabuf_move_notify(struct dma_buf_attachment *attach)
+> +{
+> +	GEM_WARN_ON(1);
+> +}
+> +
+> +static const struct dma_buf_attach_ops igt_dmabuf_attach_ops =3D {
+> +	.move_notify =3D igt_dmabuf_move_notify,
+> +};
+> +
+> +static int igt_dmabuf_import_same_driver(void *arg)
+> +{
+> +	struct drm_i915_private *i915 =3D arg;
+> +	struct drm_i915_gem_object *obj, *import_obj;
+> +	struct drm_gem_object *import;
+> +	struct dma_buf *dmabuf;
+> +	struct dma_buf_attachment *import_attach;
+> +	struct sg_table *st;
+> +	long timeout;
+> +	int err;
+> +
+> +	force_different_devices =3D true;
+> +	obj =3D i915_gem_object_create_shmem(i915, PAGE_SIZE);
+> +	if (IS_ERR(obj))
+> +		goto out_ret;
+> +
+> +	dmabuf =3D i915_gem_prime_export(&obj->base, 0);
+> +	if (IS_ERR(dmabuf)) {
+> +		pr_err("i915_gem_prime_export failed with err=3D%d\n",
+> +		       (int)PTR_ERR(dmabuf));
+> +		err =3D PTR_ERR(dmabuf);
+> +		goto out;
+> +	}
+> +
+> +	import =3D i915_gem_prime_import(&i915->drm, dmabuf);
+> +	if (IS_ERR(import)) {
+> +		pr_err("i915_gem_prime_import failed with err=3D%d\n",
+> +		       (int)PTR_ERR(import));
+> +		err =3D PTR_ERR(import);
+> +		goto out_dmabuf;
+> +	}
+> +
+> +	if (import =3D=3D &obj->base) {
+> +		pr_err("i915_gem_prime_import reused gem object!\n");
+> +		err =3D -EINVAL;
+> +		goto out_import;
+> +	}
+> +
+> +	import_obj =3D to_intel_bo(import);
+> +
+> +	i915_gem_object_lock(import_obj, NULL);
+> +	err =3D ____i915_gem_object_get_pages(import_obj);
+> +	if (err) {
+> +		pr_err("Different objects dma-buf get_pages failed!\n");
+> +		i915_gem_object_unlock(import_obj);
+> +		goto out_import;
+> +	}
+> +
+> +	/*
+> +	 * If the exported object is not in system memory, something
+> +	 * weird is going on. TODO: When p2p is supported, this is no
+> +	 * longer considered weird.
+> +	 */
+> +	if (obj->mm.region !=3D i915->mm.regions[INTEL_REGION_SMEM]) {
+> +		pr_err("Exported dma-buf is not in system memory\n");
+> +		err =3D -EINVAL;
+> +	}
+> +
+> +	i915_gem_object_unlock(import_obj);
+> +
+> +	/* Now try a fake dynamic importer */
+> +	import_attach =3D dma_buf_dynamic_attach(dmabuf, obj->base.dev->dev,
+> +					       &igt_dmabuf_attach_ops,
+> +					       NULL);
+> +	if (IS_ERR(import_attach))
+> +		goto out_import;
+> +
+> +	dma_resv_lock(dmabuf->resv, NULL);
+> +	st =3D dma_buf_map_attachment(import_attach, DMA_BIDIRECTIONAL);
+> +	dma_resv_unlock(dmabuf->resv);
+> +	if (IS_ERR(st))
+> +		goto out_detach;
+> +
+> +	timeout =3D dma_resv_wait_timeout(dmabuf->resv, false, true, 5 * HZ);
+> +	if (!timeout) {
+> +		pr_err("dmabuf wait for exclusive fence timed out.\n");
+> +		timeout =3D -ETIME;
+> +	}
+> +	err =3D timeout > 0 ? 0 : timeout;
+> +	dma_buf_unmap_attachment(import_attach, st, DMA_BIDIRECTIONAL);
+> +out_detach:
+> +	dma_buf_detach(dmabuf, import_attach);
+> +out_import:
+> +	i915_gem_object_put(import_obj);
+>  out_dmabuf:
+>  	dma_buf_put(dmabuf);
+>  out:
+>  	i915_gem_object_put(obj);
+> +out_ret:
+> +	force_different_devices =3D false;
+>  	return err;
+>  }
+>  =
+
+> @@ -286,6 +397,7 @@ int i915_gem_dmabuf_live_selftests(struct drm_i915_pr=
+ivate *i915)
+>  {
+>  	static const struct i915_subtest tests[] =3D {
+>  		SUBTEST(igt_dmabuf_export),
+> +		SUBTEST(igt_dmabuf_import_same_driver),
+>  	};
+>  =
+
+>  	return i915_subtests(tests, i915);
+> -- =
+
+> 2.31.1
+> =
 
 
-> -----Original Message-----
-> From: Patnana, Venkata Sai
-> Sent: Wednesday, June 30, 2021 11:59 AM
-> To: Jani Nikula <jani.nikula@linux.intel.com>; intel-gfx@lists.freedesktop.org;
-> Navare, Manasi D <manasi.d.navare@intel.com>; Kulkarni, Vandita
-> <vandita.kulkarni@intel.com>
-> Subject: RE: [Intel-gfx] [PATCH v2 1/2] drm/i915/display/dsc: Add Per connector
-> debugfs node for DSC BPP enable
-> 
-> > From: Jani Nikula <jani.nikula@linux.intel.com>
-> > Sent: Tuesday, June 29, 2021 8:06 PM
-> > To: Patnana, Venkata Sai <venkata.sai.patnana@intel.com>; intel-
-> > gfx@lists.freedesktop.org
-> > Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/display/dsc: Add Per
-> > connector debugfs node for DSC BPP enable
-> >
-> > On Tue, 29 Jun 2021, venkata.sai.patnana@intel.com wrote:
-> > > From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > >
-> > > DSC can be supported per DP connector. This patch creates a per
-> > > connector debugfs node to expose the Input and Compressed BPP.
-> > >
-> > > The same node can be used from userspace to force DSC to a certain
-> > > BPP.
-> > >
-> > > force_dsc_bpp is written through this debugfs node to force DSC BPP
-> > > to all accepted values
-> >
-> > This commit message only describes the "what". It's nice and helpful
-> > to summarize the code changes.
-I ll update commit message with below details.
-> >
-> > But the key question the commit message must answer is "why". Why are
-> > you doing this? Why do we need this?
+-- =
 
-We want to test all the possible compression bpp's otherwise else we can verify limited bpp's 
-> >
-> > This looks like it complicates code that is already complicated to add a
-> debugfs.
-> > There needs to be a justification if it isn't obvious.
-> >
-> > A couple of comments inline.
-> >
-> > >
-> > > Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > > Cc: Navare Manasi D <manasi.d.navare@intel.com>
-> > > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > > Signed-off-by: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
-> > > ---
-> > >  .../drm/i915/display/intel_display_debugfs.c  | 103 +++++++++++++++++-
-> > >  .../drm/i915/display/intel_display_types.h    |   1 +
-> > >  2 files changed, 103 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > > index af9e58619667d..6dc223227eeaa 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > > @@ -2389,6 +2389,100 @@ static const struct file_operations
-> > i915_dsc_fec_support_fops = {
-> > >  	.write = i915_dsc_fec_support_write  };
-> > >
-> > > +static int i915_dsc_bpp_support_show(struct seq_file *m, void
-> > > +*data) {
-> > > +	struct drm_connector *connector = m->private;
-> > > +	struct drm_device *dev = connector->dev;
-> > > +	struct drm_crtc *crtc;
-> > > +	struct intel_dp *intel_dp;
-> > > +	struct drm_modeset_acquire_ctx ctx;
-> > > +	struct intel_crtc_state *crtc_state = NULL;
-> > > +	int ret = 0;
-> > > +	bool try_again = false;
-> > > +
-> > > +	drm_modeset_acquire_init(&ctx,
-> > DRM_MODESET_ACQUIRE_INTERRUPTIBLE);
-> > > +
-> > > +	do {
-> > > +		try_again = false;
-> > > +		ret = drm_modeset_lock(&dev-
-> > >mode_config.connection_mutex,
-> > > +				       &ctx);
-> > > +		if (ret) {
-> > > +			ret = -EINTR;
-> > > +			break;
-> > > +		}
-> > > +		crtc = connector->state->crtc;
-> > > +		if (connector->status != connector_status_connected || !crtc) {
-> > > +			ret = -ENODEV;
-> > > +			break;
-> > > +		}
-> > > +		ret = drm_modeset_lock(&crtc->mutex, &ctx);
-> > > +		if (ret == -EDEADLK) {
-> > > +			ret = drm_modeset_backoff(&ctx);
-> > > +			if (!ret) {
-> > > +				try_again = true;
-> > > +				continue;
-> > > +			}
-> > > +			break;
-> > > +		} else if (ret) {
-> > > +			break;
-> > > +		}
-> > > +		intel_dp = intel_attached_dp(to_intel_connector(connector));
-> > > +		crtc_state = to_intel_crtc_state(crtc->state);
-> > > +		seq_printf(m, "Input_BPP: %d\n", crtc_state->pipe_bpp);
-> > > +		seq_printf(m, "Compressed_BPP: %d\n",
-> > > +				crtc_state->dsc.compressed_bpp);
-> > > +	} while (try_again);
-> > > +
-> > > +	drm_modeset_drop_locks(&ctx);
-> > > +	drm_modeset_acquire_fini(&ctx);
-> > > +
-> > > +	return ret;
-> >
-> > Looks like copy-paste from i915_dsc_fec_support_show() which already
-> > makes me cringe. We can't keep accumulating this kind of code in debugfs.
-> @Navare, Manasi D, @Kulkarni, Vandita any thoughts ?
-I ll create new file each entry, so that it become simple.
-
-> 
-> >
-> > > +}
-> > > +
-> > > +static ssize_t i915_dsc_bpp_support_write(struct file *file,
-> > > +						const char __user *ubuf,
-> > > +						size_t len, loff_t *offp)
-> > > +{
-> > > +	int dsc_bpp = 0;
-> > > +	int ret;
-> > > +	struct drm_connector *connector =
-> > > +		((struct seq_file *)file->private_data)->private;
-> > > +	struct intel_encoder *encoder =
-> > intel_attached_encoder(to_intel_connector(connector));
-> > > +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > > +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> > > +
-> > > +	if (len == 0)
-> > > +		return 0;
-> > > +
-> > > +	drm_dbg(&i915->drm,
-> > > +		"Copied %zu bytes from user to force BPP\n", len);
-> >
-> > Just no. Again, copy-paste from the fec stuff that we shouldn't have
-> > to begin with.
-> >
-> > > +
-> > > +	ret = kstrtoint_from_user(ubuf, len, 0, &dsc_bpp);
-> > > +
-> > > +	intel_dp->force_dsc_bpp = dsc_bpp;
-> > > +	if (ret < 0)
-> > > +		return ret;
-> >
-> > Check the errors before using the data!
-I ll update it to above line
-> >
-> > Also, how are you prepared for fractional bpp?
-"ok, I will check"
-> >
-> > > +
-> > > +	*offp += len;
-> > > +	return len;
-> > > +}
-> > > +
-> > > +static int i915_dsc_bpp_support_open(struct inode *inode,
-> > > +					   struct file *file)
-> > > +{
-> > > +	return single_open(file, i915_dsc_bpp_support_show,
-> > > +			   inode->i_private);
-> > > +}
-> > > +
-> > > +static const struct file_operations i915_dsc_bpp_support_fops = {
-> > > +	.owner = THIS_MODULE,
-> > > +	.open = i915_dsc_bpp_support_open,
-> > > +	.read = seq_read,
-> > > +	.llseek = seq_lseek,
-> > > +	.release = single_release,
-> > > +	.write = i915_dsc_bpp_support_write };
-> > > +
-> > >  /**
-> > >   * intel_connector_debugfs_add - add i915 specific connector debugfs files
-> > >   * @connector: pointer to a registered drm_connector @@ -2427,9
-> > > +2521,16 @@ int intel_connector_debugfs_add(struct drm_connector
-> > *connector)
-> > >  				    connector,
-> > &i915_hdcp_sink_capability_fops);
-> > >  	}
-> > >
-> > > -	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) &&
-> > ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
-> > !to_intel_connector(connector)->mst_port) || connector->connector_type
-> > ==
-> > DRM_MODE_CONNECTOR_eDP))
-> > > +	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) &&
-> > > +	    ((connector->connector_type ==
-> > DRM_MODE_CONNECTOR_DisplayPort &&
-> > > +	      !to_intel_connector(connector)->mst_port) ||
-> > > +	     connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
-> > >  		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
-> > >  				    connector, &i915_dsc_fec_support_fops);
-> > > +		debugfs_create_file("i915_dsc_bpp_support", S_IRUGO,
-> > > +				    root, connector,
-> > > +				    &i915_dsc_bpp_support_fops);
-> > > +	}
-> > >
-> > >  	/* Legacy panels doesn't lpsp on any platform */
-> > >  	if ((DISPLAY_VER(dev_priv) >= 9 || IS_HASWELL(dev_priv) || diff
-> > > --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index d94f361b548b7..19d8d3eefbc27 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -1612,6 +1612,7 @@ struct intel_dp {
-> > >
-> > >  	/* Display stream compression testing */
-> > >  	bool force_dsc_en;
-> > > +	int force_dsc_bpp;
-> > >
-> > >  	bool hobl_failed;
-> > >  	bool hobl_active;
-> >
-> > --
-> > Jani Nikula, Intel Open Source Graphics Center
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
