@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B583B8A30
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 23:46:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E5FE3B8A9F
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 00:50:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F07E66EA88;
-	Wed, 30 Jun 2021 21:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98F1E6EA8F;
+	Wed, 30 Jun 2021 22:50:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2400E6EA85;
- Wed, 30 Jun 2021 21:46:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1C7FBA0078;
- Wed, 30 Jun 2021 21:46:44 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Wed, 30 Jun 2021 21:46:44 -0000
-Message-ID: <162508960407.10374.11312396886258254901@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 722BE6EA8F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 22:50:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10031"; a="206617606"
+X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="206617606"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2021 15:50:29 -0700
+X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="489738208"
+Received: from mkkharas-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.8.178])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2021 15:50:29 -0700
+Date: Wed, 30 Jun 2021 15:50:28 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: =?utf-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20210630225028.puix645w3zrecdmj@ldmartin-desk2>
+X-Patchwork-Hint: comment
 References: <20210630210522.162674-1-jose.souza@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20210630210522.162674-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display/dg1=3A_Correctly_map_DPLLs_during_state_readout?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/dg1: Correctly map DPLLs
+ during state readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,169 +45,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1055056439=="
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1055056439==
-Content-Type: multipart/alternative;
- boundary="===============1603581018180226231=="
-
---===============1603581018180226231==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/display/dg1: Correctly map DPLLs during state readout
-URL   : https://patchwork.freedesktop.org/series/92086/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10295 -> Patchwork_20499
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20499 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2] ([i915#155])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10295/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10295/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
+On Wed, Jun 30, 2021 at 02:05:22PM -0700, Jose Souza wrote:
+>_DG1_DPCLKA0_CFGCR0 maps between DPLL 0 and 1 with one bit for phy A
+>and B while _DG1_DPCLKA1_CFGCR0 maps between DPLL 2 and 3 with one
+>bit for phy C and D.
+>
+>Reusing _cnl_ddi_get_pll() don't take that into cosideration returing
+>DPLL 0 and 1 for phy C and D.
+>
+>That is a regression introduced in the refactor done in commit
+>c9fdceaa64dc ("drm/i915: Move DDI clock readout to encoder->get_config()").
+>While at it also dropping the macros previously used, not reusing it
+>to improve readability.
+>
+>BSpec: 50286
+>Fixes: c9fdceaa64dc ("drm/i915: Move DDI clock readout to encoder->get_con=
+fig()")
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
 
-Participating hosts (39 -> 35)
-------------------------------
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-  Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
+thanks
+Lucas De Marchi
 
+>---
+> drivers/gpu/drm/i915/display/intel_ddi.c | 19 ++++++++++++++++---
+> drivers/gpu/drm/i915/i915_reg.h          |  3 ---
+> 2 files changed, 16 insertions(+), 6 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i9=
+15/display/intel_ddi.c
+>index 91fd85bee1d27..26a3aa73fcc43 100644
+>--- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>@@ -1738,10 +1738,23 @@ static struct intel_shared_dpll *dg1_ddi_get_pll(s=
+truct intel_encoder *encoder)
+> {
+> 	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+> 	enum phy phy =3D intel_port_to_phy(i915, encoder->port);
+>+	enum intel_dpll_id id;
+>+	u32 val;
+>
+>-	return _cnl_ddi_get_pll(i915, DG1_DPCLKA_CFGCR0(phy),
+>-				DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy),
+>-				DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy));
+>+	val =3D intel_de_read(i915, DG1_DPCLKA_CFGCR0(phy));
+>+	val &=3D DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
+>+	val >>=3D DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy);
+>+	id =3D val;
+>+
+>+	/*
+>+	 * _DG1_DPCLKA0_CFGCR0 maps between DPLL 0 and 1 with one bit for phy A
+>+	 * and B while _DG1_DPCLKA1_CFGCR0 maps between DPLL 2 and 3 with one
+>+	 * bit for phy C and D.
+>+	 */
+>+	if (phy >=3D PHY_C)
+>+		id +=3D DPLL_ID_DG1_DPLL2;
+>+
+>+	return intel_get_shared_dpll_by_id(i915, id);
+> }
+>
+> static void icl_ddi_combo_enable_clock(struct intel_encoder *encoder,
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
+eg.h
+>index 65c155b141899..16a19239d86dd 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -10525,7 +10525,6 @@ enum skl_power_gate {
+> #define _DG1_DPCLKA1_CFGCR0				0x16C280
+> #define _DG1_DPCLKA_PHY_IDX(phy)			((phy) % 2)
+> #define _DG1_DPCLKA_PLL_IDX(pll)			((pll) % 2)
+>-#define _DG1_PHY_DPLL_MAP(phy)				((phy) >=3D PHY_C ? DPLL_ID_DG1_DPLL2 :=
+ DPLL_ID_DG1_DPLL0)
+> #define DG1_DPCLKA_CFGCR0(phy)				_MMIO_PHY((phy) / 2, \
+> 								  _DG1_DPCLKA_CFGCR0, \
+> 								  _DG1_DPCLKA1_CFGCR0)
+>@@ -10533,8 +10532,6 @@ enum skl_power_gate {
+> #define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	(_DG1_DPCLKA_PHY_IDX(p=
+hy) * 2)
+> #define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	(_DG1_DPCLKA_PLL_IDX(pl=
+l) << DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+> #define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(0x3 << DG1_DPCLKA_CFGC=
+R0_DDI_CLK_SEL_SHIFT(phy))
+>-#define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_DPLL_MAP(clk_sel, phy) \
+>-	(((clk_sel) >> DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)) + _DG1_PHY_DPLL=
+_MAP(phy))
+>
+> /* ADLS Clocks */
+> #define _ADLS_DPCLKA_CFGCR0			0x164280
+>-- =
 
-Build changes
--------------
-
-  * Linux: CI_DRM_10295 -> Patchwork_20499
-
-  CI-20190529: 20190529
-  CI_DRM_10295: 683b7f160eb6993ccfc19e67e3c7111f12946bea @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6124: 357d5477c93f2bdd3354afe91b89ccfd4ee4fd56 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20499: 5fce8912a42d082b6732b961c94fa6197d36b977 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5fce8912a42d drm/i915/display/dg1: Correctly map DPLLs during state readout
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/index.html
-
---===============1603581018180226231==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display/dg1: Correctly map DPLLs during state readout</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92086/">https://patchwork.freedesktop.org/series/92086/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10295 -&gt; Patchwork_20499</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20499 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10295/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10295/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20499/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10295 -&gt; Patchwork_20499</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10295: 683b7f160eb6993ccfc19e67e3c7111f12946bea @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6124: 357d5477c93f2bdd3354afe91b89ccfd4ee4fd56 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20499: 5fce8912a42d082b6732b961c94fa6197d36b977 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>5fce8912a42d drm/i915/display/dg1: Correctly map DPLLs during state readout</p>
-
-</body>
-</html>
-
---===============1603581018180226231==--
-
---===============1055056439==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>2.32.0
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1055056439==--
