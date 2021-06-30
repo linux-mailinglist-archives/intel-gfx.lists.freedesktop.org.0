@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA0893B89F2
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 23:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B1193B8A19
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 23:21:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6DE06EA83;
-	Wed, 30 Jun 2021 21:01:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B31DE6EA87;
+	Wed, 30 Jun 2021 21:21:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2691F6EA83
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 21:01:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10031"; a="195586663"
-X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="195586663"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2021 14:01:28 -0700
-X-IronPort-AV: E=Sophos;i="5.83,312,1616482800"; d="scan'208";a="558428708"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
- ([10.24.14.59])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2021 14:01:28 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Jun 2021 14:05:22 -0700
-Message-Id: <20210630210522.162674-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.32.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6B6246EA85;
+ Wed, 30 Jun 2021 21:21:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5F84CA0003;
+ Wed, 30 Jun 2021 21:21:49 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display/dg1: Correctly map DPLLs
- during state readout
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 30 Jun 2021 21:21:49 -0000
+Message-ID: <162508810936.10376.2482746529084036313@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210630210522.162674-1-jose.souza@intel.com>
+In-Reply-To: <20210630210522.162674-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display/dg1=3A_Correctly_map_DPLLs_during_state_re?=
+ =?utf-8?q?adout?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,70 +39,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-X0RHMV9EUENMS0EwX0NGR0NSMCBtYXBzIGJldHdlZW4gRFBMTCAwIGFuZCAxIHdpdGggb25lIGJp
-dCBmb3IgcGh5IEEKYW5kIEIgd2hpbGUgX0RHMV9EUENMS0ExX0NGR0NSMCBtYXBzIGJldHdlZW4g
-RFBMTCAyIGFuZCAzIHdpdGggb25lCmJpdCBmb3IgcGh5IEMgYW5kIEQuCgpSZXVzaW5nIF9jbmxf
-ZGRpX2dldF9wbGwoKSBkb24ndCB0YWtlIHRoYXQgaW50byBjb3NpZGVyYXRpb24gcmV0dXJpbmcK
-RFBMTCAwIGFuZCAxIGZvciBwaHkgQyBhbmQgRC4KClRoYXQgaXMgYSByZWdyZXNzaW9uIGludHJv
-ZHVjZWQgaW4gdGhlIHJlZmFjdG9yIGRvbmUgaW4gY29tbWl0CmM5ZmRjZWFhNjRkYyAoImRybS9p
-OTE1OiBNb3ZlIERESSBjbG9jayByZWFkb3V0IHRvIGVuY29kZXItPmdldF9jb25maWcoKSIpLgpX
-aGlsZSBhdCBpdCBhbHNvIGRyb3BwaW5nIHRoZSBtYWNyb3MgcHJldmlvdXNseSB1c2VkLCBub3Qg
-cmV1c2luZyBpdAp0byBpbXByb3ZlIHJlYWRhYmlsaXR5LgoKQlNwZWM6IDUwMjg2CkZpeGVzOiBj
-OWZkY2VhYTY0ZGMgKCJkcm0vaTkxNTogTW92ZSBEREkgY2xvY2sgcmVhZG91dCB0byBlbmNvZGVy
-LT5nZXRfY29uZmlnKCkiKQpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
-bC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-PgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVs
-LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgMTkg
-KysrKysrKysrKysrKysrKy0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAg
-ICAgICB8ICAzIC0tLQogMiBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCA2IGRlbGV0
-aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCmluZGV4IDkx
-ZmQ4NWJlZTFkMjcuLjI2YTNhYTczZmNjNDMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kZGkuYwpAQCAtMTczOCwxMCArMTczOCwyMyBAQCBzdGF0aWMgc3RydWN0IGludGVs
-X3NoYXJlZF9kcGxsICpkZzFfZGRpX2dldF9wbGwoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
-ZXIpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGVuY29kZXIt
-PmJhc2UuZGV2KTsKIAllbnVtIHBoeSBwaHkgPSBpbnRlbF9wb3J0X3RvX3BoeShpOTE1LCBlbmNv
-ZGVyLT5wb3J0KTsKKwllbnVtIGludGVsX2RwbGxfaWQgaWQ7CisJdTMyIHZhbDsKIAotCXJldHVy
-biBfY25sX2RkaV9nZXRfcGxsKGk5MTUsIERHMV9EUENMS0FfQ0ZHQ1IwKHBoeSksCi0JCQkJREcx
-X0RQQ0xLQV9DRkdDUjBfRERJX0NMS19TRUxfTUFTSyhwaHkpLAotCQkJCURHMV9EUENMS0FfQ0ZH
-Q1IwX0RESV9DTEtfU0VMX1NISUZUKHBoeSkpOworCXZhbCA9IGludGVsX2RlX3JlYWQoaTkxNSwg
-REcxX0RQQ0xLQV9DRkdDUjAocGh5KSk7CisJdmFsICY9IERHMV9EUENMS0FfQ0ZHQ1IwX0RESV9D
-TEtfU0VMX01BU0socGh5KTsKKwl2YWwgPj49IERHMV9EUENMS0FfQ0ZHQ1IwX0RESV9DTEtfU0VM
-X1NISUZUKHBoeSk7CisJaWQgPSB2YWw7CisKKwkvKgorCSAqIF9ERzFfRFBDTEtBMF9DRkdDUjAg
-bWFwcyBiZXR3ZWVuIERQTEwgMCBhbmQgMSB3aXRoIG9uZSBiaXQgZm9yIHBoeSBBCisJICogYW5k
-IEIgd2hpbGUgX0RHMV9EUENMS0ExX0NGR0NSMCBtYXBzIGJldHdlZW4gRFBMTCAyIGFuZCAzIHdp
-dGggb25lCisJICogYml0IGZvciBwaHkgQyBhbmQgRC4KKwkgKi8KKwlpZiAocGh5ID49IFBIWV9D
-KQorCQlpZCArPSBEUExMX0lEX0RHMV9EUExMMjsKKworCXJldHVybiBpbnRlbF9nZXRfc2hhcmVk
-X2RwbGxfYnlfaWQoaTkxNSwgaWQpOwogfQogCiBzdGF0aWMgdm9pZCBpY2xfZGRpX2NvbWJvX2Vu
-YWJsZV9jbG9jayhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3JlZy5oCmluZGV4IDY1YzE1NWIxNDE4OTkuLjE2YTE5MjM5ZDg2ZGQgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9yZWcuaApAQCAtMTA1MjUsNyArMTA1MjUsNiBAQCBlbnVtIHNrbF9wb3dlcl9nYXRlIHsK
-ICNkZWZpbmUgX0RHMV9EUENMS0ExX0NGR0NSMAkJCQkweDE2QzI4MAogI2RlZmluZSBfREcxX0RQ
-Q0xLQV9QSFlfSURYKHBoeSkJCQkoKHBoeSkgJSAyKQogI2RlZmluZSBfREcxX0RQQ0xLQV9QTExf
-SURYKHBsbCkJCQkoKHBsbCkgJSAyKQotI2RlZmluZSBfREcxX1BIWV9EUExMX01BUChwaHkpCQkJ
-CSgocGh5KSA+PSBQSFlfQyA/IERQTExfSURfREcxX0RQTEwyIDogRFBMTF9JRF9ERzFfRFBMTDAp
-CiAjZGVmaW5lIERHMV9EUENMS0FfQ0ZHQ1IwKHBoeSkJCQkJX01NSU9fUEhZKChwaHkpIC8gMiwg
-XAogCQkJCQkJCQkgIF9ERzFfRFBDTEtBX0NGR0NSMCwgXAogCQkJCQkJCQkgIF9ERzFfRFBDTEtB
-MV9DRkdDUjApCkBAIC0xMDUzMyw4ICsxMDUzMiw2IEBAIGVudW0gc2tsX3Bvd2VyX2dhdGUgewog
-I2RlZmluZSAgIERHMV9EUENMS0FfQ0ZHQ1IwX0RESV9DTEtfU0VMX1NISUZUKHBoeSkJKF9ERzFf
-RFBDTEtBX1BIWV9JRFgocGh5KSAqIDIpCiAjZGVmaW5lICAgREcxX0RQQ0xLQV9DRkdDUjBfRERJ
-X0NMS19TRUwocGxsLCBwaHkpCShfREcxX0RQQ0xLQV9QTExfSURYKHBsbCkgPDwgREcxX0RQQ0xL
-QV9DRkdDUjBfRERJX0NMS19TRUxfU0hJRlQocGh5KSkKICNkZWZpbmUgICBERzFfRFBDTEtBX0NG
-R0NSMF9ERElfQ0xLX1NFTF9NQVNLKHBoeSkJKDB4MyA8PCBERzFfRFBDTEtBX0NGR0NSMF9ERElf
-Q0xLX1NFTF9TSElGVChwaHkpKQotI2RlZmluZSAgIERHMV9EUENMS0FfQ0ZHQ1IwX0RESV9DTEtf
-U0VMX0RQTExfTUFQKGNsa19zZWwsIHBoeSkgXAotCSgoKGNsa19zZWwpID4+IERHMV9EUENMS0Ff
-Q0ZHQ1IwX0RESV9DTEtfU0VMX1NISUZUKHBoeSkpICsgX0RHMV9QSFlfRFBMTF9NQVAocGh5KSkK
-IAogLyogQURMUyBDbG9ja3MgKi8KICNkZWZpbmUgX0FETFNfRFBDTEtBX0NGR0NSMAkJCTB4MTY0
-MjgwCi0tIAoyLjMyLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+== Series Details ==
+
+Series: drm/i915/display/dg1: Correctly map DPLLs during state readout
+URL   : https://patchwork.freedesktop.org/series/92086/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+5fce8912a42d drm/i915/display/dg1: Correctly map DPLLs during state readout
+-:23: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'c9fdceaa64dc', maybe rebased or not pulled?
+#23: 
+Fixes: c9fdceaa64dc ("drm/i915: Move DDI clock readout to encoder->get_config()")
+
+total: 0 errors, 1 warnings, 0 checks, 41 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
