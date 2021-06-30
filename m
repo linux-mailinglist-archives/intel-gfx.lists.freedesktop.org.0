@@ -1,54 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025163B7E95
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 10:02:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F7373B7EB9
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 10:12:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3D606E946;
-	Wed, 30 Jun 2021 08:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29C8F6E94C;
+	Wed, 30 Jun 2021 08:12:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
- [IPv6:2607:f8b0:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13C706E94B
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 08:02:34 +0000 (UTC)
-Received: by mail-oi1-x22d.google.com with SMTP id h9so2098059oih.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jun 2021 01:02:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uV4z3RFqGeJeaafqJz/eFARcsrLZ3bTibOTkwFTwAD4=;
- b=VMBMGG6RtQs1PvPg7HINvr9vCr1+kPe9nZlfr98YiJybOf5GVRU/0gF/te0ldgl9Ff
- xKLJ0ojBa/LLYues7nWFluXQ7sTlrWQOUHuv4MdZmjxrZNLHFtggCXY2MZPzwHb7/m7b
- t0tpVpXW8q2QcBcc6r5uKXFVbHvf4MjHE1qQM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uV4z3RFqGeJeaafqJz/eFARcsrLZ3bTibOTkwFTwAD4=;
- b=cOcGOSj9NUEficVn0OwL/XM6GX+uUquYNcjk+IjXAXLR+mgjRvgvqbDFFHhwu87ZSM
- AsYC61gCnVR/F4ZNRd7vF6UlLQV4O2pY4tOj69/s9NGUKy75OpP1re7OGwrUInWTqvRD
- somgA47xLw14tpBCf6hoH4rJbIiJSVoyNiQ0I+R5Niiu5esf7gyHgoy6Ku9dkHgpN9Pi
- lWac295wBhhbVwJfBWU1j1X6iUi779PtVCp6debBUs2TmxFVEFFYlKqoDBSF2eW5SEMl
- /hfGq9ekPlQTZuI2RyGdk+0bkzoaXOfuIAAjNuDBzG2L4F7nMi9/yMU1QIDy0WOQlaOk
- FsZQ==
-X-Gm-Message-State: AOAM531zIDcfqaS+a+iFSIcfudTyOSbx0D8w2/BPIo+5jWT078tFGOLf
- haljLSJmiX3ToMWuWUA04RIwl9M4wfuve+OoCLDKGIWuFqs=
-X-Google-Smtp-Source: ABdhPJza1q0JS4amZxpNekiLW82M8oZyXDSrZXVY/qRWwL6181B3YBrr55487+2cmhnQ/rPr9KV2efdQpA76/YExCKI=
-X-Received: by 2002:aca:1a0c:: with SMTP id a12mr2071838oia.14.1625040153265; 
- Wed, 30 Jun 2021 01:02:33 -0700 (PDT)
+Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAE046E947;
+ Wed, 30 Jun 2021 08:12:06 +0000 (UTC)
+Received: from [192.168.1.190] (unknown [91.155.165.229])
+ (Authenticated sender: martin.peres@free.fr)
+ by smtp5-g21.free.fr (Postfix) with ESMTPSA id 4F9015FFAD;
+ Wed, 30 Jun 2021 10:11:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1625040724;
+ bh=ezyJz45Tsx6GAz9cFK8xp2tdcLvGnYIA5ytIhHDvaE4=;
+ h=Subject:To:References:From:Date:In-Reply-To:From;
+ b=SFKT+1JU/dj19sEgiWATH16WolGNnBjKAfzytIjgIS7d0esflC1+XXTPQ17eoA7dV
+ EZa3V7to6HNc3odfyGgvJJ0TpP6DKQIPleUAEN4TH51Cwj99W3RltnP/+GsybC/NPq
+ wxvNuAyisxu8AWXf9e5HxyXvcfl+VkwtpFF5DRTNIJYFxABnpPMT9CPk6vVbLhB9Kv
+ FkFtoD6wbH6GAPdumxFcV2b0RC+EXaPsZAvzCHvGZ7Zp6zdw9bwDkYqlZhqUXA3vCq
+ q0uq48oRHwaScWz7wBn+/s252i3hSVUBzIU7l5eY95N6vdTVbLbjAsJxEaYE7NmEnt
+ 1eBUCtzec5Puw==
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210629193511.124099-1-matthew.brost@intel.com>
+ <20210629193511.124099-2-matthew.brost@intel.com>
+From: Martin Peres <martin.peres@free.fr>
+Message-ID: <7d7db7e2-8d83-d7b4-1ed2-527d635577ef@free.fr>
+Date: Wed, 30 Jun 2021 11:11:58 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210629033706.20537-1-desmondcheongzx@gmail.com>
- <20210629033706.20537-4-desmondcheongzx@gmail.com>
- <YNtFJhUw0U2s1TW0@phenom.ffwll.local>
- <c71a4521-ed0e-7033-0301-3db116876a47@gmail.com>
-In-Reply-To: <c71a4521-ed0e-7033-0301-3db116876a47@gmail.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 30 Jun 2021 10:02:21 +0200
-Message-ID: <CAKMK7uF0drbOO6=06+c_NM2saLuCEmm-=KTMrcwg9LkTcW2qww@mail.gmail.com>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v5 3/3] drm: protect drm_master pointers in
- drm_lease.c
+In-Reply-To: <20210629193511.124099-2-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/doc/rfc: i915 GuC submission / DRM
+ scheduler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,472 +52,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Greg KH <gregkh@linuxfoundation.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Shuah Khan <skhan@linuxfoundation.org>,
- linux-kernel-mentees@lists.linuxfoundation.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 30, 2021 at 9:18 AM Desmond Cheong Zhi Xi
-<desmondcheongzx@gmail.com> wrote:
->
-> On 30/6/21 12:07 am, Daniel Vetter wrote:
-> > On Tue, Jun 29, 2021 at 11:37:06AM +0800, Desmond Cheong Zhi Xi wrote:
-> >> Currently, direct copies of drm_file->master pointers should be
-> >> protected by drm_device.master_mutex when being dereferenced. This is
-> >> because drm_file->master is not invariant for the lifetime of
-> >> drm_file. If drm_file is not the creator of master, then
-> >> drm_file->is_master is false, and a call to drm_setmaster_ioctl will
-> >> invoke drm_new_set_master, which then allocates a new master for
-> >> drm_file and puts the old master.
-> >>
-> >> Thus, without holding drm_device.master_mutex, the old value of
-> >> drm_file->master could be freed while it is being used by another
-> >> concurrent process.
-> >>
-> >> In drm_lease.c, there are multiple instances where drm_file->master is
-> >> accessed and dereferenced while drm_device.master_mutex is not
-> >> held. This makes drm_lease.c vulnerable to use-after-free bugs.
-> >>
-> >> We address this issue in 3 ways:
-> >>
-> >> 1. Clarify in the kerneldoc that drm_file->master is protected by
-> >> drm_device.master_mutex.
-> >>
-> >> 2. Add a new drm_file_get_master() function that calls drm_master_get
-> >> on drm_file->master while holding on to drm_device.master_mutex. Since
-> >> drm_master_get increments the reference count of master, this
-> >> prevents master from being freed until we unreference it with
-> >> drm_master_put.
-> >>
-> >> 3. In each case where drm_file->master is directly accessed and
-> >> eventually dereferenced in drm_lease.c, we wrap the access in a call
-> >> to the new drm_file_get_master function, then unreference the master
-> >> pointer once we are done using it.
-> >>
-> >> Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> >> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-> >
-> > Series looks very nice, let's see what intel-gfx-ci says. You should get a
-> > mail, but results are also here:
-> >
-> > https://patchwork.freedesktop.org/series/91969/#rev2
-> >
-> > One tiny comment below.
-> >
-> >> ---
-> >>   drivers/gpu/drm/drm_auth.c  | 25 ++++++++++++
-> >>   drivers/gpu/drm/drm_lease.c | 77 +++++++++++++++++++++++++++----------
-> >>   include/drm/drm_auth.h      |  1 +
-> >>   include/drm/drm_file.h      | 15 ++++++--
-> >>   4 files changed, 95 insertions(+), 23 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-> >> index ab1863c5a5a0..c36a0b72be26 100644
-> >> --- a/drivers/gpu/drm/drm_auth.c
-> >> +++ b/drivers/gpu/drm/drm_auth.c
-> >> @@ -384,6 +384,31 @@ struct drm_master *drm_master_get(struct drm_master *master)
-> >>   }
-> >>   EXPORT_SYMBOL(drm_master_get);
-> >>
-> >> +/**
-> >> + * drm_file_get_master - reference &drm_file.master of @file_priv
-> >> + * @file_priv: DRM file private
-> >> + *
-> >> + * Increments the reference count of @file_priv's &drm_file.master and returns
-> >> + * the &drm_file.master. If @file_priv has no &drm_file.master, returns NULL.
-> >> + *
-> >> + * Master pointers returned from this function should be unreferenced using
-> >> + * drm_master_put().
-> >> + */
-> >> +struct drm_master *drm_file_get_master(struct drm_file *file_priv)
-> >> +{
-> >> +    struct drm_master *master = NULL;
-> >> +
-> >> +    mutex_lock(&file_priv->minor->dev->master_mutex);
-> >> +    if (!file_priv->master)
-> >> +            goto unlock;
-> >> +    master = drm_master_get(file_priv->master);
-> >> +
-> >> +unlock:
-> >> +    mutex_unlock(&file_priv->minor->dev->master_mutex);
-> >> +    return master;
-> >> +}
-> >> +EXPORT_SYMBOL(drm_file_get_master);
-> >> +
-> >>   static void drm_master_destroy(struct kref *kref)
-> >>   {
-> >>      struct drm_master *master = container_of(kref, struct drm_master, refcount);
-> >> diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
-> >> index 00fb433bcef1..cdcc87fa9685 100644
-> >> --- a/drivers/gpu/drm/drm_lease.c
-> >> +++ b/drivers/gpu/drm/drm_lease.c
-> >> @@ -106,10 +106,19 @@ static bool _drm_has_leased(struct drm_master *master, int id)
-> >>    */
-> >>   bool _drm_lease_held(struct drm_file *file_priv, int id)
-> >>   {
-> >> -    if (!file_priv || !file_priv->master)
-> >> +    bool ret;
-> >> +    struct drm_master *master;
-> >> +
-> >> +    if (!file_priv)
-> >>              return true;
-> >>
-> >> -    return _drm_lease_held_master(file_priv->master, id);
-> >> +    master = drm_file_get_master(file_priv);
-> >> +    if (master == NULL)
-> >> +            return true;
-> >> +    ret = _drm_lease_held_master(master, id);
-> >> +    drm_master_put(&master);
-> >> +
-> >> +    return ret;
-> >>   }
-> >>
-> >>   /**
-> >> @@ -128,13 +137,20 @@ bool drm_lease_held(struct drm_file *file_priv, int id)
-> >>      struct drm_master *master;
-> >>      bool ret;
-> >>
-> >> -    if (!file_priv || !file_priv->master || !file_priv->master->lessor)
-> >> +    if (!file_priv)
-> >>              return true;
-> >>
-> >> -    master = file_priv->master;
-> >> +    master = drm_file_get_master(file_priv);
-> >> +    if (master == NULL)
-> >> +            return true;
-> >> +    if (!master->lessor) {
-> >> +            drm_master_put(&master);
-> >> +            return true;
-> >> +    }
-> >>      mutex_lock(&master->dev->mode_config.idr_mutex);
-> >>      ret = _drm_lease_held_master(master, id);
-> >>      mutex_unlock(&master->dev->mode_config.idr_mutex);
-> >> +    drm_master_put(&master);
-> >>      return ret;
-> >>   }
-> >>
-> >> @@ -154,10 +170,16 @@ uint32_t drm_lease_filter_crtcs(struct drm_file *file_priv, uint32_t crtcs_in)
-> >>      int count_in, count_out;
-> >>      uint32_t crtcs_out = 0;
-> >>
-> >> -    if (!file_priv || !file_priv->master || !file_priv->master->lessor)
-> >> +    if (!file_priv)
-> >>              return crtcs_in;
-> >>
-> >> -    master = file_priv->master;
-> >> +    master = drm_file_get_master(file_priv);
-> >> +    if (master == NULL)
-> >> +            return crtcs_in;
-> >> +    if (!master->lessor) {
-> >> +            drm_master_put(&master);
-> >> +            return crtcs_in;
-> >> +    }
-> >>      dev = master->dev;
-> >>
-> >>      count_in = count_out = 0;
-> >> @@ -176,6 +198,7 @@ uint32_t drm_lease_filter_crtcs(struct drm_file *file_priv, uint32_t crtcs_in)
-> >>              count_in++;
-> >>      }
-> >>      mutex_unlock(&master->dev->mode_config.idr_mutex);
-> >> +    drm_master_put(&master);
-> >>      return crtcs_out;
-> >>   }
-> >>
-> >> @@ -489,7 +512,7 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
-> >>      size_t object_count;
-> >>      int ret = 0;
-> >>      struct idr leases;
-> >> -    struct drm_master *lessor = lessor_priv->master;
-> >> +    struct drm_master *lessor;
-> >>      struct drm_master *lessee = NULL;
-> >>      struct file *lessee_file = NULL;
-> >>      struct file *lessor_file = lessor_priv->filp;
-> >> @@ -501,12 +524,6 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
-> >>      if (!drm_core_check_feature(dev, DRIVER_MODESET))
-> >>              return -EOPNOTSUPP;
-> >>
-> >> -    /* Do not allow sub-leases */
-> >> -    if (lessor->lessor) {
-> >> -            DRM_DEBUG_LEASE("recursive leasing not allowed\n");
-> >> -            return -EINVAL;
-> >> -    }
-> >> -
-> >>      /* need some objects */
-> >>      if (cl->object_count == 0) {
-> >>              DRM_DEBUG_LEASE("no objects in lease\n");
-> >> @@ -518,12 +535,22 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
-> >>              return -EINVAL;
-> >>      }
-> >>
-> >> +    lessor = drm_file_get_master(lessor_priv);
-> >> +    /* Do not allow sub-leases */
-> >> +    if (lessor->lessor) {
-> >> +            DRM_DEBUG_LEASE("recursive leasing not allowed\n");
-> >> +            ret = -EINVAL;
-> >> +            goto out_lessor;
-> >> +    }
-> >> +
-> >>      object_count = cl->object_count;
-> >>
-> >>      object_ids = memdup_user(u64_to_user_ptr(cl->object_ids),
-> >>                      array_size(object_count, sizeof(__u32)));
-> >> -    if (IS_ERR(object_ids))
-> >> -            return PTR_ERR(object_ids);
-> >> +    if (IS_ERR(object_ids)) {
-> >> +            ret = PTR_ERR(object_ids);
-> >> +            goto out_lessor;
-> >> +    }
-> >>
-> >>      idr_init(&leases);
-> >>
-> >> @@ -534,14 +561,15 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
-> >>      if (ret) {
-> >>              DRM_DEBUG_LEASE("lease object lookup failed: %i\n", ret);
-> >>              idr_destroy(&leases);
-> >> -            return ret;
-> >> +            goto out_lessor;
-> >>      }
-> >>
-> >>      /* Allocate a file descriptor for the lease */
-> >>      fd = get_unused_fd_flags(cl->flags & (O_CLOEXEC | O_NONBLOCK));
-> >>      if (fd < 0) {
-> >>              idr_destroy(&leases);
-> >> -            return fd;
-> >> +            ret = fd;
-> >> +            goto out_lessor;
-> >>      }
-> >>
-> >>      DRM_DEBUG_LEASE("Creating lease\n");
-> >> @@ -577,6 +605,7 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
-> >>      /* Hook up the fd */
-> >>      fd_install(fd, lessee_file);
-> >>
-> >> +    drm_master_put(&lessor);
-> >>      DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl succeeded\n");
-> >>      return 0;
-> >>
-> >> @@ -586,6 +615,8 @@ int drm_mode_create_lease_ioctl(struct drm_device *dev,
-> >>   out_leases:
-> >>      put_unused_fd(fd);
-> >>
-> >> +out_lessor:
-> >> +    drm_master_put(&lessor);
-> >>      DRM_DEBUG_LEASE("drm_mode_create_lease_ioctl failed: %d\n", ret);
-> >>      return ret;
-> >>   }
-> >> @@ -608,7 +639,7 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
-> >>      struct drm_mode_list_lessees *arg = data;
-> >>      __u32 __user *lessee_ids = (__u32 __user *) (uintptr_t) (arg->lessees_ptr);
-> >>      __u32 count_lessees = arg->count_lessees;
-> >> -    struct drm_master *lessor = lessor_priv->master, *lessee;
-> >> +    struct drm_master *lessor, *lessee;
-> >>      int count;
-> >>      int ret = 0;
-> >>
-> >> @@ -619,6 +650,7 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
-> >>      if (!drm_core_check_feature(dev, DRIVER_MODESET))
-> >>              return -EOPNOTSUPP;
-> >>
-> >> +    lessor = drm_file_get_master(lessor_priv);
-> >>      DRM_DEBUG_LEASE("List lessees for %d\n", lessor->lessee_id);
-> >>
-> >>      mutex_lock(&dev->mode_config.idr_mutex);
-> >> @@ -642,6 +674,7 @@ int drm_mode_list_lessees_ioctl(struct drm_device *dev,
-> >>              arg->count_lessees = count;
-> >>
-> >>      mutex_unlock(&dev->mode_config.idr_mutex);
-> >> +    drm_master_put(&lessor);
-> >>
-> >>      return ret;
-> >>   }
-> >> @@ -661,7 +694,7 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
-> >>      struct drm_mode_get_lease *arg = data;
-> >>      __u32 __user *object_ids = (__u32 __user *) (uintptr_t) (arg->objects_ptr);
-> >>      __u32 count_objects = arg->count_objects;
-> >> -    struct drm_master *lessee = lessee_priv->master;
-> >> +    struct drm_master *lessee;
-> >>      struct idr *object_idr;
-> >>      int count;
-> >>      void *entry;
-> >> @@ -675,6 +708,7 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
-> >>      if (!drm_core_check_feature(dev, DRIVER_MODESET))
-> >>              return -EOPNOTSUPP;
-> >>
-> >> +    lessee = drm_file_get_master(lessee_priv);
-> >>      DRM_DEBUG_LEASE("get lease for %d\n", lessee->lessee_id);
-> >>
-> >>      mutex_lock(&dev->mode_config.idr_mutex);
-> >> @@ -702,6 +736,7 @@ int drm_mode_get_lease_ioctl(struct drm_device *dev,
-> >>              arg->count_objects = count;
-> >>
-> >>      mutex_unlock(&dev->mode_config.idr_mutex);
-> >> +    drm_master_put(&lessee);
-> >>
-> >>      return ret;
-> >>   }
-> >> @@ -720,7 +755,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
-> >>                              void *data, struct drm_file *lessor_priv)
-> >>   {
-> >>      struct drm_mode_revoke_lease *arg = data;
-> >> -    struct drm_master *lessor = lessor_priv->master;
-> >> +    struct drm_master *lessor;
-> >>      struct drm_master *lessee;
-> >>      int ret = 0;
-> >>
-> >> @@ -730,6 +765,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
-> >>      if (!drm_core_check_feature(dev, DRIVER_MODESET))
-> >>              return -EOPNOTSUPP;
-> >>
-> >> +    lessor = drm_file_get_master(lessor_priv);
-> >>      mutex_lock(&dev->mode_config.idr_mutex);
-> >>
-> >>      lessee = _drm_find_lessee(lessor, arg->lessee_id);
-> >> @@ -750,6 +786,7 @@ int drm_mode_revoke_lease_ioctl(struct drm_device *dev,
-> >>
-> >>   fail:
-> >>      mutex_unlock(&dev->mode_config.idr_mutex);
-> >> +    drm_master_put(&lessor);
-> >>
-> >>      return ret;
-> >>   }
-> >> diff --git a/include/drm/drm_auth.h b/include/drm/drm_auth.h
-> >> index 6bf8b2b78991..f99d3417f304 100644
-> >> --- a/include/drm/drm_auth.h
-> >> +++ b/include/drm/drm_auth.h
-> >> @@ -107,6 +107,7 @@ struct drm_master {
-> >>   };
-> >>
-> >>   struct drm_master *drm_master_get(struct drm_master *master);
-> >> +struct drm_master *drm_file_get_master(struct drm_file *file_priv);
-> >>   void drm_master_put(struct drm_master **master);
-> >>   bool drm_is_current_master(struct drm_file *fpriv);
-> >>
-> >> diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-> >> index b81b3bfb08c8..e9931fca4ab7 100644
-> >> --- a/include/drm/drm_file.h
-> >> +++ b/include/drm/drm_file.h
-> >> @@ -226,9 +226,18 @@ struct drm_file {
-> >>      /**
-> >>       * @master:
-> >>       *
-> >> -     * Master this node is currently associated with. Only relevant if
-> >> -     * drm_is_primary_client() returns true. Note that this only
-> >> -     * matches &drm_device.master if the master is the currently active one.
-> >> +     * Master this node is currently associated with. Protected by struct
-> >> +     * &drm_device.master_mutex.
-> >> +     *
-> >> +     * Only relevant if drm_is_primary_client() returns true. Note that
-> >> +     * this only matches &drm_device.master if the master is the currently
-> >> +     * active one.
-> >> +     *
-> >> +     * When obtaining a copy of this pointer, it is recommended to either
-> >
-> > I found this a bit confusing, since I generally don't think of
-> > dereferencing the pointer as "taking a copy". That's more for the entire
-> > datastructure when you have a memcpy() call, or kmemdup() or something
-> > like that. Also "it is recommended" is a bit weak if you get a
-> > use-after-free if you dont :-)
-> >
-> > So instead "When dererencing this pointer either hold ... or use
-> > drm_file_get_master() ...."
-> >
-> > Cheers, Daniel
-> >
-> >> +     * hold struct &drm_device.master_mutex for the duration of the
-> >> +     * pointer's use, or to use drm_file_get_master() if struct
-> >> +     * &drm_device.master_mutex is not currently held and there is no other
-> >> +     * need to hold it. This prevents @master from being freed during use.
-> >>       *
-> >>       * See also @authentication and @is_master and the :ref:`section on
-> >>       * primary nodes and authentication <drm_primary_node>`.
-> >> --
-> >> 2.25.1
-> >>
-> >
->
-> Hi Daniel,
->
-> Thanks for the suggestion, I'll clarify the kerneldoc accordingly.
->
-> Regarding the results from intel-gfx-ci, it seems that the patch is
-> inverting the lock hierarchy for
-> &dev->master_mutex --> &dev->mode_config.idr_mutex
->
-> Currently the dmesg warnings share a common call trace:
-> drm_file_get_master+0x1b/0x70
-> _drm_lease_held+0x21/0x70
-> __drm_mode_object_find+0xd1/0xe0
->
-> Looking at the functions that lock &dev->mode_config.idr_mutex, this
-> should be the only instance of this lock order inversion.
->
-> I'm thinking the call to _drm_lease_held can be moved outside of the
-> &dev->mode_config.idr_mutex lock in __drm_mode_object. Any thoughts?
-
-Uh very annoying. One of the callers of this is the atomic ioctl,
-where we're calling this while holding drm_modeset_lock. The nesting
-hierarchy is, from outermost lock to innermost: dev->master_mutex ->
-dev->mode_config.mutex -> drm_modeset_lock. So I think we'll again
-have an inversion, just moved it a bit :-(
-
-But I'm also not 100% sure, so maybe type it up and see what happens?
-Otherwise I think we need to figure out a solution for how we can
-check leases without having to take the dev->master_mutex that
-serializes a lot more things ... I think the fundamental problem we
-have here is that dev->master_mutex serves 2 purposes: a) protecting
-the pointers and just data consistency and b) synchronizing against
-concurrent master changes where we think that's required. It's the
-latter (through the fbdev emulation code) that causes all the
-inversion problems, a) it's could easily nest very deeply in other
-locks.
-
-> diff --git a/drivers/gpu/drm/drm_mode_object.c
-> b/drivers/gpu/drm/drm_mode_object.c
-> index b26588b52795..63d35f1f98dd 100644
-> --- a/drivers/gpu/drm/drm_mode_object.c
-> +++ b/drivers/gpu/drm/drm_mode_object.c
-> @@ -146,16 +146,18 @@ struct drm_mode_object
-> *__drm_mode_object_find(struct drm_device *dev,
->          if (obj && obj->id != id)
->                  obj = NULL;
->
-> -       if (obj && drm_mode_object_lease_required(obj->type) &&
-> -           !_drm_lease_held(file_priv, obj->id))
-> -               obj = NULL;
-> -
->          if (obj && obj->free_cb) {
->                  if (!kref_get_unless_zero(&obj->refcount))
->                          obj = NULL;
->          }
->          mutex_unlock(&dev->mode_config.idr_mutex);
->
-> +       if (obj && drm_mode_object_lease_required(obj->type) &&
-> +               !_drm_lease_held(file_priv, obj->id)) {
-> +               drm_mode_object_put(obj);
-> +               obj = NULL;
-> +       }
-
-Irrespective of all this I think this change here makes sense since in
-untangels the master stuff from the lookup idr, and that's always
-good. Maybe do this hunk as a separate patch, and I'll apply that as
-prep work?
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjkvMDYvMjAyMSAyMjozNSwgTWF0dGhldyBCcm9zdCB3cm90ZToKPiBBZGQgZW50cnkgZm9y
+IGk5MTUgR3VDIHN1Ym1pc3Npb24gLyBEUk0gc2NoZWR1bGVyIGludGVncmF0aW9uIHBsYW4uCj4g
+Rm9sbG93IHVwIHBhdGNoIHdpdGggZGV0YWlscyBvZiBuZXcgcGFyYWxsZWwgc3VibWlzc2lvbiB1
+QVBJIHRvIGNvbWUuCj4gCj4gdjI6Cj4gICAoRGFuaWVsIFZldHRlcikKPiAgICAtIEV4cGFuZCBl
+eHBsYWluYXRpb24gb2Ygd2h5IGJvbmRpbmcgaXNuJ3Qgc3VwcG9ydGVkIGZvciBHdUMKPiAgICAg
+IHN1Ym1pc3Npb24KPiAgICAtIENDIHNvbWUgb2YgdGhlIERSTSBzY2hlZHVsZXIgbWFpbnRhaW5l
+cnMKPiAgICAtIEFkZCBwcmlvcml0eSBpbmhlcml0YW5jZSAvIGJvb3N0aW5nIHVzZSBjYXNlCj4g
+ICAgLSBBZGQgcmVhc29uaW5nIGZvciByZW1vdmluZyBpbiBvcmRlciBhc3N1bXB0aW9ucwo+ICAg
+KERhbmllbCBTdG9uZSkKPiAgICAtIEFkZCBsaW5rcyB0byBwcmlvcml0eSBzcGVjCj4gdjQ6Cj4g
+ICAoVHZydGtvKQo+ICAgIC0gQWRkIFRPRE9zIHNlY3Rpb24KPiAgIChEYW5pZWwgVmV0dGVyKQo+
+ICAgIC0gUHVsbCBpbiAxIGxpbmUgZnJvbSBmb2xsb3dpbmcgcGF0Y2gKPiB2NToKPiAgIChDaGVj
+a3BhdGNoKQo+ICAgIC0gRml4IHR5cG9zCj4gCj4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlz
+dGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBDYzogTHViZW4gVHVpa292IDxsdWJlbi50dWlrb3ZAYW1k
+LmNvbT4KPiBDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+IENj
+OiBTdGV2ZW4gUHJpY2UgPHN0ZXZlbi5wcmljZUBhcm0uY29tPgo+IENjOiBKb24gQmxvb21maWVs
+ZCA8am9uLmJsb29tZmllbGRAaW50ZWwuY29tPgo+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEBn
+bWFpbC5jb20+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+
+IENjOiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+Cj4gQ2M6IGRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEJyb3N0IDxt
+YXR0aGV3LmJyb3N0QGludGVsLmNvbT4KPiBSZXZpZXdlZC1ieTogRGFuaWVsIFZldHRlciA8ZGFu
+aWVsLnZldHRlckBmZndsbC5jaD4KPiBBY2tlZC1ieTogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVk
+aGF0LmNvbT4KPiAtLS0KPiAgIERvY3VtZW50YXRpb24vZ3B1L3JmYy9pOTE1X3NjaGVkdWxlci5y
+c3QgfCA5MSArKysrKysrKysrKysrKysrKysrKysrKysKPiAgIERvY3VtZW50YXRpb24vZ3B1L3Jm
+Yy9pbmRleC5yc3QgICAgICAgICAgfCAgNCArKwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCA5NSBpbnNl
+cnRpb25zKCspCj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2k5
+MTVfc2NoZWR1bGVyLnJzdAo+IAo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2dwdS9yZmMv
+aTkxNV9zY2hlZHVsZXIucnN0IGIvRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2k5MTVfc2NoZWR1bGVy
+LnJzdAo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi43YWNkMzg2
+YTZiNDkKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2k5MTVf
+c2NoZWR1bGVyLnJzdAo+IEBAIC0wLDAgKzEsOTEgQEAKPiArPT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT0KPiArSTkxNSBHdUMgU3VibWlzc2lvbi9EUk0gU2NoZWR1bGVy
+IFNlY3Rpb24KPiArPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiAr
+Cj4gK1Vwc3RyZWFtIHBsYW4KPiArPT09PT09PT09PT09PQo+ICtGb3IgdXBzdHJlYW0gdGhlIG92
+ZXJhbGwgcGxhbiBmb3IgbGFuZGluZyBHdUMgc3VibWlzc2lvbiBhbmQgaW50ZWdyYXRpbmcgdGhl
+Cj4gK2k5MTUgd2l0aCB0aGUgRFJNIHNjaGVkdWxlciBpczoKPiArCj4gKyogTWVyZ2UgYmFzaWMg
+R3VDIHN1Ym1pc3Npb24KPiArCSogQmFzaWMgc3VibWlzc2lvbiBzdXBwb3J0IGZvciBhbGwgZ2Vu
+MTErIHBsYXRmb3Jtcwo+ICsJKiBOb3QgZW5hYmxlZCBieSBkZWZhdWx0IG9uIGFueSBjdXJyZW50
+IHBsYXRmb3JtcyBidXQgY2FuIGJlIGVuYWJsZWQgdmlhCj4gKwkgIG1vZHBhcmFtIGVuYWJsZV9n
+dWMKCkp1c3QgYSBxdWljayByZW1pbmRlciB0aGF0IGEgbG90IG9mIHVzZXJzIGhhdmUgdGhpcyBw
+YXJhbWV0ZXIgc2V0IGluIAp0aGVpciBncnViIGNvbW1hbmQgbGluZSBiZWNhdXNlIG9mIHRoZSBp
+bmNvcnJlY3QgYXNzdW1wdGlvbiB0aGF0IHF1aWNrIApzeW5jIHJlcXVpcmVzIHRoZSBIdUMgd2hp
+Y2ggcmVxdWlyZXMgdGhlIEd1QyBjb21tYW5kIHN1Ym1pc3Npb24uCgpKdXN0IGJlYXIgdGhhdCBp
+biBtaW5kIGFuZCBtYWtlIHN1cmUgdGhlcmUgaXMgYSBtaW5pbXVtIG9mIHF1YWxpdHkgaW4gCnRo
+ZSBHdUMgYmFja2VuZCBiZWZvcmUgYWxsb3dpbmcgdXNlcnMgdG8gdXNlIHRoZSBHdUMsIGV2ZW4g
+YmVoaW5kIHRoaXMgCmtlcm5lbCBwYXJhbWV0ZXIuCgpNYXliZSBhIHdhcm5pbmcgaW4gdGhlIGtl
+cm5lbCBsb2dzIHNheWluZyB0aGF0IHRoaXMgZmVhdHVyZSBpcyAKZXhwZXJpbWVudGFsLCBhbmQg
+dXNlICJlbmFibGVfZ3VjPTEiIGZvciB0aGUgZnVsbGVzdCBxdWljayBzeW5jIHN1cHBvcnQgCndp
+bGwgaW1wcm92ZSB0aGUgdXNlciBzYXRpc2ZhY3Rpb24sIGFuZCBzYXZlIHlvdSBzb21lIHRpbWUg
+aGFuZGxpbmcgCnVud2FudGVkIGJ1Z3MuCgo+ICsJKiBMb3RzIG9mIHJld29yayB3aWxsIG5lZWQg
+dG8gYmUgZG9uZSB0byBpbnRlZ3JhdGUgd2l0aCBEUk0gc2NoZWR1bGVyIHNvCj4gKwkgIG5vIG5l
+ZWQgdG8gbml0IHBpY2sgZXZlcnl0aGluZyBpbiB0aGUgY29kZSwgaXQganVzdCBzaG91bGQgYmUK
+PiArCSAgZnVuY3Rpb25hbCwgbm8gbWFqb3IgY29kaW5nIHN0eWxlIC8gbGF5ZXJpbmcgZXJyb3Jz
+LCBhbmQgbm90IHJlZ3Jlc3MKPiArCSAgZXhlY2xpc3RzCj4gKwkqIFVwZGF0ZSBJR1RzIC8gc2Vs
+ZnRlc3RzIGFzIG5lZWRlZCB0byB3b3JrIHdpdGggR3VDIHN1Ym1pc3Npb24KPiArCSogRW5hYmxl
+IENJIG9uIHN1cHBvcnRlZCBwbGF0Zm9ybXMgZm9yIGEgYmFzZWxpbmUKCldoYXQncyB0aGUgcGxh
+biB0byBrZWVwIHRoZSBjb21wYXJpc29uIGJldHdlZW4gR3VDIGFuZCBleGVjbGlzdHM/IFRoZSBD
+SSAKbWFjaGluZXMgY2Fubm90IGp1c3QgdGVzdCB0aGUgR3VDIGFzIGl0IHdvdWxkIGV4cG9zZSB1
+c2VycyB0byAKcmVncmVzc2lvbnMgaW4gdGhlIGRlZmF1bHQgbW9kZSwgYW5kIG1hY2hpbmVzIGFy
+ZSBoYXJkIHRvIGNvbWUgYnkgaW4gdGhlIApDSSBsYWIuCgo+ICsJKiBSZXdvcmsgLyBnZXQgQ0kg
+aGVhdGhseSBmb3IgR3VDIHN1Ym1pc3Npb24gaW4gcGxhY2UgYXMgbmVlZGVkCj4gKyogTWVyZ2Ug
+bmV3IHBhcmFsbGVsIHN1Ym1pc3Npb24gdUFQSQo+ICsJKiBCb25kaW5nIHVBUEkgY29tcGxldGVs
+eSBpbmNvbXBhdGlibGUgd2l0aCBHdUMgc3VibWlzc2lvbiwgcGx1cyBpdCBoYXMKPiArCSAgc2V2
+ZXJlIGRlc2lnbiBpc3N1ZXMgaW4gZ2VuZXJhbCwgd2hpY2ggaXMgd2h5IHdlIHdhbnQgdG8gcmV0
+aXJlIGl0IG5vCj4gKwkgIG1hdHRlciB3aGF0Cj4gKwkqIE5ldyB1QVBJIGFkZHMgSTkxNV9DT05U
+RVhUX0VOR0lORVNfRVhUX1BBUkFMTEVMIGNvbnRleHQgc2V0dXAgc3RlcAo+ICsJICB3aGljaCBj
+b25maWd1cmVzIGEgc2xvdCB3aXRoIE4gY29udGV4dHMKPiArCSogQWZ0ZXIgSTkxNV9DT05URVhU
+X0VOR0lORVNfRVhUX1BBUkFMTEVMIGEgdXNlciBjYW4gc3VibWl0IE4gYmF0Y2hlcyB0bwo+ICsJ
+ICBhIHNsb3QgaW4gYSBzaW5nbGUgZXhlY2J1ZiBJT0NUTCBhbmQgdGhlIGJhdGNoZXMgcnVuIG9u
+IHRoZSBHUFUgaW4KPiArCSAgcGFyYWxsbGVsCgpGWUksIHRoaXMgaXMgYSB0eXBvCgo+ICsJKiBJ
+bml0aWFsbHkgb25seSBmb3IgR3VDIHN1Ym1pc3Npb24gYnV0IGV4ZWNsaXN0cyBjYW4gYmUgc3Vw
+cG9ydGVkIGlmCj4gKwkgIG5lZWRlZAo+ICsqIENvbnZlcnQgdGhlIGk5MTUgdG8gdXNlIHRoZSBE
+Uk0gc2NoZWR1bGVyCj4gKwkqIEd1QyBzdWJtaXNzaW9uIGJhY2tlbmQgZnVsbHkgaW50ZWdyYXRl
+ZCB3aXRoIERSTSBzY2hlZHVsZXIKPiArCQkqIEFsbCByZXF1ZXN0IHF1ZXVlcyByZW1vdmVkIGZy
+b20gYmFja2VuZCAoZS5nLiBhbGwgYmFja3ByZXNzdXJlCj4gKwkJICBoYW5kbGVkIGluIERSTSBz
+Y2hlZHVsZXIpCj4gKwkJKiBSZXNldHMgLyBjYW5jZWxzIGhvb2sgaW4gRFJNIHNjaGVkdWxlcgo+
+ICsJCSogV2F0Y2hkb2cgaG9va3MgaW50byBEUk0gc2NoZWR1bGVyCj4gKwkJKiBMb3RzIG9mIGNv
+bXBsZXhpdHkgb2YgdGhlIEd1QyBiYWNrZW5kIGNhbiBiZSBwdWxsZWQgb3V0IG9uY2UKPiArCQkg
+IGludGVncmF0ZWQgd2l0aCBEUk0gc2NoZWR1bGVyIChlLmcuIHN0YXRlIG1hY2hpbmUgZ2V0cwo+
+ICsJCSAgc2ltcGxpZXIsIGxvY2tpbmcgZ2V0cyBzaW1wbGllciwgZXRjLi4uKQoKQXMgbXVjaCBh
+cyBJIHdvdWxkIGxpa2UgbW9yZSBjb25zaXN0ZW5jeSBpbiB0aGUgRW5nbGlzaCBsYW5ndWFnZSwg
+CnNpbXBsaWVyIGlzIG5vdCBhIHdvcmQgaW4gdGhlIGRpY3Rpb25hcnkuCgo+ICsJKiBFeGVjbGlz
+dHMgYmFja2VuZCB3aWxsIG1pbmltdW0gcmVxdWlyZWQgdG8gaG9vayBpbiB0aGUgRFJNIHNjaGVk
+dWxlcgoKQ2FuJ3QgcGFyc2UgdGhpcyBzZW50ZW5jZS4gSG93IGFib3V0OiAiTWluaW11bSBpbnRl
+Z3JhdGlvbiBvZiB0aGUgCmV4ZWNsaXN0cyBiYWNrZW5kIGluIHRoZSBEUk0gc2NoZWR1bGVyIj8K
+Ck90aGVyIHRoYW4gdGhlc2UgdHlwb2dyYXBoaWNhbCBuaXRwaWNrcywgSSB0aGluayB0aGUgcGxh
+biBpcyBzYW5lIApwcm92aWRlZCB0aGF0IHlvdSBjYW4gZmluZCBlbm91Z2ggQ0kgbWFjaGluZXMg
+YW5kIGFkZCB0aGUgd2FybmluZy4KCj4gKwkJKiBMZWdhY3kgaW50ZXJmYWNlCj4gKwkJKiBGZWF0
+dXJlcyBsaWtlIHRpbWVzbGljaW5nIC8gcHJlZW1wdGlvbiAvIHZpcnR1YWwgZW5naW5lcyB3b3Vs
+ZAo+ICsJCSAgYmUgZGlmZmljdWx0IHRvIGludGVncmF0ZSB3aXRoIHRoZSBEUk0gc2NoZWR1bGVy
+IGFuZCB0aGVzZQo+ICsJCSAgZmVhdHVyZXMgYXJlIG5vdCByZXF1aXJlZCBmb3IgR3VDIHN1Ym1p
+c3Npb24gYXMgdGhlIEd1QyBkb2VzCj4gKwkJICB0aGVzZSB0aGluZ3MgZm9yIHVzCj4gKwkJKiBS
+T0kgbG93IG9uIGZ1bGx5IGludGVncmF0aW5nIGludG8gRFJNIHNjaGVkdWxlcgo+ICsJCSogRnVs
+bHkgaW50ZWdyYXRpbmcgd291bGQgYWRkIGxvdHMgb2YgY29tcGxleGl0eSB0byBEUk0KPiArCQkg
+IHNjaGVkdWxlcgo+ICsJKiBQb3J0IGk5MTUgcHJpb3JpdHkgaW5oZXJpdGFuY2UgLyBib29zdGlu
+ZyBmZWF0dXJlIGluIERSTSBzY2hlZHVsZXIKPiArCQkqIFVzZWQgZm9yIGk5MTUgcGFnZSBmbGlw
+LCBtYXkgYmUgdXNlZnVsIHRvIG90aGVyIERSTSBkcml2ZXJzIGFzCj4gKwkJICB3ZWxsCj4gKwkJ
+KiBXaWxsIGJlIGFuIG9wdGlvbmFsIGZlYXR1cmUgaW4gdGhlIERSTSBzY2hlZHVsZXIKPiArCSog
+UmVtb3ZlIGluLW9yZGVyIGNvbXBsZXRpb24gYXNzdW1wdGlvbnMgZnJvbSBEUk0gc2NoZWR1bGVy
+Cj4gKwkJKiBFdmVuIHdoZW4gdXNpbmcgdGhlIERSTSBzY2hlZHVsZXIgdGhlIGJhY2tlbmRzIHdp
+bGwgaGFuZGxlCj4gKwkJICBwcmVlbXB0aW9uLCB0aW1lc2xpY2luZywgZXRjLi4uIHNvIGl0IGlz
+IHBvc3NpYmxlIGZvciBqb2JzIHRvCj4gKwkJICBmaW5pc2ggb3V0IG9mIG9yZGVyCj4gKwkqIFB1
+bGwgb3V0IGk5MTUgcHJpb3JpdHkgbGV2ZWxzIGFuZCB1c2UgRFJNIHByaW9yaXR5IGxldmVscwo+
+ICsJKiBPcHRpbWl6ZSBEUk0gc2NoZWR1bGVyIGFzIG5lZWRlZAo+ICsKPiArVE9ET3MgZm9yIEd1
+QyBzdWJtaXNzaW9uIHVwc3RyZWFtCj4gKz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PQo+ICsKPiArKiBOZWVkIGFuIHVwZGF0ZSB0byBHdUMgZmlybXdhcmUgLyBpOTE1IHRvIGVuYWJs
+ZSBlcnJvciBzdGF0ZSBjYXB0dXJlCj4gKyogT3BlbiBzb3VyY2UgdG9vbCB0byBkZWNvZGUgR3VD
+IGxvZ3MKPiArKiBQdWJsaWMgR3VDIHNwZWMKPiArCj4gK05ldyB1QVBJIGZvciBiYXNpYyBHdUMg
+c3VibWlzc2lvbgo+ICs9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiArTm8gbWFq
+b3IgY2hhbmdlcyBhcmUgcmVxdWlyZWQgdG8gdGhlIHVBUEkgZm9yIGJhc2ljIEd1QyBzdWJtaXNz
+aW9uLiBUaGUgb25seQo+ICtjaGFuZ2UgaXMgYSBuZXcgc2NoZWR1bGVyIGF0dHJpYnV0ZTogSTkx
+NV9TQ0hFRFVMRVJfQ0FQX1NUQVRJQ19QUklPUklUWV9NQVAuCj4gK1RoaXMgYXR0cmlidXRlIGlu
+ZGljYXRlcyB0aGUgMmsgaTkxNSB1c2VyIHByaW9yaXR5IGxldmVscyBhcmUgc3RhdGljYWxseSBt
+YXBwZWQKPiAraW50byAzIGxldmVscyBhcyBmb2xsb3dzOgo+ICsKPiArKiAtMWsgdG8gLTEgTG93
+IHByaW9yaXR5Cj4gKyogMCBNZWRpdW0gcHJpb3JpdHkKPiArKiAxIHRvIDFrIEhpZ2ggcHJpb3Jp
+dHkKPiArCj4gK1RoaXMgaXMgbmVlZGVkIGJlY2F1c2UgdGhlIEd1QyBvbmx5IGhhcyA0IHByaW9y
+aXR5IGJhbmRzLiBUaGUgaGlnaGVzdCBwcmlvcml0eQo+ICtiYW5kIGlzIHJlc2VydmVkIHdpdGgg
+dGhlIGtlcm5lbC4gVGhpcyBhbGlnbnMgd2l0aCB0aGUgRFJNIHNjaGVkdWxlciBwcmlvcml0eQo+
+ICtsZXZlbHMgdG9vLgo+ICsKPiArU3BlYyByZWZlcmVuY2VzOgo+ICstLS0tLS0tLS0tLS0tLS0t
+Cj4gKyogaHR0cHM6Ly93d3cua2hyb25vcy5vcmcvcmVnaXN0cnkvRUdML2V4dGVuc2lvbnMvSU1H
+L0VHTF9JTUdfY29udGV4dF9wcmlvcml0eS50eHQKPiArKiBodHRwczovL3d3dy5raHJvbm9zLm9y
+Zy9yZWdpc3RyeS92dWxrYW4vc3BlY3MvMS4yLWV4dGVuc2lvbnMvaHRtbC9jaGFwNS5odG1sI2Rl
+dnNhbmRxdWV1ZXMtcHJpb3JpdHkKPiArKiBodHRwczovL3NwZWMub25lYXBpLmNvbS9sZXZlbC16
+ZXJvL2xhdGVzdC9jb3JlL2FwaS5odG1sI3plLWNvbW1hbmQtcXVldWUtcHJpb3JpdHktdAo+ICsK
+PiArTmV3IHBhcmFsbGVsIHN1Ym1pc3Npb24gdUFQSQo+ICs9PT09PT09PT09PT09PT09PT09PT09
+PT09PT09Cj4gK0RldGFpbHMgdG8gY29tZSBpbiBhIGZvbGxvd2luZyBwYXRjaC4KPiBkaWZmIC0t
+Z2l0IGEvRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2luZGV4LnJzdCBiL0RvY3VtZW50YXRpb24vZ3B1
+L3JmYy9pbmRleC5yc3QKPiBpbmRleCAwNTY3MDQ0MmNhMWIuLjkxZTkzYTcwNTIzMCAxMDA2NDQK
+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2dwdS9yZmMvaW5kZXgucnN0Cj4gKysrIGIvRG9jdW1lbnRh
+dGlvbi9ncHUvcmZjL2luZGV4LnJzdAo+IEBAIC0xOSwzICsxOSw3IEBAIGhvc3Qgc3VjaCBkb2N1
+bWVudGF0aW9uOgo+ICAgLi4gdG9jdHJlZTo6Cj4gICAKPiAgICAgICBpOTE1X2dlbV9sbWVtLnJz
+dAo+ICsKPiArLi4gdG9jdHJlZTo6Cj4gKwo+ICsgICAgaTkxNV9zY2hlZHVsZXIucnN0Cj4gCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
