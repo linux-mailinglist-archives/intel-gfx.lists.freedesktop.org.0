@@ -1,45 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7373B7EB9
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 10:12:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DDD43B7ED7
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jun 2021 10:21:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29C8F6E94C;
-	Wed, 30 Jun 2021 08:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4AF66E8D0;
+	Wed, 30 Jun 2021 08:21:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE046E947;
- Wed, 30 Jun 2021 08:12:06 +0000 (UTC)
-Received: from [192.168.1.190] (unknown [91.155.165.229])
- (Authenticated sender: martin.peres@free.fr)
- by smtp5-g21.free.fr (Postfix) with ESMTPSA id 4F9015FFAD;
- Wed, 30 Jun 2021 10:11:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
- s=smtp-20201208; t=1625040724;
- bh=ezyJz45Tsx6GAz9cFK8xp2tdcLvGnYIA5ytIhHDvaE4=;
- h=Subject:To:References:From:Date:In-Reply-To:From;
- b=SFKT+1JU/dj19sEgiWATH16WolGNnBjKAfzytIjgIS7d0esflC1+XXTPQ17eoA7dV
- EZa3V7to6HNc3odfyGgvJJ0TpP6DKQIPleUAEN4TH51Cwj99W3RltnP/+GsybC/NPq
- wxvNuAyisxu8AWXf9e5HxyXvcfl+VkwtpFF5DRTNIJYFxABnpPMT9CPk6vVbLhB9Kv
- FkFtoD6wbH6GAPdumxFcV2b0RC+EXaPsZAvzCHvGZ7Zp6zdw9bwDkYqlZhqUXA3vCq
- q0uq48oRHwaScWz7wBn+/s252i3hSVUBzIU7l5eY95N6vdTVbLbjAsJxEaYE7NmEnt
- 1eBUCtzec5Puw==
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210629193511.124099-1-matthew.brost@intel.com>
- <20210629193511.124099-2-matthew.brost@intel.com>
-From: Martin Peres <martin.peres@free.fr>
-Message-ID: <7d7db7e2-8d83-d7b4-1ed2-527d635577ef@free.fr>
-Date: Wed, 30 Jun 2021 11:11:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
+ [IPv6:2a00:1450:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9736A6E8D0;
+ Wed, 30 Jun 2021 08:21:54 +0000 (UTC)
+Received: by mail-lj1-x22b.google.com with SMTP id r16so2090210ljk.9;
+ Wed, 30 Jun 2021 01:21:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=hZsvTLZOLa73TaoUFrO86oENQd+0mQCVdwH24gWx43k=;
+ b=DgQzfN/7iPgfgzWuMdVHu/wR0geA31ByXd6YZMg/u3mN0nrZy55bUX93RrOxrVyzea
+ aCCSmp2orxNAnz2QHWtc9EbF+T0aeWJT0SIWO9HE2faqYVJu2BSbe2xhokzDY2REQ2k+
+ 4XJROrW6yNMTwJDyr7mL/MQk8XfdmNtRz4QLe2R3eFO2gEU4oIybELseKDXeaSXxYUc3
+ 5nOT26bw4UtNT9WwfL8ZA7gCq2q/TLzkjSb33qTxuXMguv4Yhhm4u8E6xSDWjMPQwHfC
+ 0J7ZOtsUdswpt91k63RAyX5obB49HssBECKDUsNVzd7JMuQ6glpYt3bAzDnLZxM/MsSh
+ dGrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=hZsvTLZOLa73TaoUFrO86oENQd+0mQCVdwH24gWx43k=;
+ b=lPzc8y0ai4irSEwpNi5G3OYfofu3KPIyQfWmoNU+xiDyZ70hL7rNbn2T4m5Kbx4/UP
+ 2Ec5N7JVXU2iHdOVxoyHZsP+dHab6aZadN539Zzj34+e7mIGBinMofSD2phyDBIsDxUj
+ GSrTzNsayBcij/HXJd0AYJ2uvtod053oebceJLWwKHOS6b3709mlsVRWD0VEmNJUVD0V
+ fuF2XSnQTcold5A7jkTTwtu2MU1/0rPuqD/K4fOqygeQe0A6vnC+ZQ402t/wNhN1FbGH
+ 8CuBnDTx4mxPThcrc+SRvLKvXSwgoNGlmNG9/7xwRpkmOgDK65xo1GbqoAwjv5s/LP7Y
+ 029Q==
+X-Gm-Message-State: AOAM531ai+x+FMvLem8KyM0oy78GpIAjNuZb/0eBWVyMYYXM4YUx+ROG
+ Dx7U+c+8Kj+9l4g/eY3DH/Y=
+X-Google-Smtp-Source: ABdhPJyQ2kBBBjZ329tk3iOGWtBvA7R4zWVLnLft0NfFi9Hf3QYoWO2nGq/YRNBGVkyWV4i9QaZxmQ==
+X-Received: by 2002:a2e:b179:: with SMTP id a25mr7052329ljm.151.1625041312867; 
+ Wed, 30 Jun 2021 01:21:52 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id o15sm1483903lfu.134.2021.06.30.01.21.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 30 Jun 2021 01:21:52 -0700 (PDT)
+Date: Wed, 30 Jun 2021 11:21:41 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <20210630112141.319f67eb@eldfell>
+In-Reply-To: <11cd3340-46a1-9a6a-88f5-95c225863509@tuxedocomputers.com>
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+ <20210618091116.14428-4-wse@tuxedocomputers.com>
+ <18bbd0cf-4c37-ce9d-eb63-de4131a201e1@tuxedocomputers.com>
+ <11cd3340-46a1-9a6a-88f5-95c225863509@tuxedocomputers.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210629193511.124099-2-matthew.brost@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/doc/rfc: i915 GuC submission / DRM
- scheduler
+Subject: Re: [Intel-gfx] [PATCH v4 03/17] drm/uAPI: Add "active bpc" as
+ feedback channel for "max bpc" drm property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,142 +69,282 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
+ intel-gfx@lists.freedesktop.org, sunpeng.li@amd.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, airlied@linux.ie, alexander.deucher@amd.com,
+ harry.wentland@amd.com, christian.koenig@amd.com
+Content-Type: multipart/mixed; boundary="===============0289349692=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjkvMDYvMjAyMSAyMjozNSwgTWF0dGhldyBCcm9zdCB3cm90ZToKPiBBZGQgZW50cnkgZm9y
-IGk5MTUgR3VDIHN1Ym1pc3Npb24gLyBEUk0gc2NoZWR1bGVyIGludGVncmF0aW9uIHBsYW4uCj4g
-Rm9sbG93IHVwIHBhdGNoIHdpdGggZGV0YWlscyBvZiBuZXcgcGFyYWxsZWwgc3VibWlzc2lvbiB1
-QVBJIHRvIGNvbWUuCj4gCj4gdjI6Cj4gICAoRGFuaWVsIFZldHRlcikKPiAgICAtIEV4cGFuZCBl
-eHBsYWluYXRpb24gb2Ygd2h5IGJvbmRpbmcgaXNuJ3Qgc3VwcG9ydGVkIGZvciBHdUMKPiAgICAg
-IHN1Ym1pc3Npb24KPiAgICAtIENDIHNvbWUgb2YgdGhlIERSTSBzY2hlZHVsZXIgbWFpbnRhaW5l
-cnMKPiAgICAtIEFkZCBwcmlvcml0eSBpbmhlcml0YW5jZSAvIGJvb3N0aW5nIHVzZSBjYXNlCj4g
-ICAgLSBBZGQgcmVhc29uaW5nIGZvciByZW1vdmluZyBpbiBvcmRlciBhc3N1bXB0aW9ucwo+ICAg
-KERhbmllbCBTdG9uZSkKPiAgICAtIEFkZCBsaW5rcyB0byBwcmlvcml0eSBzcGVjCj4gdjQ6Cj4g
-ICAoVHZydGtvKQo+ICAgIC0gQWRkIFRPRE9zIHNlY3Rpb24KPiAgIChEYW5pZWwgVmV0dGVyKQo+
-ICAgIC0gUHVsbCBpbiAxIGxpbmUgZnJvbSBmb2xsb3dpbmcgcGF0Y2gKPiB2NToKPiAgIChDaGVj
-a3BhdGNoKQo+ICAgIC0gRml4IHR5cG9zCj4gCj4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlz
-dGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBDYzogTHViZW4gVHVpa292IDxsdWJlbi50dWlrb3ZAYW1k
-LmNvbT4KPiBDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+IENj
-OiBTdGV2ZW4gUHJpY2UgPHN0ZXZlbi5wcmljZUBhcm0uY29tPgo+IENjOiBKb24gQmxvb21maWVs
-ZCA8am9uLmJsb29tZmllbGRAaW50ZWwuY29tPgo+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEBn
-bWFpbC5jb20+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+
-IENjOiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+Cj4gQ2M6IGRyaS1kZXZl
-bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEJyb3N0IDxt
-YXR0aGV3LmJyb3N0QGludGVsLmNvbT4KPiBSZXZpZXdlZC1ieTogRGFuaWVsIFZldHRlciA8ZGFu
-aWVsLnZldHRlckBmZndsbC5jaD4KPiBBY2tlZC1ieTogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVk
-aGF0LmNvbT4KPiAtLS0KPiAgIERvY3VtZW50YXRpb24vZ3B1L3JmYy9pOTE1X3NjaGVkdWxlci5y
-c3QgfCA5MSArKysrKysrKysrKysrKysrKysrKysrKysKPiAgIERvY3VtZW50YXRpb24vZ3B1L3Jm
-Yy9pbmRleC5yc3QgICAgICAgICAgfCAgNCArKwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCA5NSBpbnNl
-cnRpb25zKCspCj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2k5
-MTVfc2NoZWR1bGVyLnJzdAo+IAo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2dwdS9yZmMv
-aTkxNV9zY2hlZHVsZXIucnN0IGIvRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2k5MTVfc2NoZWR1bGVy
-LnJzdAo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi43YWNkMzg2
-YTZiNDkKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2k5MTVf
-c2NoZWR1bGVyLnJzdAo+IEBAIC0wLDAgKzEsOTEgQEAKPiArPT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT0KPiArSTkxNSBHdUMgU3VibWlzc2lvbi9EUk0gU2NoZWR1bGVy
-IFNlY3Rpb24KPiArPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiAr
-Cj4gK1Vwc3RyZWFtIHBsYW4KPiArPT09PT09PT09PT09PQo+ICtGb3IgdXBzdHJlYW0gdGhlIG92
-ZXJhbGwgcGxhbiBmb3IgbGFuZGluZyBHdUMgc3VibWlzc2lvbiBhbmQgaW50ZWdyYXRpbmcgdGhl
-Cj4gK2k5MTUgd2l0aCB0aGUgRFJNIHNjaGVkdWxlciBpczoKPiArCj4gKyogTWVyZ2UgYmFzaWMg
-R3VDIHN1Ym1pc3Npb24KPiArCSogQmFzaWMgc3VibWlzc2lvbiBzdXBwb3J0IGZvciBhbGwgZ2Vu
-MTErIHBsYXRmb3Jtcwo+ICsJKiBOb3QgZW5hYmxlZCBieSBkZWZhdWx0IG9uIGFueSBjdXJyZW50
-IHBsYXRmb3JtcyBidXQgY2FuIGJlIGVuYWJsZWQgdmlhCj4gKwkgIG1vZHBhcmFtIGVuYWJsZV9n
-dWMKCkp1c3QgYSBxdWljayByZW1pbmRlciB0aGF0IGEgbG90IG9mIHVzZXJzIGhhdmUgdGhpcyBw
-YXJhbWV0ZXIgc2V0IGluIAp0aGVpciBncnViIGNvbW1hbmQgbGluZSBiZWNhdXNlIG9mIHRoZSBp
-bmNvcnJlY3QgYXNzdW1wdGlvbiB0aGF0IHF1aWNrIApzeW5jIHJlcXVpcmVzIHRoZSBIdUMgd2hp
-Y2ggcmVxdWlyZXMgdGhlIEd1QyBjb21tYW5kIHN1Ym1pc3Npb24uCgpKdXN0IGJlYXIgdGhhdCBp
-biBtaW5kIGFuZCBtYWtlIHN1cmUgdGhlcmUgaXMgYSBtaW5pbXVtIG9mIHF1YWxpdHkgaW4gCnRo
-ZSBHdUMgYmFja2VuZCBiZWZvcmUgYWxsb3dpbmcgdXNlcnMgdG8gdXNlIHRoZSBHdUMsIGV2ZW4g
-YmVoaW5kIHRoaXMgCmtlcm5lbCBwYXJhbWV0ZXIuCgpNYXliZSBhIHdhcm5pbmcgaW4gdGhlIGtl
-cm5lbCBsb2dzIHNheWluZyB0aGF0IHRoaXMgZmVhdHVyZSBpcyAKZXhwZXJpbWVudGFsLCBhbmQg
-dXNlICJlbmFibGVfZ3VjPTEiIGZvciB0aGUgZnVsbGVzdCBxdWljayBzeW5jIHN1cHBvcnQgCndp
-bGwgaW1wcm92ZSB0aGUgdXNlciBzYXRpc2ZhY3Rpb24sIGFuZCBzYXZlIHlvdSBzb21lIHRpbWUg
-aGFuZGxpbmcgCnVud2FudGVkIGJ1Z3MuCgo+ICsJKiBMb3RzIG9mIHJld29yayB3aWxsIG5lZWQg
-dG8gYmUgZG9uZSB0byBpbnRlZ3JhdGUgd2l0aCBEUk0gc2NoZWR1bGVyIHNvCj4gKwkgIG5vIG5l
-ZWQgdG8gbml0IHBpY2sgZXZlcnl0aGluZyBpbiB0aGUgY29kZSwgaXQganVzdCBzaG91bGQgYmUK
-PiArCSAgZnVuY3Rpb25hbCwgbm8gbWFqb3IgY29kaW5nIHN0eWxlIC8gbGF5ZXJpbmcgZXJyb3Jz
-LCBhbmQgbm90IHJlZ3Jlc3MKPiArCSAgZXhlY2xpc3RzCj4gKwkqIFVwZGF0ZSBJR1RzIC8gc2Vs
-ZnRlc3RzIGFzIG5lZWRlZCB0byB3b3JrIHdpdGggR3VDIHN1Ym1pc3Npb24KPiArCSogRW5hYmxl
-IENJIG9uIHN1cHBvcnRlZCBwbGF0Zm9ybXMgZm9yIGEgYmFzZWxpbmUKCldoYXQncyB0aGUgcGxh
-biB0byBrZWVwIHRoZSBjb21wYXJpc29uIGJldHdlZW4gR3VDIGFuZCBleGVjbGlzdHM/IFRoZSBD
-SSAKbWFjaGluZXMgY2Fubm90IGp1c3QgdGVzdCB0aGUgR3VDIGFzIGl0IHdvdWxkIGV4cG9zZSB1
-c2VycyB0byAKcmVncmVzc2lvbnMgaW4gdGhlIGRlZmF1bHQgbW9kZSwgYW5kIG1hY2hpbmVzIGFy
-ZSBoYXJkIHRvIGNvbWUgYnkgaW4gdGhlIApDSSBsYWIuCgo+ICsJKiBSZXdvcmsgLyBnZXQgQ0kg
-aGVhdGhseSBmb3IgR3VDIHN1Ym1pc3Npb24gaW4gcGxhY2UgYXMgbmVlZGVkCj4gKyogTWVyZ2Ug
-bmV3IHBhcmFsbGVsIHN1Ym1pc3Npb24gdUFQSQo+ICsJKiBCb25kaW5nIHVBUEkgY29tcGxldGVs
-eSBpbmNvbXBhdGlibGUgd2l0aCBHdUMgc3VibWlzc2lvbiwgcGx1cyBpdCBoYXMKPiArCSAgc2V2
-ZXJlIGRlc2lnbiBpc3N1ZXMgaW4gZ2VuZXJhbCwgd2hpY2ggaXMgd2h5IHdlIHdhbnQgdG8gcmV0
-aXJlIGl0IG5vCj4gKwkgIG1hdHRlciB3aGF0Cj4gKwkqIE5ldyB1QVBJIGFkZHMgSTkxNV9DT05U
-RVhUX0VOR0lORVNfRVhUX1BBUkFMTEVMIGNvbnRleHQgc2V0dXAgc3RlcAo+ICsJICB3aGljaCBj
-b25maWd1cmVzIGEgc2xvdCB3aXRoIE4gY29udGV4dHMKPiArCSogQWZ0ZXIgSTkxNV9DT05URVhU
-X0VOR0lORVNfRVhUX1BBUkFMTEVMIGEgdXNlciBjYW4gc3VibWl0IE4gYmF0Y2hlcyB0bwo+ICsJ
-ICBhIHNsb3QgaW4gYSBzaW5nbGUgZXhlY2J1ZiBJT0NUTCBhbmQgdGhlIGJhdGNoZXMgcnVuIG9u
-IHRoZSBHUFUgaW4KPiArCSAgcGFyYWxsbGVsCgpGWUksIHRoaXMgaXMgYSB0eXBvCgo+ICsJKiBJ
-bml0aWFsbHkgb25seSBmb3IgR3VDIHN1Ym1pc3Npb24gYnV0IGV4ZWNsaXN0cyBjYW4gYmUgc3Vw
-cG9ydGVkIGlmCj4gKwkgIG5lZWRlZAo+ICsqIENvbnZlcnQgdGhlIGk5MTUgdG8gdXNlIHRoZSBE
-Uk0gc2NoZWR1bGVyCj4gKwkqIEd1QyBzdWJtaXNzaW9uIGJhY2tlbmQgZnVsbHkgaW50ZWdyYXRl
-ZCB3aXRoIERSTSBzY2hlZHVsZXIKPiArCQkqIEFsbCByZXF1ZXN0IHF1ZXVlcyByZW1vdmVkIGZy
-b20gYmFja2VuZCAoZS5nLiBhbGwgYmFja3ByZXNzdXJlCj4gKwkJICBoYW5kbGVkIGluIERSTSBz
-Y2hlZHVsZXIpCj4gKwkJKiBSZXNldHMgLyBjYW5jZWxzIGhvb2sgaW4gRFJNIHNjaGVkdWxlcgo+
-ICsJCSogV2F0Y2hkb2cgaG9va3MgaW50byBEUk0gc2NoZWR1bGVyCj4gKwkJKiBMb3RzIG9mIGNv
-bXBsZXhpdHkgb2YgdGhlIEd1QyBiYWNrZW5kIGNhbiBiZSBwdWxsZWQgb3V0IG9uY2UKPiArCQkg
-IGludGVncmF0ZWQgd2l0aCBEUk0gc2NoZWR1bGVyIChlLmcuIHN0YXRlIG1hY2hpbmUgZ2V0cwo+
-ICsJCSAgc2ltcGxpZXIsIGxvY2tpbmcgZ2V0cyBzaW1wbGllciwgZXRjLi4uKQoKQXMgbXVjaCBh
-cyBJIHdvdWxkIGxpa2UgbW9yZSBjb25zaXN0ZW5jeSBpbiB0aGUgRW5nbGlzaCBsYW5ndWFnZSwg
-CnNpbXBsaWVyIGlzIG5vdCBhIHdvcmQgaW4gdGhlIGRpY3Rpb25hcnkuCgo+ICsJKiBFeGVjbGlz
-dHMgYmFja2VuZCB3aWxsIG1pbmltdW0gcmVxdWlyZWQgdG8gaG9vayBpbiB0aGUgRFJNIHNjaGVk
-dWxlcgoKQ2FuJ3QgcGFyc2UgdGhpcyBzZW50ZW5jZS4gSG93IGFib3V0OiAiTWluaW11bSBpbnRl
-Z3JhdGlvbiBvZiB0aGUgCmV4ZWNsaXN0cyBiYWNrZW5kIGluIHRoZSBEUk0gc2NoZWR1bGVyIj8K
-Ck90aGVyIHRoYW4gdGhlc2UgdHlwb2dyYXBoaWNhbCBuaXRwaWNrcywgSSB0aGluayB0aGUgcGxh
-biBpcyBzYW5lIApwcm92aWRlZCB0aGF0IHlvdSBjYW4gZmluZCBlbm91Z2ggQ0kgbWFjaGluZXMg
-YW5kIGFkZCB0aGUgd2FybmluZy4KCj4gKwkJKiBMZWdhY3kgaW50ZXJmYWNlCj4gKwkJKiBGZWF0
-dXJlcyBsaWtlIHRpbWVzbGljaW5nIC8gcHJlZW1wdGlvbiAvIHZpcnR1YWwgZW5naW5lcyB3b3Vs
-ZAo+ICsJCSAgYmUgZGlmZmljdWx0IHRvIGludGVncmF0ZSB3aXRoIHRoZSBEUk0gc2NoZWR1bGVy
-IGFuZCB0aGVzZQo+ICsJCSAgZmVhdHVyZXMgYXJlIG5vdCByZXF1aXJlZCBmb3IgR3VDIHN1Ym1p
-c3Npb24gYXMgdGhlIEd1QyBkb2VzCj4gKwkJICB0aGVzZSB0aGluZ3MgZm9yIHVzCj4gKwkJKiBS
-T0kgbG93IG9uIGZ1bGx5IGludGVncmF0aW5nIGludG8gRFJNIHNjaGVkdWxlcgo+ICsJCSogRnVs
-bHkgaW50ZWdyYXRpbmcgd291bGQgYWRkIGxvdHMgb2YgY29tcGxleGl0eSB0byBEUk0KPiArCQkg
-IHNjaGVkdWxlcgo+ICsJKiBQb3J0IGk5MTUgcHJpb3JpdHkgaW5oZXJpdGFuY2UgLyBib29zdGlu
-ZyBmZWF0dXJlIGluIERSTSBzY2hlZHVsZXIKPiArCQkqIFVzZWQgZm9yIGk5MTUgcGFnZSBmbGlw
-LCBtYXkgYmUgdXNlZnVsIHRvIG90aGVyIERSTSBkcml2ZXJzIGFzCj4gKwkJICB3ZWxsCj4gKwkJ
-KiBXaWxsIGJlIGFuIG9wdGlvbmFsIGZlYXR1cmUgaW4gdGhlIERSTSBzY2hlZHVsZXIKPiArCSog
-UmVtb3ZlIGluLW9yZGVyIGNvbXBsZXRpb24gYXNzdW1wdGlvbnMgZnJvbSBEUk0gc2NoZWR1bGVy
-Cj4gKwkJKiBFdmVuIHdoZW4gdXNpbmcgdGhlIERSTSBzY2hlZHVsZXIgdGhlIGJhY2tlbmRzIHdp
-bGwgaGFuZGxlCj4gKwkJICBwcmVlbXB0aW9uLCB0aW1lc2xpY2luZywgZXRjLi4uIHNvIGl0IGlz
-IHBvc3NpYmxlIGZvciBqb2JzIHRvCj4gKwkJICBmaW5pc2ggb3V0IG9mIG9yZGVyCj4gKwkqIFB1
-bGwgb3V0IGk5MTUgcHJpb3JpdHkgbGV2ZWxzIGFuZCB1c2UgRFJNIHByaW9yaXR5IGxldmVscwo+
-ICsJKiBPcHRpbWl6ZSBEUk0gc2NoZWR1bGVyIGFzIG5lZWRlZAo+ICsKPiArVE9ET3MgZm9yIEd1
-QyBzdWJtaXNzaW9uIHVwc3RyZWFtCj4gKz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PQo+ICsKPiArKiBOZWVkIGFuIHVwZGF0ZSB0byBHdUMgZmlybXdhcmUgLyBpOTE1IHRvIGVuYWJs
-ZSBlcnJvciBzdGF0ZSBjYXB0dXJlCj4gKyogT3BlbiBzb3VyY2UgdG9vbCB0byBkZWNvZGUgR3VD
-IGxvZ3MKPiArKiBQdWJsaWMgR3VDIHNwZWMKPiArCj4gK05ldyB1QVBJIGZvciBiYXNpYyBHdUMg
-c3VibWlzc2lvbgo+ICs9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiArTm8gbWFq
-b3IgY2hhbmdlcyBhcmUgcmVxdWlyZWQgdG8gdGhlIHVBUEkgZm9yIGJhc2ljIEd1QyBzdWJtaXNz
-aW9uLiBUaGUgb25seQo+ICtjaGFuZ2UgaXMgYSBuZXcgc2NoZWR1bGVyIGF0dHJpYnV0ZTogSTkx
-NV9TQ0hFRFVMRVJfQ0FQX1NUQVRJQ19QUklPUklUWV9NQVAuCj4gK1RoaXMgYXR0cmlidXRlIGlu
-ZGljYXRlcyB0aGUgMmsgaTkxNSB1c2VyIHByaW9yaXR5IGxldmVscyBhcmUgc3RhdGljYWxseSBt
-YXBwZWQKPiAraW50byAzIGxldmVscyBhcyBmb2xsb3dzOgo+ICsKPiArKiAtMWsgdG8gLTEgTG93
-IHByaW9yaXR5Cj4gKyogMCBNZWRpdW0gcHJpb3JpdHkKPiArKiAxIHRvIDFrIEhpZ2ggcHJpb3Jp
-dHkKPiArCj4gK1RoaXMgaXMgbmVlZGVkIGJlY2F1c2UgdGhlIEd1QyBvbmx5IGhhcyA0IHByaW9y
-aXR5IGJhbmRzLiBUaGUgaGlnaGVzdCBwcmlvcml0eQo+ICtiYW5kIGlzIHJlc2VydmVkIHdpdGgg
-dGhlIGtlcm5lbC4gVGhpcyBhbGlnbnMgd2l0aCB0aGUgRFJNIHNjaGVkdWxlciBwcmlvcml0eQo+
-ICtsZXZlbHMgdG9vLgo+ICsKPiArU3BlYyByZWZlcmVuY2VzOgo+ICstLS0tLS0tLS0tLS0tLS0t
-Cj4gKyogaHR0cHM6Ly93d3cua2hyb25vcy5vcmcvcmVnaXN0cnkvRUdML2V4dGVuc2lvbnMvSU1H
-L0VHTF9JTUdfY29udGV4dF9wcmlvcml0eS50eHQKPiArKiBodHRwczovL3d3dy5raHJvbm9zLm9y
-Zy9yZWdpc3RyeS92dWxrYW4vc3BlY3MvMS4yLWV4dGVuc2lvbnMvaHRtbC9jaGFwNS5odG1sI2Rl
-dnNhbmRxdWV1ZXMtcHJpb3JpdHkKPiArKiBodHRwczovL3NwZWMub25lYXBpLmNvbS9sZXZlbC16
-ZXJvL2xhdGVzdC9jb3JlL2FwaS5odG1sI3plLWNvbW1hbmQtcXVldWUtcHJpb3JpdHktdAo+ICsK
-PiArTmV3IHBhcmFsbGVsIHN1Ym1pc3Npb24gdUFQSQo+ICs9PT09PT09PT09PT09PT09PT09PT09
-PT09PT09Cj4gK0RldGFpbHMgdG8gY29tZSBpbiBhIGZvbGxvd2luZyBwYXRjaC4KPiBkaWZmIC0t
-Z2l0IGEvRG9jdW1lbnRhdGlvbi9ncHUvcmZjL2luZGV4LnJzdCBiL0RvY3VtZW50YXRpb24vZ3B1
-L3JmYy9pbmRleC5yc3QKPiBpbmRleCAwNTY3MDQ0MmNhMWIuLjkxZTkzYTcwNTIzMCAxMDA2NDQK
-PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2dwdS9yZmMvaW5kZXgucnN0Cj4gKysrIGIvRG9jdW1lbnRh
-dGlvbi9ncHUvcmZjL2luZGV4LnJzdAo+IEBAIC0xOSwzICsxOSw3IEBAIGhvc3Qgc3VjaCBkb2N1
-bWVudGF0aW9uOgo+ICAgLi4gdG9jdHJlZTo6Cj4gICAKPiAgICAgICBpOTE1X2dlbV9sbWVtLnJz
-dAo+ICsKPiArLi4gdG9jdHJlZTo6Cj4gKwo+ICsgICAgaTkxNV9zY2hlZHVsZXIucnN0Cj4gCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============0289349692==
+Content-Type: multipart/signed; boundary="Sig_/d+W4/r3y/cicXeDeLKMi=2J";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/d+W4/r3y/cicXeDeLKMi=2J
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 29 Jun 2021 13:02:05 +0200
+Werner Sembach <wse@tuxedocomputers.com> wrote:
+
+> Am 28.06.21 um 19:03 schrieb Werner Sembach:
+> > Am 18.06.21 um 11:11 schrieb Werner Sembach: =20
+> >> Add a new general drm property "active bpc" which can be used by graph=
+ic
+> >> drivers to report the applied bit depth per pixel back to userspace.
+> >>
+> >> While "max bpc" can be used to change the color depth, there was no wa=
+y to
+> >> check which one actually got used. While in theory the driver chooses =
+the
+> >> best/highest color depth within the max bpc setting a user might not be
+> >> fully aware what his hardware is or isn't capable off. This is meant a=
+s a
+> >> quick way to double check the setup.
+> >>
+> >> In the future, automatic color calibration for screens might also depe=
+nd on
+> >> this information being available.
+> >>
+> >> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> >> ---
+> >>  drivers/gpu/drm/drm_connector.c | 51 +++++++++++++++++++++++++++++++++
+> >>  include/drm/drm_connector.h     |  8 ++++++
+> >>  2 files changed, 59 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_con=
+nector.c
+> >> index da39e7ff6965..943f6b61053b 100644
+> >> --- a/drivers/gpu/drm/drm_connector.c
+> >> +++ b/drivers/gpu/drm/drm_connector.c
+> >> @@ -1197,6 +1197,14 @@ static const struct drm_prop_enum_list dp_color=
+spaces[] =3D {
+> >>   *	drm_connector_attach_max_bpc_property() to create and attach the
+> >>   *	property to the connector during initialization.
+> >>   *
+> >> + * active bpc:
+> >> + *	This read-only range property tells userspace the pixel color bit =
+depth
+> >> + *	actually used by the hardware display engine on "the cable" on a
+> >> + *	connector. The chosen value depends on hardware capabilities, both
+> >> + *	display engine and connected monitor, and the "max bpc" property.
+> >> + *	Drivers shall use drm_connector_attach_active_bpc_property() to in=
+stall
+> >> + *	this property.
+> >> + * =20
+> > Regarding "on the cable" and dithering: As far as I can tell, what the =
+dithering option does, is setting a hardware
+> > register here:
+> >
+> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/di=
+splay/intel_display.c#L4534
+> >
+> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/di=
+splay/intel_display.c#L4571
+> >
+> > So dithering seems to be calculated by fixed purpose hardware/firmware =
+outside of the driver?
+> >
+> > The Intel driver does not seem to set a target bpc/bpp for this hardwar=
+e so I guess it defaults to 6 or 8 bpc? =20
+>=20
+> Never mind it does. This switch-case does affect the dithering output:
+> https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/i915/displa=
+y/intel_display.c#L4537
+
+Hi,
+
+I obviously do not know the intel driver or hardware at all, but
+to me that just looks like translating from bits per pixel to bits per
+channel in RGB mapping?
+
+> As found in this documentation p.548:
+> https://01.org/sites/default/files/documentation/intel-gfx-prm-osrc-lkf-v=
+ol02c-commandreference-registers-part2.pdf
+>=20
+> So max bpc and active bpc are affecting/affected by the bpc after ditheri=
+ng.
+
+By definition, if the cable carries N bpc, then dithering does not
+change that. The cable still carries N bpc, but due to spatial or
+temporal dithering, the *observed* color resolution may or may not be
+higher than the cable bpc.
+
+Of course, if the cable bpc is 8, and dithering targets 6 bpc, then 2
+LSB on the cable are always zero, right?
+
+Maybe one would want to do that if the monitor has a 6 bit panel and it
+simply ignored the 2 LSB, and the cable cannot go down to 6 bpc.
+
+So, what does "max bpc" mean right now?
+
+It seems like dither on/off is insufficient information, one would also
+need to control the dithering target bpc. I suppose the driver has a
+policy on how it chooses the target bpc, but what is that policy? Is
+the dither target bpc the cable bpc or the sink bpc?
+
+Needless to say, I'm quite confused.
+
+
+Thanks,
+pq
+
+> >
+> > Similar things happen on amd. Here the output dither depth seems to be =
+written to a fixed value however:
+> >
+> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/dis=
+play/dc/dce/dce_transform.c#L828
+> >
+> > - https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/dis=
+play/dc/dce/dce_transform.c#L769
+> >
+> > Does anyone know about a resource where I can read up on the used regis=
+ters and what this hardware actually does? =20
+> Searching now for a similar register reference for AMD GPUs.
+> >
+> > My proposal for now: "max bpc" affects what happens before dither, so I=
+ would keep "active bpc" the same and add another
+> > drm property "dither active: true/false". No additional property to con=
+trol dither, as amdgpu does have one already
+> > (which isn't always active?) and Intel driver does only seem prepared f=
+or dithering at 6bpc (albeit I don't know why to
+> > dither at 6bpc and what depth to dither to?).
+> > =20
+> >>   * Connectors also have one standardized atomic property:
+> >>   *
+> >>   * CRTC_ID:
+> >> @@ -2152,6 +2160,49 @@ int drm_connector_attach_max_bpc_property(struc=
+t drm_connector *connector,
+> >>  }
+> >>  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+> >> =20
+> >> +/**
+> >> + * drm_connector_attach_active_bpc_property - attach "active bpc" pro=
+perty
+> >> + * @connector: connector to attach active bpc property on.
+> >> + * @min: The minimum bit depth supported by the connector.
+> >> + * @max: The maximum bit depth supported by the connector.
+> >> + *
+> >> + * This is used to check the applied bit depth on a connector.
+> >> + *
+> >> + * Returns:
+> >> + * Zero on success, negative errno on failure.
+> >> + */
+> >> +int drm_connector_attach_active_bpc_property(struct drm_connector *co=
+nnector, int min, int max)
+> >> +{
+> >> +	struct drm_device *dev =3D connector->dev;
+> >> +	struct drm_property *prop;
+> >> +
+> >> +	if (!connector->active_bpc_property) {
+> >> +		prop =3D drm_property_create_range(dev, DRM_MODE_PROP_IMMUTABLE, "a=
+ctive bpc",
+> >> +						 min, max);
+> >> +		if (!prop)
+> >> +			return -ENOMEM;
+> >> +
+> >> +		connector->active_bpc_property =3D prop;
+> >> +		drm_object_attach_property(&connector->base, prop, 0);
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
+> >> +
+> >> +/**
+> >> + * drm_connector_set_active_bpc_property - sets the active bits per c=
+olor property for a connector
+> >> + * @connector: drm connector
+> >> + * @active_bpc: bits per color for the connector currently active on =
+"the cable"
+> >> + *
+> >> + * Should be used by atomic drivers to update the active bits per col=
+or over a connector.
+> >> + */
+> >> +void drm_connector_set_active_bpc_property(struct drm_connector *conn=
+ector, int active_bpc)
+> >> +{
+> >> +	drm_object_property_set_value(&connector->base, connector->active_bp=
+c_property, active_bpc);
+> >> +}
+> >> +EXPORT_SYMBOL(drm_connector_set_active_bpc_property);
+> >> +
+> >>  /**
+> >>   * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OU=
+TPUT_METADA" property
+> >>   * @connector: connector to attach the property on.
+> >> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> >> index 714d1a01c065..eee86de62a5f 100644
+> >> --- a/include/drm/drm_connector.h
+> >> +++ b/include/drm/drm_connector.h
+> >> @@ -1380,6 +1380,12 @@ struct drm_connector {
+> >>  	 */
+> >>  	struct drm_property *max_bpc_property;
+> >> =20
+> >> +	/**
+> >> +	 * @active_bpc_property: Default connector property for the active b=
+pc
+> >> +	 * to be driven out of the connector.
+> >> +	 */
+> >> +	struct drm_property *active_bpc_property;
+> >> +
+> >>  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
+> >>  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
+> >>  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
+> >> @@ -1702,6 +1708,8 @@ int drm_connector_set_panel_orientation_with_qui=
+rk(
+> >>  	int width, int height);
+> >>  int drm_connector_attach_max_bpc_property(struct drm_connector *conne=
+ctor,
+> >>  					  int min, int max);
+> >> +int drm_connector_attach_active_bpc_property(struct drm_connector *co=
+nnector, int min, int max);
+> >> +void drm_connector_set_active_bpc_property(struct drm_connector *conn=
+ector, int active_bpc);
+> >> =20
+> >>  /**
+> >>   * struct drm_tile_group - Tile group metadata =20
+> > _______________________________________________
+> > amd-gfx mailing list
+> > amd-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx =20
+
+
+--Sig_/d+W4/r3y/cicXeDeLKMi=2J
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDcKZUACgkQI1/ltBGq
+qqeqdg/8CF5zxg8SC07EblgJxP2vCkieAX19ZtS60gATvWdGS+YPe2s3KgxYoT/5
+D9Dy00MHpCRAIsfuQzHUywPyh4ikcBfQhSShHhCx2wj39AI4bzScJqqseHweXPKB
+528knact4LDNt01vtLE04ICXq+jiQWyGqaiDoEpxgVC2cVT7gYfZh5fSfWfZuVRu
+Zqcetbv95nxFRA0Zsb139J5LqDuyIncewfIyzvYJ5TSWrVSyesCFsuwH5WS7XpTK
+GxVvGvAMHH9M3TMnWRyGE96fWxjpmyJlkPHE6RPA08CjXvKd+NzFKs2tBkmiI7A+
+L1/qwiWsQSt6lrqlXULcVV0RU4KUJChIIEYbWvKjGlUpuqiISavGJX6ulv623TpX
+DZcYgAEd2GWiHV9J3nr0N9o7G3B/GZlp43helBstOgCq2pwP0XDepbUgSDi3Sjf5
+t1gmFPTrvbo6LXo9iuuvLnUooS17raiGmxV9JgIY+gFul9AhlPDzUIsX7U3fM60P
+UE4VNbkS9HZLFFPlNrE/bScWasiHw0TPrO76nHBNALPu7Si/IiUbsAWtKm5eOB+V
+cVov1b1bDEDE5pxKW/hoWewg6HGBTsCEOsY4frDG/hE9Kvg3V58eYOCclBQYqQxw
+aPqTJuyFi6jkc+Mu0sMcd3U00hKz4QLdDqMLgknnqEKAXvhZqX8=
+=PU5d
+-----END PGP SIGNATURE-----
+
+--Sig_/d+W4/r3y/cicXeDeLKMi=2J--
+
+--===============0289349692==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0289349692==--
