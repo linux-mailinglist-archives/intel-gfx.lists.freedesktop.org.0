@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4F03B9152
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 13:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DEE83B91A7
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 14:30:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A972C6EAD1;
-	Thu,  1 Jul 2021 11:50:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8B06E03F;
+	Thu,  1 Jul 2021 12:30:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8974A6EAD0;
- Thu,  1 Jul 2021 11:50:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 81E88A47DF;
- Thu,  1 Jul 2021 11:50:25 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 379406EA34;
+ Wed, 30 Jun 2021 15:56:56 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3EC0061396;
+ Wed, 30 Jun 2021 15:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1625068615;
+ bh=t4c1D/KrdZudddoFFMreAQi55GnAG0OUL4mpRujr/+8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=nFQR+NYjpCrpMIj0+9nBAj35wlj1qXRWbFKtyhNDLpJTAm3BAAOI+jIUn7QIQ6LMC
+ /D08b/Wyq1LKmfD6NJJYuuUXm1XpHRMF+bzag+U7SE0Xnf1l+0yaFFUCUoKE4yB6Fx
+ KHCUGF9UUbr1kSihYQ7S2P6QTrW/0sw9J8RiF/5y7S55QWGDrjBUVqbIJpceKtB839
+ 13XYMsllNYSyOsjMPZqtEclitRsqTPicPLIWpPGvJ9tnj6RZjijLVBtTMriTuGUDnx
+ pujXO32GnzzUvzSsthpj3FxbtH2/lBtbWkeBfV4uT8mpQQ+qjMcUVFz7XO5LQkzFA7
+ Ko9guip4RPSmA==
+Date: Wed, 30 Jun 2021 08:56:51 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Will Deacon <will@kernel.org>
+Message-ID: <YNyUQwiagNeZ9YeJ@Ryzen-9-3900X.localdomain>
+References: <20210624155526.2775863-1-tientzu@chromium.org>
+ <20210624155526.2775863-7-tientzu@chromium.org>
+ <YNvMDFWKXSm4LRfZ@Ryzen-9-3900X.localdomain>
+ <CALiNf2-a-haQN0-4+gX8+wa++52-0CnO2O4BEkxrQCxoTa_47w@mail.gmail.com>
+ <20210630114348.GA8383@willie-the-truck>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Thu, 01 Jul 2021 11:50:25 -0000
-Message-ID: <162514022552.15054.9723171422659496174@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210701114234.3859716-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20210701114234.3859716-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Add_TTM_offset_argument_to_mmap=2E?=
+Content-Disposition: inline
+In-Reply-To: <20210630114348.GA8383@willie-the-truck>
+X-Mailman-Approved-At: Thu, 01 Jul 2021 12:30:33 +0000
+Subject: Re: [Intel-gfx] [PATCH v15 06/12] swiotlb: Use
+ is_swiotlb_force_bounce for swiotlb data bouncing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +51,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+ peterz@infradead.org, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
+ grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
+ mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ Joerg Roedel <joro@8bytes.org>,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
+ Jianxiong Gao <jxgao@google.com>,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
+ Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
+ Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Claire Chang <tientzu@chromium.org>, boris.ostrovsky@oracle.com,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
+ Nicolas Boichat <drinkcat@chromium.org>, Greg KH <gregkh@linuxfoundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Qian Cai <quic_qiancai@quicinc.com>,
+ lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+ Tom Lendacky <thomas.lendacky@amd.com>, Robin Murphy <robin.murphy@arm.com>,
+ bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Will and Claire,
 
-Series: drm/i915: Add TTM offset argument to mmap.
-URL   : https://patchwork.freedesktop.org/series/92103/
-State : warning
+On Wed, Jun 30, 2021 at 12:43:48PM +0100, Will Deacon wrote:
+> On Wed, Jun 30, 2021 at 05:17:27PM +0800, Claire Chang wrote:
+> > On Wed, Jun 30, 2021 at 9:43 AM Nathan Chancellor <nathan@kernel.org> wrote:
+> > >
+> > > On Thu, Jun 24, 2021 at 11:55:20PM +0800, Claire Chang wrote:
+> > > > Propagate the swiotlb_force into io_tlb_default_mem->force_bounce and
+> > > > use it to determine whether to bounce the data or not. This will be
+> > > > useful later to allow for different pools.
+> > > >
+> > > > Signed-off-by: Claire Chang <tientzu@chromium.org>
+> > > > Reviewed-by: Christoph Hellwig <hch@lst.de>
+> > > > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+> > > > Tested-by: Will Deacon <will@kernel.org>
+> > > > Acked-by: Stefano Stabellini <sstabellini@kernel.org>
+> > >
+> > > This patch as commit af452ec1b1a3 ("swiotlb: Use is_swiotlb_force_bounce
+> > > for swiotlb data bouncing") causes my Ryzen 3 4300G system to fail to
+> > > get to an X session consistently (although not every single time),
+> > > presumably due to a crash in the AMDGPU driver that I see in dmesg.
+> > >
+> > > I have attached logs at af452ec1b1a3 and f127c9556a8e and I am happy
+> > > to provide any further information, debug, or test patches as necessary.
+> > 
+> > Are you using swiotlb=force? or the swiotlb_map is called because of
+> > !dma_capable? (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/kernel/dma/direct.h#n93)
+> 
+> The command line is in the dmesg:
+> 
+>   | Kernel command line: initrd=\amd-ucode.img initrd=\initramfs-linux-next-llvm.img root=PARTUUID=8680aa0c-cf09-4a69-8cf3-970478040ee7 rw intel_pstate=no_hwp irqpoll
+> 
+> but I worry that this looks _very_ similar to the issue reported by Qian
+> Cai which we thought we had fixed. Nathan -- is the failure deterministic?
 
-== Summary ==
+Yes, for the most part. It does not happen every single boot so when I
+was bisecting, I did a series of seven boots and only considered the
+revision good when all seven of them made it to LightDM's greeter. My
+results that I notated show most bad revisions failed anywhere from four
+to six times.
 
-$ dim checkpatch origin/drm-tip
-182e2988c2da drm/i915: Add TTM offset argument to mmap.
--:61: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
-#61: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:985:
-+		/* fall-through */
+> > `BUG: unable to handle page fault for address: 00000000003a8290` and
+> > the fact it crashed at `_raw_spin_lock_irqsave` look like the memory
+> > (maybe dev->dma_io_tlb_mem) was corrupted?
+> > The dev->dma_io_tlb_mem should be set here
+> > (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/pci/probe.c#n2528)
+> > through device_initialize.
+> 
+> I'm less sure about this. 'dma_io_tlb_mem' should be pointing at
+> 'io_tlb_default_mem', which is a page-aligned allocation from memblock.
+> The spinlock is at offset 0x24 in that structure, and looking at the
+> register dump from the crash:
+> 
+> Jun 29 18:28:42 hp-4300G kernel: RSP: 0018:ffffadb4013db9e8 EFLAGS: 00010006
+> Jun 29 18:28:42 hp-4300G kernel: RAX: 00000000003a8290 RBX: 0000000000000000 RCX: ffff8900572ad580
+> Jun 29 18:28:42 hp-4300G kernel: RDX: ffff89005653f024 RSI: 00000000000c0000 RDI: 0000000000001d17
+> Jun 29 18:28:42 hp-4300G kernel: RBP: 000000000a20d000 R08: 00000000000c0000 R09: 0000000000000000
+> Jun 29 18:28:42 hp-4300G kernel: R10: 000000000a20d000 R11: ffff89005653f000 R12: 0000000000000212
+> Jun 29 18:28:42 hp-4300G kernel: R13: 0000000000001000 R14: 0000000000000002 R15: 0000000000200000
+> Jun 29 18:28:42 hp-4300G kernel: FS:  00007f1f8898ea40(0000) GS:ffff890057280000(0000) knlGS:0000000000000000
+> Jun 29 18:28:42 hp-4300G kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> Jun 29 18:28:42 hp-4300G kernel: CR2: 00000000003a8290 CR3: 00000001020d0000 CR4: 0000000000350ee0
+> Jun 29 18:28:42 hp-4300G kernel: Call Trace:
+> Jun 29 18:28:42 hp-4300G kernel:  _raw_spin_lock_irqsave+0x39/0x50
+> Jun 29 18:28:42 hp-4300G kernel:  swiotlb_tbl_map_single+0x12b/0x4c0
+> 
+> Then that correlates with R11 holding the 'dma_io_tlb_mem' pointer and
+> RDX pointing at the spinlock. Yet RAX is holding junk :/
+> 
+> I agree that enabling KASAN would be a good idea, but I also think we
+> probably need to get some more information out of swiotlb_tbl_map_single()
+> to see see what exactly is going wrong in there.
 
-total: 0 errors, 1 warnings, 0 checks, 150 lines checked
+I can certainly enable KASAN and if there is any debug print I can add
+or dump anything, let me know!
 
-
+Cheers,
+Nathan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
