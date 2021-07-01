@@ -2,35 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A12C3B8FB6
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 11:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F381F3B8F93
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 11:13:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7AA6EAB4;
-	Thu,  1 Jul 2021 09:22:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54F6D89E08;
+	Thu,  1 Jul 2021 09:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8105C6EAB4
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jul 2021 09:22:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10031"; a="206679342"
-X-IronPort-AV: E=Sophos;i="5.83,313,1616482800"; d="scan'208";a="206679342"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 02:22:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,313,1616482800"; d="scan'208";a="626302857"
-Received: from kbommu-nuc8i7beh.iind.intel.com ([10.145.162.97])
- by orsmga005.jf.intel.com with ESMTP; 01 Jul 2021 02:22:52 -0700
-From: venkata.sai.patnana@intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jul 2021 14:42:01 +0530
-Message-Id: <20210701091201.3549-2-venkata.sai.patnana@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210701091201.3549-1-venkata.sai.patnana@intel.com>
-References: <20210629065156.30301-1-venkata.sai.patnana@intel.com>
- <20210701091201.3549-1-venkata.sai.patnana@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C1FCC89B7D;
+ Thu,  1 Jul 2021 09:13:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B99C9A41FB;
+ Thu,  1 Jul 2021 09:13:30 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v3 2/2] drm/i915/display/dsc: Set BPP in the kernel
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Date: Thu, 01 Jul 2021 09:13:30 -0000
+Message-ID: <162513081075.15055.967934868022406313@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210701085833.26566-1-tzimmermann@suse.de>
+In-Reply-To: <20210701085833.26566-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_IRQ_fixes_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,75 +38,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+== Series Details ==
 
-Set compress BPP in kernel while connector DP or eDP
+Series: drm/i915: IRQ fixes (rev3)
+URL   : https://patchwork.freedesktop.org/series/92053/
+State : warning
 
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: Navare Manasi D <manasi.d.navare@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++-----
- 1 file changed, 18 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 5b52beaddada0..4ce15da3e33ce 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1241,9 +1241,15 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	pipe_config->lane_count = limits->max_lane_count;
- 
- 	if (intel_dp_is_edp(intel_dp)) {
--		pipe_config->dsc.compressed_bpp =
--			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
--			      pipe_config->pipe_bpp);
-+		if (intel_dp->force_dsc_bpp) {
-+			drm_dbg_kms(&dev_priv->drm,
-+				"DSC BPP forced to %d", intel_dp->force_dsc_bpp);
-+			pipe_config->dsc.compressed_bpp = intel_dp->force_dsc_bpp;
-+		} else {
-+			pipe_config->dsc.compressed_bpp =
-+				min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-+				pipe_config->pipe_bpp);
-+		}
- 		pipe_config->dsc.slice_count =
- 			drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
- 							true);
-@@ -1269,9 +1275,15 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 				    "Compressed BPP/Slice Count not supported\n");
- 			return -EINVAL;
- 		}
--		pipe_config->dsc.compressed_bpp = min_t(u16,
-+		if (intel_dp->force_dsc_bpp) {
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "DSC BPP forced to %d\n", intel_dp->force_dsc_bpp);
-+			pipe_config->dsc.compressed_bpp = intel_dp->force_dsc_bpp;
-+		} else {
-+			pipe_config->dsc.compressed_bpp = min_t(u16,
- 							       dsc_max_output_bpp >> 4,
- 							       pipe_config->pipe_bpp);
-+		}
- 		pipe_config->dsc.slice_count = dsc_dp_slice_count;
- 	}
- 	/*
-@@ -1374,7 +1386,8 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 	 * Pipe joiner needs compression upto display12 due to BW limitation. DG2
- 	 * onwards pipe joiner can be enabled without compression.
- 	 */
--	drm_dbg_kms(&i915->drm, "Force DSC en = %d\n", intel_dp->force_dsc_en);
-+	drm_dbg_kms(&i915->drm, "Force DSC en = %d\n Force DSC BPP = %d\n",
-+		    intel_dp->force_dsc_en, intel_dp->force_dsc_bpp);
- 	if (ret || intel_dp->force_dsc_en || (DISPLAY_VER(i915) < 13 &&
- 					      pipe_config->bigjoiner)) {
- 		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
--- 
-2.25.1
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/gt/intel_ring_submission.c:1207:24: warning: Using plain integer as NULL pointer
+
 
 _______________________________________________
 Intel-gfx mailing list
