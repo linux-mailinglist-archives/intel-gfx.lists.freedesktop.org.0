@@ -1,38 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FCB3B9151
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 13:50:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D4F03B9152
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 13:50:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AFD46E5AB;
-	Thu,  1 Jul 2021 11:50:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A972C6EAD1;
+	Thu,  1 Jul 2021 11:50:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A6E26E5AB
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jul 2021 11:50:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10031"; a="195808696"
-X-IronPort-AV: E=Sophos;i="5.83,314,1616482800"; d="scan'208";a="195808696"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 04:50:13 -0700
-X-IronPort-AV: E=Sophos;i="5.83,314,1616482800"; d="scan'208";a="447859845"
-Received: from bjvanakk-mobl.ger.corp.intel.com (HELO [10.252.61.209])
- ([10.252.61.209])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 04:50:12 -0700
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-References: <20210701114234.3859716-1-maarten.lankhorst@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <4dfba196-0106-6a20-aac1-4ca90c91f899@linux.intel.com>
-Date: Thu, 1 Jul 2021 13:50:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8974A6EAD0;
+ Thu,  1 Jul 2021 11:50:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 81E88A47DF;
+ Thu,  1 Jul 2021 11:50:25 +0000 (UTC)
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Thu, 01 Jul 2021 11:50:25 -0000
+Message-ID: <162514022552.15054.9723171422659496174@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210701114234.3859716-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20210701114234.3859716-1-maarten.lankhorst@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add TTM offset argument to mmap.
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_TTM_offset_argument_to_mmap=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,207 +38,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Ekstrand, Jason" <jason.ekstrand@intel.com>,
- Kenneth Graunke <kenneth@whitecape.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 01-07-2021 om 13:42 schreef Maarten Lankhorst:
-> This is only used for ttm, and tells userspace that the mapping type is
-> ignored. This disables the other type of mmap offsets when discrete
-> memory is used, so fix the selftests as well.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 17 +++++++++++-
->  .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
->  .../drm/i915/gem/selftests/i915_gem_mman.c    | 27 +++++++++++++++++--
->  include/uapi/drm/i915_drm.h                   |  9 ++++---
->  4 files changed, 47 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index a90f796e85c0..b34be9e5d094 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -679,10 +679,16 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
->  		return -ENODEV;
->  
->  	if (obj->ops->mmap_offset)  {
-> +		if (mmap_type != I915_MMAP_TYPE_TTM)
-> +			return -ENODEV;
-> +
->  		*offset = obj->ops->mmap_offset(obj);
->  		return 0;
->  	}
->  
-> +	if (mmap_type == I915_MMAP_TYPE_TTM)
-> +		return -ENODEV;
-> +
->  	if (mmap_type != I915_MMAP_TYPE_GTT &&
->  	    !i915_gem_object_has_struct_page(obj) &&
->  	    !i915_gem_object_has_iomem(obj))
-> @@ -727,7 +733,9 @@ i915_gem_dumb_mmap_offset(struct drm_file *file,
->  {
->  	enum i915_mmap_type mmap_type;
->  
-> -	if (boot_cpu_has(X86_FEATURE_PAT))
-> +	if (HAS_LMEM(to_i915(dev)))
-> +		mmap_type = I915_MMAP_TYPE_TTM;
-> +	else if (boot_cpu_has(X86_FEATURE_PAT))
->  		mmap_type = I915_MMAP_TYPE_WC;
->  	else if (!i915_ggtt_has_aperture(&to_i915(dev)->ggtt))
->  		return -ENODEV;
-> @@ -798,6 +806,10 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
->  		type = I915_MMAP_TYPE_UC;
->  		break;
->  
-> +	case I915_MMAP_OFFSET_TTM:
-> +		type = I915_MMAP_TYPE_TTM;
-> +		break;
-> +
->  	default:
->  		return -EINVAL;
->  	}
-> @@ -968,6 +980,9 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
->  		vma->vm_ops = &vm_ops_cpu;
->  		break;
->  
-> +	case I915_MMAP_TYPE_TTM:
-> +		GEM_WARN_ON(mmo->mmap_type == I915_MMAP_TYPE_TTM);
-> +		/* fall-through */
->  	case I915_MMAP_TYPE_WB:
->  		vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
->  		vma->vm_ops = &vm_ops_cpu;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> index 441f913c87e6..8b872b22a7ec 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -96,6 +96,7 @@ enum i915_mmap_type {
->  	I915_MMAP_TYPE_WC,
->  	I915_MMAP_TYPE_WB,
->  	I915_MMAP_TYPE_UC,
-> +	I915_MMAP_TYPE_TTM,
->  };
->  
->  struct i915_mmap_offset {
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> index 607b7d2d4c29..321271bd2fa1 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> @@ -573,6 +573,14 @@ static int make_obj_busy(struct drm_i915_gem_object *obj)
->  	return 0;
->  }
->  
-> +static enum i915_mmap_type default_mapping(struct drm_i915_private *i915)
-> +{
-> +	if (HAS_LMEM(i915))
-> +		return I915_MMAP_TYPE_TTM;
-> +
-> +	return I915_MMAP_TYPE_GTT;
-> +}
-> +
->  static bool assert_mmap_offset(struct drm_i915_private *i915,
->  			       unsigned long size,
->  			       int expected)
-> @@ -585,7 +593,7 @@ static bool assert_mmap_offset(struct drm_i915_private *i915,
->  	if (IS_ERR(obj))
->  		return expected && expected == PTR_ERR(obj);
->  
-> -	ret = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
-> +	ret = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
->  	i915_gem_object_put(obj);
->  
->  	return ret == expected;
-> @@ -689,7 +697,7 @@ static int igt_mmap_offset_exhaustion(void *arg)
->  		goto out;
->  	}
->  
-> -	err = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
-> +	err = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
->  	if (err) {
->  		pr_err("Unable to insert object into reclaimed hole\n");
->  		goto err_obj;
-> @@ -831,8 +839,14 @@ static int wc_check(struct drm_i915_gem_object *obj)
->  
->  static bool can_mmap(struct drm_i915_gem_object *obj, enum i915_mmap_type type)
->  {
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->  	bool no_map;
->  
-> +	if (HAS_LMEM(i915))
-> +		return type == I915_MMAP_TYPE_TTM;
-> +	else if (type == I915_MMAP_TYPE_TTM)
-> +		return false;
-> +
->  	if (type == I915_MMAP_TYPE_GTT &&
->  	    !i915_ggtt_has_aperture(&to_i915(obj->base.dev)->ggtt))
->  		return false;
-> @@ -970,6 +984,8 @@ static int igt_mmap(void *arg)
->  			err = __igt_mmap(i915, obj, I915_MMAP_TYPE_GTT);
->  			if (err == 0)
->  				err = __igt_mmap(i915, obj, I915_MMAP_TYPE_WC);
-> +			if (err == 0)
-> +				err = __igt_mmap(i915, obj, I915_MMAP_TYPE_TTM);
->  
->  			i915_gem_object_put(obj);
->  			if (err)
-> @@ -987,6 +1003,7 @@ static const char *repr_mmap_type(enum i915_mmap_type type)
->  	case I915_MMAP_TYPE_WB: return "wb";
->  	case I915_MMAP_TYPE_WC: return "wc";
->  	case I915_MMAP_TYPE_UC: return "uc";
-> +	case I915_MMAP_TYPE_TTM: return "ttm";
->  	default: return "unknown";
->  	}
->  }
-> @@ -1100,6 +1117,8 @@ static int igt_mmap_access(void *arg)
->  			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_WC);
->  		if (err == 0)
->  			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_UC);
-> +		if (err == 0)
-> +			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_TTM);
->  
->  		i915_gem_object_put(obj);
->  		if (err)
-> @@ -1241,6 +1260,8 @@ static int igt_mmap_gpu(void *arg)
->  		err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_GTT);
->  		if (err == 0)
->  			err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_WC);
-> +		if (err == 0)
-> +			err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_TTM);
->  
->  		i915_gem_object_put(obj);
->  		if (err)
-> @@ -1396,6 +1417,8 @@ static int igt_mmap_revoke(void *arg)
->  		err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_GTT);
->  		if (err == 0)
->  			err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_WC);
-> +		if (err == 0)
-> +			err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_TTM);
->  
->  		i915_gem_object_put(obj);
->  		if (err)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 2f70c48567c0..12ec9c7f1711 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -867,10 +867,11 @@ struct drm_i915_gem_mmap_offset {
->  	 * (GTT, WC, WB, UC, etc) should be included.
->  	 */
->  	__u64 flags;
-> -#define I915_MMAP_OFFSET_GTT 0
-> -#define I915_MMAP_OFFSET_WC  1
-> -#define I915_MMAP_OFFSET_WB  2
-> -#define I915_MMAP_OFFSET_UC  3
-> +#define I915_MMAP_OFFSET_GTT	0
-> +#define I915_MMAP_OFFSET_WC	1
-> +#define I915_MMAP_OFFSET_WB	2
-> +#define I915_MMAP_OFFSET_UC	3
-> +#define I915_MMAP_OFFSET_TTM	4
->  
->  	/*
->  	 * Zero-terminated chain of extensions.
+== Series Details ==
+
+Series: drm/i915: Add TTM offset argument to mmap.
+URL   : https://patchwork.freedesktop.org/series/92103/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+182e2988c2da drm/i915: Add TTM offset argument to mmap.
+-:61: WARNING:PREFER_FALLTHROUGH: Prefer 'fallthrough;' over fallthrough comment
+#61: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:985:
++		/* fall-through */
+
+total: 0 errors, 1 warnings, 0 checks, 150 lines checked
 
 
 _______________________________________________
