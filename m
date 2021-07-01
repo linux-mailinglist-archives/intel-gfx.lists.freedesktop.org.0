@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 282FF3B9746
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 22:26:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AACB3B9747
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 22:26:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 710196EC27;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0FDE6EC29;
 	Thu,  1 Jul 2021 20:25:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A7716EB9E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5A56EBA2;
  Thu,  1 Jul 2021 20:25:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="188998655"
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="188998655"
+X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="188998657"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="188998657"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jul 2021 13:25:21 -0700
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="644564479"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="644564484"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jul 2021 13:25:20 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jul 2021 13:24:01 -0700
-Message-Id: <20210701202427.1547543-28-matthew.d.roper@intel.com>
+Date: Thu,  1 Jul 2021 13:24:02 -0700
+Message-Id: <20210701202427.1547543-29-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210701202427.1547543-1-matthew.d.roper@intel.com>
 References: <20210701202427.1547543-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 27/53] drm/i915/dg2: Update LNCF steering ranges
+Subject: [Intel-gfx] [PATCH 28/53] drm/i915/dg2: Add SQIDI steering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,47 +48,106 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DG2's replicated register ranges are almost the same at XeHP SDV with
-the exception of one LNCF sub-range that switches to gslice steering.
-We can re-use the XeHP SDV mslice steering table and just provide a
-DG2-specific LNCF steering table.
+Although DG2_G10 platforms will always have all SQIDI's present and
+don't need steering for registers in a SQIDI MMIO range, this isn't true
+for DG2_G11 platforms; only SQIDI's 2 and 3 can be used on those.
+
+We handle SQIDI ranges a bit differently from other types of explicit
+steering.  The SQIDI ranges belong to either the MCFG unit or the SF
+unit, both of which have their own dedicated steering registers and do
+not use the typical 0xFDC steering control that all other types of
+ranges use.  Thus we only need to worry about picking a valid initial
+value for the MCFG and SF steering registers (0xFD0 and 0xFD8
+resepectively) at driver init; they won't change after we set them up so
+we don't need to worry about re-steering them explicitly at runtime.
+
+Given that any SQIDI value should work fine for DG2-G10 and XeHP SDV,
+while only values of 2 and 3 are valid for DG2-G11, we'll just
+initialize the MCFG and SF steering registers to a constant value of "2"
+for all XeHP-based platforms for simplicity --- that will work in all
+cases.
 
 Bspec: 66534
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 28 +++++++++++++++++----
+ drivers/gpu/drm/i915/i915_reg.h             |  2 ++
+ 2 files changed, 25 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 9d1c99c9c0dd..d640fd37792f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -103,6 +103,12 @@ static const struct intel_mmio_range xehpsdv_lncf_steering_table[] = {
- 	{},
- };
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 4302dc1b728e..f97ff2848122 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -944,17 +944,24 @@ cfl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 		    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
+ }
  
-+static const struct intel_mmio_range dg2_lncf_steering_table[] = {
-+	{ 0x00B000, 0x00B0FF },
-+	{ 0x00D880, 0x00D8FF },
-+	{},
-+};
-+
- static u16 slicemask(struct intel_gt *gt, int count)
+-static void __add_mcr_wa(struct drm_i915_private *i915, struct i915_wa_list *wal,
+-			 unsigned slice, unsigned subslice)
++static void __set_mcr_steering(struct i915_wa_list *wal,
++			       i915_reg_t steering_reg,
++			       unsigned int slice, unsigned int subslice)
  {
- 	u64 dss_mask = intel_sseu_get_subslices(&gt->info.sseu, 0);
-@@ -127,7 +133,10 @@ int intel_gt_init_mmio(struct intel_gt *gt)
- 			(intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3) &
- 			 GEN12_MEML3_EN_MASK);
+ 	u32 mcr, mcr_mask;
  
--	if (IS_XEHPSDV(gt->i915)) {
-+	if (IS_DG2(gt->i915)) {
-+		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
-+		gt->steering_table[LNCF] = dg2_lncf_steering_table;
-+	} else if (IS_XEHPSDV(gt->i915)) {
- 		gt->steering_table[MSLICE] = xehpsdv_mslice_steering_table;
- 		gt->steering_table[LNCF] = xehpsdv_lncf_steering_table;
- 	} else if (GRAPHICS_VER(gt->i915) >= 11 &&
+ 	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
+ 	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+ 
+-	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
++	wa_write_clr_set(wal, steering_reg, mcr_mask, mcr);
++}
++
++static void __add_mcr_wa(struct drm_i915_private *i915, struct i915_wa_list *wal,
++			 unsigned int slice, unsigned int subslice)
++{
++	drm_dbg(&i915->drm, "MCR slice=0x%x, subslice=0x%x\n", slice, subslice);
+ 
+-	wa_write_clr_set(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
++	__set_mcr_steering(wal, GEN8_MCR_SELECTOR, slice, subslice);
+ }
+ 
+ static void
+@@ -1008,7 +1015,6 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	 * - L3 Bank (fusable)
+ 	 * - MSLICE (fusable)
+ 	 * - LNCF (sub-unit within mslice; always present if mslice is present)
+-	 * - SQIDI (always on)
+ 	 *
+ 	 * We'll do our default/implicit steering based on GSLICE (in the
+ 	 * sliceid field) and DSS (in the subsliceid field).  If we can
+@@ -1058,6 +1064,18 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
+ 	WARN_ON(dss_mask >> (slice * GEN_DSS_PER_GSLICE) == 0);
+ 
+ 	__add_mcr_wa(i915, wal, slice, subslice);
++
++	/*
++	 * SQIDI ranges are special because they use different steering
++	 * registers than everything else we work with.  On XeHP SDV and
++	 * DG2-G10, any value in the steering registers will work fine since
++	 * all instances are present, but DG2-G11 only has SQIDI instances at
++	 * ID's 2 and 3, so we need to steer to one of those.  For simplicity
++	 * we'll just steer to a hardcoded "2" since that value will work
++	 * everywhere.
++	 */
++	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
++	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
+ }
+ 
+ static void
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 2992e8585399..b19d102e0a01 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2686,6 +2686,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define GEN12_SC_INSTDONE_EXTRA2	_MMIO(0x7108)
+ #define GEN7_SAMPLER_INSTDONE	_MMIO(0xe160)
+ #define GEN7_ROW_INSTDONE	_MMIO(0xe164)
++#define MCFG_MCR_SELECTOR		_MMIO(0xfd0)
++#define SF_MCR_SELECTOR			_MMIO(0xfd8)
+ #define GEN8_MCR_SELECTOR		_MMIO(0xfdc)
+ #define   GEN8_MCR_SLICE(slice)		(((slice) & 3) << 26)
+ #define   GEN8_MCR_SLICE_MASK		GEN8_MCR_SLICE(3)
 -- 
 2.25.4
 
