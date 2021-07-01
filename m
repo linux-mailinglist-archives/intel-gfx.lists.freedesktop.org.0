@@ -2,31 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4863B947E
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 18:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C83A13B94E4
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 18:53:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 508AE6EB54;
-	Thu,  1 Jul 2021 16:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11CF289A72;
+	Thu,  1 Jul 2021 16:53:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2E4B46EB50;
- Thu,  1 Jul 2021 16:03:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25FE6A8836;
- Thu,  1 Jul 2021 16:03:53 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB5F88635;
+ Thu,  1 Jul 2021 16:53:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="208524743"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="208524743"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2021 09:53:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="426222744"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga002.jf.intel.com with ESMTP; 01 Jul 2021 09:53:25 -0700
+Received: from mwajdecz-MOBL.ger.corp.intel.com
+ (mwajdecz-MOBL.ger.corp.intel.com [10.249.146.9])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 161GrOor018728; Thu, 1 Jul 2021 17:53:24 +0100
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Thu,  1 Jul 2021 18:53:21 +0200
+Message-Id: <20210701165321.2067-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 01 Jul 2021 16:03:53 -0000
-Message-ID: <162515543312.15054.15532567654363299762@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210701151019.1103315-1-matthew.auld@intel.com>
-In-Reply-To: <20210701151019.1103315-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/3=5D_drm/i915=3A_use_consistent_CPU?=
- =?utf-8?q?_mappings_for_pin=5Fmap_users?=
+Subject: [Intel-gfx] [PATCH] drm/i915/guc: Improve GuC CTB ABI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,191 +44,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0899160740=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0899160740==
-Content-Type: multipart/alternative;
- boundary="===============6303131230633159856=="
+Make CTB Header explicit and separate from CTB Message.
 
---===============6303131230633159856==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ .../gt/uc/abi/guc_communication_ctb_abi.h     | 51 +++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 24 ++++-----
+ 2 files changed, 43 insertions(+), 32 deletions(-)
 
-== Series Details ==
-
-Series: series starting with [v2,1/3] drm/i915: use consistent CPU mappings for pin_map users
-URL   : https://patchwork.freedesktop.org/series/92114/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10297 -> Patchwork_20509
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20509 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][2] -> [FAIL][3] ([i915#2203])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10297/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][4] -> [FAIL][5] ([i915#1372])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10297/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3717]: https://gitlab.freedesktop.org/drm/intel/issues/3717
-
-
-Participating hosts (37 -> 35)
-------------------------------
-
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10297 -> Patchwork_20509
-
-  CI-20190529: 20190529
-  CI_DRM_10297: 96c7ad60de68518bdcd0d0e6381a2359034a0226 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6125: 5bb62cb290fa32777934de4b39e107ccd282f7e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20509: 11c689134982034df96812e0fd3c64a73845ff7b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-11c689134982 drm/i915/uapi: reject set_domain for discrete
-cf29b90656be drm/i915/uapi: reject caching ioctls for discrete
-c99f7340de54 drm/i915: use consistent CPU mappings for pin_map users
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/index.html
-
---===============6303131230633159856==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/3] drm/i915: use consistent CPU mappings for pin_map users</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92114/">https://patchwork.freedesktop.org/series/92114/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10297 -&gt; Patchwork_20509</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20509 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/fi-kbl-soraka/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10297/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10297/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20509/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (37 -&gt; 35)</h2>
-<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10297 -&gt; Patchwork_20509</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10297: 96c7ad60de68518bdcd0d0e6381a2359034a0226 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6125: 5bb62cb290fa32777934de4b39e107ccd282f7e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20509: 11c689134982034df96812e0fd3c64a73845ff7b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>11c689134982 drm/i915/uapi: reject set_domain for discrete<br />
-cf29b90656be drm/i915/uapi: reject caching ioctls for discrete<br />
-c99f7340de54 drm/i915: use consistent CPU mappings for pin_map users</p>
-
-</body>
-</html>
-
---===============6303131230633159856==--
-
---===============0899160740==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+index e933ca02d0eb..90a86759e108 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+@@ -56,8 +56,9 @@ struct guc_ct_buffer_desc {
+ } __packed;
+ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+ 
++
+ /**
+- * DOC: CTB Message
++ * DOC: CTB Header
+  *
+  *  +---+-------+--------------------------------------------------------------+
+  *  |   | Bits  | Description                                                  |
+@@ -71,21 +72,34 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+  *  |   +-------+--------------------------------------------------------------+
+  *  |   |   7:0 | **NUM_DWORDS** - length of the CTB message (w/o header)      |
+  *  +---+-------+--------------------------------------------------------------+
+- *  | 1 |  31:0 | optional (depends on FORMAT)                                 |
+- *  +---+-------+                                                              |
+- *  |...|       |                                                              |
+- *  +---+-------+                                                              |
+- *  | n |  31:0 |                                                              |
++ */
++
++#define GUC_CTB_HDR_LEN					1u
++#define GUC_CTB_HDR_0_FENCE				(0xffff << 16)
++#define GUC_CTB_HDR_0_FORMAT				(0xf << 12)
++#define   GUC_CTB_FORMAT_HXG				0u
++#define GUC_CTB_HDR_0_RESERVED				(0xf << 8)
++#define GUC_CTB_HDR_0_NUM_DWORDS			(0xff << 0)
++#define   GUC_CTB_MAX_DWORDS				255u
++
++/**
++ * DOC: CTB Message
++ *
++ *  +---+-------+--------------------------------------------------------------+
++ *  |   | Bits  | Description                                                  |
++ *  +===+=======+==============================================================+
++ *  | 0 |  31:0 | `CTB Header`_                                                |
++ *  +---+-------+--------------------------------------------------------------+
++ *  | 1 |  31:0 |  +--------------------------------------------------------+  |
++ *  +---+-------+  |                                                        |  |
++ *  |...|       |  |  optional payload (depends on FORMAT)                  |  |
++ *  +---+-------+  |                                                        |  |
++ *  | n |  31:0 |  +--------------------------------------------------------+  |
+  *  +---+-------+--------------------------------------------------------------+
+  */
+ 
+-#define GUC_CTB_MSG_MIN_LEN			1u
+-#define GUC_CTB_MSG_MAX_LEN			256u
+-#define GUC_CTB_MSG_0_FENCE			(0xffff << 16)
+-#define GUC_CTB_MSG_0_FORMAT			(0xf << 12)
+-#define   GUC_CTB_FORMAT_HXG			0u
+-#define GUC_CTB_MSG_0_RESERVED			(0xf << 8)
+-#define GUC_CTB_MSG_0_NUM_DWORDS		(0xff << 0)
++#define GUC_CTB_MSG_MIN_LEN		GUC_CTB_HDR_LEN
++#define GUC_CTB_MSG_MAX_LEN		(GUC_CTB_HDR_LEN + GUC_CTB_MAX_DWORDS)
+ 
+ /**
+  * DOC: CTB HXG Message
+@@ -93,13 +107,10 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+  *  +---+-------+--------------------------------------------------------------+
+  *  |   | Bits  | Description                                                  |
+  *  +===+=======+==============================================================+
+- *  | 0 | 31:16 | FENCE                                                        |
+- *  |   +-------+--------------------------------------------------------------+
+- *  |   | 15:12 | FORMAT = GUC_CTB_FORMAT_HXG_                                 |
+- *  |   +-------+--------------------------------------------------------------+
+- *  |   |  11:8 | RESERVED = MBZ                                               |
+- *  |   +-------+--------------------------------------------------------------+
+- *  |   |   7:0 | NUM_DWORDS = length (in dwords) of the embedded HXG message  |
++ *  | 0 |  31:0 | `CTB Header`_ with:                                          |
++ *  |   |       |                                                              |
++ *  |   |       |  - FORMAT = GUC_CTB_FORMAT_HXG_                              |
++ *  |   |       |  - NUM_DWORDS = **n**                                        |
+  *  +---+-------+--------------------------------------------------------------+
+  *  | 1 |  31:0 |  +--------------------------------------------------------+  |
+  *  +---+-------+  |                                                        |  |
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index 43409044528e..4236fc33d293 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -412,9 +412,9 @@ static int ct_write(struct intel_guc_ct *ct,
+ 	 * dw1: HXG header (including action code)
+ 	 * dw2+: action data
+ 	 */
+-	header = FIELD_PREP(GUC_CTB_MSG_0_FORMAT, GUC_CTB_FORMAT_HXG) |
+-		 FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
+-		 FIELD_PREP(GUC_CTB_MSG_0_FENCE, fence);
++	header = FIELD_PREP(GUC_CTB_HDR_0_FORMAT, GUC_CTB_FORMAT_HXG) |
++		 FIELD_PREP(GUC_CTB_HDR_0_NUM_DWORDS, len) |
++		 FIELD_PREP(GUC_CTB_HDR_0_FENCE, fence);
+ 
+ 	hxg = FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
+ 	      FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
+@@ -646,7 +646,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+ 	head = (head + 1) % size;
+ 
+ 	/* message len with header */
+-	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, header) + GUC_CTB_MSG_MIN_LEN;
++	len = FIELD_GET(GUC_CTB_HDR_0_NUM_DWORDS, header) + GUC_CTB_HDR_LEN;
+ 	if (unlikely(len > (u32)available)) {
+ 		CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
+ 			 4, &header,
+@@ -691,9 +691,9 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+ 
+ static int ct_handle_response(struct intel_guc_ct *ct, struct ct_incoming_msg *response)
+ {
+-	u32 len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, response->msg[0]);
+-	u32 fence = FIELD_GET(GUC_CTB_MSG_0_FENCE, response->msg[0]);
+-	const u32 *hxg = &response->msg[GUC_CTB_MSG_MIN_LEN];
++	u32 len = FIELD_GET(GUC_CTB_HDR_0_NUM_DWORDS, response->msg[0]);
++	u32 fence = FIELD_GET(GUC_CTB_HDR_0_FENCE, response->msg[0]);
++	const u32 *hxg = &response->msg[GUC_CTB_HDR_LEN];
+ 	const u32 *data = &hxg[GUC_HXG_MSG_MIN_LEN];
+ 	u32 datalen = len - GUC_HXG_MSG_MIN_LEN;
+ 	struct ct_request *req;
+@@ -750,8 +750,8 @@ static int ct_process_request(struct intel_guc_ct *ct, struct ct_incoming_msg *r
+ 	u32 hxg_len, action, len;
+ 	int ret;
+ 
+-	hxg = &request->msg[GUC_CTB_MSG_MIN_LEN];
+-	hxg_len = request->size - GUC_CTB_MSG_MIN_LEN;
++	hxg = &request->msg[GUC_CTB_HDR_LEN];
++	hxg_len = request->size - GUC_CTB_HDR_LEN;
+ 	payload = &hxg[GUC_HXG_MSG_MIN_LEN];
+ 	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
+ 	len = hxg_len - GUC_HXG_MSG_MIN_LEN;
+@@ -818,7 +818,7 @@ static void ct_incoming_request_worker_func(struct work_struct *w)
+ 
+ static int ct_handle_event(struct intel_guc_ct *ct, struct ct_incoming_msg *request)
+ {
+-	const u32 *hxg = &request->msg[GUC_CTB_MSG_MIN_LEN];
++	const u32 *hxg = &request->msg[GUC_CTB_HDR_LEN];
+ 	unsigned long flags;
+ 
+ 	GEM_BUG_ON(FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) != GUC_HXG_TYPE_EVENT);
+@@ -840,7 +840,7 @@ static int ct_handle_hxg(struct intel_guc_ct *ct, struct ct_incoming_msg *msg)
+ 	if (unlikely(msg->size < GUC_CTB_HXG_MSG_MIN_LEN))
+ 		return -EBADMSG;
+ 
+-	hxg = &msg->msg[GUC_CTB_MSG_MIN_LEN];
++	hxg = &msg->msg[GUC_CTB_HDR_LEN];
+ 
+ 	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg[0]);
+ 	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
+@@ -871,7 +871,7 @@ static int ct_handle_hxg(struct intel_guc_ct *ct, struct ct_incoming_msg *msg)
+ 
+ static void ct_handle_msg(struct intel_guc_ct *ct, struct ct_incoming_msg *msg)
+ {
+-	u32 format = FIELD_GET(GUC_CTB_MSG_0_FORMAT, msg->msg[0]);
++	u32 format = FIELD_GET(GUC_CTB_HDR_0_FORMAT, msg->msg[0]);
+ 	int err;
+ 
+ 	if (format == GUC_CTB_FORMAT_HXG)
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0899160740==--
