@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E603B9787
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 22:26:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119803B978B
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 22:27:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65B426EC49;
-	Thu,  1 Jul 2021 20:25:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13ABE6EC4D;
+	Thu,  1 Jul 2021 20:25:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68C8A6EC17;
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85FC66EC1A;
  Thu,  1 Jul 2021 20:25:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="208436169"
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="208436169"
+X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="188998674"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="188998674"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jul 2021 13:25:21 -0700
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="644564552"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="644564556"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jul 2021 13:25:20 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jul 2021 13:24:23 -0700
-Message-Id: <20210701202427.1547543-50-matthew.d.roper@intel.com>
+Date: Thu,  1 Jul 2021 13:24:24 -0700
+Message-Id: <20210701202427.1547543-51-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210701202427.1547543-1-matthew.d.roper@intel.com>
 References: <20210701202427.1547543-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 49/53] drm/i915/dg2: Add DG2 to the PSR2
- defeature list
+Subject: [Intel-gfx] [PATCH 50/53] drm/i915/display/dsc: Add Per connector
+ debugfs node for DSC BPP enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,29 +44,172 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CgpQU1Iy
-IGlzIG5vdCBzdXBwb3J0ZWQgb24gREcyLgoKQ2M6IENheiBZb2tveWFtYSA8Q2F6Lllva295YW1h
-QGludGVsLmNvbT4KQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNv
-bT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
-bC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5j
-b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8IDMgKyst
-CiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKaW5kZXggNGJhNTMzNzA2NGVhLi40MjJl
-NDg5MjdiNWIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-cHNyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwpAQCAt
-ODY2LDcgKzg2Niw4IEBAIHN0YXRpYyBib29sIGludGVsX3BzcjJfY29uZmlnX3ZhbGlkKHN0cnVj
-dCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAJfQogCiAJLyogV2FfMTYwMTExODEyNTAgKi8KLQlpZiAo
-SVNfUk9DS0VUTEFLRShkZXZfcHJpdikgfHwgSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpKSB7CisJ
-aWYgKElTX1JPQ0tFVExBS0UoZGV2X3ByaXYpIHx8IElTX0FMREVSTEFLRV9TKGRldl9wcml2KSB8
-fAorCSAgICBJU19ERzIoZGV2X3ByaXYpKSB7CiAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJt
-LCAiUFNSMiBpcyBkZWZlYXR1cmVkIGZvciB0aGlzIHBsYXRmb3JtXG4iKTsKIAkJcmV0dXJuIGZh
-bHNlOwogCX0KLS0gCjIuMjUuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+
+DSC can be supported per DP connector. This patch creates
+a per connector debugfs node to expose the Input and
+Compressed BPP.
+
+The same node can be used from userspace to force
+DSC to a certain BPP.
+
+force_dsc_bpp is written through this debugfs
+node to force DSC BPP to all accepted values
+
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ .../drm/i915/display/intel_display_debugfs.c  | 103 +++++++++++++++++-
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ 2 files changed, 103 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index af9e58619667..1805d70ea817 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -2389,6 +2389,100 @@ static const struct file_operations i915_dsc_fec_support_fops = {
+ 	.write = i915_dsc_fec_support_write
+ };
+ 
++static int i915_dsc_bpp_support_show(struct seq_file *m, void *data)
++{
++	struct drm_connector *connector = m->private;
++	struct drm_device *dev = connector->dev;
++	struct drm_crtc *crtc;
++	struct intel_dp *intel_dp;
++	struct drm_modeset_acquire_ctx ctx;
++	struct intel_crtc_state *crtc_state = NULL;
++	int ret = 0;
++	bool try_again = false;
++
++	drm_modeset_acquire_init(&ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE);
++
++	do {
++		try_again = false;
++		ret = drm_modeset_lock(&dev->mode_config.connection_mutex,
++				       &ctx);
++		if (ret) {
++			ret = -EINTR;
++			break;
++		}
++		crtc = connector->state->crtc;
++		if (connector->status != connector_status_connected || !crtc) {
++			ret = -ENODEV;
++			break;
++		}
++		ret = drm_modeset_lock(&crtc->mutex, &ctx);
++		if (ret == -EDEADLK) {
++			ret = drm_modeset_backoff(&ctx);
++			if (!ret) {
++				try_again = true;
++				continue;
++			}
++			break;
++		} else if (ret) {
++			break;
++		}
++		intel_dp = intel_attached_dp(to_intel_connector(connector));
++		crtc_state = to_intel_crtc_state(crtc->state);
++		seq_printf(m, "Input_BPP: %d\n", crtc_state->pipe_bpp);
++		seq_printf(m, "Compressed_BPP: %d\n",
++				crtc_state->dsc.compressed_bpp);
++	} while (try_again);
++
++	drm_modeset_drop_locks(&ctx);
++	drm_modeset_acquire_fini(&ctx);
++
++	return ret;
++}
++
++static ssize_t i915_dsc_bpp_support_write(struct file *file,
++						const char __user *ubuf,
++						size_t len, loff_t *offp)
++{
++	int dsc_bpp = 0;
++	int ret;
++	struct drm_connector *connector =
++		((struct seq_file *)file->private_data)->private;
++	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++	if (len == 0)
++		return 0;
++
++	drm_dbg(&i915->drm,
++		"Copied %zu bytes from user to force BPP\n", len);
++
++	ret = kstrtoint_from_user(ubuf, len, 0, &dsc_bpp);
++
++	intel_dp->force_dsc_bpp = dsc_bpp;
++	if (ret < 0)
++		return ret;
++
++	*offp += len;
++	return len;
++}
++
++static int i915_dsc_bpp_support_open(struct inode *inode,
++					   struct file *file)
++{
++	return single_open(file, i915_dsc_bpp_support_show,
++			   inode->i_private);
++}
++
++static const struct file_operations i915_dsc_bpp_support_fops = {
++	.owner = THIS_MODULE,
++	.open = i915_dsc_bpp_support_open,
++	.read = seq_read,
++	.llseek = seq_lseek,
++	.release = single_release,
++	.write = i915_dsc_bpp_support_write
++};
++
+ /**
+  * intel_connector_debugfs_add - add i915 specific connector debugfs files
+  * @connector: pointer to a registered drm_connector
+@@ -2427,9 +2521,16 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+ 				    connector, &i915_hdcp_sink_capability_fops);
+ 	}
+ 
+-	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) && ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort && !to_intel_connector(connector)->mst_port) || connector->connector_type == DRM_MODE_CONNECTOR_eDP))
++	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) &&
++	    ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
++	      !to_intel_connector(connector)->mst_port) ||
++	     connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
+ 		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
+ 				    connector, &i915_dsc_fec_support_fops);
++		debugfs_create_file("i915_dsc_bpp_support", 0444,
++				    root, connector,
++				    &i915_dsc_bpp_support_fops);
++	}
+ 
+ 	/* Legacy panels doesn't lpsp on any platform */
+ 	if ((DISPLAY_VER(dev_priv) >= 9 || IS_HASWELL(dev_priv) ||
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 29ae1d9b5abc..00320d89d266 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1627,6 +1627,7 @@ struct intel_dp {
+ 
+ 	/* Display stream compression testing */
+ 	bool force_dsc_en;
++	int force_dsc_bpp;
+ 
+ 	bool hobl_failed;
+ 	bool hobl_active;
+-- 
+2.25.4
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
