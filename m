@@ -2,42 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F35C43B95BB
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 19:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE403B95B9
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 19:55:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8FAA6EB79;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA496E0AB;
 	Thu,  1 Jul 2021 17:55:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89E0E6E0CB;
- Thu,  1 Jul 2021 16:14:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
- s=20170329; 
- h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
- bh=wK9wrmd+6oYN7FKRJ1PwqG4FPKNWD7UZGqxDhFVY3YA=; 
- b=Y4rlul+uhkYkZ4p6PoktJ1He64NFdmYZWcPpM13vr6JwyByUFcMFxf7tyOvHSUYGAsQGuCwcUoD7h5DI4G0VjAPU8O8+bLIPf62+t7OUSN+R/QYhU0JnC0VuJKQTtRvbWX3fbx6b5WzNX1bZImGRveVbDTtd/0HPNao87E/LJkrpM6iDlUx/srHN6OI5snwK8PxazjWK5xG7t3iJJ9WU+csZyt0hFOSwx3R6pP4/3oRO0mRpynHUbJfXQ4UfRyQqzglMs6SBk6RjTXKmiyJ0CAnUvAeJ2bnyP0rx715hkwTsNSF1wpGP3s6PM34qHol9in6d5fNW/mzzdtcje0K6/g==;
-Received: from 152.red-88-9-105.dynamicip.rima-tde.net ([88.9.105.152]
- helo=[192.168.2.252]) by fanzine.igalia.com with esmtpsa 
- (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
- id 1lyzKj-0005WT-LU; Thu, 01 Jul 2021 18:14:33 +0200
-Message-ID: <f5ee80e067e79dff0b2d65c67dbb83b9be70014f.camel@igalia.com>
-From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
-To: "events@lists.x.org" <events@lists.x.org>, 
- "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, wayland-devel@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Date: Thu, 01 Jul 2021 18:14:23 +0200
-In-Reply-To: <95ec2c414f7dd1ea5685184435b95430e1709047.camel@igalia.com>
-References: <95ec2c414f7dd1ea5685184435b95430e1709047.camel@igalia.com>
-User-Agent: Evolution 3.38.3-1 
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com
+ [IPv6:2607:f8b0:4864:20::62c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD2206EADD;
+ Thu,  1 Jul 2021 16:54:22 +0000 (UTC)
+Received: by mail-pl1-x62c.google.com with SMTP id z4so3987960plg.8;
+ Thu, 01 Jul 2021 09:54:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=KSrQtrkS57Wd8RUtiIlSXmn1PXYteCewAUlvuTiLz9k=;
+ b=CeJdWLaXxP5TiRpTjobL5+89BvtG4a0XGRdyggpWjHRV1RqlTP3SvbmU+Uz39rS2vO
+ +P9x3/NK4yus1l9oFzWeWDo9UptZnVNR5VASEkowxSTJpJPuQvyFDb2sD+52sPPMrO0d
+ 9ZB1fq0anCWrgtg0rjdSFT+fy3AdoogP20fbZK+VjRIdmaOhVpvhdaLuk6Jwzf8q7X6b
+ S93/NauMkuTXZHHKmSrxD9559sM5GzLHYKcXiMD0pi5LP0XRoLk6H52iQLGEvS4utWQq
+ uQ1dQnJPzligC9/d2sNaB4/pF1fY+gwEprhiizwozhOrGefBj3cKYo2UW3ukSglbszUG
+ WgyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=KSrQtrkS57Wd8RUtiIlSXmn1PXYteCewAUlvuTiLz9k=;
+ b=OiGh/X8HVa9KBvvH5Jb1U2on6/BRlk5VB91LtFlWANKYq3LU65S65LW2BifkXtEkuQ
+ rexh+5F0WoY9YXqILrDtZPstYdqI1VIRa6VcslXt2vJujlbPGIPLmZB51H9SL2TmhEHH
+ XV2J1Y0cmoHEn2KIdXlFq0Ey92iUdJZqI71o8ETAl2xhCsEwmim3Zn8RuosQALglYPi1
+ zGe7SAHnQkHx3zsKeSkWZQbOIsLtA1z61Pjmcqe3DL5//hLTbOAZ+7ep5yVH4mvBnh8W
+ 3AS1u13tdph7HB2YU+Yfg370W+mnPBrbLiWOJGukAVkMHzwrogaepcEJlxe8oeIvw5PM
+ jseA==
+X-Gm-Message-State: AOAM531ddJxOMwfHlxzRhlGiioEfaWEkiKjP8AV5Yv5U9IISAaGnhXva
+ X0ppWhQEZWrcPyi2CnbIzdY=
+X-Google-Smtp-Source: ABdhPJz45rBGKDpouGSS1yrk5efAnEw697BBt+81Exjeub/g9QFgrl7iQu4qWRNxbgHX9POqP3DxJA==
+X-Received: by 2002:a17:902:fe0a:b029:11d:81c9:3adf with SMTP id
+ g10-20020a170902fe0ab029011d81c93adfmr741720plj.0.1625158462323; 
+ Thu, 01 Jul 2021 09:54:22 -0700 (PDT)
+Received: from localhost.localdomain ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id s20sm398738pgv.1.2021.07.01.09.54.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Jul 2021 09:54:21 -0700 (PDT)
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
+ christian.koenig@amd.com
+Date: Fri,  2 Jul 2021 00:53:53 +0800
+Message-Id: <20210701165358.19053-1-desmondcheongzx@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-Mailman-Approved-At: Thu, 01 Jul 2021 17:55:54 +0000
-Subject: Re: [Intel-gfx] [Mesa-dev] Requests For Proposals for hosting XDC
- 2022 are now open
+Subject: [Intel-gfx] [PATCH v7 0/5] drm: address potential UAF bugs with
+ drm_master ptrs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,116 +69,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "board@foundation.x.org" <board@foundation.x.org>
-Content-Type: multipart/mixed; boundary="===============1480152473=="
+Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ linux-kernel-mentees@lists.linuxfoundation.org, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This patch series addresses potential use-after-free errors when dereferencing pointers to struct drm_master. These were identified after one such bug was caught by Syzbot in drm_getunique():
+https://syzkaller.appspot.com/bug?id=148d2f1dfac64af52ffd27b661981a540724f803
 
---===============1480152473==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-QH/ByUmgrN7MqV73jY6n"
+The series is broken up into five patches:
 
+1. Move a call to drm_is_current_master() out from a section locked by &dev->mode_config.mutex in drm_mode_getconnector(). This patch does not apply to stable.
 
---=-QH/ByUmgrN7MqV73jY6n
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+2. Move a call to _drm_lease_held() out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find().
 
-This is a reminder that the call for proposals for hosting XDC 2022
-period finishes in two months.
+3. Implement a locked version of drm_is_current_master() function that's used within drm_auth.c.
 
-Be sure to prepare your submission before you leave on holiday!
+4. Serialize drm_file.master by introducing a new lock that's held whenever the value of drm_file.master changes.
 
-Sam
+5. Identify areas in drm_lease.c where pointers to struct drm_master are dereferenced, and ensure that the master pointers are not freed during use.
 
-On Thu, 2021-05-20 at 12:15 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
-> Hello everyone!
->=20
-> The X.org board is soliciting proposals to host XDC in 2022. Since
-> XDC 2021 is being held in Europe this year (although virtually),
-> we've
-> decided to host in North America. However, the board is open to other
-> locations, especially if there's an interesting co-location with
-> another conference.
->=20
-> Of course though, due to the ongoing COVID-19 pandemic it's not yet
-> clear whether or not it will be possible to host XDC 2022 in person,
-> although is seems very likely. Because of this, we would like to
-> make it clear that sponsors should prepare for both the possibility
-> of an in person conference, and the possibility of a virtual
-> conference. We will work with organizers on coming up with a
-> deadline for deciding whether or not we'll be going virtual, likely
-> sometime around July 2022.
->=20
-> If you're considering hosting XDC, we've assembled a wiki page with
-> what's generally expected and needed:
->=20
-> https://www.x.org/wiki/Events/RFP/
->=20
-> When submitting your proposal, please make sure to include at least
-> the
-> key information about the potential location in question, possible
-> dates along with estimated costs. Proposals can be submitted to board
-> at foundation.x.org until the deadline of *September 1st, 2021*.=C2=A0
->=20
-> Additionally, an quirk early heads-up to the board if you're
-> considering hosting would be appreciated, in case we need to adjust
-> the
-> schedule a bit. Also, earlier is better since there generally will be
-> a
-> bit of Q&A with organizers.
->=20
-> And if you just have some questions about what organizing XDC
-> entails,
-> please feel free to chat with previous organizers, or someone from
-> the
-> board.
->=20
-> Thanks,
->=20
-> Sam
->=20
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+Changes in v6 -> v7:
+- Patch 2:
+Modify code alignment as suggested by the intel-gfx CI.
 
+Update commit message based on the changes to patch 5.
 
---=-QH/ByUmgrN7MqV73jY6n
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+- Patch 4:
+Add patch 4 to the series. This patch adds a new lock to serialize drm_file.master, in response to the lockdep splat by the intel-gfx CI.
 
------BEGIN PGP SIGNATURE-----
+- Patch 5:
+Move kerneldoc comment about protecting drm_file.master with drm_device.master_mutex into patch 4.
 
-iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmDd6d8ACgkQf/S6MvF9
-w0MKsRAA13BGnKOl2o6oyp+Ws0lBHITyQt5yGc5pIHoT3xjPVY924AFiGtJTsGq/
-oqYp9tMAGduh5VbFDmg9/FanKRpFSbFI8xXTWMuwC6OgaXgu+c9NDO8ilN8wl9vP
-3sAv88KlFP2bJtwwruGjw+jro7tnXE4WvKLaBILW8cqt3nL2xNZbI2JknPIFQDgp
-sddQ0GKSvFCtYuiEaMfxVTasJcaIyf1F4+bew031wDkS4yiuLdXUrBEoEXWNuGWG
-tcMg3HzGBAIkMFXrk3J8aSpSFlj/1r/AXlmT+UMHzp19xCk9YHcgEN5rUlnHA2BI
-AFrJKl5UBXiEl4q8h3V8sUoDM+MBItgpZxxW1P80dJvJe/OT0K9gh4VkYQoQx9Xh
-mg9IzmKENsavip/0Osh91MC9hUIBjEAvGWt2evEjlaIRCd2/xb1KO+gXcCMlz884
-nfZOoi3vAxtG/+XAohOq1pmdE6iSyuLdq8SPxtLSFXGCScHQ0R1Mh1I3xxou4dp6
-8jF2Wl4unF2ovuzCsR6VjQDyyGkXKCJHlueFLYyRrmlqjHd9n6ZDeQvHgCnYW93X
-eYYplicS4TVcZ9GHTsTgmxgGLXSM+aR7xzOZ0NQ4Dcy06uSYdbMet1iLz3XA3MoO
-ADwUOZ7evzwvmkdZ0AN4TjPI0iVtf9aVeZ5hpGPkP/eBEF033gA=
-=6VGv
------END PGP SIGNATURE-----
+Update drm_file_get_master to use the new drm_file.master_lock instead of drm_device.master_mutex, in response to the lockdep splat by the intel-gfx CI.
 
---=-QH/ByUmgrN7MqV73jY6n--
+Changes in v5 -> v6:
+- Patch 2:
+Add patch 2 to the series. This patch moves the call to _drm_lease_held out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find.
 
+- Patch 5:
+Clarify the kerneldoc for dereferencing drm_file.master, as suggested by Daniel Vetter.
 
---===============1480152473==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Refactor error paths with goto labels so that each function only has a single drm_master_put(), as suggested by Emil Velikov.
+
+Modify comparison to NULL into "!master", as suggested by the intel-gfx CI.
+
+Changes in v4 -> v5:
+- Patch 1:
+Add patch 1 to the series. The changes in patch 1 do not apply to stable because they apply to new changes in the drm-misc-next branch. This patch moves the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex.
+
+Additionally, added a missing semicolon to the patch, caught by the intel-gfx CI.
+
+- Patch 3:
+Move changes to drm_connector.c into patch 1.
+
+Changes in v3 -> v4:
+- Patch 3:
+Move the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex. As suggested by Daniel Vetter. This avoids a circular lock lock dependency as reported here https://patchwork.freedesktop.org/patch/440406/
+
+Additionally, inside drm_is_current_master, instead of grabbing &fpriv->master->dev->master_mutex, we grab &fpriv->minor->dev->master_mutex to avoid dereferencing a null ptr if fpriv->master is not set.
+
+- Patch 5:
+Modify kerneldoc formatting.
+
+Additionally, add a file_priv->master NULL check inside drm_file_get_master, and handle the NULL result accordingly in drm_lease.c. As suggested by Daniel Vetter.
+
+Changes in v2 -> v3:
+- Patch 3:
+Move the definition of drm_is_current_master and the _locked version higher up in drm_auth.c to avoid needing a forward declaration of drm_is_current_master_locked. As suggested by Daniel Vetter.
+
+- Patch 5:
+Instead of leaking drm_device.master_mutex into drm_lease.c to protect drm_master pointers, add a new drm_file_get_master() function that returns drm_file->master while increasing its reference count, to prevent drm_file->master from being freed. As suggested by Daniel Vetter.
+
+Changes in v1 -> v2:
+- Patch 5:
+Move the lock and assignment before the DRM_DEBUG_LEASE in drm_mode_get_lease_ioctl, as suggested by Emil Velikov.
+
+Desmond Cheong Zhi Xi (5):
+  drm: avoid circular locks in drm_mode_getconnector
+  drm: separate locks in __drm_mode_object_find
+  drm: add a locked version of drm_is_current_master
+  drm: serialize drm_file.master with a master lock
+  drm: protect drm_master pointers in drm_lease.c
+
+ drivers/gpu/drm/drm_auth.c        | 86 +++++++++++++++++++++++--------
+ drivers/gpu/drm/drm_connector.c   |  5 +-
+ drivers/gpu/drm/drm_file.c        |  1 +
+ drivers/gpu/drm/drm_lease.c       | 81 ++++++++++++++++++++++-------
+ drivers/gpu/drm/drm_mode_object.c | 10 ++--
+ include/drm/drm_auth.h            |  1 +
+ include/drm/drm_file.h            | 18 +++++--
+ 7 files changed, 153 insertions(+), 49 deletions(-)
+
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1480152473==--
-
