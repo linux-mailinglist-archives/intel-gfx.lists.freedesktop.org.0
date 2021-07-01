@@ -1,35 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B83B23B8F60
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 11:04:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C473B8F83
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 11:09:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D24946EAA6;
-	Thu,  1 Jul 2021 09:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B576EAB2;
+	Thu,  1 Jul 2021 09:09:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBAD66EAA6
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jul 2021 09:04:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10031"; a="205494551"
-X-IronPort-AV: E=Sophos;i="5.83,313,1616482800"; d="scan'208";a="205494551"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 02:04:07 -0700
-X-IronPort-AV: E=Sophos;i="5.83,313,1616482800"; d="scan'208";a="408865353"
-Received: from dfdonlon-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.21.173])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 02:04:05 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  1 Jul 2021 10:03:26 +0100
-Message-Id: <20210701090326.1056452-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E167C6EAAD;
+ Thu,  1 Jul 2021 09:09:02 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 8C6C1227FB;
+ Thu,  1 Jul 2021 09:09:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1625130541; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
+ b=jZ+T9/d8Tv40cx3Gfbjs4CnOND8QC7AnNxL7j2RmPyWfAwLiE3oB3ZbAqdRua/r1YBb/bW
+ Y2YZ4b3hbBRy+wyVpx5OA6B7FUSOvUicnbAycR9VqZh31PvRwdrGFSazSaIXjwy5LYapQ8
+ PkoQnziAOaY1BEBTdBq2xFprz4bzlwY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1625130541;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
+ b=7rw2LrYVeR2gaE0jy7Ke80917hyYiKtfFL6tmKuNGX6P6jes/RdTdiyba7OcV/Q5yPYKVZ
+ xBgP96FJo72Z3wDQ==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ by imap.suse.de (Postfix) with ESMTP id 55AD611CC0;
+ Thu,  1 Jul 2021 09:09:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1625130541; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
+ b=jZ+T9/d8Tv40cx3Gfbjs4CnOND8QC7AnNxL7j2RmPyWfAwLiE3oB3ZbAqdRua/r1YBb/bW
+ Y2YZ4b3hbBRy+wyVpx5OA6B7FUSOvUicnbAycR9VqZh31PvRwdrGFSazSaIXjwy5LYapQ8
+ PkoQnziAOaY1BEBTdBq2xFprz4bzlwY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1625130541;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
+ b=7rw2LrYVeR2gaE0jy7Ke80917hyYiKtfFL6tmKuNGX6P6jes/RdTdiyba7OcV/Q5yPYKVZ
+ xBgP96FJo72Z3wDQ==
+Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
+ id ZeQPFC2G3WDGKAAALh3uQQ
+ (envelope-from <tzimmermann@suse.de>); Thu, 01 Jul 2021 09:09:01 +0000
+Date: Thu, 1 Jul 2021 11:08:59 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YN2GK2SH64yqXqh9@linux-uq9g>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: check if compressed_llb was
- allocated
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,36 +74,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SWYgd2UgaGl0IHRoZSBlcnJvciBwYXRoIGhlcmUgd2UgdW5jb25kaXRpb25hbGx5IGNhbGwKaTkx
-NV9nZW1fc3RvbGVuX3JlbW92ZV9ub2RlLCBldmVuIHRob3VnaCB3ZSBvbmx5IGFsbG9jYXRlIHRo
-ZQpjb21wcmVzc2VkX2xsYiBvbiBvbGRlciBwbGF0Zm9ybXMuIFRoZXJlZm9yZSB3ZSBzaG91bGQg
-Zmlyc3QgY2hlY2sgdGhhdAp3ZSBhY3R1YWxseSBhbGxvY2F0ZWQgdGhlIG5vZGUgYmVmb3JlIHRy
-eWluZyB0byByZW1vdmUgaXQuCgpSZWZlcmVuY2VzOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
-cC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzM3MDkKRml4ZXM6IDQ2YjJjNDBlMGFmMyAoImRybS9p
-OTE1L2ZiYzogQWxsb2NhdGUgbGxiIGJlZm9yZSBjZmIiKQpTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3
-IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
-ZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9mYmMuYyB8IDMgKystCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0
-aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
-YmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKaW5kZXggN2Rj
-NzJlNGE0NjU2Li44MmVmZmI2NGEzYjkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZmJjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9mYmMuYwpAQCAtNTE2LDcgKzUxNiw4IEBAIHN0YXRpYyBpbnQgaW50ZWxfZmJjX2FsbG9j
-X2NmYihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJcmV0dXJuIDA7CiAKIGVy
-cl9sbGI6Ci0JaTkxNV9nZW1fc3RvbGVuX3JlbW92ZV9ub2RlKGRldl9wcml2LCAmZmJjLT5jb21w
-cmVzc2VkX2xsYik7CisJaWYgKGRybV9tbV9ub2RlX2FsbG9jYXRlZCgmZmJjLT5jb21wcmVzc2Vk
-X2xsYikpCisJCWk5MTVfZ2VtX3N0b2xlbl9yZW1vdmVfbm9kZShkZXZfcHJpdiwgJmZiYy0+Y29t
-cHJlc3NlZF9sbGIpOwogZXJyOgogCWlmIChkcm1fbW1faW5pdGlhbGl6ZWQoJmRldl9wcml2LT5t
-bS5zdG9sZW4pKQogCQlkcm1faW5mb19vbmNlKCZkZXZfcHJpdi0+ZHJtLCAibm90IGVub3VnaCBz
-dG9sZW4gc3BhY2UgZm9yIGNvbXByZXNzZWQgYnVmZmVyIChuZWVkICVkIG1vcmUgYnl0ZXMpLCBk
-aXNhYmxpbmcuIEhpbnQ6IHlvdSBtYXkgYmUgYWJsZSB0byBpbmNyZWFzZSBzdG9sZW4gbWVtb3J5
-IHNpemUgaW4gdGhlIEJJT1MgdG8gYXZvaWQgdGhpcy5cbiIsIHNpemUpOwotLSAKMi4yNi4zCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Hi Dave and Daniel,
+
+this week's PR for drm-misc-next-fixes contains a number of BO-related
+fixes in amdgpu, gma500 and radeon, and a documentation fix for dma-buf.
+
+Best regards
+Thomas
+
+drm-misc-next-fixes-2021-07-01:
+Short summary of fixes pull:
+
+ * amdgpu: TTM fixes
+ * dma-buf: Doc fixes
+ * gma500: Fix potential BO leaks in error handling
+ * radeon: Fix NULL-ptr deref
+The following changes since commit eed75ce7c8260e0d5612ced4a88180ab991e207c:
+
+  drm/amdgpu: fix amdgpu_preempt_mgr_new() (2021-06-21 15:24:29 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-=
+07-01
+
+for you to fetch changes up to f18f58012ee894039cd59ee8c889bf499d7a3943:
+
+  drm/radeon: Fix NULL dereference when updating memory stats (2021-06-30 1=
+1:56:21 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * amdgpu: TTM fixes
+ * dma-buf: Doc fixes
+ * gma500: Fix potential BO leaks in error handling
+ * radeon: Fix NULL-ptr deref
+
+----------------------------------------------------------------
+Jing Xiangfeng (1):
+      drm/gma500: Add the missed drm_gem_object_put() in psb_user_framebuff=
+er_create()
+
+Mikel Rychliski (1):
+      drm/radeon: Fix NULL dereference when updating memory stats
+
+Nirmoy Das (1):
+      drm/amdgpu: return early for non-TTM_PL_TT type BOs
+
+Randy Dunlap (1):
+      <linux/dma-resv.h>: correct a function name in kernel-doc
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  3 ++-
+ drivers/gpu/drm/gma500/framebuffer.c    |  7 ++++++-
+ drivers/gpu/drm/radeon/radeon_object.c  | 29 ++++++++++++-----------------
+ drivers/gpu/drm/radeon/radeon_object.h  |  2 +-
+ drivers/gpu/drm/radeon/radeon_ttm.c     | 13 ++++++++++---
+ include/linux/dma-resv.h                |  2 +-
+ 6 files changed, 32 insertions(+), 24 deletions(-)
+
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
