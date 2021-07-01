@@ -2,36 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83A13B94E4
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 18:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 796273B951F
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 19:00:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11CF289A72;
-	Thu,  1 Jul 2021 16:53:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8AEC6EB62;
+	Thu,  1 Jul 2021 17:00:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB5F88635;
- Thu,  1 Jul 2021 16:53:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="208524743"
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="208524743"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 09:53:27 -0700
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD7676EB62
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jul 2021 17:00:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="208392811"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="208392811"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2021 10:00:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="426222744"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga002.jf.intel.com with ESMTP; 01 Jul 2021 09:53:25 -0700
-Received: from mwajdecz-MOBL.ger.corp.intel.com
- (mwajdecz-MOBL.ger.corp.intel.com [10.249.146.9])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 161GrOor018728; Thu, 1 Jul 2021 17:53:24 +0100
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Date: Thu,  1 Jul 2021 18:53:21 +0200
-Message-Id: <20210701165321.2067-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="457738053"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 01 Jul 2021 10:00:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 01 Jul 2021 20:00:05 +0300
+Date: Thu, 1 Jul 2021 20:00:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <YN30lZ1aC+KDpMWQ@intel.com>
+References: <20210630164413.25481-1-ville.syrjala@linux.intel.com>
+ <2edf584b-3835-53ed-f6e3-76c7e8d581ed@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/guc: Improve GuC CTB ABI
+Content-Disposition: inline
+In-Reply-To: <2edf584b-3835-53ed-f6e3-76c7e8d581ed@linux.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Fix -EDEADLK handling
+ regression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,180 +47,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@intel.com>,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make CTB Header explicit and separate from CTB Message.
+On Thu, Jul 01, 2021 at 09:07:27AM +0200, Maarten Lankhorst wrote:
+> Op 30-06-2021 om 18:44 schreef Ville Syrjala:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >
+> > The conversion to ww mutexes failed to address the fence code which
+> > already returns -EDEADLK when we run out of fences. Ww mutexes on
+> > the other hand treat -EDEADLK as an internal errno value indicating
+> > a need to restart the operation due to a deadlock. So now when the
+> > fence code returns -EDEADLK the higher level code erroneously
+> > restarts everything instead of returning the error to userspace
+> > as is expected.
+> >
+> > To remedy this let's switch the fence code to use a different errno
+> > value for this. -ENOBUFS seems like a semi-reasonable unique choice.
+> > Apart from igt the only user of this I could find is sna, and even
+> > there all we do is dump the current fence registers from debugfs
+> > into the X server log. So no user visible functionality is affected.
+> > If we really cared about preserving this we could of course convert
+> > back to -EDEADLK higher up, but doesn't seem like that's worth
+> > the hassle here.
+> >
+> > Not quite sure which commit specifically broke this, but I'll
+> > just attribute it to the general gem ww mutex work.
+> >
+> > Cc: stable@vger.kernel.org
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Thomas Hellstr=F6m <thomas.hellstrom@intel.com>
+> > Testcase: igt/gem_pread/exhaustion
+> > Testcase: igt/gem_pwrite/basic-exhaustion
+> > Testcase: igt/gem_fenced_exec_thrash/too-many-fences
+> > Fixes: 80f0b679d6f0 ("drm/i915: Add an implementation for i915_gem_ww_c=
+tx locking, v2.")
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu=
+/drm/i915/gt/intel_ggtt_fencing.c
+> > index cac7f3f44642..f8948de72036 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> > @@ -348,7 +348,7 @@ static struct i915_fence_reg *fence_find(struct i91=
+5_ggtt *ggtt)
+> >  	if (intel_has_pending_fb_unpin(ggtt->vm.i915))
+> >  		return ERR_PTR(-EAGAIN);
+> >  =
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- .../gt/uc/abi/guc_communication_ctb_abi.h     | 51 +++++++++++--------
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 24 ++++-----
- 2 files changed, 43 insertions(+), 32 deletions(-)
+> > -	return ERR_PTR(-EDEADLK);
+> > +	return ERR_PTR(-ENOBUFS);
+> >  }
+> >  =
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
-index e933ca02d0eb..90a86759e108 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
-@@ -56,8 +56,9 @@ struct guc_ct_buffer_desc {
- } __packed;
- static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
- 
-+
- /**
-- * DOC: CTB Message
-+ * DOC: CTB Header
-  *
-  *  +---+-------+--------------------------------------------------------------+
-  *  |   | Bits  | Description                                                  |
-@@ -71,21 +72,34 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
-  *  |   +-------+--------------------------------------------------------------+
-  *  |   |   7:0 | **NUM_DWORDS** - length of the CTB message (w/o header)      |
-  *  +---+-------+--------------------------------------------------------------+
-- *  | 1 |  31:0 | optional (depends on FORMAT)                                 |
-- *  +---+-------+                                                              |
-- *  |...|       |                                                              |
-- *  +---+-------+                                                              |
-- *  | n |  31:0 |                                                              |
-+ */
-+
-+#define GUC_CTB_HDR_LEN					1u
-+#define GUC_CTB_HDR_0_FENCE				(0xffff << 16)
-+#define GUC_CTB_HDR_0_FORMAT				(0xf << 12)
-+#define   GUC_CTB_FORMAT_HXG				0u
-+#define GUC_CTB_HDR_0_RESERVED				(0xf << 8)
-+#define GUC_CTB_HDR_0_NUM_DWORDS			(0xff << 0)
-+#define   GUC_CTB_MAX_DWORDS				255u
-+
-+/**
-+ * DOC: CTB Message
-+ *
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  |   | Bits  | Description                                                  |
-+ *  +===+=======+==============================================================+
-+ *  | 0 |  31:0 | `CTB Header`_                                                |
-+ *  +---+-------+--------------------------------------------------------------+
-+ *  | 1 |  31:0 |  +--------------------------------------------------------+  |
-+ *  +---+-------+  |                                                        |  |
-+ *  |...|       |  |  optional payload (depends on FORMAT)                  |  |
-+ *  +---+-------+  |                                                        |  |
-+ *  | n |  31:0 |  +--------------------------------------------------------+  |
-  *  +---+-------+--------------------------------------------------------------+
-  */
- 
--#define GUC_CTB_MSG_MIN_LEN			1u
--#define GUC_CTB_MSG_MAX_LEN			256u
--#define GUC_CTB_MSG_0_FENCE			(0xffff << 16)
--#define GUC_CTB_MSG_0_FORMAT			(0xf << 12)
--#define   GUC_CTB_FORMAT_HXG			0u
--#define GUC_CTB_MSG_0_RESERVED			(0xf << 8)
--#define GUC_CTB_MSG_0_NUM_DWORDS		(0xff << 0)
-+#define GUC_CTB_MSG_MIN_LEN		GUC_CTB_HDR_LEN
-+#define GUC_CTB_MSG_MAX_LEN		(GUC_CTB_HDR_LEN + GUC_CTB_MAX_DWORDS)
- 
- /**
-  * DOC: CTB HXG Message
-@@ -93,13 +107,10 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
-  *  +---+-------+--------------------------------------------------------------+
-  *  |   | Bits  | Description                                                  |
-  *  +===+=======+==============================================================+
-- *  | 0 | 31:16 | FENCE                                                        |
-- *  |   +-------+--------------------------------------------------------------+
-- *  |   | 15:12 | FORMAT = GUC_CTB_FORMAT_HXG_                                 |
-- *  |   +-------+--------------------------------------------------------------+
-- *  |   |  11:8 | RESERVED = MBZ                                               |
-- *  |   +-------+--------------------------------------------------------------+
-- *  |   |   7:0 | NUM_DWORDS = length (in dwords) of the embedded HXG message  |
-+ *  | 0 |  31:0 | `CTB Header`_ with:                                          |
-+ *  |   |       |                                                              |
-+ *  |   |       |  - FORMAT = GUC_CTB_FORMAT_HXG_                              |
-+ *  |   |       |  - NUM_DWORDS = **n**                                        |
-  *  +---+-------+--------------------------------------------------------------+
-  *  | 1 |  31:0 |  +--------------------------------------------------------+  |
-  *  +---+-------+  |                                                        |  |
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 43409044528e..4236fc33d293 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -412,9 +412,9 @@ static int ct_write(struct intel_guc_ct *ct,
- 	 * dw1: HXG header (including action code)
- 	 * dw2+: action data
- 	 */
--	header = FIELD_PREP(GUC_CTB_MSG_0_FORMAT, GUC_CTB_FORMAT_HXG) |
--		 FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
--		 FIELD_PREP(GUC_CTB_MSG_0_FENCE, fence);
-+	header = FIELD_PREP(GUC_CTB_HDR_0_FORMAT, GUC_CTB_FORMAT_HXG) |
-+		 FIELD_PREP(GUC_CTB_HDR_0_NUM_DWORDS, len) |
-+		 FIELD_PREP(GUC_CTB_HDR_0_FENCE, fence);
- 
- 	hxg = FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
- 	      FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
-@@ -646,7 +646,7 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 	head = (head + 1) % size;
- 
- 	/* message len with header */
--	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, header) + GUC_CTB_MSG_MIN_LEN;
-+	len = FIELD_GET(GUC_CTB_HDR_0_NUM_DWORDS, header) + GUC_CTB_HDR_LEN;
- 	if (unlikely(len > (u32)available)) {
- 		CT_ERROR(ct, "Incomplete message %*ph %*ph %*ph\n",
- 			 4, &header,
-@@ -691,9 +691,9 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
- 
- static int ct_handle_response(struct intel_guc_ct *ct, struct ct_incoming_msg *response)
- {
--	u32 len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, response->msg[0]);
--	u32 fence = FIELD_GET(GUC_CTB_MSG_0_FENCE, response->msg[0]);
--	const u32 *hxg = &response->msg[GUC_CTB_MSG_MIN_LEN];
-+	u32 len = FIELD_GET(GUC_CTB_HDR_0_NUM_DWORDS, response->msg[0]);
-+	u32 fence = FIELD_GET(GUC_CTB_HDR_0_FENCE, response->msg[0]);
-+	const u32 *hxg = &response->msg[GUC_CTB_HDR_LEN];
- 	const u32 *data = &hxg[GUC_HXG_MSG_MIN_LEN];
- 	u32 datalen = len - GUC_HXG_MSG_MIN_LEN;
- 	struct ct_request *req;
-@@ -750,8 +750,8 @@ static int ct_process_request(struct intel_guc_ct *ct, struct ct_incoming_msg *r
- 	u32 hxg_len, action, len;
- 	int ret;
- 
--	hxg = &request->msg[GUC_CTB_MSG_MIN_LEN];
--	hxg_len = request->size - GUC_CTB_MSG_MIN_LEN;
-+	hxg = &request->msg[GUC_CTB_HDR_LEN];
-+	hxg_len = request->size - GUC_CTB_HDR_LEN;
- 	payload = &hxg[GUC_HXG_MSG_MIN_LEN];
- 	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, hxg[0]);
- 	len = hxg_len - GUC_HXG_MSG_MIN_LEN;
-@@ -818,7 +818,7 @@ static void ct_incoming_request_worker_func(struct work_struct *w)
- 
- static int ct_handle_event(struct intel_guc_ct *ct, struct ct_incoming_msg *request)
- {
--	const u32 *hxg = &request->msg[GUC_CTB_MSG_MIN_LEN];
-+	const u32 *hxg = &request->msg[GUC_CTB_HDR_LEN];
- 	unsigned long flags;
- 
- 	GEM_BUG_ON(FIELD_GET(GUC_HXG_MSG_0_TYPE, hxg[0]) != GUC_HXG_TYPE_EVENT);
-@@ -840,7 +840,7 @@ static int ct_handle_hxg(struct intel_guc_ct *ct, struct ct_incoming_msg *msg)
- 	if (unlikely(msg->size < GUC_CTB_HXG_MSG_MIN_LEN))
- 		return -EBADMSG;
- 
--	hxg = &msg->msg[GUC_CTB_MSG_MIN_LEN];
-+	hxg = &msg->msg[GUC_CTB_HDR_LEN];
- 
- 	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg[0]);
- 	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
-@@ -871,7 +871,7 @@ static int ct_handle_hxg(struct intel_guc_ct *ct, struct ct_incoming_msg *msg)
- 
- static void ct_handle_msg(struct intel_guc_ct *ct, struct ct_incoming_msg *msg)
- {
--	u32 format = FIELD_GET(GUC_CTB_MSG_0_FORMAT, msg->msg[0]);
-+	u32 format = FIELD_GET(GUC_CTB_HDR_0_FORMAT, msg->msg[0]);
- 	int err;
- 
- 	if (format == GUC_CTB_FORMAT_HXG)
--- 
-2.25.1
+> >  int __i915_vma_pin_fence(struct i915_vma *vma)
+> =
 
+> Makes sense..
+> =
+
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> =
+
+> Is it a slightly more reent commit? Might probably be the part that conve=
+rts execbuffer to use ww locks.
+
+No idea about the specific commit since I've not actually bisected it.
+It's just been bugging CI for quite a while now so figured I need to
+fix it.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
