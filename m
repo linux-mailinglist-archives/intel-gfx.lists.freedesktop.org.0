@@ -2,39 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 796273B951F
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 19:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 413323B9501
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 18:58:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8AEC6EB62;
-	Thu,  1 Jul 2021 17:00:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70C346EB60;
+	Thu,  1 Jul 2021 16:58:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD7676EB62
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jul 2021 17:00:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="208392811"
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="208392811"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 10:00:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="457738053"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 01 Jul 2021 10:00:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 01 Jul 2021 20:00:05 +0300
-Date: Thu, 1 Jul 2021 20:00:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <YN30lZ1aC+KDpMWQ@intel.com>
-References: <20210630164413.25481-1-ville.syrjala@linux.intel.com>
- <2edf584b-3835-53ed-f6e3-76c7e8d581ed@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A98E6EB60;
+ Thu,  1 Jul 2021 16:58:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="208525578"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="208525578"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2021 09:58:00 -0700
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="644504641"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2021 09:58:00 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Thu,  1 Jul 2021 10:15:43 -0700
+Message-Id: <20210701171550.49353-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2edf584b-3835-53ed-f6e3-76c7e8d581ed@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Fix -EDEADLK handling
- regression
+Subject: [Intel-gfx] [PATCH 0/7] CT changes required for GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,87 +41,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@intel.com>,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 01, 2021 at 09:07:27AM +0200, Maarten Lankhorst wrote:
-> Op 30-06-2021 om 18:44 schreef Ville Syrjala:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> >
-> > The conversion to ww mutexes failed to address the fence code which
-> > already returns -EDEADLK when we run out of fences. Ww mutexes on
-> > the other hand treat -EDEADLK as an internal errno value indicating
-> > a need to restart the operation due to a deadlock. So now when the
-> > fence code returns -EDEADLK the higher level code erroneously
-> > restarts everything instead of returning the error to userspace
-> > as is expected.
-> >
-> > To remedy this let's switch the fence code to use a different errno
-> > value for this. -ENOBUFS seems like a semi-reasonable unique choice.
-> > Apart from igt the only user of this I could find is sna, and even
-> > there all we do is dump the current fence registers from debugfs
-> > into the X server log. So no user visible functionality is affected.
-> > If we really cared about preserving this we could of course convert
-> > back to -EDEADLK higher up, but doesn't seem like that's worth
-> > the hassle here.
-> >
-> > Not quite sure which commit specifically broke this, but I'll
-> > just attribute it to the general gem ww mutex work.
-> >
-> > Cc: stable@vger.kernel.org
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Thomas Hellstr=F6m <thomas.hellstrom@intel.com>
-> > Testcase: igt/gem_pread/exhaustion
-> > Testcase: igt/gem_pwrite/basic-exhaustion
-> > Testcase: igt/gem_fenced_exec_thrash/too-many-fences
-> > Fixes: 80f0b679d6f0 ("drm/i915: Add an implementation for i915_gem_ww_c=
-tx locking, v2.")
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu=
-/drm/i915/gt/intel_ggtt_fencing.c
-> > index cac7f3f44642..f8948de72036 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> > @@ -348,7 +348,7 @@ static struct i915_fence_reg *fence_find(struct i91=
-5_ggtt *ggtt)
-> >  	if (intel_has_pending_fb_unpin(ggtt->vm.i915))
-> >  		return ERR_PTR(-EAGAIN);
-> >  =
+As part of enabling GuC submission discussed in [1], [2], and [3] we
+need optimize and update the CT code as this is now in the critical
+path of submission. This series includes the patches to do that which is
+the first 7 patches from [3]. The patches should have addressed all the
+feedback in [3] and should be ready to merge once CI returns a we get a
+few more RBs.
 
-> > -	return ERR_PTR(-EDEADLK);
-> > +	return ERR_PTR(-ENOBUFS);
-> >  }
-> >  =
+v2: Fix checkpatch warning, address a couple of Michal's comments
 
-> >  int __i915_vma_pin_fence(struct i915_vma *vma)
-> =
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-> Makes sense..
-> =
+[1] https://patchwork.freedesktop.org/series/89844/
+[2] https://patchwork.freedesktop.org/series/91417/
+[3] https://patchwork.freedesktop.org/series/91840/
 
-> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> =
+John Harrison (1):
+  drm/i915/guc: Module load failure test for CT buffer creation
 
-> Is it a slightly more reent commit? Might probably be the part that conve=
-rts execbuffer to use ww locks.
+Matthew Brost (6):
+  drm/i915/guc: Relax CTB response timeout
+  drm/i915/guc: Improve error message for unsolicited CT response
+  drm/i915/guc: Increase size of CTB buffers
+  drm/i915/guc: Add non blocking CTB send function
+  drm/i915/guc: Add stall timer to non blocking CTB send function
+  drm/i915/guc: Optimize CTB writes and reads
 
-No idea about the specific commit since I've not actually bisected it.
-It's just been bugging CI for quite a while now so figured I need to
-fix it.
+ .../gt/uc/abi/guc_communication_ctb_abi.h     |   3 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  11 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 250 +++++++++++++++---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  14 +-
+ 4 files changed, 232 insertions(+), 46 deletions(-)
 
--- =
+-- 
+2.28.0
 
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
