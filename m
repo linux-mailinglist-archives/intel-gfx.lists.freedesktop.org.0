@@ -2,66 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C473B8F83
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 11:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCBC3B8FB5
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 11:22:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B576EAB2;
-	Thu,  1 Jul 2021 09:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CAA76EA9F;
+	Thu,  1 Jul 2021 09:22:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E167C6EAAD;
- Thu,  1 Jul 2021 09:09:02 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 8C6C1227FB;
- Thu,  1 Jul 2021 09:09:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1625130541; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
- b=jZ+T9/d8Tv40cx3Gfbjs4CnOND8QC7AnNxL7j2RmPyWfAwLiE3oB3ZbAqdRua/r1YBb/bW
- Y2YZ4b3hbBRy+wyVpx5OA6B7FUSOvUicnbAycR9VqZh31PvRwdrGFSazSaIXjwy5LYapQ8
- PkoQnziAOaY1BEBTdBq2xFprz4bzlwY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1625130541;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
- b=7rw2LrYVeR2gaE0jy7Ke80917hyYiKtfFL6tmKuNGX6P6jes/RdTdiyba7OcV/Q5yPYKVZ
- xBgP96FJo72Z3wDQ==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id 55AD611CC0;
- Thu,  1 Jul 2021 09:09:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1625130541; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
- b=jZ+T9/d8Tv40cx3Gfbjs4CnOND8QC7AnNxL7j2RmPyWfAwLiE3oB3ZbAqdRua/r1YBb/bW
- Y2YZ4b3hbBRy+wyVpx5OA6B7FUSOvUicnbAycR9VqZh31PvRwdrGFSazSaIXjwy5LYapQ8
- PkoQnziAOaY1BEBTdBq2xFprz4bzlwY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1625130541;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2ZkAhHualJpXvHlhErO3vffMp9/Q0lg7AVNAbWuLZI4=;
- b=7rw2LrYVeR2gaE0jy7Ke80917hyYiKtfFL6tmKuNGX6P6jes/RdTdiyba7OcV/Q5yPYKVZ
- xBgP96FJo72Z3wDQ==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id ZeQPFC2G3WDGKAAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 01 Jul 2021 09:09:01 +0000
-Date: Thu, 1 Jul 2021 11:08:59 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YN2GK2SH64yqXqh9@linux-uq9g>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 404016EA9F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jul 2021 09:22:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10031"; a="206679338"
+X-IronPort-AV: E=Sophos;i="5.83,313,1616482800"; d="scan'208";a="206679338"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2021 02:22:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,313,1616482800"; d="scan'208";a="626302850"
+Received: from kbommu-nuc8i7beh.iind.intel.com ([10.145.162.97])
+ by orsmga005.jf.intel.com with ESMTP; 01 Jul 2021 02:22:50 -0700
+From: venkata.sai.patnana@intel.com
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  1 Jul 2021 14:42:00 +0530
+Message-Id: <20210701091201.3549-1-venkata.sai.patnana@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210629065156.30301-1-venkata.sai.patnana@intel.com>
+References: <20210629065156.30301-1-venkata.sai.patnana@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Subject: [Intel-gfx] [v3 1/2] drm/i915/display/dsc: Add Per connector
+ debugfs node for DSC BPP enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,79 +43,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+From: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
 
-this week's PR for drm-misc-next-fixes contains a number of BO-related
-fixes in amdgpu, gma500 and radeon, and a documentation fix for dma-buf.
+[What]:
+This patch creates a per connector debugfs node to expose
+the Input and Compressed BPP.
 
-Best regards
-Thomas
+The same node can be used from userspace to force
+DSC to a certain BPP(all accepted values).
 
-drm-misc-next-fixes-2021-07-01:
-Short summary of fixes pull:
+[Why]:
+Useful to verify all supported/requested compression bpp's
+through IGT
 
- * amdgpu: TTM fixes
- * dma-buf: Doc fixes
- * gma500: Fix potential BO leaks in error handling
- * radeon: Fix NULL-ptr deref
-The following changes since commit eed75ce7c8260e0d5612ced4a88180ab991e207c:
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Navare Manasi D <manasi.d.navare@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
+---
+ .../drm/i915/display/intel_display_debugfs.c  | 76 ++++++++++++++++++-
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ 2 files changed, 76 insertions(+), 1 deletion(-)
 
-  drm/amdgpu: fix amdgpu_preempt_mgr_new() (2021-06-21 15:24:29 +0200)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index af9e58619667d..2305a0c2498cc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -2389,6 +2389,73 @@ static const struct file_operations i915_dsc_fec_support_fops = {
+ 	.write = i915_dsc_fec_support_write
+ };
+ 
++static int i915_dsc_bpp_support_show(struct seq_file *m, void *data)
++{
++	struct drm_connector *connector = m->private;
++	struct drm_device *dev = connector->dev;
++	struct drm_crtc *crtc;
++	struct intel_crtc_state *crtc_state = NULL;
++	int ret = 0;
++
++	ret = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
++	if (ret)
++		return ret;
++
++	crtc = connector->state->crtc;
++	crtc_state = to_intel_crtc_state(crtc->state);
++	seq_printf(m, "Input_BPP: %d\n", crtc_state->pipe_bpp);
++	seq_printf(m, "Compressed_BPP: %d\n",
++			crtc_state->dsc.compressed_bpp);
++
++	drm_modeset_unlock(&dev->mode_config.connection_mutex);
++
++	return ret;
++}
++
++static ssize_t i915_dsc_bpp_support_write(struct file *file,
++						const char __user *ubuf,
++						size_t len, loff_t *offp)
++{
++	int dsc_bpp = 0;
++	int ret;
++	struct drm_connector *connector =
++		((struct seq_file *)file->private_data)->private;
++	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++
++	if (len == 0)
++		return 0;
++
++	drm_dbg(&i915->drm,
++		"Copied %zu bytes from user to force BPP\n", len);
++
++	ret = kstrtoint_from_user(ubuf, len, 0, &dsc_bpp);
++
++	intel_dp->force_dsc_bpp = dsc_bpp;
++	if (ret < 0)
++		return ret;
++
++	*offp += len;
++	return len;
++}
++
++static int i915_dsc_bpp_support_open(struct inode *inode,
++					   struct file *file)
++{
++	return single_open(file, i915_dsc_bpp_support_show,
++			   inode->i_private);
++}
++
++static const struct file_operations i915_dsc_bpp_support_fops = {
++	.owner = THIS_MODULE,
++	.open = i915_dsc_bpp_support_open,
++	.read = seq_read,
++	.llseek = seq_lseek,
++	.release = single_release,
++	.write = i915_dsc_bpp_support_write
++};
++
+ /**
+  * intel_connector_debugfs_add - add i915 specific connector debugfs files
+  * @connector: pointer to a registered drm_connector
+@@ -2427,9 +2494,16 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+ 				    connector, &i915_hdcp_sink_capability_fops);
+ 	}
+ 
+-	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) && ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort && !to_intel_connector(connector)->mst_port) || connector->connector_type == DRM_MODE_CONNECTOR_eDP))
++	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) &&
++	    ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
++	      !to_intel_connector(connector)->mst_port) ||
++	     connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
+ 		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
+ 				    connector, &i915_dsc_fec_support_fops);
++		debugfs_create_file("i915_dsc_bpp_support", S_IRUGO,
++				    root, connector,
++				    &i915_dsc_bpp_support_fops);
++	}
+ 
+ 	/* Legacy panels doesn't lpsp on any platform */
+ 	if ((DISPLAY_VER(dev_priv) >= 9 || IS_HASWELL(dev_priv) ||
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index d94f361b548b7..19d8d3eefbc27 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1612,6 +1612,7 @@ struct intel_dp {
+ 
+ 	/* Display stream compression testing */
+ 	bool force_dsc_en;
++	int force_dsc_bpp;
+ 
+ 	bool hobl_failed;
+ 	bool hobl_active;
+-- 
+2.25.1
 
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-=
-07-01
-
-for you to fetch changes up to f18f58012ee894039cd59ee8c889bf499d7a3943:
-
-  drm/radeon: Fix NULL dereference when updating memory stats (2021-06-30 1=
-1:56:21 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * amdgpu: TTM fixes
- * dma-buf: Doc fixes
- * gma500: Fix potential BO leaks in error handling
- * radeon: Fix NULL-ptr deref
-
-----------------------------------------------------------------
-Jing Xiangfeng (1):
-      drm/gma500: Add the missed drm_gem_object_put() in psb_user_framebuff=
-er_create()
-
-Mikel Rychliski (1):
-      drm/radeon: Fix NULL dereference when updating memory stats
-
-Nirmoy Das (1):
-      drm/amdgpu: return early for non-TTM_PL_TT type BOs
-
-Randy Dunlap (1):
-      <linux/dma-resv.h>: correct a function name in kernel-doc
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  3 ++-
- drivers/gpu/drm/gma500/framebuffer.c    |  7 ++++++-
- drivers/gpu/drm/radeon/radeon_object.c  | 29 ++++++++++++-----------------
- drivers/gpu/drm/radeon/radeon_object.h  |  2 +-
- drivers/gpu/drm/radeon/radeon_ttm.c     | 13 ++++++++++---
- include/linux/dma-resv.h                |  2 +-
- 6 files changed, 32 insertions(+), 24 deletions(-)
-
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-(HRB 36809, AG N=FCrnberg)
-Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
