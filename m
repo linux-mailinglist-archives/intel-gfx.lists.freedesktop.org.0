@@ -2,38 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706C23B9445
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 17:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C64A33B945E
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 17:56:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 641A96EADA;
-	Thu,  1 Jul 2021 15:48:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6E316EB49;
+	Thu,  1 Jul 2021 15:56:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B51F6E039;
- Thu,  1 Jul 2021 15:48:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="205554370"
-X-IronPort-AV: E=Sophos;i="5.83,314,1616482800"; d="scan'208";a="205554370"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 08:48:05 -0700
-X-IronPort-AV: E=Sophos;i="5.83,314,1616482800"; d="scan'208";a="447938295"
-Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2021 08:48:04 -0700
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: michael.j.ruhl@intel.com, daniel@ffwll.ch,
- thomas.hellstrom@linux.intel.com, ckoenig.leichtzumerken@gmail.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- matthew.auld@intel.com, maarten.lankhorst@linux.intel.com
-Date: Thu,  1 Jul 2021 11:47:54 -0400
-Message-Id: <20210701154754.665034-2-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210701154754.665034-1-michael.j.ruhl@intel.com>
-References: <20210701154754.665034-1-michael.j.ruhl@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4159A6EB46;
+ Thu,  1 Jul 2021 15:56:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="294194385"
+X-IronPort-AV: E=Sophos;i="5.83,314,1616482800"; d="scan'208";a="294194385"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2021 08:56:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,314,1616482800"; d="scan'208";a="455635570"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga008.jf.intel.com with ESMTP; 01 Jul 2021 08:56:02 -0700
+Received: from mwajdecz-MOBL.ger.corp.intel.com
+ (mwajdecz-MOBL.ger.corp.intel.com [10.249.146.9])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 161Fu0L7001058; Thu, 1 Jul 2021 16:56:01 +0100
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Thu,  1 Jul 2021 17:55:09 +0200
+Message-Id: <20210701155513.2024-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Migrate to system at dma-buf
- attach time
+Subject: [Intel-gfx] [PATCH 0/4] drm/i915/guc: Improve CTB error handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,49 +44,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29t
-PgoKVW50aWwgd2Ugc3VwcG9ydCBwMnAgZG1hIG9yIGFzIGEgY29tcGxlbWVudCB0byB0aGF0LCBt
-aWdyYXRlIGRhdGEKdG8gc3lzdGVtIG1lbW9yeSBhdCBkbWEtYnVmIGF0dGFjaCB0aW1lIGlmIHBv
-c3NpYmxlLgoKdjI6Ci0gUmViYXNlIG9uIGR5bmFtaWMgZXhwb3J0ZXIuIFVwZGF0ZSB0aGUgaWd0
-X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXIKICBzZWxmdGVzdCB0byBtaWdyYXRlIGlmIHdlIGFy
-ZSBMTUVNIGNhcGFibGUuCnYzOgotIE1pZ3JhdGUgYWxzbyBpbiB0aGUgcGluKCkgY2FsbGJhY2su
-CnY0OgotIE1pZ3JhdGUgaW4gYXR0YWNoCgpTaWduZWQtb2ZmLWJ5OiBUaG9tYXMgSGVsbHN0csO2
-bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IE1pY2hh
-ZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYyAgICAgICAgICAgfCAxMiArKysrKysrKysrKy0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fZG1hYnVmLmMgfCAg
-NCArKystCiAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jCmluZGV4IDhjNTI4
-YjY5M2EzMC4uYTMyNWYzM2YzNWI4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fZG1hYnVmLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
-Z2VtX2RtYWJ1Zi5jCkBAIC0xNzAsOSArMTcwLDE5IEBAIHN0YXRpYyBpbnQgaTkxNV9nZW1fZG1h
-YnVmX2F0dGFjaChzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVmLAogCQkJCSAgc3RydWN0IGRtYV9idWZf
-YXR0YWNobWVudCAqYXR0YWNoKQogewogCXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmog
-PSBkbWFfYnVmX3RvX29iaihkbWFidWYpOworCWludCByZXQ7CiAKIAlhc3NlcnRfb2JqZWN0X2hl
-bGQob2JqKTsKLQlyZXR1cm4gaTkxNV9nZW1fb2JqZWN0X3Bpbl9wYWdlcyhvYmopOworCisJaWYg
-KCFpOTE1X2dlbV9vYmplY3RfY2FuX21pZ3JhdGUob2JqLCBJTlRFTF9SRUdJT05fU01FTSkpCisJ
-CXJldHVybiAtRU9QTk9UU1VQUDsKKwlyZXQgPSBpOTE1X2dlbV9vYmplY3RfbWlncmF0ZShvYmos
-IE5VTEwsIElOVEVMX1JFR0lPTl9TTUVNKTsKKwlpZiAoIXJldCkKKwkJcmV0ID0gaTkxNV9nZW1f
-b2JqZWN0X3dhaXRfbWlncmF0aW9uKG9iaiwgMCk7CisJaWYgKCFyZXQpCisJCXJldCA9IGk5MTVf
-Z2VtX29iamVjdF9waW5fcGFnZXMob2JqKTsKKworCXJldHVybiByZXQ7CiB9CiAKIHN0YXRpYyB2
-b2lkIGk5MTVfZ2VtX2RtYWJ1Zl9kZXRhY2goc3RydWN0IGRtYV9idWYgKmRtYWJ1ZiwKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fZG1hYnVm
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5j
-CmluZGV4IDg2OGIzNDY5ZWNiZC4uYjFlODdlYzA4NzQxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fZG1hYnVmLmMKQEAgLTEwNiw3ICsx
-MDYsOSBAQCBzdGF0aWMgaW50IGlndF9kbWFidWZfaW1wb3J0X3NhbWVfZHJpdmVyKHZvaWQgKmFy
-ZykKIAlpbnQgZXJyOwogCiAJZm9yY2VfZGlmZmVyZW50X2RldmljZXMgPSB0cnVlOwotCW9iaiA9
-IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW0oaTkxNSwgUEFHRV9TSVpFKTsKKwlvYmogPSBp
-OTE1X2dlbV9vYmplY3RfY3JlYXRlX2xtZW0oaTkxNSwgUEFHRV9TSVpFLCAwKTsKKwlpZiAoSVNf
-RVJSKG9iaikpCisJCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW0oaTkxNSwgUEFH
-RV9TSVpFKTsKIAlpZiAoSVNfRVJSKG9iaikpCiAJCWdvdG8gb3V0X3JldDsKIAotLSAKMi4zMS4x
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+There was a gap in handling MMIO result from CTB (de)registration
+and while fixing it improve some other error reports.
+
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+Michal Wajdeczko (4):
+  drm/i915/guc: Verify result from CTB (de)register action
+  drm/i915/guc: Print error name on CTB (de)registration failure
+  drm/i915/guc: Print error name on CTB send failure
+  drm/i915/guc: Move and improve error message for missed CTB reply
+
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 30 ++++++++++++++---------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
+
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
