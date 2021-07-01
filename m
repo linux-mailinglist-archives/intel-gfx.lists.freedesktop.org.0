@@ -2,77 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C52B3B9592
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 19:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDD93B959F
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 19:42:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECFDD6EB7B;
-	Thu,  1 Jul 2021 17:36:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5716E0C8;
+	Thu,  1 Jul 2021 17:42:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5112A6E027;
- Thu,  1 Jul 2021 17:36:22 +0000 (UTC)
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
- (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id F0B0120505;
- Thu,  1 Jul 2021 17:36:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1625160980; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wF7yrpdKo0ip7+BSq6NORTce9h4F0zARqY8MxP+93zU=;
- b=Js1IKICInP5c3zGr3TDrxXMfjjAudOrIo8uBevhl/Y5vfNKly0XPGP6fCGdAVT+5sRIJgH
- njRISyCTqiCukkYlaEl1MrLAywk8JPw/+mZcZYSjObhkMh7IiMxS9jRcu03hyuUiKiFE4s
- ZZJb7zRRkpckEiOh/ggj9IhmHmTLSa8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1625160980;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wF7yrpdKo0ip7+BSq6NORTce9h4F0zARqY8MxP+93zU=;
- b=noKUzRON7e/MKxLSxakOjWKr/6scQv1hO8uOCHi35SYkyfNes8bmLPgs0jsJZi7sPfjeml
- +CWudLM4iDBOpBAA==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
- by imap.suse.de (Postfix) with ESMTP id A8B6411CD6;
- Thu,  1 Jul 2021 17:36:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1625160980; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wF7yrpdKo0ip7+BSq6NORTce9h4F0zARqY8MxP+93zU=;
- b=Js1IKICInP5c3zGr3TDrxXMfjjAudOrIo8uBevhl/Y5vfNKly0XPGP6fCGdAVT+5sRIJgH
- njRISyCTqiCukkYlaEl1MrLAywk8JPw/+mZcZYSjObhkMh7IiMxS9jRcu03hyuUiKiFE4s
- ZZJb7zRRkpckEiOh/ggj9IhmHmTLSa8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1625160980;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wF7yrpdKo0ip7+BSq6NORTce9h4F0zARqY8MxP+93zU=;
- b=noKUzRON7e/MKxLSxakOjWKr/6scQv1hO8uOCHi35SYkyfNes8bmLPgs0jsJZi7sPfjeml
- +CWudLM4iDBOpBAA==
-Received: from director2.suse.de ([192.168.254.72]) by imap3-int with ESMTPSA
- id mCpgKBT93WCcSwAALh3uQQ
- (envelope-from <tzimmermann@suse.de>); Thu, 01 Jul 2021 17:36:20 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- chris@chris-wilson.co.uk, mika.kuoppala@linux.intel.com,
- matthew.brost@intel.com, maarten.lankhorst@linux.intel.com,
- lucas.demarchi@intel.com, ville.syrjala@linux.intel.com
-Date: Thu,  1 Jul 2021 19:36:18 +0200
-Message-Id: <20210701173618.10718-3-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210701173618.10718-1-tzimmermann@suse.de>
-References: <20210701173618.10718-1-tzimmermann@suse.de>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49A766E0C8
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Jul 2021 17:42:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="188967249"
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="188967249"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2021 10:42:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,315,1616482800"; d="scan'208";a="426239243"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 01 Jul 2021 10:42:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 01 Jul 2021 20:42:39 +0300
+Date: Thu, 1 Jul 2021 20:42:39 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <YN3+j2AW+gLnGV/J@intel.com>
+References: <20210701090326.1056452-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 2/2] drm/i915: Drop all references to DRM IRQ
- midlayer
+Content-Disposition: inline
+In-Reply-To: <20210701090326.1056452-1-matthew.auld@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: check if compressed_llb
+ was allocated
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,45 +46,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmVtb3ZlIGFsbCByZWZlcmVuY2VzIHRvIERSTSdzIElSUSBtaWRsYXllci4gaTkxNSB1c2VzIExp
-bnV4JyBpbnRlcnJ1cHQKZnVuY3Rpb25zIGRpcmVjdGx5LgoKdjI6CgkqIGFsc28gcmVtb3ZlIGFu
-IG91dGRhdGVkIGNvbW1lbnQKCSogbW92ZSBJUlEgZml4IGludG8gc2VwYXJhdGUgcGF0Y2gKCSog
-dXBkYXRlIEZpeGVzIHRhZyAoRGFuaWVsKQoKU2lnbmVkLW9mZi1ieTogVGhvbWFzIFppbW1lcm1h
-bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+CkZpeGVzOiBiMzE4YjgyNDU1YmQgKCJkcm0vaTkxNTog
-TnVrZSBkcm1fZHJpdmVyIGlycSB2ZnVuY3MiKQpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
-eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2ls
-c29uLmNvLnVrPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4K
-Q2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbT4KQ2M6
-IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KQ2M6IGludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIHwg
-MSAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIHwgNSAtLS0tLQogMiBmaWxlcyBj
-aGFuZ2VkLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCmluZGV4IDYyMzI3
-YzE1ZjQ1Ny4uMzBkOGNkOGM2OWIxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2Rydi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTQyLDcg
-KzQyLDYgQEAKICNpbmNsdWRlIDxkcm0vZHJtX2FwZXJ0dXJlLmg+CiAjaW5jbHVkZSA8ZHJtL2Ry
-bV9hdG9taWNfaGVscGVyLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9pb2N0bC5oPgotI2luY2x1ZGUg
-PGRybS9kcm1faXJxLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9tYW5hZ2VkLmg+CiAjaW5jbHVkZSA8
-ZHJtL2RybV9wcm9iZV9oZWxwZXIuaD4KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9pcnEuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKaW5kZXggMjIw
-M2RjYTE5ODk1Li4xZDRjNjgzYzlkZTkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfaXJxLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwpAQCAtMzMs
-NyArMzMsNiBAQAogI2luY2x1ZGUgPGxpbnV4L3N5c3JxLmg+CiAKICNpbmNsdWRlIDxkcm0vZHJt
-X2Rydi5oPgotI2luY2x1ZGUgPGRybS9kcm1faXJxLmg+CiAKICNpbmNsdWRlICJkaXNwbGF5L2lu
-dGVsX2RlLmgiCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgiCkBAIC00
-NTY0LDEwICs0NTYzLDYgQEAgdm9pZCBpbnRlbF9ydW50aW1lX3BtX2VuYWJsZV9pbnRlcnJ1cHRz
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAogYm9vbCBpbnRlbF9pcnFzX2Vu
-YWJsZWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogewotCS8qCi0JICogV2Ug
-b25seSB1c2UgZHJtX2lycV91bmluc3RhbGwoKSBhdCB1bmxvYWQgYW5kIFZUIHN3aXRjaCwgc28K
-LQkgKiB0aGlzIGlzIHRoZSBvbmx5IHRoaW5nIHdlIG5lZWQgdG8gY2hlY2suCi0JICovCiAJcmV0
-dXJuIGRldl9wcml2LT5ydW50aW1lX3BtLmlycXNfZW5hYmxlZDsKIH0KIAotLSAKMi4zMi4wCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, Jul 01, 2021 at 10:03:26AM +0100, Matthew Auld wrote:
+> If we hit the error path here we unconditionally call
+> i915_gem_stolen_remove_node, even though we only allocate the
+> compressed_llb on older platforms. Therefore we should first check that
+> we actually allocated the node before trying to remove it.
+> =
+
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/3709
+
+Doh! Seems pre-merge testing didn't hit this, or I just suck at reading
+the logs :(
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> Fixes: 46b2c40e0af3 ("drm/i915/fbc: Allocate llb before cfb")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index 7dc72e4a4656..82effb64a3b9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -516,7 +516,8 @@ static int intel_fbc_alloc_cfb(struct drm_i915_privat=
+e *dev_priv,
+>  	return 0;
+>  =
+
+>  err_llb:
+> -	i915_gem_stolen_remove_node(dev_priv, &fbc->compressed_llb);
+> +	if (drm_mm_node_allocated(&fbc->compressed_llb))
+> +		i915_gem_stolen_remove_node(dev_priv, &fbc->compressed_llb);
+>  err:
+>  	if (drm_mm_initialized(&dev_priv->mm.stolen))
+>  		drm_info_once(&dev_priv->drm, "not enough stolen space for compressed =
+buffer (need %d more bytes), disabling. Hint: you may be able to increase s=
+tolen memory size in the BIOS to avoid this.\n", size);
+> -- =
+
+> 2.26.3
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
