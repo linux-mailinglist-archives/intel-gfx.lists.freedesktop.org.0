@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A1C3B9397
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 16:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C093B93A7
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Jul 2021 17:00:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FEBE6EB31;
-	Thu,  1 Jul 2021 14:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5833B6EB2B;
+	Thu,  1 Jul 2021 15:00:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1324D6EB2B;
- Thu,  1 Jul 2021 14:52:52 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E9EDF6EB2B;
+ Thu,  1 Jul 2021 15:00:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 041C4A41FB;
- Thu,  1 Jul 2021 14:52:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E32C7A882E;
+ Thu,  1 Jul 2021 15:00:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Date: Thu, 01 Jul 2021 14:52:51 -0000
-Message-ID: <162515117198.15054.16423703035952705932@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 01 Jul 2021 15:00:17 -0000
+Message-ID: <162515161790.15055.7767456286615513143@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210701142407.458836-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20210701142407.458836-1-michael.j.ruhl@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915/gem=3A_Correct_the_locki?=
- =?utf-8?q?ng_and_pin_pattern_for_dma-buf?=
+References: <20210701143650.1094468-1-matthew.auld@intel.com>
+In-Reply-To: <20210701143650.1094468-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915=3A_use_consistent_C?=
+ =?utf-8?q?PU_mappings_for_pin=5Fmap_users?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,64 +41,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvMl0g
-ZHJtL2k5MTUvZ2VtOiBDb3JyZWN0IHRoZSBsb2NraW5nIGFuZCBwaW4gcGF0dGVybiBmb3IgZG1h
-LWJ1ZgpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvOTIx
-MDkvClN0YXRlIDogZmFpbHVyZQoKPT0gU3VtbWFyeSA9PQoKQ0FMTCAgICBzY3JpcHRzL2NoZWNr
-c3lzY2FsbHMuc2gKICBDQUxMICAgIHNjcmlwdHMvYXRvbWljL2NoZWNrLWF0b21pY3Muc2gKICBE
-RVNDRU5EIG9ianRvb2wKICBDSEsgICAgIGluY2x1ZGUvZ2VuZXJhdGVkL2NvbXBpbGUuaAogIEND
-IFtNXSAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5vCkluIGZpbGUg
-aW5jbHVkZWQgZnJvbSAuL2luY2x1ZGUvbGludXgvaW5pdC5oOjUsCiAgICAgICAgICAgICAgICAg
-ZnJvbSAuL2luY2x1ZGUvbGludXgvaW8uaDoxMCwKICAgICAgICAgICAgICAgICBmcm9tIC4vaW5j
-bHVkZS9saW51eC9kbWEtYnVmLW1hcC5oOjksCiAgICAgICAgICAgICAgICAgZnJvbSAuL2luY2x1
-ZGUvbGludXgvZG1hLWJ1Zi5oOjE2LAogICAgICAgICAgICAgICAgIGZyb20gZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jOjc6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
-bS9pOTE1X2dlbV9kbWFidWYuYzogSW4gZnVuY3Rpb24g4oCYaTkxNV9nZW1fcHJpbWVfaW1wb3J0
-4oCZOgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmM6Mjc2OjI3OiBl
-cnJvcjog4oCYZm9yY2VfZGlmZmVybnRfZGV2aWNlc+KAmSB1bmRlY2xhcmVkIChmaXJzdCB1c2Ug
-aW4gdGhpcyBmdW5jdGlvbik7IGRpZCB5b3UgbWVhbiDigJhmb3JjZV9kaWZmZXJlbnRfZGV2aWNl
-c+KAmT8KICAgICAgICFJOTE1X1NFTEZURVNUX09OTFkoZm9yY2VfZGlmZmVybnRfZGV2aWNlcykp
-IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fgouL2lu
-Y2x1ZGUvbGludXgvY29tcGlsZXIuaDo3ODo0Mjogbm90ZTogaW4gZGVmaW5pdGlvbiBvZiBtYWNy
-byDigJh1bmxpa2VseeKAmQogIyBkZWZpbmUgdW5saWtlbHkoeCkgX19idWlsdGluX2V4cGVjdCgh
-ISh4KSwgMCkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXgpkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmM6Mjc2Ojg6IG5vdGU6IGluIGV4
-cGFuc2lvbiBvZiBtYWNybyDigJhJOTE1X1NFTEZURVNUX09OTFnigJkKICAgICAgICFJOTE1X1NF
-TEZURVNUX09OTFkoZm9yY2VfZGlmZmVybnRfZGV2aWNlcykpIHsKICAgICAgICBefn5+fn5+fn5+
-fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jOjI3Njoy
-Nzogbm90ZTogZWFjaCB1bmRlY2xhcmVkIGlkZW50aWZpZXIgaXMgcmVwb3J0ZWQgb25seSBvbmNl
-IGZvciBlYWNoIGZ1bmN0aW9uIGl0IGFwcGVhcnMgaW4KICAgICAgICFJOTE1X1NFTEZURVNUX09O
-TFkoZm9yY2VfZGlmZmVybnRfZGV2aWNlcykpIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAg
-Xn5+fn5+fn5+fn5+fn5+fn5+fn5+fgouL2luY2x1ZGUvbGludXgvY29tcGlsZXIuaDo3ODo0Mjog
-bm90ZTogaW4gZGVmaW5pdGlvbiBvZiBtYWNybyDigJh1bmxpa2VseeKAmQogIyBkZWZpbmUgdW5s
-aWtlbHkoeCkgX19idWlsdGluX2V4cGVjdCghISh4KSwgMCkKICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgXgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-ZG1hYnVmLmM6Mjc2Ojg6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhJOTE1X1NFTEZU
-RVNUX09OTFnigJkKICAgICAgICFJOTE1X1NFTEZURVNUX09OTFkoZm9yY2VfZGlmZmVybnRfZGV2
-aWNlcykpIHsKICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn4KSW4gZmlsZSBpbmNsdWRlZCBmcm9t
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYzozMjc6CmRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fZG1hYnVmLmM6IEF0IHRvcCBsZXZl
-bDoKZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9kbWFidWYuYzo4
-OToxNzogZXJyb3I6IOKAmGlndF9kbWFidWZfbW92ZV9ub3RpZnnigJkgdW5kZWNsYXJlZCBoZXJl
-IChub3QgaW4gYSBmdW5jdGlvbik7IGRpZCB5b3UgbWVhbiDigJhkbWFfYnVmX21vdmVfbm90aWZ5
-4oCZPwogIC5tb3ZlX25vdGlmeSA9IGlndF9kbWFidWZfbW92ZV9ub3RpZnksCiAgICAgICAgICAg
-ICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fgogICAgICAgICAgICAgICAgIGRtYV9idWZfbW92
-ZV9ub3RpZnkKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDoyNzI6IHJlY2lwZSBmb3IgdGFyZ2V0ICdk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLm8nIGZhaWxlZAptYWtlWzRd
-OiAqKiogW2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYub10gRXJyb3Ig
-MQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUxNTogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMv
-Z3B1L2RybS9pOTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNV0g
-RXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUxNTogcmVjaXBlIGZvciB0YXJnZXQgJ2Ry
-aXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9ncHUvZHJtXSBFcnJv
-ciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTE1OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVy
-cy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJvciAyCk1ha2VmaWxl
-OjE4NDc6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFrZTogKioqIFtkcml2
-ZXJzXSBFcnJvciAyCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+== Series Details ==
+
+Series: series starting with [1/3] drm/i915: use consistent CPU mappings for pin_map users
+URL   : https://patchwork.freedesktop.org/series/92113/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+4a7bd95f84c8 drm/i915: use consistent CPU mappings for pin_map users
+-:43: ERROR:SPACING: space required before the open parenthesis '('
+#43: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.c:642:
++		switch(type) {
+
+total: 1 errors, 0 warnings, 0 checks, 90 lines checked
+98384c7fbb4c drm/i915/uapi: reject caching ioctls for discrete
+70c8c6810057 drm/i915/uapi: reject set_domain for discrete
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
