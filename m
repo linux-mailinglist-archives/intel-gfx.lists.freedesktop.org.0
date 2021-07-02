@@ -1,37 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 880433B9D32
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 09:58:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B813B9D54
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 10:09:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BD7589FD7;
-	Fri,  2 Jul 2021 07:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11A2489FF6;
+	Fri,  2 Jul 2021 08:09:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 735A489FD7;
- Fri,  2 Jul 2021 07:58:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10032"; a="294338663"
-X-IronPort-AV: E=Sophos;i="5.83,316,1616482800"; d="scan'208";a="294338663"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2021 00:58:02 -0700
-X-IronPort-AV: E=Sophos;i="5.83,316,1616482800"; d="scan'208";a="482209269"
-Received: from flast-mobl.ger.corp.intel.com (HELO localhost) ([10.252.43.116])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2021 00:57:58 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210701202427.1547543-17-matthew.d.roper@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210701202427.1547543-1-matthew.d.roper@intel.com>
- <20210701202427.1547543-17-matthew.d.roper@intel.com>
-Date: Fri, 02 Jul 2021 10:57:55 +0300
-Message-ID: <87bl7lqha4.fsf@intel.com>
+Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [IPv6:2a01:e0c:1:1599::14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB25489FF6;
+ Fri,  2 Jul 2021 08:09:55 +0000 (UTC)
+Received: from [192.168.1.71] (unknown [91.155.165.229])
+ (Authenticated sender: martin.peres@free.fr)
+ by smtp5-g21.free.fr (Postfix) with ESMTPSA id 825135FFCA;
+ Fri,  2 Jul 2021 10:09:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1625213393;
+ bh=6ZgF9aZ6prdbYkVu58icJFP+9DLuPqjk2lTqE0RxLtA=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=M7YlAlsfM53BAw9DHnwNw4MgGjigBpNob92nkMutTdTVZZ3w0e2ZYv7iRxwH4wfaU
+ 2mbspNriCbMkYxi85dTFWJD6Lg+iwYqRY7UVRiPq8cKx9vGvxKmpZgb/+hae2hf8C5
+ 2zZvCTPuyAWQHTd3IcEqxkFBI1VCHwnfulEgRyo7jTWF9+svzIw8VJZu5VA35hXC4k
+ bmoUJ9P0BdIT1XBXHRPhGiaRXgFPircZfa+dnQyLkyJojaW6CHxSx+lQPk+Pex2dtF
+ yE8IAynVoZ0Pl11FOjlLek9qfRJ6YjVAJphnFJUrfnU8b+vh05lLOJk2lHVNSQKw/T
+ BhdXpJ8w2GjNw==
+To: Pekka Paalanen <ppaalanen@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <20210624070516.21893-48-matthew.brost@intel.com>
+ <88cbe963-7188-f4ae-5acf-01a80bd2fe25@free.fr>
+ <05e1d462-57ae-888a-888c-3ad486150821@intel.com>
+ <20210701111410.3fc6551e@eldfell>
+ <050296b9-8958-353a-9f76-699bfbafa1c1@free.fr>
+ <CAKMK7uH1svoSEGa=sv+BsU4_BMou2sEJQWddQgy1XDMYtz7-Dw@mail.gmail.com>
+ <20210702102944.3a8c4915@eldfell>
+From: Martin Peres <martin.peres@free.fr>
+Message-ID: <2d3b06c3-5f69-5045-191f-3fd705a3fb40@free.fr>
+Date: Fri, 2 Jul 2021 11:09:43 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 16/53] drm/i915/xehpsdv: add initial XeHP
- SDV definitions
+In-Reply-To: <20210702102944.3a8c4915@eldfell>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 47/47] drm/i915/guc: Unblock GuC submission
+ on Gen11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,90 +57,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- Tomas Winkler <tomas.winkler@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAwMSBKdWwgMjAyMSwgTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNv
-bT4gd3JvdGU6Cj4gRnJvbTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5j
-b20+Cj4KPiBYZUhQIFNEViBpcyBhIEludGVswq4gZEdQVSB3aXRob3V0IGRpc3BsYXkuIFRoaXMg
-aXMganVzdCB0aGUgZGVmaW5pdGlvbgo+IG9mIHNvbWUgYmFzaWMgcGxhdGZvcm0gbWFjcm9zLCBi
-eSBsYXJnZSBhIGNvcHkgb2YgY3VycmVudCBzdGF0ZSBvZgo+IFRpZ2VybGFrZSB3aGljaCBkb2Vz
-IG5vdCByZWZsZWN0IHRoZSBlbmQgc3RhdGUgb2YgdGhpcyBwbGF0Zm9ybS4KPgo+IEJzcGVjOiA0
-NDQ2NywgNDgwNzcKPiBDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPgo+
-IFNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29t
-Pgo+IFNpZ25lZC1vZmYtYnk6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9s
-b3NwdXJpb0BpbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6
-YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogU3R1YXJ0IFN1bW1lcnMg
-PHN0dWFydC5zdW1tZXJzQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBUb21hcyBXaW5rbGVy
-IDx0b21hcy53aW5rbGVyQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxt
-YXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2Rydi5oICAgICAgICAgIHwgMTAgKysrKysrKysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X3BjaS5jICAgICAgICAgIHwgMjAgKysrKysrKysrKysrKysrKysrKysKPiAgZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyB8ICAxICsKPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCB8ICAxICsKPiAgNCBmaWxlcyBjaGFuZ2VkLCAz
-MiBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKPiBpbmRleCBjMDI2MDA4
-NTAyNDYuLjYzYmVkMThhMmJlNyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2Rydi5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+IEBAIC0x
-NDA2LDYgKzE0MDYsNyBAQCBJU19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqaTkxNSwKPiAgI2RlZmluZSBJU19ERzEoZGV2X3ByaXYpICAgICAgICBJU19QTEFURk9S
-TShkZXZfcHJpdiwgSU5URUxfREcxKQo+ICAjZGVmaW5lIElTX0FMREVSTEFLRV9TKGRldl9wcml2
-KSBJU19QTEFURk9STShkZXZfcHJpdiwgSU5URUxfQUxERVJMQUtFX1MpCj4gICNkZWZpbmUgSVNf
-QUxERVJMQUtFX1AoZGV2X3ByaXYpIElTX1BMQVRGT1JNKGRldl9wcml2LCBJTlRFTF9BTERFUkxB
-S0VfUCkKPiArI2RlZmluZSBJU19YRUhQU0RWKGRldl9wcml2KSBJU19QTEFURk9STShkZXZfcHJp
-diwgSU5URUxfWEVIUFNEVikKPiAgI2RlZmluZSBJU19IU1dfRUFSTFlfU0RWKGRldl9wcml2KSAo
-SVNfSEFTV0VMTChkZXZfcHJpdikgJiYgXAo+ICAJCQkJICAgIChJTlRFTF9ERVZJRChkZXZfcHJp
-dikgJiAweEZGMDApID09IDB4MEMwMCkKPiAgI2RlZmluZSBJU19CRFdfVUxUKGRldl9wcml2KSBc
-Cj4gQEAgLTE1NjQsNiArMTU2NSwxNSBAQCBJU19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqaTkxNSwKPiAgCShJU19BTERFUkxBS0VfUChfX2k5MTUpICYmIFwKPiAg
-CSBJU19HVF9TVEVQKF9faTkxNSwgc2luY2UsIHVudGlsKSkKPiAgCj4gKyNkZWZpbmUgWEVIUFNE
-Vl9SRVZJRF9BMAkJMHgwCj4gKyNkZWZpbmUgWEVIUFNEVl9SRVZJRF9BMQkJMHgxCj4gKyNkZWZp
-bmUgWEVIUFNEVl9SRVZJRF9BX0xBU1QJWEVIUFNEVl9SRVZJRF9BMQo+ICsjZGVmaW5lIFhFSFBT
-RFZfUkVWSURfQjAJCTB4NAo+ICsjZGVmaW5lIFhFSFBTRFZfUkVWSURfQzAJCTB4OAo+ICsKPiAr
-I2RlZmluZSBJU19YRUhQU0RWX1JFVklEKHAsIHNpbmNlLCB1bnRpbCkgXAo+ICsJKElTX1hFSFBT
-RFYocCkgJiYgSVNfUkVWSUQocCwgc2luY2UsIHVudGlsKSkKCkZvciBuZXcgcGxhdGZvcm1zIHdl
-IHNob3VsZCBiZSB1c2luZyB0aGUgbWVjaGFuaXNtcyBpbgppbnRlbF9zdGVwLltjaF0uIEFzIHdl
-bGwgYXMgY29udmVydGluZyB0aGUgb2xkIG9uZXMuCgoKQlIsCkphbmkuCgoKPiArCj4gICNkZWZp
-bmUgSVNfTFAoZGV2X3ByaXYpCQkoSU5URUxfSU5GTyhkZXZfcHJpdiktPmlzX2xwKQo+ICAjZGVm
-aW5lIElTX0dFTjlfTFAoZGV2X3ByaXYpCShHUkFQSElDU19WRVIoZGV2X3ByaXYpID09IDkgJiYg
-SVNfTFAoZGV2X3ByaXYpKQo+ICAjZGVmaW5lIElTX0dFTjlfQkMoZGV2X3ByaXYpCShHUkFQSElD
-U19WRVIoZGV2X3ByaXYpID09IDkgJiYgIUlTX0xQKGRldl9wcml2KSkKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfcGNpLmMKPiBpbmRleCA4OGIyNzk0NTJiODcuLjA0NjMwOWU5NWY0MyAxMDA2NDQKPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9wY2kuYwo+IEBAIC0xMDIwLDYgKzEwMjAsMjYgQEAgc3RhdGljIGNvbnN0IHN0
-cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyBhZGxfcF9pbmZvID0gewo+ICAJLnBwZ3R0X3NpemUgPSA0
-OCwgXAo+ICAJLnBwZ3R0X3R5cGUgPSBJTlRFTF9QUEdUVF9GVUxMCj4gIAo+ICsjZGVmaW5lIFhF
-X0hQTV9GRUFUVVJFUyBcCj4gKwkubWVkaWFfdmVyID0gMTIsIFwKPiArCS5tZWRpYV92ZXJfcmVs
-ZWFzZSA9IDUwCj4gKwo+ICtfX21heWJlX3VudXNlZAo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGlu
-dGVsX2RldmljZV9pbmZvIHhlaHBzZHZfaW5mbyA9IHsKPiArCVhFX0hQX0ZFQVRVUkVTLAo+ICsJ
-WEVfSFBNX0ZFQVRVUkVTLAo+ICsJREdGWF9GRUFUVVJFUywKPiArCVBMQVRGT1JNKElOVEVMX1hF
-SFBTRFYpLAo+ICsJLmRpc3BsYXkgPSB7IH0sCj4gKwkucGlwZV9tYXNrID0gMCwKPiArCS5wbGF0
-Zm9ybV9lbmdpbmVfbWFzayA9Cj4gKwkJQklUKFJDUzApIHwgQklUKEJDUzApIHwKPiArCQlCSVQo
-VkVDUzApIHwgQklUKFZFQ1MxKSB8IEJJVChWRUNTMikgfCBCSVQoVkVDUzMpIHwKPiArCQlCSVQo
-VkNTMCkgfCBCSVQoVkNTMSkgfCBCSVQoVkNTMikgfCBCSVQoVkNTMykgfAo+ICsJCUJJVChWQ1M0
-KSB8IEJJVChWQ1M1KSB8IEJJVChWQ1M2KSB8IEJJVChWQ1M3KSwKPiArCS5yZXF1aXJlX2ZvcmNl
-X3Byb2JlID0gMSwKPiArfTsKPiArCj4gICN1bmRlZiBQTEFURk9STQo+ICAKPiAgLyoKPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMKPiBpbmRleCBlOGFkMTRmMDAyYzEu
-LjdiMzdiNjhmNDU0OCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
-ZXZpY2VfaW5mby5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2lu
-Zm8uYwo+IEBAIC02OCw2ICs2OCw3IEBAIHN0YXRpYyBjb25zdCBjaGFyICogY29uc3QgcGxhdGZv
-cm1fbmFtZXNbXSA9IHsKPiAgCVBMQVRGT1JNX05BTUUoREcxKSwKPiAgCVBMQVRGT1JNX05BTUUo
-QUxERVJMQUtFX1MpLAo+ICAJUExBVEZPUk1fTkFNRShBTERFUkxBS0VfUCksCj4gKwlQTEFURk9S
-TV9OQU1FKFhFSFBTRFYpLAo+ICB9Owo+ICAjdW5kZWYgUExBVEZPUk1fTkFNRQo+ICAKPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmgKPiBpbmRleCBmODI0ZGU2MzJjZmUu
-LmU4Njg0MTk5YjBjOSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
-ZXZpY2VfaW5mby5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2lu
-Zm8uaAo+IEBAIC04OCw2ICs4OCw3IEBAIGVudW0gaW50ZWxfcGxhdGZvcm0gewo+ICAJSU5URUxf
-REcxLAo+ICAJSU5URUxfQUxERVJMQUtFX1MsCj4gIAlJTlRFTF9BTERFUkxBS0VfUCwKPiArCUlO
-VEVMX1hFSFBTRFYsCj4gIAlJTlRFTF9NQVhfUExBVEZPUk1TCj4gIH07CgotLSAKSmFuaSBOaWt1
-bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On 02/07/2021 10:29, Pekka Paalanen wrote:
+> On Thu, 1 Jul 2021 21:28:06 +0200
+> Daniel Vetter <daniel@ffwll.ch> wrote:
+> 
+>> On Thu, Jul 1, 2021 at 8:27 PM Martin Peres <martin.peres@free.fr> wrote:
+>>>
+>>> On 01/07/2021 11:14, Pekka Paalanen wrote:
+>>>> On Wed, 30 Jun 2021 11:58:25 -0700
+>>>> John Harrison <john.c.harrison@intel.com> wrote:
+>>>>   
+>>>>> On 6/30/2021 01:22, Martin Peres wrote:
+>>>>>> On 24/06/2021 10:05, Matthew Brost wrote:
+>>>>>>> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>>>>>>
+>>>>>>> Unblock GuC submission on Gen11+ platforms.
+>>>>>>>
+>>>>>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>>>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>>> ---
+>>>>>>>     drivers/gpu/drm/i915/gt/uc/intel_guc.h            |  1 +
+>>>>>>>     drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |  8 ++++++++
+>>>>>>>     drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h |  3 +--
+>>>>>>>     drivers/gpu/drm/i915/gt/uc/intel_uc.c             | 14 +++++++++-----
+>>>>>>>     4 files changed, 19 insertions(+), 7 deletions(-)
+>>>>>>>   
+>>>>
+>>>> ...
+>>>>   
+>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>>>>>>> index 7a69c3c027e9..61be0aa81492 100644
+>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>>>>>>> @@ -34,8 +34,15 @@ static void uc_expand_default_options(struct
+>>>>>>> intel_uc *uc)
+>>>>>>>             return;
+>>>>>>>         }
+>>>>>>>     -    /* Default: enable HuC authentication only */
+>>>>>>> -    i915->params.enable_guc = ENABLE_GUC_LOAD_HUC;
+>>>>>>> +    /* Intermediate platforms are HuC authentication only */
+>>>>>>> +    if (IS_DG1(i915) || IS_ALDERLAKE_S(i915)) {
+>>>>>>> +        drm_dbg(&i915->drm, "Disabling GuC only due to old
+>>>>>>> platform\n");
+>>>>>>
+>>>>>> This comment does not seem accurate, given that DG1 is barely out, and
+>>>>>> ADL is not out yet. How about:
+>>>>>>
+>>>>>> "Disabling GuC on untested platforms"?
+>>>>>>   
+>>>>> Just because something is not in the shops yet does not mean it is new.
+>>>>> Technology is always obsolete by the time it goes on sale.
+>>>>
+>>>> That is a very good reason to not use terminology like "new", "old",
+>>>> "current", "modern" etc. at all.
+>>>>
+>>>> End users like me definitely do not share your interpretation of "old".
+>>>
+>>> Yep, old and new is relative. In the end, what matters is the validation
+>>> effort, which is why I was proposing "untested platforms".
+>>>
+>>> Also, remember that you are not writing these messages for Intel
+>>> engineers, but instead are writing for Linux *users*.
+>>
+>> It's drm_dbg. Users don't read this stuff, at least not users with no
+>> clue what the driver does and stuff like that.
+> 
+> If I had a problem, I would read it, and I have no clue what anything
+> of that is.
+
+Exactly.
+
+This level of defense for what is clearly a bad *debug* message (at the 
+very least, the grammar) makes no sense at all!
+
+I don't want to hear arguments like "Not my patch" from a developer 
+literally sending the patch to the ML and who added his SoB to the 
+patch, playing with words, or minimizing the problem of having such a 
+message.
+
+All of the above are just clear signals for the community to get off 
+your playground, which is frankly unacceptable. Your email address does 
+not matter.
+
+In the spirit of collaboration, your response should have been "Good 
+catch, how about XXXX or YYYY?". This would not have wasted everyone's 
+time in an attempt to just have it your way.
+
+My level of confidence in this GuC transition was already low, but you 
+guys are working hard to shoot yourself in the foot. Trust should be earned!
+
+Martin
+
+> 
+> 
+> Thanks,
+> pq
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
