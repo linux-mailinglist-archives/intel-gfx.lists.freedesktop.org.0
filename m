@@ -2,31 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F420E3B9F88
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 13:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 592EF3B9F8D
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 13:14:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 582E86E107;
-	Fri,  2 Jul 2021 11:12:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B470A6E105;
+	Fri,  2 Jul 2021 11:14:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CF5F46E106;
- Fri,  2 Jul 2021 11:12:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CB9D9AA915;
- Fri,  2 Jul 2021 11:12:32 +0000 (UTC)
+Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
+ [205.220.177.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B7926E105;
+ Fri,  2 Jul 2021 11:14:04 +0000 (UTC)
+Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 162B7AJ3001075; Fri, 2 Jul 2021 11:13:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=hrIk17RHidqPb+xHnC5t8N6MeIwQY6Ti+xExhm0MvhA=;
+ b=wTwwrJTbV8yAsOb5F0ZPG+imXAl8zAyjMh+COy17SsF1xuHRVZ7pnLoJqHpdMbA6jdwE
+ B92NxezLFjfR0ilRkp/wxZ/GdHm0F/tKAqEEhwzHxX2X8zgGX+htH0smA95mBdTlJTMT
+ SMa5jQ6lCZ1YdncKPLcmF524veH8FZOMSS4xY61KucAFxB50YvqIaR8LK+w8TUX6G7JQ
+ Xc4Q8YQfFIBcOjroufAknyPbA8ZUC9bMVVqQ11Jd5ToVtVV3WjgDvLi3c/Q2BZzaO6Pk
+ 5PZ3DxR/vROLUzZAAsjCBuErx2AVIfcbydkzU1qfopiWsC8bJ+TXE029c71ZEY5Rtw64 jA== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+ by mx0b-00069f02.pphosted.com with ESMTP id 39gguq58pg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 02 Jul 2021 11:13:55 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+ by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 162BAFif064048;
+ Fri, 2 Jul 2021 11:13:54 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by userp3020.oracle.com with ESMTP id 39ee132e5h-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 02 Jul 2021 11:13:54 +0000
+Received: from userp3020.oracle.com (userp3020.oracle.com [127.0.0.1])
+ by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 162BDraL076290;
+ Fri, 2 Jul 2021 11:13:53 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+ by userp3020.oracle.com with ESMTP id 39ee132e58-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 02 Jul 2021 11:13:53 +0000
+Received: from abhmp0006.oracle.com (abhmp0006.oracle.com [141.146.116.12])
+ by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 162BDq6G032142;
+ Fri, 2 Jul 2021 11:13:52 GMT
+Received: from kadam (/102.222.70.252) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Fri, 02 Jul 2021 04:13:51 -0700
+Date: Fri, 2 Jul 2021 14:13:44 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <20210702111344.GV1983@kadam>
+References: <202107020708.XXwacDfG-lkp@intel.com>
+ <CAM0jSHOb0bGWMt-tmUn62R_FpiM5TL2HFLbBqxhpqk1gH0qSUA@mail.gmail.com>
+ <20210702110727.GT1983@kadam>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 02 Jul 2021 11:12:32 -0000
-Message-ID: <162522435283.22031.15179123383635748365@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210702104642.1189978-1-matthew.auld@intel.com>
-In-Reply-To: <20210702104642.1189978-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/selftests=3A_fix_sm?=
- =?utf-8?q?atch_warning_in_igt=5Fcheck=5Fblocks?=
+Content-Disposition: inline
+In-Reply-To: <20210702110727.GT1983@kadam>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-ORIG-GUID: CMgvUyDJSWy9gfX3th_kDpKBqIu8P7PA
+X-Proofpoint-GUID: CMgvUyDJSWy9gfX3th_kDpKBqIu8P7PA
+Subject: Re: [Intel-gfx] [drm-intel:drm-intel-gt-next 8/14]
+ drivers/gpu/drm/i915/gt/selftest_migrate.c:102 copy() error: uninitialized
+ symbol 'rq'.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,39 +77,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ kbuild-all@lists.01.org, kbuild@lists.01.org,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jul 02, 2021 at 02:07:27PM +0300, Dan Carpenter wrote:
+> On Fri, Jul 02, 2021 at 11:32:45AM +0100, Matthew Auld wrote:
+> > On Fri, 2 Jul 2021 at 09:45, Dan Carpenter <dan.carpenter@oracle.com> wrote:
+> > > cf586021642d80 Chris Wilson 2021-06-17   84
+> > > cf586021642d80 Chris Wilson 2021-06-17   85             err = fn(migrate, &ww, src, dst, &rq);
+> > > cf586021642d80 Chris Wilson 2021-06-17   86             if (!err)
+> > > cf586021642d80 Chris Wilson 2021-06-17   87                     continue;
+> > >
+> > > Does fn() initialize "rq" on the success path?  Anyway Smatch would
+> > > complain anyway because it thinks the list could be empty or that we
+> > > might hit and early continue for everything.
+> > 
+> > The fn() will always first initialize the rq to NULL. If it returns
+> > success then rq will always be a valid rq. If it returns an err then
+> > the rq might be NULL, or a valid rq depending on how far the copy/fn
+> > got.
+> > 
+> > And for_i915_gem_ww() will always run at least once, since ww->loop =
+> > true, so this looks like a false positive?
+> 
+> You don't think i915_gem_object_lock(), i915_gem_object_pin_map() or
+> i915_gem_object_pin_map() can fail?
 
-Series: series starting with [1/2] drm/i915/selftests: fix smatch warning in igt_check_blocks
-URL   : https://patchwork.freedesktop.org/series/92150/
-State : warning
+Btw, I sincerely hope that we will re-enable GCC's uninitialized
+variable checks.  Will GCC be able to verify that this is initialized?
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-0da2bc133432 drm/i915/selftests: fix smatch warning in igt_check_blocks
--:4: WARNING:EMAIL_SUBJECT: A patch subject line should describe the change not the tool that found it
-#4: 
-Subject: [PATCH] drm/i915/selftests: fix smatch warning in igt_check_blocks
-
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-igt_check_blocks() warn: variable dereferenced before check 'block' (see line 126)
-
-total: 0 errors, 2 warnings, 0 checks, 12 lines checked
-337f0543a04c drm/i915/selftests: fix smatch warning in mock_reserve
--:4: WARNING:EMAIL_SUBJECT: A patch subject line should describe the change not the tool that found it
-#4: 
-Subject: [PATCH] drm/i915/selftests: fix smatch warning in mock_reserve
-
-total: 0 errors, 1 warnings, 0 checks, 19 lines checked
-
+regards,
+dan carpenter
 
 _______________________________________________
 Intel-gfx mailing list
