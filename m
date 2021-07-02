@@ -2,31 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0A0F3B9FF7
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 13:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 071CA3BA021
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 13:58:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09B636E135;
-	Fri,  2 Jul 2021 11:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A300B6E147;
+	Fri,  2 Jul 2021 11:57:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 927C76E12E;
- Fri,  2 Jul 2021 11:41:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8AC33A47EB;
- Fri,  2 Jul 2021 11:41:30 +0000 (UTC)
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com
+ [IPv6:2607:f8b0:4864:20::830])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E23C6E145;
+ Fri,  2 Jul 2021 11:57:54 +0000 (UTC)
+Received: by mail-qt1-x830.google.com with SMTP id v10so6387680qto.1;
+ Fri, 02 Jul 2021 04:57:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7OuZt5fA+Ly0GbEZTGNMa0tAD8B8PBqS3n928BlHp6o=;
+ b=lJBGLVygbnM58I8P9oIuXKUixthhjsfzHZgnCAk2Q+lXUdCeYqefBLNQwjPxMekfVq
+ wZFp70KbRUgPcVNeHHmFflsnV5e+9OjnFGt4s548zZ9G/5ffcfcMv2J7OG2hGbqTQaAJ
+ w5dnFRdgdgTmuWSX9zrVi0nXl7VqjybKEvGzzYEH7sSO85BFFWkz6meYJGnlzyVpKVRO
+ 4HNa300pLU/80hCRjC/gjYmloD72C4m4pISC0RB0jRp0rPLYyYoVdK+HzL/V2DdXjkVA
+ 2w+tWl5t0Z3G7/+JnQLDfjBh3c40g6rzxQXfJyI1jFr4a84mADv86zQRR21cIcOgGtNk
+ RgiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7OuZt5fA+Ly0GbEZTGNMa0tAD8B8PBqS3n928BlHp6o=;
+ b=cJTOTsDKisaoMamSbn/9gjswarbNWztNLBiP/V/4SE2Odvz1wfW0HCbqR4DGkuK99h
+ vojGozkHCpeE3IuTti+yMbCyicem+OqqenO+d7nrhS0qqMx7M7Ar5jf7gUAUaJKHF5+c
+ BfFJKBdDA95Hh6mzFP5c+U1S48SoI6F9jrgzGibpCOf8/0uufSnrhhDQ2uYF06BGyUFJ
+ 08vfeKlbe3yoSRvbJj/NrsShhZT52vVoLMBaRtVORGXF79i1eJKo/OlB3kLW3RgEaOCe
+ 3uJ/kzHme1RoKRu8qoDP6DcF1zfEDHFK2qvU9qHQo8WGgC9bEY9gMyLjYtzotLWso8pr
+ Oq0w==
+X-Gm-Message-State: AOAM531ysS0JQhTcV21S6suGalZuRNISxsZJQrpq0U7+CsXRtn/IJi9H
+ ituh7VdHz9VDYu9PfzcD3RL0wwjiPoFkzRmjalQ=
+X-Google-Smtp-Source: ABdhPJz72AcMhhZNMLoknpfoERQVAra24ONLKqPzI4c4yG6N7fqyc3XoX+RP4+SOft1z31N4RvoBehT5zTVlcJs9chs=
+X-Received: by 2002:ac8:5c8c:: with SMTP id r12mr4616918qta.265.1625227073418; 
+ Fri, 02 Jul 2021 04:57:53 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 02 Jul 2021 11:41:30 -0000
-Message-ID: <162522609056.22028.12920129141492885343@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210702104642.1189978-1-matthew.auld@intel.com>
-In-Reply-To: <20210702104642.1189978-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/selftests=3A_fix_smatch_wa?=
- =?utf-8?q?rning_in_igt=5Fcheck=5Fblocks?=
+References: <202107020708.XXwacDfG-lkp@intel.com>
+ <CAM0jSHOb0bGWMt-tmUn62R_FpiM5TL2HFLbBqxhpqk1gH0qSUA@mail.gmail.com>
+ <20210702110727.GT1983@kadam> <20210702111344.GV1983@kadam>
+In-Reply-To: <20210702111344.GV1983@kadam>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 2 Jul 2021 12:57:26 +0100
+Message-ID: <CAM0jSHPTe3XNsgzOKQYA8PmE-+q6p7V+LnJtUb+1kU_XqK-EbQ@mail.gmail.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Subject: Re: [Intel-gfx] [drm-intel:drm-intel-gt-next 8/14]
+ drivers/gpu/drm/i915/gt/selftest_migrate.c:102 copy() error: uninitialized
+ symbol 'rq'.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,157 +64,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0353706682=="
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ kbuild-all@lists.01.org, kbuild@lists.01.org,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0353706682==
-Content-Type: multipart/alternative;
- boundary="===============6804768609080821731=="
+On Fri, 2 Jul 2021 at 12:14, Dan Carpenter <dan.carpenter@oracle.com> wrote:
+>
+> On Fri, Jul 02, 2021 at 02:07:27PM +0300, Dan Carpenter wrote:
+> > On Fri, Jul 02, 2021 at 11:32:45AM +0100, Matthew Auld wrote:
+> > > On Fri, 2 Jul 2021 at 09:45, Dan Carpenter <dan.carpenter@oracle.com> wrote:
+> > > > cf586021642d80 Chris Wilson 2021-06-17   84
+> > > > cf586021642d80 Chris Wilson 2021-06-17   85             err = fn(migrate, &ww, src, dst, &rq);
+> > > > cf586021642d80 Chris Wilson 2021-06-17   86             if (!err)
+> > > > cf586021642d80 Chris Wilson 2021-06-17   87                     continue;
+> > > >
+> > > > Does fn() initialize "rq" on the success path?  Anyway Smatch would
+> > > > complain anyway because it thinks the list could be empty or that we
+> > > > might hit and early continue for everything.
+> > >
+> > > The fn() will always first initialize the rq to NULL. If it returns
+> > > success then rq will always be a valid rq. If it returns an err then
+> > > the rq might be NULL, or a valid rq depending on how far the copy/fn
+> > > got.
+> > >
+> > > And for_i915_gem_ww() will always run at least once, since ww->loop =
+> > > true, so this looks like a false positive?
+> >
+> > You don't think i915_gem_object_lock(), i915_gem_object_pin_map() or
+> > i915_gem_object_pin_map() can fail?
+>
+> Btw, I sincerely hope that we will re-enable GCC's uninitialized
+> variable checks.  Will GCC be able to verify that this is initialized?
 
---===============6804768609080821731==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+34b07d47dd00 ("drm/i915: Enable -Wuninitialized")
 
-== Series Details ==
+GCC doesn't complain AFAIK.
 
-Series: series starting with [1/2] drm/i915/selftests: fix smatch warning in igt_check_blocks
-URL   : https://patchwork.freedesktop.org/series/92150/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10302 -> Patchwork_20520
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20520 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#2782])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-
-
-Participating hosts (40 -> 34)
-------------------------------
-
-  Missing    (6): fi-kbl-soraka fi-bsw-cyan bat-adls-4 bat-adls-3 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10302 -> Patchwork_20520
-
-  CI-20190529: 20190529
-  CI_DRM_10302: 403c15e48caac46206e92d703408fe07d83c6bf4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6128: b24e5949af7e51f0af484d2ce4cb4c5a41ac5358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20520: 337f0543a04c2c79c40f7602b5b3f19d278b3ab0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-337f0543a04c drm/i915/selftests: fix smatch warning in mock_reserve
-0da2bc133432 drm/i915/selftests: fix smatch warning in igt_check_blocks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html
-
---===============6804768609080821731==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/selftests: fix smatch warning in igt_check_blocks</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92150/">https://patchwork.freedesktop.org/series/92150/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10302 -&gt; Patchwork_20520</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20520 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (40 -&gt; 34)</h2>
-<p>Missing    (6): fi-kbl-soraka fi-bsw-cyan bat-adls-4 bat-adls-3 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10302 -&gt; Patchwork_20520</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10302: 403c15e48caac46206e92d703408fe07d83c6bf4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6128: b24e5949af7e51f0af484d2ce4cb4c5a41ac5358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20520: 337f0543a04c2c79c40f7602b5b3f19d278b3ab0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>337f0543a04c drm/i915/selftests: fix smatch warning in mock_reserve<br />
-0da2bc133432 drm/i915/selftests: fix smatch warning in igt_check_blocks</p>
-
-</body>
-</html>
-
---===============6804768609080821731==--
-
---===============0353706682==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+> regards,
+> dan carpenter
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0353706682==--
