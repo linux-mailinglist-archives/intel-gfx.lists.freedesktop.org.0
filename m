@@ -1,55 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B6393BA49D
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 22:17:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 590D33BA4C6
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 22:46:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBAA6E0A6;
-	Fri,  2 Jul 2021 20:17:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 400066E200;
+	Fri,  2 Jul 2021 20:46:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 560546E0A6
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jul 2021 20:17:15 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id v5so13845896wrt.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 02 Jul 2021 13:17:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=udH4xDTeiibCkHenpQ0wzyua+2ZDGPtl5PTdv5C5+1I=;
- b=dhbYBwZa8mkG8HK+QZ/2o3reEgCfTfQ637hQoWhrv7BB21q6bTrXdfXfD98gxBhNda
- RbMF8sMA7IWszNAW5C2XnI6O+XsW5dlCcWn5kTX81wTAgVE0MSo0iAutYAhkLkAQGbSX
- fn5KocgTzwJd1UKLA75oxxXz3LKQXq7CLAMIw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=udH4xDTeiibCkHenpQ0wzyua+2ZDGPtl5PTdv5C5+1I=;
- b=OtkXrUL9hhoosmckdrHvdWpiIpEXkjpDGRfclE5sv8Ky/IVL8FQ2fdWfLzxAcn+UWP
- x6O60GCQ1I482eSLQxENFqRxdaKW0hVmVHm3pxCVrNpGSQA/1C/2Yy4bO5OOdZzj+SU2
- E1kJgrE6mj/SQl0EIQ4N71SQPtOf9uWhitzz2i6ltjkXRA8S9UR3D7ICTG+LGjeAKhLF
- 9ZNdhOjaViE5IUEWaHqC6pG3zCJR840S8Wn2yyG+d3IybUXUiloqhivSNWp6H0hahM+Y
- pHLqpOD2fh/en2+rGBRwXqJ8sZDkchAvAtBre0uqbmNaelpizAwmMIRmMvb7m1stuK6J
- CJ8Q==
-X-Gm-Message-State: AOAM5331aU1IuDYBQW0Y4y9GtwjQSxwStYAFsyiVB03T4axqfqXOptyP
- bsct/LZKvtry13LQ5AgCeY/ZArHod7kpAA==
-X-Google-Smtp-Source: ABdhPJxE9hNvoDlTHoVygYiOaXneoEtnCSPZ4+QsqNKWvLsaiW5ekax2X5yrzolw6F0nuZ8GErEa5Q==
-X-Received: by 2002:a05:6000:18ca:: with SMTP id
- w10mr1501106wrq.55.1625257034137; 
- Fri, 02 Jul 2021 13:17:14 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id e15sm4120682wrm.60.2021.07.02.13.17.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 02 Jul 2021 13:17:13 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri,  2 Jul 2021 22:17:08 +0200
-Message-Id: <20210702201708.2075793-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.32.0.rc2
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A086E200
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jul 2021 20:46:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10033"; a="206958475"
+X-IronPort-AV: E=Sophos;i="5.83,320,1616482800"; d="scan'208";a="206958475"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2021 13:46:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,320,1616482800"; d="scan'208";a="409394236"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 02 Jul 2021 13:46:04 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 02 Jul 2021 23:46:03 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  2 Jul 2021 23:45:55 +0300
+Message-Id: <20210702204603.596-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Improve debug Kconfig texts a bit
+Subject: [Intel-gfx] [PATCH 0/8] drm/i915/fbc: Rework CFB stride/size
+ calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,83 +43,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We're not consistently recommending these for developers only.
-
-I stumbled over this due to DRM_I915_LOW_LEVEL_TRACEPOINTS, which was
-added in
-
-commit 354d036fcf70654cff2e2cbdda54a835d219b9d2
-Author: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Date:   Tue Feb 21 11:01:42 2017 +0000
-
-    drm/i915/tracepoints: Add request submit and execute tracepoints
-
-to "alleviate the performance impact concerns."
-
-Which is nonsense.
-
-Tvrtko and Joonas pointed out on irc that the real (but undocumented
-reason) was stable abi concerns for tracepoints, see
-
-https://lwn.net/Articles/705270/
-
-and the specific change that was blocked around tracepoints:
-
-https://lwn.net/Articles/442113/
-
-Anyway to make it a notch clearer why we have this Kconfig option
-consistly add the "Recommended for driver developers only." to it and
-all the other debug options we have.
-
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/i915/Kconfig.debug | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index 2ca88072d30f..f27c0b5873f7 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -215,6 +215,8 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
- 	  This provides the ability to precisely monitor engine utilisation
- 	  and also analyze the request dependency resolving timeline.
- 
-+	  Recommended for driver developers only.
-+
- 	  If in doubt, say "N".
- 
- config DRM_I915_DEBUG_VBLANK_EVADE
-@@ -228,6 +230,8 @@ config DRM_I915_DEBUG_VBLANK_EVADE
- 	  is exceeded, even if there isn't an actual risk of missing
- 	  the vblank.
- 
-+	  Recommended for driver developers only.
-+
- 	  If in doubt, say "N".
- 
- config DRM_I915_DEBUG_RUNTIME_PM
-@@ -240,4 +244,6 @@ config DRM_I915_DEBUG_RUNTIME_PM
- 	  runtime PM functionality. This may introduce overhead during
- 	  driver loading, suspend and resume operations.
- 
-+	  Recommended for driver developers only.
-+
- 	  If in doubt, say "N"
--- 
-2.32.0.rc2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZSB3YXkgd2UgY2FsY3VsYXRlIHRoZSBDRkIgc3RyaWRlL3NpemUgaXMga2luZCBvZiBhIG1lc3Ms
+IGFuZApJJ20gbm90IHN1cmUgaWYgd2UncmUgZXZlbiBhbGxvY2F0aW5nIGVub3VnaCBzdG9sZW4g
+bWVtb3J5IGFsd2F5cy4KTGV0J3MgbWFrZSBpdCBhbGwgbW9yZSBzdHJhaWdodGZvcndhcmQsIGFu
+ZCBhZGQgc29tZSBuZXcgcmVsYXRlZAp3b3JrYXJvdW5kcyBhcyB3ZWxsLgoKVmlsbGUgU3lyasOk
+bMOkICg4KToKICBkcm0vaTkxNS9mYmM6IFJld3JpdGUgdGhlIEZCQyB0aWxpbmcgY2hlY2sgYSBi
+aXQKICBkcm0vaTkxNS9mYmM6IEV4dHJhY3QgaW50ZWxfZmJjX3VwZGF0ZSgpCiAgZHJtL2k5MTUv
+ZmJjOiBNb3ZlIHRoZSAicmVjb21wcmVzcyBvbiBhY3RpdmF0ZSIgdG8gYSBjZW50cmFsIHBsYWNl
+CiAgZHJtL2k5MTUvZmJjOiBQb2xpc2ggdGhlIHNrbCsgRkJDIHN0cmlkZSBvdmVycmlkZSBoYW5k
+bGluZwogIGRybS9pOTE1L2ZiYzogUmV3b3JrIGNmYiBzdHJpZGUvc2l6ZSBjYWxjdWxhdGlvbnMK
+ICBkcm0vaTkxNS9mYmM6IEFsaWduIEZCQyBzZWdtZW50cyB0byA1MTJCIG9uIGdsaysKICBkcm0v
+aTkxNS9mYmM6IEltcGxlbWVudCBXYV8xNjAxMTg2Mzc1OCBmb3IgaWNsKwogIGRybS9pOTE1L2Zi
+YzogQWxsb3cgaGlnaGVyIGNvbXByZXNzaW9uIGxpbWl0cyBvbiBGQkMxCgogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAgIDUgKy0KIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgICAgIHwgMjQyICsrKysrKysrKysrKy0tLS0tLS0K
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmggICAgIHwgICAyICstCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAgICB8ICAgNiArLQogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAgICAgfCAgIDkgKy0KIDUgZmls
+ZXMgY2hhbmdlZCwgMTY4IGluc2VydGlvbnMoKyksIDk2IGRlbGV0aW9ucygtKQoKLS0gCjIuMzEu
+MQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
