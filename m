@@ -2,56 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E94A43B9FDD
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 13:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0A0F3B9FF7
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 13:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 312146E135;
-	Fri,  2 Jul 2021 11:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09B636E135;
+	Fri,  2 Jul 2021 11:41:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com
- [IPv6:2607:f8b0:4864:20::733])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A2AA6E131;
- Fri,  2 Jul 2021 11:35:01 +0000 (UTC)
-Received: by mail-qk1-x733.google.com with SMTP id f6so9087066qka.0;
- Fri, 02 Jul 2021 04:35:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rUnrlRFtMwTx8PyzXSlBjwhwzhk6QzcohvKozuFJ2lQ=;
- b=NXgX81+OuVZnhCG9yftG8GCiP5Nzsc4X64RjOLjlgXYtTx60z3NPih8cQuulxQFsbT
- qOxeG1aSGizEEq22Ql7kKWy5keXCrkau++zNa4wI6KTa3SGE6eIcI+r+c9slP1Xbl/1y
- agv4hxNUi1SdjFeeGbo0KqQdTPX6bvy1fzOjFwKlpNjHNL1ClqRioypKovwkQLeHD/LY
- ujBjpbK2CFwZ85hIwt2RHEn0zKCEa3F7GS24LF7bIBiu6Xrbo9FzRgBTcClcB4HcvdMM
- yMBcTHohu6psXZv5oPc9Jph+Xxzi8V7J4/QHYZ+r5YQ5BLDNFHO72V+d7zbaHbLyxVhx
- 8vrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rUnrlRFtMwTx8PyzXSlBjwhwzhk6QzcohvKozuFJ2lQ=;
- b=H4PbHJn0+SXuT7AoOgk3tBC4aT9IzytJufoeBWgNKsvZs+bVnnjHEUa/MoCWdvZX97
- UTBRQIp4ZwOlrYOr5Cn+OjnB5pX5CU9CsWmvEK9fkGhWkvASSJFYE7xzLuLDIMZHPEHx
- Yq6mRlz1F7vgCj3shvQGtnfctbFNdEYgg6dqOhJeY/Jj9N5ilt1Je+KRs4jChEK6jA59
- bWz23hWfzzq4n8WsgeU9a4eiUO+vSo0j2Zig0MBe3azwCFcaZJaFsfc5aBnLh4eWGgzC
- l5WMsAHxTElm0uF/oAOUYDSUqrht0uKKhqzTlWtihvO+EkJ+ra37ml/NHjxQRELuKVdu
- je0Q==
-X-Gm-Message-State: AOAM533l4Aw0CsandYOZsyliz9teAz40tw+4C7DiL2U44Up74j8wTokM
- xxPQBAmLTmmXiBHGuv+5YkJYbJblCMxHz1BGTlI=
-X-Google-Smtp-Source: ABdhPJzTmhDKsu5FEM3Q+faNKVkTZBMhgEHRH6+KOLM6VR51Dfn8IHsnITb/AM/U/9bbqT83wBzyb8lEQU70pUqX9M4=
-X-Received: by 2002:a37:4388:: with SMTP id q130mr4847896qka.460.1625225700565; 
- Fri, 02 Jul 2021 04:35:00 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 927C76E12E;
+ Fri,  2 Jul 2021 11:41:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8AC33A47EB;
+ Fri,  2 Jul 2021 11:41:30 +0000 (UTC)
 MIME-Version: 1.0
-References: <202107020708.XXwacDfG-lkp@intel.com>
- <CAM0jSHOb0bGWMt-tmUn62R_FpiM5TL2HFLbBqxhpqk1gH0qSUA@mail.gmail.com>
- <20210702110727.GT1983@kadam>
-In-Reply-To: <20210702110727.GT1983@kadam>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 2 Jul 2021 12:34:33 +0100
-Message-ID: <CAM0jSHMyXEdS9wgkypKdvW1BNdUgcLxZR8Pd8nxSpPQHtiX+yA@mail.gmail.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Subject: Re: [Intel-gfx] [drm-intel:drm-intel-gt-next 8/14]
- drivers/gpu/drm/i915/gt/selftest_migrate.c:102 copy() error: uninitialized
- symbol 'rq'.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 02 Jul 2021 11:41:30 -0000
+Message-ID: <162522609056.22028.12920129141492885343@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210702104642.1189978-1-matthew.auld@intel.com>
+In-Reply-To: <20210702104642.1189978-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/selftests=3A_fix_smatch_wa?=
+ =?utf-8?q?rning_in_igt=5Fcheck=5Fblocks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,128 +39,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- kbuild-all@lists.01.org, kbuild@lists.01.org,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0353706682=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2 Jul 2021 at 12:07, Dan Carpenter <dan.carpenter@oracle.com> wrote:
->
-> On Fri, Jul 02, 2021 at 11:32:45AM +0100, Matthew Auld wrote:
-> > On Fri, 2 Jul 2021 at 09:45, Dan Carpenter <dan.carpenter@oracle.com> wrote:
-> > >
-> > > tree:   git://anongit.freedesktop.org/drm-intel drm-intel-gt-next
-> > > head:   5cd57f676bb946a00275408f0dd0d75dbc466d25
-> > > commit: cf586021642d8017cde111b7dd1ba86224e9da51 [8/14] drm/i915/gt: Pipelined page migration
-> > > config: x86_64-randconfig-m001-20210630 (attached as .config)
-> > > compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-> > >
-> > > If you fix the issue, kindly add following tag as appropriate
-> > > Reported-by: kernel test robot <lkp@intel.com>
-> > > Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> > >
-> > > New smatch warnings:
-> > > drivers/gpu/drm/i915/gt/selftest_migrate.c:102 copy() error: uninitialized symbol 'rq'.
-> > > drivers/gpu/drm/i915/gt/selftest_migrate.c:113 copy() error: uninitialized symbol 'vaddr'.
-> > >
-> > > Old smatch warnings:
-> > > drivers/gpu/drm/i915/gem/i915_gem_object.h:182 __i915_gem_object_lock() error: we previously assumed 'ww' could be null (see line 171)
-> > >
-> > > vim +/rq +102 drivers/gpu/drm/i915/gt/selftest_migrate.c
-> > >
-> > > cf586021642d80 Chris Wilson 2021-06-17   32  static int copy(struct intel_migrate *migrate,
-> > > cf586021642d80 Chris Wilson 2021-06-17   33             int (*fn)(struct intel_migrate *migrate,
-> > > cf586021642d80 Chris Wilson 2021-06-17   34                       struct i915_gem_ww_ctx *ww,
-> > > cf586021642d80 Chris Wilson 2021-06-17   35                       struct drm_i915_gem_object *src,
-> > > cf586021642d80 Chris Wilson 2021-06-17   36                       struct drm_i915_gem_object *dst,
-> > > cf586021642d80 Chris Wilson 2021-06-17   37                       struct i915_request **out),
-> > > cf586021642d80 Chris Wilson 2021-06-17   38             u32 sz, struct rnd_state *prng)
-> > > cf586021642d80 Chris Wilson 2021-06-17   39  {
-> > > cf586021642d80 Chris Wilson 2021-06-17   40     struct drm_i915_private *i915 = migrate->context->engine->i915;
-> > > cf586021642d80 Chris Wilson 2021-06-17   41     struct drm_i915_gem_object *src, *dst;
-> > > cf586021642d80 Chris Wilson 2021-06-17   42     struct i915_request *rq;
-> > > cf586021642d80 Chris Wilson 2021-06-17   43     struct i915_gem_ww_ctx ww;
-> > > cf586021642d80 Chris Wilson 2021-06-17   44     u32 *vaddr;
-> > > cf586021642d80 Chris Wilson 2021-06-17   45     int err = 0;
-> > >
-> > > One way to silence these warnings would be to initialize err = -EINVAL.
-> > > Then Smatch would know that we goto err_out for an empty list.
-> > >
-> > > cf586021642d80 Chris Wilson 2021-06-17   46     int i;
-> > > cf586021642d80 Chris Wilson 2021-06-17   47
-> > > cf586021642d80 Chris Wilson 2021-06-17   48     src = create_lmem_or_internal(i915, sz);
-> > > cf586021642d80 Chris Wilson 2021-06-17   49     if (IS_ERR(src))
-> > > cf586021642d80 Chris Wilson 2021-06-17   50             return 0;
-> > > cf586021642d80 Chris Wilson 2021-06-17   51
-> > > cf586021642d80 Chris Wilson 2021-06-17   52     dst = i915_gem_object_create_internal(i915, sz);
-> > > cf586021642d80 Chris Wilson 2021-06-17   53     if (IS_ERR(dst))
-> > > cf586021642d80 Chris Wilson 2021-06-17   54             goto err_free_src;
-> > > cf586021642d80 Chris Wilson 2021-06-17   55
-> > > cf586021642d80 Chris Wilson 2021-06-17   56     for_i915_gem_ww(&ww, err, true) {
-> > > cf586021642d80 Chris Wilson 2021-06-17   57             err = i915_gem_object_lock(src, &ww);
-> > > cf586021642d80 Chris Wilson 2021-06-17   58             if (err)
-> > > cf586021642d80 Chris Wilson 2021-06-17   59                     continue;
-> > > cf586021642d80 Chris Wilson 2021-06-17   60
-> > > cf586021642d80 Chris Wilson 2021-06-17   61             err = i915_gem_object_lock(dst, &ww);
-> > > cf586021642d80 Chris Wilson 2021-06-17   62             if (err)
-> > > cf586021642d80 Chris Wilson 2021-06-17   63                     continue;
-> > > cf586021642d80 Chris Wilson 2021-06-17   64
-> > > cf586021642d80 Chris Wilson 2021-06-17   65             vaddr = i915_gem_object_pin_map(src, I915_MAP_WC);
-> > > cf586021642d80 Chris Wilson 2021-06-17   66             if (IS_ERR(vaddr)) {
-> > > cf586021642d80 Chris Wilson 2021-06-17   67                     err = PTR_ERR(vaddr);
-> > > cf586021642d80 Chris Wilson 2021-06-17   68                     continue;
-> > > cf586021642d80 Chris Wilson 2021-06-17   69             }
-> > > cf586021642d80 Chris Wilson 2021-06-17   70
-> > > cf586021642d80 Chris Wilson 2021-06-17   71             for (i = 0; i < sz / sizeof(u32); i++)
-> > > cf586021642d80 Chris Wilson 2021-06-17   72                     vaddr[i] = i;
-> > > cf586021642d80 Chris Wilson 2021-06-17   73             i915_gem_object_flush_map(src);
-> > > cf586021642d80 Chris Wilson 2021-06-17   74
-> > > cf586021642d80 Chris Wilson 2021-06-17   75             vaddr = i915_gem_object_pin_map(dst, I915_MAP_WC);
-> > > cf586021642d80 Chris Wilson 2021-06-17   76             if (IS_ERR(vaddr)) {
-> > > cf586021642d80 Chris Wilson 2021-06-17   77                     err = PTR_ERR(vaddr);
-> > > cf586021642d80 Chris Wilson 2021-06-17   78                     goto unpin_src;
-> > > cf586021642d80 Chris Wilson 2021-06-17   79             }
-> > > cf586021642d80 Chris Wilson 2021-06-17   80
-> > > cf586021642d80 Chris Wilson 2021-06-17   81             for (i = 0; i < sz / sizeof(u32); i++)
-> > > cf586021642d80 Chris Wilson 2021-06-17   82                     vaddr[i] = ~i;
-> > > cf586021642d80 Chris Wilson 2021-06-17   83             i915_gem_object_flush_map(dst);
-> > > cf586021642d80 Chris Wilson 2021-06-17   84
-> > > cf586021642d80 Chris Wilson 2021-06-17   85             err = fn(migrate, &ww, src, dst, &rq);
-> > > cf586021642d80 Chris Wilson 2021-06-17   86             if (!err)
-> > > cf586021642d80 Chris Wilson 2021-06-17   87                     continue;
-> > >
-> > > Does fn() initialize "rq" on the success path?  Anyway Smatch would
-> > > complain anyway because it thinks the list could be empty or that we
-> > > might hit and early continue for everything.
-> >
-> > The fn() will always first initialize the rq to NULL. If it returns
-> > success then rq will always be a valid rq. If it returns an err then
-> > the rq might be NULL, or a valid rq depending on how far the copy/fn
-> > got.
-> >
-> > And for_i915_gem_ww() will always run at least once, since ww->loop =
-> > true, so this looks like a false positive?
->
-> You don't think i915_gem_object_lock(), i915_gem_object_pin_map() or
-> i915_gem_object_pin_map() can fail?
+--===============0353706682==
+Content-Type: multipart/alternative;
+ boundary="===============6804768609080821731=="
 
-Yeah, they can totally fail but then we mostly likely just hit the
-err_out. The for_i915_gem_ww() is a little strange since it's not
-really looping over anything, it's just about retrying the block if we
-see -EDEADLK(which involves dropping some locks), if we see any other
-error then the loop is terminated with ww->loop = false, which then
-hits the goto err_out.
+--===============6804768609080821731==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->
-> regards,
-> dan carpenter
->
+== Series Details ==
+
+Series: series starting with [1/2] drm/i915/selftests: fix smatch warning in igt_check_blocks
+URL   : https://patchwork.freedesktop.org/series/92150/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10302 -> Patchwork_20520
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20520 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#2782])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+
+
+Participating hosts (40 -> 34)
+------------------------------
+
+  Missing    (6): fi-kbl-soraka fi-bsw-cyan bat-adls-4 bat-adls-3 fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10302 -> Patchwork_20520
+
+  CI-20190529: 20190529
+  CI_DRM_10302: 403c15e48caac46206e92d703408fe07d83c6bf4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6128: b24e5949af7e51f0af484d2ce4cb4c5a41ac5358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20520: 337f0543a04c2c79c40f7602b5b3f19d278b3ab0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+337f0543a04c drm/i915/selftests: fix smatch warning in mock_reserve
+0da2bc133432 drm/i915/selftests: fix smatch warning in igt_check_blocks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html
+
+--===============6804768609080821731==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/selftests: fix smatch warning in igt_check_blocks</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92150/">https://patchwork.freedesktop.org/series/92150/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10302 -&gt; Patchwork_20520</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20520 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10302/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20520/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 34)</h2>
+<p>Missing    (6): fi-kbl-soraka fi-bsw-cyan bat-adls-4 bat-adls-3 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10302 -&gt; Patchwork_20520</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10302: 403c15e48caac46206e92d703408fe07d83c6bf4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6128: b24e5949af7e51f0af484d2ce4cb4c5a41ac5358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20520: 337f0543a04c2c79c40f7602b5b3f19d278b3ab0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>337f0543a04c drm/i915/selftests: fix smatch warning in mock_reserve<br />
+0da2bc133432 drm/i915/selftests: fix smatch warning in igt_check_blocks</p>
+
+</body>
+</html>
+
+--===============6804768609080821731==--
+
+--===============0353706682==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0353706682==--
