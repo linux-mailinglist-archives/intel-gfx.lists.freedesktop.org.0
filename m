@@ -2,52 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CEDE3BA381
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 19:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73EF63BA437
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Jul 2021 21:07:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14ED36E15D;
-	Fri,  2 Jul 2021 17:09:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 718BC6E11A;
+	Fri,  2 Jul 2021 19:07:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com
- [IPv6:2607:f8b0:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C58836E15F
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jul 2021 17:09:50 +0000 (UTC)
-Received: by mail-oi1-x229.google.com with SMTP id t3so12096259oic.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 02 Jul 2021 10:09:50 -0700 (PDT)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2470D6E115
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 Jul 2021 19:07:48 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id j34so7248427wms.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 02 Jul 2021 12:07:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=iFkSFdNSZ2uB74FmgzHQvEKwPiPJJ8u4nPVly1FT1bs=;
- b=W4lmsmcgEf8VrI++RUjBTQVTBxjGrxpoi0WY7uSyzbBFRFMzoUatkeuE6a72CYJuIB
- PqxhfRbBggxmMoDMbRERKR2JDLPOT+Pn1CcEUmM0tKNEfdl+81O0gr/OLFpJrB7NjkZ7
- R8n0R07n934kNcdTodr9FbYJPI6VI/MX18U0k=
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=eldD9WeHZLX6wVeB8QD8GX1uSa7l10sZxGzJ8FDpD+o=;
+ b=Rxhb6O3gW6N9i9/X4TIaxpsb2UnTl8sEpgJESHL7ielObQqDRBMa0YD+dka0xeWG2a
+ 41eDh5E5iHyfltWQ10QJKfempg5UOYVPAzsMM75kdLFlG6g2Xyj63Bhr0fHNE2eBcR8h
+ D19HLNgZ7cvL27xoby/du5ibQ/BUnrORM+My4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=iFkSFdNSZ2uB74FmgzHQvEKwPiPJJ8u4nPVly1FT1bs=;
- b=BUWJYiJObzUqSU97SRiTxVkXtFfX7h3UbHw/Bi57xrOcBGfDZk3JnAr4x3UxxjyWvS
- gxPuEm3M6U3glrRhOuzQyZ+cXjyAHB10+G1PfE6o5DEEr+5QzUv/O6gLXJOY51QkiTG1
- iSGy1dq/8P0mBpIbcQf+bmZSqegokloHCGpSnaQXRWWwjN/ojLMvyp+/Nir/HW7DzdAz
- FWRjJMy+XClpwtWhUxEhceatYbSEALvyCuX7CUdSgSCPFgWw+27vuygZKiIUS4nkkU5I
- ZBKty43PnINFc1DRWBf/8zMWX4condDIYHxS5ryftrjHN05LQXqGl0eLaFR6TIodRJ0a
- wzgw==
-X-Gm-Message-State: AOAM530oUHyUPfduZXhtwaTSsqYHRNCHxJlHejFBDsjks0cl5jLP3Jsl
- okQHVosFFVs7vyz9tDWM5N2MgohduX3d+6sdsle0+g==
-X-Google-Smtp-Source: ABdhPJysi+/kjZnyslSz7yNnvGkPBBIIDGZ46Uza3yxaaPYIizokbDOQ/1dlSIWGSNzbi5TPmE/6uIy0NRerV1Xtz5M=
-X-Received: by 2002:a05:6808:8f7:: with SMTP id
- d23mr645781oic.14.1625245790108; 
- Fri, 02 Jul 2021 10:09:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210701142407.458836-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20210701142407.458836-1-michael.j.ruhl@intel.com>
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=eldD9WeHZLX6wVeB8QD8GX1uSa7l10sZxGzJ8FDpD+o=;
+ b=lLCJPRNDABvDcSFD6K1LPcA412/rXGV70yj/09ncnbrw7cF6iir9E94WgGuValZ6nS
+ wK/XpLd+GgWrzIwSO775n3+SxL3K8VkwHL7KeLsXeAF2B21O7lgKPF8f5UqaV+PVUmRf
+ TvpR3wtmze/stnPVN/pgYJeIBB/CFd4hBgWdn8KXsxS+t5ExYx9UTQ21I7LkqujsOCec
+ g5/xsMXu8uwXwe6W37hhvw3S6Yd6qux6vbC+nPGYOXXBEXpOrPqPwtremVtRGPMh7SsK
+ mQ356b8Vm8BaCNe/DNPOSn7QBYsRfLlbyhoP+xExtFKLzCcWoWtZX2SRWSWCrhw0ww1O
+ UeGQ==
+X-Gm-Message-State: AOAM530j5QZq8AMxhtNKARX/irfWYVxen2T2zuwZoDZCCk4niQ6ywi2M
+ NwJK5iv3rUYeYKAgz9K4pl9CGA==
+X-Google-Smtp-Source: ABdhPJxuuckgiHMKw5u2LFdcUJOOGD/QqPqftjLSsrtr60B+DTy0rLbZPAdCGh6heMzOeDQbto7cZQ==
+X-Received: by 2002:a7b:c8da:: with SMTP id f26mr1048612wml.9.1625252867349;
+ Fri, 02 Jul 2021 12:07:47 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f13sm4226230wrt.86.2021.07.02.12.07.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 02 Jul 2021 12:07:46 -0700 (PDT)
+Date: Fri, 2 Jul 2021 21:07:44 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 2 Jul 2021 19:09:39 +0200
-Message-ID: <CAKMK7uFHJcS-P73h3XarewVv5rEs-H928NJb-J_RJAZ1PRBENw@mail.gmail.com>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Correct the locking and
- pin pattern for dma-buf
+To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Message-ID: <YN9kAFcfGoB13x7f@phenom.ffwll.local>
+Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ skhan@linuxfoundation.org, gregkh@linuxfoundation.org,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ emil.l.velikov@gmail.com
+References: <20210701165358.19053-1-desmondcheongzx@gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20210701165358.19053-1-desmondcheongzx@gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH v7 0/5] drm: address potential UAF bugs with
+ drm_master ptrs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,229 +75,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: tzimmermann@suse.de, airlied@linux.ie, gregkh@linuxfoundation.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org,
+ dri-devel@lists.freedesktop.org, skhan@linuxfoundation.org,
+ linux-kernel-mentees@lists.linuxfoundation.org, sumit.semwal@linaro.org,
+ linux-media@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBKdWwgMSwgMjAyMSBhdCA0OjI0IFBNIE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5q
-LnJ1aGxAaW50ZWwuY29tPiB3cm90ZToKPgo+IEZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
-YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPgo+IElmIG91ciBleHBvcnRlZCBkbWEtYnVm
-cyBhcmUgaW1wb3J0ZWQgYnkgYW5vdGhlciBpbnN0YW5jZSBvZiBvdXIgZHJpdmVyLAo+IHRoYXQg
-aW5zdGFuY2Ugd2lsbCB0eXBpY2FsbHkgaGF2ZSB0aGUgaW1wb3J0ZWQgZG1hLWJ1ZnMgbG9ja2Vk
-IGR1cmluZwo+IGRtYV9idWZfbWFwX2F0dGFjaG1lbnQoKS4gQnV0IHRoZSBleHBvcnRlciBhbHNv
-IGxvY2tzIHRoZSBzYW1lIHJlc2VydmF0aW9uCj4gb2JqZWN0IGluIHRoZSBtYXBfZG1hX2J1Zigp
-IGNhbGxiYWNrLCB3aGljaCBsZWFkcyB0byByZWN1cnNpdmUgbG9ja2luZy4KPgo+IFNvIHRha2lu
-ZyB0aGUgbG9jayBpbnNpZGUgX3Bpbl9wYWdlc191bmxvY2tlZCgpIGlzIGluY29ycmVjdC4KPgo+
-IEFkZGl0aW9uYWxseSwgdGhlIGN1cnJlbnQgcGlubmluZyBjb2RlIHBhdGggaXMgY29udHJhcnkg
-dG8gdGhlIGRlZmluZWQKPiB3YXkgdGhhdCBwaW5uaW5nIHNob3VsZCBvY2N1ci4KPgo+IFJlbW92
-ZSB0aGUgZXhwbGljaXQgcGluL3VucGluIGZyb20gdGhlIG1hcC91bWFwIGZ1bmN0aW9ucyBhbmQg
-bW92ZSB0aGVtCj4gdG8gdGhlIGF0dGFjaC9kZXRhY2ggYWxsb3dpbmcgY29ycmVjdCBsb2NraW5n
-IHRvIG9jY3VyLCBhbmQgdG8gbWF0Y2gKPiB0aGUgc3RhdGljIGRtYS1idWYgZHJtX3ByaW1lIHBh
-dHRlcm4uCj4KPiBBZGQgYSBsaXZlIHNlbGZ0ZXN0IHRvIGV4ZXJjaXNlIGJvdGggZHluYW1pYyBh
-bmQgbm9uLWR5bmFtaWMKPiBleHBvcnRzLgo+Cj4gdjI6Cj4gLSBFeHRlbmQgdGhlIHNlbGZ0ZXN0
-IHdpdGggYSBmYWtlIGR5bmFtaWMgaW1wb3J0ZXIuCj4gLSBQcm92aWRlIHJlYWwgcGluIGFuZCB1
-bnBpbiBjYWxsYmFja3MgdG8gbm90IGFidXNlIHRoZSBpbnRlcmZhY2UuCj4gdjM6IChydWhsKQo+
-IC0gUmVtb3ZlIHRoZSBkeW5hbWljIGV4cG9ydCBzdXBwb3J0IGFuZCBtb3ZlIHRoZSBwaW5uaW5n
-IGludG8gdGhlCj4gICBhdHRhY2gvZGV0YWNoIHBhdGguCj4KPiBSZXBvcnRlZC1ieTogTWljaGFl
-bCBKLiBSdWhsIDxtaWNoYWVsLmoucnVobEBpbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVGhv
-bWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+IFNpZ25l
-ZC1vZmYtYnk6IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPgoKQ0kg
-c3BsYXQgaXMgYmVjYXVzZSBJIGdvdCB0aGUgbG9ja2luZyBydWxlcyB3cm9uZywgSSB0aG91Z2h0
-Ci0+YXR0YWNoL2RldGFjaCBhcmUgY2FsbGVkIHVuZGVyIHRoZSBkbWFfcmVzdl9sb2NrLCBiZWNh
-dXNlIHdoZW4gd2UKdXNlZCB0aGUgb2xkIGRtYV9idWYtPmxvY2sgdGhvc2UgY2FsbHMgd2hlcmUg
-cHJvdGVjdGVkIGJ5IHRoYXQgbG9jawp1bmRlciB0aGUgc2FtZSBjcml0aWNhbCBzZWN0aW9uIGFz
-IGFkZGluZy9yZW1vdmluZyBmcm9tIHRoZSBsaXN0LiBCdXQKd2UgY2hhbmdlZCB0aGF0IGluCgpm
-NDVmNTdjY2U1ODQgKCJkbWEtYnVmOiBzdG9wIHVzaW5nIHRoZSBkbWFidWYtPmxvY2sgc28gbXVj
-aCB2MiIpCjE1ZmQ1NTJkMTg2YyAoImRtYS1idWY6IGNoYW5nZSBETUEtYnVmIGxvY2tpbmcgY29u
-dmVudGlvbiB2MyIpCgpCZWNhdXNlIGtlZXBpbmcgZG1hX3Jlc3ZfbG9jayBvdmVyIC0+YXR0YWNo
-L2RldGFjaCB3b3VsZCBnbyBib29tIG9uCmFsbCB0aGUgdHRtIGRyaXZlcnMsIHdoaWNoIHBpbi91
-bnBpbiB0aGUgYnVmZmVyIGluIHRoZXJlLiBJb3cgd2UgbmVlZAp0aGUgdW5sb2NrZWQgdmVyc2lv
-biB0aGVyZSwgYnV0IGFsc28gaGF2aW5nIHRoaXMgc3BsaXQgdXAgaXMgYSBiaXQKYXdrd2FyZCBh
-bmQgbWlnaHQgYmUgZ29vZCB0byBwYXRjaCB1cCBzbyB0aGF0IGl0J3MgYXRvbWljIGFnYWluLiBX
-b3VsZAptZWFuIHVwZGF0aW5nIGEgYnVuY2ggb2YgZHJpdmVycy4gQ2hyaXN0aWFuLCBhbnkgdGhv
-dWdodHM/CgpNaWtlLCBmb3Igbm93IEknZCBqdXN0IGtlZXAgdXNpbmcgdGhlIF91bmxvY2tlZCB2
-YXJpYW50cyBhbmQgd2Ugc2hvdWxkIGJlIGZpbmUuCi1EYW5pZWwKCj4gLS0tCj4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYyAgICB8ICA0NiArKysrKystLQo+ICAu
-Li4vZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9kbWFidWYuYyAgfCAxMTEgKysrKysr
-KysrKysrKysrKystCj4gIDIgZmlsZXMgY2hhbmdlZCwgMTQzIGluc2VydGlvbnMoKyksIDE0IGRl
-bGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV9kbWFidWYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYu
-Ywo+IGluZGV4IDYxNmMzYTJmMWJhZi4uMDAzMzhjOGQzNzM5IDEwMDY0NAo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+IEBAIC0xMiw2ICsxMiw4IEBACj4gICNp
-bmNsdWRlICJpOTE1X2dlbV9vYmplY3QuaCIKPiAgI2luY2x1ZGUgImk5MTVfc2NhdHRlcmxpc3Qu
-aCIKPgo+ICtJOTE1X1NFTEZURVNUX0RFQ0xBUkUoc3RhdGljIGJvb2wgZm9yY2VfZGlmZmVyZW50
-X2RldmljZXM7KQo+ICsKPiAgc3RhdGljIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpkbWFf
-YnVmX3RvX29iaihzdHJ1Y3QgZG1hX2J1ZiAqYnVmKQo+ICB7Cj4gICAgICAgICByZXR1cm4gdG9f
-aW50ZWxfYm8oYnVmLT5wcml2KTsKPiBAQCAtMjUsMTUgKzI3LDExIEBAIHN0YXRpYyBzdHJ1Y3Qg
-c2dfdGFibGUgKmk5MTVfZ2VtX21hcF9kbWFfYnVmKHN0cnVjdCBkbWFfYnVmX2F0dGFjaG1lbnQg
-KmF0dGFjaG1lCj4gICAgICAgICBzdHJ1Y3Qgc2NhdHRlcmxpc3QgKnNyYywgKmRzdDsKPiAgICAg
-ICAgIGludCByZXQsIGk7Cj4KPiAtICAgICAgIHJldCA9IGk5MTVfZ2VtX29iamVjdF9waW5fcGFn
-ZXNfdW5sb2NrZWQob2JqKTsKPiAtICAgICAgIGlmIChyZXQpCj4gLSAgICAgICAgICAgICAgIGdv
-dG8gZXJyOwo+IC0KPiAgICAgICAgIC8qIENvcHkgc2cgc28gdGhhdCB3ZSBtYWtlIGFuIGluZGVw
-ZW5kZW50IG1hcHBpbmcgKi8KPiAgICAgICAgIHN0ID0ga21hbGxvYyhzaXplb2Yoc3RydWN0IHNn
-X3RhYmxlKSwgR0ZQX0tFUk5FTCk7Cj4gICAgICAgICBpZiAoc3QgPT0gTlVMTCkgewo+ICAgICAg
-ICAgICAgICAgICByZXQgPSAtRU5PTUVNOwo+IC0gICAgICAgICAgICAgICBnb3RvIGVycl91bnBp
-bl9wYWdlczsKPiArICAgICAgICAgICAgICAgZ290byBlcnI7Cj4gICAgICAgICB9Cj4KPiAgICAg
-ICAgIHJldCA9IHNnX2FsbG9jX3RhYmxlKHN0LCBvYmotPm1tLnBhZ2VzLT5uZW50cywgR0ZQX0tF
-Uk5FTCk7Cj4gQEAgLTU4LDggKzU2LDYgQEAgc3RhdGljIHN0cnVjdCBzZ190YWJsZSAqaTkxNV9n
-ZW1fbWFwX2RtYV9idWYoc3RydWN0IGRtYV9idWZfYXR0YWNobWVudCAqYXR0YWNobWUKPiAgICAg
-ICAgIHNnX2ZyZWVfdGFibGUoc3QpOwo+ICBlcnJfZnJlZToKPiAgICAgICAgIGtmcmVlKHN0KTsK
-PiAtZXJyX3VucGluX3BhZ2VzOgo+IC0gICAgICAgaTkxNV9nZW1fb2JqZWN0X3VucGluX3BhZ2Vz
-KG9iaik7Cj4gIGVycjoKPiAgICAgICAgIHJldHVybiBFUlJfUFRSKHJldCk7Cj4gIH0KPiBAQCAt
-NjgsMTMgKzY0LDkgQEAgc3RhdGljIHZvaWQgaTkxNV9nZW1fdW5tYXBfZG1hX2J1ZihzdHJ1Y3Qg
-ZG1hX2J1Zl9hdHRhY2htZW50ICphdHRhY2htZW50LAo+ICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgc3RydWN0IHNnX3RhYmxlICpzZywKPiAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIGVudW0gZG1hX2RhdGFfZGlyZWN0aW9uIGRpcikKPiAgewo+IC0gICAgICAg
-c3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9IGRtYV9idWZfdG9fb2JqKGF0dGFjaG1l
-bnQtPmRtYWJ1Zik7Cj4gLQo+ICAgICAgICAgZG1hX3VubWFwX3NndGFibGUoYXR0YWNobWVudC0+
-ZGV2LCBzZywgZGlyLCBETUFfQVRUUl9TS0lQX0NQVV9TWU5DKTsKPiAgICAgICAgIHNnX2ZyZWVf
-dGFibGUoc2cpOwo+ICAgICAgICAga2ZyZWUoc2cpOwo+IC0KPiAtICAgICAgIGk5MTVfZ2VtX29i
-amVjdF91bnBpbl9wYWdlcyhvYmopOwo+ICB9Cj4KPiAgc3RhdGljIGludCBpOTE1X2dlbV9kbWFi
-dWZfdm1hcChzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1Ziwgc3RydWN0IGRtYV9idWZfbWFwICptYXAp
-Cj4gQEAgLTE2OCw3ICsxNjAsMzIgQEAgc3RhdGljIGludCBpOTE1X2dlbV9lbmRfY3B1X2FjY2Vz
-cyhzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1ZiwgZW51bSBkbWFfZGF0YV9kaXJlY3QKPiAgICAgICAg
-IHJldHVybiBlcnI7Cj4gIH0KPgo+ICsvKioKPiArICogaTkxNV9nZW1fZG1hYnVmX2F0dGFjaCAt
-IERvIGFueSBleHRyYSBhdHRhY2ggd29yayBuZWNlc3NhcnkKPiArICogQGRtYWJ1ZjogaW1wb3J0
-ZWQgZG1hLWJ1Zgo+ICsgKiBAYXR0YWNoOiBuZXcgYXR0YWNoIHRvIGRvIHdvcmsgb24KPiArICoK
-PiArICovCj4gK3N0YXRpYyBpbnQgaTkxNV9nZW1fZG1hYnVmX2F0dGFjaChzdHJ1Y3QgZG1hX2J1
-ZiAqZG1hYnVmLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZG1h
-X2J1Zl9hdHRhY2htZW50ICphdHRhY2gpCj4gK3sKPiArICAgICAgIHN0cnVjdCBkcm1faTkxNV9n
-ZW1fb2JqZWN0ICpvYmogPSBkbWFfYnVmX3RvX29iaihkbWFidWYpOwo+ICsKPiArICAgICAgIGFz
-c2VydF9vYmplY3RfaGVsZChvYmopOwo+ICsgICAgICAgcmV0dXJuIGk5MTVfZ2VtX29iamVjdF9w
-aW5fcGFnZXMob2JqKTsKPiArfQo+ICsKPiArc3RhdGljIHZvaWQgaTkxNV9nZW1fZG1hYnVmX2Rl
-dGFjaChzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVmLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICphdHRhY2gpCj4gK3sKPiArICAgICAg
-IHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmogPSBkbWFfYnVmX3RvX29iaihkbWFidWYp
-Owo+ICsKPiArICAgICAgIGk5MTVfZ2VtX29iamVjdF91bnBpbl9wYWdlcyhvYmopOwo+ICt9Cj4g
-Kwo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGRtYV9idWZfb3BzIGk5MTVfZG1hYnVmX29wcyA9ICB7
-Cj4gKyAgICAgICAuYXR0YWNoID0gaTkxNV9nZW1fZG1hYnVmX2F0dGFjaCwKPiArICAgICAgIC5k
-ZXRhY2ggPSBpOTE1X2dlbV9kbWFidWZfZGV0YWNoLAo+ICAgICAgICAgLm1hcF9kbWFfYnVmID0g
-aTkxNV9nZW1fbWFwX2RtYV9idWYsCj4gICAgICAgICAudW5tYXBfZG1hX2J1ZiA9IGk5MTVfZ2Vt
-X3VubWFwX2RtYV9idWYsCj4gICAgICAgICAucmVsZWFzZSA9IGRybV9nZW1fZG1hYnVmX3JlbGVh
-c2UsCj4gQEAgLTIwNCw2ICsyMjEsOCBAQCBzdGF0aWMgaW50IGk5MTVfZ2VtX29iamVjdF9nZXRf
-cGFnZXNfZG1hYnVmKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4gICAgICAgICBz
-dHJ1Y3Qgc2dfdGFibGUgKnBhZ2VzOwo+ICAgICAgICAgdW5zaWduZWQgaW50IHNnX3BhZ2Vfc2l6
-ZXM7Cj4KPiArICAgICAgIGFzc2VydF9vYmplY3RfaGVsZChvYmopOwo+ICsKPiAgICAgICAgIHBh
-Z2VzID0gZG1hX2J1Zl9tYXBfYXR0YWNobWVudChvYmotPmJhc2UuaW1wb3J0X2F0dGFjaCwKPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBETUFfQklESVJFQ1RJT05BTCk7
-Cj4gICAgICAgICBpZiAoSVNfRVJSKHBhZ2VzKSkKPiBAQCAtMjE5LDYgKzIzOCw4IEBAIHN0YXRp
-YyBpbnQgaTkxNV9nZW1fb2JqZWN0X2dldF9wYWdlc19kbWFidWYoc3RydWN0IGRybV9pOTE1X2dl
-bV9vYmplY3QgKm9iaikKPiAgc3RhdGljIHZvaWQgaTkxNV9nZW1fb2JqZWN0X3B1dF9wYWdlc19k
-bWFidWYoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qgc2dfdGFibGUgKnBhZ2VzKQo+ICB7
-Cj4gKyAgICAgICBhc3NlcnRfb2JqZWN0X2hlbGQob2JqKTsKPiArCj4gICAgICAgICBkbWFfYnVm
-X3VubWFwX2F0dGFjaG1lbnQob2JqLT5iYXNlLmltcG9ydF9hdHRhY2gsIHBhZ2VzLAo+ICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIERNQV9CSURJUkVDVElPTkFMKTsKPiAgfQo+IEBA
-IC0yNDEsNyArMjYyLDggQEAgc3RydWN0IGRybV9nZW1fb2JqZWN0ICppOTE1X2dlbV9wcmltZV9p
-bXBvcnQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAgICAgICAgIGlmIChkbWFfYnVmLT5vcHMg
-PT0gJmk5MTVfZG1hYnVmX29wcykgewo+ICAgICAgICAgICAgICAgICBvYmogPSBkbWFfYnVmX3Rv
-X29iaihkbWFfYnVmKTsKPiAgICAgICAgICAgICAgICAgLyogaXMgaXQgZnJvbSBvdXIgZGV2aWNl
-PyAqLwo+IC0gICAgICAgICAgICAgICBpZiAob2JqLT5iYXNlLmRldiA9PSBkZXYpIHsKPiArICAg
-ICAgICAgICAgICAgaWYgKG9iai0+YmFzZS5kZXYgPT0gZGV2ICYmCj4gKyAgICAgICAgICAgICAg
-ICAgICAhSTkxNV9TRUxGVEVTVF9PTkxZKGZvcmNlX2RpZmZlcm50X2RldmljZXMpKSB7Cj4gICAg
-ICAgICAgICAgICAgICAgICAgICAgLyoKPiAgICAgICAgICAgICAgICAgICAgICAgICAgKiBJbXBv
-cnRpbmcgZG1hYnVmIGV4cG9ydGVkIGZyb20gb3V0IG93biBnZW0gaW5jcmVhc2VzCj4gICAgICAg
-ICAgICAgICAgICAgICAgICAgICogcmVmY291bnQgb24gZ2VtIGl0c2VsZiBpbnN0ZWFkIG9mIGZf
-Y291bnQgb2YgZG1hYnVmLgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-c2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3Nl
-bGZ0ZXN0cy9pOTE1X2dlbV9kbWFidWYuYwo+IGluZGV4IGRkNzRiYzA5ZWM4OC4uMTBhMTEzY2Mw
-MGE1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkx
-NV9nZW1fZG1hYnVmLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3Rz
-L2k5MTVfZ2VtX2RtYWJ1Zi5jCj4gQEAgLTM1LDcgKzM1LDcgQEAgc3RhdGljIGludCBpZ3RfZG1h
-YnVmX2V4cG9ydCh2b2lkICphcmcpCj4gIHN0YXRpYyBpbnQgaWd0X2RtYWJ1Zl9pbXBvcnRfc2Vs
-Zih2b2lkICphcmcpCj4gIHsKPiAgICAgICAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
-ID0gYXJnOwo+IC0gICAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iajsKPiArICAg
-ICAgIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosICppbXBvcnRfb2JqOwo+ICAgICAg
-ICAgc3RydWN0IGRybV9nZW1fb2JqZWN0ICppbXBvcnQ7Cj4gICAgICAgICBzdHJ1Y3QgZG1hX2J1
-ZiAqZG1hYnVmOwo+ICAgICAgICAgaW50IGVycjsKPiBAQCAtNjUsMTQgKzY1LDEyMCBAQCBzdGF0
-aWMgaW50IGlndF9kbWFidWZfaW1wb3J0X3NlbGYodm9pZCAqYXJnKQo+ICAgICAgICAgICAgICAg
-ICBlcnIgPSAtRUlOVkFMOwo+ICAgICAgICAgICAgICAgICBnb3RvIG91dF9pbXBvcnQ7Cj4gICAg
-ICAgICB9Cj4gKyAgICAgICBpbXBvcnRfb2JqID0gdG9faW50ZWxfYm8oaW1wb3J0KTsKPiArCj4g
-KyAgICAgICBpOTE1X2dlbV9vYmplY3RfbG9jayhpbXBvcnRfb2JqLCBOVUxMKTsKPiArICAgICAg
-IGVyciA9IF9fX19pOTE1X2dlbV9vYmplY3RfZ2V0X3BhZ2VzKGltcG9ydF9vYmopOwo+ICsgICAg
-ICAgaTkxNV9nZW1fb2JqZWN0X3VubG9jayhpbXBvcnRfb2JqKTsKPiArICAgICAgIGlmIChlcnIp
-IHsKPiArICAgICAgICAgICAgICAgcHJfZXJyKCJTYW1lIG9iamVjdCBkbWEtYnVmIGdldF9wYWdl
-cyBmYWlsZWQhXG4iKTsKPiArICAgICAgICAgICAgICAgZ290byBvdXRfaW1wb3J0Owo+ICsgICAg
-ICAgfQo+Cj4gICAgICAgICBlcnIgPSAwOwo+ICBvdXRfaW1wb3J0Ogo+IC0gICAgICAgaTkxNV9n
-ZW1fb2JqZWN0X3B1dCh0b19pbnRlbF9ibyhpbXBvcnQpKTsKPiArICAgICAgIGk5MTVfZ2VtX29i
-amVjdF9wdXQoaW1wb3J0X29iaik7Cj4gK291dF9kbWFidWY6Cj4gKyAgICAgICBkbWFfYnVmX3B1
-dChkbWFidWYpOwo+ICtvdXQ6Cj4gKyAgICAgICBpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7Cj4g
-KyAgICAgICByZXR1cm4gZXJyOwo+ICt9Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRtYV9i
-dWZfYXR0YWNoX29wcyBpZ3RfZG1hYnVmX2F0dGFjaF9vcHMgPSB7Cj4gKyAgICAgICAubW92ZV9u
-b3RpZnkgPSBpZ3RfZG1hYnVmX21vdmVfbm90aWZ5LAo+ICt9Owo+ICsKPiArc3RhdGljIGludCBp
-Z3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcih2b2lkICphcmcpCj4gK3sKPiArICAgICAgIHN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJnOwo+ICsgICAgICAgc3RydWN0IGRybV9p
-OTE1X2dlbV9vYmplY3QgKm9iaiwgKmltcG9ydF9vYmo7Cj4gKyAgICAgICBzdHJ1Y3QgZHJtX2dl
-bV9vYmplY3QgKmltcG9ydDsKPiArICAgICAgIHN0cnVjdCBkbWFfYnVmICpkbWFidWY7Cj4gKyAg
-ICAgICBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICppbXBvcnRfYXR0YWNoOwo+ICsgICAgICAg
-c3RydWN0IHNnX3RhYmxlICpzdDsKPiArICAgICAgIGxvbmcgdGltZW91dDsKPiArICAgICAgIGlu
-dCBlcnI7Cj4gKwo+ICsgICAgICAgZm9yY2VfZGlmZmVyZW50X2RldmljZXMgPSB0cnVlOwo+ICsg
-ICAgICAgb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zaG1lbShpOTE1LCBQQUdFX1NJWkUp
-Owo+ICsgICAgICAgaWYgKElTX0VSUihvYmopKQo+ICsgICAgICAgICAgICAgICBnb3RvIG91dF9y
-ZXQ7Cj4gKwo+ICsgICAgICAgZG1hYnVmID0gaTkxNV9nZW1fcHJpbWVfZXhwb3J0KCZvYmotPmJh
-c2UsIDApOwo+ICsgICAgICAgaWYgKElTX0VSUihkbWFidWYpKSB7Cj4gKyAgICAgICAgICAgICAg
-IHByX2VycigiaTkxNV9nZW1fcHJpbWVfZXhwb3J0IGZhaWxlZCB3aXRoIGVycj0lZFxuIiwKPiAr
-ICAgICAgICAgICAgICAgICAgICAgIChpbnQpUFRSX0VSUihkbWFidWYpKTsKPiArICAgICAgICAg
-ICAgICAgZXJyID0gUFRSX0VSUihkbWFidWYpOwo+ICsgICAgICAgICAgICAgICBnb3RvIG91dDsK
-PiArICAgICAgIH0KPiArCj4gKyAgICAgICBpbXBvcnQgPSBpOTE1X2dlbV9wcmltZV9pbXBvcnQo
-Jmk5MTUtPmRybSwgZG1hYnVmKTsKPiArICAgICAgIGlmIChJU19FUlIoaW1wb3J0KSkgewo+ICsg
-ICAgICAgICAgICAgICBwcl9lcnIoImk5MTVfZ2VtX3ByaW1lX2ltcG9ydCBmYWlsZWQgd2l0aCBl
-cnI9JWRcbiIsCj4gKyAgICAgICAgICAgICAgICAgICAgICAoaW50KVBUUl9FUlIoaW1wb3J0KSk7
-Cj4gKyAgICAgICAgICAgICAgIGVyciA9IFBUUl9FUlIoaW1wb3J0KTsKPiArICAgICAgICAgICAg
-ICAgZ290byBvdXRfZG1hYnVmOwo+ICsgICAgICAgfQo+ICsKPiArICAgICAgIGlmIChpbXBvcnQg
-PT0gJm9iai0+YmFzZSkgewo+ICsgICAgICAgICAgICAgICBwcl9lcnIoImk5MTVfZ2VtX3ByaW1l
-X2ltcG9ydCByZXVzZWQgZ2VtIG9iamVjdCFcbiIpOwo+ICsgICAgICAgICAgICAgICBlcnIgPSAt
-RUlOVkFMOwo+ICsgICAgICAgICAgICAgICBnb3RvIG91dF9pbXBvcnQ7Cj4gKyAgICAgICB9Cj4g
-Kwo+ICsgICAgICAgaW1wb3J0X29iaiA9IHRvX2ludGVsX2JvKGltcG9ydCk7Cj4gKwo+ICsgICAg
-ICAgaTkxNV9nZW1fb2JqZWN0X2xvY2soaW1wb3J0X29iaiwgTlVMTCk7Cj4gKyAgICAgICBlcnIg
-PSBfX19faTkxNV9nZW1fb2JqZWN0X2dldF9wYWdlcyhpbXBvcnRfb2JqKTsKPiArICAgICAgIGlm
-IChlcnIpIHsKPiArICAgICAgICAgICAgICAgcHJfZXJyKCJEaWZmZXJlbnQgb2JqZWN0cyBkbWEt
-YnVmIGdldF9wYWdlcyBmYWlsZWQhXG4iKTsKPiArICAgICAgICAgICAgICAgaTkxNV9nZW1fb2Jq
-ZWN0X3VubG9jayhpbXBvcnRfb2JqKTsKPiArICAgICAgICAgICAgICAgZ290byBvdXRfaW1wb3J0
-Owo+ICsgICAgICAgfQo+ICsKPiArICAgICAgIC8qCj4gKyAgICAgICAgKiBJZiB0aGUgZXhwb3J0
-ZWQgb2JqZWN0IGlzIG5vdCBpbiBzeXN0ZW0gbWVtb3J5LCBzb21ldGhpbmcKPiArICAgICAgICAq
-IHdlaXJkIGlzIGdvaW5nIG9uLiBUT0RPOiBXaGVuIHAycCBpcyBzdXBwb3J0ZWQsIHRoaXMgaXMg
-bm8KPiArICAgICAgICAqIGxvbmdlciBjb25zaWRlcmVkIHdlaXJkLgo+ICsgICAgICAgICovCj4g
-KyAgICAgICBpZiAob2JqLT5tbS5yZWdpb24gIT0gaTkxNS0+bW0ucmVnaW9uc1tJTlRFTF9SRUdJ
-T05fU01FTV0pIHsKPiArICAgICAgICAgICAgICAgcHJfZXJyKCJFeHBvcnRlZCBkbWEtYnVmIGlz
-IG5vdCBpbiBzeXN0ZW0gbWVtb3J5XG4iKTsKPiArICAgICAgICAgICAgICAgZXJyID0gLUVJTlZB
-TDsKPiArICAgICAgIH0KPiArCj4gKyAgICAgICBpOTE1X2dlbV9vYmplY3RfdW5sb2NrKGltcG9y
-dF9vYmopOwo+ICsKPiArICAgICAgIC8qIE5vdyB0cnkgYSBmYWtlIGR5bmFtaWMgaW1wb3J0ZXIg
-Ki8KPiArICAgICAgIGltcG9ydF9hdHRhY2ggPSBkbWFfYnVmX2R5bmFtaWNfYXR0YWNoKGRtYWJ1
-Ziwgb2JqLT5iYXNlLmRldi0+ZGV2LAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgJmlndF9kbWFidWZfYXR0YWNoX29wcywKPiArICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5VTEwpOwo+ICsgICAgICAgaWYgKElTX0VS
-UihpbXBvcnRfYXR0YWNoKSkKPiArICAgICAgICAgICAgICAgZ290byBvdXRfaW1wb3J0Owo+ICsK
-PiArICAgICAgIGRtYV9yZXN2X2xvY2soZG1hYnVmLT5yZXN2LCBOVUxMKTsKPiArICAgICAgIHN0
-ID0gZG1hX2J1Zl9tYXBfYXR0YWNobWVudChpbXBvcnRfYXR0YWNoLCBETUFfQklESVJFQ1RJT05B
-TCk7Cj4gKyAgICAgICBkbWFfcmVzdl91bmxvY2soZG1hYnVmLT5yZXN2KTsKPiArICAgICAgIGlm
-IChJU19FUlIoc3QpKQo+ICsgICAgICAgICAgICAgICBnb3RvIG91dF9kZXRhY2g7Cj4gKwo+ICsg
-ICAgICAgdGltZW91dCA9IGRtYV9yZXN2X3dhaXRfdGltZW91dChkbWFidWYtPnJlc3YsIGZhbHNl
-LCB0cnVlLCA1ICogSFopOwo+ICsgICAgICAgaWYgKCF0aW1lb3V0KSB7Cj4gKyAgICAgICAgICAg
-ICAgIHByX2VycigiZG1hYnVmIHdhaXQgZm9yIGV4Y2x1c2l2ZSBmZW5jZSB0aW1lZCBvdXQuXG4i
-KTsKPiArICAgICAgICAgICAgICAgdGltZW91dCA9IC1FVElNRTsKPiArICAgICAgIH0KPiArICAg
-ICAgIGVyciA9IHRpbWVvdXQgPiAwID8gMCA6IHRpbWVvdXQ7Cj4gKyAgICAgICBkbWFfYnVmX3Vu
-bWFwX2F0dGFjaG1lbnQoaW1wb3J0X2F0dGFjaCwgc3QsIERNQV9CSURJUkVDVElPTkFMKTsKPiAr
-b3V0X2RldGFjaDoKPiArICAgICAgIGRtYV9idWZfZGV0YWNoKGRtYWJ1ZiwgaW1wb3J0X2F0dGFj
-aCk7Cj4gK291dF9pbXBvcnQ6Cj4gKyAgICAgICBpOTE1X2dlbV9vYmplY3RfcHV0KGltcG9ydF9v
-YmopOwo+ICBvdXRfZG1hYnVmOgo+ICAgICAgICAgZG1hX2J1Zl9wdXQoZG1hYnVmKTsKPiAgb3V0
-Ogo+ICAgICAgICAgaTkxNV9nZW1fb2JqZWN0X3B1dChvYmopOwo+ICtvdXRfcmV0Ogo+ICsgICAg
-ICAgZm9yY2VfZGlmZmVyZW50X2RldmljZXMgPSBmYWxzZTsKPiAgICAgICAgIHJldHVybiBlcnI7
-Cj4gIH0KPgo+IEBAIC0yODYsNiArMzkyLDcgQEAgaW50IGk5MTVfZ2VtX2RtYWJ1Zl9saXZlX3Nl
-bGZ0ZXN0cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKPiAgewo+ICAgICAgICAgc3Rh
-dGljIGNvbnN0IHN0cnVjdCBpOTE1X3N1YnRlc3QgdGVzdHNbXSA9IHsKPiAgICAgICAgICAgICAg
-ICAgU1VCVEVTVChpZ3RfZG1hYnVmX2V4cG9ydCksCj4gKyAgICAgICAgICAgICAgIFNVQlRFU1Qo
-aWd0X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXIpLAo+ICAgICAgICAgfTsKPgo+ICAgICAgICAg
-cmV0dXJuIGk5MTVfc3VidGVzdHModGVzdHMsIGk5MTUpOwo+IC0tCj4gMi4zMS4xCj4KCgotLSAK
-RGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDov
-L2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+On Fri, Jul 02, 2021 at 12:53:53AM +0800, Desmond Cheong Zhi Xi wrote:
+> This patch series addresses potential use-after-free errors when dereferencing pointers to struct drm_master. These were identified after one such bug was caught by Syzbot in drm_getunique():
+> https://syzkaller.appspot.com/bug?id=148d2f1dfac64af52ffd27b661981a540724f803
+> 
+> The series is broken up into five patches:
+> 
+> 1. Move a call to drm_is_current_master() out from a section locked by &dev->mode_config.mutex in drm_mode_getconnector(). This patch does not apply to stable.
+> 
+> 2. Move a call to _drm_lease_held() out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find().
+> 
+> 3. Implement a locked version of drm_is_current_master() function that's used within drm_auth.c.
+> 
+> 4. Serialize drm_file.master by introducing a new lock that's held whenever the value of drm_file.master changes.
+> 
+> 5. Identify areas in drm_lease.c where pointers to struct drm_master are dereferenced, and ensure that the master pointers are not freed during use.
+> 
+> Changes in v6 -> v7:
+> - Patch 2:
+> Modify code alignment as suggested by the intel-gfx CI.
+> 
+> Update commit message based on the changes to patch 5.
+> 
+> - Patch 4:
+> Add patch 4 to the series. This patch adds a new lock to serialize drm_file.master, in response to the lockdep splat by the intel-gfx CI.
+> 
+> - Patch 5:
+> Move kerneldoc comment about protecting drm_file.master with drm_device.master_mutex into patch 4.
+> 
+> Update drm_file_get_master to use the new drm_file.master_lock instead of drm_device.master_mutex, in response to the lockdep splat by the intel-gfx CI.
+
+So there's another one now because master->leases is protected by the
+mode_config.idr_mutex, and that's a bit awkward to untangle.
+
+Also I'm really surprised that there was now lockdep through the atomic
+code anywhere. The reason seems to be that somehow CI reboot first before
+it managed to run any of the kms_atomic tests, and we can only hit this
+when we go through the atomic kms ioctl, the legacy kms ioctl don't have
+that specific issue.
+
+Anyway I think this approach doesn't look too workable, and we need
+something new.
+
+But first things first: Are you still on board working on this? You
+started with a simple patch to fix a UAF bug, now we're deep into
+reworking tricky locking ... If you feel like you want out I'm totally
+fine with that.
+
+Anyway, I think we need to split drm_device->master_mutex up into two
+parts:
+
+- One part that protects the actual access/changes, which I think for
+  simplicity we'll just leave as the current lock. That lock is a very
+  inner lock, since for the drm_lease.c stuff it has to nest within
+  mode_config.idr_mutex even.
+
+- Now the issue with checking master status/leases/whatever as an
+  innermost lock is that you can race, it's a classic time of check vs
+  time of use race: By the time we actually use the thing we validate
+  we'er allowed to use, we might now have access anymore. There's two
+  reasons for that:
+
+  * DROPMASTER ioctl could remove the master rights, which removes access
+    rights also for all leases
+
+  * REVOKE_LEASE ioctl can do the same but only for a specific lease
+
+  This is the thing we're trying to protect against in fbcon code, but
+  that's very spotty protection because all the ioctls by other users
+  aren't actually protected against this.
+
+  So I think for this we need some kind of big reader lock.
+
+Now for the implementation, there's a few things:
+
+- I think best option for this big reader lock would be to just use srcu.
+  We only need to flush out all current readers when we drop master or
+  revoke a lease, so synchronize_srcu is perfectly good enough for this
+  purpose.
+
+- The fbdev code would switch over to srcu in
+  drm_master_internal_acquire() and drm_master_internal_release(). Ofc
+  within drm_master_internal_acquire we'd still need to check master
+  status with the normal master_mutex.
+
+- While we revamp all this we should fix the ioctl checks in drm_ioctl.c.
+  Just noticed that drm_ioctl_permit() could and should be unexported,
+  last user was removed.
+
+  Within drm_ioctl_kernel we'd then replace the check for
+  drm_is_current_master with the drm_master_internal_acquire/release.
+
+- This alone does nothing, we still need to make sure that dropmaster and
+  revoke_lease ioctl flush out all other access before they return to
+  userspace. We can't just call synchronize_srcu because due to the ioctl
+  code in drm_ioctl_kernel we're in that sruc section, we'd need to add a
+  DRM_MASTER_FLUSH ioctl flag which we'd check only when DRM_MASTER is
+  set, and use to call synchronize_srcu. Maybe wrap that in a
+  drm_master_flush or so, or perhaps a drm_master_internal_release_flush.
+
+- Also maybe we should drop the _internal_ from that name. Feels a bit
+  wrong when we're also going to use this in the ioctl handler.
+
+Thoughts? Totally silly and overkill?
+
+Cheers, Daniel
+
+
+> Changes in v5 -> v6:
+> - Patch 2:
+> Add patch 2 to the series. This patch moves the call to _drm_lease_held out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find.
+> 
+> - Patch 5:
+> Clarify the kerneldoc for dereferencing drm_file.master, as suggested by Daniel Vetter.
+> 
+> Refactor error paths with goto labels so that each function only has a single drm_master_put(), as suggested by Emil Velikov.
+> 
+> Modify comparison to NULL into "!master", as suggested by the intel-gfx CI.
+> 
+> Changes in v4 -> v5:
+> - Patch 1:
+> Add patch 1 to the series. The changes in patch 1 do not apply to stable because they apply to new changes in the drm-misc-next branch. This patch moves the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex.
+> 
+> Additionally, added a missing semicolon to the patch, caught by the intel-gfx CI.
+> 
+> - Patch 3:
+> Move changes to drm_connector.c into patch 1.
+> 
+> Changes in v3 -> v4:
+> - Patch 3:
+> Move the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex. As suggested by Daniel Vetter. This avoids a circular lock lock dependency as reported here https://patchwork.freedesktop.org/patch/440406/
+> 
+> Additionally, inside drm_is_current_master, instead of grabbing &fpriv->master->dev->master_mutex, we grab &fpriv->minor->dev->master_mutex to avoid dereferencing a null ptr if fpriv->master is not set.
+> 
+> - Patch 5:
+> Modify kerneldoc formatting.
+> 
+> Additionally, add a file_priv->master NULL check inside drm_file_get_master, and handle the NULL result accordingly in drm_lease.c. As suggested by Daniel Vetter.
+> 
+> Changes in v2 -> v3:
+> - Patch 3:
+> Move the definition of drm_is_current_master and the _locked version higher up in drm_auth.c to avoid needing a forward declaration of drm_is_current_master_locked. As suggested by Daniel Vetter.
+> 
+> - Patch 5:
+> Instead of leaking drm_device.master_mutex into drm_lease.c to protect drm_master pointers, add a new drm_file_get_master() function that returns drm_file->master while increasing its reference count, to prevent drm_file->master from being freed. As suggested by Daniel Vetter.
+> 
+> Changes in v1 -> v2:
+> - Patch 5:
+> Move the lock and assignment before the DRM_DEBUG_LEASE in drm_mode_get_lease_ioctl, as suggested by Emil Velikov.
+> 
+> Desmond Cheong Zhi Xi (5):
+>   drm: avoid circular locks in drm_mode_getconnector
+>   drm: separate locks in __drm_mode_object_find
+>   drm: add a locked version of drm_is_current_master
+>   drm: serialize drm_file.master with a master lock
+>   drm: protect drm_master pointers in drm_lease.c
+> 
+>  drivers/gpu/drm/drm_auth.c        | 86 +++++++++++++++++++++++--------
+>  drivers/gpu/drm/drm_connector.c   |  5 +-
+>  drivers/gpu/drm/drm_file.c        |  1 +
+>  drivers/gpu/drm/drm_lease.c       | 81 ++++++++++++++++++++++-------
+>  drivers/gpu/drm/drm_mode_object.c | 10 ++--
+>  include/drm/drm_auth.h            |  1 +
+>  include/drm/drm_file.h            | 18 +++++--
+>  7 files changed, 153 insertions(+), 49 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
