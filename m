@@ -1,59 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39973BA9E9
-	for <lists+intel-gfx@lfdr.de>; Sat,  3 Jul 2021 19:55:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F553BAB94
+	for <lists+intel-gfx@lfdr.de>; Sun,  4 Jul 2021 07:34:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E154B89E50;
-	Sat,  3 Jul 2021 17:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 081AD89D4B;
+	Sun,  4 Jul 2021 05:34:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D44E89E41;
- Sat,  3 Jul 2021 17:55:34 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id B20C0202B2;
- Sat,  3 Jul 2021 17:55:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1625334932; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=uI52YLNP3FCGKMnKvvgPowzdKVuPV7uklQfR3jIBKAM=;
- b=embQpKyDoen3PvEV7FVN/k+DsIDafm9XED2V/rww3P2RP8bWv/TqiDfuYQBldZEKU8VRyi
- hhH+MIzH8/gSJp35OXJdH/IUwW3Ad1VDuZPltEB/a0GbQJRMWRTD7raC33Ch6B/3j/KZky
- oNqVVNcHQGPn+/c5dzDV1p+Wl5pZ/1s=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1625334932;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=uI52YLNP3FCGKMnKvvgPowzdKVuPV7uklQfR3jIBKAM=;
- b=4/YKTUx3CVroFiPp8e6EJZaYQqL4CHzBNJDWB8YeyG9EvGj27Aa4utJdlAlk+Sk/ksUjNx
- lYxoBkUwAk+uHJBg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 659D31348A;
- Sat,  3 Jul 2021 17:55:32 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id b2AeF5Sk4GCFCQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Sat, 03 Jul 2021 17:55:32 +0000
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20210701173618.10718-1-tzimmermann@suse.de>
- <YN9uPeqktqiqfXc6@phenom.ffwll.local>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <4e4e067c-4662-aac1-bee6-6124d35f543e@suse.de>
-Date: Sat, 3 Jul 2021 19:55:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C088589D4B
+ for <intel-gfx@lists.freedesktop.org>; Sun,  4 Jul 2021 05:34:05 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10034"; a="189238279"
+X-IronPort-AV: E=Sophos;i="5.83,323,1616482800"; d="scan'208";a="189238279"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2021 22:34:04 -0700
+X-IronPort-AV: E=Sophos;i="5.83,323,1616482800"; d="scan'208";a="426941174"
+Received: from beshak-mobl.gar.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.9.146])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2021 22:34:04 -0700
+Date: Sat, 3 Jul 2021 22:34:03 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20210704053202.dncjlbkingckz4gg@ldmartin-desk2>
+References: <20210630230624.25407-1-anusha.srivatsa@intel.com>
+ <20210701000114.smjdtszhfx24gkkj@ldmartin-desk2>
+ <87eechqhou.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YN9uPeqktqiqfXc6@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH v5 0/2] drm/i915: IRQ fixes
+Content-Disposition: inline
+In-Reply-To: <87eechqhou.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Use RUNTIME_INFO->stp for DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,172 +45,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk,
- dri-devel@lists.freedesktop.org, lucas.demarchi@intel.com
-Content-Type: multipart/mixed; boundary="===============0629195749=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0629195749==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="rBPbtkrhevjCJz0ZV5sK5MELkehwE0V3b"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---rBPbtkrhevjCJz0ZV5sK5MELkehwE0V3b
-Content-Type: multipart/mixed; boundary="Icz3tMJMHblGcroOyrsiKybLehPkYPZQo";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, chris@chris-wilson.co.uk,
- mika.kuoppala@linux.intel.com, matthew.brost@intel.com,
- maarten.lankhorst@linux.intel.com, lucas.demarchi@intel.com,
- ville.syrjala@linux.intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <4e4e067c-4662-aac1-bee6-6124d35f543e@suse.de>
-Subject: Re: [PATCH v5 0/2] drm/i915: IRQ fixes
-References: <20210701173618.10718-1-tzimmermann@suse.de>
- <YN9uPeqktqiqfXc6@phenom.ffwll.local>
-In-Reply-To: <YN9uPeqktqiqfXc6@phenom.ffwll.local>
-
---Icz3tMJMHblGcroOyrsiKybLehPkYPZQo
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 02.07.21 um 21:51 schrieb Daniel Vetter:
-> On Thu, Jul 01, 2021 at 07:36:16PM +0200, Thomas Zimmermann wrote:
->> Fix a bug in the usage of IRQs and cleanup references to the DRM
->> IRQ midlayer.
+On Fri, Jul 02, 2021 at 10:49:05AM +0300, Jani Nikula wrote:
+>On Wed, 30 Jun 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> Typo: RUNTIME_INFO->stp
 >>
->> Preferably this patchset would be merged through drm-misc-next.
->>
->> v5:
->> 	* go back to _hardirq() after CI tests reported atomic
->> 	  context in PCI probe; add rsp comment
->> v4:
->> 	* switch IRQ code to intel_synchronize_irq() (Daniel)
->> v3:
->> 	* also use intel_synchronize_hardirq() from other callsite
->> v2:
->> 	* split patch
->> 	* also fix comment
->> 	* add intel_synchronize_hardirq() (Ville)
->> 	* update Fixes tag (Daniel)
->=20
-> Ok now I actually pushed the right patch set.
-
-Oh, I messed up. I forgot to reset the commit message in patch 1 v5.=20
-It's for v4 and contains the opposite of what's actually happening.
-
-Is it too late to fix this? If you can force-push into the branch, maybe =
-
-simply replace the current message with the one for v3. [1]
-
-Best regards
-Thomas
-
-[1] https://patchwork.freedesktop.org/patch/441954/?series=3D92054&rev=3D=
-2
-
-> -Daniel
->=20
->>
->> Thomas Zimmermann (2):
->>    drm/i915: Use the correct IRQ during resume
->>    drm/i915: Drop all references to DRM IRQ midlayer
->>
->>   drivers/gpu/drm/i915/gt/intel_engine_cs.c       |  2 +-
->>   drivers/gpu/drm/i915/gt/intel_ring_submission.c |  7 +++++--
->>   drivers/gpu/drm/i915/i915_drv.c                 |  1 -
->>   drivers/gpu/drm/i915/i915_irq.c                 | 10 +++++-----
->>   drivers/gpu/drm/i915/i915_irq.h                 |  1 +
->>   5 files changed, 12 insertions(+), 9 deletions(-)
+>> On Wed, Jun 30, 2021 at 04:06:24PM -0700, Anusha Srivatsa wrote:
+>>>On the dmc side,we maintain a lookup table with different display
+>>>stepping-substepping combinations.
+>>>
+>>>Instead of adding new table for every new platform, lets ues
+>>>the stepping info from RUNTIME_INFO(dev_priv)->step
+>>>Adding the helper intel_get_display_step().
+>>>
+>>>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>>>---
+>>> drivers/gpu/drm/i915/display/intel_dmc.c | 49 ++++++++++++++++++++++--
+>>> 1 file changed, 45 insertions(+), 4 deletions(-)
+>>>
+>>>diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+>>>index f8789d4543bf..c7ff7ff3f412 100644
+>>>--- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>>>+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>>>@@ -266,14 +266,55 @@ static const struct stepping_info icl_stepping_info[] = {
+>>> };
+>>>
+>>> static const struct stepping_info no_stepping_info = { '*', '*' };
+>>>+struct stepping_info *display_step;
+>>>+
+>>>+static struct stepping_info *
+>>>+intel_get_display_stepping(struct intel_step_info step)
+>>>+{
+>>>+
+>>>+	switch (step.display_step) {
+>>>+	case STEP_A0:
+>>>+		display_step->stepping = 'A';
+>>>+		display_step->substepping = '0';
+>>>+		break;
+>>>+	case STEP_A2:
+>>>+		display_step->stepping = 'A';
+>>>+		display_step->substepping = '2';
+>>>+		break;
+>>>+	case STEP_B0:
+>>>+		display_step->stepping = 'B';
+>>>+		display_step->substepping = '0';
+>>>+		break;
+>>>+	case STEP_B1:
+>>>+		display_step->stepping = 'B';
+>>>+		display_step->substepping = '1';
+>>>+		break;
+>>>+	case STEP_C0:
+>>>+		display_step->stepping = 'C';
+>>>+		display_step->substepping = '0';
+>>>+		break;
+>>>+	case STEP_D0:
+>>>+		display_step->stepping = 'D';
+>>>+		display_step->substepping = '0';
+>>>+		break;
+>>>+	default:
+>>>+		display_step->stepping = '*';
+>>>+		display_step->substepping = '*';
+>>>+		break;
+>>>+	}
 >>
 >>
->> base-commit: 67f5a18128770817e4218a9e496d2bf5047c51e8
->> prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
->> prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
->> prerequisite-patch-id: 0cca17365e65370fa95d193ed2f1c88917ee1aef
->> prerequisite-patch-id: 12b9894350a0b56579d29542943465ef5134751c
->> prerequisite-patch-id: 3e1c37d3425f4820fe36ea3da57c65e166fe0ee5
->> prerequisite-patch-id: 1017c860a0bf95ce370d82b8db1745f5548fb321
->> prerequisite-patch-id: dcc022baab7c172978de9809702c2f4f54323047
->> prerequisite-patch-id: 0d05ee247042b43d5ab8f3af216e708a8e09bee8
->> prerequisite-patch-id: 110c411161bed6072c32185940fcd052d0bdb09a
->> prerequisite-patch-id: d2d1aeccffdfadf2b951487b8605f59c795d84cf
->> prerequisite-patch-id: 85fe31e27ca13adc0d1bcc7c19b1ce238a77ee6a
->> prerequisite-patch-id: c61fdacbe035ba5c17f1ff393bc9087f16aaea7b
->> prerequisite-patch-id: c4821af5dbba4d121769f1da85d91fbb53020ec0
->> prerequisite-patch-id: 0b20ef3302abfe6dc123dbc54b9dd087865f935b
->> prerequisite-patch-id: d34eb96cbbdeb91870ace4250ea75920b1653dc2
->> prerequisite-patch-id: 7f64fce347d15232134d7636ca7a8d9f5bf1a3a0
->> prerequisite-patch-id: c83be7a285eb6682cdae0df401ab5d4c208f036b
->> prerequisite-patch-id: eb1a44d2eb2685cea154dd3f17f5f463dfafd39a
->> prerequisite-patch-id: 92a8c37dae4b8394fd6702f4af58ac7815ac3069
->> prerequisite-patch-id: f0237988fe4ae6eba143432d1ace8beb52d935f8
->> prerequisite-patch-id: bcf4d29437ed7cb78225dec4c99249eb40c18302
->> prerequisite-patch-id: 6407b4c7f1b80af8d329d5f796b30da11959e936
->> prerequisite-patch-id: 4a69e6e49d691b555f0e0874d638cd204dcb0c48
->> prerequisite-patch-id: be09cfa8a67dd435a25103b85bd4b1649c5190a3
->> prerequisite-patch-id: 813ecc9f94251c3d669155faf64c0c9e6a458393
->> prerequisite-patch-id: beb2b5000a1682cbd74a7e2ab1566fcae5bccbf0
->> prerequisite-patch-id: 754c8878611864475a0b75fd49ff38e71a21c795
->> prerequisite-patch-id: d7d4bac3c19f94ba9593143b3c147d83d82cb71f
->> prerequisite-patch-id: 983d1efbe060743f5951e474961fa431d886d757
->> prerequisite-patch-id: 3c78b20c3b9315cd39e0ae9ea1510c6121bf9ca9
->> --
->> 2.32.0
+>> "crazy" idea that would avoid this type of conversion:
+>> changing the step enum to be:
 >>
->=20
+>>
+>> #define make_step(letter, num) (int)(((letter) << 8 ) | (num))
+>>
+>> STEP_A0 = make_step('A', '0'),
+>> STEP_A1 = make_step('A', '1'),
+>>
+>> and adapt the rest of the code to play with u16 instead of u8, and
+>> handle the STEP_FUTURE/STEP_NONE/STEP_FOREVER.
+>> Maybe it is crazy, dunno.
+>>
+>> +Jani / +Jose. Thoughts?
+>
+>Frankly, I think all of this should be incorporated to intel_step.[ch]
+>instead of having a semi-overlapping handling here. Just look at the
+>amount of duplication already.
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+I guess you missed I gave the same suggestion below and that there is
+already a new version of this patch? Question here was about going a
+step further to avoid the conversion STEP_* to 2 chars.
 
+thanks
+Lucas De Marchi
 
---Icz3tMJMHblGcroOyrsiKybLehPkYPZQo--
-
---rBPbtkrhevjCJz0ZV5sK5MELkehwE0V3b
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDgpJMFAwAAAAAACgkQlh/E3EQov+Bo
-BA//UdNoIZ8WQdxJdtXinHI0Xzo4wh8xZ/Ips0SsML9xt2N7t9EuHAzjZ9CzLWJFD76+k6P/i2R6
-F0rZPgrik8DfHRys8/+bdGmpq43gotza6SMe02PwU0ZGPvbigz5Sb3vo0XFX69DR2ab0BytYDRrX
-0tp8kWIs1GlF68Kg/KupnT6FZmk0/FMazXI76zNg6P/H1HfqM49uKpXWyrQYXl8cjnjsgWB78hN3
-CONMVMdQNM1y+EqPgzx46pVEQYKSF/vR5zIgCehNHmrmo73ReG0QZ5AsV25ddxjOpnl4Wkmyf9j+
-JI+hRY+GtGv2dh1APbW2Ysp1trlBMQcl/M27K2jzmCKd38hcXNmc8DuqcCI3uKVP9AMYl/M5Ls4v
-BhG4xpPOCv0nm9yr9CxwUQJBPaYq3QfGvcnHOV1l4Cbh5yzXF433AoJYvaZkaHncCwTgO1K08dkq
-51zo4ApgpcYjfy1kIIqWfupinst/ptRsT4X+4wchpIcXAQDNgoNqIGPv1mRtfxAzecNqORc2PecK
-RJz2hYfvX30O9TvbJo5b07LhI0uEE0zVJYvBhYN8wLiGf0YVW2X+mIfSfZPgzTE95q6J1Uy74Xdg
-DjzAmHqDKZT84i67DBeKmH3KUwD/z64qjYSI7t5QiGyjxDOub2a7kaXR/o73jIV4IqDYL81iDXoW
-Z8o=
-=Lqi8
------END PGP SIGNATURE-----
-
---rBPbtkrhevjCJz0ZV5sK5MELkehwE0V3b--
-
---===============0629195749==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+>
+>BR,
+>Jani.
+>
+>>
+>>
+>> For this version the next comment is probably more important.
+>>
+>>>+	return display_step;
+>>>+}
+>>>
+>>> static const struct stepping_info *
+>>> intel_get_stepping_info(struct drm_i915_private *dev_priv)
+>>> {
+>>> 	const struct stepping_info *si;
+>>>+	struct intel_step_info step = RUNTIME_INFO(dev_priv)->step;
+>>> 	unsigned int size;
+>>>
+>>>-	if (IS_ICELAKE(dev_priv)) {
+>>>+	if (DISPLAY_VER(dev_priv) >= 12) {
+>>>+		si = intel_get_display_stepping(step);
+>>>+	} else if (IS_ICELAKE(dev_priv)) {
+>>> 		size = ARRAY_SIZE(icl_stepping_info);
+>>> 		si = icl_stepping_info;
+>>
+>> can we move the other ones too? Just use display_step for all platforms.
+>> Notice that before the separation we will have display_step ==
+>> graphics_step, so it should just work.
+>>
+>>
+>> Lucas De Marchi
+>>
+>>> 	} else if (IS_SKYLAKE(dev_priv)) {
+>>>@@ -287,10 +328,10 @@ intel_get_stepping_info(struct drm_i915_private *dev_priv)
+>>> 		si = NULL;
+>>> 	}
+>>>
+>>>-	if (INTEL_REVID(dev_priv) < size)
+>>>-		return si + INTEL_REVID(dev_priv);
+>>>+	if (DISPLAY_VER(dev_priv) < 12)
+>>>+		return INTEL_REVID(dev_priv) < size ? si + INTEL_REVID(dev_priv) : &no_stepping_info;
+>>>
+>>>-	return &no_stepping_info;
+>>>+	return si;
+>>> }
+>>>
+>>> static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+>>>--
+>>>2.32.0
+>>>
+>
+>-- 
+>Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0629195749==--
