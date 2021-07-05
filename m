@@ -1,38 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE523BBAC6
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 12:05:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0741F3BBAF3
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 12:16:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ECAB89819;
-	Mon,  5 Jul 2021 10:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E75A8982D;
+	Mon,  5 Jul 2021 10:16:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0984D89819
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jul 2021 10:05:14 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10035"; a="189334536"
-X-IronPort-AV: E=Sophos;i="5.83,325,1616482800"; d="scan'208";a="189334536"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2021 03:05:11 -0700
-X-IronPort-AV: E=Sophos;i="5.83,325,1616482800"; d="scan'208";a="485448919"
-Received: from elang-mobl.ger.corp.intel.com (HELO localhost) ([10.252.59.138])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2021 03:05:09 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210701193114.17531-3-anusha.srivatsa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210701193114.17531-1-anusha.srivatsa@intel.com>
- <20210701193114.17531-3-anusha.srivatsa@intel.com>
-Date: Mon, 05 Jul 2021 13:05:05 +0300
-Message-ID: <877di59ium.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E5DB189745;
+ Mon,  5 Jul 2021 10:16:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DDFF2A9932;
+ Mon,  5 Jul 2021 10:16:01 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dmc: Add steping info table
- for remaining platforms
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: venkata.sai.patnana@intel.com
+Date: Mon, 05 Jul 2021 10:16:01 -0000
+Message-ID: <162548016187.22948.9327790877255523917@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210705094201.26018-1-venkata.sai.patnana@intel.com>
+In-Reply-To: <20210705094201.26018-1-venkata.sai.patnana@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/display/dsc=3A_Set_BPP_in_the_kernel_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,98 +38,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 01 Jul 2021, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
-> intel_step.c has stepping_info for  most platforms. With DMC using
-> display_step from here, lets add the info for all older platforms
-> as well
+== Series Details ==
 
-Same here as previous patch. These should be added one platform per
-patch, converting the IS_FOO_REVID() macros to
-IS_FOO_{GT,DISPLAY}_STEP() and the new stepping info while at it. Look
-at the platforms already added. The main point here is being able to
-abstract the steppings in intel_step.c so we can use the generic STEP_XY
-enums. Having both makes this more complicated.
+Series: drm/i915/display/dsc: Set BPP in the kernel (rev6)
+URL   : https://patchwork.freedesktop.org/series/91917/
+State : warning
 
-BR,
-Jani.
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
++drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
++drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
 
 
->
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_step.c | 28 ++++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-> index c8542161c5d0..d8f5ef9ac158 100644
-> --- a/drivers/gpu/drm/i915/intel_step.c
-> +++ b/drivers/gpu/drm/i915/intel_step.c
-> @@ -38,6 +38,13 @@ static const struct intel_step_info skl_revid_step_tbl[] = {
->  	[9] = { .gt_step = STEP_J0, .display_step = STEP_J0 },
->  };
->  
-> +static const struct intel_step_info glk_revid_step_tbl[] = {
-> +	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
-> +	[1] = { .gt_step = STEP_A1, .display_step = STEP_A1 },
-> +	[2] = { .gt_step = STEP_A2, .display_step = STEP_A2 },
-> +	[3] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
-> +};
-> +
->  static const struct intel_step_info icl_revid_step_tbl[] = {
->  	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
->  	[3] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
-> @@ -71,6 +78,18 @@ static const struct intel_step_info tgl_revid_step_tbl[] = {
->  	[1] = { .gt_step = STEP_B0, .display_step = STEP_D0 },
->  };
->  
-> +static const struct intel_step_info dg1_revid_step_tbl[] = {
-> +	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
-> +	[0x1] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
-> +};
-> +
-> +static const struct intel_step_info rkl_revid_step_tbl[] = {
-> +	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
-> +	[0x1] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
-> +	[0x4] = { .gt_step = STEP_C0, .display_step = STEP_C0 },
-> +
-> +};
-> +
->  static const struct intel_step_info adls_revid_step_tbl[] = {
->  	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
->  	[0x1] = { .gt_step = STEP_A0, .display_step = STEP_A2 },
-> @@ -99,6 +118,12 @@ void intel_step_init(struct drm_i915_private *i915)
->  	} else if (IS_ALDERLAKE_S(i915)) {
->  		revids = adls_revid_step_tbl;
->  		size = ARRAY_SIZE(adls_revid_step_tbl);
-> +	} else if (IS_ROCKETLAKE(i915)) {
-> +		revids = rkl_revid_step_tbl;
-> +		size = ARRAY_SIZE(rkl_revid_step_tbl);
-> +	} else if (IS_DG1(i915)) {
-> +		revids = dg1_revid_step_tbl;
-> +		size = ARRAY_SIZE(dg1_revid_step_tbl);
->  	} else if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
->  		revids = tgl_uy_revid_step_tbl;
->  		size = ARRAY_SIZE(tgl_uy_revid_step_tbl);
-> @@ -111,6 +136,9 @@ void intel_step_init(struct drm_i915_private *i915)
->  	} else if (IS_ICELAKE(i915)) {
->  		revids = icl_revid_step_tbl;
->  		size = ARRAY_SIZE(icl_revid_step_tbl);
-> +	} else if (IS_GEMINILAKE(i915)) {
-> +		revids = glk_revid_step_tbl;
-> +		size = ARRAY_SIZE(glk_revid_step_tbl);
->  	} else if (IS_SKYLAKE(i915)) {
->  		revids = skl_revid_step_tbl;
->  		size = ARRAY_SIZE(skl_revid_step_tbl);
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
