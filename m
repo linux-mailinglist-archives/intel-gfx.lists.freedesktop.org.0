@@ -2,31 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF993BC12E
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 17:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BA83BC131
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 17:49:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CB958989C;
-	Mon,  5 Jul 2021 15:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC5598989C;
+	Mon,  5 Jul 2021 15:49:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 942F78919B;
- Mon,  5 Jul 2021 15:46:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 82D2BA0169;
- Mon,  5 Jul 2021 15:46:37 +0000 (UTC)
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E7EC8989C;
+ Mon,  5 Jul 2021 15:49:44 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id E5B5BC800A0;
+ Mon,  5 Jul 2021 17:49:42 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id JvsjUy3tFcaD; Mon,  5 Jul 2021 17:49:42 +0200 (CEST)
+Received: from [IPv6:2003:e3:7f39:4900:3bb7:60d3:9bbf:a050]
+ (p200300E37F3949003BB760d39bBFa050.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f39:4900:3bb7:60d3:9bbf:a050])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id 3FDC4C80091;
+ Mon,  5 Jul 2021 17:49:42 +0200 (CEST)
+To: Pekka Paalanen <ppaalanen@gmail.com>
+References: <20210618091116.14428-1-wse@tuxedocomputers.com>
+ <20210618091116.14428-13-wse@tuxedocomputers.com>
+ <20210622101516.6a53831c@eldfell>
+ <jIDQ2rRRMWlhDDPf08Z8xZlEE8HTBx7fHsylFdK0joSSFVyES8D444Giyiji9zbIm7dU4QpbsXZLvIDTbGW0wEoUWKsMEI4evizn0UdGMvM=@emersion.fr>
+ <20210629141712.21f00c38@eldfell>
+ <6d8716e0-e68a-e7b7-a341-a7471c413e9c@tuxedocomputers.com>
+ <20210630114133.47397e2f@eldfell>
+ <d3674d49-8bca-7ecf-1735-7bff2d9d526e@tuxedocomputers.com>
+ <20210701110714.61f3e2af@eldfell>
+ <b7144386-a98b-faf9-b425-c1157d9d0241@tuxedocomputers.com>
+ <20210701162446.14f4f577@eldfell>
+From: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <102bf05f-7081-c53b-ab0b-f2698c7540e9@tuxedocomputers.com>
+Date: Mon, 5 Jul 2021 17:49:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 05 Jul 2021 15:46:37 -0000
-Message-ID: <162549999750.22951.627380298240750588@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210705135310.1502437-1-matthew.auld@intel.com>
-In-Reply-To: <20210705135310.1502437-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv3=2C1/5=5D_drm/i915=3A_use_consistent_CPU?=
- =?utf-8?q?_mappings_for_pin=5Fmap_users?=
+In-Reply-To: <20210701162446.14f4f577@eldfell>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 12/17] drm/uAPI: Add "preferred color
+ format" drm property as setting for userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,544 +61,237 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0832587371=="
+Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ airlied@linux.ie, amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
+ alexander.deucher@amd.com, christian.koenig@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0832587371==
-Content-Type: multipart/alternative;
- boundary="===============0868182011276568490=="
 
---===============0868182011276568490==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [v3,1/5] drm/i915: use consistent CPU mappings for pin_map users
-URL   : https://patchwork.freedesktop.org/series/92209/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10305 -> Patchwork_20531
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20531 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20531, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20531:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_parallel@engines@contexts:
-    - fi-ilk-650:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-ilk-650/igt@gem_exec_parallel@engines@contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-ilk-650/igt@gem_exec_parallel@engines@contexts.html
-
-  * igt@gem_exec_parallel@engines@fds:
-    - fi-snb-2520m:       [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-snb-2520m/igt@gem_exec_parallel@engines@fds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-snb-2520m/igt@gem_exec_parallel@engines@fds.html
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - fi-bdw-5557u:       NOTRUN -> [DMESG-WARN][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bdw-5557u/igt@kms_addfb_basic@bad-pitch-0.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20531 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@amdgpu/amd_basic@memory-alloc:
-    - fi-cml-u2:          NOTRUN -> [SKIP][7] ([fdo#109315]) +17 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@amdgpu/amd_basic@memory-alloc.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-hsw-4770:        NOTRUN -> [WARN][8] ([i915#3718])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-apl-guc:         NOTRUN -> [SKIP][9] ([fdo#109271]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-apl-guc:         NOTRUN -> [INCOMPLETE][10] ([i915#2405])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-apl-guc/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_exec_parallel@engines@userptr:
-    - fi-bxt-dsi:         [PASS][11] -> [DMESG-WARN][12] ([i915#1610])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-bxt-dsi/igt@gem_exec_parallel@engines@userptr.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bxt-dsi/igt@gem_exec_parallel@engines@userptr.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][13] ([fdo#109271]) +4 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@gem_huc_copy@huc-copy.html
-    - fi-glk-dsi:         NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#2190])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][15] ([fdo#109271] / [i915#2190])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][16] ([fdo#109271] / [i915#3012])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][17] ([fdo#109271]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][18] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-cml-u2:          NOTRUN -> [SKIP][19] ([fdo#109284] / [fdo#111827]) +8 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][20] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-glk-dsi:         NOTRUN -> [SKIP][21] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-cml-u2:          NOTRUN -> [SKIP][22] ([fdo#109285])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][23] ([fdo#109271] / [i915#533])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-cml-u2:          NOTRUN -> [SKIP][24] ([fdo#109278] / [i915#533])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-glk-dsi:         NOTRUN -> [SKIP][25] ([fdo#109271] / [i915#533])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][26] ([fdo#109271] / [i915#533])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][27] ([fdo#109271]) +37 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][28] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-glk-dsi:         NOTRUN -> [SKIP][29] ([fdo#109271]) +25 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@kms_psr@primary_page_flip.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-cml-u2:          NOTRUN -> [SKIP][30] ([i915#3301])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-ilk-650:         NOTRUN -> [FAIL][31] ([i915#2426])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-ilk-650/igt@runner@aborted.html
-    - fi-apl-guc:         NOTRUN -> [FAIL][32] ([i915#1186] / [i915#2426] / [i915#3363])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-apl-guc/igt@runner@aborted.html
-    - fi-bxt-dsi:         NOTRUN -> [FAIL][33] ([i915#2426] / [i915#3363] / [i915#3364])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bxt-dsi/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@engines@basic:
-    - fi-glk-dsi:         [DMESG-WARN][34] ([i915#1610]) -> [PASS][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-glk-dsi/igt@gem_exec_parallel@engines@basic.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@gem_exec_parallel@engines@basic.html
-
-  * igt@gem_exec_parallel@engines@contexts:
-    - fi-snb-2520m:       [DMESG-WARN][36] -> [PASS][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-snb-2520m/igt@gem_exec_parallel@engines@contexts.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-snb-2520m/igt@gem_exec_parallel@engines@contexts.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-hsw-4770:        [DMESG-WARN][38] -> [PASS][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_sync@basic-each:
-    - fi-cml-u2:          [DMESG-WARN][40] ([i915#1610]) -> [PASS][41]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-cml-u2/igt@gem_sync@basic-each.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@gem_sync@basic-each.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-dp3:
-    - {fi-tgl-1115g4}:    [DMESG-WARN][42] -> [PASS][43]
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1186]: https://gitlab.freedesktop.org/drm/intel/issues/1186
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3364]: https://gitlab.freedesktop.org/drm/intel/issues/3364
-  [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (32 -> 26)
-------------------------------
-
-  Additional (1): fi-apl-guc 
-  Missing    (7): fi-kbl-soraka fi-hsw-4200u fi-cfl-guc fi-kbl-7500u fi-dg1-1 fi-cfl-8109u fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10305 -> Patchwork_20531
-
-  CI-20190529: 20190529
-  CI_DRM_10305: fd899b57cb480c98e60ee842671bddd4759dfca3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6128: b24e5949af7e51f0af484d2ce4cb4c5a41ac5358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20531: d507ae4d5737096c9a688db042e3d52e74ff57f3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d507ae4d5737 drm/i915/uapi: reject set_domain for discrete
-ee22ceeab3ad drm/i915/uapi: convert drm_i915_gem_set_domain to kernel doc
-53317ac5ecc4 drm/i915/uapi: reject caching ioctls for discrete
-a6e0c6b9349a drm/i915/uapi: convert drm_i915_gem_caching to kernel doc
-a003ccd3dd56 drm/i915: use consistent CPU mappings for pin_map users
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/index.html
-
---===============0868182011276568490==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v3,1/5] drm/i915: use consistent CPU mappings for pin_map users</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92209/">https://patchwork.freedesktop.org/series/92209/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10305 -&gt; Patchwork_20531</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20531 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20531, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20531:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@contexts:</p>
-<ul>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-ilk-650/igt@gem_exec_parallel@engines@contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-ilk-650/igt@gem_exec_parallel@engines@contexts.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_parallel@engines@fds:</p>
-<ul>
-<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-snb-2520m/igt@gem_exec_parallel@engines@fds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-snb-2520m/igt@gem_exec_parallel@engines@fds.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@bad-pitch-0:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bdw-5557u/igt@kms_addfb_basic@bad-pitch-0.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20531 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@memory-alloc:</p>
-<ul>
-<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@amdgpu/amd_basic@memory-alloc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-apl-guc/igt@gem_exec_gttfill@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_parallel@engines@userptr:</p>
-<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-bxt-dsi/igt@gem_exec_parallel@engines@userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bxt-dsi/igt@gem_exec_parallel@engines@userptr.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +4 similar issues</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +37 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +25 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-ilk-650/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</p>
-</li>
-<li>
-<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1186">i915#1186</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3364">i915#3364</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@basic:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-glk-dsi/igt@gem_exec_parallel@engines@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-glk-dsi/igt@gem_exec_parallel@engines@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_parallel@engines@contexts:</p>
-<ul>
-<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-snb-2520m/igt@gem_exec_parallel@engines@contexts.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-snb-2520m/igt@gem_exec_parallel@engines@contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_sync@basic-each:</p>
-<ul>
-<li>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-cml-u2/igt@gem_sync@basic-each.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-cml-u2/igt@gem_sync@basic-each.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-dp3:</p>
-<ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20531/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (32 -&gt; 26)</h2>
-<p>Additional (1): fi-apl-guc <br />
-  Missing    (7): fi-kbl-soraka fi-hsw-4200u fi-cfl-guc fi-kbl-7500u fi-dg1-1 fi-cfl-8109u fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10305 -&gt; Patchwork_20531</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10305: fd899b57cb480c98e60ee842671bddd4759dfca3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6128: b24e5949af7e51f0af484d2ce4cb4c5a41ac5358 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20531: d507ae4d5737096c9a688db042e3d52e74ff57f3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d507ae4d5737 drm/i915/uapi: reject set_domain for discrete<br />
-ee22ceeab3ad drm/i915/uapi: convert drm_i915_gem_set_domain to kernel doc<br />
-53317ac5ecc4 drm/i915/uapi: reject caching ioctls for discrete<br />
-a6e0c6b9349a drm/i915/uapi: convert drm_i915_gem_caching to kernel doc<br />
-a003ccd3dd56 drm/i915: use consistent CPU mappings for pin_map users</p>
-
-</body>
-</html>
-
---===============0868182011276568490==--
-
---===============0832587371==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Am 01.07.21 um 15:24 schrieb Pekka Paalanen:
+> On Thu, 1 Jul 2021 14:50:13 +0200
+> Werner Sembach <wse@tuxedocomputers.com> wrote:
+>
+>> Am 01.07.21 um 10:07 schrieb Pekka Paalanen:
+>>
+>>> On Wed, 30 Jun 2021 11:20:18 +0200
+>>> Werner Sembach <wse@tuxedocomputers.com> wrote:
+>>>  
+>>>> Am 30.06.21 um 10:41 schrieb Pekka Paalanen:
+>>>>  
+>>>>> On Tue, 29 Jun 2021 13:39:18 +0200
+>>>>> Werner Sembach <wse@tuxedocomputers.com> wrote:
+>>>>>    
+>>>>>> Am 29.06.21 um 13:17 schrieb Pekka Paalanen:    
+>>>>>>> On Tue, 29 Jun 2021 08:12:54 +0000
+>>>>>>> Simon Ser <contact@emersion.fr> wrote:
+>>>>>>>       
+>>>>>>>> On Tuesday, June 22nd, 2021 at 09:15, Pekka Paalanen <ppaalanen@gmail.com> wrote:
+>>>>>>>>       
+>>>>>>>>> yes, I think this makes sense, even if it is a property that one can't
+>>>>>>>>> tell for sure what it does before hand.
+>>>>>>>>>
+>>>>>>>>> Using a pair of properties, preference and active, to ask for something
+>>>>>>>>> and then check what actually worked is good for reducing the
+>>>>>>>>> combinatorial explosion caused by needing to "atomic TEST_ONLY commit"
+>>>>>>>>> test different KMS configurations. Userspace has a better chance of
+>>>>>>>>> finding a configuration that is possible.
+>>>>>>>>>
+>>>>>>>>> OTOH, this has the problem than in UI one cannot tell the user in
+>>>>>>>>> advance which options are truly possible. Given that KMS properties are
+>>>>>>>>> rarely completely independent, and in this case known to depend on
+>>>>>>>>> several other KMS properties, I think it is good enough to know after
+>>>>>>>>> the fact.
+>>>>>>>>>
+>>>>>>>>> If a driver does not use what userspace prefers, there is no way to
+>>>>>>>>> understand why, or what else to change to make it happen. That problem
+>>>>>>>>> exists anyway, because TEST_ONLY commits do not give useful feedback
+>>>>>>>>> but only a yes/no.    
+>>>>>>>> By submitting incremental atomic reqs with TEST_ONLY (i.e. only changing one
+>>>>>>>> property at a time), user-space can discover which property makes the atomic
+>>>>>>>> commit fail.    
+>>>>>>> That works if the properties are independent of each other. Color
+>>>>>>> range, color format, bpc and more may all be interconnected,
+>>>>>>> allowing only certain combinations to work.
+>>>>>>>
+>>>>>>> If all these properties have "auto" setting too, then it would be
+>>>>>>> possible to probe each property individually, but that still does not
+>>>>>>> tell which combinations are valid.
+>>>>>>>
+>>>>>>> If you probe towards a certain configuration by setting the properties
+>>>>>>> one by one, then depending on the order you pick the properties, you
+>>>>>>> may come to a different conclusion on which property breaks the
+>>>>>>> configuration.    
+>>>>>> My mind crossed another point that must be considered: When plugin in
+>>>>>> a Monitor a list of possible Resolutions+Framerate combinations is
+>>>>>> created for xrandr and other userspace (I guess by atomic checks? but
+>>>>>> I don't know).    
+>>>>> Hi,
+>>>>>
+>>>>> I would not think so, but I hope to be corrected if I'm wrong.
+>>>>>
+>>>>> My belief is that the driver collects a list of modes from EDID, some
+>>>>> standard modes, and maybe some other hardcoded modes, and then
+>>>>> validates each entry against all the known limitations like vertical
+>>>>> and horizontal frequency limits, discarding modes that do not fit.
+>>>>>
+>>>>> Not all limitations are known during that phase, which is why KMS
+>>>>> property "link-status" exists. When userspace actually programs a mode
+>>>>> (not a TEST_ONLY commit), the link training may fail. The kernel prunes
+>>>>> the mode from the list and sets the link status property to signal
+>>>>> failure, and sends a hotplug uevent. Userspace needs to re-check the
+>>>>> mode list and try again.
+>>>>>
+>>>>> That is a generic escape hatch for when TEST_ONLY commit succeeds, but
+>>>>> in reality the hardware cannot do it, you just cannot know until you
+>>>>> actually try for real. It causes end user visible flicker if it happens
+>>>>> on an already running connector, but since it usually happens when
+>>>>> turning a connector on to begin with, there is no flicker to be seen,
+>>>>> just a small delay in finding a mode that works.
+>>>>>    
+>>>>>> During this drm
+>>>>>> properties are already considered, which is no problem atm because as
+>>>>>> far as i can tell there is currently no drm property that would make
+>>>>>> a certain Resolutions+Framerate combination unreachable that would be
+>>>>>> possible with everything on default.    
+>>>>> I would not expect KMS properties to be considered at all. It would
+>>>>> reject modes that are actually possible if the some KMS properties were
+>>>>> changed. So at least going forward, current KMS property values cannot
+>>>>> factor in.    
+>>>> At least the debugfs variable "force_yuv420_output" did change the 
+>>>> available modes here: 
+>>>> https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c#L5165 
+>>>> before my patch 
+>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=68eb3ae3c63708f823aeeb63bb15197c727bd9bf  
+>>> Hi,
+>>>
+>>> debugfs is not proper UAPI, so we can just ignore it. Display servers
+>>> cannot be expected to poke in debugfs. Debugfs is not even supposed to
+>>> exist in production systems, but I'm sure people use it for hacking
+>>> stuff. But that's all it is for: developer testing and hacking.  
+>> e.g. Ubuntu has it active by default, but only read (and writable) by root.
+> Hi,
+>
+> that's normal, yes. Root can do damage anyway, and it's useful for
+> debugging. KMS clients OTOH often do not run as root.
+>
+>>>  
+>>>> Forcing a color format via a DRM property in this function would 
+>>>> reintroduce the problem.  
+>>> The property would need to be defined differently because its presence
+>>> could otherwise break existing userspace. Well, I suppose it could
+>>> break existing userspace no matter what, so we would need the generic
+>>> "reset to sane defaults" mechanism first IMO.
+>>>
+>>> DRM has client caps for exposing video modes that old userspace might
+>>> not expect, to avoid breaking old userspace. Care needs to be taken
+>>> with all new UAPI, because if a kernel upgrade makes something wrong,
+>>> it's the kernel's fault no matter what userspace is doing, in principle.  
+>> Can you give me a link describing how I define this caps?
+> I don't have any, but you can find all the existing ones by grepping
+> for DRM_CLIENT_CAP_.
+>
+> I'm not saying that we need it, but mentioning them as a possible
+> workaround if userspace breakage seems imminent or is proven.
+>
+>>> Debugfs has no problem breaking userspace AFAIU, since it's not proper
+>>> UAPI.
+>>>  
+>>>> And I think i915 driver works similar in this regard.
+>>>>  
+>>>>>    
+>>>>>> However for example forcing YCbCr420 encoding would limit the
+>>>>>> available resolutions (my screen for example only supports YCbCr420
+>>>>>> on 4k@60 and @50Hz and on no other resolution or frequency (native is
+>>>>>> 2560x1440@144Hz).
+>>>>>>
+>>>>>> So would a "force color format" that does not get resetted on
+>>>>>> repluging/reenabling a monitor break the output, for example, of an
+>>>>>> not updated xrandr, unaware of this new property?    
+>>>>> Yes, not because the mode list would be missing the mode, but because
+>>>>> actually setting the mode would fail.    
+>>>> Well, like described above, I think the mode would actually be missing, 
+>>>> which is also an unexpected behavior from a user perspective.  
+>>> I think that is not how the property should work.
+>>>
+>>> If KMS properties would affect the list of modes, then userspace would
+>>> need to set the properties for real (TEST_ONLY cannot change anything)
+>>> and re-fetch the mode lists (maybe there is a hotplug event, maybe
+>>> not). That workflow just doesn't work.  
+>> The properties are set before the list is created in the first place.
+>> Because, in my example, the properties get set before the monitor is
+>> plugged in and the list can only be created as soon as the monitor is
+>> plugged in.
+> That's just an accident, it's not what I mean.
+>
+> What I mean is, we cannot have the KMS properties affect the list of
+> modes, because then userspace that want to use specific values on those
+> properties would have to program those properties first, and then get
+> the list of modes. KMS UAPI does not work that way AFAIK.
+>
+> If the initial mode list is created on hotplug like you say, then the
+> initial list could already be missing some modes that would be valid if
+> some KMS properties had different values.
+
+Depends if the mode list is created by TEST_ONLY:
+
+- The force properties should return false on TEST_ONLY
+
+- The force properties should not prevent the mode from showing up in the list
+
+If the list is created by TEST_ONLY both things can't be fulfilled at the same time obviously.
+
+I hope some can give more insights or has an idea how the properties could work best.
+
+>
+>>> A very interesting question is when should link-status failure not drop
+>>> the current mode from the mode list, if other KMS properties affect the
+>>> bandwidth etc. requirements of the mode. That mechanism is engineered
+>>> for old userspace that doesn't actually handle link-status but does
+>>> handle hotplug, so the hotplug triggers re-fetching the mode list and
+>>> userspace maybe trying again with a better luck since the offending
+>>> mode is gone. How to keep that working when introducing KMS properties
+>>> forcing the cable format, I don't know.
+>>>
+>>> As long as the other affecting KMS properties are all "auto", the
+>>> driver will probably exhaust all possibilities to make the mode work
+>>> before signalling link-status failure and pruning the mode.
+>>> Theoretically, as I have no idea what drivers actually do.  
+>> Isn't that exactly how the "preferred color format" property works in
+>> my patchset now?
+> There was an argument that "preferred" with no guarantees is not
+> useful enough. So I'm considering the force property instead.
+> The problem is, "auto" is not the only possible value.
+>
+> When the value is not "auto", should link failure drop the mode or not?
+> Userspace might change the value back to "auto" next time. If you
+> dropped the mode, it would be gone. If you didn't drop the mode,
+> userspace might be stuck picking the same non-working mode again and
+> again if it doesn't know about the force mode property.
+>
+> You could argue that changing the value back to "auto" needs to reset
+> the mode list, but that only gets us back to the "need to set
+> properties before getting mode list".
+>
+> Maybe there needs to be an assumption that if "force color format" is
+> not "auto", then link failure does not drop modes and userspace knows
+> to handle this. Messy.
+>
+> I'm afraid I just don't know to give any clear answer. It's also
+> possible that, as I'm not a kernel dev, I have some false assumptions
+> here.
+>
+>
+> Thanks,
+> pq
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0832587371==--
