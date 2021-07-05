@@ -2,69 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC9A23BBE41
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 16:34:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 357B83BBE46
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 16:36:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2D5B891DD;
-	Mon,  5 Jul 2021 14:34:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58FF9891DD;
+	Mon,  5 Jul 2021 14:36:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D081897FD
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jul 2021 14:34:47 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id l5so5602116wrv.7
- for <intel-gfx@lists.freedesktop.org>; Mon, 05 Jul 2021 07:34:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=OzJ8i4gPoH0dAmjwwaE547XWzKx5g6WMgCM5rvUbkbI=;
- b=fQUXbXen5qaRrjJ29p/EC2tVoBuzsz8udWRmbLkcDDhigIHcy3dGZU6g9LEuJALUi6
- nw4tTJFOie39V3+vdETTeSYpaDoIVxdnriKRHJm/zwmmtLFHH/aI/ej70YnewdiIlQcx
- uZIoGglFdhpw6L7mwe1p7U8ZHu8TcSnOCEzJ8=
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com
+ [IPv6:2607:f8b0:4864:20::835])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A514891DD
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jul 2021 14:36:37 +0000 (UTC)
+Received: by mail-qt1-x835.google.com with SMTP id h2so4193482qtq.13
+ for <intel-gfx@lists.freedesktop.org>; Mon, 05 Jul 2021 07:36:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YRdneDY7JUDgGsGd0ZNtNWsLrT6NtBeJWWDnPXU3oq8=;
+ b=jSrPRaEvxmHWTx/KjaTkkvTqYTQU6tTNXELGgyjFx3xBYupRU4stRtzxFB4bsKHpWA
+ 6XpBEG3Y0aQi/6nnWWT0wo1Hod9epZve0LQaMtSVJiGdHQrrr7lOlex5iJgWpIXaGaXL
+ MgfO/WIusKvxmVnALvlcgacDyYJGxHskhVy56+WphrWj+QwbKEZBGpDAcB5YuJFqTZXi
+ Yxf1Sz0BzKhfjWB6gtCZ/SQ/Rnj9elKLe/eK4WNCsIdLP30ynA5d+hlSX/CXYxgHdc9O
+ V/sGsGS/5PjobtsghXHBJ4cTyX/AI/mRgGQWNckfdUEeBf/yztI1xcteP2bv28sqSRl5
+ 7DxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=OzJ8i4gPoH0dAmjwwaE547XWzKx5g6WMgCM5rvUbkbI=;
- b=kMxMDZJg9sPjyNCx5gECe2febQOGWup1bB5l3LAmmNlZm20uYD5pz65uC9yIvNzfW1
- sspLystU4SX7O4hi+IdNpF+J3KXWS6P1RISonhNsjfzV19vlaGVVGMyjkuLD+mpX7NWk
- tFvvAyOqS+Qh64XjIO4hEes2Kk7ngfIpi+46Js20uXolmqSQIK7s9MgWU3lmKm58UhLY
- kywbME9jIYCZWaGBEWC9ZkkcDx81jcoYy48P4V17UtSFyOFcEAPKY94Y3z/ELwLqBM1p
- Wn1WeI5WZ4IC/+7R5TgUtw+EOHH2nMBpb0tQtZOuIlKSeqOHRtgxrZdBjYl6oyc4YctI
- 5hBA==
-X-Gm-Message-State: AOAM531xpmr6JQ026CRRht5ZYmWZB6rD4+vEsKv64eiW0LeDSrXfZ52j
- A9KgxsTO8pJor4ceEaEY+N2gmg==
-X-Google-Smtp-Source: ABdhPJxHJtbnLxFoghCJmhtQ1zvT9/7dvksFg29oHl1HxU7bk/ZhmxDGmRfZMw4c249sZVU8zWMIzQ==
-X-Received: by 2002:a5d:4b88:: with SMTP id b8mr15925477wrt.95.1625495685806; 
- Mon, 05 Jul 2021 07:34:45 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id n23sm12008913wmi.29.2021.07.05.07.34.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Jul 2021 07:34:45 -0700 (PDT)
-Date: Mon, 5 Jul 2021 16:34:43 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Message-ID: <YOMYgytOSPM+D6eZ@phenom.ffwll.local>
-Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- skhan@linuxfoundation.org, gregkh@linuxfoundation.org,
- emil.l.velikov@gmail.com,
- linux-kernel-mentees@lists.linuxfoundation.org
-References: <20210701165358.19053-1-desmondcheongzx@gmail.com>
- <YN9kAFcfGoB13x7f@phenom.ffwll.local>
- <ae76290d-26e9-a011-dcdd-b5d48c80912e@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YRdneDY7JUDgGsGd0ZNtNWsLrT6NtBeJWWDnPXU3oq8=;
+ b=Fw2nURWUOUz65ZJthOiBqIZuQYDrkgb74oDP3Ot3ZbI57EiBFvLNsITTlKaRPgje7h
+ DfLtBextZhDkzoqPuPxdzMf6MiyQS/pveeGOY9vtpdhKtf4zG2tl91OEWeDnQhWNcrXQ
+ T2aDNUJ/o0xsshBOaFxLzUSO41sr/vO3JaN5RTWASjPHm57C2vI7U0Sws19nuQUHpDSm
+ 7/a15PZIHvjBhHGtNeOgpwmzjAwQ8CXsMLEXTYgHGckSwWGk/AInppMiruHEw7ZShi7P
+ e9iA/kULwyjDLasKlyFdZMn9VqRXtBHu2xhoqzmUzKGQlqwDBreIb0Dztryp3pIdhQRN
+ 7T/A==
+X-Gm-Message-State: AOAM532pbeDHlYC0A5YNDweMIlIfBkfyhO7Cq+fGHDkD2iwC9cwCI1I7
+ PyuD8jwCwFJtCugUfTH49ZpudGdSOUw7xdhAYPM=
+X-Google-Smtp-Source: ABdhPJzcLfkT+QxvwVbMoq9RKTfAdQZ+jR9YRrGXHZlF2S6BG1cByHKJn4X46i9E9lavLUIYUdrH2T/ZEH8NNJkz4/I=
+X-Received: by 2002:a05:622a:89:: with SMTP id
+ o9mr12623259qtw.339.1625495796239; 
+ Mon, 05 Jul 2021 07:36:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <ae76290d-26e9-a011-dcdd-b5d48c80912e@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v7 0/5] drm: address potential UAF bugs with
- drm_master ptrs
+References: <20210701114234.3859716-1-maarten.lankhorst@linux.intel.com>
+ <4dfba196-0106-6a20-aac1-4ca90c91f899@linux.intel.com>
+In-Reply-To: <4dfba196-0106-6a20-aac1-4ca90c91f899@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 5 Jul 2021 15:36:08 +0100
+Message-ID: <CAM0jSHNQpgTW88qX+fesNEJTnB_DnxqYcpwEASxVa89D02tvnQ@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add TTM offset argument to mmap.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,261 +62,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, gregkh@linuxfoundation.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org,
- dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
- skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org,
- sumit.semwal@linaro.org, linux-media@vger.kernel.org
+Cc: "Ekstrand, Jason" <jason.ekstrand@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Kenneth Graunke <kenneth@whitecape.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 05, 2021 at 10:15:45AM +0800, Desmond Cheong Zhi Xi wrote:
-> On 3/7/21 3:07 am, Daniel Vetter wrote:
-> > On Fri, Jul 02, 2021 at 12:53:53AM +0800, Desmond Cheong Zhi Xi wrote:
-> > > This patch series addresses potential use-after-free errors when dereferencing pointers to struct drm_master. These were identified after one such bug was caught by Syzbot in drm_getunique():
-> > > https://syzkaller.appspot.com/bug?id=148d2f1dfac64af52ffd27b661981a540724f803
-> > > 
-> > > The series is broken up into five patches:
-> > > 
-> > > 1. Move a call to drm_is_current_master() out from a section locked by &dev->mode_config.mutex in drm_mode_getconnector(). This patch does not apply to stable.
-> > > 
-> > > 2. Move a call to _drm_lease_held() out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find().
-> > > 
-> > > 3. Implement a locked version of drm_is_current_master() function that's used within drm_auth.c.
-> > > 
-> > > 4. Serialize drm_file.master by introducing a new lock that's held whenever the value of drm_file.master changes.
-> > > 
-> > > 5. Identify areas in drm_lease.c where pointers to struct drm_master are dereferenced, and ensure that the master pointers are not freed during use.
-> > > 
-> > > Changes in v6 -> v7:
-> > > - Patch 2:
-> > > Modify code alignment as suggested by the intel-gfx CI.
-> > > 
-> > > Update commit message based on the changes to patch 5.
-> > > 
-> > > - Patch 4:
-> > > Add patch 4 to the series. This patch adds a new lock to serialize drm_file.master, in response to the lockdep splat by the intel-gfx CI.
-> > > 
-> > > - Patch 5:
-> > > Move kerneldoc comment about protecting drm_file.master with drm_device.master_mutex into patch 4.
-> > > 
-> > > Update drm_file_get_master to use the new drm_file.master_lock instead of drm_device.master_mutex, in response to the lockdep splat by the intel-gfx CI.
-> > 
-> > So there's another one now because master->leases is protected by the
-> > mode_config.idr_mutex, and that's a bit awkward to untangle.
-> > 
-> > Also I'm really surprised that there was now lockdep through the atomic
-> > code anywhere. The reason seems to be that somehow CI reboot first before
-> > it managed to run any of the kms_atomic tests, and we can only hit this
-> > when we go through the atomic kms ioctl, the legacy kms ioctl don't have
-> > that specific issue.
-> > 
-> > Anyway I think this approach doesn't look too workable, and we need
-> > something new.
-> > 
-> > But first things first: Are you still on board working on this? You
-> > started with a simple patch to fix a UAF bug, now we're deep into
-> > reworking tricky locking ... If you feel like you want out I'm totally
-> > fine with that.
-> > 
-> 
-> Hi Daniel,
-> 
-> Thanks for asking, but I'm committed to seeing this through :) In fact, I
-> really appreciate all your guidance and patience as the simple patch evolved
-> into the current state of things.
+On Thu, 1 Jul 2021 at 12:50, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
+>
+> Op 01-07-2021 om 13:42 schreef Maarten Lankhorst:
+> > This is only used for ttm, and tells userspace that the mapping type is
+> > ignored. This disables the other type of mmap offsets when discrete
+> > memory is used, so fix the selftests as well.
+> >
+> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 17 +++++++++++-
+> >  .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
+> >  .../drm/i915/gem/selftests/i915_gem_mman.c    | 27 +++++++++++++++++--
+> >  include/uapi/drm/i915_drm.h                   |  9 ++++---
+> >  4 files changed, 47 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > index a90f796e85c0..b34be9e5d094 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > @@ -679,10 +679,16 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
+> >               return -ENODEV;
+> >
+> >       if (obj->ops->mmap_offset)  {
+> > +             if (mmap_type != I915_MMAP_TYPE_TTM)
+> > +                     return -ENODEV;
+> > +
+> >               *offset = obj->ops->mmap_offset(obj);
+> >               return 0;
+> >       }
+> >
+> > +     if (mmap_type == I915_MMAP_TYPE_TTM)
+> > +             return -ENODEV;
+> > +
+> >       if (mmap_type != I915_MMAP_TYPE_GTT &&
+> >           !i915_gem_object_has_struct_page(obj) &&
+> >           !i915_gem_object_has_iomem(obj))
+> > @@ -727,7 +733,9 @@ i915_gem_dumb_mmap_offset(struct drm_file *file,
+> >  {
+> >       enum i915_mmap_type mmap_type;
+> >
+> > -     if (boot_cpu_has(X86_FEATURE_PAT))
+> > +     if (HAS_LMEM(to_i915(dev)))
+> > +             mmap_type = I915_MMAP_TYPE_TTM;
+> > +     else if (boot_cpu_has(X86_FEATURE_PAT))
+> >               mmap_type = I915_MMAP_TYPE_WC;
 
-Cool, it's definitely been fun trying to figure out a good solution for
-this tricky problem here :-)
+Hmm, I think we still need to check for X86_FEATURE_PAT somewhere,
+since this is still just WC for lmem?
 
-> > Anyway, I think we need to split drm_device->master_mutex up into two
-> > parts:
-> > 
-> > - One part that protects the actual access/changes, which I think for
-> >    simplicity we'll just leave as the current lock. That lock is a very
-> >    inner lock, since for the drm_lease.c stuff it has to nest within
-> >    mode_config.idr_mutex even.
-> > 
-> > - Now the issue with checking master status/leases/whatever as an
-> >    innermost lock is that you can race, it's a classic time of check vs
-> >    time of use race: By the time we actually use the thing we validate
-> >    we'er allowed to use, we might now have access anymore. There's two
-> >    reasons for that:
-> > 
-> >    * DROPMASTER ioctl could remove the master rights, which removes access
-> >      rights also for all leases
-> > 
-> >    * REVOKE_LEASE ioctl can do the same but only for a specific lease
-> > 
-> >    This is the thing we're trying to protect against in fbcon code, but
-> >    that's very spotty protection because all the ioctls by other users
-> >    aren't actually protected against this.
-> > 
-> >    So I think for this we need some kind of big reader lock.
-> > 
-> > Now for the implementation, there's a few things:
-> > 
-> > - I think best option for this big reader lock would be to just use srcu.
-> >    We only need to flush out all current readers when we drop master or
-> >    revoke a lease, so synchronize_srcu is perfectly good enough for this
-> >    purpose.
-> > 
-> > - The fbdev code would switch over to srcu in
-> >    drm_master_internal_acquire() and drm_master_internal_release(). Ofc
-> >    within drm_master_internal_acquire we'd still need to check master
-> >    status with the normal master_mutex.
-> > 
-> > - While we revamp all this we should fix the ioctl checks in drm_ioctl.c.
-> >    Just noticed that drm_ioctl_permit() could and should be unexported,
-> >    last user was removed.
-> > 
-> >    Within drm_ioctl_kernel we'd then replace the check for
-> >    drm_is_current_master with the drm_master_internal_acquire/release.
-> > 
-> > - This alone does nothing, we still need to make sure that dropmaster and
-> >    revoke_lease ioctl flush out all other access before they return to
-> >    userspace. We can't just call synchronize_srcu because due to the ioctl
-> >    code in drm_ioctl_kernel we're in that sruc section, we'd need to add a
-> >    DRM_MASTER_FLUSH ioctl flag which we'd check only when DRM_MASTER is
-> >    set, and use to call synchronize_srcu. Maybe wrap that in a
-> >    drm_master_flush or so, or perhaps a drm_master_internal_release_flush.
-> > 
-> > - Also maybe we should drop the _internal_ from that name. Feels a bit
-> >    wrong when we're also going to use this in the ioctl handler.
-> > 
-> > Thoughts? Totally silly and overkill?
-> > 
-> > Cheers, Daniel
-> > 
-> > 
-> 
-> Just some thoughts on the previous approach before we move on to something
-> new. Regarding the lockdep warning for mode_config.idr_mutex, I think that's
-> resolvable now by simply removing patch 2, which is no longer really
-> necessary with the introduction of a new mutex at the bottom of the lock
-> hierarchy in patch 4.
+> >       else if (!i915_ggtt_has_aperture(&to_i915(dev)->ggtt))
+> >               return -ENODEV;
+> > @@ -798,6 +806,10 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+> >               type = I915_MMAP_TYPE_UC;
+> >               break;
+> >
+> > +     case I915_MMAP_OFFSET_TTM:
+> > +             type = I915_MMAP_TYPE_TTM;
+> > +             break;
 
-Oh I missed that, this is essentially part-way to what I'm describing
-above.
+Would it not be simpler to just convert to WC or WB here, if we
+encounter _TTM? With that we also don't need to touch the dumb mmap
+stuff and i915_gem_mmap()?
 
-> I was hesitant to create a new mutex (especially since this means that
-> drm_file.master is now protected by either of two mutexes), but it's
-> probably the smallest fix in terms of code churn. Is that approach no good?
+if (IS_DGFX()) {
+        if (args->type != OFFSET_TTM)
+               return -ENODEV:
 
-That's the other approach I considered. It solves the use-after-free
-issue, but while I was musing all the different issues here I realized
-that we might as well use the opportunity to plug a few functional races
-around drm_device ownership rules.
+       GEM_BUG_ON(!obj->mm.n_placements);
+       if (i915_gem_object_placement_possible(obj, INTEL_MEMORY_LOCAL)) {
+              type = TYPE_WC;
+      else
+              ttype = TYPE_WB;
+}
 
-I do think it works. One thing I'd change is make it a spinlock - that
-wayy it's very clear that it's a tiny inner lock that's really only meant
-to protect the ->master pointer.
+https://patchwork.freedesktop.org/patch/442579/?series=92209&rev=1
 
-> Otherwise, on a high level, I think using an srcu mechanism makes a lot of
-> sense to me to address the issue of data items being reclaimed while some
-> readers still have references to them.
-> 
-> The implementation details seem sound to me too, but I'll need to code it up
-> a bit before I can comment further.
+> > +
+> >       default:
+> >               return -EINVAL;
+> >       }
+> > @@ -968,6 +980,9 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+> >               vma->vm_ops = &vm_ops_cpu;
+> >               break;
+> >
+> > +     case I915_MMAP_TYPE_TTM:
+> > +             GEM_WARN_ON(mmo->mmap_type == I915_MMAP_TYPE_TTM);
+> > +             /* fall-through */
 
-So maybe this is complete overkill, but what about three locks :-)
+Hmm, we still want WC for lmem, or if it's possible for it to be placed there.
 
-- innermost spinlock, just to protect against use-after-free until we
-  successfully got a reference. Essentially this is the lookup lock -
-  maybe we could call it master_lookup_lock for clarity?
-
-- mutex like we have right now to make sure master state is consistent
-  when someone races set/dropmaster in userspace. This would be the only
-  write lock we have.
-
-- new srcu to make sure that after a dropmaster/revoke-lease all previous
-  users calls are flushed out with synchronize_srcu(). Essentially this
-  wouldn't be a lock, but more a barrier. So maybe should call it
-  master_barrier_srcu or so? fbdev emulation in drm_client would use this,
-  and also drm_ioctl code to plug the race I've spotted.
-
-So maybe refresh your series with just the pieces you think we need for
-the master lookup spinlock, and we try to land that first?
-
-I do agree this should work against the use-after-free.
-
-Cheers, Daniel
-
-> 
-> Best wishes,
-> Desmond
-> 
-> > > Changes in v5 -> v6:
-> > > - Patch 2:
-> > > Add patch 2 to the series. This patch moves the call to _drm_lease_held out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find.
-> > > 
-> > > - Patch 5:
-> > > Clarify the kerneldoc for dereferencing drm_file.master, as suggested by Daniel Vetter.
-> > > 
-> > > Refactor error paths with goto labels so that each function only has a single drm_master_put(), as suggested by Emil Velikov.
-> > > 
-> > > Modify comparison to NULL into "!master", as suggested by the intel-gfx CI.
-> > > 
-> > > Changes in v4 -> v5:
-> > > - Patch 1:
-> > > Add patch 1 to the series. The changes in patch 1 do not apply to stable because they apply to new changes in the drm-misc-next branch. This patch moves the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex.
-> > > 
-> > > Additionally, added a missing semicolon to the patch, caught by the intel-gfx CI.
-> > > 
-> > > - Patch 3:
-> > > Move changes to drm_connector.c into patch 1.
-> > > 
-> > > Changes in v3 -> v4:
-> > > - Patch 3:
-> > > Move the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex. As suggested by Daniel Vetter. This avoids a circular lock lock dependency as reported here https://patchwork.freedesktop.org/patch/440406/
-> > > 
-> > > Additionally, inside drm_is_current_master, instead of grabbing &fpriv->master->dev->master_mutex, we grab &fpriv->minor->dev->master_mutex to avoid dereferencing a null ptr if fpriv->master is not set.
-> > > 
-> > > - Patch 5:
-> > > Modify kerneldoc formatting.
-> > > 
-> > > Additionally, add a file_priv->master NULL check inside drm_file_get_master, and handle the NULL result accordingly in drm_lease.c. As suggested by Daniel Vetter.
-> > > 
-> > > Changes in v2 -> v3:
-> > > - Patch 3:
-> > > Move the definition of drm_is_current_master and the _locked version higher up in drm_auth.c to avoid needing a forward declaration of drm_is_current_master_locked. As suggested by Daniel Vetter.
-> > > 
-> > > - Patch 5:
-> > > Instead of leaking drm_device.master_mutex into drm_lease.c to protect drm_master pointers, add a new drm_file_get_master() function that returns drm_file->master while increasing its reference count, to prevent drm_file->master from being freed. As suggested by Daniel Vetter.
-> > > 
-> > > Changes in v1 -> v2:
-> > > - Patch 5:
-> > > Move the lock and assignment before the DRM_DEBUG_LEASE in drm_mode_get_lease_ioctl, as suggested by Emil Velikov.
-> > > 
-> > > Desmond Cheong Zhi Xi (5):
-> > >    drm: avoid circular locks in drm_mode_getconnector
-> > >    drm: separate locks in __drm_mode_object_find
-> > >    drm: add a locked version of drm_is_current_master
-> > >    drm: serialize drm_file.master with a master lock
-> > >    drm: protect drm_master pointers in drm_lease.c
-> > > 
-> > >   drivers/gpu/drm/drm_auth.c        | 86 +++++++++++++++++++++++--------
-> > >   drivers/gpu/drm/drm_connector.c   |  5 +-
-> > >   drivers/gpu/drm/drm_file.c        |  1 +
-> > >   drivers/gpu/drm/drm_lease.c       | 81 ++++++++++++++++++++++-------
-> > >   drivers/gpu/drm/drm_mode_object.c | 10 ++--
-> > >   include/drm/drm_auth.h            |  1 +
-> > >   include/drm/drm_file.h            | 18 +++++--
-> > >   7 files changed, 153 insertions(+), 49 deletions(-)
-> > > 
-> > > -- 
-> > > 2.25.1
-> > > 
-> > 
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> >       case I915_MMAP_TYPE_WB:
+> >               vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+> >               vma->vm_ops = &vm_ops_cpu;
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> > index 441f913c87e6..8b872b22a7ec 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> > @@ -96,6 +96,7 @@ enum i915_mmap_type {
+> >       I915_MMAP_TYPE_WC,
+> >       I915_MMAP_TYPE_WB,
+> >       I915_MMAP_TYPE_UC,
+> > +     I915_MMAP_TYPE_TTM,
+> >  };
+> >
+> >  struct i915_mmap_offset {
+> > diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> > index 607b7d2d4c29..321271bd2fa1 100644
+> > --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> > +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> > @@ -573,6 +573,14 @@ static int make_obj_busy(struct drm_i915_gem_object *obj)
+> >       return 0;
+> >  }
+> >
+> > +static enum i915_mmap_type default_mapping(struct drm_i915_private *i915)
+> > +{
+> > +     if (HAS_LMEM(i915))
+> > +             return I915_MMAP_TYPE_TTM;
+> > +
+> > +     return I915_MMAP_TYPE_GTT;
+> > +}
+> > +
+> >  static bool assert_mmap_offset(struct drm_i915_private *i915,
+> >                              unsigned long size,
+> >                              int expected)
+> > @@ -585,7 +593,7 @@ static bool assert_mmap_offset(struct drm_i915_private *i915,
+> >       if (IS_ERR(obj))
+> >               return expected && expected == PTR_ERR(obj);
+> >
+> > -     ret = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
+> > +     ret = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
+> >       i915_gem_object_put(obj);
+> >
+> >       return ret == expected;
+> > @@ -689,7 +697,7 @@ static int igt_mmap_offset_exhaustion(void *arg)
+> >               goto out;
+> >       }
+> >
+> > -     err = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
+> > +     err = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
+> >       if (err) {
+> >               pr_err("Unable to insert object into reclaimed hole\n");
+> >               goto err_obj;
+> > @@ -831,8 +839,14 @@ static int wc_check(struct drm_i915_gem_object *obj)
+> >
+> >  static bool can_mmap(struct drm_i915_gem_object *obj, enum i915_mmap_type type)
+> >  {
+> > +     struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> >       bool no_map;
+> >
+> > +     if (HAS_LMEM(i915))
+> > +             return type == I915_MMAP_TYPE_TTM;
+> > +     else if (type == I915_MMAP_TYPE_TTM)
+> > +             return false;
+> > +
+> >       if (type == I915_MMAP_TYPE_GTT &&
+> >           !i915_ggtt_has_aperture(&to_i915(obj->base.dev)->ggtt))
+> >               return false;
+> > @@ -970,6 +984,8 @@ static int igt_mmap(void *arg)
+> >                       err = __igt_mmap(i915, obj, I915_MMAP_TYPE_GTT);
+> >                       if (err == 0)
+> >                               err = __igt_mmap(i915, obj, I915_MMAP_TYPE_WC);
+> > +                     if (err == 0)
+> > +                             err = __igt_mmap(i915, obj, I915_MMAP_TYPE_TTM);
+> >
+> >                       i915_gem_object_put(obj);
+> >                       if (err)
+> > @@ -987,6 +1003,7 @@ static const char *repr_mmap_type(enum i915_mmap_type type)
+> >       case I915_MMAP_TYPE_WB: return "wb";
+> >       case I915_MMAP_TYPE_WC: return "wc";
+> >       case I915_MMAP_TYPE_UC: return "uc";
+> > +     case I915_MMAP_TYPE_TTM: return "ttm";
+> >       default: return "unknown";
+> >       }
+> >  }
+> > @@ -1100,6 +1117,8 @@ static int igt_mmap_access(void *arg)
+> >                       err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_WC);
+> >               if (err == 0)
+> >                       err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_UC);
+> > +             if (err == 0)
+> > +                     err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_TTM);
+> >
+> >               i915_gem_object_put(obj);
+> >               if (err)
+> > @@ -1241,6 +1260,8 @@ static int igt_mmap_gpu(void *arg)
+> >               err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_GTT);
+> >               if (err == 0)
+> >                       err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_WC);
+> > +             if (err == 0)
+> > +                     err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_TTM);
+> >
+> >               i915_gem_object_put(obj);
+> >               if (err)
+> > @@ -1396,6 +1417,8 @@ static int igt_mmap_revoke(void *arg)
+> >               err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_GTT);
+> >               if (err == 0)
+> >                       err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_WC);
+> > +             if (err == 0)
+> > +                     err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_TTM);
+> >
+> >               i915_gem_object_put(obj);
+> >               if (err)
+> > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > index 2f70c48567c0..12ec9c7f1711 100644
+> > --- a/include/uapi/drm/i915_drm.h
+> > +++ b/include/uapi/drm/i915_drm.h
+> > @@ -867,10 +867,11 @@ struct drm_i915_gem_mmap_offset {
+> >        * (GTT, WC, WB, UC, etc) should be included.
+> >        */
+> >       __u64 flags;
+> > -#define I915_MMAP_OFFSET_GTT 0
+> > -#define I915_MMAP_OFFSET_WC  1
+> > -#define I915_MMAP_OFFSET_WB  2
+> > -#define I915_MMAP_OFFSET_UC  3
+> > +#define I915_MMAP_OFFSET_GTT 0
+> > +#define I915_MMAP_OFFSET_WC  1
+> > +#define I915_MMAP_OFFSET_WB  2
+> > +#define I915_MMAP_OFFSET_UC  3
+> > +#define I915_MMAP_OFFSET_TTM 4
+> >
+> >       /*
+> >        * Zero-terminated chain of extensions.
+>
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
