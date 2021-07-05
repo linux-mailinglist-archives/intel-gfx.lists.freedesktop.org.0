@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0741F3BBAF3
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 12:16:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12EFD3BBB3E
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 12:29:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E75A8982D;
-	Mon,  5 Jul 2021 10:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECEFE89AB2;
+	Mon,  5 Jul 2021 10:29:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E5DB189745;
- Mon,  5 Jul 2021 10:16:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DDFF2A9932;
- Mon,  5 Jul 2021 10:16:01 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C4D789AB2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jul 2021 10:29:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10035"; a="208998340"
+X-IronPort-AV: E=Sophos;i="5.83,325,1616482800"; d="scan'208";a="208998340"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2021 03:28:55 -0700
+X-IronPort-AV: E=Sophos;i="5.83,325,1616482800"; d="scan'208";a="485454409"
+Received: from elang-mobl.ger.corp.intel.com (HELO localhost) ([10.252.59.138])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2021 03:28:52 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Souza\, Jose" <jose.souza@intel.com>,
+ "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Tolakanahalli Pradeep\,
+ Madhumitha" <madhumitha.tolakanahalli.pradeep@intel.com>
+In-Reply-To: <f87ced2d9d378eeaba2be633dd9c5dd770ac9e63.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210628235054.694581-1-madhumitha.tolakanahalli.pradeep@intel.com>
+ <f87ced2d9d378eeaba2be633dd9c5dd770ac9e63.camel@intel.com>
+Date: Mon, 05 Jul 2021 13:28:49 +0300
+Message-ID: <871r8d9hr2.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: venkata.sai.patnana@intel.com
-Date: Mon, 05 Jul 2021 10:16:01 -0000
-Message-ID: <162548016187.22948.9327790877255523917@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210705094201.26018-1-venkata.sai.patnana@intel.com>
-In-Reply-To: <20210705094201.26018-1-venkata.sai.patnana@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/display/dsc=3A_Set_BPP_in_the_kernel_=28rev6=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/tgl: Implement
+ Wa_14013120569
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,74 +47,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 29 Jun 2021, "Souza, Jose" <jose.souza@intel.com> wrote:
+> On Mon, 2021-06-28 at 16:50 -0700, Madhumitha Tolakanahalli Pradeep wrote:
+>> PCH display HPD IRQ is not detected with default filter value.
+>> So, PP_CONTROL is manually reprogrammed.
+>> 
+>> Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
+>> ---
+>>  .../gpu/drm/i915/display/intel_display_power.c   |  8 ++++++++
+>>  drivers/gpu/drm/i915/display/intel_hotplug.c     | 16 ++++++++++++++++
+>>  2 files changed, 24 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> index 285380079aab..e44323cc76f5 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> @@ -6385,8 +6385,16 @@ static void intel_power_domains_verify_state(struct drm_i915_private *i915)
+>>  
+>>  void intel_display_power_suspend_late(struct drm_i915_private *i915)
+>>  {
+>> +    struct drm_i915_private *dev_priv = i915;
+>> +    u32 val;
+>>  	if (DISPLAY_VER(i915) >= 11 || IS_GEMINILAKE(i915) ||
+>>  	    IS_BROXTON(i915)) {
+>> +		val = intel_de_read(dev_priv, PP_CONTROL(0));
+>> +		/* Wa_14013120569:tgl */
+>> +		if (IS_TIGERLAKE(i915)) {
+>> +			val &= ~PANEL_POWER_ON;
+>> +			intel_de_write(dev_priv, PP_CONTROL(0), val);
+>> +	}
+>
+> Code style is all wrong, please fix it and run "dim checkpatch" to validate it before sending patches.
+> Also PP_CONTROL(0) don't point to the same register that the workaround is talking about, between generations register address change that might be
+> the case for this one.
 
-Series: drm/i915/display/dsc: Set BPP in the kernel (rev6)
-URL   : https://patchwork.freedesktop.org/series/91917/
-State : warning
+In general, I've put a bunch of effort into moving most PPS stuff and
+PP_CONTROL reg access into intel_pps.c, not least because you must hold
+appropriate locks and power domain references to poke at this. You can't
+just mess with it nilly willy. I don't want these abstractions bypassed.
 
-== Summary ==
+BR,
+Jani.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+>
+> This satisfy the "before going into sleep to allow CS entry" but it do not restore the workaround after waking up from suspend.
+> Also you could improve the code, you are reading the register even for platforms that don't need the wa, also check intel_de_rmw() it is better suited
+> to this case.
+>
+>>  		bxt_enable_dc9(i915);
+>>  		/* Tweaked Wa_14010685332:icp,jsp,mcc */
+>>  		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+>> index 47c85ac97c87..8e3f84100daf 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+>> @@ -26,6 +26,7 @@
+>>  #include "i915_drv.h"
+>>  #include "intel_display_types.h"
+>>  #include "intel_hotplug.h"
+>> +#include "intel_de.h"
+>>  
+>>  /**
+>>   * DOC: Hotplug
+>> @@ -266,7 +267,9 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
+>>  		      struct intel_connector *connector)
+>>  {
+>>  	struct drm_device *dev = connector->base.dev;
+>> +	struct drm_i915_private *dev_priv = to_i915(dev);
+>>  	enum drm_connector_status old_status;
+>> +	u32 val;
+>>  	u64 old_epoch_counter;
+>>  	bool ret = false;
+>>  
+>> @@ -288,6 +291,19 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
+>>  			      drm_get_connector_status_name(connector->base.status),
+>>  			      old_epoch_counter,
+>>  			      connector->base.epoch_counter);
+>> +
+>> +		/* Wa_14013120569:tgl */
+>> +		if (IS_TIGERLAKE(dev_priv)) {
+>> +			val = intel_de_read(dev_priv, PP_CONTROL(0));
+>> +			if (connector->base.status == connector_status_connected) {
+>> +				val |= PANEL_POWER_ON;
+>> +				intel_de_write(dev_priv, PP_CONTROL(0), val);
+>> +			}
+>> +			else if (connector->base.status == connector_status_disconnected) {
+>> +				val &= ~PANEL_POWER_ON;
+>> +				intel_de_write(dev_priv, PP_CONTROL(0), val);
+>> +			}
+>> +		}
+>
+> Not sure if this is the best place but anyways it is missing handle the case were tigerlake boots with the external display connected.
+> No hotplug will happen and workaround will never be enabled.
+>
+>>  		return INTEL_HOTPLUG_CHANGED;
+>>  	}
+>>  	return INTEL_HOTPLUG_UNCHANGED;
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
