@@ -1,152 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C4A93BDBD3
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jul 2021 19:01:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD443BDCCB
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jul 2021 20:12:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF246E542;
-	Tue,  6 Jul 2021 17:01:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C4E6E0D1;
+	Tue,  6 Jul 2021 18:12:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB1C76E536;
- Tue,  6 Jul 2021 17:01:41 +0000 (UTC)
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 166Gvhqn015852; Tue, 6 Jul 2021 17:01:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : content-type : in-reply-to :
- mime-version; s=corp-2020-01-29;
- bh=hnhiXJa973SR6HksKm/zh9iaitWNk0/hKDpLkTgHZvM=;
- b=DUNf9ZkKxRxjPiJMlOyL6612zxhCw2Bb99RCReDfqC6VSofdXFtWfWb9nSrejFH/5B8T
- iBGL+u+AboR5qhSDyW8aedkH0f3h9gu7uQT0uVkg7/DiZ3dR3Qd8MbILVlJOF7tiSZ1O
- tmJ1BFdbz/ZGo/pHIBK5LfCBSwBR5AAlOLxzhk9Ope0nMtiGfgeMxTN5TR3jkqTIEuBv
- WwuFglUBV2lKqQ9IDJonzseqE06HqxE2tlKKUtB/J73CjbwDvKj2wru8dBUN2nAkq/Sc
- f5nGzZnobAK2w8gb+9d4kQTo9Gy6u9BJt22fuDMVEuZej/dlpKy60toRputnL3/GPjrV ZA== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
- by mx0b-00069f02.pphosted.com with ESMTP id 39kw5k3344-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 06 Jul 2021 17:01:07 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
- by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 166H0iPS046712;
- Tue, 6 Jul 2021 17:01:06 GMT
-Received: from nam10-dm6-obe.outbound.protection.outlook.com
- (mail-dm6nam10lp2104.outbound.protection.outlook.com [104.47.58.104])
- by aserp3020.oracle.com with ESMTP id 39jfq8vvxt-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 06 Jul 2021 17:01:05 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KARvR2yWsMGryVnXEL+9gsZIwvmAExZUqUJhvHlGuVsInaCJRpLXnh8CxC5WSgpadc4TWn5XZoU9OUE7a9TS/LS7Kc82o9WH3I2GwHYyAqDb25cGHG0DR0gvKyqS/sbsjBTCJ3RlC2ysEE7MkG07yeMLAACazVShxwX/7Yg6CXq7X8mGF1HbtO9uHi6RlYUjbbsWobSYXa79NVMPx54VvNZwuOLR+Smivoh6hVlI3R3rTzaKlzI1coRaLHtg0s9SaekCs/7WqQHjE+cVUs8LpilXe/sWBVpn5EXdVOAqeAGrLHblcAiIx8xpBx7mJcidfoUWtq+CCGoNX7qPB/EzVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hnhiXJa973SR6HksKm/zh9iaitWNk0/hKDpLkTgHZvM=;
- b=cCCPneCKtQQRQNh3t8tACDBfJ6aD9r7TWl0KmdQ/0pUYRV5x33M0va+4xytJKT3yS+Zc846nl0iqRPGeSg3AdnND8M56FPqGSSd4woEy/FqYC0kuGHM7ynsuBEuM8T4JBjO46jM9f+r893E3WF++iYqe6iVfKxbJqrSH8/+j9BpD96UEvEjtNfycduJoqyKNTos+X7yiPQh81ndE+2CpeCWLinKgodQKlc/YvYZwH9LhG7J3ABvjdFIJ9Lry/bTNvlJmpTvx1flpWo51vL0eiyuh30Ern5MKM/5FJj6umyoBa0fJVX/kRqLkn0hHkf2puQasLL74ks7RXC5r0w2KtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hnhiXJa973SR6HksKm/zh9iaitWNk0/hKDpLkTgHZvM=;
- b=adyXO0Zw0v11l6sUjG2I7eQ8BHU6NEesVxgznp3l54stbHFs2s+H5E0EiXJ6g0JcKzshJiFGXeBMKojBavSUT/lvEw7EbXhziYWnWVTSLjyhHx10ejknnlqCB0kIFBtRxnBTeMOQybzt1aTY+f7w7sm1iNnDdjCGKHIYUWbipp4=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oracle.com;
-Received: from BYAPR10MB2999.namprd10.prod.outlook.com (2603:10b6:a03:85::27)
- by BYAPR10MB3352.namprd10.prod.outlook.com (2603:10b6:a03:159::29)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.31; Tue, 6 Jul
- 2021 17:00:14 +0000
-Received: from BYAPR10MB2999.namprd10.prod.outlook.com
- ([fe80::8111:d8f1:c262:808d]) by BYAPR10MB2999.namprd10.prod.outlook.com
- ([fe80::8111:d8f1:c262:808d%6]) with mapi id 15.20.4287.033; Tue, 6 Jul 2021
- 17:00:14 +0000
-Date: Tue, 6 Jul 2021 12:59:57 -0400
-From: Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-To: Will Deacon <will@kernel.org>
-Message-ID: <YOSMDZmtfXEKerpf@char.us.oracle.com>
-References: <20210702135856.GB11132@willie-the-truck>
- <0f7bd903-e309-94a0-21d7-f0e8e9546018@arm.com>
- <YN/7xcxt/XGAKceZ@Ryzen-9-3900X.localdomain>
- <20210705190352.GA19461@willie-the-truck>
- <20210706044848.GA13640@lst.de>
- <20210706132422.GA20327@willie-the-truck>
- <a59f771f-3289-62f0-ca50-8f3675d9b166@arm.com>
- <20210706140513.GA26498@lst.de>
- <YORsr0h7u5l9DZwh@char.us.oracle.com>
- <20210706165720.GC20750@willie-the-truck>
-Content-Disposition: inline
-In-Reply-To: <20210706165720.GC20750@willie-the-truck>
-X-ClientProxiedBy: SA9PR13CA0164.namprd13.prod.outlook.com
- (2603:10b6:806:28::19) To BYAPR10MB2999.namprd10.prod.outlook.com
- (2603:10b6:a03:85::27)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8256C6E0D1;
+ Tue,  6 Jul 2021 18:12:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="188850660"
+X-IronPort-AV: E=Sophos;i="5.83,329,1616482800"; 
+ d="scan'208,217";a="188850660"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2021 11:12:33 -0700
+X-IronPort-AV: E=Sophos;i="5.83,329,1616482800"; 
+ d="scan'208,217";a="457162784"
+Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.212.151.177])
+ ([10.212.151.177])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2021 11:12:32 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210701171550.49353-1-matthew.brost@intel.com>
+ <20210701171550.49353-5-matthew.brost@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+Message-ID: <a620a386-f00d-3891-606e-3779e07ea057@intel.com>
+Date: Tue, 6 Jul 2021 11:12:21 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from char.us.oracle.com (138.3.200.56) by
- SA9PR13CA0164.namprd13.prod.outlook.com (2603:10b6:806:28::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4308.7 via Frontend Transport; Tue, 6 Jul 2021 17:00:01 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d90bdef9-b98b-4173-d89a-08d9409f8490
-X-MS-TrafficTypeDiagnostic: BYAPR10MB3352:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR10MB3352EAE5B696C84D5DB25D7B891B9@BYAPR10MB3352.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MyYcsUaq09Y7mW+wsqZ1QEfIp6TP5AkxLqd4qctYJmLdB2nALwr16MlsGsAs1m/ekDLjspHZW8CnpNzqSLrGdEFKnbfnmnyGyQth6oSTV2U2nxYttsnFkTqN6wmqM7V9LtiN3kIf292bv5oyzGWNk0wpztENyauzD7ht/BfY3Reha5mIHMFvIi/kIvW6evsGTi8nmiIyL9C9bzEgM5B6LvyLniCLLfZzAUSHJOtB0dN8tPRi93jEixXyWhetAEmp8HlUCOn4r1BJBVtxFwXCLVtRhVhD0q0UdRXnZJW7458DxJoH6RG5qEaJJ2ixWq5ERuwqtnMsrARFh5Y+nH+do3+e07MFEhchpsHRud5yL1AOI+8/pc+2wsvXzxaL3bLcWuGB0+8oD0UabLE1+BfEBb8wELSVQA8begsTW4Py8PkIaW5TvnWH+QbkavQWGBzB0IYHUt5HHi9Nrpk/O93jUGYAxg0ZvpowdWkejxvPxsRyesbZLkI2T/pnw6gFRGrFXJCw6QRG8CRS71v624KHWVhCJRq/q6fMWGcRtbEQh+4c9ty/hsBuwXOGSxnIXKYtFmhzcFXy9b3AzP6bH2m7QH6nR0yPrmLi+3JMobTicRm98dwTcyKqVsawRfY7Oez7QMSkFryi1QDj5/OFfzn9GSD4wzLxFHhHIEZNMvE8yR1VuRmlasHB445jcDXBklD/HHMBLssVYM28rNvTprZbwA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR10MB2999.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(39860400002)(136003)(396003)(376002)(346002)(366004)(86362001)(956004)(38350700002)(26005)(2906002)(66476007)(66556008)(52116002)(38100700002)(66946007)(55016002)(7366002)(6916009)(6666004)(7416002)(478600001)(186003)(7406005)(4326008)(54906003)(316002)(8936002)(5660300002)(7696005)(8676002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?scGC9Se5Jg1HS0tFM3tWW1GGNsxDg1GUpXr0qEnbNBPaAaN9kFZpgZqIj8MP?=
- =?us-ascii?Q?DDlNMqvJOZOGvLO1B839ySjnBu/u8BK07SocW8jK0qmjmBbfzDrrNL0BZ3su?=
- =?us-ascii?Q?k7t2Gvety/UNdxAuG5PC6GK/q7HkUsjSGkr2AGdKV0xK9gpM9YwsUUYtBTJV?=
- =?us-ascii?Q?W3zZZF3g0OIWKXDnNdfT7xxIRkLVQtLyQ8Nq6GU6kpanE5lIXa/YRjjmn4Gy?=
- =?us-ascii?Q?AnR+80a/Zs5x/3yugdrxu1p6UwGDiFUq1cErU9jZTo8HgX1FHS621Fg66rF/?=
- =?us-ascii?Q?LCXsuOc+cNT+BIZHOvS40+Wumf9XIohidO46vcZGJ9Kyf435Njd+ssEM4JwZ?=
- =?us-ascii?Q?v8WZeqg1HxFwRT9PTjJMVeg4vhbLTwhr6hzF3+269Kl3CDKYxdKH/oPP7gr6?=
- =?us-ascii?Q?XCSJAEKcC5nD3UsTwwv49g/By2qVe6JOhR0HqSMln0jxBkzAK044Z+gfVIgV?=
- =?us-ascii?Q?V1EDSFQpp2K4PW77wlXiASRYLbyWiWs473OdFLUI9NlnMpqc5AWs2BP8QdvK?=
- =?us-ascii?Q?t0YS4Z5sor5vEcgcZoSQgI9pQ1y26xEK6V6B+0Vs7/Jfdygwvq3Wpichi37U?=
- =?us-ascii?Q?MG1vs9DeCPIq08keLgn7ldS+P3kAOw4A+nFJxYPCr3Wa26mvTJROOhFucRbd?=
- =?us-ascii?Q?6Twte3VY343U1rwumrFD7NVChTpvzkH/v5DnRQIWsdEazPHbEhwmhMFhog2Y?=
- =?us-ascii?Q?OtoRNIihRoM8SCPBVWzXO8Ob6wrGrvuKsTKncdtk6S1kkz3tOqz4y8VxFVbk?=
- =?us-ascii?Q?Jl1Jp/TgVjTjEYgJhPVpEmNaG7jWwIvBFIJWBVoTx7pTMBAPnIigj7jERJdz?=
- =?us-ascii?Q?at1Ii5p78N5xd2z7igdghVp40rmoqCEYgK+dUDT9MOabUL3UPUyZjpBaL8TQ?=
- =?us-ascii?Q?bHqOpw6eqt/nabCPsYEif/LoyJdG5Ylnsf7462S3bR3gGu6qeGrjAQe8b8nG?=
- =?us-ascii?Q?H1/0bWAz9nj9R2/uU9OyXR/y0zekVmgzenR2uCA/9R5ewwu+tKv6DEhDt+Bh?=
- =?us-ascii?Q?Sp7me+rATNS6umegxws6SIy+20E83ct9MJl7t0U+sGfyrcvNJgLcq4DtpeYv?=
- =?us-ascii?Q?z/0Ig+4DUTF4Zn36qTE8d+aGtjGWrSVRd/1pxtVV8ek34BSfOOeKWEN9FPmo?=
- =?us-ascii?Q?omF4tld5oAmYr4Jjn9bPuMel1A2qNDPeDWVWif+qswru6KnYpJV9RwDr8W06?=
- =?us-ascii?Q?G7JpDPfNbdKHPSsR01981ICzRVsWfLRBL+Bq1inSoTeRZePyvcaek5olgbeU?=
- =?us-ascii?Q?GhgCR/BCjMx9+rqH9+MUboZ6/eBvn1A+G7jOvB7lp1YIgfHRM3tYPx435sRf?=
- =?us-ascii?Q?p2uYqQ2IdEdocUGI/OvVOenL?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d90bdef9-b98b-4173-d89a-08d9409f8490
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR10MB2999.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2021 17:00:14.2584 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zckFanMHx4+DZP0mkFA8w+J/Je1MRe1YIB1zMg75U1rDdB/71vM1KTH9RAuThBkq1D1a/ffRbEbgY+fMpFE1mQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR10MB3352
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=10037
- signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- spamscore=0 phishscore=0
- mlxscore=0 bulkscore=0 malwarescore=0 adultscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
- definitions=main-2107060080
-X-Proofpoint-GUID: MmsRRZVkZuEGZIh9CZM4MvD3gN7VIZMV
-X-Proofpoint-ORIG-GUID: MmsRRZVkZuEGZIh9CZM4MvD3gN7VIZMV
-Subject: Re: [Intel-gfx] [PATCH v15 06/12] swiotlb: Use
- is_swiotlb_force_bounce for swiotlb data bouncing
+In-Reply-To: <20210701171550.49353-5-matthew.brost@intel.com>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/guc: Add non blocking CTB send
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,70 +50,618 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Quinlan <james.quinlan@broadcom.com>, heikki.krogerus@linux.intel.com,
- linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
- benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
- chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
- Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
- Jianxiong Gao <jxgao@google.com>, Stefano Stabellini <sstabellini@kernel.org>,
- Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, xypron.glpk@gmx.de,
- Christoph Hellwig <hch@lst.de>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, matthew.auld@intel.com,
- Nicolas Boichat <drinkcat@chromium.org>, thomas.hellstrom@linux.intel.com,
- jgross@suse.com, intel-gfx@lists.freedesktop.org,
- Nathan Chancellor <nathan@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Claire Chang <tientzu@chromium.org>,
- Dan Williams <dan.j.williams@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- boris.ostrovsky@oracle.com, airlied@linux.ie, linuxppc-dev@lists.ozlabs.org,
- Randy Dunlap <rdunlap@infradead.org>, Qian Cai <quic_qiancai@quicinc.com>,
- lkml <linux-kernel@vger.kernel.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Greg KH <gregkh@linuxfoundation.org>, Tom Lendacky <thomas.lendacky@amd.com>,
- Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1922777583=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 06, 2021 at 05:57:21PM +0100, Will Deacon wrote:
-> On Tue, Jul 06, 2021 at 10:46:07AM -0400, Konrad Rzeszutek Wilk wrote:
-> > On Tue, Jul 06, 2021 at 04:05:13PM +0200, Christoph Hellwig wrote:
-> > > On Tue, Jul 06, 2021 at 03:01:04PM +0100, Robin Murphy wrote:
-> > > > FWIW I was pondering the question of whether to do something along those 
-> > > > lines or just scrap the default assignment entirely, so since I hadn't got 
-> > > > round to saying that I've gone ahead and hacked up the alternative 
-> > > > (similarly untested) for comparison :)
-> > > >
-> > > > TBH I'm still not sure which one I prefer...
-> > > 
-> > > Claire did implement something like your suggestion originally, but
-> > > I don't really like it as it doesn't scale for adding multiple global
-> > > pools, e.g. for the 64-bit addressable one for the various encrypted
-> > > secure guest schemes.
-> > 
-> > Couple of things:
-> >  - I am not pushing to Linus the Claire's patchset until we have a
-> >    resolution on this. I hope you all agree that is a sensible way
-> >    forward as much as I hate doing that.
-> 
-> Sure, it's a pity but we could clearly use a bit more time to get these
-> just right and we've run out of time for 5.14.
-> 
-> I think the main question I have is how would you like to see patches for
-> 5.15? i.e. as patches on top of devel/for-linus-5.14 or something else?
+This is a multi-part message in MIME format.
+--===============1922777583==
+Content-Type: multipart/alternative;
+ boundary="------------6B06524475C5946871C16EF5"
+Content-Language: en-GB
 
-Yes that would be perfect. If there are any dependencies on the rc1, I
-can rebase it on top of that.
+This is a multi-part message in MIME format.
+--------------6B06524475C5946871C16EF5
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> 
-> Cheers,
-> 
-> Will
+On 7/1/2021 10:15, Matthew Brost wrote:
+> Add non blocking CTB send function, intel_guc_send_nb. GuC submission
+> will send CTBs in the critical path and does not need to wait for these
+> CTBs to complete before moving on, hence the need for this new function.
+>
+> The non-blocking CTB now must have a flow control mechanism to ensure
+> the buffer isn't overrun. A lazy spin wait is used as we believe the
+> flow control condition should be rare with a properly sized buffer.
+>
+> The function, intel_guc_send_nb, is exported in this patch but unused.
+> Several patches later in the series make use of this function.
+>
+> v2:
+>   (Michal)
+>    - Use define for H2G room calculations
+>    - Move INTEL_GUC_SEND_NB define
+>   (Daniel Vetter)
+>    - Use msleep_interruptible rather than cond_resched
+> v3:
+>   (Michal)
+>    - Move includes to following patch
+>    - s/INTEL_GUC_SEND_NB/INTEL_GUC_CT_SEND_NB/g
+>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   .../gt/uc/abi/guc_communication_ctb_abi.h     |  3 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 11 ++-
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 87 +++++++++++++++++--
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  4 +-
+>   4 files changed, 91 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> index e933ca02d0eb..99e1fad5ca20 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+> @@ -79,7 +79,8 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+>    *  +---+-------+--------------------------------------------------------------+
+>    */
+>   
+> -#define GUC_CTB_MSG_MIN_LEN			1u
+> +#define GUC_CTB_HDR_LEN				1u
+> +#define GUC_CTB_MSG_MIN_LEN			GUC_CTB_HDR_LEN
+>   #define GUC_CTB_MSG_MAX_LEN			256u
+>   #define GUC_CTB_MSG_0_FENCE			(0xffff << 16)
+>   #define GUC_CTB_MSG_0_FORMAT			(0xf << 12)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index 4abc59f6f3cd..72e4653222e2 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -74,7 +74,14 @@ static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
+>   static
+>   inline int intel_guc_send(struct intel_guc *guc, const u32 *action, u32 len)
+>   {
+> -	return intel_guc_ct_send(&guc->ct, action, len, NULL, 0);
+> +	return intel_guc_ct_send(&guc->ct, action, len, NULL, 0, 0);
+> +}
+> +
+> +static
+> +inline int intel_guc_send_nb(struct intel_guc *guc, const u32 *action, u32 len)
+> +{
+> +	return intel_guc_ct_send(&guc->ct, action, len, NULL, 0,
+> +				 INTEL_GUC_CT_SEND_NB);
+>   }
+>   
+>   static inline int
+> @@ -82,7 +89,7 @@ intel_guc_send_and_receive(struct intel_guc *guc, const u32 *action, u32 len,
+>   			   u32 *response_buf, u32 response_buf_size)
+>   {
+>   	return intel_guc_ct_send(&guc->ct, action, len,
+> -				 response_buf, response_buf_size);
+> +				 response_buf, response_buf_size, 0);
+>   }
+>   
+>   static inline void intel_guc_to_host_event_handler(struct intel_guc *guc)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 43e03aa2dde8..fb825cc1d090 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -3,6 +3,8 @@
+>    * Copyright © 2016-2019 Intel Corporation
+>    */
+>   
+> +#include <linux/circ_buf.h>
+> +
+>   #include "i915_drv.h"
+>   #include "intel_guc_ct.h"
+>   #include "gt/intel_gt.h"
+> @@ -373,7 +375,7 @@ static void write_barrier(struct intel_guc_ct *ct)
+>   static int ct_write(struct intel_guc_ct *ct,
+>   		    const u32 *action,
+>   		    u32 len /* in dwords */,
+> -		    u32 fence)
+> +		    u32 fence, u32 flags)
+>   {
+>   	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>   	struct guc_ct_buffer_desc *desc = ctb->desc;
+> @@ -409,7 +411,7 @@ static int ct_write(struct intel_guc_ct *ct,
+>   		used = tail - head;
+>   
+>   	/* make sure there is a space including extra dw for the fence */
+> -	if (unlikely(used + len + 1 >= size))
+> +	if (unlikely(used + len + GUC_CTB_HDR_LEN >= size))
+I thought the plan was to update the comment? Given that the '+1' is now 
+'HDR_LEN' it would be good to update the comment to say 'header' instead 
+of 'fence'.
+
+>   		return -ENOSPC;
+>   
+>   	/*
+> @@ -421,9 +423,13 @@ static int ct_write(struct intel_guc_ct *ct,
+>   		 FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
+>   		 FIELD_PREP(GUC_CTB_MSG_0_FENCE, fence);
+>   
+> -	hxg = FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
+> -	      FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
+> -			 GUC_HXG_REQUEST_MSG_0_DATA0, action[0]);
+> +	hxg = (flags & INTEL_GUC_CT_SEND_NB) ?
+> +		(FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
+> +		 FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
+> +			    GUC_HXG_EVENT_MSG_0_DATA0, action[0])) :
+> +		(FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
+> +		 FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
+> +			    GUC_HXG_REQUEST_MSG_0_DATA0, action[0]));
+If would be much easier to read if this used a proper 'if' rather than 
+an inline '?'. Or maybe have something like:
+
+    type = SEND_NB ? TYPE_EVENT : TYPE REQUEST;
+    hxg = PREP(type) | ACTION ...;
+
+
+Neither issue above is a blocker but I think the comment at least should 
+be fixed up when merging. With that:
+
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+
+>   
+>   	CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
+>   		 tail, 4, &header, 4, &hxg, 4 * (len - 1), &action[1]);
+> @@ -500,6 +506,48 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+>   	return err;
+>   }
+>   
+> +static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
+> +{
+> +	struct guc_ct_buffer_desc *desc = ctb->desc;
+> +	u32 head = READ_ONCE(desc->head);
+> +	u32 space;
+> +
+> +	space = CIRC_SPACE(desc->tail, head, ctb->size);
+> +
+> +	return space >= len_dw;
+> +}
+> +
+> +static int ct_send_nb(struct intel_guc_ct *ct,
+> +		      const u32 *action,
+> +		      u32 len,
+> +		      u32 flags)
+> +{
+> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> +	unsigned long spin_flags;
+> +	u32 fence;
+> +	int ret;
+> +
+> +	spin_lock_irqsave(&ctb->lock, spin_flags);
+> +
+> +	ret = h2g_has_room(ctb, len + GUC_CTB_HDR_LEN);
+> +	if (unlikely(!ret)) {
+> +		ret = -EBUSY;
+> +		goto out;
+> +	}
+> +
+> +	fence = ct_get_next_fence(ct);
+> +	ret = ct_write(ct, action, len, fence, flags);
+> +	if (unlikely(ret))
+> +		goto out;
+> +
+> +	intel_guc_notify(ct_to_guc(ct));
+> +
+> +out:
+> +	spin_unlock_irqrestore(&ctb->lock, spin_flags);
+> +
+> +	return ret;
+> +}
+> +
+>   static int ct_send(struct intel_guc_ct *ct,
+>   		   const u32 *action,
+>   		   u32 len,
+> @@ -507,8 +555,10 @@ static int ct_send(struct intel_guc_ct *ct,
+>   		   u32 response_buf_size,
+>   		   u32 *status)
+>   {
+> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>   	struct ct_request request;
+>   	unsigned long flags;
+> +	unsigned int sleep_period_ms = 1;
+>   	u32 fence;
+>   	int err;
+>   
+> @@ -516,8 +566,24 @@ static int ct_send(struct intel_guc_ct *ct,
+>   	GEM_BUG_ON(!len);
+>   	GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+>   	GEM_BUG_ON(!response_buf && response_buf_size);
+> +	might_sleep();
+> +
+> +	/*
+> +	 * We use a lazy spin wait loop here as we believe that if the CT
+> +	 * buffers are sized correctly the flow control condition should be
+> +	 * rare.
+> +	 */
+> +retry:
+> +	spin_lock_irqsave(&ctb->lock, flags);
+> +	if (unlikely(!h2g_has_room(ctb, len + GUC_CTB_HDR_LEN))) {
+> +		spin_unlock_irqrestore(&ctb->lock, flags);
+>   
+> -	spin_lock_irqsave(&ct->ctbs.send.lock, flags);
+> +		if (msleep_interruptible(sleep_period_ms))
+> +			return -EINTR;
+> +		sleep_period_ms = sleep_period_ms << 1;
+> +
+> +		goto retry;
+> +	}
+>   
+>   	fence = ct_get_next_fence(ct);
+>   	request.fence = fence;
+> @@ -529,9 +595,9 @@ static int ct_send(struct intel_guc_ct *ct,
+>   	list_add_tail(&request.link, &ct->requests.pending);
+>   	spin_unlock(&ct->requests.lock);
+>   
+> -	err = ct_write(ct, action, len, fence);
+> +	err = ct_write(ct, action, len, fence, 0);
+>   
+> -	spin_unlock_irqrestore(&ct->ctbs.send.lock, flags);
+> +	spin_unlock_irqrestore(&ctb->lock, flags);
+>   
+>   	if (unlikely(err))
+>   		goto unlink;
+> @@ -571,7 +637,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>    * Command Transport (CT) buffer based GuC send function.
+>    */
+>   int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+> -		      u32 *response_buf, u32 response_buf_size)
+> +		      u32 *response_buf, u32 response_buf_size, u32 flags)
+>   {
+>   	u32 status = ~0; /* undefined */
+>   	int ret;
+> @@ -581,6 +647,9 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+>   		return -ENODEV;
+>   	}
+>   
+> +	if (flags & INTEL_GUC_CT_SEND_NB)
+> +		return ct_send_nb(ct, action, len, flags);
+> +
+>   	ret = ct_send(ct, action, len, response_buf, response_buf_size, &status);
+>   	if (unlikely(ret < 0)) {
+>   		CT_ERROR(ct, "Sending action %#x failed (err=%d status=%#X)\n",
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> index 1ae2dde6db93..5bb8bef024c8 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> @@ -42,7 +42,6 @@ struct intel_guc_ct_buffer {
+>   	bool broken;
+>   };
+>   
+> -
+>   /** Top-level structure for Command Transport related data
+>    *
+>    * Includes a pair of CT buffers for bi-directional communication and tracking
+> @@ -87,8 +86,9 @@ static inline bool intel_guc_ct_enabled(struct intel_guc_ct *ct)
+>   	return ct->enabled;
+>   }
+>   
+> +#define INTEL_GUC_CT_SEND_NB		BIT(31)
+>   int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+> -		      u32 *response_buf, u32 response_buf_size);
+> +		      u32 *response_buf, u32 response_buf_size, u32 flags);
+>   void intel_guc_ct_event_handler(struct intel_guc_ct *ct);
+>   
+>   #endif /* _INTEL_GUC_CT_H_ */
+
+
+--------------6B06524475C5946871C16EF5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    On 7/1/2021 10:15, Matthew Brost wrote:<br>
+    <blockquote type="cite"
+      cite="mid:20210701171550.49353-5-matthew.brost@intel.com">
+      <pre class="moz-quote-pre" wrap="">Add non blocking CTB send function, intel_guc_send_nb. GuC submission
+will send CTBs in the critical path and does not need to wait for these
+CTBs to complete before moving on, hence the need for this new function.
+
+The non-blocking CTB now must have a flow control mechanism to ensure
+the buffer isn't overrun. A lazy spin wait is used as we believe the
+flow control condition should be rare with a properly sized buffer.
+
+The function, intel_guc_send_nb, is exported in this patch but unused.
+Several patches later in the series make use of this function.
+
+v2:
+ (Michal)
+  - Use define for H2G room calculations
+  - Move INTEL_GUC_SEND_NB define
+ (Daniel Vetter)
+  - Use msleep_interruptible rather than cond_resched
+v3:
+ (Michal)
+  - Move includes to following patch
+  - s/INTEL_GUC_SEND_NB/INTEL_GUC_CT_SEND_NB/g
+
+Signed-off-by: John Harrison <a class="moz-txt-link-rfc2396E" href="mailto:John.C.Harrison@Intel.com">&lt;John.C.Harrison@Intel.com&gt;</a>
+Signed-off-by: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
+---
+ .../gt/uc/abi/guc_communication_ctb_abi.h     |  3 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 11 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 87 +++++++++++++++++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  4 +-
+ 4 files changed, 91 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+index e933ca02d0eb..99e1fad5ca20 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
+@@ -79,7 +79,8 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+  *  +---+-------+--------------------------------------------------------------+
+  */
+ 
+-#define GUC_CTB_MSG_MIN_LEN			1u
++#define GUC_CTB_HDR_LEN				1u
++#define GUC_CTB_MSG_MIN_LEN			GUC_CTB_HDR_LEN
+ #define GUC_CTB_MSG_MAX_LEN			256u
+ #define GUC_CTB_MSG_0_FENCE			(0xffff &lt;&lt; 16)
+ #define GUC_CTB_MSG_0_FORMAT			(0xf &lt;&lt; 12)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+index 4abc59f6f3cd..72e4653222e2 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -74,7 +74,14 @@ static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
+ static
+ inline int intel_guc_send(struct intel_guc *guc, const u32 *action, u32 len)
+ {
+-	return intel_guc_ct_send(&amp;guc-&gt;ct, action, len, NULL, 0);
++	return intel_guc_ct_send(&amp;guc-&gt;ct, action, len, NULL, 0, 0);
++}
++
++static
++inline int intel_guc_send_nb(struct intel_guc *guc, const u32 *action, u32 len)
++{
++	return intel_guc_ct_send(&amp;guc-&gt;ct, action, len, NULL, 0,
++				 INTEL_GUC_CT_SEND_NB);
+ }
+ 
+ static inline int
+@@ -82,7 +89,7 @@ intel_guc_send_and_receive(struct intel_guc *guc, const u32 *action, u32 len,
+ 			   u32 *response_buf, u32 response_buf_size)
+ {
+ 	return intel_guc_ct_send(&amp;guc-&gt;ct, action, len,
+-				 response_buf, response_buf_size);
++				 response_buf, response_buf_size, 0);
+ }
+ 
+ static inline void intel_guc_to_host_event_handler(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index 43e03aa2dde8..fb825cc1d090 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2016-2019 Intel Corporation
+  */
+ 
++#include &lt;linux/circ_buf.h&gt;
++
+ #include "i915_drv.h"
+ #include "intel_guc_ct.h"
+ #include "gt/intel_gt.h"
+@@ -373,7 +375,7 @@ static void write_barrier(struct intel_guc_ct *ct)
+ static int ct_write(struct intel_guc_ct *ct,
+ 		    const u32 *action,
+ 		    u32 len /* in dwords */,
+-		    u32 fence)
++		    u32 fence, u32 flags)
+ {
+ 	struct intel_guc_ct_buffer *ctb = &amp;ct-&gt;ctbs.send;
+ 	struct guc_ct_buffer_desc *desc = ctb-&gt;desc;
+@@ -409,7 +411,7 @@ static int ct_write(struct intel_guc_ct *ct,
+ 		used = tail - head;
+ 
+ 	/* make sure there is a space including extra dw for the fence */
+-	if (unlikely(used + len + 1 &gt;= size))
++	if (unlikely(used + len + GUC_CTB_HDR_LEN &gt;= size))</pre>
+    </blockquote>
+    I thought the plan was to update the comment? Given that the '+1' is
+    now 'HDR_LEN' it would be good to update the comment to say 'header'
+    instead of 'fence'.<br>
+    <br>
+    <blockquote type="cite"
+      cite="mid:20210701171550.49353-5-matthew.brost@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+ 		return -ENOSPC;
+ 
+ 	/*
+@@ -421,9 +423,13 @@ static int ct_write(struct intel_guc_ct *ct,
+ 		 FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
+ 		 FIELD_PREP(GUC_CTB_MSG_0_FENCE, fence);
+ 
+-	hxg = FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
+-	      FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
+-			 GUC_HXG_REQUEST_MSG_0_DATA0, action[0]);
++	hxg = (flags &amp; INTEL_GUC_CT_SEND_NB) ?
++		(FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
++		 FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
++			    GUC_HXG_EVENT_MSG_0_DATA0, action[0])) :
++		(FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
++		 FIELD_PREP(GUC_HXG_REQUEST_MSG_0_ACTION |
++			    GUC_HXG_REQUEST_MSG_0_DATA0, action[0]));</pre>
+    </blockquote>
+    If would be much easier to read if this used a proper 'if' rather
+    than an inline '?'. Or maybe have something like:<br>
+    <blockquote>type = SEND_NB ? TYPE_EVENT : TYPE REQUEST;<br>
+      hxg = PREP(type) | ACTION ...;<br>
+    </blockquote>
+    <br>
+    Neither issue above is a blocker but I think the comment at least
+    should be fixed up when merging. With that:<br>
+    <br>
+    Reviewed-by: John Harrison <a class="moz-txt-link-rfc2396E" href="mailto:John.C.Harrison@Intel.com">&lt;John.C.Harrison@Intel.com&gt;</a><br>
+    <br>
+    <br>
+    <blockquote type="cite"
+      cite="mid:20210701171550.49353-5-matthew.brost@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+ 
+ 	CT_DEBUG(ct, "writing (tail %u) %*ph %*ph %*ph\n",
+ 		 tail, 4, &amp;header, 4, &amp;hxg, 4 * (len - 1), &amp;action[1]);
+@@ -500,6 +506,48 @@ static int wait_for_ct_request_update(struct ct_request *req, u32 *status)
+ 	return err;
+ }
+ 
++static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
++{
++	struct guc_ct_buffer_desc *desc = ctb-&gt;desc;
++	u32 head = READ_ONCE(desc-&gt;head);
++	u32 space;
++
++	space = CIRC_SPACE(desc-&gt;tail, head, ctb-&gt;size);
++
++	return space &gt;= len_dw;
++}
++
++static int ct_send_nb(struct intel_guc_ct *ct,
++		      const u32 *action,
++		      u32 len,
++		      u32 flags)
++{
++	struct intel_guc_ct_buffer *ctb = &amp;ct-&gt;ctbs.send;
++	unsigned long spin_flags;
++	u32 fence;
++	int ret;
++
++	spin_lock_irqsave(&amp;ctb-&gt;lock, spin_flags);
++
++	ret = h2g_has_room(ctb, len + GUC_CTB_HDR_LEN);
++	if (unlikely(!ret)) {
++		ret = -EBUSY;
++		goto out;
++	}
++
++	fence = ct_get_next_fence(ct);
++	ret = ct_write(ct, action, len, fence, flags);
++	if (unlikely(ret))
++		goto out;
++
++	intel_guc_notify(ct_to_guc(ct));
++
++out:
++	spin_unlock_irqrestore(&amp;ctb-&gt;lock, spin_flags);
++
++	return ret;
++}
++
+ static int ct_send(struct intel_guc_ct *ct,
+ 		   const u32 *action,
+ 		   u32 len,
+@@ -507,8 +555,10 @@ static int ct_send(struct intel_guc_ct *ct,
+ 		   u32 response_buf_size,
+ 		   u32 *status)
+ {
++	struct intel_guc_ct_buffer *ctb = &amp;ct-&gt;ctbs.send;
+ 	struct ct_request request;
+ 	unsigned long flags;
++	unsigned int sleep_period_ms = 1;
+ 	u32 fence;
+ 	int err;
+ 
+@@ -516,8 +566,24 @@ static int ct_send(struct intel_guc_ct *ct,
+ 	GEM_BUG_ON(!len);
+ 	GEM_BUG_ON(len &amp; ~GUC_CT_MSG_LEN_MASK);
+ 	GEM_BUG_ON(!response_buf &amp;&amp; response_buf_size);
++	might_sleep();
++
++	/*
++	 * We use a lazy spin wait loop here as we believe that if the CT
++	 * buffers are sized correctly the flow control condition should be
++	 * rare.
++	 */
++retry:
++	spin_lock_irqsave(&amp;ctb-&gt;lock, flags);
++	if (unlikely(!h2g_has_room(ctb, len + GUC_CTB_HDR_LEN))) {
++		spin_unlock_irqrestore(&amp;ctb-&gt;lock, flags);
+ 
+-	spin_lock_irqsave(&amp;ct-&gt;ctbs.send.lock, flags);
++		if (msleep_interruptible(sleep_period_ms))
++			return -EINTR;
++		sleep_period_ms = sleep_period_ms &lt;&lt; 1;
++
++		goto retry;
++	}
+ 
+ 	fence = ct_get_next_fence(ct);
+ 	request.fence = fence;
+@@ -529,9 +595,9 @@ static int ct_send(struct intel_guc_ct *ct,
+ 	list_add_tail(&amp;request.link, &amp;ct-&gt;requests.pending);
+ 	spin_unlock(&amp;ct-&gt;requests.lock);
+ 
+-	err = ct_write(ct, action, len, fence);
++	err = ct_write(ct, action, len, fence, 0);
+ 
+-	spin_unlock_irqrestore(&amp;ct-&gt;ctbs.send.lock, flags);
++	spin_unlock_irqrestore(&amp;ctb-&gt;lock, flags);
+ 
+ 	if (unlikely(err))
+ 		goto unlink;
+@@ -571,7 +637,7 @@ static int ct_send(struct intel_guc_ct *ct,
+  * Command Transport (CT) buffer based GuC send function.
+  */
+ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+-		      u32 *response_buf, u32 response_buf_size)
++		      u32 *response_buf, u32 response_buf_size, u32 flags)
+ {
+ 	u32 status = ~0; /* undefined */
+ 	int ret;
+@@ -581,6 +647,9 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+ 		return -ENODEV;
+ 	}
+ 
++	if (flags &amp; INTEL_GUC_CT_SEND_NB)
++		return ct_send_nb(ct, action, len, flags);
++
+ 	ret = ct_send(ct, action, len, response_buf, response_buf_size, &amp;status);
+ 	if (unlikely(ret &lt; 0)) {
+ 		CT_ERROR(ct, "Sending action %#x failed (err=%d status=%#X)\n",
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+index 1ae2dde6db93..5bb8bef024c8 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+@@ -42,7 +42,6 @@ struct intel_guc_ct_buffer {
+ 	bool broken;
+ };
+ 
+-
+ /** Top-level structure for Command Transport related data
+  *
+  * Includes a pair of CT buffers for bi-directional communication and tracking
+@@ -87,8 +86,9 @@ static inline bool intel_guc_ct_enabled(struct intel_guc_ct *ct)
+ 	return ct-&gt;enabled;
+ }
+ 
++#define INTEL_GUC_CT_SEND_NB		BIT(31)
+ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+-		      u32 *response_buf, u32 response_buf_size);
++		      u32 *response_buf, u32 response_buf_size, u32 flags);
+ void intel_guc_ct_event_handler(struct intel_guc_ct *ct);
+ 
+ #endif /* _INTEL_GUC_CT_H_ */
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------6B06524475C5946871C16EF5--
+
+--===============1922777583==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1922777583==--
