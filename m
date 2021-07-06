@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEBCC3BD993
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jul 2021 17:11:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 803EA3BD9FF
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jul 2021 17:19:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84CEE6E4E6;
-	Tue,  6 Jul 2021 15:11:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1114B6E4FB;
+	Tue,  6 Jul 2021 15:19:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 159F26E4E6;
- Tue,  6 Jul 2021 15:11:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0E671A0078;
- Tue,  6 Jul 2021 15:11:36 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 06 Jul 2021 15:11:36 -0000
-Message-ID: <162558429602.25118.12978270446832048638@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210518132426.7567-1-jani.nikula@intel.com>
-In-Reply-To: <20210518132426.7567-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/plane=3A_add_intel=5Fplane=5Fhelper=5Fadd=28=29_helper_?=
- =?utf-8?b?KHJldjMp?=
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBCB16E4FB
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jul 2021 15:19:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="206125285"
+X-IronPort-AV: E=Sophos;i="5.83,328,1616482800"; d="scan'208";a="206125285"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2021 08:19:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,328,1616482800"; d="scan'208";a="422891205"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.12])
+ by fmsmga007.fm.intel.com with ESMTP; 06 Jul 2021 08:19:08 -0700
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  6 Jul 2021 23:25:41 +0800
+Message-Id: <20210706152541.25021-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/dp: return proper DPRX link training
+ result
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,155 +40,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1696616821=="
+Cc: Cooper Chiou <cooper.chiou@intel.com>,
+ William Tseng <william.tseng@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1696616821==
-Content-Type: multipart/alternative;
- boundary="===============4101365215745898085=="
+After DPRX link training, intel_dp_link_train_phy() did not
+return the training result properly. If link training failed,
+i915 driver would not run into link train fallback function.
+And no hotplug uevent would be received by user space application.
 
---===============4101365215745898085==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fixes: b30edfd8d0b4 ("drm/i915: Switch to LTTPR non-transparent mode link training")
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Cc: William Tseng <william.tseng@intel.com>
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Series Details ==
-
-Series: drm/i915/plane: add intel_plane_helper_add() helper (rev3)
-URL   : https://patchwork.freedesktop.org/series/90287/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10306 -> Patchwork_20536
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20536/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20536 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2] ([i915#155])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10306/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20536/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-
-  
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-
-
-Participating hosts (41 -> 37)
-------------------------------
-
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10306 -> Patchwork_20536
-
-  CI-20190529: 20190529
-  CI_DRM_10306: 134ea1b1bddc580a8a246b05299291c9a7b0c7f5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6129: 687589e76f787d26ee2b539e551a9be06bd41ce3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20536: e6b10bfb2a9ddba952a1a476b6dc2d325cc6c1c2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e6b10bfb2a9d drm/i915/plane: add intel_plane_helper_add() helper
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20536/index.html
-
---===============4101365215745898085==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/plane: add intel_plane_helper_add() helper (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90287/">https://patchwork.freedesktop.org/series/90287/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20536/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20536/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10306 -&gt; Patchwork_20536</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20536/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20536 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10306/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20536/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 37)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10306 -&gt; Patchwork_20536</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10306: 134ea1b1bddc580a8a246b05299291c9a7b0c7f5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6129: 687589e76f787d26ee2b539e551a9be06bd41ce3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20536: e6b10bfb2a9ddba952a1a476b6dc2d325cc6c1c2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e6b10bfb2a9d drm/i915/plane: add intel_plane_helper_add() helper</p>
-
-</body>
-</html>
-
---===============4101365215745898085==--
-
---===============1696616821==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 08bceae40aa8..e44788b2c564 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -849,7 +849,7 @@ intel_dp_link_train_all_phys(struct intel_dp *intel_dp,
+ 	}
+ 
+ 	if (ret)
+-		intel_dp_link_train_phy(intel_dp, crtc_state, DP_PHY_DPRX);
++		ret = intel_dp_link_train_phy(intel_dp, crtc_state, DP_PHY_DPRX);
+ 
+ 	if (intel_dp->set_idle_link_train)
+ 		intel_dp->set_idle_link_train(intel_dp, crtc_state);
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1696616821==--
