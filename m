@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C1193BDAD0
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jul 2021 18:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 656403BDB50
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jul 2021 18:25:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E95496E513;
-	Tue,  6 Jul 2021 16:00:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42B146E51A;
+	Tue,  6 Jul 2021 16:25:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DF31D6E513;
- Tue,  6 Jul 2021 16:00:00 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3BE26E519;
+ Tue,  6 Jul 2021 16:25:38 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D8038A00FD;
- Tue,  6 Jul 2021 16:00:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CAFACA8836;
+ Tue,  6 Jul 2021 16:25:38 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Date: Tue, 06 Jul 2021 16:00:00 -0000
-Message-ID: <162558720085.25116.4989485775717064997@emeril.freedesktop.org>
+Date: Tue, 06 Jul 2021 16:25:38 -0000
+Message-ID: <162558873879.25118.16945186825669363397@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210705113706.18474-1-anshuman.gupta@intel.com>
 In-Reply-To: <20210705113706.18474-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
  =?utf-8?q?/i915/hdcp=3A_Dsiplay13_HDCP_support_over_MST_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,15 +40,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0222416593=="
+Content-Type: multipart/mixed; boundary="===============1045027520=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0222416593==
+--===============1045027520==
 Content-Type: multipart/alternative;
- boundary="===============1530001374893090713=="
+ boundary="===============3660848690415144627=="
 
---===============1530001374893090713==
+--===============3660848690415144627==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -57,7 +57,7 @@ Content-Transfer-Encoding: 7bit
 
 Series: drm/i915/hdcp: Dsiplay13 HDCP support over MST (rev2)
 URL   : https://patchwork.freedesktop.org/series/92202/
-State : failure
+State : success
 
 == Summary ==
 
@@ -67,10 +67,10 @@ CI Bug Log - changes from CI_DRM_10305 -> Patchwork_20530
 Summary
 -------
 
-  **FAILURE**
+  **WARNING**
 
-  Serious unknown changes coming with Patchwork_20530 absolutely need to be
-  verified manually.
+  Minor unknown changes coming with Patchwork_20530 need to be verified
+  manually.
   
   If you think the reported changes have nothing to do with the changes
   introduced in Patchwork_20530, please notify your bug team to allow them
@@ -85,39 +85,12 @@ Possible new issues
 
 ### IGT changes ###
 
-#### Possible regressions ####
-
-  * igt@gem_exec_fence@basic-busy@vcs0:
-    - fi-kbl-7567u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html
-
-  * igt@gem_exec_parallel@engines@basic:
-    - fi-icl-y:           [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@basic.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bdw-5557u:       NOTRUN -> [DMESG-FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
-
-  
 #### Warnings ####
 
   * igt@i915_pm_rpm@module-reload:
-    - fi-ivb-3770:        [SKIP][6] ([fdo#109271]) -> [FAIL][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - {fi-tgl-1115g4}:    NOTRUN -> [DMESG-WARN][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-tgl-1115g4/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+    - fi-ivb-3770:        [SKIP][1] ([fdo#109271]) -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html
 
   
 Known issues
@@ -130,133 +103,145 @@ Known issues
 #### Issues hit ####
 
   * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#109315]) +17 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
+    - fi-hsw-4770:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#109315]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@amdgpu/amd_basic@cs-gfx.html
 
   * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][10] ([fdo#109271]) +17 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+    - fi-bsw-nick:        NOTRUN -> [SKIP][4] ([fdo#109271]) +17 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
 
   * igt@core_hotunplug@unbind-rebind:
-    - fi-hsw-4770:        NOTRUN -> [WARN][11] ([i915#3718])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html
-    - fi-bdw-5557u:       NOTRUN -> [WARN][12] ([i915#3718])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+    - fi-hsw-4770:        NOTRUN -> [WARN][5] ([i915#3718])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html
+    - fi-bdw-5557u:       NOTRUN -> [WARN][6] ([i915#3718])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
 
   * igt@gem_close_race@basic-threads:
-    - fi-glk-dsi:         [PASS][13] -> [DMESG-WARN][14] ([i915#1610])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-glk-dsi/igt@gem_close_race@basic-threads.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-glk-dsi/igt@gem_close_race@basic-threads.html
+    - fi-glk-dsi:         [PASS][7] -> [DMESG-WARN][8] ([i915#1610])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-glk-dsi/igt@gem_close_race@basic-threads.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-glk-dsi/igt@gem_close_race@basic-threads.html
 
   * igt@gem_exec_create@basic:
-    - fi-kbl-x1275:       NOTRUN -> [DMESG-WARN][15] ([i915#1610])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-x1275/igt@gem_exec_create@basic.html
+    - fi-kbl-x1275:       NOTRUN -> [DMESG-WARN][9] ([i915#1610])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-x1275/igt@gem_exec_create@basic.html
 
   * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-apl-guc:         NOTRUN -> [SKIP][16] ([fdo#109271]) +1 similar issue
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
+    - fi-apl-guc:         NOTRUN -> [SKIP][10] ([fdo#109271]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_exec_fence@basic-busy@vcs0:
+    - fi-kbl-7567u:       [PASS][11] -> [DMESG-WARN][12] ([i915#3738])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html
 
   * igt@gem_exec_gttfill@basic:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][17] ([fdo#109271])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][13] ([fdo#109271])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
 
   * igt@gem_exec_parallel@engines@basic:
-    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][18] ([i915#1610])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@gem_exec_parallel@engines@basic.html
+    - fi-icl-y:           [PASS][14] -> [DMESG-WARN][15] ([i915#3738])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@basic.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@basic.html
+    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][16] ([i915#1610])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@gem_exec_parallel@engines@basic.html
 
   * igt@gem_exec_parallel@engines@userptr:
-    - fi-cml-u2:          [PASS][19] -> [DMESG-WARN][20] ([i915#1610])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-cml-u2/igt@gem_exec_parallel@engines@userptr.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-cml-u2/igt@gem_exec_parallel@engines@userptr.html
+    - fi-cml-u2:          [PASS][17] -> [DMESG-WARN][18] ([i915#1610])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-cml-u2/igt@gem_exec_parallel@engines@userptr.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-cml-u2/igt@gem_exec_parallel@engines@userptr.html
 
   * igt@gem_exec_suspend@basic-s3:
-    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][21] ([i915#3159])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][19] ([i915#3159])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
 
   * igt@gem_huc_copy@huc-copy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][22] ([fdo#109271]) +4 similar issues
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][23] ([fdo#109271] / [i915#2190])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
+    - fi-hsw-4770:        NOTRUN -> [SKIP][20] ([fdo#109271]) +4 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@gem_huc_copy@huc-copy.html
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][21] ([fdo#109271] / [i915#2190])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
 
   * igt@i915_pm_backlight@basic-brightness:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][24] ([fdo#109271] / [i915#3012])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
+    - fi-hsw-4770:        NOTRUN -> [SKIP][22] ([fdo#109271] / [i915#3012])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bdw-5557u:       NOTRUN -> [DMESG-FAIL][23] ([i915#3738])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
 
   * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][25] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
+    - fi-hsw-4770:        NOTRUN -> [SKIP][24] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@kms_chamelium@common-hpd-after-suspend.html
 
   * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][26] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][25] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
 
   * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][27] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][26] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@kms_chamelium@hdmi-edid-read.html
 
   * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][28] ([fdo#109271] / [i915#533])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][29] ([fdo#109271] / [i915#533])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+    - fi-hsw-4770:        NOTRUN -> [SKIP][27] ([fdo#109271] / [i915#533])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][28] ([fdo#109271] / [i915#533])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
 
   * igt@kms_psr@cursor_plane_move:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][30] ([fdo#109271]) +37 similar issues
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][31] ([fdo#109271]) +9 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][29] ([fdo#109271]) +37 similar issues
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-8809g/igt@kms_psr@cursor_plane_move.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][30] ([fdo#109271]) +9 similar issues
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
 
   * igt@kms_psr@primary_mmap_gtt:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][32] ([fdo#109271] / [i915#1072]) +3 similar issues
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html
+    - fi-hsw-4770:        NOTRUN -> [SKIP][31] ([fdo#109271] / [i915#1072]) +3 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@kms_psr@primary_mmap_gtt.html
 
   * igt@runner@aborted:
-    - fi-kbl-x1275:       NOTRUN -> [FAIL][33] ([i915#2426] / [i915#3363])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-x1275/igt@runner@aborted.html
-    - fi-apl-guc:         NOTRUN -> [FAIL][34] ([i915#2426] / [i915#3363] / [i915#3364] / [i915#337])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@runner@aborted.html
-    - fi-ivb-3770:        NOTRUN -> [FAIL][35] ([fdo#109271] / [i915#2426])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-ivb-3770/igt@runner@aborted.html
-    - fi-kbl-7567u:       NOTRUN -> [FAIL][36] ([i915#3363])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-7567u/igt@runner@aborted.html
+    - fi-kbl-x1275:       NOTRUN -> [FAIL][32] ([i915#2426] / [i915#3363])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-x1275/igt@runner@aborted.html
+    - fi-apl-guc:         NOTRUN -> [FAIL][33] ([i915#2426] / [i915#3363] / [i915#3364] / [i915#337])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@runner@aborted.html
+    - fi-ivb-3770:        NOTRUN -> [FAIL][34] ([fdo#109271] / [i915#2426])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-ivb-3770/igt@runner@aborted.html
+    - fi-kbl-7567u:       NOTRUN -> [FAIL][35] ([i915#3363])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-7567u/igt@runner@aborted.html
 
   
 #### Possible fixes ####
 
   * igt@gem_exec_parallel@engines@userptr:
-    - fi-icl-y:           [DMESG-WARN][37] -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html
+    - fi-icl-y:           [DMESG-WARN][36] ([i915#3738]) -> [PASS][37]
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html
 
   * igt@gem_exec_suspend@basic-s3:
-    - fi-hsw-4770:        [DMESG-WARN][39] -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html
+    - fi-hsw-4770:        [DMESG-WARN][38] ([i915#3738]) -> [PASS][39]
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html
 
   * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [INCOMPLETE][41] ([i915#2782] / [i915#2940]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+    - fi-bsw-nick:        [INCOMPLETE][40] ([i915#2782] / [i915#2940]) -> [PASS][41]
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-nick/igt@i915_selftest@live@execlists.html
 
   * igt@kms_flip@basic-flip-vs-dpms@b-dp3:
-    - {fi-tgl-1115g4}:    [DMESG-WARN][43] -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html
+    - {fi-tgl-1115g4}:    [DMESG-WARN][42] ([i915#3738]) -> [PASS][43]
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html
 
   
 #### Warnings ####
 
   * igt@runner@aborted:
-    - fi-glk-dsi:         [FAIL][45] ([i915#2426] / [i915#3363] / [i915#3364] / [k.org#202321]) -> [FAIL][46] ([i915#2426] / [i915#3363] / [k.org#202321])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-glk-dsi/igt@runner@aborted.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-glk-dsi/igt@runner@aborted.html
-    - fi-bdw-5557u:       [FAIL][47] ([i915#2426]) -> [FAIL][48] ([i915#2426] / [i915#3462])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-bdw-5557u/igt@runner@aborted.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-cml-u2:          [FAIL][49] ([i915#2082] / [i915#2426] / [i915#3363]) -> [FAIL][50] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3364])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-cml-u2/igt@runner@aborted.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-cml-u2/igt@runner@aborted.html
+    - fi-glk-dsi:         [FAIL][44] ([i915#2426] / [i915#3363] / [i915#3364] / [k.org#202321]) -> [FAIL][45] ([i915#2426] / [i915#3363] / [k.org#202321])
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-glk-dsi/igt@runner@aborted.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-glk-dsi/igt@runner@aborted.html
+    - fi-bdw-5557u:       [FAIL][46] ([i915#2426]) -> [FAIL][47] ([i915#2426] / [i915#3462])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-bdw-5557u/igt@runner@aborted.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@runner@aborted.html
+    - fi-cml-u2:          [FAIL][48] ([i915#2082] / [i915#2426] / [i915#3363]) -> [FAIL][49] ([i915#2082] / [i915#2426] / [i915#3363] / [i915#3364])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-cml-u2/igt@runner@aborted.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-cml-u2/igt@runner@aborted.html
 
   
   {name}: This element is suppressed. This means it is ignored when computing
@@ -284,6 +269,7 @@ Known issues
   [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
   [i915#3690]: https://gitlab.freedesktop.org/drm/intel/issues/3690
   [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#3738]: https://gitlab.freedesktop.org/drm/intel/issues/3738
   [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
   [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
 
@@ -314,7 +300,7 @@ c4c07a1edab7 drm/i915/hdcp: Nuke Platform check for mst hdcp init
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/index.html
 
---===============1530001374893090713==
+--===============3660848690415144627==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -336,7 +322,7 @@ Content-Transfer-Encoding: 7bit
 <table>
 <tr><td><b>Series:</b></td><td>drm/i915/hdcp: Dsiplay13 HDCP support over MST (rev2)</td></tr>
 <tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92202/">https://patchwork.freedesktop.org/series/92202/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
     <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/index.html</a></td></tr>
 
@@ -345,9 +331,9 @@ Content-Transfer-Encoding: 7bit
 
     <h1>CI Bug Log - changes from CI_DRM_10305 -&gt; Patchwork_20530</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20530 absolutely need to be<br />
-  verified manually.</p>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with Patchwork_20530 need to be verified<br />
+  manually.</p>
 <p>If you think the reported changes have nothing to do with the changes<br />
   introduced in Patchwork_20530, please notify your bug team to allow them<br />
   to document this new failure mode, which will reduce false positives in CI.</p>
@@ -355,40 +341,10 @@ Content-Transfer-Encoding: 7bit
 <h2>Possible new issues</h2>
 <p>Here are the unknown changes that may have been introduced in Patchwork_20530:</p>
 <h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@vcs0:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_parallel@engines@basic:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@basic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
 <h4>Warnings</h4>
 <ul>
 <li>igt@i915_pm_rpm@module-reload:<ul>
 <li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:<ul>
-<li>{fi-tgl-1115g4}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-tgl-1115g4/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html">DMESG-WARN</a></li>
 </ul>
 </li>
 </ul>
@@ -439,6 +395,12 @@ Content-Transfer-Encoding: 7bit
 </ul>
 </li>
 <li>
+<p>igt@gem_exec_fence@basic-busy@vcs0:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-kbl-7567u/igt@gem_exec_fence@basic-busy@vcs0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3738">i915#3738</a>)</li>
+</ul>
+</li>
+<li>
 <p>igt@gem_exec_gttfill@basic:</p>
 <ul>
 <li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
@@ -447,7 +409,12 @@ Content-Transfer-Encoding: 7bit
 <li>
 <p>igt@gem_exec_parallel@engines@basic:</p>
 <ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@gem_exec_parallel@engines@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
+<li>
+<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3738">i915#3738</a>)</p>
+</li>
+<li>
+<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-apl-guc/igt@gem_exec_parallel@engines@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</p>
+</li>
 </ul>
 </li>
 <li>
@@ -477,6 +444,12 @@ Content-Transfer-Encoding: 7bit
 <p>igt@i915_pm_backlight@basic-brightness:</p>
 <ul>
 <li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3012">i915#3012</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-bdw-5557u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3738">i915#3738</a>)</li>
 </ul>
 </li>
 <li>
@@ -548,13 +521,13 @@ Content-Transfer-Encoding: 7bit
 <li>
 <p>igt@gem_exec_parallel@engines@userptr:</p>
 <ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html">PASS</a></li>
+<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3738">i915#3738</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-icl-y/igt@gem_exec_parallel@engines@userptr.html">PASS</a></li>
 </ul>
 </li>
 <li>
 <p>igt@gem_exec_suspend@basic-s3:</p>
 <ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3738">i915#3738</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-hsw-4770/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
 </ul>
 </li>
 <li>
@@ -566,7 +539,7 @@ Content-Transfer-Encoding: 7bit
 <li>
 <p>igt@kms_flip@basic-flip-vs-dpms@b-dp3:</p>
 <ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html">PASS</a></li>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10305/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3738">i915#3738</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20530/fi-tgl-1115g4/igt@kms_flip@basic-flip-vs-dpms@b-dp3.html">PASS</a></li>
 </ul>
 </li>
 </ul>
@@ -606,9 +579,9 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============1530001374893090713==--
+--===============3660848690415144627==--
 
---===============0222416593==
+--===============1045027520==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -619,4 +592,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0222416593==--
+--===============1045027520==--
