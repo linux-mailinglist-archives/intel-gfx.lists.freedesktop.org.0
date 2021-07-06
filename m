@@ -2,36 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 054D93BC268
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Jul 2021 19:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B583BC50E
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Jul 2021 05:24:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B115889AB2;
-	Mon,  5 Jul 2021 17:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5B4C89956;
+	Tue,  6 Jul 2021 03:24:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE5A089AB2
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Jul 2021 17:51:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10036"; a="230735844"
-X-IronPort-AV: E=Sophos;i="5.83,326,1616482800"; d="scan'208";a="230735844"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2021 10:51:35 -0700
-X-IronPort-AV: E=Sophos;i="5.83,326,1616482800"; d="scan'208";a="496185427"
-Received: from elang-mobl.ger.corp.intel.com (HELO localhost) ([10.252.59.138])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2021 10:51:34 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: venkata.sai.patnana@intel.com, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210705094201.26018-3-venkata.sai.patnana@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210705094201.26018-1-venkata.sai.patnana@intel.com>
- <20210705094201.26018-3-venkata.sai.patnana@intel.com>
-Date: Mon, 05 Jul 2021 20:51:31 +0300
-Message-ID: <87lf6k8x98.fsf@intel.com>
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com
+ [IPv6:2607:f8b0:4864:20::b2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDB8389956
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Jul 2021 03:24:34 +0000 (UTC)
+Received: by mail-yb1-xb2f.google.com with SMTP id b13so32137106ybk.4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 05 Jul 2021 20:24:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=Ji6lXGuoP7HameM3ebKucNbDqX+ADatotTR0zt54z5M=;
+ b=RbKIcIAfJlvIYtkm6NA0OQH5HMPDtPF0hG+avdCoLmgb3jhVyu5RxI0kBNEMURnfGp
+ 9J4tES3P3pBIAU46x9Xn6PpMwmMcZ9+VoLjXOmfFB0ZNLdCJ1MpKEaiTFgTDPbz0JB79
+ oVUUzKJAwlw524qb5Zdw1suFAcdRXnpBzwMauDh4g9dBH1L2ZF6lbVs2dGYc2mSQ+SWq
+ X3tw3FGHyBcwipBrC9j1LlXF2V9YaG+9JmzCl7XvWqAlqVXxUE/M21DHHbObPBlpeZQX
+ 10LUjArCc2tbkD1uM8EbDEcFG47XnBtRCLuTMHnnr3VvQvk+0BbB8BAx9nRjmVUFKmoL
+ aIfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=Ji6lXGuoP7HameM3ebKucNbDqX+ADatotTR0zt54z5M=;
+ b=W40eMSHrgxw+jHsbu7Z45bktqw/bqZNRPhU5siL8RhKTqUHpTNHYbNRJkXV2PzRSbn
+ AOOwfI5clONDQlHsNPgFh8kSQhynTmPesRQuk15hoy4YXDHcH/dhV4fVa22BkL0F+b26
+ uvm7i9qAFLBn8+zg+t4FAHX2PIhNDroHy4WT6HAn5ICyYmA1RwfbxsfKXdrTYwjLcgGz
+ rRD15A46KqoDnC6rvxlNrf4lYm5cHpSMl2JvYHMlsUnMmf/VdF5d7KzR4b/79rE8G25h
+ 5HnC7ESwfFSXcpg/am/3z3HzydJeOzevezs9dqRIXJcPYfdNX3tvi6TuKQMBJM5xaUQe
+ bI7A==
+X-Gm-Message-State: AOAM531et+z4pMmyE4iexl1CCggp2WRDVe6cRBxwD0GYSBzilrh0w6Jr
+ 0qGYBkc5I3ctSD1Uy1Byub2ATdmFjAhAZhO6G1Na0SoR
+X-Google-Smtp-Source: ABdhPJyuvAC7QTRbQMjS0ocJxJPGVQgs3oIukRcZpkNZuJqNlwogwCq3WsSEZoohhkXTj/sIXCKBI6jwYjN45ICBOuE=
+X-Received: by 2002:a25:8151:: with SMTP id j17mr22089530ybm.321.1625541873696; 
+ Mon, 05 Jul 2021 20:24:33 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 2/2] drm/i915/display/dsc: Set BPP in the
- kernel
+From: ri cha <hentaiwushuang@gmail.com>
+Date: Tue, 6 Jul 2021 11:24:19 +0800
+Message-ID: <CACCqD2LMGhOKYD92LUJ0=1bOk-qnEPtE29APV7PKpE6G4Kzc=g@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [Intel-gfx] Are there any plans to write SR-IOV drivers for Intel
+ XE graphics cards?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,93 +58,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0726351038=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 05 Jul 2021, venkata.sai.patnana@intel.com wrote:
-> From: Anusha Srivatsa <anusha.srivatsa@intel.com>
->
-> Set compress BPP in kernel while connector DP or eDP
->
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Navare Manasi D <manasi.d.navare@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Signed-off-by: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 27 ++++++++++++++++++-------
->  1 file changed, 20 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 5b52beaddada0..e756cc82a8d7d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1241,9 +1241,15 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  	pipe_config->lane_count = limits->max_lane_count;
->  
->  	if (intel_dp_is_edp(intel_dp)) {
-> -		pipe_config->dsc.compressed_bpp =
-> -			min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-> -			      pipe_config->pipe_bpp);
-> +		if (intel_dp->force_dsc_bpp) {
-> +			drm_dbg_kms(&dev_priv->drm,
-> +				    "DSC BPP forced to %d", intel_dp->force_dsc_bpp);
-> +			pipe_config->dsc.compressed_bpp = intel_dp->force_dsc_bpp;
-> +		} else {
-> +			pipe_config->dsc.compressed_bpp =
-> +				min_t(u16, drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-> +				      pipe_config->pipe_bpp);
-> +		}
->  		pipe_config->dsc.slice_count =
->  			drm_dp_dsc_sink_max_slice_count(intel_dp->dsc_dpcd,
->  							true);
-> @@ -1269,9 +1275,15 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  				    "Compressed BPP/Slice Count not supported\n");
->  			return -EINVAL;
->  		}
-> -		pipe_config->dsc.compressed_bpp = min_t(u16,
-> -							       dsc_max_output_bpp >> 4,
-> -							       pipe_config->pipe_bpp);
-> +		if (intel_dp->force_dsc_bpp) {
-> +			drm_dbg_kms(&dev_priv->drm,
-> +				    "DSC BPP forced to %d\n", intel_dp->force_dsc_bpp);
-> +			pipe_config->dsc.compressed_bpp = intel_dp->force_dsc_bpp;
-> +		} else {
-> +			pipe_config->dsc.compressed_bpp = min_t(u16,
-> +								dsc_max_output_bpp >> 4,
-> +								pipe_config->pipe_bpp);
-> +		}
->  		pipe_config->dsc.slice_count = dsc_dp_slice_count;
->  	}
+--===============0726351038==
+Content-Type: multipart/alternative; boundary="000000000000f303f505c66bf577"
 
-AFAICT you could just move the if (intel_dp->force_dsc_bpp) here, and
-overwrite pipe_config->dsc.compressed_bpp. The branches above are
-already too complicated and in need of refactoring, no need to duplicate
-the same code in two places there IMO.
+--000000000000f303f505c66bf577
+Content-Type: text/plain; charset="UTF-8"
 
->  	/*
-> @@ -1374,7 +1386,8 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
->  	 * Pipe joiner needs compression upto display12 due to BW limitation. DG2
->  	 * onwards pipe joiner can be enabled without compression.
->  	 */
-> -	drm_dbg_kms(&i915->drm, "Force DSC en = %d\n", intel_dp->force_dsc_en);
-> +	drm_dbg_kms(&i915->drm, "Force DSC en = %d\n Force DSC BPP = %d\n",
-> +		    intel_dp->force_dsc_en, intel_dp->force_dsc_bpp);
+The customer service informed me that the Intel XE graphics card supports
+SR-IOV, which is used to replace the removed GVT. But the SR-IOV driver of
+Intel XE graphics card does not appear in the Linux kernel. Is there any
+plan to write the SR-IOV driver?
 
-Unnecessary change. You already log the force DSC BPP once.
+--000000000000f303f505c66bf577
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-BR,
-Jani.
+<div dir=3D"auto">The customer service informed me that the Intel XE graphi=
+cs card supports SR-IOV, which is used to replace the removed GVT.  But the=
+ SR-IOV driver of Intel XE graphics card does not appear in the Linux kerne=
+l. Is there any plan to write the SR-IOV driver?</div>
 
+--000000000000f303f505c66bf577--
 
->  	if (ret || intel_dp->force_dsc_en || (DISPLAY_VER(i915) < 13 &&
->  					      pipe_config->bigjoiner)) {
->  		ret = intel_dp_dsc_compute_config(intel_dp, pipe_config,
+--===============0726351038==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0726351038==--
