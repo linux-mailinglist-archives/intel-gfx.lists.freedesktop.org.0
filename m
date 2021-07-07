@@ -1,60 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4123BE761
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 13:46:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234063BE7FE
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 14:31:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64B516E0F7;
-	Wed,  7 Jul 2021 11:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CAB56E134;
+	Wed,  7 Jul 2021 12:31:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64D4B6E0F7
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jul 2021 11:46:21 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- i2-20020a05600c3542b02902058529ea07so1479865wmq.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 07 Jul 2021 04:46:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Fn6YLWL5c68dBpWGXuGInnD6RFdKHUx3RvOBxeQkxRY=;
- b=Sm/AALoQBrdBodcdqGUe5hiMq1LKUKQX2aXdrXkAjY5Mo97GatUQv7IOpoHTDNgkMZ
- p7rF30HV/k5+/VtnoWWwCuYqdB1QLfe0Awm7TFBl5q713bNblrzKyXQcN61BlzpbpZXU
- 4ZFTsqWbHHCxc7BjDIIFUcBpBTTyneiLk3X60=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=Fn6YLWL5c68dBpWGXuGInnD6RFdKHUx3RvOBxeQkxRY=;
- b=nbHspVHkODURZb6wj/2hxrS8Bhzwpu18sK9EXnR4yX6C2hp0bfZxfxAunfIHgVgcdh
- TiYHpz0LS6sRgvS6mVVXMtnv7tSdDUV75gi6L2Mv8ehmPxpf+Vi+KQXyWnULywxvCL0z
- DjyXbFFNDvfOhpmKgP5LqMJIcAePG8pU75iQYUH2osyo86GUG42bVe9cSycva/1m/jZ1
- 0xZG9jjhqrAmy8iKUH9zhbGjyF2M1fgtWrVi+tQPKC+AFrUj68UBOzVlJa8OsUT3iP6B
- dJNt5JJPTC/pOt4JbFceNAJgTlXKp6Ov2uL94Of/UudVB91CvSWSPzOXNalrPape1/6i
- 4enQ==
-X-Gm-Message-State: AOAM532naCOmemBNwBjloRqn+7g8bMgDcFa6YEvkpstw7XXab3K9mQlR
- k/sTiOx2ogqPKpzgQgE0cIBaHg==
-X-Google-Smtp-Source: ABdhPJxuGSoBaWkbsLHDV5MPCVwS1KEjjjJqHaoNeAmmEwHOUHsGqpfEl+lSa1nsjHPDQgorYtXl7g==
-X-Received: by 2002:a7b:c092:: with SMTP id r18mr26671243wmh.181.1625658380031; 
- Wed, 07 Jul 2021 04:46:20 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id r13sm9694704wrt.38.2021.07.07.04.46.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 07 Jul 2021 04:46:19 -0700 (PDT)
-Date: Wed, 7 Jul 2021 13:46:17 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YOWUCZy354RR53i0@phenom.ffwll.local>
-References: <20210705135310.1502437-1-matthew.auld@intel.com>
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31EDF6E12C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jul 2021 12:31:39 +0000 (UTC)
+Received: from gallifrey.ext.pengutronix.de
+ ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <l.stach@pengutronix.de>)
+ id 1m16iH-000199-2F; Wed, 07 Jul 2021 14:31:37 +0200
+Message-ID: <fcb56f349052fda3997bfc90fd34537858051f44.camel@pengutronix.de>
+From: Lucas Stach <l.stach@pengutronix.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 07 Jul 2021 14:31:35 +0200
+In-Reply-To: <CAKMK7uFHnet_rTHmBqsVPNcdWaJ=7nwiS3zHisiGOjBHPt=Qmg@mail.gmail.com>
+References: <20210706101209.3034092-1-daniel.vetter@ffwll.ch>
+ <20210706101209.3034092-4-daniel.vetter@ffwll.ch>
+ <7ae23a2b1a4aec4e57881e0d88a7d046fe17bfda.camel@pengutronix.de>
+ <CAKMK7uFHnet_rTHmBqsVPNcdWaJ=7nwiS3zHisiGOjBHPt=Qmg@mail.gmail.com>
+User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210705135310.1502437-1-matthew.auld@intel.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/i915: use consistent CPU
- mappings for pin_map users
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/etnaviv: Don't break exclusive
+ fence ordering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,175 +49,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ The etnaviv authors <etnaviv@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 05, 2021 at 02:53:06PM +0100, Matthew Auld wrote:
-> For discrete, users of pin_map() needs to obey the same rules at the TTM
-> backend, where we map system only objects as WB, and everything else as
-> WC. The simplest for now is to just force the correct mapping type as
-> per the new rules for discrete.
-> =
+Am Mittwoch, dem 07.07.2021 um 13:37 +0200 schrieb Daniel Vetter:
+> On Wed, Jul 7, 2021 at 10:54 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > 
+> > Hi Daniel,
+> > 
+> > I'm feeling like I miss a ton of context here, so some maybe dumb
+> > questions/remarks below.
+> > 
+> > Am Dienstag, dem 06.07.2021 um 12:12 +0200 schrieb Daniel Vetter:
+> > > There's only one exclusive slot, and we must not break the ordering.
+> > > 
+> > > A better fix would be to us a dma_fence_chain or _array like e.g.
+> > > amdgpu now uses, but it probably makes sense to lift this into
+> > > dma-resv.c code as a proper concept, so that drivers don't have to
+> > > hack up their own solution each on their own. Hence go with the simple
+> > > fix for now.
+> > > 
+> > > Another option is the fence import ioctl from Jason:
+> > > 
+> > > https://lore.kernel.org/dri-devel/20210610210925.642582-7-jason@jlekstrand.net/
+> > 
+> > Sorry, but why is the fence import ioctl a alternative to the fix
+> > proposed in this patch?
+> 
+> It's not an alternative to fixing the issue here, it's an alternative
+> to trying to fix this here without adding more dependencies. Depends a
+> bit what exactly you want to do, I just linked this for the bigger
+> picture.
+> 
+I appreciate the bigger picture, it just makes it harder to follow what
+is going on in this exact commit when trying to match up the code
+change with the commit message. I would have expected this link to only
+be part of the cover letter explaining the series, instead of being
+part of the commit message.
 
-> Suggested-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Ramalingam C <ramalingam.c@intel.com>
+> 
+> > 
+> > > 
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > > Cc: Russell King <linux+etnaviv@armlinux.org.uk>
+> > > Cc: Christian Gmeiner <christian.gmeiner@gmail.com>
+> > > Cc: etnaviv@lists.freedesktop.org
+> > > ---
+> > >  drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c | 8 +++++---
+> > >  1 file changed, 5 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c b/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+> > > index 92478a50a580..5c4fed2b7c6a 100644
+> > > --- a/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+> > > +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+> > > @@ -178,18 +178,20 @@ static int submit_fence_sync(struct etnaviv_gem_submit *submit)
+> > >       for (i = 0; i < submit->nr_bos; i++) {
+> > >               struct etnaviv_gem_submit_bo *bo = &submit->bos[i];
+> > >               struct dma_resv *robj = bo->obj->base.resv;
+> > > +             bool write = bo->flags & ETNA_SUBMIT_BO_WRITE;
+> > > 
+> > > -             if (!(bo->flags & ETNA_SUBMIT_BO_WRITE)) {
+> > > +             if (!(write)) {
+> > 
+> > No parenthesis around the write needed.
+> > 
+> > >                       ret = dma_resv_reserve_shared(robj, 1);
+> > >                       if (ret)
+> > >                               return ret;
+> > >               }
+> > > 
+> > > -             if (submit->flags & ETNA_SUBMIT_NO_IMPLICIT)
+> > > +             /* exclusive fences must be ordered */
+> > 
+> > I feel like this comment isn't really helpful. It might tell you all
+> > you need to know if you just paged in all the context around dma_resv
+> > and the dependency graph, but it's not more than noise to me right now.
+> > 
+> > I guess the comment should answer the question against what the
+> > exclusive fence we are going to add needs to be ordered and why it
+> > isn't safe to skip implicit sync in that case.
+> 
+> The full-length comment is the doc patch, which is last in the series.
+> Essentially the rule is that your not allowed to drop fences on the
+> floor (which you do if you just set a new write fence and not take any
+> of the existing fences as dependencies), at least for shared buffers.
+> But since it's easier to be consistent I think it's best if we do this
+> just across the board.
+> 
+> Like the commit message explains, there's a few ways to fix this:
+> - just treat it as implicit synced
+> - chain the fences together - that way you don't sync, but also
+> there's no fence that's being lost. This is what amdgpu does, and also
+> what the new import ioctl does.
+> 
+> 2nd option is a lot more involved, and since all the dma-resv stuff is
+> a bit under discussion, I went with the most minimal thing possible.
 
-Huge thanks for doing all the kerneldoc work for uapi you're doing in this
-series, this should help a lot with umd conversions since we can just
-point them at the docs and tell them to pls update code.
+Thanks for the confirmation, that was as much as I figured from the doc
+patch as well. So with that in mind I would expect this comment to read
+something like this:
+"Adding a new exclusive fence drops all previous fences from the
+dma_resv. To avoid violating the signalling order we err on the side of
+over-synchronizing by waiting for the existing fences, even if
+userspace asked us to ignore them."
 
-Yes I know there's no kerneldoc here, but I didn't see the cover letter
-:-)
+Regards,
+Lucas
 
-Cheers, Daniel
-
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c | 34 ++++++++++++++++++++++
->  drivers/gpu/drm/i915/gem/i915_gem_object.h |  4 +++
->  drivers/gpu/drm/i915/gem/i915_gem_pages.c  | 22 ++++++++++++--
->  3 files changed, 58 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm=
-/i915/gem/i915_gem_object.c
-> index 547cc9dad90d..9da7b288b7ed 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -625,6 +625,40 @@ int i915_gem_object_migrate(struct drm_i915_gem_obje=
-ct *obj,
->  	return obj->ops->migrate(obj, mr);
->  }
->  =
-
-> +/**
-> + * i915_gem_object_placement_possible - Check whether the object can be
-> + * placed at certain memory type
-> + * @obj: Pointer to the object
-> + * @type: The memory type to check
-> + *
-> + * Return: True if the object can be placed in @type. False otherwise.
-> + */
-> +bool i915_gem_object_placement_possible(struct drm_i915_gem_object *obj,
-> +					enum intel_memory_type type)
-> +{
-> +	unsigned int i;
-> +
-> +	if (!obj->mm.n_placements) {
-> +		switch (type) {
-> +		case INTEL_MEMORY_LOCAL:
-> +			return i915_gem_object_has_iomem(obj);
-> +		case INTEL_MEMORY_SYSTEM:
-> +			return i915_gem_object_has_pages(obj);
-> +		default:
-> +			/* Ignore stolen for now */
-> +			GEM_BUG_ON(1);
-> +			return false;
-> +		}
-> +	}
-> +
-> +	for (i =3D 0; i < obj->mm.n_placements; i++) {
-> +		if (obj->mm.placements[i]->type =3D=3D type)
-> +			return true;
-> +	}
-> +
-> +	return false;
-> +}
-> +
->  void i915_gem_init__objects(struct drm_i915_private *i915)
->  {
->  	INIT_WORK(&i915->mm.free_work, __i915_gem_free_work);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm=
-/i915/gem/i915_gem_object.h
-> index d423d8cac4f2..8be4fadeee48 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_device.h>
->  =
-
->  #include "display/intel_frontbuffer.h"
-> +#include "intel_memory_region.h"
->  #include "i915_gem_object_types.h"
->  #include "i915_gem_gtt.h"
->  #include "i915_gem_ww.h"
-> @@ -607,6 +608,9 @@ bool i915_gem_object_can_migrate(struct drm_i915_gem_=
-object *obj,
->  int i915_gem_object_wait_migration(struct drm_i915_gem_object *obj,
->  				   unsigned int flags);
->  =
-
-> +bool i915_gem_object_placement_possible(struct drm_i915_gem_object *obj,
-> +					enum intel_memory_type type);
-> +
->  #ifdef CONFIG_MMU_NOTIFIER
->  static inline bool
->  i915_gem_object_is_userptr(struct drm_i915_gem_object *obj)
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/=
-i915/gem/i915_gem_pages.c
-> index f2f850e31b8e..810a157a18f8 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -321,8 +321,7 @@ static void *i915_gem_object_map_pfn(struct drm_i915_=
-gem_object *obj,
->  	dma_addr_t addr;
->  	void *vaddr;
->  =
-
-> -	if (type !=3D I915_MAP_WC)
-> -		return ERR_PTR(-ENODEV);
-> +	GEM_BUG_ON(type !=3D I915_MAP_WC);
->  =
-
->  	if (n_pfn > ARRAY_SIZE(stack)) {
->  		/* Too big for stack -- allocate temporary array instead */
-> @@ -374,6 +373,25 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_ob=
-ject *obj,
->  	}
->  	GEM_BUG_ON(!i915_gem_object_has_pages(obj));
->  =
-
-> +	/*
-> +	 * For discrete our CPU mappings needs to be consistent in order to
-> +	 * function correctly on !x86. When mapping things through TTM, we use
-> +	 * the same rules to determine the caching type.
-> +	 *
-> +	 * Internal users of lmem are already expected to get this right, so no
-> +	 * fudging needed there.
-> +	 */
-> +	if (i915_gem_object_placement_possible(obj, INTEL_MEMORY_LOCAL)) {
-> +		if (type !=3D I915_MAP_WC && !obj->mm.n_placements) {
-> +			ptr =3D ERR_PTR(-ENODEV);
-> +			goto err_unpin;
-> +		}
-> +
-> +		type =3D I915_MAP_WC;
-> +	} else if (IS_DGFX(to_i915(obj->base.dev))) {
-> +		type =3D I915_MAP_WB;
-> +	}
-> +
->  	ptr =3D page_unpack_bits(obj->mm.mapping, &has_type);
->  	if (ptr && has_type !=3D type) {
->  		if (pinned) {
-> -- =
-
-> 2.26.3
-> =
+> -Daniel
+> 
+> > 
+> > Regards,
+> > Lucas
+> > > +             if (submit->flags & ETNA_SUBMIT_NO_IMPLICIT && !write)
+> > >                       continue;
+> > > 
+> > >               ret = drm_sched_job_await_implicit(&submit->sched_job, &bo->obj->base,
+> > > -                                                bo->flags & ETNA_SUBMIT_BO_WRITE);
+> > > +                                                write);
+> > >               if (ret)
+> > >                       return ret;
+> > >       }
+> > 
+> > 
+> 
+> 
 
 
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
