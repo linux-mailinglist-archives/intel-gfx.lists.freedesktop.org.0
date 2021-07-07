@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3AF3BEB9E
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 17:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EAD3BEBB5
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 17:58:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20E316E0EF;
-	Wed,  7 Jul 2021 15:53:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0A386E0D7;
+	Wed,  7 Jul 2021 15:58:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EFAD6E043;
- Wed,  7 Jul 2021 15:53:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="206317064"
-X-IronPort-AV: E=Sophos;i="5.84,220,1620716400"; d="scan'208";a="206317064"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2021 08:53:23 -0700
-X-IronPort-AV: E=Sophos;i="5.84,220,1620716400"; d="scan'208";a="560311660"
-Received: from spendela-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.254.41.163])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2021 08:53:22 -0700
-Date: Wed, 7 Jul 2021 08:53:21 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20210707155321.7eocn3bwjz6j4www@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210701202427.1547543-1-matthew.d.roper@intel.com>
- <20210701202427.1547543-4-matthew.d.roper@intel.com>
- <CAKMK7uH4+WgjJ12uYd+3Jb+0fcUtPDhy3R2HLsMQhYF1uHcMow@mail.gmail.com>
- <20210706224827.lv6sjchfl735vzkf@ldmartin-desk2>
- <CAKMK7uEEkhDzTP=AWYqM1Do_qkmS_vUiefRqPkUnuFspWD=e_g@mail.gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4DB146E0D7;
+ Wed,  7 Jul 2021 15:58:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 45823A0169;
+ Wed,  7 Jul 2021 15:58:12 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uEEkhDzTP=AWYqM1Do_qkmS_vUiefRqPkUnuFspWD=e_g@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 03/53] drm/i915: Fork DG1 interrupt handler
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 07 Jul 2021 15:58:12 -0000
+Message-ID: <162567349225.30455.15300345239113807659@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210702204603.596-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210702204603.596-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/fbc=3A_Rework_CFB_stride/size_calculations_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,83 +38,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Paulo Zanoni <paulo.r.zanoni@intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0107625773=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 07, 2021 at 09:39:03AM +0200, Daniel Vetter wrote:
->On Wed, Jul 7, 2021 at 12:48 AM Lucas De Marchi
-><lucas.demarchi@intel.com> wrote:
->> On Fri, Jul 02, 2021 at 11:21:10AM +0200, Daniel Vetter wrote:
->> >On Thu, Jul 1, 2021 at 10:26 PM Matt Roper <matthew.d.roper@intel.com> wrote:
->> >>
->> >> From: Paulo Zanoni <paulo.r.zanoni@intel.com>
->> >>
->> >> The current interrupt handler is getting increasingly complicated and
->> >> Xe_HP changes will bring even more complexity.  Let's split off a new
->> >> interrupt handler starting with DG1 (i.e., when the master tile
->> >> interrupt register was added to the design) and use that as the basis
->> >> for the new Xe_HP changes.
->> >>
->> >> Now that we track the hardware IP's release number as well as the
->> >> version number, we can also properly define DG1 has version "12.10" and
->> >> replace the has_master_unit_irq feature flag with an IP version test.
->> >>
->> >> Bspec: 50875
->> >> Cc: Daniele Spurio Ceraolo <daniele.ceraolospurio@intel.com>
->> >> Cc: Stuart Summers <stuart.summers@intel.com>
->> >> Signed-off-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
->> >> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> >> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
->> >> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> >
->> >So I know DG1 upstream is decidedly non-smooth, but basic
->> >infrastructure we've had since forever ...
->> >
->> >Why was this prep work not upstreamed earlier with some benign commit
->> >message that doesn't mention DG2? There's zero DG2 stuff in here, this
->> >could have landed months/years ago even. Bringing this up since right
->> >this moment we have an internal chat about trees diverging a bit much.
->>
->> history isn't linear and this commit, the way it is now, didn't exist 1
->> month ago, so your timescale is misleading. has_master_unit_irq was what
->> we thought we would need to share as much code as possible.
->>
->> The biggest reason to fork the irq handler is actually not DG1 nor DG2,
->> but XEHPSDV and without those changes it would basically be a 95% copy
->> of the gen11 handler... for someone not looking to what is in the
->> pipeline, it can be a perfect argument to "consolidate these into a
->> single handler".
->
->At least in the past we've done tons of upstream refactor prep for
->exactly just these "prep for future platform" reasons. Everyone
->understand that's necessary and generally trusts us we're not just
->moving code for fun. But then 1-2 years ago we just kinda stopped
->pushing prep work to upstream because everyone got way too busy with
->other things, and now we're paying the price.
+--===============0107625773==
+Content-Type: multipart/alternative;
+ boundary="===============0784788661393736588=="
 
-we both know this is not the only reason and looking to the people in Cc
-here my impression is you're preaching to the choir. Because the people
-in Cc here either moved to other teams before there was something
-working related to irq to share or continued to do prep work in upstream
-as much as they can. 
+--===============0784788661393736588==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Lucas De Marchi
+== Series Details ==
 
->I mean even if the reason to fork it is a platform we can't even talk
->about, the fork patch should go upstream way ahead so that there's
->less patches in internal. Ideally platform enabling is zero code
->shuffling, 100% just plugging code into existing neat places.
->-Daniel
->-- 
->Daniel Vetter
->Software Engineer, Intel Corporation
->http://blog.ffwll.ch
+Series: drm/i915/fbc: Rework CFB stride/size calculations (rev2)
+URL   : https://patchwork.freedesktop.org/series/92163/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10309 -> Patchwork_20545
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20545 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#165])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - {fi-tgl-1115g4}:    [FAIL][3] ([i915#1888]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][5] ([i915#1372]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10309 -> Patchwork_20545
+
+  CI-20190529: 20190529
+  CI_DRM_10309: 6a5db0d08c45a29cebcfd39b53a15be664b9369c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6130: 390edfb703c346f06b0850db71bd3cc1342a3c02 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20545: 0185143ee826d212fa71169f94eb876a7d72b293 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0185143ee826 drm/i915/fbc: Allow higher compression limits on FBC1
+1091564c7004 drm/i915/fbc: Implement Wa_16011863758 for icl+
+29df4825d9dd drm/i915/fbc: Align FBC segments to 512B on glk+
+69bbbd1d9aae drm/i915/fbc: Rework cfb stride/size calculations
+270422b7c7b2 drm/i915/fbc: Polish the skl+ FBC stride override handling
+81c9ecdfa371 drm/i915/fbc: Move the "recompress on activate" to a central place
+dee78ea53693 drm/i915/fbc: Extract intel_fbc_update()
+0b6c118b349e drm/i915/fbc: Rewrite the FBC tiling check a bit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/index.html
+
+--===============0784788661393736588==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbc: Rework CFB stride/size calculations (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92163/">https://patchwork.freedesktop.org/series/92163/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10309 -&gt; Patchwork_20545</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20545 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20545/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10309 -&gt; Patchwork_20545</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10309: 6a5db0d08c45a29cebcfd39b53a15be664b9369c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6130: 390edfb703c346f06b0850db71bd3cc1342a3c02 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20545: 0185143ee826d212fa71169f94eb876a7d72b293 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>0185143ee826 drm/i915/fbc: Allow higher compression limits on FBC1<br />
+1091564c7004 drm/i915/fbc: Implement Wa_16011863758 for icl+<br />
+29df4825d9dd drm/i915/fbc: Align FBC segments to 512B on glk+<br />
+69bbbd1d9aae drm/i915/fbc: Rework cfb stride/size calculations<br />
+270422b7c7b2 drm/i915/fbc: Polish the skl+ FBC stride override handling<br />
+81c9ecdfa371 drm/i915/fbc: Move the "recompress on activate" to a central place<br />
+dee78ea53693 drm/i915/fbc: Extract intel_fbc_update()<br />
+0b6c118b349e drm/i915/fbc: Rewrite the FBC tiling check a bit</p>
+
+</body>
+</html>
+
+--===============0784788661393736588==--
+
+--===============0107625773==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0107625773==--
