@@ -1,36 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCEB33BE256
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 07:06:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 731C63BE258
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 07:06:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA8B6E820;
-	Wed,  7 Jul 2021 05:06:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FED56E81C;
+	Wed,  7 Jul 2021 05:06:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCCFC6E81D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60F56E81C
  for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jul 2021 05:06:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="196406276"
-X-IronPort-AV: E=Sophos;i="5.83,330,1616482800"; d="scan'208";a="196406276"
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="196406278"
+X-IronPort-AV: E=Sophos;i="5.83,330,1616482800"; d="scan'208";a="196406278"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2021 22:06:46 -0700
+ 06 Jul 2021 22:06:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.83,330,1616482800"; d="scan'208";a="457348292"
+X-IronPort-AV: E=Sophos;i="5.83,330,1616482800"; d="scan'208";a="457348298"
 Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by orsmga008.jf.intel.com with ESMTP; 06 Jul 2021 22:06:46 -0700
+ by orsmga008.jf.intel.com with ESMTP; 06 Jul 2021 22:06:47 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  6 Jul 2021 22:06:38 -0700
-Message-Id: <20210707050645.31043-2-anusha.srivatsa@intel.com>
+Date: Tue,  6 Jul 2021 22:06:39 -0700
+Message-Id: <20210707050645.31043-3-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210707050645.31043-1-anusha.srivatsa@intel.com>
 References: <20210707050645.31043-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/8] drm/i915/step:
- s/<platform>_revid_tbl/<platform>_revids
+Subject: [Intel-gfx] [PATCH 2/8] drm/i915/dmc: Use RUNTIME_INFO->step for DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,77 +47,104 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Simplify the stepping info array name.
+Instead of adding new table for every new platform, lets ues
+the stepping info from RUNTIME_INFO(dev_priv)->step
+This patch uses RUNTIME_INFO->step only for recent
+platforms.
 
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Patches that follow this will address this change for
+remaining platforms + missing platforms.
+
 Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/intel_step.c | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 61 +++++++++++++++++++++---
+ 1 file changed, 54 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-index ba9479a67521..93ccd42f2514 100644
---- a/drivers/gpu/drm/i915/intel_step.c
-+++ b/drivers/gpu/drm/i915/intel_step.c
-@@ -26,7 +26,7 @@ static const struct intel_step_info kbl_revids[] = {
- 	[7] = { .gt_step = STEP_G0, .display_step = STEP_C0 },
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index f8789d4543bf..a38720f25910 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -266,10 +266,12 @@ static const struct stepping_info icl_stepping_info[] = {
  };
  
--static const struct intel_step_info tgl_uy_revid_step_tbl[] = {
-+static const struct intel_step_info tgl_uy_revids[] = {
- 	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
- 	[1] = { .gt_step = STEP_B0, .display_step = STEP_C0 },
- 	[2] = { .gt_step = STEP_B1, .display_step = STEP_C0 },
-@@ -34,12 +34,12 @@ static const struct intel_step_info tgl_uy_revid_step_tbl[] = {
- };
+ static const struct stepping_info no_stepping_info = { '*', '*' };
++struct stepping_info *display_step;
  
- /* Same GT stepping between tgl_uy_revids and tgl_revids don't mean the same HW */
--static const struct intel_step_info tgl_revid_step_tbl[] = {
-+static const struct intel_step_info tgl_revids[] = {
- 	[0] = { .gt_step = STEP_A0, .display_step = STEP_B0 },
- 	[1] = { .gt_step = STEP_B0, .display_step = STEP_D0 },
- };
+ static const struct stepping_info *
+ intel_get_stepping_info(struct drm_i915_private *dev_priv)
+ {
++	struct intel_step_info step = RUNTIME_INFO(dev_priv)->step;
+ 	const struct stepping_info *si;
+ 	unsigned int size;
  
--static const struct intel_step_info adls_revid_step_tbl[] = {
-+static const struct intel_step_info adls_revids[] = {
- 	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
- 	[0x1] = { .gt_step = STEP_A0, .display_step = STEP_A2 },
- 	[0x4] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
-@@ -47,7 +47,7 @@ static const struct intel_step_info adls_revid_step_tbl[] = {
- 	[0xC] = { .gt_step = STEP_D0, .display_step = STEP_C0 },
- };
+@@ -282,15 +284,60 @@ intel_get_stepping_info(struct drm_i915_private *dev_priv)
+ 	} else if (IS_BROXTON(dev_priv)) {
+ 		size = ARRAY_SIZE(bxt_stepping_info);
+ 		si = bxt_stepping_info;
+-	} else {
+-		size = 0;
+-		si = NULL;
+ 	}
  
--static const struct intel_step_info adlp_revid_step_tbl[] = {
-+static const struct intel_step_info adlp_revids[] = {
- 	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
- 	[0x4] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
- 	[0x8] = { .gt_step = STEP_C0, .display_step = STEP_C0 },
-@@ -62,17 +62,17 @@ void intel_step_init(struct drm_i915_private *i915)
- 	struct intel_step_info step = {};
+-	if (INTEL_REVID(dev_priv) < size)
+-		return si + INTEL_REVID(dev_priv);
+-
+-	return &no_stepping_info;
++	if (IS_ICELAKE(dev_priv) || IS_SKYLAKE(dev_priv) || IS_BROXTON(dev_priv))
++		return INTEL_REVID(dev_priv) < size ? si + INTEL_REVID(dev_priv) : &no_stepping_info;
++
++	else {
++		switch (step.display_step) {
++		case STEP_A0:
++			display_step->stepping = 'A';
++			display_step->substepping = '0';
++			break;
++		case STEP_A2:
++			display_step->stepping = 'A';
++			display_step->substepping = '2';
++			break;
++		case STEP_B0:
++			display_step->stepping = 'B';
++			display_step->substepping = '0';
++			break;
++		case STEP_B1:
++			display_step->stepping = 'B';
++			display_step->substepping = '1';
++			break;
++		case STEP_C0:
++			display_step->stepping = 'C';
++			display_step->substepping = '0';
++			break;
++		case STEP_D0:
++			display_step->stepping = 'D';
++			display_step->substepping = '0';
++			break;
++		case STEP_D1:
++			display_step->stepping = 'D';
++			display_step->substepping = '1';
++			break;
++		case STEP_E0:
++			display_step->stepping = 'E';
++			display_step->substepping = '0';
++			break;
++		case STEP_F0:
++			display_step->stepping = 'F';
++			display_step->substepping = '0';
++			break;
++		case STEP_G0:
++			display_step->stepping = 'G';
++			display_step->substepping = '0';
++			break;
++		default:
++			display_step->stepping = '*';
++			display_step->substepping = '*';
++			break;
++		}
++	}
++	return display_step;
+ }
  
- 	if (IS_ALDERLAKE_P(i915)) {
--		revids = adlp_revid_step_tbl;
--		size = ARRAY_SIZE(adlp_revid_step_tbl);
-+		revids = adlp_revids;
-+		size = ARRAY_SIZE(adlp_revids);
- 	} else if (IS_ALDERLAKE_S(i915)) {
--		revids = adls_revid_step_tbl;
--		size = ARRAY_SIZE(adls_revid_step_tbl);
-+		revids = adls_revids;
-+		size = ARRAY_SIZE(adls_revids);
- 	} else if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
--		revids = tgl_uy_revid_step_tbl;
--		size = ARRAY_SIZE(tgl_uy_revid_step_tbl);
-+		revids = tgl_uy_revids;
-+		size = ARRAY_SIZE(tgl_uy_revids);
- 	} else if (IS_TIGERLAKE(i915)) {
--		revids = tgl_revid_step_tbl;
--		size = ARRAY_SIZE(tgl_revid_step_tbl);
-+		revids = tgl_revids;
-+		size = ARRAY_SIZE(tgl_revids);
- 	} else if (IS_KABYLAKE(i915)) {
- 		revids = kbl_revids;
- 		size = ARRAY_SIZE(kbl_revids);
+ static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
 -- 
 2.32.0
 
