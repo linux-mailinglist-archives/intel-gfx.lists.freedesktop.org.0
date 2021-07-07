@@ -2,39 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C753BF057
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 21:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 637E33BF05F
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 21:39:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33EE46E1C0;
-	Wed,  7 Jul 2021 19:36:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0136E1BC;
+	Wed,  7 Jul 2021 19:39:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8E406E1C0
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jul 2021 19:36:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="206358769"
-X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="206358769"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2021 12:36:50 -0700
-X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="498060619"
-Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.215.125.185])
- ([10.215.125.185])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2021 12:36:48 -0700
-To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210707095253.23848-1-uma.shankar@intel.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <9c6c151e-3e52-863e-f033-da1230dfc1e4@intel.com>
-Date: Thu, 8 Jul 2021 01:06:31 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B4F66E1BC;
+ Wed,  7 Jul 2021 19:39:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="207549364"
+X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="207549364"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 12:39:30 -0700
+X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="428054293"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 12:39:29 -0700
+Date: Wed, 7 Jul 2021 12:39:28 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20210707193928.GQ951094@mdroper-desk1.amr.corp.intel.com>
+References: <20210707181325.2130821-1-lucas.demarchi@intel.com>
+ <20210707181325.2130821-3-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210707095253.23848-1-uma.shankar@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/xelpd: Fix incorrect color
- capability reporting
+Content-Disposition: inline
+In-Reply-To: <20210707181325.2130821-3-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: finish INTEL_GEN and friends
+ conversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,41 +45,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Swati Sharma <swati2.sharma@intel.com>
+On Wed, Jul 07, 2021 at 11:13:24AM -0700, Lucas De Marchi wrote:
+> Commit 161058fb899e ("drm/i915: Add remaining conversions to GRAPHICS_VER")
+> did the last conversions to the new macros for version checks, but some
+> some changes sneaked in to use INTEL_GEN. Remove the last users so
+> we can remove the macros.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-On 07-Jul-21 3:22 PM, Uma Shankar wrote:
-> On XELPD platforms, color management support is not yet enabled.
-> Fix wrongly reporting the same through platform info, which was
-> resulting in incorrect initialization and usage.
-> 
-> Cc: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+I think the third change here is just one we somehow missed during the
+previous conversion rather than a new use, right?
+
 > ---
->   drivers/gpu/drm/i915/i915_pci.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 3 ++-
+>  drivers/gpu/drm/i915/i915_debugfs.c                  | 2 +-
+>  drivers/gpu/drm/i915/intel_uncore.c                  | 2 +-
+>  3 files changed, 4 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index a7bfdd827bc8..8ff1990528d1 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -947,7 +947,7 @@ static const struct intel_device_info adl_s_info = {
->   
->   #define XE_LPD_FEATURES \
->   	.abox_mask = GENMASK(1, 0),						\
-> -	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 },		\
-> +	.color = { .degamma_lut_size = 0, .gamma_lut_size = 0 },		\
->   	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |		\
->   		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
->   	.dbuf.size = 4096,							\
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index af9e58619667..d5af5708c9da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -544,7 +544,8 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
+>  
+>  	seq_printf(m, "fw loaded: %s\n", yesno(intel_dmc_has_payload(dev_priv)));
+>  	seq_printf(m, "path: %s\n", dmc->fw_path);
+> -	seq_printf(m, "Pipe A fw support: %s\n", yesno(INTEL_GEN(dev_priv) >= 12));
+> +	seq_printf(m, "Pipe A fw support: %s\n",
+> +		   yesno(GRAPHICS_VER(dev_priv) >= 12));
+>  	seq_printf(m, "Pipe A fw loaded: %s\n", yesno(dmc->dmc_info[DMC_FW_PIPEA].payload));
+>  	seq_printf(m, "Pipe B fw support: %s\n", yesno(IS_ALDERLAKE_P(dev_priv)));
+>  	seq_printf(m, "Pipe B fw loaded: %s\n", yesno(dmc->dmc_info[DMC_FW_PIPEB].payload));
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index cc745751ac53..0529576f069c 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -636,7 +636,7 @@ static int i915_swizzle_info(struct seq_file *m, void *data)
+>  			   intel_uncore_read16(uncore, C0DRB3_BW));
+>  		seq_printf(m, "C1DRB3 = 0x%04x\n",
+>  			   intel_uncore_read16(uncore, C1DRB3_BW));
+> -	} else if (INTEL_GEN(dev_priv) >= 6) {
+> +	} else if (GRAPHICS_VER(dev_priv) >= 6) {
+>  		seq_printf(m, "MAD_DIMM_C0 = 0x%08x\n",
+>  			   intel_uncore_read(uncore, MAD_DIMM_C0));
+>  		seq_printf(m, "MAD_DIMM_C1 = 0x%08x\n",
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index d067524f9162..ee1c6fbc3d97 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1929,7 +1929,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
+>  		return -ENODEV;
+>  	}
+>  
+> -	if (INTEL_GEN(i915) > 5 && !intel_vgpu_active(i915))
+> +	if (GRAPHICS_VER(i915) > 5 && !intel_vgpu_active(i915))
+>  		uncore->flags |= UNCORE_HAS_FORCEWAKE;
+>  
+>  	if (!intel_uncore_has_forcewake(uncore)) {
+> -- 
+> 2.31.1
 > 
 
 -- 
-~Swati Sharma
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
