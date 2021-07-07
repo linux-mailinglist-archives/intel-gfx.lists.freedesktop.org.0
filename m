@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4EA63BF056
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 21:36:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C753BF057
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 21:36:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1BFF6E1BC;
-	Wed,  7 Jul 2021 19:36:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33EE46E1C0;
+	Wed,  7 Jul 2021 19:36:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BE376E1BB;
- Wed,  7 Jul 2021 19:36:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="270488042"
-X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="270488042"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2021 12:36:28 -0700
-X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="645489258"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2021 12:36:28 -0700
-Date: Wed, 7 Jul 2021 12:36:27 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20210707193627.GP951094@mdroper-desk1.amr.corp.intel.com>
-References: <20210707181325.2130821-1-lucas.demarchi@intel.com>
- <20210707181325.2130821-2-lucas.demarchi@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8E406E1C0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jul 2021 19:36:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="206358769"
+X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="206358769"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 12:36:50 -0700
+X-IronPort-AV: E=Sophos;i="5.84,221,1620716400"; d="scan'208";a="498060619"
+Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.215.125.185])
+ ([10.215.125.185])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 12:36:48 -0700
+To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210707095253.23848-1-uma.shankar@intel.com>
+From: "Sharma, Swati2" <swati2.sharma@intel.com>
+Organization: Intel
+Message-ID: <9c6c151e-3e52-863e-f033-da1230dfc1e4@intel.com>
+Date: Thu, 8 Jul 2021 01:06:31 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210707181325.2130821-2-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: finish INTEL_GEN and
- friends conversion
+In-Reply-To: <20210707095253.23848-1-uma.shankar@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/xelpd: Fix incorrect color
+ capability reporting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,113 +47,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 07, 2021 at 11:13:23AM -0700, Lucas De Marchi wrote:
-> Commit c816723b6b8a ("drm/i915/gt: replace IS_GEN and friends with
-> GRAPHICS_VER") converted INTEL_GEN and friends to the new version check
-> macros.  Meanwhile, some changes sneaked in to use INTEL_GEN. Remove the
-> last users so we can remove the macros.
+Reviewed-by: Swati Sharma <swati2.sharma@intel.com>
+
+On 07-Jul-21 3:22 PM, Uma Shankar wrote:
+> On XELPD platforms, color management support is not yet enabled.
+> Fix wrongly reporting the same through platform info, which was
+> resulting in incorrect initialization and usage.
 > 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
+> Cc: Swati Sharma <swati2.sharma@intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_migrate.c | 20 ++++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
+>   drivers/gpu/drm/i915/i915_pci.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> index 23c59ce66cee..14afa1974ea5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-> @@ -277,7 +277,7 @@ static int emit_pte(struct i915_request *rq,
->  	u32 *hdr, *cs;
->  	int pkt;
->  
-> -	GEM_BUG_ON(INTEL_GEN(rq->engine->i915) < 8);
-> +	GEM_BUG_ON(GRAPHICS_VER(rq->engine->i915) < 8);
->  
->  	/* Compute the page directory offset for the target address range */
->  	offset += (u64)rq->engine->instance << 32;
-> @@ -347,11 +347,11 @@ static int emit_pte(struct i915_request *rq,
->  	return total;
->  }
->  
-> -static bool wa_1209644611_applies(int gen, u32 size)
-> +static bool wa_1209644611_applies(int ver, u32 size)
->  {
->  	u32 height = size >> PAGE_SHIFT;
->  
-> -	if (gen != 11)
-> +	if (ver != 11)
->  		return false;
->  
->  	return height % 4 == 3 && height <= 8;
-> @@ -359,15 +359,15 @@ static bool wa_1209644611_applies(int gen, u32 size)
->  
->  static int emit_copy(struct i915_request *rq, int size)
->  {
-> -	const int gen = INTEL_GEN(rq->engine->i915);
-> +	const int ver = GRAPHICS_VER(rq->engine->i915);
->  	u32 instance = rq->engine->instance;
->  	u32 *cs;
->  
-> -	cs = intel_ring_begin(rq, gen >= 8 ? 10 : 6);
-> +	cs = intel_ring_begin(rq, ver >= 8 ? 10 : 6);
->  	if (IS_ERR(cs))
->  		return PTR_ERR(cs);
->  
-> -	if (gen >= 9 && !wa_1209644611_applies(gen, size)) {
-> +	if (ver >= 9 && !wa_1209644611_applies(ver, size)) {
->  		*cs++ = GEN9_XY_FAST_COPY_BLT_CMD | (10 - 2);
->  		*cs++ = BLT_DEPTH_32 | PAGE_SIZE;
->  		*cs++ = 0;
-> @@ -378,7 +378,7 @@ static int emit_copy(struct i915_request *rq, int size)
->  		*cs++ = PAGE_SIZE;
->  		*cs++ = 0; /* src offset */
->  		*cs++ = instance;
-> -	} else if (gen >= 8) {
-> +	} else if (ver >= 8) {
->  		*cs++ = XY_SRC_COPY_BLT_CMD | BLT_WRITE_RGBA | (10 - 2);
->  		*cs++ = BLT_DEPTH_32 | BLT_ROP_SRC_COPY | PAGE_SIZE;
->  		*cs++ = 0;
-> @@ -491,17 +491,17 @@ intel_context_migrate_copy(struct intel_context *ce,
->  
->  static int emit_clear(struct i915_request *rq, int size, u32 value)
->  {
-> -	const int gen = INTEL_GEN(rq->engine->i915);
-> +	const int ver = GRAPHICS_VER(rq->engine->i915);
->  	u32 instance = rq->engine->instance;
->  	u32 *cs;
->  
->  	GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
->  
-> -	cs = intel_ring_begin(rq, gen >= 8 ? 8 : 6);
-> +	cs = intel_ring_begin(rq, ver >= 8 ? 8 : 6);
->  	if (IS_ERR(cs))
->  		return PTR_ERR(cs);
->  
-> -	if (gen >= 8) {
-> +	if (ver >= 8) {
->  		*cs++ = XY_COLOR_BLT_CMD | BLT_WRITE_RGBA | (7 - 2);
->  		*cs++ = BLT_DEPTH_32 | BLT_ROP_COLOR_COPY | PAGE_SIZE;
->  		*cs++ = 0;
-> -- 
-> 2.31.1
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index a7bfdd827bc8..8ff1990528d1 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -947,7 +947,7 @@ static const struct intel_device_info adl_s_info = {
+>   
+>   #define XE_LPD_FEATURES \
+>   	.abox_mask = GENMASK(1, 0),						\
+> -	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 },		\
+> +	.color = { .degamma_lut_size = 0, .gamma_lut_size = 0 },		\
+>   	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |		\
+>   		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
+>   	.dbuf.size = 4096,							\
 > 
 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+~Swati Sharma
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
