@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7B83BE4CA
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 10:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E273BE545
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Jul 2021 11:09:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B40D89FDE;
-	Wed,  7 Jul 2021 08:54:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 901DA6E85B;
+	Wed,  7 Jul 2021 09:09:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEE198921C
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jul 2021 08:54:38 +0000 (UTC)
-Received: from gallifrey.ext.pengutronix.de
- ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <l.stach@pengutronix.de>)
- id 1m13KG-0000x8-Oh; Wed, 07 Jul 2021 10:54:36 +0200
-Message-ID: <7ae23a2b1a4aec4e57881e0d88a7d046fe17bfda.camel@pengutronix.de>
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
- <dri-devel@lists.freedesktop.org>
-Date: Wed, 07 Jul 2021 10:54:33 +0200
-In-Reply-To: <20210706101209.3034092-4-daniel.vetter@ffwll.ch>
-References: <20210706101209.3034092-1-daniel.vetter@ffwll.ch>
- <20210706101209.3034092-4-daniel.vetter@ffwll.ch>
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 646606E85D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Jul 2021 09:09:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="209310380"
+X-IronPort-AV: E=Sophos;i="5.83,331,1616482800"; d="scan'208";a="209310380"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 02:09:00 -0700
+X-IronPort-AV: E=Sophos;i="5.83,331,1616482800"; d="scan'208";a="486741502"
+Received: from rvanakke-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.40.173])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 02:08:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <875yxm8r3b.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210707050645.31043-1-anusha.srivatsa@intel.com>
+ <20210707050645.31043-3-anusha.srivatsa@intel.com> <875yxm8r3b.fsf@intel.com>
+Date: Wed, 07 Jul 2021 12:08:55 +0300
+Message-ID: <87v95m7aoo.fsf@intel.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/etnaviv: Don't break exclusive
- fence ordering
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915/dmc: Use RUNTIME_INFO->step
+ for DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,90 +46,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Christian Gmeiner <christian.gmeiner@gmail.com>, etnaviv@lists.freedesktop.org,
- Russell King <linux+etnaviv@armlinux.org.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+On Wed, 07 Jul 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Tue, 06 Jul 2021, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+>> Instead of adding new table for every new platform, lets ues
+>> the stepping info from RUNTIME_INFO(dev_priv)->step
+>> This patch uses RUNTIME_INFO->step only for recent
+>> platforms.
+>>
+>> Patches that follow this will address this change for
+>> remaining platforms + missing platforms.
+>>
+>> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dmc.c | 61 +++++++++++++++++++++---
+>>  1 file changed, 54 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> index f8789d4543bf..a38720f25910 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> @@ -266,10 +266,12 @@ static const struct stepping_info icl_stepping_info[] = {
+>>  };
+>>  
+>>  static const struct stepping_info no_stepping_info = { '*', '*' };
+>> +struct stepping_info *display_step;
+>
+> We can't have driver specific mutable data for this. Almost everything
+> has to be either device specific or const. The above would be shared
+> between all devices.
 
-I'm feeling like I miss a ton of context here, so some maybe dumb
-questions/remarks below.
+I think the solution to your problem is two-fold.
 
-Am Dienstag, dem 06.07.2021 um 12:12 +0200 schrieb Daniel Vetter:
-> There's only one exclusive slot, and we must not break the ordering.
-> 
-> A better fix would be to us a dma_fence_chain or _array like e.g.
-> amdgpu now uses, but it probably makes sense to lift this into
-> dma-resv.c code as a proper concept, so that drivers don't have to
-> hack up their own solution each on their own. Hence go with the simple
-> fix for now.
-> 
-> Another option is the fence import ioctl from Jason:
-> 
-> https://lore.kernel.org/dri-devel/20210610210925.642582-7-jason@jlekstrand.net/
+First, I think you should add a *generic* function in intel_step.c to
+get the chars or a string for an enum intel_step. Maybe a string,
+because it'll also be useful for logging?
 
-Sorry, but why is the fence import ioctl a alternative to the fix
-proposed in this patch?
+const char *intel_step_name(enum intel_step step)
+{
+	switch (step) {
+        case STEP_A0:
+		return "A0";
+	case STEP_B0;
+                /* etc ... */
+	default:
+		return "??";
+        }
+}
 
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Russell King <linux+etnaviv@armlinux.org.uk>
-> Cc: Christian Gmeiner <christian.gmeiner@gmail.com>
-> Cc: etnaviv@lists.freedesktop.org
-> ---
->  drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c b/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
-> index 92478a50a580..5c4fed2b7c6a 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
-> @@ -178,18 +178,20 @@ static int submit_fence_sync(struct etnaviv_gem_submit *submit)
->  	for (i = 0; i < submit->nr_bos; i++) {
->  		struct etnaviv_gem_submit_bo *bo = &submit->bos[i];
->  		struct dma_resv *robj = bo->obj->base.resv;
-> +		bool write = bo->flags & ETNA_SUBMIT_BO_WRITE;
->  
-> -		if (!(bo->flags & ETNA_SUBMIT_BO_WRITE)) {
-> +		if (!(write)) {
+Second, I think you should modify intel_get_stepping_info() to let you
+pass in the struct stepping_info pointer to fill in. Then you can have a
+local struct stepping_info si variable in parse_dmc_fw(). We don't need
+to store the data anywhere, it's only used once.
 
-No parenthesis around the write needed.
+static void intel_get_stepping_info(struct drm_i915_private *dev_priv,
+       struct stepping_info *si)
 
->  			ret = dma_resv_reserve_shared(robj, 1);
->  			if (ret)
->  				return ret;
->  		}
->  
-> -		if (submit->flags & ETNA_SUBMIT_NO_IMPLICIT)
-> +		/* exclusive fences must be ordered */
+There you'd do something like:
 
-I feel like this comment isn't really helpful. It might tell you all
-you need to know if you just paged in all the context around dma_resv
-and the dependency graph, but it's not more than noise to me right now.
+	const char *step_name = intel_step_name(step);
 
-I guess the comment should answer the question against what the
-exclusive fence we are going to add needs to be ordered and why it
-isn't safe to skip implicit sync in that case.
+	si->stepping = step_name[0];
+        si->stepping = step_name[1];
 
-Regards,
-Lucas 
-> +		if (submit->flags & ETNA_SUBMIT_NO_IMPLICIT && !write)
->  			continue;
->  
->  		ret = drm_sched_job_await_implicit(&submit->sched_job, &bo->obj->base,
-> -						   bo->flags & ETNA_SUBMIT_BO_WRITE);
-> +						   write);
->  		if (ret)
->  			return ret;
->  	}
+And potentially handle the ?? case separately. Something along those
+lines.
+
+BR,
+Jani.
 
 
+>
+> BR,
+> Jani.
+>
+>>  
+>>  static const struct stepping_info *
+>>  intel_get_stepping_info(struct drm_i915_private *dev_priv)
+>>  {
+>> +	struct intel_step_info step = RUNTIME_INFO(dev_priv)->step;
+>>  	const struct stepping_info *si;
+>>  	unsigned int size;
+>>  
+>> @@ -282,15 +284,60 @@ intel_get_stepping_info(struct drm_i915_private *dev_priv)
+>>  	} else if (IS_BROXTON(dev_priv)) {
+>>  		size = ARRAY_SIZE(bxt_stepping_info);
+>>  		si = bxt_stepping_info;
+>> -	} else {
+>> -		size = 0;
+>> -		si = NULL;
+>>  	}
+>>  
+>> -	if (INTEL_REVID(dev_priv) < size)
+>> -		return si + INTEL_REVID(dev_priv);
+>> -
+>> -	return &no_stepping_info;
+>> +	if (IS_ICELAKE(dev_priv) || IS_SKYLAKE(dev_priv) || IS_BROXTON(dev_priv))
+>> +		return INTEL_REVID(dev_priv) < size ? si + INTEL_REVID(dev_priv) : &no_stepping_info;
+>> +
+>> +	else {
+>> +		switch (step.display_step) {
+>> +		case STEP_A0:
+>> +			display_step->stepping = 'A';
+>> +			display_step->substepping = '0';
+>> +			break;
+>> +		case STEP_A2:
+>> +			display_step->stepping = 'A';
+>> +			display_step->substepping = '2';
+>> +			break;
+>> +		case STEP_B0:
+>> +			display_step->stepping = 'B';
+>> +			display_step->substepping = '0';
+>> +			break;
+>> +		case STEP_B1:
+>> +			display_step->stepping = 'B';
+>> +			display_step->substepping = '1';
+>> +			break;
+>> +		case STEP_C0:
+>> +			display_step->stepping = 'C';
+>> +			display_step->substepping = '0';
+>> +			break;
+>> +		case STEP_D0:
+>> +			display_step->stepping = 'D';
+>> +			display_step->substepping = '0';
+>> +			break;
+>> +		case STEP_D1:
+>> +			display_step->stepping = 'D';
+>> +			display_step->substepping = '1';
+>> +			break;
+>> +		case STEP_E0:
+>> +			display_step->stepping = 'E';
+>> +			display_step->substepping = '0';
+>> +			break;
+>> +		case STEP_F0:
+>> +			display_step->stepping = 'F';
+>> +			display_step->substepping = '0';
+>> +			break;
+>> +		case STEP_G0:
+>> +			display_step->stepping = 'G';
+>> +			display_step->substepping = '0';
+>> +			break;
+>> +		default:
+>> +			display_step->stepping = '*';
+>> +			display_step->substepping = '*';
+>> +			break;
+>> +		}
+>> +	}
+>> +	return display_step;
+>>  }
+>>  
+>>  static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
