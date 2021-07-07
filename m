@@ -1,31 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3693BF243
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 00:51:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04CD53BF24B
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 01:07:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A5716E1E0;
-	Wed,  7 Jul 2021 22:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 237696E1E0;
+	Wed,  7 Jul 2021 23:07:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1A97B6E1E0;
- Wed,  7 Jul 2021 22:51:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 12B0EA00C9;
- Wed,  7 Jul 2021 22:51:02 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D90266E1E0;
+ Wed,  7 Jul 2021 23:07:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="295043456"
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="295043456"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 16:07:52 -0700
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="645557192"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2021 16:07:52 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Wed,  7 Jul 2021 16:25:43 -0700
+Message-Id: <20210707232543.14088-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20210706222010.101522-1-matthew.brost@intel.com>
+References: <20210706222010.101522-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anisse Astier" <anisse@astier.eu>
-Date: Wed, 07 Jul 2021 22:51:02 -0000
-Message-ID: <162569826204.30454.15935635950269247539@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210707220212.4808-1-anisse@astier.eu>
-In-Reply-To: <20210707220212.4808-1-anisse@astier.eu>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgR1BE?=
- =?utf-8?q?_Win_Max_display_fixes_=28rev3=29?=
+Subject: [Intel-gfx] [PATCH 06/7] drm/i915/guc: Optimize CTB writes and reads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,194 +43,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2146746831=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2146746831==
-Content-Type: multipart/alternative;
- boundary="===============3878968954768509226=="
+CTB writes are now in the path of command submission and should be
+optimized for performance. Rather than reading CTB descriptor values
+(e.g. head, tail) which could result in accesses across the PCIe bus,
+store shadow local copies and only read/write the descriptor values when
+absolutely necessary. Also store the current space in the each channel
+locally.
 
---===============3878968954768509226==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v2:
+ (Michal)
+  - Add additional sanity checks for head / tail pointers
+  - Use GUC_CTB_HDR_LEN rather than magic 1
+v3:
+ (Michal / John H)
+  - Drop redundant check of head value
+v4:
+ (John H)
+  - Drop redundant checks of tail / head values
+v5:
+ (Michal)
+  - Address more nits
 
-== Series Details ==
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 92 +++++++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  6 ++
+ 2 files changed, 66 insertions(+), 32 deletions(-)
 
-Series: GPD Win Max display fixes (rev3)
-URL   : https://patchwork.freedesktop.org/series/90483/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10309 -> Patchwork_20547
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20547 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - {fi-tgl-1115g4}:    [FAIL][1] ([i915#1888]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][3] ([i915#1372]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-kbl-x1275:       [FAIL][5] ([i915#2722] / [i915#3363]) -> [FAIL][6] ([i915#2426] / [i915#3363])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-x1275/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/fi-kbl-x1275/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10309 -> Patchwork_20547
-
-  CI-20190529: 20190529
-  CI_DRM_10309: 6a5db0d08c45a29cebcfd39b53a15be664b9369c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6130: 390edfb703c346f06b0850db71bd3cc1342a3c02 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20547: 148b4e2e6672af19260618b464e65829e6acad92 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-148b4e2e6672 drm: Add orientation quirk for GPD Win Max
-521e4b71e1c8 drm/i915/opregion: add support for mailbox #5 EDID
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/index.html
-
---===============3878968954768509226==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>GPD Win Max display fixes (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90483/">https://patchwork.freedesktop.org/series/90483/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10309 -&gt; Patchwork_20547</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20547 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10309/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20547/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10309 -&gt; Patchwork_20547</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10309: 6a5db0d08c45a29cebcfd39b53a15be664b9369c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6130: 390edfb703c346f06b0850db71bd3cc1342a3c02 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20547: 148b4e2e6672af19260618b464e65829e6acad92 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>148b4e2e6672 drm: Add orientation quirk for GPD Win Max<br />
-521e4b71e1c8 drm/i915/opregion: add support for mailbox #5 EDID</p>
-
-</body>
-</html>
-
---===============3878968954768509226==--
-
---===============2146746831==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+index db3e85b89573..d552d3016779 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+@@ -130,6 +130,10 @@ static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
+ static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
+ {
+ 	ctb->broken = false;
++	ctb->tail = 0;
++	ctb->head = 0;
++	ctb->space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size);
++
+ 	guc_ct_buffer_desc_init(ctb->desc);
+ }
+ 
+@@ -383,10 +387,8 @@ static int ct_write(struct intel_guc_ct *ct,
+ {
+ 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+ 	struct guc_ct_buffer_desc *desc = ctb->desc;
+-	u32 head = desc->head;
+-	u32 tail = desc->tail;
++	u32 tail = ctb->tail;
+ 	u32 size = ctb->size;
+-	u32 used;
+ 	u32 header;
+ 	u32 hxg;
+ 	u32 type;
+@@ -396,25 +398,22 @@ static int ct_write(struct intel_guc_ct *ct,
+ 	if (unlikely(desc->status))
+ 		goto corrupted;
+ 
+-	if (unlikely((tail | head) >= size)) {
+-		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+-			 head, tail, size);
++	GEM_BUG_ON(tail > size);
++
++#ifdef CONFIG_DRM_I915_DEBUG_GUC
++	if (unlikely(tail != READ_ONCE(desc->tail))) {
++		CT_ERROR(ct, "Tail was modified %u != %u\n",
++			 desc->tail, tail);
++		desc->status |= GUC_CTB_STATUS_MISMATCH;
++		goto corrupted;
++	}
++	if (unlikely(desc->head >= size)) {
++		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
++			 desc->head, size);
+ 		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+ 		goto corrupted;
+ 	}
+-
+-	/*
+-	 * tail == head condition indicates empty. GuC FW does not support
+-	 * using up the entire buffer to get tail == head meaning full.
+-	 */
+-	if (tail < head)
+-		used = (size - head) + tail;
+-	else
+-		used = tail - head;
+-
+-	/* make sure there is a space including extra dw for the header */
+-	if (unlikely(used + len + GUC_CTB_HDR_LEN >= size))
+-		return -ENOSPC;
++#endif
+ 
+ 	/*
+ 	 * dw0: CT header (including fence)
+@@ -452,6 +451,10 @@ static int ct_write(struct intel_guc_ct *ct,
+ 	 */
+ 	write_barrier(ct);
+ 
++	/* update local copies */
++	ctb->tail = tail;
++	ctb->space -= len + GUC_CTB_HDR_LEN;
++
+ 	/* now update descriptor */
+ 	WRITE_ONCE(desc->tail, tail);
+ 
+@@ -469,7 +472,7 @@ static int ct_write(struct intel_guc_ct *ct,
+  * @req:	pointer to pending request
+  * @status:	placeholder for status
+  *
+- * For each sent request, Guc shall send bac CT response message.
++ * For each sent request, GuC shall send back CT response message.
+  * Our message handler will update status of tracked request once
+  * response message with given fence is received. Wait here and
+  * check for valid response status value.
+@@ -525,24 +528,36 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
+ 	return ret;
+ }
+ 
+-static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
++static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
+ {
++	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+ 	struct guc_ct_buffer_desc *desc = ctb->desc;
+-	u32 head = READ_ONCE(desc->head);
++	u32 head;
+ 	u32 space;
+ 
+-	space = CIRC_SPACE(desc->tail, head, ctb->size);
++	if (ctb->space >= len_dw)
++		return true;
++
++	head = READ_ONCE(desc->head);
++	if (unlikely(head > ctb->size)) {
++		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
++			 head, ctb->size);
++		desc->status |= GUC_CTB_STATUS_OVERFLOW;
++		ctb->broken = true;
++		return false;
++	}
++
++	space = CIRC_SPACE(ctb->tail, head, ctb->size);
++	ctb->space = space;
+ 
+ 	return space >= len_dw;
+ }
+ 
+ static int has_room_nb(struct intel_guc_ct *ct, u32 len_dw)
+ {
+-	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+-
+ 	lockdep_assert_held(&ct->ctbs.send.lock);
+ 
+-	if (unlikely(!h2g_has_room(ctb, len_dw))) {
++	if (unlikely(!h2g_has_room(ct, len_dw))) {
+ 		if (ct->stall_time == KTIME_MAX)
+ 			ct->stall_time = ktime_get();
+ 
+@@ -612,7 +627,7 @@ static int ct_send(struct intel_guc_ct *ct,
+ 	 */
+ retry:
+ 	spin_lock_irqsave(&ctb->lock, flags);
+-	if (unlikely(!h2g_has_room(ctb, len + GUC_CTB_HDR_LEN))) {
++	if (unlikely(!h2g_has_room(ct, len + GUC_CTB_HDR_LEN))) {
+ 		if (ct->stall_time == KTIME_MAX)
+ 			ct->stall_time = ktime_get();
+ 		spin_unlock_irqrestore(&ctb->lock, flags);
+@@ -732,8 +747,8 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+ {
+ 	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
+ 	struct guc_ct_buffer_desc *desc = ctb->desc;
+-	u32 head = desc->head;
+-	u32 tail = desc->tail;
++	u32 head = ctb->head;
++	u32 tail = READ_ONCE(desc->tail);
+ 	u32 size = ctb->size;
+ 	u32 *cmds = ctb->cmds;
+ 	s32 available;
+@@ -747,9 +762,19 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+ 	if (unlikely(desc->status))
+ 		goto corrupted;
+ 
+-	if (unlikely((tail | head) >= size)) {
+-		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+-			 head, tail, size);
++	GEM_BUG_ON(head > size);
++
++#ifdef CONFIG_DRM_I915_DEBUG_GUC
++	if (unlikely(head != READ_ONCE(desc->head))) {
++		CT_ERROR(ct, "Head was modified %u != %u\n",
++			 desc->head, head);
++		desc->status |= GUC_CTB_STATUS_MISMATCH;
++		goto corrupted;
++	}
++#endif
++	if (unlikely(tail >= size)) {
++		CT_ERROR(ct, "Invalid tail offset %u >= %u)\n",
++			 tail, size);
+ 		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+ 		goto corrupted;
+ 	}
+@@ -802,6 +827,9 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+ 	}
+ 	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+ 
++	/* update local copies */
++	ctb->head = head;
++
+ 	/* now update descriptor */
+ 	WRITE_ONCE(desc->head, head);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+index bee03794c1eb..edd1bba0445d 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+@@ -33,6 +33,9 @@ struct intel_guc;
+  * @desc: pointer to the buffer descriptor
+  * @cmds: pointer to the commands buffer
+  * @size: size of the commands buffer in dwords
++ * @head: local shadow copy of head in dwords
++ * @tail: local shadow copy of tail in dwords
++ * @space: local shadow copy of space in dwords
+  * @broken: flag to indicate if descriptor data is broken
+  */
+ struct intel_guc_ct_buffer {
+@@ -40,6 +43,9 @@ struct intel_guc_ct_buffer {
+ 	struct guc_ct_buffer_desc *desc;
+ 	u32 *cmds;
+ 	u32 size;
++	u32 tail;
++	u32 head;
++	u32 space;
+ 	bool broken;
+ };
+ 
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2146746831==--
