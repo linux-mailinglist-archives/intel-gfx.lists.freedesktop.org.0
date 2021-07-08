@@ -1,27 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B4D23BF726
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 10:56:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F07E3BF727
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 10:57:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49E036E0C9;
-	Thu,  8 Jul 2021 08:56:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E45006E88B;
+	Thu,  8 Jul 2021 08:57:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C87D56E0C9
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 08:56:47 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10038"; a="295108122"
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="295108122"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 01:56:47 -0700
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="498354526"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A23266E88B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 08:57:00 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10038"; a="270585027"
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="270585027"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 01:56:59 -0700
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="487474592"
 Received: from victorge-mobl1.ccr.corp.intel.com (HELO localhost)
  ([10.252.44.91])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 01:56:45 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 01:56:58 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -29,8 +29,8 @@ In-Reply-To: <20210616203158.118111-2-jose.souza@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20210616203158.118111-1-jose.souza@intel.com>
  <20210616203158.118111-2-jose.souza@intel.com>
-Date: Thu, 08 Jul 2021 11:56:42 +0300
-Message-ID: <87eec96v5h.fsf@intel.com>
+Date: Thu, 08 Jul 2021 11:56:55 +0300
+Message-ID: <87czrt6v54.fsf@intel.com>
 MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/display/adl_p: Implement
  Wa_22012278275
