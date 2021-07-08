@@ -2,30 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2095E3C1B97
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 00:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 780423C1BAC
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 01:05:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B62C6E934;
-	Thu,  8 Jul 2021 22:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 928E76E934;
+	Thu,  8 Jul 2021 23:05:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 094E66E933;
- Thu,  8 Jul 2021 22:54:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EEF04A73C9;
- Thu,  8 Jul 2021 22:54:05 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 222516E934
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 23:05:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="273450290"
+X-IronPort-AV: E=Sophos;i="5.84,225,1620716400"; d="scan'208";a="273450290"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 16:05:28 -0700
+X-IronPort-AV: E=Sophos;i="5.84,225,1620716400"; d="scan'208";a="492299155"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 16:05:28 -0700
+Date: Thu, 8 Jul 2021 16:05:26 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+Message-ID: <20210708230526.GB951094@mdroper-desk1.amr.corp.intel.com>
+References: <20210708053819.2120187-1-matthew.d.roper@intel.com>
+ <87h7h56z11.fsf@intel.com>
+ <d47dbf431039413f83902f0406cf73b8@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 08 Jul 2021 22:54:05 -0000
-Message-ID: <162578484595.32073.396184636607326611@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210708162055.129996-1-matthew.brost@intel.com>
-In-Reply-To: <20210708162055.129996-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ1Qg?=
- =?utf-8?q?changes_required_for_GuC_submission?=
+Content-Disposition: inline
+In-Reply-To: <d47dbf431039413f83902f0406cf73b8@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/7] Minor revid/stepping and workaround
+ cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,148 +46,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0444200642=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0444200642==
-Content-Type: multipart/alternative;
- boundary="===============6704329097758202940=="
+On Thu, Jul 08, 2021 at 11:37:50AM -0700, Srivatsa, Anusha wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Jani Nikula <jani.nikula@linux.intel.com>
+> > Sent: Thursday, July 8, 2021 12:33 AM
+> > To: Roper, Matthew D <matthew.d.roper@intel.com>; intel-
+> > gfx@lists.freedesktop.org
+> > Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>
+> > Subject: Re: [PATCH 0/7] Minor revid/stepping and workaround cleanup
+> > 
+> > On Wed, 07 Jul 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
+> > > PCI revision IDs don't always map to GT and display IP steppings in an
+> > > intuitive/sensible way.  On many of our recent platforms we've
+> > > switched to using revid->stepping lookup tables with the
+> > > infrastructure in intel_step.c to handle stepping lookups and
+> > > comparisons.  Since it's confusing to have some of our platforms using
+> > > the new lookup tables and some still using old revid comparisons,
+> > > let's migrate all the old platforms over to the table approach since
+> > > that's what we want to standardize on going forward.  The only place
+> > > that revision ID's should really get used directly now is when
+> > > checking to see if we're running on pre-production hardware.
+> > 
+> > Anusha, Matt, please sort this out between the two of you. :)
+> > 
+> > https://patchwork.freedesktop.org/series/92257/
+> > 
+> @Roper, Matthew D the series doesn't add the steeping table for BXT and GLK.
 
---===============6704329097758202940==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: CT changes required for GuC submission
-URL   : https://patchwork.freedesktop.org/series/92330/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10320 -> Patchwork_20556
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20556/index.html
-
-
-Changes
--------
-
-  No changes found
+Right, that was intentional because we don't use the steppings for those
+platforms anywhere in the code.  But if that's changing with your DMC
+series, I can add the tables for those two as well.
 
 
-Participating hosts (40 -> 39)
-------------------------------
+Matt
 
-  Missing    (1): fi-bsw-cyan 
+> 
+> Anusha
+> > BR,
+> > Jani.
+> > 
+> > 
+> > >
+> > > Let's also take the opportunity to drop a bit of effectively dead code
+> > > in the workarounds file too.
+> > >
+> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > >
+> > > Matt Roper (7):
+> > >   drm/i915: Make pre-production detection use direct revid comparison
+> > >   drm/i915/skl: Use revid->stepping tables
+> > >   drm/i915/icl: Use revid->stepping tables
+> > >   drm/i915/jsl_ehl: Use revid->stepping tables
+> > >   drm/i915/rkl: Use revid->stepping tables
+> > >   drm/i915/dg1: Use revid->stepping tables
+> > >   drm/i915/cnl: Drop all workarounds
+> > >
+> > >  .../drm/i915/display/intel_display_power.c    |  2 +-
+> > >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +-
+> > >  drivers/gpu/drm/i915/display/intel_psr.c      |  4 +-
+> > >  drivers/gpu/drm/i915/gt/intel_region_lmem.c   |  2 +-
+> > >  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 81 +++----------------
+> > >  drivers/gpu/drm/i915/i915_drv.c               |  8 +-
+> > >  drivers/gpu/drm/i915/i915_drv.h               | 80 +++---------------
+> > >  drivers/gpu/drm/i915/intel_pm.c               |  2 +-
+> > >  drivers/gpu/drm/i915/intel_step.c             | 72 +++++++++++++++--
+> > >  drivers/gpu/drm/i915/intel_step.h             |  7 ++
+> > >  10 files changed, 107 insertions(+), 153 deletions(-)
+> > 
+> > --
+> > Jani Nikula, Intel Open Source Graphics Center
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10320 -> Patchwork_20556
-
-  CI-20190529: 20190529
-  CI_DRM_10320: 7d61ab4a59bcbb206324b6a430748b4c15dd8adb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6132: 61fb9cdf2a9132e3618c8b08b9d20fec0c347831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20556: 2d17849eda02a4072eb8ab2ba74f5bb44dc8a027 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2d17849eda02 drm/i915/guc: Module load failure test for CT buffer creation
-f6019e334f58 drm/i915/guc: Optimize CTB writes and reads
-8ca5983abea9 drm/i915/guc: Add stall timer to non blocking CTB send function
-d8d221ac4b12 drm/i915/guc: Add non blocking CTB send function
-df6020220043 drm/i915/guc: Increase size of CTB buffers
-6d0520a4e3e0 drm/i915/guc: Improve error message for unsolicited CT response
-c5e508db6c3f drm/i915/guc: Relax CTB response timeout
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20556/index.html
-
---===============6704329097758202940==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CT changes required for GuC submission</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92330/">https://patchwork.freedesktop.org/series/92330/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20556/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20556/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10320 -&gt; Patchwork_20556</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20556/index.html</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Missing    (1): fi-bsw-cyan </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10320 -&gt; Patchwork_20556</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10320: 7d61ab4a59bcbb206324b6a430748b4c15dd8adb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6132: 61fb9cdf2a9132e3618c8b08b9d20fec0c347831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20556: 2d17849eda02a4072eb8ab2ba74f5bb44dc8a027 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2d17849eda02 drm/i915/guc: Module load failure test for CT buffer creation<br />
-f6019e334f58 drm/i915/guc: Optimize CTB writes and reads<br />
-8ca5983abea9 drm/i915/guc: Add stall timer to non blocking CTB send function<br />
-d8d221ac4b12 drm/i915/guc: Add non blocking CTB send function<br />
-df6020220043 drm/i915/guc: Increase size of CTB buffers<br />
-6d0520a4e3e0 drm/i915/guc: Improve error message for unsolicited CT response<br />
-c5e508db6c3f drm/i915/guc: Relax CTB response timeout</p>
-
-</body>
-</html>
-
---===============6704329097758202940==--
-
---===============0444200642==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0444200642==--
