@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748753C1674
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 17:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 977E43C1677
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 17:49:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A20876E919;
-	Thu,  8 Jul 2021 15:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D7286E913;
+	Thu,  8 Jul 2021 15:49:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA656E912
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 15:49:02 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id j65so2161648oih.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jul 2021 08:49:02 -0700 (PDT)
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
+ [IPv6:2607:f8b0:4864:20::235])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998C66E913
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 15:49:03 +0000 (UTC)
+Received: by mail-oi1-x235.google.com with SMTP id u11so8323601oiv.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jul 2021 08:49:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=SEuf6jhm/Mly3x9eqh/fh6ExA0Yao3LBN0Ua318o2gc=;
- b=QvfvlTB09azVDdYubCyNdT6hWvNQhcCHfSgAFMNoxs8tiFgCJVVyj8FlpmGtXfAc7V
- SnKtls3xG3s9QfgXDvNsKgczDmnrTJoivJjF9lXT9zhN2X3NB4jiDfDt0PTknMjPPPVB
- PV7iw3bXU9eiXZy6MtG3tQu+EfqwsqWvCaf2F2RTYm7wk9ak7g3T6d4M266GX9KyGAZL
- g9e8iuXT3WqS5+jUzyGMQ7c4qeXAyaB1kO7+uqYWxzR4ReIr/4dzVszAfWIF0M6XjLZQ
- qkrVuFuEIkjq3SKqSEiHODywx7GHo1fWK4/rFMopVj1Yp7nhstpk6f1ba6+RawSkREZl
- /sjw==
+ bh=NoUJSQXqxS/dGmvWvEvSXXen74qdT3GCKnuGPoCodgM=;
+ b=Oxii8wmzKijpJp+CN1swluyNjkLaok/bXzHBVcd24wGhGkPd4ED3wcmK7NpEtCw+Ga
+ KKvpWiUF917SUZLOrXKR7M86Ni3qPC6jwHriUDsn1M8RDGC1LXPYDPqxYdT8Um37jgGY
+ 5NkHB3i6l40SQ64FUYifQLR6sxkwrywkdyceAzB5ltc4ELQE14ksnIvZydtbqPpMrX6w
+ O6CBy0zDS8C376kRcknTaWL5Sru+uhYU7Y1G+MarDGRBqfgkUbNKTw9EPpJzg18JMw9w
+ H1bR/fYBBCcrVbPAdvUQGrX77VZmJG9rNxzxjCNiBl9XOpaivlQuDXIOQd9cLv9vWWKh
+ 5BHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=SEuf6jhm/Mly3x9eqh/fh6ExA0Yao3LBN0Ua318o2gc=;
- b=YSxZxofJIP/qLL+HeFb5Nbddm6U36Dw0kjor5fLR1nlxXMXIbx5jnDcEH9TkJ7uHTM
- c4tlxsZ23QDwhVezb4rKDEcMK9JaJ6L/gwII/PDukfDdnS17qibYayGmMuQFJwi5BTAq
- DPXFHSKVNySDJv+43ZW/Tgzy8A8OWdt6me1FEJUDMbIKtJKNveZMPjPJDPdabRjTd8AG
- lXC3/MazY929KJRERpleel/ND9LLrIZVEkVDOQUlH1jJbrJmVqAe696ZanZh/vYx8Fub
- IgQEiYPxZpVIdKJH6fvdY+q7dcO3ypR8cuQAVeGhrvqsxFHIQU98/2dDaiN20CkXTFnw
- CgoA==
-X-Gm-Message-State: AOAM532EVNm2pI48B1Pa1zDE1ka++BYQWZJ2Xe3tZpMEbYWpEUh5SIh2
- 7L5lV7IR+xkky5NEeHis88T4BGvMPE3v3g==
-X-Google-Smtp-Source: ABdhPJwvNnWk1L2wTRqg6E0ziUK2bHr0CYeIIu7q74rRFYeb3L7y/n7cYEP1dm59I+1oZvIuIV6ldg==
-X-Received: by 2002:a54:4f83:: with SMTP id g3mr4164668oiy.46.1625759341390;
- Thu, 08 Jul 2021 08:49:01 -0700 (PDT)
+ bh=NoUJSQXqxS/dGmvWvEvSXXen74qdT3GCKnuGPoCodgM=;
+ b=b0radZtrvlqyR1rwCE//y61i5bsjF3nt8yvssLxFCTyg33Osf86OPPIfJbumb5Es5R
+ fSziLZPOwtNRWFo1y4kMzEQGrnvsnlNo12uAfpctGoz+0gGnVf8JpA30knljOsxKBWW7
+ JC9thmNzqrSlenQwXHWC5czHHzmLUHhZZdT1BnBfTjXe0GqV+2K+J4kVrsN3mN4FxagS
+ NXg4Sm0aZQV6d9H+DJ/WJV1c0h4HCBtIcxaWzkUIAKf/nv93dfzn+7QBKbuIs2ijH+17
+ 6U+X+4yhpYEVJP6nk8a4if51So2bLqGipiBimjouvE9hyY6z1Rj68Twp0vyEfwylthGH
+ 2caw==
+X-Gm-Message-State: AOAM5302jXnvRClL0JSftPnNd27kjrBejKbRgZ8c+vG1gg+VV+/YX2FM
+ y6B1dkakvqGJzmRz9eK2U5p8N/0Y1VP7IA==
+X-Google-Smtp-Source: ABdhPJxbJfrtbkYnYorG4JsB6l0Ib6rH6oOiTZI8Le3yUH9Su+si0S9uBjb333QhWm8XdZQrWj+zsw==
+X-Received: by 2002:aca:4fce:: with SMTP id d197mr17204971oib.16.1625759342418; 
+ Thu, 08 Jul 2021 08:49:02 -0700 (PDT)
 Received: from omlet.lan ([68.203.99.148])
- by smtp.gmail.com with ESMTPSA id d20sm548356otq.62.2021.07.08.08.49.00
+ by smtp.gmail.com with ESMTPSA id d20sm548356otq.62.2021.07.08.08.49.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Jul 2021 08:49:00 -0700 (PDT)
+ Thu, 08 Jul 2021 08:49:01 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Thu,  8 Jul 2021 10:48:24 -0500
-Message-Id: <20210708154835.528166-20-jason@jlekstrand.net>
+Date: Thu,  8 Jul 2021 10:48:25 -0500
+Message-Id: <20210708154835.528166-21-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210708154835.528166-1-jason@jlekstrand.net>
 References: <20210708154835.528166-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 19/30] drm/i915: Add an i915_gem_vm_lookup helper
+Subject: [Intel-gfx] [PATCH 20/30] drm/i915/gem: Make an alignment check
+ more sensible
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,59 +75,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is the VM equivalent of i915_gem_context_lookup.  It's only used
-once in this patch but future patches will need to duplicate this lookup
-code so it's better to have it in a helper.
+What we really want to check is that size of the engines array, i.e.
+args->size - sizeof(*user) is divisible by the element size, i.e.
+sizeof(*user->engines) because that's what's required for computing the
+array length right below the check.  However, we're currently not doing
+this and instead doing a compile-time check that sizeof(*user) is
+divisible by sizeof(*user->engines) and avoiding the subtraction.  As
+far as I can tell, the only reason for the more confusing pair of checks
+is to avoid a single subtraction of a constant.
+
+The other thing the BUILD_BUG_ON might be trying to implicitly check is
+that offsetof(user->engines) == sizeof(*user) and we don't have any
+weird padding throwing us off.  However, that's not the check it's doing
+and it's not even a reliable way to do that check.
 
 Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c |  6 +-----
- drivers/gpu/drm/i915/i915_drv.h             | 14 ++++++++++++++
- 2 files changed, 15 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 206721dccd24e..3c59d1e4080c4 100644
+index 3c59d1e4080c4..f135fbc97c5a7 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1311,11 +1311,7 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
- 	if (upper_32_bits(args->value))
- 		return -ENOENT;
+@@ -1723,9 +1723,8 @@ set_engines(struct i915_gem_context *ctx,
+ 		goto replace;
+ 	}
  
--	rcu_read_lock();
--	vm = xa_load(&file_priv->vm_xa, args->value);
--	if (vm && !kref_get_unless_zero(&vm->ref))
--		vm = NULL;
--	rcu_read_unlock();
-+	vm = i915_gem_vm_lookup(file_priv, args->value);
- 	if (!vm)
- 		return -ENOENT;
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index ae45ea7b26997..8c1994c16b920 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1867,6 +1867,20 @@ i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id)
- 	return ctx;
- }
- 
-+static inline struct i915_address_space *
-+i915_gem_vm_lookup(struct drm_i915_file_private *file_priv, u32 id)
-+{
-+	struct i915_address_space *vm;
-+
-+	rcu_read_lock();
-+	vm = xa_load(&file_priv->vm_xa, id);
-+	if (vm && !kref_get_unless_zero(&vm->ref))
-+		vm = NULL;
-+	rcu_read_unlock();
-+
-+	return vm;
-+}
-+
- /* i915_gem_evict.c */
- int __must_check i915_gem_evict_something(struct i915_address_space *vm,
- 					  u64 min_size, u64 alignment,
+-	BUILD_BUG_ON(!IS_ALIGNED(sizeof(*user), sizeof(*user->engines)));
+ 	if (args->size < sizeof(*user) ||
+-	    !IS_ALIGNED(args->size, sizeof(*user->engines))) {
++	    !IS_ALIGNED(args->size -  sizeof(*user), sizeof(*user->engines))) {
+ 		drm_dbg(&i915->drm, "Invalid size for engine array: %d\n",
+ 			args->size);
+ 		return -EINVAL;
 -- 
 2.31.1
 
