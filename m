@@ -2,32 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8AD43C18A9
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 19:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE3A3C18B5
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 19:55:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F19D6E94B;
-	Thu,  8 Jul 2021 17:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA816E95C;
+	Thu,  8 Jul 2021 17:55:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D99C16E94B
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 17:52:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="196734534"
-X-IronPort-AV: E=Sophos;i="5.84,224,1620716400"; d="scan'208";a="196734534"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 10:52:38 -0700
-X-IronPort-AV: E=Sophos;i="5.84,224,1620716400"; d="scan'208";a="424052491"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 10:52:38 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  8 Jul 2021 10:52:26 -0700
-Message-Id: <20210708175226.2451260-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA946E969
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 17:55:23 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id i94so8586905wri.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jul 2021 10:55:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=2OZfVHIKGYmy6nKr/GhMzb+ZwQZUwrjypn0unmVe+6s=;
+ b=gF87xc1h8GyHpn8doxPH+6Otv5sbRY1WIWEJKvnFVVNfLtAzJRdSnNSnFaXd3XAi3G
+ 6sJUqIBdX+3PuzDIY+JLdP2hXKV1nubuFVvqa6j/yIZMx+N8rB+qdn75FHyZDCXkALjk
+ hSnnNqKjxoUTb1qy3+oFo0ln9OovKbtWopmIk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=2OZfVHIKGYmy6nKr/GhMzb+ZwQZUwrjypn0unmVe+6s=;
+ b=dsQVoOMYPY9KILCshpNYeu3gVp5bFjD4YpmWp0/DF9v6nAyTM4n5IrE0qkw3/udePU
+ fKu72AceSUyv4CMxEmbZrQCCLK7XBop0Dp12bDH6LLN8KmeaJCTXZgYarQGcQxyRte/o
+ NSJnG352bSMezuYt1YQG5k1ZsJ0sqxE8HztHtPTfTu2hqRMUaqqFu0weyiLkD6aO6Znz
+ jRibEytwK+Oufhup4aM5t8DxBaIwEbjoyDFDqZAiCSRuUHIOIcbpaHeG4mVOEKgpZFov
+ 8csOT8x6yZ9vYDyIjizgZ/OzMmXqsn/22D1vO7/hMIvSZOjLVqgh88oSirtR2j+KbG0d
+ PcCw==
+X-Gm-Message-State: AOAM530YjzvfC8SPD7qm6mHAGW2V5pc4eH5e3fOBX2Ab5JrBoYIEKcRM
+ V7Xz2mLl+lKp7D/mkCYsyGHOOo7/LiQbaw==
+X-Google-Smtp-Source: ABdhPJxzsp55s6PjjOLszYn8IuYLwgacMG9qOpG8EVDMKl02bytHQ5yl143GIcm1+rHcNkAw4Gd+0g==
+X-Received: by 2002:adf:dfc9:: with SMTP id q9mr3216869wrn.117.1625766921958; 
+ Thu, 08 Jul 2021 10:55:21 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id z7sm9938745wmi.1.2021.07.08.10.55.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 08 Jul 2021 10:55:21 -0700 (PDT)
+Date: Thu, 8 Jul 2021 19:55:19 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YOc8B0qoJzQqbKzY@phenom.ffwll.local>
+References: <20210708154835.528166-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dg1: Compute MEM Bandwidth using MCHBAR
+Content-Disposition: inline
+In-Reply-To: <20210708154835.528166-1-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 00/30] drm/i915/gem: ioctl clean-ups (v9)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,93 +64,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ2xpbnQgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KClRoZSBQVU5J
-VCBGVyBpcyBjdXJyZW50bHkgcmV0dXJuaW5nIDAgZm9yIGFsbCBtZW1vcnkgYmFuZHdpZHRoCnBh
-cmFtZXRlcnMuIFJlYWQgdGhlIHZhbHVlcyBkaXJlY3RseSBmcm9tIE1DSEJBUiBvZmZzZXRzIDB4
-NTkxOCBhbmQKMHg0MDAwKDQpLgoKdjIgKEx1Y2FzKTogdGlkeSB1cCBjaGVja2luZyBmb3IgcmV0
-IHNsaWdodGx5CnYzIChMdWNhcyk6CiAgLSBTcXVhc2ggY2hhbmdlIHRvIGRvdWJsZSB0aGUgbWVt
-b3J5IGJhbmR3aWR0aCBiYXNlZCBvbgogICAgTUNIQkFSIEdlYXJfdHlwZQogIC0gTW92ZSBJQ0xf
-R0VBUl9UWVBFX01BU0sgdG8gdGhlIGFwcHJvcHJpYXRlIHBsYWNlIGFuZCBjaGFuZ2UgcHJlZml4
-CiAgICB0byBERzEKICAtIE1vdmUgcmVnaXN0ZXIgZGVmaW5pdGlvbnMgdG8gaTkxNV9yZWcuaAog
-IC0gTWFrZSB0aGUgTUNIQkFSIHBhdGggcGVybWFuZW50IGZvciBERzEKICAtIENvbnZlcnQgdG8g
-UkVHX0JJVCgpL1JFR19HRU5NQVNLKCkKdjQ6IERyb3AgdW5uZWVkZWQgaW5pdGlhbGl6YXRpb25z
-CgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6
-IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+CkNjOiBKYW5pIFNhYXJpbmVu
-IDxqYW5pLnNhYXJpbmVuQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogQ2xpbnQgVGF5bG9yIDxj
-bGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSmFuaSBOaWt1bGEgPGph
-bmkubmlrdWxhQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3
-LmF1bGRAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1h
-cmNoaUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVt
-YXJjaGlAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
-ZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9idy5jIHwgNDEgKysrKysrKysrKysrKysrKysrKysrKysrLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9yZWcuaCAgICAgICAgIHwgMTIgKysrKysrKysKIDIgZmlsZXMgY2hhbmdlZCwgNTIg
-aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfYncuYwppbmRleCBiZmIzOThmMDQzMmUuLjBkNWQ1MjU0ODkyNSAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYwpAQCAtMjMsNiArMjMsNDEgQEAgc3RydWN0IGlu
-dGVsX3Fndl9pbmZvIHsKIAl1OCB0X2JsOwogfTsKIAorc3RhdGljIGludCBkZzFfbWNoYmFyX3Jl
-YWRfcWd2X3BvaW50X2luZm8oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAorCQkJ
-CQkgIHN0cnVjdCBpbnRlbF9xZ3ZfcG9pbnQgKnNwLAorCQkJCQkgIGludCBwb2ludCkKK3sKKwl1
-MzIgZGNsa19yYXRpbywgZGNsa19yZWZlcmVuY2U7CisJdTMyIHZhbDsKKworCXZhbCA9IGludGVs
-X3VuY29yZV9yZWFkKCZkZXZfcHJpdi0+dW5jb3JlLCBTQV9QRVJGX1NUQVRVU18wXzBfMF9NQ0hC
-QVJfUEMpOworCWRjbGtfcmF0aW8gPSBSRUdfRklFTERfR0VUKERHMV9RQ0xLX1JBVElPX01BU0ss
-IHZhbCk7CisJaWYgKHZhbCAmIERHMV9RQ0xLX1JFRkVSRU5DRSkKKwkJZGNsa19yZWZlcmVuY2Ug
-PSA2OyAvKiA2ICogMTYuNjY2IE1IeiA9IDEwMCBNSHogKi8KKwllbHNlCisJCWRjbGtfcmVmZXJl
-bmNlID0gODsgLyogOCAqIDE2LjY2NiBNSHogPSAxMzMgTUh6ICovCisJc3AtPmRjbGsgPSBkY2xr
-X3JhdGlvICogZGNsa19yZWZlcmVuY2U7CisKKwl2YWwgPSBpbnRlbF91bmNvcmVfcmVhZCgmZGV2
-X3ByaXYtPnVuY29yZSwgU0tMX01DX0JJT1NfREFUQV8wXzBfMF9NQ0hCQVJfUENVKTsKKwlpZiAo
-dmFsICYgREcxX0dFQVJfVFlQRSkKKwkJc3AtPmRjbGsgKj0gMjsKKworCWlmIChzcC0+ZGNsayA9
-PSAwKQorCQlyZXR1cm4gLUVJTlZBTDsKKworCXZhbCA9IGludGVsX3VuY29yZV9yZWFkKCZkZXZf
-cHJpdi0+dW5jb3JlLCBNQ0hCQVJfQ0gwX0NSX1RDX1BSRV8wXzBfMF9NQ0hCQVIpOworCXNwLT50
-X3JwID0gUkVHX0ZJRUxEX0dFVChERzFfRFJBTV9UX1JQX01BU0ssIHZhbCk7CisJc3AtPnRfcmRw
-cmUgPSBSRUdfRklFTERfR0VUKERHMV9EUkFNX1RfUkRQUkVfTUFTSywgdmFsKTsKKworCXZhbCA9
-IGludGVsX3VuY29yZV9yZWFkKCZkZXZfcHJpdi0+dW5jb3JlLCBNQ0hCQVJfQ0gwX0NSX1RDX1BS
-RV8wXzBfMF9NQ0hCQVJfSElHSCk7CisJc3AtPnRfcmNkID0gUkVHX0ZJRUxEX0dFVChERzFfRFJB
-TV9UX1JDRF9NQVNLLCB2YWwpOworCXNwLT50X3JhcyA9IFJFR19GSUVMRF9HRVQoREcxX0RSQU1f
-VF9SQVNfTUFTSywgdmFsKTsKKworCXNwLT50X3JjID0gc3AtPnRfcnAgKyBzcC0+dF9yYXM7CisK
-KwlyZXR1cm4gMDsKK30KKwogc3RhdGljIGludCBpY2xfcGNvZGVfcmVhZF9xZ3ZfcG9pbnRfaW5m
-byhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkJCSBzdHJ1Y3QgaW50ZWxf
-cWd2X3BvaW50ICpzcCwKIAkJCQkJIGludCBwb2ludCkKQEAgLTk5LDcgKzEzNCwxMSBAQCBzdGF0
-aWMgaW50IGljbF9nZXRfcWd2X3BvaW50cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYsCiAJZm9yIChpID0gMDsgaSA8IHFpLT5udW1fcG9pbnRzOyBpKyspIHsKIAkJc3RydWN0IGlu
-dGVsX3Fndl9wb2ludCAqc3AgPSAmcWktPnBvaW50c1tpXTsKIAotCQlyZXQgPSBpY2xfcGNvZGVf
-cmVhZF9xZ3ZfcG9pbnRfaW5mbyhkZXZfcHJpdiwgc3AsIGkpOworCQlpZiAoSVNfREcxKGRldl9w
-cml2KSkKKwkJCXJldCA9IGRnMV9tY2hiYXJfcmVhZF9xZ3ZfcG9pbnRfaW5mbyhkZXZfcHJpdiwg
-c3AsIGkpOworCQllbHNlCisJCQlyZXQgPSBpY2xfcGNvZGVfcmVhZF9xZ3ZfcG9pbnRfaW5mbyhk
-ZXZfcHJpdiwgc3AsIGkpOworCiAJCWlmIChyZXQpCiAJCQlyZXR1cm4gcmV0OwogCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9yZWcuaAppbmRleCAxNmExOTIzOWQ4NmQuLjk0M2ZlNDg1YzY2MiAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X3JlZy5oCkBAIC0xMTA2MCw2ICsxMTA2MCw3IEBAIGVudW0gc2tsX3Bvd2VyX2dh
-dGUgewogI2RlZmluZSBTS0xfTUVNT1JZX0ZSRVFfTVVMVElQTElFUl9IWgkJMjY2NjY2NjY2CiAj
-ZGVmaW5lIFNLTF9NQ19CSU9TX0RBVEFfMF8wXzBfTUNIQkFSX1BDVQlfTU1JTyhNQ0hCQVJfTUlS
-Uk9SX0JBU0VfU05CICsgMHg1RTA0KQogI2RlZmluZSAgU0tMX1JFUV9EQVRBX01BU0sJCQkoMHhG
-IDw8IDApCisjZGVmaW5lICBERzFfR0VBUl9UWVBFCQkJCVJFR19CSVQoMTYpCiAKICNkZWZpbmUg
-U0tMX01BRF9JTlRFUl9DSEFOTkVMXzBfMF8wX01DSEJBUl9NQ01BSU4gX01NSU8oTUNIQkFSX01J
-UlJPUl9CQVNFX1NOQiArIDB4NTAwMCkKICNkZWZpbmUgIFNLTF9EUkFNX0REUl9UWVBFX01BU0sJ
-CQkoMHgzIDw8IDApCkBAIC0xMTA5NSw2ICsxMTA5NiwxNyBAQCBlbnVtIHNrbF9wb3dlcl9nYXRl
-IHsKICNkZWZpbmUgIENOTF9EUkFNX1JBTktfMwkJCSgweDIgPDwgOSkKICNkZWZpbmUgIENOTF9E
-UkFNX1JBTktfNAkJCSgweDMgPDwgOSkKIAorI2RlZmluZSBTQV9QRVJGX1NUQVRVU18wXzBfMF9N
-Q0hCQVJfUEMJCV9NTUlPKE1DSEJBUl9NSVJST1JfQkFTRV9TTkIgKyAweDU5MTgpCisjZGVmaW5l
-ICBERzFfUUNMS19SQVRJT19NQVNLCQkJUkVHX0dFTk1BU0soOSwgMikKKyNkZWZpbmUgIERHMV9R
-Q0xLX1JFRkVSRU5DRQkJCVJFR19CSVQoMTApCisKKyNkZWZpbmUgTUNIQkFSX0NIMF9DUl9UQ19Q
-UkVfMF8wXzBfTUNIQkFSCV9NTUlPKE1DSEJBUl9NSVJST1JfQkFTRV9TTkIgKyAweDQwMDApCisj
-ZGVmaW5lICAgREcxX0RSQU1fVF9SRFBSRV9NQVNLCQkJUkVHX0dFTk1BU0soMTYsIDExKQorI2Rl
-ZmluZSAgIERHMV9EUkFNX1RfUlBfTUFTSwkJCVJFR19HRU5NQVNLKDYsIDApCisjZGVmaW5lIE1D
-SEJBUl9DSDBfQ1JfVENfUFJFXzBfMF8wX01DSEJBUl9ISUdICV9NTUlPKE1DSEJBUl9NSVJST1Jf
-QkFTRV9TTkIgKyAweDQwMDQpCisjZGVmaW5lICAgREcxX0RSQU1fVF9SQ0RfTUFTSwkJCVJFR19H
-RU5NQVNLKDE1LCA5KQorI2RlZmluZSAgIERHMV9EUkFNX1RfUkFTX01BU0sJCQlSRUdfR0VOTUFT
-Syg4LCAxKQorCiAvKgogICogUGxlYXNlIHNlZSBoc3dfcmVhZF9kY29tcCgpIGFuZCBoc3dfd3Jp
-dGVfZGNvbXAoKSBiZWZvcmUgdXNpbmcgdGhpcyByZWdpc3RlciwKICAqIHNpbmNlIG9uIEhTVyB3
-ZSBjYW4ndCB3cml0ZSB0byBpdCB1c2luZyBpbnRlbF91bmNvcmVfd3JpdGUuCi0tIAoyLjMxLjEK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Thu, Jul 08, 2021 at 10:48:05AM -0500, Jason Ekstrand wrote:
+> Overview:
+> ---------
+> 
+> This patch series attempts to clean up some of the IOCTL mess we've created
+> over the last few years.  The most egregious bit being context mutability.
+> In summary, this series:
+> 
+>  1. Drops two never-used context params: RINGSIZE and NO_ZEROMAP
+>  2. Drops the entire CONTEXT_CLONE API
+>  3. Implements SINGLE_TIMELINE with a syncobj instead of actually sharing
+>     intel_timeline between engines.
+>  4. Adds a few sanity restrictions to the balancing/bonding API.
+>  5. Implements a proto-ctx mechanism so that the engine set and VM can only
+>     be set early on in the lifetime of a context, before anything ever
+>     executes on it.  This effectively makes the VM and engine set
+>     immutable.
+> 
+> This series has been tested with IGT as well as the Iris, ANV, and the
+> Intel media driver doing an 8K decode (this uses bonding/balancing).  I've
+> also done quite a bit of git archeology to ensure that nothing in here will
+> break anything that's already shipped at some point in history.  It's
+> possible I've missed something, but I've dug quite a bit.
+> 
+> 
+> Details and motivation:
+> -----------------------
+> 
+> In very broad strokes, there's an effort going on right now within Intel to
+> try and clean up and simplify i915 anywhere we can.  We obviously don't
+> want to break any shipping userspace but, as can be seen by this series,
+> there's a lot i915 theoretically supports which userspace doesn't actually
+> need.  Some of this, like the two context params used here, were simply
+> oversights where we went through the usual API review process and merged
+> the i915 bits but the userspace bits never landed for some reason.
+> 
+> Not all are so innocent, however.  For instance, there's an entire context
+> cloning API which allows one to create a context with certain parameters
+> "cloned" from some other context.  This entire API has never been used by
+> any userspace except IGT and there were never patches to any other
+> userspace to use it.  It never should have landed.  Also, when we added
+> support for setting explicit engine sets and sharing VMs across contexts,
+> people decided to do so via SET_CONTEXT_PARAM.  While this allowed them to
+> re-use existing API, it did so at the cost of making those states mutable
+> which leads to a plethora of potential race conditions.  There were even
+> IGT tests merged to cover some of theses:
+> 
+>  - gem_vm_create@async-destroy and gem_vm_create@destroy-race which test
+>    swapping out the VM on a running context.
+> 
+>  - gem_ctx_persistence@replace* which test whether a client can escape a
+>    non-persistent context by submitting a hanging batch and then swapping
+>    out the engine set before the hang is detected.
+> 
+>  - api_intel_bb@bb-with-vm which tests the that intel_bb_assign_vm works
+>    properly.  This API is never used by any other IGT test.
+> 
+> There is also an entire deferred flush and set state framework in
+> i915_gem_cotnext.c which exists for safely swapping out the VM while there
+> is work in-flight on a context.
+> 
+> So, clearly people knew that this API was inherently racy and difficult to
+> implement but they landed it anyway.  Why?  The best explanation I've been
+> given is because it makes the API more "unified" or "symmetric" for this
+> stuff to go through SET_CONTEXT_PARAM.  It's not because any userspace
+> actually wants to be able to swap out the VM or the set of engines on a
+> running context.  That would be utterly insane.
+> 
+> This patch series cleans up this particular mess by introducing the concept
+> of a i915_gem_proto_context data structure which contains context creation
+> information.  When you initially call GEM_CONTEXT_CREATE, a proto-context
+> in created instead of an actual context.  Then, the first time something is
+> done on the context besides SET_CONTEXT_PARAM, an actual context is
+> created.  This allows us to keep the old drivers which use
+> SET_CONTEXT_PARAM to set up the engine set (see also media) while ensuring
+> that, once you have an i915_gem_context, the VM and the engine set are
+> immutable state.
+> 
+> Eventually, there are more clean-ups I'd like to do on top of this which
+> should make working with contexts inside i915 simpler and safer:
+> 
+>  1. Move the GEM handle -> vma LUT from i915_gem_context into either
+>     i915_ppgtt or drm_i915_file_private depending on whether or not the
+>     hardware has a full PPGTT.
+> 
+>  2. Move the delayed context destruction code into intel_context or a
+>     per-engine wrapper struct rather than i915_gem_context.
+> 
+>  3. Get rid of the separation between context close and context destroy
+> 
+>  4. Get rid of the RCU on i915_gem_context
+> 
+> However, these should probably be done as a separate patch series as this
+> one is already starting to get longish, especially if you consider the 89
+> IGT patches that go along with it.
+> 
+> Test-with: 20210707210215.351483-1-jason@jlekstrand.net
+> 
+> Jason Ekstrand (30):
+>   drm/i915: Drop I915_CONTEXT_PARAM_RINGSIZE
+>   drm/i915: Stop storing the ring size in the ring pointer (v3)
+>   drm/i915: Drop I915_CONTEXT_PARAM_NO_ZEROMAP
+>   drm/i915/gem: Set the watchdog timeout directly in
+>     intel_context_set_gem (v2)
+>   drm/i915/gem: Return void from context_apply_all
+>   drm/i915: Drop the CONTEXT_CLONE API (v2)
+>   drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)
+>   drm/i915: Drop getparam support for I915_CONTEXT_PARAM_ENGINES
+>   drm/i915/gem: Disallow bonding of virtual engines (v3)
+>   drm/i915/gem: Remove engine auto-magic with FENCE_SUBMIT (v2)
+>   drm/i915/request: Remove the hook from await_execution
+>   drm/i915/gem: Disallow creating contexts with too many engines
+>   drm/i915: Stop manually RCU banging in reset_stats_ioctl (v2)
+>   drm/i915/gem: Add a separate validate_priority helper
+>   drm/i915: Add gem/i915_gem_context.h to the docs
+>   drm/i915/gem: Add an intermediate proto_context struct (v5)
+>   drm/i915/gem: Rework error handling in default_engines
+>   drm/i915/gem: Optionally set SSEU in intel_context_set_gem
+>   drm/i915: Add an i915_gem_vm_lookup helper
+>   drm/i915/gem: Make an alignment check more sensible
+>   drm/i915/gem: Use the proto-context to handle create parameters (v5)
+>   drm/i915/gem: Return an error ptr from context_lookup
+>   drm/i915/gt: Drop i915_address_space::file (v2)
+>   drm/i915/gem: Delay context creation (v3)
+>   drm/i915/gem: Don't allow changing the VM on running contexts (v4)
+>   drm/i915/gem: Don't allow changing the engine set on running contexts
+>     (v3)
+>   drm/i915/selftests: Take a VM in kernel_context()
+>   i915/gem/selftests: Assign the VM at context creation in
+>     igt_shared_ctx_exec
+>   drm/i915/gem: Roll all of context creation together
+>   drm/i915: Finalize contexts in GEM_CONTEXT_CREATE on version 13+
+
+Applied everything, thanks a lot.
+
+Now, could we bake all this hard-earned knowledge about how the uapi
+actually works into some kerneldoc for the uapi header?
+
+Thanks, Daniel
+
+> 
+>  Documentation/gpu/i915.rst                    |    2 +
+>  drivers/gpu/drm/i915/Makefile                 |    1 -
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 2926 ++++++++---------
+>  drivers/gpu/drm/i915/gem/i915_gem_context.h   |    3 +
+>  .../gpu/drm/i915/gem/i915_gem_context_types.h |  196 +-
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   31 +-
+>  .../drm/i915/gem/selftests/i915_gem_context.c |  127 +-
+>  .../gpu/drm/i915/gem/selftests/mock_context.c |   67 +-
+>  .../gpu/drm/i915/gem/selftests/mock_context.h |    4 +-
+>  drivers/gpu/drm/i915/gt/intel_context.c       |    3 +-
+>  drivers/gpu/drm/i915/gt/intel_context.h       |    5 -
+>  drivers/gpu/drm/i915/gt/intel_context_param.c |   63 -
+>  drivers/gpu/drm/i915/gt/intel_context_param.h |    6 +-
+>  drivers/gpu/drm/i915/gt/intel_context_types.h |    1 +
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    3 +-
+>  drivers/gpu/drm/i915/gt/intel_engine_types.h  |    7 -
+>  .../drm/i915/gt/intel_execlists_submission.c  |  114 -
+>  .../drm/i915/gt/intel_execlists_submission.h  |    8 +-
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           |   11 -
+>  drivers/gpu/drm/i915/gt/intel_lrc.c           |    2 +-
+>  drivers/gpu/drm/i915/gt/intel_migrate.c       |    3 +-
+>  drivers/gpu/drm/i915/gt/selftest_execlists.c  |  251 +-
+>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |    2 +-
+>  drivers/gpu/drm/i915/gt/selftest_mocs.c       |    2 +-
+>  drivers/gpu/drm/i915/gt/selftest_timeline.c   |    2 +-
+>  drivers/gpu/drm/i915/gvt/scheduler.c          |    7 +-
+>  drivers/gpu/drm/i915/i915_drv.h               |   82 +-
+>  drivers/gpu/drm/i915/i915_perf.c              |    4 +-
+>  drivers/gpu/drm/i915/i915_request.c           |   42 +-
+>  drivers/gpu/drm/i915/i915_request.h           |    4 +-
+>  .../drm/i915/selftests/i915_mock_selftests.h  |    1 -
+>  drivers/gpu/drm/i915/selftests/mock_gtt.c     |    1 -
+>  include/uapi/drm/i915_drm.h                   |   40 +-
+>  33 files changed, 1681 insertions(+), 2340 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/i915/gt/intel_context_param.c
+> 
+> -- 
+> 2.31.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
