@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EFD3BFA10
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 14:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D1A3BFA11
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 14:26:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5D9B6E241;
-	Thu,  8 Jul 2021 12:26:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E87126E8C3;
+	Thu,  8 Jul 2021 12:26:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 150E86E222;
- Thu,  8 Jul 2021 12:26:43 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10038"; a="273334407"
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="273334407"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC166E8BE;
+ Thu,  8 Jul 2021 12:26:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10038"; a="273334412"
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="273334412"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 05:26:42 -0700
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="487585280"
+ 08 Jul 2021 05:26:44 -0700
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="487585286"
 Received: from dhowell-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.213.219.126])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 05:26:41 -0700
+ 08 Jul 2021 05:26:42 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Thu,  8 Jul 2021 13:25:53 +0100
-Message-Id: <20210708122554.1874987-2-matthew.auld@intel.com>
+Date: Thu,  8 Jul 2021 13:25:54 +0100
+Message-Id: <20210708122554.1874987-3-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20210708122554.1874987-1-matthew.auld@intel.com>
 References: <20210708122554.1874987-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/3] tests/i915_query: extract
- query_garbage_items
+Subject: [Intel-gfx] [PATCH i-g-t 3/3] tests/i915_query: add some sanity
+ checking around regions query
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,145 +50,169 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We should be able to re-use this for other queries.
+Ensure if we feed garbage into DRM_I915_QUERY_MEMORY_REGIONS it does
+indeed fail as expected. Also add some asserts for the invariants with
+the probed regions, for example we should always have at least system
+memory.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
 ---
- tests/i915/i915_query.c | 46 ++++++++++++++++++++++++-----------------
- 1 file changed, 27 insertions(+), 19 deletions(-)
+ tests/i915/i915_query.c | 127 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 127 insertions(+)
 
 diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
-index 29b938e9..34965841 100644
+index 34965841..78bd4a2b 100644
 --- a/tests/i915/i915_query.c
 +++ b/tests/i915/i915_query.c
-@@ -92,7 +92,8 @@ static void test_query_garbage(int fd)
- 	i915_query_items_err(fd, &item, 1, EINVAL);
- }
+@@ -33,6 +33,10 @@ IGT_TEST_DESCRIPTION("Testing the i915 query uAPI.");
+  */
+ #define MIN_TOPOLOGY_ITEM_SIZE (sizeof(struct drm_i915_query_topology_info) + 3)
  
--static void test_query_garbage_items(int fd)
-+static void test_query_garbage_items(int fd, int query_id, int min_item_size,
-+				     int sizeof_query_item)
++/* All devices should have at least one region. */
++#define MIN_REGIONS_ITEM_SIZE (sizeof(struct drm_i915_query_memory_regions) + \
++			       sizeof(struct drm_i915_memory_region_info))
++
+ static int
+ __i915_query(int fd, struct drm_i915_query *q)
  {
- 	struct drm_i915_query_item items[2];
- 	struct drm_i915_query_item *items_ptr;
-@@ -103,7 +104,7 @@ static void test_query_garbage_items(int fd)
- 	 * Subject to change in the future.
- 	 */
- 	memset(items, 0, sizeof(items));
--	items[0].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
-+	items[0].query_id = query_id;
- 	items[0].flags = 42;
- 	i915_query_items(fd, items, 1);
- 	igt_assert_eq(items[0].length, -EINVAL);
-@@ -113,10 +114,10 @@ static void test_query_garbage_items(int fd)
- 	 * one is properly processed.
- 	 */
- 	memset(items, 0, sizeof(items));
--	items[0].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
-+	items[0].query_id = query_id;
- 	items[1].query_id = ULONG_MAX;
- 	i915_query_items(fd, items, 2);
--	igt_assert_lte(MIN_TOPOLOGY_ITEM_SIZE, items[0].length);
-+	igt_assert_lte(min_item_size, items[0].length);
- 	igt_assert_eq(items[1].length, -EINVAL);
- 
- 	/*
-@@ -126,16 +127,16 @@ static void test_query_garbage_items(int fd)
- 	 */
- 	memset(items, 0, sizeof(items));
- 	items[0].query_id = ULONG_MAX;
--	items[1].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
-+	items[1].query_id = query_id;
- 	i915_query_items(fd, items, 2);
- 	igt_assert_eq(items[0].length, -EINVAL);
--	igt_assert_lte(MIN_TOPOLOGY_ITEM_SIZE, items[1].length);
-+	igt_assert_lte(min_item_size, items[1].length);
- 
- 	/* Test a couple of invalid data pointer in query item. */
- 	memset(items, 0, sizeof(items));
--	items[0].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
-+	items[0].query_id = query_id;
- 	i915_query_items(fd, items, 1);
--	igt_assert_lte(MIN_TOPOLOGY_ITEM_SIZE, items[0].length);
-+	igt_assert_lte(min_item_size, items[0].length);
- 
- 	items[0].data_ptr = 0;
- 	i915_query_items(fd, items, 1);
-@@ -145,14 +146,13 @@ static void test_query_garbage_items(int fd)
- 	i915_query_items(fd, items, 1);
- 	igt_assert_eq(items[0].length, -EFAULT);
- 
--
- 	/* Test an invalid query item length. */
- 	memset(items, 0, sizeof(items));
--	items[0].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
--	items[1].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
--	items[1].length = sizeof(struct drm_i915_query_topology_info) - 1;
-+	items[0].query_id = query_id;
-+	items[1].query_id = query_id;
-+	items[1].length = sizeof_query_item - 1;
- 	i915_query_items(fd, items, 2);
--	igt_assert_lte(MIN_TOPOLOGY_ITEM_SIZE, items[0].length);
-+	igt_assert_lte(min_item_size, items[0].length);
- 	igt_assert_eq(items[1].length, -EINVAL);
- 
- 	/*
-@@ -162,9 +162,9 @@ static void test_query_garbage_items(int fd)
- 	 * has been removed from our address space.
- 	 */
- 	items_ptr = mmap(0, 4096, PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
--	items_ptr[0].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
-+	items_ptr[0].query_id = query_id;
- 	i915_query_items(fd, items_ptr, 1);
--	igt_assert_lte(MIN_TOPOLOGY_ITEM_SIZE, items_ptr[0].length);
-+	igt_assert_lte(min_item_size, items_ptr[0].length);
- 	munmap(items_ptr, 4096);
- 	i915_query_items_err(fd, items_ptr, 1, EFAULT);
- 
-@@ -173,7 +173,7 @@ static void test_query_garbage_items(int fd)
- 	 * the kernel errors out with EFAULT.
- 	 */
- 	items_ptr = mmap(0, 4096, PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
--	items_ptr[0].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
-+	items_ptr[0].query_id = query_id;
- 	igt_assert_eq(0, mprotect(items_ptr, 4096, PROT_READ));
- 	i915_query_items_err(fd, items_ptr, 1, EFAULT);
- 	munmap(items_ptr, 4096);
-@@ -186,12 +186,20 @@ static void test_query_garbage_items(int fd)
- 	memset(items_ptr, 0, 8192);
- 	n_items = 8192 / sizeof(struct drm_i915_query_item);
- 	for (i = 0; i < n_items; i++)
--		items_ptr[i].query_id = DRM_I915_QUERY_TOPOLOGY_INFO;
-+		items_ptr[i].query_id = query_id;
- 	mprotect(((uint8_t *)items_ptr) + 4096, 4096, PROT_READ);
- 	i915_query_items_err(fd, items_ptr, n_items, EFAULT);
- 	munmap(items_ptr, 8192);
+@@ -491,6 +495,119 @@ test_query_topology_known_pci_ids(int fd, int devid)
+ 	free(topo_info);
  }
  
-+static void test_query_topology_garbage_items(int fd)
++static bool query_regions_supported(int fd)
 +{
-+	test_query_garbage_items(fd,
-+				 DRM_I915_QUERY_TOPOLOGY_INFO,
-+				 MIN_TOPOLOGY_ITEM_SIZE,
-+				 sizeof(struct drm_i915_query_topology_info));
++	struct drm_i915_query_item item = {
++		.query_id = DRM_I915_QUERY_MEMORY_REGIONS,
++	};
++
++	return __i915_query_items(fd, &item, 1) == 0 && item.length > 0;
 +}
 +
- /*
-  * Allocate more on both sides of where the kernel is going to write and verify
-  * that it writes only where it's supposed to.
-@@ -738,9 +746,9 @@ igt_main
- 	igt_subtest("query-garbage")
- 		test_query_garbage(fd);
- 
--	igt_subtest("query-garbage-items") {
-+	igt_subtest("query-topology-garbage-items") {
- 		igt_require(query_topology_supported(fd));
--		test_query_garbage_items(fd);
-+		test_query_topology_garbage_items(fd);
++static void test_query_regions_garbage_items(int fd)
++{
++	struct drm_i915_query_memory_regions *regions;
++	struct drm_i915_query_item item;
++	int i;
++
++	test_query_garbage_items(fd,
++				 DRM_I915_QUERY_MEMORY_REGIONS,
++				 MIN_REGIONS_ITEM_SIZE,
++				 sizeof(struct drm_i915_query_memory_regions));
++
++	memset(&item, 0, sizeof(item));
++	item.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
++	i915_query_items(fd, &item, 1);
++	igt_assert(item.length > 0);
++
++	regions = calloc(1, item.length);
++	item.data_ptr = to_user_pointer(regions);
++
++	/* Bogus; in-MBZ */
++	for (i = 0; i < ARRAY_SIZE(regions->rsvd); i++) {
++		regions->rsvd[i] = 0xdeadbeaf;
++		i915_query_items(fd, &item, 1);
++		igt_assert_eq(item.length, -EINVAL);
++		regions->rsvd[i] = 0;
++	}
++
++	i915_query_items(fd, &item, 1);
++	igt_assert(regions->num_regions);
++	igt_assert(item.length > 0);
++
++	/* Bogus; out-MBZ */
++	for (i = 0; i < regions->num_regions; i++) {
++		struct drm_i915_memory_region_info info = regions->regions[i];
++		int j;
++
++		igt_assert_eq_u32(info.rsvd0, 0);
++
++		for (j = 0; j < ARRAY_SIZE(info.rsvd1); j++)
++			igt_assert_eq_u32(info.rsvd1[j], 0);
++	}
++
++	/* Bogus; kernel is meant to set this */
++	regions->num_regions = 1;
++	i915_query_items(fd, &item, 1);
++	igt_assert_eq(item.length, -EINVAL);
++	regions->num_regions = 0;
++
++	free(regions);
++}
++
++static void test_query_regions_sanity_check(int fd)
++{
++	struct drm_i915_query_memory_regions *regions;
++	struct drm_i915_query_item item;
++	bool found_system;
++	int i;
++
++	memset(&item, 0, sizeof(item));
++	item.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
++	i915_query_items(fd, &item, 1);
++	igt_assert(item.length > 0);
++
++	regions = calloc(1, item.length);
++
++	item.data_ptr = to_user_pointer(regions);
++	i915_query_items(fd, &item, 1);
++
++	/* We should always have at least one region */
++	igt_assert(regions->num_regions);
++
++	found_system = false;
++	for (i = 0; i < regions->num_regions; i++) {
++		struct drm_i915_gem_memory_class_instance r1 =
++			regions->regions[i].region;
++		int j;
++
++		if (r1.memory_class == I915_MEMORY_CLASS_SYSTEM) {
++			igt_assert_eq(r1.memory_instance, 0);
++			found_system = true;
++		}
++
++		igt_assert(r1.memory_class == I915_MEMORY_CLASS_SYSTEM ||
++			   r1.memory_class == I915_MEMORY_CLASS_DEVICE);
++
++		for (j = 0; j < regions->num_regions; j++) {
++			struct drm_i915_gem_memory_class_instance r2 =
++				regions->regions[j].region;
++
++			if (i == j)
++				continue;
++
++			/* All probed class:instance pairs must be unique */
++			igt_assert(!(r1.memory_class == r2.memory_class &&
++				     r1.memory_instance == r2.memory_instance));
++		}
++	}
++
++	/* All devices should at least have system memory */
++	igt_assert(found_system);
++
++	free(regions);
++}
++
+ static bool query_engine_info_supported(int fd)
+ {
+ 	struct drm_i915_query_item item = {
+@@ -779,6 +896,16 @@ igt_main
+ 		test_query_topology_known_pci_ids(fd, devid);
  	}
  
- 	igt_subtest("query-topology-kernel-writes") {
++	igt_subtest("query-regions-garbage-items") {
++		igt_require(query_regions_supported(fd));
++		test_query_regions_garbage_items(fd);
++	}
++
++	igt_subtest("query-regions-sanity-check") {
++		igt_require(query_regions_supported(fd));
++		test_query_regions_sanity_check(fd);
++	}
++
+ 	igt_subtest_group {
+ 		igt_fixture {
+ 			igt_require(query_engine_info_supported(fd));
 -- 
 2.26.3
 
