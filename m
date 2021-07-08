@@ -2,39 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C913C1406
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 15:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFDEC3C1439
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 15:23:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 656166E8C6;
-	Thu,  8 Jul 2021 13:14:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A1066E8BE;
+	Thu,  8 Jul 2021 13:23:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F7AF89F27
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 13:14:02 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10038"; a="231259623"
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="231259623"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 06:14:01 -0700
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="487599005"
-Received: from victorge-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.44.91])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 06:13:59 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <87pmvt54tz.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210708102549.27821-1-vandita.kulkarni@intel.com>
- <20210708102549.27821-3-vandita.kulkarni@intel.com>
- <87pmvt54tz.fsf@intel.com>
-Date: Thu, 08 Jul 2021 16:13:56 +0300
-Message-ID: <87k0m154ob.fsf@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AB6E6E241;
+ Thu,  8 Jul 2021 13:23:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10038"; a="207679768"
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="207679768"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 06:23:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; d="scan'208";a="457882778"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga008.jf.intel.com with ESMTP; 08 Jul 2021 06:23:34 -0700
+Received: from [10.249.150.204] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.150.204])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 168DNXf0008381; Thu, 8 Jul 2021 14:23:33 +0100
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210706222010.101522-1-matthew.brost@intel.com>
+ <20210707232543.14088-1-matthew.brost@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <54d1f671-2afa-e48d-aa17-e1fa8869dc68@intel.com>
+Date: Thu, 8 Jul 2021 15:23:33 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v7 2/3] drm/i915/display/dsc: Add Per connector
- debugfs node for DSC BPP enable
+In-Reply-To: <20210707232543.14088-1-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 06/7] drm/i915/guc: Optimize CTB writes and
+ reads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,165 +56,259 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 08 Jul 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Thu, 08 Jul 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
->> From: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
->>
->> [What]:
->> This patch creates a per connector debugfs node to expose
->> the Input and Compressed BPP.
->>
->> The same node can be used from userspace to force
->> DSC to a certain BPP(all accepted values).
->>
->> [Why]:
->> Useful to verify all supported/requested compression bpp's
->> through IGT
->>
->> v2: Remove unnecessary logic (Jani)
->> v3: Drop pipe bpp in debugfs node (Vandita)
->> v4: Minor cleanups (Vandita)
->> v5: Fix NULL pointer dereference
->> v6: Fix dim tool checkpatch errors
->>     Release the lock before return (Vandita)
->> v7: Rename to file to dsc_bpp, remove unwanted
->>     dsc bpp range check from v6, permissions (Jani)
->>
->> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
->> Cc: Navare Manasi D <manasi.d.navare@intel.com>
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> Signed-off-by: Patnana Venkata Sai <venkata.sai.patnana@intel.com>
->> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
->
-> If this works, I think it's good enough for now. I think there's more
-> overall cleanup to be done in the file, but should not block this one.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
->
-> BR,
-> Jani.
->
->
->> ---
->>  .../drm/i915/display/intel_display_debugfs.c  | 76 ++++++++++++++++++-
->>  .../drm/i915/display/intel_display_types.h    |  1 +
->>  2 files changed, 76 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 942c4419e0cb..351ada944b1e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -2389,6 +2389,73 @@ static const struct file_operations i915_dsc_fec_support_fops = {
->>  	.write = i915_dsc_fec_support_write
->>  };
->>  
->> +static int i915_dsc_bpp_show(struct seq_file *m, void *data)
->> +{
->> +	struct drm_connector *connector = m->private;
->> +	struct drm_device *dev = connector->dev;
->> +	struct drm_crtc *crtc;
->> +	struct intel_crtc_state *crtc_state;
->> +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
->> +	int ret;
->> +
->> +	if (!encoder)
->> +		return -ENODEV;
->> +
->> +	ret = drm_modeset_lock_single_interruptible(&dev->mode_config.connection_mutex);
->> +	if (ret)
->> +		return ret;
->> +
->> +	crtc = connector->state->crtc;
->> +	if (connector->status != connector_status_connected || !crtc) {
->> +		ret = -ENODEV;
->> +		goto out;
->> +	}
->> +
->> +	crtc_state = to_intel_crtc_state(crtc->state);
->> +	seq_printf(m, "Compressed_BPP: %d\n", crtc_state->dsc.compressed_bpp);
->> +
->> +out:	drm_modeset_unlock(&dev->mode_config.connection_mutex);
->> +
->> +	return ret;
->> +}
->> +
->> +static ssize_t i915_dsc_bpp_write(struct file *file,
->> +				  const char __user *ubuf,
->> +				  size_t len, loff_t *offp)
->> +{
->> +	struct drm_connector *connector =
->> +		((struct seq_file *)file->private_data)->private;
->> +	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
->> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->> +	int dsc_bpp = 0;
->> +	int ret;
->> +
->> +	ret = kstrtoint_from_user(ubuf, len, 0, &dsc_bpp);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	intel_dp->force_dsc_bpp = dsc_bpp;
->> +	*offp += len;
->> +
->> +	return len;
->> +}
->> +
->> +static int i915_dsc_bpp_open(struct inode *inode,
->> +			     struct file *file)
->> +{
->> +	return single_open(file, i915_dsc_bpp_show,
->> +			   inode->i_private);
->> +}
->> +
->> +static const struct file_operations i915_dsc_bpp_fops = {
->> +	.owner = THIS_MODULE,
->> +	.open = i915_dsc_bpp_open,
->> +	.read = seq_read,
->> +	.llseek = seq_lseek,
->> +	.release = single_release,
->> +	.write = i915_dsc_bpp_write
->> +};
->> +
->>  /**
->>   * intel_connector_debugfs_add - add i915 specific connector debugfs files
->>   * @connector: pointer to a registered drm_connector
->> @@ -2427,10 +2494,17 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
->>  				    connector, &i915_hdcp_sink_capability_fops);
->>  	}
->>  
->> -	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) && ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort && !to_intel_connector(connector)->mst_port) || connector->connector_type == DRM_MODE_CONNECTOR_eDP))
->> +	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) &&
->> +	    ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
->> +	    !to_intel_connector(connector)->mst_port) ||
->> +	    connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
->>  		debugfs_create_file("i915_dsc_fec_support", 0644, root,
->>  				    connector, &i915_dsc_fec_support_fops);
->>  
->> +		debugfs_create_file("i915_dsc_bpp", 0644, root,
->> +				    connector, &i915_dsc_bpp_fops);
->> +	}
->> +
->>  	/* Legacy panels doesn't lpsp on any platform */
->>  	if ((DISPLAY_VER(dev_priv) >= 9 || IS_HASWELL(dev_priv) ||
->>  	     IS_BROADWELL(dev_priv)) &&
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index d94f361b548b..19d8d3eefbc2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1612,6 +1612,7 @@ struct intel_dp {
->>  
->>  	/* Display stream compression testing */
->>  	bool force_dsc_en;
->> +	int force_dsc_bpp;
->>  
->>  	bool hobl_failed;
->>  	bool hobl_active;
+On 08.07.2021 01:25, Matthew Brost wrote:
+> CTB writes are now in the path of command submission and should be
+> optimized for performance. Rather than reading CTB descriptor values
+> (e.g. head, tail) which could result in accesses across the PCIe bus,
+> store shadow local copies and only read/write the descriptor values when
+> absolutely necessary. Also store the current space in the each channel
+> locally.
+> 
+> v2:
+>  (Michal)
+>   - Add additional sanity checks for head / tail pointers
+>   - Use GUC_CTB_HDR_LEN rather than magic 1
+> v3:
+>  (Michal / John H)
+>   - Drop redundant check of head value
+> v4:
+>  (John H)
+>   - Drop redundant checks of tail / head values
+> v5:
+>  (Michal)
+>   - Address more nits
+> 
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 92 +++++++++++++++--------
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |  6 ++
+>  2 files changed, 66 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index db3e85b89573..d552d3016779 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -130,6 +130,10 @@ static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc)
+>  static void guc_ct_buffer_reset(struct intel_guc_ct_buffer *ctb)
+>  {
+>  	ctb->broken = false;
+> +	ctb->tail = 0;
+> +	ctb->head = 0;
+> +	ctb->space = CIRC_SPACE(ctb->tail, ctb->head, ctb->size);
+> +
+>  	guc_ct_buffer_desc_init(ctb->desc);
+>  }
+>  
+> @@ -383,10 +387,8 @@ static int ct_write(struct intel_guc_ct *ct,
+>  {
+>  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>  	struct guc_ct_buffer_desc *desc = ctb->desc;
+> -	u32 head = desc->head;
+> -	u32 tail = desc->tail;
+> +	u32 tail = ctb->tail;
+>  	u32 size = ctb->size;
+> -	u32 used;
+>  	u32 header;
+>  	u32 hxg;
+>  	u32 type;
+> @@ -396,25 +398,22 @@ static int ct_write(struct intel_guc_ct *ct,
+>  	if (unlikely(desc->status))
+>  		goto corrupted;
+>  
+> -	if (unlikely((tail | head) >= size)) {
+> -		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+> -			 head, tail, size);
+> +	GEM_BUG_ON(tail > size);
+> +
+> +#ifdef CONFIG_DRM_I915_DEBUG_GUC
+> +	if (unlikely(tail != READ_ONCE(desc->tail))) {
+> +		CT_ERROR(ct, "Tail was modified %u != %u\n",
+> +			 desc->tail, tail);
+> +		desc->status |= GUC_CTB_STATUS_MISMATCH;
+> +		goto corrupted;
+> +	}
+> +	if (unlikely(desc->head >= size)) {
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+READ_ONCE wouldn't hurt
+
+> +		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+> +			 desc->head, size);
+>  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>  		goto corrupted;
+>  	}
+> -
+> -	/*
+> -	 * tail == head condition indicates empty. GuC FW does not support
+> -	 * using up the entire buffer to get tail == head meaning full.
+> -	 */
+> -	if (tail < head)
+> -		used = (size - head) + tail;
+> -	else
+> -		used = tail - head;
+> -
+> -	/* make sure there is a space including extra dw for the header */
+> -	if (unlikely(used + len + GUC_CTB_HDR_LEN >= size))
+> -		return -ENOSPC;
+> +#endif
+>  
+>  	/*
+>  	 * dw0: CT header (including fence)
+> @@ -452,6 +451,10 @@ static int ct_write(struct intel_guc_ct *ct,
+>  	 */
+>  	write_barrier(ct);
+>  
+> +	/* update local copies */
+> +	ctb->tail = tail;
+> +	ctb->space -= len + GUC_CTB_HDR_LEN;
+
+it looks that we rely on previous call to h2g_has_room(), but maybe for
+completeness we should have sanity check in this function as well:
+
+	GEM_BUG_ON(ctb->space < len + HDR_LEN);
+
+not a blocker, other LGTM,
+
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+Michal
+
+> +
+>  	/* now update descriptor */
+>  	WRITE_ONCE(desc->tail, tail);
+>  
+> @@ -469,7 +472,7 @@ static int ct_write(struct intel_guc_ct *ct,
+>   * @req:	pointer to pending request
+>   * @status:	placeholder for status
+>   *
+> - * For each sent request, Guc shall send bac CT response message.
+> + * For each sent request, GuC shall send back CT response message.
+>   * Our message handler will update status of tracked request once
+>   * response message with given fence is received. Wait here and
+>   * check for valid response status value.
+> @@ -525,24 +528,36 @@ static inline bool ct_deadlocked(struct intel_guc_ct *ct)
+>  	return ret;
+>  }
+>  
+> -static inline bool h2g_has_room(struct intel_guc_ct_buffer *ctb, u32 len_dw)
+> +static inline bool h2g_has_room(struct intel_guc_ct *ct, u32 len_dw)
+>  {
+> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+>  	struct guc_ct_buffer_desc *desc = ctb->desc;
+> -	u32 head = READ_ONCE(desc->head);
+> +	u32 head;
+>  	u32 space;
+>  
+> -	space = CIRC_SPACE(desc->tail, head, ctb->size);
+> +	if (ctb->space >= len_dw)
+> +		return true;
+> +
+> +	head = READ_ONCE(desc->head);
+> +	if (unlikely(head > ctb->size)) {
+> +		CT_ERROR(ct, "Invalid head offset %u >= %u)\n",
+> +			 head, ctb->size);
+> +		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+> +		ctb->broken = true;
+> +		return false;
+> +	}
+> +
+> +	space = CIRC_SPACE(ctb->tail, head, ctb->size);
+> +	ctb->space = space;
+>  
+>  	return space >= len_dw;
+>  }
+>  
+>  static int has_room_nb(struct intel_guc_ct *ct, u32 len_dw)
+>  {
+> -	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
+> -
+>  	lockdep_assert_held(&ct->ctbs.send.lock);
+>  
+> -	if (unlikely(!h2g_has_room(ctb, len_dw))) {
+> +	if (unlikely(!h2g_has_room(ct, len_dw))) {
+>  		if (ct->stall_time == KTIME_MAX)
+>  			ct->stall_time = ktime_get();
+>  
+> @@ -612,7 +627,7 @@ static int ct_send(struct intel_guc_ct *ct,
+>  	 */
+>  retry:
+>  	spin_lock_irqsave(&ctb->lock, flags);
+> -	if (unlikely(!h2g_has_room(ctb, len + GUC_CTB_HDR_LEN))) {
+> +	if (unlikely(!h2g_has_room(ct, len + GUC_CTB_HDR_LEN))) {
+>  		if (ct->stall_time == KTIME_MAX)
+>  			ct->stall_time = ktime_get();
+>  		spin_unlock_irqrestore(&ctb->lock, flags);
+> @@ -732,8 +747,8 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>  {
+>  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.recv;
+>  	struct guc_ct_buffer_desc *desc = ctb->desc;
+> -	u32 head = desc->head;
+> -	u32 tail = desc->tail;
+> +	u32 head = ctb->head;
+> +	u32 tail = READ_ONCE(desc->tail);
+>  	u32 size = ctb->size;
+>  	u32 *cmds = ctb->cmds;
+>  	s32 available;
+> @@ -747,9 +762,19 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>  	if (unlikely(desc->status))
+>  		goto corrupted;
+>  
+> -	if (unlikely((tail | head) >= size)) {
+> -		CT_ERROR(ct, "Invalid offsets head=%u tail=%u (size=%u)\n",
+> -			 head, tail, size);
+> +	GEM_BUG_ON(head > size);
+> +
+> +#ifdef CONFIG_DRM_I915_DEBUG_GUC
+> +	if (unlikely(head != READ_ONCE(desc->head))) {
+> +		CT_ERROR(ct, "Head was modified %u != %u\n",
+> +			 desc->head, head);
+> +		desc->status |= GUC_CTB_STATUS_MISMATCH;
+> +		goto corrupted;
+> +	}
+> +#endif
+> +	if (unlikely(tail >= size)) {
+> +		CT_ERROR(ct, "Invalid tail offset %u >= %u)\n",
+> +			 tail, size);
+>  		desc->status |= GUC_CTB_STATUS_OVERFLOW;
+>  		goto corrupted;
+>  	}
+> @@ -802,6 +827,9 @@ static int ct_read(struct intel_guc_ct *ct, struct ct_incoming_msg **msg)
+>  	}
+>  	CT_DEBUG(ct, "received %*ph\n", 4 * len, (*msg)->msg);
+>  
+> +	/* update local copies */
+> +	ctb->head = head;
+> +
+>  	/* now update descriptor */
+>  	WRITE_ONCE(desc->head, head);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> index bee03794c1eb..edd1bba0445d 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> @@ -33,6 +33,9 @@ struct intel_guc;
+>   * @desc: pointer to the buffer descriptor
+>   * @cmds: pointer to the commands buffer
+>   * @size: size of the commands buffer in dwords
+> + * @head: local shadow copy of head in dwords
+> + * @tail: local shadow copy of tail in dwords
+> + * @space: local shadow copy of space in dwords
+>   * @broken: flag to indicate if descriptor data is broken
+>   */
+>  struct intel_guc_ct_buffer {
+> @@ -40,6 +43,9 @@ struct intel_guc_ct_buffer {
+>  	struct guc_ct_buffer_desc *desc;
+>  	u32 *cmds;
+>  	u32 size;
+> +	u32 tail;
+> +	u32 head;
+> +	u32 space;
+>  	bool broken;
+>  };
+>  
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
