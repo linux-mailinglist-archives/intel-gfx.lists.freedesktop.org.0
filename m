@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D14B3BF3B1
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 03:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0923BF3E5
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 04:18:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5F5B8980C;
-	Thu,  8 Jul 2021 01:53:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 895A26E207;
+	Thu,  8 Jul 2021 02:18:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AEC448980C;
- Thu,  8 Jul 2021 01:53:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D00FC6E202;
+ Thu,  8 Jul 2021 02:18:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A7DD4A0169;
- Thu,  8 Jul 2021 01:53:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CA2BDA47EB;
+ Thu,  8 Jul 2021 02:18:49 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 08 Jul 2021 01:53:56 -0000
-Message-ID: <162570923666.32072.1998600684009103057@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Thu, 08 Jul 2021 02:18:49 -0000
+Message-ID: <162571072980.32074.10816707075854165613@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210707235921.2416911-1-lucas.demarchi@intel.com>
-In-Reply-To: <20210707235921.2416911-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_do_not_abbreviat?=
- =?utf-8?q?e_version_in_debugfs?=
+References: <20210706222010.101522-1-matthew.brost@intel.com>
+In-Reply-To: <20210706222010.101522-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBD?=
+ =?utf-8?q?T_changes_required_for_GuC_submission_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,30 +47,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915: do not abbreviate version in debugfs
-URL   : https://patchwork.freedesktop.org/series/92296/
-State : warning
+Series: CT changes required for GuC submission (rev4)
+URL   : https://patchwork.freedesktop.org/series/91943/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-b99d3141fb47 drm/i915: do not abbreviate version in debugfs
-392edad5e651 drm/i915: Add release id version
--:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#48: FILE: drivers/gpu/drm/i915/i915_drv.h:1249:
-+#define GRAPHICS_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->graphics_ver, \
-+					       INTEL_INFO(i915)->graphics_rel)
-
--:54: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#54: FILE: drivers/gpu/drm/i915/i915_drv.h:1255:
-+#define MEDIA_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->media_ver, \
-+					       INTEL_INFO(i915)->media_rel)
-
--:70: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#70: FILE: drivers/gpu/drm/i915/intel_device_info.c:100:
-+		drm_printf(p, "graphics version: %u.%02u\n", info->graphics_ver, info->graphics_rel);
-
-total: 0 errors, 1 warnings, 2 checks, 44 lines checked
+Applying: drm/i915/guc: Relax CTB response timeout
+Applying: REVIEW: Full tree diff against internal/internal
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/gem/i915_gem_context.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0002 REVIEW: Full tree diff against internal/internal
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
 _______________________________________________
