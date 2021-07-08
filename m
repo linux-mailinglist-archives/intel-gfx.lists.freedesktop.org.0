@@ -1,58 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F35D3C1874
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 19:38:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4305F3C1877
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 19:38:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A749F6E976;
-	Thu,  8 Jul 2021 17:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140296E970;
+	Thu,  8 Jul 2021 17:38:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 812D66E970
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 17:38:23 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- y21-20020a7bc1950000b02902161fccabf1so4129516wmi.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jul 2021 10:38:23 -0700 (PDT)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 592006E972
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 17:38:24 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id q17so8532806wrv.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jul 2021 10:38:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=AiWGjZqGioMgeC4R5Oz3qY6Q7MchUqktCVNPWGTETh0=;
- b=OFUNvjX5YPx3GRgyR4RSmZIS827csWXefuMDaqK8pWehp0iq3fp9hHBZltRPpoLpix
- HmxOfxJ9J5/HoNwA0Jwm3WBMUQGR6Ho/kRLWWWFOIBQsJJAevE4sIbeBC9622i7uX/7T
- NoUhkt/WbqsqpBoSoHUx8PVhTd60hJUViyPAA=
+ bh=InVnPLy1h+Gn4xVBn/fC7AZt6grH88jqC7oOozTIXb8=;
+ b=b9NfiRDV4PWMagsuaIW/0pNvT/uy7ZDQf5JndjvR8JML4iEvYQWZQL7cwk7QnkWdah
+ oBfpqwwuzxFNgBz0aEff+3SB9zAzKpnDR1DMFi43W07iORhzR0ARnRNGrCQ3kjPtlJLd
+ IJh73WUh20UIq5aO+hBu1ga1TfA/5tOncbrXM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=AiWGjZqGioMgeC4R5Oz3qY6Q7MchUqktCVNPWGTETh0=;
- b=N1x7I1UCtSL2YMDJYIB4J7ME8UfcWlJKvyQrhVrCgqCsAWnItwpv6UxiNTBefZ5hPY
- /ouhTQa6EHgzmdEffHulPWD45348Gi4xOR6K6BOGbsFoeoXwsFlVVVQ6iotHCCA7ArkN
- IZfFp9Wq6x2aHImCCCuFwr7wh4ha9cSnwQ4qRYkh5hz4zwI8HRVNBUmmUVg3WfDHh3Pn
- TBYlo5XzMYtU0vgcayIiUFfDnbmjlWPxH8tx6C6Hjgui+tSotpUCyl456GCcN4SVOO2V
- ueK17WJ5hR2+2nj0k1iTW4XzxY0zN6loDt1BcgH7wB1E99jH0bOBM9MQdVna3D8Foq+m
- DnoQ==
-X-Gm-Message-State: AOAM533uKZygDuBKxxMF3uhARGmb+J1ogrS941EI+dM/ADf8XtGVV6m4
- nVYBpasZMef7Ven1vprXQYqjNQ==
-X-Google-Smtp-Source: ABdhPJzP/u+3t5ih+KzkHOgyvK0/I1RhftwRdkBrNdVLe8hSB1jB513knF4XsmFVfudgejBSUEtkdQ==
-X-Received: by 2002:a1c:f30a:: with SMTP id q10mr34365275wmq.138.1625765902176; 
- Thu, 08 Jul 2021 10:38:22 -0700 (PDT)
+ bh=InVnPLy1h+Gn4xVBn/fC7AZt6grH88jqC7oOozTIXb8=;
+ b=qR+RwgWKztYx92g2jH3AR8g09Dqtcx0STOnzIz1m7DtH6j5Oc9ay3EA+KTl3AjULWf
+ +LjQAhywIutCcoN7llXYXDzraQ85bp+ovvuhsKg9Gfbe6LnQzOpTNi0Y7yn8bDxA/xlW
+ AXGxxTM8sWouCW62hBN1ORCRyrwBJzBvdAiLbm1Xr7l4rV2tCF9VsPY75oabom/Gh/mZ
+ d4ZHNzi1jFkpHEscAvywl/dPAo0gzQrW+6jwOpWurCLHQrPRnlCasX0JVdadg0PZsVGB
+ wNAmdns7YGsB0xqRdgtotBO7c7c3NXqi/r3zAmtNBXfb1ov5OmvbQUtruDYOdET5llKb
+ N7jg==
+X-Gm-Message-State: AOAM531s3dqW7y+m5ekMxpkL8mTdsU0CYgRALrBTBrkLdARYNo4EwIIU
+ Qx7XrJg9WIHkXRGphXkglhT4xA==
+X-Google-Smtp-Source: ABdhPJxD6PJ66owVmAWX8E6gbp7rigz0P4Z2yONzVbgd61fH6Zjzia6NQcSAsJ1vQHjng6a+fpD+Dw==
+X-Received: by 2002:a5d:4912:: with SMTP id x18mr4269311wrq.310.1625765903128; 
+ Thu, 08 Jul 2021 10:38:23 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l4sm2521853wme.26.2021.07.08.10.38.21
+ by smtp.gmail.com with ESMTPSA id l4sm2521853wme.26.2021.07.08.10.38.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Jul 2021 10:38:21 -0700 (PDT)
+ Thu, 08 Jul 2021 10:38:22 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Thu,  8 Jul 2021 19:37:48 +0200
-Message-Id: <20210708173754.3877540-15-daniel.vetter@ffwll.ch>
+Date: Thu,  8 Jul 2021 19:37:49 +0200
+Message-Id: <20210708173754.3877540-16-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210708173754.3877540-1-daniel.vetter@ffwll.ch>
 References: <20210708173754.3877540-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 14/20] drm/sched: Check locking in
- drm_sched_job_await_implicit
+Subject: [Intel-gfx] [PATCH v3 15/20] drm/msm: Don't break exclusive fence
+ ordering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,36 +64,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- Jack Zhang <Jack.Zhang1@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: freedreno@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Luben Tuikov <luben.tuikov@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ linux-arm-msm@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
+ Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-WW91IHJlYWxseSBuZWVkIHRvIGhvbGQgdGhlIHJlc2VydmF0aW9uIGhlcmUgb3IgYWxsIGtpbmRz
-IG9mIGZ1bm55CnRoaW5ncyBjYW4gaGFwcGVuIGJldHdlZW4gZ3JhYmJpbmcgdGhlIGRlcGVuZGVu
-Y2llcyBhbmQgaW5zZXJ0aW5nIHRoZQpuZXcgZmVuY2VzLgoKU2lnbmVkLW9mZi1ieTogRGFuaWVs
-IFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CkNjOiAiQ2hyaXN0aWFuIEvDtm5pZyIg
-PGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0
-ZXJAZmZ3bGwuY2g+CkNjOiBMdWJlbiBUdWlrb3YgPGx1YmVuLnR1aWtvdkBhbWQuY29tPgpDYzog
-QW5kcmV5IEdyb2R6b3Zza3kgPGFuZHJleS5ncm9kem92c2t5QGFtZC5jb20+CkNjOiBBbGV4IERl
-dWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CkNjOiBKYWNrIFpoYW5nIDxKYWNrLlpo
-YW5nMUBhbWQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9zY2hlZHVsZXIvc2NoZWRfbWFpbi5j
-IHwgMiArKwogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9zY2hlZHVsZXIvc2NoZWRfbWFpbi5jIGIvZHJpdmVycy9ncHUvZHJtL3Nj
-aGVkdWxlci9zY2hlZF9tYWluLmMKaW5kZXggZGIzMjZhMWViZjNjLi42N2VjYTg4ZTA3MGUgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9zY2hlZHVsZXIvc2NoZWRfbWFpbi5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9zY2hlZHVsZXIvc2NoZWRfbWFpbi5jCkBAIC03MDgsNiArNzA4LDggQEAg
-aW50IGRybV9zY2hlZF9qb2JfYXdhaXRfaW1wbGljaXQoc3RydWN0IGRybV9zY2hlZF9qb2IgKmpv
-YiwKIAlzdHJ1Y3QgZG1hX2ZlbmNlICoqZmVuY2VzOwogCXVuc2lnbmVkIGludCBpLCBmZW5jZV9j
-b3VudDsKIAorCWRtYV9yZXN2X2Fzc2VydF9oZWxkKG9iai0+cmVzdik7CisKIAlpZiAoIXdyaXRl
-KSB7CiAJCXN0cnVjdCBkbWFfZmVuY2UgKmZlbmNlID0gZG1hX3Jlc3ZfZ2V0X2V4Y2xfdW5sb2Nr
-ZWQob2JqLT5yZXN2KTsKIAotLSAKMi4zMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+There's only one exclusive slot, and we must not break the ordering.
+
+Adding a new exclusive fence drops all previous fences from the
+dma_resv. To avoid violating the signalling order we err on the side of
+over-synchronizing by waiting for the existing fences, even if
+userspace asked us to ignore them.
+
+A better fix would be to us a dma_fence_chain or _array like e.g.
+amdgpu now uses, but
+- msm has a synchronous dma_fence_wait for anything from another
+  context, so doesn't seem to care much,
+- and it probably makes sense to lift this into dma-resv.c code as a
+  proper concept, so that drivers don't have to hack up their own
+  solution each on their own.
+
+v2: Improve commit message per Lucas' suggestion.
+
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Sean Paul <sean@poorly.run>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: freedreno@lists.freedesktop.org
+---
+ drivers/gpu/drm/msm/msm_gem_submit.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
+index b71da71a3dd8..edd0051d849f 100644
+--- a/drivers/gpu/drm/msm/msm_gem_submit.c
++++ b/drivers/gpu/drm/msm/msm_gem_submit.c
+@@ -306,7 +306,8 @@ static int submit_fence_sync(struct msm_gem_submit *submit, bool no_implicit)
+ 				return ret;
+ 		}
+ 
+-		if (no_implicit)
++		/* exclusive fences must be ordered */
++		if (no_implicit && !write)
+ 			continue;
+ 
+ 		ret = msm_gem_sync_object(&msm_obj->base, submit->ring->fctx,
+-- 
+2.32.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
