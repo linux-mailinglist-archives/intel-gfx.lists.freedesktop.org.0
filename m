@@ -1,57 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE3A3C18B5
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 19:55:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E63E3C18E4
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 20:09:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCA816E95C;
-	Thu,  8 Jul 2021 17:55:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CA8F6E949;
+	Thu,  8 Jul 2021 18:08:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
- [IPv6:2a00:1450:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA946E969
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 17:55:23 +0000 (UTC)
-Received: by mail-wr1-x42b.google.com with SMTP id i94so8586905wri.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 08 Jul 2021 10:55:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=2OZfVHIKGYmy6nKr/GhMzb+ZwQZUwrjypn0unmVe+6s=;
- b=gF87xc1h8GyHpn8doxPH+6Otv5sbRY1WIWEJKvnFVVNfLtAzJRdSnNSnFaXd3XAi3G
- 6sJUqIBdX+3PuzDIY+JLdP2hXKV1nubuFVvqa6j/yIZMx+N8rB+qdn75FHyZDCXkALjk
- hSnnNqKjxoUTb1qy3+oFo0ln9OovKbtWopmIk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=2OZfVHIKGYmy6nKr/GhMzb+ZwQZUwrjypn0unmVe+6s=;
- b=dsQVoOMYPY9KILCshpNYeu3gVp5bFjD4YpmWp0/DF9v6nAyTM4n5IrE0qkw3/udePU
- fKu72AceSUyv4CMxEmbZrQCCLK7XBop0Dp12bDH6LLN8KmeaJCTXZgYarQGcQxyRte/o
- NSJnG352bSMezuYt1YQG5k1ZsJ0sqxE8HztHtPTfTu2hqRMUaqqFu0weyiLkD6aO6Znz
- jRibEytwK+Oufhup4aM5t8DxBaIwEbjoyDFDqZAiCSRuUHIOIcbpaHeG4mVOEKgpZFov
- 8csOT8x6yZ9vYDyIjizgZ/OzMmXqsn/22D1vO7/hMIvSZOjLVqgh88oSirtR2j+KbG0d
- PcCw==
-X-Gm-Message-State: AOAM530YjzvfC8SPD7qm6mHAGW2V5pc4eH5e3fOBX2Ab5JrBoYIEKcRM
- V7Xz2mLl+lKp7D/mkCYsyGHOOo7/LiQbaw==
-X-Google-Smtp-Source: ABdhPJxzsp55s6PjjOLszYn8IuYLwgacMG9qOpG8EVDMKl02bytHQ5yl143GIcm1+rHcNkAw4Gd+0g==
-X-Received: by 2002:adf:dfc9:: with SMTP id q9mr3216869wrn.117.1625766921958; 
- Thu, 08 Jul 2021 10:55:21 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z7sm9938745wmi.1.2021.07.08.10.55.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Jul 2021 10:55:21 -0700 (PDT)
-Date: Thu, 8 Jul 2021 19:55:19 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YOc8B0qoJzQqbKzY@phenom.ffwll.local>
-References: <20210708154835.528166-1-jason@jlekstrand.net>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5743D6E030
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 18:08:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="196840386"
+X-IronPort-AV: E=Sophos;i="5.84,224,1620716400"; d="scan'208";a="196840386"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 11:08:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,224,1620716400"; d="scan'208";a="492223637"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga001.jf.intel.com with ESMTP; 08 Jul 2021 11:08:47 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Thu, 8 Jul 2021 11:08:47 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Thu, 8 Jul 2021 11:08:46 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
+ Thu, 8 Jul 2021 11:08:46 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 1/7] drm/i915: Make pre-production detection
+ use direct revid comparison
+Thread-Index: AQHXc7uprKdaEfkXSECmcnGMGZR+qKs5YF0g
+Date: Thu, 8 Jul 2021 18:08:46 +0000
+Message-ID: <bf223bb32e3f4ab49c3e1553b247aad2@intel.com>
+References: <20210708053819.2120187-1-matthew.d.roper@intel.com>
+ <20210708053819.2120187-2-matthew.d.roper@intel.com>
+In-Reply-To: <20210708053819.2120187-2-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210708154835.528166-1-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 00/30] drm/i915/gem: ioctl clean-ups (v9)
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915: Make pre-production detection
+ use direct revid comparison
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,197 +66,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 08, 2021 at 10:48:05AM -0500, Jason Ekstrand wrote:
-> Overview:
-> ---------
-> 
-> This patch series attempts to clean up some of the IOCTL mess we've created
-> over the last few years.  The most egregious bit being context mutability.
-> In summary, this series:
-> 
->  1. Drops two never-used context params: RINGSIZE and NO_ZEROMAP
->  2. Drops the entire CONTEXT_CLONE API
->  3. Implements SINGLE_TIMELINE with a syncobj instead of actually sharing
->     intel_timeline between engines.
->  4. Adds a few sanity restrictions to the balancing/bonding API.
->  5. Implements a proto-ctx mechanism so that the engine set and VM can only
->     be set early on in the lifetime of a context, before anything ever
->     executes on it.  This effectively makes the VM and engine set
->     immutable.
-> 
-> This series has been tested with IGT as well as the Iris, ANV, and the
-> Intel media driver doing an 8K decode (this uses bonding/balancing).  I've
-> also done quite a bit of git archeology to ensure that nothing in here will
-> break anything that's already shipped at some point in history.  It's
-> possible I've missed something, but I've dug quite a bit.
-> 
-> 
-> Details and motivation:
-> -----------------------
-> 
-> In very broad strokes, there's an effort going on right now within Intel to
-> try and clean up and simplify i915 anywhere we can.  We obviously don't
-> want to break any shipping userspace but, as can be seen by this series,
-> there's a lot i915 theoretically supports which userspace doesn't actually
-> need.  Some of this, like the two context params used here, were simply
-> oversights where we went through the usual API review process and merged
-> the i915 bits but the userspace bits never landed for some reason.
-> 
-> Not all are so innocent, however.  For instance, there's an entire context
-> cloning API which allows one to create a context with certain parameters
-> "cloned" from some other context.  This entire API has never been used by
-> any userspace except IGT and there were never patches to any other
-> userspace to use it.  It never should have landed.  Also, when we added
-> support for setting explicit engine sets and sharing VMs across contexts,
-> people decided to do so via SET_CONTEXT_PARAM.  While this allowed them to
-> re-use existing API, it did so at the cost of making those states mutable
-> which leads to a plethora of potential race conditions.  There were even
-> IGT tests merged to cover some of theses:
-> 
->  - gem_vm_create@async-destroy and gem_vm_create@destroy-race which test
->    swapping out the VM on a running context.
-> 
->  - gem_ctx_persistence@replace* which test whether a client can escape a
->    non-persistent context by submitting a hanging batch and then swapping
->    out the engine set before the hang is detected.
-> 
->  - api_intel_bb@bb-with-vm which tests the that intel_bb_assign_vm works
->    properly.  This API is never used by any other IGT test.
-> 
-> There is also an entire deferred flush and set state framework in
-> i915_gem_cotnext.c which exists for safely swapping out the VM while there
-> is work in-flight on a context.
-> 
-> So, clearly people knew that this API was inherently racy and difficult to
-> implement but they landed it anyway.  Why?  The best explanation I've been
-> given is because it makes the API more "unified" or "symmetric" for this
-> stuff to go through SET_CONTEXT_PARAM.  It's not because any userspace
-> actually wants to be able to swap out the VM or the set of engines on a
-> running context.  That would be utterly insane.
-> 
-> This patch series cleans up this particular mess by introducing the concept
-> of a i915_gem_proto_context data structure which contains context creation
-> information.  When you initially call GEM_CONTEXT_CREATE, a proto-context
-> in created instead of an actual context.  Then, the first time something is
-> done on the context besides SET_CONTEXT_PARAM, an actual context is
-> created.  This allows us to keep the old drivers which use
-> SET_CONTEXT_PARAM to set up the engine set (see also media) while ensuring
-> that, once you have an i915_gem_context, the VM and the engine set are
-> immutable state.
-> 
-> Eventually, there are more clean-ups I'd like to do on top of this which
-> should make working with contexts inside i915 simpler and safer:
-> 
->  1. Move the GEM handle -> vma LUT from i915_gem_context into either
->     i915_ppgtt or drm_i915_file_private depending on whether or not the
->     hardware has a full PPGTT.
-> 
->  2. Move the delayed context destruction code into intel_context or a
->     per-engine wrapper struct rather than i915_gem_context.
-> 
->  3. Get rid of the separation between context close and context destroy
-> 
->  4. Get rid of the RCU on i915_gem_context
-> 
-> However, these should probably be done as a separate patch series as this
-> one is already starting to get longish, especially if you consider the 89
-> IGT patches that go along with it.
-> 
-> Test-with: 20210707210215.351483-1-jason@jlekstrand.net
-> 
-> Jason Ekstrand (30):
->   drm/i915: Drop I915_CONTEXT_PARAM_RINGSIZE
->   drm/i915: Stop storing the ring size in the ring pointer (v3)
->   drm/i915: Drop I915_CONTEXT_PARAM_NO_ZEROMAP
->   drm/i915/gem: Set the watchdog timeout directly in
->     intel_context_set_gem (v2)
->   drm/i915/gem: Return void from context_apply_all
->   drm/i915: Drop the CONTEXT_CLONE API (v2)
->   drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)
->   drm/i915: Drop getparam support for I915_CONTEXT_PARAM_ENGINES
->   drm/i915/gem: Disallow bonding of virtual engines (v3)
->   drm/i915/gem: Remove engine auto-magic with FENCE_SUBMIT (v2)
->   drm/i915/request: Remove the hook from await_execution
->   drm/i915/gem: Disallow creating contexts with too many engines
->   drm/i915: Stop manually RCU banging in reset_stats_ioctl (v2)
->   drm/i915/gem: Add a separate validate_priority helper
->   drm/i915: Add gem/i915_gem_context.h to the docs
->   drm/i915/gem: Add an intermediate proto_context struct (v5)
->   drm/i915/gem: Rework error handling in default_engines
->   drm/i915/gem: Optionally set SSEU in intel_context_set_gem
->   drm/i915: Add an i915_gem_vm_lookup helper
->   drm/i915/gem: Make an alignment check more sensible
->   drm/i915/gem: Use the proto-context to handle create parameters (v5)
->   drm/i915/gem: Return an error ptr from context_lookup
->   drm/i915/gt: Drop i915_address_space::file (v2)
->   drm/i915/gem: Delay context creation (v3)
->   drm/i915/gem: Don't allow changing the VM on running contexts (v4)
->   drm/i915/gem: Don't allow changing the engine set on running contexts
->     (v3)
->   drm/i915/selftests: Take a VM in kernel_context()
->   i915/gem/selftests: Assign the VM at context creation in
->     igt_shared_ctx_exec
->   drm/i915/gem: Roll all of context creation together
->   drm/i915: Finalize contexts in GEM_CONTEXT_CREATE on version 13+
 
-Applied everything, thanks a lot.
 
-Now, could we bake all this hard-earned knowledge about how the uapi
-actually works into some kerneldoc for the uapi header?
-
-Thanks, Daniel
-
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Matt Roper
+> Sent: Wednesday, July 7, 2021 10:38 PM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [Intel-gfx] [PATCH 1/7] drm/i915: Make pre-production detection
+> use direct revid comparison
 > 
->  Documentation/gpu/i915.rst                    |    2 +
->  drivers/gpu/drm/i915/Makefile                 |    1 -
->  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 2926 ++++++++---------
->  drivers/gpu/drm/i915/gem/i915_gem_context.h   |    3 +
->  .../gpu/drm/i915/gem/i915_gem_context_types.h |  196 +-
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   31 +-
->  .../drm/i915/gem/selftests/i915_gem_context.c |  127 +-
->  .../gpu/drm/i915/gem/selftests/mock_context.c |   67 +-
->  .../gpu/drm/i915/gem/selftests/mock_context.h |    4 +-
->  drivers/gpu/drm/i915/gt/intel_context.c       |    3 +-
->  drivers/gpu/drm/i915/gt/intel_context.h       |    5 -
->  drivers/gpu/drm/i915/gt/intel_context_param.c |   63 -
->  drivers/gpu/drm/i915/gt/intel_context_param.h |    6 +-
->  drivers/gpu/drm/i915/gt/intel_context_types.h |    1 +
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    3 +-
->  drivers/gpu/drm/i915/gt/intel_engine_types.h  |    7 -
->  .../drm/i915/gt/intel_execlists_submission.c  |  114 -
->  .../drm/i915/gt/intel_execlists_submission.h  |    8 +-
->  drivers/gpu/drm/i915/gt/intel_gtt.h           |   11 -
->  drivers/gpu/drm/i915/gt/intel_lrc.c           |    2 +-
->  drivers/gpu/drm/i915/gt/intel_migrate.c       |    3 +-
->  drivers/gpu/drm/i915/gt/selftest_execlists.c  |  251 +-
->  drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |    2 +-
->  drivers/gpu/drm/i915/gt/selftest_mocs.c       |    2 +-
->  drivers/gpu/drm/i915/gt/selftest_timeline.c   |    2 +-
->  drivers/gpu/drm/i915/gvt/scheduler.c          |    7 +-
->  drivers/gpu/drm/i915/i915_drv.h               |   82 +-
->  drivers/gpu/drm/i915/i915_perf.c              |    4 +-
->  drivers/gpu/drm/i915/i915_request.c           |   42 +-
->  drivers/gpu/drm/i915/i915_request.h           |    4 +-
->  .../drm/i915/selftests/i915_mock_selftests.h  |    1 -
->  drivers/gpu/drm/i915/selftests/mock_gtt.c     |    1 -
->  include/uapi/drm/i915_drm.h                   |   40 +-
->  33 files changed, 1681 insertions(+), 2340 deletions(-)
->  delete mode 100644 drivers/gpu/drm/i915/gt/intel_context_param.c
+> Although we're converting our workarounds to use a revid->stepping lookup
+> table, the function that detects pre-production hardware should continue to
+> compare against PCI revision ID values directly.  These are listed in the bspec
+> as integers, so it's easier to confirm their correctness if we just use an integer
+> literal rather than a symbolic name anyway.
 > 
-> -- 
-> 2.31.1
+> Since the BXT, GLK, and CNL revid macros were never used in any
+> workaround code, just remove them completely.
 > 
+> Bspec: 13620, 19131, 13626, 18329
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c   |  8 ++++----
+>  drivers/gpu/drm/i915/i915_drv.h   | 24 ------------------------
+>  drivers/gpu/drm/i915/intel_step.h |  1 +
+>  3 files changed, 5 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c
+> b/drivers/gpu/drm/i915/i915_drv.c index 30d8cd8c69b1..90136995f5eb
+> 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -271,10 +271,10 @@ static void intel_detect_preproduction_hw(struct
+> drm_i915_private *dev_priv)
+>  	bool pre = false;
+> 
+>  	pre |= IS_HSW_EARLY_SDV(dev_priv);
+> -	pre |= IS_SKL_REVID(dev_priv, 0, SKL_REVID_F0);
+> -	pre |= IS_BXT_REVID(dev_priv, 0, BXT_REVID_B_LAST);
+> -	pre |= IS_KBL_GT_STEP(dev_priv, 0, STEP_A0);
+> -	pre |= IS_GLK_REVID(dev_priv, 0, GLK_REVID_A2);
+> +	pre |= IS_SKYLAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x6;
+> +	pre |= IS_BROXTON(dev_priv) && INTEL_REVID(dev_priv) < 0xA;
+> +	pre |= IS_KABYLAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x1;
+> +	pre |= IS_GEMINILAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x3;
+> 
+>  	if (pre) {
+>  		drm_err(&dev_priv->drm, "This is a pre-production stepping.
+> "
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> b/drivers/gpu/drm/i915/i915_drv.h index 6dff4ca01241..796e6838bc79
+> 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1473,35 +1473,11 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> *i915,
+> 
+>  #define IS_SKL_REVID(p, since, until) (IS_SKYLAKE(p) && IS_REVID(p, since,
+> until))
+> 
+> -#define BXT_REVID_A0		0x0
+> -#define BXT_REVID_A1		0x1
+> -#define BXT_REVID_B0		0x3
+> -#define BXT_REVID_B_LAST	0x8
+> -#define BXT_REVID_C0		0x9
+> -
+> -#define IS_BXT_REVID(dev_priv, since, until) \
+> -	(IS_BROXTON(dev_priv) && IS_REVID(dev_priv, since, until))
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Here, we can have IS_BXT_GT_STEP, similar to other platform and use in intel_detect_preproduction_hw() above.
+Same for other platforms - SKL and GLK. KBL already uses IS_KBL_GT_STEP.
+
+Anusha 
+>  #define IS_KBL_GT_STEP(dev_priv, since, until) \
+>  	(IS_KABYLAKE(dev_priv) && IS_GT_STEP(dev_priv, since, until))
+> #define IS_KBL_DISPLAY_STEP(dev_priv, since, until) \
+>  	(IS_KABYLAKE(dev_priv) && IS_DISPLAY_STEP(dev_priv, since,
+> until))
+> 
+> -#define GLK_REVID_A0		0x0
+> -#define GLK_REVID_A1		0x1
+> -#define GLK_REVID_A2		0x2
+> -#define GLK_REVID_B0		0x3
+> -
+> -#define IS_GLK_REVID(dev_priv, since, until) \
+> -	(IS_GEMINILAKE(dev_priv) && IS_REVID(dev_priv, since, until))
+> -
+> -#define CNL_REVID_A0		0x0
+> -#define CNL_REVID_B0		0x1
+> -#define CNL_REVID_C0		0x2
+> -
+> -#define IS_CNL_REVID(p, since, until) \
+> -	(IS_CANNONLAKE(p) && IS_REVID(p, since, until))
+> -
+>  #define ICL_REVID_A0		0x0
+>  #define ICL_REVID_A2		0x1
+>  #define ICL_REVID_B0		0x3
+> diff --git a/drivers/gpu/drm/i915/intel_step.h
+> b/drivers/gpu/drm/i915/intel_step.h
+> index 958a8bb5d677..8efacef6ab31 100644
+> --- a/drivers/gpu/drm/i915/intel_step.h
+> +++ b/drivers/gpu/drm/i915/intel_step.h
+> @@ -22,6 +22,7 @@ struct intel_step_info {  enum intel_step {
+>  	STEP_NONE = 0,
+>  	STEP_A0,
+> +	STEP_A1,
+>  	STEP_A2,
+>  	STEP_B0,
+>  	STEP_B1,
+> --
+> 2.25.4
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
