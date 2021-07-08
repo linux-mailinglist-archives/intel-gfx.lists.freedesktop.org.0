@@ -2,54 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A5E83C1732
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 18:41:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 993A23C1771
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Jul 2021 18:52:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87D686E8EF;
-	Thu,  8 Jul 2021 16:41:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A112B6E934;
+	Thu,  8 Jul 2021 16:52:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2516E8EF
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Jul 2021 16:41:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="209585320"
-X-IronPort-AV: E=Sophos;i="5.84,224,1620716400"; d="scan'208";a="209585320"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 09:40:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,224,1620716400"; d="scan'208";a="428442675"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by orsmga002.jf.intel.com with ESMTP; 08 Jul 2021 09:40:58 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 8 Jul 2021 17:40:56 +0100
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.008;
- Thu, 8 Jul 2021 22:10:55 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [v7 3/3] drm/i915/display/dsc: Force dsc BPP
-Thread-Index: AQHXc+OnPd36hWpFP0e5w8zWRrDuoqs4sPAAgAABLACAAF4qsP//1uaAgABg7JA=
-Date: Thu, 8 Jul 2021 16:40:54 +0000
-Message-ID: <7fc13a3888694ba8a8f9dcf05d72fb18@intel.com>
-References: <20210708102549.27821-1-vandita.kulkarni@intel.com>
- <20210708102549.27821-4-vandita.kulkarni@intel.com>
- <87sg0p54w1.fsf@intel.com> <87mtqx54p1.fsf@intel.com>
- <c6ef83bd24b24195817615969183e594@intel.com> <87bl7c6agy.fsf@intel.com>
-In-Reply-To: <87bl7c6agy.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86AC36E8EF;
+ Thu,  8 Jul 2021 16:44:31 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 88F256145A;
+ Thu,  8 Jul 2021 16:44:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1625762671;
+ bh=W3zJ1dUIVfwK2RD5Gb/pjjaY8IvTpKuqVuwPdbuz25M=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Sp+30VCoqVzKdRCHxsdjheJ32Al4GyKkdqY67UI3HBglP9/4ElBHuP/C2H/FyWKo7
+ e/R4/9B3d7vhaPNlh1DPVXpIf7uT6p/REBIACdKpJwJF9GZS42ymRBAxS0kVUi63dX
+ LFzIygW0HZtu2Ulg0IazOQ0jJMqOOsCWNLsNFVLNWlAdaw+e6puTS7FlMwyfD5gEdI
+ lFB3Rrin6g2B0nXBBJNO+PUuvd4DpkVlBGoDw/jR5Tje1HakbrKaEjYhMjAxMq0G0/
+ 9JUb/J7ll5Lxx3f7sEDifcv8wjoDYV7KpD0n+YA4MYDlWDIvbopDufBoyo/NtyqWxC
+ FAtOTP/W4ikEQ==
+Date: Thu, 8 Jul 2021 17:44:19 +0100
+From: Will Deacon <will@kernel.org>
+To: Nathan Chancellor <nathan@kernel.org>
+Message-ID: <20210708164418.GB23598@willie-the-truck>
+References: <0f7bd903-e309-94a0-21d7-f0e8e9546018@arm.com>
+ <YN/7xcxt/XGAKceZ@Ryzen-9-3900X.localdomain>
+ <20210705190352.GA19461@willie-the-truck>
+ <20210706044848.GA13640@lst.de>
+ <20210706132422.GA20327@willie-the-truck>
+ <a59f771f-3289-62f0-ca50-8f3675d9b166@arm.com>
+ <20210706140513.GA26498@lst.de>
+ <bb32d5a6-2b34-4524-e171-3e9f5f4d3a94@arm.com>
+ <20210706170657.GD20750@willie-the-truck>
+ <e1c026c6-22c7-8979-4941-de9cfab3863a@kernel.org>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v7 3/3] drm/i915/display/dsc: Force dsc BPP
+Content-Disposition: inline
+In-Reply-To: <e1c026c6-22c7-8979-4941-de9cfab3863a@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Thu, 08 Jul 2021 16:52:13 +0000
+Subject: Re: [Intel-gfx] [PATCH v15 06/12] swiotlb: Use
+ is_swiotlb_force_bounce for swiotlb data bouncing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,109 +57,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jim Quinlan <james.quinlan@broadcom.com>, heikki.krogerus@linux.intel.com,
+ linux-devicetree <devicetree@vger.kernel.org>, peterz@infradead.org,
+ benh@kernel.crashing.org, dri-devel@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+ Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
+ Jianxiong Gao <jxgao@google.com>, Stefano Stabellini <sstabellini@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+ "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, xypron.glpk@gmx.de,
+ Christoph Hellwig <hch@lst.de>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ Thierry Reding <treding@nvidia.com>, matthew.auld@intel.com,
+ Nicolas Boichat <drinkcat@chromium.org>, thomas.hellstrom@linux.intel.com,
+ jgross@suse.com, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+ intel-gfx@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Claire Chang <tientzu@chromium.org>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ boris.ostrovsky@oracle.com, airlied@linux.ie, linuxppc-dev@lists.ozlabs.org,
+ Randy Dunlap <rdunlap@infradead.org>, Qian Cai <quic_qiancai@quicinc.com>,
+ lkml <linux-kernel@vger.kernel.org>,
+ "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+ Greg KH <gregkh@linuxfoundation.org>, Tom Lendacky <thomas.lendacky@amd.com>,
+ Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Jul 06, 2021 at 12:14:16PM -0700, Nathan Chancellor wrote:
+> On 7/6/2021 10:06 AM, Will Deacon wrote:
+> > On Tue, Jul 06, 2021 at 04:39:11PM +0100, Robin Murphy wrote:
+> > > On 2021-07-06 15:05, Christoph Hellwig wrote:
+> > > > On Tue, Jul 06, 2021 at 03:01:04PM +0100, Robin Murphy wrote:
+> > > > > FWIW I was pondering the question of whether to do something along those
+> > > > > lines or just scrap the default assignment entirely, so since I hadn't got
+> > > > > round to saying that I've gone ahead and hacked up the alternative
+> > > > > (similarly untested) for comparison :)
+> > > > > 
+> > > > > TBH I'm still not sure which one I prefer...
+> > > > 
+> > > > Claire did implement something like your suggestion originally, but
+> > > > I don't really like it as it doesn't scale for adding multiple global
+> > > > pools, e.g. for the 64-bit addressable one for the various encrypted
+> > > > secure guest schemes.
+> > > 
+> > > Ah yes, that had slipped my mind, and it's a fair point indeed. Since we're
+> > > not concerned with a minimal fix for backports anyway I'm more than happy to
+> > > focus on Will's approach. Another thing is that that looks to take us a
+> > > quiet step closer to the possibility of dynamically resizing a SWIOTLB pool,
+> > > which is something that some of the hypervisor protection schemes looking to
+> > > build on top of this series may want to explore at some point.
+> > 
+> > Ok, I'll split that nasty diff I posted up into a reviewable series and we
+> > can take it from there.
+> 
+> For what it's worth, I attempted to boot Will's diff on top of Konrad's
+> devel/for-linus-5.14 and it did not work; in fact, I got no output on my
+> monitor period, even with earlyprintk=, and I do not think this machine has
+> a serial console.
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Thursday, July 8, 2021 9:53 PM
-> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Subject: RE: [v7 3/3] drm/i915/display/dsc: Force dsc BPP
-> 
-> On Thu, 08 Jul 2021, "Kulkarni, Vandita" <vandita.kulkarni@intel.com> wrote:
-> >> -----Original Message-----
-> >> From: Nikula, Jani <jani.nikula@intel.com>
-> >> Sent: Thursday, July 8, 2021 6:44 PM
-> >> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> >> gfx@lists.freedesktop.org
-> >> Cc: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> >> Subject: Re: [v7 3/3] drm/i915/display/dsc: Force dsc BPP
-> >>
-> >> On Thu, 08 Jul 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> >> > On Thu, 08 Jul 2021, Vandita Kulkarni <vandita.kulkarni@intel.com>
-> wrote:
-> >> >> Set DSC BPP to the value forced through debugfs. It can go from
-> >> >> bpc to bpp-1.
-> >> >>
-> >> >> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> >> >> ---
-> >> >>  drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++++++++
-> >> >>  1 file changed, 17 insertions(+)
-> >> >>
-> >> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> >> b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> >> index 5b52beaddada..3e50cdd7e448 100644
-> >> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> >> @@ -1240,6 +1240,23 @@ static int
-> >> >> intel_dp_dsc_compute_config(struct
-> >> intel_dp *intel_dp,
-> >> >>  	pipe_config->port_clock = intel_dp->common_rates[limits-
-> >> >max_clock];
-> >> >>  	pipe_config->lane_count = limits->max_lane_count;
-> >> >>
-> >> >> +	if (intel_dp->force_dsc_en) {
-> >>
-> >> Oh, this should check for intel_dp->force_dsc_bpp. We don't want to
-> >> always force the bpp when we force dsc enable.
-> > Okay will fix this.
-> > And I was returning -EINVAL , to fail the test on setting invalid BPP.
-> 
-> Okay, if it makes the test easier, I guess it's fine. Up to you.
+Looking back at the diff, I completely messed up swiotlb_exit() by mixing up
+physical and virtual addresses.
 
-Okay,  for now I have sent a patch like you suggested,  as I see that there are no negative test cases .
-Have sent the v2 of this patch. So,  it wouldn't make much difference.
+> Robin's fix does work, it survived ten reboots with no issues getting to X
+> and I do not see the KASAN and slub debug messages anymore but I understand
+> that this is not the preferred solution it seems (although Konrad did want
+> to know if it works).
+> 
+> I am happy to test any further patches or follow ups as needed, just keep me
+> on CC.
 
-Thanks,
-Vandita
-> 
-> BR,
-> Jani.
-> 
-> >
-> >>
-> >> >> +		/* As of today we support DSC for only RGB */
-> >> >> +		if (intel_dp->force_dsc_bpp >= 8 &&
-> >> >> +		    intel_dp->force_dsc_bpp < pipe_bpp) {
-> >> >> +			drm_dbg_kms(&dev_priv->drm,
-> >> >> +				    "DSC BPP forced to %d",
-> >> >> +				    intel_dp->force_dsc_bpp);
-> >> >> +			pipe_config->dsc.compressed_bpp =
-> >> >> +						intel_dp->force_dsc_bpp;
-> >> >> +		} else {
-> >> >> +			drm_dbg_kms(&dev_priv->drm,
-> >> >> +				    "Invalid DSC BPP %d",
-> >> >> +				    intel_dp->force_dsc_bpp);
-> >> >> +			return -EINVAL;
-> >> >
-> >> > I'd just let it use the normal compressed_bpp, with the debug
-> >> > message, instead of returning -EINVAL.
-> >> >
-> >> >> +		}
-> >> >> +	}
-> >> >> +
-> >> >
-> >> > This should be *after* the below blocks, because otherwise
-> >> > compressed_bpp will be overridden by the normal case, not by the
-> >> > force case!
-> >> >
-> >> > BR,
-> >> > Jani.
-> >> >
-> >> >>  	if (intel_dp_is_edp(intel_dp)) {
-> >> >>  		pipe_config->dsc.compressed_bpp =
-> >> >>  			min_t(u16,
-> >> drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4,
-> >>
-> >> --
-> >> Jani Nikula, Intel Open Source Graphics Center
-> 
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+Cheers. Since this isn't 5.14 material any more, I'll CC you on a series
+next week.
+
+Will
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
