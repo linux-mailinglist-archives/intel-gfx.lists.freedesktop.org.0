@@ -1,37 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 856A13C27C4
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 18:48:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A21DF3C27D6
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 18:57:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDB846EA4E;
-	Fri,  9 Jul 2021 16:48:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C91E06E8F1;
+	Fri,  9 Jul 2021 16:57:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE8E6EA4E
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 16:48:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="207908825"
-X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="207908825"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 09:48:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="450352609"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 09 Jul 2021 09:48:04 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 09 Jul 2021 19:48:04 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  9 Jul 2021 19:47:50 +0300
-Message-Id: <20210709164750.9465-5-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210709164750.9465-1-ville.syrjala@linux.intel.com>
-References: <20210709164750.9465-1-ville.syrjala@linux.intel.com>
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
+ [IPv6:2607:f8b0:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E652E6E8EB
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 16:57:48 +0000 (UTC)
+Received: by mail-ot1-x332.google.com with SMTP id
+ i5-20020a9d68c50000b02904b41fa91c97so5698231oto.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 09 Jul 2021 09:57:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=WRF8//kJJACAatw9JPVGOQMSmTzkvIj+S5nFtVDd2EM=;
+ b=JYi9IhUuDAJsyclPgjnsRQSUDqV3PJ4s3UhQCv5feSEWNzdEfr6U14tSntAJC9NuVv
+ hk8hoOTYwA+CsZmvU1ha3gJrcWOkVDkicVMwfQRIDRQoIiymXXSuSIDez0Gd7bqoX5z8
+ 2dyEaK0IDQwANhswIqI5Wao1vGAn8yMnMNVYw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=WRF8//kJJACAatw9JPVGOQMSmTzkvIj+S5nFtVDd2EM=;
+ b=Uqfvt3DeLi9+Yo+iXgDDwVoaFSpe1QKewz0xWqngeS46waBxIIN9yq+5FtavdOKxBz
+ uPjOJurRMTBBoMxo6w7dFRIlFuZerxGiBzPpRz3agslb7fXLGB0YmQ14X3836ayK+VnM
+ fELc2yQEIAPPAUZrBONpU693nDMUJPPNqjGi8CgNN5BVQEZqh7aOXOxisXkqEUpRNTAD
+ mkhDcVOAXU7bRnFLsdxx7poyEKEtzS79ILboTPgMeh8/DC2JUCK0AsXYdVnlX04I8ayn
+ q4VOVkFXGHET7TmnAo0GlLQIIHn8yJI7uBq1MKiVGt6sWlM24i8efg/YhbWEFxVwsRYj
+ 2/xw==
+X-Gm-Message-State: AOAM530JB1/BifrOcE6HveUWhnePGTd1kpELMVa1xT++SMysjh8j8Lsh
+ PJRAzpG7IBdB87Xlc5iPcY9/6I/rD4n6O1G6EcVlkA==
+X-Google-Smtp-Source: ABdhPJwctORKOz8mFv6M2AvOcl3igNA5oXA/iv+fF+0gYYsMoT1K6d06RJ5iJbDSdVbCOJOqC5hy/GhmoOt3qNaMP2E=
+X-Received: by 2002:a05:6830:2366:: with SMTP id
+ r6mr29073537oth.188.1625849866843; 
+ Fri, 09 Jul 2021 09:57:46 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/fbc: Allow FBC + VT-d on SKL/BXT
+References: <20210709151933.1994078-1-matthew.auld@intel.com>
+ <CAKMK7uHThXJBMKxgyhAN5-1N793a9n=RN39anqCS6GPZiP=bNA@mail.gmail.com>
+ <CAM0jSHNswrbF6Mzsm1RuJnEBWG3utWCrOww46fr9=X3O6ssS9A@mail.gmail.com>
+In-Reply-To: <CAM0jSHNswrbF6Mzsm1RuJnEBWG3utWCrOww46fr9=X3O6ssS9A@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 9 Jul 2021 18:57:35 +0200
+Message-ID: <CAKMK7uGp_8n6SOPtvTiiW90ceZ+wk2wi+YqCV15r0sZqXvL-1A@mail.gmail.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: unconditionally flush the
+ pages on acquire
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,43 +62,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: iommu@lists.linux-foundation.org, David Woodhouse <dwmw2@infradead.org>,
- Lu Baolu <baolu.lu@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Chris Wilson <chris.p.wilson@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Francisco Jerez <francisco.jerez.plata@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldp
-dGggdGhlIGlvbW11IGRyaXZlciBkaXNhYmxpbmcgVlQtZCBzdXBlcnBhZ2UgaXQgc2hvdWxkIGJl
-CnNhZmUgdG8gdXNlIEZCQyBvbiBTS0wvQlhUIHdpdGggVlQtZCBvdGhlcndpc2UgZW5hYmxlZC4K
-CkNjOiBEYXZpZCBXb29kaG91c2UgPGR3bXcyQGluZnJhZGVhZC5vcmc+CkNjOiBMdSBCYW9sdSA8
-YmFvbHUubHVAbGludXguaW50ZWwuY29tPgpDYzogaW9tbXVAbGlzdHMubGludXgtZm91bmRhdGlv
-bi5vcmcKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5j
-IHwgMTYgLS0tLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDE2IGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCmluZGV4IDgyZWZmYjY0YTNi
-OS4uZGU0NGY5M2EzM2QwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2ZiYy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJj
-LmMKQEAgLTE0NDgsMTkgKzE0NDgsNiBAQCBzdGF0aWMgaW50IGludGVsX3Nhbml0aXplX2ZiY19v
-cHRpb24oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCXJldHVybiAwOwogfQog
-Ci1zdGF0aWMgYm9vbCBuZWVkX2ZiY192dGRfd2Eoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2KQotewotCS8qIFdhRmJjVHVybk9mZkZiY1doZW5IeXBlclZpc29ySXNVc2VkOnNrbCxi
-eHQgKi8KLQlpZiAoaW50ZWxfdnRkX2FjdGl2ZSgpICYmCi0JICAgIChJU19TS1lMQUtFKGRldl9w
-cml2KSB8fCBJU19CUk9YVE9OKGRldl9wcml2KSkpIHsKLQkJZHJtX2luZm8oJmRldl9wcml2LT5k
-cm0sCi0JCQkgIkRpc2FibGluZyBmcmFtZWJ1ZmZlciBjb21wcmVzc2lvbiAoRkJDKSB0byBwcmV2
-ZW50IHNjcmVlbiBmbGlja2VyIHdpdGggVlQtZCBlbmFibGVkXG4iKTsKLQkJcmV0dXJuIHRydWU7
-Ci0JfQotCi0JcmV0dXJuIGZhbHNlOwotfQotCiAvKioKICAqIGludGVsX2ZiY19pbml0IC0gSW5p
-dGlhbGl6ZSBGQkMKICAqIEBkZXZfcHJpdjogdGhlIGk5MTUgZGV2aWNlCkBAIC0xNDc4LDkgKzE0
-NjUsNiBAQCB2b2lkIGludGVsX2ZiY19pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdikKIAlpZiAoIWRybV9tbV9pbml0aWFsaXplZCgmZGV2X3ByaXYtPm1tLnN0b2xlbikpCiAJ
-CW1rd3JpdGVfZGV2aWNlX2luZm8oZGV2X3ByaXYpLT5kaXNwbGF5Lmhhc19mYmMgPSBmYWxzZTsK
-IAotCWlmIChuZWVkX2ZiY192dGRfd2EoZGV2X3ByaXYpKQotCQlta3dyaXRlX2RldmljZV9pbmZv
-KGRldl9wcml2KS0+ZGlzcGxheS5oYXNfZmJjID0gZmFsc2U7Ci0KIAlkZXZfcHJpdi0+cGFyYW1z
-LmVuYWJsZV9mYmMgPSBpbnRlbF9zYW5pdGl6ZV9mYmNfb3B0aW9uKGRldl9wcml2KTsKIAlkcm1f
-ZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIlNhbml0aXplZCBlbmFibGVfZmJjIHZhbHVlOiAlZFxu
-IiwKIAkJICAgIGRldl9wcml2LT5wYXJhbXMuZW5hYmxlX2ZiYyk7Ci0tIAoyLjMxLjEKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Jul 9, 2021 at 6:35 PM Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Fri, 9 Jul 2021 at 17:13, Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Fri, Jul 9, 2021 at 5:19 PM Matthew Auld <matthew.auld@intel.com> wrote:
+> > >
+> > > EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
+> > > possible for userspace to bypass the GTT caching bits set by the kernel,
+> > > as per the given object cache_level. This is troublesome since the heavy
+> > > flush we apply when first acquiring the pages is skipped if the kernel
+> > > thinks the object is coherent with the GPU. As a result it might be
+> > > possible to bypass the cache and read the contents of the page directly,
+> > > which could be stale data. If it's just a case of userspace shooting
+> > > themselves in the foot then so be it, but since i915 takes the stance of
+> > > always zeroing memory before handing it to userspace, we need to prevent
+> > > this.
+> > >
+> > > BSpec: 34007
+> > > References: 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > > Cc: Francisco Jerez <francisco.jerez.plata@intel.com>
+> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> > > Cc: Chris Wilson <chris.p.wilson@intel.com>
+> > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 29 +++++++++++++++++++++--
+> > >  1 file changed, 27 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> > > index 6a04cce188fc..7e9ec68cce9e 100644
+> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> > > @@ -298,11 +298,12 @@ __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
+> > >
+> > >  void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_table *pages)
+> > >  {
+> > > +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> > >         struct sgt_iter sgt_iter;
+> > >         struct pagevec pvec;
+> > >         struct page *page;
+> > >
+> > > -       GEM_WARN_ON(IS_DGFX(to_i915(obj->base.dev)));
+> > > +       GEM_WARN_ON(IS_DGFX(i915));
+> > >         __i915_gem_object_release_shmem(obj, pages, true);
+> > >
+> > >         i915_gem_gtt_finish_pages(obj, pages);
+> > > @@ -325,7 +326,12 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
+> > >         }
+> > >         if (pagevec_count(&pvec))
+> > >                 check_release_pagevec(&pvec);
+> > > -       obj->mm.dirty = false;
+> > > +
+> > > +       /* See the comment in shmem_object_init() for why we need this */
+> > > +       if (IS_JSL_EHL(i915) && obj->flags & I915_BO_ALLOC_USER)
+> > > +               obj->mm.dirty = true;
+> > > +       else
+> > > +               obj->mm.dirty = false;
+> > >
+> > >         sg_free_table(pages);
+> > >         kfree(pages);
+> > > @@ -539,6 +545,25 @@ static int shmem_object_init(struct intel_memory_region *mem,
+> > >
+> > >         i915_gem_object_set_cache_coherency(obj, cache_level);
+> > >
+> > > +       /*
+> > > +        * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
+> > > +        * possible for userspace to bypass the GTT caching bits set by the
+> > > +        * kernel, as per the given object cache_level. This is troublesome
+> > > +        * since the heavy flush we apply when first gathering the pages is
+> > > +        * skipped if the kernel thinks the object is coherent with the GPU. As
+> > > +        * a result it might be possible to bypass the cache and read the
+> > > +        * contents of the page directly, which could be stale data. If it's
+> > > +        * just a case of userspace shooting themselves in the foot then so be
+> > > +        * it, but since i915 takes the stance of always zeroing memory before
+> > > +        * handing it to userspace, we need to prevent this.
+> > > +        *
+> > > +        * By setting cache_dirty here we make the clflush when first acquiring
+> > > +        * the pages unconditional on such platforms. We also set this again in
+> > > +        * put_pages().
+> > > +        */
+> > > +       if (IS_JSL_EHL(i915) && flags & I915_BO_ALLOC_USER)
+> > > +               obj->cache_dirty = true;
+> >
+> > I don't think this is enough, because every time we drop our pages
+> > shmem could move them around or swap them out, and we get fresh ones.
+> > So we need to re-force this every time we grab new pages.
+>
+> We also rearm this in put_pages(), or at least we do in v2, so if the
+> pages are swapped out or whatever it should then flush them again when
+> we re-acquire the pages.
+
+Yeah v2 looks better, that put_pages on obj->mm.dirty made no sense.
+
+Conceptually I think it's cleaner though if we set this in get_pages,
+since that's the action that requires the cleaning. But maybe that
+doesn't work from a sequencing pov? I'd have thought that any time we
+get to check whether we need to clflush the pages would exist already
+...
+
+Maybe it would be even cleaner if get_pages would issue the clflush
+directly, long-term at least, when we have the infrastructure for
+pipeline clear/move in place and make sure we never ignore such a
+fence. That's perhaps conceptually the cleanest version.
+-Daniel
+
+> > Also there's already a pile of other cases (well not WB coherency
+> > mode) where userspace can be clever and bypass the coherency if we
+> > don't clflush first. I think it'd be really good to have all that in
+> > one places as much as possible.
+> >
+> > Finally this is extremely tricky code, and obj->cache_dirty and
+> > related stuff isn't really documented. kerneldoc for all that would be
+> > really good.
+>
+> Ok, I'll take a look.
+>
+> > -Daniel
+> >
+> > > +
+> > >         i915_gem_object_init_memory_region(obj, mem);
+> > >
+> > >         return 0;
+> > > --
+> > > 2.26.3
+> > >
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> >
+> >
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
