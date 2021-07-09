@@ -1,35 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B1E3C26BB
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 17:19:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF6A93C26BF
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 17:21:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C6D86EA3D;
-	Fri,  9 Jul 2021 15:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F5D46EA3D;
+	Fri,  9 Jul 2021 15:21:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B9AF6EA3D;
- Fri,  9 Jul 2021 15:19:55 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="209678663"
-X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="209678663"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 08:19:46 -0700
-X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="458301375"
-Received: from cchauvet-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.4.18])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 08:19:43 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  9 Jul 2021 16:19:33 +0100
-Message-Id: <20210709151933.1994078-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com
+ [IPv6:2607:f8b0:4864:20::c30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 558026EA3D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 15:21:55 +0000 (UTC)
+Received: by mail-oo1-xc30.google.com with SMTP id
+ j4-20020a4ac5440000b029025992521cf0so2341794ooq.7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 09 Jul 2021 08:21:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=XgUMEZC7zzPqe3lXJ84D8AB5n0MJf0wlwSj3XqQq1Iw=;
+ b=JOWSaTralMJlRSIwwAjF31jYHTGwwMONr7NULHVXwfjuJO/wf5xm+MOZ1hc4/4lRxg
+ hAND0+rFpiUG+4OyS1J2499lELxVOjk/hbYt7JZ//2/3GGPvjqGE2c18/mnC6cmiPrNC
+ ge+1WA+VhY1elBRVKxhADMCLWpNDqi72BeafM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=XgUMEZC7zzPqe3lXJ84D8AB5n0MJf0wlwSj3XqQq1Iw=;
+ b=bbv3LD5hMmKwrJ2ugNTdUt+2qhoatc/Eks2s9aEscez0tK5DR3ux+fglbn1gPliMYM
+ eqQYMse9pgiyaHx1aYyXSeVA6BDEs5pRE+uha+MD2+wF8BzqVWg12wstweAL+MnfArKK
+ v4nNWkVESQOL58qsKkuy6pYdUE0xfyBFHsQAittIPtbMmwkdFzn4ZKU/ureGi0BCJBYC
+ UKKNJ1wxMIWh8GaHy0XgToG649W8ryIr2Ka2lDmAocWOjYqV7nOhnN1r4FrhY4CVlzuf
+ MSoFgrcPEcEcuaUloiSJsa1+qxjofjPl5To6lbb1BNZKjjS874cOHIX6RLA3oZKs6PMm
+ c3jg==
+X-Gm-Message-State: AOAM530kjLxFHREh1Aag5BsERfEBTpVIewYB+h1uwIYqoqsBaKq1Y2kv
+ Bv/ukcSnrhoM3hYzo1GyHlUChwm/WaN4PCM1bwz3gQ==
+X-Google-Smtp-Source: ABdhPJwbWj+IDHYMwj/6a6EAhkfxdlHypamNntcaGrLKWGkR3RwOUphzgyyTk27TVYI9U0fA0v+rJpQ6hKIyqSzvQZ4=
+X-Received: by 2002:a4a:ab07:: with SMTP id i7mr27589713oon.89.1625844114494; 
+ Fri, 09 Jul 2021 08:21:54 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/ehl: unconditionally flush the pages
- on acquire
+References: <20210709115420.25381-1-anshuman.gupta@intel.com>
+In-Reply-To: <20210709115420.25381-1-anshuman.gupta@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 9 Jul 2021 17:21:43 +0200
+Message-ID: <CAKMK7uFcaV2YkBX-1-_E4-zajS-kMFo23bKpFVLiZdrzPBMOnw@mail.gmail.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: xelpd lpsp capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,99 +58,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>,
- Francisco Jerez <francisco.jerez.plata@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
-possible for userspace to bypass the GTT caching bits set by the kernel,
-as per the given object cache_level. This is troublesome since the heavy
-flush we apply when first acquiring the pages is skipped if the kernel
-thinks the object is coherent with the GPU. As a result it might be
-possible to bypass the cache and read the contents of the page directly,
-which could be stale data. If it's just a case of userspace shooting
-themselves in the foot then so be it, but since i915 takes the stance of
-always zeroing memory before handing it to userspace, we need to prevent
-this.
+On Fri, Jul 9, 2021 at 2:12 PM Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+>
+> Extend i915_lpsp_capability sysfs to xelpd and future platforms.
 
-BSpec: 34007
-References: 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Cc: Francisco Jerez <francisco.jerez.plata@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 29 +++++++++++++++++++++--
- 1 file changed, 27 insertions(+), 2 deletions(-)
+You're talking about sysfs but the patch is toucing a _debugfs.c file.
+Something is very, very wrong here, either the commit message, or
+worse, the code that's there already.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 6a04cce188fc..7e9ec68cce9e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -298,11 +298,12 @@ __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
- 
- void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_table *pages)
- {
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	struct sgt_iter sgt_iter;
- 	struct pagevec pvec;
- 	struct page *page;
- 
--	GEM_WARN_ON(IS_DGFX(to_i915(obj->base.dev)));
-+	GEM_WARN_ON(IS_DGFX(i915));
- 	__i915_gem_object_release_shmem(obj, pages, true);
- 
- 	i915_gem_gtt_finish_pages(obj, pages);
-@@ -325,7 +326,12 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
- 	}
- 	if (pagevec_count(&pvec))
- 		check_release_pagevec(&pvec);
--	obj->mm.dirty = false;
-+
-+	/* See the comment in shmem_object_init() for why we need this */
-+	if (IS_JSL_EHL(i915) && obj->flags & I915_BO_ALLOC_USER)
-+		obj->mm.dirty = true;
-+	else
-+		obj->mm.dirty = false;
- 
- 	sg_free_table(pages);
- 	kfree(pages);
-@@ -539,6 +545,25 @@ static int shmem_object_init(struct intel_memory_region *mem,
- 
- 	i915_gem_object_set_cache_coherency(obj, cache_level);
- 
-+	/*
-+	 * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
-+	 * possible for userspace to bypass the GTT caching bits set by the
-+	 * kernel, as per the given object cache_level. This is troublesome
-+	 * since the heavy flush we apply when first gathering the pages is
-+	 * skipped if the kernel thinks the object is coherent with the GPU. As
-+	 * a result it might be possible to bypass the cache and read the
-+	 * contents of the page directly, which could be stale data. If it's
-+	 * just a case of userspace shooting themselves in the foot then so be
-+	 * it, but since i915 takes the stance of always zeroing memory before
-+	 * handing it to userspace, we need to prevent this.
-+	 *
-+	 * By setting cache_dirty here we make the clflush when first acquiring
-+	 * the pages unconditional on such platforms. We also set this again in
-+	 * put_pages().
-+	 */
-+	if (IS_JSL_EHL(i915) && flags & I915_BO_ALLOC_USER)
-+		obj->cache_dirty = true;
-+
- 	i915_gem_object_init_memory_region(obj, mem);
- 
- 	return 0;
+If this is indeed sysfs it must be split out asap, and ideally also
+documented and all that, because sysfs is uapi.
+-Daniel
+
+>
+> Cc: Animesh Manna <animesh.manna@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index af9e58619667..75d991a0707e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -2255,6 +2255,11 @@ static int i915_lpsp_capability_show(struct seq_file *m, void *data)
+>         if (connector->status != connector_status_connected)
+>                 return -ENODEV;
+>
+> +       if (DISPLAY_VER(i915) >= 13) {
+> +               LPSP_CAPABLE(encoder->port <= PORT_B);
+> +               return 0;
+> +       }
+> +
+>         switch (DISPLAY_VER(i915)) {
+>         case 12:
+>                 /*
+> --
+> 2.26.2
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+
+
 -- 
-2.26.3
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
