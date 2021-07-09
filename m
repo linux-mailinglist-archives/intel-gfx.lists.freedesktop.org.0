@@ -1,57 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBDD53C2706
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 17:43:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B0A3C275E
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 18:13:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68B586EA40;
-	Fri,  9 Jul 2021 15:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC8076EA4B;
+	Fri,  9 Jul 2021 16:13:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5B546EA3F;
- Fri,  9 Jul 2021 15:42:59 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 78DE31FD82;
- Fri,  9 Jul 2021 15:42:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1625845378; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=mmgIzdgfyMu4ThUIjpayeTSBv68QO84Olz3jNi34ylk=;
- b=kSKLS/Ev5OJ5+J4IFpdMJI/vD/7IeyqbyoD7gRlBZhWk2Q99CE9/tPkMccIIShR9wUzpMk
- QUC+p570sz+CPyvsF8Vrt9AseM8nRY6eCfw8wjMsp+zMQCHGH2ldqUehttm0N86xlweuVH
- KLW/YiHXqgcfBPudfwdhNfieoN/gR/I=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1625845378;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=mmgIzdgfyMu4ThUIjpayeTSBv68QO84Olz3jNi34ylk=;
- b=UslZprxKTVr4kxQV2GaqrDwKZwfmLEC2b+vGH3Hz7x8vlsFbEN4vNZv3K+iJSjdK/q8BfV
- HejQSzLXEYwKTvBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3054B13A3D;
- Fri,  9 Jul 2021 15:42:58 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id rI5+CYJu6GALRwAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Fri, 09 Jul 2021 15:42:58 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: airlied@linux.ie, daniel@ffwll.ch, christian.koenig@amd.com,
- ville.syrjala@linux.intel.com, melissa.srw@gmail.com, jgg@ziepe.ca,
- lee.jones@linaro.org, chris@chris-wilson.co.uk, miaoqinglang@huawei.com
-Date: Fri,  9 Jul 2021 17:42:56 +0200
-Message-Id: <20210709154256.12005-1-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com
+ [IPv6:2607:f8b0:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 207A76EA4A
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 16:13:24 +0000 (UTC)
+Received: by mail-oi1-x22a.google.com with SMTP id a189so2554289oii.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 09 Jul 2021 09:13:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zfWvBZ/jD2xhgNviKG41iPjcNK58J1n9HAd4z59lB+Q=;
+ b=M0wJrRiUREKykRFdIsbE1Pc3OGNdrAN2yVaVKS0bU06IiJi07lDLlM9jXwH41j4VNO
+ jwo0rbFucvh3/pkhUKjjcLlD4qpkdkBSh2EIwbWZALRxXfJ0E1iUgbIoVVHjdODymQC9
+ THlJTV/d7txg7/+ukBYqe9qn6+2INcYGSeJm0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zfWvBZ/jD2xhgNviKG41iPjcNK58J1n9HAd4z59lB+Q=;
+ b=AgvVue7R6jDRrF+ARQrDoLTVl8OFEIXPSlH4DGFGY2Y9AGaugJt5sxvnbbTBbwYd++
+ cpxIUX3Y9Fq8a+MHeBttTZgs2u7kI9iF+TqMwiFT4vaFRe1RpCOhn3vx+9SMbg3XVA6o
+ FAZ9sQvOMqiuo1bGx0o3EmS/oM95K7iaupDo2278eELMBuE+uF31ksVmi0wByzpFukSE
+ imopAyeu6vuuKZNiePQ/eX0TWy7mqfwXXfkjATvSPYIQ07HpBDWesERENUBqDxQ8OUeN
+ OAkoWoRokLkrLbu70E6N61f4WI3xtZ1PBc/cIbVdduEk+tQsUJCwNomjpPeU/zMv0qRp
+ 7FNw==
+X-Gm-Message-State: AOAM532dYx/NCsaroGJ2PSUYAAcRY5KVrLPPQcZeRiHw4z6GXl6+ZxpG
+ gQxoaZJWjqDdwLaITrfFW47DfpVjkGIfNzZ+WcnUEQ==
+X-Google-Smtp-Source: ABdhPJyDJI/68d390LlRy2JqeSRGTmYRRCMlvkyP5i/6lilPh9Tk6hWmjh44O2zZaHqHiXS+sNzLcxKAn8iLnGTVp50=
+X-Received: by 2002:aca:f491:: with SMTP id
+ s139mr22957256oih.128.1625847203505; 
+ Fri, 09 Jul 2021 09:13:23 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/vgem: Restore mmap functionality
+References: <20210709151933.1994078-1-matthew.auld@intel.com>
+In-Reply-To: <20210709151933.1994078-1-matthew.auld@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 9 Jul 2021 18:13:12 +0200
+Message-ID: <CAKMK7uHThXJBMKxgyhAN5-1N793a9n=RN39anqCS6GPZiP=bNA@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: unconditionally flush the
+ pages on acquire
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,62 +59,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- Gerd Hoffmann <kraxel@redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Francisco Jerez <francisco.jerez.plata@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Chris Wilson <chris.p.wilson@intel.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q29tbWl0IDM3NWNjYTFjZmViNSAoImRybS92Z2VtOiBJbXBsZW1lbnQgbW1hcCBhcyBHRU0gb2Jq
-ZWN0IGZ1bmN0aW9uIikKYWNjaWRlbnRhbGx5IHJlbW92ZWQgdGhlIGFjdHVhbCBtbWFwIGZ1bmN0
-aW9uYWxpdHkgZnJvbSB2Z2VtLiBSZXN0b3JlCnRoZSBvcmlnaW5hbCBpbXBsZW1lbnRhdGlvbiBh
-bmQgVk1BIGZsYWdzLgoKRml4ZXMgYWNjZXNzIHRvIHVubWFwcGVkIG1lbW9yeToKClsgIDEwNi41
-OTE3NDRdIEJVRzogS0FTQU46IHZtYWxsb2Mtb3V0LW9mLWJvdW5kcyBpbiBkb19mYXVsdCsweDM4
-LzB4NDgwClsgIDEwNi41OTgxNTRdIFJlYWQgb2Ygc2l6ZSA4IGF0IGFkZHIgZmZmZmZmZmZjMTBj
-NDRhOCBieSB0YXNrIHZnZW1fYmFzaWMvMTUxNApbICAxMDYuNjA1MTczXQpbICAxMDYuNjA2Njc4
-XSBDUFU6IDEgUElEOiAxNTE0IENvbW06IHZnZW1fYmFzaWMgVGFpbnRlZDogRyAgICAgICAgICAg
-IEUgICAgIDUuMTMuMC0xLWRlZmF1bHQrICM5OTAKWyAgMTA2LjYxNTUzNV0gSGFyZHdhcmUgbmFt
-ZTogRGVsbCBJbmMuIE9wdGlQbGV4IDkwMjAvME40WUM4LCBCSU9TIEEyNCAxMC8yNC8yMDE4Clsg
-IDEwNi42MjI4MThdIENhbGwgVHJhY2U6ClsgIDEwNi42MjUyODldICBkdW1wX3N0YWNrKzB4YTUv
-MHhkYwpbICAxMDYuNjI4NjQyXSAgcHJpbnRfYWRkcmVzc19kZXNjcmlwdGlvbi5jb25zdHByb3Au
-MCsweDE4LzB4MTAwClsgIDEwNi42MzQ0MzldICA/IGRvX2ZhdWx0KzB4MzgvMHg0ODAKWyAgMTA2
-LjYzNzg3Ml0gIGthc2FuX3JlcG9ydC5jb2xkKzB4N2MvMHhkOApbICAxMDYuNjQxODM0XSAgPyBk
-b19mYXVsdCsweDM4LzB4NDgwClsgIDEwNi42NDUyNzRdICBkb19mYXVsdCsweDM4LzB4NDgwClsg
-IDEwNi42NDg1MzVdICBfX2hhbmRsZV9tbV9mYXVsdCsweDkzNS8weGIwMApbICAxMDYuNjUyNjc2
-XSAgPyB2bV9pb21hcF9tZW1vcnkrMHhlMC8weGUwClsgIDEwNi42NTY2MzRdICA/IF9fbG9ja19y
-ZWxlYXNlKzB4MTJmLzB4NGUwClsgIDEwNi42NjA2OTZdICA/IGNvdW50X21lbWNnX2V2ZW50X21t
-LnBhcnQuMCsweGI5LzB4MTkwClsgIDEwNi42NjU3OTldICBoYW5kbGVfbW1fZmF1bHQrMHhkMC8w
-eDM3MApbICAxMDYuNjY5Njc1XSAgZG9fdXNlcl9hZGRyX2ZhdWx0KzB4MmEwLzB4OGMwClsgIDEw
-Ni42NzM5MDhdICBleGNfcGFnZV9mYXVsdCsweDY0LzB4ZjAKWyAgMTA2LjY3NzYwNF0gID8gYXNt
-X2V4Y19wYWdlX2ZhdWx0KzB4OC8weDMwClsgIDEwNi42ODE3MzldICBhc21fZXhjX3BhZ2VfZmF1
-bHQrMHgxZS8weDMwClsgIDEwNi42ODU3ODJdIFJJUDogMDAzMzoweDQwMmUxMgouLi4KClNpZ25l
-ZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgpGaXhlczog
-Mzc1Y2NhMWNmZWI1ICgiZHJtL3ZnZW06IEltcGxlbWVudCBtbWFwIGFzIEdFTSBvYmplY3QgZnVu
-Y3Rpb24iKQpSZXZpZXdlZC1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5j
-aD4KQ2M6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgpDYzogQ2hyaXN0
-aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpDYzogRGFuaWVsIFZldHRlciA8
-ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFu
-LmtvZW5pZ0BhbWQuY29tPgpDYzogTWVsaXNzYSBXZW4gPG1lbGlzc2Euc3J3QGdtYWlsLmNvbT4K
-Q2M6IEphc29uIEd1bnRob3JwZSA8amdnQHppZXBlLmNhPgpDYzogR2VyZCBIb2ZmbWFubiA8a3Jh
-eGVsQHJlZGhhdC5jb20+CkNjOiBMZWUgSm9uZXMgPGxlZS5qb25lc0BsaW5hcm8ub3JnPgotLS0K
-IGRyaXZlcnMvZ3B1L2RybS92Z2VtL3ZnZW1fZHJ2LmMgfCAxMSArKysrKysrKysrLQogMSBmaWxl
-IGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vdmdlbS92Z2VtX2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL3ZnZW0vdmdl
-bV9kcnYuYwppbmRleCBkZjYzNGFhNTI2MzguLmY1MGZkMTBjNGZhZCAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL3ZnZW0vdmdlbV9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vdmdlbS92
-Z2VtX2Rydi5jCkBAIC0zNjQsOCArMzY0LDE3IEBAIHN0YXRpYyB2b2lkIHZnZW1fcHJpbWVfdnVu
-bWFwKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqLCBzdHJ1Y3QgZG1hX2J1Zl9tYXAgKm1hCgog
-c3RhdGljIGludCB2Z2VtX3ByaW1lX21tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosIHN0
-cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hKQogeworCWludCByZXQ7CisKKwlpZiAoIW9iai0+Zmls
-cCkKKwkJcmV0dXJuIC1FTk9ERVY7CisKKwlyZXQgPSBjYWxsX21tYXAob2JqLT5maWxwLCB2bWEp
-OworCWlmIChyZXQpCisJCXJldHVybiByZXQ7CisKIAl2bWFfc2V0X2ZpbGUodm1hLCBvYmotPmZp
-bHApOwotCXZtYS0+dm1fZmxhZ3MgfD0gVk1fRE9OVEVYUEFORCB8IFZNX0RPTlREVU1QOworCXZt
-YS0+dm1fZmxhZ3MgfD0gVk1fSU8gfCBWTV9QRk5NQVAgfCBWTV9ET05URVhQQU5EIHwgVk1fRE9O
-VERVTVA7CiAJdm1hLT52bV9wYWdlX3Byb3QgPSBwZ3Byb3Rfd3JpdGVjb21iaW5lKHZtX2dldF9w
-YWdlX3Byb3Qodm1hLT52bV9mbGFncykpOwogCXZtYS0+dm1fcGFnZV9wcm90ID0gcGdwcm90X2Rl
-Y3J5cHRlZCh2bWEtPnZtX3BhZ2VfcHJvdCk7CgotLQoyLjMyLjAKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Jul 9, 2021 at 5:19 PM Matthew Auld <matthew.auld@intel.com> wrote:
+>
+> EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
+> possible for userspace to bypass the GTT caching bits set by the kernel,
+> as per the given object cache_level. This is troublesome since the heavy
+> flush we apply when first acquiring the pages is skipped if the kernel
+> thinks the object is coherent with the GPU. As a result it might be
+> possible to bypass the cache and read the contents of the page directly,
+> which could be stale data. If it's just a case of userspace shooting
+> themselves in the foot then so be it, but since i915 takes the stance of
+> always zeroing memory before handing it to userspace, we need to prevent
+> this.
+>
+> BSpec: 34007
+> References: 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Cc: Francisco Jerez <francisco.jerez.plata@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Chris Wilson <chris.p.wilson@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 29 +++++++++++++++++++++--
+>  1 file changed, 27 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index 6a04cce188fc..7e9ec68cce9e 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -298,11 +298,12 @@ __i915_gem_object_release_shmem(struct drm_i915_gem_object *obj,
+>
+>  void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_table *pages)
+>  {
+> +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+>         struct sgt_iter sgt_iter;
+>         struct pagevec pvec;
+>         struct page *page;
+>
+> -       GEM_WARN_ON(IS_DGFX(to_i915(obj->base.dev)));
+> +       GEM_WARN_ON(IS_DGFX(i915));
+>         __i915_gem_object_release_shmem(obj, pages, true);
+>
+>         i915_gem_gtt_finish_pages(obj, pages);
+> @@ -325,7 +326,12 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
+>         }
+>         if (pagevec_count(&pvec))
+>                 check_release_pagevec(&pvec);
+> -       obj->mm.dirty = false;
+> +
+> +       /* See the comment in shmem_object_init() for why we need this */
+> +       if (IS_JSL_EHL(i915) && obj->flags & I915_BO_ALLOC_USER)
+> +               obj->mm.dirty = true;
+> +       else
+> +               obj->mm.dirty = false;
+>
+>         sg_free_table(pages);
+>         kfree(pages);
+> @@ -539,6 +545,25 @@ static int shmem_object_init(struct intel_memory_region *mem,
+>
+>         i915_gem_object_set_cache_coherency(obj, cache_level);
+>
+> +       /*
+> +        * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
+> +        * possible for userspace to bypass the GTT caching bits set by the
+> +        * kernel, as per the given object cache_level. This is troublesome
+> +        * since the heavy flush we apply when first gathering the pages is
+> +        * skipped if the kernel thinks the object is coherent with the GPU. As
+> +        * a result it might be possible to bypass the cache and read the
+> +        * contents of the page directly, which could be stale data. If it's
+> +        * just a case of userspace shooting themselves in the foot then so be
+> +        * it, but since i915 takes the stance of always zeroing memory before
+> +        * handing it to userspace, we need to prevent this.
+> +        *
+> +        * By setting cache_dirty here we make the clflush when first acquiring
+> +        * the pages unconditional on such platforms. We also set this again in
+> +        * put_pages().
+> +        */
+> +       if (IS_JSL_EHL(i915) && flags & I915_BO_ALLOC_USER)
+> +               obj->cache_dirty = true;
+
+I don't think this is enough, because every time we drop our pages
+shmem could move them around or swap them out, and we get fresh ones.
+So we need to re-force this every time we grab new pages.
+
+Also there's already a pile of other cases (well not WB coherency
+mode) where userspace can be clever and bypass the coherency if we
+don't clflush first. I think it'd be really good to have all that in
+one places as much as possible.
+
+Finally this is extremely tricky code, and obj->cache_dirty and
+related stuff isn't really documented. kerneldoc for all that would be
+really good.
+-Daniel
+
+> +
+>         i915_gem_object_init_memory_region(obj, mem);
+>
+>         return 0;
+> --
+> 2.26.3
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
