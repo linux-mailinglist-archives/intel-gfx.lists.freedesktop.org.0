@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 411DE3C2152
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 11:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B5213C219D
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 11:31:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED29F6E9F6;
-	Fri,  9 Jul 2021 09:15:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8CB26E9F9;
+	Fri,  9 Jul 2021 09:31:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
- [IPv6:2607:f8b0:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00CB86E9F4
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 09:15:51 +0000 (UTC)
-Received: by mail-oi1-x232.google.com with SMTP id u66so5645310oif.13
- for <intel-gfx@lists.freedesktop.org>; Fri, 09 Jul 2021 02:15:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com
+ [IPv6:2607:f8b0:4864:20::72d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 124EA6E9F9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 09:31:09 +0000 (UTC)
+Received: by mail-qk1-x72d.google.com with SMTP id e14so8672382qkl.9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 09 Jul 2021 02:31:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=jaix3U7G/PB87Ay07enXH/OSVYtCPLdi40u5BPIOv1s=;
- b=TwhB3mut8U7oIcVxsmZ6E535sHZwGLthPxsFmOOVY+1LchLYvrr58HnWTpEwBqLMZu
- zcADVGUGUSehj1h9D6GEHNW6QzTlHjuAQc5K2jQ8zGImBrn1Y3qZD5irpgvPo9f9ZD9F
- 9yoeEfsfKgt0ewtqZ1Nndga3l/2KHdcTQRf1E=
+ :cc; bh=klcNaSOpc1RAPELBXww0Y8KdCL4F2jxOjskrd7C1cIM=;
+ b=EhuXa9movHUjogf1HcUZCbol8Byd964c8iV/ZC/MoaGF3Ok6Lttrs/gg3I6UplMhRt
+ /KgXzPu5eHl3PnUyjzK6JmdF01olPfMjpMf84tvHVUstmaPbqLwnzllii9r3xEXxI88t
+ Ey3s810RlWRE+iYLKbDRJF+WgcN4TPGdGMZWEM6aFPYC5PaxMADQfESomnMLPrVGAlu2
+ uMuYBEXiaNN57YIaZxSsSy9BpEZx/+P3EGLjOaICMCu03DdKghxUxzs43/j3tNHLrp1d
+ 3E0F4yNyh/HVZETBI6Ql/FSIVFEAj/8DhMSc1GldD33AXfzn9wDh0uCrmpDNbIk/mOe8
+ eW6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=jaix3U7G/PB87Ay07enXH/OSVYtCPLdi40u5BPIOv1s=;
- b=oa2MVelRxpFgPNMfo/Cn8DxBtOdPORG5F/ElRc1PccyKhmDPJK2d5xLVlbm/bo9Tqw
- J26Fi7m1jEwctRJlYkhlaEEtGM+E8Lfn3aCEvPsOl5nervMrovbV4JDLCVD84wXaYTRu
- soAHPm92X+/FBTSudFEmADVqiRLXy0wRcqRa+nV6ju4DniQ2BuXqT26v/SU0rcJo58Lh
- tTuPP+HKCaAeMEYgVaW1WFwWiZa9EVOaevK0YxY8wPJT+dXkd9TUWsIHhOJzrDqo6M/9
- ETQ2lLEfHmND4jaiHEng+/PPHnvFwhiLbvtFwUNwRO49YK90iJI+2s1BB8H4YHY8X3un
- uo2A==
-X-Gm-Message-State: AOAM530pTW/XPY/VXqjYk+DydqumWOnP+ybWUwLLS5kKPWKTbtdCJynl
- fAlgd4nyROaGvOdsV4LxppdyiyGh2moK9ko6VoUmv/znCQ8=
-X-Google-Smtp-Source: ABdhPJzdY5JqorO3ZHqZxNzPMPfbxu3TUa15r/b5G4RPJXaiHeVYNoRHYk7zvU/nMnz2sOTggwkJa6qMTzOHwoVFhfY=
-X-Received: by 2002:aca:eb43:: with SMTP id j64mr7192215oih.101.1625822151219; 
- Fri, 09 Jul 2021 02:15:51 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=klcNaSOpc1RAPELBXww0Y8KdCL4F2jxOjskrd7C1cIM=;
+ b=We1S9rKan2vm1X4fljXx/itpP6szTfyMrHNTn2bpyI41s58t7zDb5jgbulN3Wdqns/
+ gDXzvG7J4tFhKKvSRZZ0Ahp9W1yQwPKNWthEJM1MuB+kBUi/D6wYYMPkTTh7eqRO9xsW
+ frWa/NInMH7FQ51UufNr2rHhWFPQFdfEoL1gdItDiopmzg1bTL3F7oKhu8/FC+uPjju0
+ UFSNTwM2Q1P+Z7ehdg4nYt0DRBt/Gpb3MP9CGKC5i/iT8sC9+rWz5lTsmrtbds0iNzpk
+ 07zqvth+j9lhm95xmLOPzco2DyejG68hdKwSdH6v/Sd990oucpJp7mdLBRFCGK+EPcyW
+ M12w==
+X-Gm-Message-State: AOAM532eQFdE49NNS7d1ZUsX2HeY5QTOxMUEtk+LaI7mG3WRAU3UgMmi
+ 7EluFI8mQPXUnDYEDxcGs0U1hghCM2D4mrGNwtk=
+X-Google-Smtp-Source: ABdhPJy+zT3rYygyqBI0MniNHmcyQMcEDNua77pCP4+0eB3I2Ik8WOewaZocaz/vsu+GY/dl+UVkd0pnbJMjSrzjROY=
+X-Received: by 2002:a37:9e07:: with SMTP id h7mr12828734qke.481.1625823068240; 
+ Fri, 09 Jul 2021 02:31:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210708173754.3877540-1-daniel.vetter@ffwll.ch>
- <20210708173754.3877540-17-daniel.vetter@ffwll.ch>
- <2582129c-b0c3-831c-a3b4-caa51be95095@gmail.com>
-In-Reply-To: <2582129c-b0c3-831c-a3b4-caa51be95095@gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 9 Jul 2021 11:15:40 +0200
-Message-ID: <CAKMK7uGGv+6B9642XX1WordAkan7XbMyGCumaJGsQYxb+qQWfQ@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v3 16/20] drm/msm: always wait for the
- exclusive fence
+References: <20210701114234.3859716-1-maarten.lankhorst@linux.intel.com>
+ <4dfba196-0106-6a20-aac1-4ca90c91f899@linux.intel.com>
+ <CAM0jSHNQpgTW88qX+fesNEJTnB_DnxqYcpwEASxVa89D02tvnQ@mail.gmail.com>
+In-Reply-To: <CAM0jSHNQpgTW88qX+fesNEJTnB_DnxqYcpwEASxVa89D02tvnQ@mail.gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 9 Jul 2021 10:30:40 +0100
+Message-ID: <CAM0jSHP0Dvik-FKQ9XdY-xbJmRX4GufJaC5QU4yyZ=Kzby8k4w@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add TTM offset argument to mmap.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,60 +62,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: freedreno <freedreno@lists.freedesktop.org>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+Cc: "Ekstrand, Jason" <jason.ekstrand@intel.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Kenneth Graunke <kenneth@whitecape.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBKdWwgOSwgMjAyMSBhdCAxMDo0OCBBTSBDaHJpc3RpYW4gS8O2bmlnCjxja29lbmln
-LmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4gQW0gMDguMDcuMjEgdW0gMTk6Mzcg
-c2NocmllYiBEYW5pZWwgVmV0dGVyOgo+ID4gRnJvbTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2tvZW5p
-Zy5sZWljaHR6dW1lcmtlbkBnbWFpbC5jb20+Cj4gPgo+ID4gRHJpdmVycyBhbHNvIG5lZWQgdG8g
-dG8gc3luYyB0byB0aGUgZXhjbHVzaXZlIGZlbmNlIHdoZW4KPiA+IGEgc2hhcmVkIG9uZSBpcyBw
-cmVzZW50Lgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlh
-bi5rb2VuaWdAYW1kLmNvbT4KPiA+IFtkYW52ZXQ6IE5vdCB0aGF0IGhhcmQgdG8gY29tcGlsZS10
-ZXN0IG9uIGFybSAuLi5dCj4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwu
-dmV0dGVyQGZmd2xsLmNoPgo+ID4gQ2M6IFJvYiBDbGFyayA8cm9iZGNsYXJrQGdtYWlsLmNvbT4K
-PiA+IENjOiBTZWFuIFBhdWwgPHNlYW5AcG9vcmx5LnJ1bj4KPiA+IENjOiBsaW51eC1hcm0tbXNt
-QHZnZXIua2VybmVsLm9yZwo+ID4gQ2M6IGZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-Pgo+IFdvbmRlcmluZyBhIGJpdCB3aHkgeW91IGhhdmUgdGhhdCBpbiB0aGlzIHBhdGNoIHNldCBu
-b3cuCj4KPiBCdXQgYW55IG9iamVjdGlvbnMgdGhhdCB3ZSBwdXNoIHRoaXMgbm93PwoKQ292ZXIg
-bGV0dGVyIG9mIHRoZSBmaXJzdCBvbmUgdmVyc2lvbiBleHBsYWluZWQgdGhhdCBJIGp1c3Qgd2Fu
-dGVkIHRvCmhhdmUgYWxsIHRoZSBtc20gZml4ZXMgaW4gdGhpcyBzZXJpZXMsIGZvciBjb21wbGV0
-ZW5lc3MuIEJ1dCB5ZWFoIEkKdGhvdWdodCBJIHB1dCBhbiByLWIgb24geW91ciBzZXJpZXMgZm9y
-IHRoaXM/IFRoZXJlIHdhcyBvbmUgcGF0Y2gKd2hlcmUgSSB3YXMgdW5oYXBweSB3aXRoIHRoZSBk
-b2NzLCBidXQgdGhlcmUncyBhIG5ldyBwYXRjaCBmb3IgdGhhdApub3cgaGVyZS4KLURhbmllbAoK
-PiBUaGFua3MsCj4gQ2hyaXN0aWFuLgo+Cj4gPiAtLS0KPiA+ICAgZHJpdmVycy9ncHUvZHJtL21z
-bS9tc21fZ2VtLmMgfCAxNiArKysrKysrLS0tLS0tLS0tCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCA3
-IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9tc20vbXNtX2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL21zbS9tc21fZ2VtLmMK
-PiA+IGluZGV4IDE0MTE3ODc1NDIzMS4uZDljNGYxZGVlYWZiIDEwMDY0NAo+ID4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL21zbS9tc21fZ2VtLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tc20v
-bXNtX2dlbS5jCj4gPiBAQCAtODEyLDE3ICs4MTIsMTUgQEAgaW50IG1zbV9nZW1fc3luY19vYmpl
-Y3Qoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosCj4gPiAgICAgICBzdHJ1Y3QgZG1hX2ZlbmNl
-ICpmZW5jZTsKPiA+ICAgICAgIGludCBpLCByZXQ7Cj4gPgo+ID4gLSAgICAgZm9iaiA9IGRtYV9y
-ZXN2X3NoYXJlZF9saXN0KG9iai0+cmVzdik7Cj4gPiAtICAgICBpZiAoIWZvYmogfHwgKGZvYmot
-PnNoYXJlZF9jb3VudCA9PSAwKSkgewo+ID4gLSAgICAgICAgICAgICBmZW5jZSA9IGRtYV9yZXN2
-X2V4Y2xfZmVuY2Uob2JqLT5yZXN2KTsKPiA+IC0gICAgICAgICAgICAgLyogZG9uJ3QgbmVlZCB0
-byB3YWl0IG9uIG91ciBvd24gZmVuY2VzLCBzaW5jZSByaW5nIGlzIGZpZm8gKi8KPiA+IC0gICAg
-ICAgICAgICAgaWYgKGZlbmNlICYmIChmZW5jZS0+Y29udGV4dCAhPSBmY3R4LT5jb250ZXh0KSkg
-ewo+ID4gLSAgICAgICAgICAgICAgICAgICAgIHJldCA9IGRtYV9mZW5jZV93YWl0KGZlbmNlLCB0
-cnVlKTsKPiA+IC0gICAgICAgICAgICAgICAgICAgICBpZiAocmV0KQo+ID4gLSAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPiA+IC0gICAgICAgICAgICAgfQo+ID4gKyAg
-ICAgZmVuY2UgPSBkbWFfcmVzdl9leGNsX2ZlbmNlKG9iai0+cmVzdik7Cj4gPiArICAgICAvKiBk
-b24ndCBuZWVkIHRvIHdhaXQgb24gb3VyIG93biBmZW5jZXMsIHNpbmNlIHJpbmcgaXMgZmlmbyAq
-Lwo+ID4gKyAgICAgaWYgKGZlbmNlICYmIChmZW5jZS0+Y29udGV4dCAhPSBmY3R4LT5jb250ZXh0
-KSkgewo+ID4gKyAgICAgICAgICAgICByZXQgPSBkbWFfZmVuY2Vfd2FpdChmZW5jZSwgdHJ1ZSk7
-Cj4gPiArICAgICAgICAgICAgIGlmIChyZXQpCj4gPiArICAgICAgICAgICAgICAgICAgICAgcmV0
-dXJuIHJldDsKPiA+ICAgICAgIH0KPiA+Cj4gPiArICAgICBmb2JqID0gZG1hX3Jlc3Zfc2hhcmVk
-X2xpc3Qob2JqLT5yZXN2KTsKPiA+ICAgICAgIGlmICghZXhjbHVzaXZlIHx8ICFmb2JqKQo+ID4g
-ICAgICAgICAgICAgICByZXR1cm4gMDsKPiA+Cj4KCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2Fy
-ZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, 5 Jul 2021 at 15:36, Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Thu, 1 Jul 2021 at 12:50, Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com> wrote:
+> >
+> > Op 01-07-2021 om 13:42 schreef Maarten Lankhorst:
+> > > This is only used for ttm, and tells userspace that the mapping type is
+> > > ignored. This disables the other type of mmap offsets when discrete
+> > > memory is used, so fix the selftests as well.
+> > >
+> > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 17 +++++++++++-
+> > >  .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
+> > >  .../drm/i915/gem/selftests/i915_gem_mman.c    | 27 +++++++++++++++++--
+> > >  include/uapi/drm/i915_drm.h                   |  9 ++++---
+> > >  4 files changed, 47 insertions(+), 7 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > > index a90f796e85c0..b34be9e5d094 100644
+> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> > > @@ -679,10 +679,16 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
+> > >               return -ENODEV;
+> > >
+> > >       if (obj->ops->mmap_offset)  {
+> > > +             if (mmap_type != I915_MMAP_TYPE_TTM)
+> > > +                     return -ENODEV;
+> > > +
+> > >               *offset = obj->ops->mmap_offset(obj);
+> > >               return 0;
+> > >       }
+> > >
+> > > +     if (mmap_type == I915_MMAP_TYPE_TTM)
+> > > +             return -ENODEV;
+> > > +
+> > >       if (mmap_type != I915_MMAP_TYPE_GTT &&
+> > >           !i915_gem_object_has_struct_page(obj) &&
+> > >           !i915_gem_object_has_iomem(obj))
+> > > @@ -727,7 +733,9 @@ i915_gem_dumb_mmap_offset(struct drm_file *file,
+> > >  {
+> > >       enum i915_mmap_type mmap_type;
+> > >
+> > > -     if (boot_cpu_has(X86_FEATURE_PAT))
+> > > +     if (HAS_LMEM(to_i915(dev)))
+> > > +             mmap_type = I915_MMAP_TYPE_TTM;
+> > > +     else if (boot_cpu_has(X86_FEATURE_PAT))
+> > >               mmap_type = I915_MMAP_TYPE_WC;
+>
+> Hmm, I think we still need to check for X86_FEATURE_PAT somewhere,
+> since this is still just WC for lmem?
+>
+> > >       else if (!i915_ggtt_has_aperture(&to_i915(dev)->ggtt))
+> > >               return -ENODEV;
+> > > @@ -798,6 +806,10 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+> > >               type = I915_MMAP_TYPE_UC;
+> > >               break;
+> > >
+> > > +     case I915_MMAP_OFFSET_TTM:
+> > > +             type = I915_MMAP_TYPE_TTM;
+> > > +             break;
+>
+> Would it not be simpler to just convert to WC or WB here, if we
+> encounter _TTM? With that we also don't need to touch the dumb mmap
+> stuff and i915_gem_mmap()?
+>
+> if (IS_DGFX()) {
+>         if (args->type != OFFSET_TTM)
+>                return -ENODEV:
+>
+>        GEM_BUG_ON(!obj->mm.n_placements);
+>        if (i915_gem_object_placement_possible(obj, INTEL_MEMORY_LOCAL)) {
+>               type = TYPE_WC;
+>       else
+>               ttype = TYPE_WB;
+> }
+>
+> https://patchwork.freedesktop.org/patch/442579/?series=92209&rev=1
+
+fyi this patch is now merged, in case you need the
+i915_gem_object_placement_possible() helper.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
