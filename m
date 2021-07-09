@@ -2,30 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C4153C2916
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 20:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE203C291E
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 20:44:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 135796EA14;
-	Fri,  9 Jul 2021 18:38:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A216F6EA14;
+	Fri,  9 Jul 2021 18:44:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BCB0D6EA14;
- Fri,  9 Jul 2021 18:38:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B5B39A7DFC;
- Fri,  9 Jul 2021 18:38:00 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8313C6EA14
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 18:43:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="189436214"
+X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="189436214"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 11:43:54 -0700
+X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="488418483"
+Received: from kfurushx-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.215.94])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 11:43:54 -0700
+Date: Fri, 9 Jul 2021 11:43:48 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+Message-ID: <20210709184348.2b2wdsxtcni5j4ph@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210708231821.9163-1-anusha.srivatsa@intel.com>
+ <20210708231821.9163-10-anusha.srivatsa@intel.com>
+ <20210709041616.GD951094@mdroper-desk1.amr.corp.intel.com>
+ <20210709175250.zzw62bgkmsrihqm7@ldmartin-desk2>
+ <a6c1edd1e8ee4bce91cfc2c488ea77e9@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 09 Jul 2021 18:38:00 -0000
-Message-ID: <162585588073.9813.3478801995631548131@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210709164750.9465-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210709164750.9465-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaW9t?=
- =?utf-8?q?mu/vt-d=3A_Disable_igfx_iommu_superpage_on_bxt/skl/glk?=
+Content-Disposition: inline
+In-Reply-To: <a6c1edd1e8ee4bce91cfc2c488ea77e9@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/step: Add intel_step_name()
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,202 +49,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1808817403=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1808817403==
-Content-Type: multipart/alternative;
- boundary="===============0046939367685552880=="
+On Fri, Jul 09, 2021 at 11:36:09AM -0700, Anusha Srivatsa wrote:
+>
+>
+>> -----Original Message-----
+>> From: De Marchi, Lucas <lucas.demarchi@intel.com>
+>> Sent: Friday, July 9, 2021 10:53 AM
+>> To: Roper, Matthew D <matthew.d.roper@intel.com>
+>> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
+>> gfx@lists.freedesktop.org; Jani Nikula <jani.nikula@linux.intel.com>
+>> Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/step: Add intel_step_name()
+>> helper
+>>
+>> On Thu, Jul 08, 2021 at 09:16:16PM -0700, Matt Roper wrote:
+>> >On Thu, Jul 08, 2021 at 04:18:20PM -0700, Anusha Srivatsa wrote:
+>> >> Add a helper to convert the step info to string.
+>> >> This is specifically useful when we want to load a specific firmware
+>> >> for a given stepping/substepping combination.
+>> >
+>> >What if we use macros to generate the per-stepping code here as well as
+>> >the stepping values in the enum?
+>> >
+>> >In intel_step.h:
+>> >
+>> >        #define STEPPING_NAME_LIST(func) \
+>> >                func(A0)
+>> >                func(A1)
+>> >                func(A2)
+>> >                func(B0)
+>> >                ...
+>> >
+>> >        #define STEPPING_ENUM_VAL(name)  STEP_##name,
+>> >
+>> >        enum intel_step {
+>> >                STEP_NONE = 0,
+>> >                STEPPING_NAME_LIST(STEPPING_ENUM_VAL)
+>> >                STEP_FUTURE,
+>> >                STEP_FOREVER,
+>> >        };
+>> >
+>> >and in intel_step.c:
+>> >
+>> >        #define STEPPING_NAME_CASE(name)        \
+>> >                case STEP_##name:               \
+>> >                        return #name;           \
+>> >                        break;
+>> >
+>> >        const char *intel_step_name(enum intel_step step) {
+>> >                switch(step) {
+>> >                STEPPING_NAME_LIST(STEPPING_NAME_CASE)
+>> >
+>> >                default:
+>> >                        return "**";
+>> >                }
+>> >        }
+>> >
+>> >This has the advantage that anytime a new stepping is added (in
+>> >STEPPING_NAME_LIST) it will generate a new "STEP_XX" enum value and a
+>> >new case statement to return "XX" as the name; we won't have to
+>> >remember to update two separate places in the code.
+>>
+>> my other idea in the first iterations of this patch was to turn the stepping into
+>> u16 and then do something like (untested crap code below):
+>>
+>> 	#define make_step(a, b)	((a - 'A') << 8, (b - '0'))
+>>
+>> 	#define intel_step_name(s) ({
+>> 		char ret[3];
+>> 		ret[0] = ((s) >> 8) + 'A';
+>> 		ret[1] = ((s) & 0xff) + '0';
+>> 		ret[2] = '\0';
+>> 		ret;
+>> 	})
+>>
+>> 	enum intel_step {
+>> 		STEP_NONE = -1,
+>> 		STEP_A0 = make_step('A', '0'),
+>> 		...
+>> 	}
+>>
+>> Or even not bother with the 'A'/'0' addition/subraction since 8 bits is enough
+>> for all the letters and numbers.
+>>
+>> If we keep it u8, then we are limited to step P7 (assuming we have 2
+>> reserved entries at the end),. It may or may not be sufficient (it currently is)
+>>
+>> better? worse?
+>
+>I feel If Matt's solution is more scalable, better to go with it.
 
---===============0046939367685552880==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+both scale the same from what I can see. So, in the end I think the
+consideration would be:
 
-== Series Details ==
+	- how much magic do they bring? (less is more... and subjective)
+	- .ko size increase considering the new tables for new
+	  platforms (may be negligible)
 
-Series: iommu/vt-d: Disable igfx iommu superpage on bxt/skl/glk
-URL   : https://patchwork.freedesktop.org/series/92374/
-State : success
+Lucas De Marchi
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10326 -> Patchwork_20566
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20566 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][1] ([i915#3718])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +5 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
-
-  * igt@vgem_basic@unload:
-    - fi-bdw-5557u:       NOTRUN -> [INCOMPLETE][3] ([i915#3744])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@vgem_basic@unload.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       [FAIL][4] ([i915#1602] / [i915#2029]) -> [FAIL][5] ([i915#2722] / [i915#3744])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10326/fi-bdw-5557u/igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#3744]: https://gitlab.freedesktop.org/drm/intel/issues/3744
-
-
-Participating hosts (41 -> 38)
-------------------------------
-
-  Missing    (3): fi-bdw-samus fi-bsw-cyan fi-ilk-650 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10326 -> Patchwork_20566
-
-  CI-20190529: 20190529
-  CI_DRM_10326: 8fa21d35c119a14a3cb14035dde5a9cc7e2321d2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20566: 4f652b23e277fac45edeba2beec291d6f5428f3f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4f652b23e277 drm/i915/fbc: Allow FBC + VT-d on SKL/BXT
-7e8975387280 iommu/vt-d: Disable superpage for Skylake igfx
-54ea2020b79a iommu/vt-d: Disable superpage for Broxton igfx
-7da685194fc4 iommu/vt-d: Disable superpage for Geminilake igfx
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/index.html
-
---===============0046939367685552880==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>iommu/vt-d: Disable igfx iommu superpage on bxt/skl/glk</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92374/">https://patchwork.freedesktop.org/series/92374/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10326 -&gt; Patchwork_20566</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20566 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@vgem_basic@unload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10326/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20566/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Missing    (3): fi-bdw-samus fi-bsw-cyan fi-ilk-650 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10326 -&gt; Patchwork_20566</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10326: 8fa21d35c119a14a3cb14035dde5a9cc7e2321d2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20566: 4f652b23e277fac45edeba2beec291d6f5428f3f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4f652b23e277 drm/i915/fbc: Allow FBC + VT-d on SKL/BXT<br />
-7e8975387280 iommu/vt-d: Disable superpage for Skylake igfx<br />
-54ea2020b79a iommu/vt-d: Disable superpage for Broxton igfx<br />
-7da685194fc4 iommu/vt-d: Disable superpage for Geminilake igfx</p>
-
-</body>
-</html>
-
---===============0046939367685552880==--
-
---===============1808817403==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+>Anusha
+>> Lucas De Marchi
+>>
+>> >
+>> >
+>> >Matt
+>> >
+>> >>
+>> >> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+>> >> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/intel_step.c | 58
+>> >> +++++++++++++++++++++++++++++++
+>> drivers/gpu/drm/i915/intel_step.h |
+>> >> 1 +
+>> >>  2 files changed, 59 insertions(+)
+>> >>
+>> >> diff --git a/drivers/gpu/drm/i915/intel_step.c
+>> >> b/drivers/gpu/drm/i915/intel_step.c
+>> >> index 99c0d3df001b..9af7f30b777e 100644
+>> >> --- a/drivers/gpu/drm/i915/intel_step.c
+>> >> +++ b/drivers/gpu/drm/i915/intel_step.c
+>> >> @@ -182,3 +182,61 @@ void intel_step_init(struct drm_i915_private
+>> >> *i915)
+>> >>
+>> >>  	RUNTIME_INFO(i915)->step = step;
+>> >>  }
+>> >> +
+>> >> +const char *intel_step_name(enum intel_step step) {
+>> >> +	switch (step) {
+>> >> +	case STEP_A0:
+>> >> +		return "A0";
+>> >> +		break;
+>> >> +	case STEP_A1:
+>> >> +		return "A1";
+>> >> +		break;
+>> >> +	case STEP_A2:
+>> >> +		return "A2";
+>> >> +		break;
+>> >> +	case STEP_B0:
+>> >> +		return "B0";
+>> >> +		break;
+>> >> +	case STEP_B1:
+>> >> +		return "B1";
+>> >> +		break;
+>> >> +	case STEP_B2:
+>> >> +		return "B2";
+>> >> +		break;
+>> >> +	case STEP_C0:
+>> >> +		return "C0";
+>> >> +		break;
+>> >> +	case STEP_C1:
+>> >> +		return "C1";
+>> >> +		break;
+>> >> +	case STEP_D0:
+>> >> +		return "D0";
+>> >> +		break;
+>> >> +	case STEP_D1:
+>> >> +		return "D1";
+>> >> +		break;
+>> >> +	case STEP_E0:
+>> >> +		return "E0";
+>> >> +		break;
+>> >> +	case STEP_F0:
+>> >> +		return "F0";
+>> >> +		break;
+>> >> +	case STEP_G0:
+>> >> +		return "G0";
+>> >> +		break;
+>> >> +	case STEP_H0:
+>> >> +		return "H0";
+>> >> +		break;
+>> >> +	case STEP_I0:
+>> >> +		return "I0";
+>> >> +		break;
+>> >> +	case STEP_I1:
+>> >> +		return "I1";
+>> >> +		break;
+>> >> +	case STEP_J0:
+>> >> +		return "J0";
+>> >> +		break;
+>> >> +	default:
+>> >> +		return "**";
+>> >> +	}
+>> >> +}
+>> >> diff --git a/drivers/gpu/drm/i915/intel_step.h
+>> >> b/drivers/gpu/drm/i915/intel_step.h
+>> >> index 3e8b2babd9da..2fbe51483472 100644
+>> >> --- a/drivers/gpu/drm/i915/intel_step.h
+>> >> +++ b/drivers/gpu/drm/i915/intel_step.h
+>> >> @@ -43,5 +43,6 @@ enum intel_step {
+>> >>  };
+>> >>
+>> >>  void intel_step_init(struct drm_i915_private *i915);
+>> >> +const char *intel_step_name(enum intel_step step);
+>> >>
+>> >>  #endif /* __INTEL_STEP_H__ */
+>> >> --
+>> >> 2.32.0
+>> >>
+>> >> _______________________________________________
+>> >> Intel-gfx mailing list
+>> >> Intel-gfx@lists.freedesktop.org
+>> >> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>> >
+>> >--
+>> >Matt Roper
+>> >Graphics Software Engineer
+>> >VTT-OSGC Platform Enablement
+>> >Intel Corporation
+>> >(916) 356-2795
+>> >_______________________________________________
+>> >Intel-gfx mailing list
+>> >Intel-gfx@lists.freedesktop.org
+>> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1808817403==--
