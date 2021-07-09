@@ -2,31 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EF9F3C281E
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 19:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 681453C2830
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 19:19:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CEC26E8F1;
-	Fri,  9 Jul 2021 17:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C840789FF6;
+	Fri,  9 Jul 2021 17:18:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F19996E8F1;
- Fri,  9 Jul 2021 17:12:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EB0CBA7DFC;
- Fri,  9 Jul 2021 17:12:15 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4519089FF6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 17:18:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="295379566"
+X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="295379566"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 10:18:56 -0700
+X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="450361705"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 10:18:56 -0700
+Date: Fri, 9 Jul 2021 10:18:54 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20210709171854.GG951094@mdroper-desk1.amr.corp.intel.com>
+References: <20210707235921.2416911-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 09 Jul 2021 17:12:15 -0000
-Message-ID: <162585073594.9813.1929488014261756927@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210709153424.1999623-1-matthew.auld@intel.com>
-In-Reply-To: <20210709153424.1999623-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/ehl=3A_unconditionally_flush_the_pages_on_acquire_?=
- =?utf-8?b?KHJldjIp?=
+Content-Disposition: inline
+In-Reply-To: <20210707235921.2416911-1-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: do not abbreviate version in
+ debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,34 +44,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jul 07, 2021 at 04:59:20PM -0700, Lucas De Marchi wrote:
+> Brevity is not needed here, so just spell out "* version" in the string.
+> 
+> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Series: drm/i915/ehl: unconditionally flush the pages on acquire (rev2)
-URL   : https://patchwork.freedesktop.org/series/92367/
-State : warning
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/intel_device_info.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index 7eaa92fee421..3daf0cd8d48b 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -96,9 +96,9 @@ static const char *iommu_name(void)
+>  void intel_device_info_print_static(const struct intel_device_info *info,
+>  				    struct drm_printer *p)
+>  {
+> -	drm_printf(p, "graphics_ver: %u\n", info->graphics_ver);
+> -	drm_printf(p, "media_ver: %u\n", info->media_ver);
+> -	drm_printf(p, "display_ver: %u\n", info->display.ver);
+> +	drm_printf(p, "graphics version: %u\n", info->graphics_ver);
+> +	drm_printf(p, "media version: %u\n", info->media_ver);
+> +	drm_printf(p, "display version: %u\n", info->display.ver);
+>  	drm_printf(p, "gt: %d\n", info->gt);
+>  	drm_printf(p, "iommu: %s\n", iommu_name());
+>  	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
+> -- 
+> 2.31.1
+> 
 
-$ dim checkpatch origin/drm-tip
-898f9d8b7d24 drm/i915/ehl: unconditionally flush the pages on acquire
--:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#20: 
-References: 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")
-
--:20: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")'
-#20: 
-References: 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")
-
-total: 1 errors, 1 warnings, 0 checks, 48 lines checked
-
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
