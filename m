@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3503C1CEE
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 03:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC13D3C1DF4
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 05:53:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B502A6E528;
-	Fri,  9 Jul 2021 01:03:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6EBE6E95B;
+	Fri,  9 Jul 2021 03:53:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5600E6E528;
- Fri,  9 Jul 2021 01:03:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4F071A47E9;
- Fri,  9 Jul 2021 01:03:17 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
-Date: Fri, 09 Jul 2021 01:03:17 -0000
-Message-ID: <162579259729.9810.12831144327437386840@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B37046E95B
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 03:53:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="196918283"
+X-IronPort-AV: E=Sophos;i="5.84,225,1620716400"; d="scan'208";a="196918283"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 20:53:22 -0700
+X-IronPort-AV: E=Sophos;i="5.84,225,1620716400"; d="scan'208";a="411656455"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2021 20:53:22 -0700
+Date: Thu, 8 Jul 2021 20:53:21 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <20210709035321.GC951094@mdroper-desk1.amr.corp.intel.com>
 References: <20210708231821.9163-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20210708231821.9163-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgR2V0?=
- =?utf-8?q?_stepping_info_from_RUNTIME=5FINFO-=3Estep?=
+ <20210708231821.9163-9-anusha.srivatsa@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20210708231821.9163-9-anusha.srivatsa@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 08/10] drm/i915/bxt: Use revid->stepping
+ tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,224 +45,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1653351397=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1653351397==
-Content-Type: multipart/alternative;
- boundary="===============5700053469764597447=="
+On Thu, Jul 08, 2021 at 04:18:19PM -0700, Anusha Srivatsa wrote:
+> Switch BXT to use a revid->stepping table as we're trying to do on all
+> platforms going forward.
+> 
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_step.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+> index c4ce02d22828..99c0d3df001b 100644
+> --- a/drivers/gpu/drm/i915/intel_step.c
+> +++ b/drivers/gpu/drm/i915/intel_step.c
+> @@ -31,6 +31,15 @@ static const struct intel_step_info skl_revid_step_tbl[] = {
+>  	[0xA] = { .gt_step = STEP_I1, .display_step = STEP_I1 },
+>  };
+>  
+> +static const struct intel_step_info bxt_revids[] = {
+> +	[0] = { .gt_step = STEP_A0 },
+> +	[1] = { .gt_step = STEP_A1 },
+> +	[2] = { .gt_step = STEP_A2 },
+> +	[6] = { .gt_step = STEP_B0 },
+> +	[7] = { .gt_step = STEP_B1 },
+> +	[8] = { .gt_step = STEP_B2 },
 
---===============5700053469764597447==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I realize the mistake originates from the #define's that you're
+replacing with these tables, but the values in this table aren't the
+correct GT/display steppings, but rather the SoC stepping; that's the
+wrong thing for us to be matching on for workarounds, DMC versions, etc.
+You want to use column #4 of the bspec table, not column #2.
 
-== Series Details ==
+Also we need to update this to use the proper revisions from the bspec;
+most of the ones you have here were temporary placeholders before the
+platform was released and the actual revisions that showed up in real
+hardware are higher than any of your table entries.  If we take into
+account the right-most column of the bspec we'd actually want:
 
-Series: Get stepping info from RUNTIME_INFO->step
-URL   : https://patchwork.freedesktop.org/series/92346/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10320 -> Patchwork_20560
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20560 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20560, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20560:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bxt-dsi:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10320/fi-bxt-dsi/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/fi-bxt-dsi/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20560 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_sync@basic-each:
-    - fi-bdw-5557u:       [PASS][3] -> [INCOMPLETE][4] ([i915#2944])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10320/fi-bdw-5557u/igt@gem_sync@basic-each.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/fi-bdw-5557u/igt@gem_sync@basic-each.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       [FAIL][5] ([i915#2722] / [i915#3744]) -> [FAIL][6] ([i915#2722])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10320/fi-bdw-5557u/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2944]: https://gitlab.freedesktop.org/drm/intel/issues/2944
-  [i915#3744]: https://gitlab.freedesktop.org/drm/intel/issues/3744
+        static  const struct intel_step_info bxt_revids[] = {
+                [0xA] = { .gt_step = STEP_C0 },
+                [0xB] = { .gt_step = STEP_C0 },
+                [0xC] = { .gt_step = STEP_D0 },
+                [0xD] = { .gt_step = STEP_E0 },
+        };
 
 
-Participating hosts (40 -> 39)
-------------------------------
+Matt
 
-  Missing    (1): fi-bsw-cyan 
+> +};
+> +
+>  static const struct intel_step_info kbl_revid_step_tbl[] = {
+>  	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
+>  	[1] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
+> @@ -129,6 +138,9 @@ void intel_step_init(struct drm_i915_private *i915)
+>  	} else if (IS_KABYLAKE(i915)) {
+>  		revids = kbl_revid_step_tbl;
+>  		size = ARRAY_SIZE(kbl_revid_step_tbl);
+> +	} else if (IS_BROXTON(i915)) {
+> +		revids = bxt_revids;
+> +		size = ARRAY_SIZE(bxt_revids);
+>  	} else if (IS_SKYLAKE(i915)) {
+>  		revids = skl_revid_step_tbl;
+>  		size = ARRAY_SIZE(skl_revid_step_tbl);
+> -- 
+> 2.32.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10320 -> Patchwork_20560
-
-  CI-20190529: 20190529
-  CI_DRM_10320: 7d61ab4a59bcbb206324b6a430748b4c15dd8adb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6132: 61fb9cdf2a9132e3618c8b08b9d20fec0c347831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20560: 2ecb4107afb2f9dfa4c87599cdb00c099b3de1e3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2ecb4107afb2 drm/i915/dmc: Modify intel_get_stepping_info()
-de45975f5a75 drm/i915/step: Add intel_step_name() helper
-5b936277263e drm/i915/bxt: Use revid->stepping tables
-2bc809b73f67 drm/i915/cnl: Drop all workarounds
-da4af914b48b drm/i915/dg1: Use revid->stepping tables
-95363c8b9dc9 drm/i915/rkl: Use revid->stepping tables
-2f61797e047b drm/i915/jsl_ehl: Use revid->stepping tables
-daee55a59631 drm/i915/icl: Use revid->stepping tables
-8ad43b5ade6f drm/i915/skl: Use revid->stepping tables
-c109c3b789aa drm/i915: Make pre-production detection use direct revid comparison
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/index.html
-
---===============5700053469764597447==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Get stepping info from RUNTIME_INFO-&gt;step</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92346/">https://patchwork.freedesktop.org/series/92346/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10320 -&gt; Patchwork_20560</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20560 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20560, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20560:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10320/fi-bxt-dsi/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/fi-bxt-dsi/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20560 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_sync@basic-each:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10320/fi-bdw-5557u/igt@gem_sync@basic-each.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/fi-bdw-5557u/igt@gem_sync@basic-each.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2944">i915#2944</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bdw-5557u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10320/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20560/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Missing    (1): fi-bsw-cyan </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10320 -&gt; Patchwork_20560</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10320: 7d61ab4a59bcbb206324b6a430748b4c15dd8adb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6132: 61fb9cdf2a9132e3618c8b08b9d20fec0c347831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20560: 2ecb4107afb2f9dfa4c87599cdb00c099b3de1e3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2ecb4107afb2 drm/i915/dmc: Modify intel_get_stepping_info()<br />
-de45975f5a75 drm/i915/step: Add intel_step_name() helper<br />
-5b936277263e drm/i915/bxt: Use revid-&gt;stepping tables<br />
-2bc809b73f67 drm/i915/cnl: Drop all workarounds<br />
-da4af914b48b drm/i915/dg1: Use revid-&gt;stepping tables<br />
-95363c8b9dc9 drm/i915/rkl: Use revid-&gt;stepping tables<br />
-2f61797e047b drm/i915/jsl_ehl: Use revid-&gt;stepping tables<br />
-daee55a59631 drm/i915/icl: Use revid-&gt;stepping tables<br />
-8ad43b5ade6f drm/i915/skl: Use revid-&gt;stepping tables<br />
-c109c3b789aa drm/i915: Make pre-production detection use direct revid comparison</p>
-
-</body>
-</html>
-
---===============5700053469764597447==--
-
---===============1653351397==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1653351397==--
