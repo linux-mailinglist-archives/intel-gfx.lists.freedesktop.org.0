@@ -1,38 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4764C3C28FD
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 20:26:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8348D3C2913
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 20:36:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3726EA52;
-	Fri,  9 Jul 2021 18:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB2BD6EA14;
+	Fri,  9 Jul 2021 18:36:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 057F26EA52
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 18:26:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="295391516"
-X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="295391516"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 11:25:54 -0700
-X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="458364727"
-Received: from kfurushx-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.215.94])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 11:25:54 -0700
-Date: Fri, 9 Jul 2021 11:25:53 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210709182553.yprkr3fwithss67b@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <875yxtqgfh.fsf@intel.com>
- <20210707222207.1935807-1-matthew.d.roper@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5025B6EA14
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 18:36:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="231521442"
+X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="231521442"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 11:36:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="628948991"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga005.jf.intel.com with ESMTP; 09 Jul 2021 11:36:10 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Fri, 9 Jul 2021 11:36:09 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Fri, 9 Jul 2021 11:36:09 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
+ Fri, 9 Jul 2021 11:36:09 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 09/10] drm/i915/step: Add intel_step_name()
+ helper
+Thread-Index: AQHXdE+P1J5/+5DhSkutHHH9wrExlKs6fwsAgADkJgD//5ZhkA==
+Date: Fri, 9 Jul 2021 18:36:09 +0000
+Message-ID: <a6c1edd1e8ee4bce91cfc2c488ea77e9@intel.com>
+References: <20210708231821.9163-1-anusha.srivatsa@intel.com>
+ <20210708231821.9163-10-anusha.srivatsa@intel.com>
+ <20210709041616.GD951094@mdroper-desk1.amr.corp.intel.com>
+ <20210709175250.zzw62bgkmsrihqm7@ldmartin-desk2>
+In-Reply-To: <20210709175250.zzw62bgkmsrihqm7@ldmartin-desk2>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210707222207.1935807-1-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/dg2: Update modeset sequences
+Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/step: Add intel_step_name()
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,263 +68,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 07, 2021 at 03:22:07PM -0700, Matt Roper wrote:
->DG2 has some changes to the expected modesetting sequences when compared
->to gen12.  Adjust our driver logic accordingly.  Although the DP
->sequence is pretty similar to TGL's, there are some steps that change,
->so let's split the handling for that out into a separate function.
->
->v2:
-> - Switch wait_for_us() -> _wait_for() so that we can parameterize the
->   timeout rather than duplicating the macro call.  (Jani)
-
-not sure I understand what was the request and what you did here really:
-
-You basically turned 
-
-	if (bla)
-		wait_for_us(x, C1)
-	else
-		wait_for_us(x, C2)
-
-into
-
-	_wait_for(x, bla ? C1 : C2)
-
-(you had to switch to _wait_for() because the argent is not not a constant
-anymore).
-
-When I read the comment I thought the request was to accept the delay as
-a parameter in intel_wait_ddi_buf_active() because it would be called by
-the different platforms, but that is wrong since
-intel_wait_ddi_buf_active() is called in just one place, shared by the
-current platforms.
-
-So, in summary I don't know if this is what Jani was requesting, and if
-it then I think this would make it slightly more readable:
-
-	int wait_max = IS_DG2(dev_priv) ? 1200 : 500;
-	...
-	if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) & DDI_BUF_IS_IDLE),
-			wait_max, 10, 10))
-		...
-		
-humn... in any case, this is minor for me:
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-but we should probably wait Jani to confirm what he meant by
-"parameterize"
-
-Lucas De Marchi
-
->
->Bspec: 54128
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
->Cc: Jani Nikula <jani.nikula@linux.intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_ddi.c | 131 +++++++++++++++++++++--
-> 1 file changed, 123 insertions(+), 8 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->index ade03cf41caa..f96dd8dde61e 100644
->--- a/drivers/gpu/drm/i915/display/intel_ddi.c
->+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->@@ -172,14 +172,18 @@ void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
-> static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
-> 				      enum port port)
-> {
->+	int ret;
->+
-> 	/* Wait > 518 usecs for DDI_BUF_CTL to be non idle */
-> 	if (DISPLAY_VER(dev_priv) < 10) {
-> 		usleep_range(518, 1000);
-> 		return;
+> -----Original Message-----
+> From: De Marchi, Lucas <lucas.demarchi@intel.com>
+> Sent: Friday, July 9, 2021 10:53 AM
+> To: Roper, Matthew D <matthew.d.roper@intel.com>
+> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
+> gfx@lists.freedesktop.org; Jani Nikula <jani.nikula@linux.intel.com>
+> Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/step: Add intel_step_name()
+> helper
+> 
+> On Thu, Jul 08, 2021 at 09:16:16PM -0700, Matt Roper wrote:
+> >On Thu, Jul 08, 2021 at 04:18:20PM -0700, Anusha Srivatsa wrote:
+> >> Add a helper to convert the step info to string.
+> >> This is specifically useful when we want to load a specific firmware
+> >> for a given stepping/substepping combination.
+> >
+> >What if we use macros to generate the per-stepping code here as well as
+> >the stepping values in the enum?
+> >
+> >In intel_step.h:
+> >
+> >        #define STEPPING_NAME_LIST(func) \
+> >                func(A0)
+> >                func(A1)
+> >                func(A2)
+> >                func(B0)
+> >                ...
+> >
+> >        #define STEPPING_ENUM_VAL(name)  STEP_##name,
+> >
+> >        enum intel_step {
+> >                STEP_NONE = 0,
+> >                STEPPING_NAME_LIST(STEPPING_ENUM_VAL)
+> >                STEP_FUTURE,
+> >                STEP_FOREVER,
+> >        };
+> >
+> >and in intel_step.c:
+> >
+> >        #define STEPPING_NAME_CASE(name)        \
+> >                case STEP_##name:               \
+> >                        return #name;           \
+> >                        break;
+> >
+> >        const char *intel_step_name(enum intel_step step) {
+> >                switch(step) {
+> >                STEPPING_NAME_LIST(STEPPING_NAME_CASE)
+> >
+> >                default:
+> >                        return "**";
+> >                }
+> >        }
+> >
+> >This has the advantage that anytime a new stepping is added (in
+> >STEPPING_NAME_LIST) it will generate a new "STEP_XX" enum value and a
+> >new case statement to return "XX" as the name; we won't have to
+> >remember to update two separate places in the code.
+> 
+> my other idea in the first iterations of this patch was to turn the stepping into
+> u16 and then do something like (untested crap code below):
+> 
+> 	#define make_step(a, b)	((a - 'A') << 8, (b - '0'))
+> 
+> 	#define intel_step_name(s) ({
+> 		char ret[3];
+> 		ret[0] = ((s) >> 8) + 'A';
+> 		ret[1] = ((s) & 0xff) + '0';
+> 		ret[2] = '\0';
+> 		ret;
+> 	})
+> 
+> 	enum intel_step {
+> 		STEP_NONE = -1,
+> 		STEP_A0 = make_step('A', '0'),
+> 		...
 > 	}
->
->-	if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
->-			  DDI_BUF_IS_IDLE), 500))
->+	ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
->+			  DDI_BUF_IS_IDLE), IS_DG2(dev_priv) ? 1200 : 500, 10, 10);
->+
->+	if (ret)
-> 		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get active\n",
-> 			port_name(port));
-> }
->@@ -2207,7 +2211,7 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
-> 		ddi_clk_needed = false;
-> 	}
->
->-	if (ddi_clk_needed || !encoder->disable_clock ||
->+	if (ddi_clk_needed || !encoder->is_clock_enabled ||
-> 	    !encoder->is_clock_enabled(encoder))
-> 		return;
->
->@@ -2488,6 +2492,116 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
-> 		     OVERLAP_PIXELS_MASK, dss1);
-> }
->
->+static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
->+				  struct intel_encoder *encoder,
->+				  const struct intel_crtc_state *crtc_state,
->+				  const struct drm_connector_state *conn_state)
->+{
->+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->+	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
->+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->+	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
->+	int level = intel_ddi_dp_level(intel_dp);
->+
->+	intel_dp_set_link_params(intel_dp, crtc_state->port_clock,
->+				 crtc_state->lane_count);
->+
->+	/*
->+	 * 1. Enable Power Wells
->+	 *
->+	 * This was handled at the beginning of intel_atomic_commit_tail(),
->+	 * before we called down into this function.
->+	 */
->+
->+	/* 2. Enable Panel Power if PPS is required */
->+	intel_pps_on(intel_dp);
->+
->+	/*
->+	 * 3. Enable the port PLL.
->+	 */
->+	intel_ddi_enable_clock(encoder, crtc_state);
->+
->+	/* 4. Enable IO power */
->+	if (!intel_phy_is_tc(dev_priv, phy) ||
->+	    dig_port->tc_mode != TC_PORT_TBT_ALT)
->+		dig_port->ddi_io_wakeref = intel_display_power_get(dev_priv,
->+								   dig_port->ddi_io_power_domain);
->+
->+	/*
->+	 * 5. The rest of the below are substeps under the bspec's "Enable and
->+	 * Train Display Port" step.  Note that steps that are specific to
->+	 * MST will be handled by intel_mst_pre_enable_dp() before/after it
->+	 * calls into this function.  Also intel_mst_pre_enable_dp() only calls
->+	 * us when active_mst_links==0, so any steps designated for "single
->+	 * stream or multi-stream master transcoder" can just be performed
->+	 * unconditionally here.
->+	 */
->+
->+	/*
->+	 * 5.a Configure Transcoder Clock Select to direct the Port clock to the
->+	 * Transcoder.
->+	 */
->+	intel_ddi_enable_pipe_clock(encoder, crtc_state);
->+
->+	/* 5.b Not relevant to i915 for now */
->+
->+	/*
->+	 * 5.c Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
->+	 * Transport Select
->+	 */
->+	intel_ddi_config_transcoder_func(encoder, crtc_state);
->+
->+	/*
->+	 * 5.d Configure & enable DP_TP_CTL with link training pattern 1
->+	 * selected
->+	 *
->+	 * This will be handled by the intel_dp_start_link_train() farther
->+	 * down this function.
->+	 */
->+
->+	/* 5.e Configure voltage swing and related IO settings */
->+	intel_snps_phy_ddi_vswing_sequence(encoder, level);
->+
->+	/*
->+	 * 5.f Configure and enable DDI_BUF_CTL
->+	 * 5.g Wait for DDI_BUF_CTL DDI Idle Status = 0b (Not Idle), timeout
->+	 *     after 1200 us.
->+	 *
->+	 * We only configure what the register value will be here.  Actual
->+	 * enabling happens during link training farther down.
->+	 */
->+	intel_ddi_init_dp_buf_reg(encoder, crtc_state);
->+
->+	if (!is_mst)
->+		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
->+
->+	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
->+	/*
->+	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
->+	 * in the FEC_CONFIGURATION register to 1 before initiating link
->+	 * training
->+	 */
->+	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
->+
->+	/*
->+	 * 5.h Follow DisplayPort specification training sequence (see notes for
->+	 *     failure handling)
->+	 * 5.i If DisplayPort multi-stream - Set DP_TP_CTL link training to Idle
->+	 *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
->+	 *     (timeout after 800 us)
->+	 */
->+	intel_dp_start_link_train(intel_dp, crtc_state);
->+
->+	/* 5.j Set DP_TP_CTL link training to Normal */
->+	if (!is_trans_port_sync_mode(crtc_state))
->+		intel_dp_stop_link_train(intel_dp, crtc_state);
->+
->+	/* 5.k Configure and enable FEC if needed */
->+	intel_ddi_enable_fec(encoder, crtc_state);
->+	intel_dsc_enable(encoder, crtc_state);
->+}
->+
-> static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> 				  struct intel_encoder *encoder,
-> 				  const struct intel_crtc_state *crtc_state,
->@@ -2573,10 +2687,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> 	 */
->
-> 	/* 7.e Configure voltage swing and related IO settings */
->-	if (IS_DG2(dev_priv))
->-		intel_snps_phy_ddi_vswing_sequence(encoder, level);
->-	else
->-		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
->+	tgl_ddi_vswing_sequence(encoder, crtc_state, level);
->
-> 	/*
-> 	 * 7.f Combo PHY: Configure PORT_CL_DW10 Static Power Down to power up
->@@ -2708,7 +2819,9 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> {
-> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->
->-	if (DISPLAY_VER(dev_priv) >= 12)
->+	if (IS_DG2(dev_priv))
->+		dg2_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
->+	else if (DISPLAY_VER(dev_priv) >= 12)
-> 		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-> 	else
-> 		hsw_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
->@@ -4634,6 +4747,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
-> 	encoder->pipe_mask = ~0;
->
-> 	if (IS_DG2(dev_priv)) {
->+		encoder->enable_clock = intel_mpllb_enable;
->+		encoder->disable_clock = intel_mpllb_disable;
-> 		encoder->get_config = dg2_ddi_get_config;
-> 	} else if (IS_ALDERLAKE_S(dev_priv)) {
-> 		encoder->enable_clock = adls_ddi_enable_clock;
->-- 
->2.25.4
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
+> Or even not bother with the 'A'/'0' addition/subraction since 8 bits is enough
+> for all the letters and numbers.
+> 
+> If we keep it u8, then we are limited to step P7 (assuming we have 2
+> reserved entries at the end),. It may or may not be sufficient (it currently is)
+> 
+> better? worse?
+
+I feel If Matt's solution is more scalable, better to go with it.
+
+Anusha
+> Lucas De Marchi
+> 
+> >
+> >
+> >Matt
+> >
+> >>
+> >> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+> >> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/intel_step.c | 58
+> >> +++++++++++++++++++++++++++++++
+> drivers/gpu/drm/i915/intel_step.h |
+> >> 1 +
+> >>  2 files changed, 59 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/intel_step.c
+> >> b/drivers/gpu/drm/i915/intel_step.c
+> >> index 99c0d3df001b..9af7f30b777e 100644
+> >> --- a/drivers/gpu/drm/i915/intel_step.c
+> >> +++ b/drivers/gpu/drm/i915/intel_step.c
+> >> @@ -182,3 +182,61 @@ void intel_step_init(struct drm_i915_private
+> >> *i915)
+> >>
+> >>  	RUNTIME_INFO(i915)->step = step;
+> >>  }
+> >> +
+> >> +const char *intel_step_name(enum intel_step step) {
+> >> +	switch (step) {
+> >> +	case STEP_A0:
+> >> +		return "A0";
+> >> +		break;
+> >> +	case STEP_A1:
+> >> +		return "A1";
+> >> +		break;
+> >> +	case STEP_A2:
+> >> +		return "A2";
+> >> +		break;
+> >> +	case STEP_B0:
+> >> +		return "B0";
+> >> +		break;
+> >> +	case STEP_B1:
+> >> +		return "B1";
+> >> +		break;
+> >> +	case STEP_B2:
+> >> +		return "B2";
+> >> +		break;
+> >> +	case STEP_C0:
+> >> +		return "C0";
+> >> +		break;
+> >> +	case STEP_C1:
+> >> +		return "C1";
+> >> +		break;
+> >> +	case STEP_D0:
+> >> +		return "D0";
+> >> +		break;
+> >> +	case STEP_D1:
+> >> +		return "D1";
+> >> +		break;
+> >> +	case STEP_E0:
+> >> +		return "E0";
+> >> +		break;
+> >> +	case STEP_F0:
+> >> +		return "F0";
+> >> +		break;
+> >> +	case STEP_G0:
+> >> +		return "G0";
+> >> +		break;
+> >> +	case STEP_H0:
+> >> +		return "H0";
+> >> +		break;
+> >> +	case STEP_I0:
+> >> +		return "I0";
+> >> +		break;
+> >> +	case STEP_I1:
+> >> +		return "I1";
+> >> +		break;
+> >> +	case STEP_J0:
+> >> +		return "J0";
+> >> +		break;
+> >> +	default:
+> >> +		return "**";
+> >> +	}
+> >> +}
+> >> diff --git a/drivers/gpu/drm/i915/intel_step.h
+> >> b/drivers/gpu/drm/i915/intel_step.h
+> >> index 3e8b2babd9da..2fbe51483472 100644
+> >> --- a/drivers/gpu/drm/i915/intel_step.h
+> >> +++ b/drivers/gpu/drm/i915/intel_step.h
+> >> @@ -43,5 +43,6 @@ enum intel_step {
+> >>  };
+> >>
+> >>  void intel_step_init(struct drm_i915_private *i915);
+> >> +const char *intel_step_name(enum intel_step step);
+> >>
+> >>  #endif /* __INTEL_STEP_H__ */
+> >> --
+> >> 2.32.0
+> >>
+> >> _______________________________________________
+> >> Intel-gfx mailing list
+> >> Intel-gfx@lists.freedesktop.org
+> >> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> >
+> >--
+> >Matt Roper
+> >Graphics Software Engineer
+> >VTT-OSGC Platform Enablement
+> >Intel Corporation
+> >(916) 356-2795
+> >_______________________________________________
+> >Intel-gfx mailing list
+> >Intel-gfx@lists.freedesktop.org
+> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
