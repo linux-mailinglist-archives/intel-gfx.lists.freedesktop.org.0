@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE203C291E
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 20:44:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0E43C2B72
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jul 2021 00:39:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A216F6EA14;
-	Fri,  9 Jul 2021 18:44:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02A8D6E9A7;
+	Fri,  9 Jul 2021 22:39:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8313C6EA14
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 18:43:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="189436214"
-X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="189436214"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 11:43:54 -0700
-X-IronPort-AV: E=Sophos;i="5.84,227,1620716400"; d="scan'208";a="488418483"
-Received: from kfurushx-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.215.94])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 11:43:54 -0700
-Date: Fri, 9 Jul 2021 11:43:48 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Message-ID: <20210709184348.2b2wdsxtcni5j4ph@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210708231821.9163-1-anusha.srivatsa@intel.com>
- <20210708231821.9163-10-anusha.srivatsa@intel.com>
- <20210709041616.GD951094@mdroper-desk1.amr.corp.intel.com>
- <20210709175250.zzw62bgkmsrihqm7@ldmartin-desk2>
- <a6c1edd1e8ee4bce91cfc2c488ea77e9@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 385956E9A7;
+ Fri,  9 Jul 2021 22:39:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10040"; a="273621419"
+X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="273621419"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 15:39:30 -0700
+X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="649658740"
+Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.212.142.243])
+ ([10.212.142.243])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 15:39:30 -0700
+From: John Harrison <john.c.harrison@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <20210624070516.21893-15-matthew.brost@intel.com>
+Message-ID: <33ca1529-fabb-f59c-dba1-cedcececac73@intel.com>
+Date: Fri, 9 Jul 2021 15:39:29 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <a6c1edd1e8ee4bce91cfc2c488ea77e9@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/step: Add intel_step_name()
- helper
+In-Reply-To: <20210624070516.21893-15-matthew.brost@intel.com>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] [PATCH 14/47] drm/i915/guc: Insert fence on context
+ when deregistering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,226 +48,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 09, 2021 at 11:36:09AM -0700, Anusha Srivatsa wrote:
->
->
->> -----Original Message-----
->> From: De Marchi, Lucas <lucas.demarchi@intel.com>
->> Sent: Friday, July 9, 2021 10:53 AM
->> To: Roper, Matthew D <matthew.d.roper@intel.com>
->> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
->> gfx@lists.freedesktop.org; Jani Nikula <jani.nikula@linux.intel.com>
->> Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/step: Add intel_step_name()
->> helper
->>
->> On Thu, Jul 08, 2021 at 09:16:16PM -0700, Matt Roper wrote:
->> >On Thu, Jul 08, 2021 at 04:18:20PM -0700, Anusha Srivatsa wrote:
->> >> Add a helper to convert the step info to string.
->> >> This is specifically useful when we want to load a specific firmware
->> >> for a given stepping/substepping combination.
->> >
->> >What if we use macros to generate the per-stepping code here as well as
->> >the stepping values in the enum?
->> >
->> >In intel_step.h:
->> >
->> >        #define STEPPING_NAME_LIST(func) \
->> >                func(A0)
->> >                func(A1)
->> >                func(A2)
->> >                func(B0)
->> >                ...
->> >
->> >        #define STEPPING_ENUM_VAL(name)  STEP_##name,
->> >
->> >        enum intel_step {
->> >                STEP_NONE = 0,
->> >                STEPPING_NAME_LIST(STEPPING_ENUM_VAL)
->> >                STEP_FUTURE,
->> >                STEP_FOREVER,
->> >        };
->> >
->> >and in intel_step.c:
->> >
->> >        #define STEPPING_NAME_CASE(name)        \
->> >                case STEP_##name:               \
->> >                        return #name;           \
->> >                        break;
->> >
->> >        const char *intel_step_name(enum intel_step step) {
->> >                switch(step) {
->> >                STEPPING_NAME_LIST(STEPPING_NAME_CASE)
->> >
->> >                default:
->> >                        return "**";
->> >                }
->> >        }
->> >
->> >This has the advantage that anytime a new stepping is added (in
->> >STEPPING_NAME_LIST) it will generate a new "STEP_XX" enum value and a
->> >new case statement to return "XX" as the name; we won't have to
->> >remember to update two separate places in the code.
->>
->> my other idea in the first iterations of this patch was to turn the stepping into
->> u16 and then do something like (untested crap code below):
->>
->> 	#define make_step(a, b)	((a - 'A') << 8, (b - '0'))
->>
->> 	#define intel_step_name(s) ({
->> 		char ret[3];
->> 		ret[0] = ((s) >> 8) + 'A';
->> 		ret[1] = ((s) & 0xff) + '0';
->> 		ret[2] = '\0';
->> 		ret;
->> 	})
->>
->> 	enum intel_step {
->> 		STEP_NONE = -1,
->> 		STEP_A0 = make_step('A', '0'),
->> 		...
->> 	}
->>
->> Or even not bother with the 'A'/'0' addition/subraction since 8 bits is enough
->> for all the letters and numbers.
->>
->> If we keep it u8, then we are limited to step P7 (assuming we have 2
->> reserved entries at the end),. It may or may not be sufficient (it currently is)
->>
->> better? worse?
->
->I feel If Matt's solution is more scalable, better to go with it.
+On 6/24/2021 00:04, Matthew Brost wrote:
+> Sometime during context pinning a context with the same guc_id is
+Sometime*s*
 
-both scale the same from what I can see. So, in the end I think the
-consideration would be:
+> registered with the GuC. In this a case deregister must be before before
+before before -> done before
 
-	- how much magic do they bring? (less is more... and subjective)
-	- .ko size increase considering the new tables for new
-	  platforms (may be negligible)
-
-Lucas De Marchi
-
+> the context can be registered. A fence is inserted on all requests while
+> the deregister is in flight. Once the G2H is received indicating the
+> deregistration is complete the context is registered and the fence is
+> released.
 >
->Anusha
->> Lucas De Marchi
->>
->> >
->> >
->> >Matt
->> >
->> >>
->> >> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
->> >> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/i915/intel_step.c | 58
->> >> +++++++++++++++++++++++++++++++
->> drivers/gpu/drm/i915/intel_step.h |
->> >> 1 +
->> >>  2 files changed, 59 insertions(+)
->> >>
->> >> diff --git a/drivers/gpu/drm/i915/intel_step.c
->> >> b/drivers/gpu/drm/i915/intel_step.c
->> >> index 99c0d3df001b..9af7f30b777e 100644
->> >> --- a/drivers/gpu/drm/i915/intel_step.c
->> >> +++ b/drivers/gpu/drm/i915/intel_step.c
->> >> @@ -182,3 +182,61 @@ void intel_step_init(struct drm_i915_private
->> >> *i915)
->> >>
->> >>  	RUNTIME_INFO(i915)->step = step;
->> >>  }
->> >> +
->> >> +const char *intel_step_name(enum intel_step step) {
->> >> +	switch (step) {
->> >> +	case STEP_A0:
->> >> +		return "A0";
->> >> +		break;
->> >> +	case STEP_A1:
->> >> +		return "A1";
->> >> +		break;
->> >> +	case STEP_A2:
->> >> +		return "A2";
->> >> +		break;
->> >> +	case STEP_B0:
->> >> +		return "B0";
->> >> +		break;
->> >> +	case STEP_B1:
->> >> +		return "B1";
->> >> +		break;
->> >> +	case STEP_B2:
->> >> +		return "B2";
->> >> +		break;
->> >> +	case STEP_C0:
->> >> +		return "C0";
->> >> +		break;
->> >> +	case STEP_C1:
->> >> +		return "C1";
->> >> +		break;
->> >> +	case STEP_D0:
->> >> +		return "D0";
->> >> +		break;
->> >> +	case STEP_D1:
->> >> +		return "D1";
->> >> +		break;
->> >> +	case STEP_E0:
->> >> +		return "E0";
->> >> +		break;
->> >> +	case STEP_F0:
->> >> +		return "F0";
->> >> +		break;
->> >> +	case STEP_G0:
->> >> +		return "G0";
->> >> +		break;
->> >> +	case STEP_H0:
->> >> +		return "H0";
->> >> +		break;
->> >> +	case STEP_I0:
->> >> +		return "I0";
->> >> +		break;
->> >> +	case STEP_I1:
->> >> +		return "I1";
->> >> +		break;
->> >> +	case STEP_J0:
->> >> +		return "J0";
->> >> +		break;
->> >> +	default:
->> >> +		return "**";
->> >> +	}
->> >> +}
->> >> diff --git a/drivers/gpu/drm/i915/intel_step.h
->> >> b/drivers/gpu/drm/i915/intel_step.h
->> >> index 3e8b2babd9da..2fbe51483472 100644
->> >> --- a/drivers/gpu/drm/i915/intel_step.h
->> >> +++ b/drivers/gpu/drm/i915/intel_step.h
->> >> @@ -43,5 +43,6 @@ enum intel_step {
->> >>  };
->> >>
->> >>  void intel_step_init(struct drm_i915_private *i915);
->> >> +const char *intel_step_name(enum intel_step step);
->> >>
->> >>  #endif /* __INTEL_STEP_H__ */
->> >> --
->> >> 2.32.0
->> >>
->> >> _______________________________________________
->> >> Intel-gfx mailing list
->> >> Intel-gfx@lists.freedesktop.org
->> >> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->> >
->> >--
->> >Matt Roper
->> >Graphics Software Engineer
->> >VTT-OSGC Platform Enablement
->> >Intel Corporation
->> >(916) 356-2795
->> >_______________________________________________
->> >Intel-gfx mailing list
->> >Intel-gfx@lists.freedesktop.org
->> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Cc: John Harrison<john.c.harrison@intel.com>
+> Signed-off-by: Matthew Brost<matthew.brost@intel.com>
+With the above text fixed up:
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_context.c       |  1 +
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |  5 ++
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 51 ++++++++++++++++++-
+>   drivers/gpu/drm/i915/i915_request.h           |  8 +++
+>   4 files changed, 63 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 2b68af16222c..f750c826e19d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -384,6 +384,7 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>   	mutex_init(&ce->pin_mutex);
+>   
+>   	spin_lock_init(&ce->guc_state.lock);
+> +	INIT_LIST_HEAD(&ce->guc_state.fences);
+>   
+>   	ce->guc_id = GUC_INVALID_LRC_ID;
+>   	INIT_LIST_HEAD(&ce->guc_id_link);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index ce7c69b34cd1..beafe55a9101 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -146,6 +146,11 @@ struct intel_context {
+>   		 * submission
+>   		 */
+>   		u8 sched_state;
+> +		/*
+> +		 * fences: maintains of list of requests that have a submit
+> +		 * fence related to GuC submission
+> +		 */
+> +		struct list_head fences;
+>   	} guc_state;
+>   
+>   	/* GuC scheduling state that does not require a lock. */
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index d39579ac2faa..49e5d460d54b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -924,6 +924,30 @@ static const struct intel_context_ops guc_context_ops = {
+>   	.destroy = guc_context_destroy,
+>   };
+>   
+> +static void __guc_signal_context_fence(struct intel_context *ce)
+> +{
+> +	struct i915_request *rq;
+> +
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +
+> +	list_for_each_entry(rq, &ce->guc_state.fences, guc_fence_link)
+> +		i915_sw_fence_complete(&rq->submit);
+> +
+> +	INIT_LIST_HEAD(&ce->guc_state.fences);
+> +}
+> +
+> +static void guc_signal_context_fence(struct intel_context *ce)
+> +{
+> +	unsigned long flags;
+> +
+> +	GEM_BUG_ON(!context_wait_for_deregister_to_register(ce));
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +	clr_context_wait_for_deregister_to_register(ce);
+> +	__guc_signal_context_fence(ce);
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +}
+> +
+>   static bool context_needs_register(struct intel_context *ce, bool new_guc_id)
+>   {
+>   	return new_guc_id || test_bit(CONTEXT_LRCA_DIRTY, &ce->flags) ||
+> @@ -934,6 +958,7 @@ static int guc_request_alloc(struct i915_request *rq)
+>   {
+>   	struct intel_context *ce = rq->context;
+>   	struct intel_guc *guc = ce_to_guc(ce);
+> +	unsigned long flags;
+>   	int ret;
+>   
+>   	GEM_BUG_ON(!intel_context_is_pinned(rq->context));
+> @@ -978,7 +1003,7 @@ static int guc_request_alloc(struct i915_request *rq)
+>   	 * increment (in pin_guc_id) is needed to seal a race with unpin_guc_id.
+>   	 */
+>   	if (atomic_add_unless(&ce->guc_id_ref, 1, 0))
+> -		return 0;
+> +		goto out;
+>   
+>   	ret = pin_guc_id(guc, ce);	/* returns 1 if new guc_id assigned */
+>   	if (unlikely(ret < 0))
+> @@ -994,6 +1019,28 @@ static int guc_request_alloc(struct i915_request *rq)
+>   
+>   	clear_bit(CONTEXT_LRCA_DIRTY, &ce->flags);
+>   
+> +out:
+> +	/*
+> +	 * We block all requests on this context if a G2H is pending for a
+> +	 * context deregistration as the GuC will fail a context registration
+> +	 * while this G2H is pending. Once a G2H returns, the fence is released
+> +	 * that is blocking these requests (see guc_signal_context_fence).
+> +	 *
+> +	 * We can safely check the below field outside of the lock as it isn't
+> +	 * possible for this field to transition from being clear to set but
+> +	 * converse is possible, hence the need for the check within the lock.
+> +	 */
+> +	if (likely(!context_wait_for_deregister_to_register(ce)))
+> +		return 0;
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +	if (context_wait_for_deregister_to_register(ce)) {
+> +		i915_sw_fence_await(&rq->submit);
+> +
+> +		list_add_tail(&rq->guc_fence_link, &ce->guc_state.fences);
+> +	}
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+>   	return 0;
+>   }
+>   
+> @@ -1295,7 +1342,7 @@ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
+>   		 */
+>   		with_intel_runtime_pm(runtime_pm, wakeref)
+>   			register_context(ce);
+> -		clr_context_wait_for_deregister_to_register(ce);
+> +		guc_signal_context_fence(ce);
+>   		intel_context_put(ce);
+>   	} else if (context_destroyed(ce)) {
+>   		/* Context has been destroyed */
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 239964bec1fa..f870cd75a001 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -285,6 +285,14 @@ struct i915_request {
+>   		struct hrtimer timer;
+>   	} watchdog;
+>   
+> +	/*
+> +	 * Requests may need to be stalled when using GuC submission waiting for
+> +	 * certain GuC operations to complete. If that is the case, stalled
+> +	 * requests are added to a per context list of stalled requests. The
+> +	 * below list_head is the link in that list.
+> +	 */
+> +	struct list_head guc_fence_link;
+> +
+>   	I915_SELFTEST_DECLARE(struct {
+>   		struct list_head link;
+>   		unsigned long delay;
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
