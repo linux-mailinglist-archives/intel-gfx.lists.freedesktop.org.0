@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9527F3C2833
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 19:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5315A3C2888
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 19:38:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 030AD6E91C;
-	Fri,  9 Jul 2021 17:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C23FB6E910;
+	Fri,  9 Jul 2021 17:38:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE536E91C
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Jul 2021 17:19:33 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="190116975"
-X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="190116975"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 10:19:30 -0700
-X-IronPort-AV: E=Sophos;i="5.84,226,1620716400"; d="scan'208";a="488220502"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 10:19:26 -0700
-Date: Fri, 9 Jul 2021 10:19:25 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20210709171925.GH951094@mdroper-desk1.amr.corp.intel.com>
-References: <20210707235921.2416911-1-lucas.demarchi@intel.com>
- <20210707235921.2416911-2-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 248A96E906;
+ Fri,  9 Jul 2021 17:38:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1DE9EA00FD;
+ Fri,  9 Jul 2021 17:38:41 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210707235921.2416911-2-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Add release id version
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 09 Jul 2021 17:38:41 -0000
+Message-ID: <162585232109.9813.10262697802036694664@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210709153424.1999623-1-matthew.auld@intel.com>
+In-Reply-To: <20210709153424.1999623-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/ehl=3A_unconditionally_flush_the_pages_on_acquire_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,122 +39,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0564540689=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 07, 2021 at 04:59:21PM -0700, Lucas De Marchi wrote:
-> Besides the arch version returned by GRAPHICS_VER(), new platforms
-> contain a "release id" to make clear the difference from one platform to
-> another.
-> 
-> The release id number is not formally defined by hardware until future
-> platforms that will expose it via a new GMD_ID register.  For the
-> platforms we support before that register becomes available we will set
-> the values in software and we can set them as we please. So the plan is
-> to set them so we can group different features under a single
-> GRAPHICS_VER_FULL() check.
-> 
-> After GMD_ID is used, the usefulness of a "full version check" will be
-> greatly reduced and will be mostly used for deciding workarounds and a
-> few code paths. So it makes sense to keep it as a separate field from
-> graphics_ver. Also, as a platform with `release == n` may be closer
-> feature-wise to `n - 2` than to `n - 1`, use the word "release" rather
-> than the more common "minor" for this
-> 
-> This is a mix of 2 independent changes: one by me and the other by Matt
-> Roper.
-> 
-> v2:
->   - Reword commit message to make it clearer why we don't call it
->     "minor" (Matt Roper and Tvrtko)
->   - Rename variables s/*_ver_release/*_rel/ and print them in a single
->     line formatted as {ver}.{rel:2} (Jani and Matt Roper)
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+--===============0564540689==
+Content-Type: multipart/alternative;
+ boundary="===============0587704971376641727=="
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+--===============0587704971376641727==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> ---
->  drivers/gpu/drm/i915/i915_drv.h          |  6 ++++++
->  drivers/gpu/drm/i915/intel_device_info.c | 12 ++++++++++--
->  drivers/gpu/drm/i915/intel_device_info.h |  2 ++
->  3 files changed, 18 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index bc6799f75670..73126b6854fb 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1243,11 +1243,17 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
->  
->  #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
->  
-> +#define IP_VER(ver, rel)		((ver) << 8 | (rel))
-> +
->  #define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics_ver)
-> +#define GRAPHICS_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->graphics_ver, \
-> +					       INTEL_INFO(i915)->graphics_rel)
->  #define IS_GRAPHICS_VER(i915, from, until) \
->  	(GRAPHICS_VER(i915) >= (from) && GRAPHICS_VER(i915) <= (until))
->  
->  #define MEDIA_VER(i915)			(INTEL_INFO(i915)->media_ver)
-> +#define MEDIA_VER_FULL(i915)		IP_VER(INTEL_INFO(i915)->media_ver, \
-> +					       INTEL_INFO(i915)->media_rel)
->  #define IS_MEDIA_VER(i915, from, until) \
->  	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
->  
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 3daf0cd8d48b..d2a514d2551d 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -96,8 +96,16 @@ static const char *iommu_name(void)
->  void intel_device_info_print_static(const struct intel_device_info *info,
->  				    struct drm_printer *p)
->  {
-> -	drm_printf(p, "graphics version: %u\n", info->graphics_ver);
-> -	drm_printf(p, "media version: %u\n", info->media_ver);
-> +	if (info->graphics_rel)
-> +		drm_printf(p, "graphics version: %u.%02u\n", info->graphics_ver, info->graphics_rel);
-> +	else
-> +		drm_printf(p, "graphics version: %u\n", info->graphics_ver);
-> +
-> +	if (info->media_rel)
-> +		drm_printf(p, "media version: %u.%02u\n", info->media_ver, info->media_rel);
-> +	else
-> +		drm_printf(p, "media version: %u\n", info->media_ver);
-> +
->  	drm_printf(p, "display version: %u\n", info->display.ver);
->  	drm_printf(p, "gt: %d\n", info->gt);
->  	drm_printf(p, "iommu: %s\n", iommu_name());
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index b326aff65cd6..301bd8ba161a 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -162,7 +162,9 @@ enum intel_ppgtt_type {
->  
->  struct intel_device_info {
->  	u8 graphics_ver;
-> +	u8 graphics_rel;
->  	u8 media_ver;
-> +	u8 media_rel;
->  
->  	u8 gt; /* GT number, 0 if undefined */
->  	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
-> -- 
-> 2.31.1
-> 
+== Series Details ==
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Series: drm/i915/ehl: unconditionally flush the pages on acquire (rev2)
+URL   : https://patchwork.freedesktop.org/series/92367/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10326 -> Patchwork_20564
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20564/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10326 -> Patchwork_20564
+
+  CI-20190529: 20190529
+  CI_DRM_10326: 8fa21d35c119a14a3cb14035dde5a9cc7e2321d2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20564: 898f9d8b7d242cc7574e4aff8e518e2d99536039 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+898f9d8b7d24 drm/i915/ehl: unconditionally flush the pages on acquire
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20564/index.html
+
+--===============0587704971376641727==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ehl: unconditionally flush the pages on acquire (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92367/">https://patchwork.freedesktop.org/series/92367/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20564/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20564/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10326 -&gt; Patchwork_20564</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20564/index.html</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10326 -&gt; Patchwork_20564</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10326: 8fa21d35c119a14a3cb14035dde5a9cc7e2321d2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20564: 898f9d8b7d242cc7574e4aff8e518e2d99536039 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>898f9d8b7d24 drm/i915/ehl: unconditionally flush the pages on acquire</p>
+
+</body>
+</html>
+
+--===============0587704971376641727==--
+
+--===============0564540689==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0564540689==--
