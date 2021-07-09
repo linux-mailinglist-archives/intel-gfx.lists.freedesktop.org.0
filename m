@@ -2,37 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E54893C1C58
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 02:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29CC13C1CB9
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Jul 2021 02:29:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF13A6E93B;
-	Fri,  9 Jul 2021 00:02:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04B8C6E528;
+	Fri,  9 Jul 2021 00:29:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9AD06E93B;
- Fri,  9 Jul 2021 00:02:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10039"; a="196896996"
-X-IronPort-AV: E=Sophos;i="5.84,225,1620716400"; d="scan'208";a="196896996"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 17:02:31 -0700
-X-IronPort-AV: E=Sophos;i="5.84,225,1620716400"; d="scan'208";a="492312509"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2021 17:02:31 -0700
-Date: Thu, 8 Jul 2021 17:11:58 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210709001153.GA19155@labuser-Z97X-UD5H>
-References: <20210701202427.1547543-1-matthew.d.roper@intel.com>
- <20210701202427.1547543-53-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82B026E528;
+ Fri,  9 Jul 2021 00:29:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 74D27A47E2;
+ Fri,  9 Jul 2021 00:29:34 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210701202427.1547543-53-matthew.d.roper@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 52/53] drm/i915/dg2: Update to bigjoiner path
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 09 Jul 2021 00:29:34 -0000
+Message-ID: <162579057445.9812.3207674675421415434@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210708173754.3877540-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210708173754.3877540-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/sched_dependency_tracking_and_dma-resv_fixes_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,51 +38,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2037021335=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 01, 2021 at 01:24:26PM -0700, Matt Roper wrote:
-> From: Animesh Manna <animesh.manna@intel.com>
-> 
-> In verify_mpllb_state() encoder is retrieved from best_encoder
-> of connector_state. As there will be only one connector_state
-> for bigjoiner and checking encoder may not be needed for
-> bigjoiner-slave. This code path related to mpll is done on dg2
-> and need this fix to avoid null pointer dereference issue.
-> 
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+--===============2037021335==
+Content-Type: multipart/alternative;
+ boundary="===============5600841543635888764=="
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+--===============5600841543635888764==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Manasi
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 9655f1b1b41b..3f4e811145b6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9153,6 +9153,9 @@ verify_mpllb_state(struct intel_atomic_state *state,
->  	if (!new_crtc_state->hw.active)
->  		return;
->  
-> +	if (new_crtc_state->bigjoiner_slave)
-> +		return;
-> +
->  	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
->  	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
->  
-> -- 
-> 2.25.4
-> 
+Series: drm/sched dependency tracking and dma-resv fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/92333/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10320 -> Patchwork_20559
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20559/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (40 -> 39)
+------------------------------
+
+  Missing    (1): fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10320 -> Patchwork_20559
+
+  CI-20190529: 20190529
+  CI_DRM_10320: 7d61ab4a59bcbb206324b6a430748b4c15dd8adb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6132: 61fb9cdf2a9132e3618c8b08b9d20fec0c347831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20559: ca32cb2b56ef01204baff47cde1058e14ddf23ca @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ca32cb2b56ef dma-resv: Give the docs a do-over
+10b231f895fe drm/i915: Don't break exclusive fence ordering
+56fc78cd5073 drm/i915: delete exclude argument from i915_sw_fence_await_reservation
+d022184c169b drm/etnaviv: Don't break exclusive fence ordering
+9e395399b983 drm/msm: always wait for the exclusive fence
+b149f2ca5c3f drm/msm: Don't break exclusive fence ordering
+6219e79695d6 drm/sched: Check locking in drm_sched_job_await_implicit
+588331541d89 drm/sched: Don't store self-dependencies
+28feb868173e drm/gem: Delete gem array fencing helpers
+5e34a7c752a3 drm/etnaviv: Use scheduler dependency handling
+d4fa82c9c97f drm/v3d: Use scheduler dependency handling
+34e837ac1d7b drm/v3d: Move drm_sched_job_init to v3d_job_init
+a51bbbac956b drm/lima: use scheduler dependency tracking
+dca5c513ac3d drm/panfrost: use scheduler dependency tracking
+f46108672694 drm/sched: improve docs around drm_sched_entity
+6f8a6dac8300 drm/sched: drop entity parameter from drm_sched_push_job
+2554ae9762d1 drm/sched: Add dependency tracking
+998b636c6f3c drm/sched: Barriers are needed for entity->last_scheduled
+3afe40cffa3e drm/sched: Split drm_sched_job_init
+aa63f4780928 drm/sched: entity->rq selection cannot fail
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20559/index.html
+
+--===============5600841543635888764==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/sched dependency tracking and dma-resv fixes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92333/">https://patchwork.freedesktop.org/series/92333/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20559/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20559/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10320 -&gt; Patchwork_20559</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20559/index.html</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Participating hosts (40 -&gt; 39)</h2>
+<p>Missing    (1): fi-bsw-cyan </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10320 -&gt; Patchwork_20559</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10320: 7d61ab4a59bcbb206324b6a430748b4c15dd8adb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6132: 61fb9cdf2a9132e3618c8b08b9d20fec0c347831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20559: ca32cb2b56ef01204baff47cde1058e14ddf23ca @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ca32cb2b56ef dma-resv: Give the docs a do-over<br />
+10b231f895fe drm/i915: Don't break exclusive fence ordering<br />
+56fc78cd5073 drm/i915: delete exclude argument from i915_sw_fence_await_reservation<br />
+d022184c169b drm/etnaviv: Don't break exclusive fence ordering<br />
+9e395399b983 drm/msm: always wait for the exclusive fence<br />
+b149f2ca5c3f drm/msm: Don't break exclusive fence ordering<br />
+6219e79695d6 drm/sched: Check locking in drm_sched_job_await_implicit<br />
+588331541d89 drm/sched: Don't store self-dependencies<br />
+28feb868173e drm/gem: Delete gem array fencing helpers<br />
+5e34a7c752a3 drm/etnaviv: Use scheduler dependency handling<br />
+d4fa82c9c97f drm/v3d: Use scheduler dependency handling<br />
+34e837ac1d7b drm/v3d: Move drm_sched_job_init to v3d_job_init<br />
+a51bbbac956b drm/lima: use scheduler dependency tracking<br />
+dca5c513ac3d drm/panfrost: use scheduler dependency tracking<br />
+f46108672694 drm/sched: improve docs around drm_sched_entity<br />
+6f8a6dac8300 drm/sched: drop entity parameter from drm_sched_push_job<br />
+2554ae9762d1 drm/sched: Add dependency tracking<br />
+998b636c6f3c drm/sched: Barriers are needed for entity-&gt;last_scheduled<br />
+3afe40cffa3e drm/sched: Split drm_sched_job_init<br />
+aa63f4780928 drm/sched: entity-&gt;rq selection cannot fail</p>
+
+</body>
+</html>
+
+--===============5600841543635888764==--
+
+--===============2037021335==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2037021335==--
