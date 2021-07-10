@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1BB43C34D4
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jul 2021 16:27:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C873C34DA
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jul 2021 16:35:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ABA16EB21;
-	Sat, 10 Jul 2021 14:27:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1AF6EB39;
+	Sat, 10 Jul 2021 14:35:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C970C6EB21;
- Sat, 10 Jul 2021 14:27:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10041"; a="209870771"
-X-IronPort-AV: E=Sophos;i="5.84,229,1620716400"; d="scan'208";a="209870771"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2021 07:27:13 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF586EB21;
+ Sat, 10 Jul 2021 14:35:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10041"; a="206816231"
+X-IronPort-AV: E=Sophos;i="5.84,229,1620716400"; d="scan'208";a="206816231"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2021 07:35:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,229,1620716400"; d="scan'208";a="424920655"
+X-IronPort-AV: E=Sophos;i="5.84,229,1620716400"; d="scan'208";a="650186423"
 Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by fmsmga007.fm.intel.com with ESMTP; 10 Jul 2021 07:27:11 -0700
+ by fmsmga005.fm.intel.com with ESMTP; 10 Jul 2021 07:35:46 -0700
 Received: from [10.249.151.15] (mwajdecz-MOBL.ger.corp.intel.com
  [10.249.151.15])
  by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 16AERApB010892; Sat, 10 Jul 2021 15:27:10 +0100
+ 16AEZik2012980; Sat, 10 Jul 2021 15:35:45 +0100
 To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 References: <20210710012026.19705-1-vinay.belgaumkar@intel.com>
- <20210710012026.19705-3-vinay.belgaumkar@intel.com>
+ <20210710012026.19705-5-vinay.belgaumkar@intel.com>
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <1e1debcc-3439-10ac-6c58-8be5f56340da@intel.com>
-Date: Sat, 10 Jul 2021 16:27:10 +0200
+Message-ID: <dca4c062-68fb-c525-da44-cbfdd51df326@intel.com>
+Date: Sat, 10 Jul 2021 16:35:44 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210710012026.19705-3-vinay.belgaumkar@intel.com>
+In-Reply-To: <20210710012026.19705-5-vinay.belgaumkar@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 02/16] drm/i915/guc/slpc: Initial
- definitions for slpc
+Subject: Re: [Intel-gfx] [PATCH 04/16] drm/i915/guc/slpc: Lay out slpc
+ init/enable/disable/fini
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,199 +51,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Vinay,
-
-On 10.07.2021 03:20, Vinay Belgaumkar wrote:
-> Add macros to check for slpc support. This feature is currently supported
-> for gen12+ and enabled whenever guc submission is enabled/selected.
-
-please try to use consistent names across all patches:
-
-s/slpc/SLPC
-s/gen12/Gen12
-s/guc/GuC
-
-> 
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> Signed-off-by: Sundaresan Sujaritha <sujaritha.sundaresan@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  1 +
->  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 ++
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 21 +++++++++++++++++++
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.h | 16 ++++++++++++++
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  6 ++++--
->  drivers/gpu/drm/i915/gt/uc/intel_uc.h         |  1 +
->  6 files changed, 45 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index 979128e28372..b9a809f2d221 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -157,6 +157,7 @@ void intel_guc_init_early(struct intel_guc *guc)
->  	intel_guc_ct_init_early(&guc->ct);
->  	intel_guc_log_init_early(&guc->log);
->  	intel_guc_submission_init_early(guc);
-> +	intel_guc_slpc_init_early(guc);
->  
->  	mutex_init(&guc->send_mutex);
->  	spin_lock_init(&guc->irq_lock);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 5d94cf482516..e5a456918b88 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -57,6 +57,8 @@ struct intel_guc {
->  
->  	bool submission_supported;
->  	bool submission_selected;
-> +	bool slpc_supported;
-> +	bool slpc_selected;
->  
->  	struct i915_vma *ads_vma;
->  	struct __guc_ads_blob *ads_blob;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 9c102bf0c8e3..e2644a05f298 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -2351,6 +2351,27 @@ void intel_guc_submission_init_early(struct intel_guc *guc)
->  	guc->submission_selected = __guc_submission_selected(guc);
->  }
->  
-> +static bool __guc_slpc_supported(struct intel_guc *guc)
-
-hmm, easy to confuse with intel_guc_slpc_is_supported, so maybe:
-
-__detect_slpc_supported()
-
-(yes, I know you were following code above)
-
-> +{
-> +	/* GuC slpc is unavailable for pre-Gen12 */
-
-s/slpc/SLPC
-
-> +	return guc->submission_supported &&
-> +		GRAPHICS_VER(guc_to_gt(guc)->i915) >= 12;
-> +}
-> +
-> +static bool __guc_slpc_selected(struct intel_guc *guc)
-> +{
-> +	if (!intel_guc_slpc_is_supported(guc))
-> +		return false;
-> +
-> +	return guc->submission_selected;
-> +}
-> +
-> +void intel_guc_slpc_init_early(struct intel_guc *guc)
-> +{
-> +	guc->slpc_supported = __guc_slpc_supported(guc);
-> +	guc->slpc_selected = __guc_slpc_selected(guc);
-> +}
-
-in patch 4/16 you are introducing intel_guc_slpc.c|h so to have proper
-encapsulation better to define this function as
-
-void intel_guc_slpc_init_early(struct intel_guc_slpc *slpc) { }
-
-and move it to intel_guc_slpc.c
-
-> +
->  static inline struct intel_context *
->  g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
->  {
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> index be767eb6ff71..7ae5fd052faf 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> @@ -13,6 +13,7 @@
->  struct drm_printer;
->  struct intel_engine_cs;
->  
-> +void intel_guc_slpc_init_early(struct intel_guc *guc);
-
-it really does not belong to this .h
-
->  void intel_guc_submission_init_early(struct intel_guc *guc);
->  int intel_guc_submission_init(struct intel_guc *guc);
->  void intel_guc_submission_enable(struct intel_guc *guc);
-> @@ -50,4 +51,19 @@ static inline bool intel_guc_submission_is_used(struct intel_guc *guc)
->  	return intel_guc_is_used(guc) && intel_guc_submission_is_wanted(guc);
->  }
->  
-> +static inline bool intel_guc_slpc_is_supported(struct intel_guc *guc)
-> +{
-> +	return guc->slpc_supported;
-> +}
-> +
-> +static inline bool intel_guc_slpc_is_wanted(struct intel_guc *guc)
-> +{
-> +	return guc->slpc_selected;
-> +}
-> +
-> +static inline bool intel_guc_slpc_is_used(struct intel_guc *guc)
-> +{
-> +	return intel_guc_submission_is_used(guc) && intel_guc_slpc_is_wanted(guc);
-> +}
-
-did you try to define them in intel_guc_slpc.h ?
-
-note that to avoid circular dependencies you can define slpc struct in
-intel_guc_slpc_types.h and then
-
-in intel_guc.h:
-	#include "intel_guc_slpc_types.h" instead of intel_guc_slpc.h
-
-in intel_guc_slpc.h:
-	#include "intel_guc.h"
-	#include "intel_guc_slpc_types.h"
-	#include "intel_guc_submission.h"
-
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index 61be0aa81492..dca5f6d0641b 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -76,16 +76,18 @@ static void __confirm_options(struct intel_uc *uc)
->  	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
->  
->  	drm_dbg(&i915->drm,
-> -		"enable_guc=%d (guc:%s submission:%s huc:%s)\n",
-> +		"enable_guc=%d (guc:%s submission:%s huc:%s slpc:%s)\n",
->  		i915->params.enable_guc,
->  		yesno(intel_uc_wants_guc(uc)),
->  		yesno(intel_uc_wants_guc_submission(uc)),
-> -		yesno(intel_uc_wants_huc(uc)));
-> +		yesno(intel_uc_wants_huc(uc)),
-> +		yesno(intel_uc_wants_guc_slpc(uc)));
->  
->  	if (i915->params.enable_guc == 0) {
->  		GEM_BUG_ON(intel_uc_wants_guc(uc));
->  		GEM_BUG_ON(intel_uc_wants_guc_submission(uc));
->  		GEM_BUG_ON(intel_uc_wants_huc(uc));
-> +		GEM_BUG_ON(intel_uc_wants_guc_slpc(uc));
->  		return;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-> index e2da2b6e76e1..38e465fd8a0c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-> @@ -83,6 +83,7 @@ __uc_state_checker(x, func, uses, used)
->  uc_state_checkers(guc, guc);
->  uc_state_checkers(huc, huc);
->  uc_state_checkers(guc, guc_submission);
-> +uc_state_checkers(guc, guc_slpc);
->  
->  #undef uc_state_checkers
->  #undef __uc_state_checker
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CgpPbiAxMC4wNy4yMDIxIDAzOjIwLCBWaW5heSBCZWxnYXVta2FyIHdyb3RlOgo+IERlY2xhcmUg
+aGVhZGVyIGFuZCBzb3VyY2UgZmlsZXMgZm9yIFNMUEMsIGFsb25nIHdpdGggaW5pdCBhbmQKPiBl
+bmFibGUvZGlzYWJsZSBmdW5jdGlvbiB0ZW1wbGF0ZXMuCgpsYXRlciB5b3UgY2xhaW0gdGhhdCAi
+ZGlzYWJsZSIgaXMgbm90IG5lZWRlZAoKPiAKPiBTaWduZWQtb2ZmLWJ5OiBWaW5heSBCZWxnYXVt
+a2FyIDx2aW5heS5iZWxnYXVta2FyQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBTdW5kYXJl
+c2FuIFN1amFyaXRoYSA8c3VqYXJpdGhhLnN1bmRhcmVzYW5AaW50ZWwuY29tPgo+IC0tLQo+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgIHwgIDEgKwo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaCAgICAgIHwgIDIgKysKPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuYyB8IDM0ICsrKysrKysrKysrKysr
+KysrKysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc2xwYy5oIHwg
+MTYgKysrKysrKysrKwo+ICA0IGZpbGVzIGNoYW5nZWQsIDUzIGluc2VydGlvbnMoKykKPiAgY3Jl
+YXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBj
+LmMKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVs
+X2d1Y19zbHBjLmgKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZp
+bGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQo+IGluZGV4IGFiNzY3OTk1NzYyMy4u
+ZDhlYWM0NDY4ZGY5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxl
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKPiBAQCAtMTg2LDYgKzE4Niw3
+IEBAIGk5MTUteSArPSBndC91Yy9pbnRlbF91Yy5vIFwKPiAgCSAgZ3QvdWMvaW50ZWxfZ3VjX2Z3
+Lm8gXAo+ICAJICBndC91Yy9pbnRlbF9ndWNfbG9nLm8gXAo+ICAJICBndC91Yy9pbnRlbF9ndWNf
+bG9nX2RlYnVnZnMubyBcCj4gKwkgIGd0L3VjL2ludGVsX2d1Y19zbHBjLm8gXAo+ICAJICBndC91
+Yy9pbnRlbF9ndWNfc3VibWlzc2lvbi5vIFwKPiAgCSAgZ3QvdWMvaW50ZWxfaHVjLm8gXAo+ICAJ
+ICBndC91Yy9pbnRlbF9odWNfZGVidWdmcy5vIFwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9p
+bnRlbF9ndWMuaAo+IGluZGV4IGU1YTQ1NjkxOGI4OC4uMGRiYmQ5Y2Y1NTNmIDEwMDY0NAo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5oCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmgKPiBAQCAtMTUsNiArMTUsNyBAQAo+ICAj
+aW5jbHVkZSAiaW50ZWxfZ3VjX2N0LmgiCj4gICNpbmNsdWRlICJpbnRlbF9ndWNfbG9nLmgiCj4g
+ICNpbmNsdWRlICJpbnRlbF9ndWNfcmVnLmgiCj4gKyNpbmNsdWRlICJpbnRlbF9ndWNfc2xwYy5o
+Igo+ICAjaW5jbHVkZSAiaW50ZWxfdWNfZncuaCIKPiAgI2luY2x1ZGUgImk5MTVfdXRpbHMuaCIK
+PiAgI2luY2x1ZGUgImk5MTVfdm1hLmgiCj4gQEAgLTMwLDYgKzMxLDcgQEAgc3RydWN0IGludGVs
+X2d1YyB7Cj4gIAlzdHJ1Y3QgaW50ZWxfdWNfZncgZnc7Cj4gIAlzdHJ1Y3QgaW50ZWxfZ3VjX2xv
+ZyBsb2c7Cj4gIAlzdHJ1Y3QgaW50ZWxfZ3VjX2N0IGN0Owo+ICsJc3RydWN0IGludGVsX2d1Y19z
+bHBjIHNscGM7Cj4gIAo+ICAJLyogR2xvYmFsIGVuZ2luZSB1c2VkIHRvIHN1Ym1pdCByZXF1ZXN0
+cyB0byBHdUMgKi8KPiAgCXN0cnVjdCBpOTE1X3NjaGVkX2VuZ2luZSAqc2NoZWRfZW5naW5lOwo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc2xwYy5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuYwo+IG5ldyBmaWxl
+IG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi5jMWY1NjlkMjMwMGQKPiAtLS0gL2Rl
+di9udWxsCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMu
+Ywo+IEBAIC0wLDAgKzEsMzQgQEAKPiArLyoKPiArICogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6
+IE1JVAoKU1BEWCB0YWcgc2hhbGwgYmUgaW4gdmVyeSBmaXJzdCBsaW5lLCBmb3IgLmM6CgovLyBT
+UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCgo+ICsgKgo+ICsgKiBDb3B5cmlnaHQgwqkgMjAy
+MCBJbnRlbCBDb3Jwb3JhdGlvbgoKMjAyMQoKPiArICovCj4gKwo+ICsjaW5jbHVkZSAiaW50ZWxf
+Z3VjX3NscGMuaCIKPiArCj4gK2ludCBpbnRlbF9ndWNfc2xwY19pbml0KHN0cnVjdCBpbnRlbF9n
+dWNfc2xwYyAqc2xwYykKPiArewo+ICsJcmV0dXJuIDA7Cj4gK30KPiArCj4gKy8qCj4gKyAqIGlu
+dGVsX2d1Y19zbHBjX2VuYWJsZSgpIC0gU3RhcnQgU0xQQwo+ICsgKiBAc2xwYzogcG9pbnRlciB0
+byBpbnRlbF9ndWNfc2xwYy4KPiArICoKPiArICogU0xQQyBpcyBlbmFibGVkIGJ5IHNldHRpbmcg
+dXAgdGhlIHNoYXJlZCBkYXRhIHN0cnVjdHVyZSBhbmQKPiArICogc2VuZGluZyByZXNldCBldmVu
+dCB0byBHdUMgU0xQQy4gSW5pdGlhbCBkYXRhIGlzIHNldHVwIGluCj4gKyAqIGludGVsX2d1Y19z
+bHBjX2luaXQuIEhlcmUgd2Ugc2VuZCB0aGUgcmVzZXQgZXZlbnQuIFdlIGRvCj4gKyAqIG5vdCBj
+dXJyZW50bHkgbmVlZCBhIHNscGNfZGlzYWJsZSBzaW5jZSB0aGlzIGlzIHRha2VuIGNhcmUKPiAr
+ICogb2YgYXV0b21hdGljYWxseSB3aGVuIGEgcmVzZXQvc3VzcGVuZCBvY2N1cnMgYW5kIHRoZSBn
+dWMKCnMvZ3VjL0d1QwoKPiArICogY2hhbm5lbHMgYXJlIGRlc3Ryb3llZC4KCnlvdSBtZWFuIENU
+QiA/Cgo+ICsgKgo+ICsgKiBSZXR1cm46IDAgb24gc3VjY2Vzcywgbm9uLXplcm8gZXJyb3IgY29k
+ZSBvbiBmYWlsdXJlLgo+ICsgKi8KPiAraW50IGludGVsX2d1Y19zbHBjX2VuYWJsZShzdHJ1Y3Qg
+aW50ZWxfZ3VjX3NscGMgKnNscGMpCj4gK3sKPiArCXJldHVybiAwOwo+ICt9Cj4gKwo+ICt2b2lk
+IGludGVsX2d1Y19zbHBjX2Zpbmkoc3RydWN0IGludGVsX2d1Y19zbHBjICpzbHBjKQo+ICt7Cj4g
+K30KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3Ns
+cGMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjLmgKPiBuZXcg
+ZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAwMDAwMC4uNzRmZDg2NzY5MTYzCj4gLS0t
+IC9kZXYvbnVsbAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19z
+bHBjLmgKPiBAQCAtMCwwICsxLDE2IEBACj4gKy8qCj4gKyAqIFNQRFgtTGljZW5zZS1JZGVudGlm
+aWVyOiBNSVQKClNQRFggdGFnIHNoYWxsIGJlIGluIHZlcnkgZmlyc3QgbGluZSwgZm9yIC5oOgoK
+LyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVCAqLwoKPiArICoKPiArICogQ29weXJpZ2h0
+IMKpIDIwMjAgSW50ZWwgQ29ycG9yYXRpb24KCjIwMjEKCj4gKyAqLwo+ICsjaWZuZGVmIF9JTlRF
+TF9HVUNfU0xQQ19IXwo+ICsjZGVmaW5lIF9JTlRFTF9HVUNfU0xQQ19IXwo+ICsKPiArc3RydWN0
+IGludGVsX2d1Y19zbHBjIHsKPiArfTsKCm1vdmUgYWxsIGRhdGEgZGVmaW5pdGlvbnMgdG8gaW50
+ZWxfZ3VjX3NscGNfdHlwZXMuaCBhbmQgaW5jbHVkZSBpdCBoZXJlCgo+ICsKPiAraW50IGludGVs
+X2d1Y19zbHBjX2luaXQoc3RydWN0IGludGVsX2d1Y19zbHBjICpzbHBjKTsKPiAraW50IGludGVs
+X2d1Y19zbHBjX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpOwo+ICt2b2lkIGlu
+dGVsX2d1Y19zbHBjX2Zpbmkoc3RydWN0IGludGVsX2d1Y19zbHBjICpzbHBjKTsKPiArCj4gKyNl
+bmRpZgo+IAoKYW5kIGFzIHN1Z2dlc3RlZCBpbiBjb21tZW50IHRvIDIvMTQgeW91IHNob3VsZCBs
+aWtlbHkgbW92ZSB0aGlzIHBhdGNoIHRvCnRoZSBmcm9udCBvZiB0aGUgc2VyaWVzCgpNaWNoYWwK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
+eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
