@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110F53C2C68
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jul 2021 03:23:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB483C2C6B
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jul 2021 03:23:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6226C6EABA;
-	Sat, 10 Jul 2021 01:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71B916EABC;
+	Sat, 10 Jul 2021 01:23:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2796EAB9;
- Sat, 10 Jul 2021 01:23:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10040"; a="197073831"
-X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="197073831"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2A5F6EABC;
+ Sat, 10 Jul 2021 01:23:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10040"; a="295443511"
+X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="295443511"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2021 18:23:20 -0700
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 18:23:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="411439870"
+X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="411439885"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga006.jf.intel.com with ESMTP; 09 Jul 2021 18:23:20 -0700
+ by orsmga006.jf.intel.com with ESMTP; 09 Jul 2021 18:23:26 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri,  9 Jul 2021 18:20:16 -0700
-Message-Id: <20210710012026.19705-7-vinay.belgaumkar@intel.com>
+Date: Fri,  9 Jul 2021 18:20:17 -0700
+Message-Id: <20210710012026.19705-8-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20210710012026.19705-1-vinay.belgaumkar@intel.com>
 References: <20210710012026.19705-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 06/16] drm/i915/guc/slpc: Allocate,
- initialize and release slpc
+Subject: [Intel-gfx] [PATCH 07/16] drm/i915/guc/slpc: Enable slpc and add
+ related H2G events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,76 +44,319 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWxsb2NhdGUgZGF0YSBzdHJ1Y3R1cmVzIGZvciBTTFBDIGFuZCBmdW5jdGlvbnMgZm9yCmluaXRp
-YWxpemluZyBvbiBob3N0IHNpZGUuCgpTaWduZWQtb2ZmLWJ5OiBWaW5heSBCZWxnYXVta2FyIDx2
-aW5heS5iZWxnYXVta2FyQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogU3VuZGFyZXNhbiBTdWph
-cml0aGEgPHN1amFyaXRoYS5zdW5kYXJlc2FuQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYyAgICAgIHwgMTEgKysrKysrKwogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuYyB8IDM2ICsrKysrKysrKysrKysrKysrKysr
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuaCB8IDIwICsrKysr
-KysrKysrKwogMyBmaWxlcyBjaGFuZ2VkLCA2NiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYwppbmRleCA5ZDYxYjJkNTRkZTQu
-LjgyODYzYTliYzhlOCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50
-ZWxfZ3VjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKQEAg
-LTMzNiw2ICszMzYsMTIgQEAgaW50IGludGVsX2d1Y19pbml0KHN0cnVjdCBpbnRlbF9ndWMgKmd1
-YykKIAkJCWdvdG8gZXJyX2N0OwogCX0KIAorCWlmIChpbnRlbF9ndWNfc2xwY19pc191c2VkKGd1
-YykpIHsKKwkJcmV0ID0gaW50ZWxfZ3VjX3NscGNfaW5pdCgmZ3VjLT5zbHBjKTsKKwkJaWYgKHJl
-dCkKKwkJCWdvdG8gZXJyX3N1Ym1pc3Npb247CisJfQorCiAJLyogbm93IHRoYXQgZXZlcnl0aGlu
-ZyBpcyBwZXJtYS1waW5uZWQsIGluaXRpYWxpemUgdGhlIHBhcmFtZXRlcnMgKi8KIAlndWNfaW5p
-dF9wYXJhbXMoZ3VjKTsKIApAQCAtMzQ2LDYgKzM1Miw4IEBAIGludCBpbnRlbF9ndWNfaW5pdChz
-dHJ1Y3QgaW50ZWxfZ3VjICpndWMpCiAKIAlyZXR1cm4gMDsKIAorZXJyX3N1Ym1pc3Npb246CisJ
-aW50ZWxfZ3VjX3N1Ym1pc3Npb25fZmluaShndWMpOwogZXJyX2N0OgogCWludGVsX2d1Y19jdF9m
-aW5pKCZndWMtPmN0KTsKIGVycl9hZHM6CkBAIC0zNjgsNiArMzc2LDkgQEAgdm9pZCBpbnRlbF9n
-dWNfZmluaShzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCiAKIAlpOTE1X2dndHRfZGlzYWJsZV9ndWMo
-Z3QtPmdndHQpOwogCisJaWYgKGludGVsX2d1Y19zbHBjX2lzX3VzZWQoZ3VjKSkKKwkJaW50ZWxf
-Z3VjX3NscGNfZmluaSgmZ3VjLT5zbHBjKTsKKwogCWlmIChpbnRlbF9ndWNfc3VibWlzc2lvbl9p
-c191c2VkKGd1YykpCiAJCWludGVsX2d1Y19zdWJtaXNzaW9uX2ZpbmkoZ3VjKTsKIApkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjLmMKaW5kZXggYzFmNTY5ZDIzMDBk
-Li45NGUyZjE5OTUxYWEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2lu
-dGVsX2d1Y19zbHBjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3Vj
-X3NscGMuYwpAQCAtNCwxMSArNCw0MSBAQAogICogQ29weXJpZ2h0IMKpIDIwMjAgSW50ZWwgQ29y
-cG9yYXRpb24KICAqLwogCisjaW5jbHVkZSA8YXNtL21zci1pbmRleC5oPgorCisjaW5jbHVkZSAi
-Z3QvaW50ZWxfZ3QuaCIKKyNpbmNsdWRlICJndC9pbnRlbF9ycHMuaCIKKworI2luY2x1ZGUgImk5
-MTVfZHJ2LmgiCiAjaW5jbHVkZSAiaW50ZWxfZ3VjX3NscGMuaCIKKyNpbmNsdWRlICJpbnRlbF9w
-bS5oIgorCitzdGF0aWMgaW5saW5lIHN0cnVjdCBpbnRlbF9ndWMgKnNscGNfdG9fZ3VjKHN0cnVj
-dCBpbnRlbF9ndWNfc2xwYyAqc2xwYykKK3sKKwlyZXR1cm4gY29udGFpbmVyX29mKHNscGMsIHN0
-cnVjdCBpbnRlbF9ndWMsIHNscGMpOworfQorCitzdGF0aWMgaW50IHNscGNfc2hhcmVkX2RhdGFf
-aW5pdChzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpCit7CisJc3RydWN0IGludGVsX2d1YyAq
-Z3VjID0gc2xwY190b19ndWMoc2xwYyk7CisJaW50IGVycjsKKwl1MzIgc2l6ZSA9IFBBR0VfQUxJ
-R04oc2l6ZW9mKHN0cnVjdCBzbHBjX3NoYXJlZF9kYXRhKSk7CisKKwllcnIgPSBpbnRlbF9ndWNf
-YWxsb2NhdGVfYW5kX21hcF92bWEoZ3VjLCBzaXplLCAmc2xwYy0+dm1hLCAmc2xwYy0+dmFkZHIp
-OworCWlmICh1bmxpa2VseShlcnIpKSB7CisJCURSTV9FUlJPUigiRmFpbGVkIHRvIGFsbG9jYXRl
-IHNscGMgc3RydWN0IChlcnI9JWQpXG4iLCBlcnIpOworCQlpOTE1X3ZtYV91bnBpbl9hbmRfcmVs
-ZWFzZSgmc2xwYy0+dm1hLCBJOTE1X1ZNQV9SRUxFQVNFX01BUCk7CisJCXJldHVybiBlcnI7CisJ
-fQorCisJcmV0dXJuIGVycjsKK30KIAogaW50IGludGVsX2d1Y19zbHBjX2luaXQoc3RydWN0IGlu
-dGVsX2d1Y19zbHBjICpzbHBjKQogewotCXJldHVybiAwOworCUdFTV9CVUdfT04oc2xwYy0+dm1h
-KTsKKworCXJldHVybiBzbHBjX3NoYXJlZF9kYXRhX2luaXQoc2xwYyk7CiB9CiAKIC8qCkBAIC0z
-MSw0ICs2MSw4IEBAIGludCBpbnRlbF9ndWNfc2xwY19lbmFibGUoc3RydWN0IGludGVsX2d1Y19z
-bHBjICpzbHBjKQogCiB2b2lkIGludGVsX2d1Y19zbHBjX2Zpbmkoc3RydWN0IGludGVsX2d1Y19z
-bHBjICpzbHBjKQogeworCWlmICghc2xwYy0+dm1hKQorCQlyZXR1cm47CisKKwlpOTE1X3ZtYV91
-bnBpbl9hbmRfcmVsZWFzZSgmc2xwYy0+dm1hLCBJOTE1X1ZNQV9SRUxFQVNFX01BUCk7CiB9CmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc2xwYy5oIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuaAppbmRleCA5ODAzNjQ1
-OWExYTMuLmEyNjQzYjkwNDE2NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
-dWMvaW50ZWxfZ3VjX3NscGMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRl
-bF9ndWNfc2xwYy5oCkBAIC0zLDEyICszLDMyIEBACiAgKgogICogQ29weXJpZ2h0IMKpIDIwMjAg
-SW50ZWwgQ29ycG9yYXRpb24KICAqLworCiAjaWZuZGVmIF9JTlRFTF9HVUNfU0xQQ19IXwogI2Rl
-ZmluZSBfSU5URUxfR1VDX1NMUENfSF8KIAorI2luY2x1ZGUgPGxpbnV4L211dGV4Lmg+CiAjaW5j
-bHVkZSAiaW50ZWxfZ3VjX3NscGNfZndpZi5oIgogCiBzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgewor
-CS8qUHJvdGVjdHMgYWNjZXNzIHRvIHZtYSBhbmQgU0xQQyBhY3Rpb25zICovCisJc3RydWN0IGk5
-MTVfdm1hICp2bWE7CisJdm9pZCAqdmFkZHI7CisKKwkvKiBwbGF0Zm9ybSBmcmVxdWVuY3kgbGlt
-aXRzICovCisJdTMyIG1pbl9mcmVxOworCXUzMiBycDBfZnJlcTsKKwl1MzIgcnAxX2ZyZXE7CisK
-KwkvKiBmcmVxdWVuY3kgc29mdGxpbWl0cyAqLworCXUzMiBtaW5fZnJlcV9zb2Z0bGltaXQ7CisJ
-dTMyIG1heF9mcmVxX3NvZnRsaW1pdDsKKworCXN0cnVjdCB7CisJCXUzMiBwYXJhbV9pZDsKKwkJ
-dTMyIHBhcmFtX3ZhbHVlOworCQl1MzIgcGFyYW1fb3ZlcnJpZGU7CisJfSBkZWJ1ZzsKIH07CiAK
-IGludCBpbnRlbF9ndWNfc2xwY19pbml0KHN0cnVjdCBpbnRlbF9ndWNfc2xwYyAqc2xwYyk7Ci0t
-IAoyLjI1LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Add methods for interacting with guc for enabling SLPC. Enable
+SLPC after guc submission has been established. GuC load will
+fail if SLPC cannot be successfully initialized. Add various
+helper methods to set/unset the parameters for SLPC. They can
+be set using h2g calls or directly setting bits in the shared
+data structure.
+
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Signed-off-by: Sundaresan Sujaritha <sujaritha.sundaresan@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 221 ++++++++++++++++++
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   4 -
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  10 +
+ 3 files changed, 231 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+index 94e2f19951aa..e579408d1c19 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+@@ -18,6 +18,61 @@ static inline struct intel_guc *slpc_to_guc(struct intel_guc_slpc *slpc)
+ 	return container_of(slpc, struct intel_guc, slpc);
+ }
+ 
++static inline struct intel_gt *slpc_to_gt(struct intel_guc_slpc *slpc)
++{
++	return guc_to_gt(slpc_to_guc(slpc));
++}
++
++static inline struct drm_i915_private *slpc_to_i915(struct intel_guc_slpc *slpc)
++{
++	return (slpc_to_gt(slpc))->i915;
++}
++
++static void slpc_mem_set_param(struct slpc_shared_data *data,
++				u32 id, u32 value)
++{
++	GEM_BUG_ON(id >= SLPC_MAX_OVERRIDE_PARAMETERS);
++	/* When the flag bit is set, corresponding value will be read
++	 * and applied by slpc.
++	 */
++	data->override_params_set_bits[id >> 5] |= (1 << (id % 32));
++	data->override_params_values[id] = value;
++}
++
++static void slpc_mem_unset_param(struct slpc_shared_data *data,
++				 u32 id)
++{
++	GEM_BUG_ON(id >= SLPC_MAX_OVERRIDE_PARAMETERS);
++	/* When the flag bit is unset, corresponding value will not be
++	 * read by slpc.
++	 */
++	data->override_params_set_bits[id >> 5] &= (~(1 << (id % 32)));
++	data->override_params_values[id] = 0;
++}
++
++static void slpc_mem_task_control(struct slpc_shared_data *data,
++				 u64 val, u32 enable_id, u32 disable_id)
++{
++	/* Enabling a param involves setting the enable_id
++	 * to 1 and disable_id to 0. Setting it to default
++	 * will unset both enable and disable ids and let
++	 * slpc choose it's default values.
++	 */
++	if (val == SLPC_PARAM_TASK_DEFAULT) {
++		/* set default */
++		slpc_mem_unset_param(data, enable_id);
++		slpc_mem_unset_param(data, disable_id);
++	} else if (val == SLPC_PARAM_TASK_ENABLED) {
++		/* set enable */
++		slpc_mem_set_param(data, enable_id, 1);
++		slpc_mem_set_param(data, disable_id, 0);
++	} else if (val == SLPC_PARAM_TASK_DISABLED) {
++		/* set disable */
++		slpc_mem_set_param(data, disable_id, 1);
++		slpc_mem_set_param(data, enable_id, 0);
++	}
++}
++
+ static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
+ {
+ 	struct intel_guc *guc = slpc_to_guc(slpc);
+@@ -34,6 +89,128 @@ static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
+ 	return err;
+ }
+ 
++/*
++ * Send SLPC event to guc
++ *
++ */
++static int slpc_send(struct intel_guc_slpc *slpc,
++			struct slpc_event_input *input,
++			u32 in_len)
++{
++	struct intel_guc *guc = slpc_to_guc(slpc);
++	u32 *action;
++
++	action = (u32 *)input;
++	action[0] = INTEL_GUC_ACTION_SLPC_REQUEST;
++
++	return intel_guc_send(guc, action, in_len);
++}
++
++static bool slpc_running(struct intel_guc_slpc *slpc)
++{
++	struct slpc_shared_data *data;
++	u32 slpc_global_state;
++
++	GEM_BUG_ON(!slpc->vma);
++
++	drm_clflush_virt_range(slpc->vaddr, sizeof(struct slpc_shared_data));
++	data = slpc->vaddr;
++
++	slpc_global_state = data->global_state;
++
++	return (data->global_state == SLPC_GLOBAL_STATE_RUNNING);
++}
++
++static int host2guc_slpc_query_task_state(struct intel_guc_slpc *slpc)
++{
++	struct intel_guc *guc = slpc_to_guc(slpc);
++	u32 shared_data_gtt_offset = intel_guc_ggtt_offset(guc, slpc->vma);
++	struct slpc_event_input data = {0};
++
++	data.header.value = SLPC_EVENT(SLPC_EVENT_QUERY_TASK_STATE, 2);
++	data.args[0] = shared_data_gtt_offset;
++	data.args[1] = 0;
++
++	return slpc_send(slpc, &data, 4);
++}
++
++static int slpc_read_task_state(struct intel_guc_slpc *slpc)
++{
++	return host2guc_slpc_query_task_state(slpc);
++}
++
++static const char *slpc_state_stringify(enum slpc_global_state state)
++{
++	const char *str = NULL;
++
++	switch (state) {
++	case SLPC_GLOBAL_STATE_NOT_RUNNING:
++		str = "not running";
++		break;
++	case SLPC_GLOBAL_STATE_INITIALIZING:
++		str = "initializing";
++		break;
++	case SLPC_GLOBAL_STATE_RESETTING:
++		str = "resetting";
++		break;
++	case SLPC_GLOBAL_STATE_RUNNING:
++		str = "running";
++		break;
++	case SLPC_GLOBAL_STATE_SHUTTING_DOWN:
++		str = "shutting down";
++		break;
++	case SLPC_GLOBAL_STATE_ERROR:
++		str = "error";
++		break;
++	default:
++		str = "unknown";
++		break;
++	}
++
++	return str;
++}
++
++static const char *get_slpc_state(struct intel_guc_slpc *slpc)
++{
++	struct slpc_shared_data *data;
++	u32 slpc_global_state;
++
++	GEM_BUG_ON(!slpc->vma);
++
++	drm_clflush_virt_range(slpc->vaddr, sizeof(struct slpc_shared_data));
++	data = slpc->vaddr;
++
++	slpc_global_state = data->global_state;
++
++	return slpc_state_stringify(slpc_global_state);
++}
++
++static int host2guc_slpc_reset(struct intel_guc_slpc *slpc)
++{
++	struct intel_guc *guc = slpc_to_guc(slpc);
++	u32 shared_data_gtt_offset = intel_guc_ggtt_offset(guc, slpc->vma);
++	struct slpc_event_input data = {0};
++	int ret;
++
++	data.header.value = SLPC_EVENT(SLPC_EVENT_RESET, 2);
++	data.args[0] = shared_data_gtt_offset;
++	data.args[1] = 0;
++
++	/* TODO: Hardcoded 4 needs define */
++	ret = slpc_send(slpc, &data, 4);
++
++	if (!ret) {
++		/* TODO: How long to Wait until SLPC is running */
++		if (wait_for(slpc_running(slpc), 5)) {
++			DRM_ERROR("SLPC not enabled! State = %s\n",
++				  get_slpc_state(slpc));
++			return -EIO;
++		}
++	}
++
++	return ret;
++}
++
+ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
+ {
+ 	GEM_BUG_ON(slpc->vma);
+@@ -56,6 +233,50 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
+  */
+ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+ {
++	struct drm_i915_private *i915 = slpc_to_i915(slpc);
++	struct slpc_shared_data *data;
++	int ret;
++
++	GEM_BUG_ON(!slpc->vma);
++
++	memset(slpc->vaddr, 0, sizeof(struct slpc_shared_data));
++
++	data = slpc->vaddr;
++	data->shared_data_size = sizeof(struct slpc_shared_data);
++
++	/* Enable only GTPERF task, Disable others */
++	slpc_mem_task_control(data, SLPC_PARAM_TASK_ENABLED,
++				SLPC_PARAM_TASK_ENABLE_GTPERF,
++				SLPC_PARAM_TASK_DISABLE_GTPERF);
++
++	slpc_mem_task_control(data, SLPC_PARAM_TASK_DISABLED,
++				SLPC_PARAM_TASK_ENABLE_BALANCER,
++				SLPC_PARAM_TASK_DISABLE_BALANCER);
++
++	slpc_mem_task_control(data, SLPC_PARAM_TASK_DISABLED,
++				SLPC_PARAM_TASK_ENABLE_DCC,
++				SLPC_PARAM_TASK_DISABLE_DCC);
++
++	ret = host2guc_slpc_reset(slpc);
++	if (ret) {
++		drm_err(&i915->drm, "SLPC Reset event returned %d", ret);
++		return -EIO;
++	}
++
++	DRM_INFO("SLPC state: %s\n", get_slpc_state(slpc));
++
++	if (slpc_read_task_state(slpc))
++		drm_err(&i915->drm, "Unable to read task state data");
++
++	drm_clflush_virt_range(slpc->vaddr, sizeof(struct slpc_shared_data));
++
++	/* min and max frequency limits being used by SLPC */
++	drm_info(&i915->drm, "SLPC min freq: %u Mhz, max is %u Mhz",
++			DIV_ROUND_CLOSEST(data->task_state_data.min_unslice_freq *
++				GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER),
++			DIV_ROUND_CLOSEST(data->task_state_data.max_unslice_freq *
++				GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER));
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index e2644a05f298..3e76d4d5f7bb 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -2321,10 +2321,6 @@ void intel_guc_submission_enable(struct intel_guc *guc)
+ 
+ void intel_guc_submission_disable(struct intel_guc *guc)
+ {
+-	struct intel_gt *gt = guc_to_gt(guc);
+-
+-	GEM_BUG_ON(gt->awake); /* GT should be parked first */
+-
+ 	/* Note: By the time we're here, GuC may have already been reset */
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+index dca5f6d0641b..7b6c767d3eb0 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+@@ -501,6 +501,14 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 	if (intel_uc_uses_guc_submission(uc))
+ 		intel_guc_submission_enable(guc);
+ 
++	if (intel_uc_uses_guc_slpc(uc)) {
++		ret = intel_guc_slpc_enable(&guc->slpc);
++		if (ret)
++			goto err_submission;
++		drm_info(&i915->drm, "GuC SLPC %s\n",
++			 enableddisabled(intel_uc_uses_guc_slpc(uc)));
++	}
++
+ 	drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
+ 		 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_GUC), guc->fw.path,
+ 		 guc->fw.major_ver_found, guc->fw.minor_ver_found,
+@@ -521,6 +529,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 	/*
+ 	 * We've failed to load the firmware :(
+ 	 */
++err_submission:
++	intel_guc_submission_disable(guc);
+ err_log_capture:
+ 	__uc_capture_load_err_log(uc);
+ err_out:
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
