@@ -2,30 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D00F3C32C5
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jul 2021 06:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C273C32E4
+	for <lists+intel-gfx@lfdr.de>; Sat, 10 Jul 2021 06:55:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 597946EAD0;
-	Sat, 10 Jul 2021 04:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D556EAD1;
+	Sat, 10 Jul 2021 04:55:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D9F9D6EACC;
- Sat, 10 Jul 2021 04:26:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BBB3FA8169;
- Sat, 10 Jul 2021 04:26:38 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 187D16EAD1
+ for <intel-gfx@lists.freedesktop.org>; Sat, 10 Jul 2021 04:55:25 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10040"; a="209775822"
+X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="209775822"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 21:55:20 -0700
+X-IronPort-AV: E=Sophos;i="5.84,228,1620716400"; d="scan'208";a="488640790"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2021 21:55:18 -0700
+Date: Fri, 9 Jul 2021 21:55:17 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20210710045517.GO951094@mdroper-desk1.amr.corp.intel.com>
+References: <20210708211827.288601-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Sat, 10 Jul 2021 04:26:38 -0000
-Message-ID: <162589119874.15856.7491036052236429984@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210710033724.2459367-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTWlu?=
- =?utf-8?q?or_revid/stepping_and_workaround_cleanup_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20210708211827.288601-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915: Settle on "adl-x" in WA
+ comments
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,194 +44,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0530598304=="
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0530598304==
-Content-Type: multipart/alternative;
- boundary="===============2483281656169303982=="
+On Thu, Jul 08, 2021 at 02:18:21PM -0700, Jos=E9 Roberto de Souza wrote:
+> From: Lucas De Marchi <lucas.demarchi@intel.com>
+> =
 
---===============2483281656169303982==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Most of the places are using this format so lets consolidate it.
+> =
 
-== Series Details ==
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Series: Minor revid/stepping and workaround cleanup (rev2)
-URL   : https://patchwork.freedesktop.org/series/92299/
-State : success
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c         |  2 +-
+>  drivers/gpu/drm/i915/display/intel_cursor.c        |  2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c       |  2 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c           | 10 +++++-----
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c        |  2 +-
+>  drivers/gpu/drm/i915/intel_pm.c                    |  4 ++--
+>  7 files changed, 12 insertions(+), 12 deletions(-)
+> =
 
-CI Bug Log - changes from CI_DRM_10329 -> Patchwork_20568
-====================================================
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
+/i915/display/intel_cdclk.c
+> index df2d8ce4a12f6..71067a62264de 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2878,7 +2878,7 @@ void intel_init_cdclk_hooks(struct drm_i915_private=
+ *dev_priv)
+>  		dev_priv->display.bw_calc_min_cdclk =3D skl_bw_calc_min_cdclk;
+>  		dev_priv->display.modeset_calc_cdclk =3D bxt_modeset_calc_cdclk;
+>  		dev_priv->display.calc_voltage_level =3D tgl_calc_voltage_level;
+> -		/* Wa_22011320316:adlp[a0] */
+> +		/* Wa_22011320316:adl-p[a0] */
+>  		if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0))
+>  			dev_priv->cdclk.table =3D adlp_a_step_cdclk_table;
+>  		else
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/dr=
+m/i915/display/intel_cursor.c
+> index bb61e736de911..f61a25fb87e90 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -383,7 +383,7 @@ static u32 i9xx_cursor_ctl(const struct intel_crtc_st=
+ate *crtc_state,
+>  	if (plane_state->hw.rotation & DRM_MODE_ROTATE_180)
+>  		cntl |=3D MCURSOR_ROTATE_180;
+>  =
 
-Summary
--------
+> -	/* Wa_22012358565:adlp */
+> +	/* Wa_22012358565:adl-p */
+>  	if (DISPLAY_VER(dev_priv) =3D=3D 13)
+>  		cntl |=3D MCURSOR_ARB_SLOTS(1);
+>  =
 
-  **SUCCESS**
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 026c28c612f07..65ddb6ca16e67 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -975,7 +975,7 @@ void intel_enable_pipe(const struct intel_crtc_state =
+*new_crtc_state)
+>  		/* FIXME: assert CPU port conditions for SNB+ */
+>  	}
+>  =
 
-  No regressions found.
+> -	/* Wa_22012358565:adlp */
+> +	/* Wa_22012358565:adl-p */
+>  	if (DISPLAY_VER(dev_priv) =3D=3D 13)
+>  		intel_de_rmw(dev_priv, PIPE_ARB_CTL(pipe),
+>  			     0, PIPE_ARB_USE_PROG_SLOTS);
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 9643624fe160d..4dfe1dceb8635 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -545,7 +545,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_=
+dp)
+>  	val |=3D EDP_PSR2_FRAME_BEFORE_SU(intel_dp->psr.sink_sync_latency + 1);
+>  	val |=3D intel_psr2_get_tp_time(intel_dp);
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/index.html
+> -	/* Wa_22012278275:adlp */
+> +	/* Wa_22012278275:adl-p */
+>  	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_D1)) {
+>  		static const u8 map[] =3D {
+>  			2, /* 5 lines */
+> @@ -733,7 +733,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *in=
+tel_dp,
+>  	if (!dc3co_is_pipe_port_compatible(intel_dp, crtc_state))
+>  		return;
+>  =
 
-Known issues
-------------
+> -	/* Wa_16011303918:adlp */
+> +	/* Wa_16011303918:adl-p */
+>  	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0))
+>  		return;
+>  =
 
-  Here are the changes found in Patchwork_20568 that come from known issues:
+> @@ -965,7 +965,7 @@ static bool intel_psr2_config_valid(struct intel_dp *=
+intel_dp,
+>  		return false;
+>  	}
+>  =
 
-### IGT changes ###
+> -	/* Wa_16011303918:adlp */
+> +	/* Wa_16011303918:adl-p */
+>  	if (crtc_state->vrr.enable &&
+>  	    IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0)) {
+>  		drm_dbg_kms(&dev_priv->drm,
+> @@ -1160,7 +1160,7 @@ static void intel_psr_enable_source(struct intel_dp=
+ *intel_dp)
+>  			     intel_dp->psr.psr2_sel_fetch_enabled ?
+>  			     IGNORE_PSR2_HW_TRACKING : 0);
+>  =
 
-#### Possible fixes ####
+> -	/* Wa_16011168373:adlp */
+> +	/* Wa_16011168373:adl-p */
+>  	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) &&
+>  	    intel_dp->psr.psr2_enabled)
+>  		intel_de_rmw(dev_priv,
+> @@ -1346,7 +1346,7 @@ static void intel_psr_disable_locked(struct intel_d=
+p *intel_dp)
+>  		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+>  			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
+>  =
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][1] ([i915#1372]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10329/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+> -	/* Wa_16011168373:adlp */
+> +	/* Wa_16011168373:adl-p */
+>  	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) &&
+>  	    intel_dp->psr.psr2_enabled)
+>  		intel_de_rmw(dev_priv,
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
+/gpu/drm/i915/display/skl_universal_plane.c
+> index c7263f4ff11d7..628b678d9a71c 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -926,7 +926,7 @@ static u32 skl_plane_ctl(const struct intel_crtc_stat=
+e *crtc_state,
+>  	else if (key->flags & I915_SET_COLORKEY_SOURCE)
+>  		plane_ctl |=3D PLANE_CTL_KEY_ENABLE_SOURCE;
+>  =
 
-  
-#### Warnings ####
+> -	/* Wa_22012358565:adlp */
+> +	/* Wa_22012358565:adl-p */
+>  	if (DISPLAY_VER(dev_priv) =3D=3D 13)
+>  		plane_ctl |=3D adlp_plane_ctl_arb_slots(plane_state);
+>  =
 
-  * igt@runner@aborted:
-    - fi-ilk-650:         [FAIL][3] ([i915#3744]) -> [FAIL][4] ([i915#2426])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10329/fi-ilk-650/igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/fi-ilk-650/igt@runner@aborted.html
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.c
+> index d9a5a445ceecd..e5e3f820074a9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1078,7 +1078,7 @@ gen12_gt_workarounds_init(struct drm_i915_private *=
+i915,
+>  {
+>  	icl_wa_init_mcr(i915, wal);
+>  =
 
-  
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#3744]: https://gitlab.freedesktop.org/drm/intel/issues/3744
+> -	/* Wa_14011060649:tgl,rkl,dg1,adls,adl-p */
+> +	/* Wa_14011060649:tgl,rkl,dg1,adl-s,adl-p */
+>  	wa_14011060649(i915, wal);
+>  }
+>  =
 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 5fdb96e7d2668..0cbb79452fcf9 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -7356,7 +7356,7 @@ static void icl_init_clock_gating(struct drm_i915_p=
+rivate *dev_priv)
+>  =
 
-Participating hosts (41 -> 39)
-------------------------------
+>  static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
+>  {
+> -	/* Wa_1409120013:tgl,rkl,adl_s,dg1 */
+> +	/* Wa_1409120013:tgl,rkl,adl-s,dg1 */
+>  	if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
+>  	    IS_ALDERLAKE_S(dev_priv) || IS_DG1(dev_priv))
+>  		intel_uncore_write(&dev_priv->uncore, ILK_DPFC_CHICKEN,
+> @@ -7367,7 +7367,7 @@ static void gen12lp_init_clock_gating(struct drm_i9=
+15_private *dev_priv)
+>  		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore=
+_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
+>  			   TGL_VRH_GATING_DIS);
+>  =
 
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+> -	/* Wa_14011059788:tgl,rkl,adl_s,dg1,adl-p */
+> +	/* Wa_14011059788:tgl,rkl,adl-s,dg1,adl-p */
+>  	intel_uncore_rmw(&dev_priv->uncore, GEN10_DFR_RATIO_EN_AND_CHICKEN,
+>  			 0, DFR_DISABLE);
+>  =
 
+> -- =
 
-Build changes
--------------
+> 2.32.0
+> =
 
-  * Linux: CI_DRM_10329 -> Patchwork_20568
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  CI-20190529: 20190529
-  CI_DRM_10329: 2c76b98f510f1e4284285813024bc4cbba6a776e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20568: 4fbd5e59cb1093058dccbe32b3d37ba24a5d4219 @ git://anongit.freedesktop.org/gfx-ci/linux
+-- =
 
-
-== Linux commits ==
-
-4fbd5e59cb10 drm/i915/icl: Drop workarounds that only apply to pre-production steppings
-febbb9864d60 drm/i915/cnl: Drop all workarounds
-36d6af0814ee drm/i915/dg1: Use revid->stepping tables
-c53e1e6ba585 drm/i915/rkl: Use revid->stepping tables
-fc2b6164fa50 drm/i915/jsl_ehl: Use revid->stepping tables
-db965751e531 drm/i915/icl: Use revid->stepping tables
-c506016c4648 drm/i915/glk: Use revid->stepping tables
-2ee48fd0d6f6 drm/i915/bxt: Use revid->stepping tables
-02447a87c0cc drm/i915/kbl: Drop pre-production revision from stepping table
-f260bb283918 drm/i915/skl: Use revid->stepping tables
-023cab2a2100 drm/i915: Make pre-production detection use direct revid comparison
-602f2fe49dc0 drm/i915/step: s/<platform>_revid_tbl/<platform>_revids
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/index.html
-
---===============2483281656169303982==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Minor revid/stepping and workaround cleanup (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92299/">https://patchwork.freedesktop.org/series/92299/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10329 -&gt; Patchwork_20568</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20568 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10329/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10329/fi-ilk-650/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20568/fi-ilk-650/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10329 -&gt; Patchwork_20568</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10329: 2c76b98f510f1e4284285813024bc4cbba6a776e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20568: 4fbd5e59cb1093058dccbe32b3d37ba24a5d4219 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4fbd5e59cb10 drm/i915/icl: Drop workarounds that only apply to pre-production steppings<br />
-febbb9864d60 drm/i915/cnl: Drop all workarounds<br />
-36d6af0814ee drm/i915/dg1: Use revid-&gt;stepping tables<br />
-c53e1e6ba585 drm/i915/rkl: Use revid-&gt;stepping tables<br />
-fc2b6164fa50 drm/i915/jsl_ehl: Use revid-&gt;stepping tables<br />
-db965751e531 drm/i915/icl: Use revid-&gt;stepping tables<br />
-c506016c4648 drm/i915/glk: Use revid-&gt;stepping tables<br />
-2ee48fd0d6f6 drm/i915/bxt: Use revid-&gt;stepping tables<br />
-02447a87c0cc drm/i915/kbl: Drop pre-production revision from stepping table<br />
-f260bb283918 drm/i915/skl: Use revid-&gt;stepping tables<br />
-023cab2a2100 drm/i915: Make pre-production detection use direct revid comparison<br />
-602f2fe49dc0 drm/i915/step: s/<platform>_revid_tbl/<platform>_revids</p>
-
-</body>
-</html>
-
---===============2483281656169303982==--
-
---===============0530598304==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0530598304==--
