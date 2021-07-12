@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4C13C5FCB
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 17:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 648F33C5FF9
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 18:00:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE75589D2E;
-	Mon, 12 Jul 2021 15:51:50 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4439C89CF6;
- Mon, 12 Jul 2021 15:51:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10043"; a="189688690"
-X-IronPort-AV: E=Sophos;i="5.84,234,1620716400"; d="scan'208";a="189688690"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 08:51:46 -0700
-X-IronPort-AV: E=Sophos;i="5.84,234,1620716400"; d="scan'208";a="561785903"
-Received: from aaroncar-mobl2.ger.corp.intel.com (HELO [10.213.240.41])
- ([10.213.240.41])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 08:51:44 -0700
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20210712121719.891536-1-tvrtko.ursulin@linux.intel.com>
- <20210712121719.891536-2-tvrtko.ursulin@linux.intel.com>
- <YOxUuxLqpIDEsmMT@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <ba1a6cff-790f-a1e5-1cad-63f429b01f93@linux.intel.com>
-Date: Mon, 12 Jul 2021 16:51:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAE1C89CF6;
+	Mon, 12 Jul 2021 16:00:05 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0D59889CF6;
+ Mon, 12 Jul 2021 16:00:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EA70EA7DFC;
+ Mon, 12 Jul 2021 16:00:03 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <YOxUuxLqpIDEsmMT@phenom.ffwll.local>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915: Explicitly track DRM clients
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Mon, 12 Jul 2021 16:00:03 -0000
+Message-ID: <162610560393.23768.6080027520740180650@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210712121719.891536-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210712121719.891536-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgUGVy?=
+ =?utf-8?q?_client_engine_busyness?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,276 +38,1186 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2015072225=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEyLzA3LzIwMjEgMTU6NDIsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gT24gTW9uLCBKdWwg
-MTIsIDIwMjEgYXQgMDE6MTc6MTJQTSArMDEwMCwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4+IEZy
-b206IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4+Cj4+IFRyYWNr
-aW5nIERSTSBjbGllbnRzIG1vcmUgZXhwbGljaXRseSB3aWxsIGFsbG93IGxhdGVyIHBhdGNoZXMg
-dG8KPj4gYWNjdW11bGF0ZSBwYXN0IGFuZCBjdXJyZW50IEdQVSB1c2FnZSBpbiBhIGNlbnRyYWxp
-c2VkIHBsYWNlIGFuZCBhbHNvCj4+IGNvbnNvbGlkYXRlIGFjY2VzcyB0byBvd25pbmcgdGFzayBw
-aWQvbmFtZS4KPj4KPj4gVW5pcXVlIGNsaWVudCBpZCBpcyBhbHNvIGFzc2lnbmVkIGZvciB0aGUg
-cHVycG9zZSBvZiBkaXN0aW5ndWlzaGluZy8KPj4gY29uc29saWRhdGluZyBiZXR3ZWVuIG11bHRp
-cGxlIGZpbGUgZGVzY3JpcHRvcnMgb3duZWQgYnkgdGhlIHNhbWUgcHJvY2Vzcy4KPj4KPj4gdjI6
-Cj4+ICAgQ2hyaXMgV2lsc29uOgo+PiAgICogRW5jbG9zZSBuZXcgbWVtYmVycyBpbnRvIGRlZGlj
-YXRlZCBzdHJ1Y3RzLgo+PiAgICogUHJvdGVjdCBhZ2FpbnN0IGZhaWxlZCBzeXNmcyByZWdpc3Ry
-YXRpb24uCj4+Cj4+IHYzOgo+PiAgICogc3lzZnNfYXR0cl9pbml0Lgo+Pgo+PiB2NDoKPj4gICAq
-IEZpeCBmb3IgaW50ZXJuYWwgY2xpZW50cy4KPj4KPj4gdjU6Cj4+ICAgKiBVc2UgY3ljbGljIGlk
-YSBmb3IgY2xpZW50IGlkLiAoQ2hyaXMpCj4+ICAgKiBEbyBub3QgbGVhayBwaWQgcmVmZXJlbmNl
-LiAoQ2hyaXMpCj4+ICAgKiBUaWR5IGNvZGUgd2l0aCBzb21lIGxvY2Fscy4KPj4KPj4gdjY6Cj4+
-ICAgKiBVc2UgeGFfYWxsb2NfY3ljbGljIHRvIHNpbXBsaWZ5IGxvY2tpbmcuIChDaHJpcykKPj4g
-ICAqIE5vIG5lZWQgdG8gdW5yZWdpc3RlciBpbmRpdmlkaWFsIHN5c2ZzIGZpbGVzLiAoQ2hyaXMp
-Cj4+ICAgKiBSZWJhc2Ugb24gdG9wIG9mIGZwcml2IGtyZWYuCj4+ICAgKiBUcmFjayBjbGllbnQg
-Y2xvc2VkIHN0YXR1cyBhbmQgcmVmbGVjdCBpbiBzeXNmcy4KPj4KPj4gdjc6Cj4+ICAgKiBNYWtl
-IGRybV9jbGllbnQgbW9yZSBzdGFuZGFsb25lIGNvbmNlcHQuCj4+Cj4+IHY4Ogo+PiAgICogU2lt
-cGxpZnkgc3lzZnMgc2hvdy4gKENocmlzKQo+PiAgICogQWx3YXlzIHRyYWNrIG5hbWUgYW5kIHBp
-ZC4KPj4KPj4gdjk6Cj4+ICAgKiBGaXggY3ljbGljIGlkIGFzc2lnbm1lbnQuCj4+Cj4+IHYxMDoK
-Pj4gICAqIE5vIG5lZWQgZm9yIGEgbXV0ZXggYXJvdW5kIHhhX2FsbG9jX2N5Y2xpYy4KPj4gICAq
-IFJlZmFjdG9yIHN5c2ZzIGludG8gb3duIGZ1bmN0aW9uLgo+PiAgICogVW5yZWdpc3RlciBzeXNm
-cyBiZWZvcmUgZnJlZWluZyBwaWQgYW5kIG5hbWUuCj4+ICAgKiBNb3ZlIGNsaWVudHMgc2V0dXAg
-aW50byBvd24gZnVuY3Rpb24uCj4+Cj4+IHYxMToKPj4gICAqIENhbGwgY2xpZW50cyBpbml0IGRp
-cmVjdGx5IGZyb20gZHJpdmVyIGluaXQuIChDaHJpcykKPj4KPj4gdjEyOgo+PiAgICogRG8gbm90
-IGZhaWwgY2xpZW50IGFkZCBvbiBpZCB3cmFwLiAoTWFjaWVqKQo+Pgo+PiB2MTMgKEx1Y2FzKTog
-UmViYXNlLgo+Pgo+PiB2MTQ6Cj4+ICAgKiBEcm9wcGVkIHN5c2ZzIGJpdHMuCj4+Cj4+IFNpZ25l
-ZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4+IFJl
-dmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4gIyB2MTEK
-Pj4gUmV2aWV3ZWQtYnk6IEFyYXZpbmQgSWRkYW1zZXR0eSA8YXJhdmluZC5pZGRhbXNldHR5QGlu
-dGVsLmNvbT4gIyB2MTEKPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJp
-cy13aWxzb24uY28udWs+Cj4gCj4gT24gdGhlIGltcGxlbWVudGF0aW9uOiBJJ20gbm90IGNsZWFy
-IHdoeSB0aGlzIGlzIGEgc2VwYXJhdGUgb2JqZWN0LiBBbGwKPiB0aGF0IHNlZW1zIHRvIGFjaGll
-dmUgaXMgbWFrZSB0aGUgbGlmZXRpbSBmdW4gd2UgaGF2ZSBpbiBoZXJlIGV2ZW4gbW9yZQo+IGFu
-bm95aW5nLCBmb3Igbm90IHJlYWwgZ2Fpbj8KPiAKPiBXaGF0J3MgdGhlIHJlYXNvbnMgZm9yIHRo
-aXMgc2VwYXJhdGUgaTkxNV9kcm1fY2xpZW50IHN0cnVjdD8gVGhlIGNvbW1pdAo+IG1lc3NhZ2Ug
-dGFsa3MgYWJvdXQgZGUtZHVwaW5nIHRoZXNlIHdpdGhpbiB0aGUgc2FtZSBwcm9jZXNzLCBidXQg
-d2l0aAo+IGZkaW5mbyBJJ20gbm90IHNlZWluZyB0aGUgcmVsZXZhbmNlIG9mIHRoaXMgYW55bW9y
-ZS4KCkFGQUlSIEkgc3RhcnRlZCB3aXRoIHRoZSBuZXcgZmllbGRzIGRpcmVjdGx5IGluIGZpbGVf
-cHJpdiAobm90ZSAKZmlsZV9wcml2IHRoZW4gbmVlZGVkIHRvIGJlIGZyZWVkIHZpYSBSQ1UgZHVl
-IHN5c2ZzIGFjY2VzcyB0byBpdCEpLCBidXQgCnRoZW4gdGhlIGlkZWEgdGhlcmUgd2FzIHRvIGNv
-bnNvbGlkYXRlIG5ldyBtZW1iZXJzIGludG8gYSBzZXBhcmF0ZSBzdHJ1Y3QuCgpQbGFuIHdhcyAo
-YW5kIHN0aWxsIGlzIGluIGludGVybmFsKSB0aGF0IHRoZSBjb25jZXB0IGZvciBEUk0gY2xpZW50
-IHdpbGwgCmdhaW4gbW9yZSB1c2Vycy91c2VmdWxuZXNzIGFuZCB3b3VsZCBiZW5lZml0IGZyb20g
-ZW5jYXBzdWxhdGlvbiBmcm9tIHRoZSAKc3RhcnQuCgpGb3IgaW5zdGFuY2UgYXQgcGF0Y2ggMyBp
-biB0aGUgc2VyaWVzIGl0IGRvZXMgY29uc29saWRhdGUgaTkxNSB1c2VycyBvZiAKY3R4LT5waWQg
-dG8gZ28gdmlhIGN0eC0+Y2xpZW50IChwcm9jZXNzIG5hbWUgYXMgd2VsbCkuIFRob3NlIGFyZSBh
-c3luYyAKZW50cnkgcG9pbnRzIChjb21wYXJlZCB0byBmaWxlX3ByaXYgbGlmZXRpbWUpIGZyb20g
-ZXJyb3IgY2FwdHVyZSBhbmQgCmRlYnVnZnMuIEhtIG5vLCBkZWJ1Z2ZzIGlzIHRoZXJlIG5vIG1v
-cmUsIG9ubHkgZXJyb3IgY2FwdHVyZSByZW1haW5zLgoKQXMgeW91IHNheSBzaW5jZSB0aGUgY2hh
-bmdlIG9mIGRpcmVjdGlvbiB0byB1c2UgZmRpbmZvLCB0aGUgYXN5bmNocm9ub3VzIAplbnRyeSBw
-YXRoIGludG8gdGhvc2UgbWVtYmVycyBmcm9tIHN5c2ZzIGlzIGdvbmUuIEhlbmNlIGlmIHRoZXkg
-d2VyZSAKbW92ZWQgYmFjayB0byBmaWxlX3ByaXYsIGFuZCBhc3N1bWluZyBjdHgtPnBpZC9uYW1l
-IGNoYW5nZXMgdG8gYmUgCnVuZG9uZSwgdGhlbiBmaWxlX3ByaXYgY291bGQgcmVtYWluIGJlaW5n
-IGltbWVkaWF0ZWx5IGZyZWVkIG9uIGZpbGUgCmNsb3NlLiBPciBwZXJoYXBzIHdlIGxvc2UgZWFz
-eSBwaWQvbmFtZSB1cGRhdGUgZm9yIGZpbGVzIHBhc3NlZCBvdmVyIApzb2NrZXRzLiBJJ2QgaGF2
-ZSB0byB0aGluayBhYm91dCB0aGF0IGEgYml0IGRlZXBlci4KCkJ1dCBlc3NlbnRpYWxseSBJIHRo
-aW5rIGN0eC0+Y2xpZW50IGlzIGEgY2xlYW5lciBkZXNpZ24gdGhhdCBjdHgtPnBpZCAKYW5kIGdp
-dmVuIGVycm9yIGNhcHR1cmUgYW5kIGRlYnVnZnMgY2FuIGJlIGFzeW5jIHRvIGZpbGVfcHJpdiBs
-aWZldGltZSAKdGhhdCdzIGEgYmVuZWZpdCBmb3IgbWUuCgpXaXRoIHJlZ2FyZHMgdG8gZGUtZHVw
-aW5nIG11bHRpcGxlIGZkaW5mbyBlbnRyaWVzIHZpYSBjbGllbnQtPmlkIC0gdGhhdCAKaXMgYWN0
-dWFsbHkgdGhlIG9wcG9zaXRlIGZyb20gd2hhdCB5b3Ugc3VnZ2VzdC4gV2hlcmVhcyB3aXRoIHRo
-ZSBzeXNmcyAKYXBwcm9hY2ggd2UgaGFkIG9uZSBlbnRyeSBwZXIgY2xpZW50LCB3aXRoIGZkaW5m
-byB3ZSBoYXZlIGR1cGxpY2F0ZXMuIFNvIApjbGllbnQtPmlkIGlzIGVzc2VudGlhbCBmb3IgdXNl
-cnNwYWNlIHRvIGNvcnJlY3RseSBhY2NvdW50IHBlciBjbGllbnQgCnN0YXRpc3RpY3MuCgo+IEFs
-c28sIHdpdGggdGhlIGZkaW5mbyBhcHByb2FjaCwgd2h5IGRvIHdlIHN0aWxsIG5lZWQgdG8gZXZl
-biB0cmFjayB0aGUKPiBwaWQ/IFRoYXQgY2FuIGJlIGFsbCBmaWd1cmVkIG91dCBmcm9tIHByb2Mg
-bm93LCB3aXRoIG11Y2ggY2xlYW5lcgo+IHNlbWFudGljcy4KCk5vdCBzdXJlIHdoYXQgeW91IG1l
-YW4gaGVyZS4gQXMgZXhwbGFpbmVkIGFib3ZlIHBpZCBpcyB0cmFja2VkIGFzIApyZXBsYWNlbWVu
-dCBmb3IgY3VycmVudCBjdHgtPnBpZCB0cmFja2luZy4gU28gZm9yIHVzZXMgaW5zaWRlIGk5MTUu
-CgpBbHNvIG5vdGUgdGhhdCBldmVuIGZyb20gdXNlcnNwYWNlIHNlbWFudGljcyBvZiBnZXR0aW5n
-IHRoZSBwaWQgZnJvbSAKcHJvY2ZzIGlzIG5vdCBuZWNlc3NhcmlseSBjbGVhbiwgc2luY2UgYWN0
-dWFsbHkgdGhyZWUgZGlmZmVyZW50IGZpbGUgCmRlc2NyaXB0b3JzIG5lZWQgdG8gYmUgb3BlbiB0
-byBnZXQgdGhlIHdob2xlIHNldCBvZiBkYXRhLgoKL3Byb2MvPHBpZD4vZmRpbmZvLzxmZD4gLSBv
-YnZpb3VzbHkKL3Byb2MvPHBpZD4vZmQvPGZkPiAtIHRvIGZpbHRlciBvdXQgbm9uIGRybSBmZHMg
-YXZvaWRpbmcgdGV4dCBwYXJzaW5nIAphYm92ZSBmaWxlCi9wcm9jLzxwaWQ+L3N0YXQgLSB0byBn
-ZXQgdGhlIHBpZAoKU2luY2UgaW4gdGhlIGludGVsX2dwdV90b3AgY29udmVyc2lvbiBJIGRvIGtl
-ZXAgdGhlIC9wcm9jLzxwaWQ+IG9wZW4gYW5kIApkbyB0aGUgcmVzdCB2aWEgb3BlbmF0LCBJIGFt
-IGhvcGluZyBhdCBsZWFzdCB0aGF0J3Mgc2FmZSBhZ2FpbnQgcGlkIApzd2Fwcy4gRm9yIHRoZSBm
-aWxlIGRlc2NyaXB0b3IgY3Jvc3MgY2hlY2sgaXQgaXMgbW9yZSBxdWVzdGlvbmFibGUgYnV0IAp3
-b3JzdCBjYXNlIHRoZSBkcm0gZmQgY2hlY2sgdmlhIHN0YXQgY291bGQgYmUgZHJvcHBlZCBhbmQg
-cmVwbGFjZWQgd2l0aCAKbW9yZSBmZGluZm8gdGV4dCBwYXJzaW5nLgoKSGF2aW5nIHRoZSBwaWQg
-YW5kIHByb2Nlc3MgbmFtZSBpbiBmZGluZm8gaGVuY2UgbWFrZXMgdGhpcyBlYXNpZXIgYW5kIApw
-b3RlbnRpYWxseSBzYWZlci4gR2l2ZW4gaG93IHdlIGFscmVhZHkgc3RvcmUgY3R4LT5waWQgSSB0
-aGluayB0aGF0IApzaG91bGQgYmUgZmluZS4KCkZXSVcgSSBzdGlsbCB0aGluayB0aGUgd2hvbGUg
-YXBwcm9hY2ggaXMgYmFkIHNpbmNlIG51bWJlciBvZiBvcGVyYXRpb25zIApyZXF1aXJlZCBzY2Fs
-ZXMgd2l0aCBudW1iZXIgb2Ygbm9uIGRybSBwcm9jZXNzZXMgKGV2ZW4gdGhyZWFkcykgb24gdGhl
-IApzeXN0ZW0uCgpSZWdhcmRzLAoKVHZydGtvCgo+PiAtLS0KPj4gICBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9NYWtlZmlsZSAgICAgICAgICB8ICAgNSArLQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZHJtX2NsaWVudC5jIHwgMTEzICsrKysrKysrKysrKysrKysrKysrKysrKysKPj4gICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuaCB8ICA2MSArKysrKysrKysrKysr
-Cj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyAgICAgICAgfCAgIDYgKysKPj4g
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICB8ICAgNSArKwo+PiAgIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMgICAgICAgIHwgIDIxICsrKystCj4+ICAgNiBm
-aWxlcyBjaGFuZ2VkLCAyMDYgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKPj4gICBjcmVh
-dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50LmMKPj4g
-ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50
-LmgKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKPj4gaW5kZXggMTBiM2JiNjIwN2JhLi43ODRmOTlj
-YTExZmMgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCj4+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCj4+IEBAIC0zMyw4ICszMyw5IEBAIHN1
-YmRpci1jY2ZsYWdzLXkgKz0gLUkkKHNyY3RyZWUpLyQoc3JjKQo+PiAgICMgUGxlYXNlIGtlZXAg
-dGhlc2UgYnVpbGQgbGlzdHMgc29ydGVkIQo+PiAgIAo+PiAgICMgY29yZSBkcml2ZXIgY29kZQo+
-PiAtaTkxNS15ICs9IGk5MTVfZHJ2Lm8gXAo+PiAtCSAgaTkxNV9jb25maWcubyBcCj4+ICtpOTE1
-LXkgKz0gaTkxNV9jb25maWcubyBcCj4+ICsJICBpOTE1X2RybV9jbGllbnQubyBcCj4+ICsJICBp
-OTE1X2Rydi5vIFwKPj4gICAJICBpOTE1X2lycS5vIFwKPj4gICAJICBpOTE1X2dldHBhcmFtLm8g
-XAo+PiAgIAkgIGk5MTVfbWl0aWdhdGlvbnMubyBcCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-ZHJtX2NsaWVudC5jCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+IGluZGV4IDAwMDAwMDAwMDAw
-MC4uODMwODBkOTgzNmIwCj4+IC0tLSAvZGV2L251bGwKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcm1fY2xpZW50LmMKPj4gQEAgLTAsMCArMSwxMTMgQEAKPj4gKy8vIFNQRFgt
-TGljZW5zZS1JZGVudGlmaWVyOiBNSVQKPj4gKy8qCj4+ICsgKiBDb3B5cmlnaHQgwqkgMjAyMCBJ
-bnRlbCBDb3Jwb3JhdGlvbgo+PiArICovCj4+ICsKPj4gKyNpbmNsdWRlIDxsaW51eC9rZXJuZWwu
-aD4KPj4gKyNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4+ICsjaW5jbHVkZSA8bGludXgvdHlwZXMu
-aD4KPj4gKwo+PiArI2luY2x1ZGUgImk5MTVfZHJtX2NsaWVudC5oIgo+PiArI2luY2x1ZGUgImk5
-MTVfZ2VtLmgiCj4+ICsjaW5jbHVkZSAiaTkxNV91dGlscy5oIgo+PiArCj4+ICt2b2lkIGk5MTVf
-ZHJtX2NsaWVudHNfaW5pdChzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50cyAqY2xpZW50cywKPj4gKwkJ
-CSAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQo+PiArewo+PiArCWNsaWVudHMtPmk5
-MTUgPSBpOTE1Owo+PiArCj4+ICsJY2xpZW50cy0+bmV4dF9pZCA9IDA7Cj4+ICsJeGFfaW5pdF9m
-bGFncygmY2xpZW50cy0+eGFycmF5LCBYQV9GTEFHU19BTExPQyk7Cj4+ICt9Cj4+ICsKPj4gK3N0
-YXRpYyBpbnQKPj4gK19faTkxNV9kcm1fY2xpZW50X3JlZ2lzdGVyKHN0cnVjdCBpOTE1X2RybV9j
-bGllbnQgKmNsaWVudCwKPj4gKwkJCSAgIHN0cnVjdCB0YXNrX3N0cnVjdCAqdGFzaykKPj4gK3sK
-Pj4gKwljaGFyICpuYW1lOwo+PiArCj4+ICsJbmFtZSA9IGtzdHJkdXAodGFzay0+Y29tbSwgR0ZQ
-X0tFUk5FTCk7Cj4+ICsJaWYgKCFuYW1lKQo+PiArCQlyZXR1cm4gLUVOT01FTTsKPj4gKwo+PiAr
-CWNsaWVudC0+cGlkID0gZ2V0X3Rhc2tfcGlkKHRhc2ssIFBJRFRZUEVfUElEKTsKPj4gKwljbGll
-bnQtPm5hbWUgPSBuYW1lOwo+PiArCj4+ICsJcmV0dXJuIDA7Cj4+ICt9Cj4+ICsKPj4gK3N0YXRp
-YyB2b2lkIF9faTkxNV9kcm1fY2xpZW50X3VucmVnaXN0ZXIoc3RydWN0IGk5MTVfZHJtX2NsaWVu
-dCAqY2xpZW50KQo+PiArewo+PiArCXB1dF9waWQoZmV0Y2hfYW5kX3plcm8oJmNsaWVudC0+cGlk
-KSk7Cj4+ICsJa2ZyZWUoZmV0Y2hfYW5kX3plcm8oJmNsaWVudC0+bmFtZSkpOwo+PiArfQo+PiAr
-Cj4+ICtzdGF0aWMgdm9pZCBfX3JjdV9pOTE1X2RybV9jbGllbnRfZnJlZShzdHJ1Y3Qgd29ya19z
-dHJ1Y3QgKndyaykKPj4gK3sKPj4gKwlzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICpjbGllbnQgPQo+
-PiArCQljb250YWluZXJfb2Yod3JrLCB0eXBlb2YoKmNsaWVudCksIHJjdS53b3JrKTsKPj4gKwo+
-PiArCXhhX2VyYXNlKCZjbGllbnQtPmNsaWVudHMtPnhhcnJheSwgY2xpZW50LT5pZCk7Cj4+ICsK
-Pj4gKwlfX2k5MTVfZHJtX2NsaWVudF91bnJlZ2lzdGVyKGNsaWVudCk7Cj4+ICsKPj4gKwlrZnJl
-ZShjbGllbnQpOwo+PiArfQo+PiArCj4+ICtzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICoKPj4gK2k5
-MTVfZHJtX2NsaWVudF9hZGQoc3RydWN0IGk5MTVfZHJtX2NsaWVudHMgKmNsaWVudHMsIHN0cnVj
-dCB0YXNrX3N0cnVjdCAqdGFzaykKPj4gK3sKPj4gKwlzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICpj
-bGllbnQ7Cj4+ICsJaW50IHJldDsKPj4gKwo+PiArCWNsaWVudCA9IGt6YWxsb2Moc2l6ZW9mKCpj
-bGllbnQpLCBHRlBfS0VSTkVMKTsKPj4gKwlpZiAoIWNsaWVudCkKPj4gKwkJcmV0dXJuIEVSUl9Q
-VFIoLUVOT01FTSk7Cj4+ICsKPj4gKwlrcmVmX2luaXQoJmNsaWVudC0+a3JlZik7Cj4+ICsJY2xp
-ZW50LT5jbGllbnRzID0gY2xpZW50czsKPj4gKwlJTklUX1JDVV9XT1JLKCZjbGllbnQtPnJjdSwg
-X19yY3VfaTkxNV9kcm1fY2xpZW50X2ZyZWUpOwo+PiArCj4+ICsJcmV0ID0geGFfYWxsb2NfY3lj
-bGljKCZjbGllbnRzLT54YXJyYXksICZjbGllbnQtPmlkLCBjbGllbnQsCj4+ICsJCQkgICAgICB4
-YV9saW1pdF8zMmIsICZjbGllbnRzLT5uZXh0X2lkLCBHRlBfS0VSTkVMKTsKPj4gKwlpZiAocmV0
-IDwgMCkKPj4gKwkJZ290byBlcnJfaWQ7Cj4+ICsKPj4gKwlyZXQgPSBfX2k5MTVfZHJtX2NsaWVu
-dF9yZWdpc3RlcihjbGllbnQsIHRhc2spOwo+PiArCWlmIChyZXQpCj4+ICsJCWdvdG8gZXJyX3Jl
-Z2lzdGVyOwo+PiArCj4+ICsJcmV0dXJuIGNsaWVudDsKPj4gKwo+PiArZXJyX3JlZ2lzdGVyOgo+
-PiArCXhhX2VyYXNlKCZjbGllbnRzLT54YXJyYXksIGNsaWVudC0+aWQpOwo+PiArZXJyX2lkOgo+
-PiArCWtmcmVlKGNsaWVudCk7Cj4+ICsKPj4gKwlyZXR1cm4gRVJSX1BUUihyZXQpOwo+PiArfQo+
-PiArCj4+ICt2b2lkIF9faTkxNV9kcm1fY2xpZW50X2ZyZWUoc3RydWN0IGtyZWYgKmtyZWYpCj4+
-ICt7Cj4+ICsJc3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50ID0KPj4gKwkJY29udGFpbmVy
-X29mKGtyZWYsIHR5cGVvZigqY2xpZW50KSwga3JlZik7Cj4+ICsKPj4gKwlxdWV1ZV9yY3Vfd29y
-ayhzeXN0ZW1fd3EsICZjbGllbnQtPnJjdSk7Cj4+ICt9Cj4+ICsKPj4gK3ZvaWQgaTkxNV9kcm1f
-Y2xpZW50X2Nsb3NlKHN0cnVjdCBpOTE1X2RybV9jbGllbnQgKmNsaWVudCkKPj4gK3sKPj4gKwlH
-RU1fQlVHX09OKFJFQURfT05DRShjbGllbnQtPmNsb3NlZCkpOwo+PiArCVdSSVRFX09OQ0UoY2xp
-ZW50LT5jbG9zZWQsIHRydWUpOwo+PiArCWk5MTVfZHJtX2NsaWVudF9wdXQoY2xpZW50KTsKPj4g
-K30KPj4gKwo+PiArdm9pZCBpOTE1X2RybV9jbGllbnRzX2Zpbmkoc3RydWN0IGk5MTVfZHJtX2Ns
-aWVudHMgKmNsaWVudHMpCj4+ICt7Cj4+ICsJd2hpbGUgKCF4YV9lbXB0eSgmY2xpZW50cy0+eGFy
-cmF5KSkgewo+PiArCQlyY3VfYmFycmllcigpOwo+PiArCQlmbHVzaF93b3JrcXVldWUoc3lzdGVt
-X3dxKTsKPj4gKwl9Cj4+ICsKPj4gKwl4YV9kZXN0cm95KCZjbGllbnRzLT54YXJyYXkpOwo+PiAr
-fQo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50Lmgg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuaAo+PiBuZXcgZmlsZSBtb2Rl
-IDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjM5NmYxZTMzNmIzZgo+PiAtLS0gL2Rldi9u
-dWxsCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oCj4+IEBA
-IC0wLDAgKzEsNjEgQEAKPj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KPj4g
-Ky8qCj4+ICsgKiBDb3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbgo+PiArICovCj4+
-ICsKPj4gKyNpZm5kZWYgX19JOTE1X0RSTV9DTElFTlRfSF9fCj4+ICsjZGVmaW5lIF9fSTkxNV9E
-Uk1fQ0xJRU5UX0hfXwo+PiArCj4+ICsjaW5jbHVkZSA8bGludXgva3JlZi5oPgo+PiArI2luY2x1
-ZGUgPGxpbnV4L3BpZC5oPgo+PiArI2luY2x1ZGUgPGxpbnV4L3JjdXBkYXRlLmg+Cj4+ICsjaW5j
-bHVkZSA8bGludXgvc2NoZWQuaD4KPj4gKyNpbmNsdWRlIDxsaW51eC94YXJyYXkuaD4KPj4gKwo+
-PiArc3RydWN0IGRybV9pOTE1X3ByaXZhdGU7Cj4+ICsKPj4gK3N0cnVjdCBpOTE1X2RybV9jbGll
-bnRzIHsKPj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNTsKPj4gKwo+PiArCXN0cnVj
-dCB4YXJyYXkgeGFycmF5Owo+PiArCXUzMiBuZXh0X2lkOwo+PiArfTsKPj4gKwo+PiArc3RydWN0
-IGk5MTVfZHJtX2NsaWVudCB7Cj4+ICsJc3RydWN0IGtyZWYga3JlZjsKPj4gKwo+PiArCXN0cnVj
-dCByY3Vfd29yayByY3U7Cj4+ICsKPj4gKwl1bnNpZ25lZCBpbnQgaWQ7Cj4+ICsJc3RydWN0IHBp
-ZCAqcGlkOwo+PiArCWNoYXIgKm5hbWU7Cj4+ICsJYm9vbCBjbG9zZWQ7Cj4+ICsKPj4gKwlzdHJ1
-Y3QgaTkxNV9kcm1fY2xpZW50cyAqY2xpZW50czsKPj4gK307Cj4+ICsKPj4gK3ZvaWQgaTkxNV9k
-cm1fY2xpZW50c19pbml0KHN0cnVjdCBpOTE1X2RybV9jbGllbnRzICpjbGllbnRzLAo+PiArCQkJ
-ICAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpOwo+PiArCj4+ICtzdGF0aWMgaW5saW5l
-IHN0cnVjdCBpOTE1X2RybV9jbGllbnQgKgo+PiAraTkxNV9kcm1fY2xpZW50X2dldChzdHJ1Y3Qg
-aTkxNV9kcm1fY2xpZW50ICpjbGllbnQpCj4+ICt7Cj4+ICsJa3JlZl9nZXQoJmNsaWVudC0+a3Jl
-Zik7Cj4+ICsJcmV0dXJuIGNsaWVudDsKPj4gK30KPj4gKwo+PiArdm9pZCBfX2k5MTVfZHJtX2Ns
-aWVudF9mcmVlKHN0cnVjdCBrcmVmICprcmVmKTsKPj4gKwo+PiArc3RhdGljIGlubGluZSB2b2lk
-IGk5MTVfZHJtX2NsaWVudF9wdXQoc3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50KQo+PiAr
-ewo+PiArCWtyZWZfcHV0KCZjbGllbnQtPmtyZWYsIF9faTkxNV9kcm1fY2xpZW50X2ZyZWUpOwo+
-PiArfQo+PiArCj4+ICt2b2lkIGk5MTVfZHJtX2NsaWVudF9jbG9zZShzdHJ1Y3QgaTkxNV9kcm1f
-Y2xpZW50ICpjbGllbnQpOwo+PiArCj4+ICtzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICppOTE1X2Ry
-bV9jbGllbnRfYWRkKHN0cnVjdCBpOTE1X2RybV9jbGllbnRzICpjbGllbnRzLAo+PiArCQkJCQkg
-ICAgc3RydWN0IHRhc2tfc3RydWN0ICp0YXNrKTsKPj4gKwo+PiArdm9pZCBpOTE1X2RybV9jbGll
-bnRzX2Zpbmkoc3RydWN0IGk5MTVfZHJtX2NsaWVudHMgKmNsaWVudHMpOwo+PiArCj4+ICsjZW5k
-aWYgLyogIV9fSTkxNV9EUk1fQ0xJRU5UX0hfXyAqLwo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMK
-Pj4gaW5kZXggMzBkOGNkOGM2OWIxLi44MjQ3ZGNjNzU4NmUgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9kcnYuYwo+PiBAQCAtNjgsNiArNjgsNyBAQAo+PiAgICNpbmNsdWRlICJndC9pbnRlbF9y
-YzYuaCIKPj4gICAKPj4gICAjaW5jbHVkZSAiaTkxNV9kZWJ1Z2ZzLmgiCj4+ICsjaW5jbHVkZSAi
-aTkxNV9kcm1fY2xpZW50LmgiCj4+ICAgI2luY2x1ZGUgImk5MTVfZHJ2LmgiCj4+ICAgI2luY2x1
-ZGUgImk5MTVfaW9jMzIuaCIKPj4gICAjaW5jbHVkZSAiaTkxNV9pcnEuaCIKPj4gQEAgLTM0Myw2
-ICszNDQsOCBAQCBzdGF0aWMgaW50IGk5MTVfZHJpdmVyX2Vhcmx5X3Byb2JlKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdikKPj4gICAKPj4gICAJaW50ZWxfZ3RfaW5pdF9lYXJseSgm
-ZGV2X3ByaXYtPmd0LCBkZXZfcHJpdik7Cj4+ICAgCj4+ICsJaTkxNV9kcm1fY2xpZW50c19pbml0
-KCZkZXZfcHJpdi0+Y2xpZW50cywgZGV2X3ByaXYpOwo+PiArCj4+ICAgCWk5MTVfZ2VtX2luaXRf
-ZWFybHkoZGV2X3ByaXYpOwo+PiAgIAo+PiAgIAkvKiBUaGlzIG11c3QgYmUgY2FsbGVkIGJlZm9y
-ZSBhbnkgY2FsbHMgdG8gSEFTX1BDSF8qICovCj4+IEBAIC0zNjIsNiArMzY1LDcgQEAgc3RhdGlj
-IGludCBpOTE1X2RyaXZlcl9lYXJseV9wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYpCj4+ICAgCj4+ICAgZXJyX2dlbToKPj4gICAJaTkxNV9nZW1fY2xlYW51cF9lYXJseShk
-ZXZfcHJpdik7Cj4+ICsJaTkxNV9kcm1fY2xpZW50c19maW5pKCZkZXZfcHJpdi0+Y2xpZW50cyk7
-Cj4+ICAgCWludGVsX2d0X2RyaXZlcl9sYXRlX3JlbGVhc2UoJmRldl9wcml2LT5ndCk7Cj4+ICAg
-CWludGVsX3JlZ2lvbl90dG1fZGV2aWNlX2ZpbmkoZGV2X3ByaXYpOwo+PiAgIGVycl90dG06Cj4+
-IEBAIC0zODEsNiArMzg1LDcgQEAgc3RhdGljIHZvaWQgaTkxNV9kcml2ZXJfbGF0ZV9yZWxlYXNl
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPj4gICAJaW50ZWxfaXJxX2Zpbmko
-ZGV2X3ByaXYpOwo+PiAgIAlpbnRlbF9wb3dlcl9kb21haW5zX2NsZWFudXAoZGV2X3ByaXYpOwo+
-PiAgIAlpOTE1X2dlbV9jbGVhbnVwX2Vhcmx5KGRldl9wcml2KTsKPj4gKwlpOTE1X2RybV9jbGll
-bnRzX2ZpbmkoJmRldl9wcml2LT5jbGllbnRzKTsKPj4gICAJaW50ZWxfZ3RfZHJpdmVyX2xhdGVf
-cmVsZWFzZSgmZGV2X3ByaXYtPmd0KTsKPj4gICAJaW50ZWxfcmVnaW9uX3R0bV9kZXZpY2VfZmlu
-aShkZXZfcHJpdik7Cj4+ICAgCXZsdl9zdXNwZW5kX2NsZWFudXAoZGV2X3ByaXYpOwo+PiBAQCAt
-OTk2LDYgKzEwMDEsNyBAQCBzdGF0aWMgdm9pZCBpOTE1X2RyaXZlcl9wb3N0Y2xvc2Uoc3RydWN0
-IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9maWxlICpmaWxlKQo+PiAgIAlzdHJ1Y3QgZHJt
-X2k5MTVfZmlsZV9wcml2YXRlICpmaWxlX3ByaXYgPSBmaWxlLT5kcml2ZXJfcHJpdjsKPj4gICAK
-Pj4gICAJaTkxNV9nZW1fY29udGV4dF9jbG9zZShmaWxlKTsKPj4gKwlpOTE1X2RybV9jbGllbnRf
-Y2xvc2UoZmlsZV9wcml2LT5jbGllbnQpOwo+PiAgIAo+PiAgIAlrZnJlZV9yY3UoZmlsZV9wcml2
-LCByY3UpOwo+PiAgIAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKPj4gaW5kZXggYzQ3NDdmNDQw
-N2VmLi4zMzhkMzg0YzMxZWIgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfZHJ2LmgKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+PiBAQCAt
-OTYsNiArOTYsNyBAQAo+PiAgICNpbmNsdWRlICJpbnRlbF93YWtlcmVmLmgiCj4+ICAgI2luY2x1
-ZGUgImludGVsX3dvcGNtLmgiCj4+ICAgCj4+ICsjaW5jbHVkZSAiaTkxNV9kcm1fY2xpZW50Lmgi
-Cj4+ICAgI2luY2x1ZGUgImk5MTVfZ2VtLmgiCj4+ICAgI2luY2x1ZGUgImk5MTVfZ2VtX2d0dC5o
-Igo+PiAgICNpbmNsdWRlICJpOTE1X2dwdV9lcnJvci5oIgo+PiBAQCAtMjg0LDYgKzI4NSw4IEBA
-IHN0cnVjdCBkcm1faTkxNV9maWxlX3ByaXZhdGUgewo+PiAgIAkvKiogYmFuX3Njb3JlOiBBY2N1
-bXVsYXRlZCBzY29yZSBvZiBhbGwgY3R4IGJhbnMgYW5kIGZhc3QgaGFuZ3MuICovCj4+ICAgCWF0
-b21pY190IGJhbl9zY29yZTsKPj4gICAJdW5zaWduZWQgbG9uZyBoYW5nX3RpbWVzdGFtcDsKPj4g
-Kwo+PiArCXN0cnVjdCBpOTE1X2RybV9jbGllbnQgKmNsaWVudDsKPj4gICB9Owo+PiAgIAo+PiAg
-IC8qIEludGVyZmFjZSBoaXN0b3J5Ogo+PiBAQCAtMTIxOCw2ICsxMjIxLDggQEAgc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgewo+PiAgIAo+PiAgIAlzdHJ1Y3QgaTkxNV9wbXUgcG11Owo+PiAgIAo+
-PiArCXN0cnVjdCBpOTE1X2RybV9jbGllbnRzIGNsaWVudHM7Cj4+ICsKPj4gICAJc3RydWN0IGk5
-MTVfaGRjcF9jb21wX21hc3RlciAqaGRjcF9tYXN0ZXI7Cj4+ICAgCWJvb2wgaGRjcF9jb21wX2Fk
-ZGVkOwo+PiAgIAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0u
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMKPj4gaW5kZXggNTkwZWZjOGIwMjY1
-Li5lYTZjODhhOTllZDIgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-Z2VtLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYwo+PiBAQCAtMTE3
-OSwyNSArMTE3OSw0MCBAQCB2b2lkIGk5MTVfZ2VtX2NsZWFudXBfZWFybHkoc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmRldl9wcml2KQo+PiAgIGludCBpOTE1X2dlbV9vcGVuKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICppOTE1LCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUpCj4+ICAgewo+PiAgIAlz
-dHJ1Y3QgZHJtX2k5MTVfZmlsZV9wcml2YXRlICpmaWxlX3ByaXY7Cj4+IC0JaW50IHJldDsKPj4g
-KwlzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICpjbGllbnQ7Cj4+ICsJaW50IHJldCA9IC1FTk9NRU07
-Cj4+ICAgCj4+ICAgCURSTV9ERUJVRygiXG4iKTsKPj4gICAKPj4gICAJZmlsZV9wcml2ID0ga3ph
-bGxvYyhzaXplb2YoKmZpbGVfcHJpdiksIEdGUF9LRVJORUwpOwo+PiAgIAlpZiAoIWZpbGVfcHJp
-dikKPj4gLQkJcmV0dXJuIC1FTk9NRU07Cj4+ICsJCWdvdG8gZXJyX2FsbG9jOwo+PiArCj4+ICsJ
-Y2xpZW50ID0gaTkxNV9kcm1fY2xpZW50X2FkZCgmaTkxNS0+Y2xpZW50cywgY3VycmVudCk7Cj4+
-ICsJaWYgKElTX0VSUihjbGllbnQpKSB7Cj4+ICsJCXJldCA9IFBUUl9FUlIoY2xpZW50KTsKPj4g
-KwkJZ290byBlcnJfY2xpZW50Owo+PiArCX0KPj4gICAKPj4gICAJZmlsZS0+ZHJpdmVyX3ByaXYg
-PSBmaWxlX3ByaXY7Cj4+ICAgCWZpbGVfcHJpdi0+ZGV2X3ByaXYgPSBpOTE1Owo+PiAgIAlmaWxl
-X3ByaXYtPmZpbGUgPSBmaWxlOwo+PiArCWZpbGVfcHJpdi0+Y2xpZW50ID0gY2xpZW50Owo+PiAg
-IAo+PiAgIAlmaWxlX3ByaXYtPmJzZF9lbmdpbmUgPSAtMTsKPj4gICAJZmlsZV9wcml2LT5oYW5n
-X3RpbWVzdGFtcCA9IGppZmZpZXM7Cj4+ICAgCj4+ICAgCXJldCA9IGk5MTVfZ2VtX2NvbnRleHRf
-b3BlbihpOTE1LCBmaWxlKTsKPj4gICAJaWYgKHJldCkKPj4gLQkJa2ZyZWUoZmlsZV9wcml2KTsK
-Pj4gKwkJZ290byBlcnJfY29udGV4dDsKPj4gKwo+PiArCXJldHVybiAwOwo+PiAgIAo+PiArZXJy
-X2NvbnRleHQ6Cj4+ICsJaTkxNV9kcm1fY2xpZW50X2Nsb3NlKGNsaWVudCk7Cj4+ICtlcnJfY2xp
-ZW50Ogo+PiArCWtmcmVlKGZpbGVfcHJpdik7Cj4+ICtlcnJfYWxsb2M6Cj4+ICAgCXJldHVybiBy
-ZXQ7Cj4+ICAgfQo+PiAgIAo+PiAtLSAKPj4gMi4zMC4yCj4+Cj4gCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============2015072225==
+Content-Type: multipart/alternative;
+ boundary="===============2344587231192578819=="
+
+--===============2344587231192578819==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Per client engine busyness
+URL   : https://patchwork.freedesktop.org/series/92435/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10333_full -> Patchwork_20573_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20573_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20573_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20573_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_big_fb@y-tiled-64bpp-rotate-0:
+    - shard-glk:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk9/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk3/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_ccs:
+    - {shard-rkl}:        [FAIL][3] ([i915#3678]) -> [SKIP][4] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_ccs.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_ccs.html
+
+  * igt@kms_dither@fb-8bpc-vs-panel-6bpc:
+    - {shard-rkl}:        NOTRUN -> [SKIP][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-1/igt@kms_dither@fb-8bpc-vs-panel-6bpc.html
+
+  
+
+### Piglit changes ###
+
+#### Possible regressions ####
+
+  * spec@arb_texture_cube_map_array@arb_texture_cube_map_array-fbo-cubemap-array (NEW):
+    - pig-glk-j5005:      NOTRUN -> [INCOMPLETE][6]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/pig-glk-j5005/spec@arb_texture_cube_map_array@arb_texture_cube_map_array-fbo-cubemap-array.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_10333_full and Patchwork_20573_full:
+
+### New Piglit tests (1) ###
+
+  * spec@arb_texture_cube_map_array@arb_texture_cube_map_array-fbo-cubemap-array:
+    - Statuses : 1 incomplete(s)
+    - Exec time: [0.0] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20573_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_persistence@idempotent:
+    - shard-snb:          NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#1099]) +5 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb7/igt@gem_ctx_persistence@idempotent.html
+
+  * igt@gem_eio@unwedge-stress:
+    - shard-snb:          NOTRUN -> [FAIL][8] ([i915#3354])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb7/igt@gem_eio@unwedge-stress.html
+
+  * igt@gem_exec_fair@basic-deadline:
+    - shard-glk:          [PASS][9] -> [FAIL][10] ([i915#2846])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk1/igt@gem_exec_fair@basic-deadline.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk2/igt@gem_exec_fair@basic-deadline.html
+
+  * igt@gem_exec_fair@basic-none-share@rcs0:
+    - shard-iclb:         NOTRUN -> [FAIL][11] ([i915#2842])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb4/igt@gem_exec_fair@basic-none-share@rcs0.html
+    - shard-tglb:         [PASS][12] -> [FAIL][13] ([i915#2842]) +1 similar issue
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-tglb2/igt@gem_exec_fair@basic-none-share@rcs0.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb1/igt@gem_exec_fair@basic-none-share@rcs0.html
+
+  * igt@gem_exec_fair@basic-none-vip@rcs0:
+    - shard-tglb:         NOTRUN -> [FAIL][14] ([i915#2842])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@gem_exec_fair@basic-none-vip@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace-solo@rcs0:
+    - shard-glk:          [PASS][15] -> [FAIL][16] ([i915#2842])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk4/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk1/igt@gem_exec_fair@basic-pace-solo@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace@vcs0:
+    - shard-kbl:          [PASS][17] -> [FAIL][18] ([i915#2842])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-kbl3/igt@gem_exec_fair@basic-pace@vcs0.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl2/igt@gem_exec_fair@basic-pace@vcs0.html
+
+  * igt@gem_exec_whisper@basic-fds-priority:
+    - shard-iclb:         [PASS][19] -> [INCOMPLETE][20] ([i915#1394])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-iclb6/igt@gem_exec_whisper@basic-fds-priority.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb5/igt@gem_exec_whisper@basic-fds-priority.html
+
+  * igt@gem_mmap_gtt@cpuset-big-copy-xy:
+    - shard-glk:          [PASS][21] -> [FAIL][22] ([i915#307])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk7/igt@gem_mmap_gtt@cpuset-big-copy-xy.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk9/igt@gem_mmap_gtt@cpuset-big-copy-xy.html
+
+  * igt@gem_render_copy@x-tiled-to-vebox-yf-tiled:
+    - shard-kbl:          NOTRUN -> [SKIP][23] ([fdo#109271]) +101 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl3/igt@gem_render_copy@x-tiled-to-vebox-yf-tiled.html
+
+  * igt@gem_render_copy@yf-tiled-to-vebox-yf-tiled:
+    - shard-iclb:         NOTRUN -> [SKIP][24] ([i915#768])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@gem_render_copy@yf-tiled-to-vebox-yf-tiled.html
+
+  * igt@gem_userptr_blits@access-control:
+    - shard-tglb:         NOTRUN -> [SKIP][25] ([i915#3297])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@gem_userptr_blits@access-control.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-glk:          [PASS][26] -> [DMESG-WARN][27] ([i915#1436] / [i915#716])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk3/igt@gen9_exec_parse@allowed-all.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk8/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@gen9_exec_parse@basic-rejected-ctx-param:
+    - shard-tglb:         NOTRUN -> [SKIP][28] ([fdo#112306])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@gen9_exec_parse@basic-rejected-ctx-param.html
+
+  * igt@gen9_exec_parse@batch-without-end:
+    - shard-iclb:         NOTRUN -> [SKIP][29] ([fdo#112306]) +1 similar issue
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@gen9_exec_parse@batch-without-end.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-skl:          NOTRUN -> [FAIL][30] ([i915#454])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@i915_pm_rc6_residency@rc6-fence:
+    - shard-iclb:         NOTRUN -> [WARN][31] ([i915#2684])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@i915_pm_rc6_residency@rc6-fence.html
+
+  * igt@kms_big_fb@linear-16bpp-rotate-270:
+    - shard-tglb:         NOTRUN -> [SKIP][32] ([fdo#111614])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_big_fb@linear-16bpp-rotate-270.html
+
+  * igt@kms_big_fb@x-tiled-32bpp-rotate-180:
+    - shard-glk:          [PASS][33] -> [DMESG-WARN][34] ([i915#118] / [i915#95])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk1/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk1/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html
+
+  * igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip:
+    - shard-skl:          NOTRUN -> [FAIL][35] ([i915#3722])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html
+
+  * igt@kms_big_fb@yf-tiled-addfb-size-offset-overflow:
+    - shard-tglb:         NOTRUN -> [SKIP][36] ([fdo#111615]) +1 similar issue
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_big_fb@yf-tiled-addfb-size-offset-overflow.html
+
+  * igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0:
+    - shard-apl:          NOTRUN -> [SKIP][37] ([fdo#109271]) +149 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0.html
+
+  * igt@kms_ccs@pipe-a-missing-ccs-buffer-y_tiled_ccs:
+    - shard-tglb:         NOTRUN -> [SKIP][38] ([i915#3689]) +4 similar issues
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_ccs@pipe-a-missing-ccs-buffer-y_tiled_ccs.html
+
+  * igt@kms_ccs@pipe-c-bad-rotation-90-y_tiled_gen12_rc_ccs_cc:
+    - shard-skl:          NOTRUN -> [SKIP][39] ([fdo#109271]) +101 similar issues
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_ccs@pipe-c-bad-rotation-90-y_tiled_gen12_rc_ccs_cc.html
+
+  * igt@kms_chamelium@hdmi-hpd-storm:
+    - shard-kbl:          NOTRUN -> [SKIP][40] ([fdo#109271] / [fdo#111827]) +13 similar issues
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl7/igt@kms_chamelium@hdmi-hpd-storm.html
+
+  * igt@kms_chamelium@vga-hpd-without-ddc:
+    - shard-iclb:         NOTRUN -> [SKIP][41] ([fdo#109284] / [fdo#111827]) +1 similar issue
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb4/igt@kms_chamelium@vga-hpd-without-ddc.html
+
+  * igt@kms_color_chamelium@pipe-a-ctm-blue-to-red:
+    - shard-snb:          NOTRUN -> [SKIP][42] ([fdo#109271] / [fdo#111827]) +17 similar issues
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb7/igt@kms_color_chamelium@pipe-a-ctm-blue-to-red.html
+
+  * igt@kms_color_chamelium@pipe-d-ctm-0-25:
+    - shard-skl:          NOTRUN -> [SKIP][43] ([fdo#109271] / [fdo#111827]) +11 similar issues
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl8/igt@kms_color_chamelium@pipe-d-ctm-0-25.html
+    - shard-apl:          NOTRUN -> [SKIP][44] ([fdo#109271] / [fdo#111827]) +9 similar issues
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_color_chamelium@pipe-d-ctm-0-25.html
+
+  * igt@kms_color_chamelium@pipe-d-ctm-blue-to-red:
+    - shard-glk:          NOTRUN -> [SKIP][45] ([fdo#109271] / [fdo#111827]) +1 similar issue
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk6/igt@kms_color_chamelium@pipe-d-ctm-blue-to-red.html
+    - shard-iclb:         NOTRUN -> [SKIP][46] ([fdo#109278] / [fdo#109284] / [fdo#111827])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_color_chamelium@pipe-d-ctm-blue-to-red.html
+
+  * igt@kms_color_chamelium@pipe-d-ctm-max:
+    - shard-tglb:         NOTRUN -> [SKIP][47] ([fdo#109284] / [fdo#111827]) +5 similar issues
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_color_chamelium@pipe-d-ctm-max.html
+
+  * igt@kms_content_protection@atomic:
+    - shard-kbl:          NOTRUN -> [TIMEOUT][48] ([i915#1319]) +1 similar issue
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl6/igt@kms_content_protection@atomic.html
+    - shard-iclb:         NOTRUN -> [SKIP][49] ([fdo#109300] / [fdo#111066])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_content_protection@atomic.html
+
+  * igt@kms_content_protection@lic:
+    - shard-apl:          NOTRUN -> [TIMEOUT][50] ([i915#1319]) +1 similar issue
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@kms_content_protection@lic.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen:
+    - shard-skl:          [PASS][51] -> [FAIL][52] ([i915#3444]) +1 similar issue
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl7/igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-32x32-sliding:
+    - shard-tglb:         NOTRUN -> [SKIP][53] ([i915#3319])
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_cursor_crc@pipe-a-cursor-32x32-sliding.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-128x128-random:
+    - shard-skl:          NOTRUN -> [FAIL][54] ([i915#3444])
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-512x512-offscreen:
+    - shard-tglb:         NOTRUN -> [SKIP][55] ([fdo#109279] / [i915#3359])
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_cursor_crc@pipe-b-cursor-512x512-offscreen.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-512x512-random:
+    - shard-iclb:         NOTRUN -> [SKIP][56] ([fdo#109278] / [fdo#109279])
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_cursor_crc@pipe-c-cursor-512x512-random.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-max-size-onscreen:
+    - shard-tglb:         NOTRUN -> [SKIP][57] ([i915#3359]) +2 similar issues
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_cursor_crc@pipe-c-cursor-max-size-onscreen.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-kbl:          [PASS][58] -> [DMESG-WARN][59] ([i915#180]) +2 similar issues
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-kbl4/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+    - shard-apl:          NOTRUN -> [DMESG-WARN][60] ([i915#180])
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl3/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * igt@kms_cursor_crc@pipe-d-cursor-dpms:
+    - shard-iclb:         NOTRUN -> [SKIP][61] ([fdo#109278]) +8 similar issues
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_cursor_crc@pipe-d-cursor-dpms.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - shard-skl:          [PASS][62] -> [FAIL][63] ([i915#2346])
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl8/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl4/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_flip@2x-flip-vs-absolute-wf_vblank-interruptible:
+    - shard-tglb:         NOTRUN -> [SKIP][64] ([fdo#111825]) +12 similar issues
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_flip@2x-flip-vs-absolute-wf_vblank-interruptible.html
+
+  * igt@kms_flip@flip-vs-blocking-wf-vblank@b-edp1:
+    - shard-skl:          [PASS][65] -> [FAIL][66] ([i915#2122])
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl2/igt@kms_flip@flip-vs-blocking-wf-vblank@b-edp1.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl2/igt@kms_flip@flip-vs-blocking-wf-vblank@b-edp1.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1:
+    - shard-glk:          [PASS][67] -> [FAIL][68] ([i915#79])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk6/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk7/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:
+    - shard-skl:          [PASS][69] -> [FAIL][70] ([i915#79])
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl7/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html
+
+  * igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile:
+    - shard-snb:          NOTRUN -> [SKIP][71] ([fdo#109271]) +351 similar issues
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb6/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile.html
+
+  * igt@kms_flip_tiling@flip-changes-tiling-yf@edp-1-pipe-a:
+    - shard-skl:          [PASS][72] -> [FAIL][73] ([i915#699])
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@kms_flip_tiling@flip-changes-tiling-yf@edp-1-pipe-a.html
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl7/igt@kms_flip_tiling@flip-changes-tiling-yf@edp-1-pipe-a.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-2p-pri-indfb-multidraw:
+    - shard-glk:          NOTRUN -> [SKIP][74] ([fdo#109271]) +12 similar issues
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk6/igt@kms_frontbuffer_tracking@fbcpsr-2p-pri-indfb-multidraw.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-2p-shrfb-fliptrack-mmap-gtt:
+    - shard-iclb:         NOTRUN -> [SKIP][75] ([fdo#109280]) +5 similar issues
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb4/igt@kms_frontbuffer_tracking@fbcpsr-2p-shrfb-fliptrack-mmap-gtt.html
+
+  * igt@kms_frontbuffer_tracking@psr-rgb101010-draw-render:
+    - shard-skl:          [PASS][76] -> [FAIL][77] ([i915#49])
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-render.html
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl7/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-render.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][78] -> [FAIL][79] ([i915#1188])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl6/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence:
+    - shard-apl:          NOTRUN -> [SKIP][80] ([fdo#109271] / [i915#533])
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb:
+    - shard-apl:          NOTRUN -> [FAIL][81] ([fdo#108145] / [i915#265]) +1 similar issue
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-alpha-7efc:
+    - shard-kbl:          NOTRUN -> [FAIL][82] ([fdo#108145] / [i915#265]) +1 similar issue
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl1/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
+    - shard-skl:          NOTRUN -> [FAIL][83] ([fdo#108145] / [i915#265])
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
+
+  * igt@kms_plane_lowres@pipe-d-tiling-yf:
+    - shard-tglb:         NOTRUN -> [SKIP][84] ([fdo#112054]) +1 similar issue
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_plane_lowres@pipe-d-tiling-yf.html
+
+  * igt@kms_plane_scaling@2x-scaler-multi-pipe:
+    - shard-iclb:         NOTRUN -> [SKIP][85] ([fdo#109274])
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb3/igt@kms_plane_scaling@2x-scaler-multi-pipe.html
+
+  * igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping:
+    - shard-apl:          NOTRUN -> [SKIP][86] ([fdo#109271] / [i915#2733])
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping.html
+    - shard-skl:          NOTRUN -> [SKIP][87] ([fdo#109271] / [i915#2733])
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl8/igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping.html
+
+  * igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1:
+    - shard-kbl:          NOTRUN -> [SKIP][88] ([fdo#109271] / [i915#658]) +2 similar issues
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl6/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1.html
+    - shard-iclb:         NOTRUN -> [SKIP][89] ([i915#658])
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1.html
+    - shard-glk:          NOTRUN -> [SKIP][90] ([fdo#109271] / [i915#658])
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk6/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1.html
+
+  * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1:
+    - shard-skl:          NOTRUN -> [SKIP][91] ([fdo#109271] / [i915#658])
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1.html
+
+  * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1:
+    - shard-apl:          NOTRUN -> [SKIP][92] ([fdo#109271] / [i915#658])
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1.html
+
+  * igt@kms_psr@psr2_primary_mmap_cpu:
+    - shard-iclb:         NOTRUN -> [SKIP][93] ([fdo#109441])
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_psr@psr2_primary_mmap_cpu.html
+
+  * igt@kms_psr@psr2_sprite_mmap_cpu:
+    - shard-tglb:         NOTRUN -> [FAIL][94] ([i915#132] / [i915#3467])
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_psr@psr2_sprite_mmap_cpu.html
+
+  * igt@kms_psr@psr2_sprite_plane_move:
+    - shard-iclb:         [PASS][95] -> [SKIP][96] ([fdo#109441]) +1 similar issue
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_psr@psr2_sprite_plane_move.html
+
+  * igt@kms_vblank@pipe-d-wait-idle:
+    - shard-kbl:          NOTRUN -> [SKIP][97] ([fdo#109271] / [i915#533])
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl3/igt@kms_vblank@pipe-d-wait-idle.html
+
+  * igt@nouveau_crc@pipe-b-source-outp-complete:
+    - shard-tglb:         NOTRUN -> [SKIP][98] ([i915#2530])
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@nouveau_crc@pipe-b-source-outp-complete.html
+
+  * igt@nouveau_crc@pipe-c-ctx-flip-detection:
+    - shard-iclb:         NOTRUN -> [SKIP][99] ([i915#2530])
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@nouveau_crc@pipe-c-ctx-flip-detection.html
+
+  * igt@perf@blocking:
+    - shard-skl:          [PASS][100] -> [FAIL][101] ([i915#1542]) +1 similar issue
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl7/igt@perf@blocking.html
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl1/igt@perf@blocking.html
+
+  * igt@perf_pmu@rc6-suspend:
+    - shard-skl:          [PASS][102] -> [INCOMPLETE][103] ([i915#198] / [i915#2910])
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl2/igt@perf_pmu@rc6-suspend.html
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@perf_pmu@rc6-suspend.html
+
+  * igt@prime_nv_api@i915_nv_double_export:
+    - shard-iclb:         NOTRUN -> [SKIP][104] ([fdo#109291])
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@prime_nv_api@i915_nv_double_export.html
+
+  * igt@prime_nv_api@nv_self_import:
+    - shard-tglb:         NOTRUN -> [SKIP][105] ([fdo#109291])
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@prime_nv_api@nv_self_import.html
+
+  * igt@sysfs_clients@busy:
+    - shard-apl:          NOTRUN -> [SKIP][106] ([fdo#109271] / [i915#2994])
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@sysfs_clients@busy.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@nullptr:
+    - {shard-rkl}:        [SKIP][107] ([i915#2582]) -> [PASS][108] +1 similar issue
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@fbdev@nullptr.html
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@fbdev@nullptr.html
+
+  * igt@gem_ctx_isolation@preservation-s3@rcs0:
+    - {shard-rkl}:        [FAIL][109] ([fdo#103375]) -> [PASS][110]
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-6/igt@gem_ctx_isolation@preservation-s3@rcs0.html
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-1/igt@gem_ctx_isolation@preservation-s3@rcs0.html
+
+  * igt@gem_eio@unwedge-stress:
+    - shard-tglb:         [TIMEOUT][111] ([i915#2369] / [i915#3063] / [i915#3648]) -> [PASS][112]
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-tglb7/igt@gem_eio@unwedge-stress.html
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb3/igt@gem_eio@unwedge-stress.html
+
+  * igt@gem_exec_fair@basic-none-share@rcs0:
+    - shard-apl:          [SKIP][113] ([fdo#109271]) -> [PASS][114]
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-apl7/igt@gem_exec_fair@basic-none-share@rcs0.html
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl1/igt@gem_exec_fair@basic-none-share@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace@rcs0:
+    - shard-kbl:          [FAIL][115] ([i915#2842]) -> [PASS][116] +1 similar issue
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-kbl3/igt@gem_exec_fair@basic-pace@rcs0.html
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl2/igt@gem_exec_fair@basic-pace@rcs0.html
+
+  * igt@gem_exec_fair@basic-pace@vecs0:
+    - shard-tglb:         [FAIL][117] ([i915#2842]) -> [PASS][118] +2 similar issues
+   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-tglb7/igt@gem_exec_fair@basic-pace@vecs0.html
+   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb7/igt@gem_exec_fair@basic-pace@vecs0.html
+
+  * igt@gem_exec_whisper@basic-forked:
+    - shard-glk:          [DMESG-WARN][119] ([i915#118] / [i915#95]) -> [PASS][120]
+   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk6/igt@gem_exec_whisper@basic-forked.html
+   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk7/igt@gem_exec_whisper@basic-forked.html
+
+  * igt@gem_mmap_gtt@cpuset-big-copy-xy:
+    - shard-iclb:         [FAIL][121] ([i915#2428]) -> [PASS][122]
+   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-iclb2/igt@gem_mmap_gtt@cpuset-big-copy-xy.html
+   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@gem_mmap_gtt@cpuset-big-copy-xy.html
+
+  * igt@gem_mmap_offset@clear:
+    - shard-skl:          [FAIL][123] ([i915#3160]) -> [PASS][124]
+   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl7/igt@gem_mmap_offset@clear.html
+   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl1/igt@gem_mmap_offset@clear.html
+
+  * igt@gen9_exec_parse@allowed-single:
+    - shard-skl:          [DMESG-WARN][125] ([i915#1436] / [i915#716]) -> [PASS][126]
+   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@gen9_exec_parse@allowed-single.html
+   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@gen9_exec_parse@allowed-single.html
+
+  * igt@i915_pm_rpm@gem-pread:
+    - {shard-rkl}:        [SKIP][127] ([fdo#109308]) -> [PASS][128]
+   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@i915_pm_rpm@gem-pread.html
+   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@i915_pm_rpm@gem-pread.html
+
+  * igt@i915_pm_rpm@modeset-lpsp:
+    - {shard-rkl}:        [SKIP][129] ([i915#1397]) -> [PASS][130]
+   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@i915_pm_rpm@modeset-lpsp.html
+   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@i915_pm_rpm@modeset-lpsp.html
+
+  * igt@i915_suspend@sysfs-reader:
+    - shard-skl:          [INCOMPLETE][131] ([i915#198]) -> [PASS][132]
+   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl5/igt@i915_suspend@sysfs-reader.html
+   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl8/igt@i915_suspend@sysfs-reader.html
+
+  * igt@kms_big_fb@x-tiled-32bpp-rotate-180:
+    - {shard-rkl}:        [SKIP][133] ([i915#3638]) -> [PASS][134]
+   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-1/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html
+   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html
+
+  * igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:
+    - {shard-rkl}:        [SKIP][135] ([i915#3721]) -> [PASS][136] +4 similar issues
+   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
+   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html
+
+  * igt@kms_big_fb@y-tiled-64bpp-rotate-0:
+    - shard-iclb:         [FAIL][137] -
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/index.html
+
+--===============2344587231192578819==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Per client engine busyness</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92435/">https://patchwork.freedesktop.org/series/92435/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10333_full -&gt; Patchwork_20573_full</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20573_full absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20573_full, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20573_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_big_fb@y-tiled-64bpp-rotate-0:<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk9/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk3/igt@kms_big_fb@y-tiled-64bpp-rotate-0.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_ccs:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_ccs.html">FAIL</a> ([i915#3678]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@kms_ccs@pipe-a-crc-primary-rotation-180-y_tiled_ccs.html">SKIP</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dither@fb-8bpc-vs-panel-6bpc:</p>
+<ul>
+<li>{shard-rkl}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-1/igt@kms_dither@fb-8bpc-vs-panel-6bpc.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h3>Piglit changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>spec@arb_texture_cube_map_array@arb_texture_cube_map_array-fbo-cubemap-array (NEW):<ul>
+<li>pig-glk-j5005:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/pig-glk-j5005/spec@arb_texture_cube_map_array@arb_texture_cube_map_array-fbo-cubemap-array.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_10333_full and Patchwork_20573_full:</p>
+<h3>New Piglit tests (1)</h3>
+<ul>
+<li>spec@arb_texture_cube_map_array@arb_texture_cube_map_array-fbo-cubemap-array:<ul>
+<li>Statuses : 1 incomplete(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20573_full that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_ctx_persistence@idempotent:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb7/igt@gem_ctx_persistence@idempotent.html">SKIP</a> ([fdo#109271] / [i915#1099]) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_eio@unwedge-stress:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb7/igt@gem_eio@unwedge-stress.html">FAIL</a> ([i915#3354])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-deadline:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk1/igt@gem_exec_fair@basic-deadline.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk2/igt@gem_exec_fair@basic-deadline.html">FAIL</a> ([i915#2846])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-share@rcs0:</p>
+<ul>
+<li>
+<p>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb4/igt@gem_exec_fair@basic-none-share@rcs0.html">FAIL</a> ([i915#2842])</p>
+</li>
+<li>
+<p>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-tglb2/igt@gem_exec_fair@basic-none-share@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb1/igt@gem_exec_fair@basic-none-share@rcs0.html">FAIL</a> ([i915#2842]) +1 similar issue</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-vip@rcs0:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@gem_exec_fair@basic-none-vip@rcs0.html">FAIL</a> ([i915#2842])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace-solo@rcs0:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk4/igt@gem_exec_fair@basic-pace-solo@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk1/igt@gem_exec_fair@basic-pace-solo@rcs0.html">FAIL</a> ([i915#2842])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@vcs0:</p>
+<ul>
+<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-kbl3/igt@gem_exec_fair@basic-pace@vcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl2/igt@gem_exec_fair@basic-pace@vcs0.html">FAIL</a> ([i915#2842])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-fds-priority:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-iclb6/igt@gem_exec_whisper@basic-fds-priority.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb5/igt@gem_exec_whisper@basic-fds-priority.html">INCOMPLETE</a> ([i915#1394])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-big-copy-xy:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk7/igt@gem_mmap_gtt@cpuset-big-copy-xy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk9/igt@gem_mmap_gtt@cpuset-big-copy-xy.html">FAIL</a> ([i915#307])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_copy@x-tiled-to-vebox-yf-tiled:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl3/igt@gem_render_copy@x-tiled-to-vebox-yf-tiled.html">SKIP</a> ([fdo#109271]) +101 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_copy@yf-tiled-to-vebox-yf-tiled:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@gem_render_copy@yf-tiled-to-vebox-yf-tiled.html">SKIP</a> ([i915#768])</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_userptr_blits@access-control:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@gem_userptr_blits@access-control.html">SKIP</a> ([i915#3297])</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@allowed-all:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk3/igt@gen9_exec_parse@allowed-all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk8/igt@gen9_exec_parse@allowed-all.html">DMESG-WARN</a> ([i915#1436] / [i915#716])</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@basic-rejected-ctx-param:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@gen9_exec_parse@basic-rejected-ctx-param.html">SKIP</a> ([fdo#112306])</li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@batch-without-end:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@gen9_exec_parse@batch-without-end.html">SKIP</a> ([fdo#112306]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_dc@dc6-psr:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@i915_pm_dc@dc6-psr.html">FAIL</a> ([i915#454])</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rc6_residency@rc6-fence:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@i915_pm_rc6_residency@rc6-fence.html">WARN</a> ([i915#2684])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@linear-16bpp-rotate-270:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_big_fb@linear-16bpp-rotate-270.html">SKIP</a> ([fdo#111614])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@x-tiled-32bpp-rotate-180:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk1/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk1/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html">DMESG-WARN</a> ([i915#118] / [i915#95])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_big_fb@x-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html">FAIL</a> ([i915#3722])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@yf-tiled-addfb-size-offset-overflow:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_big_fb@yf-tiled-addfb-size-offset-overflow.html">SKIP</a> ([fdo#111615]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_big_fb@yf-tiled-max-hw-stride-64bpp-rotate-0.html">SKIP</a> ([fdo#109271]) +149 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-a-missing-ccs-buffer-y_tiled_ccs:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_ccs@pipe-a-missing-ccs-buffer-y_tiled_ccs.html">SKIP</a> ([i915#3689]) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@pipe-c-bad-rotation-90-y_tiled_gen12_rc_ccs_cc:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_ccs@pipe-c-bad-rotation-90-y_tiled_gen12_rc_ccs_cc.html">SKIP</a> ([fdo#109271]) +101 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-storm:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl7/igt@kms_chamelium@hdmi-hpd-storm.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +13 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-hpd-without-ddc:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb4/igt@kms_chamelium@vga-hpd-without-ddc.html">SKIP</a> ([fdo#109284] / [fdo#111827]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-a-ctm-blue-to-red:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb7/igt@kms_color_chamelium@pipe-a-ctm-blue-to-red.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-d-ctm-0-25:</p>
+<ul>
+<li>
+<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl8/igt@kms_color_chamelium@pipe-d-ctm-0-25.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +11 similar issues</p>
+</li>
+<li>
+<p>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_color_chamelium@pipe-d-ctm-0-25.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +9 similar issues</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-d-ctm-blue-to-red:</p>
+<ul>
+<li>
+<p>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk6/igt@kms_color_chamelium@pipe-d-ctm-blue-to-red.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +1 similar issue</p>
+</li>
+<li>
+<p>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_color_chamelium@pipe-d-ctm-blue-to-red.html">SKIP</a> ([fdo#109278] / [fdo#109284] / [fdo#111827])</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_color_chamelium@pipe-d-ctm-max:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_color_chamelium@pipe-d-ctm-max.html">SKIP</a> ([fdo#109284] / [fdo#111827]) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@atomic:</p>
+<ul>
+<li>
+<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl6/igt@kms_content_protection@atomic.html">TIMEOUT</a> ([i915#1319]) +1 similar issue</p>
+</li>
+<li>
+<p>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_content_protection@atomic.html">SKIP</a> ([fdo#109300] / [fdo#111066])</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@lic:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@kms_content_protection@lic.html">TIMEOUT</a> ([i915#1319]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl7/igt@kms_cursor_crc@pipe-a-cursor-128x42-offscreen.html">FAIL</a> ([i915#3444]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-a-cursor-32x32-sliding:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_cursor_crc@pipe-a-cursor-32x32-sliding.html">SKIP</a> ([i915#3319])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-b-cursor-128x128-random:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html">FAIL</a> ([i915#3444])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-b-cursor-512x512-offscreen:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_cursor_crc@pipe-b-cursor-512x512-offscreen.html">SKIP</a> ([fdo#109279] / [i915#3359])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-512x512-random:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_cursor_crc@pipe-c-cursor-512x512-random.html">SKIP</a> ([fdo#109278] / [fdo#109279])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-max-size-onscreen:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_cursor_crc@pipe-c-cursor-max-size-onscreen.html">SKIP</a> ([i915#3359]) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-c-cursor-suspend:</p>
+<ul>
+<li>
+<p>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-kbl4/igt@kms_cursor_crc@pipe-c-cursor-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html">DMESG-WARN</a> ([i915#180]) +2 similar issues</p>
+</li>
+<li>
+<p>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl3/igt@kms_cursor_crc@pipe-c-cursor-suspend.html">DMESG-WARN</a> ([i915#180])</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_crc@pipe-d-cursor-dpms:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_cursor_crc@pipe-d-cursor-dpms.html">SKIP</a> ([fdo#109278]) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl8/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl4/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">FAIL</a> ([i915#2346])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-absolute-wf_vblank-interruptible:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_flip@2x-flip-vs-absolute-wf_vblank-interruptible.html">SKIP</a> ([fdo#111825]) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-blocking-wf-vblank@b-edp1:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl2/igt@kms_flip@flip-vs-blocking-wf-vblank@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl2/igt@kms_flip@flip-vs-blocking-wf-vblank@b-edp1.html">FAIL</a> ([i915#2122])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk6/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk7/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1.html">FAIL</a> ([i915#79])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl7/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible@c-edp1.html">FAIL</a> ([i915#79])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile:</p>
+<ul>
+<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-snb6/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile.html">SKIP</a> ([fdo#109271]) +351 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip_tiling@flip-changes-tiling-yf@edp-1-pipe-a:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@kms_flip_tiling@flip-changes-tiling-yf@edp-1-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl7/igt@kms_flip_tiling@flip-changes-tiling-yf@edp-1-pipe-a.html">FAIL</a> ([i915#699])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-pri-indfb-multidraw:</p>
+<ul>
+<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk6/igt@kms_frontbuffer_tracking@fbcpsr-2p-pri-indfb-multidraw.html">SKIP</a> ([fdo#109271]) +12 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-shrfb-fliptrack-mmap-gtt:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb4/igt@kms_frontbuffer_tracking@fbcpsr-2p-shrfb-fliptrack-mmap-gtt.html">SKIP</a> ([fdo#109280]) +5 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@psr-rgb101010-draw-render:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl7/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-render.html">FAIL</a> ([i915#49])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch-dpms:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl6/igt@kms_hdr@bpc-switch-dpms.html">FAIL</a> ([i915#1188])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-d-frame-sequence.html">SKIP</a> ([fdo#109271] / [i915#533])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@kms_plane_alpha_blend@pipe-a-alpha-opaque-fb.html">FAIL</a> ([fdo#108145] / [i915#265]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_alpha_blend@pipe-c-alpha-7efc:</p>
+<ul>
+<li>
+<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl1/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html">FAIL</a> ([fdo#108145] / [i915#265]) +1 similar issue</p>
+</li>
+<li>
+<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html">FAIL</a> ([fdo#108145] / [i915#265])</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_lowres@pipe-d-tiling-yf:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_plane_lowres@pipe-d-tiling-yf.html">SKIP</a> ([fdo#112054]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@2x-scaler-multi-pipe:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb3/igt@kms_plane_scaling@2x-scaler-multi-pipe.html">SKIP</a> ([fdo#109274])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping:</p>
+<ul>
+<li>
+<p>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping.html">SKIP</a> ([fdo#109271] / [i915#2733])</p>
+</li>
+<li>
+<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl8/igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping.html">SKIP</a> ([fdo#109271] / [i915#2733])</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1:</p>
+<ul>
+<li>
+<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl6/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1.html">SKIP</a> ([fdo#109271] / [i915#658]) +2 similar issues</p>
+</li>
+<li>
+<p>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1.html">SKIP</a> ([i915#658])</p>
+</li>
+<li>
+<p>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk6/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-1.html">SKIP</a> ([fdo#109271] / [i915#658])</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1:</p>
+<ul>
+<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1.html">SKIP</a> ([fdo#109271] / [i915#658])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1.html">SKIP</a> ([fdo#109271] / [i915#658])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_primary_mmap_cpu:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_psr@psr2_primary_mmap_cpu.html">SKIP</a> ([fdo#109441])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_sprite_mmap_cpu:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@kms_psr@psr2_sprite_mmap_cpu.html">FAIL</a> ([i915#132] / [i915#3467])</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr2_sprite_plane_move:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@kms_psr@psr2_sprite_plane_move.html">SKIP</a> ([fdo#109441]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vblank@pipe-d-wait-idle:</p>
+<ul>
+<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl3/igt@kms_vblank@pipe-d-wait-idle.html">SKIP</a> ([fdo#109271] / [i915#533])</li>
+</ul>
+</li>
+<li>
+<p>igt@nouveau_crc@pipe-b-source-outp-complete:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@nouveau_crc@pipe-b-source-outp-complete.html">SKIP</a> ([i915#2530])</li>
+</ul>
+</li>
+<li>
+<p>igt@nouveau_crc@pipe-c-ctx-flip-detection:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@nouveau_crc@pipe-c-ctx-flip-detection.html">SKIP</a> ([i915#2530])</li>
+</ul>
+</li>
+<li>
+<p>igt@perf@blocking:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl7/igt@perf@blocking.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl1/igt@perf@blocking.html">FAIL</a> ([i915#1542]) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@perf_pmu@rc6-suspend:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl2/igt@perf_pmu@rc6-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@perf_pmu@rc6-suspend.html">INCOMPLETE</a> ([i915#198] / [i915#2910])</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_nv_api@i915_nv_double_export:</p>
+<ul>
+<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@prime_nv_api@i915_nv_double_export.html">SKIP</a> ([fdo#109291])</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_nv_api@nv_self_import:</p>
+<ul>
+<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb2/igt@prime_nv_api@nv_self_import.html">SKIP</a> ([fdo#109291])</li>
+</ul>
+</li>
+<li>
+<p>igt@sysfs_clients@busy:</p>
+<ul>
+<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl6/igt@sysfs_clients@busy.html">SKIP</a> ([fdo#109271] / [i915#2994])</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@fbdev@nullptr.html">SKIP</a> ([i915#2582]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@fbdev@nullptr.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_ctx_isolation@preservation-s3@rcs0:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-6/igt@gem_ctx_isolation@preservation-s3@rcs0.html">FAIL</a> ([fdo#103375]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-1/igt@gem_ctx_isolation@preservation-s3@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_eio@unwedge-stress:</p>
+<ul>
+<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-tglb7/igt@gem_eio@unwedge-stress.html">TIMEOUT</a> ([i915#2369] / [i915#3063] / [i915#3648]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb3/igt@gem_eio@unwedge-stress.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-none-share@rcs0:</p>
+<ul>
+<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-apl7/igt@gem_exec_fair@basic-none-share@rcs0.html">SKIP</a> ([fdo#109271]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-apl1/igt@gem_exec_fair@basic-none-share@rcs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@rcs0:</p>
+<ul>
+<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-kbl3/igt@gem_exec_fair@basic-pace@rcs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-kbl2/igt@gem_exec_fair@basic-pace@rcs0.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fair@basic-pace@vecs0:</p>
+<ul>
+<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-tglb7/igt@gem_exec_fair@basic-pace@vecs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-tglb7/igt@gem_exec_fair@basic-pace@vecs0.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_whisper@basic-forked:</p>
+<ul>
+<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-glk6/igt@gem_exec_whisper@basic-forked.html">DMESG-WARN</a> ([i915#118] / [i915#95]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-glk7/igt@gem_exec_whisper@basic-forked.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@cpuset-big-copy-xy:</p>
+<ul>
+<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-iclb2/igt@gem_mmap_gtt@cpuset-big-copy-xy.html">FAIL</a> ([i915#2428]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-iclb8/igt@gem_mmap_gtt@cpuset-big-copy-xy.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_offset@clear:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl7/igt@gem_mmap_offset@clear.html">FAIL</a> ([i915#3160]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl1/igt@gem_mmap_offset@clear.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gen9_exec_parse@allowed-single:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl4/igt@gen9_exec_parse@allowed-single.html">DMESG-WARN</a> ([i915#1436] / [i915#716]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl3/igt@gen9_exec_parse@allowed-single.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@gem-pread:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@i915_pm_rpm@gem-pread.html">SKIP</a> ([fdo#109308]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@i915_pm_rpm@gem-pread.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@modeset-lpsp:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@i915_pm_rpm@modeset-lpsp.html">SKIP</a> ([i915#1397]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@i915_pm_rpm@modeset-lpsp.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_suspend@sysfs-reader:</p>
+<ul>
+<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-skl5/igt@i915_suspend@sysfs-reader.html">INCOMPLETE</a> ([i915#198]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-skl8/igt@i915_suspend@sysfs-reader.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@x-tiled-32bpp-rotate-180:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-1/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html">SKIP</a> ([i915#3638]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@kms_big_fb@x-tiled-32bpp-rotate-180.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip:</p>
+<ul>
+<li>{shard-rkl}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/shard-rkl-2/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html">SKIP</a> ([i915#3721]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20573/shard-rkl-6/igt@kms_big_fb@x-tiled-max-hw-stride-32bpp-rotate-0-hflip-async-flip.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_big_fb@y-tiled-64bpp-rotate-0:</p>
+<ul>
+<li>shard-iclb:         [FAIL][137] -</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
+
+--===============2344587231192578819==--
+
+--===============2015072225==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2015072225==--
