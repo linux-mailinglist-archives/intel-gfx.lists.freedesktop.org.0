@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6486D3C6479
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 22:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E603A3C647A
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 22:02:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC42C89DEC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C70E389DED;
 	Mon, 12 Jul 2021 20:02:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCAAF89DC7
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 20:02:04 +0000 (UTC)
-Received: by mail-wm1-x32b.google.com with SMTP id
- u8-20020a7bcb080000b02901e44e9caa2aso787814wmj.4
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 13:02:04 -0700 (PDT)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE1289DCF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 20:02:05 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ l17-20020a05600c1d11b029021f84fcaf75so23365wms.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 13:02:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Xraq1MM4Ot5KTmJFQcbsNY3hYSxDwT5IozJmWWpmH4k=;
- b=g8kMCVOucIJ+CKjZ6PhblT60JzvICur2GWR2yght9ioWEqUqP2YMIdjW/9KcPSlteN
- gqXTKM6XxC1AWjWzSRZGAnQtHBGHZTmuZwgtVQMaqiAnnLIXvWvDSTyk8Occ0UFlskPO
- sRUicLWwzB2S4akOrLIOCbX9LfumCH3FfOz10=
+ bh=+0jQYIsm5Js9C1AjIzuq6eeQkARdEqcH+X7YWC5aMAo=;
+ b=MsFUEyt0amcc/5aIeCGjA5X/fPAGcaemhqCDWttlOgkKliOGhW78Tq/JrwN1yyHXyN
+ xO3HSYozDNVLo3wHCOBM+srpZiAJ95kKxjMkwcx6eT88UKpGsQiB40ztQ1UP9WywAvqd
+ 87Us5mW8uNip8VWCpwxwt3adVeFljxAcLfA10=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Xraq1MM4Ot5KTmJFQcbsNY3hYSxDwT5IozJmWWpmH4k=;
- b=M7pS9YlMxfQyQVdN9V6MRVGiXY2VfqxTVIhsYxtjRpSnl+NvWnewdZPRD0rI/r1TIQ
- 8bUrK2zekgjBlNZtwbfWCM/kFL3zLH01KAgsz9IbLCOz8D1X+Mfjw8vje2ARfWE88E03
- uS8MoTzEsdQnYfC7GvR5B172eIKrCK9vb4ZmQHZHFZ2Ay9RSQrakh6nPctGaWyhE3Ks0
- +J5V8sEFY0bHGHUUn94y9PG3otoVPjcTJQ5dwrpBFHjcMOmKvfs2jZmvSUdVHtIfwa75
- tkMnFoMIVsOtsVVaB4o1QMmIKMxARBtQDARqZbB4yjfeTLkIACUbax0JQnee3I4jEzz5
- NYSw==
-X-Gm-Message-State: AOAM533wuBEotJdrS2ZhRSYMA8zwu9P0T/r/EchZZe+04RVzj8qTQ3mR
- 6fgaZ8/Rt5CbrIN9jeparALBzw==
-X-Google-Smtp-Source: ABdhPJwECSpnAZjdXD5ZJaQVwNFrUwJmOFyrTpyGfpT0OrJOoKhvZlzligLy9o1s7MQfExdumK2MOA==
-X-Received: by 2002:a1c:7201:: with SMTP id n1mr16653630wmc.4.1626120123387;
- Mon, 12 Jul 2021 13:02:03 -0700 (PDT)
+ bh=+0jQYIsm5Js9C1AjIzuq6eeQkARdEqcH+X7YWC5aMAo=;
+ b=f0njaJuJc7Xq0JeX065bk1W3nqE9oKDd2ov1sMX3hWwz+AjQR0bNMkUF0ATGiNtOKl
+ VWXz+cjzTp8hnadxrLiEkPAunsJgxNksn2rIHoqsSYZ2rQyYPHNT+8MXn5liqZ7Myp0S
+ lwvFOio9F6N7nPxyJIvFDV8YQIwRrE63ShEUoiIU55k18yIeu5DbPT2ra18budxtu4S9
+ JagcPHpod/ovLdyx+zqcOItY3lgRLgDxeBg8S++hOqC2wMJGAvPoFWCbCmDkI3au8mGf
+ 12No5YlEL8OnZiEv4DLnQUt8HDD4k90Jhs+eCDKCF1x0n7SLEfbGJaiYPHPEiY8xiuG9
+ /JkQ==
+X-Gm-Message-State: AOAM531j+KiPjfEFAqR9PU/yX3Su+TuuwsNv99AXO76LiM6M3R9JXr6N
+ oiwuyhQ3hwNeOiuRt5pFcy0XaA==
+X-Google-Smtp-Source: ABdhPJwUIaG4n4vquSxoVNtBJZqvn2Eps/h+0H0QVUubGzscK0wRQ39PS7+zWCKH5y//LRTwjbeEQQ==
+X-Received: by 2002:a05:600c:a45:: with SMTP id
+ c5mr16790644wmq.153.1626120124338; 
+ Mon, 12 Jul 2021 13:02:04 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l14sm9858221wrs.22.2021.07.12.13.02.02
+ by smtp.gmail.com with ESMTPSA id l14sm9858221wrs.22.2021.07.12.13.02.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Jul 2021 13:02:02 -0700 (PDT)
+ Mon, 12 Jul 2021 13:02:03 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon, 12 Jul 2021 19:53:39 +0200
-Message-Id: <20210712175352.802687-6-daniel.vetter@ffwll.ch>
+Date: Mon, 12 Jul 2021 19:53:40 +0200
+Message-Id: <20210712175352.802687-7-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210712175352.802687-1-daniel.vetter@ffwll.ch>
 References: <20210712175352.802687-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 05/18] drm/sched: improve docs around
- drm_sched_entity
+Subject: [Intel-gfx] [PATCH v4 06/18] drm/panfrost: use scheduler dependency
+ tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,414 +66,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Steven Price <steven.price@arm.com>, linaro-mm-sig@lists.linaro.org,
+ Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I found a few too many things that are tricky and not documented, so I
-started typing.
-
-I found a few more things that looked broken while typing, see the
-varios FIXME in drm_sched_entity.
-
-Also some of the usual logics:
-- actually include sched_entity.c declarations, that was lost in the
-  move here: 620e762f9a98 ("drm/scheduler: move entity handling into
-  separate file")
-
-- Ditch the kerneldoc for internal functions, keep the comments where
-  they're describing more than what the function name already implies.
-
-- Switch drm_sched_entity to inline docs.
-
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- Documentation/gpu/drm-mm.rst             |   3 +
- drivers/gpu/drm/scheduler/sched_entity.c |  85 ++++---------
- include/drm/gpu_scheduler.h              | 145 ++++++++++++++++++-----
- 3 files changed, 146 insertions(+), 87 deletions(-)
-
-diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
-index d5a73fa2c9ef..0198fa43d254 100644
---- a/Documentation/gpu/drm-mm.rst
-+++ b/Documentation/gpu/drm-mm.rst
-@@ -504,3 +504,6 @@ Scheduler Function References
- 
- .. kernel-doc:: drivers/gpu/drm/scheduler/sched_main.c
-    :export:
-+
-+.. kernel-doc:: drivers/gpu/drm/scheduler/sched_entity.c
-+   :export:
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index e4d33db1eb45..27e1573af96e 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -45,8 +45,14 @@
-  * @guilty: atomic_t set to 1 when a job on this queue
-  *          is found to be guilty causing a timeout
-  *
-- * Note: the sched_list should have at least one element to schedule
-- *       the entity
-+ * Note that the &sched_list must have at least one element to schedule the entity.
-+ *
-+ * For changing @priority later on at runtime see
-+ * drm_sched_entity_set_priority(). For changing the set of schedulers
-+ * @sched_list at runtime see drm_sched_entity_modify_sched().
-+ *
-+ * An entity is cleaned up by callind drm_sched_entity_fini(). See also
-+ * drm_sched_entity_destroy().
-  *
-  * Returns 0 on success or a negative error code on failure.
-  */
-@@ -92,6 +98,11 @@ EXPORT_SYMBOL(drm_sched_entity_init);
-  * @sched_list: the list of new drm scheds which will replace
-  *		 existing entity->sched_list
-  * @num_sched_list: number of drm sched in sched_list
-+ *
-+ * Note that this must be called under the same common lock for @entity as
-+ * drm_sched_job_arm() and drm_sched_entity_push_job(), or the driver needs to
-+ * guarantee through some other means that this is never called while new jobs
-+ * can be pushed to @entity.
-  */
- void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
- 				    struct drm_gpu_scheduler **sched_list,
-@@ -104,13 +115,6 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
- }
- EXPORT_SYMBOL(drm_sched_entity_modify_sched);
- 
--/**
-- * drm_sched_entity_is_idle - Check if entity is idle
-- *
-- * @entity: scheduler entity
-- *
-- * Returns true if the entity does not have any unscheduled jobs.
-- */
- static bool drm_sched_entity_is_idle(struct drm_sched_entity *entity)
- {
- 	rmb(); /* for list_empty to work without lock */
-@@ -123,13 +127,7 @@ static bool drm_sched_entity_is_idle(struct drm_sched_entity *entity)
- 	return false;
- }
- 
--/**
-- * drm_sched_entity_is_ready - Check if entity is ready
-- *
-- * @entity: scheduler entity
-- *
-- * Return true if entity could provide a job.
-- */
-+/* Return true if entity could provide a job. */
- bool drm_sched_entity_is_ready(struct drm_sched_entity *entity)
- {
- 	if (spsc_queue_peek(&entity->job_queue) == NULL)
-@@ -192,14 +190,7 @@ long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout)
- }
- EXPORT_SYMBOL(drm_sched_entity_flush);
- 
--/**
-- * drm_sched_entity_kill_jobs_cb - helper for drm_sched_entity_kill_jobs
-- *
-- * @f: signaled fence
-- * @cb: our callback structure
-- *
-- * Signal the scheduler finished fence when the entity in question is killed.
-- */
-+/* Signal the scheduler finished fence when the entity in question is killed. */
- static void drm_sched_entity_kill_jobs_cb(struct dma_fence *f,
- 					  struct dma_fence_cb *cb)
- {
-@@ -224,14 +215,6 @@ drm_sched_job_dependency(struct drm_sched_job *job,
- 	return NULL;
- }
- 
--/**
-- * drm_sched_entity_kill_jobs - Make sure all remaining jobs are killed
-- *
-- * @entity: entity which is cleaned up
-- *
-- * Makes sure that all remaining jobs in an entity are killed before it is
-- * destroyed.
-- */
- static void drm_sched_entity_kill_jobs(struct drm_sched_entity *entity)
- {
- 	struct drm_sched_job *job;
-@@ -273,9 +256,11 @@ static void drm_sched_entity_kill_jobs(struct drm_sched_entity *entity)
-  *
-  * @entity: scheduler entity
-  *
-- * This should be called after @drm_sched_entity_do_release. It goes over the
-- * entity and signals all jobs with an error code if the process was killed.
-+ * Cleanups up @entity which has been initialized by drm_sched_entity_init().
-  *
-+ * If there are potentially job still in flight or getting newly queued
-+ * drm_sched_entity_flush() must be called first. This function then goes over
-+ * the entity and signals all jobs with an error code if the process was killed.
-  */
- void drm_sched_entity_fini(struct drm_sched_entity *entity)
- {
-@@ -315,10 +300,10 @@ EXPORT_SYMBOL(drm_sched_entity_fini);
- 
- /**
-  * drm_sched_entity_destroy - Destroy a context entity
-- *
-  * @entity: scheduler entity
-  *
-- * Calls drm_sched_entity_do_release() and drm_sched_entity_cleanup()
-+ * Calls drm_sched_entity_flush() and drm_sched_entity_fini() as a
-+ * convenience wrapper.
-  */
- void drm_sched_entity_destroy(struct drm_sched_entity *entity)
- {
-@@ -327,9 +312,7 @@ void drm_sched_entity_destroy(struct drm_sched_entity *entity)
- }
- EXPORT_SYMBOL(drm_sched_entity_destroy);
- 
--/*
-- * drm_sched_entity_clear_dep - callback to clear the entities dependency
-- */
-+/* drm_sched_entity_clear_dep - callback to clear the entities dependency */
- static void drm_sched_entity_clear_dep(struct dma_fence *f,
- 				       struct dma_fence_cb *cb)
- {
-@@ -371,11 +354,7 @@ void drm_sched_entity_set_priority(struct drm_sched_entity *entity,
- }
- EXPORT_SYMBOL(drm_sched_entity_set_priority);
- 
--/**
-- * drm_sched_entity_add_dependency_cb - add callback for the entities dependency
-- *
-- * @entity: entity with dependency
-- *
-+/*
-  * Add a callback to the current dependency of the entity to wake up the
-  * scheduler when the entity becomes available.
-  */
-@@ -423,13 +402,6 @@ static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity)
- 	return false;
- }
- 
--/**
-- * drm_sched_entity_pop_job - get a ready to be scheduled job from the entity
-- *
-- * @entity: entity to get the job from
-- *
-- * Process all dependencies and try to get one job from the entities queue.
-- */
- struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
- {
- 	struct drm_sched_job *sched_job;
-@@ -465,14 +437,6 @@ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
- 	return sched_job;
- }
- 
--/**
-- * drm_sched_entity_select_rq - select a new rq for the entity
-- *
-- * @entity: scheduler entity
-- *
-- * Check all prerequisites and select a new rq for the entity for load
-- * balancing.
-- */
- void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
- {
- 	struct dma_fence *fence;
-@@ -520,7 +484,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
-  *
-  * Note: To guarantee that the order of insertion to queue matches the job's
-  * fence sequence number this function should be called with drm_sched_job_arm()
-- * under common lock.
-+ * under common lock for the struct drm_sched_entity that was set up for
-+ * @sched_job in drm_sched_job_init().
-  *
-  * Returns 0 for success, negative error code otherwise.
-  */
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 2bb1869f2352..4451336bc758 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -53,56 +53,147 @@ enum drm_sched_priority {
-  * struct drm_sched_entity - A wrapper around a job queue (typically
-  * attached to the DRM file_priv).
-  *
-- * @list: used to append this struct to the list of entities in the
-- *        runqueue.
-- * @rq: runqueue on which this entity is currently scheduled.
-- * @sched_list: A list of schedulers (drm_gpu_schedulers).
-- *              Jobs from this entity can be scheduled on any scheduler
-- *              on this list.
-- * @num_sched_list: number of drm_gpu_schedulers in the sched_list.
-- * @priority: priority of the entity
-- * @rq_lock: lock to modify the runqueue to which this entity belongs.
-- * @job_queue: the list of jobs of this entity.
-- * @fence_seq: a linearly increasing seqno incremented with each
-- *             new &drm_sched_fence which is part of the entity.
-- * @fence_context: a unique context for all the fences which belong
-- *                 to this entity.
-- *                 The &drm_sched_fence.scheduled uses the
-- *                 fence_context but &drm_sched_fence.finished uses
-- *                 fence_context + 1.
-- * @dependency: the dependency fence of the job which is on the top
-- *              of the job queue.
-- * @cb: callback for the dependency fence above.
-- * @guilty: points to ctx's guilty.
-- * @fini_status: contains the exit status in case the process was signalled.
-- * @last_scheduled: points to the finished fence of the last scheduled job.
-- * @last_user: last group leader pushing a job into the entity.
-- * @stopped: Marks the enity as removed from rq and destined for termination.
-- * @entity_idle: Signals when enityt is not in use
-- *
-  * Entities will emit jobs in order to their corresponding hardware
-  * ring, and the scheduler will alternate between entities based on
-  * scheduling policy.
-  */
- struct drm_sched_entity {
-+	/**
-+	 * @list:
-+	 *
-+	 * Used to append this struct to the list of entities in the runqueue
-+	 * @rq under &drm_sched_rq.entities.
-+	 *
-+	 * Protected by &drm_sched_rq.lock of @rq.
-+	 */
- 	struct list_head		list;
-+
-+	/**
-+	 * @rq:
-+	 *
-+	 * Runqueue on which this entity is currently scheduled.
-+	 *
-+	 * FIXME: Locking is very unclear for this. Writers are protected by
-+	 * @rq_lock, but readers are generally lockless and seem to just race
-+	 * with not even a READ_ONCE.
-+	 */
- 	struct drm_sched_rq		*rq;
-+
-+	/**
-+	 * @sched_list:
-+	 *
-+	 * A list of schedulers (struct drm_gpu_scheduler).  Jobs from this entity can
-+	 * be scheduled on any scheduler on this list.
-+	 *
-+	 * This can be modified by calling drm_sched_entity_modify_sched().
-+	 * Locking is entirely up to the driver, see the above function for more
-+	 * details.
-+	 *
-+	 * This will be set to NULL if &num_sched_list equals 1 and @rq has been
-+	 * set already.
-+	 *
-+	 * FIXME: This means priority changes through
-+	 * drm_sched_entity_set_priority() will be lost henceforth in this case.
-+	 */
- 	struct drm_gpu_scheduler        **sched_list;
-+
-+	/**
-+	 * @num_sched_list:
-+	 *
-+	 * Number of drm_gpu_schedulers in the @sched_list.
-+	 */
- 	unsigned int                    num_sched_list;
-+
-+	/**
-+	 * @priority:
-+	 *
-+	 * Priority of the entity. This can be modified by calling
-+	 * drm_sched_entity_set_priority(). Protected by &rq_lock.
-+	 */
- 	enum drm_sched_priority         priority;
-+
-+	/**
-+	 * @rq_lock:
-+	 *
-+	 * Lock to modify the runqueue to which this entity belongs.
-+	 */
- 	spinlock_t			rq_lock;
- 
-+	/**
-+	 * @job_queue: the list of jobs of this entity.
-+	 */
- 	struct spsc_queue		job_queue;
- 
-+	/**
-+	 * @fence_seq:
-+	 *
-+	 * A linearly increasing seqno incremented with each new
-+	 * &drm_sched_fence which is part of the entity.
-+	 *
-+	 * FIXME: Callers of drm_sched_job_arm() need to ensure correct locking,
-+	 * this doesn't need to be atomic.
-+	 */
- 	atomic_t			fence_seq;
-+
-+	/**
-+	 * @fence_context:
-+	 *
-+	 * A unique context for all the fences which belong to this entity.  The
-+	 * &drm_sched_fence.scheduled uses the fence_context but
-+	 * &drm_sched_fence.finished uses fence_context + 1.
-+	 */
- 	uint64_t			fence_context;
- 
-+	/**
-+	 * @dependency:
-+	 *
-+	 * The dependency fence of the job which is on the top of the job queue.
-+	 */
- 	struct dma_fence		*dependency;
-+
-+	/**
-+	 * @cb:
-+	 *
-+	 * Callback for the dependency fence above.
-+	 */
- 	struct dma_fence_cb		cb;
-+
-+	/**
-+	 * @guilty:
-+	 *
-+	 * Points to entities' guilty.
-+	 */
- 	atomic_t			*guilty;
-+
-+	/**
-+	 * @last_scheduled:
-+	 *
-+	 * Points to the finished fence of the last scheduled job. Only written
-+	 * by the scheduler thread, can be accessed locklessly from
-+	 * drm_sched_job_arm() iff the queue is empty.
-+	 */
- 	struct dma_fence                *last_scheduled;
-+
-+	/**
-+	 * @last_user: last group leader pushing a job into the entity.
-+	 */
- 	struct task_struct		*last_user;
-+
-+	/**
-+	 * @stopped:
-+	 *
-+	 * Marks the enity as removed from rq and destined for
-+	 * termination. This is set by calling drm_sched_entity_flush() and by
-+	 * drm_sched_fini().
-+	 */
- 	bool 				stopped;
-+
-+	/**
-+	 * @entity_idle:
-+	 *
-+	 * Signals when entity is not in use, used to sequence entity cleanup in
-+	 * drm_sched_entity_fini().
-+	 */
- 	struct completion		entity_idle;
- };
- 
--- 
-2.32.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SnVzdCBkZWxldGVzIHNvbWUgY29kZSB0aGF0J3Mgbm93IG1vcmUgc2hhcmVkLgoKTm90ZSB0aGF0
+IHRoYW5rcyB0byB0aGUgc3BsaXQgaW50byBkcm1fc2NoZWRfam9iX2luaXQvYXJtIHdlIGNhbiBu
+b3cKZWFzaWx5IHB1bGwgdGhlIF9pbml0KCkgcGFydCBmcm9tIHVuZGVyIHRoZSBzdWJtaXNzaW9u
+IGxvY2sgd2F5IGFoZWFkCndoZXJlIHdlJ3JlIGFkZGluZyB0aGUgc3luYyBmaWxlIGluLWZlbmNl
+cyBhcyBkZXBlbmRlbmNpZXMuCgp2MjogQ29ycmVjdGx5IGNsZWFuIHVwIHRoZSBwYXJ0aWFsbHkg
+c2V0IHVwIGpvYiwgbm93IHRoYXQgam9iX2luaXQoKQphbmQgam9iX2FybSgpIGFyZSBhcGFydCAo
+RW1tYSkuCgpSZXZpZXdlZC1ieTogU3RldmVuIFByaWNlIDxzdGV2ZW4ucHJpY2VAYXJtLmNvbT4K
+U2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CkNj
+OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPgpDYzogVG9tZXUgVml6b3NvIDx0b21ldS52
+aXpvc29AY29sbGFib3JhLmNvbT4KQ2M6IFN0ZXZlbiBQcmljZSA8c3RldmVuLnByaWNlQGFybS5j
+b20+CkNjOiBBbHlzc2EgUm9zZW56d2VpZyA8YWx5c3NhLnJvc2VuendlaWdAY29sbGFib3JhLmNv
+bT4KQ2M6IFN1bWl0IFNlbXdhbCA8c3VtaXQuc2Vtd2FsQGxpbmFyby5vcmc+CkNjOiAiQ2hyaXN0
+aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KQ2M6IGxpbnV4LW1lZGlhQHZn
+ZXIua2VybmVsLm9yZwpDYzogbGluYXJvLW1tLXNpZ0BsaXN0cy5saW5hcm8ub3JnCi0tLQogZHJp
+dmVycy9ncHUvZHJtL3BhbmZyb3N0L3BhbmZyb3N0X2Rydi5jIHwgMTYgKysrKysrKystLS0KIGRy
+aXZlcnMvZ3B1L2RybS9wYW5mcm9zdC9wYW5mcm9zdF9qb2IuYyB8IDM3ICsrKy0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9wYW5mcm9zdC9wYW5mcm9zdF9qb2IuaCB8ICA1
+ICstLS0KIDMgZmlsZXMgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKSwgNDEgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3BhbmZyb3N0L3BhbmZyb3N0X2Rydi5jIGIv
+ZHJpdmVycy9ncHUvZHJtL3BhbmZyb3N0L3BhbmZyb3N0X2Rydi5jCmluZGV4IDFmZmFlZjVlYzVm
+Zi4uOWY1M2JlYTA3ZDYxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vcGFuZnJvc3QvcGFu
+ZnJvc3RfZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL3BhbmZyb3N0L3BhbmZyb3N0X2Rydi5j
+CkBAIC0yMTgsNyArMjE4LDcgQEAgcGFuZnJvc3RfY29weV9pbl9zeW5jKHN0cnVjdCBkcm1fZGV2
+aWNlICpkZXYsCiAJCWlmIChyZXQpCiAJCQlnb3RvIGZhaWw7CiAKLQkJcmV0ID0gZHJtX2dlbV9m
+ZW5jZV9hcnJheV9hZGQoJmpvYi0+ZGVwcywgZmVuY2UpOworCQlyZXQgPSBkcm1fc2NoZWRfam9i
+X2F3YWl0X2ZlbmNlKCZqb2ItPmJhc2UsIGZlbmNlKTsKIAogCQlpZiAocmV0KQogCQkJZ290byBm
+YWlsOwpAQCAtMjM2LDcgKzIzNiw3IEBAIHN0YXRpYyBpbnQgcGFuZnJvc3RfaW9jdGxfc3VibWl0
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsCiAJc3RydWN0IGRybV9wYW5mcm9z
+dF9zdWJtaXQgKmFyZ3MgPSBkYXRhOwogCXN0cnVjdCBkcm1fc3luY29iaiAqc3luY19vdXQgPSBO
+VUxMOwogCXN0cnVjdCBwYW5mcm9zdF9qb2IgKmpvYjsKLQlpbnQgcmV0ID0gMDsKKwlpbnQgcmV0
+ID0gMCwgc2xvdDsKIAogCWlmICghYXJncy0+amMpCiAJCXJldHVybiAtRUlOVkFMOwpAQCAtMjU4
+LDE0ICsyNTgsMjAgQEAgc3RhdGljIGludCBwYW5mcm9zdF9pb2N0bF9zdWJtaXQoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAogCWtyZWZfaW5pdCgmam9iLT5yZWZjb3VudCk7
+CiAKLQl4YV9pbml0X2ZsYWdzKCZqb2ItPmRlcHMsIFhBX0ZMQUdTX0FMTE9DKTsKLQogCWpvYi0+
+cGZkZXYgPSBwZmRldjsKIAlqb2ItPmpjID0gYXJncy0+amM7CiAJam9iLT5yZXF1aXJlbWVudHMg
+PSBhcmdzLT5yZXF1aXJlbWVudHM7CiAJam9iLT5mbHVzaF9pZCA9IHBhbmZyb3N0X2dwdV9nZXRf
+bGF0ZXN0X2ZsdXNoX2lkKHBmZGV2KTsKIAlqb2ItPmZpbGVfcHJpdiA9IGZpbGUtPmRyaXZlcl9w
+cml2OwogCisJc2xvdCA9IHBhbmZyb3N0X2pvYl9nZXRfc2xvdChqb2IpOworCisJcmV0ID0gZHJt
+X3NjaGVkX2pvYl9pbml0KCZqb2ItPmJhc2UsCisJCQkJICZqb2ItPmZpbGVfcHJpdi0+c2NoZWRf
+ZW50aXR5W3Nsb3RdLAorCQkJCSBOVUxMKTsKKwlpZiAocmV0KQorCQlnb3RvIGZhaWxfam9iX3B1
+dDsKKwogCXJldCA9IHBhbmZyb3N0X2NvcHlfaW5fc3luYyhkZXYsIGZpbGUsIGFyZ3MsIGpvYik7
+CiAJaWYgKHJldCkKIAkJZ290byBmYWlsX2pvYjsKQEAgLTI4Myw2ICsyODksOCBAQCBzdGF0aWMg
+aW50IHBhbmZyb3N0X2lvY3RsX3N1Ym1pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpk
+YXRhLAogCQlkcm1fc3luY29ial9yZXBsYWNlX2ZlbmNlKHN5bmNfb3V0LCBqb2ItPnJlbmRlcl9k
+b25lX2ZlbmNlKTsKIAogZmFpbF9qb2I6CisJZHJtX3NjaGVkX2pvYl9jbGVhbnVwKCZqb2ItPmJh
+c2UpOworZmFpbF9qb2JfcHV0OgogCXBhbmZyb3N0X2pvYl9wdXQoam9iKTsKIGZhaWxfb3V0X3N5
+bmM6CiAJaWYgKHN5bmNfb3V0KQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3BhbmZyb3N0
+L3BhbmZyb3N0X2pvYi5jIGIvZHJpdmVycy9ncHUvZHJtL3BhbmZyb3N0L3BhbmZyb3N0X2pvYi5j
+CmluZGV4IDRiYzk2Mjc2M2UxZi4uODZjODQzZDg4MjJlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vcGFuZnJvc3QvcGFuZnJvc3Rfam9iLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL3BhbmZy
+b3N0L3BhbmZyb3N0X2pvYi5jCkBAIC0xMDIsNyArMTAyLDcgQEAgc3RhdGljIHN0cnVjdCBkbWFf
+ZmVuY2UgKnBhbmZyb3N0X2ZlbmNlX2NyZWF0ZShzdHJ1Y3QgcGFuZnJvc3RfZGV2aWNlICpwZmRl
+diwgaW4KIAlyZXR1cm4gJmZlbmNlLT5iYXNlOwogfQogCi1zdGF0aWMgaW50IHBhbmZyb3N0X2pv
+Yl9nZXRfc2xvdChzdHJ1Y3QgcGFuZnJvc3Rfam9iICpqb2IpCitpbnQgcGFuZnJvc3Rfam9iX2dl
+dF9zbG90KHN0cnVjdCBwYW5mcm9zdF9qb2IgKmpvYikKIHsKIAkvKiBKUzA6IGZyYWdtZW50IGpv
+YnMuCiAJICogSlMxOiB2ZXJ0ZXgvdGlsZXIgam9icwpAQCAtMjQyLDEzICsyNDIsMTMgQEAgc3Rh
+dGljIHZvaWQgcGFuZnJvc3Rfam9iX2h3X3N1Ym1pdChzdHJ1Y3QgcGFuZnJvc3Rfam9iICpqb2Is
+IGludCBqcykKIAogc3RhdGljIGludCBwYW5mcm9zdF9hY3F1aXJlX29iamVjdF9mZW5jZXMoc3Ry
+dWN0IGRybV9nZW1fb2JqZWN0ICoqYm9zLAogCQkJCQkgIGludCBib19jb3VudCwKLQkJCQkJICBz
+dHJ1Y3QgeGFycmF5ICpkZXBzKQorCQkJCQkgIHN0cnVjdCBkcm1fc2NoZWRfam9iICpqb2IpCiB7
+CiAJaW50IGksIHJldDsKIAogCWZvciAoaSA9IDA7IGkgPCBib19jb3VudDsgaSsrKSB7CiAJCS8q
+IHBhbmZyb3N0IGFsd2F5cyB1c2VzIHdyaXRlIG1vZGUgaW4gaXRzIGN1cnJlbnQgdWFwaSAqLwot
+CQlyZXQgPSBkcm1fZ2VtX2ZlbmNlX2FycmF5X2FkZF9pbXBsaWNpdChkZXBzLCBib3NbaV0sIHRy
+dWUpOworCQlyZXQgPSBkcm1fc2NoZWRfam9iX2F3YWl0X2ltcGxpY2l0KGpvYiwgYm9zW2ldLCB0
+cnVlKTsKIAkJaWYgKHJldCkKIAkJCXJldHVybiByZXQ7CiAJfQpAQCAtMjY5LDMxICsyNjksMjEg
+QEAgc3RhdGljIHZvaWQgcGFuZnJvc3RfYXR0YWNoX29iamVjdF9mZW5jZXMoc3RydWN0IGRybV9n
+ZW1fb2JqZWN0ICoqYm9zLAogaW50IHBhbmZyb3N0X2pvYl9wdXNoKHN0cnVjdCBwYW5mcm9zdF9q
+b2IgKmpvYikKIHsKIAlzdHJ1Y3QgcGFuZnJvc3RfZGV2aWNlICpwZmRldiA9IGpvYi0+cGZkZXY7
+Ci0JaW50IHNsb3QgPSBwYW5mcm9zdF9qb2JfZ2V0X3Nsb3Qoam9iKTsKLQlzdHJ1Y3QgZHJtX3Nj
+aGVkX2VudGl0eSAqZW50aXR5ID0gJmpvYi0+ZmlsZV9wcml2LT5zY2hlZF9lbnRpdHlbc2xvdF07
+CiAJc3RydWN0IHd3X2FjcXVpcmVfY3R4IGFjcXVpcmVfY3R4OwogCWludCByZXQgPSAwOwogCi0K
+IAlyZXQgPSBkcm1fZ2VtX2xvY2tfcmVzZXJ2YXRpb25zKGpvYi0+Ym9zLCBqb2ItPmJvX2NvdW50
+LAogCQkJCQkgICAgJmFjcXVpcmVfY3R4KTsKIAlpZiAocmV0KQogCQlyZXR1cm4gcmV0OwogCiAJ
+bXV0ZXhfbG9jaygmcGZkZXYtPnNjaGVkX2xvY2spOwotCi0JcmV0ID0gZHJtX3NjaGVkX2pvYl9p
+bml0KCZqb2ItPmJhc2UsIGVudGl0eSwgTlVMTCk7Ci0JaWYgKHJldCkgewotCQltdXRleF91bmxv
+Y2soJnBmZGV2LT5zY2hlZF9sb2NrKTsKLQkJZ290byB1bmxvY2s7Ci0JfQotCiAJZHJtX3NjaGVk
+X2pvYl9hcm0oJmpvYi0+YmFzZSk7CiAKIAlqb2ItPnJlbmRlcl9kb25lX2ZlbmNlID0gZG1hX2Zl
+bmNlX2dldCgmam9iLT5iYXNlLnNfZmVuY2UtPmZpbmlzaGVkKTsKIAogCXJldCA9IHBhbmZyb3N0
+X2FjcXVpcmVfb2JqZWN0X2ZlbmNlcyhqb2ItPmJvcywgam9iLT5ib19jb3VudCwKLQkJCQkJICAg
+ICAmam9iLT5kZXBzKTsKKwkJCQkJICAgICAmam9iLT5iYXNlKTsKIAlpZiAocmV0KSB7CiAJCW11
+dGV4X3VubG9jaygmcGZkZXYtPnNjaGVkX2xvY2spOwogCQlnb3RvIHVubG9jazsKQEAgLTMxOCwx
+NSArMzA4LDggQEAgc3RhdGljIHZvaWQgcGFuZnJvc3Rfam9iX2NsZWFudXAoc3RydWN0IGtyZWYg
+KnJlZikKIHsKIAlzdHJ1Y3QgcGFuZnJvc3Rfam9iICpqb2IgPSBjb250YWluZXJfb2YocmVmLCBz
+dHJ1Y3QgcGFuZnJvc3Rfam9iLAogCQkJCQkJcmVmY291bnQpOwotCXN0cnVjdCBkbWFfZmVuY2Ug
+KmZlbmNlOwotCXVuc2lnbmVkIGxvbmcgaW5kZXg7CiAJdW5zaWduZWQgaW50IGk7CiAKLQl4YV9m
+b3JfZWFjaCgmam9iLT5kZXBzLCBpbmRleCwgZmVuY2UpIHsKLQkJZG1hX2ZlbmNlX3B1dChmZW5j
+ZSk7Ci0JfQotCXhhX2Rlc3Ryb3koJmpvYi0+ZGVwcyk7Ci0KIAlkbWFfZmVuY2VfcHV0KGpvYi0+
+ZG9uZV9mZW5jZSk7CiAJZG1hX2ZlbmNlX3B1dChqb2ItPnJlbmRlcl9kb25lX2ZlbmNlKTsKIApA
+QCAtMzY1LDE3ICszNDgsNiBAQCBzdGF0aWMgdm9pZCBwYW5mcm9zdF9qb2JfZnJlZShzdHJ1Y3Qg
+ZHJtX3NjaGVkX2pvYiAqc2NoZWRfam9iKQogCXBhbmZyb3N0X2pvYl9wdXQoam9iKTsKIH0KIAot
+c3RhdGljIHN0cnVjdCBkbWFfZmVuY2UgKnBhbmZyb3N0X2pvYl9kZXBlbmRlbmN5KHN0cnVjdCBk
+cm1fc2NoZWRfam9iICpzY2hlZF9qb2IsCi0JCQkJCQkgc3RydWN0IGRybV9zY2hlZF9lbnRpdHkg
+KnNfZW50aXR5KQotewotCXN0cnVjdCBwYW5mcm9zdF9qb2IgKmpvYiA9IHRvX3BhbmZyb3N0X2pv
+YihzY2hlZF9qb2IpOwotCi0JaWYgKCF4YV9lbXB0eSgmam9iLT5kZXBzKSkKLQkJcmV0dXJuIHhh
+X2VyYXNlKCZqb2ItPmRlcHMsIGpvYi0+bGFzdF9kZXArKyk7Ci0KLQlyZXR1cm4gTlVMTDsKLX0K
+LQogc3RhdGljIHN0cnVjdCBkbWFfZmVuY2UgKnBhbmZyb3N0X2pvYl9ydW4oc3RydWN0IGRybV9z
+Y2hlZF9qb2IgKnNjaGVkX2pvYikKIHsKIAlzdHJ1Y3QgcGFuZnJvc3Rfam9iICpqb2IgPSB0b19w
+YW5mcm9zdF9qb2Ioc2NoZWRfam9iKTsKQEAgLTc2NSw3ICs3MzcsNiBAQCBzdGF0aWMgdm9pZCBw
+YW5mcm9zdF9yZXNldF93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIH0KIAogc3RhdGlj
+IGNvbnN0IHN0cnVjdCBkcm1fc2NoZWRfYmFja2VuZF9vcHMgcGFuZnJvc3Rfc2NoZWRfb3BzID0g
+ewotCS5kZXBlbmRlbmN5ID0gcGFuZnJvc3Rfam9iX2RlcGVuZGVuY3ksCiAJLnJ1bl9qb2IgPSBw
+YW5mcm9zdF9qb2JfcnVuLAogCS50aW1lZG91dF9qb2IgPSBwYW5mcm9zdF9qb2JfdGltZWRvdXQs
+CiAJLmZyZWVfam9iID0gcGFuZnJvc3Rfam9iX2ZyZWUKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9wYW5mcm9zdC9wYW5mcm9zdF9qb2IuaCBiL2RyaXZlcnMvZ3B1L2RybS9wYW5mcm9zdC9w
+YW5mcm9zdF9qb2IuaAppbmRleCA4MjMwNmEwM2I1N2UuLjc3ZTZkMGU2ZjYxMiAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL3BhbmZyb3N0L3BhbmZyb3N0X2pvYi5oCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9wYW5mcm9zdC9wYW5mcm9zdF9qb2IuaApAQCAtMTksMTAgKzE5LDYgQEAgc3RydWN0
+IHBhbmZyb3N0X2pvYiB7CiAJc3RydWN0IHBhbmZyb3N0X2RldmljZSAqcGZkZXY7CiAJc3RydWN0
+IHBhbmZyb3N0X2ZpbGVfcHJpdiAqZmlsZV9wcml2OwogCi0JLyogQ29udGFpbnMgYm90aCBleHBs
+aWNpdCBhbmQgaW1wbGljaXQgZmVuY2VzICovCi0Jc3RydWN0IHhhcnJheSBkZXBzOwotCXVuc2ln
+bmVkIGxvbmcgbGFzdF9kZXA7Ci0KIAkvKiBGZW5jZSB0byBiZSBzaWduYWxlZCBieSBJUlEgaGFu
+ZGxlciB3aGVuIHRoZSBqb2IgaXMgY29tcGxldGUuICovCiAJc3RydWN0IGRtYV9mZW5jZSAqZG9u
+ZV9mZW5jZTsKIApAQCAtNDIsNiArMzgsNyBAQCBpbnQgcGFuZnJvc3Rfam9iX2luaXQoc3RydWN0
+IHBhbmZyb3N0X2RldmljZSAqcGZkZXYpOwogdm9pZCBwYW5mcm9zdF9qb2JfZmluaShzdHJ1Y3Qg
+cGFuZnJvc3RfZGV2aWNlICpwZmRldik7CiBpbnQgcGFuZnJvc3Rfam9iX29wZW4oc3RydWN0IHBh
+bmZyb3N0X2ZpbGVfcHJpdiAqcGFuZnJvc3RfcHJpdik7CiB2b2lkIHBhbmZyb3N0X2pvYl9jbG9z
+ZShzdHJ1Y3QgcGFuZnJvc3RfZmlsZV9wcml2ICpwYW5mcm9zdF9wcml2KTsKK2ludCBwYW5mcm9z
+dF9qb2JfZ2V0X3Nsb3Qoc3RydWN0IHBhbmZyb3N0X2pvYiAqam9iKTsKIGludCBwYW5mcm9zdF9q
+b2JfcHVzaChzdHJ1Y3QgcGFuZnJvc3Rfam9iICpqb2IpOwogdm9pZCBwYW5mcm9zdF9qb2JfcHV0
+KHN0cnVjdCBwYW5mcm9zdF9qb2IgKmpvYik7CiB2b2lkIHBhbmZyb3N0X2pvYl9lbmFibGVfaW50
+ZXJydXB0cyhzdHJ1Y3QgcGFuZnJvc3RfZGV2aWNlICpwZmRldik7Ci0tIAoyLjMyLjAKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
