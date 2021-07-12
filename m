@@ -1,41 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0888C3C3FEA
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 01:25:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1403C4053
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 02:18:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F37189BD2;
-	Sun, 11 Jul 2021 23:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5190189B95;
+	Mon, 12 Jul 2021 00:18:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3688989BD2
- for <intel-gfx@lists.freedesktop.org>; Sun, 11 Jul 2021 23:25:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10042"; a="189585652"
-X-IronPort-AV: E=Sophos;i="5.84,232,1620716400"; d="scan'208";a="189585652"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2021 16:25:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,232,1620716400"; d="scan'208";a="464088767"
-Received: from allen-box.sh.intel.com (HELO [10.239.159.118])
- ([10.239.159.118])
- by fmsmga008.fm.intel.com with ESMTP; 11 Jul 2021 16:25:03 -0700
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210709164750.9465-1-ville.syrjala@linux.intel.com>
- <20210709164750.9465-2-ville.syrjala@linux.intel.com>
-From: Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <ab04666c-229c-fbd2-07f3-6955b46985db@linux.intel.com>
-Date: Mon, 12 Jul 2021 07:23:07 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
+ [IPv6:2607:f8b0:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0544D89B95
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 00:18:47 +0000 (UTC)
+Received: by mail-ot1-x332.google.com with SMTP id
+ 75-20020a9d08510000b02904acfe6bcccaso16937837oty.12
+ for <intel-gfx@lists.freedesktop.org>; Sun, 11 Jul 2021 17:18:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=from:to:date:message-id:in-reply-to:references:user-agent:subject
+ :mime-version; bh=7h96D+Mzxq/Kk/i2SrPGQj6S2CWTqeKE+UC6oFHQfg4=;
+ b=PWkjBpAsjb2RUvsveoI5TqgZNKZgo4m8DEOMf8+QtwS+8DF5Isxpw1eXuFJ/5OK0fa
+ 0KurO6NHi/KB+xahuFhs+tGgukhdAZ4NI9K3sXt3jcXVcUuXWzbiyOD4HOZYzHMAlHR/
+ mCR0S395OXgwtwAJLnWOb2xh2b8c6WxGCvTVl1Mv26LPJSPIQ5oI8HEka96Nnx/b5h9x
+ oN5EvA7hKS4BbpuLBoX7TTKvIn0w3R5iOpZMR4Pi+hgIh1a6/VTIm7CRWR9g2Ul8lexl
+ 2ECyCnLGHZxJXXPvgzt5pcsZx7RnmaPPp8ScMSEKFW+vnzq6g4G6d96txMRs/Mo9zbdO
+ GemA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:date:message-id:in-reply-to:references
+ :user-agent:subject:mime-version;
+ bh=7h96D+Mzxq/Kk/i2SrPGQj6S2CWTqeKE+UC6oFHQfg4=;
+ b=CZLoh3zBTvBpDStSmN9FIIpRXqyTlKkbjG58RJrjweHfolmhIof/f9rL6O8mSiJCTI
+ thbE1AmhuRcyJbep5STvfQZyJTQWelavf+Q6uZo00zDHD/aTlhrRPj8ybue79hZoBLzQ
+ RNqzqd9RkdmuoDNljqqIWD6qAMmLGr2HbkwLYOe/ocElFns1Eu+ers74NSwSqtwS/2pC
+ 1LINWiRB8YhRIrSwYCLeGOvUIxw6uw0DBGSRXADCzak3BScJCC+/CHPH7O1ktfupEzfy
+ cVXWXomAUWttEOsct6HEV32kYv4n5/oafRX/QLkH/EOAJyxWTghyqkLcKfOVg+ewYjjs
+ zPyA==
+X-Gm-Message-State: AOAM531N5SNHDjVKxB8Ov7TWx2m1qYu3kYTXPPnWTIntn1YuC567sfDI
+ BpXI4RPF2HwJpnbkMKpP7h6VlNsBI0oZKg==
+X-Google-Smtp-Source: ABdhPJz0DBFfgaQzfjG/VSfcG1iNzyDso1lYEJz/HdwcDcaTtBg+Fvpi6wtJeYghnG95Mm9V89q/tg==
+X-Received: by 2002:a05:6830:18ca:: with SMTP id
+ v10mr32787866ote.299.1626049125999; 
+ Sun, 11 Jul 2021 17:18:45 -0700 (PDT)
+Received: from [100.64.204.134] ([209.107.186.11])
+ by smtp.gmail.com with ESMTPSA id v2sm2820891ots.8.2021.07.11.17.18.45
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 11 Jul 2021 17:18:45 -0700 (PDT)
+From: Jason Ekstrand <jason@jlekstrand.net>
+To: <intel-gfx@lists.freedesktop.org>,
+ Patchwork <patchwork@emeril.freedesktop.org>
+Date: Sun, 11 Jul 2021 19:18:43 -0500
+Message-ID: <17a981492b8.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+In-Reply-To: <162597720046.15484.15515482397580390384@emeril.freedesktop.org>
+References: <20210711035336.803025-1-jason@jlekstrand.net>
+ <162597720046.15484.15515482397580390384@emeril.freedesktop.org>
+User-Agent: AquaMail/1.30.0-1826 (build: 103000001)
 MIME-Version: 1.0
-In-Reply-To: <20210709164750.9465-2-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/4] iommu/vt-d: Disable superpage for
- Geminilake igfx
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Get_rid_of_fence_error_propagation_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,59 +72,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: iommu@lists.linux-foundation.org, David Woodhouse <dwmw2@infradead.org>,
- baolu.lu@linux.intel.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============0964325284=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gNy8xMC8yMSAxMjo0NyBBTSwgVmlsbGUgU3lyamFsYSB3cm90ZToKPiBGcm9tOiBWaWxsZSBT
-eXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IAo+IFdoaWxlIHJ1bm5p
-bmcgImdlbV9leGVjX2JpZyAtLXIgc2luZ2xlIiBmcm9tIGlndC1ncHUtdG9vbHMgb24KPiBHZW1p
-bmlsYWtlIGFzIHNvb24gYXMgYSAyTSBtYXBwaW5nIGlzIG1hZGUgSSB0ZW5kIHRvIGdldCBhIERN
-QVIKPiB3cml0ZSBmYXVsdC4gU3RyYW5nZWx5IHRoZSBmYXVsdGluZyBhZGRyZXNzIGlzIGFsd2F5
-cyBhIDRLIHBhZ2UKPiBhbmQgdXN1YWxseSB2ZXJ5IGZhciBhd2F5IGZyb20gdGhlIDJNIHBhZ2Ug
-dGhhdCBnb3QgbWFwcGVkLgo+IEJ1dCBpZiBubyAyTSBtYXBwaW5ncyBnZXQgdXNlZCBJIGNhbid0
-IHJlcHJvZHVjZSB0aGUgZmF1bHQuCj4gCj4gSSBhbHNvIHRyaWVkIHRvIGR1bXAgdGhlIFBURSBm
-b3IgdGhlIGZhdWx0aW5nIGFkZHJlc3MgYnV0IGl0IGFjdHVhbGx5Cj4gbG9va3MgY29ycmVjdCB0
-byBtZSAoaWUuIGRlZmluaXRlbHkgc2VlbXMgdG8gaGF2ZSB0aGUgd3JpdGUgYml0IHNldCk6Cj4g
-ICBETUFSOiBEUkhEOiBoYW5kbGluZyBmYXVsdCBzdGF0dXMgcmVnIDIKPiAgIERNQVI6IFtETUEg
-V3JpdGVdIFJlcXVlc3QgZGV2aWNlIFswMDowMi4wXSBQQVNJRCBmZmZmZmZmZiBmYXVsdCBhZGRy
-IDdmYThhNzgwMDAgW2ZhdWx0IHJlYXNvbiAwNV0gUFRFIFdyaXRlIGFjY2VzcyBpcyBub3Qgc2V0
-Cj4gICBETUFSOiBmYXVsdCA3ZmE4YTc4MDAwIChsZXZlbD0xKSBQVEUgPSAxNDllZmMwMDMKPiAK
-PiBTbyBub3QgcmVhbGx5IHN1cmUgd2hhdCdzIGdvaW5nIG9uIGFuZCB0aGlzIG1pZ2h0IGp1c3Qg
-YmUgZnVsbCBvbiBkdWN0Cj4gdGFwZSwgYnV0IGl0IHNlZW1zIHRvIHdvcmsgaGVyZS4gVGhlIG1h
-Y2hpbmUgaGFzIG5vdyBzdXJ2aXZlZCBhIHdob2xlIGRheQo+IHJ1bm5pbmcgdGhhdCB0ZXN0IHdo
-ZXJlYXMgd2l0aCBzdXBlcnBhZ2UgZW5hYmxlZCBpdCBmYWlscyBpbiBsZXNzIHRoYW4KPiBhIG1p
-bnV0ZSB1c3VhbGx5Lgo+IAo+IFRPRE86IG1pZ2h0IGJlIG5pY2UgdG8gZGlzYWJsZSBzdXBlcnBh
-Z2Ugb25seSBmb3IgdGhlIGlnZnggaW9tbXUKPiAgICAgICAgaW5zdGVhZCBvZiBib3RoIGlvbW11
-cwoKSWYgYWxsIHRoZXNlIHF1aXJrcyBhcmUgYWJvdXQgaWdmeCBkZWRpY2F0ZWQgaW9tbXUncywg
-SSB3b3VsZCBzdWdnZXN0IHRvCmRpc2FibGUgc3VwZXJwYWdlIG9ubHkgZm9yIHRoZSBpZ2Z4IG9u
-ZXMuCgpCZXN0IHJlZ2FyZHMsCmJhb2x1Cgo+IFRPRE86IHdvdWxkIGJlIG5pY2UgdG8gdXNlIHRo
-ZSBtYWNyb3MgZnJvbSBpbmNsdWRlL2RybS9pOTE1X3BjaWlkcy5oLAo+ICAgICAgICBidXQgY2Fu
-J3QgZG8gdGhhdCB3aXRoIERFQ0xBUkVfUENJX0ZJWFVQX0hFQURFUigpCj4gCj4gQ2M6IERhdmlk
-IFdvb2Rob3VzZSA8ZHdtdzJAaW5mcmFkZWFkLm9yZz4KPiBDYzogTHUgQmFvbHUgPGJhb2x1Lmx1
-QGxpbnV4LmludGVsLmNvbT4KPiBDYzogaW9tbXVAbGlzdHMubGludXgtZm91bmRhdGlvbi5vcmcK
-PiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPgo+IC0tLQo+ICAgZHJpdmVycy9pb21tdS9pbnRlbC9pb21tdS5jIHwgMTAgKysrKysr
-KysrKwo+ICAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9pb21tdS9pbnRlbC9pb21tdS5jIGIvZHJpdmVycy9pb21tdS9pbnRlbC9pb21t
-dS5jCj4gaW5kZXggMTljNzg4OGNiYjg2Li40ZmZmMmM5Yzg2YWYgMTAwNjQ0Cj4gLS0tIGEvZHJp
-dmVycy9pb21tdS9pbnRlbC9pb21tdS5jCj4gKysrIGIvZHJpdmVycy9pb21tdS9pbnRlbC9pb21t
-dS5jCj4gQEAgLTU2MTcsNiArNTYxNywxNiBAQCBERUNMQVJFX1BDSV9GSVhVUF9IRUFERVIoUENJ
-X1ZFTkRPUl9JRF9JTlRFTCwgMHgxNjMyLCBxdWlya19pb21tdV9pZ2Z4KTsKPiAgIERFQ0xBUkVf
-UENJX0ZJWFVQX0hFQURFUihQQ0lfVkVORE9SX0lEX0lOVEVMLCAweDE2M0EsIHF1aXJrX2lvbW11
-X2lnZngpOwo+ICAgREVDTEFSRV9QQ0lfRklYVVBfSEVBREVSKFBDSV9WRU5ET1JfSURfSU5URUws
-IDB4MTYzRCwgcXVpcmtfaW9tbXVfaWdmeCk7Cj4gICAKPiArc3RhdGljIHZvaWQgcXVpcmtfaW9t
-bXVfbm9zcChzdHJ1Y3QgcGNpX2RldiAqZGV2KQo+ICt7Cj4gKwlwY2lfaW5mbyhkZXYsICJEaXNh
-YmxpbmcgSU9NTVUgc3VwZXJwYWdlIGZvciBncmFwaGljcyBvbiB0aGlzIGNoaXBzZXRcbiIpOwo+
-ICsJaW50ZWxfaW9tbXVfc3VwZXJwYWdlID0gMDsKPiArfQo+ICsKPiArLyogR2VtaW5pbGFrZSBp
-Z2Z4IGFwcGVhcnMgdG8gaGF2ZSBpc3N1ZXMgd2l0aCBzdXBlcnBhZ2UgKi8KPiArREVDTEFSRV9Q
-Q0lfRklYVVBfSEVBREVSKFBDSV9WRU5ET1JfSURfSU5URUwsIDB4MzE4NCwgcXVpcmtfaW9tbXVf
-bm9zcCk7Cj4gK0RFQ0xBUkVfUENJX0ZJWFVQX0hFQURFUihQQ0lfVkVORE9SX0lEX0lOVEVMLCAw
-eDMxODUsIHF1aXJrX2lvbW11X25vc3ApOwo+ICsKPiAgIHN0YXRpYyB2b2lkIHF1aXJrX2lvbW11
-X3J3YmYoc3RydWN0IHBjaV9kZXYgKmRldikKPiAgIHsKPiAgIAlpZiAocmlza3lfZGV2aWNlKGRl
-dikpCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+This is a multi-part message in MIME format.
+--===============0964325284==
+Content-Type: multipart/alternative; boundary="17a981495c843c62817f54e143"
+
+This is a multi-part message in MIME format.
+--17a981495c843c62817f54e143
+Content-Type: text/plain; format=flowed; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+CI is being dumb. This trybot should be identical: 
+https://patchwork.freedesktop.org/series/90705/
+
+On July 10, 2021 23:20:01 Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> Patch DetailsSeries:drm/i915: Get rid of fence error propagation (rev3)
+> URL:https://patchwork.freedesktop.org/series/90891/
+> State:failure
+>
+> Couldn't find any build artifact matching "Test-with: Test-with: 
+> 20210711035204.802908-1-jason@jlekstrand.net"
+> Check that the msg-id is correct and make sure that it had been built.
+
+
+--17a981495c843c62817f54e143
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style id=3D"css-table-select" type=3D"text/css">
+   #aqm-original td {
+padding: 2pt;
+} /* style */
+
+  </style>
+</head>
+<body>
+<div dir=3D"auto">
+<div dir=3D"auto">CI is being dumb. This trybot should be identical: <a hre=
+f=3D"https://patchwork.freedesktop.org/series/90705/">https://patchwork.fre=
+edesktop.org/series/90705/</a></div><div dir=3D'auto'><br></div>
+<div id=3D"aqm-original" style=3D"color: black;">
+
+<!-- body start -->
+<div class=3D"aqm-original-body">
+
+
+<div style=3D"color: black;">
+<p style=3D"color: black; font-size: 10pt; font-family: sans-serif; margin:=
+ 8pt 0;">On July 10, 2021 23:20:01 Patchwork &lt;patchwork@emeril.freedeskt=
+op.org&gt; wrote:</p>
+<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
+ex; border-left: 1px solid #808080; padding-left: 0.75ex;">
+<b>Patch Details</b>
+<table>
+<tbody><tr><td><b>Series:</b></td><td>drm/i915: Get rid of fence error prop=
+agation (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/90891/">https://patchwork.freedesktop.org/series/90891/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</tbody></table>
+
+
+    <p>Couldn't find any build artifact matching "Test-with: Test-with: 202=
+10711035204.802908-1-jason@jlekstrand.net"<br>
+Check that the msg-id is correct and make sure that it had been built.</p>
+
+</blockquote>
+</div>
+</div>
+<!-- body end -->
+
+</div><div dir=3D"auto"><br></div>
+</div></body>
+</html>
+
+--17a981495c843c62817f54e143--
+
+
+--===============0964325284==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0964325284==--
+
