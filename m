@@ -2,69 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0793C5DBA
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 15:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A333C5DBD
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 15:50:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCB2B89C1A;
-	Mon, 12 Jul 2021 13:49:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40D0C89C27;
+	Mon, 12 Jul 2021 13:49:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com
- [IPv6:2607:f8b0:4864:20::d2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C1066EB8F;
- Sun, 11 Jul 2021 05:50:19 +0000 (UTC)
-Received: by mail-io1-xd2c.google.com with SMTP id 62so6142565iob.0;
- Sat, 10 Jul 2021 22:50:19 -0700 (PDT)
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BBB88933C;
+ Mon, 12 Jul 2021 04:35:49 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id g24so9384686pji.4;
+ Sun, 11 Jul 2021 21:35:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=1JU6IkdQvvp5Go0AxPwnfi1zth99vpSVeAzYXXLnyDA=;
- b=jX+yyHpgVqTIhve6qLKx+vddez8pXVVp/zoXrJJ/ZSic9YPuiCLLFG2GJ/joO0L9Po
- GEgjbLkfs6WMeuA2PKTWTR3t/bALkAHtwMEfcPTAeKm3E4M6DfPNgqZv6bL30LxXkAKU
- aPRYDI0K0V9YmdKsd6VPaj25SZIPP5um2ZFwohJMhWPvmDrO8SzsNWR9ifqkUG50ksQ8
- AoYwZ3QbklETQ7Z35OCBQmd788+Ef4kbGouyCALrWsWfAwhwD++48AowJt8/w6mLz2ZG
- lQt+BsWbofwFiR839XGfyVMeiJtJLVz2ozyyEmqoBJgmgAL2IosB4LQUyBZvm1++txjL
- xZrw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=4rLWxgvTxRO6/WnLGuPe5bx1yA3ZPfoXkYG4O0mj5Ag=;
+ b=Geoi+0MWpfFz4FPkrYi/nx4PnAtxpDewQhIbIJJEpdvLJd+zqBYat7d/uOq4bOLVmd
+ crQ/FoTUO9henHk0k11fQML6QMzkjWON0Bt18h+gJv2G/u9O9SDKTBmGaHB5IW53VE4S
+ dROuzbLroxbfZ+hAfVRA1sBJwY8qb8JowpBI+TITbGDJyvK+HYjHCaIUdC1xAyu7xKp5
+ IPR01Sq4YwLldIdNar4XcUj524b6nWeJauuyT1o61vKbGdw75fpaUfireHd2P6nG5SoU
+ h4Fpq9tBo8yTM42PgkUERGI5dzs6z4lPbvLONb4iO7jVKoeo3VkpxgjE/ca8jJ+PZKkL
+ 41/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=1JU6IkdQvvp5Go0AxPwnfi1zth99vpSVeAzYXXLnyDA=;
- b=ZhhwsYg2v780e9K549gSY7yUzDgO2lkwUYsh4wxVDBDSKWvzjhGioEmPbJsvKGx+Ev
- cqzXthUw/efmxW4/O3FG0Vv5Hca9oMoIADIYahqZ4FXNfvHaMyeOzXpLqSP8Zugt6lmt
- 4POInYXugWb9C0icBs3GYhmS4RKTZjTKzLw2EIow68N636obOdeLZ9LXft/Evon4ra7P
- bFJ+CCQUpJ+nqnzc7ZQq1rVnbRGH/A77/Kr4Fzx2mL8WtwrAPy4Iq4tgelOS8qaQ0HQy
- 1BMe4BuobuBZ3hVhBiOCnAOD9a4XeZ1rGGdb5Xs2GTnU258T9ROWAkRtk4c75MEMBQEt
- 8+4g==
-X-Gm-Message-State: AOAM530ZxJbc+WckKGn74rMQO9AM6w99XyCl6ChDNiklbGqL7sWiOSx0
- +luH/X2vIS6gOJc5VjXFfsM=
-X-Google-Smtp-Source: ABdhPJzHBs42lAveyvzML9lmuADkqzvZAMbBGeS3sw2D9YMkkwV+8J1AY2NDXsE7ZLT7wJlTDJaARw==
-X-Received: by 2002:a05:6602:1c4:: with SMTP id
- w4mr34031289iot.44.1625982618817; 
- Sat, 10 Jul 2021 22:50:18 -0700 (PDT)
-Received: from frodo.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
- by smtp.googlemail.com with ESMTPSA id x8sm5852400ilq.63.2021.07.10.22.50.17
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=4rLWxgvTxRO6/WnLGuPe5bx1yA3ZPfoXkYG4O0mj5Ag=;
+ b=d+Qik32wMd/29E3XXEtu48CJWNFsmSIOQa8rdw28FHp15oDNGNs7GICFJ13BCT/Zvm
+ Li/FKdr88f7f0N+yO6BrLrWZa2MywI3Zn3vLV1+szdfNTd8kMUiTdDistwVXMzwDmbn7
+ ukQ+s3Qgv5wTxTlRMf++wKV2i1B5zxpr4rB/bklBVO9Y9mqq14RXTFPcIaVfR4qszJf/
+ e3qq7q/Kh/GrppcP2yEabQEV9tl8t4YQ2xdOC4j3XxGWuI2B1M1y12MH1x1urrImNtn7
+ UxwzGymA97yBdFzp0aWxS/dG0erCBYiP+X3H7f6bcaXzrz0d0YORGLP0b1qW9HBoinrQ
+ 2JiQ==
+X-Gm-Message-State: AOAM530hTo57rsrFXf0obLNH7R4KPcqeyfTQMsXfT9w1r28Kk8JH8PFa
+ 5hMfndEA5EuOERi83N10qNo=
+X-Google-Smtp-Source: ABdhPJwl+CRq9QTeLobKLyJ6aOiBlK052/w9C9BYiZxarzwfe1F9ZnaLlpMcaNfVay5lzr4CjUJ4tQ==
+X-Received: by 2002:a17:90a:c484:: with SMTP id
+ j4mr48282588pjt.218.1626064548647; 
+ Sun, 11 Jul 2021 21:35:48 -0700 (PDT)
+Received: from localhost.localdomain ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id n3sm14242764pfn.216.2021.07.11.21.35.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 10 Jul 2021 22:50:18 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Sat, 10 Jul 2021 23:50:02 -0600
-Message-Id: <20210711055003.528167-5-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210711055003.528167-1-jim.cromie@gmail.com>
-References: <20210711055003.528167-1-jim.cromie@gmail.com>
+ Sun, 11 Jul 2021 21:35:48 -0700 (PDT)
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
+ christian.koenig@amd.com
+Date: Mon, 12 Jul 2021 12:35:03 +0800
+Message-Id: <20210712043508.11584-1-desmondcheongzx@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 12 Jul 2021 13:49:54 +0000
-Subject: [Intel-gfx] [RFC PATCH v2 4/4] i915: map gvt pr_debug categories to
- bits in parameters/debug_gvt
+Subject: [Intel-gfx] [PATCH v8 0/5] drm: address potential UAF bugs with
+ drm_master ptrs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,139 +69,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>, jbaron@akamai.com
+Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
+ Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ linux-kernel-mentees@lists.linuxfoundation.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The gvt component of this driver has ~120 pr_debugs, in 9 "classes".
-Following the interface model of drm.debug, add a parameter to map
-bits to these classes.
+Hi,
 
-If CONFIG_DRM_USE_DYNAMIC_DEBUG=y (and CONFIG_DYNAMIC_DEBUG_CORE), add
--DDYNAMIC_DEBUG_MODULE into Makefile.  TBD: maybe add a separate
-CONFIG_I915_USE_DYNAMIC_DEBUG to more fully optionalize this.
+In the previous thread on this series we decided to remove a patch that was violating a lockdep requirement in drm_lease. In addition to this change, I took a closer look at the CI logs for the Basic Acceptance Tests and noticed that another regression was introduced. The new patch 2 is a response to this.
 
-In i915_params.c, add callback to map bits to queries.
+Overall, this series addresses potential use-after-free errors when dereferencing pointers to struct drm_master. These were identified after one such bug was caught by Syzbot in drm_getunique():
+https://syzkaller.appspot.com/bug?id=148d2f1dfac64af52ffd27b661981a540724f803
 
-TBD: the callback code should probably be moved to lib/dynamic_debug,
-and given a declarative interface, with implied bit-numbering,
-something like:
+The series is broken up into five patches:
 
-MOD_PARM_BITMAP_DESC(__gvt_debug,
-	"gvt: cmd: ",  "command processing"
-	"gvt: core: ", "core help",
-	"gvt: dpy: ",  "display help",
-	"gvt: el: ",   "help",
-	"gvt: irq: ",  "help",
-	"gvt: mm: ",   "help",
-	"gvt: mmio: ", "help",
-	"gvt: render: ", "help",
-	"gvt: sched: " "help");
----
- drivers/gpu/drm/i915/gvt/Makefile  |  4 ++
- drivers/gpu/drm/i915/i915_params.c | 76 ++++++++++++++++++++++++++++++
- 2 files changed, 80 insertions(+)
+1. Move a call to drm_is_current_master() out from a section locked by &dev->mode_config.mutex in drm_mode_getconnector(). This patch does not apply to stable.
 
-diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
-index ea8324abc784..846ba73b8de6 100644
---- a/drivers/gpu/drm/i915/gvt/Makefile
-+++ b/drivers/gpu/drm/i915/gvt/Makefile
-@@ -7,3 +7,7 @@ GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
- 
- ccflags-y				+= -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
- i915-y					+= $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
-+
-+#ifdef CONFIG_DRM_USE_DYNAMIC_DEBUG
-+ccflags-y	+= -DDYNAMIC_DEBUG_MODULE
-+#endif
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index e07f4cfea63a..e0d13aff5274 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -265,3 +265,79 @@ void i915_params_free(struct i915_params *params)
- 	I915_PARAMS_FOR_EACH(FREE);
- #undef FREE
- }
-+
-+/* POC for callback -> dynamic_debug_exec_queries */
-+unsigned long __gvt_debug;
-+EXPORT_SYMBOL(__gvt_debug);
-+
-+static char *format_prefix_classes[] = {
-+	"gvt: cmd: ",
-+	"gvt: core: ",
-+	"gvt: dpy: ",
-+	"gvt: el: ",
-+	"gvt: irq: ",
-+	"gvt: mm: ",
-+	"gvt: mmio: ",
-+	"gvt: render: ",
-+	"gvt: sched: "
-+};
-+#define NUM_CLASSES	ARRAY_SIZE(format_prefix_classes)
-+#define OUR_QUERY_SIZE	128 /* we need about 20 */
-+
-+#include <linux/module.h>
-+
-+static int param_set_dyndbg(const char *instr, const struct kernel_param *kp)
-+{
-+	unsigned int val;
-+	unsigned long changes, result;
-+	int rc, chgct = 0, totct = 0, bitpos;
-+	char query[OUR_QUERY_SIZE];
-+
-+	rc = kstrtouint(instr, 0, &val);
-+	if (rc) {
-+		pr_err("set_dyndbg: failed\n");
-+		return -EINVAL;
-+	}
-+	result = val;
-+	pr_info("set_dyndbg: result:0x%lx from %s\n", result, instr);
-+
-+	changes = result ^ __gvt_debug;
-+
-+	for_each_set_bit(bitpos, &changes, NUM_CLASSES) {
-+
-+		sprintf(query, "format '^%s' %cp", format_prefix_classes[bitpos],
-+			test_bit(bitpos, &result) ? '+' : '-');
-+
-+		chgct = dynamic_debug_exec_queries(query, "i915");
-+
-+		pr_info("%d changes on: %s\n", chgct, query);
-+		totct += chgct;
-+	}
-+	pr_info("total changes: %d\n", totct);
-+	__gvt_debug = result;
-+	return 0;
-+}
-+static int param_get_dyndbg(char *buffer, const struct kernel_param *kp)
-+{
-+	return scnprintf(buffer, PAGE_SIZE, "%u\n",
-+			 *((unsigned int *)kp->arg));
-+}
-+static const struct kernel_param_ops param_ops_dyndbg = {
-+	.set = param_set_dyndbg,
-+	.get = param_get_dyndbg,
-+};
-+
-+#define info_ln(hexi, prefix) "\n\t0x" __stringify(hexi) "\t" prefix
-+
-+MODULE_PARM_DESC(debug_gvt, " gvt debug categories:"
-+		 info_ln(1, "gvt: cmd:")
-+		 info_ln(2, "gvt: core:")
-+		 info_ln(4, "gvt: dpy:")
-+		 info_ln(8, "gvt: el:")
-+		 info_ln(10, "gvt: irq:")
-+		 info_ln(20, "gvt: mm:")
-+		 info_ln(40, "gvt: mmio:")
-+		 info_ln(80, "gvt: render:")
-+		 info_ln(100, "gvt: sched:"));
-+
-+module_param_cb(debug_gvt, &param_ops_dyndbg, &__gvt_debug, 0644);
+2. Move a call to drm_is_current_master() out from the RCU read-side critical section in drm_clients_info().
+
+3. Implement a locked version of drm_is_current_master() function that's used within drm_auth.c.
+
+4. Serialize drm_file.master by introducing a new spinlock that's held whenever the value of drm_file.master changes.
+
+5. Identify areas in drm_lease.c where pointers to struct drm_master are dereferenced, and ensure that the master pointers are not freed during use.
+
+v7 -> v8:
+- Remove the patch that moves the call to _drm_lease_held out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find. This patch violated an existing lockdep requirement as reported by the intel-gfx CI.
+- Added a new patch that moves a call to drm_is_current_master out from the RCU critical section in drm_clients_info. This was reported by the intel-gfx CI.
+
+v6 -> v7:
+- Modify code alignment as suggested by the intel-gfx CI.
+- Add a new patch to the series that adds a new lock to serialize drm_file.master, in response to the lockdep splat by the intel-gfx CI.
+- Update drm_file_get_master to use the new drm_file.master_lock instead of drm_device.master_mutex, in response to the lockdep splat by the intel-gfx CI.
+
+v5 -> v6:
+- Add a new patch to the series that moves the call to _drm_lease_held out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find.
+- Clarify the kerneldoc for dereferencing drm_file.master, as suggested by Daniel Vetter.
+- Refactor error paths with goto labels so that each function only has a single drm_master_put(), as suggested by Emil Velikov.
+- Modify comparisons to NULL into "!master", as suggested by the intel-gfx CI.
+
+v4 -> v5:
+- Add a new patch to the series that moves the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex.
+- Additionally, added a missing semicolon to the patch, caught by the intel-gfx CI.
+
+v3 -> v4:
+- Move the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex. As suggested by Daniel Vetter. This avoids a circular lock lock dependency as reported here https://patchwork.freedesktop.org/patch/440406/
+- Inside drm_is_current_master, instead of grabbing &fpriv->master->dev->master_mutex, we grab &fpriv->minor->dev->master_mutex to avoid dereferencing a null ptr if fpriv->master is not set.
+- Modify kerneldoc formatting for drm_file.master, as suggested by Daniel Vetter.
+- Additionally, add a file_priv->master NULL check inside drm_file_get_master, and handle the NULL result accordingly in drm_lease.c. As suggested by Daniel Vetter.
+
+v2 -> v3:
+- Move the definition of drm_is_current_master and the _locked version higher up in drm_auth.c to avoid needing a forward declaration of drm_is_current_master_locked. As suggested by Daniel Vetter.
+- Instead of leaking drm_device.master_mutex into drm_lease.c to protect drm_master pointers, add a new drm_file_get_master() function that returns drm_file->master while increasing its reference count, to prevent drm_file->master from being freed. As suggested by Daniel Vetter.
+
+v1 -> v2:
+- Move the lock and assignment before the DRM_DEBUG_LEASE in drm_mode_get_lease_ioctl, as suggested by Emil Velikov.
+
+Desmond Cheong Zhi Xi (5):
+  drm: avoid circular locks in drm_mode_getconnector
+  drm: avoid blocking in drm_clients_info's rcu section
+  drm: add a locked version of drm_is_current_master
+  drm: serialize drm_file.master with a new spinlock
+  drm: protect drm_master pointers in drm_lease.c
+
+ drivers/gpu/drm/drm_auth.c      | 93 ++++++++++++++++++++++++---------
+ drivers/gpu/drm/drm_connector.c |  5 +-
+ drivers/gpu/drm/drm_debugfs.c   |  3 +-
+ drivers/gpu/drm/drm_file.c      |  1 +
+ drivers/gpu/drm/drm_lease.c     | 81 +++++++++++++++++++++-------
+ include/drm/drm_auth.h          |  1 +
+ include/drm/drm_file.h          | 18 +++++--
+ 7 files changed, 152 insertions(+), 50 deletions(-)
+
 -- 
-2.31.1
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
