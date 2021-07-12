@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E57C3C6481
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 22:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037CA3C648F
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 22:02:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0F0989DE3;
-	Mon, 12 Jul 2021 20:02:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5787E89DE5;
+	Mon, 12 Jul 2021 20:02:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAC7289DE5
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 20:02:06 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id n4so1759465wms.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 13:02:06 -0700 (PDT)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C548F89DD8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 20:02:07 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id
+ g8-20020a1c9d080000b02901f13dd1672aso563102wme.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 13:02:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=mls2ejKErj4+c/cv4r8BLVM3Y5XNHv+hyokEAjrvlQQ=;
- b=TZF0hyBFpS1vsTqLrgPGXx7gHY9EIbAogXDEzNUpRcT0JYixUfW5rthX5zfAwDJu5q
- 7jrhbmWGQQM+9v8amO0UFFXE5fVP/JD4bKN4X9eIAi+rvuR9AkHavMnQ5SqAKOAwpmgc
- teou2jLgAIwjwCjGTF6ThxN8EYw6U1ohO8bUQ=
+ bh=lLEpaaIeWrrcnbM6as1GBSMCuKQAEtjxJwifI/VOOvE=;
+ b=Q6ThvbzNIgJtYqc9Im0JJW8xzwCQPpjJhJg6JffFxbpmwjETSZ08oah5ALPKYL+qAK
+ yvHfcMpFHx98Zn12atIAmSVl72X7qiAIGlauG00f2Nsxkly/FLapZez0/kBoICiIjjJ9
+ Gml120vIAQh5Pe4bFRraIJS2AiZltbc/XuW1E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=mls2ejKErj4+c/cv4r8BLVM3Y5XNHv+hyokEAjrvlQQ=;
- b=Le8QQn5s8yDXQlR9EDuyoau5A7ey57PWmMlMTxtKrRuHhIQFvowgKBi9xyrYFLkm2A
- I1aErCGURxUsT+BZZ2qDRbugF1SftRTArkLpeGA4QhevWJplHy3UwkJ7yiayyFKmF+Pj
- EyhvkRT7tbR5WB9/U0zL1mfMi1rAKPVzzOKX89rvcCf3fuGbNaQloBkgdnlZldenBSIz
- vb+bU2I/RoV1+f8E5wAASn2WYjV1TyHBHLxjfFBuvlzFe7Kc6ppNVD8KPt82TFHcR9nB
- 7+wC02MWA4C1vxzUY2ohj1nh7i6xaEG64QqyUTTv6+PrglFCESBe+p7fcSWxvXLYTlRV
- RVAg==
-X-Gm-Message-State: AOAM5334HgJgIlLG/dHIw76nIBWQdNMtXJHW0gOppYxTKzsUZR02zpfJ
- 99BpATs6/mUE224HjMktNec6HQ==
-X-Google-Smtp-Source: ABdhPJwdi7rBCrFLfTx5H3zKTMz97fhbVcwAliFAProEP+U0KEJaehupP6FshYX9s69rTZEs/LFbzA==
-X-Received: by 2002:a05:600c:cb:: with SMTP id u11mr928206wmm.66.1626120125399; 
- Mon, 12 Jul 2021 13:02:05 -0700 (PDT)
+ bh=lLEpaaIeWrrcnbM6as1GBSMCuKQAEtjxJwifI/VOOvE=;
+ b=anzc6b++rw1cVyeiCn8BDg1xr92ZjME3zq6hvNLXV/jOPsryGStbOHcKTuVBvmRbMl
+ 4y+AwQXc2QXUksii0W1ZXhAN9wv3lzGrDaLTUIYGvB8XWpGewxQKlV3DsHvViDDP4PoU
+ S7LhUnCDRda0qbyDw8pWrUucxJp1XCNK07DiY9YLuvOaiRa0L5GPggImdRyEbdkG5V5Z
+ zcgyeFf3HwQhJ2pSZM6SROfj/qdmEbCRvVMryjykTm454UdnC8gaw+W6zFop9vEKEXiQ
+ MP566OuLQsC4tdclTeAMLOnqEfq5xF6ghh2Vbh6VTy7b5QTbL4utk3vcCNA+0MBGu51U
+ Eaag==
+X-Gm-Message-State: AOAM53253O0lKRpNEChMXacIDnTzOXKmwPrJ1tHlveMWEdbnDhm2HUTz
+ 6xewTYJ/hZ5TROAt6q3RLBGlFg==
+X-Google-Smtp-Source: ABdhPJziwYveoIdI/f9tfKxqAeSHAT9GfmdFVq4WlozShN2VnewQRnGpnmuRwTFABYco0ruK7AyV7w==
+X-Received: by 2002:a1c:113:: with SMTP id 19mr12403789wmb.51.1626120126244;
+ Mon, 12 Jul 2021 13:02:06 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l14sm9858221wrs.22.2021.07.12.13.02.04
+ by smtp.gmail.com with ESMTPSA id l14sm9858221wrs.22.2021.07.12.13.02.05
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Jul 2021 13:02:04 -0700 (PDT)
+ Mon, 12 Jul 2021 13:02:05 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon, 12 Jul 2021 19:53:41 +0200
-Message-Id: <20210712175352.802687-8-daniel.vetter@ffwll.ch>
+Date: Mon, 12 Jul 2021 19:53:42 +0200
+Message-Id: <20210712175352.802687-9-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210712175352.802687-1-daniel.vetter@ffwll.ch>
 References: <20210712175352.802687-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 07/18] drm/lima: use scheduler dependency
- tracking
+Subject: [Intel-gfx] [PATCH v4 08/18] drm/v3d: Move drm_sched_job_init to
+ v3d_job_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,79 +65,374 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lima@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Melissa Wen <melissa.srw@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Qiang Yu <yuq825@gmail.com>, Daniel Vetter <daniel.vetter@intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Emma Anholt <emma@anholt.net>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tm90aGluZyBzcGVjaWFsIGdvaW5nIG9uIGhlcmUuCgpBc2lkZSByZXZpZXdpbmcgdGhlIGNvZGUs
-IGl0IHNlZW1zIGxpa2UgZHJtX3NjaGVkX2pvYl9hcm0oKSBzaG91bGQgYmUKbW92ZWQgaW50byBs
-aW1hX3NjaGVkX2NvbnRleHRfcXVldWVfdGFzayBhbmQgcHV0IHVuZGVyIHNvbWUgbXV0ZXgKdG9n
-ZXRoZXIgd2l0aCBkcm1fc2NoZWRfcHVzaF9qb2IoKS4gU2VlIHRoZSBrZXJuZWxkb2MgZm9yCmRy
-bV9zY2hlZF9wdXNoX2pvYigpLgoKU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVs
-LnZldHRlckBpbnRlbC5jb20+CkNjOiBRaWFuZyBZdSA8eXVxODI1QGdtYWlsLmNvbT4KQ2M6IFN1
-bWl0IFNlbXdhbCA8c3VtaXQuc2Vtd2FsQGxpbmFyby5vcmc+CkNjOiAiQ2hyaXN0aWFuIEvDtm5p
-ZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KQ2M6IGxpbWFAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCkNjOiBsaW51eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmcKQ2M6IGxpbmFyby1tbS1zaWdAbGlz
-dHMubGluYXJvLm9yZwotLS0KIGRyaXZlcnMvZ3B1L2RybS9saW1hL2xpbWFfZ2VtLmMgICB8ICA0
-ICsrLS0KIGRyaXZlcnMvZ3B1L2RybS9saW1hL2xpbWFfc2NoZWQuYyB8IDIxIC0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5oIHwgIDMgLS0tCiAz
-IGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMjYgZGVsZXRpb25zKC0pCgpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9nZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9s
-aW1hL2xpbWFfZ2VtLmMKaW5kZXggYzUyOGY0MDk4MWJiLi5lNTRhODhkNTAzN2EgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9saW1hL2xpbWFfZ2VtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2xpbWEvbGltYV9nZW0uYwpAQCAtMjY3LDcgKzI2Nyw3IEBAIHN0YXRpYyBpbnQgbGltYV9nZW1f
-c3luY19ibyhzdHJ1Y3QgbGltYV9zY2hlZF90YXNrICp0YXNrLCBzdHJ1Y3QgbGltYV9ibyAqYm8s
-CiAJaWYgKGV4cGxpY2l0KQogCQlyZXR1cm4gMDsKIAotCXJldHVybiBkcm1fZ2VtX2ZlbmNlX2Fy
-cmF5X2FkZF9pbXBsaWNpdCgmdGFzay0+ZGVwcywgJmJvLT5iYXNlLmJhc2UsIHdyaXRlKTsKKwly
-ZXR1cm4gZHJtX3NjaGVkX2pvYl9hd2FpdF9pbXBsaWNpdCgmdGFzay0+YmFzZSwgJmJvLT5iYXNl
-LmJhc2UsIHdyaXRlKTsKIH0KIAogc3RhdGljIGludCBsaW1hX2dlbV9hZGRfZGVwcyhzdHJ1Y3Qg
-ZHJtX2ZpbGUgKmZpbGUsIHN0cnVjdCBsaW1hX3N1Ym1pdCAqc3VibWl0KQpAQCAtMjg1LDcgKzI4
-NSw3IEBAIHN0YXRpYyBpbnQgbGltYV9nZW1fYWRkX2RlcHMoc3RydWN0IGRybV9maWxlICpmaWxl
-LCBzdHJ1Y3QgbGltYV9zdWJtaXQgKnN1Ym1pdCkKIAkJaWYgKGVycikKIAkJCXJldHVybiBlcnI7
-CiAKLQkJZXJyID0gZHJtX2dlbV9mZW5jZV9hcnJheV9hZGQoJnN1Ym1pdC0+dGFzay0+ZGVwcywg
-ZmVuY2UpOworCQllcnIgPSBkcm1fc2NoZWRfam9iX2F3YWl0X2ZlbmNlKCZzdWJtaXQtPnRhc2st
-PmJhc2UsIGZlbmNlKTsKIAkJaWYgKGVycikgewogCQkJZG1hX2ZlbmNlX3B1dChmZW5jZSk7CiAJ
-CQlyZXR1cm4gZXJyOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hl
-ZC5jIGIvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5jCmluZGV4IGU5NjhiNWE4ZjBi
-MC4uOTlkNWY2ZjFhODgyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbGltYS9saW1hX3Nj
-aGVkLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5jCkBAIC0xMzQsMjQg
-KzEzNCwxNSBAQCBpbnQgbGltYV9zY2hlZF90YXNrX2luaXQoc3RydWN0IGxpbWFfc2NoZWRfdGFz
-ayAqdGFzaywKIAl0YXNrLT5udW1fYm9zID0gbnVtX2JvczsKIAl0YXNrLT52bSA9IGxpbWFfdm1f
-Z2V0KHZtKTsKIAotCXhhX2luaXRfZmxhZ3MoJnRhc2stPmRlcHMsIFhBX0ZMQUdTX0FMTE9DKTsK
-LQogCXJldHVybiAwOwogfQogCiB2b2lkIGxpbWFfc2NoZWRfdGFza19maW5pKHN0cnVjdCBsaW1h
-X3NjaGVkX3Rhc2sgKnRhc2spCiB7Ci0Jc3RydWN0IGRtYV9mZW5jZSAqZmVuY2U7Ci0JdW5zaWdu
-ZWQgbG9uZyBpbmRleDsKIAlpbnQgaTsKIAogCWRybV9zY2hlZF9qb2JfY2xlYW51cCgmdGFzay0+
-YmFzZSk7CiAKLQl4YV9mb3JfZWFjaCgmdGFzay0+ZGVwcywgaW5kZXgsIGZlbmNlKSB7Ci0JCWRt
-YV9mZW5jZV9wdXQoZmVuY2UpOwotCX0KLQl4YV9kZXN0cm95KCZ0YXNrLT5kZXBzKTsKLQogCWlm
-ICh0YXNrLT5ib3MpIHsKIAkJZm9yIChpID0gMDsgaSA8IHRhc2stPm51bV9ib3M7IGkrKykKIAkJ
-CWRybV9nZW1fb2JqZWN0X3B1dCgmdGFzay0+Ym9zW2ldLT5iYXNlLmJhc2UpOwpAQCAtMTg2LDE3
-ICsxNzcsNiBAQCBzdHJ1Y3QgZG1hX2ZlbmNlICpsaW1hX3NjaGVkX2NvbnRleHRfcXVldWVfdGFz
-ayhzdHJ1Y3QgbGltYV9zY2hlZF90YXNrICp0YXNrKQogCXJldHVybiBmZW5jZTsKIH0KIAotc3Rh
-dGljIHN0cnVjdCBkbWFfZmVuY2UgKmxpbWFfc2NoZWRfZGVwZW5kZW5jeShzdHJ1Y3QgZHJtX3Nj
-aGVkX2pvYiAqam9iLAotCQkJCQkgICAgICAgc3RydWN0IGRybV9zY2hlZF9lbnRpdHkgKmVudGl0
-eSkKLXsKLQlzdHJ1Y3QgbGltYV9zY2hlZF90YXNrICp0YXNrID0gdG9fbGltYV90YXNrKGpvYik7
-Ci0KLQlpZiAoIXhhX2VtcHR5KCZ0YXNrLT5kZXBzKSkKLQkJcmV0dXJuIHhhX2VyYXNlKCZ0YXNr
-LT5kZXBzLCB0YXNrLT5sYXN0X2RlcCsrKTsKLQotCXJldHVybiBOVUxMOwotfQotCiBzdGF0aWMg
-aW50IGxpbWFfcG1fYnVzeShzdHJ1Y3QgbGltYV9kZXZpY2UgKmxkZXYpCiB7CiAJaW50IHJldDsK
-QEAgLTQ3Miw3ICs0NTIsNiBAQCBzdGF0aWMgdm9pZCBsaW1hX3NjaGVkX2ZyZWVfam9iKHN0cnVj
-dCBkcm1fc2NoZWRfam9iICpqb2IpCiB9CiAKIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX3NjaGVk
-X2JhY2tlbmRfb3BzIGxpbWFfc2NoZWRfb3BzID0gewotCS5kZXBlbmRlbmN5ID0gbGltYV9zY2hl
-ZF9kZXBlbmRlbmN5LAogCS5ydW5fam9iID0gbGltYV9zY2hlZF9ydW5fam9iLAogCS50aW1lZG91
-dF9qb2IgPSBsaW1hX3NjaGVkX3RpbWVkb3V0X2pvYiwKIAkuZnJlZV9qb2IgPSBsaW1hX3NjaGVk
-X2ZyZWVfam9iLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5o
-IGIvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5oCmluZGV4IGFjNzAwMDZiMGUyNi4u
-NmExMTc2NGQ4N2IzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbGltYS9saW1hX3NjaGVk
-LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5oCkBAIC0yMyw5ICsyMyw2
-IEBAIHN0cnVjdCBsaW1hX3NjaGVkX3Rhc2sgewogCXN0cnVjdCBsaW1hX3ZtICp2bTsKIAl2b2lk
-ICpmcmFtZTsKIAotCXN0cnVjdCB4YXJyYXkgZGVwczsKLQl1bnNpZ25lZCBsb25nIGxhc3RfZGVw
-OwotCiAJc3RydWN0IGxpbWFfYm8gKipib3M7CiAJaW50IG51bV9ib3M7CiAKLS0gCjIuMzIuMAoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Prep work for using the scheduler dependency handling. We need to call
+drm_sched_job_init earlier so we can use the new drm_sched_job_await*
+functions for dependency handling here.
+
+v2: Slightly better commit message and rebase to include the
+drm_sched_job_arm() call (Emma).
+
+v3: Cleanup jobs under construction correctly (Emma)
+
+Cc: Melissa Wen <melissa.srw@gmail.com>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Emma Anholt <emma@anholt.net>
+---
+ drivers/gpu/drm/v3d/v3d_drv.h   |  1 +
+ drivers/gpu/drm/v3d/v3d_gem.c   | 88 ++++++++++++++-------------------
+ drivers/gpu/drm/v3d/v3d_sched.c | 15 +++---
+ 3 files changed, 44 insertions(+), 60 deletions(-)
+
+diff --git a/drivers/gpu/drm/v3d/v3d_drv.h b/drivers/gpu/drm/v3d/v3d_drv.h
+index 8a390738d65b..1d870261eaac 100644
+--- a/drivers/gpu/drm/v3d/v3d_drv.h
++++ b/drivers/gpu/drm/v3d/v3d_drv.h
+@@ -332,6 +332,7 @@ int v3d_submit_csd_ioctl(struct drm_device *dev, void *data,
+ 			 struct drm_file *file_priv);
+ int v3d_wait_bo_ioctl(struct drm_device *dev, void *data,
+ 		      struct drm_file *file_priv);
++void v3d_job_cleanup(struct v3d_job *job);
+ void v3d_job_put(struct v3d_job *job);
+ void v3d_reset(struct v3d_dev *v3d);
+ void v3d_invalidate_caches(struct v3d_dev *v3d);
+diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
+index 69ac20e11b09..5eccd3658938 100644
+--- a/drivers/gpu/drm/v3d/v3d_gem.c
++++ b/drivers/gpu/drm/v3d/v3d_gem.c
+@@ -392,6 +392,12 @@ v3d_render_job_free(struct kref *ref)
+ 	v3d_job_free(ref);
+ }
+ 
++void v3d_job_cleanup(struct v3d_job *job)
++{
++	drm_sched_job_cleanup(&job->base);
++	v3d_job_put(job);
++}
++
+ void v3d_job_put(struct v3d_job *job)
+ {
+ 	kref_put(&job->refcount, job->free);
+@@ -433,9 +439,10 @@ v3d_wait_bo_ioctl(struct drm_device *dev, void *data,
+ static int
+ v3d_job_init(struct v3d_dev *v3d, struct drm_file *file_priv,
+ 	     struct v3d_job *job, void (*free)(struct kref *ref),
+-	     u32 in_sync)
++	     u32 in_sync, enum v3d_queue queue)
+ {
+ 	struct dma_fence *in_fence = NULL;
++	struct v3d_file_priv *v3d_priv = file_priv->driver_priv;
+ 	int ret;
+ 
+ 	job->v3d = v3d;
+@@ -446,35 +453,33 @@ v3d_job_init(struct v3d_dev *v3d, struct drm_file *file_priv,
+ 		return ret;
+ 
+ 	xa_init_flags(&job->deps, XA_FLAGS_ALLOC);
++	ret = drm_sched_job_init(&job->base, &v3d_priv->sched_entity[queue],
++				 v3d_priv);
++	if (ret)
++		goto fail;
+ 
+ 	ret = drm_syncobj_find_fence(file_priv, in_sync, 0, 0, &in_fence);
+ 	if (ret == -EINVAL)
+-		goto fail;
++		goto fail_job;
+ 
+ 	ret = drm_gem_fence_array_add(&job->deps, in_fence);
+ 	if (ret)
+-		goto fail;
++		goto fail_job;
+ 
+ 	kref_init(&job->refcount);
+ 
+ 	return 0;
++fail_job:
++	drm_sched_job_cleanup(&job->base);
+ fail:
+ 	xa_destroy(&job->deps);
+ 	pm_runtime_put_autosuspend(v3d->drm.dev);
+ 	return ret;
+ }
+ 
+-static int
+-v3d_push_job(struct v3d_file_priv *v3d_priv,
+-	     struct v3d_job *job, enum v3d_queue queue)
++static void
++v3d_push_job(struct v3d_job *job)
+ {
+-	int ret;
+-
+-	ret = drm_sched_job_init(&job->base, &v3d_priv->sched_entity[queue],
+-				 v3d_priv);
+-	if (ret)
+-		return ret;
+-
+ 	drm_sched_job_arm(&job->base);
+ 
+ 	job->done_fence = dma_fence_get(&job->base.s_fence->finished);
+@@ -483,8 +488,6 @@ v3d_push_job(struct v3d_file_priv *v3d_priv,
+ 	kref_get(&job->refcount);
+ 
+ 	drm_sched_entity_push_job(&job->base);
+-
+-	return 0;
+ }
+ 
+ static void
+@@ -530,7 +533,6 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 		    struct drm_file *file_priv)
+ {
+ 	struct v3d_dev *v3d = to_v3d_dev(dev);
+-	struct v3d_file_priv *v3d_priv = file_priv->driver_priv;
+ 	struct drm_v3d_submit_cl *args = data;
+ 	struct v3d_bin_job *bin = NULL;
+ 	struct v3d_render_job *render;
+@@ -556,7 +558,7 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 	INIT_LIST_HEAD(&render->unref_list);
+ 
+ 	ret = v3d_job_init(v3d, file_priv, &render->base,
+-			   v3d_render_job_free, args->in_sync_rcl);
++			   v3d_render_job_free, args->in_sync_rcl, V3D_RENDER);
+ 	if (ret) {
+ 		kfree(render);
+ 		return ret;
+@@ -570,7 +572,7 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 		}
+ 
+ 		ret = v3d_job_init(v3d, file_priv, &bin->base,
+-				   v3d_job_free, args->in_sync_bcl);
++				   v3d_job_free, args->in_sync_bcl, V3D_BIN);
+ 		if (ret) {
+ 			v3d_job_put(&render->base);
+ 			kfree(bin);
+@@ -592,7 +594,7 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 			goto fail;
+ 		}
+ 
+-		ret = v3d_job_init(v3d, file_priv, clean_job, v3d_job_free, 0);
++		ret = v3d_job_init(v3d, file_priv, clean_job, v3d_job_free, 0, V3D_CACHE_CLEAN);
+ 		if (ret) {
+ 			kfree(clean_job);
+ 			clean_job = NULL;
+@@ -615,9 +617,7 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 
+ 	mutex_lock(&v3d->sched_lock);
+ 	if (bin) {
+-		ret = v3d_push_job(v3d_priv, &bin->base, V3D_BIN);
+-		if (ret)
+-			goto fail_unreserve;
++		v3d_push_job(&bin->base);
+ 
+ 		ret = drm_gem_fence_array_add(&render->base.deps,
+ 					      dma_fence_get(bin->base.done_fence));
+@@ -625,9 +625,7 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 			goto fail_unreserve;
+ 	}
+ 
+-	ret = v3d_push_job(v3d_priv, &render->base, V3D_RENDER);
+-	if (ret)
+-		goto fail_unreserve;
++	v3d_push_job(&render->base);
+ 
+ 	if (clean_job) {
+ 		struct dma_fence *render_fence =
+@@ -635,9 +633,7 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 		ret = drm_gem_fence_array_add(&clean_job->deps, render_fence);
+ 		if (ret)
+ 			goto fail_unreserve;
+-		ret = v3d_push_job(v3d_priv, clean_job, V3D_CACHE_CLEAN);
+-		if (ret)
+-			goto fail_unreserve;
++		v3d_push_job(clean_job);
+ 	}
+ 
+ 	mutex_unlock(&v3d->sched_lock);
+@@ -662,10 +658,10 @@ v3d_submit_cl_ioctl(struct drm_device *dev, void *data,
+ 				    last_job->bo_count, &acquire_ctx);
+ fail:
+ 	if (bin)
+-		v3d_job_put(&bin->base);
+-	v3d_job_put(&render->base);
++		v3d_job_cleanup(&bin->base);
++	v3d_job_cleanup(&render->base);
+ 	if (clean_job)
+-		v3d_job_put(clean_job);
++		v3d_job_cleanup(clean_job);
+ 
+ 	return ret;
+ }
+@@ -684,7 +680,6 @@ v3d_submit_tfu_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file_priv)
+ {
+ 	struct v3d_dev *v3d = to_v3d_dev(dev);
+-	struct v3d_file_priv *v3d_priv = file_priv->driver_priv;
+ 	struct drm_v3d_submit_tfu *args = data;
+ 	struct v3d_tfu_job *job;
+ 	struct ww_acquire_ctx acquire_ctx;
+@@ -697,7 +692,7 @@ v3d_submit_tfu_ioctl(struct drm_device *dev, void *data,
+ 		return -ENOMEM;
+ 
+ 	ret = v3d_job_init(v3d, file_priv, &job->base,
+-			   v3d_job_free, args->in_sync);
++			   v3d_job_free, args->in_sync, V3D_TFU);
+ 	if (ret) {
+ 		kfree(job);
+ 		return ret;
+@@ -741,9 +736,7 @@ v3d_submit_tfu_ioctl(struct drm_device *dev, void *data,
+ 		goto fail;
+ 
+ 	mutex_lock(&v3d->sched_lock);
+-	ret = v3d_push_job(v3d_priv, &job->base, V3D_TFU);
+-	if (ret)
+-		goto fail_unreserve;
++	v3d_push_job(&job->base);
+ 	mutex_unlock(&v3d->sched_lock);
+ 
+ 	v3d_attach_fences_and_unlock_reservation(file_priv,
+@@ -755,12 +748,8 @@ v3d_submit_tfu_ioctl(struct drm_device *dev, void *data,
+ 
+ 	return 0;
+ 
+-fail_unreserve:
+-	mutex_unlock(&v3d->sched_lock);
+-	drm_gem_unlock_reservations(job->base.bo, job->base.bo_count,
+-				    &acquire_ctx);
+ fail:
+-	v3d_job_put(&job->base);
++	v3d_job_cleanup(&job->base);
+ 
+ 	return ret;
+ }
+@@ -779,7 +768,6 @@ v3d_submit_csd_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file_priv)
+ {
+ 	struct v3d_dev *v3d = to_v3d_dev(dev);
+-	struct v3d_file_priv *v3d_priv = file_priv->driver_priv;
+ 	struct drm_v3d_submit_csd *args = data;
+ 	struct v3d_csd_job *job;
+ 	struct v3d_job *clean_job;
+@@ -798,7 +786,7 @@ v3d_submit_csd_ioctl(struct drm_device *dev, void *data,
+ 		return -ENOMEM;
+ 
+ 	ret = v3d_job_init(v3d, file_priv, &job->base,
+-			   v3d_job_free, args->in_sync);
++			   v3d_job_free, args->in_sync, V3D_CSD);
+ 	if (ret) {
+ 		kfree(job);
+ 		return ret;
+@@ -811,7 +799,7 @@ v3d_submit_csd_ioctl(struct drm_device *dev, void *data,
+ 		return -ENOMEM;
+ 	}
+ 
+-	ret = v3d_job_init(v3d, file_priv, clean_job, v3d_job_free, 0);
++	ret = v3d_job_init(v3d, file_priv, clean_job, v3d_job_free, 0, V3D_CACHE_CLEAN);
+ 	if (ret) {
+ 		v3d_job_put(&job->base);
+ 		kfree(clean_job);
+@@ -830,18 +818,14 @@ v3d_submit_csd_ioctl(struct drm_device *dev, void *data,
+ 		goto fail;
+ 
+ 	mutex_lock(&v3d->sched_lock);
+-	ret = v3d_push_job(v3d_priv, &job->base, V3D_CSD);
+-	if (ret)
+-		goto fail_unreserve;
++	v3d_push_job(&job->base);
+ 
+ 	ret = drm_gem_fence_array_add(&clean_job->deps,
+ 				      dma_fence_get(job->base.done_fence));
+ 	if (ret)
+ 		goto fail_unreserve;
+ 
+-	ret = v3d_push_job(v3d_priv, clean_job, V3D_CACHE_CLEAN);
+-	if (ret)
+-		goto fail_unreserve;
++	v3d_push_job(clean_job);
+ 	mutex_unlock(&v3d->sched_lock);
+ 
+ 	v3d_attach_fences_and_unlock_reservation(file_priv,
+@@ -860,8 +844,8 @@ v3d_submit_csd_ioctl(struct drm_device *dev, void *data,
+ 	drm_gem_unlock_reservations(clean_job->bo, clean_job->bo_count,
+ 				    &acquire_ctx);
+ fail:
+-	v3d_job_put(&job->base);
+-	v3d_job_put(clean_job);
++	v3d_job_cleanup(&job->base);
++	v3d_job_cleanup(clean_job);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
+index a39bdd5cfc4f..3f352d73af9c 100644
+--- a/drivers/gpu/drm/v3d/v3d_sched.c
++++ b/drivers/gpu/drm/v3d/v3d_sched.c
+@@ -55,12 +55,11 @@ to_csd_job(struct drm_sched_job *sched_job)
+ }
+ 
+ static void
+-v3d_job_free(struct drm_sched_job *sched_job)
++v3d_sched_job_free(struct drm_sched_job *sched_job)
+ {
+ 	struct v3d_job *job = to_v3d_job(sched_job);
+ 
+-	drm_sched_job_cleanup(sched_job);
+-	v3d_job_put(job);
++	v3d_job_cleanup(job);
+ }
+ 
+ /*
+@@ -360,35 +359,35 @@ static const struct drm_sched_backend_ops v3d_bin_sched_ops = {
+ 	.dependency = v3d_job_dependency,
+ 	.run_job = v3d_bin_job_run,
+ 	.timedout_job = v3d_bin_job_timedout,
+-	.free_job = v3d_job_free,
++	.free_job = v3d_sched_job_free,
+ };
+ 
+ static const struct drm_sched_backend_ops v3d_render_sched_ops = {
+ 	.dependency = v3d_job_dependency,
+ 	.run_job = v3d_render_job_run,
+ 	.timedout_job = v3d_render_job_timedout,
+-	.free_job = v3d_job_free,
++	.free_job = v3d_sched_job_free,
+ };
+ 
+ static const struct drm_sched_backend_ops v3d_tfu_sched_ops = {
+ 	.dependency = v3d_job_dependency,
+ 	.run_job = v3d_tfu_job_run,
+ 	.timedout_job = v3d_generic_job_timedout,
+-	.free_job = v3d_job_free,
++	.free_job = v3d_sched_job_free,
+ };
+ 
+ static const struct drm_sched_backend_ops v3d_csd_sched_ops = {
+ 	.dependency = v3d_job_dependency,
+ 	.run_job = v3d_csd_job_run,
+ 	.timedout_job = v3d_csd_job_timedout,
+-	.free_job = v3d_job_free
++	.free_job = v3d_sched_job_free
+ };
+ 
+ static const struct drm_sched_backend_ops v3d_cache_clean_sched_ops = {
+ 	.dependency = v3d_job_dependency,
+ 	.run_job = v3d_cache_clean_job_run,
+ 	.timedout_job = v3d_generic_job_timedout,
+-	.free_job = v3d_job_free
++	.free_job = v3d_sched_job_free
+ };
+ 
+ int
+-- 
+2.32.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
