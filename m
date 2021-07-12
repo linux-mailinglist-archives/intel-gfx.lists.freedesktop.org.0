@@ -2,38 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 549FC3C668B
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 00:56:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DAED3C668E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 00:56:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B811689F27;
-	Mon, 12 Jul 2021 22:56:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4883189F1B;
+	Mon, 12 Jul 2021 22:56:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46EDB89F27
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 22:56:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10043"; a="210040637"
-X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="210040637"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 15:56:12 -0700
-X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="648525989"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 15:56:12 -0700
-Date: Mon, 12 Jul 2021 15:56:11 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Message-ID: <20210712225611.GE951094@mdroper-desk1.amr.corp.intel.com>
-References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
- <20210710033724.2459367-10-matthew.d.roper@intel.com>
- <b19ae95f585e4efdab230d9f83be4a8e@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9337F89F19;
+ Mon, 12 Jul 2021 22:56:21 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10043"; a="209881480"
+X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="209881480"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2021 15:56:21 -0700
+X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="412747654"
+Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.209.125.18])
+ ([10.209.125.18])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2021 15:56:20 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210624070516.21893-1-matthew.brost@intel.com>
+ <20210624070516.21893-35-matthew.brost@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+Message-ID: <fc969525-96a5-9b4a-0eaa-f809f4de6547@intel.com>
+Date: Mon, 12 Jul 2021 15:56:19 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <b19ae95f585e4efdab230d9f83be4a8e@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 09/12] drm/i915/rkl: Use revid->stepping
- tables
+In-Reply-To: <20210624070516.21893-35-matthew.brost@intel.com>
+Content-Language: en-GB
+Subject: Re: [Intel-gfx] [PATCH 34/47] drm/i915/guc: Suspend/resume
+ implementation for new interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,141 +48,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 12, 2021 at 03:51:15PM -0700, Srivatsa, Anusha wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Roper, Matthew D <matthew.d.roper@intel.com>
-> > Sent: Friday, July 9, 2021 8:37 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Roper, Matthew D
-> > <matthew.d.roper@intel.com>
-> > Subject: [PATCH v2 09/12] drm/i915/rkl: Use revid->stepping tables
-> > 
-> > Switch RKL to use a revid->stepping table as we're trying to do on all
-> > platforms going forward.
-> > 
-> > Bspec: 44501
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_psr.c | 4 ++--
-> >  drivers/gpu/drm/i915/i915_drv.h          | 8 ++------
-> >  drivers/gpu/drm/i915/intel_step.c        | 9 +++++++++
-> >  3 files changed, 13 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > index 9643624fe160..74b2aa3c2946 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -594,7 +594,7 @@ static void hsw_activate_psr2(struct intel_dp
-> > *intel_dp)
-> >  	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-> >  		/* WA 1408330847 */
-> >  		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
-> > -		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
-> > +		    IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0))
-> >  			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> >  				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
-> >  				     DIS_RAM_BYPASS_PSR2_MAN_TRACK);
-> > @@ -1342,7 +1342,7 @@ static void intel_psr_disable_locked(struct intel_dp
-> > *intel_dp)
-> >  	/* WA 1408330847 */
-> >  	if (intel_dp->psr.psr2_sel_fetch_enabled &&
-> >  	    (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
-> > -	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
-> > +	     IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0)))
-> >  		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> >  			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> > b/drivers/gpu/drm/i915/i915_drv.h index b3ce2b73a143..9195131cf90f
-> > 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -1549,12 +1549,8 @@ IS_SUBPLATFORM(const struct drm_i915_private
-> > *i915,
-> >  	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915))
-> > && \
-> >  	 IS_GT_STEP(__i915, since, until))
-> > 
-> > -#define RKL_REVID_A0		0x0
-> > -#define RKL_REVID_B0		0x1
-> > -#define RKL_REVID_C0		0x4
-> > -
-> > -#define IS_RKL_REVID(p, since, until) \
-> > -	(IS_ROCKETLAKE(p) && IS_REVID(p, since, until))
-> > +#define IS_RKL_DISPLAY_STEP(p, since, until) \
-> > +	(IS_ROCKETLAKE(p) && IS_DISPLAY_STEP(p, since, until))
-> > 
-> 
-> If a platform has the same gt and display stepping, I wonder if we
-> should stick to using IS_<PLATFORM>_GT_STEP while replacing
-> IS<PLATFORM>_REVID instances. The previous patches have
-> IS_<PLATFORMS>_GT_STEP.
-> Just a thought.
+On 6/24/2021 00:05, Matthew Brost wrote:
+> The new GuC interface introduces an MMIO H2G command,
+> INTEL_GUC_ACTION_RESET_CLIENT, which is used to implement suspend. This
+> MMIO tears down any active contexts generating a context reset G2H CTB
+> for each. Once that step completes the GuC tears down the CTB
+> channels. It is safe to suspend once this MMIO H2G command completes
+> and all G2H CTBs have been processed. In practice the i915 will likely
+> never receive a G2H as suspend should only be called after the GPU is
+> idle.
+>
+> Resume is implemented in the same manner as before - simply reload the
+> GuC firmware and reinitialize everything (e.g. CTB channels, contexts,
+> etc..).
+>
+> Cc: John Harrison <john.c.harrison@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com?
 
-No, we want to be very explicit about which IP block the stepping
-belongs to to avoid mistakes.  Just because the steppings are equivalent
-right now doesn't mean a new revision won't show up in the future that
-has different GT vs display steppings.  In that case it's easy to update
-the table, but we don't want to have to dig through the rest of the code
-looking for places where we used the wrong macro.  Plus, intentionally
-using the wrong macro on a platform where it doesn't matter is going to
-lead to copy/paste errors when people add additional platforms to a
-workaround.
+> ---
+>   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  1 +
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 64 ++++++++-----------
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 14 ++--
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  5 ++
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 20 ++++--
+>   5 files changed, 53 insertions(+), 51 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> index 57e18babdf4b..596cf4b818e5 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> @@ -142,6 +142,7 @@ enum intel_guc_action {
+>   	INTEL_GUC_ACTION_REGISTER_COMMAND_TRANSPORT_BUFFER = 0x4505,
+>   	INTEL_GUC_ACTION_DEREGISTER_COMMAND_TRANSPORT_BUFFER = 0x4506,
+>   	INTEL_GUC_ACTION_DEREGISTER_CONTEXT_DONE = 0x4600,
+> +	INTEL_GUC_ACTION_RESET_CLIENT = 0x5B01,
+>   	INTEL_GUC_ACTION_LIMIT
+>   };
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> index 9b09395b998f..68266cbffd1f 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> @@ -524,51 +524,34 @@ int intel_guc_auth_huc(struct intel_guc *guc, u32 rsa_offset)
+>    */
+>   int intel_guc_suspend(struct intel_guc *guc)
+>   {
+> -	struct intel_uncore *uncore = guc_to_gt(guc)->uncore;
+>   	int ret;
+> -	u32 status;
+>   	u32 action[] = {
+> -		INTEL_GUC_ACTION_ENTER_S_STATE,
+> -		GUC_POWER_D1, /* any value greater than GUC_POWER_D0 */
+> +		INTEL_GUC_ACTION_RESET_CLIENT,
+>   	};
+>   
+> -	/*
+> -	 * If GuC communication is enabled but submission is not supported,
+> -	 * we do not need to suspend the GuC.
+> -	 */
+> -	if (!intel_guc_submission_is_used(guc) || !intel_guc_is_ready(guc))
+> +	if (!intel_guc_is_ready(guc))
+>   		return 0;
+>   
+> -	/*
+> -	 * The ENTER_S_STATE action queues the save/restore operation in GuC FW
+> -	 * and then returns, so waiting on the H2G is not enough to guarantee
+> -	 * GuC is done. When all the processing is done, GuC writes
+> -	 * INTEL_GUC_SLEEP_STATE_SUCCESS to scratch register 14, so we can poll
+> -	 * on that. Note that GuC does not ensure that the value in the register
+> -	 * is different from INTEL_GUC_SLEEP_STATE_SUCCESS while the action is
+> -	 * in progress so we need to take care of that ourselves as well.
+> -	 */
+> -
+> -	intel_uncore_write(uncore, SOFT_SCRATCH(14),
+> -			   INTEL_GUC_SLEEP_STATE_INVALID_MASK);
+> -
+> -	ret = intel_guc_send(guc, action, ARRAY_SIZE(action));
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = __intel_wait_for_register(uncore, SOFT_SCRATCH(14),
+> -					INTEL_GUC_SLEEP_STATE_INVALID_MASK,
+> -					0, 0, 10, &status);
+> -	if (ret)
+> -		return ret;
+> -
+> -	if (status != INTEL_GUC_SLEEP_STATE_SUCCESS) {
+> -		DRM_ERROR("GuC failed to change sleep state. "
+> -			  "action=0x%x, err=%u\n",
+> -			  action[0], status);
+> -		return -EIO;
+> +	if (intel_guc_submission_is_used(guc)) {
+> +		/*
+> +		 * This H2G MMIO command tears down the GuC in two steps. First it will
+> +		 * generate a G2H CTB for every active context indicating a reset. In
+> +		 * practice the i915 shouldn't ever get a G2H as suspend should only be
+> +		 * called when the GPU is idle. Next, it tears down the CTBs and this
+> +		 * H2G MMIO command completes.
+> +		 *
+> +		 * Don't abort on a failure code from the GuC. Keep going and do the
+> +		 * clean up in santize() and re-initialisation on resume and hopefully
+> +		 * the error here won't be problematic.
+> +		 */
+> +		ret = intel_guc_send_mmio(guc, action, ARRAY_SIZE(action), NULL, 0);
+> +		if (ret)
+> +			DRM_ERROR("GuC suspend: RESET_CLIENT action failed with error %d!\n", ret);
+>   	}
+>   
+> +	/* Signal that the GuC isn't running. */
+> +	intel_guc_sanitize(guc);
+> +
+>   	return 0;
+>   }
+>   
+> @@ -578,7 +561,12 @@ int intel_guc_suspend(struct intel_guc *guc)
+>    */
+>   int intel_guc_resume(struct intel_guc *guc)
+>   {
+> -	/* XXX: to be implemented with submission interface rework */
+> +	/*
+> +	 * NB: This function can still be called even if GuC submission is
+> +	 * disabled, e.g. if GuC is enabled for HuC authentication only. Thus,
+> +	 * if any code is later added here, it must be support doing nothing
+> +	 * if submission is disabled (as per intel_guc_suspend).
+> +	 */
+>   	return 0;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 59fca9748c15..16b61fe71b07 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -304,10 +304,10 @@ static int guc_submission_busy_loop(struct intel_guc* guc,
+>   	return err;
+>   }
+>   
+> -static int guc_wait_for_pending_msg(struct intel_guc *guc,
+> -				    atomic_t *wait_var,
+> -				    bool interruptible,
+> -				    long timeout)
+> +int intel_guc_wait_for_pending_msg(struct intel_guc *guc,
+> +				   atomic_t *wait_var,
+> +				   bool interruptible,
+> +				   long timeout)
+>   {
+>   	const int state = interruptible ?
+>   		TASK_INTERRUPTIBLE : TASK_UNINTERRUPTIBLE;
+> @@ -352,8 +352,8 @@ int intel_guc_wait_for_idle(struct intel_guc *guc, long timeout)
+>   	if (unlikely(timeout < 0))
+>   		timeout = -timeout, interruptible = false;
+>   
+> -	return guc_wait_for_pending_msg(guc, &guc->outstanding_submission_g2h,
+> -					interruptible, timeout);
+> +	return intel_guc_wait_for_pending_msg(guc, &guc->outstanding_submission_g2h,
+> +					      interruptible, timeout);
+>   }
+>   
+>   static int guc_lrc_desc_pin(struct intel_context *ce, bool loop);
+> @@ -625,7 +625,7 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
+>   	for (i = 0; i < 4 && atomic_read(&guc->outstanding_submission_g2h); ++i) {
+>   		intel_guc_to_host_event_handler(guc);
+>   #define wait_for_reset(guc, wait_var) \
+> -		guc_wait_for_pending_msg(guc, wait_var, false, (HZ / 20))
+> +		intel_guc_wait_for_pending_msg(guc, wait_var, false, (HZ / 20))
+>   		do {
+>   			wait_for_reset(guc, &guc->outstanding_submission_g2h);
+>   		} while (!list_empty(&guc->ct.requests.incoming));
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> index 95df5ab06031..b9b9f0f60f91 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> @@ -27,6 +27,11 @@ void intel_guc_log_context_info(struct intel_guc *guc, struct drm_printer *p);
+>   
+>   bool intel_guc_virtual_engine_has_heartbeat(const struct intel_engine_cs *ve);
+>   
+> +int intel_guc_wait_for_pending_msg(struct intel_guc *guc,
+> +				   atomic_t *wait_var,
+> +				   bool interruptible,
+> +				   long timeout);
+> +
+>   static inline bool intel_guc_submission_is_supported(struct intel_guc *guc)
+>   {
+>   	/* XXX: GuC submission is unavailable for now */
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index ab11fe731ee7..b523a8521351 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -596,14 +596,18 @@ void intel_uc_cancel_requests(struct intel_uc *uc)
+>   void intel_uc_runtime_suspend(struct intel_uc *uc)
+>   {
+>   	struct intel_guc *guc = &uc->guc;
+> -	int err;
+>   
+>   	if (!intel_guc_is_ready(guc))
+>   		return;
+>   
+> -	err = intel_guc_suspend(guc);
+> -	if (err)
+> -		DRM_DEBUG_DRIVER("Failed to suspend GuC, err=%d", err);
+> +	/*
+> +	 * Wait for any outstanding CTB before tearing down communication /w the
+> +	 * GuC.
+> +	 */
+> +#define OUTSTANDING_CTB_TIMEOUT_PERIOD	(HZ / 5)
+> +	intel_guc_wait_for_pending_msg(guc, &guc->outstanding_submission_g2h,
+> +				       false, OUTSTANDING_CTB_TIMEOUT_PERIOD);
+> +	GEM_WARN_ON(atomic_read(&guc->outstanding_submission_g2h));
+>   
+>   	guc_disable_communication(guc);
+>   }
+> @@ -612,12 +616,16 @@ void intel_uc_suspend(struct intel_uc *uc)
+>   {
+>   	struct intel_guc *guc = &uc->guc;
+>   	intel_wakeref_t wakeref;
+> +	int err;
+>   
+>   	if (!intel_guc_is_ready(guc))
+>   		return;
+>   
+> -	with_intel_runtime_pm(uc_to_gt(uc)->uncore->rpm, wakeref)
+> -		intel_uc_runtime_suspend(uc);
+> +	with_intel_runtime_pm(&uc_to_gt(uc)->i915->runtime_pm, wakeref) {
+> +		err = intel_guc_suspend(guc);
+> +		if (err)
+> +			DRM_DEBUG_DRIVER("Failed to suspend GuC, err=%d", err);
+> +	}
+>   }
+>   
+>   static int __uc_resume(struct intel_uc *uc, bool enable_communication)
 
-
-Matt
-
-> 
-> Anusha 
-> 
-> >  #define DG1_REVID_A0		0x0
-> >  #define DG1_REVID_B0		0x1
-> > diff --git a/drivers/gpu/drm/i915/intel_step.c
-> > b/drivers/gpu/drm/i915/intel_step.c
-> > index 6e1b132ecf38..21211649e6bb 100644
-> > --- a/drivers/gpu/drm/i915/intel_step.c
-> > +++ b/drivers/gpu/drm/i915/intel_step.c
-> > @@ -75,6 +75,12 @@ static const struct intel_step_info tgl_revids[] = {
-> >  	[1] = { .gt_step = STEP_B0, .display_step = STEP_D0 },  };
-> > 
-> > +static const struct intel_step_info rkl_revids[] = {
-> > +	[0] = { COMMON_STEPPING(A0) },
-> > +	[1] = { COMMON_STEPPING(B0) },
-> > +	[4] = { COMMON_STEPPING(C0) },
-> > +};
-> > +
-> >  static const struct intel_step_info adls_revids[] = {
-> >  	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
-> >  	[0x1] = { .gt_step = STEP_A0, .display_step = STEP_A2 }, @@ -103,6
-> > +109,9 @@ void intel_step_init(struct drm_i915_private *i915)
-> >  	} else if (IS_ALDERLAKE_S(i915)) {
-> >  		revids = adls_revids;
-> >  		size = ARRAY_SIZE(adls_revids);
-> > +	} else if (IS_ROCKETLAKE(i915)) {
-> > +		revids = rkl_revids;
-> > +		size = ARRAY_SIZE(rkl_revids);
-> >  	} else if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
-> >  		revids = tgl_uy_revids;
-> >  		size = ARRAY_SIZE(tgl_uy_revids);
-> > --
-> > 2.25.4
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
