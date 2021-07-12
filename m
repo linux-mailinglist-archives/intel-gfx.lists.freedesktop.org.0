@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 022513C6248
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 19:57:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 864223C625A
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 20:06:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF7DF89D52;
-	Mon, 12 Jul 2021 17:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B659489402;
+	Mon, 12 Jul 2021 18:06:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48B7189CF8;
- Mon, 12 Jul 2021 17:57:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10043"; a="208209316"
-X-IronPort-AV: E=Sophos;i="5.84,234,1620716400"; d="scan'208";a="208209316"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5DFF89402;
+ Mon, 12 Jul 2021 18:06:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10043"; a="207013779"
+X-IronPort-AV: E=Sophos;i="5.84,234,1620716400"; d="scan'208";a="207013779"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 10:57:17 -0700
-X-IronPort-AV: E=Sophos;i="5.84,234,1620716400"; d="scan'208";a="412661034"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2021 11:06:00 -0700
+X-IronPort-AV: E=Sophos;i="5.84,234,1620716400"; d="scan'208";a="412663679"
 Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.209.125.18])
  ([10.209.125.18])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 10:57:17 -0700
-To: Matthew Brost <matthew.brost@intel.com>
+ 12 Jul 2021 11:05:59 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
 References: <20210624070516.21893-1-matthew.brost@intel.com>
- <20210624070516.21893-17-matthew.brost@intel.com>
- <8d056c1a-dc4a-baed-1664-0f86db9e7c5c@intel.com>
- <20210710030010.GA187079@DUT030-TGLY.fm.intel.com>
+ <20210624070516.21893-24-matthew.brost@intel.com>
 From: John Harrison <john.c.harrison@intel.com>
-Message-ID: <2b80175b-3ead-d219-ef77-d3f3bcc4835f@intel.com>
-Date: Mon, 12 Jul 2021 10:57:17 -0700
+Message-ID: <fb9585b0-6e74-a1f3-88b0-bd5b88d5cbf3@intel.com>
+Date: Mon, 12 Jul 2021 11:05:59 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210710030010.GA187079@DUT030-TGLY.fm.intel.com>
+In-Reply-To: <20210624070516.21893-24-matthew.brost@intel.com>
 Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 16/47] drm/i915/guc: Disable engine barriers
- with GuC during unpin
+Subject: Re: [Intel-gfx] [PATCH 23/47] drm/i915/guc: Update GuC debugfs to
+ support new GuC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,107 +48,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 7/9/2021 20:00, Matthew Brost wrote:
-> On Fri, Jul 09, 2021 at 03:53:29PM -0700, John Harrison wrote:
->> On 6/24/2021 00:04, Matthew Brost wrote:
->>> Disable engine barriers for unpinning with GuC. This feature isn't
->>> needed with the GuC as it disables context scheduling before unpinning
->>> which guarantees the HW will not reference the context. Hence it is
->>> not necessary to defer unpinning until a kernel context request
->>> completes on each engine in the context engine mask.
->>>
->>> Cc: John Harrison <john.c.harrison@intel.com>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_context.c    |  2 +-
->>>    drivers/gpu/drm/i915/gt/intel_context.h    |  1 +
->>>    drivers/gpu/drm/i915/gt/selftest_context.c | 10 ++++++++++
->>>    3 files changed, 12 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
->>> index 1499b8aace2a..7f97753ab164 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
->>> @@ -80,7 +80,7 @@ static int intel_context_active_acquire(struct intel_context *ce)
->>>    	__i915_active_acquire(&ce->active);
->>> -	if (intel_context_is_barrier(ce))
->>> +	if (intel_context_is_barrier(ce) || intel_engine_uses_guc(ce->engine))
->>>    		return 0;
->> Would be better to have a scheduler flag to say whether barriers are
->> required or not. That would prevent polluting front end code with back end
->> details.
->>
-> I guess an engine flag is slightly better but I still don't love that
-> as we have to test if the context is a barrier (kernel context) and then
-> call a function that is basically backend specific after. IMO we really
-> need to push all of this to a vfunc. If you really want me to make this
-> an engine flag I can, but in the end it just seems like that will
-> trash the code (adding an engine flag just to remove it). I think this
-> is just a clean up we write down, and figure out a bit later as nothing
-> is functionally wrong + quite clear that it is something that should be
-> cleaned up.
+On 6/24/2021 00:04, Matthew Brost wrote:
+> Update GuC debugfs to support the new GuC structures.
 >
-> Matt
-Flag, vfunc, whatever. I just mean that it would be better to abstract 
-it out in some manner. Maybe a flag/vfunc on the ce object? That way it 
-would swallow the 'ignore kernel contexts' test as well. But yes, 
-probably best to add it to the todo list and move on as it is not going 
-to be a two minute quick fix. I've added a comment to the Jira, so...
-
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
-
-
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 22 ++++++++
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  3 ++
+>   .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    | 23 +++++++-
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 52 +++++++++++++++++++
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  4 ++
+>   drivers/gpu/drm/i915/i915_debugfs.c           |  1 +
+>   6 files changed, 104 insertions(+), 1 deletion(-)
 >
->> John.
->>
->>
->>>    	/* Preallocate tracking nodes */
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
->>> index 8a7199afbe61..a592a9605dc8 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
->>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
->>> @@ -16,6 +16,7 @@
->>>    #include "intel_engine_types.h"
->>>    #include "intel_ring_types.h"
->>>    #include "intel_timeline_types.h"
->>> +#include "uc/intel_guc_submission.h"
->>>    #define CE_TRACE(ce, fmt, ...) do {					\
->>>    	const struct intel_context *ce__ = (ce);			\
->>> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
->>> index 26685b927169..fa7b99a671dd 100644
->>> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
->>> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
->>> @@ -209,7 +209,13 @@ static int __live_active_context(struct intel_engine_cs *engine)
->>>    	 * This test makes sure that the context is kept alive until a
->>>    	 * subsequent idle-barrier (emitted when the engine wakeref hits 0
->>>    	 * with no more outstanding requests).
->>> +	 *
->>> +	 * In GuC submission mode we don't use idle barriers and we instead
->>> +	 * get a message from the GuC to signal that it is safe to unpin the
->>> +	 * context from memory.
->>>    	 */
->>> +	if (intel_engine_uses_guc(engine))
->>> +		return 0;
->>>    	if (intel_engine_pm_is_awake(engine)) {
->>>    		pr_err("%s is awake before starting %s!\n",
->>> @@ -357,7 +363,11 @@ static int __live_remote_context(struct intel_engine_cs *engine)
->>>    	 * on the context image remotely (intel_context_prepare_remote_request),
->>>    	 * which inserts foreign fences into intel_context.active, does not
->>>    	 * clobber the idle-barrier.
->>> +	 *
->>> +	 * In GuC submission mode we don't use idle barriers.
->>>    	 */
->>> +	if (intel_engine_uses_guc(engine))
->>> +		return 0;
->>>    	if (intel_engine_pm_is_awake(engine)) {
->>>    		pr_err("%s is awake before starting %s!\n",
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index e0f92e28350c..4ed074df88e5 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -1135,3 +1135,25 @@ void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
+>   
+>   	ct_try_receive_message(ct);
+>   }
+> +
+> +void intel_guc_log_ct_info(struct intel_guc_ct *ct,
+> +			   struct drm_printer *p)
+> +{
+> +	if (!ct->enabled) {
+> +		drm_puts(p, "CT disabled\n");
+> +		return;
+> +	}
+> +
+> +	drm_printf(p, "H2G Space: %u\n",
+> +		   atomic_read(&ct->ctbs.send.space) * 4);
+> +	drm_printf(p, "Head: %u\n",
+> +		   ct->ctbs.send.desc->head);
+> +	drm_printf(p, "Tail: %u\n",
+> +		   ct->ctbs.send.desc->tail);
+> +	drm_printf(p, "G2H Space: %u\n",
+> +		   atomic_read(&ct->ctbs.recv.space) * 4);
+> +	drm_printf(p, "Head: %u\n",
+> +		   ct->ctbs.recv.desc->head);
+> +	drm_printf(p, "Tail: %u\n",
+> +		   ct->ctbs.recv.desc->tail);
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> index ab1b79ab960b..f62eb06b32fc 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> @@ -16,6 +16,7 @@
+>   
+>   struct i915_vma;
+>   struct intel_guc;
+> +struct drm_printer;
+>   
+>   /**
+>    * DOC: Command Transport (CT).
+> @@ -106,4 +107,6 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
+>   		      u32 *response_buf, u32 response_buf_size, u32 flags);
+>   void intel_guc_ct_event_handler(struct intel_guc_ct *ct);
+>   
+> +void intel_guc_log_ct_info(struct intel_guc_ct *ct, struct drm_printer *p);
+> +
+>   #endif /* _INTEL_GUC_CT_H_ */
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> index fe7cb7b29a1e..62b9ce0fafaa 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> @@ -9,6 +9,8 @@
+>   #include "intel_guc.h"
+>   #include "intel_guc_debugfs.h"
+>   #include "intel_guc_log_debugfs.h"
+> +#include "gt/uc/intel_guc_ct.h"
+> +#include "gt/uc/intel_guc_submission.h"
+>   
+>   static int guc_info_show(struct seq_file *m, void *data)
+>   {
+> @@ -22,16 +24,35 @@ static int guc_info_show(struct seq_file *m, void *data)
+>   	drm_puts(&p, "\n");
+>   	intel_guc_log_info(&guc->log, &p);
+>   
+> -	/* Add more as required ... */
+> +	if (!intel_guc_submission_is_used(guc))
+> +		return 0;
+> +
+> +	intel_guc_log_ct_info(&guc->ct, &p);
+> +	intel_guc_log_submission_info(guc, &p);
+>   
+>   	return 0;
+>   }
+>   DEFINE_GT_DEBUGFS_ATTRIBUTE(guc_info);
+>   
+> +static int guc_registered_contexts_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_guc *guc = m->private;
+> +	struct drm_printer p = drm_seq_file_printer(m);
+> +
+> +	if (!intel_guc_submission_is_used(guc))
+> +		return -ENODEV;
+> +
+> +	intel_guc_log_context_info(guc, &p);
+> +
+> +	return 0;
+> +}
+> +DEFINE_GT_DEBUGFS_ATTRIBUTE(guc_registered_contexts);
+> +
+>   void intel_guc_debugfs_register(struct intel_guc *guc, struct dentry *root)
+>   {
+>   	static const struct debugfs_gt_file files[] = {
+>   		{ "guc_info", &guc_info_fops, NULL },
+> +		{ "guc_registered_contexts", &guc_registered_contexts_fops, NULL },
+>   	};
+>   
+>   	if (!intel_guc_is_supported(guc))
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index d1a28283a9ae..89b3c7e5d15b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1600,3 +1600,55 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+>   
+>   	return 0;
+>   }
+> +
+> +void intel_guc_log_submission_info(struct intel_guc *guc,
+> +				   struct drm_printer *p)
+> +{
+> +	struct i915_sched_engine *sched_engine = guc->sched_engine;
+> +	struct rb_node *rb;
+> +	unsigned long flags;
+> +
+> +	drm_printf(p, "GuC Number Outstanding Submission G2H: %u\n",
+> +		   atomic_read(&guc->outstanding_submission_g2h));
+> +	drm_printf(p, "GuC tasklet count: %u\n\n",
+> +		   atomic_read(&sched_engine->tasklet.count));
+Does sched_engine need a null check?
+
+> +
+> +	spin_lock_irqsave(&sched_engine->lock, flags);
+> +	drm_printf(p, "Requests in GuC submit tasklet:\n");
+> +	for (rb = rb_first_cached(&sched_engine->queue); rb; rb = rb_next(rb)) {
+> +		struct i915_priolist *pl = to_priolist(rb);
+> +		struct i915_request *rq;
+> +
+> +		priolist_for_each_request(rq, pl)
+> +			drm_printf(p, "guc_id=%u, seqno=%llu\n",
+> +				   rq->context->guc_id,
+> +				   rq->fence.seqno);
+> +	}
+> +	spin_unlock_irqrestore(&sched_engine->lock, flags);
+> +	drm_printf(p, "\n");
+> +}
+> +
+> +void intel_guc_log_context_info(struct intel_guc *guc,
+> +				struct drm_printer *p)
+> +{
+> +	struct intel_context *ce;
+> +	unsigned long index;
+> +
+> +	xa_for_each(&guc->context_lookup, index, ce) {
+> +		drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
+> +		drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
+> +		drm_printf(p, "\t\tLRC Head: Internal %u, Memory %u\n",
+> +			   ce->ring->head,
+> +			   ce->lrc_reg_state[CTX_RING_HEAD]);
+> +		drm_printf(p, "\t\tLRC Tail: Internal %u, Memory %u\n",
+> +			   ce->ring->tail,
+> +			   ce->lrc_reg_state[CTX_RING_TAIL]);
+> +		drm_printf(p, "\t\tContext Pin Count: %u\n",
+> +			   atomic_read(&ce->pin_count));
+> +		drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
+> +			   atomic_read(&ce->guc_id_ref));
+> +		drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
+> +			   ce->guc_state.sched_state,
+> +			   atomic_read(&ce->guc_sched_state_no_lock));
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> index 3f7005018939..6453e2bfa151 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+> @@ -10,6 +10,7 @@
+>   
+>   #include "intel_guc.h"
+>   
+> +struct drm_printer;
+>   struct intel_engine_cs;
+>   
+>   void intel_guc_submission_init_early(struct intel_guc *guc);
+> @@ -20,6 +21,9 @@ void intel_guc_submission_fini(struct intel_guc *guc);
+>   int intel_guc_preempt_work_create(struct intel_guc *guc);
+>   void intel_guc_preempt_work_destroy(struct intel_guc *guc);
+>   int intel_guc_submission_setup(struct intel_engine_cs *engine);
+> +void intel_guc_log_submission_info(struct intel_guc *guc,
+> +				   struct drm_printer *p);
+> +void intel_guc_log_context_info(struct intel_guc *guc, struct drm_printer *p);
+>   
+>   static inline bool intel_guc_submission_is_supported(struct intel_guc *guc)
+>   {
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index 277800987bf8..a9084789deff 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -50,6 +50,7 @@
+>   #include "i915_trace.h"
+>   #include "intel_pm.h"
+>   #include "intel_sideband.h"
+> +#include "gt/intel_lrc_reg.h"
+>   
+Obsolete include again?
+
+John.
+
+>   static inline struct drm_i915_private *node_to_i915(struct drm_info_node *node)
+>   {
 
 _______________________________________________
 Intel-gfx mailing list
