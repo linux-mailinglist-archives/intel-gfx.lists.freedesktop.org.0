@@ -1,41 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E893C669B
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 01:00:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4A63C66A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 01:03:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44BDC89F4A;
-	Mon, 12 Jul 2021 23:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62EDE89F24;
+	Mon, 12 Jul 2021 23:03:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D03C89EB1;
- Mon, 12 Jul 2021 23:00:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10043"; a="197339643"
-X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="197339643"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 16:00:48 -0700
-X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="412748813"
-Received: from johnharr-mobl1.amr.corp.intel.com (HELO [10.209.125.18])
- ([10.209.125.18])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2021 16:00:48 -0700
-To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-References: <20210624070516.21893-1-matthew.brost@intel.com>
- <20210624070516.21893-38-matthew.brost@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-Message-ID: <ee47fdcc-cc9e-474b-0137-dec3d0b10368@intel.com>
-Date: Mon, 12 Jul 2021 16:00:47 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21D8E89F24
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 23:03:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10043"; a="231863337"
+X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="231863337"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2021 16:03:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,235,1620716400"; d="scan'208";a="569679690"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga001.fm.intel.com with ESMTP; 12 Jul 2021 16:03:24 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Mon, 12 Jul 2021 16:03:24 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Mon, 12 Jul 2021 16:03:23 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
+ Mon, 12 Jul 2021 16:03:23 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 03/12] drm/i915/skl: Use revid->stepping tables
+Thread-Index: AQHXdTzxdT+qP7aJ7EqsoZkGzyySwas/+aMw
+Date: Mon, 12 Jul 2021 23:03:23 +0000
+Message-ID: <f07772dfd660405d82f59c17de7f29c0@intel.com>
+References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
+ <20210710033724.2459367-4-matthew.d.roper@intel.com>
+In-Reply-To: <20210710033724.2459367-4-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-In-Reply-To: <20210624070516.21893-38-matthew.brost@intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 37/47] drm/i915/guc: Enable the timer
- expired interrupt for GuC
+Subject: Re: [Intel-gfx] [PATCH v2 03/12] drm/i915/skl: Use revid->stepping
+ tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,38 +65,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6/24/2021 00:05, Matthew Brost wrote:
-> The GuC can implement execution qunatums, detect hung contexts and
-> other such things but it requires the timer expired interrupt to do so.
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> CC: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+
+> -----Original Message-----
+> From: Roper, Matthew D <matthew.d.roper@intel.com>
+> Sent: Friday, July 9, 2021 8:37 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Roper, Matthew D
+> <matthew.d.roper@intel.com>
+> Subject: [PATCH v2 03/12] drm/i915/skl: Use revid->stepping tables
+> 
+> Switch SKL to use a revid->stepping table as we're trying to do on all
+> platforms going forward.  Also drop the preproduction revisions and add the
+> newer steppings we hadn't already handled.
+> 
+> Note that SKL has a case where a newer revision ID corresponds to an older
+> GT/disp stepping (0x9 -> STEP_J0, 0xA -> STEP_I1).  Also, the lack of a revision
+> ID 0x8 in the table is intentional and not an oversight.
+> We'll re-write the KBL-specific comment to make it clear that these kind of
+> quirks are expected.
+> 
+> v2:
+>  - Since GT and display steppings are always identical on SKL use a
+>    macro to set both values at once in a more readable manner.  (Anusha)
+>  - Drop preproduction steppings.
+> 
+> Bspec: 13626
+> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
 > ---
->   drivers/gpu/drm/i915/gt/intel_rps.c | 4 ++++
->   1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index 06e9a8ed4e03..0c8e7f2b06f0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -1877,6 +1877,10 @@ void intel_rps_init(struct intel_rps *rps)
->   
->   	if (GRAPHICS_VER(i915) >= 8 && GRAPHICS_VER(i915) < 11)
->   		rps->pm_intrmsk_mbz |= GEN8_PMINTR_DISABLE_REDIRECT_TO_GUC;
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c |  2 +-
+>  drivers/gpu/drm/i915/i915_drv.h             | 11 +-------
+>  drivers/gpu/drm/i915/intel_step.c           | 30 +++++++++++++++++----
+>  drivers/gpu/drm/i915/intel_step.h           |  4 +++
+>  4 files changed, 31 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index d9a5a445ceec..6dfd564e078f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -883,7 +883,7 @@ skl_gt_workarounds_init(struct drm_i915_private
+> *i915, struct i915_wa_list *wal)
+>  		    GEN8_EU_GAUNIT_CLOCK_GATE_DISABLE);
+> 
+>  	/* WaInPlaceDecompressionHang:skl */
+> -	if (IS_SKL_REVID(i915, SKL_REVID_H0, REVID_FOREVER))
+> +	if (IS_SKL_GT_STEP(i915, STEP_H0, STEP_FOREVER))
+>  		wa_write_or(wal,
+>  			    GEN9_GAMT_ECO_REG_RW_IA,
+>  			    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> b/drivers/gpu/drm/i915/i915_drv.h index c4747f4407ef..f30499ed6787
+> 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1515,16 +1515,7 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> *i915,  #define IS_TGL_Y(dev_priv) \
+>  	IS_SUBPLATFORM(dev_priv, INTEL_TIGERLAKE,
+> INTEL_SUBPLATFORM_ULX)
+> 
+> -#define SKL_REVID_A0		0x0
+> -#define SKL_REVID_B0		0x1
+> -#define SKL_REVID_C0		0x2
+> -#define SKL_REVID_D0		0x3
+> -#define SKL_REVID_E0		0x4
+> -#define SKL_REVID_F0		0x5
+> -#define SKL_REVID_G0		0x6
+> -#define SKL_REVID_H0		0x7
+> -
+> -#define IS_SKL_REVID(p, since, until) (IS_SKYLAKE(p) && IS_REVID(p, since,
+> until))
+> +#define IS_SKL_GT_STEP(p, since, until) (IS_SKYLAKE(p) && IS_GT_STEP(p,
+> +since, until))
+> 
+>  #define BXT_REVID_A0		0x0
+>  #define BXT_REVID_A1		0x1
+> diff --git a/drivers/gpu/drm/i915/intel_step.c
+> b/drivers/gpu/drm/i915/intel_step.c
+> index 93ccd42f2514..69c928b046e8 100644
+> --- a/drivers/gpu/drm/i915/intel_step.c
+> +++ b/drivers/gpu/drm/i915/intel_step.c
+> @@ -7,14 +7,31 @@
+>  #include "intel_step.h"
+> 
+>  /*
+> - * KBL revision ID ordering is bizarre; higher revision ID's map to lower
+> - * steppings in some cases.  So rather than test against the revision ID
+> - * directly, let's map that into our own range of increasing ID's that we
+> - * can test against in a regular manner.
+> + * Some platforms have unusual ways of mapping PCI revision ID to
+> + GT/display
+> + * steppings.  E.g., in some cases a higher PCI revision may translate
+> + to a
+> + * lower stepping of the GT and/or display IP.  This file provides
+> + lookup
+> + * tables to map the PCI revision into a standard set of stepping
+> + values that
+> + * can be compared numerically.
+> + *
+> + * Also note that some revisions/steppings may have been set aside as
+> + * placeholders but never materialized in real hardware; in those cases
+> + there
+> + * may be jumps in the revision IDs or stepping values in the tables below.
+>   */
+> 
+> +/*
+> + * Some platforms always have the same stepping value for GT and
+> +display;
+> + * use a macro to define these to make it easier to identify the
+> +platforms
+> + * where the two steppings can deviate.
+> + */
+> +#define COMMON_STEPPING(x)  .gt_step = STEP_##x, .display_step =
+> +STEP_##x
 > +
-> +	/* GuC needs ARAT expired interrupt unmasked */
-> +	if (intel_uc_uses_guc_submission(&rps_to_gt(rps)->uc))
-> +		rps->pm_intrmsk_mbz |= ARAT_EXPIRED_INTRMSK;
->   }
->   
->   void intel_rps_sanitize(struct intel_rps *rps)
+> +static const struct intel_step_info skl_revids[] = {
+> +	[0x6] = { COMMON_STEPPING(G0) },
+> +	[0x7] = { COMMON_STEPPING(H0) },
+> +	[0x9] = { COMMON_STEPPING(J0) },
+> +	[0xA] = { COMMON_STEPPING(I1) },
+> +};
+> 
+> -/* FIXME: what about REVID_E0 */
+>  static const struct intel_step_info kbl_revids[] = {
+>  	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
+>  	[1] = { .gt_step = STEP_B0, .display_step = STEP_B0 }, @@ -76,6 +93,9
+> @@ void intel_step_init(struct drm_i915_private *i915)
+>  	} else if (IS_KABYLAKE(i915)) {
+>  		revids = kbl_revids;
+>  		size = ARRAY_SIZE(kbl_revids);
+> +	} else if (IS_SKYLAKE(i915)) {
+> +		revids = skl_revids;
+> +		size = ARRAY_SIZE(skl_revids);
+>  	}
+> 
+>  	/* Not using the stepping scheme for the platform yet. */ diff --git
+> a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
+> index 958a8bb5d677..88a77159703e 100644
+> --- a/drivers/gpu/drm/i915/intel_step.h
+> +++ b/drivers/gpu/drm/i915/intel_step.h
+> @@ -31,6 +31,10 @@ enum intel_step {
+>  	STEP_E0,
+>  	STEP_F0,
+>  	STEP_G0,
+> +	STEP_H0,
+> +	STEP_I0,
+> +	STEP_I1,
+> +	STEP_J0,
+>  	STEP_FUTURE,
+>  	STEP_FOREVER,
+>  };
+> --
+> 2.25.4
 
 _______________________________________________
 Intel-gfx mailing list
