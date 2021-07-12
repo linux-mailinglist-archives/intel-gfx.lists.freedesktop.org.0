@@ -2,30 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5C63C5E82
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 16:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E6E3C5E88
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Jul 2021 16:42:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42CAF89C98;
-	Mon, 12 Jul 2021 14:41:23 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 94E4D89C98;
- Mon, 12 Jul 2021 14:41:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8E236A73C9;
- Mon, 12 Jul 2021 14:41:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 209F489CAA;
+	Mon, 12 Jul 2021 14:42:08 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B330789C9C
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 14:42:06 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id k4so19658470wrc.8
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 07:42:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=LLdrdAX/sieQxKFN+rBmNQf+DqHagqzLI3c34cxuMTk=;
+ b=SrxufnDLGk34FGh/yzAGxpGqHQHB7elxjhl86O5tKUHNq1pPQt6VftQo8LtF+tQfqu
+ B8oU8QnS1etc8O3jDUYJuN9O6YMZ7xkb0UKwo0/HlRgijqKKb/FFiPefDGVd52GsmPtO
+ rwHsKWyVnL5Z9DqzcTuhCCOR62pn/spE4efK4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=LLdrdAX/sieQxKFN+rBmNQf+DqHagqzLI3c34cxuMTk=;
+ b=IGCSkjEqjk4l/b/9dQFRGpaTDXy0TFKLDp4OAlKLq8+LUGwi5PbBVcvAMlR1Ud9Atx
+ TPNUdl1TiABGwTItdszpjFhfU1s29llAloEO83ahwzr55P6n93CFwrO36icaLgsNWo+W
+ p7so7SYNdMuHYvK8OcHpcxC5Tzt0rkE6LCyfIhTmH0FTpHdBhlcqHElJ/xc/SWWeEm8G
+ +AMKj4w5lWU3HsZXV6G65A6faKtf7ov7h06tOlf78hvc3CLAH4tua3qERCiUqht9djxB
+ dpKiXnKCijFW6Hldr4pQwNBWE6leXf2orozM2UqbhR6jzEIpEYfyJeKiELcTexE7JE9K
+ UQ6A==
+X-Gm-Message-State: AOAM532fF3sP9WBdY7dIxePJYdawFQOErcaIqD1cs+I1rnIFsHwGIRNX
+ /r8sf8rWoFeDroMyBYFOXQWj4sFEVa7CuA==
+X-Google-Smtp-Source: ABdhPJxwEnNzVbm+B41O+Mu4yAKjdp4HkdyzIUSF8hI39WrF2L7Q8iPaZ5s07ZiflmOckAtZkhpX6g==
+X-Received: by 2002:adf:cf10:: with SMTP id o16mr27349389wrj.426.1626100925332; 
+ Mon, 12 Jul 2021 07:42:05 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id s13sm10689713wrm.13.2021.07.12.07.42.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 12 Jul 2021 07:42:04 -0700 (PDT)
+Date: Mon, 12 Jul 2021 16:42:03 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YOxUuxLqpIDEsmMT@phenom.ffwll.local>
+References: <20210712121719.891536-1-tvrtko.ursulin@linux.intel.com>
+ <20210712121719.891536-2-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jim Cromie" <jim.cromie@gmail.com>
-Date: Mon, 12 Jul 2021 14:41:21 -0000
-Message-ID: <162610088155.23769.17206151657019495808@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210711055003.528167-1-jim.cromie@gmail.com>
-In-Reply-To: <20210711055003.528167-1-jim.cromie@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWxs?=
- =?utf-8?q?ow_using_dyndbg_to_replace_drm=5Fdebug=5Fenabled?=
+Content-Disposition: inline
+In-Reply-To: <20210712121719.891536-2-tvrtko.ursulin@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915: Explicitly track DRM clients
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,303 +66,488 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0911158115=="
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0911158115==
-Content-Type: multipart/alternative;
- boundary="===============7218609451719530255=="
+On Mon, Jul 12, 2021 at 01:17:12PM +0100, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> =
 
---===============7218609451719530255==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Tracking DRM clients more explicitly will allow later patches to
+> accumulate past and current GPU usage in a centralised place and also
+> consolidate access to owning task pid/name.
+> =
 
-== Series Details ==
+> Unique client id is also assigned for the purpose of distinguishing/
+> consolidating between multiple file descriptors owned by the same process.
+> =
 
-Series: Allow using dyndbg to replace drm_debug_enabled
-URL   : https://patchwork.freedesktop.org/series/92438/
-State : success
+> v2:
+>  Chris Wilson:
+>  * Enclose new members into dedicated structs.
+>  * Protect against failed sysfs registration.
+> =
 
-== Summary ==
+> v3:
+>  * sysfs_attr_init.
+> =
 
-CI Bug Log - changes from CI_DRM_10333 -> Patchwork_20575
-====================================================
+> v4:
+>  * Fix for internal clients.
+> =
 
-Summary
--------
+> v5:
+>  * Use cyclic ida for client id. (Chris)
+>  * Do not leak pid reference. (Chris)
+>  * Tidy code with some locals.
+> =
 
-  **SUCCESS**
+> v6:
+>  * Use xa_alloc_cyclic to simplify locking. (Chris)
+>  * No need to unregister individial sysfs files. (Chris)
+>  * Rebase on top of fpriv kref.
+>  * Track client closed status and reflect in sysfs.
+> =
 
-  No regressions found.
+> v7:
+>  * Make drm_client more standalone concept.
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/index.html
+> v8:
+>  * Simplify sysfs show. (Chris)
+>  * Always track name and pid.
+> =
 
-Known issues
-------------
+> v9:
+>  * Fix cyclic id assignment.
+> =
 
-  Here are the changes found in Patchwork_20575 that come from known issues:
+> v10:
+>  * No need for a mutex around xa_alloc_cyclic.
+>  * Refactor sysfs into own function.
+>  * Unregister sysfs before freeing pid and name.
+>  * Move clients setup into own function.
+> =
 
-### IGT changes ###
+> v11:
+>  * Call clients init directly from driver init. (Chris)
+> =
 
-#### Issues hit ####
+> v12:
+>  * Do not fail client add on id wrap. (Maciej)
+> =
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@gem_huc_copy@huc-copy.html
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
+> v13 (Lucas): Rebase.
+> =
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@kms_chamelium@hdmi-hpd-fast.html
+> v14:
+>  * Dropped sysfs bits.
+> =
 
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-tgl-y:           NOTRUN -> [SKIP][4] ([fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk> # v11
+> Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com> # v11
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-y:           NOTRUN -> [SKIP][5] ([fdo#109285])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
+On the implementation: I'm not clear why this is a separate object. All
+that seems to achieve is make the lifetim fun we have in here even more
+annoying, for not real gain?
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#533])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+What's the reasons for this separate i915_drm_client struct? The commit
+message talks about de-duping these within the same process, but with
+fdinfo I'm not seeing the relevance of this anymore.
 
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][7] ([fdo#109271]) +6 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@kms_psr@primary_mmap_gtt.html
+Also, with the fdinfo approach, why do we still need to even track the
+pid? That can be all figured out from proc now, with much cleaner
+semantics.
+-Daniel
 
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-y:           NOTRUN -> [SKIP][8] ([i915#3301])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@prime_vgem@basic-userptr.html
+> ---
+>  drivers/gpu/drm/i915/Makefile          |   5 +-
+>  drivers/gpu/drm/i915/i915_drm_client.c | 113 +++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_drm_client.h |  61 +++++++++++++
+>  drivers/gpu/drm/i915/i915_drv.c        |   6 ++
+>  drivers/gpu/drm/i915/i915_drv.h        |   5 ++
+>  drivers/gpu/drm/i915/i915_gem.c        |  21 ++++-
+>  6 files changed, 206 insertions(+), 5 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/i915_drm_client.c
+>  create mode 100644 drivers/gpu/drm/i915/i915_drm_client.h
+> =
 
-  * igt@runner@aborted:
-    - fi-tgl-y:           NOTRUN -> [FAIL][9] ([i915#2722] / [i915#3744])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@runner@aborted.html
-    - fi-cfl-8109u:       NOTRUN -> [FAIL][10] ([i915#2722] / [i915#3363] / [i915#3744])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@runner@aborted.html
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 10b3bb6207ba..784f99ca11fc 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -33,8 +33,9 @@ subdir-ccflags-y +=3D -I$(srctree)/$(src)
+>  # Please keep these build lists sorted!
+>  =
 
-  * igt@vgem_basic@unload:
-    - fi-cfl-8109u:       NOTRUN -> [INCOMPLETE][11] ([i915#3744])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@vgem_basic@unload.html
-    - fi-tgl-y:           NOTRUN -> [INCOMPLETE][12] ([i915#3744])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@vgem_basic@unload.html
+>  # core driver code
+> -i915-y +=3D i915_drv.o \
+> -	  i915_config.o \
+> +i915-y +=3D i915_config.o \
+> +	  i915_drm_client.o \
+> +	  i915_drv.o \
+>  	  i915_irq.o \
+>  	  i915_getparam.o \
+>  	  i915_mitigations.o \
+> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i91=
+5/i915_drm_client.c
+> new file mode 100644
+> index 000000000000..83080d9836b0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
+> @@ -0,0 +1,113 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =A9 2020 Intel Corporation
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+> +
+> +#include "i915_drm_client.h"
+> +#include "i915_gem.h"
+> +#include "i915_utils.h"
+> +
+> +void i915_drm_clients_init(struct i915_drm_clients *clients,
+> +			   struct drm_i915_private *i915)
+> +{
+> +	clients->i915 =3D i915;
+> +
+> +	clients->next_id =3D 0;
+> +	xa_init_flags(&clients->xarray, XA_FLAGS_ALLOC);
+> +}
+> +
+> +static int
+> +__i915_drm_client_register(struct i915_drm_client *client,
+> +			   struct task_struct *task)
+> +{
+> +	char *name;
+> +
+> +	name =3D kstrdup(task->comm, GFP_KERNEL);
+> +	if (!name)
+> +		return -ENOMEM;
+> +
+> +	client->pid =3D get_task_pid(task, PIDTYPE_PID);
+> +	client->name =3D name;
+> +
+> +	return 0;
+> +}
+> +
+> +static void __i915_drm_client_unregister(struct i915_drm_client *client)
+> +{
+> +	put_pid(fetch_and_zero(&client->pid));
+> +	kfree(fetch_and_zero(&client->name));
+> +}
+> +
+> +static void __rcu_i915_drm_client_free(struct work_struct *wrk)
+> +{
+> +	struct i915_drm_client *client =3D
+> +		container_of(wrk, typeof(*client), rcu.work);
+> +
+> +	xa_erase(&client->clients->xarray, client->id);
+> +
+> +	__i915_drm_client_unregister(client);
+> +
+> +	kfree(client);
+> +}
+> +
+> +struct i915_drm_client *
+> +i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct=
+ *task)
+> +{
+> +	struct i915_drm_client *client;
+> +	int ret;
+> +
+> +	client =3D kzalloc(sizeof(*client), GFP_KERNEL);
+> +	if (!client)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	kref_init(&client->kref);
+> +	client->clients =3D clients;
+> +	INIT_RCU_WORK(&client->rcu, __rcu_i915_drm_client_free);
+> +
+> +	ret =3D xa_alloc_cyclic(&clients->xarray, &client->id, client,
+> +			      xa_limit_32b, &clients->next_id, GFP_KERNEL);
+> +	if (ret < 0)
+> +		goto err_id;
+> +
+> +	ret =3D __i915_drm_client_register(client, task);
+> +	if (ret)
+> +		goto err_register;
+> +
+> +	return client;
+> +
+> +err_register:
+> +	xa_erase(&clients->xarray, client->id);
+> +err_id:
+> +	kfree(client);
+> +
+> +	return ERR_PTR(ret);
+> +}
+> +
+> +void __i915_drm_client_free(struct kref *kref)
+> +{
+> +	struct i915_drm_client *client =3D
+> +		container_of(kref, typeof(*client), kref);
+> +
+> +	queue_rcu_work(system_wq, &client->rcu);
+> +}
+> +
+> +void i915_drm_client_close(struct i915_drm_client *client)
+> +{
+> +	GEM_BUG_ON(READ_ONCE(client->closed));
+> +	WRITE_ONCE(client->closed, true);
+> +	i915_drm_client_put(client);
+> +}
+> +
+> +void i915_drm_clients_fini(struct i915_drm_clients *clients)
+> +{
+> +	while (!xa_empty(&clients->xarray)) {
+> +		rcu_barrier();
+> +		flush_workqueue(system_wq);
+> +	}
+> +
+> +	xa_destroy(&clients->xarray);
+> +}
+> diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i91=
+5/i915_drm_client.h
+> new file mode 100644
+> index 000000000000..396f1e336b3f
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/i915_drm_client.h
+> @@ -0,0 +1,61 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =A9 2020 Intel Corporation
+> + */
+> +
+> +#ifndef __I915_DRM_CLIENT_H__
+> +#define __I915_DRM_CLIENT_H__
+> +
+> +#include <linux/kref.h>
+> +#include <linux/pid.h>
+> +#include <linux/rcupdate.h>
+> +#include <linux/sched.h>
+> +#include <linux/xarray.h>
+> +
+> +struct drm_i915_private;
+> +
+> +struct i915_drm_clients {
+> +	struct drm_i915_private *i915;
+> +
+> +	struct xarray xarray;
+> +	u32 next_id;
+> +};
+> +
+> +struct i915_drm_client {
+> +	struct kref kref;
+> +
+> +	struct rcu_work rcu;
+> +
+> +	unsigned int id;
+> +	struct pid *pid;
+> +	char *name;
+> +	bool closed;
+> +
+> +	struct i915_drm_clients *clients;
+> +};
+> +
+> +void i915_drm_clients_init(struct i915_drm_clients *clients,
+> +			   struct drm_i915_private *i915);
+> +
+> +static inline struct i915_drm_client *
+> +i915_drm_client_get(struct i915_drm_client *client)
+> +{
+> +	kref_get(&client->kref);
+> +	return client;
+> +}
+> +
+> +void __i915_drm_client_free(struct kref *kref);
+> +
+> +static inline void i915_drm_client_put(struct i915_drm_client *client)
+> +{
+> +	kref_put(&client->kref, __i915_drm_client_free);
+> +}
+> +
+> +void i915_drm_client_close(struct i915_drm_client *client);
+> +
+> +struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *cli=
+ents,
+> +					    struct task_struct *task);
+> +
+> +void i915_drm_clients_fini(struct i915_drm_clients *clients);
+> +
+> +#endif /* !__I915_DRM_CLIENT_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index 30d8cd8c69b1..8247dcc7586e 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -68,6 +68,7 @@
+>  #include "gt/intel_rc6.h"
+>  =
 
-  
-#### Possible fixes ####
+>  #include "i915_debugfs.h"
+> +#include "i915_drm_client.h"
+>  #include "i915_drv.h"
+>  #include "i915_ioc32.h"
+>  #include "i915_irq.h"
+> @@ -343,6 +344,8 @@ static int i915_driver_early_probe(struct drm_i915_pr=
+ivate *dev_priv)
+>  =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cfl-8109u:       [INCOMPLETE][13] ([i915#155]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+>  	intel_gt_init_early(&dev_priv->gt, dev_priv);
+>  =
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-7500u:       [FAIL][15] ([i915#3449]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+> +	i915_drm_clients_init(&dev_priv->clients, dev_priv);
+> +
+>  	i915_gem_init_early(dev_priv);
+>  =
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3449]: https://gitlab.freedesktop.org/drm/intel/issues/3449
-  [i915#3744]: https://gitlab.freedesktop.org/drm/intel/issues/3744
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+>  	/* This must be called before any calls to HAS_PCH_* */
+> @@ -362,6 +365,7 @@ static int i915_driver_early_probe(struct drm_i915_pr=
+ivate *dev_priv)
+>  =
+
+>  err_gem:
+>  	i915_gem_cleanup_early(dev_priv);
+> +	i915_drm_clients_fini(&dev_priv->clients);
+>  	intel_gt_driver_late_release(&dev_priv->gt);
+>  	intel_region_ttm_device_fini(dev_priv);
+>  err_ttm:
+> @@ -381,6 +385,7 @@ static void i915_driver_late_release(struct drm_i915_=
+private *dev_priv)
+>  	intel_irq_fini(dev_priv);
+>  	intel_power_domains_cleanup(dev_priv);
+>  	i915_gem_cleanup_early(dev_priv);
+> +	i915_drm_clients_fini(&dev_priv->clients);
+>  	intel_gt_driver_late_release(&dev_priv->gt);
+>  	intel_region_ttm_device_fini(dev_priv);
+>  	vlv_suspend_cleanup(dev_priv);
+> @@ -996,6 +1001,7 @@ static void i915_driver_postclose(struct drm_device =
+*dev, struct drm_file *file)
+>  	struct drm_i915_file_private *file_priv =3D file->driver_priv;
+>  =
+
+>  	i915_gem_context_close(file);
+> +	i915_drm_client_close(file_priv->client);
+>  =
+
+>  	kfree_rcu(file_priv, rcu);
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index c4747f4407ef..338d384c31eb 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -96,6 +96,7 @@
+>  #include "intel_wakeref.h"
+>  #include "intel_wopcm.h"
+>  =
+
+> +#include "i915_drm_client.h"
+>  #include "i915_gem.h"
+>  #include "i915_gem_gtt.h"
+>  #include "i915_gpu_error.h"
+> @@ -284,6 +285,8 @@ struct drm_i915_file_private {
+>  	/** ban_score: Accumulated score of all ctx bans and fast hangs. */
+>  	atomic_t ban_score;
+>  	unsigned long hang_timestamp;
+> +
+> +	struct i915_drm_client *client;
+>  };
+>  =
+
+>  /* Interface history:
+> @@ -1218,6 +1221,8 @@ struct drm_i915_private {
+>  =
+
+>  	struct i915_pmu pmu;
+>  =
+
+> +	struct i915_drm_clients clients;
+> +
+>  	struct i915_hdcp_comp_master *hdcp_master;
+>  	bool hdcp_comp_added;
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_=
+gem.c
+> index 590efc8b0265..ea6c88a99ed2 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -1179,25 +1179,40 @@ void i915_gem_cleanup_early(struct drm_i915_priva=
+te *dev_priv)
+>  int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+>  {
+>  	struct drm_i915_file_private *file_priv;
+> -	int ret;
+> +	struct i915_drm_client *client;
+> +	int ret =3D -ENOMEM;
+>  =
+
+>  	DRM_DEBUG("\n");
+>  =
+
+>  	file_priv =3D kzalloc(sizeof(*file_priv), GFP_KERNEL);
+>  	if (!file_priv)
+> -		return -ENOMEM;
+> +		goto err_alloc;
+> +
+> +	client =3D i915_drm_client_add(&i915->clients, current);
+> +	if (IS_ERR(client)) {
+> +		ret =3D PTR_ERR(client);
+> +		goto err_client;
+> +	}
+>  =
+
+>  	file->driver_priv =3D file_priv;
+>  	file_priv->dev_priv =3D i915;
+>  	file_priv->file =3D file;
+> +	file_priv->client =3D client;
+>  =
+
+>  	file_priv->bsd_engine =3D -1;
+>  	file_priv->hang_timestamp =3D jiffies;
+>  =
+
+>  	ret =3D i915_gem_context_open(i915, file);
+>  	if (ret)
+> -		kfree(file_priv);
+> +		goto err_context;
+> +
+> +	return 0;
+>  =
+
+> +err_context:
+> +	i915_drm_client_close(client);
+> +err_client:
+> +	kfree(file_priv);
+> +err_alloc:
+>  	return ret;
+>  }
+>  =
+
+> -- =
+
+> 2.30.2
+> =
 
 
-Participating hosts (39 -> 39)
-------------------------------
+-- =
 
-  Additional (1): fi-tgl-y 
-  Missing    (1): fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10333 -> Patchwork_20575
-
-  CI-20190529: 20190529
-  CI_DRM_10333: 138708ec9f303e98fded4239cafa0577d1f47030 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20575: 64eb8b1471cbfd91da1eafb20e5b0e6669e3522c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-64eb8b1471cb i915: map gvt pr_debug categories to bits in parameters/debug_gvt
-c3d19ae5f037 drm: RFC add choice to use dynamic debug in drm-debug
-b347ee940ec2 drm: fixup comment spelling
-05ade4d62336 drm_print.h: rewrap __DRM_DEFINE_DBG_RATELIMITED macro
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/index.html
-
---===============7218609451719530255==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Allow using dyndbg to replace drm_debug_enabled</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92438/">https://patchwork.freedesktop.org/series/92438/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10333 -&gt; Patchwork_20575</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20575 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@unload:</p>
-<ul>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@vgem_basic@unload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>)</p>
-</li>
-<li>
-<p>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-tgl-y/igt@vgem_basic@unload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3744">i915#3744</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10333/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3449">i915#3449</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20575/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (39 -&gt; 39)</h2>
-<p>Additional (1): fi-tgl-y <br />
-  Missing    (1): fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10333 -&gt; Patchwork_20575</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10333: 138708ec9f303e98fded4239cafa0577d1f47030 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6134: cd63c83e23789eb194d38b8d272247a88122f2f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20575: 64eb8b1471cbfd91da1eafb20e5b0e6669e3522c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>64eb8b1471cb i915: map gvt pr_debug categories to bits in parameters/debug_gvt<br />
-c3d19ae5f037 drm: RFC add choice to use dynamic debug in drm-debug<br />
-b347ee940ec2 drm: fixup comment spelling<br />
-05ade4d62336 drm_print.h: rewrap __DRM_DEFINE_DBG_RATELIMITED macro</p>
-
-</body>
-</html>
-
---===============7218609451719530255==--
-
---===============0911158115==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0911158115==--
