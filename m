@@ -1,60 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99E153C7288
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 16:44:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DD33C72C8
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 17:06:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81BF36E0D0;
-	Tue, 13 Jul 2021 14:44:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 007F889DC1;
+	Tue, 13 Jul 2021 15:06:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
- [IPv6:2a00:1450:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F236E056
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 14:44:50 +0000 (UTC)
-Received: by mail-wm1-x335.google.com with SMTP id
- q18-20020a1ce9120000b02901f259f3a250so2522463wmc.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 07:44:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=1L5mINw096xieWbL4KVvspXBhC9JteSQpT+QZNzKqog=;
- b=Wbhf8JuvNz44wJSRHA2QE88fdWKQPvw4NwOF8GWoCl6ZQQ3rovreUx15ZL1xT9DIe5
- GbRcTwGDO9t7DITYYg3f/RvV6yI7FQOgVK6K6oF5VjdvGslUF/EEV1liesjWYjbBLk4/
- R7IzuKXb+5uRYs+pw4FOQ2rYbYUIsnTk2Wblg=
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com
+ [IPv6:2607:f8b0:4864:20::833])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F84E89E26;
+ Tue, 13 Jul 2021 15:06:42 +0000 (UTC)
+Received: by mail-qt1-x833.google.com with SMTP id z25so14105619qto.12;
+ Tue, 13 Jul 2021 08:06:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=avcOBSneHtGwYvnS2J/3XZrWAcF6J73D9WvRA0UvBhU=;
+ b=kuTtEgYVX+1RRPUPhHSNdmLfnpVf7kUntHscsvdQlI2As7RiJcwyid0Qv1NzIQrJgu
+ NUcalAkEuHzbFXguYYmDxRjxWlOSSGiIYJugMse5ikVd9HnekJIZSrG9VOOrkaO6yC7D
+ Yh+PABZm3/AmrLGB3ViQsjI+Hj9nWIit4nZd8SVgOc9BSs37Arf6n7RM2vdEyCB8D+3y
+ fL+52/Ul+AbqdCguocOGKlmy4w1Vf1VvgrAaTxpHNlasx9O3feqCxK9ZzK+iJvLkGfO/
+ 5OKrImM9meLPE/hamrD+xEwYg5+nPOEVZm903arWqAaOpPOtofLQkuUJMslF9rzInbBF
+ HsyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=1L5mINw096xieWbL4KVvspXBhC9JteSQpT+QZNzKqog=;
- b=ZAK1yGLg1rN5qCOiA5uPWs1tQTJkcd3DfcfuuqbRcszejV6mVnvHu//NHb1/4icfJ2
- vGOZ5kh0SJrA6Rufc7tC7WsfPjsHBs37swTi1sVZlPBNAsoRITBV9SCqxcOwI+lT1LtQ
- Vp96tvKtLgAcmfCuPFhrr/5mdK+fnh+7CNKLLafTAIX0tZO65MAtzpLxRiMLmu4gTtQD
- Fbwix9eqg4lxd7xQWQ5TKrWuMpxIBTBO8/YKb//OIgKOwzcW8GjayetRv7YkBmy9eYdi
- gEso9kNHdFXxBaWri/+G/mcHG/a0E9kCpAJHt47gotw7JXxhKABFiU37xcf+nBz282Lk
- Y62w==
-X-Gm-Message-State: AOAM531faDdaAw/XOUXYjwVcZ71niPXUNcFuuUoOVPxC7aVOkfGSKUD1
- w11WpEBom3WheDUo4EbrmzlM7A==
-X-Google-Smtp-Source: ABdhPJxwGMh21x8xPx1H1um/FI524/8QthcmMsSa6POVlFurHRIBZt2WYFT38dVdiqPRABOIzoAjCQ==
-X-Received: by 2002:a05:600c:4856:: with SMTP id
- j22mr431663wmo.126.1626187489399; 
- Tue, 13 Jul 2021 07:44:49 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id j12sm18993322wrq.83.2021.07.13.07.44.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 Jul 2021 07:44:48 -0700 (PDT)
-Date: Tue, 13 Jul 2021 16:44:47 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YO2m36je6vf6Wgwu@phenom.ffwll.local>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=avcOBSneHtGwYvnS2J/3XZrWAcF6J73D9WvRA0UvBhU=;
+ b=YdHGu7vrcDQ19I4y8OxcM2m7IsaAfFyRRcm0xHBqDY0wPjrZ6ESsxqn6tNSbgxqJb+
+ 8/pOuRQ3sNAqSbVvome3BI5AtQFqNhPlR/jwgMyEy+okUuFLkKLUQzDSJF8NcSItAOBW
+ kfHlGToeI5G6H4Rc0IkhGCAv+a1VupO+dPVhohe0Fu8HdUoyct+RPfbV+y03gvaGiVHS
+ aErPk95T/dsvNquKyNYM6OBpaSz6+alNyhE4q5xmZGpyH0jNcUPqVKiOkduQityGQhIp
+ i7emEDMa+GL3wZ2SNh7U+sLB1/OJW34+Q2F4MMwvpTH0hsssKyKznhRizhJd+Z5DKKKR
+ jXLw==
+X-Gm-Message-State: AOAM531SvbIxv5EOK5L6UuL4eNnUANVAQ+qF00HlJtlzDbfDeaI4DJBP
+ 8bmjoYTz3vO8Z+CBuWosMT7H9rZn9DQsgjR29RE=
+X-Google-Smtp-Source: ABdhPJzrMAQ7eStNSFHWPQorTQaxWIZWDONBkw6Hukt4kXVOpjj2O1k2bO6uX7IRZAKPxsgP0wUNXEylk3oZrbA7Q98=
+X-Received: by 2002:a05:622a:448:: with SMTP id
+ o8mr4483460qtx.341.1626188801707; 
+ Tue, 13 Jul 2021 08:06:41 -0700 (PDT)
+MIME-Version: 1.0
 References: <20210712231234.1031975-1-jason@jlekstrand.net>
  <20210712231234.1031975-2-jason@jlekstrand.net>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210712231234.1031975-2-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
+ <YO2m36je6vf6Wgwu@phenom.ffwll.local>
+In-Reply-To: <YO2m36je6vf6Wgwu@phenom.ffwll.local>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 13 Jul 2021 16:06:13 +0100
+Message-ID: <CAM0jSHP3WyNwwr3VJ6zxKd5NqqXGJ+m_gSXACrptWO6zHnTAWw@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
 Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Migrate to system at
  dma-buf attach time (v5)
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,125 +65,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@linux.intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, matthew.auld@intel.com,
- christian.koenig@amd.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 12, 2021 at 06:12:34PM -0500, Jason Ekstrand wrote:
-> From: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
-> =
-
-> Until we support p2p dma or as a complement to that, migrate data
-> to system memory at dma-buf attach time if possible.
-> =
-
-> v2:
-> - Rebase on dynamic exporter. Update the igt_dmabuf_import_same_driver
->   selftest to migrate if we are LMEM capable.
-> v3:
-> - Migrate also in the pin() callback.
-> v4:
-> - Migrate in attach
-> v5: (jason)
-> - Lock around the migration
-> =
-
-> Signed-off-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    | 25 ++++++++++++++++++-
->  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  4 ++-
->  2 files changed, 27 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm=
-/i915/gem/i915_gem_dmabuf.c
-> index 9a655f69a0671..3163f00554476 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-> @@ -170,8 +170,31 @@ static int i915_gem_dmabuf_attach(struct dma_buf *dm=
-abuf,
->  				  struct dma_buf_attachment *attach)
->  {
->  	struct drm_i915_gem_object *obj =3D dma_buf_to_obj(dmabuf);
-> +	struct i915_gem_ww_ctx ww;
-> +	int err;
-> +
-> +	for_i915_gem_ww(&ww, err, true) {
-> +		err =3D i915_gem_object_lock(obj, &ww);
-> +		if (err)
-> +			continue;
-> +
-> +		if (!i915_gem_object_can_migrate(obj, INTEL_REGION_SMEM)) {
-> +			err =3D -EOPNOTSUPP;
-> +			continue;
-> +		}
-> +
-> +		err =3D i915_gem_object_migrate(obj, &ww, INTEL_REGION_SMEM);
-> +		if (err)
-> +			continue;
->  =
-
-> -	return i915_gem_object_pin_pages_unlocked(obj);
-> +		err =3D i915_gem_object_wait_migration(obj, 0);
-> +		if (err)
-> +			continue;
-> +
-> +		err =3D i915_gem_object_pin_pages(obj);
-> +	}
-> +
-> +	return err;
->  }
->  =
-
->  static void i915_gem_dmabuf_detach(struct dma_buf *dmabuf,
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c b/drive=
-rs/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
-> index 3dc0f8b3cdab0..4f7e77b1c0152 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c
-> @@ -106,7 +106,9 @@ static int igt_dmabuf_import_same_driver(void *arg)
->  	int err;
->  =
-
->  	force_different_devices =3D true;
-> -	obj =3D i915_gem_object_create_shmem(i915, PAGE_SIZE);
-> +	obj =3D i915_gem_object_create_lmem(i915, PAGE_SIZE, 0);
-
-I'm wondering (and couldn't answer) whether this creates an lmem+smem
-buffer, since if we create an lmem-only buffer then the migration above
-should fail.
-
-Which I'm also not sure we have a testcase for that testcase either ...
-
-I tried to read some code here, but got a bit lost. Ideas?
--Daniel
-
-> +	if (IS_ERR(obj))
-> +		obj =3D i915_gem_object_create_shmem(i915, PAGE_SIZE);
->  	if (IS_ERR(obj))
->  		goto out_ret;
->  =
-
-> -- =
-
-> 2.31.1
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAxMyBKdWwgMjAyMSBhdCAxNTo0NCwgRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xs
+LmNoPiB3cm90ZToKPgo+IE9uIE1vbiwgSnVsIDEyLCAyMDIxIGF0IDA2OjEyOjM0UE0gLTA1MDAs
+IEphc29uIEVrc3RyYW5kIHdyb3RlOgo+ID4gRnJvbTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21h
+cy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+ID4KPiA+IFVudGlsIHdlIHN1cHBvcnQgcDJw
+IGRtYSBvciBhcyBhIGNvbXBsZW1lbnQgdG8gdGhhdCwgbWlncmF0ZSBkYXRhCj4gPiB0byBzeXN0
+ZW0gbWVtb3J5IGF0IGRtYS1idWYgYXR0YWNoIHRpbWUgaWYgcG9zc2libGUuCj4gPgo+ID4gdjI6
+Cj4gPiAtIFJlYmFzZSBvbiBkeW5hbWljIGV4cG9ydGVyLiBVcGRhdGUgdGhlIGlndF9kbWFidWZf
+aW1wb3J0X3NhbWVfZHJpdmVyCj4gPiAgIHNlbGZ0ZXN0IHRvIG1pZ3JhdGUgaWYgd2UgYXJlIExN
+RU0gY2FwYWJsZS4KPiA+IHYzOgo+ID4gLSBNaWdyYXRlIGFsc28gaW4gdGhlIHBpbigpIGNhbGxi
+YWNrLgo+ID4gdjQ6Cj4gPiAtIE1pZ3JhdGUgaW4gYXR0YWNoCj4gPiB2NTogKGphc29uKQo+ID4g
+LSBMb2NrIGFyb3VuZCB0aGUgbWlncmF0aW9uCj4gPgo+ID4gU2lnbmVkLW9mZi1ieTogVGhvbWFz
+IEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+ID4gU2lnbmVk
+LW9mZi1ieTogTWljaGFlbCBKLiBSdWhsIDxtaWNoYWVsLmoucnVobEBpbnRlbC5jb20+Cj4gPiBS
+ZXBvcnRlZC1ieToga2VybmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+Cj4gPiBTaWduZWQt
+b2ZmLWJ5OiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+Cj4gPiBSZXZpZXdl
+ZC1ieTogSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0Pgo+ID4gLS0tCj4gPiAg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jICAgIHwgMjUgKysrKysr
+KysrKysrKysrKysrLQo+ID4gIC4uLi9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2Rt
+YWJ1Zi5jICB8ICA0ICsrLQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMjcgaW5zZXJ0aW9ucygrKSwg
+MiBkZWxldGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
+X2RtYWJ1Zi5jCj4gPiBpbmRleCA5YTY1NWY2OWEwNjcxLi4zMTYzZjAwNTU0NDc2IDEwMDY0NAo+
+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jCj4gPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMKPiA+IEBAIC0x
+NzAsOCArMTcwLDMxIEBAIHN0YXRpYyBpbnQgaTkxNV9nZW1fZG1hYnVmX2F0dGFjaChzdHJ1Y3Qg
+ZG1hX2J1ZiAqZG1hYnVmLAo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1
+Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICphdHRhY2gpCj4gPiAgewo+ID4gICAgICAgc3RydWN0IGRy
+bV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9IGRtYV9idWZfdG9fb2JqKGRtYWJ1Zik7Cj4gPiArICAg
+ICBzdHJ1Y3QgaTkxNV9nZW1fd3dfY3R4IHd3Owo+ID4gKyAgICAgaW50IGVycjsKPiA+ICsKPiA+
+ICsgICAgIGZvcl9pOTE1X2dlbV93dygmd3csIGVyciwgdHJ1ZSkgewo+ID4gKyAgICAgICAgICAg
+ICBlcnIgPSBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosICZ3dyk7Cj4gPiArICAgICAgICAgICAg
+IGlmIChlcnIpCj4gPiArICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiArCj4gPiAr
+ICAgICAgICAgICAgIGlmICghaTkxNV9nZW1fb2JqZWN0X2Nhbl9taWdyYXRlKG9iaiwgSU5URUxf
+UkVHSU9OX1NNRU0pKSB7Cj4gPiArICAgICAgICAgICAgICAgICAgICAgZXJyID0gLUVPUE5PVFNV
+UFA7Cj4gPiArICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiArICAgICAgICAgICAg
+IH0KPiA+ICsKPiA+ICsgICAgICAgICAgICAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X21pZ3JhdGUo
+b2JqLCAmd3csIElOVEVMX1JFR0lPTl9TTUVNKTsKPiA+ICsgICAgICAgICAgICAgaWYgKGVycikK
+PiA+ICsgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiA+Cj4gPiAtICAgICByZXR1cm4g
+aTkxNV9nZW1fb2JqZWN0X3Bpbl9wYWdlc191bmxvY2tlZChvYmopOwo+ID4gKyAgICAgICAgICAg
+ICBlcnIgPSBpOTE1X2dlbV9vYmplY3Rfd2FpdF9taWdyYXRpb24ob2JqLCAwKTsKPiA+ICsgICAg
+ICAgICAgICAgaWYgKGVycikKPiA+ICsgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiA+
+ICsKPiA+ICsgICAgICAgICAgICAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X3Bpbl9wYWdlcyhvYmop
+Owo+ID4gKyAgICAgfQo+ID4gKwo+ID4gKyAgICAgcmV0dXJuIGVycjsKPiA+ICB9Cj4gPgo+ID4g
+IHN0YXRpYyB2b2lkIGk5MTVfZ2VtX2RtYWJ1Zl9kZXRhY2goc3RydWN0IGRtYV9idWYgKmRtYWJ1
+ZiwKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5
+MTVfZ2VtX2RtYWJ1Zi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1
+X2dlbV9kbWFidWYuYwo+ID4gaW5kZXggM2RjMGY4YjNjZGFiMC4uNGY3ZTc3YjFjMDE1MiAxMDA2
+NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1f
+ZG1hYnVmLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkx
+NV9nZW1fZG1hYnVmLmMKPiA+IEBAIC0xMDYsNyArMTA2LDkgQEAgc3RhdGljIGludCBpZ3RfZG1h
+YnVmX2ltcG9ydF9zYW1lX2RyaXZlcih2b2lkICphcmcpCj4gPiAgICAgICBpbnQgZXJyOwo+ID4K
+PiA+ICAgICAgIGZvcmNlX2RpZmZlcmVudF9kZXZpY2VzID0gdHJ1ZTsKPiA+IC0gICAgIG9iaiA9
+IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW0oaTkxNSwgUEFHRV9TSVpFKTsKPiA+ICsgICAg
+IG9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfbG1lbShpOTE1LCBQQUdFX1NJWkUsIDApOwo+
+Cj4gSSdtIHdvbmRlcmluZyAoYW5kIGNvdWxkbid0IGFuc3dlcikgd2hldGhlciB0aGlzIGNyZWF0
+ZXMgYW4gbG1lbStzbWVtCj4gYnVmZmVyLCBzaW5jZSBpZiB3ZSBjcmVhdGUgYW4gbG1lbS1vbmx5
+IGJ1ZmZlciB0aGVuIHRoZSBtaWdyYXRpb24gYWJvdmUKPiBzaG91bGQgZmFpbC4KCkl0J3MgbG1l
+bS1vbmx5LCBidXQgaXQncyBhbHNvIGEga2VybmVsIGludGVybmFsIG9iamVjdCwgc28gdGhlCm1p
+Z3JhdGlvbiBwYXRoIHdpbGwgc3RpbGwgaGFwcGlseSBtaWdyYXRlIGl0IGlmIGFza2VkLiBPbiB0
+aGUgb3RoZXIKaGFuZCBpZiBpdCdzIGEgdXNlcnNwYWNlIG9iamVjdCB0aGVuIHdlIGFsd2F5cyBo
+YXZlIHRvIHJlc3BlY3QgdGhlCnBsYWNlbWVudHMuCgpJIHRoaW5rIGZvciBub3cgdGhlIG9ubHkg
+dXNlY2FzZSBmb3IgdGhhdCBpcyBpbiB0aGUgc2VsZnRlc3RzLgoKPgo+IFdoaWNoIEknbSBhbHNv
+IG5vdCBzdXJlIHdlIGhhdmUgYSB0ZXN0Y2FzZSBmb3IgdGhhdCB0ZXN0Y2FzZSBlaXRoZXIgLi4u
+Cj4KPiBJIHRyaWVkIHRvIHJlYWQgc29tZSBjb2RlIGhlcmUsIGJ1dCBnb3QgYSBiaXQgbG9zdC4g
+SWRlYXM/Cj4gLURhbmllbAo+Cj4gPiArICAgICBpZiAoSVNfRVJSKG9iaikpCj4gPiArICAgICAg
+ICAgICAgIG9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc2htZW0oaTkxNSwgUEFHRV9TSVpF
+KTsKPiA+ICAgICAgIGlmIChJU19FUlIob2JqKSkKPiA+ICAgICAgICAgICAgICAgZ290byBvdXRf
+cmV0Owo+ID4KPiA+IC0tCj4gPiAyLjMxLjEKPiA+Cj4KPiAtLQo+IERhbmllbCBWZXR0ZXIKPiBT
+b2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KPiBodHRwOi8vYmxvZy5mZndsbC5j
+aApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
