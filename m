@@ -1,57 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2629E3C783E
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 22:52:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D7213C783D
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 22:52:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA4746E140;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF626E134;
 	Tue, 13 Jul 2021 20:52:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8956E131
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 20:52:02 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id r11so360728wro.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 13:52:02 -0700 (PDT)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A9596E133
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 20:52:03 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id d12so336811wre.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 13:52:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Kd/oxjgqUt41N/wlK+Bys3n4GcmvNnJC/Fz6Ii29kHw=;
- b=ZCHXAbXQ96kGqZvO99mm2anrEXmoQSnFJSoya3pZTlXwbsmczasfu2uU05jnyM6ADG
- cY2H0sDS4ExUM6y+L5Rdj9SxtwqaHhC2ZcfKhTMpnmRex6mf+SXcCfGcizKEIhu2GJxW
- Arig5jq0V1X8YVFCQkx4nzX7dRQXasAlhAFsc=
+ bh=/zygawp8H9nMKsUfIVJKXYmxNB6SpK8XomLFpeNl1u4=;
+ b=Um4WvsYyvXOPTelxx4VO24F3eVMkiGg2UKtWxUO9nFoyEsqRq3pciJ8jCOyX3YWaDM
+ l/kMw8GVLY3NWSVUgn2ZuG3SNK8oG4c3JqYbKLixxoOvyzfr8+nkenohqPiH1h3af6/B
+ 0MMaEU+MHpQjSR6NehmMnAEHXSA40z3z5IFL4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Kd/oxjgqUt41N/wlK+Bys3n4GcmvNnJC/Fz6Ii29kHw=;
- b=TdLDCjzsirbwcxZgtva71kZ+0LUs94Zac+vqbL036s4p36fdgqx/+X4+N0jzDdWcA6
- A61ebABFTHxcxg1b0aFMvJDI9Va4ezIj7lLcW+WmOPKBTnFxIv/9nGiDrvCsdf5dbG8S
- 0m2Ee9A7uH+tO5lpbmX/ktaZ4Z9QoS7QEQDXd5pqAheDOJBYORp/KxbHmRPStVwR3OUk
- H9szUuoQfiDt1GpYRk20xvhjC7dEUqJZyeLgVtw19Q4GTfSMvfZSvfscCdQ2SqeT7B+z
- yBkm+v6/9aphljzNcNhF0FxzrFEvsGuNVFs7Dz8xsOTEMNggeLNdtqHEd7Ka0ujk2qi4
- hthw==
-X-Gm-Message-State: AOAM5308CYDojGGKS4JreSo9C/xwaZ5DDpJmSlrfAGwjovpkhqR1IZlg
- t8GaCAEsB26K4G/IwUxlBKSOjyJv0OyprA==
-X-Google-Smtp-Source: ABdhPJxKfkZtUW9FYjPTgVmsS+Fhl/5M1dYn9Jd7SBRv+cG3jgCWlNil1uxQ4COUwG0JWuJsbZb/jQ==
-X-Received: by 2002:a5d:4e0d:: with SMTP id p13mr8220705wrt.372.1626209521087; 
- Tue, 13 Jul 2021 13:52:01 -0700 (PDT)
+ bh=/zygawp8H9nMKsUfIVJKXYmxNB6SpK8XomLFpeNl1u4=;
+ b=P9ZD2Nbc0IqQiLaYpD5cSI9/O42sjf7+l59xBkGOep4nsIDkKEoS11Zno28dPCAWcd
+ hQOgLvt9iyfy0N8VsrActQd7Bx4oTDtFwuk6SPxrUNW63hEvYHPFPHY6AuLeYfco01YL
+ +mzeFIqkj6RwhIKqx95CZwEa2jVZwzgE/LEysAWb68YAPFIdCeDq+cqdtHIlCkRrmVmq
+ LG//HwDmsv5+nbPUfq+2xoLg2FD1CWktXv1nGf8zxsUe4kCT+2o9oOKXsp6ZR3xzXKOO
+ 9RB1a9914/GFrIVR3lTH/441fpnIL0O7Ppg9oBL8RhIHKG+tdFN2JG4QWTaO9+mvM4u+
+ /4YA==
+X-Gm-Message-State: AOAM530rRfTVcD/N7wHtERIB/Gs7Cvd2R5pE/eXkbVuvjpOUkD3Tg0RI
+ uDs0JRTac7RzDCf6xvBQgSTGVus5gUEwlA==
+X-Google-Smtp-Source: ABdhPJxwwDzX0YlQegvblaY7h1YZr6t3cMoRnTVGmzCsubSpg3GdP6DJrSnr7BpmY1z/6D5Qxt1CBw==
+X-Received: by 2002:adf:cf07:: with SMTP id o7mr8245727wrj.216.1626209522138; 
+ Tue, 13 Jul 2021 13:52:02 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id j10sm18642249wrt.35.2021.07.13.13.52.00
+ by smtp.gmail.com with ESMTPSA id j10sm18642249wrt.35.2021.07.13.13.52.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 Jul 2021 13:52:00 -0700 (PDT)
+ Tue, 13 Jul 2021 13:52:01 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Tue, 13 Jul 2021 22:51:51 +0200
-Message-Id: <20210713205153.1896059-3-daniel.vetter@ffwll.ch>
+Date: Tue, 13 Jul 2021 22:51:52 +0200
+Message-Id: <20210713205153.1896059-4-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
 References: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 2/4] drm/shmem-helper: Switch to
- vmf_insert_pfn
+Subject: [Intel-gfx] [PATCH v4 3/4] drm/shmem-helpers: Allocate wc pages on
+ x86
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,130 +64,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Maxime Ripard <mripard@kernel.org>,
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to stop gup, which isn't the case if we use vmf_insert_page
-and VM_MIXEDMAP, because that does not set pte_special.
-
-v2: With this shmem gem helpers now definitely need CONFIG_MMU (0day)
-
-v3: add more depends on MMU. For usb drivers this is a bit awkward,
-but really it's correct: To be able to provide a contig mapping of
-buffers to userspace on !MMU platforms we'd need to use the cma
-helpers for these drivers on those platforms. As-is this wont work.
-
-Also not exactly sure why vm_insert_page doesn't go boom, because that
-definitely wont fly in practice since the pages are non-contig to
-begin with.
-
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
----
- drivers/gpu/drm/Kconfig                | 2 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c | 4 ++--
- drivers/gpu/drm/gud/Kconfig            | 2 +-
- drivers/gpu/drm/tiny/Kconfig           | 4 ++--
- drivers/gpu/drm/udl/Kconfig            | 1 +
- 5 files changed, 7 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 0d372354c2d0..314eefa39892 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -211,7 +211,7 @@ config DRM_KMS_CMA_HELPER
- 
- config DRM_GEM_SHMEM_HELPER
- 	bool
--	depends on DRM
-+	depends on DRM && MMU
- 	help
- 	  Choose this if you need the GEM shmem helper functions
- 
-diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-index d5e6d4568f99..296ab1b7c07f 100644
---- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-+++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-@@ -542,7 +542,7 @@ static vm_fault_t drm_gem_shmem_fault(struct vm_fault *vmf)
- 	} else {
- 		page = shmem->pages[page_offset];
- 
--		ret = vmf_insert_page(vma, vmf->address, page);
-+		ret = vmf_insert_pfn(vma, vmf->address, page_to_pfn(page));
- 	}
- 
- 	mutex_unlock(&shmem->pages_lock);
-@@ -612,7 +612,7 @@ int drm_gem_shmem_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
- 		return ret;
- 	}
- 
--	vma->vm_flags |= VM_MIXEDMAP | VM_DONTEXPAND;
-+	vma->vm_flags |= VM_PFNMAP | VM_DONTEXPAND;
- 	vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
- 	if (shmem->map_wc)
- 		vma->vm_page_prot = pgprot_writecombine(vma->vm_page_prot);
-diff --git a/drivers/gpu/drm/gud/Kconfig b/drivers/gpu/drm/gud/Kconfig
-index 1c8601bf4d91..9c1e61f9eec3 100644
---- a/drivers/gpu/drm/gud/Kconfig
-+++ b/drivers/gpu/drm/gud/Kconfig
-@@ -2,7 +2,7 @@
- 
- config DRM_GUD
- 	tristate "GUD USB Display"
--	depends on DRM && USB
-+	depends on DRM && USB && MMU
- 	select LZ4_COMPRESS
- 	select DRM_KMS_HELPER
- 	select DRM_GEM_SHMEM_HELPER
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index 5593128eeff9..c11fb5be7d09 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -44,7 +44,7 @@ config DRM_CIRRUS_QEMU
- 
- config DRM_GM12U320
- 	tristate "GM12U320 driver for USB projectors"
--	depends on DRM && USB
-+	depends on DRM && USB && MMU
- 	select DRM_KMS_HELPER
- 	select DRM_GEM_SHMEM_HELPER
- 	help
-@@ -53,7 +53,7 @@ config DRM_GM12U320
- 
- config DRM_SIMPLEDRM
- 	tristate "Simple framebuffer driver"
--	depends on DRM
-+	depends on DRM && MMU
- 	select DRM_GEM_SHMEM_HELPER
- 	select DRM_KMS_HELPER
- 	help
-diff --git a/drivers/gpu/drm/udl/Kconfig b/drivers/gpu/drm/udl/Kconfig
-index 1f497d8f1ae5..c744175c6992 100644
---- a/drivers/gpu/drm/udl/Kconfig
-+++ b/drivers/gpu/drm/udl/Kconfig
-@@ -4,6 +4,7 @@ config DRM_UDL
- 	depends on DRM
- 	depends on USB
- 	depends on USB_ARCH_HAS_HCD
-+	depends on MMU
- 	select DRM_GEM_SHMEM_HELPER
- 	select DRM_KMS_HELPER
- 	help
--- 
-2.32.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+aW50ZWwtZ2Z4LWNpIHJlYWxpemVkIHRoYXQgc29tZXRoaW5nIGlzIG5vdCBxdWl0ZSBjb2hlcmVu
+dCBhbnltb3JlIG9uCnNvbWUgcGxhdGZvcm1zIGZvciBvdXIgaTkxNSt2Z2VtIHRlc3RzLCB3aGVu
+IEkgdHJpZWQgdG8gc3dpdGNoIHZnZW0Kb3ZlciB0byBzaG1lbSBoZWxwZXJzLgoKQWZ0ZXIgbG90
+cyBvZiBoZWFkLXNjcmF0Y2hpbmcgSSByZWFsaXplZCB0aGF0IEkndmUgcmVtb3ZlZCBjYWxscyB0
+bwpkcm1fY2xmbHVzaC4gQW5kIHdlIG5lZWQgdGhvc2UuIFRvIG1ha2UgdGhpcyBhIGJpdCBjbGVh
+bmVyIHVzZSB0aGUKc2FtZSBwYWdlIGFsbG9jYXRpb24gdG9vbGluZyBhcyB0dG0sIHdoaWNoIGRv
+ZXMgaW50ZXJuYWxseSBjbGZsdXNoCihhbmQgbW9yZSwgYXMgbmVlZWRlZCBvbiBhbnkgcGxhdGZv
+cm0gaW5zdGVhZCBvZiBqdXN0IHRoZSBpbnRlbCB4ODYKY3B1cyBpOTE1IGNhbiBiZSBjb21iaW5l
+ZCB3aXRoKS4KClVuZm9ydHVuYXRlbHkgdGhpcyBkb2Vzbid0IGV4aXN0IG9uIGFybSwgb3IgYXMg
+YSBnZW5lcmljIGZlYXR1cmUuIEZvcgp0aGF0IEkgdGhpbmsgb25seSB0aGUgZG1hLWFwaSBjYW4g
+Z2V0IGF0IHdjIG1lbW9yeSByZWxpYWJseSwgc28gbWF5YmUKd2UnZCBuZWVkIHNvbWUga2luZCBv
+ZiBHRlBfV0MgZmxhZyB0byBkbyB0aGlzIHByb3Blcmx5LgoKU2lnbmVkLW9mZi1ieTogRGFuaWVs
+IFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CkNjOiBDaHJpc3RpYW4gS8O2bmlnIDxj
+aHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CkNjOiAiVGhvbWFzIEhlbGxzdHLDtm0iIDx0aG9tYXMu
+aGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVu
+Lmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+CkNjOiBNYXhpbWUgUmlwYXJkIDxtcmlwYXJkQGtl
+cm5lbC5vcmc+CkNjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQ2M6
+IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmll
+bEBmZndsbC5jaD4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2dlbV9zaG1lbV9oZWxwZXIuYyB8
+IDE0ICsrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKQoKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtX3NobWVtX2hlbHBlci5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2RybV9nZW1fc2htZW1faGVscGVyLmMKaW5kZXggMjk2YWIxYjdjMDdmLi42NTdk
+MjQ5MGFhYTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtX3NobWVtX2hlbHBl
+ci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtX3NobWVtX2hlbHBlci5jCkBAIC0xMCw2
+ICsxMCwxMCBAQAogI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4KICNpbmNsdWRlIDxsaW51eC92bWFs
+bG9jLmg+CiAKKyNpZmRlZiBDT05GSUdfWDg2CisjaW5jbHVkZSA8YXNtL3NldF9tZW1vcnkuaD4K
+KyNlbmRpZgorCiAjaW5jbHVkZSA8ZHJtL2RybS5oPgogI2luY2x1ZGUgPGRybS9kcm1fZGV2aWNl
+Lmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9kcnYuaD4KQEAgLTE2Miw2ICsxNjYsMTEgQEAgc3RhdGlj
+IGludCBkcm1fZ2VtX3NobWVtX2dldF9wYWdlc19sb2NrZWQoc3RydWN0IGRybV9nZW1fc2htZW1f
+b2JqZWN0ICpzaG1lbSkKIAkJcmV0dXJuIFBUUl9FUlIocGFnZXMpOwogCX0KIAorI2lmZGVmIENP
+TkZJR19YODYKKwlpZiAoc2htZW0tPm1hcF93YykKKwkJc2V0X3BhZ2VzX2FycmF5X3djKHBhZ2Vz
+LCBvYmotPnNpemUgPj4gUEFHRV9TSElGVCk7CisjZW5kaWYKKwogCXNobWVtLT5wYWdlcyA9IHBh
+Z2VzOwogCiAJcmV0dXJuIDA7CkBAIC0yMDMsNiArMjEyLDExIEBAIHN0YXRpYyB2b2lkIGRybV9n
+ZW1fc2htZW1fcHV0X3BhZ2VzX2xvY2tlZChzdHJ1Y3QgZHJtX2dlbV9zaG1lbV9vYmplY3QgKnNo
+bWVtKQogCWlmICgtLXNobWVtLT5wYWdlc191c2VfY291bnQgPiAwKQogCQlyZXR1cm47CiAKKyNp
+ZmRlZiBDT05GSUdfWDg2CisJaWYgKHNobWVtLT5tYXBfd2MpCisJCXNldF9wYWdlc19hcnJheV93
+YihzaG1lbS0+cGFnZXMsIG9iai0+c2l6ZSA+PiBQQUdFX1NISUZUKTsKKyNlbmRpZgorCiAJZHJt
+X2dlbV9wdXRfcGFnZXMob2JqLCBzaG1lbS0+cGFnZXMsCiAJCQkgIHNobWVtLT5wYWdlc19tYXJr
+X2RpcnR5X29uX3B1dCwKIAkJCSAgc2htZW0tPnBhZ2VzX21hcmtfYWNjZXNzZWRfb25fcHV0KTsK
+LS0gCjIuMzIuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Cg==
