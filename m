@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D4B73C75A2
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 19:20:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A993C75A5
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 19:22:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7179A6E101;
-	Tue, 13 Jul 2021 17:20:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B126E101;
+	Tue, 13 Jul 2021 17:22:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EBFC6E101
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 17:20:41 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="295857757"
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="295857757"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 10:20:40 -0700
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F044D6E101
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 17:22:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="274044408"
+X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="274044408"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2021 10:22:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="649578788"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga006.fm.intel.com with ESMTP; 13 Jul 2021 10:20:40 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 10:20:40 -0700
+X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="630117212"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by orsmga005.jf.intel.com with ESMTP; 13 Jul 2021 10:22:07 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 10:20:40 -0700
+ 15.1.2242.4; Tue, 13 Jul 2021 10:22:07 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Tue, 13 Jul 2021 10:22:06 -0700
 Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
  fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
- Tue, 13 Jul 2021 10:20:40 -0700
+ Tue, 13 Jul 2021 10:22:06 -0700
 From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
 To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 02/12] drm/i915: Make pre-production detection use
- direct revid comparison
-Thread-Index: AQHXdTzwLDKWIN6yZUmo2kx0cjW6P6tBLDQQ
-Date: Tue, 13 Jul 2021 17:20:39 +0000
-Message-ID: <28e06fdeb8ed4094822859b697d19023@intel.com>
+Thread-Topic: [PATCH v2 04/12] drm/i915/kbl: Drop pre-production revision from
+ stepping table
+Thread-Index: AQHXdTzxO1SB9RELXEyLeWi0eaYpeqtBLJ2g
+Date: Tue, 13 Jul 2021 17:22:06 +0000
+Message-ID: <560124f42d08400496d9356e43278bf8@intel.com>
 References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
- <20210710033724.2459367-3-matthew.d.roper@intel.com>
-In-Reply-To: <20210710033724.2459367-3-matthew.d.roper@intel.com>
+ <20210710033724.2459367-5-matthew.d.roper@intel.com>
+In-Reply-To: <20210710033724.2459367-5-matthew.d.roper@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -52,8 +52,8 @@ dlp-product: dlpe-windows
 dlp-reaction: no-action
 x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 02/12] drm/i915: Make pre-production
- detection use direct revid comparison
+Subject: Re: [Intel-gfx] [PATCH v2 04/12] drm/i915/kbl: Drop pre-production
+ revision from stepping table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,45 +79,33 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 > To: intel-gfx@lists.freedesktop.org
 > Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Roper, Matthew D
 > <matthew.d.roper@intel.com>
-> Subject: [PATCH v2 02/12] drm/i915: Make pre-production detection use
-> direct revid comparison
+> Subject: [PATCH v2 04/12] drm/i915/kbl: Drop pre-production revision from
+> stepping table
 > 
-> Although we're converting our workarounds to use a revid->stepping lookup
-> table, the function that detects pre-production hardware should continue to
-> compare against PCI revision ID values directly.  These are listed in the bspec
-> as integers, so it's easier to confirm their correctness if we just use an integer
-> literal rather than a symbolic name anyway.
+> We're long past the point where we need to care about pre-production
+> hardware, and we already warn the user and taint the kernel if we detect the
+> driver is being loaded on pre-production hardware.
 > 
-> Bspec: 13620, 19131, 13626, 18329
+> Bspec: 18329
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/i915_drv.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/intel_step.c | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c
-> b/drivers/gpu/drm/i915/i915_drv.c index 30d8cd8c69b1..90136995f5eb
-> 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -271,10 +271,10 @@ static void intel_detect_preproduction_hw(struct
-> drm_i915_private *dev_priv)
->  	bool pre = false;
+> diff --git a/drivers/gpu/drm/i915/intel_step.c
+> b/drivers/gpu/drm/i915/intel_step.c
+> index 69c928b046e8..8987453aa172 100644
+> --- a/drivers/gpu/drm/i915/intel_step.c
+> +++ b/drivers/gpu/drm/i915/intel_step.c
+> @@ -33,7 +33,6 @@ static const struct intel_step_info skl_revids[] = {  };
 > 
->  	pre |= IS_HSW_EARLY_SDV(dev_priv);
-> -	pre |= IS_SKL_REVID(dev_priv, 0, SKL_REVID_F0);
-> -	pre |= IS_BXT_REVID(dev_priv, 0, BXT_REVID_B_LAST);
-> -	pre |= IS_KBL_GT_STEP(dev_priv, 0, STEP_A0);
-> -	pre |= IS_GLK_REVID(dev_priv, 0, GLK_REVID_A2);
-> +	pre |= IS_SKYLAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x6;
-> +	pre |= IS_BROXTON(dev_priv) && INTEL_REVID(dev_priv) < 0xA;
-> +	pre |= IS_KABYLAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x1;
-> +	pre |= IS_GEMINILAKE(dev_priv) && INTEL_REVID(dev_priv) < 0x3;
-> 
->  	if (pre) {
->  		drm_err(&dev_priv->drm, "This is a pre-production stepping.
-> "
+>  static const struct intel_step_info kbl_revids[] = {
+> -	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
+>  	[1] = { .gt_step = STEP_B0, .display_step = STEP_B0 },
+>  	[2] = { .gt_step = STEP_C0, .display_step = STEP_B0 },
+>  	[3] = { .gt_step = STEP_D0, .display_step = STEP_B0 },
 > --
 > 2.25.4
 
