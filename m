@@ -1,34 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E6323C77FB
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 22:28:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 521CF3C77BA
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 22:17:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAF6A89831;
-	Tue, 13 Jul 2021 20:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B62C76E030;
+	Tue, 13 Jul 2021 20:17:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D42A289831
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 20:28:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="189921975"
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="189921975"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 13:28:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="570576877"
-Received: from ariakraf-desk2.fm.intel.com ([10.105.129.123])
- by fmsmga001.fm.intel.com with ESMTP; 13 Jul 2021 13:28:44 -0700
-From: Aria Kraft <aria.m.kraft@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Tue, 13 Jul 2021 13:17:01 -0700
-Message-Id: <20210713201701.1231730-1-aria.m.kraft@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7760C6E030
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 20:17:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="271348534"
+X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="271348534"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2021 13:17:26 -0700
+X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="493244902"
+Received: from juhyungn-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.129.73])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2021 13:17:25 -0700
+Date: Tue, 13 Jul 2021 13:17:25 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Message-ID: <20210713201725.ulgnwmbjy3fllovk@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210713184421.9493-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/ehl: Resolve insufficient header
- credits in MIPI DSI
+Content-Disposition: inline
+In-Reply-To: <20210713184421.9493-1-juhapekka.heikkila@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix wm params for ccs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,82 +44,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MIPI DSI initialization on EHL can fail due to not enough header credits available.
+On Tue, Jul 13, 2021 at 09:44:21PM +0300, Juha-Pekka Heikkila wrote:
+>skl_compute_plane_wm_params() didn't take into account ccs
+>modifiers on graphics ver >= 12
+>
+>Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
-To resolve this failure, this patch adds a header count to the existing 100us wait function.
 
-It then adds a call to this modified function to request a single header credit during initialization.
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Reviewed-by: Bob Paauwe <bob.j.paauwe@intel.com>
-Signed-off-by: Aria Kraft <aria.m.kraft@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+Lucas De Marchi
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 43ec7fcd3f5d..fd836fdc6ec7 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -54,12 +54,15 @@ static int payload_credits_available(struct drm_i915_private *dev_priv,
- 		>> FREE_PLOAD_CREDIT_SHIFT;
- }
- 
--static void wait_for_header_credits(struct drm_i915_private *dev_priv,
--				    enum transcoder dsi_trans)
-+static bool wait_for_header_credits(struct drm_i915_private *dev_priv,
-+				    enum transcoder dsi_trans, unsigned int credits)
- {
- 	if (wait_for_us(header_credits_available(dev_priv, dsi_trans) >=
--			MAX_HEADER_CREDIT, 100))
-+			credits, 100)) {
- 		drm_err(&dev_priv->drm, "DSI header credits not released\n");
-+		return false;
-+	}
-+	return true;
- }
- 
- static void wait_for_payload_credits(struct drm_i915_private *dev_priv,
-@@ -90,7 +93,7 @@ static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
- 	/* wait for header/payload credits to be released */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		wait_for_header_credits(dev_priv, dsi_trans);
-+		wait_for_header_credits(dev_priv, dsi_trans, MAX_HEADER_CREDIT);
- 		wait_for_payload_credits(dev_priv, dsi_trans);
- 	}
- 
-@@ -108,7 +111,7 @@ static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
- 	/* wait for header credits to be released */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		wait_for_header_credits(dev_priv, dsi_trans);
-+		wait_for_header_credits(dev_priv, dsi_trans, MAX_HEADER_CREDIT);
- 	}
- 
- 	/* wait for LP TX in progress bit to be cleared */
-@@ -155,13 +158,9 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
- 	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
- 	enum transcoder dsi_trans = dsi_port_to_transcoder(host->port);
- 	u32 tmp;
--	int free_credits;
- 
- 	/* check if header credit available */
--	free_credits = header_credits_available(dev_priv, dsi_trans);
--	if (free_credits < 1) {
--		drm_err(&dev_priv->drm,
--			"send pkt header failed, not enough hdr credits\n");
-+	if (!wait_for_header_credits(dev_priv, dsi_trans, 1)) {
- 		return -1;
- 	}
- 
--- 
-2.31.1
-
+>---
+> drivers/gpu/drm/i915/intel_pm.c | 6 ++----
+> 1 file changed, 2 insertions(+), 4 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+>index 0cbb79452fcf..540a7ecbf004 100644
+>--- a/drivers/gpu/drm/i915/intel_pm.c
+>+++ b/drivers/gpu/drm/i915/intel_pm.c
+>@@ -5249,11 +5249,9 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+>
+> 	wp->y_tiled = modifier == I915_FORMAT_MOD_Y_TILED ||
+> 		      modifier == I915_FORMAT_MOD_Yf_TILED ||
+>-		      modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>-		      modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
+>+		      is_ccs_modifier(modifier);
+> 	wp->x_tiled = modifier == I915_FORMAT_MOD_X_TILED;
+>-	wp->rc_surface = modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+>-			 modifier == I915_FORMAT_MOD_Yf_TILED_CCS;
+>+	wp->rc_surface = is_ccs_modifier(modifier);
+> 	wp->is_planar = intel_format_info_is_yuv_semiplanar(format, modifier);
+>
+> 	wp->width = width;
+>-- 
+>2.28.0
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
