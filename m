@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF9C3C7742
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 21:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 637013C7740
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 21:36:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A056D6E133;
-	Tue, 13 Jul 2021 19:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7E1D6E134;
+	Tue, 13 Jul 2021 19:36:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51F116E11F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B08216E11C
  for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 19:36:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="190609875"
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="190609875"
+X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="190609876"
+X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="190609876"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jul 2021 12:36:44 -0700
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="487456165"
+X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="487456169"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jul 2021 12:36:43 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Jul 2021 12:36:33 -0700
-Message-Id: <20210713193635.3390052-11-matthew.d.roper@intel.com>
+Date: Tue, 13 Jul 2021 12:36:34 -0700
+Message-Id: <20210713193635.3390052-12-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210713193635.3390052-1-matthew.d.roper@intel.com>
 References: <20210713193635.3390052-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI v4 10/12] drm/i915/dg1: Use revid->stepping tables
+Subject: [Intel-gfx] [CI v4 11/12] drm/i915/cnl: Drop all workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,183 +47,139 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch DG1 to use a revid->stepping table as we're trying to do on all
-platforms going forward.
+All of the Cannon Lake hardware that came out had graphics fused off,
+and our userspace drivers have already dropped their support for the
+platform; CNL-specific code in i915 that isn't inherited by subsequent
+platforms is effectively dead code.  Let's remove all of the
+CNL-specific workarounds as a quick and easy first step.
 
-This removes the last use of IS_REVID() and REVID_FOREVER, so remove
-those now-unused macros as well to prevent their accidental use on
-future platforms.
-
-v2:
- - Use COMMON_STEP() macro in table.  (Anusha)
-
-Bspec: 44463
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+References: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/6899
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_power.c |  2 +-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c    |  2 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c    | 10 +++++-----
- drivers/gpu/drm/i915/i915_drv.h                | 18 ++++--------------
- drivers/gpu/drm/i915/intel_pm.c                |  2 +-
- drivers/gpu/drm/i915/intel_step.c              |  8 ++++++++
- 6 files changed, 20 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 55 ---------------------
+ drivers/gpu/drm/i915/i915_drv.h             |  7 ---
+ 2 files changed, 62 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index d92db471411e..64be896bcd8b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -5799,7 +5799,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
- 	int config, i;
- 
- 	if (IS_ALDERLAKE_S(dev_priv) ||
--	    IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
-+	    IS_DG1_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
- 	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
- 		/* Wa_1409767108:tgl,dg1,adl-s */
- 		table = wa_1409767108_buddy_page_masks;
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index 1f43aba2e9e2..50d11a84e7a9 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -157,7 +157,7 @@ intel_gt_setup_fake_lmem(struct intel_gt *gt)
- static bool get_legacy_lowmem_region(struct intel_uncore *uncore,
- 				     u64 *start, u32 *size)
- {
--	if (!IS_DG1_REVID(uncore->i915, DG1_REVID_A0, DG1_REVID_B0))
-+	if (!IS_DG1_GT_STEP(uncore->i915, STEP_A0, STEP_B0))
- 		return false;
- 
- 	*start = 0;
 diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 0cab641de40f..045bb794a3ad 100644
+index 045bb794a3ad..1398f35affcb 100644
 --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1118,7 +1118,7 @@ dg1_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 	gen12_gt_workarounds_init(i915, wal);
+@@ -514,35 +514,6 @@ static void cfl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 		     GEN7_SBE_SS_CACHE_DISPATCH_PORT_SHARING_DISABLE);
+ }
  
- 	/* Wa_1607087056:dg1 */
--	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0))
-+	if (IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0))
- 		wa_write_or(wal,
- 			    SLICE_UNIT_LEVEL_CLKGATE,
- 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
-@@ -1529,7 +1529,7 @@ static void dg1_whitelist_build(struct intel_engine_cs *engine)
- 	tgl_whitelist_build(engine);
- 
- 	/* GEN:BUG:1409280441:dg1 */
--	if (IS_DG1_REVID(engine->i915, DG1_REVID_A0, DG1_REVID_A0) &&
-+	if (IS_DG1_GT_STEP(engine->i915, STEP_A0, STEP_A0) &&
- 	    (engine->class == RENDER_CLASS ||
- 	     engine->class == COPY_ENGINE_CLASS))
- 		whitelist_reg_ext(w, RING_ID(engine->mmio_base),
-@@ -1599,7 +1599,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+-static void cnl_ctx_workarounds_init(struct intel_engine_cs *engine,
+-				     struct i915_wa_list *wal)
+-{
+-	/* WaForceContextSaveRestoreNonCoherent:cnl */
+-	wa_masked_en(wal, CNL_HDC_CHICKEN0,
+-		     HDC_FORCE_CONTEXT_SAVE_RESTORE_NON_COHERENT);
+-
+-	/* WaDisableReplayBufferBankArbitrationOptimization:cnl */
+-	wa_masked_en(wal, COMMON_SLICE_CHICKEN2,
+-		     GEN8_SBE_DISABLE_REPLAY_BUF_OPTIMIZATION);
+-
+-	/* WaPushConstantDereferenceHoldDisable:cnl */
+-	wa_masked_en(wal, GEN7_ROW_CHICKEN2, PUSH_CONSTANT_DEREF_DISABLE);
+-
+-	/* FtrEnableFastAnisoL1BankingFix:cnl */
+-	wa_masked_en(wal, HALF_SLICE_CHICKEN3, CNL_FAST_ANISO_L1_BANKING_FIX);
+-
+-	/* WaDisable3DMidCmdPreemption:cnl */
+-	wa_masked_dis(wal, GEN8_CS_CHICKEN1, GEN9_PREEMPT_3D_OBJECT_LEVEL);
+-
+-	/* WaDisableGPGPUMidCmdPreemption:cnl */
+-	wa_masked_field_set(wal, GEN8_CS_CHICKEN1,
+-			    GEN9_PREEMPT_GPGPU_LEVEL_MASK,
+-			    GEN9_PREEMPT_GPGPU_COMMAND_LEVEL);
+-
+-	/* WaDisableEarlyEOT:cnl */
+-	wa_masked_en(wal, GEN8_ROW_CHICKEN, DISABLE_EARLY_EOT);
+-}
+-
+ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 				     struct i915_wa_list *wal)
  {
- 	struct drm_i915_private *i915 = engine->i915;
+@@ -711,8 +682,6 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
+ 		gen12_ctx_workarounds_init(engine, wal);
+ 	else if (GRAPHICS_VER(i915) == 11)
+ 		icl_ctx_workarounds_init(engine, wal);
+-	else if (IS_CANNONLAKE(i915))
+-		cnl_ctx_workarounds_init(engine, wal);
+ 	else if (IS_COFFEELAKE(i915) || IS_COMETLAKE(i915))
+ 		cfl_ctx_workarounds_init(engine, wal);
+ 	else if (IS_GEMINILAKE(i915))
+@@ -989,15 +958,6 @@ icl_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 	wa_write_clr_set(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
+ }
  
--	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-+	if (IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0) ||
- 	    IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0)) {
- 		/*
- 		 * Wa_1607138336:tgl[a0],dg1[a0]
-@@ -1645,7 +1645,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 	}
+-static void
+-cnl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+-{
+-	/* WaInPlaceDecompressionHang:cnl */
+-	wa_write_or(wal,
+-		    GEN9_GAMT_ECO_REG_RW_IA,
+-		    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
+-}
+-
+ static void
+ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ {
+@@ -1147,8 +1107,6 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 		gen12_gt_workarounds_init(i915, wal);
+ 	else if (GRAPHICS_VER(i915) == 11)
+ 		icl_gt_workarounds_init(i915, wal);
+-	else if (IS_CANNONLAKE(i915))
+-		cnl_gt_workarounds_init(i915, wal);
+ 	else if (IS_COFFEELAKE(i915) || IS_COMETLAKE(i915))
+ 		cfl_gt_workarounds_init(i915, wal);
+ 	else if (IS_GEMINILAKE(i915))
+@@ -1425,17 +1383,6 @@ static void cml_whitelist_build(struct intel_engine_cs *engine)
+ 	cfl_whitelist_build(engine);
+ }
  
- 	if (IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) ||
--	    IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-+	    IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0) ||
- 	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
- 		/* Wa_1409804808:tgl,rkl,dg1[a0],adl-s,adl-p */
- 		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
-@@ -1659,7 +1659,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 	}
- 
- 
--	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-+	if (IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0) ||
- 	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
- 		/*
- 		 * Wa_1607030317:tgl
+-static void cnl_whitelist_build(struct intel_engine_cs *engine)
+-{
+-	struct i915_wa_list *w = &engine->whitelist;
+-
+-	if (engine->class != RENDER_CLASS)
+-		return;
+-
+-	/* WaEnablePreemptionGranularityControlByUMD:cnl */
+-	whitelist_reg(w, GEN8_CS_CHICKEN1);
+-}
+-
+ static void icl_whitelist_build(struct intel_engine_cs *engine)
+ {
+ 	struct i915_wa_list *w = &engine->whitelist;
+@@ -1549,8 +1496,6 @@ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
+ 		tgl_whitelist_build(engine);
+ 	else if (GRAPHICS_VER(i915) == 11)
+ 		icl_whitelist_build(engine);
+-	else if (IS_CANNONLAKE(i915))
+-		cnl_whitelist_build(engine);
+ 	else if (IS_COMETLAKE(i915))
+ 		cml_whitelist_build(engine);
+ 	else if (IS_COFFEELAKE(i915))
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9195131cf90f..d462b9434541 100644
+index d462b9434541..8682a5f557c5 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1323,19 +1323,10 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
- #define IS_DISPLAY_VER(i915, from, until) \
- 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+@@ -1513,13 +1513,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_KBL_DISPLAY_STEP(dev_priv, since, until) \
+ 	(IS_KABYLAKE(dev_priv) && IS_DISPLAY_STEP(dev_priv, since, until))
  
--#define REVID_FOREVER		0xff
- #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
- 
- #define HAS_DSB(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dsb)
- 
--/*
-- * Return true if revision is in range [since,until] inclusive.
-- *
-- * Use 0 for open-ended since, and REVID_FOREVER for open-ended until.
-- */
--#define IS_REVID(p, since, until) \
--	(INTEL_REVID(p) >= (since) && INTEL_REVID(p) <= (until))
+-#define CNL_REVID_A0		0x0
+-#define CNL_REVID_B0		0x1
+-#define CNL_REVID_C0		0x2
 -
- #define INTEL_DISPLAY_STEP(__i915) (RUNTIME_INFO(__i915)->step.display_step)
- #define INTEL_GT_STEP(__i915) (RUNTIME_INFO(__i915)->step.gt_step)
- 
-@@ -1552,11 +1543,10 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_RKL_DISPLAY_STEP(p, since, until) \
- 	(IS_ROCKETLAKE(p) && IS_DISPLAY_STEP(p, since, until))
- 
--#define DG1_REVID_A0		0x0
--#define DG1_REVID_B0		0x1
+-#define IS_CNL_REVID(p, since, until) \
+-	(IS_CANNONLAKE(p) && IS_REVID(p, since, until))
 -
--#define IS_DG1_REVID(p, since, until) \
--	(IS_DG1(p) && IS_REVID(p, since, until))
-+#define IS_DG1_GT_STEP(p, since, until) \
-+	(IS_DG1(p) && IS_GT_STEP(p, since, until))
-+#define IS_DG1_DISPLAY_STEP(p, since, until) \
-+	(IS_DG1(p) && IS_DISPLAY_STEP(p, since, until))
+ #define IS_ICL_GT_STEP(p, since, until) \
+ 	(IS_ICELAKE(p) && IS_GT_STEP(p, since, until))
  
- #define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
- 	(IS_ALDERLAKE_S(__i915) && \
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 0cbb79452fcf..ef5304d3c2ec 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -7390,7 +7390,7 @@ static void dg1_init_clock_gating(struct drm_i915_private *dev_priv)
- 	gen12lp_init_clock_gating(dev_priv);
- 
- 	/* Wa_1409836686:dg1[a0] */
--	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0))
-+	if (IS_DG1_GT_STEP(dev_priv, STEP_A0, STEP_A0))
- 		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
- 			   DPT_GATING_DIS);
- }
-diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-index 93edfbef2903..9fcf17708cc8 100644
---- a/drivers/gpu/drm/i915/intel_step.c
-+++ b/drivers/gpu/drm/i915/intel_step.c
-@@ -81,6 +81,11 @@ static const struct intel_step_info rkl_revids[] = {
- 	[4] = { COMMON_STEP(C0) },
- };
- 
-+static const struct intel_step_info dg1_revids[] = {
-+	[0] = { COMMON_STEP(A0) },
-+	[1] = { COMMON_STEP(B0) },
-+};
-+
- static const struct intel_step_info adls_revids[] = {
- 	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
- 	[0x1] = { .gt_step = STEP_A0, .display_step = STEP_A2 },
-@@ -109,6 +114,9 @@ void intel_step_init(struct drm_i915_private *i915)
- 	} else if (IS_ALDERLAKE_S(i915)) {
- 		revids = adls_revids;
- 		size = ARRAY_SIZE(adls_revids);
-+	} else if (IS_DG1(i915)) {
-+		revids = dg1_revids;
-+		size = ARRAY_SIZE(dg1_revids);
- 	} else if (IS_ROCKETLAKE(i915)) {
- 		revids = rkl_revids;
- 		size = ARRAY_SIZE(rkl_revids);
 -- 
 2.25.4
 
