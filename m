@@ -2,35 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1623C773D
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 21:36:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A16643C776E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 21:47:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B4B26E12D;
-	Tue, 13 Jul 2021 19:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4130C6E120;
+	Tue, 13 Jul 2021 19:46:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB35E6E128
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 19:36:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="190609877"
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="190609877"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 12:36:44 -0700
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="487456171"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 12:36:43 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Jul 2021 12:36:35 -0700
-Message-Id: <20210713193635.3390052-13-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210713193635.3390052-1-matthew.d.roper@intel.com>
-References: <20210713193635.3390052-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A2D86E120;
+ Tue, 13 Jul 2021 19:46:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 532C5AA916;
+ Tue, 13 Jul 2021 19:46:56 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI v4 12/12] drm/i915/icl: Drop workarounds that only
- apply to pre-production steppings
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 13 Jul 2021 19:46:56 -0000
+Message-ID: <162620561633.713.7110918131465837918@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
+In-Reply-To: <20210710033724.2459367-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTWlu?=
+ =?utf-8?q?or_revid/stepping_and_workaround_cleanup_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,117 +38,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0172616102=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We're past the point at which we usually drop workarounds that were
-never needed on production hardware.  The driver will already print an
-error and apply taint if loaded on pre-production hardware.
+--===============0172616102==
+Content-Type: multipart/alternative;
+ boundary="===============1690230212906084696=="
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 39 ---------------------
- drivers/gpu/drm/i915/i915_drv.h             |  3 --
- 2 files changed, 42 deletions(-)
+--===============1690230212906084696==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 1398f35affcb..7731db33c46a 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -517,21 +517,12 @@ static void cfl_ctx_workarounds_init(struct intel_engine_cs *engine,
- static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 				     struct i915_wa_list *wal)
- {
--	struct drm_i915_private *i915 = engine->i915;
--
- 	/* WaDisableBankHangMode:icl */
- 	wa_write(wal,
- 		 GEN8_L3CNTLREG,
- 		 intel_uncore_read(engine->uncore, GEN8_L3CNTLREG) |
- 		 GEN8_ERRDETBCTRL);
- 
--	/* Wa_1604370585:icl (pre-prod)
--	 * Formerly known as WaPushConstantDereferenceHoldDisable
--	 */
--	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_B0))
--		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
--			     PUSH_CONSTANT_DEREF_DISABLE);
--
- 	/* WaForceEnableNonCoherent:icl
- 	 * This is not the same workaround as in early Gen9 platforms, where
- 	 * lacking this could cause system hangs, but coherency performance
-@@ -541,18 +532,6 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	 */
- 	wa_masked_en(wal, ICL_HDC_MODE, HDC_FORCE_NON_COHERENT);
- 
--	/* Wa_2006611047:icl (pre-prod)
--	 * Formerly known as WaDisableImprovedTdlClkGating
--	 */
--	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_A0))
--		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
--			     GEN11_TDL_CLOCK_GATING_FIX_DISABLE);
--
--	/* Wa_2006665173:icl (pre-prod) */
--	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_A0))
--		wa_masked_en(wal, GEN11_COMMON_SLICE_CHICKEN3,
--			     GEN11_BLEND_EMB_FIX_DISABLE_IN_RCC);
--
- 	/* WaEnableFloatBlendOptimization:icl */
- 	wa_write_clr_set(wal,
- 			 GEN10_CACHE_MODE_SS,
-@@ -989,18 +968,6 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 		    GEN8_GAMW_ECO_DEV_RW_IA,
- 		    GAMW_ECO_DEV_CTX_RELOAD_DISABLE);
- 
--	/* Wa_1405779004:icl (pre-prod) */
--	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_A0))
--		wa_write_or(wal,
--			    SLICE_UNIT_LEVEL_CLKGATE,
--			    MSCUNIT_CLKGATE_DIS);
--
--	/* Wa_1406838659:icl (pre-prod) */
--	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_B0))
--		wa_write_or(wal,
--			    INF_UNIT_LEVEL_CLKGATE,
--			    CGPSF_CLKGATE_DIS);
--
- 	/* Wa_1406463099:icl
- 	 * Formerly known as WaGamTlbPendError
- 	 */
-@@ -1677,12 +1644,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			    PMFLUSH_GAPL3UNBLOCK |
- 			    PMFLUSHDONE_LNEBLK);
- 
--		/* Wa_1406609255:icl (pre-prod) */
--		if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_B0))
--			wa_write_or(wal,
--				    GEN7_SARCHKMD,
--				    GEN7_DISABLE_DEMAND_PREFETCH);
--
- 		/* Wa_1606682166:icl */
- 		wa_write_or(wal,
- 			    GEN7_SARCHKMD,
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 8682a5f557c5..da5f230e2d4b 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1513,9 +1513,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_KBL_DISPLAY_STEP(dev_priv, since, until) \
- 	(IS_KABYLAKE(dev_priv) && IS_DISPLAY_STEP(dev_priv, since, until))
- 
--#define IS_ICL_GT_STEP(p, since, until) \
--	(IS_ICELAKE(p) && IS_GT_STEP(p, since, until))
--
- #define IS_JSL_EHL_GT_STEP(p, since, until) \
- 	(IS_JSL_EHL(p) && IS_GT_STEP(p, since, until))
- #define IS_JSL_EHL_DISPLAY_STEP(p, since, until) \
--- 
-2.25.4
+== Series Details ==
+
+Series: Minor revid/stepping and workaround cleanup (rev4)
+URL   : https://patchwork.freedesktop.org/series/92299/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10342 -> Patchwork_20588
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20588 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] ([fdo#109271])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][3] ([i915#3159])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-soraka:      [DMESG-WARN][4] ([i915#1982]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10342/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [INCOMPLETE][6] ([i915#2782] / [i915#2940]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10342/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
+  [i915#3717]: https://gitlab.freedesktop.org/drm/intel/issues/3717
+
+
+Participating hosts (38 -> 36)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10342 -> Patchwork_20588
+
+  CI-20190529: 20190529
+  CI_DRM_10342: 308b278ffbef846356ca6b220ef1aa908c22c5fd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6137: 2fee489255f7a8cd6a584373c30e3d44a07a78ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20588: d62d0ec1b3aa504119130e0c61f1b16ad15f06a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d62d0ec1b3aa drm/i915/icl: Drop workarounds that only apply to pre-production steppings
+a66bc53c20b3 drm/i915/cnl: Drop all workarounds
+28dea784c5d3 drm/i915/dg1: Use revid->stepping tables
+d515112313b0 drm/i915/rkl: Use revid->stepping tables
+95aec3b31d70 drm/i915/jsl_ehl: Use revid->stepping tables
+ea04a99db33e drm/i915/icl: Use revid->stepping tables
+bfc4af69ce3b drm/i915/glk: Use revid->stepping tables
+27320b6e947b drm/i915/bxt: Use revid->stepping tables
+1c898561ba39 drm/i915/kbl: Drop pre-production revision from stepping table
+5c84247d6ac9 drm/i915/skl: Use revid->stepping tables
+76bd03989163 drm/i915: Make pre-production detection use direct revid comparison
+62d758aadfe3 drm/i915/step: s/<platform>_revid_tbl/<platform>_revids
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/index.html
+
+--===============1690230212906084696==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Minor revid/stepping and workaround cleanup (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92299/">https://patchwork.freedesktop.org/series/92299/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10342 -&gt; Patchwork_20588</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20588 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10342/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10342/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20588/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10342 -&gt; Patchwork_20588</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10342: 308b278ffbef846356ca6b220ef1aa908c22c5fd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6137: 2fee489255f7a8cd6a584373c30e3d44a07a78ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20588: d62d0ec1b3aa504119130e0c61f1b16ad15f06a2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d62d0ec1b3aa drm/i915/icl: Drop workarounds that only apply to pre-production steppings<br />
+a66bc53c20b3 drm/i915/cnl: Drop all workarounds<br />
+28dea784c5d3 drm/i915/dg1: Use revid-&gt;stepping tables<br />
+d515112313b0 drm/i915/rkl: Use revid-&gt;stepping tables<br />
+95aec3b31d70 drm/i915/jsl_ehl: Use revid-&gt;stepping tables<br />
+ea04a99db33e drm/i915/icl: Use revid-&gt;stepping tables<br />
+bfc4af69ce3b drm/i915/glk: Use revid-&gt;stepping tables<br />
+27320b6e947b drm/i915/bxt: Use revid-&gt;stepping tables<br />
+1c898561ba39 drm/i915/kbl: Drop pre-production revision from stepping table<br />
+5c84247d6ac9 drm/i915/skl: Use revid-&gt;stepping tables<br />
+76bd03989163 drm/i915: Make pre-production detection use direct revid comparison<br />
+62d758aadfe3 drm/i915/step: s/<platform>_revid_tbl/<platform>_revids</p>
+
+</body>
+</html>
+
+--===============1690230212906084696==--
+
+--===============0172616102==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0172616102==--
