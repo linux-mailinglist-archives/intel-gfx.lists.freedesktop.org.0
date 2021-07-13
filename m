@@ -1,58 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A613C755B
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 18:56:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CA7A3C7564
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 18:58:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 367FA89E1B;
-	Tue, 13 Jul 2021 16:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BAD689E1B;
+	Tue, 13 Jul 2021 16:58:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C514889E1B
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 16:56:29 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="210249170"
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="210249170"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 09:56:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="430117812"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga002.jf.intel.com with ESMTP; 13 Jul 2021 09:56:27 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 09:56:27 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 09:56:26 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
- Tue, 13 Jul 2021 09:56:26 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3 08/12] drm/i915/jsl_ehl: Use revid->stepping tables
-Thread-Index: AQHXeAJBqX/MznClt0KupI+AL4W7/qtBH+vQ
-Date: Tue, 13 Jul 2021 16:56:26 +0000
-Message-ID: <cb48125320f8490f8f163d0ae8bd701f@intel.com>
-References: <69cca14862c94a84987fbf53c727beac@intel.com>
- <20210713161444.3334530-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210713161444.3334530-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
+ [IPv6:2607:f8b0:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D483689E9B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 16:58:30 +0000 (UTC)
+Received: by mail-ot1-x329.google.com with SMTP id
+ i12-20020a05683033ecb02903346fa0f74dso23170019otu.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 09:58:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=6SEHtexM30zQ1pNlegjyNVvT5I02vNfZvNmYrTBM0+0=;
+ b=ZQ+ry+Bx8r9GFRJnBTRGJ89JZCMdTEXJ7q5yArO2dp23xWpZw4BvXP1uG4PK+Uq/ie
+ t4UPLQr8vSBiOZFs0RUvpyf6uMGF3ZQntmNGZDOdBBUow/VsywUeAw3wdXzYzCrq/+h2
+ QA7P5Sr7mYfyRDcB20gerZcLdLFsNws/E1mDQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=6SEHtexM30zQ1pNlegjyNVvT5I02vNfZvNmYrTBM0+0=;
+ b=kkK+QgOrWetOQJ2wsRzs7PEUxxKiFQyDRnKlB4Cq9d+6Iwwe0qNdRCmEDKAsUeF1tk
+ RSG13Rrj8Jop3+uQcMaVqmAJ11iF1lao9wAXz9DlxBzX42oURr3AMdE64vbTokv0rSt0
+ DwNdEv9k3XMa3w32MBa2eKezqmZ6LF5eCQ945sglBjF5ulGfFtIGCnoFIMNTSH+czR0w
+ 58kHc7xOJzelusCJYrQ+kKL8PKVX4LyBX0oiXnIaRkMA0L8yVjFwMJmL/OEyUoR+ocIm
+ /YnDhuQ/rOC5dgj5PjxaqtFl6HkJ5jK01JMHHR0pLk79mvw1mM6qaZ53y1PKuydV+j+/
+ CMfA==
+X-Gm-Message-State: AOAM5315PEkHnqaJWxFHcqHRDJhbSXlzFPGhrdkKxbjZihu+IT8WmggC
+ 2PAZ1Qp62iCW/yMk7c1UBmXxDXmvzjWZcbpVUqN9ig==
+X-Google-Smtp-Source: ABdhPJwfBxb7hGnmJjrluM8xypb4cOTE7kDdsy2G6JzETLnn61eE66M9+B1vlIXxd1/coMtHeMn4CAh93opbQGLOymI=
+X-Received: by 2002:a05:6830:2366:: with SMTP id
+ r6mr4310903oth.188.1626195510078; 
+ Tue, 13 Jul 2021 09:58:30 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 08/12] drm/i915/jsl_ehl: Use
- revid->stepping tables
+References: <20210712175352.802687-1-daniel.vetter@ffwll.ch>
+ <20210712175352.802687-15-daniel.vetter@ffwll.ch>
+ <CAF6AEGtC0BxABJtSaOmhEt_WKiuptWCHP7g4D5wEaJ4NaEuz4w@mail.gmail.com>
+In-Reply-To: <CAF6AEGtC0BxABJtSaOmhEt_WKiuptWCHP7g4D5wEaJ4NaEuz4w@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 13 Jul 2021 18:58:19 +0200
+Message-ID: <CAKMK7uEL8dr5RT2362ehR1Gb7mvwLmcEsZV+uWDj_kpoovWKxg@mail.gmail.com>
+To: Rob Clark <robdclark@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v4 14/18] drm/msm: Don't break exclusive
+ fence ordering
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,119 +62,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: freedreno <freedreno@lists.freedesktop.org>,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Jul 13, 2021 at 6:51 PM Rob Clark <robdclark@gmail.com> wrote:
+>
+> On Mon, Jul 12, 2021 at 1:02 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >
+> > There's only one exclusive slot, and we must not break the ordering.
+> >
+> > Adding a new exclusive fence drops all previous fences from the
+> > dma_resv. To avoid violating the signalling order we err on the side of
+> > over-synchronizing by waiting for the existing fences, even if
+> > userspace asked us to ignore them.
+> >
+> > A better fix would be to us a dma_fence_chain or _array like e.g.
+> > amdgpu now uses, but
+> > - msm has a synchronous dma_fence_wait for anything from another
+> >   context, so doesn't seem to care much,
+> > - and it probably makes sense to lift this into dma-resv.c code as a
+> >   proper concept, so that drivers don't have to hack up their own
+> >   solution each on their own.
+> >
+> > v2: Improve commit message per Lucas' suggestion.
+> >
+> > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Rob Clark <robdclark@gmail.com>
+> > Cc: Sean Paul <sean@poorly.run>
+> > Cc: linux-arm-msm@vger.kernel.org
+> > Cc: freedreno@lists.freedesktop.org
+> > ---
+> >  drivers/gpu/drm/msm/msm_gem_submit.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
+> > index b71da71a3dd8..edd0051d849f 100644
+> > --- a/drivers/gpu/drm/msm/msm_gem_submit.c
+> > +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
+> > @@ -306,7 +306,8 @@ static int submit_fence_sync(struct msm_gem_submit *submit, bool no_implicit)
+> >                                 return ret;
+> >                 }
+> >
+> > -               if (no_implicit)
+> > +               /* exclusive fences must be ordered */
+> > +               if (no_implicit && !write)
+> >                         continue;
+>
+> In practice, modern userspace (the kind that is more likely to set the
+> no-implicit flag on every submit) also sets MSM_SUBMIT_BO_WRITE on
+> every bo, to shave some cpu overhead so I suppose this would not
+> really hurt anything
+>
+> Do you know if this is covered in any piglit/etc test?
+
+You need some command submission, plus buffer sharing with vgem
+setting it's own exclusive fences, plus checking with dma_buf poll()
+whether it signals all in the right order. That's pretty low-level, so
+maybe something in igt, but I haven't typed that. Maybe I need to do
+that for i915 at least.
+-Daniel
+
+> BR,
+> -R
+>
+> >
+> >                 ret = msm_gem_sync_object(&msm_obj->base, submit->ring->fctx,
+> > --
+> > 2.32.0
+> >
 
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Tuesday, July 13, 2021 9:15 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Roper, Matthew D
-> <matthew.d.roper@intel.com>
-> Subject: [PATCH v3 08/12] drm/i915/jsl_ehl: Use revid->stepping tables
-> 
-> Switch JSL/EHL to use a revid->stepping table as we're trying to do on all
-> platforms going forward.
-> 
-> v2:
->  - Use COMMON_STEPPING().  (Anusha)
-> 
-> Bspec: 29153
-> Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 2 +-
->  drivers/gpu/drm/i915/i915_drv.h               | 9 ++++-----
->  drivers/gpu/drm/i915/intel_step.c             | 8 ++++++++
->  4 files changed, 14 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 882bfd499e55..dfc31b682848 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2674,7 +2674,7 @@ static bool
->  ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)  {
->  	return ((IS_PLATFORM(i915, INTEL_ELKHARTLAKE) &&
-> -		 IS_JSL_EHL_REVID(i915, EHL_REVID_B0, REVID_FOREVER))
-> ||
-> +		 IS_JSL_EHL_DISPLAY_STEP(i915, STEP_B0, STEP_FOREVER))
-> ||
->  		 IS_TIGERLAKE(i915) || IS_ALDERLAKE_P(i915)) &&
->  		 i915->dpll.ref_clks.nssc == 38400;
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index e2d8acb8c1c9..4c0c15bbdac2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1043,7 +1043,7 @@ icl_gt_workarounds_init(struct drm_i915_private
-> *i915, struct i915_wa_list *wal)
-> 
->  	/* Wa_1607087056:icl,ehl,jsl */
->  	if (IS_ICELAKE(i915) ||
-> -	    IS_JSL_EHL_REVID(i915, EHL_REVID_A0, EHL_REVID_A0))
-> +	    IS_JSL_EHL_GT_STEP(i915, STEP_A0, STEP_A0))
->  		wa_write_or(wal,
->  			    SLICE_UNIT_LEVEL_CLKGATE,
->  			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS); diff --
-> git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index d4f705f06c73..b3ce2b73a143 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1532,11 +1532,10 @@ IS_SUBPLATFORM(const struct drm_i915_private
-> *i915,  #define IS_ICL_GT_STEP(p, since, until) \
->  	(IS_ICELAKE(p) && IS_GT_STEP(p, since, until))
-> 
-> -#define EHL_REVID_A0            0x0
-> -#define EHL_REVID_B0            0x1
-> -
-> -#define IS_JSL_EHL_REVID(p, since, until) \
-> -	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
-> +#define IS_JSL_EHL_GT_STEP(p, since, until) \
-> +	(IS_JSL_EHL(p) && IS_GT_STEP(p, since, until)) #define
-> +IS_JSL_EHL_DISPLAY_STEP(p, since, until) \
-> +	(IS_JSL_EHL(p) && IS_DISPLAY_STEP(p, since, until))
-> 
->  #define IS_TGL_DISPLAY_STEP(__i915, since, until) \
->  	(IS_TIGERLAKE(__i915) && \
-> diff --git a/drivers/gpu/drm/i915/intel_step.c
-> b/drivers/gpu/drm/i915/intel_step.c
-> index f8be464d1179..868606f8139f 100644
-> --- a/drivers/gpu/drm/i915/intel_step.c
-> +++ b/drivers/gpu/drm/i915/intel_step.c
-> @@ -57,6 +57,11 @@ static const struct intel_step_info icl_revids[] = {
->  	[7] = { COMMON_STEPPING(D0) },
->  };
-> 
-> +static const struct intel_step_info jsl_ehl_revids[] = {
-> +	[0] = { COMMON_STEPPING(A0) },
-> +	[1] = { COMMON_STEPPING(B0) },
-> +};
-> +
->  static const struct intel_step_info tgl_uy_revids[] = {
->  	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
->  	[1] = { .gt_step = STEP_B0, .display_step = STEP_C0 }, @@ -104,6
-> +109,9 @@ void intel_step_init(struct drm_i915_private *i915)
->  	} else if (IS_TIGERLAKE(i915)) {
->  		revids = tgl_revids;
->  		size = ARRAY_SIZE(tgl_revids);
-> +	} else if (IS_JSL_EHL(i915)) {
-> +		revids = jsl_ehl_revids;
-> +		size = ARRAY_SIZE(jsl_ehl_revids);
->  	} else if (IS_ICELAKE(i915)) {
->  		revids = icl_revids;
->  		size = ARRAY_SIZE(icl_revids);
-> --
-> 2.25.4
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
