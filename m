@@ -1,39 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999FA3C75FA
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 19:51:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4694A3C7647
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 20:11:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D6C96E105;
-	Tue, 13 Jul 2021 17:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 463196E107;
+	Tue, 13 Jul 2021 18:11:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 124496E105
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 17:51:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="274049104"
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="274049104"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 10:51:33 -0700
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="562180079"
-Received: from juhyungn-mobl2.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.129.73])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 10:51:33 -0700
-Date: Tue, 13 Jul 2021 10:51:32 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210713175132.nywhd4m665hnt43f@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
- <20210710033724.2459367-4-matthew.d.roper@intel.com>
+X-Greylist: delayed 478 seconds by postgrey-1.36 at gabe;
+ Tue, 13 Jul 2021 18:11:46 UTC
+Received: from smtp114.iad3b.emailsrvr.com (smtp114.iad3b.emailsrvr.com
+ [146.20.161.114])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C18836E107
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 18:11:46 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp7.relay.iad3b.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id 2078A6012C; 
+ Tue, 13 Jul 2021 14:03:46 -0400 (EDT)
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Date: Tue, 13 Jul 2021 11:03:42 -0700
+Message-ID: <2903006.BRdxQiUG6I@mizzik>
+In-Reply-To: <20210705135310.1502437-3-matthew.auld@intel.com>
+References: <20210705135310.1502437-1-matthew.auld@intel.com>
+ <20210705135310.1502437-3-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210710033724.2459367-4-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 03/12] drm/i915/skl: Use revid->stepping
- tables
+X-Classification-ID: 54060470-d477-4b4a-b8c6-8f9d1305d835-1-1
+Subject: Re: [Intel-gfx] [PATCH v3 3/5] drm/i915/uapi: reject caching ioctls
+ for discrete
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,114 +42,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============0377958504=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 09, 2021 at 08:37:15PM -0700, Matt Roper wrote:
->Switch SKL to use a revid->stepping table as we're trying to do on all
->platforms going forward.  Also drop the preproduction revisions and add
->the newer steppings we hadn't already handled.
->
->Note that SKL has a case where a newer revision ID corresponds to an
->older GT/disp stepping (0x9 -> STEP_J0, 0xA -> STEP_I1).  Also, the lack
->of a revision ID 0x8 in the table is intentional and not an oversight.
->We'll re-write the KBL-specific comment to make it clear that these kind
->of quirks are expected.
->
->v2:
-> - Since GT and display steppings are always identical on SKL use a
->   macro to set both values at once in a more readable manner.  (Anusha)
-> - Drop preproduction steppings.
->
->Bspec: 13626
->Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->---
-> drivers/gpu/drm/i915/gt/intel_workarounds.c |  2 +-
-> drivers/gpu/drm/i915/i915_drv.h             | 11 +-------
-> drivers/gpu/drm/i915/intel_step.c           | 30 +++++++++++++++++----
-> drivers/gpu/drm/i915/intel_step.h           |  4 +++
-> 4 files changed, 31 insertions(+), 16 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->index d9a5a445ceec..6dfd564e078f 100644
->--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->@@ -883,7 +883,7 @@ skl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
-> 		    GEN8_EU_GAUNIT_CLOCK_GATE_DISABLE);
->
-> 	/* WaInPlaceDecompressionHang:skl */
->-	if (IS_SKL_REVID(i915, SKL_REVID_H0, REVID_FOREVER))
->+	if (IS_SKL_GT_STEP(i915, STEP_H0, STEP_FOREVER))
-> 		wa_write_or(wal,
-> 			    GEN9_GAMT_ECO_REG_RW_IA,
-> 			    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
->diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->index c4747f4407ef..f30499ed6787 100644
->--- a/drivers/gpu/drm/i915/i915_drv.h
->+++ b/drivers/gpu/drm/i915/i915_drv.h
->@@ -1515,16 +1515,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-> #define IS_TGL_Y(dev_priv) \
-> 	IS_SUBPLATFORM(dev_priv, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_ULX)
->
->-#define SKL_REVID_A0		0x0
->-#define SKL_REVID_B0		0x1
->-#define SKL_REVID_C0		0x2
->-#define SKL_REVID_D0		0x3
->-#define SKL_REVID_E0		0x4
->-#define SKL_REVID_F0		0x5
->-#define SKL_REVID_G0		0x6
->-#define SKL_REVID_H0		0x7
->-
->-#define IS_SKL_REVID(p, since, until) (IS_SKYLAKE(p) && IS_REVID(p, since, until))
->+#define IS_SKL_GT_STEP(p, since, until) (IS_SKYLAKE(p) && IS_GT_STEP(p, since, until))
->
-> #define BXT_REVID_A0		0x0
-> #define BXT_REVID_A1		0x1
->diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
->index 93ccd42f2514..69c928b046e8 100644
->--- a/drivers/gpu/drm/i915/intel_step.c
->+++ b/drivers/gpu/drm/i915/intel_step.c
->@@ -7,14 +7,31 @@
-> #include "intel_step.h"
->
-> /*
->- * KBL revision ID ordering is bizarre; higher revision ID's map to lower
->- * steppings in some cases.  So rather than test against the revision ID
->- * directly, let's map that into our own range of increasing ID's that we
->- * can test against in a regular manner.
->+ * Some platforms have unusual ways of mapping PCI revision ID to GT/display
->+ * steppings.  E.g., in some cases a higher PCI revision may translate to a
->+ * lower stepping of the GT and/or display IP.  This file provides lookup
->+ * tables to map the PCI revision into a standard set of stepping values that
->+ * can be compared numerically.
->+ *
->+ * Also note that some revisions/steppings may have been set aside as
->+ * placeholders but never materialized in real hardware; in those cases there
->+ * may be jumps in the revision IDs or stepping values in the tables below.
->  */
->
->+/*
->+ * Some platforms always have the same stepping value for GT and display;
->+ * use a macro to define these to make it easier to identify the platforms
->+ * where the two steppings can deviate.
->+ */
->+#define COMMON_STEPPING(x)  .gt_step = STEP_##x, .display_step = STEP_##x
+--===============0377958504==
+Content-Type: multipart/signed; boundary="nextPart2341861.n7pOrN7pQ0"; micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-nitpick:
+--nextPart2341861.n7pOrN7pQ0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Jordan Justen <jordan.l.justen@intel.com>, Jason Ekstrand <jason@jlekstrand.net>, Daniel Vetter <daniel.vetter@ffwll.ch>, Ramalingam C <ramalingam.c@intel.com>
+Subject: Re: [PATCH v3 3/5] drm/i915/uapi: reject caching ioctls for discrete
+Date: Tue, 13 Jul 2021 11:03:42 -0700
+Message-ID: <2903006.BRdxQiUG6I@mizzik>
+In-Reply-To: <20210705135310.1502437-3-matthew.auld@intel.com>
+References: <20210705135310.1502437-1-matthew.auld@intel.com> <20210705135310.1502437-3-matthew.auld@intel.com>
 
-"stepping" is the proper word, but we settled on "step"
-everyhere: functions, macros, tables, filename etc. Can we
-continue doing that?  For the comments I think it's ok to
-continue using the proper word, but for real code I think it
-would be better to keep it consistent
+On Monday, July 5, 2021 6:53:08 AM PDT Matthew Auld wrote:
+> It's a noop on DG1, and in the future when need to support other devices
+> which let us control the coherency, then it should be an immutable
+> creation time property for the BO. This will likely be controlled
+> through a new gem_create_ext extension.
+>=20
+> v2: add some kernel doc for the discrete changes, and document the
+>     implicit rules
+>=20
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c |  6 +++++
+>  include/uapi/drm/i915_drm.h                | 29 +++++++++++++++++++++-
+>  2 files changed, 34 insertions(+), 1 deletion(-)
 
-thanks
-Lucas De Marchi
+This caching ioctl patch is:
+
+Reviewed-by: Kenneth Graunke <kenneth@whitecape.org>
+
+--nextPart2341861.n7pOrN7pQ0
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAmDt1X4ACgkQW1vaBx1J
+zDhedw/8CIgFbIvRYudUYl/JxnHch1b5l4X7NUoL2SzmdNERl7+Mr0ut0LuaKzv+
+mCvCWwB1Oe+/MoWmtlLKGY7vXnbrYVx4fbfH03duRRXJXEhBih/S9APRIsdoIM4v
+q/5XcS+npHCwAKRMkrO0gpny0zFnGdw6LnPz9YAXl5/YJGsfbBjgG7kPrXGg/l9H
+WuI1AtqNVa/+uoLGrIBqHHpGUe2+rhwxOKFk2tquKAPR+xX9qmw7DmqP8xjQ91/u
+ssneUnka6jf8cRsioJ36HwurXYWEFSy06HJvx3NZM+G6hOAKwXofUFdsQKw36xAb
++Eb9gIpOSrleP0+GedkNXqH4ncCaFIh0MKFh0KhmOqXrY68myhOflLhVPqzo738i
+kJOrOBxkYxJtZ3K3YqpWseZwPUWdDXdD+6jvYGHiZfIaI3cWBX7hwEnXQpDyY9ip
+TsjIunLYFitiHVoZSwCBiuaYP/hCQGe6OCSwhYAO5IYeXX5Pwp4pmonAybOVSF9y
+hgvTbSakNI7CGkPXf+bXu6mTCtlCqa8Psxu3DfjRUyIKDg3yFxcp8xpikFortcns
+K2cv/OGJC+FTSqNb1y+BYf2EsbbBElwT/LEv5woR47qDL/ygwZOk6IwCdD3RSc8r
+l421E9slwjm8dUqHfWuWsLqC3MKySmMkzdm6ag4AxQQdlnZWq2I=
+=/FUK
+-----END PGP SIGNATURE-----
+
+--nextPart2341861.n7pOrN7pQ0--
+
+
+
+
+--===============0377958504==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0377958504==--
+
+
+
