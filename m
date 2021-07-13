@@ -2,58 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B5413C7589
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 19:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F09D3C758B
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 19:09:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9CC96E101;
-	Tue, 13 Jul 2021 17:08:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 951C06E101;
+	Tue, 13 Jul 2021 17:09:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A2956E101
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 17:08:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="197482503"
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="197482503"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 10:08:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="413016820"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga003.jf.intel.com with ESMTP; 13 Jul 2021 10:08:08 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 10:08:08 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 10:08:07 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
- Tue, 13 Jul 2021 10:08:07 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH v2 09/12] drm/i915/rkl: Use revid->stepping tables
-Thread-Index: AQHXdTzyD5PK7slfukuTzErbnG022Ks/9UIQgAB31ICAALul0A==
-Date: Tue, 13 Jul 2021 17:08:07 +0000
-Message-ID: <e694fe15679f46a29b1179f69c77e7bb@intel.com>
-References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
- <20210710033724.2459367-10-matthew.d.roper@intel.com>
- <b19ae95f585e4efdab230d9f83be4a8e@intel.com>
- <20210712225611.GE951094@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20210712225611.GE951094@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5B5126E101;
+ Tue, 13 Jul 2021 17:09:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 542A7A008A;
+ Tue, 13 Jul 2021 17:09:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 09/12] drm/i915/rkl: Use revid->stepping
- tables
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Tue, 13 Jul 2021 17:09:47 -0000
+Message-ID: <162619618733.713.7466442371998579276@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210713135922.1384264-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210713135922.1384264-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/fb-helper=3A_Try_to_protect_cleanup_against_delayed_setup?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,154 +38,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1115556428=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1115556428==
+Content-Type: multipart/alternative;
+ boundary="===============7461407555337676084=="
+
+--===============7461407555337676084==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/fb-helper: Try to protect cleanup against delayed setup
+URL   : https://patchwork.freedesktop.org/series/92478/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10341 -> Patchwork_20587
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20587 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8109u:       [PASS][2] -> [DMESG-WARN][3] ([i915#203]) +3 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10341/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][4] ([i915#1602] / [i915#2029])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Monday, July 12, 2021 3:56 PM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [PATCH v2 09/12] drm/i915/rkl: Use revid->stepping tables
-> 
-> On Mon, Jul 12, 2021 at 03:51:15PM -0700, Srivatsa, Anusha wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Roper, Matthew D <matthew.d.roper@intel.com>
-> > > Sent: Friday, July 9, 2021 8:37 PM
-> > > To: intel-gfx@lists.freedesktop.org
-> > > Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Roper, Matthew D
-> > > <matthew.d.roper@intel.com>
-> > > Subject: [PATCH v2 09/12] drm/i915/rkl: Use revid->stepping tables
-> > >
-> > > Switch RKL to use a revid->stepping table as we're trying to do on
-> > > all platforms going forward.
-> > >
-> > > Bspec: 44501
-> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Participating hosts (39 -> 35)
+------------------------------
 
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_psr.c | 4 ++--
-> > >  drivers/gpu/drm/i915/i915_drv.h          | 8 ++------
-> > >  drivers/gpu/drm/i915/intel_step.c        | 9 +++++++++
-> > >  3 files changed, 13 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > index 9643624fe160..74b2aa3c2946 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > > @@ -594,7 +594,7 @@ static void hsw_activate_psr2(struct intel_dp
-> > > *intel_dp)
-> > >  	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-> > >  		/* WA 1408330847 */
-> > >  		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
-> > > -		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
-> > > +		    IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0))
-> > >  			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> > >  				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
-> > >  				     DIS_RAM_BYPASS_PSR2_MAN_TRACK);
-> @@ -1342,7 +1342,7 @@
-> > > static void intel_psr_disable_locked(struct intel_dp
-> > > *intel_dp)
-> > >  	/* WA 1408330847 */
-> > >  	if (intel_dp->psr.psr2_sel_fetch_enabled &&
-> > >  	    (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
-> > > -	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
-> > > +	     IS_RKL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0)))
-> > >  		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
-> > >  			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> > > b/drivers/gpu/drm/i915/i915_drv.h index b3ce2b73a143..9195131cf90f
-> > > 100644
-> > > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > > @@ -1549,12 +1549,8 @@ IS_SUBPLATFORM(const struct
-> drm_i915_private
-> > > *i915,
-> > >  	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915))
-> > > && \
-> > >  	 IS_GT_STEP(__i915, since, until))
-> > >
-> > > -#define RKL_REVID_A0		0x0
-> > > -#define RKL_REVID_B0		0x1
-> > > -#define RKL_REVID_C0		0x4
-> > > -
-> > > -#define IS_RKL_REVID(p, since, until) \
-> > > -	(IS_ROCKETLAKE(p) && IS_REVID(p, since, until))
-> > > +#define IS_RKL_DISPLAY_STEP(p, since, until) \
-> > > +	(IS_ROCKETLAKE(p) && IS_DISPLAY_STEP(p, since, until))
-> > >
-> >
-> > If a platform has the same gt and display stepping, I wonder if we
-> > should stick to using IS_<PLATFORM>_GT_STEP while replacing
-> > IS<PLATFORM>_REVID instances. The previous patches have
-> > IS_<PLATFORMS>_GT_STEP.
-> > Just a thought.
-> 
-> No, we want to be very explicit about which IP block the stepping belongs to
-> to avoid mistakes.  Just because the steppings are equivalent right now
-> doesn't mean a new revision won't show up in the future that has different
-> GT vs display steppings.  In that case it's easy to update the table, but we
-> don't want to have to dig through the rest of the code looking for places
-> where we used the wrong macro.  Plus, intentionally using the wrong macro
-> on a platform where it doesn't matter is going to lead to copy/paste errors
-> when people add additional platforms to a workaround.
-> 
-> 
-> Matt
-> 
-> >
-> > Anusha
-> >
-> > >  #define DG1_REVID_A0		0x0
-> > >  #define DG1_REVID_B0		0x1
-> > > diff --git a/drivers/gpu/drm/i915/intel_step.c
-> > > b/drivers/gpu/drm/i915/intel_step.c
-> > > index 6e1b132ecf38..21211649e6bb 100644
-> > > --- a/drivers/gpu/drm/i915/intel_step.c
-> > > +++ b/drivers/gpu/drm/i915/intel_step.c
-> > > @@ -75,6 +75,12 @@ static const struct intel_step_info tgl_revids[] = {
-> > >  	[1] = { .gt_step = STEP_B0, .display_step = STEP_D0 },  };
-> > >
-> > > +static const struct intel_step_info rkl_revids[] = {
-> > > +	[0] = { COMMON_STEPPING(A0) },
-> > > +	[1] = { COMMON_STEPPING(B0) },
-> > > +	[4] = { COMMON_STEPPING(C0) },
-> > > +};
-> > > +
-> > >  static const struct intel_step_info adls_revids[] = {
-> > >  	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
-> > >  	[0x1] = { .gt_step = STEP_A0, .display_step = STEP_A2 }, @@ -103,6
-> > > +109,9 @@ void intel_step_init(struct drm_i915_private *i915)
-> > >  	} else if (IS_ALDERLAKE_S(i915)) {
-> > >  		revids = adls_revids;
-> > >  		size = ARRAY_SIZE(adls_revids);
-> > > +	} else if (IS_ROCKETLAKE(i915)) {
-> > > +		revids = rkl_revids;
-> > > +		size = ARRAY_SIZE(rkl_revids);
-> > >  	} else if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
-> > >  		revids = tgl_uy_revids;
-> > >  		size = ARRAY_SIZE(tgl_uy_revids);
-> > > --
-> > > 2.25.4
-> >
-> 
-> --
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+  Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10341 -> Patchwork_20587
+
+  CI-20190529: 20190529
+  CI_DRM_10341: 72a4e94d9585ff89a8c85bd1436fb05b60dad2f8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6137: 2fee489255f7a8cd6a584373c30e3d44a07a78ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20587: b0ba74e0d5e3af9a36ca12804924a802b41617de @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b0ba74e0d5e3 drm/fb-helper: Try to protect cleanup against delayed setup
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/index.html
+
+--===============7461407555337676084==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/fb-helper: Try to protect cleanup against delayed setup</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92478/">https://patchwork.freedesktop.org/series/92478/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10341 -&gt; Patchwork_20587</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20587 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10341/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20587/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10341 -&gt; Patchwork_20587</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10341: 72a4e94d9585ff89a8c85bd1436fb05b60dad2f8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6137: 2fee489255f7a8cd6a584373c30e3d44a07a78ea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20587: b0ba74e0d5e3af9a36ca12804924a802b41617de @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>b0ba74e0d5e3 drm/fb-helper: Try to protect cleanup against delayed setup</p>
+
+</body>
+</html>
+
+--===============7461407555337676084==--
+
+--===============1115556428==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1115556428==--
