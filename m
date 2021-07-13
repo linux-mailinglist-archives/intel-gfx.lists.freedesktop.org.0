@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3BA43C76A9
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 20:46:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1133C76E0
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 21:17:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C99556E10F;
-	Tue, 13 Jul 2021 18:46:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 908716E116;
+	Tue, 13 Jul 2021 19:17:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8006E10F;
- Tue, 13 Jul 2021 18:46:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="210041137"
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="210041137"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 11:46:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,237,1620716400"; d="scan'208";a="503322163"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 13 Jul 2021 11:46:31 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 13 Jul 2021 21:46:30 +0300
-Date: Tue, 13 Jul 2021 21:46:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <YO3fhvKCo8eXrmst@intel.com>
-References: <20210713104554.2381406-1-matthew.auld@intel.com>
- <YO23Y3PUS22FaXDC@intel.com>
- <CAM0jSHOx=WVbzfQzn=kL-5qaG4B3dxPLOimkvUdv6HFJymZeZw@mail.gmail.com>
- <YO3RsxZHUe5imN3q@intel.com>
- <CAM0jSHOsqPUOWCJu_Ti3gW-fnpWF2CtUoo-qt-aMWExAwDDT5A@mail.gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 850276E117;
+ Tue, 13 Jul 2021 19:17:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7EBABA0169;
+ Tue, 13 Jul 2021 19:17:45 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAM0jSHOsqPUOWCJu_Ti3gW-fnpWF2CtUoo-qt-aMWExAwDDT5A@mail.gmail.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: document caching related bits
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 13 Jul 2021 19:17:45 -0000
+Message-ID: <162620386551.713.7065681304684343967@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
+In-Reply-To: <20210710033724.2459367-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Minor_revid/stepping_and_workaround_cleanup_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,154 +38,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 13, 2021 at 07:24:23PM +0100, Matthew Auld wrote:
-> On Tue, 13 Jul 2021 at 18:47, Ville Syrj=E4l=E4
-> <ville.syrjala@linux.intel.com> wrote:
-> >
-> > On Tue, Jul 13, 2021 at 05:13:37PM +0100, Matthew Auld wrote:
-> > > On Tue, 13 Jul 2021 at 16:55, Ville Syrj=E4l=E4
-> > > <ville.syrjala@linux.intel.com> wrote:
-> > > >
-> > > > On Tue, Jul 13, 2021 at 11:45:50AM +0100, Matthew Auld wrote:
-> > > > > +     /**
-> > > > > +      * @cache_coherent:
-> > > > > +      *
-> > > > > +      * Track whether the pages are coherent with the GPU if rea=
-ding or
-> > > > > +      * writing through the CPU cache.
-> > > > > +      *
-> > > > > +      * This largely depends on the @cache_level, for example if=
- the object
-> > > > > +      * is marked as I915_CACHE_LLC, then GPU access is coherent=
- for both
-> > > > > +      * reads and writes through the CPU cache.
-> > > > > +      *
-> > > > > +      * Note that on platforms with shared-LLC support(HAS_LLC) =
-reads through
-> > > > > +      * the CPU cache are always coherent, regardless of the @ca=
-che_level. On
-> > > > > +      * snooping based platforms this is not the case, unless th=
-e full
-> > > > > +      * I915_CACHE_LLC or similar setting is used.
-> > > > > +      *
-> > > > > +      * As a result of this we need to track coherency separatel=
-y for reads
-> > > > > +      * and writes, in order to avoid superfluous flushing on sh=
-ared-LLC
-> > > > > +      * platforms, for reads.
-> > > > > +      *
-> > > > > +      * I915_BO_CACHE_COHERENT_FOR_READ:
-> > > > > +      *
-> > > > > +      * When reading through the CPU cache, the GPU is still coh=
-erent. Note
-> > > > > +      * that no data has actually been modified here, so it migh=
-t seem
-> > > > > +      * strange that we care about this.
-> > > > > +      *
-> > > > > +      * As an example, if some object is mapped on the CPU with =
-write-back
-> > > > > +      * caching, and we read some page, then the cache likely no=
-w contains
-> > > > > +      * the data from that read. At this point the cache and mai=
-n memory
-> > > > > +      * match up, so all good. But next the GPU needs to write s=
-ome data to
-> > > > > +      * that same page. Now if the @cache_level is I915_CACHE_NO=
-NE and the
-> > > > > +      * the platform doesn't have the shared-LLC, then the GPU w=
-ill
-> > > > > +      * effectively skip invalidating the cache(or however that =
-works
-> > > > > +      * internally) when writing the new value.  This is really =
-bad since the
-> > > > > +      * GPU has just written some new data to main memory, but t=
-he CPU cache
-> > > > > +      * is still valid and now contains stale data. As a result =
-the next time
-> > > > > +      * we do a cached read with the CPU, we are rewarded with s=
-tale data.
-> > > > > +      * Likewise if the cache is later flushed, we might be rewa=
-rded with
-> > > > > +      * overwriting main memory with stale data.
-> > > > > +      *
-> > > > > +      * I915_BO_CACHE_COHERENT_FOR_WRITE:
-> > > > > +      *
-> > > > > +      * When writing through the CPU cache, the GPU is still coh=
-erent. Note
-> > > > > +      * that this also implies I915_BO_CACHE_COHERENT_FOR_READ.
-> > > > > +      *
-> > > > > +      * This is never set when I915_CACHE_NONE is used for @cach=
-e_level,
-> > > > > +      * where instead we have to manually flush the caches after=
- writing
-> > > > > +      * through the CPU cache. For other cache levels this shoul=
-d be set and
-> > > > > +      * the object is therefore considered coherent for both rea=
-ds and writes
-> > > > > +      * through the CPU cache.
-> > > >
-> > > > I don't remember why we have this read vs. write split and this new
-> > > > documentation doesn't seem to really explain it either.
-> > >
-> > > Hmm, I attempted to explain that earlier:
-> > >
-> > > * Note that on platforms with shared-LLC support(HAS_LLC) reads throu=
-gh
-> > > * the CPU cache are always coherent, regardless of the @cache_level. =
-On
-> > > * snooping based platforms this is not the case, unless the full
-> > > * I915_CACHE_LLC or similar setting is used.
-> > > *
-> > > * As a result of this we need to track coherency separately for reads
-> > > * and writes, in order to avoid superfluous flushing on shared-LLC
-> > > * platforms, for reads.
-> > >
-> > > So AFAIK it's just because shared-LLC can be coherent for reads, while
-> > > also not being coherent for writes(CACHE_NONE),
-> >
-> > CPU vs. GPU is fully coherent when it comes to LLC. Or at least I've
-> > never heard of any mechanism that would make it only partially coherent.
-> =
+== Series Details ==
 
-> What do you mean by "comes to LLC", are you talking about HAS_LLC() or
-> I915_CACHE_LLC?
+Series: Minor revid/stepping and workaround cleanup (rev4)
+URL   : https://patchwork.freedesktop.org/series/92299/
+State : warning
 
-I'm talking about the actual cache.
+== Summary ==
 
-> =
+$ dim checkpatch origin/drm-tip
+62d758aadfe3 drm/i915/step: s/<platform>_revid_tbl/<platform>_revids
+76bd03989163 drm/i915: Make pre-production detection use direct revid comparison
+5c84247d6ac9 drm/i915/skl: Use revid->stepping tables
+-:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#57: FILE: drivers/gpu/drm/i915/i915_drv.h:1518:
++#define IS_SKL_GT_STEP(p, since, until) (IS_SKYLAKE(p) && IS_GT_STEP(p, since, until))
 
-> If you set I915_CACHE_LLC, then yes it is fully coherent for both
-> HAS_LLC() and HAS_SNOOP().
-> =
+total: 0 errors, 0 warnings, 1 checks, 80 lines checked
+1c898561ba39 drm/i915/kbl: Drop pre-production revision from stepping table
+27320b6e947b drm/i915/bxt: Use revid->stepping tables
+bfc4af69ce3b drm/i915/glk: Use revid->stepping tables
+ea04a99db33e drm/i915/icl: Use revid->stepping tables
+-:116: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#116: FILE: drivers/gpu/drm/i915/i915_drv.h:1532:
++#define IS_ICL_GT_STEP(p, since, until) \
++	(IS_ICELAKE(p) && IS_GT_STEP(p, since, until))
 
-> If you set I915_CACHE_NONE, then reads are still coherent on
-> HAS_LLC(),
+total: 0 errors, 0 warnings, 1 checks, 87 lines checked
+95aec3b31d70 drm/i915/jsl_ehl: Use revid->stepping tables
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#56: FILE: drivers/gpu/drm/i915/i915_drv.h:1535:
++#define IS_JSL_EHL_GT_STEP(p, since, until) \
++	(IS_JSL_EHL(p) && IS_GT_STEP(p, since, until))
 
-Reads and writes both. The only thing that's not coherent is the
-display engine.
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#58: FILE: drivers/gpu/drm/i915/i915_drv.h:1537:
++#define IS_JSL_EHL_DISPLAY_STEP(p, since, until) \
++	(IS_JSL_EHL(p) && IS_DISPLAY_STEP(p, since, until))
 
-> for HAS_SNOOP() they are not. Or at least that is the
-> existing behaviour in the driver AFAIK.
-> =
+total: 0 errors, 0 warnings, 2 checks, 51 lines checked
+d515112313b0 drm/i915/rkl: Use revid->stepping tables
+-:49: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#49: FILE: drivers/gpu/drm/i915/i915_drv.h:1552:
++#define IS_RKL_DISPLAY_STEP(p, since, until) \
++	(IS_ROCKETLAKE(p) && IS_DISPLAY_STEP(p, since, until))
 
-> >
-> > --
-> > Ville Syrj=E4l=E4
-> > Intel
+total: 0 errors, 0 warnings, 1 checks, 51 lines checked
+28dea784c5d3 drm/i915/dg1: Use revid->stepping tables
+-:129: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#129: FILE: drivers/gpu/drm/i915/i915_drv.h:1546:
++#define IS_DG1_GT_STEP(p, since, until) \
++	(IS_DG1(p) && IS_GT_STEP(p, since, until))
 
--- =
+-:131: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#131: FILE: drivers/gpu/drm/i915/i915_drv.h:1548:
++#define IS_DG1_DISPLAY_STEP(p, since, until) \
++	(IS_DG1(p) && IS_DISPLAY_STEP(p, since, until))
 
-Ville Syrj=E4l=E4
-Intel
+total: 0 errors, 0 warnings, 2 checks, 118 lines checked
+a66bc53c20b3 drm/i915/cnl: Drop all workarounds
+d62d0ec1b3aa drm/i915/icl: Drop workarounds that only apply to pre-production steppings
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
