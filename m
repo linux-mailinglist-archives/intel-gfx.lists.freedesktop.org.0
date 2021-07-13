@@ -2,46 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F283C758C
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 19:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1469E3C7591
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Jul 2021 19:13:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02FDC6E102;
-	Tue, 13 Jul 2021 17:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DFCA6E101;
+	Tue, 13 Jul 2021 17:13:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54DB06E102
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 17:09:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="189894432"
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="189894432"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 10:09:55 -0700
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1E8D6E101
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Jul 2021 17:13:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="274042716"
+X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="274042716"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2021 10:13:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="451824654"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga007.jf.intel.com with ESMTP; 13 Jul 2021 10:09:54 -0700
+X-IronPort-AV: E=Sophos;i="5.84,236,1620716400"; d="scan'208";a="630114190"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga005.jf.intel.com with ESMTP; 13 Jul 2021 10:13:04 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 10:09:54 -0700
+ 15.1.2242.10; Tue, 13 Jul 2021 10:13:04 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 13 Jul 2021 10:09:53 -0700
+ 15.1.2242.10; Tue, 13 Jul 2021 10:13:03 -0700
 Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
  fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
- Tue, 13 Jul 2021 10:09:53 -0700
+ Tue, 13 Jul 2021 10:13:03 -0700
 From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
 To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 10/12] drm/i915/dg1: Use revid->stepping tables
-Thread-Index: AQHXdTzyyKtHx/isFkuPJwDEfR4xMqtBKQdg
-Date: Tue, 13 Jul 2021 17:09:53 +0000
-Message-ID: <5cd1959dbd4446c5a9ff4c78d9c3fa40@intel.com>
+Thread-Topic: [PATCH v2 12/12] drm/i915/icl: Drop workarounds that only apply
+ to pre-production steppings
+Thread-Index: AQHXdTzy2dDUUJ0qHUGl/geNbX+he6tBKf5Q
+Date: Tue, 13 Jul 2021 17:13:03 +0000
+Message-ID: <686a4016ec0c4251b9b702f7a5d1fce3@intel.com>
 References: <20210710033724.2459367-1-matthew.d.roper@intel.com>
- <20210710033724.2459367-11-matthew.d.roper@intel.com>
-In-Reply-To: <20210710033724.2459367-11-matthew.d.roper@intel.com>
+ <20210710033724.2459367-13-matthew.d.roper@intel.com>
+In-Reply-To: <20210710033724.2459367-13-matthew.d.roper@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -51,8 +52,8 @@ dlp-product: dlpe-windows
 dlp-reaction: no-action
 x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 10/12] drm/i915/dg1: Use revid->stepping
- tables
+Subject: Re: [Intel-gfx] [PATCH v2 12/12] drm/i915/icl: Drop workarounds
+ that only apply to pre-production steppings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,200 +79,122 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 > To: intel-gfx@lists.freedesktop.org
 > Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Roper, Matthew D
 > <matthew.d.roper@intel.com>
-> Subject: [PATCH v2 10/12] drm/i915/dg1: Use revid->stepping tables
+> Subject: [PATCH v2 12/12] drm/i915/icl: Drop workarounds that only apply to
+> pre-production steppings
 > 
-> Switch DG1 to use a revid->stepping table as we're trying to do on all
-> platforms going forward.
+> We're past the point at which we usually drop workarounds that were never
+> needed on production hardware.  The driver will already print an error and
+> apply taint if loaded on pre-production hardware.
 > 
-> This removes the last use of IS_REVID() and REVID_FOREVER, so remove
-> those now-unused macros as well to prevent their accidental use on future
-> platforms.
-> 
-> Bspec: 44463
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Definitely cleans up the code. 
+
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+
 > ---
->  .../gpu/drm/i915/display/intel_display_power.c |  2 +-
->  drivers/gpu/drm/i915/gt/intel_region_lmem.c    |  2 +-
->  drivers/gpu/drm/i915/gt/intel_workarounds.c    | 10 +++++-----
->  drivers/gpu/drm/i915/i915_drv.h                | 18 ++++--------------
->  drivers/gpu/drm/i915/intel_pm.c                |  2 +-
->  drivers/gpu/drm/i915/intel_step.c              |  8 ++++++++
->  6 files changed, 20 insertions(+), 22 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 39 ---------------------
+>  drivers/gpu/drm/i915/i915_drv.h             |  3 --
+>  2 files changed, 42 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 285380079aab..975a7e25cea5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -5799,7 +5799,7 @@ static void tgl_bw_buddy_init(struct
-> drm_i915_private *dev_priv)
->  	int config, i;
-> 
->  	if (IS_ALDERLAKE_S(dev_priv) ||
-> -	    IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
-> +	    IS_DG1_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
->  	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
->  		/* Wa_1409767108:tgl,dg1,adl-s */
->  		table = wa_1409767108_buddy_page_masks; diff --git
-> a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> index 1f43aba2e9e2..50d11a84e7a9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> @@ -157,7 +157,7 @@ intel_gt_setup_fake_lmem(struct intel_gt *gt)  static
-> bool get_legacy_lowmem_region(struct intel_uncore *uncore,
->  				     u64 *start, u32 *size)
->  {
-> -	if (!IS_DG1_REVID(uncore->i915, DG1_REVID_A0, DG1_REVID_B0))
-> +	if (!IS_DG1_GT_STEP(uncore->i915, STEP_A0, STEP_B0))
->  		return false;
-> 
->  	*start = 0;
 > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 > b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 4c0c15bbdac2..62321e9149db 100644
+> index 9b257a394305..5ace14cdfa85 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1111,7 +1111,7 @@ dg1_gt_workarounds_init(struct drm_i915_private
+> @@ -517,21 +517,12 @@ static void cfl_ctx_workarounds_init(struct
+> intel_engine_cs *engine,  static void icl_ctx_workarounds_init(struct
+> intel_engine_cs *engine,
+>  				     struct i915_wa_list *wal)
+>  {
+> -	struct drm_i915_private *i915 = engine->i915;
+> -
+>  	/* WaDisableBankHangMode:icl */
+>  	wa_write(wal,
+>  		 GEN8_L3CNTLREG,
+>  		 intel_uncore_read(engine->uncore, GEN8_L3CNTLREG) |
+>  		 GEN8_ERRDETBCTRL);
+> 
+> -	/* Wa_1604370585:icl (pre-prod)
+> -	 * Formerly known as WaPushConstantDereferenceHoldDisable
+> -	 */
+> -	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_B0))
+> -		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
+> -			     PUSH_CONSTANT_DEREF_DISABLE);
+> -
+>  	/* WaForceEnableNonCoherent:icl
+>  	 * This is not the same workaround as in early Gen9 platforms, where
+>  	 * lacking this could cause system hangs, but coherency performance
+> @@ -541,18 +532,6 @@ static void icl_ctx_workarounds_init(struct
+> intel_engine_cs *engine,
+>  	 */
+>  	wa_masked_en(wal, ICL_HDC_MODE,
+> HDC_FORCE_NON_COHERENT);
+> 
+> -	/* Wa_2006611047:icl (pre-prod)
+> -	 * Formerly known as WaDisableImprovedTdlClkGating
+> -	 */
+> -	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_A0))
+> -		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
+> -			     GEN11_TDL_CLOCK_GATING_FIX_DISABLE);
+> -
+> -	/* Wa_2006665173:icl (pre-prod) */
+> -	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_A0))
+> -		wa_masked_en(wal, GEN11_COMMON_SLICE_CHICKEN3,
+> -			     GEN11_BLEND_EMB_FIX_DISABLE_IN_RCC);
+> -
+>  	/* WaEnableFloatBlendOptimization:icl */
+>  	wa_write_clr_set(wal,
+>  			 GEN10_CACHE_MODE_SS,
+> @@ -982,18 +961,6 @@ icl_gt_workarounds_init(struct drm_i915_private
 > *i915, struct i915_wa_list *wal)
->  	gen12_gt_workarounds_init(i915, wal);
+>  		    GEN8_GAMW_ECO_DEV_RW_IA,
+>  		    GAMW_ECO_DEV_CTX_RELOAD_DISABLE);
 > 
->  	/* Wa_1607087056:dg1 */
-> -	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0))
-> +	if (IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0))
+> -	/* Wa_1405779004:icl (pre-prod) */
+> -	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_A0))
+> -		wa_write_or(wal,
+> -			    SLICE_UNIT_LEVEL_CLKGATE,
+> -			    MSCUNIT_CLKGATE_DIS);
+> -
+> -	/* Wa_1406838659:icl (pre-prod) */
+> -	if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_B0))
+> -		wa_write_or(wal,
+> -			    INF_UNIT_LEVEL_CLKGATE,
+> -			    CGPSF_CLKGATE_DIS);
+> -
+>  	/* Wa_1406463099:icl
+>  	 * Formerly known as WaGamTlbPendError
+>  	 */
+> @@ -1669,12 +1636,6 @@ rcs_engine_wa_init(struct intel_engine_cs
+> *engine, struct i915_wa_list *wal)
+>  			    PMFLUSH_GAPL3UNBLOCK |
+>  			    PMFLUSHDONE_LNEBLK);
+> 
+> -		/* Wa_1406609255:icl (pre-prod) */
+> -		if (IS_ICL_GT_STEP(i915, STEP_A0, STEP_B0))
+> -			wa_write_or(wal,
+> -				    GEN7_SARCHKMD,
+> -				    GEN7_DISABLE_DEMAND_PREFETCH);
+> -
+>  		/* Wa_1606682166:icl */
 >  		wa_write_or(wal,
->  			    SLICE_UNIT_LEVEL_CLKGATE,
->  			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS); @@ -
-> 1522,7 +1522,7 @@ static void dg1_whitelist_build(struct intel_engine_cs
-> *engine)
->  	tgl_whitelist_build(engine);
-> 
->  	/* GEN:BUG:1409280441:dg1 */
-> -	if (IS_DG1_REVID(engine->i915, DG1_REVID_A0, DG1_REVID_A0) &&
-> +	if (IS_DG1_GT_STEP(engine->i915, STEP_A0, STEP_A0) &&
->  	    (engine->class == RENDER_CLASS ||
->  	     engine->class == COPY_ENGINE_CLASS))
->  		whitelist_reg_ext(w, RING_ID(engine->mmio_base), @@ -
-> 1592,7 +1592,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine,
-> struct i915_wa_list *wal)  {
->  	struct drm_i915_private *i915 = engine->i915;
-> 
-> -	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-> +	if (IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0) ||
->  	    IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0)) {
->  		/*
->  		 * Wa_1607138336:tgl[a0],dg1[a0]
-> @@ -1638,7 +1638,7 @@ rcs_engine_wa_init(struct intel_engine_cs
-> *engine, struct i915_wa_list *wal)
->  	}
-> 
->  	if (IS_ALDERLAKE_P(i915) || IS_ALDERLAKE_S(i915) ||
-> -	    IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-> +	    IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0) ||
->  	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
->  		/* Wa_1409804808:tgl,rkl,dg1[a0],adl-s,adl-p */
->  		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
-> @@ -1652,7 +1652,7 @@ rcs_engine_wa_init(struct intel_engine_cs
-> *engine, struct i915_wa_list *wal)
->  	}
-> 
-> 
-> -	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
-> +	if (IS_DG1_GT_STEP(i915, STEP_A0, STEP_A0) ||
->  	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
->  		/*
->  		 * Wa_1607030317:tgl
+>  			    GEN7_SARCHKMD,
 > diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> b/drivers/gpu/drm/i915/i915_drv.h index 9195131cf90f..d462b9434541
+> b/drivers/gpu/drm/i915/i915_drv.h index 8682a5f557c5..da5f230e2d4b
 > 100644
 > --- a/drivers/gpu/drm/i915/i915_drv.h
 > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1323,19 +1323,10 @@ static inline struct drm_i915_private
-> *pdev_to_i915(struct pci_dev *pdev)  #define IS_DISPLAY_VER(i915, from,
-> until) \
->  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+> @@ -1513,9 +1513,6 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> *i915,  #define IS_KBL_DISPLAY_STEP(dev_priv, since, until) \
+>  	(IS_KABYLAKE(dev_priv) && IS_DISPLAY_STEP(dev_priv, since,
+> until))
 > 
-> -#define REVID_FOREVER		0xff
->  #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)-
-> >revision)
-> 
->  #define HAS_DSB(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dsb)
-> 
-> -/*
-> - * Return true if revision is in range [since,until] inclusive.
-> - *
-> - * Use 0 for open-ended since, and REVID_FOREVER for open-ended until.
-> - */
-> -#define IS_REVID(p, since, until) \
-> -	(INTEL_REVID(p) >= (since) && INTEL_REVID(p) <= (until))
+> -#define IS_ICL_GT_STEP(p, since, until) \
+> -	(IS_ICELAKE(p) && IS_GT_STEP(p, since, until))
 > -
->  #define INTEL_DISPLAY_STEP(__i915) (RUNTIME_INFO(__i915)-
-> >step.display_step)
->  #define INTEL_GT_STEP(__i915) (RUNTIME_INFO(__i915)->step.gt_step)
-> 
-> @@ -1552,11 +1543,10 @@ IS_SUBPLATFORM(const struct drm_i915_private
-> *i915,  #define IS_RKL_DISPLAY_STEP(p, since, until) \
->  	(IS_ROCKETLAKE(p) && IS_DISPLAY_STEP(p, since, until))
-> 
-> -#define DG1_REVID_A0		0x0
-> -#define DG1_REVID_B0		0x1
-> -
-> -#define IS_DG1_REVID(p, since, until) \
-> -	(IS_DG1(p) && IS_REVID(p, since, until))
-> +#define IS_DG1_GT_STEP(p, since, until) \
-> +	(IS_DG1(p) && IS_GT_STEP(p, since, until)) #define
-> +IS_DG1_DISPLAY_STEP(p, since, until) \
-> +	(IS_DG1(p) && IS_DISPLAY_STEP(p, since, until))
-> 
->  #define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
->  	(IS_ALDERLAKE_S(__i915) && \
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c
-> b/drivers/gpu/drm/i915/intel_pm.c index 5fdb96e7d266..b933c9dc823a
-> 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -7390,7 +7390,7 @@ static void dg1_init_clock_gating(struct
-> drm_i915_private *dev_priv)
->  	gen12lp_init_clock_gating(dev_priv);
-> 
->  	/* Wa_1409836686:dg1[a0] */
-> -	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0))
-> +	if (IS_DG1_GT_STEP(dev_priv, STEP_A0, STEP_A0))
->  		intel_uncore_write(&dev_priv->uncore,
-> GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore,
-> GEN9_CLKGATE_DIS_3) |
->  			   DPT_GATING_DIS);
->  }
-> diff --git a/drivers/gpu/drm/i915/intel_step.c
-> b/drivers/gpu/drm/i915/intel_step.c
-> index 21211649e6bb..36230d446f4a 100644
-> --- a/drivers/gpu/drm/i915/intel_step.c
-> +++ b/drivers/gpu/drm/i915/intel_step.c
-> @@ -81,6 +81,11 @@ static const struct intel_step_info rkl_revids[] = {
->  	[4] = { COMMON_STEPPING(C0) },
->  };
-> 
-> +static const struct intel_step_info dg1_revids[] = {
-> +	[0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
-> +	[1] = { .gt_step = STEP_B0, .display_step = STEP_B0 }, };
-> +
-
-Same feedback as for JSL/EHL patch, here COMMON_STEP macro can be used.
-
-Anusha
->  static const struct intel_step_info adls_revids[] = {
->  	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_A0 },
->  	[0x1] = { .gt_step = STEP_A0, .display_step = STEP_A2 }, @@ -109,6
-> +114,9 @@ void intel_step_init(struct drm_i915_private *i915)
->  	} else if (IS_ALDERLAKE_S(i915)) {
->  		revids = adls_revids;
->  		size = ARRAY_SIZE(adls_revids);
-> +	} else if (IS_DG1(i915)) {
-> +		revids = dg1_revids;
-> +		size = ARRAY_SIZE(dg1_revids);
->  	} else if (IS_ROCKETLAKE(i915)) {
->  		revids = rkl_revids;
->  		size = ARRAY_SIZE(rkl_revids);
+>  #define IS_JSL_EHL_GT_STEP(p, since, until) \
+>  	(IS_JSL_EHL(p) && IS_GT_STEP(p, since, until))  #define
+> IS_JSL_EHL_DISPLAY_STEP(p, since, until) \
 > --
 > 2.25.4
 
