@@ -2,24 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 008143C8259
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 12:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAEBA3C8396
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 13:17:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98A746E1F4;
-	Wed, 14 Jul 2021 10:03:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03CB06E216;
+	Wed, 14 Jul 2021 11:17:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06B456E1F4
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 10:03:32 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Jul 2021 12:03:23 +0200
-Message-Id: <20210714100323.752828-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.31.0
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
+ [IPv6:2a00:1450:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93FC36E216
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 11:17:01 +0000 (UTC)
+Received: by mail-wr1-x42e.google.com with SMTP id d12so2693247wre.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 04:17:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=o4jVt0FM0uAOA8tI8bouOUQFzl1zaNiC0NrKdXM6dVw=;
+ b=MDyz5/5F+mKIzn7pjRzpVCsBk/ysg1vO8murrzxivOdY3gat8oShcdeYtgzWd6gZSp
+ 942fNhxcMgyVrlpO5rp2i0yRIYvMmfg6Ffq6Ac1iIelA/u3DpJKPakIihpFTNzx6MGRA
+ i+Py3WPwntttAaD4Kh9kUiglTfCSS+tnbwcvM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=o4jVt0FM0uAOA8tI8bouOUQFzl1zaNiC0NrKdXM6dVw=;
+ b=fN+a9Rb+nDdKWVCo+mEQRTmBtlj+ZUDlBkPKrAmF8hi4QV7edOCusTSy5QVAqwmtQI
+ jQoWBv1K7/6x+Vzfa4wL/Ht8ezWo6dmcWYC1XANJJk5kiGCYC6NheXo8e0TrafV5GDae
+ cAuhfGrUT5CpBOwRFN+eTFTPGuVTj4QGXznH2bB/XCw1/M2hs3I7WQw9T96eKnno9rez
+ GVFNznetHZdPS7vBbvtJNptI37peapyqDlJJacCEdoFcockIu4UhMzHgvzwWowHtynBz
+ 3PE/MBZ3EfWK0qgSGe6ZiI5xfVVDOUaxn1yNrr+9Wl1OMdEoVkEzpGsA6kcVQRj0ZSfM
+ BK0w==
+X-Gm-Message-State: AOAM530fYMXVfn/nkmJqII4uA4Yj4qjGnAUs/zZtAeg+sUx20Ty2IkCi
+ 974e05qK6dxKe0EOo18s12CGFiDcaeU2/A==
+X-Google-Smtp-Source: ABdhPJwkf5F4x9FZ486vbcPY4mjJm2lVy4arVYixqB3Jatd0VqiZjlofaKudrfy37tYy9LZ2Q47olA==
+X-Received: by 2002:a5d:68c2:: with SMTP id p2mr11750294wrw.27.1626261420349; 
+ Wed, 14 Jul 2021 04:17:00 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f15sm4728066wmj.15.2021.07.14.04.16.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 Jul 2021 04:16:59 -0700 (PDT)
+Date: Wed, 14 Jul 2021 13:16:57 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <YO7HqVPtY2GpbD77@phenom.ffwll.local>
+References: <20210713104554.2381406-1-matthew.auld@intel.com>
+ <YO23Y3PUS22FaXDC@intel.com>
+ <CAM0jSHOx=WVbzfQzn=kL-5qaG4B3dxPLOimkvUdv6HFJymZeZw@mail.gmail.com>
+ <YO3RsxZHUe5imN3q@intel.com>
+ <CAM0jSHOsqPUOWCJu_Ti3gW-fnpWF2CtUoo-qt-aMWExAwDDT5A@mail.gmail.com>
+ <YO3fhvKCo8eXrmst@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Add TTM offset argument to mmap.
+Content-Disposition: inline
+In-Reply-To: <YO3fhvKCo8eXrmst@intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: document caching related bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -32,263 +70,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The FIXED mapping is only used for ttm, and tells userspace that the
-mapping type is pre-defined. This disables the other type of mmap
-offsets when discrete memory is used, so fix the selftests as well.
+On Tue, Jul 13, 2021 at 09:46:30PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Tue, Jul 13, 2021 at 07:24:23PM +0100, Matthew Auld wrote:
+> > On Tue, 13 Jul 2021 at 18:47, Ville Syrj=E4l=E4
+> > <ville.syrjala@linux.intel.com> wrote:
+> > >
+> > > On Tue, Jul 13, 2021 at 05:13:37PM +0100, Matthew Auld wrote:
+> > > > On Tue, 13 Jul 2021 at 16:55, Ville Syrj=E4l=E4
+> > > > <ville.syrjala@linux.intel.com> wrote:
+> > > > >
+> > > > > On Tue, Jul 13, 2021 at 11:45:50AM +0100, Matthew Auld wrote:
+> > > > > > +     /**
+> > > > > > +      * @cache_coherent:
+> > > > > > +      *
+> > > > > > +      * Track whether the pages are coherent with the GPU if r=
+eading or
+> > > > > > +      * writing through the CPU cache.
+> > > > > > +      *
+> > > > > > +      * This largely depends on the @cache_level, for example =
+if the object
+> > > > > > +      * is marked as I915_CACHE_LLC, then GPU access is cohere=
+nt for both
+> > > > > > +      * reads and writes through the CPU cache.
+> > > > > > +      *
+> > > > > > +      * Note that on platforms with shared-LLC support(HAS_LLC=
+) reads through
+> > > > > > +      * the CPU cache are always coherent, regardless of the @=
+cache_level. On
+> > > > > > +      * snooping based platforms this is not the case, unless =
+the full
+> > > > > > +      * I915_CACHE_LLC or similar setting is used.
+> > > > > > +      *
+> > > > > > +      * As a result of this we need to track coherency separat=
+ely for reads
+> > > > > > +      * and writes, in order to avoid superfluous flushing on =
+shared-LLC
+> > > > > > +      * platforms, for reads.
+> > > > > > +      *
+> > > > > > +      * I915_BO_CACHE_COHERENT_FOR_READ:
+> > > > > > +      *
+> > > > > > +      * When reading through the CPU cache, the GPU is still c=
+oherent. Note
+> > > > > > +      * that no data has actually been modified here, so it mi=
+ght seem
+> > > > > > +      * strange that we care about this.
+> > > > > > +      *
+> > > > > > +      * As an example, if some object is mapped on the CPU wit=
+h write-back
+> > > > > > +      * caching, and we read some page, then the cache likely =
+now contains
+> > > > > > +      * the data from that read. At this point the cache and m=
+ain memory
+> > > > > > +      * match up, so all good. But next the GPU needs to write=
+ some data to
+> > > > > > +      * that same page. Now if the @cache_level is I915_CACHE_=
+NONE and the
+> > > > > > +      * the platform doesn't have the shared-LLC, then the GPU=
+ will
+> > > > > > +      * effectively skip invalidating the cache(or however tha=
+t works
+> > > > > > +      * internally) when writing the new value.  This is reall=
+y bad since the
+> > > > > > +      * GPU has just written some new data to main memory, but=
+ the CPU cache
+> > > > > > +      * is still valid and now contains stale data. As a resul=
+t the next time
+> > > > > > +      * we do a cached read with the CPU, we are rewarded with=
+ stale data.
+> > > > > > +      * Likewise if the cache is later flushed, we might be re=
+warded with
+> > > > > > +      * overwriting main memory with stale data.
+> > > > > > +      *
+> > > > > > +      * I915_BO_CACHE_COHERENT_FOR_WRITE:
+> > > > > > +      *
+> > > > > > +      * When writing through the CPU cache, the GPU is still c=
+oherent. Note
+> > > > > > +      * that this also implies I915_BO_CACHE_COHERENT_FOR_READ.
+> > > > > > +      *
+> > > > > > +      * This is never set when I915_CACHE_NONE is used for @ca=
+che_level,
+> > > > > > +      * where instead we have to manually flush the caches aft=
+er writing
+> > > > > > +      * through the CPU cache. For other cache levels this sho=
+uld be set and
+> > > > > > +      * the object is therefore considered coherent for both r=
+eads and writes
+> > > > > > +      * through the CPU cache.
+> > > > >
+> > > > > I don't remember why we have this read vs. write split and this n=
+ew
+> > > > > documentation doesn't seem to really explain it either.
+> > > >
+> > > > Hmm, I attempted to explain that earlier:
+> > > >
+> > > > * Note that on platforms with shared-LLC support(HAS_LLC) reads thr=
+ough
+> > > > * the CPU cache are always coherent, regardless of the @cache_level=
+. On
+> > > > * snooping based platforms this is not the case, unless the full
+> > > > * I915_CACHE_LLC or similar setting is used.
+> > > > *
+> > > > * As a result of this we need to track coherency separately for rea=
+ds
+> > > > * and writes, in order to avoid superfluous flushing on shared-LLC
+> > > > * platforms, for reads.
+> > > >
+> > > > So AFAIK it's just because shared-LLC can be coherent for reads, wh=
+ile
+> > > > also not being coherent for writes(CACHE_NONE),
+> > >
+> > > CPU vs. GPU is fully coherent when it comes to LLC. Or at least I've
+> > > never heard of any mechanism that would make it only partially cohere=
+nt.
+> > =
 
-Document the struct as well, so it shows up in docbook.
+> > What do you mean by "comes to LLC", are you talking about HAS_LLC() or
+> > I915_CACHE_LLC?
+> =
 
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 17 ++++++-
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
- .../drm/i915/gem/selftests/i915_gem_mman.c    | 27 ++++++++++-
- include/uapi/drm/i915_drm.h                   | 46 ++++++++++++++-----
- 4 files changed, 77 insertions(+), 14 deletions(-)
+> I'm talking about the actual cache.
+> =
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index a90f796e85c0..31c4021bb6be 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -679,10 +679,16 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
- 		return -ENODEV;
- 
- 	if (obj->ops->mmap_offset)  {
-+		if (mmap_type != I915_MMAP_TYPE_FIXED)
-+			return -ENODEV;
-+
- 		*offset = obj->ops->mmap_offset(obj);
- 		return 0;
- 	}
- 
-+	if (mmap_type == I915_MMAP_TYPE_FIXED)
-+		return -ENODEV;
-+
- 	if (mmap_type != I915_MMAP_TYPE_GTT &&
- 	    !i915_gem_object_has_struct_page(obj) &&
- 	    !i915_gem_object_has_iomem(obj))
-@@ -727,7 +733,9 @@ i915_gem_dumb_mmap_offset(struct drm_file *file,
- {
- 	enum i915_mmap_type mmap_type;
- 
--	if (boot_cpu_has(X86_FEATURE_PAT))
-+	if (HAS_LMEM(to_i915(dev)))
-+		mmap_type = I915_MMAP_TYPE_FIXED;
-+	else if (boot_cpu_has(X86_FEATURE_PAT))
- 		mmap_type = I915_MMAP_TYPE_WC;
- 	else if (!i915_ggtt_has_aperture(&to_i915(dev)->ggtt))
- 		return -ENODEV;
-@@ -798,6 +806,10 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 		type = I915_MMAP_TYPE_UC;
- 		break;
- 
-+	case I915_MMAP_OFFSET_FIXED:
-+		type = I915_MMAP_TYPE_FIXED;
-+		break;
-+
- 	default:
- 		return -EINVAL;
- 	}
-@@ -968,6 +980,9 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
- 		vma->vm_ops = &vm_ops_cpu;
- 		break;
- 
-+	case I915_MMAP_TYPE_FIXED:
-+		GEM_WARN_ON(1);
-+		/* fall-through */
- 	case I915_MMAP_TYPE_WB:
- 		vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
- 		vma->vm_ops = &vm_ops_cpu;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index ef3de2ae9723..afbadfc5516b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -105,6 +105,7 @@ enum i915_mmap_type {
- 	I915_MMAP_TYPE_WC,
- 	I915_MMAP_TYPE_WB,
- 	I915_MMAP_TYPE_UC,
-+	I915_MMAP_TYPE_FIXED,
- };
- 
- struct i915_mmap_offset {
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-index 1da8bd675e54..52789c8ad337 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-@@ -573,6 +573,14 @@ static int make_obj_busy(struct drm_i915_gem_object *obj)
- 	return 0;
- }
- 
-+static enum i915_mmap_type default_mapping(struct drm_i915_private *i915)
-+{
-+	if (HAS_LMEM(i915))
-+		return I915_MMAP_TYPE_FIXED;
-+
-+	return I915_MMAP_TYPE_GTT;
-+}
-+
- static bool assert_mmap_offset(struct drm_i915_private *i915,
- 			       unsigned long size,
- 			       int expected)
-@@ -585,7 +593,7 @@ static bool assert_mmap_offset(struct drm_i915_private *i915,
- 	if (IS_ERR(obj))
- 		return expected && expected == PTR_ERR(obj);
- 
--	ret = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
-+	ret = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
- 	i915_gem_object_put(obj);
- 
- 	return ret == expected;
-@@ -689,7 +697,7 @@ static int igt_mmap_offset_exhaustion(void *arg)
- 		goto out;
- 	}
- 
--	err = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
-+	err = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
- 	if (err) {
- 		pr_err("Unable to insert object into reclaimed hole\n");
- 		goto err_obj;
-@@ -831,8 +839,14 @@ static int wc_check(struct drm_i915_gem_object *obj)
- 
- static bool can_mmap(struct drm_i915_gem_object *obj, enum i915_mmap_type type)
- {
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	bool no_map;
- 
-+	if (HAS_LMEM(i915))
-+		return type == I915_MMAP_TYPE_FIXED;
-+	else if (type == I915_MMAP_TYPE_FIXED)
-+		return false;
-+
- 	if (type == I915_MMAP_TYPE_GTT &&
- 	    !i915_ggtt_has_aperture(&to_i915(obj->base.dev)->ggtt))
- 		return false;
-@@ -970,6 +984,8 @@ static int igt_mmap(void *arg)
- 			err = __igt_mmap(i915, obj, I915_MMAP_TYPE_GTT);
- 			if (err == 0)
- 				err = __igt_mmap(i915, obj, I915_MMAP_TYPE_WC);
-+			if (err == 0)
-+				err = __igt_mmap(i915, obj, I915_MMAP_TYPE_FIXED);
- 
- 			i915_gem_object_put(obj);
- 			if (err)
-@@ -987,6 +1003,7 @@ static const char *repr_mmap_type(enum i915_mmap_type type)
- 	case I915_MMAP_TYPE_WB: return "wb";
- 	case I915_MMAP_TYPE_WC: return "wc";
- 	case I915_MMAP_TYPE_UC: return "uc";
-+	case I915_MMAP_TYPE_FIXED: return "ttm";
- 	default: return "unknown";
- 	}
- }
-@@ -1100,6 +1117,8 @@ static int igt_mmap_access(void *arg)
- 			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_WC);
- 		if (err == 0)
- 			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_UC);
-+		if (err == 0)
-+			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_FIXED);
- 
- 		i915_gem_object_put(obj);
- 		if (err)
-@@ -1241,6 +1260,8 @@ static int igt_mmap_gpu(void *arg)
- 		err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_GTT);
- 		if (err == 0)
- 			err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_WC);
-+		if (err == 0)
-+			err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_FIXED);
- 
- 		i915_gem_object_put(obj);
- 		if (err)
-@@ -1396,6 +1417,8 @@ static int igt_mmap_revoke(void *arg)
- 		err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_GTT);
- 		if (err == 0)
- 			err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_WC);
-+		if (err == 0)
-+			err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_FIXED);
- 
- 		i915_gem_object_put(obj);
- 		if (err)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index e334a8b14ef2..223f60d7694a 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -849,31 +849,55 @@ struct drm_i915_gem_mmap_gtt {
- 	__u64 offset;
- };
- 
-+/**
-+ * struct drm_i915_gem_mmap_offset - Retrieve an offset so we can mmap this buffer object.
-+ *
-+ * This struct is passed as argument to the `DRM_IOCTL_I915_GEM_MMAP_OFFSET` ioctl,
-+ * and is used to retrieve the fake offset to mmap an object specified by &handle.
-+ *
-+ * The legacy way of using `DRM_IOCTL_I915_GEM_MMAP` is removed on gen12+.
-+ * `DRM_IOCTL_I915_GEM_MMAP_GTT` is an older supported alias to this struct, but will behave
-+ * as setting the &extensions to 0, and &flags to `I915_MMAP_OFFSET_GTT`.
-+ */
- struct drm_i915_gem_mmap_offset {
--	/** Handle for the object being mapped. */
-+	/** @handle: Handle for the object being mapped. */
- 	__u32 handle;
-+	/** @pad: Must be zero */
- 	__u32 pad;
- 	/**
--	 * Fake offset to use for subsequent mmap call
-+	 * @offset: The fake offset to use for subsequent mmap call
- 	 *
- 	 * This is a fixed-size type for 32/64 compatibility.
- 	 */
- 	__u64 offset;
- 
- 	/**
--	 * Flags for extended behaviour.
-+	 * @flags: Flags for extended behaviour.
-+	 *
-+	 * It is mandatory that one of the `MMAP_OFFSET` types
-+	 * should be included:
-+	 * - `I915_MMAP_OFFSET_GTT`: Use mmap with the object bound to GTT. (Write-Combined)
-+	 * - `I915_MMAP_OFFSET_WC`: Use Write-Combined caching.
-+	 * - `I915_MMAP_OFFSET_WB`: Use Write-Back caching.
-+	 * - `I915_MMAP_OFFSET_FIXED`: Use object placement to determine caching.
-+	 *
-+	 * On devices with local memory `I915_MMAP_OFFSET_FIXED` is the only valid
-+	 * type. Ondevices without local memory, this caching mode is invalid.
- 	 *
--	 * It is mandatory that one of the MMAP_OFFSET types
--	 * (GTT, WC, WB, UC, etc) should be included.
-+	 * As caching mode when specifying `I915_MMAP_OFFSET_FIXED`, WC or WB will
-+	 * be used, depending on the object placement on creation. WB will be used
-+	 * when the object can only exist in system memory, WC otherwise.
- 	 */
- 	__u64 flags;
--#define I915_MMAP_OFFSET_GTT 0
--#define I915_MMAP_OFFSET_WC  1
--#define I915_MMAP_OFFSET_WB  2
--#define I915_MMAP_OFFSET_UC  3
- 
--	/*
--	 * Zero-terminated chain of extensions.
-+#define I915_MMAP_OFFSET_GTT	0
-+#define I915_MMAP_OFFSET_WC	1
-+#define I915_MMAP_OFFSET_WB	2
-+#define I915_MMAP_OFFSET_UC	3
-+#define I915_MMAP_OFFSET_FIXED	4
-+
-+	/**
-+	 * @extensions: Zero-terminated chain of extensions.
- 	 *
- 	 * No current extensions defined; mbz.
- 	 */
--- 
-2.31.0
+> > =
 
+> > If you set I915_CACHE_LLC, then yes it is fully coherent for both
+> > HAS_LLC() and HAS_SNOOP().
+> > =
+
+> > If you set I915_CACHE_NONE, then reads are still coherent on
+> > HAS_LLC(),
+> =
+
+> Reads and writes both. The only thing that's not coherent is the
+> display engine.
+
+There's a lot of code which seems to disagree, plus there's now this new
+MOCS thing. I really hope we don't have all those cache coherency bits
+just because the code complexity is entertaining?
+
+Are there some igts to verify this all? Or selftests probably more
+appropriate.
+-Daniel
+
+
+> > for HAS_SNOOP() they are not. Or at least that is the
+> > existing behaviour in the driver AFAIK.
+> > =
+
+> > >
+> > > --
+> > > Ville Syrj=E4l=E4
+> > > Intel
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
