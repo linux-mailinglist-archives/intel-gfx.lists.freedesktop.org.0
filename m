@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9AD3C925D
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 22:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD483C92B6
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 23:02:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2FD56E435;
-	Wed, 14 Jul 2021 20:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAAE36E506;
+	Wed, 14 Jul 2021 21:02:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE5156E435
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 20:45:01 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id a127so3076582pfa.10
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 13:45:01 -0700 (PDT)
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com
+ [IPv6:2607:f8b0:4864:20::b32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 567476E506
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 21:01:59 +0000 (UTC)
+Received: by mail-yb1-xb32.google.com with SMTP id k184so5392845ybf.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 14:01:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=WxD8jkFdaGouGoVE3cXeriFduXctheMhbmK/8q8own8=;
- b=D6M1QID99Qoufyt8NYKwo3GHV33RP0r4f/uBuvbc8oZ6196wMdLBIk9NMDLw0dko4v
- P7aPKb1wQDSMA2QjdA92AvhjEmVPBaVRjl573gBrDMKe7//jXLkVJkkFyld6munmGX3t
- f6ClbnF6CM8PA8XSEUXnrU6y1hqAdjJrrGLUXtO2tu5HIqdjrIsVDBpHGEYB8pbjiLzL
- ci+Cejq/8bgaiDSERC0G6bIZfkItJkAzB6E1lp4gdqgk2W+bY9sM7zr5k8WE/OKkEEzx
- jwBl5D9XNUAdKhmWQ1YHZecM7ArZYkCSxEZM0bF3DIsK6Rpvzqkbo61/xa5CYyOrGTnh
- X3cQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=99qF/5iUqzOh0o7tbx6oSMidCvgGjsQhhCSiehDxPrw=;
+ b=GCdnp+VmY/q2HUx9dWqpjIDK9cTLQcm2xzKGfoZZ6MdQfXeg13+AqYexYF4pf3Cu72
+ x0bWLmgxsOh+jhVQAHcYW+894Muzr9NjjJ+miolDoR5CGvrhm3310M4BDzVXWbCAMaQO
+ u1rrANbxJJXGejye8vUv5Uy23i93+SbntAOmp5hJxa7beMJAhxB70dFaQo2mZg8QO8pu
+ qyFB3L6sXZzBP7BHKUmGk9rLaNKaoRYc5ppXUEMCz/HlDmYvM3/4/4pSYEFex7MUHfTl
+ kOCy/RtlYFw5L1/xVHw0ymGmvgu3mJiCEmNfwjkneK6qt3IJx6PaC/BzkA5N9OXOYgp5
+ JWUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=WxD8jkFdaGouGoVE3cXeriFduXctheMhbmK/8q8own8=;
- b=Rc6oDZuv0BwNN4G1J8QKGUj6bUe6NBWQTifGL5WAaTLn4VlcIXjtVeBvW4UpvbwrF/
- 9AonoJbh+boQEhSMKY/fMiFN8dybSTFNu5xLZ6G0ATSfAiJKUMn6Uf3C7d+tbDUM9UH8
- HV7eAbJJcQAFz91xCBST2sVqmsPCx0+3eUCAWxW4jGB4crpr2YKsEH56VrtW+DBER8am
- 76anBjBzPlXd7KR9qjkP9CBnZCCFHpAw1Z35YKVPehgLyuQAOGrxTVjJmzdK+MmNYbDA
- S47LHANyBFN2MJnbYcyTFa3fDHbdAxZP38DFfHigskJi8WClqEIg13Ol69fpvwunOuY/
- U1ew==
-X-Gm-Message-State: AOAM531SFHqYDjKEYPHoP1H1Njm8YAUcdHjE8TrIFEGZSDptlKq1F3L+
- zSrfDb8b1Odm90TrNSQZVoBES/8EAwMZeA==
-X-Google-Smtp-Source: ABdhPJxWBMUGIfnc2YtpIyM/Dh22HO6SxHDlgRW5o5eZ/tGMo/Nl+lK7r0jcUqhGB0XOWZdhq4SduA==
-X-Received: by 2002:a63:786:: with SMTP id 128mr9471331pgh.48.1626295500972;
- Wed, 14 Jul 2021 13:45:00 -0700 (PDT)
-Received: from omlet.com ([134.134.139.71])
- by smtp.gmail.com with ESMTPSA id p24sm4101375pgl.68.2021.07.14.13.44.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Jul 2021 13:45:00 -0700 (PDT)
-From: Jason Ekstrand <jason@jlekstrand.net>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed, 14 Jul 2021 15:44:52 -0500
-Message-Id: <20210714204452.1481805-1-jason@jlekstrand.net>
-X-Mailer: git-send-email 2.31.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=99qF/5iUqzOh0o7tbx6oSMidCvgGjsQhhCSiehDxPrw=;
+ b=MGm9FX6gyKfp3PZ1tnpgYeWjOEJu/UwHhfanD0D+n9NOdOYmoo4rtL0AyNtKbKnzUu
+ G4itFwMEvTnY3Ao+mB/nA90o+Cjj/cop9zOtrh3bG8obd4KYY2PiJH/uyYh2XC9sAzrB
+ 0vs1OYyag8zkobcL+YOIOV/854Q4ZZnfZCKMBGa7x4zRcxMXxOY7reg4NCRz5BV8+ZeD
+ 5FIux/k9jvyWyZAUjx4oJIymHRc+y31I2hN2pl4PFt2Nl+3GIYJA3zhBRaT3qQQej5XF
+ GKhO8Shq/2fmy9uaj+DJvR7UonuNg1hWANsZEIqOz1yj2i07apF8hThtgVheEAF76D8H
+ zeQg==
+X-Gm-Message-State: AOAM533BxgJ3cKuSep6cdeb83RByBjXW6DVsxuS0aMm+i8caIcJqd3fP
+ 2MuY7xSHaRjImpzQJT8fdvh7LPiDcc6Q8uCiyMf4cg==
+X-Google-Smtp-Source: ABdhPJw6VfDqR7UURgDdKkBZL4HslzSeQNKrEwUApmHWeKpmLgl0BcROaLKTIZsYfDUkbLIJFUtKNNe6HbLMtrpEUfc=
+X-Received: by 2002:a25:aa69:: with SMTP id s96mr15866158ybi.241.1626296518186; 
+ Wed, 14 Jul 2021 14:01:58 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Check object_can_migrate from
- object_migrate
+References: <20210712231234.1031975-1-jason@jlekstrand.net>
+ <20210712231234.1031975-2-jason@jlekstrand.net>
+ <YO2m36je6vf6Wgwu@phenom.ffwll.local>
+ <CAM0jSHP3WyNwwr3VJ6zxKd5NqqXGJ+m_gSXACrptWO6zHnTAWw@mail.gmail.com>
+ <YO2v2WbyseJ2PfkJ@phenom.ffwll.local>
+In-Reply-To: <YO2v2WbyseJ2PfkJ@phenom.ffwll.local>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Wed, 14 Jul 2021 16:01:47 -0500
+Message-ID: <CAOFGe97=BRTTeXgHdQG=2MpQKqoc78W74mgRHjp5mWweriW+OQ@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Migrate to system at
+ dma-buf attach time (v5)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,131 +67,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We don't roll them together entirely because there are still a couple
-cases where we want a separate can_migrate check.  For instance, the
-display code checks that you can migrate a buffer to LMEM before it
-accepts it in fb_create.  The dma-buf import code also uses it to do an
-early check and return a different error code if someone tries to attach
-a LMEM-only dma-buf to another driver.
-
-However, no one actually wants to call object_migrate when can_migrate
-has failed.  The stated intention is for self-tests but none of those
-actually take advantage of this unsafe migration.
-
-Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c        |  8 +++-----
- drivers/gpu/drm/i915/gem/i915_gem_object.c        | 13 ++-----------
- .../gpu/drm/i915/gem/selftests/i915_gem_migrate.c | 15 ---------------
- 3 files changed, 5 insertions(+), 31 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-index 3163f00554476..5d438b95826b9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-@@ -173,16 +173,14 @@ static int i915_gem_dmabuf_attach(struct dma_buf *dmabuf,
- 	struct i915_gem_ww_ctx ww;
- 	int err;
- 
-+	if (!i915_gem_object_can_migrate(obj, INTEL_REGION_SMEM))
-+		return -EOPNOTSUPP;
-+
- 	for_i915_gem_ww(&ww, err, true) {
- 		err = i915_gem_object_lock(obj, &ww);
- 		if (err)
- 			continue;
- 
--		if (!i915_gem_object_can_migrate(obj, INTEL_REGION_SMEM)) {
--			err = -EOPNOTSUPP;
--			continue;
--		}
--
- 		err = i915_gem_object_migrate(obj, &ww, INTEL_REGION_SMEM);
- 		if (err)
- 			continue;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 9da7b288b7ede..f2244ae09a613 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -584,12 +584,6 @@ bool i915_gem_object_can_migrate(struct drm_i915_gem_object *obj,
-  * completed yet, and to accomplish that, i915_gem_object_wait_migration()
-  * must be called.
-  *
-- * This function is a bit more permissive than i915_gem_object_can_migrate()
-- * to allow for migrating objects where the caller knows exactly what is
-- * happening. For example within selftests. More specifically this
-- * function allows migrating I915_BO_ALLOC_USER objects to regions
-- * that are not in the list of allowable regions.
-- *
-  * Note: the @ww parameter is not used yet, but included to make sure
-  * callers put some effort into obtaining a valid ww ctx if one is
-  * available.
-@@ -616,11 +610,8 @@ int i915_gem_object_migrate(struct drm_i915_gem_object *obj,
- 	if (obj->mm.region == mr)
- 		return 0;
- 
--	if (!i915_gem_object_evictable(obj))
--		return -EBUSY;
--
--	if (!obj->ops->migrate)
--		return -EOPNOTSUPP;
-+	if (!i915_gem_object_can_migrate(obj, id))
-+		return -EINVAL;
- 
- 	return obj->ops->migrate(obj, mr);
- }
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
-index 0b7144d2991ca..28a700f08b49a 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
-@@ -61,11 +61,6 @@ static int igt_create_migrate(struct intel_gt *gt, enum intel_region_id src,
- 		if (err)
- 			continue;
- 
--		if (!i915_gem_object_can_migrate(obj, dst)) {
--			err = -EINVAL;
--			continue;
--		}
--
- 		err = i915_gem_object_migrate(obj, &ww, dst);
- 		if (err)
- 			continue;
-@@ -114,11 +109,6 @@ static int lmem_pages_migrate_one(struct i915_gem_ww_ctx *ww,
- 		return err;
- 
- 	if (i915_gem_object_is_lmem(obj)) {
--		if (!i915_gem_object_can_migrate(obj, INTEL_REGION_SMEM)) {
--			pr_err("object can't migrate to smem.\n");
--			return -EINVAL;
--		}
--
- 		err = i915_gem_object_migrate(obj, ww, INTEL_REGION_SMEM);
- 		if (err) {
- 			pr_err("Object failed migration to smem\n");
-@@ -137,11 +127,6 @@ static int lmem_pages_migrate_one(struct i915_gem_ww_ctx *ww,
- 		}
- 
- 	} else {
--		if (!i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM)) {
--			pr_err("object can't migrate to lmem.\n");
--			return -EINVAL;
--		}
--
- 		err = i915_gem_object_migrate(obj, ww, INTEL_REGION_LMEM);
- 		if (err) {
- 			pr_err("Object failed migration to lmem\n");
--- 
-2.31.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBKdWwgMTMsIDIwMjEgYXQgMTA6MjMgQU0gRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZm
+d2xsLmNoPiB3cm90ZToKPgo+IE9uIFR1ZSwgSnVsIDEzLCAyMDIxIGF0IDA0OjA2OjEzUE0gKzAx
+MDAsIE1hdHRoZXcgQXVsZCB3cm90ZToKPiA+IE9uIFR1ZSwgMTMgSnVsIDIwMjEgYXQgMTU6NDQs
+IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4gd3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIE1v
+biwgSnVsIDEyLCAyMDIxIGF0IDA2OjEyOjM0UE0gLTA1MDAsIEphc29uIEVrc3RyYW5kIHdyb3Rl
+Ogo+ID4gPiA+IEZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4
+LmludGVsLmNvbT4KPiA+ID4gPgo+ID4gPiA+IFVudGlsIHdlIHN1cHBvcnQgcDJwIGRtYSBvciBh
+cyBhIGNvbXBsZW1lbnQgdG8gdGhhdCwgbWlncmF0ZSBkYXRhCj4gPiA+ID4gdG8gc3lzdGVtIG1l
+bW9yeSBhdCBkbWEtYnVmIGF0dGFjaCB0aW1lIGlmIHBvc3NpYmxlLgo+ID4gPiA+Cj4gPiA+ID4g
+djI6Cj4gPiA+ID4gLSBSZWJhc2Ugb24gZHluYW1pYyBleHBvcnRlci4gVXBkYXRlIHRoZSBpZ3Rf
+ZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcgo+ID4gPiA+ICAgc2VsZnRlc3QgdG8gbWlncmF0ZSBp
+ZiB3ZSBhcmUgTE1FTSBjYXBhYmxlLgo+ID4gPiA+IHYzOgo+ID4gPiA+IC0gTWlncmF0ZSBhbHNv
+IGluIHRoZSBwaW4oKSBjYWxsYmFjay4KPiA+ID4gPiB2NDoKPiA+ID4gPiAtIE1pZ3JhdGUgaW4g
+YXR0YWNoCj4gPiA+ID4gdjU6IChqYXNvbikKPiA+ID4gPiAtIExvY2sgYXJvdW5kIHRoZSBtaWdy
+YXRpb24KPiA+ID4gPgo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0
+aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBN
+aWNoYWVsIEouIFJ1aGwgPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT4KPiA+ID4gPiBSZXBvcnRl
+ZC1ieToga2VybmVsIHRlc3Qgcm9ib3QgPGxrcEBpbnRlbC5jb20+Cj4gPiA+ID4gU2lnbmVkLW9m
+Zi1ieTogSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0Pgo+ID4gPiA+IFJldmll
+d2VkLWJ5OiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+Cj4gPiA+ID4gLS0t
+Cj4gPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYyAgICB8
+IDI1ICsrKysrKysrKysrKysrKysrKy0KPiA+ID4gPiAgLi4uL2RybS9pOTE1L2dlbS9zZWxmdGVz
+dHMvaTkxNV9nZW1fZG1hYnVmLmMgIHwgIDQgKystCj4gPiA+ID4gIDIgZmlsZXMgY2hhbmdlZCwg
+MjcgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiA+ID4gPgo+ID4gPiA+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMKPiA+ID4gPiBpbmRleCA5YTY1NWY2
+OWEwNjcxLi4zMTYzZjAwNTU0NDc2IDEwMDY0NAo+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+ID4gPiA+IEBAIC0xNzAsOCArMTcwLDMxIEBA
+IHN0YXRpYyBpbnQgaTkxNV9nZW1fZG1hYnVmX2F0dGFjaChzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVm
+LAo+ID4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV9idWZf
+YXR0YWNobWVudCAqYXR0YWNoKQo+ID4gPiA+ICB7Cj4gPiA+ID4gICAgICAgc3RydWN0IGRybV9p
+OTE1X2dlbV9vYmplY3QgKm9iaiA9IGRtYV9idWZfdG9fb2JqKGRtYWJ1Zik7Cj4gPiA+ID4gKyAg
+ICAgc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCB3dzsKPiA+ID4gPiArICAgICBpbnQgZXJyOwo+ID4g
+PiA+ICsKPiA+ID4gPiArICAgICBmb3JfaTkxNV9nZW1fd3coJnd3LCBlcnIsIHRydWUpIHsKPiA+
+ID4gPiArICAgICAgICAgICAgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9sb2NrKG9iaiwgJnd3KTsK
+PiA+ID4gPiArICAgICAgICAgICAgIGlmIChlcnIpCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgIGNvbnRpbnVlOwo+ID4gPiA+ICsKPiA+ID4gPiArICAgICAgICAgICAgIGlmICghaTkxNV9n
+ZW1fb2JqZWN0X2Nhbl9taWdyYXRlKG9iaiwgSU5URUxfUkVHSU9OX1NNRU0pKSB7Cj4gPiA+ID4g
+KyAgICAgICAgICAgICAgICAgICAgIGVyciA9IC1FT1BOT1RTVVBQOwo+ID4gPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICBjb250aW51ZTsKPiA+ID4gPiArICAgICAgICAgICAgIH0KPiA+ID4gPiAr
+Cj4gPiA+ID4gKyAgICAgICAgICAgICBlcnIgPSBpOTE1X2dlbV9vYmplY3RfbWlncmF0ZShvYmos
+ICZ3dywgSU5URUxfUkVHSU9OX1NNRU0pOwo+ID4gPiA+ICsgICAgICAgICAgICAgaWYgKGVycikK
+PiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiA+ID4KPiA+ID4gPiAt
+ICAgICByZXR1cm4gaTkxNV9nZW1fb2JqZWN0X3Bpbl9wYWdlc191bmxvY2tlZChvYmopOwo+ID4g
+PiA+ICsgICAgICAgICAgICAgZXJyID0gaTkxNV9nZW1fb2JqZWN0X3dhaXRfbWlncmF0aW9uKG9i
+aiwgMCk7Cj4gPiA+ID4gKyAgICAgICAgICAgICBpZiAoZXJyKQo+ID4gPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICBjb250aW51ZTsKPiA+ID4gPiArCj4gPiA+ID4gKyAgICAgICAgICAgICBlcnIg
+PSBpOTE1X2dlbV9vYmplY3RfcGluX3BhZ2VzKG9iaik7Cj4gPiA+ID4gKyAgICAgfQo+ID4gPiA+
+ICsKPiA+ID4gPiArICAgICByZXR1cm4gZXJyOwo+ID4gPiA+ICB9Cj4gPiA+ID4KPiA+ID4gPiAg
+c3RhdGljIHZvaWQgaTkxNV9nZW1fZG1hYnVmX2RldGFjaChzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVm
+LAo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3Rz
+L2k5MTVfZ2VtX2RtYWJ1Zi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9p
+OTE1X2dlbV9kbWFidWYuYwo+ID4gPiA+IGluZGV4IDNkYzBmOGIzY2RhYjAuLjRmN2U3N2IxYzAx
+NTIgMTAwNjQ0Cj4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0
+cy9pOTE1X2dlbV9kbWFidWYuYwo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
+bS9zZWxmdGVzdHMvaTkxNV9nZW1fZG1hYnVmLmMKPiA+ID4gPiBAQCAtMTA2LDcgKzEwNiw5IEBA
+IHN0YXRpYyBpbnQgaWd0X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXIodm9pZCAqYXJnKQo+ID4g
+PiA+ICAgICAgIGludCBlcnI7Cj4gPiA+ID4KPiA+ID4gPiAgICAgICBmb3JjZV9kaWZmZXJlbnRf
+ZGV2aWNlcyA9IHRydWU7Cj4gPiA+ID4gLSAgICAgb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0
+ZV9zaG1lbShpOTE1LCBQQUdFX1NJWkUpOwo+ID4gPiA+ICsgICAgIG9iaiA9IGk5MTVfZ2VtX29i
+amVjdF9jcmVhdGVfbG1lbShpOTE1LCBQQUdFX1NJWkUsIDApOwo+ID4gPgo+ID4gPiBJJ20gd29u
+ZGVyaW5nIChhbmQgY291bGRuJ3QgYW5zd2VyKSB3aGV0aGVyIHRoaXMgY3JlYXRlcyBhbiBsbWVt
+K3NtZW0KPiA+ID4gYnVmZmVyLCBzaW5jZSBpZiB3ZSBjcmVhdGUgYW4gbG1lbS1vbmx5IGJ1ZmZl
+ciB0aGVuIHRoZSBtaWdyYXRpb24gYWJvdmUKPiA+ID4gc2hvdWxkIGZhaWwuCj4gPgo+ID4gSXQn
+cyBsbWVtLW9ubHksIGJ1dCBpdCdzIGFsc28gYSBrZXJuZWwgaW50ZXJuYWwgb2JqZWN0LCBzbyB0
+aGUKPiA+IG1pZ3JhdGlvbiBwYXRoIHdpbGwgc3RpbGwgaGFwcGlseSBtaWdyYXRlIGl0IGlmIGFz
+a2VkLiBPbiB0aGUgb3RoZXIKPiA+IGhhbmQgaWYgaXQncyBhIHVzZXJzcGFjZSBvYmplY3QgdGhl
+biB3ZSBhbHdheXMgaGF2ZSB0byByZXNwZWN0IHRoZQo+ID4gcGxhY2VtZW50cy4KPiA+Cj4gPiBJ
+IHRoaW5rIGZvciBub3cgdGhlIG9ubHkgdXNlY2FzZSBmb3IgdGhhdCBpcyBpbiB0aGUgc2VsZnRl
+c3RzLgo+Cj4gWWVhaCBJJ3ZlIHJlYWQgdGhlIGtlcm5lbGRvYywgaXQncyBhbGwgbmljZWx5IGRv
+Y3VtZW50ZWQgYnV0IGZlZWxzIGEgYml0Cj4gZGFuZ2Vyb3VzLiBXaGF0IEkgcHJvcG9zZWQgb24g
+aXJjOgo+IC0gaTkxNV9nZW1fb2JqZWN0X21pZ3JhdGUgZG9lcyB0aGUgcGxhY2VtZW50IGNoZWNr
+LCBpLmUuIGFzIHN0cmljdCBhcwo+ICAgY2FuX21pZ3JhdGUuCj4gLSBBIG5ldyBfX2k5MTVfZ2Vt
+X29iamVjdF9taWdyYXRlIGlzIGZvciBzZWxmdGVzdCB0aGF0IGRvIHNwZWNpYWwgc3R1ZmYuCgpJ
+IGp1c3Qgc2VudCBvdXQgYSBwYXRjaCB3aGljaCBkb2VzIHRoaXMgZXhjZXB0IHdlIGRvbid0IGFj
+dHVhbGx5IG5lZWQKdGhlIF9fIHZlcnNpb24gYmVjYXVzZSB0aGVyZSBhcmUgbm8gc2VsZi10ZXN0
+cyB0aGF0IHdhbnQgdG8gZG8gYQpkYW5nZXJvdXMgbWlncmF0ZS4gIFdlIGNvdWxkIGFkZCBzdWNo
+IGEgaGVscGVyIGxhdGVyIGlmIHdlIG5lZWRlZC4KCj4gLSBJbiB0aGUgaW1wb3J0IHNlbGZ0ZXN0
+IHdlIGNoZWNrIHRoYXQgbG1lbS1vbmx5IGZhaWxzIChiZWNhdXNlIHdlIGNhbid0Cj4gICBwaW4g
+aXQgaW50byBzbWVtKSBmb3IgYSBub24tZHluYW1pYyBpbXBvcnRlciwgYnV0IGxtZW0rc21lbSB3
+b3JrcyBhbmQKPiAgIGdldHMgbWlncmF0ZWQuCgpJIHRoaW5rIHdlIG1heWJlIHdhbnQgbXVsdGlw
+bGUgdGhpbmdzIGhlcmU/ICBUaGUgdGVzdCB3ZSBoYXZlIHJpZ2h0Cm5vdyBpcyB1c2VmdWwgYmVj
+YXVzZSwgYnkgY3JlYXRpbmcgYW4gaW50ZXJuYWwgTE1FTSBidWZmZXIgd2UgZW5zdXJlCnRoYXQg
+dGhlIG1pZ3JhdGlvbiBhY3R1YWxseSBoYXBwZW5zLiAgSWYgd2UgY3JlYXRlIExNRU0rU01FTSwg
+dGhlbgppdCdzIHBvc3NpYmxlIGl0J2xsIHN0YXJ0IG9mZiBpbiBTTUVNIGFuZCB0aGUgbWlncmF0
+aW9uIHdvdWxkIGJlIGEKbm8tb3AuICBOb3Qgc3VyZSBob3cgbGlrZWx5IHRoYXQgaXMgaW4gcmVh
+bGl0eSBpbiBhIHNlbGYtdGVzdAplbnZpcm9ubWVudCwgdGhvdWdoLgoKLS1KYXNvbgoKPiAtIE9u
+Y2Ugd2UgaGF2ZSBkeW5hbWljIGRtYS1idWYgZm9yIHAycCBwY2ksIHRoZW4gd2UnbGwgaGF2ZSBh
+bm90aGVyCj4gICBzZWxmdGVzdCB3aGljaCBjaGVja3MgdGhhdCB0aGluZ3Mgd29yayBmb3IgbG1l
+bSBvbmx5IGlmIGFuZCBvbmx5IGlmIHRoZQo+ICAgaW1wb3J0ZXIgaXMgZHluYW1pYyBhbmQgaGFz
+IHNldCB0aGUgYWxsb3dfcDJwIGZsYWcuCj4KPiBXZSBjb3VsZCBhbHNvIGFkZCB0aGUgY2FuX21p
+Z3JhdGUgY2hlY2sgZXZlcnl3aGVyZSAoaW5jbHVkaW5nCj4gZG1hX2J1Zi0+YXR0YWNoKSwgYnV0
+IHRoYXQgZmVlbHMgbGlrZSB0aGUgbGVzcyBzYXZlIGFwaS4KPiAtRGFuaWVsCj4KPgo+ID4KPiA+
+ID4KPiA+ID4gV2hpY2ggSSdtIGFsc28gbm90IHN1cmUgd2UgaGF2ZSBhIHRlc3RjYXNlIGZvciB0
+aGF0IHRlc3RjYXNlIGVpdGhlciAuLi4KPiA+ID4KPiA+ID4gSSB0cmllZCB0byByZWFkIHNvbWUg
+Y29kZSBoZXJlLCBidXQgZ290IGEgYml0IGxvc3QuIElkZWFzPwo+ID4gPiAtRGFuaWVsCj4gPiA+
+Cj4gPiA+ID4gKyAgICAgaWYgKElTX0VSUihvYmopKQo+ID4gPiA+ICsgICAgICAgICAgICAgb2Jq
+ID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zaG1lbShpOTE1LCBQQUdFX1NJWkUpOwo+ID4gPiA+
+ICAgICAgIGlmIChJU19FUlIob2JqKSkKPiA+ID4gPiAgICAgICAgICAgICAgIGdvdG8gb3V0X3Jl
+dDsKPiA+ID4gPgo+ID4gPiA+IC0tCj4gPiA+ID4gMi4zMS4xCj4gPiA+ID4KPiA+ID4KPiA+ID4g
+LS0KPiA+ID4gRGFuaWVsIFZldHRlcgo+ID4gPiBTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29y
+cG9yYXRpb24KPiA+ID4gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKPgo+IC0tCj4gRGFuaWVsIFZldHRl
+cgo+IFNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgo+IGh0dHA6Ly9ibG9nLmZm
+d2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
