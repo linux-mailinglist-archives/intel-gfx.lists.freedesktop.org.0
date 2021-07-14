@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0795B3C7C95
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 05:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E23463C7CA6
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 05:16:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7E2D6E162;
-	Wed, 14 Jul 2021 03:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067D56E190;
+	Wed, 14 Jul 2021 03:16:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 516176E157
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 793606E160
  for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 03:15:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="210256258"
-X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="210256258"
+X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="210256259"
+X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="210256259"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 20:15:52 -0700
-X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="494031485"
+ 13 Jul 2021 20:15:53 -0700
+X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="494031492"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jul 2021 20:15:52 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Jul 2021 20:15:04 -0700
-Message-Id: <20210714031540.3539704-15-matthew.d.roper@intel.com>
+Date: Tue, 13 Jul 2021 20:15:05 -0700
+Message-Id: <20210714031540.3539704-16-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210714031540.3539704-1-matthew.d.roper@intel.com>
 References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 14/50] drm/i915/xehp: Loop over all gslices
- for INSTDONE processing
+Subject: [Intel-gfx] [PATCH v2 15/50] drm/i915/xehpsdv: add initial XeHP SDV
+ definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,226 +43,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Tomas Winkler <tomas.winkler@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We no longer have traditional slices on Xe_HP platforms, but the
-INSTDONE registers are replicated according to gslice representation
-which is similar.  We can mostly re-use the existing instdone code with
-just a few modifications:
-
- * Create an alternate instdone loop macro that will iterate over the
-   flat DSS space, but still provide the gslice/dss steering values for
-   compatibility with the legacy code.
-
- * We should allocate INSTDONE storage space according to the maximum
-   number of gslices rather than the maximum number of legacy slices to
-   ensure we have enough storage space to hold all of the values.  XeHP
-   design has 8 gslices, whereas older platforms never had more than 3
-   slices.
-
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 48 +++++++++++---------
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 12 ++++-
- drivers/gpu/drm/i915/gt/intel_sseu.h         |  7 +++
- drivers/gpu/drm/i915/i915_gpu_error.c        | 32 +++++++++----
- 4 files changed, 66 insertions(+), 33 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 6c2cb1400c8c..54a762356ca3 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1182,16 +1182,16 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
- 	u32 mmio_base = engine->mmio_base;
- 	int slice;
- 	int subslice;
-+	int iter;
- 
- 	memset(instdone, 0, sizeof(*instdone));
- 
--	switch (GRAPHICS_VER(i915)) {
--	default:
-+	if (GRAPHICS_VER(i915) >= 8) {
- 		instdone->instdone =
- 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
- 
- 		if (engine->id != RCS0)
--			break;
-+			return;
- 
- 		instdone->slice_common =
- 			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
-@@ -1201,21 +1201,32 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
- 			instdone->slice_common_extra[1] =
- 				intel_uncore_read(uncore, GEN12_SC_INSTDONE_EXTRA2);
- 		}
--		for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
--			instdone->sampler[slice][subslice] =
--				read_subslice_reg(engine, slice, subslice,
--						  GEN7_SAMPLER_INSTDONE);
--			instdone->row[slice][subslice] =
--				read_subslice_reg(engine, slice, subslice,
--						  GEN7_ROW_INSTDONE);
-+
-+		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-+			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice) {
-+				instdone->sampler[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_SAMPLER_INSTDONE);
-+				instdone->row[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_ROW_INSTDONE);
-+			}
-+		} else {
-+			for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
-+				instdone->sampler[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_SAMPLER_INSTDONE);
-+				instdone->row[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_ROW_INSTDONE);
-+			}
- 		}
--		break;
--	case 7:
-+	} else if (GRAPHICS_VER(i915) >= 7) {
- 		instdone->instdone =
- 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
- 
- 		if (engine->id != RCS0)
--			break;
-+			return;
- 
- 		instdone->slice_common =
- 			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
-@@ -1223,22 +1234,15 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
- 			intel_uncore_read(uncore, GEN7_SAMPLER_INSTDONE);
- 		instdone->row[0][0] =
- 			intel_uncore_read(uncore, GEN7_ROW_INSTDONE);
--
--		break;
--	case 6:
--	case 5:
--	case 4:
-+	} else if (GRAPHICS_VER(i915) >= 4) {
- 		instdone->instdone =
- 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
- 		if (engine->id == RCS0)
- 			/* HACK: Using the wrong struct member */
- 			instdone->slice_common =
- 				intel_uncore_read(uncore, GEN4_INSTDONE1);
--		break;
--	case 3:
--	case 2:
-+	} else {
- 		instdone->instdone = intel_uncore_read(uncore, GEN2_INSTDONE);
--		break;
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index e0b1cbdbadce..9d7cf9a062dc 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -78,8 +78,8 @@ struct intel_instdone {
- 	/* The following exist only in the RCS engine */
- 	u32 slice_common;
- 	u32 slice_common_extra[2];
--	u32 sampler[I915_MAX_SLICES][I915_MAX_SUBSLICES];
--	u32 row[I915_MAX_SLICES][I915_MAX_SUBSLICES];
-+	u32 sampler[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
-+	u32 row[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
- };
- 
- /*
-@@ -579,4 +579,12 @@ intel_engine_has_relative_mmio(const struct intel_engine_cs * const engine)
- 		for_each_if((instdone_has_slice(dev_priv_, sseu_, slice_)) && \
- 			    (instdone_has_subslice(dev_priv_, sseu_, slice_, \
- 						    subslice_)))
-+
-+#define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
-+	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
-+	     (iter_) < GEN_MAX_SUBSLICES; \
-+	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
-+	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
-+		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
-+
- #endif /* __INTEL_ENGINE_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
-index 1073471d1980..74487650b08f 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.h
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-@@ -26,6 +26,9 @@ struct drm_printer;
- #define GEN_DSS_PER_CSLICE	8
- #define GEN_DSS_PER_MSLICE	8
- 
-+#define GEN_MAX_GSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_GSLICE)
-+#define GEN_MAX_CSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_CSLICE)
-+
- struct sseu_dev_info {
- 	u8 slice_mask;
- 	u8 subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
-@@ -78,6 +81,10 @@ intel_sseu_has_subslice(const struct sseu_dev_info *sseu, int slice,
- 	u8 mask;
- 	int ss_idx = subslice / BITS_PER_BYTE;
- 
-+	if (slice >= sseu->max_slices ||
-+	    subslice >= sseu->max_subslices)
-+		return false;
-+
- 	GEM_BUG_ON(ss_idx >= sseu->ss_stride);
- 
- 	mask = sseu->subslice_mask[slice * sseu->ss_stride + ss_idx];
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index a2c58b54a592..c1e744b5ab47 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -444,15 +444,29 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
- 	if (GRAPHICS_VER(m->i915) <= 6)
- 		return;
- 
--	for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
--		err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
--			   slice, subslice,
--			   ee->instdone.sampler[slice][subslice]);
--
--	for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
--		err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
--			   slice, subslice,
--			   ee->instdone.row[slice][subslice]);
-+	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 50)) {
-+		int iter;
-+
-+		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
-+			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.sampler[slice][subslice]);
-+
-+		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
-+			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.row[slice][subslice]);
-+	} else {
-+		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
-+			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.sampler[slice][subslice]);
-+
-+		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
-+			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.row[slice][subslice]);
-+	}
- 
- 	if (GRAPHICS_VER(m->i915) < 12)
- 		return;
--- 
-2.25.4
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+CgpYZUhQIFNE
+ViBpcyBhIEludGVswq4gZEdQVSB3aXRob3V0IGRpc3BsYXkuIFRoaXMgaXMganVzdCB0aGUgZGVm
+aW5pdGlvbgpvZiBzb21lIGJhc2ljIHBsYXRmb3JtIG1hY3JvcywgYnkgbGFyZ2UgYSBjb3B5IG9m
+IGN1cnJlbnQgc3RhdGUgb2YKVGlnZXJsYWtlIHdoaWNoIGRvZXMgbm90IHJlZmxlY3QgdGhlIGVu
+ZCBzdGF0ZSBvZiB0aGlzIHBsYXRmb3JtLgoKdjI6CiAtIFN3aXRjaCB0byBpbnRlbF9zdGVwIGlu
+ZnJhc3RydWN0dXJlIGZvciBzdGVwcGluZyBtYXRjaGVzLiAoSmFuaSkKCkJzcGVjOiA0NDQ2Nywg
+NDgwNzcKQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KU2lnbmVkLW9m
+Zi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+ClNpZ25lZC1v
+ZmYtYnk6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRl
+bC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFA
+aW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBTdHVhcnQgU3VtbWVycyA8c3R1YXJ0LnN1bW1lcnNA
+aW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBUb21hcyBXaW5rbGVyIDx0b21hcy53aW5rbGVyQGlu
+dGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVs
+LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgIHwgIDQg
+KysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyAgICAgICAgICB8IDIwICsrKysr
+KysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5j
+IHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCB8ICAxICsK
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuYyAgICAgICAgfCAxMiArKysrKysrKysr
+Ky0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuaCAgICAgICAgfCAgMSArCiA2IGZp
+bGVzIGNoYW5nZWQsIDM4IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9kcnYuaAppbmRleCBlZmZiNTU1ZDE0ZjUuLjI0MTgxYWEzNmVmYiAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X2Rydi5oCkBAIC0xNDUzLDYgKzE0NTMsNyBAQCBJU19TVUJQTEFURk9STShjb25zdCBz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKICNkZWZpbmUgSVNfREcxKGRldl9wcml2KSAg
+ICAgICAgSVNfUExBVEZPUk0oZGV2X3ByaXYsIElOVEVMX0RHMSkKICNkZWZpbmUgSVNfQUxERVJM
+QUtFX1MoZGV2X3ByaXYpIElTX1BMQVRGT1JNKGRldl9wcml2LCBJTlRFTF9BTERFUkxBS0VfUykK
+ICNkZWZpbmUgSVNfQUxERVJMQUtFX1AoZGV2X3ByaXYpIElTX1BMQVRGT1JNKGRldl9wcml2LCBJ
+TlRFTF9BTERFUkxBS0VfUCkKKyNkZWZpbmUgSVNfWEVIUFNEVihkZXZfcHJpdikgSVNfUExBVEZP
+Uk0oZGV2X3ByaXYsIElOVEVMX1hFSFBTRFYpCiAjZGVmaW5lIElTX0hTV19FQVJMWV9TRFYoZGV2
+X3ByaXYpIChJU19IQVNXRUxMKGRldl9wcml2KSAmJiBcCiAJCQkJICAgIChJTlRFTF9ERVZJRChk
+ZXZfcHJpdikgJiAweEZGMDApID09IDB4MEMwMCkKICNkZWZpbmUgSVNfQkRXX1VMVChkZXZfcHJp
+dikgXApAQCAtMTYxMSw2ICsxNjEyLDkgQEAgSVNfU1VCUExBVEZPUk0oY29uc3Qgc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmk5MTUsCiAJKElTX0FMREVSTEFLRV9QKF9faTkxNSkgJiYgXAogCSBJ
+U19HVF9TVEVQKF9faTkxNSwgc2luY2UsIHVudGlsKSkKIAorI2RlZmluZSBJU19YRUhQU0RWX0dU
+X1NURVAocCwgc2luY2UsIHVudGlsKSBcCisJKElTX1hFSFBTRFYocCkgJiYgSVNfR1RfU1RFUChf
+X2k5MTUsIHNpbmNlLCB1bnRpbCkpCisKICNkZWZpbmUgSVNfTFAoZGV2X3ByaXYpCQkoSU5URUxf
+SU5GTyhkZXZfcHJpdiktPmlzX2xwKQogI2RlZmluZSBJU19HRU45X0xQKGRldl9wcml2KQkoR1JB
+UEhJQ1NfVkVSKGRldl9wcml2KSA9PSA5ICYmIElTX0xQKGRldl9wcml2KSkKICNkZWZpbmUgSVNf
+R0VOOV9CQyhkZXZfcHJpdikJKEdSQVBISUNTX1ZFUihkZXZfcHJpdikgPT0gOSAmJiAhSVNfTFAo
+ZGV2X3ByaXYpKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKaW5kZXggNjVjYmFiMWMxYTE1Li4wN2M1
+N2Q4ZjNhOWMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYwpAQCAtMTAyMCw2ICsxMDIwLDI2IEBA
+IHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gYWRsX3BfaW5mbyA9IHsKIAku
+cHBndHRfc2l6ZSA9IDQ4LCBcCiAJLnBwZ3R0X3R5cGUgPSBJTlRFTF9QUEdUVF9GVUxMCiAKKyNk
+ZWZpbmUgWEVfSFBNX0ZFQVRVUkVTIFwKKwkubWVkaWFfdmVyID0gMTIsIFwKKwkubWVkaWFfcmVs
+ID0gNTAKKworX19tYXliZV91bnVzZWQKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNl
+X2luZm8geGVocHNkdl9pbmZvID0geworCVhFX0hQX0ZFQVRVUkVTLAorCVhFX0hQTV9GRUFUVVJF
+UywKKwlER0ZYX0ZFQVRVUkVTLAorCVBMQVRGT1JNKElOVEVMX1hFSFBTRFYpLAorCS5kaXNwbGF5
+ID0geyB9LAorCS5waXBlX21hc2sgPSAwLAorCS5wbGF0Zm9ybV9lbmdpbmVfbWFzayA9CisJCUJJ
+VChSQ1MwKSB8IEJJVChCQ1MwKSB8CisJCUJJVChWRUNTMCkgfCBCSVQoVkVDUzEpIHwgQklUKFZF
+Q1MyKSB8IEJJVChWRUNTMykgfAorCQlCSVQoVkNTMCkgfCBCSVQoVkNTMSkgfCBCSVQoVkNTMikg
+fCBCSVQoVkNTMykgfAorCQlCSVQoVkNTNCkgfCBCSVQoVkNTNSkgfCBCSVQoVkNTNikgfCBCSVQo
+VkNTNyksCisJLnJlcXVpcmVfZm9yY2VfcHJvYmUgPSAxLAorfTsKKwogI3VuZGVmIFBMQVRGT1JN
+CiAKIC8qCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5m
+by5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYwppbmRleCBkMmE1
+MTRkMjU1MWQuLmI3NTBmOWRlZDlkNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aW50ZWxfZGV2aWNlX2luZm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZp
+Y2VfaW5mby5jCkBAIC02OCw2ICs2OCw3IEBAIHN0YXRpYyBjb25zdCBjaGFyICogY29uc3QgcGxh
+dGZvcm1fbmFtZXNbXSA9IHsKIAlQTEFURk9STV9OQU1FKERHMSksCiAJUExBVEZPUk1fTkFNRShB
+TERFUkxBS0VfUyksCiAJUExBVEZPUk1fTkFNRShBTERFUkxBS0VfUCksCisJUExBVEZPUk1fTkFN
+RShYRUhQU0RWKSwKIH07CiAjdW5kZWYgUExBVEZPUk1fTkFNRQogCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaW50ZWxfZGV2aWNlX2luZm8uaAppbmRleCA3NWM2OWNmYjExZjIuLjY5MGEwZDI4MTJiYiAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaAorKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oCkBAIC04OCw2ICs4OCw3
+IEBAIGVudW0gaW50ZWxfcGxhdGZvcm0gewogCUlOVEVMX0RHMSwKIAlJTlRFTF9BTERFUkxBS0Vf
+UywKIAlJTlRFTF9BTERFUkxBS0VfUCwKKwlJTlRFTF9YRUhQU0RWLAogCUlOVEVMX01BWF9QTEFU
+Rk9STVMKIH07CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuYwppbmRleCBiYTk0NzlhNjc1MjEu
+LmEyN2E0MWNhZWQ3MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc3Rl
+cC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuYwpAQCAtNTQsNiArNTQs
+MTMgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9zdGVwX2luZm8gYWRscF9yZXZpZF9zdGVw
+X3RibFtdID0gewogCVsweENdID0geyAuZ3Rfc3RlcCA9IFNURVBfQzAsIC5kaXNwbGF5X3N0ZXAg
+PSBTVEVQX0QwIH0sCiB9OwogCitzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX3N0ZXBfaW5mbyB4
+ZWhwc2R2X3JldmlkX3N0ZXBfdGJsW10gPSB7CisJWzB4MF0gPSB7IC5ndF9zdGVwID0gU1RFUF9B
+MCB9LAorCVsweDFdID0geyAuZ3Rfc3RlcCA9IFNURVBfQTEgfSwKKwlbMHg0XSA9IHsgLmd0X3N0
+ZXAgPSBTVEVQX0IwIH0sCisJWzB4OF0gPSB7IC5ndF9zdGVwID0gU1RFUF9DMCB9LAorfTsKKwog
+dm9pZCBpbnRlbF9zdGVwX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCiB7CiAJ
+Y29uc3Qgc3RydWN0IGludGVsX3N0ZXBfaW5mbyAqcmV2aWRzID0gTlVMTDsKQEAgLTYxLDcgKzY4
+LDEwIEBAIHZvaWQgaW50ZWxfc3RlcF9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
+KQogCWludCByZXZpZCA9IElOVEVMX1JFVklEKGk5MTUpOwogCXN0cnVjdCBpbnRlbF9zdGVwX2lu
+Zm8gc3RlcCA9IHt9OwogCi0JaWYgKElTX0FMREVSTEFLRV9QKGk5MTUpKSB7CisJaWYgKElTX1hF
+SFBTRFYoaTkxNSkpIHsKKwkJcmV2aWRzID0geGVocHNkdl9yZXZpZF9zdGVwX3RibDsKKwkJc2l6
+ZSA9IEFSUkFZX1NJWkUoeGVocHNkdl9yZXZpZF9zdGVwX3RibCk7CisJfSBlbHNlIGlmIChJU19B
+TERFUkxBS0VfUChpOTE1KSkgewogCQlyZXZpZHMgPSBhZGxwX3JldmlkX3N0ZXBfdGJsOwogCQlz
+aXplID0gQVJSQVlfU0laRShhZGxwX3JldmlkX3N0ZXBfdGJsKTsKIAl9IGVsc2UgaWYgKElTX0FM
+REVSTEFLRV9TKGk5MTUpKSB7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
+bF9zdGVwLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zdGVwLmgKaW5kZXggOTU4YThi
+YjVkNjc3Li44ZWZhY2VmNmFiMzEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
+dGVsX3N0ZXAuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zdGVwLmgKQEAgLTIy
+LDYgKzIyLDcgQEAgc3RydWN0IGludGVsX3N0ZXBfaW5mbyB7CiBlbnVtIGludGVsX3N0ZXAgewog
+CVNURVBfTk9ORSA9IDAsCiAJU1RFUF9BMCwKKwlTVEVQX0ExLAogCVNURVBfQTIsCiAJU1RFUF9C
+MCwKIAlTVEVQX0IxLAotLSAKMi4yNS40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
