@@ -1,51 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7515F3C8AB7
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 20:20:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5575D3C8B0B
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 20:36:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4515F6E235;
-	Wed, 14 Jul 2021 18:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43A286E48C;
+	Wed, 14 Jul 2021 18:36:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B34C89C83;
- Wed, 14 Jul 2021 18:20:55 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 4ED02C8007F;
- Wed, 14 Jul 2021 20:20:54 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id 2zIN8GVCgxDm; Wed, 14 Jul 2021 20:20:54 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f13:3500:839f:11f6:c93a:c68b]
- (p200300E37F133500839f11f6c93ac68b.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f13:3500:839f:11f6:c93a:c68b])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id E2C1EC8007C;
- Wed, 14 Jul 2021 20:20:52 +0200 (CEST)
-To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, emil.l.velikov@gmail.com
-References: <20210630151018.330354-1-wse@tuxedocomputers.com>
- <20210630151018.330354-18-wse@tuxedocomputers.com>
-From: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <206d45be-86d9-9cc3-0b4a-317342221988@tuxedocomputers.com>
-Date: Wed, 14 Jul 2021 20:20:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com
+ [IPv6:2607:f8b0:4864:20::b2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B5706E48C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 18:36:02 +0000 (UTC)
+Received: by mail-yb1-xb2a.google.com with SMTP id v189so4799815ybg.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 11:36:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sVwpgAHBgUByxa7vuycl4nmQL2oT3G+a60Sxtv61ZPE=;
+ b=eYnFS2gOr5w4i1mi88QD8ubf8R7hN/fTcBGDaHKIarfFH3RdGrkS6eKDWl3ghDBnyK
+ xkgY8AWn4xvJMRIuTZHE+89NsJhuDL95p0L1qlAwETsaDoD9zjENNqYzV/pgBACXfeeF
+ Pnx0Pesg/H5V1HpPoPfPj5R6tPAg48sWXdEPgFjbShHqlFOTYEBUDaaeYYZ/J1ovnFxF
+ HWhFBRs0EdW3fRvsjSVuvh980utGCJjOz3Y+VmB/4onwRjd22y0e1NNP9vVFA0i50aiW
+ cPcQGfy+zsZWvPDt6xQu88bYqnWOIFvVPmy5AWYS7MACJunnrW3KmCr4UXCb+b1xDbP9
+ 2FhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sVwpgAHBgUByxa7vuycl4nmQL2oT3G+a60Sxtv61ZPE=;
+ b=SJ77rjwG7SVnKHopGYbcOaxVpVit9hrfJ46XG4SnWuVEvFbXFAN9+i/HGNWpb6ncXy
+ bWOazDPcp10YAe+5jw+QRkSVNTdanIyGB7mZWk7/E0XvZstnf5pJkHLTpzcvqkbGwwks
+ OXCWFAPonQQI5K4vPMLC9gBigJcmiFxjdps9EWhsqlyYFeb3YDaJxZzQZY8UlRbz/LWJ
+ 2450uSV9QO6ergLKH6KEb75uXbFtMUeFgg5451Dlds6TbquwmeDqXndSVX1+tu9ro2pm
+ rMmAdu6Y/gO+4r7LLPFHwKr8BohnHYr/RXSJlOQajhfmgvAtG+2LSlHL1D9vBeR6l/LX
+ zP8Q==
+X-Gm-Message-State: AOAM532XzxipTBM7No3KHm2C0AoVSmcvcnWRpta65GxpNG7PLp8kOL5S
+ Gijrf7mz5O5J68/22ivxF4e57Rgfu5Y3bpfFM8FPMQ==
+X-Google-Smtp-Source: ABdhPJydXfu6Fi6f+hBcnPFPjaFufC8dBQ1NQS0D/JpVYz70djnsUCwyQPfHkySp19d7QwzaKprcrcMX6Rm6NSr9J3Y=
+X-Received: by 2002:a25:7647:: with SMTP id r68mr14860950ybc.432.1626287761537; 
+ Wed, 14 Jul 2021 11:36:01 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210630151018.330354-18-wse@tuxedocomputers.com>
-Content-Language: de-DE
-Subject: Re: [Intel-gfx] [PATCH v5 17/17] drm/amd/display: Add handling for
- new "Broadcast RGB" property
+References: <20210714100323.752828-1-maarten.lankhorst@linux.intel.com>
+ <CAOFGe96ScooLy0sahtTi=E_At+J8N+o+uUNCt2jcsMzq+Jc9sw@mail.gmail.com>
+ <a7b6c71b-ddd7-ec6e-642c-b6e2c947c578@linux.intel.com>
+In-Reply-To: <a7b6c71b-ddd7-ec6e-642c-b6e2c947c578@linux.intel.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Wed, 14 Jul 2021 13:35:50 -0500
+Message-ID: <CAOFGe94OpuJ45PQYZjXwO-SKTrQtf2ao0dYUSbwNckcqA5YtZQ@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add TTM offset argument to mmap.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,92 +63,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 30.06.21 um 17:10 schrieb Werner Sembach:
-> This commit implements the "Broadcast RGB" drm property for the AMD GPU
-> driver.
+On Wed, Jul 14, 2021 at 12:05 PM Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
 >
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 14 +++++++++++---
->   .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  4 ++++
->   2 files changed, 15 insertions(+), 3 deletions(-)
+> Op 14-07-2021 om 18:17 schreef Jason Ekstrand:
+> > On Wed, Jul 14, 2021 at 5:03 AM Maarten Lankhorst
+> > <maarten.lankhorst@linux.intel.com> wrote:
+> >> The FIXED mapping is only used for ttm, and tells userspace that the
+> >> mapping type is pre-defined. This disables the other type of mmap
+> >> offsets when discrete memory is used, so fix the selftests as well.
+> >>
+> >> Document the struct as well, so it shows up in docbook.
+> >>
+> >> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> >> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> >> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 17 ++++++-
+> >>  .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
+> >>  .../drm/i915/gem/selftests/i915_gem_mman.c    | 27 ++++++++++-
+> >>  include/uapi/drm/i915_drm.h                   | 46 ++++++++++++++-----
+> >>  4 files changed, 77 insertions(+), 14 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> >> index a90f796e85c0..31c4021bb6be 100644
+> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> >> @@ -679,10 +679,16 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
+> >>                 return -ENODEV;
+> >>
+> >>         if (obj->ops->mmap_offset)  {
+> >> +               if (mmap_type != I915_MMAP_TYPE_FIXED)
+> >> +                       return -ENODEV;
+> >> +
+> >>                 *offset = obj->ops->mmap_offset(obj);
+> >>                 return 0;
+> >>         }
+> >>
+> >> +       if (mmap_type == I915_MMAP_TYPE_FIXED)
+> >> +               return -ENODEV;
+> >> +
+> >>         if (mmap_type != I915_MMAP_TYPE_GTT &&
+> >>             !i915_gem_object_has_struct_page(obj) &&
+> >>             !i915_gem_object_has_iomem(obj))
+> >> @@ -727,7 +733,9 @@ i915_gem_dumb_mmap_offset(struct drm_file *file,
+> >>  {
+> >>         enum i915_mmap_type mmap_type;
+> >>
+> >> -       if (boot_cpu_has(X86_FEATURE_PAT))
+> >> +       if (HAS_LMEM(to_i915(dev)))
+> >> +               mmap_type = I915_MMAP_TYPE_FIXED;
+> >> +       else if (boot_cpu_has(X86_FEATURE_PAT))
+> >>                 mmap_type = I915_MMAP_TYPE_WC;
+> >>         else if (!i915_ggtt_has_aperture(&to_i915(dev)->ggtt))
+> >>                 return -ENODEV;
+> >> @@ -798,6 +806,10 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+> >>                 type = I915_MMAP_TYPE_UC;
+> >>                 break;
+> >>
+> >> +       case I915_MMAP_OFFSET_FIXED:
+> >> +               type = I915_MMAP_TYPE_FIXED;
+> >> +               break;
+> >> +
+> >>         default:
+> >>                 return -EINVAL;
+> >>         }
+> >> @@ -968,6 +980,9 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+> >>                 vma->vm_ops = &vm_ops_cpu;
+> >>                 break;
+> >>
+> >> +       case I915_MMAP_TYPE_FIXED:
+> >> +               GEM_WARN_ON(1);
+> >> +               /* fall-through */
+> >>         case I915_MMAP_TYPE_WB:
+> >>                 vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+> >>                 vma->vm_ops = &vm_ops_cpu;
+> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> >> index ef3de2ae9723..afbadfc5516b 100644
+> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+> >> @@ -105,6 +105,7 @@ enum i915_mmap_type {
+> >>         I915_MMAP_TYPE_WC,
+> >>         I915_MMAP_TYPE_WB,
+> >>         I915_MMAP_TYPE_UC,
+> >> +       I915_MMAP_TYPE_FIXED,
+> >>  };
+> >>
+> >>  struct i915_mmap_offset {
+> >> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> >> index 1da8bd675e54..52789c8ad337 100644
+> >> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> >> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+> >> @@ -573,6 +573,14 @@ static int make_obj_busy(struct drm_i915_gem_object *obj)
+> >>         return 0;
+> >>  }
+> >>
+> >> +static enum i915_mmap_type default_mapping(struct drm_i915_private *i915)
+> >> +{
+> >> +       if (HAS_LMEM(i915))
+> >> +               return I915_MMAP_TYPE_FIXED;
+> >> +
+> >> +       return I915_MMAP_TYPE_GTT;
+> >> +}
+> >> +
+> >>  static bool assert_mmap_offset(struct drm_i915_private *i915,
+> >>                                unsigned long size,
+> >>                                int expected)
+> >> @@ -585,7 +593,7 @@ static bool assert_mmap_offset(struct drm_i915_private *i915,
+> >>         if (IS_ERR(obj))
+> >>                 return expected && expected == PTR_ERR(obj);
+> >>
+> >> -       ret = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
+> >> +       ret = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
+> >>         i915_gem_object_put(obj);
+> >>
+> >>         return ret == expected;
+> >> @@ -689,7 +697,7 @@ static int igt_mmap_offset_exhaustion(void *arg)
+> >>                 goto out;
+> >>         }
+> >>
+> >> -       err = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
+> >> +       err = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
+> >>         if (err) {
+> >>                 pr_err("Unable to insert object into reclaimed hole\n");
+> >>                 goto err_obj;
+> >> @@ -831,8 +839,14 @@ static int wc_check(struct drm_i915_gem_object *obj)
+> >>
+> >>  static bool can_mmap(struct drm_i915_gem_object *obj, enum i915_mmap_type type)
+> >>  {
+> >> +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
+> >>         bool no_map;
+> >>
+> >> +       if (HAS_LMEM(i915))
+> >> +               return type == I915_MMAP_TYPE_FIXED;
+> >> +       else if (type == I915_MMAP_TYPE_FIXED)
+> >> +               return false;
+> >> +
+> >>         if (type == I915_MMAP_TYPE_GTT &&
+> >>             !i915_ggtt_has_aperture(&to_i915(obj->base.dev)->ggtt))
+> >>                 return false;
+> >> @@ -970,6 +984,8 @@ static int igt_mmap(void *arg)
+> >>                         err = __igt_mmap(i915, obj, I915_MMAP_TYPE_GTT);
+> >>                         if (err == 0)
+> >>                                 err = __igt_mmap(i915, obj, I915_MMAP_TYPE_WC);
+> >> +                       if (err == 0)
+> >> +                               err = __igt_mmap(i915, obj, I915_MMAP_TYPE_FIXED);
+> >>
+> >>                         i915_gem_object_put(obj);
+> >>                         if (err)
+> >> @@ -987,6 +1003,7 @@ static const char *repr_mmap_type(enum i915_mmap_type type)
+> >>         case I915_MMAP_TYPE_WB: return "wb";
+> >>         case I915_MMAP_TYPE_WC: return "wc";
+> >>         case I915_MMAP_TYPE_UC: return "uc";
+> >> +       case I915_MMAP_TYPE_FIXED: return "ttm";
+> > fixed?
+> >
+> > Otherwise, I trolled through the patch and everything looks good.  I
+> > don't know the code well enough to know if you missed anything but
+> > what you have seems sane.
+> >
+> > Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+> >
+> > I suppose you'll be wanting a couple mesa patches to go with this?  I
+> > can try and knock something out today.
 >
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 02a5809d4993..80d5a11fb0c5 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -5247,7 +5247,8 @@ get_aspect_ratio(const struct drm_display_mode *mode_in)
->   }
->   
->   static enum dc_color_space
-> -get_output_color_space(const struct dc_crtc_timing *dc_crtc_timing)
-> +get_output_color_space(const struct dc_crtc_timing *dc_crtc_timing,
-> +		       enum drm_mode_color_range preferred_color_range)
->   {
->   	enum dc_color_space color_space = COLOR_SPACE_SRGB;
->   
-> @@ -5278,7 +5279,10 @@ get_output_color_space(const struct dc_crtc_timing *dc_crtc_timing)
->   	}
->   	break;
->   	case PIXEL_ENCODING_RGB:
-> -		color_space = COLOR_SPACE_SRGB;
-> +		if (preferred_color_range == DRM_MODE_COLOR_RANGE_LIMITED_16_235)
-> +			color_space = COLOR_SPACE_SRGB_LIMITED;
-> +		else
-> +			color_space = COLOR_SPACE_SRGB;
->   		break;
+> Yes please! IGT probably needs fixing too. I can probably take a look at that.
 
-After some testing I found out, that what I did here, was useless.
+As promised: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/11888
 
-amdgpu actually never sets the quantization_range range in the 
-hdmi_avi_infoframe and from that I guess any quantization range, besides 
-the default one, is not implemented in multiple places
+As usual, we should make sure those are reviewed and we're happy with
+them before we land the uAPI but it was easy enough to wire up.
 
-Until limited RGB is properly implemented in amdgpu there kind of is no 
-purpose of generalizing the Broadcast RGB switch.
-
->   
->   	default:
-> @@ -5424,7 +5428,10 @@ static void fill_stream_properties_from_drm_display_mode(
->   
->   	timing_out->aspect_ratio = get_aspect_ratio(mode_in);
->   
-> -	stream->output_color_space = get_output_color_space(timing_out);
-> +	stream->output_color_space = get_output_color_space(timing_out,
-> +							    connector_state ?
-> +							    connector_state->preferred_color_range :
-> +							    DRM_MODE_COLOR_RANGE_UNSET);
->   
->   	stream->out_transfer_func->type = TF_TYPE_PREDEFINED;
->   	stream->out_transfer_func->tf = TRANSFER_FUNCTION_SRGB;
-> @@ -7775,6 +7782,7 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
->   		drm_connector_attach_active_bpc_property(&aconnector->base, 8, 16);
->   		drm_connector_attach_preferred_color_format_property(&aconnector->base);
->   		drm_connector_attach_active_color_format_property(&aconnector->base);
-> +		drm_connector_attach_preferred_color_range_property(&aconnector->base);
->   		drm_connector_attach_active_color_range_property(&aconnector->base);
->   	}
->   
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 2563788ba95a..80e1389fd0ec 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -421,6 +421,10 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
->   	if (connector->active_color_format_property)
->   		drm_connector_attach_active_color_format_property(&aconnector->base);
->   
-> +	connector->preferred_color_range_property = master->base.preferred_color_range_property;
-> +	if (connector->preferred_color_range_property)
-> +		drm_connector_attach_preferred_color_range_property(&aconnector->base);
-> +
->   	connector->active_color_range_property = master->base.active_color_range_property;
->   	if (connector->active_color_range_property)
->   		drm_connector_attach_active_color_range_property(&aconnector->base);
+--Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
