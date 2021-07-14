@@ -1,39 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4510F3C894D
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 19:05:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7B803C8A1B
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 19:51:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C83B6E433;
-	Wed, 14 Jul 2021 17:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E42FE6E456;
+	Wed, 14 Jul 2021 17:51:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09D5D6E433
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 17:05:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="232205659"
-X-IronPort-AV: E=Sophos;i="5.84,239,1620716400"; d="scan'208";a="232205659"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2021 10:05:16 -0700
-X-IronPort-AV: E=Sophos;i="5.84,239,1620716400"; d="scan'208";a="505387003"
-Received: from aghandou-mobl.ger.corp.intel.com (HELO [10.249.44.49])
- ([10.249.44.49])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2021 10:05:15 -0700
-To: Jason Ekstrand <jason@jlekstrand.net>
-References: <20210714100323.752828-1-maarten.lankhorst@linux.intel.com>
- <CAOFGe96ScooLy0sahtTi=E_At+J8N+o+uUNCt2jcsMzq+Jc9sw@mail.gmail.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <a7b6c71b-ddd7-ec6e-642c-b6e2c947c578@linux.intel.com>
-Date: Wed, 14 Jul 2021 19:05:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com
+ [IPv6:2607:f8b0:4864:20::130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DAD56E456;
+ Wed, 14 Jul 2021 17:51:47 +0000 (UTC)
+Received: by mail-il1-x130.google.com with SMTP id b6so2430940iln.12;
+ Wed, 14 Jul 2021 10:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6easdx0Ab/n6kI4HD5metQAor9SuXg8otRFVzJJxle0=;
+ b=BzNMSon0mZrh8FKzu/6WP+Uh4v5AZXNVz1pRhPxi5w0rxnuLhX0hBULPjGr3zIak6l
+ ATN3STubFI7O2zaPqJyww99Fxu+UNlMRer1XqB6Yz03cQIupVB3zL67os77YIp/SkxhA
+ Ce3ztRb5cSG8VUtEguS4gq0hSjxlDqcoCiZm9Nua5EVuoN+KOJHdIIZC4upy5zMnQSM1
+ 5ofEhogN/WuBBagvKpT0M2iweWKeayjSzF/KaDKi6wC3j/TBAEfB99wL5iesoV3NiCqz
+ sb4Awee5TH7sPPbZKX0/Uch9pu2qgoQ3DkYFXHktcqgQfmd7oHRUcJDYqJBSJCdI5PBg
+ jrPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=6easdx0Ab/n6kI4HD5metQAor9SuXg8otRFVzJJxle0=;
+ b=OWJXjNcsT2tTQCWh5KFaQKzmypWv3SAf1gghCpJK5CtlgwQmVVM6615P8riVD4wGEP
+ /VcMdfQkL0BAH2S/xyv0ZPBvqu4iVVRBXicYIvuIVbHKnuuMEknrfZ8TSDn1Hdwlj+CN
+ 3GI1vQxNzSofyGZX/fzpsQ13jxXGl7mLJ4Iel3MqhEGLxfpzYVvYQmRoy8CfXNz/X/Xf
+ o8JCqJo23/U93UX63LFD9XNbMoD6Q856LoykNWUWk1kOyEH6KGNp2CnNgZif1nJJR0pU
+ S1cd8mM4Re7WL2M6cXSguLYnJdWdRMRPpGf4kqIyoJmTiFOWZE7iyl9Eza8Fx49yIUoJ
+ cDIw==
+X-Gm-Message-State: AOAM532ui6YhYO/mDr0VHEGs8+3TyESluRdxHBMyjEX+W6TRBUl8A3K5
+ EEYr56DDDaTjGFGRbJ2x5Vw=
+X-Google-Smtp-Source: ABdhPJw/9JKeTpShohE+rQpOQYVy3HmTkj9zYna2y2zmzHKctVytOjzd8p4LIP+TePxldUKJQUXOrQ==
+X-Received: by 2002:a92:1944:: with SMTP id e4mr7341674ilm.186.1626285107111; 
+ Wed, 14 Jul 2021 10:51:47 -0700 (PDT)
+Received: from frodo.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
+ by smtp.googlemail.com with ESMTPSA id b16sm706518ioh.5.2021.07.14.10.51.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 Jul 2021 10:51:46 -0700 (PDT)
+From: Jim Cromie <jim.cromie@gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 14 Jul 2021 11:51:33 -0600
+Message-Id: <20210714175138.319514-1-jim.cromie@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <CAOFGe96ScooLy0sahtTi=E_At+J8N+o+uUNCt2jcsMzq+Jc9sw@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add TTM offset argument to mmap.
+Subject: [Intel-gfx] [PATCH v3 0/5] drm: use dyndbg in drm_print
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,176 +72,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel GFX <intel-gfx@lists.freedesktop.org>
+Cc: Jim Cromie <jim.cromie@gmail.com>, jbaron@akamai.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 14-07-2021 om 18:17 schreef Jason Ekstrand:
-> On Wed, Jul 14, 2021 at 5:03 AM Maarten Lankhorst
-> <maarten.lankhorst@linux.intel.com> wrote:
->> The FIXED mapping is only used for ttm, and tells userspace that the
->> mapping type is pre-defined. This disables the other type of mmap
->> offsets when discrete memory is used, so fix the selftests as well.
->>
->> Document the struct as well, so it shows up in docbook.
->>
->> Cc: Jason Ekstrand <jason@jlekstrand.net>
->> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 17 ++++++-
->>  .../gpu/drm/i915/gem/i915_gem_object_types.h  |  1 +
->>  .../drm/i915/gem/selftests/i915_gem_mman.c    | 27 ++++++++++-
->>  include/uapi/drm/i915_drm.h                   | 46 ++++++++++++++-----
->>  4 files changed, 77 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> index a90f796e85c0..31c4021bb6be 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> @@ -679,10 +679,16 @@ __assign_mmap_offset(struct drm_i915_gem_object *obj,
->>                 return -ENODEV;
->>
->>         if (obj->ops->mmap_offset)  {
->> +               if (mmap_type != I915_MMAP_TYPE_FIXED)
->> +                       return -ENODEV;
->> +
->>                 *offset = obj->ops->mmap_offset(obj);
->>                 return 0;
->>         }
->>
->> +       if (mmap_type == I915_MMAP_TYPE_FIXED)
->> +               return -ENODEV;
->> +
->>         if (mmap_type != I915_MMAP_TYPE_GTT &&
->>             !i915_gem_object_has_struct_page(obj) &&
->>             !i915_gem_object_has_iomem(obj))
->> @@ -727,7 +733,9 @@ i915_gem_dumb_mmap_offset(struct drm_file *file,
->>  {
->>         enum i915_mmap_type mmap_type;
->>
->> -       if (boot_cpu_has(X86_FEATURE_PAT))
->> +       if (HAS_LMEM(to_i915(dev)))
->> +               mmap_type = I915_MMAP_TYPE_FIXED;
->> +       else if (boot_cpu_has(X86_FEATURE_PAT))
->>                 mmap_type = I915_MMAP_TYPE_WC;
->>         else if (!i915_ggtt_has_aperture(&to_i915(dev)->ggtt))
->>                 return -ENODEV;
->> @@ -798,6 +806,10 @@ i915_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
->>                 type = I915_MMAP_TYPE_UC;
->>                 break;
->>
->> +       case I915_MMAP_OFFSET_FIXED:
->> +               type = I915_MMAP_TYPE_FIXED;
->> +               break;
->> +
->>         default:
->>                 return -EINVAL;
->>         }
->> @@ -968,6 +980,9 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
->>                 vma->vm_ops = &vm_ops_cpu;
->>                 break;
->>
->> +       case I915_MMAP_TYPE_FIXED:
->> +               GEM_WARN_ON(1);
->> +               /* fall-through */
->>         case I915_MMAP_TYPE_WB:
->>                 vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
->>                 vma->vm_ops = &vm_ops_cpu;
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> index ef3de2ae9723..afbadfc5516b 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->> @@ -105,6 +105,7 @@ enum i915_mmap_type {
->>         I915_MMAP_TYPE_WC,
->>         I915_MMAP_TYPE_WB,
->>         I915_MMAP_TYPE_UC,
->> +       I915_MMAP_TYPE_FIXED,
->>  };
->>
->>  struct i915_mmap_offset {
->> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->> index 1da8bd675e54..52789c8ad337 100644
->> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
->> @@ -573,6 +573,14 @@ static int make_obj_busy(struct drm_i915_gem_object *obj)
->>         return 0;
->>  }
->>
->> +static enum i915_mmap_type default_mapping(struct drm_i915_private *i915)
->> +{
->> +       if (HAS_LMEM(i915))
->> +               return I915_MMAP_TYPE_FIXED;
->> +
->> +       return I915_MMAP_TYPE_GTT;
->> +}
->> +
->>  static bool assert_mmap_offset(struct drm_i915_private *i915,
->>                                unsigned long size,
->>                                int expected)
->> @@ -585,7 +593,7 @@ static bool assert_mmap_offset(struct drm_i915_private *i915,
->>         if (IS_ERR(obj))
->>                 return expected && expected == PTR_ERR(obj);
->>
->> -       ret = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
->> +       ret = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
->>         i915_gem_object_put(obj);
->>
->>         return ret == expected;
->> @@ -689,7 +697,7 @@ static int igt_mmap_offset_exhaustion(void *arg)
->>                 goto out;
->>         }
->>
->> -       err = __assign_mmap_offset(obj, I915_MMAP_TYPE_GTT, &offset, NULL);
->> +       err = __assign_mmap_offset(obj, default_mapping(i915), &offset, NULL);
->>         if (err) {
->>                 pr_err("Unable to insert object into reclaimed hole\n");
->>                 goto err_obj;
->> @@ -831,8 +839,14 @@ static int wc_check(struct drm_i915_gem_object *obj)
->>
->>  static bool can_mmap(struct drm_i915_gem_object *obj, enum i915_mmap_type type)
->>  {
->> +       struct drm_i915_private *i915 = to_i915(obj->base.dev);
->>         bool no_map;
->>
->> +       if (HAS_LMEM(i915))
->> +               return type == I915_MMAP_TYPE_FIXED;
->> +       else if (type == I915_MMAP_TYPE_FIXED)
->> +               return false;
->> +
->>         if (type == I915_MMAP_TYPE_GTT &&
->>             !i915_ggtt_has_aperture(&to_i915(obj->base.dev)->ggtt))
->>                 return false;
->> @@ -970,6 +984,8 @@ static int igt_mmap(void *arg)
->>                         err = __igt_mmap(i915, obj, I915_MMAP_TYPE_GTT);
->>                         if (err == 0)
->>                                 err = __igt_mmap(i915, obj, I915_MMAP_TYPE_WC);
->> +                       if (err == 0)
->> +                               err = __igt_mmap(i915, obj, I915_MMAP_TYPE_FIXED);
->>
->>                         i915_gem_object_put(obj);
->>                         if (err)
->> @@ -987,6 +1003,7 @@ static const char *repr_mmap_type(enum i915_mmap_type type)
->>         case I915_MMAP_TYPE_WB: return "wb";
->>         case I915_MMAP_TYPE_WC: return "wc";
->>         case I915_MMAP_TYPE_UC: return "uc";
->> +       case I915_MMAP_TYPE_FIXED: return "ttm";
-> fixed?
->
-> Otherwise, I trolled through the patch and everything looks good.  I
-> don't know the code well enough to know if you missed anything but
-> what you have seems sane.
->
-> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
->
-> I suppose you'll be wanting a couple mesa patches to go with this?  I
-> can try and knock something out today.
+hi dri-devel,
+
+Im pretty new in this particular playground.
+Im using this to send, is it too spammy ? too --to ?
+   git send-email --dry-run \
+   --to-cmd='scripts/get_maintainer.pl --no-rolestats v3-000*.patch' \
+   --to=jbaron@akamai.com v3-000*.patch
+
+drm_debug_enabled() is called a lot (by drm_dev_dbg) to do unlikely
+bit-tests to selectively enable debug printing; this is a good job for
+dynamic-debug, IFF it is built with JUMP_LABEL.
+ 
+This patchset enables the use of dynamic-debug to avoid those
+drm_debug_enabled() overheads, if CONFIG_DRM_USE_DYNAMIC_DEBUG=y.
+
+v3: fixes missed SOB, && on BOL, commit-log tweaks
+    reordered patches, 1 is comment, 2 is whitespace.
+    dropped RFC, to see what happens.
+v2: https://lore.kernel.org/lkml/20210711055003.528167-1-jim.cromie@gmail.com/
+v1: https://lore.kernel.org/lkml/20201204035318.332419-1-jim.cromie@gmail.com/
+
+Doing so creates many new pr_debug callsites,
+otherwise i915 has ~120 prdbgs, and drm has just 1;
+
+  bash-5.1# modprobe i915
+  dyndbg:   8 debug prints in module video
+  dyndbg: 305 debug prints in module drm
+  dyndbg: 207 debug prints in module drm_kms_helper
+  dyndbg:   2 debug prints in module ttm
+  dyndbg: 1720 debug prints in module i915
+
+On amdgpu, enabling it adds ~3200 prdbgs, currently at 56 bytes each.
+So CONFIG_DRM_USE_DYNAMIC_DEBUG=y affects resource requirements.
+
+Im running this patchset bare-metal on an i915 laptop & an amdgpu
+desktop (both as loadable modules).  I booted the amdgpu box with:
+
+BOOT_IMAGE=(hd2,gpt2)/vmlinuz-5.13.0-dd7-13692-g8def25788f56 \
+     root=UUID=mumble ro \
+     rootflags=subvol=root00 rhgb \
+     dynamic_debug.verbose=3 main.dyndbg=+p \
+     amdgpu.debug=1 amdgpu.test=1 \
+     "amdgpu.dyndbg=format ^[ +p"
+
+That last line enables ~1700 prdbg callsites with a format like '[DML'
+etc at boot, and amdgpu.test=1 triggers 3 minutes of tests, causing
+~76k prdbgs in 409 seconds, before I turned them off with:
+
+  echo module amdgpu -p > /proc/dynamic_debug/control
+
+This is on top of master @ v5.14-rc1
+Should I rebase onto something else ?
+
+Jim Cromie (5):
+  drm/print: fixup spelling in a comment
+  drm_print.h: rewrap __DRM_DEFINE_DBG_RATELIMITED macro
+  drm/print: RFC add choice to use dynamic debug in drm-debug
+  drm/print: move conditional deref into macro defn
+  i915: map gvt pr_debug categories to bits in parameters/debug_gvt
+
+Note: 3/5, 5/5 have bits that are here for POC, but belong in
+dynamic_debug.c.
 
 
-Yes please! IGT probably needs fixing too. I can probably take a look at that.
+ drivers/gpu/drm/Kconfig            |  13 ++++
+ drivers/gpu/drm/drm_print.c        |  75 +++++++++++++++++-
+ drivers/gpu/drm/i915/gvt/Makefile  |   4 +
+ drivers/gpu/drm/i915/i915_params.c |  76 +++++++++++++++++++
+ include/drm/drm_print.h            | 117 ++++++++++++++++++++---------
+ 5 files changed, 247 insertions(+), 38 deletions(-)
+
+-- 
+2.31.1
 
 _______________________________________________
 Intel-gfx mailing list
