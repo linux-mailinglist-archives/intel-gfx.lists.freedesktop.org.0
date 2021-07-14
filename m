@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E23463C7CA6
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 05:16:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C533C7CB1
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 05:16:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 067D56E190;
-	Wed, 14 Jul 2021 03:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA9F6E196;
+	Wed, 14 Jul 2021 03:16:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 793606E160
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAAB46E15C
  for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 03:15:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="210256259"
-X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="210256259"
+X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="210256260"
+X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="210256260"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Jul 2021 20:15:53 -0700
-X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="494031492"
+X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="494031496"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2021 20:15:52 -0700
+ 13 Jul 2021 20:15:53 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Jul 2021 20:15:05 -0700
-Message-Id: <20210714031540.3539704-16-matthew.d.roper@intel.com>
+Date: Tue, 13 Jul 2021 20:15:06 -0700
+Message-Id: <20210714031540.3539704-17-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210714031540.3539704-1-matthew.d.roper@intel.com>
 References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 15/50] drm/i915/xehpsdv: add initial XeHP SDV
+Subject: [Intel-gfx] [PATCH v2 16/50] drm/i915/xehp: Changes to ss/eu
  definitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -44,107 +44,121 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Tomas Winkler <tomas.winkler@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+CgpYZUhQIFNE
-ViBpcyBhIEludGVswq4gZEdQVSB3aXRob3V0IGRpc3BsYXkuIFRoaXMgaXMganVzdCB0aGUgZGVm
-aW5pdGlvbgpvZiBzb21lIGJhc2ljIHBsYXRmb3JtIG1hY3JvcywgYnkgbGFyZ2UgYSBjb3B5IG9m
-IGN1cnJlbnQgc3RhdGUgb2YKVGlnZXJsYWtlIHdoaWNoIGRvZXMgbm90IHJlZmxlY3QgdGhlIGVu
-ZCBzdGF0ZSBvZiB0aGlzIHBsYXRmb3JtLgoKdjI6CiAtIFN3aXRjaCB0byBpbnRlbF9zdGVwIGlu
-ZnJhc3RydWN0dXJlIGZvciBzdGVwcGluZyBtYXRjaGVzLiAoSmFuaSkKCkJzcGVjOiA0NDQ2Nywg
-NDgwNzcKQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KU2lnbmVkLW9m
-Zi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+ClNpZ25lZC1v
-ZmYtYnk6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRl
-bC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFA
-aW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBTdHVhcnQgU3VtbWVycyA8c3R1YXJ0LnN1bW1lcnNA
-aW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBUb21hcyBXaW5rbGVyIDx0b21hcy53aW5rbGVyQGlu
-dGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVs
-LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgIHwgIDQg
-KysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyAgICAgICAgICB8IDIwICsrKysr
-KysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5j
-IHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCB8ICAxICsK
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuYyAgICAgICAgfCAxMiArKysrKysrKysr
-Ky0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuaCAgICAgICAgfCAgMSArCiA2IGZp
-bGVzIGNoYW5nZWQsIDM4IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9kcnYuaAppbmRleCBlZmZiNTU1ZDE0ZjUuLjI0MTgxYWEzNmVmYiAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X2Rydi5oCkBAIC0xNDUzLDYgKzE0NTMsNyBAQCBJU19TVUJQTEFURk9STShjb25zdCBz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKICNkZWZpbmUgSVNfREcxKGRldl9wcml2KSAg
-ICAgICAgSVNfUExBVEZPUk0oZGV2X3ByaXYsIElOVEVMX0RHMSkKICNkZWZpbmUgSVNfQUxERVJM
-QUtFX1MoZGV2X3ByaXYpIElTX1BMQVRGT1JNKGRldl9wcml2LCBJTlRFTF9BTERFUkxBS0VfUykK
-ICNkZWZpbmUgSVNfQUxERVJMQUtFX1AoZGV2X3ByaXYpIElTX1BMQVRGT1JNKGRldl9wcml2LCBJ
-TlRFTF9BTERFUkxBS0VfUCkKKyNkZWZpbmUgSVNfWEVIUFNEVihkZXZfcHJpdikgSVNfUExBVEZP
-Uk0oZGV2X3ByaXYsIElOVEVMX1hFSFBTRFYpCiAjZGVmaW5lIElTX0hTV19FQVJMWV9TRFYoZGV2
-X3ByaXYpIChJU19IQVNXRUxMKGRldl9wcml2KSAmJiBcCiAJCQkJICAgIChJTlRFTF9ERVZJRChk
-ZXZfcHJpdikgJiAweEZGMDApID09IDB4MEMwMCkKICNkZWZpbmUgSVNfQkRXX1VMVChkZXZfcHJp
-dikgXApAQCAtMTYxMSw2ICsxNjEyLDkgQEAgSVNfU1VCUExBVEZPUk0oY29uc3Qgc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmk5MTUsCiAJKElTX0FMREVSTEFLRV9QKF9faTkxNSkgJiYgXAogCSBJ
-U19HVF9TVEVQKF9faTkxNSwgc2luY2UsIHVudGlsKSkKIAorI2RlZmluZSBJU19YRUhQU0RWX0dU
-X1NURVAocCwgc2luY2UsIHVudGlsKSBcCisJKElTX1hFSFBTRFYocCkgJiYgSVNfR1RfU1RFUChf
-X2k5MTUsIHNpbmNlLCB1bnRpbCkpCisKICNkZWZpbmUgSVNfTFAoZGV2X3ByaXYpCQkoSU5URUxf
-SU5GTyhkZXZfcHJpdiktPmlzX2xwKQogI2RlZmluZSBJU19HRU45X0xQKGRldl9wcml2KQkoR1JB
-UEhJQ1NfVkVSKGRldl9wcml2KSA9PSA5ICYmIElTX0xQKGRldl9wcml2KSkKICNkZWZpbmUgSVNf
-R0VOOV9CQyhkZXZfcHJpdikJKEdSQVBISUNTX1ZFUihkZXZfcHJpdikgPT0gOSAmJiAhSVNfTFAo
-ZGV2X3ByaXYpKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKaW5kZXggNjVjYmFiMWMxYTE1Li4wN2M1
-N2Q4ZjNhOWMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYwpAQCAtMTAyMCw2ICsxMDIwLDI2IEBA
-IHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gYWRsX3BfaW5mbyA9IHsKIAku
-cHBndHRfc2l6ZSA9IDQ4LCBcCiAJLnBwZ3R0X3R5cGUgPSBJTlRFTF9QUEdUVF9GVUxMCiAKKyNk
-ZWZpbmUgWEVfSFBNX0ZFQVRVUkVTIFwKKwkubWVkaWFfdmVyID0gMTIsIFwKKwkubWVkaWFfcmVs
-ID0gNTAKKworX19tYXliZV91bnVzZWQKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNl
-X2luZm8geGVocHNkdl9pbmZvID0geworCVhFX0hQX0ZFQVRVUkVTLAorCVhFX0hQTV9GRUFUVVJF
-UywKKwlER0ZYX0ZFQVRVUkVTLAorCVBMQVRGT1JNKElOVEVMX1hFSFBTRFYpLAorCS5kaXNwbGF5
-ID0geyB9LAorCS5waXBlX21hc2sgPSAwLAorCS5wbGF0Zm9ybV9lbmdpbmVfbWFzayA9CisJCUJJ
-VChSQ1MwKSB8IEJJVChCQ1MwKSB8CisJCUJJVChWRUNTMCkgfCBCSVQoVkVDUzEpIHwgQklUKFZF
-Q1MyKSB8IEJJVChWRUNTMykgfAorCQlCSVQoVkNTMCkgfCBCSVQoVkNTMSkgfCBCSVQoVkNTMikg
-fCBCSVQoVkNTMykgfAorCQlCSVQoVkNTNCkgfCBCSVQoVkNTNSkgfCBCSVQoVkNTNikgfCBCSVQo
-VkNTNyksCisJLnJlcXVpcmVfZm9yY2VfcHJvYmUgPSAxLAorfTsKKwogI3VuZGVmIFBMQVRGT1JN
-CiAKIC8qCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5m
-by5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYwppbmRleCBkMmE1
-MTRkMjU1MWQuLmI3NTBmOWRlZDlkNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfZGV2aWNlX2luZm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZp
-Y2VfaW5mby5jCkBAIC02OCw2ICs2OCw3IEBAIHN0YXRpYyBjb25zdCBjaGFyICogY29uc3QgcGxh
-dGZvcm1fbmFtZXNbXSA9IHsKIAlQTEFURk9STV9OQU1FKERHMSksCiAJUExBVEZPUk1fTkFNRShB
-TERFUkxBS0VfUyksCiAJUExBVEZPUk1fTkFNRShBTERFUkxBS0VfUCksCisJUExBVEZPUk1fTkFN
-RShYRUhQU0RWKSwKIH07CiAjdW5kZWYgUExBVEZPUk1fTkFNRQogCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfZGV2aWNlX2luZm8uaAppbmRleCA3NWM2OWNmYjExZjIuLjY5MGEwZDI4MTJiYiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaAorKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oCkBAIC04OCw2ICs4OCw3
-IEBAIGVudW0gaW50ZWxfcGxhdGZvcm0gewogCUlOVEVMX0RHMSwKIAlJTlRFTF9BTERFUkxBS0Vf
-UywKIAlJTlRFTF9BTERFUkxBS0VfUCwKKwlJTlRFTF9YRUhQU0RWLAogCUlOVEVMX01BWF9QTEFU
-Rk9STVMKIH07CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuYwppbmRleCBiYTk0NzlhNjc1MjEu
-LmEyN2E0MWNhZWQ3MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc3Rl
-cC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuYwpAQCAtNTQsNiArNTQs
-MTMgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9zdGVwX2luZm8gYWRscF9yZXZpZF9zdGVw
-X3RibFtdID0gewogCVsweENdID0geyAuZ3Rfc3RlcCA9IFNURVBfQzAsIC5kaXNwbGF5X3N0ZXAg
-PSBTVEVQX0QwIH0sCiB9OwogCitzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX3N0ZXBfaW5mbyB4
-ZWhwc2R2X3JldmlkX3N0ZXBfdGJsW10gPSB7CisJWzB4MF0gPSB7IC5ndF9zdGVwID0gU1RFUF9B
-MCB9LAorCVsweDFdID0geyAuZ3Rfc3RlcCA9IFNURVBfQTEgfSwKKwlbMHg0XSA9IHsgLmd0X3N0
-ZXAgPSBTVEVQX0IwIH0sCisJWzB4OF0gPSB7IC5ndF9zdGVwID0gU1RFUF9DMCB9LAorfTsKKwog
-dm9pZCBpbnRlbF9zdGVwX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCiB7CiAJ
-Y29uc3Qgc3RydWN0IGludGVsX3N0ZXBfaW5mbyAqcmV2aWRzID0gTlVMTDsKQEAgLTYxLDcgKzY4
-LDEwIEBAIHZvaWQgaW50ZWxfc3RlcF9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
-KQogCWludCByZXZpZCA9IElOVEVMX1JFVklEKGk5MTUpOwogCXN0cnVjdCBpbnRlbF9zdGVwX2lu
-Zm8gc3RlcCA9IHt9OwogCi0JaWYgKElTX0FMREVSTEFLRV9QKGk5MTUpKSB7CisJaWYgKElTX1hF
-SFBTRFYoaTkxNSkpIHsKKwkJcmV2aWRzID0geGVocHNkdl9yZXZpZF9zdGVwX3RibDsKKwkJc2l6
-ZSA9IEFSUkFZX1NJWkUoeGVocHNkdl9yZXZpZF9zdGVwX3RibCk7CisJfSBlbHNlIGlmIChJU19B
-TERFUkxBS0VfUChpOTE1KSkgewogCQlyZXZpZHMgPSBhZGxwX3JldmlkX3N0ZXBfdGJsOwogCQlz
-aXplID0gQVJSQVlfU0laRShhZGxwX3JldmlkX3N0ZXBfdGJsKTsKIAl9IGVsc2UgaWYgKElTX0FM
-REVSTEFLRV9TKGk5MTUpKSB7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
-bF9zdGVwLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zdGVwLmgKaW5kZXggOTU4YThi
-YjVkNjc3Li44ZWZhY2VmNmFiMzEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX3N0ZXAuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zdGVwLmgKQEAgLTIy
-LDYgKzIyLDcgQEAgc3RydWN0IGludGVsX3N0ZXBfaW5mbyB7CiBlbnVtIGludGVsX3N0ZXAgewog
-CVNURVBfTk9ORSA9IDAsCiAJU1RFUF9BMCwKKwlTVEVQX0ExLAogCVNURVBfQTIsCiAJU1RFUF9C
-MCwKIAlTVEVQX0IxLAotLSAKMi4yNS40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+From: Matthew Auld <matthew.auld@intel.com>
+
+Xe_HP no longer has "slices" in the same way that old platforms did.
+There are new concepts (gslices, cslices, mslices) that apply in various
+contexts, but for the purposes of fusing slices no longer exist and we
+just have one large pool of dual-subslices (DSS) to work with.
+Furthermore, the meaning of the DSS fuse is inverted compared to past
+platforms --- it now specifies which DSS are enabled rather than which
+ones are disabled.
+
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Prasad Nallani <prasad.nallani@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_sseu.c | 24 ++++++++++++++++++++----
+ drivers/gpu/drm/i915/i915_getparam.c |  6 ++++--
+ drivers/gpu/drm/i915/i915_reg.h      |  3 +++
+ 3 files changed, 27 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+index bbed8e8625e1..5d1b7d06c96b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu.c
++++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+@@ -139,17 +139,33 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+ 	 * Gen12 has Dual-Subslices, which behave similarly to 2 gen11 SS.
+ 	 * Instead of splitting these, provide userspace with an array
+ 	 * of DSS to more closely represent the hardware resource.
++	 *
++	 * In addition, the concept of slice has been removed in Xe_HP.
++	 * To be compatible with prior generations, assume a single slice
++	 * across the entire device. Then calculate out the DSS for each
++	 * workload type within that software slice.
+ 	 */
+ 	intel_sseu_set_info(sseu, 1, 6, 16);
+ 
+-	s_en = intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE) &
+-		GEN11_GT_S_ENA_MASK;
++	/*
++	 * As mentioned above, Xe_HP does not have the concept of a slice.
++	 * Enable one for software backwards compatibility.
++	 */
++	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
++		s_en = 0x1;
++	else
++		s_en = intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE) &
++		       GEN11_GT_S_ENA_MASK;
+ 
+ 	dss_en = intel_uncore_read(uncore, GEN12_GT_DSS_ENABLE);
+ 
+ 	/* one bit per pair of EUs */
+-	eu_en_fuse = ~(intel_uncore_read(uncore, GEN11_EU_DISABLE) &
+-		       GEN11_EU_DIS_MASK);
++	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
++		eu_en_fuse = intel_uncore_read(uncore, XEHP_EU_ENABLE) & XEHP_EU_ENA_MASK;
++	else
++		eu_en_fuse = ~(intel_uncore_read(uncore, GEN11_EU_DISABLE) &
++			       GEN11_EU_DIS_MASK);
++
+ 	for (eu = 0; eu < sseu->max_eus_per_subslice / 2; eu++)
+ 		if (eu_en_fuse & BIT(eu))
+ 			eu_en |= BIT(eu * 2) | BIT(eu * 2 + 1);
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index 24e18219eb50..e289397d9178 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -15,7 +15,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	const struct sseu_dev_info *sseu = &i915->gt.info.sseu;
+ 	drm_i915_getparam_t *param = data;
+-	int value;
++	int value = 0;
+ 
+ 	switch (param->param) {
+ 	case I915_PARAM_IRQ_ACTIVE:
+@@ -150,7 +150,9 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 			return -ENODEV;
+ 		break;
+ 	case I915_PARAM_SUBSLICE_MASK:
+-		value = sseu->subslice_mask[0];
++		/* Only copy bits from the first slice */
++		memcpy(&value, sseu->subslice_mask,
++		       min(sseu->ss_stride, (u8)sizeof(value)));
+ 		if (!value)
+ 			return -ENODEV;
+ 		break;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 47f015976966..4cabafa1c836 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3151,6 +3151,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ 
+ #define GEN12_GT_DSS_ENABLE _MMIO(0x913C)
+ 
++#define XEHP_EU_ENABLE			_MMIO(0x9134)
++#define XEHP_EU_ENA_MASK		0xFF
++
+ #define GEN6_BSD_SLEEP_PSMI_CONTROL	_MMIO(0x12050)
+ #define   GEN6_BSD_SLEEP_MSG_DISABLE	(1 << 0)
+ #define   GEN6_BSD_SLEEP_FLUSH_DISABLE	(1 << 2)
+-- 
+2.25.4
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
