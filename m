@@ -2,30 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D7053C7DA1
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 06:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9463C7F9F
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Jul 2021 09:55:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 559AD6E159;
-	Wed, 14 Jul 2021 04:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692246E195;
+	Wed, 14 Jul 2021 07:55:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8780F6E165;
- Wed, 14 Jul 2021 04:51:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 811B4A7DFC;
- Wed, 14 Jul 2021 04:51:35 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 323C26E195
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Jul 2021 07:55:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="274134910"
+X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="274134910"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2021 00:55:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,238,1620716400"; d="scan'208";a="630302994"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga005.jf.intel.com with ESMTP; 14 Jul 2021 00:55:43 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 14 Jul 2021 00:55:42 -0700
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 14 Jul 2021 00:55:41 -0700
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.010;
+ Wed, 14 Jul 2021 13:25:39 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Box, David E" <david.e.box@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [REBASED v2] drm/i915: Tweaked Wa_14010685332 for all PCHs
+Thread-Index: AQHXdu9fY+Kpo98dqky7/Fz0S9/knKtBAiwAgAEZmfA=
+Date: Wed, 14 Jul 2021 07:55:38 +0000
+Message-ID: <2c30496803f340a7a8d17bf8d951db28@intel.com>
+References: <20210325093213.20794-1-anshuman.gupta@intel.com>,
+ <20210712070917.10851-1-anshuman.gupta@intel.com>
+ <MW3PR11MB4522E99061866F53DEEFB60BA1159@MW3PR11MB4522.namprd11.prod.outlook.com>
+In-Reply-To: <MW3PR11MB4522E99061866F53DEEFB60BA1159@MW3PR11MB4522.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Wed, 14 Jul 2021 04:51:35 -0000
-Message-ID: <162623829550.13706.9466930902698756750@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210714031540.3539704-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQmVn?=
- =?utf-8?q?in_enabling_Xe=5FHP_SDV_and_DG2_platforms_=28rev5=29?=
+Subject: Re: [Intel-gfx] [REBASED v2] drm/i915: Tweaked Wa_14010685332 for
+ all PCHs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,247 +66,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1350549715=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1350549715==
-Content-Type: multipart/alternative;
- boundary="===============1513591212640510553=="
+Thanks David for providing Ack on it.
+Shall I use your " Tested-by: David E. Box <david.e.box@intel.com>" tag for=
+ this patch ?
+Br,
+Anshuman Gupta.
 
---===============1513591212640510553==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Box, David E <david.e.box@intel.com> =
 
-== Series Details ==
+Sent: Wednesday, July 14, 2021 2:02 AM
+To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-gfx@lists.freedesktop=
+.org
+Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Vivi, Rodrigo <rodrigo.vi=
+vi@intel.com>; Deak, Imre <imre.deak@intel.com>
+Subject: Re: [REBASED v2] drm/i915: Tweaked Wa_14010685332 for all PCHs
 
-Series: Begin enabling Xe_HP SDV and DG2 platforms (rev5)
-URL   : https://patchwork.freedesktop.org/series/92135/
-State : success
+Tested and confirmed working on TGL-H Dell platforms.
 
-== Summary ==
+David Box
+Linux Power Management =
 
-CI Bug Log - changes from CI_DRM_10344 -> Patchwork_20594
-====================================================
+IAGS/SSE
+________________________________________
+From: Gupta, Anshuman <mailto:anshuman.gupta@intel.com>
+Sent: Monday, July 12, 2021 12:09 AM
+To: mailto:intel-gfx@lists.freedesktop.org <mailto:intel-gfx@lists.freedesk=
+top.org>
+Cc: Box, David E <mailto:david.e.box@intel.com>; Gupta, Anshuman <mailto:an=
+shuman.gupta@intel.com>; Roper, Matthew D <mailto:matthew.d.roper@intel.com=
+>; Vivi, Rodrigo <mailto:rodrigo.vivi@intel.com>; Deak, Imre <mailto:imre.d=
+eak@intel.com>
+Subject: [REBASED v2] drm/i915: Tweaked Wa_14010685332 for all PCHs =
 
-Summary
--------
+=A0
+dispcnlunit1_cp_xosc_clkreq clock observed to be active on TGL-H platform
+despite Wa_14010685332 original sequence, thus blocks entry to deeper s0ix =
+state.
 
-  **SUCCESS**
+The Tweaked Wa_14010685332 sequence fixes this issue, therefore use tweaked
+Wa_14010685332 sequence for every PCH since PCH_CNP.
 
-  No regressions found.
+v2:
+- removed RKL from comment and simplified condition. [Rodrigo]
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20594/index.html
+Fixes: b896898c7369 ("drm/i915: Tweaked Wa_14010685332 for PCHs used on gen=
+11 platforms")
+Cc: Matt Roper <mailto:matthew.d.roper@intel.com>
+Cc: Rodrigo Vivi <mailto:rodrigo.vivi@intel.com>
+Cc: Imre Deak <mailto:imre.deak@intel.com>
+Signed-off-by: Anshuman Gupta <mailto:anshuman.gupta@intel.com>
+Reviewed-by: Rodrigo Vivi <mailto:rodrigo.vivi@intel.com>
+---
+=A0.../drm/i915/display/intel_display_power.c=A0=A0=A0 | 16 +++++++-------
+=A0drivers/gpu/drm/i915/i915_irq.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 | 21 -------------------
+=A02 files changed, 8 insertions(+), 29 deletions(-)
 
-Known issues
-------------
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/g=
+pu/drm/i915/display/intel_display_power.c
+index 285380079aab..28a363119560 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -6388,13 +6388,13 @@ void intel_display_power_suspend_late(struct drm_i9=
+15_private *i915)
+=A0=A0=A0=A0=A0=A0=A0=A0 if (DISPLAY_VER(i915) >=3D 11 || IS_GEMINILAKE(i91=
+5) ||
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 IS_BROXTON(i915)) {
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 bxt_enable_dc9(i915);
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /* Tweaked Wa_14010685332:icp,j=
+sp,mcc */
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (INTEL_PCH_TYPE(i915) >=3D P=
+CH_ICP && INTEL_PCH_TYPE(i915) <=3D PCH_MCC)
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_d=
+e_rmw(i915, SOUTH_CHICKEN1,
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DI=
+S);
+=A0=A0=A0=A0=A0=A0=A0=A0 } else if (IS_HASWELL(i915) || IS_BROADWELL(i915))=
+ {
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 hsw_enable_pc8(i915);
+=A0=A0=A0=A0=A0=A0=A0=A0 }
++
++=A0=A0=A0=A0=A0=A0 /* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
++=A0=A0=A0=A0=A0=A0 if (INTEL_PCH_TYPE(i915) >=3D PCH_CNP && INTEL_PCH_TYPE=
+(i915) < PCH_DG1)
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_de_rmw(i915, SOUTH_CHICKE=
+N1, SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+=A0}
+=A0
+=A0void intel_display_power_resume_early(struct drm_i915_private *i915)
+@@ -6403,13 +6403,13 @@ void intel_display_power_resume_early(struct drm_i9=
+15_private *i915)
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 IS_BROXTON(i915)) {
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 gen9_sanitize_dc_state(i91=
+5);
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 bxt_disable_dc9(i915);
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /* Tweaked Wa_14010685332:icp,j=
+sp,mcc */
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (INTEL_PCH_TYPE(i915) >=3D P=
+CH_ICP && INTEL_PCH_TYPE(i915) <=3D PCH_MCC)
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_d=
+e_rmw(i915, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
+-
+=A0=A0=A0=A0=A0=A0=A0=A0 } else if (IS_HASWELL(i915) || IS_BROADWELL(i915))=
+ {
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 hsw_disable_pc8(i915);
+=A0=A0=A0=A0=A0=A0=A0=A0 }
++
++=A0=A0=A0=A0=A0=A0 /* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
++=A0=A0=A0=A0=A0=A0 if (INTEL_PCH_TYPE(i915) >=3D PCH_CNP && INTEL_PCH_TYPE=
+(i915) < PCH_DG1)
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_de_rmw(i915, SOUTH_CHICKE=
+N1, SBCLK_RUN_REFCLK_DIS, 0);
+=A0}
+=A0
+=A0void intel_display_power_suspend(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_ir=
+q.c
+index 1d4c683c9de9..99c75a9d7ffa 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -3064,24 +3064,6 @@ static void valleyview_irq_reset(struct drm_i915_pri=
+vate *dev_priv)
+=A0=A0=A0=A0=A0=A0=A0=A0 spin_unlock_irq(&dev_priv->irq_lock);
+=A0}
+=A0
+-static void cnp_display_clock_wa(struct drm_i915_private *dev_priv)
+-{
+-=A0=A0=A0=A0=A0=A0 struct intel_uncore *uncore =3D &dev_priv->uncore;
+-
+-=A0=A0=A0=A0=A0=A0 /*
+-=A0=A0=A0=A0=A0=A0=A0 * Wa_14010685332:cnp/cmp,tgp,adp
+-=A0=A0=A0=A0=A0=A0=A0 * TODO: Clarify which platforms this applies to
+-=A0=A0=A0=A0=A0=A0=A0 * TODO: Figure out if this workaround can be applied=
+ in the s0ix suspend/resume handlers as
+-=A0=A0=A0=A0=A0=A0=A0 * on earlier platforms and whether the workaround is=
+ also needed for runtime suspend/resume
+-=A0=A0=A0=A0=A0=A0=A0 */
+-=A0=A0=A0=A0=A0=A0 if (INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_CNP ||
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 (INTEL_PCH_TYPE(dev_priv) >=3D PCH_TGP && I=
+NTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_uncore_rmw(uncore, SOUTH_=
+CHICKEN1, SBCLK_RUN_REFCLK_DIS,
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0 SBCLK_RUN_REFCLK_DIS);
+-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_uncore_rmw(uncore, SOUTH_=
+CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
+-=A0=A0=A0=A0=A0=A0 }
+-}
+-
+=A0static void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
+=A0{
+=A0=A0=A0=A0=A0=A0=A0=A0 struct intel_uncore *uncore =3D &dev_priv->uncore;
+@@ -3115,7 +3097,6 @@ static void gen8_irq_reset(struct drm_i915_private *d=
+ev_priv)
+=A0=A0=A0=A0=A0=A0=A0=A0 if (HAS_PCH_SPLIT(dev_priv))
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ibx_irq_reset(dev_priv);
+=A0
+-=A0=A0=A0=A0=A0=A0 cnp_display_clock_wa(dev_priv);
+=A0}
+=A0
+=A0static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+@@ -3159,8 +3140,6 @@ static void gen11_display_irq_reset(struct drm_i915_p=
+rivate *dev_priv)
+=A0
+=A0=A0=A0=A0=A0=A0=A0=A0 if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 GEN3_IRQ_RESET(uncore, SDE=
+);
+-
+-=A0=A0=A0=A0=A0=A0 cnp_display_clock_wa(dev_priv);
+=A0}
+=A0
+=A0static void gen11_irq_reset(struct drm_i915_private *dev_priv)
+-- =
 
-  Here are the changes found in Patchwork_20594 that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
-  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-
-
-Participating hosts (39 -> 35)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-hsw-4200u fi-bdw-samus fi-bsw-n3050 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10344 -> Patchwork_20594
-
-  CI-20190529: 20190529
-  CI_DRM_10344: ea6974acd4fe82ca98cc1390b21af67d63c22471 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6138: 92bf2c7865037e18946d4c3d705587c8e8c3d1b8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20594: f6a30552f5db556b888f087a8c82d96fed6345ad @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f6a30552f5db drm/i915/dg2: Configure PCON in DP pre-enable path
-e55707db0df5 drm/i915/dg2: Update to bigjoiner path
-d63a6e0c0ca0 drm/i915/dg2: Add DG2 to the PSR2 defeature list
-e35083bdfa80 drm/i915/dg2: Update lane disable power state during PSR
-182f9e301051 drm/i915/dg2: Wait for SNPS PHY calibration during display init
-9982d7730067 drm/i915/dg2: Classify DG2 PHY types
-b46c8d88fd33 drm/i915/dg2: Update modeset sequences
-fd3f99d8c087 drm/i915/dg2: Add vswing programming for SNPS phys
-89d6432d3673 drm/i915/dg2: Add MPLLB programming for HDMI
-689792bb94d6 drm/i915/dg2: Add MPLLB programming for SNPS PHY
-118fc85a94ad drm/i915/dg2: DG2 has fixed memory bandwidth
-60aa12c033cf drm/i915/dg2: Don't read DRAM info
-cc08e720e5ae drm/i915/dg2: Don't program BW_BUDDY registers
-3a7526efaf70 drm/i915/dg2: Add dbuf programming
-f3d519fa8374 drm/i915/dg2: Setup display outputs
-8119ad7f31ee drm/i915/dg2: Don't wait for AUX power well enable ACKs
-76524872d616 drm/i915/dg2: Skip shared DPLL handling
-dfa122ad3f15 drm/i915/dg2: Add cdclk table and reference clock
-dd67eb915449 drm/i915/dg2: Add fake PCH
-1ae2606f06f9 drm/i915/dg2: Define MOCS table for DG2
-c4f3a58eb9b9 drm/i915/dg2: Report INSTDONE_GEOM values in error state
-c6bfb5cac52e drm/i915/dg2: Maintain backward-compatible nested batch behavior
-56c13089d010 drm/i915/dg2: Add new LRI reg offsets
-ed945621c3f2 drm/i915/dg2: Add SQIDI steering
-1232841b09bc drm/i915/dg2: Update LNCF steering ranges
-462ae54b609e drm/i915/dg2: Add forcewake table
-8527f182dc41 drm/i915/dg2: DG2 uses the same sseu limits as XeHP SDV
-8d231c0c99c3 drm/i915/dg2: add DG2 platform info
-edd8638b9ce9 drm/i915/xehpsdv: Read correct RP_STATE_CAP register
-638ddf4e9d14 drm/i915/xehpsdv: factor out function to read RP_STATE_CAP
-5cd632524fbb drm/i915/xehpsdv: Define MOCS table for XeHP SDV
-70410e269067 drm/i915/xehpsdv: Define steering tables
-9beeacbb8d15 drm/i915/xehpsdv: Add compute DSS type
-381532783086 drm/i915/xehpsdv: Add maximum sseu limits
-b359a5197220 drm/i915/xehp: Changes to ss/eu definitions
-559ec30fa734 drm/i915/xehpsdv: add initial XeHP SDV definitions
-f983b1241a0f drm/i915/xehp: Loop over all gslices for INSTDONE processing
-733505aa0488 drm/i915/xehp: handle new steering options
-e6c034ba7a58 drm/i915/xehp: New engine context offsets
-f5a167391d70 drm/i915/xehp: Handle new device context ID format
-12a2020fa1fc drm/i915/xehp: Define multicast register ranges
-04721d135106 drm/i915/xehp: Xe_HP forcewake support
-99c452861f03 drm/i915/xehp: Extra media engines - Part 3 (reset)
-6f3c6efb8015 drm/i915/xehp: Extra media engines - Part 2 (interrupts)
-75088f6dd8c2 drm/i915/xehp: Extra media engines - Part 1 (engine definitions)
-25d8fcda069c drm/i915/selftests: Allow for larger engine counts
-00fe5bfd2f5b drm/i915/gen12: Use fuse info to enable SFC
-371d21e168c4 drm/i915/xehp: VDBOX/VEBOX fusing registers are enable-based
-8bb98dab1d23 drm/i915: Fork DG1 interrupt handler
-7a5fbcb1f150 drm/i915: Add XE_HP initial definitions
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20594/index.html
-
---===============1513591212640510553==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Begin enabling Xe_HP SDV and DG2 platforms (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92135/">https://patchwork.freedesktop.org/series/92135/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20594/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20594/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10344 -&gt; Patchwork_20594</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20594/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20594 that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-hsw-4200u fi-bdw-samus fi-bsw-n3050 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10344 -&gt; Patchwork_20594</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10344: ea6974acd4fe82ca98cc1390b21af67d63c22471 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6138: 92bf2c7865037e18946d4c3d705587c8e8c3d1b8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20594: f6a30552f5db556b888f087a8c82d96fed6345ad @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f6a30552f5db drm/i915/dg2: Configure PCON in DP pre-enable path<br />
-e55707db0df5 drm/i915/dg2: Update to bigjoiner path<br />
-d63a6e0c0ca0 drm/i915/dg2: Add DG2 to the PSR2 defeature list<br />
-e35083bdfa80 drm/i915/dg2: Update lane disable power state during PSR<br />
-182f9e301051 drm/i915/dg2: Wait for SNPS PHY calibration during display init<br />
-9982d7730067 drm/i915/dg2: Classify DG2 PHY types<br />
-b46c8d88fd33 drm/i915/dg2: Update modeset sequences<br />
-fd3f99d8c087 drm/i915/dg2: Add vswing programming for SNPS phys<br />
-89d6432d3673 drm/i915/dg2: Add MPLLB programming for HDMI<br />
-689792bb94d6 drm/i915/dg2: Add MPLLB programming for SNPS PHY<br />
-118fc85a94ad drm/i915/dg2: DG2 has fixed memory bandwidth<br />
-60aa12c033cf drm/i915/dg2: Don't read DRAM info<br />
-cc08e720e5ae drm/i915/dg2: Don't program BW_BUDDY registers<br />
-3a7526efaf70 drm/i915/dg2: Add dbuf programming<br />
-f3d519fa8374 drm/i915/dg2: Setup display outputs<br />
-8119ad7f31ee drm/i915/dg2: Don't wait for AUX power well enable ACKs<br />
-76524872d616 drm/i915/dg2: Skip shared DPLL handling<br />
-dfa122ad3f15 drm/i915/dg2: Add cdclk table and reference clock<br />
-dd67eb915449 drm/i915/dg2: Add fake PCH<br />
-1ae2606f06f9 drm/i915/dg2: Define MOCS table for DG2<br />
-c4f3a58eb9b9 drm/i915/dg2: Report INSTDONE_GEOM values in error state<br />
-c6bfb5cac52e drm/i915/dg2: Maintain backward-compatible nested batch behavior<br />
-56c13089d010 drm/i915/dg2: Add new LRI reg offsets<br />
-ed945621c3f2 drm/i915/dg2: Add SQIDI steering<br />
-1232841b09bc drm/i915/dg2: Update LNCF steering ranges<br />
-462ae54b609e drm/i915/dg2: Add forcewake table<br />
-8527f182dc41 drm/i915/dg2: DG2 uses the same sseu limits as XeHP SDV<br />
-8d231c0c99c3 drm/i915/dg2: add DG2 platform info<br />
-edd8638b9ce9 drm/i915/xehpsdv: Read correct RP_STATE_CAP register<br />
-638ddf4e9d14 drm/i915/xehpsdv: factor out function to read RP_STATE_CAP<br />
-5cd632524fbb drm/i915/xehpsdv: Define MOCS table for XeHP SDV<br />
-70410e269067 drm/i915/xehpsdv: Define steering tables<br />
-9beeacbb8d15 drm/i915/xehpsdv: Add compute DSS type<br />
-381532783086 drm/i915/xehpsdv: Add maximum sseu limits<br />
-b359a5197220 drm/i915/xehp: Changes to ss/eu definitions<br />
-559ec30fa734 drm/i915/xehpsdv: add initial XeHP SDV definitions<br />
-f983b1241a0f drm/i915/xehp: Loop over all gslices for INSTDONE processing<br />
-733505aa0488 drm/i915/xehp: handle new steering options<br />
-e6c034ba7a58 drm/i915/xehp: New engine context offsets<br />
-f5a167391d70 drm/i915/xehp: Handle new device context ID format<br />
-12a2020fa1fc drm/i915/xehp: Define multicast register ranges<br />
-04721d135106 drm/i915/xehp: Xe_HP forcewake support<br />
-99c452861f03 drm/i915/xehp: Extra media engines - Part 3 (reset)<br />
-6f3c6efb8015 drm/i915/xehp: Extra media engines - Part 2 (interrupts)<br />
-75088f6dd8c2 drm/i915/xehp: Extra media engines - Part 1 (engine definitions)<br />
-25d8fcda069c drm/i915/selftests: Allow for larger engine counts<br />
-00fe5bfd2f5b drm/i915/gen12: Use fuse info to enable SFC<br />
-371d21e168c4 drm/i915/xehp: VDBOX/VEBOX fusing registers are enable-based<br />
-8bb98dab1d23 drm/i915: Fork DG1 interrupt handler<br />
-7a5fbcb1f150 drm/i915: Add XE_HP initial definitions</p>
-
-</body>
-</html>
-
---===============1513591212640510553==--
-
---===============1350549715==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+2.26.2
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1350549715==--
