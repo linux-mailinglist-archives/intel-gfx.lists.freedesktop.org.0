@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044C13C9B3E
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 11:18:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0103C9B42
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 11:18:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D363B6E5CE;
-	Thu, 15 Jul 2021 09:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3C5B6E5D3;
+	Thu, 15 Jul 2021 09:18:36 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E35036E5CC;
- Thu, 15 Jul 2021 09:18:30 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="232332983"
-X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="232332983"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D45D6E5CF;
+ Thu, 15 Jul 2021 09:18:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="232332987"
+X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="232332987"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2021 02:18:30 -0700
-X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="572766998"
+ 15 Jul 2021 02:18:32 -0700
+X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="572767256"
 Received: from shyland-mobl2.ger.corp.intel.com (HELO tursulin-mobl2.home)
  ([10.213.241.81])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2021 02:18:29 -0700
+ 15 Jul 2021 02:18:30 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 15 Jul 2021 10:18:13 +0100
-Message-Id: <20210715091820.1613726-2-tvrtko.ursulin@linux.intel.com>
+Date: Thu, 15 Jul 2021 10:18:14 +0100
+Message-Id: <20210715091820.1613726-3-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210715091820.1613726-1-tvrtko.ursulin@linux.intel.com>
 References: <20210715091820.1613726-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 1/8] drm/i915: Explicitly track DRM clients
+Subject: [Intel-gfx] [RFC 2/8] drm/i915: Make GEM contexts track DRM clients
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,173 +44,72 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KClRyYWNraW5n
-IERSTSBjbGllbnRzIG1vcmUgZXhwbGljaXRseSB3aWxsIGFsbG93IGxhdGVyIHBhdGNoZXMgdG8K
-YWNjdW11bGF0ZSBwYXN0IGFuZCBjdXJyZW50IEdQVSB1c2FnZSBpbiBhIGNlbnRyYWxpc2VkIHBs
-YWNlIGFuZCBhbHNvCmNvbnNvbGlkYXRlIGFjY2VzcyB0byBvd25pbmcgdGFzayBwaWQvbmFtZS4K
-ClVuaXF1ZSBjbGllbnQgaWQgaXMgYWxzbyBhc3NpZ25lZCBmb3IgdGhlIHB1cnBvc2Ugb2YgZGlz
-dGluZ3Vpc2hpbmcvCmNvbnNvbGlkYXRpbmcgYmV0d2VlbiBtdWx0aXBsZSBmaWxlIGRlc2NyaXB0
-b3JzIG93bmVkIGJ5IHRoZSBzYW1lIHByb2Nlc3MuCgp2MjoKIENocmlzIFdpbHNvbjoKICogRW5j
-bG9zZSBuZXcgbWVtYmVycyBpbnRvIGRlZGljYXRlZCBzdHJ1Y3RzLgogKiBQcm90ZWN0IGFnYWlu
-c3QgZmFpbGVkIHN5c2ZzIHJlZ2lzdHJhdGlvbi4KCnYzOgogKiBzeXNmc19hdHRyX2luaXQuCgp2
-NDoKICogRml4IGZvciBpbnRlcm5hbCBjbGllbnRzLgoKdjU6CiAqIFVzZSBjeWNsaWMgaWRhIGZv
-ciBjbGllbnQgaWQuIChDaHJpcykKICogRG8gbm90IGxlYWsgcGlkIHJlZmVyZW5jZS4gKENocmlz
-KQogKiBUaWR5IGNvZGUgd2l0aCBzb21lIGxvY2Fscy4KCnY2OgogKiBVc2UgeGFfYWxsb2NfY3lj
-bGljIHRvIHNpbXBsaWZ5IGxvY2tpbmcuIChDaHJpcykKICogTm8gbmVlZCB0byB1bnJlZ2lzdGVy
-IGluZGl2aWRpYWwgc3lzZnMgZmlsZXMuIChDaHJpcykKICogUmViYXNlIG9uIHRvcCBvZiBmcHJp
-diBrcmVmLgogKiBUcmFjayBjbGllbnQgY2xvc2VkIHN0YXR1cyBhbmQgcmVmbGVjdCBpbiBzeXNm
-cy4KCnY3OgogKiBNYWtlIGRybV9jbGllbnQgbW9yZSBzdGFuZGFsb25lIGNvbmNlcHQuCgp2ODoK
-ICogU2ltcGxpZnkgc3lzZnMgc2hvdy4gKENocmlzKQogKiBBbHdheXMgdHJhY2sgbmFtZSBhbmQg
-cGlkLgoKdjk6CiAqIEZpeCBjeWNsaWMgaWQgYXNzaWdubWVudC4KCnYxMDoKICogTm8gbmVlZCBm
-b3IgYSBtdXRleCBhcm91bmQgeGFfYWxsb2NfY3ljbGljLgogKiBSZWZhY3RvciBzeXNmcyBpbnRv
-IG93biBmdW5jdGlvbi4KICogVW5yZWdpc3RlciBzeXNmcyBiZWZvcmUgZnJlZWluZyBwaWQgYW5k
-IG5hbWUuCiAqIE1vdmUgY2xpZW50cyBzZXR1cCBpbnRvIG93biBmdW5jdGlvbi4KCnYxMToKICog
-Q2FsbCBjbGllbnRzIGluaXQgZGlyZWN0bHkgZnJvbSBkcml2ZXIgaW5pdC4gKENocmlzKQoKdjEy
-OgogKiBEbyBub3QgZmFpbCBjbGllbnQgYWRkIG9uIGlkIHdyYXAuIChNYWNpZWopCgp2MTMgKEx1
-Y2FzKTogUmViYXNlLgoKdjE0OgogKiBEcm9wcGVkIHN5c2ZzIGJpdHMuCgp2MTU6CiAqIERyb3Bw
-ZWQgdHJhY2tpbmcgb2YgcGlkLyBhbmQgbmFtZS4KICogRHJvcHBlZCBSQ1UgZnJlZWluZyBvZiB0
-aGUgY2xpZW50IG9iamVjdC4KClNpZ25lZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28u
-dXJzdWxpbkBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlz
-LXdpbHNvbi5jby51az4gIyB2MTEKUmV2aWV3ZWQtYnk6IEFyYXZpbmQgSWRkYW1zZXR0eSA8YXJh
-dmluZC5pZGRhbXNldHR5QGludGVsLmNvbT4gIyB2MTEKU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-TWFrZWZpbGUgICAgICAgICAgfCAgNSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1f
-Y2xpZW50LmMgfCA2OCArKysrKysrKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcm1fY2xpZW50LmggfCA1MCArKysrKysrKysrKysrKysrKysrCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAgICAgICB8ICA2ICsrKwogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcnYuaCAgICAgICAgfCAgNSArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9nZW0uYyAgICAgICAgfCAyMSArKysrKystLQogNiBmaWxlcyBjaGFuZ2VkLCAxNTAgaW5zZXJ0
-aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2RybV9jbGllbnQuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvTWFrZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQppbmRleCAxMGIz
-YmI2MjA3YmEuLjc4NGY5OWNhMTFmYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-TWFrZWZpbGUKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTMzLDggKzMz
-LDkgQEAgc3ViZGlyLWNjZmxhZ3MteSArPSAtSSQoc3JjdHJlZSkvJChzcmMpCiAjIFBsZWFzZSBr
-ZWVwIHRoZXNlIGJ1aWxkIGxpc3RzIHNvcnRlZCEKIAogIyBjb3JlIGRyaXZlciBjb2RlCi1pOTE1
-LXkgKz0gaTkxNV9kcnYubyBcCi0JICBpOTE1X2NvbmZpZy5vIFwKK2k5MTUteSArPSBpOTE1X2Nv
-bmZpZy5vIFwKKwkgIGk5MTVfZHJtX2NsaWVudC5vIFwKKwkgIGk5MTVfZHJ2Lm8gXAogCSAgaTkx
-NV9pcnEubyBcCiAJICBpOTE1X2dldHBhcmFtLm8gXAogCSAgaTkxNV9taXRpZ2F0aW9ucy5vIFwK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50LmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQK
-aW5kZXggMDAwMDAwMDAwMDAwLi5lNjFlOWJhMTUyNTYKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuYwpAQCAtMCwwICsxLDY4IEBACisvLyBT
-UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjAgSW50
-ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaW5jbHVkZSA8bGludXgva2VybmVsLmg+CisjaW5jbHVk
-ZSA8bGludXgvc2xhYi5oPgorI2luY2x1ZGUgPGxpbnV4L3R5cGVzLmg+CisKKyNpbmNsdWRlICJp
-OTE1X2RybV9jbGllbnQuaCIKKyNpbmNsdWRlICJpOTE1X2dlbS5oIgorI2luY2x1ZGUgImk5MTVf
-dXRpbHMuaCIKKwordm9pZCBpOTE1X2RybV9jbGllbnRzX2luaXQoc3RydWN0IGk5MTVfZHJtX2Ns
-aWVudHMgKmNsaWVudHMsCisJCQkgICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKK3sK
-KwljbGllbnRzLT5pOTE1ID0gaTkxNTsKKwljbGllbnRzLT5uZXh0X2lkID0gMDsKKworCXhhX2lu
-aXRfZmxhZ3MoJmNsaWVudHMtPnhhcnJheSwgWEFfRkxBR1NfQUxMT0MgfCBYQV9GTEFHU19MT0NL
-X0lSUSk7Cit9CisKK3N0cnVjdCBpOTE1X2RybV9jbGllbnQgKmk5MTVfZHJtX2NsaWVudF9hZGQo
-c3RydWN0IGk5MTVfZHJtX2NsaWVudHMgKmNsaWVudHMpCit7CisJc3RydWN0IGk5MTVfZHJtX2Ns
-aWVudCAqY2xpZW50OworCXN0cnVjdCB4YXJyYXkgKnhhID0gJmNsaWVudHMtPnhhcnJheTsKKwlp
-bnQgcmV0OworCisJY2xpZW50ID0ga3phbGxvYyhzaXplb2YoKmNsaWVudCksIEdGUF9LRVJORUwp
-OworCWlmICghY2xpZW50KQorCQlyZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKKworCXhhX2xvY2tf
-aXJxKHhhKTsKKwlyZXQgPSBfX3hhX2FsbG9jX2N5Y2xpYyh4YSwgJmNsaWVudC0+aWQsIGNsaWVu
-dCwgeGFfbGltaXRfMzJiLAorCQkJCSZjbGllbnRzLT5uZXh0X2lkLCBHRlBfS0VSTkVMKTsKKwl4
-YV91bmxvY2tfaXJxKHhhKTsKKwlpZiAocmV0IDwgMCkKKwkJZ290byBlcnI7CisKKwlrcmVmX2lu
-aXQoJmNsaWVudC0+a3JlZik7CisJY2xpZW50LT5jbGllbnRzID0gY2xpZW50czsKKworCXJldHVy
-biBjbGllbnQ7CisKK2VycjoKKwlrZnJlZShjbGllbnQpOworCisJcmV0dXJuIEVSUl9QVFIocmV0
-KTsKK30KKwordm9pZCBfX2k5MTVfZHJtX2NsaWVudF9mcmVlKHN0cnVjdCBrcmVmICprcmVmKQor
-eworCXN0cnVjdCBpOTE1X2RybV9jbGllbnQgKmNsaWVudCA9CisJCWNvbnRhaW5lcl9vZihrcmVm
-LCB0eXBlb2YoKmNsaWVudCksIGtyZWYpOworCXN0cnVjdCB4YXJyYXkgKnhhID0gJmNsaWVudC0+
-Y2xpZW50cy0+eGFycmF5OworCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CisKKwl4YV9sb2NrX2lycXNh
-dmUoeGEsIGZsYWdzKTsKKwlfX3hhX2VyYXNlKHhhLCBjbGllbnQtPmlkKTsKKwl4YV91bmxvY2tf
-aXJxcmVzdG9yZSh4YSwgZmxhZ3MpOworCWtmcmVlKGNsaWVudCk7Cit9CisKK3ZvaWQgaTkxNV9k
-cm1fY2xpZW50c19maW5pKHN0cnVjdCBpOTE1X2RybV9jbGllbnRzICpjbGllbnRzKQoreworCUdF
-TV9CVUdfT04oIXhhX2VtcHR5KCZjbGllbnRzLT54YXJyYXkpKTsKKwl4YV9kZXN0cm95KCZjbGll
-bnRzLT54YXJyYXkpOworfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cm1fY2xpZW50LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuaApuZXcg
-ZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLmU4OTg2YWQ1MTE3NgotLS0gL2Rl
-di9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oCkBAIC0w
-LDAgKzEsNTAgQEAKKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KKy8qCisgKiBD
-b3B5cmlnaHQgwqkgMjAyMCBJbnRlbCBDb3Jwb3JhdGlvbgorICovCisKKyNpZm5kZWYgX19JOTE1
-X0RSTV9DTElFTlRfSF9fCisjZGVmaW5lIF9fSTkxNV9EUk1fQ0xJRU5UX0hfXworCisjaW5jbHVk
-ZSA8bGludXgva3JlZi5oPgorI2luY2x1ZGUgPGxpbnV4L3hhcnJheS5oPgorCitzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZTsKKworc3RydWN0IGk5MTVfZHJtX2NsaWVudHMgeworCXN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICppOTE1OworCisJc3RydWN0IHhhcnJheSB4YXJyYXk7CisJdTMyIG5leHRf
-aWQ7Cit9OworCitzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50IHsKKwlzdHJ1Y3Qga3JlZiBrcmVmOwor
-CisJdW5zaWduZWQgaW50IGlkOworCisJc3RydWN0IGk5MTVfZHJtX2NsaWVudHMgKmNsaWVudHM7
-Cit9OworCit2b2lkIGk5MTVfZHJtX2NsaWVudHNfaW5pdChzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50
-cyAqY2xpZW50cywKKwkJCSAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KTsKKworc3Rh
-dGljIGlubGluZSBzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICoKK2k5MTVfZHJtX2NsaWVudF9nZXQo
-c3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50KQoreworCWtyZWZfZ2V0KCZjbGllbnQtPmty
-ZWYpOworCXJldHVybiBjbGllbnQ7Cit9CisKK3ZvaWQgX19pOTE1X2RybV9jbGllbnRfZnJlZShz
-dHJ1Y3Qga3JlZiAqa3JlZik7CisKK3N0YXRpYyBpbmxpbmUgdm9pZCBpOTE1X2RybV9jbGllbnRf
-cHV0KHN0cnVjdCBpOTE1X2RybV9jbGllbnQgKmNsaWVudCkKK3sKKwlrcmVmX3B1dCgmY2xpZW50
-LT5rcmVmLCBfX2k5MTVfZHJtX2NsaWVudF9mcmVlKTsKK30KKworc3RydWN0IGk5MTVfZHJtX2Ns
-aWVudCAqaTkxNV9kcm1fY2xpZW50X2FkZChzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50cyAqY2xpZW50
-cyk7CisKK3ZvaWQgaTkxNV9kcm1fY2xpZW50c19maW5pKHN0cnVjdCBpOTE1X2RybV9jbGllbnRz
-ICpjbGllbnRzKTsKKworI2VuZGlmIC8qICFfX0k5MTVfRFJNX0NMSUVOVF9IX18gKi8KZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2Rydi5jCmluZGV4IDMwZDhjZDhjNjliMS4uYmI2MjhlYWRlOTJhIDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTY4LDYgKzY4LDcgQEAKICNpbmNsdWRlICJndC9pbnRlbF9y
-YzYuaCIKIAogI2luY2x1ZGUgImk5MTVfZGVidWdmcy5oIgorI2luY2x1ZGUgImk5MTVfZHJtX2Ns
-aWVudC5oIgogI2luY2x1ZGUgImk5MTVfZHJ2LmgiCiAjaW5jbHVkZSAiaTkxNV9pb2MzMi5oIgog
-I2luY2x1ZGUgImk5MTVfaXJxLmgiCkBAIC0zNDMsNiArMzQ0LDggQEAgc3RhdGljIGludCBpOTE1
-X2RyaXZlcl9lYXJseV9wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAK
-IAlpbnRlbF9ndF9pbml0X2Vhcmx5KCZkZXZfcHJpdi0+Z3QsIGRldl9wcml2KTsKIAorCWk5MTVf
-ZHJtX2NsaWVudHNfaW5pdCgmZGV2X3ByaXYtPmNsaWVudHMsIGRldl9wcml2KTsKKwogCWk5MTVf
-Z2VtX2luaXRfZWFybHkoZGV2X3ByaXYpOwogCiAJLyogVGhpcyBtdXN0IGJlIGNhbGxlZCBiZWZv
-cmUgYW55IGNhbGxzIHRvIEhBU19QQ0hfKiAqLwpAQCAtMzYyLDYgKzM2NSw3IEBAIHN0YXRpYyBp
-bnQgaTkxNV9kcml2ZXJfZWFybHlfcHJvYmUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2KQogCiBlcnJfZ2VtOgogCWk5MTVfZ2VtX2NsZWFudXBfZWFybHkoZGV2X3ByaXYpOworCWk5
-MTVfZHJtX2NsaWVudHNfZmluaSgmZGV2X3ByaXYtPmNsaWVudHMpOwogCWludGVsX2d0X2RyaXZl
-cl9sYXRlX3JlbGVhc2UoJmRldl9wcml2LT5ndCk7CiAJaW50ZWxfcmVnaW9uX3R0bV9kZXZpY2Vf
-ZmluaShkZXZfcHJpdik7CiBlcnJfdHRtOgpAQCAtMzgxLDYgKzM4NSw3IEBAIHN0YXRpYyB2b2lk
-IGk5MTVfZHJpdmVyX2xhdGVfcmVsZWFzZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYpCiAJaW50ZWxfaXJxX2ZpbmkoZGV2X3ByaXYpOwogCWludGVsX3Bvd2VyX2RvbWFpbnNfY2xl
-YW51cChkZXZfcHJpdik7CiAJaTkxNV9nZW1fY2xlYW51cF9lYXJseShkZXZfcHJpdik7CisJaTkx
-NV9kcm1fY2xpZW50c19maW5pKCZkZXZfcHJpdi0+Y2xpZW50cyk7CiAJaW50ZWxfZ3RfZHJpdmVy
-X2xhdGVfcmVsZWFzZSgmZGV2X3ByaXYtPmd0KTsKIAlpbnRlbF9yZWdpb25fdHRtX2RldmljZV9m
-aW5pKGRldl9wcml2KTsKIAl2bHZfc3VzcGVuZF9jbGVhbnVwKGRldl9wcml2KTsKQEAgLTk5Niw2
-ICsxMDAxLDcgQEAgc3RhdGljIHZvaWQgaTkxNV9kcml2ZXJfcG9zdGNsb3NlKHN0cnVjdCBkcm1f
-ZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKIAlzdHJ1Y3QgZHJtX2k5MTVfZmls
-ZV9wcml2YXRlICpmaWxlX3ByaXYgPSBmaWxlLT5kcml2ZXJfcHJpdjsKIAogCWk5MTVfZ2VtX2Nv
-bnRleHRfY2xvc2UoZmlsZSk7CisJaTkxNV9kcm1fY2xpZW50X3B1dChmaWxlX3ByaXYtPmNsaWVu
-dCk7CiAKIAlrZnJlZV9yY3UoZmlsZV9wcml2LCByY3UpOwogCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
-aAppbmRleCBjNDc0N2Y0NDA3ZWYuLjMzOGQzODRjMzFlYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
-di5oCkBAIC05Niw2ICs5Niw3IEBACiAjaW5jbHVkZSAiaW50ZWxfd2FrZXJlZi5oIgogI2luY2x1
-ZGUgImludGVsX3dvcGNtLmgiCiAKKyNpbmNsdWRlICJpOTE1X2RybV9jbGllbnQuaCIKICNpbmNs
-dWRlICJpOTE1X2dlbS5oIgogI2luY2x1ZGUgImk5MTVfZ2VtX2d0dC5oIgogI2luY2x1ZGUgImk5
-MTVfZ3B1X2Vycm9yLmgiCkBAIC0yODQsNiArMjg1LDggQEAgc3RydWN0IGRybV9pOTE1X2ZpbGVf
-cHJpdmF0ZSB7CiAJLyoqIGJhbl9zY29yZTogQWNjdW11bGF0ZWQgc2NvcmUgb2YgYWxsIGN0eCBi
-YW5zIGFuZCBmYXN0IGhhbmdzLiAqLwogCWF0b21pY190IGJhbl9zY29yZTsKIAl1bnNpZ25lZCBs
-b25nIGhhbmdfdGltZXN0YW1wOworCisJc3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50Owog
-fTsKIAogLyogSW50ZXJmYWNlIGhpc3Rvcnk6CkBAIC0xMjE4LDYgKzEyMjEsOCBAQCBzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSB7CiAKIAlzdHJ1Y3QgaTkxNV9wbXUgcG11OwogCisJc3RydWN0IGk5
-MTVfZHJtX2NsaWVudHMgY2xpZW50czsKKwogCXN0cnVjdCBpOTE1X2hkY3BfY29tcF9tYXN0ZXIg
-KmhkY3BfbWFzdGVyOwogCWJvb2wgaGRjcF9jb21wX2FkZGVkOwogCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9n
-ZW0uYwppbmRleCA1OTBlZmM4YjAyNjUuLmQ2ZjgyOWQ0OWEyOCAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2dlbS5jCkBAIC0xMTc5LDI1ICsxMTc5LDQwIEBAIHZvaWQgaTkxNV9nZW1fY2xlYW51cF9lYXJs
-eShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiBpbnQgaTkxNV9nZW1fb3Blbihz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgc3RydWN0IGRybV9maWxlICpmaWxlKQogewog
-CXN0cnVjdCBkcm1faTkxNV9maWxlX3ByaXZhdGUgKmZpbGVfcHJpdjsKLQlpbnQgcmV0OworCXN0
-cnVjdCBpOTE1X2RybV9jbGllbnQgKmNsaWVudDsKKwlpbnQgcmV0ID0gLUVOT01FTTsKIAogCURS
-TV9ERUJVRygiXG4iKTsKIAogCWZpbGVfcHJpdiA9IGt6YWxsb2Moc2l6ZW9mKCpmaWxlX3ByaXYp
-LCBHRlBfS0VSTkVMKTsKIAlpZiAoIWZpbGVfcHJpdikKLQkJcmV0dXJuIC1FTk9NRU07CisJCWdv
-dG8gZXJyX2FsbG9jOworCisJY2xpZW50ID0gaTkxNV9kcm1fY2xpZW50X2FkZCgmaTkxNS0+Y2xp
-ZW50cyk7CisJaWYgKElTX0VSUihjbGllbnQpKSB7CisJCXJldCA9IFBUUl9FUlIoY2xpZW50KTsK
-KwkJZ290byBlcnJfY2xpZW50OworCX0KIAogCWZpbGUtPmRyaXZlcl9wcml2ID0gZmlsZV9wcml2
-OwogCWZpbGVfcHJpdi0+ZGV2X3ByaXYgPSBpOTE1OwogCWZpbGVfcHJpdi0+ZmlsZSA9IGZpbGU7
-CisJZmlsZV9wcml2LT5jbGllbnQgPSBjbGllbnQ7CiAKIAlmaWxlX3ByaXYtPmJzZF9lbmdpbmUg
-PSAtMTsKIAlmaWxlX3ByaXYtPmhhbmdfdGltZXN0YW1wID0gamlmZmllczsKIAogCXJldCA9IGk5
-MTVfZ2VtX2NvbnRleHRfb3BlbihpOTE1LCBmaWxlKTsKIAlpZiAocmV0KQotCQlrZnJlZShmaWxl
-X3ByaXYpOworCQlnb3RvIGVycl9jb250ZXh0OworCisJcmV0dXJuIDA7CiAKK2Vycl9jb250ZXh0
-OgorCWk5MTVfZHJtX2NsaWVudF9wdXQoY2xpZW50KTsKK2Vycl9jbGllbnQ6CisJa2ZyZWUoZmls
-ZV9wcml2KTsKK2Vycl9hbGxvYzoKIAlyZXR1cm4gcmV0OwogfQogCi0tIAoyLjMwLjIKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Make GEM contexts keep a reference to i915_drm_client for the whole of
+of their lifetime which will come handy in following patches.
+
+v2: Don't bother supporting selftests contexts from debugfs. (Chris)
+v3 (Lucas): Finish constructing ctx before adding it to the list
+v4 (Ram): Rebase.
+v5: Trivial rebase for proto ctx changes.
+v6: Rebase after clients no longer track name and pid.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk> # v5
+Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com> # v5
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c       | 5 +++++
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 3 +++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 7d6f52d8a801..3bf409cf0214 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -988,6 +988,9 @@ void i915_gem_context_release(struct kref *ref)
+ 	trace_i915_context_free(ctx);
+ 	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+ 
++	if (ctx->client)
++		i915_drm_client_put(ctx->client);
++
+ 	mutex_destroy(&ctx->engines_mutex);
+ 	mutex_destroy(&ctx->lut_mutex);
+ 
+@@ -1436,6 +1439,8 @@ static void gem_context_register(struct i915_gem_context *ctx,
+ 	ctx->file_priv = fpriv;
+ 
+ 	ctx->pid = get_task_pid(current, PIDTYPE_PID);
++	ctx->client = i915_drm_client_get(fpriv->client);
++
+ 	snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
+ 		 current->comm, pid_nr(ctx->pid));
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 94c03a97cb77..e1bca913818e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -277,6 +277,9 @@ struct i915_gem_context {
+ 	/** @link: place with &drm_i915_private.context_list */
+ 	struct list_head link;
+ 
++	/** @client: struct i915_drm_client */
++	struct i915_drm_client *client;
++
+ 	/**
+ 	 * @ref: reference count
+ 	 *
+-- 
+2.30.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
