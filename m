@@ -1,34 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2129F3CA007
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 15:49:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A22173CA027
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 15:56:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAD406E85A;
-	Thu, 15 Jul 2021 13:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFD26E85F;
+	Thu, 15 Jul 2021 13:56:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 408526E856;
- Thu, 15 Jul 2021 13:49:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="197733026"
-X-IronPort-AV: E=Sophos;i="5.84,242,1620716400"; d="scan'208";a="197733026"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2021 06:49:02 -0700
-X-IronPort-AV: E=Sophos;i="5.84,242,1620716400"; d="scan'208";a="505800052"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 665886E85E;
+ Thu, 15 Jul 2021 13:56:22 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="207527188"
+X-IronPort-AV: E=Sophos;i="5.84,242,1620716400"; d="scan'208";a="207527188"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2021 06:56:21 -0700
+X-IronPort-AV: E=Sophos;i="5.84,242,1620716400"; d="scan'208";a="494591429"
 Received: from gzhao-mobl1.amr.corp.intel.com (HELO intel.com)
  ([10.212.69.157])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2021 06:49:00 -0700
-Date: Thu, 15 Jul 2021 09:48:59 -0400
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2021 06:56:20 -0700
+Date: Thu, 15 Jul 2021 09:56:18 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YPA8y1DSCp2EbtpC@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Message-ID: <YPA+glVCKYzoYq6Y@intel.com>
+References: <20210715022237.GX12150@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+In-Reply-To: <20210715022237.GX12150@zhen-hp.sh.intel.com>
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,58 +43,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+On Thu, Jul 15, 2021 at 10:22:37AM +0800, Zhenyu Wang wrote:
+> 
+> Hi,
+> 
+> Here's one fix of shadow ppgtt invalidation with proper vGPU D3 state tracking.
+> 
+> Thanks
 
-I was unsure about the -EDEADLK one based on Daniel's
-comment on dri-devel, but Ville's response and the patch
-looks reasonable to me. Also they are in sync with the
-test cases. So if anything needs to still change on that
-area I believe it can be a follow-up work.
+I only noticed this after sending this week's pull request.
+I'm sorry about that.
 
-Here goes drm-intel-fixes-2021-07-15:
+It is now pulled and queued for next week.
 
-Two regression fixes targeting stable:
-- Fix -EDEADLK handling regression (Ville)
-- Drop the page table optimisation (Matt)
-
-Thanks,
+Sorry and Thanks,
 Rodrigo.
 
-The following changes since commit e73f0f0ee7541171d89f2e2491130c7771ba58d3:
+> --
+> The following changes since commit 62fb9874f5da54fdb243003b386128037319b219:
+> 
+>   Linux 5.13 (2021-06-27 15:21:11 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2021-07-15
+> 
+> for you to fetch changes up to c90b4503ccf42d9d367e843c223df44aa550e82a:
+> 
+>   drm/i915/gvt: Clear d3_entered on elsp cmd submission. (2021-07-08 16:42:34 +0800)
+> 
+> ----------------------------------------------------------------
+> gvt-fixes-2021-07-15
+> 
+> - Fix shadow ppgtt invalidation with proper D3 state tracking (Colin)
+> 
+> ----------------------------------------------------------------
+> Colin Xu (1):
+>       drm/i915/gvt: Clear d3_entered on elsp cmd submission.
+> 
+>  drivers/gpu/drm/i915/gvt/handlers.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 
-  Linux 5.14-rc1 (2021-07-11 15:07:40 -0700)
 
-are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-07-=
-15
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-for you to fetch changes up to 0abb33bfca0fb74df76aac03e90ce685016ef7be:
-
-  drm/i915/gtt: drop the page table optimisation (2021-07-14 08:46:18 -0400)
-
-----------------------------------------------------------------
-Two regression fixes targeting stable:
-- Fix -EDEADLK handling regression (Ville)
-- Drop the page table optimisation (Matt)
-
-----------------------------------------------------------------
-Matthew Auld (1):
-      drm/i915/gtt: drop the page table optimisation
-
-Ville Syrj=E4l=E4 (1):
-      drm/i915/gt: Fix -EDEADLK handling regression
-
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c         | 5 +----
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 2 +-
- 2 files changed, 2 insertions(+), 5 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
