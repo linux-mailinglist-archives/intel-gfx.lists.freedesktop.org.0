@@ -1,62 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 289CA3CAF43
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 00:39:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D5D3CAF4A
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 00:39:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF4E6E8C0;
-	Thu, 15 Jul 2021 22:39:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABC196E8C9;
+	Thu, 15 Jul 2021 22:39:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
- [IPv6:2607:f8b0:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1BF6E8BE
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 22:39:13 +0000 (UTC)
-Received: by mail-pf1-x42b.google.com with SMTP id j9so7001496pfc.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 15:39:13 -0700 (PDT)
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
+ [IPv6:2607:f8b0:4864:20::1031])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 568446E8BE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 22:39:15 +0000 (UTC)
+Received: by mail-pj1-x1031.google.com with SMTP id
+ p4-20020a17090a9304b029016f3020d867so5650954pjo.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 15:39:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=IEg9Ql1P0pH2ya8JFjLrolvs7S9Ijker4C+eWzsnT8Q=;
- b=O89Bpv1/zSsu0DH6HPFsfiqzn3QwUS9Qkg708aexqokYhCSkW6TJ3MCtPn7AbfHDtd
- ZeKmyUmkN/Y++EdgellfXk5PbwYgOvuSBZjH7lPX714W4N+RyW5+xVIj/3n37DAMR0W5
- oicRn/6d249iKqbQo6/JGhB18/fNfTXf/SaXReATMxaWJndRln8sCdfhKBUoFVxQJ3oz
- LMIfONqyB1LYtTOXH5xu1q4pA/ovW8mVR+E3xmi+JWgqrsTjbXvrT/ZgR2awAicoClUE
- syu2nbbwaly4U32D7dvNxhlN7J1nZwjl6H2AE9DBjtHaMhh4k2aAbu52KgodP3LNge2w
- F3gA==
+ bh=WciUpITvEcHMdrnkAxX4EGa72kGWHk1hAVU4U/kERfQ=;
+ b=bAAD2MAvv4do4lfSoOsyQp0dNCGz2SxmzldW3v2FLw0MjnDkf+hvIzT6+rqcrAxA2o
+ qPqP83F2fgffxdpYeUFW/yMyMditQ+V6pYhszovcXeOB+C1uq6qv+aRm53H6PMmkWwLG
+ kJ4ZsYPhQx53jUmf9f3X5nmz8BLA4NgDszaXEzsk5kesTDFNwm2S6m793gFUJs8TYSXp
+ Rrm+scyRIrggf26+w/t/y/FqtFqRojXP/zx+dXQpvbrhR2DZ0roWnYbneLXMmYMuH+eA
+ /FnaPve6pwK2L8xv5wmMdb7XLliOfJlNwB1dJ68svgfk6O7e77MM0uxvLklF+mWC6rFZ
+ Tsaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=IEg9Ql1P0pH2ya8JFjLrolvs7S9Ijker4C+eWzsnT8Q=;
- b=VNEcpZo21XyY8gbAdUHgGMPHZUg4D4ckAepFg674mseCuTyHkOOoRtH8kZNWffIK4j
- z4iGCi/UYGuFOtSdUYhUWYGonRrNocIEXNVQLenNZd3VAdKGpxMo+ADpUJCMsin0JeQU
- ChRUzsIcTzZzWqWnG0+gxwICuUM+hLhADLrRQ/7hiovkeGdsGWCGC1d61h+RYgZvlyjr
- WWxq1YNzq1s+YPeH1aaHMRsRP0d82wucN98n/pGRLYp7mbQAzWY1Mo/+7xgc31rVhkaQ
- 0C+x2qMxI5GccboJwgwO6lTuZtHKy79hdQknpeyficKwfDa70Ygnm5iduYGMo1gbk6zk
- AnoQ==
-X-Gm-Message-State: AOAM530Mvf3TW5S2Jr2TbQSjJVUN4zzHe8b28MNq0KH6RKnlb9NFqcrT
- hNcIVdiZmUk4GBHph2Q0QgNS5Zb857RfLg==
-X-Google-Smtp-Source: ABdhPJw4xNvB3n3K1EP2lU9bKKW1nu/gkdDvilFbg/yhLcirnaM9iNh2vL+3t0Wo/1z+q5mpkf/k4w==
-X-Received: by 2002:a05:6a00:2182:b029:32d:a761:6f5 with SMTP id
- h2-20020a056a002182b029032da76106f5mr7177303pfi.10.1626388752612; 
- Thu, 15 Jul 2021 15:39:12 -0700 (PDT)
+ bh=WciUpITvEcHMdrnkAxX4EGa72kGWHk1hAVU4U/kERfQ=;
+ b=MK1sV/yoZR3lXB3WrjvNa+fbkFKiVmB6Kfqxb19IM21bO73mKdMJfqYvwznDmonbsv
+ cV44QxU+IdPdCT9n3qcPZhGy9XKrXGCoj0O35SkD0qbDFvGoGUg+x6Ma3jUMGo7tfGTj
+ 9PhbXWhw1sPa/cT6/15syy5mUn9f8r8D0o2NIe63J/99Fh4NGADfW41yfgfA0/RHRZ3p
+ pl557bUtAAE6gZJuGP0nmtVtAteg2+V0COV3Ifr297cVy/0OUfCHvMBv94KfXPoJqDcn
+ lcL/26jk2E5MdNPB6IDcn8rsmB4d5PHemadX+BSqvwW3C27msrIGKF2F/G9R+qZRDOsf
+ rY2g==
+X-Gm-Message-State: AOAM531zr+DBP/mpy12gSqGWZu8srcnLR3E6q4F5kUAwcqz7lB+h6W+9
+ jIhT77q9gN1WXIqreZFzN9i8SAyzBlRJfA==
+X-Google-Smtp-Source: ABdhPJwln5alaY0SRCNgr7HQimiY6NvglQIPRqZMtXsuuUDJPZS7T/NL9JrFSbr7WddJjrbPrkk8/Q==
+X-Received: by 2002:a17:90b:4b4e:: with SMTP id
+ mi14mr12504357pjb.109.1626388754644; 
+ Thu, 15 Jul 2021 15:39:14 -0700 (PDT)
 Received: from omlet.com ([134.134.137.87])
- by smtp.gmail.com with ESMTPSA id ft7sm9959459pjb.32.2021.07.15.15.39.11
+ by smtp.gmail.com with ESMTPSA id ft7sm9959459pjb.32.2021.07.15.15.39.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 15 Jul 2021 15:39:12 -0700 (PDT)
+ Thu, 15 Jul 2021 15:39:14 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Thu, 15 Jul 2021 17:38:56 -0500
-Message-Id: <20210715223900.1840576-4-jason@jlekstrand.net>
+Date: Thu, 15 Jul 2021 17:38:57 -0500
+Message-Id: <20210715223900.1840576-5-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210715223900.1840576-1-jason@jlekstrand.net>
 References: <20210715223900.1840576-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/7] drm/i915/gem: Unify user object creation
+Subject: [Intel-gfx] [PATCH 4/7] drm/i915/gem/ttm: Place new BOs in the
+ requested region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,224 +71,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of hand-rolling the same three calls in each function, pull them
-into an i915_gem_object_create_user helper.  Apart from re-ordering of
-the placements array ENOMEM check, the only functional change here
-should be that i915_gem_dumb_create now calls i915_gem_flush_free_objects
-which it probably should have been calling all along.
-
-Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
----
- drivers/gpu/drm/i915/gem/i915_gem_create.c | 106 +++++++++------------
- 1 file changed, 43 insertions(+), 63 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-index 391c8c4a12172..69bf9ec777642 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-@@ -11,13 +11,14 @@
- #include "i915_trace.h"
- #include "i915_user_extensions.h"
- 
--static u32 object_max_page_size(struct drm_i915_gem_object *obj)
-+static u32 object_max_page_size(struct intel_memory_region **placements,
-+				unsigned int n_placements)
- {
- 	u32 max_page_size = 0;
- 	int i;
- 
--	for (i = 0; i < obj->mm.n_placements; i++) {
--		struct intel_memory_region *mr = obj->mm.placements[i];
-+	for (i = 0; i < n_placements; i++) {
-+		struct intel_memory_region *mr = placements[i];
- 
- 		GEM_BUG_ON(!is_power_of_2(mr->min_page_size));
- 		max_page_size = max_t(u32, max_page_size, mr->min_page_size);
-@@ -81,22 +82,35 @@ static int i915_gem_publish(struct drm_i915_gem_object *obj,
- 	return 0;
- }
- 
--static int
--i915_gem_setup(struct drm_i915_gem_object *obj, u64 size)
-+static struct drm_i915_gem_object *
-+i915_gem_object_create_user(struct drm_i915_private *i915, u64 size,
-+			    struct intel_memory_region **placements,
-+			    unsigned int n_placements)
- {
--	struct intel_memory_region *mr = obj->mm.placements[0];
-+	struct intel_memory_region *mr = placements[0];
-+	struct drm_i915_gem_object *obj;
- 	unsigned int flags;
- 	int ret;
- 
--	size = round_up(size, object_max_page_size(obj));
-+	i915_gem_flush_free_objects(i915);
-+
-+	obj = i915_gem_object_alloc();
-+	if (!obj)
-+		return ERR_PTR(-ENOMEM);
-+
-+	size = round_up(size, object_max_page_size(placements, n_placements));
- 	if (size == 0)
--		return -EINVAL;
-+		return ERR_PTR(-EINVAL);
- 
- 	/* For most of the ABI (e.g. mmap) we think in system pages */
- 	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
- 
- 	if (i915_gem_object_size_2big(size))
--		return -E2BIG;
-+		return ERR_PTR(-E2BIG);
-+
-+	ret = object_set_placements(obj, placements, n_placements);
-+	if (ret)
-+		goto object_free;
- 
- 	/*
- 	 * I915_BO_ALLOC_USER will make sure the object is cleared before
-@@ -106,12 +120,18 @@ i915_gem_setup(struct drm_i915_gem_object *obj, u64 size)
- 
- 	ret = mr->ops->init_object(mr, obj, size, 0, flags);
- 	if (ret)
--		return ret;
-+		goto object_free;
- 
- 	GEM_BUG_ON(size != obj->base.size);
- 
- 	trace_i915_gem_object_create(obj);
--	return 0;
-+	return obj;
-+
-+object_free:
-+	if (obj->mm.n_placements > 1)
-+		kfree(obj->mm.placements);
-+	i915_gem_object_free(obj);
-+	return ERR_PTR(ret);
- }
- 
- int
-@@ -124,7 +144,6 @@ i915_gem_dumb_create(struct drm_file *file,
- 	enum intel_memory_type mem_type;
- 	int cpp = DIV_ROUND_UP(args->bpp, 8);
- 	u32 format;
--	int ret;
- 
- 	switch (cpp) {
- 	case 1:
-@@ -157,24 +176,13 @@ i915_gem_dumb_create(struct drm_file *file,
- 	if (HAS_LMEM(to_i915(dev)))
- 		mem_type = INTEL_MEMORY_LOCAL;
- 
--	obj = i915_gem_object_alloc();
--	if (!obj)
--		return -ENOMEM;
--
- 	mr = intel_memory_region_by_type(to_i915(dev), mem_type);
--	ret = object_set_placements(obj, &mr, 1);
--	if (ret)
--		goto object_free;
- 
--	ret = i915_gem_setup(obj, args->size);
--	if (ret)
--		goto object_free;
-+	obj = i915_gem_object_create_user(to_i915(dev), args->size, &mr, 1);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
- 
- 	return i915_gem_publish(obj, file, &args->size, &args->handle);
--
--object_free:
--	i915_gem_object_free(obj);
--	return ret;
- }
- 
- /**
-@@ -191,28 +199,14 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
- 	struct drm_i915_gem_create *args = data;
- 	struct drm_i915_gem_object *obj;
- 	struct intel_memory_region *mr;
--	int ret;
--
--	i915_gem_flush_free_objects(i915);
--
--	obj = i915_gem_object_alloc();
--	if (!obj)
--		return -ENOMEM;
- 
- 	mr = intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
--	ret = object_set_placements(obj, &mr, 1);
--	if (ret)
--		goto object_free;
- 
--	ret = i915_gem_setup(obj, args->size);
--	if (ret)
--		goto object_free;
-+	obj = i915_gem_object_create_user(i915, args->size, &mr, 1);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
- 
- 	return i915_gem_publish(obj, file, &args->size, &args->handle);
--
--object_free:
--	i915_gem_object_free(obj);
--	return ret;
- }
- 
- #define MAX_N_PLACEMENTS = (INTEL_REGION_UNKNOWN + 1)
-@@ -379,38 +373,24 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
- 	if (args->flags)
- 		return -EINVAL;
- 
--	i915_gem_flush_free_objects(i915);
--
--	obj = i915_gem_object_alloc();
--	if (!obj)
--		return -ENOMEM;
--
- 	ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
- 				   create_extensions,
- 				   ARRAY_SIZE(create_extensions),
- 				   &ext_data);
- 	if (ret)
--		goto object_free;
-+		return ret;
- 
- 	if (!ext_data.n_placements) {
- 		ext_data.placements[0] =
- 			intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
- 		ext_data.n_placements = 1;
- 	}
--	ret = object_set_placements(obj, ext_data.placements,
--				    ext_data.n_placements);
--	if (ret)
--		goto object_free;
- 
--	ret = i915_gem_setup(obj, args->size);
--	if (ret)
--		goto object_free;
-+	obj = i915_gem_object_create_user(i915, args->size,
-+					  ext_data.placements,
-+					  ext_data.n_placements);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
- 
- 	return i915_gem_publish(obj, file, &args->size, &args->handle);
--
--object_free:
--	if (obj->mm.n_placements > 1)
--		kfree(obj->mm.placements);
--	i915_gem_object_free(obj);
--	return ret;
- }
--- 
-2.31.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+X19pOTE1X2dlbV90dG1fb2JqZWN0X2luaXQoKSB3YXMgaWdub3JpbmcgdGhlIHBsYWNlbWVudCBy
+ZXF1ZXN0cyBjb21pbmcKZnJvbSB0aGUgY2xpZW50IGFuZCBhbHdheXMgcGxhY2luZyBhbGwgQk9z
+IGluIFNNRU0gdXBvbiBjcmVhdGlvbi4KSW5zdGVhZCwgY29tcHV0ZSB0aGUgcmVxdWVzdGVkIHBs
+YWNlbWVudCBzZXQgZnJvbSB0aGUgb2JqZWN0IGFuZCBwYXNzCnRoYXQgaW50byB0dG1fYm9faW5p
+dF9yZXNlcnZlZCgpLgoKU2lnbmVkLW9mZi1ieTogSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtz
+dHJhbmQubmV0PgpDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXgu
+aW50ZWwuY29tPgpDYzogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpDYzog
+TWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMgfCA4ICsrKysrKy0tCiAx
+IGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYwppbmRleCA2NTg5NDExMzk2ZDNmLi5kMzBmMjc0
+YzMyOWM3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRt
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCkBAIC04OTgs
+NiArODk4LDggQEAgaW50IF9faTkxNV9nZW1fdHRtX29iamVjdF9pbml0KHN0cnVjdCBpbnRlbF9t
+ZW1vcnlfcmVnaW9uICptZW0sCiB7CiAJc3RhdGljIHN0cnVjdCBsb2NrX2NsYXNzX2tleSBsb2Nr
+X2NsYXNzOwogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gbWVtLT5pOTE1OworCXN0
+cnVjdCB0dG1fcGxhY2UgcmVxdWVzdGVkLCBidXN5W0k5MTVfVFRNX01BWF9QTEFDRU1FTlRTXTsK
+KwlzdHJ1Y3QgdHRtX3BsYWNlbWVudCBwbGFjZW1lbnQ7CiAJc3RydWN0IHR0bV9vcGVyYXRpb25f
+Y3R4IGN0eCA9IHsKIAkJLmludGVycnVwdGlibGUgPSB0cnVlLAogCQkubm9fd2FpdF9ncHUgPSBm
+YWxzZSwKQEAgLTkxOSw2ICs5MjEsOSBAQCBpbnQgX19pOTE1X2dlbV90dG1fb2JqZWN0X2luaXQo
+c3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSwKIAkvKiBGb3JjaW5nIHRoZSBwYWdlIHNp
+emUgaXMga2VybmVsIGludGVybmFsIG9ubHkgKi8KIAlHRU1fQlVHX09OKHBhZ2Vfc2l6ZSAmJiBv
+YmotPm1tLm5fcGxhY2VtZW50cyk7CiAKKwlHRU1fQlVHX09OKG9iai0+bW0ubl9wbGFjZW1lbnRz
+ID4gSTkxNV9UVE1fTUFYX1BMQUNFTUVOVFMpOworCWk5MTVfdHRtX3BsYWNlbWVudF9mcm9tX29i
+aihvYmosICZyZXF1ZXN0ZWQsIGJ1c3ksICZwbGFjZW1lbnQpOworCiAJLyoKIAkgKiBJZiB0aGlz
+IGZ1bmN0aW9uIGZhaWxzLCBpdCB3aWxsIGNhbGwgdGhlIGRlc3RydWN0b3IsIGJ1dAogCSAqIG91
+ciBjYWxsZXIgc3RpbGwgb3ducyB0aGUgb2JqZWN0LiBTbyBubyBmcmVlaW5nIGluIHRoZQpAQCAt
+OTI3LDggKzkzMiw3IEBAIGludCBfX2k5MTVfZ2VtX3R0bV9vYmplY3RfaW5pdChzdHJ1Y3QgaW50
+ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtLAogCSAqIHVudGlsIHN1Y2Nlc3NmdWwgaW5pdGlhbGl6YXRp
+b24uCiAJICovCiAJcmV0ID0gdHRtX2JvX2luaXRfcmVzZXJ2ZWQoJmk5MTUtPmJkZXYsIGk5MTVf
+Z2VtX3RvX3R0bShvYmopLCBzaXplLAotCQkJCSAgIGJvX3R5cGUsICZpOTE1X3N5c19wbGFjZW1l
+bnQsCi0JCQkJICAgcGFnZV9zaXplID4+IFBBR0VfU0hJRlQsCisJCQkJICAgYm9fdHlwZSwgJnBs
+YWNlbWVudCwgcGFnZV9zaXplID4+IFBBR0VfU0hJRlQsCiAJCQkJICAgJmN0eCwgTlVMTCwgTlVM
+TCwgaTkxNV90dG1fYm9fZGVzdHJveSk7CiAJaWYgKHJldCkKIAkJcmV0dXJuIGk5MTVfdHRtX2Vy
+cl90b19nZW0ocmV0KTsKLS0gCjIuMzEuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4Cg==
