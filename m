@@ -1,67 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D66923C9C8C
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 12:16:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6906F3C9CB7
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 12:33:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F15FB6E81B;
-	Thu, 15 Jul 2021 10:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF6A56E81D;
+	Thu, 15 Jul 2021 10:33:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9AD46E817
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 10:16:39 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id u1so7079465wrs.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 03:16:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=XsXJgXqUlVkFOkQpHqmlVP5SvFF26Pp/ivuZ8fm5d6w=;
- b=RYvDY4NPG9dm7Y+PeICDZhj2LT54AGUr0vcJyDex84fUYQYDOz6sGZJT0jGWJJZVAW
- +hawK9vqiYijITsRCx7YNiRxRxQ7p4805Kw45jb3xhNt2RB8W63UpOW33ICziKBetUqi
- 1A/f3GcW/TEljIbItwETkc/8NWuK7WCy2V+FE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=XsXJgXqUlVkFOkQpHqmlVP5SvFF26Pp/ivuZ8fm5d6w=;
- b=hw7ql497skEm4EHEMdXXllEnd6p+HBHBYzjIHG3u4j13vyiEHCeqNyvyM2HO4+r7Cv
- SrNkTgpIgX0ViU7c8tjXqD+rDm65ttkQ7zRFM33zvVUqhOSVNQVYUYDVc+OS263G+OX5
- crsu0jfm5KUiPLz6A+RUnP0UnCAHW8FNlQTmhoh82ZDzh6Kn9veQXAtn/7C8b/LuBLPX
- MdJhoavjSW8gGAEcTFLZmfMJn/i0V69/33F91au5q6cZOGTbk9RklCPme5WpoQ0AWckL
- f1afpfiCy3+UlsiNtFTQ9Ip3fu5yd/J+AkcTEN1FrlxRSf4U61C4Jz0Z6rlOZW2I1KR/
- IzUg==
-X-Gm-Message-State: AOAM533ddTlofyFRhYzH1VCBBap/ZKScSsEAicAjAPoy50hd5l6WNhqV
- MPDGH7QfvNn0/T/rLQwtcxil/g==
-X-Google-Smtp-Source: ABdhPJw+NBA4auqiP+1LWJKyvD6TW/l0nqa6/3L0KIqH40+Tyriv26MyhEId2t5PCN3T5RsCTC9EHw==
-X-Received: by 2002:a5d:6992:: with SMTP id g18mr4662556wru.118.1626344198432; 
- Thu, 15 Jul 2021 03:16:38 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s24sm6615185wra.33.2021.07.15.03.16.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 15 Jul 2021 03:16:37 -0700 (PDT)
-Date: Thu, 15 Jul 2021 12:16:35 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-Message-ID: <YPALA1TzW/hQr8wI@phenom.ffwll.local>
-References: <20210712175352.802687-1-daniel.vetter@ffwll.ch>
- <20210712175352.802687-3-daniel.vetter@ffwll.ch>
- <2cd9df9e-08e5-d0bd-d4d3-aed00f699e4a@amd.com>
- <CAKMK7uE3dppw2=sVHRKx1b-ehVfiBphoJNJvpoPjt-=KsPp=Yw@mail.gmail.com>
- <5c5ef6ba-49d0-36cc-b537-e6f9c354f6ac@amd.com>
- <CAKMK7uGXVzaH25_spK5Pp8epx8a+9As6tVMcaj3p6Dedg0FH-w@mail.gmail.com>
- <ecd94ad4-9788-3cf1-87e4-52c37e813439@amd.com>
- <CAKMK7uEQWniuGGENjdnXpKh22hAJQe0TiQTbw1=2vXvUGyivcw@mail.gmail.com>
- <7cb1c62d-d195-980b-3492-0af5d9f6ec81@amd.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A16A6E81D;
+ Thu, 15 Jul 2021 10:33:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="296162711"
+X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="296162711"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2021 03:33:15 -0700
+X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="494527959"
+Received: from shyland-mobl2.ger.corp.intel.com (HELO [10.213.241.81])
+ ([10.213.241.81])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2021 03:33:12 -0700
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210715101536.2606307-1-matthew.auld@intel.com>
+ <20210715101536.2606307-4-matthew.auld@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <997238fe-075b-380d-3ef2-b9f528193623@linux.intel.com>
+Date: Thu, 15 Jul 2021 11:33:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <7cb1c62d-d195-980b-3492-0af5d9f6ec81@amd.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v4 02/18] drm/sched: Barriers are needed for
- entity->last_scheduled
+In-Reply-To: <20210715101536.2606307-4-matthew.auld@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/userptr: Probe existence of
+ backing struct pages upon creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,425 +48,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Steven Price <steven.price@arm.com>, Daniel Vetter <daniel.vetter@intel.com>,
- Lee Jones <lee.jones@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Kenneth Graunke <kenneth@whitecape.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 14, 2021 at 06:12:54PM -0400, Andrey Grodzovsky wrote:
-> =
-
-> On 2021-07-13 12:45 p.m., Daniel Vetter wrote:
-> > On Tue, Jul 13, 2021 at 6:11 PM Andrey Grodzovsky
-> > <andrey.grodzovsky@amd.com> wrote:
-> > > On 2021-07-13 5:10 a.m., Daniel Vetter wrote:
-> > > > On Tue, Jul 13, 2021 at 9:25 AM Christian K=F6nig
-> > > > <christian.koenig@amd.com> wrote:
-> > > > > Am 13.07.21 um 08:50 schrieb Daniel Vetter:
-> > > > > > On Tue, Jul 13, 2021 at 8:35 AM Christian K=F6nig
-> > > > > > <christian.koenig@amd.com> wrote:
-> > > > > > > Am 12.07.21 um 19:53 schrieb Daniel Vetter:
-> > > > > > > > It might be good enough on x86 with just READ_ONCE, but the=
- write side
-> > > > > > > > should then at least be WRITE_ONCE because x86 has total st=
-ore order.
-> > > > > > > > =
-
-> > > > > > > > It's definitely not enough on arm.
-> > > > > > > > =
-
-> > > > > > > > Fix this proplery, which means
-> > > > > > > > - explain the need for the barrier in both places
-> > > > > > > > - point at the other side in each comment
-> > > > > > > > =
-
-> > > > > > > > Also pull out the !sched_list case as the first check, so t=
-hat the
-> > > > > > > > code flow is clearer.
-> > > > > > > > =
-
-> > > > > > > > While at it sprinkle some comments around because it was ve=
-ry
-> > > > > > > > non-obvious to me what's actually going on here and why.
-> > > > > > > > =
-
-> > > > > > > > Note that we really need full barriers here, at first I tho=
-ught
-> > > > > > > > store-release and load-acquire on ->last_scheduled would be=
- enough,
-> > > > > > > > but we actually requiring ordering between that and the que=
-ue state.
-> > > > > > > > =
-
-> > > > > > > > v2: Put smp_rmp() in the right place and fix up comment (An=
-drey)
-> > > > > > > > =
-
-> > > > > > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > > > > > > Cc: "Christian K=F6nig" <christian.koenig@amd.com>
-> > > > > > > > Cc: Steven Price <steven.price@arm.com>
-> > > > > > > > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > > > > > > > Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-> > > > > > > > Cc: Lee Jones <lee.jones@linaro.org>
-> > > > > > > > Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> > > > > > > > ---
-> > > > > > > >      drivers/gpu/drm/scheduler/sched_entity.c | 27 ++++++++=
-++++++++++++++--
-> > > > > > > >      1 file changed, 25 insertions(+), 2 deletions(-)
-> > > > > > > > =
-
-> > > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/dri=
-vers/gpu/drm/scheduler/sched_entity.c
-> > > > > > > > index f7347c284886..89e3f6eaf519 100644
-> > > > > > > > --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> > > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> > > > > > > > @@ -439,8 +439,16 @@ struct drm_sched_job *drm_sched_entity=
-_pop_job(struct drm_sched_entity *entity)
-> > > > > > > >                  dma_fence_set_error(&sched_job->s_fence->f=
-inished, -ECANCELED);
-> > > > > > > > =
-
-> > > > > > > >          dma_fence_put(entity->last_scheduled);
-> > > > > > > > +
-> > > > > > > >          entity->last_scheduled =3D dma_fence_get(&sched_jo=
-b->s_fence->finished);
-> > > > > > > > =
-
-> > > > > > > > +     /*
-> > > > > > > > +      * If the queue is empty we allow drm_sched_entity_se=
-lect_rq() to
-> > > > > > > > +      * locklessly access ->last_scheduled. This only work=
-s if we set the
-> > > > > > > > +      * pointer before we dequeue and if we a write barrie=
-r here.
-> > > > > > > > +      */
-> > > > > > > > +     smp_wmb();
-> > > > > > > > +
-> > > > > > > Again, conceptual those barriers should be part of the spsc_q=
-ueue
-> > > > > > > container and not externally.
-> > > > > > That would be extremely unusual api. Let's assume that your que=
-ue is
-> > > > > > very dumb, and protected by a simple lock. That's about the max=
-imum
-> > > > > > any user could expect.
-> > > > > > =
-
-> > > > > > But then you still need barriers here, because linux locks (spi=
-nlock,
-> > > > > > mutex) are defined to be one-way barriers: Stuff that's inside =
-is
-> > > > > > guaranteed to be done insinde, but stuff outside of the locked =
-region
-> > > > > > can leak in. They're load-acquire/store-release barriers. So no=
-t good
-> > > > > > enough.
-> > > > > > =
-
-> > > > > > You really need to have barriers here, and they really all need=
- to be
-> > > > > > documented properly. And yes that's a shit-ton of work in drm/s=
-ched,
-> > > > > > because it's full of yolo lockless stuff.
-> > > > > > =
-
-> > > > > > The other case you could make is that this works like a wakeup =
-queue,
-> > > > > > or similar. The rules there are:
-> > > > > > - wake_up (i.e. pushing something into the queue) is a store-re=
-lease barrier
-> > > > > > - the waked up (i.e. popping an entry) is a load acquire barrier
-> > > > > > Which is obviuosly needed because otherwise you don't have cohe=
-rency
-> > > > > > for the data queued up. And again not the barriers you're locki=
-ng for
-> > > > > > here.
-> > > > > Exactly that was the idea, yes.
-> > > > > =
-
-> > > > > > Either way, we'd still need the comments, because it's still lo=
-ckless
-> > > > > > trickery, and every single one of that needs to have a comment =
-on both
-> > > > > > sides to explain what's going on.
-> > > > > > =
-
-> > > > > > Essentially replace spsc_queue with an llist underneath, and th=
-at's
-> > > > > > the amount of barriers a data structure should provide. Anythin=
-g else
-> > > > > > is asking your datastructure to paper over bugs in your users.
-> > > > > > =
-
-> > > > > > This is similar to how atomic_t is by default completely unorde=
-red,
-> > > > > > and users need to add barriers as needed, with comments.
-> > > > > My main problem is as always that kernel atomics work different t=
-han
-> > > > > userspace atomics.
-> > > > > =
-
-> > > > > > I think this is all to make sure people don't just write lockle=
-ss algorithms
-> > > > > > because it's a cool idea, but are forced to think this all thro=
-ugh.
-> > > > > > Which seems to not have happened very consistently for drm/sche=
-d, so I
-> > > > > > guess needs to be fixed.
-> > > > > Well at least initially that was all perfectly thought through. T=
-he
-> > > > > problem is nobody is really maintaining that stuff.
-> > > > > =
-
-> > > > > > I'm definitely not going to hide all that by making the spsc_qu=
-eue
-> > > > > > stuff provide random unjustified barriers just because that wou=
-ld
-> > > > > > paper over drm/sched bugs. We need to fix the actual bugs, and
-> > > > > > preferrable all of them. I've found a few, but I wasn't involve=
-d in
-> > > > > > drm/sched thus far, so best I can do is discover them as we go.
-> > > > > I don't think that those are random unjustified barriers at all a=
-nd it
-> > > > > sounds like you didn't grip what I said here.
-> > > > > =
-
-> > > > > See the spsc queue must have the following semantics:
-> > > > > =
-
-> > > > > 1. When you pop a job all changes made before you push the job mu=
-st be
-> > > > > visible.
-> > > > This is the standard barriers that also wake-up queues have, it's j=
-ust
-> > > > store-release+load-acquire.
-> > > > =
-
-> > > > > 2. When the queue becomes empty all the changes made before you p=
-op the
-> > > > > last job must be visible.
-> > > > This is very much non-standard for a queue. I guess you could make
-> > > > that part of the spsc_queue api between pop and is_empty (really we
-> > > > shouldn't expose the _count() function for this), but that's all ve=
-ry
-> > > > clever.
-> > > > =
-
-> > > > I think having explicit barriers in the code, with comments, is much
-> > > > more robust. Because it forces you to think about all this, and
-> > > > document it properly. Because there's also lockless stuff like
-> > > > drm_sched.ready, which doesn't look at all like it's ordered someho=
-w.
-> > > =
-
-> > > At least for amdgpu, after drm_sched_fini is called (setting sched.re=
-ady
-> > > =3D false)
-> > > we call amdgpu_fence_wait_empty to ensure all in progress jobs are do=
-ne.
-> > > Seems to me at least, this should guarantee that all in flight consum=
-ers
-> > > of sched.ready (those who still see sched.ready =3D=3D true) are fini=
-shed while
-> > > all later consumers will see sched.ready =3D=3D fakle and will bail o=
-ut.
-> > > =
-
-> > > On second thought there is a gap between checking for sched.ready and
-> > > inserting
-> > > the HW fence for the new job so this might still be a bug... Looks li=
-ke
-> > > we need to check for
-> > > sched.ready after inserting the HW fence  and for this we will need
-> > > barrier or locking.
-> > Yeah, and at that point I think it's good to split up drm_sched.ready
-> > from a new thing for when the hw died, like drm_sched.wedged or
-> > .hw_death or similar, so that we can tell them apart. Trying to submit
-> > a job to a non-ready scheduler is a driver bug and should WARN, while
-> > submitting a job to a dead scheduler should probably result in -EIO
-> > being returned to userspace (instead of the current -ENOENT, assuming
-> > I haven't missed a errno remapping code somewhere in amdgpu).
-> > =
-
-> > Also, then you could do a drm_sched_die() or similar function which
-> > combines setting the hw_died with the right barriers and cleaning up
-> > all the jobs.
-> > =
-
-> > Wrt the fundamental race: I think that's not fixeable easily, so maybe
-> > the scheduler thread also needs to handle this and immediately fail
-> > these jobs by setting all fences to -EIO and completing them, without
-> > even calling into the driver. If you try to catch this synchronously I
-> > think it would require some kind of locking in push_job, plus failure
-> > handling, which would be a) slow and b) real ugly in the driver code.
-> > Just accepting that some jobs can slip through and letting the
-> > scheduler thread clean them up is I think cleaner.
-> =
-
-> =
-
-> I agree about moving this check to scheduler thread, I also not quite
-> understand why in some places which are clearly post the job being
-> pick-up by it's scheduler thread such as amdgpu_ib_schedule, still
-> check for sched.ready... What's the point ? Also there are direct submiss=
-ion
-> cases where IB insertion into HW ring is done without any scheduler
-> involvement
-> and even more in that case why we care that scheduler is not ready.
-
-I think (but I haven't checked the code in full detail) that this is
-because there's a mixup of what ->ready means:
-- Setup/teardown ordering, where we sometimes try to submit stuff without
-  the scheduler actually being ready yet (or maybe the hw isn't ready yet)
-  and want to transparently fall back to something else.
-
-- The actual "the hw died irrecoverably and reset couldn't resurrect it"
-  case.
-
-That's why I want to tear these two apart, so it's clear why we check
-things. Also in general I think solving the former problem with checks
-littered all over is bad style, but sometimes unavoidable (like when
-you're deep in a callchain through ttm to evict buffers for suspend).
-Usually it's better to order the code such that you never try to submit to
-hw when it's not ready.
-
-Ofc the hw death is a different beast and can happen any time, hence needs
-to be treated differently - there's actual races possible with that, the
-code ordering issues around suspend/resume and driver load/unload are all
-single threaded so not possible to race. Ok maybe hotunplug is more like
-hw death since it can happen while we use it.
--Daniel
-
-> =
-
-> Andrey
-> =
-
-> =
-
-> > =
-
-> > If userspace then goes ahead and closes the ctx before all the jobs
-> > are cleaned up we can handle that with the normal drm_sched_entity
-> > cleanup logic. Which would be another reason to split normal cleanup
-> > from hw death.
-> > -Daniel
-> > =
-
-> > > Andrey
-> > > =
-
-> > > > E.g. there's also an rmb(); in drm_sched_entity_is_idle(), which
-> > > > - probably should be an smp_rmb()
-> > > > - really should document what it actually synchronizes against, and
-> > > > the lack of an smp_wmb() somewhere else indicates it's probably
-> > > > busted. You always need two barriers.
-> > > > =
-
-> > > > > Otherwise I completely agree with you that the whole scheduler do=
-esn't
-> > > > > work at all and we need to add tons of external barriers.
-> > > > Imo that's what we need to do. And the most important part for
-> > > > maintainability is to properly document thing with comments, and the
-> > > > most important part in that comment is pointing at the other side o=
-f a
-> > > > barrier (since a barrier on one side only orders nothing).
-> > > > =
-
-> > > > Also, on x86 almost nothing here matters, because both rmb() and wm=
-b()
-> > > > are no-op. Aside from the compiler barrier, which tends to not be t=
-he
-> > > > biggest issue. Only mb() does anything, because x86 is only allowed=
- to
-> > > > reorder reads ahead of writes.
-> > > > =
-
-> > > > So in practice it's not quite as big a disaster, imo the big thing
-> > > > here is maintainability of all these tricks just not being document=
-ed.
-> > > > -Daniel
-> > > > =
-
-> > > > > Regards,
-> > > > > Christian.
-> > > > > =
-
-> > > > > > -Daniel
-> > > > > > =
-
-> > > > > > =
-
-> > > > > > > Regards,
-> > > > > > > Christian.
-> > > > > > > =
-
-> > > > > > > >          spsc_queue_pop(&entity->job_queue);
-> > > > > > > >          return sched_job;
-> > > > > > > >      }
-> > > > > > > > @@ -459,10 +467,25 @@ void drm_sched_entity_select_rq(struc=
-t drm_sched_entity *entity)
-> > > > > > > >          struct drm_gpu_scheduler *sched;
-> > > > > > > >          struct drm_sched_rq *rq;
-> > > > > > > > =
-
-> > > > > > > > -     if (spsc_queue_count(&entity->job_queue) || !entity->=
-sched_list)
-> > > > > > > > +     /* single possible engine and already selected */
-> > > > > > > > +     if (!entity->sched_list)
-> > > > > > > > +             return;
-> > > > > > > > +
-> > > > > > > > +     /* queue non-empty, stay on the same engine */
-> > > > > > > > +     if (spsc_queue_count(&entity->job_queue))
-> > > > > > > >                  return;
-> > > > > > > > =
-
-> > > > > > > > -     fence =3D READ_ONCE(entity->last_scheduled);
-> > > > > > > > +     /*
-> > > > > > > > +      * Only when the queue is empty are we guaranteed tha=
-t the scheduler
-> > > > > > > > +      * thread cannot change ->last_scheduled. To enforce =
-ordering we need
-> > > > > > > > +      * a read barrier here. See drm_sched_entity_pop_job(=
-) for the other
-> > > > > > > > +      * side.
-> > > > > > > > +      */
-> > > > > > > > +     smp_rmb();
-> > > > > > > > +
-> > > > > > > > +     fence =3D entity->last_scheduled;
-> > > > > > > > +
-> > > > > > > > +     /* stay on the same engine if the previous job hasn't=
- finished */
-> > > > > > > >          if (fence && !dma_fence_is_signaled(fence))
-> > > > > > > >                  return;
-> > > > > > > > =
-
-> > > > > > --
-> > > > > > Daniel Vetter
-> > > > > > Software Engineer, Intel Corporation
-> > > > > > https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2=
-F%2Fblog.ffwll.ch%2F&amp;data=3D04%7C01%7Candrey.grodzovsky%40amd.com%7C01c=
-4933fcb364820067408d9461d9c29%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C=
-637617915261739604%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2lu=
-MzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3Dt6oYaz%2FvvN0GhRc35qk=
-sHXOHCLGfF1OxNKrqkRF6VWg%3D&amp;reserved=3D0
-> > =
-
-> > =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDE1LzA3LzIwMjEgMTE6MTUsIE1hdHRoZXcgQXVsZCB3cm90ZToKPiBGcm9tOiBDaHJpcyBX
+aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiAKPiBKYXNvbiBFa3N0cmFuZCByZXF1
+ZXN0ZWQgYSBtb3JlIGVmZmljaWVudCBtZXRob2QgdGhhbiB1c2VycHRyK3NldC1kb21haW4KPiB0
+byBkZXRlcm1pbmUgaWYgdGhlIHVzZXJwdHIgb2JqZWN0IHdhcyBiYWNrZWQgYnkgYSBjb21wbGV0
+ZSBzZXQgb2YgcGFnZXMKPiB1cG9uIGNyZWF0aW9uLiBUbyBiZSBtb3JlIGVmZmljaWVudCB0aGFu
+IHNpbXBseSBwb3B1bGF0aW5nIHRoZSB1c2VycHRyCj4gdXNpbmcgZ2V0X3VzZXJfcGFnZXMoKSAo
+YXMgZG9uZSBieSB0aGUgY2FsbCB0byBzZXQtZG9tYWluIG9yIGV4ZWNidWYpLAo+IHdlIGNhbiB3
+YWxrIHRoZSB0cmVlIG9mIHZtX2FyZWFfc3RydWN0IGFuZCBjaGVjayBmb3IgZ2FwcyBvciB2bWEg
+bm90Cj4gYmFja2VkIGJ5IHN0cnVjdCBwYWdlIChWTV9QRk5NQVApLiBUaGUgcXVlc3Rpb24gaXMg
+aG93IHRvIGhhbmRsZQo+IFZNX01JWEVETUFQIHdoaWNoIG1heSBiZSBlaXRoZXIgc3RydWN0IHBh
+Z2Ugb3IgcGZuIGJhY2tlZC4uLgo+IAo+IFdpdGggZGlzY3JldGUgYXJlIGdvaW5nIHRvIGRyb3Ag
+c3VwcG9ydCBmb3Igc2V0X2RvbWFpbigpLCBzbyBvZmZlcmluZyBhCj4gd2F5IHRvIHByb2JlIHRo
+ZSBwYWdlcywgd2l0aG91dCBoYXZpbmcgdG8gcmVzb3J0IHRvIGR1bW15IGJhdGNoZXMgaGFzCj4g
+YmVlbiByZXF1ZXN0ZWQuCj4gCj4gdjI6Cj4gLSBhZGQgbmV3IHF1ZXJ5IHBhcmFtIGZvciB0aGUg
+UFJPUEJFIGZsYWcsIHNvIHVzZXJzcGFjZSBjYW4gZWFzaWx5Cj4gICAgY2hlY2sgaWYgdGhlIGtl
+cm5lbCBzdXBwb3J0cyBpdChKYXNvbikuCj4gLSB1c2UgbW1hcF9yZWFkX3tsb2NrLCB1bmxvY2t9
+Lgo+IC0gYWRkIHNvbWUga2VybmVsLWRvYy4KCjEpCgpJIHRoaW5rIHByb2JpbmcgaXMgdG9vIHdl
+YWsgdG8gYmUgb2ZmZXJlZCBhcyBwYXJ0IG9mIHRoZSB1YXBpLiBXaGF0IApwcm9iZXMgc3VjY2Vz
+c2Z1bGx5IGF0IGNyZWF0ZSB0aW1lIG1pZ2h0IG5vdCBiZSB0aGVyZSBhbnltb3JlIGF0IHVzYWdl
+IAp0aW1lLiBTbyBpZiB0aGUgcG9pbnRlciBpcyBub3QgdHJ1c3RlZCBhdCBvbmUgcG9pbnQsIHdo
+eSBzaG91bGQgaXQgYmUgYXQgCmEgbGF0ZXIgc3RhZ2U/CgpPbmx5IHRoaW5nIHdoaWNoIHdvcmtz
+IGZvciBtZSBpcyBwb3B1bGF0ZSAoc28gZ2V0X3BhZ2VzKSBhdCBjcmVhdGUgdGltZS4gCkJ1dCBh
+Z2FpbiB3aXRoIG5vIGd1YXJhbnRlZXMgdGhleSBhcmUgc3RpbGwgdGhlcmUgYXQgdXNlIHRpbWUg
+Y2xlYXJseSAKZG9jdW1lbnRlZC4KCjIpCgpJIGFtIGFsc28gbm90IGEgZmFuIG9mIGdldHBhcmFt
+IGZvciBpbmRpdmlkdWFsIGlvY3RsIGZsYWdzIHNpbmNlIEkgZG9uJ3QgCnRoaW5rIGl0IHNjYWxl
+cyBuaWNlbHkuIEhvdyBhYm91dCBhZGQgYSBwYXJhbSB3aGljaCByZXR1cm5zIGFsbCAKc3VwcG9y
+dGVkIGZsYWdzIGxpa2UgSTkxNV9QQVJBTV9VU0VSUFRSX1NVUFBPUlRFRF9GTEFHUz8KCkRvd25z
+aWRlIGlzIGl0IG9ubHkgd29ya3MgZm9yIDMyLWJpdCBmbGFnIGZpZWxkcyB3aXRoIGdldHBhcmFt
+LiBPciBpdCAKY291bGQgYmUgYSBxdWVyeSB0byBzb2x2ZSB0aGF0IGFzIHdlbGwuCgpSZWdhcmRz
+LAoKVHZydGtvCgo+IFRlc3RjYXNlOiBpZ3QvZ2VtX3VzZXJwdHJfYmxpdHMvcHJvYmUKPiBTaWdu
+ZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBTaWdu
+ZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4gQ2M6IFRo
+b21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPiBDYzog
+TWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiBD
+YzogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGxpbnV4LmludGVsLmNvbT4KPiBDYzog
+Sm9yZGFuIEp1c3RlbiA8am9yZGFuLmwuanVzdGVuQGludGVsLmNvbT4KPiBDYzogS2VubmV0aCBH
+cmF1bmtlIDxrZW5uZXRoQHdoaXRlY2FwZS5vcmc+Cj4gQ2M6IEphc29uIEVrc3RyYW5kIDxqYXNv
+bkBqbGVrc3RyYW5kLm5ldD4KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZnds
+bC5jaD4KPiBDYzogUmFtYWxpbmdhbSBDIDxyYW1hbGluZ2FtLmNAaW50ZWwuY29tPgo+IC0tLQo+
+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3VzZXJwdHIuYyB8IDQwICsrKysr
+KysrKysrKysrKysrKysrLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZXRwYXJhbS5j
+ICAgICAgICB8ICAzICsrCj4gICBpbmNsdWRlL3VhcGkvZHJtL2k5MTVfZHJtLmggICAgICAgICAg
+ICAgICAgIHwgMTggKysrKysrKysrKwo+ICAgMyBmaWxlcyBjaGFuZ2VkLCA2MCBpbnNlcnRpb25z
+KCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV91c2VycHRyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
+ZW1fdXNlcnB0ci5jCj4gaW5kZXggNTZlZGZlZmY4YzAyLi5mZDY4ODAzMjg1OTYgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3VzZXJwdHIuYwo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91c2VycHRyLmMKPiBAQCAtNDIyLDYg
+KzQyMiwzMyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Rfb3BzIGk5
+MTVfZ2VtX3VzZXJwdHJfb3BzID0gewo+ICAgCj4gICAjZW5kaWYKPiAgIAo+ICtzdGF0aWMgaW50
+Cj4gK3Byb2JlX3JhbmdlKHN0cnVjdCBtbV9zdHJ1Y3QgKm1tLCB1bnNpZ25lZCBsb25nIGFkZHIs
+IHVuc2lnbmVkIGxvbmcgbGVuKQo+ICt7Cj4gKwljb25zdCB1bnNpZ25lZCBsb25nIGVuZCA9IGFk
+ZHIgKyBsZW47Cj4gKwlzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYTsKPiArCWludCByZXQgPSAt
+RUZBVUxUOwo+ICsKPiArCW1tYXBfcmVhZF9sb2NrKG1tKTsKPiArCWZvciAodm1hID0gZmluZF92
+bWEobW0sIGFkZHIpOyB2bWE7IHZtYSA9IHZtYS0+dm1fbmV4dCkgewo+ICsJCWlmICh2bWEtPnZt
+X3N0YXJ0ID4gYWRkcikKPiArCQkJYnJlYWs7Cj4gKwo+ICsJCWlmICh2bWEtPnZtX2ZsYWdzICYg
+KFZNX1BGTk1BUCB8IFZNX01JWEVETUFQKSkKPiArCQkJYnJlYWs7Cj4gKwo+ICsJCWlmICh2bWEt
+PnZtX2VuZCA+PSBlbmQpIHsKPiArCQkJcmV0ID0gMDsKPiArCQkJYnJlYWs7Cj4gKwkJfQo+ICsK
+PiArCQlhZGRyID0gdm1hLT52bV9lbmQ7Cj4gKwl9Cj4gKwltbWFwX3JlYWRfdW5sb2NrKG1tKTsK
+PiArCj4gKwlyZXR1cm4gcmV0Owo+ICt9Cj4gKwo+ICAgLyoKPiAgICAqIENyZWF0ZXMgYSBuZXcg
+bW0gb2JqZWN0IHRoYXQgd3JhcHMgc29tZSBub3JtYWwgbWVtb3J5IGZyb20gdGhlIHByb2Nlc3MK
+PiAgICAqIGNvbnRleHQgLSB1c2VyIG1lbW9yeS4KPiBAQCAtNDc3LDcgKzUwNCw4IEBAIGk5MTVf
+Z2VtX3VzZXJwdHJfaW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAgIAl9Cj4gICAKPiAg
+IAlpZiAoYXJncy0+ZmxhZ3MgJiB+KEk5MTVfVVNFUlBUUl9SRUFEX09OTFkgfAo+IC0JCQkgICAg
+STkxNV9VU0VSUFRSX1VOU1lOQ0hST05JWkVEKSkKPiArCQkJICAgIEk5MTVfVVNFUlBUUl9VTlNZ
+TkNIUk9OSVpFRCB8Cj4gKwkJCSAgICBJOTE1X1VTRVJQVFJfUFJPQkUpKQo+ICAgCQlyZXR1cm4g
+LUVJTlZBTDsKPiAgIAo+ICAgCWlmIChpOTE1X2dlbV9vYmplY3Rfc2l6ZV8yYmlnKGFyZ3MtPnVz
+ZXJfc2l6ZSkpCj4gQEAgLTUwNCw2ICs1MzIsMTYgQEAgaTkxNV9nZW1fdXNlcnB0cl9pb2N0bChz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgCQkJcmV0dXJuIC1FTk9ERVY7Cj4gICAJfQo+ICAg
+Cj4gKwlpZiAoYXJncy0+ZmxhZ3MgJiBJOTE1X1VTRVJQVFJfUFJPQkUpIHsKPiArCQkvKgo+ICsJ
+CSAqIENoZWNrIHRoYXQgdGhlIHJhbmdlIHBvaW50ZWQgdG8gcmVwcmVzZW50cyByZWFsIHN0cnVj
+dAo+ICsJCSAqIHBhZ2VzIGFuZCBub3QgaW9tYXBwaW5ncyAoYXQgdGhpcyBtb21lbnQgaW4gdGlt
+ZSEpCj4gKwkJICovCj4gKwkJcmV0ID0gcHJvYmVfcmFuZ2UoY3VycmVudC0+bW0sIGFyZ3MtPnVz
+ZXJfcHRyLCBhcmdzLT51c2VyX3NpemUpOwo+ICsJCWlmIChyZXQpCj4gKwkJCXJldHVybiByZXQ7
+Cj4gKwl9Cj4gKwo+ICAgI2lmZGVmIENPTkZJR19NTVVfTk9USUZJRVIKPiAgIAlvYmogPSBpOTE1
+X2dlbV9vYmplY3RfYWxsb2MoKTsKPiAgIAlpZiAob2JqID09IE5VTEwpCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfZ2V0cGFyYW0uYwo+IGluZGV4IDI0ZTE4MjE5ZWI1MC4uZDZkMmUxYTEwZDE0IDEw
+MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0uYwo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0uYwo+IEBAIC0xNjMsNiArMTYzLDkg
+QEAgaW50IGk5MTVfZ2V0cGFyYW1faW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAq
+ZGF0YSwKPiAgIAljYXNlIEk5MTVfUEFSQU1fUEVSRl9SRVZJU0lPTjoKPiAgIAkJdmFsdWUgPSBp
+OTE1X3BlcmZfaW9jdGxfdmVyc2lvbigpOwo+ICAgCQlicmVhazsKPiArCWNhc2UgSTkxNV9QQVJB
+TV9IQVNfVVNFUlBUUl9QUk9CRToKPiArCQl2YWx1ZSA9IHRydWU7Cj4gKwkJYnJlYWs7Cj4gICAJ
+ZGVmYXVsdDoKPiAgIAkJRFJNX0RFQlVHKCJVbmtub3duIHBhcmFtZXRlciAlZFxuIiwgcGFyYW0t
+PnBhcmFtKTsKPiAgIAkJcmV0dXJuIC1FSU5WQUw7Cj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvdWFw
+aS9kcm0vaTkxNV9kcm0uaCBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+IGluZGV4IGUy
+MGVlZWNhN2ExYy4uMmU0MTEyYmY0ZDM4IDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvdWFwaS9kcm0v
+aTkxNV9kcm0uaAo+ICsrKyBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+IEBAIC02NzQs
+NiArNjc0LDkgQEAgdHlwZWRlZiBzdHJ1Y3QgZHJtX2k5MTVfaXJxX3dhaXQgewo+ICAgICovCj4g
+ICAjZGVmaW5lIEk5MTVfUEFSQU1fSEFTX0VYRUNfVElNRUxJTkVfRkVOQ0VTIDU1Cj4gICAKPiAr
+LyogUXVlcnkgaWYgdGhlIGtlcm5lbCBzdXBwb3J0cyB0aGUgSTkxNV9VU0VSUFRSX1BST0JFIGZs
+YWcuICovCj4gKyNkZWZpbmUgSTkxNV9QQVJBTV9IQVNfVVNFUlBUUl9QUk9CRSA1Ngo+ICsKPiAg
+IC8qIE11c3QgYmUga2VwdCBjb21wYWN0IC0tIG5vIGhvbGVzIGFuZCB3ZWxsIGRvY3VtZW50ZWQg
+Ki8KPiAgIAo+ICAgdHlwZWRlZiBzdHJ1Y3QgZHJtX2k5MTVfZ2V0cGFyYW0gewo+IEBAIC0yMTc4
+LDEyICsyMTgxLDI3IEBAIHN0cnVjdCBkcm1faTkxNV9nZW1fdXNlcnB0ciB7Cj4gICAJICogdGhy
+b3VnaCB0aGUgR1RULiBJZiB0aGUgSFcgY2FuJ3Qgc3VwcG9ydCByZWFkb25seSBhY2Nlc3MsIGFu
+IGVycm9yIGlzCj4gICAJICogcmV0dXJuZWQuCj4gICAJICoKPiArCSAqIEk5MTVfVVNFUlBUUl9Q
+Uk9CRToKPiArCSAqCj4gKwkgKiBQcm9iZSB0aGUgcHJvdmlkZWQgQHVzZXJfcHRyIHJhbmdlIGFu
+ZCB2YWxpZGF0ZSB0aGF0IHRoZSBAdXNlcl9wdHIgaXMKPiArCSAqIGluZGVlZCBwb2ludGluZyB0
+byBub3JtYWwgbWVtb3J5IGFuZCB0aGF0IHRoZSByYW5nZSBpcyBhbHNvIHZhbGlkLgo+ICsJICog
+Rm9yIGV4YW1wbGUgaWYgc29tZSBnYXJiYWdlIGFkZHJlc3MgaXMgZ2l2ZW4gdG8gdGhlIGtlcm5l
+bCwgdGhlbiB0aGlzCj4gKwkgKiBzaG91bGQgY29tcGxhaW4uCj4gKwkgKgo+ICsJICogUmV0dXJu
+cyAtRUZBVUxUIGlmIHRoZSBwcm9iZSBmYWlsZWQuCj4gKwkgKgo+ICsJICogTm90ZSB0aGF0IHRo
+aXMgZG9lc24ndCBwb3B1bGF0ZSB0aGUgYmFja2luZyBwYWdlcy4KPiArCSAqCj4gKwkgKiBUaGUg
+a2VybmVsIHN1cHBvcnRzIHRoaXMgZmVhdHVyZSBpZiBJOTE1X1BBUkFNX0hBU19VU0VSUFRSX1BS
+T0JFCj4gKwkgKiByZXR1cm5zIGEgbm9uLXplcm8gdmFsdWUuCj4gKwkgKgo+ICAgCSAqIEk5MTVf
+VVNFUlBUUl9VTlNZTkNIUk9OSVpFRDoKPiAgIAkgKgo+ICAgCSAqIE5PVCBVU0VELiBTZXR0aW5n
+IHRoaXMgZmxhZyB3aWxsIHJlc3VsdCBpbiBhbiBlcnJvci4KPiAgIAkgKi8KPiAgIAlfX3UzMiBm
+bGFnczsKPiAgICNkZWZpbmUgSTkxNV9VU0VSUFRSX1JFQURfT05MWSAweDEKPiArI2RlZmluZSBJ
+OTE1X1VTRVJQVFJfUFJPQkUgMHgyCj4gICAjZGVmaW5lIEk5MTVfVVNFUlBUUl9VTlNZTkNIUk9O
+SVpFRCAweDgwMDAwMDAwCj4gICAJLyoqCj4gICAJICogQGhhbmRsZTogUmV0dXJuZWQgaGFuZGxl
+IGZvciB0aGUgb2JqZWN0Lgo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
