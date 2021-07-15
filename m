@@ -1,36 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657623C9606
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 04:44:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1674A3C9712
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 06:19:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64B816E4B0;
-	Thu, 15 Jul 2021 02:44:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F8AB898C0;
+	Thu, 15 Jul 2021 04:19:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2B136E4B0;
- Thu, 15 Jul 2021 02:44:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="197646761"
-X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; 
- d="asc'?scan'208";a="197646761"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2021 19:44:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; 
- d="asc'?scan'208";a="494926735"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.143])
- by FMSMGA003.fm.intel.com with ESMTP; 14 Jul 2021 19:43:59 -0700
-Date: Thu, 15 Jul 2021 10:22:37 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20210715022237.GX12150@zhen-hp.sh.intel.com>
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F11C898C0;
+ Thu, 15 Jul 2021 04:19:01 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4GQLjF0pMPz9s5R;
+ Thu, 15 Jul 2021 14:18:56 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1626322739;
+ bh=ex0MUn6/WmQdAE7HtUlusnPU0W5GbK7HPP3ssZenvDE=;
+ h=Date:From:To:Cc:Subject:From;
+ b=og4lTkZCqU8uhEcrlj5fFWSceidXb7iKkWHri3bwa80OENvKAeNbh8JX/x7j8ql0e
+ oCRXfWpdYUgML0Jkuy5HaEUfq4yMcggTcDJD52ZTOmfXhrl3LusFJjbDYyr6+sxm+8
+ 3HyQv8lwSy+vg3hGQZJ9r2U2GPdZZ/jDl9ZJqtD8PUbobFTe0XyysUYguo281xHEGs
+ lAGPTn1/uwQKIxv1CvhT4j8hDZ1SC6bID6B28LjDiFtxjqqar+u1RlzTgPJXDoKSaB
+ 0kYghkpbSc10roAxLMBqOTHNfkymyS9ZHQceIR4V+67L4yHawmu1vIgg9gfC60kASU
+ sigdOO3BGnUcg==
+Date: Thu, 15 Jul 2021 14:18:54 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20210715141854.1ad4a956@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] gvt-fixes
+Subject: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
+ drm-intel tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,69 +51,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============1366309965=="
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0534285569=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0534285569==
+Content-Type: multipart/signed; boundary="Sig_/jx/Vz4=uZrGLV5ZV0Zhtu/8";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---===============1366309965==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="rWhLK7VZz0iBluhq"
-Content-Disposition: inline
+--Sig_/jx/Vz4=uZrGLV5ZV0Zhtu/8
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
+Hi all,
 
---rWhLK7VZz0iBluhq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Commit
 
+  db47fe727e1f ("drm/i915/step: s/<platform>_revid_tbl/<platform>_revids")
 
-Hi,
+is missing a Signed-off-by from its committer.
 
-Here's one fix of shadow ppgtt invalidation with proper vGPU D3 state tracking.
+--=20
+Cheers,
+Stephen Rothwell
 
-Thanks
---
-The following changes since commit 62fb9874f5da54fdb243003b386128037319b219:
-
-  Linux 5.13 (2021-06-27 15:21:11 -0700)
-
-are available in the Git repository at:
-
-  https://github.com/intel/gvt-linux tags/gvt-fixes-2021-07-15
-
-for you to fetch changes up to c90b4503ccf42d9d367e843c223df44aa550e82a:
-
-  drm/i915/gvt: Clear d3_entered on elsp cmd submission. (2021-07-08 16:42:34 +0800)
-
-----------------------------------------------------------------
-gvt-fixes-2021-07-15
-
-- Fix shadow ppgtt invalidation with proper D3 state tracking (Colin)
-
-----------------------------------------------------------------
-Colin Xu (1):
-      drm/i915/gvt: Clear d3_entered on elsp cmd submission.
-
- drivers/gpu/drm/i915/gvt/handlers.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
---rWhLK7VZz0iBluhq
-Content-Type: application/pgp-signature; name="signature.asc"
+--Sig_/jx/Vz4=uZrGLV5ZV0Zhtu/8
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYO+b4AAKCRCxBBozTXgY
-J+wBAJ9hftziDl6VE5S5it1dFK/+fRDRggCfU52k3YhxUq8mqbJoQhr74DP2W+0=
-=6BAM
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmDvty4ACgkQAVBC80lX
+0GxAUAf7BPNk+ONP5YbLLVNb9P+FIKUQhhDCy9Lt+5WNh5CSH6XlJVskjHkFK4gy
+yjlQ6GHz/xEAJ1CWOWJu1flHPjWwC+1fPiNrG4J1dTF7EYNkGePqilBf4SrzGXTw
+sgiTV21wv3/GdCKKGLva42WfKKEMIc1ayOIDvzIRRG3WpRuJXm1hCJ2mqYFuRFxZ
+ogNQX+f8zBoeHy8O+VEgSL8KNtmWz6KcHwVmPG38TIWdidZJPK1r+nbWYlOfpg22
+Wag3rLxylNsQgLFiJg1bka8akakatHLwz5ltJf3HmlotTROPum5wRtbwZ/zQl1Y8
+GWS6xAwUrP5RXx5f8FCibRCq0jwEKw==
+=/pQk
 -----END PGP SIGNATURE-----
 
---rWhLK7VZz0iBluhq--
+--Sig_/jx/Vz4=uZrGLV5ZV0Zhtu/8--
 
---===============1366309965==
+--===============0534285569==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +106,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1366309965==--
+--===============0534285569==--
