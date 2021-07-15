@@ -1,61 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4FB83CAF3C
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 00:39:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 787CF3CAF40
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 00:39:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7D7189362;
-	Thu, 15 Jul 2021 22:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E395C6E49D;
+	Thu, 15 Jul 2021 22:39:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
- [IPv6:2607:f8b0:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7474B89362
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 22:39:08 +0000 (UTC)
-Received: by mail-pf1-x431.google.com with SMTP id b12so7015401pfv.6
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 15:39:08 -0700 (PDT)
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
+ [IPv6:2607:f8b0:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E65B26E455
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 22:39:10 +0000 (UTC)
+Received: by mail-pf1-x432.google.com with SMTP id 21so7015107pfp.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 15:39:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=G1Lpom/liCFd7FkPda8eG+Ob59hWafgxm9MVZyipJKo=;
- b=0hy8UNQn6b8g3IZrpVAd8Q9Obk69uJrHeqzA3FUwOB0ty1FC0JRHimil0TRxjH1lK8
- D7txpJzPQx9dM/dSQCBqF12E6+OtyH2mBquV+lmrjoW7lTeg19saD47m3Nfaq+gI5ka7
- nY/Y7DrZCBjvxD6BaJft5F76PAD90IO2PL+mpA8sDAZvWfswD1WXfGdj0VlFZmPJBC5X
- Cvw0IUxZoD4F0DKF6dmVEKbwid3HdOeJKI6MaSx1BWe9gHdI2FFg9GjZVgJoKj3Zl1Li
- eNYOIJ9HKiLgf+VNcIK+mcmJLhKVlBR2DaGHxj3mFivXSy3tvv73kApxawJ7kch2iMis
- 4ndg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=AXY3KUSW9Nh3jlxZEN6OgRLzanV/GR5AneGVxHmy0Rg=;
+ b=kqUpwV6SpnVPxpNNHUoiua+b0BFXa7TwcPp0f2fdqwmRAxuYmILKe3TS2/6yKzXpJw
+ 9D7ohHP2eJz6O4a7ZQ6sQ3K4uUG9J+elfYONhpfWCshkDUNGFAPfUuJlUjKVcAJeHuUD
+ UiXkQqWxju1BfFv8dwcjtHjxDXn/Z3gA2/Dgys+hnG/pd5lWZjkdO/zhzQngwBOBQWp0
+ G2EJujXaPeNxbUKU6Bh9H6RHOfL6cZHTqYnoowBZzE9qNvMd+z9JDZFNLlMJrbDS/1er
+ LSexYes86mgbfMmTEquCmw2L/OaG0zJ7Lvyj/k7Kg+RCY/RtYZysJ2gef0ggWzcwycmY
+ ixkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=G1Lpom/liCFd7FkPda8eG+Ob59hWafgxm9MVZyipJKo=;
- b=AeIEsJa4ggFiR2mCuzAMgcPZD89dm+wtQ9Cyt+boS4RKIvv6qv5ZOJXuslKbGOHEB1
- ytdOOQfC5Q0dHO1LAFc1IjCOHTHzbHI8bS3NKd+HrjHWpTRmei9BS9X6xl/hg09Y4y/r
- BnFStVV3MfDEtaC0lu3gsw9rBWa1Xr0pXjVe76ZiNqajUbuIXaCIkkh3MdWFcHQvR5fn
- epLLhl0/CEOSQ2iVJRFdmSnroAwIk5jEZCw/ebOuwwMwUantnc/JXpy2gclTXfD4a536
- kZpL8oA3rGUQGKvVsIGiTPU9tkviF+b2MKKlWP5xguW5nuuYmJma0NdZJlF/cdkEJxJg
- 0A+A==
-X-Gm-Message-State: AOAM533xj82UH7UpuT8o/x6RbRCeR+oqrNk+S1azcWhl8RUfDyBh/gox
- msWMUrhAxeeu25EjdP8rxT+KT0bawB+qfw==
-X-Google-Smtp-Source: ABdhPJzDILL7sndS34R3iOTTaSbyM8hR+PBuVhZinzcqPzSNlp9xv8k+9pOlFG5FKA+2DCiEfRiexQ==
-X-Received: by 2002:a05:6a00:84d:b029:329:a067:b1bf with SMTP id
- q13-20020a056a00084db0290329a067b1bfmr6883158pfk.47.1626388747488; 
- Thu, 15 Jul 2021 15:39:07 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=AXY3KUSW9Nh3jlxZEN6OgRLzanV/GR5AneGVxHmy0Rg=;
+ b=Sy4nl3yjMmgAIDSZldlWxdzGA+q2cZCXJLrmErzVXosxwSgIgxOsAh9mLn1OEcDKxe
+ 6zyk4kt9q2XQMgv9Gts1jaUYsII0QBqBnyiNmQa7vmbHz+ZquURmqXvW5C62NNnfxJQt
+ xLCy2oIxJimmsJNABHDLrWJemzPvYOOjVlUFeBMTki7hwszCzFDb20IAuhoYp+7tAFkv
+ 7Ties6o9YNXEpaULA1A+pJHRzJy07bIMaYEx/9cfaYL7YK/Tib8yAAgeNtqMhCdEQCvu
+ ztQUKsqVgw1ru4tkyDkzz3yV+qkUd+uwOm16h5hY19qG8orTHDxOVP5y2vfbOWOliWdz
+ c6og==
+X-Gm-Message-State: AOAM533ayP0dhY73fToTO21rrDaLaT3Ce7E6WTydTNn+eMD87Jt0rQDy
+ FzcEiGZTquAOPy3Hmn7sEu2Ojl0ikS3vGw==
+X-Google-Smtp-Source: ABdhPJzQX8E8UVcB1zrEXImj+Oi23KhE7NSH48pEGzl3eTjznEtBZhLoKoF8NeAqcahNMD2b+QdbZQ==
+X-Received: by 2002:a05:6a00:1582:b029:333:a366:fe47 with SMTP id
+ u2-20020a056a001582b0290333a366fe47mr2470827pfk.0.1626388749378; 
+ Thu, 15 Jul 2021 15:39:09 -0700 (PDT)
 Received: from omlet.com ([134.134.137.87])
- by smtp.gmail.com with ESMTPSA id ft7sm9959459pjb.32.2021.07.15.15.39.05
+ by smtp.gmail.com with ESMTPSA id ft7sm9959459pjb.32.2021.07.15.15.39.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 15 Jul 2021 15:39:06 -0700 (PDT)
+ Thu, 15 Jul 2021 15:39:09 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Thu, 15 Jul 2021 17:38:53 -0500
-Message-Id: <20210715223900.1840576-1-jason@jlekstrand.net>
+Date: Thu, 15 Jul 2021 17:38:54 -0500
+Message-Id: <20210715223900.1840576-2-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210715223900.1840576-1-jason@jlekstrand.net>
+References: <20210715223900.1840576-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 0/7] drm/i915: Migrate memory to SMEM when
- imported cross-device
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915/gem: Check object_can_migrate from
+ object_migrate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,32 +70,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBwYXRjaCBzZXJpZXMgZml4ZXMgYW4gaXNzdWUgd2l0aCBkaXNjcmV0ZSBncmFwaGljcyBv
-biBJbnRlbCB3aGVyZSB3ZQphbGxvd2VkIGRtYS1idWYgaW1wb3J0IHdoaWxlIGxlYXZpbmcgdGhl
-IG9iamVjdCBpbiBsb2NhbCBtZW1vcnkuICBUaGlzCmJyZWFrcyBkb3duIHByZXR0eSBiYWRseSBp
-ZiB0aGUgaW1wb3J0IGhhcHBlbmVkIG9uIGEgZGlmZmVyZW50IHBoeXNpY2FsCmRldmljZS4KCkph
-c29uIEVrc3RyYW5kICg1KToKICBkcm0vaTkxNS9nZW06IENoZWNrIG9iamVjdF9jYW5fbWlncmF0
-ZSBmcm9tIG9iamVjdF9taWdyYXRlCiAgZHJtL2k5MTUvZ2VtOiBSZWZhY3RvciBwbGFjZW1lbnQg
-c2V0dXAgZm9yIGk5MTVfZ2VtX29iamVjdF9jcmVhdGUqCiAgZHJtL2k5MTUvZ2VtOiBVbmlmeSB1
-c2VyIG9iamVjdCBjcmVhdGlvbgogIGRybS9pOTE1L2dlbS90dG06IFBsYWNlIG5ldyBCT3MgaW4g
-dGhlIHJlcXVlc3RlZCByZWdpb24KICBkcm0vaTkxNS9nZW0vdHRtOiBSZXNwZWN0IHRoZSBvYmpl
-Y3Rpb24gcmVnaW9uIGluIHBsYWNlbWVudF9mcm9tX29iagoKVGhvbWFzIEhlbGxzdHLDtm0gKDIp
-OgogIGRybS9pOTE1L2dlbTogQ29ycmVjdCB0aGUgbG9ja2luZyBhbmQgcGluIHBhdHRlcm4gZm9y
-IGRtYS1idWYgKHY2KQogIGRybS9pOTE1L2dlbTogTWlncmF0ZSB0byBzeXN0ZW0gYXQgZG1hLWJ1
-ZiBhdHRhY2ggdGltZSAodjYpCgogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2Ny
-ZWF0ZS5jICAgIHwgMTU5ICsrKysrKysrLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX2RtYWJ1Zi5jICAgIHwgIDY0ICsrKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX29iamVjdC5jICAgIHwgIDEzICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fb2JqZWN0LmggICAgfCAgIDQgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX3R0bS5jICAgICAgIHwgIDExICstCiAuLi4vZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0
-cy9pOTE1X2dlbV9kbWFidWYuYyAgfCAxODQgKysrKysrKysrKysrKysrKystCiAuLi4vZHJtL2k5
-MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9taWdyYXRlLmMgfCAgMTUgLS0KIDcgZmlsZXMgY2hh
-bmdlZCwgMzI0IGluc2VydGlvbnMoKyksIDEyNiBkZWxldGlvbnMoLSkKCi0tIAoyLjMxLjEKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+We don't roll them together entirely because there are still a couple
+cases where we want a separate can_migrate check.  For instance, the
+display code checks that you can migrate a buffer to LMEM before it
+accepts it in fb_create.  The dma-buf import code also uses it to do an
+early check and return a different error code if someone tries to attach
+a LMEM-only dma-buf to another driver.
+
+However, no one actually wants to call object_migrate when can_migrate
+has failed.  The stated intention is for self-tests but none of those
+actually take advantage of this unsafe migration.
+
+Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.c        | 13 ++-----------
+ .../gpu/drm/i915/gem/selftests/i915_gem_migrate.c | 15 ---------------
+ 2 files changed, 2 insertions(+), 26 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 9da7b288b7ede..f2244ae09a613 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -584,12 +584,6 @@ bool i915_gem_object_can_migrate(struct drm_i915_gem_object *obj,
+  * completed yet, and to accomplish that, i915_gem_object_wait_migration()
+  * must be called.
+  *
+- * This function is a bit more permissive than i915_gem_object_can_migrate()
+- * to allow for migrating objects where the caller knows exactly what is
+- * happening. For example within selftests. More specifically this
+- * function allows migrating I915_BO_ALLOC_USER objects to regions
+- * that are not in the list of allowable regions.
+- *
+  * Note: the @ww parameter is not used yet, but included to make sure
+  * callers put some effort into obtaining a valid ww ctx if one is
+  * available.
+@@ -616,11 +610,8 @@ int i915_gem_object_migrate(struct drm_i915_gem_object *obj,
+ 	if (obj->mm.region == mr)
+ 		return 0;
+ 
+-	if (!i915_gem_object_evictable(obj))
+-		return -EBUSY;
+-
+-	if (!obj->ops->migrate)
+-		return -EOPNOTSUPP;
++	if (!i915_gem_object_can_migrate(obj, id))
++		return -EINVAL;
+ 
+ 	return obj->ops->migrate(obj, mr);
+ }
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
+index 0b7144d2991ca..28a700f08b49a 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c
+@@ -61,11 +61,6 @@ static int igt_create_migrate(struct intel_gt *gt, enum intel_region_id src,
+ 		if (err)
+ 			continue;
+ 
+-		if (!i915_gem_object_can_migrate(obj, dst)) {
+-			err = -EINVAL;
+-			continue;
+-		}
+-
+ 		err = i915_gem_object_migrate(obj, &ww, dst);
+ 		if (err)
+ 			continue;
+@@ -114,11 +109,6 @@ static int lmem_pages_migrate_one(struct i915_gem_ww_ctx *ww,
+ 		return err;
+ 
+ 	if (i915_gem_object_is_lmem(obj)) {
+-		if (!i915_gem_object_can_migrate(obj, INTEL_REGION_SMEM)) {
+-			pr_err("object can't migrate to smem.\n");
+-			return -EINVAL;
+-		}
+-
+ 		err = i915_gem_object_migrate(obj, ww, INTEL_REGION_SMEM);
+ 		if (err) {
+ 			pr_err("Object failed migration to smem\n");
+@@ -137,11 +127,6 @@ static int lmem_pages_migrate_one(struct i915_gem_ww_ctx *ww,
+ 		}
+ 
+ 	} else {
+-		if (!i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM)) {
+-			pr_err("object can't migrate to lmem.\n");
+-			return -EINVAL;
+-		}
+-
+ 		err = i915_gem_object_migrate(obj, ww, INTEL_REGION_LMEM);
+ 		if (err) {
+ 			pr_err("Object failed migration to lmem\n");
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
