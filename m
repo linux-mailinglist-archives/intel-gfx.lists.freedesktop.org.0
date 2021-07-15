@@ -2,38 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6906F3C9CB7
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 12:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EBF43C9D7E
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Jul 2021 13:07:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF6A56E81D;
-	Thu, 15 Jul 2021 10:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3616B6E825;
+	Thu, 15 Jul 2021 11:07:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A16A6E81D;
- Thu, 15 Jul 2021 10:33:15 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="296162711"
-X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="296162711"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2021 03:33:15 -0700
-X-IronPort-AV: E=Sophos;i="5.84,240,1620716400"; d="scan'208";a="494527959"
-Received: from shyland-mobl2.ger.corp.intel.com (HELO [10.213.241.81])
- ([10.213.241.81])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2021 03:33:12 -0700
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C27086E824
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 11:07:37 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id d12so7186099wre.13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 04:07:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=m1mEFS+u6luv5SpAYux4dU20h7Ou7Zi475xjguaULhk=;
+ b=IBwkzY3Z39MwZRNh0xNiJOYGZHZgym+Qw5XiuYPF4VUv5roKeJ9ZxjwT0kV6MJEl7D
+ K3YS4A6VV5uH3zDMEL/N4RdulZt6DqbcqCftar923lh/c4P/TMOxMoQvuTmIQnLqp0bZ
+ 5VQwPTaoGCR3mYutqd4yFyrAbC2VExRGYDy/A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=m1mEFS+u6luv5SpAYux4dU20h7Ou7Zi475xjguaULhk=;
+ b=efSuo+Sb5+t+Qi7fdBbqkk6MT1OIC+2DOXaKj0f6Bau9HjqASk6zv5rrJ6VuYcqhnR
+ YwQY0ANAg1nd54LHBySpDCZMQoxyJLsb25AFipsJ1/3G7WpWlyWxH3IG9iCmWkYmi8dF
+ eB93+HYCIKyhviYeoMQB9a1W+zMROm2WG6Kd49FyLAAuXgibvMgTo7JwKxR58nvqlusO
+ K0n7tIy2RtcoYMwMGLs1HJIPU4AYsjnkGzAvsTcvcshD+h3kvkrKG0M7sMkHyNYjmhU4
+ XFzfL71VNiObJhEEwEHE4lKBCWtirKhmoJu/3Y4I61fGoVNVBwNmYH1mP3uwtO20iC/q
+ T1Jg==
+X-Gm-Message-State: AOAM531llBU6LyTvCORGOzfMoDIA96JUj7+Jh8DZztOGY1cNPbnZF2Aw
+ EDyIdtkc3Oqm6LBtbIlklUGZcQ==
+X-Google-Smtp-Source: ABdhPJyhB7LGCV5ckfaESvFIe+g2exrn+yj5GVu82V0JeqegtOh5ZPWXbfjWARNZYMc6n7nV12Sl3A==
+X-Received: by 2002:a5d:4a4c:: with SMTP id v12mr4766878wrs.256.1626347256451; 
+ Thu, 15 Jul 2021 04:07:36 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g3sm6262492wrv.64.2021.07.15.04.07.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 15 Jul 2021 04:07:35 -0700 (PDT)
+Date: Thu, 15 Jul 2021 13:07:33 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YPAW9f/2oJV4UNnB@phenom.ffwll.local>
 References: <20210715101536.2606307-1-matthew.auld@intel.com>
  <20210715101536.2606307-4-matthew.auld@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <997238fe-075b-380d-3ef2-b9f528193623@linux.intel.com>
-Date: Thu, 15 Jul 2021 11:33:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ <997238fe-075b-380d-3ef2-b9f528193623@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210715101536.2606307-4-matthew.auld@intel.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <997238fe-075b-380d-3ef2-b9f528193623@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
 Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/userptr: Probe existence of
  backing struct pages upon creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -48,128 +68,245 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Kenneth Graunke <kenneth@whitecape.org>,
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Kenneth Graunke <kenneth@whitecape.org>, Matthew Auld <matthew.auld@intel.com>,
  Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDE1LzA3LzIwMjEgMTE6MTUsIE1hdHRoZXcgQXVsZCB3cm90ZToKPiBGcm9tOiBDaHJpcyBX
-aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiAKPiBKYXNvbiBFa3N0cmFuZCByZXF1
-ZXN0ZWQgYSBtb3JlIGVmZmljaWVudCBtZXRob2QgdGhhbiB1c2VycHRyK3NldC1kb21haW4KPiB0
-byBkZXRlcm1pbmUgaWYgdGhlIHVzZXJwdHIgb2JqZWN0IHdhcyBiYWNrZWQgYnkgYSBjb21wbGV0
-ZSBzZXQgb2YgcGFnZXMKPiB1cG9uIGNyZWF0aW9uLiBUbyBiZSBtb3JlIGVmZmljaWVudCB0aGFu
-IHNpbXBseSBwb3B1bGF0aW5nIHRoZSB1c2VycHRyCj4gdXNpbmcgZ2V0X3VzZXJfcGFnZXMoKSAo
-YXMgZG9uZSBieSB0aGUgY2FsbCB0byBzZXQtZG9tYWluIG9yIGV4ZWNidWYpLAo+IHdlIGNhbiB3
-YWxrIHRoZSB0cmVlIG9mIHZtX2FyZWFfc3RydWN0IGFuZCBjaGVjayBmb3IgZ2FwcyBvciB2bWEg
-bm90Cj4gYmFja2VkIGJ5IHN0cnVjdCBwYWdlIChWTV9QRk5NQVApLiBUaGUgcXVlc3Rpb24gaXMg
-aG93IHRvIGhhbmRsZQo+IFZNX01JWEVETUFQIHdoaWNoIG1heSBiZSBlaXRoZXIgc3RydWN0IHBh
-Z2Ugb3IgcGZuIGJhY2tlZC4uLgo+IAo+IFdpdGggZGlzY3JldGUgYXJlIGdvaW5nIHRvIGRyb3Ag
-c3VwcG9ydCBmb3Igc2V0X2RvbWFpbigpLCBzbyBvZmZlcmluZyBhCj4gd2F5IHRvIHByb2JlIHRo
-ZSBwYWdlcywgd2l0aG91dCBoYXZpbmcgdG8gcmVzb3J0IHRvIGR1bW15IGJhdGNoZXMgaGFzCj4g
-YmVlbiByZXF1ZXN0ZWQuCj4gCj4gdjI6Cj4gLSBhZGQgbmV3IHF1ZXJ5IHBhcmFtIGZvciB0aGUg
-UFJPUEJFIGZsYWcsIHNvIHVzZXJzcGFjZSBjYW4gZWFzaWx5Cj4gICAgY2hlY2sgaWYgdGhlIGtl
-cm5lbCBzdXBwb3J0cyBpdChKYXNvbikuCj4gLSB1c2UgbW1hcF9yZWFkX3tsb2NrLCB1bmxvY2t9
-Lgo+IC0gYWRkIHNvbWUga2VybmVsLWRvYy4KCjEpCgpJIHRoaW5rIHByb2JpbmcgaXMgdG9vIHdl
-YWsgdG8gYmUgb2ZmZXJlZCBhcyBwYXJ0IG9mIHRoZSB1YXBpLiBXaGF0IApwcm9iZXMgc3VjY2Vz
-c2Z1bGx5IGF0IGNyZWF0ZSB0aW1lIG1pZ2h0IG5vdCBiZSB0aGVyZSBhbnltb3JlIGF0IHVzYWdl
-IAp0aW1lLiBTbyBpZiB0aGUgcG9pbnRlciBpcyBub3QgdHJ1c3RlZCBhdCBvbmUgcG9pbnQsIHdo
-eSBzaG91bGQgaXQgYmUgYXQgCmEgbGF0ZXIgc3RhZ2U/CgpPbmx5IHRoaW5nIHdoaWNoIHdvcmtz
-IGZvciBtZSBpcyBwb3B1bGF0ZSAoc28gZ2V0X3BhZ2VzKSBhdCBjcmVhdGUgdGltZS4gCkJ1dCBh
-Z2FpbiB3aXRoIG5vIGd1YXJhbnRlZXMgdGhleSBhcmUgc3RpbGwgdGhlcmUgYXQgdXNlIHRpbWUg
-Y2xlYXJseSAKZG9jdW1lbnRlZC4KCjIpCgpJIGFtIGFsc28gbm90IGEgZmFuIG9mIGdldHBhcmFt
-IGZvciBpbmRpdmlkdWFsIGlvY3RsIGZsYWdzIHNpbmNlIEkgZG9uJ3QgCnRoaW5rIGl0IHNjYWxl
-cyBuaWNlbHkuIEhvdyBhYm91dCBhZGQgYSBwYXJhbSB3aGljaCByZXR1cm5zIGFsbCAKc3VwcG9y
-dGVkIGZsYWdzIGxpa2UgSTkxNV9QQVJBTV9VU0VSUFRSX1NVUFBPUlRFRF9GTEFHUz8KCkRvd25z
-aWRlIGlzIGl0IG9ubHkgd29ya3MgZm9yIDMyLWJpdCBmbGFnIGZpZWxkcyB3aXRoIGdldHBhcmFt
-LiBPciBpdCAKY291bGQgYmUgYSBxdWVyeSB0byBzb2x2ZSB0aGF0IGFzIHdlbGwuCgpSZWdhcmRz
-LAoKVHZydGtvCgo+IFRlc3RjYXNlOiBpZ3QvZ2VtX3VzZXJwdHJfYmxpdHMvcHJvYmUKPiBTaWdu
-ZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBTaWdu
-ZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4gQ2M6IFRo
-b21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPiBDYzog
-TWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiBD
-YzogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGxpbnV4LmludGVsLmNvbT4KPiBDYzog
-Sm9yZGFuIEp1c3RlbiA8am9yZGFuLmwuanVzdGVuQGludGVsLmNvbT4KPiBDYzogS2VubmV0aCBH
-cmF1bmtlIDxrZW5uZXRoQHdoaXRlY2FwZS5vcmc+Cj4gQ2M6IEphc29uIEVrc3RyYW5kIDxqYXNv
-bkBqbGVrc3RyYW5kLm5ldD4KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZnds
-bC5jaD4KPiBDYzogUmFtYWxpbmdhbSBDIDxyYW1hbGluZ2FtLmNAaW50ZWwuY29tPgo+IC0tLQo+
-ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3VzZXJwdHIuYyB8IDQwICsrKysr
-KysrKysrKysrKysrKysrLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZXRwYXJhbS5j
-ICAgICAgICB8ICAzICsrCj4gICBpbmNsdWRlL3VhcGkvZHJtL2k5MTVfZHJtLmggICAgICAgICAg
-ICAgICAgIHwgMTggKysrKysrKysrKwo+ICAgMyBmaWxlcyBjaGFuZ2VkLCA2MCBpbnNlcnRpb25z
-KCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2dlbS9pOTE1X2dlbV91c2VycHRyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fdXNlcnB0ci5jCj4gaW5kZXggNTZlZGZlZmY4YzAyLi5mZDY4ODAzMjg1OTYgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3VzZXJwdHIuYwo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91c2VycHRyLmMKPiBAQCAtNDIyLDYg
-KzQyMiwzMyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Rfb3BzIGk5
-MTVfZ2VtX3VzZXJwdHJfb3BzID0gewo+ICAgCj4gICAjZW5kaWYKPiAgIAo+ICtzdGF0aWMgaW50
-Cj4gK3Byb2JlX3JhbmdlKHN0cnVjdCBtbV9zdHJ1Y3QgKm1tLCB1bnNpZ25lZCBsb25nIGFkZHIs
-IHVuc2lnbmVkIGxvbmcgbGVuKQo+ICt7Cj4gKwljb25zdCB1bnNpZ25lZCBsb25nIGVuZCA9IGFk
-ZHIgKyBsZW47Cj4gKwlzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYTsKPiArCWludCByZXQgPSAt
-RUZBVUxUOwo+ICsKPiArCW1tYXBfcmVhZF9sb2NrKG1tKTsKPiArCWZvciAodm1hID0gZmluZF92
-bWEobW0sIGFkZHIpOyB2bWE7IHZtYSA9IHZtYS0+dm1fbmV4dCkgewo+ICsJCWlmICh2bWEtPnZt
-X3N0YXJ0ID4gYWRkcikKPiArCQkJYnJlYWs7Cj4gKwo+ICsJCWlmICh2bWEtPnZtX2ZsYWdzICYg
-KFZNX1BGTk1BUCB8IFZNX01JWEVETUFQKSkKPiArCQkJYnJlYWs7Cj4gKwo+ICsJCWlmICh2bWEt
-PnZtX2VuZCA+PSBlbmQpIHsKPiArCQkJcmV0ID0gMDsKPiArCQkJYnJlYWs7Cj4gKwkJfQo+ICsK
-PiArCQlhZGRyID0gdm1hLT52bV9lbmQ7Cj4gKwl9Cj4gKwltbWFwX3JlYWRfdW5sb2NrKG1tKTsK
-PiArCj4gKwlyZXR1cm4gcmV0Owo+ICt9Cj4gKwo+ICAgLyoKPiAgICAqIENyZWF0ZXMgYSBuZXcg
-bW0gb2JqZWN0IHRoYXQgd3JhcHMgc29tZSBub3JtYWwgbWVtb3J5IGZyb20gdGhlIHByb2Nlc3MK
-PiAgICAqIGNvbnRleHQgLSB1c2VyIG1lbW9yeS4KPiBAQCAtNDc3LDcgKzUwNCw4IEBAIGk5MTVf
-Z2VtX3VzZXJwdHJfaW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAgIAl9Cj4gICAKPiAg
-IAlpZiAoYXJncy0+ZmxhZ3MgJiB+KEk5MTVfVVNFUlBUUl9SRUFEX09OTFkgfAo+IC0JCQkgICAg
-STkxNV9VU0VSUFRSX1VOU1lOQ0hST05JWkVEKSkKPiArCQkJICAgIEk5MTVfVVNFUlBUUl9VTlNZ
-TkNIUk9OSVpFRCB8Cj4gKwkJCSAgICBJOTE1X1VTRVJQVFJfUFJPQkUpKQo+ICAgCQlyZXR1cm4g
-LUVJTlZBTDsKPiAgIAo+ICAgCWlmIChpOTE1X2dlbV9vYmplY3Rfc2l6ZV8yYmlnKGFyZ3MtPnVz
-ZXJfc2l6ZSkpCj4gQEAgLTUwNCw2ICs1MzIsMTYgQEAgaTkxNV9nZW1fdXNlcnB0cl9pb2N0bChz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgCQkJcmV0dXJuIC1FTk9ERVY7Cj4gICAJfQo+ICAg
-Cj4gKwlpZiAoYXJncy0+ZmxhZ3MgJiBJOTE1X1VTRVJQVFJfUFJPQkUpIHsKPiArCQkvKgo+ICsJ
-CSAqIENoZWNrIHRoYXQgdGhlIHJhbmdlIHBvaW50ZWQgdG8gcmVwcmVzZW50cyByZWFsIHN0cnVj
-dAo+ICsJCSAqIHBhZ2VzIGFuZCBub3QgaW9tYXBwaW5ncyAoYXQgdGhpcyBtb21lbnQgaW4gdGlt
-ZSEpCj4gKwkJICovCj4gKwkJcmV0ID0gcHJvYmVfcmFuZ2UoY3VycmVudC0+bW0sIGFyZ3MtPnVz
-ZXJfcHRyLCBhcmdzLT51c2VyX3NpemUpOwo+ICsJCWlmIChyZXQpCj4gKwkJCXJldHVybiByZXQ7
-Cj4gKwl9Cj4gKwo+ICAgI2lmZGVmIENPTkZJR19NTVVfTk9USUZJRVIKPiAgIAlvYmogPSBpOTE1
-X2dlbV9vYmplY3RfYWxsb2MoKTsKPiAgIAlpZiAob2JqID09IE5VTEwpCj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfZ2V0cGFyYW0uYwo+IGluZGV4IDI0ZTE4MjE5ZWI1MC4uZDZkMmUxYTEwZDE0IDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0uYwo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0uYwo+IEBAIC0xNjMsNiArMTYzLDkg
-QEAgaW50IGk5MTVfZ2V0cGFyYW1faW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAq
-ZGF0YSwKPiAgIAljYXNlIEk5MTVfUEFSQU1fUEVSRl9SRVZJU0lPTjoKPiAgIAkJdmFsdWUgPSBp
-OTE1X3BlcmZfaW9jdGxfdmVyc2lvbigpOwo+ICAgCQlicmVhazsKPiArCWNhc2UgSTkxNV9QQVJB
-TV9IQVNfVVNFUlBUUl9QUk9CRToKPiArCQl2YWx1ZSA9IHRydWU7Cj4gKwkJYnJlYWs7Cj4gICAJ
-ZGVmYXVsdDoKPiAgIAkJRFJNX0RFQlVHKCJVbmtub3duIHBhcmFtZXRlciAlZFxuIiwgcGFyYW0t
-PnBhcmFtKTsKPiAgIAkJcmV0dXJuIC1FSU5WQUw7Cj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvdWFw
-aS9kcm0vaTkxNV9kcm0uaCBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+IGluZGV4IGUy
-MGVlZWNhN2ExYy4uMmU0MTEyYmY0ZDM4IDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvdWFwaS9kcm0v
-aTkxNV9kcm0uaAo+ICsrKyBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+IEBAIC02NzQs
-NiArNjc0LDkgQEAgdHlwZWRlZiBzdHJ1Y3QgZHJtX2k5MTVfaXJxX3dhaXQgewo+ICAgICovCj4g
-ICAjZGVmaW5lIEk5MTVfUEFSQU1fSEFTX0VYRUNfVElNRUxJTkVfRkVOQ0VTIDU1Cj4gICAKPiAr
-LyogUXVlcnkgaWYgdGhlIGtlcm5lbCBzdXBwb3J0cyB0aGUgSTkxNV9VU0VSUFRSX1BST0JFIGZs
-YWcuICovCj4gKyNkZWZpbmUgSTkxNV9QQVJBTV9IQVNfVVNFUlBUUl9QUk9CRSA1Ngo+ICsKPiAg
-IC8qIE11c3QgYmUga2VwdCBjb21wYWN0IC0tIG5vIGhvbGVzIGFuZCB3ZWxsIGRvY3VtZW50ZWQg
-Ki8KPiAgIAo+ICAgdHlwZWRlZiBzdHJ1Y3QgZHJtX2k5MTVfZ2V0cGFyYW0gewo+IEBAIC0yMTc4
-LDEyICsyMTgxLDI3IEBAIHN0cnVjdCBkcm1faTkxNV9nZW1fdXNlcnB0ciB7Cj4gICAJICogdGhy
-b3VnaCB0aGUgR1RULiBJZiB0aGUgSFcgY2FuJ3Qgc3VwcG9ydCByZWFkb25seSBhY2Nlc3MsIGFu
-IGVycm9yIGlzCj4gICAJICogcmV0dXJuZWQuCj4gICAJICoKPiArCSAqIEk5MTVfVVNFUlBUUl9Q
-Uk9CRToKPiArCSAqCj4gKwkgKiBQcm9iZSB0aGUgcHJvdmlkZWQgQHVzZXJfcHRyIHJhbmdlIGFu
-ZCB2YWxpZGF0ZSB0aGF0IHRoZSBAdXNlcl9wdHIgaXMKPiArCSAqIGluZGVlZCBwb2ludGluZyB0
-byBub3JtYWwgbWVtb3J5IGFuZCB0aGF0IHRoZSByYW5nZSBpcyBhbHNvIHZhbGlkLgo+ICsJICog
-Rm9yIGV4YW1wbGUgaWYgc29tZSBnYXJiYWdlIGFkZHJlc3MgaXMgZ2l2ZW4gdG8gdGhlIGtlcm5l
-bCwgdGhlbiB0aGlzCj4gKwkgKiBzaG91bGQgY29tcGxhaW4uCj4gKwkgKgo+ICsJICogUmV0dXJu
-cyAtRUZBVUxUIGlmIHRoZSBwcm9iZSBmYWlsZWQuCj4gKwkgKgo+ICsJICogTm90ZSB0aGF0IHRo
-aXMgZG9lc24ndCBwb3B1bGF0ZSB0aGUgYmFja2luZyBwYWdlcy4KPiArCSAqCj4gKwkgKiBUaGUg
-a2VybmVsIHN1cHBvcnRzIHRoaXMgZmVhdHVyZSBpZiBJOTE1X1BBUkFNX0hBU19VU0VSUFRSX1BS
-T0JFCj4gKwkgKiByZXR1cm5zIGEgbm9uLXplcm8gdmFsdWUuCj4gKwkgKgo+ICAgCSAqIEk5MTVf
-VVNFUlBUUl9VTlNZTkNIUk9OSVpFRDoKPiAgIAkgKgo+ICAgCSAqIE5PVCBVU0VELiBTZXR0aW5n
-IHRoaXMgZmxhZyB3aWxsIHJlc3VsdCBpbiBhbiBlcnJvci4KPiAgIAkgKi8KPiAgIAlfX3UzMiBm
-bGFnczsKPiAgICNkZWZpbmUgSTkxNV9VU0VSUFRSX1JFQURfT05MWSAweDEKPiArI2RlZmluZSBJ
-OTE1X1VTRVJQVFJfUFJPQkUgMHgyCj4gICAjZGVmaW5lIEk5MTVfVVNFUlBUUl9VTlNZTkNIUk9O
-SVpFRCAweDgwMDAwMDAwCj4gICAJLyoqCj4gICAJICogQGhhbmRsZTogUmV0dXJuZWQgaGFuZGxl
-IGZvciB0aGUgb2JqZWN0Lgo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+On Thu, Jul 15, 2021 at 11:33:10AM +0100, Tvrtko Ursulin wrote:
+> =
+
+> On 15/07/2021 11:15, Matthew Auld wrote:
+> > From: Chris Wilson <chris@chris-wilson.co.uk>
+> > =
+
+> > Jason Ekstrand requested a more efficient method than userptr+set-domain
+> > to determine if the userptr object was backed by a complete set of pages
+> > upon creation. To be more efficient than simply populating the userptr
+> > using get_user_pages() (as done by the call to set-domain or execbuf),
+> > we can walk the tree of vm_area_struct and check for gaps or vma not
+> > backed by struct page (VM_PFNMAP). The question is how to handle
+> > VM_MIXEDMAP which may be either struct page or pfn backed...
+> > =
+
+> > With discrete are going to drop support for set_domain(), so offering a
+> > way to probe the pages, without having to resort to dummy batches has
+> > been requested.
+> > =
+
+> > v2:
+> > - add new query param for the PROPBE flag, so userspace can easily
+> >    check if the kernel supports it(Jason).
+> > - use mmap_read_{lock, unlock}.
+> > - add some kernel-doc.
+> =
+
+> 1)
+> =
+
+> I think probing is too weak to be offered as part of the uapi. What probes
+> successfully at create time might not be there anymore at usage time. So =
+if
+> the pointer is not trusted at one point, why should it be at a later stag=
+e?
+> =
+
+> Only thing which works for me is populate (so get_pages) at create time. =
+But
+> again with no guarantees they are still there at use time clearly
+> documented.
+
+Populate is exactly as racy as probe. We don't support pinned userptr
+anymore.
+
+> 2)
+> =
+
+> I am also not a fan of getparam for individual ioctl flags since I don't
+> think it scales nicely. How about add a param which returns all supported
+> flags like I915_PARAM_USERPTR_SUPPORTED_FLAGS?
+> =
+
+> Downside is it only works for 32-bit flag fields with getparam. Or it cou=
+ld
+> be a query to solve that as well.
+
+I expect the actual userspace code will simply try with the probe flag
+first, and then without + set_domain. So strictly speaking we might not
+even have a need for the getparam.
+
+Otoh, let's not overthink/engineer this, whatever works for userspace is
+ok imo. A new query that lists all flags is the kind of fake-generic stuff
+that will like mis-estimate where the future actually lands, e.g. how do
+you encode if we add extensions to userptr to this? Which is something we
+absolutely can, by extending the struct at the end, which doesn't even
+need a new flag.
+
+Let's solve the immediate problem at hand, and not try to guess what more
+problems we might have in the future.
+-Daniel
+
+> Regards,
+> =
+
+> Tvrtko
+> =
+
+> > Testcase: igt/gem_userptr_blits/probe
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > Cc: Jordan Justen <jordan.l.justen@intel.com>
+> > Cc: Kenneth Graunke <kenneth@whitecape.org>
+> > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 40 ++++++++++++++++++++-
+> >   drivers/gpu/drm/i915/i915_getparam.c        |  3 ++
+> >   include/uapi/drm/i915_drm.h                 | 18 ++++++++++
+> >   3 files changed, 60 insertions(+), 1 deletion(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/=
+drm/i915/gem/i915_gem_userptr.c
+> > index 56edfeff8c02..fd6880328596 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > @@ -422,6 +422,33 @@ static const struct drm_i915_gem_object_ops i915_g=
+em_userptr_ops =3D {
+> >   #endif
+> > +static int
+> > +probe_range(struct mm_struct *mm, unsigned long addr, unsigned long le=
+n)
+> > +{
+> > +	const unsigned long end =3D addr + len;
+> > +	struct vm_area_struct *vma;
+> > +	int ret =3D -EFAULT;
+> > +
+> > +	mmap_read_lock(mm);
+> > +	for (vma =3D find_vma(mm, addr); vma; vma =3D vma->vm_next) {
+> > +		if (vma->vm_start > addr)
+> > +			break;
+> > +
+> > +		if (vma->vm_flags & (VM_PFNMAP | VM_MIXEDMAP))
+> > +			break;
+> > +
+> > +		if (vma->vm_end >=3D end) {
+> > +			ret =3D 0;
+> > +			break;
+> > +		}
+> > +
+> > +		addr =3D vma->vm_end;
+> > +	}
+> > +	mmap_read_unlock(mm);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> >   /*
+> >    * Creates a new mm object that wraps some normal memory from the pro=
+cess
+> >    * context - user memory.
+> > @@ -477,7 +504,8 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+> >   	}
+> >   	if (args->flags & ~(I915_USERPTR_READ_ONLY |
+> > -			    I915_USERPTR_UNSYNCHRONIZED))
+> > +			    I915_USERPTR_UNSYNCHRONIZED |
+> > +			    I915_USERPTR_PROBE))
+> >   		return -EINVAL;
+> >   	if (i915_gem_object_size_2big(args->user_size))
+> > @@ -504,6 +532,16 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+> >   			return -ENODEV;
+> >   	}
+> > +	if (args->flags & I915_USERPTR_PROBE) {
+> > +		/*
+> > +		 * Check that the range pointed to represents real struct
+> > +		 * pages and not iomappings (at this moment in time!)
+> > +		 */
+> > +		ret =3D probe_range(current->mm, args->user_ptr, args->user_size);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> >   #ifdef CONFIG_MMU_NOTIFIER
+> >   	obj =3D i915_gem_object_alloc();
+> >   	if (obj =3D=3D NULL)
+> > diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i91=
+5/i915_getparam.c
+> > index 24e18219eb50..d6d2e1a10d14 100644
+> > --- a/drivers/gpu/drm/i915/i915_getparam.c
+> > +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> > @@ -163,6 +163,9 @@ int i915_getparam_ioctl(struct drm_device *dev, voi=
+d *data,
+> >   	case I915_PARAM_PERF_REVISION:
+> >   		value =3D i915_perf_ioctl_version();
+> >   		break;
+> > +	case I915_PARAM_HAS_USERPTR_PROBE:
+> > +		value =3D true;
+> > +		break;
+> >   	default:
+> >   		DRM_DEBUG("Unknown parameter %d\n", param->param);
+> >   		return -EINVAL;
+> > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > index e20eeeca7a1c..2e4112bf4d38 100644
+> > --- a/include/uapi/drm/i915_drm.h
+> > +++ b/include/uapi/drm/i915_drm.h
+> > @@ -674,6 +674,9 @@ typedef struct drm_i915_irq_wait {
+> >    */
+> >   #define I915_PARAM_HAS_EXEC_TIMELINE_FENCES 55
+> > +/* Query if the kernel supports the I915_USERPTR_PROBE flag. */
+> > +#define I915_PARAM_HAS_USERPTR_PROBE 56
+> > +
+> >   /* Must be kept compact -- no holes and well documented */
+> >   typedef struct drm_i915_getparam {
+> > @@ -2178,12 +2181,27 @@ struct drm_i915_gem_userptr {
+> >   	 * through the GTT. If the HW can't support readonly access, an erro=
+r is
+> >   	 * returned.
+> >   	 *
+> > +	 * I915_USERPTR_PROBE:
+> > +	 *
+> > +	 * Probe the provided @user_ptr range and validate that the @user_ptr=
+ is
+> > +	 * indeed pointing to normal memory and that the range is also valid.
+> > +	 * For example if some garbage address is given to the kernel, then t=
+his
+> > +	 * should complain.
+> > +	 *
+> > +	 * Returns -EFAULT if the probe failed.
+> > +	 *
+> > +	 * Note that this doesn't populate the backing pages.
+> > +	 *
+> > +	 * The kernel supports this feature if I915_PARAM_HAS_USERPTR_PROBE
+> > +	 * returns a non-zero value.
+> > +	 *
+> >   	 * I915_USERPTR_UNSYNCHRONIZED:
+> >   	 *
+> >   	 * NOT USED. Setting this flag will result in an error.
+> >   	 */
+> >   	__u32 flags;
+> >   #define I915_USERPTR_READ_ONLY 0x1
+> > +#define I915_USERPTR_PROBE 0x2
+> >   #define I915_USERPTR_UNSYNCHRONIZED 0x80000000
+> >   	/**
+> >   	 * @handle: Returned handle for the object.
+> > =
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
