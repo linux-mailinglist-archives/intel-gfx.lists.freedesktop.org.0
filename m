@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CAE63CBD92
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 22:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8E2C3CBD81
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 22:08:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CCEA6EA0E;
-	Fri, 16 Jul 2021 20:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5821F6E9D4;
+	Fri, 16 Jul 2021 20:08:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A04C86E9F4;
- Fri, 16 Jul 2021 20:16:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="198048758"
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="198048758"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 13:16:09 -0700
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="460865102"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 13:16:09 -0700
-Date: Fri, 16 Jul 2021 13:04:50 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <20210716200450.GA27372@sdutt-i7>
-References: <20210716201724.54804-1-matthew.brost@intel.com>
- <20210716201724.54804-40-matthew.brost@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 41D566E9D3;
+ Fri, 16 Jul 2021 20:08:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3A251A47DB;
+ Fri, 16 Jul 2021 20:08:57 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210716201724.54804-40-matthew.brost@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 39/51] drm/i915/guc: Connect reset modparam
- updates to GuC policy flags
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Marco Kurzynski" <marcokurzynski@icloud.com>
+Date: Fri, 16 Jul 2021 20:08:57 -0000
+Message-ID: <162646613720.12778.17020622074189482948@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210714203324.146783-1-marcokurzynski@icloud.com>
+In-Reply-To: <20210714203324.146783-1-marcokurzynski@icloud.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJp?=
+ =?utf-8?q?vers/gpu/drm/i915/display=3A_remove_boilerplate_code_using_LOCK?=
+ =?utf-8?q?=5FALL_macros?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,122 +39,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0366434836=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 16, 2021 at 01:17:12PM -0700, Matthew Brost wrote:
-> From: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Changing the reset module parameter has no effect on a running GuC.
-> The corresponding entry in the ADS must be updated and then the GuC
-> informed via a Host2GuC message.
-> 
-> The new debugfs interface to module parameters allows this to happen.
-> However, connecting the parameter data address back to anything useful
-> is messy. One option would be to pass a new private data structure
-> address through instead of just the parameter pointer. However, that
-> means having a new (and different) data structure for each parameter
-> and a new (and different) write function for each parameter. This
-> method keeps everything generic by instead using a string lookup on
-> the directory entry name.
-> 
-> Signed-off-by: John Harrison <john.c.harrison@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+--===============0366434836==
+Content-Type: multipart/alternative;
+ boundary="===============1385389989711292269=="
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+--===============1385389989711292269==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c |  2 +-
->  drivers/gpu/drm/i915/i915_debugfs_params.c | 31 ++++++++++++++++++++++
->  2 files changed, 32 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> index 2ad5fcd4e1b7..c6d0b762d82c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> @@ -99,7 +99,7 @@ static int guc_action_policies_update(struct intel_guc *guc, u32 policy_offset)
->  		policy_offset
->  	};
->  
-> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
-> +	return intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
->  }
->  
->  int intel_guc_global_policies_update(struct intel_guc *guc)
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm/i915/i915_debugfs_params.c
-> index 4e2b077692cb..8ecd8b42f048 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs_params.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
-> @@ -6,9 +6,20 @@
->  #include <linux/kernel.h>
->  
->  #include "i915_debugfs_params.h"
-> +#include "gt/intel_gt.h"
-> +#include "gt/uc/intel_guc.h"
->  #include "i915_drv.h"
->  #include "i915_params.h"
->  
-> +#define MATCH_DEBUGFS_NODE_NAME(_file, _name)	(strcmp((_file)->f_path.dentry->d_name.name, (_name)) == 0)
-> +
-> +#define GET_I915(i915, name, ptr)	\
-> +	do {	\
-> +		struct i915_params *params;	\
-> +		params = container_of(((void *) (ptr)), typeof(*params), name);	\
-> +		(i915) = container_of(params, typeof(*(i915)), params);	\
-> +	} while(0)
-> +
->  /* int param */
->  static int i915_param_int_show(struct seq_file *m, void *data)
->  {
-> @@ -24,6 +35,16 @@ static int i915_param_int_open(struct inode *inode, struct file *file)
->  	return single_open(file, i915_param_int_show, inode->i_private);
->  }
->  
-> +static int notify_guc(struct drm_i915_private *i915)
-> +{
-> +	int ret = 0;
-> +
-> +	if (intel_uc_uses_guc_submission(&i915->gt.uc))
-> +		ret = intel_guc_global_policies_update(&i915->gt.uc.guc);
-> +
-> +	return ret;
-> +}
-> +
->  static ssize_t i915_param_int_write(struct file *file,
->  				    const char __user *ubuf, size_t len,
->  				    loff_t *offp)
-> @@ -81,8 +102,10 @@ static ssize_t i915_param_uint_write(struct file *file,
->  				     const char __user *ubuf, size_t len,
->  				     loff_t *offp)
->  {
-> +	struct drm_i915_private *i915;
->  	struct seq_file *m = file->private_data;
->  	unsigned int *value = m->private;
-> +	unsigned int old = *value;
->  	int ret;
->  
->  	ret = kstrtouint_from_user(ubuf, len, 0, value);
-> @@ -95,6 +118,14 @@ static ssize_t i915_param_uint_write(struct file *file,
->  			*value = b;
->  	}
->  
-> +	if (!ret && MATCH_DEBUGFS_NODE_NAME(file, "reset")) {
-> +		GET_I915(i915, reset, value);
-> +
-> +		ret = notify_guc(i915);
-> +		if (ret)
-> +			*value = old;
-> +	}
-> +
->  	return ret ?: len;
->  }
->  
-> -- 
-> 2.28.0
-> 
+== Series Details ==
+
+Series: drivers/gpu/drm/i915/display: remove boilerplate code using LOCK_ALL macros
+URL   : https://patchwork.freedesktop.org/series/92596/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10345 -> Patchwork_20630
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20630 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10345/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [DMESG-FAIL][6] ([i915#165]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10345/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
+  [i915#3717]: https://gitlab.freedesktop.org/drm/intel/issues/3717
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+
+
+Participating hosts (41 -> 36)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10345 -> Patchwork_20630
+
+  CI-20190529: 20190529
+  CI_DRM_10345: 8c6a974b932fbaa798102b4713ceedf3b04227d9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6142: 16e753fc5e1e51395e1df40865c569984a74c5ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20630: c8652f80962721ef153637ea0aea563aa0833803 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c8652f809627 drivers/gpu/drm/i915/display: remove boilerplate code using LOCK_ALL macros
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/index.html
+
+--===============1385389989711292269==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drivers/gpu/drm/i915/display: remove boilerplate code using LOCK_ALL macros</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92596/">https://patchwork.freedesktop.org/series/92596/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10345 -&gt; Patchwork_20630</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20630 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>
+<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10345/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10345/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20630/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 36)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10345 -&gt; Patchwork_20630</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10345: 8c6a974b932fbaa798102b4713ceedf3b04227d9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6142: 16e753fc5e1e51395e1df40865c569984a74c5ed @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20630: c8652f80962721ef153637ea0aea563aa0833803 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c8652f809627 drivers/gpu/drm/i915/display: remove boilerplate code using LOCK_ALL macros</p>
+
+</body>
+</html>
+
+--===============1385389989711292269==--
+
+--===============0366434836==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0366434836==--
