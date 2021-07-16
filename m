@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBC13CBD6A
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 22:01:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0183CBD69
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 22:01:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49F006E9ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3646EA1A;
 	Fri, 16 Jul 2021 19:59:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0196E9E5;
- Fri, 16 Jul 2021 19:59:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="210596759"
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="210596759"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC4CB6EA1D;
+ Fri, 16 Jul 2021 19:59:47 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="198046861"
+X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="198046861"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 12:59:45 -0700
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="507239054"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2021 12:59:46 -0700
+X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="507239075"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 12:59:44 -0700
+ 16 Jul 2021 12:59:45 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Fri, 16 Jul 2021 13:17:18 -0700
-Message-Id: <20210716201724.54804-46-matthew.brost@intel.com>
+Date: Fri, 16 Jul 2021 13:17:23 -0700
+Message-Id: <20210716201724.54804-51-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210716201724.54804-1-matthew.brost@intel.com>
 References: <20210716201724.54804-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 45/51] drm/i915/selftest: Fix workarounds
- selftest for GuC submission
+Subject: [Intel-gfx] [PATCH 50/51] drm/i915/guc: Implement GuC priority
+ management
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,193 +44,598 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogUmFodWwgS3VtYXIgU2luZ2ggPHJhaHVsLmt1bWFyLnNpbmdoQGludGVsLmNvbT4KCldo
-ZW4gR3VDIHN1Ym1pc3Npb24gaXMgZW5hYmxlZCwgdGhlIEd1QyBjb250cm9scyBlbmdpbmUgcmVz
-ZXRzLiBSYXRoZXIKdGhhbiBleHBsaWNpdGx5IHRyaWdnZXJpbmcgYSByZXNldCwgdGhlIGRyaXZl
-ciBtdXN0IHN1Ym1pdCBhIGhhbmdpbmcKY29udGV4dCB0byBHdUMgYW5kIHdhaXQgZm9yIHRoZSBy
-ZXNldCB0byBvY2N1ci4KClNpZ25lZC1vZmYtYnk6IFJhaHVsIEt1bWFyIFNpbmdoIDxyYWh1bC5r
-dW1hci5zaW5naEBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvaG4gSGFycmlzb24gPEpvaG4u
-Qy5IYXJyaXNvbkBJbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQnJvc3QgPG1hdHRo
-ZXcuYnJvc3RAaW50ZWwuY29tPgpDYzogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5j
-ZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KQ2M6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJvc3RA
-aW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAgICAg
-ICAgICB8ICAgMSArCiAuLi4vZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3dvcmthcm91bmRzLmMg
-ICAgfCAxMzAgKysrKysrKysrKysrKy0tLS0tCiAuLi4vaTkxNS9zZWxmdGVzdHMvaW50ZWxfc2No
-ZWR1bGVyX2hlbHBlcnMuYyAgfCAgNzYgKysrKysrKysrKwogLi4uL2k5MTUvc2VsZnRlc3RzL2lu
-dGVsX3NjaGVkdWxlcl9oZWxwZXJzLmggIHwgIDI4ICsrKysKIDQgZmlsZXMgY2hhbmdlZCwgMjAx
-IGluc2VydGlvbnMoKyksIDM0IGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pbnRlbF9zY2hlZHVsZXJfaGVscGVycy5jCiBjcmVh
-dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX3NjaGVk
-dWxlcl9oZWxwZXJzLmgKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmls
-ZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCmluZGV4IDEwYjNiYjYyMDdiYS4uYWI3
-Njc5OTU3NjIzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQorKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQpAQCAtMjgwLDYgKzI4MCw3IEBAIGk5MTUt
-JChDT05GSUdfRFJNX0k5MTVfQ0FQVFVSRV9FUlJPUikgKz0gaTkxNV9ncHVfZXJyb3IubwogaTkx
-NS0kKENPTkZJR19EUk1fSTkxNV9TRUxGVEVTVCkgKz0gXAogCWdlbS9zZWxmdGVzdHMvaTkxNV9n
-ZW1fY2xpZW50X2JsdC5vIFwKIAlnZW0vc2VsZnRlc3RzL2lndF9nZW1fdXRpbHMubyBcCisJc2Vs
-ZnRlc3RzL2ludGVsX3NjaGVkdWxlcl9oZWxwZXJzLm8gXAogCXNlbGZ0ZXN0cy9pOTE1X3JhbmRv
-bS5vIFwKIAlzZWxmdGVzdHMvaTkxNV9zZWxmdGVzdC5vIFwKIAlzZWxmdGVzdHMvaWd0X2F0b21p
-Yy5vIFwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3dvcmth
-cm91bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF93b3JrYXJvdW5kcy5j
-CmluZGV4IDdlYmM0ZWRiOGVjZi4uNzcyN2JjNTMxZWE5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC9zZWxmdGVzdF93b3JrYXJvdW5kcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L3NlbGZ0ZXN0X3dvcmthcm91bmRzLmMKQEAgLTEyLDYgKzEyLDcgQEAKICNpbmNs
-dWRlICJzZWxmdGVzdHMvaWd0X2ZsdXNoX3Rlc3QuaCIKICNpbmNsdWRlICJzZWxmdGVzdHMvaWd0
-X3Jlc2V0LmgiCiAjaW5jbHVkZSAic2VsZnRlc3RzL2lndF9zcGlubmVyLmgiCisjaW5jbHVkZSAi
-c2VsZnRlc3RzL2ludGVsX3NjaGVkdWxlcl9oZWxwZXJzLmgiCiAjaW5jbHVkZSAic2VsZnRlc3Rz
-L21vY2tfZHJtLmgiCiAKICNpbmNsdWRlICJnZW0vc2VsZnRlc3RzL2lndF9nZW1fdXRpbHMuaCIK
-QEAgLTI2MSwyOCArMjYyLDM0IEBAIHN0YXRpYyBpbnQgZG9fZW5naW5lX3Jlc2V0KHN0cnVjdCBp
-bnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKIAlyZXR1cm4gaW50ZWxfZW5naW5lX3Jlc2V0KGVuZ2lu
-ZSwgImxpdmVfd29ya2Fyb3VuZHMiKTsKIH0KIAorc3RhdGljIGludCBkb19ndWNfcmVzZXQoc3Ry
-dWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQoreworCS8qIEN1cnJlbnRseSBhIG5vLW9wIGFz
-IHRoZSByZXNldCBpcyBoYW5kbGVkIGJ5IEd1QyAqLworCXJldHVybiAwOworfQorCiBzdGF0aWMg
-aW50CiBzd2l0Y2hfdG9fc2NyYXRjaF9jb250ZXh0KHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVu
-Z2luZSwKLQkJCSAgc3RydWN0IGlndF9zcGlubmVyICpzcGluKQorCQkJICBzdHJ1Y3QgaWd0X3Nw
-aW5uZXIgKnNwaW4sCisJCQkgIHN0cnVjdCBpOTE1X3JlcXVlc3QgKipycSkKIHsKIAlzdHJ1Y3Qg
-aW50ZWxfY29udGV4dCAqY2U7Ci0Jc3RydWN0IGk5MTVfcmVxdWVzdCAqcnE7CiAJaW50IGVyciA9
-IDA7CiAKIAljZSA9IGludGVsX2NvbnRleHRfY3JlYXRlKGVuZ2luZSk7CiAJaWYgKElTX0VSUihj
-ZSkpCiAJCXJldHVybiBQVFJfRVJSKGNlKTsKIAotCXJxID0gaWd0X3NwaW5uZXJfY3JlYXRlX3Jl
-cXVlc3Qoc3BpbiwgY2UsIE1JX05PT1ApOworCSpycSA9IGlndF9zcGlubmVyX2NyZWF0ZV9yZXF1
-ZXN0KHNwaW4sIGNlLCBNSV9OT09QKTsKIAlpbnRlbF9jb250ZXh0X3B1dChjZSk7CiAKLQlpZiAo
-SVNfRVJSKHJxKSkgeworCWlmIChJU19FUlIoKnJxKSkgewogCQlzcGluID0gTlVMTDsKLQkJZXJy
-ID0gUFRSX0VSUihycSk7CisJCWVyciA9IFBUUl9FUlIoKnJxKTsKIAkJZ290byBlcnI7CiAJfQog
-Ci0JZXJyID0gcmVxdWVzdF9hZGRfc3BpbihycSwgc3Bpbik7CisJZXJyID0gcmVxdWVzdF9hZGRf
-c3BpbigqcnEsIHNwaW4pOwogZXJyOgogCWlmIChlcnIgJiYgc3BpbikKIAkJaWd0X3NwaW5uZXJf
-ZW5kKHNwaW4pOwpAQCAtMjk2LDYgKzMwMyw3IEBAIHN0YXRpYyBpbnQgY2hlY2tfd2hpdGVsaXN0
-X2Fjcm9zc19yZXNldChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCiB7CiAJc3RydWN0
-IGludGVsX2NvbnRleHQgKmNlLCAqdG1wOwogCXN0cnVjdCBpZ3Rfc3Bpbm5lciBzcGluOworCXN0
-cnVjdCBpOTE1X3JlcXVlc3QgKnJxOwogCWludGVsX3dha2VyZWZfdCB3YWtlcmVmOwogCWludCBl
-cnI7CiAKQEAgLTMxNiwxMyArMzI0LDI0IEBAIHN0YXRpYyBpbnQgY2hlY2tfd2hpdGVsaXN0X2Fj
-cm9zc19yZXNldChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCiAJCWdvdG8gb3V0X3Nw
-aW47CiAJfQogCi0JZXJyID0gc3dpdGNoX3RvX3NjcmF0Y2hfY29udGV4dChlbmdpbmUsICZzcGlu
-KTsKKwllcnIgPSBzd2l0Y2hfdG9fc2NyYXRjaF9jb250ZXh0KGVuZ2luZSwgJnNwaW4sICZycSk7
-CiAJaWYgKGVycikKIAkJZ290byBvdXRfc3BpbjsKIAorCS8qIEVuc3VyZSB0aGUgc3Bpbm5lciBo
-YXNuJ3QgYWJvcnRlZCAqLworCWlmIChpOTE1X3JlcXVlc3RfY29tcGxldGVkKHJxKSkgeworCQlw
-cl9lcnIoIiVzIHNwaW5uZXIgZmFpbGVkIHRvIHN0YXJ0XG4iLCBuYW1lKTsKKwkJZXJyID0gLUVU
-SU1FRE9VVDsKKwkJZ290byBvdXRfc3BpbjsKKwl9CisKIAl3aXRoX2ludGVsX3J1bnRpbWVfcG0o
-ZW5naW5lLT51bmNvcmUtPnJwbSwgd2FrZXJlZikKIAkJZXJyID0gcmVzZXQoZW5naW5lKTsKIAor
-CS8qIEVuc3VyZSB0aGUgcmVzZXQgaGFwcGVucyBhbmQga2lsbHMgdGhlIGVuZ2luZSAqLworCWlm
-IChlcnIgPT0gMCkKKwkJZXJyID0gaW50ZWxfc2VsZnRlc3Rfd2FpdF9mb3JfcnEocnEpOworCiAJ
-aWd0X3NwaW5uZXJfZW5kKCZzcGluKTsKIAogCWlmIChlcnIpIHsKQEAgLTc4Nyw5ICs4MDYsMjYg
-QEAgc3RhdGljIGludCBsaXZlX3Jlc2V0X3doaXRlbGlzdCh2b2lkICphcmcpCiAJCQljb250aW51
-ZTsKIAogCQlpZiAoaW50ZWxfaGFzX3Jlc2V0X2VuZ2luZShndCkpIHsKLQkJCWVyciA9IGNoZWNr
-X3doaXRlbGlzdF9hY3Jvc3NfcmVzZXQoZW5naW5lLAotCQkJCQkJCSAgIGRvX2VuZ2luZV9yZXNl
-dCwKLQkJCQkJCQkgICAiZW5naW5lIik7CisJCQlpZiAoaW50ZWxfZW5naW5lX3VzZXNfZ3VjKGVu
-Z2luZSkpIHsKKwkJCQlzdHJ1Y3QgaW50ZWxfc2VsZnRlc3Rfc2F2ZWRfcG9saWN5IHNhdmVkOwor
-CQkJCWludCBlcnIyOworCisJCQkJZXJyID0gaW50ZWxfc2VsZnRlc3RfbW9kaWZ5X3BvbGljeShl
-bmdpbmUsICZzYXZlZCk7CisJCQkJaWYoZXJyKQorCQkJCQlnb3RvIG91dDsKKworCQkJCWVyciA9
-IGNoZWNrX3doaXRlbGlzdF9hY3Jvc3NfcmVzZXQoZW5naW5lLAorCQkJCQkJCQkgICBkb19ndWNf
-cmVzZXQsCisJCQkJCQkJCSAgICJndWMiKTsKKworCQkJCWVycjIgPSBpbnRlbF9zZWxmdGVzdF9y
-ZXN0b3JlX3BvbGljeShlbmdpbmUsICZzYXZlZCk7CisJCQkJaWYgKGVyciA9PSAwKQorCQkJCQll
-cnIgPSBlcnIyOworCQkJfSBlbHNlCisJCQkJZXJyID0gY2hlY2tfd2hpdGVsaXN0X2Fjcm9zc19y
-ZXNldChlbmdpbmUsCisJCQkJCQkJCSAgIGRvX2VuZ2luZV9yZXNldCwKKwkJCQkJCQkJICAgImVu
-Z2luZSIpOworCiAJCQlpZiAoZXJyKQogCQkJCWdvdG8gb3V0OwogCQl9CkBAIC0xMjI2LDMxICsx
-MjYyLDQxIEBAIGxpdmVfZW5naW5lX3Jlc2V0X3dvcmthcm91bmRzKHZvaWQgKmFyZykKIAlyZWZl
-cmVuY2VfbGlzdHNfaW5pdChndCwgJmxpc3RzKTsKIAogCWZvcl9lYWNoX2VuZ2luZShlbmdpbmUs
-IGd0LCBpZCkgeworCQlzdHJ1Y3QgaW50ZWxfc2VsZnRlc3Rfc2F2ZWRfcG9saWN5IHNhdmVkOwor
-CQlib29sIHVzaW5nX2d1YyA9IGludGVsX2VuZ2luZV91c2VzX2d1YyhlbmdpbmUpOwogCQlib29s
-IG9rOworCQlpbnQgcmV0MjsKIAogCQlwcl9pbmZvKCJWZXJpZnlpbmcgYWZ0ZXIgJXMgcmVzZXQu
-Li5cbiIsIGVuZ2luZS0+bmFtZSk7CisJCXJldCA9IGludGVsX3NlbGZ0ZXN0X21vZGlmeV9wb2xp
-Y3koZW5naW5lLCAmc2F2ZWQpOworCQlpZiAocmV0KQorCQkJYnJlYWs7CisKKwogCQljZSA9IGlu
-dGVsX2NvbnRleHRfY3JlYXRlKGVuZ2luZSk7CiAJCWlmIChJU19FUlIoY2UpKSB7CiAJCQlyZXQg
-PSBQVFJfRVJSKGNlKTsKLQkJCWJyZWFrOworCQkJZ290byByZXN0b3JlOwogCQl9CiAKLQkJb2sg
-PSB2ZXJpZnlfd2FfbGlzdHMoZ3QsICZsaXN0cywgImJlZm9yZSByZXNldCIpOwotCQlpZiAoIW9r
-KSB7Ci0JCQlyZXQgPSAtRVNSQ0g7Ci0JCQlnb3RvIGVycjsKLQkJfQorCQlpZiAoIXVzaW5nX2d1
-YykgeworCQkJb2sgPSB2ZXJpZnlfd2FfbGlzdHMoZ3QsICZsaXN0cywgImJlZm9yZSByZXNldCIp
-OworCQkJaWYgKCFvaykgeworCQkJCXJldCA9IC1FU1JDSDsKKwkJCQlnb3RvIGVycjsKKwkJCX0K
-IAotCQlyZXQgPSBpbnRlbF9lbmdpbmVfcmVzZXQoZW5naW5lLCAibGl2ZV93b3JrYXJvdW5kczpp
-ZGxlIik7Ci0JCWlmIChyZXQpIHsKLQkJCXByX2VycigiJXM6IFJlc2V0IGZhaWxlZCB3aGlsZSBp
-ZGxlXG4iLCBlbmdpbmUtPm5hbWUpOwotCQkJZ290byBlcnI7Ci0JCX0KKwkJCXJldCA9IGludGVs
-X2VuZ2luZV9yZXNldChlbmdpbmUsICJsaXZlX3dvcmthcm91bmRzOmlkbGUiKTsKKwkJCWlmIChy
-ZXQpIHsKKwkJCQlwcl9lcnIoIiVzOiBSZXNldCBmYWlsZWQgd2hpbGUgaWRsZVxuIiwgZW5naW5l
-LT5uYW1lKTsKKwkJCQlnb3RvIGVycjsKKwkJCX0KIAotCQlvayA9IHZlcmlmeV93YV9saXN0cyhn
-dCwgJmxpc3RzLCAiYWZ0ZXIgaWRsZSByZXNldCIpOwotCQlpZiAoIW9rKSB7Ci0JCQlyZXQgPSAt
-RVNSQ0g7Ci0JCQlnb3RvIGVycjsKKwkJCW9rID0gdmVyaWZ5X3dhX2xpc3RzKGd0LCAmbGlzdHMs
-ICJhZnRlciBpZGxlIHJlc2V0Iik7CisJCQlpZiAoIW9rKSB7CisJCQkJcmV0ID0gLUVTUkNIOwor
-CQkJCWdvdG8gZXJyOworCQkJfQogCQl9CiAKIAkJcmV0ID0gaWd0X3NwaW5uZXJfaW5pdCgmc3Bp
-biwgZW5naW5lLT5ndCk7CkBAIC0xMjcxLDI1ICsxMzE3LDQxIEBAIGxpdmVfZW5naW5lX3Jlc2V0
-X3dvcmthcm91bmRzKHZvaWQgKmFyZykKIAkJCWdvdG8gZXJyOwogCQl9CiAKLQkJcmV0ID0gaW50
-ZWxfZW5naW5lX3Jlc2V0KGVuZ2luZSwgImxpdmVfd29ya2Fyb3VuZHM6YWN0aXZlIik7Ci0JCWlm
-IChyZXQpIHsKLQkJCXByX2VycigiJXM6IFJlc2V0IGZhaWxlZCBvbiBhbiBhY3RpdmUgc3Bpbm5l
-clxuIiwKLQkJCSAgICAgICBlbmdpbmUtPm5hbWUpOwotCQkJaWd0X3NwaW5uZXJfZmluaSgmc3Bp
-bik7Ci0JCQlnb3RvIGVycjsKKwkJLyogRW5zdXJlIHRoZSBzcGlubmVyIGhhc24ndCBhYm9ydGVk
-ICovCisJCWlmIChpOTE1X3JlcXVlc3RfY29tcGxldGVkKHJxKSkgeworCQkJcmV0ID0gLUVUSU1F
-RE9VVDsKKwkJCWdvdG8gc2tpcDsKKwkJfQorCisJCWlmICghdXNpbmdfZ3VjKSB7CisJCQlyZXQg
-PSBpbnRlbF9lbmdpbmVfcmVzZXQoZW5naW5lLCAibGl2ZV93b3JrYXJvdW5kczphY3RpdmUiKTsK
-KwkJCWlmIChyZXQpIHsKKwkJCQlwcl9lcnIoIiVzOiBSZXNldCBmYWlsZWQgb24gYW4gYWN0aXZl
-IHNwaW5uZXJcbiIsCisJCQkJICAgICAgIGVuZ2luZS0+bmFtZSk7CisJCQkJaWd0X3NwaW5uZXJf
-ZmluaSgmc3Bpbik7CisJCQkJZ290byBlcnI7CisJCQl9CiAJCX0KIAorCQkvKiBFbnN1cmUgdGhl
-IHJlc2V0IGhhcHBlbnMgYW5kIGtpbGxzIHRoZSBlbmdpbmUgKi8KKwkJaWYgKHJldCA9PSAwKQor
-CQkJcmV0ID0gaW50ZWxfc2VsZnRlc3Rfd2FpdF9mb3JfcnEocnEpOworCitza2lwOgogCQlpZ3Rf
-c3Bpbm5lcl9lbmQoJnNwaW4pOwogCQlpZ3Rfc3Bpbm5lcl9maW5pKCZzcGluKTsKIAogCQlvayA9
-IHZlcmlmeV93YV9saXN0cyhndCwgJmxpc3RzLCAiYWZ0ZXIgYnVzeSByZXNldCIpOwotCQlpZiAo
-IW9rKSB7CisJCWlmICghb2spCiAJCQlyZXQgPSAtRVNSQ0g7Ci0JCQlnb3RvIGVycjsKLQkJfQog
-CiBlcnI6CiAJCWludGVsX2NvbnRleHRfcHV0KGNlKTsKKworcmVzdG9yZToKKwkJcmV0MiA9IGlu
-dGVsX3NlbGZ0ZXN0X3Jlc3RvcmVfcG9saWN5KGVuZ2luZSwgJnNhdmVkKTsKKwkJaWYgKHJldCA9
-PSAwKQorCQkJcmV0ID0gcmV0MjsKIAkJaWYgKHJldCkKIAkJCWJyZWFrOwogCX0KZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pbnRlbF9zY2hlZHVsZXJfaGVscGVy
-cy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX3NjaGVkdWxlcl9oZWxw
-ZXJzLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi45MWVjZDhhMWJk
-MjEKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaW50
-ZWxfc2NoZWR1bGVyX2hlbHBlcnMuYwpAQCAtMCwwICsxLDc2IEBACisvKgorICogU1BEWC1MaWNl
-bnNlLUlkZW50aWZpZXI6IE1JVAorICoKKyAqIENvcHlyaWdodCDCqSAyMDE4IEludGVsIENvcnBv
-cmF0aW9uCisgKi8KKworLy8jaW5jbHVkZSAiZ3QvaW50ZWxfZW5naW5lX3VzZXIuaCIKKyNpbmNs
-dWRlICJndC9pbnRlbF9ndC5oIgorI2luY2x1ZGUgImk5MTVfZHJ2LmgiCisjaW5jbHVkZSAiaTkx
-NV9zZWxmdGVzdC5oIgorCisjaW5jbHVkZSAic2VsZnRlc3RzL2ludGVsX3NjaGVkdWxlcl9oZWxw
-ZXJzLmgiCisKKyNkZWZpbmUgUkVEVUNFRF9USU1FU0xJQ0UJNQorI2RlZmluZSBSRURVQ0VEX1BS
-RUVNUFQJCTEwCisjZGVmaW5lIFdBSVRfRk9SX1JFU0VUX1RJTUUJMTAwMAorCitpbnQgaW50ZWxf
-c2VsZnRlc3RfbW9kaWZ5X3BvbGljeShzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCisJ
-CQkJIHN0cnVjdCBpbnRlbF9zZWxmdGVzdF9zYXZlZF9wb2xpY3kgKnNhdmVkKQorCit7CisJaW50
-IGVycjsKKworCXNhdmVkLT5yZXNldCA9IGVuZ2luZS0+aTkxNS0+cGFyYW1zLnJlc2V0OworCXNh
-dmVkLT5mbGFncyA9IGVuZ2luZS0+ZmxhZ3M7CisJc2F2ZWQtPnRpbWVzbGljZSA9IGVuZ2luZS0+
-cHJvcHMudGltZXNsaWNlX2R1cmF0aW9uX21zOworCXNhdmVkLT5wcmVlbXB0X3RpbWVvdXQgPSBl
-bmdpbmUtPnByb3BzLnByZWVtcHRfdGltZW91dF9tczsKKworCS8qCisJICogRW5hYmxlIGZvcmNl
-IHByZS1lbXB0aW9uIG9uIHRpbWUgc2xpY2UgZXhwaXJhdGlvbgorCSAqIHRvZ2V0aGVyIHdpdGgg
-ZW5naW5lIHJlc2V0IG9uIHByZS1lbXB0aW9uIHRpbWVvdXQuCisJICogVGhpcyBpcyByZXF1aXJl
-ZCB0byBtYWtlIHRoZSBHdUMgbm90aWNlIGFuZCByZXNldAorCSAqIHRoZSBzaW5nbGUgaGFuZ2lu
-ZyBjb250ZXh0LgorCSAqIEFsc28sIHJlZHVjZSB0aGUgcHJlZW1wdGlvbiB0aW1lb3V0IHRvIHNv
-bWV0aGluZworCSAqIHNtYWxsIHRvIHNwZWVkIHRoZSB0ZXN0IHVwLgorCSAqLworCWVuZ2luZS0+
-aTkxNS0+cGFyYW1zLnJlc2V0ID0gMjsKKwllbmdpbmUtPmZsYWdzIHw9IEk5MTVfRU5HSU5FX1dB
-TlRfRk9SQ0VEX1BSRUVNUFRJT047CisJZW5naW5lLT5wcm9wcy50aW1lc2xpY2VfZHVyYXRpb25f
-bXMgPSBSRURVQ0VEX1RJTUVTTElDRTsKKwllbmdpbmUtPnByb3BzLnByZWVtcHRfdGltZW91dF9t
-cyA9IFJFRFVDRURfUFJFRU1QVDsKKworCWlmICghaW50ZWxfZW5naW5lX3VzZXNfZ3VjKGVuZ2lu
-ZSkpCisJCXJldHVybiAwOworCisJZXJyID0gaW50ZWxfZ3VjX2dsb2JhbF9wb2xpY2llc191cGRh
-dGUoJmVuZ2luZS0+Z3QtPnVjLmd1Yyk7CisJaWYgKGVycikKKwkJaW50ZWxfc2VsZnRlc3RfcmVz
-dG9yZV9wb2xpY3koZW5naW5lLCBzYXZlZCk7CisKKwlyZXR1cm4gZXJyOworfQorCitpbnQgaW50
-ZWxfc2VsZnRlc3RfcmVzdG9yZV9wb2xpY3koc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5l
-LAorCQkJCSAgc3RydWN0IGludGVsX3NlbGZ0ZXN0X3NhdmVkX3BvbGljeSAqc2F2ZWQpCit7CisJ
-LyogUmVzdG9yZSB0aGUgb3JpZ2luYWwgcG9saWNpZXMgKi8KKwllbmdpbmUtPmk5MTUtPnBhcmFt
-cy5yZXNldCA9IHNhdmVkLT5yZXNldDsKKwllbmdpbmUtPmZsYWdzID0gc2F2ZWQtPmZsYWdzOwor
-CWVuZ2luZS0+cHJvcHMudGltZXNsaWNlX2R1cmF0aW9uX21zID0gc2F2ZWQtPnRpbWVzbGljZTsK
-KwllbmdpbmUtPnByb3BzLnByZWVtcHRfdGltZW91dF9tcyA9IHNhdmVkLT5wcmVlbXB0X3RpbWVv
-dXQ7CisKKwlpZiAoIWludGVsX2VuZ2luZV91c2VzX2d1YyhlbmdpbmUpKQorCQlyZXR1cm4gMDsK
-KworCXJldHVybiBpbnRlbF9ndWNfZ2xvYmFsX3BvbGljaWVzX3VwZGF0ZSgmZW5naW5lLT5ndC0+
-dWMuZ3VjKTsKK30KKworaW50IGludGVsX3NlbGZ0ZXN0X3dhaXRfZm9yX3JxKHN0cnVjdCBpOTE1
-X3JlcXVlc3QgKnJxKQoreworCWxvbmcgcmV0OworCisJcmV0ID0gaTkxNV9yZXF1ZXN0X3dhaXQo
-cnEsIDAsIFdBSVRfRk9SX1JFU0VUX1RJTUUpOworCWlmIChyZXQgPCAwKQorCQlyZXR1cm4gcmV0
-OworCisJcmV0dXJuIDA7Cit9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxm
-dGVzdHMvaW50ZWxfc2NoZWR1bGVyX2hlbHBlcnMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3Nl
-bGZ0ZXN0cy9pbnRlbF9zY2hlZHVsZXJfaGVscGVycy5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0Cmlu
-ZGV4IDAwMDAwMDAwMDAwMC4uZjMwZTk2ZjBiYTk1Ci0tLSAvZGV2L251bGwKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX3NjaGVkdWxlcl9oZWxwZXJzLmgKQEAgLTAs
-MCArMSwyOCBAQAorLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVCAqLworLyoKKyAqIENv
-cHlyaWdodCDCqSAyMDE0LTIwMTkgSW50ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaWZuZGVmIF9J
-TlRFTF9TRUxGVEVTVF9TQ0hFRFVMRVJfSEVMUEVSU19IXworI2RlZmluZSBfSU5URUxfU0VMRlRF
-U1RfU0NIRURVTEVSX0hFTFBFUlNfSF8KKworI2luY2x1ZGUgPGxpbnV4L3R5cGVzLmg+CisKK3N0
-cnVjdCBpOTE1X3JlcXVlc3Q7CitzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzOworCitzdHJ1Y3QgaW50
-ZWxfc2VsZnRlc3Rfc2F2ZWRfcG9saWN5Cit7CisJdTMyIGZsYWdzOworCXUzMiByZXNldDsKKwl1
-NjQgdGltZXNsaWNlOworCXU2NCBwcmVlbXB0X3RpbWVvdXQ7Cit9OworCitpbnQgaW50ZWxfc2Vs
-ZnRlc3RfbW9kaWZ5X3BvbGljeShzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCisJCQkJ
-IHN0cnVjdCBpbnRlbF9zZWxmdGVzdF9zYXZlZF9wb2xpY3kgKnNhdmVkKTsKK2ludCBpbnRlbF9z
-ZWxmdGVzdF9yZXN0b3JlX3BvbGljeShzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCisJ
-CQkJICBzdHJ1Y3QgaW50ZWxfc2VsZnRlc3Rfc2F2ZWRfcG9saWN5ICpzYXZlZCk7CitpbnQgaW50
-ZWxfc2VsZnRlc3Rfd2FpdF9mb3JfcnEoIHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxKTsKKworI2Vu
-ZGlmCi0tIAoyLjI4LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+Implement a simple static mapping algorithm of the i915 priority levels
+(int, -1k to 1k exposed to user) to the 4 GuC levels. Mapping is as
+follows:
+
+i915 level < 0          -> GuC low level     (3)
+i915 level == 0         -> GuC normal level  (2)
+i915 level < INT_MAX    -> GuC high level    (1)
+i915 level == INT_MAX   -> GuC highest level (0)
+
+We believe this mapping should cover the UMD use cases (3 distinct user
+levels + 1 kernel level).
+
+In addition to static mapping, a simple counter system is attached to
+each context tracking the number of requests inflight on the context at
+each level. This is needed as the GuC levels are per context while in
+the i915 levels are per request.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   |   3 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   9 +-
+ drivers/gpu/drm/i915/gt/intel_engine_user.c   |   4 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 207 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_request.c           |   5 +
+ drivers/gpu/drm/i915/i915_request.h           |   8 +
+ drivers/gpu/drm/i915/i915_scheduler.c         |   7 +
+ drivers/gpu/drm/i915/i915_scheduler_types.h   |  12 +
+ drivers/gpu/drm/i915/i915_trace.h             |  16 +-
+ include/uapi/drm/i915_drm.h                   |   9 +
+ 10 files changed, 274 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 2007dc6f6b99..209cf265bf74 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -245,6 +245,9 @@ static void signal_irq_work(struct irq_work *work)
+ 			llist_entry(signal, typeof(*rq), signal_node);
+ 		struct list_head cb_list;
+ 
++		if (rq->engine->sched_engine->retire_inflight_request_prio)
++			rq->engine->sched_engine->retire_inflight_request_prio(rq);
++
+ 		spin_lock(&rq->lock);
+ 		list_replace(&rq->fence.cb_list, &cb_list);
+ 		__dma_fence_signal__timestamp(&rq->fence, timestamp);
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 005a64f2afa7..fe555551c2d2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -18,8 +18,9 @@
+ #include "intel_engine_types.h"
+ #include "intel_sseu.h"
+ 
+-#define CONTEXT_REDZONE POISON_INUSE
++#include "uc/intel_guc_fwif.h"
+ 
++#define CONTEXT_REDZONE POISON_INUSE
+ DECLARE_EWMA(runtime, 3, 8);
+ 
+ struct i915_gem_context;
+@@ -191,6 +192,12 @@ struct intel_context {
+ 
+ 	/* GuC context blocked fence */
+ 	struct i915_sw_fence guc_blocked;
++
++	/*
++	 * GuC priority management
++	 */
++	u8 guc_prio;
++	u32 guc_prio_count[GUC_CLIENT_PRIORITY_NUM];
+ };
+ 
+ #endif /* __INTEL_CONTEXT_TYPES__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index 84142127ebd8..8f8bea08e734 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -11,6 +11,7 @@
+ #include "intel_engine.h"
+ #include "intel_engine_user.h"
+ #include "intel_gt.h"
++#include "uc/intel_guc_submission.h"
+ 
+ struct intel_engine_cs *
+ intel_engine_lookup_user(struct drm_i915_private *i915, u8 class, u8 instance)
+@@ -115,6 +116,9 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
+ 			disabled |= (I915_SCHEDULER_CAP_ENABLED |
+ 				     I915_SCHEDULER_CAP_PRIORITY);
+ 
++		if (intel_uc_uses_guc_submission(&i915->gt.uc))
++			enabled |= I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP;
++
+ 		for (i = 0; i < ARRAY_SIZE(map); i++) {
+ 			if (engine->flags & BIT(map[i].engine))
+ 				enabled |= BIT(map[i].sched);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 536fdbc406c6..263ad6a9e4a9 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -81,7 +81,8 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count);
+  */
+ #define SCHED_STATE_NO_LOCK_ENABLED			BIT(0)
+ #define SCHED_STATE_NO_LOCK_PENDING_ENABLE		BIT(1)
+-#define SCHED_STATE_NO_LOCK_BLOCKED_SHIFT		2
++#define SCHED_STATE_NO_LOCK_REGISTERED			BIT(2)
++#define SCHED_STATE_NO_LOCK_BLOCKED_SHIFT		3
+ #define SCHED_STATE_NO_LOCK_BLOCKED \
+ 	BIT(SCHED_STATE_NO_LOCK_BLOCKED_SHIFT)
+ #define SCHED_STATE_NO_LOCK_BLOCKED_MASK \
+@@ -142,6 +143,24 @@ static inline void decr_context_blocked(struct intel_context *ce)
+ 		   &ce->guc_sched_state_no_lock);
+ }
+ 
++static inline bool context_registered(struct intel_context *ce)
++{
++	return (atomic_read(&ce->guc_sched_state_no_lock) &
++		SCHED_STATE_NO_LOCK_REGISTERED);
++}
++
++static inline void set_context_registered(struct intel_context *ce)
++{
++	atomic_or(SCHED_STATE_NO_LOCK_REGISTERED,
++		  &ce->guc_sched_state_no_lock);
++}
++
++static inline void clr_context_registered(struct intel_context *ce)
++{
++	atomic_and((u32)~SCHED_STATE_NO_LOCK_REGISTERED,
++		   &ce->guc_sched_state_no_lock);
++}
++
+ /*
+  * Below is a set of functions which control the GuC scheduling state which
+  * require a lock, aside from the special case where the functions are called
+@@ -1080,6 +1099,7 @@ static int steal_guc_id(struct intel_guc *guc)
+ 
+ 		list_del_init(&ce->guc_id_link);
+ 		guc_id = ce->guc_id;
++		clr_context_registered(ce);
+ 		set_context_guc_id_invalid(ce);
+ 		return guc_id;
+ 	} else {
+@@ -1184,10 +1204,13 @@ static int register_context(struct intel_context *ce, bool loop)
+ 	struct intel_guc *guc = ce_to_guc(ce);
+ 	u32 offset = intel_guc_ggtt_offset(guc, guc->lrc_desc_pool) +
+ 		ce->guc_id * sizeof(struct guc_lrc_desc);
++	int ret;
+ 
+ 	trace_intel_context_register(ce);
+ 
+-	return __guc_action_register_context(guc, ce->guc_id, offset, loop);
++	ret = __guc_action_register_context(guc, ce->guc_id, offset, loop);
++	set_context_registered(ce);
++	return ret;
+ }
+ 
+ static int __guc_action_deregister_context(struct intel_guc *guc,
+@@ -1243,6 +1266,8 @@ static void guc_context_policy_init(struct intel_engine_cs *engine,
+ 	desc->preemption_timeout = engine->props.preempt_timeout_ms * 1000;
+ }
+ 
++static inline u8 map_i915_prio_to_guc_prio(int prio);
++
+ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+ {
+ 	struct intel_runtime_pm *runtime_pm =
+@@ -1251,6 +1276,8 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+ 	struct intel_guc *guc = &engine->gt->uc.guc;
+ 	u32 desc_idx = ce->guc_id;
+ 	struct guc_lrc_desc *desc;
++	const struct i915_gem_context *ctx;
++	int prio = I915_CONTEXT_DEFAULT_PRIORITY;
+ 	bool context_registered;
+ 	intel_wakeref_t wakeref;
+ 	int ret = 0;
+@@ -1266,6 +1293,12 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+ 
+ 	context_registered = lrc_desc_registered(guc, desc_idx);
+ 
++	rcu_read_lock();
++	ctx = rcu_dereference(ce->gem_context);
++	if (ctx)
++		prio = ctx->sched.priority;
++	rcu_read_unlock();
++
+ 	reset_lrc_desc(guc, desc_idx);
+ 	set_lrc_desc_registered(guc, desc_idx, ce);
+ 
+@@ -1274,7 +1307,8 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+ 	desc->engine_submit_mask = adjust_engine_mask(engine->class,
+ 						      engine->mask);
+ 	desc->hw_context_desc = ce->lrc.lrca;
+-	desc->priority = GUC_CLIENT_PRIORITY_KMD_NORMAL;
++	ce->guc_prio = map_i915_prio_to_guc_prio(prio);
++	desc->priority = ce->guc_prio;
+ 	desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
+ 	guc_context_policy_init(engine, desc);
+ 	init_sched_state(ce);
+@@ -1659,11 +1693,17 @@ static inline void guc_lrc_desc_unpin(struct intel_context *ce)
+ 	GEM_BUG_ON(ce != __get_context(guc, ce->guc_id));
+ 	GEM_BUG_ON(context_enabled(ce));
+ 
++	clr_context_registered(ce);
+ 	deregister_context(ce, ce->guc_id, true);
+ }
+ 
+ static void __guc_context_destroy(struct intel_context *ce)
+ {
++	GEM_BUG_ON(ce->guc_prio_count[GUC_CLIENT_PRIORITY_KMD_HIGH] ||
++		   ce->guc_prio_count[GUC_CLIENT_PRIORITY_HIGH] ||
++		   ce->guc_prio_count[GUC_CLIENT_PRIORITY_KMD_NORMAL] ||
++		   ce->guc_prio_count[GUC_CLIENT_PRIORITY_NORMAL]);
++
+ 	lrc_fini(ce);
+ 	intel_context_fini(ce);
+ 
+@@ -1756,15 +1796,119 @@ static int guc_context_alloc(struct intel_context *ce)
+ 	return lrc_alloc(ce, ce->engine);
+ }
+ 
++static void guc_context_set_prio(struct intel_guc *guc,
++				 struct intel_context *ce,
++				 u8 prio)
++{
++	u32 action[] = {
++		INTEL_GUC_ACTION_SET_CONTEXT_PRIORITY,
++		ce->guc_id,
++		prio,
++	};
++
++	GEM_BUG_ON(prio < GUC_CLIENT_PRIORITY_KMD_HIGH ||
++		   prio > GUC_CLIENT_PRIORITY_NORMAL);
++
++	if (ce->guc_prio == prio || submission_disabled(guc) ||
++	    !context_registered(ce))
++		return;
++
++	guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
++
++	ce->guc_prio = prio;
++	trace_intel_context_set_prio(ce);
++}
++
++static inline u8 map_i915_prio_to_guc_prio(int prio)
++{
++	if (prio == I915_PRIORITY_NORMAL)
++		return GUC_CLIENT_PRIORITY_KMD_NORMAL;
++	else if (prio < I915_PRIORITY_NORMAL)
++		return GUC_CLIENT_PRIORITY_NORMAL;
++	else if (prio != I915_PRIORITY_BARRIER)
++		return GUC_CLIENT_PRIORITY_HIGH;
++	else
++		return GUC_CLIENT_PRIORITY_KMD_HIGH;
++}
++
++static inline void add_context_inflight_prio(struct intel_context *ce,
++					     u8 guc_prio)
++{
++	lockdep_assert_held(&ce->guc_active.lock);
++	GEM_BUG_ON(guc_prio >= ARRAY_SIZE(ce->guc_prio_count));
++
++	++ce->guc_prio_count[guc_prio];
++
++	/* Overflow protection */
++	GEM_WARN_ON(!ce->guc_prio_count[guc_prio]);
++}
++
++static inline void sub_context_inflight_prio(struct intel_context *ce,
++					     u8 guc_prio)
++{
++	lockdep_assert_held(&ce->guc_active.lock);
++	GEM_BUG_ON(guc_prio >= ARRAY_SIZE(ce->guc_prio_count));
++
++	/* Underflow protection */
++	GEM_WARN_ON(!ce->guc_prio_count[guc_prio]);
++
++	--ce->guc_prio_count[guc_prio];
++}
++
++static inline void update_context_prio(struct intel_context *ce)
++{
++	struct intel_guc *guc = &ce->engine->gt->uc.guc;
++	int i;
++
++	lockdep_assert_held(&ce->guc_active.lock);
++
++	for (i = 0; i < ARRAY_SIZE(ce->guc_prio_count); ++i) {
++		if (ce->guc_prio_count[i]) {
++			guc_context_set_prio(guc, ce, i);
++			break;
++		}
++	}
++}
++
++static inline bool new_guc_prio_higher(u8 old_guc_prio, u8 new_guc_prio)
++{
++	/* Lower value is higher priority */
++	return new_guc_prio < old_guc_prio;
++}
++
+ static void add_to_context(struct i915_request *rq)
+ {
+ 	struct intel_context *ce = rq->context;
++	u8 new_guc_prio = map_i915_prio_to_guc_prio(rq_prio(rq));
++
++	GEM_BUG_ON(rq->guc_prio == GUC_PRIO_FINI);
+ 
+ 	spin_lock(&ce->guc_active.lock);
+ 	list_move_tail(&rq->sched.link, &ce->guc_active.requests);
++
++	if (rq->guc_prio == GUC_PRIO_INIT) {
++		rq->guc_prio = new_guc_prio;
++		add_context_inflight_prio(ce, rq->guc_prio);
++	} else if (new_guc_prio_higher(rq->guc_prio, new_guc_prio)) {
++		sub_context_inflight_prio(ce, rq->guc_prio);
++		rq->guc_prio = new_guc_prio;
++		add_context_inflight_prio(ce, rq->guc_prio);
++	}
++	update_context_prio(ce);
++
+ 	spin_unlock(&ce->guc_active.lock);
+ }
+ 
++static void guc_prio_fini(struct i915_request *rq, struct intel_context *ce)
++{
++	if (rq->guc_prio != GUC_PRIO_INIT &&
++	    rq->guc_prio != GUC_PRIO_FINI) {
++		sub_context_inflight_prio(ce, rq->guc_prio);
++		update_context_prio(ce);
++	}
++	rq->guc_prio = GUC_PRIO_FINI;
++}
++
+ static void remove_from_context(struct i915_request *rq)
+ {
+ 	struct intel_context *ce = rq->context;
+@@ -1777,6 +1921,8 @@ static void remove_from_context(struct i915_request *rq)
+ 	/* Prevent further __await_execution() registering a cb, then flush */
+ 	set_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+ 
++	guc_prio_fini(rq, ce);
++
+ 	spin_unlock_irq(&ce->guc_active.lock);
+ 
+ 	atomic_dec(&ce->guc_id_ref);
+@@ -2058,6 +2204,39 @@ static void guc_init_breadcrumbs(struct intel_engine_cs *engine)
+ 	}
+ }
+ 
++static void guc_bump_inflight_request_prio(struct i915_request *rq,
++					   int prio)
++{
++	struct intel_context *ce = rq->context;
++	u8 new_guc_prio = map_i915_prio_to_guc_prio(prio);
++
++	/* Short circuit function */
++	if (prio < I915_PRIORITY_NORMAL ||
++	    (rq->guc_prio == GUC_PRIO_FINI) ||
++	    (rq->guc_prio != GUC_PRIO_INIT &&
++	     !new_guc_prio_higher(rq->guc_prio, new_guc_prio)))
++		return;
++
++	spin_lock(&ce->guc_active.lock);
++	if (rq->guc_prio != GUC_PRIO_FINI) {
++		if (rq->guc_prio != GUC_PRIO_INIT)
++			sub_context_inflight_prio(ce, rq->guc_prio);
++		rq->guc_prio = new_guc_prio;
++		add_context_inflight_prio(ce, rq->guc_prio);
++		update_context_prio(ce);
++	}
++	spin_unlock(&ce->guc_active.lock);
++}
++
++static void guc_retire_inflight_request_prio(struct i915_request *rq)
++{
++	struct intel_context *ce = rq->context;
++
++	spin_lock(&ce->guc_active.lock);
++	guc_prio_fini(rq, ce);
++	spin_unlock(&ce->guc_active.lock);
++}
++
+ static void sanitize_hwsp(struct intel_engine_cs *engine)
+ {
+ 	struct intel_timeline *tl;
+@@ -2293,6 +2472,10 @@ int intel_guc_submission_setup(struct intel_engine_cs *engine)
+ 		guc->sched_engine->disabled = guc_sched_engine_disabled;
+ 		guc->sched_engine->private_data = guc;
+ 		guc->sched_engine->destroy = guc_sched_engine_destroy;
++		guc->sched_engine->bump_inflight_request_prio =
++			guc_bump_inflight_request_prio;
++		guc->sched_engine->retire_inflight_request_prio =
++			guc_retire_inflight_request_prio;
+ 		tasklet_setup(&guc->sched_engine->tasklet,
+ 			      guc_submission_tasklet);
+ 	}
+@@ -2670,6 +2853,22 @@ void intel_guc_submission_print_info(struct intel_guc *guc,
+ 	drm_printf(p, "\n");
+ }
+ 
++static inline void guc_log_context_priority(struct drm_printer *p,
++					    struct intel_context *ce)
++{
++	int i;
++
++	drm_printf(p, "\t\tPriority: %d\n",
++		   ce->guc_prio);
++	drm_printf(p, "\t\tNumber Requests (lower index == higher priority)\n");
++	for (i = GUC_CLIENT_PRIORITY_KMD_HIGH;
++	     i < GUC_CLIENT_PRIORITY_NUM; ++i) {
++		drm_printf(p, "\t\tNumber requests in priority band[%d]: %d\n",
++			   i, ce->guc_prio_count[i]);
++	}
++	drm_printf(p, "\n");
++}
++
+ void intel_guc_submission_print_context_info(struct intel_guc *guc,
+ 					     struct drm_printer *p)
+ {
+@@ -2692,6 +2891,8 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
+ 		drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
+ 			   ce->guc_state.sched_state,
+ 			   atomic_read(&ce->guc_sched_state_no_lock));
++
++		guc_log_context_priority(p, ce);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index f3552642b8a1..3fdfada99ba0 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -114,6 +114,9 @@ static void i915_fence_release(struct dma_fence *fence)
+ {
+ 	struct i915_request *rq = to_request(fence);
+ 
++	GEM_BUG_ON(rq->guc_prio != GUC_PRIO_INIT &&
++		   rq->guc_prio != GUC_PRIO_FINI);
++
+ 	/*
+ 	 * The request is put onto a RCU freelist (i.e. the address
+ 	 * is immediately reused), mark the fences as being freed now.
+@@ -922,6 +925,8 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 
+ 	rq->rcustate = get_state_synchronize_rcu(); /* acts as smp_mb() */
+ 
++	rq->guc_prio = GUC_PRIO_INIT;
++
+ 	/* We bump the ref for the fence chain */
+ 	i915_sw_fence_reinit(&i915_request_get(rq)->submit);
+ 	i915_sw_fence_reinit(&i915_request_get(rq)->semaphore);
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index a3d4728ea06c..f0463d19c712 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -293,6 +293,14 @@ struct i915_request {
+ 	 */
+ 	struct list_head guc_fence_link;
+ 
++	/**
++	 * Priority level while the request is inflight. Differs slightly than
++	 * i915 scheduler priority.
++	 */
++#define	GUC_PRIO_INIT	0xff
++#define	GUC_PRIO_FINI	0xfe
++	u8 guc_prio;
++
+ 	I915_SELFTEST_DECLARE(struct {
+ 		struct list_head link;
+ 		unsigned long delay;
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 8766a8643469..3fccae3672c1 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -241,6 +241,9 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 	/* Fifo and depth-first replacement ensure our deps execute before us */
+ 	sched_engine = lock_sched_engine(node, sched_engine, &cache);
+ 	list_for_each_entry_safe_reverse(dep, p, &dfs, dfs_link) {
++		struct i915_request *from = container_of(dep->signaler,
++							 struct i915_request,
++							 sched);
+ 		INIT_LIST_HEAD(&dep->dfs_link);
+ 
+ 		node = dep->signaler;
+@@ -254,6 +257,10 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 		GEM_BUG_ON(node_to_request(node)->engine->sched_engine !=
+ 			   sched_engine);
+ 
++		/* Must be called before changing the nodes priority */
++		if (sched_engine->bump_inflight_request_prio)
++			sched_engine->bump_inflight_request_prio(from, prio);
++
+ 		WRITE_ONCE(node->attr.priority, prio);
+ 
+ 		/*
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index eaef233e9080..b0a1b58c7893 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -179,6 +179,18 @@ struct i915_sched_engine {
+ 	void	(*kick_backend)(const struct i915_request *rq,
+ 				int prio);
+ 
++	/**
++	 * @bump_inflight_request_prio: update priority of an inflight request
++	 */
++	void	(*bump_inflight_request_prio)(struct i915_request *rq,
++					      int prio);
++
++	/**
++	 * @retire_inflight_request_prio: indicate request is retired to
++	 * priority tracking
++	 */
++	void	(*retire_inflight_request_prio)(struct i915_request *rq);
++
+ 	/**
+ 	 * @schedule: adjust priority of request
+ 	 *
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+index 937d3706af9b..9d2cd14ed882 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -914,6 +914,7 @@ DECLARE_EVENT_CLASS(intel_context,
+ 			     __field(int, pin_count)
+ 			     __field(u32, sched_state)
+ 			     __field(u32, guc_sched_state_no_lock)
++			     __field(u8, guc_prio)
+ 			     ),
+ 
+ 	    TP_fast_assign(
+@@ -922,11 +923,17 @@ DECLARE_EVENT_CLASS(intel_context,
+ 			   __entry->sched_state = ce->guc_state.sched_state;
+ 			   __entry->guc_sched_state_no_lock =
+ 			   atomic_read(&ce->guc_sched_state_no_lock);
++			   __entry->guc_prio = ce->guc_prio;
+ 			   ),
+ 
+-	    TP_printk("guc_id=%d, pin_count=%d sched_state=0x%x,0x%x",
++	    TP_printk("guc_id=%d, pin_count=%d sched_state=0x%x,0x%x, guc_prio=%u",
+ 		      __entry->guc_id, __entry->pin_count, __entry->sched_state,
+-		      __entry->guc_sched_state_no_lock)
++		      __entry->guc_sched_state_no_lock, __entry->guc_prio)
++);
++
++DEFINE_EVENT(intel_context, intel_context_set_prio,
++	     TP_PROTO(struct intel_context *ce),
++	     TP_ARGS(ce)
+ );
+ 
+ DEFINE_EVENT(intel_context, intel_context_reset,
+@@ -1036,6 +1043,11 @@ trace_i915_request_out(struct i915_request *rq)
+ {
+ }
+ 
++static inline void
++trace_intel_context_set_prio(struct intel_context *ce)
++{
++}
++
+ static inline void
+ trace_intel_context_reset(struct intel_context *ce)
+ {
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index e54f9efaead0..cb0a5396e655 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -572,6 +572,15 @@ typedef struct drm_i915_irq_wait {
+ #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
+ #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
+ #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
++/*
++ * Indicates the 2k user priority levels are statically mapped into 3 buckets as
++ * follows:
++ *
++ * -1k to -1	Low priority
++ * 0		Normal priority
++ * 1 to 1k	Highest priority
++ */
++#define   I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP	(1ul << 5)
+ 
+ #define I915_PARAM_HUC_STATUS		 42
+ 
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
