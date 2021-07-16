@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6BF23CBF80
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 00:50:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6481D3CBF85
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 00:56:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF28C6E8C8;
-	Fri, 16 Jul 2021 22:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CDC26E9EC;
+	Fri, 16 Jul 2021 22:56:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2B3356E8C8;
- Fri, 16 Jul 2021 22:50:56 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D176F6E8C8;
+ Fri, 16 Jul 2021 22:56:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1EA2FA0118;
- Fri, 16 Jul 2021 22:50:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C3B64A47DB;
+ Fri, 16 Jul 2021 22:56:23 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 16 Jul 2021 22:50:56 -0000
-Message-ID: <162647585610.12777.7087898022718454193@emeril.freedesktop.org>
+To: "Christoph Hellwig" <hch@lst.de>
+Date: Fri, 16 Jul 2021 22:56:23 -0000
+Message-ID: <162647618377.12779.6718204371044282287@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210715184954.7794-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210715184954.7794-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Make_modeset_locking_easier?=
+References: <20210716061634.2446357-1-hch@lst.de>
+In-Reply-To: <20210716061634.2446357-1-hch@lst.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/7=5D_vgaarb=3A_remove_VGA=5FDEFAU?=
+ =?utf-8?q?LT=5FDEVICE?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,231 +41,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1988438385=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1988438385==
-Content-Type: multipart/alternative;
- boundary="===============8397383415568998863=="
-
---===============8397383415568998863==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: Make modeset locking easier
-URL   : https://patchwork.freedesktop.org/series/92606/
-State : success
+Series: series starting with [1/7] vgaarb: remove VGA_DEFAULT_DEVICE
+URL   : https://patchwork.freedesktop.org/series/92632/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10346 -> Patchwork_20632
-====================================================
+$ dim checkpatch origin/drm-tip
+1354bf88b4ee vgaarb: remove VGA_DEFAULT_DEVICE
+ddb8e5b71998 vgaarb: remove vga_conflicts
+769ccfba8a01 vgaarb: move the kerneldoc for vga_set_legacy_decoding to vgaarb.c
+b76ffe6766cb vgaarb: cleanup vgaarb.h
+-:6: WARNING:TYPO_SPELLING: 'superflous' may be misspelled - perhaps 'superfluous'?
+#6: 
+Merge the different CONFIG_VGA_ARB ifdef blocks, remove superflous
+                                                        ^^^^^^^^^^
 
-Summary
--------
+-:59: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#59: FILE: include/linux/vgaarb.h:62:
++};
++static inline int vga_get(struct pci_dev *pdev, unsigned int rsrc,
 
-  **SUCCESS**
+-:60: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#60: FILE: include/linux/vgaarb.h:63:
++static inline int vga_get(struct pci_dev *pdev, unsigned int rsrc,
++		int interruptible)
 
-  No regressions found.
+-:64: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#64: FILE: include/linux/vgaarb.h:67:
++}
++static inline void vga_put(struct pci_dev *pdev, unsigned int rsrc)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html
+-:67: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#67: FILE: include/linux/vgaarb.h:70:
++}
++static inline struct pci_dev *vga_default_device(void)
 
-Known issues
-------------
+-:71: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#71: FILE: include/linux/vgaarb.h:74:
++}
++static inline void vga_set_default_device(struct pci_dev *pdev)
 
-  Here are the changes found in Patchwork_20632 that come from known issues:
+-:74: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#74: FILE: include/linux/vgaarb.h:77:
++}
++static inline int vga_remove_vgacon(struct pci_dev *pdev)
 
-### IGT changes ###
+-:78: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#78: FILE: include/linux/vgaarb.h:81:
++}
++static inline int vga_client_register(struct pci_dev *pdev, void *cookie,
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 7 checks, 107 lines checked
+6a95053499ae vgaarb: provide a vga_client_unregister wrapper
+261e516ffd06 vgaarb: remove the unused irq_set_state argument to vga_client_register
+c464965b3922 vgaarb: don't pass a cookie to vga_client_register
+-:28: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#28: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:1276:
++static unsigned int amdgpu_device_vga_set_decode(struct pci_dev *pdev,
++		bool state)
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+-:64: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#64: FILE: drivers/gpu/drm/i915/display/intel_vga.c:142:
+ {
++
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+-:181: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#181: FILE: drivers/gpu/vga/vgaarb.c:864:
++int vga_client_register(struct pci_dev *pdev,
++		unsigned int (*set_decode)(struct pci_dev *pdev, bool decode))
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][3] -> [FAIL][4] ([i915#2203] / [i915#579])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+-:249: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#249: FILE: include/linux/vgaarb.h:55:
++int vga_client_register(struct pci_dev *pdev,
++		unsigned int (*set_decode)(struct pci_dev *pdev, bool state));
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [PASS][5] -> [INCOMPLETE][6] ([i915#2782] / [i915#2940])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+-:259: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#259: FILE: include/linux/vgaarb.h:80:
+ }
++static inline int vga_client_register(struct pci_dev *pdev,
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-7500u:       [PASS][7] -> [DMESG-WARN][8] ([i915#2868])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+-:260: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#260: FILE: include/linux/vgaarb.h:81:
++static inline int vga_client_register(struct pci_dev *pdev,
++		unsigned int (*set_decode)(struct pci_dev *pdev, bool state))
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+total: 0 errors, 0 warnings, 6 checks, 214 lines checked
 
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (41 -> 35)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus fi-tgl-y bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10346 -> Patchwork_20632
-
-  CI-20190529: 20190529
-  CI_DRM_10346: 6c4e3c031a995e641cc0d9563d21043415fb8d12 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6144: bc65ee9ee6593716306448c9fb82c77f284f2148 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20632: a7ff291d8e28efcf43245a527c62e692a75aa48c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a7ff291d8e28 drm/i915: Use drm_modeset_lock_ctx_retry() & co.
-0ddd911343c8 drm/i915: Extract intel_crtc_initial_commit()
-03c1e97e22ca drm: Introduce drm_modeset_lock_all_ctx_retry()
-b1e190e95142 drm: Introduce drm_modeset_lock_ctx_retry()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html
-
---===============8397383415568998863==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Make modeset locking easier</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92606/">https://patchwork.freedesktop.org/series/92606/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10346 -&gt; Patchwork_20632</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20632 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 35)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus fi-tgl-y bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10346 -&gt; Patchwork_20632</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10346: 6c4e3c031a995e641cc0d9563d21043415fb8d12 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6144: bc65ee9ee6593716306448c9fb82c77f284f2148 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20632: a7ff291d8e28efcf43245a527c62e692a75aa48c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a7ff291d8e28 drm/i915: Use drm_modeset_lock_ctx_retry() &amp; co.<br />
-0ddd911343c8 drm/i915: Extract intel_crtc_initial_commit()<br />
-03c1e97e22ca drm: Introduce drm_modeset_lock_all_ctx_retry()<br />
-b1e190e95142 drm: Introduce drm_modeset_lock_ctx_retry()</p>
-
-</body>
-</html>
-
---===============8397383415568998863==--
-
---===============1988438385==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1988438385==--
