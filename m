@@ -1,37 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 225B73CBD64
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 22:01:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CAE63CBD92
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 22:16:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 507386EA1D;
-	Fri, 16 Jul 2021 19:59:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CCEA6EA0E;
+	Fri, 16 Jul 2021 20:16:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C70C6EA14;
- Fri, 16 Jul 2021 19:59:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="210596764"
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="210596764"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 12:59:46 -0700
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="507239070"
-Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 12:59:45 -0700
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A04C86E9F4;
+ Fri, 16 Jul 2021 20:16:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="198048758"
+X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="198048758"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2021 13:16:09 -0700
+X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="460865102"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2021 13:16:09 -0700
+Date: Fri, 16 Jul 2021 13:04:50 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Fri, 16 Jul 2021 13:17:22 -0700
-Message-Id: <20210716201724.54804-50-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210716201724.54804-1-matthew.brost@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <20210716200450.GA27372@sdutt-i7>
 References: <20210716201724.54804-1-matthew.brost@intel.com>
+ <20210716201724.54804-40-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 49/51] drm/i915/selftest: Bump selftest timeouts
- for hangcheck
+Content-Disposition: inline
+In-Reply-To: <20210716201724.54804-40-matthew.brost@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 39/51] drm/i915/guc: Connect reset modparam
+ updates to GuC policy flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,75 +50,116 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+On Fri, Jul 16, 2021 at 01:17:12PM -0700, Matthew Brost wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+> 
+> Changing the reset module parameter has no effect on a running GuC.
+> The corresponding entry in the ADS must be updated and then the GuC
+> informed via a Host2GuC message.
+> 
+> The new debugfs interface to module parameters allows this to happen.
+> However, connecting the parameter data address back to anything useful
+> is messy. One option would be to pass a new private data structure
+> address through instead of just the parameter pointer. However, that
+> means having a new (and different) data structure for each parameter
+> and a new (and different) write function for each parameter. This
+> method keeps everything generic by instead using a string lookup on
+> the directory entry name.
+> 
+> Signed-off-by: John Harrison <john.c.harrison@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Some testing environments and some heavier tests are slower than
-previous limits allowed for. For example, it can take multiple seconds
-for the 'context has been reset' notification handler to reach the
-'kill the requests' code in the 'active' version of the 'reset
-engines' test. During which time the selftest gets bored, gives up
-waiting and fails the test.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-There is also an async thread that the selftest uses to pump work
-through the hardware in parallel to the context that is marked for
-reset. That also could get bored waiting for completions and kill the
-test off.
-
-Lastly, the flush at the of various test sections can also see
-timeouts due to the large amount of work backed up. This is also true
-of the live_hwsp_read test.
-
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c             | 2 +-
- drivers/gpu/drm/i915/selftests/igt_flush_test.c          | 2 +-
- drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index 971c0c249eb0..a93a9b0d258e 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -876,7 +876,7 @@ static int active_request_put(struct i915_request *rq)
- 	if (!rq)
- 		return 0;
- 
--	if (i915_request_wait(rq, 0, 5 * HZ) < 0) {
-+	if (i915_request_wait(rq, 0, 10 * HZ) < 0) {
- 		GEM_TRACE("%s timed out waiting for completion of fence %llx:%lld\n",
- 			  rq->engine->name,
- 			  rq->fence.context,
-diff --git a/drivers/gpu/drm/i915/selftests/igt_flush_test.c b/drivers/gpu/drm/i915/selftests/igt_flush_test.c
-index 7b0939e3f007..a6c71fca61aa 100644
---- a/drivers/gpu/drm/i915/selftests/igt_flush_test.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_flush_test.c
-@@ -19,7 +19,7 @@ int igt_flush_test(struct drm_i915_private *i915)
- 
- 	cond_resched();
- 
--	if (intel_gt_wait_for_idle(gt, HZ / 5) == -ETIME) {
-+	if (intel_gt_wait_for_idle(gt, HZ) == -ETIME) {
- 		pr_err("%pS timed out, cancelling all further testing.\n",
- 		       __builtin_return_address(0));
- 
-diff --git a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-index 69db139f9e0d..ebd6d69b3315 100644
---- a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-@@ -13,7 +13,7 @@
- 
- #define REDUCED_TIMESLICE	5
- #define REDUCED_PREEMPT		10
--#define WAIT_FOR_RESET_TIME	1000
-+#define WAIT_FOR_RESET_TIME	10000
- 
- int intel_selftest_modify_policy(struct intel_engine_cs *engine,
- 				 struct intel_selftest_saved_policy *saved,
--- 
-2.28.0
-
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c |  2 +-
+>  drivers/gpu/drm/i915/i915_debugfs_params.c | 31 ++++++++++++++++++++++
+>  2 files changed, 32 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> index 2ad5fcd4e1b7..c6d0b762d82c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> @@ -99,7 +99,7 @@ static int guc_action_policies_update(struct intel_guc *guc, u32 policy_offset)
+>  		policy_offset
+>  	};
+>  
+> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	return intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
+>  }
+>  
+>  int intel_guc_global_policies_update(struct intel_guc *guc)
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm/i915/i915_debugfs_params.c
+> index 4e2b077692cb..8ecd8b42f048 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs_params.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
+> @@ -6,9 +6,20 @@
+>  #include <linux/kernel.h>
+>  
+>  #include "i915_debugfs_params.h"
+> +#include "gt/intel_gt.h"
+> +#include "gt/uc/intel_guc.h"
+>  #include "i915_drv.h"
+>  #include "i915_params.h"
+>  
+> +#define MATCH_DEBUGFS_NODE_NAME(_file, _name)	(strcmp((_file)->f_path.dentry->d_name.name, (_name)) == 0)
+> +
+> +#define GET_I915(i915, name, ptr)	\
+> +	do {	\
+> +		struct i915_params *params;	\
+> +		params = container_of(((void *) (ptr)), typeof(*params), name);	\
+> +		(i915) = container_of(params, typeof(*(i915)), params);	\
+> +	} while(0)
+> +
+>  /* int param */
+>  static int i915_param_int_show(struct seq_file *m, void *data)
+>  {
+> @@ -24,6 +35,16 @@ static int i915_param_int_open(struct inode *inode, struct file *file)
+>  	return single_open(file, i915_param_int_show, inode->i_private);
+>  }
+>  
+> +static int notify_guc(struct drm_i915_private *i915)
+> +{
+> +	int ret = 0;
+> +
+> +	if (intel_uc_uses_guc_submission(&i915->gt.uc))
+> +		ret = intel_guc_global_policies_update(&i915->gt.uc.guc);
+> +
+> +	return ret;
+> +}
+> +
+>  static ssize_t i915_param_int_write(struct file *file,
+>  				    const char __user *ubuf, size_t len,
+>  				    loff_t *offp)
+> @@ -81,8 +102,10 @@ static ssize_t i915_param_uint_write(struct file *file,
+>  				     const char __user *ubuf, size_t len,
+>  				     loff_t *offp)
+>  {
+> +	struct drm_i915_private *i915;
+>  	struct seq_file *m = file->private_data;
+>  	unsigned int *value = m->private;
+> +	unsigned int old = *value;
+>  	int ret;
+>  
+>  	ret = kstrtouint_from_user(ubuf, len, 0, value);
+> @@ -95,6 +118,14 @@ static ssize_t i915_param_uint_write(struct file *file,
+>  			*value = b;
+>  	}
+>  
+> +	if (!ret && MATCH_DEBUGFS_NODE_NAME(file, "reset")) {
+> +		GET_I915(i915, reset, value);
+> +
+> +		ret = notify_guc(i915);
+> +		if (ret)
+> +			*value = old;
+> +	}
+> +
+>  	return ret ?: len;
+>  }
+>  
+> -- 
+> 2.28.0
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
