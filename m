@@ -2,62 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 635CC3CBF76
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 00:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6BF23CBF80
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 00:50:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B57F56E953;
-	Fri, 16 Jul 2021 22:48:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF28C6E8C8;
+	Fri, 16 Jul 2021 22:50:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
- [IPv6:2607:f8b0:4864:20::102e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1980D6E952
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 22:48:07 +0000 (UTC)
-Received: by mail-pj1-x102e.google.com with SMTP id p9so7266670pjl.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 15:48:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=wIkYJWAJaTrGItMh1rW+qwg69uMn+qusOczMLNDUoLk=;
- b=qRSgDjvuZKjOlJEz+OMFf8Br5oEEZNTjY0o8D8tkQPAqy/1miv6me8dfOAT60T2UQ5
- HDD9CT7V5rSfojZ+/zf1O/02640kif6NgFm27ArGoHZTLrlogNbJ+SBjO0hsV2OgRUHn
- M0Ubc/U6/wnoG+rOiRflR2zzNkAOztvEQcqGB/jizWZuFM9AWcAJ0p9BbSAWeHze4kHQ
- KPnj2DYp/98V8Bu6rRDCA5u+9AI9zrNXh8cai5PN4+7boenTups2Zd4pxBv90NgK7cfh
- xBTy72S1JiYACuFrRYaIyTb6JY2zMiQQKNYJIRAgTlDTxgxSqafX1bm9gb0Ujxcja3p2
- Jlcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=wIkYJWAJaTrGItMh1rW+qwg69uMn+qusOczMLNDUoLk=;
- b=Nng6/eqyhuMcKiRPf9TDxX7eWKH1RR9IYWOTvlE70+sUiGKpUQ2Rk/UzdNNOv9aBjd
- tcUB5R0QihlhfXCvUc6ZXDhuxnCHck4tr31g+TO8SmXBEAFCLysI/NBV/vtOmNE1O/G3
- uRUyjyJTex6uBv3kSmXmjzgx1zfi/POwXjpa7rwRIrg9cnNV4eQnve5BxLc9CfgSnED1
- 3WngO10GtTYdtHWRUxgL2GvO5WIdnW5Z3JXXGj2fz5UeuFEjmV8KxaGIlTnu/sbUdwuU
- A0eWvg1H81ti1nET6JnVUtHCCsUe3QpbjNyzMGMB1oAWXGbzYokuhRuv3ZgWQPGAHrV6
- 2lUA==
-X-Gm-Message-State: AOAM533Yfl6jDlEM/xpoz8sjx2o2eOQhsBqIe6RTYgrWLw6uyeH1UTM1
- WmdFZlDUI46gUcGi8F2QUJ21FuxwhK+npQ==
-X-Google-Smtp-Source: ABdhPJx0IAjPDqH78QY7/YkshC+8w5LUkmqdWig1CEhSbkJ/posJBn85u7k5UjdUrhnJtFpR7Bn+rQ==
-X-Received: by 2002:a17:90a:de16:: with SMTP id
- m22mr5704185pjv.54.1626475686484; 
- Fri, 16 Jul 2021 15:48:06 -0700 (PDT)
-Received: from omlet.com ([134.134.139.84])
- by smtp.gmail.com with ESMTPSA id u24sm11991993pfm.141.2021.07.16.15.48.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 Jul 2021 15:48:06 -0700 (PDT)
-From: Jason Ekstrand <jason@jlekstrand.net>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Fri, 16 Jul 2021 17:47:58 -0500
-Message-Id: <20210716224758.2162003-2-jason@jlekstrand.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210716224758.2162003-1-jason@jlekstrand.net>
-References: <20210716224758.2162003-1-jason@jlekstrand.net>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2B3356E8C8;
+ Fri, 16 Jul 2021 22:50:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1EA2FA0118;
+ Fri, 16 Jul 2021 22:50:56 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Tear down properly on early
- i915_init exit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Fri, 16 Jul 2021 22:50:56 -0000
+Message-ID: <162647585610.12777.7087898022718454193@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210715184954.7794-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210715184954.7794-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_Make_modeset_locking_easier?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,118 +38,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1988438385=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In i915_exit(), we check i915_pci_driver.driver.owner to detect if
-i915_init exited early and don't tear anything down.  However, we didn't
-have proper tear-down paths for early exits in i915_init().
+--===============1988438385==
+Content-Type: multipart/alternative;
+ boundary="===============8397383415568998863=="
 
-Most of the time, you would never notice this as driver init failures
-are extremely rare and generally the sign of a bigger bug.  However,
-when the mock self-tests are run, they run as part of i915_init() and
-exit early once they complete.  They run after i915_globals_init() and
-before we set up anything else.  The IGT test then unloads the module,
-invoking i915_exit() which, thanks to our i915_pci_driver.driver.owner
-check, doesn't actually tear anything down.  Importantly, this means
-i915_globals_exit() never gets called even though i915_globals_init()
-was and we leak the globals.
+--===============8397383415568998863==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The most annoying part is that you don't actually notice the failure as
-part of the self-tests since leaking a bit of memory, while bad, doesn't
-result in anything observable from userspace.  Instead, the next time we
-load the driver (usually for next IGT test), i915_globals_init() gets
-invoked again, we go to allocate a bunch of new memory slabs, those
-implicitly create debugfs entries, and debugfs warns that we're trying
-to create directories and files that already exist.  Since this all
-happens as part of the next driver load, it shows up in the dmesg-warn
-of whatever IGT test ran after the mock selftests.
+== Series Details ==
 
-Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
-Cc: Daniel Vetter <daniel@ffwll.ch>
----
- drivers/gpu/drm/i915/i915_globals.c |  4 ++--
- drivers/gpu/drm/i915/i915_pci.c     | 23 +++++++++++++++++------
- 2 files changed, 19 insertions(+), 8 deletions(-)
+Series: drm: Make modeset locking easier
+URL   : https://patchwork.freedesktop.org/series/92606/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
-index 77f1911c463b8..87267e1d2ad92 100644
---- a/drivers/gpu/drm/i915/i915_globals.c
-+++ b/drivers/gpu/drm/i915/i915_globals.c
-@@ -138,7 +138,7 @@ void i915_globals_unpark(void)
- 	atomic_inc(&active);
- }
- 
--static void __exit __i915_globals_flush(void)
-+static void __i915_globals_flush(void)
- {
- 	atomic_inc(&active); /* skip shrinking */
- 
-@@ -148,7 +148,7 @@ static void __exit __i915_globals_flush(void)
- 	atomic_dec(&active);
- }
- 
--void __exit i915_globals_exit(void)
-+void i915_globals_exit(void)
- {
- 	GEM_BUG_ON(atomic_read(&active));
- 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 50ed93b03e582..783f547be0990 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1199,13 +1199,20 @@ static int __init i915_init(void)
- 	bool use_kms = true;
- 	int err;
- 
-+	/* We use this to detect early returns from i915_init() so we don't
-+	 * tear anything down in i915_exit()
-+	 */
-+	i915_pci_driver.driver.owner = NULL;
-+
- 	err = i915_globals_init();
- 	if (err)
- 		return err;
- 
- 	err = i915_mock_selftests();
--	if (err)
--		return err > 0 ? 0 : err;
-+	if (err) {
-+		err = err > 0 ? 0 : err;
-+		goto globals_exit;
-+	}
- 
- 	/*
- 	 * Enable KMS by default, unless explicitly overriden by
-@@ -1228,13 +1235,17 @@ static int __init i915_init(void)
- 	i915_pmu_init();
- 
- 	err = pci_register_driver(&i915_pci_driver);
--	if (err) {
--		i915_pmu_exit();
--		return err;
--	}
-+	if (err)
-+		goto pmu_exit;
- 
- 	i915_perf_sysctl_register();
- 	return 0;
-+
-+pmu_exit:
-+	i915_pmu_exit();
-+globals_exit:
-+	i915_globals_exit();
-+	return err;
- }
- 
- static void __exit i915_exit(void)
--- 
-2.31.1
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10346 -> Patchwork_20632
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20632 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][3] -> [FAIL][4] ([i915#2203] / [i915#579])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [PASS][5] -> [INCOMPLETE][6] ([i915#2782] / [i915#2940])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [PASS][7] -> [DMESG-WARN][8] ([i915#2868])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@runner@aborted:
+    - fi-bsw-kefka:       NOTRUN -> [FAIL][10] ([fdo#109271] / [i915#1436])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (41 -> 35)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus fi-tgl-y bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10346 -> Patchwork_20632
+
+  CI-20190529: 20190529
+  CI_DRM_10346: 6c4e3c031a995e641cc0d9563d21043415fb8d12 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6144: bc65ee9ee6593716306448c9fb82c77f284f2148 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20632: a7ff291d8e28efcf43245a527c62e692a75aa48c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a7ff291d8e28 drm/i915: Use drm_modeset_lock_ctx_retry() & co.
+0ddd911343c8 drm/i915: Extract intel_crtc_initial_commit()
+03c1e97e22ca drm: Introduce drm_modeset_lock_all_ctx_retry()
+b1e190e95142 drm: Introduce drm_modeset_lock_ctx_retry()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html
+
+--===============8397383415568998863==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Make modeset locking easier</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92606/">https://patchwork.freedesktop.org/series/92606/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10346 -&gt; Patchwork_20632</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20632 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10346/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20632/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (41 -&gt; 35)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus fi-tgl-y bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10346 -&gt; Patchwork_20632</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10346: 6c4e3c031a995e641cc0d9563d21043415fb8d12 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6144: bc65ee9ee6593716306448c9fb82c77f284f2148 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20632: a7ff291d8e28efcf43245a527c62e692a75aa48c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a7ff291d8e28 drm/i915: Use drm_modeset_lock_ctx_retry() &amp; co.<br />
+0ddd911343c8 drm/i915: Extract intel_crtc_initial_commit()<br />
+03c1e97e22ca drm: Introduce drm_modeset_lock_all_ctx_retry()<br />
+b1e190e95142 drm: Introduce drm_modeset_lock_ctx_retry()</p>
+
+</body>
+</html>
+
+--===============8397383415568998863==--
+
+--===============1988438385==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1988438385==--
