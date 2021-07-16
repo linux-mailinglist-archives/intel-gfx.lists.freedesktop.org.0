@@ -1,32 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EF63CBB20
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 19:25:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C4E3CBB4E
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 19:39:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADAA86E0D9;
-	Fri, 16 Jul 2021 17:25:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA056E0D8;
+	Fri, 16 Jul 2021 17:39:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 640CB6E093;
- Fri, 16 Jul 2021 17:24:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 60FA3A008A;
- Fri, 16 Jul 2021 17:24:59 +0000 (UTC)
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com
+ [IPv6:2607:f8b0:4864:20::b2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3B736E0F5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 17:39:00 +0000 (UTC)
+Received: by mail-yb1-xb2b.google.com with SMTP id i18so15993281yba.13
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 10:39:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=edXZunvExCiapOEC1nPnCzNYKK5YjTngpp/KAVb1P98=;
+ b=cJCn/GmoT8RZINm1VHEPGxKXGpnSXH0KfTmjjZRLzFMrx/1mXRNxVohoGCUUI+TRWD
+ vZt+JQdz84KSnBtmZeIeN+dAz6H6marwdSRrpP/cyNMYsIDl9472LJCyZs5x7aEUiuJP
+ AZhjn/W5BXxQm34GEoNSobYcBN9FBDiFbqAZ20KXnk8L8VNu/MFr0ka4xXz/rJ6aUMSm
+ vcWsgZXGoF8YyeQ7Gqw2DjsrP2hGRqs7GsqMjzL6GXnQxF49T57jeuwn6V9qnLZqPuaU
+ laRtAgb7gK0viwTP71cubGdgJSyU0A5RdndWOM/rsWHmCZZ34seQkWhE9ma9iXw1wSxk
+ RipQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=edXZunvExCiapOEC1nPnCzNYKK5YjTngpp/KAVb1P98=;
+ b=Ypb5xkQS7PXxPY0rHWU/3V7WmbopROFzRJKRmkTmX7N/8P3BV1ZeGdaD2iL6Nddbdg
+ IlLloSB6MkOF99TOQHOfwkNSI0HB0FmpXLpOlxrtzIZOHS0NdVLMgFES0J0/unMGzgLp
+ JWncL1evmBpn1nFYidtlYiYgGCTuOmWiFvJEYSdFVdwuM7/ge4Fxb/miZDbix9W5UuN+
+ 26oZQWf4U5RNzeI7aVybA7zIycR0SfQxJ/jYo6kAKI/3cC2x2FihDPZiA+nypzurAVMP
+ s2nqsVtAJGsM/ARBVG8IBki0HE4KmDZi+484sXUQYx2oeC1DB9RPQquvyasq3R2zfmXp
+ ruqw==
+X-Gm-Message-State: AOAM531GlGWtdnddksxi+S9PO1/tGYmGC68U1+6mNEuTrXSXpl/ZnpKJ
+ Fq+tpW/gG2qHLFjkbtTjA9uVOgrdzXjfO72hvtCaRQ==
+X-Google-Smtp-Source: ABdhPJyEurJ2Yy8ZzesY6OuoIZYPyM0kIOD1ZMdxGBWTHKiBa/Bu2zVq0c4TNnX2NKE3sGwqhrQ/nJjF+L1fVTZtp5o=
+X-Received: by 2002:a25:2f89:: with SMTP id
+ v131mr14586784ybv.469.1626457139950; 
+ Fri, 16 Jul 2021 10:38:59 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-Date: Fri, 16 Jul 2021 17:24:59 -0000
-Message-ID: <162645629939.12778.15973404622208720172@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210715050507.31176-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20210715050507.31176-1-anusha.srivatsa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/2=5D_drm/i915/step=3A_Add_macro_magic?=
- =?utf-8?q?_for_handling_steps_=28rev2=29?=
+References: <20210715223900.1840576-1-jason@jlekstrand.net>
+ <20210715223900.1840576-6-jason@jlekstrand.net>
+ <CAM0jSHPu1EBfnAJ06Dp51a1Qbg+9QnmP=EyUfYXS0fZnJzxR8g@mail.gmail.com>
+ <CAOFGe95gEUNsjCh+30AXhrQLz8_OKbHwwxv=_OhaGKQxGpvcew@mail.gmail.com>
+ <CAM0jSHO4EU_gBXo-56GtDJffezfVHYoUhCeOnb97ZgBj5vyA7Q@mail.gmail.com>
+ <CAM0jSHOHCr6ppLhUBVSd_JUnBDFAcsYEYtma01benzs_nkhtGg@mail.gmail.com>
+In-Reply-To: <CAM0jSHOHCr6ppLhUBVSd_JUnBDFAcsYEYtma01benzs_nkhtGg@mail.gmail.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Fri, 16 Jul 2021 12:38:49 -0500
+Message-ID: <CAOFGe95YYjS=k9SnQg0EuOR02FWGPyCAvJH7Ymm6ZhiHq5iNCw@mail.gmail.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/gem/ttm: Respect the objection
+ region in placement_from_obj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,87 +69,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/2] drm/i915/step: Add macro magic for handling steps (rev2)
-URL   : https://patchwork.freedesktop.org/series/92560/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    expected struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    got struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1210:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCBKdWwgMTYsIDIwMjEgYXQgMTE6MDAgQU0gTWF0dGhldyBBdWxkCjxtYXR0aGV3Lndp
+bGxpYW0uYXVsZEBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gT24gRnJpLCAxNiBKdWwgMjAyMSBhdCAx
+Njo1MiwgTWF0dGhldyBBdWxkCj4gPG1hdHRoZXcud2lsbGlhbS5hdWxkQGdtYWlsLmNvbT4gd3Jv
+dGU6Cj4gPgo+ID4gT24gRnJpLCAxNiBKdWwgMjAyMSBhdCAxNToxMCwgSmFzb24gRWtzdHJhbmQg
+PGphc29uQGpsZWtzdHJhbmQubmV0PiB3cm90ZToKPiA+ID4KPiA+ID4gT24gRnJpLCBKdWwgMTYs
+IDIwMjEgYXQgODo1NCBBTSBNYXR0aGV3IEF1bGQKPiA+ID4gPG1hdHRoZXcud2lsbGlhbS5hdWxk
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4gPiA+ID4KPiA+ID4gPiBPbiBUaHUsIDE1IEp1bCAyMDIxIGF0
+IDIzOjM5LCBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+IHdyb3RlOgo+ID4g
+PiA+ID4KPiA+ID4gPiA+IFdoZW5ldmVyIHdlIGhhZCBhIHVzZXIgb2JqZWN0IChuX3BsYWNlbWVu
+dHMgPiAwKSwgd2Ugd2VyZSBpZ25vcmluZwo+ID4gPiA+ID4gb2JqLT5tbS5yZWdpb24gYW5kIGFs
+d2F5cyBwdXR0aW5nIG9iai0+cGxhY2VtZW50c1swXSBhcyB0aGUgcmVxdWVzdGVkCj4gPiA+ID4g
+PiByZWdpb24uICBGb3IgTE1FTStTTUVNIG9iamVjdHMsIHRoaXMgd2FzIGNhdXNpbmcgdGhlbSB0
+byBnZXQgc2hvdmVkIGludG8KPiA+ID4gPiA+IExNRU0gb24gZXZlcnkgaTkxNV90dG1fZ2V0X3Bh
+Z2VzKCkgZXZlbiB3aGVuIFNNRU0gd2FzIHJlcXVlc3RlZCBieSwgc2F5LAo+ID4gPiA+ID4gaTkx
+NV9nZW1fb2JqZWN0X21pZ3JhdGUoKS4KPiA+ID4gPgo+ID4gPiA+IGk5MTVfdHRtX21pZ3JhdGUg
+Y2FsbHMgaTkxNV90dG1fcGxhY2VfZnJvbV9yZWdpb24oKSBkaXJlY3RseSB3aXRoIHRoZQo+ID4g
+PiA+IHJlcXVlc3RlZCByZWdpb24sIHNvIHRoZXJlIHNob3VsZG4ndCBiZSBhbiBpc3N1ZSB3aXRo
+IG1pZ3JhdGlvbiByaWdodD8KPiA+ID4gPiBEbyB5b3UgaGF2ZSBzb21lIG1vcmUgZGV0YWlscz8K
+PiA+ID4KPiA+ID4gV2l0aCBpOTE1X3R0bV9taWdyYXRlIGRpcmVjdGx5LCBuby4gIEJ1dCwgaW4g
+dGhlIGxhc3QgcGF0Y2ggaW4gdGhlCj4gPiA+IHNlcmllcywgd2UncmUgdHJ5aW5nIHRvIG1pZ3Jh
+dGUgTE1FTStTTUVNIGJ1ZmZlcnMgaW50byBTTUVNIG9uCj4gPiA+IGF0dGFjaCgpIGFuZCBwaW4g
+aXQgdGhlcmUuICBUaGlzIGJsb3dzIHVwIGluIGEgdmVyeSB1bmV4cGVjdGVkIChJTU8pCj4gPiA+
+IHdheS4gIFRoZSBmbG93IGdvZXMgc29tZXRoaW5nIGxpa2UgdGhpczoKPiA+ID4KPiA+ID4gIC0g
+Q2xpZW50IGF0dGVtcHRzIGEgZG1hLWJ1ZiBpbXBvcnQgZnJvbSBhbm90aGVyIGRldmljZQo+ID4g
+PiAgLSBJbiBhdHRhY2goKSB3ZSBjYWxsIGk5MTVfZ2VtX29iamVjdF9taWdyYXRlKCkgd2hpY2gg
+Y2FsbHMKPiA+ID4gaTkxNV90dG1fbWlncmF0ZSgpIHdoaWNoIG1pZ3JhdGVzIGFzIHJlcXVlc3Rl
+ZC4KPiA+ID4gIC0gT25jZSB0aGUgbWlncmF0aW9uIGlzIGNvbXBsZXRlLCB3ZSBjYWxsIGk5MTVf
+Z2VtX29iamVjdF9waW5fcGFnZXMoKQo+ID4gPiB3aGljaCBjYWxscyBpOTE1X3R0bV9nZXRfcGFn
+ZXMoKSB3aGljaCBkZXBlbmRzIG9uCj4gPiA+IGk5MTVfdHRtX3BsYWNlbWVudF9mcm9tX29iaigp
+IGFuZCBzbyBtaWdyYXRlcyBpdCByaWdodCBiYWNrIHRvIExNRU0uCj4gPgo+ID4gVGhlIG1tLnBh
+Z2VzIG11c3QgYmUgTlVMTCBoZXJlLCBvdGhlcndpc2UgaXQgd291bGQganVzdCBpbmNyZW1lbnQg
+dGhlCj4gPiBwYWdlc19waW5fY291bnQ/CgpHaXZlbiB0aGF0IHRoZSB0ZXN0IGlzIHVzaW5nIHRo
+ZSBfX19fZm91cl91bmRlcnNjb3JlcyB2ZXJzaW9uLCBpdApkb2Vzbid0IGhhdmUgdGhhdCBjaGVj
+ay4gIEhvd2V2ZXIsIHRoaXMgZXhlY3V0ZXMgYWZ0ZXIgd2UndmUgZG9uZSB0aGUKZG1hLWJ1ZiBp
+bXBvcnQgd2hpY2ggcGlubmVkIHBhZ2VzLiAgU28gd2Ugc2hvdWxkIGRlZmluaXRlbHkgaGF2ZQpw
+YWdlcy4KCj4gPiA+Cj4gPiA+IE1heWJlIHRoZSBwcm9ibGVtIGhlcmUgaXMgYWN0dWFsbHkgdGhh
+dCBvdXIgVFRNIGNvZGUgaXNuJ3QgcmVzcGVjdGluZwo+ID4gPiBvYmotPm1tLnBhZ2VzX3Bpbl9j
+b3VudD8KPiA+Cj4gPiBJIHRoaW5rIGlmIHRoZSByZXNvdXJjZSBpcyBtb3ZlZCwgd2UgYWx3YXlz
+IG51a2UgdGhlIG1tLnBhZ2VzIGFmdGVyCj4gPiBiZWluZyBub3RpZmllZCBvZiB0aGUgbW92ZS4g
+QWxzbyBUVE0gaXMgYWxzbyBub3QgYWxsb3dlZCB0byBtb3ZlCj4gPiBwaW5uZWQgYnVmZmVycy4K
+PiA+Cj4gPiBJIGd1ZXNzIGlmIHdlIGFyZSBldmljdGVkL3N3YXBwZWQsIHNvIGFzc3VtaW5nIHdl
+IGFyZSBub3QgaG9sZGluZyB0aGUKPiA+IG9iamVjdCBsb2NrLCBhbmQgaXQncyBub3QgcGlubmVk
+LCB0aGUgZnV0dXJlIGNhbGwgdG8gZ2V0X3BhZ2VzKCkgd2lsbAo+ID4gc2VlIG1tLnBhZ2VzID0g
+TlVMTCwgZXZlbiB0aG91Z2ggdGhlIHR0bV9yZXNvdXJjZSBpcyBzdGlsbCB0aGVyZSwgYW5kCj4g
+PiBiZWNhdXNlIHdlIHByaW9yaXRpc2UgdGhlIHBsYWNlbWVudHNbMF0sIGluc3RlYWQgb2YgbW0u
+cmVnaW9uIHdlIGVuZAo+ID4gdXAgbW92aW5nIGl0IGZvciBubyBnb29kIHJlYXNvbi4gQnV0IGlu
+IHlvdXIgY2FzZSB5b3UgYXJlIGhvbGRpbmcgdGhlCj4gPiBsb2NrLCBvciBpdCdzIHBpbm5lZD8g
+QWxzbyBpcyB0aGlzIGp1c3Qgd2l0aCB0aGUgc2VsZnRlc3QsIG9yCj4gPiBzb21ldGhpbmcgcmVh
+bD8KPgo+IE9yIGF0IGxlYXN0IGluIHRoZSBzZWxmdGVzdCBJIHNlZSBfX19faTkxNV9nZW1fb2Jq
+ZWN0X2dldF9wYWdlcygpCj4gd2hpY2ggZG9lc24ndCBldmVuIGNvbnNpZGVyIHRoZSBtbS5wYWdl
+cyBBRkFJSy4KClRoZSBib2d1cyBtaWdyYXRpb24gaXMgaGFwcGVuaW5nIGFzIHBhcnQgb2YgdGhl
+Cl9faTkxNV9nZW1fb2JqZWN0X2dldF9wYWdlcygpICgyIF9fdW5kZXJzY29yZXMpIGNhbGwgaW4K
+aTkxNV9nZW1fZG1hYnVmX2F0dGFjaCAoc2VlIGxhc3QgcGF0Y2gpLiAgVGhhdCBjb2RlIGlzIGF0
+dGVtcHRpbmcgdG8KbWlncmF0ZSB0aGUgQk8gdG8gU01FTSBhbmQgdGhlbiBwaW4gaXQgdGhlcmUg
+dXNpbmcgdGhlIG9idmlvdXMgY2FsbHMKdG8gZG8gc28uICBIb3dldmVyLCBpbiB0aGUgcGluX3Bh
+Z2VzIGNhbGwsIGl0IGdldHMgaW1wbGljaXRseSBtaWdyYXRlZApiYWNrIHRvIExNRU0gdGhhbmtz
+IHRvIGk5MTVfdHRtX2dldF9wYWdlcygpLiAgV2h5IGlzIF9nZXRfcGFnZXMoKQptaWdyYXRpbmcg
+dGhpbmdzIGF0IGFsbD8KCi0tSmFzb24KCj4gPgo+ID4gPgo+ID4gPiBJbiBjYXNlIHlvdSBjYW4n
+dCB0ZWxsLCBJIHJlYWxseSBoYXZlIG5vIGNsdWUgd2hhdCBJJ20gZG9pbmcgaGVyZS4KPiA+ID4g
+SSdtIHJlYWxseSBzdHVtYmxpbmcgYXJvdW5kIGluIHRoZSBkYXJrIGZpbmRpbmcgdGhpbmdzIHRo
+YXQgbWFrZSBteQo+ID4gPiBidWcgZ28gYXdheS4gIEknbSBoYXBweSBmb3IgdGhlIGZlZWRiYWNr
+Lgo+ID4gPgo+ID4gPiAtLUphc29uCj4gPiA+Cj4gPiA+ID4KPiA+ID4gPiA+Cj4gPiA+ID4gPiBT
+aWduZWQtb2ZmLWJ5OiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+Cj4gPiA+
+ID4gPiBDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwu
+Y29tPgo+ID4gPiA+ID4gQ2M6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4K
+PiA+ID4gPiA+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXgu
+aW50ZWwuY29tPgo+ID4gPiA+ID4gLS0tCj4gPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL2k5MTVfZ2VtX3R0bS5jIHwgMyArLS0KPiA+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBp
+bnNlcnRpb24oKyksIDIgZGVsZXRpb25zKC0pCj4gPiA+ID4gPgo+ID4gPiA+ID4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0uYwo+ID4gPiA+ID4gaW5kZXggZDMwZjI3NGMzMjlj
+Ny4uNTk4NWU5OTRkNTZjZiAxMDA2NDQKPiA+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV90dG0uYwo+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jCj4gPiA+ID4gPiBAQCAtMTUwLDggKzE1MCw3IEBAIGk5MTVf
+dHRtX3BsYWNlbWVudF9mcm9tX29iaihjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAq
+b2JqLAo+ID4gPiA+ID4gICAgICAgICB1bnNpZ25lZCBpbnQgaTsKPiA+ID4gPiA+Cj4gPiA+ID4g
+PiAgICAgICAgIHBsYWNlbWVudC0+bnVtX3BsYWNlbWVudCA9IDE7Cj4gPiA+ID4gPiAtICAgICAg
+IGk5MTVfdHRtX3BsYWNlX2Zyb21fcmVnaW9uKG51bV9hbGxvd2VkID8gb2JqLT5tbS5wbGFjZW1l
+bnRzWzBdIDoKPiA+ID4gPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb2Jq
+LT5tbS5yZWdpb24sIHJlcXVlc3RlZCwgZmxhZ3MpOwo+ID4gPiA+ID4gKyAgICAgICBpOTE1X3R0
+bV9wbGFjZV9mcm9tX3JlZ2lvbihvYmotPm1tLnJlZ2lvbiwgcmVxdWVzdGVkLCBmbGFncyk7Cj4g
+PiA+ID4gPgo+ID4gPiA+ID4gICAgICAgICAvKiBDYWNoZSB0aGlzIG9uIG9iamVjdD8gKi8KPiA+
+ID4gPiA+ICAgICAgICAgcGxhY2VtZW50LT5udW1fYnVzeV9wbGFjZW1lbnQgPSBudW1fYWxsb3dl
+ZDsKPiA+ID4gPiA+IC0tCj4gPiA+ID4gPiAyLjMxLjEKPiA+ID4gPiA+Cl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
