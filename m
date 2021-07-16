@@ -1,62 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FFAD3CBCF6
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 21:49:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E483CBCFA
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 21:52:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A46186E9DA;
-	Fri, 16 Jul 2021 19:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2FC6E9D2;
+	Fri, 16 Jul 2021 19:52:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com
- [IPv6:2607:f8b0:4864:20::b2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69CEB6E9D3
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 19:49:18 +0000 (UTC)
-Received: by mail-yb1-xb2b.google.com with SMTP id c16so9919286ybl.9
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 12:49:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UzjGgFUtHPHk4mtkEkY+oMHVSqXsZpl49iGD+maxsDU=;
- b=F1iWJApapl/w6+uWWLzu7W8VvnkKnv4duroWsin9t/al1NHx+V6tgFE8XVTnf3VSZR
- 1lfZB+j2lIdm5NyVi/6JPPj3lhs+v20R2+KgIWGHmYDl0HKYmqzo9nBkjmRRjuCUR46q
- Mpk7retLFVuS6advFdHt79ErO1H0IXx7inmcSAupljueNDB+yDUeqEOMKuvuZpJc9cF+
- gdUlK5ktH+79kudPmIIqfkRCx6dX8qmSK8OXTKg2N7eE5nHszGUHERHxw+EoBhfxK6G3
- cWFHhCKdcI2TvXz3gADHkAHV3CLciJQNJOvcFt2zpX40S9wMiIJRPfkhTY+Un5rA/vWf
- YDCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UzjGgFUtHPHk4mtkEkY+oMHVSqXsZpl49iGD+maxsDU=;
- b=jkorJ77+QVZiJ3KOxnROcHBntxwVGkCYUSinr2jyFk1AXPmhR5DH9g3O3XyvmZBSdF
- dPJ0ALZipRc0pvzSxKbJKWCXiKJdJ3aely/+VR0aqO/A9B4SyK9vyvrDbXgPZvAaVEc8
- l6GAZg0UF8Ey/YfqzzAFQnUk5NOkDYfvprP2hkN+R9/4zhZXoCmzMKqsaH6dR22M+A3n
- 4j3WO1Qbjj5FiOEpVVtjJGmyY4ildTNkhZXBtcp5sxyH2Ir24Dh5Klk6ffJxD7hMOasc
- jWDUGOnfwuezD+fLx7e20y/uhfgrVOB8VTvCOKxslTTyxXeqSS5JtduPIfWsbuXtFO5y
- Eetg==
-X-Gm-Message-State: AOAM532vhzgzIWKePJzKe/2R1gTJzafstWSz/60QDdA6M01T/vVDKse6
- nmcwRlleXoyKcr3OKlQYS50585mc5oIYfktDuf/obA==
-X-Google-Smtp-Source: ABdhPJxCtDO6nfX3/54XMoa7G3lnnTVGTYemTkdsTl2rRQ5P4Ga5GDFC/Ks56T7gDpjAU6DIVO24NhAHHK1CMSJ5Hp8=
-X-Received: by 2002:a25:d113:: with SMTP id i19mr15626226ybg.180.1626464957526; 
- Fri, 16 Jul 2021 12:49:17 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 976DD6E9D2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 19:52:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="210773627"
+X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="210773627"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2021 12:52:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="656514161"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+ by fmsmga005.fm.intel.com with ESMTP; 16 Jul 2021 12:52:49 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Fri, 16 Jul 2021 12:52:49 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Fri, 16 Jul 2021 12:52:49 -0700
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.010;
+ Fri, 16 Jul 2021 12:52:49 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 32/50] drm/i915/dg2: Add fake PCH
+Thread-Index: AQHXeF6RJFWn5+4CHUaM0w5qILr0SqtGfh0A
+Date: Fri, 16 Jul 2021 19:52:48 +0000
+Message-ID: <8587eb22d972dcd21f7ecca61d4316bc99162177.camel@intel.com>
+References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
+ <20210714031540.3539704-33-matthew.d.roper@intel.com>
+In-Reply-To: <20210714031540.3539704-33-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-ID: <D55B8F70B6C8A14280F93A3C2C38575A@intel.com>
 MIME-Version: 1.0
-References: <20210715223900.1840576-1-jason@jlekstrand.net>
- <20210715223900.1840576-6-jason@jlekstrand.net>
- <CAM0jSHPu1EBfnAJ06Dp51a1Qbg+9QnmP=EyUfYXS0fZnJzxR8g@mail.gmail.com>
- <CAOFGe95gEUNsjCh+30AXhrQLz8_OKbHwwxv=_OhaGKQxGpvcew@mail.gmail.com>
- <CAM0jSHO4EU_gBXo-56GtDJffezfVHYoUhCeOnb97ZgBj5vyA7Q@mail.gmail.com>
- <CAM0jSHOHCr6ppLhUBVSd_JUnBDFAcsYEYtma01benzs_nkhtGg@mail.gmail.com>
- <CAOFGe95YYjS=k9SnQg0EuOR02FWGPyCAvJH7Ymm6ZhiHq5iNCw@mail.gmail.com>
- <CAM0jSHP8vS9FeEjKx9sQqek2-eGVEK+=6y03eNnf0zpnxmmP6w@mail.gmail.com>
-In-Reply-To: <CAM0jSHP8vS9FeEjKx9sQqek2-eGVEK+=6y03eNnf0zpnxmmP6w@mail.gmail.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Fri, 16 Jul 2021 14:49:06 -0500
-Message-ID: <CAOFGe94C48djm1uWXC2Tn-ssSvGr=sTOaEDORG355s72ysfqQg@mail.gmail.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/gem/ttm: Respect the objection
- region in placement_from_obj
+Subject: Re: [Intel-gfx] [PATCH v2 32/50] drm/i915/dg2: Add fake PCH
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,130 +62,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 16, 2021 at 1:45 PM Matthew Auld
-<matthew.william.auld@gmail.com> wrote:
->
-> On Fri, 16 Jul 2021 at 18:39, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> >
-> > On Fri, Jul 16, 2021 at 11:00 AM Matthew Auld
-> > <matthew.william.auld@gmail.com> wrote:
-> > >
-> > > On Fri, 16 Jul 2021 at 16:52, Matthew Auld
-> > > <matthew.william.auld@gmail.com> wrote:
-> > > >
-> > > > On Fri, 16 Jul 2021 at 15:10, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > > > >
-> > > > > On Fri, Jul 16, 2021 at 8:54 AM Matthew Auld
-> > > > > <matthew.william.auld@gmail.com> wrote:
-> > > > > >
-> > > > > > On Thu, 15 Jul 2021 at 23:39, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > > > > > >
-> > > > > > > Whenever we had a user object (n_placements > 0), we were ignoring
-> > > > > > > obj->mm.region and always putting obj->placements[0] as the requested
-> > > > > > > region.  For LMEM+SMEM objects, this was causing them to get shoved into
-> > > > > > > LMEM on every i915_ttm_get_pages() even when SMEM was requested by, say,
-> > > > > > > i915_gem_object_migrate().
-> > > > > >
-> > > > > > i915_ttm_migrate calls i915_ttm_place_from_region() directly with the
-> > > > > > requested region, so there shouldn't be an issue with migration right?
-> > > > > > Do you have some more details?
-> > > > >
-> > > > > With i915_ttm_migrate directly, no.  But, in the last patch in the
-> > > > > series, we're trying to migrate LMEM+SMEM buffers into SMEM on
-> > > > > attach() and pin it there.  This blows up in a very unexpected (IMO)
-> > > > > way.  The flow goes something like this:
-> > > > >
-> > > > >  - Client attempts a dma-buf import from another device
-> > > > >  - In attach() we call i915_gem_object_migrate() which calls
-> > > > > i915_ttm_migrate() which migrates as requested.
-> > > > >  - Once the migration is complete, we call i915_gem_object_pin_pages()
-> > > > > which calls i915_ttm_get_pages() which depends on
-> > > > > i915_ttm_placement_from_obj() and so migrates it right back to LMEM.
-> > > >
-> > > > The mm.pages must be NULL here, otherwise it would just increment the
-> > > > pages_pin_count?
-> >
-> > Given that the test is using the ____four_underscores version, it
-> > doesn't have that check.  However, this executes after we've done the
-> > dma-buf import which pinned pages.  So we should definitely have
-> > pages.
->
-> We shouldn't call ____four_underscores() if we might already have
-> pages though. Under non-TTM that would leak the pages, and in TTM we
-> might hit the WARN_ON(mm->pages) in __i915_ttm_get_pages(), if for
-> example nothing was moved. I take it we can't just call pin_pages()?
-> Four scary underscores usually means "don't call this in normal code".
-
-I've switched the ____four_underscores call to a __two_underscores in
-the selftests and it had no effect, good or bad.  But, still, probably
-better to call that one.
-
-> >
-> > > > >
-> > > > > Maybe the problem here is actually that our TTM code isn't respecting
-> > > > > obj->mm.pages_pin_count?
-> > > >
-> > > > I think if the resource is moved, we always nuke the mm.pages after
-> > > > being notified of the move. Also TTM is also not allowed to move
-> > > > pinned buffers.
-> > > >
-> > > > I guess if we are evicted/swapped, so assuming we are not holding the
-> > > > object lock, and it's not pinned, the future call to get_pages() will
-> > > > see mm.pages = NULL, even though the ttm_resource is still there, and
-> > > > because we prioritise the placements[0], instead of mm.region we end
-> > > > up moving it for no good reason. But in your case you are holding the
-> > > > lock, or it's pinned? Also is this just with the selftest, or
-> > > > something real?
-> > >
-> > > Or at least in the selftest I see ____i915_gem_object_get_pages()
-> > > which doesn't even consider the mm.pages AFAIK.
-> >
-> > The bogus migration is happening as part of the
-> > __i915_gem_object_get_pages() (2 __underscores) call in
-> > i915_gem_dmabuf_attach (see last patch).  That code is attempting to
-> > migrate the BO to SMEM and then pin it there using the obvious calls
-> > to do so.  However, in the pin_pages call, it gets implicitly migrated
-> > back to LMEM thanks to i915_ttm_get_pages().  Why is _get_pages()
-> > migrating things at all?
->
-> Not sure yet, but __two_underscores() checks if
-> i915_gem_object_has_pages() before actually calling into
-> i915_ttm_get_pages(), so the mm.pages would have to be NULL here for
-> some reason, so best guess is something to do with move_notify().
-
-Did a bit of experimenting along those lines and added the following
-to the self-test BEFORE the export/import:
-
-    i915_gem_object_lock(obj, NULL);
-    err = __i915_gem_object_get_pages(obj);
-    __i915_gem_object_unpin_pages(obj);
-    i915_gem_object_unlock(obj);
-    if (err) {
-        pr_err("__i915_gem_object_get_pages failed with err=%d\n", err);
-        goto out_ret;
-    }
-
-This seems to make the migration happen as expected without this
-patch.  So it seems the problem only exists on buffers that haven't
-gotten any backing storage yet (if I'm understanding get_pages
-correctly).
-
-One potential work-around (not sure if this is a good idea or not!)
-would be to do this inside dmabuf_attach().  Is this reliable?  Once
-it has pages will it always have pages?  Or are there crazy races I
-need to be worried about here?
-
---Jason
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIxLTA3LTEzIGF0IDIwOjE1IC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBB
+cyB3aXRoIERHMSwgREcyIGhhcyBhbiBJQ0wtc3R5bGUgc291dGggZGlzcGxheSBpbnRlcmZhY2Ug
+cHJvdmlkZWQgb24NCj4gdGhlIHNhbWUgUENJIGRldmljZS4gIEFkZCBhIGZha2UgUENIIHRvIGVu
+c3VyZSBERzIgdGFrZXMgdGhlIGFwcHJvcHJpYXRlDQo+IGNvZGVwYXRocyBmb3Igc291dGggZGlz
+cGxheSBoYW5kbGluZy4NCj4gDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
+IDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiBCc3BlYzogNTQ4NzEsIDUwMDYyLCA0OTk2MSwg
+NTM2NzMNCj4gQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0K
+PiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0K
+PiBTaWduZWQtb2ZmLWJ5OiBBZGl0eWEgU3dhcnVwIDxhZGl0eWEuc3dhcnVwQGludGVsLmNvbT4N
+Cj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
+bC5jb20+DQo+IFJldmlld2VkLWJ5OiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGlu
+dGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jICB8IDIg
+Ky0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5jIHwgMyArKysNCj4gIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5oIHwgMiArKw0KPiAgMyBmaWxlcyBjaGFuZ2VkLCA2
+IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEu
+Yw0KPiBpbmRleCA2MWRjZWIyYTE3YzEuLmUyMTcxYmQyODIwZSAxMDA2NDQNCj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X2lycS5jDQo+IEBAIC0yMDcsNyArMjA3LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfaHBk
+X2luaXRfcGlucyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICAJICAgICgh
+SEFTX1BDSF9TUExJVChkZXZfcHJpdikgfHwgSEFTX1BDSF9OT1AoZGV2X3ByaXYpKSkNCj4gIAkJ
+cmV0dXJuOw0KPiAgDQo+IC0JaWYgKEhBU19QQ0hfREcxKGRldl9wcml2KSkNCj4gKwlpZiAoSU5U
+RUxfUENIX1RZUEUoZGV2X3ByaXYpID49IFBDSF9ERzEpDQo+ICAJCWhwZC0+cGNoX2hwZCA9IGhw
+ZF9zZGVfZGcxOw0KPiAgCWVsc2UgaWYgKElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA+PSBQQ0hf
+SUNQKQ0KPiAgCQlocGQtPnBjaF9ocGQgPSBocGRfaWNwOw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNoLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9w
+Y2guYw0KPiBpbmRleCA0ZTkyYWUxOTE4OWUuLmNjNDQxNjRlMjQyYiAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNoLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaW50ZWxfcGNoLmMNCj4gQEAgLTIxMSw2ICsyMTEsOSBAQCB2b2lkIGludGVsX2RldGVj
+dF9wY2goc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPiAgCWlmIChJU19ERzEo
+ZGV2X3ByaXYpKSB7DQo+ICAJCWRldl9wcml2LT5wY2hfdHlwZSA9IFBDSF9ERzE7DQo+ICAJCXJl
+dHVybjsNCj4gKwl9IGVsc2UgaWYgKElTX0RHMihkZXZfcHJpdikpIHsNCj4gKwkJZGV2X3ByaXYt
+PnBjaF90eXBlID0gUENIX0RHMjsNCj4gKwkJcmV0dXJuOw0KPiAgCX0NCj4gIA0KPiAgCS8qDQo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guaCBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2ludGVsX3BjaC5oDQo+IGluZGV4IGUyZjNmMzBjNjQ0NS4uN2MwZDgzZDI5
+MmRjIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guaA0KPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guaA0KPiBAQCAtMzAsNiArMzAsNyBA
+QCBlbnVtIGludGVsX3BjaCB7DQo+ICANCj4gIAkvKiBGYWtlIFBDSHMsIGZ1bmN0aW9uYWxpdHkg
+aGFuZGxlZCBvbiB0aGUgc2FtZSBQQ0kgZGV2ICovDQo+ICAJUENIX0RHMSA9IDEwMjQsDQo+ICsJ
+UENIX0RHMiwNCj4gIH07DQo+ICANCj4gICNkZWZpbmUgSU5URUxfUENIX0RFVklDRV9JRF9NQVNL
+CQkweGZmODANCj4gQEAgLTYyLDYgKzYzLDcgQEAgZW51bSBpbnRlbF9wY2ggew0KPiAgDQo+ICAj
+ZGVmaW5lIElOVEVMX1BDSF9UWVBFKGRldl9wcml2KQkJKChkZXZfcHJpdiktPnBjaF90eXBlKQ0K
+PiAgI2RlZmluZSBJTlRFTF9QQ0hfSUQoZGV2X3ByaXYpCQkJKChkZXZfcHJpdiktPnBjaF9pZCkN
+Cj4gKyNkZWZpbmUgSEFTX1BDSF9ERzIoZGV2X3ByaXYpCQkJKElOVEVMX1BDSF9UWVBFKGRldl9w
+cml2KSA9PSBQQ0hfREcyKQ0KPiAgI2RlZmluZSBIQVNfUENIX0FEUChkZXZfcHJpdikJCQkoSU5U
+RUxfUENIX1RZUEUoZGV2X3ByaXYpID09IFBDSF9BRFApDQo+ICAjZGVmaW5lIEhBU19QQ0hfREcx
+KGRldl9wcml2KQkJCShJTlRFTF9QQ0hfVFlQRShkZXZfcHJpdikgPT0gUENIX0RHMSkNCj4gICNk
+ZWZpbmUgSEFTX1BDSF9KU1AoZGV2X3ByaXYpCQkJKElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA9
+PSBQQ0hfSlNQKQ0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
