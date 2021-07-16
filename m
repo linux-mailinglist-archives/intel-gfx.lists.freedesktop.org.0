@@ -2,39 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A41293CB54F
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 11:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4E43CB637
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 12:41:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7DEE6E955;
-	Fri, 16 Jul 2021 09:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 776976E95D;
+	Fri, 16 Jul 2021 10:41:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4379D6E955
- for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 09:34:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10046"; a="271819410"
-X-IronPort-AV: E=Sophos;i="5.84,244,1620716400"; d="scan'208";a="271819410"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 02:34:48 -0700
-X-IronPort-AV: E=Sophos;i="5.84,244,1620716400"; d="scan'208";a="506816715"
-Received: from kmbaku-mobl.ger.corp.intel.com (HELO [10.252.62.109])
- ([10.252.62.109])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 02:34:47 -0700
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20210715120842.806605-1-maarten.lankhorst@linux.intel.com>
- <CAM0jSHMZStUCDFzcUrQPaAFXoBVxKmsmK2XQ4hALYHh5Y9p8Jw@mail.gmail.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <feaa7999-d28a-d09d-8284-52dec5f5d059@linux.intel.com>
-Date: Fri, 16 Jul 2021 11:34:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22DB76E8D0;
+ Fri, 16 Jul 2021 01:11:54 +0000 (UTC)
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.55])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GQtR46G3WzZkts;
+ Fri, 16 Jul 2021 09:08:32 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 16 Jul 2021 09:11:51 +0800
+Received: from thunder-town.china.huawei.com (10.174.179.0) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 16 Jul 2021 09:11:50 +0800
+From: Zhen Lei <thunder.leizhen@huawei.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, intel-gfx
+ <intel-gfx@lists.freedesktop.org>, dri-devel
+ <dri-devel@lists.freedesktop.org>, linux-kernel
+ <linux-kernel@vger.kernel.org>
+Date: Fri, 16 Jul 2021 09:11:12 +0800
+Message-ID: <20210716011112.3305-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHMZStUCDFzcUrQPaAFXoBVxKmsmK2XQ4hALYHh5Y9p8Jw@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Add missing docbook chapters
- for i915 uapi.
+X-Originating-IP: [10.174.179.0]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Fri, 16 Jul 2021 10:41:50 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix error return code in
+ igt_vma_create()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,73 +53,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: Zhen Lei <thunder.leizhen@huawei.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 15-07-2021 om 14:19 schreef Matthew Auld:
-> On Thu, 15 Jul 2021 at 13:08, Maarten Lankhorst
-> <maarten.lankhorst@linux.intel.com> wrote:
->> I noticed when grepping for DOC: that those were defined
->> in the header, but not actually used. Fix it by removing
->> all chapters and the internal annotation, so the docbook
->> generated chapters are used.
->>
->> Changes since v1:
->> - Just remove the chapters, no need for those.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Link: https://patchwork.freedesktop.org/patch/msgid/20210709113842.651140-1-maarten.lankhorst@linux.intel.com
-> Indeed, it seems to still render correctly here.
->
-> Maybe update the commit title when pushing,
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->
->> ---
->>  Documentation/gpu/driver-uapi.rst | 21 ---------------------
->>  1 file changed, 21 deletions(-)
->>
->> diff --git a/Documentation/gpu/driver-uapi.rst b/Documentation/gpu/driver-uapi.rst
->> index 27d0fbe33e87..4411e6919a3d 100644
->> --- a/Documentation/gpu/driver-uapi.rst
->> +++ b/Documentation/gpu/driver-uapi.rst
->> @@ -5,25 +5,4 @@ DRM Driver uAPI
->>  drm/i915 uAPI
->>  =============
->>
->> -Engine Discovery uAPI
->> ----------------------
->> -
->> -.. kernel-doc:: include/uapi/drm/i915_drm.h
->> -   :doc: Engine Discovery uAPI
->> -
->> -Context Engine Map uAPI
->> ------------------------
->> -
->> -.. kernel-doc:: include/uapi/drm/i915_drm.h
->> -   :doc: Context Engine Map uAPI
->> -
->> -Virtual Engine uAPI
->> --------------------
->> -
->> -.. kernel-doc:: include/uapi/drm/i915_drm.h
->> -   :doc: Virtual Engine uAPI
->> -
->> -i915_drm.h
->> -----------
->>  .. kernel-doc:: include/uapi/drm/i915_drm.h
->> -   :internal:
->> --
->> 2.31.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Although 'err' has been initialized to -ENOMEM, but it will be reassigned
+by the "err = create_vmas(...)" statement in the for loop. So that, the
+value of 'err' may be zero when i915_gem_object_create_internal() or
+mock_context() failed.
 
-Thanks, pushed!
+Fix to reassign 'err' before 'goto out'.
+
+Fixes: e3c7a1c5377e ("drm/i915: Test creation of VMA")
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_vma.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+index dd0607254a95..96771c341f29 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_vma.c
++++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+@@ -156,7 +156,7 @@ static int igt_vma_create(void *arg)
+ 	IGT_TIMEOUT(end_time);
+ 	LIST_HEAD(contexts);
+ 	LIST_HEAD(objects);
+-	int err = -ENOMEM;
++	int err;
+ 
+ 	/* Exercise creating many vma amonst many objections, checking the
+ 	 * vma creation and lookup routines.
+@@ -166,8 +166,10 @@ static int igt_vma_create(void *arg)
+ 	for_each_prime_number(num_obj, ULONG_MAX - 1) {
+ 		for (; no < num_obj; no++) {
+ 			obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-			if (IS_ERR(obj))
++			if (IS_ERR(obj)) {
++				err = PTR_ERR(obj);
+ 				goto out;
++			}
+ 
+ 			list_add(&obj->st_link, &objects);
+ 		}
+@@ -176,8 +178,10 @@ static int igt_vma_create(void *arg)
+ 		for_each_prime_number(num_ctx, 2 * BITS_PER_LONG) {
+ 			for (; nc < num_ctx; nc++) {
+ 				ctx = mock_context(i915, "mock");
+-				if (!ctx)
++				if (!ctx) {
++					err = -ENOMEM;
+ 					goto out;
++				}
+ 
+ 				list_move(&ctx->link, &contexts);
+ 			}
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
