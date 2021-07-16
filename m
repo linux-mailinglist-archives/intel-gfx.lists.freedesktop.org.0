@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 958473CB8C5
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 16:36:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 623AE3CB8EC
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 16:41:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75E406E98D;
-	Fri, 16 Jul 2021 14:36:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 556046E98D;
+	Fri, 16 Jul 2021 14:41:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5C26E98D;
- Fri, 16 Jul 2021 14:36:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10046"; a="198001333"
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="198001333"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 07:36:15 -0700
-X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; d="scan'208";a="656414209"
-Received: from kjmurthy-mobl.ger.corp.intel.com (HELO [10.213.193.231])
- ([10.213.193.231])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 07:36:12 -0700
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210715101536.2606307-1-matthew.auld@intel.com>
- <20210715101536.2606307-4-matthew.auld@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a7be2190-37d2-7f2b-9441-4f7c18803564@linux.intel.com>
-Date: Fri, 16 Jul 2021 15:36:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 61A426E9A6;
+ Fri, 16 Jul 2021 14:41:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 59528A0BCB;
+ Fri, 16 Jul 2021 14:41:06 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210715101536.2606307-4-matthew.auld@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/userptr: Probe existence of
- backing struct pages upon creation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason Ekstrand" <jason@jlekstrand.net>
+Date: Fri, 16 Jul 2021 14:41:06 -0000
+Message-ID: <162644646633.12777.1904243774792761082@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210714193419.1459723-1-jason@jlekstrand.net>
+In-Reply-To: <20210714193419.1459723-1-jason@jlekstrand.net>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Get_rid_of_fence_error_propagation_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,120 +38,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- Kenneth Graunke <kenneth@whitecape.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDE1LzA3LzIwMjEgMTE6MTUsIE1hdHRoZXcgQXVsZCB3cm90ZToKPiBGcm9tOiBDaHJpcyBX
-aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiAKPiBKYXNvbiBFa3N0cmFuZCByZXF1
-ZXN0ZWQgYSBtb3JlIGVmZmljaWVudCBtZXRob2QgdGhhbiB1c2VycHRyK3NldC1kb21haW4KPiB0
-byBkZXRlcm1pbmUgaWYgdGhlIHVzZXJwdHIgb2JqZWN0IHdhcyBiYWNrZWQgYnkgYSBjb21wbGV0
-ZSBzZXQgb2YgcGFnZXMKPiB1cG9uIGNyZWF0aW9uLiBUbyBiZSBtb3JlIGVmZmljaWVudCB0aGFu
-IHNpbXBseSBwb3B1bGF0aW5nIHRoZSB1c2VycHRyCj4gdXNpbmcgZ2V0X3VzZXJfcGFnZXMoKSAo
-YXMgZG9uZSBieSB0aGUgY2FsbCB0byBzZXQtZG9tYWluIG9yIGV4ZWNidWYpLAo+IHdlIGNhbiB3
-YWxrIHRoZSB0cmVlIG9mIHZtX2FyZWFfc3RydWN0IGFuZCBjaGVjayBmb3IgZ2FwcyBvciB2bWEg
-bm90Cj4gYmFja2VkIGJ5IHN0cnVjdCBwYWdlIChWTV9QRk5NQVApLiBUaGUgcXVlc3Rpb24gaXMg
-aG93IHRvIGhhbmRsZQo+IFZNX01JWEVETUFQIHdoaWNoIG1heSBiZSBlaXRoZXIgc3RydWN0IHBh
-Z2Ugb3IgcGZuIGJhY2tlZC4uLgo+IAo+IFdpdGggZGlzY3JldGUgYXJlIGdvaW5nIHRvIGRyb3Ag
-c3VwcG9ydCBmb3Igc2V0X2RvbWFpbigpLCBzbyBvZmZlcmluZyBhCj4gd2F5IHRvIHByb2JlIHRo
-ZSBwYWdlcywgd2l0aG91dCBoYXZpbmcgdG8gcmVzb3J0IHRvIGR1bW15IGJhdGNoZXMgaGFzCj4g
-YmVlbiByZXF1ZXN0ZWQuCj4gCj4gdjI6Cj4gLSBhZGQgbmV3IHF1ZXJ5IHBhcmFtIGZvciB0aGUg
-UFJPUEJFIGZsYWcsIHNvIHVzZXJzcGFjZSBjYW4gZWFzaWx5CgpQUk9CRQoKPiAgICBjaGVjayBp
-ZiB0aGUga2VybmVsIHN1cHBvcnRzIGl0KEphc29uKS4KPiAtIHVzZSBtbWFwX3JlYWRfe2xvY2ss
-IHVubG9ja30uCj4gLSBhZGQgc29tZSBrZXJuZWwtZG9jLgo+IAo+IFRlc3RjYXNlOiBpZ3QvZ2Vt
-X3VzZXJwdHJfYmxpdHMvcHJvYmUKPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlz
-QGNocmlzLXdpbHNvbi5jby51az4KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRo
-ZXcuYXVsZEBpbnRlbC5jb20+Cj4gQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0
-cm9tQGxpbnV4LmludGVsLmNvbT4KPiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFu
-a2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiBDYzogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1
-bGluQGxpbnV4LmludGVsLmNvbT4KPiBDYzogSm9yZGFuIEp1c3RlbiA8am9yZGFuLmwuanVzdGVu
-QGludGVsLmNvbT4KPiBDYzogS2VubmV0aCBHcmF1bmtlIDxrZW5uZXRoQHdoaXRlY2FwZS5vcmc+
-Cj4gQ2M6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4KPiBDYzogRGFuaWVs
-IFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiBDYzogUmFtYWxpbmdhbSBDIDxyYW1h
-bGluZ2FtLmNAaW50ZWwuY29tPgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
-MTVfZ2VtX3VzZXJwdHIuYyB8IDQwICsrKysrKysrKysrKysrKysrKysrLQo+ICAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9nZXRwYXJhbS5jICAgICAgICB8ICAzICsrCj4gICBpbmNsdWRlL3Vh
-cGkvZHJtL2k5MTVfZHJtLmggICAgICAgICAgICAgICAgIHwgMTggKysrKysrKysrKwo+ICAgMyBm
-aWxlcyBjaGFuZ2VkLCA2MCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91c2VycHRyLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdXNlcnB0ci5jCj4gaW5kZXggNTZlZGZlZmY4
-YzAyLi5mZDY4ODAzMjg1OTYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX3VzZXJwdHIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV91c2VycHRyLmMKPiBAQCAtNDIyLDYgKzQyMiwzMyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0
-IGRybV9pOTE1X2dlbV9vYmplY3Rfb3BzIGk5MTVfZ2VtX3VzZXJwdHJfb3BzID0gewo+ICAgCj4g
-ICAjZW5kaWYKPiAgIAo+ICtzdGF0aWMgaW50Cj4gK3Byb2JlX3JhbmdlKHN0cnVjdCBtbV9zdHJ1
-Y3QgKm1tLCB1bnNpZ25lZCBsb25nIGFkZHIsIHVuc2lnbmVkIGxvbmcgbGVuKQo+ICt7Cj4gKwlj
-b25zdCB1bnNpZ25lZCBsb25nIGVuZCA9IGFkZHIgKyBsZW47Cj4gKwlzdHJ1Y3Qgdm1fYXJlYV9z
-dHJ1Y3QgKnZtYTsKPiArCWludCByZXQgPSAtRUZBVUxUOwo+ICsKPiArCW1tYXBfcmVhZF9sb2Nr
-KG1tKTsKPiArCWZvciAodm1hID0gZmluZF92bWEobW0sIGFkZHIpOyB2bWE7IHZtYSA9IHZtYS0+
-dm1fbmV4dCkgewo+ICsJCWlmICh2bWEtPnZtX3N0YXJ0ID4gYWRkcikKPiArCQkJYnJlYWs7Cj4g
-Kwo+ICsJCWlmICh2bWEtPnZtX2ZsYWdzICYgKFZNX1BGTk1BUCB8IFZNX01JWEVETUFQKSkKPiAr
-CQkJYnJlYWs7Cj4gKwo+ICsJCWlmICh2bWEtPnZtX2VuZCA+PSBlbmQpIHsKPiArCQkJcmV0ID0g
-MDsKPiArCQkJYnJlYWs7Cj4gKwkJfQo+ICsKPiArCQlhZGRyID0gdm1hLT52bV9lbmQ7Cj4gKwl9
-Cj4gKwltbWFwX3JlYWRfdW5sb2NrKG1tKTsKCkxvZ2ljIGhlcmUgbG9va3MgZ29vZCB0byBtZS4K
-Cj4gKwo+ICsJcmV0dXJuIHJldDsKPiArfQo+ICsKPiAgIC8qCj4gICAgKiBDcmVhdGVzIGEgbmV3
-IG1tIG9iamVjdCB0aGF0IHdyYXBzIHNvbWUgbm9ybWFsIG1lbW9yeSBmcm9tIHRoZSBwcm9jZXNz
-Cj4gICAgKiBjb250ZXh0IC0gdXNlciBtZW1vcnkuCj4gQEAgLTQ3Nyw3ICs1MDQsOCBAQCBpOTE1
-X2dlbV91c2VycHRyX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gICAJfQo+ICAgCj4g
-ICAJaWYgKGFyZ3MtPmZsYWdzICYgfihJOTE1X1VTRVJQVFJfUkVBRF9PTkxZIHwKPiAtCQkJICAg
-IEk5MTVfVVNFUlBUUl9VTlNZTkNIUk9OSVpFRCkpCj4gKwkJCSAgICBJOTE1X1VTRVJQVFJfVU5T
-WU5DSFJPTklaRUQgfAo+ICsJCQkgICAgSTkxNV9VU0VSUFRSX1BST0JFKSkKPiAgIAkJcmV0dXJu
-IC1FSU5WQUw7Cj4gICAKPiAgIAlpZiAoaTkxNV9nZW1fb2JqZWN0X3NpemVfMmJpZyhhcmdzLT51
-c2VyX3NpemUpKQo+IEBAIC01MDQsNiArNTMyLDE2IEBAIGk5MTVfZ2VtX3VzZXJwdHJfaW9jdGwo
-c3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAgIAkJCXJldHVybiAtRU5PREVWOwo+ICAgCX0KPiAg
-IAo+ICsJaWYgKGFyZ3MtPmZsYWdzICYgSTkxNV9VU0VSUFRSX1BST0JFKSB7Cj4gKwkJLyoKPiAr
-CQkgKiBDaGVjayB0aGF0IHRoZSByYW5nZSBwb2ludGVkIHRvIHJlcHJlc2VudHMgcmVhbCBzdHJ1
-Y3QKPiArCQkgKiBwYWdlcyBhbmQgbm90IGlvbWFwcGluZ3MgKGF0IHRoaXMgbW9tZW50IGluIHRp
-bWUhKQo+ICsJCSAqLwo+ICsJCXJldCA9IHByb2JlX3JhbmdlKGN1cnJlbnQtPm1tLCBhcmdzLT51
-c2VyX3B0ciwgYXJncy0+dXNlcl9zaXplKTsKPiArCQlpZiAocmV0KQo+ICsJCQlyZXR1cm4gcmV0
-Owo+ICsJfQo+ICsKPiAgICNpZmRlZiBDT05GSUdfTU1VX05PVElGSUVSCj4gICAJb2JqID0gaTkx
-NV9nZW1fb2JqZWN0X2FsbG9jKCk7Cj4gICAJaWYgKG9iaiA9PSBOVUxMKQo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dldHBhcmFtLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2dldHBhcmFtLmMKPiBpbmRleCAyNGUxODIxOWViNTAuLmQ2ZDJlMWExMGQxNCAx
-MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dldHBhcmFtLmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dldHBhcmFtLmMKPiBAQCAtMTYzLDYgKzE2Myw5
-IEBAIGludCBpOTE1X2dldHBhcmFtX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQg
-KmRhdGEsCj4gICAJY2FzZSBJOTE1X1BBUkFNX1BFUkZfUkVWSVNJT046Cj4gICAJCXZhbHVlID0g
-aTkxNV9wZXJmX2lvY3RsX3ZlcnNpb24oKTsKPiAgIAkJYnJlYWs7Cj4gKwljYXNlIEk5MTVfUEFS
-QU1fSEFTX1VTRVJQVFJfUFJPQkU6Cj4gKwkJdmFsdWUgPSB0cnVlOwo+ICsJCWJyZWFrOwo+ICAg
-CWRlZmF1bHQ6Cj4gICAJCURSTV9ERUJVRygiVW5rbm93biBwYXJhbWV0ZXIgJWRcbiIsIHBhcmFt
-LT5wYXJhbSk7Cj4gICAJCXJldHVybiAtRUlOVkFMOwo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL3Vh
-cGkvZHJtL2k5MTVfZHJtLmggYi9pbmNsdWRlL3VhcGkvZHJtL2k5MTVfZHJtLmgKPiBpbmRleCBl
-MjBlZWVjYTdhMWMuLjJlNDExMmJmNGQzOCAxMDA2NDQKPiAtLS0gYS9pbmNsdWRlL3VhcGkvZHJt
-L2k5MTVfZHJtLmgKPiArKysgYi9pbmNsdWRlL3VhcGkvZHJtL2k5MTVfZHJtLmgKPiBAQCAtNjc0
-LDYgKzY3NCw5IEBAIHR5cGVkZWYgc3RydWN0IGRybV9pOTE1X2lycV93YWl0IHsKPiAgICAqLwo+
-ICAgI2RlZmluZSBJOTE1X1BBUkFNX0hBU19FWEVDX1RJTUVMSU5FX0ZFTkNFUyA1NQo+ICAgCj4g
-Ky8qIFF1ZXJ5IGlmIHRoZSBrZXJuZWwgc3VwcG9ydHMgdGhlIEk5MTVfVVNFUlBUUl9QUk9CRSBm
-bGFnLiAqLwo+ICsjZGVmaW5lIEk5MTVfUEFSQU1fSEFTX1VTRVJQVFJfUFJPQkUgNTYKPiArCj4g
-ICAvKiBNdXN0IGJlIGtlcHQgY29tcGFjdCAtLSBubyBob2xlcyBhbmQgd2VsbCBkb2N1bWVudGVk
-ICovCj4gICAKPiAgIHR5cGVkZWYgc3RydWN0IGRybV9pOTE1X2dldHBhcmFtIHsKPiBAQCAtMjE3
-OCwxMiArMjE4MSwyNyBAQCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX3VzZXJwdHIgewo+ICAgCSAqIHRo
-cm91Z2ggdGhlIEdUVC4gSWYgdGhlIEhXIGNhbid0IHN1cHBvcnQgcmVhZG9ubHkgYWNjZXNzLCBh
-biBlcnJvciBpcwo+ICAgCSAqIHJldHVybmVkLgo+ICAgCSAqCj4gKwkgKiBJOTE1X1VTRVJQVFJf
-UFJPQkU6Cj4gKwkgKgo+ICsJICogUHJvYmUgdGhlIHByb3ZpZGVkIEB1c2VyX3B0ciByYW5nZSBh
-bmQgdmFsaWRhdGUgdGhhdCB0aGUgQHVzZXJfcHRyIGlzCj4gKwkgKiBpbmRlZWQgcG9pbnRpbmcg
-dG8gbm9ybWFsIG1lbW9yeSBhbmQgdGhhdCB0aGUgcmFuZ2UgaXMgYWxzbyB2YWxpZC4KPiArCSAq
-IEZvciBleGFtcGxlIGlmIHNvbWUgZ2FyYmFnZSBhZGRyZXNzIGlzIGdpdmVuIHRvIHRoZSBrZXJu
-ZWwsIHRoZW4gdGhpcwo+ICsJICogc2hvdWxkIGNvbXBsYWluLgo+ICsJICoKPiArCSAqIFJldHVy
-bnMgLUVGQVVMVCBpZiB0aGUgcHJvYmUgZmFpbGVkLgo+ICsJICoKPiArCSAqIE5vdGUgdGhhdCB0
-aGlzIGRvZXNuJ3QgcG9wdWxhdGUgdGhlIGJhY2tpbmcgcGFnZXMuCgpJJ2QgYWxzbyBhZGQgYSBu
-b3RlIG9uIGhvdyB2YWxpZGF0aW9uIGF0IGNyZWF0ZSB0aW1lIG1heSBub3QgbWVhbiBvYmplY3Qg
-CndpbGwgc3RpbGwgYmUgdmFsaWQgYXQgdXNlIHRpbWUuCgpXaXRoIHRoYXQgYWRkZWQsIGFuZCBp
-Z25vcmluZyB0aGUgcXVlc3Rpb24gb2Ygd2hldGhlciB0byBoYXZlIHNldHBhcmFtIApvciBub3Q6
-CgpSZXZpZXdlZC1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4K
-ClJlZ2FyZHMsCgpUdnJ0a28KCj4gKwkgKgo+ICsJICogVGhlIGtlcm5lbCBzdXBwb3J0cyB0aGlz
-IGZlYXR1cmUgaWYgSTkxNV9QQVJBTV9IQVNfVVNFUlBUUl9QUk9CRQo+ICsJICogcmV0dXJucyBh
-IG5vbi16ZXJvIHZhbHVlLgo+ICsJICoKPiAgIAkgKiBJOTE1X1VTRVJQVFJfVU5TWU5DSFJPTkla
-RUQ6Cj4gICAJICoKPiAgIAkgKiBOT1QgVVNFRC4gU2V0dGluZyB0aGlzIGZsYWcgd2lsbCByZXN1
-bHQgaW4gYW4gZXJyb3IuCj4gICAJICovCj4gICAJX191MzIgZmxhZ3M7Cj4gICAjZGVmaW5lIEk5
-MTVfVVNFUlBUUl9SRUFEX09OTFkgMHgxCj4gKyNkZWZpbmUgSTkxNV9VU0VSUFRSX1BST0JFIDB4
-Mgo+ICAgI2RlZmluZSBJOTE1X1VTRVJQVFJfVU5TWU5DSFJPTklaRUQgMHg4MDAwMDAwMAo+ICAg
-CS8qKgo+ICAgCSAqIEBoYW5kbGU6IFJldHVybmVkIGhhbmRsZSBmb3IgdGhlIG9iamVjdC4KPiAK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915: Get rid of fence error propagation (rev5)
+URL   : https://patchwork.freedesktop.org/series/90891/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e52e05fbba43 drm/i915: Revert "drm/i915/gem: Asynchronous cmdparser"
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 686c7c35abc2 ("drm/i915/gem: Asynchronous cmdparser")'
+#6: 
+This reverts 686c7c35abc2 ("drm/i915/gem: Asynchronous cmdparser").  The
+
+-:23: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0edbb9ba1bfe ("drm/i915: Move cmd parser pinning to execbuffer")'
+#23: 
+This also reverts most of 0edbb9ba1bfe ("drm/i915: Move cmd parser
+
+total: 2 errors, 0 warnings, 0 checks, 482 lines checked
+6f6a748d043e Revert "drm/i915: Propagate errors on awaiting already signaled fences"
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#34: 
+https://lore.kernel.org/dri-devel/20210602164149.391653-2-jason@jlekstrand.net/
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+8e6788fc1b0e drm/i915: Remove allow_alloc from i915_gem_object_get_sg*
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0edbb9ba1bfe ("drm/i915: Move cmd parser pinning to execbuffer")'
+#6: 
+This reverts the rest of 0edbb9ba1bfe ("drm/i915: Move cmd parser
+
+total: 1 errors, 0 warnings, 0 checks, 93 lines checked
+c14ca72be7a9 drm/i915: Drop error handling from dma_fence_work
+15141a710104 Revert "drm/i915: Skip over MI_NOOP when parsing"
+-:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a6c5e2aea704 ("drm/i915: Skip over MI_NOOP when parsing")'
+#6: 
+This reverts a6c5e2aea704 ("drm/i915: Skip over MI_NOOP when parsing").
+
+total: 1 errors, 0 warnings, 0 checks, 83 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
