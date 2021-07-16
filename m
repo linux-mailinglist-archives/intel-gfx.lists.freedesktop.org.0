@@ -2,35 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69BBB3CB6CD
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 13:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC4D3CB701
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 13:50:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90BEA6E976;
-	Fri, 16 Jul 2021 11:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A436E964;
+	Fri, 16 Jul 2021 11:50:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9670589F63;
- Fri, 16 Jul 2021 11:40:09 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10046"; a="190397773"
-X-IronPort-AV: E=Sophos;i="5.84,244,1620716400"; d="scan'208";a="190397773"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 04:40:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,244,1620716400"; d="scan'208";a="496363853"
-Received: from ooderhoh-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.212.81.13])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 04:40:03 -0700
-Date: Fri, 16 Jul 2021 07:40:02 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Christoph Hellwig <hch@lst.de>
-Message-ID: <YPFwEiztEUVFcdCh@intel.com>
-References: <20210716061634.2446357-1-hch@lst.de>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 547106E95A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 11:50:52 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 22506613F7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 11:50:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1626436252;
+ bh=xcNbzUM0jOKcvRuRK2UanANiRRhD1nezF/UVAx3PB2g=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=SKp/RMdUhP6S7qVSnkyb1QyYWdbeHQKlh1/YrsYIUBlSW+YJX5cg1+A5X/tuA3TWg
+ Z2oErahvE5lLdC1R/uH/pabssrSOgsOuz3jGBxR0yVP8WFwPA7828YWZlfuXcfGpq1
+ 0/h+kKkoa56ev1eVAbomQqBPKdjbdIs2KCFSZHT38yn93chOKa3pCkCEQ8GeQLGZwp
+ eOiw0wQ5okcWdOJ6Bxa/4RU0brNDGpF5ew2riPLvURnWXQJ+FlmwEnJWbPp5ytUxR/
+ BVGUC8WYSnc1Yka7RHm1pAEGsNWifimgM7KaEvSw8DJaUdxQTMbVaaXInyrQuBSlCC
+ sAXVD+APgoOTg==
+Received: by mail-io1-f53.google.com with SMTP id d9so10223950ioo.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 04:50:52 -0700 (PDT)
+X-Gm-Message-State: AOAM530r/5iCG0hoJDe4w2JUMdJNN2Uqoq87UOIO9q82HJLXRgo8RT/t
+ 0UFYSurtJ5jYvctNKSoGcUNee/4BuWy8tnUK3TI=
+X-Google-Smtp-Source: ABdhPJy6zOSVr9MJ3cW46LUnC7WNx2PLe3w1izhq0r6Y5fbxSQIM5Sss+eX1SEH5y8PgE1vMH2C9KmS0/ga4Nyw0bEM=
+X-Received: by 2002:a05:6638:3292:: with SMTP id
+ f18mr8806184jav.120.1626436251664; 
+ Fri, 16 Jul 2021 04:50:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210716061634.2446357-1-hch@lst.de>
-Subject: Re: [Intel-gfx] misc vgaarb cleanups
+References: <20210708175025.333468-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20210708175025.333468-1-John.C.Harrison@Intel.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Fri, 16 Jul 2021 07:50:40 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA5Z5_kgsOwvrW8KYSs=E9X=qqZKLRCNGMdj3MYWg1QmuA@mail.gmail.com>
+Message-ID: <CA+5PVA5Z5_kgsOwvrW8KYSs=E9X=qqZKLRCNGMdj3MYWg1QmuA@mail.gmail.com>
+To: John.C.Harrison@intel.com
+Subject: Re: [Intel-gfx] PR for new GuC v62.0.3 and HuC v7.9.3 binaries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,38 +53,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, kvm@vger.kernel.org,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Ben Skeggs <bskeggs@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org, kyle@kernel.org, ben@decadent.org.uk,
+ linux-firmware@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 16, 2021 at 08:16:27AM +0200, Christoph Hellwig wrote:
-> Hi all,
-> 
-> this series cleans up a bunch of lose ends in the vgaarb code.
-> 
-> Diffstat:
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   11 +-
->  drivers/gpu/drm/drm_irq.c                  |    4 
->  drivers/gpu/drm/i915/display/intel_vga.c   |    9 +-
+On Thu, Jul 8, 2021 at 1:50 PM <John.C.Harrison@intel.com> wrote:
+>
+> The following changes since commit d79c26779d459063b8052b7fe0a48bce4e08d0d9:
+>
+>   amdgpu: update vcn firmware for green sardine for 21.20 (2021-06-29 07:26:03 -0400)
+>
+> are available in the Git repository at:
+>
+>   git://anongit.freedesktop.org/drm/drm-firmware guc_62.0_huc_7.9
+>
+> for you to fetch changes up to f4d897acd200190350a5f2148316c51c6c57bc9b:
+>
+>   firmware/i915/guc: Add HuC v7.9.3 for TGL & DG1 (2021-06-29 14:20:03 -0700)
+>
+> ----------------------------------------------------------------
+> John Harrison (3):
+>       firmware/i915/guc: Add GuC v62.0.0 for all platforms
+>       firmware/i915/guc: Add GuC v62.0.3 for ADL-P
+>       firmware/i915/guc: Add HuC v7.9.3 for TGL & DG1
 
-The parts touching i915 looks clean to me
+Pulled and pushed out.
 
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+josh
 
->  drivers/gpu/drm/nouveau/nouveau_vga.c      |    8 -
->  drivers/gpu/drm/radeon/radeon_device.c     |   11 +-
->  drivers/gpu/vga/vgaarb.c                   |   67 +++++-----------
->  drivers/vfio/pci/vfio_pci.c                |   11 +-
->  include/linux/vgaarb.h                     |  118 ++++++++++-------------------
->  8 files changed, 93 insertions(+), 146 deletions(-)
+>
+>  WHENCE                   |  38 +++++++++++++++++++++++++++++++++++++-
+>  i915/adlp_guc_62.0.3.bin | Bin 0 -> 336704 bytes
+>  i915/bxt_guc_62.0.0.bin  | Bin 0 -> 199616 bytes
+>  i915/cml_guc_62.0.0.bin  | Bin 0 -> 200448 bytes
+>  i915/dg1_guc_62.0.0.bin  | Bin 0 -> 315648 bytes
+>  i915/dg1_huc_7.9.3.bin   | Bin 0 -> 589888 bytes
+>  i915/ehl_guc_62.0.0.bin  | Bin 0 -> 327488 bytes
+>  i915/glk_guc_62.0.0.bin  | Bin 0 -> 200000 bytes
+>  i915/icl_guc_62.0.0.bin  | Bin 0 -> 327488 bytes
+>  i915/kbl_guc_62.0.0.bin  | Bin 0 -> 200448 bytes
+>  i915/skl_guc_62.0.0.bin  | Bin 0 -> 199552 bytes
+>  i915/tgl_guc_62.0.0.bin  | Bin 0 -> 326016 bytes
+>  i915/tgl_huc_7.9.3.bin   | Bin 0 -> 589888 bytes
+>  13 files changed, 37 insertions(+), 1 deletion(-)
+>  create mode 100644 i915/adlp_guc_62.0.3.bin
+>  create mode 100644 i915/bxt_guc_62.0.0.bin
+>  create mode 100644 i915/cml_guc_62.0.0.bin
+>  create mode 100644 i915/dg1_guc_62.0.0.bin
+>  create mode 100644 i915/dg1_huc_7.9.3.bin
+>  create mode 100644 i915/ehl_guc_62.0.0.bin
+>  create mode 100644 i915/glk_guc_62.0.0.bin
+>  create mode 100644 i915/icl_guc_62.0.0.bin
+>  create mode 100644 i915/kbl_guc_62.0.0.bin
+>  create mode 100644 i915/skl_guc_62.0.0.bin
+>  create mode 100644 i915/tgl_guc_62.0.0.bin
+>  create mode 100644 i915/tgl_huc_7.9.3.bin
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
