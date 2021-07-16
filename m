@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E7A03CB9F9
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 17:37:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BEB3CBA0A
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Jul 2021 17:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 174896E9B9;
-	Fri, 16 Jul 2021 15:37:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 546BF6E9B6;
+	Fri, 16 Jul 2021 15:44:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BEC946E9B9;
- Fri, 16 Jul 2021 15:37:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 701776E9B6;
+ Fri, 16 Jul 2021 15:44:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B7FF7AA01E;
- Fri, 16 Jul 2021 15:37:02 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 68B3AAA916;
+ Fri, 16 Jul 2021 15:44:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Fri, 16 Jul 2021 15:37:02 -0000
-Message-ID: <162644982275.12779.297248541499235309@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Fri, 16 Jul 2021 15:44:17 -0000
+Message-ID: <162645025739.12779.4906242067779518675@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210714204452.1481805-1-jason@jlekstrand.net>
-In-Reply-To: <20210714204452.1481805-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Check_object=5Fcan=5Fmigrate_from_object=5Fmigrate_?=
- =?utf-8?b?KHJldjIp?=
+References: <20210714223414.9849-1-manasi.d.navare@intel.com>
+In-Reply-To: <20210714223414.9849-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_Fix_shared_dpll_mismatch_for_bigjoiner_?=
+ =?utf-8?q?slave_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,20 +48,23 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Check object_can_migrate from object_migrate (rev2)
-URL   : https://patchwork.freedesktop.org/series/92551/
-State : failure
+Series: drm/i915/display: Fix shared dpll mismatch for bigjoiner slave (rev3)
+URL   : https://patchwork.freedesktop.org/series/91830/
+State : warning
 
 == Summary ==
 
-Applying: drm/i915: Check object_can_migrate from object_migrate
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915: Check object_can_migrate from object_migrate
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+e5339cc39b24 drm/i915/display: Fix shared dpll mismatch for bigjoiner slave
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+Currently when we do the HW state readout, we dont set the shared dpll to NULL
+
+-:18: WARNING:BAD_SIGN_OFF: 'Tested-by:' is the preferred signature form
+#18: 
+Tested-By: Swati Sharma <swati2.sharma@intel.com>
+
+total: 0 errors, 2 warnings, 0 checks, 10 lines checked
 
 
 _______________________________________________
