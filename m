@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2773CC15B
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 07:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E4D3CC15A
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 07:14:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5FE36EA1C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8836A6EA1A;
 	Sat, 17 Jul 2021 05:14:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50F866EA16
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D7B76EA14
  for <intel-gfx@lists.freedesktop.org>; Sat, 17 Jul 2021 05:14:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="191188867"
-X-IronPort-AV: E=Sophos;i="5.84,246,1620716400"; d="scan'208";a="191188867"
+X-IronPort-AV: E=McAfee;i="6200,9189,10047"; a="191188868"
+X-IronPort-AV: E=Sophos;i="5.84,246,1620716400"; d="scan'208";a="191188868"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Jul 2021 22:14:31 -0700
-X-IronPort-AV: E=Sophos;i="5.84,246,1620716400"; d="scan'208";a="563335058"
+X-IronPort-AV: E=Sophos;i="5.84,246,1620716400"; d="scan'208";a="563335061"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2021 22:14:30 -0700
+ 16 Jul 2021 22:14:31 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Jul 2021 22:14:20 -0700
-Message-Id: <20210717051426.4120328-2-matthew.d.roper@intel.com>
+Date: Fri, 16 Jul 2021 22:14:21 -0700
+Message-Id: <20210717051426.4120328-3-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210717051426.4120328-1-matthew.d.roper@intel.com>
 References: <20210717051426.4120328-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/7] drm/i915: Fix application of
- WaInPlaceDecompressionHang
+Subject: [Intel-gfx] [PATCH 2/7] drm/i915/icl: Drop a couple unnecessary
+ workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,82 +48,73 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On SKL we've been applying this workaround on H0+ steppings, which is
-actually backwards; H0 is supposed to be the first stepping where the
-workaround is no longer needed.  Flip the bounds so that the workaround
-applies to all steppings _before_ H0.
+While doing a quick sanity check of the ICL workarounds in the driver I
+noticed a few things that should be updated:
 
-On BXT we've been applying this workaround to all steppings, but the
-bspec tells us it's only needed until C0.  Pre-C0 GT steppings only
-appeared in pre-production hardware, which we no longer support in the
-driver, so we can drop the workaround completely for this platform.
+ * There's no mention in the bspec that WaPipelineFlushCoherentLines
+   is needed on gen11 (both the current WA database and the old,
+   deprecated page 20196 were checked); it appears this might have just
+   been copied from the gen9 list?  Even if this were needed, it doesn't
+   seem like this was the correct implementation anyway since the gen9
+   workaround is supposed to be implemented in the indirect context bb
+   (as we do in gen8_emit_flush_coherentl3_wa() on gen8/gen9).
 
-On ICL we've been applying this workaround to all steppings, but there
-doesn't seem to be any indication that this workaround was ever needed
-for this platform (even now-deprecated page 20196 of the bspec doesn't
-mention it).  We can go ahead and drop it.
+ * WaForwardProgressSoftReset does not appear in the current workaround
+   database.  The old deprecated workaround list has a note indicating
+   the workaround was dropped in 2017, so we should be safe to drop it
+   from the code too.
 
-I also don't see any mention of this workaround being needed for KBL,
-although this may be an oversight since the workaround is needed for all
-steppings of CFL.  I'll leave the workaround in place for KBL to be
-safe.
+While we're at it, add the formal workaround ID number to
+WaDisableBankHangMode (our hardware team made a transition from
+text-based workaround names to ID numbers partway through the
+development of ICL, which is why some workarounds only have names, some
+only have numbers, and some have both).
 
-Bspec: 14091, 33450
+Bspec: 33450
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 20 ++------------------
- 1 file changed, 2 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 14 +-------------
+ 1 file changed, 1 insertion(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 7731db33c46a..76a3b5d5e9dc 100644
+index 76a3b5d5e9dc..36d972492883 100644
 --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -838,23 +838,12 @@ skl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 		    GEN8_EU_GAUNIT_CLOCK_GATE_DISABLE);
+@@ -517,7 +517,7 @@ static void cfl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 				     struct i915_wa_list *wal)
+ {
+-	/* WaDisableBankHangMode:icl */
++	/* Wa_1406697149 (WaDisableBankHangMode:icl) */
+ 	wa_write(wal,
+ 		 GEN8_L3CNTLREG,
+ 		 intel_uncore_read(engine->uncore, GEN8_L3CNTLREG) |
+@@ -1587,11 +1587,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			     _3D_CHICKEN3,
+ 			     _3D_CHICKEN3_AA_LINE_QUALITY_FIX_ENABLE);
  
- 	/* WaInPlaceDecompressionHang:skl */
--	if (IS_SKL_GT_STEP(i915, STEP_H0, STEP_FOREVER))
-+	if (IS_SKL_GT_STEP(i915, STEP_A0, STEP_H0 - 1))
+-		/* WaPipelineFlushCoherentLines:icl */
+-		wa_write_or(wal,
+-			    GEN8_L3SQCREG4,
+-			    GEN8_LQSC_FLUSH_COHERENT_LINES);
+-
+ 		/*
+ 		 * Wa_1405543622:icl
+ 		 * Formerly known as WaGAPZPriorityScheme
+@@ -1621,13 +1616,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			    GEN8_L3SQCREG4,
+ 			    GEN11_LQSC_CLEAN_EVICT_DISABLE);
+ 
+-		/* WaForwardProgressSoftReset:icl */
+-		wa_write_or(wal,
+-			    GEN10_SCRATCH_LNCF2,
+-			    PMFLUSHDONE_LNICRSDROP |
+-			    PMFLUSH_GAPL3UNBLOCK |
+-			    PMFLUSHDONE_LNEBLK);
+-
+ 		/* Wa_1606682166:icl */
  		wa_write_or(wal,
- 			    GEN9_GAMT_ECO_REG_RW_IA,
- 			    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
- }
- 
--static void
--bxt_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
--{
--	gen9_gt_workarounds_init(i915, wal);
--
--	/* WaInPlaceDecompressionHang:bxt */
--	wa_write_or(wal,
--		    GEN9_GAMT_ECO_REG_RW_IA,
--		    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
--}
--
- static void
- kbl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
-@@ -942,11 +931,6 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- {
- 	icl_wa_init_mcr(i915, wal);
- 
--	/* WaInPlaceDecompressionHang:icl */
--	wa_write_or(wal,
--		    GEN9_GAMT_ECO_REG_RW_IA,
--		    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
--
- 	/* WaModifyGamTlbPartitioning:icl */
- 	wa_write_clr_set(wal,
- 			 GEN11_GACB_PERF_CTRL,
-@@ -1081,7 +1065,7 @@ gt_init_workarounds(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 	else if (IS_KABYLAKE(i915))
- 		kbl_gt_workarounds_init(i915, wal);
- 	else if (IS_BROXTON(i915))
--		bxt_gt_workarounds_init(i915, wal);
-+		gen9_gt_workarounds_init(i915, wal);
- 	else if (IS_SKYLAKE(i915))
- 		skl_gt_workarounds_init(i915, wal);
- 	else if (IS_HASWELL(i915))
+ 			    GEN7_SARCHKMD,
 -- 
 2.25.4
 
