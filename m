@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596F03CC04A
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 02:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D226F3CC050
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Jul 2021 02:44:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7566E9F7;
-	Sat, 17 Jul 2021 00:39:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4EFB6E9F2;
+	Sat, 17 Jul 2021 00:44:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0DB996E9F7;
- Sat, 17 Jul 2021 00:39:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E2276E9F2;
+ Sat, 17 Jul 2021 00:44:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 07A4FA0BCB;
- Sat, 17 Jul 2021 00:39:35 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 76CB7A8832;
+ Sat, 17 Jul 2021 00:44:41 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Sat, 17 Jul 2021 00:39:35 -0000
-Message-ID: <162648237500.18553.1251322758030741745@emeril.freedesktop.org>
+Date: Sat, 17 Jul 2021 00:44:41 -0000
+Message-ID: <162648268145.18553.11861135710766206058@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210716141426.1904528-1-jason@jlekstrand.net>
 In-Reply-To: <20210716141426.1904528-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Migrate_memory_to_SMEM_when_imported_cross-devi?=
- =?utf-8?b?Y2UgKHJldjIp?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_Migrate_memory_to_SMEM_when_imported_cross-device_=28?=
+ =?utf-8?q?rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,20 +54,14 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-a518ef415105 drm/i915/gem: Check object_can_migrate from object_migrate
-bc470df2a6dc drm/i915/gem: Refactor placement setup for i915_gem_object_create* (v2)
-7cfa880e0e74 drm/i915/gem: Call i915_gem_flush_free_objects() in i915_gem_dumb_create()
-80a4a7f5c03b drm/i915/gem: Unify user object creation (v2)
-0e4a617a75b8 drm/i915/gem/ttm: Respect the objection region in placement_from_obj
-6dc86f72e162 drm/i915/gem: Correct the locking and pin pattern for dma-buf (v6)
-22424415b1b8 drm/i915/gem: Migrate to system at dma-buf attach time (v6)
--:189: WARNING:LINE_SPACING: Missing a blank line after declarations
-#189: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:240:
-+	struct intel_memory_region *smem = i915->mm.regions[INTEL_REGION_SMEM];
-+	return igt_dmabuf_import_same_driver(i915, &smem, 1);
-
-total: 0 errors, 1 warnings, 0 checks, 164 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Function parameter or member 'trampoline' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
 
 
 _______________________________________________
