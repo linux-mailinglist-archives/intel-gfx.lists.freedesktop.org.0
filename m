@@ -2,33 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9683CCE51
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 09:16:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 200463CCE52
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 09:16:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B76AB6E0A6;
-	Mon, 19 Jul 2021 07:16:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6C76E0A8;
+	Mon, 19 Jul 2021 07:16:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D5476E0A6
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 07:16:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10049"; a="209103104"
-X-IronPort-AV: E=Sophos;i="5.84,251,1620716400"; d="scan'208";a="209103104"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CD406E0A8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 07:16:38 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10049"; a="209103115"
+X-IronPort-AV: E=Sophos;i="5.84,251,1620716400"; d="scan'208";a="209103115"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2021 00:16:35 -0700
+ 19 Jul 2021 00:16:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,251,1620716400"; d="scan'208";a="631817003"
+X-IronPort-AV: E=Sophos;i="5.84,251,1620716400"; d="scan'208";a="631817016"
 Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.12])
- by orsmga005.jf.intel.com with ESMTP; 19 Jul 2021 00:16:33 -0700
+ by orsmga005.jf.intel.com with ESMTP; 19 Jul 2021 00:16:36 -0700
 From: Lee Shawn C <shawn.c.lee@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Jul 2021 15:22:19 +0800
-Message-Id: <20210719072222.13369-3-shawn.c.lee@intel.com>
+Date: Mon, 19 Jul 2021 15:22:20 +0800
+Message-Id: <20210719072222.13369-4-shawn.c.lee@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210719072222.13369-1-shawn.c.lee@intel.com>
 References: <20210719072222.13369-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] [PATCH 2/5] drm/i915/jsl: program DSI panel GPIOs
+Subject: [Intel-gfx] [PATCH 3/5] drm/i915/dsi: wait for header and payload
+ credit available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,8 +50,10 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DSI driver should have its own implementation to toggle
-gpio pins based on GPIO info coming from VBT sequences.
+Driver should wait for free header or payload buffer in FIFO.
+It would be good to wait a while for HW to release credit before
+give it up to write to HW. Without sending initailize command
+sets completely. It would caused MIPI display can't light up properly.
 
 Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
@@ -59,93 +62,105 @@ Cc: Cooper Chiou <cooper.chiou@intel.com>
 Cc: William Tseng <william.tseng@intel.com>
 Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 44 +++++++++++++++++++-
- drivers/gpu/drm/i915/i915_reg.h              | 10 +++++
- 2 files changed, 53 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c | 40 ++++++++++++--------------
+ 1 file changed, 19 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index cc93e045a425..dd03e5629ba6 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -43,6 +43,7 @@
- #include "intel_display_types.h"
- #include "intel_dsi.h"
- #include "intel_sideband.h"
-+#include "intel_de.h"
- 
- #define MIPI_TRANSFER_MODE_SHIFT	0
- #define MIPI_VIRTUAL_CHANNEL_SHIFT	1
-@@ -354,7 +355,48 @@ static void bxt_exec_gpio(struct drm_i915_private *dev_priv,
- static void icl_exec_gpio(struct drm_i915_private *dev_priv,
- 			  u8 gpio_source, u8 gpio_index, bool value)
- {
--	drm_dbg_kms(&dev_priv->drm, "Skipping ICL GPIO element execution\n");
-+	u32 val;
-+
-+	switch (gpio_index) {
-+	case ICL_GPIO_L_VDDEN_1:
-+		val = intel_de_read(dev_priv, ICP_PP_CONTROL(1));
-+		if (value)
-+			val |= PWR_STATE_TARGET;
-+		else
-+			val &= ~PWR_STATE_TARGET;
-+		intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
-+		break;
-+	case ICL_GPIO_L_BKLTEN_1:
-+		val = intel_de_read(dev_priv, ICP_PP_CONTROL(1));
-+		if (value)
-+			val |= BACKLIGHT_ENABLE;
-+		else
-+			val &= ~BACKLIGHT_ENABLE;
-+		intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
-+		break;
-+	case ICL_GPIO_DDPA_CTRLCLK_1:
-+		val = intel_de_read(dev_priv, GPIO(1));
-+		if (value)
-+			val |= GPIO_CLOCK_VAL_OUT;
-+		else
-+			val &= ~GPIO_CLOCK_VAL_OUT;
-+		val |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_VAL_MASK;
-+		intel_de_write(dev_priv, GPIO(1), val);
-+		break;
-+	case ICL_GPIO_DDPA_CTRLDATA_1:
-+		val = intel_de_read(dev_priv, GPIO(1));
-+		if (value)
-+			val |= GPIO_DATA_VAL_OUT;
-+		else
-+			val &= ~GPIO_DATA_VAL_OUT;
-+		val |= GPIO_DATA_DIR_MASK | GPIO_DATA_DIR_OUT | GPIO_DATA_VAL_MASK;
-+		intel_de_write(dev_priv, GPIO(1), val);
-+		break;
-+	default:
-+		/* TODO: Add support for remaining GPIOs */
-+		DRM_ERROR("Invalid GPIO number (%d) from VBT\n", gpio_index);
-+		break;
-+	}
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 43ec7fcd3f5d..1780830d9909 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -54,20 +54,28 @@ static int payload_credits_available(struct drm_i915_private *dev_priv,
+ 		>> FREE_PLOAD_CREDIT_SHIFT;
  }
  
- static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 943fe485c662..b725234e0e9c 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -5143,6 +5143,16 @@ enum {
- #define _PP_STATUS			0x61200
- #define PP_STATUS(pps_idx)		_MMIO_PPS(pps_idx, _PP_STATUS)
- #define   PP_ON				REG_BIT(31)
+-static void wait_for_header_credits(struct drm_i915_private *dev_priv,
+-				    enum transcoder dsi_trans)
++static bool wait_for_header_credits(struct drm_i915_private *dev_priv,
++				    enum transcoder dsi_trans, int hdr_credit)
+ {
+ 	if (wait_for_us(header_credits_available(dev_priv, dsi_trans) >=
+-			MAX_HEADER_CREDIT, 100))
++			hdr_credit, 100)) {
+ 		drm_err(&dev_priv->drm, "DSI header credits not released\n");
++		return false;
++	}
 +
-+#define _PP_CONTROL_1			0xc7204
-+#define _PP_CONTROL_2			0xc7304
-+#define ICP_PP_CONTROL(x)		_MMIO(((x) == 1) ? _PP_CONTROL_1 : \
-+					      _PP_CONTROL_2)
-+#define  POWER_CYCLE_DELAY_MASK		REG_GENMASK(8, 4)
-+#define  VDD_OVERRIDE_FORCE		REG_BIT(3)
-+#define  BACKLIGHT_ENABLE		REG_BIT(2)
-+#define  PWR_DOWN_ON_RESET		REG_BIT(1)
-+#define  PWR_STATE_TARGET		REG_BIT(0)
- /*
-  * Indicates that all dependencies of the panel are on:
-  *
++	return true;
+ }
+ 
+-static void wait_for_payload_credits(struct drm_i915_private *dev_priv,
+-				     enum transcoder dsi_trans)
++static bool wait_for_payload_credits(struct drm_i915_private *dev_priv,
++				     enum transcoder dsi_trans, int payld_credit)
+ {
+ 	if (wait_for_us(payload_credits_available(dev_priv, dsi_trans) >=
+-			MAX_PLOAD_CREDIT, 100))
++			payld_credit, 100)) {
+ 		drm_err(&dev_priv->drm, "DSI payload credits not released\n");
++		return false;
++	}
++
++	return true;
+ }
+ 
+ static enum transcoder dsi_port_to_transcoder(enum port port)
+@@ -90,8 +98,8 @@ static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
+ 	/* wait for header/payload credits to be released */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		dsi_trans = dsi_port_to_transcoder(port);
+-		wait_for_header_credits(dev_priv, dsi_trans);
+-		wait_for_payload_credits(dev_priv, dsi_trans);
++		wait_for_header_credits(dev_priv, dsi_trans, MAX_HEADER_CREDIT);
++		wait_for_payload_credits(dev_priv, dsi_trans, MAX_PLOAD_CREDIT);
+ 	}
+ 
+ 	/* send nop DCS command */
+@@ -108,7 +116,7 @@ static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
+ 	/* wait for header credits to be released */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		dsi_trans = dsi_port_to_transcoder(port);
+-		wait_for_header_credits(dev_priv, dsi_trans);
++		wait_for_header_credits(dev_priv, dsi_trans, MAX_HEADER_CREDIT);
+ 	}
+ 
+ 	/* wait for LP TX in progress bit to be cleared */
+@@ -126,18 +134,13 @@ static bool add_payld_to_queue(struct intel_dsi_host *host, const u8 *data,
+ 	struct intel_dsi *intel_dsi = host->intel_dsi;
+ 	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
+ 	enum transcoder dsi_trans = dsi_port_to_transcoder(host->port);
+-	int free_credits;
+ 	int i, j;
+ 
+ 	for (i = 0; i < len; i += 4) {
+ 		u32 tmp = 0;
+ 
+-		free_credits = payload_credits_available(dev_priv, dsi_trans);
+-		if (free_credits < 1) {
+-			drm_err(&dev_priv->drm,
+-				"Payload credit not available\n");
++		if (!wait_for_payload_credits(dev_priv, dsi_trans, 1))
+ 			return false;
+-		}
+ 
+ 		for (j = 0; j < min_t(u32, len - i, 4); j++)
+ 			tmp |= *data++ << 8 * j;
+@@ -155,15 +158,10 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
+ 	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
+ 	enum transcoder dsi_trans = dsi_port_to_transcoder(host->port);
+ 	u32 tmp;
+-	int free_credits;
+ 
+ 	/* check if header credit available */
+-	free_credits = header_credits_available(dev_priv, dsi_trans);
+-	if (free_credits < 1) {
+-		drm_err(&dev_priv->drm,
+-			"send pkt header failed, not enough hdr credits\n");
++	if (!wait_for_header_credits(dev_priv, dsi_trans, 1))
+ 		return -1;
+-	}
+ 
+ 	tmp = intel_de_read(dev_priv, DSI_CMD_TXHDR(dsi_trans));
+ 
 -- 
 2.17.1
 
