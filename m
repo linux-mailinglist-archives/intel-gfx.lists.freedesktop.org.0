@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F42E3CEB0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:38:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C604C3CEB15
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:42:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C48FB89AB9;
-	Mon, 19 Jul 2021 18:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5023C89FC5;
+	Mon, 19 Jul 2021 18:42:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6D59189AB3;
- Mon, 19 Jul 2021 18:38:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id CBF1389FC5;
+ Mon, 19 Jul 2021 18:42:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6A412A47E1;
- Mon, 19 Jul 2021 18:38:40 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C55A1AA01E;
+ Mon, 19 Jul 2021 18:42:12 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Mon, 19 Jul 2021 18:38:40 -0000
-Message-ID: <162671992043.8481.15016238304005446600@emeril.freedesktop.org>
+Date: Mon, 19 Jul 2021 18:42:12 -0000
+Message-ID: <162672013280.8480.2125697440919875389@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210719183047.2624569-1-jason@jlekstrand.net>
 In-Reply-To: <20210719183047.2624569-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Fix_the_debugfs_splat_from_mock_selftests?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIEZp?=
+ =?utf-8?q?x_the_debugfs_splat_from_mock_selftests?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,11 +53,14 @@ State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/ttm/ttm_device.c:144:5: warning: context imbalance in 'ttm_device_swapout' - wrong count at exit
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Function parameter or member 'trampoline' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
 
 
 _______________________________________________
