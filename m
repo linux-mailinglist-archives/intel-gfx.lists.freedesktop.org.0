@@ -2,62 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66493CD5C3
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 15:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E4D33CD6F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 16:41:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70FA289E05;
-	Mon, 19 Jul 2021 13:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDD5E89C61;
+	Mon, 19 Jul 2021 14:41:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
- [IPv6:2607:f8b0:4864:20::730])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E768489E5A;
- Mon, 19 Jul 2021 13:35:11 +0000 (UTC)
-Received: by mail-qk1-x730.google.com with SMTP id m3so16637894qkm.10;
- Mon, 19 Jul 2021 06:35:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EC2ljfPhA7WIDSKlhsiohqQaEAYTTTn3yjJVmX2LV28=;
- b=bLuSQuT2M+a5nFk2Me/nOHiiVX6Orri2c+U3h9Na+XttZwglYQQDVxawe7l8K2Pegb
- XAyCMLu6b2zT3ya7BeYLPCqEqN+A0yzYirNUKGAYp3+b3U2FQJHzaHfHQonou7c4YBvi
- hEga8Rw4emRB47yZ12McgTZGS7jA9cHp5GATuMv9pORNozygUDrn1aOJJqh4/4y89BI0
- I9E6l7LIl8hANVWqqrr3IwiBggfDktqn6mvEJ0/ohMgeOKPZaMkXKBi0Zzo5us5DgX6F
- bEZ2ljXM0KtemTfVXAP9x4ann15ikMxsft7oKTn6G0OlYTmfFwRwWLcQSQiOqatknl7z
- 3Jvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=EC2ljfPhA7WIDSKlhsiohqQaEAYTTTn3yjJVmX2LV28=;
- b=mTgAv1VrsqEYL7haWt9QgBBcFyFHpRfCUDiBFq/gC6m/MhCPwQ2Ude8Vmm+u7BpYeA
- HQ+hQJYrXf+f0Cvyd8Xh/n1WXG+lMfzXyhJGXktBhLZ1mrHsYNllLZkq793WTLhswx3m
- hsUJrNZrmSvs9XePw25egu4Wv/aVK8hPOCbs8q1paC6VPJ1KLvFkqnl4iHJgqLYNCOR2
- hoDc6wNmhh5CxfOgq5QQul11CFyXtjtZ7tXBgYZCA1YrobK62BP12fkpIIjhGEaS2S0p
- 8+Pj1l5N5B5DoPYFgA0DH1mopSEBKRHE9cYvAQ0vNkYibIFJGXgaUoT4P9KbWM6FbUXs
- 0/SQ==
-X-Gm-Message-State: AOAM531u/WHTYomgN4KadxxmoK831VZbBbLh9A+NzcxTwkRX73HCGsz9
- pwvcPee+np2mPmR+Qw0ZHJbBkMGHgplR0tuqggQ=
-X-Google-Smtp-Source: ABdhPJxmlNIAov9jv6/V1smJnZGisiGgPH3TLoJDAd6Ay8dmK9t28mtcCUK3I6F1pQg3s+l6aTy2GYSSowFwKcULCEw=
-X-Received: by 2002:a05:620a:1581:: with SMTP id
- d1mr23120175qkk.327.1626701710283; 
- Mon, 19 Jul 2021 06:35:10 -0700 (PDT)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E38F89C61
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 14:41:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1626705666;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=uisns9yt90kWM49tx27JUkXBcrqG48kz/iXIfY6XeUs=;
+ b=Uuvl/dhFiX8LQBZkJdiU5nXqg0xdbarcFKAqxKb3t5UW+NXAx3I4/BIU7nitBQx+/c6FhG
+ 6kjHsUwApCXHnVo0NGKvqBruzrJheegmrpzdWAMcM8iebrkI/npjnDJM3QyVrP3CKgWXMA
+ YM24w94xN1Ciam/wz5QJO9eNIrfqQ6c=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-8-ORcvDXgKME68wDiU7fvhyg-1; Mon, 19 Jul 2021 10:41:03 -0400
+X-MC-Unique: ORcvDXgKME68wDiU7fvhyg-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5B6A0804140;
+ Mon, 19 Jul 2021 14:40:58 +0000 (UTC)
+Received: from localhost (ovpn-112-158.ams2.redhat.com [10.36.112.158])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id 9524960918;
+ Mon, 19 Jul 2021 14:40:48 +0000 (UTC)
+From: Cornelia Huck <cohuck@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@linux.ie>, Tony
+ Krowiak <akrowiak@linux.ibm.com>, Alex Williamson
+ <alex.williamson@redhat.com>, Christian Borntraeger
+ <borntraeger@de.ibm.com>, Jonathan Corbet <corbet@lwn.net>, Daniel Vetter
+ <daniel@ffwll.ch>, Diana Craciun <diana.craciun@oss.nxp.com>,
+ dri-devel@lists.freedesktop.org, Eric Auger <eric.auger@redhat.com>, Eric
+ Farman <farman@linux.ibm.com>, Harald Freudenberger
+ <freude@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens
+ <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, Jani Nikula
+ <jani.nikula@linux.intel.com>, Jason Herne <jjherne@linux.ibm.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org, Kirti
+ Wankhede <kwankhede@nvidia.com>, linux-doc@vger.kernel.org,
+ linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>, Peter
+ Oberparleiter <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Vineeth Vijayan
+ <vneethv@linux.ibm.com>, Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
+ <zhi.a.wang@intel.com>
+In-Reply-To: <11-v1-eaf3ccbba33c+1add0-vfio_reflck_jgg@nvidia.com>
+Organization: Red Hat GmbH
+References: <11-v1-eaf3ccbba33c+1add0-vfio_reflck_jgg@nvidia.com>
+User-Agent: Notmuch/0.32.1 (https://notmuchmail.org)
+Date: Mon, 19 Jul 2021 16:40:47 +0200
+Message-ID: <87r1fu9xjk.fsf@redhat.com>
 MIME-Version: 1.0
-References: <20210715223900.1840576-1-jason@jlekstrand.net>
- <20210715223900.1840576-6-jason@jlekstrand.net>
- <CAM0jSHPu1EBfnAJ06Dp51a1Qbg+9QnmP=EyUfYXS0fZnJzxR8g@mail.gmail.com>
- <CAOFGe95gEUNsjCh+30AXhrQLz8_OKbHwwxv=_OhaGKQxGpvcew@mail.gmail.com>
- <CAM0jSHO4EU_gBXo-56GtDJffezfVHYoUhCeOnb97ZgBj5vyA7Q@mail.gmail.com>
- <CAM0jSHOHCr6ppLhUBVSd_JUnBDFAcsYEYtma01benzs_nkhtGg@mail.gmail.com>
- <CAOFGe95YYjS=k9SnQg0EuOR02FWGPyCAvJH7Ymm6ZhiHq5iNCw@mail.gmail.com>
- <CAM0jSHP8vS9FeEjKx9sQqek2-eGVEK+=6y03eNnf0zpnxmmP6w@mail.gmail.com>
- <CAOFGe94C48djm1uWXC2Tn-ssSvGr=sTOaEDORG355s72ysfqQg@mail.gmail.com>
-In-Reply-To: <CAOFGe94C48djm1uWXC2Tn-ssSvGr=sTOaEDORG355s72ysfqQg@mail.gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 19 Jul 2021 14:34:44 +0100
-Message-ID: <CAM0jSHOTjp-zSdOR1u9H_YM8ryQbA-H9N3RQh-7cQvGr0k5wjw@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/gem/ttm: Respect the objection
- region in placement_from_obj
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: Re: [Intel-gfx] [PATCH 11/13] vfio/ap,
+ ccw: Fix open/close when multiple device FDs are open
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,149 +76,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Max Gurtovoy <mgurtovoy@nvidia.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Leon Romanovsky <leonro@nvidia.com>, "Raj, Ashok" <ashok.raj@intel.com>,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 16 Jul 2021 at 20:49, Jason Ekstrand <jason@jlekstrand.net> wrote:
->
-> On Fri, Jul 16, 2021 at 1:45 PM Matthew Auld
-> <matthew.william.auld@gmail.com> wrote:
-> >
-> > On Fri, 16 Jul 2021 at 18:39, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > >
-> > > On Fri, Jul 16, 2021 at 11:00 AM Matthew Auld
-> > > <matthew.william.auld@gmail.com> wrote:
-> > > >
-> > > > On Fri, 16 Jul 2021 at 16:52, Matthew Auld
-> > > > <matthew.william.auld@gmail.com> wrote:
-> > > > >
-> > > > > On Fri, 16 Jul 2021 at 15:10, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > > > > >
-> > > > > > On Fri, Jul 16, 2021 at 8:54 AM Matthew Auld
-> > > > > > <matthew.william.auld@gmail.com> wrote:
-> > > > > > >
-> > > > > > > On Thu, 15 Jul 2021 at 23:39, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > > > > > > >
-> > > > > > > > Whenever we had a user object (n_placements > 0), we were ignoring
-> > > > > > > > obj->mm.region and always putting obj->placements[0] as the requested
-> > > > > > > > region.  For LMEM+SMEM objects, this was causing them to get shoved into
-> > > > > > > > LMEM on every i915_ttm_get_pages() even when SMEM was requested by, say,
-> > > > > > > > i915_gem_object_migrate().
-> > > > > > >
-> > > > > > > i915_ttm_migrate calls i915_ttm_place_from_region() directly with the
-> > > > > > > requested region, so there shouldn't be an issue with migration right?
-> > > > > > > Do you have some more details?
-> > > > > >
-> > > > > > With i915_ttm_migrate directly, no.  But, in the last patch in the
-> > > > > > series, we're trying to migrate LMEM+SMEM buffers into SMEM on
-> > > > > > attach() and pin it there.  This blows up in a very unexpected (IMO)
-> > > > > > way.  The flow goes something like this:
-> > > > > >
-> > > > > >  - Client attempts a dma-buf import from another device
-> > > > > >  - In attach() we call i915_gem_object_migrate() which calls
-> > > > > > i915_ttm_migrate() which migrates as requested.
-> > > > > >  - Once the migration is complete, we call i915_gem_object_pin_pages()
-> > > > > > which calls i915_ttm_get_pages() which depends on
-> > > > > > i915_ttm_placement_from_obj() and so migrates it right back to LMEM.
-> > > > >
-> > > > > The mm.pages must be NULL here, otherwise it would just increment the
-> > > > > pages_pin_count?
-> > >
-> > > Given that the test is using the ____four_underscores version, it
-> > > doesn't have that check.  However, this executes after we've done the
-> > > dma-buf import which pinned pages.  So we should definitely have
-> > > pages.
-> >
-> > We shouldn't call ____four_underscores() if we might already have
-> > pages though. Under non-TTM that would leak the pages, and in TTM we
-> > might hit the WARN_ON(mm->pages) in __i915_ttm_get_pages(), if for
-> > example nothing was moved. I take it we can't just call pin_pages()?
-> > Four scary underscores usually means "don't call this in normal code".
->
-> I've switched the ____four_underscores call to a __two_underscores in
-> the selftests and it had no effect, good or bad.  But, still, probably
-> better to call that one.
->
-> > >
-> > > > > >
-> > > > > > Maybe the problem here is actually that our TTM code isn't respecting
-> > > > > > obj->mm.pages_pin_count?
-> > > > >
-> > > > > I think if the resource is moved, we always nuke the mm.pages after
-> > > > > being notified of the move. Also TTM is also not allowed to move
-> > > > > pinned buffers.
-> > > > >
-> > > > > I guess if we are evicted/swapped, so assuming we are not holding the
-> > > > > object lock, and it's not pinned, the future call to get_pages() will
-> > > > > see mm.pages = NULL, even though the ttm_resource is still there, and
-> > > > > because we prioritise the placements[0], instead of mm.region we end
-> > > > > up moving it for no good reason. But in your case you are holding the
-> > > > > lock, or it's pinned? Also is this just with the selftest, or
-> > > > > something real?
-> > > >
-> > > > Or at least in the selftest I see ____i915_gem_object_get_pages()
-> > > > which doesn't even consider the mm.pages AFAIK.
-> > >
-> > > The bogus migration is happening as part of the
-> > > __i915_gem_object_get_pages() (2 __underscores) call in
-> > > i915_gem_dmabuf_attach (see last patch).  That code is attempting to
-> > > migrate the BO to SMEM and then pin it there using the obvious calls
-> > > to do so.  However, in the pin_pages call, it gets implicitly migrated
-> > > back to LMEM thanks to i915_ttm_get_pages().  Why is _get_pages()
-> > > migrating things at all?
-> >
-> > Not sure yet, but __two_underscores() checks if
-> > i915_gem_object_has_pages() before actually calling into
-> > i915_ttm_get_pages(), so the mm.pages would have to be NULL here for
-> > some reason, so best guess is something to do with move_notify().
->
-> Did a bit of experimenting along those lines and added the following
-> to the self-test BEFORE the export/import:
->
->     i915_gem_object_lock(obj, NULL);
->     err = __i915_gem_object_get_pages(obj);
->     __i915_gem_object_unpin_pages(obj);
->     i915_gem_object_unlock(obj);
->     if (err) {
->         pr_err("__i915_gem_object_get_pages failed with err=%d\n", err);
->         goto out_ret;
->     }
->
-> This seems to make the migration happen as expected without this
-> patch.  So it seems the problem only exists on buffers that haven't
-> gotten any backing storage yet (if I'm understanding get_pages
-> correctly).
->
-> One potential work-around (not sure if this is a good idea or not!)
-> would be to do this inside dmabuf_attach().  Is this reliable?  Once
-> it has pages will it always have pages?  Or are there crazy races I
-> need to be worried about here?
+On Wed, Jul 14 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
 
-It turns out that the i915_ttm_adjust_gem_after_move() call in
-ttm_object_init will always update the mm.region to system memory(so
-that it matches the ttm resource), which seems reasonable given the
-default system placeholder thing, but does seem slightly iffy since we
-haven't actually moved/allocated anything.
-
-So effectively i915_ttm_migrate(SYSTEM) becomes a noop here since
-mm.region == mr. Which ofc means when we actually call get_pages() all
-that happens is that we allocate the pages in system memory(or without
-this patch placements[0]). Also with this patch lmem+smem, will always
-be placed in smem first, regardless of the placements ordering.
-
-For now we could maybe just split i915_ttm_adjust_gem_after_move() so
-we skip the part which updates the mm.region here in the init portion,
-since that should only happen when we try to place the object for
-real?
-
+> The user can open multiple device FDs if it likes, however these open()
+> functions call vfio_register_notifier() on some device global
+> state. Calling vfio_register_notifier() twice in will trigger a WARN_ON
+> from notifier_chain_register() and the first close will wrongly delete the
+> notifier and more.
 >
-> --Jason
+> Since these really want the new open/close_device() semantics just change
+> the functions over.
+>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/s390/cio/vfio_ccw_ops.c   | 8 ++++----
+>  drivers/s390/crypto/vfio_ap_ops.c | 8 ++++----
+>  2 files changed, 8 insertions(+), 8 deletions(-)
+
+Reviewed-by: Cornelia Huck <cohuck@redhat.com>
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
