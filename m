@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACDCA3CEB0B
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:38:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F42E3CEB0C
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:38:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A182C89E7B;
-	Mon, 19 Jul 2021 18:38:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C48FB89AB9;
+	Mon, 19 Jul 2021 18:38:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B020B89E7B;
- Mon, 19 Jul 2021 18:38:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6D59189AB3;
+ Mon, 19 Jul 2021 18:38:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A9225A47E1;
- Mon, 19 Jul 2021 18:38:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6A412A47E1;
+ Mon, 19 Jul 2021 18:38:40 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Mon, 19 Jul 2021 18:38:11 -0000
-Message-ID: <162671989167.8478.3377933552287120335@emeril.freedesktop.org>
+Date: Mon, 19 Jul 2021 18:38:40 -0000
+Message-ID: <162671992043.8481.15016238304005446600@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210719183047.2624569-1-jason@jlekstrand.net>
 In-Reply-To: <20210719183047.2624569-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Fix_the_debugfs_splat_from_mock_selftests?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Fix_the_debugfs_splat_from_mock_selftests?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,18 +53,11 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-ee28cc1d9eee drm/i915: Call i915_globals_exit() after i915_pmu_exit()
-175239d5619b drm/i915: Call i915_globals_exit() if pci_register_device() fails
-1f5efaa53ad2 drm/i915: Always call i915_globals_exit() from i915_exit()
--:69: ERROR:INITIALISED_STATIC: do not initialise statics to false
-#69: FILE: drivers/gpu/drm/i915/i915_pci.c:1197:
-+static bool i915_fully_loaded = false;
-
-total: 1 errors, 0 warnings, 0 checks, 61 lines checked
-920bf5ea1d38 drm/ttm: Force re-init if ttm_global_init() fails
-a959d8c1714d drm/ttm: Initialize debugfs from ttm_global_init()
-825df92b5659 drm/i915: Make the kmem slab for i915_buddy_block a global
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/ttm/ttm_device.c:144:5: warning: context imbalance in 'ttm_device_swapout' - wrong count at exit
 
 
 _______________________________________________
