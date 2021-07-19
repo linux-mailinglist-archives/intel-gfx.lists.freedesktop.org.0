@@ -2,30 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C604C3CEB15
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 272BD3CEB1C
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:48:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5023C89FC5;
-	Mon, 19 Jul 2021 18:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A59B89ACC;
+	Mon, 19 Jul 2021 18:48:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CBF1389FC5;
- Mon, 19 Jul 2021 18:42:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C55A1AA01E;
- Mon, 19 Jul 2021 18:42:12 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2FEA89ACC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 18:48:55 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="272229228"
+X-IronPort-AV: E=Sophos;i="5.84,252,1620716400"; d="scan'208";a="272229228"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2021 11:48:55 -0700
+X-IronPort-AV: E=Sophos;i="5.84,252,1620716400"; d="scan'208";a="468689538"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2021 11:48:54 -0700
+Date: Mon, 19 Jul 2021 11:58:40 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <20210719185840.GA30216@labuser-Z97X-UD5H>
+References: <20210714223414.9849-1-manasi.d.navare@intel.com>
+ <9fb23633-cbeb-b4c8-d548-95323c7a71b3@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Mon, 19 Jul 2021 18:42:12 -0000
-Message-ID: <162672013280.8480.2125697440919875389@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210719183047.2624569-1-jason@jlekstrand.net>
-In-Reply-To: <20210719183047.2624569-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIEZp?=
- =?utf-8?q?x_the_debugfs_splat_from_mock_selftests?=
+Content-Disposition: inline
+In-Reply-To: <9fb23633-cbeb-b4c8-d548-95323c7a71b3@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix shared dpll mismatch
+ for bigjoiner slave
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,31 +46,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jul 19, 2021 at 11:47:51AM +0530, Nautiyal, Ankit K wrote:
+> Patch looks good to me.
+> =
 
-Series: Fix the debugfs splat from mock selftests
-URL   : https://patchwork.freedesktop.org/series/92729/
-State : warning
+> Please find below some suggestions
+> =
 
-== Summary ==
+> On 7/15/2021 4:04 AM, Manasi Navare wrote:
+> >Currently when we do the HW state readout, we dont set the shared dpll t=
+o NULL
+> >for the bigjoiner slave which should not have a DPLL assigned. So it has
+> >some garbage while the HW state readout is NULL. So explicitly reset
+> >the shared dpll for bigjoiner slave pipe.
+> >
+> >Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/3465
+> >Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >Tested-By: Swati Sharma <swati2.sharma@intel.com>
+> checkpatch warning about tested-by tag.
+> >Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> >---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> >diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
+drm/i915/display/intel_display.c
+> >index 65ddb6ca16e6..c274bfb8e549 100644
+> >--- a/drivers/gpu/drm/i915/display/intel_display.c
+> >+++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >@@ -9006,6 +9006,10 @@ verify_crtc_state(struct intel_crtc *crtc,
+> >  	if (!new_crtc_state->hw.active)
+> >  		return;
+> >+	if (new_crtc_state->bigjoiner_slave)
+> >+		/* No PLLs set for slave */
+> >+		pipe_config->shared_dpll =3D NULL;
+> >+
+> =
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Function parameter or member 'trampoline' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
+> there is a check for bigjoiner_slave, couple of lines above this:
+> =
 
+> if (new_crtc_state->bigjoiner_slave)
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 master =3D new_crtc_state->=
+bigjoiner_linked_crtc;
+> =
 
+> Perhaps it will make sense to club the set shared_dpll to NULL, along with
+> these lines.
+
+Yup, thats where I was resetting in earlier patch but then it actually gets=
+ overridden in a function call
+after this point so need to reset it after separately.
+
+Manasi
+
+> =
+
+> In any case:
+> =
+
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> =
+
+> >  	intel_pipe_config_sanity_check(dev_priv, pipe_config);
+> >  	if (!intel_pipe_config_compare(new_crtc_state,
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
