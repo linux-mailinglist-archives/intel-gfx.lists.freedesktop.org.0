@@ -1,63 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC5A3CEAFF
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:31:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FA53CEB04
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 20:31:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6AF989DC2;
-	Mon, 19 Jul 2021 18:30:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDC716E07B;
+	Mon, 19 Jul 2021 18:31:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 887B789D56
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 18:30:56 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id c15so10018544pls.13
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 11:30:56 -0700 (PDT)
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2990089E33
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 18:30:58 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id b12so17236896pfv.6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 11:30:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=3PudCVQU2PCqP7pn5iCbGILZ8XUpfJcSPWpnuGkDbfg=;
- b=PqggbUah24VP/C6HhXeC4GM9AqL4qRRub+REo6xg9FAVZkiYb9NuYH51D9xyb6C9b7
- 9d/X0dObK2apq5CCGgN0Y6fIpHzk6lOfr0kBwjMyXVvFUDIh1W/2PVAW/OmGmi1u0vBp
- O1FCMHVxvVzlOWZT9Jw7+qmOPnHrXmU7QYso7qLjd+aVdMJFbPOrixPSaLDgIq5hebRv
- XoyoyMzWajJOUhtZcOEPuyk//60W1W8ePbKz16o1jGcXmgNt0d5qdfyW0o8BxG0sy07A
- ppO4NX46rdTv9MbizsxGfZ9CfrezpV8tEnRGtqjopOhz5qLhaqJO7VE8Jqp3aGVryid/
- G/ZQ==
+ bh=qFNdhkykZcCs3HXRfapYY9OkVQ/lDSNnVRyFvwWEZ84=;
+ b=LDjnX2FSQrlmSDxmQqhF3UZTYEjB3opXAgjmZl7d/IU6t7qJi3n/wlFASNdRJLwoL5
+ pu5g65wb6YUYtnUPgT5BDqRsP8hX0AIY3nfdzjzBxUAqIyNkJwawDD0OVDr2fnJteppW
+ 0jx/Gr9dfw4UaatdLu6mAy9EspiX1GOIsi+2k+M/ucvNdn/7pejFWMBvWz+mCNv8hL/c
+ mE07NK1eLorJQrAlo0BpmnqTeTeon4Q1FqnqlZuIGDqmtyK3WbBlvZPU+XY8Y/doGmpz
+ 4zELtwX2zIm3DA9B1IpjACCPCpRg14fKDM02rLIRIfFpJKgXBcQ86Ppaez0ZsPddAEsm
+ g5YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=3PudCVQU2PCqP7pn5iCbGILZ8XUpfJcSPWpnuGkDbfg=;
- b=kWdFy4bTnJsXdWP8GehkAyDNEpKT9A1AmXsOgalqV0dLarAh0rv1HEImvgsHsXRU9S
- TA3eWMv2it/R9sezDmrKqoMD5RxL2Hjwx02lTWPWeEgsqhW3tPE0PVkLJjL9FtBBeUew
- czA/uc1cbAMDZFeJynWvGbUNhb+pRnuwE9Jz1+//PiHYhTegrUtu+wq7KgHQ1/4ueIZM
- hmj1kQfKUEWGz6Usbzom0sQOmbcJaIW/I9Rij/WdKtUUn8cDtfTb4/qK2gbqVdwlDfOF
- JqMrVGpk/3aEzXzlBMBPhx3tuapVyOF1zN/VY3CJpNy+TgpDPcJAtsKqRsfjye2DDqz9
- Y3VQ==
-X-Gm-Message-State: AOAM530ugUa6LAzj3Fg4aRFNp8DYBsLkVfnnM27zvvALgsiPcFHuX2VN
- aB2zmPRgw0MwieE+lyLMRN6gMsjvoW/AQg==
-X-Google-Smtp-Source: ABdhPJxAPECcQuoJbVXo2jKq/NX+T4JGnp/Ul9k7ganeqejH6IsKsZGPf2/oYtgRs18k2GPcICy1jg==
-X-Received: by 2002:a17:90a:4302:: with SMTP id
- q2mr30005914pjg.189.1626719455849; 
- Mon, 19 Jul 2021 11:30:55 -0700 (PDT)
+ bh=qFNdhkykZcCs3HXRfapYY9OkVQ/lDSNnVRyFvwWEZ84=;
+ b=MQLtqlO31x2u61bcFXVo1OWqtliUkxZ00NnE2Yd6t+gThp6jhI1P3UzzTnW0BCpzwG
+ 1jxxRUur80jLJ/zHGEMwb4JbZGy8KR/1bs1oloKD0ERJ8tfu46baveoCXk94lArLFIby
+ CKXkVQhky9jXGdk2yFXvbcHFCBJ4EyAutQghq2VwPz8T95pTfWOXHcQuRAxjbbZo5sZK
+ n/t9EuNjxY3EItYFF8uyWrInvYgjKuBMcYIJr6JdDUGbQ2OZneE7mVX+yTxQoDlnTP6+
+ LtmSKJaXZ+YusoQ1SZlnp6KZSyqeUyKV6IydEZ5nZG3pq+9afTppyOBfsmt/QkKOrrB8
+ ga7A==
+X-Gm-Message-State: AOAM533CoQAChp4OGCv1G9rv7px3utBx65g67YnITlBGJJUPmqNOrhwU
+ tUsYgjI7IduACjGZQOxf15j3QdKI0QBzHA==
+X-Google-Smtp-Source: ABdhPJyCSaK1BnjPMSbDfFGRDUr24/UBx8EAgEtP2JUda23KRKsR0D09mUnkHbwjSN6IBYFUMzGIYQ==
+X-Received: by 2002:a63:43c4:: with SMTP id
+ q187mr26495416pga.172.1626719457407; 
+ Mon, 19 Jul 2021 11:30:57 -0700 (PDT)
 Received: from omlet.com ([134.134.137.83])
- by smtp.gmail.com with ESMTPSA id w23sm6961555pfc.60.2021.07.19.11.30.54
+ by smtp.gmail.com with ESMTPSA id w23sm6961555pfc.60.2021.07.19.11.30.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Jul 2021 11:30:55 -0700 (PDT)
+ Mon, 19 Jul 2021 11:30:56 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Mon, 19 Jul 2021 13:30:44 -0500
-Message-Id: <20210719183047.2624569-4-jason@jlekstrand.net>
+Date: Mon, 19 Jul 2021 13:30:45 -0500
+Message-Id: <20210719183047.2624569-5-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210719183047.2624569-1-jason@jlekstrand.net>
 References: <20210719183047.2624569-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/6] drm/i915: Always call i915_globals_exit()
- from i915_exit()
+Subject: [Intel-gfx] [PATCH 4/6] drm/ttm: Force re-init if ttm_global_init()
+ fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,141 +70,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the driver was not fully loaded, we may still have globals lying
-around.  If we don't tear those down in i915_exit(), we'll leak a bunch
-of memory slabs.  This can happen two ways: use_kms = false and if we've
-run mock selftests.  In either case, we have an early exit from
-i915_init which happens after i915_globals_init() and we need to clean
-up those globals.  While we're here, add an explicit boolean instead of
-using a random field from i915_pci_device to detect partial loads.
-
-The mock selftests case gets especially sticky.  The load isn't entirely
-a no-op.  We actually do quite a bit inside those selftests including
-allocating a bunch of mock objects and running tests on them.  Once all
-those tests are complete, we exit early from i915_init().  Perviously,
-i915_init() would return a non-zero error code on failure and a zero
-error code on success.  In the success case, we would get to i915_exit()
-and check i915_pci_driver.driver.owner to detect if i915_init exited early
-and do nothing.  In the failure case, we would fail i915_init() but
-there would be no opportunity to clean up globals.
-
-The most annoying part is that you don't actually notice the failure as
-part of the self-tests since leaking a bit of memory, while bad, doesn't
-result in anything observable from userspace.  Instead, the next time we
-load the driver (usually for next IGT test), i915_globals_init() gets
-invoked again, we go to allocate a bunch of new memory slabs, those
-implicitly create debugfs entries, and debugfs warns that we're trying
-to create directories and files that already exist.  Since this all
-happens as part of the next driver load, it shows up in the dmesg-warn
-of whatever IGT test ran after the mock selftests.
-
-While the obvious thing to do here might be to call i915_globals_exit()
-after selftests, that's not actually safe.  The dma-buf selftests call
-i915_gem_prime_export which creates a file.  We call dma_buf_put() on
-the resulting dmabuf which calls fput() on the file.  However, fput()
-isn't immediate and gets flushed right before syscall returns.  This
-means that all the fput()s from the selftests don't happen until right
-before the module load syscall used to fire off the selftests returns
-which is after i915_init().  If we call i915_globals_exit() in
-i915_init() after selftests, we end up freeing slabs out from under
-objects which won't get released until fput() is flushed at the end of
-the module load.
-
-The solution here is to let i915_init() return success early and detect
-the early success in i915_exit() and only tear down globals and nothing
-else.  This way the module loads successfully, regardless of the success
-or failure of the tests.  Because we've not enumerated any PCI devices,
-no device nodes are created and it's entirely useless from userspace.
-The only thing the module does at that point is hold on to a bit of
-memory until we unload it and i915_exit() is called.  Importantly, this
-means that everything from our selftests has the ability to properly
-flush out between i915_init() and i915_exit() because there are a couple
-syscall boundaries in between.
-
-Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
-Cc: Daniel Vetter <daniel@ffwll.ch>
----
- drivers/gpu/drm/i915/i915_pci.c | 32 +++++++++++++++++++++++++-------
- 1 file changed, 25 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 4e627b57d31a2..24e4e54516936 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1194,18 +1194,31 @@ static struct pci_driver i915_pci_driver = {
- 	.driver.pm = &i915_pm_ops,
- };
- 
-+static bool i915_fully_loaded = false;
-+
- static int __init i915_init(void)
- {
- 	bool use_kms = true;
- 	int err;
- 
-+	i915_fully_loaded = false;
-+
- 	err = i915_globals_init();
- 	if (err)
- 		return err;
- 
-+	/* i915_mock_selftests() only returns zero if no mock subtests were
-+	 * run.  If we get any non-zero error code, we return early here.
-+	 * We always return success because selftests may have allocated
-+	 * objects from slabs which will get cleaned up by i915_exit().  We
-+	 * could attempt to clean up immediately and fail module load but,
-+	 * thanks to interactions with other parts of the kernel (struct
-+	 * file, in particular), it's safer to let the module fully load
-+	 * and then clean up on unload.
-+	 */
- 	err = i915_mock_selftests();
- 	if (err)
--		return err > 0 ? 0 : err;
-+		return 0;
- 
- 	/*
- 	 * Enable KMS by default, unless explicitly overriden by
-@@ -1225,6 +1238,12 @@ static int __init i915_init(void)
- 		return 0;
- 	}
- 
-+	/* After this point, i915_init() must either fully succeed or
-+	 * properly tear everything down and fail.  We don't have separate
-+	 * flags for each set-up bit.
-+	 */
-+	i915_fully_loaded = true;
-+
- 	i915_pmu_init();
- 
- 	err = pci_register_driver(&i915_pci_driver);
-@@ -1240,12 +1259,11 @@ static int __init i915_init(void)
- 
- static void __exit i915_exit(void)
- {
--	if (!i915_pci_driver.driver.owner)
--		return;
--
--	i915_perf_sysctl_unregister();
--	pci_unregister_driver(&i915_pci_driver);
--	i915_pmu_exit();
-+	if (i915_fully_loaded) {
-+		i915_perf_sysctl_unregister();
-+		pci_unregister_driver(&i915_pci_driver);
-+		i915_pmu_exit();
-+	}
- 	i915_globals_exit();
- }
- 
--- 
-2.31.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SWYgd2UgaGF2ZSBhIGZhaWx1cmUsIGRlY3JlbWVudCB0aGUgcmVmZXJlbmNlIGNvdW50IHNvIHRo
+YXQgdGhlIG5leHQKY2FsbCB0byB0dG1fZ2xvYmFsX2luaXQoKSB3aWxsIGFjdHVhbGx5IGRvIHNv
+bWV0aGluZyBpbnN0ZWFkIG9mIGFzc3VtZQpldmVyeXRoaW5nIGlzIGFsbCBzZXQgdXAuCgpTaWdu
+ZWQtb2ZmLWJ5OiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+CkZpeGVzOiA2
+MmI1M2IzN2U0YjEgKCJkcm0vdHRtOiB1c2UgYSBzdGF0aWMgdHRtX2JvX2dsb2JhbCBpbnN0YW5j
+ZSIpCkNjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Ci0tLQog
+ZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fZGV2aWNlLmMgfCAyICsrCiAxIGZpbGUgY2hhbmdlZCwg
+MiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fZGV2
+aWNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9kZXZpY2UuYwppbmRleCA1ZjMxYWNlYzNh
+ZDc2Li41MTlkZWVhOGUzOWI3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9k
+ZXZpY2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9kZXZpY2UuYwpAQCAtMTAwLDYg
+KzEwMCw4IEBAIHN0YXRpYyBpbnQgdHRtX2dsb2JhbF9pbml0KHZvaWQpCiAJZGVidWdmc19jcmVh
+dGVfYXRvbWljX3QoImJ1ZmZlcl9vYmplY3RzIiwgMDQ0NCwgdHRtX2RlYnVnZnNfcm9vdCwKIAkJ
+CQkmZ2xvYi0+Ym9fY291bnQpOwogb3V0OgorCWlmIChyZXQpCisJCS0tdHRtX2dsb2JfdXNlX2Nv
+dW50OwogCW11dGV4X3VubG9jaygmdHRtX2dsb2JhbF9tdXRleCk7CiAJcmV0dXJuIHJldDsKIH0K
+LS0gCjIuMzEuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Cg==
