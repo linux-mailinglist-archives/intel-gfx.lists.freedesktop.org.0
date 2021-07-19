@@ -1,39 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90023CEE0F
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 23:20:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259F83CEE2C
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 23:38:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 242056E1F6;
-	Mon, 19 Jul 2021 21:20:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA1389D40;
+	Mon, 19 Jul 2021 21:38:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20D916E17A
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 21:20:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="190720497"
-X-IronPort-AV: E=Sophos;i="5.84,253,1620716400"; d="scan'208";a="190720497"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2021 14:20:26 -0700
-X-IronPort-AV: E=Sophos;i="5.84,253,1620716400"; d="scan'208";a="509512969"
-Received: from gmbianda-mobl.amr.corp.intel.com (HELO msatwood-mobl)
- ([10.212.166.171])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2021 14:20:25 -0700
-Date: Mon, 19 Jul 2021 14:20:23 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>;,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <20210719212023.GB18704@msatwood-mobl>
-References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
- <20210714031540.3539704-4-matthew.d.roper@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B92089F1B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 21:38:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="208019007"
+X-IronPort-AV: E=Sophos;i="5.84,253,1620716400"; d="scan'208";a="208019007"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2021 14:38:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,253,1620716400"; d="scan'208";a="575577652"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by fmsmga001.fm.intel.com with ESMTP; 19 Jul 2021 14:38:28 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Jul 2021 14:38:27 -0700
+Message-Id: <20210719213828.5738-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210714031540.3539704-4-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 03/50] drm/i915/xehp: VDBOX/VEBOX fusing
- registers are enable-based
+Subject: [Intel-gfx] [CI 1/2] drm/i915/step: Add macro magic for handling
+ steps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,53 +46,102 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 13, 2021 at 08:14:53PM -0700, Matt Roper wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> On Xe_HP the fusing register is renamed and changed to have the "enable"
-> semantics, but otherwise remains compatible (mmio address, bitmask
-> ranges) with older platforms.
-> 
-> To simplify things we do not add a new register definition but just stop
-> inverting the fusing masks before processing them.
-> 
-> Bspec: 52615
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index d561573ed98c..5cfeb91d1b7b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -468,7 +468,14 @@ static intel_engine_mask_t init_engine_mask(struct intel_gt *gt)
->  	if (GRAPHICS_VER(i915) < 11)
->  		return info->engine_mask;
->  
-> -	media_fuse = ~intel_uncore_read(uncore, GEN11_GT_VEBOX_VDBOX_DISABLE);
-> +	/*
-> +	 * On newer platforms the fusing register is called 'enable' and has
-> +	 * enable semantics, while on older platforms it is called 'disable'
-> +	 * and bits have disable semantices.
-> +	 */
-> +	media_fuse = intel_uncore_read(uncore, GEN11_GT_VEBOX_VDBOX_DISABLE);
-> +	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 50))
-> +		media_fuse = ~media_fuse;
->  
->  	vdbox_mask = media_fuse & GEN11_GT_VDBOX_DISABLE_MASK;
->  	vebox_mask = (media_fuse & GEN11_GT_VEBOX_DISABLE_MASK) >>
-> -- 
-> 2.25.4
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+With the addition of stepping info for
+all platforms, lets use macros for handling them
+and autogenerating code for all steps at a time.
+
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/intel_step.c | 14 ++++++++++++
+ drivers/gpu/drm/i915/intel_step.h | 37 +++++++++++++++++++------------
+ 2 files changed, 37 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+index 9fcf17708cc8..d150d138e889 100644
+--- a/drivers/gpu/drm/i915/intel_step.c
++++ b/drivers/gpu/drm/i915/intel_step.c
+@@ -182,3 +182,17 @@ void intel_step_init(struct drm_i915_private *i915)
+ 
+ 	RUNTIME_INFO(i915)->step = step;
+ }
++
++#define STEP_NAME_CASE(name)	\
++	(case STEP_##name:	\
++		return #name)
++
++const char *intel_step_name(enum intel_step step)
++{
++	switch (step) {
++	STEP_NAME_LIST(STEP_NAME_CASE);
++
++	default:
++		return "**";
++	}
++}
+diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
+index 88a77159703e..f6641e2a3c77 100644
+--- a/drivers/gpu/drm/i915/intel_step.h
++++ b/drivers/gpu/drm/i915/intel_step.h
+@@ -15,30 +15,39 @@ struct intel_step_info {
+ 	u8 display_step;
+ };
+ 
++#define STEP_ENUM_VAL(name)  STEP_##name,
++
++#define STEP_NAME_LIST(func)		\
++	func(A0)			\
++	func(A1)			\
++	func(A2)			\
++	func(B0)			\
++	func(B1)			\
++	func(B2)			\
++	func(C0)			\
++	func(C1)			\
++	func(D0)			\
++	func(D1)			\
++	func(E0)			\
++	func(F0)			\
++	func(G0)			\
++	func(H0)			\
++	func(I0)			\
++	func(I1)			\
++	func(J0)
++
+ /*
+  * Symbolic steppings that do not match the hardware. These are valid both as gt
+  * and display steppings as symbolic names.
+  */
+ enum intel_step {
+ 	STEP_NONE = 0,
+-	STEP_A0,
+-	STEP_A2,
+-	STEP_B0,
+-	STEP_B1,
+-	STEP_C0,
+-	STEP_D0,
+-	STEP_D1,
+-	STEP_E0,
+-	STEP_F0,
+-	STEP_G0,
+-	STEP_H0,
+-	STEP_I0,
+-	STEP_I1,
+-	STEP_J0,
++	STEP_NAME_LIST(STEP_ENUM_VAL)
+ 	STEP_FUTURE,
+ 	STEP_FOREVER,
+ };
+ 
+ void intel_step_init(struct drm_i915_private *i915);
++const char *intel_step_name(enum intel_step step);
+ 
+ #endif /* __INTEL_STEP_H__ */
+-- 
+2.32.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
