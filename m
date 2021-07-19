@@ -2,51 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 537DB3CCF62
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 10:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32D5E3CCF65
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Jul 2021 10:35:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41D7A89E9E;
-	Mon, 19 Jul 2021 08:29:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D4A189DD3;
+	Mon, 19 Jul 2021 08:35:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E953B89D61
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 08:29:45 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id h9so19912675oih.4
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 01:29:45 -0700 (PDT)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E81C789DD3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 08:35:40 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id m2so21007369wrq.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 01:35:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=I/U/F/FoGCwikPSNTinZDpXksxDgDl9adfNXfGBR7OU=;
- b=YVyQBerlcnS/dwMrvzX8Gq5MysLT3Xw3iYV7nQS4rqqlzb2FOXeTnYSBDIw3SMTI7T
- jjTWaOkXo+ELz+3bSKjJu0SgAtoc+UYOrowpJfgegK5m8NW7CRF5fw3fZ0Ab7FRSNX7r
- plg1mf/f0ji9u38M9LbWK3UhxiTW8mtPSXORs=
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VTY7si5+ogntqksXEXJbSR2eZtXFuLX27JSPFEg5ycA=;
+ b=PnU7pULOGTNWvtQBUK2/lgrpjunyUy+WxlzuqNfq67yJilezxKBYaxDauOsSCrsPE8
+ D4lhBnKAMEYXeXPUgcafYJJStezogt6z2iGbMQ4Nj0qFGcmD1TK5Ha4HG90LZLM8YOu+
+ DIS81gr58lid9qihhl3aegx3BOO9e/BkcHmlU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=I/U/F/FoGCwikPSNTinZDpXksxDgDl9adfNXfGBR7OU=;
- b=SJg0XgF6YfNEKJ3zgFTqUo/lrwgBAWg+qPCQ2EMJOh84tb2GKdl2sy8KcYlX2K7f0+
- RfGlmTZh88VUlg00rPbvfOniKVXiYudX0/NNdaDy45TZ8KIxM9Jgpzq0KwwytT1HzTuz
- F8wxLl8YRLAAlFiANOetiLoPrz0rEQQNpKeoQJvFMFRfkAAI80fQvFEQMSi6UWZMhx2k
- yf2NmnFXgoNb7u5QUXCRgrOQoIXz15DvqQjrc8Bu8UV5uUojmJiCXN52l/ej1NF/hPic
- GvzVSuw+BIaeO4KYQdrP38ZB25OUYfki2pfUT62A27ZcynuYmb5y4dL4RuKLj4pH+UBp
- jvFw==
-X-Gm-Message-State: AOAM532xOFOJEVX4Jts4zczuDfVioQTwGU3Pz6i+DqaqthGZodFFYDhU
- fkMYX9iKA65jfmBAWJvvB9UQlBrrj+OLQ3A+tfEdxg==
-X-Google-Smtp-Source: ABdhPJyDF2Zvihqlfib/G24hn8FKftpUajDO9Q2bpEudI0iDTQNgjSSYYhxBFgUqbK5fizWFUC1/K+G2TLSLMNE60oU=
-X-Received: by 2002:aca:3085:: with SMTP id
- w127mr20468682oiw.101.1626683385258; 
- Mon, 19 Jul 2021 01:29:45 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VTY7si5+ogntqksXEXJbSR2eZtXFuLX27JSPFEg5ycA=;
+ b=JZhweg6ReprmLUsNQq5CYjF3TA7cdvccUMu9dNYQ1yqcM8zBKdYZhIcvNKMdbSyzL/
+ 3sEKE8h6EV3X7epZlTQlj75JJ4rxUgXEneyX/2vahs7YlDILubmc6BI/DPDUBCOc+1OR
+ KZrw3jhjen32kfvRLl0PDpqWFOe5O/kpPWQw8VB5QRAZc0gA78YKcNMSywhwWothAiqA
+ eirJRizUhF8+lzMf8PRePGpD7Rwn9+7YdHFJ7uooin3pXdH6IxbBaRicf16IgBqBsEW3
+ Wfz6yLLfuPfY70kUUK9fcTFKK2WiXuErYh1uzh9lny+dFARHttvdq+mWtozp4srf6Osh
+ a09Q==
+X-Gm-Message-State: AOAM530If+2xOSweNxy1gj+8ppTz35jsWNfgs0GfPMF+83AffiTt+04H
+ NrOWJJ9dUGBh+2pkaItYVC2s2Q==
+X-Google-Smtp-Source: ABdhPJxazs4aZz2Z3D8GxSTBgdo5dXzcF1ySp6PUZMztMqd3JUyzBTrlhZ5s+iIaba3txdvBrUvveA==
+X-Received: by 2002:adf:ce10:: with SMTP id p16mr28438477wrn.205.1626683739625; 
+ Mon, 19 Jul 2021 01:35:39 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id t16sm18712178wrp.44.2021.07.19.01.35.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 19 Jul 2021 01:35:39 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Mon, 19 Jul 2021 10:35:34 +0200
+Message-Id: <20210719083534.2949348-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20210716224758.2162003-1-jason@jlekstrand.net>
-In-Reply-To: <20210716224758.2162003-1-jason@jlekstrand.net>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 19 Jul 2021 10:29:34 +0200
-Message-ID: <CAKMK7uEfh4zoxWQCvuGEmQH=_-rfO9mFa-yA3PLiJWbbnT_+rg@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Call i915_globals_exit()
- after i915_pmu_exit()
+Subject: [Intel-gfx] [PATCH] drm/i915: Check for nomodeset in i915_init()
+ first
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,50 +62,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jul 17, 2021 at 12:48 AM Jason Ekstrand <jason@jlekstrand.net> wrote:
->
-> We should tear down in the opposite order we set up.
->
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> Fixes: 537f9c84a427 ("drm/i915/pmu: Fix CPU hotplug with multiple GPUs")
-> Cc: Daniel Vetter <daniel@ffwll.ch>
+Jason is trying to sort out the unwinding in i915_init and i915_exit,
+while reviewing those patches I noticed that we also have the
+nomodeset handling now in the middle of things.
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Pull that out for simplisity in unwinding - if you run selftest with
+nomodeset you get nothing, *shrug*.
 
-> ---
->  drivers/gpu/drm/i915/i915_pci.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 67696d7522718..50ed93b03e582 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1244,8 +1244,8 @@ static void __exit i915_exit(void)
->
->         i915_perf_sysctl_unregister();
->         pci_unregister_driver(&i915_pci_driver);
-> -       i915_globals_exit();
->         i915_pmu_exit();
-> +       i915_globals_exit();
->  }
->
->  module_init(i915_init);
-> --
-> 2.31.1
->
+Cc: Jason Ekstrand <jason@jlekstrand.net>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pci.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 67696d752271..6fe709ac1b4b 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1199,14 +1199,6 @@ static int __init i915_init(void)
+ 	bool use_kms = true;
+ 	int err;
+ 
+-	err = i915_globals_init();
+-	if (err)
+-		return err;
+-
+-	err = i915_mock_selftests();
+-	if (err)
+-		return err > 0 ? 0 : err;
+-
+ 	/*
+ 	 * Enable KMS by default, unless explicitly overriden by
+ 	 * either the i915.modeset prarameter or by the
+@@ -1225,6 +1217,14 @@ static int __init i915_init(void)
+ 		return 0;
+ 	}
+ 
++	err = i915_globals_init();
++	if (err)
++		return err;
++
++	err = i915_mock_selftests();
++	if (err)
++		return err > 0 ? 0 : err;
++
+ 	i915_pmu_init();
+ 
+ 	err = pci_register_driver(&i915_pci_driver);
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.32.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
