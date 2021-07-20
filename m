@@ -2,54 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046683CF591
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 09:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 307CD3CF61A
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 10:25:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74FD389D58;
-	Tue, 20 Jul 2021 07:53:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8652B89C51;
+	Tue, 20 Jul 2021 08:25:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC62E89D58
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 07:53:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="208078468"
-X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; d="scan'208";a="208078468"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2021 00:53:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; d="scan'208";a="461898142"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga008.jf.intel.com with ESMTP; 20 Jul 2021 00:53:15 -0700
-Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 20 Jul 2021 00:53:15 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 20 Jul 2021 13:23:13 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.010;
- Tue, 20 Jul 2021 13:23:12 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [v7 0/3] Enable setting custom DSC BPP
-Thread-Index: AQHXfTNV+RlRmkpxKkCfWX56DbAtcatLfeKg
-Date: Tue, 20 Jul 2021 07:53:12 +0000
-Message-ID: <f8651b55c32e406aa009e06c86a7e59d@intel.com>
-References: <20210720064907.9771-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20210720064907.9771-1-vandita.kulkarni@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD95E89BFB;
+ Tue, 20 Jul 2021 08:25:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="272313214"
+X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; d="scan'208";a="272313214"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2021 01:25:33 -0700
+X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; d="scan'208";a="657416868"
+Received: from ekearns1-mobl.amr.corp.intel.com (HELO [10.213.195.253])
+ ([10.213.195.253])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2021 01:25:31 -0700
+To: Jason Ekstrand <jason@jlekstrand.net>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20210719183047.2624569-1-jason@jlekstrand.net>
+ <20210719183047.2624569-4-jason@jlekstrand.net>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <6ecf6891-67c2-94ac-32ce-28c1a1a7db0b@linux.intel.com>
+Date: Tue, 20 Jul 2021 09:25:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v7 0/3] Enable setting custom DSC BPP
+In-Reply-To: <20210719183047.2624569-4-jason@jlekstrand.net>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Always call
+ i915_globals_exit() from i915_exit()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,64 +49,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pushed to drm-intel-next, thanks for the reviews.
--Vandita
 
-> -----Original Message-----
-> From: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> Sent: Tuesday, July 20, 2021 12:19 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Kulkarni, Vandita <vandita.kulkarni@intel.com>
-> Subject: [v7 0/3] Enable setting custom DSC BPP
+On 19/07/2021 19:30, Jason Ekstrand wrote:
+> If the driver was not fully loaded, we may still have globals lying
+> around.  If we don't tear those down in i915_exit(), we'll leak a bunch
+> of memory slabs.  This can happen two ways: use_kms = false and if we've
+> run mock selftests.  In either case, we have an early exit from
+> i915_init which happens after i915_globals_init() and we need to clean
+> up those globals.  While we're here, add an explicit boolean instead of
+> using a random field from i915_pci_device to detect partial loads.
 > 
-> This series add debugfs entry to force dsc bpp to ceratin valid test value, for
-> validation needs.
-> This series has been tested locally.
-> With the introduction of i915_dsc_bpp debugfs the expectation is that
-> whenever there is force_dsc_en set, force_dsc_bpp should have a valid
-> value for that format which is between bpp to bpp-1.
+> The mock selftests case gets especially sticky.  The load isn't entirely
+> a no-op.  We actually do quite a bit inside those selftests including
+> allocating a bunch of mock objects and running tests on them.  Once all
+> those tests are complete, we exit early from i915_init().  Perviously,
+> i915_init() would return a non-zero error code on failure and a zero
+> error code on success.  In the success case, we would get to i915_exit()
+> and check i915_pci_driver.driver.owner to detect if i915_init exited early
+> and do nothing.  In the failure case, we would fail i915_init() but
+> there would be no opportunity to clean up globals.
 > 
-> This makes the older test kms_dp_dsc --basic fail as in that case
-> force_dsc_bpp would be 0 and is not a valid value.
-> 
-> Have tested with local changes on the same.
-> The series https://patchwork.freedesktop.org/series/91772/
-> have the base patches and would need some work on the debugfs name
-> change, giving default value for force_dsc_bpp in case of basic-dsc-enable
-> test cases, clearing up of the force_dsc_bpp value while exiting the test.
-> Which will be floated shortly.
-> 
-> Have added minor fix on the feci debugfs interface.
-> If further changes are needed on the same will float them in a different
-> series.
-> 
-> This series has been reviewed here
-> https://patchwork.freedesktop.org/series/92312/#rev5
-> 
-> Resubmitting it here as the series submitter got overridden due to one of the
-> review comment mishaps.
-> 
-> Patnana Venkata Sai (1):
->   drm/i915/display/dsc: Add Per connector debugfs node for DSC BPP
->     enable
-> 
-> Vandita Kulkarni (2):
->   drm/i915/display: Add write permissions for fec support
->   drm/i915/display/dsc: Force dsc BPP
-> 
->  .../drm/i915/display/intel_display_debugfs.c  | 78 ++++++++++++++++++-
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 17 ++++
->  3 files changed, 94 insertions(+), 2 deletions(-)
-> 
-> --
-> 2.32.0
+> The most annoying part is that you don't actually notice the failure as
+> part of the self-tests since leaking a bit of memory, while bad, doesn't
+> result in anything observable from userspace.  Instead, the next time we
+> load the driver (usually for next IGT test), i915_globals_init() gets
+> invoked again, we go to allocate a bunch of new memory slabs, those
+> implicitly create debugfs entries, and debugfs warns that we're trying
+> to create directories and files that already exist.  Since this all
+> happens as part of the next driver load, it shows up in the dmesg-warn
+> of whatever IGT test ran after the mock selftests.
 
+Story checks out but I totally don't get why it wouldn't be noticed 
+until now. Was it perhaps part of the selfetsts contract that a reboot 
+is required after failure?
+
+> While the obvious thing to do here might be to call i915_globals_exit()
+> after selftests, that's not actually safe.  The dma-buf selftests call
+> i915_gem_prime_export which creates a file.  We call dma_buf_put() on
+> the resulting dmabuf which calls fput() on the file.  However, fput()
+> isn't immediate and gets flushed right before syscall returns.  This
+> means that all the fput()s from the selftests don't happen until right
+> before the module load syscall used to fire off the selftests returns
+> which is after i915_init().  If we call i915_globals_exit() in
+> i915_init() after selftests, we end up freeing slabs out from under
+> objects which won't get released until fput() is flushed at the end of
+> the module load.
+
+Nasty. Wasn't visible while globals memory leak was "in place". :I
+
+> The solution here is to let i915_init() return success early and detect
+> the early success in i915_exit() and only tear down globals and nothing
+> else.  This way the module loads successfully, regardless of the success
+> or failure of the tests.  Because we've not enumerated any PCI devices,
+> no device nodes are created and it's entirely useless from userspace.
+> The only thing the module does at that point is hold on to a bit of
+> memory until we unload it and i915_exit() is called.  Importantly, this
+> means that everything from our selftests has the ability to properly
+> flush out between i915_init() and i915_exit() because there are a couple
+> syscall boundaries in between.
+
+When you say "couple of syscall boundaries" you mean exactly two (module 
+init/unload) or there is more to it? Like why "couple" is needed and not 
+just that the module load syscall has exited? That part sounds 
+potentially dodgy. What mechanism is used by the delayed flush?
+
+Have you checked how this change interacts with the test runner and CI?
+
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> ---
+>   drivers/gpu/drm/i915/i915_pci.c | 32 +++++++++++++++++++++++++-------
+>   1 file changed, 25 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 4e627b57d31a2..24e4e54516936 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1194,18 +1194,31 @@ static struct pci_driver i915_pci_driver = {
+>   	.driver.pm = &i915_pm_ops,
+>   };
+>   
+> +static bool i915_fully_loaded = false;
+
+No need to initialize.
+
+> +
+>   static int __init i915_init(void)
+>   {
+>   	bool use_kms = true;
+>   	int err;
+>   
+> +	i915_fully_loaded = false;
+
+Ditto.
+
+> +
+>   	err = i915_globals_init();
+>   	if (err)
+>   		return err;
+>   
+> +	/* i915_mock_selftests() only returns zero if no mock subtests were
+
+
+/*
+  * Please use this multi line comment style in i915.
+  */
+
+
+> +	 * run.  If we get any non-zero error code, we return early here.
+> +	 * We always return success because selftests may have allocated
+> +	 * objects from slabs which will get cleaned up by i915_exit().  We
+> +	 * could attempt to clean up immediately and fail module load but,
+> +	 * thanks to interactions with other parts of the kernel (struct
+> +	 * file, in particular), it's safer to let the module fully load
+> +	 * and then clean up on unload.
+> +	 */
+>   	err = i915_mock_selftests();
+>   	if (err)
+> -		return err > 0 ? 0 : err;
+> +		return 0;
+>   
+>   	/*
+>   	 * Enable KMS by default, unless explicitly overriden by
+> @@ -1225,6 +1238,12 @@ static int __init i915_init(void)
+>   		return 0;
+>   	}
+>   
+> +	/* After this point, i915_init() must either fully succeed or
+> +	 * properly tear everything down and fail.  We don't have separate
+> +	 * flags for each set-up bit.
+> +	 */
+> +	i915_fully_loaded = true;
+> +
+>   	i915_pmu_init();
+>   
+>   	err = pci_register_driver(&i915_pci_driver);
+> @@ -1240,12 +1259,11 @@ static int __init i915_init(void)
+>   
+>   static void __exit i915_exit(void)
+>   {
+> -	if (!i915_pci_driver.driver.owner)
+> -		return;
+> -
+> -	i915_perf_sysctl_unregister();
+> -	pci_unregister_driver(&i915_pci_driver);
+> -	i915_pmu_exit();
+> +	if (i915_fully_loaded) {
+> +		i915_perf_sysctl_unregister();
+> +		pci_unregister_driver(&i915_pci_driver);
+> +		i915_pmu_exit();
+> +	}
+>   	i915_globals_exit();
+>   }
+>   
+> 
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
