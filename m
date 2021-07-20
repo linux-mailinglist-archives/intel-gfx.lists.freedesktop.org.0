@@ -1,58 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ECEE3D0421
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 23:56:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 680633D042E
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 00:01:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319376E311;
-	Tue, 20 Jul 2021 21:56:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5CF6E479;
+	Tue, 20 Jul 2021 22:01:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
- [IPv6:2607:f8b0:4864:20::b33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5190B6E32A
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 21:56:01 +0000 (UTC)
-Received: by mail-yb1-xb33.google.com with SMTP id v189so568438ybg.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 14:56:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=sfBEshtiz3b3zWuLinvp78jOMvb3f/T6hm1sv7DHfbA=;
- b=Rq3BWE5SVRsS9GRXCGxhimGG/VUdFsqhpfMrFdllU1aGDpolrP7VcMthAm0x3Ztmau
- sI8UNSNZ6d4lxvbu9Hf/2ErJyOeaA8UDzC8+0VmOQJ306rwv64RLZMMOqxr97jNJngmu
- AyvtByCfxZYUH4vKmG5xO5VnOdsC8K63YUflep9Ns2GVnSjs0zNY94tPc2hMxTQAwOUS
- 3U4bfsEgv6cSPvy3m3j6EUt6L3mV96BExBbSjsAgtTlOSWQ+SNohKO99pXq4uiZ1fYsp
- RssnvoTmdiwVTWI95OBdRbb6DYOLzC5/J4pUcnimetfEf7wVXvSW3fR4N2Ve62OLF0vT
- xzSQ==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D43136E570
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 22:01:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1626818493;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=DGxLxC73Q30FLZh4kHloeV2LTAZ2CJRDqzZBDuBEMfM=;
+ b=Ty6BN3NVh1tbncLXYO5K+ZGbp3ho5S8x+Hry/Nlf+J2EDkFSAFfLt4jbi3QTpiBM9zALCR
+ owCtdHz5w6tODcx7oUteVm1faC9NtzB0HQyDwr4LgKQCDL2gBPIeVy6gY+06lqzLZx3HB3
+ r3azSQQqPJPHLyYTHwl31Vj7CZvtG9E=
+Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com
+ [209.85.167.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-59-t8ti6UXBNFmsVOxNMB1_Og-1; Tue, 20 Jul 2021 18:01:32 -0400
+X-MC-Unique: t8ti6UXBNFmsVOxNMB1_Og-1
+Received: by mail-oi1-f198.google.com with SMTP id
+ l3-20020aca19030000b029025c7e6f8b64so446943oii.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:01:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=sfBEshtiz3b3zWuLinvp78jOMvb3f/T6hm1sv7DHfbA=;
- b=HaYMaM2dKmeC6yOo/fYDywlUG8uqbyYEJI274ynOqJ2neueIVBF5CHXzxW0kYDQ0pc
- kuW/K8m12X4jTlkSNfdjGNj3kjlbT7jwP0XooWBCfIEcdDeTg9Tgylvm7KxFBippkY15
- v9ZJ6w2hDtcoEwyHC14PsiZ57mgKR8Q/GYb5PFL0Rec17TDyBk2iZHpl8Mh/CWpiZZW2
- pJPnrS5UeV1asbqJss+rZGRfTPBMYGH2GV2LBn53NLbWh5wBh7URdUkCDeYRTYs3fYJC
- v3UOzINGxmgGHTkHLSipQVdfDWmHr/Q6t7exShS4/RY5SCa35RmKZ1zgU6Gyp8kfgC5i
- vAqg==
-X-Gm-Message-State: AOAM532H5aobikSW8Mda0iTJ/eHWwMm7gGN0FloMOMnDR2CHGx/C1tTM
- ZAwBFxDGKvV5cDfj/uAUbrHYIJpjrzB5/mMfFZMA5Q==
-X-Google-Smtp-Source: ABdhPJynJuu9G4It/JBdq9J9m0pKEqVN08FgWvOaF4j4i2j2Ofd44KghjbcjhbcQyBoHOSSD0LI1YtAxwZssZqGM1yY=
-X-Received: by 2002:a25:aa69:: with SMTP id s96mr42275803ybi.241.1626818160322; 
- Tue, 20 Jul 2021 14:56:00 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=DGxLxC73Q30FLZh4kHloeV2LTAZ2CJRDqzZBDuBEMfM=;
+ b=X8/rfeail9Vmh7XLzfsk7LDJWCdJNTl5qSpOEkoy5JF7QI4BBQ4QaMQwiyDVksOv5i
+ BOrlVXqOPCYjS6r68e0I3Fy1i5NvQohb0wCIhMm4cl65y4Bdbz11spWvVRiRof5gg2Tz
+ 6Qy06x5DC2qtilumDy+HSIOLirXKiHLo7+aPb37dkKPwNRqNyc2hy6HQt/iLGjyzokrV
+ N8zoLWiVc6tQDFO3qOYvMcSWnRXe6g6tgtNyf1CraCJykzNXeky15PrRDfJCKtZeVVAY
+ o97pKGywFDMz01aCY06HTpqrw8xHJ6hLlzQUDrmT2fdOXijJ6g652VLkw14HQlE/CdqT
+ rpbA==
+X-Gm-Message-State: AOAM531Z3F9dvqDvHui/MoYArc36kFXVuHDNiI8p4zPL5yOTlFUpZh3p
+ uCrBolu+SQe9JIc8PaTcrjIKaJEVbOv935MtmSWyYw+FcKe34SLzJSpul4lvu3i2VzLI3+T2njp
+ /GKZiP3LuMSo8oo29xo/FUr5VA5g4
+X-Received: by 2002:a05:6808:aa3:: with SMTP id
+ r3mr18166270oij.133.1626818491770; 
+ Tue, 20 Jul 2021 15:01:31 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwuyDIfTXjm5YKo9TBgR+HrFk2cZEkVnlsdeNA/JOY8RcUjz3Wmb8/jGMHDDitpmXWLkurNEg==
+X-Received: by 2002:a05:6808:aa3:: with SMTP id
+ r3mr18166225oij.133.1626818491525; 
+ Tue, 20 Jul 2021 15:01:31 -0700 (PDT)
+Received: from redhat.com ([198.99.80.109])
+ by smtp.gmail.com with ESMTPSA id q187sm259680oif.2.2021.07.20.15.01.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 20 Jul 2021 15:01:30 -0700 (PDT)
+Date: Tue, 20 Jul 2021 16:01:27 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20210720160127.17bf3c19.alex.williamson@redhat.com>
+In-Reply-To: <2-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
+References: <0-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
+ <2-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <20210716141426.1904528-1-jason@jlekstrand.net>
- <20210716141426.1904528-7-jason@jlekstrand.net>
- <CAM0jSHP0CThxGJ-ABAO2kzhtKgh=ypbp+7iPsxPWd5F+Ydc7Tw@mail.gmail.com>
-In-Reply-To: <CAM0jSHP0CThxGJ-ABAO2kzhtKgh=ypbp+7iPsxPWd5F+Ydc7Tw@mail.gmail.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 20 Jul 2021 16:55:49 -0500
-Message-ID: <CAOFGe96mL5jNegWTO=JXyJ4LLzpT=xFCBqQSyXRMa=maC5WoAQ@mail.gmail.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/gem: Correct the locking and
- pin pattern for dma-buf (v6)
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH v2 02/14] vfio/mbochs: Fix missing error
+ unwind in mbochs_probe()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,124 +82,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, Max Gurtovoy <mgurtovoy@nvidia.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Diana Craciun <diana.craciun@oss.nxp.com>, Leon Romanovsky <leonro@nvidia.com>,
+ Christoph Hellwig <hch@lst.de>, linux-s390@vger.kernel.org,
+ Matthew Rosato <mjrosato@linux.ibm.com>, Jonathan Corbet <corbet@lwn.net>,
+ Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
+ Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ intel-gvt-dev@lists.freedesktop.org, "Raj, Ashok" <ashok.raj@intel.com>,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBKdWwgMjAsIDIwMjEgYXQgNDowNyBBTSBNYXR0aGV3IEF1bGQKPG1hdHRoZXcud2ls
-bGlhbS5hdWxkQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBPbiBGcmksIDE2IEp1bCAyMDIxIGF0IDE1
-OjE0LCBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+IHdyb3RlOgo+ID4KPiA+
-IEZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNv
-bT4KPiA+Cj4gPiBJZiBvdXIgZXhwb3J0ZWQgZG1hLWJ1ZnMgYXJlIGltcG9ydGVkIGJ5IGFub3Ro
-ZXIgaW5zdGFuY2Ugb2Ygb3VyIGRyaXZlciwKPiA+IHRoYXQgaW5zdGFuY2Ugd2lsbCB0eXBpY2Fs
-bHkgaGF2ZSB0aGUgaW1wb3J0ZWQgZG1hLWJ1ZnMgbG9ja2VkIGR1cmluZwo+ID4gZG1hX2J1Zl9t
-YXBfYXR0YWNobWVudCgpLiBCdXQgdGhlIGV4cG9ydGVyIGFsc28gbG9ja3MgdGhlIHNhbWUgcmVz
-ZXJ2YXRpb24KPiA+IG9iamVjdCBpbiB0aGUgbWFwX2RtYV9idWYoKSBjYWxsYmFjaywgd2hpY2gg
-bGVhZHMgdG8gcmVjdXJzaXZlIGxvY2tpbmcuCj4gPgo+ID4gU28gdGFraW5nIHRoZSBsb2NrIGlu
-c2lkZSBfcGluX3BhZ2VzX3VubG9ja2VkKCkgaXMgaW5jb3JyZWN0Lgo+ID4KPiA+IEFkZGl0aW9u
-YWxseSwgdGhlIGN1cnJlbnQgcGlubmluZyBjb2RlIHBhdGggaXMgY29udHJhcnkgdG8gdGhlIGRl
-ZmluZWQKPiA+IHdheSB0aGF0IHBpbm5pbmcgc2hvdWxkIG9jY3VyLgo+ID4KPiA+IFJlbW92ZSB0
-aGUgZXhwbGljaXQgcGluL3VucGluIGZyb20gdGhlIG1hcC91bWFwIGZ1bmN0aW9ucyBhbmQgbW92
-ZSB0aGVtCj4gPiB0byB0aGUgYXR0YWNoL2RldGFjaCBhbGxvd2luZyBjb3JyZWN0IGxvY2tpbmcg
-dG8gb2NjdXIsIGFuZCB0byBtYXRjaAo+ID4gdGhlIHN0YXRpYyBkbWEtYnVmIGRybV9wcmltZSBw
-YXR0ZXJuLgo+ID4KPiA+IEFkZCBhIGxpdmUgc2VsZnRlc3QgdG8gZXhlcmNpc2UgYm90aCBkeW5h
-bWljIGFuZCBub24tZHluYW1pYwo+ID4gZXhwb3J0cy4KPiA+Cj4gPiB2MjoKPiA+IC0gRXh0ZW5k
-IHRoZSBzZWxmdGVzdCB3aXRoIGEgZmFrZSBkeW5hbWljIGltcG9ydGVyLgo+ID4gLSBQcm92aWRl
-IHJlYWwgcGluIGFuZCB1bnBpbiBjYWxsYmFja3MgdG8gbm90IGFidXNlIHRoZSBpbnRlcmZhY2Uu
-Cj4gPiB2MzogKHJ1aGwpCj4gPiAtIFJlbW92ZSB0aGUgZHluYW1pYyBleHBvcnQgc3VwcG9ydCBh
-bmQgbW92ZSB0aGUgcGlubmluZyBpbnRvIHRoZQo+ID4gICBhdHRhY2gvZGV0YWNoIHBhdGguCj4g
-PiB2NDogKHJ1aGwpCj4gPiAtIFB1dCBwYWdlcyBkb2VzIG5vdCBuZWVkIHRvIGFzc2VydCBvbiB0
-aGUgZG1hLXJlc3YKPiA+IHY1OiAoamFzb24pCj4gPiAtIExvY2sgYXJvdW5kIGRtYV9idWZfdW5t
-YXBfYXR0YWNobWVudCgpIHdoZW4gZW11bGF0aW5nIGEgZHluYW1pYwo+ID4gICBpbXBvcnRlciBp
-biB0aGUgc3VidGVzdHMuCj4gPiAtIFVzZSBwaW5fcGFnZXNfdW5sb2NrZWQKPiA+IHY2OiAoamFz
-b24pCj4gPiAtIFVzZSBkbWFfYnVmX2F0dGFjaCBpbnN0ZWFkIG9mIGRtYV9idWZfYXR0YWNoX2R5
-bmFtaWMgaW4gdGhlIHNlbGZ0ZXN0cwo+ID4KPiA+IFJlcG9ydGVkLWJ5OiBNaWNoYWVsIEouIFJ1
-aGwgPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBI
-ZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPiA+IFNpZ25lZC1v
-ZmYtYnk6IE1pY2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tPgo+ID4gU2ln
-bmVkLW9mZi1ieTogSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0Pgo+ID4gUmV2
-aWV3ZWQtYnk6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4KPiA+IC0tLQo+
-ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYyAgICB8ICA0MyAr
-KysrKystLQo+ID4gIC4uLi9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5j
-ICB8IDEwMyArKysrKysrKysrKysrKysrKy0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDEzMiBpbnNl
-cnRpb25zKCspLCAxNCBkZWxldGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jCj4gPiBpbmRleCA2MTZjM2EyZjFiYWYwLi45YTY1NWY2OWEw
-NjcxIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2Rt
-YWJ1Zi5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVm
-LmMKPiA+IEBAIC0xMiw2ICsxMiw4IEBACj4gPiAgI2luY2x1ZGUgImk5MTVfZ2VtX29iamVjdC5o
-Igo+ID4gICNpbmNsdWRlICJpOTE1X3NjYXR0ZXJsaXN0LmgiCj4gPgo+ID4gK0k5MTVfU0VMRlRF
-U1RfREVDTEFSRShzdGF0aWMgYm9vbCBmb3JjZV9kaWZmZXJlbnRfZGV2aWNlczspCj4gPiArCj4g
-PiAgc3RhdGljIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpkbWFfYnVmX3RvX29iaihzdHJ1
-Y3QgZG1hX2J1ZiAqYnVmKQo+ID4gIHsKPiA+ICAgICAgICAgcmV0dXJuIHRvX2ludGVsX2JvKGJ1
-Zi0+cHJpdik7Cj4gPiBAQCAtMjUsMTUgKzI3LDExIEBAIHN0YXRpYyBzdHJ1Y3Qgc2dfdGFibGUg
-Kmk5MTVfZ2VtX21hcF9kbWFfYnVmKHN0cnVjdCBkbWFfYnVmX2F0dGFjaG1lbnQgKmF0dGFjaG1l
-Cj4gPiAgICAgICAgIHN0cnVjdCBzY2F0dGVybGlzdCAqc3JjLCAqZHN0Owo+ID4gICAgICAgICBp
-bnQgcmV0LCBpOwo+ID4KPiA+IC0gICAgICAgcmV0ID0gaTkxNV9nZW1fb2JqZWN0X3Bpbl9wYWdl
-c191bmxvY2tlZChvYmopOwo+ID4gLSAgICAgICBpZiAocmV0KQo+ID4gLSAgICAgICAgICAgICAg
-IGdvdG8gZXJyOwo+ID4gLQo+ID4gICAgICAgICAvKiBDb3B5IHNnIHNvIHRoYXQgd2UgbWFrZSBh
-biBpbmRlcGVuZGVudCBtYXBwaW5nICovCj4gPiAgICAgICAgIHN0ID0ga21hbGxvYyhzaXplb2Yo
-c3RydWN0IHNnX3RhYmxlKSwgR0ZQX0tFUk5FTCk7Cj4gPiAgICAgICAgIGlmIChzdCA9PSBOVUxM
-KSB7Cj4gPiAgICAgICAgICAgICAgICAgcmV0ID0gLUVOT01FTTsKPiA+IC0gICAgICAgICAgICAg
-ICBnb3RvIGVycl91bnBpbl9wYWdlczsKPiA+ICsgICAgICAgICAgICAgICBnb3RvIGVycjsKPiA+
-ICAgICAgICAgfQo+ID4KPiA+ICAgICAgICAgcmV0ID0gc2dfYWxsb2NfdGFibGUoc3QsIG9iai0+
-bW0ucGFnZXMtPm5lbnRzLCBHRlBfS0VSTkVMKTsKPiA+IEBAIC01OCw4ICs1Niw2IEBAIHN0YXRp
-YyBzdHJ1Y3Qgc2dfdGFibGUgKmk5MTVfZ2VtX21hcF9kbWFfYnVmKHN0cnVjdCBkbWFfYnVmX2F0
-dGFjaG1lbnQgKmF0dGFjaG1lCj4gPiAgICAgICAgIHNnX2ZyZWVfdGFibGUoc3QpOwo+ID4gIGVy
-cl9mcmVlOgo+ID4gICAgICAgICBrZnJlZShzdCk7Cj4gPiAtZXJyX3VucGluX3BhZ2VzOgo+ID4g
-LSAgICAgICBpOTE1X2dlbV9vYmplY3RfdW5waW5fcGFnZXMob2JqKTsKPiA+ICBlcnI6Cj4gPiAg
-ICAgICAgIHJldHVybiBFUlJfUFRSKHJldCk7Cj4gPiAgfQo+ID4gQEAgLTY4LDEzICs2NCw5IEBA
-IHN0YXRpYyB2b2lkIGk5MTVfZ2VtX3VubWFwX2RtYV9idWYoc3RydWN0IGRtYV9idWZfYXR0YWNo
-bWVudCAqYXR0YWNobWVudCwKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-c3RydWN0IHNnX3RhYmxlICpzZywKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgZW51bSBkbWFfZGF0YV9kaXJlY3Rpb24gZGlyKQo+ID4gIHsKPiA+IC0gICAgICAgc3RydWN0
-IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9IGRtYV9idWZfdG9fb2JqKGF0dGFjaG1lbnQtPmRt
-YWJ1Zik7Cj4gPiAtCj4gPiAgICAgICAgIGRtYV91bm1hcF9zZ3RhYmxlKGF0dGFjaG1lbnQtPmRl
-diwgc2csIGRpciwgRE1BX0FUVFJfU0tJUF9DUFVfU1lOQyk7Cj4gPiAgICAgICAgIHNnX2ZyZWVf
-dGFibGUoc2cpOwo+ID4gICAgICAgICBrZnJlZShzZyk7Cj4gPiAtCj4gPiAtICAgICAgIGk5MTVf
-Z2VtX29iamVjdF91bnBpbl9wYWdlcyhvYmopOwo+ID4gIH0KPiA+Cj4gPiAgc3RhdGljIGludCBp
-OTE1X2dlbV9kbWFidWZfdm1hcChzdHJ1Y3QgZG1hX2J1ZiAqZG1hX2J1Ziwgc3RydWN0IGRtYV9i
-dWZfbWFwICptYXApCj4gPiBAQCAtMTY4LDcgKzE2MCwzMSBAQCBzdGF0aWMgaW50IGk5MTVfZ2Vt
-X2VuZF9jcHVfYWNjZXNzKHN0cnVjdCBkbWFfYnVmICpkbWFfYnVmLCBlbnVtIGRtYV9kYXRhX2Rp
-cmVjdAo+ID4gICAgICAgICByZXR1cm4gZXJyOwo+ID4gIH0KPiA+Cj4gPiArLyoqCj4gPiArICog
-aTkxNV9nZW1fZG1hYnVmX2F0dGFjaCAtIERvIGFueSBleHRyYSBhdHRhY2ggd29yayBuZWNlc3Nh
-cnkKPiA+ICsgKiBAZG1hYnVmOiBpbXBvcnRlZCBkbWEtYnVmCj4gPiArICogQGF0dGFjaDogbmV3
-IGF0dGFjaCB0byBkbyB3b3JrIG9uCj4gPiArICoKPiA+ICsgKi8KPiA+ICtzdGF0aWMgaW50IGk5
-MTVfZ2VtX2RtYWJ1Zl9hdHRhY2goc3RydWN0IGRtYV9idWYgKmRtYWJ1ZiwKPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICphdHRh
-Y2gpCj4gPiArewo+ID4gKyAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqID0g
-ZG1hX2J1Zl90b19vYmooZG1hYnVmKTsKPiA+ICsKPiA+ICsgICAgICAgcmV0dXJuIGk5MTVfZ2Vt
-X29iamVjdF9waW5fcGFnZXNfdW5sb2NrZWQob2JqKTsKPiA+ICt9Cj4gPiArCj4gPiArc3RhdGlj
-IHZvaWQgaTkxNV9nZW1fZG1hYnVmX2RldGFjaChzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVmLAo+ID4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2ht
-ZW50ICphdHRhY2gpCj4gPiArewo+ID4gKyAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVj
-dCAqb2JqID0gZG1hX2J1Zl90b19vYmooZG1hYnVmKTsKPiA+ICsKPiA+ICsgICAgICAgaTkxNV9n
-ZW1fb2JqZWN0X3VucGluX3BhZ2VzKG9iaik7Cj4gPiArfQo+ID4gKwo+Cj4gV2UgZG9uJ3Qgbm9y
-bWFsbHkgYWRkIGtlcm5lbC1kb2MgZm9yIHN0YXRpYyBmdW5jdGlvbnM/IE90aGVyd2lzZQo+IGRt
-YWJ1Zl9kZXRhY2goKSBuZWVkcyBtYXRjaGluZyBrZXJuZWwtZG9jLgoKRHJvcHBlZC4KCj4gPHNu
-aXA+Cj4KPiA+ICsKPiA+ICtzdGF0aWMgaW50IGlndF9kbWFidWZfaW1wb3J0X3NhbWVfZHJpdmVy
-KHZvaWQgKmFyZykKPiA+ICt7Cj4gPiArICAgICAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
-OTE1ID0gYXJnOwo+ID4gKyAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLCAq
-aW1wb3J0X29iajsKPiA+ICsgICAgICAgc3RydWN0IGRybV9nZW1fb2JqZWN0ICppbXBvcnQ7Cj4g
-PiArICAgICAgIHN0cnVjdCBkbWFfYnVmICpkbWFidWY7Cj4gPiArICAgICAgIHN0cnVjdCBkbWFf
-YnVmX2F0dGFjaG1lbnQgKmltcG9ydF9hdHRhY2g7Cj4gPiArICAgICAgIHN0cnVjdCBzZ190YWJs
-ZSAqc3Q7Cj4gPiArICAgICAgIGxvbmcgdGltZW91dDsKPiA+ICsgICAgICAgaW50IGVycjsKPiA+
-ICsKPiA+ICsgICAgICAgZm9yY2VfZGlmZmVyZW50X2RldmljZXMgPSB0cnVlOwo+ID4gKyAgICAg
-ICBvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3NobWVtKGk5MTUsIFBBR0VfU0laRSk7Cj4g
-PiArICAgICAgIGlmIChJU19FUlIob2JqKSkKPgo+IGVyciA9IFBUUl9FUlIob2JqKQoKRG9uZS4K
-Cj4gPHNuaXA+Cj4KPiA+ICsgICAgICAgLyogTm93IHRyeSBhIGZha2UgYW4gaW1wb3J0ZXIgKi8K
-PiA+ICsgICAgICAgaW1wb3J0X2F0dGFjaCA9IGRtYV9idWZfYXR0YWNoKGRtYWJ1Ziwgb2JqLT5i
-YXNlLmRldi0+ZGV2KTsKPiA+ICsgICAgICAgaWYgKElTX0VSUihpbXBvcnRfYXR0YWNoKSkKPiA+
-ICsgICAgICAgICAgICAgICBnb3RvIG91dF9pbXBvcnQ7Cj4gPiArCj4gPiArICAgICAgIHN0ID0g
-ZG1hX2J1Zl9tYXBfYXR0YWNobWVudChpbXBvcnRfYXR0YWNoLCBETUFfQklESVJFQ1RJT05BTCk7
-Cj4gPiArICAgICAgIGlmIChJU19FUlIoc3QpKQo+ID4gKyAgICAgICAgICAgICAgIGdvdG8gb3V0
-X2RldGFjaDsKPgo+IEZvciB0aGVzZSB0d28gbWF5YmUgbWlzc2luZyBlcnIgPSA/CgpZdXAuICBG
-aXhlZC4gIEkgYWxzbyBjaGFuZ2VkIHRoZSAoaW50KVBUUl9FUlIoKSBpbiB0aGUgZXJyb3IgcHJp
-bnRzCmxpa2UgeW91IGFza2VkIGZvciBpbiB0aGUgbmV4dCBwYXRjaC4KCi0tSmFzb24KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Tue, 20 Jul 2021 14:42:48 -0300
+Jason Gunthorpe <jgg@nvidia.com> wrote:
+
+> Compared to mbochs_remove() two cases are missing from the
+> vfio_register_group_dev() unwind. Add them in.
+> 
+> Fixes: 681c1615f891 ("vfio/mbochs: Convert to use vfio_register_group_dev()")
+> Reported-by: Cornelia Huck <cohuck@redhat.com>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  samples/vfio-mdev/mbochs.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
+> index e81b875b4d87b4..501845b08c0974 100644
+> --- a/samples/vfio-mdev/mbochs.c
+> +++ b/samples/vfio-mdev/mbochs.c
+> @@ -553,11 +553,14 @@ static int mbochs_probe(struct mdev_device *mdev)
+>  
+>  	ret = vfio_register_group_dev(&mdev_state->vdev);
+>  	if (ret)
+> -		goto err_mem;
+> +		goto err_bytes;
+>  	dev_set_drvdata(&mdev->dev, mdev_state);
+>  	return 0;
+>  
+> +err_bytes:
+> +	mbochs_used_mbytes -= mdev_state->type->mbytes;
+>  err_mem:
+> +	kfree(mdev_state->pages);
+>  	kfree(mdev_state->vconfig);
+>  	kfree(mdev_state);
+>  	return ret;
+> @@ -567,8 +570,8 @@ static void mbochs_remove(struct mdev_device *mdev)
+>  {
+>  	struct mdev_state *mdev_state = dev_get_drvdata(&mdev->dev);
+>  
+> -	mbochs_used_mbytes -= mdev_state->type->mbytes;
+>  	vfio_unregister_group_dev(&mdev_state->vdev);
+> +	mbochs_used_mbytes -= mdev_state->type->mbytes;
+>  	kfree(mdev_state->pages);
+>  	kfree(mdev_state->vconfig);
+>  	kfree(mdev_state);
+
+Hmm, doesn't this suggest we need another atomic conversion?  (untested)
+
+diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
+index e81b875b4d87..842819e29c6b 100644
+--- a/samples/vfio-mdev/mbochs.c
++++ b/samples/vfio-mdev/mbochs.c
+@@ -129,7 +129,7 @@ static dev_t		mbochs_devt;
+ static struct class	*mbochs_class;
+ static struct cdev	mbochs_cdev;
+ static struct device	mbochs_dev;
+-static int		mbochs_used_mbytes;
++static atomic_t		mbochs_avail_mbytes;
+ static const struct vfio_device_ops mbochs_dev_ops;
+ 
+ struct vfio_region_info_ext {
+@@ -511,14 +511,19 @@ static int mbochs_probe(struct mdev_device *mdev)
+ 		&mbochs_types[mdev_get_type_group_id(mdev)];
+ 	struct device *dev = mdev_dev(mdev);
+ 	struct mdev_state *mdev_state;
++	int avail_mbytes = atomic_read(&mbochs_avail_mbytes);
+ 	int ret = -ENOMEM;
+ 
+-	if (type->mbytes + mbochs_used_mbytes > max_mbytes)
+-		return -ENOMEM;
++	do {
++		if (avail_mbytes < type->mbytes)
++			return ret;
++	} while (!atomic_try_cmpxchg(&mbochs_avail_mbytes, &avail_mbytes,
++				     avail_mbytes - type->mbytes));
+ 
+ 	mdev_state = kzalloc(sizeof(struct mdev_state), GFP_KERNEL);
+ 	if (mdev_state == NULL)
+-		return -ENOMEM;
++		goto err_resv;
++
+ 	vfio_init_group_dev(&mdev_state->vdev, &mdev->dev, &mbochs_dev_ops);
+ 
+ 	mdev_state->vconfig = kzalloc(MBOCHS_CONFIG_SPACE_SIZE, GFP_KERNEL);
+@@ -549,8 +554,6 @@ static int mbochs_probe(struct mdev_device *mdev)
+ 	mbochs_create_config_space(mdev_state);
+ 	mbochs_reset(mdev_state);
+ 
+-	mbochs_used_mbytes += type->mbytes;
+-
+ 	ret = vfio_register_group_dev(&mdev_state->vdev);
+ 	if (ret)
+ 		goto err_mem;
+@@ -558,8 +561,11 @@ static int mbochs_probe(struct mdev_device *mdev)
+ 	return 0;
+ 
+ err_mem:
++	kfree(mdev_state->pages);
+ 	kfree(mdev_state->vconfig);
+ 	kfree(mdev_state);
++err_resv:
++	atomic_add(mdev_state->type->mbytes, &mbochs_avail_mbytes);
+ 	return ret;
+ }
+ 
+@@ -567,11 +573,11 @@ static void mbochs_remove(struct mdev_device *mdev)
+ {
+ 	struct mdev_state *mdev_state = dev_get_drvdata(&mdev->dev);
+ 
+-	mbochs_used_mbytes -= mdev_state->type->mbytes;
+ 	vfio_unregister_group_dev(&mdev_state->vdev);
+ 	kfree(mdev_state->pages);
+ 	kfree(mdev_state->vconfig);
+ 	kfree(mdev_state);
++	atomic_add(mdev_state->type->mbytes, &mbochs_avail_mbytes);
+ }
+ 
+ static ssize_t mbochs_read(struct vfio_device *vdev, char __user *buf,
+@@ -1351,7 +1357,7 @@ static ssize_t available_instances_show(struct mdev_type *mtype,
+ {
+ 	const struct mbochs_type *type =
+ 		&mbochs_types[mtype_get_type_group_id(mtype)];
+-	int count = (max_mbytes - mbochs_used_mbytes) / type->mbytes;
++	int count = atomic_read(&mbochs_avail_mbytes) / type->mbytes;
+ 
+ 	return sprintf(buf, "%d\n", count);
+ }
+@@ -1460,6 +1466,8 @@ static int __init mbochs_dev_init(void)
+ 	if (ret)
+ 		goto err_class;
+ 
++	atomic_set(&mbochs_avail_mbytes, max_mbytes);
++
+ 	ret = mdev_register_device(&mbochs_dev, &mdev_fops);
+ 	if (ret)
+ 		goto err_device;
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
