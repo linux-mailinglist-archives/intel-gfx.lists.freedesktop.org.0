@@ -1,61 +1,74 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84623CF9F7
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 14:58:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD70B3CFA1F
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 15:08:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108AF89AEE;
-	Tue, 20 Jul 2021 12:58:57 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
- [IPv6:2a00:1450:4864:20::42c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A635A89B12
- for <Intel-GFX@lists.freedesktop.org>; Tue, 20 Jul 2021 12:58:55 +0000 (UTC)
-Received: by mail-wr1-x42c.google.com with SMTP id c15so2313468wrs.5
- for <Intel-GFX@lists.freedesktop.org>; Tue, 20 Jul 2021 05:58:55 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356266E301;
+	Tue, 20 Jul 2021 13:08:16 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
+ [IPv6:2a00:1450:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A33116E2D5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 13:08:14 +0000 (UTC)
+Received: by mail-wr1-x42e.google.com with SMTP id l7so25926808wrv.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 06:08:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=TcTp0wobItD6AuKo9qIA9DC0sXZDvU6Zw78LL0e3Un8=;
- b=hp9aI4S4ySgXltACuCVM1NtzhsUlFuf/5xfGaPOweWkhyqTu1YUzCzkzoCkrxoBCnD
- 0ZMhY44EzJb66foqVdYZ43JRIwzAoQU1UeIuQ3jO3sgSadMVbz8/E2tt+ScoKeUqTQ4e
- s2WrbukFcv2LPnXuHtvsk1FjxGBHL9jRXKWlQ=
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=uvHTohQOXUo1eNzTbptDnQ980SKchLpYfyQkug8oLsM=;
+ b=FZ7B87n7ZKH5WlwYufOcG72EJmbAaUBUE4aFuEpuEsqmjOIyRz6/XyFpVO7exRf5Wb
+ dyZrHG+WOrHkEo9owvwnpXCrJcTd7X4Frz4ddtsdLCY2qk9tlFUBWk94lopmcQM3+zt6
+ BjfmggyN4mvYvqpXEhBlTfCVoea5a0qDcd/Ss=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=TcTp0wobItD6AuKo9qIA9DC0sXZDvU6Zw78LL0e3Un8=;
- b=arH461jtpRBT/Y3hMHn2g4TReJwfiEaggfVSasThUYF8cg9JQSRWDhgsR4LZlhdK4b
- zF0ZBYf2KfFiCCR9u5gT9gceNgpRfjZJ90MP6cboZPFHtyfXG/TseoWYWRLhsWVhfl8Y
- YyqAIK/InOFFEDFb4ldJWIzldWN5PFXEhiXkG4hVji0MxkPmMpBK3Ru9aNJ02WBqJ/gt
- FeDMtVm0lD1ePn4Qh3j0js+oIx3wRQfTGxFnyt14UT4tB4pNCn++eING1fMDIMDkWZZd
- OPVCRYCbZTA6p8gKD/Bv8tIqwODz1Y30A4B/fSjidKYMB4+K4irNP7lwJugEkcggjLPB
- pIhw==
-X-Gm-Message-State: AOAM532HbzPzzmzSjmacPI9ajZ0RhuPRlUYr4c3LYBAcGBPmC/KHRhuK
- K0lKcxIqIqSjUyhMfwgOENe8JA==
-X-Google-Smtp-Source: ABdhPJzo1gNkWbMJv45R3wNpOxwiQD4mM3Z0a/jZXLfzKY1hNQ+LEPnIJr5HZjLb2KKvrEViHthaHg==
-X-Received: by 2002:a5d:4e81:: with SMTP id e1mr35469113wru.48.1626785934335; 
- Tue, 20 Jul 2021 05:58:54 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=uvHTohQOXUo1eNzTbptDnQ980SKchLpYfyQkug8oLsM=;
+ b=jrndlTxLDEaKoE4VkzKesCLxiGF6SV6vzUJDsr20qd128jq4gd/wgj6CDyOxDSQdUv
+ 5r11irwKJNeTRxXa8GrCdSQhG+EgpYFmpAmRDT4tjRStls1u17LBn3SqEFsmsC+++ecr
+ 071ZVdMgyZKmUCCEcdW869+LdOUSrC/dzDqi+GfkqsD+z+IFlPE0iGgqMdF+7XIdTaG1
+ 8wZVYfnOEpRDU0QNMigc6Miq5tLJqd46rh6pI9T9Ywvb+sho+2stEgrQxEj2rOt2tFW6
+ KwdL2XqfeiwGY4FBnZnar2QFP/y3drO0D9yMe1odfXnp3+CtsqbideEUzVlnAspFwCQF
+ le+Q==
+X-Gm-Message-State: AOAM530HaMH8RmVHfZ4RJ3jvfBveiAp1nz51cGxcafX5uBd0uKRpiOX4
+ InbUr7b23b6StWlKz7ekm/KqZw==
+X-Google-Smtp-Source: ABdhPJyUbagFa2jJYY8PhdxQ3iWQEkYXCDmIYQQXB8xNIPSArbgllu0G7MR5Pi9l2jz7RgWOZA4nAw==
+X-Received: by 2002:a05:6000:2a1:: with SMTP id
+ l1mr35043388wry.128.1626786493358; 
+ Tue, 20 Jul 2021 06:08:13 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p7sm18753143wmq.5.2021.07.20.05.58.52
+ by smtp.gmail.com with ESMTPSA id r17sm2423906wmq.13.2021.07.20.06.08.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Jul 2021 05:58:53 -0700 (PDT)
-Date: Tue, 20 Jul 2021 14:58:51 +0200
+ Tue, 20 Jul 2021 06:08:12 -0700 (PDT)
+Date: Tue, 20 Jul 2021 15:08:10 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: John Harrison <john.c.harrison@intel.com>
-Message-ID: <YPbIi2vcYh7/3ELv@phenom.ffwll.local>
-References: <20210610204626.2995262-1-John.C.Harrison@Intel.com>
- <20210610204626.2995262-4-John.C.Harrison@Intel.com>
- <CAKMK7uGO8U9a8yq73MV=xSbTA+tCQi5nqiZSD9Hwbi==fZ=R5A@mail.gmail.com>
- <84e44807-6cbb-b156-0a13-ef7715bad66b@intel.com>
+To: Jim Cromie <jim.cromie@gmail.com>
+Message-ID: <YPbKukQVbHt1Yuin@phenom.ffwll.local>
+Mail-Followup-To: Jim Cromie <jim.cromie@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@linux.ie>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, jbaron@akamai.com
+References: <20210714175138.319514-1-jim.cromie@gmail.com>
+ <20210714175138.319514-2-jim.cromie@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <84e44807-6cbb-b156-0a13-ef7715bad66b@intel.com>
+In-Reply-To: <20210714175138.319514-2-jim.cromie@gmail.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/uapi: Add query for L3 bank
- count
+Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/print: fixup spelling in a
+ comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,174 +81,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <Intel-GFX@lists.freedesktop.org>,
- dri-devel <DRI-Devel@lists.freedesktop.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ jbaron@akamai.com, Maxime Ripard <mripard@kernel.org>,
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 15, 2021 at 03:16:08PM -0700, John Harrison wrote:
-> On 6/16/2021 03:25, Daniel Vetter wrote:
-> > On Thu, Jun 10, 2021 at 10:46 PM <John.C.Harrison@intel.com> wrote:
-> > > From: John Harrison <John.C.Harrison@Intel.com>
-> > > 
-> > > Various UMDs need to know the L3 bank count. So add a query API for it.
-> > Please link to both the igt test submission for this (there's not even
-> > a Test-with: on the cover letter)
-> Is there a wiki page that describes all such tags? That is not one I was
-> aware of and I can't find anything in the Kernel patch submission wiki or
-> DRM maintainers wiki that mentions it.
+On Wed, Jul 14, 2021 at 11:51:34AM -0600, Jim Cromie wrote:
+> s/prink/printk/ - no functional changes
+> 
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 
-It's in the CI docs (linked from the main page too)
-
-https://intel-gfx-ci.01.org/test-with.html
-
-> >   and the merge requests for the
-> > various UMD which uses new uapi.
-> Is there a particular tag to use for this?
-
-I think often just a link to the merge request in the cover letter.
-Sometimes people also put the link in the uapi patch itself in the commit
-message. Which I think would be best.
+Applied to drm-misc-next, thanks for your patch.
 -Daniel
 
-
-
+> ---
+>  include/drm/drm_print.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> John.
-> 
-> >   Also as other mentioned, full uapi
-> > kerneldoc is needed too. Please fill in any gaps in the existing docs
-> > that relate to your addition directly (like we've e.g. done for the
-> > extension chaining when adding lmem support).
-> > 
-> > Thanks, Daniel
-> > 
-> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/gt/intel_gt.c | 15 +++++++++++++++
-> > >   drivers/gpu/drm/i915/gt/intel_gt.h |  1 +
-> > >   drivers/gpu/drm/i915/i915_query.c  | 22 ++++++++++++++++++++++
-> > >   drivers/gpu/drm/i915/i915_reg.h    |  1 +
-> > >   include/uapi/drm/i915_drm.h        |  1 +
-> > >   5 files changed, 40 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > > index 2161bf01ef8b..708bb3581d83 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > > @@ -704,3 +704,18 @@ void intel_gt_info_print(const struct intel_gt_info *info,
-> > > 
-> > >          intel_sseu_dump(&info->sseu, p);
-> > >   }
-> > > +
-> > > +int intel_gt_get_l3bank_count(struct intel_gt *gt)
-> > > +{
-> > > +       struct drm_i915_private *i915 = gt->i915;
-> > > +       intel_wakeref_t wakeref;
-> > > +       u32 fuse3;
-> > > +
-> > > +       if (GRAPHICS_VER(i915) < 12)
-> > > +               return -ENODEV;
-> > > +
-> > > +       with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> > > +               fuse3 = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
-> > > +
-> > > +       return hweight32(REG_FIELD_GET(GEN12_GT_L3_MODE_MASK, ~fuse3));
-> > > +}
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-> > > index 7ec395cace69..46aa1cf4cf30 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_gt.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-> > > @@ -77,6 +77,7 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
-> > > 
-> > >   void intel_gt_info_print(const struct intel_gt_info *info,
-> > >                           struct drm_printer *p);
-> > > +int intel_gt_get_l3bank_count(struct intel_gt *gt);
-> > > 
-> > >   void intel_gt_watchdog_work(struct work_struct *work);
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> > > index 96bd8fb3e895..0e92bb2d21b2 100644
-> > > --- a/drivers/gpu/drm/i915/i915_query.c
-> > > +++ b/drivers/gpu/drm/i915/i915_query.c
-> > > @@ -10,6 +10,7 @@
-> > >   #include "i915_perf.h"
-> > >   #include "i915_query.h"
-> > >   #include <uapi/drm/i915_drm.h>
-> > > +#include "gt/intel_gt.h"
-> > > 
-> > >   static int copy_query_item(void *query_hdr, size_t query_sz,
-> > >                             u32 total_length,
-> > > @@ -502,6 +503,26 @@ static int query_hwconfig_table(struct drm_i915_private *i915,
-> > >          return hwconfig->size;
-> > >   }
-> > > 
-> > > +static int query_l3banks(struct drm_i915_private *i915,
-> > > +                        struct drm_i915_query_item *query_item)
-> > > +{
-> > > +       u32 banks;
-> > > +
-> > > +       if (query_item->length == 0)
-> > > +               return sizeof(banks);
-> > > +
-> > > +       if (query_item->length < sizeof(banks))
-> > > +               return -EINVAL;
-> > > +
-> > > +       banks = intel_gt_get_l3bank_count(&i915->gt);
-> > > +
-> > > +       if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
-> > > +                        &banks, sizeof(banks)))
-> > > +               return -EFAULT;
-> > > +
-> > > +       return sizeof(banks);
-> > > +}
-> > > +
-> > >   static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
-> > >                                          struct drm_i915_query_item *query_item) = {
-> > >          query_topology_info,
-> > > @@ -509,6 +530,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
-> > >          query_perf_config,
-> > >          query_memregion_info,
-> > >          query_hwconfig_table,
-> > > +       query_l3banks,
-> > >   };
-> > > 
-> > >   int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > > index eb13c601d680..e9ba88fe3db7 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -3099,6 +3099,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
-> > >   #define        GEN10_MIRROR_FUSE3              _MMIO(0x9118)
-> > >   #define GEN10_L3BANK_PAIR_COUNT     4
-> > >   #define GEN10_L3BANK_MASK   0x0F
-> > > +#define GEN12_GT_L3_MODE_MASK 0xFF
-> > > 
-> > >   #define GEN8_EU_DISABLE0               _MMIO(0x9134)
-> > >   #define   GEN8_EU_DIS0_S0_MASK         0xffffff
-> > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> > > index 87d369cae22a..20d18cca5066 100644
-> > > --- a/include/uapi/drm/i915_drm.h
-> > > +++ b/include/uapi/drm/i915_drm.h
-> > > @@ -2234,6 +2234,7 @@ struct drm_i915_query_item {
-> > >   #define DRM_I915_QUERY_PERF_CONFIG      3
-> > >   #define DRM_I915_QUERY_MEMORY_REGIONS   4
-> > >   #define DRM_I915_QUERY_HWCONFIG_TABLE   5
-> > > +#define DRM_I915_QUERY_L3_BANK_COUNT    6
-> > >   /* Must be kept compact -- no holes and well documented */
-> > > 
-> > >          /**
-> > > --
-> > > 2.25.1
-> > > 
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > 
-> > 
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index 9b66be54dd16..15a089a87c22 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -327,7 +327,7 @@ static inline bool drm_debug_enabled(enum drm_debug_category category)
+>  /*
+>   * struct device based logging
+>   *
+> - * Prefer drm_device based logging over device or prink based logging.
+> + * Prefer drm_device based logging over device or printk based logging.
+>   */
+>  
+>  __printf(3, 4)
+> -- 
+> 2.31.1
 > 
 
 -- 
