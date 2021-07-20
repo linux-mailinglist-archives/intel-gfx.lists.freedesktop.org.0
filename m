@@ -2,57 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21AF33CF9D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 14:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84623CF9F7
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 14:58:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37B0489E43;
-	Tue, 20 Jul 2021 12:46:47 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 784AD89E43
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 12:46:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="208111056"
-X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; d="scan'208";a="208111056"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2021 05:46:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; d="scan'208";a="462036405"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga008.jf.intel.com with ESMTP; 20 Jul 2021 05:46:44 -0700
-Received: from bgsmsx605.gar.corp.intel.com (10.67.234.7) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 20 Jul 2021 05:46:44 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX605.gar.corp.intel.com (10.67.234.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 20 Jul 2021 18:16:41 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.010;
- Tue, 20 Jul 2021 18:16:41 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 5/5] drm/i915: Get proper min cdclk if vDSC enabled
-Thread-Index: AQHXfG4Hj7cjCMYlnUuQ3/deXTVUi6tLsw8A
-Date: Tue, 20 Jul 2021 12:46:41 +0000
-Message-ID: <8ce6abcb8840407c87c3856dcb021e72@intel.com>
-References: <20210719072222.13369-1-shawn.c.lee@intel.com>
- <20210719072222.13369-6-shawn.c.lee@intel.com>
-In-Reply-To: <20210719072222.13369-6-shawn.c.lee@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+	by gabe.freedesktop.org (Postfix) with ESMTP id 108AF89AEE;
+	Tue, 20 Jul 2021 12:58:57 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
+ [IPv6:2a00:1450:4864:20::42c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A635A89B12
+ for <Intel-GFX@lists.freedesktop.org>; Tue, 20 Jul 2021 12:58:55 +0000 (UTC)
+Received: by mail-wr1-x42c.google.com with SMTP id c15so2313468wrs.5
+ for <Intel-GFX@lists.freedesktop.org>; Tue, 20 Jul 2021 05:58:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=TcTp0wobItD6AuKo9qIA9DC0sXZDvU6Zw78LL0e3Un8=;
+ b=hp9aI4S4ySgXltACuCVM1NtzhsUlFuf/5xfGaPOweWkhyqTu1YUzCzkzoCkrxoBCnD
+ 0ZMhY44EzJb66foqVdYZ43JRIwzAoQU1UeIuQ3jO3sgSadMVbz8/E2tt+ScoKeUqTQ4e
+ s2WrbukFcv2LPnXuHtvsk1FjxGBHL9jRXKWlQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=TcTp0wobItD6AuKo9qIA9DC0sXZDvU6Zw78LL0e3Un8=;
+ b=arH461jtpRBT/Y3hMHn2g4TReJwfiEaggfVSasThUYF8cg9JQSRWDhgsR4LZlhdK4b
+ zF0ZBYf2KfFiCCR9u5gT9gceNgpRfjZJ90MP6cboZPFHtyfXG/TseoWYWRLhsWVhfl8Y
+ YyqAIK/InOFFEDFb4ldJWIzldWN5PFXEhiXkG4hVji0MxkPmMpBK3Ru9aNJ02WBqJ/gt
+ FeDMtVm0lD1ePn4Qh3j0js+oIx3wRQfTGxFnyt14UT4tB4pNCn++eING1fMDIMDkWZZd
+ OPVCRYCbZTA6p8gKD/Bv8tIqwODz1Y30A4B/fSjidKYMB4+K4irNP7lwJugEkcggjLPB
+ pIhw==
+X-Gm-Message-State: AOAM532HbzPzzmzSjmacPI9ajZ0RhuPRlUYr4c3LYBAcGBPmC/KHRhuK
+ K0lKcxIqIqSjUyhMfwgOENe8JA==
+X-Google-Smtp-Source: ABdhPJzo1gNkWbMJv45R3wNpOxwiQD4mM3Z0a/jZXLfzKY1hNQ+LEPnIJr5HZjLb2KKvrEViHthaHg==
+X-Received: by 2002:a5d:4e81:: with SMTP id e1mr35469113wru.48.1626785934335; 
+ Tue, 20 Jul 2021 05:58:54 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id p7sm18753143wmq.5.2021.07.20.05.58.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 20 Jul 2021 05:58:53 -0700 (PDT)
+Date: Tue, 20 Jul 2021 14:58:51 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: John Harrison <john.c.harrison@intel.com>
+Message-ID: <YPbIi2vcYh7/3ELv@phenom.ffwll.local>
+References: <20210610204626.2995262-1-John.C.Harrison@Intel.com>
+ <20210610204626.2995262-4-John.C.Harrison@Intel.com>
+ <CAKMK7uGO8U9a8yq73MV=xSbTA+tCQi5nqiZSD9Hwbi==fZ=R5A@mail.gmail.com>
+ <84e44807-6cbb-b156-0a13-ef7715bad66b@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Get proper min cdclk if vDSC
- enabled
+Content-Disposition: inline
+In-Reply-To: <84e44807-6cbb-b156-0a13-ef7715bad66b@intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/uapi: Add query for L3 bank
+ count
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,74 +68,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, "Tseng,
- William" <william.tseng@intel.com>
+Cc: intel-gfx <Intel-GFX@lists.freedesktop.org>,
+ dri-devel <DRI-Devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Lee, Shawn C <shawn.c.lee@intel.com>
-> Sent: Monday, July 19, 2021 12:52 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Lee, Shawn C <shawn.c.lee@intel.com>; Ville Syrjala
-> <ville.syrjala@linux.intel.com>; Jani Nikula <jani.nikula@linux.intel.com>;
-> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Chiou, Cooper
-> <cooper.chiou@intel.com>; Tseng, William <william.tseng@intel.com>
-> Subject: [PATCH 5/5] drm/i915: Get proper min cdclk if vDSC enabled
+On Thu, Jul 15, 2021 at 03:16:08PM -0700, John Harrison wrote:
+> On 6/16/2021 03:25, Daniel Vetter wrote:
+> > On Thu, Jun 10, 2021 at 10:46 PM <John.C.Harrison@intel.com> wrote:
+> > > From: John Harrison <John.C.Harrison@Intel.com>
+> > > 
+> > > Various UMDs need to know the L3 bank count. So add a query API for it.
+> > Please link to both the igt test submission for this (there's not even
+> > a Test-with: on the cover letter)
+> Is there a wiki page that describes all such tags? That is not one I was
+> aware of and I can't find anything in the Kernel patch submission wiki or
+> DRM maintainers wiki that mentions it.
+
+It's in the CI docs (linked from the main page too)
+
+https://intel-gfx-ci.01.org/test-with.html
+
+> >   and the merge requests for the
+> > various UMD which uses new uapi.
+> Is there a particular tag to use for this?
+
+I think often just a link to the merge request in the cover letter.
+Sometimes people also put the link in the uapi patch itself in the commit
+message. Which I think would be best.
+-Daniel
+
+
+
 > 
-> VDSC engine can process only 1 pixel per Cd clock. In case VDSC is used and
-> max slice count == 1, max supported pixel clock should be 100% of CD clock.
-> Then do min_cdclk and pixel clock comparison to get proper min cdclk.
+> John.
 > 
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: William Tseng <william.tseng@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> >   Also as other mentioned, full uapi
+> > kerneldoc is needed too. Please fill in any gaps in the existing docs
+> > that relate to your addition directly (like we've e.g. done for the
+> > extension chaining when adding lmem support).
+> > 
+> > Thanks, Daniel
+> > 
+> > > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> > > ---
+> > >   drivers/gpu/drm/i915/gt/intel_gt.c | 15 +++++++++++++++
+> > >   drivers/gpu/drm/i915/gt/intel_gt.h |  1 +
+> > >   drivers/gpu/drm/i915/i915_query.c  | 22 ++++++++++++++++++++++
+> > >   drivers/gpu/drm/i915/i915_reg.h    |  1 +
+> > >   include/uapi/drm/i915_drm.h        |  1 +
+> > >   5 files changed, 40 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > index 2161bf01ef8b..708bb3581d83 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > > @@ -704,3 +704,18 @@ void intel_gt_info_print(const struct intel_gt_info *info,
+> > > 
+> > >          intel_sseu_dump(&info->sseu, p);
+> > >   }
+> > > +
+> > > +int intel_gt_get_l3bank_count(struct intel_gt *gt)
+> > > +{
+> > > +       struct drm_i915_private *i915 = gt->i915;
+> > > +       intel_wakeref_t wakeref;
+> > > +       u32 fuse3;
+> > > +
+> > > +       if (GRAPHICS_VER(i915) < 12)
+> > > +               return -ENODEV;
+> > > +
+> > > +       with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> > > +               fuse3 = intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3);
+> > > +
+> > > +       return hweight32(REG_FIELD_GET(GEN12_GT_L3_MODE_MASK, ~fuse3));
+> > > +}
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+> > > index 7ec395cace69..46aa1cf4cf30 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_gt.h
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+> > > @@ -77,6 +77,7 @@ static inline bool intel_gt_is_wedged(const struct intel_gt *gt)
+> > > 
+> > >   void intel_gt_info_print(const struct intel_gt_info *info,
+> > >                           struct drm_printer *p);
+> > > +int intel_gt_get_l3bank_count(struct intel_gt *gt);
+> > > 
+> > >   void intel_gt_watchdog_work(struct work_struct *work);
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> > > index 96bd8fb3e895..0e92bb2d21b2 100644
+> > > --- a/drivers/gpu/drm/i915/i915_query.c
+> > > +++ b/drivers/gpu/drm/i915/i915_query.c
+> > > @@ -10,6 +10,7 @@
+> > >   #include "i915_perf.h"
+> > >   #include "i915_query.h"
+> > >   #include <uapi/drm/i915_drm.h>
+> > > +#include "gt/intel_gt.h"
+> > > 
+> > >   static int copy_query_item(void *query_hdr, size_t query_sz,
+> > >                             u32 total_length,
+> > > @@ -502,6 +503,26 @@ static int query_hwconfig_table(struct drm_i915_private *i915,
+> > >          return hwconfig->size;
+> > >   }
+> > > 
+> > > +static int query_l3banks(struct drm_i915_private *i915,
+> > > +                        struct drm_i915_query_item *query_item)
+> > > +{
+> > > +       u32 banks;
+> > > +
+> > > +       if (query_item->length == 0)
+> > > +               return sizeof(banks);
+> > > +
+> > > +       if (query_item->length < sizeof(banks))
+> > > +               return -EINVAL;
+> > > +
+> > > +       banks = intel_gt_get_l3bank_count(&i915->gt);
+> > > +
+> > > +       if (copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+> > > +                        &banks, sizeof(banks)))
+> > > +               return -EFAULT;
+> > > +
+> > > +       return sizeof(banks);
+> > > +}
+> > > +
+> > >   static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+> > >                                          struct drm_i915_query_item *query_item) = {
+> > >          query_topology_info,
+> > > @@ -509,6 +530,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+> > >          query_perf_config,
+> > >          query_memregion_info,
+> > >          query_hwconfig_table,
+> > > +       query_l3banks,
+> > >   };
+> > > 
+> > >   int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > > index eb13c601d680..e9ba88fe3db7 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -3099,6 +3099,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+> > >   #define        GEN10_MIRROR_FUSE3              _MMIO(0x9118)
+> > >   #define GEN10_L3BANK_PAIR_COUNT     4
+> > >   #define GEN10_L3BANK_MASK   0x0F
+> > > +#define GEN12_GT_L3_MODE_MASK 0xFF
+> > > 
+> > >   #define GEN8_EU_DISABLE0               _MMIO(0x9134)
+> > >   #define   GEN8_EU_DIS0_S0_MASK         0xffffff
+> > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > index 87d369cae22a..20d18cca5066 100644
+> > > --- a/include/uapi/drm/i915_drm.h
+> > > +++ b/include/uapi/drm/i915_drm.h
+> > > @@ -2234,6 +2234,7 @@ struct drm_i915_query_item {
+> > >   #define DRM_I915_QUERY_PERF_CONFIG      3
+> > >   #define DRM_I915_QUERY_MEMORY_REGIONS   4
+> > >   #define DRM_I915_QUERY_HWCONFIG_TABLE   5
+> > > +#define DRM_I915_QUERY_L3_BANK_COUNT    6
+> > >   /* Must be kept compact -- no holes and well documented */
+> > > 
+> > >          /**
+> > > --
+> > > 2.25.1
+> > > 
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > 
+> > 
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 71067a62264d..c33d574eb991 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2159,6 +2159,18 @@ int intel_crtc_compute_min_cdclk(const struct
-> intel_crtc_state *crtc_state)
->  	/* Account for additional needs from the planes */
->  	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
-> 
-> +	/*
-> +	 * VDSC engine can process only 1 pixel per Cd clock.
-> +	 * In case VDSC is used and max slice count == 1,
-> +	 * max supported pixel clock should be 100% of CD clock.
-> +	 * Then do min_cdclk and pixel clock comparison to get cdclk.
-> +	 */
-> +	if (DISPLAY_VER(dev_priv) >= 11 &&
 
-I think you could just check for dsc enable and slice count ==1.
-
-Also better to have a check if crtc_clock exceeds dev_priv->max_cdclk_freq in dsi_dsc compute_config as well.
-and return -EINVAL .
-
--Vandita
-
-> +	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
-> +	    crtc_state->dsc.compression_enable &&
-> +	    crtc_state->dsc.slice_count == 1)
-
-> +		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
-> +
->  	/*
->  	 * HACK. Currently for TGL platforms we calculate
->  	 * min_cdclk initially based on pixel_rate divided
-> --
-> 2.17.1
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
