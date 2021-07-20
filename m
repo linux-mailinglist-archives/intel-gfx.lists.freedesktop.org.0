@@ -2,30 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79373D049F
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 00:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEEAB3D046E
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 00:21:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACF5B6E402;
-	Tue, 20 Jul 2021 22:30:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA596E5A4;
+	Tue, 20 Jul 2021 22:21:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A44076E0EB;
- Tue, 20 Jul 2021 22:30:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9C36BA00C9;
- Tue, 20 Jul 2021 22:30:01 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11B066E584;
+ Tue, 20 Jul 2021 22:21:32 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="211056144"
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="211056144"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2021 15:21:31 -0700
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="500940091"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2021 15:21:31 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Tue, 20 Jul 2021 15:39:03 -0700
+Message-Id: <20210720223921.56160-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Tue, 20 Jul 2021 22:30:01 -0000
-Message-ID: <162682020160.12851.7436567518813050328@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210720223921.56160-1-matthew.brost@intel.com>
-In-Reply-To: <20210720223921.56160-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Series_to_merge_a_subset_of_GuC_submission?=
+Subject: [Intel-gfx] [PATCH 00/18] Series to merge a subset of GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,112 +41,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The first 18 patches [1] are basically ready to merge - only 3 are
+missing RBs but all issues are mostly nits and have been address.
+Hopefully by the time CI returns we can merge these. 
 
-Series: Series to merge a subset of GuC submission
-URL   : https://patchwork.freedesktop.org/series/92791/
-State : warning
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-== Summary ==
+[1] https://patchwork.freedesktop.org/series/91840/
 
-$ dim checkpatch origin/drm-tip
-ec53f1834fea drm/i915/guc: Add new GuC interface defines and structures
--:99: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#99: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:275:
-+	 * reset. (in micro seconds). */
+Matthew Brost (18):
+  drm/i915/guc: Add new GuC interface defines and structures
+  drm/i915/guc: Remove GuC stage descriptor, add LRC descriptor
+  drm/i915/guc: Add LRC descriptor context lookup array
+  drm/i915/guc: Implement GuC submission tasklet
+  drm/i915/guc: Add bypass tasklet submission path to GuC
+  drm/i915/guc: Implement GuC context operations for new inteface
+  drm/i915/guc: Insert fence on context when deregistering
+  drm/i915/guc: Defer context unpin until scheduling is disabled
+  drm/i915/guc: Disable engine barriers with GuC during unpin
+  drm/i915/guc: Extend deregistration fence to schedule disable
+  drm/i915: Disable preempt busywait when using GuC scheduling
+  drm/i915/guc: Ensure request ordering via completion fences
+  drm/i915/guc: Disable semaphores when using GuC scheduling
+  drm/i915/guc: Ensure G2H response has space in buffer
+  drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC
+  drm/i915/guc: Update GuC debugfs to support new GuC
+  drm/i915/guc: Add trace point for GuC submit
+  drm/i915: Add intel_context tracing
 
-total: 0 errors, 1 warnings, 0 checks, 83 lines checked
-7e036ee5f85e drm/i915/guc: Remove GuC stage descriptor, add LRC descriptor
--:125: WARNING:PREFER_DEFINED_ATTRIBUTE_MACRO: __always_unused or __maybe_unused is preferred over __attribute__((__unused__))
-#125: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:69:
-+__attribute__ ((unused))
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |    6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |    3 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |    6 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |   18 +-
+ drivers/gpu/drm/i915/gt/intel_context.h       |   27 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   32 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   19 +
+ drivers/gpu/drm/i915/gt/intel_gt.h            |    2 +
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c   |   21 +-
+ drivers/gpu/drm/i915/gt/intel_gt_requests.h   |    9 +-
+ drivers/gpu/drm/i915/gt/intel_lrc_reg.h       |    1 -
+ drivers/gpu/drm/i915/gt/selftest_context.c    |   10 +
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   14 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   65 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  121 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |   16 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    |   23 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   88 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 1287 ++++++++++++++---
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.h |    5 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h         |    5 +
+ drivers/gpu/drm/i915/i915_gem_evict.c         |    1 +
+ drivers/gpu/drm/i915/i915_reg.h               |    1 +
+ drivers/gpu/drm/i915/i915_request.c           |   13 +-
+ drivers/gpu/drm/i915/i915_request.h           |    8 +
+ drivers/gpu/drm/i915/i915_trace.h             |  167 ++-
+ .../gpu/drm/i915/selftests/igt_live_test.c    |    2 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |    3 +-
+ 28 files changed, 1692 insertions(+), 281 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 208 lines checked
-722a3e5a4415 drm/i915/guc: Add LRC descriptor context lookup array
-9d1be7a2819b drm/i915/guc: Implement GuC submission tasklet
-2234dab12cac drm/i915/guc: Add bypass tasklet submission path to GuC
-f02a6e7e28bc drm/i915/guc: Implement GuC context operations for new inteface
--:139: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
-#139: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:113:
-+static inline int intel_guc_send_busy_loop(struct intel_guc* guc,
-
--:146: ERROR:IN_ATOMIC: do not use in_atomic in drivers
-#146: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:120:
-+	bool not_atomic = !in_atomic() && !irqs_disabled();
-
--:587: WARNING:REPEATED_WORD: Possible repeated word: 'from'
-#587: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:785:
-+	 * could be registered either the guc_id has been stolen from from
-
-total: 2 errors, 1 warnings, 0 checks, 902 lines checked
-5c25a79e0e15 drm/i915/guc: Insert fence on context when deregistering
-1b654aaa7260 drm/i915/guc: Defer context unpin until scheduling is disabled
-efc0364130bb drm/i915/guc: Disable engine barriers with GuC during unpin
-a9c371205bcc drm/i915/guc: Extend deregistration fence to schedule disable
-9911672af3c3 drm/i915: Disable preempt busywait when using GuC scheduling
-62126880619a drm/i915/guc: Ensure request ordering via completion fences
--:66: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#66: FILE: drivers/gpu/drm/i915/i915_request.c:1642:
-+		if ((!uses_guc && is_power_of_2(READ_ONCE(prev->engine)->mask | rq->engine->mask)) ||
-
-total: 0 errors, 1 warnings, 0 checks, 42 lines checked
-bfce77d80f9f drm/i915/guc: Disable semaphores when using GuC scheduling
-dbe4a36fbe4e drm/i915/guc: Ensure G2H response has space in buffer
--:215: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#215: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:619:
-+#define G2H_LEN_DW(f) \
-+	FIELD_GET(INTEL_GUC_CT_SEND_G2H_DW_MASK, f) ? \
-+	FIELD_GET(INTEL_GUC_CT_SEND_G2H_DW_MASK, f) + GUC_CTB_HXG_MSG_MIN_LEN : 0
-
--:215: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'f' - possible side-effects?
-#215: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:619:
-+#define G2H_LEN_DW(f) \
-+	FIELD_GET(INTEL_GUC_CT_SEND_G2H_DW_MASK, f) ? \
-+	FIELD_GET(INTEL_GUC_CT_SEND_G2H_DW_MASK, f) + GUC_CTB_HXG_MSG_MIN_LEN : 0
-
--:329: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'len' - possible side-effects?
-#329: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h:104:
-+#define MAKE_SEND_FLAGS(len) \
-+	({GEM_BUG_ON(!FIELD_FIT(INTEL_GUC_CT_SEND_G2H_DW_MASK, len)); \
-+	(FIELD_PREP(INTEL_GUC_CT_SEND_G2H_DW_MASK, len) | INTEL_GUC_CT_SEND_NB);})
-
--:331: ERROR:SPACING: space required after that ';' (ctx:VxV)
-#331: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h:106:
-+	(FIELD_PREP(INTEL_GUC_CT_SEND_G2H_DW_MASK, len) | INTEL_GUC_CT_SEND_NB);})
- 	                                                                       ^
-
-total: 2 errors, 0 warnings, 2 checks, 337 lines checked
-e21fad90cbba drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC
--:216: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
-#216: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:255:
-+static int guc_submission_send_busy_loop(struct intel_guc* guc,
-
-total: 1 errors, 0 warnings, 0 checks, 313 lines checked
-26cd4897ed36 drm/i915/guc: Update GuC debugfs to support new GuC
-67fb3ed8ac4e drm/i915/guc: Add trace point for GuC submit
-eff5ff5cddbd drm/i915: Add intel_context tracing
--:142: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#142: FILE: drivers/gpu/drm/i915/i915_trace.h:899:
-+DECLARE_EVENT_CLASS(intel_context,
-+	    TP_PROTO(struct intel_context *ce),
-
--:145: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#145: FILE: drivers/gpu/drm/i915/i915_trace.h:902:
-+	    TP_STRUCT__entry(
-
--:152: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#152: FILE: drivers/gpu/drm/i915/i915_trace.h:909:
-+	    TP_fast_assign(
-
-total: 0 errors, 0 warnings, 3 checks, 254 lines checked
-
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
