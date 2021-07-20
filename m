@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A6C3CFCBB
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 16:55:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5158A3CFCEC
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 17:05:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE9F6E13C;
-	Tue, 20 Jul 2021 14:55:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 695876E24D;
+	Tue, 20 Jul 2021 15:05:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com
- [IPv6:2607:f8b0:4864:20::b29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E62F889AB5
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 14:55:34 +0000 (UTC)
-Received: by mail-yb1-xb29.google.com with SMTP id c16so26373681ybl.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 07:55:34 -0700 (PDT)
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com
+ [IPv6:2607:f8b0:4864:20::b34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 058106E14B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:05:45 +0000 (UTC)
+Received: by mail-yb1-xb34.google.com with SMTP id p22so33188935yba.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 08:05:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VO7FngHvjooR3pflYRMPQSr7EzehAIHkkEAxRVlGWYM=;
- b=C6xq2GrEu+XiarK4lE4sffi9t8zqCdQnvWRc2kyQ4nfwUzGpfKlB916ScuUq5+8itA
- L8KyEN1+Vy9oyCbEb5bv8azNbzMpp1l6dseUXfM10z+pJbJYZTwGSiUzVX3JrHyoAtc/
- /M+p/YlIUXrsqe+EC1JOZ1FQv5FK/EXJgcr2bxB3A4F8ZKzaE9JC1GxfkkeeD7fTnP5f
- NxCjMjyY1f3tMbq856TUw5wpwOcB0j61fpWmUkkQSgBCeuC7l3PTN/F7/ijjBYKjM02o
- t24Vyhy6XZhqA8tBa/F6/KTyBYwjjUU0S3FczQPGsGNrw6zXXBhr8zcAln7V+ReKfXj1
- jbpg==
+ :cc; bh=MJQ1NjTy/w3VologKneh5wleywvx9x35RYHNSSBF5FM=;
+ b=BkU7jmJ4xlWh50XDZ+DifHd/NSYFMb7mroLRiRSDZRGvz+jJ5Uy6urX6C3In498vXr
+ P1+bn0zTePiQ989uUVsMR4jgCff5DR+/MBhW1vuCTMbtTApcCXja9kgKcfsdj83FEKHF
+ zNauQWYjePY7eTIBEgK26MTqmpuMvtOq5DRZZgEGkX8iNrs3Zqr0MEadN5ncICFN4HsM
+ +lR+7CB3Q+XACXojiQI519DlLqZGbLHtRifg8yyquCSRz2//zyCSSSIMiwl6DGRdDTpa
+ JX0cDfK3D4889lm2ykSAuuV1ptJgsX29amzVCJUG8EpsA5fMPczuVuswmJF7SxeE9AFk
+ N7xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=VO7FngHvjooR3pflYRMPQSr7EzehAIHkkEAxRVlGWYM=;
- b=U9ywPh15N5qXd/GESZsoS8ZTuvIJcOHO43l5iRY/AydvhAw0fnE/Ngto97LYUlphA/
- QIJ0iTOPOAl/AceAEUKP8iBp7eC6ce4uIW8wEg1SVJ80818X17oVN9AXePZU8ldRI86C
- 3mybeaIRsYq4ZJWFK1SOEfPrCeTVi+7dAvDKdrUjvIt7gCYo9cMrBb5f58/7pXoYoD61
- U5JEHRQUjS+vgDfcHXgi8tPbov2oEeasATR9X1PW9RMIMm7/QLaGcsuS8myeGND0V1B4
- SSZMVTodauWuLg2wbwSdKMocdMvXaDWNRrDs4p7Rq/vJ4nOKHi02Xm1uaev6Sw0chQSs
- iXtw==
-X-Gm-Message-State: AOAM530P9+21aDqahXAvsi/0AQF5AzOywzXln8rA20kOKSqXHWTdBb4y
- 4SgUUcu7JHyY1I9xG6h9F8taW061ZPE9qZbQk5GCBA==
-X-Google-Smtp-Source: ABdhPJxkEXpFlWl5pCI5DfNr/N5xhywOim1AuIoDPkrlR1wAOlPms/EB6j64Srd3mndf700JcGaE6V8MJ6pDJjPR+Xo=
-X-Received: by 2002:a25:2345:: with SMTP id j66mr35757668ybj.287.1626792934060; 
- Tue, 20 Jul 2021 07:55:34 -0700 (PDT)
+ bh=MJQ1NjTy/w3VologKneh5wleywvx9x35RYHNSSBF5FM=;
+ b=EeLgLI07WipKin5RYhx7HKTQLoqB2XiSQFPjRDDo0n06ZBBTvdb6bY49DNWrIfyh1W
+ G5CUWV8XFwUcxIc7k3+7OT7cI23saBQUpDLkpWcZokGgWHnkPGLIwebUFhRPGOpeX2+O
+ 2vmcWhRma292F0V8G0Gonf2dJ4odnMacfFO2dwctArlE5EHvayGa3Aet16MPI0/NrGNk
+ cqjpxokw3lyIt5YpUlEpKfu6PLhotxUR8uT9mAXH5O0gPaE7NXzGHqz95QpTb5SvGYsK
+ maXXquVU5R69cHHhWBxDSzwHjJLWC+Pv3RiN22WmxgVlbESaTXrWCopnnZ4HGDGMD+Zk
+ zvrQ==
+X-Gm-Message-State: AOAM533Zx4QhaVHvKS/XK/JZt6AnloVYcbxObxe9Io4CQ+Awn3e3g09c
+ Mayx9IdIp7MeBxJHD/n23eOBJTcYCOzIUbEKYcg5ng==
+X-Google-Smtp-Source: ABdhPJxOBl+AUErwuRfF2UZqFr/ai8K+whVNYkV79Geyh7SUk7jGZojCwz7s/wy4+1C5gqsySomESo9Kwo65AuPfmv8=
+X-Received: by 2002:a25:aa69:: with SMTP id s96mr39912461ybi.241.1626793545002; 
+ Tue, 20 Jul 2021 08:05:45 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210719183047.2624569-1-jason@jlekstrand.net>
  <20210719183047.2624569-4-jason@jlekstrand.net>
- <YPbbSKpaB7yZ8KtE@phenom.ffwll.local>
-In-Reply-To: <YPbbSKpaB7yZ8KtE@phenom.ffwll.local>
+ <6ecf6891-67c2-94ac-32ce-28c1a1a7db0b@linux.intel.com>
+In-Reply-To: <6ecf6891-67c2-94ac-32ce-28c1a1a7db0b@linux.intel.com>
 From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 20 Jul 2021 09:55:22 -0500
-Message-ID: <CAOFGe973b3YPNs+0aGThP0uFTu13t94To=wu3_ZwX5DJhSoGMw@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 20 Jul 2021 10:05:33 -0500
+Message-ID: <CAOFGe94uZ8r1f_NXWU0puQ6o+KKsxjspwMDgwi1zf7GuBfP_Jw@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Always call
  i915_globals_exit() from i915_exit()
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,9 +71,13 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 20, 2021 at 9:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+Sorry... didn't reply to everything the first time
+
+On Tue, Jul 20, 2021 at 3:25 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
 >
-> On Mon, Jul 19, 2021 at 01:30:44PM -0500, Jason Ekstrand wrote:
+>
+> On 19/07/2021 19:30, Jason Ekstrand wrote:
 > > If the driver was not fully loaded, we may still have globals lying
 > > around.  If we don't tear those down in i915_exit(), we'll leak a bunch
 > > of memory slabs.  This can happen two ways: use_kms = false and if we've
@@ -101,7 +105,14 @@ On Tue, Jul 20, 2021 at 9:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 > > to create directories and files that already exist.  Since this all
 > > happens as part of the next driver load, it shows up in the dmesg-warn
 > > of whatever IGT test ran after the mock selftests.
-> >
+>
+> Story checks out but I totally don't get why it wouldn't be noticed
+> until now. Was it perhaps part of the selfetsts contract that a reboot
+> is required after failure?
+
+If there is such a contract, CI doesn't follow it.  We unload the
+driver after selftests but that's it.
+
 > > While the obvious thing to do here might be to call i915_globals_exit()
 > > after selftests, that's not actually safe.  The dma-buf selftests call
 > > i915_gem_prime_export which creates a file.  We call dma_buf_put() on
@@ -113,7 +124,9 @@ On Tue, Jul 20, 2021 at 9:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 > > i915_init() after selftests, we end up freeing slabs out from under
 > > objects which won't get released until fput() is flushed at the end of
 > > the module load.
-> >
+>
+> Nasty. Wasn't visible while globals memory leak was "in place". :I
+>
 > > The solution here is to let i915_init() return success early and detect
 > > the early success in i915_exit() and only tear down globals and nothing
 > > else.  This way the module loads successfully, regardless of the success
@@ -124,13 +137,34 @@ On Tue, Jul 20, 2021 at 9:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 > > means that everything from our selftests has the ability to properly
 > > flush out between i915_init() and i915_exit() because there are a couple
 > > syscall boundaries in between.
+>
+> When you say "couple of syscall boundaries" you mean exactly two (module
+> init/unload) or there is more to it? Like why "couple" is needed and not
+> just that the module load syscall has exited? That part sounds
+> potentially dodgy. What mechanism is used by the delayed flush?
+
+It only needs the one syscall.  I've changed the text to say "at least
+one syscall boundary".  I think that's more clear without providing an
+exact count which may not be tractable.
+
+> Have you checked how this change interacts with the test runner and CI?
+
+As far as I know, there's no interesting interaction here.  That said,
+I did just find that the live selftests fail the modprobe on selftest
+failure which means they're tearing down globals before a full syscall
+boundary which may be sketchy.  Fortunately, now that we have
+i915_globals_exit() on the tear-down path if PCI probe fails, if
+someone ever does do something sketchy there, we'll catch it in dmesg
+immediately.  Maybe we should switch those to always return 0 as well
+while we're here?
+
 > >
 > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 > > Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
 > > Cc: Daniel Vetter <daniel@ffwll.ch>
 > > ---
-> >  drivers/gpu/drm/i915/i915_pci.c | 32 +++++++++++++++++++++++++-------
-> >  1 file changed, 25 insertions(+), 7 deletions(-)
+> >   drivers/gpu/drm/i915/i915_pci.c | 32 +++++++++++++++++++++++++-------
+> >   1 file changed, 25 insertions(+), 7 deletions(-)
 > >
 > > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
 > > index 4e627b57d31a2..24e4e54516936 100644
@@ -138,22 +172,35 @@ On Tue, Jul 20, 2021 at 9:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 > > +++ b/drivers/gpu/drm/i915/i915_pci.c
 > > @@ -1194,18 +1194,31 @@ static struct pci_driver i915_pci_driver = {
 > >       .driver.pm = &i915_pm_ops,
-> >  };
+> >   };
 > >
 > > +static bool i915_fully_loaded = false;
+>
+> No need to initialize.
+>
 > > +
-> >  static int __init i915_init(void)
-> >  {
+> >   static int __init i915_init(void)
+> >   {
 > >       bool use_kms = true;
 > >       int err;
 > >
 > > +     i915_fully_loaded = false;
+>
+> Ditto.
+>
 > > +
 > >       err = i915_globals_init();
 > >       if (err)
 > >               return err;
 > >
 > > +     /* i915_mock_selftests() only returns zero if no mock subtests were
+>
+>
+> /*
+>   * Please use this multi line comment style in i915.
+>   */
+>
+>
 > > +      * run.  If we get any non-zero error code, we return early here.
 > > +      * We always return success because selftests may have allocated
 > > +      * objects from slabs which will get cleaned up by i915_exit().  We
@@ -166,29 +213,6 @@ On Tue, Jul 20, 2021 at 9:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 > >       if (err)
 > > -             return err > 0 ? 0 : err;
 > > +             return 0;
->
-> At least the module options still claim that you can run selftests and
-> still load the driver. Which makes sense for perf/hw selftests, since
-> those need the driver, but would result in the same old bug resurfacing
-> that you're trying to fix there.
->
-> Is that description just confused and needs some fixing, or do we have a
-> gap here?
-
-I don't think there's real need for a fully loaded driver after mock
-selftests.  They exist entirely to run against a mock driver, not the
-real one.
-
-> Patch itself looks reasonable, with the nits from Tvrtko addressed:
-
-Done
-
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Thanks
-
---Jason
-
 > >
 > >       /*
 > >        * Enable KMS by default, unless explicitly overriden by
@@ -207,8 +231,8 @@ Thanks
 > >       err = pci_register_driver(&i915_pci_driver);
 > > @@ -1240,12 +1259,11 @@ static int __init i915_init(void)
 > >
-> >  static void __exit i915_exit(void)
-> >  {
+> >   static void __exit i915_exit(void)
+> >   {
 > > -     if (!i915_pci_driver.driver.owner)
 > > -             return;
 > > -
@@ -221,16 +245,13 @@ Thanks
 > > +             i915_pmu_exit();
 > > +     }
 > >       i915_globals_exit();
-> >  }
+> >   }
 > >
-> > --
-> > 2.31.1
 > >
 >
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+> Regards,
+>
+> Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
