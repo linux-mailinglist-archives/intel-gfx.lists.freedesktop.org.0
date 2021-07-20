@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5158A3CFCEC
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 17:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 974D73CFD12
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 17:09:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 695876E24D;
-	Tue, 20 Jul 2021 15:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 955AE89FED;
+	Tue, 20 Jul 2021 15:09:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com
- [IPv6:2607:f8b0:4864:20::b34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058106E14B
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:05:45 +0000 (UTC)
-Received: by mail-yb1-xb34.google.com with SMTP id p22so33188935yba.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 08:05:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
+ [IPv6:2607:f8b0:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9879189FED
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:09:14 +0000 (UTC)
+Received: by mail-ot1-x334.google.com with SMTP id
+ h24-20020a9d64180000b029036edcf8f9a6so21828493otl.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 08:09:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=MJQ1NjTy/w3VologKneh5wleywvx9x35RYHNSSBF5FM=;
- b=BkU7jmJ4xlWh50XDZ+DifHd/NSYFMb7mroLRiRSDZRGvz+jJ5Uy6urX6C3In498vXr
- P1+bn0zTePiQ989uUVsMR4jgCff5DR+/MBhW1vuCTMbtTApcCXja9kgKcfsdj83FEKHF
- zNauQWYjePY7eTIBEgK26MTqmpuMvtOq5DRZZgEGkX8iNrs3Zqr0MEadN5ncICFN4HsM
- +lR+7CB3Q+XACXojiQI519DlLqZGbLHtRifg8yyquCSRz2//zyCSSSIMiwl6DGRdDTpa
- JX0cDfK3D4889lm2ykSAuuV1ptJgsX29amzVCJUG8EpsA5fMPczuVuswmJF7SxeE9AFk
- N7xQ==
+ :cc:content-transfer-encoding;
+ bh=YMXnRxo/5k9Z8+6ljkrUYw+NYU4bXwybsyB2fWeYMio=;
+ b=OYZgw1G0Ur3KOFiriWcnPeg5zFUWpALkHyFuhPlkRhNAR5Ip0/zyCxs93a2tLb+baH
+ T6RrzoTt5xUBnQjBcAHChjNVbakKvKPHcOniTclKgrtUV5zdtsui1TIyrt+Qk3Srws95
+ BvUagOal98qYwbtk7A3x9i3WM6c2g5zy/jYJo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=MJQ1NjTy/w3VologKneh5wleywvx9x35RYHNSSBF5FM=;
- b=EeLgLI07WipKin5RYhx7HKTQLoqB2XiSQFPjRDDo0n06ZBBTvdb6bY49DNWrIfyh1W
- G5CUWV8XFwUcxIc7k3+7OT7cI23saBQUpDLkpWcZokGgWHnkPGLIwebUFhRPGOpeX2+O
- 2vmcWhRma292F0V8G0Gonf2dJ4odnMacfFO2dwctArlE5EHvayGa3Aet16MPI0/NrGNk
- cqjpxokw3lyIt5YpUlEpKfu6PLhotxUR8uT9mAXH5O0gPaE7NXzGHqz95QpTb5SvGYsK
- maXXquVU5R69cHHhWBxDSzwHjJLWC+Pv3RiN22WmxgVlbESaTXrWCopnnZ4HGDGMD+Zk
- zvrQ==
-X-Gm-Message-State: AOAM533Zx4QhaVHvKS/XK/JZt6AnloVYcbxObxe9Io4CQ+Awn3e3g09c
- Mayx9IdIp7MeBxJHD/n23eOBJTcYCOzIUbEKYcg5ng==
-X-Google-Smtp-Source: ABdhPJxOBl+AUErwuRfF2UZqFr/ai8K+whVNYkV79Geyh7SUk7jGZojCwz7s/wy4+1C5gqsySomESo9Kwo65AuPfmv8=
-X-Received: by 2002:a25:aa69:: with SMTP id s96mr39912461ybi.241.1626793545002; 
- Tue, 20 Jul 2021 08:05:45 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=YMXnRxo/5k9Z8+6ljkrUYw+NYU4bXwybsyB2fWeYMio=;
+ b=mfnb0XjuUYYAyu7N6X94dBeSVDaqymsF4WqBVDcaZCqOWuhCW3ReIaZKEOjM6zjmUf
+ hkTSuRxMVkJMYQzk0hcM86tPLXaUp/dCRWSy4BygkRx/zKxgypGBXxDai6ulVhjBW8rj
+ cuOAl1dEvassxBL0QPqvAB47n7ggaQcvx+cjoku5MZsh0ahUcOtsb6nnobhnvfhbyvbm
+ VUwV+pJUq3esQgus3dgzS5xXbqjV1SxlnizmEiA+mmrh6Q91OHCwOc4NXV2YSgaRRxS1
+ s6iVGtgtze/yI3t2W7C53oNNMp55Bt9+Kx2qyOv1cAnwVsgfEGsmYNYYtfSQY/NtcJ6k
+ 8bnw==
+X-Gm-Message-State: AOAM530MNmmbGElbzMSP4jyau6CNagyltromoQLlGHqmj+a/Lsb9+yx7
+ Y1namwInI3A7aoZKh6bV8I4uSpgfNOiV2VoEZcWXiw==
+X-Google-Smtp-Source: ABdhPJyFf47lv04StfDtxflH5RBs3O68rI0sVgM2yY2KbqxFgGir6c6pmGxWSUPvfmo+0LZ5zDndDIaj9hK1lXUyhhY=
+X-Received: by 2002:a05:6830:2802:: with SMTP id
+ w2mr21358796otu.303.1626793753521; 
+ Tue, 20 Jul 2021 08:09:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210719183047.2624569-1-jason@jlekstrand.net>
- <20210719183047.2624569-4-jason@jlekstrand.net>
- <6ecf6891-67c2-94ac-32ce-28c1a1a7db0b@linux.intel.com>
-In-Reply-To: <6ecf6891-67c2-94ac-32ce-28c1a1a7db0b@linux.intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 20 Jul 2021 10:05:33 -0500
-Message-ID: <CAOFGe94uZ8r1f_NXWU0puQ6o+KKsxjspwMDgwi1zf7GuBfP_Jw@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Always call
- i915_globals_exit() from i915_exit()
+References: <20210104205654.238928-1-jose.souza@intel.com>
+ <20210104205654.238928-2-jose.souza@intel.com>
+In-Reply-To: <20210104205654.238928-2-jose.souza@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 20 Jul 2021 17:09:02 +0200
+Message-ID: <CAKMK7uF19u+D2LhEpaKSSJT9Gb3-3TSSSHGGG14x=8X8QXXJtw@mail.gmail.com>
+To: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>, 
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, 
+ "Syrjala, Ville" <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH CI 2/4] drm/i915/display/psr: Use plane
+ damage clips to calculate damaged area
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,195 +64,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Sorry... didn't reply to everything the first time
-
-On Tue, Jul 20, 2021 at 3:25 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> On 19/07/2021 19:30, Jason Ekstrand wrote:
-> > If the driver was not fully loaded, we may still have globals lying
-> > around.  If we don't tear those down in i915_exit(), we'll leak a bunch
-> > of memory slabs.  This can happen two ways: use_kms = false and if we've
-> > run mock selftests.  In either case, we have an early exit from
-> > i915_init which happens after i915_globals_init() and we need to clean
-> > up those globals.  While we're here, add an explicit boolean instead of
-> > using a random field from i915_pci_device to detect partial loads.
-> >
-> > The mock selftests case gets especially sticky.  The load isn't entirely
-> > a no-op.  We actually do quite a bit inside those selftests including
-> > allocating a bunch of mock objects and running tests on them.  Once all
-> > those tests are complete, we exit early from i915_init().  Perviously,
-> > i915_init() would return a non-zero error code on failure and a zero
-> > error code on success.  In the success case, we would get to i915_exit()
-> > and check i915_pci_driver.driver.owner to detect if i915_init exited early
-> > and do nothing.  In the failure case, we would fail i915_init() but
-> > there would be no opportunity to clean up globals.
-> >
-> > The most annoying part is that you don't actually notice the failure as
-> > part of the self-tests since leaking a bit of memory, while bad, doesn't
-> > result in anything observable from userspace.  Instead, the next time we
-> > load the driver (usually for next IGT test), i915_globals_init() gets
-> > invoked again, we go to allocate a bunch of new memory slabs, those
-> > implicitly create debugfs entries, and debugfs warns that we're trying
-> > to create directories and files that already exist.  Since this all
-> > happens as part of the next driver load, it shows up in the dmesg-warn
-> > of whatever IGT test ran after the mock selftests.
->
-> Story checks out but I totally don't get why it wouldn't be noticed
-> until now. Was it perhaps part of the selfetsts contract that a reboot
-> is required after failure?
-
-If there is such a contract, CI doesn't follow it.  We unload the
-driver after selftests but that's it.
-
-> > While the obvious thing to do here might be to call i915_globals_exit()
-> > after selftests, that's not actually safe.  The dma-buf selftests call
-> > i915_gem_prime_export which creates a file.  We call dma_buf_put() on
-> > the resulting dmabuf which calls fput() on the file.  However, fput()
-> > isn't immediate and gets flushed right before syscall returns.  This
-> > means that all the fput()s from the selftests don't happen until right
-> > before the module load syscall used to fire off the selftests returns
-> > which is after i915_init().  If we call i915_globals_exit() in
-> > i915_init() after selftests, we end up freeing slabs out from under
-> > objects which won't get released until fput() is flushed at the end of
-> > the module load.
->
-> Nasty. Wasn't visible while globals memory leak was "in place". :I
->
-> > The solution here is to let i915_init() return success early and detect
-> > the early success in i915_exit() and only tear down globals and nothing
-> > else.  This way the module loads successfully, regardless of the success
-> > or failure of the tests.  Because we've not enumerated any PCI devices,
-> > no device nodes are created and it's entirely useless from userspace.
-> > The only thing the module does at that point is hold on to a bit of
-> > memory until we unload it and i915_exit() is called.  Importantly, this
-> > means that everything from our selftests has the ability to properly
-> > flush out between i915_init() and i915_exit() because there are a couple
-> > syscall boundaries in between.
->
-> When you say "couple of syscall boundaries" you mean exactly two (module
-> init/unload) or there is more to it? Like why "couple" is needed and not
-> just that the module load syscall has exited? That part sounds
-> potentially dodgy. What mechanism is used by the delayed flush?
-
-It only needs the one syscall.  I've changed the text to say "at least
-one syscall boundary".  I think that's more clear without providing an
-exact count which may not be tractable.
-
-> Have you checked how this change interacts with the test runner and CI?
-
-As far as I know, there's no interesting interaction here.  That said,
-I did just find that the live selftests fail the modprobe on selftest
-failure which means they're tearing down globals before a full syscall
-boundary which may be sketchy.  Fortunately, now that we have
-i915_globals_exit() on the tear-down path if PCI probe fails, if
-someone ever does do something sketchy there, we'll catch it in dmesg
-immediately.  Maybe we should switch those to always return 0 as well
-while we're here?
-
-> >
-> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > ---
-> >   drivers/gpu/drm/i915/i915_pci.c | 32 +++++++++++++++++++++++++-------
-> >   1 file changed, 25 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> > index 4e627b57d31a2..24e4e54516936 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -1194,18 +1194,31 @@ static struct pci_driver i915_pci_driver = {
-> >       .driver.pm = &i915_pm_ops,
-> >   };
-> >
-> > +static bool i915_fully_loaded = false;
->
-> No need to initialize.
->
-> > +
-> >   static int __init i915_init(void)
-> >   {
-> >       bool use_kms = true;
-> >       int err;
-> >
-> > +     i915_fully_loaded = false;
->
-> Ditto.
->
-> > +
-> >       err = i915_globals_init();
-> >       if (err)
-> >               return err;
-> >
-> > +     /* i915_mock_selftests() only returns zero if no mock subtests were
->
->
-> /*
->   * Please use this multi line comment style in i915.
->   */
->
->
-> > +      * run.  If we get any non-zero error code, we return early here.
-> > +      * We always return success because selftests may have allocated
-> > +      * objects from slabs which will get cleaned up by i915_exit().  We
-> > +      * could attempt to clean up immediately and fail module load but,
-> > +      * thanks to interactions with other parts of the kernel (struct
-> > +      * file, in particular), it's safer to let the module fully load
-> > +      * and then clean up on unload.
-> > +      */
-> >       err = i915_mock_selftests();
-> >       if (err)
-> > -             return err > 0 ? 0 : err;
-> > +             return 0;
-> >
-> >       /*
-> >        * Enable KMS by default, unless explicitly overriden by
-> > @@ -1225,6 +1238,12 @@ static int __init i915_init(void)
-> >               return 0;
-> >       }
-> >
-> > +     /* After this point, i915_init() must either fully succeed or
-> > +      * properly tear everything down and fail.  We don't have separate
-> > +      * flags for each set-up bit.
-> > +      */
-> > +     i915_fully_loaded = true;
-> > +
-> >       i915_pmu_init();
-> >
-> >       err = pci_register_driver(&i915_pci_driver);
-> > @@ -1240,12 +1259,11 @@ static int __init i915_init(void)
-> >
-> >   static void __exit i915_exit(void)
-> >   {
-> > -     if (!i915_pci_driver.driver.owner)
-> > -             return;
-> > -
-> > -     i915_perf_sysctl_unregister();
-> > -     pci_unregister_driver(&i915_pci_driver);
-> > -     i915_pmu_exit();
-> > +     if (i915_fully_loaded) {
-> > +             i915_perf_sysctl_unregister();
-> > +             pci_unregister_driver(&i915_pci_driver);
-> > +             i915_pmu_exit();
-> > +     }
-> >       i915_globals_exit();
-> >   }
-> >
-> >
->
-> Regards,
->
-> Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCBKYW4gNCwgMjAyMSBhdCA5OjU2IFBNIEpvc8OpIFJvYmVydG8gZGUgU291emEKPGpv
+c2Uuc291emFAaW50ZWwuY29tPiB3cm90ZToKPgo+IE5vdyB1c2luZyBwbGFuZSBkYW1hZ2UgY2xp
+cHMgcHJvcGVydHkgdG8gY2FsY3VhbHRlIHRoZSBkYW1hZ2VkIGFyZWEuCj4gU2VsZWN0aXZlIGZl
+dGNoIG9ubHkgc3VwcG9ydHMgb25lIHJlZ2lvbiB0byBiZSBmZXRjaGVkIHNvIHNvZnR3YXJlCj4g
+bmVlZHMgdG8gY2FsY3VsYXRlIGEgYm91bmRpbmcgYm94IGFyb3VuZCBhbGwgZGFtYWdlIGNsaXBz
+Lgo+Cj4gTm93IHRoYXQgd2UgYXJlIG5vdCBjb21wbGV0ZSBmZXRjaGluZyBlYWNoIHBsYW5lLCB0
+aGVyZSBpcyBhbm90aGVyCj4gbG9vcCBuZWVkZWQgYXMgYWxsIHRoZSBwbGFuZSBhcmVhcyB0aGF0
+IGludGVyc2VjdCB3aXRoIHRoZSBwaXBlCj4gZGFtYWdlZCBhcmVhIG5lZWRzIHRvIGJlIGZldGNo
+ZWQgZnJvbSBtZW1vcnkgc28gdGhlIGNvbXBsZXRlIGJsZW5kaW5nCj4gb2YgYWxsIHBsYW5lcyBj
+YW4gaGFwcGVuLgo+Cj4gdjI6Cj4gLSBkbyBub3Qgc2hpZnRpbmcgbmV3X3BsYW5lX3N0YXRlLT51
+YXBpLmRzdCBvbmx5IHNyYyBpcyBpbiAxNi4xNiBmb3JtYXQKPgo+IHY0Ogo+IC0gc2V0dGluZyBw
+bGFuZSBzZWxlY3RpdmUgZmV0Y2ggYXJlYSB1c2luZyB0aGUgd2hvbGUgcGlwZSBkYW1hZ2UgYXJl
+YQo+IC0gbWFyayB0aGUgd2hvbGUgcGxhbmUgYXJlYSBkYW1hZ2VkIGlmIHBsYW5lIHZpc2liaWxp
+dHkgb3IgYWxwaGEKPiBjaGFuZ2VkCj4KPiB2NToKPiAtIHRha2luZyBpbiBjb25zaWRlcmF0aW9u
+IHNyYy55MSBpbiB0aGUgZGFtYWdlIGNvb3JkaW5hdGVzCj4gLSBhZGRpbmcgdG8gdGhlIHBpcGUg
+ZGFtYWdlZCBhcmVhIHBsYW5lcyB0aGF0IHdlcmUgdmlzaWJsZSBidXQgYXJlCj4gaW52aXNpYmxl
+IGluIHRoZSBuZXcgc3RhdGUKPgo+IHY2Ogo+IC0gY29uc2lkZXIgb2xkIHN0YXRlIHBsYW5lIGNv
+b3JkaW5hdGVzIHdoZW4gdmlzaWJpbGl0eSBjaGFuZ2VzIG9yIGl0Cj4gbW92ZWQgdG8gY2FsY3Vs
+YXRlIGRhbWFnZWQgYXJlYQo+IC0gcmVtb3ZlIGZyb20gZGFtYWdlZCBhcmVhIHRoZSBwb3J0aW9u
+IG5vdCBpbiBzcmMgY2xpcAo+Cj4gdjc6Cj4gLSBpbnRlcnNlYyBldmVyeSBkYW1hZ2UgY2xpcCB3
+aXRoIHNyYyB0byBtaW5pbWl6ZSBkYW1hZ2VkIGFyZWEKPgo+IHY4Ogo+IC0gYWRqdXN0IHBpcGVf
+ZGFtYWdlZCBhcmVhIHRvIDQgbGluZXMgZ3JvdXBpbmcKPiAtIGFkanVzdCBjYWxjdWxhdGlvbiBu
+b3cgdGhhdCBpcyB1bmRlcnN0b29kIHRoYXQgdWFwaS5zcmMgaXMgdGhlCj4gZnJhbWVidWZmZXIg
+Y29vcmRpbmF0ZXMgdGhhdCBwbGFuZSB3aWxsIHN0YXJ0IHRvIGZldGNoIGZyb20KPgo+IHY5Ogo+
+IC0gT25seSBhZGQgcGxhbmUgZHN0IG9yIHNyYyB0byBkYW1hZ2VkX2FyZWEgaWYgdmlzaWJsZQo+
+IC0gRWFybHkgc2tpcCBwbGFuZSBkYW1hZ2UgY2FsY3VsYXRpb24gaWYgaXQgd2FzIG5vdCB2aXNp
+YmxlIGluIG9sZCBhbmQKPiBuZXcgc3RhdGUKPgo+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IENjOiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3ll
+b25nLm11bkBpbnRlbC5jb20+Cj4gUmV2aWV3ZWQtYnk6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1n
+eWVvbmcubXVuQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNv
+dXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KCldoeSBpcyB0aGlzIG5vdCB1c2luZyBkcm1fYXRv
+bWljX2hlbHBlcl9kYW1hZ2VfbWVyZ2VkPyBJIGp1c3Qgc3R1bWJsZWQKb3ZlciB0aGlzLCBhbmQg
+dGhpcyBpcyBvbmUgb2YgdGhlIG9ubHkgdHdvIGRyaXZlcnMgdGhhdCBkaXJlY3RseSBkaWdzCmFy
+b3VuZCBpbiB0aGUgZGFtYWdlIGFyZWEsIGFuZCBzZWVtcyB0byByZWludmVudCBhIGJ1bmNoIG9m
+IHRoZSBzdHVmZgpoZXJlLgotRGFuaWVsCgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX3Bzci5jIHwgMTEzICsrKysrKysrKysrKysrKysrKysrLS0tCj4gIDEgZmls
+ZSBjaGFuZ2VkLCA5OSBpbnNlcnRpb25zKCspLCAxNCBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwo+IGluZGV4IGQ5YTM5NWM0ODZkMy4uZjVi
+OTUxOWIzNzU2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfcHNyLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+Cj4gQEAgLTEyNDIsOSArMTI0MiwxMSBAQCBzdGF0aWMgdm9pZCBwc3IyX21hbl90cmtfY3RsX2Nh
+bGMoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCj4gICAgICAgICBpZiAoY2xp
+cC0+eTEgPT0gLTEpCj4gICAgICAgICAgICAgICAgIGdvdG8gZXhpdDsKPgo+ICsgICAgICAgZHJt
+X1dBUk5fT04oY3J0Y19zdGF0ZS0+dWFwaS5jcnRjLT5kZXYsIGNsaXAtPnkxICUgNCB8fCBjbGlw
+LT55MiAlIDQpOwo+ICsKPiAgICAgICAgIHZhbCB8PSBQU1IyX01BTl9UUktfQ1RMX1NGX1BBUlRJ
+QUxfRlJBTUVfVVBEQVRFOwo+ICAgICAgICAgdmFsIHw9IFBTUjJfTUFOX1RSS19DVExfU1VfUkVH
+SU9OX1NUQVJUX0FERFIoY2xpcC0+eTEgLyA0ICsgMSk7Cj4gLSAgICAgICB2YWwgfD0gUFNSMl9N
+QU5fVFJLX0NUTF9TVV9SRUdJT05fRU5EX0FERFIoRElWX1JPVU5EX1VQKGNsaXAtPnkyLCA0KSAr
+IDEpOwo+ICsgICAgICAgdmFsIHw9IFBTUjJfTUFOX1RSS19DVExfU1VfUkVHSU9OX0VORF9BRERS
+KGNsaXAtPnkyIC8gNCArIDEpOwo+ICBleGl0Ogo+ICAgICAgICAgY3J0Y19zdGF0ZS0+cHNyMl9t
+YW5fdHJhY2tfY3RsID0gdmFsOwo+ICB9Cj4gQEAgLTEyNjksOCArMTI3MSw4IEBAIGludCBpbnRl
+bF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUs
+Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0
+YykKPiAgewo+ICAgICAgICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUgPSBp
+bnRlbF9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKPiArICAgICAgIHN0
+cnVjdCBkcm1fcmVjdCBwaXBlX2NsaXAgPSB7IC54MSA9IDAsIC55MSA9IC0xLCAueDIgPSBJTlRf
+TUFYLCAueTIgPSAtMSB9Owo+ICAgICAgICAgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpuZXdf
+cGxhbmVfc3RhdGUsICpvbGRfcGxhbmVfc3RhdGU7Cj4gLSAgICAgICBzdHJ1Y3QgZHJtX3JlY3Qg
+cGlwZV9jbGlwID0geyAueTEgPSAtMSB9Owo+ICAgICAgICAgc3RydWN0IGludGVsX3BsYW5lICpw
+bGFuZTsKPiAgICAgICAgIGJvb2wgZnVsbF91cGRhdGUgPSBmYWxzZTsKPiAgICAgICAgIGludCBp
+LCByZXQ7Cj4gQEAgLTEyODIsMTMgKzEyODQsMjUgQEAgaW50IGludGVsX3BzcjJfc2VsX2ZldGNo
+X3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKPiAgICAgICAgIGlmIChy
+ZXQpCj4gICAgICAgICAgICAgICAgIHJldHVybiByZXQ7Cj4KPiArICAgICAgIC8qCj4gKyAgICAg
+ICAgKiBDYWxjdWxhdGUgbWluaW1hbCBzZWxlY3RpdmUgZmV0Y2ggYXJlYSBvZiBlYWNoIHBsYW5l
+IGFuZCBjYWxjdWxhdGUKPiArICAgICAgICAqIHRoZSBwaXBlIGRhbWFnZWQgYXJlYS4KPiArICAg
+ICAgICAqIEluIHRoZSBuZXh0IGxvb3AgdGhlIHBsYW5lIHNlbGVjdGl2ZSBmZXRjaCBhcmVhIHdp
+bGwgYWN0dWFsbHkgYmUgc2V0Cj4gKyAgICAgICAgKiB1c2luZyB3aG9sZSBwaXBlIGRhbWFnZWQg
+YXJlYS4KPiArICAgICAgICAqLwo+ICAgICAgICAgZm9yX2VhY2hfb2xkbmV3X2ludGVsX3BsYW5l
+X2luX3N0YXRlKHN0YXRlLCBwbGFuZSwgb2xkX3BsYW5lX3N0YXRlLAo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5ld19wbGFuZV9zdGF0ZSwgaSkgewo+IC0g
+ICAgICAgICAgICAgICBzdHJ1Y3QgZHJtX3JlY3QgKnNlbF9mZXRjaF9hcmVhLCB0ZW1wOwo+ICsg
+ICAgICAgICAgICAgICBzdHJ1Y3QgZHJtX3JlY3Qgc3JjLCBkYW1hZ2VkX2FyZWEgPSB7IC55MSA9
+IC0xIH07Cj4gKyAgICAgICAgICAgICAgIHN0cnVjdCBkcm1fbW9kZV9yZWN0ICpkYW1hZ2VkX2Ns
+aXBzOwo+ICsgICAgICAgICAgICAgICB1MzIgbnVtX2NsaXBzLCBqOwo+Cj4gICAgICAgICAgICAg
+ICAgIGlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuY3J0YyAhPSBjcnRjX3N0YXRlLT51YXBpLmNy
+dGMpCj4gICAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4KPiArICAgICAgICAgICAg
+ICAgaWYgKCFuZXdfcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSAmJgo+ICsgICAgICAgICAgICAg
+ICAgICAgIW9sZF9wbGFuZV9zdGF0ZS0+dWFwaS52aXNpYmxlKQo+ICsgICAgICAgICAgICAgICAg
+ICAgICAgIGNvbnRpbnVlOwo+ICsKPiAgICAgICAgICAgICAgICAgLyoKPiAgICAgICAgICAgICAg
+ICAgICogVE9ETzogTm90IGNsZWFyIGhvdyB0byBoYW5kbGUgcGxhbmVzIHdpdGggbmVnYXRpdmUg
+cG9zaXRpb24sCj4gICAgICAgICAgICAgICAgICAqIGFsc28gcGxhbmVzIGFyZSBub3QgdXBkYXRl
+ZCBpZiB0aGV5IGhhdmUgYSBuZWdhdGl2ZSBYCj4gQEAgLTEzMDAsMjMgKzEzMTQsOTQgQEAgaW50
+IGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpz
+dGF0ZSwKPiAgICAgICAgICAgICAgICAgICAgICAgICBicmVhazsKPiAgICAgICAgICAgICAgICAg
+fQo+Cj4gLSAgICAgICAgICAgICAgIGlmICghbmV3X3BsYW5lX3N0YXRlLT51YXBpLnZpc2libGUp
+Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gKyAgICAgICAgICAgICAgIG51
+bV9jbGlwcyA9IGRybV9wbGFuZV9nZXRfZGFtYWdlX2NsaXBzX2NvdW50KCZuZXdfcGxhbmVfc3Rh
+dGUtPnVhcGkpOwo+Cj4gICAgICAgICAgICAgICAgIC8qCj4gLSAgICAgICAgICAgICAgICAqIEZv
+ciBub3cgZG9pbmcgYSBzZWxlY3RpdmUgZmV0Y2ggaW4gdGhlIHdob2xlIHBsYW5lIGFyZWEsCj4g
+LSAgICAgICAgICAgICAgICAqIG9wdGltaXphdGlvbnMgd2lsbCBjb21lIGluIHRoZSBmdXR1cmUu
+Cj4gKyAgICAgICAgICAgICAgICAqIElmIHZpc2liaWxpdHkgb3IgcGxhbmUgbW92ZWQsIG1hcmsg
+dGhlIHdob2xlIHBsYW5lIGFyZWEgYXMKPiArICAgICAgICAgICAgICAgICogZGFtYWdlZCBhcyBp
+dCBuZWVkcyB0byBiZSBjb21wbGV0ZSByZWRyYXcgaW4gdGhlIG5ldyBhbmQgb2xkCj4gKyAgICAg
+ICAgICAgICAgICAqIHBvc2l0aW9uLgo+ICAgICAgICAgICAgICAgICAgKi8KPiAtICAgICAgICAg
+ICAgICAgc2VsX2ZldGNoX2FyZWEgPSAmbmV3X3BsYW5lX3N0YXRlLT5wc3IyX3NlbF9mZXRjaF9h
+cmVhOwo+IC0gICAgICAgICAgICAgICBzZWxfZmV0Y2hfYXJlYS0+eTEgPSBuZXdfcGxhbmVfc3Rh
+dGUtPnVhcGkuc3JjLnkxID4+IDE2Owo+IC0gICAgICAgICAgICAgICBzZWxfZmV0Y2hfYXJlYS0+
+eTIgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuc3JjLnkyID4+IDE2Owo+ICsgICAgICAgICAgICAg
+ICBpZiAobmV3X3BsYW5lX3N0YXRlLT51YXBpLnZpc2libGUgIT0gb2xkX3BsYW5lX3N0YXRlLT51
+YXBpLnZpc2libGUgfHwKPiArICAgICAgICAgICAgICAgICAgICFkcm1fcmVjdF9lcXVhbHMoJm5l
+d19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICZvbGRfcGxhbmVfc3RhdGUtPnVhcGkuZHN0KSkgewo+ICsgICAgICAgICAgICAgICAg
+ICAgICAgIGlmIChvbGRfcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSkgewo+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgZGFtYWdlZF9hcmVhLnkxID0gb2xkX3BsYW5lX3N0YXRlLT51
+YXBpLmRzdC55MTsKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRhbWFnZWRfYXJl
+YS55MiA9IG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTI7Cj4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBjbGlwX2FyZWFfdXBkYXRlKCZwaXBlX2NsaXAsICZkYW1hZ2VkX2FyZWEp
+Owo+ICsgICAgICAgICAgICAgICAgICAgICAgIH0KPiArCj4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgaWYgKG5ld19wbGFuZV9zdGF0ZS0+dWFwaS52aXNpYmxlKSB7Cj4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBkYW1hZ2VkX2FyZWEueTEgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGku
+ZHN0LnkxOwo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGFtYWdlZF9hcmVhLnky
+ID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MjsKPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIGNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJmRhbWFnZWRfYXJlYSk7Cj4g
+KyAgICAgICAgICAgICAgICAgICAgICAgfQo+ICsgICAgICAgICAgICAgICAgICAgICAgIGNvbnRp
+bnVlOwo+ICsgICAgICAgICAgICAgICB9IGVsc2UgaWYgKG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5h
+bHBoYSAhPSBvbGRfcGxhbmVfc3RhdGUtPnVhcGkuYWxwaGEgfHwKPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAoIW51bV9jbGlwcyAmJgo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICBu
+ZXdfcGxhbmVfc3RhdGUtPnVhcGkuZmIgIT0gb2xkX3BsYW5lX3N0YXRlLT51YXBpLmZiKSkgewo+
+ICsgICAgICAgICAgICAgICAgICAgICAgIC8qCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICog
+SWYgdGhlIHBsYW5lIGRvbid0IGhhdmUgZGFtYWdlZCBhcmVhcyBidXQgdGhlCj4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICogZnJhbWVidWZmZXIgY2hhbmdlZCBvciBhbHBoYSBjaGFuZ2VkLCBt
+YXJrIHRoZSB3aG9sZQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAqIHBsYW5lIGFyZWEgYXMg
+ZGFtYWdlZC4KPiArICAgICAgICAgICAgICAgICAgICAgICAgKi8KPiArICAgICAgICAgICAgICAg
+ICAgICAgICBkYW1hZ2VkX2FyZWEueTEgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOwo+
+ICsgICAgICAgICAgICAgICAgICAgICAgIGRhbWFnZWRfYXJlYS55MiA9IG5ld19wbGFuZV9zdGF0
+ZS0+dWFwaS5kc3QueTI7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgY2xpcF9hcmVhX3VwZGF0
+ZSgmcGlwZV9jbGlwLCAmZGFtYWdlZF9hcmVhKTsKPiArICAgICAgICAgICAgICAgICAgICAgICBj
+b250aW51ZTsKPiArICAgICAgICAgICAgICAgfQo+ICsKPiArICAgICAgICAgICAgICAgZHJtX3Jl
+Y3RfZnBfdG9faW50KCZzcmMsICZuZXdfcGxhbmVfc3RhdGUtPnVhcGkuc3JjKTsKPiArICAgICAg
+ICAgICAgICAgZGFtYWdlZF9jbGlwcyA9IGRybV9wbGFuZV9nZXRfZGFtYWdlX2NsaXBzKCZuZXdf
+cGxhbmVfc3RhdGUtPnVhcGkpOwo+ICsKPiArICAgICAgICAgICAgICAgZm9yIChqID0gMDsgaiA8
+IG51bV9jbGlwczsgaisrKSB7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRybV9y
+ZWN0IGNsaXA7Cj4gKwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsaXAueDEgPSBkYW1hZ2Vk
+X2NsaXBzW2pdLngxOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsaXAueTEgPSBkYW1hZ2Vk
+X2NsaXBzW2pdLnkxOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsaXAueDIgPSBkYW1hZ2Vk
+X2NsaXBzW2pdLngyOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsaXAueTIgPSBkYW1hZ2Vk
+X2NsaXBzW2pdLnkyOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGlmIChkcm1fcmVjdF9pbnRl
+cnNlY3QoJmNsaXAsICZzcmMpKQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xp
+cF9hcmVhX3VwZGF0ZSgmZGFtYWdlZF9hcmVhLCAmY2xpcCk7Cj4gKyAgICAgICAgICAgICAgIH0K
+Pgo+IC0gICAgICAgICAgICAgICB0ZW1wID0gKnNlbF9mZXRjaF9hcmVhOwo+IC0gICAgICAgICAg
+ICAgICB0ZW1wLnkxICs9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7Cj4gLSAgICAgICAg
+ICAgICAgIHRlbXAueTIgKz0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MjsKPiAtICAgICAg
+ICAgICAgICAgY2xpcF9hcmVhX3VwZGF0ZSgmcGlwZV9jbGlwLCAmdGVtcCk7Cj4gKyAgICAgICAg
+ICAgICAgIGlmIChkYW1hZ2VkX2FyZWEueTEgPT0gLTEpCj4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgY29udGludWU7Cj4gKwo+ICsgICAgICAgICAgICAgICBkYW1hZ2VkX2FyZWEueTEgKz0gbmV3
+X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MSAtIHNyYy55MTsKPiArICAgICAgICAgICAgICAgZGFt
+YWdlZF9hcmVhLnkyICs9IG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTEgLSBzcmMueTE7Cj4g
+KyAgICAgICAgICAgICAgIGNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJmRhbWFnZWRfYXJl
+YSk7Cj4gKyAgICAgICB9Cj4gKwo+ICsgICAgICAgaWYgKGZ1bGxfdXBkYXRlKQo+ICsgICAgICAg
+ICAgICAgICBnb3RvIHNraXBfc2VsX2ZldGNoX3NldF9sb29wOwo+ICsKPiArICAgICAgIC8qIEl0
+IG11c3QgYmUgYWxpZ25lZCB0byA0IGxpbmVzICovCj4gKyAgICAgICBwaXBlX2NsaXAueTEgLT0g
+cGlwZV9jbGlwLnkxICUgNDsKPiArICAgICAgIGlmIChwaXBlX2NsaXAueTIgJSA0KQo+ICsgICAg
+ICAgICAgICAgICBwaXBlX2NsaXAueTIgPSAoKHBpcGVfY2xpcC55MiAvIDQpICsgMSkgKiA0Owo+
+ICsKPiArICAgICAgIC8qCj4gKyAgICAgICAgKiBOb3cgdGhhdCB3ZSBoYXZlIHRoZSBwaXBlIGRh
+bWFnZWQgYXJlYSBjaGVjayBpZiBpdCBpbnRlcnNlY3Qgd2l0aAo+ICsgICAgICAgICogZXZlcnkg
+cGxhbmUsIGlmIGl0IGRvZXMgc2V0IHRoZSBwbGFuZSBzZWxlY3RpdmUgZmV0Y2ggYXJlYS4KPiAr
+ICAgICAgICAqLwo+ICsgICAgICAgZm9yX2VhY2hfb2xkbmV3X2ludGVsX3BsYW5lX2luX3N0YXRl
+KHN0YXRlLCBwbGFuZSwgb2xkX3BsYW5lX3N0YXRlLAo+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIG5ld19wbGFuZV9zdGF0ZSwgaSkgewo+ICsgICAgICAgICAg
+ICAgICBzdHJ1Y3QgZHJtX3JlY3QgKnNlbF9mZXRjaF9hcmVhLCBpbnRlcjsKPiArCj4gKyAgICAg
+ICAgICAgICAgIGlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuY3J0YyAhPSBjcnRjX3N0YXRlLT51
+YXBpLmNydGMgfHwKPiArICAgICAgICAgICAgICAgICAgICFuZXdfcGxhbmVfc3RhdGUtPnVhcGku
+dmlzaWJsZSkKPiArICAgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiArCj4gKyAgICAg
+ICAgICAgICAgIGludGVyID0gcGlwZV9jbGlwOwo+ICsgICAgICAgICAgICAgICBpZiAoIWRybV9y
+ZWN0X2ludGVyc2VjdCgmaW50ZXIsICZuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0KSkKPiArICAg
+ICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiArCj4gKyAgICAgICAgICAgICAgIHNlbF9m
+ZXRjaF9hcmVhID0gJm5ld19wbGFuZV9zdGF0ZS0+cHNyMl9zZWxfZmV0Y2hfYXJlYTsKPiArICAg
+ICAgICAgICAgICAgc2VsX2ZldGNoX2FyZWEtPnkxID0gaW50ZXIueTEgLSBuZXdfcGxhbmVfc3Rh
+dGUtPnVhcGkuZHN0LnkxOwo+ICsgICAgICAgICAgICAgICBzZWxfZmV0Y2hfYXJlYS0+eTIgPSBp
+bnRlci55MiAtIG5ld19wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7Cj4gICAgICAgICB9Cj4KPiAr
+c2tpcF9zZWxfZmV0Y2hfc2V0X2xvb3A6Cj4gICAgICAgICBwc3IyX21hbl90cmtfY3RsX2NhbGMo
+Y3J0Y19zdGF0ZSwgJnBpcGVfY2xpcCwgZnVsbF91cGRhdGUpOwo+ICAgICAgICAgcmV0dXJuIDA7
+Cj4gIH0KPiAtLQo+IDIuMzAuMAo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4CgoKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVy
+LCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
