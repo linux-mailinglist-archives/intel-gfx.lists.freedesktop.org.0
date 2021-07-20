@@ -1,38 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DACD3D02AF
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 22:38:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 366473D02C7
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 22:39:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B14BB6E49F;
-	Tue, 20 Jul 2021 20:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3C8C6E402;
+	Tue, 20 Jul 2021 20:39:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B71E26E402;
- Tue, 20 Jul 2021 20:38:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="296885122"
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="296885122"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2021 13:38:21 -0700
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="469891929"
-Received: from dut151-iclu.fm.intel.com ([10.105.23.43])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2021 13:38:21 -0700
-Date: Tue, 20 Jul 2021 20:38:19 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: John Harrison <john.c.harrison@intel.com>
-Message-ID: <20210720203819.GA14430@DUT151-ICLU.fm.intel.com>
-References: <20210716201724.54804-1-matthew.brost@intel.com>
- <20210716201724.54804-31-matthew.brost@intel.com>
- <19438ac3-255f-78db-6ce3-ba919ea4e456@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAAE76E3DA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 20:39:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="191601601"
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="191601601"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2021 13:39:34 -0700
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="576012169"
+Received: from davehans-mobl4.amr.corp.intel.com (HELO msatwood-mobl)
+ ([10.251.16.219])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2021 13:39:34 -0700
+Date: Tue, 20 Jul 2021 13:39:16 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>;,
+	intel-gfx@lists.freedesktop.org
+Message-ID: <20210720203916.GA32707@msatwood-mobl>
+References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
+ <20210714031540.3539704-9-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <19438ac3-255f-78db-6ce3-ba919ea4e456@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 30/51] drm/i915/guc: Handle context reset
- notification
+In-Reply-To: <20210714031540.3539704-9-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 08/50] drm/i915/xehp: Extra media engines
+ - Part 3 (reset)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,142 +46,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 20, 2021 at 01:29:26PM -0700, John Harrison wrote:
-> On 7/16/2021 13:17, Matthew Brost wrote:
-> > GuC will issue a reset on detecting an engine hang and will notify
-> > the driver via a G2H message. The driver will service the notification
-> > by resetting the guilty context to a simple state or banning it
-> > completely.
-> > 
-> > v2:
-> >   (John Harrison)
-> >    - Move msg[0] lookup after length check
-> > 
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: John Harrison <John.C.Harrison@Intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 ++
-> >   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  3 ++
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 36 +++++++++++++++++++
-> >   drivers/gpu/drm/i915/i915_trace.h             | 10 ++++++
-> >   4 files changed, 51 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > index b3cfc52fe0bc..f23a3a618550 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> > @@ -262,6 +262,8 @@ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
-> >   					  const u32 *msg, u32 len);
-> >   int intel_guc_sched_done_process_msg(struct intel_guc *guc,
-> >   				     const u32 *msg, u32 len);
-> > +int intel_guc_context_reset_process_msg(struct intel_guc *guc,
-> > +					const u32 *msg, u32 len);
-> >   void intel_guc_submission_reset_prepare(struct intel_guc *guc);
-> >   void intel_guc_submission_reset(struct intel_guc *guc, bool stalled);
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > index 503a78517610..c4f9b44b9f86 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> > @@ -981,6 +981,9 @@ static int ct_process_request(struct intel_guc_ct *ct, struct ct_incoming_msg *r
-> >   	case INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
-> >   		ret = intel_guc_sched_done_process_msg(guc, payload, len);
-> >   		break;
-> > +	case INTEL_GUC_ACTION_CONTEXT_RESET_NOTIFICATION:
-> > +		ret = intel_guc_context_reset_process_msg(guc, payload, len);
-> > +		break;
-> >   	default:
-> >   		ret = -EOPNOTSUPP;
-> >   		break;
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index fdb17279095c..feaf1ca61eaa 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -2196,6 +2196,42 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
-> >   	return 0;
-> >   }
-> > +static void guc_context_replay(struct intel_context *ce)
-> > +{
-> > +	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
-> > +
-> > +	__guc_reset_context(ce, true);
-> > +	tasklet_hi_schedule(&sched_engine->tasklet);
-> > +}
-> > +
-> > +static void guc_handle_context_reset(struct intel_guc *guc,
-> > +				     struct intel_context *ce)
-> > +{
-> > +	trace_intel_context_reset(ce);
-> > +	guc_context_replay(ce);
-> > +}
-> > +
-> > +int intel_guc_context_reset_process_msg(struct intel_guc *guc,
-> > +					const u32 *msg, u32 len)
-> > +{
-> > +	struct intel_context *ce;
-> > +	int desc_idx;
-> > +
-> > +	if (unlikely(len != 1)) {
-> > +		drm_dbg(&guc_to_gt(guc)->i915->drm, "Invalid length %u", len);
-> I think we decided that these should be drm_err rather than drm_dbg?
+On Tue, Jul 13, 2021 at 08:14:58PM -0700, Matt Roper wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
 > 
-
-Yes, we did. Already fixed this message and all subsequent in my branch.
-
-Matt
-
-> With that updated:
-> Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+> Xe_HP can have a lot of extra media engines. This patch adds the reset
+> support for them.
 > 
-> > +		return -EPROTO;
-> > +	}
-> > +
-> > +	desc_idx = msg[0];
-> > +	ce = g2h_context_lookup(guc, desc_idx);
-> > +	if (unlikely(!ce))
-> > +		return -EPROTO;
-> > +
-> > +	guc_handle_context_reset(guc, ce);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >   void intel_guc_submission_print_info(struct intel_guc *guc,
-> >   				     struct drm_printer *p)
-> >   {
-> > diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-> > index 97c2e83984ed..c095c4d39456 100644
-> > --- a/drivers/gpu/drm/i915/i915_trace.h
-> > +++ b/drivers/gpu/drm/i915/i915_trace.h
-> > @@ -929,6 +929,11 @@ DECLARE_EVENT_CLASS(intel_context,
-> >   		      __entry->guc_sched_state_no_lock)
-> >   );
-> > +DEFINE_EVENT(intel_context, intel_context_reset,
-> > +	     TP_PROTO(struct intel_context *ce),
-> > +	     TP_ARGS(ce)
-> > +);
-> > +
-> >   DEFINE_EVENT(intel_context, intel_context_register,
-> >   	     TP_PROTO(struct intel_context *ce),
-> >   	     TP_ARGS(ce)
-> > @@ -1026,6 +1031,11 @@ trace_i915_request_out(struct i915_request *rq)
-> >   {
-> >   }
-> > +static inline void
-> > +trace_intel_context_reset(struct intel_context *ce)
-> > +{
-> > +}
-> > +
-> >   static inline void
-> >   trace_intel_context_register(struct intel_context *ce)
-> >   {
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_reset.c | 6 ++++++
+>  drivers/gpu/drm/i915/i915_reg.h       | 8 ++++++++
+>  2 files changed, 14 insertions(+)
 > 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index 72251638d4ea..9586613ee399 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -515,8 +515,14 @@ static int gen11_reset_engines(struct intel_gt *gt,
+>  		[VCS1]  = GEN11_GRDOM_MEDIA2,
+>  		[VCS2]  = GEN11_GRDOM_MEDIA3,
+>  		[VCS3]  = GEN11_GRDOM_MEDIA4,
+> +		[VCS4]  = GEN11_GRDOM_MEDIA5,
+> +		[VCS5]  = GEN11_GRDOM_MEDIA6,
+> +		[VCS6]  = GEN11_GRDOM_MEDIA7,
+> +		[VCS7]  = GEN11_GRDOM_MEDIA8,
+>  		[VECS0] = GEN11_GRDOM_VECS,
+>  		[VECS1] = GEN11_GRDOM_VECS2,
+> +		[VECS2] = GEN11_GRDOM_VECS3,
+> +		[VECS3] = GEN11_GRDOM_VECS4,
+>  	};
+>  	struct intel_engine_cs *engine;
+>  	intel_engine_mask_t tmp;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index af8f14fe4026..1eca88ac7057 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -395,10 +395,18 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  #define  GEN11_GRDOM_MEDIA2		(1 << 6)
+>  #define  GEN11_GRDOM_MEDIA3		(1 << 7)
+>  #define  GEN11_GRDOM_MEDIA4		(1 << 8)
+> +#define  GEN11_GRDOM_MEDIA5		(1 << 9)
+> +#define  GEN11_GRDOM_MEDIA6		(1 << 10)
+> +#define  GEN11_GRDOM_MEDIA7		(1 << 11)
+> +#define  GEN11_GRDOM_MEDIA8		(1 << 12)
+>  #define  GEN11_GRDOM_VECS		(1 << 13)
+>  #define  GEN11_GRDOM_VECS2		(1 << 14)
+> +#define  GEN11_GRDOM_VECS3		(1 << 15)
+> +#define  GEN11_GRDOM_VECS4		(1 << 16)
+>  #define  GEN11_GRDOM_SFC0		(1 << 17)
+>  #define  GEN11_GRDOM_SFC1		(1 << 18)
+> +#define  GEN11_GRDOM_SFC2		(1 << 19)
+> +#define  GEN11_GRDOM_SFC3		(1 << 20)
+>  
+>  #define  GEN11_VCS_SFC_RESET_BIT(instance)	(GEN11_GRDOM_SFC0 << ((instance) >> 1))
+>  #define  GEN11_VECS_SFC_RESET_BIT(instance)	(GEN11_GRDOM_SFC0 << (instance))
+> -- 
+> 2.25.4
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
