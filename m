@@ -2,38 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA103D043D
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 00:07:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F1303D043F
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 00:07:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAE096E56D;
-	Tue, 20 Jul 2021 22:07:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 895B96E575;
+	Tue, 20 Jul 2021 22:07:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 060D56E56D
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 22:07:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="209433109"
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="209433109"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2021 15:06:55 -0700
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="415389506"
-Received: from davehans-mobl4.amr.corp.intel.com (HELO msatwood-mobl)
- ([10.251.16.219])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2021 15:06:55 -0700
-Date: Tue, 20 Jul 2021 15:06:41 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>;,
-	intel-gfx@lists.freedesktop.org
-Message-ID: <20210720220641.GB1701@msatwood-mobl>
-References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
- <20210714031540.3539704-13-matthew.d.roper@intel.com>
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAE086E573
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 22:07:02 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id k184so536440ybf.12
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:07:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Nf5fJ4NM1G4kYJu2OvaEjjoSryHta6nu5v5fYiErDFI=;
+ b=fyO1U8fmjdQ9bkRcWmubVc9zETqsWC45AfCC5PLMW5Tjy/JsBDWaef/4F0voTp5UU2
+ JSwluYjNH3jlpQm0sZioV0rx3HCcu4he2ody/kVvM/g782qbzJJvayRwbu02Udbhx1dm
+ gs/y5uFNPtZ7wvTM/4lnUIy95EG9pRshITT97h6q12SeQE8k621CaMtoclPZeNdy1Nyo
+ Syl04ZHRGkb0ss8rGXbKRM4KSPXyrJ7uXYGlKvWgIlMGPeiRT2WHtuoLHhaQkzeEvN86
+ k+2/5Bi2XBbUvwI4SYNIhs9tJxvQ2VXp18guc3a0vYYYtfYyuKl2XEtM4A6SxvOYIsyN
+ moWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Nf5fJ4NM1G4kYJu2OvaEjjoSryHta6nu5v5fYiErDFI=;
+ b=XGHLpl31AtRu3KHT8EdOdO9k1+wM0+k/k4DOdM30eVlF4zV2n5M/JGl14NjrEyxd7Y
+ v/tJkSDKEoy/zwJPr3L0rpG1BPtBJaBdazPCdGVUraxHM4QV/48kYOS3duY8gqMOUTNf
+ 7U7JUoNXKmM8XAK0Y6a5UP+gn8Kpb2a79c/xkDepk1nzA9R5urR+cOtrGbovqDK5H90N
+ yBrTjJBQDHjb6cu7iYx0uQNEtSGiu1JFeDsKPoYMdaYs7V0BthimK3MdDFXNRC969irP
+ pkJWsxF+amLkFbdnNb87L5am71TFMd5ny3enM+1Hlpts3leSX/pwcHnw8LWmnSy8648h
+ 7vMg==
+X-Gm-Message-State: AOAM532hlKlGdUwdZZHdVMdjHr18DcRfhmRlmpsq+hPkGZFH/niiNfhF
+ ENTOhqDWR1YYcyBmxZiOl51AZqdDUgOtWWf9vjh3Jw==
+X-Google-Smtp-Source: ABdhPJy2rX1yEo2kUPy5bBoVuTicVd0zt3LPdFzFRT7dX9VHSQKnXLkKGJgeTDVBwfNVmEKzKyeYzAx+/jp7/soh30Q=
+X-Received: by 2002:a25:d3c1:: with SMTP id
+ e184mr41729161ybf.139.1626818821926; 
+ Tue, 20 Jul 2021 15:07:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210714031540.3539704-13-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 12/50] drm/i915/xehp: New engine context
- offsets
+References: <20210716141426.1904528-1-jason@jlekstrand.net>
+ <20210716141426.1904528-3-jason@jlekstrand.net>
+ <CAM0jSHME+vRSDpTPAO74Z+xwjofZB4i1pbFH2Yvn+eeGYL-aqA@mail.gmail.com>
+In-Reply-To: <CAM0jSHME+vRSDpTPAO74Z+xwjofZB4i1pbFH2Yvn+eeGYL-aqA@mail.gmail.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Tue, 20 Jul 2021 17:06:50 -0500
+Message-ID: <CAOFGe97RoL1+L+i5Qgoipnv=ta8isPiAWYhfYncF1KYBX+8t9g@mail.gmail.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/gem: Refactor placement setup
+ for i915_gem_object_create* (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,140 +65,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 13, 2021 at 08:15:02PM -0700, Matt Roper wrote:
-> From: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-> 
-> The layout of some engine contexts has changed on Xe_HP.  Define the new
-> offsets.
-> 
-> Bspec: 45585, 46256
-> Signed-off-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
-> Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 65 ++++++++++++++++++++++++++---
->  1 file changed, 59 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 7f8fe6726504..c3f5bec8ae15 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -484,6 +484,47 @@ static const u8 gen12_rcs_offsets[] = {
->  	END
->  };
->  
-> +static const u8 xehp_rcs_offsets[] = {
-> +	NOP(1),
-> +	LRI(13, POSTED),
-> +	REG16(0x244),
-> +	REG(0x034),
-> +	REG(0x030),
-> +	REG(0x038),
-> +	REG(0x03c),
-> +	REG(0x168),
-> +	REG(0x140),
-> +	REG(0x110),
-> +	REG(0x1c0),
-> +	REG(0x1c4),
-> +	REG(0x1c8),
-> +	REG(0x180),
-> +	REG16(0x2b4),
-> +
-> +	NOP(5),
-> +	LRI(9, POSTED),
-> +	REG16(0x3a8),
-> +	REG16(0x28c),
-> +	REG16(0x288),
-> +	REG16(0x284),
-> +	REG16(0x280),
-> +	REG16(0x27c),
-> +	REG16(0x278),
-> +	REG16(0x274),
-> +	REG16(0x270),
-> +
-> +	LRI(3, POSTED),
-> +	REG(0x1b0),
-> +	REG16(0x5a8),
-> +	REG16(0x5ac),
-> +
-> +	NOP(6),
-> +	LRI(1, 0),
-> +	REG(0x0c8),
-> +
-> +	END
-> +};
-> +
->  #undef END
->  #undef REG16
->  #undef REG
-> @@ -502,7 +543,9 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
->  		   !intel_engine_has_relative_mmio(engine));
->  
->  	if (engine->class == RENDER_CLASS) {
-> -		if (GRAPHICS_VER(engine->i915) >= 12)
-> +		if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-> +			return xehp_rcs_offsets;
-> +		else if (GRAPHICS_VER(engine->i915) >= 12)
->  			return gen12_rcs_offsets;
->  		else if (GRAPHICS_VER(engine->i915) >= 11)
->  			return gen11_rcs_offsets;
-> @@ -522,7 +565,9 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
->  
->  static int lrc_ring_mi_mode(const struct intel_engine_cs *engine)
->  {
-> -	if (GRAPHICS_VER(engine->i915) >= 12)
-> +	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-> +		return 0x70;
-> +	else if (GRAPHICS_VER(engine->i915) >= 12)
->  		return 0x60;
->  	else if (GRAPHICS_VER(engine->i915) >= 9)
->  		return 0x54;
-> @@ -534,7 +579,9 @@ static int lrc_ring_mi_mode(const struct intel_engine_cs *engine)
->  
->  static int lrc_ring_gpr0(const struct intel_engine_cs *engine)
->  {
-> -	if (GRAPHICS_VER(engine->i915) >= 12)
-> +	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-> +		return 0x84;
-> +	else if (GRAPHICS_VER(engine->i915) >= 12)
->  		return 0x74;
->  	else if (GRAPHICS_VER(engine->i915) >= 9)
->  		return 0x68;
-> @@ -578,10 +625,16 @@ static int lrc_ring_indirect_offset(const struct intel_engine_cs *engine)
->  
->  static int lrc_ring_cmd_buf_cctl(const struct intel_engine_cs *engine)
->  {
-> -	if (engine->class != RENDER_CLASS)
-> -		return -1;
->  
-> -	if (GRAPHICS_VER(engine->i915) >= 12)
-> +	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-> +		/*
-> +		 * Note that the CSFE context has a dummy slot for CMD_BUF_CCTL
-> +		 * simply to match the RCS context image layout.
-> +		 */
-> +		return 0xc6;
-> +	else if (engine->class != RENDER_CLASS)
-> +		return -1;
-> +	else if (GRAPHICS_VER(engine->i915) >= 12)
->  		return 0xb6;
->  	else if (GRAPHICS_VER(engine->i915) >= 11)
->  		return 0xaa;
-> -- 
-> 2.25.4
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+On Mon, Jul 19, 2021 at 3:18 AM Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Fri, 16 Jul 2021 at 15:14, Jason Ekstrand <jason@jlekstrand.net> wrote:
+> >
+> > Since we don't allow changing the set of regions after creation, we can
+> > make ext_set_placements() build up the region set directly in the
+> > create_ext and assign it to the object later.  This is similar to what
+> > we did for contexts with the proto-context only simpler because there's
+> > no funny object shuffling.  This will be used in the next patch to allow
+> > us to de-duplicate a bunch of code.  Also, since we know the maximum
+> > number of regions up-front, we can use a fixed-size temporary array for
+> > the regions.  This simplifies memory management a bit for this new
+> > delayed approach.
+> >
+> > v2 (Matthew Auld):
+> >  - Get rid of MAX_N_PLACEMENTS
+> >  - Drop kfree(placements) from set_placements()
+> >
+> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_create.c | 81 ++++++++++++----------
+> >  1 file changed, 45 insertions(+), 36 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > index 51f92e4b1a69d..5766749a449c0 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> > @@ -27,10 +27,13 @@ static u32 object_max_page_size(struct drm_i915_gem_object *obj)
+> >         return max_page_size;
+> >  }
+> >
+> > -static void object_set_placements(struct drm_i915_gem_object *obj,
+> > -                                 struct intel_memory_region **placements,
+> > -                                 unsigned int n_placements)
+> > +static int object_set_placements(struct drm_i915_gem_object *obj,
+> > +                                struct intel_memory_region **placements,
+> > +                                unsigned int n_placements)
+> >  {
+> > +       struct intel_memory_region **arr;
+> > +       unsigned int i;
+> > +
+> >         GEM_BUG_ON(!n_placements);
+> >
+> >         /*
+> > @@ -44,9 +47,20 @@ static void object_set_placements(struct drm_i915_gem_object *obj,
+> >                 obj->mm.placements = &i915->mm.regions[mr->id];
+> >                 obj->mm.n_placements = 1;
+> >         } else {
+> > -               obj->mm.placements = placements;
+> > +               arr = kmalloc_array(n_placements,
+> > +                                   sizeof(struct intel_memory_region *),
+> > +                                   GFP_KERNEL);
+> > +               if (!arr)
+> > +                       return -ENOMEM;
+> > +
+> > +               for (i = 0; i < n_placements; i++)
+> > +                       arr[i] = placements[i];
+> > +
+> > +               obj->mm.placements = arr;
+> >                 obj->mm.n_placements = n_placements;
+> >         }
+> > +
+> > +       return 0;
+> >  }
+> >
+> >  static int i915_gem_publish(struct drm_i915_gem_object *obj,
+> > @@ -148,7 +162,9 @@ i915_gem_dumb_create(struct drm_file *file,
+> >                 return -ENOMEM;
+> >
+> >         mr = intel_memory_region_by_type(to_i915(dev), mem_type);
+> > -       object_set_placements(obj, &mr, 1);
+> > +       ret = object_set_placements(obj, &mr, 1);
+> > +       if (ret)
+> > +               goto object_free;
+> >
+> >         ret = i915_gem_setup(obj, args->size);
+> >         if (ret)
+> > @@ -184,7 +200,9 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
+> >                 return -ENOMEM;
+> >
+> >         mr = intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
+> > -       object_set_placements(obj, &mr, 1);
+> > +       ret = object_set_placements(obj, &mr, 1);
+> > +       if (ret)
+> > +               goto object_free;
+> >
+> >         ret = i915_gem_setup(obj, args->size);
+> >         if (ret)
+> > @@ -199,7 +217,8 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
+> >
+> >  struct create_ext {
+> >         struct drm_i915_private *i915;
+> > -       struct drm_i915_gem_object *vanilla_object;
+> > +       struct intel_memory_region *placements[INTEL_REGION_UNKNOWN];
+> > +       unsigned int n_placements;
+> >  };
+> >
+> >  static void repr_placements(char *buf, size_t size,
+> > @@ -230,8 +249,7 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
+> >         struct drm_i915_private *i915 = ext_data->i915;
+> >         struct drm_i915_gem_memory_class_instance __user *uregions =
+> >                 u64_to_user_ptr(args->regions);
+> > -       struct drm_i915_gem_object *obj = ext_data->vanilla_object;
+> > -       struct intel_memory_region **placements;
+> > +       struct intel_memory_region *placements[INTEL_REGION_UNKNOWN];
+> >         u32 mask;
+> >         int i, ret = 0;
+> >
+> > @@ -245,6 +263,8 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
+> >                 ret = -EINVAL;
+> >         }
+> >
+> > +       BUILD_BUG_ON(ARRAY_SIZE(i915->mm.regions) != ARRAY_SIZE(placements));
+> > +       BUILD_BUG_ON(ARRAY_SIZE(ext_data->placements) != ARRAY_SIZE(placements));
+> >         if (args->num_regions > ARRAY_SIZE(i915->mm.regions)) {
+> >                 drm_dbg(&i915->drm, "num_regions is too large\n");
+> >                 ret = -EINVAL;
+> > @@ -253,21 +273,13 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
+> >         if (ret)
+> >                 return ret;
+> >
+> > -       placements = kmalloc_array(args->num_regions,
+> > -                                  sizeof(struct intel_memory_region *),
+> > -                                  GFP_KERNEL);
+> > -       if (!placements)
+> > -               return -ENOMEM;
+> > -
+> >         mask = 0;
+> >         for (i = 0; i < args->num_regions; i++) {
+> >                 struct drm_i915_gem_memory_class_instance region;
+> >                 struct intel_memory_region *mr;
+> >
+> > -               if (copy_from_user(&region, uregions, sizeof(region))) {
+> > -                       ret = -EFAULT;
+> > -                       goto out_free;
+> > -               }
+> > +               if (copy_from_user(&region, uregions, sizeof(region)))
+> > +                       return -EFAULT;
+> >
+> >                 mr = intel_memory_region_lookup(i915,
+> >                                                 region.memory_class,
+> > @@ -293,14 +305,13 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
+> >                 ++uregions;
+> >         }
+> >
+> > -       if (obj->mm.placements) {
+> > +       if (ext_data->n_placements) {
+> >                 ret = -EINVAL;
+> >                 goto out_dump;
+> >         }
+> >
+> > -       object_set_placements(obj, placements, args->num_regions);
+> > -       if (args->num_regions == 1)
+> > -               kfree(placements);
+> > +       for (i = 0; i < args->num_regions; i++)
+> > +               ext_data->placements[i] = placements[i];
+>
+> I guess here we forget to set the ext_data->n_placements, which would
+> explain the CI failure.
+
+What CI failure are you referring to?
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
