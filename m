@@ -2,57 +2,146 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E33D3D03F4
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 23:40:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEB33D03F9
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 23:41:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5FC46E17B;
-	Tue, 20 Jul 2021 21:40:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C15089F99;
+	Tue, 20 Jul 2021 21:41:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com
- [IPv6:2607:f8b0:4864:20::b30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD6CE6E17B
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 21:40:18 +0000 (UTC)
-Received: by mail-yb1-xb30.google.com with SMTP id b13so513653ybk.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 14:40:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=TydgYjiDu+K9WfvEJ/2DPhuqw3bQdNqcRensimEeGxw=;
- b=Q8xPld+Y1yX0Vlg0bvRHZa5sF09GPquIBxKxvO2N4t6cviVIHkKF1X78O3F+3f/wOI
- abr9cb/XytUrQ5FUEfqCj+pQIPcjSV3n5bZcBU90oV0zAH0F4+cU2rcHFO3QJzwgNERZ
- VdbvrjVGELTsxUgL8Zmj0DPeCWSDseBxpRAWOV3przdCwTdNtBGMa/qNDqj/QWSOkfxe
- qBJ0dun/p22MPNQ2CD8RpN9uZJbYOLPj+KpeWkJNHsBE5uuP8kJhNW1im66Y7jUwZDof
- gEsqzApVdkjWWUvR+o++foR+XEYRrRjKG/zX77o2CEZMsD2N7JKDSGaQk/iBTyDBZViN
- d7nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=TydgYjiDu+K9WfvEJ/2DPhuqw3bQdNqcRensimEeGxw=;
- b=mIOF+Cy5FNVGv92Dps07VYIQRQHWu/VUrSHVuo1MlIjquZhgk5DLeuyGd8Qyj5PkNv
- qJ3IT4MlB+EBTfy6tBaXS4YTkOlqyZIzn9uCIMs7yJqF18nbLHQzX+fG5+QTQ/s3VJlD
- F3O/E3/bd//k+LtQZM2V5DbhoHh0iXb+D0heGAwSon38BmYePf4CcXkgi+Zr+BFDyy3v
- Q2Vh+TI6qPXbAFjq+HdZBitmui6V7NXRs5UC8bH3uh+xU7pmo0KCaAL6cNzc2422jcAV
- 854YzHHA3Uu1QjiwyB/rh4G22tbqWw/EfkIJeF+hgvWtL0fFEF42f73LJb80gRdFxLgL
- EUDQ==
-X-Gm-Message-State: AOAM530BbrPVIoToETF0tsc2gMdM1Qwrlj8xwhsSnCk4m/K+MK6V8x11
- YJYTPq4s7bf5tIkJWC/FIPCY6B/Dvw/r7wAAUCboZg==
-X-Google-Smtp-Source: ABdhPJwjOSFkfFHuZiw+9VR6/rBUfAxrMsnp7snlUFTbnetrRL6MiH0UKb1eKovCVGoxuNGXuaHsaFjR/rptNDhdku4=
-X-Received: by 2002:a25:d113:: with SMTP id i19mr42997002ybg.180.1626817217624; 
- Tue, 20 Jul 2021 14:40:17 -0700 (PDT)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94B5F89F99;
+ Tue, 20 Jul 2021 21:41:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="296893151"
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="296893151"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2021 14:41:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="657704884"
+Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
+ by fmsmga006.fm.intel.com with ESMTP; 20 Jul 2021 14:41:48 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Tue, 20 Jul 2021 14:41:48 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Tue, 20 Jul 2021 14:41:47 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10 via Frontend Transport; Tue, 20 Jul 2021 14:41:45 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.10; Tue, 20 Jul 2021 14:41:38 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NIHQi/ovKMGbQqeXHS/PUuvikvtzZClmWNJZ4HOUrU9z/g8IUo0H/Xd+7/qRMqleJDxdGe/ScNi4/CPGMPX4DAnUt2L6qN2AVc6jSMgFlsDsLltlCVdzwf/si47lR6Ic4DRYbojkWWtHKuA5fuhrEyOFRxc2ADZTHDRyCTBOA47pCN/r8vAtTJ/iptoxs8TIuPcOEctETdVcmABpPqTDoPc3WA+00SVQbRZa26cJ3GAz1nSnf7OqcByXAkmLB0n7K9mjnieNa66EWlau5c/fV4klizV1mhHrNAkEDrlnp4mwExCyIPpPiPrDxixEsuWx6G5yLkuzHAkG4xa6Cb07Vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EtI9TjX4MXjCBCY0QIQ+yuFITE1KyTrYmQtUbrj6N14=;
+ b=hHKXaRKrd8KJJqZ4fqF2qm6QtQcMLnRwMUVPJZWKg4+G4h/fS65lrTMUOUO5iQguxHVIjKTEsVF0JmN6gKyO6MaOCdzfif0Cj2ygJM90wdgM3bC3rriIvc9VUrjdtaHj8zWNz4x40jpXGvhJbrOuxGt5yf9NysyHGfh2O4pQyytGNA0kLsY6fCrh64ZRccHFZOJSphM7AZPORINUtMLrVc/UMerj2eYZ1ht+P1ugS43rRwgZUxuNDaZAnDZntGsB64zxaQo9Xtwbkwm4trQ5nn6yc4ze41pyTR+d61xduknl+/ytPIgjrEgHK01UVvDrGCsklHky8O8HtSTxhdsYDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EtI9TjX4MXjCBCY0QIQ+yuFITE1KyTrYmQtUbrj6N14=;
+ b=r+ulqKdCwi1RzMo+lbk99bkYz4M9px0NCgoCH0Ff6ikt9TVAu0M/iRo9m6cwzeHmq/GOb/oUBvr7u6rvK2mctCdpOlffKF0OCK0KrKUZ0bTmEw0MOFWHRzxnNPg1jdKOBARTL/Eqn16kOuwNDRPdXgCckFR6kpttRx92snxH51g=
+Authentication-Results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+Received: from PH0PR11MB5642.namprd11.prod.outlook.com (2603:10b6:510:e5::13)
+ by PH0PR11MB5627.namprd11.prod.outlook.com (2603:10b6:510:e4::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22; Tue, 20 Jul
+ 2021 21:41:25 +0000
+Received: from PH0PR11MB5642.namprd11.prod.outlook.com
+ ([fe80::c5a8:5a64:9118:95c4]) by PH0PR11MB5642.namprd11.prod.outlook.com
+ ([fe80::c5a8:5a64:9118:95c4%8]) with mapi id 15.20.4331.034; Tue, 20 Jul 2021
+ 21:41:25 +0000
+To: Matthew Brost <matthew.brost@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20210716201724.54804-1-matthew.brost@intel.com>
+ <20210716201724.54804-43-matthew.brost@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+Message-ID: <33d96446-e654-7ce0-eccd-94142998c505@intel.com>
+Date: Tue, 20 Jul 2021 14:41:23 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
+In-Reply-To: <20210716201724.54804-43-matthew.brost@intel.com>
+Content-Language: en-GB
+X-ClientProxiedBy: SJ0PR03CA0044.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::19) To PH0PR11MB5642.namprd11.prod.outlook.com
+ (2603:10b6:510:e5::13)
 MIME-Version: 1.0
-References: <20210716141426.1904528-1-jason@jlekstrand.net>
- <20210716141426.1904528-8-jason@jlekstrand.net>
- <CAM0jSHNqgEpt6cjm3yERyPFN8jXDiSi8zUfLM4PpZL3jroXsmQ@mail.gmail.com>
-In-Reply-To: <CAM0jSHNqgEpt6cjm3yERyPFN8jXDiSi8zUfLM4PpZL3jroXsmQ@mail.gmail.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 20 Jul 2021 16:40:05 -0500
-Message-ID: <CAOFGe97NTrBmzTiGM+7ygW0SrFNhLi_yh=ROiuE9uVDGTtvJDQ@mail.gmail.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Migrate to system at
- dma-buf attach time (v6)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.221] (73.157.192.58) by
+ SJ0PR03CA0044.namprd03.prod.outlook.com (2603:10b6:a03:33e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21 via Frontend
+ Transport; Tue, 20 Jul 2021 21:41:25 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 98b1f3e5-9ec3-443d-ad27-08d94bc71fe3
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5627:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <PH0PR11MB56273FEA131E757A283FD7CBBDE29@PH0PR11MB5627.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:113;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: JfjwjhHRAo/tXHufQEV27RnWIgu47695emmmAVPQnLfJ9UGQ0gGrhAC8kchDKNgC3k0Ct2VEQYex2pOH23+cT3nmv9QIYqcuM6qbfDlYTR3Q4vWWy6Ue6vrfT8l6OQjVnZEmAncm1C6O9pZ6QPyYB9G5iAOfcBW5x6xTB8C2CI7g+fbPtm2NNMG+OsUL+GY4FAQKQ6em7kMj2EsD4Vwrv8BMxl8Wppv2E5sskbmyPwYfXXvt6ZmVynxJzOL7zom66ZrTOcJxosDBVCJGLvn/lC//n1u2zILYH1usQbX7wmAXxkLf6oEsNoi7ccgrQvXEns5/wawij+Jo8lvEyykQBomxS97kE5DYajHAewYJLwTijRZMmCciUs2GRCY46ivI7S7qhmiJkFXnxxv/9dBTLQito3spivxEJrkuOY0y5xiqDBCv7Z6soccYZYq1Sxa/YaBtqMhsnFTY7bqefKUI2ZPmMflOF6i1DomUqd45aiKSb5qzykJYcrFE3EyWd3kIaoCZhHHyvlBII740my/SxcrRtnGNBrUvGQzNFbumuHmv2gcAWnKZlS7USLxGJSh2Ez1ESon85V/ejZXRq/noRBkYY9L/lu4hL6IUTISsP7+xJJIJohHQ8AekAtq3Qgfb3PeT7YL9vkhn97nMaEEu3EpDaXIuaUqfqb5E6/Qj0lLJYEaZ2bLJoNfO2BIcU99NUmGkVrT3SnlTDqe6dWhfrGc8evELRsH7wrlP8t74vbnqZM9vEkZPeYuouF5C6TnK
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB5642.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(346002)(396003)(366004)(39860400002)(2616005)(8936002)(107886003)(53546011)(83380400001)(26005)(66946007)(86362001)(5660300002)(66556008)(2906002)(31696002)(4326008)(36756003)(956004)(66476007)(30864003)(16576012)(38100700002)(8676002)(316002)(31686004)(6486002)(186003)(478600001)(450100002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RThsckRsSUoxdm5ldVV5dTg1eEFRWlQwdkRzQ3JVOVNPVFdUM1NzR2IzWHNm?=
+ =?utf-8?B?NmtlcDhueURVNzFPOG9SdGpEZG1KZHRpekhzZ2k4VVFiZWhrMDM1bTdyUkJF?=
+ =?utf-8?B?ZUo5NThUbitGV2svakV5UXRCUnF6NEo4ZDZERTROWXhBckY4K2VzSmdLdmpC?=
+ =?utf-8?B?Z1hzdjFIZkpEQ2pteGdIbHk2akczOUcxZjFVcTlpYlFPMDVlQWZ1Z3VURWpD?=
+ =?utf-8?B?RmNjWnhvL3l2bzMyQ2pudjV4N0VBYUtFcWV3UUFsVlRWek5NZkhJbmpnRVAx?=
+ =?utf-8?B?cjFzdkh2SllaMEFmQ0VPTGdIMm0wcGpzbUF3NjIxY29oWGxORWQxcklSZ3lY?=
+ =?utf-8?B?YTZCU1M2aUdjb2FocDBmUlNXdlZENkgxMG4yejFjWWRhVUpLK2JPMThRdGdX?=
+ =?utf-8?B?NktBTktVZFh4bEh4UStIK1NoWFAybG95NFFOUEVMempxSG54S1JmVDZRdzFZ?=
+ =?utf-8?B?SFpZNUlKM08za0FuWkQ4U0FWTkhEckZPV0pLMWxva0JPWmpLTDBydzdCc0pU?=
+ =?utf-8?B?TzNCa1ZrTDJleDExVGNYTEhTQUs5MXVTNU1UWERrVHZwTkFRUGlQbTNidVVC?=
+ =?utf-8?B?cU9vVzVwTVNRYkJ2aFc0V2JkR243MnIxc0pKQWExSVVCVU9aaUhnaDJmMXpC?=
+ =?utf-8?B?OHNXSnROakt3Y3haa3lqRjBrd2hMeVk0MWdraSsvS3ZQcjYxMVV1c3BldUw3?=
+ =?utf-8?B?Yy9kOTB1RVZCS0owS042ZkdsTXZGOStDZ1grV24xdVAxUmhmVkdBMDg4SmN3?=
+ =?utf-8?B?anZNanViTnJjMUtDUlBsVXJEV2MyT3RoMngvb0lvYkdtbmZMQmtHZlVza2JM?=
+ =?utf-8?B?ak5kM3JhWU1ZUGhLWFFMYVBmdVN4eWgwSWNzUTBDcExTU1NIWlJrUytJZHZ1?=
+ =?utf-8?B?b1dGV0hIM2pqazNkNVQwNHkvMzFkTHFaUEdlSzhsNURIZmdhbFB4YVhIKzV4?=
+ =?utf-8?B?cmloMk0venRkYm5yaEdkV25aa1F3NTRSMWtsRDhYNEZWUmxNd0w4aXkyTmcv?=
+ =?utf-8?B?Rm5uYmxPWFJzT0p5Ti9SOUd4RDIyNnE2dE1qRStPS3dVS01GRFVzN1pDVHA1?=
+ =?utf-8?B?RER0OXU0bVNqZkxwdC85TG4vRGFNYWVzQWRjdllBY2JWMUkyd3N3VFFyOUdY?=
+ =?utf-8?B?c2xhWHFwNUNscFJ5NFk2NlNpVXBJZjNXaytrQUpEV3NDbit6OGNyZHdCTVVx?=
+ =?utf-8?B?S1BjaWZZQTBDQ0ZvWEtyQWIzN2VkTGJ4Zlo2V0FwNVNCT3VNdVJBLy9BR0R1?=
+ =?utf-8?B?a1IrVmJOU0haVVE5emVRbVhkaG9NK2U3ZUVTbHpqMWN4Vyt1bW1uRGZvRlFX?=
+ =?utf-8?B?YmJtZTRRNFRGUzZkWmYrekZhMm1vMDRJWDJJZFJvVmR5eXY1Mno5TlV2aFpN?=
+ =?utf-8?B?Y1JBSHloTmJpUWVZSHNOYjZ1UzNIVExDcDR3dFd4djVFYmNSaWo0UjZ3L1lE?=
+ =?utf-8?B?azAyQllGcEdBVHRHZCtLTEE3WXdYWnNwL1VDUmhubVpDUmxudVhVNGFzSUNs?=
+ =?utf-8?B?ZWN1VStpYm9hRkxkRVM3S1NuNXhjTkNaS3dTSmVtWGZ0L0hGNTYwY3R0dWhK?=
+ =?utf-8?B?ZUJ5RWJ5Z0o5RTVVd0NlVUlhSnJaeDZCNGR3QldDMDAyK2JvTFF0MmJ3SE9n?=
+ =?utf-8?B?aGROVHkwNXhwT1pyaTFLSFhxODlmVWxnS3lCZGI3aGU3eGlWZkFPR0MyUHBv?=
+ =?utf-8?B?QStwc3N0OEpMZGdXQnFTeUNBVDFSVDY4YmFpM1JXNGRlcXVpZDV6OEhvUzMw?=
+ =?utf-8?Q?1Q+TqlEvE7Pzqw8HIQUh9kx+TXnCXiObsnXru7x?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98b1f3e5-9ec3-443d-ad27-08d94bc71fe3
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5642.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 21:41:25.6400 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nfR8g7CupjOszs/zhTVOYUi2f6AOKnNdo6z3ABioNPngluFwa3SJOgVFYDuJi+seSPS+YsVOaPLz692KZQtwNscifYIIA7oBH3/1CKC2Ycg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5627
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 42/51] drm/i915/guc: Implement banned
+ contexts for GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,185 +154,562 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZWQgYWxsIHRoZSBuaXRzIGJlbG93IGxvY2FsbHkuICBJdCdsbCBiZSBpbiB0aGUgbmV4dCBz
-ZW5kLgoKT24gVHVlLCBKdWwgMjAsIDIwMjEgYXQgNTo1MyBBTSBNYXR0aGV3IEF1bGQKPG1hdHRo
-ZXcud2lsbGlhbS5hdWxkQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBPbiBGcmksIDE2IEp1bCAyMDIx
-IGF0IDE1OjE0LCBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+IHdyb3RlOgo+
-ID4KPiA+IEZyb206IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4Lmlu
-dGVsLmNvbT4KPiA+Cj4gPiBVbnRpbCB3ZSBzdXBwb3J0IHAycCBkbWEgb3IgYXMgYSBjb21wbGVt
-ZW50IHRvIHRoYXQsIG1pZ3JhdGUgZGF0YQo+ID4gdG8gc3lzdGVtIG1lbW9yeSBhdCBkbWEtYnVm
-IGF0dGFjaCB0aW1lIGlmIHBvc3NpYmxlLgo+ID4KPiA+IHYyOgo+ID4gLSBSZWJhc2Ugb24gZHlu
-YW1pYyBleHBvcnRlci4gVXBkYXRlIHRoZSBpZ3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcgo+
-ID4gICBzZWxmdGVzdCB0byBtaWdyYXRlIGlmIHdlIGFyZSBMTUVNIGNhcGFibGUuCj4gPiB2MzoK
-PiA+IC0gTWlncmF0ZSBhbHNvIGluIHRoZSBwaW4oKSBjYWxsYmFjay4KPiA+IHY0Ogo+ID4gLSBN
-aWdyYXRlIGluIGF0dGFjaAo+ID4gdjU6IChqYXNvbikKPiA+IC0gTG9jayBhcm91bmQgdGhlIG1p
-Z3JhdGlvbgo+ID4gdjY6IChqYXNvbikKPiA+IC0gTW92ZSB0aGUgY2FuX21pZ3JhdGUgY2hlY2sg
-b3V0c2lkZSB0aGUgbG9jawo+ID4gLSBSZXdvcmsgdGhlIHNlbGZ0ZXN0cyB0byB0ZXN0IG1vcmUg
-bWlncmF0aW9uIGNvbmRpdGlvbnMuICBJbgo+ID4gICBwYXJ0aWN1bGFyLCBTTUVNLCBMTUVNLCBh
-bmQgTE1FTStTTUVNIGFyZSBhbGwgY2hlY2tlZC4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBUaG9t
-YXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+Cj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBNaWNoYWVsIEouIFJ1aGwgPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT4KPiA+
-IFJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4KPiA+IFNpZ25l
-ZC1vZmYtYnk6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4KPiA+IFJldmll
-d2VkLWJ5OiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+Cj4gPiAtLS0KPiA+
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY3JlYXRlLmMgICAgfCAgMiArLQo+
-ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYyAgICB8IDIzICsr
-KystCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oICAgIHwg
-IDQgKwo+ID4gIC4uLi9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5jICB8
-IDg5ICsrKysrKysrKysrKysrKysrKy0KPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDExMiBpbnNlcnRp
-b25zKCspLCA2IGRlbGV0aW9ucygtKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fY3JlYXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fY3JlYXRlLmMKPiA+IGluZGV4IDAzOWU0ZjNiMzljNzkuLjQxYzRjZDNlMWVhMDEg
-MTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY3JlYXRl
-LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jcmVhdGUuYwo+
-ID4gQEAgLTgyLDcgKzgyLDcgQEAgc3RhdGljIGludCBpOTE1X2dlbV9wdWJsaXNoKHN0cnVjdCBk
-cm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCj4gPiAgICAgICAgIHJldHVybiAwOwo+ID4gIH0KPiA+
-Cj4gPiAtc3RhdGljIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICoKPiA+ICtzdHJ1Y3QgZHJt
-X2k5MTVfZ2VtX29iamVjdCAqCj4gPiAgaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV91c2VyKHN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICppOTE1LCB1NjQgc2l6ZSwKPiA+ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqKnBsYWNlbWVudHMsCj4gPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5zaWduZWQgaW50IG5fcGxhY2VtZW50cykKPiA+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMKPiA+IGluZGV4IDlh
-NjU1ZjY5YTA2NzEuLjVkNDM4Yjk1ODI2YjkgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2dlbS9pOTE1X2dlbV9kbWFidWYuYwo+ID4gQEAgLTE3MCw4ICsxNzAsMjkgQEAgc3RhdGlj
-IGludCBpOTE1X2dlbV9kbWFidWZfYXR0YWNoKHN0cnVjdCBkbWFfYnVmICpkbWFidWYsCj4gPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV9idWZfYXR0YWNobWVu
-dCAqYXR0YWNoKQo+ID4gIHsKPiA+ICAgICAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
-Km9iaiA9IGRtYV9idWZfdG9fb2JqKGRtYWJ1Zik7Cj4gPiArICAgICAgIHN0cnVjdCBpOTE1X2dl
-bV93d19jdHggd3c7Cj4gPiArICAgICAgIGludCBlcnI7Cj4gPiArCj4gPiArICAgICAgIGlmICgh
-aTkxNV9nZW1fb2JqZWN0X2Nhbl9taWdyYXRlKG9iaiwgSU5URUxfUkVHSU9OX1NNRU0pKQo+ID4g
-KyAgICAgICAgICAgICAgIHJldHVybiAtRU9QTk9UU1VQUDsKPiA+ICsKPiA+ICsgICAgICAgZm9y
-X2k5MTVfZ2VtX3d3KCZ3dywgZXJyLCB0cnVlKSB7Cj4gPiArICAgICAgICAgICAgICAgZXJyID0g
-aTkxNV9nZW1fb2JqZWN0X2xvY2sob2JqLCAmd3cpOwo+ID4gKyAgICAgICAgICAgICAgIGlmIChl
-cnIpCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiA+ICsKPiA+ICsgICAg
-ICAgICAgICAgICBlcnIgPSBpOTE1X2dlbV9vYmplY3RfbWlncmF0ZShvYmosICZ3dywgSU5URUxf
-UkVHSU9OX1NNRU0pOwo+ID4gKyAgICAgICAgICAgICAgIGlmIChlcnIpCj4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICBjb250aW51ZTsKPiA+Cj4gPiAtICAgICAgIHJldHVybiBpOTE1X2dlbV9v
-YmplY3RfcGluX3BhZ2VzX3VubG9ja2VkKG9iaik7Cj4gPiArICAgICAgICAgICAgICAgZXJyID0g
-aTkxNV9nZW1fb2JqZWN0X3dhaXRfbWlncmF0aW9uKG9iaiwgMCk7Cj4gPiArICAgICAgICAgICAg
-ICAgaWYgKGVycikKPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGNvbnRpbnVlOwo+ID4gKwo+
-ID4gKyAgICAgICAgICAgICAgIGVyciA9IGk5MTVfZ2VtX29iamVjdF9waW5fcGFnZXMob2JqKTsK
-PiA+ICsgICAgICAgfQo+ID4gKwo+ID4gKyAgICAgICByZXR1cm4gZXJyOwo+ID4gIH0KPiA+Cj4g
-PiAgc3RhdGljIHZvaWQgaTkxNV9nZW1fZG1hYnVmX2RldGFjaChzdHJ1Y3QgZG1hX2J1ZiAqZG1h
-YnVmLAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9v
-YmplY3QuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaAo+ID4g
-aW5kZXggOGJlNGZhZGVlZTQ4Ny4uZmJhZTUzYmQ0NjM4NCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaAo+ID4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oCj4gPiBAQCAtNjEsNiArNjEsMTAgQEAg
-aTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zaG1lbShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSwKPiA+ICBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqCj4gPiAgaTkxNV9nZW1fb2JqZWN0
-X2NyZWF0ZV9zaG1lbV9mcm9tX2RhdGEoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCj4g
-PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25zdCB2b2lkICpkYXRh
-LCByZXNvdXJjZV9zaXplX3Qgc2l6ZSk7Cj4gPiArc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
-Kgo+ID4gK2k5MTVfZ2VtX29iamVjdF9jcmVhdGVfdXNlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqaTkxNSwgdTY0IHNpemUsCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0
-IGludGVsX21lbW9yeV9yZWdpb24gKipwbGFjZW1lbnRzLAo+ID4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIHVuc2lnbmVkIGludCBuX3BsYWNlbWVudHMpOwo+ID4KPiA+ICBleHRlcm4gY29u
-c3Qgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Rfb3BzIGk5MTVfZ2VtX3NobWVtX29wczsKPiA+
-Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1
-X2dlbV9kbWFidWYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9n
-ZW1fZG1hYnVmLmMKPiA+IGluZGV4IDQ0NTFiYmI0OTE3ZTQuLjdiNzY0N2U3ZTIyMGEgMTAwNjQ0
-Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2Rt
-YWJ1Zi5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVf
-Z2VtX2RtYWJ1Zi5jCj4gPiBAQCAtODUsOSArODUsNjIgQEAgc3RhdGljIGludCBpZ3RfZG1hYnVm
-X2ltcG9ydF9zZWxmKHZvaWQgKmFyZykKPiA+ICAgICAgICAgcmV0dXJuIGVycjsKPiA+ICB9Cj4g
-Pgo+ID4gLXN0YXRpYyBpbnQgaWd0X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXIodm9pZCAqYXJn
-KQo+ID4gK3N0YXRpYyBpbnQgaWd0X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXJfbG1lbSh2b2lk
-ICphcmcpCj4gPiAgewo+ID4gICAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9
-IGFyZzsKPiA+ICsgICAgICAgc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKmxtZW0gPSBpOTE1
-LT5tbS5yZWdpb25zW0lOVEVMX1JFR0lPTl9MTUVNXTsKPiA+ICsgICAgICAgc3RydWN0IGRybV9p
-OTE1X2dlbV9vYmplY3QgKm9iajsKPiA+ICsgICAgICAgc3RydWN0IGRybV9nZW1fb2JqZWN0ICpp
-bXBvcnQ7Cj4gPiArICAgICAgIHN0cnVjdCBkbWFfYnVmICpkbWFidWY7Cj4gPiArICAgICAgIGlu
-dCBlcnI7Cj4gPiArCj4gPiArICAgICAgIGlmICghaTkxNS0+bW0ucmVnaW9uc1tJTlRFTF9SRUdJ
-T05fTE1FTV0pCj4KPiAhbG1lbQo+Cj4gPiArICAgICAgICAgICAgICAgcmV0dXJuIDA7Cj4gPiAr
-Cj4gPiArICAgICAgIGZvcmNlX2RpZmZlcmVudF9kZXZpY2VzID0gdHJ1ZTsKPiA+ICsKPiA+ICsg
-ICAgICAgb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV91c2VyKGk5MTUsIFBBR0VfU0laRSwg
-JmxtZW0sIDEpOwo+ID4gKyAgICAgICBpZiAoSVNfRVJSKG9iaikpIHsKPiA+ICsgICAgICAgICAg
-ICAgICBwcl9lcnIoImk5MTVfZ2VtX29iamVjdF9jcmVhdGVfdXNlciBmYWlsZWQgd2l0aCBlcnI9
-JWRcbiIsCj4gPiArICAgICAgICAgICAgICAgICAgICAgIChpbnQpUFRSX0VSUihkbWFidWYpKTsK
-Pgo+IFBUUl9FUlIob2JqKQo+Cj4gPiArICAgICAgICAgICAgICAgZXJyID0gUFRSX0VSUihvYmop
-Owo+ID4gKyAgICAgICAgICAgICAgIGdvdG8gb3V0X3JldDsKPiA+ICsgICAgICAgfQo+ID4gKwo+
-ID4gKyAgICAgICBkbWFidWYgPSBpOTE1X2dlbV9wcmltZV9leHBvcnQoJm9iai0+YmFzZSwgMCk7
-Cj4gPiArICAgICAgIGlmIChJU19FUlIoZG1hYnVmKSkgewo+ID4gKyAgICAgICAgICAgICAgIHBy
-X2VycigiaTkxNV9nZW1fcHJpbWVfZXhwb3J0IGZhaWxlZCB3aXRoIGVycj0lZFxuIiwKPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgKGludClQVFJfRVJSKGRtYWJ1ZikpOwo+ID4gKyAgICAgICAg
-ICAgICAgIGVyciA9IFBUUl9FUlIoZG1hYnVmKTsKPiA+ICsgICAgICAgICAgICAgICBnb3RvIG91
-dDsKPiA+ICsgICAgICAgfQo+ID4gKwo+ID4gKyAgICAgICAvKiBXZSBleHBlY3QgYW4gaW1wb3J0
-IG9mIGFuIExNRU0tb25seSBvYmplY3QgdG8gZmFpbCB3aXRoCj4gPiArICAgICAgICAqIC1FT1BO
-T1RTVVBQIGJlY2F1c2UgaXQgY2FuJ3QgYmUgbWlncmF0ZWQgdG8gU01FTS4KPiA+ICsgICAgICAg
-ICovCj4KPiAvKgo+ICAqIFdlIGV4cGVjdC4uLgo+ICAqLwo+Cj4gPiArICAgICAgIGltcG9ydCA9
-IGk5MTVfZ2VtX3ByaW1lX2ltcG9ydCgmaTkxNS0+ZHJtLCBkbWFidWYpOwo+ID4gKyAgICAgICBp
-ZiAoIUlTX0VSUihpbXBvcnQpKSB7Cj4gPiArICAgICAgICAgICAgICAgZHJtX2dlbV9vYmplY3Rf
-cHV0KGltcG9ydCk7Cj4gPiArICAgICAgICAgICAgICAgcHJfZXJyKCJpOTE1X2dlbV9wcmltZV9p
-bXBvcnQgc3VjY2VlZGVkIHdoZW4gaXQgc2hvdWxkbid0IGhhdmVcbiIpOwo+ID4gKyAgICAgICAg
-ICAgICAgIGVyciA9IC1FSU5WQUw7Cj4gPiArICAgICAgIH0gZWxzZSBpZiAoUFRSX0VSUihpbXBv
-cnQpICE9IC1FT1BOT1RTVVBQKSB7Cj4gPiArICAgICAgICAgICAgICAgcHJfZXJyKCJpOTE1X2dl
-bV9wcmltZV9pbXBvcnQgZmFpbGVkIHdpdGggdGhlIHdyb25nIGVycj0lZFxuIiwKPiA+ICsgICAg
-ICAgICAgICAgICAgICAgICAgKGludClQVFJfRVJSKGltcG9ydCkpOwo+ID4gKyAgICAgICAgICAg
-ICAgIGVyciA9IFBUUl9FUlIoaW1wb3J0KTsKPiA+ICsgICAgICAgfQo+ID4gKwo+ID4gKyAgICAg
-ICBkbWFfYnVmX3B1dChkbWFidWYpOwo+ID4gK291dDoKPiA+ICsgICAgICAgaTkxNV9nZW1fb2Jq
-ZWN0X3B1dChvYmopOwo+ID4gK291dF9yZXQ6Cj4gPiArICAgICAgIGZvcmNlX2RpZmZlcmVudF9k
-ZXZpY2VzID0gZmFsc2U7Cj4gPiArICAgICAgIHJldHVybiBlcnI7Cj4gPiArfQo+ID4gKwo+ID4g
-K3N0YXRpYyBpbnQgaWd0X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXIoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmk5MTUsCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICoqcmVnaW9ucywKPiA+ICsgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5zaWduZWQgaW50IG51bV9yZWdpb25zKQo+
-ID4gK3sKPiA+ICAgICAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwgKmltcG9y
-dF9vYmo7Cj4gPiAgICAgICAgIHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqaW1wb3J0Owo+ID4gICAg
-ICAgICBzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVmOwo+ID4gQEAgLTk3LDkgKzE1MCwxNSBAQCBzdGF0
-aWMgaW50IGlndF9kbWFidWZfaW1wb3J0X3NhbWVfZHJpdmVyKHZvaWQgKmFyZykKPiA+ICAgICAg
-ICAgaW50IGVycjsKPiA+Cj4gPiAgICAgICAgIGZvcmNlX2RpZmZlcmVudF9kZXZpY2VzID0gdHJ1
-ZTsKPiA+IC0gICAgICAgb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zaG1lbShpOTE1LCBQ
-QUdFX1NJWkUpOwo+ID4gLSAgICAgICBpZiAoSVNfRVJSKG9iaikpCj4gPiArCj4gPiArICAgICAg
-IG9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfdXNlcihpOTE1LCBQQUdFX1NJWkUsCj4gPiAr
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWdpb25zLCBudW1fcmVn
-aW9ucyk7Cj4gPiArICAgICAgIGlmIChJU19FUlIob2JqKSkgewo+ID4gKyAgICAgICAgICAgICAg
-IHByX2VycigiaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV91c2VyIGZhaWxlZCB3aXRoIGVycj0lZFxu
-IiwKPiA+ICsgICAgICAgICAgICAgICAgICAgICAgKGludClQVFJfRVJSKGRtYWJ1ZikpOwo+Cj4g
-UFRSX0VSUihvYmopCj4KPiA+ICsgICAgICAgICAgICAgICBlcnIgPSBQVFJfRVJSKG9iaik7Cj4g
-PiAgICAgICAgICAgICAgICAgZ290byBvdXRfcmV0Owo+ID4gKyAgICAgICB9Cj4gPgo+ID4gICAg
-ICAgICBkbWFidWYgPSBpOTE1X2dlbV9wcmltZV9leHBvcnQoJm9iai0+YmFzZSwgMCk7Cj4gPiAg
-ICAgICAgIGlmIChJU19FUlIoZG1hYnVmKSkgewo+ID4gQEAgLTE3NCw2ICsyMzMsMjYgQEAgc3Rh
-dGljIGludCBpZ3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcih2b2lkICphcmcpCj4gPiAgICAg
-ICAgIHJldHVybiBlcnI7Cj4gPiAgfQo+ID4KPiA+ICtzdGF0aWMgaW50IGlndF9kbWFidWZfaW1w
-b3J0X3NhbWVfZHJpdmVyX3NtZW0odm9pZCAqYXJnKQo+ID4gK3sKPiA+ICsgICAgICAgc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBhcmc7Cj4gPiArICAgICAgIHN0cnVjdCBpbnRlbF9t
-ZW1vcnlfcmVnaW9uICpzbWVtID0gaTkxNS0+bW0ucmVnaW9uc1tJTlRFTF9SRUdJT05fU01FTV07
-Cj4KPiBOZXdsaW5lLgo+Cj4gPiArICAgICAgIHJldHVybiBpZ3RfZG1hYnVmX2ltcG9ydF9zYW1l
-X2RyaXZlcihpOTE1LCAmc21lbSwgMSk7Cj4gPiArfQo+ID4gKwo+ID4gK3N0YXRpYyBpbnQgaWd0
-X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXJfbG1lbV9zbWVtKHZvaWQgKmFyZykKPiA+ICt7Cj4g
-PiArICAgICAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJnOwo+ID4gKyAgICAg
-ICBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqcmVnaW9uc1syXTsKPiA+ICsKPiA+ICsgICAg
-ICAgaWYgKCFpOTE1LT5tbS5yZWdpb25zW0lOVEVMX1JFR0lPTl9MTUVNXSkKPiA+ICsgICAgICAg
-ICAgICAgICByZXR1cm4gMDsKPiA+ICsKPiA+ICsgICAgICAgcmVnaW9uc1swXSA9IGk5MTUtPm1t
-LnJlZ2lvbnNbSU5URUxfUkVHSU9OX0xNRU1dOwo+ID4gKyAgICAgICByZWdpb25zWzFdID0gaTkx
-NS0+bW0ucmVnaW9uc1tJTlRFTF9SRUdJT05fU01FTV07Cj4gPiArICAgICAgIHJldHVybiBpZ3Rf
-ZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcihpOTE1LCByZWdpb25zLCAyKTsKPiA+ICt9Cj4gPiAr
-Cj4gPiAgc3RhdGljIGludCBpZ3RfZG1hYnVmX2ltcG9ydCh2b2lkICphcmcpCj4gPiAgewo+ID4g
-ICAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGFyZzsKPiA+IEBAIC0zODQs
-NyArNDYzLDkgQEAgaW50IGk5MTVfZ2VtX2RtYWJ1Zl9saXZlX3NlbGZ0ZXN0cyhzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqaTkxNSkKPiA+ICB7Cj4gPiAgICAgICAgIHN0YXRpYyBjb25zdCBzdHJ1
-Y3QgaTkxNV9zdWJ0ZXN0IHRlc3RzW10gPSB7Cj4gPiAgICAgICAgICAgICAgICAgU1VCVEVTVChp
-Z3RfZG1hYnVmX2V4cG9ydCksCj4gPiAtICAgICAgICAgICAgICAgU1VCVEVTVChpZ3RfZG1hYnVm
-X2ltcG9ydF9zYW1lX2RyaXZlciksCj4gPiArICAgICAgICAgICAgICAgU1VCVEVTVChpZ3RfZG1h
-YnVmX2ltcG9ydF9zYW1lX2RyaXZlcl9sbWVtKSwKPiA+ICsgICAgICAgICAgICAgICBTVUJURVNU
-KGlndF9kbWFidWZfaW1wb3J0X3NhbWVfZHJpdmVyX3NtZW0pLAo+ID4gKyAgICAgICAgICAgICAg
-IFNVQlRFU1QoaWd0X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXJfbG1lbV9zbWVtKSwKPiA+ICAg
-ICAgICAgfTsKPiA+Cj4gPiAgICAgICAgIHJldHVybiBpOTE1X3N1YnRlc3RzKHRlc3RzLCBpOTE1
-KTsKPiA+IC0tCj4gPiAyLjMxLjEKPiA+Cj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+ID4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+ID4gSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 7/16/2021 13:17, Matthew Brost wrote:
+> When using GuC submission, if a context gets banned disable scheduling
+> and mark all inflight requests as complete.
+>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |   2 +-
+>   drivers/gpu/drm/i915/gt/intel_context.h       |  13 ++
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |   2 +
+>   drivers/gpu/drm/i915/gt/intel_reset.c         |  32 +---
+>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  20 +++
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 151 ++++++++++++++++--
+>   drivers/gpu/drm/i915/i915_trace.h             |  10 ++
+>   8 files changed, 195 insertions(+), 37 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 28c62f7ccfc7..d87a4c6da5bc 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1084,7 +1084,7 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>   	for_each_gem_engine(ce, engines, it) {
+>   		struct intel_engine_cs *engine;
+>   
+> -		if (ban && intel_context_set_banned(ce))
+> +		if (ban && intel_context_ban(ce, NULL))
+>   			continue;
+>   
+>   		/*
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index 2ed9bf5f91a5..814d9277096a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -16,6 +16,7 @@
+>   #include "intel_engine_types.h"
+>   #include "intel_ring_types.h"
+>   #include "intel_timeline_types.h"
+> +#include "i915_trace.h"
+>   
+>   #define CE_TRACE(ce, fmt, ...) do {					\
+>   	const struct intel_context *ce__ = (ce);			\
+> @@ -243,6 +244,18 @@ static inline bool intel_context_set_banned(struct intel_context *ce)
+>   	return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
+>   }
+>   
+> +static inline bool intel_context_ban(struct intel_context *ce,
+> +				     struct i915_request *rq)
+> +{
+> +	bool ret = intel_context_set_banned(ce);
+> +
+> +	trace_intel_context_ban(ce);
+> +	if (ce->ops->ban)
+> +		ce->ops->ban(ce, rq);
+> +
+> +	return ret;
+> +}
+> +
+>   static inline bool
+>   intel_context_force_single_submission(const struct intel_context *ce)
+>   {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index 035108c10b2c..57c19ee3e313 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -35,6 +35,8 @@ struct intel_context_ops {
+>   
+>   	int (*alloc)(struct intel_context *ce);
+>   
+> +	void (*ban)(struct intel_context *ce, struct i915_request *rq);
+> +
+>   	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
+>   	int (*pin)(struct intel_context *ce, void *vaddr);
+>   	void (*unpin)(struct intel_context *ce);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index f3cdbf4ba5c8..3ed694cab5af 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -22,7 +22,6 @@
+>   #include "intel_reset.h"
+>   
+>   #include "uc/intel_guc.h"
+> -#include "uc/intel_guc_submission.h"
+>   
+>   #define RESET_MAX_RETRIES 3
+>   
+> @@ -39,21 +38,6 @@ static void rmw_clear_fw(struct intel_uncore *uncore, i915_reg_t reg, u32 clr)
+>   	intel_uncore_rmw_fw(uncore, reg, clr, 0);
+>   }
+>   
+> -static void skip_context(struct i915_request *rq)
+> -{
+> -	struct intel_context *hung_ctx = rq->context;
+> -
+> -	list_for_each_entry_from_rcu(rq, &hung_ctx->timeline->requests, link) {
+> -		if (!i915_request_is_active(rq))
+> -			return;
+> -
+> -		if (rq->context == hung_ctx) {
+> -			i915_request_set_error_once(rq, -EIO);
+> -			__i915_request_skip(rq);
+> -		}
+> -	}
+> -}
+> -
+>   static void client_mark_guilty(struct i915_gem_context *ctx, bool banned)
+>   {
+>   	struct drm_i915_file_private *file_priv = ctx->file_priv;
+> @@ -88,10 +72,8 @@ static bool mark_guilty(struct i915_request *rq)
+>   	bool banned;
+>   	int i;
+>   
+> -	if (intel_context_is_closed(rq->context)) {
+> -		intel_context_set_banned(rq->context);
+> +	if (intel_context_is_closed(rq->context))
+>   		return true;
+> -	}
+>   
+>   	rcu_read_lock();
+>   	ctx = rcu_dereference(rq->context->gem_context);
+> @@ -123,11 +105,9 @@ static bool mark_guilty(struct i915_request *rq)
+>   	banned = !i915_gem_context_is_recoverable(ctx);
+>   	if (time_before(jiffies, prev_hang + CONTEXT_FAST_HANG_JIFFIES))
+>   		banned = true;
+> -	if (banned) {
+> +	if (banned)
+>   		drm_dbg(&ctx->i915->drm, "context %s: guilty %d, banned\n",
+>   			ctx->name, atomic_read(&ctx->guilty_count));
+> -		intel_context_set_banned(rq->context);
+> -	}
+>   
+>   	client_mark_guilty(ctx, banned);
+>   
+> @@ -149,6 +129,8 @@ static void mark_innocent(struct i915_request *rq)
+>   
+>   void __i915_request_reset(struct i915_request *rq, bool guilty)
+>   {
+> +	bool banned = false;
+> +
+>   	RQ_TRACE(rq, "guilty? %s\n", yesno(guilty));
+>   	GEM_BUG_ON(__i915_request_is_complete(rq));
+>   
+> @@ -156,13 +138,15 @@ void __i915_request_reset(struct i915_request *rq, bool guilty)
+>   	if (guilty) {
+>   		i915_request_set_error_once(rq, -EIO);
+>   		__i915_request_skip(rq);
+> -		if (mark_guilty(rq) && !intel_engine_uses_guc(rq->engine))
+> -			skip_context(rq);
+> +		banned = mark_guilty(rq);
+>   	} else {
+>   		i915_request_set_error_once(rq, -EAGAIN);
+>   		mark_innocent(rq);
+>   	}
+>   	rcu_read_unlock();
+> +
+> +	if (banned)
+> +		intel_context_ban(rq->context, rq);
+>   }
+>   
+>   static bool i915_in_reset(struct pci_dev *pdev)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 3b1471c50d40..03939be4297e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -586,9 +586,29 @@ static void ring_context_reset(struct intel_context *ce)
+>   	clear_bit(CONTEXT_VALID_BIT, &ce->flags);
+>   }
+>   
+> +static void ring_context_ban(struct intel_context *ce,
+> +			     struct i915_request *rq)
+> +{
+> +	struct intel_engine_cs *engine;
+> +
+> +	if (!rq || !i915_request_is_active(rq))
+> +		return;
+> +
+> +	engine = rq->engine;
+> +	lockdep_assert_held(&engine->sched_engine->lock);
+> +	list_for_each_entry_continue(rq, &engine->sched_engine->requests,
+> +				     sched.link)
+> +		if (rq->context == ce) {
+> +			i915_request_set_error_once(rq, -EIO);
+> +			__i915_request_skip(rq);
+> +		}
+> +}
+> +
+>   static const struct intel_context_ops ring_context_ops = {
+>   	.alloc = ring_context_alloc,
+>   
+> +	.ban = ring_context_ban,
+> +
+>   	.pre_pin = ring_context_pre_pin,
+>   	.pin = ring_context_pin,
+>   	.unpin = ring_context_unpin,
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index dc18ac510ac8..eb6062f95d3b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -274,6 +274,8 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine);
+>   
+>   int intel_guc_global_policies_update(struct intel_guc *guc);
+>   
+> +void intel_guc_context_ban(struct intel_context *ce, struct i915_request *rq);
+> +
+>   void intel_guc_submission_reset_prepare(struct intel_guc *guc);
+>   void intel_guc_submission_reset(struct intel_guc *guc, bool stalled);
+>   void intel_guc_submission_reset_finish(struct intel_guc *guc);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 6536bd6807a0..149990196e3a 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -125,6 +125,7 @@ static inline void clr_context_pending_enable(struct intel_context *ce)
+>   #define SCHED_STATE_WAIT_FOR_DEREGISTER_TO_REGISTER	BIT(0)
+>   #define SCHED_STATE_DESTROYED				BIT(1)
+>   #define SCHED_STATE_PENDING_DISABLE			BIT(2)
+> +#define SCHED_STATE_BANNED				BIT(3)
+>   static inline void init_sched_state(struct intel_context *ce)
+>   {
+>   	/* Only should be called from guc_lrc_desc_pin() */
+> @@ -187,6 +188,23 @@ static inline void clr_context_pending_disable(struct intel_context *ce)
+>   		(ce->guc_state.sched_state & ~SCHED_STATE_PENDING_DISABLE);
+>   }
+>   
+> +static inline bool context_banned(struct intel_context *ce)
+> +{
+> +	return (ce->guc_state.sched_state & SCHED_STATE_BANNED);
+> +}
+> +
+> +static inline void set_context_banned(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +	ce->guc_state.sched_state |= SCHED_STATE_BANNED;
+> +}
+> +
+> +static inline void clr_context_banned(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +	ce->guc_state.sched_state &= ~SCHED_STATE_BANNED;
+> +}
+> +
+>   static inline bool context_guc_id_invalid(struct intel_context *ce)
+>   {
+>   	return (ce->guc_id == GUC_INVALID_LRC_ID);
+> @@ -356,13 +374,23 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop);
+>   
+>   static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+>   {
+> -	int err;
+> +	int err = 0;
+>   	struct intel_context *ce = rq->context;
+>   	u32 action[3];
+>   	int len = 0;
+>   	u32 g2h_len_dw = 0;
+>   	bool enabled;
+>   
+> +	/*
+> +	 * Corner case where requests were sitting in the priority list or a
+> +	 * request resubmitted after the context was banned.
+> +	 */
+> +	if (unlikely(intel_context_is_banned(ce))) {
+> +		i915_request_put(i915_request_mark_eio(rq));
+> +		intel_engine_signal_breadcrumbs(ce->engine);
+> +		goto out;
+> +	}
+> +
+>   	GEM_BUG_ON(!atomic_read(&ce->guc_id_ref));
+>   	GEM_BUG_ON(context_guc_id_invalid(ce));
+>   
+> @@ -398,6 +426,8 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+>   		clr_context_pending_enable(ce);
+>   		intel_context_put(ce);
+>   	}
+> +	if (likely(!err))
+> +		trace_i915_request_guc_submit(rq);
+>   
+>   out:
+>   	return err;
+> @@ -462,7 +492,6 @@ static int guc_dequeue_one_context(struct intel_guc *guc)
+>   			guc->stalled_request = last;
+>   			return false;
+>   		}
+> -		trace_i915_request_guc_submit(last);
+>   	}
+>   
+>   	guc->stalled_request = NULL;
+> @@ -501,12 +530,13 @@ static void cs_irq_handler(struct intel_engine_cs *engine, u16 iir)
+>   static void __guc_context_destroy(struct intel_context *ce);
+>   static void release_guc_id(struct intel_guc *guc, struct intel_context *ce);
+>   static void guc_signal_context_fence(struct intel_context *ce);
+> +static void guc_cancel_context_requests(struct intel_context *ce);
+>   
+>   static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+>   {
+>   	struct intel_context *ce;
+>   	unsigned long index, flags;
+> -	bool pending_disable, pending_enable, deregister, destroyed;
+> +	bool pending_disable, pending_enable, deregister, destroyed, banned;
+>   
+>   	xa_for_each(&guc->context_lookup, index, ce) {
+>   		/* Flush context */
+> @@ -524,6 +554,7 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+>   		pending_enable = context_pending_enable(ce);
+>   		pending_disable = context_pending_disable(ce);
+>   		deregister = context_wait_for_deregister_to_register(ce);
+> +		banned = context_banned(ce);
+>   		init_sched_state(ce);
+>   
+>   		if (pending_enable || destroyed || deregister) {
+> @@ -541,6 +572,10 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+>   		/* Not mutualy exclusive with above if statement. */
+>   		if (pending_disable) {
+>   			guc_signal_context_fence(ce);
+> +			if (banned) {
+> +				guc_cancel_context_requests(ce);
+> +				intel_engine_signal_breadcrumbs(ce->engine);
+> +			}
+>   			intel_context_sched_disable_unpin(ce);
+>   			atomic_dec(&guc->outstanding_submission_g2h);
+>   			intel_context_put(ce);
+> @@ -659,6 +694,9 @@ static void guc_reset_state(struct intel_context *ce, u32 head, bool scrub)
+>   {
+>   	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
+>   
+> +	if (intel_context_is_banned(ce))
+> +		return;
+> +
+>   	GEM_BUG_ON(!intel_context_is_pinned(ce));
+>   
+>   	/*
+> @@ -729,6 +767,8 @@ static void __guc_reset_context(struct intel_context *ce, bool stalled)
+>   	struct i915_request *rq;
+>   	u32 head;
+>   
+> +	intel_context_get(ce);
+> +
+>   	/*
+>   	 * GuC will implicitly mark the context as non-schedulable
+>   	 * when it sends the reset notification. Make sure our state
+> @@ -754,6 +794,7 @@ static void __guc_reset_context(struct intel_context *ce, bool stalled)
+>   out_replay:
+>   	guc_reset_state(ce, head, stalled);
+>   	__unwind_incomplete_requests(ce);
+> +	intel_context_put(ce);
+>   }
+>   
+>   void intel_guc_submission_reset(struct intel_guc *guc, bool stalled)
+> @@ -936,8 +977,6 @@ static int guc_bypass_tasklet_submit(struct intel_guc *guc,
+>   	ret = guc_add_request(guc, rq);
+>   	if (ret == -EBUSY)
+>   		guc->stalled_request = rq;
+> -	else
+> -		trace_i915_request_guc_submit(rq);
+>   
+>   	if (unlikely(ret == -EPIPE))
+>   		disable_submission(guc);
+> @@ -1329,13 +1368,77 @@ static u16 prep_context_pending_disable(struct intel_context *ce)
+>   	return ce->guc_id;
+>   }
+>   
+> +static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
+> +						 u16 guc_id,
+> +						 u32 preemption_timeout)
+> +{
+> +	u32 action [] = {
+> +		INTEL_GUC_ACTION_SET_CONTEXT_PREEMPTION_TIMEOUT,
+> +		guc_id,
+> +		preemption_timeout
+> +	};
+> +
+> +	intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
+> +}
+> +
+> +static void guc_context_ban(struct intel_context *ce, struct i915_request *rq)
+> +{
+> +	struct intel_guc *guc = ce_to_guc(ce);
+> +	struct intel_runtime_pm *runtime_pm =
+> +		&ce->engine->gt->i915->runtime_pm;
+> +	intel_wakeref_t wakeref;
+> +	unsigned long flags;
+> +
+> +	guc_flush_submissions(guc);
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +	set_context_banned(ce);
+> +
+> +	if (submission_disabled(guc) || (!context_enabled(ce) &&
+> +	    !context_pending_disable(ce))) {
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +		guc_cancel_context_requests(ce);
+> +		intel_engine_signal_breadcrumbs(ce->engine);
+> +	} else if (!context_pending_disable(ce)) {
+> +		u16 guc_id;
+> +
+> +		/*
+> +		 * We add +2 here as the schedule disable complete CTB handler
+> +		 * calls intel_context_sched_disable_unpin (-2 to pin_count).
+> +		 */
+> +		atomic_add(2, &ce->pin_count);
+> +
+> +		guc_id = prep_context_pending_disable(ce);
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +		/*
+> +		 * In addition to disabling scheduling, set the preemption
+> +		 * timeout to the minimum value (1 us) so the banned context
+> +		 * gets kicked off the HW ASAP.
+> +		 */
+> +		with_intel_runtime_pm(runtime_pm, wakeref) {
+> +			__guc_context_set_preemption_timeout(guc, guc_id, 1);
+> +			__guc_context_sched_disable(guc, ce, guc_id);
+> +		}
+> +	} else {
+> +		if (!context_guc_id_invalid(ce))
+> +			with_intel_runtime_pm(runtime_pm, wakeref)
+> +				__guc_context_set_preemption_timeout(guc,
+> +								     ce->guc_id,
+> +								     1);
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +	}
+> +}
+> +
+>   static void guc_context_sched_disable(struct intel_context *ce)
+>   {
+>   	struct intel_guc *guc = ce_to_guc(ce);
+> -	struct intel_runtime_pm *runtime_pm = &ce->engine->gt->i915->runtime_pm;
+>   	unsigned long flags;
+> -	u16 guc_id;
+> +	struct intel_runtime_pm *runtime_pm = &ce->engine->gt->i915->runtime_pm;
+>   	intel_wakeref_t wakeref;
+> +	u16 guc_id;
+> +	bool enabled;
+>   
+>   	if (submission_disabled(guc) || context_guc_id_invalid(ce) ||
+>   	    !lrc_desc_registered(guc, ce->guc_id)) {
+> @@ -1349,14 +1452,22 @@ static void guc_context_sched_disable(struct intel_context *ce)
+>   	spin_lock_irqsave(&ce->guc_state.lock, flags);
+>   
+>   	/*
+> -	 * We have to check if the context has been pinned again as another pin
+> -	 * operation is allowed to pass this function. Checking the pin count,
+> -	 * within ce->guc_state.lock, synchronizes this function with
+> +	 * We have to check if the context has been disabled by another thread.
+> +	 * We also have to check if the context has been pinned again as another
+> +	 * pin operation is allowed to pass this function. Checking the pin
+> +	 * count, within ce->guc_state.lock, synchronizes this function with
+>   	 * guc_request_alloc ensuring a request doesn't slip through the
+>   	 * 'context_pending_disable' fence. Checking within the spin lock (can't
+>   	 * sleep) ensures another process doesn't pin this context and generate
+>   	 * a request before we set the 'context_pending_disable' flag here.
+>   	 */
+> +	enabled = context_enabled(ce);
+> +	if (unlikely(!enabled || submission_disabled(guc))) {
+> +		if (enabled)
+> +			clr_context_enabled(ce);
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +		goto unpin;
+> +	}
+>   	if (unlikely(atomic_add_unless(&ce->pin_count, -2, 2))) {
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   		return;
+> @@ -1513,6 +1624,8 @@ static const struct intel_context_ops guc_context_ops = {
+>   	.unpin = guc_context_unpin,
+>   	.post_unpin = guc_context_post_unpin,
+>   
+> +	.ban = guc_context_ban,
+> +
+>   	.enter = intel_context_enter_engine,
+>   	.exit = intel_context_exit_engine,
+>   
+> @@ -1706,6 +1819,8 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+>   	.unpin = guc_context_unpin,
+>   	.post_unpin = guc_context_post_unpin,
+>   
+> +	.ban = guc_context_ban,
+> +
+>   	.enter = guc_virtual_context_enter,
+>   	.exit = guc_virtual_context_exit,
+>   
+> @@ -2159,6 +2274,8 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+>   	if (context_pending_enable(ce)) {
+>   		clr_context_pending_enable(ce);
+>   	} else if (context_pending_disable(ce)) {
+> +		bool banned;
+> +
+>   		/*
+>   		 * Unpin must be done before __guc_signal_context_fence,
+>   		 * otherwise a race exists between the requests getting
+> @@ -2169,9 +2286,16 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+>   		intel_context_sched_disable_unpin(ce);
+>   
+>   		spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +		banned = context_banned(ce);
+> +		clr_context_banned(ce);
+>   		clr_context_pending_disable(ce);
+>   		__guc_signal_context_fence(ce);
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +		if (banned) {
+> +			guc_cancel_context_requests(ce);
+> +			intel_engine_signal_breadcrumbs(ce->engine);
+> +		}
+>   	}
+>   
+>   	decr_outstanding_submission_g2h(guc);
+> @@ -2206,8 +2330,11 @@ static void guc_handle_context_reset(struct intel_guc *guc,
+>   				     struct intel_context *ce)
+>   {
+>   	trace_intel_context_reset(ce);
+> -	capture_error_state(guc, ce);
+> -	guc_context_replay(ce);
+> +
+> +	if (likely(!intel_context_is_banned(ce))) {
+> +		capture_error_state(guc, ce);
+> +		guc_context_replay(ce);
+> +	}
+>   }
+>   
+>   int intel_guc_context_reset_process_msg(struct intel_guc *guc,
+> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+> index c095c4d39456..937d3706af9b 100644
+> --- a/drivers/gpu/drm/i915/i915_trace.h
+> +++ b/drivers/gpu/drm/i915/i915_trace.h
+> @@ -934,6 +934,11 @@ DEFINE_EVENT(intel_context, intel_context_reset,
+>   	     TP_ARGS(ce)
+>   );
+>   
+> +DEFINE_EVENT(intel_context, intel_context_ban,
+> +	     TP_PROTO(struct intel_context *ce),
+> +	     TP_ARGS(ce)
+> +);
+> +
+>   DEFINE_EVENT(intel_context, intel_context_register,
+>   	     TP_PROTO(struct intel_context *ce),
+>   	     TP_ARGS(ce)
+> @@ -1036,6 +1041,11 @@ trace_intel_context_reset(struct intel_context *ce)
+>   {
+>   }
+>   
+> +static inline void
+> +trace_intel_context_ban(struct intel_context *ce)
+> +{
+> +}
+> +
+>   static inline void
+>   trace_intel_context_register(struct intel_context *ce)
+>   {
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
