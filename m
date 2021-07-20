@@ -2,74 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A2943D04D8
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 00:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D74A33D04E5
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 00:56:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D9E36E05F;
-	Tue, 20 Jul 2021 22:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BEB76E05F;
+	Tue, 20 Jul 2021 22:56:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB1646E05F
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 22:54:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1626821698;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=JPmMSBIIRpMLR6pnHriNECIPx7e3cs1ugIoacnqy1RY=;
- b=deWJrQiajDE/Msu17LkNlrn5p+O2XIprx9FBDs5rPhPpw2VWpcWQO/vmuYnQlB5rf2loVx
- 6lQnJGEAwG6sRESg8fUapG/aVi2vnai6lgb3RsznCMHuveRnVDUoh+vyA5dVAykQkGd7dM
- izR/q8YzNVPgUmrrYnVsOoOOWdd8lsI=
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
- [209.85.210.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-210-dMfLmp6pOquGR4-C2aukJQ-1; Tue, 20 Jul 2021 18:54:55 -0400
-X-MC-Unique: dMfLmp6pOquGR4-C2aukJQ-1
-Received: by mail-ot1-f69.google.com with SMTP id
- s11-20020a056830124bb02904d1d78ee61cso238918otp.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:54:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=JPmMSBIIRpMLR6pnHriNECIPx7e3cs1ugIoacnqy1RY=;
- b=IVMfWpBt20Qk8GfPVsDgXHJymmgHPaT57pd1OMnh440rToaLaN2FupFw0YKQM7stXp
- SDOnVRDT4d9Kb5gWvy8ImN4DKSHTGJKoqKmPKD3MHAu4B0Vo5V8MPjkjgUSwXlnbilt9
- 2PZS+egXkb0pyxyBBowBKHFD63bs2g06n/1stGT9Hz9hGeBx8Rp2kvnPzdJpV4ILXZqb
- 5t5GOakvP2G9hL+i5VqkyTOHshvN8V/FzxKnq+qhKmCSy18yDpDr08Gvqj0vdwVlg7v7
- FfXi4t0z8byo+o2nuvEJSbB0dHSl4jiVb7OkgCSrc1l2s0Nn2s1vtBR68kU0DWQGIdyL
- 2piw==
-X-Gm-Message-State: AOAM532hGm32uwQeMc/sTS5kRsvdC0w3WeeHNK3+0d/IW6899rjTFL39
- pCJdRXGObhriezODOCqMpmlEYtjQLctIKTmUsDKV8sbSaliMVY7wjSw5R78DxLc/vLoPWpOsEYt
- uAhnyVY9bXZ0vTNe2E1W2ocpDjdM4
-X-Received: by 2002:a9d:4b02:: with SMTP id q2mr13197550otf.52.1626821694106; 
- Tue, 20 Jul 2021 15:54:54 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx7ncl7zRpBxXCyp5ocCnM/u43LPRAaepFBcKVNjugNChC0csQAeVdr5AwkuCzyfA5+QlRtnQ==
-X-Received: by 2002:a9d:4b02:: with SMTP id q2mr13197528otf.52.1626821693761; 
- Tue, 20 Jul 2021 15:54:53 -0700 (PDT)
-Received: from redhat.com ([198.99.80.109])
- by smtp.gmail.com with ESMTPSA id l196sm3275801oib.14.2021.07.20.15.54.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Jul 2021 15:54:53 -0700 (PDT)
-Date: Tue, 20 Jul 2021 16:54:51 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20210720165451.625dddd4.alex.williamson@redhat.com>
-In-Reply-To: <20210720224955.GD1117491@nvidia.com>
-References: <0-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
- <2-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
- <20210720160127.17bf3c19.alex.williamson@redhat.com>
- <20210720224955.GD1117491@nvidia.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B38366E05F;
+ Tue, 20 Jul 2021 22:56:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ABA9BA47E1;
+ Tue, 20 Jul 2021 22:56:32 +0000 (UTC)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v2 02/14] vfio/mbochs: Fix missing error
- unwind in mbochs_probe()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 20 Jul 2021 22:56:32 -0000
+Message-ID: <162682179269.12850.5841882783797587533@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210720223921.56160-1-matthew.brost@intel.com>
+In-Reply-To: <20210720223921.56160-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU2Vy?=
+ =?utf-8?q?ies_to_merge_a_subset_of_GuC_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,97 +38,230 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Max Gurtovoy <mgurtovoy@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>, Leon Romanovsky <leonro@nvidia.com>,
- Christoph Hellwig <hch@lst.de>, linux-s390@vger.kernel.org,
- Matthew Rosato <mjrosato@linux.ibm.com>, Jonathan Corbet <corbet@lwn.net>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- intel-gvt-dev@lists.freedesktop.org, "Raj, Ashok" <ashok.raj@intel.com>,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1729739841=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Jul 2021 19:49:55 -0300
-Jason Gunthorpe <jgg@nvidia.com> wrote:
+--===============1729739841==
+Content-Type: multipart/alternative;
+ boundary="===============5638050850376568452=="
 
-> On Tue, Jul 20, 2021 at 04:01:27PM -0600, Alex Williamson wrote:
-> > On Tue, 20 Jul 2021 14:42:48 -0300
-> > Jason Gunthorpe <jgg@nvidia.com> wrote:
-> >   
-> > > Compared to mbochs_remove() two cases are missing from the
-> > > vfio_register_group_dev() unwind. Add them in.
-> > > 
-> > > Fixes: 681c1615f891 ("vfio/mbochs: Convert to use vfio_register_group_dev()")
-> > > Reported-by: Cornelia Huck <cohuck@redhat.com>
-> > > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> > >  samples/vfio-mdev/mbochs.c | 7 +++++--
-> > >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
-> > > index e81b875b4d87b4..501845b08c0974 100644
-> > > +++ b/samples/vfio-mdev/mbochs.c
-> > > @@ -553,11 +553,14 @@ static int mbochs_probe(struct mdev_device *mdev)
-> > >  
-> > >  	ret = vfio_register_group_dev(&mdev_state->vdev);
-> > >  	if (ret)
-> > > -		goto err_mem;
-> > > +		goto err_bytes;
-> > >  	dev_set_drvdata(&mdev->dev, mdev_state);
-> > >  	return 0;
-> > >  
-> > > +err_bytes:
-> > > +	mbochs_used_mbytes -= mdev_state->type->mbytes;
-> > >  err_mem:
-> > > +	kfree(mdev_state->pages);
-> > >  	kfree(mdev_state->vconfig);
-> > >  	kfree(mdev_state);
-> > >  	return ret;
-> > > @@ -567,8 +570,8 @@ static void mbochs_remove(struct mdev_device *mdev)
-> > >  {
-> > >  	struct mdev_state *mdev_state = dev_get_drvdata(&mdev->dev);
-> > >  
-> > > -	mbochs_used_mbytes -= mdev_state->type->mbytes;
-> > >  	vfio_unregister_group_dev(&mdev_state->vdev);
-> > > +	mbochs_used_mbytes -= mdev_state->type->mbytes;
-> > >  	kfree(mdev_state->pages);
-> > >  	kfree(mdev_state->vconfig);
-> > >  	kfree(mdev_state);  
-> > 
-> > Hmm, doesn't this suggest we need another atomic conversion?  (untested)  
-> 
-> Sure why not, I can add this as another patch
-> 
-> > @@ -567,11 +573,11 @@ static void mbochs_remove(struct mdev_device *mdev)
-> >  {
-> >  	struct mdev_state *mdev_state = dev_get_drvdata(&mdev->dev);
-> >  
-> > -	mbochs_used_mbytes -= mdev_state->type->mbytes;
-> >  	vfio_unregister_group_dev(&mdev_state->vdev);
-> >  	kfree(mdev_state->pages);
-> >  	kfree(mdev_state->vconfig);
-> >  	kfree(mdev_state);
-> > +	atomic_add(mdev_state->type->mbytes, &mbochs_avail_mbytes);  
-> 
-> This should be up after the vfio_unregister_group_dev(), it is a use after free?
+--===============5638050850376568452==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Oops, yep.  That or get the mbochs_type so we can mirror the _probe
-setup.  Same on the _probe unwind, but we've already got type->mbytes
-there.  Thanks,
+== Series Details ==
 
-Alex
+Series: Series to merge a subset of GuC submission
+URL   : https://patchwork.freedesktop.org/series/92791/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10358 -> Patchwork_20659
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20659 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] ([fdo#109271])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][3] ([i915#3159])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][4] ([i915#2782] / [i915#2940]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10358/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
+
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10358 -> Patchwork_20659
+
+  CI-20190529: 20190529
+  CI_DRM_10358: 76ff1f71cd0e2e203003b84881e41bf7be9f0e82 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20659: eff5ff5cddbdabaa48b2a714bbfbfb9500a3de26 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+eff5ff5cddbd drm/i915: Add intel_context tracing
+67fb3ed8ac4e drm/i915/guc: Add trace point for GuC submit
+26cd4897ed36 drm/i915/guc: Update GuC debugfs to support new GuC
+e21fad90cbba drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC
+dbe4a36fbe4e drm/i915/guc: Ensure G2H response has space in buffer
+bfce77d80f9f drm/i915/guc: Disable semaphores when using GuC scheduling
+62126880619a drm/i915/guc: Ensure request ordering via completion fences
+9911672af3c3 drm/i915: Disable preempt busywait when using GuC scheduling
+a9c371205bcc drm/i915/guc: Extend deregistration fence to schedule disable
+efc0364130bb drm/i915/guc: Disable engine barriers with GuC during unpin
+1b654aaa7260 drm/i915/guc: Defer context unpin until scheduling is disabled
+5c25a79e0e15 drm/i915/guc: Insert fence on context when deregistering
+f02a6e7e28bc drm/i915/guc: Implement GuC context operations for new inteface
+2234dab12cac drm/i915/guc: Add bypass tasklet submission path to GuC
+9d1be7a2819b drm/i915/guc: Implement GuC submission tasklet
+722a3e5a4415 drm/i915/guc: Add LRC descriptor context lookup array
+7e036ee5f85e drm/i915/guc: Remove GuC stage descriptor, add LRC descriptor
+ec53f1834fea drm/i915/guc: Add new GuC interface defines and structures
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/index.html
+
+--===============5638050850376568452==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Series to merge a subset of GuC submission</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92791/">https://patchwork.freedesktop.org/series/92791/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10358 -&gt; Patchwork_20659</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20659 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10358/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20659/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10358 -&gt; Patchwork_20659</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10358: 76ff1f71cd0e2e203003b84881e41bf7be9f0e82 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20659: eff5ff5cddbdabaa48b2a714bbfbfb9500a3de26 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>eff5ff5cddbd drm/i915: Add intel_context tracing<br />
+67fb3ed8ac4e drm/i915/guc: Add trace point for GuC submit<br />
+26cd4897ed36 drm/i915/guc: Update GuC debugfs to support new GuC<br />
+e21fad90cbba drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC<br />
+dbe4a36fbe4e drm/i915/guc: Ensure G2H response has space in buffer<br />
+bfce77d80f9f drm/i915/guc: Disable semaphores when using GuC scheduling<br />
+62126880619a drm/i915/guc: Ensure request ordering via completion fences<br />
+9911672af3c3 drm/i915: Disable preempt busywait when using GuC scheduling<br />
+a9c371205bcc drm/i915/guc: Extend deregistration fence to schedule disable<br />
+efc0364130bb drm/i915/guc: Disable engine barriers with GuC during unpin<br />
+1b654aaa7260 drm/i915/guc: Defer context unpin until scheduling is disabled<br />
+5c25a79e0e15 drm/i915/guc: Insert fence on context when deregistering<br />
+f02a6e7e28bc drm/i915/guc: Implement GuC context operations for new inteface<br />
+2234dab12cac drm/i915/guc: Add bypass tasklet submission path to GuC<br />
+9d1be7a2819b drm/i915/guc: Implement GuC submission tasklet<br />
+722a3e5a4415 drm/i915/guc: Add LRC descriptor context lookup array<br />
+7e036ee5f85e drm/i915/guc: Remove GuC stage descriptor, add LRC descriptor<br />
+ec53f1834fea drm/i915/guc: Add new GuC interface defines and structures</p>
+
+</body>
+</html>
+
+--===============5638050850376568452==--
+
+--===============1729739841==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1729739841==--
