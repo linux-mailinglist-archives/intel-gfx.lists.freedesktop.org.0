@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708133D02FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 22:41:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BDF13D0305
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 22:41:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52DC46E5A1;
-	Tue, 20 Jul 2021 20:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF0E76E4DE;
+	Tue, 20 Jul 2021 20:40:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 644966E527;
- Tue, 20 Jul 2021 20:40:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="296885378"
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="296885378"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0EA6E524;
+ Tue, 20 Jul 2021 20:40:19 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="190909016"
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="190909016"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Jul 2021 13:40:17 -0700
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="414906094"
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="414906095"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Jul 2021 13:40:16 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Tue, 20 Jul 2021 13:57:54 -0700
-Message-Id: <20210720205802.39610-35-matthew.brost@intel.com>
+Date: Tue, 20 Jul 2021 13:57:55 -0700
+Message-Id: <20210720205802.39610-36-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210720205802.39610-1-matthew.brost@intel.com>
 References: <20210720205802.39610-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 34/42] drm/i915: Store batch index in struct
- i915_execbuffer
+Subject: [Intel-gfx] [RFC PATCH 35/42] drm/i915: Allow callers of
+ i915_gem_do_execbuffer to override the batch index
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,73 +49,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This will help with upcoming extensions where more than 1 batch can be
-submitted in a single execbuf IOCTL.
+Allow specifying the batch directly over what is inferred from passed in
+execbuf flags.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 40311583f03d..1f1f477e46b4 100644
+index 1f1f477e46b4..707e12725f74 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -252,6 +252,9 @@ struct i915_execbuffer {
- 	struct eb_vma *batch; /** identity of the batch obj/vma */
- 	struct i915_vma *trampoline; /** trampoline used for chaining */
+@@ -3146,6 +3146,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 		       struct drm_file *file,
+ 		       struct drm_i915_gem_execbuffer2 *args,
+ 		       struct drm_i915_gem_exec_object2 *exec,
++		       int batch_index,
+ 		       struct dma_fence *in_fence,
+ 		       struct dma_fence *exec_fence,
+ 		       struct dma_fence **out_fence)
+@@ -3202,6 +3203,9 @@ i915_gem_do_execbuffer(struct drm_device *dev,
  
-+	/* batch_index in vma list */
-+	unsigned int batch_index;
+ 	GEM_BUG_ON(!eb.lut_size);
+ 
++	if (batch_index >= 0)
++		eb.batch_index = batch_index;
 +
- 	/** actual size of execobj[] as we may extend it for the cmdparser */
- 	unsigned int buffer_count;
- 
-@@ -361,6 +364,11 @@ static int eb_create(struct i915_execbuffer *eb)
- 		eb->lut_size = -eb->buffer_count;
+ 	err = eb_select_context(&eb);
+ 	if (unlikely(err))
+ 		goto err_destroy;
+@@ -3429,7 +3433,7 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+ 		goto err_copy;
  	}
  
-+	if (eb->args->flags & I915_EXEC_BATCH_FIRST)
-+		eb->batch_index = 0;
-+	else
-+		eb->batch_index = eb->args->buffer_count - 1;
-+
- 	return 0;
- }
+-	err = i915_gem_do_execbuffer(dev, file, args, exec2_list, in_fence,
++	err = i915_gem_do_execbuffer(dev, file, args, exec2_list, -1, in_fence,
+ 				     exec_fence, out_fence_p);
  
-@@ -735,14 +743,6 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 	} while (1);
- }
- 
--static unsigned int eb_batch_index(const struct i915_execbuffer *eb)
--{
--	if (eb->args->flags & I915_EXEC_BATCH_FIRST)
--		return 0;
--	else
--		return eb->buffer_count - 1;
--}
--
- static int eb_select_context(struct i915_execbuffer *eb)
- {
- 	struct i915_gem_context *ctx;
-@@ -852,7 +852,6 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
- static int eb_lookup_vmas(struct i915_execbuffer *eb)
- {
- 	struct drm_i915_private *i915 = eb->i915;
--	unsigned int batch = eb_batch_index(eb);
- 	unsigned int i;
- 	int err = 0;
- 
-@@ -873,7 +872,7 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 			goto err;
- 		}
- 
--		eb_add_vma(eb, i, batch, vma);
-+		eb_add_vma(eb, i, eb->batch_index, vma);
- 
- 		if (i915_gem_object_is_userptr(vma->obj)) {
- 			err = i915_gem_object_userptr_submit_init(vma->obj);
+ 	/*
 -- 
 2.28.0
 
