@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C31423D02E0
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 22:40:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D743D0302
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 22:41:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFA806E563;
-	Tue, 20 Jul 2021 20:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C18C6E5A0;
+	Tue, 20 Jul 2021 20:40:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 378D56E50C;
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35FA66E4E3;
  Tue, 20 Jul 2021 20:40:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="296885376"
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="296885376"
+X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="209421888"
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="209421888"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Jul 2021 13:40:17 -0700
-X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="414906087"
+X-IronPort-AV: E=Sophos;i="5.84,256,1620716400"; d="scan'208";a="414906088"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Jul 2021 13:40:16 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Tue, 20 Jul 2021 13:57:48 -0700
-Message-Id: <20210720205802.39610-29-matthew.brost@intel.com>
+Date: Tue, 20 Jul 2021 13:57:49 -0700
+Message-Id: <20210720205802.39610-30-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210720205802.39610-1-matthew.brost@intel.com>
 References: <20210720205802.39610-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 28/42] drm/i915/guc: Add basic GuC multi-lrc
- selftest
+Subject: [Intel-gfx] [RFC PATCH 29/42] drm/i915/guc: Implement BB boundary
+ preemption for multi-lrc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,109 +44,417 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWRkIHZlcnkgYmFzaWMgKHNpbmdsZSBzdWJtaXNzaW9uKSBtdWx0aS1scmMgc2VsZnRlc3QuCgpT
-aWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEJyb3N0IDxtYXR0aGV3LmJyb3N0QGludGVsLmNvbT4KLS0t
-CiAuLi4vZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zdWJtaXNzaW9uLmMgfCAgIDEgKwog
-Li4uL2RybS9pOTE1L2d0L3VjL3NlbGZ0ZXN0X2d1Y19tdWx0aV9scmMuYyAgIHwgMTY4ICsrKysr
-KysrKysrKysrKysrKwogLi4uL2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2xpdmVfc2VsZnRlc3Rz
-LmggIHwgICAxICsKIDMgZmlsZXMgY2hhbmdlZCwgMTcwIGluc2VydGlvbnMoKykKIGNyZWF0ZSBt
-b2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9zZWxmdGVzdF9ndWNfbXVsdGlf
-bHJjLmMKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNf
-c3VibWlzc2lvbi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3N1Ym1p
-c3Npb24uYwppbmRleCAzMjZjYjRmYzhhOWQuLmRkZTZhYWIxZGI4NSAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3N1Ym1pc3Npb24uYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc3VibWlzc2lvbi5jCkBAIC00NzM3LDQg
-KzQ3MzcsNSBAQCBib29sIGludGVsX2d1Y192aXJ0dWFsX2VuZ2luZV9oYXNfaGVhcnRiZWF0KGNv
-bnN0IHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKnZlKQogCiAjaWYgSVNfRU5BQkxFRChDT05GSUdf
-RFJNX0k5MTVfU0VMRlRFU1QpCiAjaW5jbHVkZSAic2VsZnRlc3RfZ3VjX2Zsb3dfY29udHJvbC5j
-IgorI2luY2x1ZGUgInNlbGZ0ZXN0X2d1Y19tdWx0aV9scmMuYyIKICNlbmRpZgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvc2VsZnRlc3RfZ3VjX211bHRpX2xyYy5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvc2VsZnRlc3RfZ3VjX211bHRpX2xyYy5jCm5ldyBm
-aWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uMjI2ZTY0ZmVlOTE5Ci0tLSAvZGV2
-L251bGwKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvc2VsZnRlc3RfZ3VjX211bHRp
-X2xyYy5jCkBAIC0wLDAgKzEsMTY4IEBACisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlU
-CisvKgorICogQ29weXJpZ2h0IO+/ve+/vSAyMDE5IEludGVsIENvcnBvcmF0aW9uCisgKi8KKwor
-I2luY2x1ZGUgInNlbGZ0ZXN0cy9pZ3Rfc3Bpbm5lci5oIgorI2luY2x1ZGUgInNlbGZ0ZXN0cy9p
-Z3RfcmVzZXQuaCIKKyNpbmNsdWRlICJzZWxmdGVzdHMvaW50ZWxfc2NoZWR1bGVyX2hlbHBlcnMu
-aCIKKyNpbmNsdWRlICJndC9pbnRlbF9lbmdpbmVfaGVhcnRiZWF0LmgiCisjaW5jbHVkZSAiZ2Vt
-L3NlbGZ0ZXN0cy9tb2NrX2NvbnRleHQuaCIKKworc3RhdGljIHZvaWQgbG9naWNhbF9zb3J0KHN0
-cnVjdCBpbnRlbF9lbmdpbmVfY3MgKiplbmdpbmVzLCBpbnQgbnVtX2VuZ2luZXMpCit7CisJc3Ry
-dWN0IGludGVsX2VuZ2luZV9jcyAqc29ydGVkW01BWF9FTkdJTkVfSU5TVEFOQ0UgKyAxXTsKKwlp
-bnQgaSwgajsKKworCWZvciAoaSA9IDA7IGkgPCBudW1fZW5naW5lczsgKytpKQorCQlmb3IgKGog
-PSAwOyBqIDwgTUFYX0VOR0lORV9JTlNUQU5DRSArIDE7ICsraikgeworCQkJaWYgKGVuZ2luZXNb
-al0tPmxvZ2ljYWxfbWFzayAmIEJJVChpKSkgeworCQkJCXNvcnRlZFtpXSA9IGVuZ2luZXNbal07
-CisJCQkJYnJlYWs7CisJCQl9CisJCX0KKworCW1lbWNweSgqZW5naW5lcywgKnNvcnRlZCwKKwkg
-ICAgICAgc2l6ZW9mKHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKikgKiBudW1fZW5naW5lcyk7Cit9
-CisKK3N0YXRpYyBzdHJ1Y3QgaW50ZWxfY29udGV4dCAqCittdWx0aV9scmNfY3JlYXRlX3BhcmVu
-dChzdHJ1Y3QgaW50ZWxfZ3QgKmd0LCB1OCBjbGFzcywKKwkJCXVuc2lnbmVkIGxvbmcgZmxhZ3Mp
-Cit7CisJc3RydWN0IGludGVsX2VuZ2luZV9jcyAqc2libGluZ3NbTUFYX0VOR0lORV9JTlNUQU5D
-RSArIDFdOworCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZTsKKwllbnVtIGludGVsX2Vu
-Z2luZV9pZCBpZDsKKwlpbnQgaSA9IDA7CisKKwlmb3JfZWFjaF9lbmdpbmUoZW5naW5lLCBndCwg
-aWQpIHsKKwkJaWYgKGVuZ2luZS0+Y2xhc3MgIT0gY2xhc3MpCisJCQljb250aW51ZTsKKworCQlz
-aWJsaW5nc1tpKytdID0gZW5naW5lOworCX0KKworCWlmIChpIDw9IDEpCisJCXJldHVybiBFUlJf
-UFRSKDApOworCisJbG9naWNhbF9zb3J0KHNpYmxpbmdzLCBpKTsKKworCXJldHVybiBpbnRlbF9l
-bmdpbmVfY3JlYXRlX3BhcmFsbGVsKHNpYmxpbmdzLCAxLCBpKTsKK30KKworc3RhdGljIHZvaWQg
-bXVsdGlfbHJjX2NvbnRleHRfcHV0KHN0cnVjdCBpbnRlbF9jb250ZXh0ICpjZSkKK3sKKwlHRU1f
-QlVHX09OKCFpbnRlbF9jb250ZXh0X2lzX3BhcmVudChjZSkpOworCisJLyoKKwkgKiBPbmx5IHRo
-ZSBwYXJlbnQgZ2V0cyB0aGUgY3JlYXRpb24gcmVmIHB1dCBpbiB0aGUgdUFQSSwgdGhlIHBhcmVu
-dAorCSAqIGl0c2VsZiBpcyByZXNwb25zaWJsZSBmb3IgY3JlYXRpb24gcmVmIHB1dCBvbiB0aGUg
-Y2hpbGRyZW4uCisJICovCisJaW50ZWxfY29udGV4dF9wdXQoY2UpOworfQorCitzdGF0aWMgc3Ry
-dWN0IGk5MTVfcmVxdWVzdCAqCittdWx0aV9scmNfbm9wX3JlcXVlc3Qoc3RydWN0IGludGVsX2Nv
-bnRleHQgKmNlKQoreworCXN0cnVjdCBpbnRlbF9jb250ZXh0ICpjaGlsZDsKKwlzdHJ1Y3QgaTkx
-NV9yZXF1ZXN0ICpycSwgKmNoaWxkX3JxOworCWludCBpID0gMDsKKworCUdFTV9CVUdfT04oIWlu
-dGVsX2NvbnRleHRfaXNfcGFyZW50KGNlKSk7CisKKwlycSA9IGludGVsX2NvbnRleHRfY3JlYXRl
-X3JlcXVlc3QoY2UpOworCWlmIChJU19FUlIocnEpKQorCQlyZXR1cm4gcnE7CisKKwlpOTE1X3Jl
-cXVlc3RfZ2V0KHJxKTsKKwlpOTE1X3JlcXVlc3RfYWRkKHJxKTsKKworCWZvcl9lYWNoX2NoaWxk
-KGNlLCBjaGlsZCkgeworCQljaGlsZF9ycSA9IGludGVsX2NvbnRleHRfY3JlYXRlX3JlcXVlc3Qo
-Y2hpbGQpOworCQlpZiAoSVNfRVJSKGNoaWxkX3JxKSkKKwkJCWdvdG8gY2hpbGRfZXJyb3I7CisK
-KwkJaWYgKCsraSA9PSBjZS0+Z3VjX251bWJlcl9jaGlsZHJlbikKKwkJCXNldF9iaXQoSTkxNV9G
-RU5DRV9GTEFHX1NVQk1JVF9QQVJBTExFTCwKKwkJCQkmY2hpbGRfcnEtPmZlbmNlLmZsYWdzKTsK
-KwkJaTkxNV9yZXF1ZXN0X2FkZChjaGlsZF9ycSk7CisJfQorCisJcmV0dXJuIHJxOworCitjaGls
-ZF9lcnJvcjoKKwlpOTE1X3JlcXVlc3RfcHV0KHJxKTsKKworCXJldHVybiBFUlJfUFRSKC1FTk9N
-RU0pOworfQorCitzdGF0aWMgaW50IF9faW50ZWxfZ3VjX211bHRpX2xyY19iYXNpYyhzdHJ1Y3Qg
-aW50ZWxfZ3QgKmd0LCB1bnNpZ25lZCBpbnQgY2xhc3MpCit7CisJc3RydWN0IGludGVsX2NvbnRl
-eHQgKnBhcmVudDsKKwlzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpycTsKKwlpbnQgcmV0OworCisJcGFy
-ZW50ID0gbXVsdGlfbHJjX2NyZWF0ZV9wYXJlbnQoZ3QsIGNsYXNzLCAwKTsKKwlpZiAoSVNfRVJS
-KHBhcmVudCkpIHsKKwkJcHJfZXJyKCJGYWlsZWQgY3JlYXRpbmcgY29udGV4dHM6ICVsZCIsIFBU
-Ul9FUlIocGFyZW50KSk7CisJCXJldHVybiBQVFJfRVJSKHBhcmVudCk7CisJfSBlbHNlIGlmIChw
-YXJlbnQgPT0gTlVMTCkgeworCQlwcl9kZWJ1ZygiTm90IGVub3VnaCBlbmdpbmVzIGluIGNsYXNz
-OiAlZCIsCisJCQkgVklERU9fREVDT0RFX0NMQVNTKTsKKwkJcmV0dXJuIDA7CisJfQorCisJcnEg
-PSBtdWx0aV9scmNfbm9wX3JlcXVlc3QocGFyZW50KTsKKwlpZiAoSVNfRVJSKHJxKSkgeworCQly
-ZXQgPSBQVFJfRVJSKHJxKTsKKwkJcHJfZXJyKCJGYWlsZWQgY3JlYXRpbmcgcmVxdWVzdHM6ICVk
-IiwgcmV0KTsKKwkJZ290byBvdXQ7CisJfQorCisJcmV0ID0gaW50ZWxfc2VsZnRlc3Rfd2FpdF9m
-b3JfcnEocnEpOworCWlmIChyZXQpCisJCXByX2VycigiRmFpbGVkIHdhaXRpbmcgb24gcmVxdWVz
-dDogJWQiLCByZXQpOworCisJaTkxNV9yZXF1ZXN0X3B1dChycSk7CisKKwlpZiAocmV0ID49IDAp
-IHsKKwkJcmV0ID0gaW50ZWxfZ3Rfd2FpdF9mb3JfaWRsZShndCwgSFogKiA1KTsKKwkJaWYgKHJl
-dCA8IDApCisJCQlwcl9lcnIoIkdUIGZhaWxlZCB0byBpZGxlOiAlZFxuIiwgcmV0KTsKKwl9CisK
-K291dDoKKwltdWx0aV9scmNfY29udGV4dF9wdXQocGFyZW50KTsKKwlyZXR1cm4gcmV0OworfQor
-CitzdGF0aWMgaW50IGludGVsX2d1Y19tdWx0aV9scmNfYmFzaWModm9pZCAqYXJnKQoreworCXN0
-cnVjdCBpbnRlbF9ndCAqZ3QgPSBhcmc7CisJdW5zaWduZWQgY2xhc3M7CisJaW50IHJldDsKKwor
-CWZvciAoY2xhc3MgPSAwOyBjbGFzcyA8IE1BWF9FTkdJTkVfQ0xBU1MgKyAxOyArK2NsYXNzKSB7
-CisJCXJldCA9IF9faW50ZWxfZ3VjX211bHRpX2xyY19iYXNpYyhndCwgY2xhc3MpOworCQlpZiAo
-cmV0KQorCQkJcmV0dXJuIHJldDsKKwl9CisKKwlyZXR1cm4gMDsKK30KKworaW50IGludGVsX2d1
-Y19tdWx0aV9scmMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCit7CisJc3RhdGljIGNv
-bnN0IHN0cnVjdCBpOTE1X3N1YnRlc3QgdGVzdHNbXSA9IHsKKwkJU1VCVEVTVChpbnRlbF9ndWNf
-bXVsdGlfbHJjX2Jhc2ljKSwKKwl9OworCXN0cnVjdCBpbnRlbF9ndCAqZ3QgPSAmaTkxNS0+Z3Q7
-CisKKwlpZiAoaW50ZWxfZ3RfaXNfd2VkZ2VkKGd0KSkKKwkJcmV0dXJuIDA7CisKKwlpZiAoIWlu
-dGVsX3VjX3VzZXNfZ3VjX3N1Ym1pc3Npb24oJmd0LT51YykpCisJCXJldHVybiAwOworCisJcmV0
-dXJuIGludGVsX2d0X2xpdmVfc3VidGVzdHModGVzdHMsIGd0KTsKK30KZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2xpdmVfc2VsZnRlc3RzLmggYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9saXZlX3NlbGZ0ZXN0cy5oCmluZGV4IGQ5
-YmQ3MzJiNzQxYS4uMmRkYjcyYmJhYjY5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9zZWxmdGVzdHMvaTkxNV9saXZlX3NlbGZ0ZXN0cy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L3NlbGZ0ZXN0cy9pOTE1X2xpdmVfc2VsZnRlc3RzLmgKQEAgLTQ4LDUgKzQ4LDYgQEAgc2Vs
-ZnRlc3QoZXhlY2xpc3RzLCBpbnRlbF9leGVjbGlzdHNfbGl2ZV9zZWxmdGVzdHMpCiBzZWxmdGVz
-dChyaW5nX3N1Ym1pc3Npb24sIGludGVsX3Jpbmdfc3VibWlzc2lvbl9saXZlX3NlbGZ0ZXN0cykK
-IHNlbGZ0ZXN0KHBlcmYsIGk5MTVfcGVyZl9saXZlX3NlbGZ0ZXN0cykKIHNlbGZ0ZXN0KGd1Y19m
-bG93X2NvbnRyb2wsIGludGVsX2d1Y19mbG93X2NvbnRyb2wpCitzZWxmdGVzdChndWNfbXVsdGlf
-bHJjLCBpbnRlbF9ndWNfbXVsdGlfbHJjKQogLyogSGVyZSBiZSBkcmFnb25zOiBrZWVwIGxhc3Qg
-dG8gcnVuIGxhc3QhICovCiBzZWxmdGVzdChsYXRlX2d0X3BtLCBpbnRlbF9ndF9wbV9sYXRlX3Nl
-bGZ0ZXN0cykKLS0gCjIuMjguMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+For some users of multi-lrc, e.g. split frame, it isn't safe to preempt
+mid BB. To safely enable preemption at the BB boundary, a handshake
+between to parent and child is needed. This is implemented via custom
+emit_bb_start & emit_fini_breadcrumb functions and enabled via by
+default if a context is configured by set parallel extension.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c       |   2 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   2 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 285 +++++++++++++++++-
+ 4 files changed, 289 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 7395894724f8..35f5d28c7465 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -639,7 +639,7 @@ void intel_context_bind_parent_child(struct intel_context *parent,
+ 	GEM_BUG_ON(intel_context_is_child(child));
+ 	GEM_BUG_ON(intel_context_is_parent(child));
+ 
+-        parent->guc_number_children++;
++        child->guc_child_index = parent->guc_number_children++;
+         list_add_tail(&child->guc_child_link,
+ 		      &parent->guc_child_list);
+ 	child->parent = parent;
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 5912eb291bad..4886e107c1f8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -222,6 +222,9 @@ struct intel_context {
+ 	/* Number of children if parent */
+ 	u8 guc_number_children;
+ 
++	/* Child index if child */
++	u8 guc_child_index;
++
+ 	u8 parent_page; /* if set, page num reserved for parent context */
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+index 820cb6b5d2d0..11d64746dbf1 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+@@ -181,7 +181,7 @@ struct guc_process_desc {
+ 	u32 wq_status;
+ 	u32 engine_presence;
+ 	u32 priority;
+-	u32 reserved[30];
++	u32 reserved[36];
+ } __packed;
+ 
+ #define CONTEXT_REGISTRATION_FLAG_KMD	BIT(0)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index dde6aab1db85..b9c43ba823b4 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -11,6 +11,7 @@
+ #include "gt/intel_context.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_engine_heartbeat.h"
++#include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_irq.h"
+ #include "gt/intel_gt_pm.h"
+@@ -460,10 +461,14 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
+ 
+ /*
+  * When using multi-lrc submission an extra page in the context state is
+- * reserved for the process descriptor and work queue.
++ * reserved for the process descriptor, work queue, and preempt BB boundary
++ * handshake between the parent + childlren contexts.
+  *
+  * The layout of this page is below:
+  * 0						guc_process_desc
++ * + sizeof(struct guc_process_desc)		child go
++ * + CACHELINE_BYTES				child join ...
++ * + CACHELINE_BYTES ...
+  * ...						unused
+  * PAGE_SIZE / 2				work queue start
+  * ...						work queue
+@@ -2166,6 +2171,30 @@ static int deregister_context(struct intel_context *ce, u32 guc_id, bool loop)
+ 	return __guc_action_deregister_context(guc, guc_id, loop);
+ }
+ 
++static inline void clear_children_join_go_memory(struct intel_context *ce)
++{
++	u32 *mem = (u32 *)(__get_process_desc(ce) + 1);
++	u8 i;
++
++	for (i = 0; i < ce->guc_number_children + 1; ++i)
++		mem[i * (CACHELINE_BYTES / sizeof(u32))] = 0;
++}
++
++static inline u32 get_children_go_value(struct intel_context *ce)
++{
++	u32 *mem = (u32 *)(__get_process_desc(ce) + 1);
++
++	return mem[0];
++}
++
++static inline u32 get_children_join_value(struct intel_context *ce,
++					  u8 child_index)
++{
++	u32 *mem = (u32 *)(__get_process_desc(ce) + 1);
++
++	return mem[(child_index + 1) * (CACHELINE_BYTES / sizeof(u32))];
++}
++
+ static void guc_context_policy_init(struct intel_engine_cs *engine,
+ 				    struct guc_lrc_desc *desc)
+ {
+@@ -2361,6 +2390,8 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+ 			desc->context_flags = CONTEXT_REGISTRATION_FLAG_KMD;
+ 			guc_context_policy_init(engine, desc);
+ 		}
++
++		clear_children_join_go_memory(ce);
+ 	}
+ 
+ 	/*
+@@ -3771,6 +3802,32 @@ static const struct intel_context_ops virtual_child_context_ops = {
+ 	.destroy = guc_child_context_destroy,
+ };
+ 
++/*
++ * The below override of the breadcrumbs is enabled when the user configures a
++ * context for parallel submission (multi-lrc, parent-child).
++ *
++ * The overridden breadcrumbs implements an algorithm which allows the GuC to
++ * safely preempt all the hw contexts configured for parallel submission
++ * between each BB. The contract between the i915 and GuC is if the parent
++ * context can be preempted, all the children can be preempted, and the GuC will
++ * always try to preempt the parent before the children. A handshake between the
++ * parent / children breadcrumbs ensures the i915 holds up its end of the deal
++ * creating a window to preempt between each set of BBs.
++ */
++static int emit_bb_start_parent_bb_preempt_boundary(struct i915_request *rq,
++						    u64 offset, u32 len,
++						    const unsigned int flags);
++static int emit_bb_start_child_bb_preempt_boundary(struct i915_request *rq,
++						   u64 offset, u32 len,
++						   const unsigned int flags);
++static u32 *
++emit_fini_breadcrumb_parent_bb_preempt_boundary(struct i915_request *rq,
++						u32 *cs);
++static u32 *
++emit_fini_breadcrumb_child_bb_preempt_boundary(struct i915_request *rq,
++					       u32 *cs);
++
++
+ static struct intel_context *
+ guc_create_parallel(struct intel_engine_cs **engines,
+ 		    unsigned int num_siblings,
+@@ -3814,6 +3871,20 @@ guc_create_parallel(struct intel_engine_cs **engines,
+ 	for_each_child(parent, ce)
+ 		ce->ops = &virtual_child_context_ops;
+ 
++	parent->engine->emit_bb_start =
++		emit_bb_start_parent_bb_preempt_boundary;
++	parent->engine->emit_fini_breadcrumb =
++		emit_fini_breadcrumb_parent_bb_preempt_boundary;
++	parent->engine->emit_fini_breadcrumb_dw =
++		12 + 4 * parent->guc_number_children;
++	for_each_child(parent, ce) {
++		ce->engine->emit_bb_start =
++			emit_bb_start_child_bb_preempt_boundary;
++		ce->engine->emit_fini_breadcrumb =
++			emit_fini_breadcrumb_child_bb_preempt_boundary;
++		ce->engine->emit_fini_breadcrumb_dw = 16;
++	}
++
+ 	kfree(siblings);
+ 	return parent;
+ 
+@@ -4174,6 +4245,205 @@ void intel_guc_submission_init_early(struct intel_guc *guc)
+ 	guc->submission_selected = __guc_submission_selected(guc);
+ }
+ 
++static inline u32 get_children_go_addr(struct intel_context *ce)
++{
++	GEM_BUG_ON(!intel_context_is_parent(ce));
++
++	return i915_ggtt_offset(ce->state) +
++		__get_process_desc_offset(ce) +
++		sizeof(struct guc_process_desc);
++}
++
++static inline u32 get_children_join_addr(struct intel_context *ce,
++					 u8 child_index)
++{
++	GEM_BUG_ON(!intel_context_is_parent(ce));
++
++	return get_children_go_addr(ce) + (child_index + 1) * CACHELINE_BYTES;
++}
++
++#define PARENT_GO_BB			1
++#define PARENT_GO_FINI_BREADCRUMB	0
++#define CHILD_GO_BB			1
++#define CHILD_GO_FINI_BREADCRUMB	0
++static int emit_bb_start_parent_bb_preempt_boundary(struct i915_request *rq,
++						    u64 offset, u32 len,
++						    const unsigned int flags)
++{
++	struct intel_context *ce = rq->context;
++	u32 *cs;
++	u8 i;
++
++	GEM_BUG_ON(!intel_context_is_parent(ce));
++
++	cs = intel_ring_begin(rq, 10 + 4 * ce->guc_number_children);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	/* Wait on chidlren */
++	for (i = 0; i < ce->guc_number_children; ++i) {
++		*cs++ = (MI_SEMAPHORE_WAIT |
++			 MI_SEMAPHORE_GLOBAL_GTT |
++			 MI_SEMAPHORE_POLL |
++			 MI_SEMAPHORE_SAD_EQ_SDD);
++		*cs++ = PARENT_GO_BB;
++		*cs++ = get_children_join_addr(ce, i);
++		*cs++ = 0;
++	}
++
++	/* Turn off preemption */
++	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
++	*cs++ = MI_NOOP;
++
++	/* Tell children go */
++	cs = gen8_emit_ggtt_write(cs,
++				  CHILD_GO_BB,
++				  get_children_go_addr(ce),
++				  0);
++
++	/* Jump to batch */
++	*cs++ = MI_BATCH_BUFFER_START_GEN8 |
++		(flags & I915_DISPATCH_SECURE ? 0 : BIT(8));
++	*cs++ = lower_32_bits(offset);
++	*cs++ = upper_32_bits(offset);
++	*cs++ = MI_NOOP;
++
++	intel_ring_advance(rq, cs);
++
++	return 0;
++}
++
++static int emit_bb_start_child_bb_preempt_boundary(struct i915_request *rq,
++						   u64 offset, u32 len,
++						   const unsigned int flags)
++{
++	struct intel_context *ce = rq->context;
++	u32 *cs;
++
++	GEM_BUG_ON(!intel_context_is_child(ce));
++
++	cs = intel_ring_begin(rq, 12);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	/* Signal parent */
++	cs = gen8_emit_ggtt_write(cs,
++				  PARENT_GO_BB,
++				  get_children_join_addr(ce->parent,
++							 ce->guc_child_index),
++				  0);
++
++	/* Wait parent on for go */
++	*cs++ = (MI_SEMAPHORE_WAIT |
++		 MI_SEMAPHORE_GLOBAL_GTT |
++		 MI_SEMAPHORE_POLL |
++		 MI_SEMAPHORE_SAD_EQ_SDD);
++	*cs++ = CHILD_GO_BB;
++	*cs++ = get_children_go_addr(ce->parent);
++	*cs++ = 0;
++
++	/* Turn off preemption */
++	*cs++ = MI_ARB_ON_OFF | MI_ARB_DISABLE;
++
++	/* Jump to batch */
++	*cs++ = MI_BATCH_BUFFER_START_GEN8 |
++		(flags & I915_DISPATCH_SECURE ? 0 : BIT(8));
++	*cs++ = lower_32_bits(offset);
++	*cs++ = upper_32_bits(offset);
++
++	intel_ring_advance(rq, cs);
++
++	return 0;
++}
++
++static u32 *
++emit_fini_breadcrumb_parent_bb_preempt_boundary(struct i915_request *rq,
++						u32 *cs)
++{
++	struct intel_context *ce = rq->context;
++	u8 i;
++
++	GEM_BUG_ON(!intel_context_is_parent(ce));
++
++	/* Wait on children */
++	for (i = 0; i < ce->guc_number_children; ++i) {
++		*cs++ = (MI_SEMAPHORE_WAIT |
++			 MI_SEMAPHORE_GLOBAL_GTT |
++			 MI_SEMAPHORE_POLL |
++			 MI_SEMAPHORE_SAD_EQ_SDD);
++		*cs++ = PARENT_GO_FINI_BREADCRUMB;
++		*cs++ = get_children_join_addr(ce, i);
++		*cs++ = 0;
++	}
++
++	/* Turn on preemption */
++	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
++	*cs++ = MI_NOOP;
++
++	/* Tell children go */
++	cs = gen8_emit_ggtt_write(cs,
++				  CHILD_GO_FINI_BREADCRUMB,
++				  get_children_go_addr(ce),
++				  0);
++
++	/* Emit fini breadcrumb */
++	cs = gen8_emit_ggtt_write(cs,
++				  rq->fence.seqno,
++				  i915_request_active_timeline(rq)->hwsp_offset,
++				  0);
++
++	/* User interrupt */
++	*cs++ = MI_USER_INTERRUPT;
++	*cs++ = MI_NOOP;
++
++	rq->tail = intel_ring_offset(rq, cs);
++
++	return cs;
++}
++
++static u32 *
++emit_fini_breadcrumb_child_bb_preempt_boundary(struct i915_request *rq,
++					       u32 *cs)
++{
++	struct intel_context *ce = rq->context;
++
++	GEM_BUG_ON(!intel_context_is_child(ce));
++
++	/* Turn on preemption */
++	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
++	*cs++ = MI_NOOP;
++
++	/* Signal parent */
++	cs = gen8_emit_ggtt_write(cs,
++				  PARENT_GO_FINI_BREADCRUMB,
++				  get_children_join_addr(ce->parent,
++							 ce->guc_child_index),
++				  0);
++
++	/* Wait parent on for go */
++	*cs++ = (MI_SEMAPHORE_WAIT |
++		 MI_SEMAPHORE_GLOBAL_GTT |
++		 MI_SEMAPHORE_POLL |
++		 MI_SEMAPHORE_SAD_EQ_SDD);
++	*cs++ = CHILD_GO_FINI_BREADCRUMB;
++	*cs++ = get_children_go_addr(ce->parent);
++	*cs++ = 0;
++
++	/* Emit fini breadcrumb */
++	cs = gen8_emit_ggtt_write(cs,
++				  rq->fence.seqno,
++				  i915_request_active_timeline(rq)->hwsp_offset,
++				  0);
++
++	/* User interrupt */
++	*cs++ = MI_USER_INTERRUPT;
++	*cs++ = MI_NOOP;
++
++	rq->tail = intel_ring_offset(rq, cs);
++
++	return cs;
++}
++
+ static inline struct intel_context *
+ g2h_context_lookup(struct intel_guc *guc, u32 desc_idx)
+ {
+@@ -4615,6 +4885,19 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
+ 			drm_printf(p, "\t\tWQI Status: %u\n\n",
+ 				   READ_ONCE(desc->wq_status));
+ 
++			drm_printf(p, "\t\tNumber Children: %u\n\n",
++				   ce->guc_number_children);
++			if (ce->engine->emit_bb_start ==
++			    emit_bb_start_parent_bb_preempt_boundary) {
++				u8 i;
++
++				drm_printf(p, "\t\tChildren Go: %u\n\n",
++					   get_children_go_value(ce));
++				for (i = 0; i < ce->guc_number_children; ++i)
++					drm_printf(p, "\t\tChildren Join: %u\n",
++						   get_children_join_value(ce, i));
++			}
++
+ 			for_each_child(ce, child)
+ 				guc_log_context(p, child);
+ 		}
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
