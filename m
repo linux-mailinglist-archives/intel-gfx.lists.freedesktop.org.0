@@ -1,70 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E282E3D0191
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 20:24:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E5773D0193
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 20:25:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0F706E402;
-	Tue, 20 Jul 2021 18:24:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A48F46E41B;
+	Tue, 20 Jul 2021 18:25:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF9E86E195
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 18:24:37 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id
- m11-20020a05600c3b0bb0290228f19cb433so2066941wms.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 11:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=fZortMfUJ6sP9V4mv+JXrwjkFsuKqC8sCrT1IfxE2IQ=;
- b=XUVux13s5c4XE3la6sNsDVnV5wsJPDf/esKROaTiOV8tSVRTmYXOJTY8JKuikYyZZy
- XNq6hOye5f5dgGbDzB+YonO8zlet92Ln7TuqPcypBNArxSXUeL0ON7mgBEcnbSwB8z+o
- Y/YfhB3M9AvmOGssbFid8ROltS8CDgfGo1RHw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=fZortMfUJ6sP9V4mv+JXrwjkFsuKqC8sCrT1IfxE2IQ=;
- b=ty5zmm+w6kYSpl4gA2Pno12wGbxnpqiXXFeUpC9rORdISC7rdAVl8OMujuyzEyd73/
- GtV5hlXU9SBsBuyGxUIYZY+s2+/rK4CggZoyWepMmrXh5/6qni5OvO9Hjfq3EWEw7AhS
- Cw4+xBevgvgOvfuXnnQM7yC/fMjpBbLiqjWmHbYea+6X8S6NeXpNAsj0bcD8MuJ9Sel+
- wVW8HtLoElXoYEljBoH5ygDFoDTnmhQdwOFzL9wrc+hQSAaxFHxdBjzTGoIQ9cO5qBEM
- WoT1uJ8eKiWOiYQHGbWZkbwh0/VW9OfFI5JDiVheJJzIkaPPE7wIjAdl3IBFcQaHfD5N
- F29g==
-X-Gm-Message-State: AOAM531ukaRcHVJjmkY1vHmMEkjWnWstUvkGcU0e0paEcBTMHSipu/dg
- lbbZQE+/BuZ3Dd0uCGj8cVc30A==
-X-Google-Smtp-Source: ABdhPJxJxuXAAbG2g8VfRjxtITgkDdi2Iec/QZfgBKKrqV+PIsMHUm2HQjbGOW/zVNRBi991fnD58w==
-X-Received: by 2002:a05:600c:2f1a:: with SMTP id
- r26mr38841077wmn.41.1626805476463; 
- Tue, 20 Jul 2021 11:24:36 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q19sm2943917wmq.38.2021.07.20.11.24.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Jul 2021 11:24:33 -0700 (PDT)
-Date: Tue, 20 Jul 2021 20:24:31 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Message-ID: <YPcU3wJK7kC5b7kv@phenom.ffwll.local>
-Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@linux.ie, sumit.semwal@linaro.org,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- skhan@linuxfoundation.org, gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- emil.l.velikov@gmail.com
-References: <20210712043508.11584-1-desmondcheongzx@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2CA606E207;
+ Tue, 20 Jul 2021 18:25:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1CC0CA882E;
+ Tue, 20 Jul 2021 18:25:17 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210712043508.11584-1-desmondcheongzx@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v8 0/5] drm: address potential UAF bugs with
- drm_master ptrs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Diana Craciun OSS" <diana.craciun@oss.nxp.com>
+Date: Tue, 20 Jul 2021 18:25:17 -0000
+Message-ID: <162680551711.12848.15736520236769448593@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <0-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
+In-Reply-To: <0-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUHJv?=
+ =?utf-8?q?vide_core_infrastructure_for_managing_open/release_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,109 +38,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tzimmermann@suse.de, airlied@linux.ie, gregkh@linuxfoundation.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- mripard@kernel.org, christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org,
- dri-devel@lists.freedesktop.org, skhan@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org, sumit.semwal@linaro.org,
- linux-media@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0675608962=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 12, 2021 at 12:35:03PM +0800, Desmond Cheong Zhi Xi wrote:
-> Hi,
-> 
-> In the previous thread on this series we decided to remove a patch that was violating a lockdep requirement in drm_lease. In addition to this change, I took a closer look at the CI logs for the Basic Acceptance Tests and noticed that another regression was introduced. The new patch 2 is a response to this.
-> 
-> Overall, this series addresses potential use-after-free errors when dereferencing pointers to struct drm_master. These were identified after one such bug was caught by Syzbot in drm_getunique():
-> https://syzkaller.appspot.com/bug?id=148d2f1dfac64af52ffd27b661981a540724f803
-> 
-> The series is broken up into five patches:
-> 
-> 1. Move a call to drm_is_current_master() out from a section locked by &dev->mode_config.mutex in drm_mode_getconnector(). This patch does not apply to stable.
-> 
-> 2. Move a call to drm_is_current_master() out from the RCU read-side critical section in drm_clients_info().
-> 
-> 3. Implement a locked version of drm_is_current_master() function that's used within drm_auth.c.
-> 
-> 4. Serialize drm_file.master by introducing a new spinlock that's held whenever the value of drm_file.master changes.
-> 
-> 5. Identify areas in drm_lease.c where pointers to struct drm_master are dereferenced, and ensure that the master pointers are not freed during use.
-> 
-> v7 -> v8:
-> - Remove the patch that moves the call to _drm_lease_held out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find. This patch violated an existing lockdep requirement as reported by the intel-gfx CI.
-> - Added a new patch that moves a call to drm_is_current_master out from the RCU critical section in drm_clients_info. This was reported by the intel-gfx CI.
-> 
-> v6 -> v7:
-> - Modify code alignment as suggested by the intel-gfx CI.
-> - Add a new patch to the series that adds a new lock to serialize drm_file.master, in response to the lockdep splat by the intel-gfx CI.
-> - Update drm_file_get_master to use the new drm_file.master_lock instead of drm_device.master_mutex, in response to the lockdep splat by the intel-gfx CI.
-> 
-> v5 -> v6:
-> - Add a new patch to the series that moves the call to _drm_lease_held out from the section locked by &dev->mode_config.idr_mutex in __drm_mode_object_find.
-> - Clarify the kerneldoc for dereferencing drm_file.master, as suggested by Daniel Vetter.
-> - Refactor error paths with goto labels so that each function only has a single drm_master_put(), as suggested by Emil Velikov.
-> - Modify comparisons to NULL into "!master", as suggested by the intel-gfx CI.
-> 
-> v4 -> v5:
-> - Add a new patch to the series that moves the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex.
-> - Additionally, added a missing semicolon to the patch, caught by the intel-gfx CI.
-> 
-> v3 -> v4:
-> - Move the call to drm_is_current_master in drm_mode_getconnector out from the section locked by &dev->mode_config.mutex. As suggested by Daniel Vetter. This avoids a circular lock lock dependency as reported here https://patchwork.freedesktop.org/patch/440406/
-> - Inside drm_is_current_master, instead of grabbing &fpriv->master->dev->master_mutex, we grab &fpriv->minor->dev->master_mutex to avoid dereferencing a null ptr if fpriv->master is not set.
-> - Modify kerneldoc formatting for drm_file.master, as suggested by Daniel Vetter.
-> - Additionally, add a file_priv->master NULL check inside drm_file_get_master, and handle the NULL result accordingly in drm_lease.c. As suggested by Daniel Vetter.
-> 
-> v2 -> v3:
-> - Move the definition of drm_is_current_master and the _locked version higher up in drm_auth.c to avoid needing a forward declaration of drm_is_current_master_locked. As suggested by Daniel Vetter.
-> - Instead of leaking drm_device.master_mutex into drm_lease.c to protect drm_master pointers, add a new drm_file_get_master() function that returns drm_file->master while increasing its reference count, to prevent drm_file->master from being freed. As suggested by Daniel Vetter.
-> 
-> v1 -> v2:
-> - Move the lock and assignment before the DRM_DEBUG_LEASE in drm_mode_get_lease_ioctl, as suggested by Emil Velikov.
+--===============0675608962==
+Content-Type: multipart/alternative;
+ boundary="===============5061754895165532818=="
 
-Apologies for the delay, I missed your series. Maybe just ping next time
-around there's silence.
+--===============5061754895165532818==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Looks all great, merged to drm-misc-next. Given how complex this was I'm
-vary of just pushing this to -fixes without some solid testing.
+== Series Details ==
 
-One thing I noticed is that drm_is_current_master could just use the
-spinlock, since it's only doing a read access. Care to type up that patch?
+Series: Provide core infrastructure for managing open/release (rev4)
+URL   : https://patchwork.freedesktop.org/series/92556/
+State : success
 
-Also, do you plan to look into that idea we've discussed to flush pending
-access when we revoke a master or a lease? I think that would be really
-nice improvement here.
--Daniel
+== Summary ==
 
-> 
-> Desmond Cheong Zhi Xi (5):
->   drm: avoid circular locks in drm_mode_getconnector
->   drm: avoid blocking in drm_clients_info's rcu section
->   drm: add a locked version of drm_is_current_master
->   drm: serialize drm_file.master with a new spinlock
->   drm: protect drm_master pointers in drm_lease.c
-> 
->  drivers/gpu/drm/drm_auth.c      | 93 ++++++++++++++++++++++++---------
->  drivers/gpu/drm/drm_connector.c |  5 +-
->  drivers/gpu/drm/drm_debugfs.c   |  3 +-
->  drivers/gpu/drm/drm_file.c      |  1 +
->  drivers/gpu/drm/drm_lease.c     | 81 +++++++++++++++++++++-------
->  include/drm/drm_auth.h          |  1 +
->  include/drm/drm_file.h          | 18 +++++--
->  7 files changed, 152 insertions(+), 50 deletions(-)
-> 
-> -- 
-> 2.25.1
-> 
+CI Bug Log - changes from CI_DRM_10358 -> Patchwork_20654
+====================================================
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20654 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] ([fdo#109271])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][3] ([i915#3159])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][4] ([i915#2782] / [i915#2940]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10358/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
+
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10358 -> Patchwork_20654
+
+  CI-20190529: 20190529
+  CI_DRM_10358: 76ff1f71cd0e2e203003b84881e41bf7be9f0e82 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20654: 162e52a805cacc4f405cd338ae2c120fb812b944 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+162e52a805ca vfio: Remove struct vfio_device_ops open/release
+cab2ea195208 vfio/gvt: Fix open/close when multiple device FDs are open
+19f77617b258 vfio/ap, ccw: Fix open/close when multiple device FDs are open
+4be916d9705d vfio/mbochs: Fix close when multiple device FDs are open
+b53473635416 vfio/pci: Reorganize VFIO_DEVICE_PCI_HOT_RESET to use the device set
+00142c33a230 vfio/pci: Change vfio_pci_try_bus_reset() to use the dev_set
+f71fdc2eb5e9 vfio/pci: Move to the device set infrastructure
+08ebd8d9d664 vfio/platform: Use open_device() instead of open coding a refcnt scheme
+58c423da0813 vfio/fsl: Move to the device set infrastructure
+41fd621c4613 vfio/samples: Delete useless open/close
+98f8177ed897 vfio: Provide better generic support for open/release vfio_device_ops
+5234af9416ea vfio: Introduce a vfio_uninit_group_dev() API call
+a970d83995e9 vfio/mbochs: Fix missing error unwind in mbochs_probe()
+7dbfff5c0615 vfio/samples: Remove module get/put
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/index.html
+
+--===============5061754895165532818==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Provide core infrastructure for managing open/release (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92556/">https://patchwork.freedesktop.org/series/92556/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10358 -&gt; Patchwork_20654</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20654 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10358/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20654/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10358 -&gt; Patchwork_20654</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10358: 76ff1f71cd0e2e203003b84881e41bf7be9f0e82 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20654: 162e52a805cacc4f405cd338ae2c120fb812b944 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>162e52a805ca vfio: Remove struct vfio_device_ops open/release<br />
+cab2ea195208 vfio/gvt: Fix open/close when multiple device FDs are open<br />
+19f77617b258 vfio/ap, ccw: Fix open/close when multiple device FDs are open<br />
+4be916d9705d vfio/mbochs: Fix close when multiple device FDs are open<br />
+b53473635416 vfio/pci: Reorganize VFIO_DEVICE_PCI_HOT_RESET to use the device set<br />
+00142c33a230 vfio/pci: Change vfio_pci_try_bus_reset() to use the dev_set<br />
+f71fdc2eb5e9 vfio/pci: Move to the device set infrastructure<br />
+08ebd8d9d664 vfio/platform: Use open_device() instead of open coding a refcnt scheme<br />
+58c423da0813 vfio/fsl: Move to the device set infrastructure<br />
+41fd621c4613 vfio/samples: Delete useless open/close<br />
+98f8177ed897 vfio: Provide better generic support for open/release vfio_device_ops<br />
+5234af9416ea vfio: Introduce a vfio_uninit_group_dev() API call<br />
+a970d83995e9 vfio/mbochs: Fix missing error unwind in mbochs_probe()<br />
+7dbfff5c0615 vfio/samples: Remove module get/put</p>
+
+</body>
+</html>
+
+--===============5061754895165532818==--
+
+--===============0675608962==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0675608962==--
