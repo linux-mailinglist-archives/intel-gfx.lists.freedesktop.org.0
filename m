@@ -1,60 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 319C03CFB2B
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 15:51:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 447D73CFBAC
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Jul 2021 16:12:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 867ED89E0E;
-	Tue, 20 Jul 2021 13:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DAB389FF7;
+	Tue, 20 Jul 2021 14:11:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E45FF89DBD
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 13:50:56 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id t5so26060874wrw.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 06:50:56 -0700 (PDT)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
+ [IPv6:2a00:1450:4864:20::32a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC0889FF7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 14:11:56 +0000 (UTC)
+Received: by mail-wm1-x32a.google.com with SMTP id w13so12364961wmc.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 07:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=sI4lOFqRzupKkYq98Gmd5BUFkdbcZOoG/UvAcZHjLDY=;
- b=QBbwhpFEg138cFF13OlHokR7JOS4muXESJoP0GE8o7KEv35eNms/xuto9Ggx61MJnV
- pv5yMUhlTXtwC0gs7+LZigEVtzx6FeEYFBjFZISkgcMiS1iksMJxxE9AQ75qX/XxMULb
- sMeC2UURwOTw9xD6wYT2FjKji3DINZHhYE1LY=
+ :content-disposition:in-reply-to;
+ bh=+99Bkzo1T6V6yipq2wGp2+VIlI+NtcGrsveGXBzQdfI=;
+ b=k1BEYGeLHiKE943zq0AJ/A9pedtwmJ17JxmYuV4jtmxEfRKSE8dQjl6W+tJTa/wK2a
+ Bv7QVR5ogsBTw6eCqZjS7dH+2Kf3SGjaDe/E4TOq+i0pHIOg5Tkz0jCkGqEaP8Sq8PY3
+ 2mVfh+W5FSvTgdru8i54oX5nOv9x9otz0tJNU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=sI4lOFqRzupKkYq98Gmd5BUFkdbcZOoG/UvAcZHjLDY=;
- b=uW1AVMLXs4H7klUaKGYhzM1LKX57mNGLY8oFVQCLZ3v4nkrvZzG2H31EMIpASVK7kD
- wv5P5S8nLiwQ3bdDdU1M3CY4N+LLPVA+xjg5gkBEDNq4fs4b+RAQlCjx687axBTnAx2n
- g9E8d9JaVEwUatcGwN7GOug2dejdNtCDLXejiVCZer9anl2QU9x1QRPmLiT5yv1IiL/j
- UiC3/Gse0aA2vf+IhfFCbRJWEITYN1iYOuJE3RHfvgQajsxDHbxtCnVnAO5w6X4pV9+i
- aT6w4N0Jg8AKiIZW0aq2HVD9P6phAtecOeilvNWzVw3EY0iKoa1JZqIHc+ScZjixO/Yf
- Docw==
-X-Gm-Message-State: AOAM531KVjzYHWpsm7N+6gsgVhY7oOuhqD7mCWum67icQ7IL4XowryWw
- L7GjXWPb6I0B0OpgwkmaM4rbTA==
-X-Google-Smtp-Source: ABdhPJxQV3Ee2pwcwbIe/vS8ucyfghhnzHjKP4KrgLfr14bAgT3gr9xSuwjFXjaR+rGwh3KUvvzTOA==
-X-Received: by 2002:adf:c803:: with SMTP id d3mr30463317wrh.345.1626789055598; 
- Tue, 20 Jul 2021 06:50:55 -0700 (PDT)
+ :mime-version:content-disposition:in-reply-to;
+ bh=+99Bkzo1T6V6yipq2wGp2+VIlI+NtcGrsveGXBzQdfI=;
+ b=kPu4TqUbF5kjtSqex22tKQL3D3RZGDn5YjsAXboU06xHxJz8ZsgSb3KEAnf81yLs0t
+ zClGya0JCsWN5eZX48HuBdKGdqp7yZKUaym51GjE6Vvp9W9Z8DR1KM4VJCokZdUazInL
+ NSg/poewP9eh7qIeuSDBPTRTupjnwqnCYvlU5UC1HIxYXbGvcS62kh2p+ZHS5Vq2jLbe
+ 7P9etefTDvSAF0LIG2bHjTrlsLtnU3XnMKnSF6I+g5VdkRgjA6TqSaff9BAuoUO2wSL/
+ eFakV5uM37bqUv29w92hb9LCGrZT0Sip8Jn/1zVYpszDV54yDT+tmJZN2q/nQ1gj19/I
+ h6Ww==
+X-Gm-Message-State: AOAM530p0sBtqNB7+IGkZn7DC6pXeXFBAWyXSHvVHuEMyWL4U6/SMqsi
+ F9i2asCBu8IfeL94plNsFowH/g==
+X-Google-Smtp-Source: ABdhPJw86dJRZqU8oOV8kCozRCnLqmfko4g/rt0FDg2+hmIjB+7H8yYryPt91ZKw0zbFxtv5KKT8sA==
+X-Received: by 2002:a7b:c150:: with SMTP id z16mr37655298wmi.104.1626790315685; 
+ Tue, 20 Jul 2021 07:11:55 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f2sm23731613wrq.69.2021.07.20.06.50.54
+ by smtp.gmail.com with ESMTPSA id o7sm16273281wrs.52.2021.07.20.07.11.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Jul 2021 06:50:54 -0700 (PDT)
-Date: Tue, 20 Jul 2021 15:50:52 +0200
+ Tue, 20 Jul 2021 07:11:55 -0700 (PDT)
+Date: Tue, 20 Jul 2021 16:11:53 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <YPbUvIYmu3WfyM2C@phenom.ffwll.local>
-References: <20210716061634.2446357-1-hch@lst.de>
- <20210716061634.2446357-2-hch@lst.de>
- <f171831b-3281-5a5a-04d3-2d69cb77f1a2@amd.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YPbZqZx/mwenKcDV@phenom.ffwll.local>
+References: <20210719183047.2624569-1-jason@jlekstrand.net>
+ <20210719183047.2624569-3-jason@jlekstrand.net>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <f171831b-3281-5a5a-04d3-2d69cb77f1a2@amd.com>
+In-Reply-To: <20210719183047.2624569-3-jason@jlekstrand.net>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 1/7] vgaarb: remove VGA_DEFAULT_DEVICE
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Call i915_globals_exit() if
+ pci_register_device() fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,66 +66,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, kvm@vger.kernel.org,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 16, 2021 at 09:14:02AM +0200, Christian K=F6nig wrote:
-> Am 16.07.21 um 08:16 schrieb Christoph Hellwig:
-> > The define is entirely unused.
-> > =
+On Mon, Jul 19, 2021 at 01:30:43PM -0500, Jason Ekstrand wrote:
+> In the unlikely event that pci_register_device() fails, we were tearing
+> down our PMU setup but not globals.  This leaves a bunch of memory slabs
+> lying around.
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
+> Cc: Daniel Vetter <daniel@ffwll.ch>
 
-> > Signed-off-by: Christoph Hellwig <hch@lst.de>
-> =
-
-> I'm not an expert for this particular code, but at least of hand everythi=
-ng
-> you do here makes totally sense.
-> =
-
-> Whole series is Acked-by: Christian K=F6nig <christian.koenig@amd.com>
-
-Care to also push this into drm-misc-next since you looked already?
--Daniel
-
-> =
-
-> Regards,
-> Christian.
-> =
-
-> > ---
-> >   include/linux/vgaarb.h | 6 ------
-> >   1 file changed, 6 deletions(-)
-> > =
-
-> > diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-> > index dc6ddce92066..26ec8a057d2a 100644
-> > --- a/include/linux/vgaarb.h
-> > +++ b/include/linux/vgaarb.h
-> > @@ -42,12 +42,6 @@
-> >   #define VGA_RSRC_NORMAL_IO     0x04
-> >   #define VGA_RSRC_NORMAL_MEM    0x08
-> > -/* Passing that instead of a pci_dev to use the system "default"
-> > - * device, that is the one used by vgacon. Archs will probably
-> > - * have to provide their own vga_default_device();
-> > - */
-> > -#define VGA_DEFAULT_DEVICE     (NULL)
-> > -
-> >   struct pci_dev;
-> >   /* For use by clients */
-> =
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
 
--- =
+> ---
+>  drivers/gpu/drm/i915/i915_globals.c | 4 ++--
+>  drivers/gpu/drm/i915/i915_pci.c     | 1 +
+>  2 files changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
+> index 77f1911c463b8..87267e1d2ad92 100644
+> --- a/drivers/gpu/drm/i915/i915_globals.c
+> +++ b/drivers/gpu/drm/i915/i915_globals.c
+> @@ -138,7 +138,7 @@ void i915_globals_unpark(void)
+>  	atomic_inc(&active);
+>  }
+>  
+> -static void __exit __i915_globals_flush(void)
+> +static void __i915_globals_flush(void)
+>  {
+>  	atomic_inc(&active); /* skip shrinking */
+>  
+> @@ -148,7 +148,7 @@ static void __exit __i915_globals_flush(void)
+>  	atomic_dec(&active);
+>  }
+>  
+> -void __exit i915_globals_exit(void)
+> +void i915_globals_exit(void)
+>  {
+>  	GEM_BUG_ON(atomic_read(&active));
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 50ed93b03e582..4e627b57d31a2 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1230,6 +1230,7 @@ static int __init i915_init(void)
+>  	err = pci_register_driver(&i915_pci_driver);
+>  	if (err) {
+>  		i915_pmu_exit();
+> +		i915_globals_exit();
+>  		return err;
+>  	}
+>  
+> -- 
+> 2.31.1
+> 
 
+-- 
 Daniel Vetter
 Software Engineer, Intel Corporation
 http://blog.ffwll.ch
