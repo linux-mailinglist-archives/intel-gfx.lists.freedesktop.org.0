@@ -2,39 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839FB3D12DC
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 17:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDA03D12DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 17:54:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D52136E97A;
-	Wed, 21 Jul 2021 15:53:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 152E46E98C;
+	Wed, 21 Jul 2021 15:54:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7A1F6E97A
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 15:53:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="208344623"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="208344623"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 08:52:42 -0700
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="576732107"
-Received: from unknown (HELO intel.com) ([10.212.44.180])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 08:52:41 -0700
-Date: Wed, 21 Jul 2021 11:52:40 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YPhCyOHhJwotw9U+@intel.com>
-References: <20210720182108.2761496-1-jason@jlekstrand.net>
- <YPcxMC1oULxcCSSO@intel.com> <YPcxkGJi9b8jpXII@intel.com>
- <CAOFGe95_ELCr2d==7ohQ+5aFBufcSHo-PZi59bfDNREarN7YPg@mail.gmail.com>
- <YPfxaqe51WtKcA06@intel.com>
- <CAOFGe96_rC+=3A1g=BLYZ1J=fNvRG0Xy_UC4gn7W-JY85J1NCw@mail.gmail.com>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60FD6E98C;
+ Wed, 21 Jul 2021 15:54:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:In-Reply-To:References;
+ bh=JrLica/ek2YskHpXI9fYj8ViRrznmZcuCcmQzFF5zvo=; b=nFxGbp4GGLb2Unz5PWTYnLyqcd
+ dl0Hh87z6xUGmtpP2EQ3ifRZpXuSYvhIFWW6B/wQQuF5qvVGFNOgbwk+TuelahXAds9QudZ16vttI
+ +qrJnlwBrXdQ6udL8Xi/9RGmBxO/pfGkRh0MqXhZwFy9RrlvrmTKth7dbmOnZn46W3cbnAUA9rIch
+ CjHeiSTefR5Z+3JrBXOwK8Q8qkiye2aaQOKtiOVM2SW87lGrLNLZecgh9IZya+5N5oKH5Y7fTSBgV
+ Aji6wu808SjUTdAVGb1YlWVzDV98luR9jFnD6/HfFDRhm2uTHGXwFaFjMEePcGdYwnMChoXSz8i6d
+ iNWdGhfQ==;
+Received: from [2001:4bb8:193:7660:d6d5:72f4:23f7:1898] (helo=localhost)
+ by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1m6EXk-009MDd-16; Wed, 21 Jul 2021 15:53:58 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
+Date: Wed, 21 Jul 2021 17:53:34 +0200
+Message-Id: <20210721155355.173183-1-hch@lst.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAOFGe96_rC+=3A1g=BLYZ1J=fNvRG0Xy_UC4gn7W-JY85J1NCw@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Correct the docs for
- intel_engine_cmd_parser
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+Subject: [Intel-gfx] refactor the i915 GVT support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,85 +50,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 21, 2021 at 10:25:27AM -0500, Jason Ekstrand wrote:
-> Would you mind pushing?  I still don't have those magic powers. :-)
-> 
-> --Jason
-> 
-> On Wed, Jul 21, 2021 at 5:05 AM Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> >
-> > On Tue, Jul 20, 2021 at 04:04:59PM -0500, Jason Ekstrand wrote:
-> > > On Tue, Jul 20, 2021 at 3:26 PM Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > > >
-> > > > On Tue, Jul 20, 2021 at 04:25:21PM -0400, Rodrigo Vivi wrote:
-> > > > > On Tue, Jul 20, 2021 at 01:21:08PM -0500, Jason Ekstrand wrote:
-> > > > > > In c9d9fdbc108a ("drm/i915: Revert "drm/i915/gem: Asynchronous
+Hi all,
 
-while pushing I noticed this hash was for the patch in the drm-intel-fixes
-branch. I updated to the right one in drm-intel-gt-next.
+the GVT code in the i915 is a bit of a mess right now due to strange
+abstractions and lots of indirect calls.  This series refactors various
+bits to clean that up.  The main user visible change is that almost all
+of the GVT code moves out of the main i915 driver and into the kvmgt
+module.
 
-Then I also added the Fixes tag and cherry-picked to drm-intel-fixes branch.
+Tested on my Thinkpad with a Kaby Lake CPU and integrated graphics.
 
-Everything pushed now.
+Git tree:
 
-Thanks for the patch,
-Rodrigo.
+    git://git.infradead.org/users/hch/misc.git i915-gvt
 
-> > > > > > cmdparser""), the parameters to intel_engine_cmd_parser() were altered
-> > > > > > without updating the docs, causing Fi.CI.DOCS to start failing.
-> > > > > >
-> > > > > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/i915_cmd_parser.c | 4 +---
-> > > > > >  1 file changed, 1 insertion(+), 3 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
-> > > > > > index 322f4d5955a4f..e0403ce9ce692 100644
-> > > > > > --- a/drivers/gpu/drm/i915/i915_cmd_parser.c
-> > > > > > +++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
-> > > > > > @@ -1416,9 +1416,7 @@ static unsigned long *alloc_whitelist(u32 batch_length)
-> > > > > >   * @batch_offset: byte offset in the batch at which execution starts
-> > > > > >   * @batch_length: length of the commands in batch_obj
-> > > > > >   * @shadow: validated copy of the batch buffer in question
-> > > > > > - * @jump_whitelist: buffer preallocated with intel_engine_cmd_parser_alloc_jump_whitelist()
-> > > > > > - * @shadow_map: mapping to @shadow vma
-> > > > > > - * @batch_map: mapping to @batch vma
-> > > > > > + * @trampoline: true if we need to trampoline into privileged execution
-> > > > >
-> > > > > I was wondering if we should also return the original text, but this one
-> > > > > here looks better.
-> > > > >
-> > > > >
-> > > > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > >
-> > > > btw, while on it, I wouldn't mind if you squash some english fixes to
-> > > > the trampoline documentation block inside this function ;)
-> > >
-> > > I don't mind at all but I'm not sure what changes you're suggesting.
-> >
-> > nevermind...
-> > It was just my broke english that didn't know the inversion on the "only if"
-> >
-> >
-> > >
-> > > > >
-> > > > >
-> > > > > >   *
-> > > > > >   * Parses the specified batch buffer looking for privilege violations as
-> > > > > >   * described in the overview.
-> > > > > > --
-> > > > > > 2.31.1
-> > > > > >
-> > > > > > _______________________________________________
-> > > > > > Intel-gfx mailing list
-> > > > > > Intel-gfx@lists.freedesktop.org
-> > > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Gitweb:
+
+    http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/i915-gvt
+
+Diffstat:
+ b/drivers/gpu/drm/i915/Kconfig                         |   31 
+ b/drivers/gpu/drm/i915/Makefile                        |   30 
+ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c |    4 
+ b/drivers/gpu/drm/i915/gvt/cfg_space.c                 |   89 --
+ b/drivers/gpu/drm/i915/gvt/cmd_parser.c                |    4 
+ b/drivers/gpu/drm/i915/gvt/dmabuf.c                    |   36 
+ b/drivers/gpu/drm/i915/gvt/execlist.c                  |   12 
+ b/drivers/gpu/drm/i915/gvt/gtt.c                       |   55 -
+ b/drivers/gpu/drm/i915/gvt/gvt.c                       |  100 --
+ b/drivers/gpu/drm/i915/gvt/gvt.h                       |  132 ++-
+ b/drivers/gpu/drm/i915/gvt/interrupt.c                 |   38 -
+ b/drivers/gpu/drm/i915/gvt/kvmgt.c                     |  634 ++++-------------
+ b/drivers/gpu/drm/i915/gvt/mmio.c                      |    4 
+ b/drivers/gpu/drm/i915/gvt/opregion.c                  |  148 ---
+ b/drivers/gpu/drm/i915/gvt/page_track.c                |    8 
+ b/drivers/gpu/drm/i915/gvt/scheduler.c                 |   37 
+ b/drivers/gpu/drm/i915/gvt/trace.h                     |    2 
+ b/drivers/gpu/drm/i915/gvt/vgpu.c                      |   22 
+ b/drivers/gpu/drm/i915/i915_drv.h                      |    7 
+ b/drivers/gpu/drm/i915/i915_params.c                   |    2 
+ b/drivers/gpu/drm/i915/intel_gvt.c                     |   64 +
+ b/drivers/gpu/drm/i915/intel_gvt.h                     |    4 
+ drivers/gpu/drm/i915/gvt/Makefile                      |    9 
+ drivers/gpu/drm/i915/gvt/hypercall.h                   |   82 --
+ drivers/gpu/drm/i915/gvt/mpt.h                         |  400 ----------
+ 25 files changed, 541 insertions(+), 1413 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
