@@ -1,57 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E32243D0A81
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 10:32:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F18793D0AAD
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 10:44:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF576E918;
-	Wed, 21 Jul 2021 08:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CF3E6E20E;
+	Wed, 21 Jul 2021 08:44:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com
- [IPv6:2607:f8b0:4864:20::f34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0EAB6E916;
- Wed, 21 Jul 2021 08:32:15 +0000 (UTC)
-Received: by mail-qv1-xf34.google.com with SMTP id o9so559589qvu.5;
- Wed, 21 Jul 2021 01:32:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SNsVoTi33ntWSldj4skGgRfv8OpN1MHrMtXlRrxkjWg=;
- b=C96TOJswETkFJ0ABqSUbGbcPsGjvjAMu+SioQG87gQfuWogH1/WwPJp0ZXvcs365sg
- SFMNXqIhCCg+xybbRLx1guqs1Obcp/JFR8OGYpvKjYsHdlexRIYqiQwppBens6BggTuC
- fKLNKgOIpe6ALhoik4Ws1KrzX1Fw4pUDM88Oy+TkhPq13+APDiVMcpCHLkoVdhRA1dO4
- YPug3kt7QzMLEJ8G8VYzrmCjouy0JVvabTlK8H1EcuJ/dHQa3M7Ka6vauDuT/Kne7lN2
- IMSewMwKfdoGfNn3k7B9oqOx6IBnh8NP7/399Jtu7AbmbRaUuyhXewv1Dp+d8H6DRHlu
- WoGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SNsVoTi33ntWSldj4skGgRfv8OpN1MHrMtXlRrxkjWg=;
- b=JSRcct9JjpD14nSMiAS1BWSljxW2uhrCoR1msdN8n2AC/CxTY/au80dr20KoNlOSnD
- soWuvTmpaADWZeHJ8p9Wo0RQzpqHWOYAEuvA+jUimHqpetJ5vef0WsOQ9GYLieUNC4++
- JhzLv5mULMQIjs491/CBDqlITbf/3/iYEfrJeT/InIGSBLsHtWwJkE+KWm9D5PRB+WEy
- b3oQgVvqoS3t2jdpdxiXnK9FPHcbdddB05kL75fwBzQaeyZInaPUyg9Ev4L540a/p18O
- GQo1JbPa8Htkkdzb6Dg9Unm4k74T8RHdLyUSkTA2+L126Rxu+DzlpVEQd+Nnz+7P4TPS
- bEZw==
-X-Gm-Message-State: AOAM531Ym0zPXfOI5JgO+pc2ttJJQaA+ZLh2K5omywYHZiTwbQhHjN8F
- 71gENbUi//2v4hZ+1T8DZdYEKW1/cFUUb9bY1YKCwRatrmuGvQ==
-X-Google-Smtp-Source: ABdhPJz5c4hGZbdt2dz9GvozxXV/ZG3SrYtw0c/JSNlKJryJkMpewWu2ZqsK2mZ7vkiAzO/Qbb+k//ua0ZiORlClXMQ=
-X-Received: by 2002:a0c:e54e:: with SMTP id n14mr34883079qvm.41.1626856335010; 
- Wed, 21 Jul 2021 01:32:15 -0700 (PDT)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E6496E20E;
+ Wed, 21 Jul 2021 08:44:07 +0000 (UTC)
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id CF3B81FE7C;
+ Wed, 21 Jul 2021 08:44:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1626857045; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZC103whzQwrDrB98HUNqUFVuBTQ4fJENkEhlnkf8mro=;
+ b=G38v/z5g0UKoMPgJcABxbjhcToBoCB03WoV2FnOzYikEApZtEaq62D6ZBUzW7MNi3xtnD8
+ 6/UggJQNHKuupbyIYMf4nRC4S7JMhsaisB4q0J49opsjMOg4b4Pw+uJMVh0lGRZ0jtXk3F
+ bLIfaFa3G84/WWZGAo54RghbfypKQv0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1626857045;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZC103whzQwrDrB98HUNqUFVuBTQ4fJENkEhlnkf8mro=;
+ b=i4a4fnQAvp7Wcd8nJ9AKKvsoj8btBPCophtbIf7y8IzSR8p1oqVBVofkXwJRa2V3MV8kkZ
+ ZUrpwNjPAMBhKjAQ==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id A232613BC9;
+ Wed, 21 Jul 2021 08:44:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap1.suse-dmz.suse.de with ESMTPSA id iVGOJlXe92CyKQAAGKfGzw
+ (envelope-from <tzimmermann@suse.de>); Wed, 21 Jul 2021 08:44:05 +0000
+To: Dave Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+References: <444811c3-cbec-e9d5-9a6b-9632eda7962a@linux.intel.com>
+ <CAPM=9twumCVtr+zFvy40GKt=6zFRsAMNYV+-5cUKfwV76RfBEw@mail.gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <cc8832ce-f8f9-53c7-fa60-8274631a77b1@suse.de>
+Date: Wed, 21 Jul 2021 10:44:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210716141426.1904528-1-jason@jlekstrand.net>
- <20210716141426.1904528-3-jason@jlekstrand.net>
- <CAM0jSHME+vRSDpTPAO74Z+xwjofZB4i1pbFH2Yvn+eeGYL-aqA@mail.gmail.com>
- <CAOFGe97RoL1+L+i5Qgoipnv=ta8isPiAWYhfYncF1KYBX+8t9g@mail.gmail.com>
-In-Reply-To: <CAOFGe97RoL1+L+i5Qgoipnv=ta8isPiAWYhfYncF1KYBX+8t9g@mail.gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 21 Jul 2021 09:31:48 +0100
-Message-ID: <CAM0jSHM6LNLbEQNS3EQmMU6-1XsiopZtUxmGEokzrcHn5SsfmQ@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/gem: Refactor placement setup
- for i915_gem_object_create* (v2)
+In-Reply-To: <CAPM=9twumCVtr+zFvy40GKt=6zFRsAMNYV+-5cUKfwV76RfBEw@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,191 +67,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1331346762=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Jul 2021 at 23:07, Jason Ekstrand <jason@jlekstrand.net> wrote:
->
-> On Mon, Jul 19, 2021 at 3:18 AM Matthew Auld
-> <matthew.william.auld@gmail.com> wrote:
-> >
-> > On Fri, 16 Jul 2021 at 15:14, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > >
-> > > Since we don't allow changing the set of regions after creation, we can
-> > > make ext_set_placements() build up the region set directly in the
-> > > create_ext and assign it to the object later.  This is similar to what
-> > > we did for contexts with the proto-context only simpler because there's
-> > > no funny object shuffling.  This will be used in the next patch to allow
-> > > us to de-duplicate a bunch of code.  Also, since we know the maximum
-> > > number of regions up-front, we can use a fixed-size temporary array for
-> > > the regions.  This simplifies memory management a bit for this new
-> > > delayed approach.
-> > >
-> > > v2 (Matthew Auld):
-> > >  - Get rid of MAX_N_PLACEMENTS
-> > >  - Drop kfree(placements) from set_placements()
-> > >
-> > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > > Cc: Matthew Auld <matthew.auld@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/gem/i915_gem_create.c | 81 ++++++++++++----------
-> > >  1 file changed, 45 insertions(+), 36 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> > > index 51f92e4b1a69d..5766749a449c0 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> > > @@ -27,10 +27,13 @@ static u32 object_max_page_size(struct drm_i915_gem_object *obj)
-> > >         return max_page_size;
-> > >  }
-> > >
-> > > -static void object_set_placements(struct drm_i915_gem_object *obj,
-> > > -                                 struct intel_memory_region **placements,
-> > > -                                 unsigned int n_placements)
-> > > +static int object_set_placements(struct drm_i915_gem_object *obj,
-> > > +                                struct intel_memory_region **placements,
-> > > +                                unsigned int n_placements)
-> > >  {
-> > > +       struct intel_memory_region **arr;
-> > > +       unsigned int i;
-> > > +
-> > >         GEM_BUG_ON(!n_placements);
-> > >
-> > >         /*
-> > > @@ -44,9 +47,20 @@ static void object_set_placements(struct drm_i915_gem_object *obj,
-> > >                 obj->mm.placements = &i915->mm.regions[mr->id];
-> > >                 obj->mm.n_placements = 1;
-> > >         } else {
-> > > -               obj->mm.placements = placements;
-> > > +               arr = kmalloc_array(n_placements,
-> > > +                                   sizeof(struct intel_memory_region *),
-> > > +                                   GFP_KERNEL);
-> > > +               if (!arr)
-> > > +                       return -ENOMEM;
-> > > +
-> > > +               for (i = 0; i < n_placements; i++)
-> > > +                       arr[i] = placements[i];
-> > > +
-> > > +               obj->mm.placements = arr;
-> > >                 obj->mm.n_placements = n_placements;
-> > >         }
-> > > +
-> > > +       return 0;
-> > >  }
-> > >
-> > >  static int i915_gem_publish(struct drm_i915_gem_object *obj,
-> > > @@ -148,7 +162,9 @@ i915_gem_dumb_create(struct drm_file *file,
-> > >                 return -ENOMEM;
-> > >
-> > >         mr = intel_memory_region_by_type(to_i915(dev), mem_type);
-> > > -       object_set_placements(obj, &mr, 1);
-> > > +       ret = object_set_placements(obj, &mr, 1);
-> > > +       if (ret)
-> > > +               goto object_free;
-> > >
-> > >         ret = i915_gem_setup(obj, args->size);
-> > >         if (ret)
-> > > @@ -184,7 +200,9 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
-> > >                 return -ENOMEM;
-> > >
-> > >         mr = intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
-> > > -       object_set_placements(obj, &mr, 1);
-> > > +       ret = object_set_placements(obj, &mr, 1);
-> > > +       if (ret)
-> > > +               goto object_free;
-> > >
-> > >         ret = i915_gem_setup(obj, args->size);
-> > >         if (ret)
-> > > @@ -199,7 +217,8 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
-> > >
-> > >  struct create_ext {
-> > >         struct drm_i915_private *i915;
-> > > -       struct drm_i915_gem_object *vanilla_object;
-> > > +       struct intel_memory_region *placements[INTEL_REGION_UNKNOWN];
-> > > +       unsigned int n_placements;
-> > >  };
-> > >
-> > >  static void repr_placements(char *buf, size_t size,
-> > > @@ -230,8 +249,7 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
-> > >         struct drm_i915_private *i915 = ext_data->i915;
-> > >         struct drm_i915_gem_memory_class_instance __user *uregions =
-> > >                 u64_to_user_ptr(args->regions);
-> > > -       struct drm_i915_gem_object *obj = ext_data->vanilla_object;
-> > > -       struct intel_memory_region **placements;
-> > > +       struct intel_memory_region *placements[INTEL_REGION_UNKNOWN];
-> > >         u32 mask;
-> > >         int i, ret = 0;
-> > >
-> > > @@ -245,6 +263,8 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
-> > >                 ret = -EINVAL;
-> > >         }
-> > >
-> > > +       BUILD_BUG_ON(ARRAY_SIZE(i915->mm.regions) != ARRAY_SIZE(placements));
-> > > +       BUILD_BUG_ON(ARRAY_SIZE(ext_data->placements) != ARRAY_SIZE(placements));
-> > >         if (args->num_regions > ARRAY_SIZE(i915->mm.regions)) {
-> > >                 drm_dbg(&i915->drm, "num_regions is too large\n");
-> > >                 ret = -EINVAL;
-> > > @@ -253,21 +273,13 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
-> > >         if (ret)
-> > >                 return ret;
-> > >
-> > > -       placements = kmalloc_array(args->num_regions,
-> > > -                                  sizeof(struct intel_memory_region *),
-> > > -                                  GFP_KERNEL);
-> > > -       if (!placements)
-> > > -               return -ENOMEM;
-> > > -
-> > >         mask = 0;
-> > >         for (i = 0; i < args->num_regions; i++) {
-> > >                 struct drm_i915_gem_memory_class_instance region;
-> > >                 struct intel_memory_region *mr;
-> > >
-> > > -               if (copy_from_user(&region, uregions, sizeof(region))) {
-> > > -                       ret = -EFAULT;
-> > > -                       goto out_free;
-> > > -               }
-> > > +               if (copy_from_user(&region, uregions, sizeof(region)))
-> > > +                       return -EFAULT;
-> > >
-> > >                 mr = intel_memory_region_lookup(i915,
-> > >                                                 region.memory_class,
-> > > @@ -293,14 +305,13 @@ static int set_placements(struct drm_i915_gem_create_ext_memory_regions *args,
-> > >                 ++uregions;
-> > >         }
-> > >
-> > > -       if (obj->mm.placements) {
-> > > +       if (ext_data->n_placements) {
-> > >                 ret = -EINVAL;
-> > >                 goto out_dump;
-> > >         }
-> > >
-> > > -       object_set_placements(obj, placements, args->num_regions);
-> > > -       if (args->num_regions == 1)
-> > > -               kfree(placements);
-> > > +       for (i = 0; i < args->num_regions; i++)
-> > > +               ext_data->placements[i] = placements[i];
-> >
-> > I guess here we forget to set the ext_data->n_placements, which would
-> > explain the CI failure.
->
-> What CI failure are you referring to?
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1331346762==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="KNuQ7x1jod3j6lutUiMXuyBEBretcx6RA"
 
-Pre-merge results for this series:
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--KNuQ7x1jod3j6lutUiMXuyBEBretcx6RA
+Content-Type: multipart/mixed; boundary="vw9oMrxuWWuMFve4z7klTAxd0S58pUEwh";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: "DRM maintainer tools announcements, discussion, and development"
+ <dim-tools@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Message-ID: <cc8832ce-f8f9-53c7-fa60-8274631a77b1@suse.de>
+Subject: Re: [PULL] drm-misc-next
+References: <444811c3-cbec-e9d5-9a6b-9632eda7962a@linux.intel.com>
+ <CAPM=9twumCVtr+zFvy40GKt=6zFRsAMNYV+-5cUKfwV76RfBEw@mail.gmail.com>
+In-Reply-To: <CAPM=9twumCVtr+zFvy40GKt=6zFRsAMNYV+-5cUKfwV76RfBEw@mail.gmail.com>
 
-igt@gem_create@create-ext-placement-sanity-check:
+--vw9oMrxuWWuMFve4z7klTAxd0S58pUEwh
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-shard-skl: PASS -> FAIL +1 similar issue
-shard-apl: NOTRUN -> FAIL
-shard-glk: PASS -> FAIL
-shard-iclb: PASS -> FAIL
-shard-kbl: PASS -> FAIL
-shard-tglb: NOTRUN -> FAIL
+Hi
+
+Am 21.07.21 um 06:03 schrieb Dave Airlie:
+> On Fri, 16 Jul 2021 at 21:07, Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com> wrote:
+>>
+>> Hi Dave & Daniel,
+>>
+>> Lots of stuff this time around.
+>>
+>> Enjoy!
+>=20
+> I've pulled this but there is an outstanding warning
+>=20
+> /home/airlied/devel/kernel/dim/src/drivers/gpu/drm/hisilicon/hibmc/hibm=
+c_drm_drv.c:
+> In function =E2=80=98hibmc_unload=E2=80=99:
+> /home/airlied/devel/kernel/dim/src/drivers/gpu/drm/hisilicon/hibmc/hibm=
+c_drm_drv.c:252:28:
+> warning: unused variable =E2=80=98priv=E2=80=99 [-Wunused-variable]
+>    252 |  struct hibmc_drm_private *priv =3D to_hibmc_drm_private(dev);=
+
+>        |                            ^~~~
+>=20
+> Probably due to Thomas irq patches.
+
+I'll take a look.
+
+Best regards
+Thomas
+
+>=20
+> Dave.
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--vw9oMrxuWWuMFve4z7klTAxd0S58pUEwh--
+
+--KNuQ7x1jod3j6lutUiMXuyBEBretcx6RA
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmD33lUFAwAAAAAACgkQlh/E3EQov+CX
+qRAAxROs6z0HlnbzpQMYd1KgfKp6g5UYcK752TQZJxzhCMdbufU0Bl/j+8s6Ly3yFAE8ANewrmVb
+f5pxc6zjv1HFlGT1dJQb+JIwcRTOVuVR7S49XCUaBeWz5XEqXPYpiwVwHc+Ps+gpDtOG3OrGcPRg
+t30yogNSf/YPj70y+BKGqjCGN3aP7TRYFRre2KlIvxlqzTC7KUjfFVUlz5E7pF17tZDxRg/LYQFR
+7tscqvDYN4lNoz4HwKfkJhoctVFga2o7Wlon9Z6Q6yB7GNlwHTu5NLJugsLWqEsWl9J+7Gsx+YUz
+PKytfnFjNy7e/ILlJMp5YKCCANn1hmdWHr5ycPwFF/yQCEz5VODC0h2dlONyhSvNkkPIHzsTbAjS
+gawJwXYzlrfy0D2s9Rgto+kafbykSIdcxOg4QT3dkD3gYY1Ux6nCLvBFbTyLH3frI0qD9NAsght5
+bXUvk70c1raUKZ4H9k7OZzFdUAxjiTFAzpgeWoS2Mp+z30jjAtj9YJLTbrYSa5r+ZbZhdiMeLuul
+JQ4olEsQh9lIThr8D2IxRXqq1GLMn9LVxKh/IlSWQM7mUHI9hFIpBx0/OiGZmsVyVCw8uDUx9XeJ
+xCekdIrseqHcOw8y2mWTFojY3CJD71EXdDWFaKvDOG2U91B33BZDDXq1IpdBU0YdBw01/+lKoh4n
+MwU=
+=+09S
+-----END PGP SIGNATURE-----
+
+--KNuQ7x1jod3j6lutUiMXuyBEBretcx6RA--
+
+--===============1331346762==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1331346762==--
