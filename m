@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1E33D1386
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 18:12:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5D03D138D
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 18:12:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 836F86EC5B;
-	Wed, 21 Jul 2021 16:12:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD0416EC6D;
+	Wed, 21 Jul 2021 16:12:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60F7A6EC5B;
- Wed, 21 Jul 2021 16:12:48 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="297028334"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="297028334"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A47436EC66;
+ Wed, 21 Jul 2021 16:12:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="297028344"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="297028344"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 09:12:48 -0700
+ 21 Jul 2021 09:12:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="564787122"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="564787137"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga004.jf.intel.com with ESMTP; 21 Jul 2021 09:12:47 -0700
+ by orsmga004.jf.intel.com with ESMTP; 21 Jul 2021 09:12:51 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Wed, 21 Jul 2021 09:11:18 -0700
-Message-Id: <20210721161120.24610-13-vinay.belgaumkar@intel.com>
+Date: Wed, 21 Jul 2021 09:11:19 -0700
+Message-Id: <20210721161120.24610-14-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20210721161120.24610-1-vinay.belgaumkar@intel.com>
 References: <20210721161120.24610-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/14] drm/i915/guc/slpc: Sysfs hooks for SLPC
+Subject: [Intel-gfx] [PATCH 13/14] drm/i915/guc/slpc: Add SLPC selftest
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,449 +43,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Update the get/set min/max freq hooks to work for
-SLPC case as well. Consolidate helpers for requested/min/max
-frequency get/set to intel_rps where the proper action can
-be taken depending on whether slpc is enabled.
-
-v2: Add wrappers for getting rp0/1/n frequencies, update
-softlimits in set min/max slpc functions. Also check for
-boundary conditions before setting them.
-
-v3: Address review comments (Michal W)
-
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rps.c         | 165 ++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_rps.h         |  11 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c |  14 ++
- drivers/gpu/drm/i915/i915_pmu.c             |   2 +-
- drivers/gpu/drm/i915/i915_reg.h             |   2 +
- drivers/gpu/drm/i915/i915_sysfs.c           |  77 ++-------
- 6 files changed, 207 insertions(+), 64 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index e858eeb2c59d..48d4147165a9 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -37,6 +37,13 @@ static struct intel_uncore *rps_to_uncore(struct intel_rps *rps)
- 	return rps_to_gt(rps)->uncore;
- }
- 
-+static struct intel_guc_slpc *rps_to_slpc(struct intel_rps *rps)
-+{
-+	struct intel_gt *gt = rps_to_gt(rps);
-+
-+	return &gt->uc.guc.slpc;
-+}
-+
- static bool rps_uses_slpc(struct intel_rps *rps)
- {
- 	struct intel_gt *gt = rps_to_gt(rps);
-@@ -1960,6 +1967,164 @@ u32 intel_rps_read_actual_frequency(struct intel_rps *rps)
- 	return freq;
- }
- 
-+u32 intel_rps_read_punit_req(struct intel_rps *rps)
-+{
-+	struct intel_uncore *uncore = rps_to_uncore(rps);
-+
-+	return intel_uncore_read(uncore, GEN6_RPNSWREQ);
-+}
-+
-+u32 intel_rps_get_req(struct intel_rps *rps, u32 pureq)
-+{
-+	u32 req = pureq >> GEN9_SW_REQ_UNSLICE_RATIO_SHIFT;
-+
-+	return req;
-+}
-+
-+u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps)
-+{
-+	u32 freq = intel_rps_get_req(rps, intel_rps_read_punit_req(rps));
-+
-+	return intel_gpu_freq(rps, freq);
-+}
-+
-+u32 intel_rps_get_requested_frequency(struct intel_rps *rps)
-+{
-+	if (rps_uses_slpc(rps))
-+		return intel_rps_read_punit_req_frequency(rps);
-+	else
-+		return intel_gpu_freq(rps, rps->cur_freq);
-+}
-+
-+u32 intel_rps_get_max_frequency(struct intel_rps *rps)
-+{
-+	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
-+
-+	if (rps_uses_slpc(rps))
-+		return slpc->max_freq_softlimit;
-+	else
-+		return intel_gpu_freq(rps, rps->max_freq_softlimit);
-+}
-+
-+u32 intel_rps_get_rp0_frequency(struct intel_rps *rps)
-+{
-+	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
-+
-+	if (rps_uses_slpc(rps))
-+		return slpc->rp0_freq;
-+	else
-+		return intel_gpu_freq(rps, rps->rp0_freq);
-+}
-+
-+u32 intel_rps_get_rp1_frequency(struct intel_rps *rps)
-+{
-+	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
-+
-+	if (rps_uses_slpc(rps))
-+		return slpc->rp1_freq;
-+	else
-+		return intel_gpu_freq(rps, rps->rp1_freq);
-+}
-+
-+u32 intel_rps_get_rpn_frequency(struct intel_rps *rps)
-+{
-+	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
-+
-+	if (rps_uses_slpc(rps))
-+		return slpc->min_freq;
-+	else
-+		return intel_gpu_freq(rps, rps->min_freq);
-+}
-+
-+int intel_rps_set_max_frequency(struct intel_rps *rps, u32 val)
-+{
-+	struct drm_i915_private *i915 = rps_to_i915(rps);
-+	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
-+	int ret = 0;
-+
-+	if (rps_uses_slpc(rps))
-+		return intel_guc_slpc_set_max_freq(slpc, val);
-+
-+	mutex_lock(&rps->lock);
-+
-+	val = intel_freq_opcode(rps, val);
-+	if (val < rps->min_freq ||
-+	    val > rps->max_freq ||
-+	    val < rps->min_freq_softlimit) {
-+		ret = -EINVAL;
-+		goto unlock;
-+	}
-+
-+	if (val > rps->rp0_freq)
-+		drm_dbg(&i915->drm, "User requested overclocking to %d\n",
-+			  intel_gpu_freq(rps, val));
-+
-+	rps->max_freq_softlimit = val;
-+
-+	val = clamp_t(int, rps->cur_freq,
-+		      rps->min_freq_softlimit,
-+		      rps->max_freq_softlimit);
-+
-+	/*
-+	 * We still need *_set_rps to process the new max_delay and
-+	 * update the interrupt limits and PMINTRMSK even though
-+	 * frequency request may be unchanged.
-+	 */
-+	intel_rps_set(rps, val);
-+
-+unlock:
-+	mutex_unlock(&rps->lock);
-+
-+	return ret;
-+}
-+
-+u32 intel_rps_get_min_frequency(struct intel_rps *rps)
-+{
-+	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
-+
-+	if (rps_uses_slpc(rps))
-+		return slpc->min_freq_softlimit;
-+	else
-+		return intel_gpu_freq(rps, rps->min_freq_softlimit);
-+}
-+
-+int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
-+{
-+	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
-+	int ret = 0;
-+
-+	if (rps_uses_slpc(rps))
-+		return intel_guc_slpc_set_min_freq(slpc, val);
-+
-+	mutex_lock(&rps->lock);
-+
-+	val = intel_freq_opcode(rps, val);
-+	if (val < rps->min_freq ||
-+	    val > rps->max_freq ||
-+	    val > rps->max_freq_softlimit) {
-+		ret = -EINVAL;
-+		goto unlock;
-+	}
-+
-+	rps->min_freq_softlimit = val;
-+
-+	val = clamp_t(int, rps->cur_freq,
-+		      rps->min_freq_softlimit,
-+		      rps->max_freq_softlimit);
-+
-+	/*
-+	 * We still need *_set_rps to process the new min_delay and
-+	 * update the interrupt limits and PMINTRMSK even though
-+	 * frequency request may be unchanged.
-+	 */
-+	intel_rps_set(rps, val);
-+
-+unlock:
-+	mutex_unlock(&rps->lock);
-+
-+	return ret;
-+}
-+
- /* External interface for intel_ips.ko */
- 
- static struct drm_i915_private __rcu *ips_mchdev;
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
-index 1d2cfc98b510..6a66690dfb0f 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.h
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.h
-@@ -31,6 +31,17 @@ int intel_gpu_freq(struct intel_rps *rps, int val);
- int intel_freq_opcode(struct intel_rps *rps, int val);
- u32 intel_rps_get_cagf(struct intel_rps *rps, u32 rpstat1);
- u32 intel_rps_read_actual_frequency(struct intel_rps *rps);
-+u32 intel_rps_get_requested_frequency(struct intel_rps *rps);
-+u32 intel_rps_get_min_frequency(struct intel_rps *rps);
-+int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val);
-+u32 intel_rps_get_max_frequency(struct intel_rps *rps);
-+int intel_rps_set_max_frequency(struct intel_rps *rps, u32 val);
-+u32 intel_rps_get_rp0_frequency(struct intel_rps *rps);
-+u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
-+u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
-+u32 intel_rps_read_punit_req(struct intel_rps *rps);
-+u32 intel_rps_get_req(struct intel_rps *rps, u32 pureq);
-+u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
- 
- void gen5_rps_irq_handler(struct intel_rps *rps);
- void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index 134c57ca10b7..05d8870ec6da 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -301,6 +301,11 @@ int intel_guc_slpc_set_max_freq(struct intel_guc_slpc *slpc, u32 val)
- 	struct drm_i915_private *i915 = slpc_to_i915(slpc);
- 	intel_wakeref_t wakeref;
- 
-+	if ((val < slpc->min_freq) ||
-+	    (val > slpc->rp0_freq) ||
-+	    (val < slpc->min_freq_softlimit))
-+		return -EINVAL;
-+
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
- 		ret = slpc_set_param(slpc,
- 			       SLPC_PARAM_GLOBAL_MAX_GT_UNSLICE_FREQ_MHZ,
-@@ -313,6 +318,8 @@ int intel_guc_slpc_set_max_freq(struct intel_guc_slpc *slpc, u32 val)
- 		}
- 	}
- 
-+	slpc->max_freq_softlimit = val;
-+
- 	return ret;
- }
- 
-@@ -359,6 +366,11 @@ int intel_guc_slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 val)
- 	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
- 	intel_wakeref_t wakeref;
- 
-+	if ((val < slpc->min_freq) ||
-+	    (val > slpc->rp0_freq) ||
-+	    (val > slpc->max_freq_softlimit))
-+		return -EINVAL;
-+
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
- 		ret = slpc_set_param(slpc,
- 			       SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
-@@ -371,6 +383,8 @@ int intel_guc_slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 val)
- 		}
- 	}
- 
-+	slpc->min_freq_softlimit = val;
-+
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 34d37d46a126..a896bec18255 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -407,7 +407,7 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
- 
- 	if (pmu->enable & config_mask(I915_PMU_REQUESTED_FREQUENCY)) {
- 		add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_REQ],
--				intel_gpu_freq(rps, rps->cur_freq),
-+				intel_rps_get_requested_frequency(rps),
- 				period_ns / 1000);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 92392c1da0e6..a5d893625736 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9198,6 +9198,8 @@ enum {
- #define   GEN9_FREQUENCY(x)			((x) << 23)
- #define   GEN6_OFFSET(x)			((x) << 19)
- #define   GEN6_AGGRESSIVE_TURBO			(0 << 15)
-+#define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT 	23
-+
- #define GEN6_RC_VIDEO_FREQ			_MMIO(0xA00C)
- #define GEN6_RC_CONTROL				_MMIO(0xA090)
- #define   GEN6_RC_CTL_RC6pp_ENABLE		(1 << 16)
-diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-index 873bf996ceb5..346646a0b43b 100644
---- a/drivers/gpu/drm/i915/i915_sysfs.c
-+++ b/drivers/gpu/drm/i915/i915_sysfs.c
-@@ -272,7 +272,7 @@ static ssize_t gt_cur_freq_mhz_show(struct device *kdev,
- 	struct drm_i915_private *i915 = kdev_minor_to_i915(kdev);
- 	struct intel_rps *rps = &i915->gt.rps;
- 
--	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->cur_freq));
-+	return sysfs_emit(buf, "%d\n", intel_rps_get_requested_frequency(rps));
- }
- 
- static ssize_t gt_boost_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
-@@ -326,9 +326,10 @@ static ssize_t vlv_rpe_freq_mhz_show(struct device *kdev,
- static ssize_t gt_max_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
- {
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
--	struct intel_rps *rps = &dev_priv->gt.rps;
-+	struct intel_gt *gt = &dev_priv->gt;
-+	struct intel_rps *rps = &gt->rps;
- 
--	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->max_freq_softlimit));
-+	return sysfs_emit(buf, "%d\n", intel_rps_get_max_frequency(rps));
- }
- 
- static ssize_t gt_max_freq_mhz_store(struct device *kdev,
-@@ -336,7 +337,8 @@ static ssize_t gt_max_freq_mhz_store(struct device *kdev,
- 				     const char *buf, size_t count)
- {
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
--	struct intel_rps *rps = &dev_priv->gt.rps;
-+	struct intel_gt *gt = &dev_priv->gt;
-+	struct intel_rps *rps = &gt->rps;
- 	ssize_t ret;
- 	u32 val;
- 
-@@ -344,35 +346,7 @@ static ssize_t gt_max_freq_mhz_store(struct device *kdev,
- 	if (ret)
- 		return ret;
- 
--	mutex_lock(&rps->lock);
--
--	val = intel_freq_opcode(rps, val);
--	if (val < rps->min_freq ||
--	    val > rps->max_freq ||
--	    val < rps->min_freq_softlimit) {
--		ret = -EINVAL;
--		goto unlock;
--	}
--
--	if (val > rps->rp0_freq)
--		DRM_DEBUG("User requested overclocking to %d\n",
--			  intel_gpu_freq(rps, val));
--
--	rps->max_freq_softlimit = val;
--
--	val = clamp_t(int, rps->cur_freq,
--		      rps->min_freq_softlimit,
--		      rps->max_freq_softlimit);
--
--	/*
--	 * We still need *_set_rps to process the new max_delay and
--	 * update the interrupt limits and PMINTRMSK even though
--	 * frequency request may be unchanged.
--	 */
--	intel_rps_set(rps, val);
--
--unlock:
--	mutex_unlock(&rps->lock);
-+	ret = intel_rps_set_max_frequency(rps, val);
- 
- 	return ret ?: count;
- }
-@@ -380,9 +354,10 @@ static ssize_t gt_max_freq_mhz_store(struct device *kdev,
- static ssize_t gt_min_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
- {
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
--	struct intel_rps *rps = &dev_priv->gt.rps;
-+	struct intel_gt *gt = &dev_priv->gt;
-+	struct intel_rps *rps = &gt->rps;
- 
--	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->min_freq_softlimit));
-+	return sysfs_emit(buf, "%d\n", intel_rps_get_min_frequency(rps));
- }
- 
- static ssize_t gt_min_freq_mhz_store(struct device *kdev,
-@@ -398,31 +373,7 @@ static ssize_t gt_min_freq_mhz_store(struct device *kdev,
- 	if (ret)
- 		return ret;
- 
--	mutex_lock(&rps->lock);
--
--	val = intel_freq_opcode(rps, val);
--	if (val < rps->min_freq ||
--	    val > rps->max_freq ||
--	    val > rps->max_freq_softlimit) {
--		ret = -EINVAL;
--		goto unlock;
--	}
--
--	rps->min_freq_softlimit = val;
--
--	val = clamp_t(int, rps->cur_freq,
--		      rps->min_freq_softlimit,
--		      rps->max_freq_softlimit);
--
--	/*
--	 * We still need *_set_rps to process the new min_delay and
--	 * update the interrupt limits and PMINTRMSK even though
--	 * frequency request may be unchanged.
--	 */
--	intel_rps_set(rps, val);
--
--unlock:
--	mutex_unlock(&rps->lock);
-+	ret = intel_rps_set_min_frequency(rps, val);
- 
- 	return ret ?: count;
- }
-@@ -448,11 +399,11 @@ static ssize_t gt_rp_mhz_show(struct device *kdev, struct device_attribute *attr
- 	u32 val;
- 
- 	if (attr == &dev_attr_gt_RP0_freq_mhz)
--		val = intel_gpu_freq(rps, rps->rp0_freq);
-+		val = intel_rps_get_rp0_frequency(rps);
- 	else if (attr == &dev_attr_gt_RP1_freq_mhz)
--		val = intel_gpu_freq(rps, rps->rp1_freq);
-+		val = intel_rps_get_rp1_frequency(rps);
- 	else if (attr == &dev_attr_gt_RPn_freq_mhz)
--		val = intel_gpu_freq(rps, rps->min_freq);
-+		val = intel_rps_get_rpn_frequency(rps);
- 	else
- 		BUG();
- 
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGVzdHMgdGhhdCBleGVyY2lzZSB0aGUgU0xQQyBnZXQvc2V0IGZyZXF1ZW5jeSBpbnRlcmZhY2Vz
+LgoKQ2xhbXBfbWF4IHdpbGwgc2V0IG1heCBmcmVxdWVuY3kgdG8gbXVsdGlwbGUgbGV2ZWxzIGFu
+ZCBjaGVjawp0aGF0IFNMUEMgcmVxdWVzdHMgZnJlcXVlbmN5IGxvd2VyIHRoYW4gb3IgZXF1YWwg
+dG8gaXQuCgpDbGFtcF9taW4gd2lsbCBzZXQgbWluIGZyZXF1ZW5jeSB0byBkaWZmZXJlbnQgbGV2
+ZWxzIGFuZCBjaGVjawppZiBTTFBDIHJlcXVlc3RzIGFyZSBoaWdoZXIgb3IgZXF1YWwgdG8gdGhv
+c2UgbGV2ZWxzLgoKdjI6IEFkZHJlc3MgcmV2aWV3IGNvbW1lbnRzIChNaWNoYWwgVykKClNpZ25l
+ZC1vZmYtYnk6IFZpbmF5IEJlbGdhdW1rYXIgPHZpbmF5LmJlbGdhdW1rYXJAaW50ZWwuY29tPgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jwcy5jICAgICAgICAgICB8ICAgMSAr
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9zbHBjLmMgICAgICAgfCAzMTggKysr
+KysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9zbHBjLmgg
+ICAgICAgfCAgMTIgKwogLi4uL2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2xpdmVfc2VsZnRlc3Rz
+LmggIHwgICAxICsKIDQgZmlsZXMgY2hhbmdlZCwgMzMyIGluc2VydGlvbnMoKykKIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9zbHBjLmMKIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9zbHBjLmgKCmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ycHMuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX3Jwcy5jCmluZGV4IDQ4ZDQxNDcxNjVhOS4uNjIzNzMzMjgz
+NWZlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ycHMuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ycHMuYwpAQCAtMjMxOCw0ICsyMzE4LDUg
+QEAgRVhQT1JUX1NZTUJPTF9HUEwoaTkxNV9ncHVfdHVyYm9fZGlzYWJsZSk7CiAKICNpZiBJU19F
+TkFCTEVEKENPTkZJR19EUk1fSTkxNV9TRUxGVEVTVCkKICNpbmNsdWRlICJzZWxmdGVzdF9ycHMu
+YyIKKyNpbmNsdWRlICJzZWxmdGVzdF9zbHBjLmMiCiAjZW5kaWYKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3NscGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3NlbGZ0ZXN0X3NscGMuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAw
+MDAuLmJlM2M2NjRmNzE0YQotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3NlbGZ0ZXN0X3NscGMuYwpAQCAtMCwwICsxLDMxOCBAQAorLy8gU1BEWC1MaWNlbnNlLUlk
+ZW50aWZpZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodCDCqSAyMDIxIEludGVsIENvcnBvcmF0aW9u
+CisgKi8KKworI2luY2x1ZGUgInNlbGZ0ZXN0X3NscGMuaCIKKworI2RlZmluZSBOVU1fU1RFUFMg
+NQorI2RlZmluZSBIMkdfREVMQVkgNTAwMDAKKyNkZWZpbmUgZGVsYXlfZm9yX2gyZygpIHVzbGVl
+cF9yYW5nZShIMkdfREVMQVksIEgyR19ERUxBWSArIDEwMDAwKQorCitzdGF0aWMgaW50IHNldF9t
+aW5fZnJlcShzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMsIGludCBmcmVxKQoreworCWludCBy
+ZXQ7CisKKwlyZXQgPSBpbnRlbF9ndWNfc2xwY19zZXRfbWluX2ZyZXEoc2xwYywgZnJlcSk7CisJ
+aWYgKHJldCkgeworCQlwcl9lcnIoIkNvdWxkIG5vdCBzZXQgbWluIGZyZXF1ZW5jeSB0byBbJWRd
+XG4iLCBmcmVxKTsKKwkJcmV0dXJuIHJldDsKKwl9IGVsc2UgeworCQkvKiBEZWxheSB0byBlbnN1
+cmUgaDJnIGNvbXBsZXRlcyAqLworCQlkZWxheV9mb3JfaDJnKCk7CisJfQorCisJcmV0dXJuIHJl
+dDsKK30KKworc3RhdGljIGludCBzZXRfbWF4X2ZyZXEoc3RydWN0IGludGVsX2d1Y19zbHBjICpz
+bHBjLCBpbnQgZnJlcSkKK3sKKwlpbnQgcmV0OworCisJcmV0ID0gaW50ZWxfZ3VjX3NscGNfc2V0
+X21heF9mcmVxKHNscGMsIGZyZXEpOworCWlmIChyZXQpIHsKKwkJcHJfZXJyKCJDb3VsZCBub3Qg
+c2V0IG1heGltdW0gZnJlcXVlbmN5IFslZF1cbiIsCisJCQlmcmVxKTsKKwkJcmV0dXJuIHJldDsK
+Kwl9IGVsc2UgeworCQkvKiBEZWxheSB0byBlbnN1cmUgaDJnIGNvbXBsZXRlcyAqLworCQlkZWxh
+eV9mb3JfaDJnKCk7CisJfQorCisJcmV0dXJuIHJldDsKK30KKworaW50IGxpdmVfc2xwY19jbGFt
+cF9taW4odm9pZCAqYXJnKQoreworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJn
+OworCXN0cnVjdCBpbnRlbF9ndCAqZ3QgPSAmaTkxNS0+Z3Q7CisJc3RydWN0IGludGVsX2d1Y19z
+bHBjICpzbHBjID0gJmd0LT51Yy5ndWMuc2xwYzsKKwlzdHJ1Y3QgaW50ZWxfcnBzICpycHMgPSAm
+Z3QtPnJwczsKKwlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmU7CisJZW51bSBpbnRlbF9l
+bmdpbmVfaWQgaWQ7CisJc3RydWN0IGlndF9zcGlubmVyIHNwaW47CisJdTMyIHNscGNfbWluX2Zy
+ZXEsIHNscGNfbWF4X2ZyZXE7CisJaW50IGVyciA9IDA7CisKKwlpZiAoIWludGVsX3VjX3VzZXNf
+Z3VjX3NscGMoJmd0LT51YykpCisJCXJldHVybiAwOworCisJaWYgKGlndF9zcGlubmVyX2luaXQo
+JnNwaW4sIGd0KSkKKwkJcmV0dXJuIC1FTk9NRU07CisKKwlpZiAoaW50ZWxfZ3VjX3NscGNfZ2V0
+X21heF9mcmVxKHNscGMsICZzbHBjX21heF9mcmVxKSkgeworCQlwcl9lcnIoIkNvdWxkIG5vdCBn
+ZXQgU0xQQyBtYXggZnJlcVxuIik7CisJCXJldHVybiAtRUlPOworCX0KKworCWlmIChpbnRlbF9n
+dWNfc2xwY19nZXRfbWluX2ZyZXEoc2xwYywgJnNscGNfbWluX2ZyZXEpKSB7CisJCXByX2Vycigi
+Q291bGQgbm90IGdldCBTTFBDIG1pbiBmcmVxXG4iKTsKKwkJcmV0dXJuIC1FSU87CisJfQorCisJ
+aWYgKHNscGNfbWluX2ZyZXEgPT0gc2xwY19tYXhfZnJlcSkgeworCQlwcl9lcnIoIk1pbi9NYXgg
+YXJlIGZ1c2VkIHRvIHRoZSBzYW1lIHZhbHVlXG4iKTsKKwkJcmV0dXJuIC1FSU5WQUw7CisJfQor
+CisJaW50ZWxfZ3RfcG1fd2FpdF9mb3JfaWRsZShndCk7CisJaW50ZWxfZ3RfcG1fZ2V0KGd0KTsK
+Kwlmb3JfZWFjaF9lbmdpbmUoZW5naW5lLCBndCwgaWQpIHsKKwkJc3RydWN0IGk5MTVfcmVxdWVz
+dCAqcnE7CisJCXUzMiBzdGVwLCBtaW5fZnJlcSwgcmVxX2ZyZXE7CisJCXUzMiBhY3RfZnJlcSwg
+bWF4X2FjdF9mcmVxOworCisJCWlmICghaW50ZWxfZW5naW5lX2Nhbl9zdG9yZV9kd29yZChlbmdp
+bmUpKQorCQkJY29udGludWU7CisKKwkJLyogR28gZnJvbSBtaW4gdG8gbWF4IGluIDUgc3RlcHMg
+Ki8KKwkJc3RlcCA9IChzbHBjX21heF9mcmVxIC0gc2xwY19taW5fZnJlcSkgLyBOVU1fU1RFUFM7
+CisJCW1heF9hY3RfZnJlcSA9IHNscGNfbWluX2ZyZXE7CisJCWZvciAobWluX2ZyZXEgPSBzbHBj
+X21pbl9mcmVxOyBtaW5fZnJlcSA8IHNscGNfbWF4X2ZyZXE7CisJCQkJCQkJbWluX2ZyZXEgKz0g
+c3RlcCkKKwkJeworCQkJZXJyID0gc2V0X21pbl9mcmVxKHNscGMsIG1pbl9mcmVxKTsKKwkJCWlm
+IChlcnIpCisJCQkJYnJlYWs7CisKKwkJCXN0X2VuZ2luZV9oZWFydGJlYXRfZGlzYWJsZShlbmdp
+bmUpOworCisJCQlycSA9IGlndF9zcGlubmVyX2NyZWF0ZV9yZXF1ZXN0KCZzcGluLAorCQkJCQll
+bmdpbmUtPmtlcm5lbF9jb250ZXh0LAorCQkJCQlNSV9OT09QKTsKKwkJCWlmIChJU19FUlIocnEp
+KSB7CisJCQkJZXJyID0gUFRSX0VSUihycSk7CisJCQkJc3RfZW5naW5lX2hlYXJ0YmVhdF9lbmFi
+bGUoZW5naW5lKTsKKwkJCQlicmVhazsKKwkJCX0KKworCQkJaTkxNV9yZXF1ZXN0X2FkZChycSk7
+CisKKwkJCWlmICghaWd0X3dhaXRfZm9yX3NwaW5uZXIoJnNwaW4sIHJxKSkgeworCQkJCXByX2Vy
+cigiJXM6IFNwaW5uZXIgZGlkIG5vdCBzdGFydFxuIiwKKwkJCQkJZW5naW5lLT5uYW1lKTsKKwkJ
+CQlpZ3Rfc3Bpbm5lcl9lbmQoJnNwaW4pOworCQkJCXN0X2VuZ2luZV9oZWFydGJlYXRfZW5hYmxl
+KGVuZ2luZSk7CisJCQkJaW50ZWxfZ3Rfc2V0X3dlZGdlZChlbmdpbmUtPmd0KTsKKwkJCQllcnIg
+PSAtRUlPOworCQkJCWJyZWFrOworCQkJfQorCisJCQkvKiBXYWl0IGZvciBHdUMgdG8gZGV0ZWN0
+IGJ1c2luZXNzIGFuZCByYWlzZQorCQkJICogcmVxdWVzdGVkIGZyZXF1ZW5jeSBpZiBuZWNlc3Nh
+cnkgKi8KKwkJCWRlbGF5X2Zvcl9oMmcoKTsKKworCQkJcmVxX2ZyZXEgPSBpbnRlbF9ycHNfcmVh
+ZF9wdW5pdF9yZXFfZnJlcXVlbmN5KHJwcyk7CisKKwkJCS8qIEd1QyByZXF1ZXN0cyBmcmVxIGlu
+IG11bHRpcGxlcyBvZiA1MC8zIE1IeiAqLworCQkJaWYgKHJlcV9mcmVxIDwgKG1pbl9mcmVxIC0g
+NTAvMykpIHsKKwkJCQlwcl9lcnIoIlNXUmVxIGlzICVkLCBzaG91bGQgYmUgYXQgbGVhc3QgJWRc
+biIsIHJlcV9mcmVxLAorCQkJCQltaW5fZnJlcSAtIDUwLzMpOworCQkJCWlndF9zcGlubmVyX2Vu
+ZCgmc3Bpbik7CisJCQkJc3RfZW5naW5lX2hlYXJ0YmVhdF9lbmFibGUoZW5naW5lKTsKKwkJCQll
+cnIgPSAtRUlOVkFMOworCQkJCWJyZWFrOworCQkJfQorCisJCQlhY3RfZnJlcSA9ICBpbnRlbF9y
+cHNfcmVhZF9hY3R1YWxfZnJlcXVlbmN5KHJwcyk7CisJCQlpZiAoYWN0X2ZyZXEgPiBtYXhfYWN0
+X2ZyZXEpCisJCQkJbWF4X2FjdF9mcmVxID0gYWN0X2ZyZXE7CisKKwkJCWlndF9zcGlubmVyX2Vu
+ZCgmc3Bpbik7CisJCQlzdF9lbmdpbmVfaGVhcnRiZWF0X2VuYWJsZShlbmdpbmUpOworCQl9CisK
+KwkJcHJfaW5mbygiTWF4IGFjdHVhbCBmcmVxdWVuY3kgZm9yICVzIHdhcyAlZFxuIiwKKwkJCQll
+bmdpbmUtPm5hbWUsIG1heF9hY3RfZnJlcSk7CisKKwkJLyogQWN0dWFsIGZyZXF1ZW5jeSBzaG91
+bGQgcmlzZSBhYm92ZSBtaW4gKi8KKwkJaWYgKG1heF9hY3RfZnJlcSA9PSBzbHBjX21pbl9mcmVx
+KSB7CisJCQlwcl9lcnIoIkFjdHVhbCBmcmVxIGRpZCBub3QgcmlzZSBhYm92ZSBtaW5cbiIpOwor
+CQkJZXJyID0gLUVJTlZBTDsKKwkJfQorCisJCWlmIChlcnIpCisJCQlicmVhazsKKwl9CisKKwkv
+KiBSZXN0b3JlIG1pbi9tYXggZnJlcXVlbmNpZXMgKi8KKwlzZXRfbWF4X2ZyZXEoc2xwYywgc2xw
+Y19tYXhfZnJlcSk7CisJc2V0X21pbl9mcmVxKHNscGMsIHNscGNfbWluX2ZyZXEpOworCisJaWYg
+KGlndF9mbHVzaF90ZXN0KGd0LT5pOTE1KSkKKwkJZXJyID0gLUVJTzsKKworCWludGVsX2d0X3Bt
+X3B1dChndCk7CisJaWd0X3NwaW5uZXJfZmluaSgmc3Bpbik7CisJaW50ZWxfZ3RfcG1fd2FpdF9m
+b3JfaWRsZShndCk7CisKKwlyZXR1cm4gZXJyOworfQorCitpbnQgbGl2ZV9zbHBjX2NsYW1wX21h
+eCh2b2lkICphcmcpCit7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBhcmc7CisJ
+c3RydWN0IGludGVsX2d0ICpndCA9ICZpOTE1LT5ndDsKKwlzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMg
+KnNscGM7CisJc3RydWN0IGludGVsX3JwcyAqcnBzOworCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3Mg
+KmVuZ2luZTsKKwllbnVtIGludGVsX2VuZ2luZV9pZCBpZDsKKwlzdHJ1Y3QgaWd0X3NwaW5uZXIg
+c3BpbjsKKwlpbnQgZXJyID0gMDsKKwl1MzIgc2xwY19taW5fZnJlcSwgc2xwY19tYXhfZnJlcTsK
+KworCXNscGMgPSAmZ3QtPnVjLmd1Yy5zbHBjOworCXJwcyA9ICZndC0+cnBzOworCisJaWYgKCFp
+bnRlbF91Y191c2VzX2d1Y19zbHBjKCZndC0+dWMpKQorCQlyZXR1cm4gMDsKKworCWlmIChpZ3Rf
+c3Bpbm5lcl9pbml0KCZzcGluLCBndCkpCisJCXJldHVybiAtRU5PTUVNOworCisJaWYgKGludGVs
+X2d1Y19zbHBjX2dldF9tYXhfZnJlcShzbHBjLCAmc2xwY19tYXhfZnJlcSkpIHsKKwkJcHJfZXJy
+KCJDb3VsZCBub3QgZ2V0IFNMUEMgbWF4IGZyZXFcbiIpOworCQlyZXR1cm4gLUVJTzsKKwl9CisK
+KwlpZiAoaW50ZWxfZ3VjX3NscGNfZ2V0X21pbl9mcmVxKHNscGMsICZzbHBjX21pbl9mcmVxKSkg
+eworCQlwcl9lcnIoIkNvdWxkIG5vdCBnZXQgU0xQQyBtaW4gZnJlcVxuIik7CisJCXJldHVybiAt
+RUlPOworCX0KKworCWlmIChzbHBjX21pbl9mcmVxID09IHNscGNfbWF4X2ZyZXEpIHsKKwkJcHJf
+ZXJyKCJNaW4vTWF4IGFyZSBmdXNlZCB0byB0aGUgc2FtZSB2YWx1ZVxuIik7CisJCXJldHVybiAt
+RUlOVkFMOworCX0KKworCWludGVsX2d0X3BtX3dhaXRfZm9yX2lkbGUoZ3QpOworCWludGVsX2d0
+X3BtX2dldChndCk7CisJZm9yX2VhY2hfZW5naW5lKGVuZ2luZSwgZ3QsIGlkKSB7CisJCXN0cnVj
+dCBpOTE1X3JlcXVlc3QgKnJxOworCQl1MzIgbWF4X2ZyZXEsIHJlcV9mcmVxOworCQl1MzIgYWN0
+X2ZyZXEsIG1heF9hY3RfZnJlcTsKKwkJdTMyIHN0ZXA7CisKKwkJaWYgKCFpbnRlbF9lbmdpbmVf
+Y2FuX3N0b3JlX2R3b3JkKGVuZ2luZSkpCisJCQljb250aW51ZTsKKworCQkvKiBHbyBmcm9tIG1h
+eCB0byBtaW4gaW4gNSBzdGVwcyAqLworCQlzdGVwID0gKHNscGNfbWF4X2ZyZXEgLSBzbHBjX21p
+bl9mcmVxKSAvIE5VTV9TVEVQUzsKKwkJbWF4X2FjdF9mcmVxID0gc2xwY19taW5fZnJlcTsKKwkJ
+Zm9yIChtYXhfZnJlcSA9IHNscGNfbWF4X2ZyZXE7IG1heF9mcmVxID4gc2xwY19taW5fZnJlcTsK
+KwkJCQkJCQltYXhfZnJlcSAtPSBzdGVwKQorCQl7CisJCQllcnIgPSBzZXRfbWF4X2ZyZXEoc2xw
+YywgbWF4X2ZyZXEpOworCQkJaWYgKGVycikKKwkJCQlicmVhazsKKworCQkJc3RfZW5naW5lX2hl
+YXJ0YmVhdF9kaXNhYmxlKGVuZ2luZSk7CisKKwkJCXJxID0gaWd0X3NwaW5uZXJfY3JlYXRlX3Jl
+cXVlc3QoJnNwaW4sCisJCQkJCQllbmdpbmUtPmtlcm5lbF9jb250ZXh0LAorCQkJCQkJTUlfTk9P
+UCk7CisJCQlpZiAoSVNfRVJSKHJxKSkgeworCQkJCXN0X2VuZ2luZV9oZWFydGJlYXRfZW5hYmxl
+KGVuZ2luZSk7CisJCQkJZXJyID0gUFRSX0VSUihycSk7CisJCQkJYnJlYWs7CisJCQl9CisKKwkJ
+CWk5MTVfcmVxdWVzdF9hZGQocnEpOworCisJCQlpZiAoIWlndF93YWl0X2Zvcl9zcGlubmVyKCZz
+cGluLCBycSkpIHsKKwkJCQlwcl9lcnIoIiVzOiBTTFBDIHNwaW5uZXIgZGlkIG5vdCBzdGFydFxu
+IiwKKwkJCQkgICAgICAgZW5naW5lLT5uYW1lKTsKKwkJCQlpZ3Rfc3Bpbm5lcl9lbmQoJnNwaW4p
+OworCQkJCXN0X2VuZ2luZV9oZWFydGJlYXRfZW5hYmxlKGVuZ2luZSk7CisJCQkJaW50ZWxfZ3Rf
+c2V0X3dlZGdlZChlbmdpbmUtPmd0KTsKKwkJCQllcnIgPSAtRUlPOworCQkJCWJyZWFrOworCQkJ
+fQorCisJCQlkZWxheV9mb3JfaDJnKCk7CisKKwkJCS8qIFZlcmlmeSB0aGF0IFNXUkVRIGluZGVl
+ZCB3YXMgc2V0IHRvIHNwZWNpZmljIHZhbHVlICovCisJCQlyZXFfZnJlcSA9IGludGVsX3Jwc19y
+ZWFkX3B1bml0X3JlcV9mcmVxdWVuY3kocnBzKTsKKworCQkJLyogR3VDIHJlcXVlc3RzIGZyZXEg
+aW4gbXVsdGlwbGVzIG9mIDUwLzMgTUh6ICovCisJCQlpZiAocmVxX2ZyZXEgPiAobWF4X2ZyZXEg
+KyA1MC8zKSkgeworCQkJCXByX2VycigiU1dSZXEgaXMgJWQsIHNob3VsZCBiZSBhdCBtb3N0ICVk
+XG4iLCByZXFfZnJlcSwKKwkJCQkJbWF4X2ZyZXEgKyA1MC8zKTsKKwkJCQlpZ3Rfc3Bpbm5lcl9l
+bmQoJnNwaW4pOworCQkJCXN0X2VuZ2luZV9oZWFydGJlYXRfZW5hYmxlKGVuZ2luZSk7CisJCQkJ
+ZXJyID0gLUVJTlZBTDsKKwkJCQlicmVhazsKKwkJCX0KKworCQkJYWN0X2ZyZXEgPSAgaW50ZWxf
+cnBzX3JlYWRfYWN0dWFsX2ZyZXF1ZW5jeShycHMpOworCQkJaWYgKGFjdF9mcmVxID4gbWF4X2Fj
+dF9mcmVxKQorCQkJCW1heF9hY3RfZnJlcSA9IGFjdF9mcmVxOworCisJCQlzdF9lbmdpbmVfaGVh
+cnRiZWF0X2VuYWJsZShlbmdpbmUpOworCQkJaWd0X3NwaW5uZXJfZW5kKCZzcGluKTsKKworCQkJ
+aWYgKGVycikKKwkJCQlicmVhazsKKwkJfQorCisJCXByX2luZm8oIk1heCBhY3R1YWwgZnJlcXVl
+bmN5IGZvciAlcyB3YXMgJWRcbiIsCisJCQkJZW5naW5lLT5uYW1lLCBtYXhfYWN0X2ZyZXEpOwor
+CisJCS8qIEFjdHVhbCBmcmVxdWVuY3kgc2hvdWxkIHJpc2UgYWJvdmUgbWluICovCisJCWlmICht
+YXhfYWN0X2ZyZXEgPT0gc2xwY19taW5fZnJlcSkgeworCQkJcHJfZXJyKCJBY3R1YWwgZnJlcSBk
+aWQgbm90IHJpc2UgYWJvdmUgbWluXG4iKTsKKwkJCWVyciA9IC1FSU5WQUw7CisJCX0KKworCQlp
+ZiAoaWd0X2ZsdXNoX3Rlc3QoZ3QtPmk5MTUpKSB7CisJCQllcnIgPSAtRUlPOworCQkJYnJlYWs7
+CisJCX0KKworCQlpZiAoZXJyKQorCQkJYnJlYWs7CisJfQorCisJLyogUmVzdG9yZSBtaW4vbWF4
+IGZyZXEgKi8KKwlzZXRfbWF4X2ZyZXEoc2xwYywgc2xwY19tYXhfZnJlcSk7CisJc2V0X21pbl9m
+cmVxKHNscGMsIHNscGNfbWluX2ZyZXEpOworCisJaW50ZWxfZ3RfcG1fcHV0KGd0KTsKKwlpZ3Rf
+c3Bpbm5lcl9maW5pKCZzcGluKTsKKwlpbnRlbF9ndF9wbV93YWl0X2Zvcl9pZGxlKGd0KTsKKwor
+CXJldHVybiBlcnI7Cit9CisKK2ludCBpbnRlbF9zbHBjX2xpdmVfc2VsZnRlc3RzKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICppOTE1KQoreworCXN0YXRpYyBjb25zdCBzdHJ1Y3QgaTkxNV9zdWJ0
+ZXN0IHRlc3RzW10gPSB7CisJCVNVQlRFU1QobGl2ZV9zbHBjX2NsYW1wX21heCksCisJCVNVQlRF
+U1QobGl2ZV9zbHBjX2NsYW1wX21pbiksCisJfTsKKworCWlmIChpbnRlbF9ndF9pc193ZWRnZWQo
+Jmk5MTUtPmd0KSkKKwkJcmV0dXJuIDA7CisKKwlyZXR1cm4gaTkxNV9saXZlX3N1YnRlc3RzKHRl
+c3RzLCBpOTE1KTsKK30KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0
+ZXN0X3NscGMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3NscGMuaApuZXcg
+ZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLjA0ODBlNjJlZDNkNwotLS0gL2Rl
+di9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3NlbGZ0ZXN0X3NscGMuaApAQCAt
+MCwwICsxLDEyIEBACisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovCisvKgorICog
+Q29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaWZuZGVmIFNFTEZU
+RVNUX1NMUENfSAorI2RlZmluZSBTRUxGVEVTVF9TTFBDX0gKKworaW50IGxpdmVfc2xwY19jbGFt
+cF9tYXgodm9pZCAqYXJnKTsKK2ludCBsaXZlX3NscGNfY2xhbXBfbWluKHZvaWQgKmFyZyk7CisK
+KyNlbmRpZiAvKiBTRUxGVEVTVF9TTFBDX0ggKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X2xpdmVfc2VsZnRlc3RzLmggYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9zZWxmdGVzdHMvaTkxNV9saXZlX3NlbGZ0ZXN0cy5oCmluZGV4IGUyZmQxYjYxYWY3MS4u
+MTc0NmE1NmRkYTA2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMv
+aTkxNV9saXZlX3NlbGZ0ZXN0cy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0
+cy9pOTE1X2xpdmVfc2VsZnRlc3RzLmgKQEAgLTQ3LDUgKzQ3LDYgQEAgc2VsZnRlc3QoaGFuZ2No
+ZWNrLCBpbnRlbF9oYW5nY2hlY2tfbGl2ZV9zZWxmdGVzdHMpCiBzZWxmdGVzdChleGVjbGlzdHMs
+IGludGVsX2V4ZWNsaXN0c19saXZlX3NlbGZ0ZXN0cykKIHNlbGZ0ZXN0KHJpbmdfc3VibWlzc2lv
+biwgaW50ZWxfcmluZ19zdWJtaXNzaW9uX2xpdmVfc2VsZnRlc3RzKQogc2VsZnRlc3QocGVyZiwg
+aTkxNV9wZXJmX2xpdmVfc2VsZnRlc3RzKQorc2VsZnRlc3Qoc2xwYywgaW50ZWxfc2xwY19saXZl
+X3NlbGZ0ZXN0cykKIC8qIEhlcmUgYmUgZHJhZ29uczoga2VlcCBsYXN0IHRvIHJ1biBsYXN0ISAq
+Lwogc2VsZnRlc3QobGF0ZV9ndF9wbSwgaW50ZWxfZ3RfcG1fbGF0ZV9zZWxmdGVzdHMpCi0tIAoy
+LjI1LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
