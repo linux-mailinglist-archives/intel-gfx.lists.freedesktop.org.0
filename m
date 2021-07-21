@@ -2,57 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496F13D15D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 20:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76BF53D15DC
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 20:05:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 157AA6E8E1;
-	Wed, 21 Jul 2021 18:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8E456E187;
+	Wed, 21 Jul 2021 18:05:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A98436E8E1
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 18:04:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="211208556"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="211208556"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 11:04:07 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42D5B6E187;
+ Wed, 21 Jul 2021 18:05:24 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="233294455"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="233294455"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 11:05:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="658366420"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga006.fm.intel.com with ESMTP; 21 Jul 2021 11:04:07 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 21 Jul 2021 11:04:07 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 21 Jul 2021 11:04:06 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
- Wed, 21 Jul 2021 11:04:06 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 1/4] drm/i915/display: Disable FBC when PSR2
- is enabled for xelpd platforms
-Thread-Index: AQHXeqhH+v6NS0k8GU64UyALfSLEdqtNwCjA
-Date: Wed, 21 Jul 2021 18:04:06 +0000
-Message-ID: <ea3823ab079242619498488f06764d8e@intel.com>
-References: <20210717011227.204494-1-jose.souza@intel.com>
-In-Reply-To: <20210717011227.204494-1-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="564814526"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga004.jf.intel.com with ESMTP; 21 Jul 2021 11:05:22 -0700
+Received: from [10.249.140.99] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.140.99])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 16LI5K79009565; Wed, 21 Jul 2021 19:05:21 +0100
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20210721161120.24610-1-vinay.belgaumkar@intel.com>
+ <20210721161120.24610-10-vinay.belgaumkar@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <91447d98-cf2d-cf60-e1c8-1bb13b4ae12d@intel.com>
+Date: Wed, 21 Jul 2021 20:05:20 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/display: Disable FBC when PSR2
- is enabled for xelpd platforms
+In-Reply-To: <20210721161120.24610-10-vinay.belgaumkar@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 09/14] drm/i915/guc/slpc: Add debugfs for
+ SLPC info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,41 +51,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3PDqQ0K
-PiBSb2JlcnRvIGRlIFNvdXphDQo+IFNlbnQ6IEZyaWRheSwgSnVseSAxNiwgMjAyMSA2OjEyIFBN
-DQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtJbnRl
-bC1nZnhdIFtQQVRDSCAxLzRdIGRybS9pOTE1L2Rpc3BsYXk6IERpc2FibGUgRkJDIHdoZW4gUFNS
-MiBpcw0KPiBlbmFibGVkIGZvciB4ZWxwZCBwbGF0Zm9ybXMNCj4gDQo+IHhlbHBkIHBsYXRmb3Jt
-cyBhbHNvIHJlcXVpcmVzIHRoYXQgRkJDIGlzIGRpc2FibGVkIHdoZW4gUFNSMiBpcyBlbmFibGVk
-IHNvDQo+IGV4dGVuZGluZyBpdC4NCj4gDQo+IEJTcGVjOiA1MDQyMg0KPiBDYzogR3dhbi1neWVv
-bmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBKb3PD
-qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KUmV2aWV3ZWQtYnk6
-IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4NCg0KPiAtLS0NCj4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgfCA0ICsrLS0NCj4gIDEg
-ZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYw0KPiBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMNCj4gaW5kZXggODJlZmZiNjRh
-M2I5Yy4uZGRmYzE3ZTIxNjY4YSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9mYmMuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2ZiYy5jDQo+IEBAIC05MTIsMTEgKzkxMiwxMSBAQCBzdGF0aWMgYm9vbCBpbnRlbF9m
-YmNfY2FuX2FjdGl2YXRlKHN0cnVjdCBpbnRlbF9jcnRjDQo+ICpjcnRjKQ0KPiAgCX0NCj4gDQo+
-ICAJLyoNCj4gLQkgKiBUaWdlcmxha2UgaXMgbm90IHN1cHBvcnRpbmcgRkJDIHdpdGggUFNSMi4N
-Cj4gKwkgKiBEaXNwbGF5IDEyKyBpcyBub3Qgc3VwcG9ydGluZyBGQkMgd2l0aCBQU1IyLg0KPiAg
-CSAqIFJlY29tbWVuZGF0aW9uIGlzIHRvIGtlZXAgdGhpcyBjb21iaW5hdGlvbiBkaXNhYmxlZA0K
-PiAgCSAqIEJzcGVjOiA1MDQyMiBIU0Q6IDE0MDEwMjYwMDAyDQo+ICAJICovDQo+IC0JaWYgKGZi
-Yy0+c3RhdGVfY2FjaGUucHNyMl9hY3RpdmUgJiYgSVNfVElHRVJMQUtFKGRldl9wcml2KSkgew0K
-PiArCWlmIChmYmMtPnN0YXRlX2NhY2hlLnBzcjJfYWN0aXZlICYmIERJU1BMQVlfVkVSKGRldl9w
-cml2KSA+PSAxMikgew0KPiAgCQlmYmMtPm5vX2ZiY19yZWFzb24gPSAibm90IHN1cHBvcnRlZCB3
-aXRoIFBTUjIiOw0KPiAgCQlyZXR1cm4gZmFsc2U7DQo+ICAJfQ0KPiAtLQ0KPiAyLjMyLjANCj4g
-DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IElu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QNCj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0K
-PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+
+On 21.07.2021 18:11, Vinay Belgaumkar wrote:
+> This prints out relevant SLPC info from the SLPC shared structure.
+> 
+> We will send a h2g message which forces SLPC to update the
+> shared data structure with latest information before reading it.
+> 
+> v2: Address review comments (Michal W)
+> 
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Signed-off-by: Sundaresan Sujaritha <sujaritha.sundaresan@intel.com>
+> ---
+>  .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    | 23 +++++++++++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 40 +++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  4 +-
+>  3 files changed, 66 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> index 72ddfff42f7d..46b22187927b 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c
+> @@ -12,6 +12,7 @@
+>  #include "gt/uc/intel_guc_ct.h"
+>  #include "gt/uc/intel_guc_ads.h"
+>  #include "gt/uc/intel_guc_submission.h"
+> +#include "gt/uc/intel_guc_slpc.h"
+>  
+>  static int guc_info_show(struct seq_file *m, void *data)
+>  {
+> @@ -50,11 +51,33 @@ static int guc_registered_contexts_show(struct seq_file *m, void *data)
+>  }
+>  DEFINE_GT_DEBUGFS_ATTRIBUTE(guc_registered_contexts);
+>  
+> +static int guc_slpc_info_show(struct seq_file *m, void *unused)
+> +{
+> +	struct intel_guc *guc = m->private;
+> +	struct intel_guc_slpc *slpc = &guc->slpc;
+> +	struct drm_printer p = drm_seq_file_printer(m);
+> +
+> +	if (!intel_guc_slpc_is_used(guc))
+> +		return -ENODEV;
+> +
+> +	return intel_guc_slpc_info(slpc, &p);
+> +}
+> +DEFINE_GT_DEBUGFS_ATTRIBUTE(guc_slpc_info);
+> +
+> +bool intel_eval_slpc_support(void *data)
+> +{
+> +	struct intel_guc *guc;
+> +
+> +	guc = (struct intel_guc *)data;
+
+	struct intel_guc *guc = (struct intel_guc *)data;
+
+> +	return intel_guc_slpc_is_used(guc);
+> +}
+> +
+>  void intel_guc_debugfs_register(struct intel_guc *guc, struct dentry *root)
+>  {
+>  	static const struct debugfs_gt_file files[] = {
+>  		{ "guc_info", &guc_info_fops, NULL },
+>  		{ "guc_registered_contexts", &guc_registered_contexts_fops, NULL },
+> +		{ "guc_slpc_info", &guc_slpc_info_fops, &intel_eval_slpc_support},
+>  	};
+>  
+>  	if (!intel_guc_is_supported(guc))
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> index c1cf8d46e360..73379985c105 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> @@ -430,6 +430,46 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+>  	return 0;
+>  }
+>  
+> +int intel_guc_slpc_info(struct intel_guc_slpc *slpc, struct drm_printer *p)
+> +{
+> +	struct drm_i915_private *i915 = guc_to_gt(slpc_to_guc(slpc))->i915;
+> +	struct slpc_shared_data *data;
+> +	struct slpc_task_state_data *slpc_tasks;
+> +	intel_wakeref_t wakeref;
+> +	int ret = 0;
+> +
+> +	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+> +		if (slpc_query_task_state(slpc))
+> +			return -EIO;
+
+not sure if you can return directly from "with_rpm"
+
+> +
+> +		slpc_tasks = &data->task_state_data;
+> +
+> +		drm_printf(p, "SLPC state: %s\n", slpc_state_string(slpc));
+> +		drm_printf(p, "\tgtperf task active: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_GTPERF_TASK_ACTIVE));
+> +		drm_printf(p, "\tdcc task active: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_DCC_TASK_ACTIVE));
+> +		drm_printf(p, "\tin dcc: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_IN_DCC));
+> +		drm_printf(p, "\tfreq switch active: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_FREQ_SWITCH_ACTIVE));
+> +		drm_printf(p, "\tibc enabled: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_IBC_ENABLED));
+> +		drm_printf(p, "\tibc active: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_IBC_ACTIVE));
+> +		drm_printf(p, "\tpg1 enabled: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_PG1_ENABLED));
+> +		drm_printf(p, "\tpg1 active: %s\n",
+> +			yesno(slpc_tasks->status & SLPC_PG1_ACTIVE));
+> +		drm_printf(p, "\tmax freq: %dMHz\n",
+> +				slpc_decode_max_freq(slpc));
+> +		drm_printf(p, "\tmin freq: %dMHz\n",
+> +				slpc_decode_min_freq(slpc));
+
+not sure what they are:
+
+DCC ?
+IBC ?
+PG1 ?
+
+and make sure to use %u for unsigned
+
+Michal
+
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  void intel_guc_slpc_fini(struct intel_guc_slpc *slpc)
+>  {
+>  	if (!slpc->vma)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+> index 627c71a95777..852c6316aa47 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
+> @@ -10,6 +10,8 @@
+>  #include "intel_guc_slpc_types.h"
+>  #include "abi/guc_actions_slpc_abi.h"
+>  
+> +struct drm_printer;
+> +
+>  static inline bool intel_guc_slpc_is_supported(struct intel_guc *guc)
+>  {
+>  	return guc->slpc_supported;
+> @@ -26,7 +28,6 @@ static inline bool intel_guc_slpc_is_used(struct intel_guc *guc)
+>  }
+>  
+>  void intel_guc_slpc_init_early(struct intel_guc_slpc *slpc);
+> -
+>  int intel_guc_slpc_init(struct intel_guc_slpc *slpc);
+>  int intel_guc_slpc_enable(struct intel_guc_slpc *slpc);
+>  void intel_guc_slpc_fini(struct intel_guc_slpc *slpc);
+> @@ -34,5 +35,6 @@ int intel_guc_slpc_set_max_freq(struct intel_guc_slpc *slpc, u32 val);
+>  int intel_guc_slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 val);
+>  int intel_guc_slpc_get_max_freq(struct intel_guc_slpc *slpc, u32 *val);
+>  int intel_guc_slpc_get_min_freq(struct intel_guc_slpc *slpc, u32 *val);
+> +int intel_guc_slpc_info(struct intel_guc_slpc *slpc, struct drm_printer *p);
+>  
+>  #endif
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
