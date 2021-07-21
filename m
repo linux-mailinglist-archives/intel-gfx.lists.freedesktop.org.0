@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078533D19B7
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 00:31:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB8B83D19BD
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 00:31:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 324196EB47;
-	Wed, 21 Jul 2021 22:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1360A6EB5D;
+	Wed, 21 Jul 2021 22:30:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16E1F6EB1E
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 22:30:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="272641648"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="272641648"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C476EB1E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 22:30:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="211528000"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="211528000"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 15:30:49 -0700
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="658464202"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 15:30:48 -0700
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="658464192"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Jul 2021 15:30:48 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Jul 2021 15:30:34 -0700
-Message-Id: <20210721223043.834562-10-matthew.d.roper@intel.com>
+Date: Wed, 21 Jul 2021 15:30:35 -0700
+Message-Id: <20210721223043.834562-11-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210721223043.834562-1-matthew.d.roper@intel.com>
 References: <20210721223043.834562-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 09/18] drm/i915/xehp: New engine context offsets
+Subject: [Intel-gfx] [CI 10/18] drm/i915/dg2: Add fake PCH
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,136 +42,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-
-The layout of some engine contexts has changed on Xe_HP.  Define the new
-offsets.
-
-Bspec: 45585, 46256
-Signed-off-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
-Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 65 ++++++++++++++++++++++++++---
- 1 file changed, 59 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 7f8fe6726504..c3f5bec8ae15 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -484,6 +484,47 @@ static const u8 gen12_rcs_offsets[] = {
- 	END
- };
- 
-+static const u8 xehp_rcs_offsets[] = {
-+	NOP(1),
-+	LRI(13, POSTED),
-+	REG16(0x244),
-+	REG(0x034),
-+	REG(0x030),
-+	REG(0x038),
-+	REG(0x03c),
-+	REG(0x168),
-+	REG(0x140),
-+	REG(0x110),
-+	REG(0x1c0),
-+	REG(0x1c4),
-+	REG(0x1c8),
-+	REG(0x180),
-+	REG16(0x2b4),
-+
-+	NOP(5),
-+	LRI(9, POSTED),
-+	REG16(0x3a8),
-+	REG16(0x28c),
-+	REG16(0x288),
-+	REG16(0x284),
-+	REG16(0x280),
-+	REG16(0x27c),
-+	REG16(0x278),
-+	REG16(0x274),
-+	REG16(0x270),
-+
-+	LRI(3, POSTED),
-+	REG(0x1b0),
-+	REG16(0x5a8),
-+	REG16(0x5ac),
-+
-+	NOP(6),
-+	LRI(1, 0),
-+	REG(0x0c8),
-+
-+	END
-+};
-+
- #undef END
- #undef REG16
- #undef REG
-@@ -502,7 +543,9 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
- 		   !intel_engine_has_relative_mmio(engine));
- 
- 	if (engine->class == RENDER_CLASS) {
--		if (GRAPHICS_VER(engine->i915) >= 12)
-+		if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-+			return xehp_rcs_offsets;
-+		else if (GRAPHICS_VER(engine->i915) >= 12)
- 			return gen12_rcs_offsets;
- 		else if (GRAPHICS_VER(engine->i915) >= 11)
- 			return gen11_rcs_offsets;
-@@ -522,7 +565,9 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
- 
- static int lrc_ring_mi_mode(const struct intel_engine_cs *engine)
- {
--	if (GRAPHICS_VER(engine->i915) >= 12)
-+	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-+		return 0x70;
-+	else if (GRAPHICS_VER(engine->i915) >= 12)
- 		return 0x60;
- 	else if (GRAPHICS_VER(engine->i915) >= 9)
- 		return 0x54;
-@@ -534,7 +579,9 @@ static int lrc_ring_mi_mode(const struct intel_engine_cs *engine)
- 
- static int lrc_ring_gpr0(const struct intel_engine_cs *engine)
- {
--	if (GRAPHICS_VER(engine->i915) >= 12)
-+	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-+		return 0x84;
-+	else if (GRAPHICS_VER(engine->i915) >= 12)
- 		return 0x74;
- 	else if (GRAPHICS_VER(engine->i915) >= 9)
- 		return 0x68;
-@@ -578,10 +625,16 @@ static int lrc_ring_indirect_offset(const struct intel_engine_cs *engine)
- 
- static int lrc_ring_cmd_buf_cctl(const struct intel_engine_cs *engine)
- {
--	if (engine->class != RENDER_CLASS)
--		return -1;
- 
--	if (GRAPHICS_VER(engine->i915) >= 12)
-+	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
-+		/*
-+		 * Note that the CSFE context has a dummy slot for CMD_BUF_CCTL
-+		 * simply to match the RCS context image layout.
-+		 */
-+		return 0xc6;
-+	else if (engine->class != RENDER_CLASS)
-+		return -1;
-+	else if (GRAPHICS_VER(engine->i915) >= 12)
- 		return 0xb6;
- 	else if (GRAPHICS_VER(engine->i915) >= 11)
- 		return 0xaa;
--- 
-2.25.4
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QXMgd2l0aCBERzEsIERHMiBoYXMgYW4gSUNMLXN0eWxlIHNvdXRoIGRpc3BsYXkgaW50ZXJmYWNl
+IHByb3ZpZGVkIG9uCnRoZSBzYW1lIFBDSSBkZXZpY2UuICBBZGQgYSBmYWtlIFBDSCB0byBlbnN1
+cmUgREcyIHRha2VzIHRoZSBhcHByb3ByaWF0ZQpjb2RlcGF0aHMgZm9yIHNvdXRoIGRpc3BsYXkg
+aGFuZGxpbmcuCgpCc3BlYzogNTQ4NzEsIDUwMDYyLCA0OTk2MSwgNTM2NzMKQ2M6IEx1Y2FzIERl
+IE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYXR0IFJv
+cGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBBZGl0eWEgU3dh
+cnVwIDxhZGl0eWEuc3dhcnVwQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0
+byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBMdWNhcyBEZSBN
+YXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVy
+dG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfaXJxLmMgIHwgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNoLmMg
+fCAzICsrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNoLmggfCAyICsrCiAzIGZpbGVz
+IGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2lycS5jCmluZGV4IDYxZGNlYjJhMTdjMS4uZTIxNzFiZDI4MjBlIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfaXJxLmMKQEAgLTIwNyw3ICsyMDcsNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9ocGRfaW5pdF9w
+aW5zKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAkgICAgKCFIQVNfUENIX1NQ
+TElUKGRldl9wcml2KSB8fCBIQVNfUENIX05PUChkZXZfcHJpdikpKQogCQlyZXR1cm47CiAKLQlp
+ZiAoSEFTX1BDSF9ERzEoZGV2X3ByaXYpKQorCWlmIChJTlRFTF9QQ0hfVFlQRShkZXZfcHJpdikg
+Pj0gUENIX0RHMSkKIAkJaHBkLT5wY2hfaHBkID0gaHBkX3NkZV9kZzE7CiAJZWxzZSBpZiAoSU5U
+RUxfUENIX1RZUEUoZGV2X3ByaXYpID49IFBDSF9JQ1ApCiAJCWhwZC0+cGNoX2hwZCA9IGhwZF9p
+Y3A7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5jCmluZGV4IDRlOTJhZTE5MTg5ZS4uY2M0NDE2NGUy
+NDJiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guYwpAQCAtMjExLDYgKzIxMSw5IEBAIHZvaWQg
+aW50ZWxfZGV0ZWN0X3BjaChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJaWYg
+KElTX0RHMShkZXZfcHJpdikpIHsKIAkJZGV2X3ByaXYtPnBjaF90eXBlID0gUENIX0RHMTsKIAkJ
+cmV0dXJuOworCX0gZWxzZSBpZiAoSVNfREcyKGRldl9wcml2KSkgeworCQlkZXZfcHJpdi0+cGNo
+X3R5cGUgPSBQQ0hfREcyOworCQlyZXR1cm47CiAJfQogCiAJLyoKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+cGNoLmgKaW5kZXggZTJmM2YzMGM2NDQ1Li43YzBkODNkMjkyZGMgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
+dGVsX3BjaC5oCkBAIC0zMCw2ICszMCw3IEBAIGVudW0gaW50ZWxfcGNoIHsKIAogCS8qIEZha2Ug
+UENIcywgZnVuY3Rpb25hbGl0eSBoYW5kbGVkIG9uIHRoZSBzYW1lIFBDSSBkZXYgKi8KIAlQQ0hf
+REcxID0gMTAyNCwKKwlQQ0hfREcyLAogfTsKIAogI2RlZmluZSBJTlRFTF9QQ0hfREVWSUNFX0lE
+X01BU0sJCTB4ZmY4MApAQCAtNjIsNiArNjMsNyBAQCBlbnVtIGludGVsX3BjaCB7CiAKICNkZWZp
+bmUgSU5URUxfUENIX1RZUEUoZGV2X3ByaXYpCQkoKGRldl9wcml2KS0+cGNoX3R5cGUpCiAjZGVm
+aW5lIElOVEVMX1BDSF9JRChkZXZfcHJpdikJCQkoKGRldl9wcml2KS0+cGNoX2lkKQorI2RlZmlu
+ZSBIQVNfUENIX0RHMihkZXZfcHJpdikJCQkoSU5URUxfUENIX1RZUEUoZGV2X3ByaXYpID09IFBD
+SF9ERzIpCiAjZGVmaW5lIEhBU19QQ0hfQURQKGRldl9wcml2KQkJCShJTlRFTF9QQ0hfVFlQRShk
+ZXZfcHJpdikgPT0gUENIX0FEUCkKICNkZWZpbmUgSEFTX1BDSF9ERzEoZGV2X3ByaXYpCQkJKElO
+VEVMX1BDSF9UWVBFKGRldl9wcml2KSA9PSBQQ0hfREcxKQogI2RlZmluZSBIQVNfUENIX0pTUChk
+ZXZfcHJpdikJCQkoSU5URUxfUENIX1RZUEUoZGV2X3ByaXYpID09IFBDSF9KU1ApCi0tIAoyLjI1
+LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
