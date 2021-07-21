@@ -2,62 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A944E3D17B9
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 22:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36FA73D17BA
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 22:14:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBEE6ECD3;
-	Wed, 21 Jul 2021 20:14:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0936ED0E;
+	Wed, 21 Jul 2021 20:14:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF38F6ED0E
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 20:14:03 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id b12so1666928plh.10
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 13:14:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=gZDUyU6TiqgcwzDSQgDDr7H1fzdH4+hJ76kiwfOJe/I=;
- b=bpLYY+SJUhbN35eV8XoeJsgTlP2woAn2Wfg4P6c9EmQRKuroVXKcLZ08ZTkynQf+NA
- mgKzxqgANHjC71JKmmkACy97MlryMuAsobPhsU7/VeF93B7P9yimORxCzQrFIDzdhY8E
- qX4JVtfTRWO8OMLxJ5Vy4yQ7pQ5ig7Fc0BZ1yFpYy20A1frauWIPadrimfrOL9H/KXXE
- wHmGbzImW6yKyJiknjUmvh04f5uPz08QcpSkWAORb09YDlPrXs8MefryqAHWcYOdHT5C
- QVznNn97WisSLBfmwysLh0Sliaz/dtckT0Kpc4RqZuHqQH4yaEn6vNQuMYu7baSO8vjW
- RpQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=gZDUyU6TiqgcwzDSQgDDr7H1fzdH4+hJ76kiwfOJe/I=;
- b=HJq8Gyu4rIBN/9ejPyAyuEIqz9RLd9iNv65GuQFUYSZg1CHVyA4/sXYBcGwROhfVWK
- ACdBFe98it34kSFpr6C17nHsiZsVwD8hUaMxLNQjYNZf/RRUTHU7HIrRCz/N446D8Hna
- 7Mnu3CVjUPQUx5AJI4qi8/i6KlAn/iQ47jP1V5P8Ay9iECe3oKPrkef8qJZOgN8IqopH
- wXSwH3IAMkUc8ZgwhmAroOtMMZHUolTDrN2bC/IQ57thP1jCMPxxY36YVW1XbKMl/2dg
- UEKYnaFruZuj3XYH5bo1N9+FYeGF8ylFMmSBv7Rxx3zM8Os8b2kRyRFMBYUofRMAO4vu
- AQnw==
-X-Gm-Message-State: AOAM533yVUIgWQRlVfBrZERs+TwGMPnZjwJAFbW+HAl+e24ssQsOdXXy
- hdP7Lw7bbeR+lswbECLQbBOZ5Smmjn/f1w==
-X-Google-Smtp-Source: ABdhPJzvumOfOa+Llndako4OEPGVoU1nzb/wY1xvSbRODr8qOpVkHbicXlsIjJcJaxy3J8G0qKi9bg==
-X-Received: by 2002:a17:90a:f28e:: with SMTP id
- fs14mr5514578pjb.106.1626898443011; 
- Wed, 21 Jul 2021 13:14:03 -0700 (PDT)
-Received: from omlet.com ([134.134.137.82])
- by smtp.gmail.com with ESMTPSA id h24sm28777439pfn.180.2021.07.21.13.14.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Jul 2021 13:14:02 -0700 (PDT)
-From: Jason Ekstrand <jason@jlekstrand.net>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed, 21 Jul 2021 15:13:43 -0500
-Message-Id: <20210721201343.2962674-8-jason@jlekstrand.net>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210721201343.2962674-1-jason@jlekstrand.net>
-References: <20210721201343.2962674-1-jason@jlekstrand.net>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5F4D6ED0E;
+ Wed, 21 Jul 2021 20:14:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CE347AADD7;
+ Wed, 21 Jul 2021 20:14:10 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/gem: Migrate to system at dma-buf
- attach time (v7)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Date: Wed, 21 Jul 2021 20:14:10 -0000
+Message-ID: <162689845084.767.17100553585996375066@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210721161120.24610-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20210721161120.24610-1-vinay.belgaumkar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/guc=3A_Enable_GuC_based_power_management_features?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,114 +38,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29t
-PgoKVW50aWwgd2Ugc3VwcG9ydCBwMnAgZG1hIG9yIGFzIGEgY29tcGxlbWVudCB0byB0aGF0LCBt
-aWdyYXRlIGRhdGEKdG8gc3lzdGVtIG1lbW9yeSBhdCBkbWEtYnVmIGF0dGFjaCB0aW1lIGlmIHBv
-c3NpYmxlLgoKdjI6Ci0gUmViYXNlIG9uIGR5bmFtaWMgZXhwb3J0ZXIuIFVwZGF0ZSB0aGUgaWd0
-X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXIKICBzZWxmdGVzdCB0byBtaWdyYXRlIGlmIHdlIGFy
-ZSBMTUVNIGNhcGFibGUuCnYzOgotIE1pZ3JhdGUgYWxzbyBpbiB0aGUgcGluKCkgY2FsbGJhY2su
-CnY0OgotIE1pZ3JhdGUgaW4gYXR0YWNoCnY1OiAoamFzb24pCi0gTG9jayBhcm91bmQgdGhlIG1p
-Z3JhdGlvbgp2NjogKGphc29uKQotIE1vdmUgdGhlIGNhbl9taWdyYXRlIGNoZWNrIG91dHNpZGUg
-dGhlIGxvY2sKLSBSZXdvcmsgdGhlIHNlbGZ0ZXN0cyB0byB0ZXN0IG1vcmUgbWlncmF0aW9uIGNv
-bmRpdGlvbnMuICBJbgogIHBhcnRpY3VsYXIsIFNNRU0sIExNRU0sIGFuZCBMTUVNK1NNRU0gYXJl
-IGFsbCBjaGVja2VkLgp2NzogKG1hdWxkKQotIE1pc2Mgc3R5bGUgbml0cwoKU2lnbmVkLW9mZi1i
-eTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgpT
-aWduZWQtb2ZmLWJ5OiBNaWNoYWVsIEouIFJ1aGwgPG1pY2hhZWwuai5ydWhsQGludGVsLmNvbT4K
-UmVwb3J0ZWQtYnk6IGtlcm5lbCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgpTaWduZWQtb2Zm
-LWJ5OiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+ClJldmlld2VkLWJ5OiBK
-YXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+Ci0tLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jICAgIHwgMjMgKysrKy0KIC4uLi9kcm0vaTkxNS9n
-ZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5jICB8IDg3ICsrKysrKysrKysrKysrKysrKy0K
-IDIgZmlsZXMgY2hhbmdlZCwgMTA2IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1Zi5jCmluZGV4IDU5ZGM1NmFlMTRk
-NmIuLmFmYTM0MTExZGUwMmUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9kbWFidWYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-ZG1hYnVmLmMKQEAgLTE2NCw4ICsxNjQsMjkgQEAgc3RhdGljIGludCBpOTE1X2dlbV9kbWFidWZf
-YXR0YWNoKHN0cnVjdCBkbWFfYnVmICpkbWFidWYsCiAJCQkJICBzdHJ1Y3QgZG1hX2J1Zl9hdHRh
-Y2htZW50ICphdHRhY2gpCiB7CiAJc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiA9IGRt
-YV9idWZfdG9fb2JqKGRtYWJ1Zik7CisJc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCB3dzsKKwlpbnQg
-ZXJyOworCisJaWYgKCFpOTE1X2dlbV9vYmplY3RfY2FuX21pZ3JhdGUob2JqLCBJTlRFTF9SRUdJ
-T05fU01FTSkpCisJCXJldHVybiAtRU9QTk9UU1VQUDsKKworCWZvcl9pOTE1X2dlbV93dygmd3cs
-IGVyciwgdHJ1ZSkgeworCQllcnIgPSBpOTE1X2dlbV9vYmplY3RfbG9jayhvYmosICZ3dyk7CisJ
-CWlmIChlcnIpCisJCQljb250aW51ZTsKKworCQllcnIgPSBpOTE1X2dlbV9vYmplY3RfbWlncmF0
-ZShvYmosICZ3dywgSU5URUxfUkVHSU9OX1NNRU0pOworCQlpZiAoZXJyKQorCQkJY29udGludWU7
-CiAKLQlyZXR1cm4gaTkxNV9nZW1fb2JqZWN0X3Bpbl9wYWdlc191bmxvY2tlZChvYmopOworCQll
-cnIgPSBpOTE1X2dlbV9vYmplY3Rfd2FpdF9taWdyYXRpb24ob2JqLCAwKTsKKwkJaWYgKGVycikK
-KwkJCWNvbnRpbnVlOworCisJCWVyciA9IGk5MTVfZ2VtX29iamVjdF9waW5fcGFnZXMob2JqKTsK
-Kwl9CisKKwlyZXR1cm4gZXJyOwogfQogCiBzdGF0aWMgdm9pZCBpOTE1X2dlbV9kbWFidWZfZGV0
-YWNoKHN0cnVjdCBkbWFfYnVmICpkbWFidWYsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9kbWFidWYuYwppbmRleCBkNGNlMDFlNmVlODU0Li5m
-ZmFlN2RmNWU0ZDdkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRl
-c3RzL2k5MTVfZ2VtX2RtYWJ1Zi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxm
-dGVzdHMvaTkxNV9nZW1fZG1hYnVmLmMKQEAgLTg1LDkgKzg1LDYzIEBAIHN0YXRpYyBpbnQgaWd0
-X2RtYWJ1Zl9pbXBvcnRfc2VsZih2b2lkICphcmcpCiAJcmV0dXJuIGVycjsKIH0KIAotc3RhdGlj
-IGludCBpZ3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcih2b2lkICphcmcpCitzdGF0aWMgaW50
-IGlndF9kbWFidWZfaW1wb3J0X3NhbWVfZHJpdmVyX2xtZW0odm9pZCAqYXJnKQogewogCXN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJnOworCXN0cnVjdCBpbnRlbF9tZW1vcnlfcmVn
-aW9uICpsbWVtID0gaTkxNS0+bW0ucmVnaW9uc1tJTlRFTF9SRUdJT05fTE1FTV07CisJc3RydWN0
-IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iajsKKwlzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKmltcG9y
-dDsKKwlzdHJ1Y3QgZG1hX2J1ZiAqZG1hYnVmOworCWludCBlcnI7CisKKwlpZiAoIWxtZW0pCisJ
-CXJldHVybiAwOworCisJZm9yY2VfZGlmZmVyZW50X2RldmljZXMgPSB0cnVlOworCisJb2JqID0g
-X19pOTE1X2dlbV9vYmplY3RfY3JlYXRlX3VzZXIoaTkxNSwgUEFHRV9TSVpFLCAmbG1lbSwgMSk7
-CisJaWYgKElTX0VSUihvYmopKSB7CisJCXByX2VycigiX19pOTE1X2dlbV9vYmplY3RfY3JlYXRl
-X3VzZXIgZmFpbGVkIHdpdGggZXJyPSVsZFxuIiwKKwkJICAgICAgIFBUUl9FUlIoZG1hYnVmKSk7
-CisJCWVyciA9IFBUUl9FUlIob2JqKTsKKwkJZ290byBvdXRfcmV0OworCX0KKworCWRtYWJ1ZiA9
-IGk5MTVfZ2VtX3ByaW1lX2V4cG9ydCgmb2JqLT5iYXNlLCAwKTsKKwlpZiAoSVNfRVJSKGRtYWJ1
-ZikpIHsKKwkJcHJfZXJyKCJpOTE1X2dlbV9wcmltZV9leHBvcnQgZmFpbGVkIHdpdGggZXJyPSVs
-ZFxuIiwKKwkJICAgICAgIFBUUl9FUlIoZG1hYnVmKSk7CisJCWVyciA9IFBUUl9FUlIoZG1hYnVm
-KTsKKwkJZ290byBvdXQ7CisJfQorCisJLyoKKwkgKiBXZSBleHBlY3QgYW4gaW1wb3J0IG9mIGFu
-IExNRU0tb25seSBvYmplY3QgdG8gZmFpbCB3aXRoCisJICogLUVPUE5PVFNVUFAgYmVjYXVzZSBp
-dCBjYW4ndCBiZSBtaWdyYXRlZCB0byBTTUVNLgorCSAqLworCWltcG9ydCA9IGk5MTVfZ2VtX3By
-aW1lX2ltcG9ydCgmaTkxNS0+ZHJtLCBkbWFidWYpOworCWlmICghSVNfRVJSKGltcG9ydCkpIHsK
-KwkJZHJtX2dlbV9vYmplY3RfcHV0KGltcG9ydCk7CisJCXByX2VycigiaTkxNV9nZW1fcHJpbWVf
-aW1wb3J0IHN1Y2NlZWRlZCB3aGVuIGl0IHNob3VsZG4ndCBoYXZlXG4iKTsKKwkJZXJyID0gLUVJ
-TlZBTDsKKwl9IGVsc2UgaWYgKFBUUl9FUlIoaW1wb3J0KSAhPSAtRU9QTk9UU1VQUCkgeworCQlw
-cl9lcnIoImk5MTVfZ2VtX3ByaW1lX2ltcG9ydCBmYWlsZWQgd2l0aCB0aGUgd3JvbmcgZXJyPSVs
-ZFxuIiwKKwkJICAgICAgIFBUUl9FUlIoaW1wb3J0KSk7CisJCWVyciA9IFBUUl9FUlIoaW1wb3J0
-KTsKKwl9CisKKwlkbWFfYnVmX3B1dChkbWFidWYpOworb3V0OgorCWk5MTVfZ2VtX29iamVjdF9w
-dXQob2JqKTsKK291dF9yZXQ6CisJZm9yY2VfZGlmZmVyZW50X2RldmljZXMgPSBmYWxzZTsKKwly
-ZXR1cm4gZXJyOworfQorCitzdGF0aWMgaW50IGlndF9kbWFidWZfaW1wb3J0X3NhbWVfZHJpdmVy
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAorCQkJCQkgc3RydWN0IGludGVsX21lbW9y
-eV9yZWdpb24gKipyZWdpb25zLAorCQkJCQkgdW5zaWduZWQgaW50IG51bV9yZWdpb25zKQorewog
-CXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosICppbXBvcnRfb2JqOwogCXN0cnVjdCBk
-cm1fZ2VtX29iamVjdCAqaW1wb3J0OwogCXN0cnVjdCBkbWFfYnVmICpkbWFidWY7CkBAIC05Nyw4
-ICsxNTEsMTIgQEAgc3RhdGljIGludCBpZ3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcih2b2lk
-ICphcmcpCiAJaW50IGVycjsKIAogCWZvcmNlX2RpZmZlcmVudF9kZXZpY2VzID0gdHJ1ZTsKLQlv
-YmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3NobWVtKGk5MTUsIFBBR0VfU0laRSk7CisKKwlv
-YmogPSBfX2k5MTVfZ2VtX29iamVjdF9jcmVhdGVfdXNlcihpOTE1LCBQQUdFX1NJWkUsCisJCQkJ
-CSAgICByZWdpb25zLCBudW1fcmVnaW9ucyk7CiAJaWYgKElTX0VSUihvYmopKSB7CisJCXByX2Vy
-cigiX19pOTE1X2dlbV9vYmplY3RfY3JlYXRlX3VzZXIgZmFpbGVkIHdpdGggZXJyPSVsZFxuIiwK
-KwkJICAgICAgIFBUUl9FUlIoZG1hYnVmKSk7CiAJCWVyciA9IFBUUl9FUlIob2JqKTsKIAkJZ290
-byBvdXRfcmV0OwogCX0KQEAgLTE4MCw2ICsyMzgsMjcgQEAgc3RhdGljIGludCBpZ3RfZG1hYnVm
-X2ltcG9ydF9zYW1lX2RyaXZlcih2b2lkICphcmcpCiAJcmV0dXJuIGVycjsKIH0KIAorc3RhdGlj
-IGludCBpZ3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcl9zbWVtKHZvaWQgKmFyZykKK3sKKwlz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGFyZzsKKwlzdHJ1Y3QgaW50ZWxfbWVtb3J5
-X3JlZ2lvbiAqc21lbSA9IGk5MTUtPm1tLnJlZ2lvbnNbSU5URUxfUkVHSU9OX1NNRU1dOworCisJ
-cmV0dXJuIGlndF9kbWFidWZfaW1wb3J0X3NhbWVfZHJpdmVyKGk5MTUsICZzbWVtLCAxKTsKK30K
-Kworc3RhdGljIGludCBpZ3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlcl9sbWVtX3NtZW0odm9p
-ZCAqYXJnKQoreworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gYXJnOworCXN0cnVj
-dCBpbnRlbF9tZW1vcnlfcmVnaW9uICpyZWdpb25zWzJdOworCisJaWYgKCFpOTE1LT5tbS5yZWdp
-b25zW0lOVEVMX1JFR0lPTl9MTUVNXSkKKwkJcmV0dXJuIDA7CisKKwlyZWdpb25zWzBdID0gaTkx
-NS0+bW0ucmVnaW9uc1tJTlRFTF9SRUdJT05fTE1FTV07CisJcmVnaW9uc1sxXSA9IGk5MTUtPm1t
-LnJlZ2lvbnNbSU5URUxfUkVHSU9OX1NNRU1dOworCXJldHVybiBpZ3RfZG1hYnVmX2ltcG9ydF9z
-YW1lX2RyaXZlcihpOTE1LCByZWdpb25zLCAyKTsKK30KKwogc3RhdGljIGludCBpZ3RfZG1hYnVm
-X2ltcG9ydCh2b2lkICphcmcpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBh
-cmc7CkBAIC0zOTAsNyArNDY5LDkgQEAgaW50IGk5MTVfZ2VtX2RtYWJ1Zl9saXZlX3NlbGZ0ZXN0
-cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKIHsKIAlzdGF0aWMgY29uc3Qgc3RydWN0
-IGk5MTVfc3VidGVzdCB0ZXN0c1tdID0gewogCQlTVUJURVNUKGlndF9kbWFidWZfZXhwb3J0KSwK
-LQkJU1VCVEVTVChpZ3RfZG1hYnVmX2ltcG9ydF9zYW1lX2RyaXZlciksCisJCVNVQlRFU1QoaWd0
-X2RtYWJ1Zl9pbXBvcnRfc2FtZV9kcml2ZXJfbG1lbSksCisJCVNVQlRFU1QoaWd0X2RtYWJ1Zl9p
-bXBvcnRfc2FtZV9kcml2ZXJfc21lbSksCisJCVNVQlRFU1QoaWd0X2RtYWJ1Zl9pbXBvcnRfc2Ft
-ZV9kcml2ZXJfbG1lbV9zbWVtKSwKIAl9OwogCiAJcmV0dXJuIGk5MTVfc3VidGVzdHModGVzdHMs
-IGk5MTUpOwotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+== Series Details ==
+
+Series: drm/i915/guc: Enable GuC based power management features
+URL   : https://patchwork.freedesktop.org/series/92831/
+State : warning
+
+== Summary ==
+
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.c:67:6: warning: symbol 'intel_eval_slpc_support' was not declared. Should it be static?
++drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:264:5: warning: symbol 'slpc_decode_min_freq' was not declared. Should it be static?
++drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:276:5: warning: symbol 'slpc_decode_max_freq' was not declared. Should it be static?
++drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
