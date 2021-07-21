@@ -2,35 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AEAB3D0D86
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 13:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAAA63D0D8D
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 13:26:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A963A6E827;
-	Wed, 21 Jul 2021 11:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C97F6EBD0;
+	Wed, 21 Jul 2021 11:26:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBC5C6EB62;
- Wed, 21 Jul 2021 11:24:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="211477340"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="211477340"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 04:24:49 -0700
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="501246323"
-Received: from pramodhp-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.212.44.180])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 04:24:48 -0700
-Date: Wed, 21 Jul 2021 07:24:47 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Christoph Hellwig <hch@infradead.org>
-Message-ID: <YPgD/8Y3/te/Hsu3@intel.com>
-References: <YPgAuSt6Ps7w4/AI@infradead.org>
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20ED36EBA8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 11:26:25 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id d12so1757247wre.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 04:26:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=SHXTqODjZMjL7ems7eQOdMuntJ59DwSRCnurAgLXpD8=;
+ b=VASvrozaCGnLisNK4Xlibl8ySlOT/+g5WuAkRQmPLaRyufdY5KTxqw8UKAjaGvdID8
+ DtiexV9zlca8dOa1kvCUhp8ZoG6eWFzUdRUM2YFQY9KQd0QOwzdrGMHMPDnthnvKUjVC
+ HYLCdWxLR6AvLKc4k42IkPFKdNFvk6lnbkrsg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=SHXTqODjZMjL7ems7eQOdMuntJ59DwSRCnurAgLXpD8=;
+ b=e70wZmDN85sMVIAhdtIN9ZfqDGu+c9jlHhyQCuURUpjo+hNg/xPFU71JgYA4Xzz4ja
+ nkE762ob9bh6bk4HJLLSf4Jzs1BOuHxniWsh4P5zJG2vDJtTMwXtomwUyn5xXJLwri1y
+ ir6fcsBXsH/O3vZ10RhJk0r/VoBNrLlWr46Q5HB2B2Aly+p+X6X6qemSMuAkZ3M9zfxb
+ D0s0/edm1UI+/OLtO9Xa5wzvn/goRi5uSy1VCa3Bxdla6UUI6NmjQASggow/tJBWk7KJ
+ dzVXyF8vgR8cxkwE7sxKSulbFePF3c0AoO4XimWMJ1E8isIuYWQwkj+J70UDDlUHty9u
+ tDUg==
+X-Gm-Message-State: AOAM532cgWQCxLpvgcrJHNwPsPin/bHoKtKPon2Ei1afclTQXxYr18Ch
+ upS+i94ROUMR9joeOIPx7Ft71A==
+X-Google-Smtp-Source: ABdhPJxI4G9Kh4w4H5hhaSS3JGjdwP4S1wByysNecFr4KR5xj440C3JjB0XJMswp9lbNU3vAAHhMLA==
+X-Received: by 2002:a5d:4b46:: with SMTP id w6mr42766727wrs.352.1626866783761; 
+ Wed, 21 Jul 2021 04:26:23 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id u16sm32090963wrw.36.2021.07.21.04.26.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 21 Jul 2021 04:26:23 -0700 (PDT)
+Date: Wed, 21 Jul 2021 13:26:21 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YPgEXZ4zXuR4374o@phenom.ffwll.local>
+References: <20210719183047.2624569-1-jason@jlekstrand.net>
+ <20210719183047.2624569-4-jason@jlekstrand.net>
+ <YPbbSKpaB7yZ8KtE@phenom.ffwll.local>
+ <CAOFGe973b3YPNs+0aGThP0uFTu13t94To=wu3_ZwX5DJhSoGMw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YPgAuSt6Ps7w4/AI@infradead.org>
-Subject: Re: [Intel-gfx] 5.14-rc2 warnings with kvmgvt
+In-Reply-To: <CAOFGe973b3YPNs+0aGThP0uFTu13t94To=wu3_ZwX5DJhSoGMw@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Always call
+ i915_globals_exit() from i915_exit()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,150 +68,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 21, 2021 at 01:10:49PM +0200, Christoph Hellwig wrote:
-> Hi all,
+On Tue, Jul 20, 2021 at 09:55:22AM -0500, Jason Ekstrand wrote:
+> On Tue, Jul 20, 2021 at 9:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Mon, Jul 19, 2021 at 01:30:44PM -0500, Jason Ekstrand wrote:
+> > > If the driver was not fully loaded, we may still have globals lying
+> > > around.  If we don't tear those down in i915_exit(), we'll leak a bunch
+> > > of memory slabs.  This can happen two ways: use_kms = false and if we've
+> > > run mock selftests.  In either case, we have an early exit from
+> > > i915_init which happens after i915_globals_init() and we need to clean
+> > > up those globals.  While we're here, add an explicit boolean instead of
+> > > using a random field from i915_pci_device to detect partial loads.
+> > >
+> > > The mock selftests case gets especially sticky.  The load isn't entirely
+> > > a no-op.  We actually do quite a bit inside those selftests including
+> > > allocating a bunch of mock objects and running tests on them.  Once all
+> > > those tests are complete, we exit early from i915_init().  Perviously,
+> > > i915_init() would return a non-zero error code on failure and a zero
+> > > error code on success.  In the success case, we would get to i915_exit()
+> > > and check i915_pci_driver.driver.owner to detect if i915_init exited early
+> > > and do nothing.  In the failure case, we would fail i915_init() but
+> > > there would be no opportunity to clean up globals.
+> > >
+> > > The most annoying part is that you don't actually notice the failure as
+> > > part of the self-tests since leaking a bit of memory, while bad, doesn't
+> > > result in anything observable from userspace.  Instead, the next time we
+> > > load the driver (usually for next IGT test), i915_globals_init() gets
+> > > invoked again, we go to allocate a bunch of new memory slabs, those
+> > > implicitly create debugfs entries, and debugfs warns that we're trying
+> > > to create directories and files that already exist.  Since this all
+> > > happens as part of the next driver load, it shows up in the dmesg-warn
+> > > of whatever IGT test ran after the mock selftests.
+> > >
+> > > While the obvious thing to do here might be to call i915_globals_exit()
+> > > after selftests, that's not actually safe.  The dma-buf selftests call
+> > > i915_gem_prime_export which creates a file.  We call dma_buf_put() on
+> > > the resulting dmabuf which calls fput() on the file.  However, fput()
+> > > isn't immediate and gets flushed right before syscall returns.  This
+> > > means that all the fput()s from the selftests don't happen until right
+> > > before the module load syscall used to fire off the selftests returns
+> > > which is after i915_init().  If we call i915_globals_exit() in
+> > > i915_init() after selftests, we end up freeing slabs out from under
+> > > objects which won't get released until fput() is flushed at the end of
+> > > the module load.
+> > >
+> > > The solution here is to let i915_init() return success early and detect
+> > > the early success in i915_exit() and only tear down globals and nothing
+> > > else.  This way the module loads successfully, regardless of the success
+> > > or failure of the tests.  Because we've not enumerated any PCI devices,
+> > > no device nodes are created and it's entirely useless from userspace.
+> > > The only thing the module does at that point is hold on to a bit of
+> > > memory until we unload it and i915_exit() is called.  Importantly, this
+> > > means that everything from our selftests has the ability to properly
+> > > flush out between i915_init() and i915_exit() because there are a couple
+> > > syscall boundaries in between.
+> > >
+> > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> > > Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
+> > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_pci.c | 32 +++++++++++++++++++++++++-------
+> > >  1 file changed, 25 insertions(+), 7 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> > > index 4e627b57d31a2..24e4e54516936 100644
+> > > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > > @@ -1194,18 +1194,31 @@ static struct pci_driver i915_pci_driver = {
+> > >       .driver.pm = &i915_pm_ops,
+> > >  };
+> > >
+> > > +static bool i915_fully_loaded = false;
+> > > +
+> > >  static int __init i915_init(void)
+> > >  {
+> > >       bool use_kms = true;
+> > >       int err;
+> > >
+> > > +     i915_fully_loaded = false;
+> > > +
+> > >       err = i915_globals_init();
+> > >       if (err)
+> > >               return err;
+> > >
+> > > +     /* i915_mock_selftests() only returns zero if no mock subtests were
+> > > +      * run.  If we get any non-zero error code, we return early here.
+> > > +      * We always return success because selftests may have allocated
+> > > +      * objects from slabs which will get cleaned up by i915_exit().  We
+> > > +      * could attempt to clean up immediately and fail module load but,
+> > > +      * thanks to interactions with other parts of the kernel (struct
+> > > +      * file, in particular), it's safer to let the module fully load
+> > > +      * and then clean up on unload.
+> > > +      */
+> > >       err = i915_mock_selftests();
+> > >       if (err)
+> > > -             return err > 0 ? 0 : err;
+> > > +             return 0;
+> >
+> > At least the module options still claim that you can run selftests and
+> > still load the driver. Which makes sense for perf/hw selftests, since
+> > those need the driver, but would result in the same old bug resurfacing
+> > that you're trying to fix there.
+> >
+> > Is that description just confused and needs some fixing, or do we have a
+> > gap here?
 > 
-> I'm trying to test some changes for the gvt code, but even with a baseline
-> 5.14-rc2 host and guest the 915 driver does not seem overly happy:
+> I don't think there's real need for a fully loaded driver after mock
+> selftests.  They exist entirely to run against a mock driver, not the
+> real one.
 
-Is this a regression over -rc1 or over 5.13?
-Bisect possible?
-
-Could you please file a bug to our gitlab issues tracker:
-https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
-
-Thanks,
-Rodrigo.
+Can you pls update the module option help then for the next round?
+-Daniel
 
 > 
-> [    5.693099] i915 0000:00:04.0: [drm] Virtual GPU for Intel GVT-g detected.
-> [    5.694841] i915 0000:00:04.0: [drm] VT-d active for gfx access
-> [    5.696411] i915 0000:00:04.0: [drm] iGVT-g active, disabling use of stolen memory
-> [    5.711317] i915 0000:00:04.0: BAR 6: can't assign [??? 0x00000000 flags 0x20000000] (bogus alignm)
-> [    5.712847] i915 0000:00:04.0: [drm] Failed to find VBIOS tables (VBT)
-> [    5.714343] i915 0000:00:04.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=none:owns=iom
-> [    5.716466] i915 0000:00:04.0: Direct firmware load for i915/kbl_dmc_ver1_04.bin failed with error2
-> [    5.718021] i915 0000:00:04.0: [drm] Failed to load DMC firmware i915/kbl_dmc_ver1_04.bin. Disabli.
-> [    5.719914] i915 0000:00:04.0: [drm] DMC firmware homepage: https://git.kernel.org/pub/scm/linux/k5
-> [    5.733269] i915 0000:00:04.0: [drm] failed to retrieve link info, disabling eDP
-> [    5.735841] i915 0000:00:04.0: [drm] *ERROR* crtc 51: Can't calculate constants, dotclock = 0!
-> [    5.737354] ------------[ cut here ]------------
-> [    5.738141] i915 0000:00:04.0: drm_WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev))
-> [    5.738165] WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/drm_vblank.c:728 drm_crtc_vblank_helper_get_0
-> [    5.738745] Modules linked in:
-> [    5.738745] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.14.0-rc2+ #22
-> [    5.738745] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.14.0-2 04/01/2014
-> [    5.738745] RIP: 0010:drm_crtc_vblank_helper_get_vblank_timestamp_internal+0x335/0x350
-> [    5.738745] Code: 4c 8b 6f 50 4d 85 ed 75 03 4c 8b 2f e8 34 10 26 00 48 c7 c1 20 54 0d 83 4c 89 ea0
-> [    5.738745] RSP: 0000:ffffc90000013a90 EFLAGS: 00010086
-> [    5.738745] RAX: 0000000000000000 RBX: ffffffff81c3c5b0 RCX: 0000000000000000
-> [    5.738745] RDX: 0000000000000003 RSI: 00000000fffeffff RDI: 00000000ffffffff
-> [    5.738745] RBP: ffffc90000013b00 R08: ffffffff83bb3e28 R09: 0000000000000003
-> [    5.738745] R10: ffffffff834b3e40 R11: 3fffffffffffffff R12: 0000000000000000
-> [    5.738745] R13: ffff888100e982f0 R14: ffff8881053f0340 R15: ffff888105592178
-> [    5.738745] FS:  0000000000000000(0000) GS:ffff88813bc00000(0000) knlGS:0000000000000000
-> [    5.738745] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [    5.738745] CR2: 0000000000000000 CR3: 0000000003462000 CR4: 00000000000006f0
-> [    5.738745] Call Trace:
-> [    5.738745]  drm_get_last_vbltimestamp+0xa5/0xb0
-> [    5.738745]  drm_reset_vblank_timestamp+0x56/0xc0
-> [    5.738745]  drm_crtc_vblank_on+0x81/0x140
-> [    5.738745]  intel_crtc_vblank_on+0x2b/0xe0
-> [    5.738745]  intel_modeset_setup_hw_state+0xa9c/0x1ab0
-> [    5.738745]  ? ww_mutex_lock+0x2b/0x90
-> [    5.738745]  intel_modeset_init_nogem+0x3c5/0x1310
-> [    5.738745]  ? intel_irq_postinstall+0x1aa/0x520
-> [    5.738745]  i915_driver_probe+0x695/0xd30
-> [    5.738745]  ? _raw_spin_unlock_irqrestore+0x33/0x50
-> [    5.738745]  pci_device_probe+0xcd/0x140
-> [    5.738745]  really_probe.part.0+0x99/0x270
-> [    5.738745]  __driver_probe_device+0x8b/0x120
-> [    5.738745]  driver_probe_device+0x19/0x90
-> [    5.738745]  __driver_attach+0x79/0x120
-> [    5.738745]  ? __device_attach_driver+0x90/0x90
-> [    5.738745]  bus_for_each_dev+0x78/0xc0
-> [    5.738745]  bus_add_driver+0x109/0x1b0
-> [    5.738745]  driver_register+0x86/0xd0
-> [    5.738745]  ? ttm_init+0x18/0x18
-> [    5.738745]  i915_init+0x58/0x72
-> [    5.738745]  do_one_initcall+0x56/0x2e0
-> [    5.738745]  ? rcu_read_lock_sched_held+0x3a/0x70
-> [    5.738745]  kernel_init_freeable+0x186/0x1ce
-> [    5.738745]  ? rest_init+0x250/0x250
-> [    5.738745]  kernel_init+0x11/0x110
-> [    5.738745]  ret_from_fork+0x22/0x30
-> [    5.738745] irq event stamp: 8200428
-> [    5.738745] hardirqs last  enabled at (8200427): [<ffffffff825d38e8>] _raw_spin_unlock_irqrestore+0
-> [    5.738745] hardirqs last disabled at (8200428): [<ffffffff825d3671>] _raw_spin_lock_irq+0x41/0x50
-> [    5.738745] softirqs last  enabled at (8199086): [<ffffffff8113f3c8>] irq_exit_rcu+0x108/0x140
-> [    5.738745] softirqs last disabled at (8199079): [<ffffffff8113f3c8>] irq_exit_rcu+0x108/0x140
-> [    5.738745] ---[ end trace e99e0812b8ee9c5d ]---
-> [    5.786472] i915 0000:00:04.0: [drm] VGT ballooning configuration:
-> [    5.787531] i915 0000:00:04.0: [drm] Mappable graphic memory: base 0x31c7000 size 65536KiB
-> [    5.788865] i915 0000:00:04.0: [drm] Unmappable graphic memory: base 0xe7ef8000 size 393216KiB
-> [    5.790270] i915 0000:00:04.0: [drm] balloon space: range [ 0x10000000 - 0xe7ef8000 ] 3537888 KiB.
-> [    5.791807] i915 0000:00:04.0: [drm] balloon space: range [ 0xffef8000 - 0x100000000 ] 1056 KiB.
-> [    5.793241] i915 0000:00:04.0: [drm] balloon space: range [ 0x0 - 0x31c7000 ] 50972 KiB.
-> [    5.794565] i915 0000:00:04.0: [drm] balloon space: range [ 0x71c7000 - 0x10000000 ] 145636 KiB.
-> [    5.796028] i915 0000:00:04.0: [drm] VGT balloon successfully
-> [    6.670284] ------------[ cut here ]------------
-> [    6.671155] crtc active state doesn't match with hw state (expected 0, found 1)
-> [    6.672376] WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/i915/display/intel_display.c:8964 intel_atom0
-> [    6.674232] Modules linked in:
-> [    6.674767] CPU: 0 PID: 1 Comm: swapper/0 Tainted: G        W         5.14.0-rc2+ #22
-> [    6.676039] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.14.0-2 04/01/2014
-> [    6.677402] RIP: 0010:intel_atomic_commit_tail+0x13c9/0x1410
-> [    6.678335] Code: 0f 0b 0f b6 34 24 89 f1 e9 8d fc ff ff e8 7f 19 7f 00 0f 0b e9 30 fd ff ff e8 739
-> [    6.681400] RSP: 0000:ffffc90000013b20 EFLAGS: 00010282
-> [    6.682264] RAX: 0000000000000000 RBX: ffff888105593800 RCX: 0000000000000000
-> [    6.683453] RDX: 0000000000000001 RSI: ffffffff831a6e3f RDI: 00000000ffffffff
-> [    6.684623] RBP: ffff888104ab2000 R08: 0000000000000001 R09: 0000000000000001
-> [    6.685782] R10: 00000000ffff0000 R11: 3fffffffffffffff R12: ffff888104baa000
-> [    6.686972] R13: ffff888104e5a000 R14: ffff8881053f0000 R15: ffff8881053f0000
-> [    6.688147] FS:  0000000000000000(0000) GS:ffff88813bc00000(0000) knlGS:0000000000000000
-> [    6.689475] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [    6.690421] CR2: 0000000000000000 CR3: 0000000003462000 CR4: 00000000000006f0
-> [    6.691611] Call Trace:
-> [    6.692038]  intel_atomic_commit+0x32d/0x3b0
-> [    6.692751]  intel_initial_commit+0x156/0x1e0
-> [    6.693488]  intel_modeset_init+0x19/0x80
-> [    6.694156]  i915_driver_probe+0x6bb/0xd30
-> [    6.694860]  ? _raw_spin_unlock_irqrestore+0x33/0x50
-> [    6.695690]  pci_device_probe+0xcd/0x140
-> [    6.696346]  really_probe.part.0+0x99/0x270
-> [    6.697041]  __driver_probe_device+0x8b/0x120
-> [    6.697767]  driver_probe_device+0x19/0x90
-> [    6.698459]  __driver_attach+0x79/0x120
-> [    6.699120]  ? __device_attach_driver+0x90/0x90
-> [    6.699878]  bus_for_each_dev+0x78/0xc0
-> [    6.700522]  bus_add_driver+0x109/0x1b0
-> [    6.701163]  driver_register+0x86/0xd0
-> [    6.701786]  ? ttm_init+0x18/0x18
-> [    6.702342]  i915_init+0x58/0x72
-> [    6.702906]  do_one_initcall+0x56/0x2e0
-> [    6.703553]  ? rcu_read_lock_sched_held+0x3a/0x70
-> [    6.704335]  kernel_init_freeable+0x186/0x1ce
-> [    6.705057]  ? rest_init+0x250/0x250
-> [    6.705660]  kernel_init+0x11/0x110
-> [    6.706250]  ret_from_fork+0x22/0x30
-> [    6.706893] irq event stamp: 8204007
-> [    6.707520] hardirqs last  enabled at (8204015): [<ffffffff811acba3>] console_unlock+0x323/0x560
-> [    6.708967] hardirqs last disabled at (8204022): [<ffffffff811acc50>] console_unlock+0x3d0/0x560
-> [    6.710409] softirqs last  enabled at (8203694): [<ffffffff8113f3c8>] irq_exit_rcu+0x108/0x140
-> [    6.711894] softirqs last disabled at (8203689): [<ffffffff8113f3c8>] irq_exit_rcu+0x108/0x140
-> [    6.713302] ---[ end trace e99e0812b8ee9c5e ]---
-> [    6.719970] [drm] Initialized i915 1.6.0 20201103 for 0000:00:04.0 on minor 0
+> > Patch itself looks reasonable, with the nits from Tvrtko addressed:
 > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Done
+> 
+> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> 
+> Thanks
+> 
+> --Jason
+> 
+> > >
+> > >       /*
+> > >        * Enable KMS by default, unless explicitly overriden by
+> > > @@ -1225,6 +1238,12 @@ static int __init i915_init(void)
+> > >               return 0;
+> > >       }
+> > >
+> > > +     /* After this point, i915_init() must either fully succeed or
+> > > +      * properly tear everything down and fail.  We don't have separate
+> > > +      * flags for each set-up bit.
+> > > +      */
+> > > +     i915_fully_loaded = true;
+> > > +
+> > >       i915_pmu_init();
+> > >
+> > >       err = pci_register_driver(&i915_pci_driver);
+> > > @@ -1240,12 +1259,11 @@ static int __init i915_init(void)
+> > >
+> > >  static void __exit i915_exit(void)
+> > >  {
+> > > -     if (!i915_pci_driver.driver.owner)
+> > > -             return;
+> > > -
+> > > -     i915_perf_sysctl_unregister();
+> > > -     pci_unregister_driver(&i915_pci_driver);
+> > > -     i915_pmu_exit();
+> > > +     if (i915_fully_loaded) {
+> > > +             i915_perf_sysctl_unregister();
+> > > +             pci_unregister_driver(&i915_pci_driver);
+> > > +             i915_pmu_exit();
+> > > +     }
+> > >       i915_globals_exit();
+> > >  }
+> > >
+> > > --
+> > > 2.31.1
+> > >
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
