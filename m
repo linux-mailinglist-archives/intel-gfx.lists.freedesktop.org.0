@@ -1,62 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E7C93D182A
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 22:33:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328E03D1841
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 22:41:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7726A6E9F0;
-	Wed, 21 Jul 2021 20:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5031A6E82D;
+	Wed, 21 Jul 2021 20:41:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
- [IPv6:2607:f8b0:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDC346E9F0
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 20:33:00 +0000 (UTC)
-Received: by mail-ot1-x336.google.com with SMTP id
- o17-20020a9d76510000b02903eabfc221a9so3326094otl.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 13:33:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=46Qdae24Vgkuhx56bZ3VWMjLyH/YIQlC+F7+AFhkaxQ=;
- b=ZsWREFoXPv06ifgo8GX5lT6mIieYWWxukyZiH7X7l1/ShtwGM8tb3i4stNteoWU0rX
- HKxPB7VvpHBvmPjXd0oqLrRMFoc9b3Eae2GVGK3Phr0YUubGQFS9ax0NqyWrrIwwgU7n
- Wzw4At/KYkPZUzA9FgR35NvvULpD/47+gz6j8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=46Qdae24Vgkuhx56bZ3VWMjLyH/YIQlC+F7+AFhkaxQ=;
- b=bi8EncDdW+Sgj8JdcdqAwjTo2y9j91t1dd8Beo0pIR2DAuCEgpK0iKBKPL9eAktqm3
- 9ZYSxqoMJlFks6rDf3OdWhT5L1NOulSPqwuFn5/aCF+SZrgGxb+hYkrGQKv/X5/IJNWH
- jvN2tTMSTKOWEi3sCN6NF+9LEW61ey8q57c0YdsP2ZzcEDbYuef5ypv3qxzYfMzEkOao
- dxofxZdMarX0FXQ6ZPW1uLMCl0OcWx7mnAC7quycSEYvFD0XdfhO6vH521p+V+kawpNM
- yadIOu1oDlEaG9GQBdhcLR0h90iFXOrVofpZQswnYAdM2NscpssGKlS0ZRdvQoPCeenF
- bZLg==
-X-Gm-Message-State: AOAM533HlK4cN5zFCl6mxCFvhtlKqnaicC0sKCYbYA14Gprhpf4N7QQ8
- n0SDgRXfRYDRc3sVveJaDEHq/N36engNWVV1K6rtrQ==
-X-Google-Smtp-Source: ABdhPJxrT4+hkvnqU87Dptr4gYHGI+LP2RtiDpxqj5mSBTbIXrkG/1IgmrjRhRziikKJzpum8VuE7LS0uUuu2+FJ8+g=
-X-Received: by 2002:a9d:6d86:: with SMTP id x6mr13479183otp.188.1626899579849; 
- Wed, 21 Jul 2021 13:32:59 -0700 (PDT)
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 780D36E840;
+ Wed, 21 Jul 2021 20:41:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=EJgGjA01GZw3Yk9ZuhCaXi6YbsFe3EryWSZjq277foA=; b=h3JWY57SwxRcR5pkUIK2zmYtJJ
+ 7a+Z5F+3nByq1Otuzd3mX2goCAHcU52bqd+/GFpbQx7M89j0+L07jP447bmO54RI1+v9md0mtp3DQ
+ yMmaAsofQIVKcsOTC2NqoNfke+7F4A1JwWe8vnkBHUScE4PcB0rGXtmEhSEo23HwX9QjjtedNiqTC
+ qhdkvMt+h+FE8iX5jejQNRZOW/l7yf/nFaLuoxF44xI+hQOafljSfNOsv8RVDn/fhhsnk5hgYWoUC
+ QfyiO/a5vDFO0oSX5iqE+NnezrrwagppGUuA6qywjrIHa6D1UyPqxlb9EysxUnuRNe1bYm+1wYoU6
+ hx5eJenA==;
+Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
+ Linux)) id 1m6J0d-009aFJ-Us; Wed, 21 Jul 2021 20:40:09 +0000
+Date: Wed, 21 Jul 2021 21:40:03 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <YPiGI9tzLzGZg47j@infradead.org>
+References: <YPgAuSt6Ps7w4/AI@infradead.org> <YPgD/8Y3/te/Hsu3@intel.com>
+ <YPhApJo1o6yBYUh2@infradead.org>
 MIME-Version: 1.0
-References: <20210715223900.1840576-1-jason@jlekstrand.net>
- <20210715223900.1840576-6-jason@jlekstrand.net>
- <CAM0jSHPu1EBfnAJ06Dp51a1Qbg+9QnmP=EyUfYXS0fZnJzxR8g@mail.gmail.com>
- <CAOFGe95gEUNsjCh+30AXhrQLz8_OKbHwwxv=_OhaGKQxGpvcew@mail.gmail.com>
- <CAM0jSHO4EU_gBXo-56GtDJffezfVHYoUhCeOnb97ZgBj5vyA7Q@mail.gmail.com>
- <CAM0jSHOHCr6ppLhUBVSd_JUnBDFAcsYEYtma01benzs_nkhtGg@mail.gmail.com>
- <CAOFGe95YYjS=k9SnQg0EuOR02FWGPyCAvJH7Ymm6ZhiHq5iNCw@mail.gmail.com>
- <CAM0jSHP8vS9FeEjKx9sQqek2-eGVEK+=6y03eNnf0zpnxmmP6w@mail.gmail.com>
- <CAOFGe94C48djm1uWXC2Tn-ssSvGr=sTOaEDORG355s72ysfqQg@mail.gmail.com>
- <CAM0jSHOTjp-zSdOR1u9H_YM8ryQbA-H9N3RQh-7cQvGr0k5wjw@mail.gmail.com>
- <CAOFGe9705fJxg4L5W9y_WA5T4PaohsEzgEMJcuojg7aKWTJSfA@mail.gmail.com>
-In-Reply-To: <CAOFGe9705fJxg4L5W9y_WA5T4PaohsEzgEMJcuojg7aKWTJSfA@mail.gmail.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 21 Jul 2021 22:32:48 +0200
-Message-ID: <CAKMK7uFRPb0rim3ZhZv2FGvc=7A5ShOjz-s=BNaq_7r=zEMjBA@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/gem/ttm: Respect the objection
- region in placement_from_obj
+Content-Disposition: inline
+In-Reply-To: <YPhApJo1o6yBYUh2@infradead.org>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+Subject: Re: [Intel-gfx] 5.14-rc2 warnings with kvmgvt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,223 +49,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Christoph Hellwig <hch@infradead.org>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 21, 2021 at 10:11 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
->
-> On Mon, Jul 19, 2021 at 8:35 AM Matthew Auld
-> <matthew.william.auld@gmail.com> wrote:
-> >
-> > On Fri, 16 Jul 2021 at 20:49, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > >
-> > > On Fri, Jul 16, 2021 at 1:45 PM Matthew Auld
-> > > <matthew.william.auld@gmail.com> wrote:
-> > > >
-> > > > On Fri, 16 Jul 2021 at 18:39, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > > > >
-> > > > > On Fri, Jul 16, 2021 at 11:00 AM Matthew Auld
-> > > > > <matthew.william.auld@gmail.com> wrote:
-> > > > > >
-> > > > > > On Fri, 16 Jul 2021 at 16:52, Matthew Auld
-> > > > > > <matthew.william.auld@gmail.com> wrote:
-> > > > > > >
-> > > > > > > On Fri, 16 Jul 2021 at 15:10, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > > > > > > >
-> > > > > > > > On Fri, Jul 16, 2021 at 8:54 AM Matthew Auld
-> > > > > > > > <matthew.william.auld@gmail.com> wrote:
-> > > > > > > > >
-> > > > > > > > > On Thu, 15 Jul 2021 at 23:39, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > > > > > > > > >
-> > > > > > > > > > Whenever we had a user object (n_placements > 0), we were ignoring
-> > > > > > > > > > obj->mm.region and always putting obj->placements[0] as the requested
-> > > > > > > > > > region.  For LMEM+SMEM objects, this was causing them to get shoved into
-> > > > > > > > > > LMEM on every i915_ttm_get_pages() even when SMEM was requested by, say,
-> > > > > > > > > > i915_gem_object_migrate().
-> > > > > > > > >
-> > > > > > > > > i915_ttm_migrate calls i915_ttm_place_from_region() directly with the
-> > > > > > > > > requested region, so there shouldn't be an issue with migration right?
-> > > > > > > > > Do you have some more details?
-> > > > > > > >
-> > > > > > > > With i915_ttm_migrate directly, no.  But, in the last patch in the
-> > > > > > > > series, we're trying to migrate LMEM+SMEM buffers into SMEM on
-> > > > > > > > attach() and pin it there.  This blows up in a very unexpected (IMO)
-> > > > > > > > way.  The flow goes something like this:
-> > > > > > > >
-> > > > > > > >  - Client attempts a dma-buf import from another device
-> > > > > > > >  - In attach() we call i915_gem_object_migrate() which calls
-> > > > > > > > i915_ttm_migrate() which migrates as requested.
-> > > > > > > >  - Once the migration is complete, we call i915_gem_object_pin_pages()
-> > > > > > > > which calls i915_ttm_get_pages() which depends on
-> > > > > > > > i915_ttm_placement_from_obj() and so migrates it right back to LMEM.
-> > > > > > >
-> > > > > > > The mm.pages must be NULL here, otherwise it would just increment the
-> > > > > > > pages_pin_count?
-> > > > >
-> > > > > Given that the test is using the ____four_underscores version, it
-> > > > > doesn't have that check.  However, this executes after we've done the
-> > > > > dma-buf import which pinned pages.  So we should definitely have
-> > > > > pages.
-> > > >
-> > > > We shouldn't call ____four_underscores() if we might already have
-> > > > pages though. Under non-TTM that would leak the pages, and in TTM we
-> > > > might hit the WARN_ON(mm->pages) in __i915_ttm_get_pages(), if for
-> > > > example nothing was moved. I take it we can't just call pin_pages()?
-> > > > Four scary underscores usually means "don't call this in normal code".
-> > >
-> > > I've switched the ____four_underscores call to a __two_underscores in
-> > > the selftests and it had no effect, good or bad.  But, still, probably
-> > > better to call that one.
-> > >
-> > > > >
-> > > > > > > >
-> > > > > > > > Maybe the problem here is actually that our TTM code isn't respecting
-> > > > > > > > obj->mm.pages_pin_count?
-> > > > > > >
-> > > > > > > I think if the resource is moved, we always nuke the mm.pages after
-> > > > > > > being notified of the move. Also TTM is also not allowed to move
-> > > > > > > pinned buffers.
-> > > > > > >
-> > > > > > > I guess if we are evicted/swapped, so assuming we are not holding the
-> > > > > > > object lock, and it's not pinned, the future call to get_pages() will
-> > > > > > > see mm.pages = NULL, even though the ttm_resource is still there, and
-> > > > > > > because we prioritise the placements[0], instead of mm.region we end
-> > > > > > > up moving it for no good reason. But in your case you are holding the
-> > > > > > > lock, or it's pinned? Also is this just with the selftest, or
-> > > > > > > something real?
-> > > > > >
-> > > > > > Or at least in the selftest I see ____i915_gem_object_get_pages()
-> > > > > > which doesn't even consider the mm.pages AFAIK.
-> > > > >
-> > > > > The bogus migration is happening as part of the
-> > > > > __i915_gem_object_get_pages() (2 __underscores) call in
-> > > > > i915_gem_dmabuf_attach (see last patch).  That code is attempting to
-> > > > > migrate the BO to SMEM and then pin it there using the obvious calls
-> > > > > to do so.  However, in the pin_pages call, it gets implicitly migrated
-> > > > > back to LMEM thanks to i915_ttm_get_pages().  Why is _get_pages()
-> > > > > migrating things at all?
-> > > >
-> > > > Not sure yet, but __two_underscores() checks if
-> > > > i915_gem_object_has_pages() before actually calling into
-> > > > i915_ttm_get_pages(), so the mm.pages would have to be NULL here for
-> > > > some reason, so best guess is something to do with move_notify().
-> > >
-> > > Did a bit of experimenting along those lines and added the following
-> > > to the self-test BEFORE the export/import:
-> > >
-> > >     i915_gem_object_lock(obj, NULL);
-> > >     err = __i915_gem_object_get_pages(obj);
-> > >     __i915_gem_object_unpin_pages(obj);
-> > >     i915_gem_object_unlock(obj);
-> > >     if (err) {
-> > >         pr_err("__i915_gem_object_get_pages failed with err=%d\n", err);
-> > >         goto out_ret;
-> > >     }
-> > >
-> > > This seems to make the migration happen as expected without this
-> > > patch.  So it seems the problem only exists on buffers that haven't
-> > > gotten any backing storage yet (if I'm understanding get_pages
-> > > correctly).
-> > >
-> > > One potential work-around (not sure if this is a good idea or not!)
-> > > would be to do this inside dmabuf_attach().  Is this reliable?  Once
-> > > it has pages will it always have pages?  Or are there crazy races I
-> > > need to be worried about here?
-> >
-> > It turns out that the i915_ttm_adjust_gem_after_move() call in
-> > ttm_object_init will always update the mm.region to system memory(so
-> > that it matches the ttm resource), which seems reasonable given the
-> > default system placeholder thing, but does seem slightly iffy since we
-> > haven't actually moved/allocated anything.
-> >
-> > So effectively i915_ttm_migrate(SYSTEM) becomes a noop here since
-> > mm.region == mr. Which ofc means when we actually call get_pages() all
-> > that happens is that we allocate the pages in system memory(or without
-> > this patch placements[0]). Also with this patch lmem+smem, will always
-> > be placed in smem first, regardless of the placements ordering.
-> >
-> > For now we could maybe just split i915_ttm_adjust_gem_after_move() so
-> > we skip the part which updates the mm.region here in the init portion,
-> > since that should only happen when we try to place the object for
-> > real?
->
-> Doesn't that mean we would end up with obj->mm.region and
-> obj->mm.res->mem_type are out-of-sync?  That seems bad.  I would think
-> we'd want the two in sync at all times.
->
-> It seems like the fundamental problem here is that, when it's created,
-> the object isn't really in any memory region at all.  While I don't
-> think obj->mm.region == NULL is allowed or a good idea, it does seem
-> closer to the ground truth.
->
-> Perhaps what we really want is for i915_gem_object_migrate to
-> get_pages before it does the migration to ensure that pages exist.
-> The only call to i915_gem_object_migrate in the code-base today is in
-> the display code and it's immediately followed by pin_pages().  For
-> that matter, maybe the call we actually want is
-> i915_object_migrate_and_pin that does the whole lot.
+On Wed, Jul 21, 2021 at 04:43:44PM +0100, Christoph Hellwig wrote:
+> > > I'm trying to test some changes for the gvt code, but even with a baseline
+> > > 5.14-rc2 host and guest the 915 driver does not seem overly happy:
+> > 
+> > Is this a regression over -rc1 or over 5.13?
+> > Bisect possible?
+> 
+> This was introduced somewhere between 5.12 and 5.13, still bisecting.
+> Note that it only happens for "headless" setups.  Once a display is
+> added on the qemu command line it goes away.
 
-I think long term at least we should track the curren region in the
-ttm_resource struct (which can now be subclassed, yay, so we can stuff
-anything we want into that one). And maybe make our regions proper
-subclassss of ttm_resource_manager.
+The culprit is:
 
-Even on platforms where ttm isn't used, where we will simply use the
-same fields until the code is more unified.
+commit f4eb6d4906669b4285c4f49c87814d4ce63c35bb
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Mar 17 18:36:45 2021 +0200
 
-With that there should be only the invairant placement list from
-create_ext and the current region allocation left, and nothing else.
-Also this would give us a very clear design for the objects which
-change their type on igfx (like the shmem->phys_object stuff, which
-currently just punches out the ->ops table and hopes for the best).
-
-Also, get_pages is just a transition crutch too, we really want to
-more explicit manage placement:
-- for migration in dma-buf or display and other places where we must
-limit the list of placements beyond what the user specified (and fail
-it the intersection is empty)
-- for execbuf, where we want to limit migration to avoid thrashing,
-i.e. get_pages shouldn't just blindly try to move the buffer (but also
-should not just never try to move the buffer, either is suboptimal).
-
-All of this should be orthogonal to pin, which just nails something in
-place wherever it is. Which is also extremely not what we currently
-have, because right now pin is what allows to to say where you need
-the object to be - in the old design only holding a pin prevented the
-object from slipping away, now we'll move over to dma_resv_lock and
-explicit migration, instead of smashing it all into the one pin
-function call.
-
-> Thoughts?
-
-I think aside from starting to embed the ttm objects in the right
-places and starting to use only those fields were we duplicate I think
-we should leave things as-is for now. It's not pretty, but we need a
-pile more ttm things in place first.
--Daniel
-
->
-> --Jason
->
-> P.S.  I'm going to go ahead and send another version with your other
-> comments addressed.  We can keep this discussion going here for now.
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+    drm/i915/bios: limit default outputs to ports A through F
+        
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
