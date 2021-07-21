@@ -1,32 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC443D1966
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 23:50:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A8B93D191D
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 23:33:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3B3B6E201;
-	Wed, 21 Jul 2021 21:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE7036EA01;
+	Wed, 21 Jul 2021 21:33:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 248D66E201;
- Wed, 21 Jul 2021 21:50:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1E22BA0118;
- Wed, 21 Jul 2021 21:50:20 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21CBF6E2D1;
+ Wed, 21 Jul 2021 21:33:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="198724327"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="198724327"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 14:33:11 -0700
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="470296661"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 14:33:11 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-gfx@lists.freedesktop.org>,
+	<dri-devel@lists.freedesktop.org>
+Date: Wed, 21 Jul 2021 14:50:43 -0700
+Message-Id: <20210721215101.139794-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Wed, 21 Jul 2021 21:50:20 -0000
-Message-ID: <162690422009.767.3066973602751782138@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210721201343.2962674-1-jason@jlekstrand.net>
-In-Reply-To: <20210721201343.2962674-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Migrate_memory_to_SMEM_when_imported_cross-device_=28r?=
- =?utf-8?q?ev3=29?=
+Subject: [Intel-gfx] [PATCH 00/18] Series to merge a subset of GuC submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,199 +41,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1261488312=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1261488312==
-Content-Type: multipart/alternative;
- boundary="===============3050219277555768549=="
+The first 18 patches [1] are basically ready to merge.
 
---===============3050219277555768549==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v2: Address NITs, add missing RBs, fix checkpatch warnings
 
-== Series Details ==
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Series: drm/i915: Migrate memory to SMEM when imported cross-device (rev3)
-URL   : https://patchwork.freedesktop.org/series/92617/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10367 -> Patchwork_20668
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20668 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - {fi-tgl-1115g4}:    [FAIL][1] ([i915#1888]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10367/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-7500u:       [DMESG-FAIL][3] ([i915#165]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10367/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][5] ([i915#1372]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10367/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+[1] https://patchwork.freedesktop.org/series/91840/
 
 
-Participating hosts (38 -> 34)
-------------------------------
+Matthew Brost (18):
+  drm/i915/guc: Add new GuC interface defines and structures
+  drm/i915/guc: Remove GuC stage descriptor, add LRC descriptor
+  drm/i915/guc: Add LRC descriptor context lookup array
+  drm/i915/guc: Implement GuC submission tasklet
+  drm/i915/guc: Add bypass tasklet submission path to GuC
+  drm/i915/guc: Implement GuC context operations for new inteface
+  drm/i915/guc: Insert fence on context when deregistering
+  drm/i915/guc: Defer context unpin until scheduling is disabled
+  drm/i915/guc: Disable engine barriers with GuC during unpin
+  drm/i915/guc: Extend deregistration fence to schedule disable
+  drm/i915: Disable preempt busywait when using GuC scheduling
+  drm/i915/guc: Ensure request ordering via completion fences
+  drm/i915/guc: Disable semaphores when using GuC scheduling
+  drm/i915/guc: Ensure G2H response has space in buffer
+  drm/i915/guc: Update intel_gt_wait_for_idle to work with GuC
+  drm/i915/guc: Update GuC debugfs to support new GuC
+  drm/i915/guc: Add trace point for GuC submit
+  drm/i915: Add intel_context tracing
 
-  Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |    6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |    3 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |    6 +-
+ drivers/gpu/drm/i915/gt/intel_context.c       |   18 +-
+ drivers/gpu/drm/i915/gt/intel_context.h       |   27 +-
+ drivers/gpu/drm/i915/gt/intel_context_types.h |   32 +
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   19 +
+ drivers/gpu/drm/i915/gt/intel_gt.h            |    2 +
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c   |   21 +-
+ drivers/gpu/drm/i915/gt/intel_gt_requests.h   |    9 +-
+ drivers/gpu/drm/i915/gt/intel_lrc_reg.h       |    1 -
+ drivers/gpu/drm/i915/gt/selftest_context.c    |   10 +
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   14 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   72 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  124 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |   18 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    |   23 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   89 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 1290 ++++++++++++++---
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.h |    5 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h         |    5 +
+ drivers/gpu/drm/i915/i915_gem_evict.c         |    1 +
+ drivers/gpu/drm/i915/i915_reg.h               |    1 +
+ drivers/gpu/drm/i915/i915_request.c           |   11 +-
+ drivers/gpu/drm/i915/i915_request.h           |    8 +
+ drivers/gpu/drm/i915/i915_trace.h             |  168 ++-
+ .../gpu/drm/i915/selftests/igt_live_test.c    |    2 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |    3 +-
+ 28 files changed, 1707 insertions(+), 281 deletions(-)
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10367 -> Patchwork_20668
-
-  CI-20190529: 20190529
-  CI_DRM_10367: 598494d0149b67545593dfb1b5fa60278907749e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20668: aef265c105907ab46375159b29676223f3dc15cd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-aef265c10590 drm/i915/gem: Migrate to system at dma-buf attach time (v7)
-ed5f8fe5c868 drm/i915/gem: Correct the locking and pin pattern for dma-buf (v8)
-a341d44369d5 drm/i915/gem/ttm: Respect the objection region in placement_from_obj
-8e3b292518c5 drm/i915/gem: Unify user object creation (v3)
-7e52c04eada6 drm/i915/gem: Call i915_gem_flush_free_objects() in i915_gem_dumb_create()
-30e5e6cbd8ab drm/i915/gem: Refactor placement setup for i915_gem_object_create* (v2)
-ac72c58af8ba drm/i915/gem: Check object_can_migrate from object_migrate
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/index.html
-
---===============3050219277555768549==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Migrate memory to SMEM when imported cross-device (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92617/">https://patchwork.freedesktop.org/series/92617/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10367 -&gt; Patchwork_20668</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20668 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10367/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10367/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10367/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20668/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 34)</h2>
-<p>Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10367 -&gt; Patchwork_20668</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10367: 598494d0149b67545593dfb1b5fa60278907749e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20668: aef265c105907ab46375159b29676223f3dc15cd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>aef265c10590 drm/i915/gem: Migrate to system at dma-buf attach time (v7)<br />
-ed5f8fe5c868 drm/i915/gem: Correct the locking and pin pattern for dma-buf (v8)<br />
-a341d44369d5 drm/i915/gem/ttm: Respect the objection region in placement_from_obj<br />
-8e3b292518c5 drm/i915/gem: Unify user object creation (v3)<br />
-7e52c04eada6 drm/i915/gem: Call i915_gem_flush_free_objects() in i915_gem_dumb_create()<br />
-30e5e6cbd8ab drm/i915/gem: Refactor placement setup for i915_gem_object_create* (v2)<br />
-ac72c58af8ba drm/i915/gem: Check object_can_migrate from object_migrate</p>
-
-</body>
-</html>
-
---===============3050219277555768549==--
-
---===============1261488312==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.28.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1261488312==--
