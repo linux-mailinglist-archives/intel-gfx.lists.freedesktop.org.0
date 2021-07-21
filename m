@@ -2,61 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F9C33D16B7
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 20:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D02393D1707
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 21:26:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4586ECFB;
-	Wed, 21 Jul 2021 18:56:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89B836ECE4;
+	Wed, 21 Jul 2021 19:26:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC5B86ECFA
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 18:56:53 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id w13so1915955wmc.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 11:56:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=dmX+J/TmQQOqSIzmduc+Fl5JJ/RQlTISy6TWURapR34=;
- b=BrhMZAMH95b1QRGELnHfPW1NcJbOBkvvpt/dkAY8E8mUZCZ9xlV5+VbBzqMn07eNBd
- cCLCPU8e4hVp9YygCk3W/O5GnRG1TdLV1IbOEj8Tj6GxzrIlit0fIPQ45ou2L164OQp3
- TKQPvVCQcDEAH5F98VQDJ/q84VhW+8JPlE+u4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=dmX+J/TmQQOqSIzmduc+Fl5JJ/RQlTISy6TWURapR34=;
- b=TTuH7JA6QeJLpbl2ROY1PEHqxGvzHgTCB0y+YqWWHvkIScYJHvEEwgqSvjjoedjZoj
- ZB5+HZvu7pR7imsm9HbglxdRq60iBC9wojt8YJAoRUDIxYhLXvTiZmBBYGXVPAShK6I0
- oPHHQbLXIrelxdkXmwvL2HCQthb/N4pAqKeraE9+6cPZAEWZyKHh/YXei9K4gBNVJ2+2
- hxUuMObw6beCiC4sFr0tyi93/ghk1DoJovwg58UK415intgyFzZVzpMcoZZpVgiIdbkw
- p5z+OmEJOI8lVKRS71RH3S7BRZe9v2aAwsQeKV/jl7UoNGrljCMYicYau9sken8grgXg
- 4clg==
-X-Gm-Message-State: AOAM530CIZUWWBvWEDsZqGcLiY/t4tpXb17DwtULFnAXZnubo6Cz0G8d
- MDQQ9NmjiWoGB7l2s3KyRJ/z6g==
-X-Google-Smtp-Source: ABdhPJxASHwoXQZYkUon/KQ+fbRoKgE2XTpj9OEQKGPuQ0di+bFpHjt1Vaue7Pkz7crNqXcf+RYl2Q==
-X-Received: by 2002:a05:600c:2101:: with SMTP id
- u1mr5385193wml.55.1626893812551; 
- Wed, 21 Jul 2021 11:56:52 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id d29sm33878690wrb.63.2021.07.21.11.56.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Jul 2021 11:56:52 -0700 (PDT)
-Date: Wed, 21 Jul 2021 20:56:50 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YPht8s0wtnUxuF5q@phenom.ffwll.local>
-References: <20210721152358.2893314-1-jason@jlekstrand.net>
- <20210721152358.2893314-7-jason@jlekstrand.net>
- <23df1788-bd8e-ac44-337d-92bb5f345b8f@intel.com>
+X-Greylist: delayed 441 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Jul 2021 19:26:42 UTC
+Received: from smtp119.ord1c.emailsrvr.com (smtp119.ord1c.emailsrvr.com
+ [108.166.43.119])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FAAB6ECE3;
+ Wed, 21 Jul 2021 19:26:42 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp15.relay.ord1c.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id AE7BD20245; 
+ Wed, 21 Jul 2021 15:19:19 -0400 (EDT)
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Date: Wed, 21 Jul 2021 12:18:55 -0700
+Message-ID: <1839899.5eojKT8Dyj@mizzik>
+In-Reply-To: <20210715101536.2606307-4-matthew.auld@intel.com>
+References: <20210715101536.2606307-1-matthew.auld@intel.com>
+ <20210715101536.2606307-4-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <23df1788-bd8e-ac44-337d-92bb5f345b8f@intel.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915: Make the kmem slab for
- i915_buddy_block a global
+X-Classification-ID: 6156cfba-c837-4735-a561-4dbc9dab694c-1-1
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/userptr: Probe existence of
+ backing struct pages upon creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,212 +42,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============0626318385=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 21, 2021 at 05:25:41PM +0100, Matthew Auld wrote:
-> On 21/07/2021 16:23, Jason Ekstrand wrote:
-> > There's no reason that I can tell why this should be per-i915_buddy_mm
-> > and doing so causes KMEM_CACHE to throw dmesg warnings because it tries
-> > to create a debugfs entry with the name i915_buddy_block multiple times.
-> > We could handle this by carefully giving each slab its own name but that
-> > brings its own pain because then we have to store that string somewhere
-> > and manage the lifetimes of the different slabs.  The most likely
-> > outcome would be a global atomic which we increment to get a new name or
-> > something like that.
-> > =
+--===============0626318385==
+Content-Type: multipart/signed; boundary="nextPart5739491.D0ShQg1dhF"; micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-> > The much easier solution is to use the i915_globals system like we do
-> > for every other slab in i915.  This ensures that we have exactly one of
-> > them for each i915 driver load and it gets neatly created on module load
-> > and destroyed on module unload.  Using the globals system also means
-> > that its now tied into the shrink handler so we can properly respond to
-> > low-memory situations.
-> > =
+--nextPart5739491.D0ShQg1dhF
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Jordan Justen <jordan.l.justen@intel.com>, Jason Ekstrand <jason@jlekstrand.net>, Daniel Vetter <daniel.vetter@ffwll.ch>, Ramalingam C <ramalingam.c@intel.com>
+Subject: Re: [PATCH 3/4] drm/i915/userptr: Probe existence of backing struct pages upon creation
+Date: Wed, 21 Jul 2021 12:18:55 -0700
+Message-ID: <1839899.5eojKT8Dyj@mizzik>
+In-Reply-To: <20210715101536.2606307-4-matthew.auld@intel.com>
+References: <20210715101536.2606307-1-matthew.auld@intel.com> <20210715101536.2606307-4-matthew.auld@intel.com>
 
-> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > Fixes: 88be9a0a06b7 ("drm/i915/ttm: add ttm_buddy_man")
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> =
+Thanks for this!  Series is:
 
-> It was intentionally ripped it out with the idea that we would be moving =
-the
-> buddy stuff into ttm, and so part of that was trying to get rid of the so=
-me
-> of the i915 specifics, like this globals thing.
-> =
+Acked-by: Kenneth Graunke <kenneth@whitecape.org>
 
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+https://gitlab.freedesktop.org/kwg/mesa/-/commits/iris-userptr-probe
+is an untested branch that uses the new probe API in Mesa.
 
-I just sent out a patch to put i915_globals on a diet, so maybe we can
-hold this patch here a bit when there's other reasons for why this is
-special?
+On Thursday, July 15, 2021 3:15:35 AM PDT Matthew Auld wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+>=20
+> Jason Ekstrand requested a more efficient method than userptr+set-domain
+> to determine if the userptr object was backed by a complete set of pages
+> upon creation. To be more efficient than simply populating the userptr
+> using get_user_pages() (as done by the call to set-domain or execbuf),
+> we can walk the tree of vm_area_struct and check for gaps or vma not
+> backed by struct page (VM_PFNMAP). The question is how to handle
+> VM_MIXEDMAP which may be either struct page or pfn backed...
+>=20
+> With discrete are going to drop support for set_domain(), so offering a
+> way to probe the pages, without having to resort to dummy batches has
+> been requested.
+>=20
+> v2:
+> - add new query param for the PROPBE flag, so userspace can easily
+>   check if the kernel supports it(Jason).
+> - use mmap_read_{lock, unlock}.
+> - add some kernel-doc.
+>=20
+> Testcase: igt/gem_userptr_blits/probe
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 40 ++++++++++++++++++++-
+>  drivers/gpu/drm/i915/i915_getparam.c        |  3 ++
+>  include/uapi/drm/i915_drm.h                 | 18 ++++++++++
+>  3 files changed, 60 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/dr=
+m/i915/gem/i915_gem_userptr.c
+> index 56edfeff8c02..fd6880328596 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> @@ -422,6 +422,33 @@ static const struct drm_i915_gem_object_ops i915_gem=
+_userptr_ops =3D {
+> =20
+>  #endif
+> =20
+> +static int
+> +probe_range(struct mm_struct *mm, unsigned long addr, unsigned long len)
+> +{
+> +	const unsigned long end =3D addr + len;
+> +	struct vm_area_struct *vma;
+> +	int ret =3D -EFAULT;
+> +
+> +	mmap_read_lock(mm);
+> +	for (vma =3D find_vma(mm, addr); vma; vma =3D vma->vm_next) {
+> +		if (vma->vm_start > addr)
+> +			break;
+> +
+> +		if (vma->vm_flags & (VM_PFNMAP | VM_MIXEDMAP))
+> +			break;
+> +
+> +		if (vma->vm_end >=3D end) {
+> +			ret =3D 0;
+> +			break;
+> +		}
+> +
+> +		addr =3D vma->vm_end;
+> +	}
+> +	mmap_read_unlock(mm);
+> +
+> +	return ret;
+> +}
+> +
+>  /*
+>   * Creates a new mm object that wraps some normal memory from the process
+>   * context - user memory.
+> @@ -477,7 +504,8 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+>  	}
+> =20
+>  	if (args->flags & ~(I915_USERPTR_READ_ONLY |
+> -			    I915_USERPTR_UNSYNCHRONIZED))
+> +			    I915_USERPTR_UNSYNCHRONIZED |
+> +			    I915_USERPTR_PROBE))
+>  		return -EINVAL;
+> =20
+>  	if (i915_gem_object_size_2big(args->user_size))
+> @@ -504,6 +532,16 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+>  			return -ENODEV;
+>  	}
+> =20
+> +	if (args->flags & I915_USERPTR_PROBE) {
+> +		/*
+> +		 * Check that the range pointed to represents real struct
+> +		 * pages and not iomappings (at this moment in time!)
+> +		 */
+> +		ret =3D probe_range(current->mm, args->user_ptr, args->user_size);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  #ifdef CONFIG_MMU_NOTIFIER
+>  	obj =3D i915_gem_object_alloc();
+>  	if (obj =3D=3D NULL)
+> diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/=
+i915_getparam.c
+> index 24e18219eb50..d6d2e1a10d14 100644
+> --- a/drivers/gpu/drm/i915/i915_getparam.c
+> +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> @@ -163,6 +163,9 @@ int i915_getparam_ioctl(struct drm_device *dev, void =
+*data,
+>  	case I915_PARAM_PERF_REVISION:
+>  		value =3D i915_perf_ioctl_version();
+>  		break;
+> +	case I915_PARAM_HAS_USERPTR_PROBE:
+> +		value =3D true;
+> +		break;
+>  	default:
+>  		DRM_DEBUG("Unknown parameter %d\n", param->param);
+>  		return -EINVAL;
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index e20eeeca7a1c..2e4112bf4d38 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -674,6 +674,9 @@ typedef struct drm_i915_irq_wait {
+>   */
+>  #define I915_PARAM_HAS_EXEC_TIMELINE_FENCES 55
+> =20
+> +/* Query if the kernel supports the I915_USERPTR_PROBE flag. */
+> +#define I915_PARAM_HAS_USERPTR_PROBE 56
+> +
+>  /* Must be kept compact -- no holes and well documented */
+> =20
+>  typedef struct drm_i915_getparam {
+> @@ -2178,12 +2181,27 @@ struct drm_i915_gem_userptr {
+>  	 * through the GTT. If the HW can't support readonly access, an error is
+>  	 * returned.
+>  	 *
+> +	 * I915_USERPTR_PROBE:
+> +	 *
+> +	 * Probe the provided @user_ptr range and validate that the @user_ptr is
+> +	 * indeed pointing to normal memory and that the range is also valid.
+> +	 * For example if some garbage address is given to the kernel, then this
+> +	 * should complain.
+> +	 *
+> +	 * Returns -EFAULT if the probe failed.
+> +	 *
+> +	 * Note that this doesn't populate the backing pages.
+> +	 *
+> +	 * The kernel supports this feature if I915_PARAM_HAS_USERPTR_PROBE
+> +	 * returns a non-zero value.
+> +	 *
+>  	 * I915_USERPTR_UNSYNCHRONIZED:
+>  	 *
+>  	 * NOT USED. Setting this flag will result in an error.
+>  	 */
+>  	__u32 flags;
+>  #define I915_USERPTR_READ_ONLY 0x1
+> +#define I915_USERPTR_PROBE 0x2
+>  #define I915_USERPTR_UNSYNCHRONIZED 0x80000000
+>  	/**
+>  	 * @handle: Returned handle for the object.
+>=20
 
-Or at least no make this use the i915_globals stuff and instead just link
-up the init/exit function calls directly into Jason's new table, so that
-we don't have a merge conflict here?
--Daniel
 
-> =
+--nextPart5739491.D0ShQg1dhF
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-> > ---
-> >   drivers/gpu/drm/i915/i915_buddy.c   | 44 ++++++++++++++++++++++-------
-> >   drivers/gpu/drm/i915/i915_buddy.h   |  3 +-
-> >   drivers/gpu/drm/i915/i915_globals.c |  2 ++
-> >   3 files changed, 38 insertions(+), 11 deletions(-)
-> > =
+-----BEGIN PGP SIGNATURE-----
 
-> > diff --git a/drivers/gpu/drm/i915/i915_buddy.c b/drivers/gpu/drm/i915/i=
-915_buddy.c
-> > index 29dd7d0310c1f..911feedad4513 100644
-> > --- a/drivers/gpu/drm/i915/i915_buddy.c
-> > +++ b/drivers/gpu/drm/i915/i915_buddy.c
-> > @@ -8,8 +8,14 @@
-> >   #include "i915_buddy.h"
-> >   #include "i915_gem.h"
-> > +#include "i915_globals.h"
-> >   #include "i915_utils.h"
-> > +static struct i915_global_buddy {
-> > +	struct i915_global base;
-> > +	struct kmem_cache *slab_blocks;
-> > +} global;
-> > +
-> >   static struct i915_buddy_block *i915_block_alloc(struct i915_buddy_mm=
- *mm,
-> >   						 struct i915_buddy_block *parent,
-> >   						 unsigned int order,
-> > @@ -19,7 +25,7 @@ static struct i915_buddy_block *i915_block_alloc(stru=
-ct i915_buddy_mm *mm,
-> >   	GEM_BUG_ON(order > I915_BUDDY_MAX_ORDER);
-> > -	block =3D kmem_cache_zalloc(mm->slab_blocks, GFP_KERNEL);
-> > +	block =3D kmem_cache_zalloc(global.slab_blocks, GFP_KERNEL);
-> >   	if (!block)
-> >   		return NULL;
-> > @@ -34,7 +40,7 @@ static struct i915_buddy_block *i915_block_alloc(stru=
-ct i915_buddy_mm *mm,
-> >   static void i915_block_free(struct i915_buddy_mm *mm,
-> >   			    struct i915_buddy_block *block)
-> >   {
-> > -	kmem_cache_free(mm->slab_blocks, block);
-> > +	kmem_cache_free(global.slab_blocks, block);
-> >   }
-> >   static void mark_allocated(struct i915_buddy_block *block)
-> > @@ -85,15 +91,11 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 s=
-ize, u64 chunk_size)
-> >   	GEM_BUG_ON(mm->max_order > I915_BUDDY_MAX_ORDER);
-> > -	mm->slab_blocks =3D KMEM_CACHE(i915_buddy_block, SLAB_HWCACHE_ALIGN);
-> > -	if (!mm->slab_blocks)
-> > -		return -ENOMEM;
-> > -
-> >   	mm->free_list =3D kmalloc_array(mm->max_order + 1,
-> >   				      sizeof(struct list_head),
-> >   				      GFP_KERNEL);
-> >   	if (!mm->free_list)
-> > -		goto out_destroy_slab;
-> > +		return -ENOMEM;
-> >   	for (i =3D 0; i <=3D mm->max_order; ++i)
-> >   		INIT_LIST_HEAD(&mm->free_list[i]);
-> > @@ -145,8 +147,6 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 s=
-ize, u64 chunk_size)
-> >   	kfree(mm->roots);
-> >   out_free_list:
-> >   	kfree(mm->free_list);
-> > -out_destroy_slab:
-> > -	kmem_cache_destroy(mm->slab_blocks);
-> >   	return -ENOMEM;
-> >   }
-> > @@ -161,7 +161,6 @@ void i915_buddy_fini(struct i915_buddy_mm *mm)
-> >   	kfree(mm->roots);
-> >   	kfree(mm->free_list);
-> > -	kmem_cache_destroy(mm->slab_blocks);
-> >   }
-> >   static int split_block(struct i915_buddy_mm *mm,
-> > @@ -410,3 +409,28 @@ int i915_buddy_alloc_range(struct i915_buddy_mm *m=
-m,
-> >   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> >   #include "selftests/i915_buddy.c"
-> >   #endif
-> > +
-> > +static void i915_global_buddy_shrink(void)
-> > +{
-> > +	kmem_cache_shrink(global.slab_blocks);
-> > +}
-> > +
-> > +static void i915_global_buddy_exit(void)
-> > +{
-> > +	kmem_cache_destroy(global.slab_blocks);
-> > +}
-> > +
-> > +static struct i915_global_buddy global =3D { {
-> > +	.shrink =3D i915_global_buddy_shrink,
-> > +	.exit =3D i915_global_buddy_exit,
-> > +} };
-> > +
-> > +int __init i915_global_buddy_init(void)
-> > +{
-> > +	global.slab_blocks =3D KMEM_CACHE(i915_buddy_block, 0);
-> > +	if (!global.slab_blocks)
-> > +		return -ENOMEM;
-> > +
-> > +	i915_global_register(&global.base);
-> > +	return 0;
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/i915_buddy.h b/drivers/gpu/drm/i915/i=
-915_buddy.h
-> > index 37f8c42071d12..d8f26706de52f 100644
-> > --- a/drivers/gpu/drm/i915/i915_buddy.h
-> > +++ b/drivers/gpu/drm/i915/i915_buddy.h
-> > @@ -47,7 +47,6 @@ struct i915_buddy_block {
-> >    * i915_buddy_alloc* and i915_buddy_free* should suffice.
-> >    */
-> >   struct i915_buddy_mm {
-> > -	struct kmem_cache *slab_blocks;
-> >   	/* Maintain a free list for each order. */
-> >   	struct list_head *free_list;
-> > @@ -130,4 +129,6 @@ void i915_buddy_free(struct i915_buddy_mm *mm, stru=
-ct i915_buddy_block *block);
-> >   void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head =
-*objects);
-> > +int i915_global_buddy_init(void);
-> > +
-> >   #endif
-> > diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915=
-/i915_globals.c
-> > index 87267e1d2ad92..e57102a4c8d16 100644
-> > --- a/drivers/gpu/drm/i915/i915_globals.c
-> > +++ b/drivers/gpu/drm/i915/i915_globals.c
-> > @@ -8,6 +8,7 @@
-> >   #include <linux/workqueue.h>
-> >   #include "i915_active.h"
-> > +#include "i915_buddy.h"
-> >   #include "gem/i915_gem_context.h"
-> >   #include "gem/i915_gem_object.h"
-> >   #include "i915_globals.h"
-> > @@ -87,6 +88,7 @@ static void __i915_globals_cleanup(void)
-> >   static __initconst int (* const initfn[])(void) =3D {
-> >   	i915_global_active_init,
-> > +	i915_global_buddy_init,
-> >   	i915_global_context_init,
-> >   	i915_global_gem_context_init,
-> >   	i915_global_objects_init,
-> > =
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAmD4cx8ACgkQW1vaBx1J
+zDiuNg/8CgLBUyZImwRDjD5tKKn2m8MIRrIzPpNQlBdoMDQhHmkQXGY5dnonM2ex
+3QMlJ0mfLSutsayeVf8z9lOS798obk0Sr29t193Ht/AQzLBslZ9vmuQjdMRVEbil
+Zm66eHNp/UAtlpmgdHvujVki8adC5+t4R/5Xa1GY4pWohzlSXaFEwKJjfO9dJdTO
+z68HaLtId30IgVQfHTP81DsTfr605N9lSkqNoMAJUKnabFANLgCjXRmRDBb9EGZP
+t1qP57fFfRskBsQzo8jG60dghLk1iKHj3LKzDkiX0wJWTxE/Hh+XzLjo9lEAvEkS
+L5hMakB6qEFnT3Pa+X2Z2SHcer7WC7Dy7XjdT2rb/+lsrlkMTAXLsRYKVM8lES58
+DIndvRJFdkCrh4kCa9UR0uiZhMUNtiFVkFrmYtjXO205mVxhtyriNdoY8Kfikrnx
+rNaUK20BuPaKf6mM/IxcjaCXwJ06AhWIsIVuFFwaoZhO6iTb6ZsjTu6AEHeNDQ+K
+34l0Gi2BWHnhSm1VkFh/scZWE828QmTWq8OLgp74a/7nYyiNI5CCrPC526rtvPKs
+YO0FFvlD7U37rQSXHrBnfyepnOlMWFsrMoRSWIod01+Y5VzJhvu2XM5s1AySg4vy
+drxXPVL++sHTFRG4qAyqJABWYy8yaHAeEX+9NC6Z+DdeqW6mvlQ=
+=b+LC
+-----END PGP SIGNATURE-----
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+--nextPart5739491.D0ShQg1dhF--
 
--- =
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+
+
+--===============0626318385==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0626318385==--
+
+
+
