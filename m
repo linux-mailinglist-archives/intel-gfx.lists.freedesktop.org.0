@@ -1,39 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979733D1690
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 20:44:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F9C33D16B7
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 20:57:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB6F06E839;
-	Wed, 21 Jul 2021 18:44:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4586ECFB;
+	Wed, 21 Jul 2021 18:56:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A3A06E0D9;
- Wed, 21 Jul 2021 18:44:25 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="208378651"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="208378651"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 11:44:24 -0700
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="470249396"
-Received: from cjgolobi-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.252.136.69])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 11:44:23 -0700
-Date: Wed, 21 Jul 2021 11:44:22 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20210721184422.fvpmhes2uw2tbax3@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210720232014.3302645-1-lucas.demarchi@intel.com>
- <20210720232014.3302645-5-lucas.demarchi@intel.com>
- <079da526-6b19-3b44-e3d0-c23e1a61e9b1@linux.intel.com>
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
+ [IPv6:2a00:1450:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC5B86ECFA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 18:56:53 +0000 (UTC)
+Received: by mail-wm1-x331.google.com with SMTP id w13so1915955wmc.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 11:56:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=dmX+J/TmQQOqSIzmduc+Fl5JJ/RQlTISy6TWURapR34=;
+ b=BrhMZAMH95b1QRGELnHfPW1NcJbOBkvvpt/dkAY8E8mUZCZ9xlV5+VbBzqMn07eNBd
+ cCLCPU8e4hVp9YygCk3W/O5GnRG1TdLV1IbOEj8Tj6GxzrIlit0fIPQ45ou2L164OQp3
+ TKQPvVCQcDEAH5F98VQDJ/q84VhW+8JPlE+u4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=dmX+J/TmQQOqSIzmduc+Fl5JJ/RQlTISy6TWURapR34=;
+ b=TTuH7JA6QeJLpbl2ROY1PEHqxGvzHgTCB0y+YqWWHvkIScYJHvEEwgqSvjjoedjZoj
+ ZB5+HZvu7pR7imsm9HbglxdRq60iBC9wojt8YJAoRUDIxYhLXvTiZmBBYGXVPAShK6I0
+ oPHHQbLXIrelxdkXmwvL2HCQthb/N4pAqKeraE9+6cPZAEWZyKHh/YXei9K4gBNVJ2+2
+ hxUuMObw6beCiC4sFr0tyi93/ghk1DoJovwg58UK415intgyFzZVzpMcoZZpVgiIdbkw
+ p5z+OmEJOI8lVKRS71RH3S7BRZe9v2aAwsQeKV/jl7UoNGrljCMYicYau9sken8grgXg
+ 4clg==
+X-Gm-Message-State: AOAM530CIZUWWBvWEDsZqGcLiY/t4tpXb17DwtULFnAXZnubo6Cz0G8d
+ MDQQ9NmjiWoGB7l2s3KyRJ/z6g==
+X-Google-Smtp-Source: ABdhPJxASHwoXQZYkUon/KQ+fbRoKgE2XTpj9OEQKGPuQ0di+bFpHjt1Vaue7Pkz7crNqXcf+RYl2Q==
+X-Received: by 2002:a05:600c:2101:: with SMTP id
+ u1mr5385193wml.55.1626893812551; 
+ Wed, 21 Jul 2021 11:56:52 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id d29sm33878690wrb.63.2021.07.21.11.56.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 21 Jul 2021 11:56:52 -0700 (PDT)
+Date: Wed, 21 Jul 2021 20:56:50 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <YPht8s0wtnUxuF5q@phenom.ffwll.local>
+References: <20210721152358.2893314-1-jason@jlekstrand.net>
+ <20210721152358.2893314-7-jason@jlekstrand.net>
+ <23df1788-bd8e-ac44-337d-92bb5f345b8f@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <079da526-6b19-3b44-e3d0-c23e1a61e9b1@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/gt: nuke gen6_hw_id
+In-Reply-To: <23df1788-bd8e-ac44-337d-92bb5f345b8f@intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915: Make the kmem slab for
+ i915_buddy_block a global
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,161 +69,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
- dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 21, 2021 at 10:25:59AM +0100, Tvrtko Ursulin wrote:
->
->On 21/07/2021 00:20, Lucas De Marchi wrote:
->>This is only used by GRAPHICS_VER == 6 and GRAPHICS_VER == 7. All other
->>recent platforms do not depend on this field, so it doesn't make much
->>sense to keep it generic like that. Instead, just do a mapping from
->>engine class to HW ID in the single place that is needed.
->>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>  drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 6 ------
->>  drivers/gpu/drm/i915/gt/intel_engine_types.h | 8 --------
->>  drivers/gpu/drm/i915/i915_reg.h              | 4 +++-
->>  3 files changed, 3 insertions(+), 15 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>index 508221de411c..0a04e8d90e9e 100644
->>--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>@@ -42,7 +42,6 @@
->>  #define MAX_MMIO_BASES 3
->>  struct engine_info {
->>-	u8 gen6_hw_id;
->>  	u8 class;
->>  	u8 instance;
->>  	/* mmio bases table *must* be sorted in reverse graphics_ver order */
->>@@ -54,7 +53,6 @@ struct engine_info {
->>  static const struct engine_info intel_engines[] = {
->>  	[RCS0] = {
->>-		.gen6_hw_id = RCS0_HW,
->>  		.class = RENDER_CLASS,
->>  		.instance = 0,
->>  		.mmio_bases = {
->>@@ -62,7 +60,6 @@ static const struct engine_info intel_engines[] = {
->>  		},
->>  	},
->>  	[BCS0] = {
->>-		.gen6_hw_id = BCS0_HW,
->>  		.class = COPY_ENGINE_CLASS,
->>  		.instance = 0,
->>  		.mmio_bases = {
->>@@ -70,7 +67,6 @@ static const struct engine_info intel_engines[] = {
->>  		},
->>  	},
->>  	[VCS0] = {
->>-		.gen6_hw_id = VCS0_HW,
->>  		.class = VIDEO_DECODE_CLASS,
->>  		.instance = 0,
->>  		.mmio_bases = {
->>@@ -102,7 +98,6 @@ static const struct engine_info intel_engines[] = {
->>  		},
->>  	},
->>  	[VECS0] = {
->>-		.gen6_hw_id = VECS0_HW,
->>  		.class = VIDEO_ENHANCEMENT_CLASS,
->>  		.instance = 0,
->>  		.mmio_bases = {
->>@@ -290,7 +285,6 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
->>  	engine->i915 = i915;
->>  	engine->gt = gt;
->>  	engine->uncore = gt->uncore;
->>-	engine->gen6_hw_id = info->gen6_hw_id;
->>  	guc_class = engine_class_to_guc_class(info->class);
->>  	engine->guc_id = MAKE_GUC_ID(guc_class, info->instance);
->>  	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
->>diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>index 266422d8d1b1..64330bfb7641 100644
->>--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
->>@@ -28,13 +28,6 @@
->>  #include "intel_wakeref.h"
->>  #include "intel_workarounds_types.h"
->>-/* Legacy HW Engine ID */
->>-
->>-#define RCS0_HW		0
->>-#define VCS0_HW		1
->>-#define BCS0_HW		2
->>-#define VECS0_HW	3
->>-
->>  /* Gen11+ HW Engine class + instance */
->>  #define RENDER_CLASS		0
->>  #define VIDEO_DECODE_CLASS	1
->>@@ -268,7 +261,6 @@ struct intel_engine_cs {
->>  	intel_engine_mask_t mask;
->>-	u8 gen6_hw_id;
->>  	u8 class;
->>  	u8 instance;
->>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->>index 8750ffce9d61..d91386f4828e 100644
->>--- a/drivers/gpu/drm/i915/i915_reg.h
->>+++ b/drivers/gpu/drm/i915/i915_reg.h
->>@@ -2572,7 +2572,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
->>  #define   ARB_MODE_BWGTLB_DISABLE (1 << 9)
->>  #define   ARB_MODE_SWIZZLE_BDW	(1 << 1)
->>  #define RENDER_HWS_PGA_GEN7	_MMIO(0x04080)
->>-#define RING_FAULT_REG(engine)	_MMIO(0x4094 + 0x100 * (engine)->gen6_hw_id)
->>+
->>+#define _GEN6_ENGINE_CLASS_TO_ID(class) _PICK((class), 0, 1, 3, 2)
->>+#define RING_FAULT_REG(engine)	_MMIO(0x4094 + 0x100 * _GEN6_ENGINE_CLASS_TO_ID((engine)->class))
->
->Makes sense to me.
->
->Maybe HW_ID and HW_CLASS in the macro name? Not sure.
+On Wed, Jul 21, 2021 at 05:25:41PM +0100, Matthew Auld wrote:
+> On 21/07/2021 16:23, Jason Ekstrand wrote:
+> > There's no reason that I can tell why this should be per-i915_buddy_mm
+> > and doing so causes KMEM_CACHE to throw dmesg warnings because it tries
+> > to create a debugfs entry with the name i915_buddy_block multiple times.
+> > We could handle this by carefully giving each slab its own name but that
+> > brings its own pain because then we have to store that string somewhere
+> > and manage the lifetimes of the different slabs.  The most likely
+> > outcome would be a global atomic which we increment to get a new name or
+> > something like that.
+> > =
 
-I can do that... I think I avoided it because it makes the macro
-very big. Anyway, this should be called in just one place, so it doesn't
-matter much... I can add it.
+> > The much easier solution is to use the i915_globals system like we do
+> > for every other slab in i915.  This ensures that we have exactly one of
+> > them for each i915 driver load and it gets neatly created on module load
+> > and destroyed on module unload.  Using the globals system also means
+> > that its now tied into the shrink handler so we can properly respond to
+> > low-memory situations.
+> > =
 
->
->Only open I have is why the "Gen11+ HW Engine class + instance" 
->comment and now we would tie that, allegedly Gen11 concept, with 
->Gen6-7. Care to do some digging?
+> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> > Fixes: 88be9a0a06b7 ("drm/i915/ttm: add ttm_buddy_man")
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Christian K=F6nig <christian.koenig@amd.com>
+> =
 
-Not sure. This comes from 3d7b3039741d ("drm/i915: Move engine IDs out of i915_reg.h")
-that I reviewed :-o
+> It was intentionally ripped it out with the idea that we would be moving =
+the
+> buddy stuff into ttm, and so part of that was trying to get rid of the so=
+me
+> of the i915 specifics, like this globals thing.
+> =
 
-Cc'ing  Daniele. I don't see "class" as a Gen11+ thing. Is it just that
-those numbers started to make sense for gen11?  Since
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-a) we are using the class even for GRAPHICS_VER < 11
-b) the legacy HW IDs shouldn't be used anywhere else anymore
+I just sent out a patch to put i915_globals on a diet, so maybe we can
+hold this patch here a bit when there's other reasons for why this is
+special?
 
+Or at least no make this use the i915_globals stuff and instead just link
+up the init/exit function calls directly into Jason's new table, so that
+we don't have a merge conflict here?
+-Daniel
 
-we could
+> =
 
-1) move the legacy defines back to i915_reg.h
-2) use them in the macro above (IMO would slightly improve the
-readability of that _PICK() call)
-3) Remove the "Gen11+" comment in the _CLASS macros to avoid
-misunderstandings
+> > ---
+> >   drivers/gpu/drm/i915/i915_buddy.c   | 44 ++++++++++++++++++++++-------
+> >   drivers/gpu/drm/i915/i915_buddy.h   |  3 +-
+> >   drivers/gpu/drm/i915/i915_globals.c |  2 ++
+> >   3 files changed, 38 insertions(+), 11 deletions(-)
+> > =
 
+> > diff --git a/drivers/gpu/drm/i915/i915_buddy.c b/drivers/gpu/drm/i915/i=
+915_buddy.c
+> > index 29dd7d0310c1f..911feedad4513 100644
+> > --- a/drivers/gpu/drm/i915/i915_buddy.c
+> > +++ b/drivers/gpu/drm/i915/i915_buddy.c
+> > @@ -8,8 +8,14 @@
+> >   #include "i915_buddy.h"
+> >   #include "i915_gem.h"
+> > +#include "i915_globals.h"
+> >   #include "i915_utils.h"
+> > +static struct i915_global_buddy {
+> > +	struct i915_global base;
+> > +	struct kmem_cache *slab_blocks;
+> > +} global;
+> > +
+> >   static struct i915_buddy_block *i915_block_alloc(struct i915_buddy_mm=
+ *mm,
+> >   						 struct i915_buddy_block *parent,
+> >   						 unsigned int order,
+> > @@ -19,7 +25,7 @@ static struct i915_buddy_block *i915_block_alloc(stru=
+ct i915_buddy_mm *mm,
+> >   	GEM_BUG_ON(order > I915_BUDDY_MAX_ORDER);
+> > -	block =3D kmem_cache_zalloc(mm->slab_blocks, GFP_KERNEL);
+> > +	block =3D kmem_cache_zalloc(global.slab_blocks, GFP_KERNEL);
+> >   	if (!block)
+> >   		return NULL;
+> > @@ -34,7 +40,7 @@ static struct i915_buddy_block *i915_block_alloc(stru=
+ct i915_buddy_mm *mm,
+> >   static void i915_block_free(struct i915_buddy_mm *mm,
+> >   			    struct i915_buddy_block *block)
+> >   {
+> > -	kmem_cache_free(mm->slab_blocks, block);
+> > +	kmem_cache_free(global.slab_blocks, block);
+> >   }
+> >   static void mark_allocated(struct i915_buddy_block *block)
+> > @@ -85,15 +91,11 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 s=
+ize, u64 chunk_size)
+> >   	GEM_BUG_ON(mm->max_order > I915_BUDDY_MAX_ORDER);
+> > -	mm->slab_blocks =3D KMEM_CACHE(i915_buddy_block, SLAB_HWCACHE_ALIGN);
+> > -	if (!mm->slab_blocks)
+> > -		return -ENOMEM;
+> > -
+> >   	mm->free_list =3D kmalloc_array(mm->max_order + 1,
+> >   				      sizeof(struct list_head),
+> >   				      GFP_KERNEL);
+> >   	if (!mm->free_list)
+> > -		goto out_destroy_slab;
+> > +		return -ENOMEM;
+> >   	for (i =3D 0; i <=3D mm->max_order; ++i)
+> >   		INIT_LIST_HEAD(&mm->free_list[i]);
+> > @@ -145,8 +147,6 @@ int i915_buddy_init(struct i915_buddy_mm *mm, u64 s=
+ize, u64 chunk_size)
+> >   	kfree(mm->roots);
+> >   out_free_list:
+> >   	kfree(mm->free_list);
+> > -out_destroy_slab:
+> > -	kmem_cache_destroy(mm->slab_blocks);
+> >   	return -ENOMEM;
+> >   }
+> > @@ -161,7 +161,6 @@ void i915_buddy_fini(struct i915_buddy_mm *mm)
+> >   	kfree(mm->roots);
+> >   	kfree(mm->free_list);
+> > -	kmem_cache_destroy(mm->slab_blocks);
+> >   }
+> >   static int split_block(struct i915_buddy_mm *mm,
+> > @@ -410,3 +409,28 @@ int i915_buddy_alloc_range(struct i915_buddy_mm *m=
+m,
+> >   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> >   #include "selftests/i915_buddy.c"
+> >   #endif
+> > +
+> > +static void i915_global_buddy_shrink(void)
+> > +{
+> > +	kmem_cache_shrink(global.slab_blocks);
+> > +}
+> > +
+> > +static void i915_global_buddy_exit(void)
+> > +{
+> > +	kmem_cache_destroy(global.slab_blocks);
+> > +}
+> > +
+> > +static struct i915_global_buddy global =3D { {
+> > +	.shrink =3D i915_global_buddy_shrink,
+> > +	.exit =3D i915_global_buddy_exit,
+> > +} };
+> > +
+> > +int __init i915_global_buddy_init(void)
+> > +{
+> > +	global.slab_blocks =3D KMEM_CACHE(i915_buddy_block, 0);
+> > +	if (!global.slab_blocks)
+> > +		return -ENOMEM;
+> > +
+> > +	i915_global_register(&global.base);
+> > +	return 0;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/i915_buddy.h b/drivers/gpu/drm/i915/i=
+915_buddy.h
+> > index 37f8c42071d12..d8f26706de52f 100644
+> > --- a/drivers/gpu/drm/i915/i915_buddy.h
+> > +++ b/drivers/gpu/drm/i915/i915_buddy.h
+> > @@ -47,7 +47,6 @@ struct i915_buddy_block {
+> >    * i915_buddy_alloc* and i915_buddy_free* should suffice.
+> >    */
+> >   struct i915_buddy_mm {
+> > -	struct kmem_cache *slab_blocks;
+> >   	/* Maintain a free list for each order. */
+> >   	struct list_head *free_list;
+> > @@ -130,4 +129,6 @@ void i915_buddy_free(struct i915_buddy_mm *mm, stru=
+ct i915_buddy_block *block);
+> >   void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head =
+*objects);
+> > +int i915_global_buddy_init(void);
+> > +
+> >   #endif
+> > diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915=
+/i915_globals.c
+> > index 87267e1d2ad92..e57102a4c8d16 100644
+> > --- a/drivers/gpu/drm/i915/i915_globals.c
+> > +++ b/drivers/gpu/drm/i915/i915_globals.c
+> > @@ -8,6 +8,7 @@
+> >   #include <linux/workqueue.h>
+> >   #include "i915_active.h"
+> > +#include "i915_buddy.h"
+> >   #include "gem/i915_gem_context.h"
+> >   #include "gem/i915_gem_object.h"
+> >   #include "i915_globals.h"
+> > @@ -87,6 +88,7 @@ static void __i915_globals_cleanup(void)
+> >   static __initconst int (* const initfn[])(void) =3D {
+> >   	i915_global_active_init,
+> > +	i915_global_buddy_init,
+> >   	i915_global_context_init,
+> >   	i915_global_gem_context_init,
+> >   	i915_global_objects_init,
+> > =
 
-Thoughts?
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-thanks
-Lucas De Marchi
+-- =
 
-
-
->
->Regards,
->
->Tvrtko
->
->>  #define GEN8_RING_FAULT_REG	_MMIO(0x4094)
->>  #define GEN12_RING_FAULT_REG	_MMIO(0xcec4)
->>  #define   GEN8_RING_FAULT_ENGINE_ID(x)	(((x) >> 12) & 0x7)
->>
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
