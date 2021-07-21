@@ -1,31 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A883D12B1
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 17:42:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56573D12CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 17:48:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1C96ECA8;
-	Wed, 21 Jul 2021 15:42:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F36F6E819;
+	Wed, 21 Jul 2021 15:48:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 500F56ECA8;
- Wed, 21 Jul 2021 15:42:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4D3DFA882E;
- Wed, 21 Jul 2021 15:42:47 +0000 (UTC)
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45E1B6E819;
+ Wed, 21 Jul 2021 15:44:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=xGDQCg8K3gMLPJfNe3HDAYa4LlCFJK24tPvQoRpr7cQ=; b=ZlIZY+ZqXctBhXKiS5UTCH335I
+ 5ZhAmhVx4Ek9Z78ML0Dez5TM5NYxtgH348auvop1wOQ9GQNH5urD6Zk/Po0b1MoE9cvkEZBryUfoT
+ QcqrFZ60hhh2fFSEFKp1Cu6imRGPmGLZ86JdNBlrs8ZzZloFMseDyuicn1rBHxGDoRYZaiRcYHNd+
+ mRGv8ReujMZdh01Py72I9S6Oib5L5O0LipiarWxhBZjL+LnstnbWVDN7QH62aS1H5N3l4PN0egdJ2
+ LrIUTIw5Oxs9NvVyiEK2KWfqmPwVgfX4mYdtKcX4J3+X9WQQ/Vbj9Yqk55imlU0QVE1iiDb3rF5JK
+ jSDGtgwA==;
+Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
+ Linux)) id 1m6ENg-009LhK-67; Wed, 21 Jul 2021 15:43:36 +0000
+Date: Wed, 21 Jul 2021 16:43:32 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <YPhApJo1o6yBYUh2@infradead.org>
+References: <YPgAuSt6Ps7w4/AI@infradead.org>
+ <YPgD/8Y3/te/Hsu3@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Wed, 21 Jul 2021 15:42:47 -0000
-Message-ID: <162688216731.769.2600148332399497579@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210721152358.2893314-1-jason@jlekstrand.net>
-In-Reply-To: <20210721152358.2893314-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Fix_the_debugfs_splat_from_mock_selftests_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <YPgD/8Y3/te/Hsu3@intel.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+X-Mailman-Approved-At: Wed, 21 Jul 2021 15:48:40 +0000
+Subject: Re: [Intel-gfx] 5.14-rc2 warnings with kvmgvt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,87 +50,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Christoph Hellwig <hch@infradead.org>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jul 21, 2021 at 07:24:47AM -0400, Rodrigo Vivi wrote:
+> On Wed, Jul 21, 2021 at 01:10:49PM +0200, Christoph Hellwig wrote:
+> > Hi all,
+> > 
+> > I'm trying to test some changes for the gvt code, but even with a baseline
+> > 5.14-rc2 host and guest the 915 driver does not seem overly happy:
+> 
+> Is this a regression over -rc1 or over 5.13?
+> Bisect possible?
 
-Series: Fix the debugfs splat from mock selftests (rev3)
-URL   : https://patchwork.freedesktop.org/series/92729/
-State : warning
-
-== Summary ==
-
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    expected struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    got struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1210:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/ttm/ttm_device.c:144:5: warning: context imbalance in 'ttm_device_swapout' - wrong count at exit
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-
-
+This was introduced somewhere between 5.12 and 5.13, still bisecting.
+Note that it only happens for "headless" setups.  Once a display is
+added on the qemu command line it goes away.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
