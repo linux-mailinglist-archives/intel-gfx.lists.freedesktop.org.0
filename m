@@ -2,35 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3A33D19C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 00:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AEA3D19C7
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 00:34:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC71C6EB74;
-	Wed, 21 Jul 2021 22:31:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 719636E899;
+	Wed, 21 Jul 2021 22:34:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937246EB3A
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 22:30:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="211528009"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="211528009"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D79B6E899;
+ Wed, 21 Jul 2021 22:34:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="211528592"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="211528592"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 15:30:49 -0700
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="658464214"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 15:30:48 -0700
+ 21 Jul 2021 15:34:15 -0700
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="564877475"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 15:34:14 -0700
+Date: Wed, 21 Jul 2021 15:34:13 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Jul 2021 15:30:41 -0700
-Message-Id: <20210721223043.834562-17-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210721223043.834562-1-matthew.d.roper@intel.com>
-References: <20210721223043.834562-1-matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20210721223413.GL4174536@mdroper-desk1.amr.corp.intel.com>
+References: <20210720232014.3302645-1-lucas.demarchi@intel.com>
+ <20210720232014.3302645-2-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 16/18] drm/i915/dg2: Don't program BW_BUDDY
- registers
+Content-Disposition: inline
+In-Reply-To: <20210720232014.3302645-2-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: fix platform prefix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,30 +44,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWx0aG91Z2ggdGhlIEJXX0JVRERZIHJlZ2lzdGVycyBzdGlsbCBleGlzdCwgdGhleSBhcmUgbm90
-IHVzZWQgZm9yCmFueXRoaW5nIG9uIERHMi4gIFRoaXMgY2hhbmdlIGlzIGV4cGVjdGVkIHRvIGhv
-bGQgdHJ1ZSBmb3IgZnV0dXJlIGRncHUncwp0b28uCgpCc3BlYzogNDkyMTgKU2lnbmVkLW9mZi1i
-eTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEpv
-c8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jIHwgNCArKysrCiAxIGZp
-bGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwppbmRleCA0NzMyZWZiYjAyZjkuLjgxZWZj
-NzdiYWRhMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5X3Bvd2VyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5X3Bvd2VyLmMKQEAgLTU4MTQsNiArNTgxNCwxMCBAQCBzdGF0aWMgdm9pZCB0Z2xfYndf
-YnVkZHlfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJdW5zaWduZWQg
-bG9uZyBhYm94X21hc2sgPSBJTlRFTF9JTkZPKGRldl9wcml2KS0+YWJveF9tYXNrOwogCWludCBj
-b25maWcsIGk7CiAKKwkvKiBCV19CVUREWSByZWdpc3RlcnMgYXJlIG5vdCB1c2VkIG9uIGRncHUn
-cyBiZXlvbmQgREcxICovCisJaWYgKElTX0RHRlgoZGV2X3ByaXYpICYmICFJU19ERzEoZGV2X3By
-aXYpKQorCQlyZXR1cm47CisKIAlpZiAoSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpIHx8CiAJICAg
-IElTX0RHMV9ESVNQTEFZX1NURVAoZGV2X3ByaXYsIFNURVBfQTAsIFNURVBfQjApIHx8CiAJICAg
-IElTX1JLTF9ESVNQTEFZX1NURVAoZGV2X3ByaXYsIFNURVBfQTAsIFNURVBfQjApIHx8Ci0tIAoy
-LjI1LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, Jul 20, 2021 at 04:20:11PM -0700, Lucas De Marchi wrote:
+> gen8_clear_engine_error_register() is actually not used by
+> GRAPHICS_VER >= 8, since for those we are using another register that is
+> not engine-dependent. Fix the platform prefix, to make clear we are not
+> using any GEN6_RING_FAULT_REG_* one GRAPHICS_VER >= 8.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index e714e21c0a4d..a8efdd44e9cf 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -205,7 +205,7 @@ static void clear_register(struct intel_uncore *uncore, i915_reg_t reg)
+>  	intel_uncore_rmw(uncore, reg, 0, 0);
+>  }
+>  
+> -static void gen8_clear_engine_error_register(struct intel_engine_cs *engine)
+> +static void gen6_clear_engine_error_register(struct intel_engine_cs *engine)
+>  {
+>  	GEN6_RING_FAULT_REG_RMW(engine, RING_FAULT_VALID, 0);
+>  	GEN6_RING_FAULT_REG_POSTING_READ(engine);
+> @@ -251,7 +251,7 @@ intel_gt_clear_error_registers(struct intel_gt *gt,
+>  		enum intel_engine_id id;
+>  
+>  		for_each_engine_masked(engine, gt, engine_mask, id)
+> -			gen8_clear_engine_error_register(engine);
+> +			gen6_clear_engine_error_register(engine);
+>  	}
+>  }
+>  
+> -- 
+> 2.31.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
