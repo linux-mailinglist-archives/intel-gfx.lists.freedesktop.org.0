@@ -2,55 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09D03D0A76
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 10:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 640B33D0A77
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 10:25:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA5AC6E8D0;
-	Wed, 21 Jul 2021 08:25:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCE3F6E913;
+	Wed, 21 Jul 2021 08:25:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com
- [IPv6:2607:f8b0:4864:20::72d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42CC36E8A1;
- Wed, 21 Jul 2021 08:25:08 +0000 (UTC)
-Received: by mail-qk1-x72d.google.com with SMTP id a80so1338102qkg.11;
- Wed, 21 Jul 2021 01:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IC4GTjl29H9gvOiRYdHvwLiwIiDaorgoi7/rFawjExI=;
- b=hBvhLwY9y4snaxYBZfGssrD+G0vccHlrgTayvrCDs90Vu+cB+1LSpjLAykqfLPk3q9
- H5jQPMAVKSTMePnkh/6h0DSvTG5CqZK5fYfUeVNYOuNuRDhFx3RxyARTlw84tF6tmDIc
- rTYVBcAm3EBb3Hy/JjLJEpuPyx/6uWj/ZlyjCE1u+fM0rN4RkoyOUnlHNh7aYydiD6xR
- SbeDrcvIg34NIMHl35296AnrNgV3AByeN8vPFNVzZMuy1nrWJjo5nLwMcXFMUDmwxkXz
- QDvXrwGvwB/MHlHq9DzJG+1x85OEDNO1g4zBzCwLg4kwuMZEFjh65axxhCL/p+MiMaGq
- /Q4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IC4GTjl29H9gvOiRYdHvwLiwIiDaorgoi7/rFawjExI=;
- b=M2r0CHQttFcB8XqYYQ5XZuYnHvEdUKFyoFPc26/9cqdZ8DE5UoqueY853kvSlinaAl
- ZfhNcYwVhF3ZObRfOZ4UWwkEMc5LTWbcEi/nbRFdK/Wj1w+vBCljjYQagdN01SJQHVGR
- SGMgzTrk8fwUaNZz32y+FXQXYtufuLjGpOsBgNNi1lrShtQVJJ+coM5+qwciHkqz9MK8
- c0s0jJ83c2B2FDm2d00q/fs8PsUQZYLICFSemWDX8Jg19PkVi/7Fqc2Az4ZachhlUyt6
- jhiVNTnkvcUj3qYLFtOplkG7E5oeJJkggJFfmveYZLfo+xIJeKXn9NaSmFoZDVQHybtb
- 6NsQ==
-X-Gm-Message-State: AOAM533T463FFguErK2g4+a3jIjkBBeMdRvff4vr1Q9Dxmux+Dm4kILa
- S8MA3uUKrC8YdWr19nwp/6j8+61yjjUPAeHH7/o=
-X-Google-Smtp-Source: ABdhPJzZHL2QpTdHCrDcZACEiw7VP5lq21uUQJOP87o6eSgH62xsaigvIpsJC1HPeuVoIwWEWpd1YWe4BJz9JYc6KEc=
-X-Received: by 2002:a37:5d5:: with SMTP id 204mr33963650qkf.17.1626855907348; 
- Wed, 21 Jul 2021 01:25:07 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 684396E913;
+ Wed, 21 Jul 2021 08:25:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 61A73A73C9;
+ Wed, 21 Jul 2021 08:25:37 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210715223900.1840576-1-jason@jlekstrand.net>
- <20210715223900.1840576-4-jason@jlekstrand.net>
- <CAM0jSHPKaFkT=U-Ra1V8HS88ciAKhQ32ZZtBDkHutH74P5i8BQ@mail.gmail.com>
- <CAOFGe96dsX4x6CFYL+CT+b11Lwkv6a-Pn=MKJqgtbPBC+nZ60w@mail.gmail.com>
-In-Reply-To: <CAOFGe96dsX4x6CFYL+CT+b11Lwkv6a-Pn=MKJqgtbPBC+nZ60w@mail.gmail.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 21 Jul 2021 09:24:40 +0100
-Message-ID: <CAM0jSHMMN6neG5DtiqWb54ZA46gh4iCmB94i7ZJCH=YTS8t=bg@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/gem: Unify user object creation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhenyu Wang" <zhenyuw@linux.intel.com>
+Date: Wed, 21 Jul 2021 08:25:37 -0000
+Message-ID: <162685593739.768.16408116656323641623@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210721062607.512307-1-zhenyuw@linux.intel.com>
+In-Reply-To: <20210721062607.512307-1-zhenyuw@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gvt=3A_Fix_cached_atomics_setting_for_Windows_VM?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,123 +38,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0352243856=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 20 Jul 2021 at 23:04, Jason Ekstrand <jason@jlekstrand.net> wrote:
->
-> On Tue, Jul 20, 2021 at 4:35 AM Matthew Auld
-> <matthew.william.auld@gmail.com> wrote:
-> >
-> > On Thu, 15 Jul 2021 at 23:39, Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > >
-> > > Instead of hand-rolling the same three calls in each function, pull them
-> > > into an i915_gem_object_create_user helper.  Apart from re-ordering of
-> > > the placements array ENOMEM check, the only functional change here
-> > > should be that i915_gem_dumb_create now calls i915_gem_flush_free_objects
-> > > which it probably should have been calling all along.
-> > >
-> > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > > ---
-> > >  drivers/gpu/drm/i915/gem/i915_gem_create.c | 106 +++++++++------------
-> > >  1 file changed, 43 insertions(+), 63 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> > > index 391c8c4a12172..69bf9ec777642 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-> > > @@ -11,13 +11,14 @@
-> > >  #include "i915_trace.h"
-> > >  #include "i915_user_extensions.h"
-> > >
-> > > -static u32 object_max_page_size(struct drm_i915_gem_object *obj)
-> > > +static u32 object_max_page_size(struct intel_memory_region **placements,
-> > > +                               unsigned int n_placements)
-> > >  {
-> > >         u32 max_page_size = 0;
-> > >         int i;
-> > >
-> > > -       for (i = 0; i < obj->mm.n_placements; i++) {
-> > > -               struct intel_memory_region *mr = obj->mm.placements[i];
-> > > +       for (i = 0; i < n_placements; i++) {
-> > > +               struct intel_memory_region *mr = placements[i];
-> > >
-> > >                 GEM_BUG_ON(!is_power_of_2(mr->min_page_size));
-> > >                 max_page_size = max_t(u32, max_page_size, mr->min_page_size);
-> > > @@ -81,22 +82,35 @@ static int i915_gem_publish(struct drm_i915_gem_object *obj,
-> > >         return 0;
-> > >  }
-> > >
-> > > -static int
-> > > -i915_gem_setup(struct drm_i915_gem_object *obj, u64 size)
-> > > +static struct drm_i915_gem_object *
-> > > +i915_gem_object_create_user(struct drm_i915_private *i915, u64 size,
-> > > +                           struct intel_memory_region **placements,
-> > > +                           unsigned int n_placements)
-> > >  {
-> > > -       struct intel_memory_region *mr = obj->mm.placements[0];
-> > > +       struct intel_memory_region *mr = placements[0];
-> > > +       struct drm_i915_gem_object *obj;
-> > >         unsigned int flags;
-> > >         int ret;
-> > >
-> > > -       size = round_up(size, object_max_page_size(obj));
-> > > +       i915_gem_flush_free_objects(i915);
-> > > +
-> > > +       obj = i915_gem_object_alloc();
-> > > +       if (!obj)
-> > > +               return ERR_PTR(-ENOMEM);
-> > > +
-> > > +       size = round_up(size, object_max_page_size(placements, n_placements));
-> > >         if (size == 0)
-> > > -               return -EINVAL;
-> > > +               return ERR_PTR(-EINVAL);
-> > >
-> > >         /* For most of the ABI (e.g. mmap) we think in system pages */
-> > >         GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-> > >
-> > >         if (i915_gem_object_size_2big(size))
-> > > -               return -E2BIG;
-> > > +               return ERR_PTR(-E2BIG);
-> > > +
-> > > +       ret = object_set_placements(obj, placements, n_placements);
-> > > +       if (ret)
-> > > +               goto object_free;
-> >
-> > Thinking on this again, it might be way too thorny to expose
-> > create_user as-is to other parts of i915, like we do in the last
-> > patch. Since the caller will be expected to manually validate the
-> > placements, otherwise we might crash and burn in weird ways as new
-> > users pop up. i.e it needs the same validation that happens as part of
-> > the extension. Also as new extensions arrive, like with PXP, that also
-> > has to get bolted onto create_user, which might have its own hidden
-> > constraints.
->
-> Perhaps.  Do you have a suggestion for how to make it available to
-> selftests without exposing it to "the rest of i915"?  If you want, I
-> can make create_user duplicate the placements uniqueness check.
-> That's really the only validation currently in the ioctl besides all
-> the stuff for making sure that the class/instance provided by the user
-> isn't bogus.  But if we've got real i915_memory_region pointers, we
-> don't need that.
+--===============0352243856==
+Content-Type: multipart/alternative;
+ boundary="===============3062536690579488829=="
 
-Yeah, I guess the concern here was duplicated placements(that would
-change the meaning of n_placements > 1), and then ofc regions not
-supported by the device. Also maybe stolen which doesn't have a TTM
-backend yet.
+--===============3062536690579488829==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If this is just for the selftests, doing what the mman selftests do
-with create_region + set_placements would be one option. Otherwise
-maybe just add  __two_underscores and a big comment, for why you
-should be careful when using this?
+== Series Details ==
 
->
-> --Jason
+Series: drm/i915/gvt: Fix cached atomics setting for Windows VM
+URL   : https://patchwork.freedesktop.org/series/92809/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10361 -> Patchwork_20661
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20661/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20661 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][1] ([i915#1372]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10361/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20661/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+
+
+Participating hosts (38 -> 33)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-tgl-1115g4 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10361 -> Patchwork_20661
+
+  CI-20190529: 20190529
+  CI_DRM_10361: 7b61e09ae997c25ea80331e913d982a282a2fb3e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20661: 8d1c9c57708279f92e7b5b4ffccb1fe9e359a47e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8d1c9c577082 drm/i915/gvt: Fix cached atomics setting for Windows VM
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20661/index.html
+
+--===============3062536690579488829==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gvt: Fix cached atomics setting for Windows VM</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92809/">https://patchwork.freedesktop.org/series/92809/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20661/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20661/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10361 -&gt; Patchwork_20661</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20661/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20661 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_chamelium@dp-crc-fast:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10361/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20661/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (38 -&gt; 33)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-tgl-1115g4 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10361 -&gt; Patchwork_20661</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10361: 7b61e09ae997c25ea80331e913d982a282a2fb3e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20661: 8d1c9c57708279f92e7b5b4ffccb1fe9e359a47e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8d1c9c577082 drm/i915/gvt: Fix cached atomics setting for Windows VM</p>
+
+</body>
+</html>
+
+--===============3062536690579488829==--
+
+--===============0352243856==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0352243856==--
