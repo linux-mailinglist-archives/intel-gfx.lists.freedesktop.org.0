@@ -1,44 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1AF23D1533
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 19:38:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 648833D1542
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 19:42:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5476E85F;
-	Wed, 21 Jul 2021 17:38:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 596D46E85F;
+	Wed, 21 Jul 2021 17:42:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9089F6E0F6;
- Wed, 21 Jul 2021 17:38:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="198687571"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="198687571"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 10:38:41 -0700
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC686E85F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 17:42:03 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="198756092"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="198756092"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 10:42:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="564808220"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga004.jf.intel.com with ESMTP; 21 Jul 2021 10:38:39 -0700
-Received: from [10.249.140.99] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.140.99])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 16LHcchw002753; Wed, 21 Jul 2021 18:38:38 +0100
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210721161120.24610-1-vinay.belgaumkar@intel.com>
- <20210721161120.24610-7-vinay.belgaumkar@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <4f6bbfd1-42a3-a1b6-ca13-f9022bc39fab@intel.com>
-Date: Wed, 21 Jul 2021 19:38:38 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <20210721161120.24610-7-vinay.belgaumkar@intel.com>
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="662193234"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by fmsmga005.fm.intel.com with ESMTP; 21 Jul 2021 10:42:01 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Wed, 21 Jul 2021 10:42:01 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 21 Jul 2021 10:42:00 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
+ Wed, 21 Jul 2021 10:42:00 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2 40/50] drm/i915/dg2: DG2 has fixed memory
+ bandwidth
+Thread-Index: AQHXeF6loPU8PzwNa0C6a1X6JWGryatNvoyw
+Date: Wed, 21 Jul 2021 17:42:00 +0000
+Message-ID: <580c719e8cb94bc084302e2cd2e96620@intel.com>
+References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
+ <20210714031540.3539704-41-matthew.d.roper@intel.com>
+In-Reply-To: <20210714031540.3539704-41-matthew.d.roper@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/14] drm/i915/guc/slpc: Enable SLPC and
- add related H2G events
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v2 40/50] drm/i915/dg2: DG2 has fixed memory
+ bandwidth
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,380 +73,83 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 21.07.2021 18:11, Vinay Belgaumkar wrote:
-> Add methods for interacting with GuC for enabling SLPC. Enable
-> SLPC after GuC submission has been established. GuC load will
-> fail if SLPC cannot be successfully initialized. Add various
-> helper methods to set/unset the parameters for SLPC. They can
-> be set using H2G calls or directly setting bits in the shared
-> data structure.
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Matt Roper
+> Sent: Tuesday, July 13, 2021 8:16 PM
+> To: intel-gfx@lists.freedesktop.org
+> Subject: [Intel-gfx] [PATCH v2 40/50] drm/i915/dg2: DG2 has fixed memory
+> bandwidth
 > 
-> This patch also removes the GEM_BUG_ON from guc_submission_disable().
-> The assumption when that was added was there would be no wakerefs
-> when it would be called. However, if we fail to enable slpc, we will
+> DG2 doesn't have a SAGV or QGV points that determine memory bandwidth.
+> Instead it has a constant amount of memory bandwidth available to display
+> that does not need to be reduced based on the number of active planes.
+> 
+> For simplicity, we'll just modify driver initialization to create a single dummy
+> QGV point with the proper amount of memory bandwidth, rather than trying
+> to query the pcode for this information.
+> 
+> Bspec: 64631
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-s/slpc/SLPC
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-> still be holding a wakeref.
-> 
-> v2: Address several review comments, add new helpers for
-> decoding the slpc min/max frequencies. Use masks instead of hardcoded
-> constants. (Michal W)
-> 
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> Signed-off-by: Sundaresan Sujaritha <sujaritha.sundaresan@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 206 ++++++++++++++++++
->  .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |   2 +
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   4 -
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  10 +
->  4 files changed, 218 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bw.c | 24
+> +++++++++++++++++++++++-
+>  1 file changed, 23 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> index a99d727b5bf0..48db2a8f67d1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> @@ -45,6 +45,40 @@ void intel_guc_slpc_init_early(struct intel_guc_slpc *slpc)
->  	guc->slpc_selected = __guc_slpc_selected(guc);
->  }
->  
-> +static void slpc_mem_set_param(struct slpc_shared_data *data,
-> +				u32 id, u32 value)
-> +{
-> +	GEM_BUG_ON(id >= SLPC_MAX_OVERRIDE_PARAMETERS);
-> +	/*
-> +	 * When the flag bit is set, corresponding value will be read
-> +	 * and applied by slpc.
-> +	 */
-> +	data->override_params.bits[id >> 5] |= (1 << (id % 32));
-> +	data->override_params.values[id] = value;
-> +}
-> +
-> +static void slpc_mem_set_enabled(struct slpc_shared_data *data,
-> +				u8 enable_id, u8 disable_id)
-> +{
-> +	/*
-> +	 * Enabling a param involves setting the enable_id
-> +	 * to 1 and disable_id to 0.
-> +	 */
-> +	slpc_mem_set_param(data, enable_id, 1);
-> +	slpc_mem_set_param(data, disable_id, 0);
-> +}
-> +
-> +static void slpc_mem_set_disabled(struct slpc_shared_data *data,
-> +				u8 enable_id, u8 disable_id)
-> +{
-> +	/*
-> +	 * Disabling a param involves setting the enable_id
-> +	 * to 0 and disable_id to 1.
-> +	 */
-> +	slpc_mem_set_param(data, disable_id, 1);
-> +	slpc_mem_set_param(data, enable_id, 0);
-> +}
-> +
->  static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
->  {
->  	struct intel_guc *guc = slpc_to_guc(slpc);
-> @@ -63,6 +97,116 @@ static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
->  	return err;
->  }
->  
-> +static u32 slpc_get_state(struct intel_guc_slpc *slpc)
-> +{
-> +	struct slpc_shared_data *data;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	drm_clflush_virt_range(slpc->vaddr, sizeof(u32));
-> +	data = slpc->vaddr;
-> +
-> +	return data->header.global_state;
-> +}
-> +
-> +static bool slpc_is_running(struct intel_guc_slpc *slpc)
-> +{
-> +	return (slpc_get_state(slpc) == SLPC_GLOBAL_STATE_RUNNING);
-> +}
-> +
-> +static int guc_action_slpc_query(struct intel_guc *guc, u32 offset)
-> +{
-> +	u32 request[] = {
-> +		INTEL_GUC_ACTION_SLPC_REQUEST,
-> + 		SLPC_EVENT(SLPC_EVENT_QUERY_TASK_STATE, 2),
-> +		offset,
-> +		0,
-> +	};
-> +
-> + 	return intel_guc_send(guc, request, ARRAY_SIZE(request));
-> +}
-> +
-> +static int slpc_query_task_state(struct intel_guc_slpc *slpc)
-> +{
-> +	struct intel_guc *guc = slpc_to_guc(slpc);
-> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-> +	u32 shared_data_gtt_offset = intel_guc_ggtt_offset(guc, slpc->vma);
-> +	int ret;
-> +
-> +	ret = guc_action_slpc_query(guc, shared_data_gtt_offset);
-> +	if (ret)
-> +		drm_err(&i915->drm, "Query task state data returned (%pe)\n",
-> +				ERR_PTR(ret));
-> +
-> +	drm_clflush_virt_range(slpc->vaddr, SLPC_PAGE_SIZE_BYTES);
-> +
-> +	return ret;
-> +}
-> +
-> +static const char *slpc_state_string(struct intel_guc_slpc *slpc)
-> +{
-> +	const char *str = NULL;
-> +	u32 state = slpc_get_state(slpc);
-> +
-> +	switch (state) {
-> +	case SLPC_GLOBAL_STATE_NOT_RUNNING:
-> +		str = "not running";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_INITIALIZING:
-> +		str = "initializing";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_RESETTING:
-> +		str = "resetting";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_RUNNING:
-> +		str = "running";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_SHUTTING_DOWN:
-> +		str = "shutting down";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_ERROR:
-> +		str = "error";
-> +		break;
-> +	default:
-> +		str = "unknown";
-> +		break;
-> +	}
-
-nit: you can split as:
-
-static const char *
-slpc_global_state_to_string(enum slpc_global_state state)
-{
-	switch (state) {
-	case SLPC_GLOBAL_STATE_NOT_RUNNING:
-		return "not running";
-	case SLPC_GLOBAL_STATE_INITIALIZING:
-		return "initializing";
-	...
-
-and
-
-static const char *slpc_get_state_string(struct intel_guc_slpc *slpc)
-{
-	return slpc_global_state_to_string(slpc_get_state(slpc));
-}
-
-
-> +
-> +	return str;
-> +}
-> +
-> +static int guc_action_slpc_reset(struct intel_guc *guc, u32 offset)
-> +{
-> +	u32 request[] = {
-> +		INTEL_GUC_ACTION_SLPC_REQUEST,
-> +		SLPC_EVENT(SLPC_EVENT_RESET, 2),
-> +		offset,
-> +		0,
-> +	};
-> +
-> + 	return intel_guc_send(guc, request, ARRAY_SIZE(request));
-
-don't know details of H2G request/response message (btw, maybe you can
-include something in ABI.h) but be aware that guc_send() might return
-non-zero DATA0 so if you don't expect it, return -EPROTO
-
-> +}
-> +
-> +static int slpc_reset(struct intel_guc_slpc *slpc)
-> +{
-> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-> +	struct intel_guc *guc = slpc_to_guc(slpc);
-> +	u32 shared_data_gtt_offset = intel_guc_ggtt_offset(guc, slpc->vma);
-
-just "offset" ?
-
-> +	int ret;
-> +
-> +	ret = guc_action_slpc_reset(guc, shared_data_gtt_offset);
-> +
-> +	if (!ret) {
-
-if (unlikely(ret < 0))
-	return ret;
-
-> +		if (wait_for(slpc_is_running(slpc), SLPC_RESET_TIMEOUT_MS)) {
-> +			drm_err(&i915->drm, "SLPC not enabled! State = %s\n",
-> +				  slpc_state_string(slpc));
-> +			return -EIO;
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
->  {
->  	GEM_BUG_ON(slpc->vma);
-> @@ -70,6 +214,30 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
->  	return slpc_shared_data_init(slpc);
->  }
->  
-> +u32 slpc_decode_min_freq(struct intel_guc_slpc *slpc)
-> +{
-> +	struct slpc_shared_data *data = slpc->vaddr;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	return	DIV_ROUND_CLOSEST(
-> +		REG_FIELD_GET(SLPC_MIN_UNSLICE_FREQ_MASK,
-> +			data->task_state_data.freq) *
-> +		GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
-> +}
-> +
-> +u32 slpc_decode_max_freq(struct intel_guc_slpc *slpc)
-> +{
-> +	struct slpc_shared_data *data = slpc->vaddr;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	return	DIV_ROUND_CLOSEST(
-> +		REG_FIELD_GET(SLPC_MAX_UNSLICE_FREQ_MASK,
-> +			data->task_state_data.freq) *
-> +		GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
-> +}
-> +
->  /*
->   * intel_guc_slpc_enable() - Start SLPC
->   * @slpc: pointer to intel_guc_slpc.
-> @@ -85,6 +253,44 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
->   */
->  int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
->  {
-> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-> +	struct slpc_shared_data *data;
-> +	int ret;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	memset(slpc->vaddr, 0, sizeof(struct slpc_shared_data));
-> +
-> +	data = slpc->vaddr;
-> +	data->header.size = sizeof(struct slpc_shared_data);
-> +
-> +	/* Enable only GTPERF task, disable others */
-> +	slpc_mem_set_enabled(data, SLPC_PARAM_TASK_ENABLE_GTPERF,
-> +				SLPC_PARAM_TASK_DISABLE_GTPERF);
-> +
-> +	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_BALANCER,
-> +				SLPC_PARAM_TASK_DISABLE_BALANCER);
-> +
-> +	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_DCC,
-> +				SLPC_PARAM_TASK_DISABLE_DCC);
-> +
-> +	ret = slpc_reset(slpc);
-> +	if (ret) {
-
-if (unlikely(ret < 0)) ?
-
-> +		drm_err(&i915->drm, "SLPC Reset event returned (%pe)\n",
-> +				ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	drm_info(&i915->drm, "SLPC state: %s\n", slpc_state_string(slpc));
-
-do we expect here something else than "running" ?
-
-> +
-> +	slpc_query_task_state(slpc);
-> +
-> +	/* min and max frequency limits being used by SLPC */
-> +	drm_info(&i915->drm, "SLPC min freq: %u Mhz, max is %u Mhz\n",
-> +			slpc_decode_min_freq(slpc),
-> +			slpc_decode_max_freq(slpc));
-> +
-> +
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
+> b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 0d5d52548925..f554c1974072 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -273,6 +273,26 @@ static int icl_get_bw_info(struct drm_i915_private
+> *dev_priv, const struct intel
 >  	return 0;
 >  }
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-> index 214a449e78f2..c417992b1346 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-> @@ -9,6 +9,8 @@
->  #include <linux/types.h>
->  #include "abi/guc_actions_slpc_abi.h"
->  
-> +#define SLPC_RESET_TIMEOUT_MS 5
-> +
->  struct intel_guc_slpc {
->  
->  	struct i915_vma *vma;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 9083bd4adb22..142e44dc5bf1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -2506,10 +2506,6 @@ void intel_guc_submission_enable(struct intel_guc *guc)
->  
->  void intel_guc_submission_disable(struct intel_guc *guc)
->  {
-> -	struct intel_gt *gt = guc_to_gt(guc);
-> -
-> -	GEM_BUG_ON(gt->awake); /* GT should be parked first */
-> ->  	/* Note: By the time we're here, GuC may have already been reset */
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index e6bd9406c7b2..3f2aa83c5c45 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -506,6 +506,14 @@ static int __uc_init_hw(struct intel_uc *uc)
->  		 "submission",
->  		 enableddisabled(intel_uc_uses_guc_submission(uc)));
->  
-> +	if (intel_uc_uses_guc_slpc(uc)) {
-> +		ret = intel_guc_slpc_enable(&guc->slpc);
-> +		if (ret)
-> +			goto err_submission;
-> +		drm_info(&i915->drm, "GuC SLPC %s\n",
-> +			 enableddisabled(intel_uc_uses_guc_slpc(uc)));
-
-there will be (in this order):
-
-	"GuC submission enabled\n"
-	"SLPC state: running\n"
-	"SLPC min freq: %u Mhz, max is %u Mhz\n"
-	"GuC SLPC enabled\n"
-
-is this what you wanted ?
-
-Michal
-
-> +	}
-> +
->  	if (intel_uc_uses_huc(uc)) {
->  		drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
->  			 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
-> @@ -520,6 +528,8 @@ static int __uc_init_hw(struct intel_uc *uc)
->  	/*
->  	 * We've failed to load the firmware :(
->  	 */
-> +err_submission:
-> +	intel_guc_submission_disable(guc);
->  err_log_capture:
->  	__uc_capture_load_err_log(uc);
->  err_out:
 > 
+> +static void dg2_get_bw_info(struct drm_i915_private *i915) {
+> +	struct intel_bw_info *bi = &i915->max_bw[0];
+> +
+> +	/*
+> +	 * DG2 doesn't have SAGV or QGV points, just a constant max
+> bandwidth
+> +	 * that doesn't depend on the number of planes enabled.  Create a
+> +	 * single dummy QGV point to reflect that.  DG2-G10 platforms have
+> a
+> +	 * constant 50 GB/s bandwidth, whereas DG2-G11 platforms have 38
+> GB/s.
+> +	 */
+> +	bi->num_planes = 1;
+> +	bi->num_qgv_points = 1;
+> +	if (IS_DG2_G11(i915))
+> +		bi->deratedbw[0] = 38000;
+> +	else
+> +		bi->deratedbw[0] = 50000;
+> +
+> +	i915->sagv_status = I915_SAGV_NOT_CONTROLLED; }
+> +
+>  static unsigned int icl_max_bw(struct drm_i915_private *dev_priv,
+>  			       int num_planes, int qgv_point)  { @@ -306,7
+> +326,9 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+>  	if (!HAS_DISPLAY(dev_priv))
+>  		return;
+> 
+> -	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
+> +	if (IS_DG2(dev_priv))
+> +		dg2_get_bw_info(dev_priv);
+> +	else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
+>  		icl_get_bw_info(dev_priv, &adls_sa_info);
+>  	else if (IS_ROCKETLAKE(dev_priv))
+>  		icl_get_bw_info(dev_priv, &rkl_sa_info);
+> --
+> 2.25.4
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
