@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C56573D12CA
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 17:48:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A59B43D12BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 17:46:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F36F6E819;
-	Wed, 21 Jul 2021 15:48:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCD926E819;
+	Wed, 21 Jul 2021 15:46:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45E1B6E819;
- Wed, 21 Jul 2021 15:44:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=xGDQCg8K3gMLPJfNe3HDAYa4LlCFJK24tPvQoRpr7cQ=; b=ZlIZY+ZqXctBhXKiS5UTCH335I
- 5ZhAmhVx4Ek9Z78ML0Dez5TM5NYxtgH348auvop1wOQ9GQNH5urD6Zk/Po0b1MoE9cvkEZBryUfoT
- QcqrFZ60hhh2fFSEFKp1Cu6imRGPmGLZ86JdNBlrs8ZzZloFMseDyuicn1rBHxGDoRYZaiRcYHNd+
- mRGv8ReujMZdh01Py72I9S6Oib5L5O0LipiarWxhBZjL+LnstnbWVDN7QH62aS1H5N3l4PN0egdJ2
- LrIUTIw5Oxs9NvVyiEK2KWfqmPwVgfX4mYdtKcX4J3+X9WQQ/Vbj9Yqk55imlU0QVE1iiDb3rF5JK
- jSDGtgwA==;
-Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
- Linux)) id 1m6ENg-009LhK-67; Wed, 21 Jul 2021 15:43:36 +0000
-Date: Wed, 21 Jul 2021 16:43:32 +0100
-From: Christoph Hellwig <hch@infradead.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <YPhApJo1o6yBYUh2@infradead.org>
-References: <YPgAuSt6Ps7w4/AI@infradead.org>
- <YPgD/8Y3/te/Hsu3@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A8BBB6E819;
+ Wed, 21 Jul 2021 15:46:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A24CAAA916;
+ Wed, 21 Jul 2021 15:46:16 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YPgD/8Y3/te/Hsu3@intel.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-X-Mailman-Approved-At: Wed, 21 Jul 2021 15:48:40 +0000
-Subject: Re: [Intel-gfx] 5.14-rc2 warnings with kvmgvt
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason Ekstrand" <jason@jlekstrand.net>
+Date: Wed, 21 Jul 2021 15:46:16 -0000
+Message-ID: <162688237663.768.254448054100883088@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210721152358.2893314-1-jason@jlekstrand.net>
+In-Reply-To: <20210721152358.2893314-1-jason@jlekstrand.net>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIEZp?=
+ =?utf-8?q?x_the_debugfs_splat_from_mock_selftests_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,26 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christoph Hellwig <hch@infradead.org>, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 21, 2021 at 07:24:47AM -0400, Rodrigo Vivi wrote:
-> On Wed, Jul 21, 2021 at 01:10:49PM +0200, Christoph Hellwig wrote:
-> > Hi all,
-> > 
-> > I'm trying to test some changes for the gvt code, but even with a baseline
-> > 5.14-rc2 host and guest the 915 driver does not seem overly happy:
-> 
-> Is this a regression over -rc1 or over 5.13?
-> Bisect possible?
+== Series Details ==
 
-This was introduced somewhere between 5.12 and 5.13, still bisecting.
-Note that it only happens for "headless" setups.  Once a display is
-added on the qemu command line it goes away.
+Series: Fix the debugfs splat from mock selftests (rev3)
+URL   : https://patchwork.freedesktop.org/series/92729/
+State : warning
+
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Function parameter or member 'trampoline' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'jump_whitelist' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'shadow_map' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1436: warning: Excess function parameter 'batch_map' description in 'intel_engine_cmd_parser'
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
