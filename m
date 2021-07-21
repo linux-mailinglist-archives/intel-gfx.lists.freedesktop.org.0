@@ -1,59 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648833D1542
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 19:42:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0A73D151F
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 19:32:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596D46E85F;
-	Wed, 21 Jul 2021 17:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39E026E922;
+	Wed, 21 Jul 2021 17:32:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC686E85F
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 17:42:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="198756092"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="198756092"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2021 10:42:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="662193234"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by fmsmga005.fm.intel.com with ESMTP; 21 Jul 2021 10:42:01 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Wed, 21 Jul 2021 10:42:01 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 21 Jul 2021 10:42:00 -0700
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
- Wed, 21 Jul 2021 10:42:00 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2 40/50] drm/i915/dg2: DG2 has fixed memory
- bandwidth
-Thread-Index: AQHXeF6loPU8PzwNa0C6a1X6JWGryatNvoyw
-Date: Wed, 21 Jul 2021 17:42:00 +0000
-Message-ID: <580c719e8cb94bc084302e2cd2e96620@intel.com>
-References: <20210714031540.3539704-1-matthew.d.roper@intel.com>
- <20210714031540.3539704-41-matthew.d.roper@intel.com>
-In-Reply-To: <20210714031540.3539704-41-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 815BA6E922
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 17:32:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="191757647"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="191757647"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 10:32:18 -0700
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="495432391"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 10:32:18 -0700
+Date: Wed, 21 Jul 2021 10:42:08 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <20210721174208.GA31398@labuser-Z97X-UD5H>
+References: <20210714223414.9849-1-manasi.d.navare@intel.com>
+ <9fb23633-cbeb-b4c8-d548-95323c7a71b3@intel.com>
+ <20210719185840.GA30216@labuser-Z97X-UD5H>
+ <7e483a82-b997-4eb1-d585-484fc98b3914@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 40/50] drm/i915/dg2: DG2 has fixed memory
- bandwidth
+Content-Disposition: inline
+In-Reply-To: <7e483a82-b997-4eb1-d585-484fc98b3914@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix shared dpll mismatch
+ for bigjoiner slave
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,90 +48,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Pushed to drm-intel-next, tahnks for the reviews.
 
+Manasi
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Matt Roper
-> Sent: Tuesday, July 13, 2021 8:16 PM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH v2 40/50] drm/i915/dg2: DG2 has fixed memory
-> bandwidth
-> 
-> DG2 doesn't have a SAGV or QGV points that determine memory bandwidth.
-> Instead it has a constant amount of memory bandwidth available to display
-> that does not need to be reduced based on the number of active planes.
-> 
-> For simplicity, we'll just modify driver initialization to create a single dummy
-> QGV point with the proper amount of memory bandwidth, rather than trying
-> to query the pcode for this information.
-> 
-> Bspec: 64631
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+On Tue, Jul 20, 2021 at 12:53:23PM +0530, Nautiyal, Ankit K wrote:
+> =
 
-Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> On 7/20/2021 12:28 AM, Navare, Manasi wrote:
+> >On Mon, Jul 19, 2021 at 11:47:51AM +0530, Nautiyal, Ankit K wrote:
+> >>Patch looks good to me.
+> >>
+> >>Please find below some suggestions
+> >>
+> >>On 7/15/2021 4:04 AM, Manasi Navare wrote:
+> >>>Currently when we do the HW state readout, we dont set the shared dpll=
+ to NULL
+> >>>for the bigjoiner slave which should not have a DPLL assigned. So it h=
+as
+> >>>some garbage while the HW state readout is NULL. So explicitly reset
+> >>>the shared dpll for bigjoiner slave pipe.
+> >>>
+> >>>Bug: https://gitlab.freedesktop.org/drm/intel/-/issues/3465
+> >>>Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >>>Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >>>Tested-By: Swati Sharma <swati2.sharma@intel.com>
+> >>checkpatch warning about tested-by tag.
+> >>>Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> >>>---
+> >>>  drivers/gpu/drm/i915/display/intel_display.c | 4 ++++
+> >>>  1 file changed, 4 insertions(+)
+> >>>
+> >>>diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gp=
+u/drm/i915/display/intel_display.c
+> >>>index 65ddb6ca16e6..c274bfb8e549 100644
+> >>>--- a/drivers/gpu/drm/i915/display/intel_display.c
+> >>>+++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >>>@@ -9006,6 +9006,10 @@ verify_crtc_state(struct intel_crtc *crtc,
+> >>>  	if (!new_crtc_state->hw.active)
+> >>>  		return;
+> >>>+	if (new_crtc_state->bigjoiner_slave)
+> >>>+		/* No PLLs set for slave */
+> >>>+		pipe_config->shared_dpll =3D NULL;
+> >>>+
+> >>there is a check for bigjoiner_slave, couple of lines above this:
+> >>
+> >>if (new_crtc_state->bigjoiner_slave)
+> >> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 master =3D new_crtc_stat=
+e->bigjoiner_linked_crtc;
+> >>
+> >>Perhaps it will make sense to club the set shared_dpll to NULL, along w=
+ith
+> >>these lines.
+> >Yup, thats where I was resetting in earlier patch but then it actually g=
+ets overridden in a function call
+> >after this point so need to reset it after separately.
+> >
+> >Manasi
+> =
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 24
-> +++++++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
-> b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 0d5d52548925..f554c1974072 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -273,6 +273,26 @@ static int icl_get_bw_info(struct drm_i915_private
-> *dev_priv, const struct intel
->  	return 0;
->  }
-> 
-> +static void dg2_get_bw_info(struct drm_i915_private *i915) {
-> +	struct intel_bw_info *bi = &i915->max_bw[0];
-> +
-> +	/*
-> +	 * DG2 doesn't have SAGV or QGV points, just a constant max
-> bandwidth
-> +	 * that doesn't depend on the number of planes enabled.  Create a
-> +	 * single dummy QGV point to reflect that.  DG2-G10 platforms have
-> a
-> +	 * constant 50 GB/s bandwidth, whereas DG2-G11 platforms have 38
-> GB/s.
-> +	 */
-> +	bi->num_planes = 1;
-> +	bi->num_qgv_points = 1;
-> +	if (IS_DG2_G11(i915))
-> +		bi->deratedbw[0] = 38000;
-> +	else
-> +		bi->deratedbw[0] = 50000;
-> +
-> +	i915->sagv_status = I915_SAGV_NOT_CONTROLLED; }
-> +
->  static unsigned int icl_max_bw(struct drm_i915_private *dev_priv,
->  			       int num_planes, int qgv_point)  { @@ -306,7
-> +326,9 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
->  	if (!HAS_DISPLAY(dev_priv))
->  		return;
-> 
-> -	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
-> +	if (IS_DG2(dev_priv))
-> +		dg2_get_bw_info(dev_priv);
-> +	else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
->  		icl_get_bw_info(dev_priv, &adls_sa_info);
->  	else if (IS_ROCKETLAKE(dev_priv))
->  		icl_get_bw_info(dev_priv, &rkl_sa_info);
-> --
-> 2.25.4
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> You are right. I missed that, pipe_config gets overwritten just before th=
+is
+> point, so the change is at the right place.
+> =
+
+> Regards,
+> =
+
+> Ankit
+> =
+
+> =
+
+> >
+> >>In any case:
+> >>
+> >>Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >>
+> >>>  	intel_pipe_config_sanity_check(dev_priv, pipe_config);
+> >>>  	if (!intel_pipe_config_compare(new_crtc_state,
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
