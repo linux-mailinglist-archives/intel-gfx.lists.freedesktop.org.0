@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC5A43D15F3
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 20:12:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45AA23D15F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 20:13:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E95B96E25B;
-	Wed, 21 Jul 2021 18:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CB2F6E898;
+	Wed, 21 Jul 2021 18:13:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1CAD96E187;
- Wed, 21 Jul 2021 18:12:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1442AA77A5;
- Wed, 21 Jul 2021 18:12:04 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0FB6E9D6;
+ Wed, 21 Jul 2021 18:13:48 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="272605751"
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="272605751"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2021 11:13:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; d="scan'208";a="501383771"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by FMSMGA003.fm.intel.com with ESMTP; 21 Jul 2021 11:13:45 -0700
+Received: from [10.249.140.99] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.140.99])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 16LIDi6k011531; Wed, 21 Jul 2021 19:13:44 +0100
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20210721161120.24610-1-vinay.belgaumkar@intel.com>
+ <20210721161120.24610-13-vinay.belgaumkar@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <c8b72a61-61a2-a32e-1842-6d296154733d@intel.com>
+Date: Wed, 21 Jul 2021 20:13:44 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Christoph Hellwig" <hch@lst.de>
-Date: Wed, 21 Jul 2021 18:12:04 -0000
-Message-ID: <162689112405.767.8884151653418426253@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210721155355.173183-1-hch@lst.de>
-In-Reply-To: <20210721155355.173183-1-hch@lst.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/21=5D_drm/i915/gvt=3A_integrate_into_th?=
- =?utf-8?q?e_main_Makefile?=
+In-Reply-To: <20210721161120.24610-13-vinay.belgaumkar@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 12/14] drm/i915/guc/slpc: Sysfs hooks for
+ SLPC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,217 +51,458 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2100420419=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2100420419==
-Content-Type: multipart/alternative;
- boundary="===============4285471834604288464=="
-
---===============4285471834604288464==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [01/21] drm/i915/gvt: integrate into the main Makefile
-URL   : https://patchwork.freedesktop.org/series/92829/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10366 -> Patchwork_20665
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20665 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][1] ([i915#1602] / [i915#2029])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-jsl-1}:         [INCOMPLETE][2] -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10366/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
 
 
-Participating hosts (38 -> 35)
-------------------------------
+On 21.07.2021 18:11, Vinay Belgaumkar wrote:
+> Update the get/set min/max freq hooks to work for
+> SLPC case as well. Consolidate helpers for requested/min/max
+> frequency get/set to intel_rps where the proper action can
+> be taken depending on whether slpc is enabled.
 
-  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+s/slpc/SLPC
 
+> 
+> v2: Add wrappers for getting rp0/1/n frequencies, update
+> softlimits in set min/max slpc functions. Also check for
+> boundary conditions before setting them.
+> 
+> v3: Address review comments (Michal W)
+> 
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_rps.c         | 165 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_rps.h         |  11 ++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c |  14 ++
+>  drivers/gpu/drm/i915/i915_pmu.c             |   2 +-
+>  drivers/gpu/drm/i915/i915_reg.h             |   2 +
+>  drivers/gpu/drm/i915/i915_sysfs.c           |  77 ++-------
+>  6 files changed, 207 insertions(+), 64 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index e858eeb2c59d..48d4147165a9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -37,6 +37,13 @@ static struct intel_uncore *rps_to_uncore(struct intel_rps *rps)
+>  	return rps_to_gt(rps)->uncore;
+>  }
+>  
+> +static struct intel_guc_slpc *rps_to_slpc(struct intel_rps *rps)
+> +{
+> +	struct intel_gt *gt = rps_to_gt(rps);
+> +
+> +	return &gt->uc.guc.slpc;
+> +}
+> +
+>  static bool rps_uses_slpc(struct intel_rps *rps)
+>  {
+>  	struct intel_gt *gt = rps_to_gt(rps);
+> @@ -1960,6 +1967,164 @@ u32 intel_rps_read_actual_frequency(struct intel_rps *rps)
+>  	return freq;
+>  }
+>  
+> +u32 intel_rps_read_punit_req(struct intel_rps *rps)
+> +{
+> +	struct intel_uncore *uncore = rps_to_uncore(rps);
+> +
+> +	return intel_uncore_read(uncore, GEN6_RPNSWREQ);
+> +}
+> +
+> +u32 intel_rps_get_req(struct intel_rps *rps, u32 pureq)
+> +{
+> +	u32 req = pureq >> GEN9_SW_REQ_UNSLICE_RATIO_SHIFT;
+> +
+> +	return req;
+> +}
+> +
+> +u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps)
+> +{
+> +	u32 freq = intel_rps_get_req(rps, intel_rps_read_punit_req(rps));
+> +
+> +	return intel_gpu_freq(rps, freq);
+> +}
+> +
+> +u32 intel_rps_get_requested_frequency(struct intel_rps *rps)
+> +{
+> +	if (rps_uses_slpc(rps))
+> +		return intel_rps_read_punit_req_frequency(rps);
+> +	else
+> +		return intel_gpu_freq(rps, rps->cur_freq);
+> +}
+> +
+> +u32 intel_rps_get_max_frequency(struct intel_rps *rps)
+> +{
+> +	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
+> +
+> +	if (rps_uses_slpc(rps))
+> +		return slpc->max_freq_softlimit;
+> +	else
+> +		return intel_gpu_freq(rps, rps->max_freq_softlimit);
+> +}
+> +
+> +u32 intel_rps_get_rp0_frequency(struct intel_rps *rps)
+> +{
+> +	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
+> +
+> +	if (rps_uses_slpc(rps))
+> +		return slpc->rp0_freq;
+> +	else
+> +		return intel_gpu_freq(rps, rps->rp0_freq);
+> +}
+> +
+> +u32 intel_rps_get_rp1_frequency(struct intel_rps *rps)
+> +{
+> +	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
+> +
+> +	if (rps_uses_slpc(rps))
+> +		return slpc->rp1_freq;
+> +	else
+> +		return intel_gpu_freq(rps, rps->rp1_freq);
+> +}
+> +
+> +u32 intel_rps_get_rpn_frequency(struct intel_rps *rps)
+> +{
+> +	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
+> +
+> +	if (rps_uses_slpc(rps))
+> +		return slpc->min_freq;
+> +	else
+> +		return intel_gpu_freq(rps, rps->min_freq);
+> +}
+> +
+> +int intel_rps_set_max_frequency(struct intel_rps *rps, u32 val)
+> +{
+> +	struct drm_i915_private *i915 = rps_to_i915(rps);
+> +	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
+> +	int ret = 0;
+> +
+> +	if (rps_uses_slpc(rps))
+> +		return intel_guc_slpc_set_max_freq(slpc, val);
+> +
+> +	mutex_lock(&rps->lock);
+> +
+> +	val = intel_freq_opcode(rps, val);
+> +	if (val < rps->min_freq ||
+> +	    val > rps->max_freq ||
+> +	    val < rps->min_freq_softlimit) {
+> +		ret = -EINVAL;
+> +		goto unlock;
+> +	}
+> +
+> +	if (val > rps->rp0_freq)
+> +		drm_dbg(&i915->drm, "User requested overclocking to %d\n",
+> +			  intel_gpu_freq(rps, val));
+> +
+> +	rps->max_freq_softlimit = val;
+> +
+> +	val = clamp_t(int, rps->cur_freq,
+> +		      rps->min_freq_softlimit,
+> +		      rps->max_freq_softlimit);
+> +
+> +	/*
+> +	 * We still need *_set_rps to process the new max_delay and
+> +	 * update the interrupt limits and PMINTRMSK even though
+> +	 * frequency request may be unchanged.
+> +	 */
+> +	intel_rps_set(rps, val);
+> +
+> +unlock:
+> +	mutex_unlock(&rps->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +u32 intel_rps_get_min_frequency(struct intel_rps *rps)
+> +{
+> +	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
+> +
+> +	if (rps_uses_slpc(rps))
+> +		return slpc->min_freq_softlimit;
+> +	else
+> +		return intel_gpu_freq(rps, rps->min_freq_softlimit);
+> +}
+> +
+> +int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val)
+> +{
+> +	struct intel_guc_slpc *slpc = rps_to_slpc(rps);
+> +	int ret = 0;
+> +
+> +	if (rps_uses_slpc(rps))
+> +		return intel_guc_slpc_set_min_freq(slpc, val);
+> +
+> +	mutex_lock(&rps->lock);
+> +
+> +	val = intel_freq_opcode(rps, val);
+> +	if (val < rps->min_freq ||
+> +	    val > rps->max_freq ||
+> +	    val > rps->max_freq_softlimit) {
+> +		ret = -EINVAL;
+> +		goto unlock;
+> +	}
+> +
+> +	rps->min_freq_softlimit = val;
+> +
+> +	val = clamp_t(int, rps->cur_freq,
+> +		      rps->min_freq_softlimit,
+> +		      rps->max_freq_softlimit);
+> +
+> +	/*
+> +	 * We still need *_set_rps to process the new min_delay and
+> +	 * update the interrupt limits and PMINTRMSK even though
+> +	 * frequency request may be unchanged.
+> +	 */
+> +	intel_rps_set(rps, val);
+> +
+> +unlock:
+> +	mutex_unlock(&rps->lock);
+> +
+> +	return ret;
+> +}
+> +
+>  /* External interface for intel_ips.ko */
+>  
+>  static struct drm_i915_private __rcu *ips_mchdev;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+> index 1d2cfc98b510..6a66690dfb0f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+> @@ -31,6 +31,17 @@ int intel_gpu_freq(struct intel_rps *rps, int val);
+>  int intel_freq_opcode(struct intel_rps *rps, int val);
+>  u32 intel_rps_get_cagf(struct intel_rps *rps, u32 rpstat1);
+>  u32 intel_rps_read_actual_frequency(struct intel_rps *rps);
+> +u32 intel_rps_get_requested_frequency(struct intel_rps *rps);
+> +u32 intel_rps_get_min_frequency(struct intel_rps *rps);
+> +int intel_rps_set_min_frequency(struct intel_rps *rps, u32 val);
+> +u32 intel_rps_get_max_frequency(struct intel_rps *rps);
+> +int intel_rps_set_max_frequency(struct intel_rps *rps, u32 val);
+> +u32 intel_rps_get_rp0_frequency(struct intel_rps *rps);
+> +u32 intel_rps_get_rp1_frequency(struct intel_rps *rps);
+> +u32 intel_rps_get_rpn_frequency(struct intel_rps *rps);
+> +u32 intel_rps_read_punit_req(struct intel_rps *rps);
+> +u32 intel_rps_get_req(struct intel_rps *rps, u32 pureq);
+> +u32 intel_rps_read_punit_req_frequency(struct intel_rps *rps);
+>  
+>  void gen5_rps_irq_handler(struct intel_rps *rps);
+>  void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> index 134c57ca10b7..05d8870ec6da 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> @@ -301,6 +301,11 @@ int intel_guc_slpc_set_max_freq(struct intel_guc_slpc *slpc, u32 val)
+>  	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+>  	intel_wakeref_t wakeref;
+>  
+> +	if ((val < slpc->min_freq) ||
+> +	    (val > slpc->rp0_freq) ||
+> +	    (val < slpc->min_freq_softlimit))
+> +		return -EINVAL;
+> +
+>  	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+>  		ret = slpc_set_param(slpc,
+>  			       SLPC_PARAM_GLOBAL_MAX_GT_UNSLICE_FREQ_MHZ,
+> @@ -313,6 +318,8 @@ int intel_guc_slpc_set_max_freq(struct intel_guc_slpc *slpc, u32 val)
+>  		}
+>  	}
+>  
+> +	slpc->max_freq_softlimit = val;
+> +
+>  	return ret;
+>  }
+>  
+> @@ -359,6 +366,11 @@ int intel_guc_slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 val)
+>  	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+>  	intel_wakeref_t wakeref;
+>  
+> +	if ((val < slpc->min_freq) ||
+> +	    (val > slpc->rp0_freq) ||
+> +	    (val > slpc->max_freq_softlimit))
+> +		return -EINVAL;
+> +
+>  	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+>  		ret = slpc_set_param(slpc,
+>  			       SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+> @@ -371,6 +383,8 @@ int intel_guc_slpc_set_min_freq(struct intel_guc_slpc *slpc, u32 val)
+>  		}
+>  	}
+>  
+> +	slpc->min_freq_softlimit = val;
+> +
+>  	return ret;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index 34d37d46a126..a896bec18255 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -407,7 +407,7 @@ frequency_sample(struct intel_gt *gt, unsigned int period_ns)
+>  
+>  	if (pmu->enable & config_mask(I915_PMU_REQUESTED_FREQUENCY)) {
+>  		add_sample_mult(&pmu->sample[__I915_SAMPLE_FREQ_REQ],
+> -				intel_gpu_freq(rps, rps->cur_freq),
+> +				intel_rps_get_requested_frequency(rps),
+>  				period_ns / 1000);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 92392c1da0e6..a5d893625736 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9198,6 +9198,8 @@ enum {
+>  #define   GEN9_FREQUENCY(x)			((x) << 23)
+>  #define   GEN6_OFFSET(x)			((x) << 19)
+>  #define   GEN6_AGGRESSIVE_TURBO			(0 << 15)
+> +#define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT 	23
+> +
+>  #define GEN6_RC_VIDEO_FREQ			_MMIO(0xA00C)
+>  #define GEN6_RC_CONTROL				_MMIO(0xA090)
+>  #define   GEN6_RC_CTL_RC6pp_ENABLE		(1 << 16)
+> diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
+> index 873bf996ceb5..346646a0b43b 100644
+> --- a/drivers/gpu/drm/i915/i915_sysfs.c
+> +++ b/drivers/gpu/drm/i915/i915_sysfs.c
+> @@ -272,7 +272,7 @@ static ssize_t gt_cur_freq_mhz_show(struct device *kdev,
+>  	struct drm_i915_private *i915 = kdev_minor_to_i915(kdev);
+>  	struct intel_rps *rps = &i915->gt.rps;
+>  
+> -	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->cur_freq));
+> +	return sysfs_emit(buf, "%d\n", intel_rps_get_requested_frequency(rps));
+>  }
+>  
+>  static ssize_t gt_boost_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
+> @@ -326,9 +326,10 @@ static ssize_t vlv_rpe_freq_mhz_show(struct device *kdev,
+>  static ssize_t gt_max_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
+>  {
+>  	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	struct intel_rps *rps = &dev_priv->gt.rps;
+> +	struct intel_gt *gt = &dev_priv->gt;
+> +	struct intel_rps *rps = &gt->rps;
+>  
+> -	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->max_freq_softlimit));
+> +	return sysfs_emit(buf, "%d\n", intel_rps_get_max_frequency(rps));
+>  }
+>  
+>  static ssize_t gt_max_freq_mhz_store(struct device *kdev,
+> @@ -336,7 +337,8 @@ static ssize_t gt_max_freq_mhz_store(struct device *kdev,
+>  				     const char *buf, size_t count)
+>  {
+>  	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	struct intel_rps *rps = &dev_priv->gt.rps;
+> +	struct intel_gt *gt = &dev_priv->gt;
+> +	struct intel_rps *rps = &gt->rps;
+>  	ssize_t ret;
+>  	u32 val;
+>  
+> @@ -344,35 +346,7 @@ static ssize_t gt_max_freq_mhz_store(struct device *kdev,
+>  	if (ret)
+>  		return ret;
+>  
+> -	mutex_lock(&rps->lock);
+> -
+> -	val = intel_freq_opcode(rps, val);
+> -	if (val < rps->min_freq ||
+> -	    val > rps->max_freq ||
+> -	    val < rps->min_freq_softlimit) {
+> -		ret = -EINVAL;
+> -		goto unlock;
+> -	}
+> -
+> -	if (val > rps->rp0_freq)
+> -		DRM_DEBUG("User requested overclocking to %d\n",
+> -			  intel_gpu_freq(rps, val));
+> -
+> -	rps->max_freq_softlimit = val;
+> -
+> -	val = clamp_t(int, rps->cur_freq,
+> -		      rps->min_freq_softlimit,
+> -		      rps->max_freq_softlimit);
+> -
+> -	/*
+> -	 * We still need *_set_rps to process the new max_delay and
+> -	 * update the interrupt limits and PMINTRMSK even though
+> -	 * frequency request may be unchanged.
+> -	 */
+> -	intel_rps_set(rps, val);
+> -
+> -unlock:
+> -	mutex_unlock(&rps->lock);
+> +	ret = intel_rps_set_max_frequency(rps, val);
+>  
+>  	return ret ?: count;
+>  }
+> @@ -380,9 +354,10 @@ static ssize_t gt_max_freq_mhz_store(struct device *kdev,
+>  static ssize_t gt_min_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
+>  {
+>  	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
+> -	struct intel_rps *rps = &dev_priv->gt.rps;
+> +	struct intel_gt *gt = &dev_priv->gt;
+> +	struct intel_rps *rps = &gt->rps;
+>  
+> -	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->min_freq_softlimit));
+> +	return sysfs_emit(buf, "%d\n", intel_rps_get_min_frequency(rps));
+>  }
+>  
+>  static ssize_t gt_min_freq_mhz_store(struct device *kdev,
+> @@ -398,31 +373,7 @@ static ssize_t gt_min_freq_mhz_store(struct device *kdev,
+>  	if (ret)
+>  		return ret;
+>  
+> -	mutex_lock(&rps->lock);
+> -
+> -	val = intel_freq_opcode(rps, val);
+> -	if (val < rps->min_freq ||
+> -	    val > rps->max_freq ||
+> -	    val > rps->max_freq_softlimit) {
+> -		ret = -EINVAL;
+> -		goto unlock;
+> -	}
+> -
+> -	rps->min_freq_softlimit = val;
+> -
+> -	val = clamp_t(int, rps->cur_freq,
+> -		      rps->min_freq_softlimit,
+> -		      rps->max_freq_softlimit);
+> -
+> -	/*
+> -	 * We still need *_set_rps to process the new min_delay and
+> -	 * update the interrupt limits and PMINTRMSK even though
+> -	 * frequency request may be unchanged.
+> -	 */
+> -	intel_rps_set(rps, val);
+> -
+> -unlock:
+> -	mutex_unlock(&rps->lock);
+> +	ret = intel_rps_set_min_frequency(rps, val);
+>  
+>  	return ret ?: count;
+>  }
+> @@ -448,11 +399,11 @@ static ssize_t gt_rp_mhz_show(struct device *kdev, struct device_attribute *attr
+>  	u32 val;
+>  
+>  	if (attr == &dev_attr_gt_RP0_freq_mhz)
+> -		val = intel_gpu_freq(rps, rps->rp0_freq);
+> +		val = intel_rps_get_rp0_frequency(rps);
+>  	else if (attr == &dev_attr_gt_RP1_freq_mhz)
+> -		val = intel_gpu_freq(rps, rps->rp1_freq);
+> +		val = intel_rps_get_rp1_frequency(rps);
+>  	else if (attr == &dev_attr_gt_RPn_freq_mhz)
+> -		val = intel_gpu_freq(rps, rps->min_freq);
+> +		val = intel_rps_get_rpn_frequency(rps);
+>  	else
+>  		BUG();
+>  
+> 
 
-Build changes
--------------
+LGTM, but likely you will want someone who is more familiar with RPS to
+give r-b, from my side, with typo fixed, this is:
 
-  * Linux: CI_DRM_10366 -> Patchwork_20665
-
-  CI-20190529: 20190529
-  CI_DRM_10366: d3aa39a7c367b272a467428fb921eec1610c6155 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20665: 2c36e1260150346ecc6f8edaffa5835926325a02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2c36e1260150 drm/i915/gvt: remove struct intel_gvt_mpt
-a93f04904e69 drm/i915/gvt: devirtualize dma_pin_guest_page
-35d7761f42d7 drm/i915/gvt: devirtualize ->dma_{, un}map_guest_page
-6cd11c2afa9d drm/i915/gvt: devirtualize ->{enable, disable}_page_track
-16963db2e084 drm/i915/gvt: devirtualize ->gfn_to_mfn
-5d78c64848e6 drm/i915/gvt: devirtualize ->is_valid_gfn
-ecb0f9df6783 drm/i915/gvt: devirtualize ->inject_msi
-81a08bb01447 drm/i915/gvt: devirtualize ->detach_vgpu
-d36971595ad1 drm/i915/gvt: devirtualize ->set_edid and ->set_opregion
-e0e73ad94224 drm/i915/gvt: devirtualize ->{get, put}_vfio_device
-24f596a8d272 drm/i915/gvt: devirtualize ->{read, write}_gpa
-c033dc22a0e6 drm/i915/gvt: remove vgpu->handle
-462f7fb6be15 drm/i915/gvt: merge struct kvmgt_guest_info into strut intel_vgpu
-47581e8b69e6 drm/i915/gvt: merge struct kvmgt_vdev into struct intel_vgpu
-b9000b54cb4f drm/i915/gvt: remove the unused from_virt_to_mfn op
-17f9380f85ac drm/i915/gvt: remove the map_gfn_to_mfn and set_trap_area ops
-4a9718b0e2cd drm/i915/gvt: remove intel_gvt_ops
-4a615848a361 drm/i915/gvt: move the gvt code into kvmgt.ko
-ab572add6f55 drm/i915/gvt: remove enum hypervisor_type
-db6b61277669 drm/i915/gvt: remove module refcounting in intel_gvt_{, un}register_hypervisor
-fb4910938868 drm/i915/gvt: integrate into the main Makefile
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/index.html
-
---===============4285471834604288464==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [01/21] drm/i915/gvt: integrate into the main Makefile</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92829/">https://patchwork.freedesktop.org/series/92829/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10366 -&gt; Patchwork_20665</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20665 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10366/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20665/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10366 -&gt; Patchwork_20665</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10366: d3aa39a7c367b272a467428fb921eec1610c6155 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20665: 2c36e1260150346ecc6f8edaffa5835926325a02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2c36e1260150 drm/i915/gvt: remove struct intel_gvt_mpt<br />
-a93f04904e69 drm/i915/gvt: devirtualize dma_pin_guest_page<br />
-35d7761f42d7 drm/i915/gvt: devirtualize -&gt;dma_{, un}map_guest_page<br />
-6cd11c2afa9d drm/i915/gvt: devirtualize -&gt;{enable, disable}<em>page_track<br />
-16963db2e084 drm/i915/gvt: devirtualize -&gt;gfn_to_mfn<br />
-5d78c64848e6 drm/i915/gvt: devirtualize -&gt;is_valid_gfn<br />
-ecb0f9df6783 drm/i915/gvt: devirtualize -&gt;inject_msi<br />
-81a08bb01447 drm/i915/gvt: devirtualize -&gt;detach_vgpu<br />
-d36971595ad1 drm/i915/gvt: devirtualize -&gt;set_edid and -&gt;set_opregion<br />
-e0e73ad94224 drm/i915/gvt: devirtualize -&gt;{get, put}_vfio_device<br />
-24f596a8d272 drm/i915/gvt: devirtualize -&gt;{read, write}_gpa<br />
-c033dc22a0e6 drm/i915/gvt: remove vgpu-&gt;handle<br />
-462f7fb6be15 drm/i915/gvt: merge struct kvmgt_guest_info into strut intel_vgpu<br />
-47581e8b69e6 drm/i915/gvt: merge struct kvmgt_vdev into struct intel_vgpu<br />
-b9000b54cb4f drm/i915/gvt: remove the unused from_virt_to_mfn op<br />
-17f9380f85ac drm/i915/gvt: remove the map_gfn_to_mfn and set_trap_area ops<br />
-4a9718b0e2cd drm/i915/gvt: remove intel_gvt_ops<br />
-4a615848a361 drm/i915/gvt: move the gvt code into kvmgt.ko<br />
-ab572add6f55 drm/i915/gvt: remove enum hypervisor_type<br />
-db6b61277669 drm/i915/gvt: remove module refcounting in intel_gvt</em>{, un}register_hypervisor<br />
-fb4910938868 drm/i915/gvt: integrate into the main Makefile</p>
-
-</body>
-</html>
-
---===============4285471834604288464==--
-
---===============2100420419==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Acked-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2100420419==--
