@@ -1,32 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC18C3D113A
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 16:25:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD0C3D120E
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Jul 2021 17:12:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 365346E49A;
-	Wed, 21 Jul 2021 14:25:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 722DF6E9AB;
+	Wed, 21 Jul 2021 15:12:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 10E296E49A;
- Wed, 21 Jul 2021 14:25:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0951DA66C9;
- Wed, 21 Jul 2021 14:25:34 +0000 (UTC)
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com
+ [IPv6:2607:f8b0:4864:20::b2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1E636E98D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 15:12:23 +0000 (UTC)
+Received: by mail-yb1-xb2a.google.com with SMTP id t186so904345ybf.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 08:12:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=cTQNzlcXjPCIIixOio7AQTHyMJtK61rjaFJqIbbb+A0=;
+ b=WIDVHWZa/pAWpCnJP8kBbiFQNTBuqGl3iUTSo/gBrd65/Y+z5sRaRTQy5Hw74YvuKE
+ dthNwGxRhWC8Y1YNkS1sYYMBFXGRyrWAXPs1ZQlJC4gHkao5dEMh8FIpHYF5SmA3qRS+
+ rjplAvs8IgMzvZZ6pcxi1HCZwHXTfyBVbSUPCti6YEmoa5oLnWEHl//IkoOhQ+M7Zw+M
+ CXsE++o4ss2MVLx1A/YOD8KgPhpFeXSuHT0ukpowb9P26+AAUPxBlR39Eq8LX3ZTO+AH
+ wG+8CSWzK4fb9S/ezVRXr9A+75AEW6pDKtOxLhXGtDlfzyxBZFPQTPNUP2GuFGrxQh/F
+ itSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=cTQNzlcXjPCIIixOio7AQTHyMJtK61rjaFJqIbbb+A0=;
+ b=NGxduyHweAhp+CIuL3vmRPGruTHpDzYLJECxBfc2Kjbg2F5Sa+75edJ4Ar1O9gvswE
+ 5txyYjSbR3PYfWT0jfSfjC+L15bIt2ye2o072YkllEdWr+GOypPske2UhVWXiRhCJ6XU
+ 3u5GD4m7kc1XzlUlqCXrXe10oYk/kMpE7M0W1d8e3eg+x+HbAOdvKsNBGQx/bhcO48gG
+ nipJk7AGCZw5EAfP1IDU05S7zw9An021R2+c2DfQMxv37BO4flygVzGKpe8l4d7NK1AJ
+ NsKyTSSttx8t8zSdDJf+mbhdVtQRIqPfMp82dc85ybAdR4OXiaHGrAPXOwpbzk/7MRZM
+ 2/Zw==
+X-Gm-Message-State: AOAM532cWlBXd3IpmxWKX0W46kEF2U/VGcqDKF5ylSYsF3L3JOj1DsvB
+ XpOENd9FusuNMuJ/t1fKp+asBIDOqTfeeftOdDwXfw==
+X-Google-Smtp-Source: ABdhPJyyJ+I+NQLnwEZWv3YFEQfLL3qIGsZ78DUYrNVj0XpEq5++Nf7OKBPCPbczyeWr6cytM58N8Zs2iphdQTZsEmU=
+X-Received: by 2002:a25:aa69:: with SMTP id s96mr47066344ybi.241.1626880342707; 
+ Wed, 21 Jul 2021 08:12:22 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Wed, 21 Jul 2021 14:25:34 -0000
-Message-ID: <162687753401.769.14247008172133320153@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210721133014.3880922-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210721133014.3880922-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/plane=3A_remove_drm=5Fhelper=5F?=
- =?utf-8?q?get=5Fplane=5Fdamage=5Fclips?=
+References: <20210720181357.2760720-1-jason@jlekstrand.net>
+ <20210720181357.2760720-4-jason@jlekstrand.net>
+ <9116c496-289d-6c8d-bd8d-956d4903a05d@linux.intel.com>
+In-Reply-To: <9116c496-289d-6c8d-bd8d-956d4903a05d@linux.intel.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Wed, 21 Jul 2021 10:12:11 -0500
+Message-ID: <CAOFGe96S_Hj3RmaJVdL-vt45O7J1CpMDPhqtez2iKP75hmtfww@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Use a table for i915_init/exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,402 +63,344 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1246504772=="
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1246504772==
-Content-Type: multipart/alternative;
- boundary="===============1348982882054647803=="
+On Wed, Jul 21, 2021 at 4:06 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 20/07/2021 19:13, Jason Ekstrand wrote:
+> > If the driver was not fully loaded, we may still have globals lying
+> > around.  If we don't tear those down in i915_exit(), we'll leak a bunch
+> > of memory slabs.  This can happen two ways: use_kms = false and if we've
+> > run mock selftests.  In either case, we have an early exit from
+> > i915_init which happens after i915_globals_init() and we need to clean
+> > up those globals.
+> >
+> > The mock selftests case is especially sticky.  The load isn't entirely
+> > a no-op.  We actually do quite a bit inside those selftests including
+> > allocating a bunch of mock objects and running tests on them.  Once all
+> > those tests are complete, we exit early from i915_init().  Perviously,
+> > i915_init() would return a non-zero error code on failure and a zero
+> > error code on success.  In the success case, we would get to i915_exit()
+> > and check i915_pci_driver.driver.owner to detect if i915_init exited early
+> > and do nothing.  In the failure case, we would fail i915_init() but
+> > there would be no opportunity to clean up globals.
+> >
+> > The most annoying part is that you don't actually notice the failure as
+> > part of the self-tests since leaking a bit of memory, while bad, doesn't
+> > result in anything observable from userspace.  Instead, the next time we
+> > load the driver (usually for next IGT test), i915_globals_init() gets
+> > invoked again, we go to allocate a bunch of new memory slabs, those
+> > implicitly create debugfs entries, and debugfs warns that we're trying
+> > to create directories and files that already exist.  Since this all
+> > happens as part of the next driver load, it shows up in the dmesg-warn
+> > of whatever IGT test ran after the mock selftests.
+> >
+> > While the obvious thing to do here might be to call i915_globals_exit()
+> > after selftests, that's not actually safe.  The dma-buf selftests call
+> > i915_gem_prime_export which creates a file.  We call dma_buf_put() on
+> > the resulting dmabuf which calls fput() on the file.  However, fput()
+> > isn't immediate and gets flushed right before syscall returns.  This
+> > means that all the fput()s from the selftests don't happen until right
+> > before the module load syscall used to fire off the selftests returns
+> > which is after i915_init().  If we call i915_globals_exit() in
+> > i915_init() after selftests, we end up freeing slabs out from under
+> > objects which won't get released until fput() is flushed at the end of
+> > the module load syscall.
+> >
+> > The solution here is to let i915_init() return success early and detect
+> > the early success in i915_exit() and only tear down globals and nothing
+> > else.  This way the module loads successfully, regardless of the success
+> > or failure of the tests.  Because we've not enumerated any PCI devices,
+> > no device nodes are created and it's entirely useless from userspace.
+> > The only thing the module does at that point is hold on to a bit of
+> > memory until we unload it and i915_exit() is called.  Importantly, this
+> > means that everything from our selftests has the ability to properly
+> > flush out between i915_init() and i915_exit() because there is at least
+> > one syscall boundary in between.
+> >
+> > In order to handle all the delicate init/exit cases, we convert the
+> > whole thing to a table of init/exit pairs and track the init status in
+> > the new init_progress global.  This allows us to ensure that i915_exit()
+> > always tears down exactly the things that i915_init() successfully
+> > initialized.  We also allow early-exit of i915_init() without failure by
+> > an init function returning > 0.  This is useful for nomodeset, and
+> > selftests.  For the mock selftests, we convert them to always return 1
+> > so we get the desired behavior of the driver always succeeding to load
+> > the driver and then properly tearing down the partially loaded driver.
+> >
+> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/i915_pci.c               | 104 ++++++++++++------
+> >   drivers/gpu/drm/i915/i915_perf.c              |   3 +-
+> >   drivers/gpu/drm/i915/i915_perf.h              |   2 +-
+> >   drivers/gpu/drm/i915/i915_pmu.c               |   4 +-
+> >   drivers/gpu/drm/i915/i915_pmu.h               |   4 +-
+> >   .../gpu/drm/i915/selftests/i915_selftest.c    |   2 +-
+> >   6 files changed, 80 insertions(+), 39 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> > index 4e627b57d31a2..64ebd89eae6ce 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -1185,27 +1185,9 @@ static void i915_pci_shutdown(struct pci_dev *pdev)
+> >       i915_driver_shutdown(i915);
+> >   }
+> >
+> > -static struct pci_driver i915_pci_driver = {
+> > -     .name = DRIVER_NAME,
+> > -     .id_table = pciidlist,
+> > -     .probe = i915_pci_probe,
+> > -     .remove = i915_pci_remove,
+> > -     .shutdown = i915_pci_shutdown,
+> > -     .driver.pm = &i915_pm_ops,
+> > -};
+> > -
+> > -static int __init i915_init(void)
+> > +static int i915_check_nomodeset(void)
+> >   {
+> >       bool use_kms = true;
+> > -     int err;
+> > -
+> > -     err = i915_globals_init();
+> > -     if (err)
+> > -             return err;
+> > -
+> > -     err = i915_mock_selftests();
+> > -     if (err)
+> > -             return err > 0 ? 0 : err;
+> >
+> >       /*
+> >        * Enable KMS by default, unless explicitly overriden by
+> > @@ -1222,31 +1204,87 @@ static int __init i915_init(void)
+> >       if (!use_kms) {
+> >               /* Silently fail loading to not upset userspace. */
+> >               DRM_DEBUG_DRIVER("KMS disabled.\n");
+> > -             return 0;
+> > +             return 1;
+> >       }
+> >
+> > -     i915_pmu_init();
+> > +     return 0;
+> > +}
+> >
+> > -     err = pci_register_driver(&i915_pci_driver);
+> > -     if (err) {
+> > -             i915_pmu_exit();
+> > -             i915_globals_exit();
+> > -             return err;
+> > +static struct pci_driver i915_pci_driver = {
+> > +     .name = DRIVER_NAME,
+> > +     .id_table = pciidlist,
+> > +     .probe = i915_pci_probe,
+> > +     .remove = i915_pci_remove,
+> > +     .shutdown = i915_pci_shutdown,
+> > +     .driver.pm = &i915_pm_ops,
+> > +};
+> > +
+> > +static int i915_register_pci_driver(void)
+> > +{
+> > +     return pci_register_driver(&i915_pci_driver);
+> > +}
+> > +
+> > +static void i915_unregister_pci_driver(void)
+> > +{
+> > +     pci_unregister_driver(&i915_pci_driver);
+> > +}
+> > +
+> > +static const struct {
+> > +   int (*init)(void);
+> > +   void (*exit)(void);
+> > +} init_funcs[] = {
+> > +     { i915_globals_init, i915_globals_exit },
+> > +     { i915_mock_selftests, NULL },
+> > +     { i915_check_nomodeset, NULL },
+> > +     { i915_pmu_init, i915_pmu_exit },
+> > +     { i915_register_pci_driver, i915_unregister_pci_driver },
+> > +     { i915_perf_sysctl_register, i915_perf_sysctl_unregister },
+> > +};
+> > +static int init_progress;
+> > +
+> > +static int __init i915_init(void)
+> > +{
+> > +     int err, i;
+> > +
+> > +     for (i = 0; i < ARRAY_SIZE(init_funcs); i++) {
+> > +             err = init_funcs[i].init();
+> > +             if (err < 0) {
+> > +                     while (i--) {
+> > +                             if (init_funcs[i].exit)
+> > +                                     init_funcs[i].exit();
+> > +                     }
+> > +                     return err;
+> > +             } else if (err > 0) {
+> > +                     /*
+> > +                      * Early-exit success is reserved for things which
+> > +                      * don't have an exit() function because we have no
+> > +                      * idea how far they got or how to partially tear
+> > +                      * them down.
+> > +                      */
+> > +                     WARN_ON(init_funcs[i].exit);
+>
+> I'm not completely happy with the subtlety of where the knowledge of who
+> needs the module to remain loaded and why ends up. It's partly in the
+> change of return code from i915_mock_selftests and partly here. But I
+> don't have any better ideas, which wouldn't have downsides of their own,
+> on how to express this cleanly so just passing grumbling.
 
---===============1348982882054647803==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I can't say I really like it either which is why I threw in this
+WARN_ON and comment.  This really should be a quite exceptional case.
 
-== Series Details ==
+> I mean ideally it should be only that specific dma buf test case which
+> sends out a specific return value requesting not to unload, when it
+> knows it has used fput. But that would need the i915 selftests runner to
+> accept the positive error and no idea if that would have some other
+> consequences without going very deep.
+>
+> > +
+> > +                     /*
+> > +                      * We don't want to advertise devices with an only
+> > +                      * partially initialized driver.
+> > +                      */
+> > +                     WARN_ON(i915_pci_driver.driver.owner);
+> > +                     break;
+> > +             }
+> >       }
+> >
+> > -     i915_perf_sysctl_register();
+> > +     init_progress = i;
+> > +
+> >       return 0;
+> >   }
+> >
+> >   static void __exit i915_exit(void)
+> >   {
+> > -     if (!i915_pci_driver.driver.owner)
+> > -             return;
+> > +     int i;
+> >
+> > -     i915_perf_sysctl_unregister();
+> > -     pci_unregister_driver(&i915_pci_driver);
+> > -     i915_pmu_exit();
+> > -     i915_globals_exit();
+> > +     for (i = init_progress - 1; i >= 0; i--) {
+>
+> Perhaps GEM_BUG_ON(i >= ARRAY_SIZE(init_funcs)) here just in case?
 
-Series: series starting with [1/3] drm/plane: remove drm_helper_get_plane_damage_clips
-URL   : https://patchwork.freedesktop.org/series/92822/
-State : failure
+Can do.
 
-== Summary ==
+--Jason
 
-CI Bug Log - changes from CI_DRM_10365 -> Patchwork_20663
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20663 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20663, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20663:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-7567u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-kbl-7567u/igt@kms_force_connector_basic@force-connector-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-7567u/igt@kms_force_connector_basic@force-connector-state.html
-    - fi-kbl-guc:         [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-kbl-guc/igt@kms_force_connector_basic@force-connector-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-guc/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@runner@aborted:
-    - fi-ilk-650:         NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-ilk-650/igt@runner@aborted.html
-    - fi-snb-2520m:       NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-snb-2520m/igt@runner@aborted.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][7]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bdw-5557u/igt@runner@aborted.html
-    - fi-ivb-3770:        NOTRUN -> [FAIL][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-ivb-3770/igt@runner@aborted.html
-    - fi-elk-e7500:       NOTRUN -> [FAIL][9]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-elk-e7500/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - {fi-hsw-gt1}:       [PASS][10] -> [DMESG-WARN][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-hsw-gt1/igt@kms_force_connector_basic@force-connector-state.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-hsw-gt1/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20663 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][12] ([i915#2403] / [i915#2505])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-pnv-d510/igt@runner@aborted.html
-    - fi-kbl-x1275:       NOTRUN -> [FAIL][13] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-x1275/igt@runner@aborted.html
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][14] ([i915#1610])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bsw-kefka/igt@runner@aborted.html
-    - fi-cfl-8700k:       NOTRUN -> [FAIL][15] ([i915#3363] / [k.org#202107] / [k.org#202109])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cfl-8700k/igt@runner@aborted.html
-    - fi-cfl-8109u:       NOTRUN -> [FAIL][16] ([i915#3363] / [k.org#202107] / [k.org#202109])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cfl-8109u/igt@runner@aborted.html
-    - fi-glk-dsi:         NOTRUN -> [FAIL][17] ([i915#3363] / [k.org#202321])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-glk-dsi/igt@runner@aborted.html
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][18] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-8809g/igt@runner@aborted.html
-    - fi-bwr-2160:        NOTRUN -> [FAIL][19] ([i915#2505])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bwr-2160/igt@runner@aborted.html
-    - fi-kbl-soraka:      NOTRUN -> [FAIL][20] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-soraka/igt@runner@aborted.html
-    - fi-hsw-4770:        NOTRUN -> [FAIL][21] ([i915#192] / [i915#193] / [i915#194] / [i915#2505])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-hsw-4770/igt@runner@aborted.html
-    - fi-kbl-7500u:       NOTRUN -> [FAIL][22] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-7500u/igt@runner@aborted.html
-    - fi-kbl-guc:         NOTRUN -> [FAIL][23] ([i915#3363])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-guc/igt@runner@aborted.html
-    - fi-cml-u2:          NOTRUN -> [FAIL][24] ([i915#3363])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cml-u2/igt@runner@aborted.html
-    - fi-bxt-dsi:         NOTRUN -> [FAIL][25] ([i915#2426] / [i915#3363])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bxt-dsi/igt@runner@aborted.html
-    - fi-cfl-guc:         NOTRUN -> [FAIL][26] ([i915#3363] / [k.org#202107] / [k.org#202109])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cfl-guc/igt@runner@aborted.html
-    - fi-icl-y:           NOTRUN -> [FAIL][27] ([i915#1569])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-icl-y/igt@runner@aborted.html
-    - fi-kbl-7567u:       NOTRUN -> [FAIL][28] ([i915#3363])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-7567u/igt@runner@aborted.html
-    - fi-skl-guc:         NOTRUN -> [FAIL][29] ([i915#3363])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-skl-guc/igt@runner@aborted.html
-    - fi-skl-6700k2:      NOTRUN -> [FAIL][30] ([i915#3363])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-skl-6700k2/igt@runner@aborted.html
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][31] ([i915#1610])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bsw-n3050/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][32] ([i915#1888]) -> [PASS][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-icl-u2:          [FAIL][34] ([i915#1814] / [i915#3363]) -> [FAIL][35] ([i915#1569] / [i915#3363])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-icl-u2/igt@runner@aborted.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-icl-u2/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3626]: https://gitlab.freedesktop.org/drm/intel/issues/3626
-  [k.org#202107]: https://bugzilla.kernel.org/show_bug.cgi?id=202107
-  [k.org#202109]: https://bugzilla.kernel.org/show_bug.cgi?id=202109
-  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
-
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10365 -> Patchwork_20663
-
-  CI-20190529: 20190529
-  CI_DRM_10365: ac586c6a6b56905df2af88699c1e6d28416dd9a4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20663: a896b164d83b0bf080708759af777d6b43a74615 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a896b164d83b drm/plane: Move drm_plane_enable_fb_damage_clips into core
-c11741a8ac84 drm/plane: check that fb_damage is set up when used
-fc061e34c557 drm/plane: remove drm_helper_get_plane_damage_clips
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/index.html
-
---===============1348982882054647803==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/plane: remove drm_helper_get_plane_damage_clips</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92822/">https://patchwork.freedesktop.org/series/92822/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10365 -&gt; Patchwork_20663</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20663 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20663, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20663:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-kbl-7567u/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-7567u/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a></p>
-</li>
-<li>
-<p>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-kbl-guc/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-guc/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-ilk-650/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-snb-2520m/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-ivb-3770/igt@runner@aborted.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-elk-e7500/igt@runner@aborted.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_force_connector_basic@force-connector-state:<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-hsw-gt1/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-hsw-gt1/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20663 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
-</li>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202107">k.org#202107</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202109">k.org#202109</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202107">k.org#202107</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202109">k.org#202109</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
-</li>
-<li>
-<p>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-bwr-2160:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bwr-2160/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
-</li>
-<li>
-<p>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-hsw-4770/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
-</li>
-<li>
-<p>fi-kbl-7500u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-7500u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202107">k.org#202107</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202109">k.org#202109</a>)</p>
-</li>
-<li>
-<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-icl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a>)</p>
-</li>
-<li>
-<p>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-kbl-7567u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-skl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0:<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10365/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20663/fi-icl-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10365 -&gt; Patchwork_20663</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10365: ac586c6a6b56905df2af88699c1e6d28416dd9a4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6146: 6caef22e4aafed275771f564d4ea4cab09896ebc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20663: a896b164d83b0bf080708759af777d6b43a74615 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a896b164d83b drm/plane: Move drm_plane_enable_fb_damage_clips into core<br />
-c11741a8ac84 drm/plane: check that fb_damage is set up when used<br />
-fc061e34c557 drm/plane: remove drm_helper_get_plane_damage_clips</p>
-
-</body>
-</html>
-
---===============1348982882054647803==--
-
---===============1246504772==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> > +             if (init_funcs[i].exit)
+> > +                     init_funcs[i].exit();
+> > +     }
+> >   }
+> >
+> >   module_init(i915_init);
+> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> > index b4ec114a4698b..48ddb363b3bda 100644
+> > --- a/drivers/gpu/drm/i915/i915_perf.c
+> > +++ b/drivers/gpu/drm/i915/i915_perf.c
+> > @@ -4483,9 +4483,10 @@ static int destroy_config(int id, void *p, void *data)
+> >       return 0;
+> >   }
+> >
+> > -void i915_perf_sysctl_register(void)
+> > +int i915_perf_sysctl_register(void)
+> >   {
+> >       sysctl_header = register_sysctl_table(dev_root);
+> > +     return 0;
+> >   }
+> >
+> >   void i915_perf_sysctl_unregister(void)
+> > diff --git a/drivers/gpu/drm/i915/i915_perf.h b/drivers/gpu/drm/i915/i915_perf.h
+> > index 882fdd0a76800..1d1329e5af3ae 100644
+> > --- a/drivers/gpu/drm/i915/i915_perf.h
+> > +++ b/drivers/gpu/drm/i915/i915_perf.h
+> > @@ -23,7 +23,7 @@ void i915_perf_fini(struct drm_i915_private *i915);
+> >   void i915_perf_register(struct drm_i915_private *i915);
+> >   void i915_perf_unregister(struct drm_i915_private *i915);
+> >   int i915_perf_ioctl_version(void);
+> > -void i915_perf_sysctl_register(void);
+> > +int i915_perf_sysctl_register(void);
+> >   void i915_perf_sysctl_unregister(void);
+> >
+> >   int i915_perf_open_ioctl(struct drm_device *dev, void *data,
+> > diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> > index 34d37d46a1262..eca92076f31d2 100644
+> > --- a/drivers/gpu/drm/i915/i915_pmu.c
+> > +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> > @@ -1088,7 +1088,7 @@ static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
+> >
+> >   static enum cpuhp_state cpuhp_slot = CPUHP_INVALID;
+> >
+> > -void i915_pmu_init(void)
+> > +int i915_pmu_init(void)
+> >   {
+> >       int ret;
+> >
+> > @@ -1101,6 +1101,8 @@ void i915_pmu_init(void)
+> >                         ret);
+> >       else
+> >               cpuhp_slot = ret;
+> > +
+> > +     return 0;
+> >   }
+> >
+> >   void i915_pmu_exit(void)
+> > diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+> > index 60f9595f902cd..449057648f39b 100644
+> > --- a/drivers/gpu/drm/i915/i915_pmu.h
+> > +++ b/drivers/gpu/drm/i915/i915_pmu.h
+> > @@ -147,14 +147,14 @@ struct i915_pmu {
+> >   };
+> >
+> >   #ifdef CONFIG_PERF_EVENTS
+> > -void i915_pmu_init(void);
+> > +int i915_pmu_init(void);
+> >   void i915_pmu_exit(void);
+> >   void i915_pmu_register(struct drm_i915_private *i915);
+> >   void i915_pmu_unregister(struct drm_i915_private *i915);
+> >   void i915_pmu_gt_parked(struct drm_i915_private *i915);
+> >   void i915_pmu_gt_unparked(struct drm_i915_private *i915);
+> >   #else
+> > -static inline void i915_pmu_init(void) {}
+> > +static inline int i915_pmu_init(void) { return 0; }
+> >   static inline void i915_pmu_exit(void) {}
+> >   static inline void i915_pmu_register(struct drm_i915_private *i915) {}
+> >   static inline void i915_pmu_unregister(struct drm_i915_private *i915) {}
+> > diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gpu/drm/i915/selftests/i915_selftest.c
+> > index 1bc11c09faef5..935d065725345 100644
+> > --- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
+> > +++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
+> > @@ -187,7 +187,7 @@ int i915_mock_selftests(void)
+> >       err = run_selftests(mock, NULL);
+> >       if (err) {
+> >               i915_selftest.mock = err;
+> > -             return err;
+> > +             return 1;
+>
+> I checked igt_kselftest_execute and it looks like it will handle this
+> change in behaviour so that's fine.
+>
+> >       }
+> >
+> >       if (i915_selftest.mock < 0) {
+> >
+>
+> Regards,
+>
+> Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1246504772==--
