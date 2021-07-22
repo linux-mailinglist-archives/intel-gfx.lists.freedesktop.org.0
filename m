@@ -1,37 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C6C3D22D0
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 13:35:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F40A23D22EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 13:50:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83FD16E5D4;
-	Thu, 22 Jul 2021 11:35:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE16B6F38F;
+	Thu, 22 Jul 2021 11:50:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52EBA6E5D4;
- Thu, 22 Jul 2021 11:35:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="198896666"
-X-IronPort-AV: E=Sophos;i="5.84,260,1620716400"; d="scan'208";a="198896666"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 04:35:16 -0700
-X-IronPort-AV: E=Sophos;i="5.84,260,1620716400"; d="scan'208";a="470602874"
-Received: from kgreenan-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.29.109])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 04:35:13 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Jul 2021 12:34:56 +0100
-Message-Id: <20210722113456.304882-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210722113456.304882-1-matthew.auld@intel.com>
-References: <20210722113456.304882-1-matthew.auld@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 232826F389;
+ Thu, 22 Jul 2021 11:50:46 +0000 (UTC)
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 913F71FD47;
+ Thu, 22 Jul 2021 11:50:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1626954644; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4zXoT3ylB6VKxXeCNbbNcso1YijxYQ+dEHYi0mE1dbo=;
+ b=g+wLLtva6y7odNEWxcEUMgEmaxOvYbA2US0h2eDsD1oEFiJ5JdQ8Y+dbg+EAeA6gS0N6Ju
+ E1zl0KBxjXZaeF7lvXHUsP+8yj+c9OK0/96v1x5y4qPdXUC+7wqsJjH+Qba4tVXBnlRmFc
+ ju7bNW0UoX8P0VjFByWuLkHNtoPBcAo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1626954644;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=4zXoT3ylB6VKxXeCNbbNcso1YijxYQ+dEHYi0mE1dbo=;
+ b=Y17V0+TBtq+bdK6vsRdS4wII9+uyJBMawuGTesgq3x9WOT9vavSMs+ZWpoqUjJlz3402ks
+ iS95BN8FNYk+93Aw==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 5318A13C20;
+ Thu, 22 Jul 2021 11:50:44 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap1.suse-dmz.suse.de with ESMTPSA id FhkNE5Rb+WBrWQAAGKfGzw
+ (envelope-from <tzimmermann@suse.de>); Thu, 22 Jul 2021 11:50:44 +0000
+Date: Thu, 22 Jul 2021 13:50:42 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YPlbkmH6S4VAHP9j@linux-uq9g.fritz.box>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/ehl: unconditionally flush the
- pages on acquire
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,94 +62,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@intel.com>,
- Francisco Jerez <francisco.jerez.plata@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
-possible for userspace to bypass the GTT caching bits set by the kernel,
-as per the given object cache_level. This is troublesome since the heavy
-flush we apply when first acquiring the pages is skipped if the kernel
-thinks the object is coherent with the GPU. As a result it might be
-possible to bypass the cache and read the contents of the page directly,
-which could be stale data. If it's just a case of userspace shooting
-themselves in the foot then so be it, but since i915 takes the stance of
-always zeroing memory before handing it to userspace, we need to prevent
-this.
+Hi Dave and Daniel,
 
-v2: this time actually set cache_dirty in put_pages()
-v3: move to get_pages() which looks simpler
+here's the PR for drm-misc-fixes. There's a UAPI change where -ENOTTY is
+now being returned for non-DRM ioctls.
 
-BSpec: 34007
-References: 046091758b50 ("Revert "drm/i915/ehl: Update MOCS table for EHL"")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Cc: Francisco Jerez <francisco.jerez.plata@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- .../gpu/drm/i915/gem/i915_gem_object_types.h   |  6 ++++++
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c      | 18 ++++++++++++++++++
- 2 files changed, 24 insertions(+)
+Best regards
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 40cce816a7e3..f0948f6b1e1d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -404,6 +404,12 @@ struct drm_i915_gem_object {
- 	 * Note that on shared LLC platforms we still apply the heavy flush for
- 	 * I915_CACHE_NONE objects, under the assumption that this is going to
- 	 * be used for scanout.
-+	 *
-+	 * Update: On some hardware there is now also the 'Bypass LLC' MOCS
-+	 * entry, which defeats our @cache_coherent tracking, since userspace
-+	 * can freely bypass the CPU cache when touching the pages with the GPU,
-+	 * where the kernel is completely unaware. On such platform we need
-+	 * apply the sledgehammer-on-acquire regardless of the @cache_coherent.
- 	 */
- 	unsigned int cache_dirty:1;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index 6a04cce188fc..11f072193f3b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -182,6 +182,24 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
- 	if (i915_gem_object_needs_bit17_swizzle(obj))
- 		i915_gem_object_do_bit_17_swizzle(obj, st);
- 
-+	/*
-+	 * EHL and JSL add the 'Bypass LLC' MOCS entry, which should make it
-+	 * possible for userspace to bypass the GTT caching bits set by the
-+	 * kernel, as per the given object cache_level. This is troublesome
-+	 * since the heavy flush we apply when first gathering the pages is
-+	 * skipped if the kernel thinks the object is coherent with the GPU. As
-+	 * a result it might be possible to bypass the cache and read the
-+	 * contents of the page directly, which could be stale data. If it's
-+	 * just a case of userspace shooting themselves in the foot then so be
-+	 * it, but since i915 takes the stance of always zeroing memory before
-+	 * handing it to userspace, we need to prevent this.
-+	 *
-+	 * By setting cache_dirty here we make the clflush in set_pages
-+	 * unconditional on such platforms.
-+	 */
-+	if (IS_JSL_EHL(i915) && obj->flags & I915_BO_ALLOC_USER)
-+		obj->cache_dirty = true;
-+
- 	__i915_gem_object_set_pages(obj, st, sg_page_sizes);
- 
- 	return 0;
--- 
-2.26.3
+drm-misc-fixes-2021-07-22:
+Short summary of fixes pull:
 
+ * Return -ENOTTY for non-DRM ioctls
+ * amdgpu: Fix COW checks
+ * nouveau: init BO GME fields
+ * panel: Avoid double free
+ * ttm: Fix refcounting in ttm_global_init(); NULL checks
+ * vc4: Fix interrupt handling
+The following changes since commit 9e5c772954406829e928dbe59891d08938ead04b:
+
+  drm/ttm: add a check against null pointer dereference (2021-07-14 17:16:1=
+6 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-07-22
+
+for you to fetch changes up to 7bbcb919e32d776ca8ddce08abb391ab92eef6a9:
+
+  drm/panel: raspberrypi-touchscreen: Prevent double-free (2021-07-22 11:37=
+:03 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ * Return -ENOTTY for non-DRM ioctls
+ * amdgpu: Fix COW checks
+ * nouveau: init BO GME fields
+ * panel: Avoid double free
+ * ttm: Fix refcounting in ttm_global_init(); NULL checks
+ * vc4: Fix interrupt handling
+
+----------------------------------------------------------------
+Charles Baylis (1):
+      drm: Return -ENOTTY for non-drm ioctls
+
+Christian K=F6nig (1):
+      drm/nouveau: init the base GEM fields for internal BOs
+
+Felix Kuehling (1):
+      drm/amdgpu: workaround failed COW checks for Thunk VMAs
+
+Jason Ekstrand (1):
+      drm/ttm: Force re-init if ttm_global_init() fails
+
+Maxime Ripard (2):
+      drm/vc4: hdmi: Drop devm interrupt handler for CEC interrupts
+      drm/panel: raspberrypi-touchscreen: Prevent double-free
+
+Pavel Skripkin (1):
+      drm/ttm: add missing NULL checks
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |  9 ++++
+ drivers/gpu/drm/drm_ioctl.c                        |  3 ++
+ drivers/gpu/drm/nouveau/nouveau_bo.c               |  6 +++
+ .../gpu/drm/panel/panel-raspberrypi-touchscreen.c  |  1 -
+ drivers/gpu/drm/ttm/ttm_bo.c                       |  3 ++
+ drivers/gpu/drm/ttm/ttm_bo_util.c                  |  3 ++
+ drivers/gpu/drm/ttm/ttm_device.c                   |  2 +
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 49 +++++++++++++++---=
+----
+ include/drm/drm_ioctl.h                            |  1 +
+ 9 files changed, 60 insertions(+), 17 deletions(-)
+
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
