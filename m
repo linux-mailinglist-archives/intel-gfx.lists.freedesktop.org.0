@@ -1,31 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22F4F3D2526
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 16:05:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA8E3D2585
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 16:17:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 884FF6EC7E;
-	Thu, 22 Jul 2021 14:05:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7194D6E8FD;
+	Thu, 22 Jul 2021 14:17:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9260C6EC7E;
- Thu, 22 Jul 2021 14:05:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8C9BDA00F5;
- Thu, 22 Jul 2021 14:05:54 +0000 (UTC)
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
+ [IPv6:2607:f8b0:4864:20::236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52E8B6E8C9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jul 2021 14:17:31 +0000 (UTC)
+Received: by mail-oi1-x236.google.com with SMTP id c197so6690405oib.11
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jul 2021 07:17:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=KOkTn1Mo3J70M4pI86xRHRtEhS/5VnuRa5a5gN9AGgg=;
+ b=LsVzVbt3s0KFfGDHXPhExLl0OU37cfjOF9hKSeAC0uzfH7noURB5hSgFZLTJNHM1Vu
+ PdYAOHxTDvALN390iroNSMPoAMsFh+9Ir2K4iEsCQr31z7SGvUuLxfa5MU8DV1htQC8T
+ vE88dKRZFdDpqpKrwysvc+Xcu0pVQTZx+E2+g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=KOkTn1Mo3J70M4pI86xRHRtEhS/5VnuRa5a5gN9AGgg=;
+ b=i2phtjuJv47szngaYS5x1kFumWhUQemvL6lKVPVHPvYe1j2HoFVTgq6QEvCUOGIAsj
+ 24fGUXj27Mdnh7FZ7rFfhMtt66JU90FS2njYTc4qX5kx+JUfmKFB0J07T20E8Lv+J64j
+ GElP6x8UCXrlyM9p9RT4DLfHxSWQihluoeKzJkaki7jbPVjeKLU97sF8zxcyZgJDHVxr
+ D3aWI4RemO5Na263tKlx5IGe0sjI0lbdHL8qlEBOLZ7ix3mBxWvvvYnUzVCKp5HmDArR
+ Ism9ulA0yW9IOyCxTdIurr2ufUsnErb0hMHSCB4UD7gLzq4OC2bw0msiGm4eDU99vGkN
+ TKNQ==
+X-Gm-Message-State: AOAM5309bhme3ynwq217icY8weg3xnEdY59RvHLzsEppo9DNhj9fpJRV
+ IF6Y1054ACrZ2vjkWJ/Vi8OKRN9R+PtfRfcNkDONJg==
+X-Google-Smtp-Source: ABdhPJwqTklvotR9LbnbPWDna0E/3csMrWphC75ewwvNxmZ2rg11wkD8Dt31hlSAGFCDJOPSPPQUYSYIZd/CqiU4Roo=
+X-Received: by 2002:aca:d682:: with SMTP id n124mr174005oig.128.1626963450521; 
+ Thu, 22 Jul 2021 07:17:30 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Desmond Cheong Zhi Xi" <desmondcheongzx@gmail.com>
-Date: Thu, 22 Jul 2021 14:05:54 -0000
-Message-ID: <162696275457.30343.14557328465410741943@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20210722092929.244629-1-desmondcheongzx@gmail.com>
-In-Reply-To: <20210722092929.244629-1-desmondcheongzx@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm=2C_drm/vmwgfx=3A_fixes_and_updates_related_to_drm=5Fmaster?=
+ <20210722092929.244629-3-desmondcheongzx@gmail.com>
+ <YPlKCc7Sep71xjBC@phenom.ffwll.local>
+ <5b8b3bd5-7519-e383-cb84-f354d898dc81@gmail.com>
+In-Reply-To: <5b8b3bd5-7519-e383-cb84-f354d898dc81@gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Thu, 22 Jul 2021 16:17:17 +0200
+Message-ID: <CAKMK7uGOFaC4+Avta5e4vVyhy3XWof=WbUcPmBKWVGo7PYNONA@mail.gmail.com>
+To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm: clarify lifetime/locking for
+ drm_master's lease fields
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,90 +61,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Dave Airlie <airlied@linux.ie>, Greg KH <gregkh@linuxfoundation.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org, Zack Rusin <zackr@vmware.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jul 22, 2021 at 3:03 PM Desmond Cheong Zhi Xi
+<desmondcheongzx@gmail.com> wrote:
+>
+> On 22/7/21 6:35 pm, Daniel Vetter wrote:
+> > On Thu, Jul 22, 2021 at 05:29:28PM +0800, Desmond Cheong Zhi Xi wrote:
+> >> In particular, we make it clear that &drm_device.mode_config.idr_mutex
+> >> protects the lease idr and list structures for drm_master. The lessor
+> >> field itself doesn't need to be protected as it doesn't change after
+> >> it's set in drm_lease_create.
+> >>
+> >> Additionally, we add descriptions for the lifetime of lessors and
+> >> leases to make it easier to reason about them.
+> >>
+> >> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> >> ---
+> >>   include/drm/drm_auth.h | 62 ++++++++++++++++++++++++++++++++++--------
+> >>   1 file changed, 51 insertions(+), 11 deletions(-)
+> >>
+> >> diff --git a/include/drm/drm_auth.h b/include/drm/drm_auth.h
+> >> index f99d3417f304..c978c85464fa 100644
+> >> --- a/include/drm/drm_auth.h
+> >> +++ b/include/drm/drm_auth.h
+> >> @@ -58,12 +58,6 @@ struct drm_lock_data {
+> >>    * @refcount: Refcount for this master object.
+> >>    * @dev: Link back to the DRM device
+> >>    * @driver_priv: Pointer to driver-private information.
+> >> - * @lessor: Lease holder
+> >> - * @lessee_id: id for lessees. Owners always have id 0
+> >> - * @lessee_list: other lessees of the same master
+> >> - * @lessees: drm_masters leasing from this one
+> >> - * @leases: Objects leased to this drm_master.
+> >> - * @lessee_idr: All lessees under this owner (only used where lessor == NULL)
+> >>    *
+> >>    * Note that master structures are only relevant for the legacy/primary device
+> >>    * nodes, hence there can only be one per device, not one per drm_minor.
+> >> @@ -88,17 +82,63 @@ struct drm_master {
+> >>      struct idr magic_map;
+> >>      void *driver_priv;
+> >>
+> >> -    /* Tree of display resource leases, each of which is a drm_master struct
+> >> -     * All of these get activated simultaneously, so drm_device master points
+> >> -     * at the top of the tree (for which lessor is NULL). Protected by
+> >> -     * &drm_device.mode_config.idr_mutex.
+> >> +    /**
+> >> +     * @lessor:
+> >> +     *
+> >> +     * Lease holder. The lessor does not change once it's set in
+> >
+> > Lessor is the lease grantor, lessee is the one receiving the lease. Maybe
+> > clarify this with
+> >
+> > "Lease grantor, only set if this struct drm_master represents a lessee
+> > holding a lease of objects from @lessor. Full owners of the device have
+> > this set to NULL."
+> >
+> >> +     * drm_lease_create(). Each lessee holds a reference to its lessor that
+> >
+> > I also figured it'd be a good idea to link to the drm_lease docs here to
+> > explain the concepts, but alas we don't have those :-( Hence at least
+> > define what we mean with lessor, lessee, lease and owner.
+> >
+>
+> Thanks for the suggestions, Daniel. I'll incorporate them in a v2.
+>
+> Regarding the missing drm_lease docs... any reason we can't just add it
+> in? Seems like most of the comments in drm_lease.c are almost correctly
+> formatted too. I could clean them up, define the terms in a preamble,
+> then add it to the v2 patch.
 
-Series: drm, drm/vmwgfx: fixes and updates related to drm_master
-URL   : https://patchwork.freedesktop.org/series/92894/
-State : warning
+Sure if you want to do that, that would be great. Usual style tips:
+- We only document driver interfaces, so structs/inline functions in
+headers and exported symbols in .c files.
+- Anything else interesting just leave as normal C comments
+- An overview DOC: section that explains a bit how leases work and why
+(git blame on the commit that added it should help, otherwise I can
+type that up) would also be really great.
 
-== Summary ==
+I think the right place for this is in the drm-uapi.rst section after
+the section about primary nodes:
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
-+drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
-+drivers/gpu/drm/drm_drv.c:425:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    expected struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    got struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1210:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
-+./include/linux/srcu.h:188:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
+https://dri.freedesktop.org/docs/drm/gpu/drm-kms.html#modeset-base-object-abstraction
+
+Cheers, Daniel
 
 
+>
+> >> +     * it releases upon being destroyed in drm_lease_destroy().
+> >> +     *
+> >> +     * Display resource leases form a tree of &struct drm_master. All of
+> >
+> > For now we've limited the tree to a depth of 1, you can't create another
+> > lease if yourself are a lease. I guess another reason to update the
+> > drm_lease.c docs.
+> >
+> > So maybe add "Currently the lease tree depth is limited to 1."
+> >
+> >> +     * these get activated simultaneously, so &drm_device.master
+> >> +     * points at the top of the tree (for which lessor is NULL).
+> >>       */
+> >> -
+> >>      struct drm_master *lessor;
+> >> +
+> >> +    /**
+> >> +     * @lessee_id:
+> >> +     *
+> >> +     * ID for lessees. Owners always have ID 0. Protected by
+> >
+> > Maybe clarify to "Owners (i.e. @lessor is NULL) ..."
+> >
+> >> +     * &drm_device.mode_config's &drm_mode_config.idr_mutex.
+> >> +     */
+> >>      int     lessee_id;
+> >> +
+> >> +    /**
+> >> +     * @lessee_list:
+> >> +     *
+> >> +     * List of lessees of the same master. Protected by
+> >
+> > We try to distinguis between list entries and the list, even though it's
+> > the same struct. So maybe
+> >
+> > "List entry of lessees of @lessor, where they are linked to @lessee. Not
+> > use for owners."
+> >
+> >> +     * &drm_device.mode_config's &drm_mode_config.idr_mutex.
+> >
+> >> +     */
+> >>      struct list_head lessee_list;
+> >> +
+> >> +    /**
+> >> +     * @lessees:
+> >> +     *
+> >> +     * List of drm_masters leasing from this one. Protected by
+> >> +     * &drm_device.mode_config's &drm_mode_config.idr_mutex.
+> >> +     *
+> >> +     * This master cannot be destroyed unless this list is empty as lessors
+> >> +     * are referenced by all their lessees.
+> >
+> > Maybe add "this list is empty of no leases have been granted."
+> >
+> >> +     */
+> >>      struct list_head lessees;
+> >> +
+> >> +    /**
+> >> +     * @leases:
+> >> +     *
+> >> +     * Objects leased to this drm_master. Protected by
+> >> +     * &drm_device.mode_config's &drm_mode_config.idr_mutex.
+> >> +     *
+> >> +     * Objects are leased all together in drm_lease_create(), and are
+> >> +     * removed all together when the lease is revoked.
+> >> +     */
+> >>      struct idr leases;
+> >> +
+> >> +    /**
+> >> +     * @lessee_idr:
+> >> +     *
+> >> +     * All lessees under this owner (only used where lessor is NULL).
+> >
+> > @lessor so it's highlighted correctly
+> >
+> >> +     * Protected by &drm_device.mode_config's &drm_mode_config.idr_mutex.
+> >> +     */
+> >>      struct idr lessee_idr;
+> >>      /* private: */
+> >
+> > With the nits addressed:
+> >
+> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> >
+> > Thanks for updating the docs!
+> > -Daniel
+> >
+> >>   #if IS_ENABLED(CONFIG_DRM_LEGACY)
+> >> --
+> >> 2.25.1
+> >>
+> >
+>
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
