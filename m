@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3125B3D24ED
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 15:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B335C3D2507
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 16:01:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 997486E9A9;
-	Thu, 22 Jul 2021 13:55:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA6286E8B8;
+	Thu, 22 Jul 2021 14:01:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 116366E8D3;
- Thu, 22 Jul 2021 13:55:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="211709297"
-X-IronPort-AV: E=Sophos;i="5.84,261,1620716400"; d="scan'208";a="211709297"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 06:55:26 -0700
-X-IronPort-AV: E=Sophos;i="5.84,261,1620716400"; d="scan'208";a="470649071"
-Received: from cstylian-mobl3.ger.corp.intel.com (HELO [10.213.198.98])
- ([10.213.198.98])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 06:55:24 -0700
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20210624070516.21893-1-matthew.brost@intel.com>
- <20210624070516.21893-25-matthew.brost@intel.com>
- <e5d96ebb-f168-c1af-22c8-0b066388e70d@linux.intel.com>
- <20210720015959.GA14012@sdutt-i7>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <325be7ab-b495-cf2c-05ca-13bfa9f2a466@linux.intel.com>
-Date: Thu, 22 Jul 2021 14:55:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8BF946E5A4;
+ Thu, 22 Jul 2021 14:01:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84E23A77A5;
+ Thu, 22 Jul 2021 14:01:08 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210720015959.GA14012@sdutt-i7>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 24/47] drm/i915/guc: Add several request
- trace points
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 22 Jul 2021 14:01:08 -0000
+Message-ID: <162696246851.30344.18134521992695421878@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210722113456.304882-1-matthew.auld@intel.com>
+In-Reply-To: <20210722113456.304882-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_drm/i915=3A_document_caching_r?=
+ =?utf-8?q?elated_bits?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,88 +39,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0598532401=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0598532401==
+Content-Type: multipart/alternative;
+ boundary="===============6298056142112429919=="
 
-On 20/07/2021 02:59, Matthew Brost wrote:
-> On Tue, Jul 13, 2021 at 10:06:17AM +0100, Tvrtko Ursulin wrote:
->>
->> On 24/06/2021 08:04, Matthew Brost wrote:
->>> Add trace points for request dependencies and GuC submit. Extended
->>> existing request trace points to include submit fence value,, guc_id,
->>> and ring tail value.
->>>
->>> Cc: John Harrison <john.c.harrison@intel.com>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>    .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  3 ++
->>>    drivers/gpu/drm/i915/i915_request.c           |  3 ++
->>>    drivers/gpu/drm/i915/i915_trace.h             | 39 ++++++++++++++++++-
->>>    3 files changed, 43 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> index 89b3c7e5d15b..c2327eebc09c 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->>> @@ -422,6 +422,7 @@ static int guc_dequeue_one_context(struct intel_guc *guc)
->>>    			guc->stalled_request = last;
->>>    			return false;
->>>    		}
->>> +		trace_i915_request_guc_submit(last);
->>>    	}
->>>    	guc->stalled_request = NULL;
->>> @@ -642,6 +643,8 @@ static int guc_bypass_tasklet_submit(struct intel_guc *guc,
->>>    	ret = guc_add_request(guc, rq);
->>>    	if (ret == -EBUSY)
->>>    		guc->stalled_request = rq;
->>> +	else
->>> +		trace_i915_request_guc_submit(rq);
->>>    	return ret;
->>>    }
->>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
->>> index d92c9f25c9f4..7f7aa096e873 100644
->>> --- a/drivers/gpu/drm/i915/i915_request.c
->>> +++ b/drivers/gpu/drm/i915/i915_request.c
->>> @@ -1344,6 +1344,9 @@ __i915_request_await_execution(struct i915_request *to,
->>>    			return err;
->>>    	}
->>> +	trace_i915_request_dep_to(to);
->>> +	trace_i915_request_dep_from(from);
->>
->> Are those two guaranteed to be atomic ie. no other dep_to/dep_from can get
->> injected in the middle of them and if so what guarantees that?
->>
-> 
-> These are not atomic but in practice I've never seen an out of order
-> tracepoints.
->   
->> Actually we had an internal discussion going in November 2019 on these very
->> tracepoints which I think was left hanging in the air.
->>
->> There I was suggesting you create a single tracepoint in the format of "from
->> -> to", so it's clear without any doubt what is going on.
->>
-> 
-> Not sure if it worth adding a custom trace point fo rthis.
+--===============6298056142112429919==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Custom as in not inherit from i915_request class you mean? It's not that 
-hard really.
+== Series Details ==
 
->> I also suggested this should out outside the GuC patch since it is backend
->> agnostic.
-> 
-> I guess, but it really matter?
+Series: series starting with [v3,1/2] drm/i915: document caching related bits
+URL   : https://patchwork.freedesktop.org/series/92889/
+State : failure
 
-IMO following best practices and established conventions matters a lot.
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_10371 -> Patchwork_20677
+====================================================
 
-Tvrtko
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20677 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20677, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20677:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20677 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +25 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#3718])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - {fi-tgl-1115g4}:    [FAIL][5] ([i915#1888]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10371/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [INCOMPLETE][7] ([i915#2782] / [i915#2940]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10371/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+
+
+Participating hosts (38 -> 35)
+------------------------------
+
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10371 -> Patchwork_20677
+
+  CI-20190529: 20190529
+  CI_DRM_10371: 8e68c13425e29c96ef94c9dd3583159000c61380 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20677: abcea5c46d5f1656718eced4b854ca680d4d61f4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+abcea5c46d5f drm/i915/ehl: unconditionally flush the pages on acquire
+c4aff2fea027 drm/i915: document caching related bits
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/index.html
+
+--===============6298056142112429919==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/i915: document caching related bits</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92889/">https://patchwork.freedesktop.org/series/92889/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10371 -&gt; Patchwork_20677</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20677 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20677, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20677:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_pm_rpm@basic-rte:<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20677 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +25 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10371/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10371/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20677/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (38 -&gt; 35)</h2>
+<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10371 -&gt; Patchwork_20677</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10371: 8e68c13425e29c96ef94c9dd3583159000c61380 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20677: abcea5c46d5f1656718eced4b854ca680d4d61f4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>abcea5c46d5f drm/i915/ehl: unconditionally flush the pages on acquire<br />
+c4aff2fea027 drm/i915: document caching related bits</p>
+
+</body>
+</html>
+
+--===============6298056142112429919==--
+
+--===============0598532401==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0598532401==--
