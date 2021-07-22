@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AEC83D3064
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 01:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B94313D306A
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 01:37:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A48766F5D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBA706F5D3;
 	Thu, 22 Jul 2021 23:36:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 269BA6F5A5;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E616F533;
  Thu, 22 Jul 2021 23:36:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="208659269"
-X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="208659269"
+X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="208659270"
+X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="208659270"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 16:36:37 -0700
-X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="470860943"
+ 22 Jul 2021 16:36:38 -0700
+X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="470860944"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Jul 2021 16:36:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Thu, 22 Jul 2021 16:54:05 -0700
-Message-Id: <20210722235426.31831-13-matthew.brost@intel.com>
+Date: Thu, 22 Jul 2021 16:54:06 -0700
+Message-Id: <20210722235426.31831-14-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210722235426.31831-1-matthew.brost@intel.com>
 References: <20210722235426.31831-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/33] drm/i915/guc: Handle context reset
+Subject: [Intel-gfx] [PATCH 13/33] drm/i915/guc: Handle engine reset failure
  notification
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,130 +49,103 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GuC will issue a reset on detecting an engine hang and will notify
-the driver via a G2H message. The driver will service the notification
-by resetting the guilty context to a simple state or banning it
-completely.
+GuC will notify the driver, via G2H, if it fails to
+reset an engine. We recover by resorting to a full GPU
+reset.
 
 v2:
- (John Harrison)
-  - Move msg[0] lookup after length check
-v3:
- (John Harrison)
+ (John Harrison):
   - s/drm_dbg/drm_err
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Fernando Pacheco <fernando.pacheco@intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 +
  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |  3 ++
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 36 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_trace.h             | 10 ++++++
- 4 files changed, 51 insertions(+)
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 43 +++++++++++++++++++
+ 3 files changed, 48 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 7b871f675e48..c79da154c16d 100644
+index c79da154c16d..9c8d53a32e0d 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -269,6 +269,8 @@ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
- 					  const u32 *msg, u32 len);
- int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+@@ -271,6 +271,8 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
  				     const u32 *msg, u32 len);
-+int intel_guc_context_reset_process_msg(struct intel_guc *guc,
-+					const u32 *msg, u32 len);
+ int intel_guc_context_reset_process_msg(struct intel_guc *guc,
+ 					const u32 *msg, u32 len);
++int intel_guc_engine_failure_process_msg(struct intel_guc *guc,
++					 const u32 *msg, u32 len);
  
  void intel_guc_submission_reset_prepare(struct intel_guc *guc);
  void intel_guc_submission_reset(struct intel_guc *guc, bool stalled);
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 8bb6b1bbcea1..231a42887675 100644
+index 231a42887675..18917b443f05 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -984,6 +984,9 @@ static int ct_process_request(struct intel_guc_ct *ct, struct ct_incoming_msg *r
- 	case INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_DONE:
- 		ret = intel_guc_sched_done_process_msg(guc, payload, len);
+@@ -987,6 +987,9 @@ static int ct_process_request(struct intel_guc_ct *ct, struct ct_incoming_msg *r
+ 	case INTEL_GUC_ACTION_CONTEXT_RESET_NOTIFICATION:
+ 		ret = intel_guc_context_reset_process_msg(guc, payload, len);
  		break;
-+	case INTEL_GUC_ACTION_CONTEXT_RESET_NOTIFICATION:
-+		ret = intel_guc_context_reset_process_msg(guc, payload, len);
++	case INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION:
++		ret = intel_guc_engine_failure_process_msg(guc, payload, len);
 +		break;
  	default:
  		ret = -EOPNOTSUPP;
  		break;
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 4d0fac4e7179..1f99238462cb 100644
+index 1f99238462cb..b6fe58ad9a9d 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -2200,6 +2200,42 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+@@ -2236,6 +2236,49 @@ int intel_guc_context_reset_process_msg(struct intel_guc *guc,
  	return 0;
  }
  
-+static void guc_context_replay(struct intel_context *ce)
++static struct intel_engine_cs *
++guc_lookup_engine(struct intel_guc *guc, u8 guc_class, u8 instance)
 +{
-+	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
++	struct intel_gt *gt = guc_to_gt(guc);
++	u8 engine_class = guc_class_to_engine_class(guc_class);
 +
-+	__guc_reset_context(ce, true);
-+	tasklet_hi_schedule(&sched_engine->tasklet);
++	/* Class index is checked in class converter */
++	GEM_BUG_ON(instance > MAX_ENGINE_INSTANCE);
++
++	return gt->engine_class[engine_class][instance];
 +}
 +
-+static void guc_handle_context_reset(struct intel_guc *guc,
-+				     struct intel_context *ce)
++int intel_guc_engine_failure_process_msg(struct intel_guc *guc,
++					 const u32 *msg, u32 len)
 +{
-+	trace_intel_context_reset(ce);
-+	guc_context_replay(ce);
-+}
++	struct intel_engine_cs *engine;
++	u8 guc_class, instance;
++	u32 reason;
 +
-+int intel_guc_context_reset_process_msg(struct intel_guc *guc,
-+					const u32 *msg, u32 len)
-+{
-+	struct intel_context *ce;
-+	int desc_idx;
-+
-+	if (unlikely(len != 1)) {
++	if (unlikely(len != 3)) {
 +		drm_err(&guc_to_gt(guc)->i915->drm, "Invalid length %u", len);
 +		return -EPROTO;
 +	}
 +
-+	desc_idx = msg[0];
-+	ce = g2h_context_lookup(guc, desc_idx);
-+	if (unlikely(!ce))
-+		return -EPROTO;
++	guc_class = msg[0];
++	instance = msg[1];
++	reason = msg[2];
 +
-+	guc_handle_context_reset(guc, ce);
++	engine = guc_lookup_engine(guc, guc_class, instance);
++	if (unlikely(!engine)) {
++		drm_err(&guc_to_gt(guc)->i915->drm,
++			"Invalid engine %d:%d", guc_class, instance);
++		return -EPROTO;
++	}
++
++	intel_gt_handle_error(guc_to_gt(guc), engine->mask,
++			      I915_ERROR_CAPTURE,
++			      "GuC failed to reset %s (reason=0x%08x)\n",
++			      engine->name, reason);
 +
 +	return 0;
 +}
 +
  void intel_guc_submission_print_info(struct intel_guc *guc,
  				     struct drm_printer *p)
- {
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-index 68b70626c3e2..3f43d904f043 100644
---- a/drivers/gpu/drm/i915/i915_trace.h
-+++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -920,6 +920,11 @@ DECLARE_EVENT_CLASS(intel_context,
- 			      __entry->guc_sched_state_no_lock)
- );
- 
-+DEFINE_EVENT(intel_context, intel_context_reset,
-+	     TP_PROTO(struct intel_context *ce),
-+	     TP_ARGS(ce)
-+);
-+
- DEFINE_EVENT(intel_context, intel_context_register,
- 	     TP_PROTO(struct intel_context *ce),
- 	     TP_ARGS(ce)
-@@ -1007,6 +1012,11 @@ trace_i915_request_out(struct i915_request *rq)
- {
- }
- 
-+static inline void
-+trace_intel_context_reset(struct intel_context *ce)
-+{
-+}
-+
- static inline void
- trace_intel_context_register(struct intel_context *ce)
  {
 -- 
 2.28.0
