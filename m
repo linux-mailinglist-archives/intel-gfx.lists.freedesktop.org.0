@@ -1,62 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B0A83D2344
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 14:20:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A1A3D2382
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 14:46:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C90C26EA65;
-	Thu, 22 Jul 2021 12:20:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DFC6EB1A;
+	Thu, 22 Jul 2021 12:46:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
- [IPv6:2607:f8b0:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E24CF6E8F0
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jul 2021 12:20:09 +0000 (UTC)
-Received: by mail-ot1-x32f.google.com with SMTP id
- 59-20020a9d0ac10000b0290462f0ab0800so5050052otq.11
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jul 2021 05:20:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=3ZylT/ABhtuWXTECdK430A5+jrLweO1cTplxo8JP2vk=;
- b=GT4X94IQi1hGlMXx4hnUm+9BT9qOiSuW/4zkMCoGJqx84K/qL7zreBULwOXjmTbjCD
- TiSmugeLM2JufjuVN2T0RA63+csLmn0AVTHNbK49ugmfKRajq7LvdqlYx7OzxDVyzV1U
- epHdz9ZuNKQ0mqT69oH6Uy1lkIKrTainPT80o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=3ZylT/ABhtuWXTECdK430A5+jrLweO1cTplxo8JP2vk=;
- b=DtKiCCjZonqnItXTW7Zobs0ygHCyNASuT+Y0G1lqKX80Rr7GjEEINowwwJdfMh7gtu
- C3ua+YlVEehw5U2TJk7ckq/X8TUGUNVtKpnaUPKHqGxpVD8vZn9WgdMZr9NVBqMdk30T
- 41o/lt4XPNLfjUyd2Xb9qKmNF5iMHruKsmWA3121CRd68iVnysMpkA7tY5foBk5zlB7q
- vVvKkd5KDbrXju57xX9vhpDUT7N2y9wDT/IMiI1aKI9WpsqvqDO9TsFGG3gdGozYZmxW
- 8aJ3GibvmSFOiL09zTxKG1GWjgI/TyKcNcusjlGXILs4vKBRDV5M9ZT1Wrm/nZ/32rVf
- uDSA==
-X-Gm-Message-State: AOAM533KtW3CvBGjxew5bJjVuVjuSz011jv80XagPimJ8R6TO8tgO2wD
- hZBFuh7ZcX8uTOIXsfqOHhVMV9BlM/ylthx6psf/Hg==
-X-Google-Smtp-Source: ABdhPJx54XFuA4wsBwI8nH6YYXFceqQdrNWGTtjjDwyW3RD/EwlojYSbRKzmd+zFkUEMeyGgMqq/pxDhgAqVr9HSdRg=
-X-Received: by 2002:a05:6830:2802:: with SMTP id
- w2mr27813304otu.303.1626956409191; 
- Thu, 22 Jul 2021 05:20:09 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 328EE6E3F4;
+ Thu, 22 Jul 2021 12:46:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="211696770"
+X-IronPort-AV: E=Sophos;i="5.84,261,1620716400"; d="scan'208";a="211696770"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2021 05:46:11 -0700
+X-IronPort-AV: E=Sophos;i="5.84,261,1620716400"; d="scan'208";a="470629902"
+Received: from cstylian-mobl3.ger.corp.intel.com (HELO [10.213.198.98])
+ ([10.213.198.98])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2021 05:46:10 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210716201724.54804-1-matthew.brost@intel.com>
+ <20210716201724.54804-24-matthew.brost@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <003a6487-dab1-50d3-3bf4-0291d0d8893b@linux.intel.com>
+Date: Thu, 22 Jul 2021 13:46:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210104205654.238928-1-jose.souza@intel.com>
- <20210104205654.238928-2-jose.souza@intel.com>
- <CAKMK7uF19u+D2LhEpaKSSJT9Gb3-3TSSSHGGG14x=8X8QXXJtw@mail.gmail.com>
- <CAKMK7uFGg5FmeXG7s0SL3zDK_R+k5vfmOeOOWHkPLQV5yTV4Xg@mail.gmail.com>
- <CAKMK7uG9+XAxDspa2EUagnLVfC51Ryi94bZU_ES4uy4QQ6qm0A@mail.gmail.com>
- <db99aae54af048e33a8ac4cd5e13ecb5c23b5afe.camel@intel.com>
- <CAKMK7uG3B2-EVp6hkeaeRuZfOQZFAE4yYRFS7FzVHQw8p5ssxg@mail.gmail.com>
- <CAKMK7uHHKXVWhtX7Guguir6QuiPT9L_Pgd7+qjocEFnp+y5z-w@mail.gmail.com>
- <86a08842f511542c761454ea5ea5c26a199e1558.camel@intel.com>
-In-Reply-To: <86a08842f511542c761454ea5ea5c26a199e1558.camel@intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 22 Jul 2021 14:19:58 +0200
-Message-ID: <CAKMK7uHmAuEbxbwG4VkEFWzq1=RdBkRqu0+rSm4rT=3smPXxow@mail.gmail.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH CI 2/4] drm/i915/display/psr: Use plane
- damage clips to calculate damaged area
+In-Reply-To: <20210716201724.54804-24-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 23/51] drm/i915/guc: Direct all breadcrumbs
+ for a class to single breadcrumbs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,318 +49,469 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "pankaj.laxminarayan.bharadiya@intel.com"
- <pankaj.laxminarayan.bharadiya@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBKdWwgMjEsIDIwMjEgYXQgOTo0MiBQTSBTb3V6YSwgSm9zZSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgMjAyMS0wNy0yMSBhdCAwOTo1NiArMDIwMCwgRGFu
-aWVsIFZldHRlciB3cm90ZToKPiA+IE9uIFdlZCwgSnVsIDIxLCAyMDIxIGF0IDk6NTAgQU0gRGFu
-aWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPiB3cm90ZToKPiA+ID4gT24gVHVlLCBKdWwgMjAs
-IDIwMjEgYXQgNjo1NSBQTSBTb3V6YSwgSm9zZSA8am9zZS5zb3V6YUBpbnRlbC5jb20+IHdyb3Rl
-Ogo+ID4gPiA+IE9uIFR1ZSwgMjAyMS0wNy0yMCBhdCAxNzozMSArMDIwMCwgRGFuaWVsIFZldHRl
-ciB3cm90ZToKPiA+ID4gPiA+IE9uIFR1ZSwgSnVsIDIwLCAyMDIxIGF0IDU6MTYgUE0gRGFuaWVs
-IFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPiB3cm90ZToKPiA+ID4gPiA+ID4gT24gVHVlLCBKdWwg
-MjAsIDIwMjEgYXQgNTowOSBQTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+IHdyb3Rl
-Ogo+ID4gPiA+ID4gPiA+IE9uIE1vbiwgSmFuIDQsIDIwMjEgYXQgOTo1NiBQTSBKb3PDqSBSb2Jl
-cnRvIGRlIFNvdXphCj4gPiA+ID4gPiA+ID4gPGpvc2Uuc291emFAaW50ZWwuY29tPiB3cm90ZToK
-PiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiBOb3cgdXNpbmcgcGxhbmUgZGFtYWdlIGNs
-aXBzIHByb3BlcnR5IHRvIGNhbGN1YWx0ZSB0aGUgZGFtYWdlZCBhcmVhLgo+ID4gPiA+ID4gPiA+
-ID4gU2VsZWN0aXZlIGZldGNoIG9ubHkgc3VwcG9ydHMgb25lIHJlZ2lvbiB0byBiZSBmZXRjaGVk
-IHNvIHNvZnR3YXJlCj4gPiA+ID4gPiA+ID4gPiBuZWVkcyB0byBjYWxjdWxhdGUgYSBib3VuZGlu
-ZyBib3ggYXJvdW5kIGFsbCBkYW1hZ2UgY2xpcHMuCj4gPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4g
-PiA+ID4gTm93IHRoYXQgd2UgYXJlIG5vdCBjb21wbGV0ZSBmZXRjaGluZyBlYWNoIHBsYW5lLCB0
-aGVyZSBpcyBhbm90aGVyCj4gPiA+ID4gPiA+ID4gPiBsb29wIG5lZWRlZCBhcyBhbGwgdGhlIHBs
-YW5lIGFyZWFzIHRoYXQgaW50ZXJzZWN0IHdpdGggdGhlIHBpcGUKPiA+ID4gPiA+ID4gPiA+IGRh
-bWFnZWQgYXJlYSBuZWVkcyB0byBiZSBmZXRjaGVkIGZyb20gbWVtb3J5IHNvIHRoZSBjb21wbGV0
-ZSBibGVuZGluZwo+ID4gPiA+ID4gPiA+ID4gb2YgYWxsIHBsYW5lcyBjYW4gaGFwcGVuLgo+ID4g
-PiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IHYyOgo+ID4gPiA+ID4gPiA+ID4gLSBkbyBub3Qg
-c2hpZnRpbmcgbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdCBvbmx5IHNyYyBpcyBpbiAxNi4xNiBm
-b3JtYXQKPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiB2NDoKPiA+ID4gPiA+ID4gPiA+
-IC0gc2V0dGluZyBwbGFuZSBzZWxlY3RpdmUgZmV0Y2ggYXJlYSB1c2luZyB0aGUgd2hvbGUgcGlw
-ZSBkYW1hZ2UgYXJlYQo+ID4gPiA+ID4gPiA+ID4gLSBtYXJrIHRoZSB3aG9sZSBwbGFuZSBhcmVh
-IGRhbWFnZWQgaWYgcGxhbmUgdmlzaWJpbGl0eSBvciBhbHBoYQo+ID4gPiA+ID4gPiA+ID4gY2hh
-bmdlZAo+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IHY1Ogo+ID4gPiA+ID4gPiA+ID4g
-LSB0YWtpbmcgaW4gY29uc2lkZXJhdGlvbiBzcmMueTEgaW4gdGhlIGRhbWFnZSBjb29yZGluYXRl
-cwo+ID4gPiA+ID4gPiA+ID4gLSBhZGRpbmcgdG8gdGhlIHBpcGUgZGFtYWdlZCBhcmVhIHBsYW5l
-cyB0aGF0IHdlcmUgdmlzaWJsZSBidXQgYXJlCj4gPiA+ID4gPiA+ID4gPiBpbnZpc2libGUgaW4g
-dGhlIG5ldyBzdGF0ZQo+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IHY2Ogo+ID4gPiA+
-ID4gPiA+ID4gLSBjb25zaWRlciBvbGQgc3RhdGUgcGxhbmUgY29vcmRpbmF0ZXMgd2hlbiB2aXNp
-YmlsaXR5IGNoYW5nZXMgb3IgaXQKPiA+ID4gPiA+ID4gPiA+IG1vdmVkIHRvIGNhbGN1bGF0ZSBk
-YW1hZ2VkIGFyZWEKPiA+ID4gPiA+ID4gPiA+IC0gcmVtb3ZlIGZyb20gZGFtYWdlZCBhcmVhIHRo
-ZSBwb3J0aW9uIG5vdCBpbiBzcmMgY2xpcAo+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+
-IHY3Ogo+ID4gPiA+ID4gPiA+ID4gLSBpbnRlcnNlYyBldmVyeSBkYW1hZ2UgY2xpcCB3aXRoIHNy
-YyB0byBtaW5pbWl6ZSBkYW1hZ2VkIGFyZWEKPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4g
-PiB2ODoKPiA+ID4gPiA+ID4gPiA+IC0gYWRqdXN0IHBpcGVfZGFtYWdlZCBhcmVhIHRvIDQgbGlu
-ZXMgZ3JvdXBpbmcKPiA+ID4gPiA+ID4gPiA+IC0gYWRqdXN0IGNhbGN1bGF0aW9uIG5vdyB0aGF0
-IGlzIHVuZGVyc3Rvb2QgdGhhdCB1YXBpLnNyYyBpcyB0aGUKPiA+ID4gPiA+ID4gPiA+IGZyYW1l
-YnVmZmVyIGNvb3JkaW5hdGVzIHRoYXQgcGxhbmUgd2lsbCBzdGFydCB0byBmZXRjaCBmcm9tCj4g
-PiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ID4gdjk6Cj4gPiA+ID4gPiA+ID4gPiAtIE9ubHkg
-YWRkIHBsYW5lIGRzdCBvciBzcmMgdG8gZGFtYWdlZF9hcmVhIGlmIHZpc2libGUKPiA+ID4gPiA+
-ID4gPiA+IC0gRWFybHkgc2tpcCBwbGFuZSBkYW1hZ2UgY2FsY3VsYXRpb24gaWYgaXQgd2FzIG5v
-dCB2aXNpYmxlIGluIG9sZCBhbmQKPiA+ID4gPiA+ID4gPiA+IG5ldyBzdGF0ZQo+ID4gPiA+ID4g
-PiA+ID4KPiA+ID4gPiA+ID4gPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFA
-bGludXguaW50ZWwuY29tPgo+ID4gPiA+ID4gPiA+ID4gQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dh
-bi1neWVvbmcubXVuQGludGVsLmNvbT4KPiA+ID4gPiA+ID4gPiA+IFJldmlld2VkLWJ5OiBHd2Fu
-LWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+Cj4gPiA+ID4gPiA+ID4gPiBT
-aWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
-bT4KPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+IFdoeSBpcyB0aGlzIG5vdCB1c2luZyBkcm1f
-YXRvbWljX2hlbHBlcl9kYW1hZ2VfbWVyZ2VkPyBJIGp1c3Qgc3R1bWJsZWQKPiA+ID4gPiA+ID4g
-PiBvdmVyIHRoaXMsIGFuZCB0aGlzIGlzIG9uZSBvZiB0aGUgb25seSB0d28gZHJpdmVycyB0aGF0
-IGRpcmVjdGx5IGRpZ3MKPiA+ID4gPiA+ID4gPiBhcm91bmQgaW4gdGhlIGRhbWFnZSBhcmVhLCBh
-bmQgc2VlbXMgdG8gcmVpbnZlbnQgYSBidW5jaCBvZiB0aGUgc3R1ZmYKPiA+ID4gPiA+ID4gPiBo
-ZXJlLgo+ID4gPiA+Cj4gPiA+ID4gV2UgY2FuIHVzZSBkcm1fYXRvbWljX2hlbHBlcl9kYW1hZ2Vf
-bWVyZ2VkKCkgYnV0IGl0IHdvdWxkIG9ubHkgc2F2ZSB1cyBvbmUgZm9yIGxvb3AuCj4gPiA+Cj4g
-PiA+IFllcyBwbGVhc2UuIFRoZSB0cm91YmxlIHdpdGggcm9sbGluZyBvdXIgb3duIGNvcGllcyBm
-b3IgZXZlcnl0aGluZyBpcwo+ID4gPiB0aGF0IGl0IGRvZXMgYWRkIHVwLgo+ID4gPgo+ID4gPiA+
-ID4gPiBBbHNvLCBkaWQgd2UgbWVyZ2UgdGhlIGlndHMgZm9yIHRoaXMgc3R1ZmY/IFRoZXkgdW5m
-b3J0dW5hdGVseSBuZXZlcgo+ID4gPiA+ID4gPiBsYW5kZWQsIHdoZW4gdm13Z2Z4IHRlYW0gZGlk
-IGFsbCB0aGlzIHdvcmssIGJ1dCBmb3IgaTkxNSB3ZSByZWFsbHkKPiA+ID4gPiA+ID4gc2hvdWxk
-bid0IGV2ZW4gbGFuZCBuZXcgc3VwcG9ydCB3aXRob3V0IHRlc3RzLgo+ID4gPiA+ID4KPiA+ID4g
-PiA+IExvIGFuZCBiZWhvbGQsIHdlIG1lcmdlIHRoZSB1YXBpIGVuYWJsaW5nIHdheSBlYXJsaWVy
-IHRoYW4gdGhpcyBwYXRjaCBoZXJlOgo+ID4gPiA+ID4KPiA+ID4gPiA+IGNvbW1pdCAwOTNhM2Ez
-MDAwMDkyNmI4YmRhOWVlZjc3M2U0ZWQ1MDc5MDUzMzUwCj4gPiA+ID4gPiBBdXRob3I6IEpvc8Op
-IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgo+ID4gPiA+ID4gRGF0ZTog
-ICBUaHUgSnVuIDI1IDE4OjAxOjQ3IDIwMjAgLTA3MDAKPiA+ID4gPiA+Cj4gPiA+ID4gPiAgICBk
-cm0vaTkxNTogQWRkIHBsYW5lIGRhbWFnZSBjbGlwcyBwcm9wZXJ0eQo+ID4gPiA+ID4KPiA+ID4g
-PiA+IEFuZCB0aGUgaWd0cyBhcmUgbm93aGVyZSBuZWFyIHRvIGJlIHNlZW4sIGF0IGxlYXN0IHRo
-ZSBzdHVmZiBmcm9tCj4gPiA+ID4gPiB2bXdnZnggZGlkbid0IGxhbmQuIFBsZWFzZSBmaWxlIGEg
-SklSQSBpbnRlcm5hbGx5IGFuZCBwaW5nIG1lIG9uIHRoYXQKPiA+ID4gPiA+IHNvIHRoaXMgZ2V0
-cyBzb3J0ZWQgb3V0IGFzYXAuCj4gPiA+ID4KPiA+ID4gPiBIZXJlIHRoZSBJR1Q6IGh0dHBzOi8v
-Z2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaWd0LWdwdS10b29scy8tL2Jsb2IvbWFzdGVyL3Rl
-c3RzL2ttc19wc3IyX3NmLmMKPiA+ID4KPiA+ID4gVGhlcmUgd2FzIHNvbWUgaWd0cyB0aGF0IHdl
-cmUgY3Jvc3MtZHJpdmVyLCBub3QgaW50ZWwgc3BlY2lmaWMuIFRoZQo+ID4gPiB0aGluZyBoZXJl
-IGlzIHN1cHBvc2VkIHRvIGJlIGEgY3Jvc3MtdmVuZG9yIGludGVyZmFjZSwgc28gd291bGQgYmUK
-PiA+ID4gcmVhbGx5IGdvb2QgaWYgeW91IHJlc3VycmVjdCB0aG9zZSBmcm9tIHZtd2dmeCBmb2xr
-cyBhbmQgbGFuZCB0aGVtCj4gPiA+IHRvbzoKPiA+ID4KPiA+ID4gaHR0cHM6Ly9wYXRjaHdvcmsu
-ZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy81MTA4Ny8KPiA+Cj4gPiBBbHNvIGZyb20gYSB2ZXJ5IHF1
-aWNrIGxvb2sgYXQgdGhlIGttc19wc3IyX3NmIHRlc3RzIHRoZXJlJ3MgcmVhbGx5Cj4gPiBub3Qg
-YSB3aG9sZSBsb3Qgc3BlY2lmaWMgYWJvdXQgb3VyIHBzcjIgaW1wbGVtZW50YXRpb24gaW4gdGhl
-cmUuIFRoZQo+ID4gdGVzdCBzaG91bGQgd29yayBvbiBhbnkgcGxhbmUgd2l0aCBhIEZCX0RBTUFH
-RV9DTElQUyByZWN0IGF2YWlsYWJsZSwKPiA+IHNvIHRoZXJlJ3Mgbm8gcmVhc29uIHRvIG1ha2Ug
-dGhpcyBzcGVjaWZpYyB0byBpbnRlbCwgbXVjaCBsZXNzIHRvCj4gPiBwc3IyLiBJIHRoaW5rIHdl
-IG5lZWQgdG86Cj4gPiAtIG1ha2UgdGhpcyBhIGdlbmVyaWMga21zIHRlc3QsIGl0IHNob3VsZCB3
-b3JrCj4gPiAtIG1lcmdlIHdpdGggdGhlIHRlc3RjYXNlcyBmcm9tIHRoZSBmb2xrcyB3aG8gbWVy
-Z2VkIEZCX0RBTUFHRV9DTElQUwo+ID4gb3JpZ2luYWxseSB0byBtYWtlIHN1cmUgYWxsIGRyaXZl
-cnMgZm9sbG93IHRoZSBzYW1lIGNvbnRyYWN0Lgo+ID4KPiA+IEtNUyBwcm9wZXJ0aWVzIGFyZSBn
-ZW5lcmljLCBpbnRlbC1zcGVjaWZpYyB0ZXN0cyBmb3Igd2hlbiB0aGVyZSdzCj4gPiBub3RoaW5n
-IGludGVsLXNwZWNpZmljIGlzbid0IGdvb2QuIEFsc28gYWRkaW5nIFBhbmthai4KPgo+IEZvciBJ
-bnRlbCB0aGUgb25seSB1c2UgdGhhdCB3ZSBoYXZlIGZvciBkYW1hZ2UgY2xpcHMgaXMgUFNSMiBz
-ZWxlY3RpdmUgZmV0Y2gsIHdlIG5lZWRlZCB0aGlzIHRlc3QgdG8gYmUgc3BlY2lmaWMgUFNSMiB0
-byBjaGVjayBpZiBpOTE1IGlzIHByb3Blcmx5Cj4gaGFuZGxpbmcgaXQgYnkgY2hlY2tpbmcgdGhl
-IHVwZGF0ZXMgaW4gdGhlIFBTUjIgc3RhdHVzIHJlZ2lzdGVycyBhbmQgYWxzbyBwcm9wZXJseSBy
-ZW5kZXJpbmcgdGhlIGltYWdlIG9uIHRoZSBlRFAgcGFuZWwuCgpJIGhhdmVuJ3Qgc2VlbiB0aGUg
-cHJvcGVybHkgcmVuZGVyaW5nIGNoZWNrIChpdCdzIGFsbCBtYW51YWwpLCBzbwp0aGF0J3Mgbm90
-IHZlcnkgaW50ZWwgc3BlY2lmaWMuCgpUaGUgcHNyMiBzdGF0dXMgcmVnaXN0ZXJzIGNoZWNrIHdl
-IGNhbiBkbyBpbiBzb21lIGludGVsIHNwZWNpZmljCnN1YnRlc3QgSSB0aGluaywgb3IgYXMgYWRk
-aXRpb25hbCBjaGVja3MuCgo+IE1ha2luZyB0aGlzIGdlbmVyaWMgd2lsbCBvbmx5IHJlbW92ZSB0
-aGUgdGVzdCBjb3ZlcmFnZSB0aGF0IHdlIGhhdmUgZm9yIHRoaXMgZmVhdHVyZSh0aGF0IGlzIG5v
-dCBldmVuIGVuYWJsZSBieSBkZWZhdWx0IHlldCkuCgpMb29rIHRoZXJlJ3MgcHJldHR5IGNsZWFy
-IGNvbnNlbnN1cyB0aGF0IGttcyBwcm9wZXJ0aWVzIGFyZSBjcm9zcwp2ZW5kb3IgYW5kIHRoZXJl
-IHNob3VsZCBiZSB0ZXN0cyBhY3Jvc3MgdmVuZG9ycyBpbiBpZ3QgZm9yIHRoaXMuIE5vdwp2bXdn
-Znggc2xhY2tlZCBhIGJpdCBhbmQgbmV2ZXIgcHVzaGVkIHRoZWlycyBmdWxseSB1cHN0cmVhbSwg
-d2hpY2gKanVzdCBtZWFucyB0aGUgYnVja2V0IHBhc3NlcyB0byB0aGUgbmV4dCBwZXJzb24gdHJ5
-aW5nIHRvIHVzZSB0aGlzLgoKSSdsbCBmaWxlIGEgamlyYSBoZXJlLgotRGFuaWVsCgo+Cj4gPgo+
-ID4gQ2hlZXJzLCBEYW5pZWwKPiA+Cj4gPiA+ID4KPiA+ID4gPiA+Cj4gPiA+ID4gPiBUaGFua3Ms
-IERhbmllbAo+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IC0tLQo+ID4gPiA+ID4gPiA+ID4gIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCAxMTMgKysrKysrKysrKysr
-KysrKysrKystLS0KPiA+ID4gPiA+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgOTkgaW5zZXJ0aW9u
-cygrKSwgMTQgZGVsZXRpb25zKC0pCj4gPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ID4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCj4gPiA+ID4gPiA+ID4gPiBpbmRl
-eCBkOWEzOTVjNDg2ZDMuLmY1Yjk1MTliMzc1NiAxMDA2NDQKPiA+ID4gPiA+ID4gPiA+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKPiA+ID4gPiA+ID4gPiA+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKPiA+ID4gPiA+
-ID4gPiA+IEBAIC0xMjQyLDkgKzEyNDIsMTEgQEAgc3RhdGljIHZvaWQgcHNyMl9tYW5fdHJrX2N0
-bF9jYWxjKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAo+ID4gPiA+ID4gPiA+
-ID4gICAgICAgICBpZiAoY2xpcC0+eTEgPT0gLTEpCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICAg
-ICAgICAgZ290byBleGl0Owo+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+ICsgICAgICAg
-ZHJtX1dBUk5fT04oY3J0Y19zdGF0ZS0+dWFwaS5jcnRjLT5kZXYsIGNsaXAtPnkxICUgNCB8fCBj
-bGlwLT55MiAlIDQpOwo+ID4gPiA+ID4gPiA+ID4gKwo+ID4gPiA+ID4gPiA+ID4gICAgICAgICB2
-YWwgfD0gUFNSMl9NQU5fVFJLX0NUTF9TRl9QQVJUSUFMX0ZSQU1FX1VQREFURTsKPiA+ID4gPiA+
-ID4gPiA+ICAgICAgICAgdmFsIHw9IFBTUjJfTUFOX1RSS19DVExfU1VfUkVHSU9OX1NUQVJUX0FE
-RFIoY2xpcC0+eTEgLyA0ICsgMSk7Cj4gPiA+ID4gPiA+ID4gPiAtICAgICAgIHZhbCB8PSBQU1Iy
-X01BTl9UUktfQ1RMX1NVX1JFR0lPTl9FTkRfQUREUihESVZfUk9VTkRfVVAoY2xpcC0+eTIsIDQp
-ICsgMSk7Cj4gPiA+ID4gPiA+ID4gPiArICAgICAgIHZhbCB8PSBQU1IyX01BTl9UUktfQ1RMX1NV
-X1JFR0lPTl9FTkRfQUREUihjbGlwLT55MiAvIDQgKyAxKTsKPiA+ID4gPiA+ID4gPiA+ICBleGl0
-Ogo+ID4gPiA+ID4gPiA+ID4gICAgICAgICBjcnRjX3N0YXRlLT5wc3IyX21hbl90cmFja19jdGwg
-PSB2YWw7Cj4gPiA+ID4gPiA+ID4gPiAgfQo+ID4gPiA+ID4gPiA+ID4gQEAgLTEyNjksOCArMTI3
-MSw4IEBAIGludCBpbnRlbF9wc3IyX3NlbF9mZXRjaF91cGRhdGUoc3RydWN0IGludGVsX2F0b21p
-Y19zdGF0ZSAqc3RhdGUsCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQo+ID4gPiA+ID4gPiA+ID4gIHsKPiA+ID4g
-PiA+ID4gPiA+ICAgICAgICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUgPSBp
-bnRlbF9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKPiA+ID4gPiA+ID4g
-PiA+ICsgICAgICAgc3RydWN0IGRybV9yZWN0IHBpcGVfY2xpcCA9IHsgLngxID0gMCwgLnkxID0g
-LTEsIC54MiA9IElOVF9NQVgsIC55MiA9IC0xIH07Cj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIHN0
-cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqbmV3X3BsYW5lX3N0YXRlLCAqb2xkX3BsYW5lX3N0YXRl
-Owo+ID4gPiA+ID4gPiA+ID4gLSAgICAgICBzdHJ1Y3QgZHJtX3JlY3QgcGlwZV9jbGlwID0geyAu
-eTEgPSAtMSB9Owo+ID4gPiA+ID4gPiA+ID4gICAgICAgICBzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBs
-YW5lOwo+ID4gPiA+ID4gPiA+ID4gICAgICAgICBib29sIGZ1bGxfdXBkYXRlID0gZmFsc2U7Cj4g
-PiA+ID4gPiA+ID4gPiAgICAgICAgIGludCBpLCByZXQ7Cj4gPiA+ID4gPiA+ID4gPiBAQCAtMTI4
-MiwxMyArMTI4NCwyNSBAQCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRlKHN0cnVjdCBp
-bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAo+ID4gPiA+ID4gPiA+ID4gICAgICAgICBpZiAocmV0
-KQo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgIHJldHVybiByZXQ7Cj4gPiA+ID4gPiA+
-ID4gPgo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAvKgo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAg
-KiBDYWxjdWxhdGUgbWluaW1hbCBzZWxlY3RpdmUgZmV0Y2ggYXJlYSBvZiBlYWNoIHBsYW5lIGFu
-ZCBjYWxjdWxhdGUKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICogdGhlIHBpcGUgZGFtYWdlZCBh
-cmVhLgo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgKiBJbiB0aGUgbmV4dCBsb29wIHRoZSBwbGFu
-ZSBzZWxlY3RpdmUgZmV0Y2ggYXJlYSB3aWxsIGFjdHVhbGx5IGJlIHNldAo+ID4gPiA+ID4gPiA+
-ID4gKyAgICAgICAgKiB1c2luZyB3aG9sZSBwaXBlIGRhbWFnZWQgYXJlYS4KPiA+ID4gPiA+ID4g
-PiA+ICsgICAgICAgICovCj4gPiA+ID4gPiA+ID4gPiAgICAgICAgIGZvcl9lYWNoX29sZG5ld19p
-bnRlbF9wbGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUsIG9sZF9wbGFuZV9zdGF0ZSwKPiA+ID4g
-PiA+ID4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5l
-d19wbGFuZV9zdGF0ZSwgaSkgewo+ID4gPiA+ID4gPiA+ID4gLSAgICAgICAgICAgICAgIHN0cnVj
-dCBkcm1fcmVjdCAqc2VsX2ZldGNoX2FyZWEsIHRlbXA7Cj4gPiA+ID4gPiA+ID4gPiArICAgICAg
-ICAgICAgICAgc3RydWN0IGRybV9yZWN0IHNyYywgZGFtYWdlZF9hcmVhID0geyAueTEgPSAtMSB9
-Owo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIHN0cnVjdCBkcm1fbW9kZV9yZWN0ICpk
-YW1hZ2VkX2NsaXBzOwo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIHUzMiBudW1fY2xp
-cHMsIGo7Cj4gPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgIGlm
-IChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuY3J0YyAhPSBjcnRjX3N0YXRlLT51YXBpLmNydGMpCj4g
-PiA+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiA+ID4gPiA+
-ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgaWYgKCFuZXdfcGxhbmVfc3Rh
-dGUtPnVhcGkudmlzaWJsZSAmJgo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAh
-b2xkX3BsYW5lX3N0YXRlLT51YXBpLnZpc2libGUpCj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICBjb250aW51ZTsKPiA+ID4gPiA+ID4gPiA+ICsKPiA+ID4gPiA+ID4gPiA+
-ICAgICAgICAgICAgICAgICAvKgo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAqIFRP
-RE86IE5vdCBjbGVhciBob3cgdG8gaGFuZGxlIHBsYW5lcyB3aXRoIG5lZ2F0aXZlIHBvc2l0aW9u
-LAo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAqIGFsc28gcGxhbmVzIGFyZSBub3Qg
-dXBkYXRlZCBpZiB0aGV5IGhhdmUgYSBuZWdhdGl2ZSBYCj4gPiA+ID4gPiA+ID4gPiBAQCAtMTMw
-MCwyMyArMTMxNCw5NCBAQCBpbnQgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRlKHN0cnVjdCBp
-bnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAg
-ICAgICAgICAgYnJlYWs7Cj4gPiA+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgfQo+ID4gPiA+
-ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IC0gICAgICAgICAgICAgICBpZiAoIW5ld19wbGFuZV9z
-dGF0ZS0+dWFwaS52aXNpYmxlKQo+ID4gPiA+ID4gPiA+ID4gLSAgICAgICAgICAgICAgICAgICAg
-ICAgY29udGludWU7Cj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgbnVtX2NsaXBzID0g
-ZHJtX3BsYW5lX2dldF9kYW1hZ2VfY2xpcHNfY291bnQoJm5ld19wbGFuZV9zdGF0ZS0+dWFwaSk7
-Cj4gPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgIC8qCj4gPiA+
-ID4gPiA+ID4gPiAtICAgICAgICAgICAgICAgICogRm9yIG5vdyBkb2luZyBhIHNlbGVjdGl2ZSBm
-ZXRjaCBpbiB0aGUgd2hvbGUgcGxhbmUgYXJlYSwKPiA+ID4gPiA+ID4gPiA+IC0gICAgICAgICAg
-ICAgICAgKiBvcHRpbWl6YXRpb25zIHdpbGwgY29tZSBpbiB0aGUgZnV0dXJlLgo+ID4gPiA+ID4g
-PiA+ID4gKyAgICAgICAgICAgICAgICAqIElmIHZpc2liaWxpdHkgb3IgcGxhbmUgbW92ZWQsIG1h
-cmsgdGhlIHdob2xlIHBsYW5lIGFyZWEgYXMKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAg
-ICAgKiBkYW1hZ2VkIGFzIGl0IG5lZWRzIHRvIGJlIGNvbXBsZXRlIHJlZHJhdyBpbiB0aGUgbmV3
-IGFuZCBvbGQKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgKiBwb3NpdGlvbi4KPiA+
-ID4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICAgKi8KPiA+ID4gPiA+ID4gPiA+IC0gICAgICAg
-ICAgICAgICBzZWxfZmV0Y2hfYXJlYSA9ICZuZXdfcGxhbmVfc3RhdGUtPnBzcjJfc2VsX2ZldGNo
-X2FyZWE7Cj4gPiA+ID4gPiA+ID4gPiAtICAgICAgICAgICAgICAgc2VsX2ZldGNoX2FyZWEtPnkx
-ID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLnNyYy55MSA+PiAxNjsKPiA+ID4gPiA+ID4gPiA+IC0g
-ICAgICAgICAgICAgICBzZWxfZmV0Y2hfYXJlYS0+eTIgPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGku
-c3JjLnkyID4+IDE2Owo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIGlmIChuZXdfcGxh
-bmVfc3RhdGUtPnVhcGkudmlzaWJsZSAhPSBvbGRfcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSB8
-fAo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAhZHJtX3JlY3RfZXF1YWxzKCZu
-ZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LAo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICZvbGRfcGxhbmVfc3RhdGUtPnVhcGkuZHN0KSkgewo+ID4g
-PiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgaWYgKG9sZF9wbGFuZV9zdGF0ZS0+
-dWFwaS52aXNpYmxlKSB7Cj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIGRhbWFnZWRfYXJlYS55MSA9IG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTE7Cj4g
-PiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRhbWFnZWRfYXJl
-YS55MiA9IG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5kc3QueTI7Cj4gPiA+ID4gPiA+ID4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwg
-JmRhbWFnZWRfYXJlYSk7Cj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICB9
-Cj4gPiA+ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAg
-ICBpZiAobmV3X3BsYW5lX3N0YXRlLT51YXBpLnZpc2libGUpIHsKPiA+ID4gPiA+ID4gPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGFtYWdlZF9hcmVhLnkxID0gbmV3X3BsYW5l
-X3N0YXRlLT51YXBpLmRzdC55MTsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgZGFtYWdlZF9hcmVhLnkyID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55
-MjsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xpcF9h
-cmVhX3VwZGF0ZSgmcGlwZV9jbGlwLCAmZGFtYWdlZF9hcmVhKTsKPiA+ID4gPiA+ID4gPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgIH0KPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgIGNvbnRpbnVlOwo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIH0gZWxzZSBp
-ZiAobmV3X3BsYW5lX3N0YXRlLT51YXBpLmFscGhhICE9IG9sZF9wbGFuZV9zdGF0ZS0+dWFwaS5h
-bHBoYSB8fAo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgKCFudW1f
-Y2xpcHMgJiYKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICBuZXdf
-cGxhbmVfc3RhdGUtPnVhcGkuZmIgIT0gb2xkX3BsYW5lX3N0YXRlLT51YXBpLmZiKSkgewo+ID4g
-PiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgLyoKPiA+ID4gPiA+ID4gPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAqIElmIHRoZSBwbGFuZSBkb24ndCBoYXZlIGRhbWFnZWQg
-YXJlYXMgYnV0IHRoZQo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICog
-ZnJhbWVidWZmZXIgY2hhbmdlZCBvciBhbHBoYSBjaGFuZ2VkLCBtYXJrIHRoZSB3aG9sZQo+ID4g
-PiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICogcGxhbmUgYXJlYSBhcyBkYW1h
-Z2VkLgo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICovCj4gPiA+ID4g
-PiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBkYW1hZ2VkX2FyZWEueTEgPSBuZXdfcGxh
-bmVfc3RhdGUtPnVhcGkuZHN0LnkxOwo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgZGFtYWdlZF9hcmVhLnkyID0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MjsKPiA+
-ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsaXBfYXJlYV91cGRhdGUoJnBp
-cGVfY2xpcCwgJmRhbWFnZWRfYXJlYSk7Cj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAg
-ICAgICAgICBjb250aW51ZTsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICB9Cj4gPiA+
-ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgZHJtX3JlY3RfZnBf
-dG9faW50KCZzcmMsICZuZXdfcGxhbmVfc3RhdGUtPnVhcGkuc3JjKTsKPiA+ID4gPiA+ID4gPiA+
-ICsgICAgICAgICAgICAgICBkYW1hZ2VkX2NsaXBzID0gZHJtX3BsYW5lX2dldF9kYW1hZ2VfY2xp
-cHMoJm5ld19wbGFuZV9zdGF0ZS0+dWFwaSk7Cj4gPiA+ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+
-ID4gPiArICAgICAgICAgICAgICAgZm9yIChqID0gMDsgaiA8IG51bV9jbGlwczsgaisrKSB7Cj4g
-PiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgZHJtX3JlY3QgY2xp
-cDsKPiA+ID4gPiA+ID4gPiA+ICsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICAgIGNsaXAueDEgPSBkYW1hZ2VkX2NsaXBzW2pdLngxOwo+ID4gPiA+ID4gPiA+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgY2xpcC55MSA9IGRhbWFnZWRfY2xpcHNbal0ueTE7Cj4gPiA+ID4g
-PiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBjbGlwLngyID0gZGFtYWdlZF9jbGlwc1tq
-XS54MjsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsaXAueTIgPSBk
-YW1hZ2VkX2NsaXBzW2pdLnkyOwo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAg
-ICAgaWYgKGRybV9yZWN0X2ludGVyc2VjdCgmY2xpcCwgJnNyYykpCj4gPiA+ID4gPiA+ID4gPiAr
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsaXBfYXJlYV91cGRhdGUoJmRhbWFnZWRf
-YXJlYSwgJmNsaXApOwo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIH0KPiA+ID4gPiA+
-ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiAtICAgICAgICAgICAgICAgdGVtcCA9ICpzZWxfZmV0Y2hf
-YXJlYTsKPiA+ID4gPiA+ID4gPiA+IC0gICAgICAgICAgICAgICB0ZW1wLnkxICs9IG5ld19wbGFu
-ZV9zdGF0ZS0+dWFwaS5kc3QueTE7Cj4gPiA+ID4gPiA+ID4gPiAtICAgICAgICAgICAgICAgdGVt
-cC55MiArPSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkyOwo+ID4gPiA+ID4gPiA+ID4gLSAg
-ICAgICAgICAgICAgIGNsaXBfYXJlYV91cGRhdGUoJnBpcGVfY2xpcCwgJnRlbXApOwo+ID4gPiA+
-ID4gPiA+ID4gKyAgICAgICAgICAgICAgIGlmIChkYW1hZ2VkX2FyZWEueTEgPT0gLTEpCj4gPiA+
-ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiA+ID4gPiA+ID4g
-PiA+ICsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICBkYW1hZ2VkX2FyZWEueTEgKz0g
-bmV3X3BsYW5lX3N0YXRlLT51YXBpLmRzdC55MSAtIHNyYy55MTsKPiA+ID4gPiA+ID4gPiA+ICsg
-ICAgICAgICAgICAgICBkYW1hZ2VkX2FyZWEueTIgKz0gbmV3X3BsYW5lX3N0YXRlLT51YXBpLmRz
-dC55MSAtIHNyYy55MTsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICBjbGlwX2FyZWFf
-dXBkYXRlKCZwaXBlX2NsaXAsICZkYW1hZ2VkX2FyZWEpOwo+ID4gPiA+ID4gPiA+ID4gKyAgICAg
-ICB9Cj4gPiA+ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+ID4gPiArICAgICAgIGlmIChmdWxsX3Vw
-ZGF0ZSkKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICBnb3RvIHNraXBfc2VsX2ZldGNo
-X3NldF9sb29wOwo+ID4gPiA+ID4gPiA+ID4gKwo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAvKiBJ
-dCBtdXN0IGJlIGFsaWduZWQgdG8gNCBsaW5lcyAqLwo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICBw
-aXBlX2NsaXAueTEgLT0gcGlwZV9jbGlwLnkxICUgNDsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAg
-aWYgKHBpcGVfY2xpcC55MiAlIDQpCj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgcGlw
-ZV9jbGlwLnkyID0gKChwaXBlX2NsaXAueTIgLyA0KSArIDEpICogNDsKPiA+ID4gPiA+ID4gPiA+
-ICsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgLyoKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICog
-Tm93IHRoYXQgd2UgaGF2ZSB0aGUgcGlwZSBkYW1hZ2VkIGFyZWEgY2hlY2sgaWYgaXQgaW50ZXJz
-ZWN0IHdpdGgKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICogZXZlcnkgcGxhbmUsIGlmIGl0IGRv
-ZXMgc2V0IHRoZSBwbGFuZSBzZWxlY3RpdmUgZmV0Y2ggYXJlYS4KPiA+ID4gPiA+ID4gPiA+ICsg
-ICAgICAgICovCj4gPiA+ID4gPiA+ID4gPiArICAgICAgIGZvcl9lYWNoX29sZG5ld19pbnRlbF9w
-bGFuZV9pbl9zdGF0ZShzdGF0ZSwgcGxhbmUsIG9sZF9wbGFuZV9zdGF0ZSwKPiA+ID4gPiA+ID4g
-PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5ld19wbGFu
-ZV9zdGF0ZSwgaSkgewo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgIHN0cnVjdCBkcm1f
-cmVjdCAqc2VsX2ZldGNoX2FyZWEsIGludGVyOwo+ID4gPiA+ID4gPiA+ID4gKwo+ID4gPiA+ID4g
-PiA+ID4gKyAgICAgICAgICAgICAgIGlmIChuZXdfcGxhbmVfc3RhdGUtPnVhcGkuY3J0YyAhPSBj
-cnRjX3N0YXRlLT51YXBpLmNydGMgfHwKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAg
-ICAgIW5ld19wbGFuZV9zdGF0ZS0+dWFwaS52aXNpYmxlKQo+ID4gPiA+ID4gPiA+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiA+ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+
-ID4gPiArICAgICAgICAgICAgICAgaW50ZXIgPSBwaXBlX2NsaXA7Cj4gPiA+ID4gPiA+ID4gPiAr
-ICAgICAgICAgICAgICAgaWYgKCFkcm1fcmVjdF9pbnRlcnNlY3QoJmludGVyLCAmbmV3X3BsYW5l
-X3N0YXRlLT51YXBpLmRzdCkpCj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAg
-ICBjb250aW51ZTsKPiA+ID4gPiA+ID4gPiA+ICsKPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgICAg
-ICAgICBzZWxfZmV0Y2hfYXJlYSA9ICZuZXdfcGxhbmVfc3RhdGUtPnBzcjJfc2VsX2ZldGNoX2Fy
-ZWE7Cj4gPiA+ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgc2VsX2ZldGNoX2FyZWEtPnkxID0g
-aW50ZXIueTEgLSBuZXdfcGxhbmVfc3RhdGUtPnVhcGkuZHN0LnkxOwo+ID4gPiA+ID4gPiA+ID4g
-KyAgICAgICAgICAgICAgIHNlbF9mZXRjaF9hcmVhLT55MiA9IGludGVyLnkyIC0gbmV3X3BsYW5l
-X3N0YXRlLT51YXBpLmRzdC55MTsKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgfQo+ID4gPiA+ID4g
-PiA+ID4KPiA+ID4gPiA+ID4gPiA+ICtza2lwX3NlbF9mZXRjaF9zZXRfbG9vcDoKPiA+ID4gPiA+
-ID4gPiA+ICAgICAgICAgcHNyMl9tYW5fdHJrX2N0bF9jYWxjKGNydGNfc3RhdGUsICZwaXBlX2Ns
-aXAsIGZ1bGxfdXBkYXRlKTsKPiA+ID4gPiA+ID4gPiA+ICAgICAgICAgcmV0dXJuIDA7Cj4gPiA+
-ID4gPiA+ID4gPiAgfQo+ID4gPiA+ID4gPiA+ID4gLS0KPiA+ID4gPiA+ID4gPiA+IDIuMzAuMAo+
-ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4gPiA+ID4gPiA+ID4gPiBJbnRlbC1nZnggbWFpbGluZyBs
-aXN0Cj4gPiA+ID4gPiA+ID4gPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiA+
-ID4gPiA+ID4gPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPgo+ID4g
-PiA+ID4gPiA+IC0tCj4gPiA+ID4gPiA+ID4gRGFuaWVsIFZldHRlcgo+ID4gPiA+ID4gPiA+IFNv
-ZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgo+ID4gPiA+ID4gPiA+IGh0dHA6Ly9i
-bG9nLmZmd2xsLmNoCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+Cj4gPiA+ID4g
-PiA+IC0tCj4gPiA+ID4gPiA+IERhbmllbCBWZXR0ZXIKPiA+ID4gPiA+ID4gU29mdHdhcmUgRW5n
-aW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gPiA+ID4gPiA+IGh0dHA6Ly9ibG9nLmZmd2xsLmNo
-Cj4gPiA+ID4gPgo+ID4gPiA+ID4KPiA+ID4gPiA+Cj4gPiA+ID4KPiA+ID4KPiA+ID4KPiA+ID4g
-LS0KPiA+ID4gRGFuaWVsIFZldHRlcgo+ID4gPiBTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29y
-cG9yYXRpb24KPiA+ID4gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKPiA+Cj4gPgo+ID4KPgoKCi0tIApE
-YW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8v
-YmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+
+On 16/07/2021 21:16, Matthew Brost wrote:
+> With GuC virtual engines the physical engine which a request executes
+> and completes on isn't known to the i915. Therefore we can't attach a
+> request to a physical engines breadcrumbs. To work around this we create
+> a single breadcrumbs per engine class when using GuC submission and
+> direct all physical engine interrupts to this breadcrumbs.
+> 
+> v2:
+>   (John H)
+>    - Rework header file structure so intel_engine_mask_t can be in
+>      intel_engine_types.h
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> CC: John Harrison <John.C.Harrison@Intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 41 +++++-------
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.h   | 16 ++++-
+>   .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |  7 ++
+>   drivers/gpu/drm/i915/gt/intel_engine.h        |  3 +
+>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 28 +++++++-
+>   drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 +-
+>   .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
+>   drivers/gpu/drm/i915/gt/mock_engine.c         |  4 +-
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 67 +++++++++++++++++--
+>   9 files changed, 133 insertions(+), 37 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index 38cc42783dfb..2007dc6f6b99 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -15,28 +15,14 @@
+>   #include "intel_gt_pm.h"
+>   #include "intel_gt_requests.h"
+>   
+> -static bool irq_enable(struct intel_engine_cs *engine)
+> +static bool irq_enable(struct intel_breadcrumbs *b)
+>   {
+> -	if (!engine->irq_enable)
+> -		return false;
+> -
+> -	/* Caller disables interrupts */
+> -	spin_lock(&engine->gt->irq_lock);
+> -	engine->irq_enable(engine);
+> -	spin_unlock(&engine->gt->irq_lock);
+> -
+> -	return true;
+> +	return intel_engine_irq_enable(b->irq_engine);
+>   }
+>   
+> -static void irq_disable(struct intel_engine_cs *engine)
+> +static void irq_disable(struct intel_breadcrumbs *b)
+>   {
+> -	if (!engine->irq_disable)
+> -		return;
+> -
+> -	/* Caller disables interrupts */
+> -	spin_lock(&engine->gt->irq_lock);
+> -	engine->irq_disable(engine);
+> -	spin_unlock(&engine->gt->irq_lock);
+> +	intel_engine_irq_disable(b->irq_engine);
+>   }
+>   
+>   static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+> @@ -57,7 +43,7 @@ static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+>   	WRITE_ONCE(b->irq_armed, true);
+>   
+>   	/* Requests may have completed before we could enable the interrupt. */
+> -	if (!b->irq_enabled++ && irq_enable(b->irq_engine))
+> +	if (!b->irq_enabled++ && b->irq_enable(b))
+>   		irq_work_queue(&b->irq_work);
+>   }
+>   
+> @@ -76,7 +62,7 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+>   {
+>   	GEM_BUG_ON(!b->irq_enabled);
+>   	if (!--b->irq_enabled)
+> -		irq_disable(b->irq_engine);
+> +		b->irq_disable(b);
+>   
+>   	WRITE_ONCE(b->irq_armed, false);
+>   	intel_gt_pm_put_async(b->irq_engine->gt);
+> @@ -281,7 +267,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+>   	if (!b)
+>   		return NULL;
+>   
+> -	b->irq_engine = irq_engine;
+> +	kref_init(&b->ref);
+>   
+>   	spin_lock_init(&b->signalers_lock);
+>   	INIT_LIST_HEAD(&b->signalers);
+> @@ -290,6 +276,10 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+>   	spin_lock_init(&b->irq_lock);
+>   	init_irq_work(&b->irq_work, signal_irq_work);
+>   
+> +	b->irq_engine = irq_engine;
+> +	b->irq_enable = irq_enable;
+> +	b->irq_disable = irq_disable;
+> +
+>   	return b;
+>   }
+>   
+> @@ -303,9 +293,9 @@ void intel_breadcrumbs_reset(struct intel_breadcrumbs *b)
+>   	spin_lock_irqsave(&b->irq_lock, flags);
+>   
+>   	if (b->irq_enabled)
+> -		irq_enable(b->irq_engine);
+> +		b->irq_enable(b);
+>   	else
+> -		irq_disable(b->irq_engine);
+> +		b->irq_disable(b);
+>   
+>   	spin_unlock_irqrestore(&b->irq_lock, flags);
+>   }
+> @@ -325,11 +315,14 @@ void __intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+>   	}
+>   }
+>   
+> -void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+> +void intel_breadcrumbs_free(struct kref *kref)
+>   {
+> +	struct intel_breadcrumbs *b = container_of(kref, typeof(*b), ref);
+> +
+>   	irq_work_sync(&b->irq_work);
+>   	GEM_BUG_ON(!list_empty(&b->signalers));
+>   	GEM_BUG_ON(b->irq_armed);
+> +
+>   	kfree(b);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> index 3ce5ce270b04..be0d4f379a85 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> @@ -9,7 +9,7 @@
+>   #include <linux/atomic.h>
+>   #include <linux/irq_work.h>
+>   
+> -#include "intel_engine_types.h"
+> +#include "intel_breadcrumbs_types.h"
+>   
+>   struct drm_printer;
+>   struct i915_request;
+> @@ -17,7 +17,7 @@ struct intel_breadcrumbs;
+>   
+>   struct intel_breadcrumbs *
+>   intel_breadcrumbs_create(struct intel_engine_cs *irq_engine);
+> -void intel_breadcrumbs_free(struct intel_breadcrumbs *b);
+> +void intel_breadcrumbs_free(struct kref *kref);
+>   
+>   void intel_breadcrumbs_reset(struct intel_breadcrumbs *b);
+>   void __intel_breadcrumbs_park(struct intel_breadcrumbs *b);
+> @@ -48,4 +48,16 @@ void i915_request_cancel_breadcrumb(struct i915_request *request);
+>   void intel_context_remove_breadcrumbs(struct intel_context *ce,
+>   				      struct intel_breadcrumbs *b);
+>   
+> +static inline struct intel_breadcrumbs *
+> +intel_breadcrumbs_get(struct intel_breadcrumbs *b)
+> +{
+> +	kref_get(&b->ref);
+> +	return b;
+> +}
+> +
+> +static inline void intel_breadcrumbs_put(struct intel_breadcrumbs *b)
+> +{
+> +	kref_put(&b->ref, intel_breadcrumbs_free);
+> +}
+> +
+>   #endif /* __INTEL_BREADCRUMBS__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> index 3a084ce8ff5e..72dfd3748c4c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> @@ -7,10 +7,13 @@
+>   #define __INTEL_BREADCRUMBS_TYPES__
+>   
+>   #include <linux/irq_work.h>
+> +#include <linux/kref.h>
+>   #include <linux/list.h>
+>   #include <linux/spinlock.h>
+>   #include <linux/types.h>
+>   
+> +#include "intel_engine_types.h"
+> +
+>   /*
+>    * Rather than have every client wait upon all user interrupts,
+>    * with the herd waking after every interrupt and each doing the
+> @@ -29,6 +32,7 @@
+>    * the overhead of waking that client is much preferred.
+>    */
+>   struct intel_breadcrumbs {
+> +	struct kref ref;
+>   	atomic_t active;
+>   
+>   	spinlock_t signalers_lock; /* protects the list of signalers */
+> @@ -42,7 +46,10 @@ struct intel_breadcrumbs {
+>   	bool irq_armed;
+>   
+>   	/* Not all breadcrumbs are attached to physical HW */
+> +	intel_engine_mask_t	engine_mask;
+>   	struct intel_engine_cs *irq_engine;
+> +	bool	(*irq_enable)(struct intel_breadcrumbs *b);
+> +	void	(*irq_disable)(struct intel_breadcrumbs *b);
+>   };
+>   
+>   #endif /* __INTEL_BREADCRUMBS_TYPES__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 9fec0aca5f4b..edbde6171bca 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -212,6 +212,9 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+>   
+>   void intel_engine_init_execlists(struct intel_engine_cs *engine);
+>   
+> +bool intel_engine_irq_enable(struct intel_engine_cs *engine);
+> +void intel_engine_irq_disable(struct intel_engine_cs *engine);
+> +
+>   static inline void __intel_engine_reset(struct intel_engine_cs *engine,
+>   					bool stalled)
+>   {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index b7292d5cb7da..d95d666407f5 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -739,7 +739,7 @@ static int engine_setup_common(struct intel_engine_cs *engine)
+>   err_cmd_parser:
+>   	i915_sched_engine_put(engine->sched_engine);
+>   err_sched_engine:
+> -	intel_breadcrumbs_free(engine->breadcrumbs);
+> +	intel_breadcrumbs_put(engine->breadcrumbs);
+>   err_status:
+>   	cleanup_status_page(engine);
+>   	return err;
+> @@ -948,7 +948,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+>   	GEM_BUG_ON(!list_empty(&engine->sched_engine->requests));
+>   
+>   	i915_sched_engine_put(engine->sched_engine);
+> -	intel_breadcrumbs_free(engine->breadcrumbs);
+> +	intel_breadcrumbs_put(engine->breadcrumbs);
+>   
+>   	intel_engine_fini_retire(engine);
+>   	intel_engine_cleanup_cmd_parser(engine);
+> @@ -1265,6 +1265,30 @@ bool intel_engines_are_idle(struct intel_gt *gt)
+>   	return true;
+>   }
+>   
+> +bool intel_engine_irq_enable(struct intel_engine_cs *engine)
+> +{
+> +	if (!engine->irq_enable)
+> +		return false;
+> +
+> +	/* Caller disables interrupts */
+> +	spin_lock(&engine->gt->irq_lock);
+> +	engine->irq_enable(engine);
+> +	spin_unlock(&engine->gt->irq_lock);
+> +
+> +	return true;
+> +}
+> +
+> +void intel_engine_irq_disable(struct intel_engine_cs *engine)
+> +{
+> +	if (!engine->irq_disable)
+> +		return;
+> +
+> +	/* Caller disables interrupts */
+> +	spin_lock(&engine->gt->irq_lock);
+> +	engine->irq_disable(engine);
+> +	spin_unlock(&engine->gt->irq_lock);
+> +}
+> +
+>   void intel_engines_reset_default_submission(struct intel_gt *gt)
+>   {
+>   	struct intel_engine_cs *engine;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> index 8ad304b2f2e4..03a81e8d87f4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> @@ -21,7 +21,6 @@
+>   #include "i915_pmu.h"
+>   #include "i915_priolist_types.h"
+>   #include "i915_selftest.h"
+> -#include "intel_breadcrumbs_types.h"
+>   #include "intel_sseu.h"
+>   #include "intel_timeline_types.h"
+>   #include "intel_uncore.h"
+> @@ -63,6 +62,7 @@ struct i915_sched_engine;
+>   struct intel_gt;
+>   struct intel_ring;
+>   struct intel_uncore;
+> +struct intel_breadcrumbs;
+>   
+>   typedef u8 intel_engine_mask_t;
+>   #define ALL_ENGINES ((intel_engine_mask_t)~0ul)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 920707e22eb0..abe48421fd7a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -3407,7 +3407,7 @@ static void rcu_virtual_context_destroy(struct work_struct *wrk)
+>   	intel_context_fini(&ve->context);
+>   
+>   	if (ve->base.breadcrumbs)
+> -		intel_breadcrumbs_free(ve->base.breadcrumbs);
+> +		intel_breadcrumbs_put(ve->base.breadcrumbs);
+>   	if (ve->base.sched_engine)
+>   		i915_sched_engine_put(ve->base.sched_engine);
+>   	intel_engine_free_request_pool(&ve->base);
+> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
+> index 9203c766db80..fc5a65ab1937 100644
+> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
+> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+> @@ -284,7 +284,7 @@ static void mock_engine_release(struct intel_engine_cs *engine)
+>   	GEM_BUG_ON(timer_pending(&mock->hw_delay));
+>   
+>   	i915_sched_engine_put(engine->sched_engine);
+> -	intel_breadcrumbs_free(engine->breadcrumbs);
+> +	intel_breadcrumbs_put(engine->breadcrumbs);
+>   
+>   	intel_context_unpin(engine->kernel_context);
+>   	intel_context_put(engine->kernel_context);
+> @@ -376,7 +376,7 @@ int mock_engine_init(struct intel_engine_cs *engine)
+>   	return 0;
+>   
+>   err_breadcrumbs:
+> -	intel_breadcrumbs_free(engine->breadcrumbs);
+> +	intel_breadcrumbs_put(engine->breadcrumbs);
+>   err_schedule:
+>   	i915_sched_engine_put(engine->sched_engine);
+>   	return -ENOMEM;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 372e0dc7617a..9f28899ff17f 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1076,6 +1076,9 @@ static void __guc_context_destroy(struct intel_context *ce)
+>   		struct guc_virtual_engine *ve =
+>   			container_of(ce, typeof(*ve), context);
+>   
+> +		if (ve->base.breadcrumbs)
+> +			intel_breadcrumbs_put(ve->base.breadcrumbs);
+> +
+>   		kfree(ve);
+>   	} else {
+>   		intel_context_free(ce);
+> @@ -1366,6 +1369,62 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+>   	.get_sibling = guc_virtual_get_sibling,
+>   };
+>   
+> +static bool
+> +guc_irq_enable_breadcrumbs(struct intel_breadcrumbs *b)
+> +{
+> +	struct intel_engine_cs *sibling;
+> +	intel_engine_mask_t tmp, mask = b->engine_mask;
+> +	bool result = false;
+> +
+> +	for_each_engine_masked(sibling, b->irq_engine->gt, mask, tmp)
+> +		result |= intel_engine_irq_enable(sibling);
+> +
+> +	return result;
+> +}
+> +
+> +static void
+> +guc_irq_disable_breadcrumbs(struct intel_breadcrumbs *b)
+> +{
+> +	struct intel_engine_cs *sibling;
+> +	intel_engine_mask_t tmp, mask = b->engine_mask;
+> +
+> +	for_each_engine_masked(sibling, b->irq_engine->gt, mask, tmp)
+> +		intel_engine_irq_disable(sibling);
+> +}
+> +
+> +static void guc_init_breadcrumbs(struct intel_engine_cs *engine)
+> +{
+> +	int i;
+> +
+> +       /*
+> +        * In GuC submission mode we do not know which physical engine a request
+> +        * will be scheduled on, this creates a problem because the breadcrumb
+> +        * interrupt is per physical engine. To work around this we attach
+> +        * requests and direct all breadcrumb interrupts to the first instance
+> +        * of an engine per class. In addition all breadcrumb interrupts are
+> +	* enabled / disabled across an engine class in unison.
+> +        */
+> +	for (i = 0; i < MAX_ENGINE_INSTANCE; ++i) {
+> +		struct intel_engine_cs *sibling =
+> +			engine->gt->engine_class[engine->class][i];
+> +
+> +		if (sibling) {
+> +			if (engine->breadcrumbs != sibling->breadcrumbs) {
+> +				intel_breadcrumbs_put(engine->breadcrumbs);
+
+So it's still only me that is bothered by the lazyness of the proposed 
+init path?
+
+intel_engines_init
+   for_each_engine
+     engine_setup_common
+       engine->breadcrumbs = intel_breadcrumbs_create(engine);
+     intel_guc_submission_setup
+       intel_breadcrumbs_put(engine->breadcrumbs);
+       ...
+
+In other words leaves the code to allocate N objects in common and then 
+it frees all but one of them, overriding vfuncs in the remaining instance.
+
+Why not pull out the setup out of common, when it is obviously not 
+common any more?
+
+Regards,
+
+Tvrtko
+
+> +				engine->breadcrumbs =
+> +					intel_breadcrumbs_get(sibling->breadcrumbs);
+> +			}
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (engine->breadcrumbs) {
+> +		engine->breadcrumbs->engine_mask |= engine->mask;
+> +		engine->breadcrumbs->irq_enable = guc_irq_enable_breadcrumbs;
+> +		engine->breadcrumbs->irq_disable = guc_irq_disable_breadcrumbs;
+> +	}
+> +}
+> +
+>   static void sanitize_hwsp(struct intel_engine_cs *engine)
+>   {
+>   	struct intel_timeline *tl;
+> @@ -1589,6 +1648,7 @@ int intel_guc_submission_setup(struct intel_engine_cs *engine)
+>   
+>   	guc_default_vfuncs(engine);
+>   	guc_default_irqs(engine);
+> +	guc_init_breadcrumbs(engine);
+>   
+>   	if (engine->class == RENDER_CLASS)
+>   		rcs_submission_override(engine);
+> @@ -1831,11 +1891,6 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count)
+>   	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+>   	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+>   	ve->base.saturated = ALL_ENGINES;
+> -	ve->base.breadcrumbs = intel_breadcrumbs_create(&ve->base);
+> -	if (!ve->base.breadcrumbs) {
+> -		kfree(ve);
+> -		return ERR_PTR(-ENOMEM);
+> -	}
+>   
+>   	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
+>   
+> @@ -1884,6 +1939,8 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count)
+>   				sibling->emit_fini_breadcrumb;
+>   			ve->base.emit_fini_breadcrumb_dw =
+>   				sibling->emit_fini_breadcrumb_dw;
+> +			ve->base.breadcrumbs =
+> +				intel_breadcrumbs_get(sibling->breadcrumbs);
+>   
+>   			ve->base.flags |= sibling->flags;
+>   
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
