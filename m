@@ -2,30 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7817F3D22A6
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 13:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5AE43D22B2
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 13:27:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8B76EC80;
-	Thu, 22 Jul 2021 11:23:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD2B96E48C;
+	Thu, 22 Jul 2021 11:27:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0CD2B6EC80;
- Thu, 22 Jul 2021 11:23:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05F88A7DFB;
- Thu, 22 Jul 2021 11:23:10 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F2FD6E842
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jul 2021 11:27:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1626953228;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=tlwSP3E+o6dACUexqN1lCWWtUA1ZS2/frtL2qurgSS8=;
+ b=JM4wdHnHB1Y5/EzFENbsOmvtv/1wvBejgaxRH0P2M9jg+LLtSzpl6vxuVuV5fv5ovfoUx1
+ R5tSv5DSE7wEbzw6AB1F8+U5U1oLMCuuWip0HhkyBi61CIyGL+p7n+UXhiWVRA792n0vzn
+ QhqF6QdElyzj51jBobYdl9tRWAeYY3A=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-526-TXg5LJprPxKeYAsU7j2vnQ-1; Thu, 22 Jul 2021 07:27:05 -0400
+X-MC-Unique: TXg5LJprPxKeYAsU7j2vnQ-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id CD732E7B47;
+ Thu, 22 Jul 2021 11:26:39 +0000 (UTC)
+Received: from sirius.home.kraxel.org (ovpn-114-106.ams2.redhat.com
+ [10.36.114.106])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id 6E64F6A056;
+ Thu, 22 Jul 2021 11:26:38 +0000 (UTC)
+Received: by sirius.home.kraxel.org (Postfix, from userid 1000)
+ id B0EE018000B2; Thu, 22 Jul 2021 13:26:36 +0200 (CEST)
+Date: Thu, 22 Jul 2021 13:26:36 +0200
+From: Gerd Hoffmann <kraxel@redhat.com>
+To: "Wang, Zhi A" <zhi.a.wang@intel.com>
+Message-ID: <20210722112636.wj277vqhg4dez5ug@sirius.home.kraxel.org>
+References: <20210721155355.173183-1-hch@lst.de>
+ <DM4PR11MB55496531B246A4604FC86998CAE49@DM4PR11MB5549.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Thu, 22 Jul 2021 11:23:09 -0000
-Message-ID: <162695298999.30342.15245123579543854129@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210722102558.362-1-shawn.c.lee@intel.com>
-In-Reply-To: <20210722102558.362-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTUlQ?=
- =?utf-8?q?I_DSI_driver_enhancements_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <DM4PR11MB55496531B246A4604FC86998CAE49@DM4PR11MB5549.namprd11.prod.outlook.com>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: Re: [Intel-gfx] refactor the i915 GVT support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,197 +61,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0913794447=="
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0913794447==
-Content-Type: multipart/alternative;
- boundary="===============7335916692396390534=="
+  Hi,
 
---===============7335916692396390534==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> https://github.com/intel/gvt-linux/blob/topic/gvt-xengt/drivers/gpu/drm/i915/gvt/xengt.c
 
-== Series Details ==
+> But it's hard for some customers to contribute their own "hypervisor"
+> module to the upstream Linux kernel. I am thinking what would be a
+> better solution here? The MPT layer in the kernel helps a lot for
+> customers, but only one open-source "hypervisor" module is there in
+> the kernel. That can confuse people which don't know the story.  One
+> thing I was thinking is to put a document about the background and
+> more description in the MPT headers. So it won't confuse more people. 
 
-Series: MIPI DSI driver enhancements (rev2)
-URL   : https://patchwork.freedesktop.org/series/92695/
-State : success
+Getting the xengt module linked above merged into mainline
+would also nicely explain why there are hypervisor modules.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10369 -> Patchwork_20676
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20676 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - {fi-tgl-1115g4}:    [FAIL][2] ([i915#1888]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][4] ([i915#2927]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10369 -> Patchwork_20676
-
-  CI-20190529: 20190529
-  CI_DRM_10369: bb68eb8308c2e7f0ad65d1101a58f55d887a4511 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20676: 532faa8a7c1a4aaf1d75b57309c752efcd425429 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-532faa8a7c1a drm/i915: Get proper min cdclk if vDSC enabled
-8590fea0ca81 drm/i915/dsi: refine send MIPI DCS command sequence
-6a008c7e00e1 drm/i915/dsi: wait for header and payload credit available
-d3203d1bfcde drm/i915/jsl: program DSI panel GPIOs
-96f54fbaefed drm/i915/dsi: send correct gpio_number on gen11 platform
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html
-
---===============7335916692396390534==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>MIPI DSI driver enhancements (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92695/">https://patchwork.freedesktop.org/series/92695/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10369 -&gt; Patchwork_20676</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20676 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@amdgpu/amd_basic@semaphore:<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10369 -&gt; Patchwork_20676</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10369: bb68eb8308c2e7f0ad65d1101a58f55d887a4511 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20676: 532faa8a7c1a4aaf1d75b57309c752efcd425429 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>532faa8a7c1a drm/i915: Get proper min cdclk if vDSC enabled<br />
-8590fea0ca81 drm/i915/dsi: refine send MIPI DCS command sequence<br />
-6a008c7e00e1 drm/i915/dsi: wait for header and payload credit available<br />
-d3203d1bfcde drm/i915/jsl: program DSI panel GPIOs<br />
-96f54fbaefed drm/i915/dsi: send correct gpio_number on gen11 platform</p>
-
-</body>
-</html>
-
---===============7335916692396390534==--
-
---===============0913794447==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+take care,
+  Gerd
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0913794447==--
