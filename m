@@ -2,54 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CBB3D302A
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 01:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67AD63D3033
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 01:29:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B6446F533;
-	Thu, 22 Jul 2021 23:24:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC7FB6EADF;
+	Thu, 22 Jul 2021 23:29:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E724F6F530;
- Thu, 22 Jul 2021 23:24:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="191358129"
-X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="191358129"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0DBD6EADF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jul 2021 23:29:27 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="191358462"
+X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="191358462"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 16:24:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="497139347"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by orsmga001.jf.intel.com with ESMTP; 22 Jul 2021 16:24:39 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 22 Jul 2021 16:24:38 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 22 Jul 2021 16:24:37 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.010;
- Thu, 22 Jul 2021 16:24:37 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>
-Thread-Topic: [PATCH 1/3] drm/plane: remove drm_helper_get_plane_damage_clips
-Thread-Index: AQHXfjSQ13pvN+xoSkuG63dq0X7KjatQG6OA
-Date: Thu, 22 Jul 2021 23:24:37 +0000
-Message-ID: <9edea6756aea4859455c6bf3d4c901c8693fdc1c.camel@intel.com>
-References: <20210721133014.3880922-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210721133014.3880922-1-daniel.vetter@ffwll.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-ID: <FAA4403FB3C95245A2D7F3A54E977B53@intel.com>
+ 22 Jul 2021 16:29:27 -0700
+X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="433332592"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2021 16:29:27 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Jul 2021 16:29:22 -0700
+Message-Id: <20210722232922.3796835-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/plane: remove
- drm_helper_get_plane_damage_clips
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: split DISPLAY_VER 9 and 10
+ in intel_setup_outputs()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,102 +41,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "airlied@linux.ie" <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, "Vetter,
- Daniel" <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>, Christoph Hellwig <hch@infradead.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTA3LTIxIGF0IDE1OjMwICswMjAwLCBEYW5pZWwgVmV0dGVyIHdyb3RlOg0K
-PiBJdCdzIG5vdCB1c2VkLiBEcml2ZXJzIHNob3VsZCBpbnN0ZWFkIHVzZSB0aGUgaGVscGVycyBh
-bnl3YXkuDQo+IA0KPiBDdXJyZW50bHkgYm90aCB2Ym94IGFuZCBpOTE1IGhhbmQtcm9sbCB0aGlz
-IGFuZCBpdCdzIG5vdCB0aGUgZ3JlYXRlc3QuDQo+IHZib3ggbG9va3MgYnVnZ3ksIGFuZCBpOTE1
-IGRvZXMgYSBiaXQgbXVjaCB0aGF0IGhlbHBlcnMgd291bGQgdGFrZQ0KPiBjYXJlIG9mIEkgdGhp
-bmsuDQo+IA0KPiBBbHNvIGltcHJvdmUgdGhlIGtlcm5lbGRvY3Mgd2hpbGUgd2UncmUgYXQgaXQu
-DQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVs
-LmNvbT4NCg0KPiANCj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+DQo+IENjOiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5j
-b20+DQo+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4N
-Cj4gQ2M6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+DQo+IFNpZ25lZC1vZmYt
-Ynk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPg0KPiBDYzogTWFhcnRl
-biBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IE1h
-eGltZSBSaXBhcmQgPG1yaXBhcmRAa2VybmVsLm9yZz4NCj4gQ2M6IFRob21hcyBaaW1tZXJtYW5u
-IDx0emltbWVybWFubkBzdXNlLmRlPg0KPiBDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxpbnV4
-LmllPg0KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPg0KPiAtLS0NCj4gIGRy
-aXZlcnMvZ3B1L2RybS9kcm1fZGFtYWdlX2hlbHBlci5jIHwgIDIgKy0NCj4gIGluY2x1ZGUvZHJt
-L2RybV9kYW1hZ2VfaGVscGVyLmggICAgIHwgMTcgLS0tLS0tLS0tLS0tLS0tLS0NCj4gIGluY2x1
-ZGUvZHJtL2RybV9wbGFuZS5oICAgICAgICAgICAgIHwgMTAgKysrKysrKy0tLQ0KPiAgaW5jbHVk
-ZS9kcm0vZHJtX3JlY3QuaCAgICAgICAgICAgICAgfCAgMyArKysNCj4gIDQgZmlsZXMgY2hhbmdl
-ZCwgMTEgaW5zZXJ0aW9ucygrKSwgMjEgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2RybV9kYW1hZ2VfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJt
-X2RhbWFnZV9oZWxwZXIuYw0KPiBpbmRleCAzYTQxMjZkYzI1MjAuLmViNjliNzEyM2FmNSAxMDA2
-NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9kYW1hZ2VfaGVscGVyLmMNCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2RybV9kYW1hZ2VfaGVscGVyLmMNCj4gQEAgLTI4Miw3ICsyODIsNyBA
-QCBkcm1fYXRvbWljX2hlbHBlcl9kYW1hZ2VfaXRlcl9pbml0KHN0cnVjdCBkcm1fYXRvbWljX2hl
-bHBlcl9kYW1hZ2VfaXRlciAqaXRlciwNCj4gIAlpZiAoIXN0YXRlIHx8ICFzdGF0ZS0+Y3J0YyB8
-fCAhc3RhdGUtPmZiIHx8ICFzdGF0ZS0+dmlzaWJsZSkNCj4gIAkJcmV0dXJuOw0KPiAgDQo+IC0J
-aXRlci0+Y2xpcHMgPSBkcm1faGVscGVyX2dldF9wbGFuZV9kYW1hZ2VfY2xpcHMoc3RhdGUpOw0K
-PiArCWl0ZXItPmNsaXBzID0gKHN0cnVjdCBkcm1fcmVjdCAqKWRybV9wbGFuZV9nZXRfZGFtYWdl
-X2NsaXBzKHN0YXRlKTsNCj4gIAlpdGVyLT5udW1fY2xpcHMgPSBkcm1fcGxhbmVfZ2V0X2RhbWFn
-ZV9jbGlwc19jb3VudChzdGF0ZSk7DQo+ICANCj4gIAkvKiBSb3VuZCBkb3duIGZvciB4MS95MSBh
-bmQgcm91bmQgdXAgZm9yIHgyL3kyIHRvIGNhdGNoIGFsbCBwaXhlbHMgKi8NCj4gZGlmZiAtLWdp
-dCBhL2luY2x1ZGUvZHJtL2RybV9kYW1hZ2VfaGVscGVyLmggYi9pbmNsdWRlL2RybS9kcm1fZGFt
-YWdlX2hlbHBlci5oDQo+IGluZGV4IDQwYzM0YTViZjE0OS4uMWFlOGJjZTZhNWNlIDEwMDY0NA0K
-PiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fZGFtYWdlX2hlbHBlci5oDQo+ICsrKyBiL2luY2x1ZGUv
-ZHJtL2RybV9kYW1hZ2VfaGVscGVyLmgNCj4gQEAgLTgyLDIxICs4Miw0IEBAIGJvb2wgZHJtX2F0
-b21pY19oZWxwZXJfZGFtYWdlX21lcmdlZChjb25zdCBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpv
-bGRfc3RhdGUsDQo+ICAJCQkJICAgICBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpzdGF0ZSwNCj4g
-IAkJCQkgICAgIHN0cnVjdCBkcm1fcmVjdCAqcmVjdCk7DQo+ICANCj4gLS8qKg0KPiAtICogZHJt
-X2hlbHBlcl9nZXRfcGxhbmVfZGFtYWdlX2NsaXBzIC0gUmV0dXJucyBkYW1hZ2UgY2xpcHMgaW4g
-JmRybV9yZWN0Lg0KPiAtICogQHN0YXRlOiBQbGFuZSBzdGF0ZS4NCj4gLSAqDQo+IC0gKiBSZXR1
-cm5zIHBsYW5lIGRhbWFnZSByZWN0YW5nbGVzIGluIGludGVybmFsICZkcm1fcmVjdC4gQ3VycmVu
-dGx5ICZkcm1fcmVjdA0KPiAtICogY2FuIGJlIG9idGFpbmVkIGJ5IHNpbXBseSB0eXBlY2FzdGlu
-ZyAmZHJtX21vZGVfcmVjdC4gVGhpcyBpcyBiZWNhdXNlIGJvdGgNCj4gLSAqIGFyZSBzaWduZWQg
-MzIgYW5kIGR1cmluZyBkcm1fYXRvbWljX2NoZWNrX29ubHkoKSBpdCBpcyB2ZXJpZmllZCB0aGF0
-IGRhbWFnZQ0KPiAtICogY2xpcHMgYXJlIGluc2lkZSBmYi4NCj4gLSAqDQo+IC0gKiBSZXR1cm46
-IENsaXBzIGluIHBsYW5lIGZiX2RhbWFnZV9jbGlwcyBibG9iIHByb3BlcnR5Lg0KPiAtICovDQo+
-IC1zdGF0aWMgaW5saW5lIHN0cnVjdCBkcm1fcmVjdCAqDQo+IC1kcm1faGVscGVyX2dldF9wbGFu
-ZV9kYW1hZ2VfY2xpcHMoY29uc3Qgc3RydWN0IGRybV9wbGFuZV9zdGF0ZSAqc3RhdGUpDQo+IC17
-DQo+IC0JcmV0dXJuIChzdHJ1Y3QgZHJtX3JlY3QgKilkcm1fcGxhbmVfZ2V0X2RhbWFnZV9jbGlw
-cyhzdGF0ZSk7DQo+IC19DQo+IC0NCj4gICNlbmRpZg0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9k
-cm0vZHJtX3BsYW5lLmggYi9pbmNsdWRlL2RybS9kcm1fcGxhbmUuaA0KPiBpbmRleCAxMjk0NjEw
-ZTg0ZjQuLjdmN2Q1MTQ4MzEwYyAxMDA2NDQNCj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX3BsYW5l
-LmgNCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX3BsYW5lLmgNCj4gQEAgLTE4Niw2ICsxODYsOSBA
-QCBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlIHsNCj4gIAkgKiBzaW5jZSBsYXN0IHBsYW5lIHVwZGF0
-ZSkgYXMgYW4gYXJyYXkgb2YgJmRybV9tb2RlX3JlY3QgaW4gZnJhbWVidWZmZXINCj4gIAkgKiBj
-b29kaW5hdGVzIG9mIHRoZSBhdHRhY2hlZCBmcmFtZWJ1ZmZlci4gTm90ZSB0aGF0IHVubGlrZSBw
-bGFuZSBzcmMsDQo+ICAJICogZGFtYWdlIGNsaXBzIGFyZSBub3QgaW4gMTYuMTYgZml4ZWQgcG9p
-bnQuDQo+ICsJICoNCj4gKwkgKiBTZWUgZHJtX3BsYW5lX2dldF9kYW1hZ2VfY2xpcHMoKSBhbmQN
-Cj4gKwkgKiBkcm1fcGxhbmVfZ2V0X2RhbWFnZV9jbGlwc19jb3VudCgpIGZvciBhY2Nlc3Npbmcg
-dGhlc2UuDQo+ICAJICovDQo+ICAJc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICpmYl9kYW1hZ2Vf
-Y2xpcHM7DQo+ICANCj4gQEAgLTkxNCw5ICs5MTcsMTAgQEAgZHJtX3BsYW5lX2dldF9kYW1hZ2Vf
-Y2xpcHNfY291bnQoY29uc3Qgc3RydWN0IGRybV9wbGFuZV9zdGF0ZSAqc3RhdGUpDQo+ICAgKiBk
-cm1fcGxhbmVfZ2V0X2RhbWFnZV9jbGlwcyAtIFJldHVybnMgZGFtYWdlIGNsaXBzLg0KPiAgICog
-QHN0YXRlOiBQbGFuZSBzdGF0ZS4NCj4gICAqDQo+IC0gKiBOb3RlIHRoYXQgdGhpcyBmdW5jdGlv
-biByZXR1cm5zIHVhcGkgdHlwZSAmZHJtX21vZGVfcmVjdC4gRHJpdmVycyBtaWdodA0KPiAtICog
-aW5zdGVhZCBiZSBpbnRlcmVzdGVkIGluIGludGVybmFsICZkcm1fcmVjdCB3aGljaCBjYW4gYmUg
-b2J0YWluZWQgYnkgY2FsbGluZw0KPiAtICogZHJtX2hlbHBlcl9nZXRfcGxhbmVfZGFtYWdlX2Ns
-aXBzKCkuDQo+ICsgKiBOb3RlIHRoYXQgdGhpcyBmdW5jdGlvbiByZXR1cm5zIHVhcGkgdHlwZSAm
-ZHJtX21vZGVfcmVjdC4gRHJpdmVycyBtaWdodCB3YW50DQo+ICsgKiB0byB1c2UgdGhlIGhlbHBl
-ciBmdW5jdGlvbnMgZHJtX2F0b21pY19oZWxwZXJfZGFtYWdlX2l0ZXJfaW5pdCgpIGFuZA0KPiAr
-ICogZHJtX2F0b21pY19oZWxwZXJfZGFtYWdlX2l0ZXJfbmV4dCgpIG9yIGRybV9hdG9taWNfaGVs
-cGVyX2RhbWFnZV9tZXJnZWQoKSBpZg0KPiArICogdGhlIGRyaXZlciBjYW4gb25seSBoYW5kbGUg
-YSBzaW5nbGUgZGFtYWdlIHJlZ2lvbiBhdCBtb3N0Lg0KPiAgICoNCj4gICAqIFJldHVybjogRGFt
-YWdlIGNsaXBzIGluIHBsYW5lIGZiX2RhbWFnZV9jbGlwcyBibG9iIHByb3BlcnR5Lg0KPiAgICov
-DQo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fcmVjdC5oIGIvaW5jbHVkZS9kcm0vZHJt
-X3JlY3QuaA0KPiBpbmRleCAzOWYyZGVlZTcwOWMuLjZmNmUxOWJkNGRhYyAxMDA2NDQNCj4gLS0t
-IGEvaW5jbHVkZS9kcm0vZHJtX3JlY3QuaA0KPiArKysgYi9pbmNsdWRlL2RybS9kcm1fcmVjdC5o
-DQo+IEBAIC0zOSw2ICszOSw5IEBADQo+ICAgKiBAeDI6IGhvcml6b250YWwgZW5kaW5nIGNvb3Jk
-aW5hdGUgKGV4Y2x1c2l2ZSkNCj4gICAqIEB5MTogdmVydGljYWwgc3RhcnRpbmcgY29vcmRpbmF0
-ZSAoaW5jbHVzaXZlKQ0KPiAgICogQHkyOiB2ZXJ0aWNhbCBlbmRpbmcgY29vcmRpbmF0ZSAoZXhj
-bHVzaXZlKQ0KPiArICoNCj4gKyAqIE5vdGUgdGhhdCB0aGlzIG11c3QgbWF0Y2ggdGhlIGxheW91
-dCBvZiBzdHJ1Y3QgZHJtX21vZGVfcmVjdCBvciB0aGUgZGFtYWdlDQo+ICsgKiBoZWxwZXJzIGxp
-a2UgZHJtX2F0b21pY19oZWxwZXJfZGFtYWdlX2l0ZXJfaW5pdCgpIGJyZWFrLg0KPiAgICovDQo+
-ICBzdHJ1Y3QgZHJtX3JlY3Qgew0KPiAgCWludCB4MSwgeTEsIHgyLCB5MjsNCg0KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Commit 5a9d38b20a5a ("drm/i915/display: hide workaround for broken vbt
+in intel_bios.c") moved the workaround for broken or missing VBT to
+intel_bios.c. However is_port_valid() only protects the handling of
+different skus of the same display version. Since in
+intel_setup_outputs() we share the code path with version 9, this would
+also create port F for SKL/KBL, which does not exist.
+
+Missing VBT can be reproduced when starting a headless QEMU with no
+opregion available.
+
+Avoid the issue by splitting versions 9 and 10 in intel_setup_outputs(),
+which also makes it more clear what code path it's taking for each
+version.
+
+v2: move generic display version after Geminilake since that one has
+a different set of outputs
+
+Fixes: 5a9d38b20a5a ("drm/i915/display: hide workaround for broken vbt in intel_bios.c")
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reported-by: Christoph Hellwig <hch@infradead.org>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c274bfb8e549..3f5383f3c744 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -11376,13 +11376,19 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		intel_ddi_init(dev_priv, PORT_B);
+ 		intel_ddi_init(dev_priv, PORT_C);
+ 		vlv_dsi_init(dev_priv);
+-	} else if (DISPLAY_VER(dev_priv) >= 9) {
++	} else if (DISPLAY_VER(dev_priv) == 10) {
+ 		intel_ddi_init(dev_priv, PORT_A);
+ 		intel_ddi_init(dev_priv, PORT_B);
+ 		intel_ddi_init(dev_priv, PORT_C);
+ 		intel_ddi_init(dev_priv, PORT_D);
+ 		intel_ddi_init(dev_priv, PORT_E);
+ 		intel_ddi_init(dev_priv, PORT_F);
++	} else if (DISPLAY_VER(dev_priv) >= 9) {
++		intel_ddi_init(dev_priv, PORT_A);
++		intel_ddi_init(dev_priv, PORT_B);
++		intel_ddi_init(dev_priv, PORT_C);
++		intel_ddi_init(dev_priv, PORT_D);
++		intel_ddi_init(dev_priv, PORT_E);
+ 	} else if (HAS_DDI(dev_priv)) {
+ 		u32 found;
+ 
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
