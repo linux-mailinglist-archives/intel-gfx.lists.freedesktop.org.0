@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF8B3D2517
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 16:02:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22F4F3D2526
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 16:05:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4132A6EC42;
-	Thu, 22 Jul 2021 14:02:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 884FF6EC7E;
+	Thu, 22 Jul 2021 14:05:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D77D86EC05;
- Thu, 22 Jul 2021 14:02:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="272764595"
-X-IronPort-AV: E=Sophos;i="5.84,261,1620716400"; d="scan'208";a="272764595"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 07:02:37 -0700
-X-IronPort-AV: E=Sophos;i="5.84,261,1620716400"; d="scan'208";a="470651337"
-Received: from cstylian-mobl3.ger.corp.intel.com (HELO [10.213.198.98])
- ([10.213.198.98])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 07:02:34 -0700
-To: Jason Ekstrand <jason@jlekstrand.net>
-References: <20210721183229.4136488-1-daniel.vetter@ffwll.ch>
- <591fb3fc-ca96-da18-a280-37304f5f920d@linux.intel.com>
- <YPlFl0KZYNbtU2El@phenom.ffwll.local>
- <013d624b-a39d-55f7-9712-1ae0d0aee4c5@linux.intel.com>
- <CAOFGe94XO6ZA+W9Vby0P-VERadn1Rwox_EFTavWrjoUc6YzsaA@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <f963debc-e129-4bfb-467e-7decaef8d825@linux.intel.com>
-Date: Thu, 22 Jul 2021 15:02:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9260C6EC7E;
+ Thu, 22 Jul 2021 14:05:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8C9BDA00F5;
+ Thu, 22 Jul 2021 14:05:54 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CAOFGe94XO6ZA+W9Vby0P-VERadn1Rwox_EFTavWrjoUc6YzsaA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Ditch i915 globals shrink
- infrastructure
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Desmond Cheong Zhi Xi" <desmondcheongzx@gmail.com>
+Date: Thu, 22 Jul 2021 14:05:54 -0000
+Message-ID: <162696275457.30343.14557328465410741943@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210722092929.244629-1-desmondcheongzx@gmail.com>
+In-Reply-To: <20210722092929.244629-1-desmondcheongzx@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm=2C_drm/vmwgfx=3A_fixes_and_updates_related_to_drm=5Fmaster?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,90 +38,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 22/07/2021 14:37, Jason Ekstrand wrote:
-> On Thu, Jul 22, 2021 at 5:34 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->> On 22/07/2021 11:16, Daniel Vetter wrote:
->>> On Thu, Jul 22, 2021 at 11:02:55AM +0100, Tvrtko Ursulin wrote:
->>>> On 21/07/2021 19:32, Daniel Vetter wrote:
->>>>> This essentially reverts
->>>>>
->>>>> commit 84a1074920523430f9dc30ff907f4801b4820072
->>>>> Author: Chris Wilson <chris@chris-wilson.co.uk>
->>>>> Date:   Wed Jan 24 11:36:08 2018 +0000
->>>>>
->>>>>        drm/i915: Shrink the GEM kmem_caches upon idling
->>>>>
->>>>> mm/vmscan.c:do_shrink_slab() is a thing, if there's an issue with it
->>>>> then we need to fix that there, not hand-roll our own slab shrinking
->>>>> code in i915.
->>>>
->>>> This is somewhat incomplete statement which ignores a couple of angles so I
->>>> wish there was a bit more time to respond before steam rolling it in. :(
->>>>
->>>> The removed code was not a hand rolled shrinker, but about managing slab
->>>> sizes in face of bursty workloads. Core code does not know when i915 is
->>>> active and when it is idle, so calling kmem_cache_shrink() after going idle
->>>> wass supposed to help with house keeping by doing house keeping work outside
->>>> of the latency sensitive phase.
->>>>
->>>> To "fix" (improve really) it in core as you suggest, would need some method
->>>> of signaling when a slab user feels is an opportunte moment to do this house
->>>> keeping. And kmem_cache_shrink is just that so I don't see the problem.
->>>>
->>>> Granted, argument kmem_cache_shrink is not much used is a valid one so
->>>> discussion overall is definitely valid. Becuase on the higher level we could
->>>> definitely talk about which workloads actually benefit from this code and
->>>> how much which probably no one knows at this point.
-> 
-> Pardon me for being a bit curt here, but that discussion should have
-> happened 3.5 years ago when this landed.  The entire justification we
-> have on record for this change is, "When we finally decide the gpu is
-> idle, that is a good time to shrink our kmem_caches."  We have no
-> record of any workloads which benefit from this and no recorded way to
-> reproduce any supposed benefits, even if it requires a microbenchmark.
-> But we added over 100 lines of code for it anyway, including a bunch
-> of hand-rolled RCU juggling.  Ripping out unjustified complexity is
-> almost always justified, IMO.  The burden of proof here isn't on
-> Daniel to show he isn't regressing anything but it was on you and
-> Chris to show that complexity was worth something back in 2018 when
-> this landed.
+Series: drm, drm/vmwgfx: fixes and updates related to drm_master
+URL   : https://patchwork.freedesktop.org/series/92894/
+State : warning
 
-It feels like there is so much knee-jerk when looking at code added by 
-Chris which often results in not reading properly what I wrote.
+== Summary ==
 
-For instance I did not ask for any proof of no regressions, neither I 
-claimed any regressions. In fact I said clearly that at this point it is 
-not known what benefited from it. Statement at the time wasn't clear so 
-you would need to ask Chris whether he remembers any better than what I 
-can find in mailing list archives. Heck I even said the argument to 
-remove is completely valid..
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:312:49: error: static assertion failed: "amd_sriov_msg_vf2pf_info must be 1 KB"
++drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h:316:49: error: static assertion failed: "amd_sriov_msg_pf2vf_info must be 1 KB"
++drivers/gpu/drm/drm_drv.c:425:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
++drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
++drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
++drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    expected struct i915_address_space *vm
++drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    got struct i915_address_space [noderef] __rcu *vm
++drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    expected struct i915_address_space [noderef] __rcu *vm
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    got struct i915_address_space *
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    expected struct i915_address_space *vm
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    got struct i915_address_space [noderef] __rcu *vm
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_ring_submission.c:1210:24: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
++./include/linux/srcu.h:188:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
 
-Point is, process used to be more inclusive and IMO there is no 
-technical justification to fast track this type of change. Compared to 
-other work in progress there was approaching zero maintenance cost with 
-this.
 
-Besides, mm folks may still say that it is good hygiene to tidy own 
-slabs at opportune moments. Maybe it is a stretch but we don't know if 
-we don't ask. There are certainly online references to slab reclaim 
-being problematic in the past. There was nothing urgent in this "revert" 
-which couldn't have waited a bit longer, or at least _some_ of the 
-involved people copied.
-
-Regards,
-
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
