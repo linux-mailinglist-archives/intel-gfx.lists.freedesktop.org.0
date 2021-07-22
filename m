@@ -2,60 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882723D1ECB
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 09:18:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 147E43D1ED8
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 09:21:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D86CC6EB40;
-	Thu, 22 Jul 2021 07:17:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 810A36EE20;
+	Thu, 22 Jul 2021 07:20:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF716EB40
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Jul 2021 07:17:57 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="198789158"
-X-IronPort-AV: E=Sophos;i="5.84,260,1620716400"; d="scan'208";a="198789158"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 00:17:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,260,1620716400"; d="scan'208";a="462673174"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga008.jf.intel.com with ESMTP; 22 Jul 2021 00:17:56 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Thu, 22 Jul 2021 00:17:55 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 22 Jul 2021 12:47:53 +0530
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.010;
- Thu, 22 Jul 2021 12:47:53 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "20210719072222.13369-6-shawn.c.lee@intel.com"
- <20210719072222.13369-6-shawn.c.lee@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 5/5] drm/i915: Get proper min cdclk if vDSC enabled
-Thread-Index: AQHXfG4Hj7cjCMYlnUuQ3/deXTVUi6tLsw8AgAAugbCAAq4iUA==
-Date: Thu, 22 Jul 2021 07:17:53 +0000
-Message-ID: <c67dbd284e074e15b58eb42688f39a64@intel.com>
-References: <20210719072222.13369-1-shawn.c.lee@intel.com>
- <20210719072222.13369-6-shawn.c.lee@intel.com>
- <8ce6abcb8840407c87c3856dcb021e72@intel.com>
- <CO6PR11MB5651A3EF71940549177F4D2FA3E29@CO6PR11MB5651.namprd11.prod.outlook.com>
-In-Reply-To: <CO6PR11MB5651A3EF71940549177F4D2FA3E29@CO6PR11MB5651.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5D76EE18;
+ Thu, 22 Jul 2021 07:20:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=II9VDk2bGBQcqDz1JdadrNxc8E93VszZnx5F4NY1PAw=; b=gzkV4pvqB4Ckl3l2ZUeZNkyii+
+ i3a1ZuymtTya2qyNPG50yR2dojq9FW/0kL0qA68b8QOEM2EaimNcjCQkFUtehp76h+slQ8xZKNAfU
+ 0pfVu9MKPoX+AyKFJSCn7Mro0sdykKxGmvmQzIdI549MnmFr0d9cIMb48+a2nNa6m2bic8uiBEDsG
+ 7BULTm3W8TesYZmzsOlgp+BCHQAXrdzH+lD3hZogLip6Kwiee0+YwlbZY1YCkaYt7nbqbCrClHBnY
+ 2PRKP/LnC2VIFs3plwKARr+sHbJRX3OAIY6GbssSjfe2hn5k8ptYbsSp/TbxNzhWy9GL2bm4WoJb5
+ tmYnjDMw==;
+Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
+ Linux)) id 1m6T0U-009zcD-Nt; Thu, 22 Jul 2021 07:20:39 +0000
+Date: Thu, 22 Jul 2021 08:20:34 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <YPkcQqnRGZABpmce@infradead.org>
+References: <YPgAuSt6Ps7w4/AI@infradead.org> <YPgD/8Y3/te/Hsu3@intel.com>
+ <YPhApJo1o6yBYUh2@infradead.org> <YPiGI9tzLzGZg47j@infradead.org>
+ <YPiPGv/wtnjsxSZy@intel.com> <YPjy/sYgy1SvZBD+@infradead.org>
+ <20210722055523.e5tdgcledznyzmxt@ldmartin-desk2>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Get proper min cdclk if vDSC
- enabled
+Content-Disposition: inline
+In-Reply-To: <20210722055523.e5tdgcledznyzmxt@ldmartin-desk2>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+Subject: Re: [Intel-gfx] 5.14-rc2 warnings with kvmgvt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,111 +51,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, "Tseng,
- William" <william.tseng@intel.com>
+Cc: Christoph Hellwig <hch@infradead.org>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Lee, Shawn C <shawn.c.lee@intel.com>
-> Sent: Tuesday, July 20, 2021 8:01 PM
-> To: Kulkarni, Vandita <vandita.kulkarni@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>; Jani Nikula
-> <jani.nikula@linux.intel.com>; Chiou, Cooper <cooper.chiou@intel.com>;
-> Tseng, William <william.tseng@intel.com>
-> Subject: RE: [PATCH 5/5] drm/i915: Get proper min cdclk if vDSC enabled
+On Thu, Jul 22, 2021 at 01:55:23AM -0400, Lucas De Marchi wrote:
+> humn... PORT_F. KBL doesn't have PORT_F. We decided to keep the handling
+> of DISPLAY_VER == 10 and DISPLAY_VER == 9 together and trust the VBT,
+> but when the VBT is not present, DDI F will get added unconditio.
 > 
-> 
-> On Tue, July 19, 2021, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> >>
-> >> VDSC engine can process only 1 pixel per Cd clock. In case VDSC is
-> >> used and max slice count == 1, max supported pixel clock should be 100%
-> of CD clock.
-> >> Then do min_cdclk and pixel clock comparison to get proper min cdclk.
-> >>
-> >> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> >> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> >> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> >> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> >> Cc: William Tseng <william.tseng@intel.com>
-> >> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ++++++++++++
-> >>  1 file changed, 12 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> index 71067a62264d..c33d574eb991 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> @@ -2159,6 +2159,18 @@ int intel_crtc_compute_min_cdclk(const struct
-> >> intel_crtc_state *crtc_state)
-> >>  /* Account for additional needs from the planes */  min_cdclk =
-> >> max(intel_planes_min_cdclk(crtc_state), min_cdclk);
-> >>
-> >> +/*
-> >> + * VDSC engine can process only 1 pixel per Cd clock.
-> >> + * In case VDSC is used and max slice count == 1,
-> >> + * max supported pixel clock should be 100% of CD clock.
-> >> + * Then do min_cdclk and pixel clock comparison to get cdclk.
-> >> + */
-> >> +if (DISPLAY_VER(dev_priv) >= 11 &&
-> >
-> >I think you could just check for dsc enable and slice count ==1.
-> >
-> 
-> DP and eDP would apply the same thing if dsc enabled and sink's dsc slice
-> count ==1.
-> Is that right?
-Yes.
-> 
-> >Also better to have a check if crtc_clock exceeds dev_priv->max_cdclk_freq
-> in dsi_dsc compute_config as well.
-> >and return -EINVAL .
-> >
-> >-Vandita
-Since we do not have bigjoiner support on dsi yet and the check wrt max_cdclk_freq
-is taken care in intel_crtc_compute_config. I think you can leave this for now.
-You do not need this clock check again in dsi_compute_config
+> maybe best thing to do is to split that
 
--Vandita
-> >
-> 
-> We should have this checking in dsi_dsc_compute_config() just like DP driver
-> did. What do you think?
-> 
-> 	if (adjusted_mode->crtc_clock > dev_priv->max_cdclk_freq ||
-> 	    pipe_config->bigjoiner) {
-> 		if (pipe_config->dsc.slice_count < 2) {
-> 			drm_dbg_kms(&dev_priv->drm,
-> 				    "Cannot split stream to use 2 VDSC
-> instances\n");
-> 			return -EINVAL;
-> 		}
-> 
-> 		pipe_config->dsc.dsc_split = true;
-> 	}
-> 
-> Best regards,
-> Shawn
-> 
-> >> +    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
-> >> +    crtc_state->dsc.compression_enable &&
-> >> +    crtc_state->dsc.slice_count == 1)
-> >
-> >> +min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
-> >> +
-> >>  /*
-> >>   * HACK. Currently for TGL platforms we calculate
-> >>   * min_cdclk initially based on pixel_rate divided
-> >> --
-> >> 2.17.1
-> >
-> >
-
+With this and the previous patch the stack traces are gone.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
