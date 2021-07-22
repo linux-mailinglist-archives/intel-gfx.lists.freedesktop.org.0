@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57A033D224E
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 12:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7817F3D22A6
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Jul 2021 13:23:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9D586E88A;
-	Thu, 22 Jul 2021 10:54:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8B76EC80;
+	Thu, 22 Jul 2021 11:23:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 879BB6E3BB;
- Thu, 22 Jul 2021 10:54:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0CD2B6EC80;
+ Thu, 22 Jul 2021 11:23:10 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1B73EA0BCB;
- Thu, 22 Jul 2021 10:54:23 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05F88A7DFB;
+ Thu, 22 Jul 2021 11:23:10 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Thu, 22 Jul 2021 10:54:23 -0000
-Message-ID: <162695126308.30345.11902766802790933372@emeril.freedesktop.org>
+Date: Thu, 22 Jul 2021 11:23:09 -0000
+Message-ID: <162695298999.30342.15245123579543854129@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210722102558.362-1-shawn.c.lee@intel.com>
 In-Reply-To: <20210722102558.362-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?MIPI_DSI_driver_enhancements_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTUlQ?=
+ =?utf-8?q?I_DSI_driver_enhancements_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,85 +40,195 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0913794447=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+
+--===============0913794447==
+Content-Type: multipart/alternative;
+ boundary="===============7335916692396390534=="
+
+--===============7335916692396390534==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
 Series: MIPI DSI driver enhancements (rev2)
 URL   : https://patchwork.freedesktop.org/series/92695/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1896:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1412:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    expected struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    got struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    expected struct i915_address_space *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    got struct i915_address_space [noderef] __rcu *vm
-+drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1396:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1210:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+CI Bug Log - changes from CI_DRM_10369 -> Patchwork_20676
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20676 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - {fi-tgl-1115g4}:    [FAIL][2] ([i915#1888]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [DMESG-FAIL][4] ([i915#2927]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+
+
+Participating hosts (38 -> 35)
+------------------------------
+
+  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10369 -> Patchwork_20676
+
+  CI-20190529: 20190529
+  CI_DRM_10369: bb68eb8308c2e7f0ad65d1101a58f55d887a4511 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20676: 532faa8a7c1a4aaf1d75b57309c752efcd425429 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+532faa8a7c1a drm/i915: Get proper min cdclk if vDSC enabled
+8590fea0ca81 drm/i915/dsi: refine send MIPI DCS command sequence
+6a008c7e00e1 drm/i915/dsi: wait for header and payload credit available
+d3203d1bfcde drm/i915/jsl: program DSI panel GPIOs
+96f54fbaefed drm/i915/dsi: send correct gpio_number on gen11 platform
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html
+
+--===============7335916692396390534==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>MIPI DSI driver enhancements (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92695/">https://patchwork.freedesktop.org/series/92695/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10369 -&gt; Patchwork_20676</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20676 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_basic@semaphore:<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10369/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20676/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (38 -&gt; 35)</h2>
+<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10369 -&gt; Patchwork_20676</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10369: bb68eb8308c2e7f0ad65d1101a58f55d887a4511 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20676: 532faa8a7c1a4aaf1d75b57309c752efcd425429 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>532faa8a7c1a drm/i915: Get proper min cdclk if vDSC enabled<br />
+8590fea0ca81 drm/i915/dsi: refine send MIPI DCS command sequence<br />
+6a008c7e00e1 drm/i915/dsi: wait for header and payload credit available<br />
+d3203d1bfcde drm/i915/jsl: program DSI panel GPIOs<br />
+96f54fbaefed drm/i915/dsi: send correct gpio_number on gen11 platform</p>
+
+</body>
+</html>
+
+--===============7335916692396390534==--
+
+--===============0913794447==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0913794447==--
