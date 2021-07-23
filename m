@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657ED3D3617
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 10:05:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE793D3626
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 10:09:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D18386F4DE;
-	Fri, 23 Jul 2021 08:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBCBF6E03A;
+	Fri, 23 Jul 2021 08:09:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7660B6F4DE;
- Fri, 23 Jul 2021 08:05:46 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 6E28D67373; Fri, 23 Jul 2021 10:05:43 +0200 (CEST)
-Date: Fri, 23 Jul 2021 10:05:43 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20210723080543.GD2795@lst.de>
-References: <0-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
- <9-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EA0856E03A;
+ Fri, 23 Jul 2021 08:09:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2785A0BCB;
+ Fri, 23 Jul 2021 08:09:17 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v2 09/14] vfio/pci: Change
- vfio_pci_try_bus_reset() to use the dev_set
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Fri, 23 Jul 2021 08:09:17 -0000
+Message-ID: <162702775790.3043.899993366209178311@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210723070548.29315-1-shawn.c.lee@intel.com>
+In-Reply-To: <20210723070548.29315-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTUlQ?=
+ =?utf-8?q?I_DSI_driver_enhancements_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,173 +38,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Max Gurtovoy <mgurtovoy@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Diana Craciun <diana.craciun@oss.nxp.com>, Leon Romanovsky <leonro@nvidia.com>,
- Christoph Hellwig <hch@lst.de>, linux-s390@vger.kernel.org,
- Matthew Rosato <mjrosato@linux.ibm.com>, Jonathan Corbet <corbet@lwn.net>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- intel-gfx@lists.freedesktop.org, Jason Herne <jjherne@linux.ibm.com>,
- Eric Farman <farman@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Eric Auger <eric.auger@redhat.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- intel-gvt-dev@lists.freedesktop.org, "Raj, Ashok" <ashok.raj@intel.com>,
- Tony Krowiak <akrowiak@linux.ibm.com>, Yishai Hadas <yishaih@nvidia.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0729606969=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 20, 2021 at 02:42:55PM -0300, Jason Gunthorpe wrote:
-> Keep track of all the vfio_devices that have been added to the device set
-> and use this list in vfio_pci_try_bus_reset() instead of trying to work
-> backwards from the pci_device.
-> 
-> The dev_set->lock directly prevents devices from joining/leaving the set,
-> which further implies the pci_device cannot change drivers or that the
-> vfio_device be freed, eliminating the need for get/put's.
-> 
-> Completeness of the device set can be directly measured by checking if
-> every PCI device in the reset group is also in the device set - which
-> proves that VFIO drivers are attached to everything.
-> 
-> This restructuring corrects a call to pci_dev_driver() without holding the
-> device_lock() and removes a hard wiring to &vfio_pci_driver.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+--===============0729606969==
+Content-Type: multipart/alternative;
+ boundary="===============3572009270915691439=="
 
-I think the addition of the list to the dev_set should be a different
-patch.  Or maybe even go into the one adding the dev_set concept.
+--===============3572009270915691439==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> +static int vfio_pci_check_all_devices_bound(struct pci_dev *pdev, void *data)
->  {
-> +	struct vfio_device_set *dev_set = data;
-> +	struct vfio_device *cur;
->  
-> +	lockdep_assert_held(&dev_set->lock);
->  
-> +	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
-> +		if (cur->dev == &pdev->dev)
-> +			return 0;
-> +	return -EBUSY;
+== Series Details ==
 
-I don't understand this logic.  If there is any device in the set that
-does now have the same struct device we're in trouble?  Please clearly
-document what this is trying to do.  If the bound in the name makes sense
-you probably want to check the driver instead.
+Series: MIPI DSI driver enhancements (rev3)
+URL   : https://patchwork.freedesktop.org/series/92695/
+State : success
 
->  static void vfio_pci_try_bus_reset(struct vfio_pci_device *vdev)
->  {
-> +	/* All VFIO devices have a closed FD */
-> +	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list)
-> +		if (cur->vdev.open_count)
-> +			return;
-> +
-> +	/* All devices in the group to be reset need VFIO devices */
-> +	if (vfio_pci_for_each_slot_or_bus(
-> +		    vdev->pdev, vfio_pci_check_all_devices_bound, dev_set,
-> +		    !pci_probe_reset_slot(vdev->pdev->slot)))
-> +		return;
->  
->  	/* Does at least one need a reset? */
+== Summary ==
 
-These checks look a little strange, and the comments don't make much
-sense.  What about an incremental patch like this?
+CI Bug Log - changes from CI_DRM_10376 -> Patchwork_20689
+====================================================
 
-diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
-index fbc20f6d2dd412..d8375a5e77e07c 100644
---- a/drivers/vfio/pci/vfio_pci.c
-+++ b/drivers/vfio/pci/vfio_pci.c
-@@ -2188,10 +2188,34 @@ static int vfio_pci_try_zap_and_vma_lock_cb(struct pci_dev *pdev, void *data)
- 	return 0;
- }
- 
-+static struct pci_dev *vfio_pci_reset_target(struct vfio_pci_device *vdev)
-+{
-+	struct vfio_device_set *dev_set = vdev->vdev.dev_set;
-+	struct vfio_pci_device *cur;
-+
-+	/* none of the device is allowed to be currently open: */
-+	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list)
-+		if (cur->vdev.open_count)
-+			return NULL;
-+
-+	/* all devices in the group to be reset need to be VFIO devices: */
-+	if (vfio_pci_for_each_slot_or_bus(vdev->pdev,
-+			vfio_pci_check_all_devices_bound, dev_set,
-+			!pci_probe_reset_slot(vdev->pdev->slot)))
-+		return NULL;
-+
-+	/* Does at least one need a reset? */
-+	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list)
-+		if (cur->needs_reset)
-+			return cur->pdev;
-+
-+	return NULL;
-+}
-+
- /*
-  * If a bus or slot reset is available for the provided device and:
-  *  - All of the devices affected by that bus or slot reset are unused
-- *    (!refcnt)
-+ *    (!open_count)
-  *  - At least one of the affected devices is marked dirty via
-  *    needs_reset (such as by lack of FLR support)
-  * Then attempt to perform that bus or slot reset.  Callers are required
-@@ -2206,8 +2230,8 @@ static int vfio_pci_try_zap_and_vma_lock_cb(struct pci_dev *pdev, void *data)
- static void vfio_pci_try_bus_reset(struct vfio_pci_device *vdev)
- {
- 	struct vfio_device_set *dev_set = vdev->vdev.dev_set;
--	struct vfio_pci_device *to_reset = NULL;
- 	struct vfio_pci_device *cur;
-+	struct pci_dev *to_reset;
- 	int ret;
- 
- 	if (pci_probe_reset_slot(vdev->pdev->slot) &&
-@@ -2216,35 +2240,18 @@ static void vfio_pci_try_bus_reset(struct vfio_pci_device *vdev)
- 
- 	lockdep_assert_held(&vdev->vdev.dev_set->lock);
- 
--	/* All VFIO devices have a closed FD */
--	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list)
--		if (cur->vdev.open_count)
--			return;
--
--	/* All devices in the group to be reset need VFIO devices */
--	if (vfio_pci_for_each_slot_or_bus(
--		    vdev->pdev, vfio_pci_check_all_devices_bound, dev_set,
--		    !pci_probe_reset_slot(vdev->pdev->slot)))
--		return;
--
--	/* Does at least one need a reset? */
--	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list) {
--		if (cur->needs_reset) {
--			to_reset = cur;
--			break;
--		}
--	}
-+	to_reset = vfio_pci_reset_target(vdev);
- 	if (!to_reset)
- 		return;
- 
--	ret = pci_reset_bus(to_reset->pdev);
-+	ret = pci_reset_bus(to_reset);
- 	if (ret)
- 		return;
- 
- 	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list) {
- 		cur->needs_reset = false;
- 
--		if (cur != to_reset && !disable_idle_d3)
-+		if (cur->pdev != to_reset && !disable_idle_d3)
- 			vfio_pci_set_power_state(cur, PCI_D3hot);
- 	}
- }
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20689/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20689 that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+
+
+Participating hosts (41 -> 35)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u bat-adlp-4 bat-adls-4 bat-adls-3 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10376 -> Patchwork_20689
+
+  CI-20190529: 20190529
+  CI_DRM_10376: 299bd09eafa6bf94ac922867ee0c797f8e569d3b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20689: 86a133132144cac513321a5e8f05bf48fa3e1c17 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+86a133132144 drm/i915/dsi: Send proper brightness value via MIPI DCS command
+20289018e0a5 drm/i915/dsi: Retrieve max brightness level from VBT.
+0df46fa4d7cc drm/i915: Get proper min cdclk if vDSC enabled
+72480625ce94 drm/i915/dsi: refine send MIPI DCS command sequence
+57d3de727a89 drm/i915/dsi: wait for header and payload credit available
+0071f18cf3f3 drm/i915/jsl: program DSI panel GPIOs
+d7af033a52e3 drm/i915/dsi: send correct gpio_number on gen11 platform
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20689/index.html
+
+--===============3572009270915691439==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>MIPI DSI driver enhancements (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92695/">https://patchwork.freedesktop.org/series/92695/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20689/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20689/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10376 -&gt; Patchwork_20689</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20689/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20689 that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 35)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u bat-adlp-4 bat-adls-4 bat-adls-3 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10376 -&gt; Patchwork_20689</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10376: 299bd09eafa6bf94ac922867ee0c797f8e569d3b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20689: 86a133132144cac513321a5e8f05bf48fa3e1c17 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>86a133132144 drm/i915/dsi: Send proper brightness value via MIPI DCS command<br />
+20289018e0a5 drm/i915/dsi: Retrieve max brightness level from VBT.<br />
+0df46fa4d7cc drm/i915: Get proper min cdclk if vDSC enabled<br />
+72480625ce94 drm/i915/dsi: refine send MIPI DCS command sequence<br />
+57d3de727a89 drm/i915/dsi: wait for header and payload credit available<br />
+0071f18cf3f3 drm/i915/jsl: program DSI panel GPIOs<br />
+d7af033a52e3 drm/i915/dsi: send correct gpio_number on gen11 platform</p>
+
+</body>
+</html>
+
+--===============3572009270915691439==--
+
+--===============0729606969==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0729606969==--
