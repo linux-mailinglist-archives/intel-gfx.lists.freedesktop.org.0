@@ -1,37 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 497453D345C
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 07:57:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A00F83D34B7
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 08:31:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 996866F97D;
-	Fri, 23 Jul 2021 05:57:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA8376ED04;
+	Fri, 23 Jul 2021 06:31:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D1B26F97D
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 05:57:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="199080264"
-X-IronPort-AV: E=Sophos;i="5.84,263,1620716400"; d="scan'208";a="199080264"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 22:57:11 -0700
-X-IronPort-AV: E=Sophos;i="5.84,263,1620716400"; d="scan'208";a="433567042"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 22:57:10 -0700
-Date: Thu, 22 Jul 2021 22:57:09 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20210723055709.GA1229765@mdroper-desk1.amr.corp.intel.com>
-References: <20210722232922.3796835-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DD0656ED04;
+ Fri, 23 Jul 2021 06:31:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D68C7A47DB;
+ Fri, 23 Jul 2021 06:31:22 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210722232922.3796835-1-lucas.demarchi@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: split DISPLAY_VER 9
- and 10 in intel_setup_outputs()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Fri, 23 Jul 2021 06:31:22 -0000
+Message-ID: <162702188287.3043.9877966001889444727@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210723053401.1269829-1-matthew.d.roper@intel.com>
+In-Reply-To: <20210723053401.1269829-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_ADL_DDI_translation_buffer_updates_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,90 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Christoph Hellwig <hch@infradead.org>,
- intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 22, 2021 at 04:29:22PM -0700, Lucas De Marchi wrote:
-> Commit 5a9d38b20a5a ("drm/i915/display: hide workaround for broken vbt
-> in intel_bios.c") moved the workaround for broken or missing VBT to
-> intel_bios.c. However is_port_valid() only protects the handling of
-> different skus of the same display version. Since in
-> intel_setup_outputs() we share the code path with version 9, this would
-> also create port F for SKL/KBL, which does not exist.
-> 
-> Missing VBT can be reproduced when starting a headless QEMU with no
-> opregion available.
-> 
-> Avoid the issue by splitting versions 9 and 10 in intel_setup_outputs(),
-> which also makes it more clear what code path it's taking for each
-> version.
+== Series Details ==
 
-Or we could just drop the PORT_F line.  We've slowly been dropping bits
-and pieces of CNL support from the driver for a while now since all the
-hardware that came out had fused off graphics/display; that leaves GLK
-as the only real platform with display version 10, and it's already
-handled in its own condition branch above.
+Series: ADL DDI translation buffer updates (rev2)
+URL   : https://patchwork.freedesktop.org/series/92921/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+faad50971bdd drm/i915/adl_s: Update ddi buf translation tables
+43e59f118335 drm/i915/adl_p: Add ddi buf translation tables for combo PHY
+-:95: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#95: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1728:
++		return intel_get_buf_trans(&adlp_combo_phy_ddi_translations_dp_hbr2_hbr3, n_entries);
+
+total: 0 errors, 1 warnings, 0 checks, 124 lines checked
 
 
-Matt
-
-> 
-> v2: move generic display version after Geminilake since that one has
-> a different set of outputs
-> 
-> Fixes: 5a9d38b20a5a ("drm/i915/display: hide workaround for broken vbt in intel_bios.c")
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Reported-by: Christoph Hellwig <hch@infradead.org>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index c274bfb8e549..3f5383f3c744 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -11376,13 +11376,19 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->  		intel_ddi_init(dev_priv, PORT_B);
->  		intel_ddi_init(dev_priv, PORT_C);
->  		vlv_dsi_init(dev_priv);
-> -	} else if (DISPLAY_VER(dev_priv) >= 9) {
-> +	} else if (DISPLAY_VER(dev_priv) == 10) {
->  		intel_ddi_init(dev_priv, PORT_A);
->  		intel_ddi_init(dev_priv, PORT_B);
->  		intel_ddi_init(dev_priv, PORT_C);
->  		intel_ddi_init(dev_priv, PORT_D);
->  		intel_ddi_init(dev_priv, PORT_E);
->  		intel_ddi_init(dev_priv, PORT_F);
-> +	} else if (DISPLAY_VER(dev_priv) >= 9) {
-> +		intel_ddi_init(dev_priv, PORT_A);
-> +		intel_ddi_init(dev_priv, PORT_B);
-> +		intel_ddi_init(dev_priv, PORT_C);
-> +		intel_ddi_init(dev_priv, PORT_D);
-> +		intel_ddi_init(dev_priv, PORT_E);
->  	} else if (HAS_DDI(dev_priv)) {
->  		u32 found;
->  
-> -- 
-> 2.31.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
