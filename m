@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59AED3D3F08
+	by mail.lfdr.de (Postfix) with ESMTPS id E25F53D3F09
 	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:43:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA1976FBA5;
-	Fri, 23 Jul 2021 17:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D45E66FBAA;
+	Fri, 23 Jul 2021 17:43:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1177D6FB9B
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:42:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="199127539"
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="199127539"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66FAF6FB9F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:43:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="275742995"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="275742995"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:51 -0700
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229099"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229102"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:51 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Jul 2021 10:42:29 -0700
-Message-Id: <20210723174239.1551352-21-matthew.d.roper@intel.com>
+Date: Fri, 23 Jul 2021 10:42:30 -0700
+Message-Id: <20210723174239.1551352-22-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 References: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 20/30] drm/i915/dg2: Maintain
- backward-compatible nested batch behavior
+Subject: [Intel-gfx] [PATCH v3 21/30] drm/i915/dg2: Report INSTDONE_GEOM
+ values in error state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,105 +48,100 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For tgl+, the per-context setting of MI_MODE[12] determines whether
-the bits of a nested MI_BATCH_BUFFER_START instruction should be
-interpreted in the traditional manner or whether they should
-instead use a new tgl+ meaning that breaks backward compatibility, but
-allows nesting into 3rd-level batchbuffers.  For previous platforms,
-the hardware default for this register bit is to maintain
-backward-compatible behavior unless a context intentionally opts into
-the new behavior; however Xe_HPG flips the hardware default behavior.
+Xe_HPG adds some additional INSTDONE_GEOM debug registers; the Mesa team
+has indicated that having these reported in the error state would be
+useful for debugging GPU hangs.  These registers are replicated per-DSS
+with gslice steering.
 
-From a SW perspective, we want to maintain the backward-compatible
-behavior for userspace, so we'll apply a fake workaround to set it back
-to the legacy behavior on platforms where the hardware default is to
-break compatibility.  At the moment there is no Linux userspace that
-utilizes third-level batchbuffers, so this will avoid userspace from
-needing to make any changes.  using the legacy meaning is the correct
-thing to do.  If/when we have userspace consumers that want to utilize
-third-level batch nesting, we can provide a context parameter to allow
-them to opt-in.
-
-Bspec: 45974, 45718
-Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 39 +++++++++++++++++++--
- drivers/gpu/drm/i915/i915_reg.h             |  1 +
- 2 files changed, 38 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  7 +++++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +++
+ drivers/gpu/drm/i915/i915_gpu_error.c        | 10 ++++++++--
+ drivers/gpu/drm/i915/i915_reg.h              |  1 +
+ 4 files changed, 19 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 57f0e0ceba77..638cfde84e50 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -643,6 +643,37 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
- 		     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE);
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index fc8538ce47ae..71f6e7d7c3b9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1211,6 +1211,13 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+ 							  GEN7_ROW_INSTDONE);
+ 			}
+ 		}
++
++		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
++			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice)
++				instdone->geom_svg[slice][subslice] =
++					read_subslice_reg(engine, slice, subslice,
++							  XEHPG_INSTDONE_GEOM_SVG);
++		}
+ 	} else if (GRAPHICS_VER(i915) >= 7) {
+ 		instdone->instdone =
+ 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index b23d76ceea0e..8f9e79074c1c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -76,6 +76,9 @@ struct intel_instdone {
+ 	u32 slice_common_extra[2];
+ 	u32 sampler[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
+ 	u32 row[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
++
++	/* Added in XeHPG */
++	u32 geom_svg[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
+ };
  
-+static void fakewa_disable_nestedbb_mode(struct intel_engine_cs *engine,
-+					 struct i915_wa_list *wal)
-+{
-+	/*
-+	 * This is a "fake" workaround defined by software to ensure we
-+	 * maintain reliable, backward-compatible behavior for userspace with
-+	 * regards to how nested MI_BATCH_BUFFER_START commands are handled.
-+	 *
-+	 * The per-context setting of MI_MODE[12] determines whether the bits
-+	 * of a nested MI_BATCH_BUFFER_START instruction should be interpreted
-+	 * in the traditional manner or whether they should instead use a new
-+	 * tgl+ meaning that breaks backward compatibility, but allows nesting
-+	 * into 3rd-level batchbuffers.  When this new capability was first
-+	 * added in TGL, it remained off by default unless a context
-+	 * intentionally opted in to the new behavior.  However Xe_HPG now
-+	 * flips this on by default and requires that we explicitly opt out if
-+	 * we don't want the new behavior.
-+	 *
-+	 * From a SW perspective, we want to maintain the backward-compatible
-+	 * behavior for userspace, so we'll apply a fake workaround to set it
-+	 * back to the legacy behavior on platforms where the hardware default
-+	 * is to break compatibility.  At the moment there is no Linux
-+	 * userspace that utilizes third-level batchbuffers, so this will avoid
-+	 * userspace from needing to make any changes.  using the legacy
-+	 * meaning is the correct thing to do.  If/when we have userspace
-+	 * consumers that want to utilize third-level batch nesting, we can
-+	 * provide a context parameter to allow them to opt-in.
-+	 */
-+	wa_masked_dis(wal, RING_MI_MODE(engine->mmio_base), TGL_NESTED_BB_EN);
-+}
-+
- static void
- __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- 			   struct i915_wa_list *wal,
-@@ -650,11 +681,15 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- {
- 	struct drm_i915_private *i915 = engine->i915;
+ /*
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index c1e744b5ab47..4de7edc451ef 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -431,6 +431,7 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
+ 	const struct sseu_dev_info *sseu = &ee->engine->gt->info.sseu;
+ 	int slice;
+ 	int subslice;
++	int iter;
  
-+	wa_init_start(wal, name, engine->name);
-+
-+	/* Applies to all engines */
-+	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55))
-+		fakewa_disable_nestedbb_mode(engine, wal);
-+
- 	if (engine->class != RENDER_CLASS)
+ 	err_printf(m, "  INSTDONE: 0x%08x\n",
+ 		   ee->instdone.instdone);
+@@ -445,8 +446,6 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
  		return;
  
--	wa_init_start(wal, name, engine->name);
+ 	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 50)) {
+-		int iter;
 -
- 	if (IS_DG1(i915))
- 		dg1_ctx_workarounds_init(engine, wal);
- 	else if (GRAPHICS_VER(i915) == 12)
+ 		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
+ 			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
+ 				   slice, subslice,
+@@ -471,6 +470,13 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
+ 	if (GRAPHICS_VER(m->i915) < 12)
+ 		return;
+ 
++	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 55)) {
++		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
++			err_printf(m, "  GEOM_SVGUNIT_INSTDONE[%d][%d]: 0x%08x\n",
++				   slice, subslice,
++				   ee->instdone.geom_svg[slice][subslice]);
++	}
++
+ 	err_printf(m, "  SC_INSTDONE_EXTRA: 0x%08x\n",
+ 		   ee->instdone.slice_common_extra[0]);
+ 	err_printf(m, "  SC_INSTDONE_EXTRA2: 0x%08x\n",
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 555759f382f8..b6ffdb89db6f 100644
+index b6ffdb89db6f..45cc76f88738 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2821,6 +2821,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define MI_MODE		_MMIO(0x209c)
- # define VS_TIMER_DISPATCH				(1 << 6)
- # define MI_FLUSH_ENABLE				(1 << 12)
-+# define TGL_NESTED_BB_EN				(1 << 12)
- # define ASYNC_FLIP_PERF_DISABLE			(1 << 14)
- # define MODE_IDLE					(1 << 9)
- # define STOP_RING					(1 << 8)
+@@ -2686,6 +2686,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define GEN12_SC_INSTDONE_EXTRA2	_MMIO(0x7108)
+ #define GEN7_SAMPLER_INSTDONE	_MMIO(0xe160)
+ #define GEN7_ROW_INSTDONE	_MMIO(0xe164)
++#define XEHPG_INSTDONE_GEOM_SVG		_MMIO(0x666c)
+ #define MCFG_MCR_SELECTOR		_MMIO(0xfd0)
+ #define SF_MCR_SELECTOR			_MMIO(0xfd8)
+ #define GEN8_MCR_SELECTOR		_MMIO(0xfdc)
 -- 
 2.25.4
 
