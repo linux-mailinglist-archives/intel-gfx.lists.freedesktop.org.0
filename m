@@ -1,63 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A072F3D36D3
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 10:34:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EAB13D36D5
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 10:35:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0098A6EB69;
-	Fri, 23 Jul 2021 08:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8936EB69;
+	Fri, 23 Jul 2021 08:35:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1992D6EB69
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 08:34:17 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id n2so734803eda.10
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 01:34:17 -0700 (PDT)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
+ [IPv6:2a00:1450:4864:20::62c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 952DC6EB69
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 08:35:08 +0000 (UTC)
+Received: by mail-ej1-x62c.google.com with SMTP id v21so2638362ejg.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 01:35:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=oa9LsULNSF8G3grb64t/9N62g6dzTVHbnQnaT/3ZVD0=;
- b=Uhj8q1dcnNzwe65TtgST0YcC9OKdf9lILHYSD7nmVihjSfs3a7m0h2yQFQiVTSDq7Y
- U+0Gc4NNr5HkH8u8AwarHjkKOD/uvbOFs41i7wLPIeFYS2W359jAaSyTYyG9idPPEZ/Q
- LNKILc2lKAM+RR3tSwFgGH8pFtok1WgagMABk=
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=f4bn887uqWohEHf9tJtivGZU2B/OMsh89fDHBPHgucE=;
+ b=GquE+FLUdLXKgierMdGxD5QMQi0V+Obx7uAPWKNMKtR8U7jSzEeBBmypZ9lVlQJ810
+ r0uv2HgmXlbD6jQv2f1Cb2xRWp5HSy43Xe4LpB0vWSbwvVXHcSQi998uVbXlonToXZQg
+ EABnUR4/Gkl2q8a3qAwJ1HzjckGxfO5Ezzug4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=oa9LsULNSF8G3grb64t/9N62g6dzTVHbnQnaT/3ZVD0=;
- b=Y3nmOXkP0gkuBnk7sVSuOKypFKcPuC1XuhiXaakBOmqGkFcOff0AGNkRpZ2Mz/KRC6
- xwEq5TCJU778o6xl7rbeNxXlyjb8qVDWi+SYGaGBThcUBYilDlBzhp9tXZrD67ioMJ/O
- i4/f4VDiufdf+8EtqM+juowAv8+cPWCjY/92cueM1Glx03B5+awzh0REIYHQcRbBGn5B
- Ol9+bAGCgl4e3aziYs9vJPf5Z4vOYDY+bMDBwKshqX408wGQCQoMNni2hpflg9D0n6uz
- orgffO/KqZhkVDbCi0yz2sFTGiz3ewpjzkjzKE/eqeDn8SeoQ5adDPbybxc4Cr1DdAy6
- lQnw==
-X-Gm-Message-State: AOAM531+3Dt1Vt6GUhNmkyB1buTvwEMgWVQ9W8R3lj++30Aszl+VttsV
- 1y0kA+5avaL5TQDYBup9rBhZug==
-X-Google-Smtp-Source: ABdhPJwAIhi5U4YXs77s+0AJfvT2vvqtnpViuUbw9uCDnytuItqpaveRhwpze8KIjFZtcLeLfzihSQ==
-X-Received: by 2002:aa7:cd03:: with SMTP id b3mr4288127edw.112.1627029256573; 
- Fri, 23 Jul 2021 01:34:16 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=f4bn887uqWohEHf9tJtivGZU2B/OMsh89fDHBPHgucE=;
+ b=oxlu/pZNWmwTHPNsEcsmo9uxzT7VLidrHj24qGOHY9BSB4P6wLJ0mCGZJt6sSS1RAo
+ 8A6FDctRL+qmoQerWi/+VSDMGCkcld3Vv+KMioVynZVifhnBj1XgvXhFmBU1/CkZaASP
+ LsS36kG/YPwdFzQkRj+1OdaJmEv+CErVewTS/TM6HwntNo/OcP21mLdCC+X2y5Hu105x
+ xhUlvh/w0O8gAgdD2AHH45vhQtx9Cn5cYMnP5UaM0CGB7J2NLOaS07dp+ipfxr9OO/Pt
+ ZCwZW+aXLYTdt9IlgpUDB9VjmcaMizrSfqt9vIwj/QkNYypalJsfMwXc9MzWZ+JrUQrX
+ sd+g==
+X-Gm-Message-State: AOAM532jXisnUbQb1isX0sQNhEm22IdKHFlKWB1baLCP7sE0gDTVSggU
+ GkwSbNMADLtb+lb2Ruj1/TXKgA==
+X-Google-Smtp-Source: ABdhPJyo99sg1Z/X7gvWndHlguL4DGLiUMKtoBa59X7cFNiRAsgU/yHatubV3eSW7QcgvOl9eeCX7Q==
+X-Received: by 2002:a17:906:5509:: with SMTP id
+ r9mr3798819ejp.74.1627029307206; 
+ Fri, 23 Jul 2021 01:35:07 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id jg9sm10185723ejc.6.2021.07.23.01.34.15
+ by smtp.gmail.com with ESMTPSA id s26sm10237758ejv.87.2021.07.23.01.35.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Jul 2021 01:34:15 -0700 (PDT)
-Date: Fri, 23 Jul 2021 10:34:14 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <YPp/BlD8zrM98+6C@phenom.ffwll.local>
-References: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
- <20210713205153.1896059-4-daniel.vetter@ffwll.ch>
- <0e4eefe0-9282-672c-7678-8d3162de35e3@suse.de>
- <YPpxh0QhILXESykX@phenom.ffwll.local>
- <be56fbe8-5151-ef8d-13cb-0b8a71f4d1e0@amd.com>
+ Fri, 23 Jul 2021 01:35:06 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Fri, 23 Jul 2021 10:34:55 +0200
+Message-Id: <20210723083457.696939-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <be56fbe8-5151-ef8d-13cb-0b8a71f4d1e0@amd.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v4 3/4] drm/shmem-helpers: Allocate wc pages
- on x86
+Subject: [Intel-gfx] [PATCH 1/3] drm/plane: remove
+ drm_helper_get_plane_damage_clips
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,174 +63,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 23, 2021 at 10:02:39AM +0200, Christian K=F6nig wrote:
-> Am 23.07.21 um 09:36 schrieb Daniel Vetter:
-> > On Thu, Jul 22, 2021 at 08:40:56PM +0200, Thomas Zimmermann wrote:
-> > > Hi
-> > > =
-
-> > > Am 13.07.21 um 22:51 schrieb Daniel Vetter:
-> > > [SNIP]
-> > > > +#ifdef CONFIG_X86
-> > > > +	if (shmem->map_wc)
-> > > > +		set_pages_array_wc(pages, obj->size >> PAGE_SHIFT);
-> > > > +#endif
-> > > I cannot comment much on the technical details of the caching of vari=
-ous
-> > > architectures. If this patch goes in, there should be a longer commen=
-t that
-> > > reflects the discussion in this thread. It's apparently a workaround.
-> > > =
-
-> > > I think the call itself should be hidden behind a DRM API, which depe=
-nds on
-> > > CONFIG_X86. Something simple like
-> > > =
-
-> > > ifdef CONFIG_X86
-> > > drm_set_pages_array_wc()
-> > > {
-> > > 	set_pages_array_wc();
-> > > }
-> > > else
-> > > drm_set_pages_array_wc()
-> > >   {
-> > >   }
-> > > #endif
-> > > =
-
-> > > Maybe in drm_cache.h?
-> > We do have a bunch of this in drm_cache.h already, and architecture
-> > maintainers hate us for it.
-> =
-
-> Yeah, for good reasons :)
-> =
-
-> > The real fix is to get at the architecture-specific wc allocator, which=
- is
-> > currently not something that's exposed, but hidden within the dma api. I
-> > think having this stick out like this is better than hiding it behind f=
-ake
-> > generic code (like we do with drm_clflush, which defacto also only real=
-ly
-> > works on x86).
-> =
-
-> The DMA API also doesn't really touch that stuff as far as I know.
-> =
-
-> What we rather do on other architectures is to set the appropriate caching
-> flags on the CPU mappings, see function ttm_prot_from_caching().
-
-This alone doesn't do cache flushes. And at least on some arm cpus having
-inconsistent mappings can lead to interconnect hangs, so you have to at
-least punch out the kernel linear map. Which on some arms isn't possible
-(because the kernel map is a special linear map and not done with
-pagetables). Which means you need to carve this out at boot and treat them
-as GFP_HIGHMEM.
-
-Afaik dma-api has that allocator somewhere which dtrt for
-dma_alloc_coherent.
-
-Also shmem helpers already set the caching pgprot.
-
-> > Also note that ttm has the exact same ifdef in its page allocator, but =
-it
-> > does fall back to using dma_alloc_coherent on other platforms.
-> =
-
-> This works surprisingly well on non x86 architectures as well. We just do=
-n't
-> necessary update the kernel mappings everywhere which limits the kmap usa=
-ge.
-> =
-
-> In other words radeon and nouveau still work on PowerPC AGP systems as far
-> as I know for example.
-
-The thing is, on most cpus you get away with just pgprot set to wc, and on
-many others it's only an issue while there's still some cpu dirt hanging
-around because they don't prefetch badly enough. It's very few were it's a
-persistent problem.
-
-Really the only reason I've even caught this was because some of the
-i915+vgem buffer sharing tests we have are very nasty and intentionally
-try to provoke the worst case :-)
-
-Anyway, since you're looking, can you pls review this and the previous
-patch for shmem helpers?
-
-The first one to make VM_PFNMAP standard for all dma-buf isn't ready yet,
-because I need to audit all the driver still. And at least i915 dma-buf
-mmap is still using gup-able memory too. So more work to do here.
--Danel
-
-> =
-
-> Christian.
-> =
-
-> > -Daniel
-> > =
-
-> > > Best regard
-> > > Thomas
-> > > =
-
-> > > > +
-> > > >    	shmem->pages =3D pages;
-> > > >    	return 0;
-> > > > @@ -203,6 +212,11 @@ static void drm_gem_shmem_put_pages_locked(str=
-uct drm_gem_shmem_object *shmem)
-> > > >    	if (--shmem->pages_use_count > 0)
-> > > >    		return;
-> > > > +#ifdef CONFIG_X86
-> > > > +	if (shmem->map_wc)
-> > > > +		set_pages_array_wb(shmem->pages, obj->size >> PAGE_SHIFT);
-> > > > +#endif
-> > > > +
-> > > >    	drm_gem_put_pages(obj, shmem->pages,
-> > > >    			  shmem->pages_mark_dirty_on_put,
-> > > >    			  shmem->pages_mark_accessed_on_put);
-> > > > =
-
-> > > -- =
-
-> > > Thomas Zimmermann
-> > > Graphics Driver Developer
-> > > SUSE Software Solutions Germany GmbH
-> > > Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-> > > (HRB 36809, AG N=FCrnberg)
-> > > Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
-> > > =
-
-> > =
-
-> > =
-
-> > =
-
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SXQncyBub3QgdXNlZC4gRHJpdmVycyBzaG91bGQgaW5zdGVhZCB1c2UgdGhlIGhlbHBlcnMgYW55
+d2F5LgoKQ3VycmVudGx5IGJvdGggdmJveCBhbmQgaTkxNSBoYW5kLXJvbGwgdGhpcyBhbmQgaXQn
+cyBub3QgdGhlIGdyZWF0ZXN0Lgp2Ym94IGxvb2tzIGJ1Z2d5LCBhbmQgaTkxNSBkb2VzIGEgYml0
+IG11Y2ggdGhhdCBoZWxwZXJzIHdvdWxkIHRha2UKY2FyZSBvZiBJIHRoaW5rLgoKQWxzbyBpbXBy
+b3ZlIHRoZSBrZXJuZWxkb2NzIHdoaWxlIHdlJ3JlIGF0IGl0LgoKUmV2aWV3ZWQtYnk6IEpvc8Op
+IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOk
+bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEd3YW4tZ3llb25nIE11biA8
+Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4KQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpv
+c2Uuc291emFAaW50ZWwuY29tPgpDYzogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNv
+bT4KU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+
+CkNjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29t
+PgpDYzogTWF4aW1lIFJpcGFyZCA8bXJpcGFyZEBrZXJuZWwub3JnPgpDYzogVGhvbWFzIFppbW1l
+cm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+CkNjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGlu
+dXguaWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+Ci0tLQogZHJpdmVycy9n
+cHUvZHJtL2RybV9kYW1hZ2VfaGVscGVyLmMgfCAgMiArLQogaW5jbHVkZS9kcm0vZHJtX2RhbWFn
+ZV9oZWxwZXIuaCAgICAgfCAxNyAtLS0tLS0tLS0tLS0tLS0tLQogaW5jbHVkZS9kcm0vZHJtX3Bs
+YW5lLmggICAgICAgICAgICAgfCAxMCArKysrKysrLS0tCiBpbmNsdWRlL2RybS9kcm1fcmVjdC5o
+ICAgICAgICAgICAgICB8ICAzICsrKwogNCBmaWxlcyBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCsp
+LCAyMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RhbWFn
+ZV9oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZGFtYWdlX2hlbHBlci5jCmluZGV4IDNh
+NDEyNmRjMjUyMC4uZWI2OWI3MTIzYWY1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJt
+X2RhbWFnZV9oZWxwZXIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2RhbWFnZV9oZWxwZXIu
+YwpAQCAtMjgyLDcgKzI4Miw3IEBAIGRybV9hdG9taWNfaGVscGVyX2RhbWFnZV9pdGVyX2luaXQo
+c3RydWN0IGRybV9hdG9taWNfaGVscGVyX2RhbWFnZV9pdGVyICppdGVyLAogCWlmICghc3RhdGUg
+fHwgIXN0YXRlLT5jcnRjIHx8ICFzdGF0ZS0+ZmIgfHwgIXN0YXRlLT52aXNpYmxlKQogCQlyZXR1
+cm47CiAKLQlpdGVyLT5jbGlwcyA9IGRybV9oZWxwZXJfZ2V0X3BsYW5lX2RhbWFnZV9jbGlwcyhz
+dGF0ZSk7CisJaXRlci0+Y2xpcHMgPSAoc3RydWN0IGRybV9yZWN0ICopZHJtX3BsYW5lX2dldF9k
+YW1hZ2VfY2xpcHMoc3RhdGUpOwogCWl0ZXItPm51bV9jbGlwcyA9IGRybV9wbGFuZV9nZXRfZGFt
+YWdlX2NsaXBzX2NvdW50KHN0YXRlKTsKIAogCS8qIFJvdW5kIGRvd24gZm9yIHgxL3kxIGFuZCBy
+b3VuZCB1cCBmb3IgeDIveTIgdG8gY2F0Y2ggYWxsIHBpeGVscyAqLwpkaWZmIC0tZ2l0IGEvaW5j
+bHVkZS9kcm0vZHJtX2RhbWFnZV9oZWxwZXIuaCBiL2luY2x1ZGUvZHJtL2RybV9kYW1hZ2VfaGVs
+cGVyLmgKaW5kZXggNDBjMzRhNWJmMTQ5Li4xYWU4YmNlNmE1Y2UgMTAwNjQ0Ci0tLSBhL2luY2x1
+ZGUvZHJtL2RybV9kYW1hZ2VfaGVscGVyLmgKKysrIGIvaW5jbHVkZS9kcm0vZHJtX2RhbWFnZV9o
+ZWxwZXIuaApAQCAtODIsMjEgKzgyLDQgQEAgYm9vbCBkcm1fYXRvbWljX2hlbHBlcl9kYW1hZ2Vf
+bWVyZ2VkKGNvbnN0IHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKm9sZF9zdGF0ZSwKIAkJCQkgICAg
+IHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKnN0YXRlLAogCQkJCSAgICAgc3RydWN0IGRybV9yZWN0
+ICpyZWN0KTsKIAotLyoqCi0gKiBkcm1faGVscGVyX2dldF9wbGFuZV9kYW1hZ2VfY2xpcHMgLSBS
+ZXR1cm5zIGRhbWFnZSBjbGlwcyBpbiAmZHJtX3JlY3QuCi0gKiBAc3RhdGU6IFBsYW5lIHN0YXRl
+LgotICoKLSAqIFJldHVybnMgcGxhbmUgZGFtYWdlIHJlY3RhbmdsZXMgaW4gaW50ZXJuYWwgJmRy
+bV9yZWN0LiBDdXJyZW50bHkgJmRybV9yZWN0Ci0gKiBjYW4gYmUgb2J0YWluZWQgYnkgc2ltcGx5
+IHR5cGVjYXN0aW5nICZkcm1fbW9kZV9yZWN0LiBUaGlzIGlzIGJlY2F1c2UgYm90aAotICogYXJl
+IHNpZ25lZCAzMiBhbmQgZHVyaW5nIGRybV9hdG9taWNfY2hlY2tfb25seSgpIGl0IGlzIHZlcmlm
+aWVkIHRoYXQgZGFtYWdlCi0gKiBjbGlwcyBhcmUgaW5zaWRlIGZiLgotICoKLSAqIFJldHVybjog
+Q2xpcHMgaW4gcGxhbmUgZmJfZGFtYWdlX2NsaXBzIGJsb2IgcHJvcGVydHkuCi0gKi8KLXN0YXRp
+YyBpbmxpbmUgc3RydWN0IGRybV9yZWN0ICoKLWRybV9oZWxwZXJfZ2V0X3BsYW5lX2RhbWFnZV9j
+bGlwcyhjb25zdCBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpzdGF0ZSkKLXsKLQlyZXR1cm4gKHN0
+cnVjdCBkcm1fcmVjdCAqKWRybV9wbGFuZV9nZXRfZGFtYWdlX2NsaXBzKHN0YXRlKTsKLX0KLQog
+I2VuZGlmCmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fcGxhbmUuaCBiL2luY2x1ZGUvZHJt
+L2RybV9wbGFuZS5oCmluZGV4IDEyOTQ2MTBlODRmNC4uN2Y3ZDUxNDgzMTBjIDEwMDY0NAotLS0g
+YS9pbmNsdWRlL2RybS9kcm1fcGxhbmUuaAorKysgYi9pbmNsdWRlL2RybS9kcm1fcGxhbmUuaApA
+QCAtMTg2LDYgKzE4Niw5IEBAIHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgewogCSAqIHNpbmNlIGxh
+c3QgcGxhbmUgdXBkYXRlKSBhcyBhbiBhcnJheSBvZiAmZHJtX21vZGVfcmVjdCBpbiBmcmFtZWJ1
+ZmZlcgogCSAqIGNvb2RpbmF0ZXMgb2YgdGhlIGF0dGFjaGVkIGZyYW1lYnVmZmVyLiBOb3RlIHRo
+YXQgdW5saWtlIHBsYW5lIHNyYywKIAkgKiBkYW1hZ2UgY2xpcHMgYXJlIG5vdCBpbiAxNi4xNiBm
+aXhlZCBwb2ludC4KKwkgKgorCSAqIFNlZSBkcm1fcGxhbmVfZ2V0X2RhbWFnZV9jbGlwcygpIGFu
+ZAorCSAqIGRybV9wbGFuZV9nZXRfZGFtYWdlX2NsaXBzX2NvdW50KCkgZm9yIGFjY2Vzc2luZyB0
+aGVzZS4KIAkgKi8KIAlzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmZiX2RhbWFnZV9jbGlwczsK
+IApAQCAtOTE0LDkgKzkxNywxMCBAQCBkcm1fcGxhbmVfZ2V0X2RhbWFnZV9jbGlwc19jb3VudChj
+b25zdCBzdHJ1Y3QgZHJtX3BsYW5lX3N0YXRlICpzdGF0ZSkKICAqIGRybV9wbGFuZV9nZXRfZGFt
+YWdlX2NsaXBzIC0gUmV0dXJucyBkYW1hZ2UgY2xpcHMuCiAgKiBAc3RhdGU6IFBsYW5lIHN0YXRl
+LgogICoKLSAqIE5vdGUgdGhhdCB0aGlzIGZ1bmN0aW9uIHJldHVybnMgdWFwaSB0eXBlICZkcm1f
+bW9kZV9yZWN0LiBEcml2ZXJzIG1pZ2h0Ci0gKiBpbnN0ZWFkIGJlIGludGVyZXN0ZWQgaW4gaW50
+ZXJuYWwgJmRybV9yZWN0IHdoaWNoIGNhbiBiZSBvYnRhaW5lZCBieSBjYWxsaW5nCi0gKiBkcm1f
+aGVscGVyX2dldF9wbGFuZV9kYW1hZ2VfY2xpcHMoKS4KKyAqIE5vdGUgdGhhdCB0aGlzIGZ1bmN0
+aW9uIHJldHVybnMgdWFwaSB0eXBlICZkcm1fbW9kZV9yZWN0LiBEcml2ZXJzIG1pZ2h0IHdhbnQK
+KyAqIHRvIHVzZSB0aGUgaGVscGVyIGZ1bmN0aW9ucyBkcm1fYXRvbWljX2hlbHBlcl9kYW1hZ2Vf
+aXRlcl9pbml0KCkgYW5kCisgKiBkcm1fYXRvbWljX2hlbHBlcl9kYW1hZ2VfaXRlcl9uZXh0KCkg
+b3IgZHJtX2F0b21pY19oZWxwZXJfZGFtYWdlX21lcmdlZCgpIGlmCisgKiB0aGUgZHJpdmVyIGNh
+biBvbmx5IGhhbmRsZSBhIHNpbmdsZSBkYW1hZ2UgcmVnaW9uIGF0IG1vc3QuCiAgKgogICogUmV0
+dXJuOiBEYW1hZ2UgY2xpcHMgaW4gcGxhbmUgZmJfZGFtYWdlX2NsaXBzIGJsb2IgcHJvcGVydHku
+CiAgKi8KZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9yZWN0LmggYi9pbmNsdWRlL2RybS9k
+cm1fcmVjdC5oCmluZGV4IDM5ZjJkZWVlNzA5Yy4uNmY2ZTE5YmQ0ZGFjIDEwMDY0NAotLS0gYS9p
+bmNsdWRlL2RybS9kcm1fcmVjdC5oCisrKyBiL2luY2x1ZGUvZHJtL2RybV9yZWN0LmgKQEAgLTM5
+LDYgKzM5LDkgQEAKICAqIEB4MjogaG9yaXpvbnRhbCBlbmRpbmcgY29vcmRpbmF0ZSAoZXhjbHVz
+aXZlKQogICogQHkxOiB2ZXJ0aWNhbCBzdGFydGluZyBjb29yZGluYXRlIChpbmNsdXNpdmUpCiAg
+KiBAeTI6IHZlcnRpY2FsIGVuZGluZyBjb29yZGluYXRlIChleGNsdXNpdmUpCisgKgorICogTm90
+ZSB0aGF0IHRoaXMgbXVzdCBtYXRjaCB0aGUgbGF5b3V0IG9mIHN0cnVjdCBkcm1fbW9kZV9yZWN0
+IG9yIHRoZSBkYW1hZ2UKKyAqIGhlbHBlcnMgbGlrZSBkcm1fYXRvbWljX2hlbHBlcl9kYW1hZ2Vf
+aXRlcl9pbml0KCkgYnJlYWsuCiAgKi8KIHN0cnVjdCBkcm1fcmVjdCB7CiAJaW50IHgxLCB5MSwg
+eDIsIHkyOwotLSAKMi4zMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
