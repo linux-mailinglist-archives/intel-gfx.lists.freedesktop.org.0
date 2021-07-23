@@ -1,35 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FA83D3F07
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:43:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 687263D3F15
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:43:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB016FBAB;
-	Fri, 23 Jul 2021 17:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF5F36EE07;
+	Fri, 23 Jul 2021 17:43:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E1456FBA0
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:43:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="273032712"
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="273032712"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00D0E6FBAC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:43:14 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="211644193"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="211644193"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:53 -0700
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229128"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229130"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:52 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Jul 2021 10:42:38 -0700
-Message-Id: <20210723174239.1551352-30-matthew.d.roper@intel.com>
+Date: Fri, 23 Jul 2021 10:42:39 -0700
+Message-Id: <20210723174239.1551352-31-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 References: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 29/30] drm/i915/dg2: Update to bigjoiner path
+Subject: [Intel-gfx] [PATCH v3 30/30] drm/i915/dg2: Configure PCON in DP
+ pre-enable path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,36 +48,38 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Animesh Manna <animesh.manna@intel.com>
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-In verify_mpllb_state() encoder is retrieved from best_encoder
-of connector_state. As there will be only one connector_state
-for bigjoiner and checking encoder may not be needed for
-bigjoiner-slave. This code path related to mpll is done on dg2
-and need this fix to avoid null pointer dereference issue.
+Add the functions to configure HDMI2.1 pcon for DG2, before DP link
+training.
 
-Cc: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+ drivers/gpu/drm/i915/display/intel_ddi.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8c66e92fb7b3..c68187f39494 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -9157,6 +9157,9 @@ verify_mpllb_state(struct intel_atomic_state *state,
- 	if (!new_crtc_state->hw.active)
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index f96dd8dde61e..659583c360d4 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2576,6 +2576,7 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	if (!is_mst)
+ 		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
  
-+	if (new_crtc_state->bigjoiner_slave)
-+		return;
-+
- 	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
- 	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
++	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
+ 	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
+ 	/*
+ 	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
+@@ -2583,6 +2584,8 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	 * training
+ 	 */
+ 	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
++	intel_dp_check_frl_training(intel_dp);
++	intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
  
+ 	/*
+ 	 * 5.h Follow DisplayPort specification training sequence (see notes for
 -- 
 2.25.4
 
