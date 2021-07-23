@@ -2,37 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3C6D3D3C22
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 17:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B96C13D3C33
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 17:09:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF806FB86;
-	Fri, 23 Jul 2021 15:02:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278C56FA86;
+	Fri, 23 Jul 2021 15:09:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E3BD6FB86
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 15:02:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="191484230"
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="191484230"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2021 08:02:41 -0700
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="660223712"
-Received: from hruo-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.251.20.14])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2021 08:02:41 -0700
-Date: Fri, 23 Jul 2021 08:02:40 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210723150240.klvvokdy7xcslaec@ldmartin-desk2>
-References: <20210722232922.3796835-1-lucas.demarchi@intel.com>
- <20210723055709.GA1229765@mdroper-desk1.amr.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 116BB6F542;
+ Fri, 23 Jul 2021 15:09:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0AC51A008A;
+ Fri, 23 Jul 2021 15:09:11 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210723055709.GA1229765@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: split DISPLAY_VER 9
- and 10 in intel_setup_outputs()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Date: Fri, 23 Jul 2021 15:09:11 -0000
+Message-ID: <162705295101.3043.3060887134668528075@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210723095225.562913-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20210723095225.562913-1-rodrigo.vivi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/bios=3A_Fix_ports_mask_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,106 +38,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Christoph Hellwig <hch@infradead.org>,
- intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2074137445=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 22, 2021 at 10:57:09PM -0700, Matt Roper wrote:
->On Thu, Jul 22, 2021 at 04:29:22PM -0700, Lucas De Marchi wrote:
->> Commit 5a9d38b20a5a ("drm/i915/display: hide workaround for broken vbt
->> in intel_bios.c") moved the workaround for broken or missing VBT to
->> intel_bios.c. However is_port_valid() only protects the handling of
->> different skus of the same display version. Since in
->> intel_setup_outputs() we share the code path with version 9, this would
->> also create port F for SKL/KBL, which does not exist.
->>
->> Missing VBT can be reproduced when starting a headless QEMU with no
->> opregion available.
->>
->> Avoid the issue by splitting versions 9 and 10 in intel_setup_outputs(),
->> which also makes it more clear what code path it's taking for each
->> version.
->
->Or we could just drop the PORT_F line.  We've slowly been dropping bits
->and pieces of CNL support from the driver for a while now since all the
->hardware that came out had fused off graphics/display; that leaves GLK
->as the only real platform with display version 10, and it's already
->handled in its own condition branch above.
+--===============2074137445==
+Content-Type: multipart/alternative;
+ boundary="===============5727241640658451225=="
 
-no, that was my suggestion when I did this for the first time. Review
-from Ville last time was that we should either remove it completely or
-not at all, instead of dropping some pieces. At the time I started a
-series to remove it, but never completed.
+--===============5727241640658451225==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-https://patchwork.freedesktop.org/patch/428168/?series=88988&rev=1#comment_768918
+== Series Details ==
 
-I will try to come back to that series again, but it's not something to
-go to -fixes, so I'd prefer to keep this patch.
+Series: drm/i915/bios: Fix ports mask (rev4)
+URL   : https://patchwork.freedesktop.org/series/92850/
+State : success
 
-thanks
-Lucas De Marchi
+== Summary ==
 
->
->
->Matt
->
->>
->> v2: move generic display version after Geminilake since that one has
->> a different set of outputs
->>
->> Fixes: 5a9d38b20a5a ("drm/i915/display: hide workaround for broken vbt in intel_bios.c")
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Reported-by: Christoph Hellwig <hch@infradead.org>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
->>  1 file changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index c274bfb8e549..3f5383f3c744 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -11376,13 +11376,19 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->>  		intel_ddi_init(dev_priv, PORT_B);
->>  		intel_ddi_init(dev_priv, PORT_C);
->>  		vlv_dsi_init(dev_priv);
->> -	} else if (DISPLAY_VER(dev_priv) >= 9) {
->> +	} else if (DISPLAY_VER(dev_priv) == 10) {
->>  		intel_ddi_init(dev_priv, PORT_A);
->>  		intel_ddi_init(dev_priv, PORT_B);
->>  		intel_ddi_init(dev_priv, PORT_C);
->>  		intel_ddi_init(dev_priv, PORT_D);
->>  		intel_ddi_init(dev_priv, PORT_E);
->>  		intel_ddi_init(dev_priv, PORT_F);
->> +	} else if (DISPLAY_VER(dev_priv) >= 9) {
->> +		intel_ddi_init(dev_priv, PORT_A);
->> +		intel_ddi_init(dev_priv, PORT_B);
->> +		intel_ddi_init(dev_priv, PORT_C);
->> +		intel_ddi_init(dev_priv, PORT_D);
->> +		intel_ddi_init(dev_priv, PORT_E);
->>  	} else if (HAS_DDI(dev_priv)) {
->>  		u32 found;
->>
->> --
->> 2.31.1
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
->-- 
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
+CI Bug Log - changes from CI_DRM_10378 -> Patchwork_20692
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20692 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [PASS][1] -> [DMESG-FAIL][2] ([i915#2927])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10378/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10378/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#1436])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/fi-bsw-nick/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2292]: https://gitlab.freedesktop.org/drm/intel/issues/2292
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+
+
+Participating hosts (41 -> 36)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10378 -> Patchwork_20692
+
+  CI-20190529: 20190529
+  CI_DRM_10378: 2fb64ab28f475f70fcd9a714f8299d7595bc7001 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6149: 34ff2cf2bc352dce691593db803389fe0eb2be03 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20692: be4aeca3a53e90f61fc952f9ee409babcdb9220c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+be4aeca3a53e drm/i915/bios: Fix ports mask
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/index.html
+
+--===============5727241640658451225==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: Fix ports mask (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92850/">https://patchwork.freedesktop.org/series/92850/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10378 -&gt; Patchwork_20692</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20692 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10378/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10378/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20692/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 36)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10378 -&gt; Patchwork_20692</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10378: 2fb64ab28f475f70fcd9a714f8299d7595bc7001 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6149: 34ff2cf2bc352dce691593db803389fe0eb2be03 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20692: be4aeca3a53e90f61fc952f9ee409babcdb9220c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>be4aeca3a53e drm/i915/bios: Fix ports mask</p>
+
+</body>
+</html>
+
+--===============5727241640658451225==--
+
+--===============2074137445==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2074137445==--
