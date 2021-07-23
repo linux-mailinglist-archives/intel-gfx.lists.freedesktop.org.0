@@ -2,35 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E25F53D3F09
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D0D3D3F02
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:43:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D45E66FBAA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34D236FBA2;
 	Fri, 23 Jul 2021 17:43:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66FAF6FB9F
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:43:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="275742995"
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="275742995"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1EB66FB9F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:43:06 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="275742996"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="275742996"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:51 -0700
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229102"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229106"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:51 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Jul 2021 10:42:30 -0700
-Message-Id: <20210723174239.1551352-22-matthew.d.roper@intel.com>
+Date: Fri, 23 Jul 2021 10:42:31 -0700
+Message-Id: <20210723174239.1551352-23-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 References: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 21/30] drm/i915/dg2: Report INSTDONE_GEOM
- values in error state
+Subject: [Intel-gfx] [PATCH v3 22/30] drm/i915/dg2: Define MOCS table for DG2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,100 +47,66 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Xe_HPG adds some additional INSTDONE_GEOM debug registers; the Mesa team
-has indicated that having these reported in the error state would be
-useful for debugging GPU hangs.  These registers are replicated per-DSS
-with gslice steering.
-
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Bspec: 45101, 45427
+Cc: Ramalingam C <ramalingam.c@intel.com>(v5)
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  7 +++++++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +++
- drivers/gpu/drm/i915/i915_gpu_error.c        | 10 ++++++++--
- drivers/gpu/drm/i915/i915_reg.h              |  1 +
- 4 files changed, 19 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_mocs.c | 35 +++++++++++++++++++++++++++-
+ 1 file changed, 34 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index fc8538ce47ae..71f6e7d7c3b9 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1211,6 +1211,13 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
- 							  GEN7_ROW_INSTDONE);
- 			}
- 		}
-+
-+		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
-+			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice)
-+				instdone->geom_svg[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  XEHPG_INSTDONE_GEOM_SVG);
-+		}
- 	} else if (GRAPHICS_VER(i915) >= 7) {
- 		instdone->instdone =
- 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index b23d76ceea0e..8f9e79074c1c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -76,6 +76,9 @@ struct intel_instdone {
- 	u32 slice_common_extra[2];
- 	u32 sampler[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
- 	u32 row[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
-+
-+	/* Added in XeHPG */
-+	u32 geom_svg[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
+diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+index 0c9d0b936c20..d22ca8212092 100644
+--- a/drivers/gpu/drm/i915/gt/intel_mocs.c
++++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+@@ -341,6 +341,30 @@ static const struct drm_i915_mocs_entry xehpsdv_mocs_table[] = {
+ 	MOCS_ENTRY(63, 0, L3_1_UC),
  };
  
- /*
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index c1e744b5ab47..4de7edc451ef 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -431,6 +431,7 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
- 	const struct sseu_dev_info *sseu = &ee->engine->gt->info.sseu;
- 	int slice;
- 	int subslice;
-+	int iter;
- 
- 	err_printf(m, "  INSTDONE: 0x%08x\n",
- 		   ee->instdone.instdone);
-@@ -445,8 +446,6 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
- 		return;
- 
- 	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 50)) {
--		int iter;
--
- 		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
- 			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
- 				   slice, subslice,
-@@ -471,6 +470,13 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
- 	if (GRAPHICS_VER(m->i915) < 12)
- 		return;
- 
-+	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 55)) {
-+		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
-+			err_printf(m, "  GEOM_SVGUNIT_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.geom_svg[slice][subslice]);
-+	}
++static const struct drm_i915_mocs_entry dg2_mocs_table[] = {
++	/* UC - Coherent; GO:L3 */
++	MOCS_ENTRY(0, 0, L3_1_UC | L3_LKUP(1)),
++	/* UC - Coherent; GO:Memory */
++	MOCS_ENTRY(1, 0, L3_1_UC | L3_GLBGO(1) | L3_LKUP(1)),
++	/* UC - Non-Coherent; GO:Memory */
++	MOCS_ENTRY(2, 0, L3_1_UC | L3_GLBGO(1)),
 +
- 	err_printf(m, "  SC_INSTDONE_EXTRA: 0x%08x\n",
- 		   ee->instdone.slice_common_extra[0]);
- 	err_printf(m, "  SC_INSTDONE_EXTRA2: 0x%08x\n",
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b6ffdb89db6f..45cc76f88738 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2686,6 +2686,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GEN12_SC_INSTDONE_EXTRA2	_MMIO(0x7108)
- #define GEN7_SAMPLER_INSTDONE	_MMIO(0xe160)
- #define GEN7_ROW_INSTDONE	_MMIO(0xe164)
-+#define XEHPG_INSTDONE_GEOM_SVG		_MMIO(0x666c)
- #define MCFG_MCR_SELECTOR		_MMIO(0xfd0)
- #define SF_MCR_SELECTOR			_MMIO(0xfd8)
- #define GEN8_MCR_SELECTOR		_MMIO(0xfdc)
++	/* WB - LC */
++	MOCS_ENTRY(3, 0, L3_3_WB | L3_LKUP(1)),
++};
++
++static const struct drm_i915_mocs_entry dg2_mocs_table_g10_ax[] = {
++	/* Wa_14011441408: Set Go to Memory for MOCS#0 */
++	MOCS_ENTRY(0, 0, L3_1_UC | L3_GLBGO(1) | L3_LKUP(1)),
++	/* UC - Coherent; GO:Memory */
++	MOCS_ENTRY(1, 0, L3_1_UC | L3_GLBGO(1) | L3_LKUP(1)),
++	/* UC - Non-Coherent; GO:Memory */
++	MOCS_ENTRY(2, 0, L3_1_UC | L3_GLBGO(1)),
++
++	/* WB - LC */
++	MOCS_ENTRY(3, 0, L3_3_WB | L3_LKUP(1)),
++};
++
+ enum {
+ 	HAS_GLOBAL_MOCS = BIT(0),
+ 	HAS_ENGINE_MOCS = BIT(1),
+@@ -367,7 +391,16 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
+ {
+ 	unsigned int flags;
+ 
+-	if (IS_XEHPSDV(i915)) {
++	if (IS_DG2(i915)) {
++		if (IS_DG2_GT_STEP(i915, G10, STEP_A0, (STEP_B0 - 1))) {
++			table->size = ARRAY_SIZE(dg2_mocs_table_g10_ax);
++			table->table = dg2_mocs_table_g10_ax;
++		} else {
++			table->size = ARRAY_SIZE(dg2_mocs_table);
++			table->table = dg2_mocs_table;
++		}
++		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
++	} else if (IS_XEHPSDV(i915)) {
+ 		table->size = ARRAY_SIZE(xehpsdv_mocs_table);
+ 		table->table = xehpsdv_mocs_table;
+ 		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
 -- 
 2.25.4
 
