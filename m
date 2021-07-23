@@ -1,39 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999063D3FFE
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:55:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AD93D4064
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 20:45:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 242036EDAD;
-	Fri, 23 Jul 2021 17:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7A546FC72;
+	Fri, 23 Jul 2021 18:45:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 975126EDAD
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:55:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="211932028"
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="211932028"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2021 10:55:33 -0700
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="578067607"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2021 10:55:33 -0700
-Date: Fri, 23 Jul 2021 10:55:32 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20210723175532.GE1229765@mdroper-desk1.amr.corp.intel.com>
-References: <20210723174239.1551352-1-matthew.d.roper@intel.com>
- <20210723174239.1551352-3-matthew.d.roper@intel.com>
- <20210723175407.tiu6zy5z4g3nmn23@ldmartin-desk2>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B676B6F4F9;
+ Fri, 23 Jul 2021 18:45:50 +0000 (UTC)
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 4CCC61FFF3;
+ Fri, 23 Jul 2021 18:45:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1627065949; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=374VqK3beLA4u7TcvD9d0pUXeEHQF+W+U/hTfuavUVM=;
+ b=ZC+7dIxSHniSd4h62NVHijlUxibwgasvZF9wWFjS/HaUEoVBWpaAb1ENxwkzzH8ZHDBmsb
+ VL5iP58b8QpFLojqC21jNinM+XoEAGdCyM8ayokWcVtY8rqNenZiFnE53oGP/jNOTDGdpA
+ xlGpxwWe1fKhNUVtqk7gYkzp6hp8mm8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1627065949;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=374VqK3beLA4u7TcvD9d0pUXeEHQF+W+U/hTfuavUVM=;
+ b=/jMV4jNtODVWHf6qghTw10igWlyyP0HrqNMItb949xo7ePtR8HM47NWmE/p+XFhKHCMUvy
+ hX5NWjV3yNl+1XCQ==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 12BAD13809;
+ Fri, 23 Jul 2021 18:45:49 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap1.suse-dmz.suse.de with ESMTPSA id UxnqAl0O+2AaYwAAGKfGzw
+ (envelope-from <tzimmermann@suse.de>); Fri, 23 Jul 2021 18:45:49 +0000
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+References: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
+ <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <7009d234-a19a-bc37-5b1f-9f11bd5db747@suse.de>
+Date: Fri, 23 Jul 2021 20:45:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210723175407.tiu6zy5z4g3nmn23@ldmartin-desk2>
-Subject: Re: [Intel-gfx] [PATCH v3 02/30] drm/i915/xehp: Extra media engines
- - Part 1 (engine definitions)
+In-Reply-To: <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH v4 1/4] dma-buf: Require VM_PFNMAP vma for
+ mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,99 +68,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ linaro-mm-sig@lists.linaro.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ Matthew Wilcox <willy@infradead.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1935853001=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 23, 2021 at 10:54:07AM -0700, Lucas De Marchi wrote:
-> On Fri, Jul 23, 2021 at 10:42:11AM -0700, Matt Roper wrote:
-> > From: John Harrison <John.C.Harrison@Intel.com>
-> > 
-> > Xe_HP can have a lot of extra media engines. This patch adds the basic
-> > definitions for them.
-> > 
-> > v2:
-> > - Re-order intel_gt_info and intel_device_info slightly to avoid
-> >   unnecessary padding now that we've increased the size of
-> >   intel_engine_mask_t.  (Tvrtko)
-> > v3:
-> > - Drop the .hw_id assignments.  (Lucas)
-> > 
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> > drivers/gpu/drm/i915/gt/gen8_engine_cs.c     |  7 ++--
-> > drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 44 ++++++++++++++++++++
-> > drivers/gpu/drm/i915/gt/intel_engine_types.h | 14 +++++--
-> > drivers/gpu/drm/i915/gt/intel_gt_types.h     |  5 ++-
-> > drivers/gpu/drm/i915/i915_pci.c              |  5 ++-
-> > drivers/gpu/drm/i915/i915_reg.h              |  6 +++
-> > drivers/gpu/drm/i915/intel_device_info.h     |  3 +-
-> > 7 files changed, 71 insertions(+), 13 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> > index b29eb9fd0009..461844dffd7e 100644
-> > --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
-> > @@ -279,7 +279,7 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
-> > 	if (mode & EMIT_INVALIDATE)
-> > 		aux_inv = rq->engine->mask & ~BIT(BCS0);
-> > 	if (aux_inv)
-> > -		cmd += 2 * hweight8(aux_inv) + 2;
-> > +		cmd += 2 * hweight32(aux_inv) + 2;
-> > 
-> > 	cs = intel_ring_begin(rq, cmd);
-> > 	if (IS_ERR(cs))
-> > @@ -313,9 +313,8 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
-> > 		struct intel_engine_cs *engine;
-> > 		unsigned int tmp;
-> > 
-> > -		*cs++ = MI_LOAD_REGISTER_IMM(hweight8(aux_inv));
-> > -		for_each_engine_masked(engine, rq->engine->gt,
-> > -				       aux_inv, tmp) {
-> > +		*cs++ = MI_LOAD_REGISTER_IMM(hweight32(aux_inv));
-> > +		for_each_engine_masked(engine, rq->engine->gt, aux_inv, tmp) {
-> > 			*cs++ = i915_mmio_reg_offset(aux_inv_reg(engine));
-> > 			*cs++ = AUX_INV;
-> > 		}
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > index 4168b9fc59e1..1fc1bd4ad5e3 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > @@ -101,6 +101,34 @@ static const struct engine_info intel_engines[] = {
-> > 			{ .graphics_ver = 11, .base = GEN11_BSD4_RING_BASE }
-> > 		},
-> > 	},
-> > +	[VCS4] = {
-> > +		.class = VIDEO_DECODE_CLASS,
-> > +		.instance = 4,
-> > +		.mmio_bases = {
-> > +			{ .graphics_ver = 11, .base = XEHP_BSD5_RING_BASE }
-> 
-> another thing I raised in my previous review was this ver == 11 here.
-> Was this not changed on purpose ?
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1935853001==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t"
 
-Woops, looks like I missed that comment in the mix of discussion about
-hw_id.  I'll respin this one.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t
+Content-Type: multipart/mixed; boundary="zafYGsYFjuaSkJcPUvI1cUhQDoYSPW7TS";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: Matthew Wilcox <willy@infradead.org>, linaro-mm-sig@lists.linaro.org,
+ Jason Gunthorpe <jgg@ziepe.ca>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
+Message-ID: <7009d234-a19a-bc37-5b1f-9f11bd5db747@suse.de>
+Subject: Re: [PATCH v4 1/4] dma-buf: Require VM_PFNMAP vma for mmap
+References: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
+ <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
+
+--zafYGsYFjuaSkJcPUvI1cUhQDoYSPW7TS
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 13.07.21 um 22:51 schrieb Daniel Vetter:
+> tldr; DMA buffers aren't normal memory, expecting that you can use
+> them like that (like calling get_user_pages works, or that they're
+> accounting like any other normal memory) cannot be guaranteed.
+>=20
+> Since some userspace only runs on integrated devices, where all
+> buffers are actually all resident system memory, there's a huge
+> temptation to assume that a struct page is always present and useable
+> like for any more pagecache backed mmap. This has the potential to
+> result in a uapi nightmare.
+>=20
+> To stop this gap require that DMA buffer mmaps are VM_PFNMAP, which
+> blocks get_user_pages and all the other struct page based
+> infrastructure for everyone. In spirit this is the uapi counterpart to
+> the kernel-internal CONFIG_DMABUF_DEBUG.
+>=20
+> Motivated by a recent patch which wanted to swich the system dma-buf
+> heap to vm_insert_page instead of vm_insert_pfn.
+>=20
+> v2:
+>=20
+> Jason brought up that we also want to guarantee that all ptes have the
+> pte_special flag set, to catch fast get_user_pages (on architectures
+> that support this). Allowing VM_MIXEDMAP (like VM_SPECIAL does) would
+> still allow vm_insert_page, but limiting to VM_PFNMAP will catch that.
+>=20
+>  From auditing the various functions to insert pfn pte entires
+> (vm_insert_pfn_prot, remap_pfn_range and all it's callers like
+> dma_mmap_wc) it looks like VM_PFNMAP is already required anyway, so
+> this should be the correct flag to check for.
+>=20
+> References: https://lore.kernel.org/lkml/CAKMK7uHi+mG0z0HUmNt13QCCvutuR=
+VjpcR0NjRL12k-WbWzkRg@mail.gmail.com/
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Suren Baghdasaryan <surenb@google.com>
+> Cc: Matthew Wilcox <willy@infradead.org>
+> Cc: John Stultz <john.stultz@linaro.org>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: linux-media@vger.kernel.org
+> Cc: linaro-mm-sig@lists.linaro.org
+> --
+> Resending this so I can test the next two patches for vgem/shmem in
+> intel-gfx-ci. Last round failed somehow, but I can't repro that at all
+> locally here.
+>=20
+> No immediate plans to merge this patch here since ttm isn't addressed
+> yet (and there we have the hugepte issue, for which I don't think we
+> have a clear consensus yet).
+> -Daniel
+> ---
+>   drivers/dma-buf/dma-buf.c | 15 +++++++++++++--
+>   1 file changed, 13 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+> index 510b42771974..65cbd7f0f16a 100644
+> --- a/drivers/dma-buf/dma-buf.c
+> +++ b/drivers/dma-buf/dma-buf.c
+> @@ -130,6 +130,7 @@ static struct file_system_type dma_buf_fs_type =3D =
+{
+>   static int dma_buf_mmap_internal(struct file *file, struct vm_area_st=
+ruct *vma)
+>   {
+>   	struct dma_buf *dmabuf;
+> +	int ret;
+>  =20
+>   	if (!is_dma_buf_file(file))
+>   		return -EINVAL;
+> @@ -145,7 +146,11 @@ static int dma_buf_mmap_internal(struct file *file=
+, struct vm_area_struct *vma)
+>   	    dmabuf->size >> PAGE_SHIFT)
+>   		return -EINVAL;
+>  =20
+> -	return dmabuf->ops->mmap(dmabuf, vma);
+> +	ret =3D dmabuf->ops->mmap(dmabuf, vma);
+> +
+> +	WARN_ON(!(vma->vm_flags & VM_PFNMAP));
+
+Maybe change this to WARN_ON_ONCE(), so it doesn't fill up the kernel=20
+log. Same comment below.
+
+For either version
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Best regards
+Thomas
+
+> +
+> +	return ret;
+>   }
+>  =20
+>   static loff_t dma_buf_llseek(struct file *file, loff_t offset, int wh=
+ence)
+> @@ -1276,6 +1281,8 @@ EXPORT_SYMBOL_GPL(dma_buf_end_cpu_access);
+>   int dma_buf_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma,
+>   		 unsigned long pgoff)
+>   {
+> +	int ret;
+> +
+>   	if (WARN_ON(!dmabuf || !vma))
+>   		return -EINVAL;
+>  =20
+> @@ -1296,7 +1303,11 @@ int dma_buf_mmap(struct dma_buf *dmabuf, struct =
+vm_area_struct *vma,
+>   	vma_set_file(vma, dmabuf->file);
+>   	vma->vm_pgoff =3D pgoff;
+>  =20
+> -	return dmabuf->ops->mmap(dmabuf, vma);
+> +	ret =3D dmabuf->ops->mmap(dmabuf, vma);
+> +
+> +	WARN_ON(!(vma->vm_flags & VM_PFNMAP));
+> +
+> +	return ret;
+>   }
+>   EXPORT_SYMBOL_GPL(dma_buf_mmap);
+>  =20
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
-Matt
+--zafYGsYFjuaSkJcPUvI1cUhQDoYSPW7TS--
 
-> 
-> Lucas De Marchi
+--U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmD7DlwFAwAAAAAACgkQlh/E3EQov+DD
+hhAAmElKhwlZMAlEVejk+rSZM6YvDwkUM8BU0yTnToLAtuaSFcMdVHhdAW4A9NjVO2oSKJd7/Ld2
+IVL/NRGzU0Ze0J5tbI9Z2mQ+MIRp4djYLLDpVqH20k1IOtxRq1TsFexKcBOA4jiFcdwKtrigptsT
+X+ormKmEbw1P8Nbx5+kZdmfK6S/KQt/zE0RyG11bYvb8TIeR8G0qpwdyNkI0eBLQlvAGDjRAv1gr
+4rVkaw/Xyo8WhEP6WZHQCv0ro631kbQlxLn+e4wu1lxtx5ytei43pE+P4RXkq1mlldb+P7GYMEVw
+YQCaqW961EqFH/dBa4jF/nmyM6Bg1i1TIcsczIen61CW6HcZH45w2WNBpLPdVLPcPJymlH8i55d6
+k3Zy3aEkxprs3XHSh+YNTyVHtHMopjLGkX70cQO1bzJZcma1xv/uP7U8lxZOgosdToDpbwtLgA+9
+6UYXNZ3C6eR2lLrpWDz0woVzYoj9io//WGgtmEwEHZmkaIxsD0P/CepK0wTVb0powmrAyYwMG15C
+bAWSPj8UEiVMnOb4NgLr/oZaXuVjgaM5hmwyOG/RNrZKSyN8GZWO3ajcp6VSiwZoIML0UiRMQ4AH
+FdQJuJJB/MhtTl2EXxVZ3ppJKEy7p4e3kRSuhYfRX/A4hO2eI+SAUxkkNE/+xuXJJjw+n8o2LmPs
+b/0=
+=zv29
+-----END PGP SIGNATURE-----
+
+--U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t--
+
+--===============1935853001==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1935853001==--
