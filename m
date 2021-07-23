@@ -1,61 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07AD93D4064
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 20:45:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC123D408A
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 21:10:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7A546FC72;
-	Fri, 23 Jul 2021 18:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95C936FCDA;
+	Fri, 23 Jul 2021 19:10:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B676B6F4F9;
- Fri, 23 Jul 2021 18:45:50 +0000 (UTC)
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 4CCC61FFF3;
- Fri, 23 Jul 2021 18:45:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1627065949; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=374VqK3beLA4u7TcvD9d0pUXeEHQF+W+U/hTfuavUVM=;
- b=ZC+7dIxSHniSd4h62NVHijlUxibwgasvZF9wWFjS/HaUEoVBWpaAb1ENxwkzzH8ZHDBmsb
- VL5iP58b8QpFLojqC21jNinM+XoEAGdCyM8ayokWcVtY8rqNenZiFnE53oGP/jNOTDGdpA
- xlGpxwWe1fKhNUVtqk7gYkzp6hp8mm8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1627065949;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=374VqK3beLA4u7TcvD9d0pUXeEHQF+W+U/hTfuavUVM=;
- b=/jMV4jNtODVWHf6qghTw10igWlyyP0HrqNMItb949xo7ePtR8HM47NWmE/p+XFhKHCMUvy
- hX5NWjV3yNl+1XCQ==
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 12BAD13809;
- Fri, 23 Jul 2021 18:45:49 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap1.suse-dmz.suse.de with ESMTPSA id UxnqAl0O+2AaYwAAGKfGzw
- (envelope-from <tzimmermann@suse.de>); Fri, 23 Jul 2021 18:45:49 +0000
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-References: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
- <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <7009d234-a19a-bc37-5b1f-9f11bd5db747@suse.de>
-Date: Fri, 23 Jul 2021 20:45:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB4A16FCDA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 19:10:33 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="210047091"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="210047091"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2021 12:10:33 -0700
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="565591148"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2021 12:10:32 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 Jul 2021 12:10:24 -0700
+Message-Id: <20210723191024.1553405-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20210723175407.tiu6zy5z4g3nmn23@ldmartin-desk2>
+References: <20210723175407.tiu6zy5z4g3nmn23@ldmartin-desk2>
 MIME-Version: 1.0
-In-Reply-To: <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH v4 1/4] dma-buf: Require VM_PFNMAP vma for
- mmap
+Subject: [Intel-gfx] [PATCH v4 2/2] drm/i915/xehp: Extra media engines -
+ Part 1 (engine definitions)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,213 +43,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>,
- linaro-mm-sig@lists.linaro.org, Jason Gunthorpe <jgg@ziepe.ca>,
- Matthew Wilcox <willy@infradead.org>, Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============1935853001=="
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Tomas Winkler <tomas.winkler@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1935853001==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t"
+From: John Harrison <John.C.Harrison@Intel.com>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t
-Content-Type: multipart/mixed; boundary="zafYGsYFjuaSkJcPUvI1cUhQDoYSPW7TS";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Cc: Matthew Wilcox <willy@infradead.org>, linaro-mm-sig@lists.linaro.org,
- Jason Gunthorpe <jgg@ziepe.ca>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
-Message-ID: <7009d234-a19a-bc37-5b1f-9f11bd5db747@suse.de>
-Subject: Re: [PATCH v4 1/4] dma-buf: Require VM_PFNMAP vma for mmap
-References: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
- <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210713205153.1896059-2-daniel.vetter@ffwll.ch>
+Xe_HP can have a lot of extra media engines. This patch adds the basic
+definitions for them.
 
---zafYGsYFjuaSkJcPUvI1cUhQDoYSPW7TS
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+v2:
+ - Re-order intel_gt_info and intel_device_info slightly to avoid
+   unnecessary padding now that we've increased the size of
+   intel_engine_mask_t.  (Tvrtko)
+v3:
+ - Drop the .hw_id assignments.  (Lucas)
+v4:
+ - Fix graphics_ver typo for VCS4 (should be 12, not 11).  (Lucas)
 
-Hi
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c     |  7 ++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 44 ++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 14 +++++--
+ drivers/gpu/drm/i915/gt/intel_gt_types.h     |  5 ++-
+ drivers/gpu/drm/i915/i915_pci.c              |  5 ++-
+ drivers/gpu/drm/i915/i915_reg.h              |  6 +++
+ drivers/gpu/drm/i915/intel_device_info.h     |  3 +-
+ 7 files changed, 71 insertions(+), 13 deletions(-)
 
-Am 13.07.21 um 22:51 schrieb Daniel Vetter:
-> tldr; DMA buffers aren't normal memory, expecting that you can use
-> them like that (like calling get_user_pages works, or that they're
-> accounting like any other normal memory) cannot be guaranteed.
->=20
-> Since some userspace only runs on integrated devices, where all
-> buffers are actually all resident system memory, there's a huge
-> temptation to assume that a struct page is always present and useable
-> like for any more pagecache backed mmap. This has the potential to
-> result in a uapi nightmare.
->=20
-> To stop this gap require that DMA buffer mmaps are VM_PFNMAP, which
-> blocks get_user_pages and all the other struct page based
-> infrastructure for everyone. In spirit this is the uapi counterpart to
-> the kernel-internal CONFIG_DMABUF_DEBUG.
->=20
-> Motivated by a recent patch which wanted to swich the system dma-buf
-> heap to vm_insert_page instead of vm_insert_pfn.
->=20
-> v2:
->=20
-> Jason brought up that we also want to guarantee that all ptes have the
-> pte_special flag set, to catch fast get_user_pages (on architectures
-> that support this). Allowing VM_MIXEDMAP (like VM_SPECIAL does) would
-> still allow vm_insert_page, but limiting to VM_PFNMAP will catch that.
->=20
->  From auditing the various functions to insert pfn pte entires
-> (vm_insert_pfn_prot, remap_pfn_range and all it's callers like
-> dma_mmap_wc) it looks like VM_PFNMAP is already required anyway, so
-> this should be the correct flag to check for.
->=20
-> References: https://lore.kernel.org/lkml/CAKMK7uHi+mG0z0HUmNt13QCCvutuR=
-VjpcR0NjRL12k-WbWzkRg@mail.gmail.com/
-> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Suren Baghdasaryan <surenb@google.com>
-> Cc: Matthew Wilcox <willy@infradead.org>
-> Cc: John Stultz <john.stultz@linaro.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> Cc: linux-media@vger.kernel.org
-> Cc: linaro-mm-sig@lists.linaro.org
-> --
-> Resending this so I can test the next two patches for vgem/shmem in
-> intel-gfx-ci. Last round failed somehow, but I can't repro that at all
-> locally here.
->=20
-> No immediate plans to merge this patch here since ttm isn't addressed
-> yet (and there we have the hugepte issue, for which I don't think we
-> have a clear consensus yet).
-> -Daniel
-> ---
->   drivers/dma-buf/dma-buf.c | 15 +++++++++++++--
->   1 file changed, 13 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-> index 510b42771974..65cbd7f0f16a 100644
-> --- a/drivers/dma-buf/dma-buf.c
-> +++ b/drivers/dma-buf/dma-buf.c
-> @@ -130,6 +130,7 @@ static struct file_system_type dma_buf_fs_type =3D =
-{
->   static int dma_buf_mmap_internal(struct file *file, struct vm_area_st=
-ruct *vma)
->   {
->   	struct dma_buf *dmabuf;
-> +	int ret;
->  =20
->   	if (!is_dma_buf_file(file))
->   		return -EINVAL;
-> @@ -145,7 +146,11 @@ static int dma_buf_mmap_internal(struct file *file=
-, struct vm_area_struct *vma)
->   	    dmabuf->size >> PAGE_SHIFT)
->   		return -EINVAL;
->  =20
-> -	return dmabuf->ops->mmap(dmabuf, vma);
-> +	ret =3D dmabuf->ops->mmap(dmabuf, vma);
-> +
-> +	WARN_ON(!(vma->vm_flags & VM_PFNMAP));
-
-Maybe change this to WARN_ON_ONCE(), so it doesn't fill up the kernel=20
-log. Same comment below.
-
-For either version
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-Best regards
-Thomas
-
-> +
-> +	return ret;
->   }
->  =20
->   static loff_t dma_buf_llseek(struct file *file, loff_t offset, int wh=
-ence)
-> @@ -1276,6 +1281,8 @@ EXPORT_SYMBOL_GPL(dma_buf_end_cpu_access);
->   int dma_buf_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma,
->   		 unsigned long pgoff)
->   {
-> +	int ret;
-> +
->   	if (WARN_ON(!dmabuf || !vma))
->   		return -EINVAL;
->  =20
-> @@ -1296,7 +1303,11 @@ int dma_buf_mmap(struct dma_buf *dmabuf, struct =
-vm_area_struct *vma,
->   	vma_set_file(vma, dmabuf->file);
->   	vma->vm_pgoff =3D pgoff;
->  =20
-> -	return dmabuf->ops->mmap(dmabuf, vma);
-> +	ret =3D dmabuf->ops->mmap(dmabuf, vma);
-> +
-> +	WARN_ON(!(vma->vm_flags & VM_PFNMAP));
-> +
-> +	return ret;
->   }
->   EXPORT_SYMBOL_GPL(dma_buf_mmap);
->  =20
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---zafYGsYFjuaSkJcPUvI1cUhQDoYSPW7TS--
-
---U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmD7DlwFAwAAAAAACgkQlh/E3EQov+DD
-hhAAmElKhwlZMAlEVejk+rSZM6YvDwkUM8BU0yTnToLAtuaSFcMdVHhdAW4A9NjVO2oSKJd7/Ld2
-IVL/NRGzU0Ze0J5tbI9Z2mQ+MIRp4djYLLDpVqH20k1IOtxRq1TsFexKcBOA4jiFcdwKtrigptsT
-X+ormKmEbw1P8Nbx5+kZdmfK6S/KQt/zE0RyG11bYvb8TIeR8G0qpwdyNkI0eBLQlvAGDjRAv1gr
-4rVkaw/Xyo8WhEP6WZHQCv0ro631kbQlxLn+e4wu1lxtx5ytei43pE+P4RXkq1mlldb+P7GYMEVw
-YQCaqW961EqFH/dBa4jF/nmyM6Bg1i1TIcsczIen61CW6HcZH45w2WNBpLPdVLPcPJymlH8i55d6
-k3Zy3aEkxprs3XHSh+YNTyVHtHMopjLGkX70cQO1bzJZcma1xv/uP7U8lxZOgosdToDpbwtLgA+9
-6UYXNZ3C6eR2lLrpWDz0woVzYoj9io//WGgtmEwEHZmkaIxsD0P/CepK0wTVb0powmrAyYwMG15C
-bAWSPj8UEiVMnOb4NgLr/oZaXuVjgaM5hmwyOG/RNrZKSyN8GZWO3ajcp6VSiwZoIML0UiRMQ4AH
-FdQJuJJB/MhtTl2EXxVZ3ppJKEy7p4e3kRSuhYfRX/A4hO2eI+SAUxkkNE/+xuXJJjw+n8o2LmPs
-b/0=
-=zv29
------END PGP SIGNATURE-----
-
---U10chBrx1i8ohB3Hqy1rKySOCXBNq6D0t--
-
---===============1935853001==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index b29eb9fd0009..461844dffd7e 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -279,7 +279,7 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
+ 	if (mode & EMIT_INVALIDATE)
+ 		aux_inv = rq->engine->mask & ~BIT(BCS0);
+ 	if (aux_inv)
+-		cmd += 2 * hweight8(aux_inv) + 2;
++		cmd += 2 * hweight32(aux_inv) + 2;
+ 
+ 	cs = intel_ring_begin(rq, cmd);
+ 	if (IS_ERR(cs))
+@@ -313,9 +313,8 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
+ 		struct intel_engine_cs *engine;
+ 		unsigned int tmp;
+ 
+-		*cs++ = MI_LOAD_REGISTER_IMM(hweight8(aux_inv));
+-		for_each_engine_masked(engine, rq->engine->gt,
+-				       aux_inv, tmp) {
++		*cs++ = MI_LOAD_REGISTER_IMM(hweight32(aux_inv));
++		for_each_engine_masked(engine, rq->engine->gt, aux_inv, tmp) {
+ 			*cs++ = i915_mmio_reg_offset(aux_inv_reg(engine));
+ 			*cs++ = AUX_INV;
+ 		}
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 4168b9fc59e1..67c61908bc82 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -101,6 +101,34 @@ static const struct engine_info intel_engines[] = {
+ 			{ .graphics_ver = 11, .base = GEN11_BSD4_RING_BASE }
+ 		},
+ 	},
++	[VCS4] = {
++		.class = VIDEO_DECODE_CLASS,
++		.instance = 4,
++		.mmio_bases = {
++			{ .graphics_ver = 12, .base = XEHP_BSD5_RING_BASE }
++		},
++	},
++	[VCS5] = {
++		.class = VIDEO_DECODE_CLASS,
++		.instance = 5,
++		.mmio_bases = {
++			{ .graphics_ver = 12, .base = XEHP_BSD6_RING_BASE }
++		},
++	},
++	[VCS6] = {
++		.class = VIDEO_DECODE_CLASS,
++		.instance = 6,
++		.mmio_bases = {
++			{ .graphics_ver = 12, .base = XEHP_BSD7_RING_BASE }
++		},
++	},
++	[VCS7] = {
++		.class = VIDEO_DECODE_CLASS,
++		.instance = 7,
++		.mmio_bases = {
++			{ .graphics_ver = 12, .base = XEHP_BSD8_RING_BASE }
++		},
++	},
+ 	[VECS0] = {
+ 		.gen6_hw_id = VECS0_HW,
+ 		.class = VIDEO_ENHANCEMENT_CLASS,
+@@ -117,6 +145,20 @@ static const struct engine_info intel_engines[] = {
+ 			{ .graphics_ver = 11, .base = GEN11_VEBOX2_RING_BASE }
+ 		},
+ 	},
++	[VECS2] = {
++		.class = VIDEO_ENHANCEMENT_CLASS,
++		.instance = 2,
++		.mmio_bases = {
++			{ .graphics_ver = 12, .base = XEHP_VEBOX3_RING_BASE }
++		},
++	},
++	[VECS3] = {
++		.class = VIDEO_ENHANCEMENT_CLASS,
++		.instance = 3,
++		.mmio_bases = {
++			{ .graphics_ver = 12, .base = XEHP_VEBOX4_RING_BASE }
++		},
++	},
+ };
+ 
+ /**
+@@ -265,6 +307,8 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 
+ 	BUILD_BUG_ON(MAX_ENGINE_CLASS >= BIT(GEN11_ENGINE_CLASS_WIDTH));
+ 	BUILD_BUG_ON(MAX_ENGINE_INSTANCE >= BIT(GEN11_ENGINE_INSTANCE_WIDTH));
++	BUILD_BUG_ON(I915_MAX_VCS > (MAX_ENGINE_INSTANCE + 1));
++	BUILD_BUG_ON(I915_MAX_VECS > (MAX_ENGINE_INSTANCE + 1));
+ 
+ 	if (GEM_DEBUG_WARN_ON(id >= ARRAY_SIZE(gt->engine)))
+ 		return -EINVAL;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 266422d8d1b1..8f1f2f12d6f5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -42,7 +42,7 @@
+ #define COPY_ENGINE_CLASS	3
+ #define OTHER_CLASS		4
+ #define MAX_ENGINE_CLASS	4
+-#define MAX_ENGINE_INSTANCE	3
++#define MAX_ENGINE_INSTANCE	7
+ 
+ #define I915_MAX_SLICES	3
+ #define I915_MAX_SUBSLICES 8
+@@ -60,7 +60,7 @@ struct intel_gt;
+ struct intel_ring;
+ struct intel_uncore;
+ 
+-typedef u8 intel_engine_mask_t;
++typedef u32 intel_engine_mask_t;
+ #define ALL_ENGINES ((intel_engine_mask_t)~0ul)
+ 
+ struct intel_hw_status_page {
+@@ -97,8 +97,8 @@ struct i915_ctx_workarounds {
+ 	struct i915_vma *vma;
+ };
+ 
+-#define I915_MAX_VCS	4
+-#define I915_MAX_VECS	2
++#define I915_MAX_VCS	8
++#define I915_MAX_VECS	4
+ 
+ /*
+  * Engine IDs definitions.
+@@ -111,9 +111,15 @@ enum intel_engine_id {
+ 	VCS1,
+ 	VCS2,
+ 	VCS3,
++	VCS4,
++	VCS5,
++	VCS6,
++	VCS7,
+ #define _VCS(n) (VCS0 + (n))
+ 	VECS0,
+ 	VECS1,
++	VECS2,
++	VECS3,
+ #define _VECS(n) (VECS0 + (n))
+ 	I915_NUM_ENGINES
+ #define INVALID_ENGINE ((enum intel_engine_id)-1)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index d93d578a4105..97a5075288d2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -174,13 +174,14 @@ struct intel_gt {
+ 
+ 	struct intel_gt_info {
+ 		intel_engine_mask_t engine_mask;
++
++		u32 l3bank_mask;
++
+ 		u8 num_engines;
+ 
+ 		/* Media engine access to SFC per instance */
+ 		u8 vdbox_sfc_access;
+ 
+-		u32 l3bank_mask;
+-
+ 		/* Slice/subslice/EU info */
+ 		struct sseu_dev_info sseu;
+ 	} info;
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 48ea23dd3b5b..f28206484552 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1033,8 +1033,9 @@ static const struct intel_device_info xehpsdv_info = {
+ 	.pipe_mask = 0,
+ 	.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) |
+-		BIT(VECS0) | BIT(VECS1) |
+-		BIT(VCS0) | BIT(VCS1) | BIT(VCS2) | BIT(VCS3),
++		BIT(VECS0) | BIT(VECS1) | BIT(VECS2) | BIT(VECS3) |
++		BIT(VCS0) | BIT(VCS1) | BIT(VCS2) | BIT(VCS3) |
++		BIT(VCS4) | BIT(VCS5) | BIT(VCS6) | BIT(VCS7),
+ 	.require_force_probe = 1,
+ };
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 8e1392028184..143f2fabc07b 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2516,9 +2516,15 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define GEN11_BSD2_RING_BASE	0x1c4000
+ #define GEN11_BSD3_RING_BASE	0x1d0000
+ #define GEN11_BSD4_RING_BASE	0x1d4000
++#define XEHP_BSD5_RING_BASE	0x1e0000
++#define XEHP_BSD6_RING_BASE	0x1e4000
++#define XEHP_BSD7_RING_BASE	0x1f0000
++#define XEHP_BSD8_RING_BASE	0x1f4000
+ #define VEBOX_RING_BASE		0x1a000
+ #define GEN11_VEBOX_RING_BASE		0x1c8000
+ #define GEN11_VEBOX2_RING_BASE		0x1d8000
++#define XEHP_VEBOX3_RING_BASE		0x1e8000
++#define XEHP_VEBOX4_RING_BASE		0x1f8000
+ #define BLT_RING_BASE		0x22000
+ #define RING_TAIL(base)		_MMIO((base) + 0x30)
+ #define RING_HEAD(base)		_MMIO((base) + 0x34)
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 616ccec41d76..121d6d9afd3a 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -172,7 +172,6 @@ struct intel_device_info {
+ 	u8 media_ver;
+ 	u8 media_rel;
+ 
+-	u8 gt; /* GT number, 0 if undefined */
+ 	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
+ 
+ 	enum intel_platform platform;
+@@ -188,6 +187,8 @@ struct intel_device_info {
+ 
+ 	u32 display_mmio_offset;
+ 
++	u8 gt; /* GT number, 0 if undefined */
++
+ 	u8 pipe_mask;
+ 	u8 cpu_transcoder_mask;
+ 
+-- 
+2.25.4
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1935853001==--
