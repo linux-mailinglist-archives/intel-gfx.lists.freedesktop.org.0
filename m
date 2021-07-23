@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D753D3E78
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7353D3E77
 	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:22:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54CAD6F934;
-	Fri, 23 Jul 2021 17:21:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B30CE6F965;
+	Fri, 23 Jul 2021 17:21:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com
- [IPv6:2607:f8b0:4864:20::102c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15FF46F934
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:21:52 +0000 (UTC)
-Received: by mail-pj1-x102c.google.com with SMTP id
- j17-20020a17090aeb11b029017613554465so4613956pjz.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 10:21:52 -0700 (PDT)
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com
+ [IPv6:2607:f8b0:4864:20::1036])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51D036F958
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:21:53 +0000 (UTC)
+Received: by mail-pj1-x1036.google.com with SMTP id
+ j8-20020a17090aeb08b0290173bac8b9c9so9891370pjz.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 10:21:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=zI0rqrMZ28s7JubDsYVLJPN6iG996UpQZ7JHu+2Zfos=;
- b=iX/3XprqzKGIwZWF3N4I59bg9gX4/ai7jiRm/lRRrBubehZ1XGpf2ZYQ/j/BWTmJhl
- C4ScsxA+Iefwdn2CAQMPdL4yZiBi36L/Ccz2M7PLlBMx8hZCYHSuYMji4oh0kO7JHftN
- wmTmaivAb/Ww6dFrDktvMvdO1Z6+zv5Wqb6gCzSvVMfIjm/nWxbD/MgpF2GClCzh+na/
- TyxwmIZUo3+mcttlEPMldCUULSEGLzQu0TM4VEO3DiNX7nvJzd8jxH15MOCD+RpipyOA
- 1M70Ae2KDkgNfdaJ2DwkLvKzJO6T/9IggFcXQndB2fcCcIy5eU20sLQzFVLDYOUEqpVO
- DThw==
+ bh=vnyXfJPaqObrTjcEXN3XMXwAr7gDjoT2KPwNtmx5Ul0=;
+ b=tfEI32cTF7kZ7PCuha3UjHM+ffnmVfTePRNQgxgBmb3zzwl9XFOTJIIOBDYU6tc4Tn
+ WDhBm8iWvkMvwLlIIpez9lT6X/okKtuH4HxJepG8Mq+veLlMe0WWhZZ0ihBOHbl8T5hl
+ OHH+dzeh7vO/Y+4eRel1qlVQgfs4mtFdr2HgzZpNObO3RMnEsfePXhG4sxHD8EXYrbai
+ fYEviJXyg6eUwb308PQ2SvUUSg5tujt2B728EmkhaVXkVbi7VH0Kht7nhz7NmeXwY/Dc
+ nSomfIzYK7KgmtYAaWEybnWP6GtWOy7vjMrG29mTe08WIdLe2BTzDYP3Evd7+U/o71Z7
+ w9hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=zI0rqrMZ28s7JubDsYVLJPN6iG996UpQZ7JHu+2Zfos=;
- b=Ar9F1FGDhwrVM0PU1uIvrPN9P+RTZ8Fc5pIwYV8fYpegEVpWM6TtzBoIOYVCWYlVK/
- dtIG1GmbmA3Gi4Nulph2TiAEyinyAu6+cOayt4Jhy9CPuDL2Ij3q7qz7IgiIbhD3L3xx
- bwniHYDMGW/BOYgyNuoLlqVsgnQTkUo6h8F0j6w/lZdkI9SR4eRulvv1RxAD5DtV+Z4A
- HmTq95Pi2cuSoRILlD74S4oCCCkqrc3kBZMT+UM4Xe7ZOUlqc906TaHDoSR3qoNo/g/Z
- luUq4ZI0TgPQ+OsUtb/nZDJrSCXfrd0LJHCXDHkCQI878SEboMVLzSNYI6em+HxBJ96t
- aeeA==
-X-Gm-Message-State: AOAM530tXOJ6v2w9PKapwCmsKdlz0ZDOMmJicEd/qzsRwgW+BHfYXt00
- SnyjEfSZni9Sgmclq1m6fjGmnDMHEYbYMQ==
-X-Google-Smtp-Source: ABdhPJzwML/QyaOSZjL5pqVbZkAzWbOZRzJMMm4K8kz/0p6Q55x78w2QO8YKAdDhcPprWVQ0ulbS3Q==
-X-Received: by 2002:a62:a20d:0:b029:35b:73da:dc8d with SMTP id
- m13-20020a62a20d0000b029035b73dadc8dmr5684621pff.54.1627060911390; 
- Fri, 23 Jul 2021 10:21:51 -0700 (PDT)
+ bh=vnyXfJPaqObrTjcEXN3XMXwAr7gDjoT2KPwNtmx5Ul0=;
+ b=ZGxtXskTP6L3lsq1jnSEuAjfpxiJADrROluu7P3CbIwSh+1dSw037HdHMzjZSSNxtO
+ +v7iZljDFC9I7gk0o8MzrOLcInBRjizDlvi8UyGo2oHXAIBuDbWuIa1Zty2CNncYYSQ7
+ pJxuDFpswDF6Tu45V6pybvHxZdFu2qEmsyeG3tGA84iWTeyCt+aNZ2eDQ9K7hxZ/2qde
+ pMRwbRKV9V6P7I4eDN6NU+v/057UpoXd1efo2pjrUvg48CywrVuBmi/UXqxhQyl7p26Y
+ dVplKq4RN42n4d36laNFP3oG5ciO/cblvD857JFsf3gLDMozMnXJU+BX0I6uehPEnywx
+ JXYw==
+X-Gm-Message-State: AOAM530JPy1UEjszEYrJoIC/gm01HatfC2xCKye03NLKnUe9p0uu5l8V
+ ghDVfqif6xePVzvnmMXGc8beco9YUVotvw==
+X-Google-Smtp-Source: ABdhPJyx6zNH4bca/r8Cj8ZnV4iZ2FsLSS+Z3k69IujAXPjzU+7r+5iB9Up5psTk0dIbUQHS3kKaWA==
+X-Received: by 2002:a17:90a:7d02:: with SMTP id
+ g2mr5372871pjl.168.1627060912634; 
+ Fri, 23 Jul 2021 10:21:52 -0700 (PDT)
 Received: from omlet.lan ([134.134.137.86])
- by smtp.gmail.com with ESMTPSA id s36sm24288648pgl.8.2021.07.23.10.21.50
+ by smtp.gmail.com with ESMTPSA id s36sm24288648pgl.8.2021.07.23.10.21.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Jul 2021 10:21:51 -0700 (PDT)
+ Fri, 23 Jul 2021 10:21:52 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri, 23 Jul 2021 12:21:38 -0500
-Message-Id: <20210723172142.3273510-5-jason@jlekstrand.net>
+Date: Fri, 23 Jul 2021 12:21:39 -0500
+Message-Id: <20210723172142.3273510-6-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210723172142.3273510-1-jason@jlekstrand.net>
 References: <20210723172142.3273510-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/8] drm/i915/gem: Unify user object creation
- (v3)
+Subject: [Intel-gfx] [PATCH 5/8] drm/i915/gem/ttm: Only call
+ __i915_gem_object_set_pages if needed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,263 +71,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of hand-rolling the same three calls in each function, pull them
-into an i915_gem_object_create_user helper.  Apart from re-ordering of
-the placements array ENOMEM check, there should be no functional change.
+__i915_ttm_get_pages does two things.  First, it calls ttm_bo_validate()
+to check the given placement and migrate the BO if needed.  Then, it
+updates the GEM object to match, in case the object was migrated.  If
+no migration occured, however, we might still have pages on the GEM
+object in which case we don't need to fetch them from TTM and call
+__i915_gem_object_set_pages.  This hasn't been a problem before because
+the primary user of __i915_ttm_get_pages is __i915_gem_object_get_pages
+which only calls it if the GEM object doesn't have pages.
 
-v2 (Matthew Auld):
- - Add the call to i915_gem_flush_free_objects() from
-   i915_gem_dumb_create() in a separate patch
- - Move i915_gem_object_alloc() below the simple error checks
-v3 (Matthew Auld):
- - Add __ to i915_gem_object_create_user and kerneldoc which warns the
-   caller that it's not validating anything.
+However, i915_ttm_migrate also uses __i915_ttm_get_pages to do the
+migration so this meant it was unsafe to call on an already populated
+object.  This patch checks i915_gem_object_has_pages() before trying to
+__i915_gem_object_set_pages so i915_ttm_migrate is safe to call, even on
+populated objects.
 
 Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_create.c | 119 ++++++++++-----------
- drivers/gpu/drm/i915/gem/i915_gem_object.h |   4 +
- 2 files changed, 58 insertions(+), 65 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-index adcce37c04b8d..23fee13a33844 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-@@ -11,13 +11,14 @@
- #include "i915_trace.h"
- #include "i915_user_extensions.h"
- 
--static u32 object_max_page_size(struct drm_i915_gem_object *obj)
-+static u32 object_max_page_size(struct intel_memory_region **placements,
-+				unsigned int n_placements)
- {
- 	u32 max_page_size = 0;
- 	int i;
- 
--	for (i = 0; i < obj->mm.n_placements; i++) {
--		struct intel_memory_region *mr = obj->mm.placements[i];
-+	for (i = 0; i < n_placements; i++) {
-+		struct intel_memory_region *mr = placements[i];
- 
- 		GEM_BUG_ON(!is_power_of_2(mr->min_page_size));
- 		max_page_size = max_t(u32, max_page_size, mr->min_page_size);
-@@ -81,22 +82,46 @@ static int i915_gem_publish(struct drm_i915_gem_object *obj,
- 	return 0;
- }
- 
--static int
--i915_gem_setup(struct drm_i915_gem_object *obj, u64 size)
-+/**
-+ * Creates a new object using the same path as DRM_I915_GEM_CREATE_EXT
-+ * @i915: i915 private
-+ * @size: size of the buffer, in bytes
-+ * @placements: possible placement regions, in priority order
-+ * @n_placements: number of possible placement regions
-+ *
-+ * This function is exposed primarily for selftests and does very little
-+ * error checking.  It is assumed that the set of placement regions has
-+ * already been verified to be valid.
-+ */
-+struct drm_i915_gem_object *
-+__i915_gem_object_create_user(struct drm_i915_private *i915, u64 size,
-+			      struct intel_memory_region **placements,
-+			      unsigned int n_placements)
- {
--	struct intel_memory_region *mr = obj->mm.placements[0];
-+	struct intel_memory_region *mr = placements[0];
-+	struct drm_i915_gem_object *obj;
- 	unsigned int flags;
- 	int ret;
- 
--	size = round_up(size, object_max_page_size(obj));
-+	i915_gem_flush_free_objects(i915);
-+
-+	size = round_up(size, object_max_page_size(placements, n_placements));
- 	if (size == 0)
--		return -EINVAL;
-+		return ERR_PTR(-EINVAL);
- 
- 	/* For most of the ABI (e.g. mmap) we think in system pages */
- 	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
- 
- 	if (i915_gem_object_size_2big(size))
--		return -E2BIG;
-+		return ERR_PTR(-E2BIG);
-+
-+	obj = i915_gem_object_alloc();
-+	if (!obj)
-+		return ERR_PTR(-ENOMEM);
-+
-+	ret = object_set_placements(obj, placements, n_placements);
-+	if (ret)
-+		goto object_free;
- 
- 	/*
- 	 * I915_BO_ALLOC_USER will make sure the object is cleared before
-@@ -106,12 +131,18 @@ i915_gem_setup(struct drm_i915_gem_object *obj, u64 size)
- 
- 	ret = mr->ops->init_object(mr, obj, size, 0, flags);
- 	if (ret)
--		return ret;
-+		goto object_free;
- 
- 	GEM_BUG_ON(size != obj->base.size);
- 
- 	trace_i915_gem_object_create(obj);
--	return 0;
-+	return obj;
-+
-+object_free:
-+	if (obj->mm.n_placements > 1)
-+		kfree(obj->mm.placements);
-+	i915_gem_object_free(obj);
-+	return ERR_PTR(ret);
- }
- 
- int
-@@ -124,7 +155,6 @@ i915_gem_dumb_create(struct drm_file *file,
- 	enum intel_memory_type mem_type;
- 	int cpp = DIV_ROUND_UP(args->bpp, 8);
- 	u32 format;
--	int ret;
- 
- 	switch (cpp) {
- 	case 1:
-@@ -151,32 +181,19 @@ i915_gem_dumb_create(struct drm_file *file,
- 	if (args->pitch < args->width)
- 		return -EINVAL;
- 
--	i915_gem_flush_free_objects(i915);
--
- 	args->size = mul_u32_u32(args->pitch, args->height);
- 
- 	mem_type = INTEL_MEMORY_SYSTEM;
- 	if (HAS_LMEM(to_i915(dev)))
- 		mem_type = INTEL_MEMORY_LOCAL;
- 
--	obj = i915_gem_object_alloc();
--	if (!obj)
--		return -ENOMEM;
--
- 	mr = intel_memory_region_by_type(to_i915(dev), mem_type);
--	ret = object_set_placements(obj, &mr, 1);
--	if (ret)
--		goto object_free;
- 
--	ret = i915_gem_setup(obj, args->size);
--	if (ret)
--		goto object_free;
-+	obj = __i915_gem_object_create_user(to_i915(dev), args->size, &mr, 1);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
- 
- 	return i915_gem_publish(obj, file, &args->size, &args->handle);
--
--object_free:
--	i915_gem_object_free(obj);
--	return ret;
- }
- 
- /**
-@@ -193,28 +210,14 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
- 	struct drm_i915_gem_create *args = data;
- 	struct drm_i915_gem_object *obj;
- 	struct intel_memory_region *mr;
--	int ret;
--
--	i915_gem_flush_free_objects(i915);
--
--	obj = i915_gem_object_alloc();
--	if (!obj)
--		return -ENOMEM;
- 
- 	mr = intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
--	ret = object_set_placements(obj, &mr, 1);
--	if (ret)
--		goto object_free;
- 
--	ret = i915_gem_setup(obj, args->size);
--	if (ret)
--		goto object_free;
-+	obj = __i915_gem_object_create_user(i915, args->size, &mr, 1);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
- 
- 	return i915_gem_publish(obj, file, &args->size, &args->handle);
--
--object_free:
--	i915_gem_object_free(obj);
--	return ret;
- }
- 
- struct create_ext {
-@@ -376,38 +379,24 @@ i915_gem_create_ext_ioctl(struct drm_device *dev, void *data,
- 	if (args->flags)
- 		return -EINVAL;
- 
--	i915_gem_flush_free_objects(i915);
--
--	obj = i915_gem_object_alloc();
--	if (!obj)
--		return -ENOMEM;
--
- 	ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
- 				   create_extensions,
- 				   ARRAY_SIZE(create_extensions),
- 				   &ext_data);
- 	if (ret)
--		goto object_free;
-+		return ret;
- 
- 	if (!ext_data.n_placements) {
- 		ext_data.placements[0] =
- 			intel_memory_region_by_type(i915, INTEL_MEMORY_SYSTEM);
- 		ext_data.n_placements = 1;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index f253b11e9e367..771eb2963123f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -662,13 +662,14 @@ static int __i915_ttm_get_pages(struct drm_i915_gem_object *obj,
+ 		i915_ttm_adjust_gem_after_move(obj);
  	}
--	ret = object_set_placements(obj, ext_data.placements,
--				    ext_data.n_placements);
--	if (ret)
--		goto object_free;
  
--	ret = i915_gem_setup(obj, args->size);
--	if (ret)
--		goto object_free;
-+	obj = __i915_gem_object_create_user(i915, args->size,
-+					    ext_data.placements,
-+					    ext_data.n_placements);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
+-	GEM_WARN_ON(obj->mm.pages);
+-	/* Object either has a page vector or is an iomem object */
+-	st = bo->ttm ? i915_ttm_tt_get_st(bo->ttm) : obj->ttm.cached_io_st;
+-	if (IS_ERR(st))
+-		return PTR_ERR(st);
++	if (!i915_gem_object_has_pages(obj)) {
++		/* Object either has a page vector or is an iomem object */
++		st = bo->ttm ? i915_ttm_tt_get_st(bo->ttm) : obj->ttm.cached_io_st;
++		if (IS_ERR(st))
++			return PTR_ERR(st);
  
- 	return i915_gem_publish(obj, file, &args->size, &args->handle);
--
--object_free:
--	if (obj->mm.n_placements > 1)
--		kfree(obj->mm.placements);
--	i915_gem_object_free(obj);
--	return ret;
+-	__i915_gem_object_set_pages(obj, st, i915_sg_dma_sizes(st->sgl));
++		__i915_gem_object_set_pages(obj, st, i915_sg_dma_sizes(st->sgl));
++	}
+ 
+ 	return ret;
  }
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index f3ede43282dc6..0896ac532f5e5 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -61,6 +61,10 @@ i915_gem_object_create_shmem(struct drm_i915_private *i915,
- struct drm_i915_gem_object *
- i915_gem_object_create_shmem_from_data(struct drm_i915_private *i915,
- 				       const void *data, resource_size_t size);
-+struct drm_i915_gem_object *
-+__i915_gem_object_create_user(struct drm_i915_private *i915, u64 size,
-+			      struct intel_memory_region **placements,
-+			      unsigned int n_placements);
- 
- extern const struct drm_i915_gem_object_ops i915_gem_shmem_ops;
- 
 -- 
 2.31.1
 
