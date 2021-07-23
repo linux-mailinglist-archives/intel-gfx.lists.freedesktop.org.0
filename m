@@ -2,32 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0636C3D30E3
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 02:26:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 013573D30EA
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 02:32:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EF5C6F88D;
-	Fri, 23 Jul 2021 00:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4659C6F88E;
+	Fri, 23 Jul 2021 00:32:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE566F88C;
- Fri, 23 Jul 2021 00:26:03 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="209881426"
-X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="209881426"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 17:26:02 -0700
-X-IronPort-AV: E=Sophos;i="5.84,262,1620716400"; d="scan'208";a="633175359"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2021 17:26:02 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Jul 2021 17:25:51 -0700
-Message-Id: <20210723002551.3906535-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1BA366F88D;
+ Fri, 23 Jul 2021 00:32:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 14147AA01E;
+ Fri, 23 Jul 2021 00:32:26 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: nuke gen6_hw_id
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 23 Jul 2021 00:32:26 -0000
+Message-ID: <162700034605.3044.10669123950873958594@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210722232922.3796835-1-lucas.demarchi@intel.com>
+In-Reply-To: <20210722232922.3796835-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_split_DISPLAY=5FVER_9_and_10_in_intel=5Fsetup?=
+ =?utf-8?b?X291dHB1dHMoKSAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,134 +39,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0954568869=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is only used by GRAPHICS_VER == 6 and GRAPHICS_VER == 7. All other
-recent platforms do not depend on this field, so it doesn't make much
-sense to keep it generic like that. Instead, just do a mapping from
-engine class to HW ID in the single place that is needed.
+--===============0954568869==
+Content-Type: multipart/alternative;
+ boundary="===============0351438168277484000=="
 
-v2: use macros with the direct register address instead of calculating
-from the legacy HW_ID (Matt Roper)
+--===============0351438168277484000==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  6 ------
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 10 +---------
- drivers/gpu/drm/i915/i915_reg.h              | 11 ++++++++++-
- 3 files changed, 11 insertions(+), 16 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 9c8cba1c6cd1..876efa29b123 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -42,7 +42,6 @@
- 
- #define MAX_MMIO_BASES 3
- struct engine_info {
--	u8 gen6_hw_id;
- 	u8 class;
- 	u8 instance;
- 	/* mmio bases table *must* be sorted in reverse graphics_ver order */
-@@ -54,7 +53,6 @@ struct engine_info {
- 
- static const struct engine_info intel_engines[] = {
- 	[RCS0] = {
--		.gen6_hw_id = RCS0_HW,
- 		.class = RENDER_CLASS,
- 		.instance = 0,
- 		.mmio_bases = {
-@@ -62,7 +60,6 @@ static const struct engine_info intel_engines[] = {
- 		},
- 	},
- 	[BCS0] = {
--		.gen6_hw_id = BCS0_HW,
- 		.class = COPY_ENGINE_CLASS,
- 		.instance = 0,
- 		.mmio_bases = {
-@@ -70,7 +67,6 @@ static const struct engine_info intel_engines[] = {
- 		},
- 	},
- 	[VCS0] = {
--		.gen6_hw_id = VCS0_HW,
- 		.class = VIDEO_DECODE_CLASS,
- 		.instance = 0,
- 		.mmio_bases = {
-@@ -102,7 +98,6 @@ static const struct engine_info intel_engines[] = {
- 		},
- 	},
- 	[VECS0] = {
--		.gen6_hw_id = VECS0_HW,
- 		.class = VIDEO_ENHANCEMENT_CLASS,
- 		.instance = 0,
- 		.mmio_bases = {
-@@ -290,7 +285,6 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 	engine->i915 = i915;
- 	engine->gt = gt;
- 	engine->uncore = gt->uncore;
--	engine->gen6_hw_id = info->gen6_hw_id;
- 	guc_class = engine_class_to_guc_class(info->class);
- 	engine->guc_id = MAKE_GUC_ID(guc_class, info->instance);
- 	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 266422d8d1b1..a4111813f993 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -28,14 +28,7 @@
- #include "intel_wakeref.h"
- #include "intel_workarounds_types.h"
- 
--/* Legacy HW Engine ID */
--
--#define RCS0_HW		0
--#define VCS0_HW		1
--#define BCS0_HW		2
--#define VECS0_HW	3
--
--/* Gen11+ HW Engine class + instance */
-+/* HW Engine class + instance */
- #define RENDER_CLASS		0
- #define VIDEO_DECODE_CLASS	1
- #define VIDEO_ENHANCEMENT_CLASS	2
-@@ -268,7 +261,6 @@ struct intel_engine_cs {
- 
- 	intel_engine_mask_t mask;
- 
--	u8 gen6_hw_id;
- 	u8 class;
- 	u8 instance;
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 8e1392028184..3718da619d90 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2572,7 +2572,16 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define   ARB_MODE_BWGTLB_DISABLE (1 << 9)
- #define   ARB_MODE_SWIZZLE_BDW	(1 << 1)
- #define RENDER_HWS_PGA_GEN7	_MMIO(0x04080)
--#define RING_FAULT_REG(engine)	_MMIO(0x4094 + 0x100 * (engine)->gen6_hw_id)
-+
-+#define _RING_FAULT_REG_RCS        0x4094
-+#define _RING_FAULT_REG_VCS        0x4194
-+#define _RING_FAULT_REG_BCS        0x4294
-+#define _RING_FAULT_REG_VECS       0x4394
-+#define RING_FAULT_REG(engine)     _MMIO(_PICK((engine)->class, \
-+					       _RING_FAULT_REG_RCS, \
-+					       _RING_FAULT_REG_VCS, \
-+					       _RING_FAULT_REG_VECS, \
-+					       _RING_FAULT_REG_BCS))
- #define GEN8_RING_FAULT_REG	_MMIO(0x4094)
- #define GEN12_RING_FAULT_REG	_MMIO(0xcec4)
- #define   GEN8_RING_FAULT_ENGINE_ID(x)	(((x) >> 12) & 0x7)
--- 
-2.31.1
+Series: drm/i915/display: split DISPLAY_VER 9 and 10 in intel_setup_outputs() (rev2)
+URL   : https://patchwork.freedesktop.org/series/92902/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10373 -> Patchwork_20685
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20685 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@engines@userptr:
+    - fi-pnv-d510:        [PASS][1] -> [INCOMPLETE][2] ([i915#299])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-soraka:      [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-kbl-soraka/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-kbl-soraka/igt@i915_module_load@reload.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][5] ([i915#2403] / [i915#2505] / [i915#2722])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-pnv-d510/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - {fi-tgl-1115g4}:    [FAIL][6] ([i915#1888]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][8] ([i915#3303]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+
+
+Participating hosts (38 -> 34)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-hsw-4200u fi-bdw-samus fi-kbl-7500u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10373 -> Patchwork_20685
+
+  CI-20190529: 20190529
+  CI_DRM_10373: 708f8ad671341a99bfb72acad577c37e6469fa00 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20685: 801dd609977054f4cd392bca21b0311ed74542ab @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+801dd6099770 drm/i915/display: split DISPLAY_VER 9 and 10 in intel_setup_outputs()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/index.html
+
+--===============0351438168277484000==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: split DISPLAY_VER 9 and 10 in intel_setup_outputs() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92902/">https://patchwork.freedesktop.org/series/92902/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10373 -&gt; Patchwork_20685</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20685 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_parallel@engines@userptr:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-kbl-soraka/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10373/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20685/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (38 -&gt; 34)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-hsw-4200u fi-bdw-samus fi-kbl-7500u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10373 -&gt; Patchwork_20685</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10373: 708f8ad671341a99bfb72acad577c37e6469fa00 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20685: 801dd609977054f4cd392bca21b0311ed74542ab @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>801dd6099770 drm/i915/display: split DISPLAY_VER 9 and 10 in intel_setup_outputs()</p>
+
+</body>
+</html>
+
+--===============0351438168277484000==--
+
+--===============0954568869==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0954568869==--
