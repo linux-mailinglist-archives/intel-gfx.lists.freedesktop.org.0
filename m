@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AF63D3154
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 03:34:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 700853D3182
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 04:05:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8BEC6F5CA;
-	Fri, 23 Jul 2021 01:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE786F5D1;
+	Fri, 23 Jul 2021 02:05:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C1A1A6EAC7;
- Fri, 23 Jul 2021 01:34:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 641806F5D1;
+ Fri, 23 Jul 2021 02:05:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B1F7AA7DFB;
- Fri, 23 Jul 2021 01:34:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5C849A47E1;
+ Fri, 23 Jul 2021 02:05:01 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Fri, 23 Jul 2021 01:34:55 -0000
-Message-ID: <162700409570.3045.5957947750212230320@emeril.freedesktop.org>
+Date: Fri, 23 Jul 2021 02:05:01 -0000
+Message-ID: <162700590134.3042.6226212974351361338@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210722235426.31831-1-matthew.brost@intel.com>
 In-Reply-To: <20210722235426.31831-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Remaining_patches_for_basic_GuC_submission?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmVt?=
+ =?utf-8?q?aining_patches_for_basic_GuC_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,184 +40,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1421069239=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+
+--===============1421069239==
+Content-Type: multipart/alternative;
+ boundary="===============7855190966238079066=="
+
+--===============7855190966238079066==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
 Series: Remaining patches for basic GuC submission
 URL   : https://patchwork.freedesktop.org/series/92912/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-c4c2a95bc42c drm/i915/guc: GuC virtual engines
--:595: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#595: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1895:
-+
-+
+CI Bug Log - changes from CI_DRM_10374 -> Patchwork_20686
+====================================================
 
-total: 0 errors, 0 warnings, 1 checks, 537 lines checked
-ed2ce8f94165 drm/i915/guc: Make hangcheck work with GuC virtual engines
-abe5c9520ece drm/i915: Hold reference to intel_context over life of i915_request
-095ca97f853a drm/i915/guc: Disable bonding extension with GuC submission
-9b220ffb651e drm/i915/guc: Direct all breadcrumbs for a class to single breadcrumbs
-e7bbc081df3c drm/i915: Add i915_sched_engine destroy vfunc
-96e05d821dc0 drm/i915: Move active request tracking to a vfunc
-2fe085686ac0 drm/i915/guc: Reset implementation for new GuC interface
--:198: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "guc->lrc_desc_pool_vaddr"
-#198: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:248:
-+	return guc->lrc_desc_pool_vaddr != NULL;
+Summary
+-------
 
--:851: CHECK:BRACES: braces {} should be used on all arms of this statement
-#851: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1263:
-+		if (unlikely(ret == -EBUSY)) {
-[...]
-+		} else if (unlikely(ret == -ENODEV))
-[...]
+  **SUCCESS**
 
--:1075: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#1075: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.c:568:
- 
-+
+  No regressions found.
 
-total: 0 errors, 0 warnings, 3 checks, 1029 lines checked
-7cfdea9a7cca drm/i915: Reset GPU immediately if submission is disabled
--:94: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#94: FILE: drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c:223:
-+
-+}
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20686/index.html
 
-total: 0 errors, 0 warnings, 1 checks, 181 lines checked
-8bc28306ef3c drm/i915/guc: Add disable interrupts to guc sanitize
-2d8442c0bcb5 drm/i915/guc: Suspend/resume implementation for new interface
-93fcd3d3f15f drm/i915/guc: Handle context reset notification
-a6a5b8bd25ca drm/i915/guc: Handle engine reset failure notification
-39fc22487a99 drm/i915/guc: Enable the timer expired interrupt for GuC
-6642efd29a52 drm/i915/guc: Provide mmio list to be saved/restored on engine reset
--:360: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#360: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:212:
-+	temp_set.registers = kmalloc_array(temp_set.size,
-+					  sizeof(*temp_set.registers),
+Known issues
+------------
 
--:389: CHECK:SPACING: No space is necessary after a cast
-#389: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:241:
-+	temp_set.registers = (struct guc_mmio_reg *) (((u8 *) blob) + offset);
+  Here are the changes found in Patchwork_20686 that come from known issues:
 
--:464: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Signed-off-by: John Harrison" <John.C.Harrison@Intel.com>' != 'Signed-off-by: John Harrison <John.C.Harrison@Intel.com>'
+### IGT changes ###
 
-total: 0 errors, 1 warnings, 2 checks, 400 lines checked
-5e642e904723 drm/i915/guc: Don't complain about reset races
-ee7a77ae81e6 drm/i915/guc: Enable GuC engine reset
-3a6d2423e625 drm/i915/guc: Capture error state on context reset
-b4ed2cab4b35 drm/i915/guc: Fix for error capture after full GPU reset with GuC
--:120: CHECK:BRACES: braces {} should be used on all arms of this statement
-#120: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1716:
-+	if (guc) {
-[...]
-+	} else
-[...]
+#### Issues hit ####
 
--:124: CHECK:BRACES: Unbalanced braces around else statement
-#124: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1720:
-+	} else
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#165])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10374/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20686/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
 
-total: 0 errors, 0 warnings, 2 checks, 347 lines checked
-43ba142e24f9 drm/i915/guc: Hook GuC scheduling policies up
-078bbab61932 drm/i915/guc: Connect reset modparam updates to GuC policy flags
--:53: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#53: FILE: drivers/gpu/drm/i915/i915_debugfs_params.c:17:
-+#define GET_I915(i915, name, ptr)	\
-+	do {	\
-+		struct i915_params *params;	\
-+		params = container_of(((void *) (ptr)), typeof(*params), name);	\
-+		(i915) = container_of(params, typeof(*(i915)), params);	\
-+	} while (0)
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
--:56: CHECK:SPACING: No space is necessary after a cast
-#56: FILE: drivers/gpu/drm/i915/i915_debugfs_params.c:20:
-+		params = container_of(((void *) (ptr)), typeof(*params), name);	\
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#3717]: https://gitlab.freedesktop.org/drm/intel/issues/3717
 
-total: 0 errors, 0 warnings, 2 checks, 69 lines checked
-bce9b2362ee8 drm/i915/guc: Include scheduling policies in the debugfs state dump
-e1639b04b6cc drm/i915/guc: Add golden context to GuC ADS
--:262: CHECK:SPACING: No space is necessary after a cast
-#262: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:455:
-+	ptr = ((u8 *) blob) + offset;
 
-total: 0 errors, 0 warnings, 1 checks, 345 lines checked
-5901f74f1b1c drm/i915/guc: Implement banned contexts for GuC submission
--:382: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#382: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:1412:
-+	if (submission_disabled(guc) || (!context_enabled(ce) &&
-+	    !context_pending_disable(ce))) {
+Participating hosts (37 -> 34)
+------------------------------
 
-total: 0 errors, 0 warnings, 1 checks, 465 lines checked
-e2274e0cf772 drm/i915/guc: Support request cancellation
--:9: WARNING:TYPO_SPELLING: 'implemenation' may be misspelled - perhaps 'implementation'?
-#9: 
-This implemenation makes use of fence while there is likely simplier
-     ^^^^^^^^^^^^^
+  Additional (1): fi-dg1-1 
+  Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
 
--:10: WARNING:TYPO_SPELLING: 'choosen' may be misspelled - perhaps 'chosen'?
-#10: 
-options. A fence was choosen because of another feature coming soon
-                     ^^^^^^^
 
-total: 0 errors, 2 warnings, 0 checks, 407 lines checked
-77466a3adca9 drm/i915/selftest: Better error reporting from hangcheck selftest
-d95ac126a5a4 drm/i915/selftest: Fix workarounds selftest for GuC submission
--:139: CHECK:BRACES: Unbalanced braces around else statement
-#139: FILE: drivers/gpu/drm/i915/gt/selftest_workarounds.c:824:
-+			} else
+Build changes
+-------------
 
--:161: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#161: FILE: drivers/gpu/drm/i915/gt/selftest_workarounds.c:1284:
-+
-+
+  * Linux: CI_DRM_10374 -> Patchwork_20686
 
--:257: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#257: 
-new file mode 100644
+  CI-20190529: 20190529
+  CI_DRM_10374: 7609fea592fdf67a08716be3cb992e6e07ec81f5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20686: 222b8f5f4ed1ea60fd41f6b131dfee955d950612 @ git://anongit.freedesktop.org/gfx-ci/linux
 
--:369: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: "Signed-off-by: Rahul Kumar Singh" <rahul.kumar.singh@intel.com>' != 'Signed-off-by: Rahul Kumar Singh <rahul.kumar.singh@intel.com>'
 
-total: 0 errors, 2 warnings, 2 checks, 324 lines checked
-d60575e53546 drm/i915/selftest: Fix MOCS selftest for GuC submission
-5f655534ddb9 drm/i915/selftest: Increase some timeouts in live_requests
-e9554ae57a96 drm/i915/selftest: Fix hangcheck self test for GuC submission
--:271: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#271: FILE: drivers/gpu/drm/i915/gt/selftest_hangcheck.c:1052:
-+			err = intel_selftest_modify_policy(engine, &saved,
-+							  SELFTEST_SCHEDULER_MODIFY_FAST_RESET);
+== Linux commits ==
 
--:436: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#436: FILE: drivers/gpu/drm/i915/gt/selftest_hangcheck.c:1664:
-+			err = intel_selftest_modify_policy(engine, &saved,
-+							  SELFTEST_SCHEDULER_MODIFY_NO_HANGCHECK);
-
--:550: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#550: FILE: drivers/gpu/drm/i915/gt/selftest_workarounds.c:814:
-+								   SELFTEST_SCHEDULER_MODIFY_FAST_RESET);
-
-total: 0 errors, 1 warnings, 2 checks, 554 lines checked
-600cd57aa349 drm/i915/selftest: Bump selftest timeouts for hangcheck
-37ae6f386bc5 drm/i915/guc: Implement GuC priority management
--:366: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'rq->guc_prio == GUC_PRIO_FINI'
-#366: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2242:
-+	if (prio < I915_PRIORITY_NORMAL ||
-+	    (rq->guc_prio == GUC_PRIO_FINI) ||
-+	    (rq->guc_prio != GUC_PRIO_INIT &&
-+	     !new_guc_prio_higher(rq->guc_prio, new_guc_prio)))
-
-total: 0 errors, 0 warnings, 1 checks, 491 lines checked
 222b8f5f4ed1 drm/i915/guc: Unblock GuC submission on Gen11+
+37ae6f386bc5 drm/i915/guc: Implement GuC priority management
+600cd57aa349 drm/i915/selftest: Bump selftest timeouts for hangcheck
+e9554ae57a96 drm/i915/selftest: Fix hangcheck self test for GuC submission
+5f655534ddb9 drm/i915/selftest: Increase some timeouts in live_requests
+d60575e53546 drm/i915/selftest: Fix MOCS selftest for GuC submission
+d95ac126a5a4 drm/i915/selftest: Fix workarounds selftest for GuC submission
+77466a3adca9 drm/i915/selftest: Better error reporting from hangcheck selftest
+e2274e0cf772 drm/i915/guc: Support request cancellation
+5901f74f1b1c drm/i915/guc: Implement banned contexts for GuC submission
+e1639b04b6cc drm/i915/guc: Add golden context to GuC ADS
+bce9b2362ee8 drm/i915/guc: Include scheduling policies in the debugfs state dump
+078bbab61932 drm/i915/guc: Connect reset modparam updates to GuC policy flags
+43ba142e24f9 drm/i915/guc: Hook GuC scheduling policies up
+b4ed2cab4b35 drm/i915/guc: Fix for error capture after full GPU reset with GuC
+3a6d2423e625 drm/i915/guc: Capture error state on context reset
+ee7a77ae81e6 drm/i915/guc: Enable GuC engine reset
+5e642e904723 drm/i915/guc: Don't complain about reset races
+6642efd29a52 drm/i915/guc: Provide mmio list to be saved/restored on engine reset
+39fc22487a99 drm/i915/guc: Enable the timer expired interrupt for GuC
+a6a5b8bd25ca drm/i915/guc: Handle engine reset failure notification
+93fcd3d3f15f drm/i915/guc: Handle context reset notification
+2d8442c0bcb5 drm/i915/guc: Suspend/resume implementation for new interface
+8bc28306ef3c drm/i915/guc: Add disable interrupts to guc sanitize
+7cfdea9a7cca drm/i915: Reset GPU immediately if submission is disabled
+2fe085686ac0 drm/i915/guc: Reset implementation for new GuC interface
+96e05d821dc0 drm/i915: Move active request tracking to a vfunc
+e7bbc081df3c drm/i915: Add i915_sched_engine destroy vfunc
+9b220ffb651e drm/i915/guc: Direct all breadcrumbs for a class to single breadcrumbs
+095ca97f853a drm/i915/guc: Disable bonding extension with GuC submission
+abe5c9520ece drm/i915: Hold reference to intel_context over life of i915_request
+ed2ce8f94165 drm/i915/guc: Make hangcheck work with GuC virtual engines
+c4c2a95bc42c drm/i915/guc: GuC virtual engines
 
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20686/index.html
+
+--===============7855190966238079066==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Remaining patches for basic GuC submission</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92912/">https://patchwork.freedesktop.org/series/92912/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20686/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20686/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10374 -&gt; Patchwork_20686</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20686/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20686 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10374/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20686/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Additional (1): fi-dg1-1 <br />
+  Missing    (4): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10374 -&gt; Patchwork_20686</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10374: 7609fea592fdf67a08716be3cb992e6e07ec81f5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20686: 222b8f5f4ed1ea60fd41f6b131dfee955d950612 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>222b8f5f4ed1 drm/i915/guc: Unblock GuC submission on Gen11+<br />
+37ae6f386bc5 drm/i915/guc: Implement GuC priority management<br />
+600cd57aa349 drm/i915/selftest: Bump selftest timeouts for hangcheck<br />
+e9554ae57a96 drm/i915/selftest: Fix hangcheck self test for GuC submission<br />
+5f655534ddb9 drm/i915/selftest: Increase some timeouts in live_requests<br />
+d60575e53546 drm/i915/selftest: Fix MOCS selftest for GuC submission<br />
+d95ac126a5a4 drm/i915/selftest: Fix workarounds selftest for GuC submission<br />
+77466a3adca9 drm/i915/selftest: Better error reporting from hangcheck selftest<br />
+e2274e0cf772 drm/i915/guc: Support request cancellation<br />
+5901f74f1b1c drm/i915/guc: Implement banned contexts for GuC submission<br />
+e1639b04b6cc drm/i915/guc: Add golden context to GuC ADS<br />
+bce9b2362ee8 drm/i915/guc: Include scheduling policies in the debugfs state dump<br />
+078bbab61932 drm/i915/guc: Connect reset modparam updates to GuC policy flags<br />
+43ba142e24f9 drm/i915/guc: Hook GuC scheduling policies up<br />
+b4ed2cab4b35 drm/i915/guc: Fix for error capture after full GPU reset with GuC<br />
+3a6d2423e625 drm/i915/guc: Capture error state on context reset<br />
+ee7a77ae81e6 drm/i915/guc: Enable GuC engine reset<br />
+5e642e904723 drm/i915/guc: Don't complain about reset races<br />
+6642efd29a52 drm/i915/guc: Provide mmio list to be saved/restored on engine reset<br />
+39fc22487a99 drm/i915/guc: Enable the timer expired interrupt for GuC<br />
+a6a5b8bd25ca drm/i915/guc: Handle engine reset failure notification<br />
+93fcd3d3f15f drm/i915/guc: Handle context reset notification<br />
+2d8442c0bcb5 drm/i915/guc: Suspend/resume implementation for new interface<br />
+8bc28306ef3c drm/i915/guc: Add disable interrupts to guc sanitize<br />
+7cfdea9a7cca drm/i915: Reset GPU immediately if submission is disabled<br />
+2fe085686ac0 drm/i915/guc: Reset implementation for new GuC interface<br />
+96e05d821dc0 drm/i915: Move active request tracking to a vfunc<br />
+e7bbc081df3c drm/i915: Add i915_sched_engine destroy vfunc<br />
+9b220ffb651e drm/i915/guc: Direct all breadcrumbs for a class to single breadcrumbs<br />
+095ca97f853a drm/i915/guc: Disable bonding extension with GuC submission<br />
+abe5c9520ece drm/i915: Hold reference to intel_context over life of i915_request<br />
+ed2ce8f94165 drm/i915/guc: Make hangcheck work with GuC virtual engines<br />
+c4c2a95bc42c drm/i915/guc: GuC virtual engines</p>
+
+</body>
+</html>
+
+--===============7855190966238079066==--
+
+--===============1421069239==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1421069239==--
