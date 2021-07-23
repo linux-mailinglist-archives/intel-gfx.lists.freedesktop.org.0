@@ -1,38 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D863D436F
-	for <lists+intel-gfx@lfdr.de>; Sat, 24 Jul 2021 01:42:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 111533D4370
+	for <lists+intel-gfx@lfdr.de>; Sat, 24 Jul 2021 01:44:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED9EA6F96A;
-	Fri, 23 Jul 2021 23:42:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2BD6FCAD;
+	Fri, 23 Jul 2021 23:44:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A95D6F96A
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 23:42:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="199173400"
-X-IronPort-AV: E=Sophos;i="5.84,265,1620716400"; d="scan'208";a="199173400"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2021 16:42:52 -0700
-X-IronPort-AV: E=Sophos;i="5.84,265,1620716400"; d="scan'208";a="513756535"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2021 16:42:52 -0700
-Date: Fri, 23 Jul 2021 16:42:51 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <20210723234251.GF1556418@mdroper-desk1.amr.corp.intel.com>
-References: <20210721215238.24980-1-anusha.srivatsa@intel.com>
- <20210721215238.24980-3-anusha.srivatsa@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27E546FCAD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 23:44:13 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="297540995"
+X-IronPort-AV: E=Sophos;i="5.84,265,1620716400"; d="scan'208";a="297540995"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2021 16:44:12 -0700
+X-IronPort-AV: E=Sophos;i="5.84,265,1620716400"; d="scan'208";a="415990628"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2021 16:44:12 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 Jul 2021 16:43:52 -0700
+Message-Id: <20210723234352.214459-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210721215238.24980-3-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [CI 3/4] drm/i915/firmware: Update to DMC v2.12 on
- TGL
+Subject: [Intel-gfx] [PATCH] drm/i915: fix not reading DSC disable fuse in
+ GLK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,58 +41,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 21, 2021 at 02:52:37PM -0700, Anusha Srivatsa wrote:
-> Add support to the latest DMC firmware.
-> 
-> Cc: Madhunitha Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> Reviewed-by: Madhumitha Pradeep <
+We were using GRAPHICS_VER() to handle SKL_DFSM register, which means we
+were not handling GLK correctly since that has GRAPHICS_VER == 9, but
+DISPLAY_VER == 10. Switch the entire branch to check DISPLAY_VER
+which makes it more in line with Bspec.
 
-You seem to have lost Madhumitha's email address on a couple of these
-patches.
+Even though the Bspec has an exception for RKL in
+TGL_DFSM_PIPE_D_DISABLE, we don't have to do anything as the bit has
+disable semantic and RKL doesn't have pipe D.
 
+Bspec: 50075, 7548
+Fixes: 2b5a4562edd0 ("drm/i915/display: Simplify GLK display version tests")
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/intel_device_info.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-Matt
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index 1f6c32932331..50093e7b088a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -61,8 +61,8 @@ MODULE_FIRMWARE(DG1_DMC_PATH);
->  #define RKL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 2)
->  MODULE_FIRMWARE(RKL_DMC_PATH);
->  
-> -#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 08)
-> -#define TGL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 8)
-> +#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 12)
-> +#define TGL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 12)
->  MODULE_FIRMWARE(TGL_DMC_PATH);
->  
->  #define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
-> -- 
-> 2.32.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index d5cf5977938a..99b51c292942 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -335,7 +335,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 			info->pipe_mask &= ~BIT(PIPE_C);
+ 			info->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
+ 		}
+-	} else if (HAS_DISPLAY(dev_priv) && GRAPHICS_VER(dev_priv) >= 9) {
++	} else if (HAS_DISPLAY(dev_priv) && DISPLAY_VER(dev_priv) >= 9) {
+ 		u32 dfsm = intel_de_read(dev_priv, SKL_DFSM);
+ 
+ 		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
+@@ -350,7 +350,8 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 			info->pipe_mask &= ~BIT(PIPE_C);
+ 			info->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
+ 		}
+-		if (GRAPHICS_VER(dev_priv) >= 12 &&
++
++		if (DISPLAY_VER(dev_priv) >= 12 &&
+ 		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
+ 			info->pipe_mask &= ~BIT(PIPE_D);
+ 			info->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
+@@ -362,10 +363,10 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
+ 			info->display.has_fbc = 0;
+ 
+-		if (GRAPHICS_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
++		if (DISPLAY_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
+ 			info->display.has_dmc = 0;
+ 
+-		if (GRAPHICS_VER(dev_priv) >= 10 &&
++		if (DISPLAY_VER(dev_priv) >= 10 &&
+ 		    (dfsm & CNL_DFSM_DISPLAY_DSC_DISABLE))
+ 			info->display.has_dsc = 0;
+ 	}
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.31.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
