@@ -1,36 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26623D3EFD
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:43:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2653D3F10
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 19:43:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09C496FB9F;
-	Fri, 23 Jul 2021 17:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6C7D6FBB0;
+	Fri, 23 Jul 2021 17:43:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBAC6FBA0
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:43:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="273032685"
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="273032685"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 454636FB9F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 17:43:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="211644162"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="211644162"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:52 -0700
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229115"
+X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; d="scan'208";a="463229118"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Jul 2021 10:42:52 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Jul 2021 10:42:34 -0700
-Message-Id: <20210723174239.1551352-26-matthew.d.roper@intel.com>
+Date: Fri, 23 Jul 2021 10:42:35 -0700
+Message-Id: <20210723174239.1551352-27-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 References: <20210723174239.1551352-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 25/30] drm/i915/dg2: Add vswing programming
- for SNPS phys
+Subject: [Intel-gfx] [PATCH v3 26/30] drm/i915/dg2: Update modeset sequences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,185 +42,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Vswing programming for SNPS PHYs is just a single step -- look up the
-value that corresponds to the voltage level from a table and program it
-into the SNPS_PHY_TX_EQ register.
+DG2 has some changes to the expected modesetting sequences when compared
+to gen12.  Adjust our driver logic accordingly.  Although the DP
+sequence is pretty similar to TGL's, there are some steps that change,
+so let's split the handling for that out into a separate function.
 
-Bspec: 53920
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
+v2:
+ - Switch wait_for_us() -> _wait_for() so that we can parameterize the
+   timeout rather than duplicating the macro call.  (Jani)
+
+Bspec: 54128
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c      | 23 ++++++--
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 54 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_snps_phy.h |  4 ++
- drivers/gpu/drm/i915/i915_reg.h               |  5 ++
- 4 files changed, 83 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 131 +++++++++++++++++++++--
+ 1 file changed, 123 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 929a95ddb316..ade03cf41caa 100644
+index ade03cf41caa..f96dd8dde61e 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1496,6 +1496,16 @@ static int intel_ddi_dp_level(struct intel_dp *intel_dp)
- 	return translate_signal_level(intel_dp, signal_levels);
+@@ -172,14 +172,18 @@ void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
+ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
+ 				      enum port port)
+ {
++	int ret;
++
+ 	/* Wait > 518 usecs for DDI_BUF_CTL to be non idle */
+ 	if (DISPLAY_VER(dev_priv) < 10) {
+ 		usleep_range(518, 1000);
+ 		return;
+ 	}
+ 
+-	if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+-			  DDI_BUF_IS_IDLE), 500))
++	ret = _wait_for(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
++			  DDI_BUF_IS_IDLE), IS_DG2(dev_priv) ? 1200 : 500, 10, 10);
++
++	if (ret)
+ 		drm_err(&dev_priv->drm, "Timeout waiting for DDI BUF %c to get active\n",
+ 			port_name(port));
+ }
+@@ -2207,7 +2211,7 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
+ 		ddi_clk_needed = false;
+ 	}
+ 
+-	if (ddi_clk_needed || !encoder->disable_clock ||
++	if (ddi_clk_needed || !encoder->is_clock_enabled ||
+ 	    !encoder->is_clock_enabled(encoder))
+ 		return;
+ 
+@@ -2488,6 +2492,116 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
+ 		     OVERLAP_PIXELS_MASK, dss1);
  }
  
-+static void
-+dg2_set_signal_levels(struct intel_dp *intel_dp,
-+		      const struct intel_crtc_state *crtc_state)
++static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
++				  struct intel_encoder *encoder,
++				  const struct intel_crtc_state *crtc_state,
++				  const struct drm_connector_state *conn_state)
 +{
-+	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
 +	int level = intel_ddi_dp_level(intel_dp);
 +
++	intel_dp_set_link_params(intel_dp, crtc_state->port_clock,
++				 crtc_state->lane_count);
++
++	/*
++	 * 1. Enable Power Wells
++	 *
++	 * This was handled at the beginning of intel_atomic_commit_tail(),
++	 * before we called down into this function.
++	 */
++
++	/* 2. Enable Panel Power if PPS is required */
++	intel_pps_on(intel_dp);
++
++	/*
++	 * 3. Enable the port PLL.
++	 */
++	intel_ddi_enable_clock(encoder, crtc_state);
++
++	/* 4. Enable IO power */
++	if (!intel_phy_is_tc(dev_priv, phy) ||
++	    dig_port->tc_mode != TC_PORT_TBT_ALT)
++		dig_port->ddi_io_wakeref = intel_display_power_get(dev_priv,
++								   dig_port->ddi_io_power_domain);
++
++	/*
++	 * 5. The rest of the below are substeps under the bspec's "Enable and
++	 * Train Display Port" step.  Note that steps that are specific to
++	 * MST will be handled by intel_mst_pre_enable_dp() before/after it
++	 * calls into this function.  Also intel_mst_pre_enable_dp() only calls
++	 * us when active_mst_links==0, so any steps designated for "single
++	 * stream or multi-stream master transcoder" can just be performed
++	 * unconditionally here.
++	 */
++
++	/*
++	 * 5.a Configure Transcoder Clock Select to direct the Port clock to the
++	 * Transcoder.
++	 */
++	intel_ddi_enable_pipe_clock(encoder, crtc_state);
++
++	/* 5.b Not relevant to i915 for now */
++
++	/*
++	 * 5.c Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
++	 * Transport Select
++	 */
++	intel_ddi_config_transcoder_func(encoder, crtc_state);
++
++	/*
++	 * 5.d Configure & enable DP_TP_CTL with link training pattern 1
++	 * selected
++	 *
++	 * This will be handled by the intel_dp_start_link_train() farther
++	 * down this function.
++	 */
++
++	/* 5.e Configure voltage swing and related IO settings */
 +	intel_snps_phy_ddi_vswing_sequence(encoder, level);
++
++	/*
++	 * 5.f Configure and enable DDI_BUF_CTL
++	 * 5.g Wait for DDI_BUF_CTL DDI Idle Status = 0b (Not Idle), timeout
++	 *     after 1200 us.
++	 *
++	 * We only configure what the register value will be here.  Actual
++	 * enabling happens during link training farther down.
++	 */
++	intel_ddi_init_dp_buf_reg(encoder, crtc_state);
++
++	if (!is_mst)
++		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
++
++	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
++	/*
++	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
++	 * in the FEC_CONFIGURATION register to 1 before initiating link
++	 * training
++	 */
++	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
++
++	/*
++	 * 5.h Follow DisplayPort specification training sequence (see notes for
++	 *     failure handling)
++	 * 5.i If DisplayPort multi-stream - Set DP_TP_CTL link training to Idle
++	 *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
++	 *     (timeout after 800 us)
++	 */
++	intel_dp_start_link_train(intel_dp, crtc_state);
++
++	/* 5.j Set DP_TP_CTL link training to Normal */
++	if (!is_trans_port_sync_mode(crtc_state))
++		intel_dp_stop_link_train(intel_dp, crtc_state);
++
++	/* 5.k Configure and enable FEC if needed */
++	intel_ddi_enable_fec(encoder, crtc_state);
++	intel_dsc_enable(encoder, crtc_state);
 +}
 +
- static void
- tgl_set_signal_levels(struct intel_dp *intel_dp,
- 		      const struct intel_crtc_state *crtc_state)
-@@ -2563,7 +2573,10 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 				  struct intel_encoder *encoder,
+ 				  const struct intel_crtc_state *crtc_state,
+@@ -2573,10 +2687,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
  	 */
  
  	/* 7.e Configure voltage swing and related IO settings */
--	tgl_ddi_vswing_sequence(encoder, crtc_state, level);
-+	if (IS_DG2(dev_priv))
-+		intel_snps_phy_ddi_vswing_sequence(encoder, level);
-+	else
-+		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
+-	if (IS_DG2(dev_priv))
+-		intel_snps_phy_ddi_vswing_sequence(encoder, level);
+-	else
+-		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
++	tgl_ddi_vswing_sequence(encoder, crtc_state, level);
  
  	/*
  	 * 7.f Combo PHY: Configure PORT_CL_DW10 Static Power Down to power up
-@@ -3102,7 +3115,9 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
- 			    "[CONNECTOR:%d:%s] Failed to configure sink scrambling/TMDS bit clock ratio\n",
- 			    connector->base.id, connector->name);
+@@ -2708,7 +2819,9 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
  
 -	if (DISPLAY_VER(dev_priv) >= 12)
 +	if (IS_DG2(dev_priv))
-+		intel_snps_phy_ddi_vswing_sequence(encoder, U32_MAX);
++		dg2_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
 +	else if (DISPLAY_VER(dev_priv) >= 12)
- 		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
- 	else if (DISPLAY_VER(dev_priv) == 11)
- 		icl_ddi_vswing_sequence(encoder, crtc_state, level);
-@@ -4075,7 +4090,9 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
- 	dig_port->dp.set_link_train = intel_ddi_set_link_train;
- 	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
+ 		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
+ 	else
+ 		hsw_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
+@@ -4634,6 +4747,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 	encoder->pipe_mask = ~0;
  
--	if (DISPLAY_VER(dev_priv) >= 12)
-+	if (IS_DG2(dev_priv))
-+		dig_port->dp.set_signal_levels = dg2_set_signal_levels;
-+	else if (DISPLAY_VER(dev_priv) >= 12)
- 		dig_port->dp.set_signal_levels = tgl_set_signal_levels;
- 	else if (DISPLAY_VER(dev_priv) >= 11)
- 		dig_port->dp.set_signal_levels = icl_set_signal_levels;
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index 1317b4e94b50..77759bda98a4 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -21,6 +21,60 @@
-  * since it is not handled by the shared DPLL framework as on other platforms.
-  */
- 
-+static const u32 dg2_ddi_translations[] = {
-+	/* VS 0, pre-emph 0 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 26),
-+
-+	/* VS 0, pre-emph 1 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 33) |
-+		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 6),
-+
-+	/* VS 0, pre-emph 2 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 38) |
-+		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 12),
-+
-+	/* VS 0, pre-emph 3 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 43) |
-+		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 19),
-+
-+	/* VS 1, pre-emph 0 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 39),
-+
-+	/* VS 1, pre-emph 1 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 44) |
-+		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 8),
-+
-+	/* VS 1, pre-emph 2 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 47) |
-+		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 15),
-+
-+	/* VS 2, pre-emph 0 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 52),
-+
-+	/* VS 2, pre-emph 1 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 51) |
-+		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 10),
-+
-+	/* VS 3, pre-emph 0 */
-+	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 62),
-+};
-+
-+void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
-+					u32 level)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
-+	int n_entries, ln;
-+
-+	n_entries = ARRAY_SIZE(dg2_ddi_translations);
-+	if (level >= n_entries)
-+		level = n_entries - 1;
-+
-+	for (ln = 0; ln < 4; ln++)
-+		intel_de_write(dev_priv, SNPS_PHY_TX_EQ(ln, phy),
-+			       dg2_ddi_translations[level]);
-+}
-+
- /*
-  * Basic DP link rates with 100 MHz reference clock.
-  */
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.h b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-index ca4c2a25182b..3ce92d424f66 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-@@ -6,6 +6,8 @@
- #ifndef __INTEL_SNPS_PHY_H__
- #define __INTEL_SNPS_PHY_H__
- 
-+#include <linux/types.h>
-+
- struct intel_encoder;
- struct intel_crtc_state;
- struct intel_mpllb_state;
-@@ -21,5 +23,7 @@ int intel_mpllb_calc_port_clock(struct intel_encoder *encoder,
- 				const struct intel_mpllb_state *pll_state);
- 
- int intel_snps_phy_check_hdmi_link_rate(int clock);
-+void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
-+					u32 level);
- 
- #endif /* __INTEL_SNPS_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index dc0002c1efda..2e028350c32d 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2340,6 +2340,11 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define SNPS_PHY_REF_CONTROL(phy)		_MMIO_SNPS(phy, 0x168188)
- #define   SNPS_PHY_REF_CONTROL_REF_RANGE	REG_GENMASK(31, 27)
- 
-+#define SNPS_PHY_TX_EQ(ln, phy)			_MMIO_SNPS_LN(ln, phy, 0x168300)
-+#define   SNPS_PHY_TX_EQ_MAIN			REG_GENMASK(23, 18)
-+#define   SNPS_PHY_TX_EQ_POST			REG_GENMASK(15, 10)
-+#define   SNPS_PHY_TX_EQ_PRE			REG_GENMASK(7, 2)
-+
- /* The spec defines this only for BXT PHY0, but lets assume that this
-  * would exist for PHY1 too if it had a second channel.
-  */
+ 	if (IS_DG2(dev_priv)) {
++		encoder->enable_clock = intel_mpllb_enable;
++		encoder->disable_clock = intel_mpllb_disable;
+ 		encoder->get_config = dg2_ddi_get_config;
+ 	} else if (IS_ALDERLAKE_S(dev_priv)) {
+ 		encoder->enable_clock = adls_ddi_enable_clock;
 -- 
 2.25.4
 
