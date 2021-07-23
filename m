@@ -1,31 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76C2B3D34F9
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 09:01:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD723D3508
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 09:06:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 228596F8C5;
-	Fri, 23 Jul 2021 07:01:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1FFE6E920;
+	Fri, 23 Jul 2021 07:06:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A50CE6F8C5;
- Fri, 23 Jul 2021 07:01:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9E5FDA9932;
- Fri, 23 Jul 2021 07:01:53 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED8AF6E920
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Jul 2021 07:06:37 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10053"; a="297396043"
+X-IronPort-AV: E=Sophos;i="5.84,263,1620716400"; d="scan'208";a="297396043"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2021 00:06:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,263,1620716400"; d="scan'208";a="513009231"
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
+ by fmsmga002.fm.intel.com with ESMTP; 23 Jul 2021 00:06:24 -0700
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Fri, 23 Jul 2021 08:06:22 +0100
+Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
+ BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2242.010;
+ Fri, 23 Jul 2021 12:36:21 +0530
+From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
+To: "Lee, Shawn C" <shawn.c.lee@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [V3 5/7] drm/i915: Get proper min cdclk if vDSC enabled
+Thread-Index: AQHXf5Ark0SqENuKVEaCKGzHhn4EJatQIsvA
+Date: Fri, 23 Jul 2021 07:06:21 +0000
+Message-ID: <494aeb6366334b7da222ef96bc6b3beb@intel.com>
+References: <20210723070548.29315-1-shawn.c.lee@intel.com>
+ <20210723070548.29315-6-shawn.c.lee@intel.com>
+In-Reply-To: <20210723070548.29315-6-shawn.c.lee@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 23 Jul 2021 07:01:53 -0000
-Message-ID: <162702371362.3044.9200855691499945273@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210723053401.1269829-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210723053401.1269829-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQURM?=
- =?utf-8?q?_DDI_translation_buffer_updates_=28rev2=29?=
+Subject: Re: [Intel-gfx] [V3 5/7] drm/i915: Get proper min cdclk if vDSC
+ enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,178 +61,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1563977314=="
+Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Chiou,
+ Cooper" <cooper.chiou@intel.com>, "Tseng, William" <william.tseng@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1563977314==
-Content-Type: multipart/alternative;
- boundary="===============5327642157531817973=="
+> -----Original Message-----
+> From: Lee, Shawn C <shawn.c.lee@intel.com>
+> Sent: Friday, July 23, 2021 12:36 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>; ville.syrjala@linux.intel.com;
+> Kulkarni, Vandita <vandita.kulkarni@intel.com>; Chiou, Cooper
+> <cooper.chiou@intel.com>; Tseng, William <william.tseng@intel.com>; Lee,
+> Shawn C <shawn.c.lee@intel.com>; Jani Nikula <jani.nikula@linux.intel.com>
+> Subject: [V3 5/7] drm/i915: Get proper min cdclk if vDSC enabled
+> 
+> VDSC engine can process only 1 pixel per Cd clock. In case VDSC is used and
+> max slice count == 1, max supported pixel clock should be 100% of CD clock.
+> Then do min_cdclk and pixel clock comparison to get proper min cdclk.
+> 
+> v2:
+> - Check for dsc enable and slice count ==1 then allow to
+>   double confirm min cdclk value.
 
---===============5327642157531817973==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+LGTM, 
+Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 
-== Series Details ==
-
-Series: ADL DDI translation buffer updates (rev2)
-URL   : https://patchwork.freedesktop.org/series/92921/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10376 -> Patchwork_20688
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20688/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20688:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@gt_timelines:
-    - {fi-tgl-dsi}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10376/fi-tgl-dsi/igt@i915_selftest@live@gt_timelines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20688/fi-tgl-dsi/igt@i915_selftest@live@gt_timelines.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20688 that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10376 -> Patchwork_20688
-
-  CI-20190529: 20190529
-  CI_DRM_10376: 299bd09eafa6bf94ac922867ee0c797f8e569d3b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20688: 43e59f118335f3b00de582e633bb5074319b1c58 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-43e59f118335 drm/i915/adl_p: Add ddi buf translation tables for combo PHY
-faad50971bdd drm/i915/adl_s: Update ddi buf translation tables
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20688/index.html
-
---===============5327642157531817973==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>ADL DDI translation buffer updates (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92921/">https://patchwork.freedesktop.org/series/92921/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20688/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20688/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10376 -&gt; Patchwork_20688</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20688/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20688:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@gt_timelines:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10376/fi-tgl-dsi/igt@i915_selftest@live@gt_timelines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20688/fi-tgl-dsi/igt@i915_selftest@live@gt_timelines.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20688 that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10376 -&gt; Patchwork_20688</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10376: 299bd09eafa6bf94ac922867ee0c797f8e569d3b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6147: f3994c2cd99a1acfe991a8cc838a387dcb36598a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20688: 43e59f118335f3b00de582e633bb5074319b1c58 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>43e59f118335 drm/i915/adl_p: Add ddi buf translation tables for combo PHY<br />
-faad50971bdd drm/i915/adl_s: Update ddi buf translation tables</p>
-
-</body>
-</html>
-
---===============5327642157531817973==--
-
---===============1563977314==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> 
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Cc: William Tseng <william.tseng@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 71067a62264d..3e09f6370d27 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2159,6 +2159,16 @@ int intel_crtc_compute_min_cdclk(const struct
+> intel_crtc_state *crtc_state)
+>  	/* Account for additional needs from the planes */
+>  	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
+> 
+> +	/*
+> +	 * VDSC engine can process only 1 pixel per Cd clock.
+> +	 * In case VDSC is used and max slice count == 1,
+> +	 * max supported pixel clock should be 100% of CD clock.
+> +	 * Then do min_cdclk and pixel clock comparison to get cdclk.
+> +	 */
+> +	if (crtc_state->dsc.compression_enable &&
+> +	    crtc_state->dsc.slice_count == 1)
+> +		min_cdclk = max(min_cdclk, (int)crtc_state->pixel_rate);
+> +
+>  	/*
+>  	 * HACK. Currently for TGL platforms we calculate
+>  	 * min_cdclk initially based on pixel_rate divided
+> --
+> 2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1563977314==--
