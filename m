@@ -1,69 +1,102 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41A263D37D1
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 11:40:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 135C93D37D0
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 11:40:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEEE76EC37;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAF266EAAA;
 	Fri, 23 Jul 2021 09:40:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com
- [IPv6:2607:f8b0:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 892476EC3F;
- Fri, 23 Jul 2021 06:44:41 +0000 (UTC)
-Received: by mail-pl1-x630.google.com with SMTP id a20so2294165plm.0;
- Thu, 22 Jul 2021 23:44:41 -0700 (PDT)
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com
+ [IPv6:2607:f8b0:4864:20::d2a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5A26F45D;
+ Fri, 23 Jul 2021 07:16:51 +0000 (UTC)
+Received: by mail-io1-xd2a.google.com with SMTP id r18so1423430iot.4;
+ Fri, 23 Jul 2021 00:16:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=JtVRhU77ke1jykJUlx44YgtyrOvEU41Pb5DTJX/92t8=;
- b=YICsHnOycxoxkOgj0f0hjRbEP9/EY2rkWi/vMtZq7CjO4baIqSowmIcWA3Httq8u0T
- 9VTxJKZo/Uze4wwTZMDFowZR7eq6Xi5NGBR4XR69N0PhPkflgn9kz5ICkPWPi1UKzDGp
- M2B3tekHiBZBL23dNaDN/fjKudWdmkxIYvIrvSMQJpm2vUXfh7PjlVxD3OpUodCsj3E3
- OtIxeEVpX3fSMNV8S8PoGC/66JqXT3qxwXBNBjfyyj0/2tTanARkAuMkZBCegz5Ygqjb
- e6NDLDE4vh8wtcAEDrC0uE0EOfWYMAC+vxcxNrjV85kTVU4syxEyEikhxxv/cQWF67ny
- g/Ag==
+ h=date:from:to:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=xe2OINBH+BRr0c0B6Rjuunf1y/CF6ftNbio56e+sO/U=;
+ b=B/E7k4toRTdG51Xn1+b8uQblMIAYTeDSYwFtqlEV9w+f2GnxRubcqAxTzyIeWJN8mH
+ O6n61pgcCQYYe9DBzfjgPrMspAwBHD985Z2CH1soCmAVawStI9gQczByWPtOiU+HCdU3
+ B6PgMeVBSNKhRW94qwYABJ+F06HZE2vfgi7TX85mWBI1t8aS7+gbGRMjp9DCqtzZPsx0
+ +AGDC23HR5qLj09CNuvI0JYT3mjgLs+VaFIVVo2EeyKQ2KNwM/2oDYzHZkV/2JVE42L8
+ LSCrIvYdben9raJIiSfC43nD6SoE6NEJ7xDPibMhfShJAr/GNAQWg67gD1byv3Xnjk4O
+ Zd/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=JtVRhU77ke1jykJUlx44YgtyrOvEU41Pb5DTJX/92t8=;
- b=P20YQosaI+c0m5X2NFsny49jFRTEDJ5aUn9Und9gRuJbYDpUa3uc513FcO1OeJctbi
- XVcdiXwbTSZlS4FdUPga2iLmY+5AQEY0gfREXoTXMClnPhFBKiT2oQkR2R0XpwXVsBEr
- Moy9mTpNysysMXMqLVSjH79oPEiDDRf5pWyirLPWt6DKunZmS5hvQqL3NGE1TtF08g4O
- A4KZPUXDH1cNQSf/BI2AOPKMwiCwkjoue5ZYxnpvocPU11GoJYrle5JblJIBt+GkHPhc
- lPwlSzpANEttiAb2eTEGbAcizmEsrmbe1GXdYFKW7nWKki62a2RwN+ohC8xxtekZx0D4
- hoWw==
-X-Gm-Message-State: AOAM532CaoJnGQ2gibwHlQCgFoRPXEClCkvXZR9eFnaJjnlyBYJ4Nx6U
- boMxC/wyPAYA0ApUWuh+CEAXZTzZ6jeUlF0Rkow=
-X-Google-Smtp-Source: ABdhPJz9iplYhIwZU1EW3jCgZDLvrZ1Zvw9a2ACvz4RyKBOSbBtaaNTJgPvIr9uWhLuDw5FJaj2vmw==
-X-Received: by 2002:a17:90b:3a92:: with SMTP id
- om18mr3315626pjb.33.1627022681207; 
- Thu, 22 Jul 2021 23:44:41 -0700 (PDT)
-Received: from [192.168.1.237] ([118.200.190.93])
- by smtp.gmail.com with ESMTPSA id u14sm28466293pga.93.2021.07.22.23.44.37
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 22 Jul 2021 23:44:40 -0700 (PDT)
-To: Zack Rusin <zackr@vmware.com>, linux-graphics-maintainer@vmware.com,
- airlied@linux.ie, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de
+ h=x-gm-message-state:date:from:to:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=xe2OINBH+BRr0c0B6Rjuunf1y/CF6ftNbio56e+sO/U=;
+ b=ivEYNOrEFnRMSGN49x2xBb+Hs7v8Mzgad8d9aozRUHrbigCCrPnX43W+RY6nOtHN+N
+ yFt5tijG2gyFkd7oO6SHzpAwQZg32uMwvGVioNo+IOzyrrVbrMDAbAp9C5sqBzy13TC4
+ KPPd9Wx3J0sVXK88vDqp2OsQMGxfPrIz3c2ckhwH7ewbSrKG0xmkxIP7Ww0c3IhSXiRA
+ gYFlradJB5Z6dsBj6J+Dzu8D7n2H2dJoEI1TWB/Z8AQASIbWMxPI3/HwB8NOwZPHaNO8
+ u+fe8qzjGDDgQjM49lq783qq+qV2GJTfeYkW0YWNLIMP2/bne2I/EzTEz26GMT+3X+2d
+ HHNQ==
+X-Gm-Message-State: AOAM533mrCxQNsEmLja3uSW/OjnYVdMQbNVaPfH1ouQpvDhcZoNfN+Xa
+ Bbe7lYTGefFLqjaZgp4mNlU=
+X-Google-Smtp-Source: ABdhPJyIuQBU8O+4oz9gwGN1TLTCzxwB5DCKMsiP+uv75Gp3fk/x11JK7NIqOzv5tmMQkd+M+WZgbA==
+X-Received: by 2002:a02:666d:: with SMTP id l45mr3089958jaf.0.1627024610836;
+ Fri, 23 Jul 2021 00:16:50 -0700 (PDT)
+Received: from auth1-smtp.messagingengine.com (auth1-smtp.messagingengine.com.
+ [66.111.4.227])
+ by smtp.gmail.com with ESMTPSA id w10sm15622116ilo.17.2021.07.23.00.16.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 23 Jul 2021 00:16:50 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailauth.nyi.internal (Postfix) with ESMTP id 9C8A227C0054;
+ Fri, 23 Jul 2021 03:16:49 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute1.internal (MEProxy); Fri, 23 Jul 2021 03:16:49 -0400
+X-ME-Sender: <xms:4Gz6YKJPK3nkWfQ4Geob8UDl6rxghgbcCBcYaE4I5AsrOKW3ksf4xg>
+ <xme:4Gz6YCKQSq4OwcSULkMIKh3wz9UsIoV_0pgSXS7N2pX7gHQ8sWkcXFtxamWL8HVIN
+ pglgYAvrz3QxMV8OQ>
+X-ME-Received: <xmr:4Gz6YKtC9oV0cEIqPE0hemsadw3evFS6KYBhguqd84lE7ahl_IMVdXmE-328zA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeejgdduudefucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeeuohhquhhn
+ ucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilhdrtghomheqnecuggftrfgrth
+ htvghrnhepgedugeeftdejtdffvdelleetfeduvdekgfehjeeuudejheefleekteejgedt
+ fefgnecuffhomhgrihhnpehffhiflhhlrdgthhenucevlhhushhtvghrufhiiigvpedtne
+ curfgrrhgrmhepmhgrihhlfhhrohhmpegsohhquhhnodhmvghsmhhtphgruhhthhhpvghr
+ shhonhgrlhhithihqdeiledvgeehtdeigedqudejjeekheehhedvqdgsohhquhhnrdhfvg
+ hngheppehgmhgrihhlrdgtohhmsehfihigmhgvrdhnrghmvg
+X-ME-Proxy: <xmx:4Gz6YPZwR069ffaPF6qhZ1SRoGyrRiurkAcN6zUNEw8wnZU8j5IJng>
+ <xmx:4Gz6YBbh8zYyKBTFS47YY4YIHXVVE0_3vKScH7aqwxqY0k_9bhpLZQ>
+ <xmx:4Gz6YLA2P5ebpABLcjMU7NYIARdy_qoPX4YTtg5PlcScZVoAbHYSEA>
+ <xmx:4Wz6YFpL2rMhdkiJLKmiCjOF9eUuXLcqZBwi7EC5yR-v0k4DLOvvGXn17-A>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 23 Jul 2021 03:16:48 -0400 (EDT)
+Date: Fri, 23 Jul 2021 15:16:42 +0800
+From: Boqun Feng <boqun.feng@gmail.com>
+To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ LKML <linux-kernel@vger.kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Zack Rusin <zackr@vmware.com>, Dave Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Message-ID: <YPps2hoA+PXQGqQZ@boqun-archlinux>
 References: <20210722092929.244629-1-desmondcheongzx@gmail.com>
- <20210722092929.244629-4-desmondcheongzx@gmail.com>
- <b27a2e80-c912-15eb-e78b-c8b6f3993930@vmware.com>
-From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Message-ID: <cb3ea66e-7f59-c057-06ea-7ddca4329a7c@gmail.com>
-Date: Fri, 23 Jul 2021 14:44:35 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ <20210722092929.244629-2-desmondcheongzx@gmail.com>
+ <YPlKkvelm/mcnCj0@phenom.ffwll.local>
+ <YPmJEYrnB0j17cZV@boqun-archlinux>
+ <CAKMK7uGSc_YMf2e=oA23KeAvC8i_pqJBU82v8oRGfnwsT41WLQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <b27a2e80-c912-15eb-e78b-c8b6f3993930@vmware.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uGSc_YMf2e=oA23KeAvC8i_pqJBU82v8oRGfnwsT41WLQ@mail.gmail.com>
 X-Mailman-Approved-At: Fri, 23 Jul 2021 09:40:27 +0000
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/vmwgfx: fix potential UAF in
- vmwgfx_surface.c
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm: use the lookup lock in
+ drm_is_current_master
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,60 +109,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23/7/21 3:17 am, Zack Rusin wrote:
-> On 7/22/21 5:29 AM, Desmond Cheong Zhi Xi wrote:
->> drm_file.master should be protected by either drm_device.master_mutex
->> or drm_file.master_lookup_lock when being dereferenced. However,
->> drm_master_get is called on unprotected file_priv->master pointers in
->> vmw_surface_define_ioctl and vmw_gb_surface_define_internal.
->>
->> This is fixed by replacing drm_master_get with drm_file_get_master.
->>
->> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+On Thu, Jul 22, 2021 at 09:02:41PM +0200, Daniel Vetter wrote:
+> On Thu, Jul 22, 2021 at 6:00 PM Boqun Feng <boqun.feng@gmail.com> wrote:
+> >
+> > On Thu, Jul 22, 2021 at 12:38:10PM +0200, Daniel Vetter wrote:
+> > > On Thu, Jul 22, 2021 at 05:29:27PM +0800, Desmond Cheong Zhi Xi wrote:
+> > > > Inside drm_is_current_master, using the outer drm_device.master_mutex
+> > > > to protect reads of drm_file.master makes the function prone to creating
+> > > > lock hierarchy inversions. Instead, we can use the
+> > > > drm_file.master_lookup_lock that sits at the bottom of the lock
+> > > > hierarchy.
+> > > >
+> > > > Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > > Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_auth.c | 9 +++++----
+> > > >  1 file changed, 5 insertions(+), 4 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+> > > > index f00354bec3fb..9c24b8cc8e36 100644
+> > > > --- a/drivers/gpu/drm/drm_auth.c
+> > > > +++ b/drivers/gpu/drm/drm_auth.c
+> > > > @@ -63,8 +63,9 @@
+> > > >
+> > > >  static bool drm_is_current_master_locked(struct drm_file *fpriv)
+> > > >  {
+> > > > -   lockdep_assert_held_once(&fpriv->minor->dev->master_mutex);
+> > > > -
+> > > > +   /* Either drm_device.master_mutex or drm_file.master_lookup_lock
+> > > > +    * should be held here.
+> > > > +    */
+> > >
+> > > Disappointing that lockdep can't check or conditions for us, a
+> > > lockdep_assert_held_either would be really neat in some cases.
+> > >
+> >
+> > The implementation is not hard but I don't understand the usage, for
+> > example, if we have a global variable x, and two locks L1 and L2, and
+> > the function
+> >
+> >         void do_something_to_x(void)
+> >         {
+> >                 lockdep_assert_held_either(L1, L2);
+> >                 x++;
+> >         }
+> >
+> > and two call sites:
+> >
+> >         void f(void)
+> >         {
+> >                 lock(L1);
+> >                 do_something_to_x();
+> >                 unlock(L1);
+> >         }
+> >
+> >         void g(void)
+> >         {
+> >                 lock(L2);
+> >                 do_something_to_x();
+> >                 unlock(L2);
+> >         }
+> >
+> > , wouldn't it be racy if f() and g() called by two threads at the same
+> > time? Usually I would expect there exists a third synchronazition
+> > mechanism (say M), which synchronizes the calls to f() and g(), and we
+> > put M in the lockdep_assert_held() check inside do_something_to_x()
+> > like:
+> >
+> >         void do_something_to_x(void)
+> >         {
+> >                 lockdep_assert_held_once(M);
+> >                 x++;
+> >         }
+> >
+> > But of course, M may not be a lock, so we cannot put the assert there.
+> >
+> > My cscope failed to find ->master_lookup_lock in -rc2 and seems it's not
+> > introduced in the patchset either, could you point me the branch this
+> > patchset is based on, so that I could understand this better, and maybe
+> > come up with a solution? Thanks ;-)
 > 
-> Reviewed-by: Zack Rusin <zackr@vmware.com>
+> The use case is essentially 2 nesting locks, and only the innermost is
+> used to update a field. So when you only read this field, it's safe if
+> either of these two locks are held. Essentially this is a read/write lock
+> type of thing, except for various reasons the two locks might not be of
+> the same type (like here where the write lock is a mutex, but the read
+> lock is a spinlock).
 > 
-> Thanks for taking the time to fix this. Apart from the clear logic 
-> error, do you happen to know under what circumstances would this be hit? 
-> We have someone looking at writing some vmwgfx specific igt tests and I 
-> was wondering if I could add this to the list.
+> It's a bit like the rcu_derefence macro where it's ok to either be in a
+> rcu_read_lock() section, or holding the relevant lock that's used to
+> update the value. We do _not_ have two different locks that allow writing
+> to the same X.
 > 
-> z
+> Does that make it clearer what's the use-case here?
+> 
+> In an example:
+> 
+> void * interesting_pointer.
+> 
+> do_update_interesting_pointer()
+> {
+> 	mutex_lock(A);
+> 	/* do more stuff to prepare things */
+> 	spin_lock(B);
+> 	interesting_pointer = new_value;
+> 	spin_unlock(B);
+> 	mutex_unlock(A);
+> }
+> 
+> read_interesting_thing_locked()
+> {
+> 	lockdep_assert_held_either(A, B);
+> 
+> 	return interesting_pointer->thing;
+> }
+> 
+> read_interesting_thing()
+> {
+> 	int thing;
+> 	spin_lock(B);
+> 	thing = interesting_pointer->thing;
+> 	spin_unlock(B);
+> 
+> 	return B;
+> }
+> 
+> spinlock might also be irqsafe here if this can be called from irq
+> context.
+> 
 
-Hi Zack,
+Make sense, so we'd better also provide lockdep_assert_held_both(), I
+think, to use it at the update side, something as below:
 
-Thanks for the review.
 
-For some context, the use-after-free happens when there's a race between 
-accessing the value of drm_file.master, and a call to 
-drm_setmaster_ioctl. If drm_file is not the creator of master, then the 
-ioctl allocates a new master for drm_file and puts the old master.
+	/*
+	 * lockdep_assert_held_{both,either}().
+	 * 
+	 * Sometimes users can use a combination of two locks to
+	 * implement a rwlock-like lock, for example, say we have
+	 * locks L1 and L2, and we only allow updates when two locks
+	 * both held like:
+	 * 
+	 * update()
+	 * {
+	 *	lockdep_assert_held_both(L1, L2);
+	 *	x++; // update x
+	 * }
+	 *
+	 * while for read-only accesses, either lock suffices (since
+	 * holding either lock means others cannot hold both, so readers
+	 * serialized with the updaters):
+	 *
+	 * read()
+	 * {
+	 * 	lockdep_assert_held_either(L1, L2);
+	 *	r = x; // read x
+	 * }
+	 */
 
-Thus for example, the old value of drm_file.master could be freed in 
-between getting the value of file_priv->master, and the call to 
-drm_master_get.
+	#define lockdep_assert_held_both(l1, l2)	do {			\
+			WARN_ON_ONCE(debug_locks &&				\
+					(!lockdep_is_held(l1) ||		\
+					 !lockdep_is_held(l2)));		\
+	} while (0)
 
-I'm not entirely sure whether this scenario is a good candidate for a test?
+	#define lockdep_assert_held_either(l1, l2)	do {			\
+			WARN_ON_ONCE(debug_locks &&				\
+					(!lockdep_is_held(l1) &&		\
+					 !lockdep_is_held(l2)));		\
+	} while (0)
 
-For further reference, the issue was originally caught by Syzbot here:
-https://syzkaller.appspot.com/bug?id=148d2f1dfac64af52ffd27b661981a540724f803
+Still need sometime to think through this (e.g. on whether this it the
+best implementation).
 
-And from the logs it seems that the reproducer set up a race between 
-DRM_IOCTL_GET_UNIQUE and DRM_IOCTL_SET_MASTER. So possibly a race 
-between VMW_CREATE_SURFACE and DRM_IOCTL_SET_MASTER could trigger the 
-same bug.
+Regards,
+Boqun
 
-Best wishes,
-Desmond
-
+> Cheers, Daniel
+> 
+> > Regards,
+> > Boqun
+> >
+> > > Adding lockdep folks, maybe they have ideas.
+> > >
+> > > On the patch:
+> > >
+> > > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > >
+> > > >     return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+> > > >  }
+> > > >
+> > > > @@ -82,9 +83,9 @@ bool drm_is_current_master(struct drm_file *fpriv)
+> > > >  {
+> > > >     bool ret;
+> > > >
+> > > > -   mutex_lock(&fpriv->minor->dev->master_mutex);
+> > > > +   spin_lock(&fpriv->master_lookup_lock);
+> > > >     ret = drm_is_current_master_locked(fpriv);
+> > > > -   mutex_unlock(&fpriv->minor->dev->master_mutex);
+> > > > +   spin_unlock(&fpriv->master_lookup_lock);
+> > > >
+> > > >     return ret;
+> > > >  }
+> > > > --
+> > > > 2.25.1
+> > > >
+> > >
+> > > --
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
+> 
+> 
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
