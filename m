@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA653D37D2
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 11:41:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 879E83D3807
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Jul 2021 11:48:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B06626EC37;
-	Fri, 23 Jul 2021 09:41:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 058F76F9F1;
+	Fri, 23 Jul 2021 09:48:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0CEB06EAAA;
- Fri, 23 Jul 2021 09:41:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 52F096F9F1;
+ Fri, 23 Jul 2021 09:48:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05FBAA8169;
- Fri, 23 Jul 2021 09:41:12 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4C787A7DFC;
+ Fri, 23 Jul 2021 09:48:25 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Christoph Hellwig" <hch@lst.de>
-Date: Fri, 23 Jul 2021 09:41:12 -0000
-Message-ID: <162703327202.3044.16659074123640207084@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 23 Jul 2021 09:48:25 -0000
+Message-ID: <162703370528.3045.852429426755100219@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <0-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
-In-Reply-To: <0-v2-b6a5582525c9+ff96-vfio_reflck_jgg@nvidia.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBQ?=
- =?utf-8?q?rovide_core_infrastructure_for_managing_open/release_=28rev6=29?=
+References: <20210723083457.696939-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210723083457.696939-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/plane=3A_remove_drm=5Fhe?=
+ =?utf-8?q?lper=5Fget=5Fplane=5Fdamage=5Fclips?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,28 +48,30 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Provide core infrastructure for managing open/release (rev6)
-URL   : https://patchwork.freedesktop.org/series/92556/
-State : failure
+Series: series starting with [1/3] drm/plane: remove drm_helper_get_plane_damage_clips
+URL   : https://patchwork.freedesktop.org/series/92926/
+State : warning
 
 == Summary ==
 
-Applying: vfio/samples: Remove module get/put
-Applying: vfio/mbochs: Fix missing error unwind in mbochs_probe()
-Applying: vfio: Introduce a vfio_uninit_group_dev() API call
-Using index info to reconstruct a base tree...
-M	drivers/vfio/pci/vfio_pci.c
-M	samples/vfio-mdev/mbochs.c
-Falling back to patching base and 3-way merge...
-Auto-merging samples/vfio-mdev/mbochs.c
-CONFLICT (content): Merge conflict in samples/vfio-mdev/mbochs.c
-Auto-merging drivers/vfio/pci/vfio_pci.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0003 vfio: Introduce a vfio_uninit_group_dev() API call
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+61c19aef0e1c drm/plane: remove drm_helper_get_plane_damage_clips
+-:109: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 60 lines checked
+3a54b2ebca33 drm/plane: check that fb_damage is set up when used
+-:88: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#88: FILE: drivers/gpu/drm/drm_plane.c:1413:
++		state->fb_damage_clips->length/sizeof(struct drm_mode_rect) : 0;
+ 		                              ^
+
+-:175: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 1 checks, 115 lines checked
+ba232875c03e drm/plane: Move drm_plane_enable_fb_damage_clips into core
+-:207: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 154 lines checked
 
 
 _______________________________________________
