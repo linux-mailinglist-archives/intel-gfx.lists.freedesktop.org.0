@@ -2,54 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7CF3D54F6
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 10:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30DCC3D55FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 10:59:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3703F6E85A;
-	Mon, 26 Jul 2021 08:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 836366E89E;
+	Mon, 26 Jul 2021 08:59:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com
- [IPv6:2607:f8b0:4864:20::836])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 443576E85A;
- Mon, 26 Jul 2021 08:12:44 +0000 (UTC)
-Received: by mail-qt1-x836.google.com with SMTP id d9so6406867qty.12;
- Mon, 26 Jul 2021 01:12:44 -0700 (PDT)
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com
+ [IPv6:2607:f8b0:4864:20::1034])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34C656FC18;
+ Sat, 24 Jul 2021 11:19:17 +0000 (UTC)
+Received: by mail-pj1-x1034.google.com with SMTP id
+ m2-20020a17090a71c2b0290175cf22899cso7333934pjs.2; 
+ Sat, 24 Jul 2021 04:19:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=SsA9p+TlYc08mbezt8A+26M/ZO1fyw9OG86zFTtyUXM=;
- b=KkWctV18CVEq2vH59MJaoWOLcyHmRcShy7FEAtkhjgw7A4z2yVlGKhCINM1yShHR+e
- B0/X6KyAUTrAjOUtqfUUyPvM7DMhHd5hwixt9w+I00XU4czUbR5U/aN86o81T2lTe08q
- SEpfgieNDYuCZluwiQzlzWo0hC0jIPBom6K9HC2zVDs3sAlH3XhL7WTADNdFxTAbtBuP
- UgnVPzSZXi05TdQ3cMb2sncV+BLRGa84/tfyWE/BLHnHIiTlSIPQXDxQjZI4ZlLsNgmM
- 1ynNporp+1hE9fqSqocxcu/BIZ+H9vCEQpx6k+NfarGpnucI3Kt7oanm4KEdE01e3Lvu
- lMvw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=9YtTx2F8aCtjxUTXqe0aUtd1QKwb/HSkiydeejpIB4k=;
+ b=DvPcmCPEmDyLe3TGFTP1QJeVA2WB+aAXO8mtDMt92/tIWfVwoxyj/t+ohBnZhllumo
+ FE8nIVjaonsiw5dBGIuKHq5HwvCS+RUy7HQLPgjUJ2OG2ki1X2sPyNz9OTIz5RDCj/Q0
+ TULtxmO2p7V7NaIniuhDYieJ05ETRDTZNH06S96TDnJAYDgnwUyK56O6hTnJIBCrZzbz
+ oE2sV1ptouoT+cunTJ6XEJvbfVFqHx6uyfCFZdyW/zYc0CLRjOcIxxstpi8unewZ8ZMw
+ CcMBMYraxUKiFmoranTvKMp1CVTb6CaPaHx45wcC25uTJLdvQmxvvr3oWnzD4gXSggTr
+ 5YEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=SsA9p+TlYc08mbezt8A+26M/ZO1fyw9OG86zFTtyUXM=;
- b=YaTOFwuewqEYw5JOQQ9o4B4cymjSW/43/ceIH7Wqcz6wyTBe8gXZFS7/ns5enHl2Ck
- r2i5MR0pFmrzKGY4bhr9SWExTKwrc4FLVxL1afnZn/7UDBjPxyhWy3wIYcN2dCZ0jvTG
- 4JFjBOGPuZ5r9hoDD6JgmoH39p8VjpGmhty3LbmvgV41xCuZt21Spc0Xpc0iHtxqxJ10
- 7NShhSYGLKUMBPDr8XDApKQrBzLf1mCO4TZ5INiwYAvFcAmKTmVoqQxF2qez6TdJyVF2
- f49ITrb75Gp+52ldIN7CWrmtXi4JwBVgJB/D6OSGcAZZOktbXGzYxW2FDeMRQIV1i561
- uXVQ==
-X-Gm-Message-State: AOAM530il6JkIn9yzAQjuDlCW8MX4xls/Efdah+umrxDLlUa/Tj/jWzs
- vQb1wo8qJNQnXUK30JM7jdjZxixmSadiNBufRoU=
-X-Google-Smtp-Source: ABdhPJzEkjcjUfybN+sVjzKRPAJLofqlutHNjkHGm507taDFp9wG0pz4fdU4qNt88wqCjBDUbsL3aQt+mSOygY8i23E=
-X-Received: by 2002:ac8:584d:: with SMTP id h13mr14132202qth.341.1627287163454; 
- Mon, 26 Jul 2021 01:12:43 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=9YtTx2F8aCtjxUTXqe0aUtd1QKwb/HSkiydeejpIB4k=;
+ b=F2dKTd2D76d/hvzb9TnoMBcUrwe0w9H6dZg0mGDlJynwadQ3FrPWDC8ILeJ1Bs5sRj
+ g2iGyIpN1gnljffva0L+O7prhsCWg0DfmDgarSy2D9xhlcHq5FWdAC27Bg5szrfrB1et
+ ccRSF+TDQSVDfK0AV2VS6fRGpW6Al6YyOAN2sPy3HpF08Ave3qmdjF0gMuijNBDy4HJ4
+ F3dFLCB3hMZyzFZg5jYxGiYgyNZcpDVceb0rLKY8XKlhgbQl86Sl9ZbXAzbXZzW5LRCA
+ BVa1TeXmtCfjOoBMSGT3ox/X78rc/itaUw/WoGQbE36S9n5eCZHRHWVLY7ZDpSESXEB5
+ lOpQ==
+X-Gm-Message-State: AOAM531l4sBTYX5dLXQR47GHXhcmr7aqagu05YVxAww765aRFyjVLDEM
+ 8ZObcv5nKN+EvxG/syHCagg=
+X-Google-Smtp-Source: ABdhPJyrONu1cda28NLCVz+hXTIkL/SdYozfXqjGTiFBPvzVDezB4CPrSnB9KOd278Mq2Mi/gub3UQ==
+X-Received: by 2002:a17:90a:9ac:: with SMTP id
+ 41mr17424928pjo.97.1627125556886; 
+ Sat, 24 Jul 2021 04:19:16 -0700 (PDT)
+Received: from localhost.localdomain ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id v15sm21310057pff.105.2021.07.24.04.19.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 24 Jul 2021 04:19:16 -0700 (PDT)
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+To: linux-graphics-maintainer@vmware.com, zackr@vmware.com, airlied@linux.ie,
+ daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, corbet@lwn.net
+Date: Sat, 24 Jul 2021 19:18:22 +0800
+Message-Id: <20210724111824.59266-2-desmondcheongzx@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210724111824.59266-1-desmondcheongzx@gmail.com>
+References: <20210724111824.59266-1-desmondcheongzx@gmail.com>
 MIME-Version: 1.0
-References: <20210723172142.3273510-1-jason@jlekstrand.net>
-In-Reply-To: <20210723172142.3273510-1-jason@jlekstrand.net>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 26 Jul 2021 09:12:17 +0100
-Message-ID: <CAM0jSHOgJQni53DJWP0NWJTAR82PNmb6zgt2Gm-faBd1sDaSHA@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915: Migrate memory to SMEM when
- imported cross-device (v8)
+X-Mailman-Approved-At: Mon, 26 Jul 2021 08:59:16 +0000
+Subject: [Intel-gfx] [PATCH v2 1/3] drm: use the lookup lock in
+ drm_is_current_master
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,48 +72,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, skhan@linuxfoundation.org,
+ Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMyBKdWwgMjAyMSBhdCAxODoyMSwgSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtz
-dHJhbmQubmV0PiB3cm90ZToKPgo+IFRoaXMgcGF0Y2ggc2VyaWVzIGZpeGVzIGFuIGlzc3VlIHdp
-dGggZGlzY3JldGUgZ3JhcGhpY3Mgb24gSW50ZWwgd2hlcmUgd2UKPiBhbGxvd2VkIGRtYS1idWYg
-aW1wb3J0IHdoaWxlIGxlYXZpbmcgdGhlIG9iamVjdCBpbiBsb2NhbCBtZW1vcnkuICBUaGlzCj4g
-YnJlYWtzIGRvd24gcHJldHR5IGJhZGx5IGlmIHRoZSBpbXBvcnQgaGFwcGVuZWQgb24gYSBkaWZm
-ZXJlbnQgcGh5c2ljYWwKPiBkZXZpY2UuCj4KPiB2NzoKPiAgLSBEcm9wICJkcm0vaTkxNS9nZW0v
-dHRtOiBQbGFjZSBuZXcgQk9zIGluIHRoZSByZXF1ZXN0ZWQgcmVnaW9uIgo+ICAtIEFkZCBhIG5l
-dyAiZHJtL2k5MTUvZ2VtOiBDYWxsIGk5MTVfZ2VtX2ZsdXNoX2ZyZWVfb2JqZWN0cygpIGluIGk5
-MTVfZ2VtX2R1bWJfY3JlYXRlKCkiCj4gIC0gTWlzYy4gcmV2aWV3IGZlZWRiYWNrIGZyb20gTWF0
-dGhldyBBdWxkCj4gdjg6Cj4gIC0gTWlzYy4gcmV2aWV3IGZlZWRiYWNrIGZyb20gTWF0dGhldyBB
-dWxkCj4gdjk6Cj4gIC0gUmVwbGFjZSB0aGUgaTkxNS90dG0gcGF0Y2ggd2l0aCB0d28gdGhhdCBh
-cmUgaG9wZWZ1bGx5IG1vcmUgY29ycmVjdAo+Cj4gSmFzb24gRWtzdHJhbmQgKDYpOgo+ICAgZHJt
-L2k5MTUvZ2VtOiBDaGVjayBvYmplY3RfY2FuX21pZ3JhdGUgZnJvbSBvYmplY3RfbWlncmF0ZQo+
-ICAgZHJtL2k5MTUvZ2VtOiBSZWZhY3RvciBwbGFjZW1lbnQgc2V0dXAgZm9yIGk5MTVfZ2VtX29i
-amVjdF9jcmVhdGUqCj4gICAgICh2MikKPiAgIGRybS9pOTE1L2dlbTogQ2FsbCBpOTE1X2dlbV9m
-bHVzaF9mcmVlX29iamVjdHMoKSBpbgo+ICAgICBpOTE1X2dlbV9kdW1iX2NyZWF0ZSgpCj4gICBk
-cm0vaTkxNS9nZW06IFVuaWZ5IHVzZXIgb2JqZWN0IGNyZWF0aW9uICh2MykKPiAgIGRybS9pOTE1
-L2dlbS90dG06IE9ubHkgY2FsbCBfX2k5MTVfZ2VtX29iamVjdF9zZXRfcGFnZXMgaWYgbmVlZGVk
-Cj4gICBkcm0vaTkxNS9nZW06IEFsd2F5cyBjYWxsIG9iai0+b3BzLT5taWdyYXRlIHVubGVzcyBj
-YW5fbWlncmF0ZSBmYWlscwo+Cj4gVGhvbWFzIEhlbGxzdHLDtm0gKDIpOgo+ICAgZHJtL2k5MTUv
-Z2VtOiBDb3JyZWN0IHRoZSBsb2NraW5nIGFuZCBwaW4gcGF0dGVybiBmb3IgZG1hLWJ1ZiAodjgp
-Cj4gICBkcm0vaTkxNS9nZW06IE1pZ3JhdGUgdG8gc3lzdGVtIGF0IGRtYS1idWYgYXR0YWNoIHRp
-bWUgKHY3KQoKU2hvdWxkIEkgcHVzaCB0aGUgc2VyaWVzPwoKPgo+ICBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9nZW0vaTkxNV9nZW1fY3JlYXRlLmMgICAgfCAxNzcgKysrKysrKystLS0tLS0tLQo+ICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMgICAgfCAgNTggKysrKy0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuYyAgICB8ICAyMCAr
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmggICAgfCAgIDQg
-Kwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMgICAgICAgfCAgMTMg
-Ky0KPiAgLi4uL2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fZG1hYnVmLmMgIHwgMTkw
-ICsrKysrKysrKysrKysrKysrLQo+ICAuLi4vZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dl
-bV9taWdyYXRlLmMgfCAgMTUgLS0KPiAgNyBmaWxlcyBjaGFuZ2VkLCAzNDEgaW5zZXJ0aW9ucygr
-KSwgMTM2IGRlbGV0aW9ucygtKQo+Cj4gLS0KPiAyLjMxLjEKPgo+IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+
-IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Inside drm_is_current_master, using the outer drm_device.master_mutex
+to protect reads of drm_file.master makes the function prone to creating
+lock hierarchy inversions. Instead, we can use the
+drm_file.master_lookup_lock that sits at the bottom of the lock
+hierarchy.
+
+Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+---
+ drivers/gpu/drm/drm_auth.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+index f00354bec3fb..9c24b8cc8e36 100644
+--- a/drivers/gpu/drm/drm_auth.c
++++ b/drivers/gpu/drm/drm_auth.c
+@@ -63,8 +63,9 @@
+ 
+ static bool drm_is_current_master_locked(struct drm_file *fpriv)
+ {
+-	lockdep_assert_held_once(&fpriv->minor->dev->master_mutex);
+-
++	/* Either drm_device.master_mutex or drm_file.master_lookup_lock
++	 * should be held here.
++	 */
+ 	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
+ }
+ 
+@@ -82,9 +83,9 @@ bool drm_is_current_master(struct drm_file *fpriv)
+ {
+ 	bool ret;
+ 
+-	mutex_lock(&fpriv->minor->dev->master_mutex);
++	spin_lock(&fpriv->master_lookup_lock);
+ 	ret = drm_is_current_master_locked(fpriv);
+-	mutex_unlock(&fpriv->minor->dev->master_mutex);
++	spin_unlock(&fpriv->master_lookup_lock);
+ 
+ 	return ret;
+ }
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
