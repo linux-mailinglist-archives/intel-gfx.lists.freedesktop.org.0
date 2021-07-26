@@ -1,31 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B935E3D67CA
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 21:59:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 996063D6880
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 23:15:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 385C56ECE7;
-	Mon, 26 Jul 2021 19:59:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C98676FAC4;
+	Mon, 26 Jul 2021 21:15:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5E1AC6ECE7;
- Mon, 26 Jul 2021 19:59:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4E581A73C7;
- Mon, 26 Jul 2021 19:59:15 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31A3B6FAC4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 21:15:35 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="212309120"
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="212309120"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 14:15:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="474130912"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by fmsmga008.fm.intel.com with ESMTP; 26 Jul 2021 14:15:33 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Mon, 26 Jul 2021 14:15:33 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Mon, 26 Jul 2021 14:15:32 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
+ Mon, 26 Jul 2021 14:15:32 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 2/4] drm/i915/display/psr2: Mark as updated
+ all planes that intersect with pipe_clip
+Thread-Index: AQHXeqhGCXe2rAy68E+G7BF6x3jmw6tV0UeA
+Date: Mon, 26 Jul 2021 21:15:32 +0000
+Message-ID: <6e6234022c2d4ff0bc17f6c66783d8d3@intel.com>
+References: <20210717011227.204494-1-jose.souza@intel.com>
+ <20210717011227.204494-2-jose.souza@intel.com>
+In-Reply-To: <20210717011227.204494-2-jose.souza@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Date: Mon, 26 Jul 2021 19:59:15 -0000
-Message-ID: <162732955531.2613.14674076527280058693@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc/slpc=3A_Enable_GuC_based_power_management_features?=
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/display/psr2: Mark as updated
+ all planes that intersect with pipe_clip
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,245 +66,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1093397905=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1093397905==
-Content-Type: multipart/alternative;
- boundary="===============3897270380882564324=="
-
---===============3897270380882564324==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/guc/slpc: Enable GuC based power management features
-URL   : https://patchwork.freedesktop.org/series/93026/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10396 -> Patchwork_20707
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_10396 and Patchwork_20707:
-
-### New IGT tests (1) ###
-
-  * igt@i915_selftest@live@slpc:
-    - Statuses : 29 pass(s)
-    - Exec time: [0.39, 3.71] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20707 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-soraka:      [PASS][1] -> [INCOMPLETE][2] ([i915#155])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10396/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10396/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][5] ([i915#1602] / [i915#2029])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [DMESG-FAIL][6] ([i915#165]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10396/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-
-
-Participating hosts (39 -> 35)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10396 -> Patchwork_20707
-
-  CI-20190529: 20190529
-  CI_DRM_10396: a119adff94c9db72f198ddde3dbb0a3e51c56618 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6151: c3170c2d3744521b8351a4b9c579792bc9a5f835 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20707: bd5302518b8ef97301b61ce78b2cdd2da440b6da @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-bd5302518b8e drm/i915/guc/rc: Setup and enable GUCRC feature
-025f555a3e2e drm/i915/guc/slpc: Add SLPC selftest
-8ed3bd759132 drm/i915/guc/slpc: Sysfs hooks for SLPC
-edec3303a3f8 drm/i915/guc/slpc: Cache platform frequency limits
-98238144dd09 drm/i915/guc/slpc: Enable ARAT timer interrupt
-8772da814cc8 drm/i915/guc/slpc: Add debugfs for SLPC info
-9fda8c1773ef drm/i915/guc/slpc: Add get max/min freq hooks
-ab9599b22ee7 drm/i915/guc/slpc: Add methods to set min/max frequency
-c60c975349d2 drm/i915/guc/slpc: Remove BUG_ON in guc_submission_disable
-b263a074ec5f drm/i915/guc/slpc: Enable SLPC and add related H2G events
-dfa70375b4e0 drm/i915/guc/slpc: Allocate, initialize and release SLPC
-c60f3b51410d drm/i915/guc/slpc: Adding SLPC communication interfaces
-9f75f622e733 drm/i915/guc/slpc: Gate Host RPS when SLPC is enabled
-b1eed2ee0dd1 drm/i915/guc/slpc: Initial definitions for SLPC
-e739b51dc573 drm/i915/guc: SQUASHED PATCH - DO NOT REVIEW
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/index.html
-
---===============3897270380882564324==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc/slpc: Enable GuC based power management features</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93026/">https://patchwork.freedesktop.org/series/93026/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10396 -&gt; Patchwork_20707</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_10396 and Patchwork_20707:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@i915_selftest@live@slpc:<ul>
-<li>Statuses : 29 pass(s)</li>
-<li>Exec time: [0.39, 3.71] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20707 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>
-<p>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10396/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</p>
-</li>
-<li>
-<p>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10396/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_chamelium@hdmi-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10396/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20707/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10396 -&gt; Patchwork_20707</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10396: a119adff94c9db72f198ddde3dbb0a3e51c56618 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6151: c3170c2d3744521b8351a4b9c579792bc9a5f835 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20707: bd5302518b8ef97301b61ce78b2cdd2da440b6da @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>bd5302518b8e drm/i915/guc/rc: Setup and enable GUCRC feature<br />
-025f555a3e2e drm/i915/guc/slpc: Add SLPC selftest<br />
-8ed3bd759132 drm/i915/guc/slpc: Sysfs hooks for SLPC<br />
-edec3303a3f8 drm/i915/guc/slpc: Cache platform frequency limits<br />
-98238144dd09 drm/i915/guc/slpc: Enable ARAT timer interrupt<br />
-8772da814cc8 drm/i915/guc/slpc: Add debugfs for SLPC info<br />
-9fda8c1773ef drm/i915/guc/slpc: Add get max/min freq hooks<br />
-ab9599b22ee7 drm/i915/guc/slpc: Add methods to set min/max frequency<br />
-c60c975349d2 drm/i915/guc/slpc: Remove BUG_ON in guc_submission_disable<br />
-b263a074ec5f drm/i915/guc/slpc: Enable SLPC and add related H2G events<br />
-dfa70375b4e0 drm/i915/guc/slpc: Allocate, initialize and release SLPC<br />
-c60f3b51410d drm/i915/guc/slpc: Adding SLPC communication interfaces<br />
-9f75f622e733 drm/i915/guc/slpc: Gate Host RPS when SLPC is enabled<br />
-b1eed2ee0dd1 drm/i915/guc/slpc: Initial definitions for SLPC<br />
-e739b51dc573 drm/i915/guc: SQUASHED PATCH - DO NOT REVIEW</p>
-
-</body>
-</html>
-
---===============3897270380882564324==--
-
---===============1093397905==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1093397905==--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3PDqQ0K
+PiBSb2JlcnRvIGRlIFNvdXphDQo+IFNlbnQ6IEZyaWRheSwgSnVseSAxNiwgMjAyMSA2OjEyIFBN
+DQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtJbnRl
+bC1nZnhdIFtQQVRDSCAyLzRdIGRybS9pOTE1L2Rpc3BsYXkvcHNyMjogTWFyayBhcyB1cGRhdGVk
+IGFsbA0KPiBwbGFuZXMgdGhhdCBpbnRlcnNlY3Qgd2l0aCBwaXBlX2NsaXANCj4gDQo+IFdpdGhv
+dXQgdGhpcyBwbGFuZXMgdGhhdCB3ZXJlIGFkZGVkIGJ5IGludGVsX3BzcjJfc2VsX2ZldGNoX3Vw
+ZGF0ZSgpIHRoYXQNCj4gaW50ZXJzZWN0IHdpdGggcGlwZSBkYW1hZ2VkIGFyZWEgd2lsbCBub3Qg
+aGF2ZSBza2xfcHJvZ3JhbV9wbGFuZSgpIGFuZA0KPiBpbnRlbF9wc3IyX3Byb2dyYW1fcGxhbmVf
+c2VsX2ZldGNoKCkNCj4gY2FsbGVkLCBjYXVzaW5nIHBhbmVsIHRvIG5vdCBiZSBwcm9wZXJseSB1
+cGRhdGVkLg0KPiANCj4gQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVs
+LmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6
+YUBpbnRlbC5jb20+DQoNClJldmlld2VkLWJ5OiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2
+YXRzYUBpbnRlbC5jb20+DQoNCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3Bzci5jIHwgMSArDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4g
+DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+DQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCBk
+NDM2NDkwYWIyOGM2Li4xYzQxMDQyODQxZmIxIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gQEAgLTE2OTksNiArMTY5OSw3IEBAIGludCBpbnRlbF9w
+c3IyX3NlbF9mZXRjaF91cGRhdGUoc3RydWN0DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUs
+DQo+ICAJCXNlbF9mZXRjaF9hcmVhID0gJm5ld19wbGFuZV9zdGF0ZS0+cHNyMl9zZWxfZmV0Y2hf
+YXJlYTsNCj4gIAkJc2VsX2ZldGNoX2FyZWEtPnkxID0gaW50ZXIueTEgLSBuZXdfcGxhbmVfc3Rh
+dGUtDQo+ID51YXBpLmRzdC55MTsNCj4gIAkJc2VsX2ZldGNoX2FyZWEtPnkyID0gaW50ZXIueTIg
+LSBuZXdfcGxhbmVfc3RhdGUtDQo+ID51YXBpLmRzdC55MTsNCj4gKwkJY3J0Y19zdGF0ZS0+dXBk
+YXRlX3BsYW5lcyB8PSBCSVQocGxhbmUtPmlkKTsNCj4gIAl9DQo+IA0KPiAgc2tpcF9zZWxfZmV0
+Y2hfc2V0X2xvb3A6DQo+IC0tDQo+IDIuMzIuMA0KPiANCj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdA0KPiBJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4DQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
