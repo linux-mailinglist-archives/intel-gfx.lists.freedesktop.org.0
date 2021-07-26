@@ -2,37 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ACAD3D58C6
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 13:46:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA053D591D
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 14:04:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDF9C88CFA;
-	Mon, 26 Jul 2021 11:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 610486E830;
+	Mon, 26 Jul 2021 12:04:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB76F6E82F;
- Mon, 26 Jul 2021 11:46:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10056"; a="199452993"
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="199452993"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 04:46:44 -0700
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="661823490"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.205])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 04:46:43 -0700
-Date: Mon, 26 Jul 2021 17:18:35 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20210726114833.GC20437@intel.com>
-References: <20210708122554.1874987-1-matthew.auld@intel.com>
- <20210708122554.1874987-3-matthew.auld@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6723E6E830;
+ Mon, 26 Jul 2021 12:04:03 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10056"; a="212211230"
+X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="212211230"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 05:04:02 -0700
+X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="504873166"
+Received: from conorkel-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.213.199.29])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 05:04:00 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Mon, 26 Jul 2021 13:03:04 +0100
+Message-Id: <20210726120310.1115522-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210708122554.1874987-3-matthew.auld@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 3/3] tests/i915_query: add
- some sanity checking around regions query
+Subject: [Intel-gfx] [PATCH i-g-t 1/7] lib/i915/gem_mman: add FIXED mmap mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,186 +41,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-07-08 at 13:25:54 +0100, Matthew Auld wrote:
-> Ensure if we feed garbage into DRM_I915_QUERY_MEMORY_REGIONS it does
-> indeed fail as expected. Also add some asserts for the invariants with
-> the probed regions, for example we should always have at least system
-> memory.
-LGTM.
+We need this for discrete.
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> ---
->  tests/i915/i915_query.c | 127 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 127 insertions(+)
-> 
-> diff --git a/tests/i915/i915_query.c b/tests/i915/i915_query.c
-> index 34965841..78bd4a2b 100644
-> --- a/tests/i915/i915_query.c
-> +++ b/tests/i915/i915_query.c
-> @@ -33,6 +33,10 @@ IGT_TEST_DESCRIPTION("Testing the i915 query uAPI.");
->   */
->  #define MIN_TOPOLOGY_ITEM_SIZE (sizeof(struct drm_i915_query_topology_info) + 3)
->  
-> +/* All devices should have at least one region. */
-> +#define MIN_REGIONS_ITEM_SIZE (sizeof(struct drm_i915_query_memory_regions) + \
-> +			       sizeof(struct drm_i915_memory_region_info))
-> +
->  static int
->  __i915_query(int fd, struct drm_i915_query *q)
->  {
-> @@ -491,6 +495,119 @@ test_query_topology_known_pci_ids(int fd, int devid)
->  	free(topo_info);
->  }
->  
-> +static bool query_regions_supported(int fd)
-> +{
-> +	struct drm_i915_query_item item = {
-> +		.query_id = DRM_I915_QUERY_MEMORY_REGIONS,
-> +	};
-> +
-> +	return __i915_query_items(fd, &item, 1) == 0 && item.length > 0;
-> +}
-> +
-> +static void test_query_regions_garbage_items(int fd)
-> +{
-> +	struct drm_i915_query_memory_regions *regions;
-> +	struct drm_i915_query_item item;
-> +	int i;
-> +
-> +	test_query_garbage_items(fd,
-> +				 DRM_I915_QUERY_MEMORY_REGIONS,
-> +				 MIN_REGIONS_ITEM_SIZE,
-> +				 sizeof(struct drm_i915_query_memory_regions));
-> +
-> +	memset(&item, 0, sizeof(item));
-> +	item.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
-> +	i915_query_items(fd, &item, 1);
-> +	igt_assert(item.length > 0);
-> +
-> +	regions = calloc(1, item.length);
-> +	item.data_ptr = to_user_pointer(regions);
-> +
-> +	/* Bogus; in-MBZ */
-> +	for (i = 0; i < ARRAY_SIZE(regions->rsvd); i++) {
-> +		regions->rsvd[i] = 0xdeadbeaf;
-> +		i915_query_items(fd, &item, 1);
-> +		igt_assert_eq(item.length, -EINVAL);
-> +		regions->rsvd[i] = 0;
-> +	}
-> +
-> +	i915_query_items(fd, &item, 1);
-> +	igt_assert(regions->num_regions);
-> +	igt_assert(item.length > 0);
-> +
-> +	/* Bogus; out-MBZ */
-> +	for (i = 0; i < regions->num_regions; i++) {
-> +		struct drm_i915_memory_region_info info = regions->regions[i];
-> +		int j;
-> +
-> +		igt_assert_eq_u32(info.rsvd0, 0);
-> +
-> +		for (j = 0; j < ARRAY_SIZE(info.rsvd1); j++)
-> +			igt_assert_eq_u32(info.rsvd1[j], 0);
-> +	}
-> +
-> +	/* Bogus; kernel is meant to set this */
-> +	regions->num_regions = 1;
-> +	i915_query_items(fd, &item, 1);
-> +	igt_assert_eq(item.length, -EINVAL);
-> +	regions->num_regions = 0;
-> +
-> +	free(regions);
-> +}
-> +
-> +static void test_query_regions_sanity_check(int fd)
-> +{
-> +	struct drm_i915_query_memory_regions *regions;
-> +	struct drm_i915_query_item item;
-> +	bool found_system;
-> +	int i;
-> +
-> +	memset(&item, 0, sizeof(item));
-> +	item.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
-> +	i915_query_items(fd, &item, 1);
-> +	igt_assert(item.length > 0);
-> +
-> +	regions = calloc(1, item.length);
-> +
-> +	item.data_ptr = to_user_pointer(regions);
-> +	i915_query_items(fd, &item, 1);
-> +
-> +	/* We should always have at least one region */
-> +	igt_assert(regions->num_regions);
-> +
-> +	found_system = false;
-> +	for (i = 0; i < regions->num_regions; i++) {
-> +		struct drm_i915_gem_memory_class_instance r1 =
-> +			regions->regions[i].region;
-> +		int j;
-> +
-> +		if (r1.memory_class == I915_MEMORY_CLASS_SYSTEM) {
-> +			igt_assert_eq(r1.memory_instance, 0);
-> +			found_system = true;
-> +		}
-> +
-> +		igt_assert(r1.memory_class == I915_MEMORY_CLASS_SYSTEM ||
-> +			   r1.memory_class == I915_MEMORY_CLASS_DEVICE);
-> +
-> +		for (j = 0; j < regions->num_regions; j++) {
-> +			struct drm_i915_gem_memory_class_instance r2 =
-> +				regions->regions[j].region;
-> +
-> +			if (i == j)
-> +				continue;
-> +
-> +			/* All probed class:instance pairs must be unique */
-> +			igt_assert(!(r1.memory_class == r2.memory_class &&
-> +				     r1.memory_instance == r2.memory_instance));
-> +		}
-> +	}
-> +
-> +	/* All devices should at least have system memory */
-> +	igt_assert(found_system);
-> +
-> +	free(regions);
-> +}
-> +
->  static bool query_engine_info_supported(int fd)
->  {
->  	struct drm_i915_query_item item = {
-> @@ -779,6 +896,16 @@ igt_main
->  		test_query_topology_known_pci_ids(fd, devid);
->  	}
->  
-> +	igt_subtest("query-regions-garbage-items") {
-> +		igt_require(query_regions_supported(fd));
-> +		test_query_regions_garbage_items(fd);
-> +	}
-> +
-> +	igt_subtest("query-regions-sanity-check") {
-> +		igt_require(query_regions_supported(fd));
-> +		test_query_regions_sanity_check(fd);
-> +	}
-> +
->  	igt_subtest_group {
->  		igt_fixture {
->  			igt_require(query_engine_info_supported(fd));
-> -- 
-> 2.26.3
-> 
-> _______________________________________________
-> igt-dev mailing list
-> igt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+---
+ lib/i915/gem_mman.c | 37 +++++++++++++++++++++++++++++++++++++
+ lib/i915/gem_mman.h |  4 ++++
+ 2 files changed, 41 insertions(+)
+
+diff --git a/lib/i915/gem_mman.c b/lib/i915/gem_mman.c
+index 4b4f2114..e2514f0c 100644
+--- a/lib/i915/gem_mman.c
++++ b/lib/i915/gem_mman.c
+@@ -497,6 +497,43 @@ void *gem_mmap_offset__cpu(int fd, uint32_t handle, uint64_t offset,
+ 	return ptr;
+ }
+ 
++#define LOCAL_I915_MMAP_OFFSET_FIXED 4
++
++void *__gem_mmap_offset__fixed(int fd, uint32_t handle, uint64_t offset,
++			       uint64_t size, unsigned prot)
++{
++	return __gem_mmap_offset(fd, handle, offset, size, prot,
++				 LOCAL_I915_MMAP_OFFSET_FIXED);
++}
++
++/**
++ * gem_mmap_offset__fixed: Used to mmap objects on discrete platforms
++ * @fd: open i915 drm file descriptor
++ * @handle: gem buffer object handle
++ * @offset: offset in the gem buffer of the mmap arena
++ * @size: size of the mmap arena
++ * @prot: memory protection bits as used by mmap()
++ *
++ * Like __gem_mmap_offset__fixed() except we assert on failure.
++ *
++ * For discrete the caching attributes for the pages are fixed at allocation
++ * time, and can't be changed. The FIXED mode will simply use the same caching *
++ * mode of the allocated pages. This mode will always be coherent with GPU
++ * access.
++ *
++ * On non-discrete platforms this mode is not supported.
++ *
++ * Returns: A pointer to the created memory mapping
++ */
++void *gem_mmap_offset__fixed(int fd, uint32_t handle, uint64_t offset,
++			   uint64_t size, unsigned prot)
++{
++	void *ptr = __gem_mmap_offset__fixed(fd, handle, offset, size, prot);
++
++	igt_assert(ptr);
++	return ptr;
++}
++
+ /**
+  * __gem_mmap__cpu_coherent:
+  * @fd: open i915 drm file descriptor
+diff --git a/lib/i915/gem_mman.h b/lib/i915/gem_mman.h
+index 5695d2ad..290c997d 100644
+--- a/lib/i915/gem_mman.h
++++ b/lib/i915/gem_mman.h
+@@ -37,6 +37,8 @@ bool gem_mmap_offset__has_wc(int fd);
+ void *gem_mmap__wc(int fd, uint32_t handle, uint64_t offset, uint64_t size, unsigned prot);
+ void *gem_mmap_offset__wc(int fd, uint32_t handle, uint64_t offset,
+ 			  uint64_t size, unsigned prot);
++void *gem_mmap_offset__fixed(int fd, uint32_t handle, uint64_t offset,
++			     uint64_t size, unsigned prot);
+ void *gem_mmap__device_coherent(int fd, uint32_t handle, uint64_t offset,
+ 				uint64_t size, unsigned prot);
+ void *gem_mmap__cpu_coherent(int fd, uint32_t handle, uint64_t offset,
+@@ -54,6 +56,8 @@ void *__gem_mmap_offset__cpu(int fd, uint32_t handle, uint64_t offset,
+ void *__gem_mmap__wc(int fd, uint32_t handle, uint64_t offset, uint64_t size, unsigned prot);
+ void *__gem_mmap_offset__wc(int fd, uint32_t handle, uint64_t offset,
+ 			    uint64_t size, unsigned prot);
++void *__gem_mmap_offset__fixed(int fd, uint32_t handle, uint64_t offset,
++			       uint64_t size, unsigned prot);
+ void *__gem_mmap__device_coherent(int fd, uint32_t handle, uint64_t offset,
+ 				  uint64_t size, unsigned prot);
+ void *__gem_mmap_offset(int fd, uint32_t handle, uint64_t offset, uint64_t size,
+-- 
+2.26.3
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
