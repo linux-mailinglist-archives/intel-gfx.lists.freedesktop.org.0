@@ -2,61 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43743D6692
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 20:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD6B3D66B5
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 20:29:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F4466E97E;
-	Mon, 26 Jul 2021 18:17:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F19C76EA20;
+	Mon, 26 Jul 2021 18:29:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com
- [IPv6:2607:f8b0:4864:20::b2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CDD16E97E
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 18:17:39 +0000 (UTC)
-Received: by mail-yb1-xb2c.google.com with SMTP id q15so16339374ybu.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 11:17:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=aitowXo2IU5kLwH3N7yRIyYuYE+oRRHIn2zaTk41DCs=;
- b=Sw2WAgXIDYEVnXkPBncqIvjMo2lnYBXMj9RKoDtvStPp/fPrliWruCmrZaL1PcgfBj
- XKveqlXupTEC22M+tL5rTIqQOuccTvCxLqEimaf8o2YK06xHeH00IijNCjq1lfOa7llw
- BffU7C2Z5lz9xoGAZfuLzUyKvvlQ4NqL4HqIDs5LmwLGmwEPL6R/VMn3FobbC8HifU8o
- h79/sq5VllE90cEKvbY+X1zFBx5Avb0d2XAsziU2xTjm/zNdCxuX85r4Jb34rtA+JGhB
- m5aCy4QLUc8Dr7QZ6VwVJF/hbGzRJhtCmvtpqD+sad8NQen3C6NntSsF/p+5N5NzITy3
- Ln0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=aitowXo2IU5kLwH3N7yRIyYuYE+oRRHIn2zaTk41DCs=;
- b=HBCkecb71dcoCzD6+cWriKcU7QA1s9PK+fu12mogvn0TUt6cmZQ5o3knMsih+idK89
- CYhs0xCnPxRTXKIjnw76X48i0YhxsfLNpHBG9f28B6OaZk/nG1Er6RlsrmIM9RNHKXOk
- V6GnulztwHwIHcUj4H6Lg6Yty9TVXR0bhJ93x0IkJR+jaqPUEIksF0AO+x68Kz6wTQjk
- CvjgTFFeL/lw8fBii7EHra+HDCh6NrQEz93XzEe9OaMBLDBxZBoJXM7S7FdOSE/Ms3uc
- jajkP2OJ6RRJx0wMfcWCLvrWBesp7csqkP/mKqC3LX1K3bb8VWy5AFRZ3yGHkXcFXAtb
- maYA==
-X-Gm-Message-State: AOAM531scVExJ3xitzBa0o0+tGqnShoL2/VVS29lqWcLsC0am1AE1Avj
- ckeXLM9oVr9qnO+QuVjWec8bEQPP7hq83UrZb934kQ==
-X-Google-Smtp-Source: ABdhPJw0Y74439Fl3IcsZlcYFcwsavuxEmaOLZ2KYSxqevhrTTPo44yUcRuCeJGc/UL0XUM/MDkva2OFShCx7PGIIJ0=
-X-Received: by 2002:a25:d841:: with SMTP id p62mr3936305ybg.180.1627323458326; 
- Mon, 26 Jul 2021 11:17:38 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B7D076E093;
+ Mon, 26 Jul 2021 18:29:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B1893A73C9;
+ Mon, 26 Jul 2021 18:29:02 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210723192934.1004427-1-daniel.vetter@ffwll.ch>
- <20210723192934.1004427-4-daniel.vetter@ffwll.ch>
- <0edb5c4d-1faf-4b24-a21d-fd2e5be6591d@linux.intel.com>
- <CAOFGe96Da_O7VBaw85LsNTfMZhb2ycVg3WJ0fFe6xekB0m2NnA@mail.gmail.com>
- <CAOFGe96OBK3W_c8YU=4LHysumEOm3Y27KX_Mok=P686aa3c0Bw@mail.gmail.com>
- <031997ab-5568-9dbd-fcee-b4f820a32632@linux.intel.com>
- <CAOFGe95G3bYWxZ_EwPEFzxf10vf1T3Zdyez_fbh=imcDj+TSHw@mail.gmail.com>
- <87291107-0690-9804-08a3-309c23176f23@linux.intel.com>
-In-Reply-To: <87291107-0690-9804-08a3-309c23176f23@linux.intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Mon, 26 Jul 2021 13:17:27 -0500
-Message-ID: <CAOFGe96KwQe5-GuJ5Yc3w0X0F+EK5r2-dCne8-WqUD6qo=zOHw@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 04/10] drm/i915: move intel_context slab to
- direct module init/exit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Mon, 26 Jul 2021 18:29:02 -0000
+Message-ID: <162732414270.2613.6071417440367596158@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210726181559.80855-1-jose.souza@intel.com>
+In-Reply-To: <20210726181559.80855-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_Disable_audio=2C_DRRS_and_PSR_before_pl?=
+ =?utf-8?q?anes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,292 +39,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 26, 2021 at 11:31 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
->
-> On 26/07/2021 17:20, Jason Ekstrand wrote:
-> > On Mon, Jul 26, 2021 at 11:08 AM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
-> >> On 26/07/2021 16:42, Jason Ekstrand wrote:
-> >>> On Mon, Jul 26, 2021 at 10:30 AM Jason Ekstrand <jason@jlekstrand.net> wrote:
-> >>>>
-> >>>> On Mon, Jul 26, 2021 at 3:35 AM Tvrtko Ursulin
-> >>>> <tvrtko.ursulin@linux.intel.com> wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 23/07/2021 20:29, Daniel Vetter wrote:
-> >>>>>> With the global kmem_cache shrink infrastructure gone there's nothing
-> >>>>>> special and we can convert them over.
-> >>>>>>
-> >>>>>> I'm doing this split up into each patch because there's quite a bit of
-> >>>>>> noise with removing the static global.slab_ce to just a
-> >>>>>> slab_ce.
-> >>>>>>
-> >>>>>> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> >>>>>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> >>>>>> ---
-> >>>>>>     drivers/gpu/drm/i915/gt/intel_context.c | 25 ++++++++-----------------
-> >>>>>>     drivers/gpu/drm/i915/gt/intel_context.h |  3 +++
-> >>>>>>     drivers/gpu/drm/i915/i915_globals.c     |  2 --
-> >>>>>>     drivers/gpu/drm/i915/i915_globals.h     |  1 -
-> >>>>>>     drivers/gpu/drm/i915/i915_pci.c         |  2 ++
-> >>>>>>     5 files changed, 13 insertions(+), 20 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> >>>>>> index baa05fddd690..283382549a6f 100644
-> >>>>>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> >>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> >>>>>> @@ -7,7 +7,6 @@
-> >>>>>>     #include "gem/i915_gem_pm.h"
-> >>>>>>
-> >>>>>>     #include "i915_drv.h"
-> >>>>>> -#include "i915_globals.h"
-> >>>>>>     #include "i915_trace.h"
-> >>>>>>
-> >>>>>>     #include "intel_context.h"
-> >>>>>> @@ -15,14 +14,11 @@
-> >>>>>>     #include "intel_engine_pm.h"
-> >>>>>>     #include "intel_ring.h"
-> >>>>>>
-> >>>>>> -static struct i915_global_context {
-> >>>>>> -     struct i915_global base;
-> >>>>>> -     struct kmem_cache *slab_ce;
-> >>>>>> -} global;
-> >>>>>> +struct kmem_cache *slab_ce;
-> >>>>
-> >>>> Static?  With that,
-> >>>>
-> >>>> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
-> >>>>
-> >>>>>>
-> >>>>>>     static struct intel_context *intel_context_alloc(void)
-> >>>>>>     {
-> >>>>>> -     return kmem_cache_zalloc(global.slab_ce, GFP_KERNEL);
-> >>>>>> +     return kmem_cache_zalloc(slab_ce, GFP_KERNEL);
-> >>>>>>     }
-> >>>>>>
-> >>>>>>     static void rcu_context_free(struct rcu_head *rcu)
-> >>>>>> @@ -30,7 +26,7 @@ static void rcu_context_free(struct rcu_head *rcu)
-> >>>>>>         struct intel_context *ce = container_of(rcu, typeof(*ce), rcu);
-> >>>>>>
-> >>>>>>         trace_intel_context_free(ce);
-> >>>>>> -     kmem_cache_free(global.slab_ce, ce);
-> >>>>>> +     kmem_cache_free(slab_ce, ce);
-> >>>>>>     }
-> >>>>>>
-> >>>>>>     void intel_context_free(struct intel_context *ce)
-> >>>>>> @@ -410,22 +406,17 @@ void intel_context_fini(struct intel_context *ce)
-> >>>>>>         i915_active_fini(&ce->active);
-> >>>>>>     }
-> >>>>>>
-> >>>>>> -static void i915_global_context_exit(void)
-> >>>>>> +void i915_context_module_exit(void)
-> >>>>>>     {
-> >>>>>> -     kmem_cache_destroy(global.slab_ce);
-> >>>>>> +     kmem_cache_destroy(slab_ce);
-> >>>>>>     }
-> >>>>>>
-> >>>>>> -static struct i915_global_context global = { {
-> >>>>>> -     .exit = i915_global_context_exit,
-> >>>>>> -} };
-> >>>>>> -
-> >>>>>> -int __init i915_global_context_init(void)
-> >>>>>> +int __init i915_context_module_init(void)
-> >>>>>>     {
-> >>>>>> -     global.slab_ce = KMEM_CACHE(intel_context, SLAB_HWCACHE_ALIGN);
-> >>>>>> -     if (!global.slab_ce)
-> >>>>>> +     slab_ce = KMEM_CACHE(intel_context, SLAB_HWCACHE_ALIGN);
-> >>>>>> +     if (!slab_ce)
-> >>>>>>                 return -ENOMEM;
-> >>>>>>
-> >>>>>> -     i915_global_register(&global.base);
-> >>>>>>         return 0;
-> >>>>>>     }
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> >>>>>> index 974ef85320c2..a0ca82e3c40d 100644
-> >>>>>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> >>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> >>>>>> @@ -30,6 +30,9 @@ void intel_context_init(struct intel_context *ce,
-> >>>>>>                         struct intel_engine_cs *engine);
-> >>>>>>     void intel_context_fini(struct intel_context *ce);
-> >>>>>>
-> >>>>>> +void i915_context_module_exit(void);
-> >>>>>> +int i915_context_module_init(void);
-> >>>>>> +
-> >>>>>>     struct intel_context *
-> >>>>>>     intel_context_create(struct intel_engine_cs *engine);
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
-> >>>>>> index 3de7cf22ec76..d36eb7dc40aa 100644
-> >>>>>> --- a/drivers/gpu/drm/i915/i915_globals.c
-> >>>>>> +++ b/drivers/gpu/drm/i915/i915_globals.c
-> >>>>>> @@ -7,7 +7,6 @@
-> >>>>>>     #include <linux/slab.h>
-> >>>>>>     #include <linux/workqueue.h>
-> >>>>>>
-> >>>>>> -#include "gem/i915_gem_context.h"
-> >>>>>>     #include "gem/i915_gem_object.h"
-> >>>>>>     #include "i915_globals.h"
-> >>>>>>     #include "i915_request.h"
-> >>>>>> @@ -32,7 +31,6 @@ static void __i915_globals_cleanup(void)
-> >>>>>>     }
-> >>>>>>
-> >>>>>>     static __initconst int (* const initfn[])(void) = {
-> >>>>>> -     i915_global_context_init,
-> >>>>>>         i915_global_gem_context_init,
-> >>>>>>         i915_global_objects_init,
-> >>>>>>         i915_global_request_init,
-> >>>>>> diff --git a/drivers/gpu/drm/i915/i915_globals.h b/drivers/gpu/drm/i915/i915_globals.h
-> >>>>>> index d80901ba75e3..60daa738a188 100644
-> >>>>>> --- a/drivers/gpu/drm/i915/i915_globals.h
-> >>>>>> +++ b/drivers/gpu/drm/i915/i915_globals.h
-> >>>>>> @@ -23,7 +23,6 @@ int i915_globals_init(void);
-> >>>>>>     void i915_globals_exit(void);
-> >>>>>>
-> >>>>>>     /* constructors */
-> >>>>>> -int i915_global_context_init(void);
-> >>>>>>     int i915_global_gem_context_init(void);
-> >>>>>>     int i915_global_objects_init(void);
-> >>>>>>     int i915_global_request_init(void);
-> >>>>>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> >>>>>> index f9527269e30a..266618157775 100644
-> >>>>>> --- a/drivers/gpu/drm/i915/i915_pci.c
-> >>>>>> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> >>>>>> @@ -33,6 +33,7 @@
-> >>>>>>     #include "i915_active.h"
-> >>>>>>     #include "i915_buddy.h"
-> >>>>>>     #include "i915_drv.h"
-> >>>>>> +#include "gem/i915_gem_context.h"
-> >>>>>
-> >>>>> It's a bit ugly to go to a design where i915_pci.c has to include so
-> >>>>> many random parts of i915. IMO for a complex driver like i915,
-> >>>>> compartmentalizing so much knowledge about the internals was better
-> >>>>> inside the globals layer.
-> >>>>
-> >>>> I agree that i915_pci feels like the wrong place to put this but I
-> >>>> don't think that's so much because globals don't belong in i915_pci
-> >>>> but because i915_init/exit don't belong there.  Maybe, once this is
-> >>>> all said and done (or at the start of the series), we should move
-> >>>> i915_init/exit to i915_drv.c?  Of course, there's a bunch of PCI
-> >>>> probing stuff in i915_drv.c so..... yeah.... our organization is
-> >>>> pretty busted.
-> >>>
-> >>> To put a finer point on this, the new "design" is really to have a
-> >>> single flat list instead of two, one nested inside the other.  There's
-> >>> nothing wrong with that at all.  The fact that all this stuff now
-> >>> lives in i915_pci.c is ugly.  But, as I said, that's kind-of an
-> >>> accident of history because that's where i915_init() and i915_exit()
-> >>> currently live.  We should just move the lot to i915_drv.c.
-> >>
-> >> Hmm.. on one hand it does sounds better to move to i915_drv.c, but is it
-> >> just because all these new include directive are so visibly out of place
-> >> in i915_pci.c?
-> >>
-> >> Perhaps we need i915_module.c and then i915_globals is a completely fine
-> >> concept. Desired IMO even since we have to avoid globals in general
-> >> (multi-gpu) so it sticks out nicely that all that is allowed to be
-> >> global has a special place.
-> >>
-> >> And i915_drv.c can remain being about a driver instance as bound to one GPU.
-> >
-> > Is i915_drv.c about a single instance bound to a single GPU?  If so,
->
-> Yep, all functions there either take drm_dev, pdev or dev_priv as
-> argument, or return/initialize dev_priv.
->
-> > then, yeah, maybe not the right place.  Maybe a i915_module.c would be
-> > better.  It's all different shades of shed paint.
->
-> Hm not really just different shades IMO. Because I argue the patch
-> series as is is a retrograde step in the above discussed respect.
->
-> I think i915_globals is cleaner code organisation. Because even if we
-> add i915_module.c, then that can be made initialize globals and register
-> with pci in cleanly separated steps without the need to include many
-> driver internals.
+== Series Details ==
 
-Ok, so maybe I'm missing something in what you're saying.  I was under
-the impression that your primary concern was separating PCI setup from
-per-device from per-module stuff.  If so, moving it all to an
-i915_module.c fixes that.
+Series: drm/i915/display: Disable audio, DRRS and PSR before planes
+URL   : https://patchwork.freedesktop.org/series/93024/
+State : warning
 
-Are you arguing that a flat list of module init steps is bad?  And
-that having globals be its own sub-list is good?  If so, then I have
-to disagree.  I don't think splitting the calling of misc "set up my
-slabs" functions from the final "register with PCI" at the end gains
-us anything.  What it does do is give more files to search through,
-more layers to think about when understanding the code, and more
-infrastructure to maintain.
+== Summary ==
 
-If, on the other hand, we had a globals infrastructure that actually
-gained us something in terms of code simplicity, I might be able to
-get behind that.  For instance, I could imagine something like this:
+$ dim checkpatch origin/drm-tip
+4b987bbf5ee8 drm/i915/display: Disable audio, DRRS and PSR before planes
+-:137: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#137: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:199:
++	void (*pre_disable)(struct intel_atomic_state *,
 
-I915_DECL_SLAB(foo);
+-:137: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#137: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:199:
++	void (*pre_disable)(struct intel_atomic_state *,
 
-   /* Someone allocates something */
-   kmem_cache_alloc(foo.slab);
+-:137: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#137: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:199:
++	void (*pre_disable)(struct intel_atomic_state *,
 
-where we somehow automagically declare the slab, initialize it on
-module load, and tear it down on module exit.  That would add real
-value.  As is, all i915_globals.c adds is extra layers.
+-:137: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#137: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:199:
++	void (*pre_disable)(struct intel_atomic_state *,
 
---Jason
+total: 0 errors, 4 warnings, 0 checks, 132 lines checked
 
 
-> I see r-b are accumulating but I hope reasonable objections will be
-> considered.
->
-> Regards,
->
-> Tvrtko
->
-> >
-> > --Jason
-> >
-> >> That feels like the best of both worlds to me.
-> >>
-> >> Regards,
-> >>
-> >> Tvrtko
-> >>
-> >>>
-> >>>> --Jason
-> >>>>
-> >>>>> Maybe add a cover letter to explain the perceived pros and cons and
-> >>>>> thinking in general?
-> >>>>>
-> >>>>> Regards,
-> >>>>>
-> >>>>> Tvrtko
-> >>>>>
-> >>>>>>     #include "i915_perf.h"
-> >>>>>>     #include "i915_globals.h"
-> >>>>>>     #include "i915_selftest.h"
-> >>>>>> @@ -1297,6 +1298,7 @@ static const struct {
-> >>>>>>         { i915_check_nomodeset, NULL },
-> >>>>>>         { i915_active_module_init, i915_active_module_exit },
-> >>>>>>         { i915_buddy_module_init, i915_buddy_module_exit },
-> >>>>>> +     { i915_context_module_init, i915_context_module_exit },
-> >>>>>>         { i915_globals_init, i915_globals_exit },
-> >>>>>>         { i915_mock_selftests, NULL },
-> >>>>>>         { i915_pmu_init, i915_pmu_exit },
-> >>>>>>
-> >>>>> _______________________________________________
-> >>>>> Intel-gfx mailing list
-> >>>>> Intel-gfx@lists.freedesktop.org
-> >>>>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
