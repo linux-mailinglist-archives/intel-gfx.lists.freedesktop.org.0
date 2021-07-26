@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108A23D5D34
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 17:40:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3DA13D5D7B
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 17:42:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2726E165;
-	Mon, 26 Jul 2021 15:40:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 389496E210;
+	Mon, 26 Jul 2021 15:42:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com
- [IPv6:2607:f8b0:4864:20::b2e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF596E165
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 15:40:07 +0000 (UTC)
-Received: by mail-yb1-xb2e.google.com with SMTP id a93so15578882ybi.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 08:40:07 -0700 (PDT)
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com
+ [IPv6:2607:f8b0:4864:20::b30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931DE6E210
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 15:42:17 +0000 (UTC)
+Received: by mail-yb1-xb30.google.com with SMTP id z18so15513270ybg.8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 08:42:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bA4thv1i6cRjXLozgmM/SFrkCBsmVT9u9Ze2PgAgFmk=;
- b=qvOtGALqmO7zcjhGmZhMTVqWkyVa4NKAT5alIF1m24PF9fkCeSbrcvSahe0nEBPyeV
- w/02G4G74PnBxoXrYOOPfqvMQ+vrBhn1zVhB0spHIE5FDyHWx+6q36IQBD9RTaBulP4R
- JPeNAQVezKegDISJ4QfejEaVReN3kSC/APMYJ1YM2+QQSPc/vKXmqJgsIchr91Pd6KDc
- aKAEUSE5MRrt7ITmfVrWXSfFsa11znHHqJEz7y4oEtdD7gXTNWSxgQcILWoacOLGvs9I
- MgTTr0JP0fhIwpXpd58MhQk3NlFX2FZf3pye+4J8Uf76RU5SGry97sJPG5B6+/U9r1EX
- jDTg==
+ :cc; bh=UE0IrG3eNeMzhEZHqZmhnXD0NVVDI7NJd2TFtD0KNRw=;
+ b=tt7UxSoXoQOYUskg83QJstgxZ+ybTMQhukn9l1tDK4ctagiyCpFZPVhik86Ngp7RmC
+ uFAam6s5eHGD/GZ3sg9o2u2+z6znTIWnRzqYU6NR29/Nweux5ZikTHGKp8z63BrxQ5iT
+ h741f904fGfGXHzVDdkHHlXuKP0CIhUL0Y12PSlsIDGCBEmIWCzWlEzOxzmes/kPhYxr
+ 6x6ERmkSMpDmvyUiYOWeM5mdgGCwzjEHuZscG72wtqryLlTzf2qQZgQf3zZQZAmbXLNl
+ qvBxMacM3lZYOks2zuE+EpzDQ6T3cxWJ9JH4aueWnfidr5tyYF5jNZKjSkvUA76p8Pcb
+ T3uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=bA4thv1i6cRjXLozgmM/SFrkCBsmVT9u9Ze2PgAgFmk=;
- b=kzH65vQJTNkpcz9InkuSVVo/SKtnzTzJDa9Y/dvHzWUqahDpPcQOxtlTErBFiWRzZh
- pYyEjAlCOu558LVFhX3lGi4cy9UWZrYEVa6wislyEVrNHPwQOrrMM9bEIpq0V5Pxfteb
- BipVtlyDuTD7xETISSd0PHmt/vSaiY+jKY5Q6k/QZD63Tn8DNQ9mu4VpQuFGzrKpsB0k
- VJdGMddKe74V/6svzDtcDlH7r0Ym+XInvIEPJgz+jYeb2VziV2JHUnKMhWFkBDQtJT56
- +g+k1leTGOVzgTrXArT33dCPDR4iG8f1C+oqX31DpOkGY4p/TZgezgSeC6703b2NU7Fa
- Hg3Q==
-X-Gm-Message-State: AOAM531MrNvyd11kpxlza8ScZZEg3usufYZt1B6W6uDe9A0yNQFSis9O
- g89gCYjGNuSvzeyzdMJmuHn0x0gSyZtPfeEMfMOtKQ==
-X-Google-Smtp-Source: ABdhPJzCHtgiIVxqF8Hy/sRRKFNjIq6si6aJuKnjP1l7UODMvcJTan32wouEqxxhjRm4ZMu7Z2Fk1KZQD4e+gcNJv/A=
-X-Received: by 2002:a25:3750:: with SMTP id e77mr7272740yba.469.1627314006587; 
- Mon, 26 Jul 2021 08:40:06 -0700 (PDT)
+ bh=UE0IrG3eNeMzhEZHqZmhnXD0NVVDI7NJd2TFtD0KNRw=;
+ b=Rod77quMykglFVg1G9/wk4EZNN71m1LGgVd/fvADv0Qpz/q6/nSF1hbrKzyzfacm1k
+ YkFTe8U+q9AJwmq7AIfrGYeVLY+F5GLqFt8bvA9cJf1VbUzcmes/l3U47V0ZchTYOY9e
+ S46RwDCzm2v9kTxjUERUWUv9iKP/qHykGdIV3+JjNoPvHTNdzuskxUPrxmFZsEJKrP2n
+ 5m9BIDtJPsKYgAwG/jJ55QHmHUYVpYElz0ZPL+Ek8zHwIiYAuQ2gM6PNv7M1/DWMPX2A
+ i1Unftcw6SC9rmLgywvcdsXQdMXVKkLTHzZDhoOjj/3kRF6VUML/JoeRFPxb5VNI9z44
+ N+zw==
+X-Gm-Message-State: AOAM532dpu+VWsv9k1X9BlCpr2UmuAxAtLaVYCNrkbFYgdTkUEYpXpeh
+ rQj1fGvBIKbxbNnBt0dIqgvf0RKIL+IainiAfza4Rw==
+X-Google-Smtp-Source: ABdhPJwCmFdQlpXUCbHiVE/uyJZTuf81XaX1q/dK1GE6xlWAVtLO6X7/SQ+l0q/9YvpFA9cVbcohGUKkzUk4/T0LHg4=
+X-Received: by 2002:a25:208b:: with SMTP id
+ g133mr24099710ybg.211.1627314136636; 
+ Mon, 26 Jul 2021 08:42:16 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210723192934.1004427-1-daniel.vetter@ffwll.ch>
- <20210723192934.1004427-6-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210723192934.1004427-6-daniel.vetter@ffwll.ch>
+ <20210723192934.1004427-4-daniel.vetter@ffwll.ch>
+ <0edb5c4d-1faf-4b24-a21d-fd2e5be6591d@linux.intel.com>
+ <CAOFGe96Da_O7VBaw85LsNTfMZhb2ycVg3WJ0fFe6xekB0m2NnA@mail.gmail.com>
+In-Reply-To: <CAOFGe96Da_O7VBaw85LsNTfMZhb2ycVg3WJ0fFe6xekB0m2NnA@mail.gmail.com>
 From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Mon, 26 Jul 2021 10:39:55 -0500
-Message-ID: <CAOFGe945J0aheqkWpM1AUeq8RZbeJ19P7rAnJxuNBsejSffqbw@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 06/10] drm/i915: move gem_objects slab to
+Date: Mon, 26 Jul 2021 10:42:05 -0500
+Message-ID: <CAOFGe96OBK3W_c8YU=4LHysumEOm3Y27KX_Mok=P686aa3c0Bw@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/10] drm/i915: move intel_context slab to
  direct module init/exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,159 +66,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 23, 2021 at 2:29 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+On Mon, Jul 26, 2021 at 10:30 AM Jason Ekstrand <jason@jlekstrand.net> wrote:
 >
-> With the global kmem_cache shrink infrastructure gone there's nothing
-> special and we can convert them over.
+> On Mon, Jul 26, 2021 at 3:35 AM Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+> >
+> >
+> > On 23/07/2021 20:29, Daniel Vetter wrote:
+> > > With the global kmem_cache shrink infrastructure gone there's nothing
+> > > special and we can convert them over.
+> > >
+> > > I'm doing this split up into each patch because there's quite a bit of
+> > > noise with removing the static global.slab_ce to just a
+> > > slab_ce.
+> > >
+> > > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/i915/gt/intel_context.c | 25 ++++++++-----------------
+> > >   drivers/gpu/drm/i915/gt/intel_context.h |  3 +++
+> > >   drivers/gpu/drm/i915/i915_globals.c     |  2 --
+> > >   drivers/gpu/drm/i915/i915_globals.h     |  1 -
+> > >   drivers/gpu/drm/i915/i915_pci.c         |  2 ++
+> > >   5 files changed, 13 insertions(+), 20 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > > index baa05fddd690..283382549a6f 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > > @@ -7,7 +7,6 @@
+> > >   #include "gem/i915_gem_pm.h"
+> > >
+> > >   #include "i915_drv.h"
+> > > -#include "i915_globals.h"
+> > >   #include "i915_trace.h"
+> > >
+> > >   #include "intel_context.h"
+> > > @@ -15,14 +14,11 @@
+> > >   #include "intel_engine_pm.h"
+> > >   #include "intel_ring.h"
+> > >
+> > > -static struct i915_global_context {
+> > > -     struct i915_global base;
+> > > -     struct kmem_cache *slab_ce;
+> > > -} global;
+> > > +struct kmem_cache *slab_ce;
 >
-> I'm doing this split up into each patch because there's quite a bit of
-> noise with removing the static global.slab_objects to just a
-> slab_objects.
+> Static?  With that,
 >
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c | 26 +++++++---------------
->  drivers/gpu/drm/i915/gem/i915_gem_object.h |  3 +++
->  drivers/gpu/drm/i915/i915_globals.c        |  1 -
->  drivers/gpu/drm/i915/i915_globals.h        |  1 -
->  drivers/gpu/drm/i915/i915_pci.c            |  1 +
->  5 files changed, 12 insertions(+), 20 deletions(-)
+> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
 >
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 5c21cff33199..53156250d283 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -30,14 +30,10 @@
->  #include "i915_gem_context.h"
->  #include "i915_gem_mman.h"
->  #include "i915_gem_object.h"
-> -#include "i915_globals.h"
->  #include "i915_memcpy.h"
->  #include "i915_trace.h"
+> > >
+> > >   static struct intel_context *intel_context_alloc(void)
+> > >   {
+> > > -     return kmem_cache_zalloc(global.slab_ce, GFP_KERNEL);
+> > > +     return kmem_cache_zalloc(slab_ce, GFP_KERNEL);
+> > >   }
+> > >
+> > >   static void rcu_context_free(struct rcu_head *rcu)
+> > > @@ -30,7 +26,7 @@ static void rcu_context_free(struct rcu_head *rcu)
+> > >       struct intel_context *ce = container_of(rcu, typeof(*ce), rcu);
+> > >
+> > >       trace_intel_context_free(ce);
+> > > -     kmem_cache_free(global.slab_ce, ce);
+> > > +     kmem_cache_free(slab_ce, ce);
+> > >   }
+> > >
+> > >   void intel_context_free(struct intel_context *ce)
+> > > @@ -410,22 +406,17 @@ void intel_context_fini(struct intel_context *ce)
+> > >       i915_active_fini(&ce->active);
+> > >   }
+> > >
+> > > -static void i915_global_context_exit(void)
+> > > +void i915_context_module_exit(void)
+> > >   {
+> > > -     kmem_cache_destroy(global.slab_ce);
+> > > +     kmem_cache_destroy(slab_ce);
+> > >   }
+> > >
+> > > -static struct i915_global_context global = { {
+> > > -     .exit = i915_global_context_exit,
+> > > -} };
+> > > -
+> > > -int __init i915_global_context_init(void)
+> > > +int __init i915_context_module_init(void)
+> > >   {
+> > > -     global.slab_ce = KMEM_CACHE(intel_context, SLAB_HWCACHE_ALIGN);
+> > > -     if (!global.slab_ce)
+> > > +     slab_ce = KMEM_CACHE(intel_context, SLAB_HWCACHE_ALIGN);
+> > > +     if (!slab_ce)
+> > >               return -ENOMEM;
+> > >
+> > > -     i915_global_register(&global.base);
+> > >       return 0;
+> > >   }
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> > > index 974ef85320c2..a0ca82e3c40d 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> > > @@ -30,6 +30,9 @@ void intel_context_init(struct intel_context *ce,
+> > >                       struct intel_engine_cs *engine);
+> > >   void intel_context_fini(struct intel_context *ce);
+> > >
+> > > +void i915_context_module_exit(void);
+> > > +int i915_context_module_init(void);
+> > > +
+> > >   struct intel_context *
+> > >   intel_context_create(struct intel_engine_cs *engine);
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
+> > > index 3de7cf22ec76..d36eb7dc40aa 100644
+> > > --- a/drivers/gpu/drm/i915/i915_globals.c
+> > > +++ b/drivers/gpu/drm/i915/i915_globals.c
+> > > @@ -7,7 +7,6 @@
+> > >   #include <linux/slab.h>
+> > >   #include <linux/workqueue.h>
+> > >
+> > > -#include "gem/i915_gem_context.h"
+> > >   #include "gem/i915_gem_object.h"
+> > >   #include "i915_globals.h"
+> > >   #include "i915_request.h"
+> > > @@ -32,7 +31,6 @@ static void __i915_globals_cleanup(void)
+> > >   }
+> > >
+> > >   static __initconst int (* const initfn[])(void) = {
+> > > -     i915_global_context_init,
+> > >       i915_global_gem_context_init,
+> > >       i915_global_objects_init,
+> > >       i915_global_request_init,
+> > > diff --git a/drivers/gpu/drm/i915/i915_globals.h b/drivers/gpu/drm/i915/i915_globals.h
+> > > index d80901ba75e3..60daa738a188 100644
+> > > --- a/drivers/gpu/drm/i915/i915_globals.h
+> > > +++ b/drivers/gpu/drm/i915/i915_globals.h
+> > > @@ -23,7 +23,6 @@ int i915_globals_init(void);
+> > >   void i915_globals_exit(void);
+> > >
+> > >   /* constructors */
+> > > -int i915_global_context_init(void);
+> > >   int i915_global_gem_context_init(void);
+> > >   int i915_global_objects_init(void);
+> > >   int i915_global_request_init(void);
+> > > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> > > index f9527269e30a..266618157775 100644
+> > > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > > @@ -33,6 +33,7 @@
+> > >   #include "i915_active.h"
+> > >   #include "i915_buddy.h"
+> > >   #include "i915_drv.h"
+> > > +#include "gem/i915_gem_context.h"
+> >
+> > It's a bit ugly to go to a design where i915_pci.c has to include so
+> > many random parts of i915. IMO for a complex driver like i915,
+> > compartmentalizing so much knowledge about the internals was better
+> > inside the globals layer.
 >
-> -static struct i915_global_object {
-> -       struct i915_global base;
-> -       struct kmem_cache *slab_objects;
-> -} global;
-> +struct kmem_cache *slab_objects;
+> I agree that i915_pci feels like the wrong place to put this but I
+> don't think that's so much because globals don't belong in i915_pci
+> but because i915_init/exit don't belong there.  Maybe, once this is
+> all said and done (or at the start of the series), we should move
+> i915_init/exit to i915_drv.c?  Of course, there's a bunch of PCI
+> probing stuff in i915_drv.c so..... yeah.... our organization is
+> pretty busted.
 
-static
+To put a finer point on this, the new "design" is really to have a
+single flat list instead of two, one nested inside the other.  There's
+nothing wrong with that at all.  The fact that all this stuff now
+lives in i915_pci.c is ugly.  But, as I said, that's kind-of an
+accident of history because that's where i915_init() and i915_exit()
+currently live.  We should just move the lot to i915_drv.c.
 
-With that,
-
-Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
-
->  static const struct drm_gem_object_funcs i915_gem_object_funcs;
+> --Jason
 >
-> @@ -45,7 +41,7 @@ struct drm_i915_gem_object *i915_gem_object_alloc(void)
->  {
->         struct drm_i915_gem_object *obj;
->
-> -       obj = kmem_cache_zalloc(global.slab_objects, GFP_KERNEL);
-> +       obj = kmem_cache_zalloc(slab_objects, GFP_KERNEL);
->         if (!obj)
->                 return NULL;
->         obj->base.funcs = &i915_gem_object_funcs;
-> @@ -55,7 +51,7 @@ struct drm_i915_gem_object *i915_gem_object_alloc(void)
->
->  void i915_gem_object_free(struct drm_i915_gem_object *obj)
->  {
-> -       return kmem_cache_free(global.slab_objects, obj);
-> +       return kmem_cache_free(slab_objects, obj);
->  }
->
->  void i915_gem_object_init(struct drm_i915_gem_object *obj,
-> @@ -664,23 +660,17 @@ void i915_gem_init__objects(struct drm_i915_private *i915)
->         INIT_WORK(&i915->mm.free_work, __i915_gem_free_work);
->  }
->
-> -static void i915_global_objects_exit(void)
-> +void i915_objects_module_exit(void)
->  {
-> -       kmem_cache_destroy(global.slab_objects);
-> +       kmem_cache_destroy(slab_objects);
->  }
->
-> -static struct i915_global_object global = { {
-> -       .exit = i915_global_objects_exit,
-> -} };
-> -
-> -int __init i915_global_objects_init(void)
-> +int __init i915_objects_module_init(void)
->  {
-> -       global.slab_objects =
-> -               KMEM_CACHE(drm_i915_gem_object, SLAB_HWCACHE_ALIGN);
-> -       if (!global.slab_objects)
-> +       slab_objects = KMEM_CACHE(drm_i915_gem_object, SLAB_HWCACHE_ALIGN);
-> +       if (!slab_objects)
->                 return -ENOMEM;
->
-> -       i915_global_register(&global.base);
->         return 0;
->  }
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index f3ede43282dc..6d8ea62a372f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -48,6 +48,9 @@ static inline bool i915_gem_object_size_2big(u64 size)
->
->  void i915_gem_init__objects(struct drm_i915_private *i915);
->
-> +void i915_objects_module_exit(void);
-> +int i915_objects_module_init(void);
-> +
->  struct drm_i915_gem_object *i915_gem_object_alloc(void);
->  void i915_gem_object_free(struct drm_i915_gem_object *obj);
->
-> diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
-> index dbb3d81eeea7..40a592fbc3e0 100644
-> --- a/drivers/gpu/drm/i915/i915_globals.c
-> +++ b/drivers/gpu/drm/i915/i915_globals.c
-> @@ -30,7 +30,6 @@ static void __i915_globals_cleanup(void)
->  }
->
->  static __initconst int (* const initfn[])(void) = {
-> -       i915_global_objects_init,
->         i915_global_request_init,
->         i915_global_scheduler_init,
->         i915_global_vma_init,
-> diff --git a/drivers/gpu/drm/i915/i915_globals.h b/drivers/gpu/drm/i915/i915_globals.h
-> index f16752dbbdbf..9734740708f4 100644
-> --- a/drivers/gpu/drm/i915/i915_globals.h
-> +++ b/drivers/gpu/drm/i915/i915_globals.h
-> @@ -23,7 +23,6 @@ int i915_globals_init(void);
->  void i915_globals_exit(void);
->
->  /* constructors */
-> -int i915_global_objects_init(void);
->  int i915_global_request_init(void);
->  int i915_global_scheduler_init(void);
->  int i915_global_vma_init(void);
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 2b56e664d043..2334eb3e9abb 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1301,6 +1301,7 @@ static const struct {
->         { i915_buddy_module_init, i915_buddy_module_exit },
->         { i915_context_module_init, i915_context_module_exit },
->         { i915_gem_context_module_init, i915_gem_context_module_exit },
-> +       { i915_objects_module_init, i915_objects_module_exit },
->         { i915_globals_init, i915_globals_exit },
->         { i915_mock_selftests, NULL },
->         { i915_pmu_init, i915_pmu_exit },
-> --
-> 2.32.0
->
+> > Maybe add a cover letter to explain the perceived pros and cons and
+> > thinking in general?
+> >
+> > Regards,
+> >
+> > Tvrtko
+> >
+> > >   #include "i915_perf.h"
+> > >   #include "i915_globals.h"
+> > >   #include "i915_selftest.h"
+> > > @@ -1297,6 +1298,7 @@ static const struct {
+> > >       { i915_check_nomodeset, NULL },
+> > >       { i915_active_module_init, i915_active_module_exit },
+> > >       { i915_buddy_module_init, i915_buddy_module_exit },
+> > > +     { i915_context_module_init, i915_context_module_exit },
+> > >       { i915_globals_init, i915_globals_exit },
+> > >       { i915_mock_selftests, NULL },
+> > >       { i915_pmu_init, i915_pmu_exit },
+> > >
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
