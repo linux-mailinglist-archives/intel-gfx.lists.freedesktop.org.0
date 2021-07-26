@@ -1,43 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE0FE3D6056
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 18:10:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C69AE3D6275
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 18:20:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B44D72DE3;
-	Mon, 26 Jul 2021 16:10:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6C8F6FE28;
+	Mon, 26 Jul 2021 16:20:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C17E72DE3;
- Mon, 26 Jul 2021 16:10:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="273353081"
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="273353081"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 09:10:47 -0700
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="436884138"
-Received: from jdonohue-mobl.ger.corp.intel.com (HELO [10.213.215.117])
- ([10.213.215.117])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 09:10:45 -0700
-To: Jason Ekstrand <jason@jlekstrand.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20210723113405.427004-1-matthew.auld@intel.com>
- <0988bf67-c42a-1e7e-af77-ae2da65b036f@linux.intel.com>
- <CAOFGe94-StYYc3Fk70u3h0xp2F4RqONb96cnFLhgnhxOVKi8JA@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <cf0253c0-6a4c-aaaa-4110-aa403d66ea9f@linux.intel.com>
-Date: Mon, 26 Jul 2021 17:10:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com
+ [IPv6:2607:f8b0:4864:20::b33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 008C36EB12
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 16:20:40 +0000 (UTC)
+Received: by mail-yb1-xb33.google.com with SMTP id g76so15748211ybf.4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 09:20:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=17LuCjRWSa481z+i5/TyQvh9obotD3o34cqh7WaO1oA=;
+ b=ZKRdfCe0Tjlqdxqq8pVINA6iJYzDntqbtEkhLe54OcfYvoQoXfxZjtXEntklHQbvmL
+ rh0p4p33qoU22rqhqWfDJSd9PHpbh8d5tIR/ob0HBP/szl9WYagahWvDHzwDJsOE/6mG
+ jSpBMu1UZZ1MZ4WWKJdKFtDVBC0q0MMeqOhoyPX/RRvEMLiSPiH2s80Go5O8GQRMiYnj
+ mbrg1IDiaEAvQoOwJ+rNxfHvRc1zeJVT+C+viFkYc8aOF+JBjfi02higniPvtdFbZEqx
+ PvZKrpY8hHW44ZJ7dvyACIJErFnBdL6M0X3qwz3fxuu1m64frgiReYYkBildYck2unO0
+ ycHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=17LuCjRWSa481z+i5/TyQvh9obotD3o34cqh7WaO1oA=;
+ b=RrVhIcRnW/Zr6BkYhzk5Ljs/t57brUTSQtUAJVpyy6emrXJF2NYOKhI1dhwZXZyqcB
+ Bf+EdB0fIrvT759K0CxZVPB2Z4sA5fJ4YDPVM8kjuVsEw3w7joOI5Ogd3NMkAKgTrAlb
+ 1xC8lNQp8FhugtBE809gFhcVcDtRpAU3pCoWEUP1JEqunDaAwrn2q49jNlXZohiH5twq
+ B00ZCGwZmDm+G5wLP/j35BRTRoBTcV702T+zCyto+7qgRrPB8pFGgKGYk6LG8gbsF3/E
+ uLyGJT+LbjAPvpNyCGvjx53a9ur3nMDVcLGz29F5D+rJWkKoPJlwm2tq/1qsKBD8MqUn
+ cA3Q==
+X-Gm-Message-State: AOAM530y9QiOG1g/L+W6nkh8enAFoo+OskVy7ybLLHKYGNIhboWdog2D
+ LqhhCM37VZVG/ZqjNkxX2Vc2AwbkBxpm2yOc/eNmJQ==
+X-Google-Smtp-Source: ABdhPJzPiAMbHdMmpBw/HcIT/6SeWIhu9ViLs8wt2qgUJ+IapVceAEmG0/frT6VYS+1cGZcLJTlNBoYe11UpEPGAmLo=
+X-Received: by 2002:a25:208b:: with SMTP id
+ g133mr24328330ybg.211.1627316439890; 
+ Mon, 26 Jul 2021 09:20:39 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAOFGe94-StYYc3Fk70u3h0xp2F4RqONb96cnFLhgnhxOVKi8JA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/userptr: Probe existence of
- backing struct pages upon creation
+References: <20210723192934.1004427-1-daniel.vetter@ffwll.ch>
+ <20210723192934.1004427-4-daniel.vetter@ffwll.ch>
+ <0edb5c4d-1faf-4b24-a21d-fd2e5be6591d@linux.intel.com>
+ <CAOFGe96Da_O7VBaw85LsNTfMZhb2ycVg3WJ0fFe6xekB0m2NnA@mail.gmail.com>
+ <CAOFGe96OBK3W_c8YU=4LHysumEOm3Y27KX_Mok=P686aa3c0Bw@mail.gmail.com>
+ <031997ab-5568-9dbd-fcee-b4f820a32632@linux.intel.com>
+In-Reply-To: <031997ab-5568-9dbd-fcee-b4f820a32632@linux.intel.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Mon, 26 Jul 2021 11:20:28 -0500
+Message-ID: <CAOFGe95G3bYWxZ_EwPEFzxf10vf1T3Zdyez_fbh=imcDj+TSHw@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/10] drm/i915: move intel_context slab to
+ direct module init/exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,164 +68,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Kenneth Graunke <kenneth@whitecape.org>, Matthew Auld <matthew.auld@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDI2LzA3LzIwMjEgMTY6MTQsIEphc29uIEVrc3RyYW5kIHdyb3RlOgo+IE9uIE1vbiwgSnVs
-IDI2LCAyMDIxIGF0IDM6MzEgQU0gTWFhcnRlbiBMYW5raG9yc3QKPiA8bWFhcnRlbi5sYW5raG9y
-c3RAbGludXguaW50ZWwuY29tPiB3cm90ZToKPj4KPj4gT3AgMjMtMDctMjAyMSBvbSAxMzozNCBz
-Y2hyZWVmIE1hdHRoZXcgQXVsZDoKPj4+IEZyb206IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMt
-d2lsc29uLmNvLnVrPgo+Pj4KPj4+IEphc29uIEVrc3RyYW5kIHJlcXVlc3RlZCBhIG1vcmUgZWZm
-aWNpZW50IG1ldGhvZCB0aGFuIHVzZXJwdHIrc2V0LWRvbWFpbgo+Pj4gdG8gZGV0ZXJtaW5lIGlm
-IHRoZSB1c2VycHRyIG9iamVjdCB3YXMgYmFja2VkIGJ5IGEgY29tcGxldGUgc2V0IG9mIHBhZ2Vz
-Cj4+PiB1cG9uIGNyZWF0aW9uLiBUbyBiZSBtb3JlIGVmZmljaWVudCB0aGFuIHNpbXBseSBwb3B1
-bGF0aW5nIHRoZSB1c2VycHRyCj4+PiB1c2luZyBnZXRfdXNlcl9wYWdlcygpIChhcyBkb25lIGJ5
-IHRoZSBjYWxsIHRvIHNldC1kb21haW4gb3IgZXhlY2J1ZiksCj4+PiB3ZSBjYW4gd2FsayB0aGUg
-dHJlZSBvZiB2bV9hcmVhX3N0cnVjdCBhbmQgY2hlY2sgZm9yIGdhcHMgb3Igdm1hIG5vdAo+Pj4g
-YmFja2VkIGJ5IHN0cnVjdCBwYWdlIChWTV9QRk5NQVApLiBUaGUgcXVlc3Rpb24gaXMgaG93IHRv
-IGhhbmRsZQo+Pj4gVk1fTUlYRURNQVAgd2hpY2ggbWF5IGJlIGVpdGhlciBzdHJ1Y3QgcGFnZSBv
-ciBwZm4gYmFja2VkLi4uCj4+Pgo+Pj4gV2l0aCBkaXNjcmV0ZSB3ZSBhcmUgZ29pbmcgdG8gZHJv
-cCBzdXBwb3J0IGZvciBzZXRfZG9tYWluKCksIHNvIG9mZmVyaW5nCj4+PiBhIHdheSB0byBwcm9i
-ZSB0aGUgcGFnZXMsIHdpdGhvdXQgaGF2aW5nIHRvIHJlc29ydCB0byBkdW1teSBiYXRjaGVzIGhh
-cwo+Pj4gYmVlbiByZXF1ZXN0ZWQuCj4+Pgo+Pj4gdjI6Cj4+PiAtIGFkZCBuZXcgcXVlcnkgcGFy
-YW0gZm9yIHRoZSBQUk9CRSBmbGFnLCBzbyB1c2Vyc3BhY2UgY2FuIGVhc2lseQo+Pj4gICAgY2hl
-Y2sgaWYgdGhlIGtlcm5lbCBzdXBwb3J0cyBpdChKYXNvbikuCj4+PiAtIHVzZSBtbWFwX3JlYWRf
-e2xvY2ssIHVubG9ja30uCj4+PiAtIGFkZCBzb21lIGtlcm5lbC1kb2MuCj4+PiB2MzoKPj4+IC0g
-SW4gdGhlIGRvY3MgYWxzbyBtZW50aW9uIHRoYXQgUFJPQkUgZG9lc24ndCBndWFyYW50ZWUgdGhh
-dCB0aGUgcGFnZXMKPj4+ICAgIHdpbGwgcmVtYWluIHZhbGlkIGJ5IHRoZSB0aW1lIHRoZXkgYXJl
-IGFjdHVhbGx5IHVzZWQoVHZydGtvKS4KPj4+IC0gQWRkIGEgc21hbGwgY29tbWVudCBmb3IgdGhl
-IGhvbGUgZmluZGluZyBsb2dpYyhKYXNvbikuCj4+PiAtIE1vdmUgdGhlIHBhcmFtIG5leHQgdG8g
-YWxsIHRoZSBvdGhlciBwYXJhbXMgd2hpY2gganVzdCByZXR1cm4gdHJ1ZS4KPj4+Cj4+PiBUZXN0
-Y2FzZTogaWd0L2dlbV91c2VycHRyX2JsaXRzL3Byb2JlCj4+PiBTaWduZWQtb2ZmLWJ5OiBDaHJp
-cyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPj4+IFNpZ25lZC1vZmYtYnk6IE1h
-dHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KPj4+IENjOiBUaG9tYXMgSGVsbHN0
-csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+Cj4+PiBDYzogTWFhcnRlbiBM
-YW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPj4+IENjOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AbGludXguaW50ZWwuY29tPgo+Pj4gQ2M6IEpvcmRh
-biBKdXN0ZW4gPGpvcmRhbi5sLmp1c3RlbkBpbnRlbC5jb20+Cj4+PiBDYzogS2VubmV0aCBHcmF1
-bmtlIDxrZW5uZXRoQHdoaXRlY2FwZS5vcmc+Cj4+PiBDYzogSmFzb24gRWtzdHJhbmQgPGphc29u
-QGpsZWtzdHJhbmQubmV0Pgo+Pj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3
-bGwuY2g+Cj4+PiBDYzogUmFtYWxpbmdhbSBDIDxyYW1hbGluZ2FtLmNAaW50ZWwuY29tPgo+Pj4g
-UmV2aWV3ZWQtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4+
-PiBBY2tlZC1ieTogS2VubmV0aCBHcmF1bmtlIDxrZW5uZXRoQHdoaXRlY2FwZS5vcmc+Cj4+PiBS
-ZXZpZXdlZC1ieTogSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0Pgo+Pj4gLS0t
-Cj4+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91c2VycHRyLmMgfCA0MSAr
-KysrKysrKysrKysrKysrKysrKy0KPj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZXRw
-YXJhbS5jICAgICAgICB8ICAxICsKPj4+ICAgaW5jbHVkZS91YXBpL2RybS9pOTE1X2RybS5oICAg
-ICAgICAgICAgICAgICB8IDIwICsrKysrKysrKysKPj4+ICAgMyBmaWxlcyBjaGFuZ2VkLCA2MSBp
-bnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91c2VycHRyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9nZW0vaTkxNV9nZW1fdXNlcnB0ci5jCj4+PiBpbmRleCA1NmVkZmVmZjhjMDIuLjQ2OGE3YTYx
-N2ZiZiAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91
-c2VycHRyLmMKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV91c2Vy
-cHRyLmMKPj4+IEBAIC00MjIsNiArNDIyLDM0IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2k5
-MTVfZ2VtX29iamVjdF9vcHMgaTkxNV9nZW1fdXNlcnB0cl9vcHMgPSB7Cj4+Pgo+Pj4gICAjZW5k
-aWYKPj4+Cj4+PiArc3RhdGljIGludAo+Pj4gK3Byb2JlX3JhbmdlKHN0cnVjdCBtbV9zdHJ1Y3Qg
-Km1tLCB1bnNpZ25lZCBsb25nIGFkZHIsIHVuc2lnbmVkIGxvbmcgbGVuKQo+Pj4gK3sKPj4+ICsg
-ICAgIGNvbnN0IHVuc2lnbmVkIGxvbmcgZW5kID0gYWRkciArIGxlbjsKPj4+ICsgICAgIHN0cnVj
-dCB2bV9hcmVhX3N0cnVjdCAqdm1hOwo+Pj4gKyAgICAgaW50IHJldCA9IC1FRkFVTFQ7Cj4+PiAr
-Cj4+PiArICAgICBtbWFwX3JlYWRfbG9jayhtbSk7Cj4+PiArICAgICBmb3IgKHZtYSA9IGZpbmRf
-dm1hKG1tLCBhZGRyKTsgdm1hOyB2bWEgPSB2bWEtPnZtX25leHQpIHsKPj4+ICsgICAgICAgICAg
-ICAgLyogQ2hlY2sgZm9yIGhvbGVzLCBub3RlIHRoYXQgd2UgYWxzbyB1cGRhdGUgdGhlIGFkZHIg
-YmVsb3cgKi8KPj4+ICsgICAgICAgICAgICAgaWYgKHZtYS0+dm1fc3RhcnQgPiBhZGRyKQo+Pj4g
-KyAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+Pj4gKwo+Pj4gKyAgICAgICAgICAgICBpZiAo
-dm1hLT52bV9mbGFncyAmIChWTV9QRk5NQVAgfCBWTV9NSVhFRE1BUCkpCj4+PiArICAgICAgICAg
-ICAgICAgICAgICAgYnJlYWs7Cj4+PiArCj4+PiArICAgICAgICAgICAgIGlmICh2bWEtPnZtX2Vu
-ZCA+PSBlbmQpIHsKPj4+ICsgICAgICAgICAgICAgICAgICAgICByZXQgPSAwOwo+Pj4gKyAgICAg
-ICAgICAgICAgICAgICAgIGJyZWFrOwo+Pj4gKyAgICAgICAgICAgICB9Cj4+PiArCj4+PiArICAg
-ICAgICAgICAgIGFkZHIgPSB2bWEtPnZtX2VuZDsKPj4+ICsgICAgIH0KPj4+ICsgICAgIG1tYXBf
-cmVhZF91bmxvY2sobW0pOwo+Pj4gKwo+Pj4gKyAgICAgcmV0dXJuIHJldDsKPj4+ICt9Cj4+PiAr
-Cj4+PiAgIC8qCj4+PiAgICAqIENyZWF0ZXMgYSBuZXcgbW0gb2JqZWN0IHRoYXQgd3JhcHMgc29t
-ZSBub3JtYWwgbWVtb3J5IGZyb20gdGhlIHByb2Nlc3MKPj4+ICAgICogY29udGV4dCAtIHVzZXIg
-bWVtb3J5Lgo+Pj4gQEAgLTQ3Nyw3ICs1MDUsOCBAQCBpOTE1X2dlbV91c2VycHRyX2lvY3RsKHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4+PiAgICAgICAgfQo+Pj4KPj4+ICAgICAgICBpZiAoYXJn
-cy0+ZmxhZ3MgJiB+KEk5MTVfVVNFUlBUUl9SRUFEX09OTFkgfAo+Pj4gLSAgICAgICAgICAgICAg
-ICAgICAgICAgICBJOTE1X1VTRVJQVFJfVU5TWU5DSFJPTklaRUQpKQo+Pj4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICBJOTE1X1VTRVJQVFJfVU5TWU5DSFJPTklaRUQgfAo+Pj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgICBJOTE1X1VTRVJQVFJfUFJPQkUpKQo+Pj4gICAgICAgICAgICAgICAg
-cmV0dXJuIC1FSU5WQUw7Cj4+Pgo+Pj4gICAgICAgIGlmIChpOTE1X2dlbV9vYmplY3Rfc2l6ZV8y
-YmlnKGFyZ3MtPnVzZXJfc2l6ZSkpCj4+PiBAQCAtNTA0LDYgKzUzMywxNiBAQCBpOTE1X2dlbV91
-c2VycHRyX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4+PiAgICAgICAgICAgICAgICAg
-ICAgICAgIHJldHVybiAtRU5PREVWOwo+Pj4gICAgICAgIH0KPj4+Cj4+PiArICAgICBpZiAoYXJn
-cy0+ZmxhZ3MgJiBJOTE1X1VTRVJQVFJfUFJPQkUpIHsKPj4+ICsgICAgICAgICAgICAgLyoKPj4+
-ICsgICAgICAgICAgICAgICogQ2hlY2sgdGhhdCB0aGUgcmFuZ2UgcG9pbnRlZCB0byByZXByZXNl
-bnRzIHJlYWwgc3RydWN0Cj4+PiArICAgICAgICAgICAgICAqIHBhZ2VzIGFuZCBub3QgaW9tYXBw
-aW5ncyAoYXQgdGhpcyBtb21lbnQgaW4gdGltZSEpCj4+PiArICAgICAgICAgICAgICAqLwo+Pj4g
-KyAgICAgICAgICAgICByZXQgPSBwcm9iZV9yYW5nZShjdXJyZW50LT5tbSwgYXJncy0+dXNlcl9w
-dHIsIGFyZ3MtPnVzZXJfc2l6ZSk7Cj4+PiArICAgICAgICAgICAgIGlmIChyZXQpCj4+PiArICAg
-ICAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPj4+ICsgICAgIH0KPj4+ICsKPj4+ICAgI2lm
-ZGVmIENPTkZJR19NTVVfTk9USUZJRVIKPj4+ICAgICAgICBvYmogPSBpOTE1X2dlbV9vYmplY3Rf
-YWxsb2MoKTsKPj4+ICAgICAgICBpZiAob2JqID09IE5VTEwpCj4+PiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZXRwYXJhbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9nZXRwYXJhbS5jCj4+PiBpbmRleCAyNGUxODIxOWViNTAuLmJiYjdjYWM0M2ViNCAxMDA2
-NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2V0cGFyYW0uYwo+Pj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZXRwYXJhbS5jCj4+PiBAQCAtMTM0LDYgKzEz
-NCw3IEBAIGludCBpOTE1X2dldHBhcmFtX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZv
-aWQgKmRhdGEsCj4+PiAgICAgICAgY2FzZSBJOTE1X1BBUkFNX0hBU19FWEVDX0ZFTkNFX0FSUkFZ
-Ogo+Pj4gICAgICAgIGNhc2UgSTkxNV9QQVJBTV9IQVNfRVhFQ19TVUJNSVRfRkVOQ0U6Cj4+PiAg
-ICAgICAgY2FzZSBJOTE1X1BBUkFNX0hBU19FWEVDX1RJTUVMSU5FX0ZFTkNFUzoKPj4+ICsgICAg
-IGNhc2UgSTkxNV9QQVJBTV9IQVNfVVNFUlBUUl9QUk9CRToKPj4+ICAgICAgICAgICAgICAgIC8q
-IEZvciB0aGUgdGltZSBiZWluZyBhbGwgb2YgdGhlc2UgYXJlIGFsd2F5cyB0cnVlOwo+Pj4gICAg
-ICAgICAgICAgICAgICogaWYgc29tZSBzdXBwb3J0ZWQgaGFyZHdhcmUgZG9lcyBub3QgaGF2ZSBv
-bmUgb2YgdGhlc2UKPj4+ICAgICAgICAgICAgICAgICAqIGZlYXR1cmVzIHRoaXMgdmFsdWUgbmVl
-ZHMgdG8gYmUgcHJvdmlkZWQgZnJvbQo+Pj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvdWFwaS9kcm0v
-aTkxNV9kcm0uaCBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+Pj4gaW5kZXggOTc1MDg3
-NTUzZWEwLi4wZDI5MDUzNWE2ZTUgMTAwNjQ0Cj4+PiAtLS0gYS9pbmNsdWRlL3VhcGkvZHJtL2k5
-MTVfZHJtLmgKPj4+ICsrKyBiL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+Pj4gQEAgLTY3
-NCw2ICs2NzQsOSBAQCB0eXBlZGVmIHN0cnVjdCBkcm1faTkxNV9pcnFfd2FpdCB7Cj4+PiAgICAq
-Lwo+Pj4gICAjZGVmaW5lIEk5MTVfUEFSQU1fSEFTX0VYRUNfVElNRUxJTkVfRkVOQ0VTIDU1Cj4+
-Pgo+Pj4gKy8qIFF1ZXJ5IGlmIHRoZSBrZXJuZWwgc3VwcG9ydHMgdGhlIEk5MTVfVVNFUlBUUl9Q
-Uk9CRSBmbGFnLiAqLwo+Pj4gKyNkZWZpbmUgSTkxNV9QQVJBTV9IQVNfVVNFUlBUUl9QUk9CRSA1
-Ngo+Pj4gKwo+Pj4gICAvKiBNdXN0IGJlIGtlcHQgY29tcGFjdCAtLSBubyBob2xlcyBhbmQgd2Vs
-bCBkb2N1bWVudGVkICovCj4+Pgo+Pj4gICB0eXBlZGVmIHN0cnVjdCBkcm1faTkxNV9nZXRwYXJh
-bSB7Cj4+PiBAQCAtMjIyMiwxMiArMjIyNSwyOSBAQCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX3VzZXJw
-dHIgewo+Pj4gICAgICAgICAqIHRocm91Z2ggdGhlIEdUVC4gSWYgdGhlIEhXIGNhbid0IHN1cHBv
-cnQgcmVhZG9ubHkgYWNjZXNzLCBhbiBlcnJvciBpcwo+Pj4gICAgICAgICAqIHJldHVybmVkLgo+
-Pj4gICAgICAgICAqCj4+PiArICAgICAgKiBJOTE1X1VTRVJQVFJfUFJPQkU6Cj4+PiArICAgICAg
-Kgo+Pj4gKyAgICAgICogUHJvYmUgdGhlIHByb3ZpZGVkIEB1c2VyX3B0ciByYW5nZSBhbmQgdmFs
-aWRhdGUgdGhhdCB0aGUgQHVzZXJfcHRyIGlzCj4+PiArICAgICAgKiBpbmRlZWQgcG9pbnRpbmcg
-dG8gbm9ybWFsIG1lbW9yeSBhbmQgdGhhdCB0aGUgcmFuZ2UgaXMgYWxzbyB2YWxpZC4KPj4+ICsg
-ICAgICAqIEZvciBleGFtcGxlIGlmIHNvbWUgZ2FyYmFnZSBhZGRyZXNzIGlzIGdpdmVuIHRvIHRo
-ZSBrZXJuZWwsIHRoZW4gdGhpcwo+Pj4gKyAgICAgICogc2hvdWxkIGNvbXBsYWluLgo+Pj4gKyAg
-ICAgICoKPj4+ICsgICAgICAqIFJldHVybnMgLUVGQVVMVCBpZiB0aGUgcHJvYmUgZmFpbGVkLgo+
-Pj4gKyAgICAgICoKPj4+ICsgICAgICAqIE5vdGUgdGhhdCB0aGlzIGRvZXNuJ3QgcG9wdWxhdGUg
-dGhlIGJhY2tpbmcgcGFnZXMsIGFuZCBhbHNvIGRvZXNuJ3QKPj4+ICsgICAgICAqIGd1YXJhbnRl
-ZSB0aGF0IHRoZSBvYmplY3Qgd2lsbCByZW1haW4gdmFsaWQgd2hlbiB0aGUgb2JqZWN0IGlzCj4+
-PiArICAgICAgKiBldmVudHVhbGx5IHVzZWQuCj4+PiArICAgICAgKgo+Pj4gKyAgICAgICogVGhl
-IGtlcm5lbCBzdXBwb3J0cyB0aGlzIGZlYXR1cmUgaWYgSTkxNV9QQVJBTV9IQVNfVVNFUlBUUl9Q
-Uk9CRQo+Pj4gKyAgICAgICogcmV0dXJucyBhIG5vbi16ZXJvIHZhbHVlLgo+Pj4gKyAgICAgICoK
-Pj4+ICAgICAgICAgKiBJOTE1X1VTRVJQVFJfVU5TWU5DSFJPTklaRUQ6Cj4+PiAgICAgICAgICoK
-Pj4+ICAgICAgICAgKiBOT1QgVVNFRC4gU2V0dGluZyB0aGlzIGZsYWcgd2lsbCByZXN1bHQgaW4g
-YW4gZXJyb3IuCj4+PiAgICAgICAgICovCj4+PiAgICAgICAgX191MzIgZmxhZ3M7Cj4+PiAgICNk
-ZWZpbmUgSTkxNV9VU0VSUFRSX1JFQURfT05MWSAweDEKPj4+ICsjZGVmaW5lIEk5MTVfVVNFUlBU
-Ul9QUk9CRSAweDIKPj4+ICAgI2RlZmluZSBJOTE1X1VTRVJQVFJfVU5TWU5DSFJPTklaRUQgMHg4
-MDAwMDAwMAo+Pj4gICAgICAgIC8qKgo+Pj4gICAgICAgICAqIEBoYW5kbGU6IFJldHVybmVkIGhh
-bmRsZSBmb3IgdGhlIG9iamVjdC4KPj4KPj4gQ291bGQgd2UgdXNlIF9WQUxJREFURSBpbnN0ZWFk
-IG9mIHByb2JlPyBPciBhdCBsZWFzdCBwaW4gdGhlIHBhZ2VzIGFzIHdlbGwsIHNvIHdlIGRvbid0
-IGhhdmUgdG8gZG8gaXQgbGF0ZXI/Cj4gCj4gSSBvbmx5IGNhcmUgdGhhdCB0aGUgbmFtZSBtYXRj
-aGVzIHdoYXQgaXQgZG9lcy4gIF9WQUxJREFURSBzb3VuZHMgbGlrZQo+IGl0IGRvZXMgYSBmdWxs
-IHZhbGlkYXRpb24gb2YgZXZlcnl0aGluZyBzdWNoIHRoYXQsIGlmIHRoZSBpbXBvcnQKPiBzdWNj
-ZWVkcywgZXhlY2J1ZiB3aWxsIGFzIHdlbGwuICBJZiB3ZSBwaW4gdGhlIHBhZ2VzIGF0IHRoZSBz
-YW1lIHRpbWUsCj4gbWF5YmUgdGhhdCdzIHRydWU/ICBfUFJPQkUsIG9uIHRoZSBvdGhlciBoYW5k
-LCBzb3VuZHMgYSBsb3QgbW9yZSBsaWtlCgpObyBpdCBpcyBub3QgcG9zc2libGUgdG8gZ3VhcmFu
-dGVlIGJhY2tpbmcgc3RvcmUgcmVtYWlucyB2YWxpZCB1bnRpbCAKZXhlY2J1Zi4KCj4gYSBvbmUt
-dGltZSBiZXN0LWVmZm9ydCBjaGVjayB3aGljaCBtYXkgcmFjZSB3aXRoIG90aGVyIHN0dWZmIGFu
-ZAo+IGRvZXNuJ3QgZ3VhcmFudGVlIGZ1dHVyZSBzdWNjZXNzLiAgVGhhdCdzIGluIGxpbmUgd2l0
-aCB3aGF0IHRoZQo+IGN1cnJlbnQgcGF0Y2ggZG9lcy4KPiAKPj4gV2UgYWxyZWFkeSBoYXZlIGk5
-MTVfZ2VtX29iamVjdF91c2VycHRyX3ZhbGlkYXRlLCBubyBuZWVkIHRvIGR1cGUgaXQuCj4gCj4g
-SSBoYXZlIG5vIG9waW5pb24gb24gdGhpcy4KCkkgd2FzIGFjdHVhbGx5IHN1Z2dlc3RpbmcgdGhl
-IHNhbWUgYXMgTWFhcnRlbiBoZXJlIC0gdGhhdCB3ZSBzaG91bGQgYWRkIAphICJwb3B1bGF0ZSIg
-ZmxhZy4gQnV0IG9waW5pb24gd2FzIHRoYXQgd2FzIG5vdCBkZXNpcmVkIC0gcGxlYXNlIGxvb2sg
-CmZvciB0aGUgb2xkZXIgdGhyZWFkcyB0byBzZWUgdGhlIHJlYXNvbmluZyB0aGVyZS4KClJlZ2Fy
-ZHMsCgpUdnJ0a28KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+On Mon, Jul 26, 2021 at 11:08 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+> On 26/07/2021 16:42, Jason Ekstrand wrote:
+> > On Mon, Jul 26, 2021 at 10:30 AM Jason Ekstrand <jason@jlekstrand.net> wrote:
+> >>
+> >> On Mon, Jul 26, 2021 at 3:35 AM Tvrtko Ursulin
+> >> <tvrtko.ursulin@linux.intel.com> wrote:
+> >>>
+> >>>
+> >>> On 23/07/2021 20:29, Daniel Vetter wrote:
+> >>>> With the global kmem_cache shrink infrastructure gone there's nothing
+> >>>> special and we can convert them over.
+> >>>>
+> >>>> I'm doing this split up into each patch because there's quite a bit of
+> >>>> noise with removing the static global.slab_ce to just a
+> >>>> slab_ce.
+> >>>>
+> >>>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> >>>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> >>>> ---
+> >>>>    drivers/gpu/drm/i915/gt/intel_context.c | 25 ++++++++-----------------
+> >>>>    drivers/gpu/drm/i915/gt/intel_context.h |  3 +++
+> >>>>    drivers/gpu/drm/i915/i915_globals.c     |  2 --
+> >>>>    drivers/gpu/drm/i915/i915_globals.h     |  1 -
+> >>>>    drivers/gpu/drm/i915/i915_pci.c         |  2 ++
+> >>>>    5 files changed, 13 insertions(+), 20 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> >>>> index baa05fddd690..283382549a6f 100644
+> >>>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> >>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> >>>> @@ -7,7 +7,6 @@
+> >>>>    #include "gem/i915_gem_pm.h"
+> >>>>
+> >>>>    #include "i915_drv.h"
+> >>>> -#include "i915_globals.h"
+> >>>>    #include "i915_trace.h"
+> >>>>
+> >>>>    #include "intel_context.h"
+> >>>> @@ -15,14 +14,11 @@
+> >>>>    #include "intel_engine_pm.h"
+> >>>>    #include "intel_ring.h"
+> >>>>
+> >>>> -static struct i915_global_context {
+> >>>> -     struct i915_global base;
+> >>>> -     struct kmem_cache *slab_ce;
+> >>>> -} global;
+> >>>> +struct kmem_cache *slab_ce;
+> >>
+> >> Static?  With that,
+> >>
+> >> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+> >>
+> >>>>
+> >>>>    static struct intel_context *intel_context_alloc(void)
+> >>>>    {
+> >>>> -     return kmem_cache_zalloc(global.slab_ce, GFP_KERNEL);
+> >>>> +     return kmem_cache_zalloc(slab_ce, GFP_KERNEL);
+> >>>>    }
+> >>>>
+> >>>>    static void rcu_context_free(struct rcu_head *rcu)
+> >>>> @@ -30,7 +26,7 @@ static void rcu_context_free(struct rcu_head *rcu)
+> >>>>        struct intel_context *ce = container_of(rcu, typeof(*ce), rcu);
+> >>>>
+> >>>>        trace_intel_context_free(ce);
+> >>>> -     kmem_cache_free(global.slab_ce, ce);
+> >>>> +     kmem_cache_free(slab_ce, ce);
+> >>>>    }
+> >>>>
+> >>>>    void intel_context_free(struct intel_context *ce)
+> >>>> @@ -410,22 +406,17 @@ void intel_context_fini(struct intel_context *ce)
+> >>>>        i915_active_fini(&ce->active);
+> >>>>    }
+> >>>>
+> >>>> -static void i915_global_context_exit(void)
+> >>>> +void i915_context_module_exit(void)
+> >>>>    {
+> >>>> -     kmem_cache_destroy(global.slab_ce);
+> >>>> +     kmem_cache_destroy(slab_ce);
+> >>>>    }
+> >>>>
+> >>>> -static struct i915_global_context global = { {
+> >>>> -     .exit = i915_global_context_exit,
+> >>>> -} };
+> >>>> -
+> >>>> -int __init i915_global_context_init(void)
+> >>>> +int __init i915_context_module_init(void)
+> >>>>    {
+> >>>> -     global.slab_ce = KMEM_CACHE(intel_context, SLAB_HWCACHE_ALIGN);
+> >>>> -     if (!global.slab_ce)
+> >>>> +     slab_ce = KMEM_CACHE(intel_context, SLAB_HWCACHE_ALIGN);
+> >>>> +     if (!slab_ce)
+> >>>>                return -ENOMEM;
+> >>>>
+> >>>> -     i915_global_register(&global.base);
+> >>>>        return 0;
+> >>>>    }
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> >>>> index 974ef85320c2..a0ca82e3c40d 100644
+> >>>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> >>>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> >>>> @@ -30,6 +30,9 @@ void intel_context_init(struct intel_context *ce,
+> >>>>                        struct intel_engine_cs *engine);
+> >>>>    void intel_context_fini(struct intel_context *ce);
+> >>>>
+> >>>> +void i915_context_module_exit(void);
+> >>>> +int i915_context_module_init(void);
+> >>>> +
+> >>>>    struct intel_context *
+> >>>>    intel_context_create(struct intel_engine_cs *engine);
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
+> >>>> index 3de7cf22ec76..d36eb7dc40aa 100644
+> >>>> --- a/drivers/gpu/drm/i915/i915_globals.c
+> >>>> +++ b/drivers/gpu/drm/i915/i915_globals.c
+> >>>> @@ -7,7 +7,6 @@
+> >>>>    #include <linux/slab.h>
+> >>>>    #include <linux/workqueue.h>
+> >>>>
+> >>>> -#include "gem/i915_gem_context.h"
+> >>>>    #include "gem/i915_gem_object.h"
+> >>>>    #include "i915_globals.h"
+> >>>>    #include "i915_request.h"
+> >>>> @@ -32,7 +31,6 @@ static void __i915_globals_cleanup(void)
+> >>>>    }
+> >>>>
+> >>>>    static __initconst int (* const initfn[])(void) = {
+> >>>> -     i915_global_context_init,
+> >>>>        i915_global_gem_context_init,
+> >>>>        i915_global_objects_init,
+> >>>>        i915_global_request_init,
+> >>>> diff --git a/drivers/gpu/drm/i915/i915_globals.h b/drivers/gpu/drm/i915/i915_globals.h
+> >>>> index d80901ba75e3..60daa738a188 100644
+> >>>> --- a/drivers/gpu/drm/i915/i915_globals.h
+> >>>> +++ b/drivers/gpu/drm/i915/i915_globals.h
+> >>>> @@ -23,7 +23,6 @@ int i915_globals_init(void);
+> >>>>    void i915_globals_exit(void);
+> >>>>
+> >>>>    /* constructors */
+> >>>> -int i915_global_context_init(void);
+> >>>>    int i915_global_gem_context_init(void);
+> >>>>    int i915_global_objects_init(void);
+> >>>>    int i915_global_request_init(void);
+> >>>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> >>>> index f9527269e30a..266618157775 100644
+> >>>> --- a/drivers/gpu/drm/i915/i915_pci.c
+> >>>> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> >>>> @@ -33,6 +33,7 @@
+> >>>>    #include "i915_active.h"
+> >>>>    #include "i915_buddy.h"
+> >>>>    #include "i915_drv.h"
+> >>>> +#include "gem/i915_gem_context.h"
+> >>>
+> >>> It's a bit ugly to go to a design where i915_pci.c has to include so
+> >>> many random parts of i915. IMO for a complex driver like i915,
+> >>> compartmentalizing so much knowledge about the internals was better
+> >>> inside the globals layer.
+> >>
+> >> I agree that i915_pci feels like the wrong place to put this but I
+> >> don't think that's so much because globals don't belong in i915_pci
+> >> but because i915_init/exit don't belong there.  Maybe, once this is
+> >> all said and done (or at the start of the series), we should move
+> >> i915_init/exit to i915_drv.c?  Of course, there's a bunch of PCI
+> >> probing stuff in i915_drv.c so..... yeah.... our organization is
+> >> pretty busted.
+> >
+> > To put a finer point on this, the new "design" is really to have a
+> > single flat list instead of two, one nested inside the other.  There's
+> > nothing wrong with that at all.  The fact that all this stuff now
+> > lives in i915_pci.c is ugly.  But, as I said, that's kind-of an
+> > accident of history because that's where i915_init() and i915_exit()
+> > currently live.  We should just move the lot to i915_drv.c.
+>
+> Hmm.. on one hand it does sounds better to move to i915_drv.c, but is it
+> just because all these new include directive are so visibly out of place
+> in i915_pci.c?
+>
+> Perhaps we need i915_module.c and then i915_globals is a completely fine
+> concept. Desired IMO even since we have to avoid globals in general
+> (multi-gpu) so it sticks out nicely that all that is allowed to be
+> global has a special place.
+>
+> And i915_drv.c can remain being about a driver instance as bound to one GPU.
+
+Is i915_drv.c about a single instance bound to a single GPU?  If so,
+then, yeah, maybe not the right place.  Maybe a i915_module.c would be
+better.  It's all different shades of shed paint.
+
+--Jason
+
+> That feels like the best of both worlds to me.
+>
+> Regards,
+>
+> Tvrtko
+>
+> >
+> >> --Jason
+> >>
+> >>> Maybe add a cover letter to explain the perceived pros and cons and
+> >>> thinking in general?
+> >>>
+> >>> Regards,
+> >>>
+> >>> Tvrtko
+> >>>
+> >>>>    #include "i915_perf.h"
+> >>>>    #include "i915_globals.h"
+> >>>>    #include "i915_selftest.h"
+> >>>> @@ -1297,6 +1298,7 @@ static const struct {
+> >>>>        { i915_check_nomodeset, NULL },
+> >>>>        { i915_active_module_init, i915_active_module_exit },
+> >>>>        { i915_buddy_module_init, i915_buddy_module_exit },
+> >>>> +     { i915_context_module_init, i915_context_module_exit },
+> >>>>        { i915_globals_init, i915_globals_exit },
+> >>>>        { i915_mock_selftests, NULL },
+> >>>>        { i915_pmu_init, i915_pmu_exit },
+> >>>>
+> >>> _______________________________________________
+> >>> Intel-gfx mailing list
+> >>> Intel-gfx@lists.freedesktop.org
+> >>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
