@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DB23D5D0D
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 17:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 897513D5D16
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 17:35:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D566E994;
-	Mon, 26 Jul 2021 15:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 667DC6FD78;
+	Mon, 26 Jul 2021 15:35:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com
- [IPv6:2607:f8b0:4864:20::b29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 486576E994
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 15:32:39 +0000 (UTC)
-Received: by mail-yb1-xb29.google.com with SMTP id g76so15492060ybf.4
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 08:32:39 -0700 (PDT)
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com
+ [IPv6:2607:f8b0:4864:20::b2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F18C6FE58
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 15:35:55 +0000 (UTC)
+Received: by mail-yb1-xb2d.google.com with SMTP id a201so15429828ybg.12
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 08:35:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=bZ8ITzaMhIy25WIgbU7Rv5rAp8WgRFR/o5Wo5Y00Zgs=;
- b=XPCiG2C6BtOyiY3SPKgdGfD1P26fpUSskyionO9fInoc7xnorCndvz5NvSkumqBoKb
- HY8sN9BG2mBujaDw5RTpJSazFQJm99nKRQs2grPH48ruh+oGm++89Tnq/wgVt8M00MJ5
- XSsSwEtUfHowhtAMeAi0z7WGuilLSYmmNpvqm/jSaqYWSbUmYuNQ1DwTJ4hzU6LSZ19r
- QJvAtDLl8gXydvzlWVR6d7nokkTpZ11dwwe08gsMQ1Dft3C6gAwIS35OfP+UA1Md0UnB
- ZqumfO4P1zOEKeu+m/XlTV+oVKpKgyeS23bdGjbO5II3EXO0fMlsxWZSOoHtl6fVrE0/
- /eOg==
+ :cc; bh=vmv3EakgEmNLpgM1YVkujmATvlNmxJQRaq17kakwiDA=;
+ b=hJOfCrjhq33eVVzxcqgqu2ipWhQEKXeWINspRl43R4ygn44H4pvIyqz/6wSKyiGh2n
+ ihnTRKlCGoaqo/163Xj/s7V5xLIL6/0IhD3WD+zdvYYnS+zsly8wjWv1nDsFnH8WB/lL
+ yyH2KeoiN30Uv6qdS5rCnGnajZAa06FEclu1JHU5LcDLpzz8nHpmbawf3l4JTkovAvD2
+ ttNN3tRBrLa7F91Wd2GFovmykF+Mrd6z7WXyoNi73/JvK0Dd+bujZGMYu6BOHcO70aT1
+ 66+HwChlqiaXcX4FZ0JcoEWp711sqa+y3IP1wGp+xbaOnPTomcgdvkEdKUta38tmSxaQ
+ l0cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=bZ8ITzaMhIy25WIgbU7Rv5rAp8WgRFR/o5Wo5Y00Zgs=;
- b=ZXGvrRSX0pDuD2BLNT4Q7WVQdNlbWiGtK9Bh9Vu0xhdzU8NK4RCiGZfnQLyr1vMUeU
- KVxFQrQSY8tFxtNUTblCt5kdJHf4Apdg4pkVZwYrkPyoD0rKXz6YkZp28GsvghXZbMGa
- cPAQjO+9agBMeD8ak8+Z62SedHGZD0S7RgcR7XdY/z6gkAnoOT3rpaGY3YCdZDAZQqQl
- xkM3EclJpOUpd1S1QfFO/YrBcWdCaN2yrjTod22ix5yA+jsUsPf1QH7RpNH+LTqutP9z
- 0+2r6GqCmp/QEbLQQCH9S1B62Fzf8MESG1FoxQy3MT0wFs5tkOwd/4fp73+PwuMwlxkE
- WPyg==
-X-Gm-Message-State: AOAM533axrYA4B1P/2HIAMjzMT/1jT3Y4F0SpLoPn2ysDEw7bn9gLSuy
- KS6RHb6UFRM0vcaN8vojdLziWc6j8HUH7n8OeDoatw==
-X-Google-Smtp-Source: ABdhPJy3I3PrvbBiDpzRwbGw8LEsMBhbJZzn33+0qI9dtbuPwFQ0dlIk3FAxk+tSMFC//rjVeoRLB696OL5PxG8F4pU=
-X-Received: by 2002:a25:3750:: with SMTP id e77mr7221748yba.469.1627313558296; 
- Mon, 26 Jul 2021 08:32:38 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=vmv3EakgEmNLpgM1YVkujmATvlNmxJQRaq17kakwiDA=;
+ b=o6Nkz7sRPOy87w/8aKT5whazP3W9huDS/xcXN/PGQK5y+L0/wdOXqSE8xY7DnKAwy7
+ BD/ud4Rpx6yYNWIJj7xFAK5pBNSn7dTiSocRM6KzrLLKWCrYfnpPyWmlXzTot3rQRQsA
+ 62jt3PQv6o9ijMSMP3aa3GGF3D/EIxMIgH0aQz7m0Vo/4KGSPmqFW8onhJ7nOIOGFmxC
+ 32Z4Ndsr9/fkEW2SlB0tiazfOS9OW12SKtOaPXMwl/a0Ex+9czB0q6fpWSSc7cftPmfd
+ KydJLfUoJXr8d5LxPNaYIs/iF9HHAFy+bHSNVpzRS+1lE1A/cUhQ8L0EOxh2dOxonxI4
+ nMvw==
+X-Gm-Message-State: AOAM53359pXQ+XKDSyiooW56DvTHIdHbNkM+YtfiQJgHbTeZg9BtHIfa
+ CHr//89o+Laxlt2hxVGOsW4nVTRpv0aaZneDega5BQ==
+X-Google-Smtp-Source: ABdhPJzhyMAiTKuYH7iEkrTdaG9TlNYk5GWMfzUR+rL2LaRdWtcH1ipyEJDRzAfpWULIZD6Wz5+V68DCpYo59jYvq+k=
+X-Received: by 2002:a25:7647:: with SMTP id r68mr25821692ybc.432.1627313754039; 
+ Mon, 26 Jul 2021 08:35:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210723172142.3273510-1-jason@jlekstrand.net>
- <CAM0jSHOgJQni53DJWP0NWJTAR82PNmb6zgt2Gm-faBd1sDaSHA@mail.gmail.com>
- <CAOFGe95CVvM=7UvH3yBBx9Qr4OPrkRUG7QAXgnSLkWgPGef10g@mail.gmail.com>
- <CAM0jSHNmO8ZGdvLkJhonReHmNXjBkgvjmki-yLmUUkbLTnqeLQ@mail.gmail.com>
-In-Reply-To: <CAM0jSHNmO8ZGdvLkJhonReHmNXjBkgvjmki-yLmUUkbLTnqeLQ@mail.gmail.com>
+References: <20210723192934.1004427-1-daniel.vetter@ffwll.ch>
+ <20210723192934.1004427-5-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210723192934.1004427-5-daniel.vetter@ffwll.ch>
 From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Mon, 26 Jul 2021 10:32:27 -0500
-Message-ID: <CAOFGe94ZZxm-cahbrzyDkgXGnXT7yVUiHjYO89-hbG8w2=k+Aw@mail.gmail.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915: Migrate memory to SMEM when
- imported cross-device (v8)
+Date: Mon, 26 Jul 2021 10:35:43 -0500
+Message-ID: <CAOFGe96y9eLQ2CASvdQnsNAX1o+9_DpiFSaQHj1GBpARsoQa3g@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 05/10] drm/i915: move gem_context slab to
+ direct module init/exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,69 +63,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBKdWwgMjYsIDIwMjEgYXQgMTA6MjkgQU0gTWF0dGhldyBBdWxkCjxtYXR0aGV3Lndp
-bGxpYW0uYXVsZEBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gT24gTW9uLCAyNiBKdWwgMjAyMSBhdCAx
-NjoxMSwgSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0PiB3cm90ZToKPiA+Cj4g
-PiBPbiBNb24sIEp1bCAyNiwgMjAyMSBhdCAzOjEyIEFNIE1hdHRoZXcgQXVsZAo+ID4gPG1hdHRo
-ZXcud2lsbGlhbS5hdWxkQGdtYWlsLmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIEZyaSwgMjMg
-SnVsIDIwMjEgYXQgMTg6MjEsIEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4g
-d3JvdGU6Cj4gPiA+ID4KPiA+ID4gPiBUaGlzIHBhdGNoIHNlcmllcyBmaXhlcyBhbiBpc3N1ZSB3
-aXRoIGRpc2NyZXRlIGdyYXBoaWNzIG9uIEludGVsIHdoZXJlIHdlCj4gPiA+ID4gYWxsb3dlZCBk
-bWEtYnVmIGltcG9ydCB3aGlsZSBsZWF2aW5nIHRoZSBvYmplY3QgaW4gbG9jYWwgbWVtb3J5LiAg
-VGhpcwo+ID4gPiA+IGJyZWFrcyBkb3duIHByZXR0eSBiYWRseSBpZiB0aGUgaW1wb3J0IGhhcHBl
-bmVkIG9uIGEgZGlmZmVyZW50IHBoeXNpY2FsCj4gPiA+ID4gZGV2aWNlLgo+ID4gPiA+Cj4gPiA+
-ID4gdjc6Cj4gPiA+ID4gIC0gRHJvcCAiZHJtL2k5MTUvZ2VtL3R0bTogUGxhY2UgbmV3IEJPcyBp
-biB0aGUgcmVxdWVzdGVkIHJlZ2lvbiIKPiA+ID4gPiAgLSBBZGQgYSBuZXcgImRybS9pOTE1L2dl
-bTogQ2FsbCBpOTE1X2dlbV9mbHVzaF9mcmVlX29iamVjdHMoKSBpbiBpOTE1X2dlbV9kdW1iX2Ny
-ZWF0ZSgpIgo+ID4gPiA+ICAtIE1pc2MuIHJldmlldyBmZWVkYmFjayBmcm9tIE1hdHRoZXcgQXVs
-ZAo+ID4gPiA+IHY4Ogo+ID4gPiA+ICAtIE1pc2MuIHJldmlldyBmZWVkYmFjayBmcm9tIE1hdHRo
-ZXcgQXVsZAo+ID4gPiA+IHY5Ogo+ID4gPiA+ICAtIFJlcGxhY2UgdGhlIGk5MTUvdHRtIHBhdGNo
-IHdpdGggdHdvIHRoYXQgYXJlIGhvcGVmdWxseSBtb3JlIGNvcnJlY3QKPiA+ID4gPgo+ID4gPiA+
-IEphc29uIEVrc3RyYW5kICg2KToKPiA+ID4gPiAgIGRybS9pOTE1L2dlbTogQ2hlY2sgb2JqZWN0
-X2Nhbl9taWdyYXRlIGZyb20gb2JqZWN0X21pZ3JhdGUKPiA+ID4gPiAgIGRybS9pOTE1L2dlbTog
-UmVmYWN0b3IgcGxhY2VtZW50IHNldHVwIGZvciBpOTE1X2dlbV9vYmplY3RfY3JlYXRlKgo+ID4g
-PiA+ICAgICAodjIpCj4gPiA+ID4gICBkcm0vaTkxNS9nZW06IENhbGwgaTkxNV9nZW1fZmx1c2hf
-ZnJlZV9vYmplY3RzKCkgaW4KPiA+ID4gPiAgICAgaTkxNV9nZW1fZHVtYl9jcmVhdGUoKQo+ID4g
-PiA+ICAgZHJtL2k5MTUvZ2VtOiBVbmlmeSB1c2VyIG9iamVjdCBjcmVhdGlvbiAodjMpCj4gPiA+
-ID4gICBkcm0vaTkxNS9nZW0vdHRtOiBPbmx5IGNhbGwgX19pOTE1X2dlbV9vYmplY3Rfc2V0X3Bh
-Z2VzIGlmIG5lZWRlZAo+ID4gPiA+ICAgZHJtL2k5MTUvZ2VtOiBBbHdheXMgY2FsbCBvYmotPm9w
-cy0+bWlncmF0ZSB1bmxlc3MgY2FuX21pZ3JhdGUgZmFpbHMKPiA+ID4gPgo+ID4gPiA+IFRob21h
-cyBIZWxsc3Ryw7ZtICgyKToKPiA+ID4gPiAgIGRybS9pOTE1L2dlbTogQ29ycmVjdCB0aGUgbG9j
-a2luZyBhbmQgcGluIHBhdHRlcm4gZm9yIGRtYS1idWYgKHY4KQo+ID4gPiA+ICAgZHJtL2k5MTUv
-Z2VtOiBNaWdyYXRlIHRvIHN5c3RlbSBhdCBkbWEtYnVmIGF0dGFjaCB0aW1lICh2NykKPiA+ID4K
-PiA+ID4gU2hvdWxkIEkgcHVzaCB0aGUgc2VyaWVzPwo+ID4KPiA+IFllcywgcGxlYXNlLiAgRG8g
-d2UgaGF2ZSBhIHNvbGlkIHRlc3RpbmcgcGxhbiBmb3IgdGhpbmdzIGxpa2UgdGhpcwo+ID4gdGhh
-dCB0b3VjaCBkaXNjcmV0ZT8gIEkgdGVzdGVkIHdpdGggbWVzYStnbHhnZWFycyBvbiBteSBERzEg
-YnV0Cj4gPiBoYXZlbid0IHJ1biBhbnl0aGluZyBtb3JlIHN0cmVzc2Z1bC4KPgo+IEkgdGhpbmsg
-YWxsIHdlIHJlYWxseSBoYXZlIGFyZSB0aGUgbWlncmF0aW9uIHJlbGF0ZWQgc2VsZnRlc3RzLCBh
-bmQgQ0kKPiBpcyBub3QgZXZlbiBydW5uaW5nIHRoZW0gb24gREcxIGR1ZSB0byBvdGhlciBicmVh
-a2FnZS4gQXNzdW1pbmcgeW91Cj4gcmFuIHRoZXNlIGxvY2FsbHksIEkgdGhpbmsgd2UganVzdCBt
-ZXJnZSB0aGUgc2VyaWVzPwoKV29ya3MgZm9yIG1lLiAgWWVzLCBJIHJhbiB0aGVtIG9uIG15IFRH
-TCtERzEgYm94LiAgSSd2ZSBhbHNvIHRlc3RlZApib3RoIEdMIGFuZCBWdWxrYW4gUFJJTUUgc3Vw
-cG9ydCB3aXRoIHRoZSBjbGllbnQgcnVubmluZyBvbiBERzEgYW5kCnRoZSBjb21wb3NpdG9yIHJ1
-bm5pbmcgb24gVEdMIHdpdGggdGhpcyBzZXJpZXMgYW5kIGV2ZXJ5dGhpbmcgd29ya3MKc21vb3Ro
-LgoKLS1KYXNvbgoKCj4gPgo+ID4gLS1KYXNvbgo+ID4KPiA+Cj4gPiA+ID4KPiA+ID4gPiAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NyZWF0ZS5jICAgIHwgMTc3ICsrKysrKysr
-LS0tLS0tLS0KPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RtYWJ1
-Zi5jICAgIHwgIDU4ICsrKystLQo+ID4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
-NV9nZW1fb2JqZWN0LmMgICAgfCAgMjAgKy0KPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX29iamVjdC5oICAgIHwgICA0ICsKPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bS5jICAgICAgIHwgIDEzICstCj4gPiA+ID4gIC4uLi9kcm0v
-aTkxNS9nZW0vc2VsZnRlc3RzL2k5MTVfZ2VtX2RtYWJ1Zi5jICB8IDE5MCArKysrKysrKysrKysr
-KysrKy0KPiA+ID4gPiAgLi4uL2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fbWlncmF0
-ZS5jIHwgIDE1IC0tCj4gPiA+ID4gIDcgZmlsZXMgY2hhbmdlZCwgMzQxIGluc2VydGlvbnMoKyks
-IDEzNiBkZWxldGlvbnMoLSkKPiA+ID4gPgo+ID4gPiA+IC0tCj4gPiA+ID4gMi4zMS4xCj4gPiA+
-ID4KPiA+ID4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xwo+ID4gPiA+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPiA+ID4gPiBJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gPiA+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+On Fri, Jul 23, 2021 at 2:29 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> With the global kmem_cache shrink infrastructure gone there's nothing
+> special and we can convert them over.
+>
+> I'm doing this split up into each patch because there's quite a bit of
+> noise with removing the static global.slab_luts to just a
+> slab_luts.
+>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 25 +++++++--------------
+>  drivers/gpu/drm/i915/gem/i915_gem_context.h |  3 +++
+>  drivers/gpu/drm/i915/i915_globals.c         |  2 --
+>  drivers/gpu/drm/i915/i915_globals.h         |  1 -
+>  drivers/gpu/drm/i915/i915_pci.c             |  2 ++
+>  5 files changed, 13 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 89ca401bf9ae..c17c28af1e57 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -79,25 +79,21 @@
+>  #include "gt/intel_ring.h"
+>
+>  #include "i915_gem_context.h"
+> -#include "i915_globals.h"
+>  #include "i915_trace.h"
+>  #include "i915_user_extensions.h"
+>
+>  #define ALL_L3_SLICES(dev) (1 << NUM_L3_SLICES(dev)) - 1
+>
+> -static struct i915_global_gem_context {
+> -       struct i915_global base;
+> -       struct kmem_cache *slab_luts;
+> -} global;
+> +struct kmem_cache *slab_luts;
+
+static.
+
+With that,
+
+Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+
+>  struct i915_lut_handle *i915_lut_handle_alloc(void)
+>  {
+> -       return kmem_cache_alloc(global.slab_luts, GFP_KERNEL);
+> +       return kmem_cache_alloc(slab_luts, GFP_KERNEL);
+>  }
+>
+>  void i915_lut_handle_free(struct i915_lut_handle *lut)
+>  {
+> -       return kmem_cache_free(global.slab_luts, lut);
+> +       return kmem_cache_free(slab_luts, lut);
+>  }
+>
+>  static void lut_close(struct i915_gem_context *ctx)
+> @@ -2282,21 +2278,16 @@ i915_gem_engines_iter_next(struct i915_gem_engines_iter *it)
+>  #include "selftests/i915_gem_context.c"
+>  #endif
+>
+> -static void i915_global_gem_context_exit(void)
+> +void i915_gem_context_module_exit(void)
+>  {
+> -       kmem_cache_destroy(global.slab_luts);
+> +       kmem_cache_destroy(slab_luts);
+>  }
+>
+> -static struct i915_global_gem_context global = { {
+> -       .exit = i915_global_gem_context_exit,
+> -} };
+> -
+> -int __init i915_global_gem_context_init(void)
+> +int __init i915_gem_context_module_init(void)
+>  {
+> -       global.slab_luts = KMEM_CACHE(i915_lut_handle, 0);
+> -       if (!global.slab_luts)
+> +       slab_luts = KMEM_CACHE(i915_lut_handle, 0);
+> +       if (!slab_luts)
+>                 return -ENOMEM;
+>
+> -       i915_global_register(&global.base);
+>         return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> index 20411db84914..18060536b0c2 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> @@ -224,6 +224,9 @@ i915_gem_engines_iter_next(struct i915_gem_engines_iter *it);
+>         for (i915_gem_engines_iter_init(&(it), (engines)); \
+>              ((ce) = i915_gem_engines_iter_next(&(it)));)
+>
+> +void i915_gem_context_module_exit(void);
+> +int i915_gem_context_module_init(void);
+> +
+>  struct i915_lut_handle *i915_lut_handle_alloc(void);
+>  void i915_lut_handle_free(struct i915_lut_handle *lut);
+>
+> diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
+> index d36eb7dc40aa..dbb3d81eeea7 100644
+> --- a/drivers/gpu/drm/i915/i915_globals.c
+> +++ b/drivers/gpu/drm/i915/i915_globals.c
+> @@ -7,7 +7,6 @@
+>  #include <linux/slab.h>
+>  #include <linux/workqueue.h>
+>
+> -#include "gem/i915_gem_object.h"
+>  #include "i915_globals.h"
+>  #include "i915_request.h"
+>  #include "i915_scheduler.h"
+> @@ -31,7 +30,6 @@ static void __i915_globals_cleanup(void)
+>  }
+>
+>  static __initconst int (* const initfn[])(void) = {
+> -       i915_global_gem_context_init,
+>         i915_global_objects_init,
+>         i915_global_request_init,
+>         i915_global_scheduler_init,
+> diff --git a/drivers/gpu/drm/i915/i915_globals.h b/drivers/gpu/drm/i915/i915_globals.h
+> index 60daa738a188..f16752dbbdbf 100644
+> --- a/drivers/gpu/drm/i915/i915_globals.h
+> +++ b/drivers/gpu/drm/i915/i915_globals.h
+> @@ -23,7 +23,6 @@ int i915_globals_init(void);
+>  void i915_globals_exit(void);
+>
+>  /* constructors */
+> -int i915_global_gem_context_init(void);
+>  int i915_global_objects_init(void);
+>  int i915_global_request_init(void);
+>  int i915_global_scheduler_init(void);
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 266618157775..2b56e664d043 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -34,6 +34,7 @@
+>  #include "i915_buddy.h"
+>  #include "i915_drv.h"
+>  #include "gem/i915_gem_context.h"
+> +#include "gem/i915_gem_object.h"
+>  #include "i915_perf.h"
+>  #include "i915_globals.h"
+>  #include "i915_selftest.h"
+> @@ -1299,6 +1300,7 @@ static const struct {
+>         { i915_active_module_init, i915_active_module_exit },
+>         { i915_buddy_module_init, i915_buddy_module_exit },
+>         { i915_context_module_init, i915_context_module_exit },
+> +       { i915_gem_context_module_init, i915_gem_context_module_exit },
+>         { i915_globals_init, i915_globals_exit },
+>         { i915_mock_selftests, NULL },
+>         { i915_pmu_init, i915_pmu_exit },
+> --
+> 2.32.0
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
