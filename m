@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8293B3D5AEB
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 16:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF873D5C94
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 17:06:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C50676E821;
-	Mon, 26 Jul 2021 14:02:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F28836F543;
+	Mon, 26 Jul 2021 15:06:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13F5A6E821;
- Mon, 26 Jul 2021 14:02:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10056"; a="210350391"
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="210350391"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 07:02:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="516110255"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A61989E0D;
+ Mon, 26 Jul 2021 15:06:21 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="199489137"
+X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="199489137"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 08:06:20 -0700
+X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="662039456"
 Received: from mandhav-mobl3.gar.corp.intel.com (HELO ldmartin-desk2)
  ([10.251.20.227])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 07:02:05 -0700
-Date: Mon, 26 Jul 2021 07:01:53 -0700
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 08:06:19 -0700
+Date: Mon, 26 Jul 2021 08:06:18 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20210726140153.adlmwxqdaiujfzp6@ldmartin-desk2>
+Message-ID: <20210726150618.ue3f6snpdpzwmt6p@ldmartin-desk2>
 References: <20210724001114.249295-1-lucas.demarchi@intel.com>
- <20210724001114.249295-3-lucas.demarchi@intel.com>
- <YPxQwdEAcNRIX9ep@infradead.org>
- <20210725050215.s2ejpin6xkwzba5h@ldmartin-desk2>
- <YP6MU/zzQTwWKOyD@intel.com>
+ <20210724001114.249295-19-lucas.demarchi@intel.com>
+ <YP6Vl2b0iBuQZSJi@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YP6MU/zzQTwWKOyD@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 02/30] drm/i915/display: split DISPLAY_VER 9
- and 10 in intel_setup_outputs()
+In-Reply-To: <YP6Vl2b0iBuQZSJi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 18/30] drm/i915: remove explicit CNL
+ handling from i915_irq.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,48 +46,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christoph Hellwig <hch@infradead.org>, Jani Nikula <jani.nikula@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 26, 2021 at 06:20:03AM -0400, Rodrigo Vivi wrote:
->On Sat, Jul 24, 2021 at 10:02:15PM -0700, Lucas De Marchi wrote:
->> On Sat, Jul 24, 2021 at 06:41:21PM +0100, Christoph Hellwig wrote:
->> > Still tests fine:
->> >
->> > Tested-by: Christoph Hellwig <hch@lst.de>
->>
->> I just pushed this  to drm-intel-next as part of another series and
->> added your Tested-by.
->>
->> Rodrigo, can you pick this up for -fixes? This should go with your other
->> patch to fix the port mask, too.
+On Mon, Jul 26, 2021 at 06:59:35AM -0400, Rodrigo Vivi wrote:
+>On Fri, Jul 23, 2021 at 05:11:02PM -0700, Lucas De Marchi wrote:
+>> Remove special handling of PORT_F in i915_irq.c and only do it for
+>> DISPLAY_VER == 11.
 >
->done.
->
->But while doing this and reviewing this series at the same time
->I got myself wondering if we shouldn't remove the PORT_F support
->entirely...
+>oh! ignore my previous thought about removing the port F...
 
-well, there is still ICL with some skus having it. I'm not sure we
-actually have that sku out in the wild, but if we do, we wouldn't be
-able to remove it.
+of course I only saw this after replying to your comment :)
 
+thanks
 Lucas De Marchi
 
 >
 >>
->> Thanks for the bug report and test.
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>
+>Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>
+>
+>> ---
+>>  drivers/gpu/drm/i915/i915_irq.c | 7 +++----
+>>  drivers/gpu/drm/i915/i915_reg.h | 2 +-
+>>  2 files changed, 4 insertions(+), 5 deletions(-)
 >>
->> Lucas De Marchi
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+>> index e2171bd2820e..17d336218b67 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> @@ -2297,11 +2297,10 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+>>  			GEN9_AUX_CHANNEL_C |
+>>  			GEN9_AUX_CHANNEL_D;
+>>
+>> -	if (IS_CNL_WITH_PORT_F(dev_priv) || DISPLAY_VER(dev_priv) == 11)
+>> -		mask |= CNL_AUX_CHANNEL_F;
+>> -
+>> -	if (DISPLAY_VER(dev_priv) == 11)
+>> +	if (DISPLAY_VER(dev_priv) == 11) {
+>> +		mask |= ICL_AUX_CHANNEL_F;
+>>  		mask |= ICL_AUX_CHANNEL_E;
+>> +	}
+>>
+>>  	return mask;
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>> index d198b1a2d4b5..fdc8fd424d36 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -7945,7 +7945,7 @@ enum {
+>>  #define  DSI1_NON_TE			(1 << 31)
+>>  #define  DSI0_NON_TE			(1 << 30)
+>>  #define  ICL_AUX_CHANNEL_E		(1 << 29)
+>> -#define  CNL_AUX_CHANNEL_F		(1 << 28)
+>> +#define  ICL_AUX_CHANNEL_F		(1 << 28)
+>>  #define  GEN9_AUX_CHANNEL_D		(1 << 27)
+>>  #define  GEN9_AUX_CHANNEL_C		(1 << 26)
+>>  #define  GEN9_AUX_CHANNEL_B		(1 << 25)
+>> --
+>> 2.31.1
+>>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
