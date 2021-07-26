@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C2C83D676A
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 21:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E46693D6788
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 21:34:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC0472EE8;
-	Mon, 26 Jul 2021 19:09:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C66696ECD8;
+	Mon, 26 Jul 2021 19:34:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E243772EEE;
- Mon, 26 Jul 2021 19:09:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="212022573"
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="212022573"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 12:09:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="566278342"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga004.jf.intel.com with ESMTP; 26 Jul 2021 12:09:27 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon, 26 Jul 2021 12:08:00 -0700
-Message-Id: <20210726190800.26762-16-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
-References: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9DD506EC07;
+ Mon, 26 Jul 2021 19:34:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8E070A0118;
+ Mon, 26 Jul 2021 19:34:46 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 15/15] drm/i915/guc/rc: Setup and enable GUCRC
- feature
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Date: Mon, 26 Jul 2021 19:34:46 -0000
+Message-ID: <162732808653.2616.6798077094204684787@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/guc/slpc=3A_Enable_GuC_based_power_management_feat?=
+ =?utf-8?q?ures?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,159 +39,781 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBmZWF0dXJlIGhhbmRzIG92ZXIgdGhlIGNvbnRyb2wgb2YgSFcgUkM2IHRvIHRoZSBHdUMu
-Ckd1QyBkZWNpZGVzIHdoZW4gdG8gcHV0IEhXIGludG8gUkM2IGJhc2VkIG9uIGl0J3MgaW50ZXJu
-YWwKYnVzeW5lc3MgYWxnb3JpdGhtcy4KCkdVQ1JDIG5lZWRzIEd1QyBzdWJtaXNzaW9uIHRvIGJl
-IGVuYWJsZWQsIGFuZCBvbmx5CnN1cHBvcnRlZCBvbiBHZW4xMisgZm9yIG5vdy4KCldoZW4gR1VD
-UkMgaXMgZW5hYmxlZCwgZG8gbm90IHNldCBIVyBSQzYuIFVzZSBhIEgyRyBtZXNzYWdlCnRvIHRl
-bGwgR3VDIHRvIGVuYWJsZSBHVUNSQy4gV2hlbiBkaXNhYmxpbmcgUkM2LCB0ZWxsIEd1QyB0bwpy
-ZXZlcnQgUkM2IGNvbnRyb2wgYmFjayB0byBLTUQuCgp2MjogQWRkcmVzcyBjb21tZW50cyAoTWlj
-aGFsIFcpCgpSZXZpZXdlZC1ieTogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0Bp
-bnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFZpbmF5IEJlbGdhdW1rYXIgPHZpbmF5LmJlbGdhdW1r
-YXJAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAg
-ICAgICAgICB8ICAxICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JjNi5jICAgICAg
-ICAgICB8IDIyICsrKy0tCiAuLi4vZ3B1L2RybS9pOTE1L2d0L3VjL2FiaS9ndWNfYWN0aW9uc19h
-YmkuaCAgfCAgNiArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMgICAg
-ICAgIHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmggICAgICAg
-IHwgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3JjLmMgICAgIHwg
-ODAgKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
-Z3VjX3JjLmggICAgIHwgMzEgKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50
-ZWxfdWMuaCAgICAgICAgIHwgIDIgKwogOCBmaWxlcyBjaGFuZ2VkLCAxNDAgaW5zZXJ0aW9ucygr
-KSwgNSBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC91Yy9pbnRlbF9ndWNfcmMuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L3VjL2ludGVsX2d1Y19yYy5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvTWFrZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQppbmRleCBkOGVh
-YzQ0NjhkZjkuLjNmYzE3ZjIwZDg4ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-TWFrZWZpbGUKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTE4Niw2ICsx
-ODYsNyBAQCBpOTE1LXkgKz0gZ3QvdWMvaW50ZWxfdWMubyBcCiAJICBndC91Yy9pbnRlbF9ndWNf
-ZncubyBcCiAJICBndC91Yy9pbnRlbF9ndWNfbG9nLm8gXAogCSAgZ3QvdWMvaW50ZWxfZ3VjX2xv
-Z19kZWJ1Z2ZzLm8gXAorCSAgZ3QvdWMvaW50ZWxfZ3VjX3JjLm8gXAogCSAgZ3QvdWMvaW50ZWxf
-Z3VjX3NscGMubyBcCiAJICBndC91Yy9pbnRlbF9ndWNfc3VibWlzc2lvbi5vIFwKIAkgIGd0L3Vj
-L2ludGVsX2h1Yy5vIFwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3JjNi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmM2LmMKaW5kZXggMjU5ZDdl
-YjRlMTY1Li4yOTlmY2YxMGIwNGIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3JjNi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JjNi5jCkBA
-IC05OCwxMSArOTgsMTkgQEAgc3RhdGljIHZvaWQgZ2VuMTFfcmM2X2VuYWJsZShzdHJ1Y3QgaW50
-ZWxfcmM2ICpyYzYpCiAJc2V0KHVuY29yZSwgR0VOOV9NRURJQV9QR19JRExFX0hZU1RFUkVTSVMs
-IDYwKTsKIAlzZXQodW5jb3JlLCBHRU45X1JFTkRFUl9QR19JRExFX0hZU1RFUkVTSVMsIDYwKTsK
-IAotCS8qIDNhOiBFbmFibGUgUkM2ICovCi0JcmM2LT5jdGxfZW5hYmxlID0KLQkJR0VONl9SQ19D
-VExfSFdfRU5BQkxFIHwKLQkJR0VONl9SQ19DVExfUkM2X0VOQUJMRSB8Ci0JCUdFTjZfUkNfQ1RM
-X0VJX01PREUoMSk7CisJLyogM2E6IEVuYWJsZSBSQzYKKwkgKgorCSAqIFdpdGggR1VDUkMsIHdl
-IGRvIG5vdCBlbmFibGUgYml0IDMxIG9mIFJDX0NUTCwKKwkgKiB0aHVzIGFsbG93aW5nIEd1QyB0
-byBjb250cm9sIFJDNiBlbnRyeS9leGl0IGZ1bGx5IGluc3RlYWQuCisJICogV2Ugd2lsbCBub3Qg
-c2V0IHRoZSBIVyBFTkFCTEUgYW5kIEVJIGJpdHMKKwkgKi8KKwlpZiAoIWludGVsX2d1Y19yY19l
-bmFibGUoJmd0LT51Yy5ndWMpKQorCQlyYzYtPmN0bF9lbmFibGUgPSBHRU42X1JDX0NUTF9SQzZf
-RU5BQkxFOworCWVsc2UKKwkJcmM2LT5jdGxfZW5hYmxlID0KKwkJCUdFTjZfUkNfQ1RMX0hXX0VO
-QUJMRSB8CisJCQlHRU42X1JDX0NUTF9SQzZfRU5BQkxFIHwKKwkJCUdFTjZfUkNfQ1RMX0VJX01P
-REUoMSk7CiAKIAlwZ19lbmFibGUgPQogCQlHRU45X1JFTkRFUl9QR19FTkFCTEUgfApAQCAtNTEz
-LDYgKzUyMSwxMCBAQCBzdGF0aWMgdm9pZCBfX2ludGVsX3JjNl9kaXNhYmxlKHN0cnVjdCBpbnRl
-bF9yYzYgKnJjNikKIHsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHJjNl90b19p
-OTE1KHJjNik7CiAJc3RydWN0IGludGVsX3VuY29yZSAqdW5jb3JlID0gcmM2X3RvX3VuY29yZShy
-YzYpOworCXN0cnVjdCBpbnRlbF9ndCAqZ3QgPSByYzZfdG9fZ3QocmM2KTsKKworCS8qIFRha2Ug
-Y29udHJvbCBvZiBSQzYgYmFjayBmcm9tIEd1QyAqLworCWludGVsX2d1Y19yY19kaXNhYmxlKCZn
-dC0+dWMuZ3VjKTsKIAogCWludGVsX3VuY29yZV9mb3JjZXdha2VfZ2V0KHVuY29yZSwgRk9SQ0VX
-QUtFX0FMTCk7CiAJaWYgKEdSQVBISUNTX1ZFUihpOTE1KSA+PSA5KQpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvYWJpL2d1Y19hY3Rpb25zX2FiaS5oIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvdWMvYWJpL2d1Y19hY3Rpb25zX2FiaS5oCmluZGV4IGNhNTM4ZTVkZTk0
-MC4uOGZmNTgyMjIyYWZmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9h
-YmkvZ3VjX2FjdGlvbnNfYWJpLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvYWJp
-L2d1Y19hY3Rpb25zX2FiaS5oCkBAIC0xMzUsNiArMTM1LDcgQEAgZW51bSBpbnRlbF9ndWNfYWN0
-aW9uIHsKIAlJTlRFTF9HVUNfQUNUSU9OX1NFVF9DT05URVhUX1BSRUVNUFRJT05fVElNRU9VVCA9
-IDB4MTAwNywKIAlJTlRFTF9HVUNfQUNUSU9OX0NPTlRFWFRfUkVTRVRfTk9USUZJQ0FUSU9OID0g
-MHgxMDA4LAogCUlOVEVMX0dVQ19BQ1RJT05fRU5HSU5FX0ZBSUxVUkVfTk9USUZJQ0FUSU9OID0g
-MHgxMDA5LAorCUlOVEVMX0dVQ19BQ1RJT05fU0VUVVBfUENfR1VDUkMgPSAweDMwMDQsCiAJSU5U
-RUxfR1VDX0FDVElPTl9BVVRIRU5USUNBVEVfSFVDID0gMHg0MDAwLAogCUlOVEVMX0dVQ19BQ1RJ
-T05fUkVHSVNURVJfQ09OVEVYVCA9IDB4NDUwMiwKIAlJTlRFTF9HVUNfQUNUSU9OX0RFUkVHSVNU
-RVJfQ09OVEVYVCA9IDB4NDUwMywKQEAgLTE0NSw2ICsxNDYsMTEgQEAgZW51bSBpbnRlbF9ndWNf
-YWN0aW9uIHsKIAlJTlRFTF9HVUNfQUNUSU9OX0xJTUlUCiB9OwogCitlbnVtIGludGVsX2d1Y19y
-Y19vcHRpb25zIHsKKwlJTlRFTF9HVUNSQ19IT1NUX0NPTlRST0wsCisJSU5URUxfR1VDUkNfRklS
-TVdBUkVfQ09OVFJPTCwKK307CisKIGVudW0gaW50ZWxfZ3VjX3ByZWVtcHRfb3B0aW9ucyB7CiAJ
-SU5URUxfR1VDX1BSRUVNUFRfT1BUSU9OX0RST1BfV09SS19RID0gMHg0LAogCUlOVEVMX0dVQ19Q
-UkVFTVBUX09QVElPTl9EUk9QX1NVQk1JVF9RID0gMHg4LApkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
-Yy9pbnRlbF9ndWMuYwppbmRleCAxM2QxNjIzNTNiMWEuLmZiZmNhZTcyN2Q3ZiAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKQEAgLTE1OSw2ICsxNTksNyBAQCB2b2lkIGlu
-dGVsX2d1Y19pbml0X2Vhcmx5KHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKIAlpbnRlbF9ndWNfbG9n
-X2luaXRfZWFybHkoJmd1Yy0+bG9nKTsKIAlpbnRlbF9ndWNfc3VibWlzc2lvbl9pbml0X2Vhcmx5
-KGd1Yyk7CiAJaW50ZWxfZ3VjX3NscGNfaW5pdF9lYXJseSgmZ3VjLT5zbHBjKTsKKwlpbnRlbF9n
-dWNfcmNfaW5pdF9lYXJseShndWMpOwogCiAJbXV0ZXhfaW5pdCgmZ3VjLT5zZW5kX211dGV4KTsK
-IAlzcGluX2xvY2tfaW5pdCgmZ3VjLT5pcnFfbG9jayk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3Vj
-L2ludGVsX2d1Yy5oCmluZGV4IDE1YWQyZWFlZTQ3My4uMDg5MTlkMWIzNWRjIDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaAorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaApAQCAtNTksNiArNTksOCBAQCBzdHJ1Y3QgaW50
-ZWxfZ3VjIHsKIAogCWJvb2wgc3VibWlzc2lvbl9zdXBwb3J0ZWQ7CiAJYm9vbCBzdWJtaXNzaW9u
-X3NlbGVjdGVkOworCWJvb2wgcmNfc3VwcG9ydGVkOworCWJvb2wgcmNfc2VsZWN0ZWQ7CiAJYm9v
-bCBzbHBjX3N1cHBvcnRlZDsKIAlib29sIHNscGNfc2VsZWN0ZWQ7CiAKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19yYy5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3JjLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAw
-MDAwMDAwMDAwLi4xOGUzZTA1ZDdiMzkKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfcmMuYwpAQCAtMCwwICsxLDgwIEBACisvLyBTUERYLUxp
-Y2Vuc2UtSWRlbnRpZmllcjogTUlUCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29y
-cG9yYXRpb24KKyAqLworCisjaW5jbHVkZSAiaW50ZWxfZ3VjX3JjLmgiCisjaW5jbHVkZSAiZ3Qv
-aW50ZWxfZ3QuaCIKKyNpbmNsdWRlICJpOTE1X2Rydi5oIgorCitzdGF0aWMgYm9vbCBfX2d1Y19y
-Y19zdXBwb3J0ZWQoc3RydWN0IGludGVsX2d1YyAqZ3VjKQoreworCS8qIEd1QyBSQyBpcyB1bmF2
-YWlsYWJsZSBmb3IgcHJlLUdlbjEyICovCisJcmV0dXJuIGd1Yy0+c3VibWlzc2lvbl9zdXBwb3J0
-ZWQgJiYKKwkJR1JBUEhJQ1NfVkVSKGd1Y190b19ndChndWMpLT5pOTE1KSA+PSAxMjsKK30KKwor
-c3RhdGljIGJvb2wgX19ndWNfcmNfc2VsZWN0ZWQoc3RydWN0IGludGVsX2d1YyAqZ3VjKQorewor
-CWlmICghaW50ZWxfZ3VjX3JjX2lzX3N1cHBvcnRlZChndWMpKQorCQlyZXR1cm4gZmFsc2U7CisK
-KwlyZXR1cm4gZ3VjLT5zdWJtaXNzaW9uX3NlbGVjdGVkOworfQorCit2b2lkIGludGVsX2d1Y19y
-Y19pbml0X2Vhcmx5KHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKK3sKKwlndWMtPnJjX3N1cHBvcnRl
-ZCA9IF9fZ3VjX3JjX3N1cHBvcnRlZChndWMpOworCWd1Yy0+cmNfc2VsZWN0ZWQgPSBfX2d1Y19y
-Y19zZWxlY3RlZChndWMpOworfQorCitzdGF0aWMgaW50IGd1Y19hY3Rpb25fY29udHJvbF9ndWNy
-YyhzdHJ1Y3QgaW50ZWxfZ3VjICpndWMsIGJvb2wgZW5hYmxlKQoreworCXUzMiByY19tb2RlID0g
-ZW5hYmxlID8gSU5URUxfR1VDUkNfRklSTVdBUkVfQ09OVFJPTCA6CisJCQkJSU5URUxfR1VDUkNf
-SE9TVF9DT05UUk9MOworCXUzMiBhY3Rpb25bXSA9IHsKKwkJSU5URUxfR1VDX0FDVElPTl9TRVRV
-UF9QQ19HVUNSQywKKwkJcmNfbW9kZQorCX07CisJaW50IHJldDsKKworCXJldCA9IGludGVsX2d1
-Y19zZW5kKGd1YywgYWN0aW9uLCBBUlJBWV9TSVpFKGFjdGlvbikpOworCXJldCA9IHJldCA+IDAg
-PyAtRVBST1RPIDogcmV0OworCisJcmV0dXJuIHJldDsKK30KKworc3RhdGljIGludCBfX2d1Y19y
-Y19jb250cm9sKHN0cnVjdCBpbnRlbF9ndWMgKmd1YywgYm9vbCBlbmFibGUpCit7CisJc3RydWN0
-IGludGVsX2d0ICpndCA9IGd1Y190b19ndChndWMpOworCXN0cnVjdCBkcm1fZGV2aWNlICpkcm0g
-PSAmZ3VjX3RvX2d0KGd1YyktPmk5MTUtPmRybTsKKwlpbnQgcmV0OworCisJaWYgKCFpbnRlbF91
-Y191c2VzX2d1Y19yYygmZ3QtPnVjKSkKKwkJcmV0dXJuIC1FTk9UU1VQUDsKKworCWlmICghaW50
-ZWxfZ3VjX2lzX3JlYWR5KGd1YykpCisJCXJldHVybiAtRUlOVkFMOworCisJcmV0ID0gZ3VjX2Fj
-dGlvbl9jb250cm9sX2d1Y3JjKGd1YywgZW5hYmxlKTsKKwlpZiAocmV0KSB7CisJCWRybV9lcnIo
-ZHJtLCAiRmFpbGVkIHRvICVzIEd1QyBSQyAoJXBlKVxuIiwKKwkJCWVuYWJsZWRpc2FibGUoZW5h
-YmxlKSwgRVJSX1BUUihyZXQpKTsKKwkJcmV0dXJuIHJldDsKKwl9CisKKwlkcm1faW5mbygmZ3Qt
-Pmk5MTUtPmRybSwgIkd1QyBSQzogJXNcbiIsCisJCWVuYWJsZWRkaXNhYmxlZChlbmFibGUpKTsK
-KworCXJldHVybiAwOworfQorCitpbnQgaW50ZWxfZ3VjX3JjX2VuYWJsZShzdHJ1Y3QgaW50ZWxf
-Z3VjICpndWMpCit7CisJcmV0dXJuIF9fZ3VjX3JjX2NvbnRyb2woZ3VjLCB0cnVlKTsKK30KKwor
-aW50IGludGVsX2d1Y19yY19kaXNhYmxlKHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKK3sKKwlyZXR1
-cm4gX19ndWNfcmNfY29udHJvbChndWMsIGZhbHNlKTsKK30KZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19yYy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvdWMvaW50ZWxfZ3VjX3JjLmgKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAw
-MDAwLi41N2U4NmMzMzc4MzgKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC91Yy9pbnRlbF9ndWNfcmMuaApAQCAtMCwwICsxLDMxIEBACisvKiBTUERYLUxpY2Vuc2Ut
-SWRlbnRpZmllcjogTUlUICovCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9y
-YXRpb24KKyAqLworCisjaWZuZGVmIF9JTlRFTF9HVUNfUkNfSF8KKyNkZWZpbmUgX0lOVEVMX0dV
-Q19SQ19IXworCisjaW5jbHVkZSAiaW50ZWxfZ3VjX3N1Ym1pc3Npb24uaCIKKwordm9pZCBpbnRl
-bF9ndWNfcmNfaW5pdF9lYXJseShzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpOworCitzdGF0aWMgaW5s
-aW5lIGJvb2wgaW50ZWxfZ3VjX3JjX2lzX3N1cHBvcnRlZChzdHJ1Y3QgaW50ZWxfZ3VjICpndWMp
-Cit7CisJcmV0dXJuIGd1Yy0+cmNfc3VwcG9ydGVkOworfQorCitzdGF0aWMgaW5saW5lIGJvb2wg
-aW50ZWxfZ3VjX3JjX2lzX3dhbnRlZChzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCit7CisJcmV0dXJu
-IGd1Yy0+c3VibWlzc2lvbl9zZWxlY3RlZCAmJiBpbnRlbF9ndWNfcmNfaXNfc3VwcG9ydGVkKGd1
-Yyk7Cit9CisKK3N0YXRpYyBpbmxpbmUgYm9vbCBpbnRlbF9ndWNfcmNfaXNfdXNlZChzdHJ1Y3Qg
-aW50ZWxfZ3VjICpndWMpCit7CisJcmV0dXJuIGludGVsX2d1Y19zdWJtaXNzaW9uX2lzX3VzZWQo
-Z3VjKSAmJiBpbnRlbF9ndWNfcmNfaXNfd2FudGVkKGd1Yyk7Cit9CisKK2ludCBpbnRlbF9ndWNf
-cmNfZW5hYmxlKHN0cnVjdCBpbnRlbF9ndWMgKmd1Yyk7CitpbnQgaW50ZWxfZ3VjX3JjX2Rpc2Fi
-bGUoc3RydWN0IGludGVsX2d1YyAqZ3VjKTsKKworI2VuZGlmCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
-dWMvaW50ZWxfdWMuaAppbmRleCA5MjVhNThjYTZiOTQuLjg2NmI0NjI4MjFjMCAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuaAorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5oCkBAIC03LDYgKzcsNyBAQAogI2RlZmluZSBfSU5U
-RUxfVUNfSF8KIAogI2luY2x1ZGUgImludGVsX2d1Yy5oIgorI2luY2x1ZGUgImludGVsX2d1Y19y
-Yy5oIgogI2luY2x1ZGUgImludGVsX2d1Y19zdWJtaXNzaW9uLmgiCiAjaW5jbHVkZSAiaW50ZWxf
-Z3VjX3NscGMuaCIKICNpbmNsdWRlICJpbnRlbF9odWMuaCIKQEAgLTg1LDYgKzg2LDcgQEAgdWNf
-c3RhdGVfY2hlY2tlcnMoZ3VjLCBndWMpOwogdWNfc3RhdGVfY2hlY2tlcnMoaHVjLCBodWMpOwog
-dWNfc3RhdGVfY2hlY2tlcnMoZ3VjLCBndWNfc3VibWlzc2lvbik7CiB1Y19zdGF0ZV9jaGVja2Vy
-cyhndWMsIGd1Y19zbHBjKTsKK3VjX3N0YXRlX2NoZWNrZXJzKGd1YywgZ3VjX3JjKTsKIAogI3Vu
-ZGVmIHVjX3N0YXRlX2NoZWNrZXJzCiAjdW5kZWYgX191Y19zdGF0ZV9jaGVja2VyCi0tIAoyLjI1
-LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/guc/slpc: Enable GuC based power management features
+URL   : https://patchwork.freedesktop.org/series/93026/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+e739b51dc573 drm/i915/guc: SQUASHED PATCH - DO NOT REVIEW
+-:54: WARNING:BAD_SIGN_OFF: Duplicate signature
+#54: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:74: WARNING:BAD_SIGN_OFF: Duplicate signature
+#74: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:83: WARNING:BAD_SIGN_OFF: Duplicate signature
+#83: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:84: WARNING:BAD_SIGN_OFF: Duplicate signature
+#84: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:99: WARNING:BAD_SIGN_OFF: Duplicate signature
+#99: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:101: WARNING:BAD_SIGN_OFF: Duplicate signature
+#101: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:111: WARNING:BAD_SIGN_OFF: Duplicate signature
+#111: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:112: WARNING:BAD_SIGN_OFF: Duplicate signature
+#112: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:121: WARNING:BAD_SIGN_OFF: Duplicate signature
+#121: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:122: WARNING:BAD_SIGN_OFF: Duplicate signature
+#122: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:150: WARNING:BAD_SIGN_OFF: Duplicate signature
+#150: 
+Cc: John Harrison <john.c.harrison@intel.com>
+
+-:151: WARNING:BAD_SIGN_OFF: Duplicate signature
+#151: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:159: WARNING:BAD_SIGN_OFF: Duplicate signature
+#159: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:160: WARNING:BAD_SIGN_OFF: Duplicate signature
+#160: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:168: WARNING:BAD_SIGN_OFF: Duplicate signature
+#168: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:169: WARNING:BAD_SIGN_OFF: Duplicate signature
+#169: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:170: WARNING:BAD_SIGN_OFF: Duplicate signature
+#170: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:191: WARNING:BAD_SIGN_OFF: Duplicate signature
+#191: 
+Cc: John Harrison <john.c.harrison@intel.com>
+
+-:192: WARNING:BAD_SIGN_OFF: Duplicate signature
+#192: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:194: WARNING:BAD_SIGN_OFF: Duplicate signature
+#194: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:211: WARNING:BAD_SIGN_OFF: Duplicate signature
+#211: 
+Cc: John Harrison <John.C.Harrison@Intel.com>
+
+-:212: WARNING:BAD_SIGN_OFF: Duplicate signature
+#212: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:213: WARNING:BAD_SIGN_OFF: Duplicate signature
+#213: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:225: WARNING:BAD_SIGN_OFF: Duplicate signature
+#225: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:227: WARNING:BAD_SIGN_OFF: Duplicate signature
+#227: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:234: WARNING:BAD_SIGN_OFF: Duplicate signature
+#234: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:235: WARNING:BAD_SIGN_OFF: Duplicate signature
+#235: 
+CC: John Harrison <John.C.Harrison@Intel.com>
+
+-:236: WARNING:BAD_SIGN_OFF: Duplicate signature
+#236: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:250: WARNING:BAD_SIGN_OFF: Duplicate signature
+#250: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:251: WARNING:BAD_SIGN_OFF: Duplicate signature
+#251: 
+Signed-off-by: Fernando Pacheco <fernando.pacheco@intel.com>
+
+-:252: WARNING:BAD_SIGN_OFF: Duplicate signature
+#252: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:253: WARNING:BAD_SIGN_OFF: Duplicate signature
+#253: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:255: WARNING:BAD_SIGN_OFF: Duplicate signature
+#255: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:265: WARNING:BAD_SIGN_OFF: Duplicate signature
+#265: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:266: WARNING:BAD_SIGN_OFF: Duplicate signature
+#266: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:267: WARNING:BAD_SIGN_OFF: Duplicate signature
+#267: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:274: WARNING:BAD_SIGN_OFF: Duplicate signature
+#274: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:275: WARNING:BAD_SIGN_OFF: Duplicate signature
+#275: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:276: WARNING:BAD_SIGN_OFF: Duplicate signature
+#276: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:290: WARNING:BAD_SIGN_OFF: Duplicate signature
+#290: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:291: WARNING:BAD_SIGN_OFF: Duplicate signature
+#291: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:308: WARNING:BAD_SIGN_OFF: Duplicate signature
+#308: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:309: WARNING:BAD_SIGN_OFF: Duplicate signature
+#309: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:310: WARNING:BAD_SIGN_OFF: Duplicate signature
+#310: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:321: WARNING:BAD_SIGN_OFF: Duplicate signature
+#321: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:322: WARNING:BAD_SIGN_OFF: Duplicate signature
+#322: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:323: WARNING:BAD_SIGN_OFF: Duplicate signature
+#323: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:341: WARNING:BAD_SIGN_OFF: Duplicate signature
+#341: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:342: WARNING:BAD_SIGN_OFF: Duplicate signature
+#342: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:343: WARNING:BAD_SIGN_OFF: Duplicate signature
+#343: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:350: WARNING:BAD_SIGN_OFF: Duplicate signature
+#350: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:351: WARNING:BAD_SIGN_OFF: Duplicate signature
+#351: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:352: WARNING:BAD_SIGN_OFF: Duplicate signature
+#352: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:366: WARNING:BAD_SIGN_OFF: Duplicate signature
+#366: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:367: WARNING:BAD_SIGN_OFF: Duplicate signature
+#367: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:368: WARNING:BAD_SIGN_OFF: Duplicate signature
+#368: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:375: WARNING:BAD_SIGN_OFF: Duplicate signature
+#375: 
+Cc: John Harrison <John.C.Harrison@Intel.com>
+
+-:376: WARNING:BAD_SIGN_OFF: Duplicate signature
+#376: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:377: WARNING:BAD_SIGN_OFF: Duplicate signature
+#377: 
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:400: WARNING:BAD_SIGN_OFF: Duplicate signature
+#400: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:401: WARNING:BAD_SIGN_OFF: Duplicate signature
+#401: 
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+-:409: WARNING:BAD_SIGN_OFF: Duplicate signature
+#409: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:410: WARNING:BAD_SIGN_OFF: Duplicate signature
+#410: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:411: WARNING:BAD_SIGN_OFF: Duplicate signature
+#411: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:412: WARNING:BAD_SIGN_OFF: Duplicate signature
+#412: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:421: WARNING:BAD_SIGN_OFF: Duplicate signature
+#421: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:422: WARNING:BAD_SIGN_OFF: Duplicate signature
+#422: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:423: WARNING:BAD_SIGN_OFF: Duplicate signature
+#423: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:424: WARNING:BAD_SIGN_OFF: Duplicate signature
+#424: 
+Cc: Matthew Brost <matthew.brost@intel.com>
+
+-:425: WARNING:BAD_SIGN_OFF: Duplicate signature
+#425: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:433: WARNING:BAD_SIGN_OFF: Duplicate signature
+#433: 
+Signed-off-by: Rahul Kumar Singh <rahul.kumar.singh@intel.com>
+
+-:434: WARNING:BAD_SIGN_OFF: Duplicate signature
+#434: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:435: WARNING:BAD_SIGN_OFF: Duplicate signature
+#435: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:436: WARNING:BAD_SIGN_OFF: Duplicate signature
+#436: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:437: WARNING:BAD_SIGN_OFF: Duplicate signature
+#437: 
+Cc: Matthew Brost <matthew.brost@intel.com>
+
+-:438: WARNING:BAD_SIGN_OFF: Duplicate signature
+#438: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:445: WARNING:BAD_SIGN_OFF: Duplicate signature
+#445: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:470: WARNING:BAD_SIGN_OFF: Duplicate signature
+#470: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:471: WARNING:BAD_SIGN_OFF: Duplicate signature
+#471: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:472: WARNING:BAD_SIGN_OFF: Duplicate signature
+#472: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:473: WARNING:BAD_SIGN_OFF: Duplicate signature
+#473: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:474: WARNING:BAD_SIGN_OFF: Duplicate signature
+#474: 
+Cc: Matthew Brost <matthew.brost@intel.com>
+
+-:494: WARNING:BAD_SIGN_OFF: Duplicate signature
+#494: 
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+
+-:495: WARNING:BAD_SIGN_OFF: Duplicate signature
+#495: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:496: WARNING:BAD_SIGN_OFF: Duplicate signature
+#496: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:497: WARNING:BAD_SIGN_OFF: Duplicate signature
+#497: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:526: WARNING:BAD_SIGN_OFF: Duplicate signature
+#526: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:527: WARNING:BAD_SIGN_OFF: Duplicate signature
+#527: 
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:528: WARNING:BAD_SIGN_OFF: Duplicate signature
+#528: 
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+-:539: WARNING:BAD_SIGN_OFF: Duplicate signature
+#539: 
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+
+-:541: WARNING:BAD_SIGN_OFF: Duplicate signature
+#541: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+-:542: WARNING:BAD_SIGN_OFF: Duplicate signature
+#542: 
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+-:3292: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#3292: FILE: drivers/gpu/drm/i915/gt/selftest_workarounds.c:814:
++								   SELFTEST_SCHEDULER_MODIFY_FAST_RESET);
+
+-:4544: CHECK:BRACES: braces {} should be used on all arms of this statement
+#4544: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:545:
++		if (unlikely(ret == -EPIPE))
+[...]
++		else if (ret == -EBUSY) {
+[...]
+
+-:6683: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#6683: FILE: drivers/gpu/drm/i915/i915_debugfs_params.c:17:
++#define GET_I915(i915, name, ptr)	\
++	do {	\
++		struct i915_params *params;	\
++		params = container_of(((void *)(ptr)), typeof(*params), name);	\
++		(i915) = container_of(params, typeof(*(i915)), params);	\
++	} while (0)
+
+-:7322: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#7322: 
+new file mode 100644
+
+total: 0 errors, 94 warnings, 2 checks, 6414 lines checked
+b1eed2ee0dd1 drm/i915/guc/slpc: Initial definitions for SLPC
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+template for SLPC structure in intel_guc_slpc_types.h. Fix copyright (Michal W)
+
+-:26: WARNING:BAD_SIGN_OFF: Duplicate signature
+#26: 
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+
+-:27: WARNING:BAD_SIGN_OFF: Duplicate signature
+#27: 
+Signed-off-by: Sundaresan Sujaritha <sujaritha.sundaresan@intel.com>
+
+-:91: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#91: 
+new file mode 100644
+
+total: 0 errors, 4 warnings, 0 checks, 167 lines checked
+9f75f622e733 drm/i915/guc/slpc: Gate Host RPS when SLPC is enabled
+c60f3b51410d drm/i915/guc/slpc: Adding SLPC communication interfaces
+-:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#31: 
+new file mode 100644
+
+-:101: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#101: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h:66:
++		+ (SLPC_CACHELINE_SIZE_BYTES-1)) / SLPC_CACHELINE_SIZE_BYTES)*SLPC_CACHELINE_SIZE_BYTES)
+
+-:101: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#101: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h:66:
++		+ (SLPC_CACHELINE_SIZE_BYTES-1)) / SLPC_CACHELINE_SIZE_BYTES)*SLPC_CACHELINE_SIZE_BYTES)
+ 		                            ^
+
+-:101: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
+#101: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h:66:
++		+ (SLPC_CACHELINE_SIZE_BYTES-1)) / SLPC_CACHELINE_SIZE_BYTES)*SLPC_CACHELINE_SIZE_BYTES)
+ 		                                                             ^
+
+-:219: WARNING:SPACING: space prohibited before semicolon
+#219: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h:184:
++	struct slpc_override_params override_params ;
+
+-:266: CHECK:CAMELCASE: Avoid CamelCase: <GUC_HXG_REQUEST_MSG_n_DATAn>
+#266: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h:231:
++#define HOST2GUC_PC_SLPC_REQUEST_MSG_n_EVENT_DATAn	GUC_HXG_REQUEST_MSG_n_DATAn
+
+-:309: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#309: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:146:
++#define SLPC_EVENT(id,c) (\
+                      ^
+
+-:311: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#311: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:148:
++FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC, c ) \
+
+total: 2 errors, 3 warnings, 3 checks, 276 lines checked
+dfa70375b4e0 drm/i915/guc/slpc: Allocate, initialize and release SLPC
+b263a074ec5f drm/i915/guc/slpc: Enable SLPC and add related H2G events
+-:32: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#32: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:49:
++static void slpc_mem_set_param(struct slpc_shared_data *data,
++				u32 id, u32 value)
+
+-:44: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#44: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:61:
++static void slpc_mem_set_enabled(struct slpc_shared_data *data,
++				u8 enable_id, u8 disable_id)
+
+-:55: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#55: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:72:
++static void slpc_mem_set_disabled(struct slpc_shared_data *data,
++				u8 enable_id, u8 disable_id)
+
+-:93: ERROR:CODE_INDENT: code indent should use tabs where possible
+#93: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:121:
++ ^I^ISLPC_EVENT(SLPC_EVENT_QUERY_TASK_STATE, 2),$
+
+-:93: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#93: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:121:
++ ^I^ISLPC_EVENT(SLPC_EVENT_QUERY_TASK_STATE, 2),$
+
+-:93: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#93: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:121:
++ ^I^ISLPC_EVENT(SLPC_EVENT_QUERY_TASK_STATE, 2),$
+
+-:114: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#114: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:142:
++		drm_err(&i915->drm, "Query task state data returned (%pe)\n",
++				ERR_PTR(ret));
+
+-:187: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#187: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:215:
++			drm_err(&i915->drm, "SLPC not enabled! State = %s\n",
++				  slpc_get_state_string(slpc));
+
+-:208: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#208: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:236:
++	return	DIV_ROUND_CLOSEST(
+
+-:210: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#210: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:238:
++		REG_FIELD_GET(SLPC_MIN_UNSLICE_FREQ_MASK,
++			data->task_state_data.freq) *
+
+-:220: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#220: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:248:
++	return	DIV_ROUND_CLOSEST(
+
+-:222: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#222: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:250:
++		REG_FIELD_GET(SLPC_MAX_UNSLICE_FREQ_MASK,
++			data->task_state_data.freq) *
+
+-:254: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#254: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:282:
++	slpc_mem_set_enabled(data, SLPC_PARAM_TASK_ENABLE_GTPERF,
++				SLPC_PARAM_TASK_DISABLE_GTPERF);
+
+-:257: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#257: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:285:
++	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_BALANCER,
++				SLPC_PARAM_TASK_DISABLE_BALANCER);
+
+-:260: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#260: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:288:
++	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_DCC,
++				SLPC_PARAM_TASK_DISABLE_DCC);
+
+-:265: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#265: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:293:
++		drm_err(&i915->drm, "SLPC Reset event returned (%pe)\n",
++				ERR_PTR(ret));
+
+-:275: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#275: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:303:
++	drm_info(&i915->drm, "SLPC min freq: %u Mhz, max is %u Mhz\n",
++			slpc_decode_min_freq(slpc),
+
+-:278: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#278: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:306:
++
++
+
+total: 1 errors, 2 warnings, 15 checks, 283 lines checked
+c60c975349d2 drm/i915/guc/slpc: Remove BUG_ON in guc_submission_disable
+ab9599b22ee7 drm/i915/guc/slpc: Add methods to set min/max frequency
+-:88: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#88: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:296:
++		ret = slpc_set_param(slpc,
++			       SLPC_PARAM_GLOBAL_MAX_GT_UNSLICE_FREQ_MHZ,
+
+-:120: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#120: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:328:
++		ret = slpc_set_param(slpc,
++			       SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+
+total: 0 errors, 0 warnings, 2 checks, 120 lines checked
+9fda8c1773ef drm/i915/guc/slpc: Add get max/min freq hooks
+8772da814cc8 drm/i915/guc/slpc: Add debugfs for SLPC info
+-:88: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#88: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:469:
++			drm_printf(p, "\tGTPERF task active: %s\n",
++				yesno(slpc_tasks->status & SLPC_GTPERF_TASK_ENABLED));
+
+-:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#90: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:471:
++			drm_printf(p, "\tMax freq: %u MHz\n",
++					slpc_decode_max_freq(slpc));
+
+-:92: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#92: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:473:
++			drm_printf(p, "\tMin freq: %u MHz\n",
++					slpc_decode_min_freq(slpc));
+
+total: 0 errors, 0 warnings, 3 checks, 95 lines checked
+98238144dd09 drm/i915/guc/slpc: Enable ARAT timer interrupt
+-:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#31: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:406:
++	intel_uncore_rmw(gt->uncore,
++			   GEN6_PMINTRMSK, pm_intrmsk_mbz, 0);
+
+total: 0 errors, 0 warnings, 1 checks, 61 lines checked
+edec3303a3f8 drm/i915/guc/slpc: Cache platform frequency limits
+-:47: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#47: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:141:
++
++
+
+-:56: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#56: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:189:
++static int slpc_unset_param(struct intel_guc_slpc *slpc,
++				u8 id)
+
+-:84: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#84: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:446:
++		ret = intel_guc_slpc_set_max_freq(slpc,
++					slpc->max_freq_softlimit);
+
+-:90: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#90: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:452:
++		ret = intel_guc_slpc_set_min_freq(slpc,
++					slpc->min_freq_softlimit);
+
+-:100: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#100: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:462:
++		slpc_set_param(slpc,
++		   SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
+
+-:103: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#103: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:465:
++		slpc_set_param(slpc,
++		   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+
+-:107: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#107: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:469:
++		slpc_unset_param(slpc,
++		   SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY);
+
+-:109: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#109: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:471:
++		slpc_unset_param(slpc,
++		   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ);
+
+-:117: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#117: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:479:
++	slpc_set_param(slpc,
++	   SLPC_PARAM_GLOBAL_MAX_GT_UNSLICE_FREQ_MHZ,
+
+-:152: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#152: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:554:
++		drm_err(&i915->drm, "Failed to set SLPC softlimits (%pe)\n",
++					ERR_PTR(ret));
+
+total: 0 errors, 0 warnings, 10 checks, 164 lines checked
+8ed3bd759132 drm/i915/guc/slpc: Sysfs hooks for SLPC
+-:134: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#134: FILE: drivers/gpu/drm/i915/gt/intel_rps.c:2060:
++		drm_dbg(&i915->drm, "User requested overclocking to %d\n",
++			  intel_gpu_freq(rps, val));
+
+-:235: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val < slpc->min_freq'
+#235: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:319:
++	if ((val < slpc->min_freq) ||
++	    (val > slpc->rp0_freq) ||
++	    (val < slpc->min_freq_softlimit))
+
+-:235: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val > slpc->rp0_freq'
+#235: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:319:
++	if ((val < slpc->min_freq) ||
++	    (val > slpc->rp0_freq) ||
++	    (val < slpc->min_freq_softlimit))
+
+-:235: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val < slpc->min_freq_softlimit'
+#235: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:319:
++	if ((val < slpc->min_freq) ||
++	    (val > slpc->rp0_freq) ||
++	    (val < slpc->min_freq_softlimit))
+
+-:256: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val < slpc->min_freq'
+#256: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:385:
++	if ((val < slpc->min_freq) ||
++	    (val > slpc->rp0_freq) ||
++	    (val > slpc->max_freq_softlimit))
+
+-:256: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val > slpc->rp0_freq'
+#256: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:385:
++	if ((val < slpc->min_freq) ||
++	    (val > slpc->rp0_freq) ||
++	    (val > slpc->max_freq_softlimit))
+
+-:256: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val > slpc->max_freq_softlimit'
+#256: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c:385:
++	if ((val < slpc->min_freq) ||
++	    (val > slpc->rp0_freq) ||
++	    (val > slpc->max_freq_softlimit))
+
+-:294: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#294: FILE: drivers/gpu/drm/i915/i915_reg.h:9243:
++#define   GEN9_SW_REQ_UNSLICE_RATIO_SHIFT ^I23$
+
+total: 0 errors, 1 warnings, 7 checks, 371 lines checked
+025f555a3e2e drm/i915/guc/slpc: Add SLPC selftest
+-:30: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#30: 
+new file mode 100644
+
+-:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#66: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:32:
++		pr_err("Could not set maximum frequency [%u]\n",
++			freq);
+
+-:128: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#128: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:94:
++			rq = igt_spinner_create_request(&spin,
++					engine->kernel_context,
+
+-:140: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#140: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:106:
++				pr_err("%s: Spinner did not start\n",
++					engine->name);
+
+-:156: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#156: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:122:
++			if (req_freq < (min_freq - 50/3)) {
+ 			                             ^
+
+-:158: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#158: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:124:
++				pr_err("SWReq is %d, should be at least %d\n", req_freq,
++					min_freq - 50/3);
+
+-:158: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#158: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:124:
++					min_freq - 50/3);
+ 					             ^
+
+-:174: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#174: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:140:
++		pr_info("Max actual frequency for %s was %d\n",
++				engine->name, max_act_freq);
+
+-:259: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#259: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:225:
++			rq = igt_spinner_create_request(&spin,
++						engine->kernel_context,
+
+-:285: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#285: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:251:
++			if (req_freq > (max_freq + 50/3)) {
+ 			                             ^
+
+-:287: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#287: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:253:
++				pr_err("SWReq is %d, should be at most %d\n", req_freq,
++					max_freq + 50/3);
+
+-:287: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#287: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:253:
++					max_freq + 50/3);
+ 					             ^
+
+-:306: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#306: FILE: drivers/gpu/drm/i915/gt/selftest_slpc.c:272:
++		pr_info("Max actual frequency for %s was %d\n",
++				engine->name, max_act_freq);
+
+total: 0 errors, 1 warnings, 12 checks, 334 lines checked
+bd5302518b8e drm/i915/guc/rc: Setup and enable GUCRC feature
+-:124: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#124: 
+new file mode 100644
+
+-:182: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#182: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c:54:
++		return -ENOTSUPP;
+
+-:195: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#195: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c:67:
++	drm_info(&gt->i915->drm, "GuC RC: %s\n",
++		enableddisabled(enable));
+
+total: 0 errors, 2 warnings, 1 checks, 199 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
