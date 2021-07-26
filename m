@@ -2,37 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEB63D696F
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 00:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B64BD3D6976
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 00:25:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B50446E914;
-	Mon, 26 Jul 2021 22:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AB0573104;
+	Mon, 26 Jul 2021 22:25:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC4C6E914
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Jul 2021 22:23:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="297901561"
-X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="297901561"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 15:23:34 -0700
-X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="505198068"
-Received: from jfogerty-mobl1.amr.corp.intel.com (HELO msatwood-mobl)
- ([10.212.220.141])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 15:23:33 -0700
-Date: Mon, 26 Jul 2021 15:23:20 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: =?utf-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>;,
- intel-gfx@lists.freedesktop.org
-Message-ID: <20210726222320.GE22643@msatwood-mobl>
-References: <20210722054338.12891-1-jose.souza@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79E506EA58;
+ Mon, 26 Jul 2021 22:25:14 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="273408375"
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="273408375"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 15:25:06 -0700
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="474148304"
+Received: from dut151-iclu.fm.intel.com ([10.105.23.43])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 15:25:06 -0700
+Date: Mon, 26 Jul 2021 22:25:05 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20210726222505.GA45160@DUT151-ICLU.fm.intel.com>
+References: <20210716201724.54804-1-matthew.brost@intel.com>
+ <20210716201724.54804-24-matthew.brost@intel.com>
+ <003a6487-dab1-50d3-3bf4-0291d0d8893b@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210722054338.12891-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915/bios: Allow DSI ports to be
- parsed by parse_ddi_port()
+In-Reply-To: <003a6487-dab1-50d3-3bf4-0291d0d8893b@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 23/51] drm/i915/guc: Direct all breadcrumbs
+ for a class to single breadcrumbs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,80 +45,443 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBKdWwgMjEsIDIwMjEgYXQgMTA6NDM6MjlQTSAtMDcwMCwgSm9zw6kgUm9iZXJ0byBk
-ZSBTb3V6YSB3cm90ZToKPiBBbGxvdyBNSVBJIERTSSBwb3J0cyB0byBiZSBwYXJzZWQgbGlrZSBh
-bnkgb3RoZXIgRERJIHBvcnQuCj4gVGhpcyB3aWxsIGJlIGhlbHBmdWwgdG8gaW50ZWdyYXRlIGlu
-dG8ganVzdCBvbmUgZnVuY3Rpb24gdGhlIHBhcnNlIG9mCj4gaW5mb3JtYXRpb24gYWJvdXQgaW50
-ZWdyYXRlZCBwYW5lbHMoZURQIGFuZCBEU0kpLgo+IAo+IEFsbG93IE1JUEkgRFNJIHBvcnRzIHRv
-IGJlIHBhcnNlZCB0byBiZSBwYXJzZWQgbGlrZSBhbnkgb3RoZXIgRERJCj4gcG9ydC4KPiBUaGlz
-IHdpbGwgYmUgaGVscGZ1bCB0byBpbnRlZ3JhdGUgaW50byBqdXN0IG9uZSBmdW5jdGlvbiB0aGUg
-cGFyc2Ugb2YKPiBpbmZvcm1hdGlvbiBhYm91dCBpbnRlZ3JhdGVkIHBhbmVscyhlRFAgYW5kIERT
-SSkuCj4gCj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
-b20+Cj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4gU2lnbmVkLW9m
-Zi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+ClJldmll
-d2VkLWJ5OiBNYXR0IEF0d29vZCA8bWF0dGhldy5zLmF0d29vZEBpbnRlbC5jb20+Cj4gLS0tCj4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jIHwgMjIgKysrKysrKysr
-KysrKysrLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgNyBkZWxl
-dGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+
-IGluZGV4IDViNjkyMmUyOGVmMjguLjViYzJjOTQ0ZDk5YjQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMKPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+IEBAIC0xNzA5LDEwICsxNzA5LDEwIEBAIHN0
-YXRpYyBlbnVtIHBvcnQgZHZvX3BvcnRfdG9fcG9ydChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSwKPiAgCSAqIHNvIGxvb2sgZm9yIGFsbCB0aGUgcG9zc2libGUgdmFsdWVzIGZvciBlYWNo
-IHBvcnQuCj4gIAkgKi8KPiAgCXN0YXRpYyBjb25zdCBpbnQgcG9ydF9tYXBwaW5nW11bM10gPSB7
-Cj4gLQkJW1BPUlRfQV0gPSB7IERWT19QT1JUX0hETUlBLCBEVk9fUE9SVF9EUEEsIC0xIH0sCj4g
-LQkJW1BPUlRfQl0gPSB7IERWT19QT1JUX0hETUlCLCBEVk9fUE9SVF9EUEIsIC0xIH0sCj4gLQkJ
-W1BPUlRfQ10gPSB7IERWT19QT1JUX0hETUlDLCBEVk9fUE9SVF9EUEMsIC0xIH0sCj4gLQkJW1BP
-UlRfRF0gPSB7IERWT19QT1JUX0hETUlELCBEVk9fUE9SVF9EUEQsIC0xIH0sCj4gKwkJW1BPUlRf
-QV0gPSB7IERWT19QT1JUX0hETUlBLCBEVk9fUE9SVF9EUEEsIERWT19QT1JUX01JUElBIH0sCj4g
-KwkJW1BPUlRfQl0gPSB7IERWT19QT1JUX0hETUlCLCBEVk9fUE9SVF9EUEIsIERWT19QT1JUX01J
-UElCIH0sCj4gKwkJW1BPUlRfQ10gPSB7IERWT19QT1JUX0hETUlDLCBEVk9fUE9SVF9EUEMsIERW
-T19QT1JUX01JUElDIH0sCj4gKwkJW1BPUlRfRF0gPSB7IERWT19QT1JUX0hETUlELCBEVk9fUE9S
-VF9EUEQsIERWT19QT1JUX01JUElEIH0sCj4gIAkJW1BPUlRfRV0gPSB7IERWT19QT1JUX0hETUlF
-LCBEVk9fUE9SVF9EUEUsIERWT19QT1JUX0NSVCB9LAo+ICAJCVtQT1JUX0ZdID0geyBEVk9fUE9S
-VF9IRE1JRiwgRFZPX1BPUlRfRFBGLCAtMSB9LAo+ICAJCVtQT1JUX0ddID0geyBEVk9fUE9SVF9I
-RE1JRywgRFZPX1BPUlRfRFBHLCAtMSB9LAo+IEBAIC0xODY4LDYgKzE4NjgsMTIgQEAgaW50ZWxf
-Ymlvc19lbmNvZGVyX3N1cHBvcnRzX2VkcChjb25zdCBzdHJ1Y3QgaW50ZWxfYmlvc19lbmNvZGVy
-X2RhdGEgKmRldmRhdGEpCj4gIAkJZGV2ZGF0YS0+Y2hpbGQuZGV2aWNlX3R5cGUgJiBERVZJQ0Vf
-VFlQRV9JTlRFUk5BTF9DT05ORUNUT1I7Cj4gIH0KPiAgCj4gK3N0YXRpYyBib29sCj4gK2ludGVs
-X2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c19kc2koY29uc3Qgc3RydWN0IGludGVsX2Jpb3NfZW5jb2Rl
-cl9kYXRhICpkZXZkYXRhKQo+ICt7Cj4gKwlyZXR1cm4gZGV2ZGF0YS0+Y2hpbGQuZGV2aWNlX3R5
-cGUgJiBERVZJQ0VfVFlQRV9NSVBJX09VVFBVVDsKPiArfQo+ICsKPiAgc3RhdGljIGJvb2wgaXNf
-cG9ydF92YWxpZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgZW51bSBwb3J0IHBvcnQp
-Cj4gIHsKPiAgCS8qCj4gQEAgLTE4ODYsNyArMTg5Miw4IEBAIHN0YXRpYyB2b2lkIHBhcnNlX2Rk
-aV9wb3J0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+ICB7Cj4gIAljb25zdCBzdHJ1
-Y3QgY2hpbGRfZGV2aWNlX2NvbmZpZyAqY2hpbGQgPSAmZGV2ZGF0YS0+Y2hpbGQ7Cj4gIAlzdHJ1
-Y3QgZGRpX3ZidF9wb3J0X2luZm8gKmluZm87Cj4gLQlib29sIGlzX2R2aSwgaXNfaGRtaSwgaXNf
-ZHAsIGlzX2VkcCwgaXNfY3J0LCBzdXBwb3J0c190eXBlY191c2IsIHN1cHBvcnRzX3RidDsKPiAr
-CWJvb2wgaXNfZHZpLCBpc19oZG1pLCBpc19kcCwgaXNfZWRwLCBpc19jcnQsIHN1cHBvcnRzX3R5
-cGVjX3VzYjsKPiArCWJvb2wgc3VwcG9ydHNfdGJ0LCBpc19kc2k7Cj4gIAlpbnQgZHBfYm9vc3Rf
-bGV2ZWwsIGhkbWlfYm9vc3RfbGV2ZWw7Cj4gIAllbnVtIHBvcnQgcG9ydDsKPiAgCj4gQEAgLTE5
-MTcsMTYgKzE5MjQsMTcgQEAgc3RhdGljIHZvaWQgcGFyc2VfZGRpX3BvcnQoc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmk5MTUsCj4gIAlpc19jcnQgPSBpbnRlbF9iaW9zX2VuY29kZXJfc3VwcG9y
-dHNfY3J0KGRldmRhdGEpOwo+ICAJaXNfaGRtaSA9IGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0
-c19oZG1pKGRldmRhdGEpOwo+ICAJaXNfZWRwID0gaW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRz
-X2VkcChkZXZkYXRhKTsKPiArCWlzX2RzaSA9IGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c19k
-c2koZGV2ZGF0YSk7Cj4gIAo+ICAJc3VwcG9ydHNfdHlwZWNfdXNiID0gaW50ZWxfYmlvc19lbmNv
-ZGVyX3N1cHBvcnRzX3R5cGVjX3VzYihkZXZkYXRhKTsKPiAgCXN1cHBvcnRzX3RidCA9IGludGVs
-X2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c190YnQoZGV2ZGF0YSk7Cj4gIAo+ICAJZHJtX2RiZ19rbXMo
-Jmk5MTUtPmRybSwKPiAtCQkgICAgIlBvcnQgJWMgVkJUIGluZm86IENSVDolZCBEVkk6JWQgSERN
-STolZCBEUDolZCBlRFA6JWQgTFNQQ09OOiVkIFVTQi1UeXBlLUM6JWQgVEJUOiVkIERTQzolZFxu
-IiwKPiArCQkgICAgIlBvcnQgJWMgVkJUIGluZm86IENSVDolZCBEVkk6JWQgSERNSTolZCBEUDol
-ZCBlRFA6JWQgTFNQQ09OOiVkIFVTQi1UeXBlLUM6JWQgVEJUOiVkIERTQzolZCBEU0k6JWRcbiIs
-Cj4gIAkJICAgIHBvcnRfbmFtZShwb3J0KSwgaXNfY3J0LCBpc19kdmksIGlzX2hkbWksIGlzX2Rw
-LCBpc19lZHAsCj4gIAkJICAgIEhBU19MU1BDT04oaTkxNSkgJiYgY2hpbGQtPmxzcGNvbiwKPiAg
-CQkgICAgc3VwcG9ydHNfdHlwZWNfdXNiLCBzdXBwb3J0c190YnQsCj4gLQkJICAgIGRldmRhdGEt
-PmRzYyAhPSBOVUxMKTsKPiArCQkgICAgZGV2ZGF0YS0+ZHNjICE9IE5VTEwsIGlzX2RzaSk7Cj4g
-IAo+ICAJaWYgKGlzX2R2aSkgewo+ICAJCXU4IGRkY19waW47Cj4gLS0gCj4gMi4zMi4wCj4gCj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Thu, Jul 22, 2021 at 01:46:08PM +0100, Tvrtko Ursulin wrote:
+> 
+> On 16/07/2021 21:16, Matthew Brost wrote:
+> > With GuC virtual engines the physical engine which a request executes
+> > and completes on isn't known to the i915. Therefore we can't attach a
+> > request to a physical engines breadcrumbs. To work around this we create
+> > a single breadcrumbs per engine class when using GuC submission and
+> > direct all physical engine interrupts to this breadcrumbs.
+> > 
+> > v2:
+> >   (John H)
+> >    - Rework header file structure so intel_engine_mask_t can be in
+> >      intel_engine_types.h
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > CC: John Harrison <John.C.Harrison@Intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 41 +++++-------
+> >   drivers/gpu/drm/i915/gt/intel_breadcrumbs.h   | 16 ++++-
+> >   .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |  7 ++
+> >   drivers/gpu/drm/i915/gt/intel_engine.h        |  3 +
+> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 28 +++++++-
+> >   drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 +-
+> >   .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
+> >   drivers/gpu/drm/i915/gt/mock_engine.c         |  4 +-
+> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 67 +++++++++++++++++--
+> >   9 files changed, 133 insertions(+), 37 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> > index 38cc42783dfb..2007dc6f6b99 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> > @@ -15,28 +15,14 @@
+> >   #include "intel_gt_pm.h"
+> >   #include "intel_gt_requests.h"
+> > -static bool irq_enable(struct intel_engine_cs *engine)
+> > +static bool irq_enable(struct intel_breadcrumbs *b)
+> >   {
+> > -	if (!engine->irq_enable)
+> > -		return false;
+> > -
+> > -	/* Caller disables interrupts */
+> > -	spin_lock(&engine->gt->irq_lock);
+> > -	engine->irq_enable(engine);
+> > -	spin_unlock(&engine->gt->irq_lock);
+> > -
+> > -	return true;
+> > +	return intel_engine_irq_enable(b->irq_engine);
+> >   }
+> > -static void irq_disable(struct intel_engine_cs *engine)
+> > +static void irq_disable(struct intel_breadcrumbs *b)
+> >   {
+> > -	if (!engine->irq_disable)
+> > -		return;
+> > -
+> > -	/* Caller disables interrupts */
+> > -	spin_lock(&engine->gt->irq_lock);
+> > -	engine->irq_disable(engine);
+> > -	spin_unlock(&engine->gt->irq_lock);
+> > +	intel_engine_irq_disable(b->irq_engine);
+> >   }
+> >   static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+> > @@ -57,7 +43,7 @@ static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+> >   	WRITE_ONCE(b->irq_armed, true);
+> >   	/* Requests may have completed before we could enable the interrupt. */
+> > -	if (!b->irq_enabled++ && irq_enable(b->irq_engine))
+> > +	if (!b->irq_enabled++ && b->irq_enable(b))
+> >   		irq_work_queue(&b->irq_work);
+> >   }
+> > @@ -76,7 +62,7 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+> >   {
+> >   	GEM_BUG_ON(!b->irq_enabled);
+> >   	if (!--b->irq_enabled)
+> > -		irq_disable(b->irq_engine);
+> > +		b->irq_disable(b);
+> >   	WRITE_ONCE(b->irq_armed, false);
+> >   	intel_gt_pm_put_async(b->irq_engine->gt);
+> > @@ -281,7 +267,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+> >   	if (!b)
+> >   		return NULL;
+> > -	b->irq_engine = irq_engine;
+> > +	kref_init(&b->ref);
+> >   	spin_lock_init(&b->signalers_lock);
+> >   	INIT_LIST_HEAD(&b->signalers);
+> > @@ -290,6 +276,10 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+> >   	spin_lock_init(&b->irq_lock);
+> >   	init_irq_work(&b->irq_work, signal_irq_work);
+> > +	b->irq_engine = irq_engine;
+> > +	b->irq_enable = irq_enable;
+> > +	b->irq_disable = irq_disable;
+> > +
+> >   	return b;
+> >   }
+> > @@ -303,9 +293,9 @@ void intel_breadcrumbs_reset(struct intel_breadcrumbs *b)
+> >   	spin_lock_irqsave(&b->irq_lock, flags);
+> >   	if (b->irq_enabled)
+> > -		irq_enable(b->irq_engine);
+> > +		b->irq_enable(b);
+> >   	else
+> > -		irq_disable(b->irq_engine);
+> > +		b->irq_disable(b);
+> >   	spin_unlock_irqrestore(&b->irq_lock, flags);
+> >   }
+> > @@ -325,11 +315,14 @@ void __intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+> >   	}
+> >   }
+> > -void intel_breadcrumbs_free(struct intel_breadcrumbs *b)
+> > +void intel_breadcrumbs_free(struct kref *kref)
+> >   {
+> > +	struct intel_breadcrumbs *b = container_of(kref, typeof(*b), ref);
+> > +
+> >   	irq_work_sync(&b->irq_work);
+> >   	GEM_BUG_ON(!list_empty(&b->signalers));
+> >   	GEM_BUG_ON(b->irq_armed);
+> > +
+> >   	kfree(b);
+> >   }
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> > index 3ce5ce270b04..be0d4f379a85 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
+> > @@ -9,7 +9,7 @@
+> >   #include <linux/atomic.h>
+> >   #include <linux/irq_work.h>
+> > -#include "intel_engine_types.h"
+> > +#include "intel_breadcrumbs_types.h"
+> >   struct drm_printer;
+> >   struct i915_request;
+> > @@ -17,7 +17,7 @@ struct intel_breadcrumbs;
+> >   struct intel_breadcrumbs *
+> >   intel_breadcrumbs_create(struct intel_engine_cs *irq_engine);
+> > -void intel_breadcrumbs_free(struct intel_breadcrumbs *b);
+> > +void intel_breadcrumbs_free(struct kref *kref);
+> >   void intel_breadcrumbs_reset(struct intel_breadcrumbs *b);
+> >   void __intel_breadcrumbs_park(struct intel_breadcrumbs *b);
+> > @@ -48,4 +48,16 @@ void i915_request_cancel_breadcrumb(struct i915_request *request);
+> >   void intel_context_remove_breadcrumbs(struct intel_context *ce,
+> >   				      struct intel_breadcrumbs *b);
+> > +static inline struct intel_breadcrumbs *
+> > +intel_breadcrumbs_get(struct intel_breadcrumbs *b)
+> > +{
+> > +	kref_get(&b->ref);
+> > +	return b;
+> > +}
+> > +
+> > +static inline void intel_breadcrumbs_put(struct intel_breadcrumbs *b)
+> > +{
+> > +	kref_put(&b->ref, intel_breadcrumbs_free);
+> > +}
+> > +
+> >   #endif /* __INTEL_BREADCRUMBS__ */
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> > index 3a084ce8ff5e..72dfd3748c4c 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+> > @@ -7,10 +7,13 @@
+> >   #define __INTEL_BREADCRUMBS_TYPES__
+> >   #include <linux/irq_work.h>
+> > +#include <linux/kref.h>
+> >   #include <linux/list.h>
+> >   #include <linux/spinlock.h>
+> >   #include <linux/types.h>
+> > +#include "intel_engine_types.h"
+> > +
+> >   /*
+> >    * Rather than have every client wait upon all user interrupts,
+> >    * with the herd waking after every interrupt and each doing the
+> > @@ -29,6 +32,7 @@
+> >    * the overhead of waking that client is much preferred.
+> >    */
+> >   struct intel_breadcrumbs {
+> > +	struct kref ref;
+> >   	atomic_t active;
+> >   	spinlock_t signalers_lock; /* protects the list of signalers */
+> > @@ -42,7 +46,10 @@ struct intel_breadcrumbs {
+> >   	bool irq_armed;
+> >   	/* Not all breadcrumbs are attached to physical HW */
+> > +	intel_engine_mask_t	engine_mask;
+> >   	struct intel_engine_cs *irq_engine;
+> > +	bool	(*irq_enable)(struct intel_breadcrumbs *b);
+> > +	void	(*irq_disable)(struct intel_breadcrumbs *b);
+> >   };
+> >   #endif /* __INTEL_BREADCRUMBS_TYPES__ */
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> > index 9fec0aca5f4b..edbde6171bca 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> > @@ -212,6 +212,9 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+> >   void intel_engine_init_execlists(struct intel_engine_cs *engine);
+> > +bool intel_engine_irq_enable(struct intel_engine_cs *engine);
+> > +void intel_engine_irq_disable(struct intel_engine_cs *engine);
+> > +
+> >   static inline void __intel_engine_reset(struct intel_engine_cs *engine,
+> >   					bool stalled)
+> >   {
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > index b7292d5cb7da..d95d666407f5 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > @@ -739,7 +739,7 @@ static int engine_setup_common(struct intel_engine_cs *engine)
+> >   err_cmd_parser:
+> >   	i915_sched_engine_put(engine->sched_engine);
+> >   err_sched_engine:
+> > -	intel_breadcrumbs_free(engine->breadcrumbs);
+> > +	intel_breadcrumbs_put(engine->breadcrumbs);
+> >   err_status:
+> >   	cleanup_status_page(engine);
+> >   	return err;
+> > @@ -948,7 +948,7 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+> >   	GEM_BUG_ON(!list_empty(&engine->sched_engine->requests));
+> >   	i915_sched_engine_put(engine->sched_engine);
+> > -	intel_breadcrumbs_free(engine->breadcrumbs);
+> > +	intel_breadcrumbs_put(engine->breadcrumbs);
+> >   	intel_engine_fini_retire(engine);
+> >   	intel_engine_cleanup_cmd_parser(engine);
+> > @@ -1265,6 +1265,30 @@ bool intel_engines_are_idle(struct intel_gt *gt)
+> >   	return true;
+> >   }
+> > +bool intel_engine_irq_enable(struct intel_engine_cs *engine)
+> > +{
+> > +	if (!engine->irq_enable)
+> > +		return false;
+> > +
+> > +	/* Caller disables interrupts */
+> > +	spin_lock(&engine->gt->irq_lock);
+> > +	engine->irq_enable(engine);
+> > +	spin_unlock(&engine->gt->irq_lock);
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +void intel_engine_irq_disable(struct intel_engine_cs *engine)
+> > +{
+> > +	if (!engine->irq_disable)
+> > +		return;
+> > +
+> > +	/* Caller disables interrupts */
+> > +	spin_lock(&engine->gt->irq_lock);
+> > +	engine->irq_disable(engine);
+> > +	spin_unlock(&engine->gt->irq_lock);
+> > +}
+> > +
+> >   void intel_engines_reset_default_submission(struct intel_gt *gt)
+> >   {
+> >   	struct intel_engine_cs *engine;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > index 8ad304b2f2e4..03a81e8d87f4 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+> > @@ -21,7 +21,6 @@
+> >   #include "i915_pmu.h"
+> >   #include "i915_priolist_types.h"
+> >   #include "i915_selftest.h"
+> > -#include "intel_breadcrumbs_types.h"
+> >   #include "intel_sseu.h"
+> >   #include "intel_timeline_types.h"
+> >   #include "intel_uncore.h"
+> > @@ -63,6 +62,7 @@ struct i915_sched_engine;
+> >   struct intel_gt;
+> >   struct intel_ring;
+> >   struct intel_uncore;
+> > +struct intel_breadcrumbs;
+> >   typedef u8 intel_engine_mask_t;
+> >   #define ALL_ENGINES ((intel_engine_mask_t)~0ul)
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > index 920707e22eb0..abe48421fd7a 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > @@ -3407,7 +3407,7 @@ static void rcu_virtual_context_destroy(struct work_struct *wrk)
+> >   	intel_context_fini(&ve->context);
+> >   	if (ve->base.breadcrumbs)
+> > -		intel_breadcrumbs_free(ve->base.breadcrumbs);
+> > +		intel_breadcrumbs_put(ve->base.breadcrumbs);
+> >   	if (ve->base.sched_engine)
+> >   		i915_sched_engine_put(ve->base.sched_engine);
+> >   	intel_engine_free_request_pool(&ve->base);
+> > diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
+> > index 9203c766db80..fc5a65ab1937 100644
+> > --- a/drivers/gpu/drm/i915/gt/mock_engine.c
+> > +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+> > @@ -284,7 +284,7 @@ static void mock_engine_release(struct intel_engine_cs *engine)
+> >   	GEM_BUG_ON(timer_pending(&mock->hw_delay));
+> >   	i915_sched_engine_put(engine->sched_engine);
+> > -	intel_breadcrumbs_free(engine->breadcrumbs);
+> > +	intel_breadcrumbs_put(engine->breadcrumbs);
+> >   	intel_context_unpin(engine->kernel_context);
+> >   	intel_context_put(engine->kernel_context);
+> > @@ -376,7 +376,7 @@ int mock_engine_init(struct intel_engine_cs *engine)
+> >   	return 0;
+> >   err_breadcrumbs:
+> > -	intel_breadcrumbs_free(engine->breadcrumbs);
+> > +	intel_breadcrumbs_put(engine->breadcrumbs);
+> >   err_schedule:
+> >   	i915_sched_engine_put(engine->sched_engine);
+> >   	return -ENOMEM;
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 372e0dc7617a..9f28899ff17f 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -1076,6 +1076,9 @@ static void __guc_context_destroy(struct intel_context *ce)
+> >   		struct guc_virtual_engine *ve =
+> >   			container_of(ce, typeof(*ve), context);
+> > +		if (ve->base.breadcrumbs)
+> > +			intel_breadcrumbs_put(ve->base.breadcrumbs);
+> > +
+> >   		kfree(ve);
+> >   	} else {
+> >   		intel_context_free(ce);
+> > @@ -1366,6 +1369,62 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+> >   	.get_sibling = guc_virtual_get_sibling,
+> >   };
+> > +static bool
+> > +guc_irq_enable_breadcrumbs(struct intel_breadcrumbs *b)
+> > +{
+> > +	struct intel_engine_cs *sibling;
+> > +	intel_engine_mask_t tmp, mask = b->engine_mask;
+> > +	bool result = false;
+> > +
+> > +	for_each_engine_masked(sibling, b->irq_engine->gt, mask, tmp)
+> > +		result |= intel_engine_irq_enable(sibling);
+> > +
+> > +	return result;
+> > +}
+> > +
+> > +static void
+> > +guc_irq_disable_breadcrumbs(struct intel_breadcrumbs *b)
+> > +{
+> > +	struct intel_engine_cs *sibling;
+> > +	intel_engine_mask_t tmp, mask = b->engine_mask;
+> > +
+> > +	for_each_engine_masked(sibling, b->irq_engine->gt, mask, tmp)
+> > +		intel_engine_irq_disable(sibling);
+> > +}
+> > +
+> > +static void guc_init_breadcrumbs(struct intel_engine_cs *engine)
+> > +{
+> > +	int i;
+> > +
+> > +       /*
+> > +        * In GuC submission mode we do not know which physical engine a request
+> > +        * will be scheduled on, this creates a problem because the breadcrumb
+> > +        * interrupt is per physical engine. To work around this we attach
+> > +        * requests and direct all breadcrumb interrupts to the first instance
+> > +        * of an engine per class. In addition all breadcrumb interrupts are
+> > +	* enabled / disabled across an engine class in unison.
+> > +        */
+> > +	for (i = 0; i < MAX_ENGINE_INSTANCE; ++i) {
+> > +		struct intel_engine_cs *sibling =
+> > +			engine->gt->engine_class[engine->class][i];
+> > +
+> > +		if (sibling) {
+> > +			if (engine->breadcrumbs != sibling->breadcrumbs) {
+> > +				intel_breadcrumbs_put(engine->breadcrumbs);
+> 
+> So it's still only me that is bothered by the lazyness of the proposed init
+> path?
+> 
+
+IMO this really isn't all that bad nor the first place I've seen
+something like this done. In a quick 2 minute search of the i915 I found
+that we do basically the exact same thing in
+intel_engine_create_pinned_context for the ce->vm. I doubt this is the
+only place in the driver that does something similar to this too.
+
+> intel_engines_init
+>   for_each_engine
+>     engine_setup_common
+>       engine->breadcrumbs = intel_breadcrumbs_create(engine);
+>     intel_guc_submission_setup
+>       intel_breadcrumbs_put(engine->breadcrumbs);
+>       ...
+> 
+> In other words leaves the code to allocate N objects in common and then it
+> frees all but one of them, overriding vfuncs in the remaining instance.
+> 
+> Why not pull out the setup out of common, when it is obviously not common
+> any more?
+> 
+
+We can write down your concerns and revisit after this series merges. That
+will give a clear side by side of what we have and what you purpose. It
+should be easy at that point to make a decision and move on.
+
+Matt
+
+> Regards,
+> 
+> Tvrtko
+> 
+> > +				engine->breadcrumbs =
+> > +					intel_breadcrumbs_get(sibling->breadcrumbs);
+> > +			}
+> > +			break;
+> > +		}
+> > +	}
+> > +
+> > +	if (engine->breadcrumbs) {
+> > +		engine->breadcrumbs->engine_mask |= engine->mask;
+> > +		engine->breadcrumbs->irq_enable = guc_irq_enable_breadcrumbs;
+> > +		engine->breadcrumbs->irq_disable = guc_irq_disable_breadcrumbs;
+> > +	}
+> > +}
+> > +
+> >   static void sanitize_hwsp(struct intel_engine_cs *engine)
+> >   {
+> >   	struct intel_timeline *tl;
+> > @@ -1589,6 +1648,7 @@ int intel_guc_submission_setup(struct intel_engine_cs *engine)
+> >   	guc_default_vfuncs(engine);
+> >   	guc_default_irqs(engine);
+> > +	guc_init_breadcrumbs(engine);
+> >   	if (engine->class == RENDER_CLASS)
+> >   		rcs_submission_override(engine);
+> > @@ -1831,11 +1891,6 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count)
+> >   	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+> >   	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+> >   	ve->base.saturated = ALL_ENGINES;
+> > -	ve->base.breadcrumbs = intel_breadcrumbs_create(&ve->base);
+> > -	if (!ve->base.breadcrumbs) {
+> > -		kfree(ve);
+> > -		return ERR_PTR(-ENOMEM);
+> > -	}
+> >   	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
+> > @@ -1884,6 +1939,8 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count)
+> >   				sibling->emit_fini_breadcrumb;
+> >   			ve->base.emit_fini_breadcrumb_dw =
+> >   				sibling->emit_fini_breadcrumb_dw;
+> > +			ve->base.breadcrumbs =
+> > +				intel_breadcrumbs_get(sibling->breadcrumbs);
+> >   			ve->base.flags |= sibling->flags;
+> > 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
