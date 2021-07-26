@@ -1,82 +1,143 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A00A3D778D
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 15:55:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79913D6605
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 19:49:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87E026EA39;
-	Tue, 27 Jul 2021 13:55:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A96566E9B3;
+	Mon, 26 Jul 2021 17:49:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com
- [IPv6:2607:f8b0:4864:20::f2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687166EA39
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jul 2021 13:55:07 +0000 (UTC)
-Received: by mail-qv1-xf2a.google.com with SMTP id d17so6830113qvn.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jul 2021 06:55:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=resent-from:resent-date:resent-message-id:resent-to:date:from:to
- :subject:message-id:references:mime-version:content-disposition
- :in-reply-to:user-agent;
- bh=j+ccLjOAeIEZxyVBWcrGNrQukKQ4n8ePVx/MnT6scgg=;
- b=f/xBpih2raViHe/H2m9pa807ljnaB16Br1L01UWVwYLzmiANwGpE5coTbY/VR+sByq
- ncOFOLvUa6Qe4Ji7qY7V12nB6WUDkcUPudkISfdJUi9NXDpWy068bhvz8nQ3XswNEnDH
- gNQBblu30tuVPRvPtJWzEoLBiqyxuimlvBvnBhmBeXAzR4xIyL0wGx5jouzUp3bfhqMH
- k1oA3wBvJhkPJeu25Wo3j4gbT4Q6ZClMgcDF89JKDggELI3elOu9GxteEGM+mvr1tzhB
- aSVFAu47xaoBc4v23GZKEjw+kgt2jwQSEziRlxAFbKF3kbIWTLzILiqQ89Qtw//ZyYcG
- BkCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:resent-from:resent-date:resent-message-id
- :resent-to:date:from:to:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=j+ccLjOAeIEZxyVBWcrGNrQukKQ4n8ePVx/MnT6scgg=;
- b=QrOoakKcQa/ExFv2d7uVxGSQbkYbwll9nOR2fIQPy5m968/io71Xy6d0iVy/17C/Uy
- Nw3/KEhQ6nJ04TgYJg59wmTS55SllUFY4m5weEj+Qx9Vd+Np7agqbvvqruTtDU2zOfPm
- HyuETO7KhjUP+RFQEsnFNu54k/mmVmspBuR0om5xjAgpfWLiYqkSznHoC8K9AAZ+FVqF
- qr/NtNCL6adcWgh5sXKuNGLrv3jLw9s/uZwJndgq4+CwWx5DKF4qWGaXg8l3LaczpH2m
- Xt+bQIrOHh5PSyXckvoougJ2QIySd6CnKpQQAoX98EHde7WWPKPMG91YErdNneYm+5w+
- q/7A==
-X-Gm-Message-State: AOAM533DmPN0u2NkErKLwNbWdMlIXDxNI+utKnCZDU4LHthkUw8PcFwO
- koFT6Q0V7wP3IVnDs6eOgUwk4A==
-X-Google-Smtp-Source: ABdhPJz8TAQsGy287QA/GYwCGUngh2zA3AA9pFI7Wrbv244oxNBvN1cJctD94lZHQVkNZbHCkcjbbg==
-X-Received: by 2002:a05:6214:d08:: with SMTP id
- 8mr23087002qvh.32.1627394106381; 
- Tue, 27 Jul 2021 06:55:06 -0700 (PDT)
-Received: from localhost ([167.100.64.199])
- by smtp.gmail.com with ESMTPSA id l4sm1409754qtr.62.2021.07.27.06.55.05
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 27 Jul 2021 06:55:05 -0700 (PDT)
-Resent-From: Sean Paul <sean@poorly.run>
-Resent-Date: Tue, 27 Jul 2021 09:55:04 -0400
-Resent-Message-ID: <20210727135504.GA31127@art_vandelay>
-Resent-To: Jim Cromie <jim.cromie@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, jbaron@akamai.com
-Date: Thu, 22 Jul 2021 11:20:09 -0400
-From: Sean Paul <sean@poorly.run>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20210722152009.GZ22946@art_vandelay>
-References: <20210714175138.319514-1-jim.cromie@gmail.com>
- <20210714175138.319514-4-jim.cromie@gmail.com>
- <YPbPvm/xcBlTK1wq@phenom.ffwll.local>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85F826E9B1;
+ Mon, 26 Jul 2021 17:49:43 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="234148661"
+X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="234148661"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 10:49:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; d="scan'208";a="566260019"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga004.jf.intel.com with ESMTP; 26 Jul 2021 10:49:41 -0700
+Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Mon, 26 Jul 2021 10:49:41 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
+ via Frontend Transport; Mon, 26 Jul 2021 10:49:41 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.10; Mon, 26 Jul 2021 10:49:41 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oPi9RqJsUVIBBu4DYQdTcHwOX45oBe7IiM9/VJtVglO44UNvpUC5jV5uwTIEXPfx1/9ckwrKN+i8Q7R2TCGOKqo5oTpz7yoVf/i6hfYW2PVvtd3HBqNqf6mFz/RdQuYmlo+LrKZTowvdKQiTcK+/X68PADORXo6H1WrT7XwmurhbYu5It/smRjWdwmESEoF2nZsemkG6JR/5I5vKB96LTC4ojV9RdkfxeLb1FQ+9cR8YKUryNwW2RD5YpApZVPSQKqc7hB+8THGB3WwNC4cxT9tpF1AuOdORsOOoioYpoYExXvwWK+UzgWWpO6Q6SPqVaq/yH+7QnZ0fK+y4pZJusg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8pQbGg38h8DwMyQj3qlLzBdv2WwbM1Ktxb4Zo74wq6M=;
+ b=jBDYZijkh0Q3JCtAsSIiEzS5/gvY0MvhUkANgelowtgJPtPzAlATNMQgHGT1gJnMyLIrbQxtV2IOEWkRNNMNvREJsvus5lDOtZHLGsHpZ1Osm4CPItMZw7m39Wm++EoDeS1c4BId01KK/15fLaPx/SK+qLkyXnkrYdrfdS90dBm7J5+Ckv0WMGKXDLnSbrPzOgL2JJnMrHlsjep1LZC6pFvtGXFUDwj5RQ6FsS1oDcvIWlXQMrTYZVQOsNfFVJHOQXkJHLfY159giaoQalqx0XC4z0vDrNP8VRovts2Iz21Lsynd8N1QsqmsAlN+lFgZy4SGS4+lYJM4uLe18y90EQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8pQbGg38h8DwMyQj3qlLzBdv2WwbM1Ktxb4Zo74wq6M=;
+ b=i9Y6wo4K+MAEp3VJk8SQ/pPVATFiDwuTaIRLfkjgrWEJNVI4VggR88sycRwHCWMstBudzB4nLdcAPBWvZ1c6tUKcKl1vpZVG0P0v8O4UPw83jEL7jB3gtbBBydb2OmaWkyMpO4MPCUUBMGNHSZ6qoB5bvVaPXUMgA9vDaFXJthI=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ DM5PR1101MB2235.namprd11.prod.outlook.com (2603:10b6:4:52::15) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4331.29; Mon, 26 Jul 2021 17:49:40 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4017:e7ce:ef66:48d7]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4017:e7ce:ef66:48d7%9]) with mapi id 15.20.4352.031; Mon, 26 Jul 2021
+ 17:49:40 +0000
+To: Matthew Brost <matthew.brost@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20210722235426.31831-1-matthew.brost@intel.com>
+ <20210722235426.31831-26-matthew.brost@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <94fd8610-644b-2df3-92fd-1731db5cf30c@intel.com>
+Date: Mon, 26 Jul 2021 10:49:37 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
+In-Reply-To: <20210722235426.31831-26-matthew.brost@intel.com>
+Content-Language: en-US
+X-ClientProxiedBy: MW4PR03CA0359.namprd03.prod.outlook.com
+ (2603:10b6:303:dc::34) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YPbPvm/xcBlTK1wq@phenom.ffwll.local>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v3 3/5] drm/print: RFC add choice to use
- dynamic debug in drm-debug
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.65] (99.72.232.53) by
+ MW4PR03CA0359.namprd03.prod.outlook.com (2603:10b6:303:dc::34) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4352.26 via Frontend Transport; Mon, 26 Jul 2021 17:49:39 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 325e6d54-99c3-4e73-4107-08d9505dbde4
+X-MS-TrafficTypeDiagnostic: DM5PR1101MB2235:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR1101MB22350762D03C5A9CFCB94113F4E89@DM5PR1101MB2235.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:655;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZQyjduFloRv+Dr/v0G0eleNIAxcCyEG0a7GBvqkf7uSY9CB4h8mkI+kDI0RfWLC15zgi9OSsAlcynl7JDCKK0LkY6yi9VlNC6ST3i2xXHu28nMJthFh80PP2AWF50tjjJt8LpCFdUsozwBWpfRHX0DnvJQhBBK3EsptM3NwixUn9tLkpv1ue8IZCwsKvjglK1eSkQQVg+mjMeqgPOA+aKl7KxQ9ThOnH1AghezuUWniJOExKbY0B7evax8kS5aAuUACA8fuv5HAKF3LKmTEilmm0XISDIBYZg5ryAff2UhUAenXX4VSLzJqRd1KPg8A+U3rdNgWHObZs7VuN3dtbuFOLzzt9ZXhCPUuhuGv1HfzjNBgM3Ls0b3+ooQQIWvrhRsA9DZAefMBqw18esmyz+pN9Yy4bo/OJFc04ShueXQeMqQagEwBMLmtE0o6pI3Xblu88ePhAnKFBy1n0guHlFEm4Zoi89yn6PCnyXKqHas2DjbPhPQGht0HtQQariDnEnEatnZVRHu4zHfldwHzGCH9vwXk1PYEZGZAU52koNhqlq0RzUQOajYulZPrDy2Yw1SHk2tjF8etk29m2WDbs0nV1N+jAwpJ4pX22c2ua7KK5Bq1VDG1rq8DMwfjTnASJupMmnRs4qxjYn/Kom2Bj1TFbP4i3j/9Rkb+jTZLDs0dk2X5IYmioaR3aNcUGmPr5wRWtSUPylq7dMbZ32EIi0MBBF4SquNxEbBVWw56cwpHne6/jAHzcF35L2g0wmIrZ
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(376002)(39860400002)(396003)(366004)(346002)(53546011)(66476007)(6486002)(450100002)(5660300002)(478600001)(956004)(31696002)(38100700002)(66556008)(316002)(66946007)(2906002)(186003)(26005)(30864003)(36756003)(2616005)(16576012)(83380400001)(86362001)(8676002)(8936002)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U0VKdXJJQitBUUVWbUZvVW9iNzBQWHRWZUN3MnM5ZTd2c1QwZUtVWkxZeDNJ?=
+ =?utf-8?B?bmFTamZ4R2xZZEl0TmJ5YU1qMkY4c3JpREJrSks4ZHg3RTJCZDRXQTRFVEtU?=
+ =?utf-8?B?N2llbzlwaTN0eWRIZ0k2SnZBWGpnRWJUUmRJRHUzcS93eUJJL09ZREM4NzNo?=
+ =?utf-8?B?aTMvZE0zWDBYTFc5RnFQOWxaOUQzR0M0cVJXdHpWOTN4M3hhelRlRXI2QTN3?=
+ =?utf-8?B?emhxUjVDZ1RtM1ZLZ281cGRicElUakVrR0Q5ckd0c0crdW8vNUJvcGQvL09w?=
+ =?utf-8?B?YWJvczNpUVVaSkFyeUFWMkM1Ym9TTU54MHd2c28vTHFkaGhTQWR3TVZOZVpw?=
+ =?utf-8?B?SGowanRmaVRlMGg5cUEwSUpPUExlT3F1OVdSV1A0R0RrNUw3MEk2bm9rRFZ1?=
+ =?utf-8?B?S2EwRzh1aDd0UFMxS3g2SDhIbmRQa0plUGowQ3MzS0J0cGxuNTh4UHZoOFh0?=
+ =?utf-8?B?SXRtYmp4WHhVR1JHTzVibDRjQmhhd1ZYb0NTNlN4dnFVUk5TbytqaDU3MTFu?=
+ =?utf-8?B?eFVPT0t1eWNNM29BTEkwVkxPVlJQM1ZXVUlzTWVqRDNRdW1PbTNmZlhsWDBI?=
+ =?utf-8?B?bUhnT2NTUjYvbEpuZE1waURsZUtkWDk2M1BocmFKcTl6ZlI4SllPa2xkM283?=
+ =?utf-8?B?eUtvcXVEN1ZTK2dCNUdVK2JLUHNaZFFkRFUyY3pkenIzdEJDbVB1ZkpvVjZR?=
+ =?utf-8?B?RjNvZ3F1amFaMWJQYmRCNzNhei85WGQweFZGTkdaVlVYd0xmeHNZYmh0TXFX?=
+ =?utf-8?B?eURZWndvUS9YN2NKWUNSQ0RUTWpOM0ZscndDRnhFRmlnbWVCNTN6NmpTbzlD?=
+ =?utf-8?B?YkpzUkZBTzc5Lyt4TjQ4N3JzdTBjcTdHOW4ybkVRL1dCZklaSTNXYm9adkQy?=
+ =?utf-8?B?YW5RU3Q4em1XV3c1N0xuZUJWaG5JZCtmRm8wMUhxR0NubVhNbVliSGtTaytk?=
+ =?utf-8?B?UDNLMDc5N0hiNk9KYlFMV3pHRDJaeStwRDJzeUFjWGpDTTBtZk05SUhNRmpH?=
+ =?utf-8?B?NnhjVitpZDRqejBxdWg1Z0VUL1IxU05GbWQyWkdzaW96N0J3VWNURkZ4Vkk1?=
+ =?utf-8?B?WEY4cmw5UnEvbmJ1R0Qyb08xazFtMEEzcVFPSTNyNjhFY2s1WmRLRlBQSnEy?=
+ =?utf-8?B?eVI4TnFCZC9rb01DRm0wb0pocmVZcU5sK0puZSs0SDl0NU0va2diVWN0Zmly?=
+ =?utf-8?B?cWJEaVhvUWpsZHFDNWZjOUJ5Zm9lUG9DanV3ZUU0VlQzeVAwdTVEUXp0TmJC?=
+ =?utf-8?B?cXhQWTY0OUxiVjRHM0xid1RSMk43QTFqTWIrR2dlbFZtSy9DbUd5UlduOTRx?=
+ =?utf-8?B?dStHUkJtRmNvSUNFbTZUcFdLNGJTcEVadmZPeEQwcDEyeCsrQkFJekJ2TkZK?=
+ =?utf-8?B?T0IyMFp5VTFiak10Zld0U2g3VUdlNmZsbnJaeXB0c2dGWHVNS0lCdnNDVWdu?=
+ =?utf-8?B?clJWK05UTGdmYUw2WnJqaWl6THV6RUpyMDVLdkJVOFQ5RE0vekkvbkcwalhh?=
+ =?utf-8?B?c1gyci8zaUhsV2hZUVZYN281ZFl2c3o5di8vUytkNXVOR2g0VVJGenBLS0Fy?=
+ =?utf-8?B?NEJiVko2Q29saThhOVU2V2xxNVpUMy9TY01TVllEb0pUbjZndmhNeW5JOTAx?=
+ =?utf-8?B?ZG5ndzNDMUFacTcvaEFpdDVvZWFPOW1pdmhzcGZkUGcrYnZQUUJCQVkwbVBL?=
+ =?utf-8?B?cHhOZis3ZkRPRWRYVTFMV1dnY0V5TkNlbm4xU1VjVWtlYk1DcEtDYkFlb3pi?=
+ =?utf-8?Q?N/00tCZzhOgzgYFqdeMGkQje0drw9zSDCvUgRyw?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 325e6d54-99c3-4e73-4107-08d9505dbde4
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2021 17:49:39.9600 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lVQ2daFj/9vgEJ0IDYxRoFSN9+B5VgPwYfkKJhJPLUwg9nJXDYLBAWAY76QRFWO6kCva3g5RiKCSxeAprKVRd6Hi9WLv6Yv3Pt9PJD4/yzc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2235
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH 25/33] drm/i915/guc: Support request
+ cancellation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,548 +150,512 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 20, 2021 at 03:29:34PM +0200, Daniel Vetter wrote:
-> On Wed, Jul 14, 2021 at 11:51:36AM -0600, Jim Cromie wrote:
-> > drm's debug system uses distinct categories of debug messages, encoded
-> > in an enum (DRM_UT_<CATEGORY>), which are mapped to bits in drm.debug.
-> > drm_debug_enabled() does a lot of unlikely bit-mask checks on
-> > drm.debug; we can use dynamic debug instead, and get all that
-> > static_key/jump_label goodness.
-
-Hi Jim,
-Thanks for your patches! Daniel pointed me at them in response to my drm_trace
-patchset (https://patchwork.freedesktop.org/series/78133/). I'd love to get your
-input on it. I think the 2 sets are mostly compatible, we'd just need to keep
-drm_dev_dbg and do the CONFIG check in the function beside the trace_enabled
-checks.
-
-> > 
-> > Dynamic debug has no concept of category, but we can map the DRM_UT_*
-> > to a set of distinct prefixes; "drm:core:", "drm:kms:" etc, and
-> > prepend them to the given formats.
-> > 
-> > Then we can use:
-> >   `echo module drm format ^drm:core: +p > control`
-> > 
-> > to enable every such "prefixed" pr_debug with one query.  This new
-> > prefix changes pr_debug's output, so is user visible, but it seems
-> > unlikely to cause trouble for log watchers; they're not relying on the
-> > absence of class prefix strings.
-> > 
-> > This conversion yields ~2100 new callsites on my i7/i915 laptop:
-> > 
-> >   dyndbg: 195 debug prints in module drm_kms_helper
-> >   dyndbg: 298 debug prints in module drm
-> >   dyndbg: 1630 debug prints in module i915
-> > 
-> > CONFIG_DRM_USE_DYNAMIC_DEBUG enables this, and is available if
-> > CONFIG_DYNAMIC_DEBUG or CONFIG_DYNAMIC_DEBUG_CORE is chosen, and if
-> > CONFIG_JUMP_LABEL is enabled; this because its required to get the
-> > promised optimizations.
-> > 
-> > The indirection/switchover is layered into the macro scheme:
-> > 
-> > 0. A new callback on drm.debug which calls dynamic_debug_exec_queries
-> >    to map those bits to specific query/commands
-> >    dynamic_debug_exec_queries("format ^drm:kms: +p", "drm*");
-> >    here for POC, this should be in dynamic_debug.c
-> >    with a MODULE_PARAM_DEBUG_BITMAP(__drm_debug, { "prefix-1", "desc-1" }+)
-> 
-> This is really awesome. 
 
 
-Agreed, this is a very clever way of merging the 2 worlds!
+On 7/22/2021 4:54 PM, Matthew Brost wrote:
+> This adds GuC backend support for i915_request_cancel(), which in turn
+> makes CONFIG_DRM_I915_REQUEST_TIMEOUT work.
+>
+> This implemenation makes use of fence while there is likely simplier
+> options. A fence was choosen because of another feature coming soon
+> which requires a user to block on a context until scheduling is
+> disabled. In that case we return the fence to the user and the user can
+> wait on that fence.
+>
+> v2:
+>   (Daniele)
+>    - A comment about locking the blocked incr / decr
+>    - A comments about the use of the fence
+>    - Update commit message explaining why fence
+>    - Delete redundant check blocked count in unblock function
+>    - Ring buffer implementation
+>    - Comment about blocked in submission path
+>    - Shorter rpm path
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_context.c       |  13 ++
+>   drivers/gpu/drm/i915/gt/intel_context.h       |   7 +
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |   7 +
+>   .../drm/i915/gt/intel_execlists_submission.c  |  18 ++
+>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  16 ++
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 175 ++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_request.c           |  14 +-
+>   7 files changed, 237 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 237b70e98744..477c42d7d693 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -366,6 +366,12 @@ static int __intel_context_active(struct i915_active *active)
+>   	return 0;
+>   }
+>   
+> +static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
+> +				 enum i915_sw_fence_notify state)
+> +{
+> +	return NOTIFY_DONE;
+> +}
+> +
+>   void
+>   intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>   {
+> @@ -399,6 +405,13 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>   	ce->guc_id = GUC_INVALID_LRC_ID;
+>   	INIT_LIST_HEAD(&ce->guc_id_link);
+>   
+> +	/*
+> +	 * Initialize fence to be complete as this is expected to be complete
+> +	 * unless there is a pending schedule disable outstanding.
+> +	 */
+> +	i915_sw_fence_init(&ce->guc_blocked, sw_fence_dummy_notify);
+> +	i915_sw_fence_commit(&ce->guc_blocked);
+> +
+>   	i915_active_init(&ce->active,
+>   			 __intel_context_active, __intel_context_retire, 0);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index 814d9277096a..876bdb08303c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -70,6 +70,13 @@ intel_context_is_pinned(struct intel_context *ce)
+>   	return atomic_read(&ce->pin_count);
+>   }
+>   
+> +static inline void intel_context_cancel_request(struct intel_context *ce,
+> +						struct i915_request *rq)
+> +{
+> +	GEM_BUG_ON(!ce->ops->cancel_request);
+> +	return ce->ops->cancel_request(ce, rq);
+> +}
+> +
+>   /**
+>    * intel_context_unlock_pinned - Releases the earlier locking of 'pinned' status
+>    * @ce - the context
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index 57c19ee3e313..005a64f2afa7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -13,6 +13,7 @@
+>   #include <linux/types.h>
+>   
+>   #include "i915_active_types.h"
+> +#include "i915_sw_fence.h"
+>   #include "i915_utils.h"
+>   #include "intel_engine_types.h"
+>   #include "intel_sseu.h"
+> @@ -42,6 +43,9 @@ struct intel_context_ops {
+>   	void (*unpin)(struct intel_context *ce);
+>   	void (*post_unpin)(struct intel_context *ce);
+>   
+> +	void (*cancel_request)(struct intel_context *ce,
+> +			       struct i915_request *rq);
+> +
+>   	void (*enter)(struct intel_context *ce);
+>   	void (*exit)(struct intel_context *ce);
+>   
+> @@ -184,6 +188,9 @@ struct intel_context {
+>   	 * GuC ID link - in list when unpinned but guc_id still valid in GuC
+>   	 */
+>   	struct list_head guc_id_link;
+> +
+> +	/* GuC context blocked fence */
+> +	struct i915_sw_fence guc_blocked;
+>   };
+>   
+>   #endif /* __INTEL_CONTEXT_TYPES__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 60427b106bad..e7b42222b71d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -114,6 +114,7 @@
+>   #include "gen8_engine_cs.h"
+>   #include "intel_breadcrumbs.h"
+>   #include "intel_context.h"
+> +#include "intel_engine_heartbeat.h"
+>   #include "intel_engine_pm.h"
+>   #include "intel_engine_stats.h"
+>   #include "intel_execlists_submission.h"
+> @@ -2587,11 +2588,26 @@ static int execlists_context_alloc(struct intel_context *ce)
+>   	return lrc_alloc(ce, ce->engine);
+>   }
+>   
+> +static void execlists_context_cancel_request(struct intel_context *ce,
+> +					     struct i915_request *rq)
+> +{
+> +	struct intel_engine_cs *engine = NULL;
+> +
+> +	i915_request_active_engine(rq, &engine);
+> +
+> +	if (engine && intel_engine_pulse(engine))
+> +		intel_gt_handle_error(engine->gt, engine->mask, 0,
+> +				      "request cancellation by %s",
+> +				      current->comm);
+> +}
+> +
+>   static const struct intel_context_ops execlists_context_ops = {
+>   	.flags = COPS_HAS_INFLIGHT,
+>   
+>   	.alloc = execlists_context_alloc,
+>   
+> +	.cancel_request = execlists_context_cancel_request,
+> +
+>   	.pre_pin = execlists_context_pre_pin,
+>   	.pin = execlists_context_pin,
+>   	.unpin = lrc_unpin,
+> @@ -3604,6 +3620,8 @@ static const struct intel_context_ops virtual_context_ops = {
+>   
+>   	.alloc = virtual_context_alloc,
+>   
+> +	.cancel_request = execlists_context_cancel_request,
+> +
+>   	.pre_pin = virtual_context_pre_pin,
+>   	.pin = virtual_context_pin,
+>   	.unpin = lrc_unpin,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 05bb9f449df1..2958e2fae380 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -16,6 +16,7 @@
+>   #include "intel_reset.h"
+>   #include "intel_ring.h"
+>   #include "shmem_utils.h"
+> +#include "intel_engine_heartbeat.h"
+>   
+>   /* Rough estimate of the typical request size, performing a flush,
+>    * set-context and then emitting the batch.
+> @@ -604,9 +605,24 @@ static void ring_context_ban(struct intel_context *ce,
+>   		}
+>   }
+>   
+> +static void ring_context_cancel_request(struct intel_context *ce,
+> +					struct i915_request *rq)
+> +{
+> +	struct intel_engine_cs *engine = NULL;
+> +
+> +	i915_request_active_engine(rq, &engine);
+> +
+> +	if (engine && intel_engine_pulse(engine))
+> +		intel_gt_handle_error(engine->gt, engine->mask, 0,
+> +				      "request cancellation by %s",
+> +				      current->comm);
+> +}
+> +
+>   static const struct intel_context_ops ring_context_ops = {
+>   	.alloc = ring_context_alloc,
+>   
+> +	.cancel_request = ring_context_cancel_request,
+> +
+>   	.ban = ring_context_ban,
+>   
+>   	.pre_pin = ring_context_pre_pin,
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 3b9ba3bdd425..a26754b9b940 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -81,6 +81,11 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count);
+>    */
+>   #define SCHED_STATE_NO_LOCK_ENABLED			BIT(0)
+>   #define SCHED_STATE_NO_LOCK_PENDING_ENABLE		BIT(1)
+> +#define SCHED_STATE_NO_LOCK_BLOCKED_SHIFT		2
+> +#define SCHED_STATE_NO_LOCK_BLOCKED \
+> +	BIT(SCHED_STATE_NO_LOCK_BLOCKED_SHIFT)
+> +#define SCHED_STATE_NO_LOCK_BLOCKED_MASK \
+> +	(0xffff << SCHED_STATE_NO_LOCK_BLOCKED_SHIFT)
+>   static inline bool context_enabled(struct intel_context *ce)
+>   {
+>   	return (atomic_read(&ce->guc_sched_state_no_lock) &
+> @@ -116,6 +121,30 @@ static inline void clr_context_pending_enable(struct intel_context *ce)
+>   		   &ce->guc_sched_state_no_lock);
+>   }
+>   
+> +static inline u32 context_blocked(struct intel_context *ce)
+> +{
+> +	return (atomic_read(&ce->guc_sched_state_no_lock) &
+> +		SCHED_STATE_NO_LOCK_BLOCKED_MASK) >>
+> +		SCHED_STATE_NO_LOCK_BLOCKED_SHIFT;
+> +}
+> +
+> +static inline void incr_context_blocked(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->engine->sched_engine->lock);
+> +	atomic_add(SCHED_STATE_NO_LOCK_BLOCKED,
+> +		   &ce->guc_sched_state_no_lock);
+> +	GEM_BUG_ON(!context_blocked(ce));	/* Overflow check */
+> +}
+> +
+> +static inline void decr_context_blocked(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->engine->sched_engine->lock);
+> +	GEM_BUG_ON(!context_blocked(ce));
+> +
+> +	atomic_sub(SCHED_STATE_NO_LOCK_BLOCKED,
+> +		   &ce->guc_sched_state_no_lock);
+> +}
+> +
+>   /*
+>    * Below is a set of functions which control the GuC scheduling state which
+>    * require a lock, aside from the special case where the functions are called
+> @@ -404,6 +433,14 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+>   		if (unlikely(err))
+>   			goto out;
+>   	}
+> +
+> +	/*
+> +	 * The request / context will be run on the hardware when scheduling
+> +	 * gets enabled in the unblock.
+> +	 */
+> +	if (unlikely(context_blocked(ce)))
+> +		goto out;
+> +
+>   	enabled = context_enabled(ce);
+>   
+>   	if (!enabled) {
+> @@ -532,6 +569,7 @@ static void __guc_context_destroy(struct intel_context *ce);
+>   static void release_guc_id(struct intel_guc *guc, struct intel_context *ce);
+>   static void guc_signal_context_fence(struct intel_context *ce);
+>   static void guc_cancel_context_requests(struct intel_context *ce);
+> +static void guc_blocked_fence_complete(struct intel_context *ce);
+>   
+>   static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+>   {
+> @@ -579,6 +617,10 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+>   			}
+>   			intel_context_sched_disable_unpin(ce);
+>   			atomic_dec(&guc->outstanding_submission_g2h);
+> +			spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +			guc_blocked_fence_complete(ce);
+> +			spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+>   			intel_context_put(ce);
+>   		}
+>   	}
+> @@ -1353,6 +1395,21 @@ static void guc_context_post_unpin(struct intel_context *ce)
+>   	lrc_post_unpin(ce);
+>   }
+>   
+> +static void __guc_context_sched_enable(struct intel_guc *guc,
+> +				       struct intel_context *ce)
+> +{
+> +	u32 action[] = {
+> +		INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_SET,
+> +		ce->guc_id,
+> +		GUC_CONTEXT_ENABLE
+> +	};
+> +
+> +	trace_intel_context_sched_enable(ce);
+> +
+> +	guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> +				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true);
+> +}
+> +
+>   static void __guc_context_sched_disable(struct intel_guc *guc,
+>   					struct intel_context *ce,
+>   					u16 guc_id)
+> @@ -1371,17 +1428,130 @@ static void __guc_context_sched_disable(struct intel_guc *guc,
+>   				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true);
+>   }
+>   
+> +static void guc_blocked_fence_complete(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +
+> +	if (!i915_sw_fence_done(&ce->guc_blocked))
+> +		i915_sw_fence_complete(&ce->guc_blocked);
+> +}
+> +
+> +static void guc_blocked_fence_reinit(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +	GEM_BUG_ON(!i915_sw_fence_done(&ce->guc_blocked));
+> +
+> +	/*
+> +	 * This fence is always complete unless a pending schedule disable is
+> +	 * outstanding. We arm the fence here and complete it when we receive
+> +	 * the pending schedule disable complete message.
+> +	 */
+> +	i915_sw_fence_fini(&ce->guc_blocked);
+> +	i915_sw_fence_reinit(&ce->guc_blocked);
+> +	i915_sw_fence_await(&ce->guc_blocked);
+> +	i915_sw_fence_commit(&ce->guc_blocked);
+> +}
+> +
+>   static u16 prep_context_pending_disable(struct intel_context *ce)
+>   {
+>   	lockdep_assert_held(&ce->guc_state.lock);
+>   
+>   	set_context_pending_disable(ce);
+>   	clr_context_enabled(ce);
+> +	guc_blocked_fence_reinit(ce);
+>   	intel_context_get(ce);
+>   
+>   	return ce->guc_id;
+>   }
+>   
+> +static struct i915_sw_fence *guc_context_block(struct intel_context *ce)
+> +{
+> +	struct intel_guc *guc = ce_to_guc(ce);
+> +	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
+> +	unsigned long flags;
+> +	struct intel_runtime_pm *runtime_pm = ce->engine->uncore->rpm;
+> +	intel_wakeref_t wakeref;
+> +	u16 guc_id;
+> +	bool enabled;
+> +
+> +	/* Sync with submission path and unblock */
+> +	spin_lock_irqsave(&sched_engine->lock, flags);
+> +	incr_context_blocked(ce);
+> +	spin_unlock_irqrestore(&sched_engine->lock, flags);
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +	enabled = context_enabled(ce);
+> +	if (unlikely(!enabled || submission_disabled(guc))) {
+> +		if (enabled)
+> +			clr_context_enabled(ce);
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +		return &ce->guc_blocked;
+> +	}
+> +
+> +	/*
+> +	 * We add +2 here as the schedule disable complete CTB handler calls
+> +	 * intel_context_sched_disable_unpin (-2 to pin_count).
+> +	 */
+> +	atomic_add(2, &ce->pin_count);
+> +
+> +	guc_id = prep_context_pending_disable(ce);
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +	with_intel_runtime_pm(runtime_pm, wakeref)
+> +		__guc_context_sched_disable(guc, ce, guc_id);
+> +
+> +	return &ce->guc_blocked;
+> +}
+> +
+> +static void guc_context_unblock(struct intel_context *ce)
+> +{
+> +	struct intel_guc *guc = ce_to_guc(ce);
+> +	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
+> +	unsigned long flags;
+> +	struct intel_runtime_pm *runtime_pm = ce->engine->uncore->rpm;
+> +	intel_wakeref_t wakeref;
+> +
+> +	GEM_BUG_ON(context_enabled(ce));
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +	if (unlikely(submission_disabled(guc) ||
+> +		     !intel_context_is_pinned(ce) ||
+> +		     context_pending_disable(ce) ||
+> +		     context_blocked(ce) > 1)) {
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +		goto out;
+> +	}
+> +
+> +	set_context_pending_enable(ce);
+> +	set_context_enabled(ce);
+> +	intel_context_get(ce);
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +	with_intel_runtime_pm(runtime_pm, wakeref)
+> +		__guc_context_sched_enable(guc, ce);
+> +
+> +out:
+> +	spin_lock_irqsave(&sched_engine->lock, flags);
+> +	decr_context_blocked(ce);
+> +	spin_unlock_irqrestore(&sched_engine->lock, flags);.
 
+As we discussed offline, it might be better to cover the whole 
+block/unblock logic with ce->guc_state.lock. That way we can make sure 
+we're not racing the incr/decr calls with the swapping locks.
+Apart from this, the patch LGTM.
 
-> For merging I think we need to discuss with dyn
-> debug folks whether they're all ok with this, but it's exported already
-> should should be fine.
+Daniele
 
-I wonder if this is a good time to reconsider our drm categories. IMO they're
-overly broad and it's hard to get the right information without subscribing to
-the firehose. It seems like dyndbg might be a good opportunity to unlock
-subcategories of log messages.
+> +}
+> +
+> +static void guc_context_cancel_request(struct intel_context *ce,
+> +				       struct i915_request *rq)
+> +{
+> +	if (i915_sw_fence_signaled(&rq->submit)) {
+> +		struct i915_sw_fence *fence = guc_context_block(ce);
+> +
+> +		i915_sw_fence_wait(fence);
+> +		if (!i915_request_completed(rq)) {
+> +			__i915_request_skip(rq);
+> +			guc_reset_state(ce, intel_ring_wrap(ce->ring, rq->head),
+> +					true);
+> +		}
+> +		guc_context_unblock(ce);
+> +	}
+> +}
+> +
+>   static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
+>   						 u16 guc_id,
+>   						 u32 preemption_timeout)
+> @@ -1641,6 +1811,8 @@ static const struct intel_context_ops guc_context_ops = {
+>   
+>   	.ban = guc_context_ban,
+>   
+> +	.cancel_request = guc_context_cancel_request,
+> +
+>   	.enter = intel_context_enter_engine,
+>   	.exit = intel_context_exit_engine,
+>   
+> @@ -1836,6 +2008,8 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+>   
+>   	.ban = guc_context_ban,
+>   
+> +	.cancel_request = guc_context_cancel_request,
+> +
+>   	.enter = guc_virtual_context_enter,
+>   	.exit = guc_virtual_context_exit,
+>   
+> @@ -2294,6 +2468,7 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+>   		clr_context_banned(ce);
+>   		clr_context_pending_disable(ce);
+>   		__guc_signal_context_fence(ce);
+> +		guc_blocked_fence_complete(ce);
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   
+>   		if (banned) {
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 28f38b02a5d2..541a20371502 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -710,18 +710,6 @@ void i915_request_unsubmit(struct i915_request *request)
+>   	spin_unlock_irqrestore(&engine->sched_engine->lock, flags);
+>   }
+>   
+> -static void __cancel_request(struct i915_request *rq)
+> -{
+> -	struct intel_engine_cs *engine = NULL;
+> -
+> -	i915_request_active_engine(rq, &engine);
+> -
+> -	if (engine && intel_engine_pulse(engine))
+> -		intel_gt_handle_error(engine->gt, engine->mask, 0,
+> -				      "request cancellation by %s",
+> -				      current->comm);
+> -}
+> -
+>   void i915_request_cancel(struct i915_request *rq, int error)
+>   {
+>   	if (!i915_request_set_error_once(rq, error))
+> @@ -729,7 +717,7 @@ void i915_request_cancel(struct i915_request *rq, int error)
+>   
+>   	set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
+>   
+> -	__cancel_request(rq);
+> +	intel_context_cancel_request(rq->context, rq);
+>   }
+>   
+>   static int __i915_sw_fence_call
 
-More concretely, on CrOS we can't subscribe to atomic or state categories since
-they're too noisy. However if there was a "fail" subcategory which dumped
-state/atomic logs on check failures, that would be really compelling. Something
-like:
-
-        drm:atomic:fail vs. drm:atomic
-
-Both would be picked up if (drm.debug & DRM_DBG_ATOMIC), however it would allow
-dyndbg-aware clients to get better logs without having a huge table of
-individual log signatures.
-
-I'm not sure how tightly we'd want to control the subcategories. It could be
-strict like the categories spelled out in drm_print.h, or an open prefix arg to
-drm_dev_dbg. I suspect we'd want the former, but would want to be careful to
-provide enough flexibility to properly 
-
-Of course, none of this needs to be decided to land this initial support, it can
-be bolted on later easily enough (I think).
-
-
-> 
-> > 
-> > 1. A "converted" or "classy" DRM_UT_* map
-> > 
-> >    based on:   DRM_UT_* ( symbol => bit-mask )
-> >    named it:  cDRM_UT_* ( symbol => format-class-prefix-string )
-> > 
-> >    So cDRM_UT_* is either:
-> >    legacy: cDRM_UT_* <-- DRM_UT_*   ( !CONFIG_DRM_USE_DYNAMIC_DEBUG )
-> >    enabled:
-> >     #define cDRM_UT_KMS    "drm:kms: "
-> >     #define cDRM_UT_PRIME  "drm:prime: "
-> >     #define cDRM_UT_ATOMIC "drm:atomic: "
-> 
-> the cDRM looks a bit funny, plus I don't eve have an idea what _UT_ means
-> (and git history isn't helpful either). What about just using
-> DRM_DBG_CLASS_ as the prefix here for these indirection macros, i.e.
-> DRM_DBG_CLASS_KMS.
-> 
-> Also would be really nice if we could make these a table or something, but
-> I guess with the macro magic that's not possible.
-> 
-> > 
-> >    DRM_UT_* are unchanged, since theyre used in drm_debug_enabled()
-> >    and elsewhere.
-> 
-> I think for the production version of these we need to retire/deprecate
-> them, at least for drm core. Otherwise you have an annoying mismatch
-> between drm.debug module option and dyn debug.
-> 
-> > 
-> > 2. drm_dev_dbg & drm_debug are renamed (prefixed with '_')
-> > 
-> >    old names are now macros, calling either:
-> >      legacy:  -> to renamed fn
-> >      enabled: -> dev_dbg & pr_debug, with cDRM-prefix # format.
-> > 
-> >    these names are used in a fat layer of macros (3) which supply the
-> >    category; those macros are used throughout drm code, yielding the
-> >    ~2100 new prdbgs reported above.
-> > 
-> > 3. names in (2) are invoked by DRM_DEBUG_<Category>, drm_dbg_<Category>.
-> > 
-> >    all these macros get "converted" to use cDRM_UT_*
-> >    to get right token type for both !/!! DRM_USE_DYNAMIC_DEBUG
-> > 
-> > 4. simplification of __DRM_DEFINE_DBG_RATELIMITED macro
-> > 
-> >    remove DRM_UT_ ## KMS as extra indirection
-> >    pass both DRM_UT & cDRM_UT, for drm_debug_enabled & drm_dev_dbg
-> 
-> For merging, can we pull out the renames and reorgs from this patch, and
-> then maybe also the reorder the next patch in your series here to be
-> before the dyn debug stuff?
-> 
-> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> > ---
-> >  drivers/gpu/drm/Kconfig     |  13 +++++
-> >  drivers/gpu/drm/drm_print.c |  75 ++++++++++++++++++++++++--
-> >  include/drm/drm_print.h     | 102 ++++++++++++++++++++++++++----------
-> >  3 files changed, 158 insertions(+), 32 deletions(-)
-> 
-> I really like this, I think you can drop the RFC. A few more things that I
-> think we need:
-> 
-> - An overview kerneldoc section which explains the interfaces and how it
->   all works together. Essentially your commit message with some light
->   markup to make it look good.
-> 
-> - I think it would be really good to review the driver docs for all this
->   and make sure it's complete. Some of the interface functions aren't
->   documented yet (or maybe the ones that drivers shouldn't used need more
->   __ prefixes to denote them as internal, dunno).
-> 
-> - I guess deprecation notice for drm_debug_enabled() and all that, so that
->   we have a consistent interface. Doing the conversion will probably
->   highlight the need for a bit more infrastructure and tooling, e.g. the
->   bigger dump functions (like edid hex dump, or also the various decode
->   helpers we have for dp, hdmi infoframes and all that) ideally have a
->   single dyn_debug label to enable all of them instead of line-by-line.
->   Tbh no idea how this should work, might need dyndbg work too.
-
-Yeah, this is going to be tricky.
-
-We'll probably need to enumerate these fully and if the process of gathering
-the data is simple or already done in the course of the function, just avoid the
-drm_debug_enabled() call with a CONFIG_DRM_DYNDBG check.
-
-If the debug_enabled call gates a HW access, we probably need to query dyndbg
-for the prefix the logs are associated with before gathering the log contents.
-
-Sean
-> 
-> - For the driver side of this we probably want a
->   Documentation/gpu/TODO.rst entry if it's not all easy to convert
->   directly.
-> 
-> > 
-> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> > index 7ff89690a976..e4524ccba040 100644
-> > --- a/drivers/gpu/drm/Kconfig
-> > +++ b/drivers/gpu/drm/Kconfig
-> > @@ -57,6 +57,19 @@ config DRM_DEBUG_MM
-> >  
-> >  	  If in doubt, say "N".
-> >  
-> > +config DRM_USE_DYNAMIC_DEBUG
-> > +	bool "use dynamic debug to implement drm.debug"
-> > +	default n
-> > +	depends on DRM
-> > +	depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
-> > +	depends on JUMP_LABEL
-> > +	help
-> > +	  The drm debug category facility does a lot of unlikely bit-field
-> > +	  tests at runtime; while cheap individually, the cost accumulates.
-> > +	  This option uses dynamic debug facility (if configured and
-> > +	  using jump_label) to avoid those runtime checks, patching
-> > +	  the kernel when those debugs are desired.
-> 
-> Can't we just make this an internal option that's enabled automatically
-> when dyndbg is around? Plus a comment somewhere that we really recommend
-> enabling dyndbg for drm. Or would this mean that in certain dyndbg
-> configurations we'd loose all the debug lines, which would suck?
-> 
-> Anyway there's a pile of details, but the big picture I really like.
-> Especially that we can make dyndbg seamlessly support drm.debug is really
-> nice.
-> 
-> Cheers, Daniel
-> 
-> > +
-> >  config DRM_DEBUG_SELFTEST
-> >  	tristate "kselftests for DRM"
-> >  	depends on DRM
-> > diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-> > index 111b932cf2a9..e2acdfc7088b 100644
-> > --- a/drivers/gpu/drm/drm_print.c
-> > +++ b/drivers/gpu/drm/drm_print.c
-> > @@ -52,8 +52,75 @@ MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug cat
-> >  "\t\tBit 5 (0x20)  will enable VBL messages (vblank code)\n"
-> >  "\t\tBit 7 (0x80)  will enable LEASE messages (leasing code)\n"
-> >  "\t\tBit 8 (0x100) will enable DP messages (displayport code)");
-> > +
-> > +#ifndef CONFIG_DRM_USE_DYNAMIC_DEBUG
-> >  module_param_named(debug, __drm_debug, int, 0600);
-> >  
-> > +#else
-> > +static char *format_class_prefixes[] = {
-> > +	cDRM_UT_CORE,
-> > +	cDRM_UT_DRIVER,
-> > +	cDRM_UT_KMS,
-> > +	cDRM_UT_PRIME,
-> > +	cDRM_UT_ATOMIC,
-> > +	cDRM_UT_VBL,
-> > +	cDRM_UT_STATE,
-> > +	cDRM_UT_LEASE,
-> > +	cDRM_UT_DP,
-> > +	cDRM_UT_DRMRES
-> > +};
-> > +
-> > +#define OUR_QUERY_SIZE 64 /* > strlen "format '^%s' %cp" + longest prefix */
-> > +
-> > +static int param_set_dyndbg(const char *instr, const struct kernel_param *kp)
-> > +{
-> > +	unsigned int val;
-> > +	unsigned long changes, result;
-> > +	int rc, chgct = 0, totct = 0, bitpos;
-> > +	char query[OUR_QUERY_SIZE];
-> > +
-> > +	rc = kstrtouint(instr, 0, &val);
-> > +	if (rc) {
-> > +		pr_err("%s: failed\n", __func__);
-> > +		return -EINVAL;
-> > +	}
-> > +	result = val;
-> > +	changes = result ^ __drm_debug;
-> > +
-> > +	pr_debug("changes:0x%lx from result:0x%lx\n", changes, result);
-> > +
-> > +	for_each_set_bit(bitpos, &changes, ARRAY_SIZE(format_class_prefixes)) {
-> > +
-> > +		sprintf(query, "format '^%s' %cp", format_class_prefixes[bitpos],
-> > +			test_bit(bitpos, &result) ? '+' : '-');
-> > +
-> > +		chgct = dynamic_debug_exec_queries(query, "drm*");
-> > +		if (chgct < 0) {
-> > +			pr_err("%s: exec err:%d on: %s\n", __func__, chgct, query);
-> > +			continue;
-> > +		}
-> > +		pr_debug("change ct:%d on %s\n", chgct, query);
-> > +		totct += chgct;
-> > +	}
-> > +	pr_debug("total changes: %d\n", totct);
-> > +	__drm_debug = result;
-> > +	return 0;
-> > +}
-> > +
-> > +static int param_get_dyndbg(char *buffer, const struct kernel_param *kp)
-> > +{
-> > +	pr_debug("debug-val:0x%x %u\n", __drm_debug, *((unsigned int *)kp->arg));
-> > +	return scnprintf(buffer, PAGE_SIZE, "%u\n",
-> > +			 *((unsigned int *)kp->arg));
-> > +}
-> > +static const struct kernel_param_ops param_ops_debug = {
-> > +	.set = param_set_dyndbg,
-> > +	.get = param_get_dyndbg,
-> > +};
-> > +module_param_cb(debug, &param_ops_debug, &__drm_debug, 0644);
-> > +
-> > +#endif /* CONFIG_DRM_USE_DYNAMIC_DEBUG */
-> > +
-> >  void __drm_puts_coredump(struct drm_printer *p, const char *str)
-> >  {
-> >  	struct drm_print_iterator *iterator = p->arg;
-> > @@ -256,7 +323,7 @@ void drm_dev_printk(const struct device *dev, const char *level,
-> >  }
-> >  EXPORT_SYMBOL(drm_dev_printk);
-> >  
-> > -void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> > +void _drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >  		 const char *format, ...)
-> >  {
-> >  	struct va_format vaf;
-> > @@ -278,9 +345,9 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >  
-> >  	va_end(args);
-> >  }
-> > -EXPORT_SYMBOL(drm_dev_dbg);
-> > +EXPORT_SYMBOL(_drm_dev_dbg);
-> >  
-> > -void __drm_dbg(enum drm_debug_category category, const char *format, ...)
-> > +void ___drm_dbg(enum drm_debug_category category, const char *format, ...)
-> >  {
-> >  	struct va_format vaf;
-> >  	va_list args;
-> > @@ -297,7 +364,7 @@ void __drm_dbg(enum drm_debug_category category, const char *format, ...)
-> >  
-> >  	va_end(args);
-> >  }
-> > -EXPORT_SYMBOL(__drm_dbg);
-> > +EXPORT_SYMBOL(___drm_dbg);
-> >  
-> >  void __drm_err(const char *format, ...)
-> >  {
-> > diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> > index ff5ac0e88321..499fa0b35200 100644
-> > --- a/include/drm/drm_print.h
-> > +++ b/include/drm/drm_print.h
-> > @@ -319,6 +319,51 @@ enum drm_debug_category {
-> >  	DRM_UT_DRMRES		= 0x200,
-> >  };
-> >  
-> > +#if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
-> > +
-> > +/* Use legacy drm-debug functions, and drm_debug_enabled().
-> > + * For cDRM_UT_* (converted category), identity map to DRM_UT_*
-> > + */
-> > +#define __drm_dbg(cls, fmt, ...)			\
-> > +	___drm_dbg(cls, fmt, ##__VA_ARGS__)
-> > +#define drm_dev_dbg(dev, cls, fmt, ...)			\
-> > +	_drm_dev_dbg(dev, cls, fmt, ##__VA_ARGS__)
-> > +
-> > +#define cDRM_UT_CORE	DRM_UT_CORE
-> > +#define cDRM_UT_DRIVER	DRM_UT_DRIVER
-> > +#define cDRM_UT_KMS	DRM_UT_KMS
-> > +#define cDRM_UT_PRIME	DRM_UT_PRIME
-> > +#define cDRM_UT_ATOMIC	DRM_UT_ATOMIC
-> > +#define cDRM_UT_VBL	DRM_UT_VBL
-> > +#define cDRM_UT_STATE	DRM_UT_STATE
-> > +#define cDRM_UT_LEASE	DRM_UT_LEASE
-> > +#define cDRM_UT_DP	DRM_UT_DP
-> > +#define cDRM_UT_DRMRES	DRM_UT_DRMRES
-> > +
-> > +#else /* !CONFIG_DRM_USE_DYNAMIC_DEBUG */
-> > +
-> > +/* use dynamic_debug to avoid drm_debug_enabled().
-> > + * dyndbg has no category, so we prefix the format with a "class"
-> > + * string; cDRM_UT_* maps to those class strings
-> > + */
-> > +#define __drm_dbg(cls, fmt, ...)		\
-> > +	pr_debug(cls # fmt, ##__VA_ARGS__)
-> > +#define drm_dev_dbg(dev, cls, fmt, ...)		\
-> > +	dev_dbg(dev, cls # fmt, ##__VA_ARGS__)
-> > +
-> > +#define cDRM_UT_CORE	"drm:core: "
-> > +#define cDRM_UT_DRIVER	"drm:drvr: "
-> > +#define cDRM_UT_KMS	"drm:kms: "
-> > +#define cDRM_UT_PRIME	"drm:prime: "
-> > +#define cDRM_UT_ATOMIC	"drm:atomic: "
-> > +#define cDRM_UT_VBL	"drm:vbl: "
-> > +#define cDRM_UT_STATE	"drm:state: "
-> > +#define cDRM_UT_LEASE	"drm:lease: "
-> > +#define cDRM_UT_DP	"drm:dp: "
-> > +#define cDRM_UT_DRMRES	"drm:res "
-> > +
-> > +#endif /* !CONFIG_DRM_USE_DYNAMIC_DEBUG */
-> > +
-> >  static inline bool drm_debug_enabled(enum drm_debug_category category)
-> >  {
-> >  	return unlikely(__drm_debug & category);
-> > @@ -334,7 +379,7 @@ __printf(3, 4)
-> >  void drm_dev_printk(const struct device *dev, const char *level,
-> >  		    const char *format, ...);
-> >  __printf(3, 4)
-> > -void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> > +void _drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >  		 const char *format, ...);
-> >  
-> >  /**
-> > @@ -383,7 +428,7 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >   * @fmt: printf() like format string.
-> >   */
-> >  #define DRM_DEV_DEBUG(dev, fmt, ...)					\
-> > -	drm_dev_dbg(dev, DRM_UT_CORE, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg(dev, cDRM_UT_CORE, fmt, ##__VA_ARGS__)
-> >  /**
-> >   * DRM_DEV_DEBUG_DRIVER() - Debug output for vendor specific part of the driver
-> >   *
-> > @@ -391,7 +436,7 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >   * @fmt: printf() like format string.
-> >   */
-> >  #define DRM_DEV_DEBUG_DRIVER(dev, fmt, ...)				\
-> > -	drm_dev_dbg(dev, DRM_UT_DRIVER,	fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg(dev, cDRM_UT_DRIVER, fmt, ##__VA_ARGS__)
-> >  /**
-> >   * DRM_DEV_DEBUG_KMS() - Debug output for modesetting code
-> >   *
-> > @@ -399,7 +444,7 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >   * @fmt: printf() like format string.
-> >   */
-> >  #define DRM_DEV_DEBUG_KMS(dev, fmt, ...)				\
-> > -	drm_dev_dbg(dev, DRM_UT_KMS, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg(dev, cDRM_UT_KMS, fmt, ##__VA_ARGS__)
-> >  
-> >  /*
-> >   * struct drm_device based logging
-> > @@ -443,25 +488,25 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >  
-> >  
-> >  #define drm_dbg_core(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_CORE, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_CORE, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg(drm, fmt, ...)						\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_DRIVER, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_kms(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_KMS, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_KMS, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_prime(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_PRIME, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_PRIME, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_atomic(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_vbl(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_VBL, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_VBL, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_state(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_STATE, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_STATE, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_lease(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_LEASE, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_LEASE, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_dp(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DP, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_DP, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_drmres(drm, fmt, ...)					\
-> > -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRMRES, fmt, ##__VA_ARGS__)
-> > +	drm_dev_dbg((drm) ? (drm)->dev : NULL, cDRM_UT_DRMRES, fmt, ##__VA_ARGS__)
-> >  
-> >  
-> >  /*
-> > @@ -471,7 +516,7 @@ void drm_dev_dbg(const struct device *dev, enum drm_debug_category category,
-> >   */
-> >  
-> >  __printf(2, 3)
-> > -void __drm_dbg(enum drm_debug_category category, const char *format, ...);
-> > +void ___drm_dbg(enum drm_debug_category category, const char *format, ...);
-> >  __printf(1, 2)
-> >  void __drm_err(const char *format, ...);
-> >  
-> > @@ -500,44 +545,45 @@ void __drm_err(const char *format, ...);
-> >  #define DRM_ERROR_RATELIMITED(fmt, ...)					\
-> >  	DRM_DEV_ERROR_RATELIMITED(NULL, fmt, ##__VA_ARGS__)
-> >  
-> > +
-> >  #define DRM_DEBUG(fmt, ...)						\
-> > -	__drm_dbg(DRM_UT_CORE, fmt, ##__VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_CORE, fmt, ##__VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_DRIVER(fmt, ...)					\
-> > -	__drm_dbg(DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_DRIVER, fmt, ##__VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_KMS(fmt, ...)						\
-> > -	__drm_dbg(DRM_UT_KMS, fmt, ##__VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_KMS, fmt, ##__VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_PRIME(fmt, ...)					\
-> > -	__drm_dbg(DRM_UT_PRIME, fmt, ##__VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_PRIME, fmt, ##__VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_ATOMIC(fmt, ...)					\
-> > -	__drm_dbg(DRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_VBL(fmt, ...)						\
-> > -	__drm_dbg(DRM_UT_VBL, fmt, ##__VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_VBL, fmt, ##__VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_LEASE(fmt, ...)					\
-> > -	__drm_dbg(DRM_UT_LEASE, fmt, ##__VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_LEASE, fmt, ##__VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_DP(fmt, ...)						\
-> > -	__drm_dbg(DRM_UT_DP, fmt, ## __VA_ARGS__)
-> > +	__drm_dbg(cDRM_UT_DP, fmt, ## __VA_ARGS__)
-> >  
-> > -#define __DRM_DEFINE_DBG_RATELIMITED(category, drm, fmt, ...)		\
-> > +#define __DRM_DEFINE_DBG_RATELIMITED(DRM_UT, cDRM_UT, drm, fmt, ...)	\
-> >  ({									\
-> >  	static DEFINE_RATELIMIT_STATE(rs_,				\
-> >  				      DEFAULT_RATELIMIT_INTERVAL,	\
-> >  				      DEFAULT_RATELIMIT_BURST);		\
-> >  	const struct drm_device *drm_ = (drm);				\
-> >  									\
-> > -	if (drm_debug_enabled(DRM_UT_ ## category) && __ratelimit(&rs_))\
-> > -		drm_dev_printk(drm_ ? drm_->dev : NULL,			\
-> > -			       KERN_DEBUG, fmt, ## __VA_ARGS__);	\
-> > +	if (drm_debug_enabled(DRM_UT) && __ratelimit(&rs_))		\
-> > +		drm_dev_dbg((drm_) ? (drm_)->dev : NULL,		\
-> > +			    cDRM_UT, fmt, ##__VA_ARGS__);		\
-> >  })
-> >  
-> >  #define drm_dbg_kms_ratelimited(drm, fmt, ...) \
-> > -	__DRM_DEFINE_DBG_RATELIMITED(KMS, drm, fmt, ## __VA_ARGS__)
-> > +	__DRM_DEFINE_DBG_RATELIMITED(DRM_UT_KMS, cDRM_UT_KMS, drm, fmt, ## __VA_ARGS__)
-> >  
-> >  #define DRM_DEBUG_KMS_RATELIMITED(fmt, ...) \
-> >  	drm_dbg_kms_ratelimited(NULL, fmt, ## __VA_ARGS__)
-> > -- 
-> > 2.31.1
-> > 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
