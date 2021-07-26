@@ -1,56 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F21553D54EA
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 10:10:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C7CF3D54F6
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Jul 2021 10:12:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEA86E845;
-	Mon, 26 Jul 2021 08:10:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3703F6E85A;
+	Mon, 26 Jul 2021 08:12:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
- [IPv6:2607:f8b0:4864:20::729])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB7876E845;
- Mon, 26 Jul 2021 08:10:38 +0000 (UTC)
-Received: by mail-qk1-x729.google.com with SMTP id f22so7975284qke.10;
- Mon, 26 Jul 2021 01:10:38 -0700 (PDT)
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com
+ [IPv6:2607:f8b0:4864:20::836])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 443576E85A;
+ Mon, 26 Jul 2021 08:12:44 +0000 (UTC)
+Received: by mail-qt1-x836.google.com with SMTP id d9so6406867qty.12;
+ Mon, 26 Jul 2021 01:12:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=M2QXdMfgRz705RoCTb41lZT+4JPwzBLszxtkLZVS9Co=;
- b=Bmh0W2GyIombTeEzJokJfUcbOelFFJME7oOncnNJICjvwPJwZFNm3RBa6qmcAFQjoA
- rz2jJ7Vf/8wmALwNLnZ4D9NRI7pXvSDLd2nS+xKdQPhrD4LINbvuB/ETIpN1uNNL+lYk
- /zjGMaG+9kVNyuAUscnSjZ/0VxBv3L8N4DpycRYnW4Tvs6C4aYoV2SDMqifPzRK1yYhu
- vXETi5UgISIBmE5lIjsZ68IjTTyQJSovLPSJ1Tk+S5P9CEkad5rPMT2nGlNywYoo4+gd
- lJqm5BZSWAtgaZ2+AH/614BabOU8ZaI2rwS0rjBkT2ntPEwxq6AD9jBirLX5jYtA4NZ5
- 9I8g==
+ :cc:content-transfer-encoding;
+ bh=SsA9p+TlYc08mbezt8A+26M/ZO1fyw9OG86zFTtyUXM=;
+ b=KkWctV18CVEq2vH59MJaoWOLcyHmRcShy7FEAtkhjgw7A4z2yVlGKhCINM1yShHR+e
+ B0/X6KyAUTrAjOUtqfUUyPvM7DMhHd5hwixt9w+I00XU4czUbR5U/aN86o81T2lTe08q
+ SEpfgieNDYuCZluwiQzlzWo0hC0jIPBom6K9HC2zVDs3sAlH3XhL7WTADNdFxTAbtBuP
+ UgnVPzSZXi05TdQ3cMb2sncV+BLRGa84/tfyWE/BLHnHIiTlSIPQXDxQjZI4ZlLsNgmM
+ 1ynNporp+1hE9fqSqocxcu/BIZ+H9vCEQpx6k+NfarGpnucI3Kt7oanm4KEdE01e3Lvu
+ lMvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=M2QXdMfgRz705RoCTb41lZT+4JPwzBLszxtkLZVS9Co=;
- b=AGcYNpqb2mp58WHsSUPnJASNxeZPUXq6+f0oZz3PbCbv6XMAcrYi/QuNyRf7Gf81un
- D7lQCReIY1GhLSO8KhKmJkCT6uP75V0vzh0TxZdR76duEXxbOoz3zt790vWz6CNVSEBa
- EXPJOKkdX/A8JwgB6pMscHMTZfBKxaHD4/sRKPGR1d/VXK58SIPnwrPptC+jM9QjRkzO
- CBmTLqXk/fkMArhQJEna0zpqj+fOzmGgxuxNP7YaauuKsXp/ZW0rt2wiVY+FjHcV4klp
- 8SKcQfuTPlRd0cTbXFAp43PKV1uuiMol7wmv5/0j4AbNISvL773auThFH5jvad5VcFPc
- zQOg==
-X-Gm-Message-State: AOAM533wqtTJR3jfJKUkQJxhUy/BY4JTf2x5rJxU4+d5c1Irdc6RSQa7
- qHNCLPoMDwwDsE3ftdZUuqka4yZUbEzVdFvq0e4=
-X-Google-Smtp-Source: ABdhPJwWm33EZkK2B9khF2c55g5AHc14tnGCf9QkK8TmqHxnuot5WrEon9mYjvF56JG5LKTOoq9ivoxiIU3+HWGrd2Q=
-X-Received: by 2002:a05:620a:b1b:: with SMTP id
- t27mr15942119qkg.460.1627287038063; 
- Mon, 26 Jul 2021 01:10:38 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=SsA9p+TlYc08mbezt8A+26M/ZO1fyw9OG86zFTtyUXM=;
+ b=YaTOFwuewqEYw5JOQQ9o4B4cymjSW/43/ceIH7Wqcz6wyTBe8gXZFS7/ns5enHl2Ck
+ r2i5MR0pFmrzKGY4bhr9SWExTKwrc4FLVxL1afnZn/7UDBjPxyhWy3wIYcN2dCZ0jvTG
+ 4JFjBOGPuZ5r9hoDD6JgmoH39p8VjpGmhty3LbmvgV41xCuZt21Spc0Xpc0iHtxqxJ10
+ 7NShhSYGLKUMBPDr8XDApKQrBzLf1mCO4TZ5INiwYAvFcAmKTmVoqQxF2qez6TdJyVF2
+ f49ITrb75Gp+52ldIN7CWrmtXi4JwBVgJB/D6OSGcAZZOktbXGzYxW2FDeMRQIV1i561
+ uXVQ==
+X-Gm-Message-State: AOAM530il6JkIn9yzAQjuDlCW8MX4xls/Efdah+umrxDLlUa/Tj/jWzs
+ vQb1wo8qJNQnXUK30JM7jdjZxixmSadiNBufRoU=
+X-Google-Smtp-Source: ABdhPJzEkjcjUfybN+sVjzKRPAJLofqlutHNjkHGm507taDFp9wG0pz4fdU4qNt88wqCjBDUbsL3aQt+mSOygY8i23E=
+X-Received: by 2002:ac8:584d:: with SMTP id h13mr14132202qth.341.1627287163454; 
+ Mon, 26 Jul 2021 01:12:43 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210723172142.3273510-1-jason@jlekstrand.net>
- <20210723172142.3273510-7-jason@jlekstrand.net>
-In-Reply-To: <20210723172142.3273510-7-jason@jlekstrand.net>
+In-Reply-To: <20210723172142.3273510-1-jason@jlekstrand.net>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 26 Jul 2021 09:10:12 +0100
-Message-ID: <CAM0jSHMTfjCns3uG=LsJZRuz8eTaJRL2D7MSNG5mTmh3s=C1DA@mail.gmail.com>
+Date: Mon, 26 Jul 2021 09:12:17 +0100
+Message-ID: <CAM0jSHOgJQni53DJWP0NWJTAR82PNmb6zgt2Gm-faBd1sDaSHA@mail.gmail.com>
 To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915/gem: Always call
- obj->ops->migrate unless can_migrate fails
+Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915: Migrate memory to SMEM when
+ imported cross-device (v8)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,76 +64,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 23 Jul 2021 at 18:22, Jason Ekstrand <jason@jlekstrand.net> wrote:
->
-> Without TTM, we have no such hook so we exit early but this is fine
-> because we use TTM on all LMEM platforms and, on integrated platforms,
-> there is no real migration.  If we do have the hook, it's better to just
-> let TTM handle the migration because it knows where things are actually
-> placed.
->
-> This fixes a bug where i915_gem_object_migrate fails to migrate newly
-> created LMEM objects.  In that scenario, the object has obj->mm.region
-> set to LMEM but TTM has it in SMEM because that's where all new objects
-> are placed there prior to getting actual pages.  When we invoke
-> i915_gem_object_migrate, it exits early because, from the point of view
-> of the GEM object, it's already in LMEM and no migration is needed.
-> Then, when we try to pin the pages, __i915_ttm_get_pages is called
-> which, unaware of our failed attempt at a migration, places the object
-> in SMEM.  This only happens on newly created objects because they have
-> this weird state where TTM thinks they're in SMEM, GEM thinks they're in
-> LMEM, and the reality is that they don't exist at all.
->
-> It's better if GEM just always calls into TTM and let's TTM handle
-> things.  That way the lies stay better contained.  Once the migration is
-> complete, the object will have pages, obj->mm.region will be correct,
-> and we're done lying.
->
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-
-Thanks for fixing this,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_object.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index d09bd9bdb38ac..9d3497e1235a0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -607,12 +607,15 @@ int i915_gem_object_migrate(struct drm_i915_gem_object *obj,
->         mr = i915->mm.regions[id];
->         GEM_BUG_ON(!mr);
->
-> -       if (obj->mm.region == mr)
-> -               return 0;
-> -
->         if (!i915_gem_object_can_migrate(obj, id))
->                 return -EINVAL;
->
-> +       if (!obj->ops->migrate) {
-> +               if (GEM_WARN_ON(obj->mm.region != mr))
-> +                       return -EINVAL;
-> +               return 0;
-> +       }
-> +
->         return obj->ops->migrate(obj, mr);
->  }
->
-> --
-> 2.31.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMyBKdWwgMjAyMSBhdCAxODoyMSwgSmFzb24gRWtzdHJhbmQgPGphc29uQGpsZWtz
+dHJhbmQubmV0PiB3cm90ZToKPgo+IFRoaXMgcGF0Y2ggc2VyaWVzIGZpeGVzIGFuIGlzc3VlIHdp
+dGggZGlzY3JldGUgZ3JhcGhpY3Mgb24gSW50ZWwgd2hlcmUgd2UKPiBhbGxvd2VkIGRtYS1idWYg
+aW1wb3J0IHdoaWxlIGxlYXZpbmcgdGhlIG9iamVjdCBpbiBsb2NhbCBtZW1vcnkuICBUaGlzCj4g
+YnJlYWtzIGRvd24gcHJldHR5IGJhZGx5IGlmIHRoZSBpbXBvcnQgaGFwcGVuZWQgb24gYSBkaWZm
+ZXJlbnQgcGh5c2ljYWwKPiBkZXZpY2UuCj4KPiB2NzoKPiAgLSBEcm9wICJkcm0vaTkxNS9nZW0v
+dHRtOiBQbGFjZSBuZXcgQk9zIGluIHRoZSByZXF1ZXN0ZWQgcmVnaW9uIgo+ICAtIEFkZCBhIG5l
+dyAiZHJtL2k5MTUvZ2VtOiBDYWxsIGk5MTVfZ2VtX2ZsdXNoX2ZyZWVfb2JqZWN0cygpIGluIGk5
+MTVfZ2VtX2R1bWJfY3JlYXRlKCkiCj4gIC0gTWlzYy4gcmV2aWV3IGZlZWRiYWNrIGZyb20gTWF0
+dGhldyBBdWxkCj4gdjg6Cj4gIC0gTWlzYy4gcmV2aWV3IGZlZWRiYWNrIGZyb20gTWF0dGhldyBB
+dWxkCj4gdjk6Cj4gIC0gUmVwbGFjZSB0aGUgaTkxNS90dG0gcGF0Y2ggd2l0aCB0d28gdGhhdCBh
+cmUgaG9wZWZ1bGx5IG1vcmUgY29ycmVjdAo+Cj4gSmFzb24gRWtzdHJhbmQgKDYpOgo+ICAgZHJt
+L2k5MTUvZ2VtOiBDaGVjayBvYmplY3RfY2FuX21pZ3JhdGUgZnJvbSBvYmplY3RfbWlncmF0ZQo+
+ICAgZHJtL2k5MTUvZ2VtOiBSZWZhY3RvciBwbGFjZW1lbnQgc2V0dXAgZm9yIGk5MTVfZ2VtX29i
+amVjdF9jcmVhdGUqCj4gICAgICh2MikKPiAgIGRybS9pOTE1L2dlbTogQ2FsbCBpOTE1X2dlbV9m
+bHVzaF9mcmVlX29iamVjdHMoKSBpbgo+ICAgICBpOTE1X2dlbV9kdW1iX2NyZWF0ZSgpCj4gICBk
+cm0vaTkxNS9nZW06IFVuaWZ5IHVzZXIgb2JqZWN0IGNyZWF0aW9uICh2MykKPiAgIGRybS9pOTE1
+L2dlbS90dG06IE9ubHkgY2FsbCBfX2k5MTVfZ2VtX29iamVjdF9zZXRfcGFnZXMgaWYgbmVlZGVk
+Cj4gICBkcm0vaTkxNS9nZW06IEFsd2F5cyBjYWxsIG9iai0+b3BzLT5taWdyYXRlIHVubGVzcyBj
+YW5fbWlncmF0ZSBmYWlscwo+Cj4gVGhvbWFzIEhlbGxzdHLDtm0gKDIpOgo+ICAgZHJtL2k5MTUv
+Z2VtOiBDb3JyZWN0IHRoZSBsb2NraW5nIGFuZCBwaW4gcGF0dGVybiBmb3IgZG1hLWJ1ZiAodjgp
+Cj4gICBkcm0vaTkxNS9nZW06IE1pZ3JhdGUgdG8gc3lzdGVtIGF0IGRtYS1idWYgYXR0YWNoIHRp
+bWUgKHY3KQoKU2hvdWxkIEkgcHVzaCB0aGUgc2VyaWVzPwoKPgo+ICBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9nZW0vaTkxNV9nZW1fY3JlYXRlLmMgICAgfCAxNzcgKysrKysrKystLS0tLS0tLQo+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG1hYnVmLmMgICAgfCAgNTggKysrKy0t
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuYyAgICB8ICAyMCAr
+LQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmggICAgfCAgIDQg
+Kwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmMgICAgICAgfCAgMTMg
+Ky0KPiAgLi4uL2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fZG1hYnVmLmMgIHwgMTkw
+ICsrKysrKysrKysrKysrKysrLQo+ICAuLi4vZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dl
+bV9taWdyYXRlLmMgfCAgMTUgLS0KPiAgNyBmaWxlcyBjaGFuZ2VkLCAzNDEgaW5zZXJ0aW9ucygr
+KSwgMTM2IGRlbGV0aW9ucygtKQo+Cj4gLS0KPiAyLjMxLjEKPgo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+
+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
