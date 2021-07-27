@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87BC93D793D
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 17:04:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDA73D7941
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 17:04:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56B086E212;
-	Tue, 27 Jul 2021 15:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 337796E86C;
+	Tue, 27 Jul 2021 15:04:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B33C46E1BD;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E24A6E212;
  Tue, 27 Jul 2021 15:04:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="192739976"
-X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="192739976"
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="192739978"
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="192739978"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jul 2021 08:04:15 -0700
-X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="505919092"
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="505919093"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jul 2021 08:04:15 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <igt-dev@lists.freedesktop.org>
-Date: Tue, 27 Jul 2021 08:21:57 -0700
-Message-Id: <20210727152202.9527-3-matthew.brost@intel.com>
+Date: Tue, 27 Jul 2021 08:21:58 -0700
+Message-Id: <20210727152202.9527-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210727152202.9527-1-matthew.brost@intel.com>
 References: <20210727152202.9527-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/7] include/drm-uapi: Add logical mapping
- uAPI
+Subject: [Intel-gfx] [PATCH i-g-t 3/7] lib/intel_ctx: Add support for
+ parallel contexts to intel_ctx library
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,41 +49,79 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v2:
- (CI)
-  - Fix off by 1 error in size of reserved fields
-
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/drm-uapi/i915_drm.h | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ lib/intel_ctx.c | 28 +++++++++++++++++++++++++++-
+ lib/intel_ctx.h |  2 ++
+ 2 files changed, 29 insertions(+), 1 deletion(-)
 
-diff --git a/include/drm-uapi/i915_drm.h b/include/drm-uapi/i915_drm.h
-index 3c1aac348..332c07e3d 100644
---- a/include/drm-uapi/i915_drm.h
-+++ b/include/drm-uapi/i915_drm.h
-@@ -2518,14 +2518,20 @@ struct drm_i915_engine_info {
+diff --git a/lib/intel_ctx.c b/lib/intel_ctx.c
+index f28c15544..11ec6fca4 100644
+--- a/lib/intel_ctx.c
++++ b/lib/intel_ctx.c
+@@ -83,6 +83,7 @@ __context_create_cfg(int fd, const intel_ctx_cfg_t *cfg, uint32_t *ctx_id)
+ {
+ 	uint64_t ext_root = 0;
+ 	I915_DEFINE_CONTEXT_ENGINES_LOAD_BALANCE(balance, GEM_MAX_ENGINES);
++	I915_DEFINE_CONTEXT_ENGINES_PARALLEL_SUBMIT(parallel, GEM_MAX_ENGINES);
+ 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, GEM_MAX_ENGINES);
+ 	struct drm_i915_gem_context_create_ext_setparam engines_param, vm_param;
+ 	struct drm_i915_gem_context_create_ext_setparam persist_param;
+@@ -117,7 +118,29 @@ __context_create_cfg(int fd, const intel_ctx_cfg_t *cfg, uint32_t *ctx_id)
+ 		unsigned num_logical_engines;
+ 		memset(&engines, 0, sizeof(engines));
  
- 	/** @flags: Engine flags. */
- 	__u64 flags;
-+#define I915_ENGINE_INFO_HAS_LOGICAL_INSTANCE		(1 << 0)
- 
- 	/** @capabilities: Capabilities of this engine. */
- 	__u64 capabilities;
- #define I915_VIDEO_CLASS_CAPABILITY_HEVC		(1 << 0)
- #define I915_VIDEO_AND_ENHANCE_CLASS_CAPABILITY_SFC	(1 << 1)
- 
-+	/** @logical_instance: Logical instance of engine */
-+	__u16 logical_instance;
+-		if (cfg->load_balance) {
++		if (cfg->parallel) {
++			memset(&parallel, 0, sizeof(parallel));
 +
- 	/** @rsvd1: Reserved fields. */
--	__u64 rsvd1[4];
-+	__u16 rsvd1[3];
-+	/** @rsvd2: Reserved fields. */
-+	__u64 rsvd2[3];
- };
++			num_logical_engines = 1;
++
++			parallel.base.name =
++				I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT;
++
++			engines.engines[0].engine_class =
++				I915_ENGINE_CLASS_INVALID;
++			engines.engines[0].engine_instance =
++				I915_ENGINE_CLASS_INVALID_NONE;
++
++			parallel.num_siblings = cfg->num_engines;
++			parallel.width = cfg->width;
++			for (i = 0; i < cfg->num_engines * cfg->width; i++) {
++				igt_assert_eq(cfg->engines[0].engine_class,
++					      cfg->engines[i].engine_class);
++				parallel.engines[i] = cfg->engines[i];
++			}
++
++			engines.extensions = to_user_pointer(&parallel);
++		} else if (cfg->load_balance) {
+ 			memset(&balance, 0, sizeof(balance));
  
- /**
+ 			/* In this case, the first engine is the virtual
+@@ -127,6 +150,9 @@ __context_create_cfg(int fd, const intel_ctx_cfg_t *cfg, uint32_t *ctx_id)
+ 			igt_assert(cfg->num_engines + 1 <= GEM_MAX_ENGINES);
+ 			num_logical_engines = cfg->num_engines + 1;
+ 
++			balance.base.name =
++				I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE;
++
+ 			engines.engines[0].engine_class =
+ 				I915_ENGINE_CLASS_INVALID;
+ 			engines.engines[0].engine_instance =
+diff --git a/lib/intel_ctx.h b/lib/intel_ctx.h
+index 9649f6d96..89c65fcd3 100644
+--- a/lib/intel_ctx.h
++++ b/lib/intel_ctx.h
+@@ -46,7 +46,9 @@ typedef struct intel_ctx_cfg {
+ 	uint32_t vm;
+ 	bool nopersist;
+ 	bool load_balance;
++	bool parallel;
+ 	unsigned int num_engines;
++	unsigned int width;
+ 	struct i915_engine_class_instance engines[GEM_MAX_ENGINES];
+ } intel_ctx_cfg_t;
+ 
 -- 
 2.28.0
 
