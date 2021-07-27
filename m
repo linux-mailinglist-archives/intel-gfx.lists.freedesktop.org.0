@@ -1,68 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BEA3D758A
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 15:05:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E71F63D76C9
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 15:32:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD08B6E1BC;
-	Tue, 27 Jul 2021 13:05:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 602286E842;
+	Tue, 27 Jul 2021 13:32:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
- [IPv6:2a00:1450:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D840B6E1BE
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jul 2021 13:04:59 +0000 (UTC)
-Received: by mail-wr1-x436.google.com with SMTP id p5so10028601wro.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jul 2021 06:04:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=J1D0YAy3KCN+DKC/n4HOYEFT5Ge7h0z0gSwGvWYMl4Y=;
- b=Gpy+Hle+WikTFeHozpdX83+mwuZ9VA1xIiAAGAGdvbRKB/U6TM6Y4fRyBZJR2xygR9
- 4BCkIwyAOUWMRT2hR6qqbO6ITrwLC3szr82s6QMopW90w1G3Fdn3WxuAXAxyxlsXYnJJ
- D1faNragfwDXhVIeDyJ4tkuXb8LJIitJTEeSw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=J1D0YAy3KCN+DKC/n4HOYEFT5Ge7h0z0gSwGvWYMl4Y=;
- b=TFM4Fj/B4E9eUDlp/Vw6piZ3keHswTbGg1MeaEI478OpO9rkTAFw44fqyopcuKMz2i
- F5NgMvaHKXdSdebURdaF+xp75/TIzczME1sPApDH5Ni+lz1L//za2rb+xzjGs/1DegQt
- aXU2hi29u9zmWYASEYGH1zM5nfeXeMyI6FtjV4VGOUqa01KbJUEdttmEoQHmeac1rsN3
- A7XnHGad0WpxLbrXWtpqSQEc+YGXs57bRFpFe8xe/ruww0TK1WEZyrgASq5Y6HaIBEAO
- 08AHY0Yei9Om+/3y28gTa056RcCIc3eqvOYUeJoXyk0/SGFcx930bxoITpnqtQSbbwqx
- R4Ig==
-X-Gm-Message-State: AOAM530+KHoNabPzi5lEg0dUgGfctnaFH2h8z2ZT6IIcR1wEzgOIaIHi
- bclKa9jARxxvLQjg1ntPA7I0Ug==
-X-Google-Smtp-Source: ABdhPJx8I7ocA2Cs3lnYDgNJH1wvGpMqM8Q/kfBbmW5XCiVmevz8H48nOi3WV7bD9VWVm88ofkhlIg==
-X-Received: by 2002:a5d:6991:: with SMTP id g17mr13765368wru.253.1627391098337; 
- Tue, 27 Jul 2021 06:04:58 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p5sm2882911wme.2.2021.07.27.06.04.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Jul 2021 06:04:57 -0700 (PDT)
-Date: Tue, 27 Jul 2021 15:04:55 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Message-ID: <YQAEd5UqPfOiYrih@phenom.ffwll.local>
-Mail-Followup-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- linux-graphics-maintainer@vmware.com, zackr@vmware.com,
- airlied@linux.ie, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, corbet@lwn.net,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- skhan@linuxfoundation.org, gregkh@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- intel-gfx@lists.freedesktop.org
-References: <20210724111824.59266-1-desmondcheongzx@gmail.com>
- <20210724111824.59266-2-desmondcheongzx@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A81F26E820;
+ Tue, 27 Jul 2021 13:32:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A1C41A66C9;
+ Tue, 27 Jul 2021 13:32:00 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210724111824.59266-2-desmondcheongzx@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm: use the lookup lock in
- drm_is_current_master
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Date: Tue, 27 Jul 2021 13:32:00 -0000
+Message-ID: <162739272063.18667.17552653201068257961@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1626668714-17780-1-git-send-email-ankit.k.nautiyal@intel.com>
+In-Reply-To: <1626668714-17780-1-git-send-email-ankit.k.nautiyal@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_the_12_BPC_bits_for_PIPE=5FMISC_reg_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,72 +38,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tzimmermann@suse.de, corbet@lwn.net, airlied@linux.ie,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, mripard@kernel.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-graphics-maintainer@vmware.com,
- dri-devel@lists.freedesktop.org, skhan@linuxfoundation.org,
- linux-kernel-mentees@lists.linuxfoundation.org, zackr@vmware.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1983977525=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jul 24, 2021 at 07:18:22PM +0800, Desmond Cheong Zhi Xi wrote:
-> Inside drm_is_current_master, using the outer drm_device.master_mutex
-> to protect reads of drm_file.master makes the function prone to creating
-> lock hierarchy inversions. Instead, we can use the
-> drm_file.master_lookup_lock that sits at the bottom of the lock
-> hierarchy.
-> 
-> Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+--===============1983977525==
+Content-Type: multipart/alternative;
+ boundary="===============3554957187888194432=="
 
-Applied to drm-misc-next, thanks for your patch.
--Daniel
+--===============3554957187888194432==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> ---
->  drivers/gpu/drm/drm_auth.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-> index f00354bec3fb..9c24b8cc8e36 100644
-> --- a/drivers/gpu/drm/drm_auth.c
-> +++ b/drivers/gpu/drm/drm_auth.c
-> @@ -63,8 +63,9 @@
->  
->  static bool drm_is_current_master_locked(struct drm_file *fpriv)
->  {
-> -	lockdep_assert_held_once(&fpriv->minor->dev->master_mutex);
-> -
-> +	/* Either drm_device.master_mutex or drm_file.master_lookup_lock
-> +	 * should be held here.
-> +	 */
->  	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
->  }
->  
-> @@ -82,9 +83,9 @@ bool drm_is_current_master(struct drm_file *fpriv)
->  {
->  	bool ret;
->  
-> -	mutex_lock(&fpriv->minor->dev->master_mutex);
-> +	spin_lock(&fpriv->master_lookup_lock);
->  	ret = drm_is_current_master_locked(fpriv);
-> -	mutex_unlock(&fpriv->minor->dev->master_mutex);
-> +	spin_unlock(&fpriv->master_lookup_lock);
->  
->  	return ret;
->  }
-> -- 
-> 2.25.1
-> 
+== Series Details ==
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Series: drm/i915: Fix the 12 BPC bits for PIPE_MISC reg (rev2)
+URL   : https://patchwork.freedesktop.org/series/92690/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10403 -> Patchwork_20714
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20714 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +29 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_auth@basic-auth:
+    - fi-kbl-soraka:      [PASS][2] -> [DMESG-WARN][3] ([i915#1982])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10403/fi-kbl-soraka/igt@core_auth@basic-auth.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-kbl-soraka/igt@core_auth@basic-auth.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#3718])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-soraka:      [PASS][5] -> [INCOMPLETE][6] ([i915#155])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10403/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][7] ([i915#579])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][8] -> [FAIL][9] ([i915#1372])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10403/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (40 -> 35)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10403 -> Patchwork_20714
+
+  CI-20190529: 20190529
+  CI_DRM_10403: 7f637979f31e7dc1d2cd422f63df18f307d477b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20714: 921d552b1d0bcddbb6f6a690ea43fc89f30e3c7e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+921d552b1d0b drm/i915: Fix the 12 BPC bits for PIPE_MISC reg
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/index.html
+
+--===============3554957187888194432==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix the 12 BPC bits for PIPE_MISC reg (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92690/">https://patchwork.freedesktop.org/series/92690/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10403 -&gt; Patchwork_20714</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20714 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_auth@basic-auth:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10403/fi-kbl-soraka/igt@core_auth@basic-auth.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-kbl-soraka/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10403/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>
+<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10403/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</p>
+</li>
+<li>
+<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20714/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 35)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10403 -&gt; Patchwork_20714</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10403: 7f637979f31e7dc1d2cd422f63df18f307d477b3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20714: 921d552b1d0bcddbb6f6a690ea43fc89f30e3c7e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>921d552b1d0b drm/i915: Fix the 12 BPC bits for PIPE_MISC reg</p>
+
+</body>
+</html>
+
+--===============3554957187888194432==--
+
+--===============1983977525==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1983977525==--
