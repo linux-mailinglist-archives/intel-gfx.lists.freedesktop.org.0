@@ -1,139 +1,147 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6836E3D7E4B
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 21:11:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BDC3D7E52
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 21:16:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E793B6E0C2;
-	Tue, 27 Jul 2021 19:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 318006E0FE;
+	Tue, 27 Jul 2021 19:16:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94C956E0C2
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jul 2021 19:11:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10058"; a="199734880"
-X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="199734880"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE156E0FE;
+ Tue, 27 Jul 2021 19:16:18 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10058"; a="199735433"
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="199735433"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2021 12:11:50 -0700
+ 27 Jul 2021 12:16:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="566626088"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga004.jf.intel.com with ESMTP; 27 Jul 2021 12:11:50 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="456225285"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga007.jf.intel.com with ESMTP; 27 Jul 2021 12:16:05 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Tue, 27 Jul 2021 12:11:49 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2242.10; Tue, 27 Jul 2021 12:16:05 -0700
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10 via Frontend Transport; Tue, 27 Jul 2021 12:11:49 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2242.10; Tue, 27 Jul 2021 12:16:04 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10 via Frontend Transport; Tue, 27 Jul 2021 12:16:04 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Tue, 27 Jul 2021 12:11:49 -0700
+ 15.1.2242.10; Tue, 27 Jul 2021 12:16:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RHYhQwhIhabmSP7yD/lBjIct4fMixLoIe+b9QEo1b/x1JmbaTscGXbAsvDXWKZU4ZMiTPc/P16ZZ4ehLWkmqzoU0ziEgJMEW01cGJHprMSJJfhJAOLCeIwRXKby1nnbNYqBP+8ZXqSApEEqJt7rtGG1Yu9fV6CcN9xLUFNV5EnBrxYIQlbEMQItQyPxmEF2mlu0u+jZp19/SAYdWNIvRKo36yrfC7/viqwkL1mW8zdG3e31p3X5GsP+YOKvAkaw8iBYNO+/r566j48NX4Jpp/CkVy+A2H1d08/ht0rZn8UoCNXUzbN8yQuEK/HCF6+SMDkp92ERwgimGwzbau53lOw==
+ b=YC3NgbOsgvTm0LibW3EAzTQIj9+OfL+HjaB+IULQ0/t4IxBV56dbpNCtY2KExf4GBs6DVY+FE6GrdTkB+JSowg+JmtxhoO4c4GEWiFLUO4xXmBbWI+iqDxv3cqOxczyCj6eSoMnK+YSQXAQweQbBGbGqvQLQjlmA119gkvtfkuwZJ05kSJ3hr6/ogqoGwr4Ve3vAnEp4ZRbuhDV7W7o0IdeGsZgYhlTZAc1d5bamyCtA1rEaiYwA6LcS1zYLMOi/Ze2+fh9aNKNRMk6c9fCVo8HVIdZhEjD0vPVwCSUqqoiaqtPwrJQ08t8bO/C75R02r3qEZ+3q6R7b2uKupM2f1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lElQWIvbbPntePK1qDuXawmwOYC9nIjtIVlq1+8mmag=;
- b=FvQ1TNZWKMJqEoBnDGUFOEVSMO39uDpg2hshy4UVDD1NfepSfYbtHycFr0wgzjbhTn5FyLJaaMTrJ/rixsz9Vu96IvqpIpkiRWZCm21U1qRT1UWdrChHKyvtAbavXMGsQEJcc3S260cpsJ/xMOnjkoTLpBUgqyRSDzGjniED8qGjt9T2aDyrhI7qJ9WwM7/0LiY68nLCNL8e3GVZxMDxME262j5NyZcHXAPORmcpxPIKNKyYklXaSdrxIpqdeghfWOT108PT+FFiNoYY4JZ67zoG98wqcMLd7p6FRKmwrfefmMknHxC4d+Z+OSJpjYmc/F0G1DKh3slEbV/ZiCY0vg==
+ bh=Bik8f5rVsmHCfmChO8mO+o281qb5Urjz4t5/P8Zu55c=;
+ b=m11CWicVF/IH8Up8Rw+OVI+dVWVJqabUR9kaAMd8TwUaxIfGrg9N9vA258d3yiaCtuWmjNt/YjowQoi8QNDlDIfftZosnqv5ofDNny6wru+C9GZ7Y9w4+qWUYBJxpksjzCxoGmo+5ORdGVSUPDf1VuEbn/TQJ0AlATOf2UqhoUbkh/ebozp15hLk/NQUTQbbFQRkFe0V+zroRZfWwRdMKZ1Pb1DkdI85tGKTGSPM80d5WVma1KdBhzJa//ZnLVfk4hhbEzWUQurBc8kcUF1h5UMS9Jn/PxPhBSosxTNhP3RSx/wPb9q4FnIZCpPyrz5KKqV638hJGYOV6+cqhFlXow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
  s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lElQWIvbbPntePK1qDuXawmwOYC9nIjtIVlq1+8mmag=;
- b=q/7TE2tz6D/fxzUpKEnBDj135fZabXiOaeb/8SAXpxK31KVeRmTQ/3e53dintLuyNdPnifPM/NmleoICkMUkJoPolgIbGYqp3vqmYN08cPteCroLSPvWPrl30J0WftTk3JaHM9mguc7VZOge3fj1TniOPLhOUq0HfZ9z7HoyUk4=
-Received: from MN2PR11MB4661.namprd11.prod.outlook.com (2603:10b6:208:26b::16)
- by MN2PR11MB4615.namprd11.prod.outlook.com (2603:10b6:208:263::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.29; Tue, 27 Jul
- 2021 19:11:47 +0000
-Received: from MN2PR11MB4661.namprd11.prod.outlook.com
- ([fe80::f97a:a66f:73be:c044]) by MN2PR11MB4661.namprd11.prod.outlook.com
- ([fe80::f97a:a66f:73be:c044%5]) with mapi id 15.20.4352.031; Tue, 27 Jul 2021
- 19:11:47 +0000
-From: "Yokoyama, Caz" <caz.yokoyama@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 06/30] drm/i915/xehp: handle new steering
- options
-Thread-Index: AQHXf+ppC3Wshk6m70CufScRM2tGhqtXNqaA
-Date: Tue, 27 Jul 2021 19:11:47 +0000
-Message-ID: <8fe1598b50752e7797245e680aa4ffb038b12bfa.camel@intel.com>
-References: <20210723174239.1551352-1-matthew.d.roper@intel.com>
- <20210723174239.1551352-7-matthew.d.roper@intel.com>
-In-Reply-To: <20210723174239.1551352-7-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: intel.com; dkim=none (message not signed)
+ bh=Bik8f5rVsmHCfmChO8mO+o281qb5Urjz4t5/P8Zu55c=;
+ b=I9Sme1VRNM11P0NZ65PBedtMjhAOFK82b1zDGeoPDkbPlahRZhZe/QnUqudOsPCzsmvdNvt/8X0sPUGB2mXKRwKc/xVLsll0Jp+TBq6BA22PA/qblBGtr3mstu8aFJDddKzujtD6PUiGDSTXU4wiVH75THueVIZK3ptROkWxzlE=
+Authentication-Results: intel.com; dkim=none (message not signed)
  header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a7564dad-9482-45a5-91db-08d95132617b
-x-ms-traffictypediagnostic: MN2PR11MB4615:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR11MB4615D27539086D66494449AE9FE99@MN2PR11MB4615.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 8mP8NFE7LbGwO5NM4w1mbll3an6yU72/l00bCRFBZNPncTvVF2/63nvDAne2sbaSmRKwBuEuS6sRdBooOHi3e7G5YxMiHTokM8++PyFSpbE33HC/JZcowLYXVxm/tQh9Mtci9hNM2Vb4LL+kLME1Pe80fx+/Nz3ROZU88lzSVARnXIEIL0VcHijCaptD5Th2+lkyfXB1HzC/E5zLQntDmTwCRG1KAl3fWmfoM91bAkKfzgRlpKnRlqWwry9oCnkR3KaGBgfV/skFIeYfl6aDpVIzHoYKVXDxKyiTmkhZK76g4sjNAFrxnmoYk0xcvRFQAj24B5wTAN2XN9nr/xwOSRwfEuBclaRlss43nlc0zlEIWNWpoX2NsS+o/IIqkJGz3ZBNuY66G+HI/2xyhHc/GeU0a6vtWbVWsHllGlFSzGXgjPNWTsgEMYvOxng2llB2AcdXLAX6a14NPD+S8e4JmY0vpMelFebp8Oyjf8JvQOeFN05em4jVISYpshRuNjWAkz6uF6AvPoW7xxwG2mtpoYRuPVB5ke8jcBJdKbjvqBGHI/k0t/AoAYx3oTV87C382pCGfysf7lyEn8hdjekRBW89piiFCnBuXm9TSFjwAUU3ys0xHqY4a35HjSNX1G9dHgZ4ospaV0I0B2cVQoIk2V5U+y5myMpM3xJAPwHPFzdXty+7PTsXseNzrcb7qUlgRhGoxk0EqpIw0+bTUwre+g==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR11MB4661.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(396003)(376002)(346002)(366004)(36756003)(6486002)(8936002)(26005)(66476007)(76116006)(38100700002)(64756008)(316002)(30864003)(110136005)(6506007)(2906002)(38070700005)(66556008)(86362001)(186003)(122000001)(2616005)(8676002)(91956017)(5660300002)(83380400001)(6512007)(478600001)(71200400001)(66446008)(66946007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z3JmNHZxVUx2Und4c1NyaDdGVjdpWmdVT3dCaTJjM1BOS0VsdnR0Y25qOEpo?=
- =?utf-8?B?LzFCbmNGNVNoby9TY1FxWEdEYkFDajh0YkxkWEEwYSs0NHVmUExIR3NhVjAv?=
- =?utf-8?B?Y2NlWG4zOFA0UVM4YVY4cnpBZk8yZGJ1TnVidGFJUzFUd3c3MVhQU0ZUYXF5?=
- =?utf-8?B?anhEb0F4ZUV6WVJHL1dkN3BlYUNxTnhiYXlDVkRpK1NjUGtod1c2dVZiZDJj?=
- =?utf-8?B?MFpWNnlhakFIdVJPVlVHakFOMTVldWxONEk3emtSakVNNDU5cHBXYmlKWlM5?=
- =?utf-8?B?NngxOVRFeUFQVnRJNGovRnlTay9nOWJMclFyaGFRSUdFMXRJd0FPNVExTFpM?=
- =?utf-8?B?QjhZS2NuV0R0aE92MjMrSnpWTXcvUUNWN053eUkwTHpQaHdUOHBrVXQxc0I4?=
- =?utf-8?B?UnpkbFd4VFRnb2E4bFExUHB2c01vSDhEQlVSVXFyYVNIbDlBUUFqVUMyUGlY?=
- =?utf-8?B?MTh6U0NBWXU1OTUwMC9FUDFRUXRwVkhRTHBrdjFKTXNMYnM0d0FBbkxiSFpy?=
- =?utf-8?B?SnFLRVAwcU5VRlBvVERoK1ZwZ05NMnBnWWVUL3RsdmEyNmVaazlGUGpTTGJK?=
- =?utf-8?B?ZVJQaU1BYWlQNEFHYUU5OWVIRW5ObCtuYzNvVDNKWkt5MHNkVktjM05zSk8y?=
- =?utf-8?B?eDc3aDY5dUl0VDdUTFhsNlAzbDJrYXJnSnU0cjJaSlU2elIvVXRXNHhScXh2?=
- =?utf-8?B?cVloNCtRVTVvU2tRaVJxTVkrSUt6QUZLbzgyZW1hVW8vSWM2UGF3NmRKRDd2?=
- =?utf-8?B?ZGg4clMxeEd0cTZWNkFuUk51RGE1ZXR4NW1pMG9RQlpaZWJKMHRKV00yMlpj?=
- =?utf-8?B?aW1ES1NGTDVGbnJmcVhsUnBEVVFsbS9KRFpHcG8waUp3NmJxcEZNYTFmb0tI?=
- =?utf-8?B?VHNGMkluck9QbTF3bytKUXR1ODgvTjNDVUFWNGpMOWtmQTlyYjdiUVhhNUNC?=
- =?utf-8?B?YnozM0t5YktnREtQMFVHVzhMNVRvRTFndVpabGhSMUVkOFNEU0cydU5oOFRq?=
- =?utf-8?B?RWJDWGZpL3E5VFppWFkxVHpFd1I3NjdDb2hVdnNDNlJGaCtFVituUGt6djc3?=
- =?utf-8?B?T1ZsU2tLeVZmNVNhZHVkZXhxZEduMUNFb2IvM1Z1VG5tRmY0eFN3T2x5MUxo?=
- =?utf-8?B?NTRScElRNm5yK1NnK21DMFFxUy8weHk5bDh2VG5MOGFUdTJmWFVZR005aFVX?=
- =?utf-8?B?U1VRcEsvRzBhNEJhZG4zb1BybGM5TXdXMHVUdFF0L1NJV3R1cGp3R0pOVWo2?=
- =?utf-8?B?bkU2bXFySjAwT2VIVXM2ZVllOGd6aGg5dngrOWdWSUhJUktKTVlqTkhKVUpD?=
- =?utf-8?B?MnNnTk5YQXJuNDlXNjgyUXFVRVZEczBxdUozMHBoc2hvMm0vZ1A0T1JVaGdz?=
- =?utf-8?B?dGFsNXFtbVQ5R2dudEtTQmNNZTJjdVVVR2s3Nm9UNEFCZ3dHeFQwVTZKdGl3?=
- =?utf-8?B?V1BWT0VMTnZNSmdKZXpsK20wMld1Zm9JVmQwV0xvVC9RSFlZQlN1R1F5bzZP?=
- =?utf-8?B?QUEzQnBDRmVIeVFHK0dHQVJsRlFiZmxzQTFscENia1Y5b2puUXVQYWRvNWQv?=
- =?utf-8?B?UmY2cDVmbGYzUkhtOWxla0NHY2pBaFJYb0xKdUo2R1VrYWZFR3d1ZzJ3L3ZW?=
- =?utf-8?B?N3dISFdLK3JFSXQ1SW9QdDhmV3duL1VRYm9XUXIvOVpZWlpHTFJodUphcVZ3?=
- =?utf-8?B?U2hscGpRR1dxUk9LYlpvU1oxVjJPUzk4M3hSa0FIZ1pmaS9NS3QwUlZWRks0?=
- =?utf-8?Q?/mZbgY6Dw/5EM9jFOw36aCaqYItjQya1PRirric?=
-Content-ID: <CA63DB438BF4A44F8548B899B786B4B6@namprd11.prod.outlook.com>
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
+ DM6PR11MB2890.namprd11.prod.outlook.com (2603:10b6:5:63::20) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4352.29; Tue, 27 Jul 2021 19:16:02 +0000
+Received: from DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4017:e7ce:ef66:48d7]) by DM4PR11MB5488.namprd11.prod.outlook.com
+ ([fe80::4017:e7ce:ef66:48d7%9]) with mapi id 15.20.4352.031; Tue, 27 Jul 2021
+ 19:16:02 +0000
+To: Matthew Brost <matthew.brost@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20210727002348.97202-1-matthew.brost@intel.com>
+ <20210727002348.97202-26-matthew.brost@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <2a417f11-050a-2445-d5e9-38fe354402f2@intel.com>
+Date: Tue, 27 Jul 2021 12:15:59 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
+In-Reply-To: <20210727002348.97202-26-matthew.brost@intel.com>
+Content-Language: en-US
+X-ClientProxiedBy: BY3PR03CA0029.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::34) To DM4PR11MB5488.namprd11.prod.outlook.com
+ (2603:10b6:5:39d::5)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.65] (99.72.232.53) by
+ BY3PR03CA0029.namprd03.prod.outlook.com (2603:10b6:a03:39a::34) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.26 via Frontend
+ Transport; Tue, 27 Jul 2021 19:16:01 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 40fcd66c-425d-4122-a4c0-08d95132f94c
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2890:
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR11MB2890A85084652D26C3CE4B5DF4E99@DM6PR11MB2890.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:407;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: t1CWeidULLjmvs2Pgz8u2JzVlHeqprsJFcHAcZlJOATIKL39NGxzfsFScQ03Pbv56VM6INEkmTgU2YphwiGpFVyZTMzI96qbKeHMUTW0eiIb8LZdeyif2+btSaL9eRzXGlA9sRxkJCD+s54DFtM2trEvVDZuG2D4ji6Pa8XuXGDWeOSEnX5Nq1jdJK8mSBUcFl58Vu3pqAdxhppIHvPNw7paGFuPoP+vDSLfPqN+AMGq08FP7VR5BnlRHjUo9eDKjvKgZADAh83gA1USWlacgpP1I1kiheZc3JbFQO4X0lA5in9eElPC/wRj+c/aowzFAMkMm7Ppl+QwUY2cFnmkjoCGLlkBs9A8o1gQ5SDq+SLy7P+ZM2iL+cIGwIS5tYNHXtDB8sOaDwopOwPKDSFakyvBXqH/XRv9dzaMWdp2ya5bh0/c4eNe4PmYCQiD86KmBTZICG2gKy5Xg63j5Hgjt0sZUFAmTVf1ry8/DORYXJNwzbY+/hx6lrC9NpyFpY6qt106v6JoqlheK9LeSYTCXEFYhxngPNJJuLLVxQtPLU9fi8gbcG/+Shu7l3Or5RXL2uDD1+0aX/EKBacsLnUdxjIJG+l/LRczMXVwFIX1gCu6H3VxtDCQP8bttD7lLyf/YG5rfLKBuW8EnzwgnH4IlYIakePIhlNyVSwQd1Xq8q05sjvIt1nrjY/OOqh2Fi+qaMnQNXLGWGtweSrQq57okSoLkxcPPl/J7BWE2bohZOZiZvxlNlYPWvv33yFuO2sx
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(346002)(396003)(136003)(376002)(39860400002)(186003)(16576012)(31686004)(316002)(66946007)(107886003)(956004)(66556008)(66476007)(6486002)(2616005)(450100002)(36756003)(30864003)(86362001)(8676002)(478600001)(83380400001)(2906002)(38100700002)(8936002)(26005)(5660300002)(53546011)(4326008)(31696002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dThjSG5XSE50bW9xbEdYVWpya28wcThvNzFuckFsVk04eXdQeE9zRmZNRXZJ?=
+ =?utf-8?B?bk5hOVdGRnYzQXBMd1pnb29td2ROZk5OMTZVUWJwQkV6Z1BiNmVjRHVGZU5o?=
+ =?utf-8?B?RmVFQ2JVb1ppY3ZiL0Yxc0tPazRIMlVlSDE0dEdReE5oRVZyQlRYdEZ1Uk5G?=
+ =?utf-8?B?ZmlNTnNPQlBtSXNScmJqRVNVNnZvZURjeUZBUWZJNVppM0NxdCtTNW9pODUw?=
+ =?utf-8?B?RnViOGJoTkxBc1hxUzJsOHlqNTRYZ1NiRHllVWVhaThQaTNmeHUyandFYU1w?=
+ =?utf-8?B?MTlmbDhEbmMxbzA2RUtjOFVDWUk1K1ZFdzR6bVBRZWRqNVJuRFdpWTlmaFNw?=
+ =?utf-8?B?REJnOE14NVIrK0VuWEc4elRwOEo3ZWtoVS9GRE9ySEVTRG9nbkJPOEZWV3Bs?=
+ =?utf-8?B?ODRQWXkydytmc3hydWZHNGprdzIrSXl6azFrUTJTUzhicVhUN2FyQUIxejdI?=
+ =?utf-8?B?VmRsdTV3OU9FWjBBWVNqQUU0Q1FFbXJWQW9SVG5qZmxsaUhkdEc1NGQ3T3I5?=
+ =?utf-8?B?TjlCOUs4Z2w0dmhVNUhObFV3TWxxdjlnZmJ6aDduUjVrSFJyOVNFN3pINzJ2?=
+ =?utf-8?B?MUthK3NJL24rOWozeTA2L3c4eXhXMGt1YzdRTGZOY2JJc2R5TDJ4ZlE2b2pm?=
+ =?utf-8?B?VHVJK0pwU0JhL2ZyWXlMTGg0ZXFRZG1TUTc0NXhPT2JCRUdTYXN5MWIyeHd2?=
+ =?utf-8?B?SkxPYndBbXBkZE5HTTE3UjA5TVU3SXBLN2syMHg0N3dOKzcrWnM3eXBLaFBW?=
+ =?utf-8?B?bWdZZXdIa1lYZTk4UERja2RLd0FsalhPVTY1ZnNEaHdpaUhoODFRdWRGMUJP?=
+ =?utf-8?B?WnZveXFoNnJWMDlybmJyZ1oyRmRRNjRsT0liazdNMXppMzVDTnRBNWQ4OW1q?=
+ =?utf-8?B?Z2g4WkJscUhWejQ2UlYzZnp1dkVIYm50ejBCZytDeEFmYzBsZzVNWEVaZkNR?=
+ =?utf-8?B?OVN1Qk1qejhnZ0xlQmRvSGhoN3RHb25MRm4vYmo0U1JDN2ZncDNjcGpNZmJX?=
+ =?utf-8?B?WXdSZlcvZisyQ1Z1Z2p2bEZUOTM0ZUFzOHJveWkvdW55MDV5RnZETFE1dkMr?=
+ =?utf-8?B?Zml2TDgzY1BGK2FWekJVRnNRUk5TVjI3VmF3K2hrQzRTOGZSY1JHVFZPdHh1?=
+ =?utf-8?B?TVExYlpBVlpIeXBTczVHR1Azbk5nRCtZekJYTStLeVBwaGxCYytEQnpOTm9C?=
+ =?utf-8?B?SWV0eU4vTGdpeStqRmcxd0g2QkkvZTFkSWhnMEY5MFVRa2RPRE1PM01ldktS?=
+ =?utf-8?B?VDliOENZZDRoeXBMNjJpRW5jK3NBakFORDdpVzFvU212QmVrVzZmN2UrMCtv?=
+ =?utf-8?B?RjdjSm9xcTBrenFnRjVtK0ZySW9YZUVJMFFTTURTTzNwSitpZXBaYXE0QmlV?=
+ =?utf-8?B?cnIrcVppaGFaYmY5Y05TLzRicjI1Zkpid091VlAzbEdsNE1KVmkwUXpTUEpZ?=
+ =?utf-8?B?UG1mbDVEVUVHNEsvTFUwVk5EQnIwajVMSCt1eFhRd0RHNVA3UENkZlRxZEVC?=
+ =?utf-8?B?U1VjQXVFSTQ3N2t4anBqdjJXREwzeDJycmwxWEszWENvVkNBYmFlNkVPcnVJ?=
+ =?utf-8?B?anNnYU5qazhpRzJ5Ym0vNHliUDhRVjBJL2crNStYMXhBVEhLYTBRL1hxY0RR?=
+ =?utf-8?B?VGlCS3prdXZDYU1kbExQY0pUbmZyOGo2OXh4bytKK2F2R25paFp4M1VZNDNp?=
+ =?utf-8?B?TnBPM3RWeERMMHp6OUN3SWZLcWFTb3l5YU9IeitmeVhNdzJDOElRRXdTZ0dq?=
+ =?utf-8?Q?K1GpovRUv1dlw2D6jiECQgK84fQixOnF2SufyAH?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40fcd66c-425d-4122-a4c0-08d95132f94c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4661.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7564dad-9482-45a5-91db-08d95132617b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2021 19:11:47.3755 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: calioSkpHW7Sr4X5AzkeI36AulJiCC3uh+2/rmObRQWCTG2YGAT4PsT6cngu/NTq79OX4SOtbv7jstuZOUWyDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4615
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2021 19:16:02.3505 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: m+Jmr36rlxezoKK3zmzGOZBn6Ict8ifGCmja0//mK1g4gxIjXvwS2SsiDPWeh96ajSGhJXgAhl8Js4TSDMr91iCdi6UTtE7EGCyeCtY3DJA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2890
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3 06/30] drm/i915/xehp: handle new steering
- options
+Subject: Re: [Intel-gfx] [PATCH 25/33] drm/i915/guc: Support request
+ cancellation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,450 +154,536 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2021-07-23 at 10:42 -0700, Matt Roper wrote:
-> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> Xe_HP is more modular then its predecessors and as a consequence it 
-then -> than
 
-> has
-> more types of replicated registers.  As with l3bank regions on
-> previous
-> platforms, we may need to explicitly re-steer accesses to these new
-> types of ranges at runtime if we can't find a single default steering
-> value that satisfies the fusing of all types.
-> 
-> Bspec: 66534
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <
-> daniele.ceraolospurio@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+On 7/26/2021 5:23 PM, Matthew Brost wrote:
+> This adds GuC backend support for i915_request_cancel(), which in turn
+> makes CONFIG_DRM_I915_REQUEST_TIMEOUT work.
+>
+> This implementation makes use of fence while there are likely simplier
+> options. A fence was chosen because of another feature coming soon
+> which requires a user to block on a context until scheduling is
+> disabled. In that case we return the fence to the user and the user can
+> wait on that fence.
+>
+> v2:
+>   (Daniele)
+>    - A comment about locking the blocked incr / decr
+>    - A comments about the use of the fence
+>    - Update commit message explaining why fence
+>    - Delete redundant check blocked count in unblock function
+>    - Ring buffer implementation
+>    - Comment about blocked in submission path
+>    - Shorter rpm path
+> v3:
+>   (Checkpatch)
+>    - Fix typos in commit message
+>   (Daniel)
+>    - Rework to simplier locking structure in guc_context_block / unblock
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+Daniele
+
 > ---
->  drivers/gpu/drm/i915/gt/intel_gt.c          | 40 ++++++++-
->  drivers/gpu/drm/i915/gt/intel_gt.h          |  1 +
->  drivers/gpu/drm/i915/gt/intel_gt_types.h    |  7 ++
->  drivers/gpu/drm/i915/gt/intel_region_lmem.c |  1 +
->  drivers/gpu/drm/i915/gt/intel_sseu.c        | 18 +++++
->  drivers/gpu/drm/i915/gt/intel_sseu.h        |  6 ++
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 89
-> +++++++++++++++++++--
->  drivers/gpu/drm/i915/i915_drv.h             |  3 +
->  drivers/gpu/drm/i915/i915_pci.c             |  1 +
->  drivers/gpu/drm/i915/i915_reg.h             |  4 +
->  drivers/gpu/drm/i915/intel_device_info.h    |  1 +
->  11 files changed, 165 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c
-> b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 46441607d18b..0ee33a31a3cd 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -89,6 +89,13 @@ static const struct intel_mmio_range
-> icl_l3bank_steering_table[] = {
->  	{},
->  };
->  
-> +static u16 slicemask(struct intel_gt *gt, int count)
+>   drivers/gpu/drm/i915/gt/intel_context.c       |  13 ++
+>   drivers/gpu/drm/i915/gt/intel_context.h       |   7 +
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |   9 +-
+>   .../drm/i915/gt/intel_execlists_submission.c  |  18 ++
+>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  16 ++
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 188 ++++++++++++++++++
+>   drivers/gpu/drm/i915/i915_request.c           |  14 +-
+>   7 files changed, 251 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 237b70e98744..477c42d7d693 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -366,6 +366,12 @@ static int __intel_context_active(struct i915_active *active)
+>   	return 0;
+>   }
+>   
+> +static int sw_fence_dummy_notify(struct i915_sw_fence *sf,
+> +				 enum i915_sw_fence_notify state)
 > +{
-> +	u64 dss_mask = intel_sseu_get_subslices(&gt->info.sseu, 0);
-> +
-> +	return intel_slicemask_from_dssmask(dss_mask, count);
+> +	return NOTIFY_DONE;
 > +}
 > +
->  int intel_gt_init_mmio(struct intel_gt *gt)
->  {
->  	intel_gt_init_clock_frequency(gt);
-> @@ -96,11 +103,24 @@ int intel_gt_init_mmio(struct intel_gt *gt)
->  	intel_uc_init_mmio(&gt->uc);
->  	intel_sseu_info_init(gt);
->  
-> -	if (GRAPHICS_VER(gt->i915) >= 11) {
+>   void
+>   intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>   {
+> @@ -399,6 +405,13 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>   	ce->guc_id = GUC_INVALID_LRC_ID;
+>   	INIT_LIST_HEAD(&ce->guc_id_link);
+>   
 > +	/*
-> +	 * An mslice is unavailable only if both the meml3 for the
-> slice is
-> +	 * disabled *and* all of the DSS in the slice (quadrant) are
-> disabled.
+> +	 * Initialize fence to be complete as this is expected to be complete
+> +	 * unless there is a pending schedule disable outstanding.
 > +	 */
-> +	if (HAS_MSLICES(gt->i915))
-> +		gt->info.mslice_mask =
-> +			slicemask(gt, GEN_DSS_PER_MSLICE) |
-> +			(intel_uncore_read(gt->uncore,
-> GEN10_MIRROR_FUSE3) &
-> +			 GEN12_MEML3_EN_MASK);
+> +	i915_sw_fence_init(&ce->guc_blocked, sw_fence_dummy_notify);
+> +	i915_sw_fence_commit(&ce->guc_blocked);
 > +
-> +	if (GRAPHICS_VER(gt->i915) >= 11 &&
-> +		   GRAPHICS_VER_FULL(gt->i915) < IP_VER(12, 50)) {
-gt->i915 is referenced many times. It is better to define
-i915 = gt->i915;
+>   	i915_active_init(&ce->active,
+>   			 __intel_context_active, __intel_context_retire, 0);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index 814d9277096a..876bdb08303c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -70,6 +70,13 @@ intel_context_is_pinned(struct intel_context *ce)
+>   	return atomic_read(&ce->pin_count);
+>   }
+>   
+> +static inline void intel_context_cancel_request(struct intel_context *ce,
+> +						struct i915_request *rq)
+> +{
+> +	GEM_BUG_ON(!ce->ops->cancel_request);
+> +	return ce->ops->cancel_request(ce, rq);
+> +}
+> +
+>   /**
+>    * intel_context_unlock_pinned - Releases the earlier locking of 'pinned' status
+>    * @ce - the context
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index 57c19ee3e313..a5bc876face7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -13,6 +13,7 @@
+>   #include <linux/types.h>
+>   
+>   #include "i915_active_types.h"
+> +#include "i915_sw_fence.h"
+>   #include "i915_utils.h"
+>   #include "intel_engine_types.h"
+>   #include "intel_sseu.h"
+> @@ -42,6 +43,9 @@ struct intel_context_ops {
+>   	void (*unpin)(struct intel_context *ce);
+>   	void (*post_unpin)(struct intel_context *ce);
+>   
+> +	void (*cancel_request)(struct intel_context *ce,
+> +			       struct i915_request *rq);
+> +
+>   	void (*enter)(struct intel_context *ce);
+>   	void (*exit)(struct intel_context *ce);
+>   
+> @@ -156,7 +160,7 @@ struct intel_context {
+>   		 * sched_state: scheduling state of this context using GuC
+>   		 * submission
+>   		 */
+> -		u8 sched_state;
+> +		u16 sched_state;
+>   		/*
+>   		 * fences: maintains of list of requests that have a submit
+>   		 * fence related to GuC submission
+> @@ -184,6 +188,9 @@ struct intel_context {
+>   	 * GuC ID link - in list when unpinned but guc_id still valid in GuC
+>   	 */
+>   	struct list_head guc_id_link;
+> +
+> +	/* GuC context blocked fence */
+> +	struct i915_sw_fence guc_blocked;
+>   };
+>   
+>   #endif /* __INTEL_CONTEXT_TYPES__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index b4a876736074..de5f9c86b9a4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -114,6 +114,7 @@
+>   #include "gen8_engine_cs.h"
+>   #include "intel_breadcrumbs.h"
+>   #include "intel_context.h"
+> +#include "intel_engine_heartbeat.h"
+>   #include "intel_engine_pm.h"
+>   #include "intel_engine_stats.h"
+>   #include "intel_execlists_submission.h"
+> @@ -2587,11 +2588,26 @@ static int execlists_context_alloc(struct intel_context *ce)
+>   	return lrc_alloc(ce, ce->engine);
+>   }
+>   
+> +static void execlists_context_cancel_request(struct intel_context *ce,
+> +					     struct i915_request *rq)
+> +{
+> +	struct intel_engine_cs *engine = NULL;
+> +
+> +	i915_request_active_engine(rq, &engine);
+> +
+> +	if (engine && intel_engine_pulse(engine))
+> +		intel_gt_handle_error(engine->gt, engine->mask, 0,
+> +				      "request cancellation by %s",
+> +				      current->comm);
+> +}
+> +
+>   static const struct intel_context_ops execlists_context_ops = {
+>   	.flags = COPS_HAS_INFLIGHT,
+>   
+>   	.alloc = execlists_context_alloc,
+>   
+> +	.cancel_request = execlists_context_cancel_request,
+> +
+>   	.pre_pin = execlists_context_pre_pin,
+>   	.pin = execlists_context_pin,
+>   	.unpin = lrc_unpin,
+> @@ -3608,6 +3624,8 @@ static const struct intel_context_ops virtual_context_ops = {
+>   
+>   	.alloc = virtual_context_alloc,
+>   
+> +	.cancel_request = execlists_context_cancel_request,
+> +
+>   	.pre_pin = virtual_context_pre_pin,
+>   	.pin = virtual_context_pin,
+>   	.unpin = lrc_unpin,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 05bb9f449df1..2958e2fae380 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -16,6 +16,7 @@
+>   #include "intel_reset.h"
+>   #include "intel_ring.h"
+>   #include "shmem_utils.h"
+> +#include "intel_engine_heartbeat.h"
+>   
+>   /* Rough estimate of the typical request size, performing a flush,
+>    * set-context and then emitting the batch.
+> @@ -604,9 +605,24 @@ static void ring_context_ban(struct intel_context *ce,
+>   		}
+>   }
+>   
+> +static void ring_context_cancel_request(struct intel_context *ce,
+> +					struct i915_request *rq)
+> +{
+> +	struct intel_engine_cs *engine = NULL;
+> +
+> +	i915_request_active_engine(rq, &engine);
+> +
+> +	if (engine && intel_engine_pulse(engine))
+> +		intel_gt_handle_error(engine->gt, engine->mask, 0,
+> +				      "request cancellation by %s",
+> +				      current->comm);
+> +}
+> +
+>   static const struct intel_context_ops ring_context_ops = {
+>   	.alloc = ring_context_alloc,
+>   
+> +	.cancel_request = ring_context_cancel_request,
+> +
+>   	.ban = ring_context_ban,
+>   
+>   	.pre_pin = ring_context_pre_pin,
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index ad9a38a861df..ee4f1f996efa 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -126,6 +126,9 @@ static inline void clr_context_pending_enable(struct intel_context *ce)
+>   #define SCHED_STATE_DESTROYED				BIT(1)
+>   #define SCHED_STATE_PENDING_DISABLE			BIT(2)
+>   #define SCHED_STATE_BANNED				BIT(3)
+> +#define SCHED_STATE_BLOCKED_SHIFT			4
+> +#define SCHED_STATE_BLOCKED		BIT(SCHED_STATE_BLOCKED_SHIFT)
+> +#define SCHED_STATE_BLOCKED_MASK	(0xfff << SCHED_STATE_BLOCKED_SHIFT)
+>   static inline void init_sched_state(struct intel_context *ce)
+>   {
+>   	/* Only should be called from guc_lrc_desc_pin() */
+> @@ -203,6 +206,32 @@ static inline void clr_context_banned(struct intel_context *ce)
+>   	ce->guc_state.sched_state &= ~SCHED_STATE_BANNED;
+>   }
+>   
+> +static inline u32 context_blocked(struct intel_context *ce)
+> +{
+> +	return (ce->guc_state.sched_state & SCHED_STATE_BLOCKED_MASK) >>
+> +		SCHED_STATE_BLOCKED_SHIFT;
+> +}
+> +
+> +static inline void incr_context_blocked(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->engine->sched_engine->lock);
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +
+> +	ce->guc_state.sched_state += SCHED_STATE_BLOCKED;
+> +
+> +	GEM_BUG_ON(!context_blocked(ce));	/* Overflow check */
+> +}
+> +
+> +static inline void decr_context_blocked(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->engine->sched_engine->lock);
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +
+> +	GEM_BUG_ON(!context_blocked(ce));	/* Underflow check */
+> +
+> +	ce->guc_state.sched_state -= SCHED_STATE_BLOCKED;
+> +}
+> +
+>   static inline bool context_guc_id_invalid(struct intel_context *ce)
+>   {
+>   	return ce->guc_id == GUC_INVALID_LRC_ID;
+> @@ -404,6 +433,14 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+>   		if (unlikely(err))
+>   			goto out;
+>   	}
+> +
+> +	/*
+> +	 * The request / context will be run on the hardware when scheduling
+> +	 * gets enabled in the unblock.
+> +	 */
+> +	if (unlikely(context_blocked(ce)))
+> +		goto out;
+> +
+>   	enabled = context_enabled(ce);
+>   
+>   	if (!enabled) {
+> @@ -532,6 +569,7 @@ static void __guc_context_destroy(struct intel_context *ce);
+>   static void release_guc_id(struct intel_guc *guc, struct intel_context *ce);
+>   static void guc_signal_context_fence(struct intel_context *ce);
+>   static void guc_cancel_context_requests(struct intel_context *ce);
+> +static void guc_blocked_fence_complete(struct intel_context *ce);
+>   
+>   static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+>   {
+> @@ -579,6 +617,10 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
+>   			}
+>   			intel_context_sched_disable_unpin(ce);
+>   			atomic_dec(&guc->outstanding_submission_g2h);
+> +			spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +			guc_blocked_fence_complete(ce);
+> +			spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+>   			intel_context_put(ce);
+>   		}
+>   	}
+> @@ -1354,6 +1396,21 @@ static void guc_context_post_unpin(struct intel_context *ce)
+>   	lrc_post_unpin(ce);
+>   }
+>   
+> +static void __guc_context_sched_enable(struct intel_guc *guc,
+> +				       struct intel_context *ce)
+> +{
+> +	u32 action[] = {
+> +		INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_SET,
+> +		ce->guc_id,
+> +		GUC_CONTEXT_ENABLE
+> +	};
+> +
+> +	trace_intel_context_sched_enable(ce);
+> +
+> +	guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> +				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true);
+> +}
+> +
+>   static void __guc_context_sched_disable(struct intel_guc *guc,
+>   					struct intel_context *ce,
+>   					u16 guc_id)
+> @@ -1372,17 +1429,143 @@ static void __guc_context_sched_disable(struct intel_guc *guc,
+>   				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true);
+>   }
+>   
+> +static void guc_blocked_fence_complete(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +
+> +	if (!i915_sw_fence_done(&ce->guc_blocked))
+> +		i915_sw_fence_complete(&ce->guc_blocked);
+> +}
+> +
+> +static void guc_blocked_fence_reinit(struct intel_context *ce)
+> +{
+> +	lockdep_assert_held(&ce->guc_state.lock);
+> +	GEM_BUG_ON(!i915_sw_fence_done(&ce->guc_blocked));
+> +
+> +	/*
+> +	 * This fence is always complete unless a pending schedule disable is
+> +	 * outstanding. We arm the fence here and complete it when we receive
+> +	 * the pending schedule disable complete message.
+> +	 */
+> +	i915_sw_fence_fini(&ce->guc_blocked);
+> +	i915_sw_fence_reinit(&ce->guc_blocked);
+> +	i915_sw_fence_await(&ce->guc_blocked);
+> +	i915_sw_fence_commit(&ce->guc_blocked);
+> +}
+> +
+>   static u16 prep_context_pending_disable(struct intel_context *ce)
+>   {
+>   	lockdep_assert_held(&ce->guc_state.lock);
+>   
+>   	set_context_pending_disable(ce);
+>   	clr_context_enabled(ce);
+> +	guc_blocked_fence_reinit(ce);
+>   	intel_context_get(ce);
+>   
+>   	return ce->guc_id;
+>   }
+>   
+> +static struct i915_sw_fence *guc_context_block(struct intel_context *ce)
+> +{
+> +	struct intel_guc *guc = ce_to_guc(ce);
+> +	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
+> +	unsigned long flags;
+> +	struct intel_runtime_pm *runtime_pm = ce->engine->uncore->rpm;
+> +	intel_wakeref_t wakeref;
+> +	u16 guc_id;
+> +	bool enabled;
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +
+> +	/*
+> +	 * Sync with submission path, increment before below changes to context
+> +	 * state.
+> +	 */
+> +	spin_lock(&sched_engine->lock);
+> +	incr_context_blocked(ce);
+> +	spin_unlock(&sched_engine->lock);
+> +
+> +	enabled = context_enabled(ce);
+> +	if (unlikely(!enabled || submission_disabled(guc))) {
+> +		if (enabled)
+> +			clr_context_enabled(ce);
+> +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +		return &ce->guc_blocked;
+> +	}
+> +
+> +	/*
+> +	 * We add +2 here as the schedule disable complete CTB handler calls
+> +	 * intel_context_sched_disable_unpin (-2 to pin_count).
+> +	 */
+> +	atomic_add(2, &ce->pin_count);
+> +
+> +	guc_id = prep_context_pending_disable(ce);
+> +
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +	with_intel_runtime_pm(runtime_pm, wakeref)
+> +		__guc_context_sched_disable(guc, ce, guc_id);
+> +
+> +	return &ce->guc_blocked;
+> +}
+> +
+> +static void guc_context_unblock(struct intel_context *ce)
+> +{
+> +	struct intel_guc *guc = ce_to_guc(ce);
+> +	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
+> +	unsigned long flags;
+> +	struct intel_runtime_pm *runtime_pm = ce->engine->uncore->rpm;
+> +	intel_wakeref_t wakeref;
+> +	bool enable;
+> +
+> +	GEM_BUG_ON(context_enabled(ce));
+> +
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+> +
+> +	if (unlikely(submission_disabled(guc) ||
+> +		     !intel_context_is_pinned(ce) ||
+> +		     context_pending_disable(ce) ||
+> +		     context_blocked(ce) > 1)) {
+> +		enable = false;
+> +	} else {
+> +		enable = true;
+> +		set_context_pending_enable(ce);
+> +		set_context_enabled(ce);
+> +		intel_context_get(ce);
+> +	}
+> +
+> +	/*
+> +	 * Sync with submission path, decrement after above changes to context
+> +	 * state.
+> +	 */
+> +	spin_lock(&sched_engine->lock);
+> +	decr_context_blocked(ce);
+> +	spin_unlock(&sched_engine->lock);
+> +
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+> +
+> +	if (enable) {
+> +		with_intel_runtime_pm(runtime_pm, wakeref)
+> +			__guc_context_sched_enable(guc, ce);
+> +	}
+> +}
+> +
+> +static void guc_context_cancel_request(struct intel_context *ce,
+> +				       struct i915_request *rq)
+> +{
+> +	if (i915_sw_fence_signaled(&rq->submit)) {
+> +		struct i915_sw_fence *fence = guc_context_block(ce);
+> +
+> +		i915_sw_fence_wait(fence);
+> +		if (!i915_request_completed(rq)) {
+> +			__i915_request_skip(rq);
+> +			guc_reset_state(ce, intel_ring_wrap(ce->ring, rq->head),
+> +					true);
+> +		}
+> +		guc_context_unblock(ce);
+> +	}
+> +}
+> +
+>   static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
+>   						 u16 guc_id,
+>   						 u32 preemption_timeout)
+> @@ -1642,6 +1825,8 @@ static const struct intel_context_ops guc_context_ops = {
+>   
+>   	.ban = guc_context_ban,
+>   
+> +	.cancel_request = guc_context_cancel_request,
+> +
+>   	.enter = intel_context_enter_engine,
+>   	.exit = intel_context_exit_engine,
+>   
+> @@ -1837,6 +2022,8 @@ static const struct intel_context_ops virtual_guc_context_ops = {
+>   
+>   	.ban = guc_context_ban,
+>   
+> +	.cancel_request = guc_context_cancel_request,
+> +
+>   	.enter = guc_virtual_context_enter,
+>   	.exit = guc_virtual_context_exit,
+>   
+> @@ -2295,6 +2482,7 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
+>   		clr_context_banned(ce);
+>   		clr_context_pending_disable(ce);
+>   		__guc_signal_context_fence(ce);
+> +		guc_blocked_fence_complete(ce);
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   
+>   		if (banned) {
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 28f38b02a5d2..541a20371502 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -710,18 +710,6 @@ void i915_request_unsubmit(struct i915_request *request)
+>   	spin_unlock_irqrestore(&engine->sched_engine->lock, flags);
+>   }
+>   
+> -static void __cancel_request(struct i915_request *rq)
+> -{
+> -	struct intel_engine_cs *engine = NULL;
+> -
+> -	i915_request_active_engine(rq, &engine);
+> -
+> -	if (engine && intel_engine_pulse(engine))
+> -		intel_gt_handle_error(engine->gt, engine->mask, 0,
+> -				      "request cancellation by %s",
+> -				      current->comm);
+> -}
+> -
+>   void i915_request_cancel(struct i915_request *rq, int error)
+>   {
+>   	if (!i915_request_set_error_once(rq, error))
+> @@ -729,7 +717,7 @@ void i915_request_cancel(struct i915_request *rq, int error)
+>   
+>   	set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
+>   
+> -	__cancel_request(rq);
+> +	intel_context_cancel_request(rq->context, rq);
+>   }
+>   
+>   static int __i915_sw_fence_call
 
->  		gt->steering_table[L3BANK] = icl_l3bank_steering_table;
->  		gt->info.l3bank_mask =
->  			~intel_uncore_read(gt->uncore,
-> GEN10_MIRROR_FUSE3) &
->  			GEN10_L3BANK_MASK;
-> +	} else if (HAS_MSLICES(gt->i915)) {
-> +		MISSING_CASE(INTEL_INFO(gt->i915)->platform);
->  	}
->  
->  	return intel_engines_init_mmio(gt);
-> @@ -785,6 +805,24 @@ static void intel_gt_get_valid_steering(struct
-> intel_gt *gt,
->  		*sliceid = 0;		/* unused */
->  		*subsliceid = __ffs(gt->info.l3bank_mask);
->  		break;
-> +	case MSLICE:
-> +		GEM_DEBUG_WARN_ON(!gt->info.mslice_mask); /* should be
-> impossible! */
-> +
-> +		*sliceid = __ffs(gt->info.mslice_mask);
-> +		*subsliceid = 0;	/* unused */
-> +		break;
-> +	case LNCF:
-> +		GEM_DEBUG_WARN_ON(!gt->info.mslice_mask); /* should be
-> impossible! */
-> +
-> +		/*
-> +		 * 0xFDC[29:28] selects the mslice to steer to and
-> 0xFDC[27]
-> +		 * selects which LNCF within the mslice to steer
-> to.  An LNCF
-> +		 * is always present if its mslice is present, so we
-> can safely
-> +		 * just steer to LNCF 0 in all cases.
-> +		 */
-> +		*sliceid = __ffs(gt->info.mslice_mask) << 1;
-> +		*subsliceid = 0;	/* unused */
-> +		break;
->  	default:
->  		MISSING_CASE(type);
->  		*sliceid = 0;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h
-> b/drivers/gpu/drm/i915/gt/intel_gt.h
-> index 74e771871a9b..24b78398a587 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-> @@ -84,6 +84,7 @@ static inline bool
-> intel_gt_needs_read_steering(struct intel_gt *gt,
->  }
->  
->  u32 intel_gt_read_register_fw(struct intel_gt *gt, i915_reg_t reg);
-> +u32 intel_gt_read_register(struct intel_gt *gt, i915_reg_t reg);
-Shoulde this function declaration be included in this patch? I don't
-find corresponding body in this patch.
--caz
-
->  
->  void intel_gt_info_print(const struct intel_gt_info *info,
->  			 struct drm_printer *p);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index 97a5075288d2..a81e21bf1bd1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -47,9 +47,14 @@ struct intel_mmio_range {
->   * of multicast registers.  If another type of steering does not
-> have any
->   * overlap in valid steering targets with 'subslice' style
-> registers, we will
->   * need to explicitly re-steer reads of registers of the other type.
-> + *
-> + * Only the replication types that may need additional non-default
-> steering
-> + * are listed here.
->   */
->  enum intel_steering_type {
->  	L3BANK,
-> +	MSLICE,
-> +	LNCF,
->  
->  	NUM_STEERING_TYPES
->  };
-> @@ -184,6 +189,8 @@ struct intel_gt {
->  
->  		/* Slice/subslice/EU info */
->  		struct sseu_dev_info sseu;
-> +
-> +		unsigned long mslice_mask;
->  	} info;
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> index e3a2a2fa5f94..a74b72f50cc9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-> @@ -10,6 +10,7 @@
->  #include "gem/i915_gem_lmem.h"
->  #include "gem/i915_gem_region.h"
->  #include "gem/i915_gem_ttm.h"
-> +#include "gt/intel_gt.h"
->  
->  static int init_fake_lmem_bar(struct intel_memory_region *mem)
->  {
-> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c
-> b/drivers/gpu/drm/i915/gt/intel_sseu.c
-> index 367fd44b81c8..bbed8e8625e1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-> @@ -759,3 +759,21 @@ void intel_sseu_print_topology(const struct
-> sseu_dev_info *sseu,
->  		}
->  	}
->  }
-> +
-> +u16 intel_slicemask_from_dssmask(u64 dss_mask, int dss_per_slice)
-> +{
-> +	u16 slice_mask = 0;
-> +	int i;
-> +
-> +	WARN_ON(sizeof(dss_mask) * 8 / dss_per_slice > 8 *
-> sizeof(slice_mask));
-> +
-> +	for (i = 0; dss_mask; i++) {
-> +		if (dss_mask & GENMASK(dss_per_slice - 1, 0))
-> +			slice_mask |= BIT(i);
-> +
-> +		dss_mask >>= dss_per_slice;
-> +	}
-> +
-> +	return slice_mask;
-> +}
-> +
-> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h
-> b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> index 4cd1a8a7298a..1073471d1980 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_sseu.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> @@ -22,6 +22,10 @@ struct drm_printer;
->  #define GEN_MAX_EUS		(16) /* TGL upper bound */
->  #define GEN_MAX_EU_STRIDE GEN_SSEU_STRIDE(GEN_MAX_EUS)
->  
-> +#define GEN_DSS_PER_GSLICE	4
-> +#define GEN_DSS_PER_CSLICE	8
-> +#define GEN_DSS_PER_MSLICE	8
-> +
->  struct sseu_dev_info {
->  	u8 slice_mask;
->  	u8 subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
-> @@ -104,4 +108,6 @@ void intel_sseu_dump(const struct sseu_dev_info
-> *sseu, struct drm_printer *p);
->  void intel_sseu_print_topology(const struct sseu_dev_info *sseu,
->  			       struct drm_printer *p);
->  
-> +u16 intel_slicemask_from_dssmask(u64 dss_mask, int dss_per_slice);
-> +
->  #endif /* __INTEL_SSEU_H__ */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 3aa5ce3cda8b..48f794f4a1af 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -888,12 +888,24 @@ cfl_gt_workarounds_init(struct drm_i915_private
-> *i915, struct i915_wa_list *wal)
->  		    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
->  }
->  
-> +static void __add_mcr_wa(struct drm_i915_private *i915, struct
-> i915_wa_list *wal,
-> +			 unsigned slice, unsigned subslice)
-> +{
-> +	u32 mcr, mcr_mask;
-> +
-> +	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
-> +	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
-> +
-> +	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
-> +
-> +	wa_write_clr_set(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
-> +}
-> +
->  static void
->  icl_wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list
-> *wal)
->  {
->  	const struct sseu_dev_info *sseu = &i915->gt.info.sseu;
->  	unsigned int slice, subslice;
-> -	u32 mcr, mcr_mask;
->  
->  	GEM_BUG_ON(GRAPHICS_VER(i915) < 11);
->  	GEM_BUG_ON(hweight8(sseu->slice_mask) > 1);
-> @@ -918,12 +930,79 @@ icl_wa_init_mcr(struct drm_i915_private *i915,
-> struct i915_wa_list *wal)
->  	if (i915->gt.info.l3bank_mask & BIT(subslice))
->  		i915->gt.steering_table[L3BANK] = NULL;
->  
-> -	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
-> -	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
-> +	__add_mcr_wa(i915, wal, slice, subslice);
-> +}
->  
-> -	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
-> +__maybe_unused
-> +static void
-> +xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
-> +{
-> +	struct drm_i915_private *i915 = gt->i915;
-> +	const struct sseu_dev_info *sseu = &gt->info.sseu;
-> +	unsigned long slice, subslice = 0, slice_mask = 0;
-> +	u64 dss_mask = 0;
-> +	u32 lncf_mask = 0;
-> +	int i;
->  
-> -	wa_write_clr_set(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
-> +	/*
-> +	 * On Xe_HP the steering increases in complexity. There are now
-> several
-> +	 * more units that require steering and we're not guaranteed to
-> be able
-> +	 * to find a common setting for all of them. These are:
-> +	 * - GSLICE (fusable)
-> +	 * - DSS (sub-unit within gslice; fusable)
-> +	 * - L3 Bank (fusable)
-> +	 * - MSLICE (fusable)
-> +	 * - LNCF (sub-unit within mslice; always present if mslice is
-> present)
-> +	 * - SQIDI (always on)
-> +	 *
-> +	 * We'll do our default/implicit steering based on GSLICE (in
-> the
-> +	 * sliceid field) and DSS (in the subsliceid field).  If we can
-> +	 * find overlap between the valid MSLICE and/or LNCF values
-> with
-> +	 * a suitable GSLICE, then we can just re-use the default value
-> and
-> +	 * skip and explicit steering at runtime.
-> +	 *
-> +	 * We only need to look for overlap between GSLICE/MSLICE/LNCF
-> to find
-> +	 * a valid sliceid value.  DSS steering is the only type of
-> steering
-> +	 * that utilizes the 'subsliceid' bits.
-> +	 *
-> +	 * Also note that, even though the steering domain is called
-> "GSlice"
-> +	 * and it is encoded in the register using the gslice format,
-> the spec
-> +	 * says that the combined (geometry | compute) fuse should be
-> used to
-> +	 * select the steering.
-> +	 */
-> +
-> +	/* Find the potential gslice candidates */
-> +	dss_mask = intel_sseu_get_subslices(sseu, 0);
-> +	slice_mask = intel_slicemask_from_dssmask(dss_mask,
-> GEN_DSS_PER_GSLICE);
-> +
-> +	/*
-> +	 * Find the potential LNCF candidates.  Either LNCF within a
-> valid
-> +	 * mslice is fine.
-> +	 */
-> +	for_each_set_bit(i, &gt->info.mslice_mask, GEN12_MAX_MSLICES)
-> +		lncf_mask |= (0x3 << (i * 2));
-> +
-> +	/*
-> +	 * Are there any sliceid values that work for both GSLICE and
-> LNCF
-> +	 * steering?
-> +	 */
-> +	if (slice_mask & lncf_mask) {
-> +		slice_mask &= lncf_mask;
-> +		gt->steering_table[LNCF] = NULL;
-> +	}
-> +
-> +	/* How about sliceid values that also work for MSLICE steering?
-> */
-> +	if (slice_mask & gt->info.mslice_mask) {
-> +		slice_mask &= gt->info.mslice_mask;
-> +		gt->steering_table[MSLICE] = NULL;
-> +	}
-> +
-> +	slice = __ffs(slice_mask);
-> +	subslice = __ffs(dss_mask >> (slice * GEN_DSS_PER_GSLICE));
-> +	WARN_ON(subslice > GEN_DSS_PER_GSLICE);
-> +	WARN_ON(dss_mask >> (slice * GEN_DSS_PER_GSLICE) == 0);
-> +
-> +	__add_mcr_wa(i915, wal, slice, subslice);
->  }
->  
->  static void
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> b/drivers/gpu/drm/i915/i915_drv.h
-> index d44d0050beec..e5b53e298e13 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1696,6 +1696,9 @@ IS_SUBPLATFORM(const struct drm_i915_private
-> *i915,
->  #define HAS_RUNTIME_PM(dev_priv) (INTEL_INFO(dev_priv)-
-> >has_runtime_pm)
->  #define HAS_64BIT_RELOC(dev_priv) (INTEL_INFO(dev_priv)-
-> >has_64bit_reloc)
->  
-> +#define HAS_MSLICES(dev_priv) \
-> +	(INTEL_INFO(dev_priv)->has_mslices)
-> +
->  #define HAS_IPC(dev_priv)		 (INTEL_INFO(dev_priv)-
-> >display.has_ipc)
->  
->  #define HAS_REGION(i915, i) (INTEL_INFO(i915)->memory_regions & (i))
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c
-> b/drivers/gpu/drm/i915/i915_pci.c
-> index f28206484552..d0f18230dae8 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1012,6 +1012,7 @@ static const struct intel_device_info
-> adl_p_info = {
->  	.has_llc = 1, \
->  	.has_logical_ring_contexts = 1, \
->  	.has_logical_ring_elsq = 1, \
-> +	.has_mslices = 1, \
->  	.has_rc6 = 1, \
->  	.has_reset_engine = 1, \
->  	.has_rps = 1, \
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> b/drivers/gpu/drm/i915/i915_reg.h
-> index 1669aa8e1cff..0009833fa033 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2695,6 +2695,7 @@ static inline bool
-> i915_mmio_reg_valid(i915_reg_t reg)
->  #define   GEN11_MCR_SLICE_MASK		GEN11_MCR_SLICE(0xf)
->  #define   GEN11_MCR_SUBSLICE(subslice)	(((subslice) & 0x7) <<
-> 24)
->  #define   GEN11_MCR_SUBSLICE_MASK	GEN11_MCR_SUBSLICE(0x7)
-> +#define   GEN11_MCR_MULTICAST		REG_BIT(31)
->  #define RING_IPEIR(base)	_MMIO((base) + 0x64)
->  #define RING_IPEHR(base)	_MMIO((base) + 0x68)
->  #define RING_EIR(base)		_MMIO((base) + 0xb0)
-> @@ -3113,6 +3114,9 @@ static inline bool
-> i915_mmio_reg_valid(i915_reg_t reg)
->  #define	GEN10_MIRROR_FUSE3		_MMIO(0x9118)
->  #define GEN10_L3BANK_PAIR_COUNT     4
->  #define GEN10_L3BANK_MASK   0x0F
-> +/* on Xe_HP the same fuses indicates mslices instead of L3 banks */
-> +#define GEN12_MAX_MSLICES 4
-> +#define GEN12_MEML3_EN_MASK 0x0F
->  
->  #define GEN8_EU_DISABLE0		_MMIO(0x9134)
->  #define   GEN8_EU_DIS0_S0_MASK		0xffffff
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h
-> b/drivers/gpu/drm/i915/intel_device_info.h
-> index 121d6d9afd3a..2177372f9ac3 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -133,6 +133,7 @@ enum intel_ppgtt_type {
->  	func(has_llc); \
->  	func(has_logical_ring_contexts); \
->  	func(has_logical_ring_elsq); \
-> +	func(has_mslices); \
->  	func(has_pooled_eu); \
->  	func(has_rc6); \
->  	func(has_rc6p); \
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
