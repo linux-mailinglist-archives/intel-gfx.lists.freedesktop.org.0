@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051CA3D796F
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 17:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A0EF3D7972
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 17:12:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70B2F6E8C9;
-	Tue, 27 Jul 2021 15:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA16A6E882;
+	Tue, 27 Jul 2021 15:12:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 901186E882;
- Tue, 27 Jul 2021 15:11:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8897EA47E1;
- Tue, 27 Jul 2021 15:11:35 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02B1E6E3AE;
+ Tue, 27 Jul 2021 15:12:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="209352912"
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="209352912"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2021 08:12:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="566557559"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by orsmga004.jf.intel.com with ESMTP; 27 Jul 2021 08:12:49 -0700
+Received: from [10.249.141.251] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.141.251])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 16RFCknM002961; Tue, 27 Jul 2021 16:12:46 +0100
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
+ <20210726190800.26762-7-vinay.belgaumkar@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <1e49627f-80a5-5283-eb6d-f06b0f024911@intel.com>
+Date: Tue, 27 Jul 2021 17:12:46 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 27 Jul 2021 15:11:35 -0000
-Message-ID: <162739869553.18667.6720949278484607033@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210727134400.101290-1-imre.deak@intel.com>
-In-Reply-To: <20210727134400.101290-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/adlp=3A_Add_workaround_to_disable_CMTG_clock_gating?=
+In-Reply-To: <20210726190800.26762-7-vinay.belgaumkar@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 06/15] drm/i915/guc/slpc: Enable SLPC and
+ add related H2G events
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,201 +51,382 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2097756987=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2097756987==
-Content-Type: multipart/alternative;
- boundary="===============2865765726347301289=="
-
---===============2865765726347301289==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/adlp: Add workaround to disable CMTG clock gating
-URL   : https://patchwork.freedesktop.org/series/93067/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10404 -> Patchwork_20716
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20716 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +29 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10404/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][5] ([i915#579])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
 
 
-Participating hosts (40 -> 35)
-------------------------------
+On 26.07.2021 21:07, Vinay Belgaumkar wrote:
+> Add methods for interacting with GuC for enabling SLPC. Enable
+> SLPC after GuC submission has been established. GuC load will
+> fail if SLPC cannot be successfully initialized. Add various
+> helper methods to set/unset the parameters for SLPC. They can
+> be set using H2G calls or directly setting bits in the shared
+> data structure.
+> 
+> v2: Address several review comments, add new helpers for
+> decoding the SLPC min/max frequencies. Use masks instead of hardcoded
+> constants. (Michal W)
+> 
+> v3: Split global_state_to_string function, and check for positive
+> non-zero return value from intel_guc_send() (Michal W)
+> 
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Signed-off-by: Sundaresan Sujaritha <sujaritha.sundaresan@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 237 ++++++++++++++++++
+>  .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |   2 +
+>  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   8 +
+>  3 files changed, 247 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> index bae4e33db0f8..f5808d2acbca 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
+> @@ -45,6 +45,40 @@ void intel_guc_slpc_init_early(struct intel_guc_slpc *slpc)
+>  	guc->slpc_selected = __guc_slpc_selected(guc);
+>  }
+>  
+> +static void slpc_mem_set_param(struct slpc_shared_data *data,
+> +				u32 id, u32 value)
+> +{
+> +	GEM_BUG_ON(id >= SLPC_MAX_OVERRIDE_PARAMETERS);
+> +	/*
+> +	 * When the flag bit is set, corresponding value will be read
+> +	 * and applied by slpc.
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus 
+s/slpc/SLPC
 
+> +	 */
+> +	data->override_params.bits[id >> 5] |= (1 << (id % 32));
+> +	data->override_params.values[id] = value;
+> +}
+> +
+> +static void slpc_mem_set_enabled(struct slpc_shared_data *data,
+> +				u8 enable_id, u8 disable_id)
+> +{
+> +	/*
+> +	 * Enabling a param involves setting the enable_id
+> +	 * to 1 and disable_id to 0.
+> +	 */
+> +	slpc_mem_set_param(data, enable_id, 1);
+> +	slpc_mem_set_param(data, disable_id, 0);
+> +}
+> +
+> +static void slpc_mem_set_disabled(struct slpc_shared_data *data,
+> +				u8 enable_id, u8 disable_id)
+> +{
+> +	/*
+> +	 * Disabling a param involves setting the enable_id
+> +	 * to 0 and disable_id to 1.
+> +	 */
+> +	slpc_mem_set_param(data, disable_id, 1);
+> +	slpc_mem_set_param(data, enable_id, 0);
+> +}
+> +
+>  static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
+>  {
+>  	struct intel_guc *guc = slpc_to_guc(slpc);
+> @@ -63,6 +97,129 @@ static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
+>  	return err;
+>  }
+>  
+> +static u32 slpc_get_state(struct intel_guc_slpc *slpc)
+> +{
+> +	struct slpc_shared_data *data;
+> +
+> +	GEM_BUG_ON(!slpc->vma);
+> +
+> +	drm_clflush_virt_range(slpc->vaddr, sizeof(u32));
+> +	data = slpc->vaddr;
+> +
+> +	return data->header.global_state;
+> +}
+> +
+> +static bool slpc_is_running(struct intel_guc_slpc *slpc)
+> +{
+> +	return (slpc_get_state(slpc) == SLPC_GLOBAL_STATE_RUNNING);
 
-Build changes
--------------
+extra ( ) not needed
 
-  * Linux: CI_DRM_10404 -> Patchwork_20716
+> +}
+> +
+> +static int guc_action_slpc_query(struct intel_guc *guc, u32 offset)
+> +{
+> +	u32 request[] = {
+> +		INTEL_GUC_ACTION_SLPC_REQUEST,
+> + 		SLPC_EVENT(SLPC_EVENT_QUERY_TASK_STATE, 2),
+> +		offset,
+> +		0,
+> +	};
+> +	int ret;
+> +
+> +	ret = intel_guc_send(guc, request, ARRAY_SIZE(request));
+> +
+> +	return ret > 0 ? -EPROTO : ret;
+> +}
+> +
+> +static int slpc_query_task_state(struct intel_guc_slpc *slpc)
+> +{
+> +	struct intel_guc *guc = slpc_to_guc(slpc);
+> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+> +	u32 shared_data_gtt_offset = intel_guc_ggtt_offset(guc, slpc->vma);
 
-  CI-20190529: 20190529
-  CI_DRM_10404: 371bd54db63fdd99356a1a3d0fdc9b76616eddcb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20716: 9cf8974d9e837f95ddbd9fef2411c699d619d24d @ git://anongit.freedesktop.org/gfx-ci/linux
+just "offset" ? or maybe pass directly in call below ?
 
+> +	int ret;
+> +
+> +	ret = guc_action_slpc_query(guc, shared_data_gtt_offset);
+> +	if (ret)
+> +		drm_err(&i915->drm, "Query task state data returned (%pe)\n",
 
-== Linux commits ==
+"Failed to query task state (%pe)\n" ?
 
-9cf8974d9e83 drm/i915/adlp: Add workaround to disable CMTG clock gating
+> +				ERR_PTR(ret));
+> +
+> +	drm_clflush_virt_range(slpc->vaddr, SLPC_PAGE_SIZE_BYTES);
+> +
+> +	return ret;
+> +}
+> +
+> +static const char *slpc_global_state_to_string(enum slpc_global_state state)
+> +{
+> +	const char *str = NULL;
+> +
+> +	switch (state) {
+> +	case SLPC_GLOBAL_STATE_NOT_RUNNING:
+> +		str = "not running";
+> +		break;
+> +	case SLPC_GLOBAL_STATE_INITIALIZING:
+> +		str = "initializing";
+> +		break;
+> +	case SLPC_GLOBAL_STATE_RESETTING:
+> +		str = "resetting";
+> +		break;
+> +	case SLPC_GLOBAL_STATE_RUNNING:
+> +		str = "running";
+> +		break;
+> +	case SLPC_GLOBAL_STATE_SHUTTING_DOWN:
+> +		str = "shutting down";
+> +		break;
+> +	case SLPC_GLOBAL_STATE_ERROR:
+> +		str = "error";
+> +		break;
+> +	default:
+> +		str = "unknown";
 
-== Logs ==
+nit: you can do early returns to simplify the code
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html
+> +		break;
+> +	}
+> +
+> +	return str;
+> +}
+> +
+> +static const char *slpc_get_state_string(struct intel_guc_slpc *slpc)
+> +{
+> +	return slpc_global_state_to_string(slpc_get_state(slpc));
+> +}
+> +
+> +static int guc_action_slpc_reset(struct intel_guc *guc, u32 offset)
+> +{
+> +	u32 request[] = {
+> +		INTEL_GUC_ACTION_SLPC_REQUEST,
+> +		SLPC_EVENT(SLPC_EVENT_RESET, 2),
+> +		offset,
+> +		0,
+> +	};
+> +	int ret;
+> +
+> +	ret = intel_guc_send(guc, request, ARRAY_SIZE(request));
+> +
+> +	return ret > 0 ? -EPROTO : ret;
+> +}
+> +
+> +static int slpc_reset(struct intel_guc_slpc *slpc)
+> +{
+> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+> +	struct intel_guc *guc = slpc_to_guc(slpc);
+> +	u32 offset = intel_guc_ggtt_offset(guc, slpc->vma);
+> +	int ret;
+> +
+> +	ret = guc_action_slpc_reset(guc, offset);
+> +
+> +	if (unlikely(ret < 0))
+> +		return ret;
 
---===============2865765726347301289==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+no SLPC error here ?
 
+> +
+> +	if (!ret) {
+> +		if (wait_for(slpc_is_running(slpc), SLPC_RESET_TIMEOUT_MS)) {
+> +			drm_err(&i915->drm, "SLPC not enabled! State = %s\n",
+> +				  slpc_get_state_string(slpc));
+> +			return -EIO;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
+>  {
+>  	GEM_BUG_ON(slpc->vma);
+> @@ -70,6 +227,86 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
+>  	return slpc_shared_data_init(slpc);
+>  }
+>  
+> +static u32 slpc_decode_min_freq(struct intel_guc_slpc *slpc)
+> +{
+> +	struct slpc_shared_data *data = slpc->vaddr;
+> +
+> +	GEM_BUG_ON(!slpc->vma);
+> +
+> +	return	DIV_ROUND_CLOSEST(
+> +		REG_FIELD_GET(SLPC_MIN_UNSLICE_FREQ_MASK,
+> +			data->task_state_data.freq) *
+> +		GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
+> +}
+> +
+> +static u32 slpc_decode_max_freq(struct intel_guc_slpc *slpc)
+> +{
+> +	struct slpc_shared_data *data = slpc->vaddr;
+> +
+> +	GEM_BUG_ON(!slpc->vma);
+> +
+> +	return	DIV_ROUND_CLOSEST(
+> +		REG_FIELD_GET(SLPC_MAX_UNSLICE_FREQ_MASK,
+> +			data->task_state_data.freq) *
+> +		GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
+> +}
+> +
+> +/*
+> + * intel_guc_slpc_enable() - Start SLPC
+> + * @slpc: pointer to intel_guc_slpc.
+> + *
+> + * SLPC is enabled by setting up the shared data structure and
+> + * sending reset event to GuC SLPC. Initial data is setup in
+> + * intel_guc_slpc_init. Here we send the reset event. We do
+> + * not currently need a slpc_disable since this is taken care
+> + * of automatically when a reset/suspend occurs and the GuC
+> + * CTB is destroyed.
+> + *
+> + * Return: 0 on success, non-zero error code on failure.
+> + */
+> +int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
+> +{
+> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
+> +	struct slpc_shared_data *data;
+> +	int ret;
+> +
+> +	GEM_BUG_ON(!slpc->vma);
+> +
+> +	memset(slpc->vaddr, 0, sizeof(struct slpc_shared_data));
+> +
+> +	data = slpc->vaddr;
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+vaddr is "struct slpc_shared_data *"
+do you really need "data" local var?
 
+> +	data->header.size = sizeof(struct slpc_shared_data);
+> +
+> +	/* Enable only GTPERF task, disable others */
+> +	slpc_mem_set_enabled(data, SLPC_PARAM_TASK_ENABLE_GTPERF,
+> +				SLPC_PARAM_TASK_DISABLE_GTPERF);
+> +
+> +	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_BALANCER,
+> +				SLPC_PARAM_TASK_DISABLE_BALANCER);
+> +
+> +	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_DCC,
+> +				SLPC_PARAM_TASK_DISABLE_DCC);
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/adlp: Add workaround to disable CMTG clock gating</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93067/">https://patchwork.freedesktop.org/series/93067/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+btw, all this "data" related calls are good candidate for helper like
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html</a></td></tr>
+static void slpc_shared_data_reset(struct slpc_shared_data *data)
+{ ... }
 
-</table>
+> +
+> +	ret = slpc_reset(slpc);
+> +	if (unlikely(ret < 0)) {
+> +		drm_err(&i915->drm, "SLPC Reset event returned (%pe)\n",
+> +				ERR_PTR(ret));
+> +		return ret;
+> +	}
+> +
+> +	drm_info(&i915->drm, "GuC SLPC: enabled\n");
+> +
+> +	slpc_query_task_state(slpc);
 
+as this still may fail, maybe it should be before we claim success and
+"SLPC: enabled" ?
 
-    <h1>CI Bug Log - changes from CI_DRM_10404 -&gt; Patchwork_20716</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20716 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10404/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (40 -&gt; 35)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10404 -&gt; Patchwork_20716</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10404: 371bd54db63fdd99356a1a3d0fdc9b76616eddcb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20716: 9cf8974d9e837f95ddbd9fef2411c699d619d24d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9cf8974d9e83 drm/i915/adlp: Add workaround to disable CMTG clock gating</p>
+> +
+> +	/* min and max frequency limits being used by SLPC */
+> +	drm_info(&i915->drm, "SLPC min freq: %u Mhz, max is %u Mhz\n",
+> +			slpc_decode_min_freq(slpc),
+> +			slpc_decode_max_freq(slpc));
+> +
+> +
+> +	return 0;
+> +}
+> +
+>  void intel_guc_slpc_fini(struct intel_guc_slpc *slpc)
+>  {
+>  	if (!slpc->vma)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
+> index edcf4c05bd9f..f14f81821a51 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
+> @@ -6,6 +6,8 @@
+>  #ifndef _INTEL_GUC_SLPC_TYPES_H_
+>  #define _INTEL_GUC_SLPC_TYPES_H_
+>  
+> +#define SLPC_RESET_TIMEOUT_MS 5
+> +
+>  struct intel_guc_slpc {
+>  	struct i915_vma *vma;
+>  	struct slpc_shared_data *vaddr;
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index e6bd9406c7b2..b98c14f8c229 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -506,6 +506,12 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  		 "submission",
+>  		 enableddisabled(intel_uc_uses_guc_submission(uc)));
+>  
+> +	if (intel_uc_uses_guc_slpc(uc)) {
+> +		ret = intel_guc_slpc_enable(&guc->slpc);
+> +		if (ret)
+> +			goto err_submission;
 
-</body>
-</html>
+hmm, as this may fail, above success message
+	"GuC submission enabled"
+will be void
 
---===============2865765726347301289==--
+what you likely need is to split "slpc_enable" with error messages only
+that is called before we start reporting successes, and then
+"slpc_status" part with all drm_info() that could be placed here.
 
---===============2097756987==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Michal
 
+> +	}
+> +
+>  	if (intel_uc_uses_huc(uc)) {
+>  		drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
+>  			 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
+> @@ -520,6 +526,8 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  	/*
+>  	 * We've failed to load the firmware :(
+>  	 */
+> +err_submission:
+> +	intel_guc_submission_disable(guc);
+>  err_log_capture:
+>  	__uc_capture_load_err_log(uc);
+>  err_out:
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2097756987==--
