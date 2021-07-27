@@ -2,43 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A0EF3D7972
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 17:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F2473D7943
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 17:04:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA16A6E882;
-	Tue, 27 Jul 2021 15:12:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E73C46E1BD;
+	Tue, 27 Jul 2021 15:04:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02B1E6E3AE;
- Tue, 27 Jul 2021 15:12:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="209352912"
-X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="209352912"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2021 08:12:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="566557559"
-Received: from irvmail001.ir.intel.com ([10.43.11.63])
- by orsmga004.jf.intel.com with ESMTP; 27 Jul 2021 08:12:49 -0700
-Received: from [10.249.141.251] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.141.251])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 16RFCknM002961; Tue, 27 Jul 2021 16:12:46 +0100
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
- <20210726190800.26762-7-vinay.belgaumkar@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <1e49627f-80a5-5283-eb6d-f06b0f024911@intel.com>
-Date: Tue, 27 Jul 2021 17:12:46 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.12.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59A246E1BD;
+ Tue, 27 Jul 2021 15:04:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="192739973"
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="192739973"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2021 08:04:15 -0700
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="505919087"
+Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2021 08:04:15 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <igt-dev@lists.freedesktop.org>
+Date: Tue, 27 Jul 2021 08:21:55 -0700
+Message-Id: <20210727152202.9527-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20210726190800.26762-7-vinay.belgaumkar@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/15] drm/i915/guc/slpc: Enable SLPC and
- add related H2G events
+Subject: [Intel-gfx] [PATCH i-g-t 0/7] Updates for GuC & parallel submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,381 +40,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+IGT updates for GuC submission [1] and parallel submission (aka multi-bb
+execbuf) [2]. This entails adding tests for parallel submission and
+teaching IGTs to know of static priority mapping.
 
+More IGTs likely need to be updated gem_ctx_persistence and i915_hangman
+come to mind. Expect following series to address those tests.
 
-On 26.07.2021 21:07, Vinay Belgaumkar wrote:
-> Add methods for interacting with GuC for enabling SLPC. Enable
-> SLPC after GuC submission has been established. GuC load will
-> fail if SLPC cannot be successfully initialized. Add various
-> helper methods to set/unset the parameters for SLPC. They can
-> be set using H2G calls or directly setting bits in the shared
-> data structure.
-> 
-> v2: Address several review comments, add new helpers for
-> decoding the SLPC min/max frequencies. Use masks instead of hardcoded
-> constants. (Michal W)
-> 
-> v3: Split global_state_to_string function, and check for positive
-> non-zero return value from intel_guc_send() (Michal W)
-> 
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> Signed-off-by: Sundaresan Sujaritha <sujaritha.sundaresan@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 237 ++++++++++++++++++
->  .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |   2 +
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |   8 +
->  3 files changed, 247 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> index bae4e33db0f8..f5808d2acbca 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-> @@ -45,6 +45,40 @@ void intel_guc_slpc_init_early(struct intel_guc_slpc *slpc)
->  	guc->slpc_selected = __guc_slpc_selected(guc);
->  }
->  
-> +static void slpc_mem_set_param(struct slpc_shared_data *data,
-> +				u32 id, u32 value)
-> +{
-> +	GEM_BUG_ON(id >= SLPC_MAX_OVERRIDE_PARAMETERS);
-> +	/*
-> +	 * When the flag bit is set, corresponding value will be read
-> +	 * and applied by slpc.
+v2:
+ (CI)
+  - Fix off by 1 error in reserved fields of drm_i915_engine_info
 
-s/slpc/SLPC
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-> +	 */
-> +	data->override_params.bits[id >> 5] |= (1 << (id % 32));
-> +	data->override_params.values[id] = value;
-> +}
-> +
-> +static void slpc_mem_set_enabled(struct slpc_shared_data *data,
-> +				u8 enable_id, u8 disable_id)
-> +{
-> +	/*
-> +	 * Enabling a param involves setting the enable_id
-> +	 * to 1 and disable_id to 0.
-> +	 */
-> +	slpc_mem_set_param(data, enable_id, 1);
-> +	slpc_mem_set_param(data, disable_id, 0);
-> +}
-> +
-> +static void slpc_mem_set_disabled(struct slpc_shared_data *data,
-> +				u8 enable_id, u8 disable_id)
-> +{
-> +	/*
-> +	 * Disabling a param involves setting the enable_id
-> +	 * to 0 and disable_id to 1.
-> +	 */
-> +	slpc_mem_set_param(data, disable_id, 1);
-> +	slpc_mem_set_param(data, enable_id, 0);
-> +}
-> +
->  static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
->  {
->  	struct intel_guc *guc = slpc_to_guc(slpc);
-> @@ -63,6 +97,129 @@ static int slpc_shared_data_init(struct intel_guc_slpc *slpc)
->  	return err;
->  }
->  
-> +static u32 slpc_get_state(struct intel_guc_slpc *slpc)
-> +{
-> +	struct slpc_shared_data *data;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	drm_clflush_virt_range(slpc->vaddr, sizeof(u32));
-> +	data = slpc->vaddr;
-> +
-> +	return data->header.global_state;
-> +}
-> +
-> +static bool slpc_is_running(struct intel_guc_slpc *slpc)
-> +{
-> +	return (slpc_get_state(slpc) == SLPC_GLOBAL_STATE_RUNNING);
+[1] https://patchwork.freedesktop.org/series/91840/
+[2] https://patchwork.freedesktop.org/series/92789/
 
-extra ( ) not needed
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-> +}
-> +
-> +static int guc_action_slpc_query(struct intel_guc *guc, u32 offset)
-> +{
-> +	u32 request[] = {
-> +		INTEL_GUC_ACTION_SLPC_REQUEST,
-> + 		SLPC_EVENT(SLPC_EVENT_QUERY_TASK_STATE, 2),
-> +		offset,
-> +		0,
-> +	};
-> +	int ret;
-> +
-> +	ret = intel_guc_send(guc, request, ARRAY_SIZE(request));
-> +
-> +	return ret > 0 ? -EPROTO : ret;
-> +}
-> +
-> +static int slpc_query_task_state(struct intel_guc_slpc *slpc)
-> +{
-> +	struct intel_guc *guc = slpc_to_guc(slpc);
-> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-> +	u32 shared_data_gtt_offset = intel_guc_ggtt_offset(guc, slpc->vma);
+Matthew Brost (7):
+  include/drm-uapi: Add parallel context configuration uAPI
+  include/drm-uapi: Add logical mapping uAPI
+  lib/intel_ctx: Add support for parallel contexts to intel_ctx library
+  i915/gem_exec_balancer: Test parallel execbuf
+  include/drm-uapi: Add static priority mapping UAPI
+  i915/gem_scheduler: Make gem_scheduler understand static priority
+    mapping
+  i915/gem_ctx_shared: Make gem_ctx_shared understand static priority
+    mapping
 
-just "offset" ? or maybe pass directly in call below ?
+ include/drm-uapi/i915_drm.h    | 145 +++++++++-
+ lib/i915/gem_scheduler.c       |  13 +
+ lib/i915/gem_scheduler.h       |   1 +
+ lib/intel_ctx.c                |  28 +-
+ lib/intel_ctx.h                |   2 +
+ lib/intel_reg.h                |   5 +
+ tests/i915/gem_ctx_shared.c    |   5 +-
+ tests/i915/gem_exec_balancer.c | 487 +++++++++++++++++++++++++++++++++
+ tests/i915/gem_exec_schedule.c |  47 ++--
+ 9 files changed, 709 insertions(+), 24 deletions(-)
 
-> +	int ret;
-> +
-> +	ret = guc_action_slpc_query(guc, shared_data_gtt_offset);
-> +	if (ret)
-> +		drm_err(&i915->drm, "Query task state data returned (%pe)\n",
+-- 
+2.28.0
 
-"Failed to query task state (%pe)\n" ?
-
-> +				ERR_PTR(ret));
-> +
-> +	drm_clflush_virt_range(slpc->vaddr, SLPC_PAGE_SIZE_BYTES);
-> +
-> +	return ret;
-> +}
-> +
-> +static const char *slpc_global_state_to_string(enum slpc_global_state state)
-> +{
-> +	const char *str = NULL;
-> +
-> +	switch (state) {
-> +	case SLPC_GLOBAL_STATE_NOT_RUNNING:
-> +		str = "not running";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_INITIALIZING:
-> +		str = "initializing";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_RESETTING:
-> +		str = "resetting";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_RUNNING:
-> +		str = "running";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_SHUTTING_DOWN:
-> +		str = "shutting down";
-> +		break;
-> +	case SLPC_GLOBAL_STATE_ERROR:
-> +		str = "error";
-> +		break;
-> +	default:
-> +		str = "unknown";
-
-nit: you can do early returns to simplify the code
-
-> +		break;
-> +	}
-> +
-> +	return str;
-> +}
-> +
-> +static const char *slpc_get_state_string(struct intel_guc_slpc *slpc)
-> +{
-> +	return slpc_global_state_to_string(slpc_get_state(slpc));
-> +}
-> +
-> +static int guc_action_slpc_reset(struct intel_guc *guc, u32 offset)
-> +{
-> +	u32 request[] = {
-> +		INTEL_GUC_ACTION_SLPC_REQUEST,
-> +		SLPC_EVENT(SLPC_EVENT_RESET, 2),
-> +		offset,
-> +		0,
-> +	};
-> +	int ret;
-> +
-> +	ret = intel_guc_send(guc, request, ARRAY_SIZE(request));
-> +
-> +	return ret > 0 ? -EPROTO : ret;
-> +}
-> +
-> +static int slpc_reset(struct intel_guc_slpc *slpc)
-> +{
-> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-> +	struct intel_guc *guc = slpc_to_guc(slpc);
-> +	u32 offset = intel_guc_ggtt_offset(guc, slpc->vma);
-> +	int ret;
-> +
-> +	ret = guc_action_slpc_reset(guc, offset);
-> +
-> +	if (unlikely(ret < 0))
-> +		return ret;
-
-no SLPC error here ?
-
-> +
-> +	if (!ret) {
-> +		if (wait_for(slpc_is_running(slpc), SLPC_RESET_TIMEOUT_MS)) {
-> +			drm_err(&i915->drm, "SLPC not enabled! State = %s\n",
-> +				  slpc_get_state_string(slpc));
-> +			return -EIO;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
->  {
->  	GEM_BUG_ON(slpc->vma);
-> @@ -70,6 +227,86 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
->  	return slpc_shared_data_init(slpc);
->  }
->  
-> +static u32 slpc_decode_min_freq(struct intel_guc_slpc *slpc)
-> +{
-> +	struct slpc_shared_data *data = slpc->vaddr;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	return	DIV_ROUND_CLOSEST(
-> +		REG_FIELD_GET(SLPC_MIN_UNSLICE_FREQ_MASK,
-> +			data->task_state_data.freq) *
-> +		GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
-> +}
-> +
-> +static u32 slpc_decode_max_freq(struct intel_guc_slpc *slpc)
-> +{
-> +	struct slpc_shared_data *data = slpc->vaddr;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	return	DIV_ROUND_CLOSEST(
-> +		REG_FIELD_GET(SLPC_MAX_UNSLICE_FREQ_MASK,
-> +			data->task_state_data.freq) *
-> +		GT_FREQUENCY_MULTIPLIER, GEN9_FREQ_SCALER);
-> +}
-> +
-> +/*
-> + * intel_guc_slpc_enable() - Start SLPC
-> + * @slpc: pointer to intel_guc_slpc.
-> + *
-> + * SLPC is enabled by setting up the shared data structure and
-> + * sending reset event to GuC SLPC. Initial data is setup in
-> + * intel_guc_slpc_init. Here we send the reset event. We do
-> + * not currently need a slpc_disable since this is taken care
-> + * of automatically when a reset/suspend occurs and the GuC
-> + * CTB is destroyed.
-> + *
-> + * Return: 0 on success, non-zero error code on failure.
-> + */
-> +int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
-> +{
-> +	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-> +	struct slpc_shared_data *data;
-> +	int ret;
-> +
-> +	GEM_BUG_ON(!slpc->vma);
-> +
-> +	memset(slpc->vaddr, 0, sizeof(struct slpc_shared_data));
-> +
-> +	data = slpc->vaddr;
-
-vaddr is "struct slpc_shared_data *"
-do you really need "data" local var?
-
-> +	data->header.size = sizeof(struct slpc_shared_data);
-> +
-> +	/* Enable only GTPERF task, disable others */
-> +	slpc_mem_set_enabled(data, SLPC_PARAM_TASK_ENABLE_GTPERF,
-> +				SLPC_PARAM_TASK_DISABLE_GTPERF);
-> +
-> +	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_BALANCER,
-> +				SLPC_PARAM_TASK_DISABLE_BALANCER);
-> +
-> +	slpc_mem_set_disabled(data, SLPC_PARAM_TASK_ENABLE_DCC,
-> +				SLPC_PARAM_TASK_DISABLE_DCC);
-
-btw, all this "data" related calls are good candidate for helper like
-
-static void slpc_shared_data_reset(struct slpc_shared_data *data)
-{ ... }
-
-> +
-> +	ret = slpc_reset(slpc);
-> +	if (unlikely(ret < 0)) {
-> +		drm_err(&i915->drm, "SLPC Reset event returned (%pe)\n",
-> +				ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	drm_info(&i915->drm, "GuC SLPC: enabled\n");
-> +
-> +	slpc_query_task_state(slpc);
-
-as this still may fail, maybe it should be before we claim success and
-"SLPC: enabled" ?
-
-> +
-> +	/* min and max frequency limits being used by SLPC */
-> +	drm_info(&i915->drm, "SLPC min freq: %u Mhz, max is %u Mhz\n",
-> +			slpc_decode_min_freq(slpc),
-> +			slpc_decode_max_freq(slpc));
-> +
-> +
-> +	return 0;
-> +}
-> +
->  void intel_guc_slpc_fini(struct intel_guc_slpc *slpc)
->  {
->  	if (!slpc->vma)
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-> index edcf4c05bd9f..f14f81821a51 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-> @@ -6,6 +6,8 @@
->  #ifndef _INTEL_GUC_SLPC_TYPES_H_
->  #define _INTEL_GUC_SLPC_TYPES_H_
->  
-> +#define SLPC_RESET_TIMEOUT_MS 5
-> +
->  struct intel_guc_slpc {
->  	struct i915_vma *vma;
->  	struct slpc_shared_data *vaddr;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index e6bd9406c7b2..b98c14f8c229 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -506,6 +506,12 @@ static int __uc_init_hw(struct intel_uc *uc)
->  		 "submission",
->  		 enableddisabled(intel_uc_uses_guc_submission(uc)));
->  
-> +	if (intel_uc_uses_guc_slpc(uc)) {
-> +		ret = intel_guc_slpc_enable(&guc->slpc);
-> +		if (ret)
-> +			goto err_submission;
-
-hmm, as this may fail, above success message
-	"GuC submission enabled"
-will be void
-
-what you likely need is to split "slpc_enable" with error messages only
-that is called before we start reporting successes, and then
-"slpc_status" part with all drm_info() that could be placed here.
-
-Michal
-
-> +	}
-> +
->  	if (intel_uc_uses_huc(uc)) {
->  		drm_info(&i915->drm, "%s firmware %s version %u.%u %s:%s\n",
->  			 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
-> @@ -520,6 +526,8 @@ static int __uc_init_hw(struct intel_uc *uc)
->  	/*
->  	 * We've failed to load the firmware :(
->  	 */
-> +err_submission:
-> +	intel_guc_submission_disable(guc);
->  err_log_capture:
->  	__uc_capture_load_err_log(uc);
->  err_out:
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
