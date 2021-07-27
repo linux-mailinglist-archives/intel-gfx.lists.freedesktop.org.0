@@ -1,36 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A98E3D7905
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 16:51:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051CA3D796F
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 17:11:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 913226E508;
-	Tue, 27 Jul 2021 14:51:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70B2F6E8C9;
+	Tue, 27 Jul 2021 15:11:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B94F6E5A4
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jul 2021 14:51:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="199640553"
-X-IronPort-AV: E=Sophos;i="5.84,273,1620716400"; d="scan'208";a="199640553"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2021 07:51:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="498510379"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2021 07:51:05 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Jul 2021 07:50:56 -0700
-Message-Id: <20210727145056.2049720-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210727060046.2040579-1-matthew.d.roper@intel.com>
-References: <20210727060046.2040579-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 901186E882;
+ Tue, 27 Jul 2021 15:11:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8897EA47E1;
+ Tue, 27 Jul 2021 15:11:35 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/adl_p: Allow underrun recovery when
- possible
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 27 Jul 2021 15:11:35 -0000
+Message-ID: <162739869553.18667.6720949278484607033@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210727134400.101290-1-imre.deak@intel.com>
+In-Reply-To: <20210727134400.101290-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/adlp=3A_Add_workaround_to_disable_CMTG_clock_gating?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,132 +38,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2097756987=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ADL_P requires that we disable underrun recovery when downscaling (or
-using the scaler for YUV420 pipe output), using DSC, or using PSR2.
-Otherwise we should be able to enable the underrun recovery.
+--===============2097756987==
+Content-Type: multipart/alternative;
+ boundary="===============2865765726347301289=="
 
-On DG2 we need to keep underrun recovery disabled at all times, but the
-chicken bit in PIPE_CHICKEN has an inverted meaning (it's an enable bit
-instead of disable).
+--===============2865765726347301289==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
- - Reverse the condition (clear the disable bit when supported, set
-   disable bit when not supported).
+== Series Details ==
 
-Bspec: 50351
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 50 +++++++++++++-------
- drivers/gpu/drm/i915/i915_reg.h              |  3 +-
- 2 files changed, 36 insertions(+), 17 deletions(-)
+Series: drm/i915/adlp: Add workaround to disable CMTG clock gating
+URL   : https://patchwork.freedesktop.org/series/93067/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index bd533813e5e2..83c918265835 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2211,8 +2211,26 @@ void intel_display_finish_reset(struct drm_i915_private *dev_priv)
- 	clear_bit_unlock(I915_RESET_MODESET, &dev_priv->gt.reset.flags);
- }
- 
--static void icl_set_pipe_chicken(struct intel_crtc *crtc)
-+static bool underrun_recovery_supported(const struct intel_crtc_state *crtc_state)
- {
-+	if (crtc_state->pch_pfit.enabled &&
-+	    (crtc_state->pipe_src_w > drm_rect_width(&crtc_state->pch_pfit.dst) ||
-+	     crtc_state->pipe_src_h > drm_rect_height(&crtc_state->pch_pfit.dst) ||
-+	     crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return false;
-+
-+	if (crtc_state->dsc.compression_enable)
-+		return false;
-+
-+	if (crtc_state->has_psr2)
-+		return false;
-+
-+	return true;
-+}
-+
-+static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 	u32 tmp;
-@@ -2233,19 +2251,19 @@ static void icl_set_pipe_chicken(struct intel_crtc *crtc)
- 	 */
- 	tmp |= PIXEL_ROUNDING_TRUNC_FB_PASSTHRU;
- 
--	/*
--	 * "The underrun recovery mechanism should be disabled
--	 *  when the following is enabled for this pipe:
--	 *  WiDi
--	 *  Downscaling (this includes YUV420 fullblend)
--	 *  COG
--	 *  DSC
--	 *  PSR2"
--	 *
--	 * FIXME: enable whenever possible...
--	 */
--	if (IS_ALDERLAKE_P(dev_priv))
--		tmp |= UNDERRUN_RECOVERY_DISABLE;
-+	if (IS_DG2(dev_priv)) {
-+		/*
-+		 * Underrun recovery must always be disabled on DG2.  However
-+		 * the chicken bit meaning is inverted compared to other
-+		 * platforms.
-+		 */
-+		tmp &= ~UNDERRUN_RECOVERY_ENABLE_DG2;
-+	} else if (DISPLAY_VER(dev_priv) >= 13) {
-+		if (underrun_recovery_supported(crtc_state))
-+			tmp &= ~UNDERRUN_RECOVERY_DISABLE_ADLP;
-+		else
-+			tmp |= UNDERRUN_RECOVERY_DISABLE_ADLP;
-+	}
- 
- 	intel_de_write(dev_priv, PIPE_CHICKEN(pipe), tmp);
- }
-@@ -3561,7 +3579,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	hsw_set_linetime_wm(new_crtc_state);
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
--		icl_set_pipe_chicken(crtc);
-+		icl_set_pipe_chicken(new_crtc_state);
- 
- 	if (dev_priv->display.initial_watermarks)
- 		dev_priv->display.initial_watermarks(state, crtc);
-@@ -10193,7 +10211,7 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
- 		hsw_set_linetime_wm(new_crtc_state);
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
--		icl_set_pipe_chicken(crtc);
-+		icl_set_pipe_chicken(new_crtc_state);
- }
- 
- static void commit_pipe_pre_planes(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index d5c67fd5dc7d..a10cdd1a3001 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -8416,7 +8416,8 @@ enum {
- #define _PIPEC_CHICKEN				0x72038
- #define PIPE_CHICKEN(pipe)			_MMIO_PIPE(pipe, _PIPEA_CHICKEN,\
- 							   _PIPEB_CHICKEN)
--#define   UNDERRUN_RECOVERY_DISABLE		REG_BIT(30)
-+#define   UNDERRUN_RECOVERY_DISABLE_ADLP	REG_BIT(30)
-+#define   UNDERRUN_RECOVERY_ENABLE_DG2		REG_BIT(30)
- #define   PIXEL_ROUNDING_TRUNC_FB_PASSTHRU 	(1 << 15)
- #define   PER_PIXEL_ALPHA_BYPASS_EN		(1 << 7)
- 
--- 
-2.25.4
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10404 -> Patchwork_20716
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20716 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +29 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10404/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][5] ([i915#579])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (40 -> 35)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10404 -> Patchwork_20716
+
+  CI-20190529: 20190529
+  CI_DRM_10404: 371bd54db63fdd99356a1a3d0fdc9b76616eddcb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20716: 9cf8974d9e837f95ddbd9fef2411c699d619d24d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9cf8974d9e83 drm/i915/adlp: Add workaround to disable CMTG clock gating
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html
+
+--===============2865765726347301289==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/adlp: Add workaround to disable CMTG clock gating</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93067/">https://patchwork.freedesktop.org/series/93067/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10404 -&gt; Patchwork_20716</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20716 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10404/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20716/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (40 -&gt; 35)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10404 -&gt; Patchwork_20716</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10404: 371bd54db63fdd99356a1a3d0fdc9b76616eddcb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20716: 9cf8974d9e837f95ddbd9fef2411c699d619d24d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9cf8974d9e83 drm/i915/adlp: Add workaround to disable CMTG clock gating</p>
+
+</body>
+</html>
+
+--===============2865765726347301289==--
+
+--===============2097756987==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2097756987==--
