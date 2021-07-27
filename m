@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C16D3D6E93
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 08:01:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DC653D6EDE
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 08:12:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89EBB6EA13;
-	Tue, 27 Jul 2021 06:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 866476FA19;
+	Tue, 27 Jul 2021 06:12:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93F7E6EA13
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Jul 2021 06:01:01 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="210485578"
-X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="210485578"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 23:01:01 -0700
-X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="662488604"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2021 23:01:01 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Jul 2021 23:00:46 -0700
-Message-Id: <20210727060046.2040579-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82BA16FA19;
+ Tue, 27 Jul 2021 06:12:10 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="212099032"
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="212099032"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 23:12:09 -0700
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="505356925"
+Received: from achaichi-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.111.166])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 23:12:09 -0700
+Date: Mon, 26 Jul 2021 23:12:07 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210727061207.36o5typsdqr5srbb@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210724001114.249295-1-lucas.demarchi@intel.com>
+ <20210724001114.249295-5-lucas.demarchi@intel.com>
+ <20210724181207.GL1556418@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/adl_p: Allow underrun recovery when
- possible
+Content-Disposition: inline
+In-Reply-To: <20210724181207.GL1556418@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 04/30] drm/i915/display: remove explicit CNL
+ handling from intel_cdclk.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,126 +47,264 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-ADL_P requires that we disable underrun recovery when downscaling (or
-using the scaler for YUV420 pipe output), using DSC, or using PSR2.
-Otherwise we should be able to enable the underrun recovery.
+On Sat, Jul 24, 2021 at 11:12:07AM -0700, Matt Roper wrote:
+>On Fri, Jul 23, 2021 at 05:10:48PM -0700, Lucas De Marchi wrote:
+>> The only real platform with DISPLAY_VER == 10 is GLK, so we don't need
+>> any checks and supporting code for CNL. Remove code and rename
+>> functions/macros accordingly.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_cdclk.c | 72 +++++-----------------
+>>  drivers/gpu/drm/i915/i915_reg.h            |  4 +-
+>>  2 files changed, 18 insertions(+), 58 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> index ff35c29508d5..34fa4130d5c4 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>> @@ -1195,17 +1195,6 @@ static const struct intel_cdclk_vals glk_cdclk_table[] = {
+>>  	{}
+>>  };
+>>
+>> -static const struct intel_cdclk_vals cnl_cdclk_table[] = {
+>> -	{ .refclk = 19200, .cdclk = 168000, .divider = 4, .ratio = 35 },
+>> -	{ .refclk = 19200, .cdclk = 336000, .divider = 2, .ratio = 35 },
+>> -	{ .refclk = 19200, .cdclk = 528000, .divider = 2, .ratio = 55 },
+>> -
+>> -	{ .refclk = 24000, .cdclk = 168000, .divider = 4, .ratio = 28 },
+>> -	{ .refclk = 24000, .cdclk = 336000, .divider = 2, .ratio = 28 },
+>> -	{ .refclk = 24000, .cdclk = 528000, .divider = 2, .ratio = 44 },
+>> -	{}
+>> -};
+>> -
+>>  static const struct intel_cdclk_vals icl_cdclk_table[] = {
+>>  	{ .refclk = 19200, .cdclk = 172800, .divider = 2, .ratio = 18 },
+>>  	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
+>> @@ -1339,16 +1328,6 @@ static u8 bxt_calc_voltage_level(int cdclk)
+>>  	return DIV_ROUND_UP(cdclk, 25000);
+>>  }
+>>
+>> -static u8 cnl_calc_voltage_level(int cdclk)
+>> -{
+>> -	if (cdclk > 336000)
+>> -		return 2;
+>> -	else if (cdclk > 168000)
+>> -		return 1;
+>> -	else
+>> -		return 0;
+>> -}
+>> -
+>>  static u8 icl_calc_voltage_level(int cdclk)
+>>  {
+>>  	if (cdclk > 556800)
+>> @@ -1383,15 +1362,6 @@ static u8 tgl_calc_voltage_level(int cdclk)
+>>  		return 0;
+>>  }
+>>
+>> -static void cnl_readout_refclk(struct drm_i915_private *dev_priv,
+>> -			       struct intel_cdclk_config *cdclk_config)
+>> -{
+>> -	if (intel_de_read(dev_priv, SKL_DSSM) & CNL_DSSM_CDCLK_PLL_REFCLK_24MHz)
+>> -		cdclk_config->ref = 24000;
+>> -	else
+>> -		cdclk_config->ref = 19200;
+>> -}
+>> -
+>>  static void icl_readout_refclk(struct drm_i915_private *dev_priv,
+>>  			       struct intel_cdclk_config *cdclk_config)
+>>  {
+>> @@ -1422,8 +1392,6 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+>>  		cdclk_config->ref = 38400;
+>>  	else if (DISPLAY_VER(dev_priv) >= 11)
+>>  		icl_readout_refclk(dev_priv, cdclk_config);
+>> -	else if (IS_CANNONLAKE(dev_priv))
+>> -		cnl_readout_refclk(dev_priv, cdclk_config);
+>>  	else
+>>  		cdclk_config->ref = 19200;
+>>
+>> @@ -1439,11 +1407,11 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+>>  	}
+>>
+>>  	/*
+>> -	 * CNL+ have the ratio directly in the PLL enable register, gen9lp had
+>> -	 * it in a separate PLL control register.
+>> +	 * DISPLAY_VER >= 11 have the ratio directly in the PLL enable register,
+>> +	 * gen9lp had it in a separate PLL control register.
+>>  	 */
+>> -	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv))
+>> -		ratio = val & CNL_CDCLK_PLL_RATIO_MASK;
+>> +	if (DISPLAY_VER(dev_priv) >= 11)
+>> +		ratio = val & ICL_CDCLK_PLL_RATIO_MASK;
+>>  	else
+>>  		ratio = intel_de_read(dev_priv, BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO_MASK;
+>>
+>> @@ -1530,7 +1498,7 @@ static void bxt_de_pll_enable(struct drm_i915_private *dev_priv, int vco)
+>>  	dev_priv->cdclk.hw.vco = vco;
+>>  }
+>>
+>> -static void cnl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
+>> +static void icl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
+>>  {
+>>  	intel_de_rmw(dev_priv, BXT_DE_PLL_ENABLE,
+>>  		     BXT_DE_PLL_PLL_ENABLE, 0);
+>> @@ -1542,12 +1510,12 @@ static void cnl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
+>>  	dev_priv->cdclk.hw.vco = 0;
+>>  }
+>>
+>> -static void cnl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
+>> +static void icl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
+>>  {
+>>  	int ratio = DIV_ROUND_CLOSEST(vco, dev_priv->cdclk.hw.ref);
+>>  	u32 val;
+>>
+>> -	val = CNL_CDCLK_PLL_RATIO(ratio);
+>> +	val = ICL_CDCLK_PLL_RATIO(ratio);
+>>  	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+>>
+>>  	val |= BXT_DE_PLL_PLL_ENABLE;
+>> @@ -1566,7 +1534,7 @@ static void adlp_cdclk_pll_crawl(struct drm_i915_private *dev_priv, int vco)
+>>  	u32 val;
+>>
+>>  	/* Write PLL ratio without disabling */
+>> -	val = CNL_CDCLK_PLL_RATIO(ratio) | BXT_DE_PLL_PLL_ENABLE;
+>> +	val = ICL_CDCLK_PLL_RATIO(ratio) | BXT_DE_PLL_PLL_ENABLE;
+>>  	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+>>
+>>  	/* Submit freq change request */
+>> @@ -1635,7 +1603,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>>  	int ret;
+>>
+>>  	/* Inform power controller of upcoming frequency change. */
+>> -	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv))
+>> +	if (DISPLAY_VER(dev_priv) >= 11)
+>>  		ret = skl_pcode_request(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+>>  					SKL_CDCLK_PREPARE_FOR_CHANGE,
+>>  					SKL_CDCLK_READY_FOR_CHANGE,
+>> @@ -1659,13 +1627,13 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>>  	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->cdclk.hw.vco > 0 && vco > 0) {
+>>  		if (dev_priv->cdclk.hw.vco != vco)
+>>  			adlp_cdclk_pll_crawl(dev_priv, vco);
+>> -	} else if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
+>> +	} else if (DISPLAY_VER(dev_priv) >= 11) {
+>>  		if (dev_priv->cdclk.hw.vco != 0 &&
+>>  		    dev_priv->cdclk.hw.vco != vco)
+>> -			cnl_cdclk_pll_disable(dev_priv);
+>> +			icl_cdclk_pll_disable(dev_priv);
+>>
+>>  		if (dev_priv->cdclk.hw.vco != vco)
+>> -			cnl_cdclk_pll_enable(dev_priv, vco);
+>> +			icl_cdclk_pll_enable(dev_priv, vco);
+>>  	} else {
+>>  		if (dev_priv->cdclk.hw.vco != 0 &&
+>>  		    dev_priv->cdclk.hw.vco != vco)
+>> @@ -1691,7 +1659,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>>  	if (pipe != INVALID_PIPE)
+>>  		intel_wait_for_vblank(dev_priv, pipe);
+>>
+>> -	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
+>> +	if (DISPLAY_VER(dev_priv) >= 11) {
+>>  		ret = sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+>>  					      cdclk_config->voltage_level);
+>>  	} else {
+>> @@ -1716,7 +1684,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>>
+>>  	intel_update_cdclk(dev_priv);
+>>
+>> -	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv))
+>> +	if (DISPLAY_VER(dev_priv) >= 11)
+>>  		/*
+>>  		 * Can't read out the voltage level :(
+>>  		 * Let's just assume everything is as expected.
+>> @@ -2125,7 +2093,7 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+>>  	    crtc_state->port_clock >= 540000 &&
+>>  	    crtc_state->lane_count == 4) {
+>>  		if (DISPLAY_VER(dev_priv) == 10) {
+>> -			/* Display WA #1145: glk,cnl */
+>> +			/* Display WA #1145: glk */
+>>  			min_cdclk = max(316800, min_cdclk);
+>>  		} else if (DISPLAY_VER(dev_priv) == 9 || IS_BROADWELL(dev_priv)) {
+>>  			/* Display WA #1144: skl,bxt */
+>> @@ -2246,7 +2214,7 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+>>
+>>  /*
+>>   * Account for port clock min voltage level requirements.
+>> - * This only really does something on CNL+ but can be
+>> + * This only really does something on DISPLA_VER >= 11 but can be
+>>   * called on earlier platforms as well.
+>>   *
+>>   * Note that this functions assumes that 0 is
+>> @@ -2660,8 +2628,6 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+>>  			dev_priv->max_cdclk_freq = 648000;
+>>  		else
+>>  			dev_priv->max_cdclk_freq = 652800;
+>> -	} else if (IS_CANNONLAKE(dev_priv)) {
+>> -		dev_priv->max_cdclk_freq = 528000;
+>>  	} else if (IS_GEMINILAKE(dev_priv)) {
+>>  		dev_priv->max_cdclk_freq = 316800;
+>>  	} else if (IS_BROXTON(dev_priv)) {
+>> @@ -2925,12 +2891,6 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+>>  		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+>>  		dev_priv->display.calc_voltage_level = icl_calc_voltage_level;
+>>  		dev_priv->cdclk.table = icl_cdclk_table;
+>> -	} else if (IS_CANNONLAKE(dev_priv)) {
+>> -		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+>> -		dev_priv->display.set_cdclk = bxt_set_cdclk;
+>> -		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+>> -		dev_priv->display.calc_voltage_level = cnl_calc_voltage_level;
+>> -		dev_priv->cdclk.table = cnl_cdclk_table;
+>>  	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+>>  		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+>>  		dev_priv->display.set_cdclk = bxt_set_cdclk;
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>> index 8e1392028184..6a894ffd91e1 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -11016,8 +11016,8 @@ enum skl_power_gate {
+>>  #define   BXT_DE_PLL_LOCK		(1 << 30)
+>>  #define   BXT_DE_PLL_FREQ_REQ		(1 << 23)
+>>  #define   BXT_DE_PLL_FREQ_REQ_ACK	(1 << 22)
+>> -#define   CNL_CDCLK_PLL_RATIO(x)	(x)
+>> -#define   CNL_CDCLK_PLL_RATIO_MASK	0xff
+>> +#define   ICL_CDCLK_PLL_RATIO(x)	(x)
+>> +#define   ICL_CDCLK_PLL_RATIO_MASK	0xff
+>
+>We could take this opportunity to switch to REG_GENMASK, REG_FIELD_PREP
+>here.  Otherwise,
+>
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-On DG2 we need to keep underrun recovery disabled at all times, but the
-chicken bit in PIPE_CHICKEN has an inverted meaning (it's an enable bit
-instead of disable).
+I'd rather have a single big patch converting all of i915_reg.h
 
-Bspec: 50351
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 50 +++++++++++++-------
- drivers/gpu/drm/i915/i915_reg.h              |  3 +-
- 2 files changed, 36 insertions(+), 17 deletions(-)
+We are doing this conversion piece by piece for a long time and it seems
+we are never going to achieve the desired end result.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index bd533813e5e2..b861b169fb82 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2211,8 +2211,26 @@ void intel_display_finish_reset(struct drm_i915_private *dev_priv)
- 	clear_bit_unlock(I915_RESET_MODESET, &dev_priv->gt.reset.flags);
- }
- 
--static void icl_set_pipe_chicken(struct intel_crtc *crtc)
-+static bool underrun_recovery_supported(const struct intel_crtc_state *crtc_state)
- {
-+	if (crtc_state->pch_pfit.enabled &&
-+	    (crtc_state->pipe_src_w > drm_rect_width(&crtc_state->pch_pfit.dst) ||
-+	     crtc_state->pipe_src_h > drm_rect_height(&crtc_state->pch_pfit.dst) ||
-+	     crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420))
-+		return false;
-+
-+	if (crtc_state->dsc.compression_enable)
-+		return false;
-+
-+	if (crtc_state->has_psr2)
-+		return false;
-+
-+	return true;
-+}
-+
-+static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 	u32 tmp;
-@@ -2233,19 +2251,19 @@ static void icl_set_pipe_chicken(struct intel_crtc *crtc)
- 	 */
- 	tmp |= PIXEL_ROUNDING_TRUNC_FB_PASSTHRU;
- 
--	/*
--	 * "The underrun recovery mechanism should be disabled
--	 *  when the following is enabled for this pipe:
--	 *  WiDi
--	 *  Downscaling (this includes YUV420 fullblend)
--	 *  COG
--	 *  DSC
--	 *  PSR2"
--	 *
--	 * FIXME: enable whenever possible...
--	 */
--	if (IS_ALDERLAKE_P(dev_priv))
--		tmp |= UNDERRUN_RECOVERY_DISABLE;
-+	if (IS_DG2(dev_priv)) {
-+		/*
-+		 * Underrun recovery must always be disabled on DG2.  However
-+		 * the chicken bit meaning is inverted compared to other
-+		 * platforms.
-+		 */
-+		tmp &= ~UNDERRUN_RECOVERY_ENABLE_DG2;
-+	} else if (DISPLAY_VER(dev_priv) >= 13) {
-+		if (underrun_recovery_supported(crtc_state))
-+			tmp |= UNDERRUN_RECOVERY_DISABLE_ADLP;
-+		else
-+			tmp &= ~UNDERRUN_RECOVERY_DISABLE_ADLP;
-+	}
- 
- 	intel_de_write(dev_priv, PIPE_CHICKEN(pipe), tmp);
- }
-@@ -3561,7 +3579,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	hsw_set_linetime_wm(new_crtc_state);
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
--		icl_set_pipe_chicken(crtc);
-+		icl_set_pipe_chicken(new_crtc_state);
- 
- 	if (dev_priv->display.initial_watermarks)
- 		dev_priv->display.initial_watermarks(state, crtc);
-@@ -10193,7 +10211,7 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
- 		hsw_set_linetime_wm(new_crtc_state);
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
--		icl_set_pipe_chicken(crtc);
-+		icl_set_pipe_chicken(new_crtc_state);
- }
- 
- static void commit_pipe_pre_planes(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index d5c67fd5dc7d..a10cdd1a3001 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -8416,7 +8416,8 @@ enum {
- #define _PIPEC_CHICKEN				0x72038
- #define PIPE_CHICKEN(pipe)			_MMIO_PIPE(pipe, _PIPEA_CHICKEN,\
- 							   _PIPEB_CHICKEN)
--#define   UNDERRUN_RECOVERY_DISABLE		REG_BIT(30)
-+#define   UNDERRUN_RECOVERY_DISABLE_ADLP	REG_BIT(30)
-+#define   UNDERRUN_RECOVERY_ENABLE_DG2		REG_BIT(30)
- #define   PIXEL_ROUNDING_TRUNC_FB_PASSTHRU 	(1 << 15)
- #define   PER_PIXEL_ALPHA_BYPASS_EN		(1 << 7)
- 
--- 
-2.25.4
+todo++
 
+thanks
+Lucas De Marchi
+
+>
+>>
+>>  /* GEN9 DC */
+>>  #define DC_STATE_EN			_MMIO(0x45504)
+>> --
+>> 2.31.1
+>>
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>VTT-OSGC Platform Enablement
+>Intel Corporation
+>(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
