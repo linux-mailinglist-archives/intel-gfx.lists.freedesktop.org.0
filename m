@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943DC3D6F8C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 08:37:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D81B53D6FCF
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 08:59:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0BC66EA2F;
-	Tue, 27 Jul 2021 06:37:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78EF473021;
+	Tue, 27 Jul 2021 06:59:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3FFB06EA2F;
- Tue, 27 Jul 2021 06:37:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 385B8A8832;
- Tue, 27 Jul 2021 06:37:05 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAA7173021;
+ Tue, 27 Jul 2021 06:59:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10057"; a="191978547"
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="191978547"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 23:59:20 -0700
+X-IronPort-AV: E=Sophos;i="5.84,272,1620716400"; d="scan'208";a="516704460"
+Received: from achaichi-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.111.166])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2021 23:59:20 -0700
+Date: Mon, 26 Jul 2021 23:59:18 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20210727065918.kymk3d2iddejsefs@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210724001114.249295-1-lucas.demarchi@intel.com>
+ <20210724001114.249295-31-lucas.demarchi@intel.com>
+ <YP6Ktiij08KY9wvt@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 27 Jul 2021 06:37:05 -0000
-Message-ID: <162736782520.18664.7397993855162252890@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210727060046.2040579-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210727060046.2040579-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/adl=5Fp=3A_Allow_underrun_recovery_when_possible?=
+Content-Disposition: inline
+In-Reply-To: <YP6Ktiij08KY9wvt@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 30/30] drm/i915: switch
+ num_scalers/num_sprites to consider DISPLAY_VER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,189 +47,84 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1969020508=="
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1969020508==
-Content-Type: multipart/alternative;
- boundary="===============6346093055006696306=="
+On Mon, Jul 26, 2021 at 06:13:10AM -0400, Rodrigo Vivi wrote:
+>On Fri, Jul 23, 2021 at 05:11:14PM -0700, Lucas De Marchi wrote:
+>> The numbers of scalers and sprites depend on the display version, so use
+>> it instead of GRAPHICS_VER. We were mixing both, which let me confused
+>> while removing CNL and GRAPHICS_VER == 10.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/intel_device_info.c | 8 ++++----
+>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+>> index ffe3b5d89a63..7023d36a9a28 100644
+>> --- a/drivers/gpu/drm/i915/intel_device_info.c
+>> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+>> @@ -265,10 +265,10 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>>  	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2))
+>>  		for_each_pipe(dev_priv, pipe)
+>>  			runtime->num_scalers[pipe] = 0;
+>> -	else if (GRAPHICS_VER(dev_priv) >= 11) {
+>> +	else if (DISPLAY_VER(dev_priv) >= 11) {
+>>  		for_each_pipe(dev_priv, pipe)
+>>  			runtime->num_scalers[pipe] = 2;
+>> -	} else if (GRAPHICS_VER(dev_priv) == 9) {
+>> +	} else if (DISPLAY_VER(dev_priv) == 9) {
+>>  		runtime->num_scalers[PIPE_A] = 2;
+>>  		runtime->num_scalers[PIPE_B] = 2;
+>>  		runtime->num_scalers[PIPE_C] = 1;
+>> @@ -279,7 +279,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>>  	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv))
+>>  		for_each_pipe(dev_priv, pipe)
+>>  			runtime->num_sprites[pipe] = 4;
+>> -	else if (GRAPHICS_VER(dev_priv) >= 11)
+>> +	else if (DISPLAY_VER(dev_priv) >= 11)
+>>  		for_each_pipe(dev_priv, pipe)
+>>  			runtime->num_sprites[pipe] = 6;
+>>  	else if (IS_GEMINILAKE(dev_priv))
+>
+>while at it we could probably change this to DISPLAY_VER == 10?!
 
---===============6346093055006696306==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/adl_p: Allow underrun recovery when possible
-URL   : https://patchwork.freedesktop.org/series/93054/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10399 -> Patchwork_20712
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20712 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][1] ([fdo#109271]) +48 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/fi-pnv-d510/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@engines@userptr:
-    - fi-pnv-d510:        [INCOMPLETE][2] ([i915#299]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10399/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-dsi1:
-    - {fi-tgl-dsi}:       [DMESG-WARN][4] ([i915#1982]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10399/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@a-dsi1.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@a-dsi1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
+yep, sounds good
 
 
-Participating hosts (39 -> 35)
-------------------------------
+>
+>but anyway:
+>
+>Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+thanks
+Lucas De Marchi
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10399 -> Patchwork_20712
-
-  CI-20190529: 20190529
-  CI_DRM_10399: 669037414c99bf454019d7e2497fe29995e31e61 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6151: c3170c2d3744521b8351a4b9c579792bc9a5f835 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20712: f87397b47be64010c4d5cfa6c569dce167a607d4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f87397b47be6 drm/i915/adl_p: Allow underrun recovery when possible
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/index.html
-
---===============6346093055006696306==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/adl_p: Allow underrun recovery when possible</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93054/">https://patchwork.freedesktop.org/series/93054/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10399 -&gt; Patchwork_20712</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20712 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@prime_vgem@basic-userptr:<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/fi-pnv-d510/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +48 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@userptr:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10399/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@a-dsi1:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10399/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@a-dsi1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20712/fi-tgl-dsi/igt@kms_flip@basic-flip-vs-dpms@a-dsi1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10399 -&gt; Patchwork_20712</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10399: 669037414c99bf454019d7e2497fe29995e31e61 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6151: c3170c2d3744521b8351a4b9c579792bc9a5f835 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20712: f87397b47be64010c4d5cfa6c569dce167a607d4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f87397b47be6 drm/i915/adl_p: Allow underrun recovery when possible</p>
-
-</body>
-</html>
-
---===============6346093055006696306==--
-
---===============1969020508==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+>
+>
+>> @@ -301,7 +301,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>>  	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+>>  		for_each_pipe(dev_priv, pipe)
+>>  			runtime->num_sprites[pipe] = 2;
+>> -	} else if (GRAPHICS_VER(dev_priv) >= 5 || IS_G4X(dev_priv)) {
+>> +	} else if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv)) {
+>>  		for_each_pipe(dev_priv, pipe)
+>>  			runtime->num_sprites[pipe] = 1;
+>>  	}
+>> --
+>> 2.31.1
+>>
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1969020508==--
