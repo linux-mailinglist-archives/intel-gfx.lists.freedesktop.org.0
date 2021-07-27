@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F083D7E74
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 21:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C735A3D7EB0
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 21:49:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 383266E527;
-	Tue, 27 Jul 2021 19:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CBB36E5CD;
+	Tue, 27 Jul 2021 19:49:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B3CBA6E802;
- Tue, 27 Jul 2021 19:22:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ACDE2A8832;
- Tue, 27 Jul 2021 19:22:11 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4B666E3D0;
+ Tue, 27 Jul 2021 19:49:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10058"; a="212551811"
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="212551811"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2021 12:49:45 -0700
+X-IronPort-AV: E=Sophos;i="5.84,274,1620716400"; d="scan'208";a="580333607"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2021 12:49:45 -0700
+Date: Tue, 27 Jul 2021 12:49:44 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+Message-ID: <20210727194944.GA1556418@mdroper-desk1.amr.corp.intel.com>
+References: <20210726190800.26762-1-vinay.belgaumkar@intel.com>
+ <20210726190800.26762-16-vinay.belgaumkar@intel.com>
+ <20210727153718.GY1556418@mdroper-desk1.amr.corp.intel.com>
+ <2fbb9934-22f2-937d-bc84-470dcd82c289@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: badal.nilawar@intel.com
-Date: Tue, 27 Jul 2021 19:22:11 -0000
-Message-ID: <162741373170.18667.6275895385946892684@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210727173338.901264-1-badal.nilawar@intel.com>
-In-Reply-To: <20210727173338.901264-1-badal.nilawar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/1=5D_drm/i915=3A_dgfx_cards_need_to_wait?=
- =?utf-8?q?_on_pcode=27s_uncore_init_done?=
+Content-Disposition: inline
+In-Reply-To: <2fbb9934-22f2-937d-bc84-470dcd82c289@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 15/15] drm/i915/guc/rc: Setup and enable
+ GUCRC feature
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,215 +47,378 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2131755471=="
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2131755471==
-Content-Type: multipart/alternative;
- boundary="===============1828838709833760522=="
+On Tue, Jul 27, 2021 at 09:18:08AM -0700, Belgaumkar, Vinay wrote:
+> =
 
---===============1828838709833760522==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> =
 
-== Series Details ==
+> On 7/27/2021 8:37 AM, Matt Roper wrote:
+> > On Mon, Jul 26, 2021 at 12:08:00PM -0700, Vinay Belgaumkar wrote:
+> > > This feature hands over the control of HW RC6 to the GuC.
+> > > GuC decides when to put HW into RC6 based on it's internal
+> > > busyness algorithms.
+> > > =
 
-Series: series starting with [1/1] drm/i915: dgfx cards need to wait on pcode's uncore init done
-URL   : https://patchwork.freedesktop.org/series/93075/
-State : success
+> > > GUCRC needs GuC submission to be enabled, and only
+> > > supported on Gen12+ for now.
+> > > =
 
-== Summary ==
+> > > When GUCRC is enabled, do not set HW RC6. Use a H2G message
+> > > to tell GuC to enable GUCRC. When disabling RC6, tell GuC to
+> > > revert RC6 control back to KMD.
+> > > =
 
-CI Bug Log - changes from CI_DRM_10405 -> Patchwork_20720
-====================================================
+> > > v2: Address comments (Michal W)
+> > > =
 
-Summary
--------
+> > > Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > > Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/i915/Makefile                 |  1 +
+> > >   drivers/gpu/drm/i915/gt/intel_rc6.c           | 22 +++--
+> > >   .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |  6 ++
+> > >   drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  1 +
+> > >   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  2 +
+> > >   drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c     | 80 ++++++++++++++++=
++++
+> > >   drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h     | 31 +++++++
+> > >   drivers/gpu/drm/i915/gt/uc/intel_uc.h         |  2 +
+> > >   8 files changed, 140 insertions(+), 5 deletions(-)
+> > >   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
+> > >   create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h
+> > > =
 
-  **SUCCESS**
+> > > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Mak=
+efile
+> > > index d8eac4468df9..3fc17f20d88e 100644
+> > > --- a/drivers/gpu/drm/i915/Makefile
+> > > +++ b/drivers/gpu/drm/i915/Makefile
+> > > @@ -186,6 +186,7 @@ i915-y +=3D gt/uc/intel_uc.o \
+> > >   	  gt/uc/intel_guc_fw.o \
+> > >   	  gt/uc/intel_guc_log.o \
+> > >   	  gt/uc/intel_guc_log_debugfs.o \
+> > > +	  gt/uc/intel_guc_rc.o \
+> > >   	  gt/uc/intel_guc_slpc.o \
+> > >   	  gt/uc/intel_guc_submission.o \
+> > >   	  gt/uc/intel_huc.o \
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i9=
+15/gt/intel_rc6.c
+> > > index 259d7eb4e165..299fcf10b04b 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > > @@ -98,11 +98,19 @@ static void gen11_rc6_enable(struct intel_rc6 *rc=
+6)
+> > >   	set(uncore, GEN9_MEDIA_PG_IDLE_HYSTERESIS, 60);
+> > >   	set(uncore, GEN9_RENDER_PG_IDLE_HYSTERESIS, 60);
+> > =
 
-  No regressions found.
+> > Do steps 2b and 2c above this still apply to gucrc?  Are those still
+> > controlling the behavior of gucrc or does the GuC firmware just
+> > overwrite them with its own values?  If they're still impacting the
+> > behavior when gucrc is enabled, is there any updated guidance on how the
+> > values should be set?  It seems that there isn't any guidance in the
+> > bspec for the last several platforms, so we've pretty much been re-using
+> > old values without knowing if there's additional adjustment that should
+> > be done for the newer platforms.
+> > =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/index.html
+> > If the tuning values the driver sets get ignored/overwritten during GuC
+> > operation, maybe we should add a new gucrc_rc6_enable() that gets used
+> > instead of gen11_rc6_enable() and drops the unnecessary steps to help
+> > clarify what's truly important?
+> =
 
-Known issues
-------------
+> Yeah, 2b does get overwritten by guc, but we still need 2c.
+> =
 
-  Here are the changes found in Patchwork_20720 that come from known issues:
+> > =
 
-### IGT changes ###
+> > =
 
-#### Issues hit ####
+> > > -	/* 3a: Enable RC6 */
+> > > -	rc6->ctl_enable =3D
+> > > -		GEN6_RC_CTL_HW_ENABLE |
+> > > -		GEN6_RC_CTL_RC6_ENABLE |
+> > > -		GEN6_RC_CTL_EI_MODE(1);
+> > > +	/* 3a: Enable RC6
+> > > +	 *
+> > > +	 * With GUCRC, we do not enable bit 31 of RC_CTL,
+> > > +	 * thus allowing GuC to control RC6 entry/exit fully instead.
+> > > +	 * We will not set the HW ENABLE and EI bits
+> > > +	 */
+> > > +	if (!intel_guc_rc_enable(&gt->uc.guc))
+> > > +		rc6->ctl_enable =3D GEN6_RC_CTL_RC6_ENABLE;
+> > > +	else
+> > > +		rc6->ctl_enable =3D
+> > > +			GEN6_RC_CTL_HW_ENABLE |
+> > > +			GEN6_RC_CTL_RC6_ENABLE |
+> > > +			GEN6_RC_CTL_EI_MODE(1);
+> > >   	pg_enable =3D
+> > >   		GEN9_RENDER_PG_ENABLE |
+> > =
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +25 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+> > We should probably clarify in the commit message that gucrc doesn't
+> > cover powergating and leaves that under driver control.  Maybe we should
+> > even pull this out into its own function rather than leaving it in the
+> > "rc6 enable" function since it really is its own thing?
+> =
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+> I have a note in the summary patch about this, will pull it into this pat=
+ch
+> header as well.
+> =
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#579])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
+> There is already a separate effort underway from Suja to decouple RC6 and
+> coarse power gate enabling. Might become more streamlined after that.
+> =
 
-  
-#### Possible fixes ####
+> For now, I can have an if check around 2b so that there is more clarity?
 
-  * igt@i915_selftest@live@migrate:
-    - {fi-hsw-gt1}:       [FAIL][4] -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-hsw-gt1/igt@i915_selftest@live@migrate.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-hsw-gt1/igt@i915_selftest@live@migrate.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][6] ([i915#1372]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (41 -> 35)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10405 -> Patchwork_20720
-
-  CI-20190529: 20190529
-  CI_DRM_10405: 6db19b5e1fac016d9dffa6ce54aa21f3200c5c8d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20720: 073d8955a1b057132f5d1f8a4343f1f703865ea0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-073d8955a1b0 drm/i915: dgfx cards need to wait on pcode's uncore init done
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/index.html
-
---===============1828838709833760522==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/i915: dgfx cards need to wait on pcode&#39;s uncore init done</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93075/">https://patchwork.freedesktop.org/series/93075/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/index.html</a></td></tr>
-
-</table>
+Yeah, if there's already a separate refactoring effort happening, then
+just adding an 'if' check to help clarify which parts of this function
+actually have an effect with gucrc is probably good enough for now.
 
 
-    <h1>CI Bug Log - changes from CI_DRM_10405 -&gt; Patchwork_20720</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20720 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +25 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-hsw-gt1/igt@i915_selftest@live@migrate.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-hsw-gt1/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20720/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (41 -&gt; 35)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10405 -&gt; Patchwork_20720</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10405: 6db19b5e1fac016d9dffa6ce54aa21f3200c5c8d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20720: 073d8955a1b057132f5d1f8a4343f1f703865ea0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>073d8955a1b0 drm/i915: dgfx cards need to wait on pcode's uncore init done</p>
+Matt
 
-</body>
-</html>
+> =
 
---===============1828838709833760522==--
+> Thanks,
+> Vinay.
+> > =
 
---===============2131755471==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> > =
 
+> > Matt
+> > =
+
+> > > @@ -513,6 +521,10 @@ static void __intel_rc6_disable(struct intel_rc6=
+ *rc6)
+> > >   {
+> > >   	struct drm_i915_private *i915 =3D rc6_to_i915(rc6);
+> > >   	struct intel_uncore *uncore =3D rc6_to_uncore(rc6);
+> > > +	struct intel_gt *gt =3D rc6_to_gt(rc6);
+> > > +
+> > > +	/* Take control of RC6 back from GuC */
+> > > +	intel_guc_rc_disable(&gt->uc.guc);
+> > >   	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+> > >   	if (GRAPHICS_VER(i915) >=3D 9)
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h b/drive=
+rs/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> > > index ca538e5de940..8ff582222aff 100644
+> > > --- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
+> > > @@ -135,6 +135,7 @@ enum intel_guc_action {
+> > >   	INTEL_GUC_ACTION_SET_CONTEXT_PREEMPTION_TIMEOUT =3D 0x1007,
+> > >   	INTEL_GUC_ACTION_CONTEXT_RESET_NOTIFICATION =3D 0x1008,
+> > >   	INTEL_GUC_ACTION_ENGINE_FAILURE_NOTIFICATION =3D 0x1009,
+> > > +	INTEL_GUC_ACTION_SETUP_PC_GUCRC =3D 0x3004,
+> > >   	INTEL_GUC_ACTION_AUTHENTICATE_HUC =3D 0x4000,
+> > >   	INTEL_GUC_ACTION_REGISTER_CONTEXT =3D 0x4502,
+> > >   	INTEL_GUC_ACTION_DEREGISTER_CONTEXT =3D 0x4503,
+> > > @@ -145,6 +146,11 @@ enum intel_guc_action {
+> > >   	INTEL_GUC_ACTION_LIMIT
+> > >   };
+> > > +enum intel_guc_rc_options {
+> > > +	INTEL_GUCRC_HOST_CONTROL,
+> > > +	INTEL_GUCRC_FIRMWARE_CONTROL,
+> > > +};
+> > > +
+> > >   enum intel_guc_preempt_options {
+> > >   	INTEL_GUC_PREEMPT_OPTION_DROP_WORK_Q =3D 0x4,
+> > >   	INTEL_GUC_PREEMPT_OPTION_DROP_SUBMIT_Q =3D 0x8,
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm=
+/i915/gt/uc/intel_guc.c
+> > > index 13d162353b1a..fbfcae727d7f 100644
+> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > > @@ -159,6 +159,7 @@ void intel_guc_init_early(struct intel_guc *guc)
+> > >   	intel_guc_log_init_early(&guc->log);
+> > >   	intel_guc_submission_init_early(guc);
+> > >   	intel_guc_slpc_init_early(&guc->slpc);
+> > > +	intel_guc_rc_init_early(guc);
+> > >   	mutex_init(&guc->send_mutex);
+> > >   	spin_lock_init(&guc->irq_lock);
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm=
+/i915/gt/uc/intel_guc.h
+> > > index 15ad2eaee473..08919d1b35dc 100644
+> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > > @@ -59,6 +59,8 @@ struct intel_guc {
+> > >   	bool submission_supported;
+> > >   	bool submission_selected;
+> > > +	bool rc_supported;
+> > > +	bool rc_selected;
+> > >   	bool slpc_supported;
+> > >   	bool slpc_selected;
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c b/drivers/gpu/=
+drm/i915/gt/uc/intel_guc_rc.c
+> > > new file mode 100644
+> > > index 000000000000..18e3e05d7b39
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
+> > > @@ -0,0 +1,80 @@
+> > > +// SPDX-License-Identifier: MIT
+> > > +/*
+> > > + * Copyright =A9 2021 Intel Corporation
+> > > + */
+> > > +
+> > > +#include "intel_guc_rc.h"
+> > > +#include "gt/intel_gt.h"
+> > > +#include "i915_drv.h"
+> > > +
+> > > +static bool __guc_rc_supported(struct intel_guc *guc)
+> > > +{
+> > > +	/* GuC RC is unavailable for pre-Gen12 */
+> > > +	return guc->submission_supported &&
+> > > +		GRAPHICS_VER(guc_to_gt(guc)->i915) >=3D 12;
+> > > +}
+> > > +
+> > > +static bool __guc_rc_selected(struct intel_guc *guc)
+> > > +{
+> > > +	if (!intel_guc_rc_is_supported(guc))
+> > > +		return false;
+> > > +
+> > > +	return guc->submission_selected;
+> > > +}
+> > > +
+> > > +void intel_guc_rc_init_early(struct intel_guc *guc)
+> > > +{
+> > > +	guc->rc_supported =3D __guc_rc_supported(guc);
+> > > +	guc->rc_selected =3D __guc_rc_selected(guc);
+> > > +}
+> > > +
+> > > +static int guc_action_control_gucrc(struct intel_guc *guc, bool enab=
+le)
+> > > +{
+> > > +	u32 rc_mode =3D enable ? INTEL_GUCRC_FIRMWARE_CONTROL :
+> > > +				INTEL_GUCRC_HOST_CONTROL;
+> > > +	u32 action[] =3D {
+> > > +		INTEL_GUC_ACTION_SETUP_PC_GUCRC,
+> > > +		rc_mode
+> > > +	};
+> > > +	int ret;
+> > > +
+> > > +	ret =3D intel_guc_send(guc, action, ARRAY_SIZE(action));
+> > > +	ret =3D ret > 0 ? -EPROTO : ret;
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int __guc_rc_control(struct intel_guc *guc, bool enable)
+> > > +{
+> > > +	struct intel_gt *gt =3D guc_to_gt(guc);
+> > > +	struct drm_device *drm =3D &guc_to_gt(guc)->i915->drm;
+> > > +	int ret;
+> > > +
+> > > +	if (!intel_uc_uses_guc_rc(&gt->uc))
+> > > +		return -ENOTSUPP;
+> > > +
+> > > +	if (!intel_guc_is_ready(guc))
+> > > +		return -EINVAL;
+> > > +
+> > > +	ret =3D guc_action_control_gucrc(guc, enable);
+> > > +	if (ret) {
+> > > +		drm_err(drm, "Failed to %s GuC RC (%pe)\n",
+> > > +			enabledisable(enable), ERR_PTR(ret));
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	drm_info(&gt->i915->drm, "GuC RC: %s\n",
+> > > +		enableddisabled(enable));
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +int intel_guc_rc_enable(struct intel_guc *guc)
+> > > +{
+> > > +	return __guc_rc_control(guc, true);
+> > > +}
+> > > +
+> > > +int intel_guc_rc_disable(struct intel_guc *guc)
+> > > +{
+> > > +	return __guc_rc_control(guc, false);
+> > > +}
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h b/drivers/gpu/=
+drm/i915/gt/uc/intel_guc_rc.h
+> > > new file mode 100644
+> > > index 000000000000..57e86c337838
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h
+> > > @@ -0,0 +1,31 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > > +/*
+> > > + * Copyright =A9 2021 Intel Corporation
+> > > + */
+> > > +
+> > > +#ifndef _INTEL_GUC_RC_H_
+> > > +#define _INTEL_GUC_RC_H_
+> > > +
+> > > +#include "intel_guc_submission.h"
+> > > +
+> > > +void intel_guc_rc_init_early(struct intel_guc *guc);
+> > > +
+> > > +static inline bool intel_guc_rc_is_supported(struct intel_guc *guc)
+> > > +{
+> > > +	return guc->rc_supported;
+> > > +}
+> > > +
+> > > +static inline bool intel_guc_rc_is_wanted(struct intel_guc *guc)
+> > > +{
+> > > +	return guc->submission_selected && intel_guc_rc_is_supported(guc);
+> > > +}
+> > > +
+> > > +static inline bool intel_guc_rc_is_used(struct intel_guc *guc)
+> > > +{
+> > > +	return intel_guc_submission_is_used(guc) && intel_guc_rc_is_wanted(=
+guc);
+> > > +}
+> > > +
+> > > +int intel_guc_rc_enable(struct intel_guc *guc);
+> > > +int intel_guc_rc_disable(struct intel_guc *guc);
+> > > +
+> > > +#endif
+> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/=
+i915/gt/uc/intel_uc.h
+> > > index 925a58ca6b94..866b462821c0 100644
+> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> > > @@ -7,6 +7,7 @@
+> > >   #define _INTEL_UC_H_
+> > >   #include "intel_guc.h"
+> > > +#include "intel_guc_rc.h"
+> > >   #include "intel_guc_submission.h"
+> > >   #include "intel_guc_slpc.h"
+> > >   #include "intel_huc.h"
+> > > @@ -85,6 +86,7 @@ uc_state_checkers(guc, guc);
+> > >   uc_state_checkers(huc, huc);
+> > >   uc_state_checkers(guc, guc_submission);
+> > >   uc_state_checkers(guc, guc_slpc);
+> > > +uc_state_checkers(guc, guc_rc);
+> > >   #undef uc_state_checkers
+> > >   #undef __uc_state_checker
+> > > -- =
+
+> > > 2.25.0
+> > > =
+
+> > =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2131755471==--
