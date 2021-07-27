@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A7B3D7C64
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 19:42:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1A53D7C8D
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Jul 2021 19:49:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 642C86E91F;
-	Tue, 27 Jul 2021 17:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBF366E9E4;
+	Tue, 27 Jul 2021 17:49:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 371D96E804;
- Tue, 27 Jul 2021 17:42:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A2A16E804;
+ Tue, 27 Jul 2021 17:49:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 33DD0AA0EA;
- Tue, 27 Jul 2021 17:42:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 716E4A66C9;
+ Tue, 27 Jul 2021 17:49:52 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 27 Jul 2021 17:42:55 -0000
-Message-ID: <162740777520.18664.11733796617990501117@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Tue, 27 Jul 2021 17:49:52 -0000
+Message-ID: <162740819244.18666.8562764825649612982@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210727060046.2040579-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210727060046.2040579-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/adl=5Fp=3A_Allow_underrun_recovery_when_possible_=28rev2?=
- =?utf-8?q?=29?=
+References: <20210727071845.841554-1-lucas.demarchi@intel.com>
+In-Reply-To: <20210727071845.841554-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C01/28=5D_drm/i915/display=3A_r?=
+ =?utf-8?q?emove_PORT=5FF_workaround_for_CNL_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,223 +41,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0685582659=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0685582659==
-Content-Type: multipart/alternative;
- boundary="===============8005925334231228128=="
-
---===============8005925334231228128==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/adl_p: Allow underrun recovery when possible (rev2)
-URL   : https://patchwork.freedesktop.org/series/93054/
-State : success
+Series: series starting with [CI,01/28] drm/i915/display: remove PORT_F workaround for CNL (rev2)
+URL   : https://patchwork.freedesktop.org/series/93056/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10405 -> Patchwork_20717
-====================================================
+$ dim checkpatch origin/drm-tip
+a5e4bffd6d6f drm/i915/display: remove PORT_F workaround for CNL
+00ffd16fcca9 drm/i915/display: remove explicit CNL handling from intel_cdclk.c
+f0962a46c4db drm/i915/display: remove explicit CNL handling from intel_color.c
+9cef952bf781 drm/i915/display: remove explicit CNL handling from intel_combo_phy.c
+b0b88d826064 drm/i915/display: remove explicit CNL handling from intel_crtc.c
+e2ad5114dd83 drm/i915/display: remove explicit CNL handling from intel_ddi.c
+58f0263bf79d drm/i915/display: remove explicit CNL handling from intel_display_debugfs.c
+9edcd79df25c drm/i915/display: remove explicit CNL handling from intel_dmc.c
+0933019dde76 drm/i915/display: remove explicit CNL handling from intel_dp.c
+1552f5470753 drm/i915/display: remove explicit CNL handling from intel_dpll_mgr.c
+02aea789a348 drm/i915/display: remove explicit CNL handling from intel_vdsc.c
+302231afebdf drm/i915/display: remove explicit CNL handling from skl_universal_plane.c
+b52e50d278b9 drm/i915/display: remove explicit CNL handling from intel_display_power.c
+8ae2070a04a2 drm/i915/display: remove CNL ddi buf translation tables
+a81e83af78c5 drm/i915/display: rename CNL references in skl_scaler.c
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#63: FILE: drivers/gpu/drm/i915/i915_reg.h:7752:
++#define GLK_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
+ 			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
+ 			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
 
-Summary
--------
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
+#63: FILE: drivers/gpu/drm/i915/i915_reg.h:7752:
++#define GLK_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
+ 			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
+ 			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
 
-  **SUCCESS**
+-:68: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#68: FILE: drivers/gpu/drm/i915/i915_reg.h:7756:
++#define GLK_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
+ 			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
+ 			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
 
-  No regressions found.
+-:68: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
+#68: FILE: drivers/gpu/drm/i915/i915_reg.h:7756:
++#define GLK_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
+ 			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
+ 			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/index.html
+total: 0 errors, 0 warnings, 4 checks, 48 lines checked
+a1a4e070f933 drm/i915: remove explicit CNL handling from i915_irq.c
+1a5d634b421c drm/i915: remove explicit CNL handling from intel_pm.c
+e17f59582390 drm/i915: remove explicit CNL handling from intel_mocs.c
+f586bf32e6ff drm/i915: remove explicit CNL handling from intel_pch.c
+393456abc7be drm/i915: remove explicit CNL handling from intel_wopcm.c
+80d677c2345f drm/i915/gt: remove explicit CNL handling from intel_sseu.c
+6de7ed1a59e6 drm/i915: rename CNL references in intel_dram.c
+7aa7558721aa drm/i915/gt: rename CNL references in intel_engine.h
+4e912a6452e0 drm/i915: finish removal of CNL
+4ba93d420a70 drm/i915: remove GRAPHICS_VER == 10
+-:348: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#348: FILE: drivers/gpu/drm/i915/i915_drv.h:1650:
++#define HAS_GMBUS_BURST_READ(dev_priv) (GRAPHICS_VER(dev_priv) >= 11 || \
+ 					IS_GEMINILAKE(dev_priv) || \
+ 					IS_KABYLAKE(dev_priv))
 
-Known issues
-------------
+total: 0 errors, 0 warnings, 1 checks, 336 lines checked
+cd928dae0d3e drm/i915: rename/remove CNL registers
+0b043f4ac3d8 drm/i915: replace random CNL comments
+780f9f17ba29 drm/i915: switch num_scalers/num_sprites to consider DISPLAY_VER
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+v3 (Lucas): Change check to DISPLAY_VER >= 9, to cover the GLK's num_scalers,
 
-  Here are the changes found in Patchwork_20717 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +25 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#3718])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#579])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [FAIL][4] ([i915#1888]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@migrate:
-    - {fi-hsw-gt1}:       [FAIL][6] -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-hsw-gt1/igt@i915_selftest@live@migrate.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-hsw-gt1/igt@i915_selftest@live@migrate.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][8] ([i915#1372]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (41 -> 35)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10405 -> Patchwork_20717
-
-  CI-20190529: 20190529
-  CI_DRM_10405: 6db19b5e1fac016d9dffa6ce54aa21f3200c5c8d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20717: ae83e93206ad984459bc6336d3f43fb06eab11b3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ae83e93206ad drm/i915/adl_p: Allow underrun recovery when possible
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/index.html
-
---===============8005925334231228128==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/adl_p: Allow underrun recovery when possible (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93054/">https://patchwork.freedesktop.org/series/93054/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10405 -&gt; Patchwork_20717</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20717 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +25 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@migrate:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-hsw-gt1/igt@i915_selftest@live@migrate.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-hsw-gt1/igt@i915_selftest@live@migrate.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10405/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20717/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (41 -&gt; 35)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-bdw-samus bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10405 -&gt; Patchwork_20717</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10405: 6db19b5e1fac016d9dffa6ce54aa21f3200c5c8d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20717: ae83e93206ad984459bc6336d3f43fb06eab11b3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ae83e93206ad drm/i915/adl_p: Allow underrun recovery when possible</p>
-
-</body>
-</html>
-
---===============8005925334231228128==--
-
---===============0685582659==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0685582659==--
