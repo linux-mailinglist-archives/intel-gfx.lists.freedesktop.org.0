@@ -2,30 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99E93D93A2
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jul 2021 18:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9BE33D93C2
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jul 2021 19:02:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 682456EB11;
-	Wed, 28 Jul 2021 16:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0597A6E04E;
+	Wed, 28 Jul 2021 17:01:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8F89D6EA11;
- Wed, 28 Jul 2021 16:55:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8919BA0003;
- Wed, 28 Jul 2021 16:55:41 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35F436E04E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Jul 2021 17:01:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="212434533"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; 
+ d="scan'208,217";a="212434533"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2021 10:01:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; 
+ d="scan'208,217";a="663552629"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga006.fm.intel.com with ESMTP; 28 Jul 2021 10:01:14 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 28 Jul 2021 10:01:14 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 28 Jul 2021 10:01:14 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2242.010;
+ Wed, 28 Jul 2021 10:01:14 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
+Thread-Topic: i915  DMC  Updates - TGL:v2.12 and RKL v2.03
+Thread-Index: AdeD0ddoP2AWrs6LS1Kzx5z+lW0M4Q==
+Date: Wed, 28 Jul 2021 17:01:13 +0000
+Message-ID: <501e28bddabb4214a3c0c9f7fa8f320a@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Wed, 28 Jul 2021 16:55:41 -0000
-Message-ID: <162749134155.22804.5048270484087745715@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210728155013.1741657-1-matthew.auld@intel.com>
-In-Reply-To: <20210728155013.1741657-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_fixup_igt=5Fshrink=5Fthp?=
+Subject: [Intel-gfx] i915  DMC  Updates - TGL:v2.12 and RKL v2.03
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,182 +62,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2142759190=="
+Cc: Kyle McMartin <kyle@mcmartin.ca>, Josh Boyer <jwboyer@kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "ben@decadent.org.uk" <ben@decadent.org.uk>
+Content-Type: multipart/mixed; boundary="===============0286102453=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2142759190==
+--===============0286102453==
+Content-Language: en-US
 Content-Type: multipart/alternative;
- boundary="===============1389387095394786378=="
+	boundary="_000_501e28bddabb4214a3c0c9f7fa8f320aintelcom_"
 
---===============1389387095394786378==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--_000_501e28bddabb4214a3c0c9f7fa8f320aintelcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi,
+Kindly pull these updates from i915.
 
-Series: drm/i915/selftests: fixup igt_shrink_thp
-URL   : https://patchwork.freedesktop.org/series/93128/
-State : success
+The following changes since commit 168452ee695b5edb9deb641059bc110b9c5e8fc7=
+:
 
-== Summary ==
+  Merge tag 'iwlwifi-fw-2021-07-19' of git://git.kernel.org/pub/scm/linux/k=
+ernel/git/iwlwifi/linux-firmware into main (2021-07-19 14:35:47 -0400)
 
-CI Bug Log - changes from CI_DRM_10411 -> Patchwork_20725
-====================================================
+are available in the Git repository at:
 
-Summary
--------
+  git://anongit.freedesktop.org/drm/drm-firmware tgl_rkl_dmc_updates
 
-  **SUCCESS**
+for you to fetch changes up to 6c9fd94d41310443ea4ff782ce1545e49e74221c:
 
-  No regressions found.
+  i915: Add v2.03 DMC for RKL (2021-07-28 09:45:27 -0700)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/index.html
+----------------------------------------------------------------
+Anusha Srivatsa (2):
+      i915: Add v2.12 DMC for TGL
+     i915: Add v2.03 DMC for RKL
 
-Known issues
-------------
+WHENCE                   |   6 ++++++
+i915/rkl_dmc_ver2_03.bin | Bin 0 -> 18476 bytes
+i915/tgl_dmc_ver2_12.bin | Bin 0 -> 19760 bytes
+3 files changed, 6 insertions(+)
+create mode 100644 i915/rkl_dmc_ver2_03.bin
+create mode 100644 i915/tgl_dmc_ver2_12.bin
 
-  Here are the changes found in Patchwork_20725 that come from known issues:
+Thanks,
+Anusha
 
-### IGT changes ###
+--_000_501e28bddabb4214a3c0c9f7fa8f320aintelcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#1372])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10411/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][3] ([i915#1888]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10411/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][5] ([i915#3303]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10411/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-
-
-Participating hosts (41 -> 35)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-kbl-8809g fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10411 -> Patchwork_20725
-
-  CI-20190529: 20190529
-  CI_DRM_10411: 2c25ff42a7175b652d93ac3555d4ae13456beb4a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20725: 2f028f0cdb9110c4e093c1b35796181087728ee7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2f028f0cdb91 drm/i915/selftests: fixup igt_shrink_thp
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/index.html
-
---===============1389387095394786378==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: fixup igt_shrink_thp</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93128/">https://patchwork.freedesktop.org/series/93128/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10411 -&gt; Patchwork_20725</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20725 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10411/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10411/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10411/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20725/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (41 -&gt; 35)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-kbl-8809g fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10411 -&gt; Patchwork_20725</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10411: 2c25ff42a7175b652d93ac3555d4ae13456beb4a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6153: a5dffe7499a2f7189718ddf1ccf49060b7c1529d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20725: 2f028f0cdb9110c4e093c1b35796181087728ee7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2f028f0cdb91 drm/i915/selftests: fixup igt_shrink_thp</p>
-
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">Kindly pull these updates from i915.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The following changes since commit 168452ee695b5edb9=
+deb641059bc110b9c5e8fc7:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; Merge tag 'iwlwifi-fw-2021-07-19' of git://gi=
+t.kernel.org/pub/scm/linux/kernel/git/iwlwifi/linux-firmware into main (202=
+1-07-19 14:35:47 -0400)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">are available in the Git repository at:<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; git://anongit.freedesktop.org/drm/drm-firmwar=
+e tgl_rkl_dmc_updates<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">for you to fetch changes up to 6c9fd94d41310443ea4ff=
+782ce1545e49e74221c:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; i915: Add v2.03 DMC for RKL (2021-07-28 09:45=
+:27 -0700)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">----------------------------------------------------=
+------------<o:p></o:p></p>
+<p class=3D"MsoNormal">Anusha Srivatsa (2):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i915: Add v2.12 DMC f=
+or TGL<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i915: Add v2.03 DMC fo=
+r RKL<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp=
+; 6 &#43;&#43;&#43;&#43;&#43;&#43;<o:p></o:p></p>
+<p class=3D"MsoNormal">i915/rkl_dmc_ver2_03.bin | Bin 0 -&gt; 18476 bytes<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">i915/tgl_dmc_ver2_12.bin | Bin 0 -&gt; 19760 bytes<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">3 files changed, 6 insertions(&#43;)<o:p></o:p></p>
+<p class=3D"MsoNormal">create mode 100644 i915/rkl_dmc_ver2_03.bin<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">create mode 100644 i915/tgl_dmc_ver2_12.bin<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Anusha<o:p></o:p></p>
+</div>
 </body>
 </html>
 
---===============1389387095394786378==--
+--_000_501e28bddabb4214a3c0c9f7fa8f320aintelcom_--
 
---===============2142759190==
+--===============0286102453==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -224,4 +219,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============2142759190==--
+--===============0286102453==--
