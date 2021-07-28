@@ -2,36 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03D73D975A
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jul 2021 23:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2761C3D977C
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Jul 2021 23:22:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F8D76E9E3;
-	Wed, 28 Jul 2021 21:12:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D95F6E134;
+	Wed, 28 Jul 2021 21:22:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E94F76E9E3;
- Wed, 28 Jul 2021 21:12:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="199968626"
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="199968626"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2021 14:12:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="580995633"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga001.fm.intel.com with ESMTP; 28 Jul 2021 14:12:39 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed, 28 Jul 2021 14:11:44 -0700
-Message-Id: <20210728211144.15322-15-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20210728211144.15322-1-vinay.belgaumkar@intel.com>
-References: <20210728211144.15322-1-vinay.belgaumkar@intel.com>
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com
+ [IPv6:2607:f8b0:4864:20::931])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6130D6E0E8;
+ Wed, 28 Jul 2021 21:22:34 +0000 (UTC)
+Received: by mail-ua1-x931.google.com with SMTP id 79so1653698uau.9;
+ Wed, 28 Jul 2021 14:22:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Pba/v/pyxUDOSp5lyoyUOTseU+hbcR6eHrbJSQhcDNo=;
+ b=OX2Ll+qZEh8EzkHBpN58N6m5UZ7zpcB8pqdnelJW79ffuTnBWlvXeUKHD0K7fKWCtf
+ fZIm4SxNkewzqyCLflb3lDl8zMw7VTftE2SF1Nv4a330tM4TcHu2mL9ksdAl0W4WErVQ
+ 0uiH9LW593kZ0JE5NRb8ospfzXBq0NqSWgDHaLYjx73FdgtFQr1q9RAfQje8KBf5tdgJ
+ v0202XL7HIA0PpESTiqCJ0pVMPZ0begoP/2fVFV9UX7cNbBh4LjoFBo4NibdCOMfrjZ3
+ qv1rxZ/NIVk3SHTdVF/1wBdQNrCxhtanL2aYeDs1eXaYS0Pp9dGUgB3t42ifEZtT+UPv
+ zS/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Pba/v/pyxUDOSp5lyoyUOTseU+hbcR6eHrbJSQhcDNo=;
+ b=HT1C14hpf6wrwMXBrX9vDDzjpQ7ZxECde5INJSVfZf4OclPsxB/JrfJIj1vKjecDSU
+ 2PolMTv7oQ7OzT3tieVfWANEuEu6XPyQcCSn2BR0E/hWQJfeZGpFHgkvnEWqpNTgblnC
+ RYwPgh6qotw6+tpbIgGayGyWi0A5RI3b4PnIfqL7BnX3LEiQkdUl96NVZGkiEhCvcXOW
+ Jghccx2VJGAE5q9cm0uskMSeDM+gn2xRRbb5oGqnAnCwSeMet5QT9kuhsrJMwhAMACcC
+ xy821rRRqCjWRKq2B1mKvqu03D3FWokKqEgWs9lBzxPm9QGlOy3A2qxyfJC00CZuu1SI
+ /2PA==
+X-Gm-Message-State: AOAM530sltaFXXIDRW676qjKY8SV1wj1+td8S8nkkvnbrLwnLmJbaraf
+ L59K4ekPhYGDf6+YKRQWlk1VvyJGrjm7RyflHJw=
+X-Google-Smtp-Source: ABdhPJzAs0yzTvXgxxOSYq066tXaCYS7v0MJu/JjRrJc1rFT9MLivrodw5GzOitrZ6U79sZapq5zEdsxvZ2jG4UjJIY=
+X-Received: by 2002:ab0:6dcb:: with SMTP id r11mr2267037uaf.128.1627507353294; 
+ Wed, 28 Jul 2021 14:22:33 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 14/14] drm/i915/guc/rc: Setup and enable GuCRC
- feature
+References: <20210714175138.319514-1-jim.cromie@gmail.com>
+ <20210714175138.319514-4-jim.cromie@gmail.com>
+ <YPbPvm/xcBlTK1wq@phenom.ffwll.local> <20210722152009.GZ22946@art_vandelay>
+ <CAMavQKJ-ULhqn8BiGu8iMEwXe9whLGVf5Y7D6dcYnwbn1b08cQ@mail.gmail.com>
+In-Reply-To: <CAMavQKJ-ULhqn8BiGu8iMEwXe9whLGVf5Y7D6dcYnwbn1b08cQ@mail.gmail.com>
+From: jim.cromie@gmail.com
+Date: Wed, 28 Jul 2021 17:22:07 -0400
+Message-ID: <CAJfuBxxGg+b4ePkNXRz=OeUd4xQWSv8cJOV6XWRhy57hSx_ftA@mail.gmail.com>
+To: Sean Paul <sean@poorly.run>
+Subject: Re: [Intel-gfx] [PATCH v3 3/5] drm/print: RFC add choice to use
+ dynamic debug in drm-debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,185 +64,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: David Airlie <airlied@linux.ie>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, Jason Baron <jbaron@akamai.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ intel-gvt-dev@lists.freedesktop.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBmZWF0dXJlIGhhbmRzIG92ZXIgdGhlIGNvbnRyb2wgb2YgSFcgUkM2IHRvIHRoZSBHdUMu
-Ckd1QyBkZWNpZGVzIHdoZW4gdG8gcHV0IEhXIGludG8gUkM2IGJhc2VkIG9uIGl0J3MgaW50ZXJu
-YWwKYnVzeW5lc3MgYWxnb3JpdGhtcy4KCkd1Q1JDIG5lZWRzIEd1QyBzdWJtaXNzaW9uIHRvIGJl
-IGVuYWJsZWQsIGFuZCBvbmx5CnN1cHBvcnRlZCBvbiBHZW4xMisgZm9yIG5vdy4KCldoZW4gR3VD
-UkMgaXMgZW5hYmxlZCwgZG8gbm90IHNldCBIVyBSQzYuIFVzZSBhIEgyRyBtZXNzYWdlCnRvIHRl
-bGwgR3VDIHRvIGVuYWJsZSBHdUNSQy4gV2hlbiBkaXNhYmxpbmcgUkM2LCB0ZWxsIEd1QyB0bwpy
-ZXZlcnQgUkM2IGNvbnRyb2wgYmFjayB0byBLTUQuIEtNRCBpcyBzdGlsbCByZXNwb25zaWJsZSBm
-b3IKZW5hYmxpbmcgZXZlcnl0aGluZyByZWxhdGVkIHRvIENvYXJzZSBQb3dlciBHYXRpbmcgdGhv
-dWdoLgoKdjI6IEFkZHJlc3MgY29tbWVudHMgKE1pY2hhbCBXKQp2MzogRG9uJ3Qgc2V0IGh5c3Rl
-cmlzaXMgdmFsdWVzIHdoZW4gR3VDUkMgaXMgdXNlZCAoTWF0dCBSb3BlcikKClJldmlld2VkLWJ5
-OiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KU2lnbmVkLW9m
-Zi1ieTogVmluYXkgQmVsZ2F1bWthciA8dmluYXkuYmVsZ2F1bWthckBpbnRlbC5jb20+Ci0tLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAgIHwgIDEgKwogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmM2LmMgICAgICAgICAgIHwgNDcgKysrKysrKy0t
-LS0KIC4uLi9ncHUvZHJtL2k5MTUvZ3QvdWMvYWJpL2d1Y19hY3Rpb25zX2FiaS5oICB8ICA2ICsr
-CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYyAgICAgICAgfCAgMSArCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaCAgICAgICAgfCAgMiArCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfcmMuYyAgICAgfCA4MCArKysrKysrKysr
-KysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfcmMuaCAgICAg
-fCAzMSArKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5oICAgICAg
-ICAgfCAgMiArCiA4IGZpbGVzIGNoYW5nZWQsIDE1NSBpbnNlcnRpb25zKCspLCAxNSBkZWxldGlv
-bnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRl
-bF9ndWNfcmMuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3Vj
-L2ludGVsX2d1Y19yYy5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZp
-bGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQppbmRleCBkOGVhYzQ0NjhkZjkuLjNm
-YzE3ZjIwZDg4ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTE4Niw2ICsxODYsNyBAQCBpOTE1
-LXkgKz0gZ3QvdWMvaW50ZWxfdWMubyBcCiAJICBndC91Yy9pbnRlbF9ndWNfZncubyBcCiAJICBn
-dC91Yy9pbnRlbF9ndWNfbG9nLm8gXAogCSAgZ3QvdWMvaW50ZWxfZ3VjX2xvZ19kZWJ1Z2ZzLm8g
-XAorCSAgZ3QvdWMvaW50ZWxfZ3VjX3JjLm8gXAogCSAgZ3QvdWMvaW50ZWxfZ3VjX3NscGMubyBc
-CiAJICBndC91Yy9pbnRlbF9ndWNfc3VibWlzc2lvbi5vIFwKIAkgIGd0L3VjL2ludGVsX2h1Yy5v
-IFwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JjNi5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmM2LmMKaW5kZXggMjU5ZDdlYjRlMTY1Li5mNmI5
-MTQ0MzhhMGIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JjNi5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JjNi5jCkBAIC02MiwyMCArNjIs
-MjUgQEAgc3RhdGljIHZvaWQgZ2VuMTFfcmM2X2VuYWJsZShzdHJ1Y3QgaW50ZWxfcmM2ICpyYzYp
-CiAJdTMyIHBnX2VuYWJsZTsKIAlpbnQgaTsKIAotCS8qIDJiOiBQcm9ncmFtIFJDNiB0aHJlc2hv
-bGRzLiovCi0Jc2V0KHVuY29yZSwgR0VONl9SQzZfV0FLRV9SQVRFX0xJTUlULCA1NCA8PCAxNiB8
-IDg1KTsKLQlzZXQodW5jb3JlLCBHRU4xMF9NRURJQV9XQUtFX1JBVEVfTElNSVQsIDE1MCk7CisJ
-LyoKKwkgKiBXaXRoIEd1Q1JDLCB0aGVzZSBwYXJhbWV0ZXJzIGFyZSBzZXQgYnkgR3VDCisJICov
-CisJaWYgKCFpbnRlbF91Y191c2VzX2d1Y19yYygmZ3QtPnVjKSkgeworCQkvKiAyYjogUHJvZ3Jh
-bSBSQzYgdGhyZXNob2xkcy4qLworCQlzZXQodW5jb3JlLCBHRU42X1JDNl9XQUtFX1JBVEVfTElN
-SVQsIDU0IDw8IDE2IHwgODUpOworCQlzZXQodW5jb3JlLCBHRU4xMF9NRURJQV9XQUtFX1JBVEVf
-TElNSVQsIDE1MCk7CiAKLQlzZXQodW5jb3JlLCBHRU42X1JDX0VWQUxVQVRJT05fSU5URVJWQUws
-IDEyNTAwMCk7IC8qIDEyNTAwICogMTI4MG5zICovCi0Jc2V0KHVuY29yZSwgR0VONl9SQ19JRExF
-X0hZU1RFUlNJUywgMjUpOyAvKiAyNSAqIDEyODBucyAqLwotCWZvcl9lYWNoX2VuZ2luZShlbmdp
-bmUsIHJjNl90b19ndChyYzYpLCBpZCkKLQkJc2V0KHVuY29yZSwgUklOR19NQVhfSURMRShlbmdp
-bmUtPm1taW9fYmFzZSksIDEwKTsKKwkJc2V0KHVuY29yZSwgR0VONl9SQ19FVkFMVUFUSU9OX0lO
-VEVSVkFMLCAxMjUwMDApOyAvKiAxMjUwMCAqIDEyODBucyAqLworCQlzZXQodW5jb3JlLCBHRU42
-X1JDX0lETEVfSFlTVEVSU0lTLCAyNSk7IC8qIDI1ICogMTI4MG5zICovCisJCWZvcl9lYWNoX2Vu
-Z2luZShlbmdpbmUsIHJjNl90b19ndChyYzYpLCBpZCkKKwkJCXNldCh1bmNvcmUsIFJJTkdfTUFY
-X0lETEUoZW5naW5lLT5tbWlvX2Jhc2UpLCAxMCk7CiAKLQlzZXQodW5jb3JlLCBHVUNfTUFYX0lE
-TEVfQ09VTlQsIDB4QSk7CisJCXNldCh1bmNvcmUsIEdVQ19NQVhfSURMRV9DT1VOVCwgMHhBKTsK
-IAotCXNldCh1bmNvcmUsIEdFTjZfUkNfU0xFRVAsIDApOworCQlzZXQodW5jb3JlLCBHRU42X1JD
-X1NMRUVQLCAwKTsKIAotCXNldCh1bmNvcmUsIEdFTjZfUkM2X1RIUkVTSE9MRCwgNTAwMDApOyAv
-KiA1MC8xMjVtcyBwZXIgRUkgKi8KKwkJc2V0KHVuY29yZSwgR0VONl9SQzZfVEhSRVNIT0xELCA1
-MDAwMCk7IC8qIDUwLzEyNW1zIHBlciBFSSAqLworCX0KIAogCS8qCiAJICogMmM6IFByb2dyYW0g
-Q29hcnNlIFBvd2VyIEdhdGluZyBQb2xpY2llcy4KQEAgLTk4LDExICsxMDMsMTkgQEAgc3RhdGlj
-IHZvaWQgZ2VuMTFfcmM2X2VuYWJsZShzdHJ1Y3QgaW50ZWxfcmM2ICpyYzYpCiAJc2V0KHVuY29y
-ZSwgR0VOOV9NRURJQV9QR19JRExFX0hZU1RFUkVTSVMsIDYwKTsKIAlzZXQodW5jb3JlLCBHRU45
-X1JFTkRFUl9QR19JRExFX0hZU1RFUkVTSVMsIDYwKTsKIAotCS8qIDNhOiBFbmFibGUgUkM2ICov
-Ci0JcmM2LT5jdGxfZW5hYmxlID0KLQkJR0VONl9SQ19DVExfSFdfRU5BQkxFIHwKLQkJR0VONl9S
-Q19DVExfUkM2X0VOQUJMRSB8Ci0JCUdFTjZfUkNfQ1RMX0VJX01PREUoMSk7CisJLyogM2E6IEVu
-YWJsZSBSQzYKKwkgKgorCSAqIFdpdGggR3VDUkMsIHdlIGRvIG5vdCBlbmFibGUgYml0IDMxIG9m
-IFJDX0NUTCwKKwkgKiB0aHVzIGFsbG93aW5nIEd1QyB0byBjb250cm9sIFJDNiBlbnRyeS9leGl0
-IGZ1bGx5IGluc3RlYWQuCisJICogV2Ugd2lsbCBub3Qgc2V0IHRoZSBIVyBFTkFCTEUgYW5kIEVJ
-IGJpdHMKKwkgKi8KKwlpZiAoIWludGVsX2d1Y19yY19lbmFibGUoJmd0LT51Yy5ndWMpKQorCQly
-YzYtPmN0bF9lbmFibGUgPSBHRU42X1JDX0NUTF9SQzZfRU5BQkxFOworCWVsc2UKKwkJcmM2LT5j
-dGxfZW5hYmxlID0KKwkJCUdFTjZfUkNfQ1RMX0hXX0VOQUJMRSB8CisJCQlHRU42X1JDX0NUTF9S
-QzZfRU5BQkxFIHwKKwkJCUdFTjZfUkNfQ1RMX0VJX01PREUoMSk7CiAKIAlwZ19lbmFibGUgPQog
-CQlHRU45X1JFTkRFUl9QR19FTkFCTEUgfApAQCAtNTEzLDYgKzUyNiwxMCBAQCBzdGF0aWMgdm9p
-ZCBfX2ludGVsX3JjNl9kaXNhYmxlKHN0cnVjdCBpbnRlbF9yYzYgKnJjNikKIHsKIAlzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHJjNl90b19pOTE1KHJjNik7CiAJc3RydWN0IGludGVs
-X3VuY29yZSAqdW5jb3JlID0gcmM2X3RvX3VuY29yZShyYzYpOworCXN0cnVjdCBpbnRlbF9ndCAq
-Z3QgPSByYzZfdG9fZ3QocmM2KTsKKworCS8qIFRha2UgY29udHJvbCBvZiBSQzYgYmFjayBmcm9t
-IEd1QyAqLworCWludGVsX2d1Y19yY19kaXNhYmxlKCZndC0+dWMuZ3VjKTsKIAogCWludGVsX3Vu
-Y29yZV9mb3JjZXdha2VfZ2V0KHVuY29yZSwgRk9SQ0VXQUtFX0FMTCk7CiAJaWYgKEdSQVBISUNT
-X1ZFUihpOTE1KSA+PSA5KQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
-YWJpL2d1Y19hY3Rpb25zX2FiaS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvYWJpL2d1
-Y19hY3Rpb25zX2FiaS5oCmluZGV4IGNhNTM4ZTVkZTk0MC4uOGZmNTgyMjIyYWZmIDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9hYmkvZ3VjX2FjdGlvbnNfYWJpLmgKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvYWJpL2d1Y19hY3Rpb25zX2FiaS5oCkBAIC0x
-MzUsNiArMTM1LDcgQEAgZW51bSBpbnRlbF9ndWNfYWN0aW9uIHsKIAlJTlRFTF9HVUNfQUNUSU9O
-X1NFVF9DT05URVhUX1BSRUVNUFRJT05fVElNRU9VVCA9IDB4MTAwNywKIAlJTlRFTF9HVUNfQUNU
-SU9OX0NPTlRFWFRfUkVTRVRfTk9USUZJQ0FUSU9OID0gMHgxMDA4LAogCUlOVEVMX0dVQ19BQ1RJ
-T05fRU5HSU5FX0ZBSUxVUkVfTk9USUZJQ0FUSU9OID0gMHgxMDA5LAorCUlOVEVMX0dVQ19BQ1RJ
-T05fU0VUVVBfUENfR1VDUkMgPSAweDMwMDQsCiAJSU5URUxfR1VDX0FDVElPTl9BVVRIRU5USUNB
-VEVfSFVDID0gMHg0MDAwLAogCUlOVEVMX0dVQ19BQ1RJT05fUkVHSVNURVJfQ09OVEVYVCA9IDB4
-NDUwMiwKIAlJTlRFTF9HVUNfQUNUSU9OX0RFUkVHSVNURVJfQ09OVEVYVCA9IDB4NDUwMywKQEAg
-LTE0NSw2ICsxNDYsMTEgQEAgZW51bSBpbnRlbF9ndWNfYWN0aW9uIHsKIAlJTlRFTF9HVUNfQUNU
-SU9OX0xJTUlUCiB9OwogCitlbnVtIGludGVsX2d1Y19yY19vcHRpb25zIHsKKwlJTlRFTF9HVUNS
-Q19IT1NUX0NPTlRST0wsCisJSU5URUxfR1VDUkNfRklSTVdBUkVfQ09OVFJPTCwKK307CisKIGVu
-dW0gaW50ZWxfZ3VjX3ByZWVtcHRfb3B0aW9ucyB7CiAJSU5URUxfR1VDX1BSRUVNUFRfT1BUSU9O
-X0RST1BfV09SS19RID0gMHg0LAogCUlOVEVMX0dVQ19QUkVFTVBUX09QVElPTl9EUk9QX1NVQk1J
-VF9RID0gMHg4LApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
-Z3VjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYwppbmRleCAxM2Qx
-NjIzNTNiMWEuLmZiZmNhZTcyN2Q3ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvdWMvaW50ZWxfZ3VjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
-Z3VjLmMKQEAgLTE1OSw2ICsxNTksNyBAQCB2b2lkIGludGVsX2d1Y19pbml0X2Vhcmx5KHN0cnVj
-dCBpbnRlbF9ndWMgKmd1YykKIAlpbnRlbF9ndWNfbG9nX2luaXRfZWFybHkoJmd1Yy0+bG9nKTsK
-IAlpbnRlbF9ndWNfc3VibWlzc2lvbl9pbml0X2Vhcmx5KGd1Yyk7CiAJaW50ZWxfZ3VjX3NscGNf
-aW5pdF9lYXJseSgmZ3VjLT5zbHBjKTsKKwlpbnRlbF9ndWNfcmNfaW5pdF9lYXJseShndWMpOwog
-CiAJbXV0ZXhfaW5pdCgmZ3VjLT5zZW5kX211dGV4KTsKIAlzcGluX2xvY2tfaW5pdCgmZ3VjLT5p
-cnFfbG9jayk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9n
-dWMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5oCmluZGV4IDdkYTEx
-YTBiNjA1OS4uMmUyN2ZlNTk3ODZiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC91Yy9pbnRlbF9ndWMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9n
-dWMuaApAQCAtNTksNiArNTksOCBAQCBzdHJ1Y3QgaW50ZWxfZ3VjIHsKIAogCWJvb2wgc3VibWlz
-c2lvbl9zdXBwb3J0ZWQ7CiAJYm9vbCBzdWJtaXNzaW9uX3NlbGVjdGVkOworCWJvb2wgcmNfc3Vw
-cG9ydGVkOworCWJvb2wgcmNfc2VsZWN0ZWQ7CiAKIAlzdHJ1Y3QgaTkxNV92bWEgKmFkc192bWE7
-CiAJc3RydWN0IF9fZ3VjX2Fkc19ibG9iICphZHNfYmxvYjsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19yYy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvdWMvaW50ZWxfZ3VjX3JjLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAw
-MDAwLi4xOGUzZTA1ZDdiMzkKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC91Yy9pbnRlbF9ndWNfcmMuYwpAQCAtMCwwICsxLDgwIEBACisvLyBTUERYLUxpY2Vuc2Ut
-SWRlbnRpZmllcjogTUlUCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRp
-b24KKyAqLworCisjaW5jbHVkZSAiaW50ZWxfZ3VjX3JjLmgiCisjaW5jbHVkZSAiZ3QvaW50ZWxf
-Z3QuaCIKKyNpbmNsdWRlICJpOTE1X2Rydi5oIgorCitzdGF0aWMgYm9vbCBfX2d1Y19yY19zdXBw
-b3J0ZWQoc3RydWN0IGludGVsX2d1YyAqZ3VjKQoreworCS8qIEd1QyBSQyBpcyB1bmF2YWlsYWJs
-ZSBmb3IgcHJlLUdlbjEyICovCisJcmV0dXJuIGd1Yy0+c3VibWlzc2lvbl9zdXBwb3J0ZWQgJiYK
-KwkJR1JBUEhJQ1NfVkVSKGd1Y190b19ndChndWMpLT5pOTE1KSA+PSAxMjsKK30KKworc3RhdGlj
-IGJvb2wgX19ndWNfcmNfc2VsZWN0ZWQoc3RydWN0IGludGVsX2d1YyAqZ3VjKQoreworCWlmICgh
-aW50ZWxfZ3VjX3JjX2lzX3N1cHBvcnRlZChndWMpKQorCQlyZXR1cm4gZmFsc2U7CisKKwlyZXR1
-cm4gZ3VjLT5zdWJtaXNzaW9uX3NlbGVjdGVkOworfQorCit2b2lkIGludGVsX2d1Y19yY19pbml0
-X2Vhcmx5KHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKK3sKKwlndWMtPnJjX3N1cHBvcnRlZCA9IF9f
-Z3VjX3JjX3N1cHBvcnRlZChndWMpOworCWd1Yy0+cmNfc2VsZWN0ZWQgPSBfX2d1Y19yY19zZWxl
-Y3RlZChndWMpOworfQorCitzdGF0aWMgaW50IGd1Y19hY3Rpb25fY29udHJvbF9ndWNyYyhzdHJ1
-Y3QgaW50ZWxfZ3VjICpndWMsIGJvb2wgZW5hYmxlKQoreworCXUzMiByY19tb2RlID0gZW5hYmxl
-ID8gSU5URUxfR1VDUkNfRklSTVdBUkVfQ09OVFJPTCA6CisJCQkJSU5URUxfR1VDUkNfSE9TVF9D
-T05UUk9MOworCXUzMiBhY3Rpb25bXSA9IHsKKwkJSU5URUxfR1VDX0FDVElPTl9TRVRVUF9QQ19H
-VUNSQywKKwkJcmNfbW9kZQorCX07CisJaW50IHJldDsKKworCXJldCA9IGludGVsX2d1Y19zZW5k
-KGd1YywgYWN0aW9uLCBBUlJBWV9TSVpFKGFjdGlvbikpOworCXJldCA9IHJldCA+IDAgPyAtRVBS
-T1RPIDogcmV0OworCisJcmV0dXJuIHJldDsKK30KKworc3RhdGljIGludCBfX2d1Y19yY19jb250
-cm9sKHN0cnVjdCBpbnRlbF9ndWMgKmd1YywgYm9vbCBlbmFibGUpCit7CisJc3RydWN0IGludGVs
-X2d0ICpndCA9IGd1Y190b19ndChndWMpOworCXN0cnVjdCBkcm1fZGV2aWNlICpkcm0gPSAmZ3Vj
-X3RvX2d0KGd1YyktPmk5MTUtPmRybTsKKwlpbnQgcmV0OworCisJaWYgKCFpbnRlbF91Y191c2Vz
-X2d1Y19yYygmZ3QtPnVjKSkKKwkJcmV0dXJuIC1FTk9UU1VQUDsKKworCWlmICghaW50ZWxfZ3Vj
-X2lzX3JlYWR5KGd1YykpCisJCXJldHVybiAtRUlOVkFMOworCisJcmV0ID0gZ3VjX2FjdGlvbl9j
-b250cm9sX2d1Y3JjKGd1YywgZW5hYmxlKTsKKwlpZiAocmV0KSB7CisJCWRybV9lcnIoZHJtLCAi
-RmFpbGVkIHRvICVzIEd1QyBSQyAoJXBlKVxuIiwKKwkJCWVuYWJsZWRpc2FibGUoZW5hYmxlKSwg
-RVJSX1BUUihyZXQpKTsKKwkJcmV0dXJuIHJldDsKKwl9CisKKwlkcm1faW5mbygmZ3QtPmk5MTUt
-PmRybSwgIkd1QyBSQzogJXNcbiIsCisJCWVuYWJsZWRkaXNhYmxlZChlbmFibGUpKTsKKworCXJl
-dHVybiAwOworfQorCitpbnQgaW50ZWxfZ3VjX3JjX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZ3VjICpn
-dWMpCit7CisJcmV0dXJuIF9fZ3VjX3JjX2NvbnRyb2woZ3VjLCB0cnVlKTsKK30KKworaW50IGlu
-dGVsX2d1Y19yY19kaXNhYmxlKHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKK3sKKwlyZXR1cm4gX19n
-dWNfcmNfY29udHJvbChndWMsIGZhbHNlKTsKK30KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L3VjL2ludGVsX2d1Y19yYy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
-aW50ZWxfZ3VjX3JjLmgKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi41
-N2U4NmMzMzc4MzgKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
-Yy9pbnRlbF9ndWNfcmMuaApAQCAtMCwwICsxLDMxIEBACisvKiBTUERYLUxpY2Vuc2UtSWRlbnRp
-ZmllcjogTUlUICovCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRpb24K
-KyAqLworCisjaWZuZGVmIF9JTlRFTF9HVUNfUkNfSF8KKyNkZWZpbmUgX0lOVEVMX0dVQ19SQ19I
-XworCisjaW5jbHVkZSAiaW50ZWxfZ3VjX3N1Ym1pc3Npb24uaCIKKwordm9pZCBpbnRlbF9ndWNf
-cmNfaW5pdF9lYXJseShzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpOworCitzdGF0aWMgaW5saW5lIGJv
-b2wgaW50ZWxfZ3VjX3JjX2lzX3N1cHBvcnRlZChzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCit7CisJ
-cmV0dXJuIGd1Yy0+cmNfc3VwcG9ydGVkOworfQorCitzdGF0aWMgaW5saW5lIGJvb2wgaW50ZWxf
-Z3VjX3JjX2lzX3dhbnRlZChzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCit7CisJcmV0dXJuIGd1Yy0+
-c3VibWlzc2lvbl9zZWxlY3RlZCAmJiBpbnRlbF9ndWNfcmNfaXNfc3VwcG9ydGVkKGd1Yyk7Cit9
-CisKK3N0YXRpYyBpbmxpbmUgYm9vbCBpbnRlbF9ndWNfcmNfaXNfdXNlZChzdHJ1Y3QgaW50ZWxf
-Z3VjICpndWMpCit7CisJcmV0dXJuIGludGVsX2d1Y19zdWJtaXNzaW9uX2lzX3VzZWQoZ3VjKSAm
-JiBpbnRlbF9ndWNfcmNfaXNfd2FudGVkKGd1Yyk7Cit9CisKK2ludCBpbnRlbF9ndWNfcmNfZW5h
-YmxlKHN0cnVjdCBpbnRlbF9ndWMgKmd1Yyk7CitpbnQgaW50ZWxfZ3VjX3JjX2Rpc2FibGUoc3Ry
-dWN0IGludGVsX2d1YyAqZ3VjKTsKKworI2VuZGlmCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50
-ZWxfdWMuaAppbmRleCA5MjVhNThjYTZiOTQuLjg2NmI0NjI4MjFjMCAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC91Yy9pbnRlbF91Yy5oCkBAIC03LDYgKzcsNyBAQAogI2RlZmluZSBfSU5URUxfVUNf
-SF8KIAogI2luY2x1ZGUgImludGVsX2d1Yy5oIgorI2luY2x1ZGUgImludGVsX2d1Y19yYy5oIgog
-I2luY2x1ZGUgImludGVsX2d1Y19zdWJtaXNzaW9uLmgiCiAjaW5jbHVkZSAiaW50ZWxfZ3VjX3Ns
-cGMuaCIKICNpbmNsdWRlICJpbnRlbF9odWMuaCIKQEAgLTg1LDYgKzg2LDcgQEAgdWNfc3RhdGVf
-Y2hlY2tlcnMoZ3VjLCBndWMpOwogdWNfc3RhdGVfY2hlY2tlcnMoaHVjLCBodWMpOwogdWNfc3Rh
-dGVfY2hlY2tlcnMoZ3VjLCBndWNfc3VibWlzc2lvbik7CiB1Y19zdGF0ZV9jaGVja2VycyhndWMs
-IGd1Y19zbHBjKTsKK3VjX3N0YXRlX2NoZWNrZXJzKGd1YywgZ3VjX3JjKTsKIAogI3VuZGVmIHVj
-X3N0YXRlX2NoZWNrZXJzCiAjdW5kZWYgX191Y19zdGF0ZV9jaGVja2VyCi0tIAoyLjI1LjAKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, Jul 27, 2021 at 10:03 AM Sean Paul <sean@poorly.run> wrote:
+>
+> On Thu, Jul 22, 2021 at 11:20 AM Sean Paul <sean@poorly.run> wrote:
+> >
+>
+> Reply-all fail. Adding everyone else back to my response.
+>
+> > On Tue, Jul 20, 2021 at 03:29:34PM +0200, Daniel Vetter wrote:
+> > > On Wed, Jul 14, 2021 at 11:51:36AM -0600, Jim Cromie wrote:
+> > > > drm's debug system uses distinct categories of debug messages, encoded
+> > > > in an enum (DRM_UT_<CATEGORY>), which are mapped to bits in drm.debug.
+> > > > drm_debug_enabled() does a lot of unlikely bit-mask checks on
+> > > > drm.debug; we can use dynamic debug instead, and get all that
+> > > > static_key/jump_label goodness.
+> >
+> > Hi Jim,
+> > Thanks for your patches! Daniel pointed me at them in response to my drm_trace
+> > patchset (https://patchwork.freedesktop.org/series/78133/). I'd love to get your
+> > input on it. I think the 2 sets are mostly compatible, we'd just need to keep
+> > drm_dev_dbg and do the CONFIG check in the function beside the trace_enabled
+> > checks.
+> >
+> > > >
+> > > > Dynamic debug has no concept of category, but we can map the DRM_UT_*
+> > > > to a set of distinct prefixes; "drm:core:", "drm:kms:" etc, and
+> > > > prepend them to the given formats.
+> > > >
+> > > > Then we can use:
+> > > >   `echo module drm format ^drm:core: +p > control`
+> > > >
+> > > > to enable every such "prefixed" pr_debug with one query.  This new
+> > > > prefix changes pr_debug's output, so is user visible, but it seems
+> > > > unlikely to cause trouble for log watchers; they're not relying on the
+> > > > absence of class prefix strings.
+> > > >
+> > > > This conversion yields ~2100 new callsites on my i7/i915 laptop:
+> > > >
+> > > >   dyndbg: 195 debug prints in module drm_kms_helper
+> > > >   dyndbg: 298 debug prints in module drm
+> > > >   dyndbg: 1630 debug prints in module i915
+> > > >
+> > > > CONFIG_DRM_USE_DYNAMIC_DEBUG enables this, and is available if
+> > > > CONFIG_DYNAMIC_DEBUG or CONFIG_DYNAMIC_DEBUG_CORE is chosen, and if
+> > > > CONFIG_JUMP_LABEL is enabled; this because its required to get the
+> > > > promised optimizations.
+> > > >
+> > > > The indirection/switchover is layered into the macro scheme:
+> > > >
+> > > > 0. A new callback on drm.debug which calls dynamic_debug_exec_queries
+> > > >    to map those bits to specific query/commands
+> > > >    dynamic_debug_exec_queries("format ^drm:kms: +p", "drm*");
+> > > >    here for POC, this should be in dynamic_debug.c
+> > > >    with a MODULE_PARAM_DEBUG_BITMAP(__drm_debug, { "prefix-1", "desc-1" }+)
+> > >
+> > > This is really awesome.
+> >
+> >
+> > Agreed, this is a very clever way of merging the 2 worlds!
+> >
+> >
+> > > For merging I think we need to discuss with dyn
+> > > debug folks whether they're all ok with this, but it's exported already
+> > > should should be fine.
+> >
+> > I wonder if this is a good time to reconsider our drm categories. IMO they're
+> > overly broad and it's hard to get the right information without subscribing to
+> > the firehose. It seems like dyndbg might be a good opportunity to unlock
+> > subcategories of log messages.
+> >
+> > More concretely, on CrOS we can't subscribe to atomic or state categories since
+> > they're too noisy. However if there was a "fail" subcategory which dumped
+> > state/atomic logs on check failures, that would be really compelling. Something
+> > like:
+> >
+> >         drm:atomic:fail vs. drm:atomic
+> >
+
+YES
+
+> > Both would be picked up if (drm.debug & DRM_DBG_ATOMIC), however it would allow
+> > dyndbg-aware clients to get better logs without having a huge table of
+> > individual log signatures.
+> >
+> > I'm not sure how tightly we'd want to control the subcategories. It could be
+> > strict like the categories spelled out in drm_print.h, or an open prefix arg to
+> > drm_dev_dbg. I suspect we'd want the former, but would want to be careful to
+> > provide enough flexibility to properly
+
+formalizing categories and subcategories is where the
+practical selectivity of format ^prefix is determined.
+
+While endless bikeshedding is a possible downside,
+there are a few subtleties to note,  so we can pick a harmonious 3-color scheme:
+
+"drm:kms: " and "drm:kms:" are different  (2nd, w/o trailing space,
+allows subcats)
+"drm:kms"  is also different  (includes "drm:kmsmart", whatever that would be)
+"drm.kms"  again.   dot names anyone ?
+
+ASIDE(s):
+
+"drm:kms"  and  "drm:kms*" are different,
+the latter does not work as you might reasonably expect.
+This is because
+
+commit 578b1e0701af34f9ef69daabda4431f1e8501109
+Author: Changbin Du <changbin.du@intel.com>
+Date:   Thu Jan 23 15:54:14 2014 -0800
+
+    dynamic_debug: add wildcard support to filter files/functions/modules
+
+    Add wildcard '*'(matches zero or more characters) and '?' (matches one
+    character) support when qurying debug flags.
+
+specifically left format out of the wildcarded query terms.
+And that was rational since the format search was already special
+(floating substring, not exact match or basename match)
+and format foobar  should work analogously to grep foobar, ie w/o wildcards.
+while an implied "format *foobar*" is possible, I dont like the
+regex-iness implied in that 1st '*'
+
+(2)
+
+dyndbg is extremely agnostic about prefixes used by authors/subsystems
+
+"1:", "2:", "3:" is a lot like the original: void dev_printk(const
+char *level, ..).
+w/o the trailing colon, even more so (I will be checking what it does!)
+"Lo:", "Mid:", "Hi:" was proposed in a patchset once, and is usable today.
+
+some unification of explicit wildcard chars * & ? and format floating
+substr seems practical,
+with it, prefix matching could handle complicated error message regimes.
+Specifically, http return codes like 100, 200, 400, 404 etc would work.
+
+/ASIDE
+
+
+In any case, lets not try to over-control the categories & optional
+subcategories,
+at least not with lots of structure. Afterall, only code review will
+prevent something like:
+
+   pr_debug("%s: blah blah\n", hex(sha1))
+(queries on it are highly selective, but not organized)
+
+IMO, its potentially useful to be able to add ad-hoc categories,
+review and taste can moderate the ad-hockery,
+"drm:misc:" seems a reasonable catch-all, esp with 3rd level
+selectivity possible
+
+Consider Sean's example: "drm:atomic:fail", and variations:
+
+"drm:atomic:ok" - not as useful, unless we wanted a counter.
+I dont think we need to rule it out.
+to the extent that theres a traceable event here (success)
+theres some utility to be able to put something of a label on it.
+
+"drm:atomic:fail-%s"   - we could have a dictionary of reasons,
+(with open dictionary, neologisms allowed, any reason not to?)
+
+
+> >
+> > Of course, none of this needs to be decided to land this initial support, it can
+> > be bolted on later easily enough (I think).
+> >
+
+I think so too,  one such revisit...
+
+Eventually, the "drm:" part of the prefix may become sufficiently unnecessary
+that we could drop it in the name of log brevity.
+The selectivity lost to "format ^prefix" is recovered by adding
+"module drm*" or similar,
+so somemod.foobar's use of pr_debug("atomic: blabla") would be excluded,
+
+Or a flag-day, where we swap over to drm.dot.naming.
+Doing so modestly improves the use of ':' for a log-entry field separator.
+(though probably not a material improvement, structured logs are
+better for this)
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
