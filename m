@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 117583D97FE
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4713D9800
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:00:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E06B06E56D;
-	Wed, 28 Jul 2021 22:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 988BD6EA69;
+	Wed, 28 Jul 2021 22:00:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70DEE6E886
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5B526E8CB
  for <intel-gfx@lists.freedesktop.org>; Wed, 28 Jul 2021 22:00:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="212786387"
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="212786387"
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="212786389"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="212786389"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jul 2021 15:00:04 -0700
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="663663205"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="663663209"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jul 2021 15:00:03 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Jul 2021 14:59:22 -0700
-Message-Id: <20210728215946.1573015-2-lucas.demarchi@intel.com>
+Date: Wed, 28 Jul 2021 14:59:23 -0700
+Message-Id: <20210728215946.1573015-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210728215946.1573015-1-lucas.demarchi@intel.com>
 References: <20210728215946.1573015-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/25] drm/i915/display: remove PORT_F
- workaround for CNL
+Subject: [Intel-gfx] [PATCH 02/25] drm/i915/display: remove explicit CNL
+ handling from intel_cdclk.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,57 +48,229 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Explicit support for CNL is being removed from the driver as it's not
-expected to work. Remove the workaround for PORT_F from
-display/intel_bios.c so we can also remove the generic DISPLAY_VER == 10
-calls to intel_ddi_init(): the only platform with that display version
-is already handled separately (GLK).
+The only real platform with DISPLAY_VER == 10 is GLK, so we don't need
+any checks and supporting code for CNL. Remove code and rename
+functions/macros accordingly.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c    | 6 +++---
- drivers/gpu/drm/i915/display/intel_display.c | 7 -------
- 2 files changed, 3 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 72 +++++-----------------
+ drivers/gpu/drm/i915/i915_reg.h            |  4 +-
+ 2 files changed, 18 insertions(+), 58 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index aa667fa71158..4172c8ee6aa6 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1871,12 +1871,12 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
- static bool is_port_valid(struct drm_i915_private *i915, enum port port)
- {
- 	/*
--	 * On some ICL/CNL SKUs port F is not present, but broken VBTs mark
-+	 * On some ICL SKUs port F is not present, but broken VBTs mark
- 	 * the port as present. Only try to initialize port F for the
- 	 * SKUs that may actually have it.
- 	 */
--	if (port == PORT_F && (IS_ICELAKE(i915) || IS_CANNONLAKE(i915)))
--		return IS_ICL_WITH_PORT_F(i915) || IS_CNL_WITH_PORT_F(i915);
-+	if (port == PORT_F && IS_ICELAKE(i915))
-+		return IS_ICL_WITH_PORT_F(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index ff35c29508d5..34fa4130d5c4 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1195,17 +1195,6 @@ static const struct intel_cdclk_vals glk_cdclk_table[] = {
+ 	{}
+ };
  
- 	return true;
+-static const struct intel_cdclk_vals cnl_cdclk_table[] = {
+-	{ .refclk = 19200, .cdclk = 168000, .divider = 4, .ratio = 35 },
+-	{ .refclk = 19200, .cdclk = 336000, .divider = 2, .ratio = 35 },
+-	{ .refclk = 19200, .cdclk = 528000, .divider = 2, .ratio = 55 },
+-
+-	{ .refclk = 24000, .cdclk = 168000, .divider = 4, .ratio = 28 },
+-	{ .refclk = 24000, .cdclk = 336000, .divider = 2, .ratio = 28 },
+-	{ .refclk = 24000, .cdclk = 528000, .divider = 2, .ratio = 44 },
+-	{}
+-};
+-
+ static const struct intel_cdclk_vals icl_cdclk_table[] = {
+ 	{ .refclk = 19200, .cdclk = 172800, .divider = 2, .ratio = 18 },
+ 	{ .refclk = 19200, .cdclk = 192000, .divider = 2, .ratio = 20 },
+@@ -1339,16 +1328,6 @@ static u8 bxt_calc_voltage_level(int cdclk)
+ 	return DIV_ROUND_UP(cdclk, 25000);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4833eaeb8f0b..8597194bea88 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -11452,13 +11452,6 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		intel_ddi_init(dev_priv, PORT_B);
- 		intel_ddi_init(dev_priv, PORT_C);
- 		vlv_dsi_init(dev_priv);
--	} else if (DISPLAY_VER(dev_priv) == 10) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_C);
--		intel_ddi_init(dev_priv, PORT_D);
--		intel_ddi_init(dev_priv, PORT_E);
--		intel_ddi_init(dev_priv, PORT_F);
- 	} else if (DISPLAY_VER(dev_priv) >= 9) {
- 		intel_ddi_init(dev_priv, PORT_A);
- 		intel_ddi_init(dev_priv, PORT_B);
+ 
+-static u8 cnl_calc_voltage_level(int cdclk)
+-{
+-	if (cdclk > 336000)
+-		return 2;
+-	else if (cdclk > 168000)
+-		return 1;
+-	else
+-		return 0;
+-}
+-
+ static u8 icl_calc_voltage_level(int cdclk)
+ {
+ 	if (cdclk > 556800)
+@@ -1383,15 +1362,6 @@ static u8 tgl_calc_voltage_level(int cdclk)
+ 		return 0;
+ }
+ 
+-static void cnl_readout_refclk(struct drm_i915_private *dev_priv,
+-			       struct intel_cdclk_config *cdclk_config)
+-{
+-	if (intel_de_read(dev_priv, SKL_DSSM) & CNL_DSSM_CDCLK_PLL_REFCLK_24MHz)
+-		cdclk_config->ref = 24000;
+-	else
+-		cdclk_config->ref = 19200;
+-}
+-
+ static void icl_readout_refclk(struct drm_i915_private *dev_priv,
+ 			       struct intel_cdclk_config *cdclk_config)
+ {
+@@ -1422,8 +1392,6 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+ 		cdclk_config->ref = 38400;
+ 	else if (DISPLAY_VER(dev_priv) >= 11)
+ 		icl_readout_refclk(dev_priv, cdclk_config);
+-	else if (IS_CANNONLAKE(dev_priv))
+-		cnl_readout_refclk(dev_priv, cdclk_config);
+ 	else
+ 		cdclk_config->ref = 19200;
+ 
+@@ -1439,11 +1407,11 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+ 	}
+ 
+ 	/*
+-	 * CNL+ have the ratio directly in the PLL enable register, gen9lp had
+-	 * it in a separate PLL control register.
++	 * DISPLAY_VER >= 11 have the ratio directly in the PLL enable register,
++	 * gen9lp had it in a separate PLL control register.
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv))
+-		ratio = val & CNL_CDCLK_PLL_RATIO_MASK;
++	if (DISPLAY_VER(dev_priv) >= 11)
++		ratio = val & ICL_CDCLK_PLL_RATIO_MASK;
+ 	else
+ 		ratio = intel_de_read(dev_priv, BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO_MASK;
+ 
+@@ -1530,7 +1498,7 @@ static void bxt_de_pll_enable(struct drm_i915_private *dev_priv, int vco)
+ 	dev_priv->cdclk.hw.vco = vco;
+ }
+ 
+-static void cnl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
++static void icl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
+ {
+ 	intel_de_rmw(dev_priv, BXT_DE_PLL_ENABLE,
+ 		     BXT_DE_PLL_PLL_ENABLE, 0);
+@@ -1542,12 +1510,12 @@ static void cnl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
+ 	dev_priv->cdclk.hw.vco = 0;
+ }
+ 
+-static void cnl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
++static void icl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
+ {
+ 	int ratio = DIV_ROUND_CLOSEST(vco, dev_priv->cdclk.hw.ref);
+ 	u32 val;
+ 
+-	val = CNL_CDCLK_PLL_RATIO(ratio);
++	val = ICL_CDCLK_PLL_RATIO(ratio);
+ 	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+ 
+ 	val |= BXT_DE_PLL_PLL_ENABLE;
+@@ -1566,7 +1534,7 @@ static void adlp_cdclk_pll_crawl(struct drm_i915_private *dev_priv, int vco)
+ 	u32 val;
+ 
+ 	/* Write PLL ratio without disabling */
+-	val = CNL_CDCLK_PLL_RATIO(ratio) | BXT_DE_PLL_PLL_ENABLE;
++	val = ICL_CDCLK_PLL_RATIO(ratio) | BXT_DE_PLL_PLL_ENABLE;
+ 	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+ 
+ 	/* Submit freq change request */
+@@ -1635,7 +1603,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 	int ret;
+ 
+ 	/* Inform power controller of upcoming frequency change. */
+-	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv))
++	if (DISPLAY_VER(dev_priv) >= 11)
+ 		ret = skl_pcode_request(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+ 					SKL_CDCLK_PREPARE_FOR_CHANGE,
+ 					SKL_CDCLK_READY_FOR_CHANGE,
+@@ -1659,13 +1627,13 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 	if (HAS_CDCLK_CRAWL(dev_priv) && dev_priv->cdclk.hw.vco > 0 && vco > 0) {
+ 		if (dev_priv->cdclk.hw.vco != vco)
+ 			adlp_cdclk_pll_crawl(dev_priv, vco);
+-	} else if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
++	} else if (DISPLAY_VER(dev_priv) >= 11) {
+ 		if (dev_priv->cdclk.hw.vco != 0 &&
+ 		    dev_priv->cdclk.hw.vco != vco)
+-			cnl_cdclk_pll_disable(dev_priv);
++			icl_cdclk_pll_disable(dev_priv);
+ 
+ 		if (dev_priv->cdclk.hw.vco != vco)
+-			cnl_cdclk_pll_enable(dev_priv, vco);
++			icl_cdclk_pll_enable(dev_priv, vco);
+ 	} else {
+ 		if (dev_priv->cdclk.hw.vco != 0 &&
+ 		    dev_priv->cdclk.hw.vco != vco)
+@@ -1691,7 +1659,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 	if (pipe != INVALID_PIPE)
+ 		intel_wait_for_vblank(dev_priv, pipe);
+ 
+-	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) {
++	if (DISPLAY_VER(dev_priv) >= 11) {
+ 		ret = sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+ 					      cdclk_config->voltage_level);
+ 	} else {
+@@ -1716,7 +1684,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 
+ 	intel_update_cdclk(dev_priv);
+ 
+-	if (DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv))
++	if (DISPLAY_VER(dev_priv) >= 11)
+ 		/*
+ 		 * Can't read out the voltage level :(
+ 		 * Let's just assume everything is as expected.
+@@ -2125,7 +2093,7 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 	    crtc_state->port_clock >= 540000 &&
+ 	    crtc_state->lane_count == 4) {
+ 		if (DISPLAY_VER(dev_priv) == 10) {
+-			/* Display WA #1145: glk,cnl */
++			/* Display WA #1145: glk */
+ 			min_cdclk = max(316800, min_cdclk);
+ 		} else if (DISPLAY_VER(dev_priv) == 9 || IS_BROADWELL(dev_priv)) {
+ 			/* Display WA #1144: skl,bxt */
+@@ -2246,7 +2214,7 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
+ 
+ /*
+  * Account for port clock min voltage level requirements.
+- * This only really does something on CNL+ but can be
++ * This only really does something on DISPLA_VER >= 11 but can be
+  * called on earlier platforms as well.
+  *
+  * Note that this functions assumes that 0 is
+@@ -2660,8 +2628,6 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+ 			dev_priv->max_cdclk_freq = 648000;
+ 		else
+ 			dev_priv->max_cdclk_freq = 652800;
+-	} else if (IS_CANNONLAKE(dev_priv)) {
+-		dev_priv->max_cdclk_freq = 528000;
+ 	} else if (IS_GEMINILAKE(dev_priv)) {
+ 		dev_priv->max_cdclk_freq = 316800;
+ 	} else if (IS_BROXTON(dev_priv)) {
+@@ -2925,12 +2891,6 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+ 		dev_priv->display.calc_voltage_level = icl_calc_voltage_level;
+ 		dev_priv->cdclk.table = icl_cdclk_table;
+-	} else if (IS_CANNONLAKE(dev_priv)) {
+-		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+-		dev_priv->display.set_cdclk = bxt_set_cdclk;
+-		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+-		dev_priv->display.calc_voltage_level = cnl_calc_voltage_level;
+-		dev_priv->cdclk.table = cnl_cdclk_table;
+ 	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+ 		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+ 		dev_priv->display.set_cdclk = bxt_set_cdclk;
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index e3e0aea94bc6..5812662fadfc 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -11019,8 +11019,8 @@ enum skl_power_gate {
+ #define   BXT_DE_PLL_LOCK		(1 << 30)
+ #define   BXT_DE_PLL_FREQ_REQ		(1 << 23)
+ #define   BXT_DE_PLL_FREQ_REQ_ACK	(1 << 22)
+-#define   CNL_CDCLK_PLL_RATIO(x)	(x)
+-#define   CNL_CDCLK_PLL_RATIO_MASK	0xff
++#define   ICL_CDCLK_PLL_RATIO(x)	(x)
++#define   ICL_CDCLK_PLL_RATIO_MASK	0xff
+ 
+ /* GEN9 DC */
+ #define DC_STATE_EN			_MMIO(0x45504)
 -- 
 2.31.1
 
