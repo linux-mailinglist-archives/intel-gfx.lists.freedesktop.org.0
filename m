@@ -1,33 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 102F43D9826
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:04:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF8763D9820
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:04:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8774D6EB57;
-	Wed, 28 Jul 2021 22:04:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF2746EB59;
+	Wed, 28 Jul 2021 22:04:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E85789F08;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5EE6EB3C;
  Wed, 28 Jul 2021 22:04:11 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="210872227"
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="210872227"
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="210872224"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="210872224"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jul 2021 15:04:10 -0700
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="437959310"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="437959305"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jul 2021 15:04:09 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Jul 2021 15:03:22 -0700
-Message-Id: <20210728220326.1578242-1-lucas.demarchi@intel.com>
+Date: Wed, 28 Jul 2021 15:03:23 -0700
+Message-Id: <20210728220326.1578242-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210728220326.1578242-1-lucas.demarchi@intel.com>
+References: <20210728220326.1578242-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 0/4] Remove CNL - for drm-intel-gt-next
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gt: remove explicit CNL handling
+ from intel_mocs.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +49,29 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This the part of https://patchwork.freedesktop.org/series/93056/
-that should go through drm-intel-gt-next branch.
+Only one reference to CNL that is not needed, but code is the same for
+GEN9_BC, so leave the code around and just remove the special
+case for CNL.
 
-Lucas De Marchi (4):
-  drm/i915/gt: remove explicit CNL handling from intel_mocs.c
-  drm/i915/gt: remove explicit CNL handling from intel_sseu.c
-  drm/i915/gt: rename CNL references in intel_engine.h
-  drm/i915/gt: remove GRAPHICS_VER == 10
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_mocs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/gt/debugfs_gt_pm.c       | 10 +--
- drivers/gpu/drm/i915/gt/intel_engine.h        |  2 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  3 -
- drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 +-
- .../gpu/drm/i915/gt/intel_gt_clock_utils.c    | 10 +--
- drivers/gpu/drm/i915/gt/intel_gtt.c           |  6 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 42 +---------
- drivers/gpu/drm/i915/gt/intel_mocs.c          |  2 +-
- drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           |  4 +-
- drivers/gpu/drm/i915/gt/intel_sseu.c          | 79 -------------------
- drivers/gpu/drm/i915/gt/intel_sseu.h          |  2 +-
- drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c  |  6 +-
- drivers/gpu/drm/i915/i915_drv.h               |  4 +-
- 14 files changed, 27 insertions(+), 149 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+index 17848807f111..582c4423b95d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_mocs.c
++++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+@@ -352,7 +352,7 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
+ 		table->size  = ARRAY_SIZE(icl_mocs_table);
+ 		table->table = icl_mocs_table;
+ 		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
+-	} else if (IS_GEN9_BC(i915) || IS_CANNONLAKE(i915)) {
++	} else if (IS_GEN9_BC(i915)) {
+ 		table->size  = ARRAY_SIZE(skl_mocs_table);
+ 		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
+ 		table->table = skl_mocs_table;
 -- 
 2.31.1
 
