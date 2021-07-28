@@ -2,34 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29503D980B
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:00:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 102F43D9826
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:04:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 192B06EAA0;
-	Wed, 28 Jul 2021 22:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8774D6EB57;
+	Wed, 28 Jul 2021 22:04:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 168216E8CB
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Jul 2021 22:00:08 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="212786414"
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="212786414"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2021 15:00:07 -0700
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="663663295"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E85789F08;
+ Wed, 28 Jul 2021 22:04:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="210872227"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="210872227"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2021 15:04:10 -0700
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="437959310"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2021 15:00:06 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2021 15:04:09 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Jul 2021 14:59:46 -0700
-Message-Id: <20210728215946.1573015-26-lucas.demarchi@intel.com>
+Date: Wed, 28 Jul 2021 15:03:22 -0700
+Message-Id: <20210728220326.1578242-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210728215946.1573015-1-lucas.demarchi@intel.com>
-References: <20210728215946.1573015-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 25/25] drm/i915: finish removal of CNL
+Subject: [Intel-gfx] [PATCH 0/4] Remove CNL - for drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,163 +40,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With all the users removed, finish removing the CNL platform definitions.
-We will leave the PCI IDs around as those are exposed to userspace.
-Even if mesa doesn't support CNL anymore, let's avoid build breakages
-due to changing the headers.
+This the part of https://patchwork.freedesktop.org/series/93056/
+that should go through drm-intel-gt-next branch.
 
-Also, due to drm/i915/gt still using IS_CANNONLAKE() let's just redefine
-it instead of removing.
+Lucas De Marchi (4):
+  drm/i915/gt: remove explicit CNL handling from intel_mocs.c
+  drm/i915/gt: remove explicit CNL handling from intel_sseu.c
+  drm/i915/gt: rename CNL references in intel_engine.h
+  drm/i915/gt: remove GRAPHICS_VER == 10
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          |  8 ++------
- drivers/gpu/drm/i915/i915_pci.c          | 23 +++++------------------
- drivers/gpu/drm/i915/i915_perf.c         |  1 -
- drivers/gpu/drm/i915/intel_device_info.c |  2 --
- drivers/gpu/drm/i915/intel_device_info.h |  2 --
- 5 files changed, 7 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.c       | 10 +--
+ drivers/gpu/drm/i915/gt/intel_engine.h        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  3 -
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  4 +-
+ .../gpu/drm/i915/gt/intel_gt_clock_utils.c    | 10 +--
+ drivers/gpu/drm/i915/gt/intel_gtt.c           |  6 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 42 +---------
+ drivers/gpu/drm/i915/gt/intel_mocs.c          |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  4 +-
+ drivers/gpu/drm/i915/gt/intel_sseu.c          | 79 -------------------
+ drivers/gpu/drm/i915/gt/intel_sseu.h          |  2 +-
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c  |  6 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  4 +-
+ 14 files changed, 27 insertions(+), 149 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 5d5cf5ad0513..6ac90ccbee0b 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1380,7 +1380,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_GEMINILAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_GEMINILAKE)
- #define IS_COFFEELAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_COFFEELAKE)
- #define IS_COMETLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_COMETLAKE)
--#define IS_CANNONLAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_CANNONLAKE)
-+#define IS_CANNONLAKE(dev_priv)	0
- #define IS_ICELAKE(dev_priv)	IS_PLATFORM(dev_priv, INTEL_ICELAKE)
- #define IS_JSL_EHL(dev_priv)	(IS_PLATFORM(dev_priv, INTEL_JASPERLAKE) || \
- 				IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE))
-@@ -1446,8 +1446,6 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_CML_GT2(dev_priv)	(IS_COMETLAKE(dev_priv) && \
- 				 INTEL_INFO(dev_priv)->gt == 2)
- 
--#define IS_CNL_WITH_PORT_F(dev_priv) \
--	IS_SUBPLATFORM(dev_priv, INTEL_CANNONLAKE, INTEL_SUBPLATFORM_PORTF)
- #define IS_ICL_WITH_PORT_F(dev_priv) \
- 	IS_SUBPLATFORM(dev_priv, INTEL_ICELAKE, INTEL_SUBPLATFORM_PORTF)
- 
-@@ -1592,9 +1590,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- 
- /* WaRsDisableCoarsePowerGating:skl,cnl */
- #define NEEDS_WaRsDisableCoarsePowerGating(dev_priv)			\
--	(IS_CANNONLAKE(dev_priv) ||					\
--	 IS_SKL_GT3(dev_priv) ||					\
--	 IS_SKL_GT4(dev_priv))
-+	(IS_SKL_GT3(dev_priv) || IS_SKL_GT4(dev_priv))
- 
- #define HAS_GMBUS_IRQ(dev_priv) (GRAPHICS_VER(dev_priv) >= 4)
- #define HAS_GMBUS_BURST_READ(dev_priv) (GRAPHICS_VER(dev_priv) >= 11 || \
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index ec80cd1cd00c..cb4a46174513 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -787,27 +787,13 @@ static const struct intel_device_info cml_gt2_info = {
- 	.gt = 2,
- };
- 
--#define GEN10_FEATURES \
--	GEN9_FEATURES, \
--	GEN(10), \
--	.dbuf.size = 1024 - 4, /* 4 blocks for bypass path allocation */ \
--	.display.has_dsc = 1, \
--	.has_coherent_ggtt = false, \
--	GLK_COLORS
--
--static const struct intel_device_info cnl_info = {
--	GEN10_FEATURES,
--	PLATFORM(INTEL_CANNONLAKE),
--	.gt = 2,
--};
--
- #define GEN11_DEFAULT_PAGE_SIZES \
- 	.page_sizes = I915_GTT_PAGE_SIZE_4K | \
- 		      I915_GTT_PAGE_SIZE_64K | \
- 		      I915_GTT_PAGE_SIZE_2M
- 
- #define GEN11_FEATURES \
--	GEN10_FEATURES, \
-+	GEN9_FEATURES, \
- 	GEN11_DEFAULT_PAGE_SIZES, \
- 	.abox_mask = BIT(0), \
- 	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-@@ -830,10 +816,12 @@ static const struct intel_device_info cnl_info = {
- 		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
- 	}, \
- 	GEN(11), \
-+	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }, \
- 	.dbuf.size = 2048, \
- 	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
--	.has_logical_ring_elsq = 1, \
--	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
-+	.display.has_dsc = 1, \
-+	.has_coherent_ggtt = false, \
-+	.has_logical_ring_elsq = 1
- 
- static const struct intel_device_info icl_info = {
- 	GEN11_FEATURES,
-@@ -1123,7 +1111,6 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_CML_GT2_IDS(&cml_gt2_info),
- 	INTEL_CML_U_GT1_IDS(&cml_gt1_info),
- 	INTEL_CML_U_GT2_IDS(&cml_gt2_info),
--	INTEL_CNL_IDS(&cnl_info),
- 	INTEL_ICL_11_IDS(&icl_info),
- 	INTEL_EHL_IDS(&ehl_info),
- 	INTEL_JSL_IDS(&jsl_info),
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 05e941cd1065..efef89e53440 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -4309,7 +4309,6 @@ static void oa_init_supported_formats(struct i915_perf *perf)
- 	case INTEL_GEMINILAKE:
- 	case INTEL_COFFEELAKE:
- 	case INTEL_COMETLAKE:
--	case INTEL_CANNONLAKE:
- 	case INTEL_ICELAKE:
- 	case INTEL_ELKHARTLAKE:
- 	case INTEL_JASPERLAKE:
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 1ccaeb03ad6d..305facedd284 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -59,7 +59,6 @@ static const char * const platform_names[] = {
- 	PLATFORM_NAME(GEMINILAKE),
- 	PLATFORM_NAME(COFFEELAKE),
- 	PLATFORM_NAME(COMETLAKE),
--	PLATFORM_NAME(CANNONLAKE),
- 	PLATFORM_NAME(ICELAKE),
- 	PLATFORM_NAME(ELKHARTLAKE),
- 	PLATFORM_NAME(JASPERLAKE),
-@@ -175,7 +174,6 @@ static const u16 subplatform_ulx_ids[] = {
- };
- 
- static const u16 subplatform_portf_ids[] = {
--	INTEL_CNL_PORT_F_IDS(0),
- 	INTEL_ICL_PORT_F_IDS(0),
- };
- 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 316edad22eb0..ef1eecd259e0 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -76,8 +76,6 @@ enum intel_platform {
- 	INTEL_GEMINILAKE,
- 	INTEL_COFFEELAKE,
- 	INTEL_COMETLAKE,
--	/* gen10 */
--	INTEL_CANNONLAKE,
- 	/* gen11 */
- 	INTEL_ICELAKE,
- 	INTEL_ELKHARTLAKE,
 -- 
 2.31.1
 
