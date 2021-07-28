@@ -2,32 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459483D9811
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 117583D97FE
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 00:00:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42DE36EB0C;
-	Wed, 28 Jul 2021 22:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E06B06E56D;
+	Wed, 28 Jul 2021 22:00:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 007A46E8CB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70DEE6E886
  for <intel-gfx@lists.freedesktop.org>; Wed, 28 Jul 2021 22:00:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="212786384"
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="212786384"
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="212786387"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="212786387"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jul 2021 15:00:04 -0700
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="663663201"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="663663205"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jul 2021 15:00:03 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Jul 2021 14:59:21 -0700
-Message-Id: <20210728215946.1573015-1-lucas.demarchi@intel.com>
+Date: Wed, 28 Jul 2021 14:59:22 -0700
+Message-Id: <20210728215946.1573015-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210728215946.1573015-1-lucas.demarchi@intel.com>
+References: <20210728215946.1573015-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 00/25] Remove CNL - for drm-intel-next
+Subject: [Intel-gfx] [PATCH 01/25] drm/i915/display: remove PORT_F
+ workaround for CNL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,79 +48,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Same as latest version (https://patchwork.freedesktop.org/series/93056/)
-but reordered/re-squashed and without the patches that should go through
-drm-intel-gt-next.
+Explicit support for CNL is being removed from the driver as it's not
+expected to work. Remove the workaround for PORT_F from
+display/intel_bios.c so we can also remove the generic DISPLAY_VER == 10
+calls to intel_ddi_init(): the only platform with that display version
+is already handled separately (GLK).
 
-I maintained the R-b since there are no meaninful changes.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c    | 6 +++---
+ drivers/gpu/drm/i915/display/intel_display.c | 7 -------
+ 2 files changed, 3 insertions(+), 10 deletions(-)
 
-Lucas De Marchi (25):
-  drm/i915/display: remove PORT_F workaround for CNL
-  drm/i915/display: remove explicit CNL handling from intel_cdclk.c
-  drm/i915/display: remove explicit CNL handling from intel_color.c
-  drm/i915/display: remove explicit CNL handling from intel_combo_phy.c
-  drm/i915/display: remove explicit CNL handling from intel_crtc.c
-  drm/i915/display: remove explicit CNL handling from intel_ddi.c
-  drm/i915/display: remove explicit CNL handling from
-    intel_display_debugfs.c
-  drm/i915/display: remove explicit CNL handling from intel_dmc.c
-  drm/i915/display: remove explicit CNL handling from intel_dp.c
-  drm/i915/display: remove explicit CNL handling from intel_dpll_mgr.c
-  drm/i915/display: remove explicit CNL handling from intel_vdsc.c
-  drm/i915/display: remove explicit CNL handling from
-    skl_universal_plane.c
-  drm/i915/display: remove explicit CNL handling from
-    intel_display_power.c
-  drm/i915/display: remove CNL ddi buf translation tables
-  drm/i915/display: rename CNL references in skl_scaler.c
-  drm/i915: remove explicit CNL handling from i915_irq.c
-  drm/i915: remove explicit CNL handling from intel_pm.c
-  drm/i915: remove explicit CNL handling from intel_pch.c
-  drm/i915: remove explicit CNL handling from intel_wopcm.c
-  drm/i915: rename CNL references in intel_dram.c
-  drm/i915: replace random CNL comments
-  drm/i915: switch num_scalers/num_sprites to consider DISPLAY_VER
-  drm/i915: remove GRAPHICS_VER == 10
-  drm/i915: rename/remove CNL registers
-  drm/i915: finish removal of CNL
-
- drivers/gpu/drm/i915/display/intel_bios.c     |   8 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  72 +-
- drivers/gpu/drm/i915/display/intel_color.c    |   5 +-
- .../gpu/drm/i915/display/intel_combo_phy.c    | 106 +--
- drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      | 266 +-------
- .../drm/i915/display/intel_ddi_buf_trans.c    | 616 +++++-------------
- .../drm/i915/display/intel_ddi_buf_trans.h    |   4 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   9 +-
- .../drm/i915/display/intel_display_debugfs.c  |   2 +-
- .../drm/i915/display/intel_display_power.c    | 289 --------
- .../drm/i915/display/intel_display_power.h    |   2 -
- drivers/gpu/drm/i915/display/intel_dmc.c      |   9 -
- drivers/gpu/drm/i915/display/intel_dp.c       |  35 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |   1 -
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 586 +++--------------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   1 -
- drivers/gpu/drm/i915/display/intel_vbt_defs.h |   2 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   5 +-
- drivers/gpu/drm/i915/display/skl_scaler.c     |  10 +-
- .../drm/i915/display/skl_universal_plane.c    |  14 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |   1 -
- drivers/gpu/drm/i915/gvt/gtt.c                |   2 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |   6 +-
- drivers/gpu/drm/i915/i915_drv.h               |  10 +-
- drivers/gpu/drm/i915/i915_irq.c               |   7 +-
- drivers/gpu/drm/i915/i915_pci.c               |  23 +-
- drivers/gpu/drm/i915/i915_perf.c              |  22 +-
- drivers/gpu/drm/i915/i915_reg.h               | 245 ++-----
- drivers/gpu/drm/i915/intel_device_info.c      |  14 +-
- drivers/gpu/drm/i915/intel_device_info.h      |   4 +-
- drivers/gpu/drm/i915/intel_dram.c             |  32 +-
- drivers/gpu/drm/i915/intel_pch.c              |   5 +-
- drivers/gpu/drm/i915/intel_pm.c               |  41 +-
- drivers/gpu/drm/i915/intel_wopcm.c            |  10 +-
- 35 files changed, 485 insertions(+), 1981 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index aa667fa71158..4172c8ee6aa6 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1871,12 +1871,12 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
+ static bool is_port_valid(struct drm_i915_private *i915, enum port port)
+ {
+ 	/*
+-	 * On some ICL/CNL SKUs port F is not present, but broken VBTs mark
++	 * On some ICL SKUs port F is not present, but broken VBTs mark
+ 	 * the port as present. Only try to initialize port F for the
+ 	 * SKUs that may actually have it.
+ 	 */
+-	if (port == PORT_F && (IS_ICELAKE(i915) || IS_CANNONLAKE(i915)))
+-		return IS_ICL_WITH_PORT_F(i915) || IS_CNL_WITH_PORT_F(i915);
++	if (port == PORT_F && IS_ICELAKE(i915))
++		return IS_ICL_WITH_PORT_F(i915);
+ 
+ 	return true;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 4833eaeb8f0b..8597194bea88 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -11452,13 +11452,6 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		intel_ddi_init(dev_priv, PORT_B);
+ 		intel_ddi_init(dev_priv, PORT_C);
+ 		vlv_dsi_init(dev_priv);
+-	} else if (DISPLAY_VER(dev_priv) == 10) {
+-		intel_ddi_init(dev_priv, PORT_A);
+-		intel_ddi_init(dev_priv, PORT_B);
+-		intel_ddi_init(dev_priv, PORT_C);
+-		intel_ddi_init(dev_priv, PORT_D);
+-		intel_ddi_init(dev_priv, PORT_E);
+-		intel_ddi_init(dev_priv, PORT_F);
+ 	} else if (DISPLAY_VER(dev_priv) >= 9) {
+ 		intel_ddi_init(dev_priv, PORT_A);
+ 		intel_ddi_init(dev_priv, PORT_B);
 -- 
 2.31.1
 
