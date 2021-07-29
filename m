@@ -1,38 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67213DAA3A
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 19:31:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7AE53DB915
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 15:12:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10C246EE1F;
-	Thu, 29 Jul 2021 17:31:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20FD36E342;
+	Fri, 30 Jul 2021 13:12:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACEE26EE1F
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 17:31:38 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="209825573"
-X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="209825573"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 10:31:16 -0700
-X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="666683144"
-Received: from oolanipe-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.251.6.212])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 10:31:16 -0700
-Date: Thu, 29 Jul 2021 10:31:15 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210729173115.3xplwa2436r243ik@ldmartin-desk2>
-References: <20210729170008.2836648-1-matthew.d.roper@intel.com>
- <20210729170008.2836648-13-matthew.d.roper@intel.com>
+Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED43F6EE2D;
+ Thu, 29 Jul 2021 19:01:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+ s=20170329; 
+ h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
+ bh=iEnu2V13dWd3Tk47Au3q+xCArofi4eI3XAUeIwTJOvs=; 
+ b=Bq6P3gjfltLAMg8g14Q1pHEmF2If2n8x3JwoczYJUXnz4MWIU9UqEiwFINnS/KtxkXX21rkziMlpGqYzcyAj+OgmcHKVWGhgIK01xwAbujqghtArDEldpi1+2L5lxX+9FerK2IuYa+IBWb2b+dzrhMsDm/gsbZY2rmhRiSRmeemyM5TMOpl8DwRIi0cSpo0xvqZOU/VmJTK769RUM9F0bCXumkDqJE+UMhb+T10e0YlHA90Ds0sfbOfnf/lUQjrtWYdEXgTBZUEoGwSDNDadOdOpK6F0cd190X6k01MC825KE10HBYmLpMmjqvdbTbRnFmfsUS7S0415lpcePyukyA==;
+Received: from 152.red-88-9-105.dynamicip.rima-tde.net ([88.9.105.152]
+ helo=[192.168.2.252]) by fanzine.igalia.com with esmtpsa 
+ (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
+ id 1m9BHs-000134-IJ; Thu, 29 Jul 2021 21:01:44 +0200
+Message-ID: <c002b2564f430cea5fae1270c85ac471bf53afb7.camel@igalia.com>
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
+To: "events@lists.x.org" <events@lists.x.org>, 
+ "xorg-devel@lists.freedesktop.org"
+ <xorg-devel@lists.freedesktop.org>, wayland-devel@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org
+Date: Thu, 29 Jul 2021 21:01:34 +0200
+In-Reply-To: <f5ee80e067e79dff0b2d65c67dbb83b9be70014f.camel@igalia.com>
+References: <95ec2c414f7dd1ea5685184435b95430e1709047.camel@igalia.com>
+ <f5ee80e067e79dff0b2d65c67dbb83b9be70014f.camel@igalia.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+ protocol="application/pgp-signature"; boundary="=-JoibIQI5zrLH+tK95jc7"
+User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210729170008.2836648-13-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 12/18] drm/i915/xehpsdv: Define MOCS
- table for XeHP SDV
+X-Mailman-Approved-At: Fri, 30 Jul 2021 13:12:42 +0000
+Subject: Re: [Intel-gfx] [Mesa-dev] Requests For Proposals for hosting XDC
+ 2022 are now open
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,108 +53,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "board@foundation.x.org" <board@foundation.x.org>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 29, 2021 at 10:00:02AM -0700, Matt Roper wrote:
->From: Lucas De Marchi <lucas.demarchi@intel.com>
->
->Like DG1, XeHP SDV doesn't have LLC/eDRAM control values due to being a
->dgfx card. XeHP SDV adds 2 more bits: L3_GLBGO to "push the Go point to
->memory for L3 destined transaction" and L3_LKP to "enable Lookup for
->uncacheable accesses".
->
->Bspec: 45101
->Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->Signed-off-by: Stuart Summers <stuart.summers@intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-+Ayaz,  +Daniel
+--=-JoibIQI5zrLH+tK95jc7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I think this can't land as is since we risk forgetting additional
-changes that we will have to do. We already made the mistake once of
-forgetting MOCS changes.
+Remember before enjoying your holiday that the deadline for XDC 2022
+proposals is *September 1st, 2021* :-)
 
-There are some patches to initialize unused MOCS entries and similar
-that should have been sent already to upstream. Ayaz, what's the state
-of those patches?
+Feel free to submit your proposal before, so we can give you early
+feedback on it!
 
-Lucas De Marchi
+Sam
 
->---
-> drivers/gpu/drm/i915/gt/intel_mocs.c | 33 +++++++++++++++++++++++++++-
-> 1 file changed, 32 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
->index 17848807f111..0c9d0b936c20 100644
->--- a/drivers/gpu/drm/i915/gt/intel_mocs.c
->+++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
->@@ -40,6 +40,8 @@ struct drm_i915_mocs_table {
-> #define L3_ESC(value)		((value) << 0)
-> #define L3_SCC(value)		((value) << 1)
-> #define _L3_CACHEABILITY(value)	((value) << 4)
->+#define L3_GLBGO(value)		((value) << 6)
->+#define L3_LKUP(value)		((value) << 7)
->
-> /* Helper defines */
-> #define GEN9_NUM_MOCS_ENTRIES	64  /* 63-64 are reserved, but configured. */
->@@ -314,6 +316,31 @@ static const struct drm_i915_mocs_entry dg1_mocs_table[] = {
-> 	MOCS_ENTRY(63, 0, L3_1_UC),
-> };
->
->+static const struct drm_i915_mocs_entry xehpsdv_mocs_table[] = {
->+	/* wa_1608975824 */
->+	MOCS_ENTRY(0, 0, L3_3_WB | L3_LKUP(1)),
->+
->+	/* UC - Coherent; GO:L3 */
->+	MOCS_ENTRY(1, 0, L3_1_UC | L3_LKUP(1)),
->+	/* UC - Coherent; GO:Memory */
->+	MOCS_ENTRY(2, 0, L3_1_UC | L3_GLBGO(1) | L3_LKUP(1)),
->+	/* UC - Non-Coherent; GO:Memory */
->+	MOCS_ENTRY(3, 0, L3_1_UC | L3_GLBGO(1)),
->+	/* UC - Non-Coherent; GO:L3 */
->+	MOCS_ENTRY(4, 0, L3_1_UC),
->+
->+	/* WB */
->+	MOCS_ENTRY(5, 0, L3_3_WB | L3_LKUP(1)),
->+
->+	/* HW Reserved - SW program but never use. */
->+	MOCS_ENTRY(48, 0, L3_3_WB | L3_LKUP(1)),
->+	MOCS_ENTRY(49, 0, L3_1_UC | L3_LKUP(1)),
->+	MOCS_ENTRY(60, 0, L3_1_UC),
->+	MOCS_ENTRY(61, 0, L3_1_UC),
->+	MOCS_ENTRY(62, 0, L3_1_UC),
->+	MOCS_ENTRY(63, 0, L3_1_UC),
->+};
->+
-> enum {
-> 	HAS_GLOBAL_MOCS = BIT(0),
-> 	HAS_ENGINE_MOCS = BIT(1),
->@@ -340,7 +367,11 @@ static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
-> {
-> 	unsigned int flags;
->
->-	if (IS_DG1(i915)) {
->+	if (IS_XEHPSDV(i915)) {
->+		table->size = ARRAY_SIZE(xehpsdv_mocs_table);
->+		table->table = xehpsdv_mocs_table;
->+		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
->+	} else if (IS_DG1(i915)) {
-> 		table->size = ARRAY_SIZE(dg1_mocs_table);
-> 		table->table = dg1_mocs_table;
-> 		table->n_entries = GEN9_NUM_MOCS_ENTRIES;
->-- 
->2.25.4
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+On Thu, 2021-07-01 at 18:14 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
+> This is a reminder that the call for proposals for hosting XDC 2022
+> period finishes in two months.
+>=20
+> Be sure to prepare your submission before you leave on holiday!
+>=20
+> Sam
+>=20
+> On Thu, 2021-05-20 at 12:15 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
+> > Hello everyone!
+> >=20
+> > The X.org board is soliciting proposals to host XDC in 2022. Since
+> > XDC 2021 is being held in Europe this year (although virtually),
+> > we've
+> > decided to host in North America. However, the board is open to
+> > other
+> > locations, especially if there's an interesting co-location with
+> > another conference.
+> >=20
+> > Of course though, due to the ongoing COVID-19 pandemic it's not yet
+> > clear whether or not it will be possible to host XDC 2022 in
+> > person,
+> > although is seems very likely. Because of this, we would like to
+> > make it clear that sponsors should prepare for both the possibility
+> > of an in person conference, and the possibility of a virtual
+> > conference. We will work with organizers on coming up with a
+> > deadline for deciding whether or not we'll be going virtual, likely
+> > sometime around July 2022.
+> >=20
+> > If you're considering hosting XDC, we've assembled a wiki page with
+> > what's generally expected and needed:
+> >=20
+> > https://www.x.org/wiki/Events/RFP/
+> >=20
+> > When submitting your proposal, please make sure to include at least
+> > the
+> > key information about the potential location in question, possible
+> > dates along with estimated costs. Proposals can be submitted to
+> > board
+> > at foundation.x.org until the deadline of *September 1st, 2021*.=C2=A0
+> >=20
+> > Additionally, an quirk early heads-up to the board if you're
+> > considering hosting would be appreciated, in case we need to adjust
+> > the
+> > schedule a bit. Also, earlier is better since there generally will
+> > be
+> > a
+> > bit of Q&A with organizers.
+> >=20
+> > And if you just have some questions about what organizing XDC
+> > entails,
+> > please feel free to chat with previous organizers, or someone from
+> > the
+> > board.
+> >=20
+> > Thanks,
+> >=20
+> > Sam
+> >=20
+> > _______________________________________________
+> > mesa-dev mailing list
+> > mesa-dev@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+>=20
+> _______________________________________________
+> mesa-dev mailing list
+> mesa-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+
+
+--=-JoibIQI5zrLH+tK95jc7
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmEC+w4ACgkQf/S6MvF9
+w0NE9RAAhftJFlMlh6LVSXN2Ez53ZwKl30J9rV+EJLEze+/nkNg/vXJbeaAfjOGC
+dgIVbn5bBylrv3T3tYnwAO4VtbuLwu016c1OTpcl4bqZ1c73Uj1WKYQ+yP0LXNMV
+HFVk1kI2cBdoF791QevvAp872E2xyyH2Zm9EW0zqoNJuktm31yLyW2FIC3snBcQi
+P0saE+SEJKtg1RQuKlGow5JUbH6kmsXno8aY6p/vXE5BIwAZX7CCqXPzDYj+SXgf
+fSbi0jEJneL/GhRGHcv3HbPCCTvx8g/kBkXOmIQe2yfYBCwIIG5x0UYqO7f6jWnN
+tUgTD2iCyB2rMbK4ODIY4XPUYa4n2fBCRbJ27WngBMjejuiRfDvH8bsWJVafkOJV
+likkzpY1sbrVcocP5vYgHObsOIBFE72aGZWHNOR310Zqacd/bLVM78E9crHT7FSw
+SJlFIBOywh6EED0aCoc+1/nJ7ta9KDrVrSOFoFa0WWK6QKaqpEiyLfwEoU3zizKi
+shFPfFPpvL18GDWWGah12qntQbx0TVx8/bRAwoqusVw6A65V6SebeEBxhCYMzcS3
+OJDMhH7Jcw13P6O/w52Ox2sRO9u3ANYNz8fbujE2cmQ/8WQqvBbU/m8M19/Bh8BO
+EeCRGMQsCN84+r8nVS+0dDmwe85Weu0Elbkrt2mZvJ4WyWjZOVg=
+=rA1c
+-----END PGP SIGNATURE-----
+
+--=-JoibIQI5zrLH+tK95jc7--
+
