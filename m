@@ -1,143 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28BCA3DAFE9
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 01:37:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA6AD3DAFF6
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 01:40:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A8E6E06E;
-	Thu, 29 Jul 2021 23:37:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A65C6EE90;
+	Thu, 29 Jul 2021 23:40:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 996D56E06E
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 23:36:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="200207141"
-X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="200207141"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 16:36:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="499442877"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP; 29 Jul 2021 16:36:58 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 29 Jul 2021 16:36:58 -0700
-Received: from orsmsx604.amr.corp.intel.com (10.22.229.17) by
- ORSMSX609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 29 Jul 2021 16:36:58 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10 via Frontend Transport; Thu, 29 Jul 2021 16:36:58 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Thu, 29 Jul 2021 16:36:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XaquTihuETkRWPnZ8XX4LNVjpwRrTNM0H6W9rkFc08A4v7FIp42PhLECprQsdBY0+efATFjcfI8L9sF4muMcQEiQXJPgmm0/CvOI6DBHzcgZW+xNgm8ir60llHHuFg9fqb0sC0pj/kTVM6/Wk6jiQull++Li4P3CTKWicAoPo92p5JPeTyLNnfiaFcPMOvQl5/DqdSGD22c5+2HosX8BturRoQ6Om1Ea34Tj3HyFTIc1hYqsVVchZwkCt3jJstczhi76VBL7RnrjNpXYIgOV9sbpU+RF/YOFTxNl/KlVJYcACXLzUn4Y39+WR94mD5FzrYKhINoyyD3eWvR156SwKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VFCk2gTdZGjeN/enskhLA4gmuSXhM3efmWvDAgnviC0=;
- b=dtRBHxbviRVAEZ6McZgYTQWafdOoj+Fpp08f1j31Fmr9P3bJB1Uw7B452g2N1W7PDuVmp/326Ic4zl3MEFEaH7Xdkqnguu4ON9nRpPryoptOrbAJmMt24y9XKlR4K1iTC1+OnWavp9G9ds++gXFtVVs5Cm5XgY/OkgKA/tMloRCMvi6ZcBbiOI127ciYJuv716LQW5nb50lqwolN71OQsaCAWT7WLiANr9s9dHSUzjXfgjU4Nv0Uijmm7y3FNs6a7l+M09d+0c3CEPyWeIlXIKUVpwtNa4jq0CYTYtkJTp1kSk7NLM7MQvXNDQFjJwmSZy+eDbtyBNiDUg8Aw0qAKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VFCk2gTdZGjeN/enskhLA4gmuSXhM3efmWvDAgnviC0=;
- b=TFSdzM8v2yl65HXGq6w2yfSX7VfVGfqdWKoRnh2121RWMVUAePogGcA09rpWWs032WtCPlqBbtI4T2PZHihRC/7/xSYBVm6FItomNjXaQjwy/Z7alohijN06FxLYZexyt8AEm/nCaIwnpSXVkTNpf13zJSXpvBj+IA37NUPQqFE=
-Received: from MN2PR11MB4661.namprd11.prod.outlook.com (2603:10b6:208:26b::16)
- by BL0PR11MB3092.namprd11.prod.outlook.com (2603:10b6:208:7d::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.29; Thu, 29 Jul
- 2021 23:36:56 +0000
-Received: from MN2PR11MB4661.namprd11.prod.outlook.com
- ([fe80::f97a:a66f:73be:c044]) by MN2PR11MB4661.namprd11.prod.outlook.com
- ([fe80::f97a:a66f:73be:c044%5]) with mapi id 15.20.4352.033; Thu, 29 Jul 2021
- 23:36:56 +0000
-From: "Yokoyama, Caz" <caz.yokoyama@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 6/6] drm/i915/xehp: Xe_HP shadowed registers
- are a strict superset of gen12
-Thread-Index: AQHXhDxz13dJS0MosEaiMPYXfqo6catanMAA
-Date: Thu, 29 Jul 2021 23:36:55 +0000
-Message-ID: <efb403e90b16ccf689bb636db9029985042d7540.camel@intel.com>
-References: <20210729054118.2458523-1-matthew.d.roper@intel.com>
- <20210729054118.2458523-7-matthew.d.roper@intel.com>
-In-Reply-To: <20210729054118.2458523-7-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4855acc9-b081-42a8-4a3f-08d952e9c081
-x-ms-traffictypediagnostic: BL0PR11MB3092:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BL0PR11MB3092F66AC23B6838A66428719FEB9@BL0PR11MB3092.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: y6T7buIndkuHCWJzswhQdxr6B/7y0234S/C6N1geWh/5E0UTxnUSFUu2wmO/Il0rPkk7WRxibdXfo+fY/Ib33BxG3x0MzPxsU7YG8n/IHmWJI7R2gbO9P2Epv55PmCXgdSCBs0xc1x+gno1y0HRjSIr5QsKJgLbQ0tq1DtpFdxEuklxjtP3b6o7ZILBHYss3EdaeheCbv/xNFV+csRs4eWIAfgd7wTQyWrIQ98rSUircrC7uWeWW8Vlb9BllWUGu7LAroGaHhbvXDiMcmQDQLaOIB6kP3191hUsnHRom/4cRADEcBefe+lFQ6/VWnYRrPI7ZTj7JRb4Y1WcDrN55MTJjcZQidHXclP6A4XcNeG9sSmyLOCRTNyu+J9bMYMLXkPnwoOgqfw6gtr79PjinkKI6ZKhi5/4JX8h1jLN9iswe/k3YpV/7u7H8TSBztB6EuUbuTkoHOXezw0522iUAOm+uNdrMKFcjIC+BgXCHuwjOk6taUkJY18jJilV9obtj6+F01EQiU9J69Fb9SQq0UlYpxahswxso72aevvlZe8Cb2oui2Et1ED299Cic92DoNvm7ppAWoQmZwKX1B4UZjqHyTBRx267DS1L272UlqxH42+1aPRnBWsYUhIqlT7zz0VQqLe6NaGQeSO5St7EHEfJEtfJ23J7nizjugVT8oa+pfPO747E+5FMcl/fqmfKbATWqImDfhnwlu9EisRfY5g==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR11MB4661.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(376002)(366004)(396003)(136003)(39860400002)(76116006)(71200400001)(64756008)(38070700005)(66446008)(66946007)(91956017)(6486002)(66476007)(6512007)(83380400001)(66556008)(86362001)(5660300002)(6506007)(26005)(38100700002)(316002)(110136005)(186003)(122000001)(36756003)(2906002)(2616005)(478600001)(8936002)(8676002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RHNmdTloNDMwYnZDYUhnZWpXaE1RZzlrR1VzeC83SEp6YjhROEoyTWQ2eTVX?=
- =?utf-8?B?TDVrVkVwSXJuQ2JUdWFvdVhWS1Q1dmVVYnExMi9WdmVhdmFpVkZLbkJ0ZTVY?=
- =?utf-8?B?MHB3bFFJdVA3bjRjQWtLaU1uUTVjM2YzMWpqM0UxdFlHRVRJb1ZZU0F2REhI?=
- =?utf-8?B?UGtsSmhMU3dkMHM1RUdvVUtBYmpiTXVMemFROFVERE53a2NnczNSTzNFVzV1?=
- =?utf-8?B?Sm00RDVFZ1BQSWZmbzVONnFSWWpIQW93RzZWTmhmVnI0LytOMGZnMXUvNExJ?=
- =?utf-8?B?aFBFRnZIbXdhVDZIOTdObmEwRUp5MmR4UUZtWHR2SlFweXNnalBnZXJ2VUo0?=
- =?utf-8?B?NklUaWNFL291MURQVEtQK0Erbm1PYlhwRkN4OWRQbFJ3bWlva3htcFVhWDZ6?=
- =?utf-8?B?dUlzbEh3TWh0WFFPT2ZMZlZIdjBFY25JVCtLNGVFSjJEWUlUY3FYczIyN0tq?=
- =?utf-8?B?NWVWbFV4NU9sUStESXVIbGNRUDN1R05YSXk5cU5aSHV1MFpuaDdZS1VKZWxH?=
- =?utf-8?B?ZCtzVU0yRHR3cFViaEw5Q3l1OEVibDJ0VHF6bk8zMjRXVjJhVW1HL2RVVUp3?=
- =?utf-8?B?cWt2TEFaSGpTZ1oyWUsycFNkYUw0bXdmNGdPT2plZHFtNlpQaFNoMG1oSGN3?=
- =?utf-8?B?bFlEd1REbWtnYlhZWHJUUUYwMTV0QkdGTVY0TG1TU2EwcklYQmpRaHZtckpx?=
- =?utf-8?B?QWptd0tteVpEOHliZXo0aWJNcGhRQ0FmK2lEUENCSE9qV25qdUlaQUZTTWpz?=
- =?utf-8?B?Mm5qOVc1RHlzWFMvUDQyQVFMajR6SEhBZDA4V1NWeHZDc0k2OFRTcFA0bUh5?=
- =?utf-8?B?eWoxWGdmdTY2dG41c0hhcjNZWWhnZDF0dkhBYitTenFYUnBDZ0V4eGVtZGJB?=
- =?utf-8?B?dHVQcFQzNXhXTGJSamhDTCtkZDdMSXVrYWQxT2FyQXFFbi9mSi9Pclc3eWJ5?=
- =?utf-8?B?WTZ2UjZ6N0ZzS2xLbU9yblpsdjBRbXFrWjYyc0MxVU1Oa293emNYYTFDY0R1?=
- =?utf-8?B?dldLbWVwWjBqY1hPZWZzWk84VkpxVzVabXhaaFR4eklodFJCcXRBSzVtejI4?=
- =?utf-8?B?SW9zSDRaYk9HbE4rVGhvWEx5aGZpaUljcXRIdW5SbGYvbitWWXhOZ1NmZGpw?=
- =?utf-8?B?VkdrOWVtWm1PK1VENXVaU040Z00zaUV5em1MWjNaM0JHcjZJOFFvWFlScDhT?=
- =?utf-8?B?NytJUndzMnFVTlhtSXVvbW9FTFZVSG9kTzlzWHlPeGs1V2VwM2FNZlZWVVhO?=
- =?utf-8?B?QkUvM2c0YmkzMlROS3VZK01wR0w5MDB5eHhoUEJWVXYySStaN0hJL05USVlY?=
- =?utf-8?B?elRRRjZ1MUtjWjZyMGFYNEp3WU8vMVU2TWVKWW5LcG1kZzJkSU82WXZKL2ZB?=
- =?utf-8?B?bVhlUFZleVg3OS9uRTUwS1dJUWNBZ3ljbUd0K0gvck4xOTQzMlU5NUJiRSt6?=
- =?utf-8?B?ZnhnekVjb1Q3aTQ3UTlqR1lXV0xQd1JERkMxalZsRGpIUGxuSW15SWpGTC9j?=
- =?utf-8?B?S1UwUklXK3E0Q3pzeHRnY3FJL2NtNk9veHJYV3BLS2RRRTQxbXhOd1dBZWRI?=
- =?utf-8?B?VHBmMG5kcHlTcFh2ZmUvbEhqYkxZb0w1K0xMTmQ4NDc0U1Z1a0l6WFFyOFNv?=
- =?utf-8?B?S1FWVlJXUEF3TkZPNHlZaGRqc3FFNGQ0a1VZYjFuUTBFeUNLbnBiYStaQzR6?=
- =?utf-8?B?SWdnSW85eC80K3dEdWpOZkF3TVdleE40dC9oQ2J0a1c4UHZSQy9RWTRoSkJ6?=
- =?utf-8?Q?8D6lSS1uqHdQp+GqCCni0G8xUiTzErwzGcGyf2f?=
-Content-ID: <A218A1A945AC3648AD2D5C09182AFB75@namprd11.prod.outlook.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18F7D6EE90
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 23:40:00 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="298579540"
+X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="298579540"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2021 16:39:59 -0700
+X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="476671116"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2021 16:39:59 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 29 Jul 2021 16:39:35 -0700
+Message-Id: <20210729233934.2059489-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210728215946.1573015-11-lucas.demarchi@intel.com>
+References: <20210728215946.1573015-11-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4661.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4855acc9-b081-42a8-4a3f-08d952e9c081
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2021 23:36:55.9256 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wcAnwXZ2+fuU6clp6t7bBKbWYaa+qTC89fMeZCx4Z68R625bm33VaVYDkz/xITvAUDWHjPT3870zRQnTXXlVTg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR11MB3092
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/xehp: Xe_HP shadowed registers
- are a strict superset of gen12
+Subject: [Intel-gfx] [PATCH v1.1 10/25] drm/i915/display: remove explicit
+ CNL handling from intel_dpll_mgr.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,143 +48,701 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: az Yokoyama <caz.yokoyama@intel.com>
--caz
+The only real platform with DISPLAY_VER == 10 is GLK. We don't need to
+handle CNL explicitly in intel_ddi.c.
 
-On Wed, 2021-07-28 at 22:41 -0700, Matt Roper wrote:
-> The list of shadowed registers on XeHP is identical to the set for
-> earlier gen12 platforms, with additional ranges added for the new VCS
-> and VECS engines.  Since those register ranges were reserved on
-> earlier
-> gen12 platforms, it's safe to consolidate to a single gen12 table
-> rather than tracking Xe_HP separately.
-> 
-> Bspec: 52077
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_uncore.c           | 50 +++++----------
-> ----
->  drivers/gpu/drm/i915/selftests/intel_uncore.c |  1 -
->  2 files changed, 12 insertions(+), 39 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.c
-> b/drivers/gpu/drm/i915/intel_uncore.c
-> index 42acf106a6df..4abe9df5fb76 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.c
-> +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> @@ -1006,39 +1006,24 @@ static const struct i915_range
-> gen12_shadowed_regs[] = {
->  	{ .start = 0x1D4510, .end = 0x1D4550 },
->  	{ .start = 0x1D8030, .end = 0x1D8030 },
->  	{ .start = 0x1D8510, .end = 0x1D8550 },
-> -};
->  
-> -static const struct i915_range xehp_shadowed_regs[] = {
-> -	{ .start =   0x2000, .end =   0x2030 },
-> -	{ .start =   0x2550, .end =   0x2550 },
-> -	{ .start =   0xA008, .end =   0xA00C },
-> -	{ .start =  0x22030, .end =  0x22030 },
-> -	{ .start =  0x22550, .end =  0x22550 },
-> -	{ .start = 0x1C0030, .end = 0x1C0030 },
-> -	{ .start = 0x1C0550, .end = 0x1C0550 },
-> -	{ .start = 0x1C4030, .end = 0x1C4030 },
-> -	{ .start = 0x1C4550, .end = 0x1C4550 },
-> -	{ .start = 0x1C8030, .end = 0x1C8030 },
-> -	{ .start = 0x1C8550, .end = 0x1C8550 },
-> -	{ .start = 0x1D0030, .end = 0x1D0030 },
-> -	{ .start = 0x1D0550, .end = 0x1D0550 },
-> -	{ .start = 0x1D4030, .end = 0x1D4030 },
-> -	{ .start = 0x1D4550, .end = 0x1D4550 },
-> -	{ .start = 0x1D8030, .end = 0x1D8030 },
-> -	{ .start = 0x1D8550, .end = 0x1D8550 },
-> +	/*
-> +	 * The rest of these ranges are specific to Xe_HP and beyond,
-> but
-> +	 * are reserved/unused ranges on earlier gen12 platforms, so
-> they can
-> +	 * be safely added to the gen12 table.
-> +	 */
->  	{ .start = 0x1E0030, .end = 0x1E0030 },
-> -	{ .start = 0x1E0550, .end = 0x1E0550 },
-> +	{ .start = 0x1E0510, .end = 0x1E0550 },
->  	{ .start = 0x1E4030, .end = 0x1E4030 },
-> -	{ .start = 0x1E4550, .end = 0x1E4550 },
-> +	{ .start = 0x1E4510, .end = 0x1E4550 },
->  	{ .start = 0x1E8030, .end = 0x1E8030 },
-> -	{ .start = 0x1E8550, .end = 0x1E8550 },
-> +	{ .start = 0x1E8510, .end = 0x1E8550 },
->  	{ .start = 0x1F0030, .end = 0x1F0030 },
-> -	{ .start = 0x1F0550, .end = 0x1F0550 },
-> +	{ .start = 0x1F0510, .end = 0x1F0550 },
->  	{ .start = 0x1F4030, .end = 0x1F4030 },
-> -	{ .start = 0x1F4550, .end = 0x1F4550 },
-> +	{ .start = 0x1F4510, .end = 0x1F4550 },
->  	{ .start = 0x1F8030, .end = 0x1F8030 },
-> -	{ .start = 0x1F8550, .end = 0x1F8550 },
-> -	/* TODO: Other registers are not yet used */
-> +	{ .start = 0x1F8510, .end = 0x1F8550 },
->  };
->  
->  static int mmio_range_cmp(u32 key, const struct i915_range *range)
-> @@ -1062,7 +1047,6 @@ static bool is_##x##_shadowed(u32 offset) \
->  __is_X_shadowed(gen8)
->  __is_X_shadowed(gen11)
->  __is_X_shadowed(gen12)
-> -__is_X_shadowed(xehp)
->  
->  static enum forcewake_domains
->  gen6_reg_write_fw_domains(struct intel_uncore *uncore, i915_reg_t
-> reg)
-> @@ -1126,15 +1110,6 @@ static const struct intel_forcewake_range
-> __chv_fw_ranges[] = {
->  	__fwd; \
->  })
->  
-> -#define __xehp_fwtable_reg_write_fw_domains(uncore, offset) \
-> -({ \
-> -	enum forcewake_domains __fwd = 0; \
-> -	const u32 __offset = (offset); \
-> -	if (!is_xehp_shadowed(__offset)) \
-> -		__fwd = find_fw_domain(uncore, __offset); \
-> -	__fwd; \
-> -})
-> -
->  /* *Must* be sorted by offset ranges! See intel_fw_table_check(). */
->  static const struct intel_forcewake_range __gen9_fw_ranges[] = {
->  	GEN_FW_RANGE(0x0, 0xaff, FORCEWAKE_GT),
-> @@ -1710,7 +1685,6 @@ __gen_write(func, 8) \
->  __gen_write(func, 16) \
->  __gen_write(func, 32)
->  
-> -__gen_reg_write_funcs(xehp_fwtable);
->  __gen_reg_write_funcs(gen12_fwtable);
->  __gen_reg_write_funcs(gen11_fwtable);
->  __gen_reg_write_funcs(fwtable);
-> @@ -2087,7 +2061,7 @@ static int uncore_forcewake_init(struct
-> intel_uncore *uncore)
->  
->  	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
->  		ASSIGN_FW_DOMAINS_TABLE(uncore, __xehp_fw_ranges);
-> -		ASSIGN_WRITE_MMIO_VFUNCS(uncore, xehp_fwtable);
-> +		ASSIGN_WRITE_MMIO_VFUNCS(uncore, gen12_fwtable);
->  		ASSIGN_READ_MMIO_VFUNCS(uncore, gen11_fwtable);
->  	} else if (GRAPHICS_VER(i915) >= 12) {
->  		ASSIGN_FW_DOMAINS_TABLE(uncore, __gen12_fw_ranges);
-> diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c
-> b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-> index d3e36ed32646..63b75585865f 100644
-> --- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
-> +++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-> @@ -68,7 +68,6 @@ static int intel_shadow_table_check(void)
->  		{ gen8_shadowed_regs, ARRAY_SIZE(gen8_shadowed_regs) },
->  		{ gen11_shadowed_regs, ARRAY_SIZE(gen11_shadowed_regs)
-> },
->  		{ gen12_shadowed_regs, ARRAY_SIZE(gen12_shadowed_regs)
-> },
-> -		{ xehp_shadowed_regs, ARRAY_SIZE(xehp_shadowed_regs) },
->  	};
->  	const struct i915_range *range;
->  	unsigned int i, j;
+A lot of special code for CNL can be removed. There were some
+__cnl.*() functions that were created to share the implementation
+between ICL and CNL. Those are now embedded in the only caller, in ICL.
+
+Remove code and rename functions/macros accordingly to use ICL prefix
+for those that are still needed.
+
+Verified with:
+
+	make EXTRA_CFLAGS=-Wunused drivers/gpu/drm/i915/display/intel_dpll_mgr.o
+
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+
+v1.1: Rebase
+
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 586 +++---------------
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +-
+ 2 files changed, 96 insertions(+), 494 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 8e2bd8fa090a..0d72917e5670 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -168,7 +168,7 @@ intel_combo_pll_enable_reg(struct drm_i915_private *i915,
+ 	else if (IS_JSL_EHL(i915) && (pll->info->id == DPLL_ID_EHL_DPLL4))
+ 		return MG_PLL_ENABLE(0);
+ 
+-	return CNL_DPLL_ENABLE(pll->info->id);
++	return ICL_DPLL_ENABLE(pll->info->id);
+ }
+ 
+ static i915_reg_t
+@@ -2346,160 +2346,7 @@ static const struct intel_dpll_mgr bxt_pll_mgr = {
+ 	.dump_hw_state = bxt_dump_hw_state,
+ };
+ 
+-static void cnl_ddi_pll_enable(struct drm_i915_private *dev_priv,
+-			       struct intel_shared_dpll *pll)
+-{
+-	const enum intel_dpll_id id = pll->info->id;
+-	u32 val;
+-
+-	/* 1. Enable DPLL power in DPLL_ENABLE. */
+-	val = intel_de_read(dev_priv, CNL_DPLL_ENABLE(id));
+-	val |= PLL_POWER_ENABLE;
+-	intel_de_write(dev_priv, CNL_DPLL_ENABLE(id), val);
+-
+-	/* 2. Wait for DPLL power state enabled in DPLL_ENABLE. */
+-	if (intel_de_wait_for_set(dev_priv, CNL_DPLL_ENABLE(id),
+-				  PLL_POWER_STATE, 5))
+-		drm_err(&dev_priv->drm, "PLL %d Power not enabled\n", id);
+-
+-	/*
+-	 * 3. Configure DPLL_CFGCR0 to set SSC enable/disable,
+-	 * select DP mode, and set DP link rate.
+-	 */
+-	val = pll->state.hw_state.cfgcr0;
+-	intel_de_write(dev_priv, CNL_DPLL_CFGCR0(id), val);
+-
+-	/* 4. Reab back to ensure writes completed */
+-	intel_de_posting_read(dev_priv, CNL_DPLL_CFGCR0(id));
+-
+-	/* 3. Configure DPLL_CFGCR0 */
+-	/* Avoid touch CFGCR1 if HDMI mode is not enabled */
+-	if (pll->state.hw_state.cfgcr0 & DPLL_CFGCR0_HDMI_MODE) {
+-		val = pll->state.hw_state.cfgcr1;
+-		intel_de_write(dev_priv, CNL_DPLL_CFGCR1(id), val);
+-		/* 4. Reab back to ensure writes completed */
+-		intel_de_posting_read(dev_priv, CNL_DPLL_CFGCR1(id));
+-	}
+-
+-	/*
+-	 * 5. If the frequency will result in a change to the voltage
+-	 * requirement, follow the Display Voltage Frequency Switching
+-	 * Sequence Before Frequency Change
+-	 *
+-	 * Note: DVFS is actually handled via the cdclk code paths,
+-	 * hence we do nothing here.
+-	 */
+-
+-	/* 6. Enable DPLL in DPLL_ENABLE. */
+-	val = intel_de_read(dev_priv, CNL_DPLL_ENABLE(id));
+-	val |= PLL_ENABLE;
+-	intel_de_write(dev_priv, CNL_DPLL_ENABLE(id), val);
+-
+-	/* 7. Wait for PLL lock status in DPLL_ENABLE. */
+-	if (intel_de_wait_for_set(dev_priv, CNL_DPLL_ENABLE(id), PLL_LOCK, 5))
+-		drm_err(&dev_priv->drm, "PLL %d not locked\n", id);
+-
+-	/*
+-	 * 8. If the frequency will result in a change to the voltage
+-	 * requirement, follow the Display Voltage Frequency Switching
+-	 * Sequence After Frequency Change
+-	 *
+-	 * Note: DVFS is actually handled via the cdclk code paths,
+-	 * hence we do nothing here.
+-	 */
+-
+-	/*
+-	 * 9. turn on the clock for the DDI and map the DPLL to the DDI
+-	 * Done at intel_ddi_clk_select
+-	 */
+-}
+-
+-static void cnl_ddi_pll_disable(struct drm_i915_private *dev_priv,
+-				struct intel_shared_dpll *pll)
+-{
+-	const enum intel_dpll_id id = pll->info->id;
+-	u32 val;
+-
+-	/*
+-	 * 1. Configure DPCLKA_CFGCR0 to turn off the clock for the DDI.
+-	 * Done at intel_ddi_post_disable
+-	 */
+-
+-	/*
+-	 * 2. If the frequency will result in a change to the voltage
+-	 * requirement, follow the Display Voltage Frequency Switching
+-	 * Sequence Before Frequency Change
+-	 *
+-	 * Note: DVFS is actually handled via the cdclk code paths,
+-	 * hence we do nothing here.
+-	 */
+-
+-	/* 3. Disable DPLL through DPLL_ENABLE. */
+-	val = intel_de_read(dev_priv, CNL_DPLL_ENABLE(id));
+-	val &= ~PLL_ENABLE;
+-	intel_de_write(dev_priv, CNL_DPLL_ENABLE(id), val);
+-
+-	/* 4. Wait for PLL not locked status in DPLL_ENABLE. */
+-	if (intel_de_wait_for_clear(dev_priv, CNL_DPLL_ENABLE(id), PLL_LOCK, 5))
+-		drm_err(&dev_priv->drm, "PLL %d locked\n", id);
+-
+-	/*
+-	 * 5. If the frequency will result in a change to the voltage
+-	 * requirement, follow the Display Voltage Frequency Switching
+-	 * Sequence After Frequency Change
+-	 *
+-	 * Note: DVFS is actually handled via the cdclk code paths,
+-	 * hence we do nothing here.
+-	 */
+-
+-	/* 6. Disable DPLL power in DPLL_ENABLE. */
+-	val = intel_de_read(dev_priv, CNL_DPLL_ENABLE(id));
+-	val &= ~PLL_POWER_ENABLE;
+-	intel_de_write(dev_priv, CNL_DPLL_ENABLE(id), val);
+-
+-	/* 7. Wait for DPLL power state disabled in DPLL_ENABLE. */
+-	if (intel_de_wait_for_clear(dev_priv, CNL_DPLL_ENABLE(id),
+-				    PLL_POWER_STATE, 5))
+-		drm_err(&dev_priv->drm, "PLL %d Power not disabled\n", id);
+-}
+-
+-static bool cnl_ddi_pll_get_hw_state(struct drm_i915_private *dev_priv,
+-				     struct intel_shared_dpll *pll,
+-				     struct intel_dpll_hw_state *hw_state)
+-{
+-	const enum intel_dpll_id id = pll->info->id;
+-	intel_wakeref_t wakeref;
+-	u32 val;
+-	bool ret;
+-
+-	wakeref = intel_display_power_get_if_enabled(dev_priv,
+-						     POWER_DOMAIN_DISPLAY_CORE);
+-	if (!wakeref)
+-		return false;
+-
+-	ret = false;
+-
+-	val = intel_de_read(dev_priv, CNL_DPLL_ENABLE(id));
+-	if (!(val & PLL_ENABLE))
+-		goto out;
+-
+-	val = intel_de_read(dev_priv, CNL_DPLL_CFGCR0(id));
+-	hw_state->cfgcr0 = val;
+-
+-	/* avoid reading back stale values if HDMI mode is not enabled */
+-	if (val & DPLL_CFGCR0_HDMI_MODE) {
+-		hw_state->cfgcr1 = intel_de_read(dev_priv,
+-						 CNL_DPLL_CFGCR1(id));
+-	}
+-	ret = true;
+-
+-out:
+-	intel_display_power_put(dev_priv, POWER_DOMAIN_DISPLAY_CORE, wakeref);
+-
+-	return ret;
+-}
+-
+-static void cnl_wrpll_get_multipliers(int bestdiv, int *pdiv,
++static void icl_wrpll_get_multipliers(int bestdiv, int *pdiv,
+ 				      int *qdiv, int *kdiv)
+ {
+ 	/* even dividers */
+@@ -2538,7 +2385,7 @@ static void cnl_wrpll_get_multipliers(int bestdiv, int *pdiv,
+ 	}
+ }
+ 
+-static void cnl_wrpll_params_populate(struct skl_wrpll_params *params,
++static void icl_wrpll_params_populate(struct skl_wrpll_params *params,
+ 				      u32 dco_freq, u32 ref_freq,
+ 				      int pdiv, int qdiv, int kdiv)
+ {
+@@ -2586,86 +2433,6 @@ static void cnl_wrpll_params_populate(struct skl_wrpll_params *params,
+ 	params->dco_fraction = dco & 0x7fff;
+ }
+ 
+-static bool
+-__cnl_ddi_calculate_wrpll(struct intel_crtc_state *crtc_state,
+-			  struct skl_wrpll_params *wrpll_params,
+-			  int ref_clock)
+-{
+-	u32 afe_clock = crtc_state->port_clock * 5;
+-	u32 dco_min = 7998000;
+-	u32 dco_max = 10000000;
+-	u32 dco_mid = (dco_min + dco_max) / 2;
+-	static const int dividers[] = {  2,  4,  6,  8, 10, 12,  14,  16,
+-					 18, 20, 24, 28, 30, 32,  36,  40,
+-					 42, 44, 48, 50, 52, 54,  56,  60,
+-					 64, 66, 68, 70, 72, 76,  78,  80,
+-					 84, 88, 90, 92, 96, 98, 100, 102,
+-					  3,  5,  7,  9, 15, 21 };
+-	u32 dco, best_dco = 0, dco_centrality = 0;
+-	u32 best_dco_centrality = U32_MAX; /* Spec meaning of 999999 MHz */
+-	int d, best_div = 0, pdiv = 0, qdiv = 0, kdiv = 0;
+-
+-	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
+-		dco = afe_clock * dividers[d];
+-
+-		if ((dco <= dco_max) && (dco >= dco_min)) {
+-			dco_centrality = abs(dco - dco_mid);
+-
+-			if (dco_centrality < best_dco_centrality) {
+-				best_dco_centrality = dco_centrality;
+-				best_div = dividers[d];
+-				best_dco = dco;
+-			}
+-		}
+-	}
+-
+-	if (best_div == 0)
+-		return false;
+-
+-	cnl_wrpll_get_multipliers(best_div, &pdiv, &qdiv, &kdiv);
+-	cnl_wrpll_params_populate(wrpll_params, best_dco, ref_clock,
+-				  pdiv, qdiv, kdiv);
+-
+-	return true;
+-}
+-
+-static bool
+-cnl_ddi_calculate_wrpll(struct intel_crtc_state *crtc_state,
+-			struct skl_wrpll_params *wrpll_params)
+-{
+-	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+-
+-	return __cnl_ddi_calculate_wrpll(crtc_state, wrpll_params,
+-					 i915->dpll.ref_clks.nssc);
+-}
+-
+-static bool cnl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
+-{
+-	u32 cfgcr0, cfgcr1;
+-	struct skl_wrpll_params wrpll_params = { 0, };
+-
+-	cfgcr0 = DPLL_CFGCR0_HDMI_MODE;
+-
+-	if (!cnl_ddi_calculate_wrpll(crtc_state, &wrpll_params))
+-		return false;
+-
+-	cfgcr0 |= DPLL_CFGCR0_DCO_FRACTION(wrpll_params.dco_fraction) |
+-		wrpll_params.dco_integer;
+-
+-	cfgcr1 = DPLL_CFGCR1_QDIV_RATIO(wrpll_params.qdiv_ratio) |
+-		DPLL_CFGCR1_QDIV_MODE(wrpll_params.qdiv_mode) |
+-		DPLL_CFGCR1_KDIV(wrpll_params.kdiv) |
+-		DPLL_CFGCR1_PDIV(wrpll_params.pdiv) |
+-		DPLL_CFGCR1_CENTRAL_FREQ;
+-
+-	memset(&crtc_state->dpll_hw_state, 0,
+-	       sizeof(crtc_state->dpll_hw_state));
+-
+-	crtc_state->dpll_hw_state.cfgcr0 = cfgcr0;
+-	crtc_state->dpll_hw_state.cfgcr1 = cfgcr1;
+-	return true;
+-}
+-
+ /*
+  * Display WA #22010492432: ehl, tgl, adl-p
+  * Program half of the nominal DCO divider fraction value.
+@@ -2679,256 +2446,6 @@ ehl_combo_pll_div_frac_wa_needed(struct drm_i915_private *i915)
+ 		 i915->dpll.ref_clks.nssc == 38400;
+ }
+ 
+-static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
+-				    const struct intel_shared_dpll *pll,
+-				    const struct intel_dpll_hw_state *pll_state,
+-				    int ref_clock)
+-{
+-	u32 dco_fraction;
+-	u32 p0, p1, p2, dco_freq;
+-
+-	p0 = pll_state->cfgcr1 & DPLL_CFGCR1_PDIV_MASK;
+-	p2 = pll_state->cfgcr1 & DPLL_CFGCR1_KDIV_MASK;
+-
+-	if (pll_state->cfgcr1 & DPLL_CFGCR1_QDIV_MODE(1))
+-		p1 = (pll_state->cfgcr1 & DPLL_CFGCR1_QDIV_RATIO_MASK) >>
+-			DPLL_CFGCR1_QDIV_RATIO_SHIFT;
+-	else
+-		p1 = 1;
+-
+-
+-	switch (p0) {
+-	case DPLL_CFGCR1_PDIV_2:
+-		p0 = 2;
+-		break;
+-	case DPLL_CFGCR1_PDIV_3:
+-		p0 = 3;
+-		break;
+-	case DPLL_CFGCR1_PDIV_5:
+-		p0 = 5;
+-		break;
+-	case DPLL_CFGCR1_PDIV_7:
+-		p0 = 7;
+-		break;
+-	}
+-
+-	switch (p2) {
+-	case DPLL_CFGCR1_KDIV_1:
+-		p2 = 1;
+-		break;
+-	case DPLL_CFGCR1_KDIV_2:
+-		p2 = 2;
+-		break;
+-	case DPLL_CFGCR1_KDIV_3:
+-		p2 = 3;
+-		break;
+-	}
+-
+-	dco_freq = (pll_state->cfgcr0 & DPLL_CFGCR0_DCO_INTEGER_MASK) *
+-		   ref_clock;
+-
+-	dco_fraction = (pll_state->cfgcr0 & DPLL_CFGCR0_DCO_FRACTION_MASK) >>
+-		       DPLL_CFGCR0_DCO_FRACTION_SHIFT;
+-
+-	if (ehl_combo_pll_div_frac_wa_needed(dev_priv))
+-		dco_fraction *= 2;
+-
+-	dco_freq += (dco_fraction * ref_clock) / 0x8000;
+-
+-	if (drm_WARN_ON(&dev_priv->drm, p0 == 0 || p1 == 0 || p2 == 0))
+-		return 0;
+-
+-	return dco_freq / (p0 * p1 * p2 * 5);
+-}
+-
+-static int cnl_ddi_wrpll_get_freq(struct drm_i915_private *i915,
+-				  const struct intel_shared_dpll *pll,
+-				  const struct intel_dpll_hw_state *pll_state)
+-{
+-	return __cnl_ddi_wrpll_get_freq(i915, pll, pll_state,
+-					i915->dpll.ref_clks.nssc);
+-}
+-
+-static bool
+-cnl_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
+-{
+-	u32 cfgcr0;
+-
+-	cfgcr0 = DPLL_CFGCR0_SSC_ENABLE;
+-
+-	switch (crtc_state->port_clock / 2) {
+-	case 81000:
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_810;
+-		break;
+-	case 135000:
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_1350;
+-		break;
+-	case 270000:
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_2700;
+-		break;
+-		/* eDP 1.4 rates */
+-	case 162000:
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_1620;
+-		break;
+-	case 108000:
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_1080;
+-		break;
+-	case 216000:
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_2160;
+-		break;
+-	case 324000:
+-		/* Some SKUs may require elevated I/O voltage to support this */
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_3240;
+-		break;
+-	case 405000:
+-		/* Some SKUs may require elevated I/O voltage to support this */
+-		cfgcr0 |= DPLL_CFGCR0_LINK_RATE_4050;
+-		break;
+-	}
+-
+-	memset(&crtc_state->dpll_hw_state, 0,
+-	       sizeof(crtc_state->dpll_hw_state));
+-
+-	crtc_state->dpll_hw_state.cfgcr0 = cfgcr0;
+-
+-	return true;
+-}
+-
+-static int cnl_ddi_lcpll_get_freq(struct drm_i915_private *i915,
+-				  const struct intel_shared_dpll *pll,
+-				  const struct intel_dpll_hw_state *pll_state)
+-{
+-	int link_clock = 0;
+-
+-	switch (pll_state->cfgcr0 & DPLL_CFGCR0_LINK_RATE_MASK) {
+-	case DPLL_CFGCR0_LINK_RATE_810:
+-		link_clock = 81000;
+-		break;
+-	case DPLL_CFGCR0_LINK_RATE_1080:
+-		link_clock = 108000;
+-		break;
+-	case DPLL_CFGCR0_LINK_RATE_1350:
+-		link_clock = 135000;
+-		break;
+-	case DPLL_CFGCR0_LINK_RATE_1620:
+-		link_clock = 162000;
+-		break;
+-	case DPLL_CFGCR0_LINK_RATE_2160:
+-		link_clock = 216000;
+-		break;
+-	case DPLL_CFGCR0_LINK_RATE_2700:
+-		link_clock = 270000;
+-		break;
+-	case DPLL_CFGCR0_LINK_RATE_3240:
+-		link_clock = 324000;
+-		break;
+-	case DPLL_CFGCR0_LINK_RATE_4050:
+-		link_clock = 405000;
+-		break;
+-	default:
+-		drm_WARN(&i915->drm, 1, "Unsupported link rate\n");
+-		break;
+-	}
+-
+-	return link_clock * 2;
+-}
+-
+-static bool cnl_get_dpll(struct intel_atomic_state *state,
+-			 struct intel_crtc *crtc,
+-			 struct intel_encoder *encoder)
+-{
+-	struct intel_crtc_state *crtc_state =
+-		intel_atomic_get_new_crtc_state(state, crtc);
+-	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+-	struct intel_shared_dpll *pll;
+-	bool bret;
+-
+-	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+-		bret = cnl_ddi_hdmi_pll_dividers(crtc_state);
+-		if (!bret) {
+-			drm_dbg_kms(&i915->drm,
+-				    "Could not get HDMI pll dividers.\n");
+-			return false;
+-		}
+-	} else if (intel_crtc_has_dp_encoder(crtc_state)) {
+-		bret = cnl_ddi_dp_set_dpll_hw_state(crtc_state);
+-		if (!bret) {
+-			drm_dbg_kms(&i915->drm,
+-				    "Could not set DP dpll HW state.\n");
+-			return false;
+-		}
+-	} else {
+-		drm_dbg_kms(&i915->drm,
+-			    "Skip DPLL setup for output_types 0x%x\n",
+-			    crtc_state->output_types);
+-		return false;
+-	}
+-
+-	pll = intel_find_shared_dpll(state, crtc,
+-				     &crtc_state->dpll_hw_state,
+-				     BIT(DPLL_ID_SKL_DPLL2) |
+-				     BIT(DPLL_ID_SKL_DPLL1) |
+-				     BIT(DPLL_ID_SKL_DPLL0));
+-	if (!pll) {
+-		drm_dbg_kms(&i915->drm, "No PLL selected\n");
+-		return false;
+-	}
+-
+-	intel_reference_shared_dpll(state, crtc,
+-				    pll, &crtc_state->dpll_hw_state);
+-
+-	crtc_state->shared_dpll = pll;
+-
+-	return true;
+-}
+-
+-static int cnl_ddi_pll_get_freq(struct drm_i915_private *i915,
+-				const struct intel_shared_dpll *pll,
+-				const struct intel_dpll_hw_state *pll_state)
+-{
+-	if (pll_state->cfgcr0 & DPLL_CFGCR0_HDMI_MODE)
+-		return cnl_ddi_wrpll_get_freq(i915, pll, pll_state);
+-	else
+-		return cnl_ddi_lcpll_get_freq(i915, pll, pll_state);
+-}
+-
+-static void cnl_update_dpll_ref_clks(struct drm_i915_private *i915)
+-{
+-	/* No SSC reference */
+-	i915->dpll.ref_clks.nssc = i915->cdclk.hw.ref;
+-}
+-
+-static void cnl_dump_hw_state(struct drm_i915_private *dev_priv,
+-			      const struct intel_dpll_hw_state *hw_state)
+-{
+-	drm_dbg_kms(&dev_priv->drm, "dpll_hw_state: "
+-		    "cfgcr0: 0x%x, cfgcr1: 0x%x\n",
+-		    hw_state->cfgcr0,
+-		    hw_state->cfgcr1);
+-}
+-
+-static const struct intel_shared_dpll_funcs cnl_ddi_pll_funcs = {
+-	.enable = cnl_ddi_pll_enable,
+-	.disable = cnl_ddi_pll_disable,
+-	.get_hw_state = cnl_ddi_pll_get_hw_state,
+-	.get_freq = cnl_ddi_pll_get_freq,
+-};
+-
+-static const struct dpll_info cnl_plls[] = {
+-	{ "DPLL 0", &cnl_ddi_pll_funcs, DPLL_ID_SKL_DPLL0, 0 },
+-	{ "DPLL 1", &cnl_ddi_pll_funcs, DPLL_ID_SKL_DPLL1, 0 },
+-	{ "DPLL 2", &cnl_ddi_pll_funcs, DPLL_ID_SKL_DPLL2, 0 },
+-	{ },
+-};
+-
+-static const struct intel_dpll_mgr cnl_pll_mgr = {
+-	.dpll_info = cnl_plls,
+-	.get_dplls = cnl_get_dpll,
+-	.put_dplls = intel_put_dpll,
+-	.update_ref_clks = cnl_update_dpll_ref_clks,
+-	.dump_hw_state = cnl_dump_hw_state,
+-};
+-
+ struct icl_combo_pll_params {
+ 	int clock;
+ 	struct skl_wrpll_params wrpll;
+@@ -3105,17 +2622,104 @@ icl_calc_wrpll(struct intel_crtc_state *crtc_state,
+ 	       struct skl_wrpll_params *wrpll_params)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
++	int ref_clock = icl_wrpll_ref_clock(i915);
++	u32 afe_clock = crtc_state->port_clock * 5;
++	u32 dco_min = 7998000;
++	u32 dco_max = 10000000;
++	u32 dco_mid = (dco_min + dco_max) / 2;
++	static const int dividers[] = {  2,  4,  6,  8, 10, 12,  14,  16,
++					 18, 20, 24, 28, 30, 32,  36,  40,
++					 42, 44, 48, 50, 52, 54,  56,  60,
++					 64, 66, 68, 70, 72, 76,  78,  80,
++					 84, 88, 90, 92, 96, 98, 100, 102,
++					  3,  5,  7,  9, 15, 21 };
++	u32 dco, best_dco = 0, dco_centrality = 0;
++	u32 best_dco_centrality = U32_MAX; /* Spec meaning of 999999 MHz */
++	int d, best_div = 0, pdiv = 0, qdiv = 0, kdiv = 0;
++
++	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
++		dco = afe_clock * dividers[d];
++
++		if (dco <= dco_max && dco >= dco_min) {
++			dco_centrality = abs(dco - dco_mid);
+ 
+-	return __cnl_ddi_calculate_wrpll(crtc_state, wrpll_params,
+-					 icl_wrpll_ref_clock(i915));
++			if (dco_centrality < best_dco_centrality) {
++				best_dco_centrality = dco_centrality;
++				best_div = dividers[d];
++				best_dco = dco;
++			}
++		}
++	}
++
++	if (best_div == 0)
++		return false;
++
++	icl_wrpll_get_multipliers(best_div, &pdiv, &qdiv, &kdiv);
++	icl_wrpll_params_populate(wrpll_params, best_dco, ref_clock,
++				  pdiv, qdiv, kdiv);
++
++	return true;
+ }
+ 
+ static int icl_ddi_combo_pll_get_freq(struct drm_i915_private *i915,
+ 				      const struct intel_shared_dpll *pll,
+ 				      const struct intel_dpll_hw_state *pll_state)
+ {
+-	return __cnl_ddi_wrpll_get_freq(i915, pll, pll_state,
+-					icl_wrpll_ref_clock(i915));
++	int ref_clock = icl_wrpll_ref_clock(i915);
++	u32 dco_fraction;
++	u32 p0, p1, p2, dco_freq;
++
++	p0 = pll_state->cfgcr1 & DPLL_CFGCR1_PDIV_MASK;
++	p2 = pll_state->cfgcr1 & DPLL_CFGCR1_KDIV_MASK;
++
++	if (pll_state->cfgcr1 & DPLL_CFGCR1_QDIV_MODE(1))
++		p1 = (pll_state->cfgcr1 & DPLL_CFGCR1_QDIV_RATIO_MASK) >>
++			DPLL_CFGCR1_QDIV_RATIO_SHIFT;
++	else
++		p1 = 1;
++
++	switch (p0) {
++	case DPLL_CFGCR1_PDIV_2:
++		p0 = 2;
++		break;
++	case DPLL_CFGCR1_PDIV_3:
++		p0 = 3;
++		break;
++	case DPLL_CFGCR1_PDIV_5:
++		p0 = 5;
++		break;
++	case DPLL_CFGCR1_PDIV_7:
++		p0 = 7;
++		break;
++	}
++
++	switch (p2) {
++	case DPLL_CFGCR1_KDIV_1:
++		p2 = 1;
++		break;
++	case DPLL_CFGCR1_KDIV_2:
++		p2 = 2;
++		break;
++	case DPLL_CFGCR1_KDIV_3:
++		p2 = 3;
++		break;
++	}
++
++	dco_freq = (pll_state->cfgcr0 & DPLL_CFGCR0_DCO_INTEGER_MASK) *
++		   ref_clock;
++
++	dco_fraction = (pll_state->cfgcr0 & DPLL_CFGCR0_DCO_FRACTION_MASK) >>
++		       DPLL_CFGCR0_DCO_FRACTION_SHIFT;
++
++	if (ehl_combo_pll_div_frac_wa_needed(i915))
++		dco_fraction *= 2;
++
++	dco_freq += (dco_fraction * ref_clock) / 0x8000;
++
++	if (drm_WARN_ON(&i915->drm, p0 == 0 || p1 == 0 || p2 == 0))
++		return 0;
++
++	return dco_freq / (p0 * p1 * p2 * 5);
+ }
+ 
+ static void icl_calc_dpll_state(struct drm_i915_private *i915,
+@@ -4479,8 +4083,6 @@ void intel_shared_dpll_init(struct drm_device *dev)
+ 		dpll_mgr = &ehl_pll_mgr;
+ 	else if (DISPLAY_VER(dev_priv) >= 11)
+ 		dpll_mgr = &icl_pll_mgr;
+-	else if (IS_CANNONLAKE(dev_priv))
+-		dpll_mgr = &cnl_pll_mgr;
+ 	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+ 		dpll_mgr = &bxt_pll_mgr;
+ 	else if (DISPLAY_VER(dev_priv) == 9)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 88dd9ddc9271..7ddfb25e34fc 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -10601,7 +10601,7 @@ enum skl_power_gate {
+ 							ADLS_DPCLKA_DDIJ_SEL_MASK, \
+ 							ADLS_DPCLKA_DDIK_SEL_MASK)
+ 
+-/* CNL PLL */
++/* ICL PLL */
+ #define DPLL0_ENABLE		0x46010
+ #define DPLL1_ENABLE		0x46014
+ #define _ADLS_DPLL2_ENABLE	0x46018
+@@ -10610,7 +10610,7 @@ enum skl_power_gate {
+ #define  PLL_LOCK		(1 << 30)
+ #define  PLL_POWER_ENABLE	(1 << 27)
+ #define  PLL_POWER_STATE	(1 << 26)
+-#define CNL_DPLL_ENABLE(pll)	_MMIO_PLL3(pll, DPLL0_ENABLE, DPLL1_ENABLE, \
++#define ICL_DPLL_ENABLE(pll)	_MMIO_PLL3(pll, DPLL0_ENABLE, DPLL1_ENABLE, \
+ 					   _ADLS_DPLL2_ENABLE, _ADLS_DPLL3_ENABLE)
+ 
+ #define TBT_PLL_ENABLE		_MMIO(0x46020)
+-- 
+2.31.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
