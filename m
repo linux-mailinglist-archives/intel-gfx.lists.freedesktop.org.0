@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37473D9E42
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 09:22:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 933F53D9E64
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 09:26:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33EE86ECA9;
-	Thu, 29 Jul 2021 07:21:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0835F6ECB8;
+	Thu, 29 Jul 2021 07:26:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D4F6ECA9;
- Thu, 29 Jul 2021 07:21:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDAF86ECB8;
+ Thu, 29 Jul 2021 07:26:13 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id BCB4968AFE; Thu, 29 Jul 2021 09:21:55 +0200 (CEST)
-Date: Thu, 29 Jul 2021 09:21:55 +0200
+ id 10BA568AFE; Thu, 29 Jul 2021 09:26:10 +0200 (CEST)
+Date: Thu, 29 Jul 2021 09:26:09 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20210729072155.GC31896@lst.de>
+Message-ID: <20210729072609.GD31896@lst.de>
 References: <0-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
- <2-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
+ <4-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <2-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
+In-Reply-To: <4-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v3 02/14] vfio/mbochs: Fix missing error
- unwind of mbochs_used_mbytes
+Subject: Re: [Intel-gfx] [PATCH v3 04/14] vfio: Provide better generic
+ support for open/release vfio_device_ops
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,7 +59,16 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Looks good,
+> +	device->open_count++;
+> +	if (device->open_count == 1 && device->ops->open_device) {
+
+I would have written this as
+
+	if (++device->open_count == 1 && device->ops->open_device) {
+
+to make the pattern more clear, but that is just a minor nitpick.
+
+Otherwise looks good:
 
 Reviewed-by: Christoph Hellwig <hch@lst.de>
 _______________________________________________
