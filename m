@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F7213DA077
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 11:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 028853DA08C
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 11:49:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A33A86E459;
-	Thu, 29 Jul 2021 09:42:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF5456E09E;
+	Thu, 29 Jul 2021 09:48:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 294326E459;
- Thu, 29 Jul 2021 09:42:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F39B7A47E1;
- Thu, 29 Jul 2021 09:42:19 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B66D6E084;
+ Thu, 29 Jul 2021 09:48:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="298427069"
+X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="298427069"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2021 02:48:50 -0700
+X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="666344146"
+Received: from badunne-mobl5.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.9.201])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2021 02:48:49 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 29 Jul 2021 10:47:31 +0100
+Message-Id: <20210729094731.1953091-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jason Gunthorpe" <jgg@nvidia.com>
-Date: Thu, 29 Jul 2021 09:42:19 -0000
-Message-ID: <162755173996.27326.10675252308716108223@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1627551226.git.leonro@nvidia.com>
-In-Reply-To: <cover.1627551226.git.leonro@nvidia.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
- =?utf-8?q?G_fix_together_with_update_to_RDMA_umem_=28rev3=29?=
+Subject: [Intel-gfx] [PATCH v2] drm/i915/selftests: prefer the create_user
+ helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,41 +42,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogU0cgZml4IHRvZ2V0aGVyIHdpdGggdXBkYXRl
-IHRvIFJETUEgdW1lbSAocmV2MykKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3Rv
-cC5vcmcvc2VyaWVzLzkyNjgyLwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1hcnkgPT0KCkNBTEwg
-ICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRzL2F0b21pYy9jaGVj
-ay1hdG9taWNzLnNoCiAgREVTQ0VORCBvYmp0b29sCiAgQ0hLICAgICBpbmNsdWRlL2dlbmVyYXRl
-ZC9jb21waWxlLmgKICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90
-dG0ubwpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmM6IEluIGZ1bmN0aW9u
-IOKAmGk5MTVfdHRtX3R0X2dldF9zdOKAmToKZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
-Z2VtX3R0bS5jOjM5Njo3OiBlcnJvcjogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24g
-4oCYX19zZ19hbGxvY190YWJsZV9mcm9tX3BhZ2Vz4oCZOyBkaWQgeW91IG1lYW4g4oCYc2dfYWxs
-b2NfdGFibGVfZnJvbV9wYWdlc+KAmT8gWy1XZXJyb3I9aW1wbGljaXQtZnVuY3Rpb24tZGVjbGFy
-YXRpb25dCiAgc2cgPSBfX3NnX2FsbG9jX3RhYmxlX2Zyb21fcGFnZXMKICAgICAgIF5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fgogICAgICAgc2dfYWxsb2NfdGFibGVfZnJvbV9wYWdlcwpkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fdHRtLmM6Mzk2OjU6IGVycm9yOiBhc3NpZ25t
-ZW50IHRvIOKAmHN0cnVjdCBzY2F0dGVybGlzdCAq4oCZIGZyb20g4oCYaW504oCZIG1ha2VzIHBv
-aW50ZXIgZnJvbSBpbnRlZ2VyIHdpdGhvdXQgYSBjYXN0IFstV2Vycm9yPWludC1jb252ZXJzaW9u
-XQogIHNnID0gX19zZ19hbGxvY190YWJsZV9mcm9tX3BhZ2VzCiAgICAgXgpjYzE6IGFsbCB3YXJu
-aW5ncyBiZWluZyB0cmVhdGVkIGFzIGVycm9ycwpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjI3MTog
-cmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV90dG0u
-bycgZmFpbGVkCm1ha2VbNF06ICoqKiBbZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X3R0bS5vXSBFcnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTE0OiByZWNpcGUgZm9yIHRh
-cmdldCAnZHJpdmVycy9ncHUvZHJtL2k5MTUnIGZhaWxlZAptYWtlWzNdOiAqKiogW2RyaXZlcnMv
-Z3B1L2RybS9pOTE1XSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NTE0OiByZWNpcGUg
-Zm9yIHRhcmdldCAnZHJpdmVycy9ncHUvZHJtJyBmYWlsZWQKbWFrZVsyXTogKioqIFtkcml2ZXJz
-L2dwdS9kcm1dIEVycm9yIDIKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MTQ6IHJlY2lwZSBmb3Ig
-dGFyZ2V0ICdkcml2ZXJzL2dwdScgZmFpbGVkCm1ha2VbMV06ICoqKiBbZHJpdmVycy9ncHVdIEVy
-cm9yIDIKTWFrZWZpbGU6MTg0MjogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZApt
-YWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+No need to hand roll the set_placements stuff, now that that we have a
+helper for this.
+
+v2: add back the -ENODEV checking since it's possible for stolen to be
+probed, and yet still be non-functional
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Jason Ekstrand <jason@jlekstrand.net>
+Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+---
+ .../drm/i915/gem/selftests/i915_gem_mman.c    | 34 +++----------------
+ 1 file changed, 4 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+index 0b2b73d8a364..b20f5621f62b 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -860,24 +860,6 @@ static bool can_mmap(struct drm_i915_gem_object *obj, enum i915_mmap_type type)
+ 	return !no_map;
+ }
+ 
+-static void object_set_placements(struct drm_i915_gem_object *obj,
+-				  struct intel_memory_region **placements,
+-				  unsigned int n_placements)
+-{
+-	GEM_BUG_ON(!n_placements);
+-
+-	if (n_placements == 1) {
+-		struct drm_i915_private *i915 = to_i915(obj->base.dev);
+-		struct intel_memory_region *mr = placements[0];
+-
+-		obj->mm.placements = &i915->mm.regions[mr->id];
+-		obj->mm.n_placements = 1;
+-	} else {
+-		obj->mm.placements = placements;
+-		obj->mm.n_placements = n_placements;
+-	}
+-}
+-
+ #define expand32(x) (((x) << 0) | ((x) << 8) | ((x) << 16) | ((x) << 24))
+ static int __igt_mmap(struct drm_i915_private *i915,
+ 		      struct drm_i915_gem_object *obj,
+@@ -972,15 +954,13 @@ static int igt_mmap(void *arg)
+ 			struct drm_i915_gem_object *obj;
+ 			int err;
+ 
+-			obj = i915_gem_object_create_region(mr, sizes[i], 0, I915_BO_ALLOC_USER);
++			obj = __i915_gem_object_create_user(i915, sizes[i], &mr, 1);
+ 			if (obj == ERR_PTR(-ENODEV))
+ 				continue;
+ 
+ 			if (IS_ERR(obj))
+ 				return PTR_ERR(obj);
+ 
+-			object_set_placements(obj, &mr, 1);
+-
+ 			err = __igt_mmap(i915, obj, I915_MMAP_TYPE_GTT);
+ 			if (err == 0)
+ 				err = __igt_mmap(i915, obj, I915_MMAP_TYPE_WC);
+@@ -1101,15 +1081,13 @@ static int igt_mmap_access(void *arg)
+ 		struct drm_i915_gem_object *obj;
+ 		int err;
+ 
+-		obj = i915_gem_object_create_region(mr, PAGE_SIZE, 0, I915_BO_ALLOC_USER);
++		obj = __i915_gem_object_create_user(i915, PAGE_SIZE, &mr, 1);
+ 		if (obj == ERR_PTR(-ENODEV))
+ 			continue;
+ 
+ 		if (IS_ERR(obj))
+ 			return PTR_ERR(obj);
+ 
+-		object_set_placements(obj, &mr, 1);
+-
+ 		err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_GTT);
+ 		if (err == 0)
+ 			err = __igt_mmap_access(i915, obj, I915_MMAP_TYPE_WB);
+@@ -1248,15 +1226,13 @@ static int igt_mmap_gpu(void *arg)
+ 		struct drm_i915_gem_object *obj;
+ 		int err;
+ 
+-		obj = i915_gem_object_create_region(mr, PAGE_SIZE, 0, I915_BO_ALLOC_USER);
++		obj = __i915_gem_object_create_user(i915, PAGE_SIZE, &mr, 1);
+ 		if (obj == ERR_PTR(-ENODEV))
+ 			continue;
+ 
+ 		if (IS_ERR(obj))
+ 			return PTR_ERR(obj);
+ 
+-		object_set_placements(obj, &mr, 1);
+-
+ 		err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_GTT);
+ 		if (err == 0)
+ 			err = __igt_mmap_gpu(i915, obj, I915_MMAP_TYPE_WC);
+@@ -1405,15 +1381,13 @@ static int igt_mmap_revoke(void *arg)
+ 		struct drm_i915_gem_object *obj;
+ 		int err;
+ 
+-		obj = i915_gem_object_create_region(mr, PAGE_SIZE, 0, I915_BO_ALLOC_USER);
++		obj = __i915_gem_object_create_user(i915, PAGE_SIZE, &mr, 1);
+ 		if (obj == ERR_PTR(-ENODEV))
+ 			continue;
+ 
+ 		if (IS_ERR(obj))
+ 			return PTR_ERR(obj);
+ 
+-		object_set_placements(obj, &mr, 1);
+-
+ 		err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_GTT);
+ 		if (err == 0)
+ 			err = __igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_WC);
+-- 
+2.26.3
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
