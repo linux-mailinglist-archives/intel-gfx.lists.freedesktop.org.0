@@ -1,32 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993D13D9AB6
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 03:00:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC4A3D9AC8
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 03:06:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA766EC0A;
-	Thu, 29 Jul 2021 01:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F046E11C;
+	Thu, 29 Jul 2021 01:06:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2B7606EB91;
- Thu, 29 Jul 2021 01:00:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 23ADAAA01E;
- Thu, 29 Jul 2021 01:00:30 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F004D6E11C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 01:05:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="199997275"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="199997275"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2021 18:05:57 -0700
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="567061775"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2021 18:05:57 -0700
+Date: Wed, 28 Jul 2021 18:05:55 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <20210729010555.GI1556418@mdroper-desk1.amr.corp.intel.com>
+References: <20210728233411.2365788-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 29 Jul 2021 01:00:30 -0000
-Message-ID: <162752043011.27324.1334598220959594234@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210728221045.2363614-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210728221045.2363614-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/adl=5Fs=3A_Update_ddi?=
- =?utf-8?q?_buf_translation_tables?=
+Content-Disposition: inline
+In-Reply-To: <20210728233411.2365788-1-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Correct SFC_DONE register offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,157 +43,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1179591934=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1179591934==
-Content-Type: multipart/alternative;
- boundary="===============3478190210857738076=="
+On Wed, Jul 28, 2021 at 04:34:11PM -0700, Matt Roper wrote:
+> The register offset for SFC_DONE was missing a '0' at the end, causing
+> us to read from a non-existent register address.  We only use this
+> register in error state dumps so the mistake hasn't caused any real
+> problems, but fixing it will hopefully make the error state dumps a bit
+> more useful for debugging.
+> 
+> Fixes: e50dbdbfd9fb ("drm/i915/tgl: Add SFC instdone to error state")
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
---===============3478190210857738076==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [CI,1/2] drm/i915/adl_s: Update ddi buf translation tables
-URL   : https://patchwork.freedesktop.org/series/93145/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10415 -> Patchwork_20731
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20731/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20731 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-soraka:      [DMESG-WARN][1] ([i915#1982]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-kbl-soraka/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20731/fi-kbl-soraka/igt@i915_module_load@reload.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+Hmm, actually on a closer look it appears this register may have been
+removed completely from media version 12.  It will return in media
+version 13 at this offset, but for now I guess we should just drop it
+completely.
 
 
-Participating hosts (43 -> 34)
-------------------------------
+Matt
 
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-1 
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 70eed4fe3fe3..49dd5e75429e 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -430,7 +430,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  #define   GEN12_HCP_SFC_LOCK_ACK_BIT		REG_BIT(1)
+>  #define   GEN12_HCP_SFC_USAGE_BIT			REG_BIT(0)
+>  
+> -#define GEN12_SFC_DONE(n)		_MMIO(0x1cc00 + (n) * 0x100)
+> +#define GEN12_SFC_DONE(n)		_MMIO(0x1cc000 + (n) * 0x1000)
+>  #define GEN12_SFC_DONE_MAX		4
+>  
+>  #define RING_PP_DIR_BASE(base)		_MMIO((base) + 0x228)
+> -- 
+> 2.25.4
+> 
 
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10415 -> Patchwork_20731
-
-  CI-20190529: 20190529
-  CI_DRM_10415: 457209baa84d04e17ce648a12733a32809717494 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6155: 4b51398dcd7559012b85776e7353d516ff1e6ce6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20731: c86a5ce5864a48628170a8aeacdd48751cc94b0c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c86a5ce5864a drm/i915/adl_p: Add ddi buf translation tables for combo PHY
-8cdfcb18e908 drm/i915/adl_s: Update ddi buf translation tables
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20731/index.html
-
---===============3478190210857738076==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] drm/i915/adl_s: Update ddi buf translation tables</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93145/">https://patchwork.freedesktop.org/series/93145/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20731/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20731/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10415 -&gt; Patchwork_20731</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20731/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20731 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20731/fi-kbl-soraka/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 34)</h2>
-<p>Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10415 -&gt; Patchwork_20731</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10415: 457209baa84d04e17ce648a12733a32809717494 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6155: 4b51398dcd7559012b85776e7353d516ff1e6ce6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20731: c86a5ce5864a48628170a8aeacdd48751cc94b0c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>c86a5ce5864a drm/i915/adl_p: Add ddi buf translation tables for combo PHY<br />
-8cdfcb18e908 drm/i915/adl_s: Update ddi buf translation tables</p>
-
-</body>
-</html>
-
---===============3478190210857738076==--
-
---===============1179591934==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1179591934==--
