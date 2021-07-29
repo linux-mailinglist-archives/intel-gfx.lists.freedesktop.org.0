@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1F13D9B97
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 04:08:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33BDB3D9B9A
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 04:13:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCC116E5BF;
-	Thu, 29 Jul 2021 02:08:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47E1F6EBA2;
+	Thu, 29 Jul 2021 02:13:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5D3DC6E5BF;
- Thu, 29 Jul 2021 02:08:12 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ACB826E7E5;
+ Thu, 29 Jul 2021 02:13:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 565CDA8830;
- Thu, 29 Jul 2021 02:08:12 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 98497AA0EA;
+ Thu, 29 Jul 2021 02:13:50 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 29 Jul 2021 02:08:12 -0000
-Message-ID: <162752449232.27326.6474242361753385439@emeril.freedesktop.org>
+To: "Christoph Hellwig" <hch@lst.de>
+Date: Thu, 29 Jul 2021 02:13:50 -0000
+Message-ID: <162752483060.27325.15126882621748261861@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210729003400.151864-1-matthew.brost@intel.com>
-In-Reply-To: <20210729003400.151864-1-matthew.brost@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
- =?utf-8?q?_gem=5Fctx=5Fpersistence_failures_with_GuC_submission?=
+References: <0-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
+In-Reply-To: <0-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Provide_core_infrastructure_for_managing_open/release_=28re?=
+ =?utf-8?b?djcp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,202 +41,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1635488218=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1635488218==
-Content-Type: multipart/alternative;
- boundary="===============7954107400680992490=="
-
---===============7954107400680992490==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix gem_ctx_persistence failures with GuC submission
-URL   : https://patchwork.freedesktop.org/series/93149/
-State : success
+Series: Provide core infrastructure for managing open/release (rev7)
+URL   : https://patchwork.freedesktop.org/series/92556/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10415 -> Patchwork_20733
-====================================================
+$ dim checkpatch origin/drm-tip
+d0838f25c8bb vfio/samples: Remove module get/put
+-:57: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 31 lines checked
+07fe7105d3c8 vfio/mbochs: Fix missing error unwind of mbochs_used_mbytes
+-:12: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match 
+#12: 
+Co-developed-by: Alex Williamson <alex.williamson@redhat.com>
+Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+-:102: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-  **SUCCESS**
+total: 0 errors, 2 warnings, 0 checks, 78 lines checked
+2e74c07c7aa1 vfio: Introduce a vfio_uninit_group_dev() API call
+418c0065f422 vfio: Provide better generic support for open/release vfio_device_ops
+-:242: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#242: FILE: drivers/vfio/vfio.c:1483:
++	fdno = ret = get_unused_fd_flags(O_CLOEXEC);
 
-  No regressions found.
+-:340: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#340: FILE: include/linux/vfio.h:25:
++	struct mutex lock;
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/index.html
+-:384: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-Known issues
-------------
+total: 0 errors, 1 warnings, 2 checks, 309 lines checked
+e6b9a22005db vfio/samples: Delete useless open/close
+-:98: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-  Here are the changes found in Patchwork_20733 that come from known issues:
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+9b57c1f6a23e vfio/fsl: Move to the device set infrastructure
+-:300: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 0 checks, 256 lines checked
+65ae71f84df5 vfio/platform: Use open_device() instead of open coding a refcnt scheme
+-:50: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#50: FILE: drivers/vfio/platform/vfio_platform_common.c:230:
++		dev_warn(
 
-#### Issues hit ####
+-:104: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#104: FILE: drivers/vfio/platform/vfio_platform_common.c:261:
++		dev_warn(
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#2782] / [i915#2940])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+-:148: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+total: 0 errors, 1 warnings, 2 checks, 120 lines checked
+bffca3b655e2 vfio/pci: Move to the device set infrastructure
+aeb2adf0bd2f vfio/pci: Change vfio_pci_try_bus_reset() to use the dev_set
+-:125: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#125: FILE: drivers/vfio/pci/vfio_pci.c:2219:
++	if (vfio_pci_for_each_slot_or_bus(
 
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][5] ([fdo#109271] / [i915#1436])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-bsw-nick/igt@runner@aborted.html
+-:225: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-  
-#### Possible fixes ####
+total: 0 errors, 1 warnings, 1 checks, 195 lines checked
+65a4bc732166 vfio/pci: Reorganize VFIO_DEVICE_PCI_HOT_RESET to use the device set
+-:20: WARNING:BAD_SIGN_OFF: Non-standard signature: Reviewed-off-by:
+#20: 
+Reviewed-off-by: Christoph Hellwig <hch@lst.de>
 
-  * igt@i915_module_load@reload:
-    - fi-kbl-soraka:      [DMESG-WARN][6] ([i915#1982]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-kbl-soraka/igt@i915_module_load@reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-kbl-soraka/igt@i915_module_load@reload.html
+-:253: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#253: FILE: drivers/vfio/pci/vfio_pci.c:2108:
++	if (vfio_pci_for_each_slot_or_bus(
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:310: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+total: 0 errors, 2 warnings, 1 checks, 276 lines checked
+102df9bcfb33 vfio/mbochs: Fix close when multiple device FDs are open
+-:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+5a99781c4cce vfio/ap, ccw: Fix open/close when multiple device FDs are open
+-:84: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-Participating hosts (43 -> 35)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 52 lines checked
+6852c4b7af29 vfio/gvt: Fix open/close when multiple device FDs are open
+-:52: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-1 
+total: 0 errors, 1 warnings, 0 checks, 26 lines checked
+79c59eed163a vfio: Remove struct vfio_device_ops open/release
+-:143: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Gunthorpe <jgg@ziepe.ca>' != 'Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>'
 
+total: 0 errors, 1 warnings, 0 checks, 107 lines checked
 
-Build changes
--------------
-
-  * Linux: CI_DRM_10415 -> Patchwork_20733
-
-  CI-20190529: 20190529
-  CI_DRM_10415: 457209baa84d04e17ce648a12733a32809717494 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6155: 4b51398dcd7559012b85776e7353d516ff1e6ce6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20733: e420bdd35a038b24172c0d3fcf725d8a04c9f946 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e420bdd35a03 drm/i915: Check if engine has heartbeat when closing a context
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/index.html
-
---===============7954107400680992490==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix gem_ctx_persistence failures with GuC submission</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93149/">https://patchwork.freedesktop.org/series/93149/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10415 -&gt; Patchwork_20733</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20733 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10415/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20733/fi-kbl-soraka/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 35)</h2>
-<p>Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-adlp-4 fi-ctg-p8600 fi-bdw-samus fi-tgl-y bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10415 -&gt; Patchwork_20733</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10415: 457209baa84d04e17ce648a12733a32809717494 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6155: 4b51398dcd7559012b85776e7353d516ff1e6ce6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20733: e420bdd35a038b24172c0d3fcf725d8a04c9f946 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e420bdd35a03 drm/i915: Check if engine has heartbeat when closing a context</p>
-
-</body>
-</html>
-
---===============7954107400680992490==--
-
---===============1635488218==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1635488218==--
