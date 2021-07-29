@@ -1,35 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473203DA98C
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 19:00:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C00ED3DA995
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 19:00:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE976EDF8;
-	Thu, 29 Jul 2021 17:00:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22F546EDF3;
+	Thu, 29 Jul 2021 17:00:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1902A6EDF4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 854F76EDFA
  for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 17:00:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="212966797"
-X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="212966797"
+X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="212966799"
+X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="212966799"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jul 2021 10:00:21 -0700
-X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="417712130"
+X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="417712134"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 10:00:20 -0700
+ 29 Jul 2021 10:00:21 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Jul 2021 09:59:55 -0700
-Message-Id: <20210729170008.2836648-6-matthew.d.roper@intel.com>
+Date: Thu, 29 Jul 2021 09:59:56 -0700
+Message-Id: <20210729170008.2836648-7-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210729170008.2836648-1-matthew.d.roper@intel.com>
 References: <20210729170008.2836648-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 05/18] drm/i915/dg2: Add SQIDI steering
+Subject: [Intel-gfx] [PATCH v4 06/18] drm/i915/xehp: Loop over all gslices
+ for INSTDONE processing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,106 +48,217 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Although DG2_G10 platforms will always have all SQIDI's present and
-don't need steering for registers in a SQIDI MMIO range, this isn't true
-for DG2_G11 platforms; only SQIDI's 2 and 3 can be used on those.
+We no longer have traditional slices on Xe_HP platforms, but the
+INSTDONE registers are replicated according to gslice representation
+which is similar.  We can mostly re-use the existing instdone code with
+just a few modifications:
 
-We handle SQIDI ranges a bit differently from other types of explicit
-steering.  The SQIDI ranges belong to either the MCFG unit or the SF
-unit, both of which have their own dedicated steering registers and do
-not use the typical 0xFDC steering control that all other types of
-ranges use.  Thus we only need to worry about picking a valid initial
-value for the MCFG and SF steering registers (0xFD0 and 0xFD8
-resepectively) at driver init; they won't change after we set them up so
-we don't need to worry about re-steering them explicitly at runtime.
+ * Create an alternate instdone loop macro that will iterate over the
+   flat DSS space, but still provide the gslice/dss steering values for
+   compatibility with the legacy code.
 
-Given that any SQIDI value should work fine for DG2-G10 and XeHP SDV,
-while only values of 2 and 3 are valid for DG2-G11, we'll just
-initialize the MCFG and SF steering registers to a constant value of "2"
-for all XeHP-based platforms for simplicity --- that will work in all
-cases.
+ * We should allocate INSTDONE storage space according to the maximum
+   number of gslices rather than the maximum number of legacy slices to
+   ensure we have enough storage space to hold all of the values.  XeHP
+   design has 8 gslices, whereas older platforms never had more than 3
+   slices.
 
-Bspec: 66534
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 28 +++++++++++++++++----
- drivers/gpu/drm/i915/i915_reg.h             |  2 ++
- 2 files changed, 25 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 48 +++++++++++---------
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 12 ++++-
+ drivers/gpu/drm/i915/gt/intel_sseu.h         |  7 +++
+ drivers/gpu/drm/i915/i915_gpu_error.c        | 32 +++++++++----
+ 4 files changed, 66 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 8717337a6c81..6895b083523d 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -889,17 +889,24 @@ cfl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 		    GAMT_ECO_ENABLE_IN_PLACE_DECOMPRESS);
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index dea0e522c5c7..06733e86e88b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1166,16 +1166,16 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+ 	u32 mmio_base = engine->mmio_base;
+ 	int slice;
+ 	int subslice;
++	int iter;
  
--static void __add_mcr_wa(struct drm_i915_private *i915, struct i915_wa_list *wal,
--			 unsigned slice, unsigned subslice)
-+static void __set_mcr_steering(struct i915_wa_list *wal,
-+			       i915_reg_t steering_reg,
-+			       unsigned int slice, unsigned int subslice)
- {
- 	u32 mcr, mcr_mask;
+ 	memset(instdone, 0, sizeof(*instdone));
  
- 	mcr = GEN11_MCR_SLICE(slice) | GEN11_MCR_SUBSLICE(subslice);
- 	mcr_mask = GEN11_MCR_SLICE_MASK | GEN11_MCR_SUBSLICE_MASK;
+-	switch (GRAPHICS_VER(i915)) {
+-	default:
++	if (GRAPHICS_VER(i915) >= 8) {
+ 		instdone->instdone =
+ 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
  
--	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
-+	wa_write_clr_set(wal, steering_reg, mcr_mask, mcr);
-+}
+ 		if (engine->id != RCS0)
+-			break;
++			return;
+ 
+ 		instdone->slice_common =
+ 			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
+@@ -1185,21 +1185,32 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+ 			instdone->slice_common_extra[1] =
+ 				intel_uncore_read(uncore, GEN12_SC_INSTDONE_EXTRA2);
+ 		}
+-		for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
+-			instdone->sampler[slice][subslice] =
+-				read_subslice_reg(engine, slice, subslice,
+-						  GEN7_SAMPLER_INSTDONE);
+-			instdone->row[slice][subslice] =
+-				read_subslice_reg(engine, slice, subslice,
+-						  GEN7_ROW_INSTDONE);
 +
-+static void __add_mcr_wa(struct drm_i915_private *i915, struct i915_wa_list *wal,
-+			 unsigned int slice, unsigned int subslice)
-+{
-+	drm_dbg(&i915->drm, "MCR slice=0x%x, subslice=0x%x\n", slice, subslice);
++		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
++			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice) {
++				instdone->sampler[slice][subslice] =
++					read_subslice_reg(engine, slice, subslice,
++							  GEN7_SAMPLER_INSTDONE);
++				instdone->row[slice][subslice] =
++					read_subslice_reg(engine, slice, subslice,
++							  GEN7_ROW_INSTDONE);
++			}
++		} else {
++			for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
++				instdone->sampler[slice][subslice] =
++					read_subslice_reg(engine, slice, subslice,
++							  GEN7_SAMPLER_INSTDONE);
++				instdone->row[slice][subslice] =
++					read_subslice_reg(engine, slice, subslice,
++							  GEN7_ROW_INSTDONE);
++			}
+ 		}
+-		break;
+-	case 7:
++	} else if (GRAPHICS_VER(i915) >= 7) {
+ 		instdone->instdone =
+ 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
  
--	wa_write_clr_set(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
-+	__set_mcr_steering(wal, GEN8_MCR_SELECTOR, slice, subslice);
+ 		if (engine->id != RCS0)
+-			break;
++			return;
+ 
+ 		instdone->slice_common =
+ 			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
+@@ -1207,22 +1218,15 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+ 			intel_uncore_read(uncore, GEN7_SAMPLER_INSTDONE);
+ 		instdone->row[0][0] =
+ 			intel_uncore_read(uncore, GEN7_ROW_INSTDONE);
+-
+-		break;
+-	case 6:
+-	case 5:
+-	case 4:
++	} else if (GRAPHICS_VER(i915) >= 4) {
+ 		instdone->instdone =
+ 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
+ 		if (engine->id == RCS0)
+ 			/* HACK: Using the wrong struct member */
+ 			instdone->slice_common =
+ 				intel_uncore_read(uncore, GEN4_INSTDONE1);
+-		break;
+-	case 3:
+-	case 2:
++	} else {
+ 		instdone->instdone = intel_uncore_read(uncore, GEN2_INSTDONE);
+-		break;
+ 	}
  }
  
- static void
-@@ -953,7 +960,6 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
- 	 * - L3 Bank (fusable)
- 	 * - MSLICE (fusable)
- 	 * - LNCF (sub-unit within mslice; always present if mslice is present)
--	 * - SQIDI (always on)
- 	 *
- 	 * We'll do our default/implicit steering based on GSLICE (in the
- 	 * sliceid field) and DSS (in the subsliceid field).  If we can
-@@ -1003,6 +1009,18 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
- 	WARN_ON(dss_mask >> (slice * GEN_DSS_PER_GSLICE) == 0);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index ed91bcff20eb..0b4846b01626 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -67,8 +67,8 @@ struct intel_instdone {
+ 	/* The following exist only in the RCS engine */
+ 	u32 slice_common;
+ 	u32 slice_common_extra[2];
+-	u32 sampler[I915_MAX_SLICES][I915_MAX_SUBSLICES];
+-	u32 row[I915_MAX_SLICES][I915_MAX_SUBSLICES];
++	u32 sampler[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
++	u32 row[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
+ };
  
- 	__add_mcr_wa(i915, wal, slice, subslice);
+ /*
+@@ -578,4 +578,12 @@ intel_engine_has_relative_mmio(const struct intel_engine_cs * const engine)
+ 		for_each_if((instdone_has_slice(dev_priv_, sseu_, slice_)) && \
+ 			    (instdone_has_subslice(dev_priv_, sseu_, slice_, \
+ 						    subslice_)))
 +
-+	/*
-+	 * SQIDI ranges are special because they use different steering
-+	 * registers than everything else we work with.  On XeHP SDV and
-+	 * DG2-G10, any value in the steering registers will work fine since
-+	 * all instances are present, but DG2-G11 only has SQIDI instances at
-+	 * ID's 2 and 3, so we need to steer to one of those.  For simplicity
-+	 * we'll just steer to a hardcoded "2" since that value will work
-+	 * everywhere.
-+	 */
-+	__set_mcr_steering(wal, MCFG_MCR_SELECTOR, 0, 2);
-+	__set_mcr_steering(wal, SF_MCR_SELECTOR, 0, 2);
- }
++#define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
++	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
++	     (iter_) < GEN_MAX_SUBSLICES; \
++	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
++	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
++		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
++
+ #endif /* __INTEL_ENGINE_TYPES_H__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
+index 1073471d1980..74487650b08f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu.h
++++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
+@@ -26,6 +26,9 @@ struct drm_printer;
+ #define GEN_DSS_PER_CSLICE	8
+ #define GEN_DSS_PER_MSLICE	8
  
- static void
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index f4113e7e8271..39ce6befff52 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2757,6 +2757,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GEN12_SC_INSTDONE_EXTRA2	_MMIO(0x7108)
- #define GEN7_SAMPLER_INSTDONE	_MMIO(0xe160)
- #define GEN7_ROW_INSTDONE	_MMIO(0xe164)
-+#define MCFG_MCR_SELECTOR		_MMIO(0xfd0)
-+#define SF_MCR_SELECTOR			_MMIO(0xfd8)
- #define GEN8_MCR_SELECTOR		_MMIO(0xfdc)
- #define   GEN8_MCR_SLICE(slice)		(((slice) & 3) << 26)
- #define   GEN8_MCR_SLICE_MASK		GEN8_MCR_SLICE(3)
++#define GEN_MAX_GSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_GSLICE)
++#define GEN_MAX_CSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_CSLICE)
++
+ struct sseu_dev_info {
+ 	u8 slice_mask;
+ 	u8 subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
+@@ -78,6 +81,10 @@ intel_sseu_has_subslice(const struct sseu_dev_info *sseu, int slice,
+ 	u8 mask;
+ 	int ss_idx = subslice / BITS_PER_BYTE;
+ 
++	if (slice >= sseu->max_slices ||
++	    subslice >= sseu->max_subslices)
++		return false;
++
+ 	GEM_BUG_ON(ss_idx >= sseu->ss_stride);
+ 
+ 	mask = sseu->subslice_mask[slice * sseu->ss_stride + ss_idx];
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 0f08bcfbe964..8230bc3ac8a9 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -444,15 +444,29 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
+ 	if (GRAPHICS_VER(m->i915) <= 6)
+ 		return;
+ 
+-	for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
+-		err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
+-			   slice, subslice,
+-			   ee->instdone.sampler[slice][subslice]);
+-
+-	for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
+-		err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
+-			   slice, subslice,
+-			   ee->instdone.row[slice][subslice]);
++	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 50)) {
++		int iter;
++
++		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
++			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
++				   slice, subslice,
++				   ee->instdone.sampler[slice][subslice]);
++
++		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
++			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
++				   slice, subslice,
++				   ee->instdone.row[slice][subslice]);
++	} else {
++		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
++			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
++				   slice, subslice,
++				   ee->instdone.sampler[slice][subslice]);
++
++		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
++			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
++				   slice, subslice,
++				   ee->instdone.row[slice][subslice]);
++	}
+ 
+ 	if (GRAPHICS_VER(m->i915) < 12)
+ 		return;
 -- 
 2.25.4
 
