@@ -1,35 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930073DA773
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 17:22:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8883DA797
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 17:28:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02E5A89F61;
-	Thu, 29 Jul 2021 15:22:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C09906EDCF;
+	Thu, 29 Jul 2021 15:28:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA7489F61
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 15:22:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="212943840"
-X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="212943840"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 08:22:14 -0700
-X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="435536248"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 08:22:14 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Jul 2021 08:21:58 -0700
-Message-Id: <20210729152158.2646246-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210729054118.2458523-4-matthew.d.roper@intel.com>
-References: <20210729054118.2458523-4-matthew.d.roper@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3733C6EDC7;
+ Thu, 29 Jul 2021 15:28:17 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="211025246"
+X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="211025246"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2021 08:28:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="507261037"
+Received: from irvmail001.ir.intel.com ([10.43.11.63])
+ by FMSMGA003.fm.intel.com with ESMTP; 29 Jul 2021 08:28:12 -0700
+Received: from [10.249.142.82] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.142.82])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 16TFSB8r020175; Thu, 29 Jul 2021 16:28:11 +0100
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20210728211144.15322-1-vinay.belgaumkar@intel.com>
+ <20210728211144.15322-2-vinay.belgaumkar@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <521d5ea2-3bc1-bb1a-b4d3-56dc93318119@intel.com>
+Date: Thu, 29 Jul 2021 17:28:11 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.12.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 3/6] drm/i915: Make shadow tables range-based
+In-Reply-To: <20210728211144.15322-2-vinay.belgaumkar@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 01/14] drm/i915/guc/slpc: Initial
+ definitions for SLPC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,346 +51,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rather than defining our shadow tables as a list of individual
-registers, provide them as a list of register ranges; we'll have some
-ranges of multiple registers being added soon (and we already have a
-couple adjacent registers that we can squash into a single range now).
-
-This change also defines the table with hex literal values rather than
-symbolic register names; since that's how the tables are defined in the
-bspec, this change will make it easier to review the tables overall.
-
-v2:
- - Force signed comparison on range overlap sanity check
-
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c   |  13 +-
- drivers/gpu/drm/i915/intel_uncore.c           | 160 +++++++++---------
- drivers/gpu/drm/i915/intel_uncore.h           |   6 +
- drivers/gpu/drm/i915/selftests/intel_uncore.c |  32 ++--
- 4 files changed, 108 insertions(+), 103 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 9173df59821a..7558414bafb2 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1963,12 +1963,7 @@ void intel_engine_apply_workarounds(struct intel_engine_cs *engine)
- 	wa_list_apply(engine->gt, &engine->wa_list);
- }
- 
--struct mcr_range {
--	u32 start;
--	u32 end;
--};
--
--static const struct mcr_range mcr_ranges_gen8[] = {
-+static const struct i915_range mcr_ranges_gen8[] = {
- 	{ .start = 0x5500, .end = 0x55ff },
- 	{ .start = 0x7000, .end = 0x7fff },
- 	{ .start = 0x9400, .end = 0x97ff },
-@@ -1977,7 +1972,7 @@ static const struct mcr_range mcr_ranges_gen8[] = {
- 	{},
- };
- 
--static const struct mcr_range mcr_ranges_gen12[] = {
-+static const struct i915_range mcr_ranges_gen12[] = {
- 	{ .start =  0x8150, .end =  0x815f },
- 	{ .start =  0x9520, .end =  0x955f },
- 	{ .start =  0xb100, .end =  0xb3ff },
-@@ -1986,7 +1981,7 @@ static const struct mcr_range mcr_ranges_gen12[] = {
- 	{},
- };
- 
--static const struct mcr_range mcr_ranges_xehp[] = {
-+static const struct i915_range mcr_ranges_xehp[] = {
- 	{ .start =  0x4000, .end =  0x4aff },
- 	{ .start =  0x5200, .end =  0x52ff },
- 	{ .start =  0x5400, .end =  0x7fff },
-@@ -2004,7 +1999,7 @@ static const struct mcr_range mcr_ranges_xehp[] = {
- 
- static bool mcr_range(struct drm_i915_private *i915, u32 offset)
- {
--	const struct mcr_range *mcr_ranges;
-+	const struct i915_range *mcr_ranges;
- 	int i;
- 
- 	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50))
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index ea910f7ee635..2cfbc16f7dee 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -946,101 +946,95 @@ static const struct intel_forcewake_range __vlv_fw_ranges[] = {
- 	find_fw_domain(uncore, offset)
- 
- /* *Must* be sorted by offset! See intel_shadow_table_check(). */
--static const i915_reg_t gen8_shadowed_regs[] = {
--	RING_TAIL(RENDER_RING_BASE),	/* 0x2000 (base) */
--	GEN6_RPNSWREQ,			/* 0xA008 */
--	GEN6_RC_VIDEO_FREQ,		/* 0xA00C */
--	RING_TAIL(GEN6_BSD_RING_BASE),	/* 0x12000 (base) */
--	RING_TAIL(VEBOX_RING_BASE),	/* 0x1a000 (base) */
--	RING_TAIL(BLT_RING_BASE),	/* 0x22000 (base) */
-+static const struct i915_range gen8_shadowed_regs[] = {
-+	{ .start =  0x2030, .end =  0x2030 },
-+	{ .start =  0xA008, .end =  0xA00C },
-+	{ .start = 0x12030, .end = 0x12030 },
-+	{ .start = 0x1a030, .end = 0x1a030 },
-+	{ .start = 0x22030, .end = 0x22030 },
- 	/* TODO: Other registers are not yet used */
- };
- 
--static const i915_reg_t gen11_shadowed_regs[] = {
--	RING_TAIL(RENDER_RING_BASE),			/* 0x2000 (base) */
--	RING_EXECLIST_CONTROL(RENDER_RING_BASE),        /* 0x2550 */
--	GEN6_RPNSWREQ,					/* 0xA008 */
--	GEN6_RC_VIDEO_FREQ,				/* 0xA00C */
--	RING_TAIL(BLT_RING_BASE),			/* 0x22000 (base) */
--	RING_EXECLIST_CONTROL(BLT_RING_BASE),		/* 0x22550 */
--	RING_TAIL(GEN11_BSD_RING_BASE),			/* 0x1C0000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD_RING_BASE),	/* 0x1C0550 */
--	RING_TAIL(GEN11_BSD2_RING_BASE),		/* 0x1C4000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD2_RING_BASE),	/* 0x1C4550 */
--	RING_TAIL(GEN11_VEBOX_RING_BASE),		/* 0x1C8000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_VEBOX_RING_BASE),	/* 0x1C8550 */
--	RING_TAIL(GEN11_BSD3_RING_BASE),		/* 0x1D0000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD3_RING_BASE),	/* 0x1D0550 */
--	RING_TAIL(GEN11_BSD4_RING_BASE),		/* 0x1D4000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD4_RING_BASE),	/* 0x1D4550 */
--	RING_TAIL(GEN11_VEBOX2_RING_BASE),		/* 0x1D8000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_VEBOX2_RING_BASE),	/* 0x1D8550 */
-+static const struct i915_range gen11_shadowed_regs[] = {
-+	{ .start =   0x2030, .end =   0x2030 },
-+	{ .start =   0x2550, .end =   0x2550 },
-+	{ .start =   0xA008, .end =   0xA00C },
-+	{ .start =  0x22030, .end =  0x22030 },
-+	{ .start =  0x22550, .end =  0x22550 },
-+	{ .start = 0x1C0030, .end = 0x1C0030 },
-+	{ .start = 0x1C0550, .end = 0x1C0550 },
-+	{ .start = 0x1C4030, .end = 0x1C4030 },
-+	{ .start = 0x1C4550, .end = 0x1C4550 },
-+	{ .start = 0x1C8030, .end = 0x1C8030 },
-+	{ .start = 0x1C8550, .end = 0x1C8550 },
-+	{ .start = 0x1D0030, .end = 0x1D0030 },
-+	{ .start = 0x1D0550, .end = 0x1D0550 },
-+	{ .start = 0x1D4030, .end = 0x1D4030 },
-+	{ .start = 0x1D4550, .end = 0x1D4550 },
-+	{ .start = 0x1D8030, .end = 0x1D8030 },
-+	{ .start = 0x1D8550, .end = 0x1D8550 },
- 	/* TODO: Other registers are not yet used */
- };
- 
--static const i915_reg_t gen12_shadowed_regs[] = {
--	RING_TAIL(RENDER_RING_BASE),			/* 0x2000 (base) */
--	RING_EXECLIST_CONTROL(RENDER_RING_BASE),	/* 0x2550 */
--	GEN6_RPNSWREQ,					/* 0xA008 */
--	GEN6_RC_VIDEO_FREQ,				/* 0xA00C */
--	RING_TAIL(BLT_RING_BASE),			/* 0x22000 (base) */
--	RING_EXECLIST_CONTROL(BLT_RING_BASE),		/* 0x22550 */
--	RING_TAIL(GEN11_BSD_RING_BASE),			/* 0x1C0000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD_RING_BASE),	/* 0x1C0550 */
--	RING_TAIL(GEN11_BSD2_RING_BASE),		/* 0x1C4000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD2_RING_BASE),	/* 0x1C4550 */
--	RING_TAIL(GEN11_VEBOX_RING_BASE),		/* 0x1C8000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_VEBOX_RING_BASE),	/* 0x1C8550 */
--	RING_TAIL(GEN11_BSD3_RING_BASE),		/* 0x1D0000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD3_RING_BASE),	/* 0x1D0550 */
--	RING_TAIL(GEN11_BSD4_RING_BASE),		/* 0x1D4000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD4_RING_BASE),	/* 0x1D4550 */
--	RING_TAIL(GEN11_VEBOX2_RING_BASE),		/* 0x1D8000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_VEBOX2_RING_BASE),	/* 0x1D8550 */
-+static const struct i915_range gen12_shadowed_regs[] = {
-+	{ .start =   0x2030, .end =   0x2030 },
-+	{ .start =   0x2550, .end =   0x2550 },
-+	{ .start =   0xA008, .end =   0xA00C },
-+	{ .start =  0x22030, .end =  0x22030 },
-+	{ .start =  0x22550, .end =  0x22550 },
-+	{ .start = 0x1C0030, .end = 0x1C0030 },
-+	{ .start = 0x1C0550, .end = 0x1C0550 },
-+	{ .start = 0x1C4030, .end = 0x1C4030 },
-+	{ .start = 0x1C4550, .end = 0x1C4550 },
-+	{ .start = 0x1C8030, .end = 0x1C8030 },
-+	{ .start = 0x1C8550, .end = 0x1C8550 },
-+	{ .start = 0x1D0030, .end = 0x1D0030 },
-+	{ .start = 0x1D0550, .end = 0x1D0550 },
-+	{ .start = 0x1D4030, .end = 0x1D4030 },
-+	{ .start = 0x1D4550, .end = 0x1D4550 },
-+	{ .start = 0x1D8030, .end = 0x1D8030 },
-+	{ .start = 0x1D8550, .end = 0x1D8550 },
- 	/* TODO: Other registers are not yet used */
- };
- 
--static const i915_reg_t xehp_shadowed_regs[] = {
--	RING_TAIL(RENDER_RING_BASE),			/* 0x2000 (base) */
--	RING_EXECLIST_CONTROL(RENDER_RING_BASE),        /* 0x2550 */
--	GEN6_RPNSWREQ,					/* 0xA008 */
--	GEN6_RC_VIDEO_FREQ,				/* 0xA00C */
--	RING_TAIL(BLT_RING_BASE),			/* 0x22000 (base) */
--	RING_EXECLIST_CONTROL(BLT_RING_BASE),		/* 0x22550 */
--	RING_TAIL(GEN11_BSD_RING_BASE),			/* 0x1C0000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD_RING_BASE),	/* 0x1C0550 */
--	RING_TAIL(GEN11_BSD2_RING_BASE),		/* 0x1C4000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD2_RING_BASE),	/* 0x1C4550 */
--	RING_TAIL(GEN11_VEBOX_RING_BASE),		/* 0x1C8000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_VEBOX_RING_BASE),	/* 0x1C8550 */
--	RING_TAIL(GEN11_BSD3_RING_BASE),		/* 0x1D0000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD3_RING_BASE),	/* 0x1D0550 */
--	RING_TAIL(GEN11_BSD4_RING_BASE),		/* 0x1D4000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_BSD4_RING_BASE),	/* 0x1D4550 */
--	RING_TAIL(GEN11_VEBOX2_RING_BASE),		/* 0x1D8000 (base) */
--	RING_EXECLIST_CONTROL(GEN11_VEBOX2_RING_BASE),	/* 0x1D8550 */
--	RING_TAIL(XEHP_BSD5_RING_BASE),			/* 0x1E0000 (base) */
--	RING_EXECLIST_CONTROL(XEHP_BSD5_RING_BASE),	/* 0x1E0550 */
--	RING_TAIL(XEHP_BSD6_RING_BASE),			/* 0x1E4000 (base) */
--	RING_EXECLIST_CONTROL(XEHP_BSD6_RING_BASE),	/* 0x1E4550 */
--	RING_TAIL(XEHP_VEBOX3_RING_BASE),		/* 0x1E8000 (base) */
--	RING_EXECLIST_CONTROL(XEHP_VEBOX3_RING_BASE),	/* 0x1E8550 */
--	RING_TAIL(XEHP_BSD7_RING_BASE),			/* 0x1F0000 (base) */
--	RING_EXECLIST_CONTROL(XEHP_BSD7_RING_BASE),	/* 0x1F0550 */
--	RING_TAIL(XEHP_BSD8_RING_BASE),			/* 0x1F4000 (base) */
--	RING_EXECLIST_CONTROL(XEHP_BSD8_RING_BASE),	/* 0x1F4550 */
--	RING_TAIL(XEHP_VEBOX4_RING_BASE),		/* 0x1F8000 (base) */
--	RING_EXECLIST_CONTROL(XEHP_VEBOX4_RING_BASE),	/* 0x1F8550 */
-+static const struct i915_range xehp_shadowed_regs[] = {
-+	{ .start =   0x2000, .end =   0x2030 },
-+	{ .start =   0x2550, .end =   0x2550 },
-+	{ .start =   0xA008, .end =   0xA00C },
-+	{ .start =  0x22030, .end =  0x22030 },
-+	{ .start =  0x22550, .end =  0x22550 },
-+	{ .start = 0x1C0030, .end = 0x1C0030 },
-+	{ .start = 0x1C0550, .end = 0x1C0550 },
-+	{ .start = 0x1C4030, .end = 0x1C4030 },
-+	{ .start = 0x1C4550, .end = 0x1C4550 },
-+	{ .start = 0x1C8030, .end = 0x1C8030 },
-+	{ .start = 0x1C8550, .end = 0x1C8550 },
-+	{ .start = 0x1D0030, .end = 0x1D0030 },
-+	{ .start = 0x1D0550, .end = 0x1D0550 },
-+	{ .start = 0x1D4030, .end = 0x1D4030 },
-+	{ .start = 0x1D4550, .end = 0x1D4550 },
-+	{ .start = 0x1D8030, .end = 0x1D8030 },
-+	{ .start = 0x1D8550, .end = 0x1D8550 },
-+	{ .start = 0x1E0030, .end = 0x1E0030 },
-+	{ .start = 0x1E0550, .end = 0x1E0550 },
-+	{ .start = 0x1E4030, .end = 0x1E4030 },
-+	{ .start = 0x1E4550, .end = 0x1E4550 },
-+	{ .start = 0x1E8030, .end = 0x1E8030 },
-+	{ .start = 0x1E8550, .end = 0x1E8550 },
-+	{ .start = 0x1F0030, .end = 0x1F0030 },
-+	{ .start = 0x1F0550, .end = 0x1F0550 },
-+	{ .start = 0x1F4030, .end = 0x1F4030 },
-+	{ .start = 0x1F4550, .end = 0x1F4550 },
-+	{ .start = 0x1F8030, .end = 0x1F8030 },
-+	{ .start = 0x1F8550, .end = 0x1F8550 },
- 	/* TODO: Other registers are not yet used */
- };
- 
--static int mmio_reg_cmp(u32 key, const i915_reg_t *reg)
-+static int mmio_range_cmp(u32 key, const struct i915_range *range)
- {
--	u32 offset = i915_mmio_reg_offset(*reg);
--
--	if (key < offset)
-+	if (key < range->start)
- 		return -1;
--	else if (key > offset)
-+	else if (key > range->end)
- 		return 1;
- 	else
- 		return 0;
-@@ -1049,9 +1043,9 @@ static int mmio_reg_cmp(u32 key, const i915_reg_t *reg)
- #define __is_X_shadowed(x) \
- static bool is_##x##_shadowed(u32 offset) \
- { \
--	const i915_reg_t *regs = x##_shadowed_regs; \
-+	const struct i915_range *regs = x##_shadowed_regs; \
- 	return BSEARCH(offset, regs, ARRAY_SIZE(x##_shadowed_regs), \
--		       mmio_reg_cmp); \
-+		       mmio_range_cmp); \
- }
- 
- __is_X_shadowed(gen8)
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index 3c0b0a8b5250..531665b08039 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -119,6 +119,12 @@ struct intel_forcewake_range {
- 	enum forcewake_domains domains;
- };
- 
-+/* Other register ranges (e.g., shadow tables, MCR tables, etc.) */
-+struct i915_range {
-+	u32 start;
-+	u32 end;
-+};
-+
- struct intel_uncore {
- 	void __iomem *regs;
- 
-diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-index 720b60853f8b..d6a9c11afa23 100644
---- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-@@ -62,30 +62,40 @@ static int intel_fw_table_check(const struct intel_forcewake_range *ranges,
- static int intel_shadow_table_check(void)
- {
- 	struct {
--		const i915_reg_t *regs;
-+		const struct i915_range *regs;
- 		unsigned int size;
--	} reg_lists[] = {
-+	} range_lists[] = {
- 		{ gen8_shadowed_regs, ARRAY_SIZE(gen8_shadowed_regs) },
- 		{ gen11_shadowed_regs, ARRAY_SIZE(gen11_shadowed_regs) },
- 		{ gen12_shadowed_regs, ARRAY_SIZE(gen12_shadowed_regs) },
- 		{ xehp_shadowed_regs, ARRAY_SIZE(xehp_shadowed_regs) },
- 	};
--	const i915_reg_t *reg;
-+	const struct i915_range *range;
- 	unsigned int i, j;
- 	s32 prev;
- 
--	for (j = 0; j < ARRAY_SIZE(reg_lists); ++j) {
--		reg = reg_lists[j].regs;
--		for (i = 0, prev = -1; i < reg_lists[j].size; i++, reg++) {
--			u32 offset = i915_mmio_reg_offset(*reg);
-+	for (j = 0; j < ARRAY_SIZE(range_lists); ++j) {
-+		range = range_lists[j].regs;
-+		for (i = 0, prev = -1; i < range_lists[j].size; i++, range++) {
-+			if (range->end < range->start) {
-+				pr_err("%s: range[%d]:(%06x-%06x) has end before start\n",
-+				       __func__, i, range->start, range->end);
-+				return -EINVAL;
-+			}
-+
-+			if (prev >= (s32)range->start) {
-+				pr_err("%s: range[%d]:(%06x-%06x) is before end of previous (%06x)\n",
-+				       __func__, i, range->start, range->end, prev);
-+				return -EINVAL;
-+			}
- 
--			if (prev >= (s32)offset) {
--				pr_err("%s: entry[%d]:(%x) is before previous (%x)\n",
--				       __func__, i, offset, prev);
-+			if (range->start % 4) {
-+				pr_err("%s: range[%d]:(%06x-%06x) has non-dword-aligned start\n",
-+				       __func__, i, range->start, range->end);
- 				return -EINVAL;
- 			}
- 
--			prev = offset;
-+			prev = range->end;
- 		}
- 	}
- 
--- 
-2.25.4
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CgpPbiAyOC4wNy4yMDIxIDIzOjExLCBWaW5heSBCZWxnYXVta2FyIHdyb3RlOgo+IEFkZCBtYWNy
+b3MgdG8gY2hlY2sgZm9yIFNMUEMgc3VwcG9ydC4gVGhpcyBmZWF0dXJlIGlzIGN1cnJlbnRseSBz
+dXBwb3J0ZWQKPiBmb3IgR2VuMTIrIGFuZCBlbmFibGVkIHdoZW5ldmVyIEd1QyBzdWJtaXNzaW9u
+IGlzIGVuYWJsZWQvc2VsZWN0ZWQuCj4gCj4gSW5jbHVkZSB0ZW1wbGF0ZXMgZm9yIFNMUEMgaW5p
+dC9maW5pIGFuZCBlbmFibGUuCj4gCj4gdjI6IE1vdmUgU0xQQyBoZWxwZXIgZnVuY3Rpb25zIHRv
+IGludGVsX2d1Y19zbHBjLmMvLmguIERlZmluZSBiYXNpYwo+IHRlbXBsYXRlIGZvciBTTFBDIHN0
+cnVjdHVyZSBpbiBpbnRlbF9ndWNfc2xwY190eXBlcy5oLiBGaXggY29weXJpZ2h0IChNaWNoYWwg
+VykKPiAKPiB2MzogUmV2aWV3IGNvbW1lbnRzIChNaWNoYWwgVykKPiAKPiB2NDogSW5jbHVkZSBz
+dXBwb3J0ZWQvc2VsZWN0ZWQgaW5zaWRlIHNscGMgc3RydWN0IChNaWNoYWwgVykKPiAKPiBSZXZp
+ZXdlZC1ieTogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+Cj4g
+U2lnbmVkLW9mZi1ieTogVmluYXkgQmVsZ2F1bWthciA8dmluYXkuYmVsZ2F1bWthckBpbnRlbC5j
+b20+Cj4gU2lnbmVkLW9mZi1ieTogU3VuZGFyZXNhbiBTdWphcml0aGEgPHN1amFyaXRoYS5zdW5k
+YXJlc2FuQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWxlIENlcmFvbG8gU3B1cmlv
+IDxkYW5pZWxlLmNlcmFvbG9zcHVyaW9AaW50ZWwuY29tPgo+IAo+IGRybS9pOTE1L2d1Yy9zbHBj
+OiBMYXkgb3V0IHNscGMgaW5pdC9lbmFibGUvZmluaQo+IAo+IERlY2xhcmUgaW5pdC9maW5pIGFu
+ZCBlbmFibGUgZnVuY3Rpb24gdGVtcGxhdGVzLgo+IAo+IHYyOiBSZWJhc2UKPiAKPiBTaWduZWQt
+b2ZmLWJ5OiBWaW5heSBCZWxnYXVta2FyIDx2aW5heS5iZWxnYXVta2FyQGludGVsLmNvbT4KPiBT
+aWduZWQtb2ZmLWJ5OiBTdW5kYXJlc2FuIFN1amFyaXRoYSA8c3VqYXJpdGhhLnN1bmRhcmVzYW5A
+aW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAg
+ICAgICAgICAgfCAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5j
+ICAgICAgICB8ICAyICsKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmgg
+ICAgICAgIHwgIDIgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc2xw
+Yy5jICAgfCA0NSArKysrKysrKysrKysrKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3VjL2ludGVsX2d1Y19zbHBjLmggICB8IDMzICsrKysrKysrKysrKysrCj4gIC4uLi9ncHUvZHJt
+L2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGNfdHlwZXMuaCB8IDE2ICsrKysrKysKPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuYyAgICAgICAgIHwgIDYgKystCj4gIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjLmggICAgICAgICB8ICAyICsKPiAgOCBmaWxl
+cyBjaGFuZ2VkLCAxMDUgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiAgY3JlYXRlIG1v
+ZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjLmMKPiAg
+Y3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19z
+bHBjLmgKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2lu
+dGVsX2d1Y19zbHBjX3R5cGVzLmgKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvTWFrZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQo+IGluZGV4IGFiNzY3
+OTk1NzYyMy4uZDhlYWM0NDY4ZGY5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L01ha2VmaWxlCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKPiBAQCAtMTg2
+LDYgKzE4Niw3IEBAIGk5MTUteSArPSBndC91Yy9pbnRlbF91Yy5vIFwKPiAgCSAgZ3QvdWMvaW50
+ZWxfZ3VjX2Z3Lm8gXAo+ICAJICBndC91Yy9pbnRlbF9ndWNfbG9nLm8gXAo+ICAJICBndC91Yy9p
+bnRlbF9ndWNfbG9nX2RlYnVnZnMubyBcCj4gKwkgIGd0L3VjL2ludGVsX2d1Y19zbHBjLm8gXAo+
+ICAJICBndC91Yy9pbnRlbF9ndWNfc3VibWlzc2lvbi5vIFwKPiAgCSAgZ3QvdWMvaW50ZWxfaHVj
+Lm8gXAo+ICAJICBndC91Yy9pbnRlbF9odWNfZGVidWdmcy5vIFwKPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC91Yy9pbnRlbF9ndWMuYwo+IGluZGV4IDk3OTEyOGUyODM3Mi4uMzliYzNjMTYwNTdiIDEw
+MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5jCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMKPiBAQCAtNyw2ICs3LDcg
+QEAKPiAgI2luY2x1ZGUgImd0L2ludGVsX2d0X2lycS5oIgo+ICAjaW5jbHVkZSAiZ3QvaW50ZWxf
+Z3RfcG1faXJxLmgiCj4gICNpbmNsdWRlICJpbnRlbF9ndWMuaCIKPiArI2luY2x1ZGUgImludGVs
+X2d1Y19zbHBjLmgiCj4gICNpbmNsdWRlICJpbnRlbF9ndWNfYWRzLmgiCj4gICNpbmNsdWRlICJp
+bnRlbF9ndWNfc3VibWlzc2lvbi5oIgo+ICAjaW5jbHVkZSAiaTkxNV9kcnYuaCIKPiBAQCAtMTU3
+LDYgKzE1OCw3IEBAIHZvaWQgaW50ZWxfZ3VjX2luaXRfZWFybHkoc3RydWN0IGludGVsX2d1YyAq
+Z3VjKQo+ICAJaW50ZWxfZ3VjX2N0X2luaXRfZWFybHkoJmd1Yy0+Y3QpOwo+ICAJaW50ZWxfZ3Vj
+X2xvZ19pbml0X2Vhcmx5KCZndWMtPmxvZyk7Cj4gIAlpbnRlbF9ndWNfc3VibWlzc2lvbl9pbml0
+X2Vhcmx5KGd1Yyk7Cj4gKwlpbnRlbF9ndWNfc2xwY19pbml0X2Vhcmx5KCZndWMtPnNscGMpOwo+
+ICAKPiAgCW11dGV4X2luaXQoJmd1Yy0+c2VuZF9tdXRleCk7Cj4gIAlzcGluX2xvY2tfaW5pdCgm
+Z3VjLT5pcnFfbG9jayk7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3Vj
+L2ludGVsX2d1Yy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmgKPiBp
+bmRleCBhOTU0NzA2OWVlN2UuLjdkYTExYTBiNjA1OSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3VjL2ludGVsX2d1Yy5oCj4gQEAgLTE1LDYgKzE1LDcgQEAKPiAgI2luY2x1ZGUgImludGVs
+X2d1Y19jdC5oIgo+ICAjaW5jbHVkZSAiaW50ZWxfZ3VjX2xvZy5oIgo+ICAjaW5jbHVkZSAiaW50
+ZWxfZ3VjX3JlZy5oIgo+ICsjaW5jbHVkZSAiaW50ZWxfZ3VjX3NscGNfdHlwZXMuaCIKPiAgI2lu
+Y2x1ZGUgImludGVsX3VjX2Z3LmgiCj4gICNpbmNsdWRlICJpOTE1X3V0aWxzLmgiCj4gICNpbmNs
+dWRlICJpOTE1X3ZtYS5oIgo+IEBAIC0zMCw2ICszMSw3IEBAIHN0cnVjdCBpbnRlbF9ndWMgewo+
+ICAJc3RydWN0IGludGVsX3VjX2Z3IGZ3Owo+ICAJc3RydWN0IGludGVsX2d1Y19sb2cgbG9nOwo+
+ICAJc3RydWN0IGludGVsX2d1Y19jdCBjdDsKPiArCXN0cnVjdCBpbnRlbF9ndWNfc2xwYyBzbHBj
+Owo+ICAKPiAgCS8qIEdsb2JhbCBlbmdpbmUgdXNlZCB0byBzdWJtaXQgcmVxdWVzdHMgdG8gR3VD
+ICovCj4gIAlzdHJ1Y3QgaTkxNV9zY2hlZF9lbmdpbmUgKnNjaGVkX2VuZ2luZTsKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjLmMKPiBuZXcgZmlsZSBtb2RlIDEw
+MDY0NAo+IGluZGV4IDAwMDAwMDAwMDAwMC4uNDA5NTBmMWJmMDVjCj4gLS0tIC9kZXYvbnVsbAo+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjLmMKPiBAQCAt
+MCwwICsxLDQ1IEBACj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQKPiArLyoKPiAr
+ICogQ29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRpb24KPiArICovCj4gKwo+ICsjaW5j
+bHVkZSAiaTkxNV9kcnYuaCIKPiArI2luY2x1ZGUgImludGVsX2d1Y19zbHBjLmgiCj4gKyNpbmNs
+dWRlICJndC9pbnRlbF9ndC5oIgo+ICsKPiArc3RhdGljIGlubGluZSBzdHJ1Y3QgaW50ZWxfZ3Vj
+ICpzbHBjX3RvX2d1YyhzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpCj4gK3sKPiArCXJldHVy
+biBjb250YWluZXJfb2Yoc2xwYywgc3RydWN0IGludGVsX2d1Yywgc2xwYyk7Cj4gK30KPiArCj4g
+K3N0YXRpYyBib29sIF9fZGV0ZWN0X3NscGNfc3VwcG9ydGVkKHN0cnVjdCBpbnRlbF9ndWMgKmd1
+YykKPiArewo+ICsJLyogR3VDIFNMUEMgaXMgdW5hdmFpbGFibGUgZm9yIHByZS1HZW4xMiAqLwo+
+ICsJcmV0dXJuIGd1Yy0+c3VibWlzc2lvbl9zdXBwb3J0ZWQgJiYKPiArCQlHUkFQSElDU19WRVIo
+Z3VjX3RvX2d0KGd1YyktPmk5MTUpID49IDEyOwo+ICt9Cj4gKwo+ICtzdGF0aWMgYm9vbCBfX2d1
+Y19zbHBjX3NlbGVjdGVkKHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKPiArewo+ICsJaWYgKCFpbnRl
+bF9ndWNfc2xwY19pc19zdXBwb3J0ZWQoZ3VjKSkKPiArCQlyZXR1cm4gZmFsc2U7Cj4gKwo+ICsJ
+cmV0dXJuIGd1Yy0+c3VibWlzc2lvbl9zZWxlY3RlZDsKPiArfQo+ICsKPiArdm9pZCBpbnRlbF9n
+dWNfc2xwY19pbml0X2Vhcmx5KHN0cnVjdCBpbnRlbF9ndWNfc2xwYyAqc2xwYykKPiArewo+ICsJ
+c3RydWN0IGludGVsX2d1YyAqZ3VjID0gc2xwY190b19ndWMoc2xwYyk7Cj4gKwo+ICsJc2xwYy0+
+c3VwcG9ydGVkID0gX19kZXRlY3Rfc2xwY19zdXBwb3J0ZWQoZ3VjKTsKPiArCXNscGMtPnNlbGVj
+dGVkID0gX19ndWNfc2xwY19zZWxlY3RlZChndWMpOwo+ICt9Cj4gKwo+ICtpbnQgaW50ZWxfZ3Vj
+X3NscGNfaW5pdChzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpCj4gK3sKPiArCXJldHVybiAw
+Owo+ICt9Cj4gKwo+ICt2b2lkIGludGVsX2d1Y19zbHBjX2Zpbmkoc3RydWN0IGludGVsX2d1Y19z
+bHBjICpzbHBjKQo+ICt7Cj4gK30KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvdWMvaW50ZWxfZ3VjX3NscGMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVs
+X2d1Y19zbHBjLmgKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAwMDAwMC4u
+YmMxMzk2ODJhZDBmCj4gLS0tIC9kZXYvbnVsbAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3VjL2ludGVsX2d1Y19zbHBjLmgKPiBAQCAtMCwwICsxLDMzIEBACj4gKy8qIFNQRFgtTGlj
+ZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KPiArLyoKPiArICogQ29weXJpZ2h0IMKpIDIwMjEgSW50
+ZWwgQ29ycG9yYXRpb24KPiArICovCj4gKwo+ICsjaWZuZGVmIF9JTlRFTF9HVUNfU0xQQ19IXwo+
+ICsjZGVmaW5lIF9JTlRFTF9HVUNfU0xQQ19IXwo+ICsKPiArI2luY2x1ZGUgImludGVsX2d1Y19z
+dWJtaXNzaW9uLmgiCj4gKyNpbmNsdWRlICJpbnRlbF9ndWNfc2xwY190eXBlcy5oIgo+ICsKPiAr
+c3RhdGljIGlubGluZSBib29sIGludGVsX2d1Y19zbHBjX2lzX3N1cHBvcnRlZChzdHJ1Y3QgaW50
+ZWxfZ3VjICpndWMpCgpobW0sIEkgd2FzIGV4cGVjdGluZyB0aGVzZSB0byBiZSBsaWtlOgoKCWlu
+dGVsX2d1Y19zbHBjX2lzX3N1cHBvcnRlZChzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpCgps
+aWtlbHkgYmxvY2tlZCBieSAuLi4KCj4gK3sKPiArCXJldHVybiBndWMtPnNscGMuc3VwcG9ydGVk
+Owo+ICt9Cj4gKwo+ICtzdGF0aWMgaW5saW5lIGJvb2wgaW50ZWxfZ3VjX3NscGNfaXNfd2FudGVk
+KHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKPiArewo+ICsJcmV0dXJuIGd1Yy0+c2xwYy5zZWxlY3Rl
+ZDsKPiArfQo+ICsKPiArc3RhdGljIGlubGluZSBib29sIGludGVsX2d1Y19zbHBjX2lzX3VzZWQo
+c3RydWN0IGludGVsX2d1YyAqZ3VjKQo+ICt7Cj4gKwlyZXR1cm4gaW50ZWxfZ3VjX3N1Ym1pc3Np
+b25faXNfdXNlZChndWMpICYmIGludGVsX2d1Y19zbHBjX2lzX3dhbnRlZChndWMpOwo+ICt9Cj4g
+Kwo+ICt2b2lkIGludGVsX2d1Y19zbHBjX2luaXRfZWFybHkoc3RydWN0IGludGVsX2d1Y19zbHBj
+ICpzbHBjKTsKPiArCj4gK2ludCBpbnRlbF9ndWNfc2xwY19pbml0KHN0cnVjdCBpbnRlbF9ndWNf
+c2xwYyAqc2xwYyk7Cj4gK2ludCBpbnRlbF9ndWNfc2xwY19lbmFibGUoc3RydWN0IGludGVsX2d1
+Y19zbHBjICpzbHBjKTsKPiArdm9pZCBpbnRlbF9ndWNfc2xwY19maW5pKHN0cnVjdCBpbnRlbF9n
+dWNfc2xwYyAqc2xwYyk7Cj4gKwo+ICsjZW5kaWYKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGNfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjX3R5cGVzLmgKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+
+IGluZGV4IDAwMDAwMDAwMDAwMC4uNzY5YzE2MjMwNWEwCj4gLS0tIC9kZXYvbnVsbAo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjX3R5cGVzLmgKPiBAQCAt
+MCwwICsxLDE2IEBACj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KPiArLyoK
+PiArICogQ29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRpb24KPiArICovCj4gKwo+ICsj
+aWZuZGVmIF9JTlRFTF9HVUNfU0xQQ19UWVBFU19IXwo+ICsjZGVmaW5lIF9JTlRFTF9HVUNfU0xQ
+Q19UWVBFU19IXwo+ICsKPiArI2luY2x1ZGUgPGxpbnV4L3R5cGVzLmg+Cj4gKwo+ICtzdHJ1Y3Qg
+aW50ZWxfZ3VjX3NscGMgewo+ICsJYm9vbCBzdXBwb3J0ZWQ7Cj4gKwlib29sIHNlbGVjdGVkOwo+
+ICt9Owo+ICsKPiArI2VuZGlmCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3VjL2ludGVsX3VjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5jCj4g
+aW5kZXggZGE1N2QxOGQ5ZjZiLi5lNmJkOTQwNmM3YjIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3VjL2ludGVsX3VjLmMKPiBAQCAtNzUsMTYgKzc1LDE4IEBAIHN0YXRpYyB2b2lkIF9fY29u
+ZmlybV9vcHRpb25zKHN0cnVjdCBpbnRlbF91YyAqdWMpCj4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqaTkxNSA9IHVjX3RvX2d0KHVjKS0+aTkxNTsKPiAgCj4gIAlkcm1fZGJnKCZpOTE1LT5k
+cm0sCj4gLQkJImVuYWJsZV9ndWM9JWQgKGd1YzolcyBzdWJtaXNzaW9uOiVzIGh1YzolcylcbiIs
+Cj4gKwkJImVuYWJsZV9ndWM9JWQgKGd1YzolcyBzdWJtaXNzaW9uOiVzIGh1YzolcyBzbHBjOiVz
+KVxuIiwKPiAgCQlpOTE1LT5wYXJhbXMuZW5hYmxlX2d1YywKPiAgCQl5ZXNubyhpbnRlbF91Y193
+YW50c19ndWModWMpKSwKPiAgCQl5ZXNubyhpbnRlbF91Y193YW50c19ndWNfc3VibWlzc2lvbih1
+YykpLAo+IC0JCXllc25vKGludGVsX3VjX3dhbnRzX2h1Yyh1YykpKTsKPiArCQl5ZXNubyhpbnRl
+bF91Y193YW50c19odWModWMpKSwKPiArCQl5ZXNubyhpbnRlbF91Y193YW50c19ndWNfc2xwYyh1
+YykpKTsKPiAgCj4gIAlpZiAoaTkxNS0+cGFyYW1zLmVuYWJsZV9ndWMgPT0gMCkgewo+ICAJCUdF
+TV9CVUdfT04oaW50ZWxfdWNfd2FudHNfZ3VjKHVjKSk7Cj4gIAkJR0VNX0JVR19PTihpbnRlbF91
+Y193YW50c19ndWNfc3VibWlzc2lvbih1YykpOwo+ICAJCUdFTV9CVUdfT04oaW50ZWxfdWNfd2Fu
+dHNfaHVjKHVjKSk7Cj4gKwkJR0VNX0JVR19PTihpbnRlbF91Y193YW50c19ndWNfc2xwYyh1Yykp
+Owo+ICAJCXJldHVybjsKPiAgCX0KPiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L3VjL2ludGVsX3VjLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91
+Yy5oCj4gaW5kZXggZTJkYTJiNmU3NmUxLi45MjVhNThjYTZiOTQgMTAwNjQ0Cj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2d0L3VjL2ludGVsX3VjLmgKPiBAQCAtOCw2ICs4LDcgQEAKPiAgCj4gICNpbmNsdWRl
+ICJpbnRlbF9ndWMuaCIKPiAgI2luY2x1ZGUgImludGVsX2d1Y19zdWJtaXNzaW9uLmgiCj4gKyNp
+bmNsdWRlICJpbnRlbF9ndWNfc2xwYy5oIgo+ICAjaW5jbHVkZSAiaW50ZWxfaHVjLmgiCj4gICNp
+bmNsdWRlICJpOTE1X3BhcmFtcy5oIgo+ICAKPiBAQCAtODMsNiArODQsNyBAQCBfX3VjX3N0YXRl
+X2NoZWNrZXIoeCwgZnVuYywgdXNlcywgdXNlZCkKPiAgdWNfc3RhdGVfY2hlY2tlcnMoZ3VjLCBn
+dWMpOwo+ICB1Y19zdGF0ZV9jaGVja2VycyhodWMsIGh1Yyk7Cj4gIHVjX3N0YXRlX2NoZWNrZXJz
+KGd1YywgZ3VjX3N1Ym1pc3Npb24pOwo+ICt1Y19zdGF0ZV9jaGVja2VycyhndWMsIGd1Y19zbHBj
+KTsKCi4uLiBieSBhYm92ZSwgYnV0IG1heWJlIGNhbiBiZSBkb25lIHJpZ2h0IHdpdGg6CgoJdWNf
+c3RhdGVfY2hlY2tlcnMoZ3VjLnNscGMsIGd1Y19zbHBjKTsKCihub3QgYSBibG9ja2VyKQoKTWlj
+aGFsCgo+ICAKPiAgI3VuZGVmIHVjX3N0YXRlX2NoZWNrZXJzCj4gICN1bmRlZiBfX3VjX3N0YXRl
+X2NoZWNrZXIKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Cg==
