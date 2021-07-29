@@ -2,40 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4053D9FD6
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 10:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8255C3DA05E
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 11:39:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5F956ECF8;
-	Thu, 29 Jul 2021 08:50:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2EE16ED04;
+	Thu, 29 Jul 2021 09:39:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED5A26ECF6;
- Thu, 29 Jul 2021 08:50:49 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="193113263"
-X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="193113263"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 01:50:48 -0700
-X-IronPort-AV: E=Sophos;i="5.84,278,1620716400"; d="scan'208";a="664284878"
-Received: from badunne-mobl5.ger.corp.intel.com (HELO [10.252.9.201])
- ([10.252.9.201])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 01:50:47 -0700
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-References: <20210728103041.1669985-1-matthew.auld@intel.com>
- <20210728103041.1669985-4-matthew.auld@intel.com>
- <87eebi3ume.wl-ashutosh.dixit@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <ba2ce167-59eb-95d5-61be-d9b2828ff13b@intel.com>
-Date: Thu, 29 Jul 2021 09:50:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 885596ED02;
+ Thu, 29 Jul 2021 09:39:19 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4E4EA61057;
+ Thu, 29 Jul 2021 09:39:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1627551559;
+ bh=bDAURyhadET89IRU1m1b8zk8bNFLICeWHLbOoJ7WmYI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=JiGwE20En/csSY5rJ9StWSWNMk4nXmxRvbwXOpwRCibBpFSieTZqVtDbSVMOq3aVz
+ HJaCMMSPrtSkJioS4ITSdcoK6LF4SDnrdBUqfnTPNq85XB1Nwo9Z874djamC7d+7WW
+ AtyMIPr5+D4q92ipsIJRkwgr02zhklDX4GgkMOsT4iRLG9X/ezE1yW/+jVykbIDbf7
+ 5r1JuKggLh/CQYUryjfjA8JBU3F6/27LUJ1fkC7YP/3UqohDhoVV6hVXz3WTNTQVgZ
+ dEDA+4t/Skp30e8obvwLSchw289W3Tyyn6mMi4e9R3shob/TwLmFHVa1SFrL8JwBhM
+ FMF6MQ6wLR+Xg==
+From: Leon Romanovsky <leon@kernel.org>
+To: Doug Ledford <dledford@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Christoph Hellwig <hch@infradead.org>
+Date: Thu, 29 Jul 2021 12:39:10 +0300
+Message-Id: <cover.1627551226.git.leonro@nvidia.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <87eebi3ume.wl-ashutosh.dixit@intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH i-g-t v2 04/11] lib/i915/gem_mman: add fixed
- mode to gem_mmap__cpu
+Subject: [Intel-gfx] [PATCH rdma-next v3 0/3] SG fix together with update to
+ RDMA umem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,56 +45,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org
+Cc: Mustafa Ismail <mustafa.ismail@intel.com>, David Airlie <airlied@linux.ie>,
+ Mike Marciniszyn <mike.marciniszyn@cornelisnetworks.com>,
+ dri-devel@lists.freedesktop.org, Zhu Yanjun <zyjzyj2000@gmail.com>,
+ Leon Romanovsky <leonro@nvidia.com>,
+ Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+ linux-rdma@vger.kernel.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Ariel Elior <aelior@marvell.com>, Michal Kalderon <mkalderon@marvell.com>,
+ Roland Scheidegger <sroland@vmware.com>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Shiraz Saleem <shiraz.saleem@intel.com>,
+ Yishai Hadas <yishaih@nvidia.com>, Wenpeng Liang <liangwenpeng@huawei.com>,
+ linux-kernel@vger.kernel.org, Weihang Li <liweihang@huawei.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maor Gottlieb <maorg@nvidia.com>,
+ Zack Rusin <zackr@vmware.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 29/07/2021 00:07, Dixit, Ashutosh wrote:
-> On Wed, 28 Jul 2021 03:30:34 -0700, Matthew Auld wrote:
->>
->> diff --git a/lib/i915/gem_mman.c b/lib/i915/gem_mman.c
->> index 337d28fb..6f5e6d72 100644
->> --- a/lib/i915/gem_mman.c
->> +++ b/lib/i915/gem_mman.c
->> @@ -434,7 +434,13 @@ void *gem_mmap__device_coherent(int fd, uint32_t handle, uint64_t offset,
->>    */
->>   void *__gem_mmap__cpu(int fd, uint32_t handle, uint64_t offset, uint64_t size, unsigned prot)
->>   {
->> -	return __gem_mmap(fd, handle, offset, size, prot, 0);
->> +	void *ptr;
->> +
->> +	ptr = __gem_mmap(fd, handle, offset, size, prot, 0);
->> +	if (!ptr)
->> +		ptr = __gem_mmap_offset__fixed(fd, handle, offset, size, prot);
->> +
->> +	return ptr;
-> 
-> What about __gem_mmap__wc? Also shouldn't we just fix the __gem_mmap_offset
-> fallback in __gem_mmap and that will take care of both __gem_mmap__cpu and
-> __gem_mmap__wc?
+From: Leon Romanovsky <leonro@nvidia.com>
 
-For gem_mmap__wc it felt like slightly too much lying, since on discrete 
-smem-only buffers are always wb, and so the __wc here is not what the 
-user gets with the new FIXED mode. gem_mmap__device_coherent() I think 
-matches this new behaviour well, where we don't explicitly state what 
-the mapping type is, but instead just guarantee that the returned 
-mapping is device coherent. My rough thinking was to convert most users 
-of __wc over to __device_coherent(), at least in the tests that we care 
-about for discrete?
+Changelog:
+v3:
+ * Rewrote to new API suggestion
+ * Split for more patches
+v2: https://lore.kernel.org/lkml/cover.1626605893.git.leonro@nvidia.com
+ * Changed implementation of first patch, based on our discussion with Christoph.
+   https://lore.kernel.org/lkml/YNwaVTT0qmQdxaZz@infradead.org/
+v1: https://lore.kernel.org/lkml/cover.1624955710.git.leonro@nvidia.com/
+ * Fixed sg_page with a _dma_ API in the umem.c
+v0: https://lore.kernel.org/lkml/cover.1624361199.git.leonro@nvidia.com
 
-On the other hand if we are happy with the lie, I don't think anything 
-will break, and pretty much all testscases using mmap I think should 
-just magically work on discrete, and it does mean a less less work vs 
-converting to __device_coherent?
 
-> 
-> (I think it will actually also fix __gem_mmap__device_coherent and
-> __gem_mmap__cpu_coherent but maybe we can still have those patches in this
-> series especially if they save a couple of system calls).
-> 
+Maor Gottlieb (3):
+  lib/scatterlist: Provide a dedicated function to support table append
+  lib/scatterlist: Fix wrong update of orig_nents
+  RDMA: Use the sg_table directly and remove the opencoded version from
+    umem
+
+ drivers/gpu/drm/drm_prime.c                 |  13 +-
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  11 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c  |  14 +-
+ drivers/infiniband/core/umem.c              |  56 +++---
+ drivers/infiniband/core/umem_dmabuf.c       |   5 +-
+ drivers/infiniband/hw/hns/hns_roce_db.c     |   4 +-
+ drivers/infiniband/hw/irdma/verbs.c         |   2 +-
+ drivers/infiniband/hw/mlx4/doorbell.c       |   3 +-
+ drivers/infiniband/hw/mlx4/mr.c             |   4 +-
+ drivers/infiniband/hw/mlx5/doorbell.c       |   3 +-
+ drivers/infiniband/hw/mlx5/mr.c             |   3 +-
+ drivers/infiniband/hw/qedr/verbs.c          |   2 +-
+ drivers/infiniband/sw/rdmavt/mr.c           |   2 +-
+ drivers/infiniband/sw/rxe/rxe_mr.c          |   2 +-
+ include/linux/scatterlist.h                 |  54 +++++-
+ include/rdma/ib_umem.h                      |  11 +-
+ include/rdma/ib_verbs.h                     |  28 +++
+ lib/scatterlist.c                           | 189 ++++++++++++--------
+ tools/testing/scatterlist/main.c            |  38 ++--
+ 19 files changed, 275 insertions(+), 169 deletions(-)
+
+-- 
+2.31.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
