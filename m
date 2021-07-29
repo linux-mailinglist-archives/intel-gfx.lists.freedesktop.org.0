@@ -1,32 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55FB13DA567
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 16:01:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 875083DA599
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 16:06:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75DAF89C8D;
-	Thu, 29 Jul 2021 14:01:46 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5513889C8D;
- Thu, 29 Jul 2021 14:01:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4CCFBA47DB;
- Thu, 29 Jul 2021 14:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F27B66ECCC;
+	Thu, 29 Jul 2021 14:06:43 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com
+ [IPv6:2607:f8b0:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D1E66ECD0
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 14:06:43 +0000 (UTC)
+Received: by mail-ot1-x32c.google.com with SMTP id
+ c7-20020a9d27870000b02904d360fbc71bso5935577otb.10
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 07:06:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=GQQzsyH/f6URg61tofzTvzb4mIeJR5g7C3j0V5QBWwQ=;
+ b=ccbwg/bqYjVhkbLdaxvR8EM6zEzvGcGu7jr7OUsCCGSCnUW09Z3Opg1lve/8/IKAwN
+ 8Fou8bwC9ssQMTDHd+l/VrFCF1mWwf+/KDB/03XJ3iP/eyXi47/rABfdm0EE4PW8oIJk
+ fhKCnfC0U6DV4w+RwR/ndawzv56yVxsss6w0s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=GQQzsyH/f6URg61tofzTvzb4mIeJR5g7C3j0V5QBWwQ=;
+ b=aUvhqB1a+6p/kHUjtyq/7rjoZOlq+Lb1iOmMd2cMbwfsz8laUyhCQBhFxaS5Ew3vMB
+ A3PkmdeCpK5v2pIyYP56zBmBdOLxBKKcfOHyYTmWZA+fgVmwfUGZWgcbvcvbetRVrDxF
+ RxBJUr7NJdp+DsfQ7vDtfMpUzW14LjwMGU4e2WNvhi34AcpP7YyWSUSw7XsNsohqAOAy
+ 6cyupvUIvtCMhYZ4r/htELgVFxbOgYx9KbGo6/mkk07GPHCznRpWT05QuUzZnjZFCQWV
+ JGQJ//WND3R9ioVCGdp+WAu8mLXvbuoFj5EW/HIZkB8xeduG+YR+51TF3UKs3y2O03NH
+ XF1A==
+X-Gm-Message-State: AOAM532rYTJ/ENNlMx/QHPl8BI9qE/xDJhxSUMnp4TcaMR/jOdd5OmQy
+ WC0P6vHItlRN3QDkMYRV+/HYIK0ER/kyJGILFYgaGg==
+X-Google-Smtp-Source: ABdhPJxbrM2UdOJP5RHayc+aBxFznHhjSEsliI4VDpONNANw9FR5U/edlulFU7nITKOLjQcHXMH3SpVmt5O6OM8J/RI=
+X-Received: by 2002:a9d:27a4:: with SMTP id c33mr3642364otb.281.1627567602332; 
+ Thu, 29 Jul 2021 07:06:42 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 29 Jul 2021 14:01:45 -0000
-Message-ID: <162756730529.27325.16984714667767542806@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20210729133420.770672-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210729133420.770672-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/selftests=3A_fixup_?=
- =?utf-8?q?igt=5Fshrink=5Fthp?=
+ <20210729133420.770672-2-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210729133420.770672-2-tvrtko.ursulin@linux.intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Thu, 29 Jul 2021 16:06:31 +0200
+Message-ID: <CAKMK7uE412nf5RisGBR2GrNsvgPH+omHv4K+m5McJv1t55DQMQ@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Use Transparent Hugepages
+ when IOMMU is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,47 +60,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <Intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Matthew Auld <matthew.auld@intel.com>,
+ Eero Tamminen <eero.t.tamminen@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jul 29, 2021 at 3:34 PM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> Usage of Transparent Hugepages was disabled in 9987da4b5dcf
+> ("drm/i915: Disable THP until we have a GPU read BW W/A"), but since it
+> appears majority of performance regressions reported with an enabled IOMMU
+> can be almost eliminated by turning them on, lets just do that.
+>
+> To err on the side of safety we keep the current default in cases where
+> IOMMU is not active, and only when it is default to the "huge=within_size"
+> mode. Although there probably would be wins to enable them throughout,
+> more extensive testing across benchmarks and platforms would need to be
+> done.
+>
+> With the patch and IOMMU enabled my local testing on a small Skylake part
+> shows OglVSTangent regression being reduced from ~14% (IOMMU on versus
+> IOMMU off) to ~2% (same comparison but with THP on).
+>
+> v2:
+>  * Add Kconfig dependency to transparent hugepages and some help text.
+>  * Move to helper for easier handling of kernel build options.
+>
+> v3:
+>  * Drop Kconfig. (Daniel)
+>
+> References: b901bb89324a ("drm/i915/gemfs: enable THP")
+> References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/430
+> Co-developed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Eero Tamminen <eero.t.tamminen@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> # v1
 
-Series: series starting with [1/2] drm/i915/selftests: fixup igt_shrink_thp
-URL   : https://patchwork.freedesktop.org/series/93182/
-State : warning
+On both patches: Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gemfs.c | 22 +++++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> index 5e6e8c91ab38..dbdbdc344d87 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> @@ -6,7 +6,6 @@
+>
+>  #include <linux/fs.h>
+>  #include <linux/mount.h>
+> -#include <linux/pagemap.h>
+>
+>  #include "i915_drv.h"
+>  #include "i915_gemfs.h"
+> @@ -15,6 +14,7 @@ int i915_gemfs_init(struct drm_i915_private *i915)
+>  {
+>         struct file_system_type *type;
+>         struct vfsmount *gemfs;
+> +       char *opts;
+>
+>         type = get_fs_type("tmpfs");
+>         if (!type)
+> @@ -26,10 +26,26 @@ int i915_gemfs_init(struct drm_i915_private *i915)
+>          *
+>          * One example, although it is probably better with a per-file
+>          * control, is selecting huge page allocations ("huge=within_size").
+> -        * Currently unused due to bandwidth issues (slow reads) on Broadwell+.
+> +        * However, we only do so to offset the overhead of iommu lookups
+> +        * due to bandwidth issues (slow reads) on Broadwell+.
+>          */
+>
+> -       gemfs = kern_mount(type);
+> +       opts = NULL;
+> +       if (intel_vtd_active()) {
+> +               if (IS_ENABLED(CONFIG_TRANSPARENT_HUGEPAGE)) {
+> +                       static char huge_opt[] = "huge=within_size"; /* r/w */
+> +
+> +                       opts = huge_opt;
+> +                       drm_info(&i915->drm,
+> +                                "Transparent Hugepage mode '%s'\n",
+> +                                opts);
+> +               } else {
+> +                       drm_notice(&i915->drm,
+> +                                  "Transparent Hugepage support is recommended for optimal performance when IOMMU is enabled!\n");
+> +               }
+> +       }
+> +
+> +       gemfs = vfs_kern_mount(type, SB_KERNMOUNT, type->name, opts);
+>         if (IS_ERR(gemfs))
+>                 return PTR_ERR(gemfs);
+>
+> --
+> 2.30.2
+>
 
-$ dim checkpatch origin/drm-tip
-1cac26e2f95f drm/i915/selftests: fixup igt_shrink_thp
-054c89f72f0f drm/i915: Use Transparent Hugepages when IOMMU is enabled
--:6: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")'
-#6: 
-Usage of Transparent Hugepages was disabled in 9987da4b5dcf
 
--:28: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b901bb89324a ("drm/i915/gemfs: enable THP")'
-#28: 
-References: b901bb89324a ("drm/i915/gemfs: enable THP")
-
--:29: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#29: 
-References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
-
--:29: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")'
-#29: 
-References: 9987da4b5dcf ("drm/i915: Disable THP until we have a GPU read BW W/A")
-
--:75: WARNING:STATIC_CONST_CHAR_ARRAY: static char array declaration should probably be static const char
-#75: FILE: drivers/gpu/drm/i915/gem/i915_gemfs.c:36:
-+			static char huge_opt[] = "huge=within_size"; /* r/w */
-
-total: 3 errors, 2 warnings, 0 checks, 42 lines checked
-
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
