@@ -2,34 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1002C3DA99D
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 19:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B383DA99E
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 19:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 734786EDF6;
-	Thu, 29 Jul 2021 17:01:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A4546EE08;
+	Thu, 29 Jul 2021 17:01:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9985A6EE02
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6E116EE03
  for <intel-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 17:00:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="212966825"
-X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="212966825"
+X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="212966826"
+X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="212966826"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jul 2021 10:00:23 -0700
-X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="417712154"
+X-IronPort-AV: E=Sophos;i="5.84,279,1620716400"; d="scan'208";a="417712164"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jul 2021 10:00:22 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Jul 2021 10:00:00 -0700
-Message-Id: <20210729170008.2836648-11-matthew.d.roper@intel.com>
+Date: Thu, 29 Jul 2021 10:00:01 -0700
+Message-Id: <20210729170008.2836648-12-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210729170008.2836648-1-matthew.d.roper@intel.com>
 References: <20210729170008.2836648-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 10/18] drm/i915/xehpsdv: Add compute DSS type
+Subject: [Intel-gfx] [PATCH v4 11/18] drm/i915/dg2: DG2 uses the same sseu
+ limits as XeHP SDV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,273 +43,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stuart Summers <stuart.summers@intel.com>
-
-Starting in XeHP, the concept of slice has been removed in favor of
-DSS (Dual-Subslice) masks for various workload types. These workloads have
-been divided into those enabled for geometry and those enabled for compute.
-
-i915 currently maintains a single set of S/SS/EU masks for the device.
-The goal of this patch set is to minimize the amount of impact to prior
-generations while still giving the user maximum flexibility.
-
-Bspec: 33117, 33118, 20376
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Steve Hampson <steven.t.hampson@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_sseu.c | 73 ++++++++++++++++++++--------
- drivers/gpu/drm/i915/gt/intel_sseu.h |  5 +-
- drivers/gpu/drm/i915/i915_reg.h      |  3 +-
- include/uapi/drm/i915_drm.h          |  3 --
- 4 files changed, 59 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
-index 16c0552fcd1d..5d3b8dff464c 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-@@ -46,11 +46,11 @@ u32 intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice)
- }
- 
- void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int slice,
--			      u32 ss_mask)
-+			      u8 *subslice_mask, u32 ss_mask)
- {
- 	int offset = slice * sseu->ss_stride;
- 
--	memcpy(&sseu->subslice_mask[offset], &ss_mask, sseu->ss_stride);
-+	memcpy(&subslice_mask[offset], &ss_mask, sseu->ss_stride);
- }
- 
- unsigned int
-@@ -100,14 +100,24 @@ static u16 compute_eu_total(const struct sseu_dev_info *sseu)
- 	return total;
- }
- 
--static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
--				    u8 s_en, u32 ss_en, u16 eu_en)
-+static u32 get_ss_stride_mask(struct sseu_dev_info *sseu, u8 s, u32 ss_en)
-+{
-+	u32 ss_mask;
-+
-+	ss_mask = ss_en >> (s * sseu->max_subslices);
-+	ss_mask &= GENMASK(sseu->max_subslices - 1, 0);
-+
-+	return ss_mask;
-+}
-+
-+static void gen11_compute_sseu_info(struct sseu_dev_info *sseu, u8 s_en,
-+				    u32 g_ss_en, u32 c_ss_en, u16 eu_en)
- {
- 	int s, ss;
- 
--	/* ss_en represents entire subslice mask across all slices */
-+	/* g_ss_en/c_ss_en represent entire subslice mask across all slices */
- 	GEM_BUG_ON(sseu->max_slices * sseu->max_subslices >
--		   sizeof(ss_en) * BITS_PER_BYTE);
-+		   sizeof(g_ss_en) * BITS_PER_BYTE);
- 
- 	for (s = 0; s < sseu->max_slices; s++) {
- 		if ((s_en & BIT(s)) == 0)
-@@ -115,7 +125,23 @@ static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
- 
- 		sseu->slice_mask |= BIT(s);
- 
--		intel_sseu_set_subslices(sseu, s, ss_en);
-+		/*
-+		 * XeHP introduces the concept of compute vs
-+		 * geometry DSS. To reduce variation between GENs
-+		 * around subslice usage, store a mask for both the
-+		 * geometry and compute enabled masks, to provide
-+		 * to user space later in QUERY_TOPOLOGY_INFO, and
-+		 * compute a total enabled subslice count for the
-+		 * purposes of selecting subslices to use in a
-+		 * particular GEM context.
-+		 */
-+		intel_sseu_set_subslices(sseu, s, sseu->compute_subslice_mask,
-+					 get_ss_stride_mask(sseu, s, c_ss_en));
-+		intel_sseu_set_subslices(sseu, s, sseu->geometry_subslice_mask,
-+					 get_ss_stride_mask(sseu, s, g_ss_en));
-+		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
-+					 get_ss_stride_mask(sseu, s,
-+							    g_ss_en | c_ss_en));
- 
- 		for (ss = 0; ss < sseu->max_subslices; ss++)
- 			if (intel_sseu_has_subslice(sseu, s, ss))
-@@ -129,7 +155,7 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
- {
- 	struct sseu_dev_info *sseu = &gt->info.sseu;
- 	struct intel_uncore *uncore = gt->uncore;
--	u32 dss_en;
-+	u32 g_dss_en, c_dss_en = 0;
- 	u16 eu_en = 0;
- 	u8 eu_en_fuse;
- 	u8 s_en;
-@@ -145,10 +171,12 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
- 	 * across the entire device. Then calculate out the DSS for each
- 	 * workload type within that software slice.
- 	 */
--	if (IS_XEHPSDV(gt->i915))
-+	if (IS_XEHPSDV(gt->i915)) {
- 		intel_sseu_set_info(sseu, 1, 32, 16);
--	else
-+		sseu->has_compute_dss = 1;
-+	} else {
- 		intel_sseu_set_info(sseu, 1, 6, 16);
-+	}
- 
- 	/*
- 	 * As mentioned above, Xe_HP does not have the concept of a slice.
-@@ -160,7 +188,9 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
- 		s_en = intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE) &
- 		       GEN11_GT_S_ENA_MASK;
- 
--	dss_en = intel_uncore_read(uncore, GEN12_GT_DSS_ENABLE);
-+	g_dss_en = intel_uncore_read(uncore, GEN12_GT_GEOMETRY_DSS_ENABLE);
-+	if (sseu->has_compute_dss)
-+		c_dss_en = intel_uncore_read(uncore, GEN12_GT_COMPUTE_DSS_ENABLE);
- 
- 	/* one bit per pair of EUs */
- 	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
-@@ -173,7 +203,7 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
- 		if (eu_en_fuse & BIT(eu))
- 			eu_en |= BIT(eu * 2) | BIT(eu * 2 + 1);
- 
--	gen11_compute_sseu_info(sseu, s_en, dss_en, eu_en);
-+	gen11_compute_sseu_info(sseu, s_en, g_dss_en, c_dss_en, eu_en);
- 
- 	/* TGL only supports slice-level power gating */
- 	sseu->has_slice_pg = 1;
-@@ -199,7 +229,7 @@ static void gen11_sseu_info_init(struct intel_gt *gt)
- 	eu_en = ~(intel_uncore_read(uncore, GEN11_EU_DISABLE) &
- 		  GEN11_EU_DIS_MASK);
- 
--	gen11_compute_sseu_info(sseu, s_en, ss_en, eu_en);
-+	gen11_compute_sseu_info(sseu, s_en, ss_en, 0, eu_en);
- 
- 	/* ICL has no power gating restrictions. */
- 	sseu->has_slice_pg = 1;
-@@ -260,9 +290,9 @@ static void gen10_sseu_info_init(struct intel_gt *gt)
- 		 * Slice0 can have up to 3 subslices, but there are only 2 in
- 		 * slice1/2.
- 		 */
--		intel_sseu_set_subslices(sseu, s, s == 0 ?
--					 subslice_mask_with_eus :
--					 subslice_mask_with_eus & 0x3);
-+		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
-+					 s == 0 ? subslice_mask_with_eus :
-+						  subslice_mask_with_eus & 0x3);
- 	}
- 
- 	sseu->eu_total = compute_eu_total(sseu);
-@@ -317,7 +347,7 @@ static void cherryview_sseu_info_init(struct intel_gt *gt)
- 		sseu_set_eus(sseu, 0, 1, ~disabled_mask);
- 	}
- 
--	intel_sseu_set_subslices(sseu, 0, subslice_mask);
-+	intel_sseu_set_subslices(sseu, 0, sseu->subslice_mask, subslice_mask);
- 
- 	sseu->eu_total = compute_eu_total(sseu);
- 
-@@ -373,7 +403,8 @@ static void gen9_sseu_info_init(struct intel_gt *gt)
- 			/* skip disabled slice */
- 			continue;
- 
--		intel_sseu_set_subslices(sseu, s, subslice_mask);
-+		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
-+					 subslice_mask);
- 
- 		eu_disable = intel_uncore_read(uncore, GEN9_EU_DISABLE(s));
- 		for (ss = 0; ss < sseu->max_subslices; ss++) {
-@@ -485,7 +516,8 @@ static void bdw_sseu_info_init(struct intel_gt *gt)
- 			/* skip disabled slice */
- 			continue;
- 
--		intel_sseu_set_subslices(sseu, s, subslice_mask);
-+		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
-+					 subslice_mask);
- 
- 		for (ss = 0; ss < sseu->max_subslices; ss++) {
- 			u8 eu_disabled_mask;
-@@ -583,7 +615,8 @@ static void hsw_sseu_info_init(struct intel_gt *gt)
- 			    sseu->eu_per_subslice);
- 
- 	for (s = 0; s < sseu->max_slices; s++) {
--		intel_sseu_set_subslices(sseu, s, subslice_mask);
-+		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
-+					 subslice_mask);
- 
- 		for (ss = 0; ss < sseu->max_subslices; ss++) {
- 			sseu_set_eus(sseu, s, ss,
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
-index 204ea6709460..b383e7d97554 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.h
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-@@ -32,6 +32,8 @@ struct drm_printer;
- struct sseu_dev_info {
- 	u8 slice_mask;
- 	u8 subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
-+	u8 geometry_subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
-+	u8 compute_subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
- 	u8 eu_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICES * GEN_MAX_EU_STRIDE];
- 	u16 eu_total;
- 	u8 eu_per_subslice;
-@@ -41,6 +43,7 @@ struct sseu_dev_info {
- 	u8 has_slice_pg:1;
- 	u8 has_subslice_pg:1;
- 	u8 has_eu_pg:1;
-+	u8 has_compute_dss:1;
- 
- 	/* Topology fields */
- 	u8 max_slices;
-@@ -104,7 +107,7 @@ intel_sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8 slice);
- u32  intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice);
- 
- void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int slice,
--			      u32 ss_mask);
-+			      u8 *subslice_mask, u32 ss_mask);
- 
- void intel_sseu_info_init(struct intel_gt *gt);
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 99858bc593f0..d7e4418955f7 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3223,7 +3223,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- 
- #define GEN11_GT_SUBSLICE_DISABLE _MMIO(0x913C)
- 
--#define GEN12_GT_DSS_ENABLE _MMIO(0x913C)
-+#define GEN12_GT_GEOMETRY_DSS_ENABLE _MMIO(0x913C)
-+#define GEN12_GT_COMPUTE_DSS_ENABLE _MMIO(0x9144)
- 
- #define XEHP_EU_ENABLE			_MMIO(0x9134)
- #define XEHP_EU_ENA_MASK		0xFF
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 7f13d241417f..aef15542a95b 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -2589,9 +2589,6 @@ struct drm_i915_query {
-  *                 Z / 8] >> (Z % 8)) & 1
-  */
- struct drm_i915_query_topology_info {
--	/*
--	 * Unused for now. Must be cleared to zero.
--	 */
- 	__u16 flags;
- 
- 	__u16 max_slices;
--- 
-2.25.4
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+REcyIHN1cHBvcnRzIGNvbXB1dGUgRFNTIGFuZCBoYXMgdGhlIHNhbWUgbWF4aW11bSBudW1iZXIg
+b2YgRFNTIGFuZCBFVQphcyBYZUhQIFNEVi4KClNpZ25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1h
+dHRoZXcuZC5yb3BlckBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBDYXogWW9rb3lhbWEgPGNhei55
+b2tveWFtYUBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
+b3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9z
+c2V1LmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24o
+LSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9zc2V1LmMgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9zc2V1LmMKaW5kZXggNWQzYjhkZmY0NjRjLi5l
+YWZmMjIxZGI1YjAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Nz
+ZXUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9zc2V1LmMKQEAgLTE3MSw3
+ICsxNzEsNyBAQCBzdGF0aWMgdm9pZCBnZW4xMl9zc2V1X2luZm9faW5pdChzdHJ1Y3QgaW50ZWxf
+Z3QgKmd0KQogCSAqIGFjcm9zcyB0aGUgZW50aXJlIGRldmljZS4gVGhlbiBjYWxjdWxhdGUgb3V0
+IHRoZSBEU1MgZm9yIGVhY2gKIAkgKiB3b3JrbG9hZCB0eXBlIHdpdGhpbiB0aGF0IHNvZnR3YXJl
+IHNsaWNlLgogCSAqLwotCWlmIChJU19YRUhQU0RWKGd0LT5pOTE1KSkgeworCWlmIChJU19ERzIo
+Z3QtPmk5MTUpIHx8IElTX1hFSFBTRFYoZ3QtPmk5MTUpKSB7CiAJCWludGVsX3NzZXVfc2V0X2lu
+Zm8oc3NldSwgMSwgMzIsIDE2KTsKIAkJc3NldS0+aGFzX2NvbXB1dGVfZHNzID0gMTsKIAl9IGVs
+c2UgewotLSAKMi4yNS40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZngK
