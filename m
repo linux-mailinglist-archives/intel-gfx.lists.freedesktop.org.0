@@ -1,142 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF223D9B3C
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 03:51:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E5A13D9B3D
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Jul 2021 03:53:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FBBD6E958;
-	Thu, 29 Jul 2021 01:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 426256E8BF;
+	Thu, 29 Jul 2021 01:53:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F926E8BF;
- Thu, 29 Jul 2021 01:51:39 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="212774452"
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="212774452"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2021 18:51:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="464900720"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga008.jf.intel.com with ESMTP; 28 Jul 2021 18:51:38 -0700
-Received: from fmsmsx604.amr.corp.intel.com (10.18.126.84) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 28 Jul 2021 18:51:37 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10 via Frontend Transport; Wed, 28 Jul 2021 18:51:37 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Wed, 28 Jul 2021 18:51:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZqM1zvvhsiSSy25OIn9pelChny5AEDbibUGwtmmK3TxnZ4dOOlMa1D4NOskJ9FT2UTTv6jzw92IeoULjiRPSObeuD998yCpPz84TkJNb1mOdZCQ1T4yo8BxwAcFc0bsS74EcGWFS1P2TEl7tUuoYKAy+bk3dUwhwu8cV4EygKA0dCnm8lIOWQ8K6YtIrY7oAxDTdDPGqZB0iRwVIT+S77RhQmCq2dJSb0YlcC4gcQ5+1b6wfFATp7yUL1rEtTJr/MKrXk5dTn+hAnS6GuYXnbDrCmdSkfNwCM5B4wWKmHp8EAmPyyzPLtlO9vJ6Z7hGbbs/1OVUYz2JMLgQCdEJKjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F1so04JjA/8paOU/2RAKiJpyaB6ckTuvKQQIvWdn6Jg=;
- b=d7qoNQQ+owOpu0w5ninGNqOjoymQ90HtkktPcIiw7XK8Q5YUWTh7ohQF1V4cXnOfruZyivzesv+Xe6LSvc4DqzfsOtgm18ti82i+zHh4QblE2i1MbNPNvEhqzBYD5ysOoo0QcUezv5njnAW3sBDII9tWJkIHB82JVjep/Bbf/rToxh7q4DCaOd7cHmLPVONc8kZNThAWQ5C5W4HCyaOJMNzC9Z0j7bL2OaVSnkGL/SK1DonUu5/cOjDtVnwyXgoMEkrR9qr/cuJ9oZ04zM/k7NojHw8QH8ws7yq+IfymkXWZcGlNWW6pLzAQSarmxoJie7BmPDeU6ncjeOERlGDI8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F1so04JjA/8paOU/2RAKiJpyaB6ckTuvKQQIvWdn6Jg=;
- b=ndncSBmhVY0FvAdDF8Bc98zok7LMsbH26IPFAuQIhwrcFjv2k+OQSPpTm/kZcE3oYf/uC2WXBMVBQ9Dr11/kVCH+GyTgJ4zDykq0xbYT/HCC3qjBHCU/zNvOhDZssrER3r3l9G08Din7xfPSzro18K7Uda92cHU++HhC0hlr4TE=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- DM6PR11MB3818.namprd11.prod.outlook.com (2603:10b6:5:145::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4352.31; Thu, 29 Jul 2021 01:51:32 +0000
-Received: from DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::4017:e7ce:ef66:48d7]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::4017:e7ce:ef66:48d7%9]) with mapi id 15.20.4373.020; Thu, 29 Jul 2021
- 01:51:32 +0000
-To: Matthew Brost <matthew.brost@intel.com>, <igt-dev@lists.freedesktop.org>
-References: <20210727152202.9527-1-matthew.brost@intel.com>
- <20210727152202.9527-7-matthew.brost@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <e46a72c7-3443-bbcd-273e-6939b743fc2b@intel.com>
-Date: Wed, 28 Jul 2021 18:51:29 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.12.0
-In-Reply-To: <20210727152202.9527-7-matthew.brost@intel.com>
-Content-Language: en-US
-X-ClientProxiedBy: MW4PR03CA0058.namprd03.prod.outlook.com
- (2603:10b6:303:8e::33) To DM4PR11MB5488.namprd11.prod.outlook.com
- (2603:10b6:5:39d::5)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.65] (99.72.232.53) by
- MW4PR03CA0058.namprd03.prod.outlook.com (2603:10b6:303:8e::33) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4373.20 via Frontend Transport; Thu, 29 Jul 2021 01:51:31 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3da3e1f6-a16c-47a3-2acc-08d9523363e1
-X-MS-TrafficTypeDiagnostic: DM6PR11MB3818:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR11MB3818C7D7F692214A2DAA6CABF4EB9@DM6PR11MB3818.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FC/wWnl/H/fgckr40EBunY8RT3ZEFDs/mRQMw8NutQoiGtcHIn4eVbq9oZpvYQ7EXdu+GveLOGUd6E++4pKXq/jh3khmLSYZKfvhykdWncl8+07dSNQqC3dBytpjOvn2mKS6tL7zgHkJIwzPIef+Ams9kBxbr1TcJs5t9ndq11EhPlghJHszJN3r3eIAsHmfin/wCkIaLfwfr2W0G/suMBvJaN3LRMAOzaYHhIBho2IVrIkGBqpnbX+iDGxw8whx1agqhpkEysAS9Om/crKH/7vFXtPh4XSVB6ummL/qlrgnXE9aYJV+o0Dga57FCdk0I5SngQYNLrXxGLNCp+WPO2rYz5Sz2rdFY+YgWUHy0qiGj1jvu/5xYKIbg7Ymz/YihxX4Ho+DW5YK4jW3hz9a3i4KjnbJdS/D1xs/JiTWsORYlqgq5uGYxmWZCqN2xqLPRPRFFtf325lQtJXWgNW75+RqkduQrkpqZn7Dc/uIKYMo0qlj6Nu0KBymqbfevLMdKSFtO8YyCspYUURjwJXTHwEVR3iUrQhhJ+7gPyR37VTn6hCD0HnNWV6N3JuupabvuPIpuP607kAUrTFINwzC+kmtvah1UgAhfeRREcF7yDXqu3EGC2eZ1ctt67rSLkVK/DVjEotgGqeiNx6iFXaog2yjONapNBhBXUfVLKUWzNqIYDFRCUzIrblXVT8liCWKQgO6EvwYmdu10lpWoRNTfIDdoH2e0ppdxV0UaVAr5NE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(396003)(366004)(39860400002)(376002)(346002)(53546011)(83380400001)(36756003)(8936002)(2906002)(31686004)(956004)(8676002)(2616005)(66476007)(186003)(26005)(16576012)(4326008)(38100700002)(5660300002)(31696002)(86362001)(316002)(450100002)(66556008)(478600001)(66946007)(6486002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEN0NHhKOEJ3VmM5cGdFMFkxbkhhTHlSQjUwSFNTL3ZjNm4xTFc3R0d3NHpM?=
- =?utf-8?B?a2YxRGs3cW1QZEhuU3V5Q2lmRGlNWTdrUnlxSndTcEZIZjJLMXVVSTIzZ3hZ?=
- =?utf-8?B?aGZvWXhiTmhGQXVUeWg4VVhyU0dFZWE0U3RtbUh2ZjIwWkV6aUxFSTc3NHRY?=
- =?utf-8?B?R0pMNkw1VVpLQ2lMTzRCOGQ0MHFjaXd3MS9aTEZ1MzZmZU5wVnVDWk9welJn?=
- =?utf-8?B?bUF1RTJmN1c0NlpINmRYM21MOVM5REh4TXY2Z2E3YlVidTVwaEdFb1BoNXlu?=
- =?utf-8?B?YW5RU0IvOHJ3SGJTNDNQRTN1c09uaTRNazdqOW9BdnFTTGtTVlRGejI2Zk1F?=
- =?utf-8?B?Tk8vNnEzdXhWMjFIaGhRdEh3aFpkeVhKOGZqWEpxUnc1VVpqNHVGbExCZzZ3?=
- =?utf-8?B?TEpNb0VaT211ZDFDNzVlSUYxZ1RXdGNxSm1RQmxSWWVYNnVqaEp4ZlltNzdz?=
- =?utf-8?B?NUVaNStGanBKTFhLU2FlNzB0VlNhdEN5cHAvYWtlQnJEQ2VhOEhpOC9kYTZS?=
- =?utf-8?B?eExrZ2R3aEV0NkI2N043MkwzTDVDZGJ4K2hrTGllanhGYUZLYmw0SDVUc2tJ?=
- =?utf-8?B?VFpVNERSbjZsZC9NVkFadnRwM3p6WGZWQXN6QzVjbENrdHJXMzV2Y0ROdFU3?=
- =?utf-8?B?MEhlMHdIbVYvcjRLQzhVOFhiK3g0dHJUR0c2MmEvUW5VYnFWTEtpcVVLdUdh?=
- =?utf-8?B?YlBYMDhzNlA0TzZScnJ5bVQ0Zk0rTjRlUTlNWGx1Q3hCRVIrZmpxZHptbjRo?=
- =?utf-8?B?UE0zcFlEdFF1VFJtdy9XaHc5alhCTmF1cnl6NFpwcU5tbTBBbnhQUmh5YStM?=
- =?utf-8?B?Rk0vdFlWbTBqNjB2Q25xdTlhYWpkcERDNksyR1lPRHozbnYwV0s0cUY5Mmwx?=
- =?utf-8?B?Ry9MMGxEV2hUMHRJZHFSdmhIN2M2cHFtK1pPN2g0T3ZrNytSajNXT0puWUZy?=
- =?utf-8?B?Snk4V2IxZzBnOGphdFc2V3lGcU5EYzlycGlvVHNqRStUYk8raXJWYjNjZEdJ?=
- =?utf-8?B?UDJiQTgyM3NwMzY1enpzOFN6dE5OcFNxR0hBblZ6dGVIUEpXRUlYZWFpb1NY?=
- =?utf-8?B?Y0U3QnpWT1VhdS95eXYvTUhod3FWVVUwbDFVdXdGMDVUWWFKN0kyM0VjdklH?=
- =?utf-8?B?eGpCMjlTZDNhQVgvTUU5RC9pZ0ExVDd5NHM1NDRuUWFWSTBhQ1FPaVJhMTJV?=
- =?utf-8?B?Tm9IeisydHBSaEF5K0NnMWxLMEluK0xPNjBsRS9DQ29NZkpEYk1WM2Z3eENw?=
- =?utf-8?B?S2s3ek0vVW9Wa2FFR2o2SThON2JGV3BEY3djeDd2Q1JubXM0YVEzVHFDd2hD?=
- =?utf-8?B?Ry9GcmVDVjlCbWU5YnFRTThRMEt4T0xtVWt6Y2ZEZGxvSWMwVThrdWRVSkFI?=
- =?utf-8?B?TUpiQWh6dWZHSk00cm5kRFJONlhjUWI0akZVUEV2SnFtdndkZUVGaVJDQk1v?=
- =?utf-8?B?S0xXYnUyVGY5aFFMVE1XZjl5UG1rZ0hhc1ZQbEVxeVIvUFRpUVEyb2FiRkRr?=
- =?utf-8?B?WG9KV3IrejBGYlRLdEhIVnhsNWhkdGNBYWdJUDgwRllMZXlnbHFoQ2UzY1ZV?=
- =?utf-8?B?VFAxaFl5b3JGUkJxcGdHM01yRUNpaDdjVC9LSExwZG5NMktNalozeHU4SFBi?=
- =?utf-8?B?THlCVW4zMEdIUnlsaVMxSzRUQ3hMUkluVTUvTnBYTlFHSThaRm9QMEp0Uldm?=
- =?utf-8?B?NWFYSklibXhxakRWV2crOW5WRjhuSDdCdnVYeFNQck9zRmtycnVlUGpEUUJZ?=
- =?utf-8?Q?osE5Nxt2Xi4mJS49T/3Q060WVny+j76eThWJ4Oj?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3da3e1f6-a16c-47a3-2acc-08d9523363e1
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2021 01:51:32.3699 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hC5EdclpNIUXL2BPFQW+onvCsG+7zaVrGvYm8RM1sFwcqrFkXgUc/sicFo5jl6FLn75oHKibOG+XCIeGNCQtqyfl0qLPUApC5kxZ7Fst2zc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3818
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 6/7] i915/gem_scheduler:
- Make gem_scheduler understand static priority mapping
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 587606E8BF;
+ Thu, 29 Jul 2021 01:53:54 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10059"; a="276566730"
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="276566730"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2021 18:53:52 -0700
+X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="517878583"
+Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.99.34])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2021 18:53:51 -0700
+Date: Wed, 28 Jul 2021 18:53:50 -0700
+Message-ID: <87czr151ht.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Petri Latvala <petri.latvala@intel.com>
+In-Reply-To: <YQD0aEia7NCsBUrq@platvala-desk.ger.corp.intel.com>
+References: <20210726120310.1115522-1-matthew.auld@intel.com>	<87fsvznqmj.wl-ashutosh.dixit@intel.com>	<YQD0aEia7NCsBUrq@platvala-desk.ger.corp.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/27.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/7] lib/i915/gem_mman: add
+ FIXED mmap mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,179 +46,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 7/27/2021 8:22 AM, Matthew Brost wrote:
-> The i915 currently has 2k visible priority levels which are currently
-> unique. This is changing to statically map these 2k levels into 3
-> buckets:
+On Tue, 27 Jul 2021 23:08:40 -0700, Petri Latvala wrote:
 >
-> low: < 0
-> mid: 0
-> high: > 0
+> On Tue, Jul 27, 2021 at 07:01:24PM -0700, Dixit, Ashutosh wrote:
+> > On Mon, 26 Jul 2021 05:03:04 -0700, Matthew Auld wrote:
+> > >
+> > > diff --git a/lib/i915/gem_mman.c b/lib/i915/gem_mman.c
+> > > index 4b4f2114..e2514f0c 100644
+> > > --- a/lib/i915/gem_mman.c
+> > > +++ b/lib/i915/gem_mman.c
+> > > @@ -497,6 +497,43 @@ void *gem_mmap_offset__cpu(int fd, uint32_t handle, uint64_t offset,
+> > >	return ptr;
+> > >  }
+> > >
+> > > +#define LOCAL_I915_MMAP_OFFSET_FIXED 4
+> >
+> > Cc: @Petri Latvala
+> >
+> > This use of LOCAL declarations is more related to the methodology we follow
+> > in IGT rather than this patch. We have seen in the past that such LOCAL's
+> > linger on in the code for months and years till someone decides to clean
+> > them so the question is can we prevent these LOCAL's from getting
+> > introduced in the first place.
+> >
+> > One reason for these is that we sync IGT headers with drm-next whereas IGT
+> > is used to test drm-tip. So the delta between the two results in such
+> > LOCAL's as in this case.
+> >
+> > My proposal is that even if we don't start sync'ing IGT headers with
+> > drm-tip (instead of drm-next) we allow direct modification of the headers
+> > when needed to avoid introducing such LOCAL's. So in the above case we
+> > would add:
+> >
+> > #define I915_MMAP_OFFSET_FIXED 4
+> >
+> > to i915_drm.h as part of this patch and then just use
+> > I915_MMAP_OFFSET_FIXED. If another sync happens from drm-next before this
+> > #define has appeared there, the compile will break and whoever syncs will
+> > need to add this again to i915_drm.h.
 >
-> Update gem_scheduler to understand this. This entails updating promotion
-> test to use 3 levels that will map into different buckets and also
-> delete a racey check. Also skip any tests that rely on having more than
-
-Can you elaborate on why the check is racey? I'm sure you've already 
-explained it to me in the past but can't spot it right now.
-
-> 3 priority levels.
+> I don't like that kind of a breakage at all. That enforces mandatory
+> fixups to some poor developer working on unrelated code who doesn't
+> necessarily know how to even fix it easily.
 >
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   lib/i915/gem_scheduler.c       | 13 ++++++++++
->   lib/i915/gem_scheduler.h       |  1 +
->   tests/i915/gem_exec_schedule.c | 47 ++++++++++++++++++++--------------
->   3 files changed, 42 insertions(+), 19 deletions(-)
+> Of course an argument can be made that it's an i915 token in an i915
+> header so it will be the i915 people doing it, but for a general case
+> that's going to cause more harm than it solves problems, I feel.
+
+OK, let's not change anything with the headers we import for now.
+
+> > What do people think about a scheme such as this? The other, perhaps
+> > better, option of course is to sync the headers directly with drm-tip
+> > (whenever and as often as needed). But the goal in both cases is to avoid
+> > LOCAL's, or other things like #ifndef's distributed throughout multiple
+> > source files which we also do in such cases. A centralized internal header
+> > to contain such declarations might not be so bad. Thanks.
 >
-> diff --git a/lib/i915/gem_scheduler.c b/lib/i915/gem_scheduler.c
-> index cdddf42ad..bec2e485a 100644
-> --- a/lib/i915/gem_scheduler.c
-> +++ b/lib/i915/gem_scheduler.c
-> @@ -90,6 +90,19 @@ bool gem_scheduler_has_ctx_priority(int fd)
->   		I915_SCHEDULER_CAP_PRIORITY;
->   }
->   
-> +/**
-> + * gem_scheduler_has_ctx_priority:
+> A separate manually written header for new tokens that are not yet in
+> drm-next might be the least bad of all options. Although now that I've
+> said it, the perfect world would have new tokens done like this:
+>
+> #ifndef I915_MMAP_OFFSET_FIXED
+> #define I915_MMAP_OFFSET_FIXED 4
+> #else
+> _Static_assert(I915_MMAP_OFFSET_FIXED == 4, "ABI broken, yikes");
+> #endif
+>
+> In a different language wrapping all that in a
+>
+> MAYBE_DECLARE(I915_MMAP_OFFSET_FIXED, 4)
+>
+> might be easier but with C preprocessor it's a bit more... involved. A
+> separate build-time script to generate that header maybe? Such a
+> script could also just completely omit the definition if header copies
+> already introduce the token.
 
-s/ctx/static/
+IMO all this wouldn't do much more that what gcc already does. For example,
+for this:
 
-LGTM apart from this.
+#define I915_MMAP_OFFSET_FIXED 4
+#define I915_MMAP_OFFSET_FIXED 4
 
-Daniele
+gcc silently ignores the second #define, whereas for:
 
-> + * @fd: open i915 drm file descriptor
-> + *
-> + * Feature test macro to query whether the driver supports priority assigned
-> + * from user space are statically mapping into 3 buckets.
-> + */
-> +bool gem_scheduler_has_static_priority(int fd)
-> +{
-> +	return gem_scheduler_capability(fd) &
-> +		I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP;
-> +}
-> +
->   /**
->    * gem_scheduler_has_preemption:
->    * @fd: open i915 drm file descriptor
-> diff --git a/lib/i915/gem_scheduler.h b/lib/i915/gem_scheduler.h
-> index d43e84bd2..b00804f70 100644
-> --- a/lib/i915/gem_scheduler.h
-> +++ b/lib/i915/gem_scheduler.h
-> @@ -29,6 +29,7 @@
->   unsigned gem_scheduler_capability(int fd);
->   bool gem_scheduler_enabled(int fd);
->   bool gem_scheduler_has_ctx_priority(int fd);
-> +bool gem_scheduler_has_static_priority(int fd);
->   bool gem_scheduler_has_preemption(int fd);
->   bool gem_scheduler_has_semaphores(int fd);
->   bool gem_scheduler_has_engine_busy_stats(int fd);
-> diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
-> index e5fb45982..f03842478 100644
-> --- a/tests/i915/gem_exec_schedule.c
-> +++ b/tests/i915/gem_exec_schedule.c
-> @@ -1344,8 +1344,7 @@ static void reorder(int fd, const intel_ctx_cfg_t *cfg,
->   static void promotion(int fd, const intel_ctx_cfg_t *cfg, unsigned ring)
->   {
->   	IGT_CORK_FENCE(cork);
-> -	uint32_t result, dep;
-> -	uint32_t result_read, dep_read;
-> +	uint32_t result, dep, dep_read;
->   	const intel_ctx_t *ctx[3];
->   	int fence;
->   
-> @@ -1353,10 +1352,10 @@ static void promotion(int fd, const intel_ctx_cfg_t *cfg, unsigned ring)
->   	gem_context_set_priority(fd, ctx[LO]->id, MIN_PRIO);
->   
->   	ctx[HI] = intel_ctx_create(fd, cfg);
-> -	gem_context_set_priority(fd, ctx[HI]->id, 0);
-> +	gem_context_set_priority(fd, ctx[HI]->id, MAX_PRIO);
->   
->   	ctx[NOISE] = intel_ctx_create(fd, cfg);
-> -	gem_context_set_priority(fd, ctx[NOISE]->id, MIN_PRIO/2);
-> +	gem_context_set_priority(fd, ctx[NOISE]->id, 0);
->   
->   	result = gem_create(fd, 4096);
->   	dep = gem_create(fd, 4096);
-> @@ -1383,11 +1382,9 @@ static void promotion(int fd, const intel_ctx_cfg_t *cfg, unsigned ring)
->   	dep_read = __sync_read_u32(fd, dep, 0);
->   	gem_close(fd, dep);
->   
-> -	result_read = __sync_read_u32(fd, result, 0);
->   	gem_close(fd, result);
->   
->   	igt_assert_eq_u32(dep_read, ctx[HI]->id);
-> -	igt_assert_eq_u32(result_read, ctx[NOISE]->id);
->   
->   	intel_ctx_destroy(fd, ctx[NOISE]);
->   	intel_ctx_destroy(fd, ctx[LO]);
-> @@ -2963,19 +2960,25 @@ igt_main
->   			test_each_engine_store("preempt-other-chain", fd, ctx, e)
->   				preempt_other(fd, &ctx->cfg, e->flags, CHAIN);
->   
-> -			test_each_engine_store("preempt-queue", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, 0);
-> +			test_each_engine_store("preempt-engines", fd, ctx, e)
-> +				preempt_engines(fd, e, 0);
->   
-> -			test_each_engine_store("preempt-queue-chain", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, CHAIN);
-> -			test_each_engine_store("preempt-queue-contexts", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS);
-> +			igt_subtest_group {
-> +				igt_fixture {
-> +					igt_require(!gem_scheduler_has_static_priority(fd));
-> +				}
->   
-> -			test_each_engine_store("preempt-queue-contexts-chain", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS | CHAIN);
-> +				test_each_engine_store("preempt-queue", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, 0);
->   
-> -			test_each_engine_store("preempt-engines", fd, ctx, e)
-> -				preempt_engines(fd, e, 0);
-> +				test_each_engine_store("preempt-queue-chain", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, CHAIN);
-> +				test_each_engine_store("preempt-queue-contexts", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS);
-> +
-> +				test_each_engine_store("preempt-queue-contexts-chain", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS | CHAIN);
-> +			}
->   
->   			igt_subtest_group {
->   				igt_hang_t hang;
-> @@ -3017,11 +3020,17 @@ igt_main
->   		test_each_engine_store("wide", fd, ctx, e)
->   			wide(fd, &ctx->cfg, e->flags);
->   
-> -		test_each_engine_store("reorder-wide", fd, ctx, e)
-> -			reorder_wide(fd, &ctx->cfg, e->flags);
-> -
->   		test_each_engine_store("smoketest", fd, ctx, e)
->   			smoketest(fd, &ctx->cfg, e->flags, 5);
-> +
-> +		igt_subtest_group {
-> +			igt_fixture {
-> +				igt_require(!gem_scheduler_has_static_priority(fd));
-> +			}
-> +
-> +			test_each_engine_store("reorder-wide", fd, ctx, e)
-> +				reorder_wide(fd, &ctx->cfg, e->flags);
-> +		}
->   	}
->   
->   	igt_subtest_group {
+#define I915_MMAP_OFFSET_FIXED 4
+#define I915_MMAP_OFFSET_FIXED 5
 
+gcc will warn that second I915_MMAP_OFFSET_FIXED is redefined.
+
+And gcc will error out on things like struct redeclaration.
+
+> Recap:
+>
+> 1) We have kernel headers copied into IGT to ensure it builds fine
+> without latest-and-greatest headers installed on the system.
+>
+> 2) Copies are from drm-next to ensure the next person to copy the
+> headers doesn't accidentally drop definitions that originate from a
+> vendor-specific tree. (That same reason is also for why one shouldn't
+> edit the headers manually)
+>
+> 3) To get to drm-next, the kernel code needs to be tested with IGT
+> first, so we need new definitions to test that kernel code in some
+> form.
+
+I guess it is possible to test with "Test-with:" and merge the kernel
+changes first and the IGT changes later with the correct headers but maybe
+it's inconvenient? But don't we merge the kernel changes before IGT?
+
+> 4) LOCAL_* definitions that are cleaned up later when actual
+> definitions reach drm-next sounds good in theory but in practice the
+> cleaning part is often forgotten.
+>
+> Either way, I think the code using new definitions should use the
+> intended final names so we should just entirely drop the practice of
+> declaring anything LOCAL_*. That way the cleanup is limited to one
+> place.
+
+In any case, any thoughts about the i915_drm_local.h patch I posted:
+
+https://patchwork.freedesktop.org/series/93096/
+
+I am not asking for any other changes to anything at this this point. I
+have also started asking people to not use the LOCAL_ or local_ prefix any
+more in code reviews. But I probably still prefer that these declarations
+move to a central place such as i915_drm_local.h if possible so it's easier
+to clean them up later. Thanks.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
