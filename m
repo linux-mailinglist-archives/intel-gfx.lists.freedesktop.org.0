@@ -2,45 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66083DB647
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 11:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8783DB916
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 15:12:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 254CF6F40A;
-	Fri, 30 Jul 2021 09:49:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581F66F43D;
+	Fri, 30 Jul 2021 13:12:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6D966F40A;
- Fri, 30 Jul 2021 09:49:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="276843196"
-X-IronPort-AV: E=Sophos;i="5.84,281,1620716400"; d="scan'208";a="276843196"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2021 02:49:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,281,1620716400"; d="scan'208";a="476909405"
-Received: from mpenny-mobl1.ger.corp.intel.com (HELO [10.213.234.2])
- ([10.213.234.2])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2021 02:49:03 -0700
-To: John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20210729003400.151864-1-matthew.brost@intel.com>
- <20210729003400.151864-2-matthew.brost@intel.com>
- <eea0bdb7-681b-0acb-0b9c-041fb38a7119@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <1b75f6c6-e458-6bc7-f867-12f1b5b18af0@linux.intel.com>
-Date: Fri, 30 Jul 2021 10:49:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+X-Greylist: delayed 1800 seconds by postgrey-1.36 at gabe;
+ Fri, 30 Jul 2021 10:35:21 UTC
+Received: from baidu.com (mx20.baidu.com [111.202.115.85])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E077C6F42E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jul 2021 10:35:21 +0000 (UTC)
+Received: from BJHW-Mail-Ex06.internal.baidu.com (unknown [10.127.64.16])
+ by Forcepoint Email with ESMTPS id DB1152873DCECF55FD6D;
+ Fri, 30 Jul 2021 17:49:25 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BJHW-Mail-Ex06.internal.baidu.com (10.127.64.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Fri, 30 Jul 2021 17:49:25 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Fri, 30 Jul 2021 17:49:25 +0800
+From: Cai Huoqing <caihuoqing@baidu.com>
+To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
+Date: Fri, 30 Jul 2021 17:49:18 +0800
+Message-ID: <20210730094918.2928-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <eea0bdb7-681b-0acb-0b9c-041fb38a7119@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Check if engine has heartbeat
- when closing a context
+Content-Type: text/plain
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-EX02.internal.baidu.com (172.31.51.42) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+X-Baidu-BdMsfe-DateCheck: 1_BJHW-Mail-Ex06_2021-07-30 17:49:25:882
+X-Mailman-Approved-At: Fri, 30 Jul 2021 13:12:42 +0000
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix typo in comments and Kconfig.debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,251 +51,300 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Cai Huoqing <caihuoqing@baidu.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Fix typo:
+*iff  ==> if
+*specifc  ==> specific
+*adjustement  ==> adjustment
+*preferrably  ==> preferably
+*forseeable  ==> foreseeable
+*overwritting  ==> overwriting
+*sempahores  ==> semaphores
+*additonally  ==> additionally
+*allcoated  ==> allocated
+*contigious  ==> contiguous
+*priorty  ==> priority
+*priviliged  ==> privileged
+*fullfilling  ==> fulfilling
+*Timestmap  ==> Timestamp
+*accesible  ==> accessible
+*becaue  ==> because
+*overriden  ==> overridden
+*prarameter  ==> parameter
+*the the  ==> the
 
-On 30/07/2021 01:13, John Harrison wrote:
-> On 7/28/2021 17:34, Matthew Brost wrote:
->> If an engine associated with a context does not have a heartbeat, ban it
->> immediately. This is needed for GuC submission as a idle pulse doesn't
->> kick the context off the hardware where it then can check for a
->> heartbeat and ban the context.
+Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+---
+ drivers/gpu/drm/i915/Kconfig.debug      |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h         |  6 +++---
+ drivers/gpu/drm/i915/i915_gpu_error.c   |  2 +-
+ drivers/gpu/drm/i915/i915_irq.c         |  2 +-
+ drivers/gpu/drm/i915/i915_pci.c         |  4 ++--
+ drivers/gpu/drm/i915/i915_perf.c        |  4 ++--
+ drivers/gpu/drm/i915/i915_pmu.h         |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h         |  2 +-
+ drivers/gpu/drm/i915/i915_request.c     |  4 ++--
+ drivers/gpu/drm/i915/i915_vma.c         |  4 ++--
+ drivers/gpu/drm/i915/intel_pm.c         | 10 +++++-----
+ drivers/gpu/drm/i915/intel_region_ttm.c |  2 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c |  2 +-
+ 13 files changed, 23 insertions(+), 23 deletions(-)
 
-Pulse, that is a request with I915_PRIORITY_BARRIER, does not preempt a 
-running normal priority context?
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 72a38f28393f..c444d97b7c9c 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -2,7 +2,7 @@
+ config DRM_I915_WERROR
+ 	bool "Force GCC to throw an error instead of a warning when compiling"
+ 	# As this may inadvertently break the build, only allow the user
+-	# to shoot oneself in the foot iff they aim really hard
++	# to shoot oneself in the foot if they aim really hard
+ 	depends on EXPERT
+ 	# We use the dependency on !COMPILE_TEST to not be enabled in
+ 	# allmodconfig or allyesconfig configurations
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 734a2fce1efe..3ae32edf367a 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -335,7 +335,7 @@ struct drm_i915_display_funcs {
+ enum i915_cache_level {
+ 	I915_CACHE_NONE = 0,
+ 	I915_CACHE_LLC, /* also used for snoopable memory on non-LLC */
+-	I915_CACHE_L3_LLC, /* gen7+, L3 sits between the domain specifc
++	I915_CACHE_L3_LLC, /* gen7+, L3 sits between the domain specific
+ 			      caches, eg sampler/render caches, and the
+ 			      large Last-Level-Cache. LLC is coherent with
+ 			      the CPU, but L3 is only visible to the GPU. */
+@@ -383,7 +383,7 @@ struct intel_fbc {
+ 			int src_h;
+ 			bool visible;
+ 			/*
+-			 * Display surface base address adjustement for
++			 * Display surface base address adjustment for
+ 			 * pageflips. Note that on gen4+ this only adjusts up
+ 			 * to a tile, offsets within a tile are handled in
+ 			 * the hw itself (with the TILEOFF register).
+@@ -795,7 +795,7 @@ struct drm_i915_private {
+ 	 */
+ 	struct resource dsm;
+ 	/**
+-	 * Reseved portion of Data Stolen Memory
++	 * Reserved portion of Data Stolen Memory
+ 	 */
+ 	struct resource dsm_reserved;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 35c97c39f125..601401a510c5 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1498,7 +1498,7 @@ gt_record_uc(struct intel_gt_coredump *gt,
+ 	memcpy(&error_uc->huc_fw, &uc->huc.fw, sizeof(uc->huc.fw));
+ 
+ 	/* Non-default firmware paths will be specified by the modparam.
+-	 * As modparams are generally accesible from the userspace make
++	 * As modparams are generally accessible from the userspace make
+ 	 * explicit copies of the firmware paths.
+ 	 */
+ 	error_uc->guc_fw.path = kstrdup(uc->guc.fw.path, ALLOW_FAIL);
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index e2171bd2820e..b426236e16e9 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -62,7 +62,7 @@
+ 
+ /*
+  * Interrupt statistic for PMU. Increments the counter only if the
+- * interrupt originated from the the GPU so interrupts from a device which
++ * interrupt originated from the GPU so interrupts from a device which
+  * shares the interrupt line are not accounted.
+  */
+ static inline void pmu_irq_stats(struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index ec80cd1cd00c..7be7087e9433 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -1264,8 +1264,8 @@ static int __init i915_init(void)
+ 		return err > 0 ? 0 : err;
+ 
+ 	/*
+-	 * Enable KMS by default, unless explicitly overriden by
+-	 * either the i915.modeset prarameter or by the
++	 * Enable KMS by default, unless explicitly overridden by
++	 * either the i915.modeset parameter or by the
+ 	 * vga_text_mode_force boot option.
+ 	 */
+ 
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 9f94914958c3..9e6043c1b65f 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -3457,7 +3457,7 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+ 	}
+ 
+ 	/*
+-	 * Asking for SSEU configuration is a priviliged operation.
++	 * Asking for SSEU configuration is a privileged operation.
+ 	 */
+ 	if (props->has_sseu)
+ 		privileged_op = true;
+@@ -3939,7 +3939,7 @@ static u32 mask_reg_value(u32 reg, u32 val)
+ 	if (REG_EQUAL(reg, HALF_SLICE_CHICKEN2))
+ 		val = val & ~_MASKED_BIT_ENABLE(GEN8_ST_PO_DISABLE);
+ 
+-	/* WAIT_FOR_RC6_EXIT has only one bit fullfilling the function
++	/* WAIT_FOR_RC6_EXIT has only one bit fulfilling the function
+ 	 * indicated by its name and a bunch of selection fields used by OA
+ 	 * configs.
+ 	 */
+diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+index 60f9595f902c..4f315a6bc10f 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.h
++++ b/drivers/gpu/drm/i915/i915_pmu.h
+@@ -95,7 +95,7 @@ struct i915_pmu {
+ 	/**
+ 	 * @timer_last:
+ 	 *
+-	 * Timestmap of the previous timer invocation.
++	 * Timestamp of the previous timer invocation.
+ 	 */
+ 	ktime_t timer_last;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 730afa341f8a..a7ba32e66de2 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2955,7 +2955,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define   HDPORT_DDI_USED(phy)		REG_BIT(2 * (phy) + 1)
+ #define   HDPORT_ENABLED		REG_BIT(0)
+ 
+-/* Make render/texture TLB fetches lower priorty than associated data
++/* Make render/texture TLB fetches lower priority than associated data
+  *   fetches. This is not turned on by default
+  */
+ #define   MI_ARB_RENDER_TLB_LOW_PRIORITY	(1 << 15)
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 37aef1308573..865aaf8378e4 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -489,7 +489,7 @@ static bool __request_in_flight(const struct i915_request *signal)
+ 	 * to avoid tearing.]
+ 	 *
+ 	 * Note that the read of *execlists->active may race with the promotion
+-	 * of execlists->pending[] to execlists->inflight[], overwritting
++	 * of execlists->pending[] to execlists->inflight[], overwriting
+ 	 * the value at *execlists->active. This is fine. The promotion implies
+ 	 * that we received an ACK from the HW, and so the context is not
+ 	 * stuck -- if we do not see ourselves in *active, the inflight status
+@@ -1239,7 +1239,7 @@ emit_semaphore_wait(struct i915_request *to,
+ 	/*
+ 	 * If this or its dependents are waiting on an external fence
+ 	 * that may fail catastrophically, then we want to avoid using
+-	 * sempahores as they bypass the fence signaling metadata, and we
++	 * semaphores as they bypass the fence signaling metadata, and we
+ 	 * lose the fence->error propagation.
+ 	 */
+ 	if (from->sched.flags & I915_SCHED_HAS_EXTERNAL_CHAIN)
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 0f227f28b280..1ecbf94370dd 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -626,7 +626,7 @@ bool i915_gem_valid_gtt_space(struct i915_vma *vma, unsigned long color)
+  *
+  * First we try to allocate some free space that meets the requirements for
+  * the VMA. Failiing that, if the flags permit, it will evict an old VMA,
+- * preferrably the oldest idle entry to make room for the new VMA.
++ * preferably the oldest idle entry to make room for the new VMA.
+  *
+  * Returns:
+  * 0 on success, negative error code otherwise.
+@@ -696,7 +696,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+ 		 * objects which need to be tightly packed into the low 32bits.
+ 		 *
+ 		 * Note that we assume that GGTT are limited to 4GiB for the
+-		 * forseeable future. See also i915_ggtt_offset().
++		 * foreseeable future. See also i915_ggtt_offset().
+ 		 */
+ 		if (upper_32_bits(end - 1) &&
+ 		    vma->page_sizes.sg > I915_GTT_PAGE_SIZE) {
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 10a39a7d8150..740f0c8c1d30 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -660,7 +660,7 @@ static const struct intel_watermark_params i845_wm_info = {
+  * @latency: Memory wakeup latency in 0.1us units
+  *
+  * Compute the watermark using the method 1 or "small buffer"
+- * formula. The caller may additonally add extra cachelines
++ * formula. The caller may additionally add extra cachelines
+  * to account for TLB misses and clock crossings.
+  *
+  * This method is concerned with the short term drain rate
+@@ -707,7 +707,7 @@ static unsigned int intel_wm_method1(unsigned int pixel_rate,
+  * @latency: Memory wakeup latency in 0.1us units
+  *
+  * Compute the watermark using the method 2 or "large buffer"
+- * formula. The caller may additonally add extra cachelines
++ * formula. The caller may additionally add extra cachelines
+  * to account for TLB misses and clock crossings.
+  *
+  * This method is concerned with the long term drain rate
+@@ -1719,7 +1719,7 @@ static int vlv_compute_fifo(struct intel_crtc_state *crtc_state)
+ 	/*
+ 	 * When enabling sprite0 after sprite1 has already been enabled
+ 	 * we tend to get an underrun unless sprite0 already has some
+-	 * FIFO space allcoated. Hence we always allocate at least one
++	 * FIFO space allocated. Hence we always allocate at least one
+ 	 * cacheline for sprite0 whenever sprite1 is enabled.
+ 	 *
+ 	 * All other plane enable sequences appear immune to this problem.
+@@ -2919,7 +2919,7 @@ static void intel_read_wm_latency(struct drm_i915_private *dev_priv,
+ 		 * WaWmMemoryReadLatency
+ 		 *
+ 		 * punit doesn't take into account the read latency so we need
+-		 * to add proper adjustement to each valid level we retrieve
++		 * to add proper adjustment to each valid level we retrieve
+ 		 * from the punit when level 0 response data is 0us.
+ 		 */
+ 		if (wm[0] == 0) {
+@@ -4091,7 +4091,7 @@ u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
+ 
+ 	/*
+ 	 * Per plane DDB entry can in a really worst case be on multiple slices
+-	 * but single entry is anyway contigious.
++	 * but single entry is anyway contiguous.
+ 	 */
+ 	while (start_slice <= end_slice) {
+ 		slice_mask |= BIT(start_slice);
+diff --git a/drivers/gpu/drm/i915/intel_region_ttm.c b/drivers/gpu/drm/i915/intel_region_ttm.c
+index 27fe0668d094..d0d1972343b7 100644
+--- a/drivers/gpu/drm/i915/intel_region_ttm.c
++++ b/drivers/gpu/drm/i915/intel_region_ttm.c
+@@ -204,7 +204,7 @@ intel_region_ttm_node_alloc(struct intel_memory_region *mem,
+ 
+ 	/*
+ 	 * We ignore the flags for now since we're using the range
+-	 * manager and contigous and min page size would be fulfilled
++	 * manager and contiguous and min page size would be fulfilled
+ 	 * by default if size is min page size aligned.
+ 	 */
+ 	mock_bo.base.size = size;
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index eaf7688f517d..dfcf43e55fc0 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -575,7 +575,7 @@ void intel_runtime_pm_enable(struct intel_runtime_pm *rpm)
+ 	 * leave the device suspended skipping the driver's suspend handlers
+ 	 * if the device was already runtime suspended. This is needed due to
+ 	 * the difference in our runtime and system suspend sequence and
+-	 * becaue the HDA driver may require us to enable the audio power
++	 * because the HDA driver may require us to enable the audio power
+ 	 * domain during system suspend.
+ 	 */
+ 	dev_pm_set_driver_flags(kdev, DPM_FLAG_NO_DIRECT_COMPLETE);
+-- 
+2.25.1
 
-Why does it matter then whether or not heartbeats are enabled - when 
-heartbeat just ends up sending the same engine pulse (eventually, with 
-raising priority)?
-
-> It's worse than this. If the engine in question is an individual 
-> physical engine then sending a pulse (with sufficiently high priority) 
-> will pre-empt the engine and kick the context off. However, the GuC 
-
-Why it is different for physical vs virtual, aren't both just 
-schedulable contexts with different engine masks for what GuC is 
-concerned? Oh, is it a matter of needing to send pulses to all engines 
-which comprise a virtual one?
-
-> scheduler does not have hacks in it to check the state of the heartbeat 
-> or whether a context is actually a zombie or not. Thus, the context will 
-> get resubmitted to the hardware after the pulse completes and 
-> effectively nothing will have happened.
-> 
-> I would assume that the DRM scheduler which we are meant to be switching 
-> to for execlist as well as GuC submission is also unlikely to have hacks 
-> for zombie contexts and tests for whether the i915 specific heartbeat 
-> has been disabled since the context became a zombie. So when that switch 
-> happens, this test will also fail in execlist mode as well as GuC mode.
-> 
-> The choices I see here are to simply remove persistence completely (it 
-> is a basically a bug that became UAPI because it wasn't caught soon 
-> enough!) or to implement it in a way that does not require hacks in the 
-> back end scheduler. Apparently, the DRM scheduler is expected to allow 
-> zombie contexts to persist until the DRM file handle is closed. So 
-> presumably we will have to go with option two.
-> 
-> That means flagging a context as being a zombie when it is closed but 
-> still active. The driver would then add it to a zombie list owned by the 
-> DRM client object. When that client object is closed, i915 would go 
-> through the list and genuinely kill all the contexts. No back end 
-> scheduler hacks required and no intimate knowledge of the i915 heartbeat 
-> mechanism required either.
-> 
-> John.
-> 
-> 
->>
->> This patch also updates intel_engine_has_heartbeat to be a vfunc as we
->> now need to call this function on execlists virtual engines too.
->>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  5 +++--
->>   drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
->>   drivers/gpu/drm/i915/gt/intel_engine.h        | 21 ++-----------------
->>   .../drm/i915/gt/intel_execlists_submission.c  | 14 +++++++++++++
->>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 +++++-
->>   .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  2 --
->>   6 files changed, 26 insertions(+), 24 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c 
->> b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> index 9c3672bac0e2..b8e01c5ba9e5 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> @@ -1090,8 +1090,9 @@ static void kill_engines(struct i915_gem_engines 
->> *engines, bool ban)
->>        */
->>       for_each_gem_engine(ce, engines, it) {
->>           struct intel_engine_cs *engine;
->> +        bool local_ban = ban || !intel_engine_has_heartbeat(ce->engine);
-
-In any case (pending me understanding what's really going on there), why 
-would this check not be in kill_context with currently does this:
-
-	bool ban = (!i915_gem_context_is_persistent(ctx) ||
-		    !ctx->i915->params.enable_hangcheck);
-...
-		kill_engines(pos, ban);
-
-So whether to ban decision would be consolidated to one place.
-
-In fact, decision on whether to allow persistent is tied to 
-enable_hangcheck, which also drives hearbeat emission. So perhaps one 
-part of the correct fix is to extend the above (kill_context) ban 
-criteria to include hearbeat values anyway. Otherwise isn't it a simple 
-miss that this check fails to account to hearbeat disablement via sysfs?
-
-Regards,
-
-Tvrtko
-
->> -        if (ban && intel_context_ban(ce, NULL))
->> +        if (local_ban && intel_context_ban(ce, NULL))
->>               continue;
->>           /*
->> @@ -1104,7 +1105,7 @@ static void kill_engines(struct i915_gem_engines 
->> *engines, bool ban)
->>           engine = active_engine(ce);
->>           /* First attempt to gracefully cancel the context */
->> -        if (engine && !__cancel_engine(engine) && ban)
->> +        if (engine && !__cancel_engine(engine) && local_ban)
->>               /*
->>                * If we are unable to send a preemptive pulse to bump
->>                * the context from the GPU, we have to resort to a full
->> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h 
->> b/drivers/gpu/drm/i915/gt/intel_context_types.h
->> index e54351a170e2..65f2eb2a78e4 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
->> @@ -55,6 +55,8 @@ struct intel_context_ops {
->>       void (*reset)(struct intel_context *ce);
->>       void (*destroy)(struct kref *kref);
->> +    bool (*has_heartbeat)(const struct intel_engine_cs *engine);
->> +
->>       /* virtual engine/context interface */
->>       struct intel_context *(*create_virtual)(struct intel_engine_cs 
->> **engine,
->>                           unsigned int count);
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h 
->> b/drivers/gpu/drm/i915/gt/intel_engine.h
->> index c2a5640ae055..1b11a808acc4 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
->> @@ -283,28 +283,11 @@ struct intel_context *
->>   intel_engine_create_virtual(struct intel_engine_cs **siblings,
->>                   unsigned int count);
->> -static inline bool
->> -intel_virtual_engine_has_heartbeat(const struct intel_engine_cs *engine)
->> -{
->> -    /*
->> -     * For non-GuC submission we expect the back-end to look at the
->> -     * heartbeat status of the actual physical engine that the work
->> -     * has been (or is being) scheduled on, so we should only reach
->> -     * here with GuC submission enabled.
->> -     */
->> -    GEM_BUG_ON(!intel_engine_uses_guc(engine));
->> -
->> -    return intel_guc_virtual_engine_has_heartbeat(engine);
->> -}
->> -
->>   static inline bool
->>   intel_engine_has_heartbeat(const struct intel_engine_cs *engine)
->>   {
->> -    if (!IS_ACTIVE(CONFIG_DRM_I915_HEARTBEAT_INTERVAL))
->> -        return false;
->> -
->> -    if (intel_engine_is_virtual(engine))
->> -        return intel_virtual_engine_has_heartbeat(engine);
->> +    if (engine->cops->has_heartbeat)
->> +        return engine->cops->has_heartbeat(engine);
->>       else
->>           return READ_ONCE(engine->props.heartbeat_interval_ms);
->>   }
->> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
->> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> index de5f9c86b9a4..18005b5546b6 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> @@ -3619,6 +3619,18 @@ virtual_get_sibling(struct intel_engine_cs 
->> *engine, unsigned int sibling)
->>       return ve->siblings[sibling];
->>   }
->> +static bool virtual_engine_has_heartbeat(const struct intel_engine_cs 
->> *ve)
->> +{
->> +    struct intel_engine_cs *engine;
->> +    intel_engine_mask_t tmp, mask = ve->mask;
->> +
->> +    for_each_engine_masked(engine, ve->gt, mask, tmp)
->> +        if (READ_ONCE(engine->props.heartbeat_interval_ms))
->> +            return true;
->> +
->> +    return false;
->> +}
->> +
->>   static const struct intel_context_ops virtual_context_ops = {
->>       .flags = COPS_HAS_INFLIGHT,
->> @@ -3634,6 +3646,8 @@ static const struct intel_context_ops 
->> virtual_context_ops = {
->>       .enter = virtual_context_enter,
->>       .exit = virtual_context_exit,
->> +    .has_heartbeat = virtual_engine_has_heartbeat,
->> +
->>       .destroy = virtual_context_destroy,
->>       .get_sibling = virtual_get_sibling,
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c 
->> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> index 89ff0e4b4bc7..ae70bff3605f 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> @@ -2168,6 +2168,8 @@ static int guc_virtual_context_alloc(struct 
->> intel_context *ce)
->>       return lrc_alloc(ce, engine);
->>   }
->> +static bool guc_virtual_engine_has_heartbeat(const struct 
->> intel_engine_cs *ve);
->> +
->>   static const struct intel_context_ops virtual_guc_context_ops = {
->>       .alloc = guc_virtual_context_alloc,
->> @@ -2183,6 +2185,8 @@ static const struct intel_context_ops 
->> virtual_guc_context_ops = {
->>       .enter = guc_virtual_context_enter,
->>       .exit = guc_virtual_context_exit,
->> +    .has_heartbeat = guc_virtual_engine_has_heartbeat,
->> +
->>       .sched_disable = guc_context_sched_disable,
->>       .destroy = guc_context_destroy,
->> @@ -3029,7 +3033,7 @@ guc_create_virtual(struct intel_engine_cs 
->> **siblings, unsigned int count)
->>       return ERR_PTR(err);
->>   }
->> -bool intel_guc_virtual_engine_has_heartbeat(const struct 
->> intel_engine_cs *ve)
->> +static bool guc_virtual_engine_has_heartbeat(const struct 
->> intel_engine_cs *ve)
->>   {
->>       struct intel_engine_cs *engine;
->>       intel_engine_mask_t tmp, mask = ve->mask;
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h 
->> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
->> index c7ef44fa0c36..c2afc3b88fd8 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
->> @@ -29,8 +29,6 @@ void intel_guc_dump_active_requests(struct 
->> intel_engine_cs *engine,
->>                       struct i915_request *hung_rq,
->>                       struct drm_printer *m);
->> -bool intel_guc_virtual_engine_has_heartbeat(const struct 
->> intel_engine_cs *ve);
->> -
->>   int intel_guc_wait_for_pending_msg(struct intel_guc *guc,
->>                      atomic_t *wait_var,
->>                      bool interruptible,
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
