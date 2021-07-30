@@ -2,143 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A9C3DB02A
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 02:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FDC3DB040
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 02:28:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09E7A6EE9F;
-	Fri, 30 Jul 2021 00:13:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09B496EEA0;
+	Fri, 30 Jul 2021 00:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 389746EE9E;
- Fri, 30 Jul 2021 00:13:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="200174975"
-X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="200174975"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 17:13:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="518640880"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga002.fm.intel.com with ESMTP; 29 Jul 2021 17:13:15 -0700
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 29 Jul 2021 17:13:14 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10 via Frontend Transport; Thu, 29 Jul 2021 17:13:14 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Thu, 29 Jul 2021 17:13:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KFxjXM1Et6F1XcXXgwq5SqT1o8hTB60OgGxIYVUkcVx4QGlIt3EvjI4xT6eMiSeAU6ml3lsocATo3qX9Q6cnXszB4JsJSZihdATURjbB9pSLeWEWgBvME+6v20bdSE5wI83gLtYAezsjMhI6POeWWI8WwVh31HqhkoPL0aXiMI6OsQfTd7eLhUHGx/sNWaDjUAM0eLjbYkucxEdDsgFh3Xe6jI9pj5RWRotpLLk9tmXC5KRDfRLmlgDbmGcUMMqsnxiUhmlxXHhIWParFHTUs5a0EbRA4cCPGYyvPmN8BVZNFuNJDO4Rk7dMnKkWNazTr/hDruK0/3tn4HZFDKa7zA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hzkkHNe6KuH5B/iHSxGM4OSM5LaO3w1lVqGw3b7Oplo=;
- b=TlYNC4Gmfp4D/QiXZPDo3Iw8fUMtx0WPtJ8ab10H2L7RUcWWigp/NeLv/Zut0HWauBVjXYPOuJWG8zYGHLDBJumqUUK+lt2FZ777RPSaf1oYvV67kRJT/Y5FT4Bj7LPv2Y+MtMb/VXGAApL9u2276XoV/fnH51deQnFKzBj+jzrRhMc7RXqgKBy+bh0PRydWblCi0TilMxb9o4K1kyk3BNzWs+2k9K/peVGxj13uYeeOA7mfov0q3Z4uEzHUarJ/r9pIfamoL6ue2zK79cs71BO/MTOR7BOUxx6Mbd9D2P7PT+OcKl7jNsCbENt06SnKf94I7sU+Ej3IsbF0fzIRnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hzkkHNe6KuH5B/iHSxGM4OSM5LaO3w1lVqGw3b7Oplo=;
- b=FMpaLEZXdNcrNdYbLFHv3tPKoXSkkCBbkUk7ZwYcVRpJTVc+Y1giCYQiZeWbMGIODsxiKFz/WMYsDKuiZcs3rrPVZrGapXtdeL7xZSCsAASuG+JLbhAFvTBqP1b5/2n5stdSBG1XqGBCQACrEvHdQKsiKir0bTq8qLoUzAvJhNE=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com (2603:10b6:510:e5::13)
- by PH0PR11MB5660.namprd11.prod.outlook.com (2603:10b6:510:d5::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.21; Fri, 30 Jul
- 2021 00:13:12 +0000
-Received: from PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::c5a8:5a64:9118:95c4]) by PH0PR11MB5642.namprd11.prod.outlook.com
- ([fe80::c5a8:5a64:9118:95c4%9]) with mapi id 15.20.4373.021; Fri, 30 Jul 2021
- 00:13:12 +0000
-To: Matthew Brost <matthew.brost@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-References: <20210729003400.151864-1-matthew.brost@intel.com>
- <20210729003400.151864-2-matthew.brost@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-Message-ID: <eea0bdb7-681b-0acb-0b9c-041fb38a7119@intel.com>
-Date: Thu, 29 Jul 2021 17:13:10 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.12.0
-In-Reply-To: <20210729003400.151864-2-matthew.brost@intel.com>
-Content-Language: en-GB
-X-ClientProxiedBy: SJ0PR05CA0173.namprd05.prod.outlook.com
- (2603:10b6:a03:339::28) To PH0PR11MB5642.namprd11.prod.outlook.com
- (2603:10b6:510:e5::13)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8EFAF6E209;
+ Fri, 30 Jul 2021 00:28:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 882BEA73C7;
+ Fri, 30 Jul 2021 00:28:29 +0000 (UTC)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.221] (73.157.192.58) by
- SJ0PR05CA0173.namprd05.prod.outlook.com (2603:10b6:a03:339::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.9 via Frontend
- Transport; Fri, 30 Jul 2021 00:13:11 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 17e45635-a182-4ae4-678e-08d952eed18d
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5660:
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <PH0PR11MB566013666C7ECE993A698D2CBDEC9@PH0PR11MB5660.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uvS9wXleDAVOAbeBf4XICvivJXFE3lQ1/aqN/rxnD8/qtJdgeFxTlKG7lOHGLI/pySbWAAihvG4UxDWglMKh1KOvfqqQDShE1Uo4nY41N/CcuaHef9xQS1dQo7OL9Ee855AhOcahI0K03Lu8BJclQGLRENRaeSoLRlihSBZHqpTJhbB3iNZmWToKqhhFChIw2uEpJqSJ6Pe5ilJK6fPeUEfP7FP+b4thVVKxqCcnr2o9Nca3dhZdj3O/ZKWbLRYsTQfhrFBsC0abiVlnKMfCKBVnLiK8UYVp1uZ+Mz+1dxlSI0RCtL7Z7pSPuhUMKSEu2Kwibt3RY5Geqzg/te+FKS8u1RnPh2iOqZx5DIVABWHxj31qxlofKNL1jPGNN/r7bG4QC/eAikRuX964lFc2Ilo7x2o1w5Mjs7Of4Kzuo1MlAt7hz/fNUjHlP/AEhVii/olfW9KZuI6q3PmnoN/avTTO8W3odk3OYAHKFlyJMsXiJPklo+0vkX/W8P6dFAhnnM5i5Gu6z9cvGZ6fX9u/4x6u8ZOCV0pqmoPSMWcscPhnOJNLCnvmHGsSxuwyYJRCOscH1Qrk9iBJWNeDWCNaEVs3525LFmsWZRgP5kdIUuVD5zXJXA+KYeFx8hMp68suOAedSq9R01xpYd0uv0A+9PF3rv8j64RN+Eg2Go+1awm0805p7wZ0blTtstH3ZIK8hZqPRupt6fnuKXSn8U1fjUOS9uL1NNIRDnhltg5eDEqoeioeQ8ijXT9zWexgMcKz
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB5642.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(136003)(366004)(396003)(39860400002)(346002)(2616005)(6486002)(66946007)(86362001)(66476007)(5660300002)(8676002)(956004)(36756003)(450100002)(8936002)(66556008)(186003)(26005)(16576012)(478600001)(83380400001)(2906002)(31686004)(316002)(38100700002)(31696002)(53546011)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?alg2WllTbzc1T1JvTDhjcmJGM1FZaDI3VG9uUDVmV1lTQ1VLU1FMNzZ6eE4x?=
- =?utf-8?B?a2pnalNRTlpibkg1ck5JU1hISGVpMC9IWUFESE9BT2FuT1NDem1PTFRTYTRr?=
- =?utf-8?B?RmliUXR4UkVnaUhPSU1rYmQwdmlTb3FaTk5CTmNobmYwQlowZi8wRHhzYVRr?=
- =?utf-8?B?VE4vLzR3Tjk3cGlwNEFWSjRpbm5sb0ttNEZSL3YzODVoUkZCMENkSk41NEJT?=
- =?utf-8?B?a1J6RHlDS00raTR6eVlCanBKK3kxMFZnMFQ4ME5DcVNzZ0x4aDRFM1BHM1Vq?=
- =?utf-8?B?Zk1mWm5UTU83blNFMEMyRnN3R2xuMzFSTWh6MXUxTElSZlJwSkJvMlpHM2lz?=
- =?utf-8?B?TlFXWi9kYnBBT0hndXlya3l2SERnK1RJNTZneVBzdmlGcUt5TXUzKytVVE1a?=
- =?utf-8?B?TlRENUtBdkwvLzV0bFlESDBqS0dwS0ZwajQ0L2pmb3BuRlFnUE5UdVRFKzI0?=
- =?utf-8?B?cTNYWXZud0RDVUlwWklJSUNjVTBEUXZsNTRMZ2hLSHRzOXlJeStCRWIxN25V?=
- =?utf-8?B?NmNSbDhya09BRHpmYXA5NUZJN3ZPanZBcFFlREljVXhXWGMveFBXS0pnZnFH?=
- =?utf-8?B?ejJROGowV09xRXE4NXYyUGdzcUF6VkR1ZUZxa1B1a0I5VG5PQmtIV1gyR2ly?=
- =?utf-8?B?VmdleDRneGxYMWZJWFZIbFA2VGYrNUM5dE5TMjJPWUxPaEQ3aEVmNjVLU1dh?=
- =?utf-8?B?N2hFQ21EeGhON05POWJ4RXg4M0dHenphdzdVclk2S3V6cUh1U2FNQ1AyM056?=
- =?utf-8?B?S3d5Yk9jMHdWTVlqdGZVam9BbzdOWDkrRGFNa2s5YlRtTHgwOTVRRVd6SlpX?=
- =?utf-8?B?QjNuaXMxQVBTRHFnQmR1elJONzErRld2S2dJei9Rb2tJZEtkcVNWSk5Fb2Ft?=
- =?utf-8?B?NHUyVWVYYWd4dWgwQzllRzJiT081MzlzMmJWcnd4T291c0Y3djZvU2dJbno3?=
- =?utf-8?B?ellvaDArM3NueFRkakF6Z1k5YXpUdDN0ejBKbzFVRG1BWjFSRVdlS2ZIZlBV?=
- =?utf-8?B?ZjY1Y29GS0x1ZktiZ05vZlZtWG95UkJoRjV2SHQ4ZFpXR0dSYTQvMFVKT0FZ?=
- =?utf-8?B?K1BCZ3R1QVJuRkZMTnpnRG8zYWg2RHRRMFlXQXBWYlRYdE5BMDMvYVRJcHMy?=
- =?utf-8?B?QldHYVkwK1FFU3dCSHZHY2d1NXQwSjcrSVJRRFA1YVVHOW51NXc2TGpuc0pJ?=
- =?utf-8?B?ZWw3UnRWQnJ3ZHJPQzdBdHBWc3ZMc293R0ZPS2IvR2g1ZjVMNXVZZElOTGwy?=
- =?utf-8?B?S3dQRVBsL0prRk1MQ1pKU3lURENKQ283bll1bnY2ekZEbllqVEVjS1cybWtq?=
- =?utf-8?B?UEFFZVJwV05qYis4azRNazVBbUk3SWtoTlFOblB1cEhqUGJxdFphWHJ3cXBm?=
- =?utf-8?B?ZU9EcGVCeWR3a1Z0SGhFVU40WlpqOG00YjdtSXhtSFdUU3hkZ1hCcDdQTHZN?=
- =?utf-8?B?UjE2NU9lWmcxY3IzcWVRRTFMK21IcGl3WVR6eUdiRmxzZWgvL1pudEN3WFdN?=
- =?utf-8?B?QS85QUxUbi8yUjhBeXhnRVplRzZiSGwxQStlYmVvQTVHL2VXakJxT1cxWlRL?=
- =?utf-8?B?c3V3M0p3RFAyZ0sycGMvNWlDVDF6TmFJSjE5bTdnMmRhbzNhVUZERVoxcnBu?=
- =?utf-8?B?ajNJNWlMRFFPSzU0Mk5uSVFtY2xaUGhqTFFKL3hEWEI4V2E2TjZFOUp6aWlK?=
- =?utf-8?B?Y2xtWG5HYXR1cWEzbFBpWklvQTF3eDhacmlGTHg2V3dmNmR2amxMdXBRbGJD?=
- =?utf-8?Q?fUYW48wMKTbwRg84KyYxAiPk0doq06Cw4d+r4Jq?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17e45635-a182-4ae4-678e-08d952eed18d
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5642.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2021 00:13:12.2687 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nfYJS8UMBwA/nr+fBlVtiMIm4+qXNigCcQeVHFXiDasT1DncGHYHot0sQCWXl0DZvC2C24U6pFluZ8VWkfIimLkaoXcP/R45rrwTsxPMmgQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5660
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: Check if engine has heartbeat
- when closing a context
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Fri, 30 Jul 2021 00:28:29 -0000
+Message-ID: <162760490953.583.11611945168000828331@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210728215946.1573015-1-lucas.demarchi@intel.com>
+In-Reply-To: <20210728215946.1573015-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmVt?=
+ =?utf-8?q?ove_CNL_-_for_drm-intel-next_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,211 +38,295 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0641385562=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 7/28/2021 17:34, Matthew Brost wrote:
-> If an engine associated with a context does not have a heartbeat, ban it
-> immediately. This is needed for GuC submission as a idle pulse doesn't
-> kick the context off the hardware where it then can check for a
-> heartbeat and ban the context.
-It's worse than this. If the engine in question is an individual 
-physical engine then sending a pulse (with sufficiently high priority) 
-will pre-empt the engine and kick the context off. However, the GuC 
-scheduler does not have hacks in it to check the state of the heartbeat 
-or whether a context is actually a zombie or not. Thus, the context will 
-get resubmitted to the hardware after the pulse completes and 
-effectively nothing will have happened.
+--===============0641385562==
+Content-Type: multipart/alternative;
+ boundary="===============1669957083703491452=="
 
-I would assume that the DRM scheduler which we are meant to be switching 
-to for execlist as well as GuC submission is also unlikely to have hacks 
-for zombie contexts and tests for whether the i915 specific heartbeat 
-has been disabled since the context became a zombie. So when that switch 
-happens, this test will also fail in execlist mode as well as GuC mode.
+--===============1669957083703491452==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The choices I see here are to simply remove persistence completely (it 
-is a basically a bug that became UAPI because it wasn't caught soon 
-enough!) or to implement it in a way that does not require hacks in the 
-back end scheduler. Apparently, the DRM scheduler is expected to allow 
-zombie contexts to persist until the DRM file handle is closed. So 
-presumably we will have to go with option two.
+== Series Details ==
 
-That means flagging a context as being a zombie when it is closed but 
-still active. The driver would then add it to a zombie list owned by the 
-DRM client object. When that client object is closed, i915 would go 
-through the list and genuinely kill all the contexts. No back end 
-scheduler hacks required and no intimate knowledge of the i915 heartbeat 
-mechanism required either.
+Series: Remove CNL - for drm-intel-next (rev3)
+URL   : https://patchwork.freedesktop.org/series/93142/
+State : success
 
-John.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10420 -> Patchwork_20746
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20746 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +26 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-soraka:      NOTRUN -> [FAIL][3] ([i915#579])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][4] ([i915#1886] / [i915#2291])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][6] -> [FAIL][7] ([i915#1372])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10420/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][9] ([i915#541]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10420/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
 
 
->
-> This patch also updates intel_engine_has_heartbeat to be a vfunc as we
-> now need to call this function on execlists virtual engines too.
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  5 +++--
->   drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
->   drivers/gpu/drm/i915/gt/intel_engine.h        | 21 ++-----------------
->   .../drm/i915/gt/intel_execlists_submission.c  | 14 +++++++++++++
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  6 +++++-
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  2 --
->   6 files changed, 26 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 9c3672bac0e2..b8e01c5ba9e5 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1090,8 +1090,9 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
->   	 */
->   	for_each_gem_engine(ce, engines, it) {
->   		struct intel_engine_cs *engine;
-> +		bool local_ban = ban || !intel_engine_has_heartbeat(ce->engine);
->   
-> -		if (ban && intel_context_ban(ce, NULL))
-> +		if (local_ban && intel_context_ban(ce, NULL))
->   			continue;
->   
->   		/*
-> @@ -1104,7 +1105,7 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
->   		engine = active_engine(ce);
->   
->   		/* First attempt to gracefully cancel the context */
-> -		if (engine && !__cancel_engine(engine) && ban)
-> +		if (engine && !__cancel_engine(engine) && local_ban)
->   			/*
->   			 * If we are unable to send a preemptive pulse to bump
->   			 * the context from the GPU, we have to resort to a full
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index e54351a170e2..65f2eb2a78e4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> @@ -55,6 +55,8 @@ struct intel_context_ops {
->   	void (*reset)(struct intel_context *ce);
->   	void (*destroy)(struct kref *kref);
->   
-> +	bool (*has_heartbeat)(const struct intel_engine_cs *engine);
-> +
->   	/* virtual engine/context interface */
->   	struct intel_context *(*create_virtual)(struct intel_engine_cs **engine,
->   						unsigned int count);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index c2a5640ae055..1b11a808acc4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -283,28 +283,11 @@ struct intel_context *
->   intel_engine_create_virtual(struct intel_engine_cs **siblings,
->   			    unsigned int count);
->   
-> -static inline bool
-> -intel_virtual_engine_has_heartbeat(const struct intel_engine_cs *engine)
-> -{
-> -	/*
-> -	 * For non-GuC submission we expect the back-end to look at the
-> -	 * heartbeat status of the actual physical engine that the work
-> -	 * has been (or is being) scheduled on, so we should only reach
-> -	 * here with GuC submission enabled.
-> -	 */
-> -	GEM_BUG_ON(!intel_engine_uses_guc(engine));
-> -
-> -	return intel_guc_virtual_engine_has_heartbeat(engine);
-> -}
-> -
->   static inline bool
->   intel_engine_has_heartbeat(const struct intel_engine_cs *engine)
->   {
-> -	if (!IS_ACTIVE(CONFIG_DRM_I915_HEARTBEAT_INTERVAL))
-> -		return false;
-> -
-> -	if (intel_engine_is_virtual(engine))
-> -		return intel_virtual_engine_has_heartbeat(engine);
-> +	if (engine->cops->has_heartbeat)
-> +		return engine->cops->has_heartbeat(engine);
->   	else
->   		return READ_ONCE(engine->props.heartbeat_interval_ms);
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index de5f9c86b9a4..18005b5546b6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -3619,6 +3619,18 @@ virtual_get_sibling(struct intel_engine_cs *engine, unsigned int sibling)
->   	return ve->siblings[sibling];
->   }
->   
-> +static bool virtual_engine_has_heartbeat(const struct intel_engine_cs *ve)
-> +{
-> +	struct intel_engine_cs *engine;
-> +	intel_engine_mask_t tmp, mask = ve->mask;
-> +
-> +	for_each_engine_masked(engine, ve->gt, mask, tmp)
-> +		if (READ_ONCE(engine->props.heartbeat_interval_ms))
-> +			return true;
-> +
-> +	return false;
-> +}
-> +
->   static const struct intel_context_ops virtual_context_ops = {
->   	.flags = COPS_HAS_INFLIGHT,
->   
-> @@ -3634,6 +3646,8 @@ static const struct intel_context_ops virtual_context_ops = {
->   	.enter = virtual_context_enter,
->   	.exit = virtual_context_exit,
->   
-> +	.has_heartbeat = virtual_engine_has_heartbeat,
-> +
->   	.destroy = virtual_context_destroy,
->   
->   	.get_sibling = virtual_get_sibling,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 89ff0e4b4bc7..ae70bff3605f 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -2168,6 +2168,8 @@ static int guc_virtual_context_alloc(struct intel_context *ce)
->   	return lrc_alloc(ce, engine);
->   }
->   
-> +static bool guc_virtual_engine_has_heartbeat(const struct intel_engine_cs *ve);
-> +
->   static const struct intel_context_ops virtual_guc_context_ops = {
->   	.alloc = guc_virtual_context_alloc,
->   
-> @@ -2183,6 +2185,8 @@ static const struct intel_context_ops virtual_guc_context_ops = {
->   	.enter = guc_virtual_context_enter,
->   	.exit = guc_virtual_context_exit,
->   
-> +	.has_heartbeat = guc_virtual_engine_has_heartbeat,
-> +
->   	.sched_disable = guc_context_sched_disable,
->   
->   	.destroy = guc_context_destroy,
-> @@ -3029,7 +3033,7 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count)
->   	return ERR_PTR(err);
->   }
->   
-> -bool intel_guc_virtual_engine_has_heartbeat(const struct intel_engine_cs *ve)
-> +static bool guc_virtual_engine_has_heartbeat(const struct intel_engine_cs *ve)
->   {
->   	struct intel_engine_cs *engine;
->   	intel_engine_mask_t tmp, mask = ve->mask;
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> index c7ef44fa0c36..c2afc3b88fd8 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-> @@ -29,8 +29,6 @@ void intel_guc_dump_active_requests(struct intel_engine_cs *engine,
->   				    struct i915_request *hung_rq,
->   				    struct drm_printer *m);
->   
-> -bool intel_guc_virtual_engine_has_heartbeat(const struct intel_engine_cs *ve);
-> -
->   int intel_guc_wait_for_pending_msg(struct intel_guc *guc,
->   				   atomic_t *wait_var,
->   				   bool interruptible,
+Participating hosts (39 -> 33)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (7): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10420 -> Patchwork_20746
+
+  CI-20190529: 20190529
+  CI_DRM_10420: 863957775825d20952875034f22937aec4a71a23 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6158: bb1c96b29234f86cd71d9cbd019aafada9097f24 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20746: e298f2b301a7c64f1a6d36dfa4ca7d4d3b1705b4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e298f2b301a7 drm/i915: finish removal of CNL
+615f1df97332 drm/i915: rename/remove CNL registers
+ed92f16999c1 drm/i915: remove GRAPHICS_VER == 10
+9600ecff7eb4 drm/i915: switch num_scalers/num_sprites to consider DISPLAY_VER
+a07dfbdfcb0a drm/i915: replace random CNL comments
+dbaa66af470e drm/i915: rename CNL references in intel_dram.c
+7fc19381e256 drm/i915: remove explicit CNL handling from intel_wopcm.c
+408f6d7b0e34 drm/i915: remove explicit CNL handling from intel_pch.c
+65bbdae36f23 drm/i915: remove explicit CNL handling from intel_pm.c
+5639bec5c1d1 drm/i915: remove explicit CNL handling from i915_irq.c
+0bff85fc957b drm/i915/display: rename CNL references in skl_scaler.c
+5ebe54607ec6 drm/i915/display: remove CNL ddi buf translation tables
+8375bd33d90a drm/i915/display: remove explicit CNL handling from intel_display_power.c
+9f1057727ae9 drm/i915/display: remove explicit CNL handling from skl_universal_plane.c
+39c6453f2cd8 drm/i915/display: remove explicit CNL handling from intel_vdsc.c
+a92224f38fc5 drm/i915/display: remove explicit CNL handling from intel_dpll_mgr.c
+dfbfda028423 drm/i915/display: remove explicit CNL handling from intel_dp.c
+e79cc6ee2d63 drm/i915/display: remove explicit CNL handling from intel_dmc.c
+85a1af136db2 drm/i915/display: remove explicit CNL handling from intel_display_debugfs.c
+5a725ae3dc2b drm/i915/display: remove explicit CNL handling from intel_ddi.c
+dea51845e58f drm/i915/display: remove explicit CNL handling from intel_crtc.c
+d2f939aeba7c drm/i915/display: remove explicit CNL handling from intel_combo_phy.c
+e80a2e12ddc8 drm/i915/display: remove explicit CNL handling from intel_color.c
+ca468dd23483 drm/i915/display: remove explicit CNL handling from intel_cdclk.c
+94fd27e43bfd drm/i915/display: remove PORT_F workaround for CNL
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/index.html
+
+--===============1669957083703491452==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Remove CNL - for drm-intel-next (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93142/">https://patchwork.freedesktop.org/series/93142/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10420 -&gt; Patchwork_20746</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20746 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10420/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10420/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20746/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 33)</h2>
+<p>Additional (1): fi-kbl-soraka <br />
+  Missing    (7): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10420 -&gt; Patchwork_20746</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10420: 863957775825d20952875034f22937aec4a71a23 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6158: bb1c96b29234f86cd71d9cbd019aafada9097f24 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20746: e298f2b301a7c64f1a6d36dfa4ca7d4d3b1705b4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e298f2b301a7 drm/i915: finish removal of CNL<br />
+615f1df97332 drm/i915: rename/remove CNL registers<br />
+ed92f16999c1 drm/i915: remove GRAPHICS_VER == 10<br />
+9600ecff7eb4 drm/i915: switch num_scalers/num_sprites to consider DISPLAY_VER<br />
+a07dfbdfcb0a drm/i915: replace random CNL comments<br />
+dbaa66af470e drm/i915: rename CNL references in intel_dram.c<br />
+7fc19381e256 drm/i915: remove explicit CNL handling from intel_wopcm.c<br />
+408f6d7b0e34 drm/i915: remove explicit CNL handling from intel_pch.c<br />
+65bbdae36f23 drm/i915: remove explicit CNL handling from intel_pm.c<br />
+5639bec5c1d1 drm/i915: remove explicit CNL handling from i915_irq.c<br />
+0bff85fc957b drm/i915/display: rename CNL references in skl_scaler.c<br />
+5ebe54607ec6 drm/i915/display: remove CNL ddi buf translation tables<br />
+8375bd33d90a drm/i915/display: remove explicit CNL handling from intel_display_power.c<br />
+9f1057727ae9 drm/i915/display: remove explicit CNL handling from skl_universal_plane.c<br />
+39c6453f2cd8 drm/i915/display: remove explicit CNL handling from intel_vdsc.c<br />
+a92224f38fc5 drm/i915/display: remove explicit CNL handling from intel_dpll_mgr.c<br />
+dfbfda028423 drm/i915/display: remove explicit CNL handling from intel_dp.c<br />
+e79cc6ee2d63 drm/i915/display: remove explicit CNL handling from intel_dmc.c<br />
+85a1af136db2 drm/i915/display: remove explicit CNL handling from intel_display_debugfs.c<br />
+5a725ae3dc2b drm/i915/display: remove explicit CNL handling from intel_ddi.c<br />
+dea51845e58f drm/i915/display: remove explicit CNL handling from intel_crtc.c<br />
+d2f939aeba7c drm/i915/display: remove explicit CNL handling from intel_combo_phy.c<br />
+e80a2e12ddc8 drm/i915/display: remove explicit CNL handling from intel_color.c<br />
+ca468dd23483 drm/i915/display: remove explicit CNL handling from intel_cdclk.c<br />
+94fd27e43bfd drm/i915/display: remove PORT_F workaround for CNL</p>
+
+</body>
+</html>
+
+--===============1669957083703491452==--
+
+--===============0641385562==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0641385562==--
