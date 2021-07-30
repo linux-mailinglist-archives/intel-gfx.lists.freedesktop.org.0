@@ -2,57 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC95E3DB674
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 11:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D12613DB689
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 11:58:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A76DD6F415;
-	Fri, 30 Jul 2021 09:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 014A96F417;
+	Fri, 30 Jul 2021 09:58:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06E2B6F414
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jul 2021 09:53:01 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id m19so5608408wms.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Jul 2021 02:53:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9hNncW7kDG+JwLCE1KCQedAYc2ZPJ4lclsnnOfdg41I=;
- b=UctVT09GV9nZEShUW3V0PhCXyUvym3tCY93hnp5XDrt4guel4mn2Vp9zQ9AwOnEc8m
- TVGDH/zTexX6Gm1q+uIj9nV0fx0bjatv4csXE8lWSdyqQD/vi1RigBAfV7jnZktfbD3D
- RZLp2D5hbgsq5zhPDT2whVG2isnx1C2JYLUk4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9hNncW7kDG+JwLCE1KCQedAYc2ZPJ4lclsnnOfdg41I=;
- b=b9K63hpRoPi1fl4S1fLtLjACJT06quatuQW3HqoivJTpGXXWvZzEk+WGpyV51Mfz10
- 1GmA99YcKXG4ZojZpERlx7ryxZRfjZUwJR6+wUtzq298NfwvjDwYfmEJ/QT3St+0+Us+
- phJAzj0969Ht1/7H0y0vGkIerDdFoKj6CwsRLFnKKHLp+NktDktv8QwSles2DVr4kDw5
- vwmJfO6J9Yoyva9RnN8aZ1CFdgXkjcTxzKx21qBbl5WztlNETd567ABOj/BHoB6xyMNC
- jNANywUajdebX1mQMH+OD0eJHYVgwSomxVOIcegtP1zrtlRkqn7i/u1No9u9bjOhKviT
- NtPg==
-X-Gm-Message-State: AOAM530oWUQX8hgk9kloSvkDcR+/V/yr92UeeUkqslALFHPu815N+3Yq
- VTladgPwdT8Vz1Vll+jLiIWBcQ==
-X-Google-Smtp-Source: ABdhPJwKCzXRXyUtsjFGAFmBaOGrBPP3aXytLz9XUEANZGFwOS/xz4Xp0PLXARFm4bSqEml45F+yUw==
-X-Received: by 2002:a05:600c:4308:: with SMTP id
- p8mr2156734wme.45.1627638779376; 
- Fri, 30 Jul 2021 02:52:59 -0700 (PDT)
-Received: from wespe.ffwll.local ([2a02:168:57f4:0:14bf:8268:f662:5b91])
- by smtp.gmail.com with ESMTPSA id z6sm1125529wmp.1.2021.07.30.02.52.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 30 Jul 2021 02:52:58 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri, 30 Jul 2021 11:52:51 +0200
-Message-Id: <20210730095251.4343-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.24.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C67736F417;
+ Fri, 30 Jul 2021 09:58:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="200274999"
+X-IronPort-AV: E=Sophos;i="5.84,281,1620716400"; d="scan'208";a="200274999"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2021 02:58:41 -0700
+X-IronPort-AV: E=Sophos;i="5.84,281,1620716400"; d="scan'208";a="476911214"
+Received: from mpenny-mobl1.ger.corp.intel.com (HELO [10.213.234.2])
+ ([10.213.234.2])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2021 02:58:40 -0700
+To: Matthew Brost <matthew.brost@intel.com>, igt-dev@lists.freedesktop.org
+References: <20210727182057.78409-1-matthew.brost@intel.com>
+ <20210727182057.78409-2-matthew.brost@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9095b26a-975b-9180-045f-7231d63fe9ff@linux.intel.com>
+Date: Fri, 30 Jul 2021 10:58:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm: Fix oops in damage self-tests by mocking
- damage property
+In-Reply-To: <20210727182057.78409-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/1] i915/gem_scheduler: Ensure
+ submission order in manycontexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,580 +50,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I've added a new check to make sure that drivers which insepct the
-damage property have it set up correctly, but somehow missed that this
-borke the damage selftest in the CI result noise.
 
-Fix it up by mocking enough of drm_device and drm_plane so we can call
-drm_plane_enable_fb_damage_clips() to make the new check happy.
+On 27/07/2021 19:20, Matthew Brost wrote:
+> With GuC submission contexts can get reordered (compared to submission
+> order), if contexts get reordered the sequential nature of the batches
+> releasing the next batch's semaphore in function timesliceN() get broken
+> resulting in the test taking much longer than if should. e.g. Every
+> contexts needs to be timesliced to release the next batch. Corking the
+> first submission until all the batches have been submitted should ensure
+> submission order.
 
-Since there's a lot of duplicated mock code already copy-pasted into
-each test I've also refactored this a bit to trim it down.
+The explanation sounds suspect.
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Fixes: c7fcbf251397 ("drm/plane: check that fb_damage is set up when used")
-Cc: José Roberto de Souza <jose.souza@intel.com> (v1)
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Hans de Goede <hdegoede@redhat.com>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
----
- .../drm/selftests/test-drm_damage_helper.c    | 287 +++++-------------
- 1 file changed, 71 insertions(+), 216 deletions(-)
+Consider this comment from the test itself:
 
-diff --git a/drivers/gpu/drm/selftests/test-drm_damage_helper.c b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-index 9d2bcdf8bc29..1b585c13e042 100644
---- a/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-+++ b/drivers/gpu/drm/selftests/test-drm_damage_helper.c
-@@ -6,9 +6,37 @@
- #define pr_fmt(fmt) "drm_damage_helper: " fmt
- 
- #include <drm/drm_damage_helper.h>
-+#include <drm/drm_plane.h>
-+#include <drm/drm_drv.h>
- 
- #include "test-drm_modeset_common.h"
- 
-+struct drm_driver mock_driver;
-+struct drm_device mock_device;
-+struct drm_object_properties mock_obj_props;
-+struct drm_plane mock_plane;
-+struct drm_property mock_prop;
-+
-+static void mock_setup(struct drm_plane_state *state)
-+{
-+	static bool setup_done = false;
-+
-+	state->plane = &mock_plane;
-+
-+	if (setup_done)
-+		return;
-+
-+	/* just enough so that drm_plane_enable_fb_damage_clips() works */
-+	mock_device.driver = &mock_driver;
-+	mock_device.mode_config.prop_fb_damage_clips = &mock_prop;
-+	mock_plane.dev = &mock_device;
-+	mock_plane.base.properties = &mock_obj_props;
-+	mock_prop.base.id = 1; /* 0 is an invalid id */
-+	mock_prop.dev = &mock_device;
-+
-+	drm_plane_enable_fb_damage_clips(&mock_plane);
-+}
-+
- static void set_plane_src(struct drm_plane_state *state, int x1, int y1, int x2,
- 			  int y2)
- {
-@@ -70,23 +98,29 @@ static bool check_damage_clip(struct drm_plane_state *state, struct drm_rect *r,
- 	return true;
- }
- 
-+const struct drm_framebuffer fb = {
-+	.width = 2048,
-+	.height = 2048
-+};
-+
-+/* common mocked structs many tests need */
-+#define MOCK_VARIABLES() \
-+	struct drm_plane_state old_state; \
-+	struct drm_plane_state state = { \
-+		.crtc = ZERO_SIZE_PTR, \
-+		.fb = (struct drm_framebuffer *) &fb, \
-+		.visible = true, \
-+	}; \
-+	mock_setup(&old_state); \
-+	mock_setup(&state);
-+
- int igt_damage_iter_no_damage(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src same as fb size. */
- 	set_plane_src(&old_state, 0, 0, fb.width << 16, fb.height << 16);
-@@ -104,20 +138,10 @@ int igt_damage_iter_no_damage(void *ignored)
- int igt_damage_iter_no_damage_fractional_src(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src has fractional part. */
- 	set_plane_src(&old_state, 0x3fffe, 0x3fffe,
-@@ -137,20 +161,10 @@ int igt_damage_iter_no_damage_fractional_src(void *ignored)
- int igt_damage_iter_no_damage_src_moved(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src moved since old plane state. */
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
-@@ -169,20 +183,10 @@ int igt_damage_iter_no_damage_src_moved(void *ignored)
- int igt_damage_iter_no_damage_fractional_src_moved(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src has fractional part and it moved since old plane state. */
- 	set_plane_src(&old_state, 0x3fffe, 0x3fffe,
-@@ -202,20 +206,14 @@ int igt_damage_iter_no_damage_fractional_src_moved(void *ignored)
- int igt_damage_iter_no_damage_not_visible(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
-+	MOCK_VARIABLES();
- 
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = false,
--	};
-+	state.visible = false;
-+
-+	mock_setup(&old_state);
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -231,19 +229,12 @@ int igt_damage_iter_no_damage_not_visible(void *ignored)
- int igt_damage_iter_no_damage_no_crtc(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
-+	MOCK_VARIABLES();
- 
--	struct drm_plane_state state = {
--		.crtc = 0,
--		.fb = &fb,
--	};
-+	state.crtc = NULL;
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -268,6 +259,8 @@ int igt_damage_iter_no_damage_no_fb(void *ignored)
- 		.fb = 0,
- 	};
- 
-+	mock_setup(&old_state);
-+
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
- 	drm_atomic_helper_damage_iter_init(&iter, &old_state, &state);
-@@ -282,22 +275,12 @@ int igt_damage_iter_no_damage_no_fb(void *ignored)
- int igt_damage_iter_simple_damage(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -318,22 +301,12 @@ int igt_damage_iter_simple_damage(void *ignored)
- int igt_damage_iter_single_damage(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -353,22 +326,12 @@ int igt_damage_iter_single_damage(void *ignored)
- int igt_damage_iter_single_damage_intersect_src(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -389,22 +352,12 @@ int igt_damage_iter_single_damage_intersect_src(void *ignored)
- int igt_damage_iter_single_damage_outside_src(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -424,22 +377,12 @@ int igt_damage_iter_single_damage_outside_src(void *ignored)
- int igt_damage_iter_single_damage_fractional_src(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src has fractional part. */
- 	set_plane_src(&old_state, 0x40002, 0x40002,
-@@ -462,22 +405,12 @@ int igt_damage_iter_single_damage_fractional_src(void *ignored)
- int igt_damage_iter_single_damage_intersect_fractional_src(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src has fractional part. */
- 	set_plane_src(&old_state, 0x40002, 0x40002,
-@@ -501,22 +434,12 @@ int igt_damage_iter_single_damage_intersect_fractional_src(void *ignored)
- int igt_damage_iter_single_damage_outside_fractional_src(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src has fractional part. */
- 	set_plane_src(&old_state, 0x40002, 0x40002,
-@@ -539,22 +462,12 @@ int igt_damage_iter_single_damage_outside_fractional_src(void *ignored)
- int igt_damage_iter_single_damage_src_moved(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src moved since old plane state. */
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
-@@ -576,22 +489,12 @@ int igt_damage_iter_single_damage_src_moved(void *ignored)
- int igt_damage_iter_single_damage_fractional_src_moved(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage;
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	/* Plane src with fractional part moved since old plane state. */
- 	set_plane_src(&old_state, 0x3fffe, 0x3fffe,
-@@ -615,22 +518,12 @@ int igt_damage_iter_single_damage_fractional_src_moved(void *ignored)
- int igt_damage_iter_damage(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage[2];
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -656,22 +549,12 @@ int igt_damage_iter_damage(void *ignored)
- int igt_damage_iter_damage_one_intersect(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage[2];
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0x40002, 0x40002,
- 		      0x40002 + (1024 << 16), 0x40002 + (768 << 16));
-@@ -699,22 +582,12 @@ int igt_damage_iter_damage_one_intersect(void *ignored)
- int igt_damage_iter_damage_one_outside(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage[2];
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0, 0, 1024 << 16, 768 << 16);
- 	set_plane_src(&state, 0, 0, 1024 << 16, 768 << 16);
-@@ -736,22 +609,12 @@ int igt_damage_iter_damage_one_outside(void *ignored)
- int igt_damage_iter_damage_src_moved(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage[2];
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
--
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = true,
--	};
-+	MOCK_VARIABLES();
- 
- 	set_plane_src(&old_state, 0x40002, 0x40002,
- 		      0x40002 + (1024 << 16), 0x40002 + (768 << 16));
-@@ -775,22 +638,14 @@ int igt_damage_iter_damage_src_moved(void *ignored)
- int igt_damage_iter_damage_not_visible(void *ignored)
- {
- 	struct drm_atomic_helper_damage_iter iter;
--	struct drm_plane_state old_state;
- 	struct drm_property_blob damage_blob;
- 	struct drm_mode_rect damage[2];
- 	struct drm_rect clip;
- 	uint32_t num_hits = 0;
- 
--	struct drm_framebuffer fb = {
--		.width = 2048,
--		.height = 2048
--	};
-+	MOCK_VARIABLES();
- 
--	struct drm_plane_state state = {
--		.crtc = ZERO_SIZE_PTR,
--		.fb = &fb,
--		.visible = false,
--	};
-+	state.visible = false;
- 
- 	set_plane_src(&old_state, 0x40002, 0x40002,
- 		      0x40002 + (1024 << 16), 0x40002 + (768 << 16));
--- 
-2.24.1
+	/*
+	 * Create a pair of interlocking batches, that ping pong
+	 * between each other, and only advance one step at a time.
+	 * We require the kernel to preempt at each semaphore and
+	 * switch to the other batch in order to advance.
+	 */
 
+I'd say the test does not rely on no re-ordering at all, but relies on 
+context switch on an unsatisfied semaphore.
+
+In the commit you seem to acknowledge GuC does not do that but instead 
+ends up waiting for the timeslice to expire, did I get that right? If 
+so, why does the GuC does not do that and can we fix it?
+
+Regards,
+
+Tvrtko
+
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   tests/i915/gem_exec_schedule.c | 16 +++++++++++++++-
+>   1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
+> index f03842478..41f2591a5 100644
+> --- a/tests/i915/gem_exec_schedule.c
+> +++ b/tests/i915/gem_exec_schedule.c
+> @@ -597,12 +597,13 @@ static void timesliceN(int i915, const intel_ctx_cfg_t *cfg,
+>   	struct drm_i915_gem_execbuffer2 execbuf  = {
+>   		.buffers_ptr = to_user_pointer(&obj),
+>   		.buffer_count = 1,
+> -		.flags = engine | I915_EXEC_FENCE_OUT,
+> +		.flags = engine | I915_EXEC_FENCE_OUT | I915_EXEC_FENCE_SUBMIT,
+>   	};
+>   	uint32_t *result =
+>   		gem_mmap__device_coherent(i915, obj.handle, 0, sz, PROT_READ);
+>   	const intel_ctx_t *ctx;
+>   	int fence[count];
+> +	IGT_CORK_FENCE(cork);
+>   
+>   	/*
+>   	 * Create a pair of interlocking batches, that ping pong
+> @@ -614,6 +615,17 @@ static void timesliceN(int i915, const intel_ctx_cfg_t *cfg,
+>   	igt_require(gem_scheduler_has_timeslicing(i915));
+>   	igt_require(intel_gen(intel_get_drm_devid(i915)) >= 8);
+>   
+> +	/*
+> +	 * With GuC submission contexts can get reordered (compared to
+> +	 * submission order), if contexts get reordered the sequential
+> +	 * nature of the batches releasing the next batch's semaphore gets
+> +	 * broken resulting in the test taking much longer than it should (e.g.
+> +	 * every context needs to be timesliced to release the next batch).
+> +	 * Corking the first submission until all batches have been
+> +	 * submitted should ensure submission order.
+> +	 */
+> +	execbuf.rsvd2 = igt_cork_plug(&cork, i915);
+> +
+>   	/* No coupling between requests; free to timeslice */
+>   
+>   	for (int i = 0; i < count; i++) {
+> @@ -624,8 +636,10 @@ static void timesliceN(int i915, const intel_ctx_cfg_t *cfg,
+>   		intel_ctx_destroy(i915, ctx);
+>   
+>   		fence[i] = execbuf.rsvd2 >> 32;
+> +		execbuf.rsvd2 >>= 32;
+>   	}
+>   
+> +	igt_cork_unplug(&cork);
+>   	gem_sync(i915, obj.handle);
+>   	gem_close(i915, obj.handle);
+>   
+> 
