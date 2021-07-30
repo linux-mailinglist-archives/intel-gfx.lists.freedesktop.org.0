@@ -1,35 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EEE83DB0DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 04:01:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CEFC3DB0DE
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Jul 2021 04:01:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBD56EEB2;
-	Fri, 30 Jul 2021 02:01:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 176C86EEB1;
+	Fri, 30 Jul 2021 02:01:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2211A6EEAF;
- Fri, 30 Jul 2021 02:01:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="193289899"
-X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="193289899"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 905426EEB1;
+ Fri, 30 Jul 2021 02:01:23 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10060"; a="193289910"
+X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="193289910"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2021 19:01:20 -0700
+ 29 Jul 2021 19:01:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="664637120"
+X-IronPort-AV: E=Sophos;i="5.84,280,1620716400"; d="scan'208";a="664637193"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga006.fm.intel.com with ESMTP; 29 Jul 2021 19:01:20 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 29 Jul 2021 19:01:23 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Thu, 29 Jul 2021 19:00:53 -0700
-Message-Id: <20210730020107.31415-1-vinay.belgaumkar@intel.com>
+Date: Thu, 29 Jul 2021 19:00:54 -0700
+Message-Id: <20210730020107.31415-2-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20210730020107.31415-1-vinay.belgaumkar@intel.com>
+References: <20210730020107.31415-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 00/14] drm/i915/guc/slpc: Enable GuC based
- power management features
+Subject: [Intel-gfx] [PATCH 01/14] drm/i915/guc/slpc: Initial definitions
+ for SLPC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,103 +44,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series enables Single Loop Power Control (SLPC) feature in GuC.
-GuC implements various power management algorithms as part of it's
-operation. These need to be specifically enabled by KMD. They replace
-the legacy host based management of these features.
-
-With this series, we will enable two PM features - GTPerf and GuCRC. These
-are the Turbo and RC6 equivalents of the host based version. GuC provides
-various interfaces via host-to-guc messaging, which allows KMD to enable
-these features after GuC is loaded and GuC submission is enabled. We will
-specifically disable the IA/GT Balancer and Duty Cycle control features in
-SLPC.
-
-To enable GTPerf, KMD sends a specific h2g message after setting up
-some shared data structures. As part of this, we will gate host RPS as 
-well. GuC takes over the duties of requesting frequencies by monitoring
-GPU busyness. We can influence what GuC requests by modifying the min 
-and max frequencies setup by SLPC through the sysfs interfaces that have
-been exposed by legacy Turbo. SLPC typically requests efficient frequency
-instead of minimum frequency to optimize performance. It also does not
-necessarily stick to platform max, and can request frequencies that are
-much higher since pcode will ultimately grant the appropriate values.
-However, we will force it to adhere to platform min and max values so as
-to maintain legacy behavior. SLPC does not have the concept of waitboost,
-so the boost_freq sysfs will show a '0' value for now. There is a patch
-forthcoming to ensure the interface is not exposed when SLPC is enabled.
-
-GuCRC is enabled similarly through a h2g message. We still need to enable
-RC6 feature bit (GEN6_RC_CTL_RC6_ENABLE) before we send this out.
-Render/Media power gating still needs to be enabled by host as before.
-GuC will take care of setting up the hysterisis values for RC6, host
-does not need to set this up anymore.
-
-v2: Address review comments (Michal W)
-v3: More comments, optimizations (Michal W)
-v4: Address comments (Michal W, Matt Roper, Matthew Brost)
-v5: Address checkpatch issues and some more comments
-
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-
-Vinay Belgaumkar (14):
-  drm/i915/guc/slpc: Initial definitions for SLPC
-  drm/i915/guc/slpc: Gate Host RPS when SLPC is enabled
-  drm/i915/guc/slpc: Adding SLPC communication interfaces
-  drm/i915/guc/slpc: Allocate, initialize and release SLPC
-  drm/i915/guc/slpc: Enable SLPC and add related H2G events
-  drm/i915/guc/slpc: Remove BUG_ON in guc_submission_disable
-  drm/i915/guc/slpc: Add methods to set min/max frequency
-  drm/i915/guc/slpc: Add get max/min freq hooks
-  drm/i915/guc/slpc: Add debugfs for SLPC info
-  drm/i915/guc/slpc: Enable ARAT timer interrupt
-  drm/i915/guc/slpc: Cache platform frequency limits
-  drm/i915/guc/slpc: Sysfs hooks for SLPC
-  drm/i915/guc/slpc: Add SLPC selftest
-  drm/i915/guc/rc: Setup and enable GuCRC feature
-
- drivers/gpu/drm/i915/Makefile                 |   2 +
- drivers/gpu/drm/i915/gt/intel_gt.c            |   2 +-
- drivers/gpu/drm/i915/gt/intel_rc6.c           |  47 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           | 201 ++++++
- drivers/gpu/drm/i915/gt/intel_rps.h           |  10 +
- drivers/gpu/drm/i915/gt/selftest_slpc.c       | 314 +++++++++
- .../gpu/drm/i915/gt/uc/abi/guc_actions_abi.h  |   7 +-
- .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h | 235 +++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  17 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   4 +
- .../gpu/drm/i915/gt/uc/intel_guc_debugfs.c    |  22 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h   |   7 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c     |  80 +++
- drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h     |  31 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 601 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  42 ++
- .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |  29 +
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   4 -
- drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  25 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.h         |   4 +
- drivers/gpu/drm/i915/i915_pmu.c               |   2 +-
- drivers/gpu/drm/i915/i915_reg.h               |   5 +
- drivers/gpu/drm/i915/i915_sysfs.c             |  83 +--
- .../drm/i915/selftests/i915_live_selftests.h  |   1 +
- 24 files changed, 1685 insertions(+), 90 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/selftest_slpc.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
- create mode 100644 drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWRkIG1hY3JvcyB0byBjaGVjayBmb3IgU0xQQyBzdXBwb3J0LiBUaGlzIGZlYXR1cmUgaXMgY3Vy
+cmVudGx5IHN1cHBvcnRlZApmb3IgR2VuMTIrIGFuZCBlbmFibGVkIHdoZW5ldmVyIEd1QyBzdWJt
+aXNzaW9uIGlzIGVuYWJsZWQvc2VsZWN0ZWQuCgpJbmNsdWRlIHRlbXBsYXRlcyBmb3IgU0xQQyBp
+bml0L2ZpbmkgYW5kIGVuYWJsZS4KCnYyOiBNb3ZlIFNMUEMgaGVscGVyIGZ1bmN0aW9ucyB0byBp
+bnRlbF9ndWNfc2xwYy5jLy5oLiBEZWZpbmUKYmFzaWMgdGVtcGxhdGUgZm9yIFNMUEMgc3RydWN0
+dXJlIGluIGludGVsX2d1Y19zbHBjX3R5cGVzLmguCkZpeCBjb3B5cmlnaHQgKE1pY2hhbCBXKQoK
+djM6IFJldmlldyBjb21tZW50cyAoTWljaGFsIFcpCgp2NDogSW5jbHVkZSBzdXBwb3J0ZWQvc2Vs
+ZWN0ZWQgaW5zaWRlIHNscGMgc3RydWN0IChNaWNoYWwgVykKClJldmlld2VkLWJ5OiBNaWNoYWwg
+V2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVmlu
+YXkgQmVsZ2F1bWthciA8dmluYXkuYmVsZ2F1bWthckBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6
+IFN1bmRhcmVzYW4gU3VqYXJpdGhhIDxzdWphcml0aGEuc3VuZGFyZXNhbkBpbnRlbC5jb20+ClNp
+Z25lZC1vZmYtYnk6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJp
+b0BpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAg
+ICAgICAgIHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmMgICAg
+ICAgIHwgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmggICAgICAg
+IHwgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuYyAgIHwg
+NDUgKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
+Z3VjX3NscGMuaCAgIHwgMzMgKysrKysrKysrKysrKysKIC4uLi9ncHUvZHJtL2k5MTUvZ3QvdWMv
+aW50ZWxfZ3VjX3NscGNfdHlwZXMuaCB8IDE2ICsrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3VjL2ludGVsX3VjLmMgICAgICAgICB8ICA2ICsrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvdWMvaW50ZWxfdWMuaCAgICAgICAgIHwgIDIgKwogOCBmaWxlcyBjaGFuZ2VkLCAxMDUgaW5z
+ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc2xwYy5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuaAogY3JlYXRlIG1vZGUgMTAw
+NjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjX3R5cGVzLmgKCmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L01ha2VmaWxlCmluZGV4IGFiNzY3OTk1NzYyMy4uZDhlYWM0NDY4ZGY5IDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQorKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9NYWtlZmlsZQpAQCAtMTg2LDYgKzE4Niw3IEBAIGk5MTUteSArPSBndC91Yy9pbnRlbF91
+Yy5vIFwKIAkgIGd0L3VjL2ludGVsX2d1Y19mdy5vIFwKIAkgIGd0L3VjL2ludGVsX2d1Y19sb2cu
+byBcCiAJICBndC91Yy9pbnRlbF9ndWNfbG9nX2RlYnVnZnMubyBcCisJICBndC91Yy9pbnRlbF9n
+dWNfc2xwYy5vIFwKIAkgIGd0L3VjL2ludGVsX2d1Y19zdWJtaXNzaW9uLm8gXAogCSAgZ3QvdWMv
+aW50ZWxfaHVjLm8gXAogCSAgZ3QvdWMvaW50ZWxfaHVjX2RlYnVnZnMubyBcCmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2d0L3VjL2ludGVsX2d1Yy5jCmluZGV4IDk3OTEyOGUyODM3Mi4uMzliYzNjMTYwNTdi
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuYwpAQCAtNyw2ICs3LDcgQEAK
+ICNpbmNsdWRlICJndC9pbnRlbF9ndF9pcnEuaCIKICNpbmNsdWRlICJndC9pbnRlbF9ndF9wbV9p
+cnEuaCIKICNpbmNsdWRlICJpbnRlbF9ndWMuaCIKKyNpbmNsdWRlICJpbnRlbF9ndWNfc2xwYy5o
+IgogI2luY2x1ZGUgImludGVsX2d1Y19hZHMuaCIKICNpbmNsdWRlICJpbnRlbF9ndWNfc3VibWlz
+c2lvbi5oIgogI2luY2x1ZGUgImk5MTVfZHJ2LmgiCkBAIC0xNTcsNiArMTU4LDcgQEAgdm9pZCBp
+bnRlbF9ndWNfaW5pdF9lYXJseShzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCiAJaW50ZWxfZ3VjX2N0
+X2luaXRfZWFybHkoJmd1Yy0+Y3QpOwogCWludGVsX2d1Y19sb2dfaW5pdF9lYXJseSgmZ3VjLT5s
+b2cpOwogCWludGVsX2d1Y19zdWJtaXNzaW9uX2luaXRfZWFybHkoZ3VjKTsKKwlpbnRlbF9ndWNf
+c2xwY19pbml0X2Vhcmx5KCZndWMtPnNscGMpOwogCiAJbXV0ZXhfaW5pdCgmZ3VjLT5zZW5kX211
+dGV4KTsKIAlzcGluX2xvY2tfaW5pdCgmZ3VjLT5pcnFfbG9jayk7CmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L3VjL2ludGVsX2d1Yy5oCmluZGV4IGE5NTQ3MDY5ZWU3ZS4uN2RhMTFhMGI2MDU5IDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaAorKysgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaApAQCAtMTUsNiArMTUsNyBAQAogI2lu
+Y2x1ZGUgImludGVsX2d1Y19jdC5oIgogI2luY2x1ZGUgImludGVsX2d1Y19sb2cuaCIKICNpbmNs
+dWRlICJpbnRlbF9ndWNfcmVnLmgiCisjaW5jbHVkZSAiaW50ZWxfZ3VjX3NscGNfdHlwZXMuaCIK
+ICNpbmNsdWRlICJpbnRlbF91Y19mdy5oIgogI2luY2x1ZGUgImk5MTVfdXRpbHMuaCIKICNpbmNs
+dWRlICJpOTE1X3ZtYS5oIgpAQCAtMzAsNiArMzEsNyBAQCBzdHJ1Y3QgaW50ZWxfZ3VjIHsKIAlz
+dHJ1Y3QgaW50ZWxfdWNfZncgZnc7CiAJc3RydWN0IGludGVsX2d1Y19sb2cgbG9nOwogCXN0cnVj
+dCBpbnRlbF9ndWNfY3QgY3Q7CisJc3RydWN0IGludGVsX2d1Y19zbHBjIHNscGM7CiAKIAkvKiBH
+bG9iYWwgZW5naW5lIHVzZWQgdG8gc3VibWl0IHJlcXVlc3RzIHRvIEd1QyAqLwogCXN0cnVjdCBp
+OTE1X3NjaGVkX2VuZ2luZSAqc2NoZWRfZW5naW5lOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3VjL2ludGVsX2d1Y19zbHBjLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAw
+MDAwLi40MDk1MGYxYmYwNWMKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC91Yy9pbnRlbF9ndWNfc2xwYy5jCkBAIC0wLDAgKzEsNDUgQEAKKy8vIFNQRFgtTGljZW5z
+ZS1JZGVudGlmaWVyOiBNSVQKKy8qCisgKiBDb3B5cmlnaHQgwqkgMjAyMSBJbnRlbCBDb3Jwb3Jh
+dGlvbgorICovCisKKyNpbmNsdWRlICJpOTE1X2Rydi5oIgorI2luY2x1ZGUgImludGVsX2d1Y19z
+bHBjLmgiCisjaW5jbHVkZSAiZ3QvaW50ZWxfZ3QuaCIKKworc3RhdGljIGlubGluZSBzdHJ1Y3Qg
+aW50ZWxfZ3VjICpzbHBjX3RvX2d1YyhzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpCit7CisJ
+cmV0dXJuIGNvbnRhaW5lcl9vZihzbHBjLCBzdHJ1Y3QgaW50ZWxfZ3VjLCBzbHBjKTsKK30KKwor
+c3RhdGljIGJvb2wgX19kZXRlY3Rfc2xwY19zdXBwb3J0ZWQoc3RydWN0IGludGVsX2d1YyAqZ3Vj
+KQoreworCS8qIEd1QyBTTFBDIGlzIHVuYXZhaWxhYmxlIGZvciBwcmUtR2VuMTIgKi8KKwlyZXR1
+cm4gZ3VjLT5zdWJtaXNzaW9uX3N1cHBvcnRlZCAmJgorCQlHUkFQSElDU19WRVIoZ3VjX3RvX2d0
+KGd1YyktPmk5MTUpID49IDEyOworfQorCitzdGF0aWMgYm9vbCBfX2d1Y19zbHBjX3NlbGVjdGVk
+KHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKK3sKKwlpZiAoIWludGVsX2d1Y19zbHBjX2lzX3N1cHBv
+cnRlZChndWMpKQorCQlyZXR1cm4gZmFsc2U7CisKKwlyZXR1cm4gZ3VjLT5zdWJtaXNzaW9uX3Nl
+bGVjdGVkOworfQorCit2b2lkIGludGVsX2d1Y19zbHBjX2luaXRfZWFybHkoc3RydWN0IGludGVs
+X2d1Y19zbHBjICpzbHBjKQoreworCXN0cnVjdCBpbnRlbF9ndWMgKmd1YyA9IHNscGNfdG9fZ3Vj
+KHNscGMpOworCisJc2xwYy0+c3VwcG9ydGVkID0gX19kZXRlY3Rfc2xwY19zdXBwb3J0ZWQoZ3Vj
+KTsKKwlzbHBjLT5zZWxlY3RlZCA9IF9fZ3VjX3NscGNfc2VsZWN0ZWQoZ3VjKTsKK30KKworaW50
+IGludGVsX2d1Y19zbHBjX2luaXQoc3RydWN0IGludGVsX2d1Y19zbHBjICpzbHBjKQoreworCXJl
+dHVybiAwOworfQorCit2b2lkIGludGVsX2d1Y19zbHBjX2Zpbmkoc3RydWN0IGludGVsX2d1Y19z
+bHBjICpzbHBjKQoreworfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMv
+aW50ZWxfZ3VjX3NscGMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19z
+bHBjLmgKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi5iYzEzOTY4MmFk
+MGYKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9n
+dWNfc2xwYy5oCkBAIC0wLDAgKzEsMzMgQEAKKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBN
+SVQgKi8KKy8qCisgKiBDb3B5cmlnaHQgwqkgMjAyMSBJbnRlbCBDb3Jwb3JhdGlvbgorICovCisK
+KyNpZm5kZWYgX0lOVEVMX0dVQ19TTFBDX0hfCisjZGVmaW5lIF9JTlRFTF9HVUNfU0xQQ19IXwor
+CisjaW5jbHVkZSAiaW50ZWxfZ3VjX3N1Ym1pc3Npb24uaCIKKyNpbmNsdWRlICJpbnRlbF9ndWNf
+c2xwY190eXBlcy5oIgorCitzdGF0aWMgaW5saW5lIGJvb2wgaW50ZWxfZ3VjX3NscGNfaXNfc3Vw
+cG9ydGVkKHN0cnVjdCBpbnRlbF9ndWMgKmd1YykKK3sKKwlyZXR1cm4gZ3VjLT5zbHBjLnN1cHBv
+cnRlZDsKK30KKworc3RhdGljIGlubGluZSBib29sIGludGVsX2d1Y19zbHBjX2lzX3dhbnRlZChz
+dHJ1Y3QgaW50ZWxfZ3VjICpndWMpCit7CisJcmV0dXJuIGd1Yy0+c2xwYy5zZWxlY3RlZDsKK30K
+Kworc3RhdGljIGlubGluZSBib29sIGludGVsX2d1Y19zbHBjX2lzX3VzZWQoc3RydWN0IGludGVs
+X2d1YyAqZ3VjKQoreworCXJldHVybiBpbnRlbF9ndWNfc3VibWlzc2lvbl9pc191c2VkKGd1Yykg
+JiYgaW50ZWxfZ3VjX3NscGNfaXNfd2FudGVkKGd1Yyk7Cit9CisKK3ZvaWQgaW50ZWxfZ3VjX3Ns
+cGNfaW5pdF9lYXJseShzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpOworCitpbnQgaW50ZWxf
+Z3VjX3NscGNfaW5pdChzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpOworaW50IGludGVsX2d1
+Y19zbHBjX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZ3VjX3NscGMgKnNscGMpOwordm9pZCBpbnRlbF9n
+dWNfc2xwY19maW5pKHN0cnVjdCBpbnRlbF9ndWNfc2xwYyAqc2xwYyk7CisKKyNlbmRpZgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3NscGNfdHlwZXMu
+aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zbHBjX3R5cGVzLmgKbmV3
+IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi43NjljMTYyMzA1YTAKLS0tIC9k
+ZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc2xwY190
+eXBlcy5oCkBAIC0wLDAgKzEsMTYgQEAKKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQg
+Ki8KKy8qCisgKiBDb3B5cmlnaHQgwqkgMjAyMSBJbnRlbCBDb3Jwb3JhdGlvbgorICovCisKKyNp
+Zm5kZWYgX0lOVEVMX0dVQ19TTFBDX1RZUEVTX0hfCisjZGVmaW5lIF9JTlRFTF9HVUNfU0xQQ19U
+WVBFU19IXworCisjaW5jbHVkZSA8bGludXgvdHlwZXMuaD4KKworc3RydWN0IGludGVsX2d1Y19z
+bHBjIHsKKwlib29sIHN1cHBvcnRlZDsKKwlib29sIHNlbGVjdGVkOworfTsKKworI2VuZGlmCmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMuYwppbmRleCBkYTU3ZDE4ZDlmNmIuLmU2YmQ5
+NDA2YzdiMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMu
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5jCkBAIC03NSwxNiAr
+NzUsMTggQEAgc3RhdGljIHZvaWQgX19jb25maXJtX29wdGlvbnMoc3RydWN0IGludGVsX3VjICp1
+YykKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHVjX3RvX2d0KHVjKS0+aTkxNTsK
+IAogCWRybV9kYmcoJmk5MTUtPmRybSwKLQkJImVuYWJsZV9ndWM9JWQgKGd1YzolcyBzdWJtaXNz
+aW9uOiVzIGh1YzolcylcbiIsCisJCSJlbmFibGVfZ3VjPSVkIChndWM6JXMgc3VibWlzc2lvbjol
+cyBodWM6JXMgc2xwYzolcylcbiIsCiAJCWk5MTUtPnBhcmFtcy5lbmFibGVfZ3VjLAogCQl5ZXNu
+byhpbnRlbF91Y193YW50c19ndWModWMpKSwKIAkJeWVzbm8oaW50ZWxfdWNfd2FudHNfZ3VjX3N1
+Ym1pc3Npb24odWMpKSwKLQkJeWVzbm8oaW50ZWxfdWNfd2FudHNfaHVjKHVjKSkpOworCQl5ZXNu
+byhpbnRlbF91Y193YW50c19odWModWMpKSwKKwkJeWVzbm8oaW50ZWxfdWNfd2FudHNfZ3VjX3Ns
+cGModWMpKSk7CiAKIAlpZiAoaTkxNS0+cGFyYW1zLmVuYWJsZV9ndWMgPT0gMCkgewogCQlHRU1f
+QlVHX09OKGludGVsX3VjX3dhbnRzX2d1Yyh1YykpOwogCQlHRU1fQlVHX09OKGludGVsX3VjX3dh
+bnRzX2d1Y19zdWJtaXNzaW9uKHVjKSk7CiAJCUdFTV9CVUdfT04oaW50ZWxfdWNfd2FudHNfaHVj
+KHVjKSk7CisJCUdFTV9CVUdfT04oaW50ZWxfdWNfd2FudHNfZ3VjX3NscGModWMpKTsKIAkJcmV0
+dXJuOwogCX0KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
+dWMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjLmgKaW5kZXggZTJkYTJi
+NmU3NmUxLi45MjVhNThjYTZiOTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L3VjL2ludGVsX3VjLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMu
+aApAQCAtOCw2ICs4LDcgQEAKIAogI2luY2x1ZGUgImludGVsX2d1Yy5oIgogI2luY2x1ZGUgImlu
+dGVsX2d1Y19zdWJtaXNzaW9uLmgiCisjaW5jbHVkZSAiaW50ZWxfZ3VjX3NscGMuaCIKICNpbmNs
+dWRlICJpbnRlbF9odWMuaCIKICNpbmNsdWRlICJpOTE1X3BhcmFtcy5oIgogCkBAIC04Myw2ICs4
+NCw3IEBAIF9fdWNfc3RhdGVfY2hlY2tlcih4LCBmdW5jLCB1c2VzLCB1c2VkKQogdWNfc3RhdGVf
+Y2hlY2tlcnMoZ3VjLCBndWMpOwogdWNfc3RhdGVfY2hlY2tlcnMoaHVjLCBodWMpOwogdWNfc3Rh
+dGVfY2hlY2tlcnMoZ3VjLCBndWNfc3VibWlzc2lvbik7Cit1Y19zdGF0ZV9jaGVja2VycyhndWMs
+IGd1Y19zbHBjKTsKIAogI3VuZGVmIHVjX3N0YXRlX2NoZWNrZXJzCiAjdW5kZWYgX191Y19zdGF0
+ZV9jaGVja2VyCi0tIAoyLjI1LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
