@@ -2,39 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88CF3DC1CF
-	for <lists+intel-gfx@lfdr.de>; Sat, 31 Jul 2021 02:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 382B73DC1DB
+	for <lists+intel-gfx@lfdr.de>; Sat, 31 Jul 2021 02:14:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17B636E500;
-	Sat, 31 Jul 2021 00:06:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C64BC6F4DB;
+	Sat, 31 Jul 2021 00:14:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38DE56E4E8
- for <intel-gfx@lists.freedesktop.org>; Sat, 31 Jul 2021 00:05:51 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10061"; a="200358991"
-X-IronPort-AV: E=Sophos;i="5.84,283,1620716400"; d="scan'208";a="200358991"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2021 17:05:50 -0700
-X-IronPort-AV: E=Sophos;i="5.84,283,1620716400"; d="scan'208";a="477224121"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
- ([10.24.14.59])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2021 17:05:49 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Fri, 30 Jul 2021 17:10:19 -0700
-Message-Id: <20210731001019.150373-4-jose.souza@intel.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210731001019.150373-1-jose.souza@intel.com>
-References: <20210731001019.150373-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0EE846F4D7;
+ Sat, 31 Jul 2021 00:14:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BD78CA0118;
+ Sat, 31 Jul 2021 00:14:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 4/4] DO_NOT_MERGE: drm/i915/display: Enable PSR2
- selective fetch by default
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 31 Jul 2021 00:14:48 -0000
+Message-ID: <162769048874.3955.52619694806665565@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210731001019.150373-1-jose.souza@intel.com>
+In-Reply-To: <20210731001019.150373-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915/display/tgl+=3A_Dis?=
+ =?utf-8?q?patch_atomic_commits_instead_of_front_buffer_modifications?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,62 +42,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only to execute tests with PSR2 selective fetch enabled and check what
-is broken.
+== Series Details ==
 
-IGT tests know to fail with this:
+Series: series starting with [1/4] drm/i915/display/tgl+: Dispatch atomic commits instead of front buffer modifications
+URL   : https://patchwork.freedesktop.org/series/93252/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+762853c5a7c2 drm/i915/display/tgl+: Dispatch atomic commits instead of front buffer modifications
+d75f9be16572 drm/i915/display: Fix sel fetch plane offset calculation
+06de84df5401 drm/i915: Nuke ORIGIN_GTT
+87fee2709b10 DO_NOT_MERGE: drm/i915/display: Enable PSR2 selective fetch by default
+-:14: WARNING:TYPO_SPELLING: 'happend' may be misspelled - perhaps 'happened'?
+#14: 
 - kms_cursor_legacy: all tests that checks if evasion happend, I have
-fix for it making cursor_slowpath() returns true for display 12+.
+                                                      ^^^^^^^
 
-- kms_psr2_su: The pageflip test, it needs to have the damage clip set
-otherwise it will update the whole screen and the selective blocks
-will not match with expected.
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
 
-- kms_psr: psr2_*_(mmap_gtt, mmap_cpu, blt and render), all those
-tests should be dropped or skipped for display 12+.
-
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 9 ---------
- drivers/gpu/drm/i915/i915_params.h       | 2 +-
- 2 files changed, 1 insertion(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 894a2d35668a2..e128f0c2aeecc 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -877,15 +877,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
- 
--	/*
--	 * We are missing the implementation of some workarounds to enabled PSR2
--	 * in Alderlake_P, until ready PSR2 should be kept disabled.
--	 */
--	if (IS_ALDERLAKE_P(dev_priv)) {
--		drm_dbg_kms(&dev_priv->drm, "PSR2 is missing the implementation of workarounds\n");
--		return false;
--	}
--
- 	if (!transcoder_has_psr2(dev_priv, crtc_state->cpu_transcoder)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "PSR2 not supported in transcoder %s\n",
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index f27eceb82c0f5..8d725b64592d8 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -55,7 +55,7 @@ struct drm_printer;
- 	param(int, enable_fbc, -1, 0600) \
- 	param(int, enable_psr, -1, 0600) \
- 	param(bool, psr_safest_params, false, 0400) \
--	param(bool, enable_psr2_sel_fetch, false, 0400) \
-+	param(bool, enable_psr2_sel_fetch, true, 0400) \
- 	param(int, disable_power_well, -1, 0400) \
- 	param(int, enable_ips, 1, 0600) \
- 	param(int, invert_brightness, 0, 0600) \
--- 
-2.32.0
 
