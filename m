@@ -2,79 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E923DC873
-	for <lists+intel-gfx@lfdr.de>; Sat, 31 Jul 2021 23:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B68B3DC879
+	for <lists+intel-gfx@lfdr.de>; Sat, 31 Jul 2021 23:52:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9D2C6E8F2;
-	Sat, 31 Jul 2021 21:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E534E6E907;
+	Sat, 31 Jul 2021 21:52:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com
- [IPv6:2607:f8b0:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1D5A6E939;
- Sat, 31 Jul 2021 21:43:05 +0000 (UTC)
-Received: by mail-il1-x12f.google.com with SMTP id j18so9992524ile.8;
- Sat, 31 Jul 2021 14:43:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=Fjsw3W3/UmlQsTKfLEE1H6kTd7xaAkJp0etT9YYbz+I=;
- b=DUQOmqbS6V186tr3AR4AQ/htc0Bg66ZwKaVnDhi8fD4VVZlKCf/XiMXwkRotjoP/oD
- OlEohbOBL4Yoa9TdR+Rt4U35G0nEQ8KC1XEx4lPrsDTudjD848VcRX4MLxvsBeZw/1G1
- sTsh+9jmrH/+DkMS13G8ysj2cw3Gbc0Y/imnc903XG+ZXkdCSUgEye1gO5kadZ0NHB/7
- QoTZ/7GP4NjMU6SpCQNZxUXX0+r7NF0RdNFHb5ATQxh2tgpzFKgYwf2gNYLWlmt9BMSY
- cz2ik8KJfEIuoyTSo19BihMCTNQfO9StMfPsChEJF5EwgtM60BYWqB8C+i00hvEv47mX
- w6Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Fjsw3W3/UmlQsTKfLEE1H6kTd7xaAkJp0etT9YYbz+I=;
- b=jHyaa3yzQHrk8f78TjOdoGWjbk3dYjis6gUd7m1nGkQT3v1WTF+OafJX+KuS/uPrBy
- 93ovNyDydSJJ9oo3QIVOjVTjaUXlJpoH9tsVpC62aUZAY7y4iB0HTOeKx9j2acBz603V
- 8Sk8e2jKV2y8PzNUFqNSbPe2+2hVGgGHZqlT/VLRFbtzSEEMLnPuxQcbhgs/svn5pPdG
- Wj54rf04BPZSl8cU5lFleWLiZnIxnIaAjKrU5dteWFviicKlGIpNW8b9Hbiz375YWlS9
- FYkon1k5UQPm6DOWTTgrmWm0N3EoU7ycYXxIyGnBx8TlVPM6IuQ/uPH1MkGLyhvYdrsr
- kyFA==
-X-Gm-Message-State: AOAM530vRMd5GVmmRX02BynQO8F8r8K2IMTYmuWQ5OiNA72dsa8nQB9N
- bBqnAmYVEX1zak41m4bPAxlRPuFoGTSCzSgy
-X-Google-Smtp-Source: ABdhPJz/2EtrrYIqo1LVW1aQs2Xb4oaL2S+YhuZgVD/CT6F5x/mjSOje1mie7ejlt/ixr3AwR/U9tQ==
-X-Received: by 2002:a92:c7d0:: with SMTP id g16mr6296943ilk.278.1627767785160; 
- Sat, 31 Jul 2021 14:43:05 -0700 (PDT)
-Received: from frodo.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
- by smtp.googlemail.com with ESMTPSA id q10sm3721040ion.3.2021.07.31.14.43.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 31 Jul 2021 14:43:04 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Baron <jbaron@akamai.com>,
- Ashley Thomas <Ashley.Thomas2@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Wyatt Wood <Wyatt.Wood@amd.com>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Jim Cromie <jim.cromie@gmail.com>, Johan Hovold <johan@kernel.org>,
- Jessica Yu <jeyu@kernel.org>, Joe Perches <joe@perches.com>,
- Miguel Ojeda <ojeda@kernel.org>,
- Nick Desaulniers <ndesaulniers@gooogle.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Sat, 31 Jul 2021 15:42:04 -0600
-Message-Id: <20210731214211.657280-8-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210731214211.657280-1-jim.cromie@gmail.com>
-References: <20210731214211.657280-1-jim.cromie@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 918346E907;
+ Sat, 31 Jul 2021 21:52:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 67A80AA915;
+ Sat, 31 Jul 2021 21:52:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v4 7/7] amdgpu: define a dydbg-bitmap to control
- categorized pr_debugs
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 31 Jul 2021 21:52:41 -0000
+Message-ID: <162776836140.3955.17284049668375127785@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210731214211.657280-1-jim.cromie@gmail.com>
+In-Reply-To: <20210731214211.657280-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_use_dyndbg_in_drm=5Fprint_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,76 +41,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-logger_types.h defines many DC_LOG_*() categorized debug wrappers.
-Many of these use DRM_DEBUG_*, so are controllable using drm.debug,
-but others use bare pr_debug()s, each with a different class-prefix
-matching "^[\w+]:"
+== Series Details ==
 
-Use DYNDBG_BITMAP_DESC() to create a parameter/debug_dc, and to define
-bits to control those pr_debugs by their category.
+Series: drm: use dyndbg in drm_print (rev3)
+URL   : https://patchwork.freedesktop.org/series/92542/
+State : warning
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- .../gpu/drm/amd/display/dc/core/dc_debug.c    | 42 ++++++++++++++++++-
- 1 file changed, 41 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_debug.c b/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-index 21be2a684393..3041e0c3d726 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-@@ -36,8 +36,48 @@
- 
- #include "resource.h"
- 
--#define DC_LOGGER_INIT(logger)
-+/* define a drm.debug style dyndbg pr-debug control point */
-+unsigned long __debug_dc;
-+EXPORT_SYMBOL(__debug_dc);
+$ dim checkpatch origin/drm-tip
+ab95444b671f moduleparam: add data member to struct kernel_param
+7193036bdfae dyndbg: add dyndbg-bitmap definer and callbacks
+-:89: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#89: FILE: include/linux/dynamic_debug.h:260:
++#define DEFINE_DYNDBG_BITMAP(name, value, bitmap_desc, ...)	\
++	struct dyndbg_bitdesc dyndbg_classes_##name[] =		\
++	{ __VA_ARGS__, { NULL, NULL } };			\
++	module_param_cbd(name, &param_ops_dyndbg, value, 0644,	\
++			 &dyndbg_classes_##name);
+
+-:117: CHECK:SPACING: No space is necessary after a cast
+#117: FILE: lib/dynamic_debug.c:1168:
++	struct dyndbg_bitdesc *bitmap = (struct dyndbg_bitdesc *) kp->data;
+
+-:131: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#131: FILE: lib/dynamic_debug.c:1182:
++	for (bitsmax = 0; bitmap[bitsmax].prefix; bitsmax++);
+
+-:134: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#134: FILE: lib/dynamic_debug.c:1185:
++	for_each_set_bit(bitpos, &changes, min(--bitsmax, 64)) {
 +
+
+total: 1 errors, 1 warnings, 2 checks, 106 lines checked
+f73667a8cacb i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
+-:43: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#43: FILE: drivers/gpu/drm/i915/gvt/debug.h:39:
++	pr_debug("gvt:core: "fmt, ##args)
+
+-:47: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#47: FILE: drivers/gpu/drm/i915/gvt/debug.h:42:
++	pr_debug("gvt:irq: "fmt, ##args)
+
+-:51: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#51: FILE: drivers/gpu/drm/i915/gvt/debug.h:45:
++	pr_debug("gvt:mm: "fmt, ##args)
+
+-:55: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#55: FILE: drivers/gpu/drm/i915/gvt/debug.h:48:
++	pr_debug("gvt:mmio: "fmt, ##args)
+
+-:59: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#59: FILE: drivers/gpu/drm/i915/gvt/debug.h:51:
++	pr_debug("gvt:dpy: "fmt, ##args)
+
+-:63: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#63: FILE: drivers/gpu/drm/i915/gvt/debug.h:54:
++	pr_debug("gvt:el: "fmt, ##args)
+
+-:67: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#67: FILE: drivers/gpu/drm/i915/gvt/debug.h:57:
++	pr_debug("gvt:sched: "fmt, ##args)
+
+-:71: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#71: FILE: drivers/gpu/drm/i915/gvt/debug.h:60:
++	pr_debug("gvt:render: "fmt, ##args)
+
+-:75: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#75: FILE: drivers/gpu/drm/i915/gvt/debug.h:63:
++	pr_debug("gvt:cmd: "fmt, ##args)
+
+total: 0 errors, 0 warnings, 9 checks, 39 lines checked
+816d1412b3f8 i915/gvt: control pr_debug("gvt:")s with bits in parameters/debug_gvt
+-:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'key' - possible side-effects?
+#57: FILE: drivers/gpu/drm/i915/i915_params.c:273:
++#define _help(key)	"\t\"" key "\"\t: help for " key "\n"
+
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'key' - possible side-effects?
+#58: FILE: drivers/gpu/drm/i915/i915_params.c:274:
++#define cmd_help(key)	{ .prefix = key, .help = key ": help for " key }
+
+-:76: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#76: FILE: drivers/gpu/drm/i915/i915_params.c:292:
++DEFINE_DYNDBG_BITMAP(debug_gvt, &__gvt_debug,
++		   I915_DYNDBG_PARM_DESC(debug_gvt),
+
+total: 0 errors, 0 warnings, 3 checks, 53 lines checked
+7b12f8b286e8 drm/print: add choice to use dynamic debug in drm-debug
+-:93: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#93: 
+ - "1","2","3" are allowed, 1-9 is effective max. 2 doesnt imply 1.
+                                                    ^^^^^^
+
+-:344: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#344: FILE: include/drm/drm_print.h:548:
+ 
++
+
+total: 0 errors, 1 warnings, 1 checks, 226 lines checked
+04b4dd37cb1c amdgpu: define a dydbg-bitmap to control categorized pr_debugs
+-:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'key' - possible side-effects?
+#30: FILE: drivers/gpu/drm/amd/display/dc/core/dc_debug.c:43:
 +#define _help(key)	"\t\t" key " : help for " key "\n"
+
+-:31: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'key' - possible side-effects?
+#31: FILE: drivers/gpu/drm/amd/display/dc/core/dc_debug.c:44:
 +#define cmd_help(key)	{ .prefix = key, .help = "help for " key }
-+
-+/* Id like to do these inside DEFINE_DYNDBG_BITMAP, later */
-+#define MY_DYNDBG_PARM_DESC(name)					\
-+	"Enable debug output via /sys/module/amdgpu/parameters/" #name	\
-+	", where each bit enables a debug category.\n"			\
-+		_help("[SURFACE]:")					\
-+		_help("[CURSOR]:")					\
-+		_help("[PFLIP]:")					\
-+		_help("[VBLANK]:")					\
-+		_help("[HW_LINK_TRAINING]:")				\
-+		_help("[HW_AUDIO]:")					\
-+		_help("[SCALER]:")					\
-+		_help("[BIOS]:")					\
-+		_help("[BANDWIDTH_CALCS]:")				\
-+		_help("[DML]:")						\
-+		_help("[IF_TRACE]:")					\
-+		_help("[GAMMA]:")					\
-+		_help("[SMU_MSG]:")
-+MODULE_PARM_DESC(debug_dc, MY_DYNDBG_PARM_DESC(name));
-+
-+DEFINE_DYNDBG_BITMAP(debug_dc, &__debug_dc,
-+		     MY_DYNDBG_PARM_DESC(debug_dc),
-+		     cmd_help("[CURSOR]:"),
-+		     cmd_help("[PFLIP]:"),
-+		     cmd_help("[VBLANK]:"),
-+		     cmd_help("[HW_LINK_TRAINING]:"),
-+		     cmd_help("[HW_AUDIO]:"),
-+		     cmd_help("[SCALER]:"),
-+		     cmd_help("[BIOS]:"),
-+		     cmd_help("[BANDWIDTH_CALCS]:"),
-+		     cmd_help("[DML]:"),
-+		     cmd_help("[IF_TRACE]:"),
-+		     cmd_help("[GAMMA]:"),
-+		     cmd_help("[SMU_MSG]:"));
- 
-+#define DC_LOGGER_INIT(logger)
- 
- #define SURFACE_TRACE(...) do {\
- 		if (dc->debug.surface_trace) \
--- 
-2.31.1
+
+total: 0 errors, 0 warnings, 2 checks, 49 lines checked
+
 
