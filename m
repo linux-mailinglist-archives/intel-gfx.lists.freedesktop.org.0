@@ -1,23 +1,23 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A9E03DC1CE
-	for <lists+intel-gfx@lfdr.de>; Sat, 31 Jul 2021 02:05:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 312043DC1CD
+	for <lists+intel-gfx@lfdr.de>; Sat, 31 Jul 2021 02:05:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67AC66E4FF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 220216E34B;
 	Sat, 31 Jul 2021 00:05:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBBC76E4E8
- for <intel-gfx@lists.freedesktop.org>; Sat, 31 Jul 2021 00:05:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10061"; a="200358988"
-X-IronPort-AV: E=Sophos;i="5.84,283,1620716400"; d="scan'208";a="200358988"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 101FF6E34B
+ for <intel-gfx@lists.freedesktop.org>; Sat, 31 Jul 2021 00:05:51 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10061"; a="200358990"
+X-IronPort-AV: E=Sophos;i="5.84,283,1620716400"; d="scan'208";a="200358990"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Jul 2021 17:05:50 -0700
-X-IronPort-AV: E=Sophos;i="5.84,283,1620716400"; d="scan'208";a="477224113"
+X-IronPort-AV: E=Sophos;i="5.84,283,1620716400"; d="scan'208";a="477224116"
 Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
  ([10.24.14.59])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
@@ -25,18 +25,16 @@ Received: from josouza-mobl2.jf.intel.com (HELO josouza-mobl2.intel.com)
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Fri, 30 Jul 2021 17:10:17 -0700
-Message-Id: <20210731001019.150373-2-jose.souza@intel.com>
+Date: Fri, 30 Jul 2021 17:10:18 -0700
+Message-Id: <20210731001019.150373-3-jose.souza@intel.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210731001019.150373-1-jose.souza@intel.com>
 References: <20210731001019.150373-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915/display: Fix sel fetch plane
- offset calculation
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915: Nuke ORIGIN_GTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,50 +50,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-skl_calc_main_surface_offset() is used to calculate an aligned plane
-surface address considering the inner framebuffer x and y offset.
-It can not be used by selective fetch functions becase there is no
-PLANE_SEL_FETCH_SURF.
-So the PLANE_SEL_FETCH_OFFSET.y should only be PLANE_OFFSET.y +
-damaged_area_within_plane.y1.
+There is no users of it, so no need to keep handling for it.
 
-This fixes glitches seen in fbcon caused by typing something in
-the terminal.
-
-BSpec: 55229
 Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c         | 10 +---------
+ drivers/gpu/drm/i915/display/intel_frontbuffer.h |  3 +--
+ 2 files changed, 2 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index caf92f414a6e7..894a2d35668a2 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1487,8 +1487,8 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	enum pipe pipe = plane->pipe;
- 	const struct drm_rect *clip;
--	u32 val, offset;
--	int ret, x, y;
-+	u32 val;
-+	int x, y;
- 
- 	if (!crtc_state->enable_psr2_sel_fetch)
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index ddfc17e21668a..e4d412d395c34 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1129,7 +1129,7 @@ void intel_fbc_invalidate(struct drm_i915_private *dev_priv,
+ 	if (!HAS_FBC(dev_priv))
  		return;
-@@ -1508,10 +1508,6 @@ void intel_psr2_program_plane_sel_fetch(struct intel_plane *plane,
- 	/* TODO: consider auxiliary surfaces */
- 	x = plane_state->uapi.src.x1 >> 16;
- 	y = (plane_state->uapi.src.y1 >> 16) + clip->y1;
--	ret = skl_calc_main_surface_offset(plane_state, &x, &y, &offset);
--	if (ret)
--		drm_warn_once(&dev_priv->drm, "skl_calc_main_surface_offset() returned %i\n",
--			      ret);
- 	val = y << 16 | x;
- 	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_OFFSET(pipe, plane->id),
- 			  val);
+ 
+-	if (origin == ORIGIN_GTT || origin == ORIGIN_FLIP)
++	if (origin == ORIGIN_FLIP)
+ 		return;
+ 
+ 	mutex_lock(&fbc->lock);
+@@ -1150,14 +1150,6 @@ void intel_fbc_flush(struct drm_i915_private *dev_priv,
+ 	if (!HAS_FBC(dev_priv))
+ 		return;
+ 
+-	/*
+-	 * GTT tracking does not nuke the entire cfb
+-	 * so don't clear busy_bits set for some other
+-	 * reason.
+-	 */
+-	if (origin == ORIGIN_GTT)
+-		return;
+-
+ 	mutex_lock(&fbc->lock);
+ 
+ 	fbc->busy_bits &= ~frontbuffer_bits;
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+index 6d41f53944250..4b977c1e4d52b 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+@@ -33,8 +33,7 @@
+ struct drm_i915_private;
+ 
+ enum fb_op_origin {
+-	ORIGIN_GTT,
+-	ORIGIN_CPU,
++	ORIGIN_CPU = 0,
+ 	ORIGIN_CS,
+ 	ORIGIN_FLIP,
+ 	ORIGIN_DIRTYFB,
 -- 
 2.32.0
 
