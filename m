@@ -2,46 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B4B3DD6C4
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 15:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EABF3DD14D
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 09:36:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80DF36E0D7;
-	Mon,  2 Aug 2021 13:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D27BD89FD9;
+	Mon,  2 Aug 2021 07:36:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 505 seconds by postgrey-1.36 at gabe;
- Mon, 02 Aug 2021 07:16:56 UTC
-Received: from mail-m17655.qiye.163.com (mail-m17655.qiye.163.com
- [59.111.176.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B406E429;
- Mon,  2 Aug 2021 07:16:56 +0000 (UTC)
-Received: from ubuntu.localdomain (unknown [36.152.145.182])
- by mail-m17655.qiye.163.com (Hmail) with ESMTPA id 94D5440157;
- Mon,  2 Aug 2021 15:08:26 +0800 (CST)
-From: zhouchuangao <zhouchuangao@vivo.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
- Matthew Auld <matthew.auld@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- zhouchuangao <zhouchuangao@vivo.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Mon,  2 Aug 2021 00:07:07 -0700
-Message-Id: <1627888031-56048-1-git-send-email-zhouchuangao@vivo.com>
-X-Mailer: git-send-email 2.7.4
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
- kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUJOTk5WGh9LQ08dSx9DSk
- MaVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MDY6ETo6LD9OLTMdDCsIMSpR
- CjwKCQFVSlVKTUlMQ0NDSktMQ0JNVTMWGhIXVQETFA4YEw4aFRwaFDsNEg0UVRgUFkVZV1kSC1lB
- WUhNVUpOSVVKT05VSkNJWVdZCAFZQUlPTU83Bg++
-X-HM-Tid: 0a7b05b13dc6da01kuws94d5440157
-X-Mailman-Approved-At: Mon, 02 Aug 2021 13:17:20 +0000
-Subject: [Intel-gfx] [PATCH] gpu/drm/i915: Remove duplicated include of
- intel_region_lmem.h
+Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch
+ [185.70.41.103])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 983C889FCE
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 07:36:45 +0000 (UTC)
+Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com
+ [188.165.51.139])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ by mail-41103.protonmail.ch (Postfix) with ESMTPS id 4GdVF75Wx0z4wwdK
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 07:36:43 +0000 (UTC)
+Authentication-Results: mail-41103.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
+ header.b="EiVi0SO5"
+Date: Mon, 02 Aug 2021 07:36:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail; t=1627889798;
+ bh=bjGffO3ZyKLdM/0/V0E+cpS4f8EA+Sr8NhZrFgsBfas=;
+ h=Date:To:From:Cc:Reply-To:Subject:From;
+ b=EiVi0SO5cR0KLiV0k3XsQkyqBrUOAnBZXLU44g3m5Lt2OSleOLOj20Pn3oEtY3CZQ
+ vtvPVeI9/yUkLHoMkJb3LUTTk0mNYVrUbO7xzhuCevx5l9SVOa0GzxzESp5hG0MWYS
+ dF1QUAw0QcyqF1vtAbis6q5TQSbruGnBPA7Kt8pYV+1ri2eG6jV2yQXyWfCydOvZzF
+ Ttpio6064MyHDDm4uwWHd3S3DminXTyqiLV2cNAZZiC0j6C81B65twXUif8pShgBbZ
+ QHTg8rBpDfmiMoNDXFDvDGBu+d3yZavPw53CJauqjtCZQRvYPiMADIVi+BrNT8IPLf
+ feWBiYSkNwxNQ==
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+From: Simon Ser <contact@emersion.fr>
+Cc: harry.wentland@amd.com, alexander.deucher@amd.com, michel@daenzer.net,
+ pekka.paalanen@collabora.com, daniel@fooishbar.org, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <TEH7vVN12SkH1d2BAwcP18Ho63wY_uGecogrNv7qEOs2fMGMmGyNpOsj5b_hZ3rW-s9XhLmM09ETMau1PQ3ifgDDCLqKZfPWzZcNrU1ohLE=@emersion.fr>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH v2 7/7] drm/connector: add ref to
+ drm_connector_get in iter docs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,30 +62,8 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Simon Ser <contact@emersion.fr>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Duplicate include header file "intel_region_lmem.h"
-line 8: #include "intel_region_lmem.h"
-line 12: #include "intel_region_lmem.h"
-
-Signed-off-by: zhouchuangao <zhouchuangao@vivo.com>
----
- drivers/gpu/drm/i915/gt/intel_region_lmem.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index f7366b0..119eeec 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -9,7 +9,6 @@
- #include "intel_region_ttm.h"
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_region.h"
--#include "intel_region_lmem.h"
- 
- static int init_fake_lmem_bar(struct intel_memory_region *mem)
- {
--- 
-2.7.4
-
+Pushed this one doc patch with Daniel's R-b on IRC.
