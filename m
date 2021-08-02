@@ -1,39 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6362E3DD1CF
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 10:16:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFBD3DD26B
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 10:59:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E081789A08;
-	Mon,  2 Aug 2021 08:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4BE96E4CA;
+	Mon,  2 Aug 2021 08:59:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE462899D6
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 08:16:27 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10063"; a="235338219"
-X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; d="scan'208";a="235338219"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2021 01:16:27 -0700
-X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; d="scan'208";a="436595587"
-Received: from genxfsim-desktop.iind.intel.com ([10.223.74.179])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2021 01:16:25 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>
-Date: Mon,  2 Aug 2021 13:28:27 +0530
-Message-Id: <20210802075827.8233-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210325093213.20794-1-anshuman.gupta@intel.com>
-References: <20210325093213.20794-1-anshuman.gupta@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F057A6E196;
+ Mon,  2 Aug 2021 08:59:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10063"; a="200619002"
+X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; d="scan'208";a="200619002"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 01:59:08 -0700
+X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; d="scan'208";a="666499504"
+Received: from sncampbe-mobl.ger.corp.intel.com (HELO [10.213.247.107])
+ ([10.213.247.107])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 01:59:07 -0700
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20210727182057.78409-1-matthew.brost@intel.com>
+ <20210727182057.78409-2-matthew.brost@intel.com>
+ <9095b26a-975b-9180-045f-7231d63fe9ff@linux.intel.com>
+ <20210730180609.GA60763@DUT151-ICLU.fm.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <90b87a17-43df-96ac-d491-73c73722a58f@linux.intel.com>
+Date: Mon, 2 Aug 2021 09:59:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [CI v2] drm/i915: Tweaked Wa_14010685332 for all PCHs
+In-Reply-To: <20210730180609.GA60763@DUT151-ICLU.fm.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/1] i915/gem_scheduler: Ensure
+ submission order in manycontexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,112 +56,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-dispcnlunit1_cp_xosc_clkreq clock observed to be active on TGL-H platform
-despite Wa_14010685332 original sequence, thus blocks entry to deeper s0ix state.
 
-The Tweaked Wa_14010685332 sequence fixes this issue, therefore use tweaked
-Wa_14010685332 sequence for every PCH since PCH_CNP.
 
-v2:
-- removed RKL from comment and simplified condition. [Rodrigo]
+On 30/07/2021 19:06, Matthew Brost wrote:
+> On Fri, Jul 30, 2021 at 10:58:38AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 27/07/2021 19:20, Matthew Brost wrote:
+>>> With GuC submission contexts can get reordered (compared to submission
+>>> order), if contexts get reordered the sequential nature of the batches
+>>> releasing the next batch's semaphore in function timesliceN() get broken
+>>> resulting in the test taking much longer than if should. e.g. Every
+>>> contexts needs to be timesliced to release the next batch. Corking the
+>>> first submission until all the batches have been submitted should ensure
+>>> submission order.
+>>
+>> The explanation sounds suspect.
+>>
+>> Consider this comment from the test itself:
+>>
+>> 	/*
+>> 	 * Create a pair of interlocking batches, that ping pong
+>> 	 * between each other, and only advance one step at a time.
+>> 	 * We require the kernel to preempt at each semaphore and
+>> 	 * switch to the other batch in order to advance.
+>> 	 */
+>>
+>> I'd say the test does not rely on no re-ordering at all, but relies on
+>> context switch on an unsatisfied semaphore.
+>>
+> 
+> Yes, let do a simple example with 5 batches. Batch 0 releases batch's
+> semaphore 1, batch 1 releases batch's 2 semaphore, etc... If the batches
+> are seen in order the test should take 40 timeslices (8 semaphores in
+> each batch have to be released).
+> 
+> If the batches are in the below order:
+> 0 2 1 3 4
+> 
+> Now we have 72 timeslices. Now imagine with 67 batches completely out of
+> order, the number timeslices can explode.
 
-Fixes: b896898c7369 ("drm/i915: Tweaked Wa_14010685332 for PCHs used on gen11 platforms")
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- .../drm/i915/display/intel_display_power.c    | 16 +++++++-------
- drivers/gpu/drm/i915/i915_irq.c               | 21 -------------------
- 2 files changed, 8 insertions(+), 29 deletions(-)
+Yes that part is clear, issue is to understand why is guc waiting for 
+the timeslice to expire..
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 02452237ad0b..c2a0238386d7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -6126,13 +6126,13 @@ void intel_display_power_suspend_late(struct drm_i915_private *i915)
- 	if (DISPLAY_VER(i915) >= 11 || IS_GEMINILAKE(i915) ||
- 	    IS_BROXTON(i915)) {
- 		bxt_enable_dc9(i915);
--		/* Tweaked Wa_14010685332:icp,jsp,mcc */
--		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC)
--			intel_de_rmw(i915, SOUTH_CHICKEN1,
--				     SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
- 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 		hsw_enable_pc8(i915);
- 	}
-+
-+	/* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
-+	if (INTEL_PCH_TYPE(i915) >= PCH_CNP && INTEL_PCH_TYPE(i915) < PCH_DG1)
-+		intel_de_rmw(i915, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
- }
- 
- void intel_display_power_resume_early(struct drm_i915_private *i915)
-@@ -6141,13 +6141,13 @@ void intel_display_power_resume_early(struct drm_i915_private *i915)
- 	    IS_BROXTON(i915)) {
- 		gen9_sanitize_dc_state(i915);
- 		bxt_disable_dc9(i915);
--		/* Tweaked Wa_14010685332:icp,jsp,mcc */
--		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC)
--			intel_de_rmw(i915, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
--
- 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 		hsw_disable_pc8(i915);
- 	}
-+
-+	/* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
-+	if (INTEL_PCH_TYPE(i915) >= PCH_CNP && INTEL_PCH_TYPE(i915) < PCH_DG1)
-+		intel_de_rmw(i915, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
- }
- 
- void intel_display_power_suspend(struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 17d336218b67..9bc4f4a8e12e 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -3079,24 +3079,6 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
- 	spin_unlock_irq(&dev_priv->irq_lock);
- }
- 
--static void cnp_display_clock_wa(struct drm_i915_private *dev_priv)
--{
--	struct intel_uncore *uncore = &dev_priv->uncore;
--
--	/*
--	 * Wa_14010685332:cnp/cmp,tgp,adp
--	 * TODO: Clarify which platforms this applies to
--	 * TODO: Figure out if this workaround can be applied in the s0ix suspend/resume handlers as
--	 * on earlier platforms and whether the workaround is also needed for runtime suspend/resume
--	 */
--	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
--	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
--		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS,
--				 SBCLK_RUN_REFCLK_DIS);
--		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
--	}
--}
--
- static void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
-@@ -3130,7 +3112,6 @@ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
- 	if (HAS_PCH_SPLIT(dev_priv))
- 		ibx_irq_reset(dev_priv);
- 
--	cnp_display_clock_wa(dev_priv);
- }
- 
- static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
-@@ -3174,8 +3155,6 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
- 
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
- 		GEN3_IRQ_RESET(uncore, SDE);
--
--	cnp_display_clock_wa(dev_priv);
- }
- 
- static void gen11_irq_reset(struct drm_i915_private *dev_priv)
--- 
-2.26.2
+>> In the commit you seem to acknowledge GuC does not do that but instead ends
+>> up waiting for the timeslice to expire, did I get that right? If so, why
+> 
+> I think GuC waits for the timeslice to expire if a semaphore is
+> unsatisfied, I have to double check on that. I thought that was what
+> execlists were doing too but I now see it has a convoluted algorithm to
+> yield the timeslice if subsequent request comes in and the ring is
+> waiting on a timeslice. Let me check with GuC team and see if they can
+> / are doing something similiar. I was thinking the only to switch a
+> sempahore was clear CTX_CTRL_INHIBIT_SYN_CTX_SWITCH but that appears to
+> be incorrect.
 
+.. so this will need clarifying with the firmware team.
+
+With execlists we enable and react on GT_WAIT_SEMAPHORE_INTERRUPT. If 
+guc does not, or can not, do that that could be worrying since userspace 
+can and does use semaphores legitimately so making it pay the timeslice 
+penalty. Well actually that has an effect to unrelated clients as well, 
+not just the semaphore user.
+
+> For what is worth, after this change the run times of test are pretty
+> similar for execlists & GuC on TGL.
+
+Yes, but the test was useful in this case since it found a weakness in 
+guc scheduling so it may not be the best approach to hide that.
+
+Regards,
+
+Tvrtko
+
+> 
+> Matt
+> 
+>> does the GuC does not do that and can we fix it?
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>>
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>    tests/i915/gem_exec_schedule.c | 16 +++++++++++++++-
+>>>    1 file changed, 15 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
+>>> index f03842478..41f2591a5 100644
+>>> --- a/tests/i915/gem_exec_schedule.c
+>>> +++ b/tests/i915/gem_exec_schedule.c
+>>> @@ -597,12 +597,13 @@ static void timesliceN(int i915, const intel_ctx_cfg_t *cfg,
+>>>    	struct drm_i915_gem_execbuffer2 execbuf  = {
+>>>    		.buffers_ptr = to_user_pointer(&obj),
+>>>    		.buffer_count = 1,
+>>> -		.flags = engine | I915_EXEC_FENCE_OUT,
+>>> +		.flags = engine | I915_EXEC_FENCE_OUT | I915_EXEC_FENCE_SUBMIT,
+>>>    	};
+>>>    	uint32_t *result =
+>>>    		gem_mmap__device_coherent(i915, obj.handle, 0, sz, PROT_READ);
+>>>    	const intel_ctx_t *ctx;
+>>>    	int fence[count];
+>>> +	IGT_CORK_FENCE(cork);
+>>>    	/*
+>>>    	 * Create a pair of interlocking batches, that ping pong
+>>> @@ -614,6 +615,17 @@ static void timesliceN(int i915, const intel_ctx_cfg_t *cfg,
+>>>    	igt_require(gem_scheduler_has_timeslicing(i915));
+>>>    	igt_require(intel_gen(intel_get_drm_devid(i915)) >= 8);
+>>> +	/*
+>>> +	 * With GuC submission contexts can get reordered (compared to
+>>> +	 * submission order), if contexts get reordered the sequential
+>>> +	 * nature of the batches releasing the next batch's semaphore gets
+>>> +	 * broken resulting in the test taking much longer than it should (e.g.
+>>> +	 * every context needs to be timesliced to release the next batch).
+>>> +	 * Corking the first submission until all batches have been
+>>> +	 * submitted should ensure submission order.
+>>> +	 */
+>>> +	execbuf.rsvd2 = igt_cork_plug(&cork, i915);
+>>> +
+>>>    	/* No coupling between requests; free to timeslice */
+>>>    	for (int i = 0; i < count; i++) {
+>>> @@ -624,8 +636,10 @@ static void timesliceN(int i915, const intel_ctx_cfg_t *cfg,
+>>>    		intel_ctx_destroy(i915, ctx);
+>>>    		fence[i] = execbuf.rsvd2 >> 32;
+>>> +		execbuf.rsvd2 >>= 32;
+>>>    	}
+>>> +	igt_cork_unplug(&cork);
+>>>    	gem_sync(i915, obj.handle);
+>>>    	gem_close(i915, obj.handle);
+>>>
