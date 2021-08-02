@@ -2,70 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A5A3DD6C2
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 15:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9623DD485
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 13:19:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1D0E6E0AA;
-	Mon,  2 Aug 2021 13:17:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 095176E135;
+	Mon,  2 Aug 2021 11:19:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
- [IPv6:2607:f8b0:4864:20::1031])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57E296E204;
- Mon,  2 Aug 2021 11:01:21 +0000 (UTC)
-Received: by mail-pj1-x1031.google.com with SMTP id
- q17-20020a17090a2e11b02901757deaf2c8so24272429pjd.0; 
- Mon, 02 Aug 2021 04:01:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=9wyMs+rwX3ldqcYresSOjD4BweaQ/WnMH4Ky/VQDi2I=;
- b=Yc4FE9YjAWr9IC8sdF1L1QTKHbzv2l3QIYmiEecRKbBNneolptr9Pi3XzZU6rwfZCT
- 8O0thjHeEkHK3L1/Txx+ji8Mr513dnL+bfZDMwJt3YYdHu/09mkh0DkeVbUXrIisv81F
- 7YMYsvks+POltFmWXjm8TqCHeKU721PxvWx25P0sezJAC1cu2Kmi+w494F480GQ/FSHx
- ZSNFgsT45n6tUDl/ryzLi3U5pAvlm1nCCmxwKgvGjhO5XHayaPGgh8OVwCCgex6V1p10
- Isix8qFvOdtIwT36o1vcheb0yZayKW2fHYdpg9VklB8YLMQ+Gj0nlp/wRjfrxfM8ga9f
- KDHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=9wyMs+rwX3ldqcYresSOjD4BweaQ/WnMH4Ky/VQDi2I=;
- b=ZCokdd5iyz/ZxVtDJU0bGPZtIXuoGNX04qoFfJER7UF2HMZ9HYXhkncbcgxB4Gl5Ll
- EVu+adZ7/Z3WCIvnd/CZAeKnbx3TsW116vBpysixY6B7YnW6wg26V0HqDPDdCNicV3vl
- 9tVXNKb6czsz1PuAR5bITQfdL2I1k1u8IZLRQA0BwRhXbR+2RWhGNRpHge9TEiFoNVLA
- yo7b+BSRymySHLN1/oN86PZUMSIDhLYC99xNk/V7hUKTTzrKw4CTKgVS7s7ZYziR0MKb
- imrUkGgWpEbt01BmxI70vs2plqqDMb+L9XeLD3Z1zY3oZAU44J8quWWPzO9DQLEDLmM0
- XksA==
-X-Gm-Message-State: AOAM532x5l0PoOWSP1Qmmt4tAYSXH9D9VBECyoIcirBrM/YOhncz0QKi
- Gi/55ynRXtwErtl0CeI2z8M=
-X-Google-Smtp-Source: ABdhPJw3Zis0PZJdPsYef4VhN3d7rrLIYlB75L7nQeFiLyBly19H2n3lL4vzH8obKhGcJddjQi2ppw==
-X-Received: by 2002:a65:6a0a:: with SMTP id m10mr2267519pgu.145.1627902081017; 
- Mon, 02 Aug 2021 04:01:21 -0700 (PDT)
-Received: from localhost.localdomain ([118.200.190.93])
- by smtp.gmail.com with ESMTPSA id v30sm9709158pgk.25.2021.08.02.04.01.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Aug 2021 04:01:20 -0700 (PDT)
-From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@linux.ie, daniel@ffwll.ch, peterz@infradead.org, mingo@redhat.com,
- will@kernel.org, longman@redhat.com, boqun.feng@gmail.com,
- sumit.semwal@linaro.org, christian.koenig@amd.com
-Cc: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, skhan@linuxfoundation.org,
- gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org
-Date: Mon,  2 Aug 2021 18:59:57 +0800
-Message-Id: <20210802105957.77692-3-desmondcheongzx@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210802105957.77692-1-desmondcheongzx@gmail.com>
-References: <20210802105957.77692-1-desmondcheongzx@gmail.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1462C6E135
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 11:19:48 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10063"; a="235362529"
+X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; d="scan'208";a="235362529"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 04:19:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; d="scan'208";a="436639733"
+Received: from tejas-system-product-name.iind.intel.com ([10.145.162.130])
+ by orsmga002.jf.intel.com with ESMTP; 02 Aug 2021 04:19:44 -0700
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  2 Aug 2021 16:41:40 +0530
+Message-Id: <20210802111140.1063832-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 02 Aug 2021 13:17:20 +0000
-Subject: [Intel-gfx] [RESEND PATCH v2 2/2] drm: add lockdep assert to
- drm_is_current_master_locked
+Subject: [Intel-gfx] [PATCH] drm/i915/adl_s: Update ADL-S PCI IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,56 +44,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In drm_is_current_master_locked, accessing drm_file.master should be
-protected by either drm_file.master_lookup_lock or
-drm_device.master_mutex. This was previously awkward to assert with
-lockdep.
+Sync PCI IDs with Bspec.
 
-Following patch ("locking/lockdep: Provide lockdep_assert{,_once}()
-helpers"), this assertion is now convenient. So we add in the
-assertion and explain this lock design in the kerneldoc.
+Bspec:53655
 
-Signed-off-by: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Acked-by: Boqun Feng <boqun.feng@gmail.com>
-Acked-by: Waiman Long <longman@redhat.com>
-Acked-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 ---
- drivers/gpu/drm/drm_auth.c | 6 +++---
- include/drm/drm_file.h     | 4 ++++
- 2 files changed, 7 insertions(+), 3 deletions(-)
+ include/drm/i915_pciids.h | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
-index 9c24b8cc8e36..6f4d7ff23c80 100644
---- a/drivers/gpu/drm/drm_auth.c
-+++ b/drivers/gpu/drm/drm_auth.c
-@@ -63,9 +63,9 @@
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index eee18fa53b54..8adb058dfc5a 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -637,13 +637,9 @@
+ /* ADL-S */
+ #define INTEL_ADLS_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x4680, info), \
+-	INTEL_VGA_DEVICE(0x4681, info), \
+ 	INTEL_VGA_DEVICE(0x4682, info), \
+-	INTEL_VGA_DEVICE(0x4683, info), \
+ 	INTEL_VGA_DEVICE(0x4688, info), \
+-	INTEL_VGA_DEVICE(0x4689, info), \
+ 	INTEL_VGA_DEVICE(0x4690, info), \
+-	INTEL_VGA_DEVICE(0x4691, info), \
+ 	INTEL_VGA_DEVICE(0x4692, info), \
+ 	INTEL_VGA_DEVICE(0x4693, info)
  
- static bool drm_is_current_master_locked(struct drm_file *fpriv)
- {
--	/* Either drm_device.master_mutex or drm_file.master_lookup_lock
--	 * should be held here.
--	 */
-+	lockdep_assert_once(lockdep_is_held(&fpriv->master_lookup_lock) ||
-+			    lockdep_is_held(&fpriv->minor->dev->master_mutex));
-+
- 	return fpriv->is_master && drm_lease_owner(fpriv->master) == fpriv->minor->dev->master;
- }
- 
-diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-index 726cfe0ff5f5..a3acb7ac3550 100644
---- a/include/drm/drm_file.h
-+++ b/include/drm/drm_file.h
-@@ -233,6 +233,10 @@ struct drm_file {
- 	 * this only matches &drm_device.master if the master is the currently
- 	 * active one.
- 	 *
-+	 * To update @master, both &drm_device.master_mutex and
-+	 * @master_lookup_lock need to be held, therefore holding either of
-+	 * them is safe and enough for the read side.
-+	 *
- 	 * When dereferencing this pointer, either hold struct
- 	 * &drm_device.master_mutex for the duration of the pointer's use, or
- 	 * use drm_file_get_master() if struct &drm_device.master_mutex is not
 -- 
-2.25.1
+2.31.1
 
