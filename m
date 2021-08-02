@@ -2,37 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A543DE138
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 23:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B93473DE14E
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 23:16:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8F86E0C1;
-	Mon,  2 Aug 2021 21:08:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C8B16E0D5;
+	Mon,  2 Aug 2021 21:16:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 012806E0C1
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 21:07:59 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="193128078"
-X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="193128078"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2021 14:07:59 -0700
-X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="510402317"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2021 14:07:58 -0700
-Date: Tue, 3 Aug 2021 00:07:54 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Message-ID: <20210802210754.GA2115791@ideak-desk.fi.intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB436E0D5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 21:16:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="193817332"
+X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="193817332"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 14:16:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="466427368"
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
+ by orsmga008.jf.intel.com with ESMTP; 02 Aug 2021 14:16:33 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Mon, 2 Aug 2021 22:16:32 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.010;
+ Mon, 2 Aug 2021 14:16:30 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915: Apply CMTG clock disabling WA while DPLL0 is
+ enabled
+Thread-Index: AQHXh9D7h4JyVYL2xkeudDnllxQeyKthJ62AgAAC9QCAAAOyAA==
+Date: Mon, 2 Aug 2021 21:16:30 +0000
+Message-ID: <9d04bc4221b0729f3007be8d9d61d1d98addae77.camel@intel.com>
 References: <20210802190148.2099625-1-imre.deak@intel.com>
  <70c089841d159b322f6c6749fad8e416766676dc.camel@intel.com>
+ <20210802210754.GA2115791@ideak-desk.fi.intel.com>
+In-Reply-To: <20210802210754.GA2115791@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3650494ECAE2BF4BB506D49F3DD60AF0@intel.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <70c089841d159b322f6c6749fad8e416766676dc.camel@intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Apply CMTG clock disabling WA
  while DPLL0 is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -50,129 +66,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 02, 2021 at 11:52:41PM +0300, Souza, Jose wrote:
-> On Mon, 2021-08-02 at 22:01 +0300, Imre Deak wrote:
-> > CI test results/further experiments show that the workaround added in
-> > 
-> > commit 573d7ce4f69a ("drm/i915/adlp: Add workaround to disable CMTG clock gating")
-> > 
-> > can be applied only while DPLL0 is enabled. If it's disabled the
-> > TRANS_CMTG_CHICKEN register is not accessible. Accordingly move the WA
-> > to DPLL0 HW state sanitization and enabling.
-> > 
-> > This fixes an issue where the WA won't get applied (and a WARN is thrown
-> > due to an unexpected value in TRANS_CMTG_CHICKEN) if the driver is
-> > loaded without DPLL0 being enabled: booting without BIOS enabling an
-> > output with this PLL, or reloading the driver.
-> > 
-> > While at it also add a debug print for the unexpected register value.
-> 
-> Workaround do not mention nothing about this DPLL0 dependency, maybe
-> would be nice to comment in HSD about this.
-
-Ok, can add comment.
-
-> Have you tried to check if the workaround applies if DPLL1 is enabled?
-> We could comment DPLL0 out from the adlp_plls table.
-
-No, only DPLL0 makes it work, DPLL1 being enabled is not enough. You can
-experiment with this by unloading the driver and simply enable/disable
-DPLL0/1 (both power and enable flag) and try to read/modify/re-read the
-CMTG_CHICKEN reg.
-
-> > Cc: José Roberto de Souza <jose.souza@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 18 ----------
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 34 ++++++++++++++++++-
-> >  2 files changed, 33 insertions(+), 19 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 4ca354f154215..98f7fbede6226 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -13284,24 +13284,6 @@ static void intel_early_display_was(struct drm_i915_private *dev_priv)
-> >  			     KBL_ARB_FILL_SPARE_13 | KBL_ARB_FILL_SPARE_14,
-> >  			     KBL_ARB_FILL_SPARE_14);
-> >  	}
-> > -
-> > -	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
-> > -		u32 val;
-> > -
-> > -		/*
-> > -		 * Wa_16011069516:adl-p[a0]
-> > -		 *
-> > -		 * All CMTG regs are unreliable until CMTG clock gating is
-> > -		 * disabled, so we can only assume the default CMTG_CHICKEN
-> > -		 * reg value and sanity check this assumption with a double
-> > -		 * read, which presumably returns the correct value even with
-> > -		 * clock gating on.
-> > -		 */
-> > -		val = intel_de_read(dev_priv, TRANS_CMTG_CHICKEN);
-> > -		val = intel_de_read(dev_priv, TRANS_CMTG_CHICKEN);
-> > -		intel_de_write(dev_priv, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
-> > -		drm_WARN_ON(&dev_priv->drm, val & ~DISABLE_DPT_CLK_GATING);
-> > -	}
-> >  }
-> >  
-> >  static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_priv,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > index 0d72917e5670f..5c91d125a3371 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > @@ -3735,6 +3735,31 @@ static void icl_pll_enable(struct drm_i915_private *dev_priv,
-> >  		drm_err(&dev_priv->drm, "PLL %d not locked\n", pll->info->id);
-> >  }
-> >  
-> > +static void adlp_cmtg_clock_gating_wa(struct drm_i915_private *i915, struct intel_shared_dpll *pll)
-> > +{
-> > +	u32 val;
-> > +
-> > +	if (!IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0) ||
-> > +	    pll->info->id != DPLL_ID_ICL_DPLL0)
-> > +		return;
-> > +	/*
-> > +	 * Wa_16011069516:adl-p[a0]
-> > +	 *
-> > +	 * All CMTG regs are unreliable until CMTG clock gating is disabled,
-> > +	 * so we can only assume the default TRANS_CMTG_CHICKEN reg value and
-> > +	 * sanity check this assumption with a double read, which presumably
-> > +	 * returns the correct value even with clock gating on.
-> > +	 *
-> > +	 * Instead of the usual place for workarounds we apply this one here,
-> > +	 * since TRANS_CMTG_CHICKEN is only accessible while DPLL0 is enabled.
-> > +	 */
-> > +	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
-> > +	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
-> > +	intel_de_write(i915, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
-> > +	if (drm_WARN_ON(&i915->drm, val & ~DISABLE_DPT_CLK_GATING))
-> > +		drm_dbg_kms(&i915->drm, "Unexpected flags in TRANS_CMTG_CHICKEN: %08x\n", val);
-> > +}
-> > +
-> >  static void combo_pll_enable(struct drm_i915_private *dev_priv,
-> >  			     struct intel_shared_dpll *pll)
-> >  {
-> > @@ -3764,6 +3789,8 @@ static void combo_pll_enable(struct drm_i915_private *dev_priv,
-> >  
-> >  	icl_pll_enable(dev_priv, pll, enable_reg);
-> >  
-> > +	adlp_cmtg_clock_gating_wa(dev_priv, pll);
-> > +
-> >  	/* DVFS post sequence would be here. See the comment above. */
-> >  }
-> >  
-> > @@ -4273,7 +4300,12 @@ void intel_dpll_readout_hw_state(struct drm_i915_private *i915)
-> >  static void sanitize_dpll_state(struct drm_i915_private *i915,
-> >  				struct intel_shared_dpll *pll)
-> >  {
-> > -	if (!pll->on || pll->active_mask)
-> > +	if (!pll->on)
-> > +		return;
-> > +
-> > +	adlp_cmtg_clock_gating_wa(i915, pll);
-> > +
-> > +	if (pll->active_mask)
-> >  		return;
-> >  
-> >  	drm_dbg_kms(&i915->drm,
-> 
+T24gVHVlLCAyMDIxLTA4LTAzIGF0IDAwOjA3ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE9u
+IE1vbiwgQXVnIDAyLCAyMDIxIGF0IDExOjUyOjQxUE0gKzAzMDAsIFNvdXphLCBKb3NlIHdyb3Rl
+Og0KPiA+IE9uIE1vbiwgMjAyMS0wOC0wMiBhdCAyMjowMSArMDMwMCwgSW1yZSBEZWFrIHdyb3Rl
+Og0KPiA+ID4gQ0kgdGVzdCByZXN1bHRzL2Z1cnRoZXIgZXhwZXJpbWVudHMgc2hvdyB0aGF0IHRo
+ZSB3b3JrYXJvdW5kIGFkZGVkIGluDQo+ID4gPiANCj4gPiA+IGNvbW1pdCA1NzNkN2NlNGY2OWEg
+KCJkcm0vaTkxNS9hZGxwOiBBZGQgd29ya2Fyb3VuZCB0byBkaXNhYmxlIENNVEcgY2xvY2sgZ2F0
+aW5nIikNCj4gPiA+IA0KPiA+ID4gY2FuIGJlIGFwcGxpZWQgb25seSB3aGlsZSBEUExMMCBpcyBl
+bmFibGVkLiBJZiBpdCdzIGRpc2FibGVkIHRoZQ0KPiA+ID4gVFJBTlNfQ01UR19DSElDS0VOIHJl
+Z2lzdGVyIGlzIG5vdCBhY2Nlc3NpYmxlLiBBY2NvcmRpbmdseSBtb3ZlIHRoZSBXQQ0KPiA+ID4g
+dG8gRFBMTDAgSFcgc3RhdGUgc2FuaXRpemF0aW9uIGFuZCBlbmFibGluZy4NCj4gPiA+IA0KPiA+
+ID4gVGhpcyBmaXhlcyBhbiBpc3N1ZSB3aGVyZSB0aGUgV0Egd29uJ3QgZ2V0IGFwcGxpZWQgKGFu
+ZCBhIFdBUk4gaXMgdGhyb3duDQo+ID4gPiBkdWUgdG8gYW4gdW5leHBlY3RlZCB2YWx1ZSBpbiBU
+UkFOU19DTVRHX0NISUNLRU4pIGlmIHRoZSBkcml2ZXIgaXMNCj4gPiA+IGxvYWRlZCB3aXRob3V0
+IERQTEwwIGJlaW5nIGVuYWJsZWQ6IGJvb3Rpbmcgd2l0aG91dCBCSU9TIGVuYWJsaW5nIGFuDQo+
+ID4gPiBvdXRwdXQgd2l0aCB0aGlzIFBMTCwgb3IgcmVsb2FkaW5nIHRoZSBkcml2ZXIuDQo+ID4g
+PiANCj4gPiA+IFdoaWxlIGF0IGl0IGFsc28gYWRkIGEgZGVidWcgcHJpbnQgZm9yIHRoZSB1bmV4
+cGVjdGVkIHJlZ2lzdGVyIHZhbHVlLg0KPiA+IA0KPiA+IFdvcmthcm91bmQgZG8gbm90IG1lbnRp
+b24gbm90aGluZyBhYm91dCB0aGlzIERQTEwwIGRlcGVuZGVuY3ksIG1heWJlDQo+ID4gd291bGQg
+YmUgbmljZSB0byBjb21tZW50IGluIEhTRCBhYm91dCB0aGlzLg0KPiANCj4gT2ssIGNhbiBhZGQg
+Y29tbWVudC4NCj4gDQo+ID4gSGF2ZSB5b3UgdHJpZWQgdG8gY2hlY2sgaWYgdGhlIHdvcmthcm91
+bmQgYXBwbGllcyBpZiBEUExMMSBpcyBlbmFibGVkPw0KPiA+IFdlIGNvdWxkIGNvbW1lbnQgRFBM
+TDAgb3V0IGZyb20gdGhlIGFkbHBfcGxscyB0YWJsZS4NCj4gDQo+IE5vLCBvbmx5IERQTEwwIG1h
+a2VzIGl0IHdvcmssIERQTEwxIGJlaW5nIGVuYWJsZWQgaXMgbm90IGVub3VnaC4gWW91IGNhbg0K
+PiBleHBlcmltZW50IHdpdGggdGhpcyBieSB1bmxvYWRpbmcgdGhlIGRyaXZlciBhbmQgc2ltcGx5
+IGVuYWJsZS9kaXNhYmxlDQo+IERQTEwwLzEgKGJvdGggcG93ZXIgYW5kIGVuYWJsZSBmbGFnKSBh
+bmQgdHJ5IHRvIHJlYWQvbW9kaWZ5L3JlLXJlYWQgdGhlDQo+IENNVEdfQ0hJQ0tFTiByZWcuDQoN
+Ck9rYXkgaWYgeW91IHRlc3RlZCB0aGlzIGl0IGxvb2tzIGdvb2QgdG8gbWUuDQoNClJldmlld2Vk
+LWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiAN
+Cj4gPiA+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4N
+Cj4gPiA+IFNpZ25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4g
+PiA+IC0tLQ0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eS5jICB8IDE4IC0tLS0tLS0tLS0NCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2RwbGxfbWdyLmMgfCAzNCArKysrKysrKysrKysrKysrKystDQo+ID4gPiAgMiBmaWxl
+cyBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkNCj4gPiA+IA0KPiA+
+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+
+IGluZGV4IDRjYTM1NGYxNTQyMTUuLjk4ZjdmYmVkZTYyMjYgMTAwNjQ0DQo+ID4gPiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+IEBAIC0x
+MzI4NCwyNCArMTMyODQsNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9lYXJseV9kaXNwbGF5X3dhcyhz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ID4gPiAgCQkJICAgICBLQkxfQVJC
+X0ZJTExfU1BBUkVfMTMgfCBLQkxfQVJCX0ZJTExfU1BBUkVfMTQsDQo+ID4gPiAgCQkJICAgICBL
+QkxfQVJCX0ZJTExfU1BBUkVfMTQpOw0KPiA+ID4gIAl9DQo+ID4gPiAtDQo+ID4gPiAtCWlmIChJ
+U19BRExQX0RJU1BMQVlfU1RFUChkZXZfcHJpdiwgU1RFUF9BMCwgU1RFUF9CMCkpIHsNCj4gPiA+
+IC0JCXUzMiB2YWw7DQo+ID4gPiAtDQo+ID4gPiAtCQkvKg0KPiA+ID4gLQkJICogV2FfMTYwMTEw
+Njk1MTY6YWRsLXBbYTBdDQo+ID4gPiAtCQkgKg0KPiA+ID4gLQkJICogQWxsIENNVEcgcmVncyBh
+cmUgdW5yZWxpYWJsZSB1bnRpbCBDTVRHIGNsb2NrIGdhdGluZyBpcw0KPiA+ID4gLQkJICogZGlz
+YWJsZWQsIHNvIHdlIGNhbiBvbmx5IGFzc3VtZSB0aGUgZGVmYXVsdCBDTVRHX0NISUNLRU4NCj4g
+PiA+IC0JCSAqIHJlZyB2YWx1ZSBhbmQgc2FuaXR5IGNoZWNrIHRoaXMgYXNzdW1wdGlvbiB3aXRo
+IGEgZG91YmxlDQo+ID4gPiAtCQkgKiByZWFkLCB3aGljaCBwcmVzdW1hYmx5IHJldHVybnMgdGhl
+IGNvcnJlY3QgdmFsdWUgZXZlbiB3aXRoDQo+ID4gPiAtCQkgKiBjbG9jayBnYXRpbmcgb24uDQo+
+ID4gPiAtCQkgKi8NCj4gPiA+IC0JCXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIFRSQU5T
+X0NNVEdfQ0hJQ0tFTik7DQo+ID4gPiAtCQl2YWwgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBU
+UkFOU19DTVRHX0NISUNLRU4pOw0KPiA+ID4gLQkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIFRS
+QU5TX0NNVEdfQ0hJQ0tFTiwgRElTQUJMRV9EUFRfQ0xLX0dBVElORyk7DQo+ID4gPiAtCQlkcm1f
+V0FSTl9PTigmZGV2X3ByaXYtPmRybSwgdmFsICYgfkRJU0FCTEVfRFBUX0NMS19HQVRJTkcpOw0K
+PiA+ID4gLQl9DQo+ID4gPiAgfQ0KPiA+ID4gIA0KPiA+ID4gIHN0YXRpYyB2b2lkIGlieF9zYW5p
+dGl6ZV9wY2hfaGRtaV9wb3J0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCj4g
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxf
+bWdyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMNCj4g
+PiA+IGluZGV4IDBkNzI5MTdlNTY3MGYuLjVjOTFkMTI1YTMzNzEgMTAwNjQ0DQo+ID4gPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMNCj4gPiA+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYw0KPiA+ID4g
+QEAgLTM3MzUsNiArMzczNSwzMSBAQCBzdGF0aWMgdm9pZCBpY2xfcGxsX2VuYWJsZShzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ID4gPiAgCQlkcm1fZXJyKCZkZXZfcHJpdi0+
+ZHJtLCAiUExMICVkIG5vdCBsb2NrZWRcbiIsIHBsbC0+aW5mby0+aWQpOw0KPiA+ID4gIH0NCj4g
+PiA+ICANCj4gPiA+ICtzdGF0aWMgdm9pZCBhZGxwX2NtdGdfY2xvY2tfZ2F0aW5nX3dhKHN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBzdHJ1Y3QgaW50ZWxfc2hhcmVkX2RwbGwgKnBsbCkN
+Cj4gPiA+ICt7DQo+ID4gPiArCXUzMiB2YWw7DQo+ID4gPiArDQo+ID4gPiArCWlmICghSVNfQURM
+UF9ESVNQTEFZX1NURVAoaTkxNSwgU1RFUF9BMCwgU1RFUF9CMCkgfHwNCj4gPiA+ICsJICAgIHBs
+bC0+aW5mby0+aWQgIT0gRFBMTF9JRF9JQ0xfRFBMTDApDQo+ID4gPiArCQlyZXR1cm47DQo+ID4g
+PiArCS8qDQo+ID4gPiArCSAqIFdhXzE2MDExMDY5NTE2OmFkbC1wW2EwXQ0KPiA+ID4gKwkgKg0K
+PiA+ID4gKwkgKiBBbGwgQ01URyByZWdzIGFyZSB1bnJlbGlhYmxlIHVudGlsIENNVEcgY2xvY2sg
+Z2F0aW5nIGlzIGRpc2FibGVkLA0KPiA+ID4gKwkgKiBzbyB3ZSBjYW4gb25seSBhc3N1bWUgdGhl
+IGRlZmF1bHQgVFJBTlNfQ01UR19DSElDS0VOIHJlZyB2YWx1ZSBhbmQNCj4gPiA+ICsJICogc2Fu
+aXR5IGNoZWNrIHRoaXMgYXNzdW1wdGlvbiB3aXRoIGEgZG91YmxlIHJlYWQsIHdoaWNoIHByZXN1
+bWFibHkNCj4gPiA+ICsJICogcmV0dXJucyB0aGUgY29ycmVjdCB2YWx1ZSBldmVuIHdpdGggY2xv
+Y2sgZ2F0aW5nIG9uLg0KPiA+ID4gKwkgKg0KPiA+ID4gKwkgKiBJbnN0ZWFkIG9mIHRoZSB1c3Vh
+bCBwbGFjZSBmb3Igd29ya2Fyb3VuZHMgd2UgYXBwbHkgdGhpcyBvbmUgaGVyZSwNCj4gPiA+ICsJ
+ICogc2luY2UgVFJBTlNfQ01UR19DSElDS0VOIGlzIG9ubHkgYWNjZXNzaWJsZSB3aGlsZSBEUExM
+MCBpcyBlbmFibGVkLg0KPiA+ID4gKwkgKi8NCj4gPiA+ICsJdmFsID0gaW50ZWxfZGVfcmVhZChp
+OTE1LCBUUkFOU19DTVRHX0NISUNLRU4pOw0KPiA+ID4gKwl2YWwgPSBpbnRlbF9kZV9yZWFkKGk5
+MTUsIFRSQU5TX0NNVEdfQ0hJQ0tFTik7DQo+ID4gPiArCWludGVsX2RlX3dyaXRlKGk5MTUsIFRS
+QU5TX0NNVEdfQ0hJQ0tFTiwgRElTQUJMRV9EUFRfQ0xLX0dBVElORyk7DQo+ID4gPiArCWlmIChk
+cm1fV0FSTl9PTigmaTkxNS0+ZHJtLCB2YWwgJiB+RElTQUJMRV9EUFRfQ0xLX0dBVElORykpDQo+
+ID4gPiArCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiVW5leHBlY3RlZCBmbGFncyBpbiBUUkFO
+U19DTVRHX0NISUNLRU46ICUwOHhcbiIsIHZhbCk7DQo+ID4gPiArfQ0KPiA+ID4gKw0KPiA+ID4g
+IHN0YXRpYyB2b2lkIGNvbWJvX3BsbF9lbmFibGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2LA0KPiA+ID4gIAkJCSAgICAgc3RydWN0IGludGVsX3NoYXJlZF9kcGxsICpwbGwpDQo+
+ID4gPiAgew0KPiA+ID4gQEAgLTM3NjQsNiArMzc4OSw4IEBAIHN0YXRpYyB2b2lkIGNvbWJvX3Bs
+bF9lbmFibGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiA+ID4gIA0KPiA+
+ID4gIAlpY2xfcGxsX2VuYWJsZShkZXZfcHJpdiwgcGxsLCBlbmFibGVfcmVnKTsNCj4gPiA+ICAN
+Cj4gPiA+ICsJYWRscF9jbXRnX2Nsb2NrX2dhdGluZ193YShkZXZfcHJpdiwgcGxsKTsNCj4gPiA+
+ICsNCj4gPiA+ICAJLyogRFZGUyBwb3N0IHNlcXVlbmNlIHdvdWxkIGJlIGhlcmUuIFNlZSB0aGUg
+Y29tbWVudCBhYm92ZS4gKi8NCj4gPiA+ICB9DQo+ID4gPiAgDQo+ID4gPiBAQCAtNDI3Myw3ICs0
+MzAwLDEyIEBAIHZvaWQgaW50ZWxfZHBsbF9yZWFkb3V0X2h3X3N0YXRlKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICppOTE1KQ0KPiA+ID4gIHN0YXRpYyB2b2lkIHNhbml0aXplX2RwbGxfc3RhdGUo
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ID4gPiAgCQkJCXN0cnVjdCBpbnRlbF9z
+aGFyZWRfZHBsbCAqcGxsKQ0KPiA+ID4gIHsNCj4gPiA+IC0JaWYgKCFwbGwtPm9uIHx8IHBsbC0+
+YWN0aXZlX21hc2spDQo+ID4gPiArCWlmICghcGxsLT5vbikNCj4gPiA+ICsJCXJldHVybjsNCj4g
+PiA+ICsNCj4gPiA+ICsJYWRscF9jbXRnX2Nsb2NrX2dhdGluZ193YShpOTE1LCBwbGwpOw0KPiA+
+ID4gKw0KPiA+ID4gKwlpZiAocGxsLT5hY3RpdmVfbWFzaykNCj4gPiA+ICAJCXJldHVybjsNCj4g
+PiA+ICANCj4gPiA+ICAJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwNCj4gPiANCg0K
