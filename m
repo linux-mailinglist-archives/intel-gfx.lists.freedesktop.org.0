@@ -1,78 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D313DDDA6
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 18:27:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EBB83DDDE7
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 18:44:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D1E6E49C;
-	Mon,  2 Aug 2021 16:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF5C6E7D0;
+	Mon,  2 Aug 2021 16:44:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com
- [IPv6:2607:f8b0:4864:20::731])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 502556E083;
- Mon,  2 Aug 2021 16:27:13 +0000 (UTC)
-Received: by mail-qk1-x731.google.com with SMTP id k7so17096479qki.11;
- Mon, 02 Aug 2021 09:27:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hfG5pLLGBVmijGs7xD1CuYUYuRgtJdbg/w8jfytxMq8=;
- b=KCMBWwrB7rl9OU23KgEVRMNrHkjI1UKzf688kWLXVEwgeNJcNUEFn/VqxfBmj/RpNi
- fU7laMr621aEhNdbx+OdRBeG+gRjYLKUtX6YwfYdGH1jiOfiYbFh9RvqsE7G7X2Hcr6L
- IJD1goHuBubu29rquTw+430JSLxAt+s34C3IcQXoIbHdotn0TAHF96EnLgoC091BV6D8
- vKRxR4BW5FYKCX85Vyxg7ZVVfl6YOhLMldCnEvHDcsFJe8Fwf2EhaQjExoDYOarkFf0Y
- O41YnyeQ9I6FHv+VtEkpTJAWuNqqcU0IxGZo2xIbPmfEF6kRc4gS1MBxUmJXU2e9LQ32
- Knxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=hfG5pLLGBVmijGs7xD1CuYUYuRgtJdbg/w8jfytxMq8=;
- b=FE+hNV/OZ8RxANKDyK1j0t7XMWy42dPQcVL75fTn7+FhB5lMIflHAPvvspNvKPsgyA
- wpBomfE1p2KKa7X/SkYVBlI+CqTEkn1o452DnDCUoF8PCxJvhfssXk8ZQ/i/aHkdBloJ
- FnEo4f6UOIsYtHDc5VM3szwbq6cr7CHUAiPBhytVywnfveU2GcOlmzf72ws/9ukGiXKk
- juGudpLWJojP+RSWX+L4c+ssDWMzCJ+EgJO7MOAkKNt9RJFKF+qOF1N26dbotEf9kCid
- aaRJqDbjMZ8YUI0Hlct5K1LmlnWMWI34s7p0Sl+CXYyh628vN+dL7H7CfGbqi6cQz8Eb
- 4hCA==
-X-Gm-Message-State: AOAM533NOW1YllP6LhUA+2YOv/oQJrgS+UbGq+HpE4QF1S9156dn/T3y
- j7bhRrdV2w8Igt/gHQC8/xrHJJ7jo5dAe1Ed5o8=
-X-Google-Smtp-Source: ABdhPJw2gIhU+kR4Sx6iXg7nZweEAbd8+bVuItdW1omD41KUb06isEtVR9mByToT58siGUrRB/NUDTpHz2hl5JtZxys=
-X-Received: by 2002:a37:64d:: with SMTP id 74mr16642727qkg.407.1627921632473; 
- Mon, 02 Aug 2021 09:27:12 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 808B36E7D0;
+ Mon,  2 Aug 2021 16:44:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7905AAA0EA;
+ Mon,  2 Aug 2021 16:44:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210731214211.657280-1-jim.cromie@gmail.com>
- <20210731214211.657280-6-jim.cromie@gmail.com>
-In-Reply-To: <20210731214211.657280-6-jim.cromie@gmail.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Mon, 2 Aug 2021 17:27:01 +0100
-Message-ID: <CACvgo53iF4Gk3XhQAtogf52CBFuB9tDxp+Mp8A1UwcvEOQto6Q@mail.gmail.com>
-To: Jim Cromie <jim.cromie@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Zhenyu Wang <zhenyuw@linux.intel.com>, 
- Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Jason Baron <jbaron@akamai.com>, Ashley Thomas <Ashley.Thomas2@amd.com>, 
- Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, 
- Wyatt Wood <Wyatt.Wood@amd.com>, Jessica Yu <jeyu@kernel.org>,
- Johan Hovold <johan@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Nick Desaulniers <ndesaulniers@gooogle.com>, 
- Joe Perches <joe@perches.com>, ML dri-devel <dri-devel@lists.freedesktop.org>, 
- "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>, 
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- intel-gvt-dev@lists.freedesktop.org, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v4 5/7] i915/gvt: control pr_debug("gvt:")s
- with bits in parameters/debug_gvt
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 02 Aug 2021 16:44:27 -0000
+Message-ID: <162792266746.3900.6090351139091118001@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210802154806.3710472-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210802154806.3710472-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_remove_rcu_support_from_i915=5Faddress=5Fspace?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,26 +41,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jim,
+== Series Details ==
 
-On Sat, 31 Jul 2021 at 22:42, Jim Cromie <jim.cromie@gmail.com> wrote:
+Series: remove rcu support from i915_address_space
+URL   : https://patchwork.freedesktop.org/series/93314/
+State : warning
 
-> DYNDBG_BITMAP_DESC(__gvt_debug, "dyndbg bitmap desc",
->         { "gvt: cmd: ",  "command processing" },
->         { "gvt: core: ", "core help" },
->         { "gvt: dpy: ",  "display help" },
->         { "gvt: el: ",   "help" },
->         { "gvt: irq: ",  "help" },
->         { "gvt: mm: ",   "help" },
->         { "gvt: mmio: ", "help" },
->         { "gvt: render: ", "help" },
->         { "gvt: sched: " "help" });
->
-Previous commit removed the space after the colon. The above example
-needs updating.
+== Summary ==
 
-This concludes a casual read-through on my end. Hope it helps o/
--Emil
+$ dim checkpatch origin/drm-tip
+a853815d3335 drm/i915: Drop code to handle set-vm races from execbuf
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+References: ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")
+
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#17: 
+References: ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")
+
+-:46: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 2 warnings, 0 checks, 12 lines checked
+aa6df2fc9251 drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
+-:148: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 80 lines checked
+20c77ecc9eb2 drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam
+-:54: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
+9e17d78e71b6 drm/i915: Add i915_gem_context_is_full_ppgtt
+-:94: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 45 lines checked
+fd4782224117 drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#12: 
+commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:61: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 18 lines checked
+7f70a2efa858 drm/i915: Drop __rcu from gem_context->vm
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#11: 
+    commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#23: 
+  i915_vm_open ofc. This also removes the final caller of context_get_vm_rcu
+
+-:42: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a4e7ccdac38e ("drm/i915: Move context management under GEM")'
+#42: 
+commit a4e7ccdac38ec8335d9e4e2656c1a041c77feae1
+
+-:345: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 2 errors, 2 warnings, 0 checks, 232 lines checked
+1b7a4cebddcd drm/i915: use xa_lock/unlock for fpriv->vm_xa lookups
+-:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit aabbe344dc3c ("drm/i915: Use RCU for unlocked vm_idr lookup")'
+#15: 
+commit aabbe344dc3ca5f7d8263a02608ba6179e8a4499
+
+-:52: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 13 lines checked
+e446a68d6f87 drm/i915: Stop rcu support for i915_address_space
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+- i915_dpt has very simple lifetime (somehow we create a display pagetable vm
+
+-:27: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf977e18610e ("drm/i915/gem: Spring clean debugfs")'
+#27: 
+	commit cf977e18610e66e48c31619e7e0cfa871be9eada
+
+-:35: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit db80a1294c23 ("drm/i915/gem: Remove per-client stats from debugfs/i915_gem_objects")'
+#35: 
+	commit db80a1294c231b6ac725085f046bb2931e00c9db
+
+-:47: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#47: 
+	commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:59: WARNING:TYPO_SPELLING: 'Preceeding' may be misspelled - perhaps 'Preceding'?
+#59: 
+  Preceeding patches removed all vestiges of rcu use from gem_ctx->vm
+  ^^^^^^^^^^
+
+-:64: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a4e7ccdac38e ("drm/i915: Move context management under GEM")'
+#64: 
+	commit a4e7ccdac38ec8335d9e4e2656c1a041c77feae1
+
+-:88: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit c744d50363b7 ("drm/i915/gt: Split the breadcrumb spinlock between global and contexts")'
+#88: 
+	commit c744d50363b714783bbc88d986cc16def13710f7
+
+-:94: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit added5fce61e ("ARM: mxs_defconfig: add CONFIG_USB_PHY")'
+#94: 
+  its parent commit added the intel_context rcu protection:
+
+-:96: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 14d1eaf08845 ("drm/i915/gt: Protect context lifetime with RCU")'
+#96: 
+	commit 14d1eaf08845c534963c83f754afe0cb14cb2512
+
+-:114: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4d8151ae5329 ("drm/i915: Don't free shared locks while shared")'
+#114: 
+	commit 4d8151ae5329cf50781a02fd2298a909589a5bab
+
+-:130: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e6ba76480299 ("drm/i915: Remove i915->kernel_context")'
+#130: 
+	commit e6ba76480299a0d77c51d846f7467b1673aad25b
+
+-:143: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4ff4b44cbb70 ("drm/i915: Store a direct lookup from object handle to vma")'
+#143: 
+	commit 4ff4b44cbb70c269259958cbcc48d7b8a2cb9ec8
+
+-:152: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit d1b48c1e7184 ("drm/i915: Replace execbuf vma ht with an idr")'
+#152: 
+	commit d1b48c1e7184d9bc4ae6d7f9fe2eed9efed11ffc
+
+-:160: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 93159e12353c ("drm/i915/gem: Avoid gem_context->mutex for simple vma lookup")'
+#160: 
+	commit 93159e12353c2a47e5576d642845a91fa00530bf
+
+-:183: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b32fa8111563 ("drm/i915/gtt: Defer address space cleanup to an RCU worker")'
+#183: 
+commit b32fa811156328aea5a3c2ff05cc096490382456
+
+-:201: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
+#201: 
+that's a preexisting condition in the codeebase that we wont fix in
+                                                        ^^^^
+
+-:206: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 60a4233a4952 ("drm/i915: Flush the i915_vm_release before ggtt shutdown")'
+#206: 
+commit 60a4233a4952729089e4df152e730f8f4d0e82ce
+
+-:279: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 14 errors, 4 warnings, 0 checks, 39 lines checked
+93a5db9c9c6e drm/i915: Split out intel_context_create_user
+-:20: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#20: 
+        commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:171: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 104 lines checked
+
+
