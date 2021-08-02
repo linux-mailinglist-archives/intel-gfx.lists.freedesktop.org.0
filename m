@@ -2,80 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B0C3DDF6F
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 20:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA5143DDFC7
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 21:02:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D27426E1F5;
-	Mon,  2 Aug 2021 18:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1397189D9B;
+	Mon,  2 Aug 2021 19:02:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com
- [IPv6:2607:f8b0:4864:20::e31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAE766E19C;
- Mon,  2 Aug 2021 18:40:59 +0000 (UTC)
-Received: by mail-vs1-xe31.google.com with SMTP id u11so7605446vst.12;
- Mon, 02 Aug 2021 11:40:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/JDTciPhpsppEZzll6/Pi+0di+r/qXoRaAHXje8rJcU=;
- b=S3aODv0PgPYOT/8F/bbj3dquc+grd5ZpsnpETdDqus+QDd2kunXjqcW/H3wovrtZ7U
- +p/U+UlX4tS+va3Vh4kEG1jnTdJm/dSxz2OKt0fiETASvNNpHjkhhOtNzXlyK8DLN12v
- kS3rjNgLkrexKp6uqhITyyaNgkWIJlivez5QIAA98ltBCV/OXBpgtJOMZppFm5RyK7Jt
- 7nRy1cd1pCvjH1FzxVDLnu4OLtlg+LuAbmUwgY9uWq6zgsay/t2dSTyJCw0No+lgsGBp
- zge03tBYC1O8JzoQev7AiQ9oBKwUCI8SQQ5TcoQRjvuqMJ8DWuwlUJnh8vyqHjkCog1v
- BPXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/JDTciPhpsppEZzll6/Pi+0di+r/qXoRaAHXje8rJcU=;
- b=KVp8jf0X01T0FXYGs17ZGTzgUSjU20hoLGuIHEJTV/yUrgyuSy2s3ZxAVSMcOoEX6A
- C+0AW/ELvQeILPfT/7ToU5iImGMGZnGuIMMH0r8BU6tCx6hh1kXWeZBVOksU4KBYw/ca
- giaAWMhOEvbE//fTF2NaHisvZ4IW7r5aGDOfhlUo5pON88eTCXn4SubyUrqC+lYsAAwP
- Lsoff7ejZyHg1HljMJGlvJ1qVUOUmnYCsCkIKj2tBrbKEpRQKOgnMkv6wOWyzD4yE4lR
- X3dlyC5WKLbBpTbGL/2JQs8Y54NoKK0Tt+u2nND/ZbHxrGRz9ScQy1Rd3TEPtbYWXRSN
- AW7g==
-X-Gm-Message-State: AOAM530tnSQpiOn5PPp6Z8rhVqpRg8ZqkPrbyN1AnYSKCLTx5SWILoQb
- 9wvt36cwJo9kyPF+TI35PpzlkDwQINpd89oDwi0=
-X-Google-Smtp-Source: ABdhPJzaPWXcRFrinBModzRbebP+orB2U9FIw0YukoKvhxHaw/U/+j7xcsCnnRbrJfcujheOgU/OYeK28C0hEWg237I=
-X-Received: by 2002:a05:6102:2325:: with SMTP id
- b5mr7459900vsa.56.1627929658962; 
- Mon, 02 Aug 2021 11:40:58 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A71789D9B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 19:02:01 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="213503471"
+X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="213503471"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 12:01:52 -0700
+X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="520665936"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 12:01:50 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Date: Mon,  2 Aug 2021 22:01:48 +0300
+Message-Id: <20210802190148.2099625-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210731214211.657280-1-jim.cromie@gmail.com>
- <20210731214211.657280-4-jim.cromie@gmail.com>
- <CACvgo509FWgNcBP9SPyuZV0Wey9sApmgB2Xa_+LJ4r91Cgqhgg@mail.gmail.com>
-In-Reply-To: <CACvgo509FWgNcBP9SPyuZV0Wey9sApmgB2Xa_+LJ4r91Cgqhgg@mail.gmail.com>
-From: jim.cromie@gmail.com
-Date: Mon, 2 Aug 2021 12:40:32 -0600
-Message-ID: <CAJfuBxzbKKnjfw72GVy531TOQjd9znqkoxOq_UTRZyxOyxXPXg@mail.gmail.com>
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Zhenyu Wang <zhenyuw@linux.intel.com>, 
- Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Jason Baron <jbaron@akamai.com>, Ashley Thomas <Ashley.Thomas2@amd.com>, 
- Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, 
- Wyatt Wood <Wyatt.Wood@amd.com>, Johan Hovold <johan@kernel.org>,
- Jessica Yu <jeyu@kernel.org>, 
- Joe Perches <joe@perches.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Nick Desaulniers <ndesaulniers@gooogle.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>, 
- "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>, 
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- intel-gvt-dev@lists.freedesktop.org, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v4 3/7] dyndbg: add dyndbg-bitmap definer
- and callbacks
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915: Apply CMTG clock disabling WA while
+ DPLL0 is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,32 +47,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 2, 2021 at 10:24 AM Emil Velikov <emil.l.velikov@gmail.com> wrote:
->
-> Hi Jim,
->
-> On Sat, 31 Jul 2021 at 22:42, Jim Cromie <jim.cromie@gmail.com> wrote:
->
-> > +struct dyndbg_bitdesc {
-> > +       /* bitpos is inferred from index in containing array */
-> > +       char *prefix;
-> > +       char *help;
-> AFAICT these two should also be constant, right?
->
->
-> > +int param_set_dyndbg(const char *instr, const struct kernel_param *kp)
-> > +{
-> > +       unsigned int val;
-> > +       unsigned long changes, result;
-> > +       int rc, chgct = 0, totct = 0, bitpos, bitsmax;
-> > +       char query[OUR_QUERY_SIZE];
-> > +       struct dyndbg_bitdesc *bitmap = (struct dyndbg_bitdesc *) kp->data;
-> > +
-> > +       // pr_info("set_dyndbg: instr: %s curr: %d\n", instr, *kp->arg);
-> Left-over debug code, here and below?
+CI test results/further experiments show that the workaround added in
 
-yup, all fixed up locally, with a version that fully works.
-thanks.
+commit 573d7ce4f69a ("drm/i915/adlp: Add workaround to disable CMTG clock gating")
 
->
-> -Emil
+can be applied only while DPLL0 is enabled. If it's disabled the
+TRANS_CMTG_CHICKEN register is not accessible. Accordingly move the WA
+to DPLL0 HW state sanitization and enabling.
+
+This fixes an issue where the WA won't get applied (and a WARN is thrown
+due to an unexpected value in TRANS_CMTG_CHICKEN) if the driver is
+loaded without DPLL0 being enabled: booting without BIOS enabling an
+output with this PLL, or reloading the driver.
+
+While at it also add a debug print for the unexpected register value.
+
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c  | 18 ----------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 34 ++++++++++++++++++-
+ 2 files changed, 33 insertions(+), 19 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 4ca354f154215..98f7fbede6226 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -13284,24 +13284,6 @@ static void intel_early_display_was(struct drm_i915_private *dev_priv)
+ 			     KBL_ARB_FILL_SPARE_13 | KBL_ARB_FILL_SPARE_14,
+ 			     KBL_ARB_FILL_SPARE_14);
+ 	}
+-
+-	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
+-		u32 val;
+-
+-		/*
+-		 * Wa_16011069516:adl-p[a0]
+-		 *
+-		 * All CMTG regs are unreliable until CMTG clock gating is
+-		 * disabled, so we can only assume the default CMTG_CHICKEN
+-		 * reg value and sanity check this assumption with a double
+-		 * read, which presumably returns the correct value even with
+-		 * clock gating on.
+-		 */
+-		val = intel_de_read(dev_priv, TRANS_CMTG_CHICKEN);
+-		val = intel_de_read(dev_priv, TRANS_CMTG_CHICKEN);
+-		intel_de_write(dev_priv, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
+-		drm_WARN_ON(&dev_priv->drm, val & ~DISABLE_DPT_CLK_GATING);
+-	}
+ }
+ 
+ static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 0d72917e5670f..5c91d125a3371 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -3735,6 +3735,31 @@ static void icl_pll_enable(struct drm_i915_private *dev_priv,
+ 		drm_err(&dev_priv->drm, "PLL %d not locked\n", pll->info->id);
+ }
+ 
++static void adlp_cmtg_clock_gating_wa(struct drm_i915_private *i915, struct intel_shared_dpll *pll)
++{
++	u32 val;
++
++	if (!IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0) ||
++	    pll->info->id != DPLL_ID_ICL_DPLL0)
++		return;
++	/*
++	 * Wa_16011069516:adl-p[a0]
++	 *
++	 * All CMTG regs are unreliable until CMTG clock gating is disabled,
++	 * so we can only assume the default TRANS_CMTG_CHICKEN reg value and
++	 * sanity check this assumption with a double read, which presumably
++	 * returns the correct value even with clock gating on.
++	 *
++	 * Instead of the usual place for workarounds we apply this one here,
++	 * since TRANS_CMTG_CHICKEN is only accessible while DPLL0 is enabled.
++	 */
++	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
++	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
++	intel_de_write(i915, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
++	if (drm_WARN_ON(&i915->drm, val & ~DISABLE_DPT_CLK_GATING))
++		drm_dbg_kms(&i915->drm, "Unexpected flags in TRANS_CMTG_CHICKEN: %08x\n", val);
++}
++
+ static void combo_pll_enable(struct drm_i915_private *dev_priv,
+ 			     struct intel_shared_dpll *pll)
+ {
+@@ -3764,6 +3789,8 @@ static void combo_pll_enable(struct drm_i915_private *dev_priv,
+ 
+ 	icl_pll_enable(dev_priv, pll, enable_reg);
+ 
++	adlp_cmtg_clock_gating_wa(dev_priv, pll);
++
+ 	/* DVFS post sequence would be here. See the comment above. */
+ }
+ 
+@@ -4273,7 +4300,12 @@ void intel_dpll_readout_hw_state(struct drm_i915_private *i915)
+ static void sanitize_dpll_state(struct drm_i915_private *i915,
+ 				struct intel_shared_dpll *pll)
+ {
+-	if (!pll->on || pll->active_mask)
++	if (!pll->on)
++		return;
++
++	adlp_cmtg_clock_gating_wa(i915, pll);
++
++	if (pll->active_mask)
+ 		return;
+ 
+ 	drm_dbg_kms(&i915->drm,
+-- 
+2.27.0
+
