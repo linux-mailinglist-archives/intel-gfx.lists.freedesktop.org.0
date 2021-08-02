@@ -2,51 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C586E3DE10A
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 22:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34A543DE138
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Aug 2021 23:08:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 819566E098;
-	Mon,  2 Aug 2021 20:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8F86E0C1;
+	Mon,  2 Aug 2021 21:08:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F1296E098
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 20:52:52 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="274592855"
-X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="274592855"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2021 13:52:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="520694513"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by fmsmga002.fm.intel.com with ESMTP; 02 Aug 2021 13:52:44 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Mon, 2 Aug 2021 21:52:42 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.010;
- Mon, 2 Aug 2021 13:52:41 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH] drm/i915: Apply CMTG clock disabling WA while DPLL0 is
- enabled
-Thread-Index: AQHXh9D7h4JyVYL2xkeudDnllxQeyKthJ62A
-Date: Mon, 2 Aug 2021 20:52:41 +0000
-Message-ID: <70c089841d159b322f6c6749fad8e416766676dc.camel@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 012806E0C1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 21:07:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="193128078"
+X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="193128078"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 14:07:59 -0700
+X-IronPort-AV: E=Sophos;i="5.84,289,1620716400"; d="scan'208";a="510402317"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 14:07:58 -0700
+Date: Tue, 3 Aug 2021 00:07:54 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Message-ID: <20210802210754.GA2115791@ideak-desk.fi.intel.com>
 References: <20210802190148.2099625-1-imre.deak@intel.com>
-In-Reply-To: <20210802190148.2099625-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6651876ECA665D4A8BE48EDD71521168@intel.com>
-Content-Transfer-Encoding: base64
+ <70c089841d159b322f6c6749fad8e416766676dc.camel@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <70c089841d159b322f6c6749fad8e416766676dc.camel@intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Apply CMTG clock disabling WA
  while DPLL0 is enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,89 +50,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIxLTA4LTAyIGF0IDIyOjAxICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IENJ
-IHRlc3QgcmVzdWx0cy9mdXJ0aGVyIGV4cGVyaW1lbnRzIHNob3cgdGhhdCB0aGUgd29ya2Fyb3Vu
-ZCBhZGRlZCBpbg0KPiANCj4gY29tbWl0IDU3M2Q3Y2U0ZjY5YSAoImRybS9pOTE1L2FkbHA6IEFk
-ZCB3b3JrYXJvdW5kIHRvIGRpc2FibGUgQ01URyBjbG9jayBnYXRpbmciKQ0KPiANCj4gY2FuIGJl
-IGFwcGxpZWQgb25seSB3aGlsZSBEUExMMCBpcyBlbmFibGVkLiBJZiBpdCdzIGRpc2FibGVkIHRo
-ZQ0KPiBUUkFOU19DTVRHX0NISUNLRU4gcmVnaXN0ZXIgaXMgbm90IGFjY2Vzc2libGUuIEFjY29y
-ZGluZ2x5IG1vdmUgdGhlIFdBDQo+IHRvIERQTEwwIEhXIHN0YXRlIHNhbml0aXphdGlvbiBhbmQg
-ZW5hYmxpbmcuDQo+IA0KPiBUaGlzIGZpeGVzIGFuIGlzc3VlIHdoZXJlIHRoZSBXQSB3b24ndCBn
-ZXQgYXBwbGllZCAoYW5kIGEgV0FSTiBpcyB0aHJvd24NCj4gZHVlIHRvIGFuIHVuZXhwZWN0ZWQg
-dmFsdWUgaW4gVFJBTlNfQ01UR19DSElDS0VOKSBpZiB0aGUgZHJpdmVyIGlzDQo+IGxvYWRlZCB3
-aXRob3V0IERQTEwwIGJlaW5nIGVuYWJsZWQ6IGJvb3Rpbmcgd2l0aG91dCBCSU9TIGVuYWJsaW5n
-IGFuDQo+IG91dHB1dCB3aXRoIHRoaXMgUExMLCBvciByZWxvYWRpbmcgdGhlIGRyaXZlci4NCj4g
-DQo+IFdoaWxlIGF0IGl0IGFsc28gYWRkIGEgZGVidWcgcHJpbnQgZm9yIHRoZSB1bmV4cGVjdGVk
-IHJlZ2lzdGVyIHZhbHVlLg0KDQpXb3JrYXJvdW5kIGRvIG5vdCBtZW50aW9uIG5vdGhpbmcgYWJv
-dXQgdGhpcyBEUExMMCBkZXBlbmRlbmN5LCBtYXliZSB3b3VsZCBiZSBuaWNlIHRvIGNvbW1lbnQg
-aW4gSFNEIGFib3V0IHRoaXMuDQpIYXZlIHlvdSB0cmllZCB0byBjaGVjayBpZiB0aGUgd29ya2Fy
-b3VuZCBhcHBsaWVzIGlmIERQTEwxIGlzIGVuYWJsZWQ/IFdlIGNvdWxkIGNvbW1lbnQgRFBMTDAg
-b3V0IGZyb20gdGhlIGFkbHBfcGxscyB0YWJsZS4NCg0KPiANCj4gQ2M6IEpvc8OpIFJvYmVydG8g
-ZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERl
-YWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgIHwgMTggLS0tLS0tLS0tLQ0KPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5jIHwgMzQgKysrKysrKysrKysrKysrKysr
-LQ0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkN
-Cj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+
-IGluZGV4IDRjYTM1NGYxNTQyMTUuLjk4ZjdmYmVkZTYyMjYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC0xMzI4NCwyNCArMTMy
-ODQsNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9lYXJseV9kaXNwbGF5X3dhcyhzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICAJCQkgICAgIEtCTF9BUkJfRklMTF9TUEFSRV8xMyB8
-IEtCTF9BUkJfRklMTF9TUEFSRV8xNCwNCj4gIAkJCSAgICAgS0JMX0FSQl9GSUxMX1NQQVJFXzE0
-KTsNCj4gIAl9DQo+IC0NCj4gLQlpZiAoSVNfQURMUF9ESVNQTEFZX1NURVAoZGV2X3ByaXYsIFNU
-RVBfQTAsIFNURVBfQjApKSB7DQo+IC0JCXUzMiB2YWw7DQo+IC0NCj4gLQkJLyoNCj4gLQkJICog
-V2FfMTYwMTEwNjk1MTY6YWRsLXBbYTBdDQo+IC0JCSAqDQo+IC0JCSAqIEFsbCBDTVRHIHJlZ3Mg
-YXJlIHVucmVsaWFibGUgdW50aWwgQ01URyBjbG9jayBnYXRpbmcgaXMNCj4gLQkJICogZGlzYWJs
-ZWQsIHNvIHdlIGNhbiBvbmx5IGFzc3VtZSB0aGUgZGVmYXVsdCBDTVRHX0NISUNLRU4NCj4gLQkJ
-ICogcmVnIHZhbHVlIGFuZCBzYW5pdHkgY2hlY2sgdGhpcyBhc3N1bXB0aW9uIHdpdGggYSBkb3Vi
-bGUNCj4gLQkJICogcmVhZCwgd2hpY2ggcHJlc3VtYWJseSByZXR1cm5zIHRoZSBjb3JyZWN0IHZh
-bHVlIGV2ZW4gd2l0aA0KPiAtCQkgKiBjbG9jayBnYXRpbmcgb24uDQo+IC0JCSAqLw0KPiAtCQl2
-YWwgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBUUkFOU19DTVRHX0NISUNLRU4pOw0KPiAtCQl2
-YWwgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBUUkFOU19DTVRHX0NISUNLRU4pOw0KPiAtCQlp
-bnRlbF9kZV93cml0ZShkZXZfcHJpdiwgVFJBTlNfQ01UR19DSElDS0VOLCBESVNBQkxFX0RQVF9D
-TEtfR0FUSU5HKTsNCj4gLQkJZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sIHZhbCAmIH5ESVNB
-QkxFX0RQVF9DTEtfR0FUSU5HKTsNCj4gLQl9DQo+ICB9DQo+ICANCj4gIHN0YXRpYyB2b2lkIGli
-eF9zYW5pdGl6ZV9wY2hfaGRtaV9wb3J0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-diwNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBs
-bF9tZ3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYw0K
-PiBpbmRleCAwZDcyOTE3ZTU2NzBmLi41YzkxZDEyNWEzMzcxIDEwMDY0NA0KPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5jDQo+IEBAIC0zNzM1LDYgKzM3
-MzUsMzEgQEAgc3RhdGljIHZvaWQgaWNsX3BsbF9lbmFibGUoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmRldl9wcml2LA0KPiAgCQlkcm1fZXJyKCZkZXZfcHJpdi0+ZHJtLCAiUExMICVkIG5vdCBs
-b2NrZWRcbiIsIHBsbC0+aW5mby0+aWQpOw0KPiAgfQ0KPiAgDQo+ICtzdGF0aWMgdm9pZCBhZGxw
-X2NtdGdfY2xvY2tfZ2F0aW5nX3dhKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBzdHJ1
-Y3QgaW50ZWxfc2hhcmVkX2RwbGwgKnBsbCkNCj4gK3sNCj4gKwl1MzIgdmFsOw0KPiArDQo+ICsJ
-aWYgKCFJU19BRExQX0RJU1BMQVlfU1RFUChpOTE1LCBTVEVQX0EwLCBTVEVQX0IwKSB8fA0KPiAr
-CSAgICBwbGwtPmluZm8tPmlkICE9IERQTExfSURfSUNMX0RQTEwwKQ0KPiArCQlyZXR1cm47DQo+
-ICsJLyoNCj4gKwkgKiBXYV8xNjAxMTA2OTUxNjphZGwtcFthMF0NCj4gKwkgKg0KPiArCSAqIEFs
-bCBDTVRHIHJlZ3MgYXJlIHVucmVsaWFibGUgdW50aWwgQ01URyBjbG9jayBnYXRpbmcgaXMgZGlz
-YWJsZWQsDQo+ICsJICogc28gd2UgY2FuIG9ubHkgYXNzdW1lIHRoZSBkZWZhdWx0IFRSQU5TX0NN
-VEdfQ0hJQ0tFTiByZWcgdmFsdWUgYW5kDQo+ICsJICogc2FuaXR5IGNoZWNrIHRoaXMgYXNzdW1w
-dGlvbiB3aXRoIGEgZG91YmxlIHJlYWQsIHdoaWNoIHByZXN1bWFibHkNCj4gKwkgKiByZXR1cm5z
-IHRoZSBjb3JyZWN0IHZhbHVlIGV2ZW4gd2l0aCBjbG9jayBnYXRpbmcgb24uDQo+ICsJICoNCj4g
-KwkgKiBJbnN0ZWFkIG9mIHRoZSB1c3VhbCBwbGFjZSBmb3Igd29ya2Fyb3VuZHMgd2UgYXBwbHkg
-dGhpcyBvbmUgaGVyZSwNCj4gKwkgKiBzaW5jZSBUUkFOU19DTVRHX0NISUNLRU4gaXMgb25seSBh
-Y2Nlc3NpYmxlIHdoaWxlIERQTEwwIGlzIGVuYWJsZWQuDQo+ICsJICovDQo+ICsJdmFsID0gaW50
-ZWxfZGVfcmVhZChpOTE1LCBUUkFOU19DTVRHX0NISUNLRU4pOw0KPiArCXZhbCA9IGludGVsX2Rl
-X3JlYWQoaTkxNSwgVFJBTlNfQ01UR19DSElDS0VOKTsNCj4gKwlpbnRlbF9kZV93cml0ZShpOTE1
-LCBUUkFOU19DTVRHX0NISUNLRU4sIERJU0FCTEVfRFBUX0NMS19HQVRJTkcpOw0KPiArCWlmIChk
-cm1fV0FSTl9PTigmaTkxNS0+ZHJtLCB2YWwgJiB+RElTQUJMRV9EUFRfQ0xLX0dBVElORykpDQo+
-ICsJCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sICJVbmV4cGVjdGVkIGZsYWdzIGluIFRSQU5TX0NN
-VEdfQ0hJQ0tFTjogJTA4eFxuIiwgdmFsKTsNCj4gK30NCj4gKw0KPiAgc3RhdGljIHZvaWQgY29t
-Ym9fcGxsX2VuYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ICAJCQkg
-ICAgIHN0cnVjdCBpbnRlbF9zaGFyZWRfZHBsbCAqcGxsKQ0KPiAgew0KPiBAQCAtMzc2NCw2ICsz
-Nzg5LDggQEAgc3RhdGljIHZvaWQgY29tYm9fcGxsX2VuYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqZGV2X3ByaXYsDQo+ICANCj4gIAlpY2xfcGxsX2VuYWJsZShkZXZfcHJpdiwgcGxsLCBl
-bmFibGVfcmVnKTsNCj4gIA0KPiArCWFkbHBfY210Z19jbG9ja19nYXRpbmdfd2EoZGV2X3ByaXYs
-IHBsbCk7DQo+ICsNCj4gIAkvKiBEVkZTIHBvc3Qgc2VxdWVuY2Ugd291bGQgYmUgaGVyZS4gU2Vl
-IHRoZSBjb21tZW50IGFib3ZlLiAqLw0KPiAgfQ0KPiAgDQo+IEBAIC00MjczLDcgKzQzMDAsMTIg
-QEAgdm9pZCBpbnRlbF9kcGxsX3JlYWRvdXRfaHdfc3RhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUpDQo+ICBzdGF0aWMgdm9pZCBzYW5pdGl6ZV9kcGxsX3N0YXRlKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICppOTE1LA0KPiAgCQkJCXN0cnVjdCBpbnRlbF9zaGFyZWRfZHBsbCAqcGxs
-KQ0KPiAgew0KPiAtCWlmICghcGxsLT5vbiB8fCBwbGwtPmFjdGl2ZV9tYXNrKQ0KPiArCWlmICgh
-cGxsLT5vbikNCj4gKwkJcmV0dXJuOw0KPiArDQo+ICsJYWRscF9jbXRnX2Nsb2NrX2dhdGluZ193
-YShpOTE1LCBwbGwpOw0KPiArDQo+ICsJaWYgKHBsbC0+YWN0aXZlX21hc2spDQo+ICAJCXJldHVy
-bjsNCj4gIA0KPiAgCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sDQoNCg==
+On Mon, Aug 02, 2021 at 11:52:41PM +0300, Souza, Jose wrote:
+> On Mon, 2021-08-02 at 22:01 +0300, Imre Deak wrote:
+> > CI test results/further experiments show that the workaround added in
+> > 
+> > commit 573d7ce4f69a ("drm/i915/adlp: Add workaround to disable CMTG clock gating")
+> > 
+> > can be applied only while DPLL0 is enabled. If it's disabled the
+> > TRANS_CMTG_CHICKEN register is not accessible. Accordingly move the WA
+> > to DPLL0 HW state sanitization and enabling.
+> > 
+> > This fixes an issue where the WA won't get applied (and a WARN is thrown
+> > due to an unexpected value in TRANS_CMTG_CHICKEN) if the driver is
+> > loaded without DPLL0 being enabled: booting without BIOS enabling an
+> > output with this PLL, or reloading the driver.
+> > 
+> > While at it also add a debug print for the unexpected register value.
+> 
+> Workaround do not mention nothing about this DPLL0 dependency, maybe
+> would be nice to comment in HSD about this.
+
+Ok, can add comment.
+
+> Have you tried to check if the workaround applies if DPLL1 is enabled?
+> We could comment DPLL0 out from the adlp_plls table.
+
+No, only DPLL0 makes it work, DPLL1 being enabled is not enough. You can
+experiment with this by unloading the driver and simply enable/disable
+DPLL0/1 (both power and enable flag) and try to read/modify/re-read the
+CMTG_CHICKEN reg.
+
+> > Cc: José Roberto de Souza <jose.souza@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  | 18 ----------
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 34 ++++++++++++++++++-
+> >  2 files changed, 33 insertions(+), 19 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 4ca354f154215..98f7fbede6226 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -13284,24 +13284,6 @@ static void intel_early_display_was(struct drm_i915_private *dev_priv)
+> >  			     KBL_ARB_FILL_SPARE_13 | KBL_ARB_FILL_SPARE_14,
+> >  			     KBL_ARB_FILL_SPARE_14);
+> >  	}
+> > -
+> > -	if (IS_ADLP_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0)) {
+> > -		u32 val;
+> > -
+> > -		/*
+> > -		 * Wa_16011069516:adl-p[a0]
+> > -		 *
+> > -		 * All CMTG regs are unreliable until CMTG clock gating is
+> > -		 * disabled, so we can only assume the default CMTG_CHICKEN
+> > -		 * reg value and sanity check this assumption with a double
+> > -		 * read, which presumably returns the correct value even with
+> > -		 * clock gating on.
+> > -		 */
+> > -		val = intel_de_read(dev_priv, TRANS_CMTG_CHICKEN);
+> > -		val = intel_de_read(dev_priv, TRANS_CMTG_CHICKEN);
+> > -		intel_de_write(dev_priv, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
+> > -		drm_WARN_ON(&dev_priv->drm, val & ~DISABLE_DPT_CLK_GATING);
+> > -	}
+> >  }
+> >  
+> >  static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_priv,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > index 0d72917e5670f..5c91d125a3371 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > @@ -3735,6 +3735,31 @@ static void icl_pll_enable(struct drm_i915_private *dev_priv,
+> >  		drm_err(&dev_priv->drm, "PLL %d not locked\n", pll->info->id);
+> >  }
+> >  
+> > +static void adlp_cmtg_clock_gating_wa(struct drm_i915_private *i915, struct intel_shared_dpll *pll)
+> > +{
+> > +	u32 val;
+> > +
+> > +	if (!IS_ADLP_DISPLAY_STEP(i915, STEP_A0, STEP_B0) ||
+> > +	    pll->info->id != DPLL_ID_ICL_DPLL0)
+> > +		return;
+> > +	/*
+> > +	 * Wa_16011069516:adl-p[a0]
+> > +	 *
+> > +	 * All CMTG regs are unreliable until CMTG clock gating is disabled,
+> > +	 * so we can only assume the default TRANS_CMTG_CHICKEN reg value and
+> > +	 * sanity check this assumption with a double read, which presumably
+> > +	 * returns the correct value even with clock gating on.
+> > +	 *
+> > +	 * Instead of the usual place for workarounds we apply this one here,
+> > +	 * since TRANS_CMTG_CHICKEN is only accessible while DPLL0 is enabled.
+> > +	 */
+> > +	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
+> > +	val = intel_de_read(i915, TRANS_CMTG_CHICKEN);
+> > +	intel_de_write(i915, TRANS_CMTG_CHICKEN, DISABLE_DPT_CLK_GATING);
+> > +	if (drm_WARN_ON(&i915->drm, val & ~DISABLE_DPT_CLK_GATING))
+> > +		drm_dbg_kms(&i915->drm, "Unexpected flags in TRANS_CMTG_CHICKEN: %08x\n", val);
+> > +}
+> > +
+> >  static void combo_pll_enable(struct drm_i915_private *dev_priv,
+> >  			     struct intel_shared_dpll *pll)
+> >  {
+> > @@ -3764,6 +3789,8 @@ static void combo_pll_enable(struct drm_i915_private *dev_priv,
+> >  
+> >  	icl_pll_enable(dev_priv, pll, enable_reg);
+> >  
+> > +	adlp_cmtg_clock_gating_wa(dev_priv, pll);
+> > +
+> >  	/* DVFS post sequence would be here. See the comment above. */
+> >  }
+> >  
+> > @@ -4273,7 +4300,12 @@ void intel_dpll_readout_hw_state(struct drm_i915_private *i915)
+> >  static void sanitize_dpll_state(struct drm_i915_private *i915,
+> >  				struct intel_shared_dpll *pll)
+> >  {
+> > -	if (!pll->on || pll->active_mask)
+> > +	if (!pll->on)
+> > +		return;
+> > +
+> > +	adlp_cmtg_clock_gating_wa(i915, pll);
+> > +
+> > +	if (pll->active_mask)
+> >  		return;
+> >  
+> >  	drm_dbg_kms(&i915->drm,
+> 
