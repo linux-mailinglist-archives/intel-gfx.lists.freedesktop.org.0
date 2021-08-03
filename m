@@ -1,34 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CFD43DF074
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 16:38:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 392C73DF117
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 17:09:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 994916E87A;
-	Tue,  3 Aug 2021 14:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12AE06E887;
+	Tue,  3 Aug 2021 15:09:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B9DE66E87A;
- Tue,  3 Aug 2021 14:38:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B2D90A0118;
- Tue,  3 Aug 2021 14:38:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4489369696426688668=="
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com
+ [IPv6:2607:f8b0:4864:20::c2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 291676E887
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Aug 2021 15:09:27 +0000 (UTC)
+Received: by mail-oo1-xc2b.google.com with SMTP id
+ z3-20020a4a98430000b029025f4693434bso5262998ooi.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Aug 2021 08:09:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=7apil66j8bpF13Zhfk67i/lkOKL/lPWcAQEbpN00lVQ=;
+ b=bj0drZAg9BGugnCw+j9iOjpJ6gtNJk1LQqk87AZ0NvPljI9iXEcD5n56Ne9WcQKLVs
+ F75fAlxEP8NFL0/vNeTonpguvky1tU9bN3RsU0qV1l6iRYzPQL/CTvSSc/uj446BvJLL
+ vZEbXsl+bQWpgDnpbCCFQEVKN4WqMU1XySUfA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=7apil66j8bpF13Zhfk67i/lkOKL/lPWcAQEbpN00lVQ=;
+ b=CxcvlMAUEkn/dwM8XjnaF1yVWvVBbVx9xT6FTosq7+o/eLDguD+VP7Uv6wjnAnkqJv
+ gYjtu7M66wDyorXV/njk1+ZUVvHJJn3EK9JE2hO7E+Eqx53i+5rjPlXCuXRSsijxvSXw
+ r4D/GxVl+HiMGGRceXpnxIFdNULTw0Egzg8fC9ynP0o6SBEwCpaz9LMSWNnAHCGaya/V
+ atFTT816K5igES8shybyQf2dMCtqPmcWm1tVYPpkoBr2/dZwtZT5EeJ03H2zUe24yIiK
+ XwI/70XYHvv2NMa3g14ShBFcYU8syDc3vEaDJ+4tWQqk6etN9lCINzjBkKsiCxQl2zR0
+ JAnA==
+X-Gm-Message-State: AOAM531PwDCoJ1QW086RgvV7npZ5sUglr5iWIG86EZ01C7We+Fb0Ix1R
+ WdDErX6Wc62w8wtHvSCJb6t8BjNALVqPiM3DfaL85Q==
+X-Google-Smtp-Source: ABdhPJzCnvpi1QcTTfwGEAHHOycqYGHdx5k4r9Z1UaTslt69Qqu1cDD8gnvzFNkIvMKsqA/9DGFAWmY3oFFwTKot1Ak=
+X-Received: by 2002:a4a:e382:: with SMTP id l2mr14859099oov.85.1628003366329; 
+ Tue, 03 Aug 2021 08:09:26 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 03 Aug 2021 14:38:22 -0000
-Message-ID: <162800150272.9817.15975317063291795826@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210802190148.2099625-1-imre.deak@intel.com>
-In-Reply-To: <20210802190148.2099625-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Apply_CMTG_clock_disabling_WA_while_DPLL0_is_enabled?=
+References: <20210723113405.427004-1-matthew.auld@intel.com>
+ <0988bf67-c42a-1e7e-af77-ae2da65b036f@linux.intel.com>
+ <CAOFGe94-StYYc3Fk70u3h0xp2F4RqONb96cnFLhgnhxOVKi8JA@mail.gmail.com>
+ <cf0253c0-6a4c-aaaa-4110-aa403d66ea9f@linux.intel.com>
+ <CAM0jSHO7rQZ0dj5+8kC3P1-00LFkGHeE9XJj6rB95E=gjzkHwg@mail.gmail.com>
+In-Reply-To: <CAM0jSHO7rQZ0dj5+8kC3P1-00LFkGHeE9XJj6rB95E=gjzkHwg@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 3 Aug 2021 17:09:15 +0200
+Message-ID: <CAKMK7uGFn=SV4mZMXQuGE-CrtsX8E=ibtvaBkFCtDerMqVucAw@mail.gmail.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Jason Ekstrand <jason@jlekstrand.net>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Intel GFX <intel-gfx@lists.freedesktop.org>, 
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, 
+ Kenneth Graunke <kenneth@whitecape.org>, Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/userptr: Probe existence of
+ backing struct pages upon creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,199 +74,262 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4489369696426688668==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jul 28, 2021 at 4:22 PM Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Mon, 26 Jul 2021 at 17:10, Tvrtko Ursulin
+> <tvrtko.ursulin@linux.intel.com> wrote:
+> >
+> >
+> > On 26/07/2021 16:14, Jason Ekstrand wrote:
+> > > On Mon, Jul 26, 2021 at 3:31 AM Maarten Lankhorst
+> > > <maarten.lankhorst@linux.intel.com> wrote:
+> > >>
+> > >> Op 23-07-2021 om 13:34 schreef Matthew Auld:
+> > >>> From: Chris Wilson <chris@chris-wilson.co.uk>
+> > >>>
+> > >>> Jason Ekstrand requested a more efficient method than userptr+set-d=
+omain
+> > >>> to determine if the userptr object was backed by a complete set of =
+pages
+> > >>> upon creation. To be more efficient than simply populating the user=
+ptr
+> > >>> using get_user_pages() (as done by the call to set-domain or execbu=
+f),
+> > >>> we can walk the tree of vm_area_struct and check for gaps or vma no=
+t
+> > >>> backed by struct page (VM_PFNMAP). The question is how to handle
+> > >>> VM_MIXEDMAP which may be either struct page or pfn backed...
+> > >>>
+> > >>> With discrete we are going to drop support for set_domain(), so off=
+ering
+> > >>> a way to probe the pages, without having to resort to dummy batches=
+ has
+> > >>> been requested.
+> > >>>
+> > >>> v2:
+> > >>> - add new query param for the PROBE flag, so userspace can easily
+> > >>>    check if the kernel supports it(Jason).
+> > >>> - use mmap_read_{lock, unlock}.
+> > >>> - add some kernel-doc.
+> > >>> v3:
+> > >>> - In the docs also mention that PROBE doesn't guarantee that the pa=
+ges
+> > >>>    will remain valid by the time they are actually used(Tvrtko).
+> > >>> - Add a small comment for the hole finding logic(Jason).
+> > >>> - Move the param next to all the other params which just return tru=
+e.
+> > >>>
+> > >>> Testcase: igt/gem_userptr_blits/probe
+> > >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > >>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > >>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > >>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > >>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> > >>> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> > >>> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> > >>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > >>> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > >>> Cc: Ramalingam C <ramalingam.c@intel.com>
+> > >>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > >>> Acked-by: Kenneth Graunke <kenneth@whitecape.org>
+> > >>> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+> > >>> ---
+> > >>>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 41 ++++++++++++++++=
+++++-
+> > >>>   drivers/gpu/drm/i915/i915_getparam.c        |  1 +
+> > >>>   include/uapi/drm/i915_drm.h                 | 20 ++++++++++
+> > >>>   3 files changed, 61 insertions(+), 1 deletion(-)
+> > >>>
+> > >>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/=
+gpu/drm/i915/gem/i915_gem_userptr.c
+> > >>> index 56edfeff8c02..468a7a617fbf 100644
+> > >>> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > >>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > >>> @@ -422,6 +422,34 @@ static const struct drm_i915_gem_object_ops i9=
+15_gem_userptr_ops =3D {
+> > >>>
+> > >>>   #endif
+> > >>>
+> > >>> +static int
+> > >>> +probe_range(struct mm_struct *mm, unsigned long addr, unsigned lon=
+g len)
+> > >>> +{
+> > >>> +     const unsigned long end =3D addr + len;
+> > >>> +     struct vm_area_struct *vma;
+> > >>> +     int ret =3D -EFAULT;
+> > >>> +
+> > >>> +     mmap_read_lock(mm);
+> > >>> +     for (vma =3D find_vma(mm, addr); vma; vma =3D vma->vm_next) {
+> > >>> +             /* Check for holes, note that we also update the addr=
+ below */
+> > >>> +             if (vma->vm_start > addr)
+> > >>> +                     break;
+> > >>> +
+> > >>> +             if (vma->vm_flags & (VM_PFNMAP | VM_MIXEDMAP))
+> > >>> +                     break;
+> > >>> +
+> > >>> +             if (vma->vm_end >=3D end) {
+> > >>> +                     ret =3D 0;
+> > >>> +                     break;
+> > >>> +             }
+> > >>> +
+> > >>> +             addr =3D vma->vm_end;
+> > >>> +     }
+> > >>> +     mmap_read_unlock(mm);
+> > >>> +
+> > >>> +     return ret;
+> > >>> +}
+> > >>> +
+> > >>>   /*
+> > >>>    * Creates a new mm object that wraps some normal memory from the=
+ process
+> > >>>    * context - user memory.
+> > >>> @@ -477,7 +505,8 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+> > >>>        }
+> > >>>
+> > >>>        if (args->flags & ~(I915_USERPTR_READ_ONLY |
+> > >>> -                         I915_USERPTR_UNSYNCHRONIZED))
+> > >>> +                         I915_USERPTR_UNSYNCHRONIZED |
+> > >>> +                         I915_USERPTR_PROBE))
+> > >>>                return -EINVAL;
+> > >>>
+> > >>>        if (i915_gem_object_size_2big(args->user_size))
+> > >>> @@ -504,6 +533,16 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+> > >>>                        return -ENODEV;
+> > >>>        }
+> > >>>
+> > >>> +     if (args->flags & I915_USERPTR_PROBE) {
+> > >>> +             /*
+> > >>> +              * Check that the range pointed to represents real st=
+ruct
+> > >>> +              * pages and not iomappings (at this moment in time!)
+> > >>> +              */
+> > >>> +             ret =3D probe_range(current->mm, args->user_ptr, args=
+->user_size);
+> > >>> +             if (ret)
+> > >>> +                     return ret;
+> > >>> +     }
+> > >>> +
+> > >>>   #ifdef CONFIG_MMU_NOTIFIER
+> > >>>        obj =3D i915_gem_object_alloc();
+> > >>>        if (obj =3D=3D NULL)
+> > >>> diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm=
+/i915/i915_getparam.c
+> > >>> index 24e18219eb50..bbb7cac43eb4 100644
+> > >>> --- a/drivers/gpu/drm/i915/i915_getparam.c
+> > >>> +++ b/drivers/gpu/drm/i915/i915_getparam.c
+> > >>> @@ -134,6 +134,7 @@ int i915_getparam_ioctl(struct drm_device *dev,=
+ void *data,
+> > >>>        case I915_PARAM_HAS_EXEC_FENCE_ARRAY:
+> > >>>        case I915_PARAM_HAS_EXEC_SUBMIT_FENCE:
+> > >>>        case I915_PARAM_HAS_EXEC_TIMELINE_FENCES:
+> > >>> +     case I915_PARAM_HAS_USERPTR_PROBE:
+> > >>>                /* For the time being all of these are always true;
+> > >>>                 * if some supported hardware does not have one of t=
+hese
+> > >>>                 * features this value needs to be provided from
+> > >>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_dr=
+m.h
+> > >>> index 975087553ea0..0d290535a6e5 100644
+> > >>> --- a/include/uapi/drm/i915_drm.h
+> > >>> +++ b/include/uapi/drm/i915_drm.h
+> > >>> @@ -674,6 +674,9 @@ typedef struct drm_i915_irq_wait {
+> > >>>    */
+> > >>>   #define I915_PARAM_HAS_EXEC_TIMELINE_FENCES 55
+> > >>>
+> > >>> +/* Query if the kernel supports the I915_USERPTR_PROBE flag. */
+> > >>> +#define I915_PARAM_HAS_USERPTR_PROBE 56
+> > >>> +
+> > >>>   /* Must be kept compact -- no holes and well documented */
+> > >>>
+> > >>>   typedef struct drm_i915_getparam {
+> > >>> @@ -2222,12 +2225,29 @@ struct drm_i915_gem_userptr {
+> > >>>         * through the GTT. If the HW can't support readonly access,=
+ an error is
+> > >>>         * returned.
+> > >>>         *
+> > >>> +      * I915_USERPTR_PROBE:
+> > >>> +      *
+> > >>> +      * Probe the provided @user_ptr range and validate that the @=
+user_ptr is
+> > >>> +      * indeed pointing to normal memory and that the range is als=
+o valid.
+> > >>> +      * For example if some garbage address is given to the kernel=
+, then this
+> > >>> +      * should complain.
+> > >>> +      *
+> > >>> +      * Returns -EFAULT if the probe failed.
+> > >>> +      *
+> > >>> +      * Note that this doesn't populate the backing pages, and als=
+o doesn't
+> > >>> +      * guarantee that the object will remain valid when the objec=
+t is
+> > >>> +      * eventually used.
+> > >>> +      *
+> > >>> +      * The kernel supports this feature if I915_PARAM_HAS_USERPTR=
+_PROBE
+> > >>> +      * returns a non-zero value.
+> > >>> +      *
+> > >>>         * I915_USERPTR_UNSYNCHRONIZED:
+> > >>>         *
+> > >>>         * NOT USED. Setting this flag will result in an error.
+> > >>>         */
+> > >>>        __u32 flags;
+> > >>>   #define I915_USERPTR_READ_ONLY 0x1
+> > >>> +#define I915_USERPTR_PROBE 0x2
+> > >>>   #define I915_USERPTR_UNSYNCHRONIZED 0x80000000
+> > >>>        /**
+> > >>>         * @handle: Returned handle for the object.
+> > >>
+> > >> Could we use _VALIDATE instead of probe? Or at least pin the pages a=
+s well, so we don't have to do it later?
+> > >
+> > > I only care that the name matches what it does.  _VALIDATE sounds lik=
+e
+> > > it does a full validation of everything such that, if the import
+> > > succeeds, execbuf will as well.  If we pin the pages at the same time=
+,
+> > > maybe that's true?  _PROBE, on the other hand, sounds a lot more like
+> >
+> > No it is not possible to guarantee backing store remains valid until
+> > execbuf.
+> >
+> > > a one-time best-effort check which may race with other stuff and
+> > > doesn't guarantee future success.  That's in line with what the
+> > > current patch does.
+> > >
+> > >> We already have i915_gem_object_userptr_validate, no need to dupe it=
+.
+> > >
+> > > I have no opinion on this.
+> >
+> > I was actually suggesting the same as Maarten here - that we should add
+> > a "populate" flag. But opinion was that was not desired - please look
+> > for the older threads to see the reasoning there.
+>
+> So how should we proceed here? Maarten?
 
-== Series Details ==
+I honestly don't care, and I think the probe flag here is perfectly
+fine. Reasons for that:
+- we don't have an immediate allocation flag for buffer creation
+either. So if there's a need we need a flag for this across the board,
+not just userptr, and a clear userspace ask
+- it's a fundamentally racy test anyway, userspace can munmap or map
+something else and then it will fail. So we really don't gain anything
+by pinning pages because by the time we go into execbuf they might be
+invalidated already - checking the vmas for VM_SPECIAL is perfectly
+good enough.
+- we can always change the implementation later on too.
 
-Series: drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled
-URL   : https://patchwork.freedesktop.org/series/93318/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10440 -> Patchwork_20762
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20762:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@requests:
-    - {fi-tgl-dsi}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-dsi/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-dsi/igt@i915_selftest@live@requests.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20762 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@engines@userptr:
-    - fi-pnv-d510:        [PASS][3] -> [INCOMPLETE][4] ([i915#299])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [PASS][5] -> [FAIL][6] ([i915#1888])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][7] ([i915#2403] / [i915#2505] / [i915#2722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
-  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
-
-
-Participating hosts (37 -> 33)
-------------------------------
-
-  Missing    (4): fi-bdw-samus fi-bsw-cyan bat-jsl-1 fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10440 -> Patchwork_20762
-
-  CI-20190529: 20190529
-  CI_DRM_10440: 95b785be5ff0413ff419b30da574a7e3d353b33b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6159: 6135b9cc319ed965e3aafb5b2ae2abf4762a06b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20762: 31185812783debebc9c19772194bdd17d6bc0812 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-31185812783d drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html
-
---===============4489369696426688668==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93318/">https://patchwork.freedesktop.org/series/93318/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10440 -&gt; Patchwork_20762</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20762:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-dsi/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-dsi/igt@i915_selftest@live@requests.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20762 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@userptr:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (37 -&gt; 33)</h2>
-<p>Missing    (4): fi-bdw-samus fi-bsw-cyan bat-jsl-1 fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10440 -&gt; Patchwork_20762</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10440: 95b785be5ff0413ff419b30da574a7e3d353b33b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6159: 6135b9cc319ed965e3aafb5b2ae2abf4762a06b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20762: 31185812783debebc9c19772194bdd17d6bc0812 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>31185812783d drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled</p>
-
-</body>
-</html>
-
---===============4489369696426688668==--
+Hence why I think PROBE is the semantics we want/need here. Can we get
+some acks/reviews here or is this really a significant enough bikeshed
+that we need to hold up dg1 pciids for them?
+-Daniel
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
