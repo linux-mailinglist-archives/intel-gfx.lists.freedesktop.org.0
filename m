@@ -1,39 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 849CF3DF3EC
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 19:26:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF343DF633
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 22:14:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B070389CAC;
-	Tue,  3 Aug 2021 17:26:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4246E8CD;
+	Tue,  3 Aug 2021 20:13:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4289489C7F;
- Tue,  3 Aug 2021 17:26:28 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10065"; a="200910013"
-X-IronPort-AV: E=Sophos;i="5.84,292,1620716400"; d="scan'208";a="200910013"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2021 10:26:25 -0700
-X-IronPort-AV: E=Sophos;i="5.84,292,1620716400"; d="scan'208";a="479606648"
-Received: from dut151-iclu.fm.intel.com ([10.105.23.43])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2021 10:26:25 -0700
-Date: Tue, 3 Aug 2021 17:26:23 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Message-ID: <20210803172623.GA82856@DUT151-ICLU.fm.intel.com>
-References: <20210803051121.72017-1-matthew.brost@intel.com>
- <CAKMK7uGOAx7xM=6nDGtLqqW7sf2Rjbj24hAu8U9NK9J2t5+LwQ@mail.gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 034D96E12B;
+ Tue,  3 Aug 2021 20:13:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10065"; a="213499167"
+X-IronPort-AV: E=Sophos;i="5.84,292,1620716400"; d="scan'208";a="213499167"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2021 13:13:50 -0700
+X-IronPort-AV: E=Sophos;i="5.84,292,1620716400"; d="scan'208";a="568776531"
+Received: from unerlige-ril-10.jf.intel.com ([10.165.21.208])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2021 13:13:50 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>, daniel@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org
+Date: Tue,  3 Aug 2021 13:13:41 -0700
+Message-Id: <20210803201349.31031-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uGOAx7xM=6nDGtLqqW7sf2Rjbj24hAu8U9NK9J2t5+LwQ@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 0/4] Enable GuC submission by default on DG1
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH 0/8] Enable triggered perf query for Xe_HP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,74 +47,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 03, 2021 at 02:15:13PM +0200, Daniel Vetter wrote:
-> On Tue, Aug 3, 2021 at 6:53 AM Matthew Brost <matthew.brost@intel.com> wrote:
-> >
-> > Minimum set of patches to enable GuC submission on DG1 and enable it by
-> > default.
-> >
-> > A little difficult to test as IGTs do not work with DG1 due to a bunch
-> > of uAPI features being disabled (e.g. relocations, caching memory
-> > options, etc...).
-> 
-> Matt Auld has an igt series which fixes a lot of this stuff, would be
-> good to do at least a Test-With run with that.
-> 
+This is a revival of the patch series to support triggered perf query reports
+from here - https://patchwork.freedesktop.org/series/83831/
 
-If I'm understanding his series correct it only fixes the mmap issues
-not relocs so I don't think it will help all that much. I probably could
-send a trybot series letting relocs work on DG1 + his series and that
-might work? I guess I'll find out.
+The patches were not pushed earlier because corresponding UMD changes were
+missing. This revival addresses UMD changes in GPUvis for this series. GPUvis
+uses the perf library in igt-gpu-tools. Changes to the library are here -
+https://patchwork.freedesktop.org/series/93355/
 
-> Also I'm assuming that for ADL-P we'll get this equivalent patch set
+GPUvis changes will be posted as a PR once the above library and kernel changes
+are pushed.
 
-GuC submission is enabled by default on ADL-P. We don't have ADL-P in
-pre-merge CI currently though :(, just offline runs of about 1800 tests.
-Still a awaiting results for that though.
+Summary of the feature:
 
-For what it is worth I've run all 1800 locally, via a script, and gotten
-solid results back with my IGT updates. There are some failures but I
-believe I understand all of them as either test issues or known
-differences in behavior between execlists and GuC submission with are
-opens (e.g. persistence, semaphores, SUBMIT fence, etc...).
+Current platforms provide MI_REPORT_PERF_COUNT to query a snapshot of perf
+counters from a batch. This mechanism does not have consistent support on all
+engines for newer platforms. To support perf query, all new platforms use a
+mechanism to trigger OA report snapshots into the OA buffer by writing to a HW
+register from a batch. To lookup this report in the OA buffer quickly, the OA
+buffer is mmapped into the user space.
 
-Matt
+This series implements the new query mechanism.
 
-> soon, and there we should be able to get real results?
-> -Daniel
-> 
-> >
-> > Tested with the loading the driver and 'live' selftests. Submissions
-> > seem to work.
-> >
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> >
-> > Daniele Ceraolo Spurio (1):
-> >   drm/i915/guc: put all guc objects in lmem when available
-> >
-> > Matthew Brost (2):
-> >   drm/i915/guc: Add DG1 GuC / HuC firmware defs
-> >   drm/i915/guc: Enable GuC submission by default on DG1
-> >
-> > Venkata Sandeep Dhanalakota (1):
-> >   drm/i915: Do not define vma on stack
-> >
-> >  drivers/gpu/drm/i915/gem/i915_gem_lmem.c  | 26 +++++++
-> >  drivers/gpu/drm/i915/gem/i915_gem_lmem.h  |  4 +
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  9 ++-
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 11 ++-
-> >  drivers/gpu/drm/i915/gt/uc/intel_huc.c    | 14 +++-
-> >  drivers/gpu/drm/i915/gt/uc/intel_uc.c     |  2 +-
-> >  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  | 90 ++++++++++++++++++++---
-> >  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h  |  2 +
-> >  8 files changed, 138 insertions(+), 20 deletions(-)
-> >
-> > --
-> > 2.28.0
-> >
-> 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Chris Wilson (3):
+  drm/i915/gt: Refactor _wa_add to reuse wa_index and wa_list_grow
+  drm/i915/gt: Check for conflicting RING_NONPRIV
+  drm/i915/gt: Enable dynamic adjustment of RING_NONPRIV
+
+Piotr Maciejewski (1):
+  drm/i915/perf: Ensure observation logic is not clock gated
+
+Umesh Nerlige Ramappa (4):
+  drm/i915/gt: Lock intel_engine_apply_whitelist with uncore->lock
+  drm/i915/perf: Whitelist OA report trigger registers
+  drm/i915/perf: Whitelist OA counter and buffer registers
+  drm/i915/perf: Map OA buffer to user space for gen12 performance query
+
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.h      |   2 +
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 269 +++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_workarounds.h   |   7 +
+ .../gpu/drm/i915/gt/selftest_workarounds.c    | 237 +++++++++++++++
+ drivers/gpu/drm/i915/i915_perf.c              | 228 ++++++++++++++-
+ drivers/gpu/drm/i915/i915_perf_types.h        |   8 +
+ drivers/gpu/drm/i915/i915_reg.h               |  30 +-
+ include/uapi/drm/i915_drm.h                   |  33 +++
+ 9 files changed, 728 insertions(+), 88 deletions(-)
+
+-- 
+2.20.1
+
