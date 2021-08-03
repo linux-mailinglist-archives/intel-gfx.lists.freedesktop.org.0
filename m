@@ -1,129 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26A53DF051
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 16:31:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CFD43DF074
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 16:38:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41F586E879;
-	Tue,  3 Aug 2021 14:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 994916E87A;
+	Tue,  3 Aug 2021 14:38:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2049.outbound.protection.outlook.com [40.107.236.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C5C6E45C;
- Tue,  3 Aug 2021 14:31:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mvZ5+3zTWYL9o9AHQ4tUS32ytSfeh6oWIE90rN3JuuvEuThcRV+rOmU/HMRF58B/DrjcEoLTxcssrt3QVn7K5fpgGh4SVN1ZFmnwnxKW+sKbNnOZk9JWmMun2PGAs7tbD4ouwH2CKs6OyEZX9IOTXVNp4CVZo/alL/9LzbwMdPQYytuKdd6cBDKvrDie/t4VlljumiFEHH0F7XfXLD//T/z8eRfwHSNrzpjHz2GO2Wkrreybj3FHy78N7GzbrgEMLapl0KmsAzc4JkXPwfTLN6kEl8UCnUYsJMmOCN3Xk9Hx7PW0PoZyU4WB1NoXlY2uEUnWnUklvwsQ53j3hbLUMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k7xsv3+TkxLMjepkn413sgd7yHpbaXXQ+WbkxmPQw3c=;
- b=brnDOoG42jMtgvFjkC9Znv195D5MkEkuc4RUd9sXQ99bsmKjVPHweqnGJGDvQxP8sq1NtTxMzVqVEfHjR8p7hNnzd/NkIklMqDFot3WC3BT8rJ6cUBQ5Kbho5b0T7NKLYs5Bb3Ft8GghNNSoHk/scSXR0PAyQ8UOGOjFT5fyvBoAERUAacsZy8FVsHJvAgqcvq71d43KsrfacTj/FLRUzDqlestq3RL3RcPIKTSqNUlAVt20FZ2ZogaCHPd8oPr1bFrTWrWioHRpAzJGuTwTmfuM0Fr4o9HJgQMHDTtGHvidLqJaabwmWVGyUIZUL+b7koDeB27mKoLRE4Gff/75OA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k7xsv3+TkxLMjepkn413sgd7yHpbaXXQ+WbkxmPQw3c=;
- b=udUdASCDNFQ76jZYIAmDTitkvPVBk6VHvb+eEFw+zAD/QBuPVakbf01VJCeK3Bpym3GI/ucK/XpnV72Y2WgxCU84SY7ig9W+N9ZhEhNO1nxphAHuxEOyPmNIPjLPBkveJKzBa5Rrj05fLyY7fJXq5O8lrdWP95NvSOoYQLh4OBYNBzRYn6Xj16iFtK0TWFBybKLv0MsEhRl0SBKJun2DLDTLsDrJk+OCf64Ap7k9H0uIWUoLi+XIQZT68lZoU2++OcbZJa5ChEX9jKSZTp3wSNFzitFwwPF58Mv++OKaK1qD2KUCNS84rXye4p2AwQAfEl5Vxx6DS+qsQZTgFeniBQ==
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none; linux.intel.com; dmarc=none action=none header.from=nvidia.com; 
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
- by BL1PR12MB5141.namprd12.prod.outlook.com (2603:10b6:208:309::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18; Tue, 3 Aug
- 2021 14:31:00 +0000
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::d017:af2f:7049:5482]) by BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::d017:af2f:7049:5482%5]) with mapi id 15.20.4373.026; Tue, 3 Aug 2021
- 14:31:00 +0000
-Date: Tue, 3 Aug 2021 11:30:58 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: Christoph Hellwig <hch@lst.de>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Greg KH <gregkh@linuxfoundation.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "Wang, Zhi A" <zhi.a.wang@intel.com>
-Message-ID: <20210803143058.GA1721383@nvidia.com>
-References: <20210721155355.173183-1-hch@lst.de>
- <DM4PR11MB55496531B246A4604FC86998CAE49@DM4PR11MB5549.namprd11.prod.outlook.com>
- <20210722112636.wj277vqhg4dez5ug@sirius.home.kraxel.org>
- <20210727121224.GA2145868@nvidia.com>
- <DM4PR11MB5549EC882AA6076F3468274DCAEA9@DM4PR11MB5549.namprd11.prod.outlook.com>
- <20210728175925.GU1721383@nvidia.com>
- <20210729072022.GB31896@lst.de>
- <20210803094315.GF13928@zhen-hp.sh.intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210803094315.GF13928@zhen-hp.sh.intel.com>
-X-ClientProxiedBy: BL0PR0102CA0045.prod.exchangelabs.com
- (2603:10b6:208:25::22) To BL0PR12MB5506.namprd12.prod.outlook.com
- (2603:10b6:208:1cb::22)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B9DE66E87A;
+ Tue,  3 Aug 2021 14:38:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B2D90A0118;
+ Tue,  3 Aug 2021 14:38:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4489369696426688668=="
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mlx.ziepe.ca (142.162.113.129) by
- BL0PR0102CA0045.prod.exchangelabs.com (2603:10b6:208:25::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4394.15 via Frontend Transport; Tue, 3 Aug 2021 14:30:59 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1mAvRa-00C4PZ-Qc; Tue, 03 Aug 2021 11:30:58 -0300
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 860f2e2b-6520-4ae4-33fb-08d9568b504e
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5141:
-X-Microsoft-Antispam-PRVS: <BL1PR12MB51416ED2052D22053F5BF302C2F09@BL1PR12MB5141.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ACg18K7XEFTnE3BiAwOeUyVKukBrvpdhWA4W3H7ZF/OsafmTaeLxwFWR0eGot+/OpDWO06q5fIJrOuV6FYYu7yeb/y7SuhZToN0TflQWCmFFAuouYP+AUWQXGJRJnYUF/Ofl4mWQ8zgE3JG34yrLD3rhylD/DEfpP4qro4MZIEAKK+bjsHlHEu6PTAdq7oeJv/cqN2WR0E/tt5Kwxh8EFeUlmTGjzKaEGzmMdJPof+FuQHRJFtvcpGGQkniUVNNhHoXILlqgK5ltPTnZ9x4y3Pjda5sTiSKalln+3EV+dcZiVw97NkKJgZof7amvMvvRO/cbvvB/D3mpB6gtD1x8DbwRr8n18wp2WfQ1/clB3vDQU9XE7VVgTZfzCf38BuGZ7C92VXh0okaNZUkN5B/MvG+gCARKKpUuh8iueotb8b41oJl0kBLWe/it8wDGAribV6CDtlGM7ELvC6WUIjVztBCj2cK26Mb2RDb42fG4Dz0k/k8EJeVuwd2XPJd+LxuP/6MaHJIv25HmzTUWjvCCLxMatXlM6DBbLR9ssFI78qACQ/9vaCcT5Q1e5odErS+UMzf3FztxWjhO0RHkQXo9RTIN4+DQ4Hg2WmH1WKbYu9P6RUBfArkNUUPMfcvbFgNjgzHLFBDtkJYeTFjziT9Vzg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(426003)(36756003)(7416002)(38100700002)(66556008)(4326008)(66476007)(66946007)(6916009)(9786002)(4744005)(9746002)(1076003)(26005)(86362001)(2616005)(186003)(8936002)(316002)(508600001)(8676002)(5660300002)(54906003)(33656002)(2906002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tCE/KqA9vIbiZC9Tc0CFeF7/0y3raSaQsMpZgZAYXXqxia9w0XySG9DDKqeP?=
- =?us-ascii?Q?pxRNS80YNQQmbCjJQDQnDA/8Dv4Ff4k7/t0EsoLcvZa9ohuvPLiQpmtD+cM4?=
- =?us-ascii?Q?RfLIxc5yIYvsYzpJTSw7GxNWW2IsGDI6j/sPDmZsPiPhJbvAqjn1Ydc2h741?=
- =?us-ascii?Q?bE/XrE3/H5S8NylaymxaBudTdqgBJR+saoWuedpNkjVs8XvYYpBoLzyCt5cl?=
- =?us-ascii?Q?tw3DwO9gQfM1/zCgoXx8UuMdAr6EFIBu6iVtvnfsS6kK8BcSzBIbKR76BrMo?=
- =?us-ascii?Q?y3rgIuI3b4Y8Fkqf3vFqr9vehYbmnKXv5RPINY/HpKCTy+2whaWJlVieDSNJ?=
- =?us-ascii?Q?h/23o5wA0TY5gZntR2n+S0013E9CoWXFlY3yioLuUnSdaYGaKw8/CsRVLrpS?=
- =?us-ascii?Q?xuUIigRFQNrv7XNdhUAeb9Y5liwTSz5Jm/EmjOUuC0zryScjT5DZncaPMmZu?=
- =?us-ascii?Q?kKNZN78JoPINC8CSw7p2HawY3f2qquRTUeN3kzhN53+dqRRLZ469pLStIled?=
- =?us-ascii?Q?yBxKlOG0AsGcDhmZLcAoBjWttjkGtWb16sXgxbwkuwdNZg5pwPvrKIrUoUR3?=
- =?us-ascii?Q?0Rd0aqSerq8j6ICToPSjH+qiMHaIXcqSos9IUkbi4hN+i8P3Gy0RnTvW4cw/?=
- =?us-ascii?Q?7zGu8YLposf6jURz+OgRuNS/ts9Wal9KhvjdQ/zZpZVlS0Yv+rCIAIJXSBYT?=
- =?us-ascii?Q?08DIHpyp+loH4uoRCoYwY5O78oI4julgyxKXfjSmHyvaChxQmTTVkiAKNMQI?=
- =?us-ascii?Q?udJPs9W4CJqIhENE2K5HeaSNlJT2ItUd/nEzRQR4UAWyBZqZmGItJTpNPqVV?=
- =?us-ascii?Q?pyBcfUTTMxz0uw6E/BKB53WXsZldi7E2mqLvjD3T/UaievAWWJX8wAEocBJ0?=
- =?us-ascii?Q?vALPp1+lkpqod5rGQE5ZTHIv2OcJbCxQ/0/MGJKtui0vKI0gHGh92l/i6MAF?=
- =?us-ascii?Q?u4WTKTkd6oL+A9zIO4xcvW9fGOxFrlMRXb00iQ6s/JhhqGzeHeWKUeaMoi6u?=
- =?us-ascii?Q?goV9KAh/qti+LemNoPlR/2ydzjOU2MOoKtRgkulZ//8YhxxolYIhbwXBgnyo?=
- =?us-ascii?Q?z7/RX/3Rn43/sakLtNI+Ccp9hzZX8td3H3hZEJYYIl7eqmuXib3ugKEAsX3l?=
- =?us-ascii?Q?g1kiX1TbOk/D1QsshtDC+2BzPXkGsE47XHfVWtTsPYUE8ZLJQzwHzYSOySFp?=
- =?us-ascii?Q?Xzj42ZhBFUDoRcNCH9RE1OMrKCuTcGLKnsVE+nw3/LB4VUVFqe4hMupU32tN?=
- =?us-ascii?Q?fwCpvoIKjhGLUJuBMtcnZU11hPYYuG6LbcNyn7s+qUjHgfWOuLtcCbBcpKV1?=
- =?us-ascii?Q?XeO6yxp/Q7+u3QK9tlpTGPlW?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 860f2e2b-6520-4ae4-33fb-08d9568b504e
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2021 14:31:00.5585 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UQevexVoQJXy53J6hxJlPcKmdJS3Y3se2BUL+wATiQn41SVJQSKM1n6p/+IdwlHU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5141
-Subject: Re: [Intel-gfx] refactor the i915 GVT support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 03 Aug 2021 14:38:22 -0000
+Message-ID: <162800150272.9817.15975317063291795826@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210802190148.2099625-1-imre.deak@intel.com>
+In-Reply-To: <20210802190148.2099625-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Apply_CMTG_clock_disabling_WA_while_DPLL0_is_enabled?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,17 +41,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 03, 2021 at 05:43:15PM +0800, Zhenyu Wang wrote:
-> Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-> 
-> Thanks a lot for this effort!
+--===============4489369696426688668==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Great, do we have a submission plan for this? how much does it clash
-with my open_device/etc patch? ie does the whole thing have to go
-through the vfio tree?
+== Series Details ==
 
-Thanks,
-Jason
+Series: drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled
+URL   : https://patchwork.freedesktop.org/series/93318/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10440 -> Patchwork_20762
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20762:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@requests:
+    - {fi-tgl-dsi}:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-dsi/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-dsi/igt@i915_selftest@live@requests.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20762 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@engines@userptr:
+    - fi-pnv-d510:        [PASS][3] -> [INCOMPLETE][4] ([i915#299])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [PASS][5] -> [FAIL][6] ([i915#1888])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@runner@aborted:
+    - fi-pnv-d510:        NOTRUN -> [FAIL][7] ([i915#2403] / [i915#2505] / [i915#2722])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2403]: https://gitlab.freedesktop.org/drm/intel/issues/2403
+  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
+  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
+  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
+  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
+
+
+Participating hosts (37 -> 33)
+------------------------------
+
+  Missing    (4): fi-bdw-samus fi-bsw-cyan bat-jsl-1 fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10440 -> Patchwork_20762
+
+  CI-20190529: 20190529
+  CI_DRM_10440: 95b785be5ff0413ff419b30da574a7e3d353b33b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6159: 6135b9cc319ed965e3aafb5b2ae2abf4762a06b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20762: 31185812783debebc9c19772194bdd17d6bc0812 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+31185812783d drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html
+
+--===============4489369696426688668==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93318/">https://patchwork.freedesktop.org/series/93318/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10440 -&gt; Patchwork_20762</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20762:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@requests:<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-dsi/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-dsi/igt@i915_selftest@live@requests.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20762 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_parallel@engines@userptr:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@gem_exec_parallel@engines@userptr.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/299">i915#299</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10440/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20762/fi-pnv-d510/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2403">i915#2403</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (37 -&gt; 33)</h2>
+<p>Missing    (4): fi-bdw-samus fi-bsw-cyan bat-jsl-1 fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10440 -&gt; Patchwork_20762</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10440: 95b785be5ff0413ff419b30da574a7e3d353b33b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6159: 6135b9cc319ed965e3aafb5b2ae2abf4762a06b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20762: 31185812783debebc9c19772194bdd17d6bc0812 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>31185812783d drm/i915: Apply CMTG clock disabling WA while DPLL0 is enabled</p>
+
+</body>
+</html>
+
+--===============4489369696426688668==--
