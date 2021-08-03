@@ -1,48 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571B33DE9F7
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 11:49:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C0E93DE9C7
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 11:38:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A34FF6E53E;
-	Tue,  3 Aug 2021 09:49:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4E946E509;
+	Tue,  3 Aug 2021 09:38:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EC916E53E;
- Tue,  3 Aug 2021 09:49:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="235578849"
-X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
- d="asc'?scan'208";a="235578849"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2021 02:49:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
- d="asc'?scan'208";a="479414890"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.143])
- by fmsmga008.fm.intel.com with ESMTP; 03 Aug 2021 02:49:07 -0700
-Date: Tue, 3 Aug 2021 17:27:01 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Christoph Hellwig <hch@lst.de>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.a.wang@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <20210803092701.GE13928@zhen-hp.sh.intel.com>
-References: <20210721155355.173183-1-hch@lst.de>
- <20210721155355.173183-2-hch@lst.de>
+Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09BC06E48D;
+ Tue,  3 Aug 2021 09:38:22 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id 2E4CEC800B5;
+ Tue,  3 Aug 2021 11:38:20 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id j5zpKJ9d8Toa; Tue,  3 Aug 2021 11:38:19 +0200 (CEST)
+Received: from [192.168.178.30] (host-212-18-30-247.customer.m-online.net
+ [212.18.30.247])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id 64657C80073;
+ Tue,  3 Aug 2021 11:38:19 +0200 (CEST)
+From: Werner Sembach <wse@tuxedocomputers.com>
+To: "Deucher, Alexander" <alexander.deucher@amd.com>,
+ Pekka Paalanen <ppaalanen@gmail.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>
+Message-ID: <e452775c-5b95-bbfd-e818-f1480f556336@tuxedocomputers.com>
+Date: Tue, 3 Aug 2021 11:38:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="VB1oQhYtJt8uuzk+"
-Content-Disposition: inline
-In-Reply-To: <20210721155355.173183-2-hch@lst.de>
-Subject: Re: [Intel-gfx] [PATCH 01/21] drm/i915/gvt: integrate into the main
- Makefile
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Subject: [Intel-gfx] New uAPI for color management proposal and feedback
+ request v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,122 +56,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Greetings,
 
---VB1oQhYtJt8uuzk+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Original proposal: https://www.mail-archive.com/amd-gfx@lists.freedesktop.org/msg62387.html
 
-On 2021.07.21 17:53:35 +0200, Christoph Hellwig wrote:
-> Remove the separately included Makefile and just use the relative
-> reference from the main i915 Makefile as for source files in other
-> subdirectories.
->
+Abstract: Add "preferred color format", "active color format", "active bpc", and "active Broadcast RGB" drm properties,
+to control color information send to the monitor.
 
-We agreed to make gvt mostly self-contained in its own directory
-before. Although I don't think we would change files much later, but
-still need to get ack from i915 maintainers.
+It seems that the "preferred-" properties is not what is actually the most useful for the userspace devs.
 
-Thanks
+Preferable (Note: with only a sample size of 2 people) would be a "force color format" property. If the color format is
+not available for the current Monitor and GPU combo. the TEST_ONLY check should fail and the property should not be setable.
 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->  drivers/gpu/drm/i915/Makefile     | 29 ++++++++++++++++++++++++-----
->  drivers/gpu/drm/i915/gvt/Makefile |  9 ---------
->  drivers/gpu/drm/i915/gvt/trace.h  |  2 +-
->  3 files changed, 25 insertions(+), 15 deletions(-)
->  delete mode 100644 drivers/gpu/drm/i915/gvt/Makefile
->=20
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 4f22cac1c49b..2153f67705b8 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -289,11 +289,30 @@ i915-$(CONFIG_DRM_I915_SELFTEST) +=3D \
-> =20
->  # virtual gpu code
->  i915-y +=3D i915_vgpu.o
-> -
-> -ifeq ($(CONFIG_DRM_I915_GVT),y)
-> -i915-y +=3D intel_gvt.o
-> -include $(src)/gvt/Makefile
-> -endif
-> +i915-$(CONFIG_DRM_I915_GVT) +=3D \
-> +	intel_gvt.o \
-> +	gvt/gvt.o \
-> +	gvt/aperture_gm.o \
-> +	gvt/handlers.o \
-> +	gvt/vgpu.o \
-> +	gvt/trace_points.o \
-> +	gvt/firmware.o \
-> +	gvt/interrupt.o \
-> +	gvt/gtt.o \
-> +	gvt/cfg_space.o \
-> +	gvt/opregion.o \
-> +	gvt/mmio.o \
-> +	gvt/display.o \
-> +	gvt/edid.o \
-> +	gvt/execlist.o \
-> +	gvt/scheduler.o \
-> +	gvt/sched_policy.o \
-> +	gvt/mmio_context.o \
-> +	gvt/cmd_parser.o \
-> +	gvt/debugfs.o \
-> +	gvt/fb_decoder.o \
-> +	gvt/dmabuf.o \
-> +	gvt/page_track.o
-> =20
->  obj-$(CONFIG_DRM_I915) +=3D i915.o
->  obj-$(CONFIG_DRM_I915_GVT_KVMGT) +=3D gvt/kvmgt.o
-> diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt=
-/Makefile
-> deleted file mode 100644
-> index ea8324abc784..000000000000
-> --- a/drivers/gpu/drm/i915/gvt/Makefile
-> +++ /dev/null
-> @@ -1,9 +0,0 @@
-> -# SPDX-License-Identifier: GPL-2.0
-> -GVT_DIR :=3D gvt
-> -GVT_SOURCE :=3D gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o fir=
-mware.o \
-> -	interrupt.o gtt.o cfg_space.o opregion.o mmio.o display.o edid.o \
-> -	execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debug=
-fs.o \
-> -	fb_decoder.o dmabuf.o page_track.o
-> -
-> -ccflags-y				+=3D -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
-> -i915-y					+=3D $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
-> diff --git a/drivers/gpu/drm/i915/gvt/trace.h b/drivers/gpu/drm/i915/gvt/=
-trace.h
-> index 6d787750d279..348f57f8301d 100644
-> --- a/drivers/gpu/drm/i915/gvt/trace.h
-> +++ b/drivers/gpu/drm/i915/gvt/trace.h
-> @@ -379,5 +379,5 @@ TRACE_EVENT(render_mmio,
->  #undef TRACE_INCLUDE_PATH
->  #define TRACE_INCLUDE_PATH .
->  #undef TRACE_INCLUDE_FILE
-> -#define TRACE_INCLUDE_FILE trace
-> +#define TRACE_INCLUDE_FILE gvt/trace
->  #include <trace/define_trace.h>
-> --=20
-> 2.30.2
->=20
-> _______________________________________________
-> intel-gvt-dev mailing list
-> intel-gvt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+This however opens another problem: When a Monitor is disconnected and a new one is connected, the drm properties do not
+get resetted. So if the old monitor did allow to set for example ycbcr420, but the new monitor does not support this
+color format at all, it will stay permanently black until the drm property is set to a correct value by hand. This is
+not an expected behavior imho.
 
---VB1oQhYtJt8uuzk+
-Content-Type: application/pgp-signature; name="signature.asc"
+So a discussion questions: Does it make sense that connector properties are keep for different Monitors?
 
------BEGIN PGP SIGNATURE-----
+If no: On connecting a new Monitor all atomic drm properties should be reset to a default value.
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYQkL2gAKCRCxBBozTXgY
-J/5cAJ9pYxk2Ta7nNyfkoU3IN2SErPcQnACfTJy/bnXqPaXazunMj0R8cAC1kzI=
-=KO+V
------END PGP SIGNATURE-----
+I have an idea how this could be implemented (correct me if i'm wrong): When an atomic property is attached it get
+assigned an inital value. But if I understood the docu correctly, this value is ignored because atomic properties use
+the getter and setter methods when their values are read or written. My implementation suggestion would be to iterate
+over all attached atomic properties once a new monitor is connected and reset them to this initial value, which should
+be unchanged since initialization? This assumes that besides the initial value being unused it's still a sane default
+for all drivers.
 
---VB1oQhYtJt8uuzk+--
+Kind Regards,
+
+Werner Sembach
+
