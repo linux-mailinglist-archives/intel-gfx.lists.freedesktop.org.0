@@ -1,43 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E56F3DF662
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Aug 2021 22:27:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F4C3E01DB
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 15:23:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C21016E8D9;
-	Tue,  3 Aug 2021 20:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C928B6EA76;
+	Wed,  4 Aug 2021 13:23:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77DE76E8D7;
- Tue,  3 Aug 2021 20:27:36 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10065"; a="299361361"
-X-IronPort-AV: E=Sophos;i="5.84,292,1620716400"; d="scan'208";a="299361361"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2021 13:27:36 -0700
-X-IronPort-AV: E=Sophos;i="5.84,292,1620716400"; d="scan'208";a="502540357"
-Received: from unerlige-ril-10.jf.intel.com (HELO unerlige-ril-10.165.21.208)
- ([10.165.21.208])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2021 13:27:36 -0700
-Date: Tue, 3 Aug 2021 13:27:35 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>, daniel@ffwll.ch,
- joonas.lahtinen@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org
-Message-ID: <20210803202735.GC15814@unerlige-ril-10.165.21.208>
-References: <20210803201349.31031-1-umesh.nerlige.ramappa@intel.com>
- <20210803201838.GB15814@unerlige-ril-10.165.21.208>
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
+ [IPv6:2607:f8b0:4864:20::1033])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2855489A76
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Aug 2021 20:51:32 +0000 (UTC)
+Received: by mail-pj1-x1033.google.com with SMTP id
+ dw2-20020a17090b0942b0290177cb475142so5672970pjb.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Aug 2021 13:51:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sfftEtgrcdAgJtxxMxV/AMJLSicv+M22mjPBU5y8w/g=;
+ b=BmjanVsIy8h7SrXm9eU8iVoxNLRh8Rh2h+NopTulkEHAAKAzGlP0N7s6ioaz9n6j6J
+ PIikGOYDwnnmVI9UvPSdZ5YWpEz2XtSqexX1QIWzoM9ELP8AgLiMtLhnk3Y83qElZf65
+ 9x/znzLAuGTjhm5IFY0VoqMPJykhZ/nEquLa9M3WqZ4mY0GWZD+ToCfuTU7GYvpq6gs1
+ J9RQySgCSmenkSOmfcO3akg1qB5sSYEFMTGieXsDUOI0Z2v8R1a/oECtyRVXbrO+pY49
+ m1wT61slzmYQ1m2WVgBUvFmBksXzAmO+LY9bKpQnv4rwGm4NaLRlYwea+9yW4xgNsBcr
+ MNig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sfftEtgrcdAgJtxxMxV/AMJLSicv+M22mjPBU5y8w/g=;
+ b=hf11N/SEuZueUTufH7rKicV5pRW6167HsrjHq9FUmhFcW+9uxOGTs76cIyatAjLVhK
+ od5a+rHTAMB/3QLQFaU+Wgw4krn+u+xpIoTnw6IuBolaaktn1RF0DGwT5mHG9vnqZI8E
+ kNAkYJvmMkBri/+wKr9UIPWvA9QDgfJwZzitd8ieV9T5O8zZZLAb864CRa1DUhzgzRdE
+ M6nM0ZBNRTyPfSQXDz2QmcmXevKvdBff69917+ZHpi9M3PEP4PpNEzsWUt5bYsEjvicc
+ w6iOegP92HXN4vQ652KtZ80MhBwZU+VLJejWPN5PDuEODn8pzTjbn9D/uX8FrcZSwclO
+ l9zA==
+X-Gm-Message-State: AOAM5301vi2d3YPOPWPSSWdSI7R5vs3RnPYGn1zmhxckHM0zT3JFxbKI
+ SqexOdqoguWbKXcE/2UOc9uaPxuy8+jh4qZtE4es2w==
+X-Google-Smtp-Source: ABdhPJzzMdFIoC4FUQ+5qAmfespQhMKsyzKO9ckAU+1wZnDV562/fTMPvuOXAVghyfE86/6uh2oy9WY2X7eHNFJHgh0=
+X-Received: by 2002:a17:90b:4ad1:: with SMTP id
+ mh17mr22649805pjb.164.1628023891241; 
+ Tue, 03 Aug 2021 13:51:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20210803201838.GB15814@unerlige-ril-10.165.21.208>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH 0/8] Enable triggered perf query for Xe_HP
+References: <CACK8Z6FPsywe49fP=5pVc5DFm--4xt0daYLDzpbujA1_qoK7Dg@mail.gmail.com>
+ <78260D21-AD73-4EBC-8E69-A5B16F1A72D5@getmailspring.com>
+In-Reply-To: <78260D21-AD73-4EBC-8E69-A5B16F1A72D5@getmailspring.com>
+From: Rajat Jain <rajatja@google.com>
+Date: Tue, 3 Aug 2021 13:50:55 -0700
+Message-ID: <CACK8Z6ErDLW76hXwK4wFhOdMj4eyOZpceJPt7WX+KT6C2oWO7Q@mail.gmail.com>
+To: Marco Trevisan <marco.trevisan@canonical.com>
+Cc: Hans de Goede <hdegoede@redhat.com>, Simon Ser <contact@emersion.fr>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Mark Gross <mgross@linux.intel.com>, Andy Shevchenko <andy@infradead.org>, 
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Sebastien Bacher <seb128@ubuntu.com>, 
+ intel-gfx <intel-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
+ Mark Pearson <markpearson@lenovo.com>, 
+ Mario Limonciello <mario.limonciello@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Wed, 04 Aug 2021 13:23:42 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 0/9] drm: Add privacy-screen class and
+ connector properties
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,63 +85,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 03, 2021 at 01:18:38PM -0700, Umesh Nerlige Ramappa wrote:
->+ Joonas
+Hello DRM / GPU maintainers,
+
+On Tue, Aug 3, 2021 at 8:20 AM Marco Trevisan
+<marco.trevisan@canonical.com> wrote:
 >
->On Tue, Aug 03, 2021 at 01:13:41PM -0700, Umesh Nerlige Ramappa wrote:
->>This is a revival of the patch series to support triggered perf query reports
->>from here - https://patchwork.freedesktop.org/series/83831/
->>
->>The patches were not pushed earlier because corresponding UMD changes were
->>missing. This revival addresses UMD changes in GPUvis for this series. GPUvis
->>uses the perf library in igt-gpu-tools. Changes to the library are here -
->>https://patchwork.freedesktop.org/series/93355/
->>
->>GPUvis changes will be posted as a PR once the above library and kernel changes
->>are pushed.
+> Hi Rajat,
+>
+> The merge proposals are now in place after discussing a bit more with upstream:
+>
+>  - https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas/-/merge_requests/49
+>  - https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1952
+>  - https://gitlab.gnome.org/GNOME/gnome-control-center/-/merge_requests/1032
 
-GPUvis changes:
-https://github.com/unerlige/gpuvis/commit/1c19c134a64564f7b8d7ca3b46449324040a40be
+It seems that the subject kernel patch series (privacy screen support)
+from Hans, has now satisfied all the requirements that were needed for
+it to be accepted upstream, and there aren't any open comments that
+need to be addressed.
 
->>
->>Summary of the feature:
->>
->>Current platforms provide MI_REPORT_PERF_COUNT to query a snapshot of perf
->>counters from a batch. This mechanism does not have consistent support on all
->>engines for newer platforms. To support perf query, all new platforms use a
->>mechanism to trigger OA report snapshots into the OA buffer by writing to a HW
->>register from a batch. To lookup this report in the OA buffer quickly, the OA
->>buffer is mmapped into the user space.
->>
->>This series implements the new query mechanism.
->>
->>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>
->>Chris Wilson (3):
->> drm/i915/gt: Refactor _wa_add to reuse wa_index and wa_list_grow
->> drm/i915/gt: Check for conflicting RING_NONPRIV
->> drm/i915/gt: Enable dynamic adjustment of RING_NONPRIV
->>
->>Piotr Maciejewski (1):
->> drm/i915/perf: Ensure observation logic is not clock gated
->>
->>Umesh Nerlige Ramappa (4):
->> drm/i915/gt: Lock intel_engine_apply_whitelist with uncore->lock
->> drm/i915/perf: Whitelist OA report trigger registers
->> drm/i915/perf: Whitelist OA counter and buffer registers
->> drm/i915/perf: Map OA buffer to user space for gen12 performance query
->>
->>drivers/gpu/drm/i915/gem/i915_gem_mman.c      |   2 +-
->>drivers/gpu/drm/i915/gem/i915_gem_mman.h      |   2 +
->>drivers/gpu/drm/i915/gt/intel_workarounds.c   | 269 +++++++++++++-----
->>drivers/gpu/drm/i915/gt/intel_workarounds.h   |   7 +
->>.../gpu/drm/i915/gt/selftest_workarounds.c    | 237 +++++++++++++++
->>drivers/gpu/drm/i915/i915_perf.c              | 228 ++++++++++++++-
->>drivers/gpu/drm/i915/i915_perf_types.h        |   8 +
->>drivers/gpu/drm/i915/i915_reg.h               |  30 +-
->>include/uapi/drm/i915_drm.h                   |  33 +++
->>9 files changed, 728 insertions(+), 88 deletions(-)
->>
->>-- 
->>2.20.1
->>
+I was wondering when would it be applied to the upstream kernel?
+
+Thanks,
+
+Rajat
+
+
+>
+> This is all implemented and working for the wayland backend, for X11 I'm
+> looking at it right now, even though it seems that we don't get any
+> RRScreenChangeNotify on hotkey changes, and monitoring udev directly
+> seems overkill. Anything should be adjusted at lower levels?
+>
+> Cheers
+>
+> On lug 13 2021, at 9:25 pm, Rajat Jain <rajatja@google.com> wrote:
+>
+> > Hello Hans, Marco, et al,
+> >
+> > On Tue, Apr 27, 2021 at 10:03 AM Marco Trevisan
+> > <marco.trevisan@canonical.com> wrote:
+> >>
+> >> Hi,
+> >>
+> >> >>> There now is GNOME userspace code using the new properties:
+> >> >>> https://hackmd.io/@3v1n0/rkyIy3BOw
+> >> >>
+> >> >> Thanks for working on this.
+> >> >>
+> >> >> Can these patches be submitted as merge requests against the upstream
+> >> >> projects? It would be nice to get some feedback from the maintainers,
+> >> >> and be able to easily leave some comments there as well.
+> >>
+> >> FYI, I've discussed with other uptream developers about these while
+> >> doing them, and afterwards on how to improve them.
+> >>
+> >> > I guess Marco was waiting for the kernel bits too land before
+> >> > submitting these,
+> >> > but I agree that it would probably be good to have these submitted
+> >> > now, we
+> >> > can mark them as WIP to avoid them getting merged before the kernel side
+> >> > is finalized.
+> >>
+> >> I'll submit them in the next days once I'm done with the refactor I've
+> >> in mind, and will notify the list.
+> >
+> > Any updates on the privacy-screen patchset? Can Hans' patchset be
+> > accepted upstream now?
+> >
+> > Thanks,
+> >
+> > Rajat
+> >
+> >>
+> >> And for sure we can keep them in WIP till the final bits aren't completed.
+> >>
+> >> Cheers
+> >
