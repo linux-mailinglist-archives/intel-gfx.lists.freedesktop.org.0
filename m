@@ -1,34 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD4F3E09EA
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 23:16:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B563E0A4D
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 00:23:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F7D889D7D;
-	Wed,  4 Aug 2021 21:16:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A9289A32;
+	Wed,  4 Aug 2021 22:23:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 03D4089D63;
- Wed,  4 Aug 2021 21:16:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E0588A7DFB;
- Wed,  4 Aug 2021 21:16:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3852980662677001040=="
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BF18899A5
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Aug 2021 22:23:31 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ l8-20020a05600c1d08b02902b5acf7d8b5so1638208wms.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 04 Aug 2021 15:23:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=jEthsYo5cmrwocLVz5njVZMxGrlW+toglpTtJsaIK7Q=;
+ b=TMQCCF2AiqRqYKNVsJzmTaCv9ETLG5R6ez+x/GFOxzQEpuUj0eYZsU5tMsplR/wd1a
+ Ihx54UjmrGlgp5lh2XOIDxNOqh9NxkJrCQD7EEIrwN9FqlUoDU51/L4PAJ/ROYIsJLhk
+ fNNTdU7tkKIrkutkxblA1H6kRSqbxYpN8MQkk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=jEthsYo5cmrwocLVz5njVZMxGrlW+toglpTtJsaIK7Q=;
+ b=omnslrVwyA2KzONnJHOz16M9z50/4zVzlfaA3IZ7x2uPVvubHpd2ioYX+/YSQOBOT5
+ IhpgO9joTovAzoDZst4iYE1fi4S8qJMMhk7mbW9oMKuSm6pqO95sKza1W7gA7R7pdf8/
+ rkUn4cQ6LiJXID0gISYK8yVd6fQsQ+tHwciSUT526ubFiq5VAAOvOi89UWfbMlvQWRWE
+ czkkSQnUidcnrI+x1elz6x6ML9QBRFenWUC6zG93ZpqeUlR1IyZujYYrk63/Mgr5ycKH
+ n+HhUH/RGXMIe2r34w0qp1RJlBZdA2ePUMyqYqrKX5LLDwafpfOsFJy9EYJpSZNCpbCA
+ EcnQ==
+X-Gm-Message-State: AOAM5313Kn6Uqx1H0bA6o0rHr+sc9chf/h9X+FNh0qN2+v4HbHcwo/JY
+ jpXhSdZ/gjfMnV6LHEvt7ZfkZQ==
+X-Google-Smtp-Source: ABdhPJwYLFgpfdYepUN2MuHQqFPd1xW8bR0+VIKEYilePW9STlhRYu9TyL1aJNmvMCqqfXnMsSDNrw==
+X-Received: by 2002:a1c:7409:: with SMTP id p9mr1568025wmc.3.1628115809498;
+ Wed, 04 Aug 2021 15:23:29 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id s14sm3434701wmc.25.2021.08.04.15.23.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 Aug 2021 15:23:28 -0700 (PDT)
+Date: Thu, 5 Aug 2021 00:23:21 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Imre Deak <imre.deak@intel.com>
+Cc: linux-fbdev@vger.kernel.org, Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <YQsTWSGIgY00XEU7@phenom.ffwll.local>
+References: <20210802133551.1904964-1-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Randy Dunlap" <rdunlap@infradead.org>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 04 Aug 2021 21:16:06 -0000
-Message-ID: <162811176689.3397.1428357765057663999@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210804204147.2070-1-rdunlap@infradead.org>
-In-Reply-To: <20210804204147.2070-1-rdunlap@infradead.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_fix_i915=5Fglobals=5Fexit=28=29_section_mismatch_error?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210802133551.1904964-1-imre.deak@intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH] fbdev/efifb: Release PCI device's runtime
+ PM ref during FB destroy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,152 +70,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3852980662677001040==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Aug 02, 2021 at 04:35:51PM +0300, Imre Deak wrote:
+> Atm the EFI FB driver gets a runtime PM reference for the associated GFX
+> PCI device during driver probing and releases it only when removing the
+> driver.
+> 
+> When fbcon switches to the FB provided by the PCI device's driver (for
+> instance i915/drmfb), the EFI FB will get only unregistered without the
+> EFI FB driver getting unloaded, keeping the runtime PM reference
+> acquired during driver probing. This reference will prevent the PCI
+> driver from runtime suspending the device.
+> 
+> Fix this by releasing the RPM reference from the EFI FB's destroy hook,
+> called when the FB gets unregistered.
+> 
+> Fixes: a6c0fd3d5a8b ("efifb: Ensure graphics device for efifb stays at PCI D0")
+> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-== Series Details ==
+Patch looks good:
 
-Series: drm/i915: fix i915_globals_exit() section mismatch error
-URL   : https://patchwork.freedesktop.org/series/93398/
-State : success
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-== Summary ==
+But I've found a bunch of ordering issues here:
+- we should probably get the runtime pm reference _before_ we register the
+  framebuffer. There's a race right now about there.
+- the sysfs_remove_groups and framebuffer_release should also be moved
+  into the destroy callback. This is more a leak type of situation.
 
-CI Bug Log - changes from CI_DRM_10445 -> Patchwork_20770
-====================================================
+Cheers, Daniel
 
-Summary
--------
+> ---
+>  drivers/video/fbdev/efifb.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/video/fbdev/efifb.c b/drivers/video/fbdev/efifb.c
+> index 8ea8f079cde26..25cdea32b9633 100644
+> --- a/drivers/video/fbdev/efifb.c
+> +++ b/drivers/video/fbdev/efifb.c
+> @@ -47,6 +47,8 @@ static bool use_bgrt = true;
+>  static bool request_mem_succeeded = false;
+>  static u64 mem_flags = EFI_MEMORY_WC | EFI_MEMORY_UC;
+>  
+> +static struct pci_dev *efifb_pci_dev;	/* dev with BAR covering the efifb */
+> +
+>  static struct fb_var_screeninfo efifb_defined = {
+>  	.activate		= FB_ACTIVATE_NOW,
+>  	.height			= -1,
+> @@ -243,6 +245,9 @@ static inline void efifb_show_boot_graphics(struct fb_info *info) {}
+>  
+>  static void efifb_destroy(struct fb_info *info)
+>  {
+> +	if (efifb_pci_dev)
+> +		pm_runtime_put(&efifb_pci_dev->dev);
+> +
+>  	if (info->screen_base) {
+>  		if (mem_flags & (EFI_MEMORY_UC | EFI_MEMORY_WC))
+>  			iounmap(info->screen_base);
+> @@ -333,7 +338,6 @@ ATTRIBUTE_GROUPS(efifb);
+>  
+>  static bool pci_dev_disabled;	/* FB base matches BAR of a disabled device */
+>  
+> -static struct pci_dev *efifb_pci_dev;	/* dev with BAR covering the efifb */
+>  static struct resource *bar_resource;
+>  static u64 bar_offset;
+>  
+> @@ -603,8 +607,6 @@ static int efifb_remove(struct platform_device *pdev)
+>  	unregister_framebuffer(info);
+>  	sysfs_remove_groups(&pdev->dev.kobj, efifb_groups);
+>  	framebuffer_release(info);
+> -	if (efifb_pci_dev)
+> -		pm_runtime_put(&efifb_pci_dev->dev);
+>  
+>  	return 0;
+>  }
+> -- 
+> 2.27.0
+> 
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20770 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#1372])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10445/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [FAIL][3] ([i915#1888]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10445/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-
-
-Participating hosts (35 -> 33)
-------------------------------
-
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10445 -> Patchwork_20770
-
-  CI-20190529: 20190529
-  CI_DRM_10445: ad27c4ace81558b6a9c3208913e222cfd0218503 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6159: 6135b9cc319ed965e3aafb5b2ae2abf4762a06b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20770: 0b16bf383b5ae14480b9af1f1371c2bbeea26e85 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0b16bf383b5a drm/i915: fix i915_globals_exit() section mismatch error
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/index.html
-
---===============3852980662677001040==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: fix i915_globals_exit() section mismatch error</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93398/">https://patchwork.freedesktop.org/series/93398/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10445 -&gt; Patchwork_20770</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20770 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10445/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10445/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20770/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (35 -&gt; 33)</h2>
-<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10445 -&gt; Patchwork_20770</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10445: ad27c4ace81558b6a9c3208913e222cfd0218503 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6159: 6135b9cc319ed965e3aafb5b2ae2abf4762a06b2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20770: 0b16bf383b5ae14480b9af1f1371c2bbeea26e85 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0b16bf383b5a drm/i915: fix i915_globals_exit() section mismatch error</p>
-
-</body>
-</html>
-
---===============3852980662677001040==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
