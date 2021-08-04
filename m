@@ -1,73 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6823E0367
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 16:35:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C1603E0378
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 16:39:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7536E9EC;
-	Wed,  4 Aug 2021 14:35:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 717A86E2BC;
+	Wed,  4 Aug 2021 14:39:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com
- [IPv6:2607:f8b0:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0B516E9EC
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Aug 2021 14:35:17 +0000 (UTC)
-Received: by mail-oi1-x229.google.com with SMTP id u10so3087646oiw.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 04 Aug 2021 07:35:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=1YKmXG3sEYrWfC+00uSI9tFWY5t/fO7iBjyGET08Dl4=;
- b=SwSMS16isfxreGdIQLvE4RqRnptNEhz6l99EME5JlCspnJhkXxpJMR6Q0gEmIwDlIj
- McZOSRi6a+OwIJiGsKpgDS6fQyQ549OKcPp9q4fGr5b9Ou3IrsSUTjED0Deoxx+pEuxi
- hwa586VTI4pDgmh7ZxGTLwrA4PaSFlpd3vxb4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=1YKmXG3sEYrWfC+00uSI9tFWY5t/fO7iBjyGET08Dl4=;
- b=iNJ9mL2pWwX+V+ctbVK/4aFnNIuzWbk0szx7PzNrkLOaYjGNe5Tx2YDRe0lwNxI2yA
- NVKIFZuNqyV1/TFoiHwq4C3Co1Y1DAcY2tirbx03xdCyyLz9pAi8hFVzjoq07h6M7/nr
- VdRywMSaHbroMjhEomG3kp//yUsaTh84iRd+C6+qjpEes9OUJBoirwjd/zCtB5mCaaGg
- y3liaeC0D325tbTko4FeNSDmgQUvsud/No18iVb8ySVDK/S5ebfgrHA0SXend9vBi27H
- YrITturek3U2PCXFWyZFAODUBekLROkQjan9axmRd2fbjJfetvID6326gblluTA10s2o
- zkpA==
-X-Gm-Message-State: AOAM531Z5BZCBV3oNVt34ql7OnngdGnf/nlFUX3Gd7br2eIkkv9uYCXZ
- /jWqUqgpQt4Ck9lPHnGTZaaoIqYd8e77X3WmnRq4Ow==
-X-Google-Smtp-Source: ABdhPJzR5dYeJvb3aZoFQiYP69j3Pzu7z0knLl0ybrO1DZa8p75+HsqpO+3KKTv0DG7i4JGR8CdTIu/J7FJNGIyc4/4=
-X-Received: by 2002:a05:6808:2109:: with SMTP id
- r9mr5341991oiw.101.1628087716798; 
- Wed, 04 Aug 2021 07:35:16 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8421B6E9F8;
+ Wed,  4 Aug 2021 14:39:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 62BB5A882E;
+ Wed,  4 Aug 2021 14:39:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210715223900.1840576-1-jason@jlekstrand.net>
- <20210715223900.1840576-6-jason@jlekstrand.net>
- <CAM0jSHPu1EBfnAJ06Dp51a1Qbg+9QnmP=EyUfYXS0fZnJzxR8g@mail.gmail.com>
- <CAOFGe95gEUNsjCh+30AXhrQLz8_OKbHwwxv=_OhaGKQxGpvcew@mail.gmail.com>
- <CAM0jSHO4EU_gBXo-56GtDJffezfVHYoUhCeOnb97ZgBj5vyA7Q@mail.gmail.com>
- <CAM0jSHOHCr6ppLhUBVSd_JUnBDFAcsYEYtma01benzs_nkhtGg@mail.gmail.com>
- <CAOFGe95YYjS=k9SnQg0EuOR02FWGPyCAvJH7Ymm6ZhiHq5iNCw@mail.gmail.com>
- <CAM0jSHP8vS9FeEjKx9sQqek2-eGVEK+=6y03eNnf0zpnxmmP6w@mail.gmail.com>
- <CAOFGe94C48djm1uWXC2Tn-ssSvGr=sTOaEDORG355s72ysfqQg@mail.gmail.com>
- <CAM0jSHOTjp-zSdOR1u9H_YM8ryQbA-H9N3RQh-7cQvGr0k5wjw@mail.gmail.com>
- <CAOFGe9705fJxg4L5W9y_WA5T4PaohsEzgEMJcuojg7aKWTJSfA@mail.gmail.com>
- <CAM0jSHOXb_y-s46NUQ-jMJKfBc1FnDxC8ngkKYX29yEE+A7MVg@mail.gmail.com>
- <CAM0jSHNRE2tb4tS4q62MMAA7-WSGZE4_PryVFE7i1j13Sax1Mg@mail.gmail.com>
- <a53c7d07-15f5-0029-7e09-68c588832852@linux.intel.com>
-In-Reply-To: <a53c7d07-15f5-0029-7e09-68c588832852@linux.intel.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 4 Aug 2021 16:35:05 +0200
-Message-ID: <CAKMK7uEurFMB6PUsYCKBezQsT63=pJ3WCQ07F=V6cvfnY2+RGw@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Auld <matthew.william.auld@gmail.com>,
- Jason Ekstrand <jason@jlekstrand.net>, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/gem/ttm: Respect the objection
- region in placement_from_obj
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 04 Aug 2021 14:39:33 -0000
+Message-ID: <162808797338.3398.16255084983606250265@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210804142522.4113021-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210804142522.4113021-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_remove_rcu_support_from_i915=5Faddress=5Fspace_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,264 +41,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 4, 2021 at 10:00 AM Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
->
-> Hi,
->
-> On 7/22/21 11:59 AM, Matthew Auld wrote:
-> > On Thu, 22 Jul 2021 at 10:49, Matthew Auld
-> > <matthew.william.auld@gmail.com> wrote:
-> >> On Wed, 21 Jul 2021 at 21:11, Jason Ekstrand <jason@jlekstrand.net> wr=
-ote:
-> >>> On Mon, Jul 19, 2021 at 8:35 AM Matthew Auld
-> >>> <matthew.william.auld@gmail.com> wrote:
-> >>>> On Fri, 16 Jul 2021 at 20:49, Jason Ekstrand <jason@jlekstrand.net> =
-wrote:
-> >>>>> On Fri, Jul 16, 2021 at 1:45 PM Matthew Auld
-> >>>>> <matthew.william.auld@gmail.com> wrote:
-> >>>>>> On Fri, 16 Jul 2021 at 18:39, Jason Ekstrand <jason@jlekstrand.net=
-> wrote:
-> >>>>>>> On Fri, Jul 16, 2021 at 11:00 AM Matthew Auld
-> >>>>>>> <matthew.william.auld@gmail.com> wrote:
-> >>>>>>>> On Fri, 16 Jul 2021 at 16:52, Matthew Auld
-> >>>>>>>> <matthew.william.auld@gmail.com> wrote:
-> >>>>>>>>> On Fri, 16 Jul 2021 at 15:10, Jason Ekstrand <jason@jlekstrand.=
-net> wrote:
-> >>>>>>>>>> On Fri, Jul 16, 2021 at 8:54 AM Matthew Auld
-> >>>>>>>>>> <matthew.william.auld@gmail.com> wrote:
-> >>>>>>>>>>> On Thu, 15 Jul 2021 at 23:39, Jason Ekstrand <jason@jlekstran=
-d.net> wrote:
-> >>>>>>>>>>>> Whenever we had a user object (n_placements > 0), we were ig=
-noring
-> >>>>>>>>>>>> obj->mm.region and always putting obj->placements[0] as the =
-requested
-> >>>>>>>>>>>> region.  For LMEM+SMEM objects, this was causing them to get=
- shoved into
-> >>>>>>>>>>>> LMEM on every i915_ttm_get_pages() even when SMEM was reques=
-ted by, say,
-> >>>>>>>>>>>> i915_gem_object_migrate().
-> >>>>>>>>>>> i915_ttm_migrate calls i915_ttm_place_from_region() directly =
-with the
-> >>>>>>>>>>> requested region, so there shouldn't be an issue with migrati=
-on right?
-> >>>>>>>>>>> Do you have some more details?
-> >>>>>>>>>> With i915_ttm_migrate directly, no.  But, in the last patch in=
- the
-> >>>>>>>>>> series, we're trying to migrate LMEM+SMEM buffers into SMEM on
-> >>>>>>>>>> attach() and pin it there.  This blows up in a very unexpected=
- (IMO)
-> >>>>>>>>>> way.  The flow goes something like this:
-> >>>>>>>>>>
-> >>>>>>>>>>   - Client attempts a dma-buf import from another device
-> >>>>>>>>>>   - In attach() we call i915_gem_object_migrate() which calls
-> >>>>>>>>>> i915_ttm_migrate() which migrates as requested.
-> >>>>>>>>>>   - Once the migration is complete, we call i915_gem_object_pi=
-n_pages()
-> >>>>>>>>>> which calls i915_ttm_get_pages() which depends on
-> >>>>>>>>>> i915_ttm_placement_from_obj() and so migrates it right back to=
- LMEM.
-> >>>>>>>>> The mm.pages must be NULL here, otherwise it would just increme=
-nt the
-> >>>>>>>>> pages_pin_count?
-> >>>>>>> Given that the test is using the ____four_underscores version, it
-> >>>>>>> doesn't have that check.  However, this executes after we've done=
- the
-> >>>>>>> dma-buf import which pinned pages.  So we should definitely have
-> >>>>>>> pages.
-> >>>>>> We shouldn't call ____four_underscores() if we might already have
-> >>>>>> pages though. Under non-TTM that would leak the pages, and in TTM =
-we
-> >>>>>> might hit the WARN_ON(mm->pages) in __i915_ttm_get_pages(), if for
-> >>>>>> example nothing was moved. I take it we can't just call pin_pages(=
-)?
-> >>>>>> Four scary underscores usually means "don't call this in normal co=
-de".
-> >>>>> I've switched the ____four_underscores call to a __two_underscores =
-in
-> >>>>> the selftests and it had no effect, good or bad.  But, still, proba=
-bly
-> >>>>> better to call that one.
-> >>>>>
-> >>>>>>>>>> Maybe the problem here is actually that our TTM code isn't res=
-pecting
-> >>>>>>>>>> obj->mm.pages_pin_count?
-> >>>>>>>>> I think if the resource is moved, we always nuke the mm.pages a=
-fter
-> >>>>>>>>> being notified of the move. Also TTM is also not allowed to mov=
-e
-> >>>>>>>>> pinned buffers.
-> >>>>>>>>>
-> >>>>>>>>> I guess if we are evicted/swapped, so assuming we are not holdi=
-ng the
-> >>>>>>>>> object lock, and it's not pinned, the future call to get_pages(=
-) will
-> >>>>>>>>> see mm.pages =3D NULL, even though the ttm_resource is still th=
-ere, and
-> >>>>>>>>> because we prioritise the placements[0], instead of mm.region w=
-e end
-> >>>>>>>>> up moving it for no good reason. But in your case you are holdi=
-ng the
-> >>>>>>>>> lock, or it's pinned? Also is this just with the selftest, or
-> >>>>>>>>> something real?
-> >>>>>>>> Or at least in the selftest I see ____i915_gem_object_get_pages(=
-)
-> >>>>>>>> which doesn't even consider the mm.pages AFAIK.
-> >>>>>>> The bogus migration is happening as part of the
-> >>>>>>> __i915_gem_object_get_pages() (2 __underscores) call in
-> >>>>>>> i915_gem_dmabuf_attach (see last patch).  That code is attempting=
- to
-> >>>>>>> migrate the BO to SMEM and then pin it there using the obvious ca=
-lls
-> >>>>>>> to do so.  However, in the pin_pages call, it gets implicitly mig=
-rated
-> >>>>>>> back to LMEM thanks to i915_ttm_get_pages().  Why is _get_pages()
-> >>>>>>> migrating things at all?
-> >>>>>> Not sure yet, but __two_underscores() checks if
-> >>>>>> i915_gem_object_has_pages() before actually calling into
-> >>>>>> i915_ttm_get_pages(), so the mm.pages would have to be NULL here f=
-or
-> >>>>>> some reason, so best guess is something to do with move_notify().
-> >>>>> Did a bit of experimenting along those lines and added the followin=
-g
-> >>>>> to the self-test BEFORE the export/import:
-> >>>>>
-> >>>>>      i915_gem_object_lock(obj, NULL);
-> >>>>>      err =3D __i915_gem_object_get_pages(obj);
-> >>>>>      __i915_gem_object_unpin_pages(obj);
-> >>>>>      i915_gem_object_unlock(obj);
-> >>>>>      if (err) {
-> >>>>>          pr_err("__i915_gem_object_get_pages failed with err=3D%d\n=
-", err);
-> >>>>>          goto out_ret;
-> >>>>>      }
-> >>>>>
-> >>>>> This seems to make the migration happen as expected without this
-> >>>>> patch.  So it seems the problem only exists on buffers that haven't
-> >>>>> gotten any backing storage yet (if I'm understanding get_pages
-> >>>>> correctly).
-> >>>>>
-> >>>>> One potential work-around (not sure if this is a good idea or not!)
-> >>>>> would be to do this inside dmabuf_attach().  Is this reliable?  Onc=
-e
-> >>>>> it has pages will it always have pages?  Or are there crazy races I
-> >>>>> need to be worried about here?
-> >>>> It turns out that the i915_ttm_adjust_gem_after_move() call in
-> >>>> ttm_object_init will always update the mm.region to system memory(so
-> >>>> that it matches the ttm resource), which seems reasonable given the
-> >>>> default system placeholder thing, but does seem slightly iffy since =
-we
-> >>>> haven't actually moved/allocated anything.
-> >>>>
-> >>>> So effectively i915_ttm_migrate(SYSTEM) becomes a noop here since
-> >>>> mm.region =3D=3D mr. Which ofc means when we actually call get_pages=
-() all
-> >>>> that happens is that we allocate the pages in system memory(or witho=
-ut
-> >>>> this patch placements[0]). Also with this patch lmem+smem, will alwa=
-ys
-> >>>> be placed in smem first, regardless of the placements ordering.
-> >>>>
-> >>>> For now we could maybe just split i915_ttm_adjust_gem_after_move() s=
-o
-> >>>> we skip the part which updates the mm.region here in the init portio=
-n,
-> >>>> since that should only happen when we try to place the object for
-> >>>> real?
-> >>> Doesn't that mean we would end up with obj->mm.region and
-> >>> obj->mm.res->mem_type are out-of-sync?  That seems bad.  I would thin=
-k
-> >>> we'd want the two in sync at all times.
-> >> It likely doesn't matter since all roads lead to i915_ttm_get_pages()
-> >> when we need to actually use the object?
-> >>
-> >> Also updating the mm.region in ttm_object_init() to reflect the dummy
-> >> ttm resource seems a little scary, since any existing is_lmem() check
-> >> now needs to happen after we place the object. Or at least the
-> >> existing callers(for kernel internal objects) might not have expected
-> >> that behaviour. Not sure if we checked all the callers.
-> >>
-> >>> It seems like the fundamental problem here is that, when it's created=
-,
-> >>> the object isn't really in any memory region at all.  While I don't
-> >>> think obj->mm.region =3D=3D NULL is allowed or a good idea, it does s=
-eem
-> >>> closer to the ground truth.
-> >> Yeah, seems reasonable, especially for create_user where we don't know
-> >> the placement until we actually call get_pages(). I think for internal
-> >> users like with create_lmem() setting the mm.region early still makes
-> >> some sense?
-> >>
-> >>> Perhaps what we really want is for i915_gem_object_migrate to
-> >>> get_pages before it does the migration to ensure that pages exist.
-> >>> The only call to i915_gem_object_migrate in the code-base today is in
-> >>> the display code and it's immediately followed by pin_pages().  For
-> >>> that matter, maybe the call we actually want is
-> >>> i915_object_migrate_and_pin that does the whole lot.
-> >> I guess the only downside is that we might end up doing a real
-> >> migration, with mempy or the blitter vs just changing the preferred
-> >> placement for later? I think just go with whatever you feel is the
-> >> simplest for now.
-> > Another cheapo could be to drop the mr =3D=3D mm.region noop, and just =
-try
-> > to place the object at mr anyway?
-> >
-> There are a number of things to consider here,
->
-> First, as Jason found out what's keeping thing from working as intended
-> is that we actually call into TTM get_pages() after migration, since the
-> object isn't populated with pages yet. That's indeed a bug.
->
-> We should probably have migrate be migrate_and_populate(): Whatever
-> kernel code decides to migrate needs to hold the object lock over the
-> operation where data needs to be migrated or in the worst case call
-> pin() under the lock which currently needs to be the case for dma-buf
-> and display.
->
-> If we blindly just look at obj->mm.region() in get_pages() then if an
-> object with allowable placements in lmem and smem initially gets placed
-> in lmem, and then evicted to smem it will never migrate back to lmem
-> unless if there is an explicit i915_gem_object_migrate(), but again,
-> that's perhaps what we want? I guess we need to more clearly define the
-> migration policies; for example should we attempt to migrate evicted
-> buffers back to lmem on each execbuf where they are referenced, even if
-> they haven't lost their pages?
+== Series Details ==
 
-Looking at amdgpu things are indeed complicated:
-- mmap adds some hints that cpu access is preferred (iirc at least) so
-that the unmappable vram problems aren't too awful
-- execbuf adds vram to the non-evict placement list whenever that
-makes sense (i.e. preferred place and no inferred hint like mmap
-access countering that)
-- for eviction there's a ratelimit, to make sure we're not thrashing
-terribly and spending all the gpu time moving buffers around with the
-copy engine
+Series: remove rcu support from i915_address_space (rev3)
+URL   : https://patchwork.freedesktop.org/series/93314/
+State : warning
 
-Maybe another interim strategy would be to only evict non-busy
-buffers, not sure ttm supports that already. We definitely don't want
-to unconditionally force all buffers into lmem on every execbuf.
--Daniel
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+caf6e7f302eb drm/i915: Drop code to handle set-vm races from execbuf
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+References: ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")
+
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#17: 
+References: ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")
+
+-:46: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 2 warnings, 0 checks, 12 lines checked
+b7f87d0e543a drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
+-:148: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 80 lines checked
+3722c9bfcdf1 drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam
+-:54: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
+64d464c97eac drm/i915: Add i915_gem_context_is_full_ppgtt
+-:105: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+c09e5c29dada drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#12: 
+commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:61: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 18 lines checked
+07447b03edbd drm/i915: Drop __rcu from gem_context->vm
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#11: 
+    commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#23: 
+  i915_vm_open ofc. This also removes the final caller of context_get_vm_rcu
+
+-:42: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a4e7ccdac38e ("drm/i915: Move context management under GEM")'
+#42: 
+commit a4e7ccdac38ec8335d9e4e2656c1a041c77feae1
+
+-:345: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 2 errors, 2 warnings, 0 checks, 232 lines checked
+a10bb14f41b0 drm/i915: use xa_lock/unlock for fpriv->vm_xa lookups
+-:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit aabbe344dc3c ("drm/i915: Use RCU for unlocked vm_idr lookup")'
+#15: 
+commit aabbe344dc3ca5f7d8263a02608ba6179e8a4499
+
+-:52: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 13 lines checked
+79ceebe3d9e5 drm/i915: Stop rcu support for i915_address_space
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+- i915_dpt has very simple lifetime (somehow we create a display pagetable vm
+
+-:27: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf977e18610e ("drm/i915/gem: Spring clean debugfs")'
+#27: 
+	commit cf977e18610e66e48c31619e7e0cfa871be9eada
+
+-:35: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit db80a1294c23 ("drm/i915/gem: Remove per-client stats from debugfs/i915_gem_objects")'
+#35: 
+	commit db80a1294c231b6ac725085f046bb2931e00c9db
+
+-:47: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#47: 
+	commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:59: WARNING:TYPO_SPELLING: 'Preceeding' may be misspelled - perhaps 'Preceding'?
+#59: 
+  Preceeding patches removed all vestiges of rcu use from gem_ctx->vm
+  ^^^^^^^^^^
+
+-:64: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a4e7ccdac38e ("drm/i915: Move context management under GEM")'
+#64: 
+	commit a4e7ccdac38ec8335d9e4e2656c1a041c77feae1
+
+-:88: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit c744d50363b7 ("drm/i915/gt: Split the breadcrumb spinlock between global and contexts")'
+#88: 
+	commit c744d50363b714783bbc88d986cc16def13710f7
+
+-:94: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit added5fce61e ("ARM: mxs_defconfig: add CONFIG_USB_PHY")'
+#94: 
+  its parent commit added the intel_context rcu protection:
+
+-:96: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 14d1eaf08845 ("drm/i915/gt: Protect context lifetime with RCU")'
+#96: 
+	commit 14d1eaf08845c534963c83f754afe0cb14cb2512
+
+-:114: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4d8151ae5329 ("drm/i915: Don't free shared locks while shared")'
+#114: 
+	commit 4d8151ae5329cf50781a02fd2298a909589a5bab
+
+-:130: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e6ba76480299 ("drm/i915: Remove i915->kernel_context")'
+#130: 
+	commit e6ba76480299a0d77c51d846f7467b1673aad25b
+
+-:143: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4ff4b44cbb70 ("drm/i915: Store a direct lookup from object handle to vma")'
+#143: 
+	commit 4ff4b44cbb70c269259958cbcc48d7b8a2cb9ec8
+
+-:152: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit d1b48c1e7184 ("drm/i915: Replace execbuf vma ht with an idr")'
+#152: 
+	commit d1b48c1e7184d9bc4ae6d7f9fe2eed9efed11ffc
+
+-:160: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 93159e12353c ("drm/i915/gem: Avoid gem_context->mutex for simple vma lookup")'
+#160: 
+	commit 93159e12353c2a47e5576d642845a91fa00530bf
+
+-:183: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b32fa8111563 ("drm/i915/gtt: Defer address space cleanup to an RCU worker")'
+#183: 
+commit b32fa811156328aea5a3c2ff05cc096490382456
+
+-:201: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
+#201: 
+that's a preexisting condition in the codeebase that we wont fix in
+                                                        ^^^^
+
+-:206: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 60a4233a4952 ("drm/i915: Flush the i915_vm_release before ggtt shutdown")'
+#206: 
+commit 60a4233a4952729089e4df152e730f8f4d0e82ce
+
+-:279: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 14 errors, 4 warnings, 0 checks, 39 lines checked
+9b1a3e40d5cd drm/i915: Split out intel_context_create_user
+-:20: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#20: 
+        commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:29: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 556120256ecd ("drm/i915/guc: GuC virtual engines")'
+#29: 
+	commit 556120256ecd25aacea2c7e3ad11ec6584de7252
+
+-:248: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 2 errors, 1 warnings, 0 checks, 155 lines checked
 
 
-> On region dicrepance between gem and TTM there is a short DOC: section
-> in i915_gem_ttm.c
->
-> /Thomas
->
->
-> >>> Thoughts?
-> >>>
-> >>> --Jason
-> >>>
-> >>> P.S.  I'm going to go ahead and send another version with your other
-> >>> comments addressed.  We can keep this discussion going here for now.
-
-
-
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
