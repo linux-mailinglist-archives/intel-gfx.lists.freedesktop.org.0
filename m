@@ -2,49 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE15A3E073B
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 20:09:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1462D3E07A4
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 20:31:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 256DB6EB11;
-	Wed,  4 Aug 2021 18:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B78E6E430;
+	Wed,  4 Aug 2021 18:31:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5E9C6EB0C;
- Wed,  4 Aug 2021 18:09:20 +0000 (UTC)
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 0A7F0201BF;
- Wed,  4 Aug 2021 18:09:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1628100559; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=zuamIL23GWbt9Sf4LckMV6i82WCt36qITwC6vAIUoTE=;
- b=jA5uOfe10nvhMUL5YU3byG2e4j/wY5qqXGvIOaHXKE4O7VX68lJxOE5Vxxd6P/JjWulU0V
- +dyOBwVSJoSAWoQEwsTwvrtky0WTGaym0F2IU5JCuGOyDbTnZk7vxGB5CI/QIFK7ggujCq
- 1X7NJAFa4oVpWjSk/6dvPtjSHr0gjYU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1628100559;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=zuamIL23GWbt9Sf4LckMV6i82WCt36qITwC6vAIUoTE=;
- b=bDwkt8DIU4BgugWG/ezuXicLsMOIW2PpWJMgs3i0Yy31DNfe9nSbXRJDN9suzvnLEsSe0B
- rj5qrkAHZJrW4rAw==
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id AA8C5139B5;
- Wed,  4 Aug 2021 18:09:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap1.suse-dmz.suse.de with ESMTPSA id zTW+J87XCmEfDwAAGKfGzw
- (envelope-from <tzimmermann@suse.de>); Wed, 04 Aug 2021 18:09:18 +0000
-Date: Wed, 4 Aug 2021 20:09:17 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4246E430;
+ Wed,  4 Aug 2021 18:31:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10066"; a="235941964"
+X-IronPort-AV: E=Sophos;i="5.84,295,1620716400"; d="scan'208";a="235941964"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2021 11:31:43 -0700
+X-IronPort-AV: E=Sophos;i="5.84,295,1620716400"; d="scan'208";a="512185508"
+Received: from gengbinz-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.255.37.232])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2021 11:31:42 -0700
+Date: Wed, 4 Aug 2021 14:31:40 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -52,12 +31,11 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Message-ID: <YQrXzTmPpiuWsqSA@linux-uq9g.fritz.box>
+Message-ID: <YQrdDGLsInSI+N7T@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,53 +53,38 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Dave and Daniel,
 
-here's the weekly PR for drm-misc-fixes. I cherry-picked the vmwgfx
-fix from drm-misc-next-fixes where it accidentally landed first.
+Here goes drm-intel-fixes-2021-08-04:
 
-Best regards
-Thomas
+- Call i915_globals_exit if pci_register_device fails (Jason)
+- Correct SFC_DONE register offset (Matt)
 
-drm-misc-fixes-2021-08-04:
-Short summary of fixes pull:
+Thanks,
+Rodrigo.
 
- * kmb: DMA fix; Add macros for driver date/version
- * vmwgfx: Fix I/O memory access on 64-bit systems
-The following changes since commit 8ee18e769dd621104fecad584c84ec3c4c9ef3fa:
+The following changes since commit c500bee1c5b2f1d59b1081ac879d73268ab0ff17:
 
-  Merge drm/drm-fixes into drm-misc-fixes (2021-07-27 14:08:29 +0200)
+  Linux 5.14-rc4 (2021-08-01 17:04:17 -0700)
 
 are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-08-04
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-08-04
 
-for you to fetch changes up to e89afb51f97ae03ee246c1fd0b47e3e491266aef:
+for you to fetch changes up to 1354d830cb8f9be966cc07fc61368af27ffb7c4a:
 
-  drm/vmwgfx: Fix a 64bit regression on svga3 (2021-08-02 21:00:37 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
- * kmb: DMA fix; Add macros for driver date/version
- * vmwgfx: Fix I/O memory access on 64-bit systems
+  drm/i915: Call i915_globals_exit() if pci_register_device() fails (2021-08-03 07:13:53 -0400)
 
 ----------------------------------------------------------------
-Edmund Dea (2):
-      drm/kmb: Enable LCD DMA for low TVDDCV
-      drm/kmb: Define driver date and major/minor version
+- Call i915_globals_exit if pci_register_device fails (Jason)
+- Correct SFC_DONE register offset (Matt)
 
-Zack Rusin (1):
-      drm/vmwgfx: Fix a 64bit regression on svga3
+----------------------------------------------------------------
+Jason Ekstrand (1):
+      drm/i915: Call i915_globals_exit() if pci_register_device() fails
 
- drivers/gpu/drm/kmb/kmb_drv.c       | 22 ++++++++++++++++++----
- drivers/gpu/drm/kmb/kmb_drv.h       |  5 +++++
- drivers/gpu/drm/kmb/kmb_plane.c     | 15 +++++++++++++--
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h |  2 +-
- 4 files changed, 37 insertions(+), 7 deletions(-)
+Matt Roper (1):
+      drm/i915: Correct SFC_DONE register offset
 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-(HRB 36809, AG Nürnberg)
-Geschäftsführer: Felix Imendörffer
+ drivers/gpu/drm/i915/i915_globals.c | 2 +-
+ drivers/gpu/drm/i915/i915_pci.c     | 1 +
+ drivers/gpu/drm/i915/i915_reg.h     | 2 +-
+ 3 files changed, 3 insertions(+), 2 deletions(-)
