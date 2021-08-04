@@ -2,47 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEAB73DFB2D
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 07:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 894443DFB93
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Aug 2021 08:50:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182666E9C7;
-	Wed,  4 Aug 2021 05:40:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBB5D6E9CC;
+	Wed,  4 Aug 2021 06:50:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD6386E9C2;
- Wed,  4 Aug 2021 05:40:10 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id E550367373; Wed,  4 Aug 2021 07:40:06 +0200 (CEST)
-Date: Wed, 4 Aug 2021 07:40:06 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Greg KH <gregkh@linuxfoundation.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "Wang, Zhi A" <zhi.a.wang@intel.com>
-Message-ID: <20210804054006.GA5769@lst.de>
-References: <20210721155355.173183-1-hch@lst.de>
- <DM4PR11MB55496531B246A4604FC86998CAE49@DM4PR11MB5549.namprd11.prod.outlook.com>
- <20210722112636.wj277vqhg4dez5ug@sirius.home.kraxel.org>
- <20210727121224.GA2145868@nvidia.com>
- <DM4PR11MB5549EC882AA6076F3468274DCAEA9@DM4PR11MB5549.namprd11.prod.outlook.com>
- <20210728175925.GU1721383@nvidia.com> <20210729072022.GB31896@lst.de>
- <20210803094315.GF13928@zhen-hp.sh.intel.com>
- <20210803143058.GA1721383@nvidia.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D326F89EA9;
+ Wed,  4 Aug 2021 06:50:07 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10065"; a="211999351"
+X-IronPort-AV: E=Sophos;i="5.84,293,1620716400"; d="scan'208";a="211999351"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2021 23:50:07 -0700
+X-IronPort-AV: E=Sophos;i="5.84,293,1620716400"; d="scan'208";a="521721511"
+Received: from jhogberg-mobl1.ger.corp.intel.com (HELO [10.249.254.191])
+ ([10.249.254.191])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Aug 2021 23:50:05 -0700
+To: Jason Ekstrand <jason@jlekstrand.net>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+References: <20210715223900.1840576-1-jason@jlekstrand.net>
+ <20210715223900.1840576-5-jason@jlekstrand.net>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <7c9c608f-a00a-8890-d4fb-c4fe755e2073@linux.intel.com>
+Date: Wed, 4 Aug 2021 08:49:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210803143058.GA1721383@nvidia.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] refactor the i915 GVT support
+In-Reply-To: <20210715223900.1840576-5-jason@jlekstrand.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/gem/ttm: Place new BOs in the
+ requested region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,16 +55,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 03, 2021 at 11:30:58AM -0300, Jason Gunthorpe wrote:
-> On Tue, Aug 03, 2021 at 05:43:15PM +0800, Zhenyu Wang wrote:
-> > Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-> > 
-> > Thanks a lot for this effort!
-> 
-> Great, do we have a submission plan for this? how much does it clash
-> with my open_device/etc patch? ie does the whole thing have to go
-> through the vfio tree?
+Hi, Jason,
 
-The two series merge cleanly and build fine.  So if we don't need
-the actual conversion of the i915 gvt code to the new mdev registration
-scheme this merge window there is no need to synchronize.
+On 7/16/21 12:38 AM, Jason Ekstrand wrote:
+> __i915_gem_ttm_object_init() was ignoring the placement requests coming
+> from the client and always placing all BOs in SMEM upon creation.
+> Instead, compute the requested placement set from the object and pass
+> that into ttm_bo_init_reserved().
+
+This is done on purpose. When objects are initially created in SMEM, 
+they are created in "Limbo", meaning they have no pages and costly 
+allocation and clearing is deferred to first get_pages().
+
+So we shouldn't be doing this.
+
+/Thomas
+
+
