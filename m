@@ -2,61 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ACD63E1E14
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 23:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 409A93E1F11
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 00:58:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE066EB60;
-	Thu,  5 Aug 2021 21:47:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F04306E09F;
+	Thu,  5 Aug 2021 22:58:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 841AD6EB60
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 21:47:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="193852409"
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="193852409"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 14:47:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="437949715"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga002.jf.intel.com with ESMTP; 05 Aug 2021 14:47:20 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 5 Aug 2021 14:47:20 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 5 Aug 2021 14:47:19 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.010;
- Thu, 5 Aug 2021 14:47:19 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 4/4] DO_NOT_MERGE: drm/i915/display: Enable
- PSR2 selective fetch by default
-Thread-Index: AQHXhZ/TYYAYurSVXUWj36lC0Mpc1atiHG+AgABmJwCAAzZXAIAAOWgA
-Date: Thu, 5 Aug 2021 21:47:19 +0000
-Message-ID: <b5f44963ce603ef0864bc55c0fe97d5fccfb119b.camel@intel.com>
-References: <20210731001019.150373-1-jose.souza@intel.com>
- <20210731001019.150373-4-jose.souza@intel.com>
- <c0055e67-2841-0ef9-c18f-d60e9e186897@intel.com>
- <c30de5129bec44f07238d2e8906c031820a5e36d.camel@intel.com>
- <701ae0b8-7e24-de5a-286d-e12bc0a44a07@intel.com>
-In-Reply-To: <701ae0b8-7e24-de5a-286d-e12bc0a44a07@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <606BD78DF77C8C4EAFE8690A056ECDF0@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF1496E09F;
+ Thu,  5 Aug 2021 22:58:42 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id m12so8564548wru.12;
+ Thu, 05 Aug 2021 15:58:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=q6beibzNrILHq2SGf9/COm2CxcmfWx9qSxPEsXfxPtw=;
+ b=uNPbQwXzK6ouX5+p8QgoDFyf/NIPsbdwWueKLuI4V9JnYMwxCFtlxOAatI83UljIzU
+ 2EqTDXeUqwJHIWDUgztaATkmLbK5KEMY3vA/RR9DF3nyQmpfL6mYYw9raKkpiX910SGY
+ +bzOlnew+FAC5v4QGPN8V4suXFMEv2wja3fav3Vr6NaFnDdi2wRQsnTxvZpAbb8XHhJb
+ v27feG5SYEZc2xwnJAq/BCKKW5DG0YUn/fhyTg75Gdj9K79SHoSmGg9NSY1QArSnhep+
+ P1ikQyb0GNisUnnUCAWuYxLTFGDkQdyDSyS5v9k/bxh9W/AN5iBS8LXQY1CY5J5gFwI8
+ a8QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=q6beibzNrILHq2SGf9/COm2CxcmfWx9qSxPEsXfxPtw=;
+ b=bZglLSJezrxcU5J59rOnzH9K6Tuvk7YWKIwy5+PVgz3dHynGty10DM4+f6Z4BmBUXi
+ /t4OhlZsDxDjnH2UTi5YsEtNmraiuUyJ94fC6+dyHNtWV4s8jcBLvYZGS75SFe8rkWyG
+ szwBjJzwWQlh4X1U1PLtOCSPeAmCjGcgBXU4nrZRbeW7pfqxHCA3/mwYYs4De7ITIIlN
+ 6uB6xNLTsuHP5grgQriUi/boa1s7ePbQsE8GenwEYCsqzojkm+r9ZbXl/x3iyuQvnumM
+ 7sW8U1R8putm69m6N/LmEWSEEjdan1Byk7LZ3UjWXACX4KXD55pMdakEWPWZyqtCi7R0
+ x2jA==
+X-Gm-Message-State: AOAM531bicvdJIj45P8L/EtQ7ATv02ibAkSdjPtdvGgYTRelfz3erXWC
+ sbuntPiCJk989odt6wh7zrL/h1WaaxAfWXlFlNM=
+X-Google-Smtp-Source: ABdhPJwkqoi7Te+8IVA6FyKKRv4mbRhIKOatAn/IO6gqCZx4Kj1mou4VEJhavjSimHsrRoYATzTuNhXPQ7l4hmxuN5E=
+X-Received: by 2002:a05:6000:1ce:: with SMTP id
+ t14mr7751825wrx.83.1628204321241; 
+ Thu, 05 Aug 2021 15:58:41 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/4] DO_NOT_MERGE: drm/i915/display: Enable
- PSR2 selective fetch by default
+References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
+ <20210805104705.862416-3-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210805104705.862416-3-daniel.vetter@ffwll.ch>
+From: Rob Clark <robdclark@gmail.com>
+Date: Thu, 5 Aug 2021 16:02:56 -0700
+Message-ID: <CAF6AEGvkmZhcPWP58VnL1OXAeJ5tg7v13xkkiYBwkpBi1YiT4g@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rob Clark <robdclark@chromium.org>, 
+ Sean Paul <sean@poorly.run>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ freedreno <freedreno@lists.freedesktop.org>, 
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>, 
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH v5 02/20] drm/msm: Fix drm/sched point of no
+ return rules
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,85 +79,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTA4LTA1IGF0IDIxOjI2ICswMzAwLCBHd2FuLWd5ZW9uZyBNdW4gd3JvdGU6
-DQo+IA0KPiBPbiA4LzMvMjEgODoxOCBQTSwgU291emEsIEpvc2Ugd3JvdGU6DQo+ID4gT24gVHVl
-LCAyMDIxLTA4LTAzIGF0IDE0OjE3ICswMzAwLCBHd2FuLWd5ZW9uZyBNdW4gd3JvdGU6DQo+ID4g
-PiANCj4gPiA+IE9uIDcvMzEvMjEgMzoxMCBBTSwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSB3cm90
-ZToNCj4gPiA+ID4gT25seSB0byBleGVjdXRlIHRlc3RzIHdpdGggUFNSMiBzZWxlY3RpdmUgZmV0
-Y2ggZW5hYmxlZCBhbmQgY2hlY2sgd2hhdA0KPiA+ID4gPiBpcyBicm9rZW4uDQo+ID4gPiA+IA0K
-PiA+ID4gPiBJR1QgdGVzdHMga25vdyB0byBmYWlsIHdpdGggdGhpczoNCj4gPiA+ID4gLSBrbXNf
-Y3Vyc29yX2xlZ2FjeTogYWxsIHRlc3RzIHRoYXQgY2hlY2tzIGlmIGV2YXNpb24gaGFwcGVuZCwg
-SSBoYXZlDQo+ID4gPiA+IGZpeCBmb3IgaXQgbWFraW5nIGN1cnNvcl9zbG93cGF0aCgpIHJldHVy
-bnMgdHJ1ZSBmb3IgZGlzcGxheSAxMisuDQo+ID4gPiA+IA0KPiA+ID4gPiAtIGttc19wc3IyX3N1
-OiBUaGUgcGFnZWZsaXAgdGVzdCwgaXQgbmVlZHMgdG8gaGF2ZSB0aGUgZGFtYWdlIGNsaXAgc2V0
-DQo+ID4gPiA+IG90aGVyd2lzZSBpdCB3aWxsIHVwZGF0ZSB0aGUgd2hvbGUgc2NyZWVuIGFuZCB0
-aGUgc2VsZWN0aXZlIGJsb2Nrcw0KPiA+ID4gPiB3aWxsIG5vdCBtYXRjaCB3aXRoIGV4cGVjdGVk
-Lg0KPiA+ID4gPiANCj4gPiA+IGttc19wc3IyX3N1IGlzIGEgdGVzdCBjYXNlIGZvciBpbnRlbCBQ
-U1IyIEhXIHRyYWNraW5nIGFuZCBrbXNfcHNyMl9zZiBpcw0KPiA+ID4gdXNlZCBhcyBhIHRlc3Qg
-Zm9yIGludGVsIFBTUjIgbWFudWFsIHRyYWNraW5nLiBJcyBpdCBuZWNlc3NhcnkgdG8gbW9kaWZ5
-DQo+ID4gPiBrbXNfcHNyMl9zdSBmb3IgdGVzdGluZyBQU1IyIG1hbnVhbCB0cmFja2luZz8NCj4g
-PiANCj4gPiBrbXNfcHNyMl9zdSBpcyB0byB0ZXN0IHRoYXQgUFNSMiBpcyBzZW5kaW5nIHNlbGVj
-dGl2ZSB1cGRhdGVzLCBqdXN0IGFkZGluZyBhIGNvdXBsZSBvZiBsaW5lcyB3ZSBjYW4gbWFrZSBp
-dCB3b3JrIHdpdGggc2VsZWN0aXZlIGZldGNoLg0KPiA+IA0KPiA+ID4gPiAtIGttc19wc3I6IHBz
-cjJfKl8obW1hcF9ndHQsIG1tYXBfY3B1LCBibHQgYW5kIHJlbmRlciksIGFsbCB0aG9zZQ0KPiA+
-ID4gPiB0ZXN0cyBzaG91bGQgYmUgZHJvcHBlZCBvciBza2lwcGVkIGZvciBkaXNwbGF5IDEyKy4N
-Cj4gPiA+ID4gDQo+ID4gPiBDb3VsZCB5b3UgZXhwbGFpbiBpbiBtb3JlIGRldGFpbCB3aHkgd2Ug
-bmVlZCB0byBza2lwIG9uIGRpc3BsYXkgMTIrPw0KPiA+IA0KPiA+IFRoaXMgYXJlIHN0dWZmIHRo
-YXQgd291bGQgZW5kIHVwIGNhbGxpbmcgaW50ZWxfcHNyX2ludmFsaWRhdGUvZmx1c2goKS4NCj4g
-PiANCj4gDQo+IFRoYW5rcyBmb3IgdGhlIGV4cGxhbmF0aW9uLg0KPiBBbmQgdGhlcmUgaXMgYW4g
-aXNzdWUgY29uZmlybWVkIGluIGxvY2FsIHRlc3RzLCBzbyBJIGxlYXZlIGFkZGl0aW9uYWwgDQo+
-IGNvbW1lbnRzLg0KPiA+ID4gDQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8g
-ZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4gICAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8IDkgLS0tLS0tLS0tDQo+
-ID4gPiA+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmggICAgICAgfCAyICst
-DQo+ID4gPiA+ICAgIDIgZmlsZXMgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEwIGRlbGV0aW9u
-cygtKQ0KPiA+ID4gPiANCj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X3Bzci5jDQo+ID4gPiA+IGluZGV4IDg5NGEyZDM1NjY4YTIuLmUxMjhmMGMyYWVlY2MgMTAwNjQ0
-DQo+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMN
-Cj4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0K
-PiA+ID4gPiBAQCAtODc3LDE1ICs4NzcsNiBAQCBzdGF0aWMgYm9vbCBpbnRlbF9wc3IyX2NvbmZp
-Z192YWxpZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KPiA+ID4gPiAgICByZXR1cm4gZmFs
-c2U7DQo+ID4gPiA+ICAgIH0NCj4gPiA+ID4gDQo+ID4gPiA+IC0vKg0KPiA+ID4gPiAtICogV2Ug
-YXJlIG1pc3NpbmcgdGhlIGltcGxlbWVudGF0aW9uIG9mIHNvbWUgd29ya2Fyb3VuZHMgdG8gZW5h
-YmxlZCBQU1IyDQo+ID4gPiA+IC0gKiBpbiBBbGRlcmxha2VfUCwgdW50aWwgcmVhZHkgUFNSMiBz
-aG91bGQgYmUga2VwdCBkaXNhYmxlZC4NCj4gPiA+ID4gLSAqLw0KPiA+ID4gPiAtaWYgKElTX0FM
-REVSTEFLRV9QKGRldl9wcml2KSkgew0KPiA+ID4gPiAtZHJtX2RiZ19rbXMoJmRldl9wcml2LT5k
-cm0sICJQU1IyIGlzIG1pc3NpbmcgdGhlIGltcGxlbWVudGF0aW9uIG9mIHdvcmthcm91bmRzXG4i
-KTsNCj4gPiA+ID4gLXJldHVybiBmYWxzZTsNCj4gPiA+ID4gLX0NCj4gPiA+ID4gLQ0KPiA+ID4g
-PiAgICBpZiAoIXRyYW5zY29kZXJfaGFzX3BzcjIoZGV2X3ByaXYsIGNydGNfc3RhdGUtPmNwdV90
-cmFuc2NvZGVyKSkgew0KPiA+ID4gPiAgICBkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwNCj4g
-PiA+ID4gICAgICAgICJQU1IyIG5vdCBzdXBwb3J0ZWQgaW4gdHJhbnNjb2RlciAlc1xuIiwNCj4g
-PiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmggYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oDQo+ID4gPiA+IGluZGV4IGYyN2VjZWI4
-MmMwZjUuLjhkNzI1YjY0NTkyZDggMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfcGFyYW1zLmgNCj4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9wYXJhbXMuaA0KPiA+ID4gPiBAQCAtNTUsNyArNTUsNyBAQCBzdHJ1Y3QgZHJtX3ByaW50
-ZXI7DQo+ID4gPiA+ICAgIHBhcmFtKGludCwgZW5hYmxlX2ZiYywgLTEsIDA2MDApIFwNCj4gPiA+
-ID4gICAgcGFyYW0oaW50LCBlbmFibGVfcHNyLCAtMSwgMDYwMCkgXA0KPiA+ID4gPiAgICBwYXJh
-bShib29sLCBwc3Jfc2FmZXN0X3BhcmFtcywgZmFsc2UsIDA0MDApIFwNCj4gPiA+ID4gLXBhcmFt
-KGJvb2wsIGVuYWJsZV9wc3IyX3NlbF9mZXRjaCwgZmFsc2UsIDA0MDApIFwNCj4gPiA+ID4gK3Bh
-cmFtKGJvb2wsIGVuYWJsZV9wc3IyX3NlbF9mZXRjaCwgdHJ1ZSwgMDQwMCkgXA0KPiBJZiB3ZSBk
-byBub3QgbW9kaWZ5IHRoaXMgcGFydCBhbmQgZG8gbm90IGVuYWJsZSBpdCBieSBkZWZhdWx0IGF0
-IGJvb3QgDQo+IHRpbWUgYXMgc2hvd24gaW4gdGhlIG9yaWdpbmFsIGNvZGUgYmVsb3csDQo+IHBh
-cmFtKGJvb2wsIGVuYWJsZV9wc3IyX3NlbF9mZXRjaCwgZmFsc2UsIDA0MDApIFwNCj4gDQo+IHdo
-ZW4gd2UgZXhlY3V0ZSB0aGUga21zX3BzcjJfc2YgdGVzdCBjYXNlIG9mIGlndCwgdGhlIEZJRk8g
-dW5kZXJydW4gYXMgDQo+IGJlbG93IHN0aWxsIG9jY3Vycy4NCj4gDQo+IGk5MTUgMDAwMDowMDow
-Mi4wOiBbZHJtXSAqRVJST1IqIENQVSBwaXBlIEEgRklGTyB1bmRlcnJ1bjogcG9ydCx0cmFuc2Nv
-ZGVyLA0KPiANCj4gV2hlbiBQU1IyIHBhbmVsIGlzIHVzZWQsIFBTUjEgaXMgZW5hYmxlZCBieSBk
-ZWZhdWx0IHdoZW4gDQo+IGVuYWJsZV9wc3IyX3NlbF9mZXRjaCBpcyBub3QgZW5hYmxlZCBieSBk
-ZWZhdWx0Lg0KPiBBbmQgd2hlbiBrbXNfcHNyMl9zZiBpcyBleGVjdXRlZCwgdGhlIG1vZGUgaXMg
-Y2hhbmdlZCB0byBQU1IyLCBhbmQgd2hlbiANCj4ga21zX3BzcjJfc2YgaXMgdGVybWluYXRlZCwg
-UFNSMiBpcyBkZWFjdGl2YXRlZCBhbmQgUFNSMSBpcyByZS1lbmFibGVkLiANCj4gQXQgdGhpcyBw
-b2ludC4gSSBzdXNwZWN0IHRoZXJlIGlzIGEgcHJvYmxlbS4NCg0KV2FzIGFibGUgdG8gcmVwcm9k
-dWNlIHRoaXMgZXZlbiB3aXRoIGVuYWJsZV9wc3IyX3NlbF9mZXRjaCBzZXQgdG8gdHJ1ZS4NCkFk
-ZGVkIHNvbWUgZGVidWcgbWVzc2FnZXMgdG8gaW50ZWxfcHNyX2V4aXQoKSBhbmQgaW50ZWxfcHNy
-X2FjdGl2YXRlKCkgYW5kIHRob3NlIGZ1bmN0aW9ucyBhcmUgbm90IGNhbGxlZCBhbmQgdGhlIHVu
-ZGVycnVuIHN0aWxsIGhhcHBlbnMuDQoNCkNvdWxkIGJlIGEgcmVncmVzc2lvbiByZWNlbnRseSBp
-bnRyb2R1Y2VkIGJlY2F1c2UgSSB3YXMgbm90IHNlZWluZyB0aGlzIHVuZGVycnVuIGEgZmV3IHdl
-ZWtzIGFnby4NCkFueXdheXMgdGhpcyB1bmRlcnJ1biBoYXBwZW5zIHdpdGggYW5kIHdpdGhvdXQo
-anVzdCBkb2luZyB0aGUgY2hhbmdlcyB0byBhbGxvdyBQU1IyIGluIGFsZGVybGFrZS1QIGluIGlu
-dGVsX3BzcjJfY29uZmlnX3ZhbGlkKCkpIHRoaXMgcGF0Y2hlcy4NCg0KPiANCj4gPiA+ID4gICAg
-cGFyYW0oaW50LCBkaXNhYmxlX3Bvd2VyX3dlbGwsIC0xLCAwNDAwKSBcDQo+ID4gPiA+ICAgIHBh
-cmFtKGludCwgZW5hYmxlX2lwcywgMSwgMDYwMCkgXA0KPiA+ID4gPiAgICBwYXJhbShpbnQsIGlu
-dmVydF9icmlnaHRuZXNzLCAwLCAwNjAwKSBcDQo+ID4gPiA+IA0KPiA+IA0KDQo=
+On Thu, Aug 5, 2021 at 3:47 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote=
+:
+>
+> Originally drm_sched_job_init was the point of no return, after which
+> drivers must submit a job. I've split that up, which allows us to fix
+> this issue pretty easily.
+>
+> Only thing we have to take care of is to not skip to error paths after
+> that. Other drivers do this the same for out-fence and similar things.
+>
+> Fixes: 1d8a5ca436ee ("drm/msm: Conversion to drm scheduler")
+> Cc: Rob Clark <robdclark@chromium.org>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linaro-mm-sig@lists.linaro.org
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/msm/msm_gem_submit.c | 15 +++++++--------
+>  1 file changed, 7 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/m=
+sm_gem_submit.c
+> index 6d6c44f0e1f3..d0ed4ddc509e 100644
+> --- a/drivers/gpu/drm/msm/msm_gem_submit.c
+> +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
+> @@ -52,9 +52,6 @@ static struct msm_gem_submit *submit_create(struct drm_=
+device *dev,
+>                 return ERR_PTR(ret);
+>         }
+>
+> -       /* FIXME: this is way too early */
+> -       drm_sched_job_arm(&job->base);
+> -
+>         xa_init_flags(&submit->deps, XA_FLAGS_ALLOC);
+>
+>         kref_init(&submit->ref);
+> @@ -883,6 +880,9 @@ int msm_ioctl_gem_submit(struct drm_device *dev, void=
+ *data,
+>
+>         submit->user_fence =3D dma_fence_get(&submit->base.s_fence->finis=
+hed);
+>
+> +       /* point of no return, we _have_ to submit no matter what */
+> +       drm_sched_job_arm(&submit->base);
+> +
+>         /*
+>          * Allocate an id which can be used by WAIT_FENCE ioctl to map ba=
+ck
+>          * to the underlying fence.
+> @@ -892,17 +892,16 @@ int msm_ioctl_gem_submit(struct drm_device *dev, vo=
+id *data,
+>         if (submit->fence_id < 0) {
+>                 ret =3D submit->fence_id =3D 0;
+>                 submit->fence_id =3D 0;
+> -               goto out;
+>         }
+>
+> -       if (args->flags & MSM_SUBMIT_FENCE_FD_OUT) {
+> +       if (ret =3D=3D 0 && args->flags & MSM_SUBMIT_FENCE_FD_OUT) {
+>                 struct sync_file *sync_file =3D sync_file_create(submit->=
+user_fence);
+>                 if (!sync_file) {
+>                         ret =3D -ENOMEM;
+> -                       goto out;
+> +               } else {
+> +                       fd_install(out_fence_fd, sync_file->file);
+> +                       args->fence_fd =3D out_fence_fd;
+>                 }
+> -               fd_install(out_fence_fd, sync_file->file);
+> -               args->fence_fd =3D out_fence_fd;
+
+I wonder if instead we should (approximately) undo "drm/msm/submit:
+Simplify out-fence-fd handling" so that the point that it could fail
+is moved up ahead of the drm_sched_job_arm()?
+
+Also, does the dma_fence_get() work before drm_sched_job_arm()?  From
+a quick look, it looks like it won't, but I'm still playing catchup
+and haven't had a chance to look at your entire series.  If it doesn't
+work before drm_sched_job_arm(), then there is really no way to
+prevent a error path between the fence-init and job-submit.
+
+But, prior to your series, wouldn't a failure after
+drm_sched_job_init() but before the job is submitted just burn a
+fence-id, and otherwise carry on it's merry way?
+
+BR,
+-R
+
+>         }
+>
+>         submit_attach_object_fences(submit);
+> --
+> 2.32.0
+>
