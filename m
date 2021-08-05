@@ -2,38 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BF5D3E19B0
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 18:37:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C043E19D2
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 18:48:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A21E46EB0D;
-	Thu,  5 Aug 2021 16:37:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41C666E39B;
+	Thu,  5 Aug 2021 16:48:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B45B6EB0B
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 16:36:58 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="194470767"
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="194470767"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 09:36:58 -0700
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="419886378"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 09:36:57 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Date: Thu,  5 Aug 2021 09:36:47 -0700
-Message-Id: <20210805163647.801064-10-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210805163647.801064-1-matthew.d.roper@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1046D6E39B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 16:48:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="214228683"
+X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="214228683"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2021 09:48:42 -0700
+X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="437852493"
+Received: from kdjohns3-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.55.196])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2021 09:48:42 -0700
+Date: Thu, 5 Aug 2021 09:48:36 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <20210805164836.eruf27ryzmont2zf@ldmartin-desk2>
+X-Patchwork-Hint: comment
 References: <20210805163647.801064-1-matthew.d.roper@intel.com>
+ <20210805163647.801064-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 9/9] drm/i915/dg2: Configure PCON in DP
- pre-enable path
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20210805163647.801064-2-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 1/9] drm/i915/dg2: Add support for new
+ DG2-G11 revid 0x5
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,38 +51,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On Thu, Aug 05, 2021 at 09:36:39AM -0700, Matt Roper wrote:
+>The bspec has been updated with a new revision 0x5 that translates to B1
+>GT stepping and C0 display stepping.
+>
+>Bspec: 44477
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-Add the functions to configure HDMI2.1 pcon for DG2, before DP link
-training.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 3 +++
- 1 file changed, 3 insertions(+)
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index d8162951b78f..e932fd0fe7e2 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2402,6 +2402,7 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	if (!is_mst)
- 		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
- 
-+	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
- 	intel_dp_sink_set_decompression_state(intel_dp, crtc_state, true);
- 	/*
- 	 * DDI FEC: "anticipates enabling FEC encoding sets the FEC_READY bit
-@@ -2409,6 +2410,8 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	 * training
- 	 */
- 	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
-+	intel_dp_check_frl_training(intel_dp);
-+	intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
- 
- 	/*
- 	 * 5.h Follow DisplayPort specification training sequence (see notes for
--- 
-2.25.4
+Lucas De Marchi
 
+>---
+> drivers/gpu/drm/i915/intel_step.c | 1 +
+> 1 file changed, 1 insertion(+)
+>
+>diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+>index b5fb961e1b62..6cf967631395 100644
+>--- a/drivers/gpu/drm/i915/intel_step.c
+>+++ b/drivers/gpu/drm/i915/intel_step.c
+>@@ -118,6 +118,7 @@ static const struct intel_step_info dg2_g10_revid_step_tbl[] = {
+> static const struct intel_step_info dg2_g11_revid_step_tbl[] = {
+> 	[0x0] = { .gt_step = STEP_A0, .display_step = STEP_B0 },
+> 	[0x4] = { .gt_step = STEP_B0, .display_step = STEP_C0 },
+>+	[0x5] = { .gt_step = STEP_B1, .display_step = STEP_C0 },
+> };
+>
+> void intel_step_init(struct drm_i915_private *i915)
+>-- 
+>2.25.4
+>
