@@ -1,99 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B86A23E14E0
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 14:37:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D753E14E4
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 14:38:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD3296EA25;
-	Thu,  5 Aug 2021 12:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8719E6EA28;
+	Thu,  5 Aug 2021 12:38:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2D586EA25
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 12:37:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1628167036;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=NRFpagrypVV+BGgRFYp8N3LV+BiQcza7EUvR3XzPQfA=;
- b=GPMYp3EH4VRBtWuS4ZKaq+NY3hdDuO9iCyRkkrquRUi/KjFNXHC/oJeXJ5jp4vE+2o0GiJ
- LIN6dNHPYeSbjsyNU1Gg/Exdhk/IxCxlWCLCovSk/UrlxNIkGufoWgFdevecL6WLmai+/3
- 95AZYQ1V5XczpHIepE+vPrVuJRkq2IE=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-325-1yKjgPZjPWuk3fGlVT_2MQ-1; Thu, 05 Aug 2021 08:37:13 -0400
-X-MC-Unique: 1yKjgPZjPWuk3fGlVT_2MQ-1
-Received: by mail-wm1-f71.google.com with SMTP id
- r125-20020a1c2b830000b0290197a4be97b7so1532756wmr.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Aug 2021 05:37:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=NRFpagrypVV+BGgRFYp8N3LV+BiQcza7EUvR3XzPQfA=;
- b=Fxaz0bwgcI01/e8UPT9IhifmhnKowtHl+xuQ2YDCRehv0E7J7mMsBmTLp4eNcQJgHv
- Juvfw9lkhN0vJsODs7OFD5IBzPiGCmrL0pNBO7UJPPpp8xGjz8Mu2LI1ga9EjoTePuJp
- dzpcqJM9xXhHtiLOfc3H0CL896jcvACsI68YoTgs8amAVr6eU8ShOImH2uMRUeHv9Tge
- 8HmwtY62/z9dWzCw54nipiAr9QaqPz+LATEcR3ngtAKkho5rF+YFuAlCuY24+rxvj9dr
- 8XVR7t+pIK2efiLW/kJ9xS82O55QRsYplpsmVV4PSecaQ/fHg3aFCYGFIJP+Dmf/51WT
- OCXw==
-X-Gm-Message-State: AOAM531E7cwUqMf9L5xcW9tdhjhxi/lR2err6Vx9pJHmLO+e39OtxJcV
- r9qOtIbOA7sYa/qEDLHkszQDcd2fu6D4QarHAY9zLmD0i0fwPLIzmTGehUtvSq2GCyQiDFgCwKH
- vQs4qw3HzGd5ASsOZngf6K1MuYfPF
-X-Received: by 2002:a5d:4f0c:: with SMTP id c12mr5169953wru.63.1628167032717; 
- Thu, 05 Aug 2021 05:37:12 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzLHu+SrQzVLrFOrCnDgagxvjKpgeH23p69mYneoScqalozuO0wL4WFwc163DLzD2q1Rkkonw==
-X-Received: by 2002:a5d:4f0c:: with SMTP id c12mr5169935wru.63.1628167032543; 
- Thu, 05 Aug 2021 05:37:12 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:59e:9d80:527b:9dff:feef:3874?
- ([2a01:e0a:59e:9d80:527b:9dff:feef:3874])
- by smtp.gmail.com with ESMTPSA id b6sm7164149wrn.9.2021.08.05.05.37.10
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 05 Aug 2021 05:37:11 -0700 (PDT)
-To: Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@linux.ie>,
- Tony Krowiak <akrowiak@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>, Jonathan Corbet <corbet@lwn.net>,
- Daniel Vetter <daniel@ffwll.ch>, Diana Craciun <diana.craciun@oss.nxp.com>,
- dri-devel@lists.freedesktop.org, Eric Farman <farman@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Jason Herne <jjherne@linux.ibm.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org,
- Kirti Wankhede <kwankhede@nvidia.com>, linux-doc@vger.kernel.org,
- linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>,
- Peter Oberparleiter <oberpar@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>, Zhi Wang <zhi.a.wang@intel.com>
-Cc: "Raj, Ashok" <ashok.raj@intel.com>, Christoph Hellwig <hch@lst.de>,
- Leon Romanovsky <leonro@nvidia.com>, Max Gurtovoy <mgurtovoy@nvidia.com>,
- Yishai Hadas <yishaih@nvidia.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
-References: <7-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
-From: Eric Auger <eric.auger@redhat.com>
-Message-ID: <17c13ccc-8a4a-d784-4237-0014ade1f4fc@redhat.com>
-Date: Thu, 5 Aug 2021 14:37:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1B1836E845;
+ Thu,  5 Aug 2021 12:38:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1364BA73C9;
+ Thu,  5 Aug 2021 12:38:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <7-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=eric.auger@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 07/14] vfio/platform: Use open_device()
- instead of open coding a refcnt scheme
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 05 Aug 2021 12:38:52 -0000
+Message-ID: <162816713207.30835.3392558408766394553@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210805103916.860853-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210805103916.860853-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_remove_rcu_support_from_i915=5Faddress=5Fspace_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,163 +41,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: eric.auger@redhat.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jason,
+== Series Details ==
 
-On 7/29/21 2:49 AM, Jason Gunthorpe wrote:
-> Platform simply wants to run some code when the device is first
-> opened/last closed. Use the core framework and locking for this.  Aside
-> from removing a bit of code this narrows the locking scope from a global
-> lock.
->
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> Signed-off-by: Yishai Hadas <yishaih@nvidia.com>
-> Reviewed-by: Cornelia Huck <cohuck@redhat.com>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+Series: remove rcu support from i915_address_space (rev4)
+URL   : https://patchwork.freedesktop.org/series/93314/
+State : warning
 
-Thanks
+== Summary ==
 
-Eric
+$ dim checkpatch origin/drm-tip
+0e6cb5de1e74 drm/i915: Drop code to handle set-vm races from execbuf
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+References: ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")
 
-> ---
->  drivers/vfio/platform/vfio_platform_common.c  | 79 ++++++++-----------
->  drivers/vfio/platform/vfio_platform_private.h |  1 -
->  2 files changed, 32 insertions(+), 48 deletions(-)
->
-> diff --git a/drivers/vfio/platform/vfio_platform_common.c b/drivers/vfio/platform/vfio_platform_common.c
-> index bdde8605178cd2..6af7ce7d619c25 100644
-> --- a/drivers/vfio/platform/vfio_platform_common.c
-> +++ b/drivers/vfio/platform/vfio_platform_common.c
-> @@ -218,65 +218,52 @@ static int vfio_platform_call_reset(struct vfio_platform_device *vdev,
->  	return -EINVAL;
->  }
->  
-> -static void vfio_platform_release(struct vfio_device *core_vdev)
-> +static void vfio_platform_close_device(struct vfio_device *core_vdev)
->  {
->  	struct vfio_platform_device *vdev =
->  		container_of(core_vdev, struct vfio_platform_device, vdev);
-> +	const char *extra_dbg = NULL;
-> +	int ret;
->  
-> -	mutex_lock(&driver_lock);
-> -
-> -	if (!(--vdev->refcnt)) {
-> -		const char *extra_dbg = NULL;
-> -		int ret;
-> -
-> -		ret = vfio_platform_call_reset(vdev, &extra_dbg);
-> -		if (ret && vdev->reset_required) {
-> -			dev_warn(vdev->device, "reset driver is required and reset call failed in release (%d) %s\n",
-> -				 ret, extra_dbg ? extra_dbg : "");
-> -			WARN_ON(1);
-> -		}
-> -		pm_runtime_put(vdev->device);
-> -		vfio_platform_regions_cleanup(vdev);
-> -		vfio_platform_irq_cleanup(vdev);
-> +	ret = vfio_platform_call_reset(vdev, &extra_dbg);
-> +	if (WARN_ON(ret && vdev->reset_required)) {
-> +		dev_warn(
-> +			vdev->device,
-> +			"reset driver is required and reset call failed in release (%d) %s\n",
-> +			ret, extra_dbg ? extra_dbg : "");
->  	}
-> -
-> -	mutex_unlock(&driver_lock);
-> +	pm_runtime_put(vdev->device);
-> +	vfio_platform_regions_cleanup(vdev);
-> +	vfio_platform_irq_cleanup(vdev);
->  }
->  
-> -static int vfio_platform_open(struct vfio_device *core_vdev)
-> +static int vfio_platform_open_device(struct vfio_device *core_vdev)
->  {
->  	struct vfio_platform_device *vdev =
->  		container_of(core_vdev, struct vfio_platform_device, vdev);
-> +	const char *extra_dbg = NULL;
->  	int ret;
->  
-> -	mutex_lock(&driver_lock);
-> -
-> -	if (!vdev->refcnt) {
-> -		const char *extra_dbg = NULL;
-> -
-> -		ret = vfio_platform_regions_init(vdev);
-> -		if (ret)
-> -			goto err_reg;
-> +	ret = vfio_platform_regions_init(vdev);
-> +	if (ret)
-> +		return ret;
->  
-> -		ret = vfio_platform_irq_init(vdev);
-> -		if (ret)
-> -			goto err_irq;
-> +	ret = vfio_platform_irq_init(vdev);
-> +	if (ret)
-> +		goto err_irq;
->  
-> -		ret = pm_runtime_get_sync(vdev->device);
-> -		if (ret < 0)
-> -			goto err_rst;
-> +	ret = pm_runtime_get_sync(vdev->device);
-> +	if (ret < 0)
-> +		goto err_rst;
->  
-> -		ret = vfio_platform_call_reset(vdev, &extra_dbg);
-> -		if (ret && vdev->reset_required) {
-> -			dev_warn(vdev->device, "reset driver is required and reset call failed in open (%d) %s\n",
-> -				 ret, extra_dbg ? extra_dbg : "");
-> -			goto err_rst;
-> -		}
-> +	ret = vfio_platform_call_reset(vdev, &extra_dbg);
-> +	if (ret && vdev->reset_required) {
-> +		dev_warn(
-> +			vdev->device,
-> +			"reset driver is required and reset call failed in open (%d) %s\n",
-> +			ret, extra_dbg ? extra_dbg : "");
-> +		goto err_rst;
->  	}
-> -
-> -	vdev->refcnt++;
-> -
-> -	mutex_unlock(&driver_lock);
->  	return 0;
->  
->  err_rst:
-> @@ -284,8 +271,6 @@ static int vfio_platform_open(struct vfio_device *core_vdev)
->  	vfio_platform_irq_cleanup(vdev);
->  err_irq:
->  	vfio_platform_regions_cleanup(vdev);
-> -err_reg:
-> -	mutex_unlock(&driver_lock);
->  	return ret;
->  }
->  
-> @@ -616,8 +601,8 @@ static int vfio_platform_mmap(struct vfio_device *core_vdev, struct vm_area_stru
->  
->  static const struct vfio_device_ops vfio_platform_ops = {
->  	.name		= "vfio-platform",
-> -	.open		= vfio_platform_open,
-> -	.release	= vfio_platform_release,
-> +	.open_device	= vfio_platform_open_device,
-> +	.close_device	= vfio_platform_close_device,
->  	.ioctl		= vfio_platform_ioctl,
->  	.read		= vfio_platform_read,
->  	.write		= vfio_platform_write,
-> diff --git a/drivers/vfio/platform/vfio_platform_private.h b/drivers/vfio/platform/vfio_platform_private.h
-> index dfb834c1365946..520d2a8e8375b2 100644
-> --- a/drivers/vfio/platform/vfio_platform_private.h
-> +++ b/drivers/vfio/platform/vfio_platform_private.h
-> @@ -48,7 +48,6 @@ struct vfio_platform_device {
->  	u32				num_regions;
->  	struct vfio_platform_irq	*irqs;
->  	u32				num_irqs;
-> -	int				refcnt;
->  	struct mutex			igate;
->  	const char			*compat;
->  	const char			*acpihid;
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#17: 
+References: ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")
+
+-:46: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 2 warnings, 0 checks, 12 lines checked
+1bd404a5dddc drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
+-:148: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 80 lines checked
+37d02c39555f drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam
+-:54: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
+22042c81dd12 drm/i915: Add i915_gem_context_is_full_ppgtt
+-:105: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+47f45eed8f19 drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#12: 
+commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:61: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 18 lines checked
+c1770ae51252 drm/i915: Drop __rcu from gem_context->vm
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#11: 
+    commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:23: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#23: 
+  i915_vm_open ofc. This also removes the final caller of context_get_vm_rcu
+
+-:42: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a4e7ccdac38e ("drm/i915: Move context management under GEM")'
+#42: 
+commit a4e7ccdac38ec8335d9e4e2656c1a041c77feae1
+
+-:345: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 2 errors, 2 warnings, 0 checks, 232 lines checked
+fea76eb28a60 drm/i915: use xa_lock/unlock for fpriv->vm_xa lookups
+-:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit aabbe344dc3c ("drm/i915: Use RCU for unlocked vm_idr lookup")'
+#15: 
+commit aabbe344dc3ca5f7d8263a02608ba6179e8a4499
+
+-:52: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 13 lines checked
+be11100f27ee drm/i915: Stop rcu support for i915_address_space
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#11: 
+- i915_dpt has very simple lifetime (somehow we create a display pagetable vm
+
+-:27: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf977e18610e ("drm/i915/gem: Spring clean debugfs")'
+#27: 
+	commit cf977e18610e66e48c31619e7e0cfa871be9eada
+
+-:35: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit db80a1294c23 ("drm/i915/gem: Remove per-client stats from debugfs/i915_gem_objects")'
+#35: 
+	commit db80a1294c231b6ac725085f046bb2931e00c9db
+
+-:47: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")'
+#47: 
+	commit ccbc1b97948ab671335e950271e39766729736c3
+
+-:59: WARNING:TYPO_SPELLING: 'Preceeding' may be misspelled - perhaps 'Preceding'?
+#59: 
+  Preceeding patches removed all vestiges of rcu use from gem_ctx->vm
+  ^^^^^^^^^^
+
+-:64: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a4e7ccdac38e ("drm/i915: Move context management under GEM")'
+#64: 
+	commit a4e7ccdac38ec8335d9e4e2656c1a041c77feae1
+
+-:88: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit c744d50363b7 ("drm/i915/gt: Split the breadcrumb spinlock between global and contexts")'
+#88: 
+	commit c744d50363b714783bbc88d986cc16def13710f7
+
+-:94: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit added5fce61e ("ARM: mxs_defconfig: add CONFIG_USB_PHY")'
+#94: 
+  its parent commit added the intel_context rcu protection:
+
+-:96: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 14d1eaf08845 ("drm/i915/gt: Protect context lifetime with RCU")'
+#96: 
+	commit 14d1eaf08845c534963c83f754afe0cb14cb2512
+
+-:114: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4d8151ae5329 ("drm/i915: Don't free shared locks while shared")'
+#114: 
+	commit 4d8151ae5329cf50781a02fd2298a909589a5bab
+
+-:130: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit e6ba76480299 ("drm/i915: Remove i915->kernel_context")'
+#130: 
+	commit e6ba76480299a0d77c51d846f7467b1673aad25b
+
+-:143: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4ff4b44cbb70 ("drm/i915: Store a direct lookup from object handle to vma")'
+#143: 
+	commit 4ff4b44cbb70c269259958cbcc48d7b8a2cb9ec8
+
+-:152: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit d1b48c1e7184 ("drm/i915: Replace execbuf vma ht with an idr")'
+#152: 
+	commit d1b48c1e7184d9bc4ae6d7f9fe2eed9efed11ffc
+
+-:160: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 93159e12353c ("drm/i915/gem: Avoid gem_context->mutex for simple vma lookup")'
+#160: 
+	commit 93159e12353c2a47e5576d642845a91fa00530bf
+
+-:183: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b32fa8111563 ("drm/i915/gtt: Defer address space cleanup to an RCU worker")'
+#183: 
+commit b32fa811156328aea5a3c2ff05cc096490382456
+
+-:201: WARNING:TYPO_SPELLING: 'wont' may be misspelled - perhaps 'won't'?
+#201: 
+that's a preexisting condition in the codeebase that we wont fix in
+                                                        ^^^^
+
+-:206: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 60a4233a4952 ("drm/i915: Flush the i915_vm_release before ggtt shutdown")'
+#206: 
+commit 60a4233a4952729089e4df152e730f8f4d0e82ce
+
+-:279: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 14 errors, 4 warnings, 0 checks, 39 lines checked
+
 
