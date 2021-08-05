@@ -1,66 +1,140 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7C63E1339
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 12:48:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2221B3E1415
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 13:47:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 265606E9DC;
-	Thu,  5 Aug 2021 10:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4417F6E9E9;
+	Thu,  5 Aug 2021 11:47:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
- [IPv6:2a00:1450:4864:20::52d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A58BD6E9C5
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 10:47:30 +0000 (UTC)
-Received: by mail-ed1-x52d.google.com with SMTP id f13so7648453edq.13
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Aug 2021 03:47:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=VU9aiETgZzkhGgUZ5eON+1PGjpiuk7oLhg6zv0DOlzE=;
- b=DPxSQq2nKk+I0Z+Tgzg40t79KP21nIS/IQiEd8pFdFr+6a0MLUmfeCEDxhWHR3G1Hr
- 9dR+xWuc8qqaiu6xCgCjY6xcAHOLIj1mfSvGGip5pkOX9DzJONeg8tuSZY47hMen+rZX
- kJDkkGHL10elufGr6IB6BF7o+tuP7Z/I5gCb4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=VU9aiETgZzkhGgUZ5eON+1PGjpiuk7oLhg6zv0DOlzE=;
- b=cRf9Z2dGMhDjdiY1P380IonlgkbaaBVvvcbfbXwiRg+c+VhZssPDTA4sZ/++aL1lwO
- 73KvguuwwirmgBed26ccPVbewNk0tF2ly3Rvj4aieSrvL06ZH2Xo212srXpXJ9Hv4tiJ
- eSHuPYBvo9FtUPC1DR5VKhItrnCyTCu88uPPkYVkDm06n2uA75wA04tbZNZj4t4BzO64
- X38P+MfOkqoitPYgJ1bo7YG7b37iDXKAwNRFoHkUo4wazTRmTTsJqYpT3p6eW87xrhc7
- C5i2Oo3xtiVqYnCdMMJ8T3wlifXS5+yxwPdWK60OnLUNxZofGOAbYBep546f8zrVP3fb
- dnfg==
-X-Gm-Message-State: AOAM533YNBCyj4wv9iPhd0oJ1jJo4NafmnfoXLLwOwFo407EIS/5QSP0
- sPRs9OM1peA83vLEpUta0mOKDQ==
-X-Google-Smtp-Source: ABdhPJwBnwluddmn4XJa7ubMIMuTfRHFdth+GyDVogsQp7Gmps5y7H6LUUdcPhwkta5IgW5uWihJAg==
-X-Received: by 2002:aa7:c956:: with SMTP id h22mr5605901edt.378.1628160449063; 
- Thu, 05 Aug 2021 03:47:29 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p5sm1578809ejl.73.2021.08.05.03.47.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Aug 2021 03:47:28 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jason Ekstrand <jason@jlekstrand.net>,
- Matthew Auld <matthew.auld@intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org
-Date: Thu,  5 Aug 2021 12:47:05 +0200
-Message-Id: <20210805104705.862416-21-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
-References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2082.outbound.protection.outlook.com [40.107.220.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7724B6E9E5;
+ Thu,  5 Aug 2021 11:47:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DJXfCZUzaK3XQeOg91MIXUSuz10Dems7uRrUP3MNAdXaArhAGfiv1aWVVNGvE5RGTbrW9i/Tc3sys+3ZH9q5ZtQ9PnqiDoCMltn8pCrPNXAl9sg0uhX0mj4miOkO4RaIAJlg95Yd0IDXki0+Z8vgEOSgatRmbhw1rk3O4psnCbkvEZRDym6fzrlwl5JrEfOZ/6GbjYJL4dvzdZ11/0u9irf+1B3xCiWE3r5282Phg/kDsnRba8uMBkJFWkxj2TwNPCNzu8fWKHmvOLcoxGevrn4IUiUU4s0ib8o6icdQI5Y2YDMIypfJLNGL8Wi8OPuFFK7zr3fc0+RsqvOmv9k27g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eZUNqPZLRV11X0bz3MgrQpE1I7VjISWzljAOTtg7+xY=;
+ b=iOfad2sD0b/pA/Bv5Y3jlxeAHz131FEQv53HN1rQEdearZsQHe9jeUCxSxC0VBqUCP2zbwgVEJGOcLGM15OqRZ0e1RjSLBpELckORZrLSlDyqi2AjxKDiie59K221Z1UPQtwXtWXrXt2d/1wI28XtvL36kMu04Yp4uSNfpPKhBYiK7pTDeOpEDAz+cboDDO0qhNjI2aqa/ka/vb7ZkT6GR9LqnqSDweMh2pvyY+NNuVeCpl4WUQDMtL5DYB4VPGT74KWtQrVqXNoG9dtlff7YPKBrenT1zLKsaotUzMU05TBiA8Ei2XOv5pXz5FUdVPYKZLDFdNG56H327H3bsNvsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eZUNqPZLRV11X0bz3MgrQpE1I7VjISWzljAOTtg7+xY=;
+ b=pN+h4V8UQvyDYtVbDSlfNFsoFbjLQg46WaBmwPJjqJsYh0x1EzzyEqx983VTnVHABqBJMUsTWr/tAUq64Nt8ooyfkp9v2nC66lopdN3Ll/wVmQWmqQxz4/+OCwFUhrY8Et3Lu5e4GAWOvlle0MhvAPp36duFPJVZ8oj0Mwj12PSdbpJbahKWMzNuFX6sKJPZIBy6m+lrEqixnYYoX3P9iJmYGMqYQn8HA1tbNkIbKlAbjGEYjZ7xuxPF5x3HTIhWz3SAAEdua3qW/wuSNEM3KtJCgaFEOvfXojY5w23nS3AmaoHzBzrabi2KUNUKUZz8MPXqtmrn6wH1eCvWQvENkQ==
+Authentication-Results: redhat.com; dkim=none (message not signed)
+ header.d=none;redhat.com; dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
+ by BL1PR12MB5141.namprd12.prod.outlook.com (2603:10b6:208:309::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Thu, 5 Aug
+ 2021 11:47:02 +0000
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::1de1:52a9:cf66:f336]) by BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::1de1:52a9:cf66:f336%7]) with mapi id 15.20.4394.018; Thu, 5 Aug 2021
+ 11:47:02 +0000
+Date: Thu, 5 Aug 2021 08:47:01 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Cornelia Huck <cohuck@redhat.com>, Jonathan Corbet <corbet@lwn.net>,
+ Daniel Vetter <daniel@ffwll.ch>, Diana Craciun <diana.craciun@oss.nxp.com>,
+ dri-devel@lists.freedesktop.org, Eric Auger <eric.auger@redhat.com>,
+ Eric Farman <farman@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Jason Herne <jjherne@linux.ibm.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ kvm@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ linux-doc@vger.kernel.org, linux-s390@vger.kernel.org,
+ Matthew Rosato <mjrosato@linux.ibm.com>,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Halil Pasic <pasic@linux.ibm.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Zhi Wang <zhi.a.wang@intel.com>, "Raj, Ashok" <ashok.raj@intel.com>,
+ Christoph Hellwig <hch@lst.de>, Leon Romanovsky <leonro@nvidia.com>,
+ Max Gurtovoy <mgurtovoy@nvidia.com>, Yishai Hadas <yishaih@nvidia.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>
+Message-ID: <20210805114701.GC1672295@nvidia.com>
+References: <0-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
+ <9-v3-6c9e19cc7d44+15613-vfio_reflck_jgg@nvidia.com>
+ <20210803103406.5e1be269.alex.williamson@redhat.com>
+ <20210803164152.GC1721383@nvidia.com>
+ <20210803105225.2ee7dac2.alex.williamson@redhat.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210803105225.2ee7dac2.alex.williamson@redhat.com>
+X-ClientProxiedBy: CH0PR03CA0290.namprd03.prod.outlook.com
+ (2603:10b6:610:e6::25) To BL0PR12MB5506.namprd12.prod.outlook.com
+ (2603:10b6:208:1cb::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 20/20] dma-resv: Give the docs a do-over
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mlx.ziepe.ca (206.223.160.26) by
+ CH0PR03CA0290.namprd03.prod.outlook.com (2603:10b6:610:e6::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4394.15 via Frontend Transport; Thu, 5 Aug 2021 11:47:02 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1mBbq1-00DFYB-2f; Thu, 05 Aug 2021 08:47:01 -0300
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c7b4c886-ecac-44d7-a632-08d95806bd87
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5141:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BL1PR12MB51414849F60F3F95C01FF497C2F29@BL1PR12MB5141.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: apF8TpEiGAYaNig6vVvEAOvUPtl4ou8aOb9YMW9YfyjRD0wwKHOrIc2g7tuyypChuD2z8JEMKNRoKxL+lT1+UsHT2Jaqys/Hz09b8sI4K9rj1N4tWAr3agcfr+fncjP9Vx+WXla/wPCfBeHb7hr1gmUF49ZeySwFATzFhWLKV6ICxG4LMClfrBQIcn1N/m08yd1NCa6sgKaOPqoiAe5gNi7bEQrJkodTN6qIyWzh2SQMJzpAqg3T0WVnW/J7wuusMSoBL0Dxa3DTg7J3RatKIISrx61XJSlO1WKCSUJJQ4RwDJ36V8rC2cDhGCA4Q1t6CcRiGq7/9X5DKYiyoRV5AJ/wH2Cfk4WcA09G8XnZg4q0ITmDcowUB8sAc3deiFZZ3AUNPCdtmrXV2X/EVEQbS1EIrz/GMO80dTTTUIETJOq2epuKLXbsuNkJG+ye2b1fSba7xliGnphFROeIamuvcMQqQahi24eJMBux52hOb2EYLZX0Rsufkxr7Qa16sdyR1NHL5DIsSe4NUgld7bHWTBgzD2e0WKIPKRKslh2ORb+SanjsAHTgRwxQuq3BckvJP3Uyr9UIQ8BK0L1CFxK8z8bUnTcfy/zm2PX53LLTg6qL6X+8kDXs68fVUjhXBU8+X6RvIn/AOUE31H9M6OeB3Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(2906002)(38100700002)(1076003)(316002)(426003)(7416002)(7406005)(36756003)(83380400001)(54906003)(6916009)(8936002)(508600001)(5660300002)(8676002)(2616005)(33656002)(9786002)(66476007)(4326008)(66556008)(9746002)(26005)(86362001)(186003)(66946007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2o3G1pmJE+Y3wikC1sjqqRROIecgAfMPpmQhFaylFYw2rIoRIca23ZntBIHU?=
+ =?us-ascii?Q?ho56Aiq37IOdE3TNwqrexSmxJzu8rxWz0Lul89S0m0w+8Z5EVdajGo5sAXxC?=
+ =?us-ascii?Q?E2LQZ4a3nXG+BMJEh7KGblHSKn4d5lQTSyVvF22+muW94FD1MOuMV8I85CAH?=
+ =?us-ascii?Q?4adLvgPdDvAEBvSnvVEev/4zuEI1nxmxgv6kZ3y3go03yjs431w0yEk1YDdY?=
+ =?us-ascii?Q?K5zd2KIMCD/inBiucWLA4HzHAqJ+OlIOdVQRoVy1l5fE3VDKYgAfxlgYbSqP?=
+ =?us-ascii?Q?8hida6sbucH//SRRVtg9Z7qomHVc0gLyvRe7Ez19oSY9pWx297hhaM+3wQch?=
+ =?us-ascii?Q?Vnd5h1fduQHifR+w+jHTQWUW05uO/nVOkue89kMkuI6N9C3TC8UtH0joXZGO?=
+ =?us-ascii?Q?uCp81tTEtUVAiktkWHgQFJ0jKRT4Fdw5zYsU5ZZwYL4vLsucifuwhh2TT55q?=
+ =?us-ascii?Q?teFDDP6pUL9wIdBetITfmAzFIZa7kktmJjdk0JYn5tF4EtZW8Haf0ao3dq+w?=
+ =?us-ascii?Q?6EAA81VhdVP+RGpEFphogxj9tPCKgIN0mT2+cMVlXsslL3HwgwBLdIKm5Nr1?=
+ =?us-ascii?Q?B978jTIEURVGsnmoLaInxR6alYY7WcS5m0tmEhMqnY/06qfoNNAYFDu4yxT0?=
+ =?us-ascii?Q?v5qFeNRT5eNzY8RDZ8Qk51fL3R1bhY0jlQ1hbEmw3a4zi9eT9zFsiI5ksHWX?=
+ =?us-ascii?Q?bp8OeWPPK5Vx0Am8Zs/gIPOpKpqRg6re9ocQ6gSxmPJ6RAidh+Ofs6E3wykY?=
+ =?us-ascii?Q?VcQQ6B/y73L/+sVVxex7kTmupOcUMYjP+nLOQi+Sqsbt21DwvaRz1iazxYmi?=
+ =?us-ascii?Q?JV6RRVeq04UZFu0GIUF9GC9QNxOQ6h2PG3CkIw/NKctxZMePiEpVTN9xfry7?=
+ =?us-ascii?Q?ozxI2BZdYSuDF3LnLsiEY7SXbdIS3XbABWlFYM+n7NDYIiR906HD5RQGUjdR?=
+ =?us-ascii?Q?Ae9wgoB7N9DzXFfPYqCB02BRlJ7pwxD/8kAzXVx6gbTEVncebs6H16k/vJLK?=
+ =?us-ascii?Q?POd3XjkWHB7J56Eed1IkOSZCgHkNFDlQ1Srpx65Flge6V1DBXpP7WbRrzjQd?=
+ =?us-ascii?Q?V2oOPLWDFHgEOnS+XWmiuwmj4bwYM6LtBPMNVM/zPAhYq4D4TM33sqG1QHTG?=
+ =?us-ascii?Q?U5NCxqt6yuVi5Gv2YSwUhExFSG1ToBN3Pk8x1x3nI4Zk+Q66cmWr9mowAHs6?=
+ =?us-ascii?Q?ulLa2IgCobtqqchhOln5oCROOoc9wnhkff5W6FOPdmsF82FMXLxWX6iDPVE8?=
+ =?us-ascii?Q?yvZMJaD6bcG3lHmYLbU85+G4YK4PM5ZoXlZoGDzwm7r3mEJdxU4BqxgSJEC+?=
+ =?us-ascii?Q?XUbM8ovQv3t3z5JKnUua+H4v?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7b4c886-ecac-44d7-a632-08d95806bd87
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 11:47:02.6310 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hrljNrt+xHpvJD3qcLGfiLeBWpw+MI5O/P+mjXsc+Y6nOIMUjhDHwQXmLmgWxMGX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5141
+Subject: Re: [Intel-gfx] [PATCH v3 09/14] vfio/pci: Change
+ vfio_pci_try_bus_reset() to use the dev_set
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,293 +150,247 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Specifically document the new/clarified rules around how the shared
-fences do not have any ordering requirements against the exclusive
-fence.
+On Tue, Aug 03, 2021 at 10:52:25AM -0600, Alex Williamson wrote:
+> On Tue, 3 Aug 2021 13:41:52 -0300
+> Jason Gunthorpe <jgg@nvidia.com> wrote:
+> > On Tue, Aug 03, 2021 at 10:34:06AM -0600, Alex Williamson wrote:
+> > > I think the vfio_pci_find_reset_target() function needs to be re-worked
+> > > to just tell us true/false that it's ok to reset the provided device,
+> > > not to anoint an arbitrary target device.  Thanks,  
+> > 
+> > Yes, though this logic is confusing, why do we need to check if any
+> > device needs a reset at this point? If we are being asked to reset
+> > vdev shouldn't vdev needs_reset?
+> > 
+> > Or is the function more of a 'synchronize pending reset' kind of
+> > thing?
+> 
+> Yes, the latter.  For instance think about a multi-function PCI device
+> such as a GPU.  The functions have dramatically different capabilities,
+> some might have function level reset abilities and others not.  We want
+> to be able to trigger a bus reset as the last device of the set is
+> released, no matter the order they're released and no matter the
+> capabilities of the device we're currently processing.  Thanks,
 
-But also document all the things a bit better, given how central
-struct dma_resv to dynamic buffer management the docs have been very
-inadequat.
+I worked on this for awhile, I think this is much clearer about what
+this algorithm is trying to do:
 
-- Lots more links to other pieces of the puzzle. Unfortunately
-  ttm_buffer_object has no docs, so no links :-(
-
-- Explain/complain a bit about dma_resv_locking_ctx(). I still don't
-  like that one, but fixing the ttm call chains is going to be
-  horrible. Plus we want to plug in real slowpath locking when we do
-  that anyway.
-
-- Main part of the patch is some actual docs for struct dma_resv.
-
-Overall I think we still have a lot of bad naming in this area (e.g.
-dma_resv.fence is singular, but contains the multiple shared fences),
-but I think that's more indicative of how the semantics and rules are
-just not great.
-
-Another thing that's real awkard is how chaining exclusive fences
-right now means direct dma_resv.exclusive_fence pointer access with an
-rcu_assign_pointer. Not so great either.
-
-v2:
-- Fix a pile of typos (Matt, Jason)
-- Hammer it in that breaking the rules leads to use-after-free issues
-  around dma-buf sharing (Christian)
-
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: linux-media@vger.kernel.org
-Cc: linaro-mm-sig@lists.linaro.org
----
- drivers/dma-buf/dma-resv.c |  24 ++++++---
- include/linux/dma-buf.h    |   7 +++
- include/linux/dma-resv.h   | 104 +++++++++++++++++++++++++++++++++++--
- 3 files changed, 124 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
-index e744fd87c63c..84fbe60629e3 100644
---- a/drivers/dma-buf/dma-resv.c
-+++ b/drivers/dma-buf/dma-resv.c
-@@ -48,6 +48,8 @@
-  * write operations) or N shared fences (read operations).  The RCU
-  * mechanism is used to protect read access to fences from locked
-  * write-side updates.
-+ *
-+ * See struct dma_resv for more details.
-  */
+diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
+index 5d6db93d6c680f..e418bcbb68facc 100644
+--- a/drivers/vfio/pci/vfio_pci.c
++++ b/drivers/vfio/pci/vfio_pci.c
+@@ -223,7 +223,7 @@ static void vfio_pci_probe_mmaps(struct vfio_pci_device *vdev)
+ 	}
+ }
  
- DEFINE_WD_CLASS(reservation_ww_class);
-@@ -137,7 +139,11 @@ EXPORT_SYMBOL(dma_resv_fini);
-  * @num_fences: number of fences we want to add
-  *
-  * Should be called before dma_resv_add_shared_fence().  Must
-- * be called with obj->lock held.
-+ * be called with @obj locked through dma_resv_lock().
-+ *
-+ * Note that the preallocated slots need to be re-reserved if @obj is unlocked
-+ * at any time before calling dma_resv_add_shared_fence(). This is validated
-+ * when CONFIG_DEBUG_MUTEXES is enabled.
-  *
-  * RETURNS
-  * Zero for success, or -errno
-@@ -234,8 +240,10 @@ EXPORT_SYMBOL(dma_resv_reset_shared_max);
-  * @obj: the reservation object
-  * @fence: the shared fence to add
-  *
-- * Add a fence to a shared slot, obj->lock must be held, and
-+ * Add a fence to a shared slot, @obj must be locked with dma_resv_lock(), and
-  * dma_resv_reserve_shared() has been called.
-+ *
-+ * See also &dma_resv.fence for a discussion of the semantics.
-  */
- void dma_resv_add_shared_fence(struct dma_resv *obj, struct dma_fence *fence)
- {
-@@ -278,9 +286,11 @@ EXPORT_SYMBOL(dma_resv_add_shared_fence);
- /**
-  * dma_resv_add_excl_fence - Add an exclusive fence.
-  * @obj: the reservation object
-- * @fence: the shared fence to add
-+ * @fence: the exclusive fence to add
-  *
-- * Add a fence to the exclusive slot.  The obj->lock must be held.
-+ * Add a fence to the exclusive slot. @obj must be locked with dma_resv_lock().
-+ * Note that this function replaces all fences attached to @obj, see also
-+ * &dma_resv.fence_excl for a discussion of the semantics.
-  */
- void dma_resv_add_excl_fence(struct dma_resv *obj, struct dma_fence *fence)
- {
-@@ -609,9 +619,11 @@ static inline int dma_resv_test_signaled_single(struct dma_fence *passed_fence)
-  * fence
-  *
-  * Callers are not required to hold specific locks, but maybe hold
-- * dma_resv_lock() already
-+ * dma_resv_lock() already.
-+ *
-  * RETURNS
-- * true if all fences signaled, else false
-+ *
-+ * True if all fences signaled, else false.
-  */
- bool dma_resv_test_signaled(struct dma_resv *obj, bool test_all)
- {
-diff --git a/include/linux/dma-buf.h b/include/linux/dma-buf.h
-index 678b2006be78..fc62b5f9980c 100644
---- a/include/linux/dma-buf.h
-+++ b/include/linux/dma-buf.h
-@@ -420,6 +420,13 @@ struct dma_buf {
- 	 * - Dynamic importers should set fences for any access that they can't
- 	 *   disable immediately from their &dma_buf_attach_ops.move_notify
- 	 *   callback.
-+	 *
-+	 * IMPORTANT:
-+	 *
-+	 * All drivers must obey the struct dma_resv rules, specifically the
-+	 * rules for updating fences, see &dma_resv.fence_excl and
-+	 * &dma_resv.fence. If these dependency rules are broken access tracking
-+	 * can be lost resulting in use after free issues.
- 	 */
- 	struct dma_resv *resv;
+-static void vfio_pci_try_bus_reset(struct vfio_pci_device *vdev);
++static bool vfio_pci_dev_set_try_reset(struct vfio_device_set *dev_set);
+ static void vfio_pci_disable(struct vfio_pci_device *vdev);
+ static int vfio_pci_try_zap_and_vma_lock_cb(struct pci_dev *pdev, void *data);
  
-diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
-index e1ca2080a1ff..9100dd3dc21f 100644
---- a/include/linux/dma-resv.h
-+++ b/include/linux/dma-resv.h
-@@ -62,16 +62,90 @@ struct dma_resv_list {
+@@ -404,6 +404,9 @@ static void vfio_pci_disable(struct vfio_pci_device *vdev)
+ 	struct vfio_pci_ioeventfd *ioeventfd, *ioeventfd_tmp;
+ 	int i, bar;
  
- /**
-  * struct dma_resv - a reservation object manages fences for a buffer
-- * @lock: update side lock
-- * @seq: sequence count for managing RCU read-side synchronization
-- * @fence_excl: the exclusive fence, if there is one currently
-- * @fence: list of current shared fences
-+ *
-+ * There are multiple uses for this, with sometimes slightly different rules in
-+ * how the fence slots are used.
-+ *
-+ * One use is to synchronize cross-driver access to a struct dma_buf, either for
-+ * dynamic buffer management or just to handle implicit synchronization between
-+ * different users of the buffer in userspace. See &dma_buf.resv for a more
-+ * in-depth discussion.
-+ *
-+ * The other major use is to manage access and locking within a driver in a
-+ * buffer based memory manager. struct ttm_buffer_object is the canonical
-+ * example here, since this is where reservation objects originated from. But
-+ * use in drivers is spreading and some drivers also manage struct
-+ * drm_gem_object with the same scheme.
-  */
- struct dma_resv {
-+	/**
-+	 * @lock:
-+	 *
-+	 * Update side lock. Don't use directly, instead use the wrapper
-+	 * functions like dma_resv_lock() and dma_resv_unlock().
-+	 *
-+	 * Drivers which use the reservation object to manage memory dynamically
-+	 * also use this lock to protect buffer object state like placement,
-+	 * allocation policies or throughout command submission.
-+	 */
- 	struct ww_mutex lock;
++	/* For needs_reset */
++	lockdep_assert_held(&vdev->vdev.dev_set->lock);
 +
-+	/**
-+	 * @seq:
-+	 *
-+	 * Sequence count for managing RCU read-side synchronization, allows
-+	 * read-only access to @fence_excl and @fence while ensuring we take a
-+	 * consistent snapshot.
-+	 */
- 	seqcount_ww_mutex_t seq;
+ 	/* Stop the device from further DMA */
+ 	pci_clear_master(pdev);
  
-+	/**
-+	 * @fence_excl:
-+	 *
-+	 * The exclusive fence, if there is one currently.
-+	 *
-+	 * There are two ways to update this fence:
-+	 *
-+	 * - First by calling dma_resv_add_excl_fence(), which replaces all
-+	 *   fences attached to the reservation object. To guarantee that no
-+	 *   fences are lost, this new fence must signal only after all previous
-+	 *   fences, both shared and exclusive, have signalled. In some cases it
-+	 *   is convenient to achieve that by attaching a struct dma_fence_array
-+	 *   with all the new and old fences.
-+	 *
-+	 * - Alternatively the fence can be set directly, which leaves the
-+	 *   shared fences unchanged. To guarantee that no fences are lost, this
-+	 *   new fence must signal only after the previous exclusive fence has
-+	 *   signalled. Since the shared fences are staying intact, it is not
-+	 *   necessary to maintain any ordering against those. If semantically
-+	 *   only a new access is added without actually treating the previous
-+	 *   one as a dependency the exclusive fences can be strung together
-+	 *   using struct dma_fence_chain.
-+	 *
-+	 * Note that actual semantics of what an exclusive or shared fence mean
-+	 * is defined by the user, for reservation objects shared across drivers
-+	 * see &dma_buf.resv.
-+	 */
- 	struct dma_fence __rcu *fence_excl;
-+
-+	/**
-+	 * @fence:
-+	 *
-+	 * List of current shared fences.
-+	 *
-+	 * There are no ordering constraints of shared fences against the
-+	 * exclusive fence slot. If a waiter needs to wait for all access, it
-+	 * has to wait for both sets of fences to signal.
-+	 *
-+	 * A new fence is added by calling dma_resv_add_shared_fence(). Since
-+	 * this often needs to be done past the point of no return in command
-+	 * submission it cannot fail, and therefore sufficient slots need to be
-+	 * reserved by calling dma_resv_reserve_shared().
-+	 *
-+	 * Note that actual semantics of what an exclusive or shared fence mean
-+	 * is defined by the user, for reservation objects shared across drivers
-+	 * see &dma_buf.resv.
-+	 */
- 	struct dma_resv_list __rcu *fence;
+@@ -487,9 +490,7 @@ static void vfio_pci_disable(struct vfio_pci_device *vdev)
+ out:
+ 	pci_disable_device(pdev);
+ 
+-	vfio_pci_try_bus_reset(vdev);
+-
+-	if (!disable_idle_d3)
++	if (!vfio_pci_dev_set_try_reset(vdev->vdev.dev_set) && !disable_idle_d3)
+ 		vfio_pci_set_power_state(vdev, PCI_D3hot);
+ }
+ 
+@@ -2145,36 +2146,6 @@ static struct pci_driver vfio_pci_driver = {
+ 	.err_handler		= &vfio_err_handlers,
  };
  
-@@ -98,6 +172,13 @@ static inline void dma_resv_reset_shared_max(struct dma_resv *obj) {}
-  * undefined order, a #ww_acquire_ctx is passed to unwind if a cycle
-  * is detected. See ww_mutex_lock() and ww_acquire_init(). A reservation
-  * object may be locked by itself by passing NULL as @ctx.
-+ *
-+ * When a die situation is indicated by returning -EDEADLK all locks held by
-+ * @ctx must be unlocked and then dma_resv_lock_slow() called on @obj.
-+ *
-+ * Unlocked by calling dma_resv_unlock().
-+ *
-+ * See also dma_resv_lock_interruptible() for the interruptible variant.
-  */
- static inline int dma_resv_lock(struct dma_resv *obj,
- 				struct ww_acquire_ctx *ctx)
-@@ -119,6 +200,12 @@ static inline int dma_resv_lock(struct dma_resv *obj,
-  * undefined order, a #ww_acquire_ctx is passed to unwind if a cycle
-  * is detected. See ww_mutex_lock() and ww_acquire_init(). A reservation
-  * object may be locked by itself by passing NULL as @ctx.
-+ *
-+ * When a die situation is indicated by returning -EDEADLK all locks held by
-+ * @ctx must be unlocked and then dma_resv_lock_slow_interruptible() called on
-+ * @obj.
-+ *
-+ * Unlocked by calling dma_resv_unlock().
-  */
- static inline int dma_resv_lock_interruptible(struct dma_resv *obj,
- 					      struct ww_acquire_ctx *ctx)
-@@ -134,6 +221,8 @@ static inline int dma_resv_lock_interruptible(struct dma_resv *obj,
-  * Acquires the reservation object after a die case. This function
-  * will sleep until the lock becomes available. See dma_resv_lock() as
-  * well.
-+ *
-+ * See also dma_resv_lock_slow_interruptible() for the interruptible variant.
-  */
- static inline void dma_resv_lock_slow(struct dma_resv *obj,
- 				      struct ww_acquire_ctx *ctx)
-@@ -167,7 +256,7 @@ static inline int dma_resv_lock_slow_interruptible(struct dma_resv *obj,
-  * if they overlap with a writer.
-  *
-  * Also note that since no context is provided, no deadlock protection is
-- * possible.
-+ * possible, which is also not needed for a trylock.
-  *
-  * Returns true if the lock was acquired, false otherwise.
-  */
-@@ -193,6 +282,11 @@ static inline bool dma_resv_is_locked(struct dma_resv *obj)
-  *
-  * Returns the context used to lock a reservation object or NULL if no context
-  * was used or the object is not locked at all.
-+ *
-+ * WARNING: This interface is pretty horrible, but TTM needs it because it
-+ * doesn't pass the struct ww_acquire_ctx around in some very long callchains.
-+ * Everyone else just uses it to check whether they're holding a reservation or
-+ * not.
-  */
- static inline struct ww_acquire_ctx *dma_resv_locking_ctx(struct dma_resv *obj)
+-static int vfio_pci_get_unused_devs(struct pci_dev *pdev, void *data)
+-{
+-	struct vfio_devices *devs = data;
+-	struct vfio_device *device;
+-	struct vfio_pci_device *vdev;
+-
+-	if (devs->cur_index == devs->max_index)
+-		return -ENOSPC;
+-
+-	device = vfio_device_get_from_dev(&pdev->dev);
+-	if (!device)
+-		return -EINVAL;
+-
+-	if (pci_dev_driver(pdev) != &vfio_pci_driver) {
+-		vfio_device_put(device);
+-		return -EBUSY;
+-	}
+-
+-	vdev = container_of(device, struct vfio_pci_device, vdev);
+-
+-	/* Fault if the device is not unused */
+-	if (device->open_count) {
+-		vfio_device_put(device);
+-		return -EBUSY;
+-	}
+-
+-	devs->devices[devs->cur_index++] = vdev;
+-	return 0;
+-}
+-
+ static int vfio_pci_try_zap_and_vma_lock_cb(struct pci_dev *pdev, void *data)
  {
--- 
-2.32.0
-
+ 	struct vfio_devices *devs = data;
+@@ -2208,79 +2179,86 @@ static int vfio_pci_try_zap_and_vma_lock_cb(struct pci_dev *pdev, void *data)
+ 	return 0;
+ }
+ 
++static int vfio_pci_is_device_in_set(struct pci_dev *pdev, void *data)
++{
++	struct vfio_device_set *dev_set = data;
++	struct vfio_device *cur;
++
++	lockdep_assert_held(&dev_set->lock);
++
++	list_for_each_entry(cur, &dev_set->device_list, dev_set_list)
++		if (cur->dev == &pdev->dev)
++			return 0;
++	return -EBUSY;
++}
++
++static bool vfio_pci_dev_set_needs_reset(struct vfio_device_set *dev_set)
++{
++	struct vfio_pci_device *cur;
++	bool needs_reset = false;
++
++	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list) {
++		/* No VFIO device in the set can have an open device FD */
++		if (cur->vdev.open_count)
++			return false;
++		needs_reset |= cur->needs_reset;
++	}
++	return needs_reset;
++}
++
+ /*
+- * If a bus or slot reset is available for the provided device and:
++ * If a bus or slot reset is available for the provided dev_set and:
+  *  - All of the devices affected by that bus or slot reset are unused
+- *    (!refcnt)
+  *  - At least one of the affected devices is marked dirty via
+  *    needs_reset (such as by lack of FLR support)
+- * Then attempt to perform that bus or slot reset.  Callers are required
+- * to hold vdev->dev_set->lock, protecting the bus/slot reset group from
+- * concurrent opens.  A vfio_device reference is acquired for each device
+- * to prevent unbinds during the reset operation.
+- *
+- * NB: vfio-core considers a group to be viable even if some devices are
+- * bound to drivers like pci-stub or pcieport.  Here we require all devices
+- * to be bound to vfio_pci since that's the only way we can be sure they
+- * stay put.
++ * Then attempt to perform that bus or slot reset.
++ * Returns true if the dev_set was reset.
+  */
+-static void vfio_pci_try_bus_reset(struct vfio_pci_device *vdev)
++static bool vfio_pci_dev_set_try_reset(struct vfio_device_set *dev_set)
+ {
+-	struct vfio_devices devs = { .cur_index = 0 };
+-	int i = 0, ret = -EINVAL;
+-	bool slot = false;
+-	struct vfio_pci_device *tmp;
++	struct vfio_pci_device *cur;
++	struct pci_dev *pdev;
++	int ret;
+ 
+-	if (!pci_probe_reset_slot(vdev->pdev->slot))
+-		slot = true;
+-	else if (pci_probe_reset_bus(vdev->pdev->bus))
+-		return;
++	lockdep_assert_held(&dev_set->lock);
+ 
+-	if (vfio_pci_for_each_slot_or_bus(vdev->pdev, vfio_pci_count_devs,
+-					  &i, slot) || !i)
+-		return;
++	/*
++	 * By definition all PCI devices in the dev_set share the same PCI
++	 * reset, so any pci_dev will have the same outcomes for
++	 * pci_probe_reset_*() and pci_reset_bus().
++	 */
++	pdev = list_first_entry(&dev_set->device_list, struct vfio_pci_device,
++				vdev.dev_set_list)->pdev;
+ 
+-	devs.max_index = i;
+-	devs.devices = kcalloc(i, sizeof(struct vfio_device *), GFP_KERNEL);
+-	if (!devs.devices)
+-		return;
++	/* Reset of the dev_set is possible */
++	if (pci_probe_reset_slot(pdev->slot) && pci_probe_reset_bus(pdev->bus))
++		return false;
+ 
+-	if (vfio_pci_for_each_slot_or_bus(vdev->pdev,
+-					  vfio_pci_get_unused_devs,
+-					  &devs, slot))
+-		goto put_devs;
++	if (!vfio_pci_dev_set_needs_reset(dev_set))
++		return false;
+ 
+-	/* Does at least one need a reset? */
+-	for (i = 0; i < devs.cur_index; i++) {
+-		tmp = devs.devices[i];
+-		if (tmp->needs_reset) {
+-			ret = pci_reset_bus(vdev->pdev);
+-			break;
+-		}
++	/*
++	 * vfio-core considers a group to be viable and will create a
++	 * vfio_device even if some devices are bound to drivers like pci-stub
++	 * or pcieport. Here we require all PCI devices to be inside our dev_set
++	 * since that ensures they stay put and that every driver controlling
++	 * the device can co-ordinate with the device reset.
++	 */
++	if (vfio_pci_for_each_slot_or_bus(pdev, vfio_pci_is_device_in_set,
++					  dev_set,
++					  !pci_probe_reset_slot(pdev->slot)))
++		return false;
++
++	ret = pci_reset_bus(pdev);
++	if (ret)
++		return false;
++
++	list_for_each_entry(cur, &dev_set->device_list, vdev.dev_set_list) {
++		cur->needs_reset = false;
++		if (!disable_idle_d3)
++			vfio_pci_set_power_state(cur, PCI_D3hot);
+ 	}
+-
+-put_devs:
+-	for (i = 0; i < devs.cur_index; i++) {
+-		tmp = devs.devices[i];
+-
+-		/*
+-		 * If reset was successful, affected devices no longer need
+-		 * a reset and we should return all the collateral devices
+-		 * to low power.  If not successful, we either didn't reset
+-		 * the bus or timed out waiting for it, so let's not touch
+-		 * the power state.
+-		 */
+-		if (!ret) {
+-			tmp->needs_reset = false;
+-
+-			if (tmp != vdev && !disable_idle_d3)
+-				vfio_pci_set_power_state(tmp, PCI_D3hot);
+-		}
+-
+-		vfio_device_put(&tmp->vdev);
+-	}
+-
+-	kfree(devs.devices);
++	return true;
+ }
+ 
+ static void __exit vfio_pci_cleanup(void)
