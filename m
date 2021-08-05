@@ -2,33 +2,129 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6193E1556
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 15:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A08D53E1589
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 15:18:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3D9D6EA10;
-	Thu,  5 Aug 2021 13:07:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A116B6EA3A;
+	Thu,  5 Aug 2021 13:18:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5E8646EA10;
- Thu,  5 Aug 2021 13:07:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 49022AA0EA;
- Thu,  5 Aug 2021 13:07:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8606396699750493352=="
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2084.outbound.protection.outlook.com [40.107.93.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD2906EA3A;
+ Thu,  5 Aug 2021 13:18:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TqFxfK08CsoNTUegZpfI6l352G84ahLUq6gYnxjwKPaLE5ttSJmeKNigfq1BzGAzv+Y8+0tM5gZEc0Li/DHV2ZrYWcCyuyT0GaWruGtLCSlL0Z9ks6BIeGcjRho50J5lphbOh9ZYIU3olAusT+eKdkpw5QSpIdexhlNZh8FGMZGXYaSrFoHBdOy7+UOybeHYgiAhC+DhmXyhjKHkF1E8FwxShJ/oM5dtegBhDT8R8ZEmwHC+qnCN29TJmXJTxhPBKUyyFJnO11/qAviYR3zE662o0JR7SYL57L5aFbF/SlNhwZIFFC0BBF4jbAfsjsSS1m6U3rc1KF3Tu/nNCrfzuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nk0vAZ3wx3k70lfzfW6aKNkt5lxDa479wSXebv7yzQQ=;
+ b=UCW0PfW+TI+cy+FhbKUfII6k9KkBudHjSeO+1OXqmJmh5+jVKNrZdhTqzeiSBnpWT/wb9ATdVlAFuYtv3BhkSRibFgfoBztZ93T+XMcCtihEojILo/H8tQAv4GUSVI0RtK+9BdjMUsLzLIBpOisNb2/w02QjsKJ06fgjrhAS+EkqVGgDRlASJV/hlz+j/rU60+mLoAxm4XatGDgeQ6C8n3ZNhEDoWJduwE1K/N0jWGT5607TQ158iZTb+8CxjRH1xiL7LQEYtoknwfrgaZlbpv1KN/eDq8bAJoZfRt7iD1Ot3rGVJdC6O3OGRZPZrHpIE2EZkSdkGtqFzsCSNkcwJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nk0vAZ3wx3k70lfzfW6aKNkt5lxDa479wSXebv7yzQQ=;
+ b=PBXB0din0cGQJEHwzrnlbNDxjSqxhFJMnwyH0iKgrLIS0HUghHrX3yPg39JTlBSWFGRUeP2HALvo0pIaqKqw4is0uSx+vT2wlA0rttFoGYTxOO6VAIE5fI+zA0VL1LPYfZ9350+VVnyZj02ZmTFAdZfLh0rsBjyM11dSGdr2nIA=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB4224.namprd12.prod.outlook.com (2603:10b6:208:1dd::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Thu, 5 Aug
+ 2021 13:18:20 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6c9e:1e08:7617:f756]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6c9e:1e08:7617:f756%5]) with mapi id 15.20.4373.027; Thu, 5 Aug 2021
+ 13:18:20 +0000
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Lucas Stach <l.stach@pengutronix.de>, Melissa Wen <mwen@igalia.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Luben Tuikov
+ <luben.tuikov@amd.com>, Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
+ <20210805104705.862416-15-daniel.vetter@ffwll.ch>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <f883e6af-284c-9400-ca3d-b5192d11fb01@amd.com>
+Date: Thu, 5 Aug 2021 15:18:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <20210805104705.862416-15-daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-ClientProxiedBy: PR2P264CA0045.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:101:1::33) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 05 Aug 2021 13:07:38 -0000
-Message-ID: <162816885826.30840.12056838766103308828@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210805103916.860853-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210805103916.860853-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgcmVt?=
- =?utf-8?q?ove_rcu_support_from_i915=5Faddress=5Fspace_=28rev4=29?=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:ae89:49de:1628:3147]
+ (2a02:908:1252:fb60:ae89:49de:1628:3147) by
+ PR2P264CA0045.FRAP264.PROD.OUTLOOK.COM (2603:10a6:101:1::33) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4394.15 via Frontend Transport; Thu, 5 Aug 2021 13:18:18 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b251a676-7910-4849-35c6-08d958137e71
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4224:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB422445672DF1C91FF5452A8683F29@MN2PR12MB4224.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sepVQ8GIi43VateIFA9+5tw6zKEYMs1FMAR3Cs49D/kxffJJcwsAfHdlz8ZiY25qbex+CB4sbrtU5yGE9qudhmk54MsfWCbaTZNghAqm2xQgUws7l6mHl9o/z+PBKLO4rgN20Ap6JOwzJpPoqIV5JmJmz+EZ2s/9jGXCtnDon3dRHTfJnezxhExpdHBTP21W76/qzlPn91oFy9AoIakTeL7ICfcjDQ0gogBMbN5X2sX9XwtZueEm46PVe/4A+KZMbN9c21irIZ2Dy0zCC1ifavG6gUnVVqITn5AruJ5rLgujrh84vyGn60DraGMiid78oO6wuyuiXW2PezAnKrfaWGu3e9Jgj7dJquK6Xk7ujcrterf8jzAJto2ZSqn2WF6wtMS/axnbQ4xipM71TD2FZYc28V190sQGtiNeCkdg7hFjyiyZi4M2jc4SmNUVPhA4e53CceQNxjw+ju2gLQOEXGYCoWSjhN6PQz/1LZ2MgeNmd44kcwbSikbDteCqOfAGcH0mI6phb56Zrn3UYCSj/jpox1sdiRgg1plfShx5MK54aq08Ajhiq2krSFDwmyvHI9f0hqSxWqXjpFRrzhwZFIOHX8vI8kg5TyLCq2WEXbqQQSCCQabPWrDXQSU+dtrjy/8THaRGgHoLSX/060TE+0eoQt0KGyYDQ4pI0Xhp7qPyKorui83JLjnfsCwRPTlcTUBA4CAghPNExe4SS6JVlv3enuBMiczp8hazHlT+ohJBqIFPxhkLtpSLh7Omz7Pl
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(39860400002)(366004)(396003)(376002)(136003)(83380400001)(54906003)(4326008)(8936002)(8676002)(186003)(36756003)(478600001)(5660300002)(316002)(86362001)(31686004)(2616005)(31696002)(38100700002)(2906002)(66556008)(66476007)(66574015)(66946007)(6486002)(6666004)(110136005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Snl2cjdaMG9zSVNHWEJCdEdCejFzZmlGWXR1OGt0bHF5d05HcWpsNUw3NlZS?=
+ =?utf-8?B?QW80eUFXZ2k5YjVFcGEyVmk4V2tTRUN0MGw1N3ZUQmhMd1hWMlp3ZzFpVTA3?=
+ =?utf-8?B?dnFnalNXNVVGS2MxVXVOUW1Da3lnUnd4Y1cybTFsVjcyZTREWWdUV1dMcWJr?=
+ =?utf-8?B?T1kvdTlVNlk2M1lRTm5TZlhOVHBhRXo5SUphczNHWEFPYlJBNjR6UnUydUZL?=
+ =?utf-8?B?TlViVEJYVGVJVHhFMGovVEs0YkVwbEorQ2E1MmVtbmZndHYwTGJFTVhsdGdH?=
+ =?utf-8?B?eU1CN2czQmFTUzdTTHdUU1Bwak9PbmdFQk5nTWRUSm9tY2xKY2Fhb05qTnhV?=
+ =?utf-8?B?aDRnTnpGbEdQOENQTks0MkRLcko4cEN5YWtXR1h5c3VGV0t5QzlvNWw0YVVI?=
+ =?utf-8?B?bTlJRWk1MytaU01QZndtMTZVa0UxL2JEcGgzK0YzTWtiSXZYL0h0cWw0TWQx?=
+ =?utf-8?B?M2UrQ2tpbm90Zms0em1wSEFWMmVQVUJXd2JocWtVK3p5MlkrZkZieHE4NE5K?=
+ =?utf-8?B?ZmJUN1F6UTRHMEp3NUkxci9oNG5lRXd2dDVxeUFYRU93TVYwYXFoa1BLdnhn?=
+ =?utf-8?B?QUtkRmU2TmZ1N2FvUEFUVVVIbGRjclI3SjRLRm1pNFFsakxTUlg4L0JiNUFQ?=
+ =?utf-8?B?TUQ5L2R2eUJKN3NxMmd3aUJKRWpDY3ZvMzhYeWMwMFBMYmlLTlVaVmt6Smtx?=
+ =?utf-8?B?QWd3amh4WE96bFpjcWVDR0dxaGNXU3drWkEyU09XblZFQmlSa1dyUy8zejl2?=
+ =?utf-8?B?djFabVkyUlJmdCtNeG1aeDhQdFZYOVJ6SE5TM2JXeXJpQkkzYVNpZTBVK2hl?=
+ =?utf-8?B?c2EwakxmOWo3R1l2UHcwbkY4VmhOcmd5QlRQT0ZyRk9IalU4RWs5Um1KbGxT?=
+ =?utf-8?B?OTBLVFd6RTRpQlRZNFJGeS9wU3NuN29OR2dTNllBeS9IT25yQ1ZVdzBBL3pI?=
+ =?utf-8?B?SFB5a3F2VHoyTE9oREN3WjRHRUhOMGc3dmZVZGVHMlNOSDhKazZGdXAvcjNa?=
+ =?utf-8?B?Z1dKdFRNRGxoYWFaSGgwQngxQkFzbnpLR2Nzd1Bwa2h1WHRvQlZvL2U3czV0?=
+ =?utf-8?B?WVlyNFJoZXYrVmZsQTQ5YlFDSGNpOHIrUFJNK2ZjUkQ2QUNvSHowOXRUNjhG?=
+ =?utf-8?B?RzAzTHdvYmNqTFplMGMzbExRcGFQV1dEMG1XdmFONHpiTXdYbjdrZTdXTUlV?=
+ =?utf-8?B?amdFK0dIS09XZ0tZaEl6VDZQOTRwZDAvOVNmeU5LTmpJY1NZb0pNOENzcFpl?=
+ =?utf-8?B?STF6clY5bTZUYjhJVVF6eTlwUTYvenpxUnJKN2UwNjdnR3I0TXBaWFZCVE41?=
+ =?utf-8?B?eVlKQWlETTZ0c1RiTFM5TmdsakpJUUdPZVVQTVpTaTRKd1ZnZ3huR1JWNkFh?=
+ =?utf-8?B?QW5jRDI2Y2NZTWtGQXhKYm53WmpHdEZXelMybCtyR1hrcjd5VS9xZDdqMUk1?=
+ =?utf-8?B?UnFJb0VTN2JwazAzTzJhNCs4NXUwWDdHWkxlWTVwREx0V2NPWDlhNzY4UWIv?=
+ =?utf-8?B?NkJUNkMrVi9pNXZFd21FaHArTG9YM0NOY2JSbjh5Vy9SQlVqUzhrL1l4TExP?=
+ =?utf-8?B?S2krYUVWNUUzd0VVMTEyd3dnekVsL0Q0MzIxVE5Oa3NlQ2hHcUV3YUJEZVRB?=
+ =?utf-8?B?Zm1ZUHk4MWhJSlVwcWg1Mlk0VjVWY2EvN0tFcU5vendwckovRVdkNGh4M0t6?=
+ =?utf-8?B?TGorUHB4TzNnQ0NSWVRTOVA2WUY1YTM3b1grMi85STIzczhFVXM3bnBrVUky?=
+ =?utf-8?B?WElsZE1pYVhVZzlSbVVkSUNxN1pxY21qdUhsQ1lINC9VT2dURE1rTVk5Wjhx?=
+ =?utf-8?B?aWcyTDZMVEkvUUdhM1NyTHBndFFFSlUrUkpvNW11QUtISm9DS1VKZXl2YTdX?=
+ =?utf-8?Q?qQieVOTwI25y4?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b251a676-7910-4849-35c6-08d958137e71
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 13:18:20.0376 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xKcKlNmawTmxYlwoGvQGzYlSfWfn6DQ0bfs1bjyg9On1CICUlJKXp1H6HdDHOGxK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4224
+Subject: Re: [Intel-gfx] [PATCH v5 14/20] drm/sched: Don't store
+ self-dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,200 +137,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8606396699750493352==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: remove rcu support from i915_address_space (rev4)
-URL   : https://patchwork.freedesktop.org/series/93314/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10449 -> Patchwork_20772
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20772 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20772, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20772:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20772 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][3] ([i915#1372]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3844]: https://gitlab.freedesktop.org/drm/intel/issues/3844
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
 
 
-Participating hosts (39 -> 35)
-------------------------------
+Am 05.08.21 um 12:46 schrieb Daniel Vetter:
+> This is essentially part of drm_sched_dependency_optimized(), which
+> only amdgpu seems to make use of. Use it a bit more.
+>
+> This would mean that as-is amdgpu can't use the dependency helpers, at
+> least not with the current approach amdgpu has for deciding whether a
+> vm_flush is needed. Since amdgpu also has very special rules around
+> implicit fencing it can't use those helpers either, and adding a
+> drm_sched_job_await_fence_always or similar for amdgpu wouldn't be too
+> onerous. That way the special case handling for amdgpu sticks even
+> more out and we have higher chances that reviewers that go across all
+> drivers wont miss it.
 
-  Additional (1): fi-jsl-1 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+Well you should probably drop the sentence about the vm_flush, this is 
+completely unrelated.
 
+Additional to that I still don't think that this is a good idea. 
+Dependency handling is something completely driver specific.
 
-Build changes
--------------
+E.g. even when you have submitted jobs back to back they still might 
+need a cache flush in between and that is not only for amdgpu like this.
 
-  * Linux: CI_DRM_10449 -> Patchwork_20772
+What you can do is to optimize for while looking at the fences later on 
+and then note that you have done so and what the last hw fence is you 
+used instead.
 
-  CI-20190529: 20190529
-  CI_DRM_10449: b0b7ea6dcb6afb51059e3ae01afece47c41fd0c1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20772: be11100f27eef517b2b401b8afe9401e9e599d0f @ git://anongit.freedesktop.org/gfx-ci/linux
+Regards,
+Christian.
 
+>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+> Acked-by: Melissa Wen <mwen@igalia.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: "Christian König" <christian.koenig@amd.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Luben Tuikov <luben.tuikov@amd.com>
+> Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>   drivers/gpu/drm/scheduler/sched_main.c | 7 +++++++
+>   1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index f77456929139..49e507f91ec0 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -660,6 +660,13 @@ int drm_sched_job_add_dependency(struct drm_sched_job *job,
+>   	if (!fence)
+>   		return 0;
+>   
+> +	/* if it's a fence from us it's guaranteed to be earlier */
+> +	if (fence->context == job->entity->fence_context ||
+> +	    fence->context == job->entity->fence_context + 1) {
+> +		dma_fence_put(fence);
+> +		return 0;
+> +	}
+> +
+>   	/* Deduplicate if we already depend on a fence from the same context.
+>   	 * This lets the size of the array of deps scale with the number of
+>   	 * engines involved, rather than the number of BOs.
 
-== Linux commits ==
-
-be11100f27ee drm/i915: Stop rcu support for i915_address_space
-fea76eb28a60 drm/i915: use xa_lock/unlock for fpriv->vm_xa lookups
-c1770ae51252 drm/i915: Drop __rcu from gem_context->vm
-47f45eed8f19 drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem
-22042c81dd12 drm/i915: Add i915_gem_context_is_full_ppgtt
-37d02c39555f drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam
-1bd404a5dddc drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm
-0e6cb5de1e74 drm/i915: Drop code to handle set-vm races from execbuf
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/index.html
-
---===============8606396699750493352==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>remove rcu support from i915_address_space (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93314/">https://patchwork.freedesktop.org/series/93314/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10449 -&gt; Patchwork_20772</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20772 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20772, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20772:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_lrc:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20772 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20772/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Additional (1): fi-jsl-1 <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10449 -&gt; Patchwork_20772</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10449: b0b7ea6dcb6afb51059e3ae01afece47c41fd0c1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20772: be11100f27eef517b2b401b8afe9401e9e599d0f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>be11100f27ee drm/i915: Stop rcu support for i915_address_space<br />
-fea76eb28a60 drm/i915: use xa_lock/unlock for fpriv-&gt;vm_xa lookups<br />
-c1770ae51252 drm/i915: Drop __rcu from gem_context-&gt;vm<br />
-47f45eed8f19 drm/i915: Use i915_gem_context_get_eb_vm in intel_context_set_gem<br />
-22042c81dd12 drm/i915: Add i915_gem_context_is_full_ppgtt<br />
-37d02c39555f drm/i915: Use i915_gem_context_get_eb_vm in ctx_getparam<br />
-1bd404a5dddc drm/i915: Rename i915_gem_context_get_vm_rcu to i915_gem_context_get_eb_vm<br />
-0e6cb5de1e74 drm/i915: Drop code to handle set-vm races from execbuf</p>
-
-</body>
-</html>
-
---===============8606396699750493352==--
