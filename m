@@ -2,37 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C833E1465
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 14:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 491823E14B0
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 14:27:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 537456EA08;
-	Thu,  5 Aug 2021 12:05:24 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE9F56E9F9;
- Thu,  5 Aug 2021 12:05:22 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10066"; a="214120406"
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="214120406"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 05:05:20 -0700
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="442372145"
-Received: from tanzeelu-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.202.73])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 05:05:18 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, Zhen Han <zhen.han@intel.com>
-Date: Thu,  5 Aug 2021 13:05:09 +0100
-Message-Id: <20210805120509.2270455-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id CACDA6EA11;
+	Thu,  5 Aug 2021 12:27:16 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4D24C6EA11;
+ Thu,  5 Aug 2021 12:27:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 41541AA3D8;
+ Thu,  5 Aug 2021 12:27:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6570139430932992246=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Be more gentle when exiting
- non-persistent contexts
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 05 Aug 2021 12:27:15 -0000
+Message-ID: <162816643523.30835.3087482482500591676@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210805101937.14664-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20210805101937.14664-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Update_small_joiner_ram_size?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,309 +41,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+--===============6570139430932992246==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-When a non-persistent context exits we currently mark it as banned in
-order to trigger fast termination of any outstanding GPU jobs it may have
-left running.
+== Series Details ==
 
-In doing so we apply a very strict 1ms limit in which the left over job
-has to preempt before we issues an engine resets.
+Series: drm/i915: Update small joiner ram size
+URL   : https://patchwork.freedesktop.org/series/93410/
+State : success
 
-Some workloads are not able to cleanly preempt in that time window and it
-can be argued that it would instead be better to give them a bit more
-grace since avoiding engine resets is generally preferrable.
+== Summary ==
 
-To achieve this the patch splits handling of banned contexts from simply
-closed non-persistent ones and then applies different timeouts for both
-and also extends the criteria which determines if a request should be
-scheduled back in after preemption or not.
+CI Bug Log - changes from CI_DRM_10449 -> Patchwork_20771
+====================================================
 
-15ms preempt timeout grace is given to exited non-persistent contexts
-which have been empirically tested to satisfy customers requirements
-and still provides reasonably quick cleanup post exit.
+Summary
+-------
 
-v2:
- * Streamline fast path checks.
+  **SUCCESS**
 
-v3:
- * Simplify by using only schedulable status.
- * Increase timeout to 20ms.
+  No regressions found.
 
-v4:
- * Fix live_execlists selftest.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/index.html
 
-v5:
- * Fix logic in kill_engines.
+Known issues
+------------
 
-v6:
- * Rebase.
+  Here are the changes found in Patchwork_20771 that come from known issues:
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Zhen Han <zhen.han@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c   | 22 +++++++++++++------
- drivers/gpu/drm/i915/gt/intel_context.c       |  2 ++
- drivers/gpu/drm/i915/gt/intel_context.h       | 17 +++++++++++++-
- drivers/gpu/drm/i915/gt/intel_context_types.h |  1 +
- .../drm/i915/gt/intel_execlists_submission.c  | 11 ++++++++--
- drivers/gpu/drm/i915/gt/selftest_execlists.c  | 20 +++++++++++------
- drivers/gpu/drm/i915/i915_request.c           |  2 +-
- 7 files changed, 57 insertions(+), 18 deletions(-)
+### IGT changes ###
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index cff72679ad7c..21fe5d4057ab 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1065,7 +1065,8 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
- 	return engine;
- }
- 
--static void kill_engines(struct i915_gem_engines *engines, bool ban)
-+static void
-+kill_engines(struct i915_gem_engines *engines, bool ban, bool persistent)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
-@@ -1079,8 +1080,15 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
- 	 */
- 	for_each_gem_engine(ce, engines, it) {
- 		struct intel_engine_cs *engine;
-+		bool skip = false;
-+
-+		if (ban)
-+			skip = intel_context_ban(ce, NULL);
-+		else if (!persistent)
-+			skip = !intel_context_clear_schedulable(ce);
- 
--		if (ban && intel_context_ban(ce, NULL))
-+		/* Already previously banned or made non-schedulable? */
-+		if (skip)
- 			continue;
- 
- 		/*
-@@ -1093,7 +1101,7 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
- 		engine = active_engine(ce);
- 
- 		/* First attempt to gracefully cancel the context */
--		if (engine && !__cancel_engine(engine) && ban)
-+		if (engine && !__cancel_engine(engine) && (ban || !persistent))
- 			/*
- 			 * If we are unable to send a preemptive pulse to bump
- 			 * the context from the GPU, we have to resort to a full
-@@ -1105,8 +1113,6 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
- 
- static void kill_context(struct i915_gem_context *ctx)
- {
--	bool ban = (!i915_gem_context_is_persistent(ctx) ||
--		    !ctx->i915->params.enable_hangcheck);
- 	struct i915_gem_engines *pos, *next;
- 
- 	spin_lock_irq(&ctx->stale.lock);
-@@ -1119,7 +1125,8 @@ static void kill_context(struct i915_gem_context *ctx)
- 
- 		spin_unlock_irq(&ctx->stale.lock);
- 
--		kill_engines(pos, ban);
-+		kill_engines(pos, !ctx->i915->params.enable_hangcheck,
-+			     i915_gem_context_is_persistent(ctx));
- 
- 		spin_lock_irq(&ctx->stale.lock);
- 		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
-@@ -1165,7 +1172,8 @@ static void engines_idle_release(struct i915_gem_context *ctx,
- 
- kill:
- 	if (list_empty(&engines->link)) /* raced, already closed */
--		kill_engines(engines, true);
-+		kill_engines(engines, true,
-+			     i915_gem_context_is_persistent(ctx));
- 
- 	i915_sw_fence_commit(&engines->fence);
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 745e84c72c90..bc1701ef1578 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -382,6 +382,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
- 	ce->ring = NULL;
- 	ce->ring_size = SZ_4K;
- 
-+	__set_bit(CONTEXT_SCHEDULABLE, &ce->flags);
-+
- 	ewma_runtime_init(&ce->runtime.avg);
- 
- 	ce->vm = i915_vm_get(engine->gt->vm);
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index c41098950746..5b50716654dd 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -251,7 +251,22 @@ static inline bool intel_context_is_banned(const struct intel_context *ce)
- 
- static inline bool intel_context_set_banned(struct intel_context *ce)
- {
--	return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
-+	bool banned = test_and_set_bit(CONTEXT_BANNED, &ce->flags);
-+
-+	if (!banned)
-+		clear_bit(CONTEXT_SCHEDULABLE, &ce->flags);
-+
-+	return banned;
-+}
-+
-+static inline bool intel_context_clear_schedulable(struct intel_context *ce)
-+{
-+	return test_and_clear_bit(CONTEXT_SCHEDULABLE, &ce->flags);
-+}
-+
-+static inline bool intel_context_is_schedulable(const struct intel_context *ce)
-+{
-+	return test_bit(CONTEXT_SCHEDULABLE, &ce->flags);
- }
- 
- static inline bool intel_context_ban(struct intel_context *ce,
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index e54351a170e2..3306c70c9c54 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -112,6 +112,7 @@ struct intel_context {
- #define CONTEXT_FORCE_SINGLE_SUBMISSION	7
- #define CONTEXT_NOPREEMPT		8
- #define CONTEXT_LRCA_DIRTY		9
-+#define CONTEXT_SCHEDULABLE		10  /* Unless banned or non-persistent closed. */
- 
- 	struct {
- 		u64 timeout_us;
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index de5f9c86b9a4..778f3cda3c71 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -478,7 +478,7 @@ __execlists_schedule_in(struct i915_request *rq)
- 		     !intel_engine_has_heartbeat(engine)))
- 		intel_context_set_banned(ce);
- 
--	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
-+	if (unlikely(!intel_context_is_schedulable(ce) || bad_request(rq)))
- 		reset_active(rq, engine);
- 
- 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-@@ -1222,12 +1222,19 @@ static void record_preemption(struct intel_engine_execlists *execlists)
- static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
- 					    const struct i915_request *rq)
- {
-+	struct intel_context *ce;
-+
- 	if (!rq)
- 		return 0;
- 
-+	ce = rq->context;
-+
- 	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
--	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
-+	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
- 		return 1;
-+	/* Longer grace for closed non-persistent contexts to avoid resets. */
-+	else if (unlikely(!intel_context_is_schedulable(ce)))
-+		return 20;
- 
- 	return READ_ONCE(engine->props.preempt_timeout_ms);
- }
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index f12ffe797639..da36c015caf4 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -2050,6 +2050,12 @@ struct live_preempt_cancel {
- 	struct preempt_client a, b;
- };
- 
-+static void context_clear_banned(struct intel_context *ce)
-+{
-+	clear_bit(CONTEXT_BANNED, &ce->flags);
-+	set_bit(CONTEXT_SCHEDULABLE, &ce->flags);
-+}
-+
- static int __cancel_active0(struct live_preempt_cancel *arg)
- {
- 	struct i915_request *rq;
-@@ -2068,7 +2074,7 @@ static int __cancel_active0(struct live_preempt_cancel *arg)
- 	if (IS_ERR(rq))
- 		return PTR_ERR(rq);
- 
--	clear_bit(CONTEXT_BANNED, &rq->context->flags);
-+	context_clear_banned(rq->context);
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- 	if (!igt_wait_for_spinner(&arg->a.spin, rq)) {
-@@ -2112,7 +2118,7 @@ static int __cancel_active1(struct live_preempt_cancel *arg)
- 	if (IS_ERR(rq[0]))
- 		return PTR_ERR(rq[0]);
- 
--	clear_bit(CONTEXT_BANNED, &rq[0]->context->flags);
-+	context_clear_banned(rq[0]->context);
- 	i915_request_get(rq[0]);
- 	i915_request_add(rq[0]);
- 	if (!igt_wait_for_spinner(&arg->a.spin, rq[0])) {
-@@ -2128,7 +2134,7 @@ static int __cancel_active1(struct live_preempt_cancel *arg)
- 		goto out;
- 	}
- 
--	clear_bit(CONTEXT_BANNED, &rq[1]->context->flags);
-+	context_clear_banned(rq[1]->context);
- 	i915_request_get(rq[1]);
- 	err = i915_request_await_dma_fence(rq[1], &rq[0]->fence);
- 	i915_request_add(rq[1]);
-@@ -2183,7 +2189,7 @@ static int __cancel_queued(struct live_preempt_cancel *arg)
- 	if (IS_ERR(rq[0]))
- 		return PTR_ERR(rq[0]);
- 
--	clear_bit(CONTEXT_BANNED, &rq[0]->context->flags);
-+	context_clear_banned(rq[0]->context);
- 	i915_request_get(rq[0]);
- 	i915_request_add(rq[0]);
- 	if (!igt_wait_for_spinner(&arg->a.spin, rq[0])) {
-@@ -2197,7 +2203,7 @@ static int __cancel_queued(struct live_preempt_cancel *arg)
- 		goto out;
- 	}
- 
--	clear_bit(CONTEXT_BANNED, &rq[1]->context->flags);
-+	context_clear_banned(rq[1]->context);
- 	i915_request_get(rq[1]);
- 	err = i915_request_await_dma_fence(rq[1], &rq[0]->fence);
- 	i915_request_add(rq[1]);
-@@ -2273,7 +2279,7 @@ static int __cancel_hostile(struct live_preempt_cancel *arg)
- 	if (IS_ERR(rq))
- 		return PTR_ERR(rq);
- 
--	clear_bit(CONTEXT_BANNED, &rq->context->flags);
-+	context_clear_banned(rq->context);
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- 	if (!igt_wait_for_spinner(&arg->a.spin, rq)) {
-@@ -2329,7 +2335,7 @@ static int __cancel_fail(struct live_preempt_cancel *arg)
- 	if (IS_ERR(rq))
- 		return PTR_ERR(rq);
- 
--	clear_bit(CONTEXT_BANNED, &rq->context->flags);
-+	context_clear_banned(rq->context);
- 	i915_request_get(rq);
- 	i915_request_add(rq);
- 	if (!igt_wait_for_spinner(&arg->a.spin, rq)) {
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index ce446716d092..b1a9bec83339 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -583,7 +583,7 @@ bool __i915_request_submit(struct i915_request *request)
- 		goto active;
- 	}
- 
--	if (unlikely(intel_context_is_banned(request->context)))
-+	if (unlikely(!intel_context_is_schedulable(request->context)))
- 		i915_request_set_error_once(request, -EIO);
- 
- 	if (unlikely(fatal_error(request->fence.error)))
--- 
-2.30.2
+#### Issues hit ####
 
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][3] ([i915#1372]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3844]: https://gitlab.freedesktop.org/drm/intel/issues/3844
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (39 -> 35)
+------------------------------
+
+  Additional (1): fi-jsl-1 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10449 -> Patchwork_20771
+
+  CI-20190529: 20190529
+  CI_DRM_10449: b0b7ea6dcb6afb51059e3ae01afece47c41fd0c1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20771: 76ad0b5c9154228fa572485a518c25a1e8fe1c4d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+76ad0b5c9154 drm/i915: Update small joiner ram size
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/index.html
+
+--===============6570139430932992246==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Update small joiner ram size</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93410/">https://patchwork.freedesktop.org/series/93410/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10449 -&gt; Patchwork_20771</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20771 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_chamelium@dp-crc-fast:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10449/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20771/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Additional (1): fi-jsl-1 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10449 -&gt; Patchwork_20771</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10449: b0b7ea6dcb6afb51059e3ae01afece47c41fd0c1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20771: 76ad0b5c9154228fa572485a518c25a1e8fe1c4d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>76ad0b5c9154 drm/i915: Update small joiner ram size</p>
+
+</body>
+</html>
+
+--===============6570139430932992246==--
