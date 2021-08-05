@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C4743E1A9A
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 19:42:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E9E3E1AB2
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 19:44:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53E376E239;
-	Thu,  5 Aug 2021 17:42:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF0A56E10A;
+	Thu,  5 Aug 2021 17:44:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 220DD6E10A;
- Thu,  5 Aug 2021 17:42:44 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 78C0E6E10A;
+ Thu,  5 Aug 2021 17:44:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 181A9A47E2;
- Thu,  5 Aug 2021 17:42:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 73597A47E2;
+ Thu,  5 Aug 2021 17:44:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 05 Aug 2021 17:42:44 -0000
-Message-ID: <162818536406.30835.17151192854544213824@emeril.freedesktop.org>
+Date: Thu, 05 Aug 2021 17:44:15 -0000
+Message-ID: <162818545546.30836.7979890808479539593@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210805163647.801064-1-matthew.d.roper@intel.com>
 In-Reply-To: <20210805163647.801064-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Begin_enabling_Xe=5FHP_SDV_and_DG2_platforms_=28rev9=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Begin_enabling_Xe=5FHP_SDV_and_DG2_platforms_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,43 +53,115 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-515352629f0e drm/i915/dg2: Add support for new DG2-G11 revid 0x5
-b8058f4b6221 drm/i915/xehp: Loop over all gslices for INSTDONE processing
--:135: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'iter_' - possible side-effects?
-#135: FILE: drivers/gpu/drm/i915/gt/intel_engine_types.h:582:
-+#define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
-+	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
-+	     (iter_) < GEN_MAX_SUBSLICES; \
-+	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
-+	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
-+		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
-
--:135: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gslice_' - possible side-effects?
-#135: FILE: drivers/gpu/drm/i915/gt/intel_engine_types.h:582:
-+#define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
-+	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
-+	     (iter_) < GEN_MAX_SUBSLICES; \
-+	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
-+	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
-+		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
-
--:135: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dss_' - possible side-effects?
-#135: FILE: drivers/gpu/drm/i915/gt/intel_engine_types.h:582:
-+#define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
-+	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
-+	     (iter_) < GEN_MAX_SUBSLICES; \
-+	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
-+	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
-+		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
-
-total: 0 errors, 0 warnings, 3 checks, 164 lines checked
-8b84974c7782 drm/i915/dg2: Report INSTDONE_GEOM values in error state
-0b355c3ad3ca drm/i915/xehpsdv: Add compute DSS type
-f61fbc6c1d71 drm/i915/xehpsdv: factor out function to read RP_STATE_CAP
-7c5f8a298512 drm/i915/xehpsdv: Read correct RP_STATE_CAP register
-de625d7a0adc drm/i915/dg2: Add new LRI reg offsets
-af46376d4b74 drm/i915/dg2: Maintain backward-compatible nested batch behavior
-e8ef3eecff4f drm/i915/dg2: Configure PCON in DP pre-enable path
+$ dim sparse --fast origin/drm-tip
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_display.c:1901:21:    expected struct i915_vma *[assigned] vma
++drivers/gpu/drm/i915/display/intel_display.c:1901:21:    got void [noderef] __iomem *[assigned] iomem
++drivers/gpu/drm/i915/display/intel_display.c:1901:21: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gem/i915_gem_context.c:1410:34:    expected struct i915_address_space *vm
++drivers/gpu/drm/i915/gem/i915_gem_context.c:1410:34:    got struct i915_address_space [noderef] __rcu *vm
++drivers/gpu/drm/i915/gem/i915_gem_context.c:1410:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    expected struct i915_address_space [noderef] __rcu *vm
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25:    got struct i915_address_space *
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:43:25: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    expected struct i915_address_space *vm
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34:    got struct i915_address_space [noderef] __rcu *vm
++drivers/gpu/drm/i915/gem/selftests/mock_context.c:60:34: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
++drivers/gpu/drm/i915/gt/intel_reset.c:1392:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_ring_submission.c:1268:24: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
++./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
++./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'xehp_fwtable_write16' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'xehp_fwtable_write32' - different lock contexts for basic block
++./include/linux/spinlock.h:409:9: warning: context imbalance in 'xehp_fwtable_write8' - different lock contexts for basic block
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++./include/linux/stddef.h:17:9: this was the original definition
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
++/usr/lib/gcc/x86_64-linux-gnu/8/include/stddef.h:417:9: warning: preprocessor token offsetof redefined
 
 
