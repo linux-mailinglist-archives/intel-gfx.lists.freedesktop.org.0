@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D7653E19AF
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 18:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B0723E19B4
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 18:37:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49D186EB0B;
-	Thu,  5 Aug 2021 16:37:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16AAB6EB13;
+	Thu,  5 Aug 2021 16:37:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D29166E39B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 063DB6E4EC
  for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 16:36:57 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="194470760"
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="194470760"
+X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="194470764"
+X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="194470764"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2021 09:36:57 -0700
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="419886365"
+X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="419886369"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 09:36:56 -0700
+ 05 Aug 2021 09:36:57 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Date: Thu,  5 Aug 2021 09:36:44 -0700
-Message-Id: <20210805163647.801064-7-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com, Akeem G Abodunrin <akeem.g.abodunrin@intel.com>,
+ Chris P Wilson <chris.p.wilson@intel.com>,
+ Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Date: Thu,  5 Aug 2021 09:36:45 -0700
+Message-Id: <20210805163647.801064-8-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210805163647.801064-1-matthew.d.roper@intel.com>
 References: <20210805163647.801064-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 6/9] drm/i915/xehpsdv: Read correct
- RP_STATE_CAP register
+Subject: [Intel-gfx] [PATCH v5 7/9] drm/i915/dg2: Add new LRI reg offsets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,45 +49,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The RP_STATE_CAP register is no longer part of the MCHBAR on XEHPSDV; this
-register is now a per-tile register at GTTMMADDR offset 0x250014.
+From: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+New LRI register offsets were introduced for DG2, this patch adds
+those extra registers, and create new register table for setting offsets
+to compare with HW generated context image - especially for gt_lrc test.
+Also updates general purpose register with scratch offset for DG2, in
+order to use it for live_lrc_fixed selftest.
+
+Cc: Chris P Wilson <chris.p.wilson@intel.com>
+Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rps.c | 4 +++-
- drivers/gpu/drm/i915/i915_reg.h     | 1 +
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 85 ++++++++++++++++++++++++++++-
+ 1 file changed, 83 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index a3e69eba376f..3489f5f0cac1 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -2141,7 +2141,9 @@ u32 intel_rps_read_state_cap(struct intel_rps *rps)
- 	struct drm_i915_private *i915 = rps_to_i915(rps);
- 	struct intel_uncore *uncore = rps_to_uncore(rps);
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index bb4af4977920..6ba8daea2f56 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -226,6 +226,40 @@ static const u8 gen12_xcs_offsets[] = {
+ 	END
+ };
  
--	if (IS_GEN9_LP(i915))
-+	if (IS_XEHPSDV(i915))
-+		return intel_uncore_read(uncore, XEHPSDV_RP_STATE_CAP);
-+	else if (IS_GEN9_LP(i915))
- 		return intel_uncore_read(uncore, BXT_RP_STATE_CAP);
- 	else
- 		return intel_uncore_read(uncore, GEN6_RP_STATE_CAP);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index f8d3cd11eced..77f6dcaba2b9 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4115,6 +4115,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define   RPN_CAP_MASK		REG_GENMASK(23, 16)
- #define BXT_RP_STATE_CAP        _MMIO(0x138170)
- #define GEN9_RP_STATE_LIMITS	_MMIO(0x138148)
-+#define XEHPSDV_RP_STATE_CAP	_MMIO(0x250014)
++static const u8 dg2_xcs_offsets[] = {
++	NOP(1),
++	LRI(15, POSTED),
++	REG16(0x244),
++	REG(0x034),
++	REG(0x030),
++	REG(0x038),
++	REG(0x03c),
++	REG(0x168),
++	REG(0x140),
++	REG(0x110),
++	REG(0x1c0),
++	REG(0x1c4),
++	REG(0x1c8),
++	REG(0x180),
++	REG16(0x2b4),
++	REG(0x120),
++	REG(0x124),
++
++	NOP(1),
++	LRI(9, POSTED),
++	REG16(0x3a8),
++	REG16(0x28c),
++	REG16(0x288),
++	REG16(0x284),
++	REG16(0x280),
++	REG16(0x27c),
++	REG16(0x278),
++	REG16(0x274),
++	REG16(0x270),
++
++	END
++};
++
+ static const u8 gen8_rcs_offsets[] = {
+ 	NOP(1),
+ 	LRI(14, POSTED),
+@@ -525,6 +559,49 @@ static const u8 xehp_rcs_offsets[] = {
+ 	END
+ };
  
- /*
-  * Logical Context regs
++static const u8 dg2_rcs_offsets[] = {
++	NOP(1),
++	LRI(15, POSTED),
++	REG16(0x244),
++	REG(0x034),
++	REG(0x030),
++	REG(0x038),
++	REG(0x03c),
++	REG(0x168),
++	REG(0x140),
++	REG(0x110),
++	REG(0x1c0),
++	REG(0x1c4),
++	REG(0x1c8),
++	REG(0x180),
++	REG16(0x2b4),
++	REG(0x120),
++	REG(0x124),
++
++	NOP(1),
++	LRI(9, POSTED),
++	REG16(0x3a8),
++	REG16(0x28c),
++	REG16(0x288),
++	REG16(0x284),
++	REG16(0x280),
++	REG16(0x27c),
++	REG16(0x278),
++	REG16(0x274),
++	REG16(0x270),
++
++	LRI(3, POSTED),
++	REG(0x1b0),
++	REG16(0x5a8),
++	REG16(0x5ac),
++
++	NOP(6),
++	LRI(1, 0),
++	REG(0x0c8),
++
++	END
++};
++
+ #undef END
+ #undef REG16
+ #undef REG
+@@ -543,7 +620,9 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
+ 		   !intel_engine_has_relative_mmio(engine));
+ 
+ 	if (engine->class == RENDER_CLASS) {
+-		if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
++		if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 55))
++			return dg2_rcs_offsets;
++		else if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 50))
+ 			return xehp_rcs_offsets;
+ 		else if (GRAPHICS_VER(engine->i915) >= 12)
+ 			return gen12_rcs_offsets;
+@@ -554,7 +633,9 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
+ 		else
+ 			return gen8_rcs_offsets;
+ 	} else {
+-		if (GRAPHICS_VER(engine->i915) >= 12)
++		if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 55))
++			return dg2_xcs_offsets;
++		else if (GRAPHICS_VER(engine->i915) >= 12)
+ 			return gen12_xcs_offsets;
+ 		else if (GRAPHICS_VER(engine->i915) >= 9)
+ 			return gen9_xcs_offsets;
 -- 
 2.25.4
 
