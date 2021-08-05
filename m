@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717D33E19AC
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 18:37:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1983E19AA
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Aug 2021 18:36:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D316EAF0;
-	Thu,  5 Aug 2021 16:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9D906E834;
+	Thu,  5 Aug 2021 16:36:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1E6E6E39B
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 16:36:56 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="194470754"
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="194470754"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE8A6E4EC
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Aug 2021 16:36:57 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="194470755"
+X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="194470755"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 09:36:55 -0700
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="419886348"
+ 05 Aug 2021 09:36:56 -0700
+X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; d="scan'208";a="419886351"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Aug 2021 09:36:55 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Date: Thu,  5 Aug 2021 09:36:40 -0700
-Message-Id: <20210805163647.801064-3-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Date: Thu,  5 Aug 2021 09:36:41 -0700
+Message-Id: <20210805163647.801064-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210805163647.801064-1-matthew.d.roper@intel.com>
 References: <20210805163647.801064-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v5 2/9] drm/i915/xehp: Loop over all gslices for
- INSTDONE processing
+Subject: [Intel-gfx] [PATCH v5 3/9] drm/i915/dg2: Report INSTDONE_GEOM
+ values in error state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,217 +50,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We no longer have traditional slices on Xe_HP platforms, but the
-INSTDONE registers are replicated according to gslice representation
-which is similar.  We can mostly re-use the existing instdone code with
-just a few modifications:
+Xe_HPG adds some additional INSTDONE_GEOM debug registers; the Mesa team
+has indicated that having these reported in the error state would be
+useful for debugging GPU hangs.  These registers are replicated per-DSS
+with gslice steering.
 
- * Create an alternate instdone loop macro that will iterate over the
-   flat DSS space, but still provide the gslice/dss steering values for
-   compatibility with the legacy code.
-
- * We should allocate INSTDONE storage space according to the maximum
-   number of gslices rather than the maximum number of legacy slices to
-   ensure we have enough storage space to hold all of the values.  XeHP
-   design has 8 gslices, whereas older platforms never had more than 3
-   slices.
-
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 48 +++++++++++---------
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 12 ++++-
- drivers/gpu/drm/i915/gt/intel_sseu.h         |  7 +++
- drivers/gpu/drm/i915/i915_gpu_error.c        | 32 +++++++++----
- 4 files changed, 66 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  7 +++++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +++
+ drivers/gpu/drm/i915/i915_gpu_error.c        | 10 ++++++++--
+ drivers/gpu/drm/i915/i915_reg.h              |  1 +
+ 4 files changed, 19 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 0d9105a31d84..58ed67894b3d 100644
+index 58ed67894b3d..332efea696a5 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1163,16 +1163,16 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
- 	u32 mmio_base = engine->mmio_base;
+@@ -1202,6 +1202,13 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+ 							  GEN7_ROW_INSTDONE);
+ 			}
+ 		}
++
++		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
++			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice)
++				instdone->geom_svg[slice][subslice] =
++					read_subslice_reg(engine, slice, subslice,
++							  XEHPG_INSTDONE_GEOM_SVG);
++		}
+ 	} else if (GRAPHICS_VER(i915) >= 7) {
+ 		instdone->instdone =
+ 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 0b4846b01626..bfbfe53c23dd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -69,6 +69,9 @@ struct intel_instdone {
+ 	u32 slice_common_extra[2];
+ 	u32 sampler[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
+ 	u32 row[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
++
++	/* Added in XeHPG */
++	u32 geom_svg[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
+ };
+ 
+ /*
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 8230bc3ac8a9..91d5da7b0a2b 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -431,6 +431,7 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
+ 	const struct sseu_dev_info *sseu = &ee->engine->gt->info.sseu;
  	int slice;
  	int subslice;
 +	int iter;
  
- 	memset(instdone, 0, sizeof(*instdone));
- 
--	switch (GRAPHICS_VER(i915)) {
--	default:
-+	if (GRAPHICS_VER(i915) >= 8) {
- 		instdone->instdone =
- 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
- 
- 		if (engine->id != RCS0)
--			break;
-+			return;
- 
- 		instdone->slice_common =
- 			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
-@@ -1182,21 +1182,32 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
- 			instdone->slice_common_extra[1] =
- 				intel_uncore_read(uncore, GEN12_SC_INSTDONE_EXTRA2);
- 		}
--		for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
--			instdone->sampler[slice][subslice] =
--				read_subslice_reg(engine, slice, subslice,
--						  GEN7_SAMPLER_INSTDONE);
--			instdone->row[slice][subslice] =
--				read_subslice_reg(engine, slice, subslice,
--						  GEN7_ROW_INSTDONE);
-+
-+		if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 50)) {
-+			for_each_instdone_gslice_dss_xehp(i915, sseu, iter, slice, subslice) {
-+				instdone->sampler[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_SAMPLER_INSTDONE);
-+				instdone->row[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_ROW_INSTDONE);
-+			}
-+		} else {
-+			for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
-+				instdone->sampler[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_SAMPLER_INSTDONE);
-+				instdone->row[slice][subslice] =
-+					read_subslice_reg(engine, slice, subslice,
-+							  GEN7_ROW_INSTDONE);
-+			}
- 		}
--		break;
--	case 7:
-+	} else if (GRAPHICS_VER(i915) >= 7) {
- 		instdone->instdone =
- 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
- 
- 		if (engine->id != RCS0)
--			break;
-+			return;
- 
- 		instdone->slice_common =
- 			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
-@@ -1204,22 +1215,15 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
- 			intel_uncore_read(uncore, GEN7_SAMPLER_INSTDONE);
- 		instdone->row[0][0] =
- 			intel_uncore_read(uncore, GEN7_ROW_INSTDONE);
--
--		break;
--	case 6:
--	case 5:
--	case 4:
-+	} else if (GRAPHICS_VER(i915) >= 4) {
- 		instdone->instdone =
- 			intel_uncore_read(uncore, RING_INSTDONE(mmio_base));
- 		if (engine->id == RCS0)
- 			/* HACK: Using the wrong struct member */
- 			instdone->slice_common =
- 				intel_uncore_read(uncore, GEN4_INSTDONE1);
--		break;
--	case 3:
--	case 2:
-+	} else {
- 		instdone->instdone = intel_uncore_read(uncore, GEN2_INSTDONE);
--		break;
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index ed91bcff20eb..0b4846b01626 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -67,8 +67,8 @@ struct intel_instdone {
- 	/* The following exist only in the RCS engine */
- 	u32 slice_common;
- 	u32 slice_common_extra[2];
--	u32 sampler[I915_MAX_SLICES][I915_MAX_SUBSLICES];
--	u32 row[I915_MAX_SLICES][I915_MAX_SUBSLICES];
-+	u32 sampler[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
-+	u32 row[GEN_MAX_GSLICES][I915_MAX_SUBSLICES];
- };
- 
- /*
-@@ -578,4 +578,12 @@ intel_engine_has_relative_mmio(const struct intel_engine_cs * const engine)
- 		for_each_if((instdone_has_slice(dev_priv_, sseu_, slice_)) && \
- 			    (instdone_has_subslice(dev_priv_, sseu_, slice_, \
- 						    subslice_)))
-+
-+#define for_each_instdone_gslice_dss_xehp(dev_priv_, sseu_, iter_, gslice_, dss_) \
-+	for ((iter_) = 0, (gslice_) = 0, (dss_) = 0; \
-+	     (iter_) < GEN_MAX_SUBSLICES; \
-+	     (iter_)++, (gslice_) = (iter_) / GEN_DSS_PER_GSLICE, \
-+	     (dss_) = (iter_) % GEN_DSS_PER_GSLICE) \
-+		for_each_if(intel_sseu_has_subslice((sseu_), 0, (iter_)))
-+
- #endif /* __INTEL_ENGINE_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
-index 22fef98887c0..0270acdcc157 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.h
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-@@ -26,6 +26,9 @@ struct drm_printer;
- #define GEN_DSS_PER_CSLICE	8
- #define GEN_DSS_PER_MSLICE	8
- 
-+#define GEN_MAX_GSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_GSLICE)
-+#define GEN_MAX_CSLICES		(GEN_MAX_SUBSLICES / GEN_DSS_PER_CSLICE)
-+
- struct sseu_dev_info {
- 	u8 slice_mask;
- 	u8 subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
-@@ -78,6 +81,10 @@ intel_sseu_has_subslice(const struct sseu_dev_info *sseu, int slice,
- 	u8 mask;
- 	int ss_idx = subslice / BITS_PER_BYTE;
- 
-+	if (slice >= sseu->max_slices ||
-+	    subslice >= sseu->max_subslices)
-+		return false;
-+
- 	GEM_BUG_ON(ss_idx >= sseu->ss_stride);
- 
- 	mask = sseu->subslice_mask[slice * sseu->ss_stride + ss_idx];
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 0f08bcfbe964..8230bc3ac8a9 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -444,15 +444,29 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
- 	if (GRAPHICS_VER(m->i915) <= 6)
+ 	err_printf(m, "  INSTDONE: 0x%08x\n",
+ 		   ee->instdone.instdone);
+@@ -445,8 +446,6 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
  		return;
  
--	for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
--		err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
--			   slice, subslice,
--			   ee->instdone.sampler[slice][subslice]);
+ 	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 50)) {
+-		int iter;
 -
--	for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
--		err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
--			   slice, subslice,
--			   ee->instdone.row[slice][subslice]);
-+	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 50)) {
-+		int iter;
-+
-+		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
-+			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.sampler[slice][subslice]);
-+
-+		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
-+			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.row[slice][subslice]);
-+	} else {
-+		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
-+			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.sampler[slice][subslice]);
-+
-+		for_each_instdone_slice_subslice(m->i915, sseu, slice, subslice)
-+			err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
-+				   slice, subslice,
-+				   ee->instdone.row[slice][subslice]);
-+	}
- 
+ 		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
+ 			err_printf(m, "  SAMPLER_INSTDONE[%d][%d]: 0x%08x\n",
+ 				   slice, subslice,
+@@ -471,6 +470,13 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
  	if (GRAPHICS_VER(m->i915) < 12)
  		return;
+ 
++	if (GRAPHICS_VER_FULL(m->i915) >= IP_VER(12, 55)) {
++		for_each_instdone_gslice_dss_xehp(m->i915, sseu, iter, slice, subslice)
++			err_printf(m, "  GEOM_SVGUNIT_INSTDONE[%d][%d]: 0x%08x\n",
++				   slice, subslice,
++				   ee->instdone.geom_svg[slice][subslice]);
++	}
++
+ 	err_printf(m, "  SC_INSTDONE_EXTRA: 0x%08x\n",
+ 		   ee->instdone.slice_common_extra[0]);
+ 	err_printf(m, "  SC_INSTDONE_EXTRA2: 0x%08x\n",
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 167eaa87501b..8bfd646fc403 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2686,6 +2686,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define GEN12_SC_INSTDONE_EXTRA2	_MMIO(0x7108)
+ #define GEN7_SAMPLER_INSTDONE	_MMIO(0xe160)
+ #define GEN7_ROW_INSTDONE	_MMIO(0xe164)
++#define XEHPG_INSTDONE_GEOM_SVG		_MMIO(0x666c)
+ #define MCFG_MCR_SELECTOR		_MMIO(0xfd0)
+ #define SF_MCR_SELECTOR			_MMIO(0xfd8)
+ #define GEN8_MCR_SELECTOR		_MMIO(0xfdc)
 -- 
 2.25.4
 
