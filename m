@@ -2,70 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70D53E2ECA
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 19:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBDE23E2EE0
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 19:29:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 256926EC03;
-	Fri,  6 Aug 2021 17:15:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC7B6EC04;
+	Fri,  6 Aug 2021 17:29:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F68F6EBFD;
- Fri,  6 Aug 2021 17:15:40 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- k38-20020a05600c1ca6b029025af5e0f38bso9447747wms.5; 
- Fri, 06 Aug 2021 10:15:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=dCyOt6fuT3vKd9OQ1cGqS4mQb18lfymYBVtFVf7jJ4A=;
- b=R6XSn0FGIQXxHlZfbPMYFAIp3qZvGqnz2uO6DnOgH+NSLPgZn2dPgU3bfi7x97DrIz
- lcCC+kYvlOo1JatvHjnXcNT+4JWqgIXUOIr8ktUaJpizb+C8bzbqy1QQ0wyeqH9qVqcP
- 80UkcftiPH6W9Ic1FaFPxCcY6CprePe1b+MMMtZEjPsh8QX3cri8U78Mb1Ki3ViN8zUI
- q9FZ2oj7kg7k4G0V15nCS3yHxhxJ5hlqUokLVum+6W2V08cAc66ovuRWcEnY6Ii0BteU
- BQRo17h+cVFy/oD/iBy8x0mPSkXVB77H4gqlxHrw7aZIZ0y0MMC1fue0nZT9W6x7en2L
- Qp8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=dCyOt6fuT3vKd9OQ1cGqS4mQb18lfymYBVtFVf7jJ4A=;
- b=Hlim5QyW4mkfT67iVJ7Q/vSpWDAx6HTeGZB9w9oPY+f9rhP2WsLWprPWZ4KGQrNvIM
- IaEf82QB4kC9D8tN51oP7ZkjD31ggwTxlFA9g+jTpcsIWMDknOb8xRxr6y6lkwmtrRhr
- hv37gITM4V6E7ZRX67MXbS8CFAEc31h5jDfOE/Ex7GvxJhPQsWquwoEewcsZ5JfNleQ4
- Z0jvgmCG5EBtgVXmQzRb2TKi4JWeOcz2hw5+O0WXr7q1NWPSI2hcBOgNVDKuPz5ME4iL
- 9m7nvbjS+taL0P8fD9wQoOrJ53YgHRNBkOt/lHO8S6nObyMKOvZRv0H/ZW0+XfMwB8GZ
- bvXg==
-X-Gm-Message-State: AOAM530JXtgrwDH53B0d5acO7zMlfZkkoWS7DPDkNKcO6Dxne0ThF138
- L80UcbK/I8mxhZWKpxJTDijnCTUKfHje8Uc4cqU=
-X-Google-Smtp-Source: ABdhPJyBrw5+F57Z9us0v2G5eQXZ3/7VCwgnovKyD3o89ran+2+rJTbzcYRU+451NTlUEvVs/nhtDxk1Orc3hl6E2vw=
-X-Received: by 2002:a1c:4b18:: with SMTP id y24mr22080784wma.49.1628270139083; 
- Fri, 06 Aug 2021 10:15:39 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 630B66EC04
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Aug 2021 17:29:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10068"; a="275456627"
+X-IronPort-AV: E=Sophos;i="5.84,301,1620716400"; d="scan'208";a="275456627"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2021 10:29:11 -0700
+X-IronPort-AV: E=Sophos;i="5.84,301,1620716400"; d="scan'208";a="513517815"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2021 10:29:10 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, Stuart Summers <stuart.summers@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Steve Hampson <steven.t.hampson@intel.com>
+Date: Fri,  6 Aug 2021 10:29:01 -0700
+Message-Id: <20210806172901.1049133-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20210805172619.a6a3jjgr6srmpdla@ldmartin-desk2>
+References: <20210805172619.a6a3jjgr6srmpdla@ldmartin-desk2>
 MIME-Version: 1.0
-References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
- <20210805104705.862416-3-daniel.vetter@ffwll.ch>
- <CAF6AEGvkmZhcPWP58VnL1OXAeJ5tg7v13xkkiYBwkpBi1YiT4g@mail.gmail.com>
- <CAKMK7uG3gRNfYinM51UVAUckV9ZgN3mgRnJd8E9tERani9b1JQ@mail.gmail.com>
-In-Reply-To: <CAKMK7uG3gRNfYinM51UVAUckV9ZgN3mgRnJd8E9tERani9b1JQ@mail.gmail.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Fri, 6 Aug 2021 10:19:54 -0700
-Message-ID: <CAF6AEGuqxb5jEtpQi-aNvjSfPaq0gasH2TLZ+5O836ov9qw+3w@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Rob Clark <robdclark@chromium.org>, 
- Sean Paul <sean@poorly.run>, Sumit Semwal <sumit.semwal@linaro.org>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- freedreno <freedreno@lists.freedesktop.org>, 
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>, 
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v5 02/20] drm/msm: Fix drm/sched point of no
- return rules
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH v5.1 4/9] drm/i915/xehpsdv: Add compute DSS type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,141 +50,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 6, 2021 at 9:42 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote=
-:
->
-> On Fri, Aug 6, 2021 at 12:58 AM Rob Clark <robdclark@gmail.com> wrote:
-> >
-> > On Thu, Aug 5, 2021 at 3:47 AM Daniel Vetter <daniel.vetter@ffwll.ch> w=
-rote:
-> > >
-> > > Originally drm_sched_job_init was the point of no return, after which
-> > > drivers must submit a job. I've split that up, which allows us to fix
-> > > this issue pretty easily.
-> > >
-> > > Only thing we have to take care of is to not skip to error paths afte=
-r
-> > > that. Other drivers do this the same for out-fence and similar things=
-.
-> > >
-> > > Fixes: 1d8a5ca436ee ("drm/msm: Conversion to drm scheduler")
-> > > Cc: Rob Clark <robdclark@chromium.org>
-> > > Cc: Rob Clark <robdclark@gmail.com>
-> > > Cc: Sean Paul <sean@poorly.run>
-> > > Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> > > Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> > > Cc: linux-arm-msm@vger.kernel.org
-> > > Cc: dri-devel@lists.freedesktop.org
-> > > Cc: freedreno@lists.freedesktop.org
-> > > Cc: linux-media@vger.kernel.org
-> > > Cc: linaro-mm-sig@lists.linaro.org
-> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/msm/msm_gem_submit.c | 15 +++++++--------
-> > >  1 file changed, 7 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/m=
-sm/msm_gem_submit.c
-> > > index 6d6c44f0e1f3..d0ed4ddc509e 100644
-> > > --- a/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > @@ -52,9 +52,6 @@ static struct msm_gem_submit *submit_create(struct =
-drm_device *dev,
-> > >                 return ERR_PTR(ret);
-> > >         }
-> > >
-> > > -       /* FIXME: this is way too early */
-> > > -       drm_sched_job_arm(&job->base);
-> > > -
-> > >         xa_init_flags(&submit->deps, XA_FLAGS_ALLOC);
-> > >
-> > >         kref_init(&submit->ref);
-> > > @@ -883,6 +880,9 @@ int msm_ioctl_gem_submit(struct drm_device *dev, =
-void *data,
-> > >
-> > >         submit->user_fence =3D dma_fence_get(&submit->base.s_fence->f=
-inished);
-> > >
-> > > +       /* point of no return, we _have_ to submit no matter what */
-> > > +       drm_sched_job_arm(&submit->base);
-> > > +
-> > >         /*
-> > >          * Allocate an id which can be used by WAIT_FENCE ioctl to ma=
-p back
-> > >          * to the underlying fence.
-> > > @@ -892,17 +892,16 @@ int msm_ioctl_gem_submit(struct drm_device *dev=
-, void *data,
-> > >         if (submit->fence_id < 0) {
-> > >                 ret =3D submit->fence_id =3D 0;
-> > >                 submit->fence_id =3D 0;
-> > > -               goto out;
-> > >         }
-> > >
-> > > -       if (args->flags & MSM_SUBMIT_FENCE_FD_OUT) {
-> > > +       if (ret =3D=3D 0 && args->flags & MSM_SUBMIT_FENCE_FD_OUT) {
-> > >                 struct sync_file *sync_file =3D sync_file_create(subm=
-it->user_fence);
-> > >                 if (!sync_file) {
-> > >                         ret =3D -ENOMEM;
-> > > -                       goto out;
-> > > +               } else {
-> > > +                       fd_install(out_fence_fd, sync_file->file);
-> > > +                       args->fence_fd =3D out_fence_fd;
-> > >                 }
-> > > -               fd_install(out_fence_fd, sync_file->file);
-> > > -               args->fence_fd =3D out_fence_fd;
-> >
-> > I wonder if instead we should (approximately) undo "drm/msm/submit:
-> > Simplify out-fence-fd handling" so that the point that it could fail
-> > is moved up ahead of the drm_sched_job_arm()?
->
-> Hm yeah. Up to you how you want to paint this shed, I think either is fin=
-e.
->
-> > Also, does the dma_fence_get() work before drm_sched_job_arm()?  From
-> > a quick look, it looks like it won't, but I'm still playing catchup
-> > and haven't had a chance to look at your entire series.  If it doesn't
-> > work before drm_sched_job_arm(), then there is really no way to
-> > prevent a error path between the fence-init and job-submit.
->
-> Yes. I thought I've checked that I put the _arm() in the right spot,
-> but I guess I screwed up and you need the fence before the point where
-> I've put the job_arm()? And yes the error path cannot be avoided for
-> out-fences, that's what I tried to explain in the commit message.
->
-> > But, prior to your series, wouldn't a failure after
-> > drm_sched_job_init() but before the job is submitted just burn a
-> > fence-id, and otherwise carry on it's merry way?
->
-> Maybe? I'm not sure whether the scheduler gets confused about the gap
-> and freak out abou that. I'm fairly new to that code and learning
-> (which is part why I'm working on it). Since you look up in
-> fences/syncobj after job_init() it should be pretty easy to whip up a
-> testcase and see what happens. Also as long as nothing fails you won't
-> see an issue, that's for sure.
+From: Stuart Summers <stuart.summers@intel.com>
 
-fair.. I'll try to come up with a test case.. pre-scheduler-conversion
-it wasn't a problem to fail after the fence seqno was allocated (well,
-I guess you might have problems if you had 2^31 failures in a row)
+Starting in XeHP, the concept of slice has been removed in favor of
+DSS (Dual-Subslice) masks for various workload types. These workloads have
+been divided into those enabled for geometry and those enabled for compute.
 
-BR,
--R
+i915 currently maintains a single set of S/SS/EU masks for the device.
+The goal of this patch set is to minimize the amount of impact to prior
+generations while still giving the user maximum flexibility.
 
-> -Daniel
->
-> > BR,
-> > -R
-> >
-> > >         }
-> > >
-> > >         submit_attach_object_fences(submit);
-> > > --
-> > > 2.32.0
-> > >
->
->
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+v2:
+ - Generalize a comment about uapi access to geometry/compute masks; the
+   proposed uapi has changed since the comment was first written, and
+   will show up in a future series once the userspace code is published.
+   (Lucas)
+
+v3:
+ - Eliminate unnecessary has_compute_dss flag.  (Lucas)
+ - Drop unwanted comment change in uapi header.  (Lucas)
+
+Bspec: 33117, 33118, 20376
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Steve Hampson <steven.t.hampson@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_sseu.c | 60 +++++++++++++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_sseu.h |  4 +-
+ drivers/gpu/drm/i915/i915_reg.h      |  3 +-
+ 3 files changed, 50 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+index bbd272943c3f..b0e09b58005e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu.c
++++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+@@ -46,11 +46,11 @@ u32 intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice)
+ }
+ 
+ void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int slice,
+-			      u32 ss_mask)
++			      u8 *subslice_mask, u32 ss_mask)
+ {
+ 	int offset = slice * sseu->ss_stride;
+ 
+-	memcpy(&sseu->subslice_mask[offset], &ss_mask, sseu->ss_stride);
++	memcpy(&subslice_mask[offset], &ss_mask, sseu->ss_stride);
+ }
+ 
+ unsigned int
+@@ -100,14 +100,24 @@ static u16 compute_eu_total(const struct sseu_dev_info *sseu)
+ 	return total;
+ }
+ 
+-static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
+-				    u8 s_en, u32 ss_en, u16 eu_en)
++static u32 get_ss_stride_mask(struct sseu_dev_info *sseu, u8 s, u32 ss_en)
++{
++	u32 ss_mask;
++
++	ss_mask = ss_en >> (s * sseu->max_subslices);
++	ss_mask &= GENMASK(sseu->max_subslices - 1, 0);
++
++	return ss_mask;
++}
++
++static void gen11_compute_sseu_info(struct sseu_dev_info *sseu, u8 s_en,
++				    u32 g_ss_en, u32 c_ss_en, u16 eu_en)
+ {
+ 	int s, ss;
+ 
+-	/* ss_en represents entire subslice mask across all slices */
++	/* g_ss_en/c_ss_en represent entire subslice mask across all slices */
+ 	GEM_BUG_ON(sseu->max_slices * sseu->max_subslices >
+-		   sizeof(ss_en) * BITS_PER_BYTE);
++		   sizeof(g_ss_en) * BITS_PER_BYTE);
+ 
+ 	for (s = 0; s < sseu->max_slices; s++) {
+ 		if ((s_en & BIT(s)) == 0)
+@@ -115,7 +125,22 @@ static void gen11_compute_sseu_info(struct sseu_dev_info *sseu,
+ 
+ 		sseu->slice_mask |= BIT(s);
+ 
+-		intel_sseu_set_subslices(sseu, s, ss_en);
++		/*
++		 * XeHP introduces the concept of compute vs geometry DSS. To
++		 * reduce variation between GENs around subslice usage, store a
++		 * mask for both the geometry and compute enabled masks since
++		 * userspace will need to be able to query these masks
++		 * independently.  Also compute a total enabled subslice count
++		 * for the purposes of selecting subslices to use in a
++		 * particular GEM context.
++		 */
++		intel_sseu_set_subslices(sseu, s, sseu->compute_subslice_mask,
++					 get_ss_stride_mask(sseu, s, c_ss_en));
++		intel_sseu_set_subslices(sseu, s, sseu->geometry_subslice_mask,
++					 get_ss_stride_mask(sseu, s, g_ss_en));
++		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
++					 get_ss_stride_mask(sseu, s,
++							    g_ss_en | c_ss_en));
+ 
+ 		for (ss = 0; ss < sseu->max_subslices; ss++)
+ 			if (intel_sseu_has_subslice(sseu, s, ss))
+@@ -129,7 +154,7 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+ {
+ 	struct sseu_dev_info *sseu = &gt->info.sseu;
+ 	struct intel_uncore *uncore = gt->uncore;
+-	u32 dss_en;
++	u32 g_dss_en, c_dss_en = 0;
+ 	u16 eu_en = 0;
+ 	u8 eu_en_fuse;
+ 	u8 s_en;
+@@ -160,7 +185,9 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+ 		s_en = intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE) &
+ 		       GEN11_GT_S_ENA_MASK;
+ 
+-	dss_en = intel_uncore_read(uncore, GEN12_GT_DSS_ENABLE);
++	g_dss_en = intel_uncore_read(uncore, GEN12_GT_GEOMETRY_DSS_ENABLE);
++	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
++		c_dss_en = intel_uncore_read(uncore, GEN12_GT_COMPUTE_DSS_ENABLE);
+ 
+ 	/* one bit per pair of EUs */
+ 	if (GRAPHICS_VER_FULL(gt->i915) >= IP_VER(12, 50))
+@@ -173,7 +200,7 @@ static void gen12_sseu_info_init(struct intel_gt *gt)
+ 		if (eu_en_fuse & BIT(eu))
+ 			eu_en |= BIT(eu * 2) | BIT(eu * 2 + 1);
+ 
+-	gen11_compute_sseu_info(sseu, s_en, dss_en, eu_en);
++	gen11_compute_sseu_info(sseu, s_en, g_dss_en, c_dss_en, eu_en);
+ 
+ 	/* TGL only supports slice-level power gating */
+ 	sseu->has_slice_pg = 1;
+@@ -199,7 +226,7 @@ static void gen11_sseu_info_init(struct intel_gt *gt)
+ 	eu_en = ~(intel_uncore_read(uncore, GEN11_EU_DISABLE) &
+ 		  GEN11_EU_DIS_MASK);
+ 
+-	gen11_compute_sseu_info(sseu, s_en, ss_en, eu_en);
++	gen11_compute_sseu_info(sseu, s_en, ss_en, 0, eu_en);
+ 
+ 	/* ICL has no power gating restrictions. */
+ 	sseu->has_slice_pg = 1;
+@@ -240,7 +267,7 @@ static void cherryview_sseu_info_init(struct intel_gt *gt)
+ 		sseu_set_eus(sseu, 0, 1, ~disabled_mask);
+ 	}
+ 
+-	intel_sseu_set_subslices(sseu, 0, subslice_mask);
++	intel_sseu_set_subslices(sseu, 0, sseu->subslice_mask, subslice_mask);
+ 
+ 	sseu->eu_total = compute_eu_total(sseu);
+ 
+@@ -296,7 +323,8 @@ static void gen9_sseu_info_init(struct intel_gt *gt)
+ 			/* skip disabled slice */
+ 			continue;
+ 
+-		intel_sseu_set_subslices(sseu, s, subslice_mask);
++		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
++					 subslice_mask);
+ 
+ 		eu_disable = intel_uncore_read(uncore, GEN9_EU_DISABLE(s));
+ 		for (ss = 0; ss < sseu->max_subslices; ss++) {
+@@ -408,7 +436,8 @@ static void bdw_sseu_info_init(struct intel_gt *gt)
+ 			/* skip disabled slice */
+ 			continue;
+ 
+-		intel_sseu_set_subslices(sseu, s, subslice_mask);
++		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
++					 subslice_mask);
+ 
+ 		for (ss = 0; ss < sseu->max_subslices; ss++) {
+ 			u8 eu_disabled_mask;
+@@ -506,7 +535,8 @@ static void hsw_sseu_info_init(struct intel_gt *gt)
+ 			    sseu->eu_per_subslice);
+ 
+ 	for (s = 0; s < sseu->max_slices; s++) {
+-		intel_sseu_set_subslices(sseu, s, subslice_mask);
++		intel_sseu_set_subslices(sseu, s, sseu->subslice_mask,
++					 subslice_mask);
+ 
+ 		for (ss = 0; ss < sseu->max_subslices; ss++) {
+ 			sseu_set_eus(sseu, s, ss,
+diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h b/drivers/gpu/drm/i915/gt/intel_sseu.h
+index 0270acdcc157..60882a74741e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_sseu.h
++++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
+@@ -32,6 +32,8 @@ struct drm_printer;
+ struct sseu_dev_info {
+ 	u8 slice_mask;
+ 	u8 subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
++	u8 geometry_subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
++	u8 compute_subslice_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICE_STRIDE];
+ 	u8 eu_mask[GEN_MAX_SLICES * GEN_MAX_SUBSLICES * GEN_MAX_EU_STRIDE];
+ 	u16 eu_total;
+ 	u8 eu_per_subslice;
+@@ -104,7 +106,7 @@ intel_sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8 slice);
+ u32  intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8 slice);
+ 
+ void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int slice,
+-			      u32 ss_mask);
++			      u8 *subslice_mask, u32 ss_mask);
+ 
+ void intel_sseu_info_init(struct intel_gt *gt);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 8bfd646fc403..f8d3cd11eced 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3151,7 +3151,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ 
+ #define GEN11_GT_SUBSLICE_DISABLE _MMIO(0x913C)
+ 
+-#define GEN12_GT_DSS_ENABLE _MMIO(0x913C)
++#define GEN12_GT_GEOMETRY_DSS_ENABLE _MMIO(0x913C)
++#define GEN12_GT_COMPUTE_DSS_ENABLE _MMIO(0x9144)
+ 
+ #define XEHP_EU_ENABLE			_MMIO(0x9134)
+ #define XEHP_EU_ENA_MASK		0xFF
+-- 
+2.25.4
+
