@@ -1,40 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FF353E22E3
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 07:31:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A54C3E22E4
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 07:31:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A43586EA3C;
-	Fri,  6 Aug 2021 05:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A699E6EA55;
+	Fri,  6 Aug 2021 05:30:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 645366EA29;
- Fri,  6 Aug 2021 05:30:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="214041534"
-X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="214041534"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 22:30:30 -0700
-X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="481274635"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 05 Aug 2021 22:30:30 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: daniel.vetter@intel.com, chris.p.wilson@intel.com,
- thomas.hellstrom@intel.com, paulo.r.zanoni@intel.com
-Date: Thu,  5 Aug 2021 22:30:32 -0700
-Message-Id: <20210806053032.2462-3-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20210806053032.2462-1-niranjana.vishwanathapura@intel.com>
-References: <20210806053032.2462-1-niranjana.vishwanathapura@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 84B446EA34;
+ Fri,  6 Aug 2021 05:30:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2166A0118;
+ Fri,  6 Aug 2021 05:30:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5707774302155880196=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [RFC 2/2] drm/doc/rfc: VM_BIND uapi definition
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhenyu Wang" <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 06 Aug 2021 05:30:34 -0000
+Message-ID: <162822783490.27548.17800982599632278500@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210721062607.512307-1-zhenyuw@linux.intel.com>
+In-Reply-To: <20210721062607.512307-1-zhenyuw@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gvt=3A_Fix_cached_atomics_setting_for_Windows_VM_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,154 +42,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VM_BIND and GEM_WAIT_USER_FENCE uapi document
+--===============5707774302155880196==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- Documentation/gpu/rfc/i915_vm_bind.h   | 113 +++++++++++++++++++++++++
- Documentation/gpu/rfc/i915_vm_bind.rst |   6 ++
- 2 files changed, 119 insertions(+)
- create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+== Series Details ==
 
-diff --git a/Documentation/gpu/rfc/i915_vm_bind.h b/Documentation/gpu/rfc/i915_vm_bind.h
-new file mode 100644
-index 000000000000..3aaf66e62aa0
---- /dev/null
-+++ b/Documentation/gpu/rfc/i915_vm_bind.h
-@@ -0,0 +1,113 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
-+
-+/* VM_BIND feature availability through drm_i915_getparam */
-+#define I915_PARAM_HAS_VM_BIND          59
-+
-+/**
-+ * struct drm_i915_gem_vm_bind - VA to object/buffer mapping to [un]bind.
-+ */
-+struct drm_i915_gem_vm_bind {
-+	/** vm to [un]bind **/
-+	__u32 vm_id;
-+
-+	/** BO handle or file descriptor. 'fd' to -1 for system pages (SVM) **/
-+	union {
-+		__u32 handle;
-+		__s32 fd;
-+	}
-+
-+	/** VA start to [un]bind **/
-+	__u64 start;
-+
-+	/** Offset in object to [un]bind **/
-+	__u64 offset;
-+
-+	/** VA length to [un]bind **/
-+	__u64 length;
-+
-+	/** Flags **/
-+	__u64 flags;
-+	/** Bind the mapping immediately instead of during next submission */
-+#define I915_GEM_VM_BIND_IMMEDIATE   (1 << 0)
-+	/** Read-only mapping */
-+#define I915_GEM_VM_BIND_READONLY    (1 << 1)
-+	/** Capture this mapping in the dump upon GPU error */
-+#define I915_GEM_VM_BIND_CAPTURE     (1 << 2)
-+
-+	/**
-+	 * Zero-terminated chain of extensions.
-+	 *
-+	 * No current extensions defined; mbz.
-+	 */
-+	__u64 extensions;
-+};
-+
-+/**
-+ * struct drm_i915_vm_bind_ext_sync_fence - Bind completion signaling extension.
-+ */
-+struct drm_i915_vm_bind_ext_sync_fence {
-+#define I915_VM_BIND_EXT_SYNC_FENCE     0
-+	/** @base: Extension link. See struct i915_user_extension. */
-+	struct i915_user_extension base;
-+
-+	/** User/Memory fence address */
-+	__u64 addr;
-+
-+	/** User/Memory fence value to be written after bind completion */
-+	__u64 val;
-+};
-+
-+/**
-+ * struct drm_i915_gem_wait_user_fence
-+ *
-+ * Wait on user/memory fence. User/Memory fence can be woken up either by,
-+ *    1. GPU context indicated by 'ctx_id', or,
-+ *    2. Kerrnel driver async worker upon I915_UFENCE_WAIT_SOFT.
-+ *       'ctx_id' is ignored when this flag is set.
-+ *
-+ * Wakeup when below condition is true.
-+ * (*addr & MASK) OP (VALUE & MASK)
-+ *
-+ */
-+struct drm_i915_gem_wait_user_fence {
-+	/** @base: Extension link. See struct i915_user_extension. */
-+	__u64 extensions;
-+
-+	/** User/Memory fence address */
-+	__u64 addr;
-+
-+	/** Id of the Context which will signal the fence. */
-+	__u32 ctx_id;
-+
-+	/** Wakeup condition operator */
-+	__u16 op;
-+#define I915_UFENCE_WAIT_EQ      0
-+#define I915_UFENCE_WAIT_NEQ     1
-+#define I915_UFENCE_WAIT_GT      2
-+#define I915_UFENCE_WAIT_GTE     3
-+#define I915_UFENCE_WAIT_LT      4
-+#define I915_UFENCE_WAIT_LTE     5
-+#define I915_UFENCE_WAIT_BEFORE  6
-+#define I915_UFENCE_WAIT_AFTER   7
-+
-+	/** Flags */
-+	__u16 flags;
-+#define I915_UFENCE_WAIT_SOFT    0x1
-+#define I915_UFENCE_WAIT_ABSTIME 0x2
-+
-+	/** Wakeup value */
-+	__u64 value;
-+
-+	/** Wakeup mask */
-+	__u64 mask;
-+#define I915_UFENCE_WAIT_U8     0xffu
-+#define I915_UFENCE_WAIT_U16    0xffffu
-+#define I915_UFENCE_WAIT_U32    0xfffffffful
-+#define I915_UFENCE_WAIT_U64    0xffffffffffffffffull
-+
-+	/** Timeout */
-+	__s64 timeout;
-+};
-diff --git a/Documentation/gpu/rfc/i915_vm_bind.rst b/Documentation/gpu/rfc/i915_vm_bind.rst
-index dbc35262a554..dc843e32a1cd 100644
---- a/Documentation/gpu/rfc/i915_vm_bind.rst
-+++ b/Documentation/gpu/rfc/i915_vm_bind.rst
-@@ -117,6 +117,12 @@ VM_BIND interface can be used to map system memory directly (without gem BO
- abstraction) using the HMM interface.
- 
- 
-+UAPI
-+=====
-+Uapi definiton can be found here:
-+.. kernel-doc:: Documentation/gpu/rfc/i915_vm_bind.h
-+
-+
- Links:
- ======
- - Reference WIP VM_BIND implementation can be found here.
--- 
-2.21.0.rc0.32.g243a4c7e27
+Series: drm/i915/gvt: Fix cached atomics setting for Windows VM (rev2)
+URL   : https://patchwork.freedesktop.org/series/92809/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10454 -> Patchwork_20779
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20779 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [INCOMPLETE][4] -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+
+
+Participating hosts (37 -> 34)
+------------------------------
+
+  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10454 -> Patchwork_20779
+
+  CI-20190529: 20190529
+  CI_DRM_10454: 224f5b80ba7d0caf6c4899e30d13cabde980bf49 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20779: da0d214e746ec4efcdd16e668a8029d168cdc322 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+da0d214e746e drm/i915/gvt: Fix cached atomics setting for Windows VM
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html
+
+--===============5707774302155880196==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gvt: Fix cached atomics setting for Windows VM (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92809/">https://patchwork.freedesktop.org/series/92809/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10454 -&gt; Patchwork_20779</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20779 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10454 -&gt; Patchwork_20779</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10454: 224f5b80ba7d0caf6c4899e30d13cabde980bf49 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20779: da0d214e746ec4efcdd16e668a8029d168cdc322 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>da0d214e746e drm/i915/gvt: Fix cached atomics setting for Windows VM</p>
+
+</body>
+</html>
+
+--===============5707774302155880196==--
