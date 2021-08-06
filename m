@@ -1,70 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B7C3E2F61
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 20:42:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC383E2F63
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 20:42:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477346EC0D;
-	Fri,  6 Aug 2021 18:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B96FA6E201;
+	Fri,  6 Aug 2021 18:42:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
- [IPv6:2607:f8b0:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4786EC09
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Aug 2021 18:41:59 +0000 (UTC)
-Received: by mail-ot1-x333.google.com with SMTP id
- 61-20020a9d0d430000b02903eabfc221a9so9996359oti.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 06 Aug 2021 11:41:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=8atLGqLu8Hqvv/SZSAMN2eH9CGQowt0kdxBJ7I2ZF6E=;
- b=eDxQabAbNE9a2+Kxer/XVIIGbUZeq4sNv9QRTWobDGmYxaAB7OnFE0dn0PrZ80koO6
- 6F1wLHjpnzoeNXdn4KHoC3iA2oCb5ZpvG3sBQIurNTLTrs8QcTVaJaMU9fZt/C/46pYY
- KPcl+SohtLiKEYwhj4f/EU4152FnQPe9uAzYA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=8atLGqLu8Hqvv/SZSAMN2eH9CGQowt0kdxBJ7I2ZF6E=;
- b=URn40R9FnN7S2tJWrQlDCwl/XSVDaDB/ujUJRZGGOlqUDpmXYCziEo19KDooDN4W3n
- SY0AA9oeEpWN3mqRxH17fb+Bb84rIG0D9nUXds5jeqt/7ZiRX1Ero3u5Xv8loVrm75tM
- l5voVWkPoSnlzQ4WIg2sdyYfsPb5Kpq662xNscpIaA0bWVBMpzkNV555fGRTzmhEdoUx
- 6vowWTypu1L9oqckR6wsmUdvdUTMo1gkU0V3/St0173A7phLLwlGokofLpG1oKTqgjOC
- 4GkFTLs8GNUEUcqBikB6cj6NAnP9g2zWvF3IlqUx6VWupm6BKM4O5xEQrPhAHK4n6Cpe
- M4hA==
-X-Gm-Message-State: AOAM5326aywt1KsU3b8nbYdUtRG1I0Oqfc9ZY3Z2RR5tf3Z7NcnEeuFh
- AGxlkdhkMkiv/NuF+WWmREcu+UUY8zCMy8DEQ1fD4g==
-X-Google-Smtp-Source: ABdhPJwaNdHMovNLPYbXgKqYUusF3P7mPKu6J0scXlCOdv15tRugLmYdT7R9nikw9/kGkyFtoTkgTPoztcgGPWwhfn4=
-X-Received: by 2002:a05:6830:2802:: with SMTP id
- w2mr8539791otu.303.1628275319027; 
- Fri, 06 Aug 2021 11:41:59 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 75A626E201;
+ Fri,  6 Aug 2021 18:42:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6D9C3A47EB;
+ Fri,  6 Aug 2021 18:42:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4126343057828518223=="
 MIME-Version: 1.0
-References: <20210805104705.862416-1-daniel.vetter@ffwll.ch>
- <20210805104705.862416-3-daniel.vetter@ffwll.ch>
- <CAF6AEGvkmZhcPWP58VnL1OXAeJ5tg7v13xkkiYBwkpBi1YiT4g@mail.gmail.com>
- <CAKMK7uG3gRNfYinM51UVAUckV9ZgN3mgRnJd8E9tERani9b1JQ@mail.gmail.com>
- <CAF6AEGuqxb5jEtpQi-aNvjSfPaq0gasH2TLZ+5O836ov9qw+3w@mail.gmail.com>
-In-Reply-To: <CAF6AEGuqxb5jEtpQi-aNvjSfPaq0gasH2TLZ+5O836ov9qw+3w@mail.gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 6 Aug 2021 20:41:47 +0200
-Message-ID: <CAKMK7uH2v2x+=Ct-v-2RCVXez4MzjMvhh4yCs_f8HPvYa+DXcA@mail.gmail.com>
-To: Rob Clark <robdclark@gmail.com>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>, 
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Rob Clark <robdclark@chromium.org>, 
- Sean Paul <sean@poorly.run>, Sumit Semwal <sumit.semwal@linaro.org>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- freedreno <freedreno@lists.freedesktop.org>, 
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>, 
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-gfx] [PATCH v5 02/20] drm/msm: Fix drm/sched point of no
- return rules
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 06 Aug 2021 18:42:49 -0000
+Message-ID: <162827536944.27549.8238498526476653144@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210805163647.801064-1-matthew.d.roper@intel.com>
+In-Reply-To: <20210805163647.801064-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQmVn?=
+ =?utf-8?q?in_enabling_Xe=5FHP_SDV_and_DG2_platforms_=28rev10=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,170 +41,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 6, 2021 at 7:15 PM Rob Clark <robdclark@gmail.com> wrote:
->
-> On Fri, Aug 6, 2021 at 9:42 AM Daniel Vetter <daniel.vetter@ffwll.ch> wro=
-te:
-> >
-> > On Fri, Aug 6, 2021 at 12:58 AM Rob Clark <robdclark@gmail.com> wrote:
-> > >
-> > > On Thu, Aug 5, 2021 at 3:47 AM Daniel Vetter <daniel.vetter@ffwll.ch>=
- wrote:
-> > > >
-> > > > Originally drm_sched_job_init was the point of no return, after whi=
-ch
-> > > > drivers must submit a job. I've split that up, which allows us to f=
-ix
-> > > > this issue pretty easily.
-> > > >
-> > > > Only thing we have to take care of is to not skip to error paths af=
-ter
-> > > > that. Other drivers do this the same for out-fence and similar thin=
-gs.
-> > > >
-> > > > Fixes: 1d8a5ca436ee ("drm/msm: Conversion to drm scheduler")
-> > > > Cc: Rob Clark <robdclark@chromium.org>
-> > > > Cc: Rob Clark <robdclark@gmail.com>
-> > > > Cc: Sean Paul <sean@poorly.run>
-> > > > Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> > > > Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> > > > Cc: linux-arm-msm@vger.kernel.org
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Cc: freedreno@lists.freedesktop.org
-> > > > Cc: linux-media@vger.kernel.org
-> > > > Cc: linaro-mm-sig@lists.linaro.org
-> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/msm/msm_gem_submit.c | 15 +++++++--------
-> > > >  1 file changed, 7 insertions(+), 8 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm=
-/msm/msm_gem_submit.c
-> > > > index 6d6c44f0e1f3..d0ed4ddc509e 100644
-> > > > --- a/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > > +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-> > > > @@ -52,9 +52,6 @@ static struct msm_gem_submit *submit_create(struc=
-t drm_device *dev,
-> > > >                 return ERR_PTR(ret);
-> > > >         }
-> > > >
-> > > > -       /* FIXME: this is way too early */
-> > > > -       drm_sched_job_arm(&job->base);
-> > > > -
-> > > >         xa_init_flags(&submit->deps, XA_FLAGS_ALLOC);
-> > > >
-> > > >         kref_init(&submit->ref);
-> > > > @@ -883,6 +880,9 @@ int msm_ioctl_gem_submit(struct drm_device *dev=
-, void *data,
-> > > >
-> > > >         submit->user_fence =3D dma_fence_get(&submit->base.s_fence-=
->finished);
-> > > >
-> > > > +       /* point of no return, we _have_ to submit no matter what *=
-/
-> > > > +       drm_sched_job_arm(&submit->base);
-> > > > +
-> > > >         /*
-> > > >          * Allocate an id which can be used by WAIT_FENCE ioctl to =
-map back
-> > > >          * to the underlying fence.
-> > > > @@ -892,17 +892,16 @@ int msm_ioctl_gem_submit(struct drm_device *d=
-ev, void *data,
-> > > >         if (submit->fence_id < 0) {
-> > > >                 ret =3D submit->fence_id =3D 0;
-> > > >                 submit->fence_id =3D 0;
-> > > > -               goto out;
-> > > >         }
-> > > >
-> > > > -       if (args->flags & MSM_SUBMIT_FENCE_FD_OUT) {
-> > > > +       if (ret =3D=3D 0 && args->flags & MSM_SUBMIT_FENCE_FD_OUT) =
-{
-> > > >                 struct sync_file *sync_file =3D sync_file_create(su=
-bmit->user_fence);
-> > > >                 if (!sync_file) {
-> > > >                         ret =3D -ENOMEM;
-> > > > -                       goto out;
-> > > > +               } else {
-> > > > +                       fd_install(out_fence_fd, sync_file->file);
-> > > > +                       args->fence_fd =3D out_fence_fd;
-> > > >                 }
-> > > > -               fd_install(out_fence_fd, sync_file->file);
-> > > > -               args->fence_fd =3D out_fence_fd;
-> > >
-> > > I wonder if instead we should (approximately) undo "drm/msm/submit:
-> > > Simplify out-fence-fd handling" so that the point that it could fail
-> > > is moved up ahead of the drm_sched_job_arm()?
-> >
-> > Hm yeah. Up to you how you want to paint this shed, I think either is f=
-ine.
-> >
-> > > Also, does the dma_fence_get() work before drm_sched_job_arm()?  From
-> > > a quick look, it looks like it won't, but I'm still playing catchup
-> > > and haven't had a chance to look at your entire series.  If it doesn'=
-t
-> > > work before drm_sched_job_arm(), then there is really no way to
-> > > prevent a error path between the fence-init and job-submit.
-> >
-> > Yes. I thought I've checked that I put the _arm() in the right spot,
-> > but I guess I screwed up and you need the fence before the point where
-> > I've put the job_arm()? And yes the error path cannot be avoided for
-> > out-fences, that's what I tried to explain in the commit message.
-> >
-> > > But, prior to your series, wouldn't a failure after
-> > > drm_sched_job_init() but before the job is submitted just burn a
-> > > fence-id, and otherwise carry on it's merry way?
-> >
-> > Maybe? I'm not sure whether the scheduler gets confused about the gap
-> > and freak out abou that. I'm fairly new to that code and learning
-> > (which is part why I'm working on it). Since you look up in
-> > fences/syncobj after job_init() it should be pretty easy to whip up a
-> > testcase and see what happens. Also as long as nothing fails you won't
-> > see an issue, that's for sure.
->
-> fair.. I'll try to come up with a test case.. pre-scheduler-conversion
-> it wasn't a problem to fail after the fence seqno was allocated (well,
-> I guess you might have problems if you had 2^31 failures in a row)
+--===============4126343057828518223==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah one thing drm/sched forces you to do is have a very clear notion
-about the point of no return in your submit ioctl. Which I think is a
-Very Good Thing, at least looking at i915 execbuf where the point of
-no return is a multi-stage thing with such interesting intermediate
-points like "we submit the ruquest but without actually running the
-batchbuffer". The downside is that the submit ioctl isn't perfectly
-transaction anymore, but I don't think that matters for tha tail
-stuff, which is generally just some out-fence installing. That
-generally never fails.
--Daniel
+== Series Details ==
 
->
-> BR,
-> -R
->
-> > -Daniel
-> >
-> > > BR,
-> > > -R
-> > >
-> > > >         }
-> > > >
-> > > >         submit_attach_object_fences(submit);
-> > > > --
-> > > > 2.32.0
-> > > >
-> >
-> >
-> >
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+Series: Begin enabling Xe_HP SDV and DG2 platforms (rev10)
+URL   : https://patchwork.freedesktop.org/series/92135/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10457 -> Patchwork_20781
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20781 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [FAIL][1] ([i915#1888]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10457/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          [DMESG-FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10457/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
 
 
+Participating hosts (37 -> 34)
+------------------------------
 
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10457 -> Patchwork_20781
+
+  CI-20190529: 20190529
+  CI_DRM_10457: 7700f858b68060307b0a7d94377a5d8f64000e5d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6162: 2f32b9e0da5f1ac9529318dd5b836c8cf4d3c441 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20781: c5300668b502fff59ac563d2a7b22f2341bd8c95 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c5300668b502 drm/i915/dg2: Configure PCON in DP pre-enable path
+23befa04925d drm/i915/dg2: Maintain backward-compatible nested batch behavior
+8c7ca653ac33 drm/i915/dg2: Add new LRI reg offsets
+8db8e3b6bca0 drm/i915/xehpsdv: Read correct RP_STATE_CAP register
+9793162b05a6 drm/i915/xehpsdv: factor out function to read RP_STATE_CAP
+9dd72d6a97d4 drm/i915/xehpsdv: Add compute DSS type
+91cde6f62ffc drm/i915/dg2: Report INSTDONE_GEOM values in error state
+0ebc963f011d drm/i915/xehp: Loop over all gslices for INSTDONE processing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/index.html
+
+--===============4126343057828518223==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Begin enabling Xe_HP SDV and DG2 platforms (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92135/">https://patchwork.freedesktop.org/series/92135/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10457 -&gt; Patchwork_20781</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20781 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10457/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10457/fi-icl-u2/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20781/fi-icl-u2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10457 -&gt; Patchwork_20781</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10457: 7700f858b68060307b0a7d94377a5d8f64000e5d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6162: 2f32b9e0da5f1ac9529318dd5b836c8cf4d3c441 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20781: c5300668b502fff59ac563d2a7b22f2341bd8c95 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c5300668b502 drm/i915/dg2: Configure PCON in DP pre-enable path<br />
+23befa04925d drm/i915/dg2: Maintain backward-compatible nested batch behavior<br />
+8c7ca653ac33 drm/i915/dg2: Add new LRI reg offsets<br />
+8db8e3b6bca0 drm/i915/xehpsdv: Read correct RP_STATE_CAP register<br />
+9793162b05a6 drm/i915/xehpsdv: factor out function to read RP_STATE_CAP<br />
+9dd72d6a97d4 drm/i915/xehpsdv: Add compute DSS type<br />
+91cde6f62ffc drm/i915/dg2: Report INSTDONE_GEOM values in error state<br />
+0ebc963f011d drm/i915/xehp: Loop over all gslices for INSTDONE processing</p>
+
+</body>
+</html>
+
+--===============4126343057828518223==--
