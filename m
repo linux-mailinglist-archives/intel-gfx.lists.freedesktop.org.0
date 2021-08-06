@@ -1,41 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E953E22A9
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 06:35:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A4B3E22E0
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 07:30:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB4389C9A;
-	Fri,  6 Aug 2021 04:35:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED6BC6EA26;
+	Fri,  6 Aug 2021 05:30:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 349DA89819;
- Fri,  6 Aug 2021 04:35:42 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="278055110"
-X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="278055110"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5DD66EA26;
+ Fri,  6 Aug 2021 05:30:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="214041532"
+X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="214041532"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2021 21:35:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="481146089"
-Received: from debian-skl.sh.intel.com ([10.239.160.37])
- by fmsmga008.fm.intel.com with ESMTP; 05 Aug 2021 21:35:39 -0700
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gvt-dev@lists.freedesktop.org, stable@vger.kernel.org,
- "Xu, Terrence" <terrence.xu@intel.com>,
- "Bloomfield, Jon" <jon.bloomfield@intel.com>,
- "Ekstrand, Jason" <jason.ekstrand@intel.com>
-Date: Fri,  6 Aug 2021 12:40:56 +0800
-Message-Id: <20210806044056.648016-1-zhenyuw@linux.intel.com>
-X-Mailer: git-send-email 2.32.0.rc2
-In-Reply-To: <20210721062607.512307-1-zhenyuw@linux.intel.com>
-References: <20210721062607.512307-1-zhenyuw@linux.intel.com>
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2021 22:30:30 -0700
+X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="481274630"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 05 Aug 2021 22:30:30 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: daniel.vetter@intel.com, chris.p.wilson@intel.com,
+ thomas.hellstrom@intel.com, paulo.r.zanoni@intel.com
+Date: Thu,  5 Aug 2021 22:30:30 -0700
+Message-Id: <20210806053032.2462-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gvt: Fix cached atomics setting for
- Windows VM
+Subject: [Intel-gfx] [RFC 0/2] drm/doc/rfc: i915 VM_BIND feature design +
+ uapi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,51 +48,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've seen recent regression with host and windows VM running
-simultaneously that cause gpu hang or even crash. Finally bisect to
-commit 58586680ffad ("drm/i915: Disable atomics in L3 for gen9"),
-which seems cached atomics behavior difference caused regression
-issue.
+This is the i915 driver VM_BIND feature design RFC patch series along
+with the required uapi definition and description of intended use cases.
 
-This tries to add new scratch register handler and add those in mmio
-save/restore list for context switch. No gpu hang produced with this one.
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
-Cc: stable@vger.kernel.org # 5.12+
-Cc: "Xu, Terrence" <terrence.xu@intel.com>
-Cc: "Bloomfield, Jon" <jon.bloomfield@intel.com>
-Cc: "Ekstrand, Jason" <jason.ekstrand@intel.com>
-Fixes: 58586680ffad ("drm/i915: Disable atomics in L3 for gen9")
-Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
----
- drivers/gpu/drm/i915/gvt/handlers.c     | 1 +
- drivers/gpu/drm/i915/gvt/mmio_context.c | 2 ++
- 2 files changed, 3 insertions(+)
+Niranjana Vishwanathapura (2):
+  drm/doc/rfc: VM_BIND feature design document
+  drm/doc/rfc: VM_BIND uapi definition
 
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 06024d321a1a..cde0a477fb49 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -3149,6 +3149,7 @@ static int init_bdw_mmio_info(struct intel_gvt *gvt)
- 	MMIO_DFH(_MMIO(0xb100), D_BDW, F_CMD_ACCESS, NULL, NULL);
- 	MMIO_DFH(_MMIO(0xb10c), D_BDW, F_CMD_ACCESS, NULL, NULL);
- 	MMIO_D(_MMIO(0xb110), D_BDW);
-+	MMIO_D(GEN9_SCRATCH_LNCF1, D_BDW_PLUS);
- 
- 	MMIO_F(_MMIO(0x24d0), 48, F_CMD_ACCESS | F_CMD_WRITE_PATCH, 0, 0,
- 		D_BDW_PLUS, NULL, force_nonpriv_write);
-diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i915/gvt/mmio_context.c
-index b8ac80765461..f776c470914d 100644
---- a/drivers/gpu/drm/i915/gvt/mmio_context.c
-+++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
-@@ -105,6 +105,8 @@ static struct engine_mmio gen9_engine_mmio_list[] __cacheline_aligned = {
- 	{RCS0, COMMON_SLICE_CHICKEN2, 0xffff, true}, /* 0x7014 */
- 	{RCS0, GEN9_CS_DEBUG_MODE1, 0xffff, false}, /* 0x20ec */
- 	{RCS0, GEN8_L3SQCREG4, 0, false}, /* 0xb118 */
-+	{RCS0, GEN9_SCRATCH1, 0, false}, /* 0xb11c */
-+	{RCS0, GEN9_SCRATCH_LNCF1, 0, false}, /* 0xb008 */
- 	{RCS0, GEN7_HALF_SLICE_CHICKEN1, 0xffff, true}, /* 0xe100 */
- 	{RCS0, HALF_SLICE_CHICKEN2, 0xffff, true}, /* 0xe180 */
- 	{RCS0, HALF_SLICE_CHICKEN3, 0xffff, true}, /* 0xe184 */
+ Documentation/gpu/rfc/i915_vm_bind.h   | 113 +++++++++++++++++++++
+ Documentation/gpu/rfc/i915_vm_bind.rst | 132 +++++++++++++++++++++++++
+ Documentation/gpu/rfc/index.rst        |   4 +
+ 3 files changed, 249 insertions(+)
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.h
+ create mode 100644 Documentation/gpu/rfc/i915_vm_bind.rst
+
 -- 
-2.32.0.rc2
+2.21.0.rc0.32.g243a4c7e27
 
