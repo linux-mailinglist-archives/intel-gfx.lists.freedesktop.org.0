@@ -2,71 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51583E3044
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 22:19:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8843E305A
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 22:33:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 218AF6EC2F;
-	Fri,  6 Aug 2021 20:19:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E86E6E175;
+	Fri,  6 Aug 2021 20:33:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ED216EC2C
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Aug 2021 20:19:00 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id
- m28-20020a05600c3b1cb02902b5a8c22575so6701497wms.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 06 Aug 2021 13:19:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=JzNYMrnlk25kaqg3GJt4v8XpQcz3cvah8/eHxHOAK/c=;
- b=jEeWJ7CW+Kl28i/SOQgNmEI2KT/qFMPFChEsk/2Myvg6SmCnkGuj5YhwjT81eMvzsJ
- Dh5brCjb1blAVcaHnfFmbVeLUPoLUZpcWFbGnVTzztXWYSiHPQ7v2yzr6ldTzExptYvd
- YSAIdvmeUGcYmvccYIC1HYZvsfSzQtXHyHlm0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=JzNYMrnlk25kaqg3GJt4v8XpQcz3cvah8/eHxHOAK/c=;
- b=mePQzrx8U6WG6jYPkR6LJ7NtFcUXhrR1hSzgzy9PO7UcIvAyhzLOuEIjZKWYeIPndG
- VU7EKVnz5qbNXw/OtWAig+Shwg1FStorWJ74wkaISdCdab0988S17WD48y4PnGgZHzDX
- vyRns29ZWVvr8j1hQqfBCALXSO56SxRHGbArWGt0EHuBTNJ5gtiI2QXxiMqWDEx7ulNW
- +H4xBoKNn3oqURHpDq0BKynrb9EfYcSBc9xaSGlvaBqLuRh60qntDFRU06tWLKwn7pwE
- Fj2VE2jn8QJ5ICio28DCEWWrxKTlBCWqH4d05XLvCoQurCMZfPxl0tm375DZN0hNMfMj
- 2cbw==
-X-Gm-Message-State: AOAM533atPUqryoDyDp5TTcgyauMflR+ymA+xt9s290V5Izjk0HYszWj
- k8Zz7yZUyEsHwqmdSj6eR4zwOu0n9j7g5w==
-X-Google-Smtp-Source: ABdhPJx444izl8xf50OEfuubagJ0v+nHguK+/zcJR6dQ7UGhYt7upiwuRFnlDjRZk32suzg5QgyNeQ==
-X-Received: by 2002:a05:600c:1ca7:: with SMTP id
- k39mr4964799wms.162.1628281138700; 
- Fri, 06 Aug 2021 13:18:58 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id 19sm12888354wmj.48.2021.08.06.13.18.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Aug 2021 13:18:58 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Cc: DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jason Ekstrand <jason@jlekstrand.net>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Dave Airlie <airlied@redhat.com>
-Date: Fri,  6 Aug 2021 22:18:52 +0200
-Message-Id: <20210806201852.1345184-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.32.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6E02C6E175;
+ Fri,  6 Aug 2021 20:33:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 64DDBA7DFB;
+ Fri,  6 Aug 2021 20:33:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Release ctx->syncobj on final put,
- not on ctx close
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 06 Aug 2021 20:33:06 -0000
+Message-ID: <162828198638.27549.5812113177751508956@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210806201852.1345184-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210806201852.1345184-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Release_ctx-=3Esyncobj_on_final_put=2C_not_on_c?=
+ =?utf-8?q?tx_close?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,66 +42,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-gem context refcounting is another exercise in least locking design it
-seems, where most things get destroyed upon context closure (which can
-race with anything really). Only the actual memory allocation and the
-locks survive while holding a reference.
+== Series Details ==
 
-This tripped up Jason when reimplementing the single timeline feature
-in
+Series: drm/i915: Release ctx->syncobj on final put, not on ctx close
+URL   : https://patchwork.freedesktop.org/series/93470/
+State : warning
 
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+d1dd9f17231e drm/i915: Release ctx->syncobj on final put, not on ctx close
+-:17: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 00dae4d3d35d ("drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)")'
+#17: 
 commit 00dae4d3d35d4f526929633b76e00b0ab4d3970d
-Author: Jason Ekstrand <jason@jlekstrand.net>
-Date:   Thu Jul 8 10:48:12 2021 -0500
 
-    drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)
+-:62: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
 
-We could fix the bug by holding ctx->mutex, but it's cleaner to just
-make the context object actually invariant over its _entire_ lifetime.
+total: 1 errors, 1 warnings, 0 checks, 18 lines checked
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Fixes: 00dae4d3d35d ("drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)")
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 754b9b8d4981..93ba0197d70a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -940,6 +940,9 @@ void i915_gem_context_release(struct kref *ref)
- 	trace_i915_context_free(ctx);
- 	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
- 
-+	if (ctx->syncobj)
-+		drm_syncobj_put(ctx->syncobj);
-+
- 	mutex_destroy(&ctx->engines_mutex);
- 	mutex_destroy(&ctx->lut_mutex);
- 
-@@ -1159,9 +1162,6 @@ static void context_close(struct i915_gem_context *ctx)
- 	if (vm)
- 		i915_vm_close(vm);
- 
--	if (ctx->syncobj)
--		drm_syncobj_put(ctx->syncobj);
--
- 	ctx->file_priv = ERR_PTR(-EBADF);
- 
- 	/*
--- 
-2.32.0
 
