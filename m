@@ -1,35 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A54C3E22E4
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 07:31:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2E243E2311
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Aug 2021 07:50:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A699E6EA55;
-	Fri,  6 Aug 2021 05:30:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B7BC6EA50;
+	Fri,  6 Aug 2021 05:50:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84B446EA34;
- Fri,  6 Aug 2021 05:30:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E2166A0118;
- Fri,  6 Aug 2021 05:30:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5707774302155880196=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhenyu Wang" <zhenyuw@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 06 Aug 2021 05:30:34 -0000
-Message-ID: <162822783490.27548.17800982599632278500@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24E6B6EA50;
+ Fri,  6 Aug 2021 05:50:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10067"; a="278061765"
+X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="278061765"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2021 22:50:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,299,1620716400"; d="scan'208";a="481278257"
+Received: from unknown (HELO coxu-arch-shz) ([10.239.160.21])
+ by fmsmga008.fm.intel.com with ESMTP; 05 Aug 2021 22:50:22 -0700
+Date: Fri, 6 Aug 2021 13:50:20 +0800 (CST)
+From: Colin Xu <colin.xu@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ stable@vger.kernel.org, "Xu, Terrence" <terrence.xu@intel.com>, 
+ "Bloomfield, Jon" <jon.bloomfield@intel.com>, 
+ "Ekstrand, Jason" <jason.ekstrand@intel.com>
+In-Reply-To: <20210806044056.648016-1-zhenyuw@linux.intel.com>
+Message-ID: <facea19-1a97-9cd8-c4a5-cb5dc557ed4d@outlook.office365.com>
 References: <20210721062607.512307-1-zhenyuw@linux.intel.com>
-In-Reply-To: <20210721062607.512307-1-zhenyuw@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gvt=3A_Fix_cached_atomics_setting_for_Windows_VM_=28rev2?=
- =?utf-8?q?=29?=
+ <20210806044056.648016-1-zhenyuw@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; format=flowed; charset=US-ASCII
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gvt: Fix cached atomics setting
+ for Windows VM
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,164 +48,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5707774302155880196==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 6 Aug 2021, Zhenyu Wang wrote:
 
-== Series Details ==
+Thanks for the fix! Otherwise Windows VM is unusable with recent kernel.
 
-Series: drm/i915/gvt: Fix cached atomics setting for Windows VM (rev2)
-URL   : https://patchwork.freedesktop.org/series/92809/
-State : success
+Reviewed-by: Colin Xu <colin.xu@intel.com>
 
-== Summary ==
+> We've seen recent regression with host and windows VM running
+> simultaneously that cause gpu hang or even crash. Finally bisect to
+> commit 58586680ffad ("drm/i915: Disable atomics in L3 for gen9"),
+> which seems cached atomics behavior difference caused regression
+> issue.
+>
+> This tries to add new scratch register handler and add those in mmio
+> save/restore list for context switch. No gpu hang produced with this one.
+>
+> Cc: stable@vger.kernel.org # 5.12+
+> Cc: "Xu, Terrence" <terrence.xu@intel.com>
+> Cc: "Bloomfield, Jon" <jon.bloomfield@intel.com>
+> Cc: "Ekstrand, Jason" <jason.ekstrand@intel.com>
+> Fixes: 58586680ffad ("drm/i915: Disable atomics in L3 for gen9")
+> Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+> ---
+> drivers/gpu/drm/i915/gvt/handlers.c     | 1 +
+> drivers/gpu/drm/i915/gvt/mmio_context.c | 2 ++
+> 2 files changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+> index 06024d321a1a..cde0a477fb49 100644
+> --- a/drivers/gpu/drm/i915/gvt/handlers.c
+> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
+> @@ -3149,6 +3149,7 @@ static int init_bdw_mmio_info(struct intel_gvt *gvt)
+> 	MMIO_DFH(_MMIO(0xb100), D_BDW, F_CMD_ACCESS, NULL, NULL);
+> 	MMIO_DFH(_MMIO(0xb10c), D_BDW, F_CMD_ACCESS, NULL, NULL);
+> 	MMIO_D(_MMIO(0xb110), D_BDW);
+> +	MMIO_D(GEN9_SCRATCH_LNCF1, D_BDW_PLUS);
+>
+> 	MMIO_F(_MMIO(0x24d0), 48, F_CMD_ACCESS | F_CMD_WRITE_PATCH, 0, 0,
+> 		D_BDW_PLUS, NULL, force_nonpriv_write);
+> diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i915/gvt/mmio_context.c
+> index b8ac80765461..f776c470914d 100644
+> --- a/drivers/gpu/drm/i915/gvt/mmio_context.c
+> +++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
+> @@ -105,6 +105,8 @@ static struct engine_mmio gen9_engine_mmio_list[] __cacheline_aligned = {
+> 	{RCS0, COMMON_SLICE_CHICKEN2, 0xffff, true}, /* 0x7014 */
+> 	{RCS0, GEN9_CS_DEBUG_MODE1, 0xffff, false}, /* 0x20ec */
+> 	{RCS0, GEN8_L3SQCREG4, 0, false}, /* 0xb118 */
+> +	{RCS0, GEN9_SCRATCH1, 0, false}, /* 0xb11c */
+> +	{RCS0, GEN9_SCRATCH_LNCF1, 0, false}, /* 0xb008 */
+> 	{RCS0, GEN7_HALF_SLICE_CHICKEN1, 0xffff, true}, /* 0xe100 */
+> 	{RCS0, HALF_SLICE_CHICKEN2, 0xffff, true}, /* 0xe180 */
+> 	{RCS0, HALF_SLICE_CHICKEN3, 0xffff, true}, /* 0xe184 */
+> -- 
+> 2.32.0.rc2
+>
+>
 
-CI Bug Log - changes from CI_DRM_10454 -> Patchwork_20779
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20779 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         [INCOMPLETE][4] -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-
-
-Participating hosts (37 -> 34)
-------------------------------
-
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10454 -> Patchwork_20779
-
-  CI-20190529: 20190529
-  CI_DRM_10454: 224f5b80ba7d0caf6c4899e30d13cabde980bf49 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20779: da0d214e746ec4efcdd16e668a8029d168cdc322 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-da0d214e746e drm/i915/gvt: Fix cached atomics setting for Windows VM
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html
-
---===============5707774302155880196==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gvt: Fix cached atomics setting for Windows VM (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/92809/">https://patchwork.freedesktop.org/series/92809/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10454 -&gt; Patchwork_20779</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20779 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10454/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20779/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10454 -&gt; Patchwork_20779</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10454: 224f5b80ba7d0caf6c4899e30d13cabde980bf49 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6160: 4287344dd6a39d9036c5fb9a047a7d8f10bee981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20779: da0d214e746ec4efcdd16e668a8029d168cdc322 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>da0d214e746e drm/i915/gvt: Fix cached atomics setting for Windows VM</p>
-
-</body>
-</html>
-
---===============5707774302155880196==--
+--
+Best Regards,
+Colin Xu
