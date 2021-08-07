@@ -2,43 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3115A3E3384
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Aug 2021 07:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5743E46E2
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Aug 2021 15:47:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F0916E08C;
-	Sat,  7 Aug 2021 05:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6D3189BD4;
+	Mon,  9 Aug 2021 13:47:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB9D96E08C;
- Sat,  7 Aug 2021 05:02:24 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10068"; a="212623634"
-X-IronPort-AV: E=Sophos;i="5.84,301,1620716400"; d="scan'208";a="212623634"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2021 22:02:24 -0700
-X-IronPort-AV: E=Sophos;i="5.84,301,1620716400"; d="scan'208";a="482016359"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2021 22:02:23 -0700
-Date: Fri, 6 Aug 2021 22:02:22 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: John Harrison <john.c.harrison@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Message-ID: <20210807050222.GP1556418@mdroper-desk1.amr.corp.intel.com>
-References: <20210728192100.132425-1-matthew.brost@intel.com>
- <23d6e809-1d6e-ae35-1aee-e6f0c8c90419@intel.com>
- <CAKMK7uGt3xcquCAkoMNhF4=yVPQpVpWM7zKS8jPQ=wzha-VPfA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uGt3xcquCAkoMNhF4=yVPQpVpWM7zKS8jPQ=wzha-VPfA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable bonding on gen12+
- platforms
+Received: from mail-m17655.qiye.163.com (mail-m17655.qiye.163.com
+ [59.111.176.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9A1F6E02A;
+ Sat,  7 Aug 2021 08:52:44 +0000 (UTC)
+Received: from ubuntu.localdomain (unknown [36.152.145.182])
+ by mail-m17655.qiye.163.com (Hmail) with ESMTPA id 25623400B8;
+ Sat,  7 Aug 2021 16:52:42 +0800 (CST)
+From: zhouchuangao <zhouchuangao@vivo.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Matt Roper <matthew.d.roper@intel.com>, CQ Tang <cq.tang@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: zhouchuangao <zhouchuangao@vivo.com>
+Date: Sat,  7 Aug 2021 01:52:31 -0700
+Message-Id: <1628326354-96951-1-git-send-email-zhouchuangao@vivo.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+ kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRlDGR1WQ04eTxodHh5LGk
+ NLVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6M0k6HSo5Hj8MISo2SRJOED0D
+ SAowFDVVSlVKTUlDSElNSE1JQ0hOVTMWGhIXVQETFA4YEw4aFRwaFDsNEg0UVRgUFkVZV1kSC1lB
+ WUhNVUpOSVVKT05VSkNJWVdZCAFZQUlPTkM3Bg++
+X-HM-Tid: 0a7b1fd07d50da01kuws25623400b8
+X-Mailman-Approved-At: Mon, 09 Aug 2021 13:47:46 +0000
+Subject: [Intel-gfx] [PATCH] gpu/drm/i915: Remove duplicated include of
+ intel_region_lmem.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,61 +56,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 06, 2021 at 08:54:59PM +0200, Daniel Vetter wrote:
-> On Fri, Aug 6, 2021 at 8:25 PM John Harrison <john.c.harrison@intel.com> wrote:
-> > On 7/28/2021 12:21, Matthew Brost wrote:
-> > > Disable bonding on gen12+ platforms aside from ones already supported by
-> > > the i915 - TGL, RKL, and ADL-S.
-> > >
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++++++
-> > >   1 file changed, 7 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > index 05c3ee191710..9c3672bac0e2 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > > @@ -446,6 +446,13 @@ set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
-> > >       u16 idx, num_bonds;
-> > >       int err, n;
-> > >
-> > > +     if (GRAPHICS_VER(i915) >= 12 && !IS_TIGERLAKE(i915) &&
-> > > +         !IS_ROCKETLAKE(i915) && !IS_ALDERLAKE_S(i915)) {
-> > > +             drm_dbg(&i915->drm,
-> > > +                     "Bonding on gen12+ aside from TGL, RKL, and ADL_S not allowed\n");
-> > I would have said not supported rather than not allowed. Either way:
-> > Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
-> 
-> Either is fine with me.
-> 
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> 
+Duplicate include header file "intel_region_lmem.h"
+line 8: #include "intel_region_lmem.h"
+line 13: #include "intel_region_lmem.h"
 
-Applied to drm-intel-gt-next (with the suggested debug message wording
-tweak).  Thanks for the patch and reviews.
+Signed-off-by: zhouchuangao <zhouchuangao@vivo.com>
+---
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-
-Matt
-
-> >
-> > > +             return -ENODEV;
-> > > +     }
-> > > +
-> > >       if (get_user(idx, &ext->virtual_index))
-> > >               return -EFAULT;
-> > >
-> >
-> 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+index 58a3cf7..50d11a8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
++++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
+@@ -10,7 +10,6 @@
+ #include "gem/i915_gem_lmem.h"
+ #include "gem/i915_gem_region.h"
+ #include "gem/i915_gem_ttm.h"
+-#include "intel_region_lmem.h"
+ 
+ static int init_fake_lmem_bar(struct intel_memory_region *mem)
+ {
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.7.4
+
