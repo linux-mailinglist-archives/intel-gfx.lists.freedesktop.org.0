@@ -2,38 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296073E3C10
-	for <lists+intel-gfx@lfdr.de>; Sun,  8 Aug 2021 19:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A89533E3C28
+	for <lists+intel-gfx@lfdr.de>; Sun,  8 Aug 2021 20:26:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EF4D89AB3;
-	Sun,  8 Aug 2021 17:50:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A399F899A5;
+	Sun,  8 Aug 2021 18:26:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C36589A6D;
- Sun,  8 Aug 2021 17:50:09 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="275624401"
-X-IronPort-AV: E=Sophos;i="5.84,305,1620716400"; d="scan'208";a="275624401"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2021 10:50:08 -0700
-X-IronPort-AV: E=Sophos;i="5.84,305,1620716400"; d="scan'208";a="482935744"
-Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2021 10:50:07 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-gfx@lists.freedesktop.org>,
-	<dri-devel@lists.freedesktop.org>
-Date: Sun,  8 Aug 2021 11:07:57 -0700
-Message-Id: <20210808180757.81440-4-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20210808180757.81440-1-matthew.brost@intel.com>
-References: <20210808180757.81440-1-matthew.brost@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 73F768999E;
+ Sun,  8 Aug 2021 18:26:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 631F7A00FD;
+ Sun,  8 Aug 2021 18:26:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7879993361366242913=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/selftests: Add initial GuC
- selftest for scrubbing lost G2H
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sun, 08 Aug 2021 18:26:03 -0000
+Message-ID: <162844716337.11230.12020862329668659136@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210808180757.81440-1-matthew.brost@intel.com>
+In-Reply-To: <20210808180757.81440-1-matthew.brost@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ2xl?=
+ =?utf-8?q?an_up_some_CI_failures_for_GuC_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,272 +41,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While debugging an issue with full GT resets I went down a rabbit hole
-thinking the scrubbing of lost G2H wasn't working correctly. This proved
-to be incorrect as this was working just fine but this chase inspired me
-to write a selftest to prove that this works. This simple selftest
-injects errors dropping various G2H and then issues a full GT reset
-proving that the scrubbing of these G2H doesn't blow up.
+--===============7879993361366242913==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_context_types.h |   4 +
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  18 +++
- drivers/gpu/drm/i915/gt/uc/selftest_guc.c     | 126 ++++++++++++++++++
- .../drm/i915/selftests/i915_live_selftests.h  |   1 +
- .../i915/selftests/intel_scheduler_helpers.c  |  12 ++
- .../i915/selftests/intel_scheduler_helpers.h  |   2 +
- 6 files changed, 163 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/gt/uc/selftest_guc.c
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index e54351a170e2..fec5ff7ef168 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -198,6 +198,10 @@ struct intel_context {
- 	 */
- 	u8 guc_prio;
- 	u32 guc_prio_count[GUC_CLIENT_PRIORITY_NUM];
-+
-+	I915_SELFTEST_DECLARE(bool drop_schedule_enable);
-+	I915_SELFTEST_DECLARE(bool drop_schedule_disable);
-+	I915_SELFTEST_DECLARE(bool drop_deregister);
- };
- 
- #endif /* __INTEL_CONTEXT_TYPES__ */
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index cd8df078ca87..d13dc56bae43 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -2618,6 +2618,11 @@ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
- 
- 	trace_intel_context_deregister_done(ce);
- 
-+	if (I915_SELFTEST_ONLY(ce->drop_deregister)) {
-+		I915_SELFTEST_DECLARE(ce->drop_deregister = false;)
-+		return 0;
-+	}
-+
- 	if (context_wait_for_deregister_to_register(ce)) {
- 		struct intel_runtime_pm *runtime_pm =
- 			&ce->engine->gt->i915->runtime_pm;
-@@ -2672,10 +2677,19 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
- 	trace_intel_context_sched_done(ce);
- 
- 	if (context_pending_enable(ce)) {
-+		if (I915_SELFTEST_ONLY(ce->drop_schedule_enable)) {
-+			I915_SELFTEST_DECLARE(ce->drop_schedule_enable = false;)
-+			return 0;
-+		}
- 		clr_context_pending_enable(ce);
- 	} else if (context_pending_disable(ce)) {
- 		bool banned;
- 
-+		if (I915_SELFTEST_ONLY(ce->drop_schedule_disable)) {
-+			I915_SELFTEST_DECLARE(ce->drop_schedule_disable = false;)
-+			return 0;
-+		}
-+
- 		/*
- 		 * Unpin must be done before __guc_signal_context_fence,
- 		 * otherwise a race exists between the requests getting
-@@ -3047,3 +3061,7 @@ bool intel_guc_virtual_engine_has_heartbeat(const struct intel_engine_cs *ve)
- 
- 	return false;
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-+#include "selftest_guc.c"
-+#endif
-diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-new file mode 100644
-index 000000000000..46ca6554f65d
---- /dev/null
-+++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc.c
-@@ -0,0 +1,126 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright �� 2021 Intel Corporation
-+ */
-+
-+#include "selftests/intel_scheduler_helpers.h"
-+
-+static struct i915_request *nop_user_request(struct intel_context *ce,
-+					     struct i915_request *from)
-+{
-+	struct i915_request *rq;
-+	int ret;
-+
-+	rq = intel_context_create_request(ce);
-+	if (IS_ERR(rq))
-+		return rq;
-+
-+	if (from) {
-+		ret = i915_sw_fence_await_dma_fence(&rq->submit,
-+						    &from->fence, 0,
-+						    I915_FENCE_GFP);
-+		if (ret < 0) {
-+			i915_request_put(rq);
-+			return ERR_PTR(ret);
-+		}
-+	}
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+
-+	return rq;
-+}
-+
-+static int intel_guc_scrub_ctbs(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	int ret = 0;
-+	int i;
-+	struct i915_request *last[3] = {NULL, NULL, NULL}, *rq;
-+	intel_wakeref_t wakeref;
-+	struct intel_engine_cs *engine;
-+	struct intel_context *ce;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+	engine = intel_selftest_find_any_engine(gt);
-+
-+	/* Submit requests and inject errors forcing G2H to be dropped */
-+	for (i = 0; i < 3; ++i) {
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce)) {
-+			ret = PTR_ERR(ce);
-+			pr_err("Failed to create context, %d: %d\n", i, ret);
-+			goto err;
-+		}
-+
-+		switch(i) {
-+		case 0:
-+			ce->drop_schedule_enable = true;
-+			break;
-+		case 1:
-+			ce->drop_schedule_disable = true;
-+			break;
-+		case 2:
-+			ce->drop_deregister = true;
-+			break;
-+		}
-+
-+		rq = nop_user_request(ce, NULL);
-+		intel_context_put(ce);
-+
-+		if (IS_ERR(rq)) {
-+			ret = PTR_ERR(rq);
-+			pr_err("Failed to create request, %d: %d\n", i, ret);
-+			goto err;
-+		}
-+
-+		last[i] = rq;
-+	}
-+
-+	for (i = 0; i < 3; ++i) {
-+		ret = i915_request_wait(last[i], 0, HZ);
-+		if (ret < 0) {
-+			pr_err("Last request failed to complete: %d\n", ret);
-+			goto err;
-+		}
-+		i915_request_put(last[i]);
-+		last[i] = NULL;
-+	}
-+
-+	/* Force all H2G / G2H to be submitted / processed */
-+	intel_gt_retire_requests(gt);
-+	msleep(500);
-+
-+	/* Scrub missing G2H */
-+	intel_gt_handle_error(engine->gt, -1, 0, "selftest reset");
-+
-+	ret = intel_gt_wait_for_idle(gt, HZ);
-+	if (ret < 0) {
-+		pr_err("GT failed to idle: %d\n", ret);
-+		goto err;
-+	}
-+
-+err:
-+	for (i = 0; i < 3; ++i)
-+		if (last[i])
-+			i915_request_put(last[i]);
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+
-+	return ret;
-+}
-+
-+int intel_guc_live_selftests(struct drm_i915_private *i915)
-+{
-+	static const struct i915_subtest tests[] = {
-+		SUBTEST(intel_guc_scrub_ctbs),
-+	};
-+	struct intel_gt *gt = &i915->gt;
-+
-+	if (intel_gt_is_wedged(gt))
-+		return 0;
-+
-+	if (!intel_uc_uses_guc_submission(&gt->uc))
-+		return 0;
-+
-+	return intel_gt_live_subtests(tests, gt);
-+}
-diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-index cfa5c4165a4f..3cf6758931f9 100644
---- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-+++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-@@ -47,5 +47,6 @@ selftest(execlists, intel_execlists_live_selftests)
- selftest(ring_submission, intel_ring_submission_live_selftests)
- selftest(perf, i915_perf_live_selftests)
- selftest(slpc, intel_slpc_live_selftests)
-+selftest(guc, intel_guc_live_selftests)
- /* Here be dragons: keep last to run last! */
- selftest(late_gt_pm, intel_gt_pm_late_selftests)
-diff --git a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-index 4b328346b48a..310fb83c527e 100644
---- a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.c
-@@ -14,6 +14,18 @@
- #define REDUCED_PREEMPT		10
- #define WAIT_FOR_RESET_TIME	10000
- 
-+struct intel_engine_cs *intel_selftest_find_any_engine(struct intel_gt *gt)
-+{
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+
-+	for_each_engine(engine, gt, id)
-+		return engine;
-+
-+	pr_err("No valid engine found!\n");
-+	return NULL;
-+}
-+
- int intel_selftest_modify_policy(struct intel_engine_cs *engine,
- 				 struct intel_selftest_saved_policy *saved,
- 				 u32 modify_type)
-diff --git a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.h b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.h
-index 35c098601ac0..ae60bb507f45 100644
---- a/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.h
-+++ b/drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.h
-@@ -10,6 +10,7 @@
- 
- struct i915_request;
- struct intel_engine_cs;
-+struct intel_gt;
- 
- struct intel_selftest_saved_policy {
- 	u32 flags;
-@@ -23,6 +24,7 @@ enum selftest_scheduler_modify {
- 	SELFTEST_SCHEDULER_MODIFY_FAST_RESET,
- };
- 
-+struct intel_engine_cs *intel_selftest_find_any_engine(struct intel_gt *gt);
- int intel_selftest_modify_policy(struct intel_engine_cs *engine,
- 				 struct intel_selftest_saved_policy *saved,
- 				 enum selftest_scheduler_modify modify_type);
--- 
-2.28.0
+Series: Clean up some CI failures for GuC submission
+URL   : https://patchwork.freedesktop.org/series/93487/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10458 -> Patchwork_20785
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_10458 and Patchwork_20785:
+
+### New IGT tests (1) ###
+
+  * igt@i915_selftest@live@guc:
+    - Statuses : 31 pass(s)
+    - Exec time: [0.40, 4.86] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20785 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload:
+    - {fi-tgl-dsi}:       [DMESG-WARN][2] ([i915#1982] / [k.org#205379]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10458/fi-tgl-dsi/igt@i915_module_load@reload.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/fi-tgl-dsi/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [DMESG-FAIL][4] -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10458/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
+
+
+Participating hosts (37 -> 34)
+------------------------------
+
+  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10458 -> Patchwork_20785
+
+  CI-20190529: 20190529
+  CI_DRM_10458: 6841146b2648073c607c7e560176495c01b2ebae @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6162: 2f32b9e0da5f1ac9529318dd5b836c8cf4d3c441 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20785: 21bec627a0155077d0a0b30a7e0455d38827e00a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+21bec627a015 drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H
+4b762ba775a1 drm/i915/selftests: Fix memory corruption in live_lrc_isolation
+d416adfba5b9 drm/i915/guc: Fix several issues related to resets / request cancelation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/index.html
+
+--===============7879993361366242913==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Clean up some CI failures for GuC submission</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93487/">https://patchwork.freedesktop.org/series/93487/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10458 -&gt; Patchwork_20785</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_10458 and Patchwork_20785:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@i915_selftest@live@guc:<ul>
+<li>Statuses : 31 pass(s)</li>
+<li>Exec time: [0.40, 4.86] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20785 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_basic@cs-gfx:<ul>
+<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10458/fi-tgl-dsi/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/fi-tgl-dsi/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10458/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20785/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10458 -&gt; Patchwork_20785</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10458: 6841146b2648073c607c7e560176495c01b2ebae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6162: 2f32b9e0da5f1ac9529318dd5b836c8cf4d3c441 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20785: 21bec627a0155077d0a0b30a7e0455d38827e00a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>21bec627a015 drm/i915/selftests: Add initial GuC selftest for scrubbing lost G2H<br />
+4b762ba775a1 drm/i915/selftests: Fix memory corruption in live_lrc_isolation<br />
+d416adfba5b9 drm/i915/guc: Fix several issues related to resets / request cancelation</p>
+
+</body>
+</html>
+
+--===============7879993361366242913==--
