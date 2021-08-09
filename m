@@ -2,40 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B5A3E4867
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Aug 2021 17:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE65F3E488A
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Aug 2021 17:17:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27E7D89935;
-	Mon,  9 Aug 2021 15:12:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91A7789BF0;
+	Mon,  9 Aug 2021 15:17:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AAF289935
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Aug 2021 15:12:46 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="300300469"
-X-IronPort-AV: E=Sophos;i="5.84,307,1620716400"; d="scan'208";a="300300469"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2021 08:12:44 -0700
-X-IronPort-AV: E=Sophos;i="5.84,307,1620716400"; d="scan'208";a="444502489"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2021 08:12:43 -0700
-Date: Mon, 9 Aug 2021 18:12:40 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Lakshminarayana Vudum <lakshminarayana.vudum@intel.com>
-Message-ID: <20210809151240.GA2436995@ideak-desk.fi.intel.com>
-References: <20210802133551.1904964-1-imre.deak@intel.com>
- <162852056417.2459.1218814413071743418@emeril.freedesktop.org>
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9DAD89BF0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Aug 2021 15:17:38 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ h24-20020a1ccc180000b029022e0571d1a0so254398wmb.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 09 Aug 2021 08:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=WvBREfQvklY4SqI6rltMORJU9tsY9gen7Kqd1tD0xJY=;
+ b=M5x7LNi2dp2KTikkX8NE+Lioiif8EcwMhTB3ayxX68Z1vLaz42205vamWBs2lMFLCF
+ Hv5s07y8QRyVjeEl2HkLct+svlqxm7HSGng3XZ69NMYHM7CEsZWZ+g6CjlsivbnxTMJ/
+ ShVK92D3PW4hwT1wYGky+skzF2E5O8upJB/ko=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=WvBREfQvklY4SqI6rltMORJU9tsY9gen7Kqd1tD0xJY=;
+ b=X1sLfJ69JYkgXe34gdNiT7oAv6Y1VolL4fpi/OWKRjki01xGknGQfx+Oa3qOWeLMwS
+ XPf2PmRwU3snOtXMcSYFrA/tG53B+XZnJJtJGXQL94IUoTvV3c6WWnAIDvD8gNtzdayj
+ UAIyrzpXjOTz+52zRfxUILF/c0LZ1Uz85q2sxExRbbxv5fnjD0xQ9uhm94F8tmkjpghx
+ lFk5Wyw8uo6tZ26Y1dXTAXHtbZIXFmc/MEO1R+Hogx1sQsrZxVddWv/67FqkLLFOvfFx
+ +14r8Yg2Un0/GF3ndVfnKr3TaR/TBc2TfNf7yozmGxYHE+Ug24Xk/DcnsiZIhzvFsOvN
+ ffZw==
+X-Gm-Message-State: AOAM5319mF2VKCI+wnYXamKhDmJvpmY8FUQ4QX933GAeg9zn0iJTzKw8
+ QJ+Y7PPftiqvFrLfrI5mPY70nw==
+X-Google-Smtp-Source: ABdhPJwsQJxw8v/vWBhwlo/vP9FMN8hUzLPrUtCQN55fLkc5a6dxPKMazF5cL5TSYO8Lw5jycnRGPw==
+X-Received: by 2002:a1c:80c4:: with SMTP id b187mr12633190wmd.61.1628522257148; 
+ Mon, 09 Aug 2021 08:17:37 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id t23sm22146346wmi.32.2021.08.09.08.17.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 09 Aug 2021 08:17:36 -0700 (PDT)
+Date: Mon, 9 Aug 2021 17:17:34 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <YRFHDuw1OjuTUxh0@phenom.ffwll.local>
+References: <20210803222943.27686-1-matthew.brost@intel.com>
+ <20210803222943.27686-17-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <162852056417.2459.1218814413071743418@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZmJk?=
- =?utf-8?q?ev/efifb=3A_Release_PCI_device=27s_runtime_PM_ref_during_FB_des?=
- =?utf-8?q?troy_=28rev2=29?=
+In-Reply-To: <20210803222943.27686-17-matthew.brost@intel.com>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Subject: Re: [Intel-gfx] [PATCH 16/46] drm/i915/guc: Implement GuC
+ parent-child context pin / unpin functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,258 +72,842 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lakshmi,
+On Tue, Aug 03, 2021 at 03:29:13PM -0700, Matthew Brost wrote:
+> Implement GuC parent-child context pin / unpin functions in which in any
+> contexts in the relationship are pinned all the contexts are pinned. The
+> parent owns most of the pinning / unpinning process and the children
+> direct any pins / unpins to the parent.
+> 
+> Patch implements a number of unused functions that will be connected
+> later in the series.
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_context.c       | 187 ++++++++++++++++--
+>  drivers/gpu/drm/i915/gt/intel_context.h       |  43 +---
+>  drivers/gpu/drm/i915/gt/intel_context_types.h |   4 +-
+>  .../drm/i915/gt/intel_execlists_submission.c  |  25 ++-
+>  drivers/gpu/drm/i915/gt/intel_lrc.c           |  26 +--
+>  drivers/gpu/drm/i915/gt/intel_lrc.h           |   6 +-
+>  .../gpu/drm/i915/gt/intel_ring_submission.c   |   5 +-
+>  drivers/gpu/drm/i915/gt/mock_engine.c         |   4 +-
+>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 183 +++++++++++++++--
+>  9 files changed, 371 insertions(+), 112 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 8cb92b10b547..bb4c14656067 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -158,8 +158,8 @@ static void __ring_retire(struct intel_ring *ring)
+>  	intel_ring_unpin(ring);
+>  }
+>  
+> -static int intel_context_pre_pin(struct intel_context *ce,
+> -				 struct i915_gem_ww_ctx *ww)
+> +static int __intel_context_pre_pin(struct intel_context *ce,
+> +				   struct i915_gem_ww_ctx *ww)
+>  {
+>  	int err;
+>  
+> @@ -190,7 +190,7 @@ static int intel_context_pre_pin(struct intel_context *ce,
+>  	return err;
+>  }
+>  
+> -static void intel_context_post_unpin(struct intel_context *ce)
+> +static void __intel_context_post_unpin(struct intel_context *ce)
+>  {
+>  	if (ce->state)
+>  		__context_unpin_state(ce->state);
+> @@ -199,13 +199,85 @@ static void intel_context_post_unpin(struct intel_context *ce)
+>  	__ring_retire(ce->ring);
+>  }
+>  
+> -int __intel_context_do_pin_ww(struct intel_context *ce,
+> -			      struct i915_gem_ww_ctx *ww)
+> +static int intel_context_pre_pin(struct intel_context *ce,
+> +				 struct i915_gem_ww_ctx *ww)
+>  {
+> -	bool handoff = false;
+> -	void *vaddr;
+> +	struct intel_context *child;
+> +	int err, i = 0;
+> +
+> +	GEM_BUG_ON(intel_context_is_child(ce));
+> +
+> +	for_each_child(ce, child) {
+> +		err = __intel_context_pre_pin(child, ww);
+> +		if (unlikely(err))
+> +			goto unwind;
+> +		++i;
+> +	}
+> +
+> +	err = __intel_context_pre_pin(ce, ww);
+> +	if (unlikely(err))
+> +		goto unwind;
+> +
+> +	return 0;
+> +
+> +unwind:
+> +	for_each_child(ce, child) {
+> +		if (!i--)
+> +			break;
+> +		__intel_context_post_unpin(ce);
+> +	}
+> +
+> +	return err;
+> +}
+> +
+> +static void intel_context_post_unpin(struct intel_context *ce)
+> +{
+> +	struct intel_context *child;
+> +
+> +	GEM_BUG_ON(intel_context_is_child(ce));
+> +
+> +	for_each_child(ce, child)
+> +		__intel_context_post_unpin(child);
+> +
+> +	__intel_context_post_unpin(ce);
+> +}
+> +
+> +static int __do_ww_lock(struct intel_context *ce,
+> +			struct i915_gem_ww_ctx *ww)
+> +{
+> +	int err = i915_gem_object_lock(ce->timeline->hwsp_ggtt->obj, ww);
+> +
+> +	if (!err && ce->ring->vma->obj)
+> +		err = i915_gem_object_lock(ce->ring->vma->obj, ww);
+> +	if (!err && ce->state)
+> +		err = i915_gem_object_lock(ce->state->obj, ww);
+> +
+> +	return err;
+> +}
+> +
+> +static int do_ww_lock(struct intel_context *ce,
+> +		      struct i915_gem_ww_ctx *ww)
+> +{
+> +	struct intel_context *child;
+>  	int err = 0;
+>  
+> +	GEM_BUG_ON(intel_context_is_child(ce));
+> +
+> +	for_each_child(ce, child) {
+> +		err = __do_ww_lock(child, ww);
+> +		if (unlikely(err))
+> +			return err;
+> +	}
+> +
+> +	return __do_ww_lock(ce, ww);
+> +}
+> +
+> +static int __intel_context_do_pin_ww(struct intel_context *ce,
+> +				     struct i915_gem_ww_ctx *ww)
+> +{
+> +	bool handoff = false;
+> +	int err;
+> +
+>  	if (unlikely(!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))) {
+>  		err = intel_context_alloc_state(ce);
+>  		if (err)
+> @@ -217,14 +289,11 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+>  	 * refcount for __intel_context_active(), which prevent a lock
+>  	 * inversion of ce->pin_mutex vs dma_resv_lock().
+>  	 */
+> +	err = do_ww_lock(ce, ww);
+> +	if (err)
+> +		return err;
+>  
+> -	err = i915_gem_object_lock(ce->timeline->hwsp_ggtt->obj, ww);
+> -	if (!err && ce->ring->vma->obj)
+> -		err = i915_gem_object_lock(ce->ring->vma->obj, ww);
+> -	if (!err && ce->state)
+> -		err = i915_gem_object_lock(ce->state->obj, ww);
+> -	if (!err)
+> -		err = intel_context_pre_pin(ce, ww);
+> +	err = intel_context_pre_pin(ce, ww);
+>  	if (err)
+>  		return err;
+>  
+> @@ -232,7 +301,7 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+>  	if (err)
+>  		goto err_ctx_unpin;
+>  
+> -	err = ce->ops->pre_pin(ce, ww, &vaddr);
+> +	err = ce->ops->pre_pin(ce, ww);
+>  	if (err)
+>  		goto err_release;
+>  
+> @@ -250,7 +319,7 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+>  		if (unlikely(err))
+>  			goto err_unlock;
+>  
+> -		err = ce->ops->pin(ce, vaddr);
+> +		err = ce->ops->pin(ce);
+>  		if (err) {
+>  			intel_context_active_release(ce);
+>  			goto err_unlock;
+> @@ -290,7 +359,7 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
+>  	return err;
+>  }
+>  
+> -int __intel_context_do_pin(struct intel_context *ce)
+> +static int __intel_context_do_pin(struct intel_context *ce)
+>  {
+>  	struct i915_gem_ww_ctx ww;
+>  	int err;
+> @@ -337,7 +406,7 @@ static void __intel_context_retire(struct i915_active *active)
+>  		 intel_context_get_avg_runtime_ns(ce));
+>  
+>  	set_bit(CONTEXT_VALID_BIT, &ce->flags);
+> -	intel_context_post_unpin(ce);
+> +	__intel_context_post_unpin(ce);
+>  	intel_context_put(ce);
+>  }
+>  
+> @@ -562,6 +631,88 @@ void intel_context_bind_parent_child(struct intel_context *parent,
+>  	child->parent = parent;
+>  }
+>  
+> +static inline int ____intel_context_pin(struct intel_context *ce)
+> +{
+> +	if (likely(intel_context_pin_if_active(ce)))
+> +		return 0;
+> +
+> +	return __intel_context_do_pin(ce);
+> +}
+> +
+> +static inline int __intel_context_pin_ww(struct intel_context *ce,
+> +					 struct i915_gem_ww_ctx *ww)
+> +{
+> +	if (likely(intel_context_pin_if_active(ce)))
+> +		return 0;
+> +
+> +	return __intel_context_do_pin_ww(ce, ww);
+> +}
+> +
+> +static inline void __intel_context_unpin(struct intel_context *ce)
+> +{
+> +	if (!ce->ops->sched_disable) {
+> +		__intel_context_do_unpin(ce, 1);
+> +	} else {
+> +		/*
+> +		 * Move ownership of this pin to the scheduling disable which is
+> +		 * an async operation. When that operation completes the above
+> +		 * intel_context_sched_disable_unpin is called potentially
+> +		 * unpinning the context.
+> +		 */
+> +		while (!atomic_add_unless(&ce->pin_count, -1, 1)) {
+> +			if (atomic_cmpxchg(&ce->pin_count, 1, 2) == 1) {
 
-On Mon, Aug 09, 2021 at 02:49:24PM +0000, Patchwork wrote:
-> [...] 
-> #### Possible regressions ####
-> 
->   * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a:
->     - fi-rkl-11600:       [PASS][1] -> [SKIP][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-rkl-11600/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-a.html
+Uh man lockless algorithms.
 
-The skip is due to the monitor disconnecting itself at:
-<7>[  110.708337] [IGT] kms_force_connector_basic: exiting, ret=0
-...
-<7>[  110.750522] i915 0000:00:02.0: [drm:gen8_de_irq_handler [i915]] hotplug event received, stat 0x00020000, dig 0x000000a0, pins 0x00000020, long 0x00000020
-...
-<7>[  110.750915] [drm:intel_encoder_hotplug [i915]] [CONNECTOR:185:HDMI-A-1] status updated from connected to disconnected (epoch counter 15->16)
+Unless this comes:
+- with essentially an academic looking paper that describes the abstract
+  model of the lockless algorithm and proves it against the linux kernel
+  meory model.
 
-and only re-appearing at:
+- lockless stuff generally needs barriers, and those barriers must be all
+  documented. This means a) a comment next to each barrier in the code b)
+  pointing to its counterparty c) with the overall design also explained
+  in the kerneldoc for those datastructres.
 
-<7>[  110.892384] [IGT] kms_pipe_crc_basic: starting subtest compare-crc-sanitycheck-pipe-A
-<7>[  110.892657] [IGT] kms_pipe_crc_basic: exiting, ret=77
-...
-<7>[  110.948844] i915 0000:00:02.0: [drm:gen8_de_irq_handler [i915]] hotplug event received, stat 0x00020000, dig 0x000000a0, pins 0x00000020, long 0x00000020
-...
-<7>[  110.969382] [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:185:HDMI-A-1] status updated from disconnected to connected
+  If you don't know where your barriers are, see above point about "it
+  should look more like an academic paper in the commit message"
 
-Possibly the monitor entering/exiting some power saving state when IGT doesn't
-expect this. The patch only affects runtime PM, re-enabling the runtime suspend
-functionality, but the first runtime suspend happens only at:
+- hard perf data about how this is absolutely required, based on a
+  real-world use-case (which then sometimes justifies a microbenchmark
+  metric for the details, but it always needs to be real-world based). And
+  also a throughrough explainer how the perf issue isn't fixable through
+  better design. If that's not doable, just protect the state machine with
+  a big dumb lock and move on.
 
-<7>[  122.366611] i915 0000:00:02.0: [drm:intel_runtime_suspend [i915]] Device suspended
+- Also, because the current code is in such bad shape wrt lockless
+  algorithms and premature optimizations: Overall complexity should go
+  down (it's way too high right now), so pay down your new lockless trick
+  by removing one of the existing ones that we only have because we can.
 
-so I can't see how the changes are related to the skip.
+Yes this is steep, but we're way out in the woods here and need to smoehow
+get back.
+-Daniel
 
-> Known issues
-> ------------
+> +				ce->ops->sched_disable(ce);
+> +				break;
+> +			}
+> +		}
+> +	}
+> +}
+> +
+> +/*
+> + * FIXME: This is ugly, these branches are only needed for parallel contexts in
+> + * GuC submission. Basically the idea is if any of the contexts, that are
+> + * configured for parallel submission, are pinned all the contexts need to be
+> + * pinned in order to register these contexts with the GuC. We are adding the
+> + * layer here while it should probably be pushed to the backend via a vfunc. But
+> + * since we already have ce->pin + a layer atop it is confusing. Definitely
+> + * needs a bit of rework how to properly layer / structure this code path. What
+> + * is in place works but is not ideal.
+> + */
+> +int intel_context_pin(struct intel_context *ce)
+> +{
+> +	if (intel_context_is_child(ce)) {
+> +		if (!atomic_fetch_add(1, &ce->pin_count))
+> +			return ____intel_context_pin(ce->parent);
+> +		else
+> +			return 0;
+> +	} else {
+> +		return ____intel_context_pin(ce);
+> +	}
+> +}
+> +
+> +int intel_context_pin_ww(struct intel_context *ce,
+> +			 struct i915_gem_ww_ctx *ww)
+> +{
+> +	if (intel_context_is_child(ce)) {
+> +		if (!atomic_fetch_add(1, &ce->pin_count))
+> +			return __intel_context_pin_ww(ce->parent, ww);
+> +		else
+> +			return 0;
+> +	} else {
+> +		return __intel_context_pin_ww(ce, ww);
+> +	}
+> +}
+> +
+> +void intel_context_unpin(struct intel_context *ce)
+> +{
+> +	if (intel_context_is_child(ce)) {
+> +		if (atomic_fetch_add(-1, &ce->pin_count) == 1)
+> +			__intel_context_unpin(ce->parent);
+> +	} else {
+> +		__intel_context_unpin(ce);
+> +	}
+> +}
+> +
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>  #include "selftest_context.c"
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index ad6ce5ac4824..c208691fc87d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -110,31 +110,15 @@ static inline void intel_context_unlock_pinned(struct intel_context *ce)
+>  	mutex_unlock(&ce->pin_mutex);
+>  }
+>  
+> -int __intel_context_do_pin(struct intel_context *ce);
+> -int __intel_context_do_pin_ww(struct intel_context *ce,
+> -			      struct i915_gem_ww_ctx *ww);
+> -
+>  static inline bool intel_context_pin_if_active(struct intel_context *ce)
+>  {
+>  	return atomic_inc_not_zero(&ce->pin_count);
+>  }
+>  
+> -static inline int intel_context_pin(struct intel_context *ce)
+> -{
+> -	if (likely(intel_context_pin_if_active(ce)))
+> -		return 0;
+> -
+> -	return __intel_context_do_pin(ce);
+> -}
+> -
+> -static inline int intel_context_pin_ww(struct intel_context *ce,
+> -				       struct i915_gem_ww_ctx *ww)
+> -{
+> -	if (likely(intel_context_pin_if_active(ce)))
+> -		return 0;
+> +int intel_context_pin(struct intel_context *ce);
+>  
+> -	return __intel_context_do_pin_ww(ce, ww);
+> -}
+> +int intel_context_pin_ww(struct intel_context *ce,
+> +			 struct i915_gem_ww_ctx *ww);
+>  
+>  static inline void __intel_context_pin(struct intel_context *ce)
+>  {
+> @@ -146,28 +130,11 @@ void __intel_context_do_unpin(struct intel_context *ce, int sub);
+>  
+>  static inline void intel_context_sched_disable_unpin(struct intel_context *ce)
+>  {
+> +	GEM_BUG_ON(intel_context_is_child(ce));
+>  	__intel_context_do_unpin(ce, 2);
+>  }
+>  
+> -static inline void intel_context_unpin(struct intel_context *ce)
+> -{
+> -	if (!ce->ops->sched_disable) {
+> -		__intel_context_do_unpin(ce, 1);
+> -	} else {
+> -		/*
+> -		 * Move ownership of this pin to the scheduling disable which is
+> -		 * an async operation. When that operation completes the above
+> -		 * intel_context_sched_disable_unpin is called potentially
+> -		 * unpinning the context.
+> -		 */
+> -		while (!atomic_add_unless(&ce->pin_count, -1, 1)) {
+> -			if (atomic_cmpxchg(&ce->pin_count, 1, 2) == 1) {
+> -				ce->ops->sched_disable(ce);
+> -				break;
+> -			}
+> -		}
+> -	}
+> -}
+> +void intel_context_unpin(struct intel_context *ce);
+>  
+>  void intel_context_enter_engine(struct intel_context *ce);
+>  void intel_context_exit_engine(struct intel_context *ce);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index 66b22b370a72..eb82be15b7a2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -39,8 +39,8 @@ struct intel_context_ops {
+>  
+>  	void (*ban)(struct intel_context *ce, struct i915_request *rq);
+>  
+> -	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
+> -	int (*pin)(struct intel_context *ce, void *vaddr);
+> +	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww);
+> +	int (*pin)(struct intel_context *ce);
+>  	void (*unpin)(struct intel_context *ce);
+>  	void (*post_unpin)(struct intel_context *ce);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index baa1797af1c8..fc74ca28f245 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -2554,16 +2554,17 @@ static void execlists_submit_request(struct i915_request *request)
+>  static int
+>  __execlists_context_pre_pin(struct intel_context *ce,
+>  			    struct intel_engine_cs *engine,
+> -			    struct i915_gem_ww_ctx *ww, void **vaddr)
+> +			    struct i915_gem_ww_ctx *ww)
+>  {
+>  	int err;
+>  
+> -	err = lrc_pre_pin(ce, engine, ww, vaddr);
+> +	err = lrc_pre_pin(ce, engine, ww);
+>  	if (err)
+>  		return err;
+>  
+>  	if (!__test_and_set_bit(CONTEXT_INIT_BIT, &ce->flags)) {
+> -		lrc_init_state(ce, engine, *vaddr);
+> +		lrc_init_state(ce, engine, ce->lrc_reg_state -
+> +			       LRC_STATE_OFFSET / sizeof(*ce->lrc_reg_state));
+>  
+>  		 __i915_gem_object_flush_map(ce->state->obj, 0, engine->context_size);
+>  	}
+> @@ -2572,15 +2573,14 @@ __execlists_context_pre_pin(struct intel_context *ce,
+>  }
+>  
+>  static int execlists_context_pre_pin(struct intel_context *ce,
+> -				     struct i915_gem_ww_ctx *ww,
+> -				     void **vaddr)
+> +				     struct i915_gem_ww_ctx *ww)
+>  {
+> -	return __execlists_context_pre_pin(ce, ce->engine, ww, vaddr);
+> +	return __execlists_context_pre_pin(ce, ce->engine, ww);
+>  }
+>  
+> -static int execlists_context_pin(struct intel_context *ce, void *vaddr)
+> +static int execlists_context_pin(struct intel_context *ce)
+>  {
+> -	return lrc_pin(ce, ce->engine, vaddr);
+> +	return lrc_pin(ce, ce->engine);
+>  }
+>  
+>  static int execlists_context_alloc(struct intel_context *ce)
+> @@ -3570,20 +3570,19 @@ static int virtual_context_alloc(struct intel_context *ce)
+>  }
+>  
+>  static int virtual_context_pre_pin(struct intel_context *ce,
+> -				   struct i915_gem_ww_ctx *ww,
+> -				   void **vaddr)
+> +				   struct i915_gem_ww_ctx *ww)
+>  {
+>  	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+>  
+>  	 /* Note: we must use a real engine class for setting up reg state */
+> -	return __execlists_context_pre_pin(ce, ve->siblings[0], ww, vaddr);
+> +	return __execlists_context_pre_pin(ce, ve->siblings[0], ww);
+>  }
+>  
+> -static int virtual_context_pin(struct intel_context *ce, void *vaddr)
+> +static int virtual_context_pin(struct intel_context *ce)
+>  {
+>  	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
+>  
+> -	return lrc_pin(ce, ve->siblings[0], vaddr);
+> +	return lrc_pin(ce, ve->siblings[0]);
+>  }
+>  
+>  static void virtual_context_enter(struct intel_context *ce)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index bb4af4977920..c466fc966005 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -947,30 +947,30 @@ void lrc_reset(struct intel_context *ce)
+>  int
+>  lrc_pre_pin(struct intel_context *ce,
+>  	    struct intel_engine_cs *engine,
+> -	    struct i915_gem_ww_ctx *ww,
+> -	    void **vaddr)
+> +	    struct i915_gem_ww_ctx *ww)
+>  {
+> +	void *vaddr;
+>  	GEM_BUG_ON(!ce->state);
+>  	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
+>  
+> -	*vaddr = i915_gem_object_pin_map(ce->state->obj,
+> -					 i915_coherent_map_type(ce->engine->i915,
+> -								ce->state->obj,
+> -								false) |
+> -					 I915_MAP_OVERRIDE);
+> +	vaddr = i915_gem_object_pin_map(ce->state->obj,
+> +					i915_coherent_map_type(ce->engine->i915,
+> +							       ce->state->obj,
+> +							       false) |
+> +					I915_MAP_OVERRIDE);
+>  
+> -	return PTR_ERR_OR_ZERO(*vaddr);
+> +	ce->lrc_reg_state = vaddr + LRC_STATE_OFFSET;
+> +
+> +	return PTR_ERR_OR_ZERO(vaddr);
+>  }
+>  
+>  int
+>  lrc_pin(struct intel_context *ce,
+> -	struct intel_engine_cs *engine,
+> -	void *vaddr)
+> +	struct intel_engine_cs *engine)
+>  {
+> -	ce->lrc_reg_state = vaddr + LRC_STATE_OFFSET;
+> -
+>  	if (!__test_and_set_bit(CONTEXT_INIT_BIT, &ce->flags))
+> -		lrc_init_state(ce, engine, vaddr);
+> +		lrc_init_state(ce, engine,
+> +			       (void *)ce->lrc_reg_state - LRC_STATE_OFFSET);
+>  
+>  	ce->lrc.lrca = lrc_update_regs(ce, engine, ce->ring->tail);
+>  	return 0;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
+> index 7f697845c4cf..837fcf00270d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+> @@ -38,12 +38,10 @@ void lrc_destroy(struct kref *kref);
+>  int
+>  lrc_pre_pin(struct intel_context *ce,
+>  	    struct intel_engine_cs *engine,
+> -	    struct i915_gem_ww_ctx *ww,
+> -	    void **vaddr);
+> +	    struct i915_gem_ww_ctx *ww);
+>  int
+>  lrc_pin(struct intel_context *ce,
+> -	struct intel_engine_cs *engine,
+> -	void *vaddr);
+> +	struct intel_engine_cs *engine);
+>  void lrc_unpin(struct intel_context *ce);
+>  void lrc_post_unpin(struct intel_context *ce);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 2958e2fae380..f4f301bfb9f7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -472,8 +472,7 @@ static int ring_context_init_default_state(struct intel_context *ce,
+>  }
+>  
+>  static int ring_context_pre_pin(struct intel_context *ce,
+> -				struct i915_gem_ww_ctx *ww,
+> -				void **unused)
+> +				struct i915_gem_ww_ctx *ww)
+>  {
+>  	struct i915_address_space *vm;
+>  	int err = 0;
+> @@ -576,7 +575,7 @@ static int ring_context_alloc(struct intel_context *ce)
+>  	return 0;
+>  }
+>  
+> -static int ring_context_pin(struct intel_context *ce, void *unused)
+> +static int ring_context_pin(struct intel_context *ce)
+>  {
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
+> index 2c1af030310c..826b5d7a4573 100644
+> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
+> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+> @@ -167,12 +167,12 @@ static int mock_context_alloc(struct intel_context *ce)
+>  }
+>  
+>  static int mock_context_pre_pin(struct intel_context *ce,
+> -				struct i915_gem_ww_ctx *ww, void **unused)
+> +				struct i915_gem_ww_ctx *ww)
+>  {
+>  	return 0;
+>  }
+>  
+> -static int mock_context_pin(struct intel_context *ce, void *unused)
+> +static int mock_context_pin(struct intel_context *ce)
+>  {
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index dec757d319a2..c5c73c42bcf7 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1905,6 +1905,7 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+>  
+>  	GEM_BUG_ON(!engine->mask);
+>  	GEM_BUG_ON(context_guc_id_invalid(ce));
+> +	GEM_BUG_ON(intel_context_is_child(ce));
+>  
+>  	/*
+>  	 * Ensure LRC + CT vmas are is same region as write barrier is done
+> @@ -2008,15 +2009,13 @@ static int guc_lrc_desc_pin(struct intel_context *ce, bool loop)
+>  
+>  static int __guc_context_pre_pin(struct intel_context *ce,
+>  				 struct intel_engine_cs *engine,
+> -				 struct i915_gem_ww_ctx *ww,
+> -				 void **vaddr)
+> +				 struct i915_gem_ww_ctx *ww)
+>  {
+> -	return lrc_pre_pin(ce, engine, ww, vaddr);
+> +	return lrc_pre_pin(ce, engine, ww);
+>  }
+>  
+>  static int __guc_context_pin(struct intel_context *ce,
+> -			     struct intel_engine_cs *engine,
+> -			     void *vaddr)
+> +			     struct intel_engine_cs *engine)
+>  {
+>  	if (i915_ggtt_offset(ce->state) !=
+>  	    (ce->lrc.lrca & CTX_GTT_ADDRESS_MASK))
+> @@ -2027,20 +2026,33 @@ static int __guc_context_pin(struct intel_context *ce,
+>  	 * explaination of why.
+>  	 */
+>  
+> -	return lrc_pin(ce, engine, vaddr);
+> +	return lrc_pin(ce, engine);
+> +}
+> +
+> +static void __guc_context_unpin(struct intel_context *ce)
+> +{
+> +	lrc_unpin(ce);
+> +}
+> +
+> +static void __guc_context_post_unpin(struct intel_context *ce)
+> +{
+> +	lrc_post_unpin(ce);
+>  }
+>  
+>  static int guc_context_pre_pin(struct intel_context *ce,
+> -			       struct i915_gem_ww_ctx *ww,
+> -			       void **vaddr)
+> +			       struct i915_gem_ww_ctx *ww)
+>  {
+> -	return __guc_context_pre_pin(ce, ce->engine, ww, vaddr);
+> +	return __guc_context_pre_pin(ce, ce->engine, ww);
+>  }
+>  
+> -static int guc_context_pin(struct intel_context *ce, void *vaddr)
+> +static int guc_context_pin(struct intel_context *ce)
+>  {
+> -	int ret = __guc_context_pin(ce, ce->engine, vaddr);
+> +	int ret;
+>  
+> +	GEM_BUG_ON(intel_context_is_parent(ce) ||
+> +		   intel_context_is_child(ce));
+> +
+> +	ret = __guc_context_pin(ce, ce->engine);
+>  	if (likely(!ret && !intel_context_is_barrier(ce)))
+>  		intel_engine_pm_get(ce->engine);
+>  
+> @@ -2054,7 +2066,7 @@ static void guc_context_unpin(struct intel_context *ce)
+>  	GEM_BUG_ON(context_enabled(ce));
+>  
+>  	unpin_guc_id(guc, ce, true);
+> -	lrc_unpin(ce);
+> +	__guc_context_unpin(ce);
+>  
+>  	if (likely(!intel_context_is_barrier(ce)))
+>  		intel_engine_pm_put(ce->engine);
+> @@ -2062,7 +2074,141 @@ static void guc_context_unpin(struct intel_context *ce)
+>  
+>  static void guc_context_post_unpin(struct intel_context *ce)
+>  {
+> -	lrc_post_unpin(ce);
+> +	__guc_context_post_unpin(ce);
+> +}
+> +
+> +/* Future patches will use this function */
+> +__maybe_unused
+> +static int guc_parent_context_pre_pin(struct intel_context *ce,
+> +				      struct i915_gem_ww_ctx *ww)
+> +{
+> +	struct intel_context *child;
+> +	int err, i = 0, j = 0;
+> +
+> +	for_each_child(ce, child) {
+> +		err = i915_active_acquire(&child->active);
+> +		if (unlikely(err))
+> +			goto unwind_active;
+> +		++i;
+> +	}
+> +
+> +	for_each_child(ce, child) {
+> +		err = __guc_context_pre_pin(child, child->engine, ww);
+> +		if (unlikely(err))
+> +			goto unwind_pre_pin;
+> +		++j;
+> +	}
+> +
+> +	err = __guc_context_pre_pin(ce, ce->engine, ww);
+> +	if (unlikely(err))
+> +		goto unwind_pre_pin;
+> +
+> +	return 0;
+> +
+> +unwind_pre_pin:
+> +	for_each_child(ce, child) {
+> +		if (!j--)
+> +			break;
+> +		__guc_context_post_unpin(child);
+> +	}
+> +
+> +unwind_active:
+> +	for_each_child(ce, child) {
+> +		if (!i--)
+> +			break;
+> +		i915_active_release(&child->active);
+> +	}
+> +
+> +	return err;
+> +}
+> +
+> +/* Future patches will use this function */
+> +__maybe_unused
+> +static void guc_parent_context_post_unpin(struct intel_context *ce)
+> +{
+> +	struct intel_context *child;
+> +
+> +	for_each_child(ce, child)
+> +		__guc_context_post_unpin(child);
+> +	__guc_context_post_unpin(ce);
+> +
+> +	for_each_child(ce, child) {
+> +		intel_context_get(child);
+> +		i915_active_release(&child->active);
+> +		intel_context_put(child);
+> +	}
+> +}
+> +
+> +/* Future patches will use this function */
+> +__maybe_unused
+> +static int guc_parent_context_pin(struct intel_context *ce)
+> +{
+> +	int ret, i = 0, j = 0;
+> +	struct intel_context *child;
+> +	struct intel_engine_cs *engine;
+> +	intel_engine_mask_t tmp;
+> +
+> +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> +
+> +	for_each_child(ce, child) {
+> +		ret = __guc_context_pin(child, child->engine);
+> +		if (unlikely(ret))
+> +			goto unwind_pin;
+> +		++i;
+> +	}
+> +	ret = __guc_context_pin(ce, ce->engine);
+> +	if (unlikely(ret))
+> +		goto unwind_pin;
+> +
+> +	for_each_child(ce, child)
+> +		if (test_bit(CONTEXT_LRCA_DIRTY, &child->flags)) {
+> +			set_bit(CONTEXT_LRCA_DIRTY, &ce->flags);
+> +			break;
+> +		}
+> +
+> +	for_each_engine_masked(engine, ce->engine->gt,
+> +			       ce->engine->mask, tmp)
+> +		intel_engine_pm_get(engine);
+> +	for_each_child(ce, child)
+> +		for_each_engine_masked(engine, child->engine->gt,
+> +				       child->engine->mask, tmp)
+> +			intel_engine_pm_get(engine);
+> +
+> +	return 0;
+> +
+> +unwind_pin:
+> +	for_each_child(ce, child) {
+> +		if (++j > i)
+> +			break;
+> +		__guc_context_unpin(child);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/* Future patches will use this function */
+> +__maybe_unused
+> +static void guc_parent_context_unpin(struct intel_context *ce)
+> +{
+> +	struct intel_context *child;
+> +	struct intel_engine_cs *engine;
+> +	intel_engine_mask_t tmp;
+> +
+> +	GEM_BUG_ON(!intel_context_is_parent(ce));
+> +	GEM_BUG_ON(context_enabled(ce));
+> +
+> +	unpin_guc_id(ce_to_guc(ce), ce, true);
+> +	for_each_child(ce, child)
+> +		__guc_context_unpin(child);
+> +	__guc_context_unpin(ce);
+> +
+> +	for_each_engine_masked(engine, ce->engine->gt,
+> +			       ce->engine->mask, tmp)
+> +		intel_engine_pm_put(engine);
+> +	for_each_child(ce, child)
+> +		for_each_engine_masked(engine, child->engine->gt,
+> +				       child->engine->mask, tmp)
+> +			intel_engine_pm_put(engine);
+>  }
+>  
+>  static void __guc_context_sched_enable(struct intel_guc *guc,
+> @@ -2993,18 +3139,17 @@ static int guc_request_alloc(struct i915_request *rq)
+>  }
+>  
+>  static int guc_virtual_context_pre_pin(struct intel_context *ce,
+> -				       struct i915_gem_ww_ctx *ww,
+> -				       void **vaddr)
+> +				       struct i915_gem_ww_ctx *ww)
+>  {
+>  	struct intel_engine_cs *engine = guc_virtual_get_sibling(ce->engine, 0);
+>  
+> -	return __guc_context_pre_pin(ce, engine, ww, vaddr);
+> +	return __guc_context_pre_pin(ce, engine, ww);
+>  }
+>  
+> -static int guc_virtual_context_pin(struct intel_context *ce, void *vaddr)
+> +static int guc_virtual_context_pin(struct intel_context *ce)
+>  {
+>  	struct intel_engine_cs *engine = guc_virtual_get_sibling(ce->engine, 0);
+> -	int ret = __guc_context_pin(ce, engine, vaddr);
+> +	int ret = __guc_context_pin(ce, engine);
+>  	intel_engine_mask_t tmp, mask = ce->engine->mask;
+>  
+>  	if (likely(!ret))
+> @@ -3024,7 +3169,7 @@ static void guc_virtual_context_unpin(struct intel_context *ce)
+>  	GEM_BUG_ON(intel_context_is_barrier(ce));
+>  
+>  	unpin_guc_id(guc, ce, true);
+> -	lrc_unpin(ce);
+> +	__guc_context_unpin(ce);
+>  
+>  	for_each_engine_masked(engine, ce->engine->gt, mask, tmp)
+>  		intel_engine_pm_put(engine);
+> -- 
+> 2.28.0
 > 
->   Here are the changes found in Patchwork_20786 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@amdgpu/amd_cs_nop@fork-gfx0:
->     - fi-icl-u2:          NOTRUN -> [SKIP][3] ([fdo#109315]) +17 similar issues
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-icl-u2/igt@amdgpu/amd_cs_nop@fork-gfx0.html
-> 
->   * igt@gem_exec_suspend@basic-s0:
->     - fi-tgl-1115g4:      [PASS][4] -> [FAIL][5] ([i915#1888])
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-> 
->   * igt@kms_frontbuffer_tracking@basic:
->     - fi-rkl-11600:       [PASS][6] -> [SKIP][7] ([i915#3180])
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-rkl-11600/igt@kms_frontbuffer_tracking@basic.html
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-rkl-11600/igt@kms_frontbuffer_tracking@basic.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@gem_exec_suspend@basic-s3:
->     - fi-tgl-1115g4:      [FAIL][8] ([i915#1888]) -> [PASS][9]
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-> 
->   * igt@i915_pm_rpm@basic-pci-d3-state:
->     - fi-glk-dsi:         [SKIP][10] ([fdo#109271]) -> [PASS][11] +1 similar issue
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-glk-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-glk-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
->     - fi-icl-u2:          [SKIP][12] ([i915#579]) -> [PASS][13] +1 similar issue
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-icl-u2/igt@i915_pm_rpm@basic-pci-d3-state.html
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-icl-u2/igt@i915_pm_rpm@basic-pci-d3-state.html
->     - fi-kbl-7500u:       [SKIP][14] ([fdo#109271]) -> [PASS][15] +1 similar issue
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-kbl-7500u/igt@i915_pm_rpm@basic-pci-d3-state.html
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-kbl-7500u/igt@i915_pm_rpm@basic-pci-d3-state.html
->     - fi-kbl-soraka:      [SKIP][16] ([fdo#109271]) -> [PASS][17] +1 similar issue
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-kbl-soraka/igt@i915_pm_rpm@basic-pci-d3-state.html
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-kbl-soraka/igt@i915_pm_rpm@basic-pci-d3-state.html
->     - fi-hsw-4770:        [SKIP][18] ([fdo#109271]) -> [PASS][19] +1 similar issue
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-hsw-4770/igt@i915_pm_rpm@basic-pci-d3-state.html
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-hsw-4770/igt@i915_pm_rpm@basic-pci-d3-state.html
->     - fi-bxt-dsi:         [SKIP][20] ([fdo#109271]) -> [PASS][21] +1 similar issue
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-bxt-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-bxt-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
->     - {fi-tgl-dsi}:       [SKIP][22] ([i915#579]) -> [PASS][23] +1 similar issue
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
->    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-tgl-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
-> 
->   * igt@i915_pm_rpm@basic-rte:
->     - fi-kbl-7500u:       [FAIL][24] ([i915#579]) -> [PASS][25]
->    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-kbl-7500u/igt@i915_pm_rpm@basic-rte.html
->    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-kbl-7500u/igt@i915_pm_rpm@basic-rte.html
->     - fi-cml-u2:          [FAIL][26] ([i915#579]) -> [PASS][27]
->    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cml-u2/igt@i915_pm_rpm@basic-rte.html
->    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cml-u2/igt@i915_pm_rpm@basic-rte.html
->     - {fi-jsl-1}:         [FAIL][28] ([i915#579]) -> [PASS][29]
->    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-jsl-1/igt@i915_pm_rpm@basic-rte.html
->    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-jsl-1/igt@i915_pm_rpm@basic-rte.html
->     - fi-rkl-guc:         [FAIL][30] ([i915#3855]) -> [PASS][31]
->    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html
->    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-rkl-guc/igt@i915_pm_rpm@basic-rte.html
->     - fi-bxt-dsi:         [FAIL][32] ([i915#579]) -> [PASS][33]
->    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-bxt-dsi/igt@i915_pm_rpm@basic-rte.html
->    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-bxt-dsi/igt@i915_pm_rpm@basic-rte.html
->     - fi-hsw-4770:        [FAIL][34] ([i915#579]) -> [PASS][35]
->    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
->    [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
->     - fi-tgl-1115g4:      [FAIL][36] ([i915#579]) -> [PASS][37]
->    [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
->    [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
->     - fi-cfl-guc:         [FAIL][38] ([i915#579]) -> [PASS][39]
->    [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cfl-guc/igt@i915_pm_rpm@basic-rte.html
->    [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cfl-guc/igt@i915_pm_rpm@basic-rte.html
->     - fi-skl-guc:         [FAIL][40] ([i915#579]) -> [PASS][41]
->    [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-skl-guc/igt@i915_pm_rpm@basic-rte.html
->    [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-skl-guc/igt@i915_pm_rpm@basic-rte.html
->     - fi-rkl-11600:       [FAIL][42] ([i915#3855]) -> [PASS][43]
->    [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-rkl-11600/igt@i915_pm_rpm@basic-rte.html
->    [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-rkl-11600/igt@i915_pm_rpm@basic-rte.html
->     - fi-cfl-8700k:       [FAIL][44] ([i915#579]) -> [PASS][45]
->    [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cfl-8700k/igt@i915_pm_rpm@basic-rte.html
->    [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cfl-8700k/igt@i915_pm_rpm@basic-rte.html
->     - fi-icl-y:           [FAIL][46] ([i915#579]) -> [PASS][47]
->    [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-icl-y/igt@i915_pm_rpm@basic-rte.html
->    [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-icl-y/igt@i915_pm_rpm@basic-rte.html
->     - {fi-ehl-2}:         [FAIL][48] ([i915#579]) -> [PASS][49]
->    [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-ehl-2/igt@i915_pm_rpm@basic-rte.html
->    [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-ehl-2/igt@i915_pm_rpm@basic-rte.html
->     - fi-skl-6700k2:      [FAIL][50] ([i915#579]) -> [PASS][51]
->    [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-skl-6700k2/igt@i915_pm_rpm@basic-rte.html
->    [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-skl-6700k2/igt@i915_pm_rpm@basic-rte.html
->     - fi-icl-u2:          [FAIL][52] ([i915#579]) -> [PASS][53]
->    [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html
->    [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-icl-u2/igt@i915_pm_rpm@basic-rte.html
->     - {fi-tgl-dsi}:       [FAIL][54] ([i915#579]) -> [PASS][55]
->    [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
->    [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
->     - fi-glk-dsi:         [FAIL][56] ([i915#579]) -> [PASS][57]
->    [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-glk-dsi/igt@i915_pm_rpm@basic-rte.html
->    [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-glk-dsi/igt@i915_pm_rpm@basic-rte.html
->     - fi-bsw-kefka:       [FAIL][58] ([i915#3855]) -> [PASS][59]
->    [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-bsw-kefka/igt@i915_pm_rpm@basic-rte.html
->    [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-bsw-kefka/igt@i915_pm_rpm@basic-rte.html
->     - fi-cfl-8109u:       [FAIL][60] ([i915#579]) -> [PASS][61]
->    [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html
->    [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cfl-8109u/igt@i915_pm_rpm@basic-rte.html
->     - fi-kbl-soraka:      [FAIL][62] ([i915#579]) -> [PASS][63]
->    [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-kbl-soraka/igt@i915_pm_rpm@basic-rte.html
->    [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-kbl-soraka/igt@i915_pm_rpm@basic-rte.html
-> 
->   * igt@i915_pm_rpm@module-reload:
->     - fi-cfl-8109u:       [SKIP][64] ([fdo#109271]) -> [PASS][65] +1 similar issue
->    [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
->    [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
->     - {fi-hsw-gt1}:       [SKIP][66] ([fdo#109271]) -> [PASS][67]
->    [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-hsw-gt1/igt@i915_pm_rpm@module-reload.html
->    [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-hsw-gt1/igt@i915_pm_rpm@module-reload.html
->     - fi-cfl-8700k:       [SKIP][68] ([fdo#109271]) -> [PASS][69] +1 similar issue
->    [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
->    [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
->     - fi-bsw-kefka:       [SKIP][70] ([fdo#109271]) -> [PASS][71] +1 similar issue
->    [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
->    [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-bsw-kefka/igt@i915_pm_rpm@module-reload.html
->     - fi-rkl-11600:       [SKIP][72] ([i915#3844] / [i915#579]) -> [PASS][73] +1 similar issue
->    [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html
->    [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-rkl-11600/igt@i915_pm_rpm@module-reload.html
->     - {fi-ehl-2}:         [SKIP][74] ([i915#3844]) -> [PASS][75] +1 similar issue
->    [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-ehl-2/igt@i915_pm_rpm@module-reload.html
->    [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-ehl-2/igt@i915_pm_rpm@module-reload.html
->     - fi-skl-guc:         [SKIP][76] ([fdo#109271]) -> [PASS][77] +1 similar issue
->    [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
->    [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
->     - fi-skl-6700k2:      [SKIP][78] ([fdo#109271]) -> [PASS][79] +1 similar issue
->    [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
->    [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
->     - fi-cfl-guc:         [SKIP][80] ([fdo#109271]) -> [PASS][81] +1 similar issue
->    [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
->    [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
->     - fi-icl-y:           [SKIP][82] ([i915#579]) -> [PASS][83] +1 similar issue
->    [82]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-icl-y/igt@i915_pm_rpm@module-reload.html
->    [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-icl-y/igt@i915_pm_rpm@module-reload.html
->     - fi-tgl-1115g4:      [SKIP][84] ([i915#579]) -> [PASS][85] +1 similar issue
->    [84]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
->    [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
->     - {fi-jsl-1}:         [SKIP][86] ([i915#3844]) -> [PASS][87] +1 similar issue
->    [86]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-jsl-1/igt@i915_pm_rpm@module-reload.html
->    [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-jsl-1/igt@i915_pm_rpm@module-reload.html
->     - fi-rkl-guc:         [SKIP][88] ([i915#3844] / [i915#579]) -> [PASS][89] +1 similar issue
->    [88]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html
->    [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html
->     - fi-cml-u2:          [SKIP][90] ([i915#579]) -> [PASS][91] +1 similar issue
->    [90]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-cml-u2/igt@i915_pm_rpm@module-reload.html
->    [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-cml-u2/igt@i915_pm_rpm@module-reload.html
->     - fi-kbl-guc:         [SKIP][92] ([fdo#109271]) -> [PASS][93]
->    [92]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
->    [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-> 
->   * igt@i915_selftest@live@gt_lrc:
->     - fi-rkl-guc:         [DMESG-WARN][94] -> [PASS][95]
->    [94]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
->    [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-> 
->   * igt@i915_selftest@live@hangcheck:
->     - fi-icl-u2:          [INCOMPLETE][96] -> [PASS][97]
->    [96]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
->    [97]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-> 
->   
-> #### Warnings ####
-> 
->   * igt@i915_pm_rpm@basic-rte:
->     - fi-kbl-guc:         [FAIL][98] ([i915#579]) -> [SKIP][99] ([fdo#109271])
->    [98]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10460/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
->    [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->   [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
->   [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
->   [i915#3013]: https://gitlab.freedesktop.org/drm/intel/issues/3013
->   [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
->   [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
->   [i915#3844]: https://gitlab.freedesktop.org/drm/intel/issues/3844
->   [i915#3855]: https://gitlab.freedesktop.org/drm/intel/issues/3855
->   [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-> 
-> 
-> Participating hosts (37 -> 34)
-> ------------------------------
-> 
->   Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_10460 -> Patchwork_20786
-> 
->   CI-20190529: 20190529
->   CI_DRM_10460: 933d74e4ff60d39ff929b26780dca84412551174 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_6163: 9f9d82df8c8e68c304e84aba717a9937b65e10e6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_20786: 6a6bc1405f985b3c0ebbf26a91a166b002142f4d @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
-> == Linux commits ==
-> 
-> 6a6bc1405f98 fbdev/efifb: Release PCI device's runtime PM ref during FB destroy
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20786/index.html
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
