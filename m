@@ -1,41 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D335C3E4C50
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Aug 2021 20:45:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D5F3E4C54
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Aug 2021 20:47:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D601E89C83;
-	Mon,  9 Aug 2021 18:45:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36C9989CD9;
+	Mon,  9 Aug 2021 18:47:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A432889C18;
- Mon,  9 Aug 2021 18:45:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="300343015"
-X-IronPort-AV: E=Sophos;i="5.84,308,1620716400"; d="scan'208";a="300343015"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2021 11:45:13 -0700
-X-IronPort-AV: E=Sophos;i="5.84,308,1620716400"; d="scan'208";a="674369757"
-Received: from dut151-iclu.fm.intel.com ([10.105.23.43])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2021 11:45:13 -0700
-Date: Mon, 9 Aug 2021 18:45:12 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <20210809184512.GB123689@DUT151-ICLU.fm.intel.com>
-References: <20210803222943.27686-1-matthew.brost@intel.com>
- <20210803222943.27686-16-matthew.brost@intel.com>
- <YRE9w8f+k24hTiWP@phenom.ffwll.local>
- <YRE+SxNmTbkacCPx@phenom.ffwll.local>
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com
+ [IPv6:2607:f8b0:4864:20::230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B68389CD9
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Aug 2021 18:47:26 +0000 (UTC)
+Received: by mail-oi1-x230.google.com with SMTP id o20so24908673oiw.12
+ for <intel-gfx@lists.freedesktop.org>; Mon, 09 Aug 2021 11:47:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=cXI+igpSfU/NETZkXoiO6O25NLP0pE4hyuw4IlxRggI=;
+ b=Uwi/Gey/PRIwX5SG8XBtfB5kKo2iiaBmmjjBbIqvGwz0bDMfH8lojZ3KZIgHQsnVBu
+ GNGTpJ71r33iVU0jIBzib/zj8l0EkMcsQuzR82Kj0rM+hSvWoQ+HyhML/6ej0iddy+HP
+ dwX5E3L4GQsXDNTQ4vvsXbvdsiBhFlGDPgB24=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=cXI+igpSfU/NETZkXoiO6O25NLP0pE4hyuw4IlxRggI=;
+ b=pA2f7BYraQL/X0/46sginhqq7MopJ2pZUkpJCbO1VkDsiPaaksh1MtsoUvcdb6XQt5
+ Cvzz2Pl9jdTtH6X8bddXzg0CKLMOPSUA/5FApAmq139JU+9A1VrAM7AbYfa7m7GOFR6B
+ zcA1m+j0y3NP5yLzuPUSuIeUfWI9sEkkqM38ciupwGBHVW48dVCO89rmU2KbPW4IjXuu
+ NlVa6DsBOY/GYo2gcuf4a6sGTkknYUu6kkk7/SSH9SvG5yzZhqd4e0AfQ9nz8eIqTDh0
+ QL6bGrlvPZ8tX5cco6Svo0t48kHQNPPcDd24hmYqveOY6Ji+biF290TPK/an250UzRGK
+ xGUw==
+X-Gm-Message-State: AOAM532c60humDIKxOH7GUTl3ThNPop83zARibmMdWCr8Bj0lnMcZyF4
+ raYDrhGrGazWI6m5zA+3VYOMwlsQXr/Fd2nfQ/cDkg==
+X-Google-Smtp-Source: ABdhPJwzYeBUlxMaN3/K63of5iCSQURETgri16yBG9wuG6zArB/xMZUUgT6FOpuusXhhjNPAc6rMEd4F91I/o109/ag=
+X-Received: by 2002:a05:6808:147:: with SMTP id h7mr463234oie.14.1628534845621; 
+ Mon, 09 Aug 2021 11:47:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YRE+SxNmTbkacCPx@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH 15/46] drm/i915/guc: Introduce context
- parent-child relationship
+References: <20210806201852.1345184-1-daniel.vetter@ffwll.ch>
+ <17b2342e218.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+In-Reply-To: <17b2342e218.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Mon, 9 Aug 2021 20:47:14 +0200
+Message-ID: <CAKMK7uF+Q9s5WkN_aJxNWp5Xajcv3=ooDZhq09Hbsg-nr-AWyA@mail.gmail.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, 
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>, 
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Release ctx->syncobj on final put,
+ not on ctx close
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,178 +77,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 09, 2021 at 04:40:11PM +0200, Daniel Vetter wrote:
-> On Mon, Aug 09, 2021 at 04:37:55PM +0200, Daniel Vetter wrote:
-> > On Tue, Aug 03, 2021 at 03:29:12PM -0700, Matthew Brost wrote:
-> > > Introduce context parent-child relationship. Once this relationship is
-> > > created all pinning / unpinning operations are directed to the parent
-> > > context. The parent context is responsible for pinning all of its'
-> > > children and itself.
-> > > 
-> > > This is a precursor to the full GuC multi-lrc implementation but aligns
-> > > to how GuC mutli-lrc interface is defined - a single H2G is used
-> > > register / deregister all of the contexts simultaneously.
-> > > 
-> > > Subsequent patches in the series will implement the pinning / unpinning
-> > > operations for parent / child contexts.
-> > > 
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/intel_context.c       | 29 +++++++++++++++++++
-> > >  drivers/gpu/drm/i915/gt/intel_context.h       | 18 ++++++++++++
-> > >  drivers/gpu/drm/i915/gt/intel_context_types.h | 12 ++++++++
-> > >  3 files changed, 59 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > index 745e84c72c90..8cb92b10b547 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > @@ -395,6 +395,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
-> > >  	spin_lock_init(&ce->guc_state.lock);
-> > >  	INIT_LIST_HEAD(&ce->guc_state.fences);
-> > >  
-> > > +	INIT_LIST_HEAD(&ce->guc_child_list);
-> > > +
-> > >  	spin_lock_init(&ce->guc_active.lock);
-> > >  	INIT_LIST_HEAD(&ce->guc_active.requests);
-> > >  
-> > > @@ -414,10 +416,17 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
-> > >  
-> > >  void intel_context_fini(struct intel_context *ce)
-> > >  {
-> > > +	struct intel_context *child, *next;
-> > > +
-> > >  	if (ce->timeline)
-> > >  		intel_timeline_put(ce->timeline);
-> > >  	i915_vm_put(ce->vm);
-> > >  
-> > > +	/* Need to put the creation ref for the children */
-> > > +	if (intel_context_is_parent(ce))
-> > > +		for_each_child_safe(ce, child, next)
-> > > +			intel_context_put(child);
-> > > +
-> > >  	mutex_destroy(&ce->pin_mutex);
-> > >  	i915_active_fini(&ce->active);
-> > >  }
-> > > @@ -533,6 +542,26 @@ struct i915_request *intel_context_find_active_request(struct intel_context *ce)
-> > >  	return active;
-> > >  }
-> > >  
-> > > +void intel_context_bind_parent_child(struct intel_context *parent,
-> > > +				     struct intel_context *child)
-> > > +{
-> > > +	/*
-> > > +	 * Callers responsibility to validate that this function is used
-> > > +	 * correctly but we use GEM_BUG_ON here ensure that they do.
-> > > +	 */
-> > > +	GEM_BUG_ON(!intel_engine_uses_guc(parent->engine));
-> > > +	GEM_BUG_ON(intel_context_is_pinned(parent));
-> > > +	GEM_BUG_ON(intel_context_is_child(parent));
-> > > +	GEM_BUG_ON(intel_context_is_pinned(child));
-> > > +	GEM_BUG_ON(intel_context_is_child(child));
-> > > +	GEM_BUG_ON(intel_context_is_parent(child));
-> > > +
-> > > +	parent->guc_number_children++;
-> > > +	list_add_tail(&child->guc_child_link,
-> > > +		      &parent->guc_child_list);
-> > > +	child->parent = parent;
-> > > +}
-> > > +
-> > >  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> > >  #include "selftest_context.c"
-> > >  #endif
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> > > index c41098950746..ad6ce5ac4824 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> > > @@ -44,6 +44,24 @@ void intel_context_free(struct intel_context *ce);
-> > >  int intel_context_reconfigure_sseu(struct intel_context *ce,
-> > >  				   const struct intel_sseu sseu);
-> > >  
-> > > +static inline bool intel_context_is_child(struct intel_context *ce)
-> > > +{
-> > > +	return !!ce->parent;
-> > > +}
-> > > +
-> > > +static inline bool intel_context_is_parent(struct intel_context *ce)
-> > > +{
-> > > +	return !!ce->guc_number_children;
-> > > +}
-> > > +
-> > > +void intel_context_bind_parent_child(struct intel_context *parent,
-> > > +				     struct intel_context *child);
-> > > +
-> > > +#define for_each_child(parent, ce)\
-> > > +	list_for_each_entry(ce, &(parent)->guc_child_list, guc_child_link)
-> > > +#define for_each_child_safe(parent, ce, cn)\
-> > > +	list_for_each_entry_safe(ce, cn, &(parent)->guc_child_list, guc_child_link)
-> > > +
-> > >  /**
-> > >   * intel_context_lock_pinned - Stablises the 'pinned' status of the HW context
-> > >   * @ce - the context
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > index 2df79ba39867..66b22b370a72 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > @@ -202,6 +202,18 @@ struct intel_context {
-> > >  	/* GuC context blocked fence */
-> > >  	struct i915_sw_fence guc_blocked;
-> > >  
-> > > +	/* Head of children list or link in parent's children list */
-> > 
-> > Kerneldoc layout would be nice, plus explaining when exactly this is
-> > set or the list empty (e.g. guch_child_list is empty if and only if
-> > guc_number_children > 0 and parent == NULL).
-> > 
-> > Also mentionting that these are invariant over the lifetime of the object
-> > would be nice.
-> > 
-> > Finally some words on refcounting (like who holds a reference on whom and
-> > how we guarantee that use-after-free doesn't go boom since you have links
-> > both ways). It looks like parent holds a reference on the child, so how do
-> > you make sure the child looking at the parent doesn't go boom?
-> > -Daniel
-> > 
-> > > +	union {
-> > > +		struct list_head guc_child_list;	/* parent */
-> > > +		struct list_head guc_child_link;	/* child */
-> > > +	};
-> > > +
-> > > +	/* Pointer to parent */
-> > > +	struct intel_context *parent;
-> > > +
-> > > +	/* Number of children if parent */
-> > > +	u8 guc_number_children;
-> 
-> Another one: Can we really not afford a int here? The nasty thing about
-> unsigned is that wrap-around is well-defined, which is why gcc won't ever
-> complain about it. Which hides bugs. Same for next patch, which also
-> micro-optimizes a few fields to be tiny.
-> 
-> We generally don't have thousands of contexts hanging around, unless
-> there's a reason (which should be documented) this feels like it's
-> squarely on the wrong side of "don't prematurely optimize".
+On Sun, Aug 8, 2021 at 2:56 AM Jason Ekstrand <jason@jlekstrand.net> wrote:
+>
+> On August 6, 2021 15:18:59 Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+>> gem context refcounting is another exercise in least locking design it
+>> seems, where most things get destroyed upon context closure (which can
+>> race with anything really). Only the actual memory allocation and the
+>> locks survive while holding a reference.
+>>
+>> This tripped up Jason when reimplementing the single timeline feature
+>> in
+>>
+>> commit 00dae4d3d35d4f526929633b76e00b0ab4d3970d
+>> Author: Jason Ekstrand <jason@jlekstrand.net>
+>> Date:   Thu Jul 8 10:48:12 2021 -0500
+>>
+>>     drm/i915: Implement SINGLE_TIMELINE with a syncobj (v4)
+>>
+>> We could fix the bug by holding ctx->mutex, but it's cleaner to just
+>
+>
+> What bug is this fixing, exactly?
 
-Ok, int it is.
+Oh lol I was all busy ranting and not explaining :-) I found it while
+auditing other context stuff, so that other patch has the longer
+commit message with more history, but that patch is also now tied into
+the vm-dercuify, so short summary: You put the syncobj in context
+close (i.e. CTX_DESTRY ioctl or close(drmfd)), not in the final
+kref_put. Which means you're open to a use-after-free if you race
+against an execbuf. ctx->vm is equally broken (but for other ioctl),
+once this fix here is merged I send out the ctx->vm fix because that's
+tied into the vm-dercuify now due to conflicts.
+-Daniel
 
-Matt
+>
+> --Jason
+>
+>>
+>> make the context object actually invariant over its _entire_ lifetime.
+>>
+>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+>> Fixes: 00dae4d3d35d ("drm/i915: Implement SINGLE_TIMELINE with a syncobj=
+ (v4)")
+>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@intel.com>
+>> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>> Cc: Dave Airlie <airlied@redhat.com>
+>> ---
+>>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 6 +++---
+>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/d=
+rm/i915/gem/i915_gem_context.c
+>> index 754b9b8d4981..93ba0197d70a 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -940,6 +940,9 @@ void i915_gem_context_release(struct kref *ref)
+>>   trace_i915_context_free(ctx);
+>>   GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+>>
+>> + if (ctx->syncobj)
+>> + drm_syncobj_put(ctx->syncobj);
+>> +
+>>   mutex_destroy(&ctx->engines_mutex);
+>>   mutex_destroy(&ctx->lut_mutex);
+>>
+>> @@ -1159,9 +1162,6 @@ static void context_close(struct i915_gem_context =
+*ctx)
+>>   if (vm)
+>>   i915_vm_close(vm);
+>>
+>> - if (ctx->syncobj)
+>> - drm_syncobj_put(ctx->syncobj);
+>> -
+>>   ctx->file_priv =3D ERR_PTR(-EBADF);
+>>
+>>   /*
+>> --
+>> 2.32.0
+>
+>
 
-> -Daniel
-> 
-> > > +
-> > >  	/*
-> > >  	 * GuC priority management
-> > >  	 */
-> > > -- 
-> > > 2.28.0
-> > > 
-> > 
-> > -- 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
