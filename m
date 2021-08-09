@@ -2,63 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BBE3E4A72
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Aug 2021 19:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A933E4A85
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Aug 2021 19:07:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9B989BB3;
-	Mon,  9 Aug 2021 17:03:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86206899A5;
+	Mon,  9 Aug 2021 17:07:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CACE89BB3
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Aug 2021 17:03:26 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id m12so22348276wru.12
- for <intel-gfx@lists.freedesktop.org>; Mon, 09 Aug 2021 10:03:26 -0700 (PDT)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 353A5899A5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Aug 2021 17:07:48 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id b128so11076079wmb.4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 09 Aug 2021 10:07:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=qTS4RDGHHPzSJVC9IIAhjVwRHlhQrfuaK7eVpTB+Pn8=;
- b=hHiwNGSZ807OaXO4M0SyRUnZUA2LvRWMsoO89aDnsMapxUMaeOTxHmJ9s71Mj3snZN
- ECe/1gImx5Hg36NLkDumY2/FBOEBSw+zc5txkhfIzpftPd6HkOnj9uhwH5ISDP71sBxc
- 1TWf2CiHbGI6fYYxn7eULpoUoKAWXSWDDdmi8=
+ bh=KSB3J7FAptLZT7iNU2RrzDB0zPGbfzq3oEDT0uP15PM=;
+ b=Ezo8Ky4RMdzoENNfaJobyIaVbt323tu9nfmfqkHPOC4X0k4ZaTOAjoxg0IxsO5NzOt
+ /BHUwk1s8h9EjinJ050TxSHEyCMWkXhID1hExJbbjAj1XnF6wp53G2Y0qIXcJlvfiE8T
+ cfPyB84c+3aMIkPzhFORrc4EmZ0map84XZQlA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=qTS4RDGHHPzSJVC9IIAhjVwRHlhQrfuaK7eVpTB+Pn8=;
- b=qLGa5ng9NfQ/sRsxbgaloxaY20PH1zVxLC5v7pdh5O/qo2DkKeWSpiherw+kN44Nh0
- 4kpJvSepLOf921R0j8v3joV3/eqx4Otnz5NAJfa5Pt3zcNeBfArMbYPKfn5mWt8y/9M7
- QzlygAQOj1vTAU/2ufFPzHp6ksKLQarRu0voQMU8gv69WHGPajVtgnn5JX36+HpMr7hn
- 8XOZmZ7e/jcI+Y1nzHLwHvPK5Y6/gjf6Ex/GAmsakzRu1871kNhcu5lnTjfus2BhRyYd
- uywxAj4mRa1ia4CnPzhX4npdvipimG4hcEFzenKzXDjCC+gx4FiZCxaQ6V7ZNG4ZZC6T
- y3kw==
-X-Gm-Message-State: AOAM531UhfOk4bWezOSsPKxGm3NoI6dHdI5zDZmbwSayqJCI6ibvno4s
- 8jjZGvkQt8DCaik/rJRaBvpT3Q==
-X-Google-Smtp-Source: ABdhPJwjNSmjY07Js55ZwXGBL4LZkz3dgTXPn1dwR3Y+foNtAR78n6ZOror7mRoqX6PxzB76IHp6OQ==
-X-Received: by 2002:a5d:51d2:: with SMTP id n18mr4035678wrv.325.1628528605032; 
- Mon, 09 Aug 2021 10:03:25 -0700 (PDT)
+ bh=KSB3J7FAptLZT7iNU2RrzDB0zPGbfzq3oEDT0uP15PM=;
+ b=EA/er4g19WwlkHFBQWwigZ0ikSZiOyRmCbT5EIafxep4KCY8hxSwDNkKuikektJ4JJ
+ gjvGzTVFjRTuzmLzdIl4ovK0HzJivimEDVdZmGhNORbk7flomYYguGwC0j5thRjtGpiy
+ lnQkBYJYgny3WPZybdimxE4XXgfXdilmLfq6q+D2Xl+KozCryKbUo2l/+0Y9MDCqKh8t
+ eYtKND2c9T0l7aVpNVChszCyjUHSrV2vzZvkGJYv9BV2Ssv+iLCvvIoz+CWCDtBk3vwY
+ WDJksxg/QQrGtmCg6uiFXj500MJ/+rga+BGIaUA8jvEjohhIltxNGM2cjBelE2vt4Nl0
+ UP2g==
+X-Gm-Message-State: AOAM533NbTop6QQXNPFa0awajt0gWWAciIhq9itF4yvARJ03AMtV/sEX
+ Dtf+IQ9VmRH0soaqTGlm5xOKW6Nv7L1mRg==
+X-Google-Smtp-Source: ABdhPJxUhn5eCmcPa4FVzji9w2OEVbeO2xq5+wJm/yDD3WNrUqr6LinEkwoBOxsmruO71by4CiyJDQ==
+X-Received: by 2002:a1c:4b0a:: with SMTP id y10mr17115324wma.111.1628528866569; 
+ Mon, 09 Aug 2021 10:07:46 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id e11sm88985wrm.80.2021.08.09.10.03.24
+ by smtp.gmail.com with ESMTPSA id f3sm20542567wro.30.2021.08.09.10.07.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Aug 2021 10:03:24 -0700 (PDT)
-Date: Mon, 9 Aug 2021 19:03:22 +0200
+ Mon, 09 Aug 2021 10:07:46 -0700 (PDT)
+Date: Mon, 9 Aug 2021 19:07:44 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <YRFf2sXXog566+8c@phenom.ffwll.local>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <YRFg4OL0bvPITfwY@phenom.ffwll.local>
 References: <20210803222943.27686-1-matthew.brost@intel.com>
- <20210803222943.27686-24-matthew.brost@intel.com>
- <YRFYquq9BnZgPLuY@phenom.ffwll.local>
- <20210809163948.GA122898@DUT151-ICLU.fm.intel.com>
+ <20210803222943.27686-42-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210809163948.GA122898@DUT151-ICLU.fm.intel.com>
+In-Reply-To: <20210803222943.27686-42-matthew.brost@intel.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 23/46] drm/i915/guc: Insert submit fences
- between requests in parent-child relationship
+Subject: Re: [Intel-gfx] [PATCH 41/46] drm/i915: Eliminate unnecessary VMA
+ calls for multi-BB submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,268 +71,447 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 09, 2021 at 04:39:48PM +0000, Matthew Brost wrote:
-> On Mon, Aug 09, 2021 at 06:32:42PM +0200, Daniel Vetter wrote:
-> > On Tue, Aug 03, 2021 at 03:29:20PM -0700, Matthew Brost wrote:
-> > > The GuC must receive requests in the order submitted for contexts in a
-> > > parent-child relationship to function correctly. To ensure this, insert
-> > > a submit fence between the current request and last request submitted
-> > > for requests / contexts in a parent child relationship. This is
-> > > conceptually similar to a single timeline.
-> > > 
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: John Harrison <John.C.Harrison@Intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/intel_context.c       |   2 +
-> > >  drivers/gpu/drm/i915/gt/intel_context.h       |   5 +
-> > >  drivers/gpu/drm/i915/gt/intel_context_types.h |   3 +
-> > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   3 +-
-> > >  drivers/gpu/drm/i915/i915_request.c           | 120 ++++++++++++++----
-> > >  5 files changed, 105 insertions(+), 28 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > index bb4c14656067..98ef2d0f7a39 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > @@ -487,6 +487,8 @@ void intel_context_fini(struct intel_context *ce)
-> > >  {
-> > >  	struct intel_context *child, *next;
-> > >  
-> > > +	if (ce->last_rq)
-> > > +		i915_request_put(ce->last_rq);
-> > >  	if (ce->timeline)
-> > >  		intel_timeline_put(ce->timeline);
-> > >  	i915_vm_put(ce->vm);
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> > > index 7ce3b3d2edb7..a302599e436a 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> > > @@ -60,6 +60,11 @@ intel_context_to_parent(struct intel_context *ce)
-> > >  	return intel_context_is_child(ce) ? ce->parent : ce;
-> > >  }
-> > >  
-> > > +static inline bool intel_context_is_parallel(struct intel_context *ce)
-> > > +{
-> > > +	return intel_context_is_child(ce) || intel_context_is_parent(ce);
-> > > +}
-> > > +
-> > >  void intel_context_bind_parent_child(struct intel_context *parent,
-> > >  				     struct intel_context *child);
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > index 9665cb31bab0..f4fc81f64921 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > > @@ -225,6 +225,9 @@ struct intel_context {
-> > >  	 */
-> > >  	u8 guc_prio;
-> > >  	u32 guc_prio_count[GUC_CLIENT_PRIORITY_NUM];
-> > > +
-> > > +	/* Last request submitted on a parent */
-> > > +	struct i915_request *last_rq;
-> > >  };
-> > >  
-> > >  #endif /* __INTEL_CONTEXT_TYPES__ */
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > index d1d4a1e59e8d..1cb382f7d79d 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > @@ -820,8 +820,7 @@ static inline int rq_prio(const struct i915_request *rq)
-> > >  
-> > >  static inline bool is_multi_lrc_rq(struct i915_request *rq)
-> > >  {
-> > > -	return intel_context_is_child(rq->context) ||
-> > > -		intel_context_is_parent(rq->context);
-> > > +	return intel_context_is_parallel(rq->context);
-> > >  }
-> > >  
-> > >  /*
-> > > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> > > index ce446716d092..2e51c8999088 100644
-> > > --- a/drivers/gpu/drm/i915/i915_request.c
-> > > +++ b/drivers/gpu/drm/i915/i915_request.c
-> > > @@ -1546,36 +1546,62 @@ i915_request_await_object(struct i915_request *to,
-> > >  	return ret;
-> > >  }
-> > >  
-> > > +static inline bool is_parallel_rq(struct i915_request *rq)
-> > > +{
-> > > +	return intel_context_is_parallel(rq->context);
-> > > +}
-> > > +
-> > > +static inline struct intel_context *request_to_parent(struct i915_request *rq)
-> > > +{
-> > > +	return intel_context_to_parent(rq->context);
-> > > +}
-> > > +
-> > >  static struct i915_request *
-> > > -__i915_request_add_to_timeline(struct i915_request *rq)
-> > > +__i915_request_ensure_parallel_ordering(struct i915_request *rq,
-> > > +					struct intel_timeline *timeline)
-> > >  {
-> > > -	struct intel_timeline *timeline = i915_request_timeline(rq);
-> > >  	struct i915_request *prev;
-> > >  
-> > > -	/*
-> > > -	 * Dependency tracking and request ordering along the timeline
-> > > -	 * is special cased so that we can eliminate redundant ordering
-> > > -	 * operations while building the request (we know that the timeline
-> > > -	 * itself is ordered, and here we guarantee it).
-> > > -	 *
-> > > -	 * As we know we will need to emit tracking along the timeline,
-> > > -	 * we embed the hooks into our request struct -- at the cost of
-> > > -	 * having to have specialised no-allocation interfaces (which will
-> > > -	 * be beneficial elsewhere).
-> > > -	 *
-> > > -	 * A second benefit to open-coding i915_request_await_request is
-> > > -	 * that we can apply a slight variant of the rules specialised
-> > > -	 * for timelines that jump between engines (such as virtual engines).
-> > > -	 * If we consider the case of virtual engine, we must emit a dma-fence
-> > > -	 * to prevent scheduling of the second request until the first is
-> > > -	 * complete (to maximise our greedy late load balancing) and this
-> > > -	 * precludes optimising to use semaphores serialisation of a single
-> > > -	 * timeline across engines.
-> > > -	 */
-> > > +	GEM_BUG_ON(!is_parallel_rq(rq));
-> > > +
-> > > +	prev = request_to_parent(rq)->last_rq;
-> > > +	if (prev) {
-> > > +		if (!__i915_request_is_complete(prev)) {
-> > > +			i915_sw_fence_await_sw_fence(&rq->submit,
-> > > +						     &prev->submit,
-> > > +						     &rq->submitq);
-> > > +
-> > > +			if (rq->engine->sched_engine->schedule)
-> > > +				__i915_sched_node_add_dependency(&rq->sched,
-> > > +								 &prev->sched,
-> > > +								 &rq->dep,
-> > > +								 0);
-> > > +		}
-> > > +		i915_request_put(prev);
-> > > +	}
-> > > +
-> > > +	request_to_parent(rq)->last_rq = i915_request_get(rq);
-> > > +
-> > > +	return to_request(__i915_active_fence_set(&timeline->last_request,
-> > > +						  &rq->fence));
-> > > +}
-> > > +
-> > > +static struct i915_request *
-> > > +__i915_request_ensure_ordering(struct i915_request *rq,
-> > > +			       struct intel_timeline *timeline)
-> > > +{
-> > > +	struct i915_request *prev;
-> > > +
-> > > +	GEM_BUG_ON(is_parallel_rq(rq));
-> > > +
-> > >  	prev = to_request(__i915_active_fence_set(&timeline->last_request,
-> > >  						  &rq->fence));
-> > > +
-> > >  	if (prev && !__i915_request_is_complete(prev)) {
-> > >  		bool uses_guc = intel_engine_uses_guc(rq->engine);
-> > > +		bool pow2 = is_power_of_2(READ_ONCE(prev->engine)->mask |
-> > > +					  rq->engine->mask);
-> > > +		bool same_context = prev->context == rq->context;
-> > >  
-> > >  		/*
-> > >  		 * The requests are supposed to be kept in order. However,
-> > > @@ -1583,13 +1609,11 @@ __i915_request_add_to_timeline(struct i915_request *rq)
-> > >  		 * is used as a barrier for external modification to this
-> > >  		 * context.
-> > >  		 */
-> > > -		GEM_BUG_ON(prev->context == rq->context &&
-> > > +		GEM_BUG_ON(same_context &&
-> > >  			   i915_seqno_passed(prev->fence.seqno,
-> > >  					     rq->fence.seqno));
-> > >  
-> > > -		if ((!uses_guc &&
-> > > -		     is_power_of_2(READ_ONCE(prev->engine)->mask | rq->engine->mask)) ||
-> > > -		    (uses_guc && prev->context == rq->context))
-> > > +		if ((same_context && uses_guc) || (!uses_guc && pow2))
-> > >  			i915_sw_fence_await_sw_fence(&rq->submit,
-> > >  						     &prev->submit,
-> > >  						     &rq->submitq);
-> > > @@ -1604,6 +1628,50 @@ __i915_request_add_to_timeline(struct i915_request *rq)
-> > >  							 0);
-> > >  	}
-> > >  
-> > > +	return prev;
-> > > +}
-> > > +
-> > > +static struct i915_request *
-> > > +__i915_request_add_to_timeline(struct i915_request *rq)
-> > > +{
-> > > +	struct intel_timeline *timeline = i915_request_timeline(rq);
-> > > +	struct i915_request *prev;
-> > > +
-> > > +	/*
-> > > +	 * Dependency tracking and request ordering along the timeline
-> > > +	 * is special cased so that we can eliminate redundant ordering
-> > > +	 * operations while building the request (we know that the timeline
-> > > +	 * itself is ordered, and here we guarantee it).
-> > > +	 *
-> > > +	 * As we know we will need to emit tracking along the timeline,
-> > > +	 * we embed the hooks into our request struct -- at the cost of
-> > > +	 * having to have specialised no-allocation interfaces (which will
-> > > +	 * be beneficial elsewhere).
-> > > +	 *
-> > > +	 * A second benefit to open-coding i915_request_await_request is
-> > > +	 * that we can apply a slight variant of the rules specialised
-> > > +	 * for timelines that jump between engines (such as virtual engines).
-> > > +	 * If we consider the case of virtual engine, we must emit a dma-fence
-> > > +	 * to prevent scheduling of the second request until the first is
-> > > +	 * complete (to maximise our greedy late load balancing) and this
-> > > +	 * precludes optimising to use semaphores serialisation of a single
-> > > +	 * timeline across engines.
-> > > +	 *
-> > 
-> > Can we put a big FIXME in here that this should all be resolved with a
-> > proper interface which passes the entire thing down to the backend?
-> > 
-> > Or is that no longer (or wasn't ever) the long-term goal?
-> 
-> I now you mentioned this in the past but I really don't think this all
-> that great of an idea as it would be a pretty intrusive change and not
-> sure what the real benefit is.
-> 
-> However, when we move the DRM scheduler this can be dropped because the
-> ordering of jobs on a sched_entity.
+On Tue, Aug 03, 2021 at 03:29:38PM -0700, Matthew Brost wrote:
+> Certain VMA functions in the execbuf IOCTL only need to be called on
+> first or last BB of a multi-BB submission. eb_relocate() on the first
 
-See further down. Your current design deadlocks - or well, can deadlock. I
-think at least.
+eb_relocate should be outright disallowed on multi lrc execbuf ioctl.
+There's no users of that left, and it does substantially simplify the
+entire locking problem if we outright disallow that.
+
+> and eb_release_vmas() on the last. Doing so will save CPU / GPU cycles.
+
+Yah for our mix of pin/unpin vs dma_resv_lock/unlock. Now with the current
+unpin design this move is ok, but we want/need to switch vma over to
+dma_resv_lock. And then it gets really nasty, because you run into a ton
+of problems.
+
+To more I read this the less I like this :-/
 -Daniel
 
 > 
-> Matt
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 127 +++++++++++-------
+>  .../i915/gem/selftests/i915_gem_execbuffer.c  |  14 +-
+>  2 files changed, 83 insertions(+), 58 deletions(-)
 > 
-> > -Daniel
-> > 
-> > > +	 * We do not order parallel submission requests on the timeline as each
-> > > +	 * parallel submission context has its own timeline and the ordering
-> > > +	 * rules for parallel requests are that they must be submitted in the
-> > > +	 * order received from the execbuf IOCTL. So rather than using the
-> > > +	 * timeline we store a pointer to last request submitted in the
-> > > +	 * relationship in the gem context and insert a submission fence
-> > > +	 * between that request and request passed into this function or
-> > > +	 * alternatively we use completion fence if gem context has a single
-> > > +	 * timeline and this is the first submission of an execbuf IOCTL.
-> > > +	 */
-> > > +	if (likely(!is_parallel_rq(rq)))
-> > > +		prev = __i915_request_ensure_ordering(rq, timeline);
-> > > +	else
-> > > +		prev = __i915_request_ensure_parallel_ordering(rq, timeline);
-> > > +
-> > >  	/*
-> > >  	 * Make sure that no request gazumped us - if it was allocated after
-> > >  	 * our i915_request_alloc() and called __i915_request_add() before
-> > > -- 
-> > > 2.28.0
-> > > 
-> > 
-> > -- 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index ecdb583cc2eb..70784779872a 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -270,7 +270,7 @@ struct i915_execbuffer {
+>  	/** list of vma that have execobj.relocation_count */
+>  	struct list_head relocs;
+>  
+> -	struct i915_gem_ww_ctx ww;
+> +	struct i915_gem_ww_ctx *ww;
+>  
+>  	/**
+>  	 * Track the most recently used object for relocations, as we
+> @@ -448,7 +448,7 @@ eb_pin_vma(struct i915_execbuffer *eb,
+>  		pin_flags |= PIN_GLOBAL;
+>  
+>  	/* Attempt to reuse the current location if available */
+> -	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, pin_flags);
+> +	err = i915_vma_pin_ww(vma, eb->ww, 0, 0, pin_flags);
+>  	if (err == -EDEADLK)
+>  		return err;
+>  
+> @@ -457,11 +457,11 @@ eb_pin_vma(struct i915_execbuffer *eb,
+>  			return err;
+>  
+>  		/* Failing that pick any _free_ space if suitable */
+> -		err = i915_vma_pin_ww(vma, &eb->ww,
+> -					     entry->pad_to_size,
+> -					     entry->alignment,
+> -					     eb_pin_flags(entry, ev->flags) |
+> -					     PIN_USER | PIN_NOEVICT);
+> +		err = i915_vma_pin_ww(vma, eb->ww,
+> +				      entry->pad_to_size,
+> +				      entry->alignment,
+> +				      eb_pin_flags(entry, ev->flags) |
+> +				      PIN_USER | PIN_NOEVICT);
+>  		if (unlikely(err))
+>  			return err;
+>  	}
+> @@ -643,9 +643,9 @@ static int eb_reserve_vma(struct i915_execbuffer *eb,
+>  			return err;
+>  	}
+>  
+> -	err = i915_vma_pin_ww(vma, &eb->ww,
+> -			   entry->pad_to_size, entry->alignment,
+> -			   eb_pin_flags(entry, ev->flags) | pin_flags);
+> +	err = i915_vma_pin_ww(vma, eb->ww,
+> +			      entry->pad_to_size, entry->alignment,
+> +			      eb_pin_flags(entry, ev->flags) | pin_flags);
+>  	if (err)
+>  		return err;
+>  
+> @@ -940,7 +940,7 @@ static int eb_lock_vmas(struct i915_execbuffer *eb)
+>  		struct eb_vma *ev = &eb->vma[i];
+>  		struct i915_vma *vma = ev->vma;
+>  
+> -		err = i915_gem_object_lock(vma->obj, &eb->ww);
+> +		err = i915_gem_object_lock(vma->obj, eb->ww);
+>  		if (err)
+>  			return err;
+>  	}
+> @@ -1020,12 +1020,13 @@ eb_get_vma(const struct i915_execbuffer *eb, unsigned long handle)
+>  	}
+>  }
+>  
+> -static void eb_release_vmas(struct i915_execbuffer *eb, bool final)
+> +static void eb_release_vmas(struct i915_execbuffer *eb, bool final,
+> +			    bool unreserve)
+>  {
+>  	const unsigned int count = eb->buffer_count;
+>  	unsigned int i;
+>  
+> -	for (i = 0; i < count; i++) {
+> +	for (i = 0; unreserve && i < count; i++) {
+>  		struct eb_vma *ev = &eb->vma[i];
+>  		struct i915_vma *vma = ev->vma;
+>  
+> @@ -1237,7 +1238,7 @@ static void *reloc_iomap(struct drm_i915_gem_object *obj,
+>  		if (err)
+>  			return ERR_PTR(err);
+>  
+> -		vma = i915_gem_object_ggtt_pin_ww(obj, &eb->ww, NULL, 0, 0,
+> +		vma = i915_gem_object_ggtt_pin_ww(obj, eb->ww, NULL, 0, 0,
+>  						  PIN_MAPPABLE |
+>  						  PIN_NONBLOCK /* NOWARN */ |
+>  						  PIN_NOEVICT);
+> @@ -1361,7 +1362,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+>  	}
+>  	eb->reloc_pool = NULL;
+>  
+> -	err = i915_gem_object_lock(pool->obj, &eb->ww);
+> +	err = i915_gem_object_lock(pool->obj, eb->ww);
+>  	if (err)
+>  		goto err_pool;
+>  
+> @@ -1380,7 +1381,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+>  		goto err_unmap;
+>  	}
+>  
+> -	err = i915_vma_pin_ww(batch, &eb->ww, 0, 0, PIN_USER | PIN_NONBLOCK);
+> +	err = i915_vma_pin_ww(batch, eb->ww, 0, 0, PIN_USER | PIN_NONBLOCK);
+>  	if (err)
+>  		goto err_unmap;
+>  
+> @@ -1402,7 +1403,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+>  			eb->reloc_context = ce;
+>  		}
+>  
+> -		err = intel_context_pin_ww(ce, &eb->ww);
+> +		err = intel_context_pin_ww(ce, eb->ww);
+>  		if (err)
+>  			goto err_unpin;
+>  
+> @@ -2017,8 +2018,8 @@ static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb,
+>  	}
+>  
+>  	/* We may process another execbuffer during the unlock... */
+> -	eb_release_vmas(eb, false);
+> -	i915_gem_ww_ctx_fini(&eb->ww);
+> +	eb_release_vmas(eb, false, true);
+> +	i915_gem_ww_ctx_fini(eb->ww);
+>  
+>  	if (rq) {
+>  		/* nonblocking is always false */
+> @@ -2062,7 +2063,7 @@ static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb,
+>  		err = eb_reinit_userptr(eb);
+>  
+>  err_relock:
+> -	i915_gem_ww_ctx_init(&eb->ww, true);
+> +	i915_gem_ww_ctx_init(eb->ww, true);
+>  	if (err)
+>  		goto out;
+>  
+> @@ -2119,8 +2120,8 @@ static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb,
+>  
+>  err:
+>  	if (err == -EDEADLK) {
+> -		eb_release_vmas(eb, false);
+> -		err = i915_gem_ww_ctx_backoff(&eb->ww);
+> +		eb_release_vmas(eb, false, true);
+> +		err = i915_gem_ww_ctx_backoff(eb->ww);
+>  		if (!err)
+>  			goto repeat_validate;
+>  	}
+> @@ -2152,7 +2153,7 @@ static noinline int eb_relocate_parse_slow(struct i915_execbuffer *eb,
+>  	return err;
+>  }
+>  
+> -static int eb_relocate_parse(struct i915_execbuffer *eb)
+> +static int eb_relocate_parse(struct i915_execbuffer *eb, bool first)
+>  {
+>  	int err;
+>  	struct i915_request *rq = NULL;
+> @@ -2189,14 +2190,16 @@ static int eb_relocate_parse(struct i915_execbuffer *eb)
+>  	/* only throttle once, even if we didn't need to throttle */
+>  	throttle = false;
+>  
+> -	err = eb_validate_vmas(eb);
+> -	if (err == -EAGAIN)
+> -		goto slow;
+> -	else if (err)
+> -		goto err;
+> +	if (first) {
+> +		err = eb_validate_vmas(eb);
+> +		if (err == -EAGAIN)
+> +			goto slow;
+> +		else if (err)
+> +			goto err;
+> +	}
+>  
+>  	/* The objects are in their final locations, apply the relocations. */
+> -	if (eb->args->flags & __EXEC_HAS_RELOC) {
+> +	if (eb->args->flags & __EXEC_HAS_RELOC && first) {
+>  		struct eb_vma *ev;
+>  
+>  		list_for_each_entry(ev, &eb->relocs, reloc_link) {
+> @@ -2211,13 +2214,13 @@ static int eb_relocate_parse(struct i915_execbuffer *eb)
+>  			goto slow;
+>  	}
+>  
+> -	if (!err)
+> +	if (!err && first)
+>  		err = eb_parse(eb);
+>  
+>  err:
+>  	if (err == -EDEADLK) {
+> -		eb_release_vmas(eb, false);
+> -		err = i915_gem_ww_ctx_backoff(&eb->ww);
+> +		eb_release_vmas(eb, false, true);
+> +		err = i915_gem_ww_ctx_backoff(eb->ww);
+>  		if (!err)
+>  			goto retry;
+>  	}
+> @@ -2398,7 +2401,7 @@ shadow_batch_pin(struct i915_execbuffer *eb,
+>  	if (IS_ERR(vma))
+>  		return vma;
+>  
+> -	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, flags);
+> +	err = i915_vma_pin_ww(vma, eb->ww, 0, 0, flags);
+>  	if (err)
+>  		return ERR_PTR(err);
+>  
+> @@ -2412,7 +2415,7 @@ static struct i915_vma *eb_dispatch_secure(struct i915_execbuffer *eb, struct i9
+>  	 * batch" bit. Hence we need to pin secure batches into the global gtt.
+>  	 * hsw should have this fixed, but bdw mucks it up again. */
+>  	if (eb->batch_flags & I915_DISPATCH_SECURE)
+> -		return i915_gem_object_ggtt_pin_ww(vma->obj, &eb->ww, NULL, 0, 0, 0);
+> +		return i915_gem_object_ggtt_pin_ww(vma->obj, eb->ww, NULL, 0, 0, 0);
+>  
+>  	return NULL;
+>  }
+> @@ -2458,7 +2461,7 @@ static int eb_parse(struct i915_execbuffer *eb)
+>  		eb->batch_pool = pool;
+>  	}
+>  
+> -	err = i915_gem_object_lock(pool->obj, &eb->ww);
+> +	err = i915_gem_object_lock(pool->obj, eb->ww);
+>  	if (err)
+>  		goto err;
+>  
+> @@ -2666,7 +2669,7 @@ static struct i915_request *eb_pin_engine(struct i915_execbuffer *eb, bool throt
+>  	 * GGTT space, so do this first before we reserve a seqno for
+>  	 * ourselves.
+>  	 */
+> -	err = intel_context_pin_ww(ce, &eb->ww);
+> +	err = intel_context_pin_ww(ce, eb->ww);
+>  	if (err)
+>  		return ERR_PTR(err);
+>  
+> @@ -3218,7 +3221,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  		       unsigned int batch_number,
+>  		       struct dma_fence *in_fence,
+>  		       struct dma_fence *exec_fence,
+> -		       struct dma_fence **out_fence)
+> +		       struct dma_fence **out_fence,
+> +		       struct i915_gem_ww_ctx *ww)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(dev);
+>  	struct i915_execbuffer eb;
+> @@ -3239,7 +3243,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  
+>  	eb.exec = exec;
+>  	eb.vma = (struct eb_vma *)(exec + args->buffer_count + 1);
+> -	eb.vma[0].vma = NULL;
+> +	if (first)
+> +		eb.vma[0].vma = NULL;
+>  	eb.reloc_pool = eb.batch_pool = NULL;
+>  	eb.reloc_context = NULL;
+>  
+> @@ -3251,6 +3256,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  	eb.batch_len = args->batch_len;
+>  	eb.trampoline = NULL;
+>  	eb.composite_fence = NULL;
+> +	eb.ww = ww;
+>  
+>  	eb.fences = NULL;
+>  	eb.num_fences = 0;
+> @@ -3269,9 +3275,14 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  	if (err)
+>  		goto err_ext;
+>  
+> -	err = eb_create(&eb);
+> -	if (err)
+> -		goto err_ext;
+> +	if (first) {
+> +		err = eb_create(&eb);
+> +		if (err)
+> +			goto err_ext;
+> +	} else {
+> +		eb.lut_size = -eb.buffer_count;
+> +	}
+> +
+>  
+>  	GEM_BUG_ON(!eb.lut_size);
+>  
+> @@ -3286,15 +3297,22 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  	if (unlikely(err))
+>  		goto err_context;
+>  
+> -	err = eb_lookup_vmas(&eb);
+> -	if (err) {
+> -		eb_release_vmas(&eb, true);
+> -		goto err_engine;
+> +	if (first) {
+> +		err = eb_lookup_vmas(&eb);
+> +		if (err) {
+> +			eb_release_vmas(&eb, true, true);
+> +			goto err_engine;
+> +		}
+> +
+> +	} else {
+> +		eb.batch = &eb.vma[eb.batch_index];
+>  	}
+>  
+> -	i915_gem_ww_ctx_init(&eb.ww, true);
+>  
+> -	err = eb_relocate_parse(&eb);
+> +	if (first)
+> +		i915_gem_ww_ctx_init(eb.ww, true);
+> +
+> +	err = eb_relocate_parse(&eb, first);
+>  	if (err) {
+>  		/*
+>  		 * If the user expects the execobject.offset and
+> @@ -3307,7 +3325,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  		goto err_vma;
+>  	}
+>  
+> -	ww_acquire_done(&eb.ww.ctx);
+> +	if (first)
+> +		ww_acquire_done(&eb.ww->ctx);
+>  
+>  	batch = eb.batch->vma;
+>  
+> @@ -3410,11 +3429,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  	i915_request_put(eb.request);
+>  
+>  err_vma:
+> -	eb_release_vmas(&eb, true);
+> +	eb_release_vmas(&eb, true, err || last);
+>  	if (eb.trampoline)
+>  		i915_vma_unpin(eb.trampoline);
+>  	WARN_ON(err == -EDEADLK);
+> -	i915_gem_ww_ctx_fini(&eb.ww);
+> +	if (err || last)
+> +		i915_gem_ww_ctx_fini(eb.ww);
+>  
+>  	if (eb.batch_pool)
+>  		intel_gt_buffer_pool_put(eb.batch_pool);
+> @@ -3476,6 +3496,7 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>  	const size_t count = args->buffer_count;
+>  	int err;
+>  	struct i915_gem_context *ctx;
+> +	struct i915_gem_ww_ctx ww;
+>  	struct intel_context *parent = NULL;
+>  	unsigned int num_batches = 1, i;
+>  	bool is_parallel = false;
+> @@ -3602,7 +3623,8 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>  				     0,
+>  				     in_fence,
+>  				     exec_fence,
+> -				     out_fences);
+> +				     out_fences,
+> +				     &ww);
+>  
+>  	for (i = 1; err == 0 && i < num_batches; i++)
+>  		err = i915_gem_do_execbuffer(dev, file, args, exec2_list,
+> @@ -3612,7 +3634,8 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+>  					     i,
+>  					     NULL,
+>  					     NULL,
+> -					     out_fences);
+> +					     out_fences,
+> +					     &ww);
+>  
+>  	if (is_parallel)
+>  		mutex_unlock(&parent->parallel_submit);
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> index 16162fc2782d..710d2700e5b4 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_execbuffer.c
+> @@ -32,11 +32,11 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+>  	if (IS_ERR(vma))
+>  		return PTR_ERR(vma);
+>  
+> -	err = i915_gem_object_lock(obj, &eb->ww);
+> +	err = i915_gem_object_lock(obj, eb->ww);
+>  	if (err)
+>  		return err;
+>  
+> -	err = i915_vma_pin_ww(vma, &eb->ww, 0, 0, PIN_USER | PIN_HIGH);
+> +	err = i915_vma_pin_ww(vma, eb->ww, 0, 0, PIN_USER | PIN_HIGH);
+>  	if (err)
+>  		return err;
+>  
+> @@ -106,10 +106,12 @@ static int __igt_gpu_reloc(struct i915_execbuffer *eb,
+>  static int igt_gpu_reloc(void *arg)
+>  {
+>  	struct i915_execbuffer eb;
+> +	struct i915_gem_ww_ctx ww;
+>  	struct drm_i915_gem_object *scratch;
+>  	int err = 0;
+>  	u32 *map;
+>  
+> +	eb.ww = &ww;
+>  	eb.i915 = arg;
+>  
+>  	scratch = i915_gem_object_create_internal(eb.i915, 4096);
+> @@ -141,20 +143,20 @@ static int igt_gpu_reloc(void *arg)
+>  		eb.reloc_pool = NULL;
+>  		eb.reloc_context = NULL;
+>  
+> -		i915_gem_ww_ctx_init(&eb.ww, false);
+> +		i915_gem_ww_ctx_init(eb.ww, false);
+>  retry:
+> -		err = intel_context_pin_ww(eb.context, &eb.ww);
+> +		err = intel_context_pin_ww(eb.context, eb.ww);
+>  		if (!err) {
+>  			err = __igt_gpu_reloc(&eb, scratch);
+>  
+>  			intel_context_unpin(eb.context);
+>  		}
+>  		if (err == -EDEADLK) {
+> -			err = i915_gem_ww_ctx_backoff(&eb.ww);
+> +			err = i915_gem_ww_ctx_backoff(eb.ww);
+>  			if (!err)
+>  				goto retry;
+>  		}
+> -		i915_gem_ww_ctx_fini(&eb.ww);
+> +		i915_gem_ww_ctx_fini(eb.ww);
+>  
+>  		if (eb.reloc_pool)
+>  			intel_gt_buffer_pool_put(eb.reloc_pool);
+> -- 
+> 2.28.0
+> 
 
 -- 
 Daniel Vetter
