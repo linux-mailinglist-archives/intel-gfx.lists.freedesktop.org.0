@@ -2,33 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B617B3E59ED
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 14:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C363E59FF
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 14:34:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E82589E50;
-	Tue, 10 Aug 2021 12:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F291889E39;
+	Tue, 10 Aug 2021 12:34:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0F48D89807;
- Tue, 10 Aug 2021 12:29:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 07289A0099;
- Tue, 10 Aug 2021 12:29:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0498053817169155810=="
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C03E989C63
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 12:34:20 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id
+ l34-20020a05600c1d22b02902573c214807so1846301wms.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 05:34:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=HYk+3h+xsdxcmcK8ofz+YfFtNmjj8XuZmW3LS1ids7A=;
+ b=Vdra8eL5wGATIKBqTqSyrH7H3+KuqvR2V1Ebl0DUFXqVYNccD6cwKfFZ7iSEtdR36Y
+ DI2qLIQPKrZy2lquWNqPf13sFawhR+3bL1d5H1RhVvew/QwHEqMT322AgclBYHu/aVhO
+ KGzaj+UT3Ctv6g3dSpUaqjUFjvukUYBRz+PU0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=HYk+3h+xsdxcmcK8ofz+YfFtNmjj8XuZmW3LS1ids7A=;
+ b=gOvMXK74Wud6LuglCWz2Iv3zvMcJ0tG5JXKJWSmLtzBMpNzcMGvpwpt2AbA8VvdkJn
+ INUAANvFcjzOll8pzfUK8C2YtsU0jhaZy6VYC2tQ8Deo15zbOJDkk7L4eeupEaVgAiqu
+ lJ40lEA2F8eXsZcZkFJOZxSSeG2fzXRakIHPj9JWcmtBLZN4zuVidXXjEGwABpv0b28x
+ pMgiwO4uDV404FWmW8P7n8f8xIj5ASDpaKRKr6cIko6L0fCOzbt6TxTD55aPRL3Ay7C/
+ Q4Z7GEI+FGT3DehmmTPcL+KfRllfjaPicwkyld3ouRLGAaPMZJSIKjfcQIE6En2UIjUE
+ g0uA==
+X-Gm-Message-State: AOAM533+LEWZcvlATjiEe39TLnXSg27R5Y9f+7JicHvO/A7uliZbjz2E
+ iuWPOacSbehNDXdlSw0y/Xz9sg==
+X-Google-Smtp-Source: ABdhPJwXMuqxcxS8QV8jK36KErcoIsEcDbc013LYNCPNi3AWYphKakRC5EH7poHDvNHGQHhKXvRmTw==
+X-Received: by 2002:a1c:9884:: with SMTP id a126mr4575256wme.153.1628598859264; 
+ Tue, 10 Aug 2021 05:34:19 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id n186sm3142048wme.40.2021.08.10.05.34.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Aug 2021 05:34:18 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Date: Tue, 10 Aug 2021 14:34:08 +0200
+Message-Id: <20210810123408.1870870-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Aug 2021 12:29:49 -0000
-Message-ID: <162859858900.29684.7241606205500739479@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210810084128.17242-1-jani.nikula@intel.com>
-In-Reply-To: <20210810084128.17242-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gem/ttm=3A_prefer_kernel_types?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/doc/rfc: drop lmem uapi section
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,245 +68,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0498053817169155810==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+We still have quite a bit more work to do with overall reworking of
+the ttm-based dg1 code, but the uapi stuff is now finalized with the
+latest pull. So remove that.
 
-== Series Details ==
+This also fixes kerneldoc build warnings because we've included the
+same headers in two places, resulting in sphinx complaining about
+duplicated symbols. This regression has been created when we moved the
+uapi definitions to the real include/uapi/ folder in 727ecd99a4c9
+("drm/doc/rfc: drop the i915_gem_lmem.h header")
 
-Series: drm/i915/gem/ttm: prefer kernel types
-URL   : https://patchwork.freedesktop.org/series/93541/
-State : failure
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>
+Fixes: 727ecd99a4c9 ("drm/doc/rfc: drop the i915_gem_lmem.h header")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ Documentation/gpu/rfc/i915_gem_lmem.rst | 107 ------------------------
+ 1 file changed, 107 deletions(-)
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10464 -> Patchwork_20791
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20791 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20791, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20791:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         NOTRUN -> [DMESG-WARN][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20791 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10464/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][5] ([i915#3844] / [i915#579])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][6] ([i915#3301])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@prime_vgem@basic-userptr.html
-
-  * igt@prime_vgem@basic-write:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][7] ([i915#3291]) +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [FAIL][8] ([i915#1888]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10464/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_pm_rps@basic-api:
-    - fi-rkl-guc:         [DMESG-WARN][10] ([i915#3925]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10464/fi-rkl-guc/igt@i915_pm_rps@basic-api.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@i915_pm_rps@basic-api.html
-
-  
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3844]: https://gitlab.freedesktop.org/drm/intel/issues/3844
-  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (37 -> 33)
+diff --git a/Documentation/gpu/rfc/i915_gem_lmem.rst b/Documentation/gpu/rfc/i915_gem_lmem.rst
+index 675ba8620d66..91be041e68cc 100644
+--- a/Documentation/gpu/rfc/i915_gem_lmem.rst
++++ b/Documentation/gpu/rfc/i915_gem_lmem.rst
+@@ -22,110 +22,3 @@ real, with all the uAPI bits is:
+         * SET/GET ioctl caching(see `I915 SET/GET CACHING`_)
+ * Send RFC(with mesa-dev on cc) for final sign off on the uAPI
+ * Add pciid for DG1 and turn on uAPI for real
+-
+-New object placement and region query uAPI
+-==========================================
+-Starting from DG1 we need to give userspace the ability to allocate buffers from
+-device local-memory. Currently the driver supports gem_create, which can place
+-buffers in system memory via shmem, and the usual assortment of other
+-interfaces, like dumb buffers and userptr.
+-
+-To support this new capability, while also providing a uAPI which will work
+-beyond just DG1, we propose to offer three new bits of uAPI:
+-
+-DRM_I915_QUERY_MEMORY_REGIONS
 ------------------------------
+-New query ID which allows userspace to discover the list of supported memory
+-regions(like system-memory and local-memory) for a given device. We identify
+-each region with a class and instance pair, which should be unique. The class
+-here would be DEVICE or SYSTEM, and the instance would be zero, on platforms
+-like DG1.
+-
+-Side note: The class/instance design is borrowed from our existing engine uAPI,
+-where we describe every physical engine in terms of its class, and the
+-particular instance, since we can have more than one per class.
+-
+-In the future we also want to expose more information which can further
+-describe the capabilities of a region.
+-
+-.. kernel-doc:: include/uapi/drm/i915_drm.h
+-        :functions: drm_i915_gem_memory_class drm_i915_gem_memory_class_instance drm_i915_memory_region_info drm_i915_query_memory_regions
+-
+-GEM_CREATE_EXT
+---------------
+-New ioctl which is basically just gem_create but now allows userspace to provide
+-a chain of possible extensions. Note that if we don't provide any extensions and
+-set flags=0 then we get the exact same behaviour as gem_create.
+-
+-Side note: We also need to support PXP[1] in the near future, which is also
+-applicable to integrated platforms, and adds its own gem_create_ext extension,
+-which basically lets userspace mark a buffer as "protected".
+-
+-.. kernel-doc:: include/uapi/drm/i915_drm.h
+-        :functions: drm_i915_gem_create_ext
+-
+-I915_GEM_CREATE_EXT_MEMORY_REGIONS
+-----------------------------------
+-Implemented as an extension for gem_create_ext, we would now allow userspace to
+-optionally provide an immutable list of preferred placements at creation time,
+-in priority order, for a given buffer object.  For the placements we expect
+-them each to use the class/instance encoding, as per the output of the regions
+-query. Having the list in priority order will be useful in the future when
+-placing an object, say during eviction.
+-
+-.. kernel-doc:: include/uapi/drm/i915_drm.h
+-        :functions: drm_i915_gem_create_ext_memory_regions
+-
+-One fair criticism here is that this seems a little over-engineered[2]. If we
+-just consider DG1 then yes, a simple gem_create.flags or something is totally
+-all that's needed to tell the kernel to allocate the buffer in local-memory or
+-whatever. However looking to the future we need uAPI which can also support
+-upcoming Xe HP multi-tile architecture in a sane way, where there can be
+-multiple local-memory instances for a given device, and so using both class and
+-instance in our uAPI to describe regions is desirable, although specifically
+-for DG1 it's uninteresting, since we only have a single local-memory instance.
+-
+-Existing uAPI issues
+-====================
+-Some potential issues we still need to resolve.
+-
+-I915 MMAP
+----------
+-In i915 there are multiple ways to MMAP GEM object, including mapping the same
+-object using different mapping types(WC vs WB), i.e multiple active mmaps per
+-object. TTM expects one MMAP at most for the lifetime of the object. If it
+-turns out that we have to backpedal here, there might be some potential
+-userspace fallout.
+-
+-I915 SET/GET CACHING
+---------------------
+-In i915 we have set/get_caching ioctl. TTM doesn't let us to change this, but
+-DG1 doesn't support non-snooped pcie transactions, so we can just always
+-allocate as WB for smem-only buffers.  If/when our hw gains support for
+-non-snooped pcie transactions then we must fix this mode at allocation time as
+-a new GEM extension.
+-
+-This is related to the mmap problem, because in general (meaning, when we're
+-not running on intel cpus) the cpu mmap must not, ever, be inconsistent with
+-allocation mode.
+-
+-Possible idea is to let the kernel picks the mmap mode for userspace from the
+-following table:
+-
+-smem-only: WB. Userspace does not need to call clflush.
+-
+-smem+lmem: We only ever allow a single mode, so simply allocate this as uncached
+-memory, and always give userspace a WC mapping. GPU still does snooped access
+-here(assuming we can't turn it off like on DG1), which is a bit inefficient.
+-
+-lmem only: always WC
+-
+-This means on discrete you only get a single mmap mode, all others must be
+-rejected. That's probably going to be a new default mode or something like
+-that.
+-
+-Links
+-=====
+-[1] https://patchwork.freedesktop.org/series/86798/
+-
+-[2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5599#note_553791
+-- 
+2.32.0
 
-  Missing    (4): fi-bdw-samus fi-bsw-cyan bat-jsl-1 fi-apl-guc 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10464 -> Patchwork_20791
-
-  CI-20190529: 20190529
-  CI_DRM_10464: 294a55f328023a4e36f46e5eb6c4859076efd850 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6165: df5d05d742275b049f6f3c852a86c4769966b126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20791: 5f5e1301423731d5c2deee844b627636e6208b02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5f5e13014237 drm/i915/gem/ttm: prefer kernel types
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/index.html
-
---===============0498053817169155810==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem/ttm: prefer kernel types</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93541/">https://patchwork.freedesktop.org/series/93541/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10464 -&gt; Patchwork_20791</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20791 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20791, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20791:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_lrc:<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20791 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10464/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3844">i915#3844</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10464/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10464/fi-rkl-guc/igt@i915_pm_rps@basic-api.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20791/fi-rkl-guc/igt@i915_pm_rps@basic-api.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (37 -&gt; 33)</h2>
-<p>Missing    (4): fi-bdw-samus fi-bsw-cyan bat-jsl-1 fi-apl-guc </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10464 -&gt; Patchwork_20791</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10464: 294a55f328023a4e36f46e5eb6c4859076efd850 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6165: df5d05d742275b049f6f3c852a86c4769966b126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20791: 5f5e1301423731d5c2deee844b627636e6208b02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>5f5e13014237 drm/i915/gem/ttm: prefer kernel types</p>
-
-</body>
-</html>
-
---===============0498053817169155810==--
