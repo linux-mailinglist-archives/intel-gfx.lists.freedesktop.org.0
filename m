@@ -2,47 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2333E7FC1
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 19:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6C23E8412
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 22:04:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E42CC89F1B;
-	Tue, 10 Aug 2021 17:44:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A902489CB8;
+	Tue, 10 Aug 2021 20:04:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 741B56E081;
- Tue, 10 Aug 2021 17:44:02 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BB04A6120A;
- Tue, 10 Aug 2021 17:44:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1628617442;
- bh=1T/6Xo0twH7hiCGgekOpRE3hRSp1CaIe2VhKAXGYQsk=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=FWaxEIudwZLLtiKV71fvNYYXI42AEcpnXTb0C/kMmdWQiyh0OqdGP0biDC9xq4fKB
- Mnoo0WNSn6Sk5JgWhsOaza7oUjxUfJPUKvcahqUap+oCVRGv/8ny3gN91KbcJUQ7Lj
- N+2cs19XQq7fOInP+tEeGbfl0vGiaGYx0sPHm/6o=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: linux-kernel@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, stable@vger.kernel.org,
- Randy Dunlap <rdunlap@infradead.org>,
- Jason Ekstrand <jason@jlekstrand.net>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>, Sasha Levin <sashal@kernel.org>
-Date: Tue, 10 Aug 2021 19:29:27 +0200
-Message-Id: <20210810173002.892794186@linuxfoundation.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210810173000.928681411@linuxfoundation.org>
-References: <20210810173000.928681411@linuxfoundation.org>
-User-Agent: quilt/0.66
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BDC989CB8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 20:04:41 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="202151783"
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="202151783"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 13:04:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="421945252"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga003.jf.intel.com with ESMTP; 10 Aug 2021 13:04:25 -0700
+Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Tue, 10 Aug 2021 13:04:25 -0700
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 11 Aug 2021 01:34:22 +0530
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2242.010;
+ Wed, 11 Aug 2021 04:04:22 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgVHdlYWtlZCBXYV8xNDAxMDY4?=
+ =?utf-8?Q?5332_for_all_PCHs?=
+Thread-Index: AQHXjf4PwQRREfCA6EyGKDGo6Et2HattKcyA
+Date: Tue, 10 Aug 2021 20:04:21 +0000
+Message-ID: <e5855fc1854b4b51a0e302fe3816aa27@intel.com>
+References: <20210810113112.31739-1-anshuman.gupta@intel.com>
+ <162860384942.29683.15649135811749450065@emeril.freedesktop.org>
+ <20210810152230.GA814@intel.com>
+In-Reply-To: <20210810152230.GA814@intel.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5.13 059/175] drm/i915: fix i915_globals_exit()
- section mismatch error
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgVHdl?=
+ =?utf-8?q?aked_Wa=5F14010685332_for_all_PCHs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +73,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Randy Dunlap <rdunlap@infradead.org>
-
-[ Upstream commit a07296453bf2778952a09b6244a695bf7607babb ]
-
-Fix modpost Section mismatch error in i915_globals_exit().
-Since both an __init function and an __exit function can call
-i915_globals_exit(), any function that i915_globals_exit() calls
-should not be marked as __init or __exit. I.e., it needs to be
-available for either of them.
-
-WARNING: modpost: vmlinux.o(.text+0x8b796a): Section mismatch in reference from the function i915_globals_exit() to the function .exit.text:__i915_globals_flush()
-The function i915_globals_exit() references a function in an exit section.
-Often the function __i915_globals_flush() has valid usage outside the exit section
-and the fix is to remove the __exit annotation of __i915_globals_flush.
-
-ERROR: modpost: Section mismatches detected.
-Set CONFIG_SECTION_MISMATCH_WARN_ONLY=y to allow them.
-
-Fixes: 1354d830cb8f ("drm/i915: Call i915_globals_exit() if pci_register_device() fails")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20210804204147.2070-1-rdunlap@infradead.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/i915/i915_globals.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
-index e27739a50bee..57d2943884ab 100644
---- a/drivers/gpu/drm/i915/i915_globals.c
-+++ b/drivers/gpu/drm/i915/i915_globals.c
-@@ -139,7 +139,7 @@ void i915_globals_unpark(void)
- 	atomic_inc(&active);
- }
- 
--static void __exit __i915_globals_flush(void)
-+static void  __i915_globals_flush(void)
- {
- 	atomic_inc(&active); /* skip shrinking */
- 
--- 
-2.30.2
-
-
-
+UmUtcmVwb3J0ZWQuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBHdXB0YSwg
+QW5zaHVtYW4gPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4gDQpTZW50OiBUdWVzZGF5LCBBdWd1
+c3QgMTAsIDIwMjEgODoyMyBBTQ0KVG86IFZ1ZHVtLCBMYWtzaG1pbmFyYXlhbmEgPGxha3NobWlu
+YXJheWFuYS52dWR1bUBpbnRlbC5jb20+DQpDYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZw0KU3ViamVjdDogUmU6IOKclyBGaS5DSS5CQVQ6IGZhaWx1cmUgZm9yIFR3ZWFrZWQgV2Ff
+MTQwMTA2ODUzMzIgZm9yIGFsbCBQQ0hzDQoNCk9uIDIwMjEtMDgtMTAgYXQgMTM6NTc6MjkgKzAw
+MDAsIFBhdGNod29yayB3cm90ZToNCj4gPT0gU2VyaWVzIERldGFpbHMgPT0NCj4gDQo+IFNlcmll
+czogVHdlYWtlZCBXYV8xNDAxMDY4NTMzMiBmb3IgYWxsIFBDSHMNCj4gVVJMICAgOiBodHRwczov
+L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzkzNTQ4Lw0KPiBTdGF0ZSA6IGZhaWx1
+cmUNCj4gDQo+ID09IFN1bW1hcnkgPT0NCj4gDQo+IENJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20g
+Q0lfRFJNXzEwNDY0IC0+IFBhdGNod29ya18yMDc5MiANCj4gPT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiANCj4gU3VtbWFyeQ0KPiAtLS0tLS0t
+DQo+IA0KPiAgICoqRkFJTFVSRSoqDQo+IA0KPiAgIFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNv
+bWluZyB3aXRoIFBhdGNod29ya18yMDc5MiBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUNCj4gICB2ZXJp
+ZmllZCBtYW51YWxseS4NCj4gICANCj4gICBJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5n
+ZXMgaGF2ZSBub3RoaW5nIHRvIGRvIHdpdGggdGhlIGNoYW5nZXMNCj4gICBpbnRyb2R1Y2VkIGlu
+IFBhdGNod29ya18yMDc5MiwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRo
+ZW0NCj4gICB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVk
+dWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS4NCj4gDQo+ICAgRXh0ZXJuYWwgVVJMOiANCj4gaHR0
+cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvaW5k
+ZXguaHRtbA0KPiANCj4gUG9zc2libGUgbmV3IGlzc3Vlcw0KPiAtLS0tLS0tLS0tLS0tLS0tLS0t
+DQo+IA0KPiAgIEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVu
+IGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzIwNzkyOg0KPiANCj4gIyMjIElHVCBjaGFuZ2VzICMj
+Iw0KPiANCj4gIyMjIyBQb3NzaWJsZSByZWdyZXNzaW9ucyAjIyMjDQo+IA0KPiAgICogaWd0QGNv
+cmVfaG90dW5wbHVnQHVuYmluZC1yZWJpbmQ6DQo+ICAgICAtIGZpLXJrbC1ndWM6ICAgICAgICAg
+Tk9UUlVOIC0+IFtETUVTRy1XQVJOXVsxXQ0KPiAgICBbMV06IA0KPiBodHRwczovL2ludGVsLWdm
+eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMDc5Mi9maS1ya2wtZ3VjL2lnDQo+
+IHRAY29yZV9ob3R1bnBsdWdAdW5iaW5kLXJlYmluZC5odG1sDQoJSGkgTGFrc2htaSAsDQoJQWJv
+dmUgQ0kgQkFUIGZhaWx1cmUgaXMgYSB1bnJlYWx0ZWQgZmFpbHVyZShub3QgcmVhbHRlZCB0byBk
+aXNwbGF5KSwgaXQgc2VlbXMgcmVsYXRlZCB0byBjb3JlIHBvd2VyLg0KCWNvdWxkIHlvdSBwbGVz
+ZSBjcmVhdGUgdGhlIGlzc3VlIGFuZCByZS1yZXBvcnQgdGhlIHJlc3VsdC4NCglUaGFua3MsDQoJ
+QW5zaHVtYW4gR3VwdGEuCQ0KPiANCj4gICANCj4gS25vd24gaXNzdWVzDQo+IC0tLS0tLS0tLS0t
+LQ0KPiANCj4gICBIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMjA3OTIg
+dGhhdCBjb21lIGZyb20ga25vd24gaXNzdWVzOg0KPiANCj4gIyMjIENJIGNoYW5nZXMgIyMjDQo+
+IA0KPiAjIyMjIElzc3VlcyBoaXQgIyMjIw0KPiANCj4gICAqIGJvb3Q6DQo+ICAgICAtIGZpLWti
+bC1zb3Jha2E6ICAgICAgW1BBU1NdWzJdIC0+IFtGQUlMXVszXSAoW2k5MTUjMzg5NV0pDQo+ICAg
+IFsyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fMTA0
+NjQvZmkta2JsLXNvcmFrYS9ib290Lmh0bWwNCj4gICAgWzNdOiANCj4gaHR0cHM6Ly9pbnRlbC1n
+ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvZmkta2JsLXNvcmFrYQ0K
+PiAvYm9vdC5odG1sDQo+IA0KPiAgIA0KPiANCj4gIyMjIElHVCBjaGFuZ2VzICMjIw0KPiANCj4g
+IyMjIyBJc3N1ZXMgaGl0ICMjIyMNCj4gDQo+ICAgKiBpZ3RAcHJpbWVfdmdlbUBiYXNpYy11c2Vy
+cHRyOg0KPiAgICAgLSBmaS1ya2wtZ3VjOiAgICAgICAgIE5PVFJVTiAtPiBbU0tJUF1bNF0gKFtp
+OTE1IzMzMDFdKQ0KPiAgICBbNF06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
+ZS9kcm0tdGlwL1BhdGNod29ya18yMDc5Mi9maS1ya2wtZ3VjL2lnDQo+IHRAcHJpbWVfdmdlbUBi
+YXNpYy11c2VycHRyLmh0bWwNCj4gDQo+ICAgKiBpZ3RAcHJpbWVfdmdlbUBiYXNpYy13cml0ZToN
+Cj4gICAgIC0gZmktcmtsLWd1YzogICAgICAgICBOT1RSVU4gLT4gW1NLSVBdWzVdIChbaTkxNSMz
+MjkxXSkgKzIgc2ltaWxhciBpc3N1ZXMNCj4gICAgWzVdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngt
+Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvZmktcmtsLWd1Yy9pZw0KPiB0
+QHByaW1lX3ZnZW1AYmFzaWMtd3JpdGUuaHRtbA0KPiANCj4gICANCj4gIyMjIyBQb3NzaWJsZSBm
+aXhlcyAjIyMjDQo+IA0KPiAgICogaWd0QGk5MTVfcG1fcnBzQGJhc2ljLWFwaToNCj4gICAgIC0g
+ZmktcmtsLWd1YzogICAgICAgICBbRE1FU0ctV0FSTl1bNl0gKFtpOTE1IzM5MjVdKSAtPiBbUEFT
+U11bN10NCj4gICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
+L0NJX0RSTV8xMDQ2NC9maS1ya2wtZ3VjL2lndEBpOTE1X3BtX3Jwc0BiYXNpYy1hcGkuaHRtbA0K
+PiAgICBbN106IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
+dGNod29ya18yMDc5Mi9maS1ya2wtZ3VjL2lnDQo+IHRAaTkxNV9wbV9ycHNAYmFzaWMtYXBpLmh0
+bWwNCj4gDQo+ICAgDQo+ICMjIyMgV2FybmluZ3MgIyMjIw0KPiANCj4gICAqIGlndEBydW5uZXJA
+YWJvcnRlZDoNCj4gICAgIC0gZmktcmtsLWd1YzogICAgICAgICBbRkFJTF1bOF0gKFtpOTE1IzM5
+MjVdKSAtPiBbRkFJTF1bOV0gKFtpOTE1IzE2MDJdKQ0KPiAgICBbOF06IGh0dHBzOi8vaW50ZWwt
+Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzEwNDY0L2ZpLXJrbC1ndWMvaWd0QHJ1
+bm5lckBhYm9ydGVkLmh0bWwNCj4gICAgWzldOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
+b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvZmktcmtsLWd1Yy9pZw0KPiB0QHJ1bm5l
+ckBhYm9ydGVkLmh0bWwNCj4gDQo+ICAgDQo+ICAgW2k5MTUjMTYwMl06IGh0dHBzOi8vZ2l0bGFi
+LmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzE2MDINCj4gICBbaTkxNSMzMjkxXTog
+aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMzI5MQ0KPiAg
+IFtpOTE1IzMzMDFdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lz
+c3Vlcy8zMzAxDQo+ICAgW2k5MTUjMzg5NV06IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9y
+Zy9kcm0vaW50ZWwvaXNzdWVzLzM4OTUNCj4gICBbaTkxNSMzOTI1XTogaHR0cHM6Ly9naXRsYWIu
+ZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMzkyNQ0KPiANCj4gDQo+IFBhcnRpY2lw
+YXRpbmcgaG9zdHMgKDM3IC0+IDM0KQ0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0N
+Cj4gDQo+ICAgTWlzc2luZyAgICAoMyk6IGZpLWJkdy1zYW11cyBmaS1ic3ctY3lhbiBiYXQtanNs
+LTEgDQo+IA0KPiANCj4gQnVpbGQgY2hhbmdlcw0KPiAtLS0tLS0tLS0tLS0tDQo+IA0KPiAgICog
+TGludXg6IENJX0RSTV8xMDQ2NCAtPiBQYXRjaHdvcmtfMjA3OTINCj4gDQo+ICAgQ0ktMjAxOTA1
+Mjk6IDIwMTkwNTI5DQo+ICAgQ0lfRFJNXzEwNDY0OiAyOTRhNTVmMzI4MDIzYTRlMzZmNDZlNWVi
+NmM0ODU5MDc2ZWZkODUwIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xp
+bnV4DQo+ICAgSUdUXzYxNjU6IGRmNWQwNWQ3NDIyNzViMDQ5ZjZmM2M4NTJhODZjNDc2OTk2NmIx
+MjYgQCBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2lndC1ncHUtdG9vbHMuZ2l0
+DQo+ICAgUGF0Y2h3b3JrXzIwNzkyOiAwYWYzNjRiOTQ4OTM0M2U3YmYwZWI0OThmMzRkNzBmNjdk
+ZDc1NTFjIEAgDQo+IGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eA0K
+PiANCj4gDQo+ID09IExpbnV4IGNvbW1pdHMgPT0NCj4gDQo+IDBhZjM2NGI5NDg5MyBkcm0vaTkx
+NTogVHdlYWtlZCBXYV8xNDAxMDY4NTMzMiBmb3IgYWxsIFBDSHMNCj4gDQo+ID09IExvZ3MgPT0N
+Cj4gDQo+IEZvciBtb3JlIGRldGFpbHMgc2VlOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
+b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvaW5kZXguaHRtbA0K
