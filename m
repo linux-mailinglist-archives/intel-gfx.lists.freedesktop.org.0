@@ -1,63 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 534703E7D3A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 18:13:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14103E7D3B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 18:13:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 335886E04A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 756F16E04E;
 	Tue, 10 Aug 2021 16:13:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com
- [IPv6:2607:f8b0:4864:20::102a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93936897C3
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 14:50:33 +0000 (UTC)
-Received: by mail-pj1-x102a.google.com with SMTP id
- 28-20020a17090a031cb0290178dcd8a4d1so2158356pje.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 07:50:33 -0700 (PDT)
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com
+ [IPv6:2607:f8b0:4864:20::c2d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1C9B89E06
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 15:09:55 +0000 (UTC)
+Received: by mail-oo1-xc2d.google.com with SMTP id
+ t1-20020a4a54010000b02902638ef0f883so5411976ooa.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 08:09:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=6bWvrTdryJ9Kr+Y1iNZlAE5XmrjtHq6EDhqbPAS8m0o=;
- b=mFTNiEePHCF7XmyJghvQPKq30kaOpRtFtuYP6xhlzI6pVuGt2sl7m0mZrrark+VIUG
- yoCyQPbjLzBvvKkYaPnOpnoVrtR+mJOHttmB3QyYTrXt8g6gbr0I6/v3wrdqE12UkgfS
- GjkpHMA9yccRsMnmaODhdCBUWYLX+Bouc4Z7DN+p8mPNsfslT+54rv+4E28P4EubVlPq
- GMlF5RYYOVcym8KVDjuyDJSgIbjn4FegzlT4rnIm8SMOQewO1vs+Nlc+mSOuyDLVbGOz
- YE+dQ4cmhGLTkVXIvHZDB7QeDLGC7zWrnb4BtkLVBFf97YSYvkkzmY3Flcm07LHtq6x7
- FE1Q==
+ h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+ :cc; bh=g0I9IMGbZ0SJcY7Jg/RCs/PLaYfCHkgjx/KEvzXupe0=;
+ b=G2FTdSoHCshVXI9EbAtPQDtCbPILnchvSE3uXzXiIg9EPCXL5goRBz518+ibZB19Mp
+ K5QKWtDDuojbx2RxhQ5SHJCPqENrLJEbxkLH6l8cL/hibe3WJKo2/LRnYRmVXI8n+OiE
+ pR9HI6tWKHNZb76+4hEG/G4UiP5/Hwpw8hLOqZoVIeTUOnVMo6VaKkZbI9KXyWzAWgJA
+ cXb7wOhlzzIq07e2nr+mcluuz8YZqX0H5v8mjeVZU5pteziU5uMYhJpLjMHztlOqiBqy
+ tv5zVqrdHvXrHWOauJKNO1HkZ9nUIsX1g6p/avF9VWcKXMyIdyxAnWwpoW4JnrDo+YHY
+ ZTzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=6bWvrTdryJ9Kr+Y1iNZlAE5XmrjtHq6EDhqbPAS8m0o=;
- b=AxfwGQ1bz37gZIE4GCjFtPFVJmKfteTrfAH0Z8a+gZb72qIOUykZCwFKMVdpeyd8Pe
- WZ/UR2cPh3pX2ce8NwVDKGbOvA9p/4fYFHNIaDZy4YQ0C3AZw+2aheyA/MbO7hMDtPuY
- OitVMqxG2BwwP2OyM0TJvsb5JEIWibvKYdZlSGn8oighsKZvZlUrgncW3AMvW7gvwlIF
- SOjT3rLXM35qjAoG3+v/StXAZ3wYfEsxsy87xII8Gb3A+bi0TVjJkiM3oShD0beB80Vq
- yMrJNkSHF2khhyw4fZWsEYKzHXZpKShYncZT5ioDNiZ8l5uEYKj68jZ/1mOOlkvWVV9T
- ugKA==
-X-Gm-Message-State: AOAM531kkkPTLS5zShW2me41XTyZDY1CF1EtL6MWJvjxyhvqjEQGtFhb
- g0pc8YhOdMPbHCSxtQj/9g8=
-X-Google-Smtp-Source: ABdhPJwkOSfcfZo6LGbrekBJx5KKCk3AMDZVd3aoAe8eSroO+qK8UyLljCVix2ubOaGyFkcjCkMulA==
-X-Received: by 2002:aa7:8c56:0:b029:3c2:ca37:800 with SMTP id
- e22-20020aa78c560000b02903c2ca370800mr29525852pfd.54.1628607033175; 
- Tue, 10 Aug 2021 07:50:33 -0700 (PDT)
-Received: from localhost.localdomain ([143.244.60.168])
- by smtp.gmail.com with ESMTPSA id u20sm27404885pgm.4.2021.08.10.07.50.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Aug 2021 07:50:32 -0700 (PDT)
-From: youling257 <youling257@gmail.com>
-To: imre.deak@intel.com
-Cc: alsa-devel@alsa-project.org, intel-gfx@lists.freedesktop.org,
- tiwai@suse.de, tv@lio96.de
-Date: Tue, 10 Aug 2021 22:50:18 +0800
-Message-Id: <20210810145018.24001-1-youling257@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210623134601.2128663-1-imre.deak@intel.com>
-References: <20210623134601.2128663-1-imre.deak@intel.com>
+ h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+ :message-id:subject:to:cc;
+ bh=g0I9IMGbZ0SJcY7Jg/RCs/PLaYfCHkgjx/KEvzXupe0=;
+ b=MxhyuZeIIPkLdtICLEEJY8mp7I2gJFtI/0TzDDDH5GM9dB78hFfeiOqvEZCw1DTliy
+ k9GkA0gjbFNLKap55Lr+KVPWWgfR+OakYDLbG8xq004P8hTCDYkP/DDc2Yo+fMgDc9Qh
+ 9b4a/rdYb/W7U4BMBcUtIhtFvnmZx3ZaG0N7g9sVZjpr/xHeoJ3Sv/nf608+HiHK3D6i
+ IoAchwjiDGAGPNhz3b4g8IKsyxAQG7Id5CcvZVF+21Nfal2Z7KA9AziRIfL4HIXe6RtB
+ CMhcBKHevZuOz5elwjfJqnCzQrOhWRfMtS1QoD126Jiie9lOAtUTRmbF5wanBDTPFCod
+ 0VzQ==
+X-Gm-Message-State: AOAM530AH7JiMWJLCGqBJgrST/1oawX3WZgHvz6rV/YVxrTq1z/EESpJ
+ e+cC9VXX7t9UTJHx1KFzqXvMH64TZN0RWNbNYtg=
+X-Google-Smtp-Source: ABdhPJxP/RVz2hQQZZPWL9Z3NRvn08BFeLaliK0VVBpI0fnEkXlNivlCCCc4LQqq4DeF+45dM/IPf3R0qpuFVdoQfig=
+X-Received: by 2002:a4a:41d2:: with SMTP id x201mr7281522ooa.71.1628608195140; 
+ Tue, 10 Aug 2021 08:09:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a9d:7d93:0:0:0:0:0 with HTTP; Tue, 10 Aug 2021 08:09:54
+ -0700 (PDT)
+In-Reply-To: <20210810145018.24001-1-youling257@gmail.com>
+References: <20210623134601.2128663-1-imre.deak@intel.com>
+ <20210810145018.24001-1-youling257@gmail.com>
+From: youling 257 <youling257@gmail.com>
+Date: Tue, 10 Aug 2021 23:09:54 +0800
+Message-ID: <CAOzgRdY6cYCyezHZD-GQptgN2-1CNeNm8PSGtjN7mSEb8kQ7Pg@mail.gmail.com>
+To: imre.deak@intel.com
+Cc: alsa-devel@alsa-project.org, intel-gfx@lists.freedesktop.org, 
+ tiwai@suse.de, tv@lio96.de
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Tue, 10 Aug 2021 16:13:19 +0000
 Subject: Re: [Intel-gfx] [PATCH 1/2] ALSA: hda: Release controller display
  power during shutdown/reboot
@@ -76,4 +72,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-it cause my intel 7820hk cpu failed shutdown.
+my 7820hk sound card is alc662
+
+android_x86:/ # aplay -l
+**** List of PLAYBACK Hardware Devices ****
+card 0: PCH [HDA Intel PCH], device 0: ALC662 rev3 Analog [ALC662 rev3 Analog]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 3: HDMI 0 [HDMI 0]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 7: HDMI 1 [HDMI 1]
+  Subdevices: 0/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 8: HDMI 2 [HDMI 2]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 9: HDMI 3 [HDMI 3]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 10: HDMI 4 [HDMI 4]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+android_x86:/ #
+
+2021-08-10 22:50 GMT+08:00, youling257 <youling257@gmail.com>:
+> it cause my intel 7820hk cpu failed shutdown.
+>
