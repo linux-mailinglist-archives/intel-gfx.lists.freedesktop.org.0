@@ -2,33 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C593E7D7D
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 18:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0E53E7E38
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 19:29:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB34289CAA;
-	Tue, 10 Aug 2021 16:29:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 953ED89E5F;
+	Tue, 10 Aug 2021 17:29:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C4C5889CAA;
- Tue, 10 Aug 2021 16:29:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BA49CAA3D8;
- Tue, 10 Aug 2021 16:29:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4737276071981261668=="
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC0E89E5F;
+ Tue, 10 Aug 2021 17:29:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="214679765"
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="214679765"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 10:29:48 -0700
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="515925503"
+Received: from dut151-iclu.fm.intel.com ([10.105.23.69])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 10:29:48 -0700
+Date: Tue, 10 Aug 2021 17:29:46 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <20210810172946.GA92078@DUT151-ICLU.fm.intel.com>
+References: <20210803222943.27686-1-matthew.brost@intel.com>
+ <20210803222943.27686-26-matthew.brost@intel.com>
+ <YRFZnGNvmHPr6DTL@phenom.ffwll.local>
+ <20210809191311.GA123935@DUT151-ICLU.fm.intel.com>
+ <YRJFmw4BTJi/UIWf@phenom.ffwll.local>
+ <YRJGg0iQidHxA41e@phenom.ffwll.local>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Aug 2021 16:29:13 -0000
-Message-ID: <162861295373.29684.137228575189608700@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210810130523.1972031-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210810130523.1972031-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Use_locked_access_to_ctx-=3Eengines_in_set=5Fpriority?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YRJGg0iQidHxA41e@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] [PATCH 25/46] drm/i915/guc: Update debugfs for GuC
+ multi-lrc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,208 +50,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4737276071981261668==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Aug 10, 2021 at 11:27:31AM +0200, Daniel Vetter wrote:
+> On Tue, Aug 10, 2021 at 11:23:39AM +0200, Daniel Vetter wrote:
+> > On Mon, Aug 09, 2021 at 07:13:11PM +0000, Matthew Brost wrote:
+> > > On Mon, Aug 09, 2021 at 06:36:44PM +0200, Daniel Vetter wrote:
+> > > > On Tue, Aug 03, 2021 at 03:29:22PM -0700, Matthew Brost wrote:
+> > > > > Display the workqueue status in debugfs for GuC contexts that are in
+> > > > > parent-child relationship.
+> > > > > 
+> > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > ---
+> > > > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 56 +++++++++++++------
+> > > > >  1 file changed, 39 insertions(+), 17 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > > index 30df1c8db491..44a7582c9aed 100644
+> > > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > > > > @@ -4527,31 +4527,53 @@ void intel_guc_submission_print_info(struct intel_guc *guc,
+> > > > >  		gse_log_submission_info(guc->gse[i], p, i);
+> > > > >  }
+> > > > >  
+> > > > > +static inline void guc_log_context(struct drm_printer *p,
+> > > > > +				   struct intel_context *ce)
+> > > > > +{
+> > > > > +	drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
+> > > > > +	drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
+> > > > > +	drm_printf(p, "\t\tLRC Head: Internal %u, Memory %u\n",
+> > > > > +		   ce->ring->head,
+> > > > > +		   ce->lrc_reg_state[CTX_RING_HEAD]);
+> > > > > +	drm_printf(p, "\t\tLRC Tail: Internal %u, Memory %u\n",
+> > > > > +		   ce->ring->tail,
+> > > > > +		   ce->lrc_reg_state[CTX_RING_TAIL]);
+> > > > > +	drm_printf(p, "\t\tContext Pin Count: %u\n",
+> > > > > +		   atomic_read(&ce->pin_count));
+> > > > > +	drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
+> > > > > +		   atomic_read(&ce->guc_id_ref));
+> > > > > +	drm_printf(p, "\t\tNumber Requests Not Ready: %u\n",
+> > > > > +		   atomic_read(&ce->guc_num_rq_not_ready));
+> > > > > +	drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
+> > > > > +		   ce->guc_state.sched_state,
+> > > > > +		   atomic_read(&ce->guc_sched_state_no_lock));
+> > > > 
+> > > > It's all debugfs, but I think proper locking even there is good. It at
+> > > > least reduces the confusion when the locking scheme is largely
+> > > > undocumented. Also given how much we have rcu for everything would be good
+> > > > to double-check all pointer dererences are properly protected.
+> > > >
+> > > 
+> > > Not sure if I 100% follow this but I don't think any of the pointers
+> > > dref here are RCU protected. Certainly none of the GuC ones are.
+> > > 
+> > > Will double before the next respin though.
+> > > 
+> > > > > +}
+> > > > > +
+> > > > >  void intel_guc_submission_print_context_info(struct intel_guc *guc,
+> > > > >  					     struct drm_printer *p)
+> > > > >  {
+> > > > >  	struct intel_context *ce;
+> > > > >  	unsigned long index;
+> > > > >  	xa_for_each(&guc->context_lookup, index, ce) {
+> > > > 
+> > > > xa_for_each doesn't provide any guarantees, so doesn't protect against
+> > > > concurrent removeal or anything like that. We need to do better than that.
+> > > 
+> > > https://elixir.bootlin.com/linux/latest/source/include/linux/xarray.h#L498
+> > > 'It is safe to modify the array during the iteration.'
+> > 
+> > The xarray. Not the thing you're dereferencing, because the xarray only
+> > stores pointers, not your data structure. So yeah correct statement is
+> > that it doesn't provide you any guarantees beyond "the iterator wont be
+> > confused if the xarray itself is modified during iteration". Which isn't
+> > what you need here, you need a lot more.
+> 
+> Or spelled out: The pointer you get could become immediately meaningless,
+> before you can look at it, due to a concurrent removal/release. All the
+> xa_for_each guarantees you is that on the next round you get the next
+> pointer, until you got them all (plus/minus concurrent changes). But that
+> next pointer could have become meaningless right away too.
+> 
+> So you need your own locking to make use of these pointers you got and
+> make sure they're not immediately meaningless before your loop body even
+> started.
+> 
 
-== Series Details ==
+Ok, I think I see your point. Likely whenever we do a xa_for_each over
+&guc->context_lookup we should just grab its lock as if it is in the
+xarray we have reference to object looked up. Also everytime we use
+xa_for_each on &guc->context_lookup it is a corner case we it is ok to
+block anyone else from using this (e.g. during a reset, checking
+debugfs, etc...). Does that sound correct?
 
-Series: drm/i915: Use locked access to ctx->engines in set_priority
-URL   : https://patchwork.freedesktop.org/series/93558/
-State : success
+Matt
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10465 -> Patchwork_20794
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20794 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][1] ([i915#3844] / [i915#579])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         NOTRUN -> [INCOMPLETE][2] ([i915#3920])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-rkl-guc:         [DMESG-WARN][3] ([i915#3925]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [FAIL][5] ([i915#1888]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-jsl-1}:         [INCOMPLETE][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-rkl-11600:       [SKIP][9] -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3844]: https://gitlab.freedesktop.org/drm/intel/issues/3844
-  [i915#3920]: https://gitlab.freedesktop.org/drm/intel/issues/3920
-  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (37 -> 34)
-------------------------------
-
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10465 -> Patchwork_20794
-
-  CI-20190529: 20190529
-  CI_DRM_10465: b183cdc9ca5e84a70c1d9d57ab317319fb6bed65 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6166: 63db0bc86c6321897ef829a5e7c9536a6f062b21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20794: cc99b1d7369b827a644c1fe30ab082ad7e10dca7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cc99b1d7369b drm/i915: Use locked access to ctx->engines in set_priority
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/index.html
-
---===============4737276071981261668==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Use locked access to ctx-&gt;engines in set_priority</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93558/">https://patchwork.freedesktop.org/series/93558/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10465 -&gt; Patchwork_20794</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20794 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3844">i915#3844</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3920">i915#3920</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20794/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10465 -&gt; Patchwork_20794</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10465: b183cdc9ca5e84a70c1d9d57ab317319fb6bed65 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6166: 63db0bc86c6321897ef829a5e7c9536a6f062b21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20794: cc99b1d7369b827a644c1fe30ab082ad7e10dca7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>cc99b1d7369b drm/i915: Use locked access to ctx-&gt;engines in set_priority</p>
-
-</body>
-</html>
-
---===============4737276071981261668==--
+> One of the reasons why I think this is so important is that debugfs files
+> nest a lot of loops fairly often, so are good cheat-sheet for the locking
+> if it happens to be undocumented (which also shouldn't be the case). Ofc
+> if there's no locking in debugfs, no cheat-sheet :-)
+> 
+> Cheers, Daniel
+> 
+> > -Daniel
+> > 
+> > > 
+> > > Matt
+> > > 
+> > > > -Daniel
+> > > > 
+> > > > > -		drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
+> > > > > -		drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
+> > > > > -		drm_printf(p, "\t\tLRC Head: Internal %u, Memory %u\n",
+> > > > > -			   ce->ring->head,
+> > > > > -			   ce->lrc_reg_state[CTX_RING_HEAD]);
+> > > > > -		drm_printf(p, "\t\tLRC Tail: Internal %u, Memory %u\n",
+> > > > > -			   ce->ring->tail,
+> > > > > -			   ce->lrc_reg_state[CTX_RING_TAIL]);
+> > > > > -		drm_printf(p, "\t\tContext Pin Count: %u\n",
+> > > > > -			   atomic_read(&ce->pin_count));
+> > > > > -		drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
+> > > > > -			   atomic_read(&ce->guc_id_ref));
+> > > > > -		drm_printf(p, "\t\tNumber Requests Not Ready: %u\n",
+> > > > > -			   atomic_read(&ce->guc_num_rq_not_ready));
+> > > > > -		drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
+> > > > > -			   ce->guc_state.sched_state,
+> > > > > -			   atomic_read(&ce->guc_sched_state_no_lock));
+> > > > > +		GEM_BUG_ON(intel_context_is_child(ce));
+> > > > >  
+> > > > > +		guc_log_context(p, ce);
+> > > > >  		guc_log_context_priority(p, ce);
+> > > > > +
+> > > > > +		if (intel_context_is_parent(ce)) {
+> > > > > +			struct guc_process_desc *desc = __get_process_desc(ce);
+> > > > > +			struct intel_context *child;
+> > > > > +
+> > > > > +			drm_printf(p, "\t\tWQI Head: %u\n",
+> > > > > +				   READ_ONCE(desc->head));
+> > > > > +			drm_printf(p, "\t\tWQI Tail: %u\n",
+> > > > > +				   READ_ONCE(desc->tail));
+> > > > > +			drm_printf(p, "\t\tWQI Status: %u\n\n",
+> > > > > +				   READ_ONCE(desc->wq_status));
+> > > > > +
+> > > > > +			for_each_child(ce, child)
+> > > > > +				guc_log_context(p, child);
+> > > > > +		}
+> > > > >  	}
+> > > > >  }
+> > > > >  
+> > > > > -- 
+> > > > > 2.28.0
+> > > > > 
+> > > > 
+> > > > -- 
+> > > > Daniel Vetter
+> > > > Software Engineer, Intel Corporation
+> > > > http://blog.ffwll.ch
+> > 
+> > -- 
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
