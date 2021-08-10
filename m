@@ -2,64 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C457F3E56D2
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 11:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 152253E56E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 11:31:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9086489E35;
-	Tue, 10 Aug 2021 09:27:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B36489A0E;
+	Tue, 10 Aug 2021 09:31:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65BCE89E35
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 09:27:35 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id m12so25308115wru.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 02:27:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=rxuq78HRH9YiicuEdJxMJKebWpbzctBdlaMXm6LQeYg=;
- b=DwN0cyFB/RBfR9A8ba1CPpeLxN7mI6KpP8+uUA+Bcj7qnMO0XcHYi+CVzICY99DKT4
- qc/ZafbdkyS71nGyLKaZSngUPsy91X3voOcAGAQqjUDo7Sf0J8Uin36yqoH4fbDIihLO
- IcZjdaV61n1VTvoaGiVretzSwip1Y1l20aYQM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=rxuq78HRH9YiicuEdJxMJKebWpbzctBdlaMXm6LQeYg=;
- b=HHU6LFnk+RwF+OHUUslK0s4ejxiyI2aZaf6uWrjHIt5016r//zNoQSWDT5+7e4Kxfw
- CLs3an+G6I+l3i8ytOxjl0CKEmQm92Oi6HQkmlX1kmSXH/gZ2zlffU3BKFV7Eu3dstsl
- NCFjbVeUDeG03FlBf6AwCdHCJ9kQJrtsZg7CEX2x8S26ExfE5jk/sXHB4uudIihlKZem
- N7c+wgDchx//dfbgjQIsTVCS41rY1mQe4pOObJ7uUlrOA1Csyq78p4pVEcfXJgtU5CKc
- E1Re3PZRIriAXmw/vOOP6hz3mAaG2V2KXSdvNEGdTbxJQVBDBH8K3whfJuUuPCv8h8i4
- Xkgg==
-X-Gm-Message-State: AOAM533HR9U0bND5HcoRLdV55q/8zcN+XyiW+yWF6rc5HrC/P6rd+ITu
- cBXiKiwoYghHFeoRjjL83eQo3g==
-X-Google-Smtp-Source: ABdhPJzrUWHKleqEle5r5ol5lJ5JHjOAEfoyqqjm6zxEfy0J2UXE8yqSUK3W7R2/euOsspKPGgActw==
-X-Received: by 2002:adf:d085:: with SMTP id y5mr29489175wrh.272.1628587653827; 
- Tue, 10 Aug 2021 02:27:33 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id a9sm22530827wrv.37.2021.08.10.02.27.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Aug 2021 02:27:33 -0700 (PDT)
-Date: Tue, 10 Aug 2021 11:27:31 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <YRJGg0iQidHxA41e@phenom.ffwll.local>
-References: <20210803222943.27686-1-matthew.brost@intel.com>
- <20210803222943.27686-26-matthew.brost@intel.com>
- <YRFZnGNvmHPr6DTL@phenom.ffwll.local>
- <20210809191311.GA123935@DUT151-ICLU.fm.intel.com>
- <YRJFmw4BTJi/UIWf@phenom.ffwll.local>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78CDA89F8E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 09:31:50 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="213010520"
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="213010520"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 02:31:50 -0700
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="515733822"
+Received: from aktiwary-mobl3.amr.corp.intel.com (HELO localhost)
+ ([10.249.40.8])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 02:31:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, vandita.kulkarni@intel.com,
+ cooper.chiou@intel.com, william.tseng@intel.com,
+ Lee Shawn C <shawn.c.lee@intel.com>
+In-Reply-To: <20210723070548.29315-3-shawn.c.lee@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210723070548.29315-1-shawn.c.lee@intel.com>
+ <20210723070548.29315-3-shawn.c.lee@intel.com>
+Date: Tue, 10 Aug 2021 12:31:43 +0300
+Message-ID: <87pmulodc0.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YRJFmw4BTJi/UIWf@phenom.ffwll.local>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 25/46] drm/i915/guc: Update debugfs for GuC
- multi-lrc
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [V3 2/7] drm/i915/jsl: program DSI panel GPIOs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,157 +51,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 10, 2021 at 11:23:39AM +0200, Daniel Vetter wrote:
-> On Mon, Aug 09, 2021 at 07:13:11PM +0000, Matthew Brost wrote:
-> > On Mon, Aug 09, 2021 at 06:36:44PM +0200, Daniel Vetter wrote:
-> > > On Tue, Aug 03, 2021 at 03:29:22PM -0700, Matthew Brost wrote:
-> > > > Display the workqueue status in debugfs for GuC contexts that are in
-> > > > parent-child relationship.
-> > > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 56 +++++++++++++------
-> > > >  1 file changed, 39 insertions(+), 17 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > index 30df1c8db491..44a7582c9aed 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > @@ -4527,31 +4527,53 @@ void intel_guc_submission_print_info(struct intel_guc *guc,
-> > > >  		gse_log_submission_info(guc->gse[i], p, i);
-> > > >  }
-> > > >  
-> > > > +static inline void guc_log_context(struct drm_printer *p,
-> > > > +				   struct intel_context *ce)
-> > > > +{
-> > > > +	drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
-> > > > +	drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
-> > > > +	drm_printf(p, "\t\tLRC Head: Internal %u, Memory %u\n",
-> > > > +		   ce->ring->head,
-> > > > +		   ce->lrc_reg_state[CTX_RING_HEAD]);
-> > > > +	drm_printf(p, "\t\tLRC Tail: Internal %u, Memory %u\n",
-> > > > +		   ce->ring->tail,
-> > > > +		   ce->lrc_reg_state[CTX_RING_TAIL]);
-> > > > +	drm_printf(p, "\t\tContext Pin Count: %u\n",
-> > > > +		   atomic_read(&ce->pin_count));
-> > > > +	drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
-> > > > +		   atomic_read(&ce->guc_id_ref));
-> > > > +	drm_printf(p, "\t\tNumber Requests Not Ready: %u\n",
-> > > > +		   atomic_read(&ce->guc_num_rq_not_ready));
-> > > > +	drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
-> > > > +		   ce->guc_state.sched_state,
-> > > > +		   atomic_read(&ce->guc_sched_state_no_lock));
-> > > 
-> > > It's all debugfs, but I think proper locking even there is good. It at
-> > > least reduces the confusion when the locking scheme is largely
-> > > undocumented. Also given how much we have rcu for everything would be good
-> > > to double-check all pointer dererences are properly protected.
-> > >
-> > 
-> > Not sure if I 100% follow this but I don't think any of the pointers
-> > dref here are RCU protected. Certainly none of the GuC ones are.
-> > 
-> > Will double before the next respin though.
-> > 
-> > > > +}
-> > > > +
-> > > >  void intel_guc_submission_print_context_info(struct intel_guc *guc,
-> > > >  					     struct drm_printer *p)
-> > > >  {
-> > > >  	struct intel_context *ce;
-> > > >  	unsigned long index;
-> > > >  	xa_for_each(&guc->context_lookup, index, ce) {
-> > > 
-> > > xa_for_each doesn't provide any guarantees, so doesn't protect against
-> > > concurrent removeal or anything like that. We need to do better than that.
-> > 
-> > https://elixir.bootlin.com/linux/latest/source/include/linux/xarray.h#L498
-> > 'It is safe to modify the array during the iteration.'
-> 
-> The xarray. Not the thing you're dereferencing, because the xarray only
-> stores pointers, not your data structure. So yeah correct statement is
-> that it doesn't provide you any guarantees beyond "the iterator wont be
-> confused if the xarray itself is modified during iteration". Which isn't
-> what you need here, you need a lot more.
+On Fri, 23 Jul 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+> DSI driver should have its own implementation to toggle
+> gpio pins based on GPIO info coming from VBT sequences.
 
-Or spelled out: The pointer you get could become immediately meaningless,
-before you can look at it, due to a concurrent removal/release. All the
-xa_for_each guarantees you is that on the next round you get the next
-pointer, until you got them all (plus/minus concurrent changes). But that
-next pointer could have become meaningless right away too.
+Why?
 
-So you need your own locking to make use of these pointers you got and
-make sure they're not immediately meaningless before your loop body even
-started.
+>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Cc: William Tseng <william.tseng@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 44 +++++++++++++++++++-
+>  drivers/gpu/drm/i915/i915_reg.h              | 10 +++++
+>  2 files changed, 53 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> index cc93e045a425..dd03e5629ba6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> @@ -43,6 +43,7 @@
+>  #include "intel_display_types.h"
+>  #include "intel_dsi.h"
+>  #include "intel_sideband.h"
+> +#include "intel_de.h"
+>  
+>  #define MIPI_TRANSFER_MODE_SHIFT	0
+>  #define MIPI_VIRTUAL_CHANNEL_SHIFT	1
+> @@ -354,7 +355,48 @@ static void bxt_exec_gpio(struct drm_i915_private *dev_priv,
+>  static void icl_exec_gpio(struct drm_i915_private *dev_priv,
+>  			  u8 gpio_source, u8 gpio_index, bool value)
+>  {
+> -	drm_dbg_kms(&dev_priv->drm, "Skipping ICL GPIO element execution\n");
+> +	u32 val;
+> +
+> +	switch (gpio_index) {
+> +	case ICL_GPIO_L_VDDEN_1:
+> +		val = intel_de_read(dev_priv, ICP_PP_CONTROL(1));
+> +		if (value)
+> +			val |= PWR_STATE_TARGET;
+> +		else
+> +			val &= ~PWR_STATE_TARGET;
+> +		intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
 
-One of the reasons why I think this is so important is that debugfs files
-nest a lot of loops fairly often, so are good cheat-sheet for the locking
-if it happens to be undocumented (which also shouldn't be the case). Ofc
-if there's no locking in debugfs, no cheat-sheet :-)
+All the PPS access should be in intel_pps.[ch] and protected with the
+pps mutex.
 
-Cheers, Daniel
+> +		break;
+> +	case ICL_GPIO_L_BKLTEN_1:
+> +		val = intel_de_read(dev_priv, ICP_PP_CONTROL(1));
+> +		if (value)
+> +			val |= BACKLIGHT_ENABLE;
+> +		else
+> +			val &= ~BACKLIGHT_ENABLE;
+> +		intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
+> +		break;
+> +	case ICL_GPIO_DDPA_CTRLCLK_1:
+> +		val = intel_de_read(dev_priv, GPIO(1));
+> +		if (value)
+> +			val |= GPIO_CLOCK_VAL_OUT;
+> +		else
+> +			val &= ~GPIO_CLOCK_VAL_OUT;
+> +		val |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_VAL_MASK;
+> +		intel_de_write(dev_priv, GPIO(1), val);
+> +		break;
+> +	case ICL_GPIO_DDPA_CTRLDATA_1:
+> +		val = intel_de_read(dev_priv, GPIO(1));
+> +		if (value)
+> +			val |= GPIO_DATA_VAL_OUT;
+> +		else
+> +			val &= ~GPIO_DATA_VAL_OUT;
+> +		val |= GPIO_DATA_DIR_MASK | GPIO_DATA_DIR_OUT | GPIO_DATA_VAL_MASK;
+> +		intel_de_write(dev_priv, GPIO(1), val);
+> +		break;
+> +	default:
+> +		/* TODO: Add support for remaining GPIOs */
+> +		DRM_ERROR("Invalid GPIO number (%d) from VBT\n", gpio_index);
+> +		break;
+> +	}
+>  }
+>  
+>  static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 943fe485c662..b725234e0e9c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -5143,6 +5143,16 @@ enum {
+>  #define _PP_STATUS			0x61200
+>  #define PP_STATUS(pps_idx)		_MMIO_PPS(pps_idx, _PP_STATUS)
+>  #define   PP_ON				REG_BIT(31)
+> +
+> +#define _PP_CONTROL_1			0xc7204
+> +#define _PP_CONTROL_2			0xc7304
+> +#define ICP_PP_CONTROL(x)		_MMIO(((x) == 1) ? _PP_CONTROL_1 : \
+> +					      _PP_CONTROL_2)
+> +#define  POWER_CYCLE_DELAY_MASK		REG_GENMASK(8, 4)
+> +#define  VDD_OVERRIDE_FORCE		REG_BIT(3)
+> +#define  BACKLIGHT_ENABLE		REG_BIT(2)
+> +#define  PWR_DOWN_ON_RESET		REG_BIT(1)
+> +#define  PWR_STATE_TARGET		REG_BIT(0)
 
-> -Daniel
-> 
-> > 
-> > Matt
-> > 
-> > > -Daniel
-> > > 
-> > > > -		drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
-> > > > -		drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
-> > > > -		drm_printf(p, "\t\tLRC Head: Internal %u, Memory %u\n",
-> > > > -			   ce->ring->head,
-> > > > -			   ce->lrc_reg_state[CTX_RING_HEAD]);
-> > > > -		drm_printf(p, "\t\tLRC Tail: Internal %u, Memory %u\n",
-> > > > -			   ce->ring->tail,
-> > > > -			   ce->lrc_reg_state[CTX_RING_TAIL]);
-> > > > -		drm_printf(p, "\t\tContext Pin Count: %u\n",
-> > > > -			   atomic_read(&ce->pin_count));
-> > > > -		drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
-> > > > -			   atomic_read(&ce->guc_id_ref));
-> > > > -		drm_printf(p, "\t\tNumber Requests Not Ready: %u\n",
-> > > > -			   atomic_read(&ce->guc_num_rq_not_ready));
-> > > > -		drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
-> > > > -			   ce->guc_state.sched_state,
-> > > > -			   atomic_read(&ce->guc_sched_state_no_lock));
-> > > > +		GEM_BUG_ON(intel_context_is_child(ce));
-> > > >  
-> > > > +		guc_log_context(p, ce);
-> > > >  		guc_log_context_priority(p, ce);
-> > > > +
-> > > > +		if (intel_context_is_parent(ce)) {
-> > > > +			struct guc_process_desc *desc = __get_process_desc(ce);
-> > > > +			struct intel_context *child;
-> > > > +
-> > > > +			drm_printf(p, "\t\tWQI Head: %u\n",
-> > > > +				   READ_ONCE(desc->head));
-> > > > +			drm_printf(p, "\t\tWQI Tail: %u\n",
-> > > > +				   READ_ONCE(desc->tail));
-> > > > +			drm_printf(p, "\t\tWQI Status: %u\n\n",
-> > > > +				   READ_ONCE(desc->wq_status));
-> > > > +
-> > > > +			for_each_child(ce, child)
-> > > > +				guc_log_context(p, child);
-> > > > +		}
-> > > >  	}
-> > > >  }
-> > > >  
-> > > > -- 
-> > > > 2.28.0
-> > > > 
-> > > 
-> > > -- 
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+These are all duplicate defines for existing PP_CONTROL() registers and
+macros.
+
+>  /*
+>   * Indicates that all dependencies of the panel are on:
+>   *
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel Open Source Graphics Center
