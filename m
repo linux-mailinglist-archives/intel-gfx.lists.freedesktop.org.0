@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 152253E56E3
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 11:31:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 990793E5735
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 11:41:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B36489A0E;
-	Tue, 10 Aug 2021 09:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 686A489E38;
+	Tue, 10 Aug 2021 09:41:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78CDA89F8E
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 09:31:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="213010520"
-X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="213010520"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2021 02:31:50 -0700
-X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="515733822"
-Received: from aktiwary-mobl3.amr.corp.intel.com (HELO localhost)
- ([10.249.40.8])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2021 02:31:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, vandita.kulkarni@intel.com,
- cooper.chiou@intel.com, william.tseng@intel.com,
- Lee Shawn C <shawn.c.lee@intel.com>
-In-Reply-To: <20210723070548.29315-3-shawn.c.lee@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210723070548.29315-1-shawn.c.lee@intel.com>
- <20210723070548.29315-3-shawn.c.lee@intel.com>
-Date: Tue, 10 Aug 2021 12:31:43 +0300
-Message-ID: <87pmulodc0.fsf@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3958689E38
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 09:41:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="214896583"
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="214896583"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 02:41:11 -0700
+X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="506092565"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 02:41:10 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1mDOIa-0004Ll-QS; Tue, 10 Aug 2021 12:43:52 +0300
+Date: Tue, 10 Aug 2021 12:43:52 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <YRJKWCFs6wUSSmql@platvala-desk.ger.corp.intel.com>
+References: <20210809194805.3793060-1-lucas.demarchi@intel.com>
+ <162854643446.2460.12384778323935250578@emeril.freedesktop.org>
+ <20210809220537.emw2bow5ztm3xz4q@ldmartin-desk2>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-gfx] [V3 2/7] drm/i915/jsl: program DSI panel GPIOs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210809220537.emw2bow5ztm3xz4q@ldmartin-desk2>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogIGZhaWx1cmUgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_Free_all_DMC_payloads?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,115 +55,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 23 Jul 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> DSI driver should have its own implementation to toggle
-> gpio pins based on GPIO info coming from VBT sequences.
+On Mon, Aug 09, 2021 at 03:05:37PM -0700, Lucas De Marchi wrote:
+> On Mon, Aug 09, 2021 at 10:00:34PM +0000, Patchwork wrote:
+> > == Series Details ==
+> > 
+> > Series: drm/i915: Free all DMC payloads
+> > URL   : https://patchwork.freedesktop.org/series/93521/
+> > State : failure
+> > 
+> > == Summary ==
+> > 
+> > CI Bug Log - changes from CI_DRM_10461 -> Patchwork_20789
+> > ====================================================
+> > 
+> > Summary
+> > -------
+> > 
+> >  **FAILURE**
+> > 
+> >  Serious unknown changes coming with Patchwork_20789 absolutely need to be
+> >  verified manually.
+> > 
+> >  If you think the reported changes have nothing to do with the changes
+> >  introduced in Patchwork_20789, please notify your bug team to allow them
+> >  to document this new failure mode, which will reduce false positives in CI.
+> > 
+> >  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20789/index.html
+> > 
+> > Possible new issues
+> > -------------------
+> > 
+> >  Here are the unknown changes that may have been introduced in Patchwork_20789:
+> > 
+> > ### IGT changes ###
+> > 
+> > #### Possible regressions ####
+> > 
+> >  * igt@core_hotunplug@unbind-rebind:
+> >    - fi-rkl-guc:         [PASS][1] -> [DMESG-WARN][2]
+> >   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10461/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
+> >   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20789/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
+> 
+> <Error>
+> <Code>AccessDenied</Code>
+> <Message>Access Denied</Message>
+> <RequestId>H0EEPVCR70HST0VN</RequestId>
+> <HostId>493NvO3WzGD1zhkvRRk6un+6HruE4hYwXX3W4OCSZWpluozyHRqL5h3rprp7q7erF2wu5xQa0is=</HostId>
+> </Error>
+> 
+> ???
+> 
+> I noticed this happening sometimes and working after some minutes/hours.
+> Is there a perm going out of sync on CI systems?
 
-Why?
 
->
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: William Tseng <william.tseng@intel.com>
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 44 +++++++++++++++++++-
->  drivers/gpu/drm/i915/i915_reg.h              | 10 +++++
->  2 files changed, 53 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> index cc93e045a425..dd03e5629ba6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> @@ -43,6 +43,7 @@
->  #include "intel_display_types.h"
->  #include "intel_dsi.h"
->  #include "intel_sideband.h"
-> +#include "intel_de.h"
->  
->  #define MIPI_TRANSFER_MODE_SHIFT	0
->  #define MIPI_VIRTUAL_CHANNEL_SHIFT	1
-> @@ -354,7 +355,48 @@ static void bxt_exec_gpio(struct drm_i915_private *dev_priv,
->  static void icl_exec_gpio(struct drm_i915_private *dev_priv,
->  			  u8 gpio_source, u8 gpio_index, bool value)
->  {
-> -	drm_dbg_kms(&dev_priv->drm, "Skipping ICL GPIO element execution\n");
-> +	u32 val;
-> +
-> +	switch (gpio_index) {
-> +	case ICL_GPIO_L_VDDEN_1:
-> +		val = intel_de_read(dev_priv, ICP_PP_CONTROL(1));
-> +		if (value)
-> +			val |= PWR_STATE_TARGET;
-> +		else
-> +			val &= ~PWR_STATE_TARGET;
-> +		intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
+Because of reasons, the patchwork post happens before syncing the
+files to AWS. The file sync can fail or take an undetermined amount of
+time so it's done asynchronously. Typically the files get synced
+within around 2 minutes of posting to patchwork but sometimes (~once a
+month) sync fails and the files get there as part of the next test
+result sync job.
 
-All the PPS access should be in intel_pps.[ch] and protected with the
-pps mutex.
-
-> +		break;
-> +	case ICL_GPIO_L_BKLTEN_1:
-> +		val = intel_de_read(dev_priv, ICP_PP_CONTROL(1));
-> +		if (value)
-> +			val |= BACKLIGHT_ENABLE;
-> +		else
-> +			val &= ~BACKLIGHT_ENABLE;
-> +		intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
-> +		break;
-> +	case ICL_GPIO_DDPA_CTRLCLK_1:
-> +		val = intel_de_read(dev_priv, GPIO(1));
-> +		if (value)
-> +			val |= GPIO_CLOCK_VAL_OUT;
-> +		else
-> +			val &= ~GPIO_CLOCK_VAL_OUT;
-> +		val |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_VAL_MASK;
-> +		intel_de_write(dev_priv, GPIO(1), val);
-> +		break;
-> +	case ICL_GPIO_DDPA_CTRLDATA_1:
-> +		val = intel_de_read(dev_priv, GPIO(1));
-> +		if (value)
-> +			val |= GPIO_DATA_VAL_OUT;
-> +		else
-> +			val &= ~GPIO_DATA_VAL_OUT;
-> +		val |= GPIO_DATA_DIR_MASK | GPIO_DATA_DIR_OUT | GPIO_DATA_VAL_MASK;
-> +		intel_de_write(dev_priv, GPIO(1), val);
-> +		break;
-> +	default:
-> +		/* TODO: Add support for remaining GPIOs */
-> +		DRM_ERROR("Invalid GPIO number (%d) from VBT\n", gpio_index);
-> +		break;
-> +	}
->  }
->  
->  static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 943fe485c662..b725234e0e9c 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -5143,6 +5143,16 @@ enum {
->  #define _PP_STATUS			0x61200
->  #define PP_STATUS(pps_idx)		_MMIO_PPS(pps_idx, _PP_STATUS)
->  #define   PP_ON				REG_BIT(31)
-> +
-> +#define _PP_CONTROL_1			0xc7204
-> +#define _PP_CONTROL_2			0xc7304
-> +#define ICP_PP_CONTROL(x)		_MMIO(((x) == 1) ? _PP_CONTROL_1 : \
-> +					      _PP_CONTROL_2)
-> +#define  POWER_CYCLE_DELAY_MASK		REG_GENMASK(8, 4)
-> +#define  VDD_OVERRIDE_FORCE		REG_BIT(3)
-> +#define  BACKLIGHT_ENABLE		REG_BIT(2)
-> +#define  PWR_DOWN_ON_RESET		REG_BIT(1)
-> +#define  PWR_STATE_TARGET		REG_BIT(0)
-
-These are all duplicate defines for existing PP_CONTROL() registers and
-macros.
-
->  /*
->   * Indicates that all dependencies of the panel are on:
->   *
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Petri Latvala
