@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE1093E5698
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 11:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C653E56BB
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Aug 2021 11:23:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7F689E36;
-	Tue, 10 Aug 2021 09:18:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C54E89F8E;
+	Tue, 10 Aug 2021 09:23:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com
- [IPv6:2a00:1450:4864:20::42e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EF6C89E36
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 09:18:24 +0000 (UTC)
-Received: by mail-wr1-x42e.google.com with SMTP id k29so12503740wrd.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 02:18:24 -0700 (PDT)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3D0C89F85
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 09:23:42 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id k4so12531644wms.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 02:23:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=9hufEZjAKEFWJ8zzrYpN2mq0/S0tL+FK2DPnSWxnaRE=;
- b=h7/0o8nH5A81QtmMyJFyPtoadcVMEUgNFxSIW9ar22BgJI2zR9uZmEtkigbftZHRXk
- ouYgsyqGLqIhUgzILc2B9K/2TukTMggxfnSOvNuIDBLRWMk+Y5eFhuU6FQVha6LEu2i9
- KB+MxsYwn3SB2QPqgAn3fyM3WPfaazYnOZGfI=
+ bh=gUfjlxf0wPQA0BuAzVqKDfY7baVVrAtjzk8QNmdFJvE=;
+ b=N86UnAdELsN/OoNepPXLfnZpz5d+itv/7Zjym4xm4+3WMtfXrSHD7vZQ1PnFvTOI9w
+ +hCBmBpNKKbLVV/DC9Q2315ZLi3+APklVQiR5iEixn5ifDLWBKU4HGKU6C7Xw4s0xiWV
+ fbdtSbaYm/W5q4K+nH7BCvJbRrx1SaMmWTnUA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=9hufEZjAKEFWJ8zzrYpN2mq0/S0tL+FK2DPnSWxnaRE=;
- b=pHBI5wndNNS3vA4QSvWLUkhta9jjP5hv5N6jGV+PwzpxnF93NyCp3zMGr0LpXTWSGA
- w88fVOkwymd4ClCCLsazE353vk0RXBoMUOFCWkkSM6aoc6Fa8znQuSoEGHIfi8aE77wQ
- HdoqOsXeh4AtXUEBhPwZyo4DYDtCMptTFyh9uIBgO0bF3H58S3wf1klZvWrwSBkuHqMf
- Olg+wu9Ry7/12ct5GuXIuTR0LrudkyAbvzhytyRexQQKogTmEcAR72rAYq2hJ4OqyU+h
- drBQeIppgSUVBJeWB6lZYd0XNCweuBUXHstVLQ6kxtaAoyORL6E9I9qJG1ofFrJaZGP2
- paHQ==
-X-Gm-Message-State: AOAM533+O2wg29yX1CI1Sq/FmmaYyhswYIQ7CZHBgU0BfDTO65vFInq+
- pFwVQUB7nqWITU/WaWWFJRqx8A==
-X-Google-Smtp-Source: ABdhPJyzoHKcTY2XeOC/z9B48LXleZqKaupfp9bqRd8mG6ZqFBDLBluOYdH6/OLo2bK+Tx3ZN1KJQQ==
-X-Received: by 2002:a05:6000:104f:: with SMTP id
- c15mr3095509wrx.357.1628587102558; 
- Tue, 10 Aug 2021 02:18:22 -0700 (PDT)
+ bh=gUfjlxf0wPQA0BuAzVqKDfY7baVVrAtjzk8QNmdFJvE=;
+ b=WkDsaH7E1Dyy4irXAlvqU4coHnngQ4O34PG9bc3XJXyfKJUPH8d3K74HhGRLrTreCX
+ K2DU+hdh5Wa+EaL/L23T8s64Z+Itg/tn3AQ9x2DcYk+BotbTbp48Q/sndT/VTkpksbib
+ BUBqsAdcPgnkPvyo+r+ilqDy3QIkjrDK5ry32sS/NYqB0Qtf2qPhbHb8bzIMOHESZkz7
+ hGplzLkqby7DFzT9IRFZNF/fQw3m6sccKCVF38yOqx9rGMkmMggNjPl68n/fcZgH3w5A
+ nRPf/QcZKl+Fpoxq/byPhTu7eJS+w8GXIFP8V8GEBQLL/1s0AwRT4Cn4DFJ2nvgsQVBR
+ 99Ag==
+X-Gm-Message-State: AOAM533mltw+F4KOGQOKNIgmrhojfgeALebT8gLwqX7DUecLcDMxCXIc
+ Ox9U2FdDy617TYb/SoB+kFkf0A==
+X-Google-Smtp-Source: ABdhPJyyRbyNkgPR4hoQufKwEA5a1uq9PnTZmZLF2ExO/jl2PceZQDrgYj63R2hXnERMDFrlZdvfxQ==
+X-Received: by 2002:a1c:a50c:: with SMTP id o12mr2424582wme.4.1628587421321;
+ Tue, 10 Aug 2021 02:23:41 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id n186sm2404761wme.40.2021.08.10.02.18.21
+ by smtp.gmail.com with ESMTPSA id z15sm1161262wrp.30.2021.08.10.02.23.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Aug 2021 02:18:21 -0700 (PDT)
-Date: Tue, 10 Aug 2021 11:18:20 +0200
+ Tue, 10 Aug 2021 02:23:40 -0700 (PDT)
+Date: Tue, 10 Aug 2021 11:23:39 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Message-ID: <YRJEXOUtdyi2yD5N@phenom.ffwll.local>
+Message-ID: <YRJFmw4BTJi/UIWf@phenom.ffwll.local>
 References: <20210803222943.27686-1-matthew.brost@intel.com>
- <20210803222943.27686-21-matthew.brost@intel.com>
- <YRFLPfzsAgFqqytd@phenom.ffwll.local>
- <20210809190558.GA123848@DUT151-ICLU.fm.intel.com>
+ <20210803222943.27686-26-matthew.brost@intel.com>
+ <YRFZnGNvmHPr6DTL@phenom.ffwll.local>
+ <20210809191311.GA123935@DUT151-ICLU.fm.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210809190558.GA123848@DUT151-ICLU.fm.intel.com>
+In-Reply-To: <20210809191311.GA123935@DUT151-ICLU.fm.intel.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 20/46] drm/i915/guc: Add hang check to GuC
- submit engine
+Subject: Re: [Intel-gfx] [PATCH 25/46] drm/i915/guc: Update debugfs for GuC
+ multi-lrc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,86 +74,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 09, 2021 at 07:05:58PM +0000, Matthew Brost wrote:
-> On Mon, Aug 09, 2021 at 05:35:25PM +0200, Daniel Vetter wrote:
-> > On Tue, Aug 03, 2021 at 03:29:17PM -0700, Matthew Brost wrote:
-> > > The heartbeat uses a single instance of a GuC submit engine (GSE) to do
-> > > the hang check. As such if a different GSE's state machine hangs, the
-> > > heartbeat cannot detect this hang. Add timer to each GSE which in turn
-> > > can disable all submissions if it is hung.
+On Mon, Aug 09, 2021 at 07:13:11PM +0000, Matthew Brost wrote:
+> On Mon, Aug 09, 2021 at 06:36:44PM +0200, Daniel Vetter wrote:
+> > On Tue, Aug 03, 2021 at 03:29:22PM -0700, Matthew Brost wrote:
+> > > Display the workqueue status in debugfs for GuC contexts that are in
+> > > parent-child relationship.
 > > > 
-> > > Cc: John Harrison <John.C.Harrison@Intel.com>
 > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > > > ---
-> > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 36 +++++++++++++++++++
-> > >  .../i915/gt/uc/intel_guc_submission_types.h   |  3 ++
-> > >  2 files changed, 39 insertions(+)
+> > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 56 +++++++++++++------
+> > >  1 file changed, 39 insertions(+), 17 deletions(-)
 > > > 
 > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > index afb9b4bb8971..2d8296bcc583 100644
+> > > index 30df1c8db491..44a7582c9aed 100644
 > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > @@ -105,15 +105,21 @@ static bool tasklet_blocked(struct guc_submit_engine *gse)
-> > >  	return test_bit(GSE_STATE_TASKLET_BLOCKED, &gse->flags);
+> > > @@ -4527,31 +4527,53 @@ void intel_guc_submission_print_info(struct intel_guc *guc,
+> > >  		gse_log_submission_info(guc->gse[i], p, i);
 > > >  }
 > > >  
-> > > +/* 2 seconds seems like a reasonable timeout waiting for a G2H */
-> > > +#define MAX_TASKLET_BLOCKED_NS	2000000000
-> > >  static void set_tasklet_blocked(struct guc_submit_engine *gse)
-> > >  {
-> > >  	lockdep_assert_held(&gse->sched_engine.lock);
-> > > +	hrtimer_start_range_ns(&gse->hang_timer,
-> > > +			       ns_to_ktime(MAX_TASKLET_BLOCKED_NS), 0,
-> > > +			       HRTIMER_MODE_REL_PINNED);
-> > >  	set_bit(GSE_STATE_TASKLET_BLOCKED, &gse->flags);
+> > > +static inline void guc_log_context(struct drm_printer *p,
+> > > +				   struct intel_context *ce)
+> > > +{
+> > > +	drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
+> > > +	drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
+> > > +	drm_printf(p, "\t\tLRC Head: Internal %u, Memory %u\n",
+> > > +		   ce->ring->head,
+> > > +		   ce->lrc_reg_state[CTX_RING_HEAD]);
+> > > +	drm_printf(p, "\t\tLRC Tail: Internal %u, Memory %u\n",
+> > > +		   ce->ring->tail,
+> > > +		   ce->lrc_reg_state[CTX_RING_TAIL]);
+> > > +	drm_printf(p, "\t\tContext Pin Count: %u\n",
+> > > +		   atomic_read(&ce->pin_count));
+> > > +	drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
+> > > +		   atomic_read(&ce->guc_id_ref));
+> > > +	drm_printf(p, "\t\tNumber Requests Not Ready: %u\n",
+> > > +		   atomic_read(&ce->guc_num_rq_not_ready));
+> > > +	drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
+> > > +		   ce->guc_state.sched_state,
+> > > +		   atomic_read(&ce->guc_sched_state_no_lock));
 > > 
-> > So with drm/scheduler the reset handling is assumed to be
-> > single-threaded, and there's quite complex rules around that. I've
-> > recently worked with Boris Brezillion to clarify all this a bit and
-> > improve docs. Does this all still work in that glorious future? Might be
-> > good to at least sprinkle some comments/thoughts around in the commit
-> > message about the envisaged future direction for all this stuff, to keep
-> > people in the loop. Especially future people.
-> > 
-> > Ofc plan is still to just largely land all this.
-> > 
-> > Also: set_bit is an unordered atomic, which means you need barriers, which
-> > meanes ... *insert the full rant about justifying/documenting lockless
-> > algorithms from earlier *
+> > It's all debugfs, but I think proper locking even there is good. It at
+> > least reduces the confusion when the locking scheme is largely
+> > undocumented. Also given how much we have rcu for everything would be good
+> > to double-check all pointer dererences are properly protected.
 > >
 > 
-> lockdep_assert_held(&gse->sched_engine.lock);
+> Not sure if I 100% follow this but I don't think any of the pointers
+> dref here are RCU protected. Certainly none of the GuC ones are.
 > 
-> Not lockless. Also spin locks act as barriers, right?
-
-Well if that spinlock is protecting that bit then that's good, but then it
-shouldn't be an atomic set_bit. In that case:
-- either make the entire bitfield non-atomic so it's clear there's boring
-  dumb locking going on
-- or split out your new bit into a separate field so that there's no false
-  sharing with the existing bitfield state machinery, and add a kernel doc
-  to that field explaining the locking
-
-set_bit itself is atomic and unordered, so means you need barriers and all
-that. If you don't have a lockless algorithm, don't use atomic bitops to
-avoid confusing readers because set_bit/test_bit sets of all the warning
-bells.
-
-And yes it's annoying that for bitops the atomic ones don't have an
-atomic_ prefix. The non-atomic ones have a __ prefix. This is honestly why
-I don't think we should use bitfields as much as we do, because the main
-use-case for them is when you have bitfields which are longer than 64bits.
-They come from the cpumask world, and linux supports a lot of cpus.
-
-Open-coding non-atomic simple bitfields with the usual C operators is
-perfectly fine and legible imo. But that part is maybe more a bikeshed.
-
-> > But I think this all falls out with the removal of the guc-id allocation
-> > scheme?
+> Will double before the next respin though.
 > 
-> Yes, this patch is getting deleted.
+> > > +}
+> > > +
+> > >  void intel_guc_submission_print_context_info(struct intel_guc *guc,
+> > >  					     struct drm_printer *p)
+> > >  {
+> > >  	struct intel_context *ce;
+> > >  	unsigned long index;
+> > >  	xa_for_each(&guc->context_lookup, index, ce) {
+> > 
+> > xa_for_each doesn't provide any guarantees, so doesn't protect against
+> > concurrent removeal or anything like that. We need to do better than that.
+> 
+> https://elixir.bootlin.com/linux/latest/source/include/linux/xarray.h#L498
+> 'It is safe to modify the array during the iteration.'
 
-That works too :-)
+The xarray. Not the thing you're dereferencing, because the xarray only
+stores pointers, not your data structure. So yeah correct statement is
+that it doesn't provide you any guarantees beyond "the iterator wont be
+confused if the xarray itself is modified during iteration". Which isn't
+what you need here, you need a lot more.
 -Daniel
 
 > 
@@ -162,87 +152,45 @@ That works too :-)
 > 
 > > -Daniel
 > > 
-> > >  }
+> > > -		drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
+> > > -		drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
+> > > -		drm_printf(p, "\t\tLRC Head: Internal %u, Memory %u\n",
+> > > -			   ce->ring->head,
+> > > -			   ce->lrc_reg_state[CTX_RING_HEAD]);
+> > > -		drm_printf(p, "\t\tLRC Tail: Internal %u, Memory %u\n",
+> > > -			   ce->ring->tail,
+> > > -			   ce->lrc_reg_state[CTX_RING_TAIL]);
+> > > -		drm_printf(p, "\t\tContext Pin Count: %u\n",
+> > > -			   atomic_read(&ce->pin_count));
+> > > -		drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
+> > > -			   atomic_read(&ce->guc_id_ref));
+> > > -		drm_printf(p, "\t\tNumber Requests Not Ready: %u\n",
+> > > -			   atomic_read(&ce->guc_num_rq_not_ready));
+> > > -		drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
+> > > -			   ce->guc_state.sched_state,
+> > > -			   atomic_read(&ce->guc_sched_state_no_lock));
+> > > +		GEM_BUG_ON(intel_context_is_child(ce));
 > > >  
-> > >  static void __clr_tasklet_blocked(struct guc_submit_engine *gse)
-> > >  {
-> > >  	lockdep_assert_held(&gse->sched_engine.lock);
-> > > +	hrtimer_cancel(&gse->hang_timer);
-> > >  	clear_bit(GSE_STATE_TASKLET_BLOCKED, &gse->flags);
-> > >  }
-> > >  
-> > > @@ -1028,6 +1034,7 @@ static void disable_submission(struct intel_guc *guc)
-> > >  		if (__tasklet_is_enabled(&sched_engine->tasklet)) {
-> > >  			GEM_BUG_ON(!guc->ct.enabled);
-> > >  			__tasklet_disable_sync_once(&sched_engine->tasklet);
-> > > +			hrtimer_try_to_cancel(&guc->gse[i]->hang_timer);
-> > >  			sched_engine->tasklet.callback = NULL;
-> > >  		}
+> > > +		guc_log_context(p, ce);
+> > >  		guc_log_context_priority(p, ce);
+> > > +
+> > > +		if (intel_context_is_parent(ce)) {
+> > > +			struct guc_process_desc *desc = __get_process_desc(ce);
+> > > +			struct intel_context *child;
+> > > +
+> > > +			drm_printf(p, "\t\tWQI Head: %u\n",
+> > > +				   READ_ONCE(desc->head));
+> > > +			drm_printf(p, "\t\tWQI Tail: %u\n",
+> > > +				   READ_ONCE(desc->tail));
+> > > +			drm_printf(p, "\t\tWQI Status: %u\n\n",
+> > > +				   READ_ONCE(desc->wq_status));
+> > > +
+> > > +			for_each_child(ce, child)
+> > > +				guc_log_context(p, child);
+> > > +		}
 > > >  	}
-> > > @@ -3750,6 +3757,33 @@ static void guc_sched_engine_destroy(struct kref *kref)
-> > >  	kfree(gse);
 > > >  }
 > > >  
-> > > +static enum hrtimer_restart gse_hang(struct hrtimer *hrtimer)
-> > > +{
-> > > +	struct guc_submit_engine *gse =
-> > > +		container_of(hrtimer, struct guc_submit_engine, hang_timer);
-> > > +	struct intel_guc *guc = gse->sched_engine.private_data;
-> > > +
-> > > +#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> > > +	if (guc->gse_hang_expected)
-> > > +		drm_dbg(&guc_to_gt(guc)->i915->drm,
-> > > +			"GSE[%i] hung, disabling submission", gse->id);
-> > > +	else
-> > > +		drm_err(&guc_to_gt(guc)->i915->drm,
-> > > +			"GSE[%i] hung, disabling submission", gse->id);
-> > > +#else
-> > > +	drm_err(&guc_to_gt(guc)->i915->drm,
-> > > +		"GSE[%i] hung, disabling submission", gse->id);
-> > > +#endif
-> > > +
-> > > +	/*
-> > > +	 * Tasklet not making forward progress, disable submission which in turn
-> > > +	 * will kick in the heartbeat to do a full GPU reset.
-> > > +	 */
-> > > +	disable_submission(guc);
-> > > +
-> > > +	return HRTIMER_NORESTART;
-> > > +}
-> > > +
-> > >  static void guc_submit_engine_init(struct intel_guc *guc,
-> > >  				   struct guc_submit_engine *gse,
-> > >  				   int id)
-> > > @@ -3767,6 +3801,8 @@ static void guc_submit_engine_init(struct intel_guc *guc,
-> > >  	sched_engine->retire_inflight_request_prio =
-> > >  		guc_retire_inflight_request_prio;
-> > >  	sched_engine->private_data = guc;
-> > > +	hrtimer_init(&gse->hang_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-> > > +	gse->hang_timer.function = gse_hang;
-> > >  	gse->id = id;
-> > >  }
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission_types.h
-> > > index a5933e07bdd2..eae2e9725ede 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission_types.h
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission_types.h
-> > > @@ -6,6 +6,8 @@
-> > >  #ifndef _INTEL_GUC_SUBMISSION_TYPES_H_
-> > >  #define _INTEL_GUC_SUBMISSION_TYPES_H_
-> > >  
-> > > +#include <linux/xarray.h>
-> > > +
-> > >  #include "gt/intel_engine_types.h"
-> > >  #include "gt/intel_context_types.h"
-> > >  #include "i915_scheduler_types.h"
-> > > @@ -41,6 +43,7 @@ struct guc_submit_engine {
-> > >  	unsigned long flags;
-> > >  	int total_num_rq_with_no_guc_id;
-> > >  	atomic_t num_guc_ids_not_ready;
-> > > +	struct hrtimer hang_timer;
-> > >  	int id;
-> > >  
-> > >  	/*
 > > > -- 
 > > > 2.28.0
 > > > 
