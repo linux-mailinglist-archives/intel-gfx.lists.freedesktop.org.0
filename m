@@ -2,33 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E02D3E8740
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 02:30:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA4A3E87C3
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 03:50:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5793489E7C;
-	Wed, 11 Aug 2021 00:30:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2A8F89DAB;
+	Wed, 11 Aug 2021 01:50:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id ACCEE89E41;
- Wed, 11 Aug 2021 00:30:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 97313AA0EA;
- Wed, 11 Aug 2021 00:30:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4744479881652023233=="
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6D5789DAB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 01:50:48 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="276069504"
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="276069504"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 18:50:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="422018213"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga003.jf.intel.com with ESMTP; 10 Aug 2021 18:50:46 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Tue, 10 Aug 2021 18:50:46 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10 via Frontend Transport; Tue, 10 Aug 2021 18:50:46 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.10; Tue, 10 Aug 2021 18:50:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=m0pjTV1ofNF0clUvOhMy7HxQvXgmZ5U8jydbiGg1up5QpSw9EukYTIX3XGxrgn/a7F8bbTE2nocf/tiT70Kie98hE+yeAz037Sdv2Yur6WMp4S20kZ6St+6c606OK7LosZ+QBTKg7JY5sFzXiG8zux3KuiSHhWVFz3VvOcRZynC1X15svFISHTPyyHtxijarRBjW3Y7eOqS04ugtPPumljU9kxo9bh5GA3WJIwWtGtQ9xmdsYkJbUEV3nH5ZI92Zx+idC2L2E2XM+XLoCmVy575gCYQ/t0X2cYQ6Cfa9nuTW4tFQzrxZ20huJJtX3VU94toFPg57xP1kmbOtljYacA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0aNk9dAgj4O3zWT13T1GmiMjLov47OEvZU/uHKrISSo=;
+ b=fQ9/WCOW0XySsNaIS02z6fyZ+pJBiu18Q0JRAg3b7h3B7bAT35Mrx41N038dvqcAxZ0s/JVh88fYJYbDNJ1H7as/4JzSULt6oA4zLbQlI/CzrZXu1RkR2t6H3rebB6zeySCvvTcyX9jbbCayIdJc3BrTHdoeJs8jcHLoP+es7fKTuPjl/ophAB/71YQ6TkR+QBwrn09vVFV2Qsfm/xmVzXODPi7DkUtyQu9y1JuLoT8ltLI3jmvybp3LQQT1A7Ls6oqUtvVX9HEn9FvLrExHEOHLP7AUDfVMyrnInmjsjDSlXim78RVpED5mLEfQ5icPwhbd7Z3BxBGM7di15Uw2qQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0aNk9dAgj4O3zWT13T1GmiMjLov47OEvZU/uHKrISSo=;
+ b=ttOzUgrctg0ZJRG4NL45G9fJic0w54a5VmYQTQhceXY82mDKYUMgPwoIH+fdnIZV5xXkoAFxSRyhMFjDchPa4lcrfK5Msun9URYBxLenKVwUHhYxs7RVDm/m2DOwhSatUT4dbNfBazTZ8z7k5L8otAOQxlUEhd81NYw6dTc3JUw=
+Received: from CO6PR11MB5651.namprd11.prod.outlook.com (2603:10b6:5:356::20)
+ by CO6PR11MB5620.namprd11.prod.outlook.com (2603:10b6:303:13e::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.19; Wed, 11 Aug
+ 2021 01:50:41 +0000
+Received: from CO6PR11MB5651.namprd11.prod.outlook.com
+ ([fe80::1188:21f3:a051:31d5]) by CO6PR11MB5651.namprd11.prod.outlook.com
+ ([fe80::1188:21f3:a051:31d5%7]) with mapi id 15.20.4394.023; Wed, 11 Aug 2021
+ 01:50:41 +0000
+From: "Lee, Shawn C" <shawn.c.lee@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "Kulkarni, Vandita" <vandita.kulkarni@intel.com>, "Chiou, Cooper"
+ <cooper.chiou@intel.com>, "Tseng, William" <william.tseng@intel.com>
+Thread-Topic: [V3 2/7] drm/i915/jsl: program DSI panel GPIOs
+Thread-Index: AQHXjcqS5oE38XhnwkGEJib1iMJZq6tseoqQgAEMVUA=
+Date: Wed, 11 Aug 2021 01:50:41 +0000
+Message-ID: <CO6PR11MB5651DCACC804880C2A2B4538A3F89@CO6PR11MB5651.namprd11.prod.outlook.com>
+References: <20210723070548.29315-1-shawn.c.lee@intel.com>
+ <20210723070548.29315-3-shawn.c.lee@intel.com> <87pmulodc0.fsf@intel.com>
+ <CO6PR11MB56510587C4FB8AE1664A5F25A3F79@CO6PR11MB5651.namprd11.prod.outlook.com>
+In-Reply-To: <CO6PR11MB56510587C4FB8AE1664A5F25A3F79@CO6PR11MB5651.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+authentication-results: intel.com; dkim=none (message not signed)
+ header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0a9f9b79-851b-482f-96c6-08d95c6a6d11
+x-ms-traffictypediagnostic: CO6PR11MB5620:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CO6PR11MB5620E7CFF9CB141C043122AFA3F89@CO6PR11MB5620.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7x+Ar4lfRkq/PbowSj0KnvVp8hP8ufjmWXfyi6wG13o18WYtRr/jiT/zvCJzcX4mexqrjf6LjxK5l9yQrFtKuG8WLKvHLI0r4z8bE/kPmwDHq9SoVcSdgN9hV4KC1UjGngeS9JbEc9x8rlpedy1Ld7vs2qw6SRNxsLLqytdT6rRbKBRMCJrSAOQqjuKYVekgNXFlD5mZZ6kt+/LBZEzkY986xywPHOa5d6oPNhsiPtt/6XNLQw3wH2qEsxSDAtO7V6u3pHqG4aCVp38PdtnWvkq45pwMAZkMKILYOmY4n5jHBPQBdl/OuWO6Jab2Q8NSAJs8AdYHua5MlWA1kqBSOIBVYiGu+ONNoAg+mpVt62msfsdI7htV9u95yNj2ajPV8NP4t8RszFZn0+jwXYkwyRE1AI7M1yiXNreNDoot0hdwmI3XmtNwDLI/EQMB0P4qICY/FkvAEuTmtuujWcdH5LQmT0rtInPE/EKIlPjRU4wmIBhrmYDNwCTYhANnNBVjSfasXW+gKTIva3e/eEk3odMWjCHE9VPSADSZPhVsttyZ9VY98cGswM9xzRb3TrysR+4WtNS7mG0ZXMnBVWu7j47/R2gtwhjSqcr9iPAyex6PkhWmL1IYZvqEr2F+an/ycI65b1Y9oTWRUZZjVJHXSBx5nsPIzmKKKDipckuX0EXaCX+vAUI6Twlt6ruxXqf8I31IJcE7FedARDcd0Wu8mQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR11MB5651.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(39860400002)(346002)(376002)(136003)(366004)(8676002)(38100700002)(33656002)(8796002)(55236004)(7696005)(38070700005)(26005)(5660300002)(2906002)(8936002)(52536014)(478600001)(122000001)(6506007)(83380400001)(66556008)(9686003)(55016002)(110136005)(54906003)(966005)(316002)(186003)(86362001)(66946007)(4326008)(76116006)(66476007)(66446008)(71200400001)(64756008);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xK5E62e6JpiRw+EZFKLjDuBxUIORj7Rtxj5MrsRWNiWu/ENm1dc7rIVdMKV/?=
+ =?us-ascii?Q?tMs1QjtJRoWBpzKA8wFc+plDqvQwn/eRBJPopMGW+wW+ngZUjxm7H7pg1Fh6?=
+ =?us-ascii?Q?UivcZdXcchAszgZ44bXhbLj7T6HP0eMEklccHl4h4t1fBjgBei2HJwPlZPsS?=
+ =?us-ascii?Q?Yr45YDhYIVmefd0NWSPZhqSBoLi3qSSDQtL8Cd6cxcvBACdmTz7kt+x9mr73?=
+ =?us-ascii?Q?7Ke3G60rI7wk5dn3/+EdDQC6G5ZUJkrT2T8t0Z0eMHldGoy3FWXQBN00pEHb?=
+ =?us-ascii?Q?aRLKuEVBBgvHEodpqLxiVWDbK8+bR/HoYX2608HTAcJ8UdQFkUVhtZo63CXm?=
+ =?us-ascii?Q?3mint0D4O7Ith2sxtMAy4Xei06AGl8axctMtYyqt4YEcu23ERpK76RnG6FsN?=
+ =?us-ascii?Q?7oDrkr0EPit/HDa+dlIkZ/a4JvXjpKD0bfsi8ESeQtHrSylrz+U06kQ8Yzf5?=
+ =?us-ascii?Q?VU2ntdPui0DlUEOSV5anz2CIdcRNtMeqzAVpQWj/OypZ0PPSVzXNQJEZCeYG?=
+ =?us-ascii?Q?VmHMpSJYh0MyZJRTrOU+Sp6XivnXNrHMHnefHdQMvrUMyrgh9Lg93iuhZfZI?=
+ =?us-ascii?Q?PMTqNb3jRjhJAhk2iUTVbc7opXolEa4eKBXvP0htm8/jlCORoTpkPCrcnwRy?=
+ =?us-ascii?Q?2iGyqM6U+HsovRpoZ5NzUEELjBImTSHIuZ4UhqqItlH487sKN63fYoKpsTuU?=
+ =?us-ascii?Q?76C5/PxeOxDy7iEZ5cBjgi/5U/AA2WYrBj23cUH2r/7LnQrTzeirsR/V1nvs?=
+ =?us-ascii?Q?DhnnHKIDPn0zYQIEiN+Dm1nh3rgTcm8GxvFocSqJKBdGwbJbRxVsCadaEMbc?=
+ =?us-ascii?Q?gYawfnuQ/Bwfd3h/UIsWZbD1gdTh0JW8ezt062cMw+EUCST3I+l4DmVRzGMa?=
+ =?us-ascii?Q?nX1c7g+9KKZc1rWzho9MKYVyd1VBTylHC3QQ1ba/3F/bvBgBF34FMyJ0PLOy?=
+ =?us-ascii?Q?uvhpt4u0DLG2bOj3TGmwRxx5t4Vs8JDgfBIIwrr1r8o1m15Os5HYUrLr291T?=
+ =?us-ascii?Q?YaD6Xol1Lno7S/WJ8thkmVrQ4SD0CeQl6N8pA7QndjlicBGjJ2bakmWAjfuz?=
+ =?us-ascii?Q?Wai2FXqHk7O9j4AQFeD3r9bQ5co+cQ22llPNMM4DSg9wLyqCSNblQxfwPO4G?=
+ =?us-ascii?Q?91Au39PCSnIWhW47x5vaMw15sO9+UZVCR61urz5SBiwLVyp0wCfqHSD5FRUw?=
+ =?us-ascii?Q?v8TvmGDDPSe+R03Bj86ICb6ac1cULvyFgMDmi3CdVwLNCybS2M6gFW0gEDfr?=
+ =?us-ascii?Q?R5WOfi5r617JmcC5cV6+F+vV91SjN/5R5VyUxDw5E6K9+egT2osW3VEeuxq+?=
+ =?us-ascii?Q?8sEiiR67EZtMyqdwe2EvsYkk?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juston Li" <juston.li@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Aug 2021 00:30:35 -0000
-Message-ID: <162864183559.27218.1634233835937601502@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210810235212.138721-1-juston.li@intel.com>
-In-Reply-To: <20210810235212.138721-1-juston.li@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_HDCP2=2E2_MST_dock_fixes_=28rev3=29?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR11MB5651.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a9f9b79-851b-482f-96c6-08d95c6a6d11
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2021 01:50:41.3942 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tQ6vbBBM6oA+1IvFuMGzV2wEOqvuqbs/Izq5LjMVeUyWCb8SLUQonTuph5Rf7uAfn4nupG6KUJjdF88uxdbV1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5620
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [V3 2/7] drm/i915/jsl: program DSI panel GPIOs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,256 +145,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: "20210723070548.29315-3-shawn.c.lee@intel.com"
+ <20210723070548.29315-3-shawn.c.lee@intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4744479881652023233==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 10 Aug 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>On Tue, 10 Aug 2021, "Lee, Shawn C" <shawn.c.lee@intel.com> wrote:
+>> On Tue, 10 Aug 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>>>On Fri, 23 Jul 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+>>>> DSI driver should have its own implementation to toggle gpio pins
+>>>> based on GPIO info coming from VBT sequences.
+>>>
+>>>Why?
+>>>
+>>
+>> Without this change, we are not able to control gpio signal output to
+>> meet MIPI panel's requirement for power on/off sequence.
+>>
+>>>>
+>>>> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+>>>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>>>> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>>>> Cc: Cooper Chiou <cooper.chiou@intel.com>
+>>>> Cc: William Tseng <william.tseng@intel.com>
+>>>> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+>>>> ---
+>>>>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 44 +++++++++++++++++++=
+-
+>>>>  drivers/gpu/drm/i915/i915_reg.h              | 10 +++++
+>>>>  2 files changed, 53 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>>>> b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>>>> index cc93e045a425..dd03e5629ba6 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>>>> @@ -43,6 +43,7 @@
+>>>>  #include "intel_display_types.h"
+>>>>  #include "intel_dsi.h"
+>>>>  #include "intel_sideband.h"
+>>>> +#include "intel_de.h"
+>>>>
+>>>>  #define MIPI_TRANSFER_MODE_SHIFT    0
+>>>>  #define MIPI_VIRTUAL_CHANNEL_SHIFT  1
+>>>> @@ -354,7 +355,48 @@ static void bxt_exec_gpio(struct drm_i915_private
+>>>> *dev_priv,  static void icl_exec_gpio(struct drm_i915_private *dev_pri=
+v,
+>>>>                        u8 gpio_source, u8 gpio_index, bool value)  {
+>>>> -    drm_dbg_kms(&dev_priv->drm, "Skipping ICL GPIO element execution\=
+n");
+>>>> +    u32 val;
+>>>> +
+>>>> +    switch (gpio_index) {
+>>>> +    case ICL_GPIO_L_VDDEN_1:
+>>>> +            val =3D intel_de_read(dev_priv, ICP_PP_CONTROL(1));
+>>>> +            if (value)
+>>>> +                    val |=3D PWR_STATE_TARGET;
+>>>> +            else
+>>>> +                    val &=3D ~PWR_STATE_TARGET;
+>>>> +            intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
+>>>
+>>>All the PPS access should be in intel_pps.[ch] and protected with the pp=
+s mutex.
+>>>
+>>
+>> OK! We will move icl_exec_gpio() into intel_pps.c and use pps mutex to p=
+rotect it.
+>>
+>>>> +            break;
+>>>> +    case ICL_GPIO_L_BKLTEN_1:
+>>>> +            val =3D intel_de_read(dev_priv, ICP_PP_CONTROL(1));
+>>>> +            if (value)
+>>>> +                    val |=3D BACKLIGHT_ENABLE;
+>>>> +            else
+>>>> +                    val &=3D ~BACKLIGHT_ENABLE;
+>>>> +            intel_de_write(dev_priv, ICP_PP_CONTROL(1), val);
+>>>> +            break;
+>>>> +    case ICL_GPIO_DDPA_CTRLCLK_1:
+>>>> +            val =3D intel_de_read(dev_priv, GPIO(1));
+>>>> +            if (value)
+>>>> +                    val |=3D GPIO_CLOCK_VAL_OUT;
+>>>> +            else
+>>>> +                    val &=3D ~GPIO_CLOCK_VAL_OUT;
+>>>> +            val |=3D GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_DIR_OUT | GPIO_=
+CLOCK_VAL_MASK;
+>>>> +            intel_de_write(dev_priv, GPIO(1), val);
+>>>> +            break;
+>>>> +    case ICL_GPIO_DDPA_CTRLDATA_1:
+>>>> +            val =3D intel_de_read(dev_priv, GPIO(1));
+>>>> +            if (value)
+>>>> +                    val |=3D GPIO_DATA_VAL_OUT;
+>>>> +            else
+>>>> +                    val &=3D ~GPIO_DATA_VAL_OUT;
+>>>> +            val |=3D GPIO_DATA_DIR_MASK | GPIO_DATA_DIR_OUT | GPIO_DA=
+TA_VAL_MASK;
+>>>> +            intel_de_write(dev_priv, GPIO(1), val);
+>>>> +            break;
+>>>> +    default:
+>>>> +            /* TODO: Add support for remaining GPIOs */
+>>>> +            DRM_ERROR("Invalid GPIO number (%d) from VBT\n", gpio_ind=
+ex);
+>>>> +            break;
+>>>> +    }
+>>>>  }
+>>>>
+>>>>  static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8
+>>>> *data) diff --git a/drivers/gpu/drm/i915/i915_reg.h
+>>>> b/drivers/gpu/drm/i915/i915_reg.h index 943fe485c662..b725234e0e9c
+>>>> 100644
+>>>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>>>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>>>> @@ -5143,6 +5143,16 @@ enum {
+>>>>  #define _PP_STATUS                  0x61200
+>>>>  #define PP_STATUS(pps_idx)          _MMIO_PPS(pps_idx, _PP_STATUS)
+>>>>  #define   PP_ON                             REG_BIT(31)
+>>>> +
+>>>> +#define _PP_CONTROL_1                       0xc7204
+>>>> +#define _PP_CONTROL_2                       0xc7304
+>>>> +#define ICP_PP_CONTROL(x)           _MMIO(((x) =3D=3D 1) ? _PP_CONTRO=
+L_1 : \
+>>>> +                                          _PP_CONTROL_2)
+>>>> +#define  POWER_CYCLE_DELAY_MASK             REG_GENMASK(8, 4)
+>>>> +#define  VDD_OVERRIDE_FORCE         REG_BIT(3)
+>>>> +#define  BACKLIGHT_ENABLE           REG_BIT(2)
+>>>> +#define  PWR_DOWN_ON_RESET          REG_BIT(1)
+>>>> +#define  PWR_STATE_TARGET           REG_BIT(0)
+>>>
+>>>These are all duplicate defines for existing PP_CONTROL() registers and =
+macros.
+>>
+>> I found this patch on drm-tip branch and removed PP_CONTRL() defines.
+>> https://patchwork.freedesktop.org/patch/291095/
+>
+>Look for PP_CONTROL(), not ICL_PP_CONTROL().
+>
 
-== Series Details ==
+PP_CONTROL() mapped to PPS_BASE (0x61200) register. It looks to me driver m=
+ay need
+a new define like _MMIO_PPS that map to PCH_PPS_BASE (0xC7200). What do you=
+ think?
 
-Series: drm/i915/hdcp: HDCP2.2 MST dock fixes (rev3)
-URL   : https://patchwork.freedesktop.org/series/93570/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10465 -> Patchwork_20796
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20796 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20796, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20796:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         NOTRUN -> [DMESG-WARN][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20796 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@cs-gfx:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-rkl-guc:         NOTRUN -> [SKIP][3] ([i915#3844] / [i915#579])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-rkl-guc:         [DMESG-WARN][6] ([i915#3925]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      [FAIL][8] ([i915#1888]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-jsl-1}:         [INCOMPLETE][10] -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-jsl-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-rkl-11600:       [SKIP][12] -> [PASS][13] +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3844]: https://gitlab.freedesktop.org/drm/intel/issues/3844
-  [i915#3925]: https://gitlab.freedesktop.org/drm/intel/issues/3925
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (37 -> 34)
-------------------------------
-
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10465 -> Patchwork_20796
-
-  CI-20190529: 20190529
-  CI_DRM_10465: b183cdc9ca5e84a70c1d9d57ab317319fb6bed65 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6166: 63db0bc86c6321897ef829a5e7c9536a6f062b21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20796: 7514cc648d75d684269cb468464e0df0427b4327 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7514cc648d75 drm/i915/hdcp: reuse rx_info for mst stream type1 capability check
-4210742b1ffe drm/i915/hdcp: read RxInfo once when reading RepeaterAuth_Send_ReceiverID_List
-6282eb323586 drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/index.html
-
---===============4744479881652023233==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: HDCP2.2 MST dock fixes (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93570/">https://patchwork.freedesktop.org/series/93570/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10465 -&gt; Patchwork_20796</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20796 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20796, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20796:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20796 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@cs-gfx:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-rkl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3844">i915#3844</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3925">i915#3925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:</p>
-<ul>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10465/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20796/fi-rkl-11600/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10465 -&gt; Patchwork_20796</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10465: b183cdc9ca5e84a70c1d9d57ab317319fb6bed65 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6166: 63db0bc86c6321897ef829a5e7c9536a6f062b21 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20796: 7514cc648d75d684269cb468464e0df0427b4327 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7514cc648d75 drm/i915/hdcp: reuse rx_info for mst stream type1 capability check<br />
-4210742b1ffe drm/i915/hdcp: read RxInfo once when reading RepeaterAuth_Send_ReceiverID_List<br />
-6282eb323586 drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()</p>
-
-</body>
-</html>
-
---===============4744479881652023233==--
+>
+>>
+>> Best regards,
+>> Shawn
+>>
+>>>
+>>>>  /*
+>>>>   * Indicates that all dependencies of the panel are on:
+>>>>   *
+>>>
+>>>--
+>>>Jani Nikula, Intel Open Source Graphics Center
+>>>
