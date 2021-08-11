@@ -2,40 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6952E3E89C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 07:31:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 636923E89F0
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 07:56:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD4A89D86;
-	Wed, 11 Aug 2021 05:31:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07ECC89CAA;
+	Wed, 11 Aug 2021 05:56:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6249B89D86
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 05:31:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="214790466"
-X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="214790466"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2021 22:31:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="445693420"
-Received: from linux-z370-aorus-gaming-5.iind.intel.com ([10.227.88.188])
- by fmsmga007.fm.intel.com with ESMTP; 10 Aug 2021 22:31:48 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, paulo.r.zanoni@intel.com,
- ville.syrjala@linux.intel.com, daniel.vetter@ffwll.ch,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, stable@vger.kernel.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Date: Wed, 11 Aug 2021 10:48:57 +0530
-Message-Id: <20210811051857.109723-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA7F89CAA;
+ Wed, 11 Aug 2021 05:56:38 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="300649408"
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="300649408"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 22:56:37 -0700
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="516413329"
+Received: from mtiebout-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.238])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2021 22:56:33 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v3] drm/i915/display: Fix the 12 BPC bits for
- PIPE_MISC reg
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YRIcTTsEF0Kg7F8K@phenom.ffwll.local>
+References: <20210715141854.1ad4a956@canb.auug.org.au>
+ <162823181614.15830.10618174106053255881@jlahtine-mobl.ger.corp.intel.com>
+ <YRE2RwQ6XlUqbgmn@phenom.ffwll.local>
+ <20210809161939.GS1556418@mdroper-desk1.amr.corp.intel.com>
+ <YRIcTTsEF0Kg7F8K@phenom.ffwll.local>
+To: Daniel Vetter <daniel@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: DRI <dri-devel@lists.freedesktop.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Dave Airlie <airlied@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <162866138994.4210.10598129488916811422@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Wed, 11 Aug 2021 08:56:29 +0300
+Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
+ drm-intel tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,126 +61,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Till DISPLAY12 the PIPE_MISC bits 5-7 are used to set the
-Dithering BPC, with valid values of 6, 8, 10 BPC.
-For ADLP+ these bits are used to set the PORT OUTPUT BPC, with valid
-values of: 6, 8, 10, 12 BPC, and need to be programmed whether
-dithering is enabled or not.
++ Dave as FYI
 
-This patch:
--corrects the bits 5-7 for PIPE MISC register for 12 BPC.
--renames the bits and mask to have generic names for these bits for
-dithering bpc and port output bpc.
-
-v3: Added a note for MIPI DSI which uses the PIPE_MISC for readout
-for pipe_bpp. (Uma Shankar)
-
-v2: Added 'display' to the subject and fixes tag. (Uma Shankar)
-
-Fixes: 756f85cffef2 ("drm/i915/bdw: Broadwell has PIPEMISC")
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com> (v1)
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v3.13+
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 34 ++++++++++++++------
- drivers/gpu/drm/i915/i915_reg.h              | 16 ++++++---
- 2 files changed, 35 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b25c596f6f7e..a257e5dc381c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5838,16 +5838,18 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
- 
- 	switch (crtc_state->pipe_bpp) {
- 	case 18:
--		val |= PIPEMISC_DITHER_6_BPC;
-+		val |= PIPEMISC_6_BPC;
- 		break;
- 	case 24:
--		val |= PIPEMISC_DITHER_8_BPC;
-+		val |= PIPEMISC_8_BPC;
- 		break;
- 	case 30:
--		val |= PIPEMISC_DITHER_10_BPC;
-+		val |= PIPEMISC_10_BPC;
- 		break;
- 	case 36:
--		val |= PIPEMISC_DITHER_12_BPC;
-+		/* Port output 12BPC defined for ADLP+ */
-+		if (DISPLAY_VER(dev_priv) > 12)
-+			val |= PIPEMISC_12_BPC_ADLP;
- 		break;
- 	default:
- 		MISSING_CASE(crtc_state->pipe_bpp);
-@@ -5900,15 +5902,27 @@ int bdw_get_pipemisc_bpp(struct intel_crtc *crtc)
- 
- 	tmp = intel_de_read(dev_priv, PIPEMISC(crtc->pipe));
- 
--	switch (tmp & PIPEMISC_DITHER_BPC_MASK) {
--	case PIPEMISC_DITHER_6_BPC:
-+	switch (tmp & PIPEMISC_BPC_MASK) {
-+	case PIPEMISC_6_BPC:
- 		return 18;
--	case PIPEMISC_DITHER_8_BPC:
-+	case PIPEMISC_8_BPC:
- 		return 24;
--	case PIPEMISC_DITHER_10_BPC:
-+	case PIPEMISC_10_BPC:
- 		return 30;
--	case PIPEMISC_DITHER_12_BPC:
--		return 36;
-+	/*
-+	 * PORT OUTPUT 12 BPC defined for ADLP+.
-+	 *
-+	 * TODO:
-+	 * For previous platforms with DSI interface, bits 5:7
-+	 * are used for storing pipe_bpp irrespective of dithering.
-+	 * Since the value of 12 BPC is not defined for these bits
-+	 * on older platforms, need to find a workaround for 12 BPC
-+	 * MIPI DSI HW readout.
-+	 */
-+	case PIPEMISC_12_BPC_ADLP:
-+		if (DISPLAY_VER(dev_priv) > 12)
-+			return 36;
-+		fallthrough;
- 	default:
- 		MISSING_CASE(tmp);
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 167eaa87501b..664970f2bc62 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6203,11 +6203,17 @@ enum {
- #define   PIPEMISC_HDR_MODE_PRECISION	(1 << 23) /* icl+ */
- #define   PIPEMISC_OUTPUT_COLORSPACE_YUV  (1 << 11)
- #define   PIPEMISC_PIXEL_ROUNDING_TRUNC	REG_BIT(8) /* tgl+ */
--#define   PIPEMISC_DITHER_BPC_MASK	(7 << 5)
--#define   PIPEMISC_DITHER_8_BPC		(0 << 5)
--#define   PIPEMISC_DITHER_10_BPC	(1 << 5)
--#define   PIPEMISC_DITHER_6_BPC		(2 << 5)
--#define   PIPEMISC_DITHER_12_BPC	(3 << 5)
-+/*
-+ * For Display < 13, Bits 5-7 of PIPE MISC represent DITHER BPC with
-+ * valid values of: 6, 8, 10 BPC.
-+ * ADLP+, the bits 5-7 represent PORT OUTPUT BPC with valid values of:
-+ * 6, 8, 10, 12 BPC.
-+ */
-+#define   PIPEMISC_BPC_MASK		(7 << 5)
-+#define   PIPEMISC_8_BPC		(0 << 5)
-+#define   PIPEMISC_10_BPC		(1 << 5)
-+#define   PIPEMISC_6_BPC		(2 << 5)
-+#define   PIPEMISC_12_BPC_ADLP		(4 << 5) /* adlp+ */
- #define   PIPEMISC_DITHER_ENABLE	(1 << 4)
- #define   PIPEMISC_DITHER_TYPE_MASK	(3 << 2)
- #define   PIPEMISC_DITHER_TYPE_SP	(0 << 2)
--- 
-2.25.1
-
+Quoting Daniel Vetter (2021-08-10 09:27:25)
+> On Mon, Aug 09, 2021 at 09:19:39AM -0700, Matt Roper wrote:
+> > On Mon, Aug 09, 2021 at 04:05:59PM +0200, Daniel Vetter wrote:
+> > > On Fri, Aug 06, 2021 at 09:36:56AM +0300, Joonas Lahtinen wrote:
+> > > > Hi Matt,
+> > > >=20
+> > > > Always use the dim tooling when applying patches, it will do the ri=
+ght
+> > > > thing with regards to adding the S-o-b.
+> > >=20
+> > > fd.o server rejects any pushes that haven't been done by dim, so how =
+did
+> > > this get through?
+> >=20
+> > I definitely used dim for all of these patches, but I'm not sure how I
+> > lost my s-o-b on this one.  Maybe when I edited the commit message after
+> > 'dim extract-tags' I accidentally deleted an extra line when I removed
+> > the extract-tags marker?  It's the only patch where the line is missing,
+> > so it's almost certainly human error on my part rather than something
+> > dim did wrong.
+>=20
+> Yeah that's an expected failure model, and dim is supposed to catch that
+> by rechecking for sobs when you push. See dim_push_branch ->
+> checkpatch_commit_push_range in dim. So you can hand-edit stuff however
+> you want, dim /should/ catch it when pushing. That it didn't is kinda
+> confusing and I'd like to know why that slipped through.
+>=20
+> > > Matt, can you pls figure out and type up the patch to
+> > > plug that hole?
+> >=20
+> > Are you referring to a patch for dim here?  The i915 patch has already
+> > landed, so we can't change its commit message now.
+>=20
+> Yeah dim, not drm-intel, that can't be fixed anymore because it's all
+> baked in.
+> -Daniel
+>=20
+> >=20
+> >=20
+> > Matt
+> >=20
+> > >=20
+> > > Thanks, Daniel
+> > >=20
+> > > >=20
+> > > > Regards, Joonas
+> > > >=20
+> > > > Quoting Stephen Rothwell (2021-07-15 07:18:54)
+> > > > > Hi all,
+> > > > >=20
+> > > > > Commit
+> > > > >=20
+> > > > >   db47fe727e1f ("drm/i915/step: s/<platform>_revid_tbl/<platform>=
+_revids")
+> > > > >=20
+> > > > > is missing a Signed-off-by from its committer.
+> > > > >=20
+> > > > > --=20
+> > > > > Cheers,
+> > > > > Stephen Rothwell
+> > >=20
+> > > --=20
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
+> >=20
+> > --=20
+> > Matt Roper
+> > Graphics Software Engineer
+> > VTT-OSGC Platform Enablement
+> > Intel Corporation
+> > (916) 356-2795
+>=20
+> --=20
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
