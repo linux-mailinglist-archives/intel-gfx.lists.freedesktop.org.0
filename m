@@ -1,42 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C1713E8AD4
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 09:11:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9DB13E8AE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 09:16:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 472E889FED;
-	Wed, 11 Aug 2021 07:11:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43F116E0BC;
+	Wed, 11 Aug 2021 07:16:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C182489FED;
- Wed, 11 Aug 2021 07:11:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="213217350"
-X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="213217350"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A53F6E0BC;
+ Wed, 11 Aug 2021 07:16:49 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="215059441"
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="215059441"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2021 00:11:09 -0700
-X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="516567085"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 00:16:48 -0700
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="516568446"
 Received: from fbrausse-mobl.ger.corp.intel.com (HELO localhost)
  ([10.251.209.112])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2021 00:11:05 -0700
+ 11 Aug 2021 00:16:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-In-Reply-To: <162866195438.4169.13003970815194920952@jlahtine-mobl.ger.corp.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+In-Reply-To: <YRIcTTsEF0Kg7F8K@phenom.ffwll.local>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <CAPM=9tyT17Qbd0b46Xap=vGhiicTKko7qCEsFJwOBVsb=_2axA@mail.gmail.com>
- <162866195438.4169.13003970815194920952@jlahtine-mobl.ger.corp.intel.com>
-Date: Wed, 11 Aug 2021 10:11:02 +0300
-Message-ID: <877dgso3qx.fsf@intel.com>
+References: <20210715141854.1ad4a956@canb.auug.org.au>
+ <162823181614.15830.10618174106053255881@jlahtine-mobl.ger.corp.intel.com>
+ <YRE2RwQ6XlUqbgmn@phenom.ffwll.local>
+ <20210809161939.GS1556418@mdroper-desk1.amr.corp.intel.com>
+ <YRIcTTsEF0Kg7F8K@phenom.ffwll.local>
+Date: Wed, 11 Aug 2021 10:16:41 +0300
+Message-ID: <8735rgo3hi.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-gfx] missing signoff on drm-intel-gt-next pull
+Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
+ drm-intel tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,46 +58,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 11 Aug 2021, Joonas Lahtinen <joonas.lahtinen@linux.intel.com> wrote:
-> Quoting Dave Airlie (2021-08-11 06:48:39)
->> dim: db47fe727e1f ("drm/i915/step:
->> s/<platform>_revid_tbl/<platform>_revids"): committer Signed-off-by
->> missing.
+On Tue, 10 Aug 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Mon, Aug 09, 2021 at 09:19:39AM -0700, Matt Roper wrote:
+>> On Mon, Aug 09, 2021 at 04:05:59PM +0200, Daniel Vetter wrote:
+>> > On Fri, Aug 06, 2021 at 09:36:56AM +0300, Joonas Lahtinen wrote:
+>> > > Hi Matt,
+>> > > 
+>> > > Always use the dim tooling when applying patches, it will do the right
+>> > > thing with regards to adding the S-o-b.
+>> > 
+>> > fd.o server rejects any pushes that haven't been done by dim, so how did
+>> > this get through?
 >> 
->> I'm not sure how much pain it is to fix that up, but
->> commit db47fe727e1fc516cf60fc9ab8299605ef3c2d54
->> Author: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> Commit: Matt Roper <matthew.d.roper@intel.com>
->> 
->>     drm/i915/step: s/<platform>_revid_tbl/<platform>_revids
->> 
->>     Simplify the stepping info array name.
->> 
->>     Cc: Jani Nikula <jani.nikula@linux.intel.com>
->>     Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
->>     Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->>     Link: https://patchwork.freedesktop.org/patch/msgid/20210713193635.3390052-2-matthew.d.roper@intel.com
->> 
->> It's definitely missing an S-o-b by anyone who handled the patch.
->> 
->> Let me know if it's insanely painful to fix that.
+>> I definitely used dim for all of these patches, but I'm not sure how I
+>> lost my s-o-b on this one.  Maybe when I edited the commit message after
+>> 'dim extract-tags' I accidentally deleted an extra line when I removed
+>> the extract-tags marker?  It's the only patch where the line is missing,
+>> so it's almost certainly human error on my part rather than something
+>> dim did wrong.
 >
-> Added you to the earlier mail thread that discussed the incident.
->
-> There are now 277 patches on top of that patch, so means rebasing all of
-> those and changing the hashes and trying to fixup all the Fixes:.
->
-> So it's painful but not insanely so. Let me know if you want the tree
-> rebased.
->
-> Regards, Joonas
+> Yeah that's an expected failure model, and dim is supposed to catch that
+> by rechecking for sobs when you push. See dim_push_branch ->
+> checkpatch_commit_push_range in dim. So you can hand-edit stuff however
+> you want, dim /should/ catch it when pushing. That it didn't is kinda
+> confusing and I'd like to know why that slipped through.
 
-The commit came in via a topic branch also to drm-intel-next, so that's
-another 168 commits to rebase. There's a lot of people working on top of
-those trees, so I'm leaning on the very painful side.
+One of the failures that happened here was that the commit was part of a
+topic branch that was merged and pushed directly. All merges should
+happen via pull requests on the list, and applied (preferrably by
+maintainers or at least with their acks recorded on the merge) using dim
+apply-pull which should also have the checks.
+
 
 BR,
 Jani.
+
+>
+>> > Matt, can you pls figure out and type up the patch to
+>> > plug that hole?
+>> 
+>> Are you referring to a patch for dim here?  The i915 patch has already
+>> landed, so we can't change its commit message now.
+>
+> Yeah dim, not drm-intel, that can't be fixed anymore because it's all
+> baked in.
+> -Daniel
+>
+>> 
+>> 
+>> Matt
+>> 
+>> > 
+>> > Thanks, Daniel
+>> > 
+>> > > 
+>> > > Regards, Joonas
+>> > > 
+>> > > Quoting Stephen Rothwell (2021-07-15 07:18:54)
+>> > > > Hi all,
+>> > > > 
+>> > > > Commit
+>> > > > 
+>> > > >   db47fe727e1f ("drm/i915/step: s/<platform>_revid_tbl/<platform>_revids")
+>> > > > 
+>> > > > is missing a Signed-off-by from its committer.
+>> > > > 
+>> > > > -- 
+>> > > > Cheers,
+>> > > > Stephen Rothwell
+>> > 
+>> > -- 
+>> > Daniel Vetter
+>> > Software Engineer, Intel Corporation
+>> > http://blog.ffwll.ch
+>> 
+>> -- 
+>> Matt Roper
+>> Graphics Software Engineer
+>> VTT-OSGC Platform Enablement
+>> Intel Corporation
+>> (916) 356-2795
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
