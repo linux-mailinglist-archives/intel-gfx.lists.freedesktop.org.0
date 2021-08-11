@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6793C3E9701
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 19:47:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE30E3E971D
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 19:55:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 406C26E190;
-	Wed, 11 Aug 2021 17:47:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3635C89264;
+	Wed, 11 Aug 2021 17:55:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF136E190;
- Wed, 11 Aug 2021 17:47:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10073"; a="194771489"
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="194771489"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2021 10:47:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="676213708"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE8A89264;
+ Wed, 11 Aug 2021 17:55:29 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10073"; a="195454680"
+X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="195454680"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 10:55:16 -0700
+X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="672997553"
 Received: from dut151-iclu.fm.intel.com ([10.105.23.69])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2021 10:47:06 -0700
-Date: Wed, 11 Aug 2021 17:47:05 +0000
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 10:55:15 -0700
+Date: Wed, 11 Aug 2021 17:55:14 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Daniel Vetter <daniel@ffwll.ch>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <20210811174705.GA297117@DUT151-ICLU.fm.intel.com>
+Message-ID: <20210811175514.GA297147@DUT151-ICLU.fm.intel.com>
 References: <20210803222943.27686-1-matthew.brost@intel.com>
- <20210803222943.27686-12-matthew.brost@intel.com>
- <YRE7NTxl0RIY7EbG@phenom.ffwll.local>
- <20210809182051.GA123521@DUT151-ICLU.fm.intel.com>
- <YRIg7nkYE5/tjxx7@phenom.ffwll.local>
+ <20210803222943.27686-15-matthew.brost@intel.com>
+ <YRE77nFgpGQUX/Sc@phenom.ffwll.local>
+ <20210809183701.GA123627@DUT151-ICLU.fm.intel.com>
+ <YRIiXL1sToOPMveN@phenom.ffwll.local>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YRIg7nkYE5/tjxx7@phenom.ffwll.local>
-Subject: Re: [Intel-gfx] [PATCH 11/46] drm/i915/guc: Don't call
- switch_to_kernel_context with GuC submission
+In-Reply-To: <YRIiXL1sToOPMveN@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] [PATCH 14/46] drm/i915: Expose logical engine
+ instance to user
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,103 +52,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 10, 2021 at 08:47:10AM +0200, Daniel Vetter wrote:
-> On Mon, Aug 09, 2021 at 06:20:51PM +0000, Matthew Brost wrote:
-> > On Mon, Aug 09, 2021 at 04:27:01PM +0200, Daniel Vetter wrote:
-> > > On Tue, Aug 03, 2021 at 03:29:08PM -0700, Matthew Brost wrote:
-> > > > Calling switch_to_kernel_context isn't needed if the engine PM reference
-> > > > is taken while all contexts are pinned. By not calling
-> > > > switch_to_kernel_context we save on issuing a request to the engine.
+On Tue, Aug 10, 2021 at 08:53:16AM +0200, Daniel Vetter wrote:
+> On Mon, Aug 09, 2021 at 06:37:01PM +0000, Matthew Brost wrote:
+> > On Mon, Aug 09, 2021 at 04:30:06PM +0200, Daniel Vetter wrote:
+> > > On Tue, Aug 03, 2021 at 03:29:11PM -0700, Matthew Brost wrote:
+> > > > Expose logical engine instance to user via query engine info IOCTL. This
+> > > > is required for split-frame workloads as these needs to be placed on
+> > > > engines in a logically contiguous order. The logical mapping can change
+> > > > based on fusing. Rather than having user have knowledge of the fusing we
+> > > > simply just expose the logical mapping with the existing query engine
+> > > > info IOCTL.
 > > > > 
+> > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/gt/intel_engine_pm.c | 4 ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > > > index 1f07ac4e0672..58099de6bf07 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> > > > @@ -162,6 +162,10 @@ static bool switch_to_kernel_context(struct intel_engine_cs *engine)
-> > > >  	unsigned long flags;
-> > > >  	bool result = true;
-> > > >  
-> > > > +	/* No need to switch_to_kernel_context if GuC submission */
 > > > 
-> > > Maybe whack a big FIXME on here that we should unravel this properly.
-> > 
-> > Sure, can add a FIXME here.
-> > 
-> > > Currently the execlist backend assumptions are leaked all over the place,
-> > > leading to stuff like this. Which means extremely fragile code.
-> > >
-> > 
-> > Yes, this something required for execlists implemented in what should be
-> > generic code. 
-> > 
-> > > I currently don't have a great idea on how exactly we should do that, but
-> > > oh well.
-> > 
-> > Me either, it will be a process.
-> > 
+> > > Uapi must have a link to the userspace MR/patch set using this, and to the
+> > > igt patch set validating it.
 > > > 
-> > > btw just in case we ever want to make guc lrc properly evictable (which as
-> > > the og use-case for this function, way, way back), would we need to fully
 > > 
-> > Can you explain what you mean by fully evictable? Not getting what you
-> > mean in this context.
+> > Have an IGT:
+> > https://patchwork.freedesktop.org/patch/447008/?series=93071&rev=1
 > > 
-> > > unregister them from guc? At least I'm assuming there's no other trick
-> > 
-> > If scheduling is disabled on the context (currently done on unpin) you are
-> > free move anything around as the GuC is guaranteed not to touch the
-> > context state. If on re-pin something has moved (e.g. the LRC vaddr is
-> > different), you need to unregister and re-register the context with the
-> > GuC.
+> > Not sure when the media UMD is going to be updated upstream to use this.
+> > Does that mean I can't merge this until the media UMD is ready? Seems
+> > like it but isn't that a circular dependency? How can the media team
+> > develop for a new uAPI that isn't in the kernel yet?
 > 
-> So at that point GuC also guarantees that it's not left in the hw engine?
-> Execlist has this barrier request to fully unload the ctx from the hw, and
-> that's also why I cam on the topic of OA.
+> Yes and no. Full explainer here:
 > 
-> > > like the below one.
-> > > 
-> > > Another aside: How does the perf/OA patching work on GuC?
-> > >
-> > 
-> > Not my area of expertise but perf somewhat a WIP. The plan is for the
-> > GuC to write out some stats to HWSP I think? John Harrison is working to
-> > get this fully implemented.
-> > 
-> > OA is working afaik, with Umesh Nerlige Ramappa being the expert here.
+> https://dri.freedesktop.org/docs/drm/gpu/drm-uapi.html#open-source-userspace-requirements
 > 
-> I think it's OA that I'm thinking of here: We have code in i915_perf.c to
-> patch all the ctx currently in the system, so that they have a consistent
-> OA config. That's also relying on this barrier stuff, and I was wondering
-> how that will work with GuC.
-> -Daniel
+> In the drm subsystem this is pretty much the only rule where if you break
+> it the book will be thrown at you with extreme prejudice.
+>
+
+Well I don't want a book thrown at, new here and trying to play by the
+rules.
+
+> Also wrt circular: If the umd aren't set up to test their branches against
+> kernel branches they need to fix their stuff. I know that internally
+> that's not been done, and its a disaster, but in upstream there's no room
+> for excuses. Both kernel and userspace needs to be in branches until it's
+> ready for merging.
 > 
 
-Not an OA expert at all but glanced at the code I don't see anything in
-there that prevents it working with GuC submission. We certainly have
-this working internally. If you have questions about this I'd reach out to
-Umesh Nerlige Ramappa as he likely has the answers.
+Ok, looks like a have a few things to learn. I'll coordinate with the
+media team on this. Likely won't have links to the UMD in the next spin
+but I'll have a branch for them to prep their patches on.
 
 Matt
 
+> > For what it is worth the downstream release is already using this.
+> 
+> Yeah which is another problem, shipping new uapi in downstream before it's
+> in upstream is decidedly not great.
+> -Daniel
+> 
 > > 
 > > Matt
 > > 
-> > > Anyway, patch looks legit:
+> > > Ideally in each patch, since it's way too hard to unfortunately find the
+> > > cover letter late on.
 > > > 
-> > > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > Jason even went as far as making this a hard requirement because he wasted
+> > > a bit too much time trying to find the userspace for new uapi:
 > > > 
+> > > https://lore.kernel.org/dri-devel/20210804185704.624883-1-jason@jlekstrand.net/
 > > > 
-> > > > +	if (intel_engine_uses_guc(engine))
-> > > > +		return true;
+> > > Cheers, Daniel
+> > > 
+> > > >---
+> > > >  drivers/gpu/drm/i915/i915_query.c | 2 ++
+> > > >  include/uapi/drm/i915_drm.h       | 8 +++++++-
+> > > >  2 files changed, 9 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> > > > index e49da36c62fb..8a72923fbdba 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_query.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_query.c
+> > > > @@ -124,7 +124,9 @@ query_engine_info(struct drm_i915_private *i915,
+> > > >  	for_each_uabi_engine(engine, i915) {
+> > > >  		info.engine.engine_class = engine->uabi_class;
+> > > >  		info.engine.engine_instance = engine->uabi_instance;
+> > > > +		info.flags = I915_ENGINE_INFO_HAS_LOGICAL_INSTANCE;
+> > > >  		info.capabilities = engine->uabi_capabilities;
+> > > > +		info.logical_instance = ilog2(engine->logical_mask);
+> > > >  
+> > > >  		if (copy_to_user(info_ptr, &info, sizeof(info)))
+> > > >  			return -EFAULT;
+> > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > > index 7f13d241417f..ef72e07fe08c 100644
+> > > > --- a/include/uapi/drm/i915_drm.h
+> > > > +++ b/include/uapi/drm/i915_drm.h
+> > > > @@ -2706,14 +2706,20 @@ struct drm_i915_engine_info {
+> > > >  
+> > > >  	/** @flags: Engine flags. */
+> > > >  	__u64 flags;
+> > > > +#define I915_ENGINE_INFO_HAS_LOGICAL_INSTANCE		(1 << 0)
+> > > >  
+> > > >  	/** @capabilities: Capabilities of this engine. */
+> > > >  	__u64 capabilities;
+> > > >  #define I915_VIDEO_CLASS_CAPABILITY_HEVC		(1 << 0)
+> > > >  #define I915_VIDEO_AND_ENHANCE_CLASS_CAPABILITY_SFC	(1 << 1)
+> > > >  
+> > > > +	/** @logical_instance: Logical instance of engine */
+> > > > +	__u16 logical_instance;
 > > > > +
-> > > >  	/* GPU is pointing to the void, as good as in the kernel context. */
-> > > >  	if (intel_gt_is_wedged(engine->gt))
-> > > >  		return true;
+> > > >  	/** @rsvd1: Reserved fields. */
+> > > > -	__u64 rsvd1[4];
+> > > > +	__u16 rsvd1[3];
+> > > > +	/** @rsvd2: Reserved fields. */
+> > > > +	__u64 rsvd2[3];
+> > > >  };
+> > > >  
+> > > >  /**
 > > > > -- 
 > > > > 2.28.0
 > > > > 
