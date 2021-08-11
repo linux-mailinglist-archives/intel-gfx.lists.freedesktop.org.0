@@ -2,68 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4BE3E926F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 15:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0706E3E934A
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 16:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8DCE6E0F7;
-	Wed, 11 Aug 2021 13:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAC366E133;
+	Wed, 11 Aug 2021 14:09:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 775AF6E0F7
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 13:19:18 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="300708558"
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="300708558"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2021 06:19:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="460733903"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga007.jf.intel.com with ESMTP; 11 Aug 2021 06:19:16 -0700
-Received: from bgsmsx601.gar.corp.intel.com (10.109.78.80) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 11 Aug 2021 06:19:16 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX601.gar.corp.intel.com (10.109.78.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Wed, 11 Aug 2021 18:49:13 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2242.010;
- Wed, 11 Aug 2021 18:49:13 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "Nautiyal, Ankit K"
- <ankit.k.nautiyal@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Thread-Topic: [PATCH v3] drm/i915/display: Fix the 12 BPC bits for PIPE_MISC
- reg
-Thread-Index: AQHXjnIyI+1YFG65zEGkfm22GiMk36tt0bFggAB4DIA=
-Date: Wed, 11 Aug 2021 13:19:13 +0000
-Message-ID: <9e2f31ed038d4b0eb91c69c1263a1adf@intel.com>
-References: <20210811051857.109723-1-ankit.k.nautiyal@intel.com>
- <5c242bb097b24866a5ec6d4630bf6195@intel.com>
-In-Reply-To: <5c242bb097b24866a5ec6d4630bf6195@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C7146E0F7;
+ Wed, 11 Aug 2021 14:09:30 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="194716609"
+X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="194716609"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 07:09:20 -0700
+X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="503506436"
+Received: from gdthomps-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.255.37.76])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 07:09:18 -0700
+Date: Wed, 11 Aug 2021 10:09:17 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Message-ID: <YRPaDYtUxXO4hzTI@intel.com>
+References: <20210715141854.1ad4a956@canb.auug.org.au>
+ <162823181614.15830.10618174106053255881@jlahtine-mobl.ger.corp.intel.com>
+ <YRE2RwQ6XlUqbgmn@phenom.ffwll.local>
+ <20210809161939.GS1556418@mdroper-desk1.amr.corp.intel.com>
+ <YRIcTTsEF0Kg7F8K@phenom.ffwll.local> <8735rgo3hi.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/display: Fix the 12 BPC bits
- for PIPE_MISC reg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8735rgo3hi.fsf@intel.com>
+Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
+ drm-intel tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,113 +59,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBTaGFua2Fy
-LA0KPiBVbWENCj4gU2VudDogV2VkbmVzZGF5LCBBdWd1c3QgMTEsIDIwMjEgMTE6MzkgQU0NCj4g
-VG86IE5hdXRpeWFsLCBBbmtpdCBLIDxhbmtpdC5rLm5hdXRpeWFsQGludGVsLmNvbT47IGludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IFphbm9uaSwgUGF1bG8gUiA8cGF1bG8u
-ci56YW5vbmlAaW50ZWwuY29tPjsgdmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb207DQo+IGRh
-bmllbC52ZXR0ZXJAZmZ3bGwuY2g7IGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbTsNCj4gam9v
-bmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbTsgVml2aSwgUm9kcmlnbyA8cm9kcmlnby52aXZp
-QGludGVsLmNvbT47DQo+IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVjdDogUmU6IFtJ
-bnRlbC1nZnhdIFtQQVRDSCB2M10gZHJtL2k5MTUvZGlzcGxheTogRml4IHRoZSAxMiBCUEMgYml0
-cyBmb3INCj4gUElQRV9NSVNDIHJlZw0KPiANCg0KQ2hhbmdlIHB1c2hlZCB0byBkcm0taW50ZWwt
-bmV4dC4gVGhhbmtzIGZvciB0aGUgcGF0Y2guDQoNClJlZ2FyZHMsDQpVbWEgU2hhbmthcg0KPiAN
-Cj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IE5hdXRpeWFsLCBBbmtp
-dCBLIDxhbmtpdC5rLm5hdXRpeWFsQGludGVsLmNvbT4NCj4gPiBTZW50OiBXZWRuZXNkYXksIEF1
-Z3VzdCAxMSwgMjAyMSAxMDo0OSBBTQ0KPiA+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnDQo+ID4gQ2M6IFNoYW5rYXIsIFVtYSA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPjsgWmFu
-b25pLCBQYXVsbyBSDQo+ID4gPHBhdWxvLnIuemFub25pQGludGVsLmNvbT47IHZpbGxlLnN5cmph
-bGFAbGludXguaW50ZWwuY29tOw0KPiA+IGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g7IGphbmkubmlr
-dWxhQGxpbnV4LmludGVsLmNvbTsNCj4gPiBqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29t
-OyBWaXZpLCBSb2RyaWdvDQo+ID4gPHJvZHJpZ28udml2aUBpbnRlbC5jb20+OyBzdGFibGVAdmdl
-ci5rZXJuZWwub3JnOyBOYXV0aXlhbCwgQW5raXQgSw0KPiA+IDxhbmtpdC5rLm5hdXRpeWFsQGlu
-dGVsLmNvbT4NCj4gPiBTdWJqZWN0OiBbUEFUQ0ggdjNdIGRybS9pOTE1L2Rpc3BsYXk6IEZpeCB0
-aGUgMTIgQlBDIGJpdHMgZm9yDQo+ID4gUElQRV9NSVNDIHJlZw0KPiA+DQo+ID4gVGlsbCBESVNQ
-TEFZMTIgdGhlIFBJUEVfTUlTQyBiaXRzIDUtNyBhcmUgdXNlZCB0byBzZXQgdGhlIERpdGhlcmlu
-Zw0KPiA+IEJQQywgd2l0aCB2YWxpZCB2YWx1ZXMgb2YgNiwgOCwgMTAgQlBDLg0KPiA+IEZvciBB
-RExQKyB0aGVzZSBiaXRzIGFyZSB1c2VkIHRvIHNldCB0aGUgUE9SVCBPVVRQVVQgQlBDLCB3aXRo
-IHZhbGlkDQo+ID4gdmFsdWVzIG9mOiA2LCA4LCAxMCwgMTIgQlBDLCBhbmQgbmVlZCB0byBiZSBw
-cm9ncmFtbWVkIHdoZXRoZXIgZGl0aGVyaW5nIGlzDQo+IGVuYWJsZWQgb3Igbm90Lg0KPiA+DQo+
-ID4gVGhpcyBwYXRjaDoNCj4gPiAtY29ycmVjdHMgdGhlIGJpdHMgNS03IGZvciBQSVBFIE1JU0Mg
-cmVnaXN0ZXIgZm9yIDEyIEJQQy4NCj4gPiAtcmVuYW1lcyB0aGUgYml0cyBhbmQgbWFzayB0byBo
-YXZlIGdlbmVyaWMgbmFtZXMgZm9yIHRoZXNlIGJpdHMgZm9yDQo+ID4gZGl0aGVyaW5nIGJwYyBh
-bmQgcG9ydCBvdXRwdXQgYnBjLg0KPiA+DQo+ID4gdjM6IEFkZGVkIGEgbm90ZSBmb3IgTUlQSSBE
-U0kgd2hpY2ggdXNlcyB0aGUgUElQRV9NSVNDIGZvciByZWFkb3V0IGZvciBwaXBlX2JwcC4NCj4g
-PiAoVW1hIFNoYW5rYXIpDQo+ID4NCj4gPiB2MjogQWRkZWQgJ2Rpc3BsYXknIHRvIHRoZSBzdWJq
-ZWN0IGFuZCBmaXhlcyB0YWcuIChVbWEgU2hhbmthcikNCj4gPg0KPiANCj4gTG9va3MgR29vZCB0
-byBtZS4NCj4gUmV2aWV3ZWQtYnk6IFVtYSBTaGFua2FyIDx1bWEuc2hhbmthckBpbnRlbC5jb20+
-DQo+IA0KPiA+IEZpeGVzOiA3NTZmODVjZmZlZjIgKCJkcm0vaTkxNS9iZHc6IEJyb2Fkd2VsbCBo
-YXMgUElQRU1JU0MiKQ0KPiA+IENjOiBQYXVsbyBaYW5vbmkgPHBhdWxvLnIuemFub25pQGludGVs
-LmNvbT4gKHYxKQ0KPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
-aW50ZWwuY29tPg0KPiA+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNo
-Pg0KPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPg0KPiA+
-IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+DQo+
-ID4gQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4NCj4gPiBDYzogaW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiA+IENjOiA8c3RhYmxlQHZnZXIua2VybmVs
-Lm9yZz4gIyB2My4xMysNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEFua2l0IE5hdXRpeWFsIDxh
-bmtpdC5rLm5hdXRpeWFsQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAzNCArKysrKysrKysrKysrKy0tLS0tLQ0K
-PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICB8IDE2ICsr
-KysrKy0tLQ0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDM1IGluc2VydGlvbnMoKyksIDE1IGRlbGV0
-aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Rpc3BsYXkuYw0KPiA+IGluZGV4IGIyNWM1OTZmNmY3ZS4uYTI1N2U1ZGMzODFjIDEwMDY0
-NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
-DQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMN
-Cj4gPiBAQCAtNTgzOCwxNiArNTgzOCwxOCBAQCBzdGF0aWMgdm9pZCBiZHdfc2V0X3BpcGVtaXNj
-KGNvbnN0IHN0cnVjdA0KPiA+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+ID4NCj4g
-PiAgCXN3aXRjaCAoY3J0Y19zdGF0ZS0+cGlwZV9icHApIHsNCj4gPiAgCWNhc2UgMTg6DQo+ID4g
-LQkJdmFsIHw9IFBJUEVNSVNDX0RJVEhFUl82X0JQQzsNCj4gPiArCQl2YWwgfD0gUElQRU1JU0Nf
-Nl9CUEM7DQo+ID4gIAkJYnJlYWs7DQo+ID4gIAljYXNlIDI0Og0KPiA+IC0JCXZhbCB8PSBQSVBF
-TUlTQ19ESVRIRVJfOF9CUEM7DQo+ID4gKwkJdmFsIHw9IFBJUEVNSVNDXzhfQlBDOw0KPiA+ICAJ
-CWJyZWFrOw0KPiA+ICAJY2FzZSAzMDoNCj4gPiAtCQl2YWwgfD0gUElQRU1JU0NfRElUSEVSXzEw
-X0JQQzsNCj4gPiArCQl2YWwgfD0gUElQRU1JU0NfMTBfQlBDOw0KPiA+ICAJCWJyZWFrOw0KPiA+
-ICAJY2FzZSAzNjoNCj4gPiAtCQl2YWwgfD0gUElQRU1JU0NfRElUSEVSXzEyX0JQQzsNCj4gPiAr
-CQkvKiBQb3J0IG91dHB1dCAxMkJQQyBkZWZpbmVkIGZvciBBRExQKyAqLw0KPiA+ICsJCWlmIChE
-SVNQTEFZX1ZFUihkZXZfcHJpdikgPiAxMikNCj4gPiArCQkJdmFsIHw9IFBJUEVNSVNDXzEyX0JQ
-Q19BRExQOw0KPiA+ICAJCWJyZWFrOw0KPiA+ICAJZGVmYXVsdDoNCj4gPiAgCQlNSVNTSU5HX0NB
-U0UoY3J0Y19zdGF0ZS0+cGlwZV9icHApOw0KPiA+IEBAIC01OTAwLDE1ICs1OTAyLDI3IEBAIGlu
-dCBiZHdfZ2V0X3BpcGVtaXNjX2JwcChzdHJ1Y3QgaW50ZWxfY3J0Yw0KPiA+ICpjcnRjKQ0KPiA+
-DQo+ID4gIAl0bXAgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBQSVBFTUlTQyhjcnRjLT5waXBl
-KSk7DQo+ID4NCj4gPiAtCXN3aXRjaCAodG1wICYgUElQRU1JU0NfRElUSEVSX0JQQ19NQVNLKSB7
-DQo+ID4gLQljYXNlIFBJUEVNSVNDX0RJVEhFUl82X0JQQzoNCj4gPiArCXN3aXRjaCAodG1wICYg
-UElQRU1JU0NfQlBDX01BU0spIHsNCj4gPiArCWNhc2UgUElQRU1JU0NfNl9CUEM6DQo+ID4gIAkJ
-cmV0dXJuIDE4Ow0KPiA+IC0JY2FzZSBQSVBFTUlTQ19ESVRIRVJfOF9CUEM6DQo+ID4gKwljYXNl
-IFBJUEVNSVNDXzhfQlBDOg0KPiA+ICAJCXJldHVybiAyNDsNCj4gPiAtCWNhc2UgUElQRU1JU0Nf
-RElUSEVSXzEwX0JQQzoNCj4gPiArCWNhc2UgUElQRU1JU0NfMTBfQlBDOg0KPiA+ICAJCXJldHVy
-biAzMDsNCj4gPiAtCWNhc2UgUElQRU1JU0NfRElUSEVSXzEyX0JQQzoNCj4gPiAtCQlyZXR1cm4g
-MzY7DQo+ID4gKwkvKg0KPiA+ICsJICogUE9SVCBPVVRQVVQgMTIgQlBDIGRlZmluZWQgZm9yIEFE
-TFArLg0KPiA+ICsJICoNCj4gPiArCSAqIFRPRE86DQo+ID4gKwkgKiBGb3IgcHJldmlvdXMgcGxh
-dGZvcm1zIHdpdGggRFNJIGludGVyZmFjZSwgYml0cyA1OjcNCj4gPiArCSAqIGFyZSB1c2VkIGZv
-ciBzdG9yaW5nIHBpcGVfYnBwIGlycmVzcGVjdGl2ZSBvZiBkaXRoZXJpbmcuDQo+ID4gKwkgKiBT
-aW5jZSB0aGUgdmFsdWUgb2YgMTIgQlBDIGlzIG5vdCBkZWZpbmVkIGZvciB0aGVzZSBiaXRzDQo+
-ID4gKwkgKiBvbiBvbGRlciBwbGF0Zm9ybXMsIG5lZWQgdG8gZmluZCBhIHdvcmthcm91bmQgZm9y
-IDEyIEJQQw0KPiA+ICsJICogTUlQSSBEU0kgSFcgcmVhZG91dC4NCj4gPiArCSAqLw0KPiA+ICsJ
-Y2FzZSBQSVBFTUlTQ18xMl9CUENfQURMUDoNCj4gPiArCQlpZiAoRElTUExBWV9WRVIoZGV2X3By
-aXYpID4gMTIpDQo+ID4gKwkJCXJldHVybiAzNjsNCj4gPiArCQlmYWxsdGhyb3VnaDsNCj4gPiAg
-CWRlZmF1bHQ6DQo+ID4gIAkJTUlTU0lOR19DQVNFKHRtcCk7DQo+ID4gIAkJcmV0dXJuIDA7DQo+
-ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gPiBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggaW5kZXggMTY3ZWFhODc1MDFiLi42NjQ5NzBm
-MmJjNjINCj4gPiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
-Zy5oDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiA+IEBAIC02
-MjAzLDExICs2MjAzLDE3IEBAIGVudW0gew0KPiA+ICAjZGVmaW5lICAgUElQRU1JU0NfSERSX01P
-REVfUFJFQ0lTSU9OCSgxIDw8IDIzKSAvKiBpY2wrICovDQo+ID4gICNkZWZpbmUgICBQSVBFTUlT
-Q19PVVRQVVRfQ09MT1JTUEFDRV9ZVVYgICgxIDw8IDExKQ0KPiA+ICAjZGVmaW5lICAgUElQRU1J
-U0NfUElYRUxfUk9VTkRJTkdfVFJVTkMJUkVHX0JJVCg4KSAvKiB0Z2wrICovDQo+ID4gLSNkZWZp
-bmUgICBQSVBFTUlTQ19ESVRIRVJfQlBDX01BU0sJKDcgPDwgNSkNCj4gPiAtI2RlZmluZSAgIFBJ
-UEVNSVNDX0RJVEhFUl84X0JQQwkJKDAgPDwgNSkNCj4gPiAtI2RlZmluZSAgIFBJUEVNSVNDX0RJ
-VEhFUl8xMF9CUEMJKDEgPDwgNSkNCj4gPiAtI2RlZmluZSAgIFBJUEVNSVNDX0RJVEhFUl82X0JQ
-QwkJKDIgPDwgNSkNCj4gPiAtI2RlZmluZSAgIFBJUEVNSVNDX0RJVEhFUl8xMl9CUEMJKDMgPDwg
-NSkNCj4gPiArLyoNCj4gPiArICogRm9yIERpc3BsYXkgPCAxMywgQml0cyA1LTcgb2YgUElQRSBN
-SVNDIHJlcHJlc2VudCBESVRIRVIgQlBDIHdpdGgNCj4gPiArICogdmFsaWQgdmFsdWVzIG9mOiA2
-LCA4LCAxMCBCUEMuDQo+ID4gKyAqIEFETFArLCB0aGUgYml0cyA1LTcgcmVwcmVzZW50IFBPUlQg
-T1VUUFVUIEJQQyB3aXRoIHZhbGlkIHZhbHVlcyBvZjoNCj4gPiArICogNiwgOCwgMTAsIDEyIEJQ
-Qy4NCj4gPiArICovDQo+ID4gKyNkZWZpbmUgICBQSVBFTUlTQ19CUENfTUFTSwkJKDcgPDwgNSkN
-Cj4gPiArI2RlZmluZSAgIFBJUEVNSVNDXzhfQlBDCQkoMCA8PCA1KQ0KPiA+ICsjZGVmaW5lICAg
-UElQRU1JU0NfMTBfQlBDCQkoMSA8PCA1KQ0KPiA+ICsjZGVmaW5lICAgUElQRU1JU0NfNl9CUEMJ
-CSgyIDw8IDUpDQo+ID4gKyNkZWZpbmUgICBQSVBFTUlTQ18xMl9CUENfQURMUAkJKDQgPDwgNSkg
-LyogYWRscCsgKi8NCj4gPiAgI2RlZmluZSAgIFBJUEVNSVNDX0RJVEhFUl9FTkFCTEUJKDEgPDwg
-NCkNCj4gPiAgI2RlZmluZSAgIFBJUEVNSVNDX0RJVEhFUl9UWVBFX01BU0sJKDMgPDwgMikNCj4g
-PiAgI2RlZmluZSAgIFBJUEVNSVNDX0RJVEhFUl9UWVBFX1NQCSgwIDw8IDIpDQo+ID4gLS0NCj4g
-PiAyLjI1LjENCg0K
+On Wed, Aug 11, 2021 at 10:16:41AM +0300, Jani Nikula wrote:
+> On Tue, 10 Aug 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
+> > On Mon, Aug 09, 2021 at 09:19:39AM -0700, Matt Roper wrote:
+> >> On Mon, Aug 09, 2021 at 04:05:59PM +0200, Daniel Vetter wrote:
+> >> > On Fri, Aug 06, 2021 at 09:36:56AM +0300, Joonas Lahtinen wrote:
+> >> > > Hi Matt,
+> >> > > 
+> >> > > Always use the dim tooling when applying patches, it will do the right
+> >> > > thing with regards to adding the S-o-b.
+> >> > 
+> >> > fd.o server rejects any pushes that haven't been done by dim, so how did
+> >> > this get through?
+> >> 
+> >> I definitely used dim for all of these patches, but I'm not sure how I
+> >> lost my s-o-b on this one.  Maybe when I edited the commit message after
+> >> 'dim extract-tags' I accidentally deleted an extra line when I removed
+> >> the extract-tags marker?  It's the only patch where the line is missing,
+> >> so it's almost certainly human error on my part rather than something
+> >> dim did wrong.
+> >
+> > Yeah that's an expected failure model, and dim is supposed to catch that
+> > by rechecking for sobs when you push. See dim_push_branch ->
+> > checkpatch_commit_push_range in dim. So you can hand-edit stuff however
+> > you want, dim /should/ catch it when pushing. That it didn't is kinda
+> > confusing and I'd like to know why that slipped through.
+> 
+> One of the failures that happened here was that the commit was part of a
+> topic branch that was merged and pushed directly. All merges should
+> happen via pull requests on the list, and applied (preferrably by
+> maintainers or at least with their acks recorded on the merge) using dim
+> apply-pull which should also have the checks.
+
+My bad. I have asked Matt to go ahead with the topic branch.
+So it is an ack, which didn't get recorded.
+But I didn't expect this case of missing dim checks with this flow.
+
+Sorry,
+Rodrigo.
+
+> 
+> 
+> BR,
+> Jani.
+> 
+> >
+> >> > Matt, can you pls figure out and type up the patch to
+> >> > plug that hole?
+> >> 
+> >> Are you referring to a patch for dim here?  The i915 patch has already
+> >> landed, so we can't change its commit message now.
+> >
+> > Yeah dim, not drm-intel, that can't be fixed anymore because it's all
+> > baked in.
+> > -Daniel
+> >
+> >> 
+> >> 
+> >> Matt
+> >> 
+> >> > 
+> >> > Thanks, Daniel
+> >> > 
+> >> > > 
+> >> > > Regards, Joonas
+> >> > > 
+> >> > > Quoting Stephen Rothwell (2021-07-15 07:18:54)
+> >> > > > Hi all,
+> >> > > > 
+> >> > > > Commit
+> >> > > > 
+> >> > > >   db47fe727e1f ("drm/i915/step: s/<platform>_revid_tbl/<platform>_revids")
+> >> > > > 
+> >> > > > is missing a Signed-off-by from its committer.
+> >> > > > 
+> >> > > > -- 
+> >> > > > Cheers,
+> >> > > > Stephen Rothwell
+> >> > 
+> >> > -- 
+> >> > Daniel Vetter
+> >> > Software Engineer, Intel Corporation
+> >> > http://blog.ffwll.ch
+> >> 
+> >> -- 
+> >> Matt Roper
+> >> Graphics Software Engineer
+> >> VTT-OSGC Platform Enablement
+> >> Intel Corporation
+> >> (916) 356-2795
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
