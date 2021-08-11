@@ -1,72 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17DD63E8ED3
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 12:36:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E53A23E8F3B
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 13:02:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D85666E120;
-	Wed, 11 Aug 2021 10:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C117E895EE;
+	Wed, 11 Aug 2021 11:02:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A354F6E11F
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 10:36:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1628678166;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=XIZM8cdhNJSfUJDnOLv+irfL8oNJu9keXxl/12RO/Tw=;
- b=DO0/eyzQbeCg25lE7viV+0zb2uJ4xTNJY3b7WCvdSbdw7o8t7XRws2XZNJrS5Ai4h/KxAJ
- 0+4t1g/h3FjXC2cNHWqsdtpJOzjSZhqo6Xe2d/JyB1Nm2QdBaQqjBZriKJSeXbLeIdJfwy
- wmkp4ynkHXWTGbTHXN/pe1fkIkvwdYI=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-214-T9CQQ_4iPJO-DImzn8_Ltw-1; Wed, 11 Aug 2021 06:36:03 -0400
-X-MC-Unique: T9CQQ_4iPJO-DImzn8_Ltw-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3B1401008063;
- Wed, 11 Aug 2021 10:36:00 +0000 (UTC)
-Received: from localhost (unknown [10.39.192.118])
- by smtp.corp.redhat.com (Postfix) with ESMTPS id DF43F3AA2;
- Wed, 11 Aug 2021 10:35:51 +0000 (UTC)
-From: Cornelia Huck <cohuck@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>, David Airlie <airlied@linux.ie>, Tony
- Krowiak <akrowiak@linux.ibm.com>, Alex Williamson
- <alex.williamson@redhat.com>, Christian Borntraeger
- <borntraeger@de.ibm.com>, Jonathan Corbet <corbet@lwn.net>, Daniel Vetter
- <daniel@ffwll.ch>, Diana Craciun <diana.craciun@oss.nxp.com>,
- dri-devel@lists.freedesktop.org, Eric Auger <eric.auger@redhat.com>, Eric
- Farman <farman@linux.ibm.com>, Harald Freudenberger
- <freude@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens
- <hca@linux.ibm.com>, intel-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, Jani Nikula
- <jani.nikula@linux.intel.com>, Jason Herne <jjherne@linux.ibm.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org, Kirti
- Wankhede <kwankhede@nvidia.com>, linux-doc@vger.kernel.org,
- linux-s390@vger.kernel.org, Matthew Rosato <mjrosato@linux.ibm.com>, Peter
- Oberparleiter <oberpar@linux.ibm.com>, Halil Pasic <pasic@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Vineeth Vijayan
- <vneethv@linux.ibm.com>, Zhi Wang <zhi.a.wang@intel.com>
-Cc: "Raj, Ashok" <ashok.raj@intel.com>, Christoph Hellwig <hch@lst.de>, Leon
- Romanovsky <leonro@nvidia.com>, Max Gurtovoy <mgurtovoy@nvidia.com>,
- Yishai Hadas <yishaih@nvidia.com>, Zhenyu Wang <zhenyuw@linux.intel.com>
-In-Reply-To: <14-v4-9ea22c5e6afb+1adf-vfio_reflck_jgg@nvidia.com>
-Organization: Red Hat GmbH
-References: <14-v4-9ea22c5e6afb+1adf-vfio_reflck_jgg@nvidia.com>
-User-Agent: Notmuch/0.32.1 (https://notmuchmail.org)
-Date: Wed, 11 Aug 2021 12:35:50 +0200
-Message-ID: <87r1f0uv3t.fsf@redhat.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC57894A7;
+ Wed, 11 Aug 2021 11:02:46 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="215128093"
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="215128093"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 04:02:29 -0700
+X-IronPort-AV: E=Sophos;i="5.84,311,1620716400"; d="scan'208";a="484829327"
+Received: from fbrausse-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.209.112])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 04:02:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+In-Reply-To: <YROc0KkBbuAwrx0f@phenom.ffwll.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210715141854.1ad4a956@canb.auug.org.au>
+ <162823181614.15830.10618174106053255881@jlahtine-mobl.ger.corp.intel.com>
+ <YRE2RwQ6XlUqbgmn@phenom.ffwll.local>
+ <20210809161939.GS1556418@mdroper-desk1.amr.corp.intel.com>
+ <YRIcTTsEF0Kg7F8K@phenom.ffwll.local> <8735rgo3hi.fsf@intel.com>
+ <YROc0KkBbuAwrx0f@phenom.ffwll.local>
+Date: Wed, 11 Aug 2021 14:02:22 +0300
+Message-ID: <87o8a4megx.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-Subject: Re: [Intel-gfx] [PATCH v4 14/14] vfio: Remove struct
- vfio_device_ops open/release
+Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
+ drm-intel tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,19 +60,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 05 2021, Jason Gunthorpe <jgg@nvidia.com> wrote:
-
-> Nothing uses this anymore, delete it.
+On Wed, 11 Aug 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Wed, Aug 11, 2021 at 10:16:41AM +0300, Jani Nikula wrote:
+>> On Tue, 10 Aug 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
+>> > On Mon, Aug 09, 2021 at 09:19:39AM -0700, Matt Roper wrote:
+>> >> On Mon, Aug 09, 2021 at 04:05:59PM +0200, Daniel Vetter wrote:
+>> >> > On Fri, Aug 06, 2021 at 09:36:56AM +0300, Joonas Lahtinen wrote:
+>> >> > > Hi Matt,
+>> >> > > 
+>> >> > > Always use the dim tooling when applying patches, it will do the right
+>> >> > > thing with regards to adding the S-o-b.
+>> >> > 
+>> >> > fd.o server rejects any pushes that haven't been done by dim, so how did
+>> >> > this get through?
+>> >> 
+>> >> I definitely used dim for all of these patches, but I'm not sure how I
+>> >> lost my s-o-b on this one.  Maybe when I edited the commit message after
+>> >> 'dim extract-tags' I accidentally deleted an extra line when I removed
+>> >> the extract-tags marker?  It's the only patch where the line is missing,
+>> >> so it's almost certainly human error on my part rather than something
+>> >> dim did wrong.
+>> >
+>> > Yeah that's an expected failure model, and dim is supposed to catch that
+>> > by rechecking for sobs when you push. See dim_push_branch ->
+>> > checkpatch_commit_push_range in dim. So you can hand-edit stuff however
+>> > you want, dim /should/ catch it when pushing. That it didn't is kinda
+>> > confusing and I'd like to know why that slipped through.
+>> 
+>> One of the failures that happened here was that the commit was part of a
+>> topic branch that was merged and pushed directly. All merges should
+>> happen via pull requests on the list, and applied (preferrably by
+>> maintainers or at least with their acks recorded on the merge) using dim
+>> apply-pull which should also have the checks.
 >
-> Signed-off-by: Yishai Hadas <yishaih@nvidia.com>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  drivers/vfio/mdev/vfio_mdev.c | 22 ----------------------
->  drivers/vfio/vfio.c           | 14 +-------------
->  include/linux/mdev.h          |  7 -------
->  include/linux/vfio.h          |  4 ----
->  4 files changed, 1 insertion(+), 46 deletions(-)
+> Ah yes if the merge is applied directly instead of using apply-pull then
+> that's not good. I guess that's why we have the rule that only maintainers
+> should handle topic branches ...
+>
+> Not sure how we can fix this in dim? Maybe a check whether the patches
+> your pushing contain a merge commit, which prompts an additional query
+> like
+>
+> "Merge commits should only be done by repo maintainers, not committers.
+> Confirm that you are a maintainer of $repo?"
+>
+> It's not the first time this slipped through and caused some fun. Similar
+> to how we have the confirmation check if you push a lot of patches.
 
-Reviewed-by: Cornelia Huck <cohuck@redhat.com>
+I sent an untested patch to this effect. It's a start. I guess there
+could be more detailed automated checks, but frankly dim is getting
+pretty complicated for a bash script. Or because it's a bash script.
 
+BR,
+Jani.
+
+
+>
+> Thoughts?
+> -Daniel
+>
+>
+>> 
+>> 
+>> BR,
+>> Jani.
+>> 
+>> >
+>> >> > Matt, can you pls figure out and type up the patch to
+>> >> > plug that hole?
+>> >> 
+>> >> Are you referring to a patch for dim here?  The i915 patch has already
+>> >> landed, so we can't change its commit message now.
+>> >
+>> > Yeah dim, not drm-intel, that can't be fixed anymore because it's all
+>> > baked in.
+>> > -Daniel
+>> >
+>> >> 
+>> >> 
+>> >> Matt
+>> >> 
+>> >> > 
+>> >> > Thanks, Daniel
+>> >> > 
+>> >> > > 
+>> >> > > Regards, Joonas
+>> >> > > 
+>> >> > > Quoting Stephen Rothwell (2021-07-15 07:18:54)
+>> >> > > > Hi all,
+>> >> > > > 
+>> >> > > > Commit
+>> >> > > > 
+>> >> > > >   db47fe727e1f ("drm/i915/step: s/<platform>_revid_tbl/<platform>_revids")
+>> >> > > > 
+>> >> > > > is missing a Signed-off-by from its committer.
+>> >> > > > 
+>> >> > > > -- 
+>> >> > > > Cheers,
+>> >> > > > Stephen Rothwell
+>> >> > 
+>> >> > -- 
+>> >> > Daniel Vetter
+>> >> > Software Engineer, Intel Corporation
+>> >> > http://blog.ffwll.ch
+>> >> 
+>> >> -- 
+>> >> Matt Roper
+>> >> Graphics Software Engineer
+>> >> VTT-OSGC Platform Enablement
+>> >> Intel Corporation
+>> >> (916) 356-2795
+>> 
+>> -- 
+>> Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
