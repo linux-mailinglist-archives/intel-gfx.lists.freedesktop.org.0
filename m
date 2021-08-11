@@ -2,42 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5439A3E9A2A
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 23:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A9D3E9A60
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Aug 2021 23:23:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EE266E1BB;
-	Wed, 11 Aug 2021 21:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E3E6E1CF;
+	Wed, 11 Aug 2021 21:23:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E14BB6E1BB
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 21:04:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10073"; a="215248631"
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="215248631"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2021 14:04:17 -0700
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="460860839"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.134])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2021 14:04:17 -0700
-Date: Wed, 11 Aug 2021 14:04:15 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "mika.kuoppala@linux.intel.com" <mika.kuoppala@linux.intel.com>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Message-ID: <20210811210415.GI1556418@mdroper-desk1.amr.corp.intel.com>
-References: <20210806174130.1058960-1-matthew.d.roper@intel.com>
- <c53a507f96eadee5178062305c999ff1250999c9.camel@intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA4B6E1CF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 21:23:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10073"; a="195493255"
+X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="195493255"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2021 14:23:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; d="scan'208";a="676383488"
+Received: from jhli-desk1.jf.intel.com ([10.54.74.156])
+ by fmsmga005.fm.intel.com with ESMTP; 11 Aug 2021 14:23:35 -0700
+From: Juston Li <juston.li@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: seanpaul@chromium.org, anshuman.gupta@intel.com, ramalingam.c@intel.com,
+ rodrigo.vivi@intel.com, Juston Li <juston.li@intel.com>
+Date: Wed, 11 Aug 2021 14:23:11 -0700
+Message-Id: <20210811212314.153269-1-juston.li@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c53a507f96eadee5178062305c999ff1250999c9.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Only access SFC_DONE when media
- domain is not fused off
+Subject: [Intel-gfx] [PATCH v4 0/3] drm/i915/hdcp: HDCP2.2 MST dock fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,82 +46,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 11, 2021 at 01:55:48PM -0700, Souza, Jose wrote:
-> On Fri, 2021-08-06 at 10:41 -0700, Matt Roper wrote:
-> > The SFC_DONE register lives within the corresponding VD0/VD2/VD4/VD6
-> > forcewake domain and is not accessible if the vdbox in that domain is
-> > fused off and the forcewake is not initialized.
-> > 
-> > This mistake went unnoticed because until recently we were using the
-> > wrong register offset for the SFC_DONE register; once the register
-> > offset was corrected, we started hitting errors like
-> > 
-> >   <4> [544.989065] i915 0000:cc:00.0: Uninitialized forcewake domain(s) 0x80 accessed at 0x1ce000
-> > 
-> > on parts with fused-off vdbox engines.
-> 
-> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+Fixes to get HDCP2.2 over MST working on MST docking stations with
+certain behaviors that cause the current flow to fail.
+Tested with Dell WD-19 and Lenovo ThinkPad USB Type-C Dock Gen 2.
 
-Applied to drm-intel-next.  Thanks for the review.
+These fixes should make the flow more robust to handle behaviors that as
+far as I can tell are unclear in the HDCP spec:
 
+RxInfo contains repeater topology information needed for MST. The
+behavior on these docks is that this can only be read during
+RepeaterAuth_Send_ReceiverID_List when the RxStatus READY bit is set
+otherwise the dock will return NACK. It seems these docks treat
+reading this range at any other time as invalid when the READY bit
+isn't set possibly because it could be stale. The HDCP spec also states
+the READY bit is cleared after RxInfo is read.
 
-Matt
+These fixes address this behavior by only reading RxInfo once during the
+AKE flow and reusing that data.
 
-> 
-> > 
-> > Fixes: e50dbdbfd9fb ("drm/i915/tgl: Add SFC instdone to error state")
-> > Fixes: 82929a2140eb ("drm/i915: Correct SFC_DONE register offset")
-> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_gpu_error.c | 19 ++++++++++++++++++-
-> >  1 file changed, 18 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > index 0f08bcfbe964..9cf6ac575de1 100644
-> > --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> > +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > @@ -727,9 +727,18 @@ static void err_print_gt(struct drm_i915_error_state_buf *m,
-> >  	if (GRAPHICS_VER(m->i915) >= 12) {
-> >  		int i;
-> >  
-> > -		for (i = 0; i < GEN12_SFC_DONE_MAX; i++)
-> > +		for (i = 0; i < GEN12_SFC_DONE_MAX; i++) {
-> > +			/*
-> > +			 * SFC_DONE resides in the VD forcewake domain, so it
-> > +			 * only exists if the corresponding VCS engine is
-> > +			 * present.
-> > +			 */
-> > +			if (!HAS_ENGINE(gt->_gt, _VCS(i * 2)))
-> > +				continue;
-> > +
-> >  			err_printf(m, "  SFC_DONE[%d]: 0x%08x\n", i,
-> >  				   gt->sfc_done[i]);
-> > +		}
-> >  
-> >  		err_printf(m, "  GAM_DONE: 0x%08x\n", gt->gam_done);
-> >  	}
-> > @@ -1598,6 +1607,14 @@ static void gt_record_regs(struct intel_gt_coredump *gt)
-> >  
-> >  	if (GRAPHICS_VER(i915) >= 12) {
-> >  		for (i = 0; i < GEN12_SFC_DONE_MAX; i++) {
-> > +			/*
-> > +			 * SFC_DONE resides in the VD forcewake domain, so it
-> > +			 * only exists if the corresponding VCS engine is
-> > +			 * present.
-> > +			 */
-> > +			if (!HAS_ENGINE(gt->_gt, _VCS(i * 2)))
-> > +				continue;
-> > +
-> >  			gt->sfc_done[i] =
-> >  				intel_uncore_read(uncore, GEN12_SFC_DONE(i));
-> >  		}
-> 
+Changes since v3:
+ - Don't change the offset define for Send_ReceiverID_List
+   When reading, update message offset to account for RxInfo being read
+
+Changes since v2:
+ - Remove no longer used variables in _intel_hdcp2_enable()
+
+Changes since v1:
+ - Fix subject line for 3/3
+
+Juston Li (3):
+  drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()
+  drm/i915/hdcp: read RxInfo once when reading
+    RepeaterAuth_Send_ReceiverID_List
+  drm/i915/hdcp: reuse rx_info for mst stream type1 capability check
+
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 78 +++++--------------
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 49 +++++-------
+ 3 files changed, 43 insertions(+), 86 deletions(-)
 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.31.1
+
