@@ -1,42 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37CDC3EA012
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 10:00:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC90B3E9FB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 09:46:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA5956E311;
-	Thu, 12 Aug 2021 08:00:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF2F89090;
+	Thu, 12 Aug 2021 07:46:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC7F6E0EF
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 08:00:32 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10073"; a="215330442"
-X-IronPort-AV: E=Sophos;i="5.84,315,1620716400"; d="scan'208";a="215330442"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2021 01:00:21 -0700
-X-IronPort-AV: E=Sophos;i="5.84,315,1620716400"; d="scan'208";a="590550469"
-Received: from genxfsim-desktop.iind.intel.com (HELO intel.com)
- ([10.223.74.179])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2021 01:00:18 -0700
-Date: Thu, 12 Aug 2021 13:13:04 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Juston Li <juston.li@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, seanpaul@chromium.org,
- ramalingam.c@intel.com, rodrigo.vivi@intel.com
-Message-ID: <20210812074303.GC814@intel.com>
-References: <20210811212314.153269-1-juston.li@intel.com>
- <20210811212314.153269-3-juston.li@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8553F89090;
+ Thu, 12 Aug 2021 07:46:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30FF8A00F5;
+ Thu, 12 Aug 2021 07:46:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1650198687541205188=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210811212314.153269-3-juston.li@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v4 2/3] drm/i915/hdcp: read RxInfo once when
- reading RepeaterAuth_Send_ReceiverID_List
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 12 Aug 2021 07:46:21 -0000
+Message-ID: <162875438117.21763.7709449702618154126@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210812054806.22745-1-animesh.manna@intel.com>
+In-Reply-To: <20210812054806.22745-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
+ =?utf-8?q?_in_max_source_calculation_for_dp/edp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,127 +41,236 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2021-08-11 at 14:23:13 -0700, Juston Li wrote:
-> When reading RepeaterAuth_Send_ReceiverID_List, RxInfo is read by itself
-> once to retrieve the DEVICE_COUNT to calculate the size of the
-> ReceiverID list then read a second time as a part of reading ReceiverID
-> list.
-> 
-> On some MST docking stations, RxInfo can only be read after the RxStatus
-> READY bit is set otherwise the read will return -EIO. The spec states that
-> the READY bit should be cleared as soon as RxInfo has been read.
-> 
-> In this case, the first RxInfo read succeeds but after the READY bit is
-> cleared, the second read fails.
-> 
-> Fix it by reading RxInfo once and storing it before reading the rest of
-> RepeaterAuth_Send_ReceiverID_List once we know the size.
-> 
-> Modify get_receiver_id_list_size() to read and store RxInfo in the
-> message buffer and also parse DEVICE_COUNT so we know the size of
-> RepeaterAuth_Send_ReceiverID_List.
-> 
-> Afterwards, retrieve the rest of the message at the offset for
-> seq_num_V.
-> 
-> Changes in v5:
-> - Don't change the offset define for Send_ReceiverID_List
->   When reading, update message offset to account for RxInfo being read
-v5 looks good to me 
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> 
-> Changes in v4:
-> - rebase and edit commit message
-> 
-> Changes in v3:
-> - remove comment
-> 
-> Changes in v2:
-> - remove unnecessary moving of drm_i915_private from patch 1
-> 
-> Signed-off-by: Juston Li <juston.li@intel.com>
-> Acked-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 31 ++++++++++----------
->  1 file changed, 16 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index 1d0096654776..fbfb3c4d16bb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -496,11 +496,10 @@ get_rxinfo_hdcp_1_dev_downstream(struct intel_digital_port *dig_port, bool *hdcp
->  }
->  
->  static
-> -ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
-> +ssize_t get_receiver_id_list_rx_info(struct intel_digital_port *dig_port, u32 *dev_cnt, u8 *byte)
->  {
-> -	u8 rx_info[HDCP_2_2_RXINFO_LEN];
-> -	u32 dev_cnt;
->  	ssize_t ret;
-> +	u8 *rx_info = byte;
->  
->  	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
->  			       DP_HDCP_2_2_REG_RXINFO_OFFSET,
-> @@ -508,15 +507,11 @@ ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
->  	if (ret != HDCP_2_2_RXINFO_LEN)
->  		return ret >= 0 ? -EIO : ret;
->  
-> -	dev_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
-> +	*dev_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
->  		   HDCP_2_2_DEV_COUNT_LO(rx_info[1]));
->  
-> -	if (dev_cnt > HDCP_2_2_MAX_DEVICE_COUNT)
-> -		dev_cnt = HDCP_2_2_MAX_DEVICE_COUNT;
-> -
-> -	ret = sizeof(struct hdcp2_rep_send_receiverid_list) -
-> -		HDCP_2_2_RECEIVER_IDS_MAX_LEN +
-> -		(dev_cnt * HDCP_2_2_RECEIVER_ID_LEN);
-> +	if (*dev_cnt > HDCP_2_2_MAX_DEVICE_COUNT)
-> +		*dev_cnt = HDCP_2_2_MAX_DEVICE_COUNT;
->  
->  	return ret;
->  }
-> @@ -534,6 +529,7 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->  	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
->  	ktime_t msg_end = ktime_set(0, 0);
->  	bool msg_expired;
-> +	u32 dev_cnt;
->  
->  	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
->  	if (!hdcp2_msg_data)
-> @@ -546,17 +542,22 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->  
->  	hdcp->cp_irq_count_cached = atomic_read(&hdcp->cp_irq_count);
->  
-> +	/* DP adaptation msgs has no msg_id */
-> +	byte++;
-> +
->  	if (msg_id == HDCP_2_2_REP_SEND_RECVID_LIST) {
-> -		ret = get_receiver_id_list_size(dig_port);
-> +		ret = get_receiver_id_list_rx_info(dig_port, &dev_cnt, byte);
->  		if (ret < 0)
->  			return ret;
->  
-> -		size = ret;
-> +		byte += ret;
-> +		size = sizeof(struct hdcp2_rep_send_receiverid_list) -
-> +		HDCP_2_2_RXINFO_LEN - HDCP_2_2_RECEIVER_IDS_MAX_LEN +
-> +		(dev_cnt * HDCP_2_2_RECEIVER_ID_LEN);
-> +		offset += HDCP_2_2_RXINFO_LEN;
->  	}
-> -	bytes_to_recv = size - 1;
->  
-> -	/* DP adaptation msgs has no msg_id */
-> -	byte++;
-> +	bytes_to_recv = size - 1;
->  
->  	while (bytes_to_recv) {
->  		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
-> -- 
-> 2.31.1
-> 
+--===============1650198687541205188==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Fix in max source calculation for dp/edp
+URL   : https://patchwork.freedesktop.org/series/93622/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10472 -> Patchwork_20800
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20800 that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - fi-kbl-soraka:      [PASS][1] -> [FAIL][2] ([i915#3895])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10472/fi-kbl-soraka/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-kbl-soraka/boot.html
+
+  
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-gfx:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][3] ([fdo#109271]) +33 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@amdgpu/amd_basic@cs-gfx.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][4] -> [FAIL][5] ([i915#1888])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10472/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-skl-6700k2:      NOTRUN -> [FAIL][7] ([i915#579])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:
+    - fi-tgl-1115g4:      [PASS][8] -> [DMESG-WARN][9] ([i915#1385] / [i915#1887])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10472/fi-tgl-1115g4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-tgl-1115g4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-skl-6700k2:      NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#533])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@runner@aborted:
+    - fi-tgl-1115g4:      NOTRUN -> [FAIL][11] ([i915#1602])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-tgl-1115g4/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1385]: https://gitlab.freedesktop.org/drm/intel/issues/1385
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1887]: https://gitlab.freedesktop.org/drm/intel/issues/1887
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3895]: https://gitlab.freedesktop.org/drm/intel/issues/3895
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (39 -> 35)
+------------------------------
+
+  Additional (1): fi-skl-6700k2 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10472 -> Patchwork_20800
+
+  CI-20190529: 20190529
+  CI_DRM_10472: c5c1fcf35511df21cf435b1dcea1082db8de11a0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6170: d4ff2b4ab88d62a1888cb0316e70a1729fe4a685 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20800: c92201975535d5a9d6dfd40d820d2900c72d3df4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c92201975535 drm/i915/dp: fix for ADL_P/S and DG2 dp/edp max source rates
+9d0d6ab4aaa2 drm/i915/dp: fix DG1 and RKL max source rates
+efac1c8cc038 drm/i915/dp: fix EHL/JSL max source rates calculation
+11ca6e858027 drm/i915/dp: fix TGL and ICL max source rates
+d3bee2d775fd drm/i915/dp: Fix eDP max rate for display 11+
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/index.html
+
+--===============1650198687541205188==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix in max source calculation for dp/edp</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93622/">https://patchwork.freedesktop.org/series/93622/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10472 -&gt; Patchwork_20800</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20800 that come from known issues:</p>
+<h3>CI changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10472/fi-kbl-soraka/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-kbl-soraka/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3895">i915#3895</a>)</li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-gfx:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@amdgpu/amd_basic@cs-gfx.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +33 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10472/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10472/fi-tgl-1115g4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-tgl-1115g4/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-c.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1385">i915#1385</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1887">i915#1887</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20800/fi-tgl-1115g4/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Additional (1): fi-skl-6700k2 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-1 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10472 -&gt; Patchwork_20800</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10472: c5c1fcf35511df21cf435b1dcea1082db8de11a0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6170: d4ff2b4ab88d62a1888cb0316e70a1729fe4a685 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20800: c92201975535d5a9d6dfd40d820d2900c72d3df4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c92201975535 drm/i915/dp: fix for ADL_P/S and DG2 dp/edp max source rates<br />
+9d0d6ab4aaa2 drm/i915/dp: fix DG1 and RKL max source rates<br />
+efac1c8cc038 drm/i915/dp: fix EHL/JSL max source rates calculation<br />
+11ca6e858027 drm/i915/dp: fix TGL and ICL max source rates<br />
+d3bee2d775fd drm/i915/dp: Fix eDP max rate for display 11+</p>
+
+</body>
+</html>
+
+--===============1650198687541205188==--
