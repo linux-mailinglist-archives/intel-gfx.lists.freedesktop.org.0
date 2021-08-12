@@ -2,69 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45CA3EA51C
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 15:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6286D3EA508
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 15:00:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B16BB6E3F0;
-	Thu, 12 Aug 2021 13:05:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 597B56E3DB;
+	Thu, 12 Aug 2021 13:00:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
- [IPv6:2a00:1450:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D86316E3F0
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 13:05:37 +0000 (UTC)
-Received: by mail-wm1-x32a.google.com with SMTP id
- c129-20020a1c35870000b02902e6b6135279so3059541wma.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 06:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=qr6f4k77kHnXw8xt8qMGKu5RU6zaq/z/nsP/XUbddOI=;
- b=S8XNQia+ZM5EbgOkxCHSGoHCjnu/BgLnrsRK8/FcxJUaM9sI8ReQ3TBIjptxBoo933
- Gp3yoqMG77GXguhWyTax/t84ClfnwMnixComvk24Dz32LRrxHGZj5MEEdMO1HBCy9l4L
- G4ymr21DFv88VV4M/m/ZzUDDzer4/v3JSNT7c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=qr6f4k77kHnXw8xt8qMGKu5RU6zaq/z/nsP/XUbddOI=;
- b=pKYmeTmPjshAv0Ictsr7r6YaP2KvSdfNAdHbTSZLZgcGtYpqzfiE70A3IocnB3NkCV
- ALyM+vuXIpF9Jgcb0cie537wA6I5bBh6zeFBkWJKiqJAjN3eGdBRZT2JGWq8TYsyEdFO
- O+ynWgbgkwtRAZyuS4cRts2wjZqiy3SMiUx1rj6DYbeZQfSuKuPZni7Hh3J04o3IYqAB
- q+GVnjDHTIAT+GhQa521DTzoCwf8hRbr2YX9GS8GMB+5ev1za+ECsbh+UWl/x0GfDrI5
- DqN8s2zflRpd+mJew0ctBV9JC2KIj3wrf6slaH6LPxE7+VLDBf+QJg2wOfF18JWG2NQ8
- 6LHQ==
-X-Gm-Message-State: AOAM5314kQS8zN1s2hFhnUci0Rscdvy3cJMfS+Rz0it8pYrm4E5z9NDP
- cu6HKHqJzFo86+oJtraK0dQQ1g==
-X-Google-Smtp-Source: ABdhPJxiQHyS7qvybweMVTTp40D1ZYBnokPSEkDVj1mJeN/PbBMYt8p3DQ3M0FVsyRQmnVN/TIzmEw==
-X-Received: by 2002:a05:600c:1c28:: with SMTP id
- j40mr3052396wms.104.1628773536306; 
- Thu, 12 Aug 2021 06:05:36 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k186sm11206897wme.45.2021.08.12.06.05.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Aug 2021 06:05:35 -0700 (PDT)
-Date: Thu, 12 Aug 2021 15:05:33 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <YRUcnaebyqhAcYLr@phenom.ffwll.local>
-References: <20210713205153.1896059-1-daniel.vetter@ffwll.ch>
- <20210713205153.1896059-3-daniel.vetter@ffwll.ch>
- <573242f9-a29e-73d9-3efb-51c436d636fd@suse.de>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24A106E3DB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 13:00:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10073"; a="202533821"
+X-IronPort-AV: E=Sophos;i="5.84,315,1620716400"; d="scan'208";a="202533821"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 06:00:10 -0700
+X-IronPort-AV: E=Sophos;i="5.84,315,1620716400"; d="scan'208";a="527812311"
+Received: from linux-x299-aorus-gaming-3-pro.iind.intel.com ([10.223.34.130])
+ by fmsmga002-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2021 06:00:06 -0700
+From: Swati Sharma <swati2.sharma@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Swati Sharma <swati2.sharma@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ "Ville Syrj_l_" <ville.syrjala@linux.intel.com>,
+ Imre Deak <imre.deak@intel.com>, Manasi Navare <manasi.d.navare@intel.com>,
+ "Jos_ Roberto de Souza" <jose.souza@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org
+Date: Thu, 12 Aug 2021 18:41:07 +0530
+Message-Id: <20210812131107.5531-1-swati2.sharma@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <573242f9-a29e-73d9-3efb-51c436d636fd@suse.de>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH v4 2/4] drm/shmem-helper: Switch to
- vmf_insert_pfn
+Subject: [Intel-gfx] [v3][PATCH] drm/i915/display: Drop redundant debug print
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,163 +51,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 22, 2021 at 08:22:43PM +0200, Thomas Zimmermann wrote:
-> Hi,
-> 
-> I'm not knowledgeable enougth to give this a full review. If you can just
-> answer my questions, fell free to add an
-> 
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> 
-> to the patch. :)
-> 
-> Am 13.07.21 um 22:51 schrieb Daniel Vetter:
-> > We want to stop gup, which isn't the case if we use vmf_insert_page
-> 
-> What is gup?
-> 
-> > and VM_MIXEDMAP, because that does not set pte_special.
-> > 
-> > v2: With this shmem gem helpers now definitely need CONFIG_MMU (0day)
-> > 
-> > v3: add more depends on MMU. For usb drivers this is a bit awkward,
-> > but really it's correct: To be able to provide a contig mapping of
-> > buffers to userspace on !MMU platforms we'd need to use the cma
-> > helpers for these drivers on those platforms. As-is this wont work.
-> > 
-> > Also not exactly sure why vm_insert_page doesn't go boom, because that
-> > definitely wont fly in practice since the pages are non-contig to
-> > begin with.
-> > 
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > ---
-> >   drivers/gpu/drm/Kconfig                | 2 +-
-> >   drivers/gpu/drm/drm_gem_shmem_helper.c | 4 ++--
-> >   drivers/gpu/drm/gud/Kconfig            | 2 +-
-> >   drivers/gpu/drm/tiny/Kconfig           | 4 ++--
-> >   drivers/gpu/drm/udl/Kconfig            | 1 +
-> >   5 files changed, 7 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> > index 0d372354c2d0..314eefa39892 100644
-> > --- a/drivers/gpu/drm/Kconfig
-> > +++ b/drivers/gpu/drm/Kconfig
-> > @@ -211,7 +211,7 @@ config DRM_KMS_CMA_HELPER
-> >   config DRM_GEM_SHMEM_HELPER
-> >   	bool
-> > -	depends on DRM
-> > +	depends on DRM && MMU
-> >   	help
-> >   	  Choose this if you need the GEM shmem helper functions
-> > diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > index d5e6d4568f99..296ab1b7c07f 100644
-> > --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> > @@ -542,7 +542,7 @@ static vm_fault_t drm_gem_shmem_fault(struct vm_fault *vmf)
-> >   	} else {
-> >   		page = shmem->pages[page_offset];
-> > -		ret = vmf_insert_page(vma, vmf->address, page);
-> > +		ret = vmf_insert_pfn(vma, vmf->address, page_to_pfn(page));
-> >   	}
-> >   	mutex_unlock(&shmem->pages_lock);
-> > @@ -612,7 +612,7 @@ int drm_gem_shmem_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
-> >   		return ret;
-> >   	}
-> > -	vma->vm_flags |= VM_MIXEDMAP | VM_DONTEXPAND;
-> > +	vma->vm_flags |= VM_PFNMAP | VM_DONTEXPAND;
-> >   	vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
-> >   	if (shmem->map_wc)
-> >   		vma->vm_page_prot = pgprot_writecombine(vma->vm_page_prot);
-> > diff --git a/drivers/gpu/drm/gud/Kconfig b/drivers/gpu/drm/gud/Kconfig
-> > index 1c8601bf4d91..9c1e61f9eec3 100644
-> > --- a/drivers/gpu/drm/gud/Kconfig
-> > +++ b/drivers/gpu/drm/gud/Kconfig
-> > @@ -2,7 +2,7 @@
-> >   config DRM_GUD
-> >   	tristate "GUD USB Display"
-> > -	depends on DRM && USB
-> > +	depends on DRM && USB && MMU
-> >   	select LZ4_COMPRESS
-> >   	select DRM_KMS_HELPER
-> >   	select DRM_GEM_SHMEM_HELPER
-> 
-> I'm a kconfig noob, so this is rather a question than a review comment:
-> 
-> 
-> 
-> If DRM_GEM_SHMEM_HELPER already depends on MMU, this select will fail on
-> non-MMU platforms? Why does the driver also depend on MMU? Simply to make
-> the item disappear in menuconfig?
+drm_dp_dpcd_read/write already has debug error message.
+Drop redundant error messages which gives false
+status even if correct value is read in drm_dp_dpcd_read().
 
-I totally missed this somehow. vmf_insert_pfn functions only exists for
-MMU based system. So we can't compile vgem without that. And yes it just
-makes it disappear.
+v2: -Added fixes tag (Ankit)
+v3: -Fixed build error (CI)
 
-tbh I'm not sure it even worked with the old code, because on !MMU
-platforms it's the mmap's implementation job to make sure the pages are
-physically contiguous. There's another mmap related callback which should
-return the physical address where the memory starts.
+Fixes: 9488a030ac91 ("drm/i915: Add support for enabling link status and recovery")
+Cc: Swati Sharma <swati2.sharma@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com> (v2)
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: "Ville Syrj_l_" <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: "Jos_ Roberto de Souza" <jose.souza@intel.com>
+Cc: Sean Paul <seanpaul@chromium.org>
+Cc: <stable@vger.kernel.org> # v5.12+
 
-The cma helpers otoh should work on !MMU platforms, because they will give
-us a physically contig memory region.
--Daniel
+Link: https://patchwork.freedesktop.org/patch/msgid/20201218103723.30844-12-ankit.k.nautiyal@intel.com
 
-> 
-> Best regards
-> Thomas
-> 
-> > diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-> > index 5593128eeff9..c11fb5be7d09 100644
-> > --- a/drivers/gpu/drm/tiny/Kconfig
-> > +++ b/drivers/gpu/drm/tiny/Kconfig
-> > @@ -44,7 +44,7 @@ config DRM_CIRRUS_QEMU
-> >   config DRM_GM12U320
-> >   	tristate "GM12U320 driver for USB projectors"
-> > -	depends on DRM && USB
-> > +	depends on DRM && USB && MMU
-> >   	select DRM_KMS_HELPER
-> >   	select DRM_GEM_SHMEM_HELPER
-> >   	help
-> > @@ -53,7 +53,7 @@ config DRM_GM12U320
-> >   config DRM_SIMPLEDRM
-> >   	tristate "Simple framebuffer driver"
-> > -	depends on DRM
-> > +	depends on DRM && MMU
-> >   	select DRM_GEM_SHMEM_HELPER
-> >   	select DRM_KMS_HELPER
-> >   	help
-> > diff --git a/drivers/gpu/drm/udl/Kconfig b/drivers/gpu/drm/udl/Kconfig
-> > index 1f497d8f1ae5..c744175c6992 100644
-> > --- a/drivers/gpu/drm/udl/Kconfig
-> > +++ b/drivers/gpu/drm/udl/Kconfig
-> > @@ -4,6 +4,7 @@ config DRM_UDL
-> >   	depends on DRM
-> >   	depends on USB
-> >   	depends on USB_ARCH_HAS_HCD
-> > +	depends on MMU
-> >   	select DRM_GEM_SHMEM_HELPER
-> >   	select DRM_KMS_HELPER
-> >   	help
-> > 
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 Nürnberg, Germany
-> (HRB 36809, AG Nürnberg)
-> Geschäftsführer: Felix Imendörffer
-> 
+Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-
-
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index c386ef8eb200..2526c9c8c690 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3864,23 +3864,18 @@ static void intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
+ 
+ static void intel_dp_check_link_service_irq(struct intel_dp *intel_dp)
+ {
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	u8 val;
+ 
+ 	if (intel_dp->dpcd[DP_DPCD_REV] < 0x11)
+ 		return;
+ 
+ 	if (drm_dp_dpcd_readb(&intel_dp->aux,
+-			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val) {
+-		drm_dbg_kms(&i915->drm, "Error in reading link service irq vector\n");
++			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val)
+ 		return;
+-	}
+ 
+ 	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+-			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1) {
+-		drm_dbg_kms(&i915->drm, "Error in writing link service irq vector\n");
++			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1)
+ 		return;
+-	}
+ 
+ 	if (val & HDMI_LINK_STATUS_CHANGED)
+ 		intel_dp_handle_hdmi_link_status_change(intel_dp);
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.25.1
+
