@@ -1,63 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08053EA855
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 18:15:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68E1B3EA905
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 19:01:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E01236E42E;
-	Thu, 12 Aug 2021 16:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E2D06E42E;
+	Thu, 12 Aug 2021 17:01:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAB26E42E
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 16:15:45 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="215118582"
-X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="215118582"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2021 09:15:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="507793504"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga004.fm.intel.com with ESMTP; 12 Aug 2021 09:15:44 -0700
-Received: from bgsmsx603.gar.corp.intel.com (10.109.78.82) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 12 Aug 2021 09:15:43 -0700
-Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
- BGSMSX603.gar.corp.intel.com (10.109.78.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 12 Aug 2021 21:45:40 +0530
-Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
- pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2242.010;
- Fri, 13 Aug 2021 00:15:40 +0800
-From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgVHdlYWtlZCBXYV8xNDAxMDY4?=
- =?utf-8?Q?5332_for_all_PCHs?=
-Thread-Index: AQHXjf4PwQRREfCA6EyGKDGo6Et2HatwDoow
-Date: Thu, 12 Aug 2021 16:15:39 +0000
-Message-ID: <b9ad8d8206274e658e01fb9bb68b5042@intel.com>
-References: <20210810113112.31739-1-anshuman.gupta@intel.com>
- <162860384942.29683.15649135811749450065@emeril.freedesktop.org>
- <20210810152230.GA814@intel.com>
-In-Reply-To: <20210810152230.GA814@intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-x-originating-ip: [10.22.254.132]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mx1.smtp.larsendata.com (mx1.smtp.larsendata.com
+ [91.221.196.215])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E116E42E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 17:01:49 +0000 (UTC)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+ by mx1.smtp.larsendata.com (Halon) with ESMTPS
+ id ff9e8f40-fb8e-11eb-9082-0050568c148b;
+ Thu, 12 Aug 2021 17:01:55 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
+ [80.162.45.141])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: sam@ravnborg.org)
+ by mail01.mxhotel.dk (Postfix) with ESMTPSA id 0332A194B81;
+ Thu, 12 Aug 2021 19:01:52 +0200 (CEST)
+Date: Thu, 12 Aug 2021 19:01:44 +0200
+X-Report-Abuse-To: abuse@mxhotel.dk
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Stultz <john.stultz@linaro.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <YRVT+B69l74Lk4+A@ravnborg.org>
+References: <20210812131412.2487363-1-daniel.vetter@ffwll.ch>
+ <20210812131412.2487363-4-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgVHdl?=
- =?utf-8?q?aked_Wa=5F14010685332_for_all_PCHs?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210812131412.2487363-4-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/vgem: use shmem helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,85 +60,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmUtcmVwb3J0ZWQuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBHdXB0YSwg
-QW5zaHVtYW4gPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4gDQpTZW50OiBUdWVzZGF5LCBBdWd1
-c3QgMTAsIDIwMjEgODoyMyBBTQ0KVG86IFZ1ZHVtLCBMYWtzaG1pbmFyYXlhbmEgPGxha3NobWlu
-YXJheWFuYS52dWR1bUBpbnRlbC5jb20+DQpDYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZw0KU3ViamVjdDogUmU6IOKclyBGaS5DSS5CQVQ6IGZhaWx1cmUgZm9yIFR3ZWFrZWQgV2Ff
-MTQwMTA2ODUzMzIgZm9yIGFsbCBQQ0hzDQoNCk9uIDIwMjEtMDgtMTAgYXQgMTM6NTc6MjkgKzAw
-MDAsIFBhdGNod29yayB3cm90ZToNCj4gPT0gU2VyaWVzIERldGFpbHMgPT0NCj4gDQo+IFNlcmll
-czogVHdlYWtlZCBXYV8xNDAxMDY4NTMzMiBmb3IgYWxsIFBDSHMNCj4gVVJMICAgOiBodHRwczov
-L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzkzNTQ4Lw0KPiBTdGF0ZSA6IGZhaWx1
-cmUNCj4gDQo+ID09IFN1bW1hcnkgPT0NCj4gDQo+IENJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20g
-Q0lfRFJNXzEwNDY0IC0+IFBhdGNod29ya18yMDc5MiANCj4gPT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiANCj4gU3VtbWFyeQ0KPiAtLS0tLS0t
-DQo+IA0KPiAgICoqRkFJTFVSRSoqDQo+IA0KPiAgIFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNv
-bWluZyB3aXRoIFBhdGNod29ya18yMDc5MiBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUNCj4gICB2ZXJp
-ZmllZCBtYW51YWxseS4NCj4gICANCj4gICBJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5n
-ZXMgaGF2ZSBub3RoaW5nIHRvIGRvIHdpdGggdGhlIGNoYW5nZXMNCj4gICBpbnRyb2R1Y2VkIGlu
-IFBhdGNod29ya18yMDc5MiwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRo
-ZW0NCj4gICB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVk
-dWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS4NCj4gDQo+ICAgRXh0ZXJuYWwgVVJMOiANCj4gaHR0
-cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvaW5k
-ZXguaHRtbA0KPiANCj4gUG9zc2libGUgbmV3IGlzc3Vlcw0KPiAtLS0tLS0tLS0tLS0tLS0tLS0t
-DQo+IA0KPiAgIEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVu
-IGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzIwNzkyOg0KPiANCj4gIyMjIElHVCBjaGFuZ2VzICMj
-Iw0KPiANCj4gIyMjIyBQb3NzaWJsZSByZWdyZXNzaW9ucyAjIyMjDQo+IA0KPiAgICogaWd0QGNv
-cmVfaG90dW5wbHVnQHVuYmluZC1yZWJpbmQ6DQo+ICAgICAtIGZpLXJrbC1ndWM6ICAgICAgICAg
-Tk9UUlVOIC0+IFtETUVTRy1XQVJOXVsxXQ0KPiAgICBbMV06IA0KPiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMDc5Mi9maS1ya2wtZ3VjL2lnDQo+
-IHRAY29yZV9ob3R1bnBsdWdAdW5iaW5kLXJlYmluZC5odG1sDQoJSGkgTGFrc2htaSAsDQoJQWJv
-dmUgQ0kgQkFUIGZhaWx1cmUgaXMgYSB1bnJlYWx0ZWQgZmFpbHVyZShub3QgcmVhbHRlZCB0byBk
-aXNwbGF5KSwgaXQgc2VlbXMgcmVsYXRlZCB0byBjb3JlIHBvd2VyLg0KCWNvdWxkIHlvdSBwbGVz
-ZSBjcmVhdGUgdGhlIGlzc3VlIGFuZCByZS1yZXBvcnQgdGhlIHJlc3VsdC4NCglUaGFua3MsDQoJ
-QW5zaHVtYW4gR3VwdGEuCQ0KPiANCj4gICANCj4gS25vd24gaXNzdWVzDQo+IC0tLS0tLS0tLS0t
-LQ0KPiANCj4gICBIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMjA3OTIg
-dGhhdCBjb21lIGZyb20ga25vd24gaXNzdWVzOg0KPiANCj4gIyMjIENJIGNoYW5nZXMgIyMjDQo+
-IA0KPiAjIyMjIElzc3VlcyBoaXQgIyMjIw0KPiANCj4gICAqIGJvb3Q6DQo+ICAgICAtIGZpLWti
-bC1zb3Jha2E6ICAgICAgW1BBU1NdWzJdIC0+IFtGQUlMXVszXSAoW2k5MTUjMzg5NV0pDQo+ICAg
-IFsyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fMTA0
-NjQvZmkta2JsLXNvcmFrYS9ib290Lmh0bWwNCj4gICAgWzNdOiANCj4gaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvZmkta2JsLXNvcmFrYQ0K
-PiAvYm9vdC5odG1sDQo+IA0KPiAgIA0KPiANCj4gIyMjIElHVCBjaGFuZ2VzICMjIw0KPiANCj4g
-IyMjIyBJc3N1ZXMgaGl0ICMjIyMNCj4gDQo+ICAgKiBpZ3RAcHJpbWVfdmdlbUBiYXNpYy11c2Vy
-cHRyOg0KPiAgICAgLSBmaS1ya2wtZ3VjOiAgICAgICAgIE5PVFJVTiAtPiBbU0tJUF1bNF0gKFtp
-OTE1IzMzMDFdKQ0KPiAgICBbNF06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
-ZS9kcm0tdGlwL1BhdGNod29ya18yMDc5Mi9maS1ya2wtZ3VjL2lnDQo+IHRAcHJpbWVfdmdlbUBi
-YXNpYy11c2VycHRyLmh0bWwNCj4gDQo+ICAgKiBpZ3RAcHJpbWVfdmdlbUBiYXNpYy13cml0ZToN
-Cj4gICAgIC0gZmktcmtsLWd1YzogICAgICAgICBOT1RSVU4gLT4gW1NLSVBdWzVdIChbaTkxNSMz
-MjkxXSkgKzIgc2ltaWxhciBpc3N1ZXMNCj4gICAgWzVdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvZmktcmtsLWd1Yy9pZw0KPiB0
-QHByaW1lX3ZnZW1AYmFzaWMtd3JpdGUuaHRtbA0KPiANCj4gICANCj4gIyMjIyBQb3NzaWJsZSBm
-aXhlcyAjIyMjDQo+IA0KPiAgICogaWd0QGk5MTVfcG1fcnBzQGJhc2ljLWFwaToNCj4gICAgIC0g
-ZmktcmtsLWd1YzogICAgICAgICBbRE1FU0ctV0FSTl1bNl0gKFtpOTE1IzM5MjVdKSAtPiBbUEFT
-U11bN10NCj4gICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
-L0NJX0RSTV8xMDQ2NC9maS1ya2wtZ3VjL2lndEBpOTE1X3BtX3Jwc0BiYXNpYy1hcGkuaHRtbA0K
-PiAgICBbN106IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
-dGNod29ya18yMDc5Mi9maS1ya2wtZ3VjL2lnDQo+IHRAaTkxNV9wbV9ycHNAYmFzaWMtYXBpLmh0
-bWwNCj4gDQo+ICAgDQo+ICMjIyMgV2FybmluZ3MgIyMjIw0KPiANCj4gICAqIGlndEBydW5uZXJA
-YWJvcnRlZDoNCj4gICAgIC0gZmktcmtsLWd1YzogICAgICAgICBbRkFJTF1bOF0gKFtpOTE1IzM5
-MjVdKSAtPiBbRkFJTF1bOV0gKFtpOTE1IzE2MDJdKQ0KPiAgICBbOF06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzEwNDY0L2ZpLXJrbC1ndWMvaWd0QHJ1
-bm5lckBhYm9ydGVkLmh0bWwNCj4gICAgWzldOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvZmktcmtsLWd1Yy9pZw0KPiB0QHJ1bm5l
-ckBhYm9ydGVkLmh0bWwNCj4gDQo+ICAgDQo+ICAgW2k5MTUjMTYwMl06IGh0dHBzOi8vZ2l0bGFi
-LmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzE2MDINCj4gICBbaTkxNSMzMjkxXTog
-aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMzI5MQ0KPiAg
-IFtpOTE1IzMzMDFdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lz
-c3Vlcy8zMzAxDQo+ICAgW2k5MTUjMzg5NV06IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9y
-Zy9kcm0vaW50ZWwvaXNzdWVzLzM4OTUNCj4gICBbaTkxNSMzOTI1XTogaHR0cHM6Ly9naXRsYWIu
-ZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMzkyNQ0KPiANCj4gDQo+IFBhcnRpY2lw
-YXRpbmcgaG9zdHMgKDM3IC0+IDM0KQ0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0N
-Cj4gDQo+ICAgTWlzc2luZyAgICAoMyk6IGZpLWJkdy1zYW11cyBmaS1ic3ctY3lhbiBiYXQtanNs
-LTEgDQo+IA0KPiANCj4gQnVpbGQgY2hhbmdlcw0KPiAtLS0tLS0tLS0tLS0tDQo+IA0KPiAgICog
-TGludXg6IENJX0RSTV8xMDQ2NCAtPiBQYXRjaHdvcmtfMjA3OTINCj4gDQo+ICAgQ0ktMjAxOTA1
-Mjk6IDIwMTkwNTI5DQo+ICAgQ0lfRFJNXzEwNDY0OiAyOTRhNTVmMzI4MDIzYTRlMzZmNDZlNWVi
-NmM0ODU5MDc2ZWZkODUwIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xp
-bnV4DQo+ICAgSUdUXzYxNjU6IGRmNWQwNWQ3NDIyNzViMDQ5ZjZmM2M4NTJhODZjNDc2OTk2NmIx
-MjYgQCBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2lndC1ncHUtdG9vbHMuZ2l0
-DQo+ICAgUGF0Y2h3b3JrXzIwNzkyOiAwYWYzNjRiOTQ4OTM0M2U3YmYwZWI0OThmMzRkNzBmNjdk
-ZDc1NTFjIEAgDQo+IGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eA0K
-PiANCj4gDQo+ID09IExpbnV4IGNvbW1pdHMgPT0NCj4gDQo+IDBhZjM2NGI5NDg5MyBkcm0vaTkx
-NTogVHdlYWtlZCBXYV8xNDAxMDY4NTMzMiBmb3IgYWxsIFBDSHMNCj4gDQo+ID09IExvZ3MgPT0N
-Cj4gDQo+IEZvciBtb3JlIGRldGFpbHMgc2VlOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA3OTIvaW5kZXguaHRtbA0K
+Hi Daniel,
+
+On Thu, Aug 12, 2021 at 03:14:12PM +0200, Daniel Vetter wrote:
+> Aside from deleting lots of code the real motivation here is to switch
+> the mmap over to VM_PFNMAP, to be more consistent with what real gpu
+> drivers do. They're all VM_PFNMP, which means get_user_pages doesn't
+> work, and even if you try and there's a struct page behind that,
+> touching it and mucking around with its refcount can upset drivers
+> real bad.
+The only thing I understood of all this complicated stuff was "deleting
+lots of code" which is a good thing.
+You may want to s/VM_PFNMP/VM_PFNMAP/ before you push this.
+
+	Sam
