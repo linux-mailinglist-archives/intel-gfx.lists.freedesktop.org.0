@@ -1,64 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62023EA72E
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 17:10:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1107E3EA736
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 17:13:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB5436E426;
-	Thu, 12 Aug 2021 15:10:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED1E6E418;
+	Thu, 12 Aug 2021 15:13:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com
- [IPv6:2607:f8b0:4864:20::b35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 557356E420
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 15:10:00 +0000 (UTC)
-Received: by mail-yb1-xb35.google.com with SMTP id n15so11631991ybm.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 08:10:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3RObpsYa3oVTvHKYxaZZ0VmBfjjX+QSLwEhjq3E7b14=;
- b=UFOhg2pIql72mkDHPixHSQHFrff9UCLGsq0NzrIPupCfzGerCKXWq7SFLetFZS4BBL
- Z2cxQQJfIgkaSmgED9ViTm6TlGUFyBH8NiXI2zCb3vRMyP65QwesJWMI0lhZh6ThLqqL
- xWM8rd2CWpfWCNhNz8mG08ETPkMD96x0p9ZXMFdZo1ynMpWZqlYI4J957aw9XF3UUFtJ
- 4Y4J8eeySlUghoN2TV9Lp2jTQ+LW6oBbDQHkct+8JP9+FiwuzSyYTY1TLrmSPfIJMSBX
- Gh1jm8WGqBqROm45616JBYCl7xqOKXTAZguN3VdAY4yp4hgkE1Vc3sdNa6QgTKdKJbry
- dUQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3RObpsYa3oVTvHKYxaZZ0VmBfjjX+QSLwEhjq3E7b14=;
- b=Vzr3QlvyaEwKMP2ahPPrKw27wLv1ig2r2sciAEBm5NsD7b6S+qhfOGwqQcpOweRiWA
- P70FbyiUtiS/SoDR6pZhWx08X1S1sCac1gsLkB1R64kASsuziFyJliWufHkXpus2TWB9
- JcFIp283DYggBKF9Mj/isGsCzNlkRZ30u+gLkHr+Y9MTWgHM2qdPEqKulG9Q9Wp4BoUU
- kh1NTyPWZkHT9gtiInrLQ/IQTD4ZGbbcR1wsiRULKEUhUP5K7Gzq8XcYhA9Gyj49STD/
- xUQ3L/a2UUIoOEe1SkoUYtcugyhiZ2OkrJ7NHzgOx9Vdx9iNq4j+85+ahdc55ecJujVR
- uGVA==
-X-Gm-Message-State: AOAM532nYX34zC7mGTDVXKFhqUtCz/v/YuMV5y9gc78W63qmHksFZUz4
- AA5RFlpviGy+B8ZhfiEZ6UVU2eakPvH9WCzRpNc8oQ==
-X-Google-Smtp-Source: ABdhPJxtCuiBUVBRm0fzrChQsr6f09/RJVBYo6zuDgnWiRk2zGfYO9IBi8lRP1GKAMbtN2UiSroHecyl4WJwiRtJPiU=
-X-Received: by 2002:a25:208b:: with SMTP id g133mr4728159ybg.211.1628780999248; 
- Thu, 12 Aug 2021 08:09:59 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5B16E418
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 15:12:59 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="213522068"
+X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="213522068"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 08:12:58 -0700
+X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="676800400"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 08:12:57 -0700
+Date: Thu, 12 Aug 2021 18:12:54 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20210812151254.GD2600583@ideak-desk.fi.intel.com>
+References: <20210812054806.22745-1-animesh.manna@intel.com>
+ <20210812054806.22745-3-animesh.manna@intel.com>
 MIME-Version: 1.0
-References: <20210810130523.1972031-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210810130523.1972031-1-daniel.vetter@ffwll.ch>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 12 Aug 2021 10:09:47 -0500
-Message-ID: <CAOFGe94PcMq5ZvF6E=Sc0ukv7SOo48EiKaLSYF=rPqCgjiargg@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, 
- Chris Wilson <chris@chris-wilson.co.uk>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>, 
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use locked access to ctx->engines
- in set_priority
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210812054806.22745-3-animesh.manna@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/dp: fix TGL and ICL max source
+ rates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,152 +49,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 10, 2021 at 8:05 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
->
-> This essentially reverts
->
-> commit 89ff76bf9b3b0b86e6bbe344bd6378d8661303fc
-> Author: Chris Wilson <chris@chris-wilson.co.uk>
-> Date:   Thu Apr 2 13:42:18 2020 +0100
->
->     drm/i915/gem: Utilize rcu iteration of context engines
->
-> Note that the other use of __context_engines_await have disappeard in
-> the following commits:
->
-> ccbc1b97948a ("drm/i915/gem: Don't allow changing the VM on running contexts (v4)")
-> c7a71fc8ee04 ("drm/i915: Drop getparam support for I915_CONTEXT_PARAM_ENGINES")
-> 4a766ae40ec8 ("drm/i915: Drop the CONTEXT_CLONE API (v2)")
->
-> None of these have any business to optimize their engine lookup with
-> rcu, unless extremely convincing benchmark data and a solid analysis
-> why we can't make that workload (whatever it is that does) faster with
-> a proper design fix.
->
-> Also since there's only one caller of context_apply_all left and it's
-> really just a loop, inline it and then inline the lopp body too. This
-> is how all other callers that take the engine lock loop over engines,
-> it's much simpler.
->
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+On Thu, Aug 12, 2021 at 11:18:03AM +0530, Animesh Manna wrote:
+> From: Jani Nikula <jani.nikula@intel.com>
+> 
+> Combo phy is limited to 5.4 GHz on low-voltage SKUs. Combo phy DP is
+> limited to 5.4 GHz, while combo phy eDP can do 8.1 GHz.
+> 
+> Bspec: 20584, 20598, 49180, 49201
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 72 ++++-----------------
->  1 file changed, 14 insertions(+), 58 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index dbaeb924a437..fd169cf2f75a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1284,49 +1284,6 @@ static int __context_set_persistence(struct i915_gem_context *ctx, bool state)
->         return 0;
+>  drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 4df56af36b3f..42b29948bc72 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -224,6 +224,15 @@ bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
+>  		 encoder->port != PORT_A);
 >  }
->
-> -static inline struct i915_gem_engines *
-> -__context_engines_await(const struct i915_gem_context *ctx,
-> -                       bool *user_engines)
-> -{
-> -       struct i915_gem_engines *engines;
-> -
-> -       rcu_read_lock();
-> -       do {
-> -               engines = rcu_dereference(ctx->engines);
-> -               GEM_BUG_ON(!engines);
-> -
-> -               if (user_engines)
-> -                       *user_engines = i915_gem_context_user_engines(ctx);
-> -
-> -               /* successful await => strong mb */
-> -               if (unlikely(!i915_sw_fence_await(&engines->fence)))
-
-Ugh... The first time I looked at this I thought the SW fence meant it
-was actually waiting on something.  But, no, it's just making sure the
-engines object still exists.  *sigh*  Burn it!
-
-Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
-
-> -                       continue;
-> -
-> -               if (likely(engines == rcu_access_pointer(ctx->engines)))
-> -                       break;
-> -
-> -               i915_sw_fence_complete(&engines->fence);
-> -       } while (1);
-> -       rcu_read_unlock();
-> -
-> -       return engines;
-> -}
-> -
-> -static void
-> -context_apply_all(struct i915_gem_context *ctx,
-> -                 void (*fn)(struct intel_context *ce, void *data),
-> -                 void *data)
-> -{
-> -       struct i915_gem_engines_iter it;
-> -       struct i915_gem_engines *e;
-> -       struct intel_context *ce;
-> -
-> -       e = __context_engines_await(ctx, NULL);
-> -       for_each_gem_engine(ce, e, it)
-> -               fn(ce, data);
-> -       i915_sw_fence_complete(&e->fence);
-> -}
-> -
->  static struct i915_gem_context *
->  i915_gem_create_context(struct drm_i915_private *i915,
->                         const struct i915_gem_proto_context *pc)
-> @@ -1776,23 +1733,11 @@ set_persistence(struct i915_gem_context *ctx,
->         return __context_set_persistence(ctx, args->value);
->  }
->
-> -static void __apply_priority(struct intel_context *ce, void *arg)
-> -{
-> -       struct i915_gem_context *ctx = arg;
-> -
-> -       if (!intel_engine_has_timeslices(ce->engine))
-> -               return;
-> -
-> -       if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
-> -           intel_engine_has_semaphores(ce->engine))
-> -               intel_context_set_use_semaphores(ce);
-> -       else
-> -               intel_context_clear_use_semaphores(ce);
-> -}
-> -
->  static int set_priority(struct i915_gem_context *ctx,
->                         const struct drm_i915_gem_context_param *args)
+>  
+> +static bool is_low_voltage_sku(struct drm_i915_private *i915, enum phy phy)
+> +{
+> +	u32 voltage;
+> +
+> +	voltage = intel_de_read(i915, ICL_PORT_COMP_DW3(phy)) & VOLTAGE_INFO_MASK;
+> +
+> +	return voltage == VOLTAGE_INFO_0_85V;
+> +}
+> +
+>  static int icl_max_source_rate(struct intel_dp *intel_dp)
 >  {
-> +       struct i915_gem_engines_iter it;
-> +       struct intel_context *ce;
->         int err;
->
->         err = validate_priority(ctx->i915, args);
-> @@ -1800,7 +1745,18 @@ static int set_priority(struct i915_gem_context *ctx,
->                 return err;
->
->         ctx->sched.priority = args->value;
-> -       context_apply_all(ctx, __apply_priority, ctx);
-> +
-> +       for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
-> +               if (!intel_engine_has_timeslices(ce->engine))
-> +                       continue;
-> +
-> +               if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
-> +                   intel_engine_has_semaphores(ce->engine))
-> +                       intel_context_set_use_semaphores(ce);
-> +               else
-> +                       intel_context_clear_use_semaphores(ce);
-> +       }
-> +       i915_gem_context_unlock_engines(ctx);
->
->         return 0;
->  }
-> --
-> 2.32.0
->
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> @@ -231,7 +240,7 @@ static int icl_max_source_rate(struct intel_dp *intel_dp)
+>  	enum phy phy = intel_port_to_phy(dev_priv, dig_port->base.port);
+>  
+>  	if (intel_phy_is_combo(dev_priv, phy) &&
+> -	    !intel_dp_is_edp(intel_dp))
+> +	    (is_low_voltage_sku(dev_priv, phy) || !intel_dp_is_edp(intel_dp)))
+>  		return 540000;
+>  
+>  	return 810000;
+> -- 
+> 2.29.0
+> 
