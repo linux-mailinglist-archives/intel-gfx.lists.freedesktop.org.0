@@ -2,50 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E588F3E9BEF
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 03:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 691ED3E9D07
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 05:37:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9086E220;
-	Thu, 12 Aug 2021 01:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DAFE6E237;
+	Thu, 12 Aug 2021 03:37:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0C876E220;
- Thu, 12 Aug 2021 01:28:35 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+X-Greylist: delayed 538 seconds by postgrey-1.36 at gabe;
+ Thu, 12 Aug 2021 03:36:58 UTC
+Received: from smtp-relay-canonical-0.canonical.com
+ (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 603D36E237
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 03:36:58 +0000 (UTC)
+Received: from [192.168.50.13] (mobile-user-2e84bb-128.dhcp.inet.fi
+ [46.132.187.128])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4GlTbj0ShJz9t54;
- Thu, 12 Aug 2021 11:28:33 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1628731714;
- bh=6TdmRLm6DKip6vJXXjLuBmnBFxaoIwhh1f+X+BlI2EI=;
- h=Date:From:To:Cc:Subject:From;
- b=k9oUD6wxT7qZ4RruX8YAkfmGILfyo0dW9/vJd3VmvtWayGMqYyTBmX57g6gBf/SYJ
- rP09QeYsOJD2YCdx4PnzVNlq72ZOF/EbLes++uNPeW4YkJqvqKDbLujqMmP+L4+9hc
- nvKvwBMQax+9msF703vGZRYaMfty1WLquUyrhoriWuaxKfEJOtXrO7Qv4gOxraHK2F
- s0TISu8hzjVoy58uy7Ovn/eLKCbbU5sqRje0a5ir8JX9gkUbSEpfBoHDFbFmA2WkzH
- Xx8ZamLH2FairH+QBvdLjJjYi3fgWWCUMNEUs3jI17zKzi9dLz8mm4XmIED22mua8y
- kS0dsqAkCCp/Q==
-Date: Thu, 12 Aug 2021 11:28:32 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, Dave Airlie
- <airlied@linux.ie>, DRI <dri-devel@lists.freedesktop.org>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, Linux Kernel
- Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Paulo Zanoni
- <paulo.r.zanoni@intel.com>, Tomasz Lis <tomasz.lis@intel.com>
-Message-ID: <20210812112832.0c51632b@canb.auug.org.au>
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 3C2963F0A9; 
+ Thu, 12 Aug 2021 03:27:58 +0000 (UTC)
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20210708211827.288601-1-jose.souza@intel.com>
+ <20210708211827.288601-2-jose.souza@intel.com>
+From: Timo Aaltonen <tjaalton@ubuntu.com>
+Message-ID: <a33d19b3-8ee0-2923-ab18-85bf65454b8a@ubuntu.com>
+Date: Thu, 12 Aug 2021 06:27:47 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/0ccK2z.2lY0XR7PKc4K0bD0";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with the
- drm tree
+In-Reply-To: <20210708211827.288601-2-jose.souza@intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Implement Wa_1508744258
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,65 +52,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/0ccK2z.2lY0XR7PKc4K0bD0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On 9.7.2021 0.18, José Roberto de Souza wrote:
+> Same bit was required for Wa_14012131227 in DG1 now it is also
+> required as Wa_1508744258 to TGL, RKL, DG1, ADL-S and ADL-P.
+> 
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index e5e3f820074a9..c346229e2be00 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -670,6 +670,13 @@ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
+>   	       FF_MODE2_GS_TIMER_MASK,
+>   	       FF_MODE2_GS_TIMER_224,
+>   	       0);
+> +
+> +	/*
+> +	 * Wa_14012131227:dg1
+> +	 * Wa_1508744258:tgl,rkl,dg1,adl-s,adl-p
+> +	 */
+> +	wa_masked_en(wal, GEN7_COMMON_SLICE_CHICKEN1,
+> +		     GEN9_RHWO_OPTIMIZATION_DISABLE);
+>   }
+>   
+>   static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
+> 
 
-Hi all,
+Hi, I don't see this (or patches 3, 4) in drm-intel-next, are they not 
+needed anymore?
 
-Today's linux-next merge of the drm-intel tree got a conflict in:
 
-  drivers/gpu/drm/i915/intel_device_info.h
-
-between commit:
-
-  3ffe82d701a4 ("drm/i915/xehp: handle new steering options")
-
-from the drm tree and commit:
-
-  22e26af76903 ("drm/i915: Fork DG1 interrupt handler")
-
-from the drm-intel tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/i915/intel_device_info.h
-index f88be11a3570,ef1eecd259e0..000000000000
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@@ -133,8 -131,6 +131,7 @@@ enum intel_ppgtt_type=20
-  	func(has_llc); \
-  	func(has_logical_ring_contexts); \
-  	func(has_logical_ring_elsq); \
-- 	func(has_master_unit_irq); \
- +	func(has_mslices); \
-  	func(has_pooled_eu); \
-  	func(has_rc6); \
-  	func(has_rc6p); \
-
---Sig_/0ccK2z.2lY0XR7PKc4K0bD0
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmEUeUAACgkQAVBC80lX
-0GzycAgAoEoEXuz2v+VRpVNn0G9uqcHZ2Gii0F3udUHqILFdSV7QcV0dIxiOtcn9
-G/K1fBq6YbOsFYxLep8tXQVFi83SQFQ+zfmVOcq4btaYWz7DYCyOWTk6PF869mgw
-gRkHPBJ4wECsk+PETDyoFt4GhFQJQODrG7v/+oHJTtM8Nc+mIaLvqQPJrIXrnMJc
-yDnJQ/vohM6yYb8FvrevxaTH/ETFO3lDEq4GNzuL1JM6nbbx8z1Xgd+TEFFyGNWA
-GpA7fMHZJZr7M8JlFlWaBgFZzdGqSj2n3/ZsUyWKcmGI+glWe/n+HwqzYDsK08Qe
-ImT1wZeo0Klc2v/JrrBInLY8O9VoZg==
-=E6b0
------END PGP SIGNATURE-----
-
---Sig_/0ccK2z.2lY0XR7PKc4K0bD0--
+-- 
+t
