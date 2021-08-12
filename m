@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABBBE3EA7BB
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 17:41:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 363703EA7E5
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 17:44:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5F7A6E432;
-	Thu, 12 Aug 2021 15:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 147456E42C;
+	Thu, 12 Aug 2021 15:44:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F98B6E42F
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 15:41:13 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="202542207"
-X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="202542207"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2021 08:41:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="469795945"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.12])
- by orsmga008.jf.intel.com with ESMTP; 12 Aug 2021 08:41:11 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- vandita.kulkarni@intel.com, cooper.chiou@intel.com,
- william.tseng@intel.com, Lee Shawn C <shawn.c.lee@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Date: Thu, 12 Aug 2021 23:42:37 +0800
-Message-Id: <20210812154237.13911-8-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210812154237.13911-1-shawn.c.lee@intel.com>
-References: <20210812154237.13911-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] [v4 7/7] drm/i915/dsi: Send proper brightness value via
- MIPI DCS command
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 213346E42C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 15:44:53 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="194965031"
+X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="194965031"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 08:44:51 -0700
+X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="527867876"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 08:44:50 -0700
+Date: Thu, 12 Aug 2021 18:44:46 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20210812154446.GG2600583@ideak-desk.fi.intel.com>
+References: <20210812054806.22745-1-animesh.manna@intel.com>
+ <20210812054806.22745-6-animesh.manna@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210812054806.22745-6-animesh.manna@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/dp: fix for ADL_P/S and DG2
+ dp/edp max source rates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,35 +49,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Driver has to swap the endian before send brightness level value
-to tcon.
+On Thu, Aug 12, 2021 at 11:18:06AM +0530, Animesh Manna wrote:
+> Added support for platforms having DISPLAY13 like DG2, ADL_P and ADL_S.
+> 
+> Bspec: 53597, 53720, 53657, 54034, 49185, 55409
+> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Cc: William Tseng <william.tseng@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-index cd85520d36e2..47c1cd704915 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c
-@@ -66,10 +66,9 @@ static void dcs_set_backlight(const struct drm_connector_state *conn_state, u32
- {
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(conn_state->best_encoder));
- 	struct mipi_dsi_device *dsi_device;
--	u8 data = level;
-+	u16 data = cpu_to_be16(level);
- 	enum port port;
- 
--	/* FIXME: Need to take care of 16 bit brightness level */
- 	for_each_dsi_port(port, intel_dsi->dcs_backlight_ports) {
- 		dsi_device = intel_dsi->dsi_hosts[port]->device;
- 		mipi_dsi_dcs_write(dsi_device, MIPI_DCS_SET_DISPLAY_BRIGHTNESS,
--- 
-2.17.1
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index e8d2d381c587..fcb6b0cd9788 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -302,7 +302,8 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+>  	if (DISPLAY_VER(dev_priv) >= 11) {
+>  		source_rates = icl_rates;
+>  		size = ARRAY_SIZE(icl_rates);
+> -		if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+> +		if (DISPLAY_VER(dev_priv) >= 13 || IS_ALDERLAKE_S(dev_priv) ||
+> +		    IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
+>  			max_rate = dg1_max_source_rate(intel_dp);
+>  		else if (IS_JSL_EHL(dev_priv))
+>  			max_rate = ehl_max_source_rate(intel_dp);
+> -- 
+> 2.29.0
+> 
