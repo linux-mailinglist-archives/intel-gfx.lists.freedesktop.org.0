@@ -2,58 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7193EA81A
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 17:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0EB3EA832
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 18:04:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B2926E42A;
-	Thu, 12 Aug 2021 15:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF7956E42A;
+	Thu, 12 Aug 2021 16:04:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2F436E42A
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 15:56:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="194967869"
-X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="194967869"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2021 08:56:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="676815217"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga005.fm.intel.com with ESMTP; 12 Aug 2021 08:56:34 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 12 Aug 2021 08:56:34 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Thu, 12 Aug 2021 08:56:34 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.010;
- Thu, 12 Aug 2021 08:56:34 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "tjaalton@ubuntu.com" <tjaalton@ubuntu.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 2/7] drm/i915: Implement Wa_1508744258
-Thread-Index: AQHXdD45obOdhfGD8EmYDUeHQ+Vv66tv4OaAgAAysYCAAJ/dgA==
-Date: Thu, 12 Aug 2021 15:56:33 +0000
-Message-ID: <8f1f972e969fc316eeed501cbfba3aafbc941635.camel@intel.com>
-References: <20210708211827.288601-1-jose.souza@intel.com>
- <20210708211827.288601-2-jose.souza@intel.com>
- <a33d19b3-8ee0-2923-ab18-85bf65454b8a@ubuntu.com>
- <b4d84d43-a11d-2607-49ee-e1109f781435@ubuntu.com>
-In-Reply-To: <b4d84d43-a11d-2607-49ee-e1109f781435@ubuntu.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6EFD3826A8F9A6439DA355524018B280@intel.com>
-Content-Transfer-Encoding: base64
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A3646E42A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 16:04:44 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="215372717"
+X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="215372717"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 09:01:25 -0700
+X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; d="scan'208";a="517506148"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 09:01:21 -0700
+Date: Thu, 12 Aug 2021 19:01:18 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Swati Sharma <swati2.sharma@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Ville Syrj_l_ <ville.syrjala@linux.intel.com>,
+ Manasi Navare <manasi.d.navare@intel.com>,
+ Jos_ Roberto de Souza <jose.souza@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org
+Message-ID: <20210812160118.GH2600583@ideak-desk.fi.intel.com>
+References: <20210812131107.5531-1-swati2.sharma@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Implement Wa_1508744258
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210812131107.5531-1-swati2.sharma@intel.com>
+Subject: Re: [Intel-gfx] [v3][PATCH] drm/i915/display: Drop redundant debug
+ print
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,33 +54,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTA4LTEyIGF0IDA5OjI5ICswMzAwLCBUaW1vIEFhbHRvbmVuIHdyb3RlOg0K
-PiBPbiAxMi44LjIwMjEgNi4yNywgVGltbyBBYWx0b25lbiB3cm90ZToNCj4gPiBPbiA5LjcuMjAy
-MSAwLjE4LCBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIHdyb3RlOg0KPiA+ID4gU2FtZSBiaXQgd2Fz
-IHJlcXVpcmVkIGZvciBXYV8xNDAxMjEzMTIyNyBpbiBERzEgbm93IGl0IGlzIGFsc28NCj4gPiA+
-IHJlcXVpcmVkIGFzIFdhXzE1MDg3NDQyNTggdG8gVEdMLCBSS0wsIERHMSwgQURMLVMgYW5kIEFE
-TC1QLg0KPiA+ID4gDQo+ID4gPiBDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5A
-aW50ZWwuY29tPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8
-am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+IMKgIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgfCA3ICsrKysrKysNCj4gPiA+IMKgIDEgZmls
-ZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykNCj4gPiA+IA0KPiA+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgDQo+ID4gPiBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMNCj4gPiA+IGluZGV4IGU1ZTNm
-ODIwMDc0YTkuLmMzNDYyMjllMmJlMDAgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jDQo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jDQo+ID4gPiBAQCAtNjcwLDYgKzY3MCwxMyBA
-QCBzdGF0aWMgdm9pZCBnZW4xMl9jdHhfd29ya2Fyb3VuZHNfaW5pdChzdHJ1Y3QgDQo+ID4gPiBp
-bnRlbF9lbmdpbmVfY3MgKmVuZ2luZSwNCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBG
-Rl9NT0RFMl9HU19USU1FUl9NQVNLLA0KPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEZG
-X01PREUyX0dTX1RJTUVSXzIyNCwNCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwKTsN
-Cj4gPiA+ICsNCj4gPiA+ICvCoMKgwqAgLyoNCj4gPiA+ICvCoMKgwqDCoCAqIFdhXzE0MDEyMTMx
-MjI3OmRnMQ0KPiA+ID4gK8KgwqDCoMKgICogV2FfMTUwODc0NDI1ODp0Z2wscmtsLGRnMSxhZGwt
-cyxhZGwtcA0KPiA+ID4gK8KgwqDCoMKgICovDQo+ID4gPiArwqDCoMKgIHdhX21hc2tlZF9lbih3
-YWwsIEdFTjdfQ09NTU9OX1NMSUNFX0NISUNLRU4xLA0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBHRU45X1JIV09fT1BUSU1JWkFUSU9OX0RJU0FCTEUpOw0KPiA+ID4gwqAgfQ0KPiA+
-ID4gwqAgc3RhdGljIHZvaWQgZGcxX2N0eF93b3JrYXJvdW5kc19pbml0KHN0cnVjdCBpbnRlbF9l
-bmdpbmVfY3MgKmVuZ2luZSwNCj4gPiA+IA0KPiA+IA0KPiA+IEhpLCBJIGRvbid0IHNlZSB0aGlz
-IChvciBwYXRjaGVzIDMsIDQpIGluIGRybS1pbnRlbC1uZXh0LCBhcmUgdGhleSBub3QgDQo+ID4g
-bmVlZGVkIGFueW1vcmU/DQo+IA0KPiBidXQgaXMgaW4gZHJtLWludGVsLWd0LW5leHQuLg0KDQpZ
-ZXAsIGRpc3BsYXkgY29kZSBjYW4gZ28gdG8gZHJtLWludGVsLW5leHQgYW5kIGd0IGNvZGUgZ29l
-cyB0byBkcm0taW50ZWwtZ3QtbmV4dA0KDQo+IA0KPiANCg0K
+On Thu, Aug 12, 2021 at 06:41:07PM +0530, Swati Sharma wrote:
+> drm_dp_dpcd_read/write already has debug error message.
+> Drop redundant error messages which gives false
+> status even if correct value is read in drm_dp_dpcd_read().
+> 
+> v2: -Added fixes tag (Ankit)
+> v3: -Fixed build error (CI)
+> 
+> Fixes: 9488a030ac91 ("drm/i915: Add support for enabling link status and recovery")
+> Cc: Swati Sharma <swati2.sharma@intel.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com> (v2)
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: "Ville Syrj_l_" <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: "Jos_ Roberto de Souza" <jose.souza@intel.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: <stable@vger.kernel.org> # v5.12+
+> 
+> Link: https://patchwork.freedesktop.org/patch/msgid/20201218103723.30844-12-ankit.k.nautiyal@intel.com
+> 
+> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 9 ++-------
+>  1 file changed, 2 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index c386ef8eb200..2526c9c8c690 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3864,23 +3864,18 @@ static void intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
+>  
+>  static void intel_dp_check_link_service_irq(struct intel_dp *intel_dp)
+>  {
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	u8 val;
+>  
+>  	if (intel_dp->dpcd[DP_DPCD_REV] < 0x11)
+>  		return;
+>  
+>  	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val) {
+> -		drm_dbg_kms(&i915->drm, "Error in reading link service irq vector\n");
+
+The only problem seems to be that for !val the debug print is incorrect,
+so maybe just have a separate check for that after this one for the read()
+and return w/o the debug message?
+
+Is it really a stable material, since the change wouldn't have any
+effect for regular users?
+
+> +			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val)
+>  		return;
+> -	}
+>  
+>  	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> -			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1) {
+> -		drm_dbg_kms(&i915->drm, "Error in writing link service irq vector\n");
+> +			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1)
+>  		return;
+> -	}
+>  
+>  	if (val & HDMI_LINK_STATUS_CHANGED)
+>  		intel_dp_handle_hdmi_link_status_change(intel_dp);
+> -- 
+> 2.25.1
+> 
