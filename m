@@ -2,34 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31ACF3EA554
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 15:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D672B3EA593
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Aug 2021 15:24:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60FC76E405;
-	Thu, 12 Aug 2021 13:16:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 504896E424;
+	Thu, 12 Aug 2021 13:24:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 444376E405;
- Thu, 12 Aug 2021 13:16:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3DA3AAA917;
- Thu, 12 Aug 2021 13:16:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 733DC6E40B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Aug 2021 13:24:02 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10073"; a="195617395"
+X-IronPort-AV: E=Sophos;i="5.84,315,1620716400"; d="scan'208";a="195617395"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 06:24:01 -0700
+X-IronPort-AV: E=Sophos;i="5.84,315,1620716400"; d="scan'208";a="527819786"
+Received: from cfetzer-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.251.209.235])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2021 06:23:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Uma Shankar <uma.shankar@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Swati Sharma <swati2.sharma@intel.com>
+Date: Thu, 12 Aug 2021 16:23:54 +0300
+Message-Id: <20210812132354.10885-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Aug 2021 13:16:00 -0000
-Message-ID: <162877416024.21761.8744423316609961378@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210812103615.491293-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20210812103615.491293-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_Revert_=22drm/i915=3A_allow_?=
- =?utf-8?q?DG1_autoprobe_for_CONFIG=5FBROKEN=22?=
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-gfx] [PATCH] drm/i915/edp: fix eDP MSO pipe sanity checks
+ for ADL-P
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,27 +48,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+ADL-P supports stream splitter on pipe B in addition to pipe A. Update
+the sanity check in intel_ddi_mso_get_config() to reflect this, and
+remove the check in intel_ddi_mso_configure() as redundant with
+encoder->pipe_mask. Abstract the splitter pipe mask to a single point of
+truth while at it to avoid similar mistakes in the future.
 
-Series: series starting with [1/3] Revert "drm/i915: allow DG1 autoprobe for CONFIG_BROKEN"
-URL   : https://patchwork.freedesktop.org/series/93630/
-State : warning
+Fixes: 7bc188cc2c8c ("drm/i915/adl_p: enable MSO on pipe B")
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Swati Sharma <swati2.sharma@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-c35f56eb2f5c Revert "drm/i915: allow DG1 autoprobe for CONFIG_BROKEN"
--:23: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 1 errors, 0 warnings, 0 checks, 9 lines checked
-3427bfb73c60 drm/i915: Add pci ids for DG1
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 7 lines checked
-6ef5babea082 drm/i915/topic/for-CI: Disable fake LMEM implementation
-
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index e932fd0fe7e2..eb9aa871f87b 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2251,6 +2251,15 @@ static void intel_ddi_power_up_lanes(struct intel_encoder *encoder,
+ 	}
+ }
+ 
++/* Splitter enable for eDP MSO is limited to certain pipes. */
++static u8 intel_ddi_splitter_pipe_mask(struct drm_i915_private *i915)
++{
++	if (IS_ALDERLAKE_P(i915))
++		return BIT(PIPE_A) | BIT(PIPE_B);
++	else
++		return BIT(PIPE_A);
++}
++
+ static void intel_ddi_mso_get_config(struct intel_encoder *encoder,
+ 				     struct intel_crtc_state *pipe_config)
+ {
+@@ -2268,8 +2277,7 @@ static void intel_ddi_mso_get_config(struct intel_encoder *encoder,
+ 	if (!pipe_config->splitter.enable)
+ 		return;
+ 
+-	/* Splitter enable is supported for pipe A only. */
+-	if (drm_WARN_ON(&i915->drm, pipe != PIPE_A)) {
++	if (drm_WARN_ON(&i915->drm, !(intel_ddi_splitter_pipe_mask(i915) & BIT(pipe)))) {
+ 		pipe_config->splitter.enable = false;
+ 		return;
+ 	}
+@@ -2301,10 +2309,6 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
+ 		return;
+ 
+ 	if (crtc_state->splitter.enable) {
+-		/* Splitter enable is supported for pipe A only. */
+-		if (drm_WARN_ON(&i915->drm, pipe != PIPE_A))
+-			return;
+-
+ 		dss1 |= SPLITTER_ENABLE;
+ 		dss1 |= OVERLAP_PIXELS(crtc_state->splitter.pixel_overlap);
+ 		if (crtc_state->splitter.link_count == 2)
+@@ -4666,12 +4670,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 
+ 		dig_port->hpd_pulse = intel_dp_hpd_pulse;
+ 
+-		/* Splitter enable for eDP MSO is limited to certain pipes. */
+-		if (dig_port->dp.mso_link_count) {
+-			encoder->pipe_mask = BIT(PIPE_A);
+-			if (IS_ALDERLAKE_P(dev_priv))
+-				encoder->pipe_mask |= BIT(PIPE_B);
+-		}
++		if (dig_port->dp.mso_link_count)
++			encoder->pipe_mask = intel_ddi_splitter_pipe_mask(dev_priv);
+ 	}
+ 
+ 	/* In theory we don't need the encoder->type check, but leave it just in
+-- 
+2.20.1
 
