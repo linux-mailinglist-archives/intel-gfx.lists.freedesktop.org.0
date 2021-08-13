@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BF83EBA03
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 18:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 044FF3EBA2D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 18:35:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 588976E885;
-	Fri, 13 Aug 2021 16:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0995F6E887;
+	Fri, 13 Aug 2021 16:35:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 34B346E885;
- Fri, 13 Aug 2021 16:28:40 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5B8E16E887;
+ Fri, 13 Aug 2021 16:35:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0252DA9A42;
- Fri, 13 Aug 2021 16:28:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8500418175058055554=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 491A8A882E;
+ Fri, 13 Aug 2021 16:35:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Jim Cromie" <jim.cromie@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Aug 2021 16:28:39 -0000
-Message-ID: <162887211997.17681.14467999212635038759@emeril.freedesktop.org>
+Date: Fri, 13 Aug 2021 16:35:51 -0000
+Message-ID: <162887255126.17679.17812350827987640893@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210813144331.372957-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210813144331.372957-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=2C_drm/ttm=3A_Update_the_ttm=5Fmove=5Fmemcpy=28=29_interf?=
- =?utf-8?q?ace_=28rev3=29?=
+References: <20210813151734.1236324-1-jim.cromie@gmail.com>
+In-Reply-To: <20210813151734.1236324-1-jim.cromie@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_dyndbg=3A_add_DEFINE=5FDYNAMIC=5FDEBUG=5FCATEGORIES_and_use?=
+ =?utf-8?q?_in_DRM?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,361 +46,352 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8500418175058055554==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915, drm/ttm: Update the ttm_move_memcpy() interface (rev3)
-URL   : https://patchwork.freedesktop.org/series/91893/
-State : success
+Series: dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and use in DRM
+URL   : https://patchwork.freedesktop.org/series/93683/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10482 -> Patchwork_20819
-====================================================
+$ dim checkpatch origin/drm-tip
+9735d1bd2f6a moduleparam: add data member to struct kernel_param
+-:62: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-Summary
--------
+total: 1 errors, 0 warnings, 0 checks, 35 lines checked
+918363f529da dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and callbacks
+-:42: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#42: 
+Add DEFINE_DYNAMIC_DEBUG_CATEGORIES() described above, and a do-nothing stub.
 
-  **SUCCESS**
+-:72: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#72: 
+"1","2","3"		2 doesnt imply 1.
+           		  ^^^^^^
 
-  No regressions found.
+-:90: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#90: 
+":" doesnt terminate the search-space, the trailing space does.
+    ^^^^^^
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/index.html
+-:114: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#114: 
+ - "drm:kms:*"		doesnt work, no wildcard on format atm.
+              		^^^^^^
 
-Known issues
-------------
+-:188: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fsname' - possible side-effects?
+#188: FILE: include/linux/dynamic_debug.h:264:
++#define DEFINE_DYNAMIC_DEBUG_CATEGORIES(fsname, var, _desc, ...)	\
++	MODULE_PARM_DESC(fsname, _desc);				\
++	static struct dyndbg_bitdesc const dyndbg_cats_##fsname[] =	\
++		{ __VA_ARGS__, { NULL, NULL } };			\
++	module_param_cbd(fsname, &param_ops_dyndbg, &var, 0644,		\
++			 &dyndbg_cats_##fsname);
 
-  Here are the changes found in Patchwork_20819 that come from known issues:
+-:188: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'var' may be better as '(var)' to avoid precedence issues
+#188: FILE: include/linux/dynamic_debug.h:264:
++#define DEFINE_DYNAMIC_DEBUG_CATEGORIES(fsname, var, _desc, ...)	\
++	MODULE_PARM_DESC(fsname, _desc);				\
++	static struct dyndbg_bitdesc const dyndbg_cats_##fsname[] =	\
++		{ __VA_ARGS__, { NULL, NULL } };			\
++	module_param_cbd(fsname, &param_ops_dyndbg, &var, 0644,		\
++			 &dyndbg_cats_##fsname);
 
-### CI changes ###
+-:188: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#188: FILE: include/linux/dynamic_debug.h:264:
++#define DEFINE_DYNAMIC_DEBUG_CATEGORIES(fsname, var, _desc, ...)	\
++	MODULE_PARM_DESC(fsname, _desc);				\
++	static struct dyndbg_bitdesc const dyndbg_cats_##fsname[] =	\
++		{ __VA_ARGS__, { NULL, NULL } };			\
++	module_param_cbd(fsname, &param_ops_dyndbg, &var, 0644,		\
++			 &dyndbg_cats_##fsname);
 
-#### Issues hit ####
+-:190: WARNING:STATIC_CONST: Move const after static - use 'static const struct dyndbg_bitdesc'
+#190: FILE: include/linux/dynamic_debug.h:266:
++	static struct dyndbg_bitdesc const dyndbg_cats_##fsname[] =	\
 
-  * boot:
-    - fi-kbl-soraka:      [PASS][1] -> [FAIL][2] ([i915#3895])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-kbl-soraka/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-kbl-soraka/boot.html
+-:195: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pfx' - possible side-effects?
+#195: FILE: include/linux/dynamic_debug.h:271:
++#define _DD_cat_(pfx)		{ .prefix = pfx, .help = "help for " pfx }
 
-  
+-:196: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pfx' - possible side-effects?
+#196: FILE: include/linux/dynamic_debug.h:272:
++#define _DD_cat_help_(pfx)	"\t   " pfx "\t- help for " pfx "\n"
 
-### IGT changes ###
+-:200: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#200: FILE: include/linux/dynamic_debug.h:276:
++#define DEFINE_DYNAMIC_DEBUG_CATEGORIES(fsname, var, bitmap_desc, ...) \
++	MODULE_PARM_DESC(fsname, "auto: " bitmap_desc);
 
-#### Issues hit ####
+-:240: CHECK:SPACING: No space is necessary after a cast
+#240: FILE: lib/dynamic_debug.c:1173:
++	struct dyndbg_bitdesc *bitmap = (struct dyndbg_bitdesc *) kp->data;
 
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
+-:250: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#250: FILE: lib/dynamic_debug.c:1183:
++	for (i = 0; !!bitmap[i].prefix; i++) {
++
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271]) +29 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+-:282: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#282: FILE: lib/dynamic_debug.c:1215:
++};
++/* support DEFINE_DYNAMIC_DEBUG_CATEGORIES users */
 
-  * igt@amdgpu/amd_cs_nop@nop-gfx0:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([fdo#109315] / [i915#2575]) +16 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+-:283: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][6] ([i915#3718])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+total: 1 errors, 7 warnings, 7 checks, 139 lines checked
+52fe10f828c0 i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
+-:47: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#47: FILE: drivers/gpu/drm/i915/gvt/debug.h:39:
++	pr_debug("gvt:core: "fmt, ##args)
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][7] ([i915#1888])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+-:51: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#51: FILE: drivers/gpu/drm/i915/gvt/debug.h:42:
++	pr_debug("gvt:irq: "fmt, ##args)
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+-:55: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#55: FILE: drivers/gpu/drm/i915/gvt/debug.h:45:
++	pr_debug("gvt:mm: "fmt, ##args)
 
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#1155])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+-:59: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#59: FILE: drivers/gpu/drm/i915/gvt/debug.h:48:
++	pr_debug("gvt:mmio: "fmt, ##args)
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][10] ([i915#579])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][11] ([i915#579])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
+-:63: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#63: FILE: drivers/gpu/drm/i915/gvt/debug.h:51:
++	pr_debug("gvt:dpy: "fmt, ##args)
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([i915#579]) +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
+-:67: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#67: FILE: drivers/gpu/drm/i915/gvt/debug.h:54:
++	pr_debug("gvt:el: "fmt, ##args)
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [PASS][13] -> [INCOMPLETE][14] ([i915#2940])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+-:71: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#71: FILE: drivers/gpu/drm/i915/gvt/debug.h:57:
++	pr_debug("gvt:sched: "fmt, ##args)
 
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-rkl-guc:         [PASS][15] -> [DMESG-WARN][16] ([i915#3958])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html
+-:75: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#75: FILE: drivers/gpu/drm/i915/gvt/debug.h:60:
++	pr_debug("gvt:render: "fmt, ##args)
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][17] ([fdo#111827]) +8 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
+-:79: CHECK:CONCATENATED_STRING: Concatenated strings should use spaces between elements
+#79: FILE: drivers/gpu/drm/i915/gvt/debug.h:63:
++	pr_debug("gvt:cmd: "fmt, ##args)
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][18] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+total: 0 errors, 0 warnings, 9 checks, 39 lines checked
+d1de5f57f0f1 i915/gvt: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to create "gvt:core:" etc categories
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'key' - possible side-effects?
+#56: FILE: drivers/gpu/drm/i915/i915_params.c:275:
++#define _help(key)	"\t    \"" key "\"\t: help for " key "\n"
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][19] ([fdo#109285])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+-:83: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][20] ([i915#1072]) +3 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
+total: 1 errors, 0 warnings, 1 checks, 45 lines checked
+cc4308e46704 amdgpu: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to control categorized pr_debugs
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'key' - possible side-effects?
+#34: FILE: drivers/gpu/drm/amd/display/dc/core/dc_debug.c:46:
++#define _help_(key)	"\t   " key "\t- help for " key "\n"
 
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][21] ([i915#3301])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+-:55: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#55: FILE: drivers/gpu/drm/amd/display/dc/core/dc_debug.c:67:
++DEFINE_DYNAMIC_DEBUG_CATEGORIES(debug_dc, __debug_dc,
++	DC_DYNDBG_BITMAP_DESC(debug_dc),
 
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][22] ([fdo#109271] / [i915#1436])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bsw-kefka/igt@runner@aborted.html
+total: 0 errors, 0 warnings, 2 checks, 51 lines checked
+8ded13656ce8 drm_print: add choice to use dynamic debug in drm-debug
+-:167: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#167: FILE: drivers/gpu/drm/drm_print.c:61:
++DEFINE_DYNAMIC_DEBUG_CATEGORIES(debug, __drm_debug,
++	DRM_DEBUG_DESC,
 
-  
-#### Possible fixes ####
+-:416: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#416: FILE: include/drm/drm_print.h:582:
+ 
++
 
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][23] ([i915#3303]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+-:460: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+total: 1 errors, 0 warnings, 2 checks, 329 lines checked
+089e2b7e8515 amdgpu_ucode: reduce number of pr_debug calls
+f36b9555c312 dyndbg: RFC add tracer facility RFC
+-:41: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#41: 
+- register sets empty slot, doesnt overwrite
+                            ^^^^^^
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#3895]: https://gitlab.freedesktop.org/drm/intel/issues/3895
-  [i915#3958]: https://gitlab.freedesktop.org/drm/intel/issues/3958
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+-:126: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#126: FILE: include/linux/dynamic_debug.h:31:
++#define _DPRINTK_FLAGS_PRINT		(1<<0) /* printk() a message */
+                             		  ^
+
+-:127: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#127: FILE: include/linux/dynamic_debug.h:32:
++#define _DPRINTK_FLAGS_PRINT_TRACE	(1<<5) /* call (*tracer) */
+                                   	  ^
+
+-:149: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#149: FILE: include/linux/dynamic_debug.h:298:
++int dynamic_debug_register_tracer(const char *query, const char *mod,
++	int (*tracer) (const char *fmt, char *prefix, char *label, struct va_format *vaf));
+
+-:149: WARNING:SPACING: Unnecessary space before function pointer arguments
+#149: FILE: include/linux/dynamic_debug.h:298:
++	int (*tracer) (const char *fmt, char *prefix, char *label, struct va_format *vaf));
+
+-:161: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#161: FILE: include/linux/dynamic_debug.h:310:
++int dynamic_debug_unregister_tracer(const char *query, const char *mod,
++	int (*cookie) (const char *fmt, char *prefix, char *label, struct va_format *vaf));
+
+-:161: WARNING:SPACING: Unnecessary space before function pointer arguments
+#161: FILE: include/linux/dynamic_debug.h:310:
++	int (*cookie) (const char *fmt, char *prefix, char *label, struct va_format *vaf));
+
+-:172: WARNING:CONFIG_DESCRIPTION: please write a paragraph that describes the config symbol fully
+#172: FILE: lib/Kconfig.debug:2489:
++config TEST_DYNAMIC_DEBUG
+
+-:226: CHECK:BRACES: braces {} should be used on all arms of this statement
+#226: FILE: lib/dynamic_debug.c:213:
++				if (!tracer)
+[...]
++				else {
+[...]
+
+-:228: CHECK:BRACES: Unbalanced braces around else statement
+#228: FILE: lib/dynamic_debug.c:215:
++				else {
+
+-:230: CHECK:BRACES: braces {} should be used on all arms of this statement
+#230: FILE: lib/dynamic_debug.c:217:
++					if (!dp->tracer) {
+[...]
++					else if (tracer == dp->tracer)
+[...]
++					else
+[...]
+
+-:234: ERROR:ELSE_AFTER_BRACE: else should follow close brace '}'
+#234: FILE: lib/dynamic_debug.c:221:
++					}
++					else if (tracer == dp->tracer)
+
+-:240: CHECK:BRACES: braces {} should be used on all arms of this statement
+#240: FILE: lib/dynamic_debug.c:227:
++				if (!tracer)
+[...]
++				else {
+[...]
+
+-:242: CHECK:BRACES: Unbalanced braces around else statement
+#242: FILE: lib/dynamic_debug.c:229:
++				else {
+
+-:244: CHECK:BRACES: braces {} should be used on all arms of this statement
+#244: FILE: lib/dynamic_debug.c:231:
++					if (!dp->tracer)
+[...]
++					else if (dp->tracer == tracer) {
+[...]
++					else
+[...]
+
+-:251: ERROR:ELSE_AFTER_BRACE: else should follow close brace '}'
+#251: FILE: lib/dynamic_debug.c:238:
++					}
++					else
+
+-:258: CHECK:BRACES: braces {} should be used on all arms of this statement
+#258: FILE: lib/dynamic_debug.c:243:
++			if (dp->flags & _DPRINTK_ENABLED) {
+[...]
+-			} else if (modifiers->flags & _DPRINTK_FLAGS_PRINT)
+[...]
+
+-:353: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_dbg([subsystem]dev, ... then dev_dbg(dev, ... then pr_debug(...  to printk(KERN_DEBUG ...
+#353: FILE: lib/dynamic_debug.c:675:
++		printk(KERN_DEBUG "%s%pV", buf, &vaf);
+
+-:356: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#356: FILE: lib/dynamic_debug.c:678:
++	if (descriptor->flags & _DPRINTK_FLAGS_PRINT_TRACE) {
++
+
+-:361: WARNING:TYPO_SPELLING: 'shouldnt' may be misspelled - perhaps 'shouldn't'?
+#361: FILE: lib/dynamic_debug.c:683:
++		/* else shouldnt matter, but maybe for consistency */
+ 		        ^^^^^^^^
+
+-:399: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#399: FILE: lib/dynamic_debug.c:1262:
++int dynamic_debug_register_tracer(const char *query, const char *mod,
++	int (*tracer) (const char *fmt, char *prefix, char *label, struct va_format *vaf))
+
+-:399: WARNING:SPACING: Unnecessary space before function pointer arguments
+#399: FILE: lib/dynamic_debug.c:1262:
++	int (*tracer) (const char *fmt, char *prefix, char *label, struct va_format *vaf))
+
+-:406: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#406: FILE: lib/dynamic_debug.c:1269:
++int dynamic_debug_unregister_tracer(const char *query, const char *mod,
++	int (*tracer) (const char *fmt, char *prefix, char *label, struct va_format *vaf))
+
+-:406: WARNING:SPACING: Unnecessary space before function pointer arguments
+#406: FILE: lib/dynamic_debug.c:1269:
++	int (*tracer) (const char *fmt, char *prefix, char *label, struct va_format *vaf))
+
+-:412: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#412: 
+new file mode 100644
+
+-:438: ERROR:INITIALISED_STATIC: do not initialise statics to 0
+#438: FILE: lib/test_dynamic_debug.c:22:
++static int trace_ct = 0;
+
+-:439: ERROR:INITIALISED_STATIC: do not initialise statics to 0
+#439: FILE: lib/test_dynamic_debug.c:23:
++static int test_ct = 0;
+
+-:440: ERROR:INITIALISED_STATIC: do not initialise statics to 0
+#440: FILE: lib/test_dynamic_debug.c:24:
++static int errors = 0;
+
+-:441: ERROR:INITIALISED_STATIC: do not initialise statics to 0
+#441: FILE: lib/test_dynamic_debug.c:25:
++static int verbose = 0;
+
+-:443: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#443: FILE: lib/test_dynamic_debug.c:27:
++
++
+
+-:478: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'expect_count', this function's name, in a string
+#478: FILE: lib/test_dynamic_debug.c:62:
++		pr_err("expect_count: want %d, got %d: %s\n", want, trace_ct, story);
+
+-:494: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'do_debugging', this function's name, in a string
+#494: FILE: lib/test_dynamic_debug.c:78:
++	pr_info(" do_debugging %d time(s)\n", reps);
+
+-:546: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#546: FILE: lib/test_dynamic_debug.c:130:
++struct exec_test exec_tests[] = {
++
+
+-:608: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#608: FILE: lib/test_dynamic_debug.c:192:
++struct register_test register_tests[] = {
++
+
+-:635: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#635: FILE: lib/test_dynamic_debug.c:219:
++	match_count = dynamic_debug_unregister_tracer(
+
+-:643: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#643: FILE: lib/test_dynamic_debug.c:227:
++	match_count = dynamic_debug_unregister_tracer(
+
+-:663: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 7 errors, 11 warnings, 19 checks, 514 lines checked
 
 
-Participating hosts (35 -> 34)
-------------------------------
-
-  Additional (2): fi-tgl-1115g4 fi-bdw-5557u 
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10482 -> Patchwork_20819
-
-  CI-20190529: 20190529
-  CI_DRM_10482: 772cc2d9bb24a9f750e3a88c6b2172873830e095 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20819: 7b9ae64be8c9e23ce2f1524be83b1a60d25547ac @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7b9ae64be8c9 drm/ttm, drm/i915: Update ttm_move_memcpy for async use
-2bac7fdae89a drm/i915/ttm: Reorganize the ttm move code somewhat
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/index.html
-
---===============8500418175058055554==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915, drm/ttm: Update the ttm_move_memcpy() interface (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/91893/">https://patchwork.freedesktop.org/series/91893/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10482 -&gt; Patchwork_20819</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20819 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-kbl-soraka/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-kbl-soraka/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3895">i915#3895</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-rkl-guc/igt@i915_selftest@live@gt_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3958">i915#3958</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20819/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Additional (2): fi-tgl-1115g4 fi-bdw-5557u <br />
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10482 -&gt; Patchwork_20819</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10482: 772cc2d9bb24a9f750e3a88c6b2172873830e095 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20819: 7b9ae64be8c9e23ce2f1524be83b1a60d25547ac @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7b9ae64be8c9 drm/ttm, drm/i915: Update ttm_move_memcpy for async use<br />
-2bac7fdae89a drm/i915/ttm: Reorganize the ttm move code somewhat</p>
-
-</body>
-</html>
-
---===============8500418175058055554==--
