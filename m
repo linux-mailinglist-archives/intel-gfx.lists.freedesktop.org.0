@@ -2,38 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5923EB12C
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 09:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D1CA3EB12D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 09:14:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 984046E544;
-	Fri, 13 Aug 2021 07:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B45E36E550;
+	Fri, 13 Aug 2021 07:14:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 470036E544
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 07:14:19 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="215509497"
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="215509497"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A12436E54C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 07:14:20 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="215509506"
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="215509506"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 00:14:19 -0700
+ 13 Aug 2021 00:14:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="571727774"
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="571727784"
 Received: from linux-z370-aorus-gaming-5.iind.intel.com ([10.223.34.160])
- by orsmga004.jf.intel.com with ESMTP; 13 Aug 2021 00:14:17 -0700
+ by orsmga004.jf.intel.com with ESMTP; 13 Aug 2021 00:14:19 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Swati Sharma <swati2.sharma@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Date: Fri, 13 Aug 2021 12:31:17 +0530
-Message-Id: <20210813070121.48530-3-ankit.k.nautiyal@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date: Fri, 13 Aug 2021 12:31:18 +0530
+Message-Id: <20210813070121.48530-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210813070121.48530-1-ankit.k.nautiyal@intel.com>
 References: <20210813070121.48530-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/6] drm/i915: Sending AVI infoframe through
- GMP DIP
+Subject: [Intel-gfx] [PATCH v2 3/6] video/hdmi: Separate function for
+ unpacking AVI Infoframe Data
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,243 +48,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Swati Sharma <swati2.sharma@intel.com>
+Currently while unpacking the AVI Infoframe, the Infoframe Headers
+and data are checked in same unpack function.
 
-DP does not support sending AVI info frame to panel. So we need to
-send AVI info frame to HDMI through some other DIP.
+This patch separates the unpacking of AVI infoframe Data only,
+so that it can be used for the DP cases, where the AVI Infoframe is
+encapsulated in DP SDP packets. In such a case we need to only
+unpack the data bytes as the header bits for DP SDP will be different.
 
-When DP-to-HDMI protocol converter is present GMP DIP will be used
-to send AVI infoframe instead of static HDR infoframes.
-
-While VESA spec indicates support within PCON to built AVI IF, it
-gives better control with source sending the infoframe by itself as
-per HDMI/CTA spec. Minimum of version 3 need to be used for VIC >= 128
-(i.e. for 8k mode as an example).
-
-v2:
--Added the case for AVI infoframe type in intel_write_sdp (Gwan-gyeong Mun)
--Used the type AVI infoframe instead of GMP in crtc_state, and only used
-type GMP while writing infoframe (Gwan-gyeong Mun).
--Avoided writing the AVI infoframe Header twice in sdp packet (Ankit).
--Corrected the buffer size for AVI infoframe packing (Ankit).
-
-Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 142 ++++++++++++++++++------
- 1 file changed, 109 insertions(+), 33 deletions(-)
+ drivers/video/hdmi.c | 65 ++++++++++++++++++++++++++++++++------------
+ include/linux/hdmi.h |  2 ++
+ 2 files changed, 49 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 75d4ebc66941..2990a9e78a9d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1603,6 +1603,17 @@ intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
- 		intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA);
- }
+diff --git a/drivers/video/hdmi.c b/drivers/video/hdmi.c
+index 947be761dfa4..f8e325cccfee 100644
+--- a/drivers/video/hdmi.c
++++ b/drivers/video/hdmi.c
+@@ -1537,38 +1537,30 @@ void hdmi_infoframe_log(const char *level,
+ EXPORT_SYMBOL(hdmi_infoframe_log);
  
-+static void
-+intel_dp_compute_avi_infoframe_sdp(struct intel_encoder *encoder,
-+				   struct intel_crtc_state *crtc_state,
-+				   struct drm_connector_state *conn_state)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ /**
+- * hdmi_avi_infoframe_unpack() - unpack binary buffer to a HDMI AVI infoframe
++ * hdmi_avi_infoframe_unpack_only() - unpack binary buffer of CTA-861-G AVI
++ *                                    infoframe DataBytes to a HDMI AVI
++ *                                    infoframe
+  * @frame: HDMI AVI infoframe
+  * @buffer: source buffer
+  * @size: size of buffer
+  *
+- * Unpacks the information contained in binary @buffer into a structured
+- * @frame of the HDMI Auxiliary Video (AVI) information frame.
+- * Also verifies the checksum as required by section 5.3.5 of the HDMI 1.4
+- * specification.
++ * Unpacks CTA-861-G AVI infoframe DataBytes contained in the binary @buffer
++ * into a structured @frame of the HDMI Auxiliary Video Information (AVI)
++ * infoframe.
+  *
+  * Returns 0 on success or a negative error code on failure.
+  */
+-static int hdmi_avi_infoframe_unpack(struct hdmi_avi_infoframe *frame,
+-				     const void *buffer, size_t size)
 +
-+	if (!intel_hdmi_compute_avi_infoframe(encoder, crtc_state, conn_state))
-+		drm_dbg_kms(&dev_priv->drm, "bad AVI infoframe\n");
-+}
-+
- static void
- intel_dp_drrs_compute_config(struct intel_dp *intel_dp,
- 			     struct intel_crtc_state *pipe_config,
-@@ -1643,6 +1654,38 @@ intel_dp_drrs_compute_config(struct intel_dp *intel_dp,
- 		pipe_config->dp_m2_n2.gmch_m *= pipe_config->splitter.link_count;
- }
++int hdmi_avi_infoframe_unpack_only(struct hdmi_avi_infoframe *frame,
++				   const void *buffer, size_t size)
+ {
+ 	const u8 *ptr = buffer;
  
-+static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp)
-+{
-+	struct intel_connector *intel_connector = intel_dp->attached_connector;
-+	struct drm_connector *connector = &intel_connector->base;
-+	int max_frl_rate;
-+	int max_lanes, rate_per_lane;
-+	int max_dsc_lanes, dsc_rate_per_lane;
-+
-+	max_lanes = connector->display_info.hdmi.max_lanes;
-+	rate_per_lane = connector->display_info.hdmi.max_frl_rate_per_lane;
-+	max_frl_rate = max_lanes * rate_per_lane;
-+
-+	if (connector->display_info.hdmi.dsc_cap.v_1p2) {
-+		max_dsc_lanes = connector->display_info.hdmi.dsc_cap.max_lanes;
-+		dsc_rate_per_lane = connector->display_info.hdmi.dsc_cap.max_frl_rate_per_lane;
-+		if (max_dsc_lanes && dsc_rate_per_lane)
-+			max_frl_rate = min(max_frl_rate, max_dsc_lanes * dsc_rate_per_lane);
-+	}
-+
-+	return max_frl_rate;
-+}
-+
-+static bool intel_dp_is_hdmi_2_1_sink(struct intel_dp *intel_dp)
-+{
-+	if (drm_dp_is_branch(intel_dp->dpcd) &&
-+	    intel_dp->has_hdmi_sink &&
-+	    intel_dp_hdmi_sink_max_frl(intel_dp) > 0)
-+		return true;
-+
-+	return false;
-+}
-+
- int
- intel_dp_compute_config(struct intel_encoder *encoder,
- 			struct intel_crtc_state *pipe_config,
-@@ -1754,7 +1797,13 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	intel_dp_drrs_compute_config(intel_dp, pipe_config, output_bpp,
- 				     constant_n);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
--	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
-+
-+	if (intel_dp_is_hdmi_2_1_sink(intel_dp)) {
-+		pipe_config->has_infoframe = true;
-+		intel_dp_compute_avi_infoframe_sdp(encoder, pipe_config, conn_state);
-+	} else {
-+		intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
-+	}
+-	if (size < HDMI_INFOFRAME_SIZE(AVI))
+-		return -EINVAL;
+-
+-	if (ptr[0] != HDMI_INFOFRAME_TYPE_AVI ||
+-	    ptr[1] != 2 ||
+-	    ptr[2] != HDMI_AVI_INFOFRAME_SIZE)
+-		return -EINVAL;
+-
+-	if (hdmi_infoframe_checksum(buffer, HDMI_INFOFRAME_SIZE(AVI)) != 0)
++	if (size < HDMI_AVI_INFOFRAME_SIZE)
+ 		return -EINVAL;
+ 
+ 	hdmi_avi_infoframe_init(frame);
+ 
+-	ptr += HDMI_INFOFRAME_HEADER_SIZE;
+-
+ 	frame->colorspace = (ptr[0] >> 5) & 0x3;
+ 	if (ptr[0] & 0x10)
+ 		frame->active_aspect = ptr[1] & 0xf;
+@@ -1599,6 +1591,43 @@ static int hdmi_avi_infoframe_unpack(struct hdmi_avi_infoframe *frame,
  
  	return 0;
  }
-@@ -2016,28 +2065,6 @@ static int intel_dp_pcon_set_frl_mask(int max_frl)
- 	return 0;
- }
- 
--static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp)
--{
--	struct intel_connector *intel_connector = intel_dp->attached_connector;
--	struct drm_connector *connector = &intel_connector->base;
--	int max_frl_rate;
--	int max_lanes, rate_per_lane;
--	int max_dsc_lanes, dsc_rate_per_lane;
--
--	max_lanes = connector->display_info.hdmi.max_lanes;
--	rate_per_lane = connector->display_info.hdmi.max_frl_rate_per_lane;
--	max_frl_rate = max_lanes * rate_per_lane;
--
--	if (connector->display_info.hdmi.dsc_cap.v_1p2) {
--		max_dsc_lanes = connector->display_info.hdmi.dsc_cap.max_lanes;
--		dsc_rate_per_lane = connector->display_info.hdmi.dsc_cap.max_frl_rate_per_lane;
--		if (max_dsc_lanes && dsc_rate_per_lane)
--			max_frl_rate = min(max_frl_rate, max_dsc_lanes * dsc_rate_per_lane);
--	}
--
--	return max_frl_rate;
--}
--
- static int intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)
- {
- #define TIMEOUT_FRL_READY_MS 500
-@@ -2108,16 +2135,6 @@ static int intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)
- 	return 0;
- }
- 
--static bool intel_dp_is_hdmi_2_1_sink(struct intel_dp *intel_dp)
--{
--	if (drm_dp_is_branch(intel_dp->dpcd) &&
--	    intel_dp->has_hdmi_sink &&
--	    intel_dp_hdmi_sink_max_frl(intel_dp) > 0)
--		return true;
--
--	return false;
--}
--
- void intel_dp_check_frl_training(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-@@ -2771,12 +2788,60 @@ intel_dp_hdr_metadata_infoframe_sdp_pack(const struct hdmi_drm_infoframe *drm_in
- 	return sizeof(struct dp_sdp_header) + 2 + HDMI_DRM_INFOFRAME_SIZE;
- }
- 
-+static ssize_t
-+intel_dp_avi_infoframe_sdp_pack(const struct hdmi_avi_infoframe *avi_infoframe,
-+				struct dp_sdp *sdp, size_t size)
++EXPORT_SYMBOL(hdmi_avi_infoframe_unpack_only);
++
++/**
++ * hdmi_avi_infoframe_unpack() - unpack binary buffer to a HDMI AVI infoframe
++ * @frame: HDMI AVI infoframe
++ * @buffer: source buffer
++ * @size: size of buffer
++ *
++ * Unpacks the information contained in binary @buffer into a structured
++ * @frame of the HDMI Auxiliary Video (AVI) information frame.
++ * Also verifies the checksum as required by section 5.3.5 of the HDMI 1.4
++ * specification.
++ *
++ * Returns 0 on success or a negative error code on failure.
++ */
++static int hdmi_avi_infoframe_unpack(struct hdmi_avi_infoframe *frame,
++				     const void *buffer, size_t size)
 +{
-+	size_t length = sizeof(struct dp_sdp);
-+	const int infoframe_size = HDMI_INFOFRAME_HEADER_SIZE + HDMI_AVI_INFOFRAME_SIZE;
-+	unsigned char buf[HDMI_INFOFRAME_HEADER_SIZE + HDMI_AVI_INFOFRAME_SIZE];
-+	ssize_t len;
++	const u8 *ptr = buffer;
++	int ret;
 +
-+	if (size < length)
-+		return -ENOSPC;
++	if (size < HDMI_INFOFRAME_SIZE(AVI))
++		return -EINVAL;
 +
-+	memset(sdp, 0, size);
++	if (ptr[0] != HDMI_INFOFRAME_TYPE_AVI ||
++	    ptr[1] != 2 ||
++	    ptr[2] != HDMI_AVI_INFOFRAME_SIZE)
++		return -EINVAL;
 +
-+	len = hdmi_avi_infoframe_pack_only(avi_infoframe, buf, sizeof(buf));
-+	if (len < 0) {
-+		DRM_DEBUG_KMS("buffer size is smaller than avi infoframe\n");
-+		return -ENOSPC;
-+	}
++	if (hdmi_infoframe_checksum(buffer, HDMI_INFOFRAME_SIZE(AVI)) != 0)
++		return -EINVAL;
 +
-+	if (len != infoframe_size) {
-+		DRM_DEBUG_KMS("wrong avi infoframe size\n");
-+		return -ENOSPC;
-+	}
++	ret = hdmi_avi_infoframe_unpack_only(frame, ptr + HDMI_INFOFRAME_HEADER_SIZE,
++					     size - HDMI_INFOFRAME_HEADER_SIZE);
 +
-+	sdp->sdp_header.HB0 = 0;
-+	sdp->sdp_header.HB1 = avi_infoframe->type;
-+	sdp->sdp_header.HB2 = 0x1D;
-+	sdp->sdp_header.HB3 = (0x13 << 2);
-+	sdp->db[0] = avi_infoframe->version;
-+	sdp->db[1] = avi_infoframe->length;
-+
-+	BUILD_BUG_ON(sizeof(sdp->db) < HDMI_AVI_INFOFRAME_SIZE + 2);
-+	memcpy(&sdp->db[2], &buf[HDMI_INFOFRAME_HEADER_SIZE], HDMI_AVI_INFOFRAME_SIZE);
-+
-+	 /*
-+	  * Size of DP infoframe sdp packet for AVI Infoframe consists of
-+	  * - DP SDP Header(struct dp_sdp_header): 4 bytes
-+	  * - Two Data Blocks: 2 bytes
-+	  * CTA Header Byte2 (INFOFRAME Version Number)
-+	  * CTA Header Byte3 (Length of INFOFRAME)
-+	  * HDMI_AVI_INFOFRAME_SIZE: 13 bytes
-+	  */
-+
-+	return sizeof(struct dp_sdp_header) + 2 + HDMI_AVI_INFOFRAME_SIZE;
++	return ret;
 +}
-+
- static void intel_write_dp_sdp(struct intel_encoder *encoder,
- 			       const struct intel_crtc_state *crtc_state,
- 			       unsigned int type)
- {
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct dp_sdp sdp = {};
- 	ssize_t len;
  
-@@ -2790,9 +2855,19 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
- 					    sizeof(sdp));
- 		break;
- 	case HDMI_PACKET_TYPE_GAMUT_METADATA:
-+		if (intel_dp_is_hdmi_2_1_sink(intel_dp))
-+			break;
- 		len = intel_dp_hdr_metadata_infoframe_sdp_pack(&crtc_state->infoframes.drm.drm,
- 							       &sdp, sizeof(sdp));
- 		break;
-+	case HDMI_INFOFRAME_TYPE_AVI:
-+		if (!intel_dp_is_hdmi_2_1_sink(intel_dp))
-+			break;
-+		len = intel_dp_avi_infoframe_sdp_pack(&crtc_state->infoframes.avi.avi, &sdp,
-+						      sizeof(sdp));
-+		/* SDP DIP type GMP to be used for AVI Infoframe */
-+		type = HDMI_PACKET_TYPE_GAMUT_METADATA;
-+		break;
- 	default:
- 		MISSING_CASE(type);
- 		return;
-@@ -2850,6 +2925,7 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
- 		intel_write_dp_sdp(encoder, crtc_state, DP_SDP_VSC);
+ /**
+  * hdmi_spd_infoframe_unpack() - unpack binary buffer to a HDMI SPD infoframe
+diff --git a/include/linux/hdmi.h b/include/linux/hdmi.h
+index c8ec982ff498..dda209fb77e3 100644
+--- a/include/linux/hdmi.h
++++ b/include/linux/hdmi.h
+@@ -222,6 +222,8 @@ ssize_t hdmi_drm_infoframe_pack_only(const struct hdmi_drm_infoframe *frame,
+ int hdmi_drm_infoframe_check(struct hdmi_drm_infoframe *frame);
+ int hdmi_drm_infoframe_unpack_only(struct hdmi_drm_infoframe *frame,
+ 				   const void *buffer, size_t size);
++int hdmi_avi_infoframe_unpack_only(struct hdmi_avi_infoframe *frame,
++				   const void *buffer, size_t size);
  
- 	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA);
-+	intel_write_dp_sdp(encoder, crtc_state, HDMI_INFOFRAME_TYPE_AVI);
- }
- 
- static int intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
+ enum hdmi_spd_sdi {
+ 	HDMI_SPD_SDI_UNKNOWN,
 -- 
 2.25.1
 
