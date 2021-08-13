@@ -2,47 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430443ED166
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2B93ED171
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:58:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D973789C1B;
-	Mon, 16 Aug 2021 09:58:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 930F189D9B;
+	Mon, 16 Aug 2021 09:58:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0604B6E8AC;
- Fri, 13 Aug 2021 17:12:15 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BA1C60F91;
- Fri, 13 Aug 2021 17:12:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B83C26E8A5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 17:13:17 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4CBA961102;
+ Fri, 13 Aug 2021 17:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1628874734;
- bh=E0Rd8uuRj9V4s/5yGBq/lhcjLlVd74GgQ8rhT3/6j30=;
- h=From:To:Cc:Subject:Date:From;
- b=I7vDjYOooR5E8ZiW45+6N1xtm/mJrPRPb5euk0MUhVfuKc70li+mGDWSl7rEqCNal
- VOtH/VfAENMm4DX3NV4NI8HNHpB46LuykNqvljA4xEcq7/Z7tMVdIeB5wFE5U/0Zzo
- l61AEPIU5XtzQWTdyhg8ApGEA6dRaNgVKR664feL0ft0K7tZOqDRQdG/FVG2Ecq3Tj
- 64Tr224tTPLOsuEDF/gAW+MU7ag0UPygynlPfj+okX6sLHym8ICUpFCs+x3g45WTvb
- Iys7/GqrN7KogTtmrhw+RCePqdi27xK/Fm50R3tzBkITRLVa16ByxeVWOhExaWgG8B
- W7Z7wDEHg+9BA==
+ s=k20201202; t=1628874797;
+ bh=Ye6ux6gsSOYuKdnM8xs7kUfqlN15AdCOL55n3kBtvyM=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=K6GH6FvSCN/rjrKcXrIuMm7FkpQ1Fm6aDgA497ASnfdG7Pn0vqyuJO79fCr92x3mt
+ wLL+WyW7mxL9sLya/Xbbu3YyK4azqxHnZHr0xAeXoEisA+nAJ6fMr45FuQy2yW9boo
+ milZyLiPRx9rBP0NXUaJlpAQb/Qgupds3dCPiYv/nPG9Og+c8+GTg47gBli4Jn+Vwi
+ 8oixL+kxOR0tpo0e54iApPWVmk9ZZxMnexpUOfVAabMDUfVty0GcQ1L32XZ3O1QeXK
+ ltZAhwR4QXG7YyMr6pkl+AOeVP0bm/Vr8CoQad4LMFaAx5hhKJeDY57KsBvDLVK3rC
+ O/KmE+kBon71A==
+To: Dan Carpenter <dan.carpenter@oracle.com>, thomas.hellstrom@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org
+References: <20210813113120.GA30489@kili>
 From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>,
- Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- clang-built-linux@googlegroups.com, kernel-janitors@vger.kernel.org,
- Nathan Chancellor <nathan@kernel.org>,
- Dan Carpenter <dan.carpenter@oracle.com>
-Date: Fri, 13 Aug 2021 10:11:58 -0700
-Message-Id: <20210813171158.2665823-1-nathan@kernel.org>
-X-Mailer: git-send-email 2.33.0.rc2
+Message-ID: <70702840-5346-e14c-5fb2-b1ad6feac1c9@kernel.org>
+Date: Fri, 13 Aug 2021 10:13:16 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210813113120.GA30489@kili>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 16 Aug 2021 09:58:05 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Fix use of err in
- igt_reset_{fail, nop}_engine()
+Subject: Re: [Intel-gfx] [bug report] drm/i915/gem: Correct the locking and
+ pin pattern for dma-buf (v8)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,56 +55,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clang warns:
+On 8/13/2021 4:31 AM, Dan Carpenter wrote:
+> Nathan has probably already sent fixes for these.  Nathan, could you CC
+> kernel-janitors on static checker fixes?  That way we wouldn't send so
+> many duplicate patches.
 
-In file included from drivers/gpu/drm/i915/gt/intel_reset.c:1514:
-drivers/gpu/drm/i915/gt/selftest_hangcheck.c:465:62: warning: variable
-'err' is uninitialized when used here [-Wuninitialized]
-        pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-                                                                  ^~~
+Sure. I did not send any fixes prior to this email but I just sent
+https://lore.kernel.org/r/20210813171158.2665823-1-nathan@kernel.org/ 
+with kernel-janitors and you CC'd.
+
+> Uninitialized variable warnings are really frustrating.  We disabled the
+> GCC warning for them because the new GCC is crap.  So now they take up
+> a lot of my time.  A few of these are because Smatch doesn't always know
+> when we enter loops, but more than half are clear bugs.
+> 
+> drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:189 i915_gem_dmabuf_attach() error: uninitialized symbol 'err'.
+> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:80 igt_dmabuf_import_self() error: uninitialized symbol 'import_obj'.
+> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:104 igt_dmabuf_import_same_driver_lmem() error: uninitialized symbol 'dmabuf'.
+> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:138 igt_dmabuf_import_same_driver_lmem() error: uninitialized symbol 'err'.
+> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:158 igt_dmabuf_import_same_driver() error: uninitialized symbol 'dmabuf'.
+> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:231 igt_dmabuf_import_same_driver() error: uninitialized symbol 'import_obj'.
+> drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c:197 igt_lmem_pages_migrate() error: uninitialized symbol 'err'.
+
 ...
-drivers/gpu/drm/i915/gt/selftest_hangcheck.c:580:62: warning: variable
-'err' is uninitialized when used here [-Wuninitialized]
-        pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-                                                                  ^~~
-...
-2 warnings generated.
 
-This appears to be a copy and paste issue. Use ce directly using the %pe
-specifier to pretty print the error code so that err is not used
-uninitialized in these functions.
+> drivers/gpu/drm/i915/gt/selftest_hangcheck.c:465 igt_reset_nop_engine() error: uninitialized symbol 'err'.
+> drivers/gpu/drm/i915/gt/selftest_hangcheck.c:580 igt_reset_fail_engine() error: uninitialized symbol 'err'.
 
-Fixes: 3a7b72665ea5 ("drm/i915/selftest: Bump selftest timeouts for hangcheck")
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Clang caught these two but none of the rest and it is an obvious fix so 
+that is the only one I am going to fix.
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index 08f011f893b2..2c1ed32ca5ac 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -462,7 +462,7 @@ static int igt_reset_nop_engine(void *arg)
- 
- 		ce = intel_context_create(engine);
- 		if (IS_ERR(ce)) {
--			pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-+			pr_err("[%s] Create context failed: %pe!\n", engine->name, ce);
- 			return PTR_ERR(ce);
- 		}
- 
-@@ -577,7 +577,7 @@ static int igt_reset_fail_engine(void *arg)
- 
- 		ce = intel_context_create(engine);
- 		if (IS_ERR(ce)) {
--			pr_err("[%s] Create context failed: %d!\n", engine->name, err);
-+			pr_err("[%s] Create context failed: %pe!\n", engine->name, ce);
- 			return PTR_ERR(ce);
- 		}
- 
+> drivers/gpu/drm/i915/gt/selftest_migrate.c:102 copy() error: uninitialized symbol 'rq'.
+> drivers/gpu/drm/i915/gt/selftest_migrate.c:113 copy() error: uninitialized symbol 'vaddr'.
+> drivers/gpu/drm/i915/gt/selftest_migrate.c:182 clear() error: uninitialized symbol 'rq'.
+> drivers/gpu/drm/i915/gt/selftest_migrate.c:193 clear() error: uninitialized symbol 'vaddr'.
+> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:819 __unwind_incomplete_requests() error: uninitialized symbol 'pl'.
 
-base-commit: 927dfdd09d8c03ba100ed0c8c3915f8e1d1f5556
--- 
-2.33.0.rc2
-
+Cheers,
+Nathan
