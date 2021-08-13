@@ -2,33 +2,96 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851C83EBAF8
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 19:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AA6A3EBB2A
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 19:15:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CE646E8AB;
-	Fri, 13 Aug 2021 17:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3F66E8B2;
+	Fri, 13 Aug 2021 17:15:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BE0A789C9D;
- Fri, 13 Aug 2021 17:02:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B5622A47E1;
- Fri, 13 Aug 2021 17:02:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6474652380445949390=="
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FF736E8A5;
+ Fri, 13 Aug 2021 17:15:22 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id n12so16397801edx.8;
+ Fri, 13 Aug 2021 10:15:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zlUEA9e1VkT1gKXLNSjj1Okgcd3GspYEDUxv1J4Esdc=;
+ b=fA8sxxgKhksZ1i4Qq5qRH12NiDHha3/axZgW4UCqa9o6CPE7sxYCS7rBOg2/0txpSW
+ 9+CrDumsBSyBBbBOgASKG9jgN4jCYaWf65uXG4ctkYYMZRsdKpewJCdKa5BsgvDVsEiQ
+ lugujmU729iB3ptr+YbPg+hzVpo3j3hrNsPMQ3TcqJrNMAv5nR+Oml2UD6+SC6DE+TS7
+ tR40hw02reD9jMswhju68QwoefFwFXeKZxcuYQwQjzGEd4RlAG9oeAhbRxPcaeTw9hzH
+ 6N9GvTCTUuzi8s5WaICar7uNOE9CsKOl2V0hhkKWwZHOGFF8Od4q+JLKItGPOpoA0HFA
+ apkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zlUEA9e1VkT1gKXLNSjj1Okgcd3GspYEDUxv1J4Esdc=;
+ b=nooOMFt+e7cIJ7bgiuX949u+iCK/qNpswNNA5357s9njE+8CNOaqhjp3cbAJTfpDS4
+ kbBtR47h3aaLGRnGxDepEbzn2WSe3rpYUl2TRqB5aqB5beTNfkLRegw/EFl41kWTSeqC
+ RV54RmBqERLhy8GnngmXeBo0Wc6PUnVUryvfWXNPgnx2JCDTdoIflG+BPw/Ai6AYHJUL
+ oMSO2b0ZUIW/KrmJPB5faS+MGct2sTeSQxUFddLDCwKKcExoXSR4Bp6n5ZejJj6p/zYb
+ 5pB2r6m/rB6mx0/Z5ofQtaER/jdv4feLmHZ1r8/wthVTdyzUQmv4IHgL55xWt0zF752d
+ xPHg==
+X-Gm-Message-State: AOAM530vEIKux4NYsb+VWUud556hY9lb46FU8QSMnfurT9O7tw2u79Q4
+ 1WJXkLQgFq5kUOnalpeNLMZ2YA21qYhm3E4bBUQ=
+X-Google-Smtp-Source: ABdhPJxKqDQE7Wsav+ukfzCwEKv0lituAMXiubWkS1keXQNfA9S610Xmqy8VSXVezfOBZx/BMV9dsWiuwOIMar4rUmc=
+X-Received: by 2002:a05:6402:31ad:: with SMTP id
+ dj13mr4363446edb.296.1628874920810; 
+ Fri, 13 Aug 2021 10:15:20 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jim Cromie" <jim.cromie@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Aug 2021 17:02:38 -0000
-Message-ID: <162887415873.17681.17829390662764784665@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20210813151734.1236324-1-jim.cromie@gmail.com>
-In-Reply-To: <20210813151734.1236324-1-jim.cromie@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHlu?=
- =?utf-8?q?dbg=3A_add_DEFINE=5FDYNAMIC=5FDEBUG=5FCATEGORIES_and_use_in_DRM?=
+ <20210813151734.1236324-3-jim.cromie@gmail.com>
+ <YRaTMFzUFCeC6ELA@smile.fi.intel.com>
+In-Reply-To: <YRaTMFzUFCeC6ELA@smile.fi.intel.com>
+From: jim.cromie@gmail.com
+Date: Fri, 13 Aug 2021 11:14:54 -0600
+Message-ID: <CAJfuBxyaAG567-PFJo4DX12yUAOPQG4uJfhccgL0=xU9O4rzjA@mail.gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Greg KH <gregkh@linuxfoundation.org>, Sean Paul <seanpaul@chromium.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, 
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Jason Baron <jbaron@akamai.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Tao Zhou <tao.zhou1@amd.com>, 
+ Huang Rui <ray.huang@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Chengming Gui <Jack.Gui@amd.com>, 
+ Aaron Liu <aaron.liu@amd.com>, John Clements <john.clements@amd.com>, 
+ Kevin Wang <kevin1.wang@amd.com>, Ashley Thomas <Ashley.Thomas2@amd.com>, 
+ Qingqing Zhuo <qingqing.zhuo@amd.com>, Wyatt Wood <Wyatt.Wood@amd.com>, 
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Johan Hovold <johan@kernel.org>, 
+ Jessica Yu <jeyu@kernel.org>, Nick Desaulniers <ndesaulniers@gooogle.com>, 
+ Joe Perches <joe@perches.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Andrew Morton <akpm@linux-foundation.org>,
+ Masahiro Yamada <masahiroy@kernel.org>, 
+ Peter Zijlstra <peterz@infradead.org>, "Paul E. McKenney" <paulmck@kernel.org>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Vitor Massaru Iha <vitor@massaru.org>, Sedat Dilek <sedat.dilek@gmail.com>, 
+ Zhen Lei <thunder.leizhen@huawei.com>, Marco Elver <elver@google.com>, 
+ Jarkko Sakkinen <jarkko@kernel.org>, Alexander Potapenko <glider@google.com>, 
+ Palmer Dabbelt <palmerdabbelt@google.com>,
+ Patricia Alfonso <trishalfonso@google.com>, Jiri Olsa <jolsa@kernel.org>,
+ James Bottomley <James.Bottomley@hansenpartnership.com>, 
+ Arvind Sankar <nivedita@alum.mit.edu>, Johannes Berg <johannes.berg@intel.com>,
+ Arnd Bergmann <arnd@arndb.de>, LKML <linux-kernel@vger.kernel.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>, 
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ intel-gvt-dev@lists.freedesktop.org, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH v5 2/9] moduleparam: add data member to
+ struct kernel_param
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,322 +104,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6474652380445949390==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Aug 13, 2021 at 9:44 AM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Fri, Aug 13, 2021 at 09:17:10AM -0600, Jim Cromie wrote:
+> > Add a const void* data member to the struct, to allow attaching
+> > private data that will be used soon by a setter method (via kp->data)
+> > to perform more elaborate actions.
+> >
+> > To attach the data at compile time, add new macros:
+> >
+> > module_param_cbd() derives from module_param_cb(), adding data param,
+> > and latter is redefined to use former.
+> >
+> > It calls __module_param_call_wdata(), which accepts a new data param
+> > and inits .data with it. Re-define __module_param_call() to use it.
+> >
+> > Use of this new data member will be rare, it might be worth redoing
+> > this as a separate/sub-type to de-bloat the base case.
+>
+> ...
+>
+> > +#define module_param_cbd(name, ops, arg, perm, data)                         \
+> > +     __module_param_call_wdata(MODULE_PARAM_PREFIX, name, ops, arg, perm, -1, 0, data)
+>
+> Cryptic name. Moreover, inconsistent with the rest.
+> What about module_param_cb_data() ?
+>
+> >  #define module_param_cb_unsafe(name, ops, arg, perm)                       \
+> >       __module_param_call(MODULE_PARAM_PREFIX, name, ops, arg, perm, -1,    \
+> >                           KERNEL_PARAM_FL_UNSAFE)
+>
+> (above left for the above comment)
+>
+> ...
+>
+> > +#define __module_param_call_wdata(prefix, name, ops, arg, perm, level, flags, data) \
+>
+> Similar __module_param_call_with_data()
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
-== Series Details ==
-
-Series: dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and use in DRM
-URL   : https://patchwork.freedesktop.org/series/93683/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10482 -> Patchwork_20820
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20820 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([fdo#109315])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +29 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@nop-gfx0:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +16 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#3718])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][5] ([i915#1888])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#2190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([i915#1155])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][8] ([i915#579])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][9] ([i915#579])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#579]) +1 similar issue
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([fdo#111827]) +8 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][12] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([fdo#109285])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][14] ([i915#1072]) +3 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][15] ([i915#3301])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][16] ([i915#3303]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (35 -> 34)
-------------------------------
-
-  Additional (2): fi-tgl-1115g4 fi-bdw-5557u 
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10482 -> Patchwork_20820
-
-  CI-20190529: 20190529
-  CI_DRM_10482: 772cc2d9bb24a9f750e3a88c6b2172873830e095 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20820: f36b9555c31206ec867480b1aa71d4d87457d0d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f36b9555c312 dyndbg: RFC add tracer facility RFC
-089e2b7e8515 amdgpu_ucode: reduce number of pr_debug calls
-8ded13656ce8 drm_print: add choice to use dynamic debug in drm-debug
-cc4308e46704 amdgpu: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to control categorized pr_debugs
-d1de5f57f0f1 i915/gvt: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to create "gvt:core:" etc categories
-52fe10f828c0 i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
-918363f529da dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and callbacks
-9735d1bd2f6a moduleparam: add data member to struct kernel_param
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/index.html
-
---===============6474652380445949390==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and use in DRM</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93683/">https://patchwork.freedesktop.org/series/93683/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10482 -&gt; Patchwork_20820</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20820 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20820/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Additional (2): fi-tgl-1115g4 fi-bdw-5557u <br />
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10482 -&gt; Patchwork_20820</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10482: 772cc2d9bb24a9f750e3a88c6b2172873830e095 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20820: f36b9555c31206ec867480b1aa71d4d87457d0d9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f36b9555c312 dyndbg: RFC add tracer facility RFC<br />
-089e2b7e8515 amdgpu_ucode: reduce number of pr_debug calls<br />
-8ded13656ce8 drm_print: add choice to use dynamic debug in drm-debug<br />
-cc4308e46704 amdgpu: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to control categorized pr_debugs<br />
-d1de5f57f0f1 i915/gvt: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to create "gvt:core:" etc categories<br />
-52fe10f828c0 i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes<br />
-918363f529da dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and callbacks<br />
-9735d1bd2f6a moduleparam: add data member to struct kernel_param</p>
-
-</body>
-</html>
-
---===============6474652380445949390==--
+yes to all renames, revised.
+thanks
