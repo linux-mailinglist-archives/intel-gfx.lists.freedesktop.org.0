@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ACC23EB431
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 12:43:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B253EB433
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 12:43:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81B186E5B9;
-	Fri, 13 Aug 2021 10:43:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7B06E5C0;
+	Fri, 13 Aug 2021 10:43:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3E086E5B9;
- Fri, 13 Aug 2021 10:43:35 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="212426204"
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="212426204"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 341BB6E5BF;
+ Fri, 13 Aug 2021 10:43:42 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="213689793"
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="213689793"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 03:43:35 -0700
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="528489244"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 03:43:41 -0700
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="528489253"
 Received: from cgearing-mobl.ger.corp.intel.com (HELO localhost)
  ([10.251.209.226])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 03:43:33 -0700
+ 13 Aug 2021 03:43:38 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Manasi Navare <manasi.d.navare@intel.com>
-Date: Fri, 13 Aug 2021 13:43:19 +0300
-Message-Id: <a2ca874e8a7fe593c4ba120879d990a77f8603a1.1628851334.git.jani.nikula@intel.com>
+Date: Fri, 13 Aug 2021 13:43:20 +0300
+Message-Id: <ab2ca82226fd954a61a5674cf0531508bd18cef7.1628851334.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1628851334.git.jani.nikula@intel.com>
 References: <cover.1628851334.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 1/4] drm/dp: add DP 2.0 UHBR link rate and bw
- code conversions
+Subject: [Intel-gfx] [PATCH 2/4] drm/dp: use more of the extended receiver
+ cap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,58 +52,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The bw code equals link_rate / 0.27 Gbps only for 8b/10b link
-rates. Handle DP 2.0 UHBR rates as special cases, though this is not
-pretty.
+Extend the use of extended receiver cap at 0x2200 to cover
+MAIN_LINK_CHANNEL_CODING_CAP in 0x2206, in case an implementation hides
+the DP 2.0 128b/132b channel encoding cap.
 
 Cc: Manasi Navare <manasi.d.navare@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/drm_dp_helper.c | 26 ++++++++++++++++++++++----
- 1 file changed, 22 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/drm_dp_helper.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index 6d0f2c447f3b..9b2a2961fca8 100644
+index 9b2a2961fca8..9389f92cb944 100644
 --- a/drivers/gpu/drm/drm_dp_helper.c
 +++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -207,15 +207,33 @@ EXPORT_SYMBOL(drm_dp_lttpr_link_train_channel_eq_delay);
- 
- u8 drm_dp_link_rate_to_bw_code(int link_rate)
+@@ -608,7 +608,7 @@ static u8 drm_dp_downstream_port_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+ static int drm_dp_read_extended_dpcd_caps(struct drm_dp_aux *aux,
+ 					  u8 dpcd[DP_RECEIVER_CAP_SIZE])
  {
--	/* Spec says link_bw = link_rate / 0.27Gbps */
--	return link_rate / 27000;
-+	switch (link_rate) {
-+	case 1000000:
-+		return DP_LINK_BW_10;
-+	case 1350000:
-+		return DP_LINK_BW_13_5;
-+	case 2000000:
-+		return DP_LINK_BW_20;
-+	default:
-+		/* Spec says link_bw = link_rate / 0.27Gbps */
-+		return link_rate / 27000;
-+	}
- }
- EXPORT_SYMBOL(drm_dp_link_rate_to_bw_code);
+-	u8 dpcd_ext[6];
++	u8 dpcd_ext[DP_MAIN_LINK_CHANNEL_CODING + 1];
+ 	int ret;
  
- int drm_dp_bw_code_to_link_rate(u8 link_bw)
- {
--	/* Spec says link_rate = link_bw * 0.27Gbps */
--	return link_bw * 27000;
-+	switch (link_bw) {
-+	case DP_LINK_BW_10:
-+		return 1000000;
-+	case DP_LINK_BW_13_5:
-+		return 1350000;
-+	case DP_LINK_BW_20:
-+		return 2000000;
-+	default:
-+		/* Spec says link_rate = link_bw * 0.27Gbps */
-+		return link_bw * 27000;
-+	}
- }
- EXPORT_SYMBOL(drm_dp_bw_code_to_link_rate);
- 
+ 	/*
 -- 
 2.20.1
 
