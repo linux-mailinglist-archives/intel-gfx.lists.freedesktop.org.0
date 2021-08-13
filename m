@@ -2,38 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9903EB4E5
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 13:56:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B733EB59A
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 14:33:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E39B46E5D2;
-	Fri, 13 Aug 2021 11:56:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DCCD6E5D1;
+	Fri, 13 Aug 2021 12:33:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C27A06E5D2
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 11:56:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="279289282"
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="279289282"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBDFA6E5D1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 12:33:36 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="237595003"
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="237595003"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 04:56:16 -0700
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="518079154"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 05:33:36 -0700
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="518117991"
 Received: from cgearing-mobl.ger.corp.intel.com (HELO localhost)
  ([10.251.209.226])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 04:56:15 -0700
+ 13 Aug 2021 05:33:34 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Manasi Navare <manasi.d.navare@intel.com>
-Date: Fri, 13 Aug 2021 14:56:10 +0300
-Message-Id: <20210813115610.20010-1-jani.nikula@intel.com>
+Cc: jani.nikula@intel.com
+Date: Fri, 13 Aug 2021 15:33:30 +0300
+Message-Id: <20210813123330.31431-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915/mst: use intel_de_rmw() to simplify VC
- payload alloc set/clear
+Subject: [Intel-gfx] [PATCH] drm/i915/dg2: DG2 intermediate DP source rates
+ are different from CNL+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,41 +48,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Less is more, fewer lines to wonder about.
+DG2 has 243000 but not 648000.
 
-Cc: Manasi Navare <manasi.d.navare@intel.com>
+Bspec: 54034
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 8d13d7b26a25..9859c0334ebc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -396,7 +396,6 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
- 		to_intel_connector(old_conn_state->connector);
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 	bool last_mst_stream;
--	u32 val;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 75d4ebc66941..e21de08fea32 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -247,6 +247,9 @@ static void
+ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+ {
+ 	/* The values must be in increasing order */
++	static const int dg2_rates[] = {
++		162000, 216000, 243000, 270000, 324000, 432000, 540000, 810000,
++	};
+ 	static const int icl_rates[] = {
+ 		162000, 216000, 270000, 324000, 432000, 540000, 648000, 810000
+ 	};
+@@ -272,7 +275,10 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+ 	drm_WARN_ON(&dev_priv->drm,
+ 		    intel_dp->source_rates || intel_dp->num_source_rates);
  
- 	intel_dp->active_mst_links--;
- 	last_mst_stream = intel_dp->active_mst_links == 0;
-@@ -412,12 +411,8 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
- 
- 	clear_act_sent(encoder, old_crtc_state);
- 
--	val = intel_de_read(dev_priv,
--			    TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder));
--	val &= ~TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
--	intel_de_write(dev_priv,
--		       TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder),
--		       val);
-+	intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder),
-+		     TRANS_DDI_DP_VC_PAYLOAD_ALLOC, 0);
- 
- 	wait_for_act_sent(encoder, old_crtc_state);
- 
+-	if (DISPLAY_VER(dev_priv) >= 11) {
++	if (IS_DG2(dev_priv)) {
++		source_rates = dg2_rates;
++		size = ARRAY_SIZE(dg2_rates);
++	} else if (DISPLAY_VER(dev_priv) >= 11) {
+ 		source_rates = icl_rates;
+ 		size = ARRAY_SIZE(icl_rates);
+ 		if (IS_JSL_EHL(dev_priv))
 -- 
 2.20.1
 
