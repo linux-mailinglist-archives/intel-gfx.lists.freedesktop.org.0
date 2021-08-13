@@ -1,43 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C023EB6EA
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 16:44:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F24CB3EB771
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 17:09:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A521D6E83E;
-	Fri, 13 Aug 2021 14:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DC976E84E;
+	Fri, 13 Aug 2021 15:09:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33E266E83F;
- Fri, 13 Aug 2021 14:43:54 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10075"; a="212454812"
-X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="212454812"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 07:43:54 -0700
-X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="447069633"
-Received: from pheino-mobl.ger.corp.intel.com (HELO thellstr-mobl1.intel.com)
- ([10.249.254.189])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 07:43:52 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Auld <matthew.auld@intel.com>
-Date: Fri, 13 Aug 2021 16:43:31 +0200
-Message-Id: <20210813144331.372957-3-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210813144331.372957-1-thomas.hellstrom@linux.intel.com>
-References: <20210813144331.372957-1-thomas.hellstrom@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0176E84E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 15:08:58 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10075"; a="202733284"
+X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="202733284"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 08:08:57 -0700
+X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="518189294"
+Received: from cgearing-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.251.209.226])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 08:08:55 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Manasi Navare <manasi.d.navare@intel.com>
+In-Reply-To: <YRZ/4mXaNPcCSoEN@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210813115610.20010-1-jani.nikula@intel.com>
+ <YRZ/4mXaNPcCSoEN@intel.com>
+Date: Fri, 13 Aug 2021 18:08:52 +0300
+Message-ID: <87o8a1l6uz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/ttm,
- drm/i915: Update ttm_move_memcpy for async use
+Content-Type: text/plain
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: use intel_de_rmw() to
+ simplify VC payload alloc set/clear
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,118 +50,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The buffer object argument to ttm_move_memcpy was only used to
-determine whether the destination memory should be cleared only
-or whether we should copy data. Replace it with a "clear" bool, and
-update the callers.
+On Fri, 13 Aug 2021, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Fri, Aug 13, 2021 at 02:56:10PM +0300, Jani Nikula wrote:
+>> Less is more, fewer lines to wonder about.
+>> 
+>> Cc: Manasi Navare <manasi.d.navare@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-The intention here is to be able to use ttm_move_memcpy() async under
-a dma-fence as a fallback if an accelerated blit fails in a security-
-critical path where data might leak if the blit is not properly
-performed. For that purpose the bo is an unsuitable argument since
-its relevant members might already have changed at call time.
+Thanks!
 
-Finally, update the ttm_move_memcpy kerneldoc that seems to have
-ended up with a stale version.
+> although sometimes I get myself wondering we might get in some
+> case where our check inside the rmw function, to avoid writing the
+> same value, could cause some situation where we should perform
+> the write operation regardless.
 
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c |  2 +-
- drivers/gpu/drm/ttm/ttm_bo_util.c       | 20 ++++++++++----------
- include/drm/ttm/ttm_bo_driver.h         |  2 +-
- 3 files changed, 12 insertions(+), 12 deletions(-)
+Me too. I could be persuaded to change the rmw function to not optimize
+the write away.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index d07de18529ab..6995c66cbe21 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -518,7 +518,7 @@ static void __i915_ttm_move(struct ttm_buffer_object *bo, bool clear,
- 						 obj->ttm.cached_io_st,
- 						 src_reg->region.start);
- 
--		ttm_move_memcpy(bo, dst_mem->num_pages, dst_iter, src_iter);
-+		ttm_move_memcpy(clear, dst_mem->num_pages, dst_iter, src_iter);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 763fa6f4e07d..5c20d0541cc3 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -78,22 +78,21 @@ void ttm_mem_io_free(struct ttm_device *bdev,
- 
- /**
-  * ttm_move_memcpy - Helper to perform a memcpy ttm move operation.
-- * @bo: The struct ttm_buffer_object.
-- * @new_mem: The struct ttm_resource we're moving to (copy destination).
-- * @new_iter: A struct ttm_kmap_iter representing the destination resource.
-+ * @clear: Whether to clear rather than copy.
-+ * @num_pages: Number of pages of the operation.
-+ * @dst_iter: A struct ttm_kmap_iter representing the destination resource.
-  * @src_iter: A struct ttm_kmap_iter representing the source resource.
-  *
-  * This function is intended to be able to move out async under a
-  * dma-fence if desired.
-  */
--void ttm_move_memcpy(struct ttm_buffer_object *bo,
-+void ttm_move_memcpy(bool clear,
- 		     u32 num_pages,
- 		     struct ttm_kmap_iter *dst_iter,
- 		     struct ttm_kmap_iter *src_iter)
- {
- 	const struct ttm_kmap_iter_ops *dst_ops = dst_iter->ops;
- 	const struct ttm_kmap_iter_ops *src_ops = src_iter->ops;
--	struct ttm_tt *ttm = bo->ttm;
- 	struct dma_buf_map src_map, dst_map;
- 	pgoff_t i;
- 
-@@ -102,10 +101,7 @@ void ttm_move_memcpy(struct ttm_buffer_object *bo,
- 		return;
- 
- 	/* Don't move nonexistent data. Clear destination instead. */
--	if (src_ops->maps_tt && (!ttm || !ttm_tt_is_populated(ttm))) {
--		if (ttm && !(ttm->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC))
--			return;
--
-+	if (clear) {
- 		for (i = 0; i < num_pages; ++i) {
- 			dst_ops->map_local(dst_iter, &dst_map, i);
- 			if (dst_map.is_iomem)
-@@ -149,6 +145,7 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
- 		struct ttm_kmap_iter_linear_io io;
- 	} _dst_iter, _src_iter;
- 	struct ttm_kmap_iter *dst_iter, *src_iter;
-+	bool clear;
- 	int ret = 0;
- 
- 	if (ttm && ((ttm->page_flags & TTM_PAGE_FLAG_SWAPPED) ||
-@@ -172,7 +169,10 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
- 		goto out_src_iter;
- 	}
- 
--	ttm_move_memcpy(bo, dst_mem->num_pages, dst_iter, src_iter);
-+	clear = src_iter->ops->maps_tt && (!ttm || !ttm_tt_is_populated(ttm));
-+	if (!(clear && ttm && !(ttm->page_flags & TTM_PAGE_FLAG_ZERO_ALLOC)))
-+		ttm_move_memcpy(clear, dst_mem->num_pages, dst_iter, src_iter);
-+
- 	src_copy = *src_mem;
- 	ttm_bo_move_sync_cleanup(bo, dst_mem);
- 
-diff --git a/include/drm/ttm/ttm_bo_driver.h b/include/drm/ttm/ttm_bo_driver.h
-index 68d6069572aa..5f087575194b 100644
---- a/include/drm/ttm/ttm_bo_driver.h
-+++ b/include/drm/ttm/ttm_bo_driver.h
-@@ -322,7 +322,7 @@ int ttm_bo_tt_bind(struct ttm_buffer_object *bo, struct ttm_resource *mem);
-  */
- void ttm_bo_tt_destroy(struct ttm_buffer_object *bo);
- 
--void ttm_move_memcpy(struct ttm_buffer_object *bo,
-+void ttm_move_memcpy(bool clear,
- 		     u32 num_pages,
- 		     struct ttm_kmap_iter *dst_iter,
- 		     struct ttm_kmap_iter *src_iter);
+BR,
+Jani.
+
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 9 ++-------
+>>  1 file changed, 2 insertions(+), 7 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> index 8d13d7b26a25..9859c0334ebc 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> @@ -396,7 +396,6 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+>>  		to_intel_connector(old_conn_state->connector);
+>>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>>  	bool last_mst_stream;
+>> -	u32 val;
+>>  
+>>  	intel_dp->active_mst_links--;
+>>  	last_mst_stream = intel_dp->active_mst_links == 0;
+>> @@ -412,12 +411,8 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+>>  
+>>  	clear_act_sent(encoder, old_crtc_state);
+>>  
+>> -	val = intel_de_read(dev_priv,
+>> -			    TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder));
+>> -	val &= ~TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
+>> -	intel_de_write(dev_priv,
+>> -		       TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder),
+>> -		       val);
+>> +	intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder),
+>> +		     TRANS_DDI_DP_VC_PAYLOAD_ALLOC, 0);
+>>  
+>>  	wait_for_act_sent(encoder, old_crtc_state);
+>>  
+>> -- 
+>> 2.20.1
+>> 
+
 -- 
-2.31.1
-
+Jani Nikula, Intel Open Source Graphics Center
