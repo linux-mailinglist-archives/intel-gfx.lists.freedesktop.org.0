@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF8D3EB4DE
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 13:52:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE023EB4DF
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 13:52:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E189C6E5D1;
-	Fri, 13 Aug 2021 11:52:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08F396E5D2;
+	Fri, 13 Aug 2021 11:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 127366E5D1
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 11:52:05 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="215540797"
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="215540797"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 04:52:04 -0700
-X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="518056041"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 252C96E5D2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 11:52:11 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10074"; a="237590746"
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="237590746"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 04:52:10 -0700
+X-IronPort-AV: E=Sophos;i="5.84,318,1620716400"; d="scan'208";a="528505538"
 Received: from cgearing-mobl.ger.corp.intel.com (HELO localhost)
  ([10.251.209.226])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 04:52:02 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 04:52:08 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Manasi Navare <manasi.d.navare@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>
-Date: Fri, 13 Aug 2021 14:51:50 +0300
-Message-Id: <20210813115151.19290-2-jani.nikula@intel.com>
+Date: Fri, 13 Aug 2021 14:51:51 +0300
+Message-Id: <20210813115151.19290-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210813115151.19290-1-jani.nikula@intel.com>
 References: <20210813115151.19290-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/dg2: use existing mechanisms for
- SNPS PHY translations
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/dg2: add SNPS PHY translations for
+ UHBR link rates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,233 +51,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We use encoder->get_buf_trans() in many places, for example
-intel_ddi_dp_voltage_max(), and the hook was set to some old platform's
-function for DG2 SNPS PHY. Convert SNPS PHY to use the same translation
-mechanisms as everything else.
+UHBR link rates use different tx equalization settings. Using this will
+require changes in the link training code too.
 
+Bspec: 53920
 Cc: Manasi Navare <manasi.d.navare@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c      |  6 +-
- .../drm/i915/display/intel_ddi_buf_trans.c    | 31 +++++++++-
- .../drm/i915/display/intel_ddi_buf_trans.h    |  7 +++
- drivers/gpu/drm/i915/display/intel_snps_phy.c | 61 ++++++-------------
- drivers/gpu/drm/i915/display/intel_snps_phy.h |  3 +-
- 5 files changed, 59 insertions(+), 49 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 29 ++++++++++++++++++-
+ 1 file changed, 28 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 8cf5d1572ee0..9e46cf5c4378 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1388,7 +1388,7 @@ dg2_set_signal_levels(struct intel_dp *intel_dp,
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	int level = intel_ddi_dp_level(intel_dp, crtc_state);
- 
--	intel_snps_phy_ddi_vswing_sequence(encoder, level);
-+	intel_snps_phy_ddi_vswing_sequence(encoder, crtc_state, level);
- }
- 
- static void
-@@ -2388,7 +2388,7 @@ static void dg2_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	 */
- 
- 	/* 5.e Configure voltage swing and related IO settings */
--	intel_snps_phy_ddi_vswing_sequence(encoder, level);
-+	intel_snps_phy_ddi_vswing_sequence(encoder, crtc_state, level);
- 
- 	/*
- 	 * 5.f Configure and enable DDI_BUF_CTL
-@@ -3057,7 +3057,7 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
- 			    connector->base.id, connector->name);
- 
- 	if (IS_DG2(dev_priv))
--		intel_snps_phy_ddi_vswing_sequence(encoder, U32_MAX);
-+		intel_snps_phy_ddi_vswing_sequence(encoder, crtc_state, level);
- 	else if (DISPLAY_VER(dev_priv) >= 12)
- 		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
- 	else if (DISPLAY_VER(dev_priv) == 11)
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index ba2c08f1a797..ebb39624bfc9 100644
+index ebb39624bfc9..796dd04eae01 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -983,6 +983,25 @@ static const struct intel_ddi_buf_trans adlp_dkl_phy_ddi_translations_dp_hbr2_hb
- 	.num_entries = ARRAY_SIZE(_adlp_dkl_phy_ddi_translations_dp_hbr2_hbr3),
+@@ -1002,6 +1002,30 @@ static const struct intel_ddi_buf_trans dg2_snps_translations = {
+ 	.hdmi_default_entry = ARRAY_SIZE(_dg2_snps_translations) - 1,
  };
  
-+static const union intel_ddi_buf_trans_entry _dg2_snps_translations[] = {
-+	{ .snps = { 26, 0, 0 } },	/* VS 0, pre-emph 0 */
-+	{ .snps = { 33, 0, 6 } },	/* VS 0, pre-emph 1 */
-+	{ .snps = { 38, 0, 12 } },	/* VS 0, pre-emph 2 */
-+	{ .snps = { 43, 0, 19 } },	/* VS 0, pre-emph 3 */
-+	{ .snps = { 39, 0, 0 } },	/* VS 1, pre-emph 0 */
-+	{ .snps = { 44, 0, 8 } },	/* VS 1, pre-emph 1 */
-+	{ .snps = { 47, 0, 15 } },	/* VS 1, pre-emph 2 */
-+	{ .snps = { 52, 0, 0 } },	/* VS 2, pre-emph 0 */
-+	{ .snps = { 51, 0, 10 } },	/* VS 2, pre-emph 1 */
-+	{ .snps = { 62, 0, 0 } },	/* VS 3, pre-emph 0 */
++static const union intel_ddi_buf_trans_entry _dg2_snps_translations_uhbr[] = {
++	{ .snps = { 62, 0, 0 } },	/* preset 0 */
++	{ .snps = { 56, 0, 6 } },	/* preset 1 */
++	{ .snps = { 51, 0, 11 } },	/* preset 2 */
++	{ .snps = { 48, 0, 14 } },	/* preset 3 */
++	{ .snps = { 43, 0, 19 } },	/* preset 4 */
++	{ .snps = { 59, 3, 0 } },	/* preset 5 */
++	{ .snps = { 53, 3, 6 } },	/* preset 6 */
++	{ .snps = { 49, 3, 10 } },	/* preset 7 */
++	{ .snps = { 45, 3, 14 } },	/* preset 8 */
++	{ .snps = { 42, 3, 17 } },	/* preset 9 */
++	{ .snps = { 56, 6, 0 } },	/* preset 10 */
++	{ .snps = { 50, 6, 6 } },	/* preset 11 */
++	{ .snps = { 47, 6, 9 } },	/* preset 12 */
++	{ .snps = { 42, 6, 14 } },	/* preset 13 */
++	{ .snps = { 46, 8, 8 } },	/* preset 14 */
++	{ .snps = { 56, 3, 3 } },	/* preset 15 */
 +};
 +
-+static const struct intel_ddi_buf_trans dg2_snps_translations = {
-+	.entries = _dg2_snps_translations,
-+	.num_entries = ARRAY_SIZE(_dg2_snps_translations),
-+	.hdmi_default_entry = ARRAY_SIZE(_dg2_snps_translations) - 1,
++static const struct intel_ddi_buf_trans dg2_snps_translations_uhbr = {
++	.entries = _dg2_snps_translations_uhbr,
++	.num_entries = ARRAY_SIZE(_dg2_snps_translations_uhbr),
 +};
 +
  bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
  {
  	return table == &tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
-@@ -1563,6 +1582,14 @@ adlp_get_dkl_buf_trans(struct intel_encoder *encoder,
- 		return adlp_get_dkl_buf_trans_dp(encoder, crtc_state, n_entries);
- }
- 
-+static const struct intel_ddi_buf_trans *
-+dg2_get_snps_buf_trans(struct intel_encoder *encoder,
-+		       const struct intel_crtc_state *crtc_state,
-+		       int *n_entries)
-+{
-+	return intel_get_buf_trans(&dg2_snps_translations, n_entries);
-+}
-+
- int intel_ddi_hdmi_num_entries(struct intel_encoder *encoder,
- 			       const struct intel_crtc_state *crtc_state,
- 			       int *default_entry)
-@@ -1588,7 +1615,9 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	enum phy phy = intel_port_to_phy(i915, encoder->port);
- 
--	if (IS_ALDERLAKE_P(i915)) {
-+	if (IS_DG2(i915)) {
-+		encoder->get_buf_trans = dg2_get_snps_buf_trans;
-+	} else if (IS_ALDERLAKE_P(i915)) {
- 		if (intel_phy_is_combo(i915, phy))
- 			encoder->get_buf_trans = adlp_get_combo_buf_trans;
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index 2acd720f9d4f..94d338287f61 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -45,12 +45,19 @@ struct tgl_dkl_phy_ddi_buf_trans {
- 	u32 dkl_de_emphasis_control;
- };
- 
-+struct dg2_snps_phy_buf_trans {
-+	u8 snps_vswing;
-+	u8 snps_pre_cursor;
-+	u8 snps_post_cursor;
-+};
-+
- union intel_ddi_buf_trans_entry {
- 	struct hsw_ddi_buf_trans hsw;
- 	struct bxt_ddi_buf_trans bxt;
- 	struct icl_ddi_buf_trans icl;
- 	struct icl_mg_phy_ddi_buf_trans mg;
- 	struct tgl_dkl_phy_ddi_buf_trans dkl;
-+	struct dg2_snps_phy_buf_trans snps;
- };
- 
- struct intel_ddi_buf_trans {
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index 18b52b64af95..d81f71296297 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -5,6 +5,7 @@
- 
- #include <linux/util_macros.h>
- 
-+#include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_snps_phy.h"
-@@ -50,58 +51,30 @@ void intel_snps_phy_update_psr_power_state(struct drm_i915_private *dev_priv,
- 			 SNPS_PHY_TX_REQ_LN_DIS_PWR_STATE_PSR, val);
- }
- 
--static const u32 dg2_ddi_translations[] = {
--	/* VS 0, pre-emph 0 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 26),
--
--	/* VS 0, pre-emph 1 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 33) |
--		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 6),
--
--	/* VS 0, pre-emph 2 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 38) |
--		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 12),
--
--	/* VS 0, pre-emph 3 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 43) |
--		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 19),
--
--	/* VS 1, pre-emph 0 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 39),
--
--	/* VS 1, pre-emph 1 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 44) |
--		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 8),
--
--	/* VS 1, pre-emph 2 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 47) |
--		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 15),
--
--	/* VS 2, pre-emph 0 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 52),
--
--	/* VS 2, pre-emph 1 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 51) |
--		REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, 10),
--
--	/* VS 3, pre-emph 0 */
--	REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, 62),
--};
--
- void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
--					u32 level)
-+					const struct intel_crtc_state *crtc_state,
-+					int level)
+@@ -1587,7 +1611,10 @@ dg2_get_snps_buf_trans(struct intel_encoder *encoder,
+ 		       const struct intel_crtc_state *crtc_state,
+ 		       int *n_entries)
  {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	const struct intel_ddi_buf_trans *ddi_translations;
- 	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
- 	int n_entries, ln;
- 
--	n_entries = ARRAY_SIZE(dg2_ddi_translations);
--	if (level >= n_entries)
-+	ddi_translations = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
-+	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
-+		return;
-+	if (drm_WARN_ON_ONCE(&dev_priv->drm, level < 0 || level >= n_entries))
- 		level = n_entries - 1;
- 
--	for (ln = 0; ln < 4; ln++)
--		intel_de_write(dev_priv, SNPS_PHY_TX_EQ(ln, phy),
--			       dg2_ddi_translations[level]);
-+	for (ln = 0; ln < 4; ln++) {
-+		u32 val = 0;
-+
-+		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_MAIN, ddi_translations->entries[level].snps.snps_vswing);
-+		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_PRE, ddi_translations->entries[level].snps.snps_pre_cursor);
-+		val |= REG_FIELD_PREP(SNPS_PHY_TX_EQ_POST, ddi_translations->entries[level].snps.snps_post_cursor);
-+
-+		intel_de_write(dev_priv, SNPS_PHY_TX_EQ(ln, phy), val);
-+	}
+-	return intel_get_buf_trans(&dg2_snps_translations, n_entries);
++	if (crtc_state->port_clock > 1000000)
++		return intel_get_buf_trans(&dg2_snps_translations_uhbr, n_entries);
++	else
++		return intel_get_buf_trans(&dg2_snps_translations, n_entries);
  }
  
- /*
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.h b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-index 6261ff88ef5c..a68547a6fee5 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.h
-@@ -30,6 +30,7 @@ int intel_mpllb_calc_port_clock(struct intel_encoder *encoder,
- 
- int intel_snps_phy_check_hdmi_link_rate(int clock);
- void intel_snps_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
--					u32 level);
-+					const struct intel_crtc_state *crtc_state,
-+					int level);
- 
- #endif /* __INTEL_SNPS_PHY_H__ */
+ int intel_ddi_hdmi_num_entries(struct intel_encoder *encoder,
 -- 
 2.20.1
 
