@@ -2,33 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE653EB983
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 17:50:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F40E3EB989
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Aug 2021 17:51:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1BAB6E872;
-	Fri, 13 Aug 2021 15:50:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B0B36E877;
+	Fri, 13 Aug 2021 15:51:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B19F6E872;
- Fri, 13 Aug 2021 15:50:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 73199A0BCB;
- Fri, 13 Aug 2021 15:50:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2441132222406195440=="
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5607D6E877;
+ Fri, 13 Aug 2021 15:51:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10075"; a="237623499"
+X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="237623499"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 08:51:30 -0700
+X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="440395249"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2021 08:51:13 -0700
+Received: from andy by smile with local (Exim 4.94.2)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1mEZSb-009HtM-QE; Fri, 13 Aug 2021 18:51:05 +0300
+Date: Fri, 13 Aug 2021 18:51:05 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jim Cromie <jim.cromie@gmail.com>
+Cc: gregkh@linuxfoundation.org, seanpaul@chromium.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Baron <jbaron@akamai.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou <tao.zhou1@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Kevin Wang <kevin1.wang@amd.com>,
+ Chengming Gui <Jack.Gui@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ John Clements <john.clements@amd.com>,
+ Ashley Thomas <Ashley.Thomas2@amd.com>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Wyatt Wood <Wyatt.Wood@amd.com>, Johan Hovold <johan@kernel.org>,
+ Jessica Yu <jeyu@kernel.org>, Joe Perches <joe@perches.com>,
+ Miguel Ojeda <ojeda@kernel.org>,
+ Nick Desaulniers <ndesaulniers@gooogle.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Masahiro Yamada <masahiroy@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ "Paul E. McKenney" <paulmck@kernel.org>,
+ Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Vitor Massaru Iha <vitor@massaru.org>, Sedat Dilek <sedat.dilek@gmail.com>,
+ Changbin Du <changbin.du@intel.com>, Marco Elver <elver@google.com>,
+ Jarkko Sakkinen <jarkko@kernel.org>,
+ Alexander Potapenko <glider@google.com>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ Zhen Lei <thunder.leizhen@huawei.com>,
+ Albert van der Linde <alinde@google.com>,
+ Johannes Berg <johannes.berg@intel.com>,
+ Arvind Sankar <nivedita@alum.mit.edu>,
+ Patricia Alfonso <trishalfonso@google.com>, Arnd Bergmann <arnd@arndb.de>,
+ Palmer Dabbelt <palmerdabbelt@google.com>, Jiri Olsa <jolsa@kernel.org>,
+ Andrey Konovalov <andreyknvl@gmail.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Message-ID: <YRaU6fbGjcV7BGC/@smile.fi.intel.com>
+References: <20210813151734.1236324-1-jim.cromie@gmail.com>
+ <20210813151734.1236324-4-jim.cromie@gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Desmond Cheong Zhi Xi" <desmondcheongzx@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Aug 2021 15:50:54 -0000
-Message-ID: <162886985446.17682.4901379689746276439@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210813085450.32494-1-desmondcheongzx@gmail.com>
-In-Reply-To: <20210813085450.32494-1-desmondcheongzx@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_update_the_ioctl_handler?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210813151734.1236324-4-jim.cromie@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v5 3/9] dyndbg: add
+ DEFINE_DYNAMIC_DEBUG_CATEGORIES and callbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,316 +94,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2441132222406195440==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Aug 13, 2021 at 09:17:11AM -0600, Jim Cromie wrote:
+> DEFINE_DYNAMIC_DEBUG_CATEGORIES(name, var, bitmap_desc, @bit_descs)
+> allows users to define a drm.debug style (bitmap) sysfs interface, and
+> to specify the desired mapping from bits[0-N] to the format-prefix'd
+> pr_debug()s to be controlled.
+> 
+> DEFINE_DYNAMIC_DEBUG_CATEGORIES(debug_gvt, __gvt_debug,
+> 	"i915/gvt bitmap desc",
+> 	/**
+> 	 * search-prefixes, passed to dd-exec_queries
+> 	 * defines bits 0-N in order.
+> 	 * leading ^ is tacitly inserted (by callback currently)
+> 	 * trailing space used here excludes subcats.
+> 	 * helper macro needs more work
+> 	 * macro to autogen ++$i, 0x%x$i ?
+> 	 */
+> 	_DD_cat_("gvt:cmd: "),
+> 	_DD_cat_("gvt:core: "),
+> 	_DD_cat_("gvt:dpy: "),
+> 	_DD_cat_("gvt:el: "),
+> 	_DD_cat_("gvt:irq: "),
+> 	_DD_cat_("gvt:mm: "),
+> 	_DD_cat_("gvt:mmio: "),
+> 	_DD_cat_("gvt:render: "),
+> 	_DD_cat_("gvt:sched: "));
+> 
+> dynamic_debug.c: add 3 new elements:
+> 
+>  - int param_set_dyndbg()
+>  - int param_get_dyndbg()
+>  - struct kernel_param_ops param_ops_dyndbg
+> 
+> Following the model of kernel/params.c STANDARD_PARAM_DEFS, All 3 are
+> non-static and exported.
+> 
+> dynamic_debug.h:
+> 
+> Add DEFINE_DYNAMIC_DEBUG_CATEGORIES() described above, and a do-nothing stub.
+> 
+> Note that it also calls MODULE_PARM_DESC for the user, but expects the
+> user to catenate all the bit-descriptions together (as is done in
+> drm.debug), and in the following uses in amdgpu, i915.
+> 
+> This in the hope that someone can offer an auto-incrementing
+> label-generating macro, producing "\tbit-4 0x10\t" etc, and can show
+> how to apply it to __VA_ARGS__.
+> 
+> Also extern the struct kernel_param param_ops_dyndbg symbol, as is
+> done in moduleparams.h for all the STANDARD params.
+> 
+> USAGE NOTES:
+> 
+> Using dyndbg to query on "format ^$prefix" requires that the prefix be
+> present in the compiled-in format string; where run-time prefixing is
+> used, that format would be "%s...", which is not usefully selectable.
+> 
+> Adding structural query terms (func,file,lineno) could help (module is
+> already done), but DEFINE_DYNAMIC_DEBUG_CATEGORIES can't do that now,
+> adding it needs a better reason imo.
+> 
+> Dyndbg is completely agnostic wrt the categorization scheme used, to
+> play well with any prefix convention already in use.  Ad-hoc
+> categories and sub-categories are implicitly allowed, author
+> discipline and review is expected.
+> 
+> Here are some examples:
+> 
+> "1","2","3"		2 doesnt imply 1.
+>    			otherwize, sorta like printk levels
+> "1:","2:","3:"		are better, avoiding [1-9]\d+ ambiguity
+> "hi:","mid:","low:"	are reasonable, and imply independence
+> "todo:","rfc:"		might be handy
+> "A:".."Z:"		uhm, yeah
+> 
+> Hierarchical classes/categories are natural:
+> 
+> "drm:<CAT>:"		is used in later commit
+> "drm:<CAT>:<SUB>:"	is a natural extension.
+> "drm:atomic:fail:"	has been proposed, sounds directly useful
+> 
+> Some properties of a hierarchical category deserve explication:
+> 
+> Trailing spaces matter !
+> 
+> With 1..3-space ("drm: ", "drm:atomic: ", "drm:atomic:fail: "), the
+> ":" doesnt terminate the search-space, the trailing space does.
+> So a "drm:" search specification will match all DRM categories &
+> subcategories, and will not be useful in an interface where all
+> categories are controlled together.  That said, "drm:atomic:" &
+> "drm:atomic: " are different, and both are useful in cases.
+> 
+> Ad-Hoc sub-categories:
+> 
+> These have a caveat wrt wrapper macros adding prefixes like
+> "drm:atomic: "; the trailing space in the prefix means that
+> drm_dbg("fail: ...") renders as "drm:atomic: fail: ", which obviously
+> isn't ideal wrt clear and simple bitmaps.
+> 
+> A possible solution is to have a FOO_() version of every FOO() macro
+> which (anti-mnemonically) elides the trailing space, which is normally
+> inserted by a modified FOO().  Doing this would enforce a policy
+> decision that "debug categories will be space terminated", with an
+> pressure-relief valve.
+> 
+> Summarizing:
+> 
+>  - "drm:kms: " & "drm:kms:" are different
+>  - "drm:kms"		also different - includes drm:kms2:
+>  - "drm:kms:\t"		also different
+>  - "drm:kms:*"		doesnt work, no wildcard on format atm.
+> 
+> Order matters in DEFINE_DYNAMIC_DEBUG_CATEGORIES(... @bit_descs)
+> 
+> @bit_descs (array) position determines the bit mapping to the prefix,
+> so to keep a stable map, new categories or 3rd level categories must
+> be added to the end.
+> 
+> Since bits are/will-stay applied 0-N, the later bits can countermand
+> the earlier ones, but its tricky - consider;
+> 
+>     DD_CATs(... "drm:atomic:", ""drm:atomic:fail:" ) // misleading
+> 
+> The 1st search-term is misleading, because it includes (modifies)
+> subcategories, but then 2nd overrides it.  So don't do that.
+> 
+> There is still plenty of bikeshedding to do.
 
-== Series Details ==
+> ---
+> v4+:
+> 
+> . rename to DEFINE_DYNAMIC_DEBUG_CATEGORIES from DEFINE_DYNDBG_BITMAP
+> . in query, replace hardcoded "i915" w kp->mod->name
+> . static inline the stubs
+> . const *str in structs, const array. -Emil
+> . dyndbg: add do-nothing DEFINE_DYNAMIC_DEBUG_CATEGORIES if !DD_CORE
+> . call MOD_PARM_DESC(name, "$desc") for users
+> . simplify callback, remove bit-change detection
+> . config errs reported by <lkp@intel.com>
+> 
+> ddh-helpers
 
-Series: drm: update the ioctl handler
-URL   : https://patchwork.freedesktop.org/series/93677/
-State : success
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 
-== Summary ==
+So, it is signed or not? I didn't get (perhaps due to misplaced changlog?).
 
-CI Bug Log - changes from CI_DRM_10482 -> Patchwork_20818
-====================================================
+...
 
-Summary
--------
+>  } __attribute__((aligned(8)));
+>  
+>  
 
-  **SUCCESS**
+Do we need two blank lines here?
 
-  No regressions found.
+> +struct kernel_param;
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/index.html
+...
 
-Known issues
-------------
+> +int param_set_dyndbg(const char *instr, const struct kernel_param *kp)
+> +{
+> +	unsigned long inbits;
+> +	int rc, i, chgct = 0, totct = 0;
+> +	char query[OUR_QUERY_SIZE];
+> +	struct dyndbg_bitdesc *bitmap = (struct dyndbg_bitdesc *) kp->data;
 
-  Here are the changes found in Patchwork_20818 that come from known issues:
+So you need space after ')' ?
 
-### IGT changes ###
+> +	rc = kstrtoul(instr, 0, &inbits);
+> +	if (rc) {
+> +		pr_err("set_dyndbg: failed\n");
 
-#### Issues hit ####
+> +		return -EINVAL;
 
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([fdo#109315])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html
+Why not to return rc?
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +29 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+> +	}
+> +	vpr_info("set_dyndbg: input 0x%lx\n", inbits);
+> +
+> +	for (i = 0; !!bitmap[i].prefix; i++) {
 
-  * igt@amdgpu/amd_cs_nop@nop-gfx0:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +16 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+Hmm... Why not simply
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#3718])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+	for (bitmap = ...; bitmap->prefix; bitmap++) {
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
+?
 
-  * igt@i915_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][6] ([i915#1155])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html
+> +
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-tgl-1115g4:      NOTRUN -> [FAIL][7] ([i915#579])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][8] ([i915#579])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html
+Redundant blank line.
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9] ([i915#579]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
+> +		sprintf(query, "format '^%s' %cp", bitmap[i].prefix,
+> +			test_bit(i, &inbits) ? '+' : '-');
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([fdo#111827]) +8 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html
+snprintf() ?
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+> +
+> +		chgct = dynamic_debug_exec_queries(query, kp->mod->name);
+> +
+> +		v2pr_info("bit-%d: %d changes by '%s'\n", i, chgct, query);
+> +		totct += chgct;
+> +	}
+> +	vpr_info("total changes: %d\n", totct);
+> +	return 0;
+> +}
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([fdo#109285])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
+...
 
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][13] ([i915#1072]) +3 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html
+> +	return scnprintf(buffer, PAGE_SIZE, "%u\n",
+> +			 *((unsigned int *)kp->arg));
 
-  * igt@prime_vgem@basic-userptr:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][14] ([i915#3301])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html
+One line.
 
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][15] ([i915#3303]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-u2:          [SKIP][17] ([i915#579]) -> [INCOMPLETE][18] ([i915#2405])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#3718]: https://gitlab.freedesktop.org/drm/intel/issues/3718
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Participating hosts (35 -> 34)
-------------------------------
-
-  Additional (2): fi-tgl-1115g4 fi-bdw-5557u 
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10482 -> Patchwork_20818
-
-  CI-20190529: 20190529
-  CI_DRM_10482: 772cc2d9bb24a9f750e3a88c6b2172873830e095 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20818: 02942448f1376d07fd5eb8bf8804beab5c1a5c0a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-02942448f137 drm: unexport drm_ioctl_permit
-5b82a01bb586 drm: avoid races with modesetting rights
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/index.html
-
---===============2441132222406195440==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: update the ioctl handler</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93677/">https://patchwork.freedesktop.org/series/93677/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10482 -&gt; Patchwork_20818</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20818 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +29 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3718">i915#3718</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@i915_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1155">i915#1155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>
-<p>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-tgl-1115g4/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10482/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20818/fi-icl-u2/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (35 -&gt; 34)</h2>
-<p>Additional (2): fi-tgl-1115g4 fi-bdw-5557u <br />
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10482 -&gt; Patchwork_20818</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10482: 772cc2d9bb24a9f750e3a88c6b2172873830e095 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20818: 02942448f1376d07fd5eb8bf8804beab5c1a5c0a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>02942448f137 drm: unexport drm_ioctl_permit<br />
-5b82a01bb586 drm: avoid races with modesetting rights</p>
-
-</body>
-</html>
-
---===============2441132222406195440==--
