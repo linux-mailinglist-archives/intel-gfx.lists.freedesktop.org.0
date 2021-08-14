@@ -1,45 +1,90 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2B93ED171
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:58:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B3F3ED16B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:58:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 930F189D9B;
-	Mon, 16 Aug 2021 09:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2B889D81;
+	Mon, 16 Aug 2021 09:58:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B83C26E8A5
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 17:13:17 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4CBA961102;
- Fri, 13 Aug 2021 17:13:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1628874797;
- bh=Ye6ux6gsSOYuKdnM8xs7kUfqlN15AdCOL55n3kBtvyM=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=K6GH6FvSCN/rjrKcXrIuMm7FkpQ1Fm6aDgA497ASnfdG7Pn0vqyuJO79fCr92x3mt
- wLL+WyW7mxL9sLya/Xbbu3YyK4azqxHnZHr0xAeXoEisA+nAJ6fMr45FuQy2yW9boo
- milZyLiPRx9rBP0NXUaJlpAQb/Qgupds3dCPiYv/nPG9Og+c8+GTg47gBli4Jn+Vwi
- 8oixL+kxOR0tpo0e54iApPWVmk9ZZxMnexpUOfVAabMDUfVty0GcQ1L32XZ3O1QeXK
- ltZAhwR4QXG7YyMr6pkl+AOeVP0bm/Vr8CoQad4LMFaAx5hhKJeDY57KsBvDLVK3rC
- O/KmE+kBon71A==
-To: Dan Carpenter <dan.carpenter@oracle.com>, thomas.hellstrom@linux.intel.com
-Cc: intel-gfx@lists.freedesktop.org
-References: <20210813113120.GA30489@kili>
-From: Nathan Chancellor <nathan@kernel.org>
-Message-ID: <70702840-5346-e14c-5fb2-b1ad6feac1c9@kernel.org>
-Date: Fri, 13 Aug 2021 10:13:16 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+X-Greylist: delayed 346 seconds by postgrey-1.36 at gabe;
+ Sat, 14 Aug 2021 12:52:24 UTC
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81AEF6E831;
+ Sat, 14 Aug 2021 12:52:24 +0000 (UTC)
+Received: from pps.filterd (m0098421.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 17ECZp6b163025; Sat, 14 Aug 2021 08:46:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=date : from : to : cc :
+ subject : message-id : content-type : mime-version; s=pp1;
+ bh=KmjHG+r93Hi+L0c9AvfW8xBT7Wuv/yTASnvzpU8Lu5o=;
+ b=AIbgQSXLOBKWhftlWvmPMZeyXtISUyXELdE0bcwkC2Ot9/4dS75UF5ZRzkvSlZ9hd8E9
+ 17Kq7AqSDIRmf5PANn3WOzemwxO5KewQ/KlD+8jGY4PQEdswV7Us87YVXe3LriX9xWRN
+ 8J1O+1dS3E8xC1ZzS/eiT9B9kBzvwMuaxv91hziRu7THLITS28xtP4HhhuWdKTm8HQIo
+ 40IgxJoHtFgTR/YtV2GXC5Jj6ozoOxHvP7BKA22O9IxOkKIEm61WnwnrAVYIiBxeJ6f2
+ IGc4qci/aQBBM+AjWmA20l+cApdCYPVuLwGARp60VL/thDSLn9Ec8fmI0DSnOudC4gq+ Mw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 3ae9w2ku0n-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sat, 14 Aug 2021 08:46:33 -0400
+Received: from m0098421.ppops.net (m0098421.ppops.net [127.0.0.1])
+ by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 17ECh31E184167;
+ Sat, 14 Aug 2021 08:46:33 -0400
+Received: from ppma01fra.de.ibm.com (46.49.7a9f.ip4.static.sl-reverse.com
+ [159.122.73.70])
+ by mx0a-001b2d01.pphosted.com with ESMTP id 3ae9w2ku09-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sat, 14 Aug 2021 08:46:33 -0400
+Received: from pps.filterd (ppma01fra.de.ibm.com [127.0.0.1])
+ by ppma01fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 17ECiFLr017259;
+ Sat, 14 Aug 2021 12:46:31 GMT
+Received: from b06cxnps4076.portsmouth.uk.ibm.com
+ (d06relay13.portsmouth.uk.ibm.com [9.149.109.198])
+ by ppma01fra.de.ibm.com with ESMTP id 3ae5f88ckh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sat, 14 Aug 2021 12:46:31 +0000
+Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com
+ [9.149.105.232])
+ by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 17ECkTcq55902478
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Sat, 14 Aug 2021 12:46:29 GMT
+Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 304575204F;
+ Sat, 14 Aug 2021 12:46:29 +0000 (GMT)
+Received: from osiris (unknown [9.145.44.44])
+ by d06av21.portsmouth.uk.ibm.com (Postfix) with ESMTPS id D2FF152051;
+ Sat, 14 Aug 2021 12:46:28 +0000 (GMT)
+Date: Sat, 14 Aug 2021 14:46:27 +0200
+From: Heiko Carstens <hca@linux.ibm.com>
+To: Dave Airlie <airlied@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Message-ID: <YRe7I67h4gMVOWuu@osiris>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: nPgM4dBHirfyZ4kqfW7WhLMo7cZxL4sX
+X-Proofpoint-GUID: BzjyakpaPXQtwgKXtRg-yea5mK2AN-hV
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-In-Reply-To: <20210813113120.GA30489@kili>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 16 Aug 2021 09:58:05 +0000
-Subject: Re: [Intel-gfx] [bug report] drm/i915/gem: Correct the locking and
- pin pattern for dma-buf (v8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.790
+ definitions=2021-08-14_02:2021-08-13,
+ 2021-08-14 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0
+ clxscore=1011 adultscore=0 impostorscore=0 priorityscore=1501
+ mlxlogscore=999 lowpriorityscore=0 bulkscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2107140000 definitions=main-2108140076
+X-Mailman-Approved-At: Mon, 16 Aug 2021 09:58:06 +0000
+Subject: [Intel-gfx] [BUG - BISECTED] display not detected anymore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,41 +100,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/13/2021 4:31 AM, Dan Carpenter wrote:
-> Nathan has probably already sent fixes for these.  Nathan, could you CC
-> kernel-janitors on static checker fixes?  That way we wouldn't send so
-> many duplicate patches.
+Hello,
 
-Sure. I did not send any fixes prior to this email but I just sent
-https://lore.kernel.org/r/20210813171158.2665823-1-nathan@kernel.org/ 
-with kernel-janitors and you CC'd.
+I have Fedora 33 running, and with the Fedore kernel update from 5.11
+series to 5.12 my external monitor was not detected anymore. Same is
+true with the Fedora supplied 5.13 kernel version.
 
-> Uninitialized variable warnings are really frustrating.  We disabled the
-> GCC warning for them because the new GCC is crap.  So now they take up
-> a lot of my time.  A few of these are because Smatch doesn't always know
-> when we enter loops, but more than half are clear bugs.
-> 
-> drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c:189 i915_gem_dmabuf_attach() error: uninitialized symbol 'err'.
-> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:80 igt_dmabuf_import_self() error: uninitialized symbol 'import_obj'.
-> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:104 igt_dmabuf_import_same_driver_lmem() error: uninitialized symbol 'dmabuf'.
-> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:138 igt_dmabuf_import_same_driver_lmem() error: uninitialized symbol 'err'.
-> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:158 igt_dmabuf_import_same_driver() error: uninitialized symbol 'dmabuf'.
-> drivers/gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c:231 igt_dmabuf_import_same_driver() error: uninitialized symbol 'import_obj'.
-> drivers/gpu/drm/i915/gem/selftests/i915_gem_migrate.c:197 igt_lmem_pages_migrate() error: uninitialized symbol 'err'.
+So I tried with vanilla kernel 5.11 and latest git head from Linus'
+tree. 5.11 works while latest git head does not. Bisecting the problem
+points to commit 32c3d9b0f51e ("Merge tag 'drm-intel-next-2021-01-27'
+of git://anongit.freedesktop.org/drm/drm-intel into drm-next").
 
-...
+Unfortunately it is a merge commit, so it looks like conflicting
+changes have been made in the parent branches.
 
-> drivers/gpu/drm/i915/gt/selftest_hangcheck.c:465 igt_reset_nop_engine() error: uninitialized symbol 'err'.
-> drivers/gpu/drm/i915/gt/selftest_hangcheck.c:580 igt_reset_fail_engine() error: uninitialized symbol 'err'.
+Hardware in use:
 
-Clang caught these two but none of the rest and it is an obvious fix so 
-that is the only one I am going to fix.
+- ThinkPad X1 Yoga 4th / Carbon 7th
+- Intel(R) Core(TM) i5-8265U CPU @ 1.60GHz
 
-> drivers/gpu/drm/i915/gt/selftest_migrate.c:102 copy() error: uninitialized symbol 'rq'.
-> drivers/gpu/drm/i915/gt/selftest_migrate.c:113 copy() error: uninitialized symbol 'vaddr'.
-> drivers/gpu/drm/i915/gt/selftest_migrate.c:182 clear() error: uninitialized symbol 'rq'.
-> drivers/gpu/drm/i915/gt/selftest_migrate.c:193 clear() error: uninitialized symbol 'vaddr'.
-> drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:819 __unwind_incomplete_requests() error: uninitialized symbol 'pl'.
+The Thinkpad is connected to a ThinkPad Thunderbolt 3 Dock with a
+Thunderbolt cable and a monitor (Eizo EV3285) is connected via
+Displayport to the docking station.
 
-Cheers,
-Nathan
+The monitor is detected and works without any problems (4k@60HZ)
+before the above mentioned merge commit. With the commit and
+afterwards it is not detected anymore and only the Thinkpad builtin
+display can be used.
+
+Any idea what went wrong? I can provide more information, or test
+debug patches if wanted. Just let me know.
+
+Thanks,
+Heiko
