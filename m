@@ -2,145 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 335EB3EBEB0
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Aug 2021 01:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 835C43EBEFA
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Aug 2021 02:28:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31A6A6E8E8;
-	Fri, 13 Aug 2021 23:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C01446E52D;
+	Sat, 14 Aug 2021 00:28:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 862136E8E7;
- Fri, 13 Aug 2021 23:24:44 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10075"; a="215673706"
-X-IronPort-AV: E=Sophos;i="5.84,320,1620716400"; d="scan'208";a="215673706"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06EA66E4B7;
+ Sat, 14 Aug 2021 00:28:31 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10075"; a="215678420"
+X-IronPort-AV: E=Sophos;i="5.84,320,1620716400"; d="scan'208";a="215678420"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 16:24:43 -0700
+ 13 Aug 2021 17:28:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,320,1620716400"; d="scan'208";a="447320344"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga007.fm.intel.com with ESMTP; 13 Aug 2021 16:24:42 -0700
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.84,320,1620716400"; d="scan'208";a="518380489"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by FMSMGA003.fm.intel.com with ESMTP; 13 Aug 2021 17:28:29 -0700
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10; Fri, 13 Aug 2021 16:24:42 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
+ 15.1.2242.10; Fri, 13 Aug 2021 17:28:29 -0700
+Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.10 via Frontend Transport; Fri, 13 Aug 2021 16:24:42 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.106)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2242.10; Fri, 13 Aug 2021 17:28:28 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10 via Frontend Transport; Fri, 13 Aug 2021 17:28:28 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2242.10; Fri, 13 Aug 2021 16:24:42 -0700
+ 15.1.2242.10; Fri, 13 Aug 2021 17:28:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FaWoEGttP+uY3OVKOFnI1Q+WDkTD+G+gTa/fYbVGpfy4U0puKAUbNnrQwqISx4pP4ZT1Y3OfqPtHDog0NcgwEDExKD0laKnU/zDYf1kIHtL43gmKfYYSxkCDH4TUW0IWDhPDn/yfjgCTrVHWkgEWOTJDfJ2vI7XTbif2BzbLPSZJRU9UKhrcDhjCM9/blT1eygtCfhYFbLf6/vOc91DX7MBC+AGNC27NqUmI66oautwSXUUM/4+5hbOiKM8aQ/7MsXodXCgPlvVjM9gkg2Szhp42cU7O7L73fAMsao5rP53GQa+M3kMToYTjDpjFxWi0gJLILkCa0SXMYlDaWA0zsw==
+ b=Jfr63Ojp35CJbokU5TtVKcW5omJNW7CDhqV/CB3oIbKKwnxI8HpWM2ucRIa6AzPNfPeJsi9QkYL/HgJ3nV2iOS5OJVfSMyuLg/XYnYeg1ZP3WLxChxeyGwI3EsssqfckLDcuQdpU+HtVpGP1CzYjbm/unWzBuR/xC9Be+B28Cm1ANzXrfOo3SjIYiVhSsys1wfQ4k+Q+c9Ns4PVAFdxtjeLM51KkUmqg3OERGbTLU1Z1g5JSD1bbk3kcQKJicKjZeely36P8IStoPZlTavLjUrreSQ9184DoadsYmBkp7pJQhbDHAWcqMQBf9D61JIpOdZIAOB9EHRa1lQ3qxe5GTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4FO/P1hv96se4D4ryqn+PaBEK7TZwlbBei5GJnMLMI8=;
- b=fUy7FQU7yJsmj7+cP7u6eXOHN+eeCd7go+urg8l/qJNeFrbulbbSfeTRb1VdbIyXHRvwmXH0tkZt7QMwmSaFa4mWXIi0//H8toazgQ24034pAr+jLZFCisk8DN+ChV87u9HDOBRSCUTtxf70U8Whd3wH8mI6IohlUh9WBnRxXAZ2I5Nisplh1W2C0zDG9so8c/SLEsL2ZZ8aJBeBpadi2oZzJ5rp5M3n5QAQqAfAACeTNi2tLMwqsUxUYA8qhRTR0IdAz69KYJeSIk+trSbN2XNhu1AGTCb3ehp9+FzMLJM8y8kPv7LHJMnqEHGv4la+Q8DZiCwMpq2DLbYbVv6EPQ==
+ bh=iOvN7ZYpM67CZvnkgLHpui24f42CZUwr2R6fE+AKgyA=;
+ b=l5oA7WwOLwUx94MqHHqRFg4DEuNStFXdjz+jSgfklE0Isy1oi/Ob3+WElSGnEx8j+yRVQPaLtPFtvvfbBsOYuvNiUpYSZnJr33L8atQHeW+r6VSULi/mf6EihQ/djpROfNXeBHsE5A5w3eFPYD2zMd1+aSXti3h9ltRJqDfN95ut6AoUPUaMkoW6hPvKA+rBiKHNdQ/FdUOof/8W1JjW1s7WMHpJaqjmOX9MVUnKNJA0SqP0d+Bd997t/WOjRC6L90cFpnwkTEanVqpmy3jt9RL0VuzJ9/laC+wY9wgPBRFYV2RtFe/IEVVshGo7YDSWG+lza94niK7J0WwcPH2fzA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
  s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4FO/P1hv96se4D4ryqn+PaBEK7TZwlbBei5GJnMLMI8=;
- b=uqD7+7hDNxmkHth0y8UEkT3XBuhMgRer+nzfCNFZ8PtT6pDv7hmHzQRuFf4Qnn48k96bniOb4Tz7iTsLH30/savvXvaRBptBuVNLFpe5ptmdxN58/h1qDiy76P1RxE2uzsAeEmpt90/lmAv2h0hdsfUlO1HxEbBbubx5jig8TfU=
+ bh=iOvN7ZYpM67CZvnkgLHpui24f42CZUwr2R6fE+AKgyA=;
+ b=GhruccEcopZ9EEz1Qz+Q6StLFHQgbaz0sSawLTC0yfZg8LWshiTiZIReJhJ1XGVNjyTyiel62RR4JGG0WaV8zT61GTLnKNGQ5S85wDSbh2SmHgHvWZh6/CbP5TaGnBy/0yvS6XWM3qq+LjrfyrKbVgMqnZ2c+SNLbNvHUQQrFUU=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5488.namprd11.prod.outlook.com (2603:10b6:5:39d::5) by
- DM5PR11MB1609.namprd11.prod.outlook.com (2603:10b6:4:8::12) with
+ DM6PR11MB3083.namprd11.prod.outlook.com (2603:10b6:5:65::20) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4415.19; Fri, 13 Aug 2021 23:24:41 +0000
+ 15.20.4394.20; Sat, 14 Aug 2021 00:28:26 +0000
 Received: from DM4PR11MB5488.namprd11.prod.outlook.com
  ([fe80::b96b:79f6:c1fb:13ff]) by DM4PR11MB5488.namprd11.prod.outlook.com
- ([fe80::b96b:79f6:c1fb:13ff%7]) with mapi id 15.20.4415.019; Fri, 13 Aug 2021
- 23:24:41 +0000
+ ([fe80::b96b:79f6:c1fb:13ff%7]) with mapi id 15.20.4415.019; Sat, 14 Aug 2021
+ 00:28:26 +0000
 To: Matthew Brost <matthew.brost@intel.com>, <igt-dev@lists.freedesktop.org>
 CC: <intel-gfx@lists.freedesktop.org>
 References: <20210804012303.158392-1-matthew.brost@intel.com>
- <20210804012303.158392-2-matthew.brost@intel.com>
+ <20210804012303.158392-4-matthew.brost@intel.com>
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <0f42bc7d-2a3a-ffcc-a674-8d028093987a@intel.com>
-Date: Fri, 13 Aug 2021 16:24:37 -0700
+Message-ID: <c3450b4e-8eb1-9f4c-9869-0bdad62b7a30@intel.com>
+Date: Fri, 13 Aug 2021 17:28:23 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.12.0
-In-Reply-To: <20210804012303.158392-2-matthew.brost@intel.com>
+In-Reply-To: <20210804012303.158392-4-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-X-ClientProxiedBy: SJ0PR03CA0327.namprd03.prod.outlook.com
- (2603:10b6:a03:39d::32) To DM4PR11MB5488.namprd11.prod.outlook.com
+X-ClientProxiedBy: MWHPR20CA0025.namprd20.prod.outlook.com
+ (2603:10b6:300:ed::11) To DM4PR11MB5488.namprd11.prod.outlook.com
  (2603:10b6:5:39d::5)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from [192.168.1.65] (99.72.232.53) by
- SJ0PR03CA0327.namprd03.prod.outlook.com (2603:10b6:a03:39d::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.14 via Frontend
- Transport; Fri, 13 Aug 2021 23:24:40 +0000
+ MWHPR20CA0025.namprd20.prod.outlook.com (2603:10b6:300:ed::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4415.14 via Frontend Transport; Sat, 14 Aug 2021 00:28:26 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d29d7bc3-093e-4ebc-5f5f-08d95eb18699
-X-MS-TrafficTypeDiagnostic: DM5PR11MB1609:
+X-MS-Office365-Filtering-Correlation-Id: f2c68b06-68f0-4c3d-703d-08d95eba6edc
+X-MS-TrafficTypeDiagnostic: DM6PR11MB3083:
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR11MB1609F9DAB2F3E12E62C8C1E2F4FA9@DM5PR11MB1609.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Microsoft-Antispam-PRVS: <DM6PR11MB30835D5731E79A23EC1C8B1FF4FB9@DM6PR11MB3083.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jdrLUGbTKaqNmpqgvlAEQ83aWk3C9LxrN52+3ECfuhiptB/vQBEfITvgFtHJEIHy20jzTdQUaNO/8DEloKx7ghgaxEoAtlu+XM7oFapgoSA6JGSFvCCSSnT29T1MpQ8xAigI5ECYYydxHFf1Sc0+iSZ9UvJmTEJ9H9R9ddPeSNZqxCfwoKmkxWAZkXK5Zq/OpSYU5Esis0i2QYO4wECw3XOoSaxeDyOqxiZDzZ4ijH5M9H2x1wi/+oPucKrjoz5+ipViqVireUDpSMcOad2JBNObuLRkIkHqXB0KLAP2ghcK2hBpsMc8KwZJ2NR4E+gd/5dZTEbKPew34EmO/rQ2JrxxEyyxzmdsFNnMwlz5RUM38vluuItmAYm+iwY9J9enV72AkcY2mEn+GLsSp3kCfdchCG5OgbssVa1cdNlYi9rrUgUTDWuVtQprVtzvFaInfyn09o2xFzQMU9kz7xJT71wEATkQo+ew/nH5DoXCLNennwdOqTuoROhRXH3UaYV96ZDCQIoWVX1KFyvS0dxpDgnzBrMu+ZRxWUfAnHguWXhSwNI6Y2p9uW57LfxFz5YaVmJakzdmo40iU+qX7v3IQvvpCrzu62HnYNWtb6YDuDXHZUf6zmTWBSJU5QMAJOoG+y//31XdSKRT3mcntU/EN+cf7UqL4V7pn1JyRdjYyuI7mkk69JyZ3EeYyWgDWY7Gtm/JjEeDVV+fSFP1tFfOGopFCvTV1tMoffAQ6737ctr16sQszh0R2GG4yQrE2zEI
+X-Microsoft-Antispam-Message-Info: 8lFfTIKfB0PUZmLDWdVVxkTHChb1lvvfNp2mdEmrt8j3+kiuEpiKRiXqJJIs9BO698lG00UaHBJeqkIPOKweF23gV/IhFruMJJYohYyTqCy/Zd1bFXVS5FzxfrtOqBrI4/co+5B2drt8PA6E4nmuvK3TbDDfZwPT3o/WbQgTQPT7RLZeDahlGv+cgJoxJshPucxrsIh/lsOTenqCnpan3VzHPVGUnDx89SWMcxKJrFlVIFJPO74ju476IvtYOfA511xHicAqQuhjzp3YEcgWGSt2sav3swL8XjXdjcZ2K2uIAolveeCq6WWg4UQyQILslfk1KTTX9qm+SgSUbSBOykq0EMWT1B9bxnoBNTsCwUSY8atc5pOXRF3JuBGK7r4s/zw7DkEI0OjGljLmozY+QB29AuK9Bc25xRzGTUw66OscrPson+upemkMSs9z3gW801OaozAk3km+WjS+cMwz3XtaVvVlG0esQxmmvmW1XgbZf8wRwwbnFyyTFCbS3ovBKdFd88PHHcqOgcSAN9TvsGL/fmsT+zpJZFnjPOsKYJTaHoxEC3S/QnoRrehfsHu2jJ66NCEUQTcEMlByONgkc2WnoCL0Bya8gDf4nUMFOlMfdOoLKqfCWdUA/hK3aLwVz4GSgHbMjPbCyNR675Ddb4y0Gj2Uqo1UGjVmzAHBI4rBqhaLzBYJrY5sTZzsNmHpQ7O9qOVH1FpadGTXOXRU92pTLKqx8MhcOg0lcE6g14K5EFlKHHcgTYykFOEq0469
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5488.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(83380400001)(38100700002)(31696002)(316002)(16576012)(31686004)(6666004)(86362001)(66476007)(8676002)(66556008)(8936002)(26005)(186003)(66946007)(36756003)(5660300002)(6486002)(2906002)(508600001)(53546011)(4326008)(956004)(450100002)(2616005)(45980500001)(43740500002);
+ SFS:(4636009)(39860400002)(136003)(396003)(346002)(376002)(366004)(86362001)(16576012)(2906002)(186003)(31696002)(316002)(83380400001)(6666004)(6486002)(53546011)(26005)(38100700002)(8936002)(31686004)(66946007)(66556008)(478600001)(956004)(2616005)(66476007)(15650500001)(5660300002)(8676002)(4326008)(450100002)(36756003)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bEI5RHZRK0RydS9JRVc4bEZnY1RaV0dwRkZlbGdPN3AzS1J5MnUvSjR4YWxp?=
- =?utf-8?B?cFhTR1NZVHpzRXBwUDlobnJMblV4em1ZSjl4L2dQSjRtSldRakV2ZEtRNUN6?=
- =?utf-8?B?OGRoYy9uWS9ZNGp5WlhyVWUySGpXc2Q0OTA2ZFpxWUJXbDZ0Nmx6VGZyWWp0?=
- =?utf-8?B?WEcrN1cwVkZWbGtlM1FIY1hrMVZvR0Y1dDcwL2h4OXVmaUUyRG5Pb1NJZlZu?=
- =?utf-8?B?K2I3RzZWQU8veFVOQlRpU3dRVFBhbWhxTGJmcFhWZzVLdVphYWY2OHovV29x?=
- =?utf-8?B?azgxYzFSc0o0UHl4VTMza25oU3YwMlJndjNzZWNsZFZTeUQyUnFUQzkvQ0xK?=
- =?utf-8?B?YTFuUE9FekVKL2JsaXpiSVZSSUxYUk5TMWlnemJnNy9UTHAvaFRaWFRiaXVI?=
- =?utf-8?B?VGdjTTh2blpiQkNrMDAzeE55L3lXY3R0N0lJcXFqM3g3VkgyajcxektrKzdH?=
- =?utf-8?B?WWttYTlVdnM2bTArY2RLOC9WM0NrZ2ROS3E3dXNOV0FRdUFQb0xES1o0VHNF?=
- =?utf-8?B?Rm9ubnF2RVBtb2pDMUtSRGE5ejg5ellONVR5QTNxd1k5eHVqajBSNUZKV2Y5?=
- =?utf-8?B?QUY2OTBidS9SUERFWU95RURGNEh5UG54Wmh5a0VmSzloZndGN0cydHdBb0hw?=
- =?utf-8?B?WU0vU3d5dStNUWI1VXB1VGpURFdIaGpHeHhKdVdkY1hIckVVYXFtbWNwQ3pG?=
- =?utf-8?B?V0Jpb0JTazR3U0txZXdUWEpEZkU3SVp4YThVMTVWS0xFVk44YngvWlVvQVVP?=
- =?utf-8?B?YlRLdkYvOTh5d3VzQmVMKzFIT1BCeGZJdjNBRGZ3S3I1SlVmL2lGUy9CMWp1?=
- =?utf-8?B?RDZKUUVXOEdjZnNZMWJHS0JDOHF3YUF0TFd0bVZ5TkxJVWRRdlJyYUFqN2ND?=
- =?utf-8?B?Z0RIb1ZZa0tmSGpIRVVNb3dSS2d3eVVDNnc4SEpla1lRM1BXKzJ2eXNTdDFL?=
- =?utf-8?B?d3RLVkZRNVBhYzQwYzBxbGZVcFNvLzJJVyswaXFhcytyQUlodjdvdTZqd013?=
- =?utf-8?B?S2k2UFdhMVlFTWF2UXhqTUlmZHZnTFZtTmEwUHRGTTBsWmt2TFBOQU5pbjE3?=
- =?utf-8?B?TEx6UzlhZVhLNHFJRkc2MXFzdWo5R3lNVEIwYmNwTXU0dGxOQmNWZGdGSWIw?=
- =?utf-8?B?RmN4cEM5WTYzT0FnL0h0blhCbFF0ZzRoamV2MFg2MVBYUHFnNVIzNXBLVU5G?=
- =?utf-8?B?aVVES2FuSlVUN1hZMVVwM2xockcrak1zRUZocVY0V1dsSmQwYXdkVzEvbmRP?=
- =?utf-8?B?aUttZy83MjlwWEgxRjhCaTQ0dVdGKytZY2s4d2NlbzBoLzE4WDR1K0VlbWxp?=
- =?utf-8?B?SzZCc1hJY2NpaWx5eTBEZFJrTzJhbHRWL1lzdmM3WXZtdExZQTI4WnBzNTFj?=
- =?utf-8?B?eUtTQzMzWHZiRGhML01vZG5WSHNSYTJSdlJ4Z2FDaEJ4dVJNRFJtM0dZdnZ4?=
- =?utf-8?B?VzAxaWpoem4rYjVqU203Zk8veThDV2psRmcrbnU5U2JjVVRJMUlRYWVDK0xP?=
- =?utf-8?B?QnV5VTJRSzBmdks4NXpFQk1WUVBBRlpJSGVDUmRLR24xdGNHbVRwNGNNQXc5?=
- =?utf-8?B?MzdzalFxMExJM2FxL21KR0hzUFNkc0pGOGNGNXZ2VkRKSk44Tis2RWFwSDNV?=
- =?utf-8?B?bjliZi8wYUp3SUtYeFBNRFd5WlhTZ1RUUk5yTUV3dk16bUE2Z3FycEtabW1t?=
- =?utf-8?B?YTZtdU9BVmhIL2RIemJvdGNCV2t0eE1hTHlXOENXU3pnbG5iRFluMUI0ekNz?=
- =?utf-8?Q?0s4Pld6KtsvG62r3mPDDAjxGm+DyfRJ+V1BmH1W?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d29d7bc3-093e-4ebc-5f5f-08d95eb18699
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aHlGN2JFTVJ2THdYTldrZEFncTg2S25pK2FsSjZQeHhCc0Y5cThKTUl0aXk5?=
+ =?utf-8?B?Y1VYNzVFb3JBUEwvOEtkSnhrZGQreFFDZ014bTl1aVYvSXBmYzN3K0o5UjJj?=
+ =?utf-8?B?SFl6UDZNZm50Q3ZjdmZNeXBHRmhETVh2eGxNRmN0YkNpVzV0MG9BbTZYZDFw?=
+ =?utf-8?B?cEVXcHJlekRFc2JwakFTZGxIcE8ySjB3YVlnY1pJcWJjQjBubVh4WTRGTWJR?=
+ =?utf-8?B?R0dPSHBMUGJtSjBicWVoQkhhM1Flb3JzK3VnZjdkSXdUcDl4OHZQcmd1OWtJ?=
+ =?utf-8?B?ZUVnRTVDMlJNbmp4WWYrRUFIbkNWUmJmZ2xLUUw5Lzh5Y3dmaHRjU1ZKSFEy?=
+ =?utf-8?B?SncwbzZXMDNLZ2ZjQVVWSHRjaDFoKzQ0MDF5ZUQxTkd4bWFhNFlWUmdtK0Z6?=
+ =?utf-8?B?SGZzREdxK1NrMGh0WFNjaWtNYUt6SWdnR2FhbCtHeCswWG14N1dha0cxWHlU?=
+ =?utf-8?B?aEhhRy91cGxxN01xWlY0OUhTOFphenZvbVVVMGt4c2lJWFBwZkNGeUZ0aENT?=
+ =?utf-8?B?dy8xcWJWK1pwM1VMSm1PNTlBSjE2SThjODZGam9NWkpDWmg4Y1RZdEo2UXV5?=
+ =?utf-8?B?b3luQThtMGNkWEpMeXpoKzNQNzBTeUJpMmErdDl1Y0ptemJYTmNXVVVjL3VU?=
+ =?utf-8?B?Q0NzR0gzd3dqWXhUdVRDcmZSRUhjcytUOGtPWkRNdzFTdHY0MmVUTGtndzJz?=
+ =?utf-8?B?OHFPb1hrWnBMTVloWDVxbHkyNWdSVTRlTy82anpteDhyNE9ydWE3WThLZ3NU?=
+ =?utf-8?B?a09QeGE0ZmNBL3VFRWpIenlyTFdsS0hGVkg4NkNLa1ZrSUpMU0tyMXdLR1Ay?=
+ =?utf-8?B?UEtMa09FcnZiUytQTUJ4Z2Q0S2d0WW15clJ2VlZkK09KNmVkUmVha24yU2xo?=
+ =?utf-8?B?OHlOMjNRSEJkTjFrOGF2QTN0ekR2OTY0blNVOVVLZUEzQnlLR2xZS21IN0pm?=
+ =?utf-8?B?Smo0RXJORzdFNk9yTlVBSTZ3R2tnK25IY0tEcWlObVFTSTgxUFJ3NmVGTzA4?=
+ =?utf-8?B?ZnVXNWZQcFVQMys1YlRheXVrMnFSTlFKcmxGblBmTk81T0xITmJGRmRGY0xr?=
+ =?utf-8?B?T0VtMzZRNERSMGUzY3Z2azB3ODVCaUlDMDlIOVkyUEU5V2pzczgxSmJYc3Y2?=
+ =?utf-8?B?ajZUc0xUNGFwaUVzNXZkUGNpc3JweWU3anFXN0NxMGRvV0VvaDh1S1pzQlRL?=
+ =?utf-8?B?andqSVJWSlYyQlRHbWNqNkxGQTY1ZFJBcjYvVjdDdktLWTh1aDNXTmRuVGdr?=
+ =?utf-8?B?cVNBTk40bFdzS3BnZzkxeGtKR0NKTlZQb0JyL2pMNTl1Ky9LYnNobnh2ejFZ?=
+ =?utf-8?B?NTFKNjRMTnJJZUNhRHMxeGJlTGJKUjhwWXRvVEpRRGFvNFV5alprVVBLd2RV?=
+ =?utf-8?B?YnJnZWJOUFZSUTZlbk5UYVAzK3JKK0hBWnNzNlBTeHRDNklZRHNGbnRJc0xl?=
+ =?utf-8?B?Ui9DcXFzOWRKb3pkZER6VEwvV0E1bzhsZHpsbTl2NHNIVUxoSnJnOTRYSWJV?=
+ =?utf-8?B?WVlVc0NIZVRaakJxazVlOTcwekdXTzhzVGhmenJDclU4R2htK1lTdnc5QWRY?=
+ =?utf-8?B?aktoTzVLSzBadzZxUkF3UURSTlhGVVRuaEZSNStJTm5MZ1BPZ2d1YmVaOVhz?=
+ =?utf-8?B?YlhDd3c2RDVobWxQWkZ6T1UrZnRwd2tKOUR0SWRmWVhHZmtOeGY4R01Td1FM?=
+ =?utf-8?B?NUVtV2xZbXNWbytiMWRDalJQM2FCL25IUjFaTFE1RTlLSndDekM5b3F4OXRr?=
+ =?utf-8?Q?4JfGQ3JJlb8jTBZWszHCI30/NXfFbeRAFp0dtXf?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2c68b06-68f0-4c3d-703d-08d95eba6edc
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5488.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2021 23:24:41.3192 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2021 00:28:26.7778 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pOUSNaLT4ozQeVuXkVqksCoemco8MF6E8kFonpl+3FkiDNJPqJuCp/zDEKZrTYGtlXTb6jFVVwavWRFo9A3tiNiFn2YBixVDYI06e0P7XME=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1609
+X-MS-Exchange-CrossTenant-UserPrincipalName: qjjPbxx/XESvG3LAoN/a+ryT1MCOB5akhATqJ9Xw7yeMIxgaL4ATYokaEw2RgfZTpTX7woBf4unbmH4jhW6x4gKfj92FL10GRdWGI2uAgnQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3083
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/3] i915/gem_exec_schedule: Make
- gem_exec_schedule understand static priority mapping
+Subject: Re: [Intel-gfx] [PATCH i-g-t 3/3] i915/gem_exec_capture: Update to
+ support GuC based resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,269 +162,275 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 8/3/2021 6:23 PM, Matthew Brost wrote:
-> The i915 currently has 2k visible priority levels which are currently
-> unique. This is changing to statically map these 2k levels into 3
-> buckets:
+> From: "Signed-off-by: John Harrison" <John.C.Harrison@Intel.com>
 >
-> low: < 0
-> mid: 0
-> high: > 0
+> When GuC submission is enabled, GuC itself manages hang detection and
+> recovery. Therefore, any test that relies on being able to trigger an
+> engine reset in the driver will fail. Full GT resets can still be
+> triggered by the driver, however in that situation detecting the
+> specific context that caused a hang is not possible as the driver has
+> no information about what is actually running on the hardware at any
+> given time.
 >
-> Update gem_exec_schedule to understand this. This entails updating
-> promotion test to use 3 levels that will map into different buckets and
-> also add bit of delay after releasing a cork beforing completing the
-> spinners.
+> So update the test to cause a reset via a the hangcheck mechanism by
+> submitting a hanging batch and waiting. That way it is guaranteed to
+> be testing the correct reset code paths for the current platform,
+> whether that is GuC enabled or not.
+>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   lib/igt_gt.c                  | 44 +++++++++++++++++++----------
+>   lib/igt_gt.h                  |  1 +
+>   tests/i915/gem_exec_capture.c | 52 +++++++++++++++++++++++++++++------
+>   3 files changed, 74 insertions(+), 23 deletions(-)
+>
+> diff --git a/lib/igt_gt.c b/lib/igt_gt.c
+> index c049477db..ec548d501 100644
+> --- a/lib/igt_gt.c
+> +++ b/lib/igt_gt.c
+> @@ -56,23 +56,28 @@
+>    * engines.
+>    */
+>   
+> +static int reset_query_once = -1;
+> +
+>   static bool has_gpu_reset(int fd)
+>   {
+> -	static int once = -1;
+> -	if (once < 0) {
+> -		struct drm_i915_getparam gp;
+> -		int val = 0;
+> -
+> -		memset(&gp, 0, sizeof(gp));
+> -		gp.param = 35; /* HAS_GPU_RESET */
+> -		gp.value = &val;
+> -
+> -		if (ioctl(fd, DRM_IOCTL_I915_GETPARAM, &gp))
+> -			once = intel_gen(intel_get_drm_devid(fd)) >= 5;
+> -		else
+> -			once = val > 0;
+> +	if (reset_query_once < 0) {
+> +		reset_query_once = gem_gpu_reset_type(fd);
+> +
+> +		/* Very old kernels did not support the query */
+> +		if (reset_query_once == -1)
+> +			reset_query_once =
+> +			      (intel_gen(intel_get_drm_devid(fd)) >= 5) ? 1 : 0;
+>   	}
+> -	return once;
+> +
+> +	return reset_query_once > 0;
+> +}
+> +
+> +static bool has_engine_reset(int fd)
+> +{
+> +	if (reset_query_once < 0)
+> +		has_gpu_reset(fd);
+> +
+> +	return reset_query_once > 1;
+>   }
+>   
+>   static void eat_error_state(int dev)
+> @@ -176,7 +181,11 @@ igt_hang_t igt_allow_hang(int fd, unsigned ctx, unsigned flags)
+>   		igt_skip("hang injection disabled by user [IGT_HANG=0]\n");
+>   	gem_context_require_bannable(fd);
+>   
+> -	allow_reset = 1;
+> +	if (flags & HANG_WANT_ENGINE_RESET)
+> +		allow_reset = 2;
+> +	else
+> +		allow_reset = 1;
+> +
+>   	if ((flags & HANG_ALLOW_CAPTURE) == 0) {
+>   		param.param = I915_CONTEXT_PARAM_NO_ERROR_CAPTURE;
+>   		param.value = 1;
+> @@ -187,11 +196,16 @@ igt_hang_t igt_allow_hang(int fd, unsigned ctx, unsigned flags)
+>   		__gem_context_set_param(fd, &param);
+>   		allow_reset = INT_MAX; /* any reset method */
+>   	}
+> +
+>   	igt_require(igt_params_set(fd, "reset", "%d", allow_reset));
+> +	reset_query_once = -1;  /* Re-query after changing param */
+>   
+>   	if (!igt_check_boolean_env_var("IGT_HANG_WITHOUT_RESET", false))
+>   		igt_require(has_gpu_reset(fd));
+>   
+> +	if (flags & HANG_WANT_ENGINE_RESET)
+> +		igt_require(has_engine_reset(fd));
+> +
+>   	ban = context_get_ban(fd, ctx);
+>   	if ((flags & HANG_ALLOW_BAN) == 0)
+>   		context_set_ban(fd, ctx, 0);
+> diff --git a/lib/igt_gt.h b/lib/igt_gt.h
+> index d87fae2d3..d806c4b80 100644
+> --- a/lib/igt_gt.h
+> +++ b/lib/igt_gt.h
+> @@ -48,6 +48,7 @@ void igt_disallow_hang(int fd, igt_hang_t arg);
+>   igt_hang_t igt_hang_ctx(int fd, uint32_t ctx, int ring, unsigned flags);
+>   #define HANG_ALLOW_BAN 1
+>   #define HANG_ALLOW_CAPTURE 2
+> +#define HANG_WANT_ENGINE_RESET 4
+>   
+>   igt_hang_t igt_hang_ring(int fd, int ring);
+>   void igt_post_hang_ring(int fd, igt_hang_t arg);
+> diff --git a/tests/i915/gem_exec_capture.c b/tests/i915/gem_exec_capture.c
+> index f59cb09da..6ae4208ce 100644
+> --- a/tests/i915/gem_exec_capture.c
+> +++ b/tests/i915/gem_exec_capture.c
+> @@ -23,6 +23,7 @@
+>   
+>   #include <sys/poll.h>
+>   #include <zlib.h>
+> +#include <sched.h>
+>   
+>   #include "i915/gem.h"
+>   #include "i915/gem_create.h"
+> @@ -31,8 +32,16 @@
+>   #include "igt_rand.h"
+>   #include "igt_sysfs.h"
+>   
+> +#define MAX_RESET_TIME	120
 
-This needs a line about why we add the delay, something like "to give 
-time to the i915 scheduler to process the fence release and queue the 
-requests" or something.
-BTW, any reason not to just add the delay unconditionally in 
-unplug_show_queue, instead of only in one test? Other tests might suffer 
-from the same problem even if they're not hitting it at the moment.
+isn't this too big when setting the heartbeat interval to 500 ms and the 
+preempt one to 250? 5 secs should be more than enough.
+
+> +
+>   IGT_TEST_DESCRIPTION("Check that we capture the user specified objects on a hang");
+>   
+> +static void configure_engine(int fd, const char *name)
+> +{
+> +	gem_engine_property_printf(fd, name, "preempt_timeout_ms", "%d", 250);
+> +	gem_engine_property_printf(fd, name, "heartbeat_interval_ms", "%d", 500);
+
+Shouldn't we put these entries back to their original values after the 
+test is done?
+
+> +}
+> +
+>   static void check_error_state(int dir, struct drm_i915_gem_exec_object2 *obj)
+>   {
+>   	char *error, *str;
+> @@ -61,8 +70,13 @@ static void check_error_state(int dir, struct drm_i915_gem_exec_object2 *obj)
+>   	igt_assert(found);
+>   }
+>   
+> +static bool fence_busy(int fence)
+> +{
+> +	return poll(&(struct pollfd){fence, POLLIN}, 1, 0) == 0;
+> +}
+> +
+>   static void __capture1(int fd, int dir, const intel_ctx_t *ctx,
+> -		       unsigned ring, uint32_t target)
+> +		       unsigned ring, uint32_t target, const char *name)
+>   {
+>   	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+>   	struct drm_i915_gem_exec_object2 obj[4];
+> @@ -74,6 +88,10 @@ static void __capture1(int fd, int dir, const intel_ctx_t *ctx,
+>   	struct drm_i915_gem_execbuffer2 execbuf;
+>   	uint32_t *batch, *seqno;
+>   	int i;
+> +	int fence_out;
+> +	struct timeval before, after, delta;
+> +
+> +	configure_engine(fd, name);
+>   
+>   	memset(obj, 0, sizeof(obj));
+>   	obj[SCRATCH].handle = gem_create(fd, 4096);
+> @@ -149,18 +167,34 @@ static void __capture1(int fd, int dir, const intel_ctx_t *ctx,
+>   	execbuf.flags = ring;
+>   	if (gen > 3 && gen < 6)
+>   		execbuf.flags |= I915_EXEC_SECURE;
+> +	execbuf.flags |= I915_EXEC_FENCE_OUT;
+> +	execbuf.rsvd2 = ~0UL;
+>   	execbuf.rsvd1 = ctx->id;
+>   
+>   	igt_assert(!READ_ONCE(*seqno));
+> -	gem_execbuf(fd, &execbuf);
+> +	gem_execbuf_wr(fd, &execbuf);
+> +
+> +	fence_out = execbuf.rsvd2 >> 32;
+> +	igt_assert(fence_out >= 0);
+>   
+>   	/* Wait for the request to start */
+>   	while (READ_ONCE(*seqno) != 0xc0ffee)
+>   		igt_assert(gem_bo_busy(fd, obj[SCRATCH].handle));
+>   	munmap(seqno, 4096);
+>   
+> +	/* Wait for a reset to occur */
+> +	gettimeofday(&before, NULL);
+> +	while (fence_busy(fence_out)) {
+> +		gettimeofday(&after, NULL);
+> +		timersub(&after, &before, &delta);
+> +		igt_assert(delta.tv_sec < MAX_RESET_TIME);
+> +		sched_yield();
+> +	}
+> +	gettimeofday(&after, NULL);
+> +	timersub(&after, &before, &delta);
+> +	igt_info("Target died after %ld.%06lds\n", delta.tv_sec, delta.tv_usec);
+
+What does "died" mean here? does it indicate that a reset correctly 
+happened? IMO needs a better wording.
+
+> +
+>   	/* Check that only the buffer we marked is reported in the error */
+> -	igt_force_gpu_reset(fd);
+>   	check_error_state(dir, &obj[CAPTURE]);
+>   
+>   	gem_sync(fd, obj[BATCH].handle);
+> @@ -170,12 +204,13 @@ static void __capture1(int fd, int dir, const intel_ctx_t *ctx,
+>   	gem_close(fd, obj[SCRATCH].handle);
+>   }
+>   
+> -static void capture(int fd, int dir, const intel_ctx_t *ctx, unsigned ring)
+> +static void capture(int fd, int dir, const intel_ctx_t *ctx,
+> +		    const struct intel_execution_engine2 *e)
+>   {
+>   	uint32_t handle;
+>   
+>   	handle = gem_create(fd, 4096);
+> -	__capture1(fd, dir, ctx, ring, handle);
+> +	__capture1(fd, dir, ctx, e->flags, handle, e->name);
+>   	gem_close(fd, handle);
+>   }
+>   
+> @@ -577,7 +612,7 @@ static void userptr(int fd, int dir)
+>   	igt_assert(posix_memalign(&ptr, 4096, 4096) == 0);
+>   	igt_require(__gem_userptr(fd, ptr, 4096, 0, 0, &handle) == 0);
+>   
+> -	__capture1(fd, dir, intel_ctx_0(fd), 0, handle);
+> +	__capture1(fd, dir, intel_ctx_0(fd), 0, handle, "bcs0");
+
+Why does ring = 0 match BCS0?
+
+>   
+>   	gem_close(fd, handle);
+>   	free(ptr);
+> @@ -626,7 +661,8 @@ igt_main
+>   		gem_require_mmap_wc(fd);
+>   		igt_require(has_capture(fd));
+>   		ctx = intel_ctx_create_all_physical(fd);
+> -		igt_allow_hang(fd, ctx->id, HANG_ALLOW_CAPTURE);
+> +		igt_allow_hang(fd, 0, HANG_ALLOW_CAPTURE |
+> +			       HANG_WANT_ENGINE_RESET);
+
+This is going to make the test skip on platforms that have full gt reset 
+but not engine reset. You can see in the CI results that it is now 
+skipping on snb-shards (the change in result is being caught by a 
+catch-all fdo, so not reported as a failure).
 
 Daniele
 
->
-> Also skip any tests that rely on having more than 3 priority levels.
->
-> v2: Add a delay between starting releasing spinner and cork in
-> promotion, add local define for static mapping engine info
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   lib/i915/gem_scheduler.c       | 14 ++++++++
->   lib/i915/gem_scheduler.h       |  1 +
->   lib/i915/i915_drm_local.h      | 10 ++++++
->   tests/i915/gem_exec_schedule.c | 62 +++++++++++++++++++++-------------
->   4 files changed, 63 insertions(+), 24 deletions(-)
->
-> diff --git a/lib/i915/gem_scheduler.c b/lib/i915/gem_scheduler.c
-> index cdddf42ad..d006b8676 100644
-> --- a/lib/i915/gem_scheduler.c
-> +++ b/lib/i915/gem_scheduler.c
-> @@ -28,6 +28,7 @@
->   #include "igt_core.h"
->   #include "ioctl_wrappers.h"
 >   
-> +#include "i915/i915_drm_local.h"
->   #include "i915/gem_scheduler.h"
->   #include "i915/gem_submission.h"
->   
-> @@ -90,6 +91,19 @@ bool gem_scheduler_has_ctx_priority(int fd)
->   		I915_SCHEDULER_CAP_PRIORITY;
->   }
->   
-> +/**
-> + * gem_scheduler_has_static_priority:
-> + * @fd: open i915 drm file descriptor
-> + *
-> + * Feature test macro to query whether the driver supports priority assigned
-> + * from user space are statically mapping into 3 buckets.
-> + */
-> +bool gem_scheduler_has_static_priority(int fd)
-> +{
-> +	return gem_scheduler_capability(fd) &
-> +		I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP;
-> +}
-> +
->   /**
->    * gem_scheduler_has_preemption:
->    * @fd: open i915 drm file descriptor
-> diff --git a/lib/i915/gem_scheduler.h b/lib/i915/gem_scheduler.h
-> index d43e84bd2..b00804f70 100644
-> --- a/lib/i915/gem_scheduler.h
-> +++ b/lib/i915/gem_scheduler.h
-> @@ -29,6 +29,7 @@
->   unsigned gem_scheduler_capability(int fd);
->   bool gem_scheduler_enabled(int fd);
->   bool gem_scheduler_has_ctx_priority(int fd);
-> +bool gem_scheduler_has_static_priority(int fd);
->   bool gem_scheduler_has_preemption(int fd);
->   bool gem_scheduler_has_semaphores(int fd);
->   bool gem_scheduler_has_engine_busy_stats(int fd);
-> diff --git a/lib/i915/i915_drm_local.h b/lib/i915/i915_drm_local.h
-> index dd646aedf..a1527ff21 100644
-> --- a/lib/i915/i915_drm_local.h
-> +++ b/lib/i915/i915_drm_local.h
-> @@ -20,6 +20,16 @@ extern "C" {
->    * clean these up when kernel uapi headers are sync'd.
->    */
->   
-> +/*
-> + * Indicates the 2k user priority levels are statically mapped into 3 buckets as
-> + * follows:
-> + *
-> + * -1k to -1	Low priority
-> + * 0		Normal priority
-> + * 1 to 1k	Highest priority
-> + */
-> +#define   I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP	(1ul << 5)
-> +
->   #if defined(__cplusplus)
->   }
->   #endif
-> diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
-> index e5fb45982..bb9fb6c14 100644
-> --- a/tests/i915/gem_exec_schedule.c
-> +++ b/tests/i915/gem_exec_schedule.c
-> @@ -199,7 +199,8 @@ create_highest_priority(int fd, const intel_ctx_cfg_t *cfg)
->   
->   static void unplug_show_queue(int fd, struct igt_cork *c,
->   			      const intel_ctx_cfg_t *cfg,
-> -			      unsigned int engine)
-> +			      unsigned int engine,
-> +			      unsigned usec_delay)
->   {
->   	igt_spin_t *spin[MAX_ELSP_QLEN];
->   	int max = MAX_ELSP_QLEN;
-> @@ -216,6 +217,7 @@ static void unplug_show_queue(int fd, struct igt_cork *c,
->   
->   	igt_cork_unplug(c); /* batches will now be queued on the engine */
->   	igt_debugfs_dump(fd, "i915_engine_info");
-> +	usleep(usec_delay);
->   
->   	for (int n = 0; n < max; n++)
->   		igt_spin_free(fd, spin[n]);
-> @@ -237,7 +239,7 @@ static void fifo(int fd, const intel_ctx_t *ctx, unsigned ring)
->   	store_dword_fenced(fd, ctx, ring, scratch, 0, 1, fence, 0);
->   	store_dword_fenced(fd, ctx, ring, scratch, 0, 2, fence, 0);
->   
-> -	unplug_show_queue(fd, &cork, &ctx->cfg, ring);
-> +	unplug_show_queue(fd, &cork, &ctx->cfg, ring, 0);
->   	close(fence);
->   
->   	result =  __sync_read_u32(fd, scratch, 0);
-> @@ -298,7 +300,7 @@ static void implicit_rw(int i915, const intel_ctx_t *ctx, unsigned int ring,
->   				   ring, scratch, 0, ring,
->   				   fence, I915_GEM_DOMAIN_RENDER);
->   
-> -	unplug_show_queue(i915, &cork, &ctx->cfg, ring);
-> +	unplug_show_queue(i915, &cork, &ctx->cfg, ring, 0);
->   	close(fence);
->   
->   	result =  __sync_read_u32(i915, scratch, 0);
-> @@ -355,7 +357,7 @@ static void independent(int fd, const intel_ctx_t *ctx, unsigned int engine,
->   	/* Same priority, but different timeline (as different engine) */
->   	batch = __store_dword(fd, ctx, engine, scratch, 0, engine, 0, fence, 0);
->   
-> -	unplug_show_queue(fd, &cork, &ctx->cfg, engine);
-> +	unplug_show_queue(fd, &cork, &ctx->cfg, engine, 0);
->   	close(fence);
->   
->   	gem_sync(fd, batch);
-> @@ -1326,7 +1328,7 @@ static void reorder(int fd, const intel_ctx_cfg_t *cfg,
->   	store_dword_fenced(fd, ctx[LO], ring, scratch, 0, ctx[LO]->id, fence, 0);
->   	store_dword_fenced(fd, ctx[HI], ring, scratch, 0, ctx[HI]->id, fence, 0);
->   
-> -	unplug_show_queue(fd, &cork, cfg, ring);
-> +	unplug_show_queue(fd, &cork, cfg, ring, 0);
->   	close(fence);
->   
->   	result =  __sync_read_u32(fd, scratch, 0);
-> @@ -1353,10 +1355,10 @@ static void promotion(int fd, const intel_ctx_cfg_t *cfg, unsigned ring)
->   	gem_context_set_priority(fd, ctx[LO]->id, MIN_PRIO);
->   
->   	ctx[HI] = intel_ctx_create(fd, cfg);
-> -	gem_context_set_priority(fd, ctx[HI]->id, 0);
-> +	gem_context_set_priority(fd, ctx[HI]->id, MAX_PRIO);
->   
->   	ctx[NOISE] = intel_ctx_create(fd, cfg);
-> -	gem_context_set_priority(fd, ctx[NOISE]->id, MIN_PRIO/2);
-> +	gem_context_set_priority(fd, ctx[NOISE]->id, 0);
->   
->   	result = gem_create(fd, 4096);
->   	dep = gem_create(fd, 4096);
-> @@ -1377,7 +1379,7 @@ static void promotion(int fd, const intel_ctx_cfg_t *cfg, unsigned ring)
->   
->   	store_dword(fd, ctx[HI], ring, result, 0, ctx[HI]->id, 0);
->   
-> -	unplug_show_queue(fd, &cork, cfg, ring);
-> +	unplug_show_queue(fd, &cork, cfg, ring, 250000);
->   	close(fence);
->   
->   	dep_read = __sync_read_u32(fd, dep, 0);
-> @@ -1893,7 +1895,7 @@ static void deep(int fd, const intel_ctx_cfg_t *cfg,
->   	igt_info("Second deptree: %d requests [%.3fs]\n",
->   		 n * XS, 1e-9*igt_nsec_elapsed(&tv));
->   
-> -	unplug_show_queue(fd, &cork, cfg, ring);
-> +	unplug_show_queue(fd, &cork, cfg, ring, 0);
->   	gem_close(fd, plug);
->   	igt_require(expected); /* too slow */
->   
-> @@ -1962,7 +1964,7 @@ static void wide(int fd, const intel_ctx_cfg_t *cfg, unsigned ring)
->   	igt_info("Submitted %d requests over %d contexts in %.1fms\n",
->   		 count, MAX_CONTEXTS, igt_nsec_elapsed(&tv) * 1e-6);
->   
-> -	unplug_show_queue(fd, &cork, cfg, ring);
-> +	unplug_show_queue(fd, &cork, cfg, ring, 0);
->   	close(fence);
->   
->   	__sync_read_u32_count(fd, result, result_read, sizeof(result_read));
-> @@ -2067,7 +2069,7 @@ static void reorder_wide(int fd, const intel_ctx_cfg_t *cfg, unsigned ring)
->   		intel_ctx_destroy(fd, tmp_ctx);
+>   		dir = igt_sysfs_open(fd);
+>   		igt_require(igt_sysfs_set(dir, "error", "Begone!"));
+> @@ -634,7 +670,7 @@ igt_main
 >   	}
 >   
-> -	unplug_show_queue(fd, &cork, cfg, ring);
-> +	unplug_show_queue(fd, &cork, cfg, ring, 0);
->   	close(fence);
+>   	test_each_engine("capture", fd, ctx, e)
+> -		capture(fd, dir, ctx, e->flags);
+> +		capture(fd, dir, ctx, e);
 >   
->   	__sync_read_u32_count(fd, result, result_read, sizeof(result_read));
-> @@ -2963,19 +2965,25 @@ igt_main
->   			test_each_engine_store("preempt-other-chain", fd, ctx, e)
->   				preempt_other(fd, &ctx->cfg, e->flags, CHAIN);
->   
-> -			test_each_engine_store("preempt-queue", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, 0);
-> +			test_each_engine_store("preempt-engines", fd, ctx, e)
-> +				preempt_engines(fd, e, 0);
->   
-> -			test_each_engine_store("preempt-queue-chain", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, CHAIN);
-> -			test_each_engine_store("preempt-queue-contexts", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS);
-> +			igt_subtest_group {
-> +				igt_fixture {
-> +					igt_require(!gem_scheduler_has_static_priority(fd));
-> +				}
->   
-> -			test_each_engine_store("preempt-queue-contexts-chain", fd, ctx, e)
-> -				preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS | CHAIN);
-> +				test_each_engine_store("preempt-queue", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, 0);
->   
-> -			test_each_engine_store("preempt-engines", fd, ctx, e)
-> -				preempt_engines(fd, e, 0);
-> +				test_each_engine_store("preempt-queue-chain", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, CHAIN);
-> +				test_each_engine_store("preempt-queue-contexts", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS);
-> +
-> +				test_each_engine_store("preempt-queue-contexts-chain", fd, ctx, e)
-> +					preempt_queue(fd, &ctx->cfg, e->flags, CONTEXTS | CHAIN);
-> +			}
->   
->   			igt_subtest_group {
->   				igt_hang_t hang;
-> @@ -3017,11 +3025,17 @@ igt_main
->   		test_each_engine_store("wide", fd, ctx, e)
->   			wide(fd, &ctx->cfg, e->flags);
->   
-> -		test_each_engine_store("reorder-wide", fd, ctx, e)
-> -			reorder_wide(fd, &ctx->cfg, e->flags);
-> -
->   		test_each_engine_store("smoketest", fd, ctx, e)
->   			smoketest(fd, &ctx->cfg, e->flags, 5);
-> +
-> +		igt_subtest_group {
-> +			igt_fixture {
-> +				igt_require(!gem_scheduler_has_static_priority(fd));
-> +			}
-> +
-> +			test_each_engine_store("reorder-wide", fd, ctx, e)
-> +				reorder_wide(fd, &ctx->cfg, e->flags);
-> +		}
->   	}
->   
->   	igt_subtest_group {
+>   	igt_subtest_f("many-4K-zero") {
+>   		igt_require(gem_can_store_dword(fd, 0));
 
