@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F8B3EC92C
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Aug 2021 14:55:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E13B3EC92D
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Aug 2021 14:55:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1447589907;
-	Sun, 15 Aug 2021 12:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15E2A89913;
+	Sun, 15 Aug 2021 12:55:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41F2F89907
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Aug 2021 12:54:40 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5C90760EE5;
- Sun, 15 Aug 2021 12:54:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72BF189913
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Aug 2021 12:55:48 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A7A4B61106;
+ Sun, 15 Aug 2021 12:55:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1629032079;
- bh=GxDKalvMzLztMNy0D8bv0wvFmlmmKFueeKbVwN/ZNkk=;
+ s=korg; t=1629032148;
+ bh=71KEQdKkfYbDzg5gNPEo6UUgjvoUS8dvaK2AHlR5E/o=;
  h=Subject:To:Cc:From:Date:From;
- b=d7tU8rclraAxiu40KzZUW3cgQ3OHaZVfqKebnH0snjVGkG1dk8BMkH+oW94jF58Q/
- jiYgIYIreFXHeXqy3ufIYkrVxwW8O+ckOuODy+C9SQIYmkHZlEeqRLSNUif4la+OMp
- 5QkcHA17LWAJWuG9+xGE1MTLSUSoCCjRxKkxz4Wc=
+ b=N5Amq22URVcRMpQmLV20m4eiyWKjJvz+34bQrCJ8dSkCpKVaNbz2eVmUMNWYMZqbR
+ 5NGoqxo9GqGcpVX/b1cAZHFSI7fQPTfAo6tm8Db5JTiGFHhq/j+Slam8P/Q592I6VP
+ i+37imOyBohBOZALmDWqaicI4gXIFWHHQkTI1X9o=
 To: ankit.k.nautiyal@intel.com, daniel.vetter@ffwll.ch,
  gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
  jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
@@ -28,15 +28,15 @@ To: ankit.k.nautiyal@intel.com, daniel.vetter@ffwll.ch,
  ville.syrjala@linux.intel.com
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
-Date: Sun, 15 Aug 2021 14:54:04 +0200
-Message-ID: <162903204487113@kroah.com>
+Date: Sun, 15 Aug 2021 14:54:25 +0200
+Message-ID: <16290320653125@kroah.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-stable: commit
 X-Patchwork-Hint: ignore 
 Subject: [Intel-gfx] Patch "drm/i915/display: Fix the 12 BPC bits for
- PIPE_MISC reg" has been added to the 5.10-stable tree
+ PIPE_MISC reg" has been added to the 5.13-stable tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,12 +57,12 @@ This is a note to let you know that I've just added the patch titled
 
     drm/i915/display: Fix the 12 BPC bits for PIPE_MISC reg
 
-to the 5.10-stable tree which can be found at:
+to the 5.13-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-i915-display-fix-the-12-bpc-bits-for-pipe_misc-reg.patch
-and it can be found in the queue-5.10 subdirectory.
+and it can be found in the queue-5.13 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -120,7 +120,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10173,16 +10173,18 @@ static void bdw_set_pipemisc(const struc
+@@ -5424,16 +5424,18 @@ static void bdw_set_pipemisc(const struc
  
  	switch (crtc_state->pipe_bpp) {
  	case 18:
@@ -143,7 +143,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  		break;
  	default:
  		MISSING_CASE(crtc_state->pipe_bpp);
-@@ -10218,15 +10220,27 @@ int bdw_get_pipemisc_bpp(struct intel_cr
+@@ -5469,15 +5471,27 @@ int bdw_get_pipemisc_bpp(struct intel_cr
  
  	tmp = intel_de_read(dev_priv, PIPEMISC(crtc->pipe));
  
@@ -179,7 +179,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  		return 0;
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6011,11 +6011,17 @@ enum {
+@@ -6134,11 +6134,17 @@ enum {
  #define   PIPEMISC_HDR_MODE_PRECISION	(1 << 23) /* icl+ */
  #define   PIPEMISC_OUTPUT_COLORSPACE_YUV  (1 << 11)
  #define   PIPEMISC_PIXEL_ROUNDING_TRUNC	REG_BIT(8) /* tgl+ */
@@ -206,4 +206,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from ankit.k.nautiyal@intel.com are
 
-queue-5.10/drm-i915-display-fix-the-12-bpc-bits-for-pipe_misc-reg.patch
+queue-5.13/drm-i915-display-fix-the-12-bpc-bits-for-pipe_misc-reg.patch
