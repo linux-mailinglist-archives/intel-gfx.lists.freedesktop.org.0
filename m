@@ -2,47 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70623ED53F
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 15:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9913B3ED6D0
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 15:26:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B25989EA9;
-	Mon, 16 Aug 2021 13:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E828389EA6;
+	Mon, 16 Aug 2021 13:26:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1043289EA9
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 13:10:54 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EDC2B63295;
- Mon, 16 Aug 2021 13:10:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1629119454;
- bh=ccgBKWn/XTFeEMxpKmRbE+OvGO6cm4k9PWtpogWzpuI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=amjj1IltAk8mjLLzKpSzWSHwrIzC/H4uR//yuHuzkzz7z/z62MAp3A5aNu1XuFltT
- gKue8EPC3Ap/tjYzCKLkfwVL5zdW13yOiJ/mNUiCl1M+QsOxnjcvluv+enTQ8mnQCM
- E7iw+24R/9Ju3+keovKa/EjIchTAAJvCKptd2k/g=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: linux-kernel@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, stable@vger.kernel.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Uma Shankar <uma.shankar@intel.com>,
- Paulo Zanoni <paulo.r.zanoni@intel.com>
-Date: Mon, 16 Aug 2021 15:01:03 +0200
-Message-Id: <20210816125445.166212202@linuxfoundation.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210816125444.082226187@linuxfoundation.org>
-References: <20210816125444.082226187@linuxfoundation.org>
-User-Agent: quilt/0.66
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com
+ [IPv6:2607:f8b0:4864:20::72b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07CBD89E32;
+ Mon, 16 Aug 2021 13:26:12 +0000 (UTC)
+Received: by mail-qk1-x72b.google.com with SMTP id 22so9629179qkg.2;
+ Mon, 16 Aug 2021 06:26:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=Ax8I8rYKM4hKa/LJED1Fy41aTKRfXHhWe2ILaJfWVR4=;
+ b=kyOtCZzQ9+Yf16rjneW6/pL2LgDn9LjKkdQj0lXNoz9WM0ZdSaeYiLdXOJerXHnIQn
+ yKKUpzETD1NvRQwzkIbrAkImTQ4frv7Y3aMSPZFtHAieGg5hRczpJ1SiXzQo/qLdx1Vf
+ LczNyqXhNMsg2yVZA2kAmxbOQ63RGooAUyrPFH5wS+Hn8wuGHeZqPcwE64t9LtNq97Ya
+ y1gEBx2+p0wpBFR7EjjNpESj+tTvWkRE9M8/ucS3KjRAyM6r+yjDhSnYWEzLT2yrRyXF
+ p/J9arPPsM4AEIiXpHAaonPB4b+qIaskiEwdmfkvIqwsEdyhk7JBYhmbWxKwD+UdMvft
+ 36VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=Ax8I8rYKM4hKa/LJED1Fy41aTKRfXHhWe2ILaJfWVR4=;
+ b=exFnaIVb5e9qstMPHgyGSgW0eENCq4/I/tw3bK0gqCNLiLCMlh3Q5mWQx4ckuTe7VU
+ FwJ1iYqQXYnn+3yeYQflX60qE0z0lsv72y6IMfnL2wt2bsMnKP3CZrU3RmPAZNgWeyTW
+ amKpmfcU6aks2Lj7Suz3HP5rJz76bvqZ7WFF3Xq2Dc+EodFIurkNG6bUADQ9zl7wUZU3
+ bykGIaGzU+cZVZEh3E8uUmq0JlhnNmnvGpb9M6/CwCA9jdiFfIEsl+aIMxxHdcYV1TcL
+ ZKFhPHYyUePAJLumVgVy4PjR70DtNUMpgFmlQhjHX1VmuD2lu6V1/84WoCeeLlsGaEG7
+ t7gQ==
+X-Gm-Message-State: AOAM5338ZGtJgpwioOsqK63oBhqv2496igdYxxdspAg3yAS5MDXBoB8N
+ 3Kf4dQiOVbVQ2EfinkfFrGmk3sCmypbw4wQ+9gA=
+X-Google-Smtp-Source: ABdhPJyxL8OyMPJYvzvMlDr0XYYcY2x1Tv7C9KMybtcsAaF9gQnsB4XxLBtakgDqQihuf0MsE4J7nI15YeTslVyiML0=
+X-Received: by 2002:a05:620a:29d0:: with SMTP id
+ s16mr15509411qkp.460.1629120371183; 
+ Mon, 16 Aug 2021 06:26:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH 5.13 033/151] drm/i915/display: Fix the 12 BPC
- bits for PIPE_MISC reg
+References: <20210816084855.75586-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210816084855.75586-1-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 16 Aug 2021 14:25:44 +0100
+Message-ID: <CAM0jSHPLAtyYofaLzMsrPsyLX=13UAfw3tzbAQoW+F5+XJgrfQ@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, 
+ ML dri-devel <dri-devel@lists.freedesktop.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Ditch the i915_gem_ww_ctx loop
+ member
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,131 +71,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On Mon, 16 Aug 2021 at 09:49, Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> It's only used by the for_i915_gem_ww() macro and we can use
+> the (typically) on-stack _err variable in its place.
+>
+> While initially setting the _err variable to -EDEADLK to enter the
+> loop, we clear it before actually entering using fetch_and_zero() to
+> avoid empty loops or code not setting the _err variable running forever.
+>
+> Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_gem_ww.h | 23 ++++++++---------------
+>  1 file changed, 8 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gem_ww.h b/drivers/gpu/drm/i915/i9=
+15_gem_ww.h
+> index f6b1a796667b..98348b1e6182 100644
+> --- a/drivers/gpu/drm/i915/i915_gem_ww.h
+> +++ b/drivers/gpu/drm/i915/i915_gem_ww.h
+> @@ -7,12 +7,13 @@
+>
+>  #include <drm/drm_drv.h>
+>
+> +#include "i915_utils.h"
+> +
+>  struct i915_gem_ww_ctx {
+>         struct ww_acquire_ctx ctx;
+>         struct list_head obj_list;
+>         struct drm_i915_gem_object *contended;
+> -       unsigned short intr;
+> -       unsigned short loop;
+> +       bool intr;
+>  };
+>
+>  void i915_gem_ww_ctx_init(struct i915_gem_ww_ctx *ctx, bool intr);
+> @@ -23,28 +24,20 @@ void i915_gem_ww_unlock_single(struct drm_i915_gem_ob=
+ject *obj);
+>  /* Internal functions used by the inlines! Don't use. */
+>  static inline int __i915_gem_ww_fini(struct i915_gem_ww_ctx *ww, int err=
+)
+>  {
+> -       ww->loop =3D 0;
+>         if (err =3D=3D -EDEADLK) {
+>                 err =3D i915_gem_ww_ctx_backoff(ww);
+>                 if (!err)
+> -                       ww->loop =3D 1;
+> +                       err =3D -EDEADLK;
+>         }
+>
+> -       if (!ww->loop)
+> +       if (err !=3D -EDEADLK)
+>                 i915_gem_ww_ctx_fini(ww);
+>
+>         return err;
+>  }
+>
+> -static inline void
+> -__i915_gem_ww_init(struct i915_gem_ww_ctx *ww, bool intr)
+> -{
+> -       i915_gem_ww_ctx_init(ww, intr);
+> -       ww->loop =3D 1;
+> -}
+> -
+> -#define for_i915_gem_ww(_ww, _err, _intr)                      \
+> -       for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;       \
+> +#define for_i915_gem_ww(_ww, _err, _intr)                        \
+> +       for (i915_gem_ww_ctx_init(_ww, _intr), (_err) =3D -EDEADLK; \
+> +            fetch_and_zero(&_err) =3D=3D -EDEADLK;                   \
 
-commit abd9d66a055722393d33685214c08386694871d7 upstream.
+Doesn't this now hide "normal" errors, like say get_pages() returning
+-ENOSPC or so?
 
-Till DISPLAY12 the PIPE_MISC bits 5-7 are used to set the
-Dithering BPC, with valid values of 6, 8, 10 BPC.
-For ADLP+ these bits are used to set the PORT OUTPUT BPC, with valid
-values of: 6, 8, 10, 12 BPC, and need to be programmed whether
-dithering is enabled or not.
-
-This patch:
--corrects the bits 5-7 for PIPE MISC register for 12 BPC.
--renames the bits and mask to have generic names for these bits for
-dithering bpc and port output bpc.
-
-v3: Added a note for MIPI DSI which uses the PIPE_MISC for readout
-for pipe_bpp. (Uma Shankar)
-
-v2: Added 'display' to the subject and fixes tag. (Uma Shankar)
-
-Fixes: 756f85cffef2 ("drm/i915/bdw: Broadwell has PIPEMISC")
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com> (v1)
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v3.13+
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20210811051857.109723-1-ankit.k.nautiyal@intel.com
-(cherry picked from commit 70418a68713c13da3f36c388087d0220b456a430)
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/i915/display/intel_display.c |   34 +++++++++++++++++++--------
- drivers/gpu/drm/i915/i915_reg.h              |   16 ++++++++----
- 2 files changed, 35 insertions(+), 15 deletions(-)
-
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5424,16 +5424,18 @@ static void bdw_set_pipemisc(const struc
- 
- 	switch (crtc_state->pipe_bpp) {
- 	case 18:
--		val |= PIPEMISC_DITHER_6_BPC;
-+		val |= PIPEMISC_6_BPC;
- 		break;
- 	case 24:
--		val |= PIPEMISC_DITHER_8_BPC;
-+		val |= PIPEMISC_8_BPC;
- 		break;
- 	case 30:
--		val |= PIPEMISC_DITHER_10_BPC;
-+		val |= PIPEMISC_10_BPC;
- 		break;
- 	case 36:
--		val |= PIPEMISC_DITHER_12_BPC;
-+		/* Port output 12BPC defined for ADLP+ */
-+		if (DISPLAY_VER(dev_priv) > 12)
-+			val |= PIPEMISC_12_BPC_ADLP;
- 		break;
- 	default:
- 		MISSING_CASE(crtc_state->pipe_bpp);
-@@ -5469,15 +5471,27 @@ int bdw_get_pipemisc_bpp(struct intel_cr
- 
- 	tmp = intel_de_read(dev_priv, PIPEMISC(crtc->pipe));
- 
--	switch (tmp & PIPEMISC_DITHER_BPC_MASK) {
--	case PIPEMISC_DITHER_6_BPC:
-+	switch (tmp & PIPEMISC_BPC_MASK) {
-+	case PIPEMISC_6_BPC:
- 		return 18;
--	case PIPEMISC_DITHER_8_BPC:
-+	case PIPEMISC_8_BPC:
- 		return 24;
--	case PIPEMISC_DITHER_10_BPC:
-+	case PIPEMISC_10_BPC:
- 		return 30;
--	case PIPEMISC_DITHER_12_BPC:
--		return 36;
-+	/*
-+	 * PORT OUTPUT 12 BPC defined for ADLP+.
-+	 *
-+	 * TODO:
-+	 * For previous platforms with DSI interface, bits 5:7
-+	 * are used for storing pipe_bpp irrespective of dithering.
-+	 * Since the value of 12 BPC is not defined for these bits
-+	 * on older platforms, need to find a workaround for 12 BPC
-+	 * MIPI DSI HW readout.
-+	 */
-+	case PIPEMISC_12_BPC_ADLP:
-+		if (DISPLAY_VER(dev_priv) > 12)
-+			return 36;
-+		fallthrough;
- 	default:
- 		MISSING_CASE(tmp);
- 		return 0;
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6134,11 +6134,17 @@ enum {
- #define   PIPEMISC_HDR_MODE_PRECISION	(1 << 23) /* icl+ */
- #define   PIPEMISC_OUTPUT_COLORSPACE_YUV  (1 << 11)
- #define   PIPEMISC_PIXEL_ROUNDING_TRUNC	REG_BIT(8) /* tgl+ */
--#define   PIPEMISC_DITHER_BPC_MASK	(7 << 5)
--#define   PIPEMISC_DITHER_8_BPC		(0 << 5)
--#define   PIPEMISC_DITHER_10_BPC	(1 << 5)
--#define   PIPEMISC_DITHER_6_BPC		(2 << 5)
--#define   PIPEMISC_DITHER_12_BPC	(3 << 5)
-+/*
-+ * For Display < 13, Bits 5-7 of PIPE MISC represent DITHER BPC with
-+ * valid values of: 6, 8, 10 BPC.
-+ * ADLP+, the bits 5-7 represent PORT OUTPUT BPC with valid values of:
-+ * 6, 8, 10, 12 BPC.
-+ */
-+#define   PIPEMISC_BPC_MASK		(7 << 5)
-+#define   PIPEMISC_8_BPC		(0 << 5)
-+#define   PIPEMISC_10_BPC		(1 << 5)
-+#define   PIPEMISC_6_BPC		(2 << 5)
-+#define   PIPEMISC_12_BPC_ADLP		(4 << 5) /* adlp+ */
- #define   PIPEMISC_DITHER_ENABLE	(1 << 4)
- #define   PIPEMISC_DITHER_TYPE_MASK	(3 << 2)
- #define   PIPEMISC_DITHER_TYPE_SP	(0 << 2)
-
-
+>              _err =3D __i915_gem_ww_fini(_ww, _err))
+> -
+>  #endif
+> --
+> 2.31.1
+>
