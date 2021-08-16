@@ -1,45 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5263EDE39
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 21:52:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60DE53EDEB9
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 22:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7C0289CCB;
-	Mon, 16 Aug 2021 19:52:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 158778984E;
+	Mon, 16 Aug 2021 20:41:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43B9989CCB
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 19:52:28 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10078"; a="196194902"
-X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="196194902"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBAB0898BC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 20:41:28 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10078"; a="195522302"
+X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="195522302"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2021 12:52:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="530681014"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 16 Aug 2021 12:52:25 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 16 Aug 2021 22:52:24 +0300
-Date: Mon, 16 Aug 2021 22:52:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <YRrB+C5zxZ5n/A2b@intel.com>
-References: <20210722054338.12891-1-jose.souza@intel.com>
- <20210722054338.12891-2-jose.souza@intel.com>
- <87zgthituw.fsf@intel.com>
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2021 13:41:28 -0700
+X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="530751193"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2021 13:41:28 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Mon, 16 Aug 2021 13:41:12 -0700
+Message-Id: <20210816204112.2960624-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87zgthituw.fsf@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915/bios: Start to support two
- integrated panels
+Subject: [Intel-gfx] [PATCH] drm/i915/adl_p: Also disable underrun recovery
+ with MSO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,41 +48,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 16, 2021 at 01:09:27PM +0300, Jani Nikula wrote:
-> On Wed, 21 Jul 2021, JosÈ Roberto de Souza <jose.souza@intel.com> wrote:
-> > VBT has support for up two integrated panels but i915 only supports one.
-> >
-> > So here stating to add the basic support for two integrated panels
-> > and moving the DRRS to ddi_vbt_port_info instead of keeping a global
-> > one.
-> > Other VBT blocks will be converted in following patches.
-> >
-> > While at is also nucking lvds_dither as it is not used.
-> 
-> If you were to get a mysterious bisect result on this patch, would you
-> know what's wrong?
-> 
-> I think there's too much going on in one patch, and this needs to be
-> split. Small, incremental changes with functional and non-functional
-> separated if possible. This is incredibly fragile stuff.
-> 
-> Also, I think we'll need to be able to figure out the panel type based
-> on EDID, i.e. we need to parse some stuff first, and the panel stuff
-> only after we've read EDID. Obviously you don't have to do that here,
-> but this need to be done so that this doesn't become impossible.
+One of the cases that the bspec lists for when underrun recovery must be
+disabled is "COG;" that note actually refers to eDP multi-segmented
+operation (MSO).  Let's ensure the this additional restriction is
+honored by the driver.
 
-My incredibly incomplete start at that:
-git://github.com/vsyrjala/linux.git vbt_panel_type_pnp_id
+Bspec: 50351
+Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+Fixes: ba3b049f4774 ("drm/i915/adl_p: Allow underrun recovery when possible")
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Totally missing any and all restructuring of the VBT
-parsing to happen after we have the EDID.
-
-And apart from that we also have this horrible
-chicken vs. egg issue:
-1. need the panel type to get power sequencer delays
-2. need to turn on the VDD to read the EDID
-3. need the EDID to get the panel type
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a257e5dc381c..134a6acbd8fb 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2226,6 +2226,9 @@ static bool underrun_recovery_supported(const struct intel_crtc_state *crtc_stat
+ 	if (crtc_state->has_psr2)
+ 		return false;
+ 
++	if (crtc_state->splitter.enable)
++		return false;
++
+ 	return true;
+ }
+ 
 -- 
-Ville Syrj‰l‰
-Intel
+2.25.4
+
