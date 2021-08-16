@@ -1,41 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 009B73EDC30
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 19:15:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1A53EDC79
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 19:35:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D8F89C54;
-	Mon, 16 Aug 2021 17:15:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C570789DDD;
+	Mon, 16 Aug 2021 17:35:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A15EB89C1F;
- Mon, 16 Aug 2021 17:15:12 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10078"; a="212783391"
-X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="212783391"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2021 10:14:58 -0700
-X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="448686654"
-Received: from yifeiren-mobl.ccr.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.101])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2021 10:14:56 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.william.auld@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date: Mon, 16 Aug 2021 19:14:44 +0200
-Message-Id: <20210816171444.105469-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57C3989DDD;
+ Mon, 16 Aug 2021 17:35:04 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 853F568AFE; Mon, 16 Aug 2021 19:34:59 +0200 (CEST)
+Date: Mon, 16 Aug 2021 19:34:58 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>, Christoph Hellwig <hch@lst.de>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Greg KH <gregkh@linuxfoundation.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ "Wang, Zhi A" <zhi.a.wang@intel.com>
+Message-ID: <20210816173458.GA9183@lst.de>
+References: <20210721155355.173183-1-hch@lst.de>
+ <DM4PR11MB55496531B246A4604FC86998CAE49@DM4PR11MB5549.namprd11.prod.outlook.com>
+ <20210722112636.wj277vqhg4dez5ug@sirius.home.kraxel.org>
+ <20210727121224.GA2145868@nvidia.com>
+ <DM4PR11MB5549EC882AA6076F3468274DCAEA9@DM4PR11MB5549.namprd11.prod.outlook.com>
+ <20210728175925.GU1721383@nvidia.com> <20210729072022.GB31896@lst.de>
+ <20210803094315.GF13928@zhen-hp.sh.intel.com>
+ <20210803143058.GA1721383@nvidia.com>
+ <20210804052606.GG13928@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Ditch the i915_gem_ww_ctx loop
- member
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210804052606.GG13928@zhen-hp.sh.intel.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] refactor the i915 GVT support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,75 +59,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's only used by the for_i915_gem_ww() macro and we can use
-the (typically) on-stack _err variable in its place.
+On Wed, Aug 04, 2021 at 01:26:06PM +0800, Zhenyu Wang wrote:
+> On 2021.08.03 11:30:58 -0300, Jason Gunthorpe wrote:
+> > On Tue, Aug 03, 2021 at 05:43:15PM +0800, Zhenyu Wang wrote:
+> > > Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+> > > 
+> > > Thanks a lot for this effort!
+> > 
+> > Great, do we have a submission plan for this? how much does it clash
+> > with my open_device/etc patch? ie does the whole thing have to go
+> > through the vfio tree?
+> > 
+> 
+> I think Alex would determine when to merge open_device series, gvt part
+> can be through vfio tree without problem. For this refactor, I would first
+> merge for gvt staging to do more regression testing before sending through
+> i915 tree.
 
-v2:
-- Don't clear the _err variable when entering the loop
-  (Matthew Auld, Maarten Lankhorst).
-- Use parentheses around the _err macro argument.
-- Fix up comment.
-
-Cc: Matthew Auld <matthew.william.auld@gmail.com>
-Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_gem_ww.h | 25 ++++++++-----------------
- 1 file changed, 8 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_gem_ww.h b/drivers/gpu/drm/i915/i915_gem_ww.h
-index f6b1a796667b..86f0fe343de6 100644
---- a/drivers/gpu/drm/i915/i915_gem_ww.h
-+++ b/drivers/gpu/drm/i915/i915_gem_ww.h
-@@ -11,8 +11,7 @@ struct i915_gem_ww_ctx {
- 	struct ww_acquire_ctx ctx;
- 	struct list_head obj_list;
- 	struct drm_i915_gem_object *contended;
--	unsigned short intr;
--	unsigned short loop;
-+	bool intr;
- };
- 
- void i915_gem_ww_ctx_init(struct i915_gem_ww_ctx *ctx, bool intr);
-@@ -20,31 +19,23 @@ void i915_gem_ww_ctx_fini(struct i915_gem_ww_ctx *ctx);
- int __must_check i915_gem_ww_ctx_backoff(struct i915_gem_ww_ctx *ctx);
- void i915_gem_ww_unlock_single(struct drm_i915_gem_object *obj);
- 
--/* Internal functions used by the inlines! Don't use. */
-+/* Internal function used by the inlines! Don't use. */
- static inline int __i915_gem_ww_fini(struct i915_gem_ww_ctx *ww, int err)
- {
--	ww->loop = 0;
- 	if (err == -EDEADLK) {
- 		err = i915_gem_ww_ctx_backoff(ww);
- 		if (!err)
--			ww->loop = 1;
-+			err = -EDEADLK;
- 	}
- 
--	if (!ww->loop)
-+	if (err != -EDEADLK)
- 		i915_gem_ww_ctx_fini(ww);
- 
- 	return err;
- }
- 
--static inline void
--__i915_gem_ww_init(struct i915_gem_ww_ctx *ww, bool intr)
--{
--	i915_gem_ww_ctx_init(ww, intr);
--	ww->loop = 1;
--}
--
--#define for_i915_gem_ww(_ww, _err, _intr)			\
--	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
--	     _err = __i915_gem_ww_fini(_ww, _err))
--
-+#define for_i915_gem_ww(_ww, _err, _intr)			  \
-+	for (i915_gem_ww_ctx_init(_ww, _intr), (_err) = -EDEADLK; \
-+	     (_err) == -EDEADLK;				  \
-+	     (_err) = __i915_gem_ww_fini(_ww, _err))
- #endif
--- 
-2.31.1
-
+Any updates on this?  I'd really hate to miss this merge window.
