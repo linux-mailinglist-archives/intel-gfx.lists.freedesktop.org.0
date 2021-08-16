@@ -2,48 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D1A53EDC79
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 19:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A283EDDFA
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 21:39:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C570789DDD;
-	Mon, 16 Aug 2021 17:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA9056E049;
+	Mon, 16 Aug 2021 19:39:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57C3989DDD;
- Mon, 16 Aug 2021 17:35:04 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 853F568AFE; Mon, 16 Aug 2021 19:34:59 +0200 (CEST)
-Date: Mon, 16 Aug 2021 19:34:58 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: Jason Gunthorpe <jgg@nvidia.com>, Christoph Hellwig <hch@lst.de>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Greg KH <gregkh@linuxfoundation.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Gerd Hoffmann <kraxel@redhat.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
- "Wang, Zhi A" <zhi.a.wang@intel.com>
-Message-ID: <20210816173458.GA9183@lst.de>
-References: <20210721155355.173183-1-hch@lst.de>
- <DM4PR11MB55496531B246A4604FC86998CAE49@DM4PR11MB5549.namprd11.prod.outlook.com>
- <20210722112636.wj277vqhg4dez5ug@sirius.home.kraxel.org>
- <20210727121224.GA2145868@nvidia.com>
- <DM4PR11MB5549EC882AA6076F3468274DCAEA9@DM4PR11MB5549.namprd11.prod.outlook.com>
- <20210728175925.GU1721383@nvidia.com> <20210729072022.GB31896@lst.de>
- <20210803094315.GF13928@zhen-hp.sh.intel.com>
- <20210803143058.GA1721383@nvidia.com>
- <20210804052606.GG13928@zhen-hp.sh.intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B0B36E049
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 19:39:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10078"; a="279669281"
+X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="279669281"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2021 12:39:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,326,1620716400"; d="scan'208";a="487615583"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 16 Aug 2021 12:39:30 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 16 Aug 2021 22:39:29 +0300
+Date: Mon, 16 Aug 2021 22:39:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YRq+8cwGtj2PF6NG@intel.com>
+References: <20210722054338.12891-1-jose.souza@intel.com>
+ <20210722054338.12891-9-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210804052606.GG13928@zhen-hp.sh.intel.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] refactor the i915 GVT support
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210722054338.12891-9-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 09/10] drm/i915/bios: Only use opregion
+ panel index for display ver 8 and older
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,21 +53,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 04, 2021 at 01:26:06PM +0800, Zhenyu Wang wrote:
-> On 2021.08.03 11:30:58 -0300, Jason Gunthorpe wrote:
-> > On Tue, Aug 03, 2021 at 05:43:15PM +0800, Zhenyu Wang wrote:
-> > > Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-> > > 
-> > > Thanks a lot for this effort!
-> > 
-> > Great, do we have a submission plan for this? how much does it clash
-> > with my open_device/etc patch? ie does the whole thing have to go
-> > through the vfio tree?
-> > 
-> 
-> I think Alex would determine when to merge open_device series, gvt part
-> can be through vfio tree without problem. For this refactor, I would first
-> merge for gvt staging to do more regression testing before sending through
-> i915 tree.
+On Wed, Jul 21, 2021 at 10:43:37PM -0700, José Roberto de Souza wrote:
+> On newer platform this opregion call always fails, also it do not
+> support multiple panels so dropping it.
 
-Any updates on this?  I'd really hate to miss this merge window.
+We only use the panel type from opregion on specific machines based on
+aa DMI match. So this patch is basically a no-op.
+
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 19 +++++++------------
+>  1 file changed, 7 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index d1ad6d625e521..6c848384a2ada 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -1924,7 +1924,7 @@ static void parse_integrated_panel(struct drm_i915_private *i915,
+>  {
+>  	const struct vbt_header *vbt = i915->opregion.vbt;
+>  	const struct bdb_header *bdb;
+> -	int lfp_inst = 0, panel_index, opregion_panel_index;
+> +	int lfp_inst = 0, panel_index;
+>  
+>  	if (devdata->child.handle == HANDLE_LFP_1)
+>  		lfp_inst = 1;
+> @@ -1937,17 +1937,12 @@ static void parse_integrated_panel(struct drm_i915_private *i915,
+>  	bdb = get_bdb_header(vbt);
+>  	panel_index = get_lfp_panel_index(i915, bdb, lfp_inst);
+>  
+> -	opregion_panel_index = intel_opregion_get_panel_type(i915);
+> -	/*
+> -	 * TODO: the current implementation always use the panel index from
+> -	 * opregion if available due to issues with old platforms.
+> -	 * But this do not supports two panels and in SKL or newer I never saw a
+> -	 * system were this call returns a valid value.
+> -	 * So will change this to only use opregion up to BDW in a separated
+> -	 * commit.
+> -	 */
+> -	if (opregion_panel_index >= 0)
+> -		panel_index = opregion_panel_index;
+> +	if (DISPLAY_VER(i915) < 9) {
+> +		int opregion_panel_index = intel_opregion_get_panel_type(i915);
+> +
+> +		if (opregion_panel_index >= 0)
+> +			opregion_panel_index = panel_index;
+> +	}
+>  
+>  	if (panel_index == -1)
+>  		return;
+> -- 
+> 2.32.0
+
+-- 
+Ville Syrjälä
+Intel
