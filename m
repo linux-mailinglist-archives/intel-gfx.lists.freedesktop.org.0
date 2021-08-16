@@ -1,62 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0A43ED0CC
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:05:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5DCF3ED111
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:32:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE5989D7D;
-	Mon, 16 Aug 2021 09:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F257A89D9B;
+	Mon, 16 Aug 2021 09:32:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
- [IPv6:2607:f8b0:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A14E89D7D
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 09:05:04 +0000 (UTC)
-Received: by mail-ot1-x333.google.com with SMTP id
- c19-20020a9d6153000000b0051829acbfc7so5205336otk.9
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 02:05:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=I0X8cjnS3exVhKOIPaaxhXaLTasft0jjNO1dDnir+M0=;
- b=WsrmEAbKR9Ea1DN08aTHGiAKPFqgbYhwc/9LS5oJ/HgSk5p3+zAIlUvaEE/ADQPgGI
- cbx68FP3RCl9hHQN2gqWFmFuSN6q5AvO1obN0fG5yDYwq1dbG2mdRJCH7IUPvuPyo4+N
- z0/O2WvILWTFfLPT83dMk2DaEY89r5CjM7/lE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=I0X8cjnS3exVhKOIPaaxhXaLTasft0jjNO1dDnir+M0=;
- b=tYn+XtYX/aipdKn1QinUMDHCuMlARnuZJespkmgCEO0eBsLqyOE5rSh1gP+Suk6nLj
- LneQ1ShFg24eeKEOp1JxP521H19fmqfJ0Dw7Lx4piZiVkIIL+kNfIuD+9IcGrYBVKHhI
- 4dylvCGttvgBUiVhUpObzpO3QhScG7shPQrHy6GNmM0FUvEh6prxjYABT1tYfiS/7e9V
- LyVeAJb7Lpk7Mt0bFiEo/0A44ziSK0qin9Wtpw3A7OoI3umNp206vSH0zhi0fG3TmEW4
- tbfWctaMOCz9Q3XK4BPKV8lBOk17u401d1vOYLN8/xUhhEqsw42i7gMnIO9ZDr/qJf/U
- xrQA==
-X-Gm-Message-State: AOAM533JTc2Wluc38V+GwQmYV2LkzipIzlYafgVGNnqlR0PDepzdjrJY
- mYDWnIUWADXs86U02sKtXBS4eUgruozmnk6Q+cSlWA==
-X-Google-Smtp-Source: ABdhPJwYfeYsTGTja3gdEWuUROrubaV5DSeozV6ZWk480EPEPOe0sNVBRHe913XVZngXT6YGFbGy1Z4ZGIwcRux0I0g=
-X-Received: by 2002:a9d:27a4:: with SMTP id c33mr12175776otb.281.1629104703642; 
- Mon, 16 Aug 2021 02:05:03 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7538C89D8A;
+ Mon, 16 Aug 2021 09:32:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 65DD5AA917;
+ Mon, 16 Aug 2021 09:32:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0595648836007776922=="
 MIME-Version: 1.0
-References: <20210815153740.195330-1-desmondcheongzx@gmail.com>
- <202108160208.ONHHWxXy-lkp@intel.com>
- <f88fe698-b40c-b309-96c2-32b314280aad@gmail.com>
-In-Reply-To: <f88fe698-b40c-b309-96c2-32b314280aad@gmail.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 16 Aug 2021 11:04:52 +0200
-Message-ID: <CAKMK7uEWMjaDEuMpc1__EwD5rpaouJ-dhahQBEQ5rsBz3VV=qg@mail.gmail.com>
-To: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
-Cc: kernel test robot <lkp@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Dave Airlie <airlied@linux.ie>, 
- kbuild-all@lists.01.org, dri-devel <dri-devel@lists.freedesktop.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, 
- Shuah Khan <skhan@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-gfx] [PATCH v2] drm: avoid races with modesetting rights
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Aug 2021 09:32:41 -0000
+Message-ID: <162910636139.26194.7945965727738917318@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210816071737.2917-1-jani.nikula@intel.com>
+In-Reply-To: <20210816071737.2917-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dp=3A_remove_superfluous_EXPORT=5FSYMBOL=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,82 +41,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 16, 2021 at 10:53 AM Desmond Cheong Zhi Xi
-<desmondcheongzx@gmail.com> wrote:
-> On 16/8/21 2:47 am, kernel test robot wrote:
-> > Hi Desmond,
-> >
-> > Thank you for the patch! Yet something to improve:
-> >
-> > [auto build test ERROR on next-20210813]
-> > [also build test ERROR on v5.14-rc5]
-> > [cannot apply to linus/master v5.14-rc5 v5.14-rc4 v5.14-rc3]
-> > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > And when submitting patch, we suggest to use '--base' as documented in
-> > https://git-scm.com/docs/git-format-patch]
-> >
-> > url:    https://github.com/0day-ci/linux/commits/Desmond-Cheong-Zhi-Xi/drm-avoid-races-with-modesetting-rights/20210815-234145
-> > base:    4b358aabb93a2c654cd1dcab1a25a589f6e2b153
-> > config: i386-randconfig-a004-20210815 (attached as .config)
-> > compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-> > reproduce (this is a W=1 build):
-> >          # https://github.com/0day-ci/linux/commit/cf6d8354b7d7953cd866fad004cbb189adfa074f
-> >          git remote add linux-review https://github.com/0day-ci/linux
-> >          git fetch --no-tags linux-review Desmond-Cheong-Zhi-Xi/drm-avoid-races-with-modesetting-rights/20210815-234145
-> >          git checkout cf6d8354b7d7953cd866fad004cbb189adfa074f
-> >          # save the attached .config to linux build tree
-> >          make W=1 ARCH=i386
-> >
-> > If you fix the issue, kindly add following tag as appropriate
-> > Reported-by: kernel test robot <lkp@intel.com>
-> >
-> > All errors (new ones prefixed by >>, old ones prefixed by <<):
-> >
-> >>> ERROR: modpost: "task_work_add" [drivers/gpu/drm/drm.ko] undefined!
-> >
->
-> I'm a bit uncertain about this. Looking into the .config used, this
-> error seems to happen because task_work_add isn't an exported symbol,
-> but DRM is being compiled as a loadable kernel module (CONFIG_DRM=m).
->
-> One way to deal with this is to export the symbol, but there was a
-> proposed patch to do this a few months back that wasn't picked up [1],
-> so I'm not sure what to make of this.
->
-> I'll export the symbol as part of a v3 series, and check in with the
-> task-work maintainers.
->
-> Link:
-> https://lore.kernel.org/lkml/20210127150029.13766-3-joshi.k@samsung.com/ [1]
+--===============0595648836007776922==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah that sounds best. I have two more thoughts on the patch:
-- drm_master_flush isn't used by any modules outside of drm.ko, so we
-can unexport it and drop the kerneldoc (the comment is still good).
-These kind of internal functions have their declaration in
-drm-internal.h - there's already a few there from drm_auth.c
+== Series Details ==
 
-- We know have 3 locks for master state, that feels a bit like
-overkill. The spinlock I think we need to keep due to lock inversions,
-but the master_mutex and master_rwsem look like we should be able to
-merge them? I.e. anywhere we currently grab the master_mutex we could
-instead grab the rwsem in either write mode (when we change stuff) or
-read mode (when we just check, like in master_internal_acquire).
+Series: drm/i915/dp: remove superfluous EXPORT_SYMBOL()
+URL   : https://patchwork.freedesktop.org/series/93708/
+State : success
 
-Thoughts?
--Daniel
+== Summary ==
 
->
-> > ---
-> > 0-DAY CI Kernel Test Service, Intel Corporation
-> > https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
-> >
->
+CI Bug Log - changes from CI_DRM_10487 -> Patchwork_20828
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20828 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-rkl-guc:         [PASS][6] -> [INCOMPLETE][7] ([i915#3920])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@runner@aborted:
+    - fi-bsw-kefka:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@runner@aborted.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3920]: https://gitlab.freedesktop.org/drm/intel/issues/3920
 
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Participating hosts (37 -> 34)
+------------------------------
+
+  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10487 -> Patchwork_20828
+
+  CI-20190529: 20190529
+  CI_DRM_10487: 51573da73ed1828367d6ea150155b85e347ab747 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6176: 3d8642170f2947b6aaad211e9e2e474fadedf6f9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20828: de0d884d06c91f72beab5d8c88c293a4410eba05 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+de0d884d06c9 drm/i915/dp: remove superfluous EXPORT_SYMBOL()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html
+
+--===============0595648836007776922==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: remove superfluous EXPORT_SYMBOL()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93708/">https://patchwork.freedesktop.org/series/93708/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10487 -&gt; Patchwork_20828</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20828 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3920">i915#3920</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10487 -&gt; Patchwork_20828</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10487: 51573da73ed1828367d6ea150155b85e347ab747 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6176: 3d8642170f2947b6aaad211e9e2e474fadedf6f9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20828: de0d884d06c91f72beab5d8c88c293a4410eba05 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>de0d884d06c9 drm/i915/dp: remove superfluous EXPORT_SYMBOL()</p>
+
+</body>
+</html>
+
+--===============0595648836007776922==--
