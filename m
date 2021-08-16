@@ -2,33 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 986A73ECE24
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 07:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ABC33ECE8F
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 08:22:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 800D5897EF;
-	Mon, 16 Aug 2021 05:51:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB2289C17;
+	Mon, 16 Aug 2021 06:22:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CB603897EF;
- Mon, 16 Aug 2021 05:51:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B10BEAADD2;
- Mon, 16 Aug 2021 05:51:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4361944438528016761=="
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54C7C89C07;
+ Mon, 16 Aug 2021 06:22:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=xsvqImlktTgwIAXp0oXAhVPLBXMkPr0Ho9dmWnNdMJA=; b=UrSgpLdoF+H/N7Mjn7t7PKMHmm
+ qtyRLsfb3vDWrGlrTcDbPt62gZDE4mrKzTbcGQB6ol832WftuIeyJOsIeF63tTFA1LoyTiovCj0y8
+ pdfKFMuI/ujC9fbzDVz2d6pLMvok72DU1TsFQXeb2KNRZNSfGUyAdGneAL0ZxTAz8UTjFBRn20i2B
+ TepVE3aA4ebk8I6lsCsyQyPoVxHvdWDj4Ny365Q/uhZ03fmXKANAWnUxXxY1WU5rzmEClT2W5oTih
+ tfIwLA9z+hwh0Bez5aMR8DHGAKKQAhBSKFu3KjkVLaBuG1Rkmexb24nP8x/QZEZwzrj1g5oGjpTQE
+ TgSGCCWA==;
+Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
+ Linux)) id 1mFW0J-0012V1-0B; Mon, 16 Aug 2021 06:21:53 +0000
+Date: Mon, 16 Aug 2021 07:21:46 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Christoph Hellwig <hch@infradead.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
+Message-ID: <YRoD+p2tdkfAmA8U@infradead.org>
+References: <YRYRwG5jscfl54pj@infradead.org>
+ <20210816024534.GV13928@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ayaz A Siddiqui" <ayaz.siddiqui@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Aug 2021 05:51:46 -0000
-Message-ID: <162909310668.26194.11166306313394277654@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210816045229.423234-1-ayaz.siddiqui@intel.com>
-In-Reply-To: <20210816045229.423234-1-ayaz.siddiqui@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Initialize_unused_MOCS_entries_to_L3=5FWB?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210816024534.GV13928@zhen-hp.sh.intel.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+Subject: Re: [Intel-gfx] i915 timeouts delaying boot under GVT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,125 +56,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4361944438528016761==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Aug 16, 2021 at 10:45:34AM +0800, Zhenyu Wang wrote:
+> Hi, Christoph, what platform is this?
 
-== Series Details ==
+Kaby Lake ( i7-8550U)
 
-Series: drm/i915/gt: Initialize unused MOCS entries to L3_WB
-URL   : https://patchwork.freedesktop.org/series/93706/
-State : success
+>
+> And what's your guest i915 config?
 
-== Summary ==
+guest config as in i915-related .config options?
 
-CI Bug Log - changes from CI_DRM_10485 -> Patchwork_20827
-====================================================
+---------------- snip ----------------
+CONFIG_DRM_I915=y
+CONFIG_DRM_I915_FORCE_PROBE=""
+CONFIG_DRM_I915_CAPTURE_ERROR=y
+CONFIG_DRM_I915_COMPRESS_ERROR=y
+CONFIG_DRM_I915_USERPTR=y
+# CONFIG_DRM_I915_GVT is not set
 
-Summary
--------
+#
+# drm/i915 Debugging
+#
+# CONFIG_DRM_I915_WERROR is not set
+# CONFIG_DRM_I915_DEBUG is not set
+# CONFIG_DRM_I915_DEBUG_MMIO is not set
+# CONFIG_DRM_I915_SW_FENCE_DEBUG_OBJECTS is not set
+# CONFIG_DRM_I915_SW_FENCE_CHECK_DAG is not set
+# CONFIG_DRM_I915_DEBUG_GUC is not set
+# CONFIG_DRM_I915_SELFTEST is not set
+# CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS is not set
+# CONFIG_DRM_I915_DEBUG_VBLANK_EVADE is not set
+# CONFIG_DRM_I915_DEBUG_RUNTIME_PM is not set
+# end of drm/i915 Debugging
+#
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20827/index.html
-
-
-Changes
--------
-
-  No changes found
-
-
-Participating hosts (37 -> 34)
-------------------------------
-
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10485 -> Patchwork_20827
-
-  CI-20190529: 20190529
-  CI_DRM_10485: 029f8ff4156268d7abc8acde2eddd3041c7a94e4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20827: 2140f351a3a35395dead4cdd30382bb163beafd9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2140f351a3a3 drm/i95/adl: Define MOCS table for Alderlake
-2fa1529ce1fd drm/i915/gt: Initialize unused MOCS entries with device specific values
-fb7209540fa9 drm/i915/gt: Set BLIT_CCTL reg to un-cached
-5a156fff1508 drm/i915/gt: Use cmd_cctl override for platforms >= gen12
-bd87af7aa75f drm/i915/gt: Add support of mocs propagation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20827/index.html
-
---===============4361944438528016761==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Initialize unused MOCS entries to L3_WB</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93706/">https://patchwork.freedesktop.org/series/93706/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20827/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20827/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10485 -&gt; Patchwork_20827</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20827/index.html</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10485 -&gt; Patchwork_20827</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10485: 029f8ff4156268d7abc8acde2eddd3041c7a94e4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20827: 2140f351a3a35395dead4cdd30382bb163beafd9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2140f351a3a3 drm/i95/adl: Define MOCS table for Alderlake<br />
-2fa1529ce1fd drm/i915/gt: Initialize unused MOCS entries with device specific values<br />
-fb7209540fa9 drm/i915/gt: Set BLIT_CCTL reg to un-cached<br />
-5a156fff1508 drm/i915/gt: Use cmd_cctl override for platforms &gt;= gen12<br />
-bd87af7aa75f drm/i915/gt: Add support of mocs propagation</p>
-
-</body>
-</html>
-
---===============4361944438528016761==--
+#
+# drm/i915 Profile Guided Optimisation
+#
+CONFIG_DRM_I915_REQUEST_TIMEOUT=20000
+CONFIG_DRM_I915_FENCE_TIMEOUT=10000
+CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND=250
+CONFIG_DRM_I915_HEARTBEAT_INTERVAL=2500
+CONFIG_DRM_I915_PREEMPT_TIMEOUT=100
+CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT=8000
+CONFIG_DRM_I915_STOP_TIMEOUT=100
+CONFIG_DRM_I915_TIMESLICE_DURATION=1
+# end of drm/i915 Profile Guided Optimisation
+---------------- snip ----------------
