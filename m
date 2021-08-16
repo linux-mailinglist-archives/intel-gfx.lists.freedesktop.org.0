@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5DCF3ED111
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:32:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3273ED127
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:41:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F257A89D9B;
-	Mon, 16 Aug 2021 09:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1B78887E;
+	Mon, 16 Aug 2021 09:41:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7538C89D8A;
- Mon, 16 Aug 2021 09:32:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49C778887E;
+ Mon, 16 Aug 2021 09:41:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 65DD5AA917;
- Mon, 16 Aug 2021 09:32:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0595648836007776922=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3C39BAA0EA;
+ Mon, 16 Aug 2021 09:41:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Aug 2021 09:32:41 -0000
-Message-ID: <162910636139.26194.7945965727738917318@emeril.freedesktop.org>
+Date: Mon, 16 Aug 2021 09:41:40 -0000
+Message-ID: <162910690021.26194.451803896590941276@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210816071737.2917-1-jani.nikula@intel.com>
-In-Reply-To: <20210816071737.2917-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dp=3A_remove_superfluous_EXPORT=5FSYMBOL=28=29?=
+References: <20210816084855.75586-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210816084855.75586-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Ditch_the_i915=5Fgem=5Fww=5Fctx_loop_member?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,180 +45,30 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0595648836007776922==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp: remove superfluous EXPORT_SYMBOL()
-URL   : https://patchwork.freedesktop.org/series/93708/
-State : success
+Series: drm/i915: Ditch the i915_gem_ww_ctx loop member
+URL   : https://patchwork.freedesktop.org/series/93711/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_10487 -> Patchwork_20828
-====================================================
+$ dim checkpatch origin/drm-tip
+e82160475e8e drm/i915: Ditch the i915_gem_ww_ctx loop member
+-:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_ww' - possible side-effects?
+#67: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:39:
++#define for_i915_gem_ww(_ww, _err, _intr)			  \
++	for (i915_gem_ww_ctx_init(_ww, _intr), (_err) = -EDEADLK; \
++	     fetch_and_zero(&_err) == -EDEADLK;			  \
+ 	     _err = __i915_gem_ww_fini(_ww, _err))
 
-Summary
--------
+-:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
+#67: FILE: drivers/gpu/drm/i915/i915_gem_ww.h:39:
++#define for_i915_gem_ww(_ww, _err, _intr)			  \
++	for (i915_gem_ww_ctx_init(_ww, _intr), (_err) = -EDEADLK; \
++	     fetch_and_zero(&_err) == -EDEADLK;			  \
+ 	     _err = __i915_gem_ww_fini(_ww, _err))
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20828 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_prime@amd-to-i915:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-1115g4:      [PASS][2] -> [FAIL][3] ([i915#1888])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [PASS][4] -> [INCOMPLETE][5] ([i915#2940])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-rkl-guc:         [PASS][6] -> [INCOMPLETE][7] ([i915#3920])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-rkl-guc/igt@i915_selftest@live@workarounds.html
-
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][8] ([fdo#109271] / [i915#1436])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@runner@aborted.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3920]: https://gitlab.freedesktop.org/drm/intel/issues/3920
+total: 0 errors, 0 warnings, 2 checks, 48 lines checked
 
 
-Participating hosts (37 -> 34)
-------------------------------
-
-  Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10487 -> Patchwork_20828
-
-  CI-20190529: 20190529
-  CI_DRM_10487: 51573da73ed1828367d6ea150155b85e347ab747 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6176: 3d8642170f2947b6aaad211e9e2e474fadedf6f9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_20828: de0d884d06c91f72beab5d8c88c293a4410eba05 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-de0d884d06c9 drm/i915/dp: remove superfluous EXPORT_SYMBOL()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html
-
---===============0595648836007776922==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: remove superfluous EXPORT_SYMBOL()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93708/">https://patchwork.freedesktop.org/series/93708/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10487 -&gt; Patchwork_20828</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20828 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-rkl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10487/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-rkl-guc/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3920">i915#3920</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20828/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (37 -&gt; 34)</h2>
-<p>Missing    (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10487 -&gt; Patchwork_20828</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10487: 51573da73ed1828367d6ea150155b85e347ab747 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6176: 3d8642170f2947b6aaad211e9e2e474fadedf6f9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_20828: de0d884d06c91f72beab5d8c88c293a4410eba05 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>de0d884d06c9 drm/i915/dp: remove superfluous EXPORT_SYMBOL()</p>
-
-</body>
-</html>
-
---===============0595648836007776922==--
