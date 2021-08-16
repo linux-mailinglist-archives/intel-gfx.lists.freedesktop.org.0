@@ -1,42 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 093DE3ECB92
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Aug 2021 23:59:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBA43ECCFC
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 05:08:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1082289A62;
-	Sun, 15 Aug 2021 21:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5DF89AAE;
+	Mon, 16 Aug 2021 03:08:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66D2B89A62
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Aug 2021 21:59:50 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10077"; a="212649428"
-X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; d="scan'208";a="212649428"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA9B789A75;
+ Mon, 16 Aug 2021 03:08:12 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10077"; a="213936220"
+X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; 
+ d="asc'?scan'208";a="213936220"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2021 14:59:49 -0700
-X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; d="scan'208";a="486934424"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2021 14:59:49 -0700
-Date: Sun, 15 Aug 2021 14:54:35 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20210815215435.GA2791@jons-linux-dev-box>
-References: <20210815201559.1150-1-matthew.brost@intel.com>
- <162906213192.6205.13761410296264336605@emeril.freedesktop.org>
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2021 20:08:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; 
+ d="asc'?scan'208";a="487056715"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.143])
+ by fmsmga008.fm.intel.com with ESMTP; 15 Aug 2021 20:08:10 -0700
+Date: Mon, 16 Aug 2021 10:45:34 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Christoph Hellwig <hch@infradead.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.a.wang@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
+Message-ID: <20210816024534.GV13928@zhen-hp.sh.intel.com>
+References: <YRYRwG5jscfl54pj@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature"; boundary="N1feavoG/SlNLCrA"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <162906213192.6205.13761410296264336605@emeril.freedesktop.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ2xl?=
- =?utf-8?q?an_up_GuC_CI_failures=2C_simplify_locking=2C_and_kernel_DOC?=
+In-Reply-To: <YRYRwG5jscfl54pj@infradead.org>
+Subject: Re: [Intel-gfx] i915 timeouts delaying boot under GVT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,183 +52,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Aug 15, 2021 at 09:15:31PM +0000, Patchwork wrote:
-> Patch Details
-> 
-> Series:  Clean up GuC CI failures, simplify locking, and kernel DOC
-> URL:     https://patchwork.freedesktop.org/series/93704/
-> State:   failure
-> Details: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20826/index.html
-> 
-> CI Bug Log - changes from CI_DRM_10484 -> Patchwork_20826
-> 
-> Summary
-> 
-> FAILURE
-> 
-> Serious unknown changes coming with Patchwork_20826 absolutely need to be
-> verified manually.
-> 
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_20826, please notify your bug team to allow them
-> to document this new failure mode, which will reduce false positives in CI.
-> 
-> External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20826/
-> index.html
-> 
-> Possible new issues
-> 
-> Here are the unknown changes that may have been introduced in Patchwork_20826:
-> 
-> IGT changes
-> 
-> Possible regressions
-> 
->   • igt@i915_selftest@live@requests:
-> 
->       □ fi-cfl-guc: PASS -> DMESG-FAIL
-> 
 
-New selftext, __cancel_reset, is exposing a bug (or at minimum different
-behavior) in the execlists implementation for canceling requests. Will
-fix in new rev.
+--N1feavoG/SlNLCrA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Matt
+On 2021.08.13 08:31:28 +0200, Christoph Hellwig wrote:
+> Hi all,
+>=20
+> when botting a current 4.14-rc tree in a VM using GVT-g (with the host
+> also running a current 4.14-rc tree), I see bunch of long timeouts
+> followed by i915 errors:
+>=20
+> [    4.252066] i915 0000:00:03.0: [drm] VGT balloon successfully
+> [    5.095190] i915 0000:00:03.0: [drm] *ERROR* Failed to disable SAGV (-=
+110)
+> [   15.334559] [drm:drm_atomic_helper_wait_for_flip_done] *ERROR* [CRTC:5=
+1:pipe
+> A] flip_done timed out
+> [   15.346934] [drm] Initialized i915 1.6.0 20201103 for 0000:00:03.0 on =
+minor
+> 0
+>=20
+> I did a hackjob to track them down and just if out the offending code,
+> which speeds up the boot by ~11 seconds but is probably dangerous as hell:
 
->       □ fi-kbl-soraka: PASS -> DMESG-FAIL
-> 
->       □ fi-bxt-dsi: PASS -> DMESG-FAIL
-> 
->       □ fi-tgl-1115g4: PASS -> DMESG-FAIL
-> 
->       □ fi-cml-u2: PASS -> DMESG-FAIL
-> 
->       □ fi-kbl-8809g: PASS -> DMESG-FAIL
-> 
->       □ fi-cfl-8700k: PASS -> DMESG-FAIL
-> 
->       □ fi-cfl-8109u: PASS -> DMESG-FAIL
-> 
->       □ fi-icl-u2: PASS -> DMESG-FAIL
-> 
->       □ fi-kbl-7500u: PASS -> DMESG-FAIL
-> 
->       □ fi-bsw-nick: PASS -> DMESG-FAIL
-> 
->       □ fi-icl-y: PASS -> DMESG-FAIL
-> 
->       □ fi-kbl-guc: PASS -> DMESG-FAIL
-> 
->       □ fi-kbl-7567u: PASS -> DMESG-FAIL
-> 
->       □ fi-skl-guc: PASS -> DMESG-FAIL
-> 
->       □ fi-bdw-5557u: PASS -> DMESG-FAIL
-> 
->       □ fi-glk-dsi: PASS -> DMESG-FAIL
-> 
->       □ fi-bsw-kefka: PASS -> DMESG-FAIL
-> 
->       □ fi-skl-6700k2: PASS -> DMESG-FAIL
-> 
-> Warnings
-> 
->   • igt@i915_selftest@live@workarounds:
->       □ fi-rkl-guc: DMESG-FAIL (i915#3928) -> INCOMPLETE
-> 
-> Suppressed
-> 
-> The following results come from untrusted machines, tests, or statuses.
-> They do not affect the overall result.
-> 
->   • igt@i915_selftest@live@requests:
-> 
->       □ {fi-tgl-dsi}: PASS -> DMESG-FAIL
-> 
->       □ {fi-jsl-1}: PASS -> DMESG-FAIL
-> 
->       □ {fi-ehl-2}: PASS -> DMESG-FAIL
-> 
-> New tests
-> 
-> New tests have been introduced between CI_DRM_10484 and Patchwork_20826:
-> 
-> New IGT tests (1)
-> 
->   • igt@i915_selftest@live@guc:
->       □ Statuses : 30 pass(s)
->       □ Exec time: [0.42, 5.06] s
-> 
-> Known issues
-> 
-> Here are the changes found in Patchwork_20826 that come from known issues:
-> 
-> IGT changes
-> 
-> Issues hit
-> 
->   • igt@i915_module_load@reload:
-> 
->       □ fi-kbl-soraka: PASS -> DMESG-WARN (i915#1982)
->   • igt@i915_selftest@live@execlists:
-> 
->       □ fi-icl-y: PASS -> DMESG-FAIL (i915#1993)
-> 
-> Possible fixes
-> 
->   • igt@i915_module_load@reload:
->       □ {fi-tgl-dsi}: DMESG-WARN (i915#1982 / k.org#205379) -> PASS
-> 
-> {name}: This element is suppressed. This means it is ignored when computing
-> the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
-> Participating hosts (37 -> 34)
-> 
-> Missing (3): fi-bdw-samus fi-bsw-cyan bat-jsl-1
-> 
-> Build changes
-> 
->   • Linux: CI_DRM_10484 -> Patchwork_20826
-> 
-> CI-20190529: 20190529
-> CI_DRM_10484: 7de02d5cb1f35bd3f068237444063844dea47ddc @ git://
-> anongit.freedesktop.org/gfx-ci/linux
-> IGT_6175: c91f99c74b966f635d7e2eb898bf0f78383d281b @ https://
-> gitlab.freedesktop.org/drm/igt-gpu-tools.git
-> Patchwork_20826: f7ff315bfe3a76713c1f0a16cd92b0908d28e4c6 @ git://
-> anongit.freedesktop.org/gfx-ci/linux
-> 
-> == Linux commits ==
-> 
-> f7ff315bfe3a drm/i915/guc: Add GuC kernel doc
-> af14e3698d19 drm/i915/guc: Move GuC priority fields in context under guc_active
-> eb8a352e7c1f drm/i915/guc: Drop pin count check trick between sched_disable and
-> re-pin
-> 7057a0daff8c drm/i915/guc: Proper xarray usage for contexts_lookup
-> d97ab34c8bac drm/i915/guc: Rework and simplify locking
-> 4c980575f7af drm/i915/guc: Move guc_blocked fence to struct guc_state
-> 1c2b4c0ac62a drm/i915/guc: Release submit fence from an IRQ
-> 14dc302536e1 drm/i915/guc: Flush G2H work queue during reset
-> c0ad63d810e6 drm/i915: Allocate error capture in atomic context
-> 6c1c488a3654 drm/i915/guc: Reset LRC descriptor if register returns -ENODEV
-> 025e88fa74d3 drm/i915/guc: Don't touch guc_state.sched_state without a lock
-> b929abcf3b59 drm/i915/guc: Take context ref when cancelling request
-> b5e8c08dff35 drm/i915/selftests: Add initial GuC selftest for scrubbing lost
-> G2H
-> cddf94c9bda0 drm/i915/selftests: Fix memory corruption in live_lrc_isolation
-> c18da32e671c drm/i915/guc: Don't enable scheduling on a banned context, guc_id
-> invalid, not registered
-> 0c0928ba1ba8 drm/i915/selftests: Add a cancel request selftest that triggers a
-> reset
-> 8ec967ce47da drm/i915/guc: Workaround reset G2H is received after schedule done
-> G2H
-> 2739b8f8966f drm/i915/guc: Don't drop ce->guc_active.lock when unwinding
-> context
-> 1d414637d838 drm/i915/guc: Unwind context requests in reverse order
-> 7fe738f56abc drm/i915/guc: outstanding G2H accounting
-> c9f3859e5dce drm/i915/guc: Fix blocked context accounting
-> 
-> SECURITY NOTE: file ~/.netrc must not be accessible by others
+Hi, Christoph, what platform is this? And what's your guest i915 config?
+
+I'll try to reproduce on our side. Thanks for reporting this.
+
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 2d5d21740c25..ee82fd67f386 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -10696,7 +10696,7 @@ static void intel_atomic_commit_tail(struct intel=
+_atomic_state *state)
+>  	 * - switch over to the vblank wait helper in the core after that since
+>  	 *   we don't need out special handling any more.
+>  	 */
+> -	drm_atomic_helper_wait_for_flip_done(dev, &state->base);
+> +//	drm_atomic_helper_wait_for_flip_done(dev, &state->base);
+> =20
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>  		if (new_crtc_state->uapi.async_flip)
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 45fefa0ed160..f03ce729cc4b 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3753,7 +3753,7 @@ intel_disable_sagv(struct drm_i915_private *dev_pri=
+v)
+>  	if (!intel_has_sagv(dev_priv))
+>  		return 0;
+> =20
+> -	if (dev_priv->sagv_status =3D=3D I915_SAGV_DISABLED)
+> +	if (1 || dev_priv->sagv_status =3D=3D I915_SAGV_DISABLED)
+>  		return 0;
+> =20
+>  	drm_dbg_kms(&dev_priv->drm, "Disabling SAGV\n");
+
+--N1feavoG/SlNLCrA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYRnRQwAKCRCxBBozTXgY
+J7Q8AJsHTvAvpGJUskW0DHYOUnKA6cxcCQCZAaaJks+wH8DDmB43G8ppNAMDYPs=
+=8+Rv
+-----END PGP SIGNATURE-----
+
+--N1feavoG/SlNLCrA--
