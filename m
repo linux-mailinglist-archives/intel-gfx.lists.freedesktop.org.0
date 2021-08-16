@@ -2,38 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D75E03ED087
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 10:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7823ED169
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 11:58:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1CBB89CB2;
-	Mon, 16 Aug 2021 08:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B2989D8A;
+	Mon, 16 Aug 2021 09:58:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C848089CAF;
- Mon, 16 Aug 2021 08:49:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10077"; a="215820804"
-X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; d="scan'208";a="215820804"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2021 01:49:16 -0700
-X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; d="scan'208";a="592581225"
-Received: from vanderss-mobl.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.118])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2021 01:49:12 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date: Mon, 16 Aug 2021 10:48:55 +0200
-Message-Id: <20210816084855.75586-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com
+ [IPv6:2607:f8b0:4864:20::1032])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9E32896C7;
+ Mon, 16 Aug 2021 08:53:15 +0000 (UTC)
+Received: by mail-pj1-x1032.google.com with SMTP id n5so4884778pjt.4;
+ Mon, 16 Aug 2021 01:53:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=wediW2rQNAFGcxyFW6VD+CmiCi3BD219aCF7GpyjEEU=;
+ b=TmQlHO6/pVnUytiENEwc9/8WzC/lixrLcEqbj1EIxba1GAR++VeY3wXSuU6BTINntx
+ 2XYEnMQ01HvHhvYdpyTQ/jKmWx4aAhFeKavsMqE73VhuD1EWjG3ubdyl0AhnUR+nV2Gw
+ gt2mMvb1hEezGPu5pLYPY/L4qLXOVG1nRcUss9TS+ItzU91gtWGIexxeQJVXayQa9aRK
+ eN6BnEiWlF11bJghxEKyWqslxkayWAF/WVyM2Cp6k6n8evqw2oMWDxfUVQ7QWmcSR+nd
+ oaPawBMpQ4W5RHk6Bzx4GQZoBmYbQWqeex3e8uzUe7p1lkqQuXkl2PNI3N1XY2XhsUvZ
+ q9Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=wediW2rQNAFGcxyFW6VD+CmiCi3BD219aCF7GpyjEEU=;
+ b=oNnVxlp0yAhyD6J7qgb7eL0pm55s5cqHk3oCLGTK5ZXkNt+CJNeV+DcKnjoNCyCR4X
+ IKq4EN8zE8sZKVOdFqeJtuDm6nOCuU2bNefBlDo6KiK2ADEWsygJbda/k/MK2APXqxnS
+ PPgR7e0gM/YKP0uuH5Ua9e9Nfi+g+E7sF3Mk0I+EdxpxbaZz5d4n8ZH4P/4YoEBG1hXx
+ /QX/9NnChmKbJ9VG/C9/hWHtHPEUbZrpZTzJfhKxMyNp/AQllng3qBESmyJRh8HXf+iB
+ yRr5MN9X/UHIDXziQbBjNm7h/b37AoMOeH01nS4OKnxsF1MfjhGj6fHO7ZB3janYfgKF
+ oE5w==
+X-Gm-Message-State: AOAM533EwvRtISRN/E22AwQ9BR+GxL5C0aSRmlUe1nSBe+OxMAeullGr
+ JSWxY9y+xXI9t0uzI3ajfvw=
+X-Google-Smtp-Source: ABdhPJwjtmkAuRRMKifOjbWX4QIGY38V894IQNCB/ZBdw4UZQeT6CTo+O+ko0QSFGwf7xXgopNsdmQ==
+X-Received: by 2002:a17:90a:d702:: with SMTP id
+ y2mr16584952pju.127.1629103995604; 
+ Mon, 16 Aug 2021 01:53:15 -0700 (PDT)
+Received: from [192.168.1.237] ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id i11sm10448056pfo.29.2021.08.16.01.53.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 Aug 2021 01:53:15 -0700 (PDT)
+To: kernel test robot <lkp@intel.com>, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@linux.ie, daniel@ffwll.ch
+Cc: kbuild-all@lists.01.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ skhan@linuxfoundation.org
+References: <20210815153740.195330-1-desmondcheongzx@gmail.com>
+ <202108160208.ONHHWxXy-lkp@intel.com>
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Message-ID: <f88fe698-b40c-b309-96c2-32b314280aad@gmail.com>
+Date: Mon, 16 Aug 2021 16:53:10 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-gfx] [PATCH] drm/i915: Ditch the i915_gem_ww_ctx loop member
+In-Reply-To: <202108160208.ONHHWxXy-lkp@intel.com>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 16 Aug 2021 09:58:06 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm: avoid races with modesetting rights
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,73 +81,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's only used by the for_i915_gem_ww() macro and we can use
-the (typically) on-stack _err variable in its place.
+On 16/8/21 2:47 am, kernel test robot wrote:
+> Hi Desmond,
+> 
+> Thank you for the patch! Yet something to improve:
+> 
+> [auto build test ERROR on next-20210813]
+> [also build test ERROR on v5.14-rc5]
+> [cannot apply to linus/master v5.14-rc5 v5.14-rc4 v5.14-rc3]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Desmond-Cheong-Zhi-Xi/drm-avoid-races-with-modesetting-rights/20210815-234145
+> base:    4b358aabb93a2c654cd1dcab1a25a589f6e2b153
+> config: i386-randconfig-a004-20210815 (attached as .config)
+> compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+> reproduce (this is a W=1 build):
+>          # https://github.com/0day-ci/linux/commit/cf6d8354b7d7953cd866fad004cbb189adfa074f
+>          git remote add linux-review https://github.com/0day-ci/linux
+>          git fetch --no-tags linux-review Desmond-Cheong-Zhi-Xi/drm-avoid-races-with-modesetting-rights/20210815-234145
+>          git checkout cf6d8354b7d7953cd866fad004cbb189adfa074f
+>          # save the attached .config to linux build tree
+>          make W=1 ARCH=i386
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+>>> ERROR: modpost: "task_work_add" [drivers/gpu/drm/drm.ko] undefined!
+> 
 
-While initially setting the _err variable to -EDEADLK to enter the
-loop, we clear it before actually entering using fetch_and_zero() to
-avoid empty loops or code not setting the _err variable running forever.
+I'm a bit uncertain about this. Looking into the .config used, this 
+error seems to happen because task_work_add isn't an exported symbol, 
+but DRM is being compiled as a loadable kernel module (CONFIG_DRM=m).
 
-Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_gem_ww.h | 23 ++++++++---------------
- 1 file changed, 8 insertions(+), 15 deletions(-)
+One way to deal with this is to export the symbol, but there was a 
+proposed patch to do this a few months back that wasn't picked up [1], 
+so I'm not sure what to make of this.
 
-diff --git a/drivers/gpu/drm/i915/i915_gem_ww.h b/drivers/gpu/drm/i915/i915_gem_ww.h
-index f6b1a796667b..98348b1e6182 100644
---- a/drivers/gpu/drm/i915/i915_gem_ww.h
-+++ b/drivers/gpu/drm/i915/i915_gem_ww.h
-@@ -7,12 +7,13 @@
- 
- #include <drm/drm_drv.h>
- 
-+#include "i915_utils.h"
-+
- struct i915_gem_ww_ctx {
- 	struct ww_acquire_ctx ctx;
- 	struct list_head obj_list;
- 	struct drm_i915_gem_object *contended;
--	unsigned short intr;
--	unsigned short loop;
-+	bool intr;
- };
- 
- void i915_gem_ww_ctx_init(struct i915_gem_ww_ctx *ctx, bool intr);
-@@ -23,28 +24,20 @@ void i915_gem_ww_unlock_single(struct drm_i915_gem_object *obj);
- /* Internal functions used by the inlines! Don't use. */
- static inline int __i915_gem_ww_fini(struct i915_gem_ww_ctx *ww, int err)
- {
--	ww->loop = 0;
- 	if (err == -EDEADLK) {
- 		err = i915_gem_ww_ctx_backoff(ww);
- 		if (!err)
--			ww->loop = 1;
-+			err = -EDEADLK;
- 	}
- 
--	if (!ww->loop)
-+	if (err != -EDEADLK)
- 		i915_gem_ww_ctx_fini(ww);
- 
- 	return err;
- }
- 
--static inline void
--__i915_gem_ww_init(struct i915_gem_ww_ctx *ww, bool intr)
--{
--	i915_gem_ww_ctx_init(ww, intr);
--	ww->loop = 1;
--}
--
--#define for_i915_gem_ww(_ww, _err, _intr)			\
--	for (__i915_gem_ww_init(_ww, _intr); (_ww)->loop;	\
-+#define for_i915_gem_ww(_ww, _err, _intr)			  \
-+	for (i915_gem_ww_ctx_init(_ww, _intr), (_err) = -EDEADLK; \
-+	     fetch_and_zero(&_err) == -EDEADLK;			  \
- 	     _err = __i915_gem_ww_fini(_ww, _err))
--
- #endif
--- 
-2.31.1
+I'll export the symbol as part of a v3 series, and check in with the 
+task-work maintainers.
+
+Link: 
+https://lore.kernel.org/lkml/20210127150029.13766-3-joshi.k@samsung.com/ [1]
+
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> 
 
