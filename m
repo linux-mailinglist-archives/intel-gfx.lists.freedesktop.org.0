@@ -2,45 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95D3F3ED395
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 14:01:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C73C3ED6CE
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Aug 2021 15:24:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3541889949;
-	Mon, 16 Aug 2021 12:01:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 465A189BB2;
+	Mon, 16 Aug 2021 13:24:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C77E898AF
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 12:01:17 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10077"; a="203046311"
-X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; d="scan'208";a="203046311"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2021 05:01:16 -0700
-X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; d="scan'208";a="519627060"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2021 05:01:13 -0700
-Date: Mon, 16 Aug 2021 15:01:10 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Sharma, Swati2" <swati2.sharma@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Ville Syrj_l_ <ville.syrjala@linux.intel.com>,
- Manasi Navare <manasi.d.navare@intel.com>,
- Jos_ Roberto de Souza <jose.souza@intel.com>,
- Sean Paul <seanpaul@chromium.org>, stable@vger.kernel.org
-Message-ID: <20210816120110.GA2739849@ideak-desk.fi.intel.com>
-References: <20210812131107.5531-1-swati2.sharma@intel.com>
- <20210812160118.GH2600583@ideak-desk.fi.intel.com>
- <4d4c94a4-2344-068d-5096-262b0ad70602@intel.com>
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
+ [IPv6:2607:f8b0:4864:20::1033])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13B4D898CE;
+ Mon, 16 Aug 2021 10:31:29 +0000 (UTC)
+Received: by mail-pj1-x1033.google.com with SMTP id
+ mq2-20020a17090b3802b0290178911d298bso26763944pjb.1; 
+ Mon, 16 Aug 2021 03:31:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=ccX+otJKzYiw7fTpASq5EiKmXI5wu1oM2Rkshyanugg=;
+ b=nyTjql4kPU5b2tlliqQClzMia17+fqOan4LwezfDCn5/sGGbjPNeN6UdQ602MiLmVS
+ yRdL5HwSNqxX3TLwsbGgi1lkq5yoZapTrurxpvYwULnFJ+gBBw23X3lri9m096BgDT//
+ IKposJALqA9eUslVUf0jlBwS/RXtBzOUApWV+mV6x54TX3w2wIDBL8y/bixUv3TDGLkh
+ ighUtLEpkT1PzcFgJuxUHLVrwA0kmYRY/yFPoIiNLH35qyj6sNMT+0/CWqALrtkrCkUF
+ PoqiSd/WVIQT+61eYpyy7yVLmNbqV346PvlJ1Y3xjC52QVqGblfnU+7olmsm/vtjEadr
+ qy6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=ccX+otJKzYiw7fTpASq5EiKmXI5wu1oM2Rkshyanugg=;
+ b=d2uzAjV231RyQ8tbPCI5+Au389kbGa4PgXZoC+pUJrJ5tBxjI90hf2lA26q+MpNCLP
+ trvazXJVGiUayC8051+TVzaj/CZ5G30WWuoxnZxZBCkr2CcePZLUF1vj5Dwsu9oIn1nD
+ FACsSReSGsYQC6LbzlvgwNG+XyD8l0zDggGisC1ZQb/GgklQthAXzPk2JMJate2uwpEC
+ decV2X2BE0hdYnHmCnkBPStoPqFcyiOUEw+c9sSJ+5Fxwjm+PM/IiqkDBlaFCaQRRYIT
+ WbVk80eTTbM+mFY9wtL0z2uHz7ybJO32/fCT8Gll1U9qlKeZIBAixaCgasmf8Id4ylp/
+ YVjw==
+X-Gm-Message-State: AOAM530CXaUkRb9CR3ktuNenpHyKNZUzErnt5lK5cE73InWZA3oMNi3m
+ B/WFlhZEKOqxcFjKzwTeJSk=
+X-Google-Smtp-Source: ABdhPJw/StLL2fZrdUNp2CW5UwXdwfF+A7iXrh+hhQZgPdXKrA2dAk8JDe77PoSA4AlMAWZTB6qcTQ==
+X-Received: by 2002:a63:111f:: with SMTP id g31mr15459522pgl.80.1629109888650; 
+ Mon, 16 Aug 2021 03:31:28 -0700 (PDT)
+Received: from [192.168.1.237] ([118.200.190.93])
+ by smtp.gmail.com with ESMTPSA id f137sm10813481pfa.160.2021.08.16.03.31.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 Aug 2021 03:31:28 -0700 (PDT)
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: kernel test robot <lkp@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Dave Airlie <airlied@linux.ie>, kbuild-all@lists.01.org,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Shuah Khan <skhan@linuxfoundation.org>
+References: <20210815153740.195330-1-desmondcheongzx@gmail.com>
+ <202108160208.ONHHWxXy-lkp@intel.com>
+ <f88fe698-b40c-b309-96c2-32b314280aad@gmail.com>
+ <CAKMK7uEWMjaDEuMpc1__EwD5rpaouJ-dhahQBEQ5rsBz3VV=qg@mail.gmail.com>
+From: Desmond Cheong Zhi Xi <desmondcheongzx@gmail.com>
+Message-ID: <3a5ffd83-3d91-73dc-0cae-e822ba381b2b@gmail.com>
+Date: Mon, 16 Aug 2021 18:31:23 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4d4c94a4-2344-068d-5096-262b0ad70602@intel.com>
-Subject: Re: [Intel-gfx] [v3][PATCH] drm/i915/display: Drop redundant debug
- print
+In-Reply-To: <CAKMK7uEWMjaDEuMpc1__EwD5rpaouJ-dhahQBEQ5rsBz3VV=qg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 16 Aug 2021 13:24:28 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm: avoid races with modesetting rights
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,90 +87,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 16, 2021 at 05:23:00PM +0530, Sharma, Swati2 wrote:
-> On 12-Aug-21 9:31 PM, Imre Deak wrote:
-> > On Thu, Aug 12, 2021 at 06:41:07PM +0530, Swati Sharma wrote:
-> > > drm_dp_dpcd_read/write already has debug error message.
-> > > Drop redundant error messages which gives false
-> > > status even if correct value is read in drm_dp_dpcd_read().
-> > > 
-> > > v2: -Added fixes tag (Ankit)
-> > > v3: -Fixed build error (CI)
-> > > 
-> > > Fixes: 9488a030ac91 ("drm/i915: Add support for enabling link status and recovery")
-> > > Cc: Swati Sharma <swati2.sharma@intel.com>
-> > > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > > Cc: Uma Shankar <uma.shankar@intel.com> (v2)
-> > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > Cc: "Ville Syrj_l_" <ville.syrjala@linux.intel.com>
-> > > Cc: Imre Deak <imre.deak@intel.com>
-> > > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > > Cc: Uma Shankar <uma.shankar@intel.com>
-> > > Cc: "Jos_ Roberto de Souza" <jose.souza@intel.com>
-> > > Cc: Sean Paul <seanpaul@chromium.org>
-> > > Cc: <stable@vger.kernel.org> # v5.12+
-> > > 
-> > > Link: https://patchwork.freedesktop.org/patch/msgid/20201218103723.30844-12-ankit.k.nautiyal@intel.com
-> > > 
-> > > Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/display/intel_dp.c | 9 ++-------
-> > >   1 file changed, 2 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > index c386ef8eb200..2526c9c8c690 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -3864,23 +3864,18 @@ static void intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
-> > >   static void intel_dp_check_link_service_irq(struct intel_dp *intel_dp)
-> > >   {
-> > > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> > >   	u8 val;
-> > >   	if (intel_dp->dpcd[DP_DPCD_REV] < 0x11)
-> > >   		return;
-> > >   	if (drm_dp_dpcd_readb(&intel_dp->aux,
-> > > -			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val) {
-> > > -		drm_dbg_kms(&i915->drm, "Error in reading link service irq vector\n");
-> > 
-> > The only problem seems to be that for !val the debug print is incorrect,
-> > so maybe just have a separate check for that after this one for the read()
-> > and return w/o the debug message?
-> > 
-> > Is it really a stable material, since the change wouldn't have any
-> > effect for regular users?
+On 16/8/21 5:04 pm, Daniel Vetter wrote:
+> On Mon, Aug 16, 2021 at 10:53 AM Desmond Cheong Zhi Xi
+> <desmondcheongzx@gmail.com> wrote:
+>> On 16/8/21 2:47 am, kernel test robot wrote:
+>>> Hi Desmond,
+>>>
+>>> Thank you for the patch! Yet something to improve:
+>>>
+>>> [auto build test ERROR on next-20210813]
+>>> [also build test ERROR on v5.14-rc5]
+>>> [cannot apply to linus/master v5.14-rc5 v5.14-rc4 v5.14-rc3]
+>>> [If your patch is applied to the wrong git tree, kindly drop us a note.
+>>> And when submitting patch, we suggest to use '--base' as documented in
+>>> https://git-scm.com/docs/git-format-patch]
+>>>
+>>> url:    https://github.com/0day-ci/linux/commits/Desmond-Cheong-Zhi-Xi/drm-avoid-races-with-modesetting-rights/20210815-234145
+>>> base:    4b358aabb93a2c654cd1dcab1a25a589f6e2b153
+>>> config: i386-randconfig-a004-20210815 (attached as .config)
+>>> compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+>>> reproduce (this is a W=1 build):
+>>>           # https://github.com/0day-ci/linux/commit/cf6d8354b7d7953cd866fad004cbb189adfa074f
+>>>           git remote add linux-review https://github.com/0day-ci/linux
+>>>           git fetch --no-tags linux-review Desmond-Cheong-Zhi-Xi/drm-avoid-races-with-modesetting-rights/20210815-234145
+>>>           git checkout cf6d8354b7d7953cd866fad004cbb189adfa074f
+>>>           # save the attached .config to linux build tree
+>>>           make W=1 ARCH=i386
+>>>
+>>> If you fix the issue, kindly add following tag as appropriate
+>>> Reported-by: kernel test robot <lkp@intel.com>
+>>>
+>>> All errors (new ones prefixed by >>, old ones prefixed by <<):
+>>>
+>>>>> ERROR: modpost: "task_work_add" [drivers/gpu/drm/drm.ko] undefined!
+>>>
+>>
+>> I'm a bit uncertain about this. Looking into the .config used, this
+>> error seems to happen because task_work_add isn't an exported symbol,
+>> but DRM is being compiled as a loadable kernel module (CONFIG_DRM=m).
+>>
+>> One way to deal with this is to export the symbol, but there was a
+>> proposed patch to do this a few months back that wasn't picked up [1],
+>> so I'm not sure what to make of this.
+>>
+>> I'll export the symbol as part of a v3 series, and check in with the
+>> task-work maintainers.
+>>
+>> Link:
+>> https://lore.kernel.org/lkml/20210127150029.13766-3-joshi.k@samsung.com/ [1]
 > 
-> W/o this change in case of valid short pulse this error message will
-> come even if it doesn't have anything to do with link service irq. For
-> ex: in case of hdcp we keep getting unnecessary error message because
-> the value read is 0 which will always be the case unless its really a
-> link failure between PCON and HDMI2.1 sink.
-
-Yes, that's why I suggested to return for the '0 value read' case
-without any message printed, but still keep the message for the case
-when the drm_dp_dpcd_readb() fails.
-
-Note that it's not an error message but a debug message.
-
-> Also, code is written in accordance with other IRQ func() above like
-> intel_dp_check_device_service_irq().
-
-Ok, it's good to keep them in sync at least, so I'm ok with removing the
-debug messages from here too.
-
-> > > +			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1 || !val)
-> > >   		return;
-> > > -	}
-> > >   	if (drm_dp_dpcd_writeb(&intel_dp->aux,
-> > > -			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1) {
-> > > -		drm_dbg_kms(&i915->drm, "Error in writing link service irq vector\n");
-> > > +			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1)
-> > >   		return;
-> > > -	}
-> > >   	if (val & HDMI_LINK_STATUS_CHANGED)
-> > >   		intel_dp_handle_hdmi_link_status_change(intel_dp);
-> > > -- 
-> > > 2.25.1
-> > > 
+> Yeah that sounds best. I have two more thoughts on the patch:
+> - drm_master_flush isn't used by any modules outside of drm.ko, so we
+> can unexport it and drop the kerneldoc (the comment is still good).
+> These kind of internal functions have their declaration in
+> drm-internal.h - there's already a few there from drm_auth.c
 > 
-> -- 
-> ~Swati Sharma
+
+Sounds good, I'll do that and move the declaration from drm_auth.h to 
+drm_internal.h.
+
+> - We know have 3 locks for master state, that feels a bit like
+> overkill. The spinlock I think we need to keep due to lock inversions,
+> but the master_mutex and master_rwsem look like we should be able to
+> merge them? I.e. anywhere we currently grab the master_mutex we could
+> instead grab the rwsem in either write mode (when we change stuff) or
+> read mode (when we just check, like in master_internal_acquire).
+> 
+> Thoughts?
+> -Daniel
+> 
+
+Using rwsem in the places where we currently hold the mutex seems pretty 
+doable.
+
+There are some tricky bits once we add rwsem read locks to the ioctl 
+handler. Some ioctl functions like drm_authmagic need a write lock.
+
+In this particular case, it might make sense to break master_mutex down 
+into finer-grained locks, since the function doesn't change master 
+permissions. It just needs to prevent concurrent writes to the 
+drm_master.magic_map idr.
+
+For other ioctls, I'll take a closer look on a case-by-case basis.
+
+>>
+>>> ---
+>>> 0-DAY CI Kernel Test Service, Intel Corporation
+>>> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+>>>
+>>
+> 
+> 
+
