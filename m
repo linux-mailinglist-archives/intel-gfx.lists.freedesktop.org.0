@@ -1,65 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64B53EEA67
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 11:58:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1AB13EEA87
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 12:06:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E0C96E156;
-	Tue, 17 Aug 2021 09:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C899B89AA6;
+	Tue, 17 Aug 2021 10:06:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA056E03D
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 09:57:57 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id
- j12-20020a05600c1c0c00b002e6d80c902dso1730203wms.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 02:57:57 -0700 (PDT)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 480086E158
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 10:06:20 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id h13so27792990wrp.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 03:06:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=SRRzYeE+xxFkllvlGfJl7y6YVJSNGtGssvXCdiE3AD8=;
- b=IVCX3wL0R9FW/Q0pCEiDP2bpU7M9TZfXvJdJqqnxD3R1eeIKNK+2lqC2mL1rC1IIaC
- d0iCKCqPBLL+ziiYl6r0U0BcYU5fj3UaMYjawvaA4Cfeanorp4mkCr35Gef5jy9bwlnZ
- pFxglOoi2mWOcNwg4w4I7fM8nKfkrNyqKRGIA=
+ bh=BifyNKAqAMPpz9hfLfvWIfoZfb2cgkzK0yl0J0jE64I=;
+ b=OA21YJ9AMoP7KMkjR379Y1L6MYf1N8mDQnplNSJDrd6sg7rSxQq5f6qo/MO1dx9o7R
+ NHSIAg2O1GC9XUgRYc7/7xyAP+OBYsa/TvVIt4WmrbSYqNqQfEQlcdJoLk1B4CDseLTM
+ 1n4BNMdiPELY+v/L8SeqChSyhSoGHPMW2wOlg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=SRRzYeE+xxFkllvlGfJl7y6YVJSNGtGssvXCdiE3AD8=;
- b=kHZjIg6QCRARDEooJv3Bc8axOu7nDwCAMxN5NfpwK0U5byk3Ukbc+nO9VyT8nH+e2T
- 9e8P98rjcV1HfGPiVZv4GLoxqMX6vrc7IUUXOjStPSi+Wi+jfe2wOMJfAvUW9I+H/nTq
- fGQExWqr0BnWoHt/6icnVDTR9yRtJh9206r6tJaYAQO5kl2qoKe7mKi3jgDviBy3s5Vn
- vo3CLUFGOhbxldNG3+LiNhoRVaO4aepcIefE0rEage7gE/vXhCsjiyNBRbaKhkt/Ea8l
- C+5+M1u85ht3jJWEHpdlO+VviSboHZ/ygXswsbtfh2RlI23teVGkfa9C5MF2ZfGF1QoQ
- E6nQ==
-X-Gm-Message-State: AOAM531mtoih/DrqFaxCsGTj+CSetq0eg06tjzC7hAC8FPmtgZw37bnW
- QA11kkip8mo+4oIStnqcy93ldg==
-X-Google-Smtp-Source: ABdhPJyRWd6X6b2HFB07sEufbn6AT32uilCwUUyIp3yuCrdGLbwEmRraNzfr0DJs4f6vZSzvjTyQ9g==
-X-Received: by 2002:a05:600c:2049:: with SMTP id
- p9mr2410603wmg.37.1629194276045; 
- Tue, 17 Aug 2021 02:57:56 -0700 (PDT)
+ bh=BifyNKAqAMPpz9hfLfvWIfoZfb2cgkzK0yl0J0jE64I=;
+ b=BIJUNtJ1UuobIdwi6l9VYhWcFQNXAtISOOs4/CDFFJj1kViNZzHGRXoypZ9V7u/wRJ
+ xZ28k2qFqdqy+9ulnCDPgmBja+CJg7C0GjUf/PTHlrk//BnYb1tfb8RJ49o/SZQefL2D
+ WurWx8GNdyslzQD/6Y+kWpTJr6J8owLNZi7MAqOOxJ9UGqrOYqDWGLTt9LvNqcAgHdVj
+ whcc2TxO1CEUS3/n+uXDnBGrbWkQfj6bdO0RM8exsJJdD4M6SCQKLmarrcef0m2YpOJp
+ sLgGDbQT0D5Ib6kx7pimhDnbhgXgFyORQgvfvrshktQHlgxJuNc6/80SqJ7QrWSOKA5i
+ +PBw==
+X-Gm-Message-State: AOAM530TGlmCMFcWDVTpiFf078moNFS0DS1lLo9kebeOJ9dgqGr4+CUi
+ 0jtvQ8W68JoelKwT/Xl7lyUkGmJKxwRBag==
+X-Google-Smtp-Source: ABdhPJzn+BRJ8jHxEIh0JS/37GJq8U44Ef3JMzn1eYd3WGXVZ7iRHtEnsr4SLRorrwlMCQIpnGyXhA==
+X-Received: by 2002:adf:e94c:: with SMTP id m12mr3059804wrn.235.1629194778827; 
+ Tue, 17 Aug 2021 03:06:18 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id a77sm1689451wmd.31.2021.08.17.02.57.55
+ by smtp.gmail.com with ESMTPSA id e25sm2242118wra.90.2021.08.17.03.06.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Aug 2021 02:57:55 -0700 (PDT)
-Date: Tue, 17 Aug 2021 11:57:53 +0200
+ Tue, 17 Aug 2021 03:06:18 -0700 (PDT)
+Date: Tue, 17 Aug 2021 12:06:16 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  daniel.vetter@ffwll.ch
-Message-ID: <YRuIIf/sAof1ZYoz@phenom.ffwll.local>
+Message-ID: <YRuKGIAqBXwv6e6J@phenom.ffwll.local>
 References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-9-matthew.brost@intel.com>
- <YRuFySMEGtbQegKa@phenom.ffwll.local>
+ <20210816135139.10060-15-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YRuFySMEGtbQegKa@phenom.ffwll.local>
+In-Reply-To: <20210816135139.10060-15-matthew.brost@intel.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 08/22] drm/i915/guc: Don't enable scheduling
- on a banned context, guc_id invalid, not registered
+Subject: Re: [Intel-gfx] [PATCH 14/22] drm/i915: Allocate error capture in
+ atomic context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,85 +72,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 11:47:53AM +0200, Daniel Vetter wrote:
-> On Mon, Aug 16, 2021 at 06:51:25AM -0700, Matthew Brost wrote:
-> > When unblocking a context, do not enable scheduling if the context is
-> > banned, guc_id invalid, or not registered.
-> > 
-> > Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org>
-> > ---
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index c3b7bf7319dd..353899634fa8 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -1579,6 +1579,9 @@ static void guc_context_unblock(struct intel_context *ce)
-> >  	spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >  
-> >  	if (unlikely(submission_disabled(guc) ||
-> > +		     intel_context_is_banned(ce) ||
-> > +		     context_guc_id_invalid(ce) ||
-> > +		     !lrc_desc_registered(guc, ce->guc_id) ||
-> >  		     !intel_context_is_pinned(ce) ||
-> >  		     context_pending_disable(ce) ||
-> >  		     context_blocked(ce) > 1)) {
+On Mon, Aug 16, 2021 at 06:51:31AM -0700, Matthew Brost wrote:
+> Error captures can now be done in a work queue processing G2H messages.
+> These messages need to be completely done being processed in the reset
+> path, to avoid races in the missing G2H cleanup, which create a
+> dependency on memory allocations and dma fences (i915_requests).
+> Requests depend on resets, thus now we have a circular dependency. To
+> work around this, allocate the error capture in an atomic context.
 > 
-> I think this entire if condition here is screaming that our intel_context
-> state machinery for guc is way too complex, and on the wrong side of
-> incomprehensible.
+> Fixes: dc0dad365c5e ("Fix for error capture after full GPU reset with GuC")
+> Fixes: 573ba126aef3 ("Capture error state on context reset")
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_gpu_error.c | 37 +++++++++++++--------------
+>  1 file changed, 18 insertions(+), 19 deletions(-)
 > 
-> Also some of these check state outside of the context, and we don't seem
-> to hold spinlocks for those, or anything else.
-> 
-> I general I have no idea which of these are defensive programming and
-> cannot ever happen, and which actually can happen. There's for sure way
-> too many races going on given that this is all context-local stuff.
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 0f08bcfbe964..453376aa6d9f 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -49,7 +49,6 @@
+>  #include "i915_memcpy.h"
+>  #include "i915_scatterlist.h"
+>  
+> -#define ALLOW_FAIL (GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN)
+>  #define ATOMIC_MAYFAIL (GFP_ATOMIC | __GFP_NOWARN)
 
-Races here meaining that we seem to be dropping locks while the context is
-in an inconsistent state, which then means that every other code path
-touching contexts needs to check whether the context is in an inconsistent
-state.
+This one doesn't make much sense. GFP_ATOMIC essentially means we're
+high-priority and failure would be a pretty bad day. Meanwhile
+__GFP_NOWARN means we can totally cope with failure, pls don't holler.
 
-This is a bit an example of protecting code, vs protecting datastructures.
-Protecting code is having state bits of intermediate/transitional state
-leak outside of the locked section (like context_blocked), so that every
-other piece of code must be aware about the transition and not screw
-things up for worse when they race.
+GFP_NOWAIT | __GFP_NOWARN would the more consistent one here I think.
 
-This means your review and validation effort scales O(N^2) with the amount
-of code and features you have. Which doesn't work.
+gfp.h for all the docs for this.
 
-Datastructure or object oriented locking design goes different:
-
-1. You figure out what the invariants of your datastructure are. That
-means what should hold after each state transition is finished. I have no
-idea what is the solution for all them here, but e.g. why is
-context_blocked even visible to other threads? Usual approach is a) take
-lock b) do whatever is necessary (we're talking about reset stuff here, so
-performance really doesn't matter) c) unlock. I know that i915-gem is full
-of these leaky counting things, but that's really not a good design.
-
-2. Next up, for every piece of state you think how it's protected with a
-per-object lock. The fewer locks you have (but still per-objects so it's
-not becoming a mess for different reasons) the higher chances that you
-don't leak inconsistent state to other threads. This is a bit tricky when
-multipled objects are involved, or if you have to split your locks for a
-single object because some of it needs to be accessed from irq context
-(like a tasklet).
-
-3. Document your rules in kerneldoc, so that when new code gets added you
-don't have to review everything for consistency against the rules. This
-way you get overall O(N) effort for validation and review, because all you
-have to do is check every function that changes state against the overall
-contract, and not everything against everything else.
-
-If you have a pile of if checks every time you grab a lock, your locking
-design has too much state that leaks outside of the locked sections.
+Separate patch ofc. This one is definitely the right direction, since
+GFP_KERNEL from the reset worker is not a good idea.
 -Daniel
+
+>  
+>  static void __sg_set_buf(struct scatterlist *sg,
+> @@ -79,7 +78,7 @@ static bool __i915_error_grow(struct drm_i915_error_state_buf *e, size_t len)
+>  	if (e->cur == e->end) {
+>  		struct scatterlist *sgl;
+>  
+> -		sgl = (typeof(sgl))__get_free_page(ALLOW_FAIL);
+> +		sgl = (typeof(sgl))__get_free_page(ATOMIC_MAYFAIL);
+>  		if (!sgl) {
+>  			e->err = -ENOMEM;
+>  			return false;
+> @@ -99,10 +98,10 @@ static bool __i915_error_grow(struct drm_i915_error_state_buf *e, size_t len)
+>  	}
+>  
+>  	e->size = ALIGN(len + 1, SZ_64K);
+> -	e->buf = kmalloc(e->size, ALLOW_FAIL);
+> +	e->buf = kmalloc(e->size, ATOMIC_MAYFAIL);
+>  	if (!e->buf) {
+>  		e->size = PAGE_ALIGN(len + 1);
+> -		e->buf = kmalloc(e->size, GFP_KERNEL);
+> +		e->buf = kmalloc(e->size, ATOMIC_MAYFAIL);
+>  	}
+>  	if (!e->buf) {
+>  		e->err = -ENOMEM;
+> @@ -243,12 +242,12 @@ static bool compress_init(struct i915_vma_compress *c)
+>  {
+>  	struct z_stream_s *zstream = &c->zstream;
+>  
+> -	if (pool_init(&c->pool, ALLOW_FAIL))
+> +	if (pool_init(&c->pool, ATOMIC_MAYFAIL))
+>  		return false;
+>  
+>  	zstream->workspace =
+>  		kmalloc(zlib_deflate_workspacesize(MAX_WBITS, MAX_MEM_LEVEL),
+> -			ALLOW_FAIL);
+> +			ATOMIC_MAYFAIL);
+>  	if (!zstream->workspace) {
+>  		pool_fini(&c->pool);
+>  		return false;
+> @@ -256,7 +255,7 @@ static bool compress_init(struct i915_vma_compress *c)
+>  
+>  	c->tmp = NULL;
+>  	if (i915_has_memcpy_from_wc())
+> -		c->tmp = pool_alloc(&c->pool, ALLOW_FAIL);
+> +		c->tmp = pool_alloc(&c->pool, ATOMIC_MAYFAIL);
+>  
+>  	return true;
+>  }
+> @@ -280,7 +279,7 @@ static void *compress_next_page(struct i915_vma_compress *c,
+>  	if (dst->page_count >= dst->num_pages)
+>  		return ERR_PTR(-ENOSPC);
+>  
+> -	page = pool_alloc(&c->pool, ALLOW_FAIL);
+> +	page = pool_alloc(&c->pool, ATOMIC_MAYFAIL);
+>  	if (!page)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> @@ -376,7 +375,7 @@ struct i915_vma_compress {
+>  
+>  static bool compress_init(struct i915_vma_compress *c)
+>  {
+> -	return pool_init(&c->pool, ALLOW_FAIL) == 0;
+> +	return pool_init(&c->pool, ATOMIC_MAYFAIL) == 0;
+>  }
+>  
+>  static bool compress_start(struct i915_vma_compress *c)
+> @@ -391,7 +390,7 @@ static int compress_page(struct i915_vma_compress *c,
+>  {
+>  	void *ptr;
+>  
+> -	ptr = pool_alloc(&c->pool, ALLOW_FAIL);
+> +	ptr = pool_alloc(&c->pool, ATOMIC_MAYFAIL);
+>  	if (!ptr)
+>  		return -ENOMEM;
+>  
+> @@ -997,7 +996,7 @@ i915_vma_coredump_create(const struct intel_gt *gt,
+>  
+>  	num_pages = min_t(u64, vma->size, vma->obj->base.size) >> PAGE_SHIFT;
+>  	num_pages = DIV_ROUND_UP(10 * num_pages, 8); /* worstcase zlib growth */
+> -	dst = kmalloc(sizeof(*dst) + num_pages * sizeof(u32 *), ALLOW_FAIL);
+> +	dst = kmalloc(sizeof(*dst) + num_pages * sizeof(u32 *), ATOMIC_MAYFAIL);
+>  	if (!dst)
+>  		return NULL;
+>  
+> @@ -1433,7 +1432,7 @@ capture_engine(struct intel_engine_cs *engine,
+>  	struct i915_request *rq = NULL;
+>  	unsigned long flags;
+>  
+> -	ee = intel_engine_coredump_alloc(engine, GFP_KERNEL);
+> +	ee = intel_engine_coredump_alloc(engine, ATOMIC_MAYFAIL);
+>  	if (!ee)
+>  		return NULL;
+>  
+> @@ -1481,7 +1480,7 @@ gt_record_engines(struct intel_gt_coredump *gt,
+>  		struct intel_engine_coredump *ee;
+>  
+>  		/* Refill our page pool before entering atomic section */
+> -		pool_refill(&compress->pool, ALLOW_FAIL);
+> +		pool_refill(&compress->pool, ATOMIC_MAYFAIL);
+>  
+>  		ee = capture_engine(engine, compress);
+>  		if (!ee)
+> @@ -1507,7 +1506,7 @@ gt_record_uc(struct intel_gt_coredump *gt,
+>  	const struct intel_uc *uc = &gt->_gt->uc;
+>  	struct intel_uc_coredump *error_uc;
+>  
+> -	error_uc = kzalloc(sizeof(*error_uc), ALLOW_FAIL);
+> +	error_uc = kzalloc(sizeof(*error_uc), ATOMIC_MAYFAIL);
+>  	if (!error_uc)
+>  		return NULL;
+>  
+> @@ -1518,8 +1517,8 @@ gt_record_uc(struct intel_gt_coredump *gt,
+>  	 * As modparams are generally accesible from the userspace make
+>  	 * explicit copies of the firmware paths.
+>  	 */
+> -	error_uc->guc_fw.path = kstrdup(uc->guc.fw.path, ALLOW_FAIL);
+> -	error_uc->huc_fw.path = kstrdup(uc->huc.fw.path, ALLOW_FAIL);
+> +	error_uc->guc_fw.path = kstrdup(uc->guc.fw.path, ATOMIC_MAYFAIL);
+> +	error_uc->huc_fw.path = kstrdup(uc->huc.fw.path, ATOMIC_MAYFAIL);
+>  	error_uc->guc_log =
+>  		i915_vma_coredump_create(gt->_gt,
+>  					 uc->guc.log.vma, "GuC log buffer",
+> @@ -1778,7 +1777,7 @@ i915_vma_capture_prepare(struct intel_gt_coredump *gt)
+>  {
+>  	struct i915_vma_compress *compress;
+>  
+> -	compress = kmalloc(sizeof(*compress), ALLOW_FAIL);
+> +	compress = kmalloc(sizeof(*compress), ATOMIC_MAYFAIL);
+>  	if (!compress)
+>  		return NULL;
+>  
+> @@ -1811,11 +1810,11 @@ i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask)
+>  	if (IS_ERR(error))
+>  		return error;
+>  
+> -	error = i915_gpu_coredump_alloc(i915, ALLOW_FAIL);
+> +	error = i915_gpu_coredump_alloc(i915, ATOMIC_MAYFAIL);
+>  	if (!error)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> -	error->gt = intel_gt_coredump_alloc(gt, ALLOW_FAIL);
+> +	error->gt = intel_gt_coredump_alloc(gt, ATOMIC_MAYFAIL);
+>  	if (error->gt) {
+>  		struct i915_vma_compress *compress;
+>  
+> -- 
+> 2.32.0
+> 
+
 -- 
 Daniel Vetter
 Software Engineer, Intel Corporation
