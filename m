@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80DB83EEEFA
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 17:13:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C04753EEF15
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 17:24:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 749016E03C;
-	Tue, 17 Aug 2021 15:13:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1106D6E1D3;
+	Tue, 17 Aug 2021 15:24:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB076E03C;
- Tue, 17 Aug 2021 15:13:23 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="196381182"
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="196381182"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 08:13:22 -0700
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="680397106"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 08:13:22 -0700
-Date: Tue, 17 Aug 2021 08:08:09 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch
-Message-ID: <20210817150809.GA19163@jons-linux-dev-box>
-References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-7-matthew.brost@intel.com>
- <YRt/lynczP00iJqF@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CE0226E1D3;
+ Tue, 17 Aug 2021 15:23:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C7ED1AA3D8;
+ Tue, 17 Aug 2021 15:23:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7538433307016292637=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YRt/lynczP00iJqF@phenom.ffwll.local>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 06/22] drm/i915/execlists: Do not propagate
- errors to dependent fences
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Aug 2021 15:23:59 -0000
+Message-ID: <162921383981.22609.10966473979438196921@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210816171444.105469-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20210816171444.105469-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Ditch_the_i915=5Fgem=5Fww=5Fctx_loop_member_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,77 +41,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 11:21:27AM +0200, Daniel Vetter wrote:
-> On Mon, Aug 16, 2021 at 06:51:23AM -0700, Matthew Brost wrote:
-> > Progagating errors to dependent fences is wrong, don't do it. Selftest
-> > in following patch exposes this bug.
-> 
-> Please explain what "this bug" is, it's hard to read minds, especially at
-> a distance in spacetime :-)
-> 
+--===============7538433307016292637==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Not a very good explaination.
+== Series Details ==
 
-> > Fixes: 8e9f84cf5cac ("drm/i915/gt: Propagate change in error status to children on unhold")
-> 
-> I think it would be better to outright revert this, instead of just
-> disabling it like this.
->
+Series: drm/i915: Ditch the i915_gem_ww_ctx loop member (rev2)
+URL   : https://patchwork.freedesktop.org/series/93711/
+State : success
 
-I tried revert and git did some really odd things that I couldn't
-resolve, hence the new patch.
- 
-> Also please cite the dma_fence error propagation revert from Jason:
-> 
-> commit 93a2711cddd5760e2f0f901817d71c93183c3b87
-> Author: Jason Ekstrand <jason@jlekstrand.net>
-> Date:   Wed Jul 14 14:34:16 2021 -0500
-> 
->     Revert "drm/i915: Propagate errors on awaiting already signaled fences"
-> 
-> Maybe in full, if you need the justification.
->
+== Summary ==
 
-Will site.
+CI Bug Log - changes from CI_DRM_10490 -> Patchwork_20834
+====================================================
 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Cc: <stable@vger.kernel.org>
-> 
-> Unless "this bug" is some real world impact thing I wouldn't put cc:
-> stable on this.
+Summary
+-------
 
-Got it.
+  **SUCCESS**
 
-Matt
+  No regressions found.
 
-> -Daniel
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ----
-> >  1 file changed, 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > index de5f9c86b9a4..cafb0608ffb4 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > @@ -2140,10 +2140,6 @@ static void __execlists_unhold(struct i915_request *rq)
-> >  			if (p->flags & I915_DEPENDENCY_WEAK)
-> >  				continue;
-> >  
-> > -			/* Propagate any change in error status */
-> > -			if (rq->fence.error)
-> > -				i915_request_set_error_once(w, rq->fence.error);
-> > -
-> >  			if (w->engine != rq->engine)
-> >  				continue;
-> >  
-> > -- 
-> > 2.32.0
-> > 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20834/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20834 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10490/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20834/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#3057]: https://gitlab.freedesktop.org/drm/intel/issues/3057
+  [i915#3970]: https://gitlab.freedesktop.org/drm/intel/issues/3970
+
+
+Participating hosts (36 -> 34)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10490 -> Patchwork_20834
+
+  CI-20190529: 20190529
+  CI_DRM_10490: 3bd74b377986fcb89cf4563629f97c5b3199ca6f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6177: f474644e7226dd319195ca03b3cde82ad10ac54c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_20834: 32dc940d3e7e45a61a14938652fc5e8a24b5a923 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+32dc940d3e7e drm/i915: Ditch the i915_gem_ww_ctx loop member
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20834/index.html
+
+--===============7538433307016292637==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Ditch the i915_gem_ww_ctx loop member (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/93711/">https://patchwork.freedesktop.org/series/93711/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20834/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20834/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10490 -&gt; Patchwork_20834</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20834/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20834 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_suspend@basic-s3:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10490/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20834/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (36 -&gt; 34)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10490 -&gt; Patchwork_20834</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10490: 3bd74b377986fcb89cf4563629f97c5b3199ca6f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6177: f474644e7226dd319195ca03b3cde82ad10ac54c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_20834: 32dc940d3e7e45a61a14938652fc5e8a24b5a923 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>32dc940d3e7e drm/i915: Ditch the i915_gem_ww_ctx loop member</p>
+
+</body>
+</html>
+
+--===============7538433307016292637==--
