@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D44A33EE9F4
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 11:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F28733EEA0C
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 11:39:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACBF26E11C;
-	Tue, 17 Aug 2021 09:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B48F76E14B;
+	Tue, 17 Aug 2021 09:39:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 348996E120
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 09:33:00 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id q10so27624010wro.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 02:33:00 -0700 (PDT)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC54F6E14C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 09:39:32 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id u16so10494872wrn.5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 02:39:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=c42/ohKSnsW9BlnudEUEX124GsdLZJd20HxBJjZ+VMA=;
- b=R3zsPXqtESV09/V5vYRHYlrCIoupH19TJpS6cW+KeN/dRQlzRC4FEbH9rfkWWxmA1m
- Vm/be+9GGvcCo3kPshKhmCSGDKajoLYYRe+KedyIufFDX4CmNNUPX+B6bGoRCtQC7f/T
- F7eTYo2CmJXhzGu6FWT0U0QqP3Xvo97vANTno=
+ bh=pJSxWYLKnDA66bheHGHNbiU7aF7BawRxoKGnFTnRlBM=;
+ b=AQgwWDyF9STNIoiaoUboFEI4Lf1WzX+DQA96iH4l0yrFtip5OvC7LLxkDaJGX9u26v
+ /bDezuaUVZ7+xAMbNLxMIueq9aW5414w5jgY3YrWptJq0w0s8PKB6kMN8WHF3Qwew+XB
+ lzRgJs1mHZAzeH6Kojx77Z5irfJmIYnfCxSZg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=c42/ohKSnsW9BlnudEUEX124GsdLZJd20HxBJjZ+VMA=;
- b=OJVr04t+47uyfamDqda13iR0LEpKyzYzi6eRiC6BEgBMzDwkm8Oq/iTas8CDEEJ0wc
- KbN6aBH5crl1zt8K6/9/4qk5Gv180WavvZ4FGTkwLNJ5nEDd1w04Z3exP8wHHvVwTBbO
- 9CS6EIW+fWPMI/Y2+/bPXYJXHQCrkPJAX/aKHJ2LZKBGFg1xBC2Sc8FwtIbwF8PJZXUE
- Yuf7o6+fUTnSYGi7BagLTq34S1WGtK5EEdlcEDly/cVuV2DIoFzzoBnaDWWUwlDrlIk9
- q6r0NiBpazlGPsfiLjUzLDeLGJleX9K8a3UCd8rf7w54wMF7X7Lz1HxgTgnETh7C/V+K
- Rifw==
-X-Gm-Message-State: AOAM530BKvDmLqutrf8mSepd2MGlb9gEV2u6yl/Ld2K6SVZ7uTqLI2Eu
- swULlgcoFT11asOZR2ZZ0foWhQ==
-X-Google-Smtp-Source: ABdhPJw3lw2cyBqoJVt2jYAYA1uZWDAAg35qJxZXLhhKLWbeJJQXOlyP/zEKjmq4MaTwVsat1wgVCg==
-X-Received: by 2002:adf:fb09:: with SMTP id c9mr2800388wrr.93.1629192778508;
- Tue, 17 Aug 2021 02:32:58 -0700 (PDT)
+ bh=pJSxWYLKnDA66bheHGHNbiU7aF7BawRxoKGnFTnRlBM=;
+ b=qZQ9C+WGLBLppkFZhJxBvxZ+kQdLMcnRmdY9TtXMnTyIOK66hRMZBsHt1HfADFp3jN
+ RK01QPYg5uY4v93SIHf3rC+X//LvXZJLuv/z/O/dSVM+gWk8gkd2tlAySvWpyhVBU/8V
+ +EAgaD3pl1K1+3iAghIKm83xpXnl0cXSdSuf/h6fgramX0tyj3Q4WDd3ZpOzZm3tGEsZ
+ 5mOUVCvFU9Xn2K94mdBPzXjqEjXv8aAvvZy/RS+9L1S5M6l6puKGcPnZTQxe0IW2Sy+4
+ oJaXoUMqbwMrDezDuMjoIJvQ7NVCy1WJmo7YWk7G4M+eEKNtQkagEAFduZFUwRvs5Jup
+ 9byg==
+X-Gm-Message-State: AOAM532pLCMPHYoTtf7GA+uaSSZzkWUOyyDbK1Gekmn3YaUVLR5L7F9f
+ dIa5QIWg5mLKWtezIVHxe1ix+LamSHrJFQ==
+X-Google-Smtp-Source: ABdhPJx219a4HpbSUMZuXDX4kDcHSoRjr6JHVpn98bgWjw4UDPC64d7onillyUh7s7eObVJW1jm9eA==
+X-Received: by 2002:adf:e30c:: with SMTP id b12mr2805809wrj.347.1629193171354; 
+ Tue, 17 Aug 2021 02:39:31 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id 104sm1858712wrc.4.2021.08.17.02.32.57
+ by smtp.gmail.com with ESMTPSA id b201sm1471683wmb.6.2021.08.17.02.39.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Aug 2021 02:32:57 -0700 (PDT)
-Date: Tue, 17 Aug 2021 11:32:56 +0200
+ Tue, 17 Aug 2021 02:39:30 -0700 (PDT)
+Date: Tue, 17 Aug 2021 11:39:29 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  daniel.vetter@ffwll.ch
-Message-ID: <YRuCSLVnbr+k05uL@phenom.ffwll.local>
+Message-ID: <YRuD0bTDQTivDZux@phenom.ffwll.local>
 References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-6-matthew.brost@intel.com>
+ <20210816135139.10060-3-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210816135139.10060-6-matthew.brost@intel.com>
+In-Reply-To: <20210816135139.10060-3-matthew.brost@intel.com>
 X-Operating-System: Linux phenom 5.10.0-7-amd64 
-Subject: Re: [Intel-gfx] [PATCH 05/22] drm/i915/guc: Workaround reset G2H is
- received after schedule done G2H
+Subject: Re: [Intel-gfx] [PATCH 02/22] drm/i915/guc: Fix outstanding G2H
+ accounting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,127 +72,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 16, 2021 at 06:51:22AM -0700, Matthew Brost wrote:
-> If the context is reset as a result of the request cancelation the
-> context reset G2H is received after schedule disable done G2H which is
-> likely the wrong order. The schedule disable done G2H release the
-> waiting request cancelation code which resubmits the context. This races
-> with the context reset G2H which also wants to resubmit the context but
-> in this case it really should be a NOP as request cancelation code owns
-> the resubmit. Use some clever tricks of checking the context state to
-> seal this race until if / when the GuC firmware is fixed.
+On Mon, Aug 16, 2021 at 06:51:19AM -0700, Matthew Brost wrote:
+> A small race that could result in incorrect accounting of the number
+> of outstanding G2H. Basically prior to this patch we did not increment
+> the number of outstanding G2H if we encoutered a GT reset while sending
+> a H2G. This was incorrect as the context state had already been updated
+> to anticipate a G2H response thus the counter should be incremented.
 > 
-> v2:
->  (Checkpatch)
->   - Fix typos
-> 
-> Fixes: 62eaf0ae217d ("drm/i915/guc: Support request cancellation")
+> Fixes: f4eb1f3fe946 ("drm/i915/guc: Ensure G2H response has space in buffer")
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > Cc: <stable@vger.kernel.org>
 > ---
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 43 ++++++++++++++++---
->  1 file changed, 37 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 3cd2da6f5c03..c3b7bf7319dd 100644
+> index 69faa39da178..b5d3972ae164 100644
 > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -826,17 +826,35 @@ __unwind_incomplete_requests(struct intel_context *ce)
->  static void __guc_reset_context(struct intel_context *ce, bool stalled)
+> @@ -360,11 +360,13 @@ static int guc_submission_send_busy_loop(struct intel_guc *guc,
 >  {
->  	struct i915_request *rq;
-> +	unsigned long flags;
->  	u32 head;
-> +	bool skip = false;
+>  	int err;
 >  
->  	intel_context_get(ce);
+> -	err = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
+> -
+> -	if (!err && g2h_len_dw)
+> +	if (g2h_len_dw)
+>  		atomic_inc(&guc->outstanding_submission_g2h);
 >  
->  	/*
-> -	 * GuC will implicitly mark the context as non-schedulable
-> -	 * when it sends the reset notification. Make sure our state
-> -	 * reflects this change. The context will be marked enabled
-> -	 * on resubmission.
-> +	 * GuC will implicitly mark the context as non-schedulable when it sends
-> +	 * the reset notification. Make sure our state reflects this change. The
-> +	 * context will be marked enabled on resubmission.
-> +	 *
-> +	 * XXX: If the context is reset as a result of the request cancellation
-> +	 * this G2H is received after the schedule disable complete G2H which is
-> +	 * likely wrong as this creates a race between the request cancellation
-> +	 * code re-submitting the context and this G2H handler. This likely
-> +	 * should be fixed in the GuC but until if / when that gets fixed we
-> +	 * need to workaround this. Convert this function to a NOP if a pending
-> +	 * enable is in flight as this indicates that a request cancellation has
-> +	 * occurred.
->  	 */
-> -	clr_context_enabled(ce);
-> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
-> +	if (likely(!context_pending_enable(ce))) {
-> +		clr_context_enabled(ce);
-> +	} else {
-> +		skip = true;
-> +	}
-> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> +	if (unlikely(skip))
-> +		goto out_put;
->  
->  	rq = intel_context_find_active_request(ce);
->  	if (!rq) {
-> @@ -855,6 +873,7 @@ static void __guc_reset_context(struct intel_context *ce, bool stalled)
->  out_replay:
->  	guc_reset_state(ce, head, stalled);
->  	__unwind_incomplete_requests(ce);
-> +out_put:
->  	intel_context_put(ce);
+> +	err = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
+
+I'm majorly confused by the _busy_loop naming scheme, especially here.
+Like "why do we want to send a busy loop comand to guc, this doesn't make
+sense".
+
+It seems like you're using _busy_loop as a suffix for "this is ok to be
+called in atomic context". The linux kernel bikeshed for this is generally
+_atomic() (or _in_atomic() or something like that).  Would be good to
+rename to make this slightly less confusing.
+-Daniel
+
+> +	if (err == -EBUSY && g2h_len_dw)
+> +		atomic_dec(&guc->outstanding_submission_g2h);
+> +
+>  	return err;
 >  }
 >  
-> @@ -1599,6 +1618,13 @@ static void guc_context_cancel_request(struct intel_context *ce,
->  			guc_reset_state(ce, intel_ring_wrap(ce->ring, rq->head),
->  					true);
->  		}
-> +
-> +		/*
-> +		 * XXX: Racey if context is reset, see comment in
-> +		 * __guc_reset_context().
-> +		 */
-> +		flush_work(&ce_to_guc(ce)->ct.requests.worker);
-
-This looks racy, and I think that holds in general for all the flush_work
-you're adding: This only flushes the processing of the work, it doesn't
-stop any re-queueing (as far as I can tell at least), which means it
-doesn't do a hole lot.
-
-Worse, your task is re-queue because it only processes one item at a time.
-That means flush_work only flushes the first invocation, but not even
-drains them all. So even if you do prevent requeueing somehow, this isn't
-what you want. Two solutions.
-
-- flush_work_sync, which flushes until self-requeues are all done too
-
-- Or more preferred, make you're worker a bit more standard for this
-  stuff: a) under the spinlock, take the entire list, not just the first
-  entry, with list_move or similar to a local list b) process that local
-  list in a loop b) don't requeue youreself.
-
-Cheers, Daniel
-> +
->  		guc_context_unblock(ce);
->  	}
->  }
-> @@ -2719,7 +2745,12 @@ static void guc_handle_context_reset(struct intel_guc *guc,
->  {
->  	trace_intel_context_reset(ce);
->  
-> -	if (likely(!intel_context_is_banned(ce))) {
-> +	/*
-> +	 * XXX: Racey if request cancellation has occurred, see comment in
-> +	 * __guc_reset_context().
-> +	 */
-> +	if (likely(!intel_context_is_banned(ce) &&
-> +		   !context_blocked(ce))) {
->  		capture_error_state(guc, ce);
->  		guc_context_replay(ce);
->  	}
 > -- 
 > 2.32.0
 > 
