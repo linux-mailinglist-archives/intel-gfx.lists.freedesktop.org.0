@@ -2,42 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435C03EEF3E
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 17:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E985B3EEF6A
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 17:49:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8C46E1D7;
-	Tue, 17 Aug 2021 15:37:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C86F6E1E8;
+	Tue, 17 Aug 2021 15:49:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76FFE6E1D7;
- Tue, 17 Aug 2021 15:35:34 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="196386807"
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="196386807"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 08:35:33 -0700
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="449321371"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 08:35:33 -0700
-Date: Tue, 17 Aug 2021 08:30:20 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch
-Message-ID: <20210817153020.GA19245@jons-linux-dev-box>
-References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-19-matthew.brost@intel.com>
- <YRuMOYoPsu/HRsI5@phenom.ffwll.local>
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com
+ [IPv6:2607:f8b0:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA0536E1E9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 15:49:17 +0000 (UTC)
+Received: by mail-ot1-x335.google.com with SMTP id
+ v33-20020a0568300921b0290517cd06302dso12652978ott.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 08:49:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=o/vICcBtnNCU8WCMxEtqZ53lVyopyQUHS0Y7oMZDlHk=;
+ b=UhoJSpe9tSN0jvaw84SmNexRBOvStkaGC05JrDa+8mVo3NK0qoYMWIKUbmltpJe+ne
+ 7vjCzThIxCskCU6SqruabYriXF5oFpAiNaF4x/TsZRDnFmQMDela/eddvJ2VOoWYxWbr
+ ACY4oGEhLyRu2Tsb7ZEjJIFMDXXYzDmH4lVzo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=o/vICcBtnNCU8WCMxEtqZ53lVyopyQUHS0Y7oMZDlHk=;
+ b=c3acGpp26SesTU1JwM5Pkv05T6EZu0S16VkiUAMXqeRvwzbi4CX69lJVqOd4448Uz2
+ ldf8BiJAwrU0yTgtz84w/2BvnkI05jLoc4j4mMc9fH+Ln+LzIrh6MTTXlxR69XbBBXcG
+ xtwiwe+5Zcu3DW9fyxUowfG/gDMVGAAjmfGJGPB5IYs52V2NHW2pl8qMQK0bBdEknTMd
+ oM2qViGh/svp0cVqSqSzIMAvKrIRST34sDKKtBOu7zYLeBkcQWN2Qy0/NdQV8/Y7ecI0
+ eeiK1Dr+w0NhQy/bS8B1AV68OAra4FgLC3UaLWjdp7FZYdDpGvOmequvSP8NaVmO1Tk4
+ kpkA==
+X-Gm-Message-State: AOAM532UkIbh8w+fMejkiJEiYWW/HTeI5eLNRjRIYbVabPqrLePHmfl2
+ MhulQi3G50WFg4Rv6/p5Izd6Cj4ZM0MskF4sGkecNA==
+X-Google-Smtp-Source: ABdhPJyp9wcOApUcLDRM0XxBUPJ3VVQLbhX+YyrM4l/6nQTE9p+8JdfHK1gMYd89q+ikq7CLQehFUcJ6x+mhHOqLaMA=
+X-Received: by 2002:a9d:27a4:: with SMTP id c33mr3201762otb.281.1629215357057; 
+ Tue, 17 Aug 2021 08:49:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YRuMOYoPsu/HRsI5@phenom.ffwll.local>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 18/22] drm/i915/guc: Rework and simplify
- locking
+References: <20210816135139.10060-1-matthew.brost@intel.com>
+ <20210816135139.10060-7-matthew.brost@intel.com>
+ <YRt/lynczP00iJqF@phenom.ffwll.local>
+ <20210817150809.GA19163@jons-linux-dev-box>
+In-Reply-To: <20210817150809.GA19163@jons-linux-dev-box>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 17 Aug 2021 17:49:05 +0200
+Message-ID: <CAKMK7uHRjJ_yq9nR3ECO67VkFA=sEZ6zimxx_sSN5c9S_yXUFA@mail.gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-gfx] [PATCH 06/22] drm/i915/execlists: Do not propagate
+ errors to dependent fences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,471 +68,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 12:15:21PM +0200, Daniel Vetter wrote:
-> On Mon, Aug 16, 2021 at 06:51:35AM -0700, Matthew Brost wrote:
-> > Rework and simplify the locking with GuC subission. Drop
-> > sched_state_no_lock and move all fields under the guc_state.sched_state
-> > and protect all these fields with guc_state.lock . This requires
-> > changing the locking hierarchy from guc_state.lock -> sched_engine.lock
-> > to sched_engine.lock -> guc_state.lock.
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> Yeah this is definitely going in the right direction. Especially
-> sprinkling lockdep_assert_held around.
-> 
-> One comment below.
-> 
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_context_types.h |   5 +-
-> >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 186 ++++++++----------
-> >  drivers/gpu/drm/i915/i915_trace.h             |   6 +-
-> >  3 files changed, 89 insertions(+), 108 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > index c06171ee8792..d5d643b04d54 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > @@ -161,7 +161,7 @@ struct intel_context {
-> >  		 * sched_state: scheduling state of this context using GuC
-> >  		 * submission
-> >  		 */
-> > -		u16 sched_state;
-> > +		u32 sched_state;
-> >  		/*
-> >  		 * fences: maintains of list of requests that have a submit
-> >  		 * fence related to GuC submission
-> > @@ -178,9 +178,6 @@ struct intel_context {
-> >  		struct list_head requests;
-> >  	} guc_active;
-> >  
-> > -	/* GuC scheduling state flags that do not require a lock. */
-> > -	atomic_t guc_sched_state_no_lock;
-> > -
-> >  	/* GuC LRC descriptor ID */
-> >  	u16 guc_id;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 7aa16371908a..ba19b99173fc 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -72,86 +72,23 @@ guc_create_virtual(struct intel_engine_cs **siblings, unsigned int count);
-> >  
-> >  #define GUC_REQUEST_SIZE 64 /* bytes */
-> >  
-> > -/*
-> > - * Below is a set of functions which control the GuC scheduling state which do
-> > - * not require a lock as all state transitions are mutually exclusive. i.e. It
-> > - * is not possible for the context pinning code and submission, for the same
-> > - * context, to be executing simultaneously. We still need an atomic as it is
-> > - * possible for some of the bits to changing at the same time though.
-> > - */
-> > -#define SCHED_STATE_NO_LOCK_ENABLED			BIT(0)
-> > -#define SCHED_STATE_NO_LOCK_PENDING_ENABLE		BIT(1)
-> > -#define SCHED_STATE_NO_LOCK_REGISTERED			BIT(2)
-> > -static inline bool context_enabled(struct intel_context *ce)
-> > -{
-> > -	return (atomic_read(&ce->guc_sched_state_no_lock) &
-> > -		SCHED_STATE_NO_LOCK_ENABLED);
-> > -}
-> > -
-> > -static inline void set_context_enabled(struct intel_context *ce)
-> > -{
-> > -	atomic_or(SCHED_STATE_NO_LOCK_ENABLED, &ce->guc_sched_state_no_lock);
-> > -}
-> > -
-> > -static inline void clr_context_enabled(struct intel_context *ce)
-> > -{
-> > -	atomic_and((u32)~SCHED_STATE_NO_LOCK_ENABLED,
-> > -		   &ce->guc_sched_state_no_lock);
-> > -}
-> > -
-> > -static inline bool context_pending_enable(struct intel_context *ce)
-> > -{
-> > -	return (atomic_read(&ce->guc_sched_state_no_lock) &
-> > -		SCHED_STATE_NO_LOCK_PENDING_ENABLE);
-> > -}
-> > -
-> > -static inline void set_context_pending_enable(struct intel_context *ce)
-> > -{
-> > -	atomic_or(SCHED_STATE_NO_LOCK_PENDING_ENABLE,
-> > -		  &ce->guc_sched_state_no_lock);
-> > -}
-> > -
-> > -static inline void clr_context_pending_enable(struct intel_context *ce)
-> > -{
-> > -	atomic_and((u32)~SCHED_STATE_NO_LOCK_PENDING_ENABLE,
-> > -		   &ce->guc_sched_state_no_lock);
-> > -}
-> > -
-> > -static inline bool context_registered(struct intel_context *ce)
-> > -{
-> > -	return (atomic_read(&ce->guc_sched_state_no_lock) &
-> > -		SCHED_STATE_NO_LOCK_REGISTERED);
-> > -}
-> > -
-> > -static inline void set_context_registered(struct intel_context *ce)
-> > -{
-> > -	atomic_or(SCHED_STATE_NO_LOCK_REGISTERED,
-> > -		  &ce->guc_sched_state_no_lock);
-> > -}
-> > -
-> > -static inline void clr_context_registered(struct intel_context *ce)
-> > -{
-> > -	atomic_and((u32)~SCHED_STATE_NO_LOCK_REGISTERED,
-> > -		   &ce->guc_sched_state_no_lock);
-> > -}
-> > -
-> >  /*
-> >   * Below is a set of functions which control the GuC scheduling state which
-> > - * require a lock, aside from the special case where the functions are called
-> > - * from guc_lrc_desc_pin(). In that case it isn't possible for any other code
-> > - * path to be executing on the context.
-> > + * require a lock.
-> >   */
-> >  #define SCHED_STATE_WAIT_FOR_DEREGISTER_TO_REGISTER	BIT(0)
-> >  #define SCHED_STATE_DESTROYED				BIT(1)
-> >  #define SCHED_STATE_PENDING_DISABLE			BIT(2)
-> >  #define SCHED_STATE_BANNED				BIT(3)
-> > -#define SCHED_STATE_BLOCKED_SHIFT			4
-> > +#define SCHED_STATE_ENABLED				BIT(4)
-> > +#define SCHED_STATE_PENDING_ENABLE			BIT(5)
-> > +#define SCHED_STATE_REGISTERED				BIT(6)
-> > +#define SCHED_STATE_BLOCKED_SHIFT			7
-> >  #define SCHED_STATE_BLOCKED		BIT(SCHED_STATE_BLOCKED_SHIFT)
-> >  #define SCHED_STATE_BLOCKED_MASK	(0xfff << SCHED_STATE_BLOCKED_SHIFT)
-> >  static inline void init_sched_state(struct intel_context *ce)
-> >  {
-> >  	lockdep_assert_held(&ce->guc_state.lock);
-> > -	atomic_set(&ce->guc_sched_state_no_lock, 0);
-> >  	ce->guc_state.sched_state &= SCHED_STATE_BLOCKED_MASK;
-> >  }
-> >  
-> > @@ -161,9 +98,8 @@ static inline bool sched_state_is_init(struct intel_context *ce)
-> >  	 * XXX: Kernel contexts can have SCHED_STATE_NO_LOCK_REGISTERED after
-> >  	 * suspend.
-> >  	 */
-> > -	return !(atomic_read(&ce->guc_sched_state_no_lock) &
-> > -		 ~SCHED_STATE_NO_LOCK_REGISTERED) &&
-> > -		!(ce->guc_state.sched_state &= ~SCHED_STATE_BLOCKED_MASK);
-> > +	return !(ce->guc_state.sched_state &=
-> > +		 ~(SCHED_STATE_BLOCKED_MASK | SCHED_STATE_REGISTERED));
-> >  }
-> >  
-> >  static inline bool
-> > @@ -236,6 +172,57 @@ static inline void clr_context_banned(struct intel_context *ce)
-> >  	ce->guc_state.sched_state &= ~SCHED_STATE_BANNED;
-> >  }
-> >  
-> > +static inline bool context_enabled(struct intel_context *ce)
-> 
-> No statice inline in .c files. The compiler is better at this than you
-> are. Especially once you add stuff like asserts and everything, it's just
-> not worth the cognitive effort to have to reevaluate these.
-> 
+On Tue, Aug 17, 2021 at 5:13 PM Matthew Brost <matthew.brost@intel.com> wrote:
+> On Tue, Aug 17, 2021 at 11:21:27AM +0200, Daniel Vetter wrote:
+> > On Mon, Aug 16, 2021 at 06:51:23AM -0700, Matthew Brost wrote:
+> > > Progagating errors to dependent fences is wrong, don't do it. Selftest
+> > > in following patch exposes this bug.
+> >
+> > Please explain what "this bug" is, it's hard to read minds, especially at
+> > a distance in spacetime :-)
+> >
+>
+> Not a very good explaination.
+>
+> > > Fixes: 8e9f84cf5cac ("drm/i915/gt: Propagate change in error status to children on unhold")
+> >
+> > I think it would be better to outright revert this, instead of just
+> > disabling it like this.
+> >
+>
+> I tried revert and git did some really odd things that I couldn't
+> resolve, hence the new patch.
 
-Will clean up this whole file in one patch at the end dropping all the
-static inlines from this file.
+If there's any conflict git just gives you your current code, and what
+was there with the revert applied, with the block markers. Then it's
+your job to manually apply that change.
 
-Matt
+Occasionally (when there's been ridiculous amounts of code movement)
+it gets completely lost and puts these into very non-intuitive places.
+In that case just delete it, keep the current code, and check what
+change you're missing that needs to be manually reverted still. Also
+sometimes there's a follow-up patch that you should revert first,
+which makes the revert clean. In that case it's generally the right
+thing to revert the follow-up first, and then apply your revert. Often
+there's subtle functional dependencies hiding.
+-Daniel
 
-> One-line helpers in headers are the only exception where static inline is
-> ok.
-> -Daniel
-> 
-> > +{
-> > +	return ce->guc_state.sched_state & SCHED_STATE_ENABLED;
-> > +}
-> > +
-> > +static inline void set_context_enabled(struct intel_context *ce)
-> > +{
-> > +	lockdep_assert_held(&ce->guc_state.lock);
-> > +	ce->guc_state.sched_state |= SCHED_STATE_ENABLED;
-> > +}
-> > +
-> > +static inline void clr_context_enabled(struct intel_context *ce)
-> > +{
-> > +	lockdep_assert_held(&ce->guc_state.lock);
-> > +	ce->guc_state.sched_state &= ~SCHED_STATE_ENABLED;
-> > +}
-> > +
-> > +static inline bool context_pending_enable(struct intel_context *ce)
-> > +{
-> > +	return ce->guc_state.sched_state & SCHED_STATE_PENDING_ENABLE;
-> > +}
-> > +
-> > +static inline void set_context_pending_enable(struct intel_context *ce)
-> > +{
-> > +	lockdep_assert_held(&ce->guc_state.lock);
-> > +	ce->guc_state.sched_state |= SCHED_STATE_PENDING_ENABLE;
-> > +}
-> > +
-> > +static inline void clr_context_pending_enable(struct intel_context *ce)
-> > +{
-> > +	lockdep_assert_held(&ce->guc_state.lock);
-> > +	ce->guc_state.sched_state &= ~SCHED_STATE_PENDING_ENABLE;
-> > +}
-> > +
-> > +static inline bool context_registered(struct intel_context *ce)
-> > +{
-> > +	return ce->guc_state.sched_state & SCHED_STATE_REGISTERED;
-> > +}
-> > +
-> > +static inline void set_context_registered(struct intel_context *ce)
-> > +{
-> > +	lockdep_assert_held(&ce->guc_state.lock);
-> > +	ce->guc_state.sched_state |= SCHED_STATE_REGISTERED;
-> > +}
-> > +
-> > +static inline void clr_context_registered(struct intel_context *ce)
-> > +{
-> > +	lockdep_assert_held(&ce->guc_state.lock);
-> > +	ce->guc_state.sched_state &= ~SCHED_STATE_REGISTERED;
-> > +}
-> > +
-> >  static inline u32 context_blocked(struct intel_context *ce)
-> >  {
-> >  	return (ce->guc_state.sched_state & SCHED_STATE_BLOCKED_MASK) >>
-> > @@ -244,7 +231,6 @@ static inline u32 context_blocked(struct intel_context *ce)
-> >  
-> >  static inline void incr_context_blocked(struct intel_context *ce)
-> >  {
-> > -	lockdep_assert_held(&ce->engine->sched_engine->lock);
-> >  	lockdep_assert_held(&ce->guc_state.lock);
-> >  
-> >  	ce->guc_state.sched_state += SCHED_STATE_BLOCKED;
-> > @@ -254,7 +240,6 @@ static inline void incr_context_blocked(struct intel_context *ce)
-> >  
-> >  static inline void decr_context_blocked(struct intel_context *ce)
-> >  {
-> > -	lockdep_assert_held(&ce->engine->sched_engine->lock);
-> >  	lockdep_assert_held(&ce->guc_state.lock);
-> >  
-> >  	GEM_BUG_ON(!context_blocked(ce));	/* Underflow check */
-> > @@ -443,6 +428,8 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >  	u32 g2h_len_dw = 0;
-> >  	bool enabled;
-> >  
-> > +	lockdep_assert_held(&rq->engine->sched_engine->lock);
-> > +
-> >  	/*
-> >  	 * Corner case where requests were sitting in the priority list or a
-> >  	 * request resubmitted after the context was banned.
-> > @@ -450,7 +437,7 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >  	if (unlikely(intel_context_is_banned(ce))) {
-> >  		i915_request_put(i915_request_mark_eio(rq));
-> >  		intel_engine_signal_breadcrumbs(ce->engine);
-> > -		goto out;
-> > +		return 0;
-> >  	}
-> >  
-> >  	GEM_BUG_ON(!atomic_read(&ce->guc_id_ref));
-> > @@ -463,9 +450,11 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >  	if (unlikely(!lrc_desc_registered(guc, ce->guc_id))) {
-> >  		err = guc_lrc_desc_pin(ce, false);
-> >  		if (unlikely(err))
-> > -			goto out;
-> > +			return err;
-> >  	}
-> >  
-> > +	spin_lock(&ce->guc_state.lock);
-> > +
-> >  	/*
-> >  	 * The request / context will be run on the hardware when scheduling
-> >  	 * gets enabled in the unblock.
-> > @@ -500,6 +489,7 @@ static int guc_add_request(struct intel_guc *guc, struct i915_request *rq)
-> >  		trace_i915_request_guc_submit(rq);
-> >  
-> >  out:
-> > +	spin_unlock(&ce->guc_state.lock);
-> >  	return err;
-> >  }
-> >  
-> > @@ -720,8 +710,6 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
-> >  	spin_lock_irq(&guc_to_gt(guc)->irq_lock);
-> >  	spin_unlock_irq(&guc_to_gt(guc)->irq_lock);
-> >  
-> > -	guc_flush_submissions(guc);
-> > -
-> >  	flush_work(&guc->ct.requests.worker);
-> >  
-> >  	scrub_guc_desc_for_outstanding_g2h(guc);
-> > @@ -1125,7 +1113,11 @@ static int steal_guc_id(struct intel_guc *guc)
-> >  
-> >  		list_del_init(&ce->guc_id_link);
-> >  		guc_id = ce->guc_id;
-> > +
-> > +		spin_lock(&ce->guc_state.lock);
-> >  		clr_context_registered(ce);
-> > +		spin_unlock(&ce->guc_state.lock);
-> > +
-> >  		set_context_guc_id_invalid(ce);
-> >  		return guc_id;
-> >  	} else {
-> > @@ -1161,6 +1153,8 @@ static int pin_guc_id(struct intel_guc *guc, struct intel_context *ce)
-> >  try_again:
-> >  	spin_lock_irqsave(&guc->contexts_lock, flags);
-> >  
-> > +	might_lock(&ce->guc_state.lock);
-> > +
-> >  	if (context_guc_id_invalid(ce)) {
-> >  		ret = assign_guc_id(guc, &ce->guc_id);
-> >  		if (ret)
-> > @@ -1240,8 +1234,13 @@ static int register_context(struct intel_context *ce, bool loop)
-> >  	trace_intel_context_register(ce);
-> >  
-> >  	ret = __guc_action_register_context(guc, ce->guc_id, offset, loop);
-> > -	if (likely(!ret))
-> > +	if (likely(!ret)) {
-> > +		unsigned long flags;
-> > +
-> > +		spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >  		set_context_registered(ce);
-> > +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> > +	}
-> >  
-> >  	return ret;
-> >  }
-> > @@ -1517,7 +1516,6 @@ static u16 prep_context_pending_disable(struct intel_context *ce)
-> >  static struct i915_sw_fence *guc_context_block(struct intel_context *ce)
-> >  {
-> >  	struct intel_guc *guc = ce_to_guc(ce);
-> > -	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
-> >  	unsigned long flags;
-> >  	struct intel_runtime_pm *runtime_pm = ce->engine->uncore->rpm;
-> >  	intel_wakeref_t wakeref;
-> > @@ -1526,13 +1524,7 @@ static struct i915_sw_fence *guc_context_block(struct intel_context *ce)
-> >  
-> >  	spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >  
-> > -	/*
-> > -	 * Sync with submission path, increment before below changes to context
-> > -	 * state.
-> > -	 */
-> > -	spin_lock(&sched_engine->lock);
-> >  	incr_context_blocked(ce);
-> > -	spin_unlock(&sched_engine->lock);
-> >  
-> >  	enabled = context_enabled(ce);
-> >  	if (unlikely(!enabled || submission_disabled(guc))) {
-> > @@ -1561,7 +1553,6 @@ static struct i915_sw_fence *guc_context_block(struct intel_context *ce)
-> >  static void guc_context_unblock(struct intel_context *ce)
-> >  {
-> >  	struct intel_guc *guc = ce_to_guc(ce);
-> > -	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
-> >  	unsigned long flags;
-> >  	struct intel_runtime_pm *runtime_pm = ce->engine->uncore->rpm;
-> >  	intel_wakeref_t wakeref;
-> > @@ -1586,13 +1577,7 @@ static void guc_context_unblock(struct intel_context *ce)
-> >  		intel_context_get(ce);
-> >  	}
-> >  
-> > -	/*
-> > -	 * Sync with submission path, decrement after above changes to context
-> > -	 * state.
-> > -	 */
-> > -	spin_lock(&sched_engine->lock);
-> >  	decr_context_blocked(ce);
-> > -	spin_unlock(&sched_engine->lock);
-> >  
-> >  	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> >  
-> > @@ -1702,7 +1687,9 @@ static void guc_context_sched_disable(struct intel_context *ce)
-> >  
-> >  	if (submission_disabled(guc) || context_guc_id_invalid(ce) ||
-> >  	    !lrc_desc_registered(guc, ce->guc_id)) {
-> > +		spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >  		clr_context_enabled(ce);
-> > +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> >  		goto unpin;
-> >  	}
-> >  
-> > @@ -1752,7 +1739,6 @@ static inline void guc_lrc_desc_unpin(struct intel_context *ce)
-> >  	GEM_BUG_ON(ce != __get_context(guc, ce->guc_id));
-> >  	GEM_BUG_ON(context_enabled(ce));
-> >  
-> > -	clr_context_registered(ce);
-> >  	deregister_context(ce, ce->guc_id, true);
-> >  }
-> >  
-> > @@ -1825,8 +1811,10 @@ static void guc_context_destroy(struct kref *kref)
-> >  	/* Seal race with Reset */
-> >  	spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >  	disabled = submission_disabled(guc);
-> > -	if (likely(!disabled))
-> > +	if (likely(!disabled)) {
-> >  		set_context_destroyed(ce);
-> > +		clr_context_registered(ce);
-> > +	}
-> >  	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> >  	if (unlikely(disabled)) {
-> >  		release_guc_id(guc, ce);
-> > @@ -2695,8 +2683,7 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
-> >  		     (!context_pending_enable(ce) &&
-> >  		     !context_pending_disable(ce)))) {
-> >  		drm_err(&guc_to_gt(guc)->i915->drm,
-> > -			"Bad context sched_state 0x%x, 0x%x, desc_idx %u",
-> > -			atomic_read(&ce->guc_sched_state_no_lock),
-> > +			"Bad context sched_state 0x%x, desc_idx %u",
-> >  			ce->guc_state.sched_state, desc_idx);
-> >  		return -EPROTO;
-> >  	}
-> > @@ -2711,7 +2698,9 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
-> >  		}
-> >  #endif
-> >  
-> > +		spin_lock_irqsave(&ce->guc_state.lock, flags);
-> >  		clr_context_pending_enable(ce);
-> > +		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> >  	} else if (context_pending_disable(ce)) {
-> >  		bool banned;
-> >  
-> > @@ -2985,9 +2974,8 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
-> >  			   atomic_read(&ce->pin_count));
-> >  		drm_printf(p, "\t\tGuC ID Ref Count: %u\n",
-> >  			   atomic_read(&ce->guc_id_ref));
-> > -		drm_printf(p, "\t\tSchedule State: 0x%x, 0x%x\n\n",
-> > -			   ce->guc_state.sched_state,
-> > -			   atomic_read(&ce->guc_sched_state_no_lock));
-> > +		drm_printf(p, "\t\tSchedule State: 0x%x\n\n",
-> > +			   ce->guc_state.sched_state);
-> >  
-> >  		guc_log_context_priority(p, ce);
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-> > index 806ad688274b..0a77eb2944b5 100644
-> > --- a/drivers/gpu/drm/i915/i915_trace.h
-> > +++ b/drivers/gpu/drm/i915/i915_trace.h
-> > @@ -903,7 +903,6 @@ DECLARE_EVENT_CLASS(intel_context,
-> >  			     __field(u32, guc_id)
-> >  			     __field(int, pin_count)
-> >  			     __field(u32, sched_state)
-> > -			     __field(u32, guc_sched_state_no_lock)
-> >  			     __field(u8, guc_prio)
-> >  			     ),
-> >  
-> > @@ -911,15 +910,12 @@ DECLARE_EVENT_CLASS(intel_context,
-> >  			   __entry->guc_id = ce->guc_id;
-> >  			   __entry->pin_count = atomic_read(&ce->pin_count);
-> >  			   __entry->sched_state = ce->guc_state.sched_state;
-> > -			   __entry->guc_sched_state_no_lock =
-> > -			   atomic_read(&ce->guc_sched_state_no_lock);
-> >  			   __entry->guc_prio = ce->guc_prio;
-> >  			   ),
-> >  
-> > -		    TP_printk("guc_id=%d, pin_count=%d sched_state=0x%x,0x%x, guc_prio=%u",
-> > +		    TP_printk("guc_id=%d, pin_count=%d sched_state=0x%x, guc_prio=%u",
-> >  			      __entry->guc_id, __entry->pin_count,
-> >  			      __entry->sched_state,
-> > -			      __entry->guc_sched_state_no_lock,
-> >  			      __entry->guc_prio)
-> >  );
-> >  
-> > -- 
-> > 2.32.0
-> > 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+>
+> > Also please cite the dma_fence error propagation revert from Jason:
+> >
+> > commit 93a2711cddd5760e2f0f901817d71c93183c3b87
+> > Author: Jason Ekstrand <jason@jlekstrand.net>
+> > Date:   Wed Jul 14 14:34:16 2021 -0500
+> >
+> >     Revert "drm/i915: Propagate errors on awaiting already signaled fences"
+> >
+> > Maybe in full, if you need the justification.
+> >
+>
+> Will site.
+>
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: <stable@vger.kernel.org>
+> >
+> > Unless "this bug" is some real world impact thing I wouldn't put cc:
+> > stable on this.
+>
+> Got it.
+>
+> Matt
+>
+> > -Daniel
+> > > ---
+> > >  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 ----
+> > >  1 file changed, 4 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > index de5f9c86b9a4..cafb0608ffb4 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > > @@ -2140,10 +2140,6 @@ static void __execlists_unhold(struct i915_request *rq)
+> > >                     if (p->flags & I915_DEPENDENCY_WEAK)
+> > >                             continue;
+> > >
+> > > -                   /* Propagate any change in error status */
+> > > -                   if (rq->fence.error)
+> > > -                           i915_request_set_error_once(w, rq->fence.error);
+> > > -
+> > >                     if (w->engine != rq->engine)
+> > >                             continue;
+> > >
+> > > --
+> > > 2.32.0
+> > >
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
