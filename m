@@ -2,44 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F2C3EF0B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 19:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AFF83EF0B6
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Aug 2021 19:17:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB65D6E200;
-	Tue, 17 Aug 2021 17:19:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 345C26E1F9;
+	Tue, 17 Aug 2021 17:17:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5C6B6E200;
- Tue, 17 Aug 2021 17:19:06 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="195732003"
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="195732003"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 10:19:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="505385632"
-Received: from jons-linux-dev-box.fm.intel.com (HELO jons-linux-dev-box)
- ([10.1.27.20])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2021 10:19:05 -0700
-Date: Tue, 17 Aug 2021 10:13:52 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- daniel.vetter@ffwll.ch
-Message-ID: <20210817171352.GA30887@jons-linux-dev-box>
-References: <20210816135139.10060-1-matthew.brost@intel.com>
- <20210816135139.10060-20-matthew.brost@intel.com>
- <YRuPEeq2e8qdKBc2@phenom.ffwll.local>
- <20210817152628.GA19215@jons-linux-dev-box>
- <YRvuPcQFyglVyuMa@phenom.ffwll.local>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE0A6E1F9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 17:17:34 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10079"; a="238239471"
+X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="238239471"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2021 10:17:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,329,1620716400"; d="scan'208";a="531158800"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP; 17 Aug 2021 10:17:34 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Tue, 17 Aug 2021 10:17:33 -0700
+Received: from pgsmsx602.gar.corp.intel.com (10.108.199.137) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Tue, 17 Aug 2021 10:17:32 -0700
+Received: from pgsmsx602.gar.corp.intel.com ([10.108.199.137]) by
+ pgsmsx602.gar.corp.intel.com ([10.108.199.137]) with mapi id 15.01.2242.010;
+ Wed, 18 Aug 2021 01:17:30 +0800
+From: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvYWRsX3A6IEFs?=
+ =?utf-8?Q?so_disable_underrun_recovery_with_MSO?=
+Thread-Index: AQHXk4ScIhwKdFCjtEOmh66N0PdJz6t38HEQ
+Date: Tue, 17 Aug 2021 17:17:30 +0000
+Message-ID: <58031426cb67477f824d5c7c57eddf21@intel.com>
+References: <20210816204112.2960624-1-matthew.d.roper@intel.com>
+ <162921613493.22609.5351941758725285675@emeril.freedesktop.org>
+ <20210817162616.GT1556418@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20210817162616.GT1556418@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+x-originating-ip: [10.22.254.132]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YRvuPcQFyglVyuMa@phenom.ffwll.local>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 19/22] drm/i915/guc: Proper xarray usage for
- contexts_lookup
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/adl=5Fp=3A_Also_disable_underrun_recovery_with_MSO?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,307 +73,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 17, 2021 at 07:13:33PM +0200, Daniel Vetter wrote:
-> On Tue, Aug 17, 2021 at 08:26:28AM -0700, Matthew Brost wrote:
-> > On Tue, Aug 17, 2021 at 12:27:29PM +0200, Daniel Vetter wrote:
-> > > On Mon, Aug 16, 2021 at 06:51:36AM -0700, Matthew Brost wrote:
-> > > > Lock the xarray and take ref to the context if needed.
-> > > > 
-> > > > v2:
-> > > >  (Checkpatch)
-> > > >   - Add new line after declaration
-> > > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 84 ++++++++++++++++---
-> > > >  1 file changed, 73 insertions(+), 11 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > index ba19b99173fc..2ecb2f002bed 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > > @@ -599,8 +599,18 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
-> > > >  	unsigned long index, flags;
-> > > >  	bool pending_disable, pending_enable, deregister, destroyed, banned;
-> > > >  
-> > > > +	xa_lock_irqsave(&guc->context_lookup, flags);
-> > > >  	xa_for_each(&guc->context_lookup, index, ce) {
-> > > > -		spin_lock_irqsave(&ce->guc_state.lock, flags);
-> > > > +		/*
-> > > > +		 * Corner case where the ref count on the object is zero but and
-> > > > +		 * deregister G2H was lost. In this case we don't touch the ref
-> > > > +		 * count and finish the destroy of the context.
-> > > > +		 */
-> > > > +		bool do_put = kref_get_unless_zero(&ce->ref);
-> > > 
-> > > This looks really scary, because in another loop below you have an
-> > > unconditional refcount increase. This means sometimes guc->context_lookup
-> > 
-> > Yea, good catch those loops need something like this too.
-> > 
-> > > xarray guarantees we hold a full reference on the context, sometimes we
-> > > don't. So we're right back in "protect the code" O(N^2) review complexity
-> > > instead of invariant rules about the datastructure, which is linear.
-> > > 
-> > > Essentially anytime you feel like you have to add a comment to explain
-> > > what's going on about concurrent stuff you're racing with, you're
-> > > protecting code, not data.
-> > > 
-> > > Since guc can't do a hole lot without the guc_id registered and all that,
-> > > I kinda expected you'd always have a full reference here. If there's
-> > 
-> > The deregister is triggered by the ref count going to zero and we can't
-> > fully release the guc_id until that operation completes hence why it is
-> > still in the xarray. I think the solution here is to use iterator like
-> > you mention below that ref counts this correctly.
-> 
-> Hm but if the refcount drops to zero while we have a guc_id, how does that
-> work? Do we delay the guc_context_destroy until that's done, or is the
-
-Yes, we don't want to release the guc_id and deregister the context with
-the GuC until the i915 is done with the context (no refs). We issue the
-deregister when we have no refs (done directly now, add worker to do
-this in a upcoming patch). We release the guc_id, remove from xarray, and
-destroy context when the deregister completes.
-
-> context handed off internally somehow to a worker?
-> 
-> Afaik intel_context_put is called from all kinds of nasty context, so
-> waiting is not an option as-is ...
-
-Right, it is definitely can be called from nasty contexts hence why move
-this to a work in an upcoming patch.
-
-Matt
-
-> -Daniel
-> 
-> > > intermediate stages (e.g. around unregister) where this is currently not
-> > > always the case, then those should make sure a full reference is held.
-> > > 
-> > > Another option would be to threa ->context_lookup as a weak reference that
-> > > we lazily clean up when the context is finalized. That works too, but
-> > > probably not with a spinlock (since you most likely have to wait for all
-> > > pending guc transations to complete), but it's another option.
-> > > 
-> > > Either way I think standard process is needed here for locking design,
-> > > i.e.
-> > > 1. come up with the right invariants ("we always have a full reference
-> > > when a context is ont he guc->context_lookup xarray")
-> > > 2. come up with the locks. From the guc side the xa_lock is maybe good
-> > > enough, but from the context side this doesn't protect against a
-> > > re-registering racing against a deregistering. So probably needs more
-> > > rules on top, and then you have a nice lock inversion in a few places like
-> > > here.
-> > > 3. document it and roll it out.
-> > > 
-> > > The other thing is that this is a very tricky iterator, and there's a few
-> > > copies of it. That is, if this is the right solution. As-is this should be
-> > > abstracted away into guc_context_iter_begin/next_end() helpers, e.g. like
-> > > we have for drm_connector_list_iter_begin/end_next as an example.
-> > >
-> > 
-> > I can check this out.
-> > 
-> > Matt
-> >  
-> > > Cheers, Daniel
-> > > 
-> > > > +
-> > > > +		xa_unlock(&guc->context_lookup);
-> > > > +
-> > > > +		spin_lock(&ce->guc_state.lock);
-> > > >  
-> > > >  		/*
-> > > >  		 * Once we are at this point submission_disabled() is guaranteed
-> > > > @@ -616,7 +626,9 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
-> > > >  		banned = context_banned(ce);
-> > > >  		init_sched_state(ce);
-> > > >  
-> > > > -		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
-> > > > +		spin_unlock(&ce->guc_state.lock);
-> > > > +
-> > > > +		GEM_BUG_ON(!do_put && !destroyed);
-> > > >  
-> > > >  		if (pending_enable || destroyed || deregister) {
-> > > >  			atomic_dec(&guc->outstanding_submission_g2h);
-> > > > @@ -645,7 +657,12 @@ static void scrub_guc_desc_for_outstanding_g2h(struct intel_guc *guc)
-> > > >  
-> > > >  			intel_context_put(ce);
-> > > >  		}
-> > > > +
-> > > > +		if (do_put)
-> > > > +			intel_context_put(ce);
-> > > > +		xa_lock(&guc->context_lookup);
-> > > >  	}
-> > > > +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> > > >  }
-> > > >  
-> > > >  static inline bool
-> > > > @@ -866,16 +883,26 @@ void intel_guc_submission_reset(struct intel_guc *guc, bool stalled)
-> > > >  {
-> > > >  	struct intel_context *ce;
-> > > >  	unsigned long index;
-> > > > +	unsigned long flags;
-> > > >  
-> > > >  	if (unlikely(!guc_submission_initialized(guc))) {
-> > > >  		/* Reset called during driver load? GuC not yet initialised! */
-> > > >  		return;
-> > > >  	}
-> > > >  
-> > > > -	xa_for_each(&guc->context_lookup, index, ce)
-> > > > +	xa_lock_irqsave(&guc->context_lookup, flags);
-> > > > +	xa_for_each(&guc->context_lookup, index, ce) {
-> > > > +		intel_context_get(ce);
-> > > > +		xa_unlock(&guc->context_lookup);
-> > > > +
-> > > >  		if (intel_context_is_pinned(ce))
-> > > >  			__guc_reset_context(ce, stalled);
-> > > >  
-> > > > +		intel_context_put(ce);
-> > > > +		xa_lock(&guc->context_lookup);
-> > > > +	}
-> > > > +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> > > > +
-> > > >  	/* GuC is blown away, drop all references to contexts */
-> > > >  	xa_destroy(&guc->context_lookup);
-> > > >  }
-> > > > @@ -950,11 +977,21 @@ void intel_guc_submission_cancel_requests(struct intel_guc *guc)
-> > > >  {
-> > > >  	struct intel_context *ce;
-> > > >  	unsigned long index;
-> > > > +	unsigned long flags;
-> > > > +
-> > > > +	xa_lock_irqsave(&guc->context_lookup, flags);
-> > > > +	xa_for_each(&guc->context_lookup, index, ce) {
-> > > > +		intel_context_get(ce);
-> > > > +		xa_unlock(&guc->context_lookup);
-> > > >  
-> > > > -	xa_for_each(&guc->context_lookup, index, ce)
-> > > >  		if (intel_context_is_pinned(ce))
-> > > >  			guc_cancel_context_requests(ce);
-> > > >  
-> > > > +		intel_context_put(ce);
-> > > > +		xa_lock(&guc->context_lookup);
-> > > > +	}
-> > > > +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> > > > +
-> > > >  	guc_cancel_sched_engine_requests(guc->sched_engine);
-> > > >  
-> > > >  	/* GuC is blown away, drop all references to contexts */
-> > > > @@ -2848,21 +2885,26 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine)
-> > > >  	struct intel_context *ce;
-> > > >  	struct i915_request *rq;
-> > > >  	unsigned long index;
-> > > > +	unsigned long flags;
-> > > >  
-> > > >  	/* Reset called during driver load? GuC not yet initialised! */
-> > > >  	if (unlikely(!guc_submission_initialized(guc)))
-> > > >  		return;
-> > > >  
-> > > > +	xa_lock_irqsave(&guc->context_lookup, flags);
-> > > >  	xa_for_each(&guc->context_lookup, index, ce) {
-> > > > +		intel_context_get(ce);
-> > > > +		xa_unlock(&guc->context_lookup);
-> > > > +
-> > > >  		if (!intel_context_is_pinned(ce))
-> > > > -			continue;
-> > > > +			goto next;
-> > > >  
-> > > >  		if (intel_engine_is_virtual(ce->engine)) {
-> > > >  			if (!(ce->engine->mask & engine->mask))
-> > > > -				continue;
-> > > > +				goto next;
-> > > >  		} else {
-> > > >  			if (ce->engine != engine)
-> > > > -				continue;
-> > > > +				goto next;
-> > > >  		}
-> > > >  
-> > > >  		list_for_each_entry(rq, &ce->guc_active.requests, sched.link) {
-> > > > @@ -2872,9 +2914,17 @@ void intel_guc_find_hung_context(struct intel_engine_cs *engine)
-> > > >  			intel_engine_set_hung_context(engine, ce);
-> > > >  
-> > > >  			/* Can only cope with one hang at a time... */
-> > > > -			return;
-> > > > +			intel_context_put(ce);
-> > > > +			xa_lock(&guc->context_lookup);
-> > > > +			goto done;
-> > > >  		}
-> > > > +next:
-> > > > +		intel_context_put(ce);
-> > > > +		xa_lock(&guc->context_lookup);
-> > > > +
-> > > >  	}
-> > > > +done:
-> > > > +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> > > >  }
-> > > >  
-> > > >  void intel_guc_dump_active_requests(struct intel_engine_cs *engine,
-> > > > @@ -2890,23 +2940,32 @@ void intel_guc_dump_active_requests(struct intel_engine_cs *engine,
-> > > >  	if (unlikely(!guc_submission_initialized(guc)))
-> > > >  		return;
-> > > >  
-> > > > +	xa_lock_irqsave(&guc->context_lookup, flags);
-> > > >  	xa_for_each(&guc->context_lookup, index, ce) {
-> > > > +		intel_context_get(ce);
-> > > > +		xa_unlock(&guc->context_lookup);
-> > > > +
-> > > >  		if (!intel_context_is_pinned(ce))
-> > > > -			continue;
-> > > > +			goto next;
-> > > >  
-> > > >  		if (intel_engine_is_virtual(ce->engine)) {
-> > > >  			if (!(ce->engine->mask & engine->mask))
-> > > > -				continue;
-> > > > +				goto next;
-> > > >  		} else {
-> > > >  			if (ce->engine != engine)
-> > > > -				continue;
-> > > > +				goto next;
-> > > >  		}
-> > > >  
-> > > >  		spin_lock_irqsave(&ce->guc_active.lock, flags);
-> > > >  		intel_engine_dump_active_requests(&ce->guc_active.requests,
-> > > >  						  hung_rq, m);
-> > > >  		spin_unlock_irqrestore(&ce->guc_active.lock, flags);
-> > > > +
-> > > > +next:
-> > > > +		intel_context_put(ce);
-> > > > +		xa_lock(&guc->context_lookup);
-> > > >  	}
-> > > > +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> > > >  }
-> > > >  
-> > > >  void intel_guc_submission_print_info(struct intel_guc *guc,
-> > > > @@ -2960,7 +3019,9 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
-> > > >  {
-> > > >  	struct intel_context *ce;
-> > > >  	unsigned long index;
-> > > > +	unsigned long flags;
-> > > >  
-> > > > +	xa_lock_irqsave(&guc->context_lookup, flags);
-> > > >  	xa_for_each(&guc->context_lookup, index, ce) {
-> > > >  		drm_printf(p, "GuC lrc descriptor %u:\n", ce->guc_id);
-> > > >  		drm_printf(p, "\tHW Context Desc: 0x%08x\n", ce->lrc.lrca);
-> > > > @@ -2979,6 +3040,7 @@ void intel_guc_submission_print_context_info(struct intel_guc *guc,
-> > > >  
-> > > >  		guc_log_context_priority(p, ce);
-> > > >  	}
-> > > > +	xa_unlock_irqrestore(&guc->context_lookup, flags);
-> > > >  }
-> > > >  
-> > > >  static struct intel_context *
-> > > > -- 
-> > > > 2.32.0
-> > > > 
-> > > 
-> > > -- 
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+UmUtcmVwb3J0ZWQuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBSb3Blciwg
+TWF0dGhldyBEIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPiANClNlbnQ6IFR1ZXNkYXksIEF1
+Z3VzdCAxNywgMjAyMSA5OjI2IEFNDQpUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+Zw0KQ2M6IFZ1ZHVtLCBMYWtzaG1pbmFyYXlhbmEgPGxha3NobWluYXJheWFuYS52dWR1bUBpbnRl
+bC5jb20+DQpTdWJqZWN0OiBSZTog4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUv
+YWRsX3A6IEFsc28gZGlzYWJsZSB1bmRlcnJ1biByZWNvdmVyeSB3aXRoIE1TTw0KDQpPbiBUdWUs
+IEF1ZyAxNywgMjAyMSBhdCAwNDowMjoxNFBNICswMDAwLCBQYXRjaHdvcmsgd3JvdGU6DQo+ID09
+IFNlcmllcyBEZXRhaWxzID09DQo+IA0KPiBTZXJpZXM6IGRybS9pOTE1L2FkbF9wOiBBbHNvIGRp
+c2FibGUgdW5kZXJydW4gcmVjb3Zlcnkgd2l0aCBNU08NCj4gVVJMICAgOiBodHRwczovL3BhdGNo
+d29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzkzNzMyLw0KPiBTdGF0ZSA6IGZhaWx1cmUNCj4g
+DQo+ID09IFN1bW1hcnkgPT0NCj4gDQo+IENJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJN
+XzEwNDkwIC0+IFBhdGNod29ya18yMDgzNSANCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiANCj4gU3VtbWFyeQ0KPiAtLS0tLS0tDQo+IA0K
+PiAgICoqRkFJTFVSRSoqDQo+IA0KPiAgIFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3
+aXRoIFBhdGNod29ya18yMDgzNSBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUNCj4gICB2ZXJpZmllZCBt
+YW51YWxseS4NCj4gICANCj4gICBJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5nZXMgaGF2
+ZSBub3RoaW5nIHRvIGRvIHdpdGggdGhlIGNoYW5nZXMNCj4gICBpbnRyb2R1Y2VkIGluIFBhdGNo
+d29ya18yMDgzNSwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRoZW0NCj4g
+ICB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVkdWNlIGZh
+bHNlIHBvc2l0aXZlcyBpbiBDSS4NCj4gDQo+ICAgRXh0ZXJuYWwgVVJMOiANCj4gaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA4MzUvaW5kZXguaHRt
+bA0KPiANCj4gUG9zc2libGUgbmV3IGlzc3Vlcw0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tDQo+IA0K
+PiAgIEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJv
+ZHVjZWQgaW4gUGF0Y2h3b3JrXzIwODM1Og0KPiANCj4gIyMjIElHVCBjaGFuZ2VzICMjIw0KPiAN
+Cj4gIyMjIyBQb3NzaWJsZSByZWdyZXNzaW9ucyAjIyMjDQo+IA0KPiAgICogaWd0QGk5MTVfc2Vs
+ZnRlc3RAbGl2ZUBoYW5nY2hlY2s6DQo+ICAgICAtIGZpLWl2Yi0zNzcwOiAgICAgICAgW1BBU1Nd
+WzFdIC0+IFtJTkNPTVBMRVRFXVsyXQ0KPiAgICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
+Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzEwNDkwL2ZpLWl2Yi0zNzcwL2lndEBpOTE1X3NlbGZ0
+ZXN0QGxpdmVAaGFuZ2NoZWNrLmh0bWwNCj4gICAgWzJdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngt
+Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA4MzUvZmktaXZiLTM3NzAvaQ0KPiBn
+dEBpOTE1X3NlbGZ0ZXN0QGxpdmVAaGFuZ2NoZWNrLmh0bWwNCg0KVGhpcyBJVkIgZXJyb3IgaXMg
+dW5yZWxhdGVkIHRvIHRoZSBwYXRjaCBoZXJlICh3aGljaCB3b3VsZCBvbmx5IGFmZmVjdCBwbGF0
+Zm9ybXMgd2l0aCBkaXNwbGF5IHZlcnNpb24gPj0gMTMpLg0KDQoNCk1hdHQNCg0KPiANCj4gICAN
+Cj4gS25vd24gaXNzdWVzDQo+IC0tLS0tLS0tLS0tLQ0KPiANCj4gICBIZXJlIGFyZSB0aGUgY2hh
+bmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMjA4MzUgdGhhdCBjb21lIGZyb20ga25vd24gaXNzdWVz
+Og0KPiANCj4gIyMjIElHVCBjaGFuZ2VzICMjIw0KPiANCj4gIyMjIyBJc3N1ZXMgaGl0ICMjIyMN
+Cj4gDQo+ICAgKiBpZ3RAYW1kZ3B1L2FtZF9iYXNpY0BzZW1hcGhvcmU6DQo+ICAgICAtIGZpLWJk
+dy01NTU3dTogICAgICAgTk9UUlVOIC0+IFtTS0lQXVszXSAoW2ZkbyMxMDkyNzFdKSArMjcgc2lt
+aWxhciBpc3N1ZXMNCj4gICAgWzNdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
+ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjA4MzUvZmktYmR3LTU1NTd1Lw0KPiBpZ3RAYW1kZ3B1L2Ft
+ZF9iYXNpY0BzZW1hcGhvcmUuaHRtbA0KPiANCj4gICAqIGlndEBjb3JlX2hvdHVucGx1Z0B1bmJp
+bmQtcmViaW5kOg0KPiAgICAgLSBmaS1iZHctNTU1N3U6ICAgICAgIE5PVFJVTiAtPiBbV0FSTl1b
+NF0gKFtpOTE1IzM3MThdKQ0KPiAgICBbNF06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
+cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18yMDgzNS9maS1iZHctNTU1N3UvDQo+IGlndEBjb3Jl
+X2hvdHVucGx1Z0B1bmJpbmQtcmViaW5kLmh0bWwNCj4gDQo+ICAgKiBpZ3RAa21zX2NoYW1lbGl1
+bUBkcC1jcmMtZmFzdDoNCj4gICAgIC0gZmktYmR3LTU1NTd1OiAgICAgICBOT1RSVU4gLT4gW1NL
+SVBdWzVdIChbZmRvIzEwOTI3MV0gLyBbZmRvIzExMTgyN10pICs4IHNpbWlsYXIgaXNzdWVzDQo+
+ICAgIFs1XTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0
+Y2h3b3JrXzIwODM1L2ZpLWJkdy01NTU3dS8NCj4gaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZh
+c3QuaHRtbA0KPiANCj4gICAqIGlndEBydW5uZXJAYWJvcnRlZDoNCj4gICAgIC0gZmktaXZiLTM3
+NzA6ICAgICAgICBOT1RSVU4gLT4gW0ZBSUxdWzZdIChbZmRvIzEwOTI3MV0pDQo+ICAgIFs2XTog
+DQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzIw
+ODM1L2ZpLWl2Yi0zNzcwL2kNCj4gZ3RAcnVubmVyQGFib3J0ZWQuaHRtbA0KPiANCj4gICANCj4g
+ICBbZmRvIzEwOTI3MV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
+P2lkPTEwOTI3MQ0KPiAgIFtmZG8jMTExODI3XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
+Zy9zaG93X2J1Zy5jZ2k/aWQ9MTExODI3DQo+ICAgW2k5MTUjMzcxOF06IGh0dHBzOi8vZ2l0bGFi
+LmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzM3MTgNCj4gDQo+IA0KPiBQYXJ0aWNp
+cGF0aW5nIGhvc3RzICgzNiAtPiAzNCkNCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+DQo+IA0KPiAgIE1pc3NpbmcgICAgKDIpOiBmaS1ic3ctY3lhbiBmaS1iZHctc2FtdXMgDQo+IA0K
+PiANCj4gQnVpbGQgY2hhbmdlcw0KPiAtLS0tLS0tLS0tLS0tDQo+IA0KPiAgICogTGludXg6IENJ
+X0RSTV8xMDQ5MCAtPiBQYXRjaHdvcmtfMjA4MzUNCj4gDQo+ICAgQ0ktMjAxOTA1Mjk6IDIwMTkw
+NTI5DQo+ICAgQ0lfRFJNXzEwNDkwOiAzYmQ3NGIzNzc5ODZmY2I4OWNmNDU2MzYyOWY5N2M1YjMx
+OTljYTZmIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4DQo+ICAg
+SUdUXzYxNzc6IGY0NzQ2NDRlNzIyNmRkMzE5MTk1Y2EwM2IzY2RlODJhZDEwYWM1NGMgQCBodHRw
+czovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2lndC1ncHUtdG9vbHMuZ2l0DQo+ICAgUGF0
+Y2h3b3JrXzIwODM1OiA0YTliYWM5OWRkZmZiMWUzNTVmMjA4NGQxYjQ2NDY1YWFjMjBiNmM4IEAg
+DQo+IGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eA0KPiANCj4gDQo+
+ID09IExpbnV4IGNvbW1pdHMgPT0NCj4gDQo+IDRhOWJhYzk5ZGRmZiBkcm0vaTkxNS9hZGxfcDog
+QWxzbyBkaXNhYmxlIHVuZGVycnVuIHJlY292ZXJ5IHdpdGggTVNPDQo+IA0KPiA9PSBMb2dzID09
+DQo+IA0KPiBGb3IgbW9yZSBkZXRhaWxzIHNlZTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
+Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzIwODM1L2luZGV4Lmh0bWwNCg0KLS0NCk1hdHQg
+Um9wZXINCkdyYXBoaWNzIFNvZnR3YXJlIEVuZ2luZWVyDQpWVFQtT1NHQyBQbGF0Zm9ybSBFbmFi
+bGVtZW50DQpJbnRlbCBDb3Jwb3JhdGlvbg0KKDkxNikgMzU2LTI3OTUNCg==
